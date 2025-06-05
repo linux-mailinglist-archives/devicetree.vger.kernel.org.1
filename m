@@ -1,506 +1,156 @@
-Return-Path: <devicetree+bounces-182976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 658CDACEACD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:22:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443A9ACEAE0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:33:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD1691899963
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 07:22:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9F0D177082
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 07:33:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95CE1E47B4;
-	Thu,  5 Jun 2025 07:22:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="L253a5sD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B491F2C44;
+	Thu,  5 Jun 2025 07:33:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A525454769
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 07:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 605811BEF74;
+	Thu,  5 Jun 2025 07:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749108148; cv=none; b=KeM6Ys7NCunvIkHHEiMShJcm0AV1ZBybFyqW/q01yFT47Oixas6ODpqIuo+W0ndewR5fdxzbTinQVoZt9fzUVI6397Dxq/uoFwxDVk0FzSaU9v+cRNDIlJsDaFW2Fw0v05uibd6a6dXmW3FfeT/JxYsodx1N8rpoVM1g/50g16k=
+	t=1749108806; cv=none; b=jiYNgXkx2+/WxHuxitwOisC3GseDmDpAFY6DGViO6WbN882V/XgCNjVQ3WFM63RxCebsUJFCsAmj7CLABE5jcGxC/dnny3qezfJlRrj1biY+ZKHiGhv8GLi8twH1COiuTj65pRkAlQiz+Dpz3oUpzwcwVkC3QsrRNEDHxg7EQzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749108148; c=relaxed/simple;
-	bh=Xj0qVduvkfNNAymLsFpnuTF6iaRVq+LqI26/r4nJg9w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YhffTD7PtHAJNwq+Ay0WYginGeZVjhnuwgShgwGjlHfeuOMU8ba4rFiLRLtfUfWazNeNp17ZUvp2Bk8KIXpXQbIAjqbQ09yX3z1glpxmtIE4TgZe190/olIAs/l9z+RvUiLESmApzJY9u1GmzFKQnS4XHCc1kJMn9t8dNeWfYYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=L253a5sD; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-234b9dfb842so6241465ad.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 00:22:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1749108146; x=1749712946; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s54XltCVmAUnUhMdyeOTgfgQzhaCaxghrC7kFQQg7IA=;
-        b=L253a5sDvI/sfFO5Q9y4610sh8lF1FF+cGAQITsKG0yscwUaaMhfKR9zl9BDD3MSXM
-         0mpo59CXItY5a78WB+DXkQW/wm3WRYfF21Qf9fAueeOnHd2a4W51auC9tUhodgVzUxvq
-         Gxr3TxXJF1Tm/olQopEqqeRlpZK6tuocvBhQoi9EFMVkUC/h9i29Majh3+z0oiGZpHGO
-         rpJdHOBXqUXXKr7kECZxd+Rkdt8HQYlGFuGE4PVSlqudxJORQTKly+J4PNMAFZStrooT
-         S+w9CNhzqW6hRsLhORhwJ3oCyNtHwui/Yg71/nb9z0t5+7UnLV4rHQoe4GioZveY3YML
-         PX6A==
+	s=arc-20240116; t=1749108806; c=relaxed/simple;
+	bh=3HU5Hw5tR0oA02ajckSNgdgzpmuDD96VbblNWpCR6yE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JF+H7Uf66zcTyXZkyja2nRL2pBIf0rFesYeekBMYhNHhhqx4cEM6w8l6KkHAvZHf4g104SQtFsLuajPb87yBcmBRVU6CGE0Ke98jEhmYeRfEVLuwtaiK97mDBAfRkDKquGZbL9Q6lJRtUlLDX/Dx1xcV1/dW0qaK4A9EudWqfmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-52f05bb975bso253513e0c.1;
+        Thu, 05 Jun 2025 00:33:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749108146; x=1749712946;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s54XltCVmAUnUhMdyeOTgfgQzhaCaxghrC7kFQQg7IA=;
-        b=afV6q4J76YnzCxkDOpJyrIfz10faoikH2Sj3XaeSoUKZ9Ef3d3TwqgjhADCud457iQ
-         nWxDBYBpnRRPA/MveuNBj6M4ydK2LpqPszASN9VZLExkMu9iZLC3tI3LT+D4FtduiCfY
-         mTOSY2eSyxT5uQegU01FQnPFsXVqUmfHCYFjbzCqbmtPsdvzJqnwXpISBoqwJ87I+bli
-         PBJ2C1HbN4hNF7m3prUfBrN5BCmE/Ne6yCyE+mA2w4+Tb+m1ikA2/lpc7x6hvKgYU7ht
-         9Gxksz0RTl2+dkd8ov5M54ygzH4X3VPLcVmWYsDhun0Dl50crTNMgvMNuWsxeDOFrU6Z
-         lj/g==
-X-Gm-Message-State: AOJu0YzV8wmUkQgSTxyplnlmtkZdQxVIZO0rS2TyEH8m0VnSTf2QTwpK
-	V57pXeRaX8roe7zdyOZd9u/RhLQKRtMfGVye/wcJSJEedsfPp6qdnvvcEKs3vUJP9w==
-X-Gm-Gg: ASbGncvW9aE3pnft5SD/gpy6oeBbcYPP7hum2XRsC8ZOxlhZQ+75Q6GXVyoLvJE4fUf
-	yeZyY82VVXLhnWsMqy0w/8sdgSGpTgJEHKhtE57CHTKkAwWjwVjiZ/2482WecPJpwb08UCVSFFY
-	FJ3MMyHZrmsu2apm4RoSMF8Soy1BRhAQOTMuSj4y3Jgwvt0i6Cefov3niD3JoWWzqX+ufYvKmzG
-	2ZtwUAG4UIwvQJwzSQsu0tUj0joZqlGLdXk1sQ0OqQK+HEwd0tKpsfb4d/f8YfWB/fTXm9OpMKZ
-	Vuh4BGvnPB/i9vY2jIrFFJ9BFO+JzTm/Me0mNjBticR+5AzGcaxf/isCKspw+w3Xt84QdoHSlAn
-	ec9f1QGbzjwooNSVbOzN/gY9iEBPF
-X-Google-Smtp-Source: AGHT+IEMFsbXk3xlc/MF5m2uNRIJnfOrj26FN6ViAOD1Cg37fuHX6PMNjT8Lo6xr/L/UWQSLX0uz5A==
-X-Received: by 2002:a17:902:ec8d:b0:235:779:edf0 with SMTP id d9443c01a7336-235e1200772mr82405135ad.50.1749108145681;
-        Thu, 05 Jun 2025 00:22:25 -0700 (PDT)
-Received: from ?IPV6:2401:4900:8899:bab8:9a99:8bde:e080:9339? ([2401:4900:8899:bab8:9a99:8bde:e080:9339])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506d14ad4sm113848685ad.234.2025.06.05.00.22.20
+        d=1e100.net; s=20230601; t=1749108802; x=1749713602;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UPXygViugK2qDdRyZqMS+7O5LAWGbwutgev5XJq8gb8=;
+        b=asIflDm20qWZfcpmm5Fot/pQZY7LKJaTDRBjz36WhCC+A6VzKqtenP3lE181XXN1b+
+         1/prCCFptm3yUkj6dW56q5nbFpF9ZuGrL+FejZYG7Ge3ed4ul2FN5XBUhONrjpbHLvPw
+         XjcxoQog1GbWmqT5Xu37vx5UKNiL+qsaaw5W1XwmuzIFCh28bLjepwYIkA9AGsX4tyIJ
+         slethI7gJDK2/Dfcej8LqyNTN07TQeLZCJL/XvPCsORBwm1cVTZ5OZAfcjJZWqeXOtFD
+         QuNEI5p5rCK2YwgvM/4DGu2tyuJdjevLLGO8tgK7gIGI6xB/GvB+owFke9WuqU4v1wUO
+         dXJg==
+X-Forwarded-Encrypted: i=1; AJvYcCWEeGprwU46w9e+SAr0//xEBA1WUpUyoX93x8l8V9Q4KC53I+Ilg0DFX1EWAlX73/TZNwQ3RqaDWMup@vger.kernel.org, AJvYcCWKqGBceZhbcq+VCIM7morK6qrGNsucAJxLFbvIySAPNVg+DmLL5M29Qk4v4WVc7AixNnefxaThr3YR1RQy@vger.kernel.org, AJvYcCWcYJ6OhR2P+grSVZxpjd4mJAsRDQd3AOVoK0GA4paraFnneZ7ltWFYYQnkjVgFofrdriIUqpKRhpcB@vger.kernel.org, AJvYcCXhpozIN5Sg1ZZK6EqGZdSbm0heHOZB979Q0aGk5gGpsrAV/NanTWedtRvne064cf+jNuNKYs2NN1Wu0Ma7V80ZN1E=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/qFkgJDiHLROufE5vbtAjg+y7cyJdsYbeIhMi6qZxfmfVtfFB
+	YK8FjEObNhA6hp9T+fclP+K8LasWQyUln1TWhfcs5xxlXv4ErvR+y2ovj+szovPd
+X-Gm-Gg: ASbGncu2ijzFz8kxEQhk60fKrd8wmiFB5UM2+tqhGc4OREAjBrvui1s0FVogT2PSKq5
+	6E/Jrha/1CHxvAPukfYYhlBWxZqq8jyGb6XHfsTASM3YdCqOCbcUD7o86al+iOWAQV+6iTsjZ4/
+	c4HPtQLi/Ff/c8ifpagLJxHNWkT3psErRpPqtgbklVrkTQSShtFQleUx4pqpFgzs2661xhIlk2R
+	ehBiF3FDunKw//EEntp0JvNU2a+4pITnJgezvN+ldOCcb1ZgB0xgzjwUnmyzVPa87AMhEk8+FnY
+	7R6QnGj4POv7GUh4TeChyKPn4+i56/9H3CO0cx9hfY6uUOChfZoBtwL+EisHTByJvdqdBLOaIGX
+	R5qJurOywvkvl8XhZLGgmBemO
+X-Google-Smtp-Source: AGHT+IGoPdAK7xoPICutFq0mu9VODkcVC0PSvVKCb9eCGVKQbdy9OnN4H9kVkO+cnJOGFBfaIXx8Ew==
+X-Received: by 2002:a05:6122:658e:b0:530:626b:7d43 with SMTP id 71dfb90a1353d-530c73159a7mr5732695e0c.2.1749108801834;
+        Thu, 05 Jun 2025 00:33:21 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53074c32036sm12119147e0c.43.2025.06.05.00.33.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jun 2025 00:22:24 -0700 (PDT)
-Message-ID: <46bb7e4f-1e65-4510-a27f-19ae87c4c272@beagleboard.org>
-Date: Thu, 5 Jun 2025 12:52:19 +0530
+        Thu, 05 Jun 2025 00:33:21 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4e5adc977ecso205167137.3;
+        Thu, 05 Jun 2025 00:33:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVp7BhIzJ4kpmBWwkYBD7Sm54Qa6BJfZmvXXileYEAEa/HbEeJvHgZUPsYqlVmcXdiT2yBqvLYjquC3bPpy@vger.kernel.org, AJvYcCWDOA8n8AGNC+XfFitmLEQTQQblMzRRYGE1g8q77/5Liua94NkYU4lMgqFW9f0gbbz9K2q9YnozjviOW5T0a7S8L24=@vger.kernel.org, AJvYcCWX5gykN777tHN0bIN9ptbKL/gALrfS7jhMD/bnRkhx2V2FZCmBgBIN0zc/82MgcJtDgGxYqTHeAU3A@vger.kernel.org, AJvYcCXbnLLNyenimupoyPba/0HE222yJU4nt5pcIZJK37DtQdu0OLZfoAmu5Hlrspi9kC0bpvjQYnkh6GwC@vger.kernel.org
+X-Received: by 2002:a05:6102:1496:b0:4bc:82f:b4e0 with SMTP id
+ ada2fe7eead31-4e746e4976fmr4848002137.22.1749108801250; Thu, 05 Jun 2025
+ 00:33:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Discussion] Global vs Local devicetree overlays for addon board
- + connector setups
-To: Andrew Davis <afd@ti.com>, xypron.glpk@gmx.de,
- Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>, Dhruva Gole <d-gole@ti.com>,
- Robert Nelson <robertcnelson@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Gibson <david@gibson.dropbear.id.au>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Pantelis Antoniou <pantelis.antoniou@gmail.com>,
- Herve Codina <herve.codina@bootlin.com>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <b1990c97-8751-4964-a3e8-9598f4cfac2a@beagleboard.org>
- <967bc855-76f3-4598-853c-d65ce142995d@ti.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <967bc855-76f3-4598-853c-d65ce142995d@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250530225504.55042-1-marek.vasut+renesas@mailbox.org>
+ <20250530225504.55042-3-marek.vasut+renesas@mailbox.org> <CAMuHMdUVYzaUyP=OUOST8SK66_BpubOh0WCXcaVWBy=RxBrquA@mail.gmail.com>
+ <egtsvxsfc5c2s4hrwucsqk3s5dv7xsi6ghrnf6jd3mvf3zvskb@z7hvehbd33t5>
+In-Reply-To: <egtsvxsfc5c2s4hrwucsqk3s5dv7xsi6ghrnf6jd3mvf3zvskb@z7hvehbd33t5>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 5 Jun 2025 09:33:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWEmGk0iE0vroGRWOwsK3+EFpbqzO-OH3aVDQTud3wVtQ@mail.gmail.com>
+X-Gm-Features: AX0GCFtG6IELptLOfKa-AavRTgQeGCljZvKI3BSZXgMtp-NgzVLc1G-6_2R8iug
+Message-ID: <CAMuHMdWEmGk0iE0vroGRWOwsK3+EFpbqzO-OH3aVDQTud3wVtQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: r8a779g3: Describe split PCIe
+ clock on V4H Sparrow Hawk
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 6/5/25 00:33, Andrew Davis wrote:
+Hi Mani,
 
-> On 4/30/25 7:07 AM, Ayush Singh wrote:
->> Hello everyone,
->>
->>
->> This mailing thread is dedicated to discussing what approach should 
->> be taken regarding overlays for addon board + connector setups. It is 
->> loosely a continuation of [0], so feel free to go through it.
->>
->>
->> Introduction
->> *************
->>
->> To provide a background, the goal is to have a common way to support 
->> setups involving addon board + connector. Some examples are as follows:
->>
->> - MikroBUS [1]
->>
->> - PocketBeagle 2 [2]: After discussion in [0], it seems that even 
->> board headers should be treated as a addon board + connector problem.
->>
->>
->> There are 2 main approaches currently floating around. They serve as 
->> examples of Global and Local approaches. However, the main discussion 
->> topic is global vs local rather than the specific approaches.
->>
+On Wed, 4 Jun 2025 at 19:31, Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+> On Wed, Jun 04, 2025 at 11:24:17AM +0200, Geert Uytterhoeven wrote:
+> > On Sat, 31 May 2025 at 00:55, Marek Vasut
+> > <marek.vasut+renesas@mailbox.org> wrote:
+> > > The V4H Sparrow Hawk board supplies PCIe controller input clock and PCIe
+> > > bus clock from separate outputs of Renesas 9FGV0441 clock generator chip.
+> > > Describe this split bus configuration in the board DT. The topology looks
+> > > as follows:
+> > >
+> > >  ____________                    _____________
+> > > | R-Car PCIe |                  | PCIe device |
+> > > |            |                  |             |
+> > > |    PCIe RX<|==================|>PCIe TX     |
+> > > |    PCIe TX<|==================|>PCIe RX     |
+> > > |            |                  |             |
+> > > |   PCIe CLK<|======..  ..======|>PCIe CLK    |
+> > > '------------'      ||  ||      '-------------'
+> > >                     ||  ||
+> > >  ____________       ||  ||
+> > > |  9FGV0441  |      ||  ||
+> > > |            |      ||  ||
+> > > |   CLK DIF0<|======''  ||
+> > > |   CLK DIF1<|==========''
+> > > |   CLK DIF2<|
+> > > |   CLK DIF3<|
+> > > '------------'
+> > >
+> > > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> >
+> > Thanks for your patch!
+> >
+> > > V2: Use pciec0_rp/pciec1_rp phandles to refer to root port moved to core r8a779g0.dtsi
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > I understand this has a hard dependency on [PATCH v2 1/3] (and on
+> > enabling CONFIG_PCI_PWRCTRL_SLOT), so I cannot apply this before that
+> > patch is upstream?
 >
-> This is far too reductive, local vs global is only a minor detail as part
-> of a couple proposed solutions to a much larger topic. There are much 
-> more
-> fundamental issues around add-on boards to be worked out before we get to
-> this level of detail.
+> TBH, this patch is describing the binding properly. So even though the driver
+> change is necessary to make the device functional, I don't see it as a hard
+> dependency. But since people care about functionality, if both driver and DTS
+> changes go into the same release, it should be fine IMO.
 
+Applying the DTS change without the driver change would introduce a
+regression in my tree.  While the regression would be fixed in linux-next,
+it would still hurt bisectability.
 
-Well, I am not sure that is quite true. The problem is that it seems to 
-be a major blocker for things like sysfs and configfs devicetree overlay 
-patches. And if we go with the global route, well, we are pretty much 
-re-implementing those patches. Maybe we can add some way to check that 
-only i2c-connecotr, spi-connector etc parent nodes for a add-board 
-connector are modified, but well, not sure if that is enough.
+Gr{oetje,eeting}s,
 
+                        Geert
 
->
->>
->> 1. __symbols__ based approach [3]
->>
->>
->> This was originally proposed by Andre Davis [3]. It defines an 
->> overlay with just special names in `__symbols__`, which is used along 
->> with an overlay for the addon-board, which makes use of the node 
->> names defined in the connector `__symbols__` overlay. Please take a 
->> look at the original patch series since it provides a working example 
->> of how it can be used [3].
->>
->>
->> It has a few nice benefits such as it works pretty well with existing 
->> infrastructure, and does not need much in the way of new 
->> functionality. However, for this discussion thread, I want to 
->> consolidate the discussion regarding how this approach directly adds 
->> the devices to the appropriate nodes, Eg. An SPI device in addon 
->> board will be added to the appropriate SPI controller, etc. This 
->> means the changes are made to the global tree.
->>
->
-> This is how devices are already added, if you add a SPI device you
-> put it under the SPI controller. There is no "global tree", there
-> is just one device tree to represent the device, and it has a well
-> established ways of hierarchically representing devices.
->
->>
->> 2. export-symbols based approach [4]
->>
->>
->> This approach was originally proposed by Herve Codina [5]. It defines 
->> a special node (local to the connector) say `export-symbols`. This 
->> node takes precedence over global `__symbols__`, and thus is used to 
->> define standard names for nodes used in addon board overlay. Please 
->> look at [4] to get a more in-depth explanation.
->>
->>
->> The main difference here is that all the addon board overlay changes 
->> are isolated to the connector node in the devicetree. Eg: an I2C 
->> device in addon board will be added to the connector node (as defined 
->> in i2c bus extension patch series [6]). This means the changes are 
->> made to the connector node and not the global tree.
->>
->>
->> This approach needs extra plumbing (like i2c bus extension [6], 
->> something similar for SPI, etc) to make the whole approach work. Only 
->> GPIO and PWM with Nexus node can use this approach right now.
->>
->
-> This is the more fundamental issue: do you want to work within the 
-> existing
-> device tree framework, or do you want to make something new. 
-> `export-symbols`
-> is only the tip of the iceberg of new things that will be needed.
->
-> This "extra plumbing" is bus extensions in DT for every wired bus type.
-> Countless new Nexus nodes, connector definitions, pinmuxing, and bindings
-> for the same. And then changes to DT overlay tooling including all the
-> infrastructure that uses overlays in many external projects, which 
-> IMHO is
-> the largest issue here.
->
-> My core point here is this, imagine you take a BeagleBone and plug in
-> a cape. This statically combined device in your hand can be completely
-> described using existing DT today. For any solution we come up with for
-> doing this dynamically, the resulting DT should look the same as if
-> it was done for the combined device by hand ahead of time. The combined
-> Beagle+cape device is exactly the same device no matter what time you
-> plug in the cape. So why should the DT that describes this combined
-> device be different in the two cases?
->
->>
->> Basic Requirements
->>
->> *********************
->>
->>
->> Here are some basic functionality that the chosen approach can do for 
->> it to be viable for the connector + addon board setups:
->>
->>
->> 1. Dynamic device addition/removal from userspace
->>
->
-> I'm going to suggest we ignore the removal part. Not because it is too
-> difficult to solve, but because it is impossible to solve.
->
-> A huge amount of drivers and devices do not actually allow for removal.
->
-> The reason is because there is no need, hot-pluggable busses are the
-> exception, not the rule. The rare cases like USB are built to handle
-> this both in hardware and software. None of the connectors we have
-> talked about are actually hot-pluggable! I2C, SPI, etc.. none of
-> these are hot-pluggable. Even if you get away with yanking the cape
-> off a BeagleBone while it is running once or twice, it is violating
-> the electrical specifications and you will eventually break something.
->
-> If we don't focus on the (non-valid) removal part, so many other parts
-> solutions become viable again. Right now we have no good way to even
-> *add* an add-on board, even statically, so let's not let "perfect" be
-> the enemy of good..
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
-Not quite, removal is a very important part of the equation, specially 
-for mikroBUS. mikroBUS iteself is not exactly hot-pluggable, but Beagle 
-has a usecase of mikroBUS over greybus (over 6lowpan). Since the node 
-can be removed, you now have a setup where mikroBUS becomes removable.
-
-
->
->>
->> A lot of connectors + addon board setups do not have any dynamic 
->> discovery addition. This is compounded when talking about treating 
->> the whole header in SBCs like PocketBeagle 2 as a connector, since 
->> people would want to wire LEDs and stuff to individual pins. So a 
->> mechanism using sysfs or configfs is required
->>
->>
->> 2. Dynamic device addition/removal by driver using EEPROM or 
->> something else
->>
->>
->> Some setups (MikroBUS boards with 1-wire EEPROM, Beagle capes) have 
->> EEPROMs that contain board information which can be used to detect 
->> which overlay should be applied.
->>
->>
->> Main Discussion
->>
->> *****************
->>
->> The main topic I wish to discuss if global devicetree overlays are 
->> okay for addon-board setups. Let me outline some reasons for I prefer 
->> the local devicetree overlays approach:
->>
->>
->> 1. Addon board removal on multiple connector setups
->>
->>
->> Say connector A added an I2C device to the controller, then connector 
->> B added an I2C device to the same controller. I am not sure how well 
->> removing overlays out-of-order works.
->>
->
-> I don't follow here. Multiple of the same I2C device are still 
-> identifiable
-> even on the same controller. Their IDs give them away, and even if 
-> not, this
-> would be trivially solved with a little bit of meta-data tracking in the
-> driver model layer.
-
-
-By ids do you mean I2C address or the driver id?
-
-What I was mentioning here is as follows:
-
-
-add-board:
-
-```
-
-&CONNECTOR_I2C {
-
-     sensor: sensor@12 {
-
-         ...
-
-     };
-
-};
-
-```
-
-
-We apply the same addon board overlay to connector A and connector B. 
-And CONNECTOR_I2C is same for both connectors.
-
-
-This will resolve to:
-
-
-```
-
-&CONNECTOR_I2C {
-
-     ...
-
-     sensor: sensor@12 {
-
-         ...
-
-     };
-
-};
-
-```
-
-
-There will be no errors but the sensor would be registered only once.
-
-
-In case of a local system, 2 sensor nodes will be present in the global 
-devicetree, and one of the sensors will fail during registration.
-
-
-
->
->>
->> 2. Who owns the device
->>
->>
->> Say there are 2 connectors A and B. Both connectors share an I2C 
->> controller. Let both connectors have the same device attached. In 
->> case of `__symbols__` based approach, both connectors would 
->> technically be successful in applying the overlays, rather than one 
->> of the overlays failing.
->>
->
-> How does the connector solution help here? Seems the `__symbols__` way 
-> would make
-> it easier to detect as both devices would need added to the same 
-> controller node,
-> which would be the point to detect such conflicts. Were each connector 
-> would have
-> no way to communicate that the resource is double-booked.
-
-
-You can see the current devicetree at `/sys/firmware/devicetree`, so 
-there is that.
-
-
-Also, when applying devicetree overlay, if the node already exists, the 
-properties are over written. The overlay application will not fail. And 
-in many cases, the property changes will not even be handled by the 
-sensor/device driver.
-
-Also, things like `/delete-node/` and stuff do not work in overlays.
-
-
->
->>
->> 3. How to register the newly added devices
->>
->>
->> I am a bit unsure about this one since I will have to check if the 
->> kernel tries to register new devices automatically after applying the 
->> overlay. For local setups, I was using `devm_of_platform_populate` on 
->> the connector device.
->>
->
-> Easy to solve for either method, we can always re-run the device 
-> registration loop
-> after applying an overlay if it doesn't already.
->
->>
->> 4. Security
->>
->>
->> I think local modification is more secure than global tree 
->> modification. A completely local solution should be as secure from 
->> devicetree perspective as USB. But I am not an expert.
->>
->>
->> Drawbacks of local setups
->>
->> ***************************
->>
->>
->> 1. Needs a lot of surrounding work.
->>
->>
->> I2C bus extension is needed for I2C devices to work, something 
->> similar for SPI. At least ADC, PWM and GPIO should be covered with 
->> just nexus nodes.
->>
->>
->> Closing Thoughts
->>
->> ******************
->>
->>
->> I would really like to reach consensus regarding weather the 
->> addon-board overlays should be global or local. This will help to 
->> give a direction regarding what should be improved, and hopefully 
->> make future development move faster. Once a bit of consensus has been 
->> reached, we can discuss specific implementations.
->>
->
->
-> There is one big benefit of evil vendor trees: you can test things out 
-> like
-> this before sending things upstream. You are working with the Beagle 
-> folks,
-> and that has to be the most perfect testing ground for add-on board 
-> overlay
-> solutions.
->
-> So I would suggest you take the solution you like the most and 
-> implement it
-> in the Beagle ecosystem. Try it out and find the pros and cons first 
-> hand,
-> see if it can even work in the first place.
->
-> Asking everyone to all reach a consensus on the "right" solution by
-> talking it out is not going to happen here. This has been an open issue
-> for way too long for it to be that easy :)
->
-> Andrew
-
-
-Well, I wanted to try an upstream first approach, specially since 
-everyone else has given up on upstream. The current situation is quite 
-messy. mikroBUS in the wild uses modified greybus manifest. In fact, 
-there are official guides that show the greybus manifest approach. But, 
-those patches were rejected last year, with the suggestion that upstream 
-wants devicetree to be used for this purpose. Btw, manifest was already 
-in use for 4 years at that point with greybus manifest for 100s of 
-addon-boards.
-
-
-So I was hesitant to have a 2nd out of tree approach for the same. But 
-at this point, it does seem more productive to just go the vendor tree 
-route for now and try again in a few years.
-
-
->
->>
->> [0]: 
->> https://lore.kernel.org/linux-devicetree/d42100cb-eaa0-487f-aaaa-6d8f87bc0705@beagleboard.org/T/#m09b2ebe28b6202b2a926970150caf718eff6d9ac
->>
->> [1]: https://www.mikroe.com/mikrobus
->>
->> [2]: https://www.beagleboard.org/boards/pocketbeagle-2
->>
->> [3]: https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
->>
->> [4]: 
->> https://lore.kernel.org/devicetree-spec/dbe566ea-447f-4f91-a0b2-f464374955f4@beagleboard.org/T/#m591e737b48ebe96aafa39d87652e07eef99dff90
->>
->> [5]: 
->> https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
->>
->> [6]: 
->> https://lore.kernel.org/devicetree-spec/20250401081041.114333-1-herve.codina@bootlin.com/T/#t
->>
->>
->>
->> Best Regards,
->>
->> Ayush Singh
->>
-
-Best Regards,
-
-Ayush Singh
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
