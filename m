@@ -1,210 +1,187 @@
-Return-Path: <devicetree+bounces-183004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71066ACED00
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 11:41:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F57FACED2B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 11:58:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBB021897C1A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:42:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31D92176D70
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5EC820FA81;
-	Thu,  5 Jun 2025 09:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95764211A28;
+	Thu,  5 Jun 2025 09:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="CVQi9mh4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OXQAPvZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99662C3272;
-	Thu,  5 Jun 2025 09:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C3C20B218
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 09:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749116508; cv=none; b=gl6oqyAzZZfblelZyn5RgE2IGzuhBNeU9/yCK7hdJp6jyxxBmTa5gpW2lEo6DmBZpQZQfWSvAT039wkNxi45w7qZU/IpINFWbXUUvbpy2R1eKQJi6xKba3k5ALnsf8oNcuGKdoNNCBodOb8rJDBvvTEWPT1ShkdRaBI2OVew5cY=
+	t=1749117510; cv=none; b=i5azWeoI7j2gjRU0T6gYuMTu+JX+vTITTeLKZTszPlHf3ZgjLzfkAlsmBX/OGWqZWtM5Fhc0+pa7nZAZz6EPdmyH72BHZyim65PWGpu7q4XtFW8RbwP6cf+5LmWkKJEK/9S+bad8IOInhaSWFALmk+Q4JTyAdQN+4XfDVKVA23I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749116508; c=relaxed/simple;
-	bh=ZLBC+KA6NGYS62D45P2YGEB4+x9lL6nfJSA2rz2NBK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lF1MnK7loYoabseu7VSRFi9hw5qhO1EbPsAwg3l3bQx+7qNmgw8gR6dGsm3I+VoGJ6984l1NZjiMdeboxIQSodkVsQ3GD5hgWiSEjBZWFNpJQ7K+wgYKbq3fmrhRL7XCPXzEc4Udl5tsOTqqSOxXSOtnVMkcBG1q5E8LK6gKjOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=CVQi9mh4; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pYfa480QeywizKCHmMV9b915U3JdV7fcJg6oO97CKu8=; b=CVQi9mh4ODfteTqvJxx8P3pgzH
-	J7gv3ERrIwSmKbjAfu/ozSb+f/7Ai2Z8/085hSu5wn0ZMV4ZLHJPccZYuhdZ4hFHifYPX8+lUEeP4
-	YkCuW44+6OgALcJ0ZIU5BybG8D2wtGreR/zTmlaJUEQVdhFWhZGdG8loYAwYmHFdmegxyJ/bNOiFS
-	srJJGO/M09BLQeI55Jy0yAKALvV702c23xNLjumdC7CzJPLBXUBgXi9W2kUDKZUIqiwZtP9qoqxy1
-	zC0V0Q5i0Re3KNHAe2VW0IhA0K/cpyNLlXpRX/G7AJJOcNwINXs5YvpS8KHRZtyqSMjjCEEEe89GN
-	xRYAgE0w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36144)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uN763-00081c-1p;
-	Thu, 05 Jun 2025 10:41:15 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uN75w-00025P-0W;
-	Thu, 05 Jun 2025 10:41:08 +0100
-Date: Thu, 5 Jun 2025 10:41:08 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-Message-ID: <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
- <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
- <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
- <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
+	s=arc-20240116; t=1749117510; c=relaxed/simple;
+	bh=o3b2DG8B4UyXxdQJRJfS1yqgkhfWuARiXi72szudhWU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gKBAoUWUntL7AU2sn2UcUoVps9SbcrQATqqxt2pxeiAI/5GkPoietaHftehaY/MR4LlzVu8EmTITTXBBrfjxazpWYA7OOqHTgfjHAAwbSTcsWjsCfCwpHN/6L2cML2WLMkMVfeDJ8IgJkt5ve42YsgQq6jXC3kntLRgrwSrywTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OXQAPvZN; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e7dc3df7ac3so749092276.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 02:58:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749117507; x=1749722307; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4zPdTQVDPRTSNl8wo5w6MeNmYmfyR+yoWh8tW6/DZaY=;
+        b=OXQAPvZN87sHZi8gqnbDYGQQZz24UuqR7c4C9a8AGpZ9C2nZKrsYg4kkCN7CgyZq2s
+         HQTdGRv1uz+8KA9K/jo6kn/Z4fWQLVy7ZfUs7bJvrmiK5LE+Hvcd8aNHxLC5JL9SncUw
+         cm6gGw0bnk1nRdTIOeXtW2SFcW8kPXyc9UO7RqnHXBBVqr2xKTFfMF2eIFiDwxcVjRAM
+         /KThvg6uHDgEM++NPSMjVjk8qRU37lriULuE/E8iI3u41WzpPgXYOXIAB5fZtXz2wp4O
+         5oLl2RqDNcirSP6OPfnjM6x6Gu3Hzcd2IZ/Gw1RmMbEVYYjR8rhAXYfgX+0JhsEH/cve
+         wPaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749117507; x=1749722307;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4zPdTQVDPRTSNl8wo5w6MeNmYmfyR+yoWh8tW6/DZaY=;
+        b=FdN7noVBhyHau4KQz3njWitiUtcgHl8VsUD+GN4fRTRJQo9ccVYcYWHoreGYHOrFqf
+         W6+0iON7/d3Wbv0jyIv56ybPA4xMmOcQh7IL4shSK3nvUgFVptXoq63caOOfOTQ6G32f
+         l/Sj9zFHjxS+uiPW9j8pPpF8im9NGZBXfWyHBnJ210XHz/5Y5GUP82vQmmnC1nPYPCMM
+         w4qJgGCkBioCY1qUal5k4KaSMQuW41ta5en2crMoc94bLKFj1A093WUsgWzrAEwlMPMB
+         8Q5L0sqIoSi/H+kdprmQpXbvzi3HzfTUXS5nWl+xEK6DdxSuutBLaewbBPqngtbvQ8bu
+         Uc3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUuACUbJFYNpX4ULUyWbs9R3uswrVv0t/Q4wYVSzo4Z5RVRmLCYwdXLJ0RY6QmNjVeivjitfKngtApR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxr1ulOXAxsam0v9l9mDCQ862Xei/Pf7ix0s/hhD8SVKKMZW7cu
+	CTrCaeUD8KKBbnl+om+WQM1cxQr1oleOScUgEX83rqiwEvITwBhdojP5jeZ/ycc5nsK3kePwIbf
+	jTDftvweeEG2S3Tpc3oLX3dzWHT8u5wk4nmPXiYtKQA==
+X-Gm-Gg: ASbGncuUSQHN8iZsGvnh+lIDDLO0WRYusXYP86TVJ/3kmsiQ3LTyaGgtoCQxGGCWtkE
+	geX9EFDeE49YTScQTcaDHTgg+sbExWFPMYFIAiUcXKft4a7mCczXupG9INNzphhRDIFHKF33k39
+	AOq9AprKNYsCjgn9nttZI5fgmUOR3gKHTFVA==
+X-Google-Smtp-Source: AGHT+IEs9z2qDMjfH7cC75fVmmSjHZHDht5i6D5bKkcjTo5PY949JkkRdQafZEhuxNNXbWaU8JI1NrPxlkNCttr89yg=
+X-Received: by 2002:a05:6902:1006:b0:e81:89b9:f7fb with SMTP id
+ 3f1490d57ef6-e8189b9fd46mr2688470276.20.1749117507589; Thu, 05 Jun 2025
+ 02:58:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <CGME20250529222410eucas1p2e1d41a2fc717caef1aed51367a7db944@eucas1p2.samsung.com>
+ <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <20250530-apr_14_for_sending-v3-7-83d5744d997c@samsung.com>
+ <CAPDyKFpYfZNthdRN=pCv4FEdFCzrKEH4aFBy4ew-xLKtpbJ5Tg@mail.gmail.com> <e39c6748-59aa-4c4a-98f3-263751a120c1@imgtec.com>
+In-Reply-To: <e39c6748-59aa-4c4a-98f3-263751a120c1@imgtec.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 5 Jun 2025 11:57:51 +0200
+X-Gm-Features: AX0GCFs9t2KTNaikDlvnZamDB-7XXtdndYPeCom5IA-jJ40VSGgqWKBlwED7Z-4
+Message-ID: <CAPDyKFrxqp30RWGoudVsy2NR7dSUoKwxc=nk3Bqp9RVZGZ6_vQ@mail.gmail.com>
+Subject: Re: [PATCH v3 7/8] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Michal Wilczynski <m.wilczynski@samsung.com>, Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Frank Binns <Frank.Binns@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
-> In addition, analyzing existing Ethernet drivers, I found two drivers
-> with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
-> ti/icssg/icssg_prueth.c .
-> 
-> The QCOM ETHQOS driver enables the MAC's TX delay if the phy_mode is
-> rgmii or rgmii-rxid, and the PRU ETH driver, which works on some MAC
-> with hardcoded TX delay, rejects rgmii and rgmii-rxid, and patches
-> rgmii-id or rgmii-txid to remove the txid part.
+On Wed, 4 Jun 2025 at 18:48, Matt Coster <Matt.Coster@imgtec.com> wrote:
+>
+> On 03/06/2025 13:27, Ulf Hansson wrote:
+> > On Fri, 30 May 2025 at 00:24, Michal Wilczynski
+> > <m.wilczynski@samsung.com> wrote:
+> >>
+> >> Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
+> >> TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
+> >> the GPU using the drm/imagination driver.
+> >>
+> >> By adding this node, the kernel can recognize and initialize the GPU,
+> >> providing graphics acceleration capabilities on the Lichee Pi 4A and
+> >> other boards based on the TH1520 SoC.
+> >>
+> >> Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can't be
+> >> controlled programatically.
+> >>
+> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> >> ---
+> >>  arch/riscv/boot/dts/thead/th1520.dtsi | 22 ++++++++++++++++++++++
+> >>  1 file changed, 22 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> index 6170eec79e919b606a2046ac8f52db07e47ef441..ee937bbdb7c08439a70306f035b1cc82ddb4bae2 100644
+> >> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> @@ -225,6 +225,13 @@ aonsys_clk: clock-73728000 {
+> >>                 #clock-cells = <0>;
+> >>         };
+> >>
+> >> +       gpu_mem_clk: mem-clk {
+> >> +               compatible = "fixed-clock";
+> >> +               clock-frequency = <0>;
+> >> +               clock-output-names = "gpu_mem_clk";
+> >> +               #clock-cells = <0>;
+> >> +       };
+> >> +
+> >>         stmmac_axi_config: stmmac-axi-config {
+> >>                 snps,wr_osr_lmt = <15>;
+> >>                 snps,rd_osr_lmt = <15>;
+> >> @@ -504,6 +511,21 @@ clk: clock-controller@ffef010000 {
+> >>                         #clock-cells = <1>;
+> >>                 };
+> >>
+> >> +               gpu: gpu@ffef400000 {
+> >> +                       compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
+> >> +                                    "img,img-rogue";
+> >> +                       reg = <0xff 0xef400000 0x0 0x100000>;
+> >> +                       interrupt-parent = <&plic>;
+> >> +                       interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
+> >> +                       clocks = <&clk_vo CLK_GPU_CORE>,
+> >> +                                <&gpu_mem_clk>,
+> >> +                                <&clk_vo CLK_GPU_CFG_ACLK>;
+> >> +                       clock-names = "core", "mem", "sys";
+> >> +                       power-domains = <&aon TH1520_GPU_PD>;
+> >> +                       power-domain-names = "a";
+> >
+> > If the power-domain-names are really needed, please pick a
+> > useful/descriptive name.
+>
+> This isn't the first time our unfortunate power domain names have come
+> up [1][2]. Sadly, we're stuck with them for Rogue.
 
-No, this is wrong.
+Wow, that's really crazy.
 
-First, it does not reject any RGMII mode. See qcom_ethqos_probe() and
-the switch() in there. All four RGMII modes are accepted.
+BTW, are there any reasons why you can't rely on attaching them by
+index instead, via dev_pm_domain_attach_by_id() for example? Thus
+entirely drop the names in the DT docs?
 
-The code in ethqos_rgmii_macro_init() is the questionable bit, but
-again, does _not_ do any rejection of any RGMII mode. It simply sets
-the transmit clock phase shift according to the mode, and the only
-way this can work is if the board does not provide the required delay.
+It sounds like the names don't really have a meaning, or do they?
 
-This code was not reviewed by phylib maintainers, so has slipped
-through the review process. It ought to be using the delay properties
-to configure the MAC.
+>
+> Matt
+>
+> [1]: https://lore.kernel.org/r/ff4e96e4-ebc2-4c50-9715-82ba3d7b8612@imgtec.com/
+> [2]: https://lore.kernel.org/r/cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com/
+>
+> >
 
-> The logic of QCOM ETHQOS clearly follows the original DT binding, which
+[...]
 
-Let's make this clear. "original DT binding" - no, nothing has
-*actually* changed with the DT binding - the meaning of the RGMII
-modes have not changed. The problem is one of interpretation, and
-I can tell you from personal experience that getting stuff documented
-so that everyone gets the same understanding is nigh on impossible.
-People will pick holes, and deliberately interpret whatever is written
-in ways that it isn't meant to - and the more words that are used the
-more this happens.
-
-The RGMII modes have been documented in Documentation/networking/phy.rst
-(Documentation/networking/phy.txt predating) since:
-
-commit bf8f6952a233f5084431b06f49dc0e1d8907969e
-Author: Florian Fainelli <f.fainelli@gmail.com>
-Date:   Sun Nov 27 18:45:14 2016 -0800
-
-    Documentation: net: phy: Add blurb about RGMII
-
-    RGMII is a recurring source of pain for people with Gigabit Ethernet
-    hardware since it may require PHY driver and MAC driver level
-    configuration hints. Document what are the expectations from PHYLIB and
-    what options exist.
-
-    Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-    Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-    Signed-off-by: David S. Miller <davem@davemloft.net>
-
-> describes "rgmii-id" as `RGMII with internal RX and TX delays provided
-> by the PHY, the MAC should not add the RX or TX delays in this case`
-> (the driver skips the delay for rgmii-id). The logic of PRU ETH follows
-> the logic of the new DT binding. This shows that the DT binding patch
-> is not a simple clarification, but a change of meanings.
-
-Let me say again. Nothing has changed. There is no "old binding" or
-"new binding". If you think there is, then it's down to
-misinterpretation.
-
-This is precisely why I've been opposed to documenting these properties
-in the binding document _and_ Documentation/networking/phy.* because
-keeping them both in sync is going to be a pain, leading to ambiguity
-and misinterpretation.
-
-> > If you want the kernel to not touch the PHY, use
-> > 
-> > phy-mode = 'internal'
-> 
-> This sounds weird, and may introduce side effect on the MAC side.
-> 
-> Well we might need to allow PHY to have phy-mode property in addition
-> to MAC, in this case MAC phy-mode='rgmii*' and PHY phy-mode='internal'
-> might work?
-
-I'm not convinced that adding more possibilities to the problem (i.o.w.
-the idea that phy=mode = "internal" can be used to avoid the delays
-being messed with) is a good idea - not at this point, because as you
-point out MACs (and PHYs) won't know that they need to be configured
-for RGMII mode. "internal" doesn't state this, and if we do start doing
-this, we'll end up with "internal" selecting RGMII mode which may work
-for some platforms but not all.
-
-So, IMHO this is a bad idea.
-
-> > > In addition, the Linux kernel contains a "Generic PHY" driver for
-> > > any
-> > > 802.1 c22 PHYs to work, without setting any delays.
-> > 
-> > genphy is best effort, cross your fingers, it might work if you are
-> > luckily. Given the increasing complexity of PHYs, it is becoming less
-> > and less likely to work. From a Maintainers perspective, i only care
-> > if the system works with the proper PHY driver for the
-> > hardware. Anything else is unmaintainable.
-> 
-> Well this sounds unfortunate but reasonable.
-
-We're already in this state with PHYs faster than gigabit, because
-IEEE 802.3 in their wisdom did not define where the 1000BASE-T
-autoneg parameters appear in the register space. As a result, vendors
-have done their own thing, and every vendor / PHY is different.
-Without access to this key data, phylib has no way to know the
-negotiation results. Thus, a generic PHY driver that works correctly
-for PHYs > 1G just isn't possible.
-
-I expect that in years to come, we'll see IEEE 802.3 updated with
-the 1G registers for Clause 45 PHYs, but the boat has already sailed
-so this would be totally pointless as there will be too many PHYs
-out there doing their own thing for whatever IEEE 802.3 says about
-this to have any relevence what so ever. Just like they did with
-2500BASE-X, which is a similar mess due to IEEE 802.3 being way too
-late.
-
-I hope that there isn't going to be more of this, because each time
-it happens, the IEEE 802.3 "standard" less relevant.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Kind regards
+Uffe
 
