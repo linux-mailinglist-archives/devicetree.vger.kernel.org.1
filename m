@@ -1,61 +1,70 @@
-Return-Path: <devicetree+bounces-183115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD652ACF55D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 19:28:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1D5ACF581
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 19:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA7437A2594
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:27:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8973C7A9F8D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:36:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4AF21EF080;
-	Thu,  5 Jun 2025 17:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA2A31E0B62;
+	Thu,  5 Jun 2025 17:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S2+xcgAD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHFF65+4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7590913D521;
-	Thu,  5 Jun 2025 17:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9573C13D521;
+	Thu,  5 Jun 2025 17:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749144524; cv=none; b=gTYcHelCQ4XorOAQdlMoM0pZ3XLr0zDEgusMgjY1omc+zzRyHxx26A6CICq2O599JcrztUEYBuaTel1s/iZrkLpat/Sd11vpmImrPdy2+RlwVH3B7WtT1eTCb3HkqlAh/eiIf7vAB1A7/36W6MCa74dWIAAak4Jy6yFPoHifV/E=
+	t=1749145057; cv=none; b=KkURi+qpNxZdXi2Oy1rBUAm5Juq/Q+tOvhjzqW1ntX0vpU2ZNxuBhxZT414RIisN/CbqvtxMs7jR9MDTsOvHpuCu+TC4W3w7yUK1bgssY11fGdlTEzvMb+wi/Pt5JhfN5KcRg7k+3rURAtjk/TE9r019s7r9v0+1+j4kI8os0t4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749144524; c=relaxed/simple;
-	bh=pPVln6uz8VEQ1LSlOwYmeTuxkB56Y7tsEA6ufuwufOo=;
+	s=arc-20240116; t=1749145057; c=relaxed/simple;
+	bh=DGXtg6qoY7z3kJIDAMutHk74JtJARJ7A/W/J2ijKJvs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FcVtyxusL3RX5IhNQ6oYoNP3xR3R7u4vlGFR/NCLInJqXcZXsnbDteen39QmzkodRoLU65ORlCb97bqUEIWxq1afJHvA1kmZ9wLqcGRzmiAfIfgkTjrKNY9qWQpG9xKyRbcWnU8oOZxFQlDzPcN7CYbH0y9mVmSydMNtU/5fP/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S2+xcgAD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BC6C4CEE7;
-	Thu,  5 Jun 2025 17:28:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GB2dtmukW2bAmPHh9Dr28P0NT5NJ2bU9HZNMWB0E28QAWPKrhzg0o0icLr1tTQZZficMDVG6b/3ph1e4yqndmmAkDFsafxy8dh2dIt2OC0+iDD+yRXREx7mw/pQUz6W4r18u5gtXzl9xmuUiaONmyP5uwtAKZitsH26YjBTJpTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHFF65+4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6593C4CEE7;
+	Thu,  5 Jun 2025 17:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749144522;
-	bh=pPVln6uz8VEQ1LSlOwYmeTuxkB56Y7tsEA6ufuwufOo=;
+	s=k20201202; t=1749145057;
+	bh=DGXtg6qoY7z3kJIDAMutHk74JtJARJ7A/W/J2ijKJvs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S2+xcgADCL+DajqMqwiGzac8V+G6v/M72VFV2/prRE0TV8k+VXNQrVzkfEuiIANQM
-	 kFuBQlWtA84eshRcAmBCIuMao1tcyg6PEAaopfsRNIhCi6WuCWkuU2Q4COVC0zjMGM
-	 kQePEw/lpYQN31MCjWHDWyaNt3mWcUp7ybT8kpJJhMBkHazcg2vDrP9+hHT0MNLf3y
-	 QjQxDRHZfvTG2NwCuXkUq4loF0oqKYt3YDI1MrOMYqAuG0+XAmQEx4rsZ49TAJh/d+
-	 03kkDTZHIQBn3yLgYtFUE2P25LVheKpt6J5scZiCAVL/fDgKFMllUIAPxTBK5jYtRd
-	 A5c/8el8Ktz7Q==
-Date: Thu, 5 Jun 2025 12:28:40 -0500
+	b=qHFF65+4OlBP6DkM4rdY13F9JfYJ+eARJlvge8Gvw+gc9E9XOqRqKfWQHCVWWq6qj
+	 bvaFKvE8Q/UOhe66ojhsffM5gxl+ZsuIT7DmEwL2Ra/jNKAgyUdIPB+DXKZUBuCHle
+	 rSa4ERa1M2dmCBYBHkqX+ZYZftz21VaS9PvHW9KXDJjOJJDBfIacCrHGew5nEr2Ycz
+	 Cz4rUDzpqnMh7N5Cse1mR3GfZ4g0lL1DJZUyOR4wsZj0uNMbe5y8HruI6oq67cRDhN
+	 wRfUnKgIex1iy6v2A6kcYHW/LXRJtN/MB5Ty4mMJXxaVE+p9HXUsSq63zSt2n5N2XN
+	 AmvldqKzb4t3w==
+Date: Thu, 5 Jun 2025 12:37:34 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Mayank Rana <mayank.rana@oss.qualcomm.com>
-Cc: manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
-	quic_nkela@quicinc.com, linux-pci@vger.kernel.org,
-	quic_msarkar@quicinc.com, quic_shazhuss@quicinc.com,
-	krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org,
-	kw@linux.com, conor+dt@kernel.org, quic_ramkri@quicinc.com,
-	bhelgaas@google.com, devicetree@vger.kernel.org,
-	quic_nitegupt@quicinc.com, andersson@kernel.org
-Subject: Re: [PATCH v4 3/4] dt-bindings: PCI: qcom,pcie-sa8255p: Document
- ECAM compliant PCIe root complex
-Message-ID: <174914451774.2895726.5063599337799991617.robh@kernel.org>
-References: <20250522001425.1506240-1-mayank.rana@oss.qualcomm.com>
- <20250522001425.1506240-4-mayank.rana@oss.qualcomm.com>
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Cc: Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+	Matthias Kaehlcke <mka@chromium.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	David Airlie <airlied@gmail.com>, linux-usb@vger.kernel.org,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Douglas Anderson <dianders@chromium.org>,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: arm: qcom: Add Lenovo TB16 support
+Message-ID: <174914505261.2908666.16705179553206798329.robh@kernel.org>
+References: <20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz>
+ <20250524-tb16-dt-v4-1-2c1e6018d3f0@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +73,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250522001425.1506240-4-mayank.rana@oss.qualcomm.com>
+In-Reply-To: <20250524-tb16-dt-v4-1-2c1e6018d3f0@oldschoolsolutions.biz>
 
 
-On Wed, 21 May 2025 17:14:24 -0700, Mayank Rana wrote:
-> Document the required configuration to enable the PCIe root complex on
-> SA8255p, which is managed by firmware using power-domain based handling
-> and configured as ECAM compliant.
+On Sat, 24 May 2025 13:48:36 +0200, Jens Glathe wrote:
+> Document the x1p-42-100/x1-26-100 variants of the Thinkbook 16 G7 QOY.
 > 
-> Signed-off-by: Mayank Rana <mayank.rana@oss.qualcomm.com>
+> [1]: https://psref.lenovo.com/syspool/Sys/PDF/ThinkBook/ThinkBook_16_G7_QOY/ThinkBook_16_G7_QOY_Spec.pdf
+> 
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 > ---
->  .../bindings/pci/qcom,pcie-sa8255p.yaml       | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
