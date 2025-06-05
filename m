@@ -1,205 +1,152 @@
-Return-Path: <devicetree+bounces-182928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D65ACE882
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 05:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 671B8ACE8A6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 05:35:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49987177877
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 03:03:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2964F177188
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 03:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB8F1F4174;
-	Thu,  5 Jun 2025 03:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1A01F8EEC;
+	Thu,  5 Jun 2025 03:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mWqVHvnZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VOYIKthe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A0BBA49;
-	Thu,  5 Jun 2025 03:03:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5E61F8BD6;
+	Thu,  5 Jun 2025 03:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749092624; cv=none; b=I55Ri6vcXDz2IyZrBEbQ4FZRauPdgVHWXVChV6wneIfiGTQKVdU3heqNgvfj2spzpJ2YNl0BB5iGN99+5J5cByUPIWnYhhDb+czCpZ1voi0ok9Mwn+R7GUmBiTuJpuZcO+TCosgvLtotQhLZbv8ACzbG6n8NQ9LyqhuAnMf05rE=
+	t=1749094510; cv=none; b=Ivljvl8ATr7bZXKXHcvR3zB+zEhfpUc+8oDrd9/c8NsVX3NyUL7br19elqVSfb8Ez8zYTXh8bQkqy6dB44Dy3rAfZ86gY6J58556oekj3xv7c+sprJBvd7YQuMWkgt1ueN2XoPtKB5629wvx2kIcQlpxivU4b/8R0gEeTAzJR2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749092624; c=relaxed/simple;
-	bh=7khZwdE7hBbUhIpRjfQLJdOyp+TlX1pmOvgRjH9YJXM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pjoD5rXO/yGJbNWl639sSaIVci2BQiM2uiDNzvDD1p/DkYzizmGJLGT7siU3NTXdSdWiLvQHZGrQ13DN3tjZG2OIGXYeaGrkUJa4eFuKkuOiQvMwaMf89+Havso1jcFOBNNchDHspREP8jkrp44sCwpu/XgEfwGleHb3fQfr0ds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mWqVHvnZ; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60707b740a6so614755a12.0;
-        Wed, 04 Jun 2025 20:03:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749092621; x=1749697421; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=voKhAbgrcXm8mkXGW8nWXWOPo8BU4qMPnZBEd4pfud0=;
-        b=mWqVHvnZ8Y5427F2v8/wNIYQVa4cUd5vkQewkhKWA0Vbv3YmI7vqqB2mrdFUKSXmZq
-         cLBLii22jZ0eidm9ruc7ynKzQ00LVCqWaNtJOxbk2+giKDDhMf1OV5fZdGuXkc+7Ehof
-         L3OrcZNO5CvAM+pPmeexbyYaLkt58QbY8qvTDgZwX4rUHwFG9ADfaXldUNKneKkY03fi
-         UXQLuMQU+xxGbnoIg69xkYdKH4Qz4sQI7ba1Rq6kQDcjExO1HHpH+EaC04oMaDv+De1T
-         WeCYl61floPIZvGz4+siHU83l/VhT0CPggErOFeQkuD5EGT3yMYLa6TnSePq9RIVEhHD
-         XskA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749092621; x=1749697421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=voKhAbgrcXm8mkXGW8nWXWOPo8BU4qMPnZBEd4pfud0=;
-        b=c16F+TPMTlyVdT92va5DdjJMB2nILXsyVqGNLxD5G42PYqQ4/rXeGBgiEsuJ4Jan69
-         3W2oJt13rWM9LApSL3j1VFmikuDFnKeVB3Mt/shhNi3zh1x3Wme24Qu1BwlY/oSjIEEs
-         BXj56nh17Uk/QhKEjq6iTtnDTYRJH0HblFjQgdR4okQ5nvo7CkUBcHF5fAxVv+M4G8cu
-         hUe0aPnTcsm0TpnxZ0TZ+mFG//YCAmQRfb6jSDXmMFvLrPueuuK6RgnozwXlVTpNsPEK
-         a2r1Y1XDsvYi1vaz62uXQ9Ct4zeFEgzd/ukcUyzgIraGPl2YPak+AA+vPO+Y+eYPkS73
-         yq0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUQ8CaEtJ4fVqDTTYvNqlM1bRTutp8yy3LGNmhsRFF7mtIQn/DwkpIhuHCm1/CCDRzRGxR9DjwAJj0n@vger.kernel.org, AJvYcCVp3QhH1umTtQHMnrvOXnszouoL8WeJbW8ceL/7WFJBBK2WrLjWFBKXqzk7ZZ3hzPG7nMug9LUqc15Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfDC0Sm6JTRQDirSuVVZDrsruS7ka/cSPuN3EEavf1xi/O5K3f
-	UTCLMJKn2lbV4XiBQMcLrMZPgdIin2OONgVF85Ka9hTKWh96NH7Q9dCWQu9XyspHCtRUfF4SUlw
-	VwpycK7sWR/qLmFsrMBsbRRXohxxZ8p9XmK08
-X-Gm-Gg: ASbGncvBusI0FvN6+3wyU9F4mzMaN3B/p42wKm3uL/3qnwUjfJ7VIu+Grp9VE3tHFYB
-	9g31VZMwURh7qXx938ql7CxSH2AkARvth6ynehC+SmtleZHsrZTHzOMHZGFOjiho8UrpoaVywi4
-	NlzBOYi0cbr9b8gcmxW3+46nZJiLq0zP5P
-X-Google-Smtp-Source: AGHT+IFOO6StkM0IAqHmVPeC0pasgrjZRt18m8ZM47Xa2afLr6FMLU95O24gk0y2c263N5XAsUJyVEaAEAeaPIVk7As=
-X-Received: by 2002:a17:907:6d28:b0:adb:449c:7621 with SMTP id
- a640c23a62f3a-addf8e7ea4cmr540699366b.29.1749092621041; Wed, 04 Jun 2025
- 20:03:41 -0700 (PDT)
+	s=arc-20240116; t=1749094510; c=relaxed/simple;
+	bh=fkxEIFyRAyzUTGA/3k3vFB28vHxgYECrnK2TeDDpRq4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IhIYS6RxC6UVh0UChvRYsgGO9ypb8ZIoRVmWAbjS1bMNpPWRt/92qRyWz4cl6vJ46jL+Bk6vPUkPke28oCL25pe5gqKES7uMYROaGaLshF+Qn0JiDwBuHkfvWCmB7ztyChILjnYpOdwNJaEnBCE7SBlwh70LP12x7HdI26QcwRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VOYIKthe; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554G3Ito000686;
+	Thu, 5 Jun 2025 03:35:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6qsyL/mkUf55/J1iG+sSINN6G+q6LgfkddYl7Zora7w=; b=VOYIKthegoG2oCZK
+	JYV200Y0H3XY9AkG6xJ/lV6uzluNKMrY1Wy6rQYSdwY6uL/qBbXwB9gd6z/kAFjz
+	Wg82IGt5w96z1B3/qyBFqkDyJeIptFqpqnzduhZHJMieAU/eDQCoHKq3ByaUQelG
+	BHwU4DpAusg10V9MEgpfJi7WS9V897mnlyyy67vEtp6tSTkdd9zRV6TpvukYERyM
+	gK21Ilx99otoyfw8Oify8aqyjXxpteZlcPA4KSUWS1ZysmJ0hgDvW/A+Ac8ZVlRG
+	0YlsOaA6Kqnm8hiNa2iog2WDMNrBpvCAn901b3kEnjmSUNMfKIzWVERFlbZBYe8O
+	IBmzNA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8q80qp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Jun 2025 03:35:03 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5553Z20Y002294
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Jun 2025 03:35:02 GMT
+Received: from [10.216.5.91] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Jun 2025
+ 20:34:56 -0700
+Message-ID: <f80ea2fa-1003-48ae-bf57-df388ba1963b@quicinc.com>
+Date: Thu, 5 Jun 2025 09:04:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1746581751.git.zhoubinbin@loongson.cn> <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
- <CAPDyKFouNpdnQSXBxRmKhECyojrT_TkCpgg01GHbzQpuYFvEZg@mail.gmail.com>
-In-Reply-To: <CAPDyKFouNpdnQSXBxRmKhECyojrT_TkCpgg01GHbzQpuYFvEZg@mail.gmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Thu, 5 Jun 2025 11:03:28 +0800
-X-Gm-Features: AX0GCFsyTcAFRf1n8zcXVDtGZMbNr_eXrzE1FjqIUCdZXqVP92KbfJ9GX93iKyg
-Message-ID: <CAMpQs4KQHHiJZFXhz2hgxv6qMA+CCEqQpZkug2JL35FBj+iEYA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/8] serial: qcom-geni: move clock-rate logic to
+ separate function
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <psodagud@quicinc.com>, <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
+References: <20250506180232.1299-1-quic_ptalari@quicinc.com>
+ <VkNsXqYDdmwW9dutwc76Dv8ks2pvgcUwpf1UREJXhbXDQRaobVZL8m0hLz6rsOG-v6CjyAW3vHbuKMiPc9kN_Q==@protonmail.internalid>
+ <20250506180232.1299-7-quic_ptalari@quicinc.com>
+ <47d19ad8-37ad-462f-8cb3-d39c29008709@linaro.org>
+ <8f18716f-cba2-4615-950a-63b6b73e23e9@quicinc.com>
+ <bdcc3e48-ceee-45bf-bc4f-f0e63d44b333@linaro.org>
+Content-Language: en-US
+From: Praveen Talari <quic_ptalari@quicinc.com>
+In-Reply-To: <bdcc3e48-ceee-45bf-bc4f-f0e63d44b333@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CtWTna4LdkrIX9NIzyo90YhRRAqgel9y
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA1MDAyOCBTYWx0ZWRfXwJytQT2pNwGp
+ RJH0MsY0N+zfZjtQe/WbVFJRL2Nok6veHKbGALPBVzEOX9mAPijf4w4hZpNF9UjlpaJ6C2vDXI7
+ qiUXvm37yDTAG/6Wo8PBfZWqbNaBwHpvBpttQ3WswU+hwjoVZEea00pt6Us7UEpzFTJQShyZ12K
+ ODm/k8d/rUs50uXVR6lMY/u1mo+sKz+TWsx+D4mhWIl761LQk4rqqLBQBf0y5C1tg9N0n9Rce7f
+ awmXOzTZ+dgPaDl/cMBgIaH8oy8Y6ux54kimdjKkzCUfCQ7NKAU5uoIjUlWAPK2psFKko6cAAcl
+ 3NOU/m9svGfiWshyRLCwLGjQz1T9Jk9Wq1e/LGtqb+hpN52vE4NbmU4OMXqF2Ho2CdiKKaCzoWu
+ j1pFwZd4P5hIQCFpl2Ipdc98RO0rPchxtucPL9mMoUK3kiha0oeM7+4sQmHnK3ADltH5tHeu
+X-Proofpoint-ORIG-GUID: CtWTna4LdkrIX9NIzyo90YhRRAqgel9y
+X-Authority-Analysis: v=2.4 cv=PrmTbxM3 c=1 sm=1 tr=0 ts=68411067 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
+ a=bzMaToIjV4cEPkjtaokA:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-05_01,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506050028
 
-Hi Ulf:
+Hi Bryan,
 
-Sorry for the late reply.
+Thank you for your inputs.
 
-On Mon, May 19, 2025 at 7:03=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.org=
-> wrote:
->
-> On Wed, 7 May 2025 at 09:28, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
-> >
-> > The MMC controllers on the Loongson-2K series CPUs are similar,
-> > except for the interface characteristics and the use of DMA controllers=
-.
-> >
-> > This patch describes the MMC controllers on the Loongson-2K0500/2K1000,
-> > with the distinguishing feature being the use of an externally shared
-> > APBDMA engine.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->
-> [...]
->
-> > +
-> > +static void loongson2_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios=
- *ios)
-> > +{
-> > +       struct loongson2_mmc_host *host =3D mmc_priv(mmc);
->
-> As we now have support for regulators, we should use them here too.
->
-> Some something along the lines of this at MMC_POWER_OFF:
-> if (!IS_ERR(mmc->supply.vmmc))
->       mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, 0);
->
-> and at MMC_POWER_UP:
-> if (!IS_ERR(mmc->supply.vmmc))
->       mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
->
-> > +
-> > +       switch (ios->power_mode) {
-> > +       case MMC_POWER_ON:
->
-> Is the fallthrough really what we want here?
->
-> MMC_POWER_ON is used quite frequently when changing various ios
-> settings when the core calls mmc_set_ios(). MMC_POWER_UP is set only
-> once in mmc_power_up().
+On 6/5/2025 5:19 AM, Bryan O'Donoghue wrote:
+> On 04/06/2025 18:11, Praveen Talari wrote:
+>>> Separate this stuff out.
+>>>
+>>> Your code should match the commit log. If you want to convert %u to 
+>>> %lu make a patch to do that, even if it seems trivial, it is better 
+>>> to make granular submissions.
+>>
+>> It comes under newly added API. Do we still need to make separate patch?
+> 
+> Best practice is to split this stuff up.
+We can avoid this change by using unsigned int instead of unsigned long 
+in newly added API function params.
 
-Indeed, this has been handled too roughly here. I will try to
-subdivide each case and add regulator support.
->
-> > +       case MMC_POWER_UP:
-> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_CTL, LOONG=
-SON2_MMC_CTL_RESET);
-> > +               mdelay(10);
-> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_CTL, LOONG=
-SON2_MMC_CTL_EXTCLK);
-> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_INT, LOONG=
-SON2_MMC_IEN_ALL);
-> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_IEN, LOONG=
-SON2_MMC_INT_CLEAR);
-> > +               break;
-> > +       case MMC_POWER_OFF:
-> > +               regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_CTL,
-> > +                                  LOONGSON2_MMC_CTL_RESET, LOONGSON2_M=
-MC_CTL_RESET);
-> > +               return;
-> > +       default:
-> > +               return;
-> > +       }
-> > +
-> > +       loongson2_mmc_set_clk(host, ios);
-> > +
-> > +       host->bus_width =3D ios->bus_width;
-> > +}
-> > +
->
-> [...]
->
-> > +
-> > +static void loongson2_mmc_enable_sdio_irq(struct mmc_host *mmc, int en=
-able)
-> > +{
-> > +       struct loongson2_mmc_host *host =3D mmc_priv(mmc);
-> > +
-> > +       regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_IEN,
-> > +                          LOONGSON2_MMC_INT_SDIOIRQ, enable);
-> > +}
-> > +
-> > +static struct mmc_host_ops loongson2_mmc_ops =3D {
-> > +       .request        =3D loongson2_mmc_request,
-> > +       .set_ios        =3D loongson2_mmc_set_ios,
-> > +       .get_ro         =3D mmc_gpio_get_ro,
-> > +       .get_cd         =3D mmc_gpio_get_cd,
-> > +       .enable_sdio_irq =3D loongson2_mmc_enable_sdio_irq,
->
-> The ->ack_sdio_irq() callback needs to be implemented too.
->
-> Moreover we need to set MMC_CAP2_SDIO_IRQ_NOTHREAD.
+Will fix in next version.
 
-OK..
->
-> [...]
->
-> Kind regards
-> Uffe
-
-
-
---=20
-Thanks.
-Binbin
+Thanks,
+Praveen Talari
+> 
+> If your commit log says "I'm moving code" then it should _only_ move 
+> code, don't sneak any other changes in, no matter how seemingly innocuous.
+> 
+> ---
+> bod
 
