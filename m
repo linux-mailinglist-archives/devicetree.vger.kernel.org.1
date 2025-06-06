@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-183299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BA7EAD0130
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 13:25:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F96AD013E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 13:33:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 659241897C33
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 11:25:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7809B3AFDC2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 11:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1B42882A2;
-	Fri,  6 Jun 2025 11:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016DC2882B7;
+	Fri,  6 Jun 2025 11:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GBOq9Gbt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AvRMOeek"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D411E8C11;
-	Fri,  6 Jun 2025 11:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B4A284687
+	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 11:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749209105; cv=none; b=ZT8GfXhloKMe6MpGGAyKDzXXhoMWhAU0hD1tWaXPW3htiuNLgu7Q5HQIzvo1bGAzXljnPJUvCLR4wHpQW8HYo1WpmztlQW4ZKtlVYWlMFh3Efmx9CKSbkc7Lq/JgUhsYaOB3OQWcrh96OwIZMLQjjdes0UIYwP4tEWRpiOjl7Ak=
+	t=1749209588; cv=none; b=m+ZiFMgtdZto+LZpH66xyWb0V25SXGyHLrdEB9GbEsbJ4YbZ+VgqM9VWew0t9/G4SeKxbpsKbQxAfPK1QSl8bhmADh5cKz/PJ9j0lAh9ywPdOpDy2pBTY7/A3fykvj7y69MbZuomDkX2/wrvlYqOXFoVofIOHRu6UsKbBYmf5Ic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749209105; c=relaxed/simple;
-	bh=b9A6mvNSH9qd1dMs/0QFGaA3tDqXDEXHAC5Srjbvhqg=;
+	s=arc-20240116; t=1749209588; c=relaxed/simple;
+	bh=rjq1RfB16uNwsEaeeDKPTE1D7mp2xB4/K2KeD5ubBp0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mh+Hf6vLgL+rWgUjf9t6gJU9c56B0j5x30UuYZKuMGQso6yhAwP3Zop2yCQnF6qIGvcph5qOdu04RdRcIrozRkwn52aD4VF53WI4Re2JmEo0zc0lNGgrWqKDYyTYwkW3YxRaNv2iT4coIQepb1MhiM42OfWuEjdIsAbEZ53Sj8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GBOq9Gbt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB8A2C4CEEB;
-	Fri,  6 Jun 2025 11:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749209105;
-	bh=b9A6mvNSH9qd1dMs/0QFGaA3tDqXDEXHAC5Srjbvhqg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GBOq9Gbty+YRge0+oyQXT9e8be0ixsVL+G2uurF6IRGmervupzVL5PaCc+PBjNeqA
-	 z0xCvjBysfJG5xODf9y8cpkjPAFsh3sxlS/kV+enTn+h1lml/QDM3+5P2b5LSqrtYi
-	 YbBKPsxLEaanXI3/Zh4Yejq/VTuh/ixDCZoHF3jes4oO4ydrBE2DepHix8bPA5cngv
-	 6rBzC2eJ/k5JipcJU9h9Z4tPvSaTpnVZip3d+p/Xn+mYc9ndmXKM9Plh7x7xNsNSBj
-	 puPRpgac8JMdwPDp3kGvUCbBGWLBr59rN/Ou4Zmjtps6/ZZCRuCGvoirfBv5oEiw5C
-	 EJHuM7aI4s8Kw==
-Message-ID: <e08b2f76-17b1-4411-a428-b2f0f8a7d7fd@kernel.org>
-Date: Fri, 6 Jun 2025 13:25:00 +0200
+	 In-Reply-To:Content-Type; b=DkyScBCtbAqpxypNYnXbZQBADuJKXjxpqeVI4mPqsi89SjNzo1SGwfLkYFOXyQtbJcQsb77BxVqj7JoRSpEzckWnG8ACtv1qwsdUhcqDMhMvCCEqD01+lX9cLwy8tjEdTckot6lJbCl445htTVytPVki1lPriWjO+5/ym9pb+Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AvRMOeek; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5565pTEt006342
+	for <devicetree@vger.kernel.org>; Fri, 6 Jun 2025 11:33:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hBsVUSV4bS/Pj8To1O6ismeXm6A04KaflnyzIZ+5dok=; b=AvRMOeek5EwJU2YB
+	0fyP/4clx+tIreBlfo30vhV6WzpoZEFXv0O5iVcSwLbb78v+srVl0kMSKf1kGmY5
+	zvXTpd/B0JpsKkLWBcuq+Ah2ZxATf4rVEunFlzhjHHgBDW91jTUS7wY1KSNcjAMq
+	5FloY9SaMTjP5qiomrJIuXu2w0RiFdHGXd+UASM6TtntCY20EWrL5VaUmUDERLDf
+	oHHbDlhZuPDulg+ljh9dHBx4Cq4XZepbv0+qAnQ7jUYFm7ywrun+pAzm+z1RAvmI
+	gxyWfYPFS71srhJlh7iIbYWO+EbQ06TLejh54jKqGJCiU0aTt34QwFpaZEAnw2o+
+	y30SYA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8t4f84-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 11:33:05 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d0976a24ceso45089985a.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 04:33:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749209584; x=1749814384;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hBsVUSV4bS/Pj8To1O6ismeXm6A04KaflnyzIZ+5dok=;
+        b=DXFHvs5pAmXwB55ZMVqrBtDNZXT1hmt3DDfW6bSecAovydx974mFg80RTAZsm/ms2Z
+         4qmjWKYQZV1+u4rSu9pM2EwFIDV502HElkt8v/oKklrTH/A50g1+NUQwhdUnERXPI1Jy
+         s4ksafEz/a4f7DI7PO+7NFOKT5DgVXdqDbPwGDyp3yoy8LXHOaJWx5WP3IASSjY+s9h4
+         oyn+6MFUXq/rXr3RIprjs85l/j3rzi8Wk74vgaTMB3A7kRooEn+8UFni2YH98mqqIUEy
+         Nz3RTQZNSv5MDuZP5Odfi6OEXhWjfmFsRe/S6BRUsUPVWVbNwDSASEdB1zspfJQ+hNTO
+         LrQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVYVDvN1Cy6RT+fBVm7AHC/aB9bVW8ELf9aoIIK6DBdzLp92U+x/GaLTkIXJWbk393B/m2qJqxT1Wte@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGYV6B8pHyp2fo0kGNH6zqzejUuLiejh4brOyavmIBprgS70Vx
+	AqnDy7bX/aFlZOrBFD8IwGythgB4wgYi7yLPoT9gTkyKBEHndGz8mZInoVLxVBchcu7hByz8okB
+	SdGXjnLUgLWqfFz4JQ0ud446KDoel8yDa8Ujb2spbajSpo0nSdOFaLs1liVnkX70n
+X-Gm-Gg: ASbGncvgShIV1iBB7dxIM/ih3AEMmqhn926TWiZBwLmGIsHyjR4kO8Mp3QFEdu+3wZx
+	9OX67XxnUhx5H7Zda+I6TgvdMXbFCwlGWVXALmvuSckQRRg1XH0sqmQMb8sI6YZ6JiKEfLemcvP
+	SzCuWMhjEA7nntY6Qy712MutglYFzAXiBI4lAKCEEVspOz+l2oWfbrEwHJT/7ebxepj2RVKEMJu
+	W89D2hIrsSpEEGYs4lHshV7tq5zOcBysFmoZrfDpYEPfDp5BaWdGrIhudQjSyM7Q4jpYVzVMnOJ
+	sdMyh5Fqd5SWTktQjBNJ9WAh6ul1K1l7lLlMF0IqObduAIZffAI+9oeauWgMl38dfQ==
+X-Received: by 2002:a05:620a:410e:b0:7c0:add8:1736 with SMTP id af79cd13be357-7d33df1fe47mr93551185a.13.1749209584472;
+        Fri, 06 Jun 2025 04:33:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFkuxkZEdiQyqedab+Vm7k2HP8tSudyEGg5/Rxa0+D0cherRON5LyZpShuOvPOo20kuyO7SzA==
+X-Received: by 2002:a05:620a:410e:b0:7c0:add8:1736 with SMTP id af79cd13be357-7d33df1fe47mr93549685a.13.1749209584031;
+        Fri, 06 Jun 2025 04:33:04 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-607783de2bcsm873720a12.68.2025.06.06.04.33.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jun 2025 04:33:03 -0700 (PDT)
+Message-ID: <05534fa7-9479-4fe0-85bd-0dca5541f739@oss.qualcomm.com>
+Date: Fri, 6 Jun 2025 13:33:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,124 +89,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, herbert@gondor.apana.org.au, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
- manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
- Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-References: <20250602053231.403143-1-pavitrakumarm@vayavyalabs.com>
- <20250602053231.403143-2-pavitrakumarm@vayavyalabs.com>
- <fae97f84-bdb9-42de-b292-92d2b262f16a@kernel.org>
- <CALxtO0mpQtqPB0h_Wff2dLGo=Mxk02JJQkK4rn+=TuScNdSfxQ@mail.gmail.com>
- <3570be5b-cb20-4259-9a9b-959098b902d0@kernel.org>
- <CALxtO0mH=GwhQxQBsmMQYd+qgAue9WxXN1XWo9BncVJvJk6d8A@mail.gmail.com>
- <cd6e92af-1304-4078-9ed7-de1cb53c66da@kernel.org>
- <CALxtO0mVMTWqidSv7LQSQd-rA_TmJy_0xgBSd=mP27kg=AXQRg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] ARM: dts: qcom: msm8960: use macros for interrupts
+To: wctrl@proton.me, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
+References: <20250606-msm8960-irq-macros-v1-1-03e573ba26d6@proton.me>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CALxtO0mVMTWqidSv7LQSQd-rA_TmJy_0xgBSd=mP27kg=AXQRg@mail.gmail.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250606-msm8960-irq-macros-v1-1-03e573ba26d6@proton.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 8AQm7clB8b7g0zchK5P9OMkVYZZvkeGn
+X-Authority-Analysis: v=2.4 cv=EPcG00ZC c=1 sm=1 tr=0 ts=6842d1f1 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8
+ a=MzN8uu8svZ0T6_zCNRoA:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+ a=lZGKyyPKw46fRox7ShMU:22
+X-Proofpoint-GUID: 8AQm7clB8b7g0zchK5P9OMkVYZZvkeGn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDEwNCBTYWx0ZWRfX+XSpd0DX08Jv
+ rOBF+7e8sywxStEV3oG/3YSnNEXZ8AMwm8EcqrIh8ob59ipTWThEo7U0ZjgRA2WyofDTyxttpjV
+ eBng67bRXD+9EjQPHFL59kQv2tGSIHVTh2+wyAwN8uVLU2vNYlAHpcXKhXzPOY/Aa7XYGSQrDxa
+ ZAiKe/llB7X33OwujLZvaOBLFD/Wn2N9BiFx9ENtgfn8MpzLodKUXRjRETRi33bVrPHqMLG36/Q
+ Wx2LX+fCPVxNnwLYwCGLNOmhqdLdll1v17xPmdcSFnAiPVHjnkcMCsehDdVdIiZPuuM9XAlL25u
+ qR+45QdpFsObPqSm875yYovLjPZ6Rm+jVtD2Igc6wpnlAdUwcys4pAwr2YHFEMLi0Ne5Te5+C/q
+ Pbl6wPaCt7vE0ocQPWdjPXTgwgftpLUZJq5K1QmWSK38s2pa+OI69TzoLIPJoc6xsByV5n40
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-06_03,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0 mlxscore=0
+ clxscore=1015 mlxlogscore=660 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506060104
 
-On 06/06/2025 13:02, Pavitrakumar Managutte wrote:
-> Hi Krzysztof,
->   Appreciate your inputs and feedback. My comments are embedded below.
+On 6/6/25 1:03 PM, Max Shevchenko via B4 Relay wrote:
+> From: Max Shevchenko <wctrl@proton.me>
 > 
-> Warm regards,
-> PK
+> Replace the raw values with macros. No changes to the output
 > 
-> On Wed, Jun 4, 2025 at 7:37 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 04/06/2025 14:20, Pavitrakumar Managutte wrote:
->>>>
->>>>>>> +
->>>>>>> +  snps,vspacc-id:
->>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>> +    description: |
->>>>>>> +      Virtual SPAcc instance identifier.
->>>>>>> +      The SPAcc hardware supports multiple virtual instances (determined by
->>>>>>> +      ELP_SPACC_CONFIG_VSPACC_CNT parameter), and this ID is used to identify
->>>>>>> +      which virtual instance this node represents.
->>>>>>
->>>>>> No, IDs are not accepted.
->>>>>
->>>>> PK: This represents the specific virtual SPAcc that is being used in
->>>>> the current configuration. It is used to index into the register banks
->>>>> and the context memories of the virtual SPAcc that is being used. The
->>>>> SPAcc IP can be configured as dedicated virtual SPAccs in
->>>>> heterogeneous environments.
->>>>
->>>> OK. Why registers are not narrowed to only this instance? It feels like
->>>> you provide here full register space for multiple devices and then
->>>> select the bank with above ID.
->>>
->>> PK: No, we cant narrow the registers to only this instance since its
->>> is just a single SPAcc with multiple virtual SPAcc instances. The same
->>> set of registers(aka register banks) and context memories are
->>> repeated, but sit at different offset addresses (i*4000 +
->>> register-offsets). The crypto hardware engine inside is shared by all
->>> the virtual SPAccs. This is very much for a heterogeneous computing
->>> scenario.
->>
->> Then maybe you have one crypto engine? You ask us to guess all of this,
->> also because you do not upstream the DTS for real product. Any
->> mentioning of "virtual" already raises concerns...
-> 
-> PK: Yes this is a single crypto engine, maybe I should have detailed
-> that in the cover letter. I will fix that. And what I have pushed in
+> Tested-by: Rudraksha Gupta <guptarud@gmail.com>
+> Signed-off-by: Max Shevchenko <wctrl@proton.me>
+> ---
 
-So one node, thus no need for this entire virtual device split.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> the patch is my complete DTS. It might need updating depending on the
-
-If this is complete, then obviously "snps,vspacc-id" is not necessary.
-
-
-Best regards,
-Krzysztof
+Konrad
 
