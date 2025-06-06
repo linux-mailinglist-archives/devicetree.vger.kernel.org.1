@@ -1,435 +1,295 @@
-Return-Path: <devicetree+bounces-183405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA93EAD0634
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 17:54:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7BCAD0644
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 17:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 284997A2F6E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:52:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DC341881500
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962151B040D;
-	Fri,  6 Jun 2025 15:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B70A288524;
+	Fri,  6 Jun 2025 15:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AYUQyrpJ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jJdQIME9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013056.outbound.protection.outlook.com [40.107.159.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D6619882B
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 15:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749225245; cv=none; b=HtI1zJm/T1QH2QG+LPbXs3TaT440ZISb46blaDDrg8K776AkAi+0VpT2puShD5FyLQpu2rVbMVUONXuy3aWRsr8TBWGtB5mX5i5Bb0wQldm3NQax9cHZV7iR8sMZ5BZh61viDFAz2ehfnhwqShReVsiLyiEMD3iWve+ptIx/hjk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749225245; c=relaxed/simple;
-	bh=O2w1aGCd7C7nRuZWq3b6fRfyCi62Sqnl7KSt5CA2X8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X2IJxBiOpf2g/lUZwd61HM8lvHG95IAHygGRfmkk6MdDO5Q3Cu8cC2tB8obhTsHBunUQOOVc0XDeLFFMyxLp1HYX8SWmHSpIdmCtYcCUqouG0hBuC0zIoQl6IaZA0VAhpLEa5mn7/uWY3ZbHxDSZdytZ/gYb4UsGoL6NXl+Omyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AYUQyrpJ; arc=none smtp.client-ip=209.85.161.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-605fda00c30so1375429eaf.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 08:54:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749225242; x=1749830042; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A6luCcbvYtAg5246XTNS1y7oe/JVdrZSN0lM+hMsBHc=;
-        b=AYUQyrpJ6qulxlVQnD1JLnpGuwnIh/7UsTChtQcV/q9NeDQt0x9A7BFwiSjBetb9Ov
-         ygGOGuhOEWgfMBbYFX7VVU63A8TdFEH1TKWhymZqpP9O4gShv22PVE+AfBS3oPoDmjzx
-         DPHWKcZoXw/iPnusIw6ZpQq8+ui/ya6K6r5NFOHC9hW+Qs4rTSsK1UqCwrSgeCH9If9m
-         UeZNfNAO/ziM9lj+uG25UAnk5g3g+IZxWeElWyBLoqTU5VeZdRRAYfJgIVZ8oKpuaeHm
-         WzxTzYUFmHkV3N6c8pyNVOidms9/+vZFZX8iBYvF4jZ8dAIo6cL8yupYqozEd3P3xNL+
-         b+5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749225242; x=1749830042;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A6luCcbvYtAg5246XTNS1y7oe/JVdrZSN0lM+hMsBHc=;
-        b=Q0DIDQNAwrnoz0mawHbQz/5CClqPfCMlQbJxt0p5TxA5iO/1fam9+ifZrMYk9FbQKn
-         vUmJKC4RvIeopRd3YJNB6G9jD2r46yuldh/fwU38N0UulXHrVi/vVDCVzMh24Bc+la+m
-         7/Tb2awsOa+ScKx7QIBVTMxLT9d7+1yRhzkIzHmMhwGoIGagFn22+43S8Vu+5BMIDlHV
-         JHAXb1mNRxWe3NXJZfH39pEfgzaQpd5WeAmpwzttRElybVdmfEheFb4HgTA993SYhf18
-         awlkE1Ln5UYJl4+gqAt9690ZjpTlfM7PqnaPe9rGrg+prNp9XcBgDQG57ZHau10dWJja
-         p8mw==
-X-Forwarded-Encrypted: i=1; AJvYcCUGi6PKjfBXxCfrWXuDDgfJJPQMQJsAUdl6PnZO8qqHJ7wH6ouRaTZjbzvKgiZ0uOux4Z1GjfE4zQgu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxn8t+L59em21b28xlEBtGKV08HEtMlR3GIq+RM3pHvaHDW8JiK
-	uTn8DEQU/IB+5HGmIRrZGm3ioFEQmR62BJM1PSZWrL5kQ0hWQW3cxf/7NHPxybOU6JA=
-X-Gm-Gg: ASbGncvlNZskzbIDsm5T4JpTs4blbsDg3Z7FaU8MVbvtTCEeyS3UCYShpD/DYtxrTLI
-	bQhAYM7sHU07ObwfdnJzbUj83MMaSm3wzpPNsKf11szd1jwM/tBXv+pr6KxMdxvdUjRiE3QAuAV
-	uf/5COpobYk1iwbCzDwkg8WYUC+0Eb/FZlaCBA4V+re+ZKWFCgfg1JvpmT0z3WEPhYyd+YSvIUr
-	ZDvPdFTuWQ1q46PJgubMDnUHYz4HJd7D7pXUw9YcDFNQfabsdk9jPkX5Eywv9MnBX/8186PZUUQ
-	t6XNsmw1M8r5eoRH9DlRVhJFL/hSLjhG75qeZaXXkbOLPKwYcfi7pllmu58rldv1lQeoc7Szy+o
-	R9CrkGeNMjmv3ml9Lt8ciScqh+aqv
-X-Google-Smtp-Source: AGHT+IGRDl1iuFLSRQRDz5i+NYDOwmM7to35b2jr13pv5tXn4xtKTNZw7AvPXElLkQBKingqq9hJnQ==
-X-Received: by 2002:a05:6820:1992:b0:603:f981:5fe4 with SMTP id 006d021491bc7-60f3ce462d5mr2533571eaf.1.1749225241844;
-        Fri, 06 Jun 2025 08:54:01 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:6192:9921:d60e:1609? ([2600:8803:e7e4:1d00:6192:9921:d60e:1609])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-60f3e8274c8sm251935eaf.30.2025.06.06.08.53.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jun 2025 08:54:00 -0700 (PDT)
-Message-ID: <92c36ad9-5f8e-4ba7-9af4-9cb640f0aa5c@baylibre.com>
-Date: Fri, 6 Jun 2025 10:53:59 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A201B040D;
+	Fri,  6 Jun 2025 15:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749225418; cv=fail; b=HXaCO1NnG0hkahCRf9xgpNDInKnmSvKezhTx0AcxRSVmCYBAPY2jKyKn/39V/WDi6S2d9BcUW6vOzfqyP5lckIymYyfQWPiI1E4V0sHbLowms6cjU+bWfPAtKT62BG9pWm/PeHgEkefaY7r8agmGGDvn9PfKI1SFQo9loVTNwiY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749225418; c=relaxed/simple;
+	bh=DjWqW1kdl7gJc5laNidO5V0DJUqKyAu+sQ+WhKYK3Dw=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=L1b2hZwIPtsMwIFaErUBJzl9o65fxguxXP0RuLrpYLNMY5fjTnxF5NgT8lVKftOuOxHZko++fAWSsh7PAXSXVYG5RIKlbv5NFBsBfSxs0ngjka5pmxYV2SiST6GpbN2HIg830dSBn7aBAsnzPBivzfBqPtlucfyqDWpAWQXwWtk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jJdQIME9; arc=fail smtp.client-ip=40.107.159.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JAgqgOhHaCswN4uSRfzjqb5Q53t0n7JvAqmazHb2/Qn9Q5sva15pJvAXzNwbEhfzjZtzXGj7cy7IJnmCZyi/EIIt6Q9zaOwcOo4NzxcA8PEzHnFCiPwc+LSyk6IEzX1T13JOLYfrwgOlRGQTjlfdLJZkaWl7uus/eBEiho/b4K9PNQyxj3kCPKc1AWCg89+PQ/vPRGr/UwnaYU8D1/uZAA87VxQz72u3giRAfrT/T1AXAiuoktmJLZesUW/nfA9SY5gwGUK5q4ph6deva+8dvDM0WimhSMb6dDMCyUpsJ1JcdZAT0IZw4EckAXcWUkPhHstXpTT2N0gaz6iPOYff9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fKKpqt7bYD8BpfCD9Jy07xmrYOoRXiaa/RTP9F++AfA=;
+ b=w0kv1SeXQWUlHXgVel1egmW6NUYTEk2/A0YGLxLHoOGOSocO+icQjvoxscITg4+vw7n4DiojMQAdwihV223aOd4scH780Bm8b7YJKxV2CLisc0Q57QlYoVO1SO5kL5Vul5fYWar0sDML6F0WAPbFo8xA9NBYwUCTI8j9a3gj5wbY+zRlEulF8rjkoI8t/0eja5e/ae8HgnoSUyRpWogH8ReB6st8S4Uh3gvZcX8sIE8gif1DofGgmtDpKChMj+rth3FAcNkVDX0JIbDM6o3Fx/ITdD8v8GcWKN0m4Sc2RZydDqOdVAHO4w+yFiBSht4O7iosLWespqp6WLSjKl9TxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fKKpqt7bYD8BpfCD9Jy07xmrYOoRXiaa/RTP9F++AfA=;
+ b=jJdQIME91m0kd17GrCT8bpp/DFVOF3dk+J5fge7IT9IBWpg+/oe51XZKbVYRcFFeGCv6OrY7czxET+ropaEdJ//4qxiHgav7Cr4pwQK+iy6fL7FdjdXpzju/CjPQ0EgZIHC4Rh5p6tvel0UfiEDSaNb8RnmPa+4ra3UJ/XeXpB8WiN58f7wcEc3MZid+IBXjaOW6CpOS7YqPmBXE8Ze/aWDPBqLF7aw/Pkqbf8D12c4cQuio+oXGu7OlUqQRxJ31CcqFIZJPA7488QNHJJHPh6AzPLU6f7AHMEVwUtwaEN0ZwmLw+cP6LMFyEJjciPzPEAhMneEE5j8o8h47qeGYwQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM0PR04MB7187.eurprd04.prod.outlook.com (2603:10a6:208:196::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.20; Fri, 6 Jun
+ 2025 15:56:52 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Fri, 6 Jun 2025
+ 15:56:52 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Microchip (AT91) SoC support)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v3 1/1] dt-bindings: ieee802154: Convert at86rf230.txt yaml format
+Date: Fri,  6 Jun 2025 11:56:33 -0400
+Message-Id: <20250606155638.1355908-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR07CA0017.namprd07.prod.outlook.com
+ (2603:10b6:a02:bc::30) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: adding support for PAC194X
-To: marius.cristea@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
- andy@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- broonie@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250606093929.100118-1-marius.cristea@microchip.com>
- <20250606093929.100118-2-marius.cristea@microchip.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250606093929.100118-2-marius.cristea@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB7187:EE_
+X-MS-Office365-Filtering-Correlation-Id: d79e7142-1794-4c2a-4e29-08dda512c0d3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?5kD/Rnr8GNDaR+rp7xCaHXeTXIX36D4e0ldasvewbBBgqba2xGF9uPVHJ/i2?=
+ =?us-ascii?Q?UpbUrkV75W1F2FagyIlX6rB272lTJCZ9vngL//K4rB0qOz8RFbfxgBfj4WF/?=
+ =?us-ascii?Q?rSMc9UJ51beCAG4HrSWL3l0epq/ygg6TLf1wBUMEIpB+zziSwNFaUlNfp1VD?=
+ =?us-ascii?Q?aVjjJe5ul+lIEvuBgFE1k4WsIyCJ2joBEcRJq2BFNQulTv5yIbnN9HVPs2Sr?=
+ =?us-ascii?Q?p4ix6+YpEOoTwAbnEgUsm3yS9grkEY4uPmVYHVhGY8TZct/P/cComXy/Ij8l?=
+ =?us-ascii?Q?dieYqrbFmbj02a7yjufkp5gO2at1hmhir86GOYVryKiOY0wNGRk/0WSrbJp4?=
+ =?us-ascii?Q?BtmCj+QTEk3eH5CpGZqGPPYi0yhxDCO3CLHdR/gnby2QC0oJSkI1YXpEz6J6?=
+ =?us-ascii?Q?dJZg0sYZCaR6OiBVs9Q/NGWdvOguy2+glz6TbXxpfWaY1FFfOeZzQm2gphMP?=
+ =?us-ascii?Q?0j5baGAI1U2EKndkDY+dhFRBNjXN7/+rijLVM8JYEA169HuuJQmB3K1syRPt?=
+ =?us-ascii?Q?pRz2oH2x0jeF1dxtVlU8odL9FQjHAWKXitE+c/h3DHg7f3li91L76gITbkTV?=
+ =?us-ascii?Q?6ONTr6hxy24mqkaPAnjXnVxRJlNHk5DW0923n2P56qL64CF0u+0Jf2MFzGMx?=
+ =?us-ascii?Q?qSDo+dG5Iv/HqwxrTBL/bbdwnJW1OF+6BPPpwcuW5bAOLTVoVPag+4D3i5Lo?=
+ =?us-ascii?Q?7fnSIOSxnP7jLo/qM+UROHqjYO2/O5fyEWyn/M24615M5LpUydIHVTbTQuCG?=
+ =?us-ascii?Q?ZtitOIgr+2X99X4zSMEyHYf6fG/rBBfR8gbjEukPyijwC9E5qKSL3hgCY1gS?=
+ =?us-ascii?Q?6KojWeJ4wCMIPdU7ufsNyeSkiNL/plqD8rqC2yE3AFWpymyD/w70Oiv/apJZ?=
+ =?us-ascii?Q?qD52aOiRHff25I9Q8U4uR0HPmhMWeOiIBVlEt64F6tcm7D/QO0vKYpxmHEOX?=
+ =?us-ascii?Q?fQBHb4qZr3CDaMDE8H14uVqlROkA2QwbhAz+SVhCophB1OcHwvF9zVk2uZ8i?=
+ =?us-ascii?Q?wGWtXcifq7K+3ebpE3edMTO8B9CBGB6Y+cT3Eb/xXExqyky/zXT1bVKtuuK3?=
+ =?us-ascii?Q?SDwKspeOXTx7EbG0znaV5QRZVkT0oJbuVdN1R+oUmdN94W3Cmu6d+GiKzbuN?=
+ =?us-ascii?Q?P2YZT1/c+Fhd6YLk1CT/6SVfkcx6QpA3Rm8TwcGQULhEAEZf7nEhu6aYB/Yn?=
+ =?us-ascii?Q?rkONsiI4IAyj1Ow6wvrsQT1o4f4QjJOE+K9BJjKOTvDw18hOgrzGKGUU5EQO?=
+ =?us-ascii?Q?L0Z1SoLKWTx088EmT3NvSjSqKeTBVFvXyXtvY+B95mo0UxPqU54GWwBYhTXu?=
+ =?us-ascii?Q?8UamXsx6RbpzIOwyuMZLj0xRU6X3K3+NYp3iEvhyaNviNh586iA9wPNtzzsZ?=
+ =?us-ascii?Q?Rsv+zfu6ok5i0gWYR0w7UNYGuU7Mo95I7W88iWTVi5VsBDINeG4Auz4Rc10O?=
+ =?us-ascii?Q?JybUVYLJUJji/OccVvEkCHqHfLnlUYDd?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?sZ5h64Je3wuHLu6sVthYs8Hp3d1/J10DJtjWe/mVGfwU54ws112n3AKa9GfR?=
+ =?us-ascii?Q?o9dXC7NTWYS6FQ/KqLLD5gbTCAlYXCXKzKK8qDssiJm/qyhA+9zRGPY3pkBZ?=
+ =?us-ascii?Q?loQsMyIgTGZDqt/wZcJ4CTerY+XSq8a72N9Iv2uNQu9w3DkmDahGUMZEyvPe?=
+ =?us-ascii?Q?KNZlKUhNtsTci2zIo0PEvZeZu+iQi9546diPwb+rZS5QhKzIRtU+3kRHtEz6?=
+ =?us-ascii?Q?1f4qGLlm2u6Fx1C1ZQMxkTYqnf8Iom3KXYwg2aKzS/Dq6h/W1XWF2vTmUadR?=
+ =?us-ascii?Q?DHSQCn/AF3hIAfoKGo6QdHxB6CgsLeQ7kwuMfj9rB4deNeo9PF9ovGWkbRtD?=
+ =?us-ascii?Q?ycJ+Hd0cLG1ffHYWX5keyFyeRgJup8IZCOC04OGprvUscerSVi8J+Z2QanuP?=
+ =?us-ascii?Q?7pjT/kC0md8Mqt0/2UP0n0Z1L/rBlk9aJw+4ZOItdhnouEkcc10ExjsgSWOy?=
+ =?us-ascii?Q?vPyBayr5YMhzyA8GhtdqJySanBBey4H8WBOuwZTS/66fi/36T6ROy+XDzaKq?=
+ =?us-ascii?Q?GUZWPx7BDHfisbplsdD5+jpzPrFyieB5w1IAfMXRDnH/T2K/T/pAFzky8VWk?=
+ =?us-ascii?Q?EAwGJG9X4ep+OTXf65KVvRTta0EwVbcqe97s4j7rlKZra540G+HPYcFtQ7IO?=
+ =?us-ascii?Q?apgTmI/GV1pOHeVIKVSEYCeoh05o+d/j82v0YkGD4Ns2fjBx++EFk0WAjP5q?=
+ =?us-ascii?Q?vjbaPjrixXFwF3XWYaVVANAvyS3RTFLAV1baCOhw8GQRdEESIOHG0N5FVqUd?=
+ =?us-ascii?Q?aUtSKlml6TkTMGidqyW3sv7Mn/qyU0zRSRZFn288wIwZ71Km5P6YMjohjryJ?=
+ =?us-ascii?Q?K1IEw7+BkEyiLRpbSD5SEqsToobaPbeS/FMbZ5uP9xGnEdrfK5g9W4kSQ/8o?=
+ =?us-ascii?Q?/Rj7fhaicVCcEn+s47FktQZkXHZb/ubZjQseOtC2UVMi2mcHhv0YYwJBxqMJ?=
+ =?us-ascii?Q?t9fD3wAE8jyfqWZgkW3aopVmmYspTsIQWSWRjTUAvqF9dXVyynvyIMOWcv4b?=
+ =?us-ascii?Q?/W3vNOOak0unEP8tblrBeXiniAl0qtxuPGL8vJ171Mv1sILzixKvl+XjfsDD?=
+ =?us-ascii?Q?2mrVqhikRDM6YQrgfZxJoK3XHDzx1UP8tNQTfuNuaxhTm6I21wS7TqF5/MYf?=
+ =?us-ascii?Q?DXS0Tb8AY5NuqbVNKUjMF2RhKXvQXiC53dJ5WdGi01BOzHOfL9KOaZdXVw2J?=
+ =?us-ascii?Q?wcQFOqLfv+wSia0fLu1WFpfndIT4LT8+sXf+pRf2B4I3U2DijJW0GcpSDu7Y?=
+ =?us-ascii?Q?h4lA1TezpJEfb/GVuptvnrBaOX+G4q9nvnsEkgQkejlMI2Xcd0ojBLy+DzyD?=
+ =?us-ascii?Q?5nqQaoy78+mLslV7EWfjqqAIK45Q4X0+ze16nFbbUr13lkcBQCwbxoNdC03y?=
+ =?us-ascii?Q?J70TYX8vskyumABw+TzF32cjF4pU1aNfniPfaoTSICH62xK40K6dV7s14Biz?=
+ =?us-ascii?Q?OFcHKHsUCLal+Ldr9A2fLjFpH0Wrh6BbLcPgalLnEw0dYOXXjKmNof4kEfMT?=
+ =?us-ascii?Q?et9IOVvg9pc6A5u4WalkKy7IYuOYAlZe15Ljzdm0MbkqEIn/2i80Lp1fvJmP?=
+ =?us-ascii?Q?3fO4/esQeTop/G0o1R0Hx72ErobFlTDu0aX2CP5y?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d79e7142-1794-4c2a-4e29-08dda512c0d3
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2025 15:56:52.1904
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +NKeSpYSG41nOjC5jr8Ya3B78+3ypnTQrnpLIEXDWgFP1026YIMoq3i1qaKle2Aqx2LTjt1aP08tdEx8Y+Jk9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7187
 
-On 6/6/25 4:39 AM, marius.cristea@microchip.com wrote:
-> From: Marius Cristea <marius.cristea@microchip.com>
-> 
-> This is the device tree schema for iio driver for Microchip PAC194X
-> and PAC195X series of Power Monitors with Accumulator. The PAC194X
-> family supports 9V Full-Scale Range and the PAC195X supports 32V
-> Full-Scale Range.
-> 
-> There are two versions of the PAC194X/5X: the PAC194X/5X-1 devices
-> are for high-side current sensing and the PAC194X/5X-2 devices are
-> for low-side current sensing or floating VBUS applications.
-> 
-> The PAC194X/5X-1 is named shortly PAC194X/5X.
-> 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
->  .../bindings/iio/adc/microchip,pac1944.yaml   | 204 ++++++++++++++++++
->  1 file changed, 204 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
-> new file mode 100644
-> index 000000000000..4a2cf6b64055
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
-> @@ -0,0 +1,204 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1944.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PAC1944 and PAC1954 Power Monitors with Accumulator
-> +
-> +maintainers:
-> +  - Marius Cristea <marius.cristea@microchip.com>
-> +
-> +description: |
-> +  This device is part of the Microchip family of Power Monitors with
-> +  Accumulator. The datasheet for PAC1941-1, PAC1941-1, PAC1942-1, PAC1942-2,
-> +  PAC1943-1 and PAC1944-1 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC194X-Family-Data-Sheet-DS20006543.pdf
-> +  The datasheet for PAC1951-1, PAC1951-1, PAC1952-1, PAC1952-2, PAC1953-1 and
-> +  PAC1954-1 can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC195X-Family-Data-Sheet-DS20006539.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pac1941
-> +      - microchip,pac19412
-> +      - microchip,pac1942
-> +      - microchip,pac19422
-> +      - microchip,pac1943
-> +      - microchip,pac1944
-> +      - microchip,pac1951
-> +      - microchip,pac19512
-> +      - microchip,pac1952
-> +      - microchip,pac19522
-> +      - microchip,pac1953
-> +      - microchip,pac1954
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +
-> +  interrupt-names:
+Convert at86rf230.txt yaml format.
 
-Needs minItems: 1 if we want to allow a single named interrupt.
+Additional changes:
+- Add ref to spi-peripheral-props.yaml.
+- Add parent spi node in examples.
 
-> +    description:
-> +      alert1 indicates a HIGH or LOW limit was exceeded.
-> +      alert2 indicates a THERM limit was exceeded.
-> +    items:
-> +      - const: alert1
-> +      - const: alert2
-> +
-
-I am having deja vu. I just commented on an identical interrupts binding
-in a different series [1]. In this case though, alert1 and alert2 are
-the actual pin names, so that is fine. But each pin can be programmed
-to indicate lots of different things, so drop descriptions or change
-them to describe the pin, not an arbitrary function. I don't even
-see THERM in the datasheet, so I'm guessing that was just a copy/
-paste from something else anyway.
-
-[1]: https://lore.kernel.org/linux-iio/0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com/
-
-
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
+change in v3
+- add maximum: 0xf for xtal-trim
+- drop 'u8 value ...' for xtal-trim's description
 
-Even if the driver doesn't use them (yet), we could consider adding
-gpio-controller and #gpio-cells properties since these chips have pins
-that can operate as GPIOs.
+change in v2
+- xtal-trim to uint8
+---
+ .../bindings/net/ieee802154/at86rf230.txt     | 27 --------
+ .../net/ieee802154/atmel,at86rf233.yaml       | 66 +++++++++++++++++++
+ 2 files changed, 66 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/ieee802154/at86rf230.txt
+ create mode 100644 Documentation/devicetree/bindings/net/ieee802154/atmel,at86rf233.yaml
 
-And we could add a powerdown-gpios property for the /PWRDN pin.
-
-We want to try to make the bindings as complete as possible, if we can [2].
-
-[2]: https://docs.kernel.org/devicetree/bindings/writing-bindings.html
-
-> +patternProperties:
-> +  "^channel@[1-4]+$":
-
-Drop the +. Only 1 to 4 are allowed, not 11, 111, etc.
-
-Also, we could further restrict things based on the actual number of
-channels on a chip like this:
-
-allOf:
-  - if:
-      properties:
-        compatible:
-            pattern: "^pac19[45]1"
-    then:
-      properties:
-      	channel@1:
-          reg:
-            items:
-              maximum: 1
-      patternProperties:
-        ^channel@[2-4]$": false
-  - if:
-      properties:
-        compatible:
-            pattern: "^pac19[45]2"
-    then:
-      patternProperties:
-        ^channel@[1-2]$":
-          reg:
-            items:
-              maximum: 2
-      patternProperties:
-        ^channel@[3-4]$": false
-  - if:
-      properties:
-        compatible:
-            pattern: "^pac19[45]3"
-    then:
-      patternProperties:
-        ^channel@[1-3]$":
-          reg:
-            items:
-              maximum: 3
-      properties:
-        channel@4: false
-
-
-
-> +    type: object
-> +    $ref: adc.yaml
-> +    description:
-> +      Represents the external channels which are connected to the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 1
-> +          maximum: 4
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description:
-> +          Value in micro Ohms of the shunt resistor connected between
-> +          the SENSE+ and SENSE- inputs, across which the current is measured.
-> +          Value is needed to compute the scaling of the measured current.
-> +
-> +      microchip,vbus-half-range:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description: |
-> +          In order to increase measurement resolution and keeping the same
-> +          number the of bits the device has a configurable VBUS full range scale
-> +          (FSR). The range should be set by hardware design and it should not be
-> +          changed during runtime. The bipolar capability for VBUS enables
-> +          accurate offset measurement and correction.
-> +          The VBUS could be configured into the following full scale range:
-> +            - VBUS has unipolar 0V to 32V FSR (default) for PAC195X or 0V to 9V
-> +              (default) for PAC194X.
-> +            - VBUS has bipolar -32V to 32V FSR for PAC195X or -9V to 9V for
-> +              PAC194X. The actual range is limited to about -200 mV due to the
-> +              impact of the ESD structures.
-> +            - VBUS has bipolar -16V to 16V FSR for PAC195X or -4.5V to 4.5V for
-> +              PAC194X. The actual range is limited to about -200 mV due to the
-> +              impact of the ESD structures.
-> +
-> +      microchip,vbus-bipolar:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          If provided, the channel is to be used in bipolar mode. The
-> +          actual range is limited to about -200 mV due to the impact of the ESD
-> +          structures.
-> +
-
-Using Jonathan's suggestion from v2 to just have a single property with 3 different
-ranges to chose from seems simpler that this. It would only require one property
-and would be self-documenting. The description could be shortened to just a couple
-of lines.
-
-Otherwise, we also need to add:
-
-- if:
-    required:
-      microchip,vbus-half-range
-  then:
-    required:
-      microchip,vbus-bipolar
-
-to validate that that there are only 3 possibilities.
-
-Also, swapping the word order to range-half would be more consistent with
-the existing adi,range-double property that serves a similar purpose.
-
-Same applies to vsense.
-
-> +      microchip,vsense-half-range:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description: |
-> +          In order to decrease the power dissipation on the shunt resistor and
-> +          in the same time to increase measurement resolution by keeping the
-> +          same number the of bits the device has a configurable VSENSE full
-> +          range scale (FSR). The range should be set by hardware design and it
-> +          should not be changed during runtime.
-> +          The VSENSE could be configured into the following full scale range:
-> +            - VSENSE has unipolar 0V to 100 mV FSR (default)
-> +            - VSENSE has bipolar -100 mV to 100 mV FSR
-> +            - VSENSE has bipolar -50 mV to 50 mV FSR
-> +
-> +      microchip,vsense-bipolar:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          If provided, the channel is to be used in bipolar mode.
-> +
-> +      microchip,accumulation-mode:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          The Hardware Accumulator may be used to accumulate VPOWER, VSENSE or
-> +          VBUS values for any channel. By setting the accumulator for a channel
-> +          to accumulate the VPOWER values gives a measure of accumulated power
-> +          into a time period, which is equivalent to energy. Setting the
-> +          accumulator for a channel to accumulate VSENSE values gives a measure
-> +          of accumulated current, which is equivalent to charge. This allows the
-> +          accumulator to be used as a coulomb counter. For either VSENSE or
-> +          VBUS, many samples may be accumulated on chip and the result collected
-> +          by the host and divided by the accumulator counter count value to
-> +          yield an average value with a very long integration time to reduce
-> +          noise. This feature is also very useful for system calibration,
-> +          allowing many averages to be accumulated for fast averaging/noise
-> +          reduction.
-> +          This functionality needs to be setup once and must not be changed
-> +          during the runtime,
-
-Why not? The datasheet says there is a REFRESH command to allow changing it
-at runtime.
-
-> just in case the user wants to measure the charge
-> +          or the energy consumed from board power up till the user has control
-> +          or during a reboot of the system.
-> +          The Hardware Accumulator could be configured to accumulate
-> +          VPOWER, VSENSE or VBUS
-> +            <0>  -  Accumulator accumulates VPOWER (default)
-> +            <1>  -  Accumulator accumulates VSENSE
-> +            <2>  -  Accumulator accumulates VBUS
-> +        maximum: 2
-> +        default: 0
-> +
-> +    required:
-> +      - reg
-> +      - shunt-resistor-micro-ohms
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        power-monitor@10 {
-> +            compatible = "microchip,pac1954";
-> +            reg = <0x10>;
-> +            vdd-supply = <&vdd>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            channel@1 {
-> +                reg = <0x1>;
-> +                shunt-resistor-micro-ohms = <24900>;
-> +                label = "CPU";
-> +                microchip,vsense-half-range;
-> +                microchip,vsense-bipolar;
-> +            };
-
-Seems odd to leave a channel unconfigured since the shunt resistor
-value is required and there is a 3 channel version of the chip that
-could be used if only 3 channels were wired up.
-
-> +
-> +            channel@3 {
-> +                reg = <0x3>;
-> +                shunt-resistor-micro-ohms = <75000>;
-> +                label = "MEM";
-> +                microchip,vbus-half-range;
-> +                microchip,vbus-bipolar;
-> +                microchip,vsense-half-range;
-> +            };
-> +
-> +            channel@4 {
-> +                reg = <0x4>;
-> +                shunt-resistor-micro-ohms = <100000>;
-> +                label = "NET";
-> +                microchip,vbus-bipolar;
-> +            };
-> +        };
-> +    };
-> +
-> +...
+diff --git a/Documentation/devicetree/bindings/net/ieee802154/at86rf230.txt b/Documentation/devicetree/bindings/net/ieee802154/at86rf230.txt
+deleted file mode 100644
+index 168f1be509126..0000000000000
+--- a/Documentation/devicetree/bindings/net/ieee802154/at86rf230.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-* AT86RF230 IEEE 802.15.4 *
+-
+-Required properties:
+-  - compatible:		should be "atmel,at86rf230", "atmel,at86rf231",
+-			"atmel,at86rf233" or "atmel,at86rf212"
+-  - spi-max-frequency:	maximal bus speed, should be set to 7500000 depends
+-			sync or async operation mode
+-  - reg:		the chipselect index
+-  - interrupts:		the interrupt generated by the device. Non high-level
+-			can occur deadlocks while handling isr.
+-
+-Optional properties:
+-  - reset-gpio:		GPIO spec for the rstn pin
+-  - sleep-gpio:		GPIO spec for the slp_tr pin
+-  - xtal-trim:		u8 value for fine tuning the internal capacitance
+-			arrays of xtal pins: 0 = +0 pF, 0xf = +4.5 pF
+-
+-Example:
+-
+-	at86rf231@0 {
+-		compatible = "atmel,at86rf231";
+-		spi-max-frequency = <7500000>;
+-		reg = <0>;
+-		interrupts = <19 4>;
+-		interrupt-parent = <&gpio3>;
+-		xtal-trim = /bits/ 8 <0x06>;
+-	};
+diff --git a/Documentation/devicetree/bindings/net/ieee802154/atmel,at86rf233.yaml b/Documentation/devicetree/bindings/net/ieee802154/atmel,at86rf233.yaml
+new file mode 100644
+index 0000000000000..32cdc30009cc0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/ieee802154/atmel,at86rf233.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/ieee802154/atmel,at86rf233.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AT86RF230 IEEE 802.15.4
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - atmel,at86rf212
++      - atmel,at86rf230
++      - atmel,at86rf231
++      - atmel,at86rf233
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpio:
++    maxItems: 1
++
++  sleep-gpio:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 7500000
++
++  xtal-trim:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    maximum: 0xf
++    description: |
++      Fine tuning the internal capacitance arrays of xtal pins:
++        0 = +0 pF, 0xf = +4.5 pF
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        zigbee@0 {
++            compatible = "atmel,at86rf231";
++            reg = <0>;
++            spi-max-frequency = <7500000>;
++            interrupts = <19 4>;
++            interrupt-parent = <&gpio3>;
++            xtal-trim = /bits/ 8 <0x06>;
++        };
++    };
+-- 
+2.34.1
 
 
