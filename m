@@ -1,239 +1,125 @@
-Return-Path: <devicetree+bounces-183375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702B6AD0453
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:57:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2A6AD0458
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5C4518971D6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:57:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D68BF7A2E27
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7335225F793;
-	Fri,  6 Jun 2025 14:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A45288C0F;
+	Fri,  6 Jun 2025 14:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ji+tBwGY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WEsSPpjR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FC41D5CE8
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 14:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7AB27E7CF;
+	Fri,  6 Jun 2025 14:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749221837; cv=none; b=OKOAYqYvCuHl3U4Ke88abxSCeu8eGtl7QJb4E9865XwhLQ6wDZtI9iI7LaKWB4l7Kg/c9EkwLzeUlpE0rHetDL4njxsoDz1PoZ3m1Y2X77X2+O7QQIGqkP5kK3mTdE0s/JzlS4VUrsH3x2+ukwQMF1zQSX8zs3foHSmC+3eqdL0=
+	t=1749221905; cv=none; b=FdnS56CusMUy/ARFj3jPUjzfwCoMczpR1QQtEXdZvZ8/Gp0J80ormYaJfbTf9/wnHLu9kcy6K0ScZZdS1QWEGNUedgTIlnb5V2oMcz6eGosx2Sfi7ahJYMw0dXYPD564hqaVthdPM3vAfUxSZ2TIuzudW510BFD2F9HbfFtlqY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749221837; c=relaxed/simple;
-	bh=ia7pnAGyVV1EpMWakQwBtxjI3bEZOeCvt8bf0l4HQIg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cE9FyePVGKWlKlUPaVWws+E/7Wn87A+zyegd86ep7CXfNBzwXA09BWCxSFaU2dQe9SEJvJO05cV63/4SLjPQQFMRv7pKNo85khp0GP8Vi1QJiKfiktt6e1RdPRrsSGu9+B15SL5TjZqHS8QiK1EeSNXWxLachwOrXMU2YKzb3Ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ji+tBwGY; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-450cea01b9cso7340855e9.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 07:57:13 -0700 (PDT)
+	s=arc-20240116; t=1749221905; c=relaxed/simple;
+	bh=L3ansMab82uYiup2PPPtsuZ7QMMlqwUdIbnuDaDUGZQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RXubPFqMUQwaoO1rmthG6lawk97Iqjt562IYH50EA6TpZfJLXqBvcotqlL62am7uJOLOzPL1nGdX+JJdmwGHzfz1SQq8MXWdcaEQ3nxC4tbcyWXvTS50xkRlPEgQPYrYMp2gPby9/HBHxA2vY5wJM7g0Nf7DGQlBTrHATduiEXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WEsSPpjR; arc=none smtp.client-ip=209.85.222.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-87ead500f9aso1193276241.3;
+        Fri, 06 Jun 2025 07:58:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749221832; x=1749826632; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ybeh6r8IJ9MMaBfEPZurC85ycYwc4zI6taH+XBEB7iM=;
-        b=Ji+tBwGYkavoDMO2lvr8lzuKAde/GcNvyhsdvCc7YKkXSjig9iG67tFKvktaWtZBn2
-         T7mCDqAZ6U/+1BKCqd9rDB9bOIxlFWSfOVifoMs4oZpfxLjy7FG+BYVr66OIG0Szrg7W
-         a4vB934BQzNaw5DZeH86zO8SPDoPSJK7lUrdpDMtzn0stPutv2tFFN5GuMaePUTRX3vG
-         qYFbWgUbtJSyvOqF99X5tvsOpwCO2Y3dKtSh27EgxILr7LROSDFiVhCIany08F0uKbfL
-         No1jRCDMM/YVZrQz78c/Kso8fbr3t9WjvZe79kTIdyAbQqppe06i70kCYc7r4lIIXNN6
-         z2Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749221832; x=1749826632;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1749221902; x=1749826702; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ybeh6r8IJ9MMaBfEPZurC85ycYwc4zI6taH+XBEB7iM=;
-        b=tnsTLBDq6SIUSViu2KTO5Bj1ed5Bdbn9i4W1iWiAEi3bsTjeBByyd+ZaDNqVlo0Smt
-         62k5YbIGJ7X2snCZHfWzXlCn8OGEfHwT8utLwf5hTHe5zhug+Hk9xic5GkumJSLJm4lH
-         OkKyMkBSKYdIf00DuRlPLeV3LtDVPoe/KzKK33pmMmvlkxzrjOIJ2GpiprjWUmjxv8Vr
-         zCowLvrJhmoRjDr2QEyRwVYCpMhq51SbetZPqxmzrpuZqJI70iYow9DDFdm5NZCNcT6i
-         2HYHfFk0Z/DAG0fK66jcMAar/PBApZ5nno3ytjQ+okFDI6Baq4iIDJ3MQp3Pu96bWrX7
-         e/og==
-X-Forwarded-Encrypted: i=1; AJvYcCUpJd2O8N1UrNKXRLJ2XTgHpfXAC4QiMTUZLGAGHgyAtnZwvE262cojtlGLcNr6Q8x9bOQtwYHtDegt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdxAZOWfjHIpZVV6iWjcHIeOdTmo0yWYK6HqdnQuL+vG3UfcVw
-	A/hGQUy8s98NlWvnctwBq+tRztN69MXJ4Bo18vytGNO/bsPX5H0nUlfEenI2OsFHuI38aPykthb
-	6UjJo
-X-Gm-Gg: ASbGnct/ytMA6YN+C+N8CclavoN9fT/belV1qSn+KXh+3qFPJc2wnLx52D3T/QQMB5L
-	rvP9ltehQPiF8KPMnxjYNxBUTJz2jNfofLGct2S0LvBRow+gcWMFVGucwgnh7belLFq3lNbyehe
-	j1OZARQ6tZ2ffFJp4SDMOyqRp6PZ+20Zf/3iBuO3fLVtkFtIjDyKvcaQpr2ZsUpekmGPL5wpBvU
-	gOqBb+u+u69oNEC+sgU+wnSNQBk2JIdgnkAI2myPqXrHSEDAg5vqBAz/qnYczdP9OUS9mzXuNA6
-	O8jXJazg3FS6o4dFcOECPhI1o9KTApjcSxcsbIsiZtP7sNSLGgjXelb75+S+fZdjjUBulGSr2Jp
-	xx2S62jCcmpB7/1Kv8A6ZYf+kcr/l
-X-Google-Smtp-Source: AGHT+IEtcBbSWQ+OKjv58Suw5c1swP9aEvffhR8eHp0ff4ePqLrLdMPX0D2MvWAAWZPqN7jMkQVkmg==
-X-Received: by 2002:a05:600c:458a:b0:450:cabd:b4a9 with SMTP id 5b1f17b1804b1-452014ea1ebmr35514085e9.29.1749221832308;
-        Fri, 06 Jun 2025 07:57:12 -0700 (PDT)
-Received: from localhost (p200300f65f13c80400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f13:c804::1b9])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45213754973sm26847055e9.35.2025.06.06.07.57.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 07:57:11 -0700 (PDT)
-Date: Fri, 6 Jun 2025 16:57:10 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Sean Anderson <sean.anderson@seco.com>, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Subject: Re: New default binding for PWM devices? [Was: Re: [PATCH]
- dt-bindings: timer: xlnx,xps-timer: Make PWM in example usable]
-Message-ID: <erst43cabswj3cwnszssolgyoh4dsgrlnjjxhb7luk3qkqhyay@6zyoixljvwwg>
-References: <20250527171504.346696-2-u.kleine-koenig@baylibre.com>
- <a14be34c-de2a-4bea-9282-1fac7780b9a4@kernel.org>
- <crk42dsypmbyqk7avldghjq32vslmalfmmouwxzgtdci4agfhz@rkbmxj5z22fx>
- <20250606141324.GA1383279-robh@kernel.org>
+        bh=L3ansMab82uYiup2PPPtsuZ7QMMlqwUdIbnuDaDUGZQ=;
+        b=WEsSPpjRro+OtSr5TZInS5YlqrDfteWA0XAJBquWoMwUE2K//mT5NUOC46JIaSM2DL
+         eb1wMM5WspZ/r3bFpKuNVqSMJzuMgBu1l9FVlPr+yZ0MO0SqmX9SUpX6CPkuzAWvDCG+
+         HollNWQRqCVZA197KkKyiUx2zEUf4i0G2LZ2euHa8WLNPQCOrymzdqFmVTrdS1OLYhat
+         61142HwcsOp/bDbpuYKLe78FtF7jW/EuIIwz6r0vpOVAyJQWgQpFb6LFwLCd7AgE05wo
+         rD7rVhGZcVOB/P9tsqNuNxk/V+tuCOFR226jqa3s+BZj/ueXg+fBJQtbjLrNFbC5TZbM
+         uk4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749221902; x=1749826702;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L3ansMab82uYiup2PPPtsuZ7QMMlqwUdIbnuDaDUGZQ=;
+        b=HmMtmTFb3cgt3UbM+LzV27ltfol1ZdEFpMH+ffj2S/89Pl8STx65DYk7FEwo+58r6c
+         6j1icaY+MSF1t32DCdKONeyhfyph5O9yCIw8HqOsM40vopf1y0FN9HcaO7PI4ewye2n9
+         iOvN6DTENk3zj4yBPJlH0CvWbk/b8actDB4T4g/3NLE8p2QwEGPvFfkWlLMI3Vy6fADR
+         +QJKETBrJ9EBpQt9AJVQqTnsIB3wb/+4J57darYJO/g6hyMmyVCiYzHM3GqFKSEKy8iT
+         VvmQGaATYGEinALoeDC07Wbv0HndD3J8WYe9c3If8RZkFx51q1Ql3SY0eF2z/DweZriU
+         2UKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUaeiQZyG5rvSu07rf/xIv3dxQm7ySzhEuJJGeNsXng+MFlSIYXjHG5aXQxSF6JLnisOchQKQQRRBnxkQMlouI=@vger.kernel.org, AJvYcCVej/gwuRpmkYo2r1FQRCHFq7OKpUR/65C0XnDvtNpdNpUC5cK+ydzeiypQ34XWT6anIHlaPcOTYIm1YRia@vger.kernel.org, AJvYcCWSefYTXR3qdDkDgg7NuBZMDxDSZ3p7+8bmPrm02ttqdp5oH1G83gd8bDc0kd8mWJJkr6pEQ7GB0FaQ@vger.kernel.org, AJvYcCXVmfFCyRNO+iQNBt6UAj4bF56ZNPfMWMHLSwvyT/D7pYxcKQ+69VMUZZ9kRvxYs7I6PRfZhRsHK6Zf3w==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzsh+sux3dYqMQu4VZUY+3spTLr1qYvMGej7fuIo3iSvcEbHa8O
+	r7l13tt4f+Wrz0yXAxNJhNETOBM0XR0GCVdYRmTjPeiDZz46bF4etbTMzCBJqy/kovqsQAZdCag
+	n+bn/GB3++K6xpk4fquL3KIfovDW2sbo=
+X-Gm-Gg: ASbGnctsE3TAmDI+ujJJ3SL4TNQjUEMvwnqzUu3JXQwTBgDDUSRJ4oGCaANKyO7w81V
+	JfnU3w7DIxMrUB2PvYloXKXCgubYAB0y3cV03bf9NpUJ9kp83RwHijm2R5fVmdnGHGGaok/QZJR
+	EOma+dUG1IsKe3lcWkI8s4OrYdXAz5K2fH08iQGFeP
+X-Google-Smtp-Source: AGHT+IGEngtE5dWaklnsqQU6Ig0UmMfAlJowM3JqRrbcvQtEtfvISuLc4Jr4sWBXQ4ZCf8k92OHmpc46xgu8moJvcw4=
+X-Received: by 2002:a05:6122:2193:b0:529:1a6a:cc2f with SMTP id
+ 71dfb90a1353d-530e48876e6mr3854370e0c.7.1749221902592; Fri, 06 Jun 2025
+ 07:58:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="53f32hgy6vknjdpf"
-Content-Disposition: inline
-In-Reply-To: <20250606141324.GA1383279-robh@kernel.org>
-
-
---53f32hgy6vknjdpf
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20250605161956.3658374-1-igor.korotin.linux@gmail.com>
+ <20250605162726.3659792-1-igor.korotin@yahoo.com> <aELyEqg0GrkC8oZY@pollux>
+ <CAG7QV91AWpOk7VUcE-B1MLkEQPDB0Y=zsBOBf6MhHVYh1aEGQA@mail.gmail.com> <aEL76mgHSZG5idW8@pollux>
+In-Reply-To: <aEL76mgHSZG5idW8@pollux>
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+Date: Fri, 6 Jun 2025 15:58:11 +0100
+X-Gm-Features: AX0GCFuTvai9XMEtyC_KYBdO9EciOGTan2CvJLh680Tl9vtdtqAjm7YLmxzKx0Q
+Message-ID: <CAG7QV91kkVqE2BgB5VpmX7QST25VDCqr+9zNx1Nt0-fuwp9t=A@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] rust: driver: Add ACPI id table support to Adapter trait
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Igor Korotin <igor.korotin@yahoo.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, rust-for-linux@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, 
+	devicetree@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Len Brown <lenb@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Wedson Almeida Filho <wedsonaf@gmail.com>, 
+	Alex Hung <alex.hung@amd.com>, Tamir Duberstein <tamird@gmail.com>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Xiangfei Ding <dingxiangfei2009@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: New default binding for PWM devices? [Was: Re: [PATCH]
- dt-bindings: timer: xlnx,xps-timer: Make PWM in example usable]
-MIME-Version: 1.0
 
-Hello Rob,
+On Fri, Jun 6, 2025 at 3:32=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
+rote:
+>
+> On Fri, Jun 06, 2025 at 03:26:13PM +0100, Igor Korotin wrote:
+> > On Fri, Jun 6, 2025 at 2:50=E2=80=AFPM Danilo Krummrich <dakr@kernel.or=
+g> wrote:
+> > > However, I don't understand why we need this and the subsequent
+> > > is_acpi_device_node() and is_of_node() checks.
+> >
+> > The idea is to avoid unnecessary table lookups when both OF and ACPI
+> > match tables are present.
+>
+> Ok, that's fair -- let's build it on top of the FwNode abstractions thoug=
+h.
 
-On Fri, Jun 06, 2025 at 09:13:24AM -0500, Rob Herring wrote:
->    reg:
-> >      maxItems: 1
-> > =20
-> > -  '#pwm-cells': true
-> > +  '#pwm-cells':
-> > +    const: 3
-> > =20
-> >    xlnx,count-width:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> > @@ -82,7 +83,7 @@ examples:
-> >      };
-> > =20
-> >      timer@800f0000 {
-> > -        #pwm-cells =3D <0>;
-> > +        #pwm-cells =3D <3>;
-> >          clock-names =3D "s_axi_aclk";
-> >          clocks =3D <&zynqmp_clk 71>;
-> >          compatible =3D "xlnx,xps-timer-1.00.a";
-> >=20
-> > There is however one concern that I want to get resolved first to
-> > prevent churn:
-> >=20
-> > In principle I think it's bad that a phandle to a PWM must contain a
-> > period and flags specifying the polarity. For some use cases the period
-> > might not matter or is implicitly given or more than one period length
-> > is relevant.
->=20
-> Why can't the period be 0 and no flags set if they aren't needed?
+I'm ok with the FwNode abstractions. Just to make sure I understood
+you correctly:
+I'll need to wait until these FwNode abstractions are pushed to the
+rust-next branch, reimplement what is necessary and send v3. Is this
+the course of actions?
 
-I don't say they cannot, and probably that's the most sane option if
-there is no fixed default period and flags and we're sticking to 3
-cells.
-
-> > So I wonder if instead of unifying all PWM bindings to #pwm-cells =3D <=
-3>
-> > I should instead go to something like
-> >=20
-> > 	mypwm: pwm {
-> > 		compatible =3D "...."
-> > 		#pwm-cells =3D <1>;
-> > 	};
-> >=20
-> > 	fan {
-> > 		compatible =3D "pwm-fan";
-> > 		pwms =3D <&mypwm 1>;
-> > 		assigned-pwms =3D <&mypwm>;
-> > 		assigned-pwm-default-period-lengths-ns =3D <40000>;
-> > 		assigned-pwm-default-flags =3D <PWM_POLARITY_INVERTED>;
-> > 	};
-> >=20
-> > (where the single cell specifies the index of the PWM's output).
->=20
-> Sigh. You just changed everyone to 3 cells and now you want to change=20
-> again?
-
-I did? I admit that I intended to, but before starting to modify the
-bindings I thought about if #pwm-cells =3D <3> is really the best way
-forward.
-
-> Changing existing users to 3 was borderline churn. Changing again=20
-> I won't be receptive to.=20
-
-I'm puzzled about what you mean.
-
-There is 2bb369ab50e107a7de6df060a1ece2f33a6a0b9e but this is hardly
-churn? And I prepared switching to 3 cells in
-895fe4537cc8586f51abb5c66524efaa42c29883 but didn't touch the bindings
-yet.
-=20
-> > I already suggested that in
-> > https://lore.kernel.org/linux-pwm/jmxmxzzfyobuheqe75lj7qcq5rlt625wddb3r=
-lhiernunjdodu@tgxghvfef4tl/.
-> > When I asked about that in #armlinux Rob said "no. We don't need a 2nd
-> > way to set period and flags." Is this still a bad idea if the
-> > traditional binding with 3 cells will be deprecated for all PWM
-> > devices? If this would be ok then, I'm also open for improvements to
-> > the new concept. Maybe something like:
-> >=20
-> > 	fan {
-> > 		compatible =3D "pwm-fan";
-> > 		pwms =3D <&mypwm 1>;
-> > 		pwm-default-period-lengths-ns =3D <40000>;
-> > 		pwm-default-flags =3D <PWM_POLARITY_INVERTED>;
-> > 	};
-> >=20
-> > ?
->=20
-> How is this any different than a slight name change?
-
-Compared to the suggestion with assigned-pwms it's mostly just a name
-change, but dropping assigned-pwms is a relevant change. Compared to
-what we have now (i.e. #pwm-cells =3D <3> for most bindings) the
-specification of flags and period is optional which is IMHO a nicer
-design pattern.
-
-> What I also said there is that case looked like a property of the fan.=20
-> If you want a default fan speed, then you should express that in fan=20
-> terms (i.e. RPM or %) and then have a table to go from fan speeds to fan=
-=20
-> control settings (i.e. PWM duty cycle in this case). Even if you need=20
-> something like minimum startup duty cycle, that's still a property of=20
-> the fan.
-
-I fully agree and want to fix the #pwm-cells =3D <4> case. In that context
-it's also relevant if the change should go to <3> or <1>.
-
-Best regards
-Uwe
-
---53f32hgy6vknjdpf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhDAcMACgkQj4D7WH0S
-/k7Zrwf/e3pkjRqHFV7Lk3vsWkmBLVvNzXJD7lFWLaL48eo49cz+xEVS1hg2NH2x
-OdS0bPOu1kOSTdJcpWCThTsJUL0IignJx5D+SXMlcSj+VfeEpfTj2ooi7MhnZEK7
-hSlIT/VfKcrlOh5SQw+uslH6VDNW7jEWfrimh90vEcqYCJqm56kyalzdI6Gj0XS9
-YRmmjvxWu4hU73H2LB04Ha5VAtWSI2E1o/2Bm81jL6dQfqyVQDIjO+fAK90QNGnT
-Fv7OM+bluN1LiMZRzy3TLv1wyNTFAZ1Vv93Xb+ZuSPC6SrJB+C082J+vQtXT20f6
-8KapgO98QZsotPXAGWN7LPxr3fkCmg==
-=fwHN
------END PGP SIGNATURE-----
-
---53f32hgy6vknjdpf--
+Thanks
+Igor
 
