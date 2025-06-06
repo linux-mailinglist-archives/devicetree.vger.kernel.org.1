@@ -1,162 +1,215 @@
-Return-Path: <devicetree+bounces-183445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052CFAD093F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 23:04:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B31BBAD09FA
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 00:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B842E164FD9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 21:04:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B757171AD9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 22:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F62121ABD4;
-	Fri,  6 Jun 2025 21:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABBD238C34;
+	Fri,  6 Jun 2025 22:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="qBviRiQs"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="c+IN61WG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36058A31
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 21:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB49233156
+	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 22:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749243853; cv=none; b=HbWm01NtSnSWHcT4MiUW/fYCBVK0jkfV1r71fH2fkO+gWJ4yeiqldEZW9dWlYFvobD9+p2Few0ufWgOJjdBDt/zxvHMyVC/PB/5zI2ZtwtNAPy4vPGljt25DuXtAderE+Y6b+OrWMW5D4SoMPj3aP9zM5P1pUlTmT0EDowb//Hw=
+	t=1749248683; cv=none; b=mKsxenWSrchIlBFxtJXLrNsImgKGNDEmi1WsIAGnLAAqvuAzY7PXZwIYi9WsEKeclDWasQm2T19cQbkiKyDWefHydJ1zaFj3HdM7M5mVW4+coJ26fb0+T+awZ65RAQETEFDOdCByWvutUtWAEUcsZ5JROlw6mZgt9y5UR6J9uRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749243853; c=relaxed/simple;
-	bh=1Xc1REoGz59kJ4M9DicrjznJxMvjS5pOb4T5OcmR7Qw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fmaDtooWY67NopVC6FMjaFNiAZYX+fqYhK609A3Zi0K1wQVa1QwMJUMyOTyDfTPSTHB/VLNN5lA6DEOkB9xD7/1HIXuSBNQCOgojbMZBwhMSe/dq89+Wg8dXbIA18VtSNELqdQvTyI+EgPsfqnVreYkwK9gFdmtjAuPgCzu4mPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=qBviRiQs; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e7db5c13088so2159117276.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 14:04:10 -0700 (PDT)
+	s=arc-20240116; t=1749248683; c=relaxed/simple;
+	bh=l/GaUTCtB9M9NLyUMV1ziE5vtpFqMU3SOb/ryyWlAwU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Dom0UYH97BjvC/2oumWtCM6yqlqGdzF3I7A2zNIgC9exoT/v+I0+6HMyLg54dK/WfFpLIwFGggAoLJeidHW5W9rWtY4GdQ+QMt39nbTvlGfwbqjo4vE25dN43xlCydY86RLGKSswuIhU8P0GHM2ULoSMRxOgvf7O9ACgt7bJoBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=c+IN61WG; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-235d6de331fso31693335ad.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 15:24:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks.com; s=google; t=1749243849; x=1749848649; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u5BUjHtvSQa2fwgei7fhihebHAmQMvtk7aJVJVyEqtY=;
-        b=qBviRiQs1e8bmNRMIMgsHrgDBNWw5USv2MfZ9oEUvYTjgnlLegIjC0qKuHfk6YQ8Ky
-         9YjTaoVUD6sUoyQhObR1W5SYc44XVThg9A7LvsQ9RFpRn8JNotkSgzjNsax6pF7JeLm4
-         MwQH4u+PpFlKfF/OveeS9MnZ5HCxmcQTXDdpicuHLJ4CmX4RjMWsdcO8mwsKyeqCAo9y
-         0B11Y0s7ypP9KelPlFoG0e4BnGweEg8BAY3eFc3f/Zii8hT9jq6qTduSJhXGT09HUhbb
-         gCiNyDdCzbsTZBXh6wcR3ru+fxQ7PrW+Fwjc676AWxBCEe/fZU+13zMnwANjoWis4JPU
-         zxow==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749248680; x=1749853480; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0pYG25uNc2n9fOHMKUGQ8EBdQt5+P5oxxO35w9SxQS0=;
+        b=c+IN61WGnVRfaeh/PvgYBYwR7I+V0v0JAfS+nhevDlqpLL2U/oMmtMkL4PGH8bwIVq
+         yLe0vGCygIO6xk6YFE3gkW+1bKqLpG8rQvcBXg0YqCfov+tWLLEKFxQnaV0otbKp3A+n
+         b7TlcA5F1dNLYwvAKy+8IGFOmk9pu/18tTkelW+4ai2QlX2KvLUueI5ke0QdWUqCHsNS
+         E38nmY1EFAI4HIyT2gojJaAJXkzY5tEgbz3ATstBN21Xs9Q8g7N2vBLTpubfQeza+u2k
+         Rkg78a2UnwjPkPnT12dg39IBU0KJYZ4aV9ygITdz99zv23ZMo427nzQesEldd9v+UCCb
+         UPHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749243849; x=1749848649;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u5BUjHtvSQa2fwgei7fhihebHAmQMvtk7aJVJVyEqtY=;
-        b=Jc0gx4HmSKEpTVkumy9tG9Qi7HNrQp9Sh8lcn8IPi8YVc2dC5Nxrkh1NNcHGkNZfbl
-         +wFF3BQ6H3wCV0OfHt3TnmasUHH/Bq6LV29Aj8IGGXJJ1Cz52ESi1oYgkn8XgUbja6a4
-         ODeEWHNWWBLAz1uABFRcntMTiRUKq9YRzikId2OUO7vhwIu1oZUuJjVgFYbi97mSqHHP
-         vOLoVwSOWPame3NqL5to6Gc+JmwQgIwlcgoyXTUGQP1zc8dhXEQoIsQg9erm7qKazXPg
-         yy4Ha25KK2WjrishiFA4m3oyMGDXcalghkTQ6IbUeImUmGMdu5CsvsdsTKO9c1wLzJR+
-         D8HA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdk0gooxkOagpW1eiRbeBUFHouMirjDZWaWbKfTGP7M8UyUA7Rihl1lfgzBjftoLvM6rstsO6Td560@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5YfShFIXFmNjTEeSSSs2KltBSdAqFybQ05O17Cw9eiQePmUZ0
-	tiB8bBk2NbKK3TSxOR9KcyAlH2CH4Y32iOnqYcx1J+QpGqTA/d1gQJ1/K7+L+s2tlHbroNF80lH
-	YnPzts3h8TLF97HMfaRWJXfK63U5wognjQJttXxbiHw==
-X-Gm-Gg: ASbGncvNR0cA3IimazRelT6tDi58qkCXlJCL+sr66uBu6WZ+ToWVMx4D8lkogiKp+pi
-	akJ6y+Id8TdqdhbPMwI+S1xKIEWIfFFkMiIIzoHpq1VY3WFxDZFMtvdDJXmpOwwCXcIC30i/0FP
-	obg1Vop8AV4vI8Vl/Ar+TE1ZthglRe4bJx
-X-Google-Smtp-Source: AGHT+IHz5Vh1WV9nsY/ZJiTiB1W8ok9w5HzbkMh2HaPQU1ew8kA+sOX9MHLa7aQ/uKATj0C5Wdv6l/pIEuTUkbDn4co=
-X-Received: by 2002:a05:6902:138e:b0:e81:566c:3085 with SMTP id
- 3f1490d57ef6-e81c0fc6b57mr402062276.1.1749243849237; Fri, 06 Jun 2025
- 14:04:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749248680; x=1749853480;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0pYG25uNc2n9fOHMKUGQ8EBdQt5+P5oxxO35w9SxQS0=;
+        b=LPIQPEreBt1N7kA53Z7zBmU6MBMOqc7wQNVdQ5RLdZBZwCgvzeHJjM3xwGAojdYeTt
+         nasYB/xLxqsT9e4DwSTNu6Azx1Et7NpekzPM1vTKc/XNK3NpOfGCLCzeBJc9IKh3lO2/
+         0VaXr86U1TLOmnevFb4t19xCA18XXVEphTadswAnzLRudc7HwpUcr4vMMHjpB3Bw4Ws6
+         Fvarum0CMubH+Ok7s1WMt10KHi+EzxaIcqcIVGv3pc4zIOJCASvwSv70q5MlnOneQuRJ
+         yaxn6qFlmJjHXb7Mh0qM0PAcqykp/y4Neam3gFqTqosTG0EZc0etxMEERSDUeQwaYo38
+         EvNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVAcCl6CXl0xch3HMTVz2FfcAOAK7XAaGCTVBYZV8fHE9uCFeqq/CCNbJeBOIxeXS5pSIi3bxe7ePM5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQbRS74e6/SAIei2NCQTR5gLL4pEunwE31ZETpZFQ3hyV7u+xE
+	nlvhqUxVET4454fpiRIvEbzZZKJPrIYmfpfUKRHpfRD4IwA65x+DHFhWRHfVyqPZibA=
+X-Gm-Gg: ASbGncv26qGqnSjs0YbqYG9Gx6GNFffAOQ7zUp9C1PsErkwHNYjSUemGG2UK+MTpj/K
+	TGEwUlvb/7UvqL9y/YEQFu8LL030ykZenXi7ocUh5haWmk8NgsHacrEA0pRW/LG5U9r0wkIPnGM
+	eJ41R+lyGwGsjMnAt5sbUvmtz8CR3KoPQcmEW9kJGwqCy9Afe/IvBkpzmDzmZhzfbQzAhGvbbMO
+	DKvJ3Cr+ASInWPe8gkRAMnsb8/BHEsSs4frWGm2OWH8G9YdEN+F7FcpT8uL6S1CVNB+/KNUq2hz
+	7sv3ik5pLDw9hwMUkOyPhyWA/2ARlygRFHxVcOL6G9djs5bpgVOVKOM+AeQF
+X-Google-Smtp-Source: AGHT+IGaFH7zJsEzEYshn2+g3clbSYNKEpXNRLHwkKBWDVvppEVYcd31LnIc2/CbFDj/U8yN0FJ7XQ==
+X-Received: by 2002:a17:902:ea0d:b0:235:eb8b:9968 with SMTP id d9443c01a7336-23601d71213mr73856945ad.36.1749248680262;
+        Fri, 06 Jun 2025 15:24:40 -0700 (PDT)
+Received: from localhost ([97.126.182.119])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603405205sm17150335ad.160.2025.06.06.15.24.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jun 2025 15:24:39 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Rafael J.
+ Wysocki" <rjw@rjwysocki.net>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ arm-scmi@vger.kernel.org
+Subject: Re: [PATCH RFC v2 2/2] pmdomain: core: use DT map to support hierarchy
+In-Reply-To: <20250530135741.GA1598718-robh@kernel.org>
+References: <20250528-pmdomain-hierarchy-onecell-v2-0-7885ae45e59c@baylibre.com>
+ <20250528-pmdomain-hierarchy-onecell-v2-2-7885ae45e59c@baylibre.com>
+ <20250530135741.GA1598718-robh@kernel.org>
+Date: Fri, 06 Jun 2025 15:24:38 -0700
+Message-ID: <7hecvwld95.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126075702.4099164-1-hongxing.zhu@nxp.com> <20241126075702.4099164-6-hongxing.zhu@nxp.com>
-In-Reply-To: <20241126075702.4099164-6-hongxing.zhu@nxp.com>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Fri, 6 Jun 2025 14:03:57 -0700
-X-Gm-Features: AX0GCFsPTDn7iA-rHigWV1JSUeeni9XBl8RHjYyReEuG_dN3ujPTRzbBW4231V8
-Message-ID: <CAJ+vNU3ohR2YKTwC4xoYrc1z-neDoH2TTZcMHDy+poj9=jSy+w@mail.gmail.com>
-Subject: Re: [PATCH v7 05/10] PCI: imx6: Deassert apps_reset in imx_pcie_deassert_core_reset()
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org, 
-	kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	frank.li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com, 
-	imx@lists.linux.dev, kernel@pengutronix.de, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Tue, Nov 26, 2024 at 12:03=E2=80=AFAM Richard Zhu <hongxing.zhu@nxp.com>=
- wrote:
+Hi Rob,
+
+Rob Herring <robh@kernel.org> writes:
+
+> On Wed, May 28, 2025 at 02:58:52PM -0700, Kevin Hilman wrote:
+>> Currently, PM domains can only support hierarchy for simple
+>> providers (e.g. ones with #power-domain-cells = 0).
+>> 
+>> Add support for oncell providers as well by adding support for a nexus
+>> node map, as described in section 2.5.1 of the DT spec.
+>> 
+>> For example, an SCMI PM domain provider might be a subdomain of
+>> multiple parent domains. In this example, the parent domains are
+>> MAIN_PD and WKUP_PD:
+>> 
+>>     scmi_pds: protocol@11 {
+>>         reg = <0x11>;
+>>         #power-domain-cells = <1>;
+>>         power-domain-map = <15 &MAIN_PD>,
+>>                            <19 &WKUP_PD>;
+>>     };
+>> 
+>> With the new map, child domain 15 (scmi_pds 15) becomes a
+>> subdomain of MAIN_PD, and child domain 19 (scmi_pds 19) becomes a
+>> subdomain of WKUP_PD.
+>> 
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+
+[...]
+
+>> +/**
+>> + * of_genpd_parse_domains_map() - Parse power-domains-map property for Nexus mapping
+>> + * @np: Device node pointer associated with the PM domain provider.
+>> + * @data: Pointer to the onecell data associated with the PM domain provider.
+>> + *
+>> + * Parse the power-domains-map property to establish parent-child relationships
+>> + * for PM domains using Nexus node mapping as defined in the device tree
+>> + * specification section v2.5.1.
+>> + *
+>> + * The power-domains-map property format is:
+>> + * power-domains-map = <child_specifier target_phandle [target_specifier]>, ...;
+>> + *
+>> + * Where:
+>> + * - child_specifier: The child domain ID that should be mapped
+>> + * - target_phandle: Phandle to the parent PM domain provider
+>> + * - target_specifier: Optional arguments for the parent provider (if it has #power-domain-cells > 0)
+>> + *
+>> + * Returns 0 on success, -ENOENT if property doesn't exist, or negative error code.
+>> + */
+>> +static int of_genpd_parse_domains_map(struct device_node *np,
+>> +				      struct genpd_onecell_data *data)
+>> +{
+>> +	struct of_phandle_args parent_args;
+>> +	struct generic_pm_domain *parent_genpd, *child_genpd;
+>> +	u32 *map_entries;
+>> +	int map_len, child_cells, i, ret;
+>> +	u32 child_id;
+>> +
+>> +	/* Check if power-domains-map property exists */
+>> +	map_len = of_property_count_u32_elems(np, "power-domains-map");
+>> +	if (map_len <= 0)
+>> +		return -ENOENT;
 >
-> Since the apps_reset is asserted in imx_pcie_assert_core_reset(), it shou=
-ld
-> be deasserted in imx_pcie_deassert_core_reset().
->
-> Fixes: 9b3fe6796d7c ("PCI: imx6: Add code to support i.MX7D")
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controll=
-er/dwc/pci-imx6.c
-> index 3538440601a7..413db182ce9f 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -776,6 +776,7 @@ static void imx_pcie_assert_core_reset(struct imx_pci=
-e *imx_pcie)
->  static int imx_pcie_deassert_core_reset(struct imx_pcie *imx_pcie)
->  {
->         reset_control_deassert(imx_pcie->pciephy_reset);
-> +       reset_control_deassert(imx_pcie->apps_reset);
->
->         if (imx_pcie->drvdata->core_reset)
->                 imx_pcie->drvdata->core_reset(imx_pcie, false);
-> --
-> 2.37.1
->
->
+> Don't implement your own map parsing. Use or extend 
+> of_parse_phandle_with_args_map().
 
-Hi Richard,
+So I've been wrestling with this for a bit, and I need some guidance.
+TBH, these "nexus node maps" and of_parse_phandle_with_args_map() are
+breaking my brain.
 
-I've found that this patch causes a regression on i.MX8MM and i.MX8MP
-boards with hotplug capable bridges:
-i.MX8MM+PI7C9X2G404EV (this switch does not support hotplug) - no issues
-i.MX8MM+PI7C9X2G608GP (hotplug) - fails to reliably enumerate
-downstream devices about 80% of the time
-^^^ when this occurs PCI_PRIMARY_BUS (0x18) for the root complex
-0000:00:00.0 reads 0x00000000 instead of 0x00ff0100 (PCI_SECONDARY_BUS
-is 0 instead of 1 and PCI_SUBBORDINATE_BUS is 0 instead of 0xff)
-i.MX8MP+PI7C9X2G608GP (hotplug) - hangs at imx_pcie_ltssm_enable
-deassert apps_reset
+So, my node looks like this:
 
-In both cases here reverting ef61c7d8d032 ("PCI: imx6: Deassert
-apps_reset in imx_pcie_deassert_core_reset()") resolves this.
+	scmi_pds: protocol@11 {
+		reg = <0x11>;
+		#power-domain-cells = <1>;
+		bootph-all;
 
-I notice the sequence of events here is:
-imx_pcie_assert_core_reset asserts apps_reset (disables LTSSM)
-imx_pcie_deassert_core_reset deasserts apps_reset (enables LTSSM)
-imx_pcie_ltssm_enable deasserts apps_reset (enables LTSSM; this is
-where it hangs on imx8mp)
+		power-domain-map = <15 &MAIN_PD>,
+				   <19 &WKUP_PD>;
+	};
 
-Is there perhaps some issue with de-asserting this (enabling LTSSM)
-when it's already in this state?
+my first attempt was to iterate over the child domains by calling:
 
-In the case where downstream devices do not enumerate some
-investigation points to them not being happy that the link drops so
-perhaps deasserting apps_reset when its already asserted drops the
-link and restarts it?
+  of_parse_phandle_with_args_map(np, "power-domains", "power-domain", i,  &mapped_args);  
 
-Best Regards,
+but this doesn't find any entries because my node doesn't have the
+"base" property.  So I gathered (perhaps mistakenly) that I was missing
+something, so I added:
 
-Tim
+		power-domains = <&MAIN_PD>, <&WKUP_PD>;
+
+to that node and try to iterate again. Now I got a match for i=0 (it
+returns the node for MAIN_PD) and i=1 (it returns the node for WKUP_PD)
+
+So I gather from that that the index arg to of_parse_phandle_with_args_map()
+is the index into the -map array.  OK, fine.
+
+So I know that the 0th entry in my -map points to &MAIN_PD, an dthe 1st
+entry in the -map points to &WKUP_PD, but I don't see how to get the
+child ID without (re)parsing the -map again myself because
+of_parse_phandle_with_args_map() doesn't give me any information about
+the child ID.
+
+I can maybe see that in other usecases, the caller might not need the
+child ID because it's being (re)mapped, but I need the child ID because
+it's the pmdomain belonging to the child ID that I need to add as a
+subdomain to the pmdomain of the parent.
+
+However, thinking through this, I'm now realizing that maybe the problem
+is that I cannot have a sparse -map table.  For this to work properly,
+maybe my <15 &MAIN_PD> needs to be the 15th entry in the table (or
+technically 16th if it's zero based)?
+
+But before I go down any more rabbit holes, I wanted to check with folks
+who understand this stuff and see if I'm on the right track or if I've
+missed the boat on how to use of_parse_phandle_with_args_map().
+
+Guidance, suggetions and/or public riducle are welcome. ;)
+
+Kevin
 
