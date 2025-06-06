@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-183261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C41ACFE41
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 10:28:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C75ACFE4F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 10:30:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E5D73B2161
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 08:27:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1F063A6B7F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 08:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E06D2857DE;
-	Fri,  6 Jun 2025 08:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E142857E2;
+	Fri,  6 Jun 2025 08:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XSLGYVQl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BmgxgmzJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A620283FF6;
-	Fri,  6 Jun 2025 08:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D832857DE;
+	Fri,  6 Jun 2025 08:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749198452; cv=none; b=Z9C0UAJTfJczivxzlN0Y7cY3RJtatcKwO0IpMDg5cYv0NyMB2p+LK/2Tr6fJpJ1zVdzHll1O/OXuc677fVu4Rcqu0uQENt7PxuH41R6NXLnXrbwx5scmDEV7Amt5zBQCiq91VlMeh0LHkAbrl6+T+hVsP8yf1oHcZEclOc5tfyg=
+	t=1749198590; cv=none; b=VU/BVgvVV7zL1BHrSZef7GsZyS+kqthlqoLxwrF4XZ42FLrrkTXEiCCSi0aNlrAaN2Bt1RoKCyfKz30OwAEvxy485jr0DPtmqXNbRoJ2cqsw7NeLgqGExqg4poXdnbGc/6O5lvMlwg1SHAf9UsK2m0ynJAi7k91nZnPnGI27yp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749198452; c=relaxed/simple;
-	bh=1rGlRVjSZPJRrzPluhWaoHUnHwZJhdUL6Aqwr9RzSoc=;
+	s=arc-20240116; t=1749198590; c=relaxed/simple;
+	bh=p58weIsFCfwQqxGp6yxoipCZRt8rQHLF3ZORFLs038A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T2bPn29mXfGthv4/kWAUZWT62raFNo0yjPvG/VAAoVkhvsSw6ckuq9ZzfH9GPLqCEoOLefqr4ny9P4AMW+abz5JdJ603OT2Vor1mnJwqQbIWuar0aw2B7yfFzkSatV6A1NvlFljlg5gjMZ9ba3mkx803txw2+zD7pVrc+yFcB+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XSLGYVQl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEDA4C4CEF0;
-	Fri,  6 Jun 2025 08:27:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=V09fwCRZDz56j0ImcSFmDpjtAFpINc2lQ1zOqe0SJDi4BJbGCv/VDyGLL2zCdKjQ1fXI02ucOf3DEN6oy08+O+2R9mRpkjOSve75Z8rCYUcDm+YXdLeL2tlJjlx5TE0/2w1bKseTUEgQvmGtrkyV1+A3u5hIkv11G6+HDO1nPek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BmgxgmzJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87DB4C4CEEB;
+	Fri,  6 Jun 2025 08:29:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749198451;
-	bh=1rGlRVjSZPJRrzPluhWaoHUnHwZJhdUL6Aqwr9RzSoc=;
+	s=k20201202; t=1749198589;
+	bh=p58weIsFCfwQqxGp6yxoipCZRt8rQHLF3ZORFLs038A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XSLGYVQlSts7oEwwuQ3Q08mw0laKIlKJOhi+9Mw3I5X38+oFfYNBRfM+1BYZzx0Bt
-	 sMj42KKZ5lO9nlBP0uzp04ltasOB0cptKlCizmE+Bgof5b8KXdbYyr+5/hHDBNHe1Q
-	 /2lTnuPhuCQBGBIaUrfVCim0AwYifrl4OaRNOMJaK8Yeun8jkemorn7jwc6Cd4l/O3
-	 VJe90UIjf+fIJ/gjduuPROp1BBG5ChtuSYVvYJEGg+d+Jok6yGyjrk/+4LPQlcp04A
-	 abcxgMlLF2hHFG5w2ThDNVfTUyyFxL3f+I9D8HcMT6YOKV+9RjVlIkvrPWhxTBvPLl
-	 wlNcuG+lgPnUw==
-Message-ID: <a9512a7d-1e8e-414a-9c92-b0a4e1af3617@kernel.org>
-Date: Fri, 6 Jun 2025 10:27:24 +0200
+	b=BmgxgmzJMieXblyWPM7AEFO2QKm7H8LwOTVN2wP8L+JXxsv2Gxw4wAkSdxsDgm0oi
+	 OTBkdjktdeTWwds2N7pSMAt0pGeYSujD7jdsOVfY8t1hvXSMaDQ+VdycebFKPVMaPS
+	 T9VGzouWK3obIAaKTaAW7ZtCbTItD4uX4aWnj/PFK+1dncyrq6Gbm++SHu3nIt8sge
+	 6AqnLfHgQ7nic2fMiIexsMlIfCOjmQYt/6ILyRLxborftG3KXqsrYfIGZDZuBahyKR
+	 ZJ9+GuYgO9VXZ/dGDxGfb+PzeXUat9yRlCdCNYGlQ5AbOa4Rj2/HMOGe6fSrPsd0h6
+	 YmfDarRTBtS9A==
+Message-ID: <2b520ae5-eb0d-40eb-ba73-cc18759f33b9@kernel.org>
+Date: Fri, 6 Jun 2025 10:29:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: mediatek: mt6397: Add
- #sound-dai-cells property
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
- Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Hui Liu <hui.liu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Tinghan Shen
- <tinghan.shen@mediatek.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- iommu@lists.linux.dev
-References: <20250514-mt8395-dtb-errors-v2-0-d67b9077c59a@collabora.com>
- <20250514-mt8395-dtb-errors-v2-1-d67b9077c59a@collabora.com>
- <20250522-independent-ginger-bullfrog-4552d1@kuoka>
- <cee1e8bc-f4b0-49b9-a67b-2f54382c3d8e@notapiano>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Add VIA/WonderMedia serial flash
+ controller
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250510-wmt-sflash-v1-0-02a1ac6adf12@gmail.com>
+ <20250510-wmt-sflash-v1-1-02a1ac6adf12@gmail.com>
+ <20250514204159.GA2988411-robh@kernel.org>
+ <CABjd4Yz3w75PtkRk_edzD5yf6b2xPuf20gopbm8ygddgCBfpkw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,41 +111,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cee1e8bc-f4b0-49b9-a67b-2f54382c3d8e@notapiano>
+In-Reply-To: <CABjd4Yz3w75PtkRk_edzD5yf6b2xPuf20gopbm8ygddgCBfpkw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 29/05/2025 17:53, Nícolas F. R. A. Prado wrote:
-> On Thu, May 22, 2025 at 09:52:07AM +0200, Krzysztof Kozlowski wrote:
->> On Wed, May 14, 2025 at 10:19:56AM GMT, Julien Massot wrote:
->>> The 'mt6359.dtsi' file already uses the '#sound-dai-cells' property.
->>> Add the corresponding property to the binding to fix the following
->>> dtb-check error:
->>>
->>> mediatek/mt8395-radxa-nio-12l.dtb: pmic: '#sound-dai-cells', 'mt6359rtc' do not match any of the regexes: 'pinctrl-[0-9]+'
->>> from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
+On 15/05/2025 21:50, Alexey Charkov wrote:
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
 >>
->> If this is a random drive-by, would be fine, but if that's your platform
->> which you should know, then I expect this to be a real reason instead
->> something which can easily be rejected with: what if DTS is wrong?
->>
->> I could not find the ASoC driver for that compatible and quick glance to
->> MFD shown me no usage of dai cells, so you need proper explanation here.
->>
->> Especially, that there is a subnode audio-codec, so adding dai cells to
->> the parent node feels just wrong. One is wrong - either subnode or
->> parent is a codec.
+>> This follows the SPI binding, right? Drop these 2 and add a $ref to
+>> spi-controller.yaml.
 > 
-> The driver is sound/soc/codecs/mt6359.c, which defines 2 DAIs. It's currently
-> probed by the MFD through the driver name, hence the parent MFD device is the
+> Need some advice here. While this controller speaks SPI protocol to
+> its connected flash chips, it's a special-purpose thing that doesn't
+> expose much SPI functionality to the outside world, nor can it drive
+> any SPI devices other than SPI NOR flash. Does that still qualify as
+> an SPI controller as far as the bindings are concerned?
+> 
+> Happy to reference the spi-controller.yaml binding if so.
 
-It does not matter whether MFD or simple bus instantiates a device. Really.
-
-> one used to register the audio component.
-
-I see codecs/mt6359.c registering the component, not the parent MFD
-device. This change does not look right but maybe the binding needs
-fixes as well.
+SPI NOR flashes are still child devices of an SPI controller. You can
+look at other examples - aren't they all using spi-controller? Why this
+would be different? Unless you found some cases that are different, but
+then which ones?
 
 
 
