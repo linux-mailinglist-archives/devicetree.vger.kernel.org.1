@@ -1,222 +1,224 @@
-Return-Path: <devicetree+bounces-183400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEEEAD053E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 17:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B70BAD0551
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 17:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2CB3172D92
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:34:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3D0B17AE59
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051F2193077;
-	Fri,  6 Jun 2025 15:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E009289E14;
+	Fri,  6 Jun 2025 15:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="I8Eo/SWS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nI8u/Ccn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011068.outbound.protection.outlook.com [40.107.130.68])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E619A17C219;
-	Fri,  6 Jun 2025 15:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749224068; cv=fail; b=PQkDV2T9Vh598MAUeg45VEQJvv7HRQ2aJ+XYOhSsZMemmO3mcelkvXV5/YwfZqTE4MLFup8nP9MGK7Kdh8QV/XKc3TL1QaB5h5ZGlYPLJOgCyeIcArdYyaBUWIWAhEMhHqwJkAqm004nhcfVLsl7It24VbFQ5VuTU4ePrYGG91Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749224068; c=relaxed/simple;
-	bh=J4QfwvPt5J9RaY8MchxndM52ueJ4XG0G/WwUxYQGJqo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Ip1svxYko3baCErUDSIdwRFrE5gKDc0+KPqHMJZdrtglvoFQz/9FWr+2SZnXiyF8x5kEcNDT3JwObvY6eZqXZLNVwPcnFYPLmbCH7OnvgCq2fGFBq420NHTz6q98KzGHLGqnHonZ70ufX/SYodv1F+g3rYpq4aArRJuXgB7aAps=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=I8Eo/SWS; arc=fail smtp.client-ip=40.107.130.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RVMkHrWv0G1xo4NfA1tbwJde+jsPWuvAdFchaGMebU9mbmqUGyCmESN1PQ+kG8HmooRGVu3qAD4fqMUBd4oRjNuKR+JjBzqBAiD+w6bsd+0FHuaaWGPqxVF3bAAaSxnyY6NAT/S6k8l3+wocDteDC4+8U8J5so/bB1FjVIuCBXqU102CvBFItIe14scxtt7on0NSa8Plk50zSKYHpULZ3/NbAXaWhrn+L6deiu692FPH+gKD02e6jFoWblS7dq4C9c3jXL6llvSbXSGg0OzjwFBm4WJHqJtfRU97vWvkkILeZUe8rQF0h5Ou9+s+NGWLsIdVn6i+7xN/22yej/DvWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zoti0JNR92Z9hgLFLl3Ml28qUOFEOHa97B+FeEwr5aU=;
- b=Rt1lVzVspuTcYTMyAD1kZwfttsBhB1vOTMr2yoGVKhRFDtce/vfnQ5SIV34x9EuyTNs+fm+NzkZkdzX9m4Gn2R7Bq5lm6HNnTnlAa0+ifhYEVMHPA2YqIhSPKkLxw1kFmzb0kvaQviKMCevbxdmY23RVZdJfAmfLAV30LAmimp1xXl4Bwc7JJWXQeaI5lUZtgkUygRvPl3dwDb8BkL0vbfcEJvdHBGSgu+cmmqRiFh6wUKckPQEwhxLsRvJYGFLVH0MDFenSrf9rw81F+RqYlcJdh7dphvKGglU8Z3lOoSYsahy3KDwLIDRKQyW0J5FreefaKZakRDsDDUCYjey85A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zoti0JNR92Z9hgLFLl3Ml28qUOFEOHa97B+FeEwr5aU=;
- b=I8Eo/SWSbYHEFw/BjzEraOsc88U1CmJippKNf7OpvbqvFjSFT8BGJYn+n1iGq0QyjNsF4iECR1AkfNWY96HxkvP9HVuF/MfRPlQrfV60VEiS3Oy9/+AeU57QL1MDyQ1IhkihL1xjjYKTDysI6LHsOLRVDREj+/GA+6EGceK3D3057BlBF21Qjk0bKBCd3DQoRGayKdWpvknEG4TyaqGikAMPWdqMtAdCOZv4xR66XtI514swGzoGRXtlS4x6RoUPKlbVqz4+uMZISDiMsx/iwpUXD+to6xvlFENa/+5MNCH7Qs+YzWZ5kTlki6P0GKj/mjVkN/XJFCQF5JvNqfKWnA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB8762.eurprd04.prod.outlook.com (2603:10a6:20b:409::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.23; Fri, 6 Jun
- 2025 15:34:23 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Fri, 6 Jun 2025
- 15:34:23 +0000
-Date: Fri, 6 Jun 2025 11:34:16 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: "Li, Meng" <Meng.Li@windriver.com>
-Cc: "linux@roeck-us.net" <linux@roeck-us.net>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [v4 PATCH 0/2] create patches for nxp-ls1046a platform watchdog
- feature
-Message-ID: <aEMKeMaka8yLtMEc@lizhi-Precision-Tower-5810>
-References: <20250604034246.3234837-1-Meng.Li@windriver.com>
- <CH3PR11MB8773488D4C9E9C7A9D44DBF9F16EA@CH3PR11MB8773.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CH3PR11MB8773488D4C9E9C7A9D44DBF9F16EA@CH3PR11MB8773.namprd11.prod.outlook.com>
-X-ClientProxiedBy: PH8PR20CA0003.namprd20.prod.outlook.com
- (2603:10b6:510:23c::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2622B28983D;
+	Fri,  6 Jun 2025 15:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749224129; cv=none; b=d+QKtUaP9Z+dNgxlkW/Z+dj4er2fw88uWrASiDIXG31unAApLhggPQvvZHcWl1PxLuyZ7P43nBf7W/kIZVbBSEyEzQuzGYdC5EFzVVDmmRjst451EZvgj/eVe6Z64OYFw7SOjsjOY832Njay0yb9pHrtVvl4RUhw0+xcS6ydebw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749224129; c=relaxed/simple;
+	bh=8SY1GsuYfcNx8zwGx+fhS3YamoOR30i4JTZ3TgJntko=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=u9r73jhp+knxCYujG4T8Kp0Bmrz1Nw65weRCBjp0Ruff1VYZEasEjYNRI86j0qJvruiNJdcuFRvdYbNHwktBASRlnxzfFsRWmxCSquBLwrx2B74/hVvYSK88JOjJeN2vy5PDyoykCsonmmiTd8F6siqZcYS4WhKGCQlwp/bCrHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nI8u/Ccn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 556F9FT7018079;
+	Fri, 6 Jun 2025 15:35:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IHVYulWU7RDStgIiNys38hXNypv1tVavSEag4eeBhas=; b=nI8u/CcnO4RhT7XI
+	sNjdnXGQzSBxPBMPIo9GaLIroCMP1UtJqVeBCqN4CY+RkVb9hWSNzukCKrv/e9Kq
+	uj24XvXSxdeNWl96t93wJKk+1zhB/CWJFWDEAOP4pRDoSbxFmCe16Hjis29+Ezgd
+	IqbKeLIvJCAK2ni4nnJGEuSDPP8mmRnmKXW4UI6QY0rBusYQs3M6CVH6RUeb60jo
+	9PBOID58qRHqDyIe0aaoKe8prP5OxTNKlS2AzWimawoOoiIiNH8ca3INVXCPZ6IS
+	c3+GP1bi9nDFqpjqV4+zvudx68MisRKNpdbxEb+HXNGrrw8+AJjNQUNMf4CPA92V
+	aVX+Ag==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8qd3nq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Jun 2025 15:35:20 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 556FZJ15001636
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Jun 2025 15:35:19 GMT
+Received: from [10.50.32.91] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Jun 2025
+ 08:35:15 -0700
+Message-ID: <265b1625-bf53-ba5d-9dc5-eb2ab78fb822@quicinc.com>
+Date: Fri, 6 Jun 2025 21:05:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8762:EE_
-X-MS-Office365-Filtering-Correlation-Id: e751f061-1fa2-4f80-8624-08dda50f9cdf
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|52116014|7416014|1800799024|366016|376014|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?+zZigXTP/ZhqgKLUORLqdg2sl6zD9m/LK4TJtp+JtDixmw2OQEaOblsSAFxp?=
- =?us-ascii?Q?ODLHtiEaUy3Dt8LbHGDNM7F+iEKIXkZL6MIMpq6ETMlSRySFGKGvkbPiMXeq?=
- =?us-ascii?Q?dQEntThr3E/bgTDN1CH0WjiSJ2ybmP5Jpomlv99ZgWtqGMCXgId3hSkEWuGn?=
- =?us-ascii?Q?jsjfZqkvRTZTswbC6FS9AfxuIHfOfsTDtLQ24/WUinCz2Cqe9Is1N+LGx7/h?=
- =?us-ascii?Q?hWlu8YP1OoyLZosg7ErJl5qxfRxSkEDJ2QIBniXsl4TSP5Aa9N00YWoMB1ZD?=
- =?us-ascii?Q?J35IserEi40fOQcZk/jaJi80z5J5JoyXaSPHQyFEZ5xz9BsQOeBwJhwOt8EN?=
- =?us-ascii?Q?tQnLQGFbDwBPfn5WVSJITui4SI0pbXy2lfECSa+kR6jPuqdFTdpSI9BDx4lM?=
- =?us-ascii?Q?Jwz2VLYPQAkjEOVpYiV88qtbw4USI/dBEdE5wWH9xDq2ETfT4KDYmV4RjWGO?=
- =?us-ascii?Q?iQY81ZfuydiiQIeUrk0yOPMo2IoCWlcj08oDuVj5bDQDrn8HVZwspvzCGNLb?=
- =?us-ascii?Q?tE3pVrV3uCBU6nmnEp4986nlt83XAN6iVkU361rxO/b2Nas08gaxGTotGaWZ?=
- =?us-ascii?Q?0wyRYJi/Y2NpMXiOll/An5p4cxgfTWLY9DpzmfPKf1T1bEC6HzYc9IMUCGxQ?=
- =?us-ascii?Q?SIM9A4xatPK7Xt8I002NAu0ZSRsKY9F2p9WK2Utgg4EKjcCSjke3g4/noVXt?=
- =?us-ascii?Q?RDSYHk6/4L6xn4ANeli2imH41v4miqrmLJ+Yzlupi6xAoX8baN3Fgp2SjK/I?=
- =?us-ascii?Q?nHGMMQAozaEAE3CFsLkIMFMks59xWOM7ypR6xSsbYMODVfmJGTx15OEJxBpo?=
- =?us-ascii?Q?272NplKF2HEuBnBc7+GSw/2JAARCgZxNILskM7HdB6SNWoB8SR5Rj7Lm9Cse?=
- =?us-ascii?Q?uMpfMOu5oIGBoxAkHMXjPy0xLcgCWtEhm6Vpi1Gd3+n3CmDYrmjP+aTLgAW5?=
- =?us-ascii?Q?EG1A31BonSEXaujNEsPJIh4CKExCN68B+Dqze716VRy3xAxBrlm2oS5vaZ/D?=
- =?us-ascii?Q?MJfEcgRjJf+ufX3tLziUQ9uVU+9nrccGkkEJ5+VrrwGwoiiS3HEVkoml5IQ0?=
- =?us-ascii?Q?RwgOfZtvX0Fgtmv1ua5Nq8f2GJFKvqSFcG/1vjKwl2XginMWLVkBZQiSEXUX?=
- =?us-ascii?Q?fWIq8He50i99cd58RZbt+CcivY3fuv4ZGmD0yqPBJrd7asrvPgUDINLmlD2n?=
- =?us-ascii?Q?YMJ0Z+cgdOnDpn6bIK+eTHj5nWvaIWO1IIX742lXbdX13TReasZlE4dikvAL?=
- =?us-ascii?Q?iziafz7orb0xmrQuMBeI1a83742iWbH9U53yfiljWFJVduVit+kTF6jtt9as?=
- =?us-ascii?Q?F1ks7TmvkXbak4mBGwhS3Drk0yDjjaeQAc1KicI4gWSUrry91IWXTrYqq1aV?=
- =?us-ascii?Q?vHCNsIEC60x5AfQWZisQpmX2IdChD9zUBdyZQI/kh2Fn984oCaa2PG3UsQxj?=
- =?us-ascii?Q?vIJpwBjKBmwRB9Kd7SFaxQpjt6pgwISft+kDILRvcai3wVrXFvvxZDVnMOhg?=
- =?us-ascii?Q?KQPqSvDM/DyABXo=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(366016)(376014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?FKQ7MUU6hLCY5ImdIVkpzHoV6Re/GHOVpD7d6QR5Gi593m1ouaIGqh2pcAkM?=
- =?us-ascii?Q?oO9+cufZsovVVMZ22Ry+XuhEh8BwgtnqlrN74NYAC7QTiSAsBVRkVSeDEsnl?=
- =?us-ascii?Q?Y6Qgv+0cCc6vtFwRrTZLeOtB8bfLwlK/t/j+3jkB5KmmuqZP9LMl+/yOBRA4?=
- =?us-ascii?Q?PiN9IWr+djQiBW0/sb4xoBc2ZCKL3+ShmXIttU9jWfY6W9oL8CraLYamZ2VW?=
- =?us-ascii?Q?rh61VVAO010IrZLP8DLe5Jg8Dcf1RFifOjXkSL6O5N6OMAuFDCWzvU0GtsWp?=
- =?us-ascii?Q?oMGWhkCmanCYUgxxnuK8jeE/v/fMuxYDo+YmWdrGQfuRFgtr/9lc/zf7qHnX?=
- =?us-ascii?Q?vJwT+NL/u/BzkFOtZ9/Mj49K7N4mlEApdCu0xHFK1Gbdq38/5MdJL+arSmZ3?=
- =?us-ascii?Q?kpc61OT6RxxNsrIpi9cNvGxd3hfWuC9l1cZQkKiO+cprjYqP5YIquiod6e/B?=
- =?us-ascii?Q?i4xNzHoG6SMLMK5B0zfVWm+5ddlTeU3F2XaFXYuRgZbBjm9ApEOfzHLA2AK4?=
- =?us-ascii?Q?S5dzUTu29yjLND+zM0z6NbM8H/HPWhTvOxN8PZ0vtg2On8F7KqDw9aUvX3C4?=
- =?us-ascii?Q?Mfl7rDn/Sotkkz5+dd3Xxk19lDsrt0INETB+te5gPsv/F9ixxIfvYir07kWt?=
- =?us-ascii?Q?XFB1KA+0yh1hJKE8O0fc6vaORWvabAPaFBPsB6skLWF7NCskpgKT7UZSHl56?=
- =?us-ascii?Q?k6+Sfd8Z6x64/m5LG1cMx1BrykivSeZm0NPDeKjB2OrAiXCw4CakOEkA9Qnv?=
- =?us-ascii?Q?hj3C+QMkyFeAH/6WHWtJIf+Xw0LSUCuUkIx1oSwdm2mY4CHzyINASyueaHxf?=
- =?us-ascii?Q?AAvV+cMSO0GWbbvaIONdlSUvJKnQiHKotSRP9x/1ATidbbIFBKJ6PIV0lLcc?=
- =?us-ascii?Q?/Et2A4CRBJRUvrxX6nBRFBO3dTqG/fyfM/8Qk7gvCgg5jwTNK80WavHhBKD8?=
- =?us-ascii?Q?oQfXyn7PgrINjWfaoF2K+0HhYTBBxqVvr43KFZ5x/piN4JrNFRFF+skkUo0h?=
- =?us-ascii?Q?Trl2mQ8EIsXTMvne7irEkdgvxZG4SKBu1Ah5yp+etbkcaF6J++J31aCjJQBb?=
- =?us-ascii?Q?dYDlLp48I7z9Hlkmnm5LWP8hYzk+jOe9O4qAG9pMIVUpB+hInoM3G/D8cVYl?=
- =?us-ascii?Q?NojVQfzLq/AQXREn3UgnI//fEQ+qJ4nQQgRWcgriuKSOgqc/8LgAOKkJTHdx?=
- =?us-ascii?Q?+gsI1iqsd4GYF8OCvrG3mEESIHpiftFD7B2b9Ws059TYUcmmV/dLeOL5FdEV?=
- =?us-ascii?Q?Sn/EdFgeTzzbDwb4z2e41iNGOAey61vNCoBfHEIorKOuZlAttKx4NxkXFO85?=
- =?us-ascii?Q?o6qCRVQ1Sdfq+guq16l8IGgzn2Q70KUqQ78pQ9ptv2LY8Rxd2/xmpfZVqi6a?=
- =?us-ascii?Q?u6a+0LuX2ZjrcOqZdViIpK1CAosthKwqpK/DoV8tC5kWYo6GJYCNQNEiV4j2?=
- =?us-ascii?Q?ksK1Auk7emz4PzmWluvZ0zETYdhwRlh4fSmedgGuKvvLnYJQk78Yxa1cJOjy?=
- =?us-ascii?Q?BvtuL9aGkE8J9NqNUX8gkkQjxuYzANqWDDiw9JQjZv/XB3DYIfTYAv5cJ8fM?=
- =?us-ascii?Q?MYCsVXAdjzjzT6R6kjI2EarfHNE/7TjhApb20T2U?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e751f061-1fa2-4f80-8624-08dda50f9cdf
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2025 15:34:23.3007
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SRE70GJ99DSBQiLVB8a9zctqso+kE1zJNeBqBz7TNJPjMGlfhOGIuiUk03covv+icKrzZgX2o0AVTqZtJFmNTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8762
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v8 0/3] media: venus: enable venus on qcs615
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Renjiang Han
+	<quic_renjiang@quicinc.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+CC: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Nicolas
+ Dufresne" <nicolas.dufresne@collabora.com>
+References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
+ <wmri66tkksq6i3hfyoveedq5slghnnpozjzx6gck5r3zsiwsg6@xevgh54rnlqd>
+ <285cae4a-219c-4514-818f-34c8225529de@quicinc.com>
+ <5854a587-aba7-4e71-87f8-249ba00cbc59@linaro.org>
+ <996c9a39-5520-4b43-adfa-06ce29223ba0@quicinc.com>
+ <713b87cb-0003-4ee3-a599-9cd41629bb42@kernel.org>
+ <7aa36a0f-6741-40c2-93f4-036823d245fd@quicinc.com>
+ <247002c0-ee68-4d0d-857a-768bf68bce75@kernel.org>
+ <d5aee491-3ba2-4beb-8b8f-4ba8372e6d16@quicinc.com>
+ <fa6a7983-27bf-40db-9843-0891bdadf523@linaro.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <fa6a7983-27bf-40db-9843-0891bdadf523@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sqKJ0bWR7sATR-9H6WTnIX8AJFHNxamg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDEzNyBTYWx0ZWRfX/RtdDxEWRVI1
+ kL2t+6YDr++2G34Ofbyxc8X+MNNnjyWb2EZGCrnkPI+Hjk5WpUqjxfxM+Oou/DUtJpOt1txRj0b
+ W6rVFmIWjDkt8zYTptRUNH+elBxffavWZl7lC8sRG4IuwPmP0oV2dijSsZAqTAqOSRYYUJAUk66
+ Qeek+Jf8HSsVULEGeu9i+63xZAvMoxvfyIN/irFWTJ0tNIPJdYdD4fA5KVOhcaERMrQOe8WSyRs
+ S+M+srP1z9BTkyccvtDy2gm1N0Wsf4ilMvhcPWmOzwN+Nd6g1as9VCtb2mXpvsCTdFzWDIUFjn0
+ rKTqc07y0G8X8ueBnRWYzrO70DnHDBa4hVVmY8ZQo/ytXGP/GgAImcIhCyaYrpmXqGTvZ3aJCZR
+ Zrn9s0b7fG7T0eYZ+UedxEin8IvMmhyyKsU5XlzVjaG/DQ1bKrQiiObEziut9fJhF9JSgiNp
+X-Proofpoint-ORIG-GUID: sqKJ0bWR7sATR-9H6WTnIX8AJFHNxamg
+X-Authority-Analysis: v=2.4 cv=PrmTbxM3 c=1 sm=1 tr=0 ts=68430ab8 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
+ a=3HzSJax5ekaUL6_BMMgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-06_05,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506060137
 
-On Fri, Jun 06, 2025 at 01:46:56AM +0000, Li, Meng wrote:
-> Add watchdog binding maintainer for the patch-0001.
 
-You may need resend whole patches, which included linux-watchdog, they may
-use patchwork to track patches and miss this one.
+On 6/6/2025 8:23 PM, Bryan O'Donoghue wrote:
+> On 06/06/2025 14:32, Renjiang Han wrote:
+>>
+>> On 6/6/2025 8:56 PM, Krzysztof Kozlowski wrote:
+>>> On 06/06/2025 14:51, Renjiang Han wrote:
+>>>> On 6/6/2025 8:44 PM, Krzysztof Kozlowski wrote:
+>>>>> On 06/06/2025 14:37, Renjiang Han wrote:
+>>>>>> On 6/5/2025 8:34 PM, Bryan O'Donoghue wrote:
+>>>>>>> On 31/05/2025 01:05, Renjiang Han wrote:
+>>>>>>>>>> Note:
+>>>>>>>>>> This series consist of DT patches and a venus driver patch. The patch
+>>>>>>>>>> 1/3, which is venus driver patch, can be picked independently without
+>>>>>>>>>> having any functional dependency. But patch 2/3 & patch 3/3, which are
+>>>>>>>>>> DT patches, still depend on [1].
+>>>>>>>>> I'd say 2/3 and 3/3 still depend on 1/3, otherwise we can get video
+>>>>>>>>> core
+>>>>>>>>> on QCS615 over(?)clocked.
+>>>>>>>> Agree, so we need to make sure that the driver patch is not picked
+>>>>>>>> after the DT patch.
+>>>>>>> This statement is confusing.
+>>>>>>>
+>>>>>>> 1/3 states that there will be a fallback if there is no OPP table
+>>>>>>> present.
+>>>>>>>
+>>>>>>> Giving the code a glance, I believe that is so, freq_table should be
+>>>>>>> used if there is no OPP specified in the DT.
+>>>>>>>
+>>>>>>> I think we are having a hard time here understanding what you are saying.
+>>>>>>>
+>>>>>>> My understanding:
+>>>>>>>
+>>>>>>> - venus modification is standalone 1/3
+>>>>>>>     Qcs615 will fallback if no OPP is present
+>>>>>>>
+>>>>>>> - dt modification 2/3 3/3 is therefore also independent of driver
+>>>>>>>
+>>>>>>> ---
+>>>>>>> bod
+>>>>>> yes, let me re-spin this with driver patch alone. Once that gets in,
+>>>>>> will bring in the DT patches.
+>>>>> Did you read my feedback? There is no "once that gets in". DTS is an
+>>>>> independent hardware description and your patchset claiming there is
+>>>>> dependency is just broken.
+>>>>>
+>>>>> I am repeating this since few emails, so shall I NAK it that you will
+>>>>> address the main issue you have?
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>> Hi Krzysztof
+>>>>
+>>>> SC7180 and QCS615 use the same video core. Only difference lies in the
+>>>> freq_table for the video. Freq_table is generally determined at SOC level.
+>>>> The Venus driver does not currently handle freq_table compatibility well
+>>>> across platforms. This patch enables the driver to use the OPP-table from
+>>>> the DT, addressing the frequency compatibility issue.
+>>> This does not resolve the main problem at all. If SW cannot use the
+>>> fallback alone, your fallback has no meaning and is not only confusing
+>>> but actually incorrect. And based on previous statements like
+>>> "overclocking" it is not only incorrect, but even harmful.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> The fallback is only triggered when there is no OPP table in the DT.
+>> Since the QCS615 DT will include an OPP table, the fallback logic will
+>> not be used.
+>>
+>> Also, if the freq from the freq_table and the OPP table are the same,
+>> would it be acceptable to drop the freq_table from the driver?
+> 
+> If you drop the freq_table, you will need to apply OPPs for the sc7180 to DTS
+> first before venus or you'll break sc7180.
+> 
+> I think TBH you should add a freq_tbl for QCS615 and make it so the order of
+> patch application doesn't matter wrt adding OPP support.
+That would my proposal too here. Add the proper table in driver resources for
+QCS615, so that either of OPP or fallback would not matter and would be carrying
+right values either way(no over clocking).
 
-Frank
-
->
-> Thanks,
-> Limeng
->
-> > -----Original Message-----
-> > From: Li, Meng <Meng.Li@windriver.com>
-> > Sent: Wednesday, June 4, 2025 11:43 AM
-> > To: linux@roeck-us.net; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> > linux-watchdog@vger.kernel.org; imx@lists.linux.dev; shawnguo@kernel.org;
-> > robh@kernel.org; conor+dt@kernel.org; Frank.Li@nxp.com
-> > Cc: linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; Li, Meng <Meng.Li@windriver.com>
-> > Subject: [v4 PATCH 0/2] create patches for nxp-ls1046a platform watchdog
-> > feature
-> >
-> > v4:
-> >  - Improve commit log of patch0002
-> >
-> > v3:
-> >  - merge patch 0002 into patch 0001
-> >  - improve the commit log of patches
-> >
-> > v2:
-> >  - improve the commit log of patch 0001
-> >  - add another 2 patches to fix below warning
-> >  arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb:
-> > watchdog@2ad0000(fsl,imx21-wdt): big-endian: False schema does not allow
-> > True
-> >
-> > v1:
-> >  - create patch 0001-arch-arm64-dts-add-big-endian-property-back-into-
-> > wat.patch
-> >
-> > Meng Li (2):
-> >   dt-bindings: watchdog: fsl-imx-wdt: add compatible string
-> >     fsl,ls1046a-wdt
-> >   arch: arm64: dts: add big-endian property back into watchdog node
-> >
-> >  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 2 ++
-> >  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi              | 3 ++-
-> >  2 files changed, 4 insertions(+), 1 deletion(-)
-> >
-> > --
-> > 2.34.1
->
+Regards,
+Vikash
+> 
+> - Add QCS freq_tbl
+> - Add OPP support
+> 
+> Then do whatever in DTS, nothing can break in this case.
+> 
+> As we've established the fallback isn't a fallback because it falls back to
+> wrong data, so lets fix that.
+> 
+> ---
+> bod
 
