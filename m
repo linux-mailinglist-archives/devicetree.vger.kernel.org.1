@@ -1,148 +1,163 @@
-Return-Path: <devicetree+bounces-183326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0206AD022F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:28:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC088AD0254
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:38:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94B6C172389
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 12:28:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C448189751B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 12:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1BA2882D6;
-	Fri,  6 Jun 2025 12:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D40B288530;
+	Fri,  6 Jun 2025 12:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ynoObLXa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S0EKknag"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E846128E0F;
-	Fri,  6 Jun 2025 12:28:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509462356B9;
+	Fri,  6 Jun 2025 12:37:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749212914; cv=none; b=KimRJKEIYh/msldVPK+S2DVUUMAp02ZE3P6ieQhglvIt8tKI+7J9O7NRLbZqBkdMuuZdBt6xEJVuk2/LMBNMVvJXaHrQsppFEQKnJrIL0bzdTQMK99iWF8ZnZZt/LYSxo4r9tzE2q20yO9eLP0cetdZvtzj08d7ptvx6a8lMaDw=
+	t=1749213476; cv=none; b=g5V39bnOhFlZwwanGoERZxJ5VMxfTQR9eQ9+Qy6FNwQcNzhaztyexgPmkfgTvjNbM82WHZ/ff5Lfs7fqC3JP5FC/5ieYd7t40sJuFNcwu0QTxxzsQohCDaPe0AeDbuN1G09fBOi9WxSzrYH28ZnYm3jSDrBu3zXngkyeiAIDvCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749212914; c=relaxed/simple;
-	bh=jAkYL4VXVnMBgY+eRaXVCeLOmNfQxDZf8QjlfRZ3Fnc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EiJSJ0/WHHL8SZHHbUqPzitmJ2sBico3AFCFcDHtrH7dQ4JrALm2ng09xp2QPbIwdeRqcwYo9ENypn4xl9MMVEJhdsyUcRqydzpzpazHJPEX7euXNmwrRuZmyQHdkg8kXmEmr7OiVQi96W+4M4SZilK29AhGdZtgq9IGaW4vDug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=ynoObLXa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B72C4CEEB;
-	Fri,  6 Jun 2025 12:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1749212913;
-	bh=jAkYL4VXVnMBgY+eRaXVCeLOmNfQxDZf8QjlfRZ3Fnc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ynoObLXaB/tB8TrJbEjSXuDCG94H2eGnP9qg7EnWf0qd/vD7UlXkIdV22PtIuZX+o
-	 IlVPlPpIa5mof3pTFKdeuBZy1qcwF8Cwr9jAsmt3HbGtehFBkdmzplU6LiX75lE8Ed
-	 6eNVn8fHcuG8FbfiGekTd4OrcRwONJ11oQP9aCdE=
-Date: Fri, 6 Jun 2025 14:28:30 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, arnd@arndb.de,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v3 3/3] ABI: sysfs: add documentation for ST M24LR EEPROM
- and control interface
-Message-ID: <2025060632-luridness-carpool-bf90@gregkh>
-References: <20250606120631.3140054-1-abd.masalkhi@gmail.com>
- <20250606120631.3140054-4-abd.masalkhi@gmail.com>
+	s=arc-20240116; t=1749213476; c=relaxed/simple;
+	bh=8BFKlrQ68QjCmbx5xh4/w0cPsnqeWqA5EfLScv6WkrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JSQ5UJBmEIiVoSsuTP8dzHUEiScy5daZ9NmpPNawLf6NS/X6rXMm8p6/oOj3Zi2e1gGc7GL4dne4xv1xJw1D1nEGaZH1gOvbIk16ScPAr6Ju/mTfIj4ToHiIC9RCGSEcddFIzmj6MNtogZgz6FaSUDVvfg17+6h7aFlGNj4U3X0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S0EKknag; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55663pHt000708;
+	Fri, 6 Jun 2025 12:37:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1oODGAliAr0P1Y/Ntrn/PvuZ7jpTdNekDsWec4XKAP8=; b=S0EKknagQ6PJY13L
+	1Dblb5hcsqx0Y0zinF0lLNDlVzglwIOrAFdqoOkZE/dJAu3+xEjEmJf0vHbigkhP
+	dOG0Xo5F4MwngHeBnEV+J4rzo9DbNl3Fdh27aNblB0/y/aJRftc/T8FiAuw3trKQ
+	1qZfAd6GxNoV8b36QtZyk+xzlbYc6f3s53qROSKRIx8NMyIVuSOmZS3kt/uW5HfX
+	WDlZ5XHdUVHQJxmf4VPaqV2zJEQGIR+qqUpQLOEucrBfjPzFuRNVsK4b0Q/sU2aJ
+	VosKVxVvRQc0Zsd1b4YnDy9frmBPIvmH8NBGJjCjJvog1tiRkJ9ocd6GKXATaaAr
+	IJxsfg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8qcmek-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Jun 2025 12:37:50 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 556Cbnue000632
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Jun 2025 12:37:49 GMT
+Received: from [10.253.79.143] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Jun 2025
+ 05:37:45 -0700
+Message-ID: <996c9a39-5520-4b43-adfa-06ce29223ba0@quicinc.com>
+Date: Fri, 6 Jun 2025 20:37:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250606120631.3140054-4-abd.masalkhi@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 0/3] media: venus: enable venus on qcs615
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>
+CC: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal
+	<quic_dikshita@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Nicolas
+ Dufresne" <nicolas.dufresne@collabora.com>
+References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
+ <wmri66tkksq6i3hfyoveedq5slghnnpozjzx6gck5r3zsiwsg6@xevgh54rnlqd>
+ <285cae4a-219c-4514-818f-34c8225529de@quicinc.com>
+ <5854a587-aba7-4e71-87f8-249ba00cbc59@linaro.org>
+Content-Language: en-US
+From: Renjiang Han <quic_renjiang@quicinc.com>
+In-Reply-To: <5854a587-aba7-4e71-87f8-249ba00cbc59@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MJCRs-B1rtwWlJNjGneRRIOua0tJXyig
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDExMyBTYWx0ZWRfXx/9a70jTHg0Q
+ iKpMhz+m7Or5xEi5C4FX7Q81Qh484u9YwJ2YiM/z3qBTKAlRqlespbvR/LfvPZOipkjlADsJ7mk
+ q/Rq/K1lxxs1lQTdc779GnV8zdmBtD471Gwg9qnaw+IBIt+sWTZlgQzNFvVVlIO9dT7KRqTGxkh
+ 00rlvFNvdriHYd8mbHd5v10pG2Pbld5LcH0dg7jjKX/+3G/B+8ZwDNGuCJ7X/YldlIyx3/jxQ2L
+ xzd26xcxV7OzOW6jS6wVOGy/wBv2J1RP2XeMnl0pJqEOrN2cSkV7PHrFine5agUlZFw52sZD0/m
+ 3sKYR7vEMHNx1yppPEKt9sRuqdiN8GcJDlumuiUzgsPyQXAa2UKcx/V6hwArb12ubGM6tVRxO1u
+ cqEOZmAgRCF7gqBZxHXwTTg+OhQw7V0ZgNdRPE4/ATgXfIV1CDCGkt/n2WpCJeU4sBDde3Hf
+X-Proofpoint-ORIG-GUID: MJCRs-B1rtwWlJNjGneRRIOua0tJXyig
+X-Authority-Analysis: v=2.4 cv=PrmTbxM3 c=1 sm=1 tr=0 ts=6842e11e cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
+ a=OeXMNpvLbdQpr1KLWfoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-06_04,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 mlxlogscore=530 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506060113
 
-On Fri, Jun 06, 2025 at 12:06:31PM +0000, Abd-Alrhman Masalkhi wrote:
-> Add sysfs ABI documentation for the STMicroelectronics M24LR device,
-> covering both the control interface (e.g., unlock, password update, UID,
-> memory size, and SSS entries) and EEPROM access via the nvmem subsystem.
-> 
-> Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+
+On 6/5/2025 8:34 PM, Bryan O'Donoghue wrote:
+> On 31/05/2025 01:05, Renjiang Han wrote:
+>>>>
+>>>> Note:
+>>>> This series consist of DT patches and a venus driver patch. The patch
+>>>> 1/3, which is venus driver patch, can be picked independently without
+>>>> having any functional dependency. But patch 2/3 & patch 3/3, which are
+>>>> DT patches, still depend on [1].
+>>> I'd say 2/3 and 3/3 still depend on 1/3, otherwise we can get video 
+>>> core
+>>> on QCS615 over(?)clocked.
+>> Agree, so we need to make sure that the driver patch is not picked 
+>> after the DT patch.
+>
+> This statement is confusing.
+>
+> 1/3 states that there will be a fallback if there is no OPP table 
+> present.
+>
+> Giving the code a glance, I believe that is so, freq_table should be 
+> used if there is no OPP specified in the DT.
+>
+> I think we are having a hard time here understanding what you are saying.
+>
+> My understanding:
+>
+> - venus modification is standalone 1/3
+>   Qcs615 will fallback if no OPP is present
+>
+> - dt modification 2/3 3/3 is therefore also independent of driver
+>
 > ---
-> Changes in v3:
->  - Updated sysfs entry paths to use <busnum>-<primary-addr> to reflect the
->    control address.
-> 
-> Changes in v2:
->  - Added initial sysfs ABI documentation.
-> ---
->  .../ABI/testing/sysfs-bus-i2c-devices-m24lr   | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr b/Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
-> new file mode 100644
-> index 000000000000..53b6fe39162c
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
-> @@ -0,0 +1,96 @@
-> +What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/unlock
-> +Date:           2025-05-31
+> bod
+yes, let me re-spin this with driver patch alone. Once that gets in, 
+will bring in the DT patches.
 
-It's later than this.
+-- 
+Best Regards,
+Renjiang
 
-> +KernelVersion:  6.16
-
-This will not be showing up in 6.16, sorry, it's too late for that.
-
-> +Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-> +Description:
-> +                Write-only attribute used to present a password and unlock
-> +                access to protected areas of the M24LR chip, including
-> +                configuration registers such as the Sector Security Status
-> +                (SSS) bytes. A valid password must be written to enable write
-> +                access to these regions via the I2C interface.
-> +
-> +                Format:
-> +                  - Hexadecimal string representing a 32-bit (4-byte) password
-> +                  - Accepts 1 to 8 hex digits (e.g., "c", "1F", "a1b2c3d4")
-> +                  - No "0x" prefix, whitespace, or trailing newline
-> +                  - Case-insensitive
-> +
-> +                Behavior:
-> +                  - If the password matches the internal stored value,
-> +                    access to protected memory/configuration is granted
-> +                  - If the password does not match the internally stored value,
-> +                    it will fail silently
-
-Why is the kernel in the business of adding passwords to devices?  That
-feels wrong, and a way to just flood the device with a "try all the
-values" attempt if needed.
-
-> +What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/sss<N>
-> +Date:           2025-05-31
-> +KernelVersion:  6.16
-> +Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-> +Description:
-> +                Read/write attribute representing the Sector Security Status
-> +                (SSS) byte for EEPROM sector <N> in the M24LR chips. Each sector
-> +                has one SSS byte, which defines I2c and RF access control via a
-> +                combination of protection and password settings.
-> +
-> +                Format:
-> +                  - Read: returns a 8-bit hexadecimal value followed by a
-> +                          newline
-> +                  - Write: requires exactly one or two hexadecimal digits
-> +                      - No "0x" prefix, whitespace, or trailing newline
-> +                      - Case-insensitive
-> +
-> +                Notes:
-> +                  - Refer to the M24LR chip datasheet for full bit definitions
-> +                    and usage
-> +                  - Write access requires prior password authentication in I2C
-> +                    mode
-
-How "deep" does this sysfs tree get here?  This feels like the wrong api
-for read/write to the device, just do it with a single binary file if
-you really want a "passthrough" way to get to the hardware.
-
-thanks,
-
-greg k-h
 
