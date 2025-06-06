@@ -1,266 +1,216 @@
-Return-Path: <devicetree+bounces-183368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1C3AD03E8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:22:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D121AD03F1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:25:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D7C21786CA
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:22:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA4BB3A309E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAEA4288C93;
-	Fri,  6 Jun 2025 14:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3ED45009;
+	Fri,  6 Jun 2025 14:25:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UZLVYr9z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M1hOf06h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF571CB31D
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 14:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4C72B9A5;
+	Fri,  6 Jun 2025 14:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749219649; cv=none; b=M5o60wTjcB4ffoDUagk6IWsxaxILMCAcBDwEk4WqmhTM4OFzv+1y1zCPRwDgKUYgqytw/kzd+jlMH2PTeW8DI7Izy0ErppXglv5PgPLWvDUK0NRGd6VWmaeVlm2zPGDZ/xzesFSIPxWLBFWxWxab6D5hpltVv3SWYV50blEqhiU=
+	t=1749219902; cv=none; b=c7LfZzBreeVQvE8HsAJLaIl+W5XpukuC5f/wz3BuZKWByY7sgJfwn/0wCayGgZuJ0sfYIoxgokILr1rw9qtcxVIGyP8PzOM6Wlcu8Ia3VgAeCCoDU4+vTUquw1cOJqQlEZMj9DQ5zRLedQpghpYIgd64CAxGQ+C6wdIGKY7MBWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749219649; c=relaxed/simple;
-	bh=L/gwxvm6plajhtZUJBhnKB7CkU77xzODIZq6h41Wvi8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XGU+fam037Gs3yEFlhkxPFoQyYJf5/2CEf2YRh8Vd4Bv/2UXZt5zpbqbNdCFbgfm7Ape3NJvqCdK/nNx7G46COK2YN729w/m8YTaNfPqsKvMjlb9Inmz0do0FvtR4rjkn4k4CPy5dupKwdHxrlFpMjMy3IzLJrT6JB1VbazkVbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UZLVYr9z; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45024721cbdso18604225e9.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 07:20:47 -0700 (PDT)
+	s=arc-20240116; t=1749219902; c=relaxed/simple;
+	bh=iqG/efhZVTgsxHipSyjybtPfHYZOrkqBqAApKV+b51A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=hmWLOtkDIl8J5tXkpc0cknmnZ5gvO5pnmAzrGpWPgs4DUvG+wDDJHx5t0SsEr2k5yrHHRfq7a8pqqEqqwdj1W0itFy02xG7UwXOCX+3xKHr8RRwVhBsxFa//PoXueJ1H7aKuwBv20l0iIj08G3eOoo5PSfQq85bJP3HOaN+AU5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M1hOf06h; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-450cf0025c0so15124105e9.3;
+        Fri, 06 Jun 2025 07:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749219646; x=1749824446; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8HpQeVbRwMAK/HKOtbrEdsV8ikZIsnrbhJJIVEFRiLg=;
-        b=UZLVYr9ztQa6BVFfwr3aiSB10sy0axQE0a3TBQBgJdgvoOT01bcbF9w7lf5YJNChCI
-         94BCa6EsDFNQV5At+nHN9o4ATVXdI+lWKKeNcHchwliO/Gglu35YTAJVxLqnjySFxYiy
-         1q7emvStVxmdRoE0+0duHjKJ3a+Yotyif/yn3SVJoCzEyfN5HO9mdATCDwqJC42hdX0L
-         xMi0X0Z+NmYMVezqyVG0zLF2ZE0Q0DWZEbsUEN14CrMAmYWlhfZweuyNpBBrQqGvnJUB
-         3pIA7+epvNvhfWJWZlzfGlTiP8HH3VolCOsrn27dxWgBF7he3/LsAKt/lRXZU5ERtjjR
-         vQUA==
+        d=gmail.com; s=20230601; t=1749219899; x=1749824699; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RU2KfMaJ2+9yanxW+f1dhdc9HAZcZembcLZ9Md0lK/k=;
+        b=M1hOf06hHLAgfJl/QcFGhhBrAYllBkimQJ4K6PxswiCFmDfqEDtTMM4L9xvI0AGm1K
+         l2ptklkz9PvQQncx7+nCaGiqzpSgjHgUwrObrnsqANj73VM9DWNewhfc910PbArk/aC4
+         H2JNOYvvhCo5LasFmF0SzPppbic9KOGSDsOnO99+0p64g/9SbPWZTSkdeK/mauxEfW6D
+         A74fqr59v5xnnR+WeAmbTsV+UUf5AaqmUA4b19T6scQkaqHkncTOqSTr803qMyY/3szh
+         TEcAvuyhMfC59LmrIo0WIqFd+6vZ0pr2SxpvOyFecaTkBVG8fD7I3J7l3ehTqXK9clXA
+         kKGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749219646; x=1749824446;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1749219899; x=1749824699;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8HpQeVbRwMAK/HKOtbrEdsV8ikZIsnrbhJJIVEFRiLg=;
-        b=Iwn7vonPfUN8ObJs3s7r4zHIvyBpshCZU36IcLTjvUbVK90HhzvH60fHB3kq4hgwiS
-         yGnlGLATpK7OHQOIaEJdRV61SKrIi6KlGTkzyGZlSfpQ+oWaShCZQA6X1ATT9ymlTvlL
-         39OXwruSKgV8I0X6qDoTuChTawUpjagsmeUYUKT7mzD8Gcf+kx4z1XxlJlcQrf3VzD9E
-         Ff4pJWPnkbHPckHq5Af+xWAmZNXF6OlT5R6wVVOXJ6NihcP68PQMU5DPatA+ETy0C1+O
-         IREzMpuh7/aKpiTUgo6ExhtjTGrej6VWfv+lXU+gGXYkk6OMU7rskcEKQpII5V+7hAqn
-         VOYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJiMhN9nDDJpVVyQ7kUU6Jb7Id70rj4JdImkozacsc0Jcfi0ckUMZWEOHww0GCpXmG4BXDIV4J+xZf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy81EIvHMsxiCYjEQAtYfCcfbArGcw6X/HIi8ENw2/1Epld5txM
-	N8Fypg/bPrC5LXfZjP80+K0/e9gcWPzJ2A43ljr3fFR9thVBAnUiz24rncs8giB0bxg=
-X-Gm-Gg: ASbGncs6egsHSENe3I+KDmXVHfF5YKTIau2tCXOIjVUEqc7q62FY2nem4qsGFEJvmfm
-	mgbpk4VSbUmd/2Mwm18k2w6cwZX64muYS82w51BCvCXai89xbmqyheY3G5CiSpUCcFPM4+FaIG1
-	icsdSHvTRFV2HmnjrwvK/FYZ2yBRxNYzKCNLuXYSSCFn3Vzu8nQo88Z/RrYJkF1zdlelwpdTkvQ
-	F7MiVdBrj3LPzfqOWr6lARmMZMmIoFTyCWkzy0IxN8+LVDuVeGh4UuuWuteuBneKh+sYKZaLT8h
-	33Dbydlb8ZoubUdaoFj9pE/bK/QEmp3DB7n34OtG3PY4E8RnRwT4xZSA9Zh5vMp0eyjMMGnLLIJ
-	JU0zUyJN0KJvayg9gZjYWHvNTGDDOKQk61Fok0RMMwA==
-X-Google-Smtp-Source: AGHT+IFkrVts+bEEPUp4BBAtLVZPot/aA/9X0oPRBOSSiEtVNiKU2TRV736+tfIKnO29f0u+64AR8w==
-X-Received: by 2002:a05:600c:a08e:b0:43c:fa24:873e with SMTP id 5b1f17b1804b1-45201391375mr39843995e9.13.1749219646003;
-        Fri, 06 Jun 2025 07:20:46 -0700 (PDT)
-Received: from [192.168.0.2] (host-80-116-51-117.retail.telecomitalia.it. [80.116.51.117])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45213754973sm25686345e9.35.2025.06.06.07.20.44
+        bh=RU2KfMaJ2+9yanxW+f1dhdc9HAZcZembcLZ9Md0lK/k=;
+        b=OjaDcNC/R+spUJXlwyOVwZCmAhTLcZ4albWh4yQYH3gHPqu7oUNu7pFTBiNTV0DA1p
+         jx4WC1pgqhLEeHMaCNkxEIQ9OftpLZx2fx7dDFG76LPxuW8OP57Mc7Uk8cXPPvPutuya
+         LHzToaB1EZm6Y93HCua+mEXUgC71kDEsEWDI1cxrhZxDQHXltoiJz7FB1LCzfAav58xy
+         SQu6LMWO5oyTS6zqCryV7Q48OXmArCYutXw7QGfCTustAklPxEiPUfw+enm5Uni0yJ6q
+         PMgg5f+0UoGZqHAn9Q3MqvYCE+RC/+Ul6yrOicM474jnFTDj2/1zWXhK4S3GfMX0t/Hd
+         WcAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVvG5XECk4Qj2Bjputcu2LvrsqaKpmpI5FE8e4o+wge//KsA1EahK9WjzYJwGBUnaLNDghOwWTPksP5WE8m@vger.kernel.org, AJvYcCXq/X08mLaOadQL62ox13fX7eMwZe+CfmeDfPBHc/YmGrT/UEIT1T4w/5+FLKBST0QFB7SBIiKDm4M+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyvr37TUGQh/HdMDWSPrZxpYlKtpVHDUa9NSqGPV9yKIA3dYlds
+	pGleM0PkllqrDu/jDy19f9EqeIJCD/8XkH7qG5qOQiqd3ZQ1otwhtZUs
+X-Gm-Gg: ASbGncvupCoQCO+iDi4Xn30AKHN6Lt6EmVxlDOJKsp7wjcrT746eOrXfW5D90zqmRBP
+	xetkzTfyNFXHSmg+Kat6GlDp7dOyWkemm2onm1bBEGeuPdYoXzNWndRXG8Q0LUFEPwjul3AJoGq
+	ELchZjv/th3CQiUikmsVF4nXO4pvVUAlajRCw3ugo15UmJrWUWUQHEcexi1kAXcxh8nNcSvQL7t
+	jeFcXHZ27wVQeHusEm8/0XOu9d9khH+waakPl2H6anMhgL2/VK0ZptvIEV2FMLDQ07NO+D0z6iy
+	RO/yxiFanFWrLo58Fuml7JvdBLjOtVVgsAGoP2197mAEHBBIrVHzguvpZ8egl0YViWFAK0GfSxk
+	ol9eaDt00HzbOEwRSdQNe14gW
+X-Google-Smtp-Source: AGHT+IEBJ4DoVvw/stlDOgi18RzfrOUTiRlKASLE2QkGIDx36kpF9qdd0AZsPbr8D1+OxjcNDNlTIQ==
+X-Received: by 2002:a05:600c:83cf:b0:442:f4a3:9338 with SMTP id 5b1f17b1804b1-45201404993mr34463405e9.21.1749219898437;
+        Fri, 06 Jun 2025 07:24:58 -0700 (PDT)
+Received: from masalkhi.. (ip-109-43-113-198.web.vodafone.de. [109.43.113.198])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-451f82878acsm33018475e9.0.2025.06.06.07.24.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 07:20:45 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Fri, 06 Jun 2025 16:19:22 +0200
-Subject: [PATCH v9 7/7] iio: adc: ad7606: add gain calibration support
+        Fri, 06 Jun 2025 07:24:58 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: abd.masalkhi@gmail.com,
+	arnd@arndb.de,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v3 2/3] misc: add driver for ST M24LR series RFID/NFC EEPROM chips
+Date: Fri,  6 Jun 2025 14:24:56 +0000
+Message-ID: <20250606142456.3140225-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <2025060650-tried-widen-4443@gregkh>
+References: <2025060650-tried-widen-4443@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250606-wip-bl-ad7606-calibration-v9-7-6e014a1f92a2@baylibre.com>
-References: <20250606-wip-bl-ad7606-calibration-v9-0-6e014a1f92a2@baylibre.com>
-In-Reply-To: <20250606-wip-bl-ad7606-calibration-v9-0-6e014a1f92a2@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5283;
- i=adureghello@baylibre.com; h=from:subject:message-id;
- bh=IKWt2EvUAc6fFAR+GqaSzL5Mis4xCa3ugoUhm+8Psbg=;
- b=owGbwMvMwCXGf3bn1e/btlsznlZLYshw+vHs2gXb+MPrOrytJjwNkI28X7Y0uLH1//aN7De9i
- s4JPZvN1VHKwiDGxSArpshSlxhhEno7VEp5AeNsmDmsTCBDGLg4BWAiDy4zMtxgt1teuLT3rqGu
- 9Zrtq5u+T3mRsjCj5NCuAl824/A3Ux4w/NPRap+vuKLnh0zcy9Dv1YZKcTXu/Gdeiqr2VXotf5R
- 2kwMA
-X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
- fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
+Content-Transfer-Encoding: 8bit
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+Hi greg,
 
-Add gain calibration support, using resistor values set on devicetree,
-values to be set accordingly with ADC external RFilter, as explained in
-the ad7606c-16 datasheet, rev0, page 37.
+Thank you for the detailed feedback.
 
-Usage example in the fdt yaml documentation.
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>
+> Are you sure "or-later" is what you want?  Sorry, I have to ask.
+I will remove the or-later part, lol
 
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- drivers/iio/adc/ad7606.c | 39 +++++++++++++++++++++++++++++++++++++++
- drivers/iio/adc/ad7606.h |  5 +++++
- 2 files changed, 44 insertions(+)
+>> +
+>> +#define M24LR_PAGESIZE_DEFAULT	  1u
+>> +
+>> +#define M24LR_WRITE_TIMEOUT	  25u
+>> +#define M24LR_READ_TIMEOUT	  (M24LR_WRITE_TIMEOUT)
+>> +
+>> +#define to_sys_entry(attrp)   container_of(attrp, struct m24lr_sys_entry, attr)
+>
+> This shouldn't be needed, something seems odd...
 
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index d19682186e7cd73a60541f62adf08d987ba24ec3..d9271894f091a837d29197f7de892c022b7e4152 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -33,6 +33,10 @@
- 
- #include "ad7606.h"
- 
-+#define AD7606_CALIB_GAIN_MIN	0
-+#define AD7606_CALIB_GAIN_STEP	1024
-+#define AD7606_CALIB_GAIN_MAX	(63 * AD7606_CALIB_GAIN_STEP)
-+
- /*
-  * Scales are computed as 5000/32768 and 10000/32768 respectively,
-  * so that when applied to the raw values they provide mV values.
-@@ -180,6 +184,7 @@ const struct ad7606_chip_info ad7606b_info = {
- 	.scale_setup_cb = ad7606_16bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_avail = true,
- 	.calib_offset_avail = ad7606_calib_offset_avail,
- 	.calib_phase_avail = ad7606b_calib_phase_avail,
- };
-@@ -195,6 +200,7 @@ const struct ad7606_chip_info ad7606c_16_info = {
- 	.scale_setup_cb = ad7606c_16bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_avail = true,
- 	.calib_offset_avail = ad7606_calib_offset_avail,
- 	.calib_phase_avail = ad7606c_calib_phase_avail,
- };
-@@ -246,6 +252,7 @@ const struct ad7606_chip_info ad7606c_18_info = {
- 	.scale_setup_cb = ad7606c_18bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_avail = true,
- 	.calib_offset_avail = ad7606c_18bit_calib_offset_avail,
- 	.calib_phase_avail = ad7606c_calib_phase_avail,
- };
-@@ -306,6 +313,7 @@ static int ad7606_get_chan_config(struct iio_dev *indio_dev, int ch,
- 				  bool *bipolar, bool *differential)
- {
- 	struct ad7606_state *st = iio_priv(indio_dev);
-+	struct ad7606_chan_info *ci;
- 	unsigned int num_channels = st->chip_info->num_adc_channels;
- 	struct device *dev = st->dev;
- 	int ret;
-@@ -349,6 +357,14 @@ static int ad7606_get_chan_config(struct iio_dev *indio_dev, int ch,
- 			return -EINVAL;
- 		}
- 
-+		ci = &st->chan_info[reg - 1];
-+
-+		ci->r_gain = 0;
-+		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
-+					       &ci->r_gain);
-+		if (ret == 0 && ci->r_gain > AD7606_CALIB_GAIN_MAX)
-+			return -EINVAL;
-+
- 		return 0;
- 	}
- 
-@@ -1352,6 +1368,23 @@ static int ad7606b_sw_mode_setup(struct iio_dev *indio_dev)
- 	return st->bops->sw_mode_config(indio_dev);
- }
- 
-+static int ad7606_set_gain_calib(struct ad7606_state *st)
-+{
-+	struct ad7606_chan_info *ci;
-+	int i, ret;
-+
-+	for (i = 0; i < st->chip_info->num_adc_channels; i++) {
-+		ci = &st->chan_info[i];
-+		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(i),
-+					  DIV_ROUND_CLOSEST(ci->r_gain,
-+						AD7606_CALIB_GAIN_STEP));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int ad7606_probe_channels(struct iio_dev *indio_dev)
- {
- 	struct ad7606_state *st = iio_priv(indio_dev);
-@@ -1630,6 +1663,12 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 		st->chip_info->sw_setup_cb(indio_dev);
- 	}
- 
-+	if (st->sw_mode_en && st->chip_info->calib_gain_avail) {
-+		ret = ad7606_set_gain_calib(st);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return devm_iio_device_register(dev, indio_dev);
- }
- EXPORT_SYMBOL_NS_GPL(ad7606_probe, "IIO_AD7606");
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index 26db8e3c724f47f68b7d5323f5d1db75b3334540..2951bb731354d64cbec6e8460b3d841a22bb17ec 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -66,6 +66,7 @@ typedef int (*ad7606_sw_setup_cb_t)(struct iio_dev *indio_dev);
-  * @init_delay_ms:	required delay in milliseconds for initialization
-  *			after a restart
-  * @offload_storagebits: storage bits used by the offload hw implementation
-+ * @calib_gain_avail:   chip supports gain calibration
-  * @calib_offset_avail: pointer to offset calibration range/limits array
-  * @calib_phase_avail:  pointer to phase calibration range/limits array
-  */
-@@ -81,6 +82,7 @@ struct ad7606_chip_info {
- 	bool				os_req_reset;
- 	unsigned long			init_delay_ms;
- 	u8				offload_storagebits;
-+	bool				calib_gain_avail;
- 	const int			*calib_offset_avail;
- 	const int			(*calib_phase_avail)[2];
- };
-@@ -92,6 +94,8 @@ struct ad7606_chip_info {
-  * @range:		voltage range selection, selects which scale to apply
-  * @reg_offset:		offset for the register value, to be applied when
-  *			writing the value of 'range' to the register value
-+ * @r_gain:		gain resistor value in ohms, to be set to match the
-+ *                      external r_filter value
-  */
- struct ad7606_chan_info {
- #define AD760X_MAX_SCALES		16
-@@ -99,6 +103,7 @@ struct ad7606_chan_info {
- 	unsigned int			num_scales;
- 	unsigned int			range;
- 	unsigned int			reg_offset;
-+	unsigned int			r_gain;
- };
- 
- /**
+I will remove the M24LR_PAGESIZE_DEFAULT, i do not needed any more
+and about the to_sys_entry, i am using it in show and store callbacks
 
--- 
-2.49.0
+>> +static ssize_t m24lr_ctl_store(struct device *dev, struct device_attribute *attr,
+>> +			       const char *buf, size_t count)
+>> +{
+>> +	struct m24lr *m24lr = i2c_get_clientdata(to_i2c_client(dev));
+>> +	struct m24lr_sys_entry *entry = to_sys_entry(attr);
+>
+> Why isn't this just going off of the device?  Are you using single
+> show/store callbacks for multiple attribute types?
+>
+>> +	unsigned int reg_size = entry->reg_size;
+>> +	unsigned int reg_addr = entry->reg_addr;
 
+> Ah, you are.  Are you sure you need/want to do that?
+
+For registers that do not require any special processing, it's sufficient
+to directly pass the value to the device. In such cases, a generic store
+callback is appropriate. Other registers that require specific handling
+have dedicated store callbacks. For example, the unlock attribute uses
+its own specialized implementation.
+
+>> +	u8 output[8];
+>> +	int err = 0;
+>> +
+>> +	if (unlikely(!count))
+>
+> likely/unlikely can ONLY be used when you can benchmark the difference
+> in the speed of not having it.  For a sysfs file, that's not needed at
+> all, please remove all of these.
+
+Alright, i will do that
+
+>> +		return -EINVAL;
+>> +
+>> +	if (count > (reg_size << 1))
+>> +		return -EINVAL;
+>> +
+>> +	if (unlikely(!is_power_of_2(reg_size) || reg_size > 8)) {
+>> +		dev_dbg(dev,
+>> +			"Invalid register size: must be a power of 2 and <= 8 bytes (%u)\n",
+>> +			reg_size);
+>> +		return -EIO;
+>
+> Not -EINVAL?  This isn't an I/O error.
+
+The last if statement is primarily for debugging purposes. The reg_size
+value is specified internally by the driver (not user-controlled), so
+this check helps catch potential mistakes in the driver's sysfs entry
+definitions. That's why I used -EIO instead of -EINVAL, as it's not due
+to invalid user input but rather an internal misconfiguration.
+
+>> +	n_sss = chip->n_sss_entries;
+>> +	if (n_sss) {
+>> +		sss = devm_kzalloc(dev, n_sss * sizeof(struct m24lr_sys_entry),
+>> +				   GFP_KERNEL);
+>> +		if (!sss)
+>> +			return -ENOMEM;
+>> +
+>> +		for (i = 0; i < n_sss; i++) {
+>> +			char *name = devm_kasprintf(dev, GFP_KERNEL, "sss%d", i);
+>> +
+>> +			sss[i].reg_size = 1;
+>> +			sss[i].reg_addr = i;
+>> +			sss[i].attr.attr.name = name;
+>> +			sss[i].attr.attr.mode = 0600;
+>> +			sss[i].attr.show = m24lr_ctl_show;
+>> +			sss[i].attr.store = m24lr_ctl_store;
+>> +
+>> +			err = device_create_file(dev, &sss[i].attr);
+>
+> You just raced with userspace and lost. This is not how to do this,
+> please do not dynamically create attributes (hint, this should have
+> errored out as you didn't correctly initialize them), but also:
+
+I didn't fully understand where the race condition comes from. Is
+the issue caused by calling device_create_file() from within the
+probe() function, or is it due to the fact that the attributes
+are being allocated dynamically rather than defined statically?
+
+>
+>> +			if (err)
+>> +				dev_warn(dev,
+>> +					 "Failed to create sysfs entry '%s'\n",
+>> +					 name);
+>
+> You do not unwind properly if an error happens.
+>
+> Just use a default attribute group attached to the driver and the driver
+> core will handle all of that logic for you automatically. Making the
+> code smaller and even better yet, correct :)
+
+Thanks for clarifying this point. I'll rework the implementation
+to use a default attribute_group
+
+Best regards,
+Abd-Alrhman Masalkhi
 
