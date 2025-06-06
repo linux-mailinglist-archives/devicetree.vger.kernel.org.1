@@ -1,116 +1,208 @@
-Return-Path: <devicetree+bounces-183336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366B9AD02C4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:05:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81480AD02D9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:11:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00018177138
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 13:05:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC6E53B11D2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 13:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC0E288504;
-	Fri,  6 Jun 2025 13:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272C6289355;
+	Fri,  6 Jun 2025 13:10:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LtWe8aeq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46213288C80;
-	Fri,  6 Jun 2025 13:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B7120330;
+	Fri,  6 Jun 2025 13:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749215114; cv=none; b=TjlAQW4TkahnFD70xG0AXkuGfIEOqZQzjuu6Arb/OqDG2dpsHiVIbvsZzPoZ6ts1HVQPUomtGzunU4ZXp3i2tSqZlj0UlpcFYdOG+E0RVPHIhVPTp6Ps4+eMPApn8b7OfWHzPYYlcrNskiWqA/NS20emKv5Y5HUaBOXq5TkbHY0=
+	t=1749215441; cv=none; b=RmLQ+HYmWJZgbhqsw1u95ON7pF9EPpcEccnxHpoQO8usk0JcN1fwwUi7pD6UPVujh6q9/Z9ePvNyq8tmG6Pap0Vk0FQwKaNr8YJBbKjXXughGLlF3vPwG4VeGKEnWxkIyVfP9w/jIi40/MWRHkS2egI6vv6EiRC2CvP92ilnboA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749215114; c=relaxed/simple;
-	bh=4OB8rRNnYyxfAn7/3hyYL1XNoSisYk8DCDF9QSdxXWE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YrkaXUWF7Ctu/v9ct8mOUWyMPonhxJydKMnj4jY0LrQ9AlnvmaEfpOJb8LKchu7sZHEOUv2iC3CGilBLvMTmKSj1WYcWiJ5FOATNsRyQNkFaIvHq+G70Onht4mf9cYkC6byI+e4JYDAJ4PYEsY7CFlzf8sueOccMTZKghidk/pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-408e0986303so1572184b6e.2;
-        Fri, 06 Jun 2025 06:05:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749215109; x=1749819909;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P4smyQ+8WqK0jxifR87KRhifMuRayG5/N77gUPFqbRM=;
-        b=czYqHBOJGa3AHoLWi48JCmxeXHDrfg5szWUef+4IcUSiY0o/cm7DFYJPiqs8RVv2MX
-         POr41VPwQo4W/OLojRp+L3RJriEbT0niITvmfY4SZ0yQf0AXXbwRP6SgEJ/bhOBFt4JU
-         tyKWfGsbdxx6gNfKaW4dY9+/1gQpNxk/DfxQR1VcgXJpNhtXk71Yv0fl9fKdyfOZJM/N
-         MJgs5u2yE4K4cukbvz9dMvIHUD6kzVxKBWaX0yuBldbPz0uEkhWbhuq6TWYNM+OjWCCn
-         RyWa0ziG0vnYZu9V5dXE9HS8bmDx9j8rP3g7fnth8ke68iZvzaY0GuQtCUz8YaOeRtyO
-         QXkw==
-X-Forwarded-Encrypted: i=1; AJvYcCUoBysI3oPN6mLuX0odRAF16nvXyYAAcNoSYnrMARUzNvQqmtOWCfOlS/fbs65dvvi7JEgHPnTCsHkN+cZNhk9jDvs=@vger.kernel.org, AJvYcCVdcTFfX/DGb07aOv1gukNjQRmkj9EwsNX7pRR/c+omNFwbRTv3DM2TY5zBdk4WDdjownp54aEihPahlqYH@vger.kernel.org, AJvYcCVk2OkmjGtjlyNujYMpQrogg5MyB6pWL6uXvKQASYB58YxBR4mWFRNBgGNAHaUJVYuS3Wt5/46hjD+v@vger.kernel.org, AJvYcCWMPnWAtBmGwMA6CrYuGO1e5G5j4xsAkGafwDRMg7+LMwythnlQ6x3qtPTk1yFDJ95bojiq9qU9v/iB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg0Y8xNcoXCPmDuBax2K7BVORHClmhRJ1I9rXspUgLokisQWzZ
-	86CIPc+cz1BrzybYwhit3r2Rqiz230a0GReG1bMlHveqpsqHycbVxKOl9t/AzJVQ
-X-Gm-Gg: ASbGncuuwQr8CvOz/OzxXmyog8N32vUuqb/M7lkJllhsm+UEpK0Zn0eLYrlzU/nt468
-	V19J6yN/Fn9J4DqtJwfkZXMl6H44DEC1DiXsoh2oo1aelgfXlYBrgpnTm4peE6gZw17ecCuZEMq
-	VnvU85nlng7AhEpmCJ+Tq8WqJA3Yeb/k4PXDr1z0+vOc/OCYWVuoBhK1qYHyHdebTpX0uu27Ras
-	GJo+uaxNkYmnW0uzht4B3aFe5sCBfugSTy+VPiX87AAqb8pQZIxpj8kH2hYUxcQn1hV2uDn8c/v
-	F3F0llh6erdKJxhUoM4y/+XuJZxZ2v1ZgMvHms5AGG6DsK0jRE7j9lKg3gywMLKL+O57WQnraM2
-	iZJkfn7VERMjbWQ==
-X-Google-Smtp-Source: AGHT+IEmuW2nj1cLyaotcR1JMQ67J+dMe0mE4Y/SpoqVoE9+UQfXUp3ChqvjyWvlG5a2rMPARV4P6g==
-X-Received: by 2002:a05:6808:30a4:b0:404:f4a0:7fbf with SMTP id 5614622812f47-40905134ec3mr2517084b6e.31.1749215109352;
-        Fri, 06 Jun 2025 06:05:09 -0700 (PDT)
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com. [209.85.210.42])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7388a089859sm270017a34.63.2025.06.06.06.05.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jun 2025 06:05:09 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7306482f958so1324643a34.0;
-        Fri, 06 Jun 2025 06:05:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW8ntkU3G26yamwe2NBmXgIa833ehiPgTbLoBs1RWiwwE+MiNGUfCOZ4VMjiC2YLfcNS5OdAh13Kytr@vger.kernel.org, AJvYcCXYYj90O+N+UX20WyUVoyp/FOiBCkNpEmL30vKk9trY6sQgJHQRQwwuLfsFh1vkWkTLQzpj5C2Au/XsJBvEKGpSf+I=@vger.kernel.org, AJvYcCXcNqWrSS+4bQL64D2KlHSJ82xOaev2asyNqiF0mrti/s+/1KoJmb6PaTS2SA1O8H2RY47kaOVAgmCM9Wvt@vger.kernel.org, AJvYcCXutMri7ZeS02so72sx8ILBdBLus7GqczGoC7QzjnM/0yf+wMuseU+v8ycQnAsLs2cUw+XIZCFTUnI5@vger.kernel.org
-X-Received: by 2002:a05:6830:6617:b0:72b:9506:8db6 with SMTP id
- 46e09a7af769-73888dba453mr1953425a34.6.1749215108231; Fri, 06 Jun 2025
- 06:05:08 -0700 (PDT)
+	s=arc-20240116; t=1749215441; c=relaxed/simple;
+	bh=SVug/aqo8cSEHImdiHsS6qvrHQEZSQXQzALJ1QQBjc8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jBL4mr+C00GV8Uv1ozjoN2sUnpk+PITLQrYT86g/d2HCqqKBmqEz1M0P4MhlpvaHZ+rUYjp5oSwaCkL8Plv7pggBQYzBaMinEYb01f7Ex2Fxbd4wTOjgtIF+nnT6hGuuG5TZ1nEcI49RMOyT8dK+w2QAQTvebhWLr2dqLAJ56tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LtWe8aeq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70574C4CEEB;
+	Fri,  6 Jun 2025 13:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749215440;
+	bh=SVug/aqo8cSEHImdiHsS6qvrHQEZSQXQzALJ1QQBjc8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LtWe8aeqA1NV6B9qkEA63h4NPUHc/zV0YEvSo3zEq/Dr4Lp5CMm3wtVao65ykvhbI
+	 KCRr2PgypwdAv4ZovXTuAlvcr6yQQEPWmgo3gTEQjxxYNy7nKx+oAypzQmRW1g32PL
+	 KKcQ5umixD5eRohYLr02361sDOhuF9zxNdpciY4F8dFkdSVG10DU1kJRIME9ZXs9Zq
+	 k4UvkdIyRf8qZHPsXef8iSIzBcihT8Hs1ohUjEAQ5cJeRkyDhXpGWCeC6TTBDxL0L2
+	 1FkfYxYDT7xYqvGvqC+33wuTf8ZfXXrqM00CH7fcj4UlNXPJRMDYViJahJhLc3EGwc
+	 cMcLUgrmYxK/A==
+Message-ID: <8ac3c2da-2824-44fe-942c-fceb8b6f5332@kernel.org>
+Date: Fri, 6 Jun 2025 15:10:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250530143135.366417-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250530143135.366417-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250530143135.366417-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 6 Jun 2025 15:04:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW8yP8Ja90YqjmAAUfwc17WnsX4kLhca_UOSMtcx-J7uA@mail.gmail.com>
-X-Gm-Features: AX0GCFtMgG-6x_z__UisiUo_L1woOb8v1c-Obt5jD9EezPXLPFEEMdGVNQ-j4ok
-Message-ID: <CAMuHMdW8yP8Ja90YqjmAAUfwc17WnsX4kLhca_UOSMtcx-J7uA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: i2c: renesas,riic: Move ref for
- i2c-controller.yaml to the end
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: eeprom: Add ST M24LR support
+To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: arnd@arndb.de, gregkh@linuxfoundation.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20250606120631.3140054-1-abd.masalkhi@gmail.com>
+ <20250606120631.3140054-2-abd.masalkhi@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250606120631.3140054-2-abd.masalkhi@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 30 May 2025 at 16:31, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> In preparation for adding more validation checks, move the `$ref` for
-> 'i2c-controller.yaml' to the end of the file. Also, relocate the
-> conditional check for 'resets' into the 'allOf' block.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 06/06/2025 14:06, Abd-Alrhman Masalkhi wrote:
+> Add support for STMicroelectronics M24LR RFID/NFC EEPROM chips.
+> These devices use two I2C addresses: the primary address provides
+> access to control and system parameter registers, while the
+> secondary address is used for EEPROM access.
+> 
+> Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+> ---
+> Changes in v3:
+>  - Dropped reference to the i2c-mux binding.
+>  - Added reference to the nvmem binding to reflect EEPROM usage.
+>  - Updated 'reg' property to represent the device using two I2C addresses.
+>  - Fixed DT schema errors and yamllint warnings.
+>  - Removed the unused 'pagesize' property.
+> ---
+>  .../devicetree/bindings/misc/st,m24lr.yaml    | 54 +++++++++++++++++++
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
+How did you implement this feedback:
 
-                        Geert
+"That's not a misc device, but eeprom. Place it in appropriate directory."
+?
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+There is no such device as a misc device.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/st,m24lr.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/st,m24lr.yaml b/Documentation/devicetree/bindings/misc/st,m24lr.yaml
+> new file mode 100644
+> index 000000000000..775d218381b7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/st,m24lr.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/st,m24lr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics M24LR NFC/RFID EEPROM
+> +
+> +maintainers:
+> +  - Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+> +
+> +description:
+> +  STMicroelectronics M24LR series are dual-interface (RF + I2C)
+> +  EEPROM chips. These devices support I2C-based access to both
+> +  memory and a system area that controls authentication and configuration.
+> +  They expose two I2C addresses, one for the system parameter sector and
+> +  one for the EEPROM.
+> +
+> +allOf:
+> +  - $ref: /schemas/nvmem/nvmem.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,m24lr04e-r
+> +      - st,m24lr16e-r
+> +      - st,m24lr64e-r
+> +
+> +  reg:
+> +    description:
+> +      Two I2C address, the primary for control registers, the secondary
+> +      for EEPROM access.
+> +    minItems: 2
+> +    maxItems: 2
+
+Replace this all with items and description:
+items:
+  - description: foo
+  - description: bar
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      eeprom@57 {
+> +        compatible = "st,m24lr04e-r";
+> +        reg = <0x57>, /* primary-device */
+> +              <0x53>; /* secondary-device */
+
+Where is the rest of at24 properties? Not relevant? Not correct? I had
+impression this is fully at24 compatible.
+
+
+Best regards,
+Krzysztof
 
