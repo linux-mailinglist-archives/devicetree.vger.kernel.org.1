@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-183364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868D7AD03DE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:21:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D42AD03E3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:21:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74FFF3B169D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:20:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA918178A89
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA6B1A2C25;
-	Fri,  6 Jun 2025 14:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0620E1C5F2C;
+	Fri,  6 Jun 2025 14:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lLtuejX3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xl8zDuQg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421DF1519BF
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 14:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9CC919DF6A
+	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 14:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749219645; cv=none; b=vGKOBHtBhLPuozpzw6I2FmXaZnjkVM5wIn1e6iLIfhQpsKuOPFGrCSwxcpBh1U7w+NmLeS3hpPFqit9NdCgnaRJApVH1N2Nh8G7AOQBiinLgABdRnmqzNm8DuqqqYHjJKdoOtgU6Bg+QAPh06lozICAWVnMnjralQUV3OdtxmAc=
+	t=1749219646; cv=none; b=bp1gJVIXf65Gi5KhjxYK32H3vEXyDiE34B0/+FF5Kni8xyNSTlEF7/CMtld0BaGnvaVGvuQyEpLb0823S88BZMf3OXmkItff8/smKzZnwFIO8pF07LDMR65nhzmbLEVqA2HBj8aUabzou8/K8dvx86HYS1ti8Ydip7DPw7/ikUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749219645; c=relaxed/simple;
-	bh=NtotUFQE861trIH/6KVUMJlh1RHFkSekY2PpGsDNTzs=;
+	s=arc-20240116; t=1749219646; c=relaxed/simple;
+	bh=gYfEpf2B0eWfEeN9J0NWkVxgQeOXhE0vWQqSI1AdL6w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LAK1edw4Pgtahw27Pjar+YTBDOwxLAfuZ9k46N3IjJa3KR7VS78hgzJzb9vd96AV0DlopDDqQtpFIA1dTcogrwT3VxGqW0RC1AbhMBoftM67hPPhKmJWfo54huplAEUS3N2WvxgWzUVvE/iQvEci56gxvr1XP961mkiY71LzUNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lLtuejX3; arc=none smtp.client-ip=209.85.221.51
+	 In-Reply-To:To:Cc; b=O0P9nBLBKlpH9gNj9Q4lf3lvL1kJ6dCOjzE+ccOz7cnimr2O3tWgsgAoen0s5+SCdhXzNT0DMDCROogobk3Y8zAEXSdBCX16DNN3PeJ8UQTrx50ZgUsrT3WWmXAZRWGxQGhJm7zd/+b6LsU6D0PCaXQgOJhVgIPcX0WFlk8lw70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xl8zDuQg; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a52874d593so1959571f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 07:20:43 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a36748920cso2098263f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 07:20:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749219642; x=1749824442; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749219643; x=1749824443; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SSPYC82OHD2BI/YU/tjmuoLa3AQcRKZBypSGl/10x2A=;
-        b=lLtuejX3slvpCHU5i4svKXMgnvnLvKMSNrDwTfrfZr4seE5NN7DXsUvdXy8mAhg8zc
-         vLxQ5Z+RK7lcPCEH84kmRBoq1WU9PJHqXpVZVTqAAnGeb+Obw5hmv22WqkFDvfA3UtNh
-         +0xUY1Lxb1DWn4INjEkWAWYmkh5LF5BqaeUMGrH2tgaLfnEA1qoMIv6jszDUagmREmWp
-         BZ9ypARgXCHZ/5U2CMMJqRg8fXliJaMI+vMnAjwa1oo3r2ra7x+q5AlsCrVYF0venqFi
-         jW5Plgraw/5hXShlLZ0Zhjm4kBFG6psp6PxVhpn7RrfTcJcgDwfamj+FMtI+viXtjwsA
-         llmw==
+        bh=G1WuSemWPuN4SdNDyJuKtWMwJnRcINbePcyuYFAeNSg=;
+        b=xl8zDuQgOcvXr26pndVTz9RWxSiJfigwaOWDjUCCUw52d27jJEQnYgTocxzmfC2Uwo
+         900ElBBmYlOzi8NeBJoHUsZ7w6mKaPDyJEDPJUaWgO1bOpm/oZRnoyC0WIlL7dLzQg9S
+         ZI1r+ZBKdT4QF1zAfNB8BOZLo/SfrqYpnvIdursH11lOLSDrmUYJXh25v12npT40okEE
+         A2WWcLv345N0PNBY62VpXLKN8ni4d8PHNHn4dsCr7KSjssjBp9UnKoCm5aKhDdH3bgjA
+         5V4Jj7xjRpYOcomRJj9A2o9EH9dYJmtWsFByvR8oqhW3ol0BhwCPW8Rej6B/xahn6Fy+
+         aPdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749219642; x=1749824442;
+        d=1e100.net; s=20230601; t=1749219643; x=1749824443;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SSPYC82OHD2BI/YU/tjmuoLa3AQcRKZBypSGl/10x2A=;
-        b=BHCzPGUx9ruiU/6wFf5zXfuVl+P139w5OVIwiLcP+gdb8abn1YPV3zNzYJM7E44TRG
-         RTMGO/vW+QikTwUQeAH9iW3rlMF4zdi3LE2uL9Eh4Y0CcDruTyOudUQOC0RfWGD6LnS9
-         N/eMLqJTd1xbznVvRnktCgbYTsI9xF8YyBk5mzlxjxZb7mIDDv9OaApXOJT+U+UA+E5t
-         d5TQ/nb/I8sEbD4+XaxPJ8s/xjh2PX0ivIVnUvjTdPHVZBqCe9GuqE1x4QO02LZvy1jF
-         unD+vZ/v/UtqlRg7EQ3BTU6emCYA+RujlSoghqNZHec+6lS2fFgTBxe639gElwfCGjTz
-         iaHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUL9E6AnesO7McH+Mbvp1mWO4rVcZ10pqtDhB+yyVGWCm1hsR5Cywhfu60OxevG95lPiJVRtyKCLjRN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxBXG8fOB5xc2EpBsIg6vcW+OtMK++fN+Edh6mwtrbqOby8lO8
-	NosvBDEmzXJoxKWkCH9dG2vH4aKbg2/598O2Yyo0MqY2AJI1O9P22/gGYnRYezlCIm4=
-X-Gm-Gg: ASbGncuvUkEPePhhyhIpfqZZ+a5KttTCfXVmzQncLykhqTKlVzh0aNktlmlDJ5DxQKi
-	ihc8bPXE5WePbnbpyvXR1dv3qfrDWVP2VLgPkbaEgd+0liZgnXhZcDtUHNYQ4lLxLLXHMEL2G3d
-	aQVCH8ZBuXz6rHRAOXlDOSsz/aAkr1AXLjVTjh6lzJqZePDcff+61ek9+Y/kEvWc951PNA1afmP
-	ZSVOjy+NV5fdpK1HunFfKsMo3KwkIreUyvjZ6VWV5DC6zHzU6/K9zhCuDcIxp5cXlFNCe3f5Ahn
-	JBx/L9DnG6AQYHJfoQEGWmPMxnlSbOzN+5xVKzDXEtc+sTouOVFwnxm38vTfJovA7dDtNntyEDq
-	rQY1VNr1A4d8kfhkkqF9j84CJ9LHrzisDvkaEkHG2LA==
-X-Google-Smtp-Source: AGHT+IEPSADRuivjsBAwnxDwELX3J0cYKMrPAlNjoba2OLvJNlyJgJfrVNB7PQfFuEos6eyJm7zU2g==
-X-Received: by 2002:a05:6000:22c4:b0:3a5:2f23:3789 with SMTP id ffacd0b85a97d-3a53188d5cfmr2988081f8f.15.1749219641589;
-        Fri, 06 Jun 2025 07:20:41 -0700 (PDT)
+        bh=G1WuSemWPuN4SdNDyJuKtWMwJnRcINbePcyuYFAeNSg=;
+        b=HK3bvqraYdubAUBgRcB72FHUtaQlTFZgRREZT3UTvurYYy2bq6WjrWCltjPv+fTP8p
+         2odkjvPyl2et05LXddRlkFUclzOYE6WQG854ptc34GPtTKB/FRhC4WuHjxC85lcH3Rn/
+         cekMjOHRwnDsTbCqYg974cIgZ/mOAfdihist3A7jLQ87SdJ8ag2teQWCp9poShxAvh+D
+         cC2i0E91QmFWe9l3dGpzX+xk5ko1TPsCP8uYVmlQGk2/OjPaReCh7BjHP8iOIf3TBzXa
+         yEnpFKiN1cXAXW/PTelWl7uasDfMj1LH+7k7LZRhA94ZTYuRTyyc8UqtzfPVZ2o7jIp5
+         YrJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXwn5M++KQHUk39lSXz54zSZO6I9Rer3T23cfhZqVH5B3OOqOH0AvKGyTD24K/EzlkjoI7zzGuQAg5V@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhfB8pshMKLuRGeNuhoNHAWaIBufKMP4HEdEUU4Ms14a0uosnw
+	u7LrJq1S+nyHzL/1h5n01akYJMVRMFUOx2a6NunESLKUNHokZfj6vj9XS5pC35DJPgE=
+X-Gm-Gg: ASbGncuB/PRHl4HZO8QEafptlAxmKUTUVhIoJeV4m+15u3UHZr9mYoHrA3VM2HnK9WH
+	sU4LJ6nzIaNSK/2IkK/abUnOWXKl0XZcuYOHLt9LxCgE/c7A3BgLnpC0VQKPnpGa1ZY5bLKwvhX
+	8Ek5B667LRCd3RMFRnOrTHw4NNWa05XsLsdy5ovtOIOVb5eysHG/c2lVXgj+OuHHpFdLPUrAYS2
+	PGuVfcMVEV8LhrRZVKkmFs6aT1HI3TI049CS2P1Lpce/2Pwj1b7+10MWqT/BQhOM4yDjyG3ogsl
+	Y0d+el2FGwQESLc7v1UX7K+RrRpkAlNoVmrUCqDXB+mpTN3dEcYYUorzdvKxquYxWgg0nJcXFtb
+	BzDIATFjY75X5x5ETFAFjG2i0IeRzmFw=
+X-Google-Smtp-Source: AGHT+IFtlzsfvKdrGidMqXsh4h0hFXBsNFDQ1/vkDgbyZn8qf/GpmYhHZbaV81p1vbt2rpfR/6BT2w==
+X-Received: by 2002:a05:6000:2288:b0:3a4:f8fa:8a3a with SMTP id ffacd0b85a97d-3a53188d961mr2814047f8f.18.1749219643145;
+        Fri, 06 Jun 2025 07:20:43 -0700 (PDT)
 Received: from [192.168.0.2] (host-80-116-51-117.retail.telecomitalia.it. [80.116.51.117])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45213754973sm25686345e9.35.2025.06.06.07.20.40
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45213754973sm25686345e9.35.2025.06.06.07.20.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 07:20:41 -0700 (PDT)
+        Fri, 06 Jun 2025 07:20:42 -0700 (PDT)
 From: Angelo Dureghello <adureghello@baylibre.com>
 X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Fri, 06 Jun 2025 16:19:19 +0200
-Subject: [PATCH v9 4/7] dt-bindings: iio: adc: adi,ad7606: add gain
- calibration support
+Date: Fri, 06 Jun 2025 16:19:20 +0200
+Subject: [PATCH v9 5/7] iio: adc: ad7606: exit for invalid fdt dt_schema
+ properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250606-wip-bl-ad7606-calibration-v9-4-6e014a1f92a2@baylibre.com>
+Message-Id: <20250606-wip-bl-ad7606-calibration-v9-5-6e014a1f92a2@baylibre.com>
 References: <20250606-wip-bl-ad7606-calibration-v9-0-6e014a1f92a2@baylibre.com>
 In-Reply-To: <20250606-wip-bl-ad7606-calibration-v9-0-6e014a1f92a2@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -98,83 +98,55 @@ To: Jonathan Cameron <jic23@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Michael Hennerich <michael.hennerich@analog.com>, 
- devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2030;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1153;
  i=adureghello@baylibre.com; h=from:subject:message-id;
- bh=mK1GoQiX2hS20/yC/1czrPjfc5t1uAwSltJDkMx72Mc=;
- b=owGbwMvMwCXGf3bn1e/btlsznlZLYshw+vGszPKRm63gXMlsYU25p/+9pCYJzNvw3ZXJrWmy5
- gVJ5oV7O0pZGMS4GGTFFFnqEiNMQm+HSikvYJwNM4eVCWQIAxenAEzE6jbDf8cJPqdERXo7/dob
- 1gZM6W+U/um4QMru1QcHV5v1Fr//xwJVuF/PW/jn7zF1he36bNKT+jU05/3ebmv1ZN1pB4UAVQ4
- eAA==
+ bh=RXow6w1uaNfMkBVbDyKeZVZMYqn8OBoe2df7BYhUk/U=;
+ b=owGbwMvMwCXGf3bn1e/btlsznlZLYshw+vHse9SpmdYf179kvjN5/seTMywr79gmJh3gnBwbK
+ pF668miZR2lLAxiXAyyYoosdYkRJqG3Q6WUFzDOhpnDygQyhIGLUwAm4uTIyDBpwyLzDUkNLtua
+ 7j08+P22bl+43sTQnbIHNP4UZh+48bCf4a80x7GdF/Rj1i77ov0u/d6vGTIef2xfB5w48a9jU27
+ goxw+AA==
 X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
  fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
 
 From: Angelo Dureghello <adureghello@baylibre.com>
 
-Add gain calibration support by a per-channel resistor value.
+Fix ad7606_get_chan_config() fdt parsing function to exit for error in
+case of invalid dt_schema values.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Idea is to not proceed when there are values that are not allowed under
+the dt_schema.
+
 Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 ---
- .../devicetree/bindings/iio/adc/adi,ad7606.yaml    | 29 ++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ drivers/iio/adc/ad7606.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-index 29f12d650442b8ff2eb455306ce59a0e87867ddd..6926f5f090ad6bbbe7bfd9327dc5ae17dafcd1fd 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-@@ -204,6 +204,15 @@ patternProperties:
-           considered a bipolar differential channel. Otherwise it is bipolar
-           single-ended.
+diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+index f0c22365f23fa2bf00edddcdd7d608bd1393bf28..e5878974a28293664dd8dbded5fffcea6db31ef3 100644
+--- a/drivers/iio/adc/ad7606.c
++++ b/drivers/iio/adc/ad7606.c
+@@ -319,15 +319,13 @@ static int ad7606_get_chan_config(struct iio_dev *indio_dev, int ch,
  
-+      adi,rfilter-ohms:
-+        description:
-+          For ADCs that supports gain calibration, this property must be set to
-+          the value of the external RFilter resistor. Proper gain error
-+          correction is applied based on this value.
-+        default: 0
-+        minimum: 0
-+        maximum: 64512
-+
-     required:
-       - reg
-       - bipolar
-@@ -256,6 +265,25 @@ allOf:
-       properties:
-         adi,oversampling-ratio-gpios: false
+ 		ret = fwnode_property_read_u32(child, "reg", &reg);
+ 		if (ret)
+-			continue;
++			return ret;
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7605-4
-+              - adi,ad7606-4
-+              - adi,ad7606-6
-+              - adi,ad7606-8
-+              - adi,ad7607
-+              - adi,ad7608
-+              - adi,ad7609
-+              - adi,ad7616
-+    then:
-+      patternProperties:
-+        "^channel@[0-9a-f]+$":
-+          properties:
-+            adi,rfilter-ohms: false
-+
-   - if:
-       properties:
-         compatible:
-@@ -398,6 +426,7 @@ examples:
-                 reg = <8>;
-                 diff-channels = <8 8>;
-                 bipolar;
-+                adi,rfilter-ohms = <2048>;
-             };
+ 		/* channel number (here) is from 1 to num_channels */
+-		if (reg < 1 || reg > num_channels) {
+-			dev_warn(dev,
+-				 "Invalid channel number (ignoring): %d\n", reg);
+-			continue;
+-		}
++		if (reg < 1 || reg > num_channels)
++			return -EINVAL;
  
-         };
++		/* Loop until we are in the right channel. */
+ 		if (reg != (ch + 1))
+ 			continue;
+ 
 
 -- 
 2.49.0
