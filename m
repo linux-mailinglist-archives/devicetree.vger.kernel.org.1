@@ -1,204 +1,239 @@
-Return-Path: <devicetree+bounces-183374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CF5AD0444
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:53:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702B6AD0453
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:57:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEDF47AB146
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:52:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5C4518971D6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D871C831A;
-	Fri,  6 Jun 2025 14:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7335225F793;
+	Fri,  6 Jun 2025 14:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K5tFHyqy"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ji+tBwGY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8596F1AA7A6
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 14:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FC41D5CE8
+	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 14:57:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749221615; cv=none; b=mA3M1/Tl3adGrvVqqnAZfRQ5p/LAmOdgv+J0zY/YDzT0cyisaJsAg4u7MjGUns7ZX85lNjRdoXk9I9z4JYriV8rdinnDAZETWluZxJo1JyC5QWgJuEzzjS+H/LE4PwXTnCXBtOS+GhO2VSl7BGNF7KQDTsa+LTtDwx3nRhqbmbE=
+	t=1749221837; cv=none; b=OKOAYqYvCuHl3U4Ke88abxSCeu8eGtl7QJb4E9865XwhLQ6wDZtI9iI7LaKWB4l7Kg/c9EkwLzeUlpE0rHetDL4njxsoDz1PoZ3m1Y2X77X2+O7QQIGqkP5kK3mTdE0s/JzlS4VUrsH3x2+ukwQMF1zQSX8zs3foHSmC+3eqdL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749221615; c=relaxed/simple;
-	bh=w+Omoq+vlVHzV4IfFXuuzmED1zDs8T0KXnjptRaXDI0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D1EfnNujaxdS2iiy2bxaWfEZIEymWF83+Xr3g4DZiWU/Mpf7liJiQ4sgeA5FttGXxcERmwVzpuRRcRWKIhe/Ya0oRnP7vHLr+cWR1PfaFJMf5kVq1iXUKhj8OlZ0roskAcUPDritDExmeX2+UPiXROK5GhMEFjggbtOci+Rilbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K5tFHyqy; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a4e742dc97so2155625f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 07:53:33 -0700 (PDT)
+	s=arc-20240116; t=1749221837; c=relaxed/simple;
+	bh=ia7pnAGyVV1EpMWakQwBtxjI3bEZOeCvt8bf0l4HQIg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cE9FyePVGKWlKlUPaVWws+E/7Wn87A+zyegd86ep7CXfNBzwXA09BWCxSFaU2dQe9SEJvJO05cV63/4SLjPQQFMRv7pKNo85khp0GP8Vi1QJiKfiktt6e1RdPRrsSGu9+B15SL5TjZqHS8QiK1EeSNXWxLachwOrXMU2YKzb3Ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ji+tBwGY; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-450cea01b9cso7340855e9.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 07:57:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749221612; x=1749826412; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kuzIRk+RYz/0vZCl8riGldIGv+a0bdZGEeVS47CS15M=;
-        b=K5tFHyqyz+Li74bh7idNremcXgPsTTUyBe+sOReCL+i/RLieixawvXkeMkYNcKZLJr
-         4J/fusH1Js21c4jc6NHAwX6jZRtFM66/58X9AioEjIzX8CacYfj2BUz8nIkWzkzTUURf
-         9k/L9iCUO8GqOJ0AIuXpn2K0erbw+Ikqj6fWkBOW8q7/Lw6ngVCbR6q6WTUghOogXRCl
-         w+lA+GrBbNN2Igm3ZJXS0L2UxF+Y1s7+QgMSE3vvG5beCl1/FwUhcGNQNPxuITd0qu4r
-         4NooCi1TPZMi9Wj5zyWsLMwboQnzGKwlnYoEME/Ri13j0Y7q95E6wz83TYGBJZLlbEmI
-         RCjg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749221832; x=1749826632; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ybeh6r8IJ9MMaBfEPZurC85ycYwc4zI6taH+XBEB7iM=;
+        b=Ji+tBwGYkavoDMO2lvr8lzuKAde/GcNvyhsdvCc7YKkXSjig9iG67tFKvktaWtZBn2
+         T7mCDqAZ6U/+1BKCqd9rDB9bOIxlFWSfOVifoMs4oZpfxLjy7FG+BYVr66OIG0Szrg7W
+         a4vB934BQzNaw5DZeH86zO8SPDoPSJK7lUrdpDMtzn0stPutv2tFFN5GuMaePUTRX3vG
+         qYFbWgUbtJSyvOqF99X5tvsOpwCO2Y3dKtSh27EgxILr7LROSDFiVhCIany08F0uKbfL
+         No1jRCDMM/YVZrQz78c/Kso8fbr3t9WjvZe79kTIdyAbQqppe06i70kCYc7r4lIIXNN6
+         z2Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749221612; x=1749826412;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kuzIRk+RYz/0vZCl8riGldIGv+a0bdZGEeVS47CS15M=;
-        b=hsQV2i8aDe40OftdpBQrggVsJaFaybWnNnHnPA3XQfrP7/eyhpe8KnbtAnBFOe6B0D
-         TkX2gX4dYfVayhYNLILWKDp/6zDPnWSnACPdNcYmEuIIsG5fJjKkG45/9s3E8SswY3YW
-         PNnaa+fUbZPjxHwIhiJhitqhbFIqp2BmcjdQovG2iQqIpb4URPQFf7XgiPSyWAd6mGg5
-         Aa9DzbZ5snMA8BN73el5AS0h0rARE0bNCSrfUAtXV+TW/mL8STecyy0ZxFgpx6BiMXB5
-         c2yjeKvErS+0pWZyvbcXBueFowUnPdR9WzR+ieGqxk4nvO1ZYPN8XRrQ9kkmryhFdl2t
-         MdpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV67Tmf5gacd/wCs4MgE59262NP8RCdxxXyYKA93ErWVuWntHtIonvvdG2vWhHdihOeLjc9Tke7jwsD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2cXtlUPqXnpWQFLavxCPLdjnsbOQbsyCt4cHQEWHV5m5V+H23
-	G4N2ZppJTzqYqUohV+v95l0BWHwcFTkCxZXdoJeBgDE6YXmQQ6r9e47YyPGChb2ZUJo=
-X-Gm-Gg: ASbGncsQZQMWHgT2J67MkuRqeO1/fYoKqYzS1QkRJHOsEaS30aZQncfTTv7dw+xWCSP
-	A/J7WjlO4FQT2poBLTo7FPxIS/k0l27RsXzpcG18M/FR+jya02znRoQMvviLZHfCg3bSbKbOYcy
-	4FOQ+NBd3fUWfzOGZAbbUBSXdZwLnwhJc67DDWzRu1sbGQUC46qi5+lgbS3SNmxAK+lyZUHz9n7
-	M7OJ7K8sT6rNuvhm6k7RqM8qH/daDsHp8zwdDWldOlWyM1NKKI8ffeqyP6lyip5c1e8KMzTT4LS
-	5/VCOCHgBevul/jONzM7/D3uyf9jCunxsxWvHWeklAhy+vRPt/C21EHc9H5/wFelP9eihTvZsz1
-	ln3QMzWtwGV0ySX4B
-X-Google-Smtp-Source: AGHT+IHJ08jeEQm4SYRJvPv9bX9J+DzKe5Je/h7iSbK4gB1S4kbI0xJWpsKEGlbxxh3EeBz1RwbNiw==
-X-Received: by 2002:a05:6000:2203:b0:3a4:da0e:517a with SMTP id ffacd0b85a97d-3a526e0cfa0mr7685880f8f.23.1749221611820;
-        Fri, 06 Jun 2025 07:53:31 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5323bee86sm2058411f8f.43.2025.06.06.07.53.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jun 2025 07:53:31 -0700 (PDT)
-Message-ID: <fa6a7983-27bf-40db-9843-0891bdadf523@linaro.org>
-Date: Fri, 6 Jun 2025 15:53:29 +0100
+        d=1e100.net; s=20230601; t=1749221832; x=1749826632;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ybeh6r8IJ9MMaBfEPZurC85ycYwc4zI6taH+XBEB7iM=;
+        b=tnsTLBDq6SIUSViu2KTO5Bj1ed5Bdbn9i4W1iWiAEi3bsTjeBByyd+ZaDNqVlo0Smt
+         62k5YbIGJ7X2snCZHfWzXlCn8OGEfHwT8utLwf5hTHe5zhug+Hk9xic5GkumJSLJm4lH
+         OkKyMkBSKYdIf00DuRlPLeV3LtDVPoe/KzKK33pmMmvlkxzrjOIJ2GpiprjWUmjxv8Vr
+         zCowLvrJhmoRjDr2QEyRwVYCpMhq51SbetZPqxmzrpuZqJI70iYow9DDFdm5NZCNcT6i
+         2HYHfFk0Z/DAG0fK66jcMAar/PBApZ5nno3ytjQ+okFDI6Baq4iIDJ3MQp3Pu96bWrX7
+         e/og==
+X-Forwarded-Encrypted: i=1; AJvYcCUpJd2O8N1UrNKXRLJ2XTgHpfXAC4QiMTUZLGAGHgyAtnZwvE262cojtlGLcNr6Q8x9bOQtwYHtDegt@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdxAZOWfjHIpZVV6iWjcHIeOdTmo0yWYK6HqdnQuL+vG3UfcVw
+	A/hGQUy8s98NlWvnctwBq+tRztN69MXJ4Bo18vytGNO/bsPX5H0nUlfEenI2OsFHuI38aPykthb
+	6UjJo
+X-Gm-Gg: ASbGnct/ytMA6YN+C+N8CclavoN9fT/belV1qSn+KXh+3qFPJc2wnLx52D3T/QQMB5L
+	rvP9ltehQPiF8KPMnxjYNxBUTJz2jNfofLGct2S0LvBRow+gcWMFVGucwgnh7belLFq3lNbyehe
+	j1OZARQ6tZ2ffFJp4SDMOyqRp6PZ+20Zf/3iBuO3fLVtkFtIjDyKvcaQpr2ZsUpekmGPL5wpBvU
+	gOqBb+u+u69oNEC+sgU+wnSNQBk2JIdgnkAI2myPqXrHSEDAg5vqBAz/qnYczdP9OUS9mzXuNA6
+	O8jXJazg3FS6o4dFcOECPhI1o9KTApjcSxcsbIsiZtP7sNSLGgjXelb75+S+fZdjjUBulGSr2Jp
+	xx2S62jCcmpB7/1Kv8A6ZYf+kcr/l
+X-Google-Smtp-Source: AGHT+IEtcBbSWQ+OKjv58Suw5c1swP9aEvffhR8eHp0ff4ePqLrLdMPX0D2MvWAAWZPqN7jMkQVkmg==
+X-Received: by 2002:a05:600c:458a:b0:450:cabd:b4a9 with SMTP id 5b1f17b1804b1-452014ea1ebmr35514085e9.29.1749221832308;
+        Fri, 06 Jun 2025 07:57:12 -0700 (PDT)
+Received: from localhost (p200300f65f13c80400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f13:c804::1b9])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45213754973sm26847055e9.35.2025.06.06.07.57.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jun 2025 07:57:11 -0700 (PDT)
+Date: Fri, 6 Jun 2025 16:57:10 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Sean Anderson <sean.anderson@seco.com>, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Subject: Re: New default binding for PWM devices? [Was: Re: [PATCH]
+ dt-bindings: timer: xlnx,xps-timer: Make PWM in example usable]
+Message-ID: <erst43cabswj3cwnszssolgyoh4dsgrlnjjxhb7luk3qkqhyay@6zyoixljvwwg>
+References: <20250527171504.346696-2-u.kleine-koenig@baylibre.com>
+ <a14be34c-de2a-4bea-9282-1fac7780b9a4@kernel.org>
+ <crk42dsypmbyqk7avldghjq32vslmalfmmouwxzgtdci4agfhz@rkbmxj5z22fx>
+ <20250606141324.GA1383279-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/3] media: venus: enable venus on qcs615
-To: Renjiang Han <quic_renjiang@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Nicolas Dufresne <nicolas.dufresne@collabora.com>
-References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
- <wmri66tkksq6i3hfyoveedq5slghnnpozjzx6gck5r3zsiwsg6@xevgh54rnlqd>
- <285cae4a-219c-4514-818f-34c8225529de@quicinc.com>
- <5854a587-aba7-4e71-87f8-249ba00cbc59@linaro.org>
- <996c9a39-5520-4b43-adfa-06ce29223ba0@quicinc.com>
- <713b87cb-0003-4ee3-a599-9cd41629bb42@kernel.org>
- <7aa36a0f-6741-40c2-93f4-036823d245fd@quicinc.com>
- <247002c0-ee68-4d0d-857a-768bf68bce75@kernel.org>
- <d5aee491-3ba2-4beb-8b8f-4ba8372e6d16@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <d5aee491-3ba2-4beb-8b8f-4ba8372e6d16@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="53f32hgy6vknjdpf"
+Content-Disposition: inline
+In-Reply-To: <20250606141324.GA1383279-robh@kernel.org>
 
-On 06/06/2025 14:32, Renjiang Han wrote:
-> 
-> On 6/6/2025 8:56 PM, Krzysztof Kozlowski wrote:
->> On 06/06/2025 14:51, Renjiang Han wrote:
->>> On 6/6/2025 8:44 PM, Krzysztof Kozlowski wrote:
->>>> On 06/06/2025 14:37, Renjiang Han wrote:
->>>>> On 6/5/2025 8:34 PM, Bryan O'Donoghue wrote:
->>>>>> On 31/05/2025 01:05, Renjiang Han wrote:
->>>>>>>>> Note:
->>>>>>>>> This series consist of DT patches and a venus driver patch. The 
->>>>>>>>> patch
->>>>>>>>> 1/3, which is venus driver patch, can be picked independently 
->>>>>>>>> without
->>>>>>>>> having any functional dependency. But patch 2/3 & patch 3/3, 
->>>>>>>>> which are
->>>>>>>>> DT patches, still depend on [1].
->>>>>>>> I'd say 2/3 and 3/3 still depend on 1/3, otherwise we can get video
->>>>>>>> core
->>>>>>>> on QCS615 over(?)clocked.
->>>>>>> Agree, so we need to make sure that the driver patch is not picked
->>>>>>> after the DT patch.
->>>>>> This statement is confusing.
->>>>>>
->>>>>> 1/3 states that there will be a fallback if there is no OPP table
->>>>>> present.
->>>>>>
->>>>>> Giving the code a glance, I believe that is so, freq_table should be
->>>>>> used if there is no OPP specified in the DT.
->>>>>>
->>>>>> I think we are having a hard time here understanding what you are 
->>>>>> saying.
->>>>>>
->>>>>> My understanding:
->>>>>>
->>>>>> - venus modification is standalone 1/3
->>>>>>     Qcs615 will fallback if no OPP is present
->>>>>>
->>>>>> - dt modification 2/3 3/3 is therefore also independent of driver
->>>>>>
->>>>>> ---
->>>>>> bod
->>>>> yes, let me re-spin this with driver patch alone. Once that gets in,
->>>>> will bring in the DT patches.
->>>> Did you read my feedback? There is no "once that gets in". DTS is an
->>>> independent hardware description and your patchset claiming there is
->>>> dependency is just broken.
->>>>
->>>> I am repeating this since few emails, so shall I NAK it that you will
->>>> address the main issue you have?
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> Hi Krzysztof
->>>
->>> SC7180 and QCS615 use the same video core. Only difference lies in the
->>> freq_table for the video. Freq_table is generally determined at SOC 
->>> level.
->>> The Venus driver does not currently handle freq_table compatibility well
->>> across platforms. This patch enables the driver to use the OPP-table 
->>> from
->>> the DT, addressing the frequency compatibility issue.
->> This does not resolve the main problem at all. If SW cannot use the
->> fallback alone, your fallback has no meaning and is not only confusing
->> but actually incorrect. And based on previous statements like
->> "overclocking" it is not only incorrect, but even harmful.
->>
->> Best regards,
->> Krzysztof
-> The fallback is only triggered when there is no OPP table in the DT.
-> Since the QCS615 DT will include an OPP table, the fallback logic will
-> not be used.
-> 
-> Also, if the freq from the freq_table and the OPP table are the same,
-> would it be acceptable to drop the freq_table from the driver?
 
-If you drop the freq_table, you will need to apply OPPs for the sc7180 
-to DTS first before venus or you'll break sc7180.
+--53f32hgy6vknjdpf
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: New default binding for PWM devices? [Was: Re: [PATCH]
+ dt-bindings: timer: xlnx,xps-timer: Make PWM in example usable]
+MIME-Version: 1.0
 
-I think TBH you should add a freq_tbl for QCS615 and make it so the 
-order of patch application doesn't matter wrt adding OPP support.
+Hello Rob,
 
-- Add QCS freq_tbl
-- Add OPP support
+On Fri, Jun 06, 2025 at 09:13:24AM -0500, Rob Herring wrote:
+>    reg:
+> >      maxItems: 1
+> > =20
+> > -  '#pwm-cells': true
+> > +  '#pwm-cells':
+> > +    const: 3
+> > =20
+> >    xlnx,count-width:
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> > @@ -82,7 +83,7 @@ examples:
+> >      };
+> > =20
+> >      timer@800f0000 {
+> > -        #pwm-cells =3D <0>;
+> > +        #pwm-cells =3D <3>;
+> >          clock-names =3D "s_axi_aclk";
+> >          clocks =3D <&zynqmp_clk 71>;
+> >          compatible =3D "xlnx,xps-timer-1.00.a";
+> >=20
+> > There is however one concern that I want to get resolved first to
+> > prevent churn:
+> >=20
+> > In principle I think it's bad that a phandle to a PWM must contain a
+> > period and flags specifying the polarity. For some use cases the period
+> > might not matter or is implicitly given or more than one period length
+> > is relevant.
+>=20
+> Why can't the period be 0 and no flags set if they aren't needed?
 
-Then do whatever in DTS, nothing can break in this case.
+I don't say they cannot, and probably that's the most sane option if
+there is no fixed default period and flags and we're sticking to 3
+cells.
 
-As we've established the fallback isn't a fallback because it falls back 
-to wrong data, so lets fix that.
+> > So I wonder if instead of unifying all PWM bindings to #pwm-cells =3D <=
+3>
+> > I should instead go to something like
+> >=20
+> > 	mypwm: pwm {
+> > 		compatible =3D "...."
+> > 		#pwm-cells =3D <1>;
+> > 	};
+> >=20
+> > 	fan {
+> > 		compatible =3D "pwm-fan";
+> > 		pwms =3D <&mypwm 1>;
+> > 		assigned-pwms =3D <&mypwm>;
+> > 		assigned-pwm-default-period-lengths-ns =3D <40000>;
+> > 		assigned-pwm-default-flags =3D <PWM_POLARITY_INVERTED>;
+> > 	};
+> >=20
+> > (where the single cell specifies the index of the PWM's output).
+>=20
+> Sigh. You just changed everyone to 3 cells and now you want to change=20
+> again?
 
----
-bod
+I did? I admit that I intended to, but before starting to modify the
+bindings I thought about if #pwm-cells =3D <3> is really the best way
+forward.
+
+> Changing existing users to 3 was borderline churn. Changing again=20
+> I won't be receptive to.=20
+
+I'm puzzled about what you mean.
+
+There is 2bb369ab50e107a7de6df060a1ece2f33a6a0b9e but this is hardly
+churn? And I prepared switching to 3 cells in
+895fe4537cc8586f51abb5c66524efaa42c29883 but didn't touch the bindings
+yet.
+=20
+> > I already suggested that in
+> > https://lore.kernel.org/linux-pwm/jmxmxzzfyobuheqe75lj7qcq5rlt625wddb3r=
+lhiernunjdodu@tgxghvfef4tl/.
+> > When I asked about that in #armlinux Rob said "no. We don't need a 2nd
+> > way to set period and flags." Is this still a bad idea if the
+> > traditional binding with 3 cells will be deprecated for all PWM
+> > devices? If this would be ok then, I'm also open for improvements to
+> > the new concept. Maybe something like:
+> >=20
+> > 	fan {
+> > 		compatible =3D "pwm-fan";
+> > 		pwms =3D <&mypwm 1>;
+> > 		pwm-default-period-lengths-ns =3D <40000>;
+> > 		pwm-default-flags =3D <PWM_POLARITY_INVERTED>;
+> > 	};
+> >=20
+> > ?
+>=20
+> How is this any different than a slight name change?
+
+Compared to the suggestion with assigned-pwms it's mostly just a name
+change, but dropping assigned-pwms is a relevant change. Compared to
+what we have now (i.e. #pwm-cells =3D <3> for most bindings) the
+specification of flags and period is optional which is IMHO a nicer
+design pattern.
+
+> What I also said there is that case looked like a property of the fan.=20
+> If you want a default fan speed, then you should express that in fan=20
+> terms (i.e. RPM or %) and then have a table to go from fan speeds to fan=
+=20
+> control settings (i.e. PWM duty cycle in this case). Even if you need=20
+> something like minimum startup duty cycle, that's still a property of=20
+> the fan.
+
+I fully agree and want to fix the #pwm-cells =3D <4> case. In that context
+it's also relevant if the change should go to <3> or <1>.
+
+Best regards
+Uwe
+
+--53f32hgy6vknjdpf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhDAcMACgkQj4D7WH0S
+/k7Zrwf/e3pkjRqHFV7Lk3vsWkmBLVvNzXJD7lFWLaL48eo49cz+xEVS1hg2NH2x
+OdS0bPOu1kOSTdJcpWCThTsJUL0IignJx5D+SXMlcSj+VfeEpfTj2ooi7MhnZEK7
+hSlIT/VfKcrlOh5SQw+uslH6VDNW7jEWfrimh90vEcqYCJqm56kyalzdI6Gj0XS9
+YRmmjvxWu4hU73H2LB04Ha5VAtWSI2E1o/2Bm81jL6dQfqyVQDIjO+fAK90QNGnT
+Fv7OM+bluN1LiMZRzy3TLv1wyNTFAZ1Vv93Xb+ZuSPC6SrJB+C082J+vQtXT20f6
+8KapgO98QZsotPXAGWN7LPxr3fkCmg==
+=fwHN
+-----END PGP SIGNATURE-----
+
+--53f32hgy6vknjdpf--
 
