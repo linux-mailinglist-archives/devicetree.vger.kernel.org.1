@@ -1,157 +1,128 @@
-Return-Path: <devicetree+bounces-183410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FEA0AD065E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 18:01:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10557AD04F3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 17:14:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 109FA1881EAE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:02:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDD161718FA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 15:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBD81BBBE5;
-	Fri,  6 Jun 2025 16:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C67B1E102D;
+	Fri,  6 Jun 2025 15:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PfkkAK4D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YHe0HCfa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4628082866;
-	Fri,  6 Jun 2025 16:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4239045009;
+	Fri,  6 Jun 2025 15:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749225703; cv=none; b=sw5QkmZfrww3JdmN9rj5wus6FxZIOfHtu/3g06awg8r+6xT5W+8vCVxt5SFH/n45ho2IKRESuzVOAR5Xu4C0XMTyIGSgsgPH8H5JftRbMui8UlKqLNuoi7mZ7WAYLS4fQ68knu/euIyczYnIHhW8iFq9K42802lPjkqvGD0Nmwg=
+	t=1749222879; cv=none; b=umX9XfxyjUonr82wbOfhkVwCtrtpxloeJrpHVY1tIe2B/flpICP+h7BE30ME9qfeSRi5t7oXuVyKC4tGlgh1A4DKYbAxJxxL17UUmDxLL3ETapqiYonCkvv1+OO2RYL1jt6iOtPppNjfbU1RLmCGoOytgY9cbQvgMut06fVjUuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749225703; c=relaxed/simple;
-	bh=nm25pcAcVJI0cheKsvQKjVyk6CHa+YZoF+h1z7RNn5I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ttn2amiJECnhcBABZAhUwbiGRW2H0McvU+4x6uXDCaxnlZ4R5lw26/Ozl+6ipnD4K5LzqhqT5c+K+PoninmWBIvozRuw3jiB1zt6Z8W5UPw5U4SbJp0/ju6kzwx5kSuX6lPHCKRif+DcnNjt5rSnP4eW59wGQXw0awBAgyKhkf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PfkkAK4D; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a51481a598so1382263f8f.3;
-        Fri, 06 Jun 2025 09:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749225700; x=1749830500; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BUbXR0bwQGiCRtW9GFJ1y1yZl1gXhHCz0DArJw0qNw0=;
-        b=PfkkAK4DI3HQluxkSzfniXwNaIw6cbP93T56+KRPGNca5sryICWEUY8w59lDMXcHGv
-         2nnxLxXGSAWAd4nlYWDthYM3afubzbziPzi1AvCgYYJCY3scYZUgOj8Nv+v1hJJytyu8
-         IZ2WBge1Hx2eTFq/myY/QDyk3uUEyWyWZpA6wMM+uf+WSCaVtxK8vsTEqs8x0IgQq4mA
-         JnSNR6UULOBUsTcf6lwSa1q85oLorgTZZsioAu9mxUY27moawr6fP+txXvN7cPvMSkJT
-         tLdjnYJDMJA2d8jlZrhw3IA9zPJcIeV11ujJV0/knzoitKwOC4z9FiWtoRHsJ6GRGVOj
-         FfsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749225700; x=1749830500;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BUbXR0bwQGiCRtW9GFJ1y1yZl1gXhHCz0DArJw0qNw0=;
-        b=mWvN0stnwmnWF9oLoMeXfTjun1InNJj1eOA4j/+Y3k6dSkrjttuwpgw+OzX3/1++Ge
-         N3TvQzBXfPyiy7w0X/qowwD7MGWe+kmxVxrHJvl0lts0PRpU99TZ8PV4W9KujMOy8+bL
-         X3GW97xvw8azTMRJko+gX4fiLiBmkN3Cr07JOOWQgEG/sI7dBZVWw0VDflZr9UtYqjf+
-         FXWz1cmk7giXVgO9jKD5AuA+HugpEePKxokepCBK/pIgdRae0HSpHzwP9DBNGbiZWH2Q
-         5Tn1aMdijO+lsb7C9GwGQvxKH5IhNpwzpYS0l3SvBYFF5yZw/WAmVsNqyK4t65d/arVY
-         BMjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjAkTXCuXh3vvqvP2V3GFQfSPwGbo3QzMJp2vJUYM5GU3pKF3P+a47dG5OTmsvPh5sb0qOJz6TOmiO@vger.kernel.org, AJvYcCXqwTFzvsKVd3WRCugIX5in/kzvthnv+kaGp/2aStisJzmdHEfKd1xRBq2wAXOgy+8XKWlsmzBeukQ4hiIE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHJr1etv0SVdCseETSc5RIEa88KZIW5vRifENzfcYlH77SqT80
-	coj8P2gh6qwr5lEcshqHrdKU6envWCFk7JPXpKXENAVFLPMwwAzWKXUd
-X-Gm-Gg: ASbGnct+ROyqT+KZOFRd6na8v+kFRA5xUPi1/POIpeYEO5YVntut8447+9+YdmdnmMQ
-	T1bt604DHnJ310izjBoacrj4knC6gW8gNLghW1A6tSK84fWrNmmqsMfLuxanaD0Amf7206nrdpH
-	BN4Mx1UrtxtdbSJShLMyCYv8yIIwCSx/N4IcYxePSWP4wjE7f4nPvAHeN2H67gfBO0YubFidnEk
-	ZRjjpv4+Jb1ZhA89aa/7PU+IUbpIVZGM1J5gjkXYbs9XGH6XfWQXgvBocTT2Ix5pAELESARPXXx
-	Xr5eHTi5GZgayKbt9hST1FHYIOWFeHbEwihqsnYlTXFRNNv10dJrtSXo3A+FbqW5TXiKcylqViB
-	Tf6yxfmungiD8ckzxCLl628cb
-X-Google-Smtp-Source: AGHT+IEmqmuKj6FXn9i/uI9zQy+znVxChGqy5qwFVVuIhtY5rcMLHOtTf0zBBGAfuZkiaQUGnO+8Zg==
-X-Received: by 2002:a5d:4fd1:0:b0:3a5:3930:f57 with SMTP id ffacd0b85a97d-3a539300f8fmr652283f8f.51.1749225700083;
-        Fri, 06 Jun 2025 09:01:40 -0700 (PDT)
-Received: from masalkhi.. (ip-109-43-113-198.web.vodafone.de. [109.43.113.198])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45209bc6c6csm29070975e9.2.2025.06.06.09.01.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 09:01:39 -0700 (PDT)
-From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-To: krzk@kernel.org
-Cc: abd.masalkhi@gmail.com,
-	arnd@arndb.de,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: eeprom: Add ST M24LR support
-Date: Fri,  6 Jun 2025 15:06:41 +0000
-Message-ID: <20250606150641.3140295-1-abd.masalkhi@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <8ac3c2da-2824-44fe-942c-fceb8b6f5332@kernel.org>
-References: <8ac3c2da-2824-44fe-942c-fceb8b6f5332@kernel.org>
+	s=arc-20240116; t=1749222879; c=relaxed/simple;
+	bh=i6FYWVz+2Y+2+RafxhFes1KyUuzU/moaSG0EciA6/jw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MmtRUt1W9F4BZH4KDoscOCbbjTV51ZKS9F91fVDm796r9ZE542oKPSdnU4grjVweGiukIFV2ygh4kcl4SemfcoRQWf1pHcjgm99OWRSWKGiZLHrKNW+A0Wye5XYJhn+uzjOiq3hM+ETBdTyne4C+fpHO8b41RlfRWS8uS7uwbVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YHe0HCfa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E29FFC4CEEB;
+	Fri,  6 Jun 2025 15:14:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749222878;
+	bh=i6FYWVz+2Y+2+RafxhFes1KyUuzU/moaSG0EciA6/jw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YHe0HCfaDw7jxWz7zqEzpf9IvXPUJLEgJ57nu7o+6x2rCp98WEHH+TVYBt1rJ1vb6
+	 ZTN+gDHKZXor+5KWdz4m42ekz4xEKsnfaV/vprfAKFgMj17DwjpwxmUglVtcjh/DSP
+	 0S/XEMWsp4bV0+2KcBX1R/rOLLfrTGXcuv2da/DZ10erAbeCTfgGNDwBUn8rVaBBgG
+	 ZoxoIAxmCE13Q696nfS8e3PrA9inYXIH2iRAxgk39jjIdHhcadxkuGc6mbbYsbm+61
+	 DWHBJiVPkX3OfsT2JY8PYIHaERkvNtZz2q8KeX8utiDsnmjoOD9DpuO2mGcAnryF4B
+	 qgGxe2rlsu5Vg==
+Date: Fri, 6 Jun 2025 17:14:31 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Igor Korotin <igor.korotin.linux@gmail.com>
+Cc: Igor Korotin <igor.korotin@yahoo.com>, Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Len Brown <lenb@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Alex Hung <alex.hung@amd.com>, Tamir Duberstein <tamird@gmail.com>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Xiangfei Ding <dingxiangfei2009@gmail.com>
+Subject: Re: [PATCH v2 3/5] rust: driver: Add ACPI id table support to
+ Adapter trait
+Message-ID: <aEMF18wLMoCNAxFN@pollux>
+References: <20250605161956.3658374-1-igor.korotin.linux@gmail.com>
+ <20250605162726.3659792-1-igor.korotin@yahoo.com>
+ <aELyEqg0GrkC8oZY@pollux>
+ <CAG7QV91AWpOk7VUcE-B1MLkEQPDB0Y=zsBOBf6MhHVYh1aEGQA@mail.gmail.com>
+ <aEL76mgHSZG5idW8@pollux>
+ <CAG7QV91kkVqE2BgB5VpmX7QST25VDCqr+9zNx1Nt0-fuwp9t=A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAG7QV91kkVqE2BgB5VpmX7QST25VDCqr+9zNx1Nt0-fuwp9t=A@mail.gmail.com>
 
-Hi Krzysztof,
+On Fri, Jun 06, 2025 at 03:58:11PM +0100, Igor Korotin wrote:
+> On Fri, Jun 6, 2025 at 3:32 PM Danilo Krummrich <dakr@kernel.org> wrote:
+> >
+> > On Fri, Jun 06, 2025 at 03:26:13PM +0100, Igor Korotin wrote:
+> > > On Fri, Jun 6, 2025 at 2:50 PM Danilo Krummrich <dakr@kernel.org> wrote:
+> > > > However, I don't understand why we need this and the subsequent
+> > > > is_acpi_device_node() and is_of_node() checks.
+> > >
+> > > The idea is to avoid unnecessary table lookups when both OF and ACPI
+> > > match tables are present.
+> >
+> > Ok, that's fair -- let's build it on top of the FwNode abstractions though.
+> 
+> I'm ok with the FwNode abstractions. Just to make sure I understood
+> you correctly:
+> I'll need to wait until these FwNode abstractions are pushed to the
+> rust-next branch, reimplement what is necessary and send v3. Is this
+> the course of actions?
 
-thank you for the feedback.
+Not all Rust code goes through the Rust-for-Linux tree, it depends on who
+maintains the code. For the FwNode and device property series I pointed you to,
+the code is maintained by the driver-core maintainers and hence will go through
+the driver-core tree [1].
 
-> How did you implement this feedback:
->
-> "That's not a misc device, but eeprom. Place it in appropriate directory."
-> ?
->
-> There is no such device as a misc device.
+(You can always check the corresponding entries in the MAINTAINERS file, they
+document, who maintains a file and which tree changes go through. For
+instance, if you want to know this for a specific file, you can run
 
-I will move it to the eeprom dirctory 
+	./scripts/get_maintainer.pl path/to/file
 
->> +  reg:
->> +    description:
->> +      Two I2C address, the primary for control registers, the secondary
->> +      for EEPROM access.
->> +    minItems: 2
->> +    maxItems: 2
->
-> Replace this all with items and description:
-> items:
->   - description: foo
->   - description: bar
+and the script tells you everything you need to know.
 
-I will do that.
+In general, before submitting patches you should run this script on your patches
+to find out who you should send them to.)
 
+However, there is no need to wait until the FwNode and device property series
+lands in driver-core-next, you can just fetch the patch series from the mailing
+list and build your patches on top of that.
 
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      eeprom@57 {
->> +        compatible = "st,m24lr04e-r";
->> +        reg = <0x57>, /* primary-device */
->> +              <0x53>; /* secondary-device */
->
-> Where is the rest of at24 properties? Not relevant? Not correct? I had
-> impression this is fully at24 compatible.
+If you do this, you should make sure to mention the exact series you build on
+top of in the cover letter, ideally with a lore link to the specific version of
+the series.
 
-The driver does not currently accept at24-style configuration properties
-(e.g., pagesize, address-width) because the EEPROM access is handled
-internally using fixed parameters per device variant. Let me know if
-adding support for these via DT is preferred, I'm happy to extend it
-for flexibility.
-
-Best regards,
-Abd-Alrhman Masalkhi
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git/
 
