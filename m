@@ -1,403 +1,302 @@
-Return-Path: <devicetree+bounces-183294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE4AAD00BB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 12:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B5EAD00D6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 12:54:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0ADC189CA92
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 10:47:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6ABB189D302
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 10:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B0F286D66;
-	Fri,  6 Jun 2025 10:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7FF287516;
+	Fri,  6 Jun 2025 10:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tPyoyjUi"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="paXE95nz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2022.outbound.protection.outlook.com [40.92.23.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B25F27FB35
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 10:47:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749206831; cv=none; b=iIJtSAh+cCXTAmM6YOSAeewmBTZsMuvttB9OT1F6ADjYAw+DD5HYTiKyAxt3MDTFt9BYyQDc0RXxCZZ4GuOX/wCSKM5WTNYcs4hljYRyMcHaFAJlJuYU2EEPygm3Gc4Oi7cepj8JjmHPZY7B72/2sCNLYBTzTwtu+yraUFo7YTw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749206831; c=relaxed/simple;
-	bh=f+/j1GlnG7yRbwOXO1wHIG7cgcq9EW09L+j7P/rKe1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GAn4MtvvN9QqaWQCm40dxu1EbdJHuCH7MWpncwjsQ9p6c/ZdpJx1JXW3l2xI/4iEUJ7Qo6GraWvxkT06ZS8JAAzbkNPMOSCAr3VJiJKTrHoIR5GMmaMrd1ewTCgASn1QeTxqY50E0m+bJJaxfJjPQTivP4Q/8FFmoZEzSjIDtKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tPyoyjUi; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-32a6c473e28so1739791fa.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 03:47:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749206827; x=1749811627; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sdh3DYrunzvdU87ptIswN2gqeFyihiWuxRVoLIp7jeA=;
-        b=tPyoyjUiWWXQlWbmAywAoEgb95uFXimp9DGWTF9bnPOfoetyO9LhY5eRf1B3l4NS42
-         p8QMipdHZ4eJ0sT9yloT19TE9BX6ywU2RNJLDrbVuryl5yDWtueOBrRxzT0qFhEwfE9H
-         q+Fmg7fhwjfLzJNL9DxAG1NzmB/KjlT4zQTEAR3SWQfbE0xA9flHNZ1B5U/XRJGCnetP
-         DFjo/ifQNB98y1ziAz/I2QvDGXZ5nxHRoN9RIC5ZEeLjZdktjIsorjgr9DihoDFGwt8p
-         MX14o1o8bD8LnpwLu6RulESjXrste7fGpUKPLX/EMEHn1/gcPm4vdXRUgxmISnpfWPak
-         h/eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749206827; x=1749811627;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sdh3DYrunzvdU87ptIswN2gqeFyihiWuxRVoLIp7jeA=;
-        b=l2EJrEhi+AkbWSBUCt6fAPPHudEK1Kvd06IQCuxgqxMyIhFQi+aRD25/b5tIWQitNI
-         GYjBxj5SOKt+nxrwKaboR70luBxEo8HAB7Mc2jJ6jVxBJBIIxLeIYPA+jLMiJ8HiyVqD
-         +Ij9g0kLPd+xgby2Z032sdSEcZRSn5gYieobp37k4Ut/3SBoEYRDIZFmrti7IRMLnbDK
-         D5mXhMUaayvyxjwbJI7QLQVxb3uTJ0U1PNLRcsbt2k1/vIfUjn5e5h+EMHhA67hTFrl0
-         tIOh2+ako3F+WiofzvMyMh7yaKARSloPvch8jSXVN/0+Ev1pRsYJe+wDRO3wi49Q7kGu
-         vhRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoYhyE/CNYFsY3CesNr71L0VqCBa67m8v3SCo1BtWJb7RkHu1/kcNsJqriy/inL/cg/oVsoD8JujcD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya/ZKfxtc+a9KwLAHtwavS5xNG8GAFer5XpTtZ6yG3qeUjnq9V
-	H03McHwBqdH3dTuWSKol7UFrw9s1DxoiTl8cTdPdhFRF7fa6D9i1YgMzKssGv/Auiq0=
-X-Gm-Gg: ASbGncsrDVJ6DXo23x+vmce5AFGN5GaoRK14GCjSHx79QqlU59BOLRZ58za6ltDnVtD
-	3w9PddLhDfY43AVvS3rSmrAGA3alc796tGDfMmDE6Sr6Dl0stUkefLhhM4MHjbItJXOLw6z4uiY
-	0loUiPG6G164R7+V2lVpv/bPBGYEc0UbvL3t1qrk82kGvqsYPBxqrZBFZTvTkHy8li52yls4aBc
-	sr1t8zXe5sY+p6A6HuLAp57QX0gZscX2j1sj7yGIaun14xap8QOr7h4WO/1Mjcem4Cdf6BGinrT
-	RbDemeaFjU0Jyg1G21C/6L3B+iphouy/OZysqhDJOlJsPUQtfi/Kk1e1+F8+g/7DQX8AXxZs6OT
-	r4mbYmtq3XonN6Sz/xwF5m5o9PikohoNUxf1B4qc0
-X-Google-Smtp-Source: AGHT+IGxjhoxsgVGEZoQ3YemtpUiJRV1bf+P3EhChyczWjkpXHPpDvcvXiPRpgWGAH6vjpJO+8TgQw==
-X-Received: by 2002:ac2:4e0d:0:b0:553:2e82:162e with SMTP id 2adb3069b0e04-553685e5a0dmr156612e87.2.1749206827030;
-        Fri, 06 Jun 2025 03:47:07 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32ae1b33b48sm1379641fa.30.2025.06.06.03.47.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jun 2025 03:47:06 -0700 (PDT)
-Message-ID: <2884f55c-6b80-406a-ba21-aaa26297b1bf@linaro.org>
-Date: Fri, 6 Jun 2025 13:46:59 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F7428750B;
+	Fri,  6 Jun 2025 10:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.22
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749207278; cv=fail; b=DCqXCwXWwwxNRnSjgq1EHk4+35gywfuazFq8yTpxOgSK3/Whz4dqrA/s4DYhQ0s2/sZOugvG8Rli34DYLx6NUClS4nFw7QyVM6ualc4n4ltcqFX+0Ap1TtqIBjdXitmbogKNU3fTjCe/9UdFE1Ta1//UxcrN5N3ebh1WHMZDAWM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749207278; c=relaxed/simple;
+	bh=MU8NYn/GpsZda5e5ecPGNZgeP3GaB45iwUZmhYvHc7A=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=guqcw/OKthQIFKN0SoegjehkSYnMD2rztoEFz7+1Vw91NMTXtkMaj/xdd4sfCfUMG4VWFgUQyWnz4pYj7X6Ml9JOqgRJDEeSJqMCd7rcRglhshEnhbNAPqySvEc1NDYLzFhS+QrwP2FdOeWmgZUq8ltPnNO3C/fhNV5Kh9HPVzY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=paXE95nz; arc=fail smtp.client-ip=40.92.23.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YUvhheWTGHL8dY6QXMcxaDwvR1R158mvR7p9PaY6hrg5seN68UqgdRUxEn/o0psIixJzrerTohgw8Hk/3mlAkYz+f+d+wytsj3TTJkKPMrqK01Iyf6GAIpeduMecYE3kcpcdLo4cLxST+6yV3CQO29imllLY6FGQ1R8X+hvJGs++/jCADqbe+uqEpEwXmMdGFWal27m9p/b1L55ZDXxeEFAiIRrEJkyONc9T7PAJVi//dpSLuNOojjRVy6RwsYLQnYxdiYMybdKNxezWW5MXAPoKjVOIpE5i2vATbvOSn0jDzmv1pkzveOiqJuYmXYr28lsGnJA3mjQCoC4EmDQ8sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PRLGs0voHx+1nwpknaC2ZTPXb7zfIeE9oZFGT+qyFa4=;
+ b=i7yEybwWbwCvWdmdUj/aZeto5Nq7C2ouGROtmFuXYg4As/UYfYtJ29FKxBzQD1MWMhZAJFwO9YcRjpME7CkT8uLtcgCEe69ggC6tsRght8vegF6PEhfSpfIuwa6j2rZHivZaPlksTaRL/8h27qssBAUj5W3OhVAr7B397hzinqNeV3Lux9Rt0GXn1CiiIVldc5nFn/qK6VrjRgkNgBAfYORayV9AwwcTkYw0JpylIB3Rq0vnzWjzKXFpbwFISH+eZTmNTcI1SRzTw7TrqRu/W8ostymyPZNvot+mnWIX2VJcqbzoemibIpIpSbXM/rnlPtFKcADIU/tePjdbQkgGGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PRLGs0voHx+1nwpknaC2ZTPXb7zfIeE9oZFGT+qyFa4=;
+ b=paXE95nz2FpJ0wO8qFlyd4G4xqnXnAlwkhsm18pcYU2LYZSwP8BOoEH5/sRT8l7+3dW0DQaJWMZPwxrIoE/+VlX6GojQgA+cRUOfyoqIZgP8Nb/DTW1an8UdGxXgX+n7DMWetYMM8reu3qAOsX8tdyErFCXg4yHYXazcxDTUzIwNl2Q8TrBYiKte4wiYM5fgdM44L+Ct+jN0e+rOShgVlAEE78oVZ/DddOTZmT8oQiDsfkOOsj2uFu/tRv/zWQmX3joiD1Yv2bsiGjhoqt50m11btNzH60+VwOR/WThwfp44JwuC9Io6Xutate9eHSvPQQZ8HQjZ3tMRaNiXijgJYA==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by PH3PPFD994488F9.namprd19.prod.outlook.com (2603:10b6:518:1::c55) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.25; Fri, 6 Jun
+ 2025 10:54:32 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%5]) with mapi id 15.20.8769.037; Fri, 6 Jun 2025
+ 10:54:32 +0000
+Message-ID:
+ <DS7PR19MB8883E074E64AC6FCAB1B1DE69D6EA@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Fri, 6 Jun 2025 14:54:21 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] dt-bindings: net: qca,ar803x: Add IPQ5018 Internal
+ GE PHY support
+To: Rob Herring <robh@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250602-ipq5018-ge-phy-v3-0-421337a031b2@outlook.com>
+ <20250602-ipq5018-ge-phy-v3-2-421337a031b2@outlook.com>
+ <20250605181453.GA2946252-robh@kernel.org>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <20250605181453.GA2946252-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DX0P273CA0087.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:5d::9) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <a8e2be4a-fc8e-4994-8a1d-8c953a4e4719@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] media: dt-bindings: Add qcom,msm8939-camss
-Content-Language: ru-RU
-To: vincent.knecht@mailoo.org, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250602-camss-8x39-vbif-v4-0-32c277d8f9bf@mailoo.org>
- <20250602-camss-8x39-vbif-v4-3-32c277d8f9bf@mailoo.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250602-camss-8x39-vbif-v4-3-32c277d8f9bf@mailoo.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|PH3PPFD994488F9:EE_
+X-MS-Office365-Filtering-Correlation-Id: 30808b18-78aa-4f69-b629-08dda4e88423
+X-MS-Exchange-SLBlob-MailProps:
+	znQPCv1HvwXa8TE59u1HHfDiiKEdRlKNQ9dU3DBoTaNCOe2vZI4l4hYoI3vFEnKhlcFJO9maSP4RtgKS0TakH6sQjOrhkqSooPfBlriR4unA1k2a17y4MzJiFO/YmM6a9xEedSfYjiUGc/zWUkvBE75lFuWWlXdXYlV/CZpWJgrGva/bNWzXBN9FQ8Lzl1QIzZTv/TDnNHNH3k6fDRr+XePF1yVoaEpdHYKy6Yj1Q3AN7sNQHlaMgYmjqXqXRZG6g73VDWx5P04CVB8iq81MyHzmJ0JHOf+dTkafDjMAx2ov+XisrcaGEKXw2SG7EumZeYJrwJMcz2mNKVZkbnQh/eLpglJtda3ZjpvznlbzjlWeYPRoWd/8sO/f1Z9uXf48O+LIAzl90FyqamWSbi1A+XkR3ck8O2txSao5DgdbYoaCqv/NvKdzVkWATXX0mg6CwhSM7sBGHNB/qssvfH3JUK2JS5iwzinYdHUR8zLHBq3lDqQN6m57Js/dkMQvz7cjbCI/pK98yaaJw0t0gMqmjFHRHFdb9C6vbFsxBE4NX69DJaYgv9GdSKU8xO3iEzF1TzA1KP7cPVf0foG4xcgd/R5xZHJVfpfIhCe6n5/IWv9Vh9j8n981JEozwNLY7YFWkoYtoWtgBgGmyRWAnHhrOrjSWOW1/xzArHPtYDin7NQoS9wwnvFd6l6RyOFqEeWAKC2dgWCYaQsySv6YdKPDp9EjhqHp3bO3Z/31pWUxrzpgTQGvdbQZM5J7XDt/0hn0s4hPyNUMl44=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|6090799003|8060799009|7092599006|15080799009|19110799006|41001999006|5072599009|461199028|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Rk0yRkREU2lSYVhkTUZObHdUdTM0SUlKV3hBcE1xTFVGbERMeGk3Nmo1RFdT?=
+ =?utf-8?B?NVd4d2UzUlIzUXN1TGdObXY1dHp3eENWOEZyZjdpUVRNUTFaaEZIU05uSlVB?=
+ =?utf-8?B?YmhCRVNNclR5b2ZFWjE3dnFqSis1SG55NTYrTXl3ZWQ3Ym9VeTFiYWJvTk9J?=
+ =?utf-8?B?YXlIQWU1ZTd1L1FLNjByaXpNUjcvdmxRMHpSM1pSOFhEN0hhQjRydFBwMGpV?=
+ =?utf-8?B?Q0pMS2w4L0I5VG12SFAvVmpJOUxHQmhQS0YxVFVDbXBLd0RMeXVqYW54OStr?=
+ =?utf-8?B?TWdZd3B1bVpqcjh0SFV0ZkduTytWbzlIVTY2NHNUVjkzN1g2dE1nMzBjdjkw?=
+ =?utf-8?B?eHBYcWxPczFCamYrWDVGeVM5UEVKWEtaSFZ5a1VEM2ZLS0JrSjFzbjBTbVVm?=
+ =?utf-8?B?WWFXOU1MRlNLWURsQ0lERng0aUFtUWhDMS9qNUJRWUpZSHFTNHEwYW9sMlhB?=
+ =?utf-8?B?RVY0NTlKOFZJR3A4Zi9JQ3FOUXhYclRsODJocVZSeUo5dkcwbURDYTk0dHlR?=
+ =?utf-8?B?N00zMTh5dUV3ZUlOMTdTQk5OQ1VrMnZxRGlEQ2dTb3dwS0VPYUVueEZMdkpJ?=
+ =?utf-8?B?M0lJNjZ4NGJyS0ZXY005R3M0bTNMdkRSWmhMTzh4Rzl1OHZ1MHBJMmtURU5i?=
+ =?utf-8?B?c3NnY1RkbWxIb1dlMlp6TW1GZE5zalZRZVliUGZKMTBOcjNEdG1UbkZoQ3VY?=
+ =?utf-8?B?aTFqN0ExVkRjZWNteDY0ZG8rV0R3eGJ1UXNYM3l6QllkQ3UzTEhtdFpNalFz?=
+ =?utf-8?B?cjErRGJNcFR0cTlGQTBiVitBZU96NFd4K0NIeGJLcnJUQW1ncmVycmlWcTNW?=
+ =?utf-8?B?TnppUVNtaEVoandKWmlmSjJMdUpDWkp1eXI0bmJXTzlIRXNwNVRXNC9SQjRh?=
+ =?utf-8?B?YTVxb05zRVFzNHYxclBXcUw0UG43ai9VOTY3VG9GMHFvM1VQaEZNKzVQdTY3?=
+ =?utf-8?B?eEg3L1duL1IyY0M0RFZvMzVnb0p6MXJ1N1BzRzhyMjhxTGY0NzJZZUFZMG5q?=
+ =?utf-8?B?TDVwQTlERmJ5S3VueFRHdjBRMVI2b1AxVm5wdFl4eVN1K2lxZ1NBcjRUdkhv?=
+ =?utf-8?B?MCt2YUFiY2ltWUJCSFNkejRTN0pUT1NOdTU5MmNSNkFHVFg5eDN0bmwyeGNz?=
+ =?utf-8?B?V0ZzVHhhY2phNTlJVUdTNlQ4QXJUbE41c3poRjRzVmpidGZXZ2RNc3oxdWFW?=
+ =?utf-8?B?OGFzZ3psVmZuYTBETStWdDl4SXRzb1p3YmJiZEdDbTY3MzBUZGphdHlaQWJW?=
+ =?utf-8?B?NWZJa29jY0QxOEc5M0hBQmlZMVQwamt3dURpQ2lQTzdXQ3ZhTlErSVVLS3ZP?=
+ =?utf-8?B?L29UMzBmbWlvZW5Ra2hOdDRxY3NQU29KaXpmQ1hEWFVYYVJBRnVva25CZHNz?=
+ =?utf-8?B?bU1uMzlpL3pwNjF0dHNKYTNoSGpuVFZFVnpXck1GMnhva2JSalJCL1pucVc1?=
+ =?utf-8?B?eUFtSmIxdXVQWHVzcE83NVE3V3JZSkp5TVdMaXNDRElNMTJpUzJYVEFqYkNs?=
+ =?utf-8?B?bkdoTk1iamtqRzBkN3lqckNSZVhBWmg5cWhTUkNmUkRBV0MyWFZ2ZzRSN0Jl?=
+ =?utf-8?Q?h0ulutgubNkLb3U2yBG0iAEpI=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bzlKZ0JCaXphOXo4REk5d0hjcmdkWnhLaThOU2FlWElaZkVuWCtPOFpKazZ6?=
+ =?utf-8?B?OTBLdzUwdEhFb2pBL3hyMTljL0VIaTVkUWp2aVlWYVdKUDk3UTN6aThvTTNp?=
+ =?utf-8?B?eFBVcm55RGdzbFBCb0FZalp5RHZlVXRWR1BXY25zZExjTWhHMUNwVklOV3pZ?=
+ =?utf-8?B?TEcvL2FNanE2aVBVSzhoclhtUzNiZXBtTHJaVVZYWmpQNFFMYzlMYU1GR0Z2?=
+ =?utf-8?B?SVlnODNROTd3ZWtHaWMrZERMaTF2d1MrLzZ0MXVsYy8rU3hsMmdhMzVvM3Z6?=
+ =?utf-8?B?cStreGN5VDRJVEF4eEhsT3hvVStYVDFpdFBPcUFOOEt4ZlY4Y1lxcnk2UXhJ?=
+ =?utf-8?B?WVFJZ3lTb2pLMmJVZVgyMnNNTEZkOTVyeHRoMU4xS3U5cUVFVmdvMFZIWUR1?=
+ =?utf-8?B?MDBkWDNLdzNOdllmSnhxaVlnMjFFcTUrbG9DZmhJdlhQZERzclpaR002MUdQ?=
+ =?utf-8?B?TjFvQ1lROTFlZ25sa3JxY2tuSUtNWWJGMzdINGFzbGtWUUlETGk5bU9zNW1j?=
+ =?utf-8?B?VysxMXZRSVZHRFkzNWxZdmNzSzhpR3hjYnZ3cUtTY3ZZYWF0ZVhsWVJlU1JO?=
+ =?utf-8?B?ZXorSmk1S1BQK2dYclNGeFlQMEtWdWJQeG9mSENFeFkvZ2lBL2dCWUpCT1R2?=
+ =?utf-8?B?S1prK2hsUHlJcGdVWjltS3NTbTRLVkZmeWVlY1RZSGFENkJBaDlteVlXU1dK?=
+ =?utf-8?B?TTA4TkNlaFFyQjE0bWVueStHQkdDamZYNXgxcnFQZDlvRldGQUc0Nml2K3lr?=
+ =?utf-8?B?RTg1bFJKaHlzYzN1RGU0OGUxdG5vTUMxZE8xTDg0NThuc3licUF0QURGMG96?=
+ =?utf-8?B?dGdCSmxxdkF4VklmRkloZ3Z0U0txZkNSZWxxUE5QakxiNG1IaUpsbk1zQkE1?=
+ =?utf-8?B?RjBOdmQ1QWFvbVc2dGFGYkJjU2RFbTNLb3pvcmgraFFhSjd6SE51MzZyWHZ5?=
+ =?utf-8?B?VTl1U2haWjVWRzM3NnpwWWxlbmF3SGJyK05hQXE1WU5NT0ZUQjJkMUUzYk5l?=
+ =?utf-8?B?eEgvaGtNSW5EUTExZnNjVkwxSFlRNnFXSFA2d01GV3h0aHN3bzhaZitSMjRl?=
+ =?utf-8?B?RHUwaGlDbGtCbi9RcVpkZVZteEtvYTFzWlB4TUVkNjJqUUpRYThtUkc2Ky9T?=
+ =?utf-8?B?a3dVVFNqMFhoU2VjeUdneWc2NUQ2cmtJWEtXeStNNW51LzFZcHAyeS9yTFhl?=
+ =?utf-8?B?ODJzWU1OMlNCL0NFb0o4aXVQamt1NEtVUXFVdjh2b0VqWlR2WktocjY3RnJ6?=
+ =?utf-8?B?WGFqc0l2K2dkWmZEaDBzTm1ocy83bXg4Vlp4ck9DajRIbWFRVUhrTThWNFRE?=
+ =?utf-8?B?NVdVN3VzOUMwK3RPbGNxK1dEUmxsZld5ejUwR0dvYTdSbmo0K2lCVElNS1V3?=
+ =?utf-8?B?MC8rbnZXVFYwRWpZMFF1YndvZ1g0SUwwcEhVSjBvQkpzYTB6clJxTEZ3bTQ5?=
+ =?utf-8?B?Mjg1OGFRd1lYZ3ZQaXdpUG9NMEZVZEI3ZlcvVHdMNmNkNXFVbWVvTVNVVFlQ?=
+ =?utf-8?B?bEIwVnVMSm1XTkpJdGVEeFpERk9YMDVoTWZBNkZMSjZXRnQyZDlncmZoZGFM?=
+ =?utf-8?B?Y1ViNzZHSytCQWhnOWpiUzFnakNKaXJTMFFEaGNWSVZKWU51Umd4NThxYXdY?=
+ =?utf-8?B?ZjBoVEczZENlT0V0aE1VT1p1YWNWNWRyd2x3WjZpekRtV3phcW9jRDlZY2FV?=
+ =?utf-8?Q?M33nkWO8tC1WPFRub7o7?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30808b18-78aa-4f69-b629-08dda4e88423
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2025 10:54:32.3201
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFD994488F9
 
-Hello Vincent.
+Hi Rob,
 
-On 6/2/25 20:27, Vincent Knecht via B4 Relay wrote:
-> From: Vincent Knecht <vincent.knecht@mailoo.org>
+On 6/5/25 22:14, Rob Herring wrote:
+> On Mon, Jun 02, 2025 at 01:53:14PM +0400, George Moussalem wrote:
+>> Document the IPQ5018 Internal Gigabit Ethernet PHY found in the IPQ5018
+>> SoC. Its output pins provide an MDI interface to either an external
+>> switch in a PHY to PHY link scenario or is directly attached to an RJ45
+>> connector.
+>>
+>> The PHY supports 10/100/1000 mbps link modes, CDT, auto-negotiation and
+>> 802.3az EEE.
+>>
+>> For operation, the LDO controller found in the IPQ5018 SoC for which
+>> there is provision in the mdio-4019 driver.
+>>
+>> Two common archictures across IPQ5018 boards are:
+>> 1. IPQ5018 PHY --> MDI --> RJ45 connector
+>> 2. IPQ5018 PHY --> MDI --> External PHY
+>> In a phy to phy architecture, the DAC needs to be configured to
+>> accommodate for the short cable length. As such, add an optional boolean
+>> property so the driver sets preset DAC register values accordingly.
+>>
+>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>> ---
+>>   .../devicetree/bindings/net/qca,ar803x.yaml        | 39 ++++++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>> index 3acd09f0da863137f8a05e435a1fd28a536c2acd..fce167412896edbf49371129e3e7e87312eee051 100644
+>> --- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>> +++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>> @@ -16,8 +16,32 @@ description: |
+>>   
+>>   allOf:
+>>     - $ref: ethernet-phy.yaml#
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - ethernet-phy-id004d.d0c0
+>> +
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          const: 7  # This PHY is always at MDIO address 7 in the IPQ5018 SoC
 > 
-> Add bindings for qcom,msm8939-camss in order to support the camera
-> subsystem for MSM8939.
+> blank line
+
+added newline
+
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> ---
->   .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
->   1 file changed, 254 insertions(+)
+>> +        resets:
+>> +          items:
+>> +            - description:
+>> +                GE PHY MISC reset which triggers a reset across MDC, DSP, RX, and TX lines.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..59bf16888a8235495a2080e512ce179583bcd25d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
-> @@ -0,0 +1,254 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,msm8939-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm MSM8939 Camera Subsystem (CAMSS)
-> +
-> +maintainers:
-> +  - Vincent Knecht <vincent.knecht@mailoo.org>
-> +
-> +description:
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,msm8939-camss
-> +
-> +  reg:
-> +    maxItems: 11
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csiphy0
-> +      - const: csiphy0_clk_mux
-> +      - const: csiphy1
-> +      - const: csiphy1_clk_mux
-> +      - const: csi_clk_mux
-> +      - const: ispif
-> +      - const: vfe0
-> +      - const: vfe0_vbif
+> blank line
 
-Please sort the list alphanumerically, accorting to the ASCII character set
-the underscore symbol precedes lower case letters.
+added newline
+> 
+>> +        qcom,dac-preset-short-cable:
+>> +          description:
+>> +            Set if this phy is connected to another phy to adjust the values for
+>> +            MDAC and EDAC to adjust amplitude, bias current settings, and error
+>> +            detection and correction algorithm to accommodate for short cable length.
+>> +            If not set, it is assumed the MDI output pins of this PHY are directly
+>> +            connected to an RJ45 connector and default DAC values will be used.
+>> +          type: boolean
+>>   
+>>   properties:
+>> +
+> 
+> Drop
 
-> +
-> +  clocks:
-> +    maxItems: 24
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ahb
-> +      - const: csi0
-> +      - const: csi0_ahb
-> +      - const: csi0_phy
-> +      - const: csi0_pix
-> +      - const: csi0_rdi
-> +      - const: csi1
-> +      - const: csi1_ahb
-> +      - const: csi1_phy
-> +      - const: csi1_pix
-> +      - const: csi1_rdi
-> +      - const: csi2
-> +      - const: csi2_ahb
-> +      - const: csi2_phy
-> +      - const: csi2_pix
-> +      - const: csi2_rdi
-> +      - const: csiphy0_timer
-> +      - const: csiphy1_timer
-> +      - const: csi_vfe0
-> +      - const: ispif_ahb
-> +      - const: top_ahb
-> +      - const: vfe0
-> +      - const: vfe_ahb
-> +      - const: vfe_axi
+removed
 
-Same comment as above.
+> 
+> But this schema is broken. There's no way for it to be applied to a node
+> because there is no compatible defined in this schema nor a 'select'.
+> You can introduce an error and see (e.g. 'qcom,dac-preset-short-cable =
+> "foo";'). Really, any phy using these properties should have a specific
+> compatible defined here.
 
-> +
-> +  interrupts:
-> +    maxItems: 7
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: ispif
-> +      - const: vfe0
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    items:
-> +      - description: VFE GDSC - Video Front End, Global Distributed Switch
-> +          Controller.
-> +
-> +  vdda-supply:
-> +    description:
-> +      Definition of the regulator used as analog power supply.
+added PHY ID as compatible in v4 which I'll send out once the merge 
+window reopens.
 
-Please specify the wanted voltage level in the description, due to
-the example below I would expect it's 2.8V.
+Under 'properties' node:
+   compatible:
+     enum:
+       - ethernet-phy-id004d.d0c0
 
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports.
-> +
-> +    patternProperties:
-> +      "^port@[0-1]$":
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              bus-type:
-> +                enum:
-> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - iommus
-> +  - power-domains
-> +  - vdda-supply
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/qcom,gcc-msm8939.h>
-> +
-> +    isp@1b08000 {
-> +        compatible = "qcom,msm8939-camss";
-> +
-> +        reg = <0x01b08000 0x100>,
-> +              <0x01b08400 0x100>,
-> +              <0x01b08800 0x100>,
-> +              <0x01b0ac00 0x200>,
-> +              <0x01b00030 0x4>,
-> +              <0x01b0b000 0x200>,
-> +              <0x01b00038 0x4>,
-> +              <0x01b00020 0x10>,
-> +              <0x01b0a000 0x500>,
-> +              <0x01b10000 0x1000>,
-> +              <0x01b40000 0x200>;
-> +
-> +        reg-names = "csid0",
-> +                    "csid1",
-> +                    "csid2",
-> +                    "csiphy0",
-> +                    "csiphy0_clk_mux",
-> +                    "csiphy1",
-> +                    "csiphy1_clk_mux",
-> +                    "csi_clk_mux",
-> +                    "ispif",
-> +                    "vfe0",
-> +                    "vfe0_vbif";
-> +
-> +        clocks = <&gcc GCC_CAMSS_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI0_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI0_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI0PHY_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI0PIX_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI0RDI_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI1_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI1_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI1PHY_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI1PIX_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI1RDI_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI2_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI2_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI2PHY_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI2PIX_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI2RDI_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI0PHYTIMER_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI1PHYTIMER_CLK>,
-> +                 <&gcc GCC_CAMSS_CSI_VFE0_CLK>,
-> +                 <&gcc GCC_CAMSS_ISPIF_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_TOP_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_VFE0_CLK>,
-> +                 <&gcc GCC_CAMSS_VFE_AHB_CLK>,
-> +                 <&gcc GCC_CAMSS_VFE_AXI_CLK>;
-> +
-> +        clock-names = "ahb",
-> +                      "csi0",
-> +                      "csi0_ahb",
-> +                      "csi0_phy",
-> +                      "csi0_pix",
-> +                      "csi0_rdi",
-> +                      "csi1",
-> +                      "csi1_ahb",
-> +                      "csi1_phy",
-> +                      "csi1_pix",
-> +                      "csi1_rdi",
-> +                      "csi2",
-> +                      "csi2_ahb",
-> +                      "csi2_phy",
-> +                      "csi2_pix",
-> +                      "csi2_rdi",
-> +                      "csiphy0_timer",
-> +                      "csiphy1_timer",
-> +                      "csi_vfe0",
-> +                      "ispif_ahb",
-> +                      "top_ahb",
-> +                      "vfe0",
-> +                      "vfe_ahb",
-> +                      "vfe_axi";
-> +
-> +        interrupts = <GIC_SPI 51 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 55 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
-> +
-> +        interrupt-names = "csid0",
-> +                          "csid1",
-> +                          "csid2",
-> +                          "csiphy0",
-> +                          "csiphy1",
-> +                          "ispif",
-> +                          "vfe0";
-> +
-> +        iommus = <&apps_iommu 3>;
-> +
-> +        power-domains = <&gcc VFE_GDSC>;
-> +
-> +        vdda-supply = <&reg_2v8>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                csiphy1_ep: endpoint {
+Q: do I need to add the PHY IDs of all PHYs that the qca803x driver 
+covers or will this one suffice?
 
-There should be an empty line between the end of the list of properties
-and the beginning of the list of children device tree nodes.
-
-> +                    clock-lanes = <1>;
-
-Please remove 'clock-lanes' propoerty from here.
-
-> +                    data-lanes = <0 2>;
-> +                    remote-endpoint = <&sensor_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
+> 
+>>     qca,clk-out-frequency:
+>>       description: Clock output frequency in Hertz.
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>> @@ -132,3 +156,18 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +  - |
+>> +    #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
+>> +
+>> +    mdio {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        /* add alias to set qcom,dac-preset-short-cable on boards that need it */
+>> +        ge_phy: ethernet-phy@7 {
+>> +            compatible = "ethernet-phy-id004d.d0c0";
+>> +            reg = <7>;
+>> +
+>> +            resets = <&gcc GCC_GEPHY_MISC_ARES>;
+>> +        };
+>> +    };
+>>
+>> -- 
+>> 2.49.0
+>>
 > 
 
---
-Best wishes,
-Vladimir
+Best regards,
+George
+
 
