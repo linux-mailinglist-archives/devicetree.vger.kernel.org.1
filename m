@@ -1,128 +1,134 @@
-Return-Path: <devicetree+bounces-183231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B2D4ACFBF2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 06:28:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31994ACFC39
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 07:31:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6361C170ECF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 04:28:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1DA2189290A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 05:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAF81DE3A7;
-	Fri,  6 Jun 2025 04:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E321DF267;
+	Fri,  6 Jun 2025 05:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ihkyY6R/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lzqb1Dwi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C15D3234;
-	Fri,  6 Jun 2025 04:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3140D1C9EB1;
+	Fri,  6 Jun 2025 05:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749184095; cv=none; b=cek1S1Mti4O69g9XDwozkx1nHRdd9B887A1SqngxJh0a90uYoWKKD6JB4SyTNGvkTdnAk2iZ2k/MyllLR+c7KVMCiZT3q6N8hzd4ICMitotFFrUt3y3ZOIgGX80xktPxwkXr5mCYV3dOJMfyaW8ESxwo4MjLiV9e/TKKHdyJi3g=
+	t=1749187903; cv=none; b=ZECOGaMeo9fWPwkHqAk6FvTftn+VHsXix+zpmzYINWhsmY3komn2eSe9HaSwqZCQleV+qEcYfyUheOuGiS61Qew7D8xVR7uhmkceTO4p0SfhG1/SMGO2YEAy0reHZRXXnxWHDDcbaumB72DXQg6+mhtw9iDBEBJN1283Dhm9TUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749184095; c=relaxed/simple;
-	bh=9Gyg33hqhbnXrEaxdUutoGy/DPXrhX0kl0SjpeBRIB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZTiiNZWBOFbLmz6+MRDrK1PuhgOmOI3ox+6qP96SNr5asw+UvW5B+RlyJCm6NRXuQ09Dyix817dPLB9yMvqwwZjf2VQtX3d1rkzXtkb/9Q2FiMxDFceHX2p42pl1fxdnUq2fcdana3SpMT3/exURh28BuJo/kEqNu7/snw4ogW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ihkyY6R/; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749184093; x=1780720093;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9Gyg33hqhbnXrEaxdUutoGy/DPXrhX0kl0SjpeBRIB0=;
-  b=ihkyY6R/rx23xzFpcSFeS5fcVOmvy3JJb+sM1sh4T4wF4P0P6TL2oxFk
-   25ATTZEQrTKJ2Ij5OxxgHo+/OVaKKAEGq/uS2q9pMoW/wdyqQoyerdJEU
-   EpNSOMhRx9JfOyLx3x7UeSIpKS0Ko9E94m6w0LmMHnStMJwWFSjE9FZpY
-   zCvIGpFsajBLegiWbTQRlvL6ovreAk35tXOZhrv8y310/s4AZCywU1Fzp
-   nTIeghPYvEFJfJxwAdLmg/hgGu+1NbALBluADCUkXN27fk0fWlZyhAW27
-   giZRpG147L0CbQ4SU2tUnPndq7o4fvsyZ+KGR6tvXonKc5yBjElGDzDsw
-   w==;
-X-CSE-ConnectionGUID: J4R0TdOETTS74TgeX6YoOA==
-X-CSE-MsgGUID: vOj2DCx1RY62uBtpmk2o5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="38958111"
-X-IronPort-AV: E=Sophos;i="6.16,214,1744095600"; 
-   d="scan'208";a="38958111"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2025 21:28:12 -0700
-X-CSE-ConnectionGUID: /C4I0hPvTW6lOY9red7p/g==
-X-CSE-MsgGUID: KDyzMU7zSQy32t/M5w9/aA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,214,1744095600"; 
-   d="scan'208";a="145653438"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 05 Jun 2025 21:28:07 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uNOgX-0004jp-0d;
-	Fri, 06 Jun 2025 04:28:05 +0000
-Date: Fri, 6 Jun 2025 12:27:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ricardo Ribalda <ribalda@chromium.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-acpi@vger.kernel.org, Ricardo Ribalda <ribalda@chromium.org>
-Subject: Re: [PATCH v2 04/12] media: ipu-bridge: Use v4l2_fwnode_device_parse
- helper
-Message-ID: <202506061223.m9fBRBFN-lkp@intel.com>
-References: <20250605-uvc-orientation-v2-4-5710f9d030aa@chromium.org>
+	s=arc-20240116; t=1749187903; c=relaxed/simple;
+	bh=Rs6u/8uV0wNpRku8tHaJX2RzEPsFk0Z6vIX0IKDE7zc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=X9gtwDv8vLKlASeaPE6PuRNzF3/HbxuJXh2EL92nQeGmuUcaatbC7M6cMGKgMQBkK/rt5QV441zWaqRGyPIMcDy4Jd/qkbENHf1G/NuHA9g0rs2AvGykTWGrr3Tam8POoj9yoqddQn/+r4QCI1WUZwBw6p8rcttrxqb3EI0B8X0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lzqb1Dwi; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-235e1d4cba0so14721495ad.2;
+        Thu, 05 Jun 2025 22:31:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749187901; x=1749792701; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dzlXgy5IGuV11bydpJNOntnZHJEgtC/+n57kSppntuY=;
+        b=lzqb1DwiXX2TDtpOBglmP4b1h73BvzA0VR4pA1B8daKEFAdJgZaLdh5UrvZahxNZMR
+         dPI0ZIhJmAmsmmyECp5dkBtHZtBNNE5BOFtiSsgmPVhHvP1bBr+AZqRh7nxsm6QUqP+/
+         nl5iMgQeyWpl1ZYhbBJgl69hPVURy3FzLxpcWX90kbETLOIAr2LOr+Atpt+qHgZsiu0a
+         6a8STCnTuUljPXBPbV1DVJD6+YLpkYKm685iNLObMZe+2BQTRMAkoutCyRbq4sq9mEhc
+         R4Ck8p4nWi5Ty1NV0R5CLNFA6g51kDr0T6vSh0JIanwPJGwJVRLRk/sAB4BPKFze7mKj
+         YQeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749187901; x=1749792701;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dzlXgy5IGuV11bydpJNOntnZHJEgtC/+n57kSppntuY=;
+        b=e4+vigx5lUx1l7B0+xm7bbywVEwwh6F3FcQTv9B6b2SYpKN+Us/1O9BRBmwqe27Zne
+         HjPNNT/8X5/fUCxAAf3gCiC/hhY5K7ZFw1UApPZqelycJyEtadk6Tnztc/0pa1vG0uWq
+         SfrjhOkNEdLEVG+Ay6anWfmsE8UZzt2AOxkgHfUChLX62hI8Dzx1Kp6oHrwMvACO23Pu
+         2bUi9jtJ/R8JP+LyCZDCbIQTGUkOk1zhYmGvdXWGTr3vHfeRsk/7VEKRqkL0chG93hdc
+         VFGTQaPjjh5QlqJAjzff3cH63ojmzSZTRAAGmaf+h6CdFuT5B+nXH2LJKP4RIcI2HJ3/
+         9ZGg==
+X-Forwarded-Encrypted: i=1; AJvYcCUDSkZgoS0wj1WJrIRwMDuxVLopThJDH6pU03SqFaZCLEpBnFobMUzHqjny6DMnMW9ISw/J4RvZfFjS@vger.kernel.org, AJvYcCV3OeGONHmJqNlVI2nmGFgEvVQlgqGTzBegr7Lx67shhfkB+EBHd9VhJZ7VDGb0wEw5NVOEfvm4zLJa8yFo@vger.kernel.org, AJvYcCVJ4MU+4/aH0CV8P4hnLs0IdmRdOwKEW0zxYeFdmzWxwE79q/e3iVnZFVyKbS9N/kdTOlpPEMaMmK+5846o4Q==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTBLo4JAiQdTYqWlHqg1IpNFdvqBc6zUWNy6WRS/C70gqpUlm+
+	8LIN2Fvs0WGpcYyzk0pQLBhjdYxxFSthzz+24yECUbla5ELJ3FfVsD3F
+X-Gm-Gg: ASbGncv688yijoxgygOeK82dBTuknwYPuePWPxZhJJcRRmYj3CZ+BabWU/VrHWZmyEe
+	wYyoBFBCADg1g270fIwtW4QXZD2ZfGvdclrgEILGQiidjRF7KR9WdyZHbl3jdzwu0rBgRMlxI1N
+	Se2PEwkJSXeIkMcI5y3MfIuF8fXajvo4KLFBFL7leh24ky0K+mRGQo9ZtseYni5R/wlyMEF8Zih
+	jG3vwFQeWEbicZBVX86uBoRsQZUP3JF9WIM7kdvqPA6/DNbEywcttcpJLLufWxnS1GAEtAki9VM
+	2xWPa4R3Sr6SG0AKKNTvW+oGJVNk4CJcF1bzuQYYa1N9HkIB+vJJpm1D0xDS
+X-Google-Smtp-Source: AGHT+IHm9V8MInY7eid9ZjIu/qmANGOMoaeiN5kAiiPpPU+C0cJpEdUtkuzqSwl6yjJEnE728bmZPg==
+X-Received: by 2002:a17:903:41c9:b0:235:6e7:8df2 with SMTP id d9443c01a7336-23601d975acmr29530675ad.41.1749187901230;
+        Thu, 05 Jun 2025 22:31:41 -0700 (PDT)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236034109cfsm4765675ad.200.2025.06.05.22.31.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jun 2025 22:31:40 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: quic_amakhija@quicinc.com
+Cc: Laurent.pinchart@ideasonboard.com,
+	andersson@kernel.org,
+	andrzej.hajda@intel.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	marijn.suijten@somainline.org,
+	neil.armstrong@linaro.org,
+	quic_abhinavk@quicinc.com,
+	quic_jesszhan@quicinc.com,
+	quic_rajeevny@quicinc.com,
+	quic_vproddut@quicinc.com,
+	rfoss@kernel.org,
+	robdclark@gmail.com,
+	robh+dt@kernel.org,
+	robh@kernel.org,
+	sean@poorly.run
+Subject: Re: [PATCH v8 RESEND 0/2] Add DSI display support for SA8775P target
+Date: Fri,  6 Jun 2025 13:31:22 +0800
+Message-ID: <20250606053122.523651-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250604071851.1438612-1-quic_amakhija@quicinc.com>
+References: <20250604071851.1438612-1-quic_amakhija@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250605-uvc-orientation-v2-4-5710f9d030aa@chromium.org>
+Content-Transfer-Encoding: 8bit
 
-Hi Ricardo,
+On Wed,  4 Jun 2025 12:48:49 +0530 Ayushi Makhija <quic_amakhija@quicinc.com> wrote:
+> This series enables the support for DSI to DP bridge ports
+> (labled as DSI0 and DSI1) of the Qualcomm's SA8775P Ride platform.
+>
+> SA8775P SoC has DSI controller v2.5.1 and DSI PHY v4.2.
+> The Ride platform is having ANX7625 DSI to DP bridge chip from Analogix.
+> Since I am just an amateur, so I followed some applied examples, like [1]
+> If you mind this, I will describe in next version.
 
-kernel test robot noticed the following build errors:
+Hi, Ayushi. I think this series had been verified to work. Do you have
+any idea in my case? According to the public information, SA8775P is
+equipped with Adreno DPU1199, SA8295P(almost identical to SC8280XP) too.
+And SC8280XP has the same dsi version and dsi phy. And my device tree
+nodes for the DSI0 and DSI1 are almost same as yours. I got
+`dsi_err_worker: status=4` only with a blanking screen.
 
-[auto build test ERROR on 5e1ff2314797bf53636468a97719a8222deca9ae]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ricardo-Ribalda/media-uvcvideo-Always-set-default_value/20250606-015643
-base:   5e1ff2314797bf53636468a97719a8222deca9ae
-patch link:    https://lore.kernel.org/r/20250605-uvc-orientation-v2-4-5710f9d030aa%40chromium.org
-patch subject: [PATCH v2 04/12] media: ipu-bridge: Use v4l2_fwnode_device_parse helper
-config: riscv-randconfig-002-20250606 (https://download.01.org/0day-ci/archive/20250606/202506061223.m9fBRBFN-lkp@intel.com/config)
-compiler: riscv64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250606/202506061223.m9fBRBFN-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506061223.m9fBRBFN-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-mgr-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-bridge-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-region-test.o
->> ERROR: modpost: "v4l2_fwnode_device_parse" [drivers/media/pci/intel/ipu-bridge.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best wishes,
+Pengyu
 
