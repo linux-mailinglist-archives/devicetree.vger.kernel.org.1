@@ -1,280 +1,426 @@
-Return-Path: <devicetree+bounces-183431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3A0AD0843
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 20:50:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E92AD0869
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 21:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F9C83B3644
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 18:50:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D05D417B4BB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 19:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814BF1EB9EB;
-	Fri,  6 Jun 2025 18:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A991E5B7B;
+	Fri,  6 Jun 2025 19:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="hgva45pU"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aNTAQh0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010065.outbound.protection.outlook.com [52.101.69.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9BB1E7C1B
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 18:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749235827; cv=none; b=iE9RCW7b9mqMBDHyvMuo/gwbP89cueESor4Lwsxse9dNtA+FOYNfuJg9SiwOUnpzrJISDKkwlbjoRRQiGx3BmHJnMJUoucVKMp2uWRAMq15ZMdwhA4oBYr2Ut5eLhke0/J1/p48WCZ7EkzYAS99nNzb+0HNu+bkPtg0Jl/scF2Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749235827; c=relaxed/simple;
-	bh=/dqd4gsiXRTcfp+0X9yq9B99EvZcupPMVZfAGuQtBNs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=THuSh7X52NyJL9gLUPl3WOqv53p1kXQbBZdE5G5koP6F2/PNQnXLqz2zMvSKxCUoiYPIRWrN8skWWa4BSbmb23bDk+ZjuWB5TO/S+JhSgLPZqrIvbheJaX5PuZnD7x5d73OO1ivtZjX2xhzf5T3LR+feyuToDU67oEYmaMpAqO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=hgva45pU; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2349f096605so28523875ad.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 11:50:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749235825; x=1749840625; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zDvQKKxsfWnILy2mH3BQ9U7IfG3DuTu++rNRUJOw37w=;
-        b=hgva45pUHIESQwyjTxWPRV7D6eWOGjPkUhuBheLqEpJbQCHtwSCf6KyyOpqrFasIbK
-         LReRTNAK5m6bJ6v/RNCtY8OlOx1Jpf50lxbqsh3fpA6oLtuw6PTLbqk2rBJJuBzqPh2w
-         oeuIkXU/YUtY2k3jMrxSD8DTu9qmt67q5h4Pr60H86GNf6w4cZ3dh58GGiaNwIHW9wGz
-         aDnredw+MAgKRo8Cl5vD2vB2MHvs1cDuj3iHrV3TtUwr+a98FfFFGnBvLvVCHE/gCiPt
-         41x1RFopobJqDapvQzntpb/BegrEUFKHu8CCGlzQ6izX4b89eoIHs9Yhw+Dd2i9xWN6e
-         N7rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749235825; x=1749840625;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zDvQKKxsfWnILy2mH3BQ9U7IfG3DuTu++rNRUJOw37w=;
-        b=X4Us0H6fu+ptOqsWccNeWxn6F8ldge0SPbYhMY2plY0G9xBloXhF1xaJQ5St7O5ynB
-         vg7Ntm+h3MmRuBzvSO67hauiSCLjLvYbfEfWfxmV6XhaOvh4WIqUIGwl/loCqez7gOjR
-         TMlUXijzrk62Eo+X2DkcseC06nod1BQam/ReWO8Z5vZn2L4Eq/PYISGVLZJzS0Vl7eOi
-         ShGNqNjNBsoGHrv0taMlKpPEl6Qcy2+tPLvJXdGfhH8c0vVcQuFtKrX83wQ8nlakdngI
-         qMa22ikKKeS1I++7hPaz3wDj9RN3FdG6JFlJvwy8onxBsKneMip+ckPMxSs9Pob/8OKf
-         w4cw==
-X-Forwarded-Encrypted: i=1; AJvYcCWJOtaU+V14v+qa4+liqubKIXL706WUVXn35zcGmAh1yXYdXpJ9qnrHdTxD0VIaab1bq6pAiFdzdY5I@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw747LIRmJlZ2tI1LJZ/oaSb3ehc8569xnWMlHEg54LD5e9sjG1
-	GvxvvSDLAkMbxC313n1D4f7PYrH0dNK4MbGoDiLcYlwcdN8Xw6qb3VKBx8HvJ5H2pGE=
-X-Gm-Gg: ASbGncsYAiHZN3KBPp44HcjyIim6+H6ZtcyzzbhjHtOQsbodLclYYJ4neEhF6i3PK+L
-	d/JS2R4DJpQFoUDecbQoZEQTcE8PLlpqqmBqbTd61i9bi5cfEjamcNL2HtOOva9gMl5U9097VJH
-	4GyMx6rQ79qSkB1ZOHVGURC9ZnSbyzUsrA1af/YD3Wk7H2Lj5XsvEZ8HUOJ1pthLPFjCFnRpAyW
-	ABnUSV8U9/Yd4k7c/2KdbvUkOvmpUbqmzfci1qzsoGlFzcRtJakrA6VLaTryfFRyi3XuSQunP2G
-	mOHZJr2+16e6tOwLhZ9ZdaC65lK1/vCJDUI+5/Q6i2ZSqrzqf/NwYyNbfa4=
-X-Google-Smtp-Source: AGHT+IHZJuISdaOQA9ORyw2q+y1x20F/e9MNZXHDSrwlivNtd8EgXD7EmYmmTpZQgthCiMV++qIcEQ==
-X-Received: by 2002:a17:902:ce85:b0:235:f078:4733 with SMTP id d9443c01a7336-23601cf6f4bmr58352295ad.8.1749235825082;
-        Fri, 06 Jun 2025 11:50:25 -0700 (PDT)
-Received: from thelio.tailc1103.ts.net ([97.120.245.255])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2f5f782246sm1473617a12.51.2025.06.06.11.50.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 11:50:24 -0700 (PDT)
-From: Drew Fustini <drew@pdp7.com>
-To: Dan Williams <dan.j.williams@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Dave Jiang <dave.jiang@intel.com>,
-	nvdimm@lists.linux.dev
-Cc: Oliver O'Halloran <oohall@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5571E32CF;
+	Fri,  6 Jun 2025 19:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749236515; cv=fail; b=hgKtHXuEMKF0ekkBtdndA4HuA/Pt+9C1VZs40RJ2nCpGxSIpwVhP6eUrILMEDG0GahsGd/yIpFJ0vFjIqCqO+rETI9TSC5bo4g0OGpGhGDhP7L78gTfneq2q4BZPMOkYD3iW6GNKSa2DXB+MjmjBy4MAXquaWhxUqgZaRfwNfSs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749236515; c=relaxed/simple;
+	bh=IsW6+YKYDOVfrseuHD0+RNae0fBfngfkQASvWnHOPnM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=iZcj6YXc26pcVdOWrnzqR1DzqoySkC4ZvHKoO6fArIBMr9AthO1f2Ma5ymfvYKexE1wXDYi+GA8sjjCr5HGsNBA/+Z7B95ML7Er4lDkxIH9Bv1ScQlMPAh55YGd4AdL0y9NlUDWXEXVU+EJae1suvTIErMBWqFKNOkHbVwZwyJY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aNTAQh0c; arc=fail smtp.client-ip=52.101.69.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=F2+cUnefpg51Dj7rKyHCpt4IeSGgdHfPOYq1DVJAdxJ7fFIWYLzvqNOpNpQ1BjgYsxr4frj09aK5UKylv/8encp/P+2/P5AdEbMVsnla9T+ntSxFk/z0gcUClsX/4LW2U9zfP4bOBdBbEPDv3q4w4wUmV5/cNkDyryYBKKF1ntg5YJZctilcKPqqw8ilW65eYnGgRUx1qeahVAFXUuJXXU1MZ46dgx7dIQFkBfVp4p8dQKw6F++5Ludf5bvdKXRNFd+777bMymnQa1Yp6XSTlpZZaQRo3eRk0AQu07jbH3QQAWxTU8t4bAIgEKkL+4EnoFYqBcN7TNxdKUeAKPpo/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6FZFXTaCTt0S8amAU5NTqFVRMFQaUiv4PfTU7FUrJ3U=;
+ b=x+3sLzKItSESN1PJqi56pntMBsAK9orOU6sT5J7RtGmMyDnLIy3NVgB4Jj0WBM3daBs+9UGIHyiv8dZlvegGLoLsrYvGKbfCt17qb/6ZG4aDTo1sX4kSrxhNv4EfMkbDPvEZhjiKu6S8A5D+IpbVYatFFhmlk4fKgl0/9hN74CybicHmy7AB9jgEJgtYZfeUU3hdnoTK4CXH7xyYozp4MGboB16DyNTIoIITWY15r4WvMSGI6Zl2S+byOmcZ0Zthk6WGcBPNDIBy1p59bhDle+ItOuOrhmLIOA323A66CR3NfdCH1QTj8MbkO1fNLtn3kHKQkgH0Y5FEmaNPhswTOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6FZFXTaCTt0S8amAU5NTqFVRMFQaUiv4PfTU7FUrJ3U=;
+ b=aNTAQh0c/ONilMItD2trhKfDjDOGx3Jx6N91AGDNF6Q9zL0CdCqepi/jovq5QhYnh9127sP+mLsh9/1stUDW6PO5QjrFljf+YCgsoPVofSTSrH9AlM/7l3YvNeSzgvspBmGgJvDcwOfEt/TQvniw63i8KEQsGWsBN6C/SBM8S3H3eD9h/GMXcJvx+hB0t3o1myNiF84MCC3JPDNgaCWbnCFr3UdKkTj6TIOHO+Va433tOc2UoZWM9rf77i54IOeP6ElsLkD9dBtSrjU9g4gjOjvv/AV4+xSRhXtSLL4/SxK5ZiVD6OTpIQUW0U7w0xjw9fN3UwTzfe8ZhpKMzWJfuA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBBPR04MB7563.eurprd04.prod.outlook.com (2603:10a6:10:206::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.21; Fri, 6 Jun
+ 2025 19:01:48 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Fri, 6 Jun 2025
+ 19:01:48 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Drew Fustini <drew@pdp7.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3] dt-bindings: pmem: Convert binding to YAML
-Date: Fri,  6 Jun 2025 11:11:17 -0700
-Message-ID: <20250606184405.359812-4-drew@pdp7.com>
-X-Mailer: git-send-email 2.43.0
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/4] arm64: dts: imx95-19x19-evk: add adc0 flexcan[1,2] i2c[2,3] uart5 spi3 and tpm3
+Date: Fri,  6 Jun 2025 15:00:41 -0400
+Message-Id: <20250606190045.1438740-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ2PR07CA0007.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::12) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7563:EE_
+X-MS-Office365-Filtering-Correlation-Id: 485cfe02-6188-4b44-dbec-08dda52c96e5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?bN0PGwQcByOcRet4j27W4MkAmlg5eB/opteckGOv/gdj7J+WXK2lrPQfmyeY?=
+ =?us-ascii?Q?4qofIxcJCtkb0IrhQvpBlpsrH6a1Ghc+9GGCkKca0sM4iTI0wwP+5nKMnnjP?=
+ =?us-ascii?Q?NhcuFyvMQRce4Ke6V+KhY0SjnYbdKuPL34Nk0YPaalarCyuvH5EAxtpbHpH2?=
+ =?us-ascii?Q?RgkFCRmRCRhGJ1582pMeE61PjPXqxUL8wnpJCIGNb01LJejO+Dc1obY5KI5I?=
+ =?us-ascii?Q?0KIEYpspx6d+A339OHppLa/oE6utXMXNu6kfyv4qP05RJsbp0SmrxyPWyTZ4?=
+ =?us-ascii?Q?sLb9oGtQjubNuZJxX+XFY0qw1ji1A0iqbiUEW8RbCZGsxYXC6FFES6IV02KH?=
+ =?us-ascii?Q?kXlkJUl6u64tXVdbH53CS2HKkSBQyunUmpzoOhc0l6mpJC5pY/QQ7m4DiPwE?=
+ =?us-ascii?Q?RyY6K3y6SzmTK+ACBLJv55QQ7t8l+WO9YFXWy6rLvkQ8VbzmqvlgAlinZQcE?=
+ =?us-ascii?Q?UxQGysGEF2v9n+/80Ex0TCE6MDg47+64fPqAAIE3Me4fYn9FZDYxD/BiCOYY?=
+ =?us-ascii?Q?P4MzqvCsztj+3jQqhwZ1t693AMGfNdtcDNfCZhzwKvxPPo/070gegBIvPIxr?=
+ =?us-ascii?Q?B99ZrbVO+hr8f2AldkTG77zBU56zRpieswyjTw1NTXJKOEoqykUgq2XMtD84?=
+ =?us-ascii?Q?byLCnLmGS5wxbcQGcU/wwTNoBcrhl+CLv7kZSHvfLnpdr6WRk9YO4X71Fgam?=
+ =?us-ascii?Q?i0IN0MP3i43woIsiSBHIM2pcOkk/7pBXi780w8QZ3OM7OHhVBSjQ/gM9eiJ0?=
+ =?us-ascii?Q?fQ5Q82gL0fa2mkdkn3lR3CVUJvUBVolvGVBdxybV2h0YT3rxi5Jvgx6ufEC0?=
+ =?us-ascii?Q?RaR54xg0KJ5Mq2SRHjA9NI2fenqkwMlU/GTwhrAIW8anoHgbz4I9f4UrgVl6?=
+ =?us-ascii?Q?z9FXjZblMCXMZdLJONLe9dzg7ihTol/lRukMf7kx0uU3xi/fTpshGiOnWtgW?=
+ =?us-ascii?Q?AU4wvojOeEEllTI/8wEJqfsqI/MKKVG/wALWJ4VioMBoZ8A5mYN4zcGRPpId?=
+ =?us-ascii?Q?esROKeq/CS+d1C9dWziIUq+oJwa0vm3B4WaP9ncFNmZlSCKE5J9ZQzHeqUDy?=
+ =?us-ascii?Q?bQwYso6/haKs/Mjh+5DI1VbftqFdUkb9KPOBv4yS1l6JKn8cB7/Ab77FPOf6?=
+ =?us-ascii?Q?8aq97+hxDccotQqsP37OZraVNBU847nm4XDMqwOG+JRm6qJyyg+PMl0wY/8P?=
+ =?us-ascii?Q?P7EWhi0u9vEDzEr6bzniHSZ5CBBswS4jfC61Wq1y6t55FnSE/gS4+MzttaYY?=
+ =?us-ascii?Q?1PP1R9UqjpoDfpHohMPICHZh1kIZcQ3r1NG+DURlg9Oa9BTqOdFrMabkBwEh?=
+ =?us-ascii?Q?CiLfZlI4+kq2ocr8DCh9D8fLD9/JhMoGCT01CZZ6NG87WGMNaRb54I4XGjhB?=
+ =?us-ascii?Q?lwJ9Fnu6e7hsRjSjABvBIH6DtYaoPOPUlg8S/KeGcT1qOhVzKXpo/yJFd39l?=
+ =?us-ascii?Q?31JtD6EevoiA1WZCj1CiQtDk8WXf9ISJwTZDlWQjBlaFgjMDBV9Lhz45DLfs?=
+ =?us-ascii?Q?HnJ190eDmLP4E8Y=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?KOIHbmbyrmh+VXZSZP6PODovv42joyMm9lbS2c0gmoO7fRgZzmho5OeolZ3r?=
+ =?us-ascii?Q?jrVgyDmgOvUJ6o/Ec87pRtDNYix93I4RdU1tIrEF2B9eBWCH8y0EOg6qfBBp?=
+ =?us-ascii?Q?z9Tub7j3gO0lEde00eaYSBiLU8e5OA7dPJQGM/TIcwFDgKSbLOB2t5kU1x0C?=
+ =?us-ascii?Q?/ky/d+x1aNULQr9hUsEYTc0MY+doA/bja/Ly1SsSWya1rgOj2aPwIel4klvV?=
+ =?us-ascii?Q?iCB+M9x1a6oW78di/+uW3j1wJpwOsGJHL3wFZV6Rk3iZWoO+lWmHkEc9VQn5?=
+ =?us-ascii?Q?6fppBGOa2o5og5OB/hxCcp5O5pZ+ptRA1W2Ci0Umh1wItktV3uZ2g+R1KEjx?=
+ =?us-ascii?Q?HiZ7xQcRjwNFzjnzC4MdIP+KgGiIhShJ5b3V7FuVIccxO0VB1Zo4JUNjXdwh?=
+ =?us-ascii?Q?m25IFPdofj+XZHlspMY0sU6wERDD/fJpFS4dB1ykB0dnzftxWYpFO5qGbSpE?=
+ =?us-ascii?Q?V4Qp9aSrQ2MDMkgpVLVUhYfCm79qvBTurj3B5+YCGzqYOWgN774UxiNeFIpt?=
+ =?us-ascii?Q?bm5aMHg9TgPQ6QP5674pumhGNdGDDdDTNOJiOXwtSwP4cXPpkPAmnj5YNnKS?=
+ =?us-ascii?Q?1E+CngYm8N7yV7x8ubDF+En0/Bq8sZW+79Cma3e5b1DogKO9guz94GCcxAXB?=
+ =?us-ascii?Q?Co3dTKbtVsj8tvwvAXWMZ/1CamZvW3vH9IFMJvUUAoFJWWwSBPUVHnQ2OOQC?=
+ =?us-ascii?Q?1x7Q/Xii1W3p6vxVuVJyAOsgM+d0tDAot77IADBQ82mRRpSr8fnplT7qeE/6?=
+ =?us-ascii?Q?D0ZP1X69m0sKtH6evVBdBkkFSikj1sHf/V8qAvO8bpHUPwTFigRgQefGDxqw?=
+ =?us-ascii?Q?xYdaWnTamGQYFtzQXCVLmXnIwLoY5XxmZ4umcn248qdjqoYxOa2cX2J/t//+?=
+ =?us-ascii?Q?MaesSLPuvh25Wtdc/WCorHV/a93z12eR+yu6Bms9TrYg/FJdkXOwe5AIW0wP?=
+ =?us-ascii?Q?bxQnLzRHqNwpiffsPzdIyHNeEZeqOrg5djNcJqAjPkQ6zohJgZ7viY8Wckba?=
+ =?us-ascii?Q?4CRH87I/XHlqEgPmH71Xni32XsKoDGaWdwnnH1DYsgwHYsujddyW7DdmqQ6O?=
+ =?us-ascii?Q?wecSwhxHDZRrcKfHIp+SYSB6qTyNHxHNLhKLRkNPfMHvExQMH2IWTCpVQ+uH?=
+ =?us-ascii?Q?alILMkCKMsZC8+tSALKM3PPf4ji++98wOpuZh7UC1TfSO6iDj7QPNaTazeQh?=
+ =?us-ascii?Q?dcrvd5nU/SECxmWlEH5mhTpWUOV/0eMNwl0oC0g9c/vexugKF0YqjJautTu3?=
+ =?us-ascii?Q?mloDr/WdNWg8rZT8jzv3VZ6/FqwDMilPPmEQ6re0ynX5R4P9BP5Xp6Myrh9Y?=
+ =?us-ascii?Q?yTsAdSDhtHEGHUVjS+FoDsL7U5wm0DM4w9px5sb2Gm4hRi/2sqyfO6AgKHXW?=
+ =?us-ascii?Q?lLYJynLRq2mPXA0mTNxX9rL1ieyMDZI3dEspWIh3VIZsdyodEymZMCeV2FmF?=
+ =?us-ascii?Q?326Yz7QOV4YsojjnV/iEtIeOcwP9lGtS94/vcU7bxuiRfFJu/dlQwZUpPKkM?=
+ =?us-ascii?Q?+y03WH4aOl+DRAxHQDx9HeTnaI3KYaUQ+BY0hF3OL3uDLwyzSCg8f6IuFpuA?=
+ =?us-ascii?Q?fywb1j3QiN9Qmp+4hIg+XQRKu6YYim7ZeipMZrZJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 485cfe02-6188-4b44-dbec-08dda52c96e5
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2025 19:01:48.7258
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 51mrtU9T4iR+WUYheqVRYcm33y8VZqP+hbEHTqSrdr+49VpBJkptPH+xyYY3TwWMHou6o44gyG4Szobw1aAktA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7563
 
-Convert the PMEM device tree binding from text to YAML. This will allow
-device trees with pmem-region nodes to pass dtbs_check.
+Add adc0 flexcan[1,2] i2c[2,3] uart5 spi3 tpm3 netc_timer and related phys
+regulators pinmux and related child nodes.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Oliver O'Halloran <oohall@gmail.com>
-Signed-off-by: Drew Fustini <drew@pdp7.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
-Dan/Dave/Vishal: does it make sense for this pmem binding patch to go
-through the nvdimm tree?
+change in v2
+- remove spidev0: spi@0
+- remove extra empty line
+---
+ .../boot/dts/freescale/imx95-19x19-evk.dts    | 160 ++++++++++++++++++
+ 1 file changed, 160 insertions(+)
 
-Note: checkpatch complains about "DT binding docs and includes should
-be a separate patch". Rob told me that this a false positive. I'm hoping
-that I can fix the false positive at some point if I can remember enough
-perl :)
-
-v3:
- - no functional changes
- - add Oliver's Acked-by
- - bump version to avoid duplicate message-id mess in v2 and v2 resend:
-   https://lore.kernel.org/all/20250520021440.24324-1-drew@pdp7.com/
-
-v2 resend:
- - actually put v2 in the Subject
- - add Conor's Acked-by
-   - https://lore.kernel.org/all/20250520-refract-fling-d064e11ddbdf@spud/
-
-v2:
- - remove the txt file to make the conversion complete
- - https://lore.kernel.org/all/20250520021440.24324-1-drew@pdp7.com/
-
-v1:
- - https://lore.kernel.org/all/20250518035539.7961-1-drew@pdp7.com/
-
- .../devicetree/bindings/pmem/pmem-region.txt  | 65 -------------------
- .../devicetree/bindings/pmem/pmem-region.yaml | 49 ++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 50 insertions(+), 66 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pmem/pmem-region.txt
- create mode 100644 Documentation/devicetree/bindings/pmem/pmem-region.yaml
-
-diff --git a/Documentation/devicetree/bindings/pmem/pmem-region.txt b/Documentation/devicetree/bindings/pmem/pmem-region.txt
-deleted file mode 100644
-index cd79975e85ec..000000000000
---- a/Documentation/devicetree/bindings/pmem/pmem-region.txt
-+++ /dev/null
-@@ -1,65 +0,0 @@
--Device-tree bindings for persistent memory regions
-------------------------------------------------------
--
--Persistent memory refers to a class of memory devices that are:
--
--	a) Usable as main system memory (i.e. cacheable), and
--	b) Retain their contents across power failure.
--
--Given b) it is best to think of persistent memory as a kind of memory mapped
--storage device. To ensure data integrity the operating system needs to manage
--persistent regions separately to the normal memory pool. To aid with that this
--binding provides a standardised interface for discovering where persistent
--memory regions exist inside the physical address space.
--
--Bindings for the region nodes:
-------------------------------
--
--Required properties:
--	- compatible = "pmem-region"
--
--	- reg = <base, size>;
--		The reg property should specify an address range that is
--		translatable to a system physical address range. This address
--		range should be mappable as normal system memory would be
--		(i.e cacheable).
--
--		If the reg property contains multiple address ranges
--		each address range will be treated as though it was specified
--		in a separate device node. Having multiple address ranges in a
--		node implies no special relationship between the two ranges.
--
--Optional properties:
--	- Any relevant NUMA associativity properties for the target platform.
--
--	- volatile; This property indicates that this region is actually
--	  backed by non-persistent memory. This lets the OS know that it
--	  may skip the cache flushes required to ensure data is made
--	  persistent after a write.
--
--	  If this property is absent then the OS must assume that the region
--	  is backed by non-volatile memory.
--
--Examples:
----------------------
--
--	/*
--	 * This node specifies one 4KB region spanning from
--	 * 0x5000 to 0x5fff that is backed by non-volatile memory.
--	 */
--	pmem@5000 {
--		compatible = "pmem-region";
--		reg = <0x00005000 0x00001000>;
--	};
--
--	/*
--	 * This node specifies two 4KB regions that are backed by
--	 * volatile (normal) memory.
--	 */
--	pmem@6000 {
--		compatible = "pmem-region";
--		reg = < 0x00006000 0x00001000
--			0x00008000 0x00001000 >;
--		volatile;
--	};
--
-diff --git a/Documentation/devicetree/bindings/pmem/pmem-region.yaml b/Documentation/devicetree/bindings/pmem/pmem-region.yaml
-new file mode 100644
-index 000000000000..a4aa4ce3318b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pmem/pmem-region.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pmem-region.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+maintainers:
-+  - Bjorn Helgaas <bhelgaas@google.com>
-+  - Oliver O'Halloran <oohall@gmail.com>
-+
-+title: Persistent Memory Regions
-+
-+description: |
-+  Persistent memory refers to a class of memory devices that are:
-+
-+    a) Usable as main system memory (i.e. cacheable), and
-+    b) Retain their contents across power failure.
-+
-+  Given b) it is best to think of persistent memory as a kind of memory mapped
-+  storage device. To ensure data integrity the operating system needs to manage
-+  persistent regions separately to the normal memory pool. To aid with that this
-+  binding provides a standardised interface for discovering where persistent
-+  memory regions exist inside the physical address space.
-+
-+properties:
-+  compatible:
-+    const: pmem-region
-+
-+  reg:
-+    maxItems: 1
-+
-+  volatile:
-+    description: |
-+      Indicates the region is volatile (non-persistent) and the OS can skip
-+      cache flushes for writes
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmem@5000 {
-+        compatible = "pmem-region";
-+        reg = <0x00005000 0x00001000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ee93363ec2cb..eba2b81ec568 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13798,7 +13798,7 @@ M:	Oliver O'Halloran <oohall@gmail.com>
- L:	nvdimm@lists.linux.dev
- S:	Supported
- Q:	https://patchwork.kernel.org/project/linux-nvdimm/list/
--F:	Documentation/devicetree/bindings/pmem/pmem-region.txt
-+F:	Documentation/devicetree/bindings/pmem/pmem-region.yaml
- F:	drivers/nvdimm/of_pmem.c
+diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+index 6886ea7666550..5d85849e867fc 100644
+--- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+@@ -77,6 +77,29 @@ linux_cma: linux,cma {
+ 		};
+ 	};
  
- LIBNVDIMM: NON-VOLATILE MEMORY DEVICE SUBSYSTEM
++	flexcan1_phy: can-phy0 {
++		compatible = "nxp,tjr1443";
++		#phy-cells = <0>;
++		max-bitrate = <1000000>;
++		enable-gpios = <&i2c6_pcal6416 6 GPIO_ACTIVE_HIGH>;
++		standby-gpios = <&i2c6_pcal6416 5 GPIO_ACTIVE_HIGH>;
++	};
++
++	flexcan2_phy: can-phy1 {
++		compatible = "nxp,tjr1443";
++		#phy-cells = <0>;
++		max-bitrate = <1000000>;
++		enable-gpios = <&i2c6_pcal6416 4 GPIO_ACTIVE_HIGH>;
++		standby-gpios = <&i2c6_pcal6416 3 GPIO_ACTIVE_HIGH>;
++	};
++
++	reg_vref_1v8: regulator-1p8v {
++		compatible = "regulator-fixed";
++		regulator-max-microvolt = <1800000>;
++		regulator-min-microvolt = <1800000>;
++		regulator-name = "+V1.8_SW";
++	};
++
+ 	reg_3p3v: regulator-3p3v {
+ 		compatible = "regulator-fixed";
+ 		regulator-max-microvolt = <3300000>;
+@@ -204,6 +227,11 @@ sound-wm8962 {
+ 	};
+ };
+ 
++&adc1 {
++	vref-supply = <&reg_vref_1v8>;
++	status = "okay";
++};
++
+ &enetc_port0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_enetc0>;
+@@ -212,6 +240,20 @@ &enetc_port0 {
+ 	status = "okay";
+ };
+ 
++&flexcan1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan1>;
++	phys = <&flexcan1_phy>;
++	status = "disabled";
++};
++
++&flexcan2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan2>;
++	phys = <&flexcan2_phy>;
++	status = "okay";
++};
++
+ &flexspi1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexspi1>;
+@@ -231,6 +273,37 @@ flash@0 {
+ 	};
+ };
+ 
++&lpi2c2 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpi2c2>;
++	status = "okay";
++
++	adp5585: io-expander@34 {
++		compatible = "adi,adp5585-00", "adi,adp5585";
++		reg = <0x34>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-reserved-ranges = <5 1>;
++		#pwm-cells = <3>;
++	};
++};
++
++&lpi2c3 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpi2c3>;
++	status = "okay";
++
++	i2c3_gpio_expander_20: gpio@20 {
++		compatible = "nxp,pcal6408";
++		#gpio-cells = <2>;
++		gpio-controller;
++		reg = <0x20>;
++		vcc-supply = <&reg_3p3v>;
++	};
++};
++
+ &lpi2c4 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+@@ -378,6 +451,24 @@ &lpuart1 {
+ 	status = "okay";
+ };
+ 
++&lpuart5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart5>;
++	status = "disabled";
++
++	bluetooth {
++		compatible = "nxp,88w8987-bt";
++	};
++};
++
++&lpspi7 {
++	num-cs = <1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpspi7>;
++	cs-gpios = <&gpio2 4 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
+ &micfil {
+ 	#sound-dai-cells = <0>;
+ 	pinctrl-names = "default";
+@@ -418,6 +509,10 @@ ethphy0: ethernet-phy@1 {
+ 	};
+ };
+ 
++&netc_timer {
++	status = "okay";
++};
++
+ &pcie0 {
+ 	pinctrl-0 = <&pinctrl_pcie0>;
+ 	pinctrl-names = "default";
+@@ -484,6 +579,12 @@ &sai3 {
+ 	status = "okay";
+ };
+ 
++&tpm3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_tpm3>;
++	status = "okay";
++};
++
+ &usb2 {
+ 	dr_mode = "host";
+ 	disable-over-current;
+@@ -588,6 +689,20 @@ IMX95_PAD_ENET1_RD3__NETCMIX_TOP_ETH0_RGMII_RD3		0x57e
+ 		>;
+ 	};
+ 
++	pinctrl_flexcan1: flexcan1grp {
++		fsl,pins = <
++			IMX95_PAD_PDM_CLK__AONMIX_TOP_CAN1_TX			0x39e
++			IMX95_PAD_PDM_BIT_STREAM0__AONMIX_TOP_CAN1_RX		0x39e
++		>;
++	};
++
++	pinctrl_flexcan2: flexcan2grp {
++		fsl,pins = <
++			IMX95_PAD_GPIO_IO25__CAN2_TX				0x39e
++			IMX95_PAD_GPIO_IO27__CAN2_RX				0x39e
++		>;
++	};
++
+ 	pinctrl_flexspi1: flexspi1grp {
+ 		fsl,pins = <
+ 			IMX95_PAD_XSPI1_SS0_B__FLEXSPI1_A_SS0_B			0x3fe
+@@ -628,6 +743,27 @@ IMX95_PAD_GPIO_IO36__GPIO5_IO_BIT16			0x31e
+ 		>;
+ 	};
+ 
++	pinctrl_lpi2c1: lpi2c1grp {
++		fsl,pins = <
++			IMX95_PAD_I2C1_SCL__AONMIX_TOP_LPI2C1_SCL		0x40000b9e
++			IMX95_PAD_I2C1_SDA__AONMIX_TOP_LPI2C1_SDA		0x40000b9e
++		>;
++	};
++
++	pinctrl_lpi2c2: lpi2c2grp {
++		fsl,pins = <
++			IMX95_PAD_I2C2_SCL__AONMIX_TOP_LPI2C2_SCL		0x40000b9e
++			IMX95_PAD_I2C2_SDA__AONMIX_TOP_LPI2C2_SDA		0x40000b9e
++		>;
++	};
++
++	pinctrl_lpi2c3: lpi2c3grp {
++		fsl,pins = <
++			IMX95_PAD_GPIO_IO00__LPI2C3_SDA				0x40000b9e
++			IMX95_PAD_GPIO_IO01__LPI2C3_SCL				0x40000b9e
++		>;
++	};
++
+ 	pinctrl_lpi2c4: lpi2c4grp {
+ 		fsl,pins = <
+ 			IMX95_PAD_GPIO_IO30__LPI2C4_SDA			0x40000b9e
+@@ -656,6 +792,15 @@ IMX95_PAD_GPIO_IO09__LPI2C7_SCL			0x40000b9e
+ 		>;
+ 	};
+ 
++	pinctrl_lpspi7: lpspi7grp {
++		fsl,pins = <
++			IMX95_PAD_GPIO_IO04__GPIO2_IO_BIT4		0x3fe
++			IMX95_PAD_GPIO_IO05__LPSPI7_SIN			0x3fe
++			IMX95_PAD_GPIO_IO06__LPSPI7_SOUT		0x3fe
++			IMX95_PAD_GPIO_IO07__LPSPI7_SCK			0x3fe
++		>;
++	};
++
+ 	pinctrl_pcie0: pcie0grp {
+ 		fsl,pins = <
+ 			IMX95_PAD_GPIO_IO32__HSIOMIX_TOP_PCIE1_CLKREQ_B		0x4000031e
+@@ -716,6 +861,12 @@ IMX95_PAD_GPIO_IO21__SAI3_TX_DATA_BIT0			0x31e
+ 		>;
+ 	};
+ 
++	pinctrl_tpm3: tpm3grp {
++		fsl,pins = <
++			IMX95_PAD_GPIO_IO12__TPM3_CH2			0x51e
++		>;
++	};
++
+ 	pinctrl_tpm6: tpm6grp {
+ 		fsl,pins = <
+ 			IMX95_PAD_GPIO_IO19__TPM6_CH2			0x51e
+@@ -729,6 +880,15 @@ IMX95_PAD_UART1_TXD__AONMIX_TOP_LPUART1_TX      0x31e
+ 		>;
+ 	};
+ 
++	pinctrl_uart5: uart5grp {
++		fsl,pins = <
++			IMX95_PAD_DAP_TDO_TRACESWO__LPUART5_TX		0x31e
++			IMX95_PAD_DAP_TDI__LPUART5_RX			0x31e
++			IMX95_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B		0x31e
++			IMX95_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B		0x31e
++		>;
++	};
++
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+ 			IMX95_PAD_SD1_CLK__USDHC1_CLK			0x158e
 -- 
-2.43.0
+2.34.1
 
 
