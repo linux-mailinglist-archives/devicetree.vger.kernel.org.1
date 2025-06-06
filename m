@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-183252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D85FAACFD19
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 08:49:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66A6ACFD1A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 08:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 204671892DE1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 06:49:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B0D6170A53
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 06:50:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380FD283FEE;
-	Fri,  6 Jun 2025 06:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7595283FD3;
+	Fri,  6 Jun 2025 06:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eil39XDY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOCtZz3r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2AD283FC7;
-	Fri,  6 Jun 2025 06:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C91142AA9;
+	Fri,  6 Jun 2025 06:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749192526; cv=none; b=BVUU1P3+/fjM++a9Q4IlBCbzykyj4J0RYxLy9WQ9ngCnd2MgKhEWT7vZRtBVsYt+2x5+XZ6THYzJDGru3401lAMNpm6v71Chfvyr/Lyz7rF3qTvI6dKhFWJYZFfI75j9LErnXa25uPqly5xuypXHJ+ehnRZn0MxR4xV2FC+AKRE=
+	t=1749192652; cv=none; b=e8kpvNgz3WTOSv2ozLNi/A+D/4LRx2A7tYoJk2O0diHjSYsP7JmrSxq+sYUhBplHVAXdbIRggaLWKgtZDvTKWWw/+mJiJo7eHJ6Xf3ysqWoRhPY2WMPBWW1ngHg2oy7/uH3Au/M6NXlIAtdX2Bo6HOdU+6Xh2mBnwlZEbjGfzW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749192526; c=relaxed/simple;
-	bh=tekfPKn60ollwIQDE/bbz9N7mdqNYSe7NW+KZCm/osI=;
+	s=arc-20240116; t=1749192652; c=relaxed/simple;
+	bh=3i0K2Cb7TgIgcoO/1LEeenusT49+10en1WHeFgaoCbQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gwZSH5oMrdV+odXfYXsA/w2klgFHJGiFWFkams+BCFXCmrBKWRAdWBsJzYtMWytXqWm1Jgb6c//6p5rWu5Q4YlJQsCfTrsddbk2w9kGY0xU/CxOLToHIoo0Y+1sUiOXPwDZOsU84mYkesQjI5zHxh4vmgIszhQrO4HZd/LrQQJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eil39XDY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25EA8C4CEEB;
-	Fri,  6 Jun 2025 06:48:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ka8Ai59bdFxzkmDXf2XvDXLuG444GIMEjv7UJveE2Kwt5/08VlhEzZxaAIK+e6QMziA135qcY1V0fo0uf6hcehMYAZDQZWkiJdkkWTFNnCVgtP1AfkgS79aoHqd1zo2RnSrt5VKwNSh8bdF2Vj2kDKmgNHzmBS2rdHEZZFqsaOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOCtZz3r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F75C4CEEB;
+	Fri,  6 Jun 2025 06:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749192525;
-	bh=tekfPKn60ollwIQDE/bbz9N7mdqNYSe7NW+KZCm/osI=;
+	s=k20201202; t=1749192652;
+	bh=3i0K2Cb7TgIgcoO/1LEeenusT49+10en1WHeFgaoCbQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eil39XDYT9ygpbJkNJSvySwpwEBbMNLDZbTz7m0Fro3kYJ7i7+aYE7Ygebbf0aKgm
-	 xFFGIM9a7Dpvh0YSrmYo5tAGPv3wgD9YQYiVv8UPDzx7f4hRy7D/XIa62RMu8oYPkm
-	 SzOXNNcVLAU62Jc6Ef7GhesYl20Pp5wI+HJv2AXR90fFnUW1ZvbdDeSC4dhv0uRwTI
-	 J+6bUJ8XnnwgCqlkgtr2cwpsFk8T8BAWUWMuGO2HgGyA3BZoD14DKIS//lj8I3Zj2K
-	 F2Hl3bJMUEmabaYOouXiPMtuXoKIw8/W4Xo+woXSujY68po808h5cJgCjz3ktHXarb
-	 NILYJmTCPlDSw==
-Message-ID: <872faa80-d323-4625-ab8f-50ab2e0e8e0f@kernel.org>
-Date: Fri, 6 Jun 2025 08:48:42 +0200
+	b=NOCtZz3rHIh67wd8v5OIYJI1PZkZ6sLWHD9B1msOuJPIiyJvuomQBfs6kKRPTlLhB
+	 rN854GLDnWO4SRLXPq3SHTb8AmFdGbPSYvHyTh5mVVb+PMOBZWup1LZ5CSUl0gAj9N
+	 ZxPwnSW++eTgnKOd6bKU9Zgbo/r3eqyL9NEolvPbSNj3Oov4C2NxM0k0FNj/NTbqaV
+	 +VmUH9IYcm+CYXhzxjW8qrGMQFjTd95W91vF9arYYgz6/FiqaGhQXe2tOh/L+fw4Xt
+	 7tL8LdmM/1cvNwWMFn9kEqgquS2R7ty1FRD13EJGOmJvQ80SNw0zsfMQ9yRCuMhkeN
+	 YX/snbkyOIGPA==
+Message-ID: <44b72ea6-353f-40bd-9bbc-66186bdb1161@kernel.org>
+Date: Fri, 6 Jun 2025 08:50:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: devicetree bindings acceptance criteria
-To: Trilok Soni <trilok.soni@oss.qualcomm.com>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <ae3eb699-4501-430f-8a2e-83a25aa18c95@oss.qualcomm.com>
-Content-Language: en-US
+Subject: Re: [PATCH v7 1/2] ARM: dts: aspeed: ventura: add Meta Ventura BMC
+To: Jason Hsu <jasonhell19@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ patrick@stwcx.xyz, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Cc: yang.chen@quantatw.com, jerry.lin@quantatw.com
+References: <20250606025251.887953-1-jasonhell19@gmail.com>
+ <20250606025251.887953-2-jasonhell19@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -101,53 +104,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ae3eb699-4501-430f-8a2e-83a25aa18c95@oss.qualcomm.com>
+In-Reply-To: <20250606025251.887953-2-jasonhell19@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/06/2025 08:25, Trilok Soni wrote:
-> Hello Rob and Krzysztof,
+On 06/06/2025 04:52, Jason Hsu wrote:
+> Add Linux device tree related to Meta(Facebook) Ventura specific
+> devices connected to BMC(AST2600) SoC.Add subject prefix for the patch.
 > 
-> I would like to inquire about the devicetree bindings acceptance criteria. 
-> 
-> Are you okay to accept only the devicetree bindings patches which describes
-> the h/w but developers are not yet ready to submit the
-> DTS files of that SOC-IP and the relevant code in the device driver.
-> 
-> Please note that driver code and DTS files we are referring here
-> are actually open-source and they will be available on our website like
-> codelinaro or github.com/qualcomm but they are either
-> written with the downstream usecases and not ready to be submitted yet.
-> 
-> By submitting and getting devicetree bindings being accepted will
-> help us to make our downstream drivers compliant and later will have
-> less back and forth when we submit the actual patches of downstream
-> driver features and DTS patches.
+> Signed-off-by: Jason Hsu <jasonhell19@gmail.com>
 
-Exceptions are allowed but the main thing here is that there are no
-benefits of that. Neither for the community nor for Qualcomm. The only
-point of having such bindings is to define the ABI. We allow ABI changes
-in the kernel under some circumstances, but I do not see any reason to
-allow it for downstream code. Since there are no users in the kernel,
-any arguments "but I kept backwards compatible" or "but I update DTS to
-new ABI" will be invalid and rejected, thus this ABI will not be allowed
-to be changed.
+<form letter>
+This is a friendly reminder during the review process.
 
-If we allow to change it, what is the point of any ABI here? Just churn.
-Send the bindings when you have driver or DTS ready, with the driver or DTS.
+It looks like you received a tag and forgot to add it.
 
-I am sure that contributors will not be aware of that fully, because
-they just want they code to get accepted, so eventually they will be
-surprised that their consecutive patches changing bindings are rejected
-and they are stuck what was accepted at beginning.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
-The drawback for community is that it opens gate for all sorts of
-downstream code never becoming upstream. It won't be even possible to
-judge whether binding is ever used or not, because there will be no user
-visible to us at all.
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-I remember only one exception for such case - ARM Mali/Midgard bindings
-for the out-of-tree, although released in open source, drivers.
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
