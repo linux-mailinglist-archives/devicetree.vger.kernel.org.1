@@ -1,191 +1,200 @@
-Return-Path: <devicetree+bounces-183272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399C8ACFEEC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 11:12:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB58ACFF25
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 11:20:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8F7516B59B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 09:12:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9480189CF28
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 09:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2527286436;
-	Fri,  6 Jun 2025 09:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005DD286430;
+	Fri,  6 Jun 2025 09:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="TxvA3+vc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FciFhVUQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8E728642C
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 09:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371E32857CC;
+	Fri,  6 Jun 2025 09:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749201147; cv=none; b=mM16oHQKSG0EbLdisuVocHW31J2irhLdoyZjn3tarT7LRbziMlod8q0D1UEvacrxrFZTUzQv82oMp3WP5+DrJBYBwHKhS7rRV//sakIdAHANzFMHI0XFRBSLWo25NOHCzGA8uU+DkIlF9XL+vGrw5cAdMNHkFsJuotCn9wdHxwI=
+	t=1749201589; cv=none; b=VBxlVuJXRW7vreWPyf62JiNx8y6VdF6ElzGHJuUaHdJj+jAkfcxekLbnC+3rz3kRmf+fY7qBQsOG5N0+VHUNPA2cVumwSuvdiJNa9LyptH1u7oxoecaUjm8vjmviP4oBFiVrDMumiFLA+RDHmxmF1Iw/DvzqDUCicnW5Rb/qefU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749201147; c=relaxed/simple;
-	bh=HmRNUwvFUl/hdKoO4B1dgc6/Hw5mGyFSqMWv/NJQVWE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uH+gizAI5bNev/gHcJxu1gUHAM5ifFeebMcifX3Me0NHxZbAIVu9oFxcK1vEZppAtx0jkaYVvUhEQDMjnhdjS8wKE1CXxfYt2k+5f8XS5zebxD/Idz22t2fNO3AYsJxwCDjnRsHMpvHPFnSRyHuP2ELtX9WK1m4OLKkeZ0gtKrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=TxvA3+vc; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ad93ff9f714so315606766b.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 02:12:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1749201144; x=1749805944; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wc+ifX+7O38yry593NEDWvp79xQMU3g4ALAygrP5+5k=;
-        b=TxvA3+vcesJZKqLdzgVo3evL9gOZzhwlcXroGLLBq+G8ahix5MAMLbKqLE35JLUHF2
-         VAvfkrrzKMTNT1Er2AEEtR0GK5Jklbeh4SDj//wLvZ+MXHqpuLHP1y8+Ew37iDNJ/ELB
-         zGhVek5Cu05m1W0oBuGylGglcngGZP80EfUkifMT7AU6RLF4+uduuyt1BPRz3coEAQtq
-         SW9pJJVof/RhUpHQVgMQkGdxLiu/xtLDer20WNPoe3nsqhMdclVAfEwnrx7puRF3IKrA
-         3xZthlRqDnC+BfNnrav3UnkwCkSEWUZ9QA8rf88C/gzcD6VYUSmeu6f9qbBQ1uH4nfQi
-         3eoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749201144; x=1749805944;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wc+ifX+7O38yry593NEDWvp79xQMU3g4ALAygrP5+5k=;
-        b=HOVHv4ZQX6pi347chKWLmMmK8wGQOIKupebZMgjOeOpqwMd2mL5Lr8w5RRju2dsZGq
-         FRvFd3t2wnoXz8uoaFcM/kGvYKcvIhUD2pG/6tFnix9FdyQ+o1QZtRVzEfouceKuCUIx
-         27J+LZxulB9LYa/L567cjhYm3Uls02aaSVmniJ1KY82F5NaTTWUUt5qKrdgVleRtJj4x
-         khKYlDsQnWJeeU5rq1kDzyUvFa6ZKhjNavT71CDv4vJf84mlxnZ0agbFSt/T+fcFwgVJ
-         oeQVVE/KvXdz0BwYbg8ZqISt+lnRTNRtGK5sp6TMda7vsW5FSR86yAoMG/Xagnblx6LR
-         9zzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlcy2IloUqKKPIun6fd3vc38v36yAbqmJ/lytLjguOAsS8qxoHNaNYYqARDvmqRiijnPonoDUftf+c@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzyNZR05Pax/R9D/M4qy3YlCcTiCX+yNrmFHrwmudZcScgs+6W
-	siC53cJrrVE+eunDtEcSWiZ5HTr4Ogf4jFdMI1DBlSG6SDE9BhIsSEuVqiBEBUzHMqo=
-X-Gm-Gg: ASbGncunAs0Lr5/GSoY7Rh1zTe3gGcA337ONS8HrA+JX6MRKdvwaV/kIrY3Ds5QLCKQ
-	llbKjRW9cCvMoAbwy+3nN4v4haB88TUcQjtyPmrR2tcK+WEdFMmmXL19GgB7tKpMRV68yELkZlv
-	o+SQOjQCqwxUhBMRKqLffpI1By8YhdQAe0lNgK73b0VLUfGqQpZid8+33PNEUeEonEPnrlZXn8f
-	BEVg1+8GaAlHTY10fuYJ3sOzc9p4SpwdAzkclMrta1snmoruItYMrzbAobB1g6xrT3UA7wGjwwa
-	NvyAAKJHe5mKkXNP6j/aqwzXi2jwrgfotS77b1UtENevgxRUEyzswDavQhbU
-X-Google-Smtp-Source: AGHT+IEjDHiLE7sMo+a12s7VFlD8SjfCEiBfxxMF3QVGmJjKfSvQI7x7ZEGc6pDRlowYGNhvaszk6A==
-X-Received: by 2002:a17:907:bb49:b0:adb:428f:f748 with SMTP id a640c23a62f3a-ade1aa06c95mr206620466b.21.1749201143788;
-        Fri, 06 Jun 2025 02:12:23 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.126])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc7d300sm85900566b.179.2025.06.06.02.12.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jun 2025 02:12:23 -0700 (PDT)
-Message-ID: <53921bd9-6ac9-49fb-8c9d-2c439ec8cd5b@tuxon.dev>
-Date: Fri, 6 Jun 2025 12:12:21 +0300
+	s=arc-20240116; t=1749201589; c=relaxed/simple;
+	bh=HCdZXkJVdFAD/787OHeh5y7XaFGKJ1apVCd0Ow6+kLA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=nfPBU5tg+mKYBVfZEq+LiJJzYDrDIdsoVX472d468B06NsOZ95HkNsmlJzCqqoKjKt5hCJ+tKeCaLmDnoWjGdcIPZLz5sBj9eNr3jKhJ5BwXnbAzNHwlEUqYHgSm10Ax878Bvv3izBxeo20Gxup5bzKctE1wQ31Hin5Ypa/pIsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FciFhVUQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55669mgH000728;
+	Fri, 6 Jun 2025 09:19:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Z2uvokoWhArahra63UIONt
+	eoCvhcb0KNHvpujTov/kw=; b=FciFhVUQxIs+I8Av54H7ttcS2mv2kVyqvBRLTm
+	4AZEhzXZMJFPrN/wlzzDHen9WkhU6tvz9GuUUgj3u6c5ZD0GiZPsNMnxD6n4kwq9
+	0wGn6bNuaEgcVlxj9q9tssbfbD+efOSNcbtrwv/p1LrHJSkJFH25XB1mv3ARr4Xb
+	C0u6cWGsFwX2mTQFt7DstD0Y1GVeFFEHRzqyH2RvwrNo1Bo1Frc+oOTqJci5vayH
+	rI8v5MqCVMJa+zhB+AUKoW/gVq3ZLQMBZkVsRRr8vV/sgRZ+FEe0DVERf3KEK8gL
+	/sOJ/XZ+vfI8+wEC1FnvAx8u6YNp9KwOI8HduASTmauqICNA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8qc529-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Jun 2025 09:19:33 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5569JWIF003365
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Jun 2025 09:19:32 GMT
+Received: from yuanfang4-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 6 Jun 2025 02:19:29 -0700
+From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Subject: [PATCH v8 0/2] coresight: Add Coresight Trace Network On Chip
+ driver
+Date: Fri, 6 Jun 2025 17:18:55 +0800
+Message-ID: <20250606-trace-noc-v8-0-833f94712c57@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
- Renesas RZ/G3S SoC
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- john.madieu.xa@bp.renesas.com,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250605225730.GA625963@bhelgaas>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20250605225730.GA625963@bhelgaas>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH+yQmgC/3WSy07DMBBFf6XyukZ+28OK/0As/JihXpCUpESgq
+ v+OW4EISbO8I597RrbPbMSh4sged2c24FTH2ncthP2O5UPsXpHX0jJTQllhhOanIWbkXZ85BRV
+ c0m0akLXzxwGpft66nl9aPtTx1A9ft+pJXqfMOGe0CMBTCIUbKJknFJb7RCIlJSkY//T+UXPt8
+ kPu39i1Z9I39mcDP9tg0lxwaxJQUbFEgn/s/ndrKZeMJAmlkHcAae0zmz7TWAjORMra+BQ2fHb
+ FeAAdCAuVsPbZTZ9trPbktcxkMOFdn5VqyZBCEl6kiGjXPjf3hTnrrvepXHYyKuHJ3fcptWTIR
+ kg5IgjEtc//+aya/6DJN7Y4iyXFpAAWb3+5XL4B4xqJMKACAAA=
+X-Change-ID: 20250403-trace-noc-f8286b30408e
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>
+CC: <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Yuanfang Zhang
+	<quic_yuanfang@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749201569; l=2842;
+ i=quic_yuanfang@quicinc.com; s=20241209; h=from:subject:message-id;
+ bh=HCdZXkJVdFAD/787OHeh5y7XaFGKJ1apVCd0Ow6+kLA=;
+ b=kDO15x5CkKmyKCUMfen9o6/HDXdyNQ4ZEFEaHZeNEGRDFFDisZXh49se3hRz06Ex8IHM8Tx25
+ Vx7V4Tej6TgByaxzdUTfKhmgzyfdmlD3g1/nZy/iEfah9CDaIxiq/mP
+X-Developer-Key: i=quic_yuanfang@quicinc.com; a=ed25519;
+ pk=ZrIjRVq9LN8/zCQGbDEwrZK/sfnVjwQ2elyEZAOaV1Q=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: nLiWfr9hF0g2ACBS6d2_NNIBJS67AkPp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA2MDA4NCBTYWx0ZWRfX0HWzfIJll2No
+ +u0XoqphwFpFQeKkrz2/tnPiCmd3Hu7kk/lrWY03rGdmJYq9BFZyeh6UaUEo/KluUZdlMirbYNT
+ DtixrdOVS1KEtrX3n4EJW2poYeKtXecFHkMul8l/OVBA8ZnrTL3oT7ya/reLCTyP5gCz8iU3OpR
+ +4IebS6wgHKryjClxYQ3rs3LVNXMs1qnCONG+PW4DU3wl2SQCTV5AzS2c4+2Hsa1SedRYNcFB45
+ Aw7YEKMlOW65ghm6LlePIfc5QII9Bq4IveKzCsn5bGReBLT7cD70DzJg3fvL56nE9sNQSIdl8bH
+ rjWL/xpPkRpHvX9baA0b8FMBo9IBBucKXi+ww+vTHE32VtEH/lmndSSuIMjrTemCNxb63/95WjS
+ pr3Owr41BihoLaDPt/gRSGTkollfaWQu2ij/8RDOjd+UWRbHd2FtjS5UgU6O6AzcMryefHnr
+X-Proofpoint-ORIG-GUID: nLiWfr9hF0g2ACBS6d2_NNIBJS67AkPp
+X-Authority-Analysis: v=2.4 cv=PrmTbxM3 c=1 sm=1 tr=0 ts=6842b2a5 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=mTvmQVt1wvC56TrAcpsA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-06_02,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506060084
 
-Hi, Bjorn,
+The Trace Network On Chip (TNOC) is an integration hierarchy which is a
+hardware component that integrates the functionalities of TPDA and
+funnels. It collects trace from subsystems and transfers it to coresight
+sink.
 
-On 06.06.2025 01:57, Bjorn Helgaas wrote:
-> On Fri, May 30, 2025 at 02:19:13PM +0300, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
->> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
->> only as a root complex, with a single-lane (x1) configuration. The
->> controller includes Type 1 configuration registers, as well as IP
->> specific registers (called AXI registers) required for various adjustments.
-> 
->> +/* Timeouts */
->> +#define RZG3S_REQ_ISSUE_TIMEOUT_US		2500
->> +#define RZG3S_LTSSM_STATE_TIMEOUT_US		1000
->> +#define RZG3S_LS_CHANGE_TIMEOUT_US		1000
->> +#define RZG3S_LINK_UP_TIMEOUT_US		500000
-> 
-> Are any of these timeouts related to values in the PCIe spec?  If so,
-> use #defines from drivers/pci/pci.h, or add a new one if needed.
-> 
-> If they come from the RZ/G3S spec, can you include citations?
+In addition to the generic TNOC mentioned above, there is also a special type
+of TNOC called Interconnect TNOC. Unlike the generic TNOC, the Interconnect
+TNOC doesn't need ATID. Its primary function is to connect the source of
+subsystems to the Aggregator TNOC. Its driver is different from this patch and
+will describe it and upstream its driver separately.
 
-The values here were retrieved by experimenting. They are not present in
-RZ/G3S specification. I'll look though the header you pointed and use any
-defines if they match.
+Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+---
+Changes in v8:
+- Add sysfs node to expose atid.
+- Link to v7: https://lore.kernel.org/r/20250523-trace-noc-v7-0-d65edbab2997@quicinc.com
 
-> 
->> +static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host, bool probe)
->> +{
->> +	u32 val;
->> +	int ret;
->> +
->> +	/* Initialize the PCIe related registers */
->> +	ret = rzg3s_pcie_config_init(host);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* Initialize the interrupts */
->> +	rzg3s_pcie_irq_init(host);
->> +
->> +	ret = reset_control_bulk_deassert(host->data->num_cfg_resets,
->> +					  host->cfg_resets);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* Wait for link up */
->> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT1, val,
->> +				 !(val & RZG3S_PCI_PCSTAT1_DL_DOWN_STS), 5000,
->> +				 RZG3S_LINK_UP_TIMEOUT_US);
-> 
-> Where do we wait for PCIE_T_RRS_READY_MS before pci_host_probe()
-> starts issuing config requests to enumerate devices?
+Changes in v7:
+- Move the content in header file into coresight-tnoc.c.
+- Use scoped_guard() to replace spin_lock().
+- Invoke coresight_trace_id_put_system_id() for registration failure.
+- Link to v6: https://lore.kernel.org/r/20250522-trace-noc-v6-0-f5a9bcae90ee@quicinc.com
 
-I missed adding it as RZ/G3S manual don't mention this delay.
+Changes in v6:
+- Add a newline after return statements.
+- Use 'x &= foo' to replace 'x = x & foo'.
+- Use 'x |= foo' to replace 'x = x | foo'.
+- Link to v5: https://lore.kernel.org/r/20250512-trace-noc-v5-0-f2ef070baee5@quicinc.com
 
-> 
->> +	if (ret) {
->> +		reset_control_bulk_assert(host->data->num_cfg_resets,
->> +					  host->cfg_resets);
->> +		return ret;
->> +	}
->> +
->> +	val = readl(host->axi + RZG3S_PCI_PCSTAT2);
->> +	dev_info(host->dev, "PCIe link status [0x%x]\n", val);
->> +
->> +	val = FIELD_GET(RZG3S_PCI_PCSTAT2_STATE_RX_DETECT, val);
->> +	dev_info(host->dev, "PCIe x%d: link up\n", hweight32(val));
->> +
->> +	if (probe) {
->> +		ret = devm_add_action_or_reset(host->dev,
->> +					       rzg3s_pcie_cfg_resets_action,
->> +					       host);
->> +	}
->> +
->> +	return ret;
->> +}
-> 
->> +		 * According to the RZ/G3S HW manual (Rev.1.10, section
->> +		 * 34.3.1.71 AXI Window Mask (Lower) Registers) HW expects first
->> +		 * 12 LSB bits to be 0xfff. Extract 1 from size for this.
-> 
-> s/Extract/Subtract/
+Changes in v5:
+- update cover-letter to describe the Interconnect TNOC.
+- Link to v4: https://lore.kernel.org/r/20250415-trace-noc-v4-0-979938fedfd8@quicinc.com
 
-OK.
+Changes in v4:
+- Fix dt_binding warning.
+- update mask of trace_noc amba_id.
+- Modify driver comments.
+- rename TRACE_NOC_SYN_VAL to TRACE_NOC_SYNC_INTERVAL.
+- Link to v3: https://lore.kernel.org/r/20250411-trace-noc-v3-0-1f19ddf7699b@quicinc.com
 
-Thank you for your review,
-Claudiu
+Changes in v3:
+- Remove unnecessary sysfs nodes.
+- update commit messages.
+- Use 'writel' instead of 'write_relaxed' when writing to the register for the last time.
+- Add trace_id ops.
+- Link to v2: https://lore.kernel.org/r/20250226-trace-noc-driver-v2-0-8afc6584afc5@quicinc.com
+
+Changes in v2:
+- Modified the format of DT binging file.
+- Fix compile warnings.
+- Link to v1: https://lore.kernel.org/r/46643089-b88d-49dc-be05-7bf0bb21f847@quicinc.com
+
+---
+Yuanfang Zhang (2):
+      dt-bindings: arm: Add device Trace Network On Chip definition
+      coresight: add coresight Trace Network On Chip driver
+
+ .../bindings/arm/qcom,coresight-tnoc.yaml          | 111 ++++++++++
+ drivers/hwtracing/coresight/Kconfig                |  13 ++
+ drivers/hwtracing/coresight/Makefile               |   1 +
+ drivers/hwtracing/coresight/coresight-tnoc.c       | 242 +++++++++++++++++++++
+ 4 files changed, 367 insertions(+)
+---
+base-commit: a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11
+change-id: 20250403-trace-noc-f8286b30408e
+
+Best regards,
+-- 
+Yuanfang Zhang <quic_yuanfang@quicinc.com>
+
 
