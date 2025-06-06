@@ -1,216 +1,119 @@
-Return-Path: <devicetree+bounces-183369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D121AD03F1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:25:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1D9AD03FA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 16:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA4BB3A309E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:24:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 285FE175798
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 14:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3ED45009;
-	Fri,  6 Jun 2025 14:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914707260B;
+	Fri,  6 Jun 2025 14:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M1hOf06h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g/YrrZDb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4C72B9A5;
-	Fri,  6 Jun 2025 14:25:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071A72B9A5;
+	Fri,  6 Jun 2025 14:26:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749219902; cv=none; b=c7LfZzBreeVQvE8HsAJLaIl+W5XpukuC5f/wz3BuZKWByY7sgJfwn/0wCayGgZuJ0sfYIoxgokILr1rw9qtcxVIGyP8PzOM6Wlcu8Ia3VgAeCCoDU4+vTUquw1cOJqQlEZMj9DQ5zRLedQpghpYIgd64CAxGQ+C6wdIGKY7MBWQ=
+	t=1749219987; cv=none; b=OY/xVxivZpJZax4jSOP93uXiEwxqQamuIdh2cp6wxEfWULPJucBBbIzBP8UBK6Y2Q3vfG9XJt8zmz1K+n/Dr8bmq1nAoK/pdwKEOUG1DItPGlAqZQwp4rquGomMIChTq0t4XqsC+yw4JHEuFmNNbNZNgO9iz/RTX/LT8AvoeX2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749219902; c=relaxed/simple;
-	bh=iqG/efhZVTgsxHipSyjybtPfHYZOrkqBqAApKV+b51A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hmWLOtkDIl8J5tXkpc0cknmnZ5gvO5pnmAzrGpWPgs4DUvG+wDDJHx5t0SsEr2k5yrHHRfq7a8pqqEqqwdj1W0itFy02xG7UwXOCX+3xKHr8RRwVhBsxFa//PoXueJ1H7aKuwBv20l0iIj08G3eOoo5PSfQq85bJP3HOaN+AU5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M1hOf06h; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1749219987; c=relaxed/simple;
+	bh=XfnyRTF9cyYzPGBVpgr2ODnE1deAYbYcyIcYxtMRycc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WD7ZZjuI2DbmFk3Bt3FocNVBDNNtvh3snpsLfRLcY5dOXt4dNHzYucLoTiDkX5kHNrjqbIYCEUMSwU58gzL4y/LSkApds5Xzu/lT1iY5Xlea2Ob0G1clZG1lIaeOEcjq1tzDtwkGxvfc+iS9SbDtTnXObahL0F+oPVQllcsBqCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g/YrrZDb; arc=none smtp.client-ip=209.85.217.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-450cf0025c0so15124105e9.3;
-        Fri, 06 Jun 2025 07:25:00 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e59af1f0e7so619611137.0;
+        Fri, 06 Jun 2025 07:26:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749219899; x=1749824699; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1749219985; x=1749824785; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RU2KfMaJ2+9yanxW+f1dhdc9HAZcZembcLZ9Md0lK/k=;
-        b=M1hOf06hHLAgfJl/QcFGhhBrAYllBkimQJ4K6PxswiCFmDfqEDtTMM4L9xvI0AGm1K
-         l2ptklkz9PvQQncx7+nCaGiqzpSgjHgUwrObrnsqANj73VM9DWNewhfc910PbArk/aC4
-         H2JNOYvvhCo5LasFmF0SzPppbic9KOGSDsOnO99+0p64g/9SbPWZTSkdeK/mauxEfW6D
-         A74fqr59v5xnnR+WeAmbTsV+UUf5AaqmUA4b19T6scQkaqHkncTOqSTr803qMyY/3szh
-         TEcAvuyhMfC59LmrIo0WIqFd+6vZ0pr2SxpvOyFecaTkBVG8fD7I3J7l3ehTqXK9clXA
-         kKGQ==
+        bh=XfnyRTF9cyYzPGBVpgr2ODnE1deAYbYcyIcYxtMRycc=;
+        b=g/YrrZDbhdoEhU5yDdf8I9o5F/JxgFrDNT48SYbGo7t8mUs2AEAlFlrwapPiPi7o1n
+         WpAaKx9cC3Cz5/zXNrgXMl7HY8xIY28Ol5A1CZ1ZxYLqg3+r52z+SEhwoy+plVRFmstX
+         /XYEz3moccqwsCQfMwZ3GtY16AUysXW/qehDEOlraDl7k6Vr97V1rgAMVF4iepmhoV0F
+         2i+gZwfk5Nj4bNJey4q9w/pGV3TBC0Wve8K4gvBJlog42a/XKtNuR4pPokXSK1PCAuvo
+         o1E4YzdX4zUDypPDnC2IV5nM52IEC6VcKXj4wLAZXN0taRTxEMO6iHQlzV++k8lvXuTa
+         jjGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749219899; x=1749824699;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1749219985; x=1749824785;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RU2KfMaJ2+9yanxW+f1dhdc9HAZcZembcLZ9Md0lK/k=;
-        b=OjaDcNC/R+spUJXlwyOVwZCmAhTLcZ4albWh4yQYH3gHPqu7oUNu7pFTBiNTV0DA1p
-         jx4WC1pgqhLEeHMaCNkxEIQ9OftpLZx2fx7dDFG76LPxuW8OP57Mc7Uk8cXPPvPutuya
-         LHzToaB1EZm6Y93HCua+mEXUgC71kDEsEWDI1cxrhZxDQHXltoiJz7FB1LCzfAav58xy
-         SQu6LMWO5oyTS6zqCryV7Q48OXmArCYutXw7QGfCTustAklPxEiPUfw+enm5Uni0yJ6q
-         PMgg5f+0UoGZqHAn9Q3MqvYCE+RC/+Ul6yrOicM474jnFTDj2/1zWXhK4S3GfMX0t/Hd
-         WcAA==
-X-Forwarded-Encrypted: i=1; AJvYcCVvG5XECk4Qj2Bjputcu2LvrsqaKpmpI5FE8e4o+wge//KsA1EahK9WjzYJwGBUnaLNDghOwWTPksP5WE8m@vger.kernel.org, AJvYcCXq/X08mLaOadQL62ox13fX7eMwZe+CfmeDfPBHc/YmGrT/UEIT1T4w/5+FLKBST0QFB7SBIiKDm4M+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyvr37TUGQh/HdMDWSPrZxpYlKtpVHDUa9NSqGPV9yKIA3dYlds
-	pGleM0PkllqrDu/jDy19f9EqeIJCD/8XkH7qG5qOQiqd3ZQ1otwhtZUs
-X-Gm-Gg: ASbGncvupCoQCO+iDi4Xn30AKHN6Lt6EmVxlDOJKsp7wjcrT746eOrXfW5D90zqmRBP
-	xetkzTfyNFXHSmg+Kat6GlDp7dOyWkemm2onm1bBEGeuPdYoXzNWndRXG8Q0LUFEPwjul3AJoGq
-	ELchZjv/th3CQiUikmsVF4nXO4pvVUAlajRCw3ugo15UmJrWUWUQHEcexi1kAXcxh8nNcSvQL7t
-	jeFcXHZ27wVQeHusEm8/0XOu9d9khH+waakPl2H6anMhgL2/VK0ZptvIEV2FMLDQ07NO+D0z6iy
-	RO/yxiFanFWrLo58Fuml7JvdBLjOtVVgsAGoP2197mAEHBBIrVHzguvpZ8egl0YViWFAK0GfSxk
-	ol9eaDt00HzbOEwRSdQNe14gW
-X-Google-Smtp-Source: AGHT+IEBJ4DoVvw/stlDOgi18RzfrOUTiRlKASLE2QkGIDx36kpF9qdd0AZsPbr8D1+OxjcNDNlTIQ==
-X-Received: by 2002:a05:600c:83cf:b0:442:f4a3:9338 with SMTP id 5b1f17b1804b1-45201404993mr34463405e9.21.1749219898437;
-        Fri, 06 Jun 2025 07:24:58 -0700 (PDT)
-Received: from masalkhi.. (ip-109-43-113-198.web.vodafone.de. [109.43.113.198])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-451f82878acsm33018475e9.0.2025.06.06.07.24.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 07:24:58 -0700 (PDT)
-From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: abd.masalkhi@gmail.com,
-	arnd@arndb.de,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v3 2/3] misc: add driver for ST M24LR series RFID/NFC EEPROM chips
-Date: Fri,  6 Jun 2025 14:24:56 +0000
-Message-ID: <20250606142456.3140225-1-abd.masalkhi@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <2025060650-tried-widen-4443@gregkh>
-References: <2025060650-tried-widen-4443@gregkh>
+        bh=XfnyRTF9cyYzPGBVpgr2ODnE1deAYbYcyIcYxtMRycc=;
+        b=ln0ZIzDyHTwPJxtLt1D14BVwoutn8QJBQKfPnzY9ysz/dLYk6pakDSnENWCrOZJUBw
+         aWsDgUbGKkLxO6C/Q5fhX9JIHzi0yrOEGd6lslN2x+EVU0iUeRMMPZbiQ+FiS3lDU41R
+         2+EVHDNjc3YXogojh+Sno6iDZ/ZNe7Xc+XDv6/TRF/BEme6BfnjM/24EWSzfGSQXBHyv
+         e8Vx/s92JLX7RGrojxgSxDzlX9U2ZlJ8SJkKmYVUzGEkRJb5bk+4wBHphA72J+qWEqHJ
+         nAzswUWgPTHm1aKyHfyi70iTc6dqfJtSwpK75qHFYctOKp0/ZMyUUmXFB0AmWMYgKEuV
+         nd1w==
+X-Forwarded-Encrypted: i=1; AJvYcCV3ufsZnUPhlK1fwdI0Ya53N7ldX3AZ39u93CglBk5X+rxsT8eQ6YBdTvVpjzzwzm8la7ZArCLnusoXgu7/@vger.kernel.org, AJvYcCV49fTg5fEzQs/zwJLV3JSbkse9ja/OcttPKi0SgRV5Do0q7HioD0eD6pScwa+N4F5nmiuBejTL1vbcskEAjkA=@vger.kernel.org, AJvYcCXAlmIfUr6VaTqhKGyhoDzI0Z1BDx/IrMoaee9L9xYXtIStIQ14GGaMqiKOtfH0RKfsSD0nM1vWH6iZ@vger.kernel.org, AJvYcCXnUNgl1HbDGsIeANovFiQgNzpXbpvHxzxxy3V+fg8Iy7k2XORsEQAtl3EQYYjTB4XlnrN4gnhOC7tQNQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxd02TrfNahnt9Fc3vQGOwR6TdJGvbH6OpZAdwXmvggpVqMcnEV
+	UkQ8uRT2Qe8suE+x0VpR0pWH20eBbX1lWS7tCqUDEcLa2WnKj5DjgdLXEgvdY4kMM64Zizauyjq
+	gmyE31CS1hCd3TvTJ5gU1lnkKwDa/UOI=
+X-Gm-Gg: ASbGncuqvagTs7Cl5XpKSVXirIRq1qNgQPPiQOBAFJYa/KU+H/O4AeNtX6OyWykpXZc
+	QqpONhIUYeJA+Z80LuRhzK8GRia9kJKviOGi9fyPhOdTkbW4k6S9bm3/N0Ebai8BfJpcCo1zTo+
+	jdFxBe82jEGGKTq1c1MC/6YStAS/wMuvoQ68SDY2BX
+X-Google-Smtp-Source: AGHT+IHtfcCyCFZ6TdHUHESBhIqNCBUddX3O7P9LGH4zDo9p4z3LAVOg5NAYcVejVe51KzO/kmt6J7IoLoJyDzPVH/g=
+X-Received: by 2002:a05:6122:2a45:b0:52f:2a3:4bd6 with SMTP id
+ 71dfb90a1353d-530e47d7084mr3572334e0c.3.1749219984860; Fri, 06 Jun 2025
+ 07:26:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250605161956.3658374-1-igor.korotin.linux@gmail.com>
+ <20250605162726.3659792-1-igor.korotin@yahoo.com> <aELyEqg0GrkC8oZY@pollux>
+In-Reply-To: <aELyEqg0GrkC8oZY@pollux>
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+Date: Fri, 6 Jun 2025 15:26:13 +0100
+X-Gm-Features: AX0GCFtw9v0O2vZnp5UZfhE6lx1eLBBwkxj8gJtRKsSFion-e94P9ebf93MfPIQ
+Message-ID: <CAG7QV91AWpOk7VUcE-B1MLkEQPDB0Y=zsBOBf6MhHVYh1aEGQA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] rust: driver: Add ACPI id table support to Adapter trait
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Igor Korotin <igor.korotin@yahoo.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, rust-for-linux@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, 
+	devicetree@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Len Brown <lenb@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Wedson Almeida Filho <wedsonaf@gmail.com>, 
+	Alex Hung <alex.hung@amd.com>, Tamir Duberstein <tamird@gmail.com>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Xiangfei Ding <dingxiangfei2009@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi greg,
+On Fri, Jun 6, 2025 at 2:50=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
+rote:
+> However, I don't understand why we need this and the subsequent
+> is_acpi_device_node() and is_of_node() checks.
 
-Thank you for the detailed feedback.
+The idea is to avoid unnecessary table lookups when both OF and ACPI
+match tables are present. If we already know the fwnode type, these
+simple pointer comparisons (is_acpi_device_node() / is_of_node()) let
+us skip the irrelevant match function.
 
->> +// SPDX-License-Identifier: GPL-2.0-or-later
->
-> Are you sure "or-later" is what you want?  Sorry, I have to ask.
-I will remove the or-later part, lol
+Those checks are cheap (just pointer comparisons), while
+acpi_match_device() and of_match_device() iterate over tables.
 
->> +
->> +#define M24LR_PAGESIZE_DEFAULT	  1u
->> +
->> +#define M24LR_WRITE_TIMEOUT	  25u
->> +#define M24LR_READ_TIMEOUT	  (M24LR_WRITE_TIMEOUT)
->> +
->> +#define to_sys_entry(attrp)   container_of(attrp, struct m24lr_sys_entry, attr)
->
-> This shouldn't be needed, something seems odd...
+So yeah, it=E2=80=99s a bit ugly, but it can save some CPU cycles during en=
+umeration.
 
-I will remove the M24LR_PAGESIZE_DEFAULT, i do not needed any more
-and about the to_sys_entry, i am using it in show and store callbacks
-
->> +static ssize_t m24lr_ctl_store(struct device *dev, struct device_attribute *attr,
->> +			       const char *buf, size_t count)
->> +{
->> +	struct m24lr *m24lr = i2c_get_clientdata(to_i2c_client(dev));
->> +	struct m24lr_sys_entry *entry = to_sys_entry(attr);
->
-> Why isn't this just going off of the device?  Are you using single
-> show/store callbacks for multiple attribute types?
->
->> +	unsigned int reg_size = entry->reg_size;
->> +	unsigned int reg_addr = entry->reg_addr;
-
-> Ah, you are.  Are you sure you need/want to do that?
-
-For registers that do not require any special processing, it's sufficient
-to directly pass the value to the device. In such cases, a generic store
-callback is appropriate. Other registers that require specific handling
-have dedicated store callbacks. For example, the unlock attribute uses
-its own specialized implementation.
-
->> +	u8 output[8];
->> +	int err = 0;
->> +
->> +	if (unlikely(!count))
->
-> likely/unlikely can ONLY be used when you can benchmark the difference
-> in the speed of not having it.  For a sysfs file, that's not needed at
-> all, please remove all of these.
-
-Alright, i will do that
-
->> +		return -EINVAL;
->> +
->> +	if (count > (reg_size << 1))
->> +		return -EINVAL;
->> +
->> +	if (unlikely(!is_power_of_2(reg_size) || reg_size > 8)) {
->> +		dev_dbg(dev,
->> +			"Invalid register size: must be a power of 2 and <= 8 bytes (%u)\n",
->> +			reg_size);
->> +		return -EIO;
->
-> Not -EINVAL?  This isn't an I/O error.
-
-The last if statement is primarily for debugging purposes. The reg_size
-value is specified internally by the driver (not user-controlled), so
-this check helps catch potential mistakes in the driver's sysfs entry
-definitions. That's why I used -EIO instead of -EINVAL, as it's not due
-to invalid user input but rather an internal misconfiguration.
-
->> +	n_sss = chip->n_sss_entries;
->> +	if (n_sss) {
->> +		sss = devm_kzalloc(dev, n_sss * sizeof(struct m24lr_sys_entry),
->> +				   GFP_KERNEL);
->> +		if (!sss)
->> +			return -ENOMEM;
->> +
->> +		for (i = 0; i < n_sss; i++) {
->> +			char *name = devm_kasprintf(dev, GFP_KERNEL, "sss%d", i);
->> +
->> +			sss[i].reg_size = 1;
->> +			sss[i].reg_addr = i;
->> +			sss[i].attr.attr.name = name;
->> +			sss[i].attr.attr.mode = 0600;
->> +			sss[i].attr.show = m24lr_ctl_show;
->> +			sss[i].attr.store = m24lr_ctl_store;
->> +
->> +			err = device_create_file(dev, &sss[i].attr);
->
-> You just raced with userspace and lost. This is not how to do this,
-> please do not dynamically create attributes (hint, this should have
-> errored out as you didn't correctly initialize them), but also:
-
-I didn't fully understand where the race condition comes from. Is
-the issue caused by calling device_create_file() from within the
-probe() function, or is it due to the fact that the attributes
-are being allocated dynamically rather than defined statically?
-
->
->> +			if (err)
->> +				dev_warn(dev,
->> +					 "Failed to create sysfs entry '%s'\n",
->> +					 name);
->
-> You do not unwind properly if an error happens.
->
-> Just use a default attribute group attached to the driver and the driver
-> core will handle all of that logic for you automatically. Making the
-> code smaller and even better yet, correct :)
-
-Thanks for clarifying this point. I'll rework the implementation
-to use a default attribute_group
-
-Best regards,
-Abd-Alrhman Masalkhi
+Thanks,
+Igor
 
