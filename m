@@ -1,215 +1,179 @@
-Return-Path: <devicetree+bounces-183446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31BBAD09FA
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 00:24:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8947AD0A18
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 00:59:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B757171AD9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 22:24:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6450C1897502
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 23:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABBD238C34;
-	Fri,  6 Jun 2025 22:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953E523D293;
+	Fri,  6 Jun 2025 22:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="c+IN61WG"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="crxR5hkS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB49233156
-	for <devicetree@vger.kernel.org>; Fri,  6 Jun 2025 22:24:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB4E1FC0EA;
+	Fri,  6 Jun 2025 22:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749248683; cv=none; b=mKsxenWSrchIlBFxtJXLrNsImgKGNDEmi1WsIAGnLAAqvuAzY7PXZwIYi9WsEKeclDWasQm2T19cQbkiKyDWefHydJ1zaFj3HdM7M5mVW4+coJ26fb0+T+awZ65RAQETEFDOdCByWvutUtWAEUcsZ5JROlw6mZgt9y5UR6J9uRw=
+	t=1749250783; cv=none; b=PaFb8uuzfxgg69EzYKF8RmKlJjSly1wY+wpE/Zou3FjADh385SZGeUl9zWs/t9XMi3mpEo0JwOv3VnSuebLs/mQcF0wN85XXJjD4QXkmm6ozpS8VCl3O/DbG7/n2GWYFrsosvMuqCbbiGI1oELcRYReZOseHsLsMYpjKWAEMKhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749248683; c=relaxed/simple;
-	bh=l/GaUTCtB9M9NLyUMV1ziE5vtpFqMU3SOb/ryyWlAwU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Dom0UYH97BjvC/2oumWtCM6yqlqGdzF3I7A2zNIgC9exoT/v+I0+6HMyLg54dK/WfFpLIwFGggAoLJeidHW5W9rWtY4GdQ+QMt39nbTvlGfwbqjo4vE25dN43xlCydY86RLGKSswuIhU8P0GHM2ULoSMRxOgvf7O9ACgt7bJoBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=c+IN61WG; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-235d6de331fso31693335ad.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Jun 2025 15:24:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749248680; x=1749853480; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0pYG25uNc2n9fOHMKUGQ8EBdQt5+P5oxxO35w9SxQS0=;
-        b=c+IN61WGnVRfaeh/PvgYBYwR7I+V0v0JAfS+nhevDlqpLL2U/oMmtMkL4PGH8bwIVq
-         yLe0vGCygIO6xk6YFE3gkW+1bKqLpG8rQvcBXg0YqCfov+tWLLEKFxQnaV0otbKp3A+n
-         b7TlcA5F1dNLYwvAKy+8IGFOmk9pu/18tTkelW+4ai2QlX2KvLUueI5ke0QdWUqCHsNS
-         E38nmY1EFAI4HIyT2gojJaAJXkzY5tEgbz3ATstBN21Xs9Q8g7N2vBLTpubfQeza+u2k
-         Rkg78a2UnwjPkPnT12dg39IBU0KJYZ4aV9ygITdz99zv23ZMo427nzQesEldd9v+UCCb
-         UPHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749248680; x=1749853480;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0pYG25uNc2n9fOHMKUGQ8EBdQt5+P5oxxO35w9SxQS0=;
-        b=LPIQPEreBt1N7kA53Z7zBmU6MBMOqc7wQNVdQ5RLdZBZwCgvzeHJjM3xwGAojdYeTt
-         nasYB/xLxqsT9e4DwSTNu6Azx1Et7NpekzPM1vTKc/XNK3NpOfGCLCzeBJc9IKh3lO2/
-         0VaXr86U1TLOmnevFb4t19xCA18XXVEphTadswAnzLRudc7HwpUcr4vMMHjpB3Bw4Ws6
-         Fvarum0CMubH+Ok7s1WMt10KHi+EzxaIcqcIVGv3pc4zIOJCASvwSv70q5MlnOneQuRJ
-         yaxn6qFlmJjHXb7Mh0qM0PAcqykp/y4Neam3gFqTqosTG0EZc0etxMEERSDUeQwaYo38
-         EvNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAcCl6CXl0xch3HMTVz2FfcAOAK7XAaGCTVBYZV8fHE9uCFeqq/CCNbJeBOIxeXS5pSIi3bxe7ePM5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQbRS74e6/SAIei2NCQTR5gLL4pEunwE31ZETpZFQ3hyV7u+xE
-	nlvhqUxVET4454fpiRIvEbzZZKJPrIYmfpfUKRHpfRD4IwA65x+DHFhWRHfVyqPZibA=
-X-Gm-Gg: ASbGncv26qGqnSjs0YbqYG9Gx6GNFffAOQ7zUp9C1PsErkwHNYjSUemGG2UK+MTpj/K
-	TGEwUlvb/7UvqL9y/YEQFu8LL030ykZenXi7ocUh5haWmk8NgsHacrEA0pRW/LG5U9r0wkIPnGM
-	eJ41R+lyGwGsjMnAt5sbUvmtz8CR3KoPQcmEW9kJGwqCy9Afe/IvBkpzmDzmZhzfbQzAhGvbbMO
-	DKvJ3Cr+ASInWPe8gkRAMnsb8/BHEsSs4frWGm2OWH8G9YdEN+F7FcpT8uL6S1CVNB+/KNUq2hz
-	7sv3ik5pLDw9hwMUkOyPhyWA/2ARlygRFHxVcOL6G9djs5bpgVOVKOM+AeQF
-X-Google-Smtp-Source: AGHT+IGaFH7zJsEzEYshn2+g3clbSYNKEpXNRLHwkKBWDVvppEVYcd31LnIc2/CbFDj/U8yN0FJ7XQ==
-X-Received: by 2002:a17:902:ea0d:b0:235:eb8b:9968 with SMTP id d9443c01a7336-23601d71213mr73856945ad.36.1749248680262;
-        Fri, 06 Jun 2025 15:24:40 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603405205sm17150335ad.160.2025.06.06.15.24.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 15:24:39 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Rafael J.
- Wysocki" <rjw@rjwysocki.net>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- arm-scmi@vger.kernel.org
-Subject: Re: [PATCH RFC v2 2/2] pmdomain: core: use DT map to support hierarchy
-In-Reply-To: <20250530135741.GA1598718-robh@kernel.org>
-References: <20250528-pmdomain-hierarchy-onecell-v2-0-7885ae45e59c@baylibre.com>
- <20250528-pmdomain-hierarchy-onecell-v2-2-7885ae45e59c@baylibre.com>
- <20250530135741.GA1598718-robh@kernel.org>
-Date: Fri, 06 Jun 2025 15:24:38 -0700
-Message-ID: <7hecvwld95.fsf@baylibre.com>
+	s=arc-20240116; t=1749250783; c=relaxed/simple;
+	bh=Cw+crYerPWYJW2N2ikNlghBYSqfPUoxfZKZ2b2TgZ9g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SpCJW61JeebMCZfiDeqbULKKOMplpO6Pi+hDJ50bu91rJTRhFVEohxDZEbdd5SaTviE0j77L/PEEPHvPxWeRjmkwvdGXSc5l6G9EPGxUmIk48xTLRrAx4bHalQ7n2+PeQWUdMlNK07r6HZ6p3bfNC9Rr7hUzGwwnRDw4g9PhSsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=crxR5hkS; arc=none smtp.client-ip=91.218.175.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <b355406d-c79f-4d81-bc36-a8889b54aa03@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749250768;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9RomQS92hBA9eqkdzWe6rSqjDgfbgT2iRuNEC7vRw7I=;
+	b=crxR5hkSHPAgjkpSnkO2hc8eEWkclBTknO2F7yBROybPqI5nKCjHgKwa0V02tyc5LGBXzL
+	atH+6hcgCQr7eVoQgYmiOj60nzwcJVjzGOYkkdTdz0l3tJ3Nv1pJ+BkxoQQAAdDK2rriO0
+	3s00piolPkq0+wq/zV8s6TI/FqnwTLM=
+Date: Fri, 6 Jun 2025 15:59:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: Re: [PATCH v4 11/23] dt-bindings: Add RPMI system MSI message proxy
+ bindings
+To: Anup Patel <apatel@ventanamicro.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Len Brown <lenb@kernel.org>,
+ Sunil V L <sunilvl@ventanamicro.com>, Rahul Pathak
+ <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+ Andrew Jones <ajones@ventanamicro.com>,
+ Samuel Holland <samuel.holland@sifive.com>, Anup Patel
+ <anup@brainfault.org>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-12-apatel@ventanamicro.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Atish Patra <atish.patra@linux.dev>
+In-Reply-To: <20250525084710.1665648-12-apatel@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi Rob,
 
-Rob Herring <robh@kernel.org> writes:
-
-> On Wed, May 28, 2025 at 02:58:52PM -0700, Kevin Hilman wrote:
->> Currently, PM domains can only support hierarchy for simple
->> providers (e.g. ones with #power-domain-cells = 0).
->> 
->> Add support for oncell providers as well by adding support for a nexus
->> node map, as described in section 2.5.1 of the DT spec.
->> 
->> For example, an SCMI PM domain provider might be a subdomain of
->> multiple parent domains. In this example, the parent domains are
->> MAIN_PD and WKUP_PD:
->> 
->>     scmi_pds: protocol@11 {
->>         reg = <0x11>;
->>         #power-domain-cells = <1>;
->>         power-domain-map = <15 &MAIN_PD>,
->>                            <19 &WKUP_PD>;
->>     };
->> 
->> With the new map, child domain 15 (scmi_pds 15) becomes a
->> subdomain of MAIN_PD, and child domain 19 (scmi_pds 19) becomes a
->> subdomain of WKUP_PD.
->> 
->> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-
-[...]
-
->> +/**
->> + * of_genpd_parse_domains_map() - Parse power-domains-map property for Nexus mapping
->> + * @np: Device node pointer associated with the PM domain provider.
->> + * @data: Pointer to the onecell data associated with the PM domain provider.
->> + *
->> + * Parse the power-domains-map property to establish parent-child relationships
->> + * for PM domains using Nexus node mapping as defined in the device tree
->> + * specification section v2.5.1.
->> + *
->> + * The power-domains-map property format is:
->> + * power-domains-map = <child_specifier target_phandle [target_specifier]>, ...;
->> + *
->> + * Where:
->> + * - child_specifier: The child domain ID that should be mapped
->> + * - target_phandle: Phandle to the parent PM domain provider
->> + * - target_specifier: Optional arguments for the parent provider (if it has #power-domain-cells > 0)
->> + *
->> + * Returns 0 on success, -ENOENT if property doesn't exist, or negative error code.
->> + */
->> +static int of_genpd_parse_domains_map(struct device_node *np,
->> +				      struct genpd_onecell_data *data)
->> +{
->> +	struct of_phandle_args parent_args;
->> +	struct generic_pm_domain *parent_genpd, *child_genpd;
->> +	u32 *map_entries;
->> +	int map_len, child_cells, i, ret;
->> +	u32 child_id;
->> +
->> +	/* Check if power-domains-map property exists */
->> +	map_len = of_property_count_u32_elems(np, "power-domains-map");
->> +	if (map_len <= 0)
->> +		return -ENOENT;
+On 5/25/25 1:46 AM, Anup Patel wrote:
+> Add device tree bindings for the RPMI system MSI service group
+> based message proxy implemented by the SBI implementation (machine
+> mode firmware or hypervisor).
 >
-> Don't implement your own map parsing. Use or extend 
-> of_parse_phandle_with_args_map().
+> The RPMI system MSI service group is defined by the RISC-V
+> platform management interface (RPMI) specification.
+>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>   .../riscv,rpmi-mpxy-system-msi.yaml           | 67 +++++++++++++++++++
+>   1 file changed, 67 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml
+> new file mode 100644
+> index 000000000000..26dd13731350
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RISC-V RPMI system MSI service group based message proxy
+> +
+> +maintainers:
+> +  - Anup Patel <anup@brainfault.org>
+> +
+> +description: |
+> +  The RISC-V Platform Management Interface (RPMI) [1] defines a
+> +  messaging protocol which is modular and extensible. The supervisor
+> +  software can send/receive RPMI messages via SBI MPXY extension [2]
+> +  or some dedicated supervisor-mode RPMI transport.
+> +
+> +  The RPMI specification [1] defines system MSI service group which
+> +  allow application processors to receive MSIs upon system events
+> +  such as P2A doorbell, graceful shutdown/reboot request, CPU hotplug
+> +  event, memory hotplug event, etc from the platform microcontroller.
+> +  The SBI implementation machine mode firmware or hypervisor) can
+nit:
+The SBI implementation in machine mode
+> +  implement an SBI MPXY channel to allow RPMI system MSI service
+> +  group access to the supervisor software.
+> +
+> +  ===========================================
+> +  References
+> +  ===========================================
+> +
+> +  [1] RISC-V Platform Management Interface (RPMI)
+> +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> +
+> +  [2] RISC-V Supervisor Binary Interface (SBI)
+> +      https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+> +
+nit: Refer the latest frozen version of the spec ?
+> +properties:
+> +  compatible:
+> +    description:
+> +      Intended for use by the SBI implementation.
+> +    const: riscv,rpmi-mpxy-system-msi
+> +
+> +  mboxes:
+> +    maxItems: 1
+> +    description:
+> +      Mailbox channel of the underlying RPMI transport.
+> +
+> +  riscv,sbi-mpxy-channel-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The SBI MPXY channel id to be used for providing RPMI access to
+> +      the supervisor software.
+> +
+> +required:
+> +  - compatible
+> +  - mboxes
+> +  - riscv,sbi-mpxy-channel-id
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    interrupt-controller {
+> +        compatible = "riscv,rpmi-mpxy-system-msi";
+> +        mboxes = <&rpmi_shmem_mbox 0x2>;
+> +        riscv,sbi-mpxy-channel-id = <0x2000>;
+> +    };
+> +...
 
-So I've been wrestling with this for a bit, and I need some guidance.
-TBH, these "nexus node maps" and of_parse_phandle_with_args_map() are
-breaking my brain.
+Otherwise, lgtm.
 
-So, my node looks like this:
+Reviewed-by: Atish Patra <atishp@rivosinc.com>
 
-	scmi_pds: protocol@11 {
-		reg = <0x11>;
-		#power-domain-cells = <1>;
-		bootph-all;
-
-		power-domain-map = <15 &MAIN_PD>,
-				   <19 &WKUP_PD>;
-	};
-
-my first attempt was to iterate over the child domains by calling:
-
-  of_parse_phandle_with_args_map(np, "power-domains", "power-domain", i,  &mapped_args);  
-
-but this doesn't find any entries because my node doesn't have the
-"base" property.  So I gathered (perhaps mistakenly) that I was missing
-something, so I added:
-
-		power-domains = <&MAIN_PD>, <&WKUP_PD>;
-
-to that node and try to iterate again. Now I got a match for i=0 (it
-returns the node for MAIN_PD) and i=1 (it returns the node for WKUP_PD)
-
-So I gather from that that the index arg to of_parse_phandle_with_args_map()
-is the index into the -map array.  OK, fine.
-
-So I know that the 0th entry in my -map points to &MAIN_PD, an dthe 1st
-entry in the -map points to &WKUP_PD, but I don't see how to get the
-child ID without (re)parsing the -map again myself because
-of_parse_phandle_with_args_map() doesn't give me any information about
-the child ID.
-
-I can maybe see that in other usecases, the caller might not need the
-child ID because it's being (re)mapped, but I need the child ID because
-it's the pmdomain belonging to the child ID that I need to add as a
-subdomain to the pmdomain of the parent.
-
-However, thinking through this, I'm now realizing that maybe the problem
-is that I cannot have a sparse -map table.  For this to work properly,
-maybe my <15 &MAIN_PD> needs to be the 15th entry in the table (or
-technically 16th if it's zero based)?
-
-But before I go down any more rabbit holes, I wanted to check with folks
-who understand this stuff and see if I'm on the right track or if I've
-missed the boat on how to use of_parse_phandle_with_args_map().
-
-Guidance, suggetions and/or public riducle are welcome. ;)
-
-Kevin
 
