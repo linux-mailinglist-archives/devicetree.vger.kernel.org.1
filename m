@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-183478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D9AAD0D07
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 13:10:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25DB6AD0D08
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 13:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0F383A2852
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:09:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A75FB1892CB4
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0F12185B1;
-	Sat,  7 Jun 2025 11:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A7421A444;
+	Sat,  7 Jun 2025 11:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="oQsMlDVK"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="XmDmAAQr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5E7EC4
-	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 11:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D114C2192F9
+	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 11:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749294609; cv=none; b=ZcEm8VUItS0VduQoFKlzJ90Y+fs52uP/JvwsUX3KFLzYdoui8+ck1VoXNTmTo+ZArgGd8ERjhDgpR+DaCiG0xsn/FR4GXKkME3dHKL8svMAjdYXQ5M0qyvk7e5jG4RH+dMK1nAeiFk+fiUcITXCvMgoT6ZCmAvEfqVsbkNKGqYg=
+	t=1749294830; cv=none; b=hjXgBnM5CTNTJbwzhdPSqhJAJZH1peJMsTWKusZU4Ow1diurr2e8G8RGxWL3B/2RbxL/V4WYeOm4wnQbw4x7Mnfx5V7wl2RLz2E0ZcznL2OR+ihlvaAP0warChu96Y1TbVTYnlwHiUR6VJUYtA1zXmJtK+xaBthzb1XFMBmeMHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749294609; c=relaxed/simple;
-	bh=pHbXW/qp92BqKV/u6Z7RoGfi4O6Rcc30pPkk7OEorrI=;
+	s=arc-20240116; t=1749294830; c=relaxed/simple;
+	bh=BM1ZiJC8Wxue4lJBt7ZeparxlTCOR0iHdftWPAoLAZk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=psg8xhilZjx9aO5m6KrTCVw5EHf6tBr4wbDT3s0wJ7XoOnSPHYEoX7a80o2znkOXUQ9HwDXtniIGQcWJXOBmDQhsJPzs5Ni2TreA8MfXvCP3hWCS/2lfqtP1jqBvb32MZXsDckeumFhEIY90JFTsC2zC8mgZ5P9livW8l/m1A7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=oQsMlDVK; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=dlGxUUVZgMQ0wggl+jargr5NckwEvXqYecGgjQpYZKw83EaI5invChTHJrIUwk47/cEazTzfCefyVaEEIiGkqp6noR0PcPZUim7hXkzKEUWdx44SuIDQr0iW3SSeiXNrn++TBypRKV9D1Yah4Agy/HaKGLDTn33y/sc8mVLOJo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=XmDmAAQr; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ad572ba1347so413986566b.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 04:10:07 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ade48b24c97so27220166b.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 04:13:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1749294606; x=1749899406; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1749294827; x=1749899627; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1PTfBD3stG5QBQvRznIOQO3iudOANMtq2ogixVLY+hE=;
-        b=oQsMlDVKpg2Lm43UHEBQP55mY4nngOMHB7mvkeRZEMryPUPK4Ro0C++vifoF+vb1n8
-         jCZRzrD7z8Ncdp66qkCoAej4z0lONvVy1duL7Ick5YfnUFQeP6FpCv7/c/2kJV8XQTax
-         FhSnemT6mwxLRjmuaUEpTRYcSe9aZDZiaVb0NLaiNR7ZP4c/vSUmHCPtZCZcgtabq8qY
-         bYdeZL7NNyb4X+VvHXBSU5HKlJa19WRRlIjqZWVb3lVNOYWwb0rY0MSZVDs2AzMPx3UG
-         Qx4Am+WbfiAyiMniOEdN3kZU3ZIRIgYw7hCkKYoCqIks9+5vI2Qlo4h92zvUyWk4047b
-         aPfw==
+        bh=UHcxom5o2fWiDA0ztt3DRoDer7xYDc3Xgfa6dNo2w94=;
+        b=XmDmAAQr/KcMvFgGX6cbgqEUsvMFx5B9H1DRZ3/z0skazYvvszQMLsh/uTahLdUIpI
+         UmODCsp+/8AgYq63AaKKzjyInt1YjkePmTT48e4UmZ6dMQ8TL5UNp7+x1DGSA40JDkVg
+         pP54IyyXeyHzYmOrZQ8HMOqwiONusvfWyGhrekwbySho7ZOtvj9XaEt0DAedrYMO4e7t
+         tnjHqR/XYmmNyY5NcVWKooKs3ThuPLIiPskTHAPirlCEnY2rsxAdDbDOEDxxQPL0wdFB
+         c8c4f20TQYuLlrdiJzV9e5rJ/fvPlibkcviwuN5dixLuegE20F+593T6IUcVLEkPY9Nh
+         mR6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749294606; x=1749899406;
+        d=1e100.net; s=20230601; t=1749294827; x=1749899627;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1PTfBD3stG5QBQvRznIOQO3iudOANMtq2ogixVLY+hE=;
-        b=peX3Ptbillbm/9SHEu3ienb6DxsT8vAc7vrfYvzsLMctDeQm7xpQOkCUCFyZIxQoP+
-         xZ/OjYuATmE2FNiPCY7afp1+jsQZjZG36nk8HZxTpTvTZSx8ahcv4UhEysj/yPzxi+ra
-         trcHXjjKMHryfCowBcaQsOnidsT0A08+nhK29446TquUR5UedBvEijNP4Z0mPB1f5uZp
-         1/c75K1PDdJfEHJUavoAeMIlNI3Nxxin/h7Exr24uoAhkQlMtUfv7awMvq28Vy8Xz1hF
-         hcE9GiQeUF56IxzFfeneMhydWAw6f5qncS2qeecmIM4iBm7Fa3TBrBVZGvcXOkhh3hXH
-         SJVg==
-X-Forwarded-Encrypted: i=1; AJvYcCW3mRZLbIBBgwfc8qlf1ZOV5c4BPo+33aYhj5Fu/Dc7140+EilxKQGPSAbzvNjyntUCDZ+Xl3OHLMaa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh0Css4T21JNB6BXf50CjslX4LZCdCSWhXH9HO6kkMHBSVynTb
-	aJNRNIVKRF4tHMPCzdPABhchnc0ujfdhFE/4AMc3cSd3nLKqYtzjWTQH2WoCrxfHYrM=
-X-Gm-Gg: ASbGncsmKubXzeAc6bAEQ2lzJR8b5rsBeB6iPmmfnyOcaTqecaodFRGrnEqdNPf4HDM
-	uf53t/DR2ykuZpLV7I7tg0i14OKiGXPdClq7lUxt2TsaT75QZWDnyymcYj7xupTvUNiIxzJDRVL
-	S27y56KbUPsnqElEjs9FPCxunf3Qevmor0p7h6nx4SkxEnY+fCToJyA47ZuHaZ71IThJkuIAFic
-	0BdbZl+hUDpFxHkFslaI29wgMewpdmBpzWKxlcIJXXiS2QMJSawO7Tr8woFBEyKLNmOjUMTIRO+
-	vCsMxQJ0avYDRp31sRxEGNqaHhoB65mzBf/1yMPuJcjIUBtiMvY2HFVgf1q+
-X-Google-Smtp-Source: AGHT+IF3DQUEodlloMNaPTNxoK2FYWgdATNtvJwE5PCDK7H2qA3FtmE+6FFdjpNw+6Ekq/8IYTrKCQ==
-X-Received: by 2002:a17:907:2da0:b0:ad8:9b5d:2c0c with SMTP id a640c23a62f3a-ade1a924887mr568188466b.33.1749294605805;
-        Sat, 07 Jun 2025 04:10:05 -0700 (PDT)
+        bh=UHcxom5o2fWiDA0ztt3DRoDer7xYDc3Xgfa6dNo2w94=;
+        b=rM2TJbNpwfsWvcQF/B1Iowl4YIpyjoWM+nCPYeiRMB9M/mB5MgoZBxKYSJsmtHAkRE
+         50cashdYg4eP/7VZWf80zXerDjFNAM+VMxc+nVKcmnRxymef21fPHGSpBf+EJGm6QWN1
+         q1U0OWUon6wT5J0JCc0V72qIYUGFU8PTwn1i/BNHIfbb/xOaxHicnwDsXBjVWsasJE6b
+         v8VXY2qM7WWVP+se0RMY/wVpPa04jYUKlf1RNm8xURvGzdQp1HunG3ec7ZGBpSwrmNnt
+         9JGPE9oEflzfq/M9HhJCmeqEkxFuzqDZsi9QJFbLIunKLe/G4TfzuJPDSSAmJkPOFmHI
+         wA3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUZPAwxRiIYeDc2nfEP9yCyRH3ty2n1dwzu+acfRjYD/mgLEu9wckNTJ4vWnqi4az8Ri+f8bhYs4ISl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGICdw7UkZFCi1BYqfI/d9pmRd42sXhmflx2bDsy7DixFxUF2H
+	tY+8lIxHQ3LP2wPaV694WkbbGs9cea275x4lYPrqsd9Okx4S+dRRTbzlmg8q7rB+94U=
+X-Gm-Gg: ASbGnctipBx3n8/dU7urfwE+1o2jNAzwBOTGPFx2fIfY/nd5uCm32RNmjJSRitO95KU
+	FdBYB6adbmETlWaA/C9IPeeTJfSD13Yi9RCxKKdICQyJvJlZhqVfby6zLojSMETr2yveUIrrXUH
+	F50d4cU5eAE+CPCfuZNCKDIB8XXEnuStr08riOR5Ge2Uzws6e8T05odPC2G7p+f4YhazWFCJSvd
+	AajHkKXrQ2FakWCCiaEywZZQfDnCluMddIgC3HLITAtZDgwt3gppmE35ji7D0jGPy7NA0wXtvKr
+	gAqrMw4YoyO5kEhwekInwcADO8gZBgOLAjI7PWfaaCfFTTCtcTj97ItxcpupurxgLlj+8OQ=
+X-Google-Smtp-Source: AGHT+IHRk3J7ADThk0fpf96UVXCfXsiW9O/Fgv/3D1Wu7i91auPM/A8uTd1EhzotXWPFzWsK+BMZPg==
+X-Received: by 2002:a17:907:805:b0:ade:3bec:ea40 with SMTP id a640c23a62f3a-ade3becfd3bmr211828766b.10.1749294827163;
+        Sat, 07 Jun 2025 04:13:47 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.126])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc78b30sm256310766b.155.2025.06.07.04.10.04
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc1c7efsm259748966b.77.2025.06.07.04.13.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jun 2025 04:10:05 -0700 (PDT)
-Message-ID: <e962bb23-8a36-4684-8add-29ce589978b1@tuxon.dev>
-Date: Sat, 7 Jun 2025 14:10:03 +0300
+        Sat, 07 Jun 2025 04:13:46 -0700 (PDT)
+Message-ID: <913024c8-c140-4c31-96b0-45f5a9bc8f4a@tuxon.dev>
+Date: Sat, 7 Jun 2025 14:13:45 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,49 +81,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ARM: dts: at91-sama5d27_wlsom1: Improve the Wifi
- compatible
+Subject: Re: [PATCH 2/2] ARM: configs: at91_dt_defconfig: Select
+ CONFIG_WILC1000_SDIO
 To: Fabio Estevam <festevam@gmail.com>, nicolas.ferre@microchip.com
 Cc: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
 References: <20250519165352.1314199-1-festevam@gmail.com>
+ <20250519165352.1314199-2-festevam@gmail.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <20250519165352.1314199-1-festevam@gmail.com>
+In-Reply-To: <20250519165352.1314199-2-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
+Hi, Fabio,
 
 On 19.05.2025 19:53, Fabio Estevam wrote:
 > From: Fabio Estevam <festevam@denx.de>
 > 
-> The at91-sama5d27_wlsom1 SoM has a WIL3000 Wifi SDIO device populated.
-> 
-> Improve the description of the Wifi compatible string by passing the
-> more specific "microchip,wilc3000" string. 
+> The at91-sama5d27_wlsom1 SoM has a WILC3000 Wifi chip populated, so select
+> the CONFIG_WILC1000_SDIO by default.
+
+at91-sama5d27_wlsom1 has a SAMA5D2 type of chip. This is built with
+arch/arm/configs/sama5_defconfig.
+
+Thank you,
+Claudiu
+
 > 
 > Signed-off-by: Fabio Estevam <festevam@denx.de>
-
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-
 > ---
->  arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm/configs/at91_dt_defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> index ef11606a82b3..e35dd79beb16 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> @@ -385,7 +385,7 @@ &sdmmc1 {
->  
->  	wilc: wifi@0 {
->  		reg = <0>;
-> -		compatible = "microchip,wilc1000";
-> +		compatible = "microchip,wilc3000", "microchip,wilc1000";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&pinctrl_wilc_default>;
->  		clocks = <&pmc PMC_TYPE_SYSTEM 9>;
+> diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
+> index ff13e1ecf4bb..d195aa31976a 100644
+> --- a/arch/arm/configs/at91_dt_defconfig
+> +++ b/arch/arm/configs/at91_dt_defconfig
+> @@ -87,6 +87,7 @@ CONFIG_LIBERTAS_SPI=m
+>  CONFIG_MWIFIEX=m
+>  CONFIG_MWIFIEX_SDIO=m
+>  CONFIG_MWIFIEX_USB=m
+> +CONFIG_WILC1000_SDIO=m
+>  CONFIG_RT2X00=m
+>  CONFIG_RT2500USB=m
+>  CONFIG_RT73USB=m
 
 
