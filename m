@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-183455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B88AD0B48
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 07:47:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8567EAD0B99
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:33:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 589C67A065A
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 05:46:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E331708D7
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 07:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAAA19539F;
-	Sat,  7 Jun 2025 05:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3694E1C5D44;
+	Sat,  7 Jun 2025 07:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jpKLe0YW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="nmQnTRQz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8FE17E4;
-	Sat,  7 Jun 2025 05:47:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1B32746A;
+	Sat,  7 Jun 2025 07:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749275237; cv=none; b=F+EzvUHL8ydVA1IG3fSeqkYEcaBVDVJ0wKkmKXlCO3F/ssbFO+7+iB5ywa95gcj+ST214ItvIowMcju2sqMHzxqf/SxtB3HAOKIxnNe8IFm2R0YfVBNqIgYZX/6sYbEjseJRXyISs9vqThPdoXOBjXzZE5x8qgkdxKSk+X6V+SM=
+	t=1749281586; cv=none; b=pm/bDOlaqzM0iFJNiy5zYLyiO3u5lHqojSwSAG1gi0AGzZTs/MQjGov7GlhNIr5xnaNj6Hsxfa3VeFr9AC4JhfpJVn3nfqnZAWcoYkKl73bf0CWnU+u3A8Ougm65jXr1ufRZaa+HREHNBYwVCx/cameOPrjX/S74DihGGVG1zhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749275237; c=relaxed/simple;
-	bh=5C3lLj8+AbKhyCtUA5RyohQ8t2Ydl8exCq8AJb7blUs=;
+	s=arc-20240116; t=1749281586; c=relaxed/simple;
+	bh=4ojtFF5ydY7GePXSuRDH+3gG5quKRHpnhQew3pMwLiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XAdojLj58hXuadApm0aF7GO+e/gtTk57vbZPYfaCNT4K+Sa4hOVuRr4udw/RvNsRs91nmWpoD8alWCw0vmCgDAr2d+h8tpHLvM5gDf8Hnr74aowyMJ2tDV5lknkTbDjfSN95PSUXyPv4gZ+XlnKErDKaagS8eRtnd8WqTEKZSzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jpKLe0YW; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749275236; x=1780811236;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5C3lLj8+AbKhyCtUA5RyohQ8t2Ydl8exCq8AJb7blUs=;
-  b=jpKLe0YWsk7j+wCMvboiQoTwyeR0yO908TV8XOTE+PlJpnW83tVQUWQ/
-   ptzhbsBGFzzU+ro/MuUaGpIgMMpyCe/VJG3yQleB3qA7YzY0Oxn1qswDi
-   yws44TD8+DpNIMgGXAJJDYbUc01lyRj+sj9MrMllNpzma/6oSQHn2mcYC
-   FhWzwdbzcxuuxUvI0SZYwoKN9IWygdt5yNhm453UedApkpPYm4z79/M0H
-   sgU+aWojU6MsvML3v97EFpgLppCdn/FY6ilgQNuYVptze1B02GwqHGQee
-   fAwIkLp9xfBFOL755Ff+Drzjor4e3T/l0p/abZdYen/N/YkzI2bFNX0ic
-   A==;
-X-CSE-ConnectionGUID: Nz+tbCj/Sju8p7MM4rpTlw==
-X-CSE-MsgGUID: rI7rWEfbQhCG12mRbZnCwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51420673"
-X-IronPort-AV: E=Sophos;i="6.16,217,1744095600"; 
-   d="scan'208";a="51420673"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2025 22:47:15 -0700
-X-CSE-ConnectionGUID: gRFQIGf+THm/L1f2j86avw==
-X-CSE-MsgGUID: 1n4MLOnHQoSB0ABW7+8A9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,217,1744095600"; 
-   d="scan'208";a="146528813"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 06 Jun 2025 22:47:11 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uNmOb-0005UP-1w;
-	Sat, 07 Jun 2025 05:47:09 +0000
-Date: Sat, 7 Jun 2025 13:46:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=s07dTSsw6t5JOVdJ6cut8sSVu0noJTF23qtwNymQGOTfDXyBsldbSvuIJrclFUyhgBjKIlBnccjvSi1d2DxHa3wpYxd0DDma31Qvy5kLg3+quooyy/Ysgti/nAGf7O8XwDPScPlkY4OB4HPzOsa5FlCMOgDGVgFkWmyRLKgM6VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=nmQnTRQz; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=lLaVWBfYr4bHWWchHu2peBzXsqMla/2LK31cTUrka3I=; b=nmQnTRQzji183HY/+GPjhjlzFn
+	9fiVPBsdleUBYnSr8Yc98Ep2NfLx3XKwriLPpfGlh2InipZPc70aLx93IF+h7pJyynSPh5s9EGlCy
+	96beVdPqHkUyXesh9e/l+KpM+6uAPU36C9FgwPbo1ZJMBhv14kyGira47OId50E9CbqFgs+W/h6yr
+	UhSv29CFKzyTx9ra5IGfKp5HwqBaJ8UhweT05yNKq3Ms99/69mXlHXDYC0qaUHLUh+RjQXRcUMrWE
+	zQfyj0KJL6G/neGgNhag/39KZfZ6Ijz4jF5G6o+Ez1kJTnnJDh77zQ2P0cqRluZK16oLeTmcrcybc
+	/A8gLIzg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43464)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uNo2p-0001YP-2I;
+	Sat, 07 Jun 2025 08:32:47 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uNo2m-00045f-14;
+	Sat, 07 Jun 2025 08:32:44 +0100
+Date: Sat, 7 Jun 2025 08:32:44 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: George Moussalem <george.moussalem@outlook.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
-	Daniel Semkowicz <dse@thaumatec.com>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v2 2/4] mfd: rk8xx-core: allow to customize RK806 reset
- mode
-Message-ID: <202506071321.Ze0gsxC0-lkp@intel.com>
-References: <20250605-rk8xx-rst-fun-v2-2-143d190596dd@cherry.de>
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: net: qca,ar803x: Add IPQ5018
+ Internal GE PHY support
+Message-ID: <aEPrHCf55eMwJXiL@shell.armlinux.org.uk>
+References: <20250602-ipq5018-ge-phy-v3-0-421337a031b2@outlook.com>
+ <20250602-ipq5018-ge-phy-v3-2-421337a031b2@outlook.com>
+ <20250605181453.GA2946252-robh@kernel.org>
+ <DS7PR19MB8883E074E64AC6FCAB1B1DE69D6EA@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <23b92ed3-7788-4675-8f80-590e4337025c@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,175 +88,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250605-rk8xx-rst-fun-v2-2-143d190596dd@cherry.de>
+In-Reply-To: <23b92ed3-7788-4675-8f80-590e4337025c@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi Quentin,
+On Fri, Jun 06, 2025 at 03:01:26PM +0200, Andrew Lunn wrote:
+> > Under 'properties' node:
+> >   compatible:
+> >     enum:
+> >       - ethernet-phy-id004d.d0c0
+> > 
+> > Q: do I need to add the PHY IDs of all PHYs that the qca803x driver covers
+> > or will this one suffice?
+> 
+> The history is complicated, because PHYs can be enumerated
 
-kernel test robot noticed the following build errors:
+... provided one doesn't wire up the reset pin to a GPIO and then
+declare that in DT as a reset pin for the PHY, thus holding the PHY
+in reset while we try to probe what's on the bus, making the ID
+unreadable.
 
-[auto build test ERROR on ec7714e4947909190ffb3041a03311a975350fe0]
+The down-side to providing the ID in the compatible is we lose the
+revision, so if a new revision of the PHY ends up being fitted
+part way through production, the kernel has no way to know.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Quentin-Schulz/dt-bindings-mfd-rk806-allow-to-customize-PMIC-reset-mode/20250605-234243
-base:   ec7714e4947909190ffb3041a03311a975350fe0
-patch link:    https://lore.kernel.org/r/20250605-rk8xx-rst-fun-v2-2-143d190596dd%40cherry.de
-patch subject: [PATCH v2 2/4] mfd: rk8xx-core: allow to customize RK806 reset mode
-config: arc-randconfig-001-20250607 (https://download.01.org/0day-ci/archive/20250607/202506071321.Ze0gsxC0-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250607/202506071321.Ze0gsxC0-lkp@intel.com/reproduce)
+Sadly, we can't just read the PHY ID when we've released reset
+because the ID may be provided in DT because the one in the device
+is not reliable / wrong.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506071321.Ze0gsxC0-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/mfd/rk8xx-core.c: In function 'rk8xx_probe':
->> drivers/mfd/rk8xx-core.c:740:42: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     740 |                                          FIELD_PREP(RK806_RST_FUN_MSK, rst_fun));
-         |                                          ^~~~~~~~~~
-
-
-vim +/FIELD_PREP +740 drivers/mfd/rk8xx-core.c
-
-   694	
-   695	int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap *regmap)
-   696	{
-   697		struct rk808 *rk808;
-   698		const struct rk808_reg_data *pre_init_reg;
-   699		const struct mfd_cell *cells;
-   700		int dual_support = 0;
-   701		int nr_pre_init_regs;
-   702		u32 rst_fun = 0;
-   703		int nr_cells;
-   704		int ret;
-   705		int i;
-   706	
-   707		rk808 = devm_kzalloc(dev, sizeof(*rk808), GFP_KERNEL);
-   708		if (!rk808)
-   709			return -ENOMEM;
-   710		rk808->dev = dev;
-   711		rk808->variant = variant;
-   712		rk808->regmap = regmap;
-   713		dev_set_drvdata(dev, rk808);
-   714	
-   715		switch (rk808->variant) {
-   716		case RK805_ID:
-   717			rk808->regmap_irq_chip = &rk805_irq_chip;
-   718			pre_init_reg = rk805_pre_init_reg;
-   719			nr_pre_init_regs = ARRAY_SIZE(rk805_pre_init_reg);
-   720			cells = rk805s;
-   721			nr_cells = ARRAY_SIZE(rk805s);
-   722			break;
-   723		case RK806_ID:
-   724			rk808->regmap_irq_chip = &rk806_irq_chip;
-   725			pre_init_reg = rk806_pre_init_reg;
-   726			nr_pre_init_regs = ARRAY_SIZE(rk806_pre_init_reg);
-   727			cells = rk806s;
-   728			nr_cells = ARRAY_SIZE(rk806s);
-   729			dual_support = IRQF_SHARED;
-   730	
-   731			ret = device_property_read_u32(dev, "rockchip,reset-mode", &rst_fun);
-   732			if (ret) {
-   733				dev_dbg(dev,
-   734					"rockchip,reset-mode property missing, not setting RST_FUN\n");
-   735				break;
-   736			}
-   737	
-   738			ret = regmap_update_bits(rk808->regmap, RK806_SYS_CFG3,
-   739						 RK806_RST_FUN_MSK,
- > 740						 FIELD_PREP(RK806_RST_FUN_MSK, rst_fun));
-   741			if (ret)
-   742				return dev_err_probe(dev, ret, "RST_FUN write err\n");
-   743			break;
-   744		case RK808_ID:
-   745			rk808->regmap_irq_chip = &rk808_irq_chip;
-   746			pre_init_reg = rk808_pre_init_reg;
-   747			nr_pre_init_regs = ARRAY_SIZE(rk808_pre_init_reg);
-   748			cells = rk808s;
-   749			nr_cells = ARRAY_SIZE(rk808s);
-   750			break;
-   751		case RK816_ID:
-   752			rk808->regmap_irq_chip = &rk816_irq_chip;
-   753			pre_init_reg = rk816_pre_init_reg;
-   754			nr_pre_init_regs = ARRAY_SIZE(rk816_pre_init_reg);
-   755			cells = rk816s;
-   756			nr_cells = ARRAY_SIZE(rk816s);
-   757			break;
-   758		case RK818_ID:
-   759			rk808->regmap_irq_chip = &rk818_irq_chip;
-   760			pre_init_reg = rk818_pre_init_reg;
-   761			nr_pre_init_regs = ARRAY_SIZE(rk818_pre_init_reg);
-   762			cells = rk818s;
-   763			nr_cells = ARRAY_SIZE(rk818s);
-   764			break;
-   765		case RK809_ID:
-   766		case RK817_ID:
-   767			rk808->regmap_irq_chip = &rk817_irq_chip;
-   768			pre_init_reg = rk817_pre_init_reg;
-   769			nr_pre_init_regs = ARRAY_SIZE(rk817_pre_init_reg);
-   770			cells = rk817s;
-   771			nr_cells = ARRAY_SIZE(rk817s);
-   772			break;
-   773		default:
-   774			dev_err(dev, "Unsupported RK8XX ID %lu\n", rk808->variant);
-   775			return -EINVAL;
-   776		}
-   777	
-   778		if (!irq)
-   779			return dev_err_probe(dev, -EINVAL, "No interrupt support, no core IRQ\n");
-   780	
-   781		ret = devm_regmap_add_irq_chip(dev, rk808->regmap, irq,
-   782					       IRQF_ONESHOT | dual_support, -1,
-   783					       rk808->regmap_irq_chip, &rk808->irq_data);
-   784		if (ret)
-   785			return dev_err_probe(dev, ret, "Failed to add irq_chip\n");
-   786	
-   787		for (i = 0; i < nr_pre_init_regs; i++) {
-   788			ret = regmap_update_bits(rk808->regmap,
-   789						pre_init_reg[i].addr,
-   790						pre_init_reg[i].mask,
-   791						pre_init_reg[i].value);
-   792			if (ret)
-   793				return dev_err_probe(dev, ret, "0x%x write err\n",
-   794						     pre_init_reg[i].addr);
-   795		}
-   796	
-   797		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, cells, nr_cells, NULL, 0,
-   798				      regmap_irq_get_domain(rk808->irq_data));
-   799		if (ret)
-   800			return dev_err_probe(dev, ret, "failed to add MFD devices\n");
-   801	
-   802		if (device_property_read_bool(dev, "system-power-controller") ||
-   803		    device_property_read_bool(dev, "rockchip,system-power-controller")) {
-   804			ret = devm_register_sys_off_handler(dev,
-   805					    SYS_OFF_MODE_POWER_OFF_PREPARE, SYS_OFF_PRIO_HIGH,
-   806					    &rk808_power_off, rk808);
-   807			if (ret)
-   808				return dev_err_probe(dev, ret,
-   809						     "failed to register poweroff handler\n");
-   810	
-   811			switch (rk808->variant) {
-   812			case RK809_ID:
-   813			case RK817_ID:
-   814				ret = devm_register_sys_off_handler(dev,
-   815								    SYS_OFF_MODE_RESTART, SYS_OFF_PRIO_HIGH,
-   816								    &rk808_restart, rk808);
-   817				if (ret)
-   818					dev_warn(dev, "failed to register rst handler, %d\n", ret);
-   819				break;
-   820			default:
-   821				dev_dbg(dev, "pmic controlled board reset not supported\n");
-   822				break;
-   823			}
-   824		}
-   825	
-   826		return 0;
-   827	}
-   828	EXPORT_SYMBOL_GPL(rk8xx_probe);
-   829	
+What's done on SolidRun platforms is that the PHY reset is connected
+to a GPIO, but that is controlled by the boot loader and not by the
+kernel. All PHY resets are deasserted before the kernel is entered,
+and the reset GPIOs are in DT as "hogged" GPIOs. This allows phylib
+to operate normally without any of this faff.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
