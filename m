@@ -1,87 +1,107 @@
-Return-Path: <devicetree+bounces-183560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFC0AD101B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 23:30:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E18AD1027
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 23:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49F9016E03D
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 21:29:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E26F03AD37D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 21:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30AC2163BB;
-	Sat,  7 Jun 2025 21:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9272920F093;
+	Sat,  7 Jun 2025 21:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mY86qNwL"
+	dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b="aEbKIoQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailo.com (msg-2.mailo.com [213.182.54.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA1E1FDE01;
-	Sat,  7 Jun 2025 21:29:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9401C84B6;
+	Sat,  7 Jun 2025 21:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.182.54.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749331744; cv=none; b=HJ8AW0bBbIBQ6WPtvtlc91LtwUZhv9GRnRXdY+ZVtzFIKG0bsSb0OSuU7YtqebK5X2Rm/SsdxuRXkIuGNugxeWLQtlIb1CLNPdNzFiw4fLw/blc2g8QTiaeb/zPCsCLEB66//63Jaf5BZJZczsVj/kuxwlk3ZaMGX0UlnJmMjlQ=
+	t=1749332621; cv=none; b=T7J2mxZCVuj4xKFU+JJtUQjqBrfccVPGFKITWpO9TLcVp4BYfLZGeFNfmFwvAKTdAtoWZIrWjpVyFezDM14ccL3iHJ/cr8XWoTUwu/wFLs3X88fP4FnZm+jezi8Dv0d3HnAUWLgMsCSwMDUGOc3QcDwI/tnnKs6A9ICOGaELPK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749331744; c=relaxed/simple;
-	bh=XHrP+0GPTa7TRd2JvYw/E9otF7QNFDMpfbQMlQ7dElg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IgL8gdyJ3HG2BPkfknErVLhV+Az2hK3AsSw+3cnZUeX46BSg+WqQ3zfNi5wh3XxKgQg+DmgAzxkPQRFCnS+B6DXq0BzBB909RSDk9Aqtt5woF8XnIqFNIf5rXYRLt6AwGN6d2u1CZwd2CCX4GZvT1we/14pc1MFOaUli1n62EXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mY86qNwL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 540EDC4CEF0;
-	Sat,  7 Jun 2025 21:28:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749331742;
-	bh=XHrP+0GPTa7TRd2JvYw/E9otF7QNFDMpfbQMlQ7dElg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=mY86qNwLX6I8JsCEklNFAVUsALMNhrv3Un7nVJZOgfLG8Vjap7lU4Dh33SKVCpxtT
-	 /s/YxErxfMieOAAzAKULW93ulhJ7UhvK08BaLkSUQ9kW4mWPPLX7a+1rpaUcFKZw5H
-	 SXUbrHbaVghMnhV0JWmCLG2mUckX++JyqQyBL1QkY+rzjR9HGFr7IknJak+oQtfkIf
-	 mfmlSEp3a/AR1em62nYh4xOQrR/CKWt4nCXzh23R8mNmGDt+YPzeJfnc4uSyBiSyDH
-	 Jz+xzEkKXFvccncEX6UV1j4DVRSc/OPiZgC2EX42LbSMsqk0JTKrwS0+vtrG24Gy6h
-	 TMhT68ouW3ueQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: soc: fsl,ls1028a-reset: Drop extra "/" in $id
-Date: Sat,  7 Jun 2025 16:28:13 -0500
-Message-ID: <20250607212813.747203-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1749332621; c=relaxed/simple;
+	bh=xI/OvOkoISAXRncaDWVm0qhOdTlzYGDe6owbkI0AdPE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZJ2CwC1l/3TJHn4NbeDBnpSdzhp0HkYNwE8ieBjtwYs1MamLmmLnfetozEJhiRriGb2uVMslWdlEohTARPJEAFJ/4XKo4mCsyaWJ5RSHtxMzWppas2u1J929fTZ1aH442yMUS92XwvV/ZH7M7HzbsQIJpVfXdEQrBv8G4GFgq0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mailoo.org; spf=pass smtp.mailfrom=mailoo.org; dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b=aEbKIoQO; arc=none smtp.client-ip=213.182.54.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mailoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailoo.org
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+	t=1749332607; bh=xI/OvOkoISAXRncaDWVm0qhOdTlzYGDe6owbkI0AdPE=;
+	h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+	 References:Content-Type:Content-Transfer-Encoding:MIME-Version;
+	b=aEbKIoQO+l7C7MLt9a6SuB590DT46JFza4bQskV6NSOnACnFw81MauRawk2w4VwmZ
+	 /edbHScs3xZ106G02Pys8xBJEg6kcYH92+wTl3/JqKRRxTSb6Z6AEfmIDXNL4ghWJk
+	 ovF8eARkJWcLrWHhH0aAjYqG/4KCPWffCDVPRvqY=
+Received: by b221-6.in.mailobj.net [192.168.90.26] with ESMTP
+	via ip-22.mailoo.org [213.182.54.22]
+	Sat,  7 Jun 2025 23:43:26 +0200 (CEST)
+X-EA-Auth: tcnuv6EiHZjbchC6kmH0/Ii7nnvOoLM4TEin+CbKNq8wrSTgu1rvm6JumEmT79Enp2m+k7dPzaxOaWT47optlAuYenc93FDrPejq6nJgMP8=
+Message-ID: <e73d676ba1901437d471a2a633e94a07b19a3e05.camel@mailoo.org>
+Subject: Re: [PATCH v4 2/4] media: qcom: camss: Add support for MSM8939
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Robert Foss	
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Bryan O'Donoghue	
+ <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?ISO-8859-1?Q?Andr=E9?= Apitzsch
+	 <git@apitzsch.eu>, phone-devel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Date: Sat, 07 Jun 2025 23:43:26 +0200
+In-Reply-To: <877a72fa-cdae-4a66-9991-5ea86ef76aac@linaro.org>
+References: <20250602-camss-8x39-vbif-v4-0-32c277d8f9bf@mailoo.org>
+	 <20250602-camss-8x39-vbif-v4-2-32c277d8f9bf@mailoo.org>
+	 <877a72fa-cdae-4a66-9991-5ea86ef76aac@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42app2) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-The $id value has a double "//". Drop it.
+Le vendredi 06 juin 2025 =C3=A0 13:59 +0300, Vladimir Zapolskiy a =C3=A9cri=
+t=C2=A0:
+> Hello Vincent.
+>=20
+> On 6/2/25 20:27, Vincent Knecht via B4 Relay wrote:
+> > From: Vincent Knecht <vincent.knecht@mailoo.org>
+> >=20
+> > The camera subsystem for the MSM8939 is the same as MSM8916 except with
+> > 3 CSID instead of 2, and some higher clock rates.
+> >=20
+> > As a quirk, this SoC needs writing values to 2 VFE VBIF registers
+> > (see downstream msm8939-camera.dtsi vbif-{regs,settings} properties).
+> > This fixes black stripes across sensor and garbage in CSID TPG outputs.
+> >=20
+> > Add support for the MSM8939 camera subsystem.
+> >=20
+> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+>=20
+> There was a preceding and partially reviewed changeset published on
+> linux-media [1] before v1 of the MSM8939 platform support in CAMSS,
+> due to a merge conflict this platform changeset should be rebased IMHO.
+>=20
+> [1] https://lore.kernel.org/all/20250513142353.2572563-4-vladimir.zapolsk=
+iy@linaro.org/
+>=20
+> --
+> Best wishes,
+> Vladimir
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thank you, I'll look into it
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml
-index 234089b5954d..b43df10c5ef4 100644
---- a/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml
-+++ b/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas//soc/fsl/fsl,ls1028a-reset.yaml#
-+$id: http://devicetree.org/schemas/soc/fsl/fsl,ls1028a-reset.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Freescale Layerscape Reset Registers Module
--- 
-2.47.2
 
 
