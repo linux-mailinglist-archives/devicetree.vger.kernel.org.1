@@ -1,306 +1,172 @@
-Return-Path: <devicetree+bounces-183467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7F0AD0C30
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:35:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39947AD0C49
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3635D170835
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:35:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 685F23B12E3
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764E8221DAD;
-	Sat,  7 Jun 2025 09:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D26210F4B;
+	Sat,  7 Jun 2025 09:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="n/NLTqi8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T7lx1wwo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97663221283
-	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 09:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD60210185
+	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 09:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749288844; cv=none; b=YpST96NR3X+MWl0gPeQtBRgv8ZslHoNVd8Sc0TB5quTbW/xFxaTZpJ8ChRUiOEvn8ID7nw5mVHirBb/xJWI2MW3yUrB4e8l2pcJMDVaX3pcwUTH51rKa5Ml9Z1BARBs9p+d4AClUPXvMptQRU20fD3HVy7myoMK0RY51irLbbAk=
+	t=1749289584; cv=none; b=blkVOD/aJJDqJvhKSzSKCb/lRIs8+myHS6JVGUqBvaJlrWLMSjrNZKJjZxa8MjdSjQ53DpjMf5P4TJMKVMkSi9WCC4XocrKI3LD58szyOZdW7+SRi1K4nri/kGOu9HIo5SSYveGCtKmo0M5ja4qx2bxDZ2rIVVYxdpIaqoIkBxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749288844; c=relaxed/simple;
-	bh=EnaaBSVIHASN/VvhxdKxZE1FQofT/VReabBoLiuFpnQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ElMpAOoeax+wJQyaoMlt9u4GlQ49eZvVpPdontBiLINGYYnSImo16oUK4E3/GTmH+PMabGL660yksS//BVDVOmApsWuIxUFKPtqjSREZAAAhjd3UyglN+brw97uyPztf68cNkFBmchUKGavN56xP5eOLnADrxzS8A2+TWwtXnIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=n/NLTqi8; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-adb4e36904bso542366266b.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 02:34:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1749288841; x=1749893641; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BY5a2j93oXGkMU8803msBPZC+Hhuefek8iCrsedNGL4=;
-        b=n/NLTqi8v9f7AOCjY4GwR8GESyZkUtHcjXvwt83GQRJzE/dzTkNjBZFcs20xkaIldO
-         fS9NHeVXAoZifLoavMYQ68uXmqBdvFQX8yggw+sSU4UNbURaLeQK1Ndn4+bTPf/rSdy9
-         pKQ9WdfxXO3AjBDuBFEd9H+iDhyxT4/hjhZjw=
+	s=arc-20240116; t=1749289584; c=relaxed/simple;
+	bh=RTIekZYMXT1HPwL+6JH2s6iXA9/KsXv5nouYl86M74U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A4zod+qUXA/nZVpp7YlxhA36UCukyxUzrU3W6u/pt0FbetaY+Njw9iZMeWor8jLhBF8jUmpV4By8TvuhHDUvaeRTNBOPHY+9Vf2WKdDFp7Tow2BpC96MC6FwB1Zt9VUOoy2urNYMwNl/hDvzr1DwGsrJP+tkwhjE96OvZJP3axE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T7lx1wwo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 557443I4010129
+	for <devicetree@vger.kernel.org>; Sat, 7 Jun 2025 09:46:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hOT1OH7Zs3RcqZzob/2wXtn6yUgIoxAj6wC5h6Z407U=; b=T7lx1wwoaYXYXFZu
+	PWnTFfTJK53Q6R96BuWU/Vh70ppOHy0+pWHqAhGzxsvO0xQuCRKh/W4x+77rE0e7
+	5KQfB9DiuhUKr2lxytKI3eP6fbnU/din7Ia8xVTf1l2il4BcF3JL2hT2X2PTNRYM
+	X3kk7PUddjajdjxFZbwTRidUWCOb4ZyhecP1W0dz8xAv79OgM5GKK1V/HAcUsdnl
+	pgvBpl8ilmWnew9u6KHuRjKJZzahyBUwCos3eAD0+7NDYEk8FCO/tJ/+QfxWJKo1
+	NN+wmNmm3MKaGSxq+hH8N5WoTiL7HqQZgs5IYjUAuWNQMS0IsoYhY9o/f3gJsggo
+	i8YnWA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474b4j0k1w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 09:46:15 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6facde431b2so5374306d6.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 02:46:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749288841; x=1749893641;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BY5a2j93oXGkMU8803msBPZC+Hhuefek8iCrsedNGL4=;
-        b=e43LedM8EEFHdLgf1MYFBnJr7JEXpOlMV8rDcnIb2xuPAvAt0Pkebf+X8p0PiBSApS
-         qt64/z29NSaPx0STKs4gsQXlhZT6mm1DYRTur9gnQt8TB7yLlfDF3So4NNrFIucWgiM5
-         J4t5ZtwCoqWAFSVC3OgqRwDlpC8cd9rTBgIyZX2kc/YDZgidfFQ4R0xldiFHmR98mniS
-         VHgb5wh5bKuyqOg8zmB7V+9MAeShkyYbE0K08++IvXR3C6+Uu5MTMtD7TUzfyR6Ot46s
-         +XI8FENIVl3U+Y73XdXcBxYlhS6YLiifjnLtDofNrwXvIaztwOOAHg7GV1vAf7AQ1PJX
-         xOhA==
-X-Forwarded-Encrypted: i=1; AJvYcCWbYyukdiMzeDnTeBLuliMuy0IpZ5HzeVmFB+BinF/U399+Kfk81ys8SnmaCSqG9DBN88FXDfIXKOjj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx40KWweXvZmF/JvDw1h1RXrMIKyJewWHA9CJkVnxDr5yIKnUKC
-	c4xqW13No7Y11Z3LY6x9jWDmN26/bZawajMnc5CCzLNN3c0ILdR3sR2uhqPg91T2Kko=
-X-Gm-Gg: ASbGnct6INbqgeXloZhtScgahsQqqpn5Ddh/cTHHWDlST+v6v+s0G14K6SCSYqor6FT
-	MDhXsVjuVXsOARZa5islNi3XwzUZXPmtR18RZYf7B/VLO10UpNwTyNoYTjqcUqt5MR4QjNq4S7n
-	Xf0SzwJjyQ0gH5NL8I5k7M5lDos0O469RobgWYqgCbAXmQf3T/dyMzRBfPo9CAX7Yml0IHtxrc7
-	eIv5B1AQjCDNWBsl9vI9ZiO/Qd6CR4m3JY9w2CXww8Po3vwZW5GesbjfQTKlnX4l42Od5It05qv
-	6qZIhDn8/FgoF+OMdrHI79Ljx8eCjI5ceYuETXJciQLDX5KhHo8WYr0HC8QzrRzenubaJ0LrJ2F
-	EONKYSQkkzuHM/WYqS3gBIf/pPGzm1M6IQuhbykXZeGoVWu8K3xicYVW61IcL4dsZ8HxjphMTOJ
-	wYfutNWZK3hVm+
-X-Google-Smtp-Source: AGHT+IH+nnLe4nhY/KmC1nxcHmSMY3MeJ1Ohpe9/3X5P0YmlpM51ucnPzgCI+0Whb6pU1/wD56roKQ==
-X-Received: by 2002:a17:907:970c:b0:ad8:a935:b905 with SMTP id a640c23a62f3a-ade1a905ae2mr485259166b.22.1749288840892;
-        Sat, 07 Jun 2025 02:34:00 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-5-95-99.retail.telecomitalia.it. [87.5.95.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc1c316sm251541066b.98.2025.06.07.02.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Jun 2025 02:34:00 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: Matteo Lisi <matteo.lisi@engicam.com>,
-	linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 09/10] ARM: dts: imx6ul: support Engicam MicroGEA GTW board
-Date: Sat,  7 Jun 2025 11:33:21 +0200
-Message-ID: <20250607093342.2248695-10-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250607093342.2248695-1-dario.binacchi@amarulasolutions.com>
-References: <20250607093342.2248695-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20230601; t=1749289574; x=1749894374;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hOT1OH7Zs3RcqZzob/2wXtn6yUgIoxAj6wC5h6Z407U=;
+        b=F9TsVG4NvNuOXylkdRWmqfXWdyMXwQM2puVw96T8Ole8pnb8kU+SQOoWnITzjaS/7c
+         9Fuw1V/KnTtCKoGvslhGlNK/docYKsSYK1RKl+eHZg9J1UeFvJDDuFGAw9xS8ePfDCiC
+         dtkI7LtaMox9ZHf/t6zm98vBZ3YbMBzuEyBs6ZyJDEHTRQGJLldn4W7N/k6IPl7Z9JNn
+         iYY6N1v1VlLhvZIZRgpVBEGW0tHnKl/buWdz7Ba0qxnjOczpSCsJb2UleN8vZ0Z28pLh
+         Lagq7thqCWuM2bRQk5mmI/PfK5+OpPfR+0RNV7AylQxtypwgxfC9oohHzKvhYs48BcaC
+         7zDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUO6Crfz1ZZzAh1GnWlU7/nZpMBigrDipiGSTpVjT2ESaHHf7QNboaF+YHUP+fW+Dp3wRQ2Vrrw0zYH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLPULWc33/RZE/ySj/K5l+yMf0fURLXdwmtsdKw1tqOIMz4d/B
+	mjrXlPQIaPnqJzf8+PKacmViFwIezq2m0EGOLnricXQXbjaqmB369TJZVV7vveZ0ZXaGA+sMz/a
+	ZkdZ65Kl4Pi6Nd6LW15aOqic574tnXMQUttbXG+5PP4IMnNz2w3NMTvYYh79tW/fy
+X-Gm-Gg: ASbGncsDUJMMpIKj8efVMVGYsMy4VRHc8r5sUutGZXvjC3Z4M6AbIhn+Z1QnKTthSUx
+	mrsAWI+rxUwEvqzma50OAE6zujw0FerovH7ZA4018doHhtY8aijHNtA3TnE0oqP0TdwmSpDa53e
+	ysQupbNiknHg95n50wSBVy2DcERZwA0Q6mte4gF8kEw8s9l2Q5EFK8f4VHywJX0xGc5R4Tp7gba
+	/aC8Miz/eXZNbhY8xQqA/4PLAG2POGIA1NJzvmIZVDvm9kyZem0cnHX/GjVIbOz3PZAxRHJuE7n
+	t2+iL0sXvaXi6sCAPvUhz91u8VDY31sdUJRIwtOyKSE0VaS9PmglhCI9q/RdRwyTzg==
+X-Received: by 2002:a05:622a:ca:b0:494:b4c4:8d7e with SMTP id d75a77b69052e-4a6691b6c5emr32043811cf.12.1749289574326;
+        Sat, 07 Jun 2025 02:46:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFwWPtI2+ioHKumywO8IMNaOAQ5iYNQdemythHKIGMF/B1bpE+Qxn0ZZITwuEqzQ+j9BmQlPQ==
+X-Received: by 2002:a05:622a:ca:b0:494:b4c4:8d7e with SMTP id d75a77b69052e-4a6691b6c5emr32043651cf.12.1749289573920;
+        Sat, 07 Jun 2025 02:46:13 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-607783c0581sm2174164a12.51.2025.06.07.02.46.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Jun 2025 02:46:13 -0700 (PDT)
+Message-ID: <219a46d0-446c-4eed-8809-4f2400de0ef9@oss.qualcomm.com>
+Date: Sat, 7 Jun 2025 11:46:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/8] power: supply: qcom_battmgr: Add charge control
+ support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Cc: =?UTF-8?Q?Gy=C3=B6rgy_Kurucz?= <me@kuruczgy.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+        David Collins <david.collins@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
+ <20250530-qcom_battmgr_update-v2-5-9e377193a656@oss.qualcomm.com>
+ <f2e0f1da-c626-4cf0-8158-8a5805138871@kuruczgy.com>
+ <8bb3a056-c00f-4ae0-a790-d742d31f229a@oss.qualcomm.com>
+ <5knsdgk7o5zifkvzlrqiplmhztnsyhlxnqiuikqf4l7wkx2qvh@s3vzkiezw2bc>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <5knsdgk7o5zifkvzlrqiplmhztnsyhlxnqiuikqf4l7wkx2qvh@s3vzkiezw2bc>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA3MDA2OSBTYWx0ZWRfX9pQgSjgN3/4j
+ y7BIoFi7V75Gx0w5mH9azAnnOW5ifrnSUZrGTNZcQ9Gz9OAgWefV3cNo+7+EPsLZNxLnM916xj+
+ DvBX/IvVmjrfajQzMfH6OwVqi/nBPLZJY8bO1jG+MbRyML6gKtwstMWyPzT6ju8JGFc+ZKfqXvS
+ 1X/VYldexTCtq+y1diLD0FWN0uS/Qrz9rE/gm5JBQ4Ds76T5A1w2oEzS/9636i+fiacXvX6CkDf
+ uHE4LPl9lHYQWXtvKWbfgc5c8iM4TqFdaOYYCTkxfv6qgGy2f9RaVq2Q4bPWtME4tVlfyr+ELSn
+ wKW3QeLRzL1QyTbv+F+w4dJ2FS9L6zmAkKzHZcFngPuqrgnXOz0UPpcjh+KqMFT288Cwihe5kFr
+ TpRpr6cSiQVrN96TOb0bJE9Kae10EODG+r8wgaXwX+5+ShdzdpJNVOmSg9nShSgk8HsuuwIi
+X-Proofpoint-GUID: gqCUY9lvj-jWBPjQoaArUMhWtrSChKPn
+X-Authority-Analysis: v=2.4 cv=Te6WtQQh c=1 sm=1 tr=0 ts=68440a67 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=j_8uj707ZTFaWRZCUGIA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: gqCUY9lvj-jWBPjQoaArUMhWtrSChKPn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-07_04,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 mlxscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 clxscore=1015 suspectscore=0
+ mlxlogscore=675 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506070069
 
-Support Engicam MicroGEA GTW board with:
+On 6/3/25 12:37 PM, Dmitry Baryshkov wrote:
+> On Tue, Jun 03, 2025 at 01:48:11PM +0800, Fenglin Wu wrote:
+>>
+>> On 5/31/2025 6:36 PM, György Kurucz wrote:
+>>>> Add charge control support for SM8550 and X1E80100.
+>>>
+>>> Thank you for this, tested on my Lenovo Yoga Slim 7x, the limiting works
+>>> well, I finally don't have to worry about leaving my laptop plugged in
+>>> for too long.
+>>>
+>>> One small thing I noticed is that after setting the sysfs values and
+>>> rebooting, they report 0 again. The limiting appears to stay in effect
+>>> though, so it seems that the firmware does keep the values, but Linux
+>>> does not read them back. Indeed, looking at the code, it seems that
+>>> actually reading back the values is only implemented for the SM8550.
+>>
+>> Right.
+>>
+>> Based on offline information, X1E80100 doesn't support reading back those
+>> threshold values in battery management firmware, so I can only use the
+>> cached values for sysfs read.
+> 
+> Which limits usablity of the attribute, it is now impossible to identify
+> whether it is enabled or disabled. Is there a chance of fixing that for
+> the X1E80100 platform?
 
-- 256 Mbytes NAND Flash
-- 512 Mbytes DRAM DDR2
-- Buttons
-- LEDs
-- Micro SD card connector
-- USB 2.0 high-speed/full-speed
-- Ethernet MAC
+Is there a chance we store that value in SDAM and can read it back?
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
-
- arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
- .../nxp/imx/imx6ull-engicam-microgea-gtw.dts  | 164 ++++++++++++++++++
- 2 files changed, 165 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-gtw.dts
-
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 32dfd69b8d8b..de4142e8f3ce 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -357,6 +357,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-dhcom-picoitx.dtb \
- 	imx6ull-dhcor-maveo-box.dtb \
- 	imx6ull-engicam-microgea-bmm.dtb \
-+	imx6ull-engicam-microgea-gtw.dtb \
- 	imx6ull-engicam-microgea-rmm.dtb \
- 	imx6ull-jozacp.dtb \
- 	imx6ull-kontron-bl.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-gtw.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-gtw.dts
-new file mode 100644
-index 000000000000..1c82ac08bfb4
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-gtw.dts
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 Amarula Solutions, Dario Binacchi <dario.binacchi@amarulasolutions.com>
-+ * Copyright (C) 2025 Engicam srl
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx6ull-engicam-microgea.dtsi"
-+
-+/ {
-+	compatible = "engicam,microgea-imx6ull-gtw",
-+		     "engicam,microgea-imx6ull", "fsl,imx6ull";
-+	model = "Engicam MicroGEA i.MX6ULL GTW Board";
-+
-+
-+	reg_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_keys>;
-+
-+		user-button {
-+			label = "User button";
-+			gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-+			linux,code = <BTN_MISC>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>, <&pinctrl_pwrled>;
-+
-+		led-0 {
-+			gpios = <&gpio5 7 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+
-+		led-1 {
-+			gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-3 {
-+			gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	usb_hub: usb-hub {
-+		compatible = "smsc,usb3503a";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usb_hub>;
-+		reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&iomuxc {
-+
-+	pinctrl_gpio_keys: gpio_keysgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_JTAG_TDI__GPIO1_IO13		0x0b0b0
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_JTAG_TCK__GPIO1_IO14		0x130b0
-+			MX6UL_PAD_JTAG_TRST_B__GPIO1_IO15	0x130b0
-+			MX6UL_PAD_JTAG_TDO__GPIO1_IO12		0x130b0
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
-+			MX6UL_PAD_UART2_RTS_B__UART2_DCE_RTS	0x1b0b1
-+			MX6UL_PAD_UART2_CTS_B__UART2_DCE_CTS	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-+		>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+/* MicroSD */
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	vmmc-supply = <&reg_3v3>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&iomuxc_snvs {
-+	pinctrl_pwrled: ledsgrp {
-+		fsl,pins = <
-+			MX6ULL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x130b0
-+		>;
-+	};
-+
-+	pinctrl_usb_hub: usb_hubgrp {
-+		fsl,pins = <
-+			MX6ULL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x17059
-+		>;
-+	};
-+};
--- 
-2.43.0
-
+Konrad
 
