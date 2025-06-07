@@ -1,93 +1,112 @@
-Return-Path: <devicetree+bounces-183459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30AE7AD0C18
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:25:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE4D1AD0C1F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54A8A3AFFE1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:25:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6733516DE8F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:33:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E349D1F460B;
-	Sat,  7 Jun 2025 09:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75013204598;
+	Sat,  7 Jun 2025 09:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bhKME5wm"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="KxLO8I/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13CF41C5F2C;
-	Sat,  7 Jun 2025 09:25:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9060C8F6B
+	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 09:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749288343; cv=none; b=EqHsFHVTsZ/VHVeteTuGTR9t5KmIPLcTi4FQ6PKJJ296CgT+qQUfAkv3+iSlGMcLC6JDK/ua8i0eUrYMobTcl5PK0nvw7UJiZXXUFqoGg2nKkX44gMLgotO32UDimaTwVQlfXcf3/NN9QiGKCCXdU3SN/eyixM/SDHEtSAVhtC8=
+	t=1749288830; cv=none; b=eT2aLOIeQ/yRpYEeYTq9yNZshZuOSj/0rqHewLGSWrA4WIfN1yg/YGlbgdyrGmZskB7NgbcdlGVQgxL9EFxf69oqqB2bwjD79y826R4SlTPQLebxg+Rnv4QcSuoF9q1fGWZWNKH8q1eNh9gmgMzfVRPOVmUOtBRyDBbKu6Bd1XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749288343; c=relaxed/simple;
-	bh=wMZdUT8ZYtgcy1PIxd8XI00/UrSPJ3L828tLjp3oGAg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=N+3TsDzCkKMDV6b4ra1T+JpMB0S+w8yZ/pRdlpJUjbAY2/5jiDpclXGxKb3DfwTjT7ikcA/pKzGUNQgR1ui9xwY7Z5QmG7xIDtv28HxDReUd1bUEZOP+QPvmzFPzCRu6YrVy0RhZmZLUuwFkbq/4kRpauoUJHXRyGqw84IpVSpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bhKME5wm; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a36efcadb8so2382604f8f.0;
-        Sat, 07 Jun 2025 02:25:41 -0700 (PDT)
+	s=arc-20240116; t=1749288830; c=relaxed/simple;
+	bh=r/p8vjTholAGUnw7ennp4sAfJrYAwEt+Ralg6aU1yrI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HWcekelXoK0YASYYjklpz/dO5X1Jh9y16a5cv/oYicDamPx0PULdeOcL9lgiPB8DAr2NRffe6br3/H3zzZQmFq8wFURF/HbsCr5MJDIjcQuSPbZThMeiU1JpK6XUt+5/T93Pp0bXB7Y0q9ljsvAvPwmET52xO64D5ZWV4po1eHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=KxLO8I/i; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-adb2e9fd208so532408466b.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 02:33:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749288340; x=1749893140; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+z+86mq9W/t3Q/qE4fezl2zhBtr7b7dF6dt3NaksCxI=;
-        b=bhKME5wmIW4Ll6xRCAtGp6maiiupEyqky9OeE7XDEr5SXARTyEgb2kWB6Ir8fGpJP1
-         JzHenwh+n+8GB6TaFVn54Tr7Rk9fUIus+gk0wBSm+c/7XPgNneChDo5KdKj0JaLJF3QC
-         5Y8jO2hoTQDRbVTz+/Jfp+xM9irYtwWkHJCpS96+JA8oTQ4mFafXmMQJz9YWKrDAYOkF
-         3iuU+zlCAfXIr9SF+xcYnHQd1fPY98zv/6CUSj9q9X62zPVDiRLvYaphaaQyILiT5SUw
-         O6yCsNt6+BTNW+2F3mt4kJbYMCzyVVZWXFdXoOMjRSIrpyhAlUcCv7J0fizNykn5lLSd
-         mUXQ==
+        d=amarulasolutions.com; s=google; t=1749288827; x=1749893627; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xn1CB+ZLcGxV8ZFV2HSZz3RsXenQLkjSfas4c7S2PdU=;
+        b=KxLO8I/iZyqOH6fozqXQ+0OUu8Q/U4ZMlrz3/I6cN1oeRNg83QifLHIwKabxh8GOBB
+         tfOPF+o4kYlmIq+XPr1+veHH2g7Yseh6CITaSBwC6trBNZ6KIITP8NCemCpW5DreA4sZ
+         oPKNoHNFHmBLJ5j1lLT80pZDvosRwqA/4+VgM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749288340; x=1749893140;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+z+86mq9W/t3Q/qE4fezl2zhBtr7b7dF6dt3NaksCxI=;
-        b=U9JRo4o8mH9M/bb4xDLYp9xgQJeNYBvhOx8q+2UAKujatF6Y29uti9TQd3BjX7Zsi4
-         PWLqPIAl64Z5es4hn94xLZLoCpDE1Bwy+aDrn/fkO5v5A2K4zMl48WOFhEHN7WPBVWrG
-         c9vrZ5Y3sgpn0gwE2tj/KKr97rrV8m9OEe4VMd3XNQ+nmojEMMURE7APUA5utAWJylhL
-         iqowQGLvd0fXf4b5tnepXkaCf9JK9gW1O3vjNzQx0zs41d8E2ZWZ8UZeVepzmyOfhJpR
-         yzlNcuWhJ/mU3CLJVPGYQSjEyMf34NeHREuMvBS5a4g0ITTVNQaNDHzFJGz50IxozLE4
-         txog==
-X-Forwarded-Encrypted: i=1; AJvYcCUaJgRSkmHKc4/miSM+jnoKxxVWktklHANlRmNlfQBOgzx902y2w6oexSS383gC4QdpoO7H9aOfeUEp@vger.kernel.org, AJvYcCW/uSRhS3I0bkngbYlB5Zg7jFlYOSfIN24dNikDOSSlej/jg7CYRb0cr63qu63r9acXJQbm9My3UZCqZdVy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFx2AhK2cA94yiYldwlZ/x9AFAgAdSYfhHXXcwU5I+9SRA4oIM
-	OzMtOS1zFBq2UmhxIkWRJV9y68gyBoEttoVXuN5HGXeZRMm9pJs30pS3
-X-Gm-Gg: ASbGnctSRYmOyh8bYHrUOmgbzIQ3kkQdWran/lDKrb9q45ygQQtsynxQKE6709GFpCc
-	48DVzWMNbWEwK8ezA4o0c+O3wEIbWuQC1K/hm68f4KARU+G0ZgQ97ThR/hXHCjI5RSuD/j9fBVE
-	XKbXNDBRssfE++A3yHJTqiIlILa3BA/OAygNo87F/EvZW+QJdnavHHiaB+s/FqcmqlnEY0RtDYm
-	YuuTiMRNyzwm2WzxnhcxLkYWOYAZzeH8tgwgfHN+WnTvC0HKWkZk60MgQ3b1Kei8Xb58NY0+kNp
-	SIZwBC2hiob/Dm/UL/zsohThRUYa+4T5J5Z1/0HBNqyW9XI4QJPwfTtavrzaefEE8Mwu1fQkB8t
-	b+Iowe9eguYTygA==
-X-Google-Smtp-Source: AGHT+IH+BhmBoFInA8dQPTfWml7u5S+vkK/CgoVMIu8oqjObrsbfhuYhbDsFfis6vTozvFnWM6zNuQ==
-X-Received: by 2002:a05:6000:4284:b0:3a4:deb9:8964 with SMTP id ffacd0b85a97d-3a5318a0156mr5245689f8f.17.1749288340123;
-        Sat, 07 Jun 2025 02:25:40 -0700 (PDT)
-Received: from masalkhi.. (ip-109-43-113-198.web.vodafone.de. [109.43.113.198])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5322ab413sm4114778f8f.23.2025.06.07.02.25.38
+        d=1e100.net; s=20230601; t=1749288827; x=1749893627;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xn1CB+ZLcGxV8ZFV2HSZz3RsXenQLkjSfas4c7S2PdU=;
+        b=EBzttOlS+HS9ks/2Kd5Mgb8hhCYxnsSG77zvnIbL5xftrJj75Z66qAawEO+mhaCl6T
+         Ig8scTlZLqpLyRHI15n7QzktkHrKZKcy4PYawB8oivaMqpwqbf7oHibSdm0jR50Vjyf5
+         O18zR+kjz0mRfDJ9uG/+PHui13fYWJ7iFCXZg1FgLy1daLYYiDh2lrI14uW3Rbiq1fdC
+         w5/tdq9rkvWt5vJGzpU3lGwPDUaG+34ZMOz2CeY1y88SeC/vpSbTWC5NqduMW7P8GrCw
+         K4zCssRmLgGFt4AR32G+D0B0tkj972Y3aoqUtpqnJRX7A+lwxNH4QImPtMZEI7IDoFna
+         jA7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUFIDGkMWd6eMkCpOirGO4Spl5m+BwnZnh+mLXaK0e69Ik7cJ6Ktc9PlHnGzJiEeRdChKh7fSl6TqSu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYOnPNt2ZTM8uXtft31+0UtErLn1Xtgy2vDtQBtQhfYxOchcCa
+	/HvRSi9BfHTFZipdiS/sjShYFpejLLD0KtIPz3jl/8V2rcTM6KdSZx3Tbc06W22i1Hs=
+X-Gm-Gg: ASbGncsQox6XOUJtUJ0C4To6W0s9+E5q9N7r3ILICL+KabCIpby8JQVB24CEbWGht6H
+	xBxmQXEeIAVoQQYrMLbL6zUad80xeWAZOVx/DOSJpGXatMtA2O4zeD54T5jY9AIbVPMkmv4qxXV
+	yH1FKifbt/DcdyvEJGYEoV/Yg7ekdXCqpzxQkXmz3XHpiULUjkzw5YDtYf197zw3+HNRUtJAjoo
+	YDds1lAMHS+05JeLdBjEjJPpun4d25y31cNpgXy7UxW0Sdus6WWJHbXXqNNuJBEteCofuebVat2
+	wnGt/GS80IqKcwp2adLuu6ClgbY2KseHW6XPHWmMp2HYCSTryV2owBmUEeIMDEifII74MKArxQM
+	Ikqq5S4ySPO8yhCr2gpZS8mk6ow4KduQz9ayJ53+H6EEQbp2SuRmSaED4LEIlmX4nPIWNNO3MV1
+	ZU4sP7WSPfKGZH
+X-Google-Smtp-Source: AGHT+IFSjDnmW2EWNA+L7rjZYf/CeSyJkQ7tNtchDLVj5RAdGtBJa7XPtmYoEbrLf4khxRuwgaXdPQ==
+X-Received: by 2002:a17:907:9491:b0:ad5:42bd:dfab with SMTP id a640c23a62f3a-ade1aa8db96mr547985866b.30.1749288826712;
+        Sat, 07 Jun 2025 02:33:46 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-5-95-99.retail.telecomitalia.it. [87.5.95.99])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc1c316sm251541066b.98.2025.06.07.02.33.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Jun 2025 02:25:39 -0700 (PDT)
-From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: abd.masalkhi@gmail.com,
-	arnd@arndb.de,
-	conor+dt@kernel.org,
+        Sat, 07 Jun 2025 02:33:45 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Matteo Lisi <matteo.lisi@engicam.com>,
+	linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
+	Eric Biggers <ebiggers@google.com>,
+	Fabio Estevam <festevam@denx.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marek Vasut <marex@denx.de>,
+	Markus Niebel <Markus.Niebel@tq-group.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Primoz Fiser <primoz.fiser@norik.com>,
+	Rob Herring <robh@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	Tim Harvey <tharvey@gateworks.com>,
 	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v3 3/3] ABI: sysfs: add documentation for ST M24LR EEPROM and control interface
-Date: Sat,  7 Jun 2025 09:25:37 +0000
-Message-ID: <20250607092537.3141131-1-abd.masalkhi@gmail.com>
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 00/10] Support Engicam MicroGEA boards
+Date: Sat,  7 Jun 2025 11:33:12 +0200
+Message-ID: <20250607093342.2248695-1-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <2025060618-errant-audible-4c52@gregkh>
-References: <2025060618-errant-audible-4c52@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,70 +115,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi Greg,
+The series adds support for Engicam MicroGEA boards:
 
-> > >> +What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/sss<N>
-> > >> +Date:           2025-05-31
-> > >> +KernelVersion:  6.16
-> > >> +Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-> > >> +Description:
-> > >> +                Read/write attribute representing the Sector Security Status
-> > >> +                (SSS) byte for EEPROM sector <N> in the M24LR chips. Each sector
-> > >> +                has one SSS byte, which defines I2c and RF access control via a
-> > >> +                combination of protection and password settings.
-> > >> +                Format:
-> > >> +                  - Read: returns a 8-bit hexadecimal value followed by a
-> > >> +                          newline
-> > >> +                  - Write: requires exactly one or two hexadecimal digits
-> > >> +                      - No "0x" prefix, whitespace, or trailing newline
-> > >> +                      - Case-insensitive
-> > >> +
-> > >> +                Notes:
-> > >> +                  - Refer to the M24LR chip datasheet for full bit definitions
-> > >> +                    and usage
-> > >> +                  - Write access requires prior password authentication in I2C
-> > >> +                    mode
-> > >
-> > > How "deep" does this sysfs tree get here?  This feels like the wrong api
-> > > for read/write to the device, just do it with a single binary file if
-> > > you really want a "passthrough" way to get to the hardware.
-> > 
-> > The depth of the sysfs tree depends on the M24LR variant. For example,
-> > the M24LR04E-R has 4 sectors, resulting in 4 entries: sss0 through sss3.
-> > 
-> > I understand the concern about exposing multiple sysfs entries. The
-> > reason for this design is that each sector has its own SSS byte, and
-> > separating them helps reflect the per-sector nature of the access
-> > control. That said, I'm open to refactoring this to expose the SSS
-> > area via a single binary file if that's more in line with expected
-> > kernel interfaces.
-> 
-> Who and what is going to be talking to this device through this
-> interface?  Is this unique and special to ONLY this one chip/device or
-> does it fit in with all other types of this device (i.e. eeproms)?  You
-> can't create a userspace api without actually having a user at all, so
-> if there is no userspace code using this, why even have this?
+- BMM
+- RMM
+- GTW
 
-A userspace application specific to the M24LR series is intended to
-interface with this driver. The M24LR devices support dual access
-to the EEPROM: via I2C and over RFID. The purpose of exposing the
-Sector Security Status (SSS) registers to userspace is to provide
-dynamic control over when and how the EEPROM is accessible to an
-RFID reader. This allows userspace to decide whether to permit or
-deny EEPROM reads/writes via RFID, or to configure protection for
-specific memory sectors.
+based on MicroGEA-MX6UL SoM.
 
-The SSS registers define per-sector read/write permissions and
-password protection, directly determining how external RFID readers
-interact with the tag. By exposing this configuration through sysfs,
-userspace software can modify RFID access behavior at runtime for
-example, to enable secure provisioning workflows, implement time-based
-access, or prevent unauthorized access after setup.
 
-Given that this is a per-sector control mechanism unique to the M24LR
-series, would exposing the entire SSS region via a single binary sysfs
-file be considered more appropriate than individual attributes per sector?
+Dario Binacchi (10):
+  dt-bindings: arm: fsl: support Engicam MicroGEA BMM board
+  ARM: dts: imx6ul: support Engicam MicroGEA-MX6UL SoM
+  ARM: dts: imx6ul: support Engicam MicroGEA BMM board
+  ARM: imx_v6_v7_defconfig: cleanup mxs_defconfig
+  ARM: imx_v6_v7_defconfig: select CONFIG_INPUT_PWM_BEEPER
+  dt-bindings: arm: fsl: support Engicam MicroGEA RMM board
+  ARM: dts: imx6ul: support Engicam MicroGEA RMM board
+  dt-bindings: arm: fsl: support Engicam MicroGEA GTW board
+  ARM: dts: imx6ul: support Engicam MicroGEA GTW board
+  ARM: imx_v6_v7_defconfig: select CONFIG_USB_HSIC_USB3503
 
-Best regards,
-Abd-Alrhman Masalkhi
+ .../devicetree/bindings/arm/fsl.yaml          |   9 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   3 +
+ .../nxp/imx/imx6ull-engicam-microgea-bmm.dts  | 306 +++++++++++++++
+ .../nxp/imx/imx6ull-engicam-microgea-gtw.dts  | 164 ++++++++
+ .../nxp/imx/imx6ull-engicam-microgea-rmm.dts  | 362 ++++++++++++++++++
+ .../dts/nxp/imx/imx6ull-engicam-microgea.dtsi |  96 +++++
+ arch/arm/configs/imx_v6_v7_defconfig          |  27 +-
+ 7 files changed, 946 insertions(+), 21 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-gtw.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-rmm.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
+
+-- 
+2.43.0
+
+base-commit: bdc7f8c5adad50dad2ec762e317f8b212f5782ac
+branch: imx6ull-engicam-microgea
 
