@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-183479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25DB6AD0D08
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 13:13:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE92EAD0D0E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 13:17:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A75FB1892CB4
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:14:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDFEB3AA09A
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A7421A444;
-	Sat,  7 Jun 2025 11:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51179219E8F;
+	Sat,  7 Jun 2025 11:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="XmDmAAQr"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fhvLgogC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D114C2192F9
-	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 11:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509EC20D4E3
+	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 11:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749294830; cv=none; b=hjXgBnM5CTNTJbwzhdPSqhJAJZH1peJMsTWKusZU4Ow1diurr2e8G8RGxWL3B/2RbxL/V4WYeOm4wnQbw4x7Mnfx5V7wl2RLz2E0ZcznL2OR+ihlvaAP0warChu96Y1TbVTYnlwHiUR6VJUYtA1zXmJtK+xaBthzb1XFMBmeMHA=
+	t=1749295055; cv=none; b=fkblljDZgGhmylN/MAUttx8L0lLzEHB8pQZjwoBeAzialO/Pity/CSo5HlJC35VepvEmD12KaVZiP1IxIUIJzCeGWgaBiz2g0FDTyQ3Yb4J0zPBkSP9uKiWQx2l8O+8UAEVlK3tvq2XU49LBLQQmt7xfTozWKM4LlFAmxM17Iyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749294830; c=relaxed/simple;
-	bh=BM1ZiJC8Wxue4lJBt7ZeparxlTCOR0iHdftWPAoLAZk=;
+	s=arc-20240116; t=1749295055; c=relaxed/simple;
+	bh=J+8YUoNwKerodc6AzXY7IQnt1PBaWRXB+NIFn2HfxDM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dlGxUUVZgMQ0wggl+jargr5NckwEvXqYecGgjQpYZKw83EaI5invChTHJrIUwk47/cEazTzfCefyVaEEIiGkqp6noR0PcPZUim7hXkzKEUWdx44SuIDQr0iW3SSeiXNrn++TBypRKV9D1Yah4Agy/HaKGLDTn33y/sc8mVLOJo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=XmDmAAQr; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=kvwCpgavU7xCZvum6XvWwWaAPpXY5kMuaZ4J4YY7ocC01fcOFoPLzihYzkcMx+LZTDN2bCBHSbcbJW0Yjy+es/i5+IiBepiTJUxMvrfDOr4JfKyf+Dmy6Zw0kbBz7ttA5POeSXV0JhOPKwi21issFygT2XHZ8q/Se7UQI/9gnyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=fhvLgogC; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ade48b24c97so27220166b.2
-        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 04:13:48 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-605b9488c28so4732663a12.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 04:17:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1749294827; x=1749899627; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1749295052; x=1749899852; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UHcxom5o2fWiDA0ztt3DRoDer7xYDc3Xgfa6dNo2w94=;
-        b=XmDmAAQr/KcMvFgGX6cbgqEUsvMFx5B9H1DRZ3/z0skazYvvszQMLsh/uTahLdUIpI
-         UmODCsp+/8AgYq63AaKKzjyInt1YjkePmTT48e4UmZ6dMQ8TL5UNp7+x1DGSA40JDkVg
-         pP54IyyXeyHzYmOrZQ8HMOqwiONusvfWyGhrekwbySho7ZOtvj9XaEt0DAedrYMO4e7t
-         tnjHqR/XYmmNyY5NcVWKooKs3ThuPLIiPskTHAPirlCEnY2rsxAdDbDOEDxxQPL0wdFB
-         c8c4f20TQYuLlrdiJzV9e5rJ/fvPlibkcviwuN5dixLuegE20F+593T6IUcVLEkPY9Nh
-         mR6w==
+        bh=Wo2/J5ZAB6lqJfCe5NRG1BVNt7OTDs/ZB+OcWmMX8Vg=;
+        b=fhvLgogCXumzrAbmVQ/Sdvf7BSniM2/YKzEBt7uwvUZgaIRs9wepfIBSpsN0xn6a6k
+         hPP+kp12Fo8D0CURuTUZx5H5e0Jvp7WPijqrPtKzNnmyFBe15dHXSz5NKqhMkKKh8f2i
+         R9QEuGVDUvo9GM0fTtcRn6AsutD2KPurMCBzM1fqUkAvgeUUwT6mNjDJsVTXt9toNR6u
+         LHDBoFNondttNCqKpYJHR1rdXRh7gm3PGuP7qCOrE0aLdtgy94gARpaem947sn07rU26
+         eRv/WnkTf5V8W8P9JjhJIta0tD5KMn1D9g0ObZCISmMfCYxQOM6neGznpgiRFPAb+4GP
+         9U1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749294827; x=1749899627;
+        d=1e100.net; s=20230601; t=1749295052; x=1749899852;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UHcxom5o2fWiDA0ztt3DRoDer7xYDc3Xgfa6dNo2w94=;
-        b=rM2TJbNpwfsWvcQF/B1Iowl4YIpyjoWM+nCPYeiRMB9M/mB5MgoZBxKYSJsmtHAkRE
-         50cashdYg4eP/7VZWf80zXerDjFNAM+VMxc+nVKcmnRxymef21fPHGSpBf+EJGm6QWN1
-         q1U0OWUon6wT5J0JCc0V72qIYUGFU8PTwn1i/BNHIfbb/xOaxHicnwDsXBjVWsasJE6b
-         v8VXY2qM7WWVP+se0RMY/wVpPa04jYUKlf1RNm8xURvGzdQp1HunG3ec7ZGBpSwrmNnt
-         9JGPE9oEflzfq/M9HhJCmeqEkxFuzqDZsi9QJFbLIunKLe/G4TfzuJPDSSAmJkPOFmHI
-         wA3g==
-X-Forwarded-Encrypted: i=1; AJvYcCUZPAwxRiIYeDc2nfEP9yCyRH3ty2n1dwzu+acfRjYD/mgLEu9wckNTJ4vWnqi4az8Ri+f8bhYs4ISl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGICdw7UkZFCi1BYqfI/d9pmRd42sXhmflx2bDsy7DixFxUF2H
-	tY+8lIxHQ3LP2wPaV694WkbbGs9cea275x4lYPrqsd9Okx4S+dRRTbzlmg8q7rB+94U=
-X-Gm-Gg: ASbGnctipBx3n8/dU7urfwE+1o2jNAzwBOTGPFx2fIfY/nd5uCm32RNmjJSRitO95KU
-	FdBYB6adbmETlWaA/C9IPeeTJfSD13Yi9RCxKKdICQyJvJlZhqVfby6zLojSMETr2yveUIrrXUH
-	F50d4cU5eAE+CPCfuZNCKDIB8XXEnuStr08riOR5Ge2Uzws6e8T05odPC2G7p+f4YhazWFCJSvd
-	AajHkKXrQ2FakWCCiaEywZZQfDnCluMddIgC3HLITAtZDgwt3gppmE35ji7D0jGPy7NA0wXtvKr
-	gAqrMw4YoyO5kEhwekInwcADO8gZBgOLAjI7PWfaaCfFTTCtcTj97ItxcpupurxgLlj+8OQ=
-X-Google-Smtp-Source: AGHT+IHRk3J7ADThk0fpf96UVXCfXsiW9O/Fgv/3D1Wu7i91auPM/A8uTd1EhzotXWPFzWsK+BMZPg==
-X-Received: by 2002:a17:907:805:b0:ade:3bec:ea40 with SMTP id a640c23a62f3a-ade3becfd3bmr211828766b.10.1749294827163;
-        Sat, 07 Jun 2025 04:13:47 -0700 (PDT)
+        bh=Wo2/J5ZAB6lqJfCe5NRG1BVNt7OTDs/ZB+OcWmMX8Vg=;
+        b=AcKqmKa9No6v/lbThxTN+31I+rzqEBk1WarAl9Y4x5/HWWakcknKc0sU5KWWW3mhsH
+         hR+RqhpvsGchzEQXB5dnwUkNbmerh1BvFnS9hS1qYpvO1YP9Iy3qv1MXCMJ9CvCTaCW1
+         EP/Lqu+u0hyw2rxD7z3OEonn9kKj8iZL35vY3X9Yc6EBj1X69T6zq/bUE3UrWUUsTqsI
+         BqXsBBM3h+nO+NE1Ok96/Ywgyy1LAacy550VH9VxRkL09FHoikZgm+Yox5mmWifVBq59
+         W8UHSfh1DDTkEzihJrXL5dJHHIFEDFFhjuevvn6ZrdDjc1vmEhhO8WVioRWvEl5UXPqX
+         pv+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWEHnWYksIXPLWjFDtP8swwTHbE+Y0dSu+VKtFIMHueaO0rwJwrOPhZzspUO+x9on4obnq8QXNG4auq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyVRCljal/kSQUI+ArGb4xaCNSN56rlhKZTfWyFaHxAs5TRqJi
+	GGZdgQfFgG1QeqkPso2soVYEy7+qp8jLfWZI6QwPtwBw3IOQH1c/9CXUO1f+Ke3Th1BVY9eV2vh
+	CDelp
+X-Gm-Gg: ASbGncubY/GgBgsC0UBqPA9Ulsn+5g6/N2Mm4DE0dmCRzQEAr+cfUjLOkD5jghHUGbO
+	WXZaH7JboayfTrWVUhXxiMrmmMK/fykS5mMldPboEeBn7gbmyms2MPEsVGm28BGZmqxWsU3wZ1+
+	kjG5UStgM8NmtMVtMsAk1kP6ru8XaMA0CJQ1UNbwYONj4Nzwt8ZS2tJMWnXm93YZsTvRBBqKmDq
+	FG1UxeTyL4WnwO3QLWSrJQj3f8JYnajrzO9k0Lmev8l3yF6faSnlrUzRWQGfGUFYdLEV2RMZ38t
+	WyLQFO9U7XbuWp0HtSsCl779SWNc6fGcHhmd++mLMqPxqnrK6Z18Yc3aOPWp
+X-Google-Smtp-Source: AGHT+IHler8uepWC8BUcQVWFTPho53gfFnJDIZ0DzlC3E7bSqB1Irh8C7asB6/PASoLmm0Q2jJsedQ==
+X-Received: by 2002:a17:907:94cc:b0:ad8:9f50:d8c1 with SMTP id a640c23a62f3a-ade1aab97cemr626104166b.31.1749295051679;
+        Sat, 07 Jun 2025 04:17:31 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.126])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc1c7efsm259748966b.77.2025.06.07.04.13.46
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc1c316sm263963066b.98.2025.06.07.04.17.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jun 2025 04:13:46 -0700 (PDT)
-Message-ID: <913024c8-c140-4c31-96b0-45f5a9bc8f4a@tuxon.dev>
-Date: Sat, 7 Jun 2025 14:13:45 +0300
+        Sat, 07 Jun 2025 04:17:31 -0700 (PDT)
+Message-ID: <0fb997c0-468c-4c24-9b84-6d4075723b49@tuxon.dev>
+Date: Sat, 7 Jun 2025 14:17:29 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,51 +82,202 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: configs: at91_dt_defconfig: Select
- CONFIG_WILC1000_SDIO
-To: Fabio Estevam <festevam@gmail.com>, nicolas.ferre@microchip.com
-Cc: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
-References: <20250519165352.1314199-1-festevam@gmail.com>
- <20250519165352.1314199-2-festevam@gmail.com>
+Subject: Re: [PATCH 3/4] ARM: dts: microchip: use recent scl/sda gpio bindings
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, devicetree@vger.kernel.org
+References: <20250519112107.2980-1-wsa+renesas@sang-engineering.com>
+ <20250519112107.2980-4-wsa+renesas@sang-engineering.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <20250519165352.1314199-2-festevam@gmail.com>
+In-Reply-To: <20250519112107.2980-4-wsa+renesas@sang-engineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Fabio,
 
-On 19.05.2025 19:53, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+
+On 19.05.2025 14:21, Wolfram Sang wrote:
+> We have dedictaded bindings for scl/sda nowadays. Switch away from the
+> deprecated plain 'gpios' property.
 > 
-> The at91-sama5d27_wlsom1 SoM has a WILC3000 Wifi chip populated, so select
-> the CONFIG_WILC1000_SDIO by default.
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-at91-sama5d27_wlsom1 has a SAMA5D2 type of chip. This is built with
-arch/arm/configs/sama5_defconfig.
+Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 
-Thank you,
-Claudiu
-
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  arch/arm/configs/at91_dt_defconfig | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm/boot/dts/microchip/at91rm9200.dtsi  |  5 ++---
+>  arch/arm/boot/dts/microchip/at91sam9260.dtsi |  5 ++---
+>  arch/arm/boot/dts/microchip/at91sam9261.dtsi |  4 ++--
+>  arch/arm/boot/dts/microchip/at91sam9263.dtsi |  5 ++---
+>  arch/arm/boot/dts/microchip/at91sam9g45.dtsi |  5 ++---
+>  arch/arm/boot/dts/microchip/at91sam9n12.dtsi |  5 ++---
+>  arch/arm/boot/dts/microchip/at91sam9rl.dtsi  |  8 ++++----
+>  arch/arm/boot/dts/microchip/at91sam9x5.dtsi  | 15 ++++++---------
+>  8 files changed, 22 insertions(+), 30 deletions(-)
 > 
-> diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
-> index ff13e1ecf4bb..d195aa31976a 100644
-> --- a/arch/arm/configs/at91_dt_defconfig
-> +++ b/arch/arm/configs/at91_dt_defconfig
-> @@ -87,6 +87,7 @@ CONFIG_LIBERTAS_SPI=m
->  CONFIG_MWIFIEX=m
->  CONFIG_MWIFIEX_SDIO=m
->  CONFIG_MWIFIEX_USB=m
-> +CONFIG_WILC1000_SDIO=m
->  CONFIG_RT2X00=m
->  CONFIG_RT2500USB=m
->  CONFIG_RT73USB=m
+> diff --git a/arch/arm/boot/dts/microchip/at91rm9200.dtsi b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
+> index 2a4c83d88733..e105ad855ce8 100644
+> --- a/arch/arm/boot/dts/microchip/at91rm9200.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91rm9200.dtsi
+> @@ -714,9 +714,8 @@ usb0: usb@300000 {
+>  
+>  	i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioA 25 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioA 26 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioA 25 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 26 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9260.dtsi b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
+> index ec973f07a961..fc0b6a73204f 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9260.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9260.dtsi
+> @@ -781,9 +781,8 @@ nand_controller: nand-controller {
+>  
+>  	i2c_gpio0: i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioA 23 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioA 24 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioA 23 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 24 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9261.dtsi b/arch/arm/boot/dts/microchip/at91sam9261.dtsi
+> index 0b556c234557..d1d678b77e84 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9261.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9261.dtsi
+> @@ -655,8 +655,8 @@ i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&pinctrl_i2c_bitbang>;
+> -		gpios = <&pioA 7 GPIO_ACTIVE_HIGH>, /* sda */
+> -			<&pioA 8 GPIO_ACTIVE_HIGH>; /* scl */
+> +		sda-gpios = <&pioA 7 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 8 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9263.dtsi b/arch/arm/boot/dts/microchip/at91sam9263.dtsi
+> index 3e9e5ce7c6c8..a4b5d1f228f9 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9263.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9263.dtsi
+> @@ -826,9 +826,8 @@ nand_controller1: nand-controller {
+>  
+>  	i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioB 4 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioB 5 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioB 4 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioB 5 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
+> index 535e26e05e99..4e00ed2d3ecd 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
+> @@ -1010,9 +1010,8 @@ nand_controller: nand-controller {
+>  
+>  	i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioA 20 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioA 21 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioA 20 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 21 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <5>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9n12.dtsi b/arch/arm/boot/dts/microchip/at91sam9n12.dtsi
+> index 2f930c39ce4d..af41c3dbb4bf 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9n12.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9n12.dtsi
+> @@ -786,9 +786,8 @@ nand_controller: nand-controller {
+>  
+>  	i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioA 30 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioA 31 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioA 30 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 31 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9rl.dtsi b/arch/arm/boot/dts/microchip/at91sam9rl.dtsi
+> index 1fec9fcc7cd1..de74cf2980a0 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9rl.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9rl.dtsi
+> @@ -833,8 +833,8 @@ rtc@fffffe00 {
+>  
+>  	i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioA 23 GPIO_ACTIVE_HIGH>, /* sda */
+> -			<&pioA 24 GPIO_ACTIVE_HIGH>; /* scl */
+> +		sda-gpios = <&pioA 23 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 24 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> @@ -847,8 +847,8 @@ i2c-gpio-0 {
+>  
+>  	i2c-gpio-1 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioD 10 GPIO_ACTIVE_HIGH>, /* sda */
+> -			<&pioD 11 GPIO_ACTIVE_HIGH>; /* scl */
+> +		sda-gpios = <&pioD 10 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioD 11 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9x5.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5.dtsi
+> index 17bdf1e4db01..9070fd06995a 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9x5.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91sam9x5.dtsi
+> @@ -933,9 +933,8 @@ nand_controller: nand-controller {
+>  
+>  	i2c-gpio-0 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioA 30 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioA 31 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioA 30 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioA 31 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> @@ -948,9 +947,8 @@ &pioA 31 GPIO_ACTIVE_HIGH /* scl */
+>  
+>  	i2c-gpio-1 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioC 0 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioC 1 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioC 0 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioC 1 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
+> @@ -963,9 +961,8 @@ &pioC 1 GPIO_ACTIVE_HIGH /* scl */
+>  
+>  	i2c-gpio-2 {
+>  		compatible = "i2c-gpio";
+> -		gpios = <&pioB 4 GPIO_ACTIVE_HIGH /* sda */
+> -			 &pioB 5 GPIO_ACTIVE_HIGH /* scl */
+> -			>;
+> +		sda-gpios = <&pioB 4 GPIO_ACTIVE_HIGH>;
+> +		scl-gpios = <&pioB 5 GPIO_ACTIVE_HIGH>;
+>  		i2c-gpio,sda-open-drain;
+>  		i2c-gpio,scl-open-drain;
+>  		i2c-gpio,delay-us = <2>;	/* ~100 kHz */
 
 
