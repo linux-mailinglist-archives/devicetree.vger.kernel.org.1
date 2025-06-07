@@ -1,136 +1,165 @@
-Return-Path: <devicetree+bounces-183457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4CAFAD0C0B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:16:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1D84AD0C15
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 11:18:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE59B3B100A
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:16:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 819A316F254
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 09:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002A21FFC5C;
-	Sat,  7 Jun 2025 09:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5B320551C;
+	Sat,  7 Jun 2025 09:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gnFYN7Da"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RvbzboM1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D113B2A0
-	for <devicetree@vger.kernel.org>; Sat,  7 Jun 2025 09:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F011F460B;
+	Sat,  7 Jun 2025 09:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749287792; cv=none; b=lrVLhOgBcKKiye+2b9bwudlknlVaR0LJoKxa6pGnuxIl5mBlreILr7kQ6x6AeKHyzVVkkFM7Kwkc5LvN8z3WgSlsum6do9+04Z5wVjk7++jDpF5gwebXrLhlfavviSp8uZevohwJrXaa619kD9fUBGOYvcpu7gLKJETCr5yXwv8=
+	t=1749287886; cv=none; b=AJHgU9thsb6WsLtAAxZ5NWJeT6VX06Ceyq8SZeFYwDksyFtMC9sd9FRgQ0VT9S8jObbThALmzxt0LLgXwdR5QxdxNLmSQ9u0ys+u25ypsbL5NqQK4vI9hswpoQJwDSJU3n2HEwXt51URi02rDU5qBXJUr9XXythG94E0Wb/BDFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749287792; c=relaxed/simple;
-	bh=6uCKdNG+RvUmHq81VMYy036iNoiJt2ExQMxgWhfmRfs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B4CpsT6xrbZHmNII4oNiOzPvzXueojD977fLxZprGTbDDPUG/eqbQfIHgm54/DZIZLOQ9ORz01Rz6uvbe18zIU7dQv5Snq11ruGWjOscq2IkG8nvucWUka8Lrw+H4cpdjhPU011FlNv05DHrkBCfd9ZdW/rhjfFtmpAx8rua4y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gnFYN7Da; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43edecbfb94so32876675e9.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Jun 2025 02:16:31 -0700 (PDT)
+	s=arc-20240116; t=1749287886; c=relaxed/simple;
+	bh=wMZdUT8ZYtgcy1PIxd8XI00/UrSPJ3L828tLjp3oGAg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=dKSzrmmiGfSHCPswZIxwHprvRLicg8IXOfzuz5XCSR3FjhxI+YCDB9hmo74k79CpZfwrWW6VWPt3CHese4c83spHTddzfJSX9/cmd67EnXmwGHJoKWaQCJKLZjcHnypvoy9AlmgwL+tU8Xjm8VaysC+DWz42ed/W4JYu+A7cyTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RvbzboM1; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-450cf0120cdso26120755e9.2;
+        Sat, 07 Jun 2025 02:18:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749287790; x=1749892590; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CjJ/5vs6vF4wRvE8/xfIzB8JpoATxp7vm4h1CJMyhgo=;
-        b=gnFYN7DaQDWFkGHLy2cy+KJBAaXixEfrHq/KPm2qjspKJjxaL9tQ2N5NeBgQgRA+3U
-         I7VEWxhHelo7T7u9yXu1SJd+A0lm+iP+cI9SPc8Fj5ZcJ+gdNEhkusZlpFNvPC7KyZ2M
-         XufMB9wBlVc+FAEdaLbxlOos+jWKggig2CBfoRFbIi2Y2YS+hsU5ikjmGW/gFxsWhWC7
-         6eeZ4nBXUD/DwyB0BRWmC8M0kUTDtAaSHaLGHJkCbGLmi96A5lzZUBciYU4YiL1FbmJt
-         LpVdBoFFURQo1RfFdq3q5AjOE7/ef/djBN/V4ww1M0i0BpJmRuXCbg+L3vV0zQkEeBZX
-         cV9w==
+        d=gmail.com; s=20230601; t=1749287883; x=1749892683; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+z+86mq9W/t3Q/qE4fezl2zhBtr7b7dF6dt3NaksCxI=;
+        b=RvbzboM1Oe40ZAG6lJE+fTYLyBABVk4M3UsdW5e7eZyJRpDMX/Qnj2J5L8bzplDbtG
+         /0LYW3CNj175jFrqscw6DZMK/1aH2smhlMCuH2QXokNHpvYvabtfVTxrla1+En6y9yH9
+         bNkD2I9uzICRsT9V/TT8KgwWbEmciMa8I9a4zE8Q5gv7o5uUepMfUqUni2YURJ82cPn0
+         zSBjkbEJ70FCl7UAI+UsejcO3G7VL5M3GdBXHvkwf2YBF+KUiZrMfHLH4W3riVLiLg0Z
+         43WvYV51lPgeLJuMa+g3dTOJkswIEYdtb5CsCQgrxGn8MpBG4VJr7rTS7+w5O48d8jk4
+         jFCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749287790; x=1749892590;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CjJ/5vs6vF4wRvE8/xfIzB8JpoATxp7vm4h1CJMyhgo=;
-        b=meqLCyQt/3/8LtdJJT7gQJ+TvgxpZw8mjzwCqp/jV+cwjKYpRMLd5QKbHEEl7XVVXt
-         rtD9rPisCA2F/6vJtfCx5aWwver0z2XnxhPFWusDv7X/kJ5cB843OdjDfJkRRlUHGF/N
-         x7Ponb9TgvRRwlZ/zPCR8GLXEPxwDa4GLNIZc+6nIqfeblZ6BhKN+w8J48FOtrJmkdnJ
-         dNbKED3BRfb58ayigy/GGH+34+S845xlq0/ZfdUo+Fams5IDlhzpJ0ixmL/GOj7m5gxp
-         HeCeAPnGYHiKEBdQUi+DEvgh9aUlkFNEyfEDcUfnN0gl9LukH6g0Oc7anrV2ZPubOWq1
-         Sp9w==
-X-Forwarded-Encrypted: i=1; AJvYcCXwJw3sd2VMBRj2McEeJ9saPYQimdphuvesh7h2ckwGNe7h8BaLjAIuS9koCTb8JfqNINkHeFRvwdEh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzASvCJLD9/fU26WLjZVsGnFtOSigBBOcaoHTVyHaieREAama6L
-	zvsvGA9Mcqwq3M3cHv3YWSUQhqvkdY2lN8zVzqY07izKk8CP/tK68Woh5V/+t7W7W7M=
-X-Gm-Gg: ASbGnctwLaueWggLlb5eBLLny7FBWpIWh83I95HR2fU+b+V6sFmwlTjIuNic6GQxmM+
-	2sdj105uNjgPNDiR2MuTehbIrM10jaWbb+EcqAzYOA7XBh41LdA1kPd4KsViTina54zdXupBWZz
-	aA4pMeln/pCHbBomHslDFOSlhm5nWnomzV35xuLl/wdwpO4ovkKPAiKRTKbEp3WaGmpHEAvVpcd
-	nGDvo4SGRxLGNRVH2fyGNFa2VxQiJykI0tGYMTO1y/uZX4qm/uvT6GCbJresV0WfMAoD3MZopjv
-	fsnS6T04umT5npwalHPKVZn88EBGH2yILxOx8z5iACB8L1Eg2cHpvYc8NQhwuNiqPcQbmn9MM7D
-	LwsiIzvJonTeBzJ5E
-X-Google-Smtp-Source: AGHT+IEkUbJBSS2d4IS6QBShUgwU+ysgYvzacuZq/Zvm/z+BFpGTBKsmlusvq3rqz7YKM16GiF1BFg==
-X-Received: by 2002:a05:600c:a101:b0:453:81a:2f3f with SMTP id 5b1f17b1804b1-453081a33efmr596565e9.30.1749287789633;
-        Sat, 07 Jun 2025 02:16:29 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4521375b5e1sm51785485e9.37.2025.06.07.02.16.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jun 2025 02:16:28 -0700 (PDT)
-Message-ID: <e0405dea-bad2-408c-a65d-f9a3456dd92e@linaro.org>
-Date: Sat, 7 Jun 2025 10:16:28 +0100
+        d=1e100.net; s=20230601; t=1749287883; x=1749892683;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+z+86mq9W/t3Q/qE4fezl2zhBtr7b7dF6dt3NaksCxI=;
+        b=Y1N9Q4y5Wm48NbtN4PXxjqLUqNY23GKLEvegQmvu6unm4O0Ph5GJgPOZAVsfsf9d8K
+         LkhZ821DS68RYbsdac/JXprmmMN35WHW9HMW55X27MVc6NRw6OREFjjKs0cd/qxnzRa7
+         7GjqBnz50+npHmnq39zlh9Crim+fD4cw/YZtjN1UNtJLSv8Ynnll3N3VRP2vj3B4wsu3
+         OKdc1eXRPEhqHSVEaTRYo34dRZzliQBJBrJzBMCkJO426gPAoVyxhbIBokGJNpWO1S7S
+         n2ugXEkqCK3okePXJFrQC2qIA4bNGUw8/tAojo5x9N3IdL8yWEtQrAP6kEjkPDSXewCx
+         OydQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8GivLXlhLVAsCi+HaeYNuoV1+KT6lr/GJkJyQLES/byZ9J2UVPtlNN7ti1gBSfxawEEig+WbKHxaS@vger.kernel.org, AJvYcCVsDgZCSQhM1iGG10QK0195PnczgZ039vJqutACBRBPdMGi8hswvxdnqqT+uSAFM6+U59M1cUoU3yKKSMaq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbP5KkNXTT6rmVJw1FJWCRrTWGfXew6xOhj3i/hsGLMFz66hre
+	/Kjh86Ap6gOffdKQza3mGfqZZgXH607RNaDZiLSywqzUfheuq0k8GftR
+X-Gm-Gg: ASbGncucuPKc7n2LJ++67QIK+PJlGWstmSrJpPT0hGFW1Y826eOQCHW4QaALNEdoOuO
+	YMiS1B+wjkgeLvHYlmGIjEpVByw+y3OQQceYO/wV1usRhSC1rnc9JnNjesXaYJMy8gJwBoE3xSZ
+	Rf26APZWii9ivGPUUYlSrwnlBSJovHCCFwOis1TMhRAKQhcxkSU3WqpR7iO8FSrzr5XGqKcOAX6
+	que2+ZZsEBpYkKn/J1ldYnYXWtp+wQLZZmwlJbmxX28Hp460Cud0VsfQw5t1Fk7EUmJN4skd49j
+	yc0jUgFntQaoUwpThbaq2i+yP7BfF2VXw8/FL87jSe05OLt3LWjITRoabLAt/+87SqKWgbKN0ht
+	KYB5lOq5HHGSKGKfQlbFi96SF
+X-Google-Smtp-Source: AGHT+IGSSDyno5+LLa6iMjr85H7YTZbix2rKE1HY2x7hET3A1yKkEVLFHEr2UQcYJDmW+pxsYJMX+w==
+X-Received: by 2002:a05:600c:3f1b:b0:450:d01e:78e1 with SMTP id 5b1f17b1804b1-452013570aamr70284215e9.9.1749287883101;
+        Sat, 07 Jun 2025 02:18:03 -0700 (PDT)
+Received: from masalkhi.. (ip-109-43-113-198.web.vodafone.de. [109.43.113.198])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-451f8f12e16sm51251135e9.1.2025.06.07.02.18.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Jun 2025 02:18:02 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: abd.masalkhi@gmail.com,
+	arnd@arndb.de,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: eeprom: Add ST M24LR support
+Date: Sat,  7 Jun 2025 09:18:01 +0000
+Message-ID: <20250607091801.3141110-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <2025060618-errant-audible-4c52@gregkh>
+References: <2025060618-errant-audible-4c52@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/3] media: venus: enable venus on qcs615
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Renjiang Han <quic_renjiang@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Nicolas Dufresne <nicolas.dufresne@collabora.com>
-References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
- <wmri66tkksq6i3hfyoveedq5slghnnpozjzx6gck5r3zsiwsg6@xevgh54rnlqd>
- <285cae4a-219c-4514-818f-34c8225529de@quicinc.com>
- <5854a587-aba7-4e71-87f8-249ba00cbc59@linaro.org>
- <996c9a39-5520-4b43-adfa-06ce29223ba0@quicinc.com>
- <713b87cb-0003-4ee3-a599-9cd41629bb42@kernel.org>
- <7aa36a0f-6741-40c2-93f4-036823d245fd@quicinc.com>
- <247002c0-ee68-4d0d-857a-768bf68bce75@kernel.org>
- <d5aee491-3ba2-4beb-8b8f-4ba8372e6d16@quicinc.com>
- <fa6a7983-27bf-40db-9843-0891bdadf523@linaro.org>
- <a258433f-f1da-4be7-a0af-645571aab871@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <a258433f-f1da-4be7-a0af-645571aab871@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/06/2025 03:13, Dmitry Baryshkov wrote:
->>
->> As we've established the fallback isn't a fallback because it falls 
->> back to wrong data, so lets fix that.
+Hi Greg,
+
+> > >> +What:           /sys/bus/i2c/devices/<busnum>-<primary-addr>/sss<N>
+> > >> +Date:           2025-05-31
+> > >> +KernelVersion:  6.16
+> > >> +Contact:        Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+> > >> +Description:
+> > >> +                Read/write attribute representing the Sector Security Status
+> > >> +                (SSS) byte for EEPROM sector <N> in the M24LR chips. Each sector
+> > >> +                has one SSS byte, which defines I2c and RF access control via a
+> > >> +                combination of protection and password settings.
+> > >> +                Format:
+> > >> +                  - Read: returns a 8-bit hexadecimal value followed by a
+> > >> +                          newline
+> > >> +                  - Write: requires exactly one or two hexadecimal digits
+> > >> +                      - No "0x" prefix, whitespace, or trailing newline
+> > >> +                      - Case-insensitive
+> > >> +
+> > >> +                Notes:
+> > >> +                  - Refer to the M24LR chip datasheet for full bit definitions
+> > >> +                    and usage
+> > >> +                  - Write access requires prior password authentication in I2C
+> > >> +                    mode
+> > >
+> > > How "deep" does this sysfs tree get here?  This feels like the wrong api
+> > > for read/write to the device, just do it with a single binary file if
+> > > you really want a "passthrough" way to get to the hardware.
+> > 
+> > The depth of the sysfs tree depends on the M24LR variant. For example,
+> > the M24LR04E-R has 4 sectors, resulting in 4 entries: sss0 through sss3.
+> > 
+> > I understand the concern about exposing multiple sysfs entries. The
+> > reason for this design is that each sector has its own SSS byte, and
+> > separating them helps reflect the per-sector nature of the access
+> > control. That said, I'm open to refactoring this to expose the SSS
+> > area via a single binary file if that's more in line with expected
+> > kernel interfaces.
 > 
-> Why isn't it a fallback? With the driver changes in place, the fallback 
-> is totally correct.
+> Who and what is going to be talking to this device through this
+> interface?  Is this unique and special to ONLY this one chip/device or
+> does it fit in with all other types of this device (i.e. eeproms)?  You
+> can't create a userspace api without actually having a user at all, so
+> if there is no userspace code using this, why even have this?
 
-Its not a fallback _as_is_
+A userspace application specific to the M24LR series is intended to
+interface with this driver. The M24LR devices support dual access
+to the EEPROM: via I2C and over RFID. The purpose of exposing the
+Sector Security Status (SSS) registers to userspace is to provide
+dynamic control over when and how the EEPROM is accessible to an
+RFID reader. This allows userspace to decide whether to permit or
+deny EEPROM reads/writes via RFID, or to configure protection for
+specific memory sectors.
 
-I'm fine either way
+The SSS registers define per-sector read/write permissions and
+password protection, directly determining how external RFID readers
+interact with the tag. By exposing this configuration through sysfs,
+userspace software can modify RFID access behavior at runtime for
+example, to enable secure provisioning workflows, implement time-based
+access, or prevent unauthorized access after setup.
 
-- Apply 1/3 and then re-submit 2/3 3/3
+Given that this is a per-sector control mechanism unique to the M24LR
+series, would exposing the entire SSS region via a single binary sysfs
+file be considered more appropriate than individual attributes per sector?
 
-or
-
-- Enumerate a QCS615 table
-- Apply 1/3 here
-
----
-bod
+Best regards,
+Abd-Alrhman Masalkhi
 
