@@ -1,143 +1,163 @@
-Return-Path: <devicetree+bounces-183603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EC9AD1416
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 21:58:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3544DAD1422
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 22:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC9B31679EA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 19:58:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF49C16904F
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 20:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A8C1DB346;
-	Sun,  8 Jun 2025 19:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504E5254849;
+	Sun,  8 Jun 2025 20:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="o0zl0a5W"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GJ4Sp6wm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BFC16132F
-	for <devicetree@vger.kernel.org>; Sun,  8 Jun 2025 19:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96351250BEC;
+	Sun,  8 Jun 2025 20:10:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749412714; cv=none; b=FN+cDaAKK/iloiU6L+QEIsUuWQoPRbXvyyZ6qCkc0nlo9dtjVClrHMlyXWQUzBoUVMdNGKUu017j6yCdZ4tuxzIdFynVSuPLTxzXAwFp9KQGHgcNcn9it2tIjsO6uDywDTjmaKgkUoP2tPBvaxUFDG+dRB5rCW206CDXKDYlCv8=
+	t=1749413458; cv=none; b=s+Mf9mx6mqyzr+nFmMsjipX/Q5yuK5suQhln/HP2ZBq1JkvtA0Z158hXs8x9ILz5JYU2JOgMYflXLYiYyXnsifyh5aDks3wJLZ9C6mRDpB3QQq+NfvCgbTqyVNsW4jlSFH46ekrBloVDqAdmu5xoqUli38Z1wm024xb3NSMRNng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749412714; c=relaxed/simple;
-	bh=BLmXJzTM5ia8opzo1LdCoiOFsDBXD+MPSBLR8pplt3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ABNkRARBi9zD22MsZ7mFgCh92VlJmcebIJ80QrkWmruKj78teqQ1eVJe/qCvipkfKD9Sw9qaCpHI1C6Q/3n6VI7Jgd6LyXrS6J7DVwuw8piquHQkL6VkcYNVnpHg9z0q7KwLeC6x8DEMyFr5QrXSwcqL2Grf2CViu4tDyy9F+dQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=o0zl0a5W; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-747ef5996edso2711587b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 12:58:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749412713; x=1750017513; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SO/TiV/eetgiNfMpNbC5+xBYaQpqY6ayGmPuNTPhj0k=;
-        b=o0zl0a5W2JtCxMthNz0mlEdGoO5932iXTBqqEUQTXIn/7roxnt/UGnc6klhq1fFad/
-         oh7W4Kfc/lihWp2q1xXCxz6M8WnvrPn+3mzQNG7uUh3CLd8VhRVNxFg3FjF3/S7mHZaP
-         016iZkVXqfash9pU937ZpNr9TXAgRSGtp+LqVRHn3qrM5L79k+vD5A4LggEFd5JlMJ1t
-         Ma6f6aCvL4G14LkjX19k5u506at6hU4ZIUR5LwndFX9CH2frP2Ah4X2Hk4C5idOU2ydl
-         JHsRt0OhOdMQDdmzJ16QSRhHgh+OwFXY0QAQt5+r+X+s41FLNwT5zbxpjGSPt8Tj1ODE
-         0Gcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749412713; x=1750017513;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SO/TiV/eetgiNfMpNbC5+xBYaQpqY6ayGmPuNTPhj0k=;
-        b=k6Eq55LtJ+3nijl9c3+wNbyz5jt6IwX0hiT5kYBrAc4SEVS5xAF5flaYY4qGpIyOIS
-         nDbPK9pdHDHZtMd/fF5eHHkGCwSvASnkfGS/nUcQ23WrKyZfZPhPge007CFHl1hkwIwe
-         B/2/ioCuTz3mxuoF3+W+yS3zSjudRvzswSRcpNJhnq/F08r1vrMFDvPtJ2J/siFQoPz1
-         1CHnkFTaA1KSCf2V9RowAERjJo1aKaeV6Sf6JCtBewPm0+a/wsFxgstqxFxW552gSAzM
-         yIK1g1QHPNKt80Lxj6yi5gOvkwMpVtLjEJL/FxYQy4Wxk4moB2spIWGLbyoG07ChXGGb
-         2OeA==
-X-Forwarded-Encrypted: i=1; AJvYcCXJaMJ12I88ZEVHm/na1FMOGxUC3V5sMs7GXoM4HBDilK8uoZwhaYrjTj0fzQ++D1kXkWCvYJoHw0Re@vger.kernel.org
-X-Gm-Message-State: AOJu0YxX2j9wLvqTqIojU7wKcX/d4WtzPpA79i7hoAXdLcWct57HAeZD
-	k9asC6o8M8CoQaHtCUBg75n6qBK10clX7coawRyOE/t3HRj30z6VYw7Sx9uyDjcMxR8=
-X-Gm-Gg: ASbGncvL16QLc3h9V1QJbJCOoSdDbJI1+3qIXbKw1hwdD4ibBrbvrfnYaOetUpCKBER
-	WVKEeRb+nyoqIrc0zvH2RgCpYvwwAORgelO1jTivgnjKNgYsI40Ti1+CmtCGqyHPJJN3dgjD+++
-	AqLyFEzwHPx5kJB6JWw7Feofk4fYSumPjQO0+RiJjJBwyoJJL4t58g07pIOLHKalyU9/8LAJXBJ
-	loGSY0CvHs0255HaBk4kpLo1QLAXYAMlyhQw+26+rmQq/d4qOeXQB5d8Km93o6l1Brfk75WYfpi
-	JrLKdkHFNDbHbhXzY+q0KqgnLZiZoaTg
-X-Google-Smtp-Source: AGHT+IFbXbhXFIU9zLa+fXurTHgYmeXx2QZmDu603fA5wHw0+5DeqF3jW9IscpN1oxDbST4x8Tn+iw==
-X-Received: by 2002:a05:6300:6c03:b0:21f:54aa:2004 with SMTP id adf61e73a8af0-21f54aa2170mr4488578637.2.1749412712968;
-        Sun, 08 Jun 2025 12:58:32 -0700 (PDT)
-Received: from x1 ([97.120.245.255])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2f5ee73e2asm3467343a12.29.2025.06.08.12.58.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jun 2025 12:58:32 -0700 (PDT)
-Date: Sun, 8 Jun 2025 12:58:30 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Benno Lossin <lossin@kernel.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 0/6] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-Message-ID: <aEXrZvpTD30a5OhT@x1>
-References: <CGME20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187@eucas1p2.samsung.com>
- <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
- <aDJGgLZ9tITwGBxq@x1>
- <b5f4af17-05ef-453d-8f04-283590ae5b87@samsung.com>
- <DA5YY0YF28GO.3DONTQDLY6VBD@kernel.org>
- <aEXBH5r05FkTxpV+@x1>
- <CANiq72k-FmZe3P_y6FjmiqXViqLKXkDqHY1-KLfmgwAe98oBAQ@mail.gmail.com>
+	s=arc-20240116; t=1749413458; c=relaxed/simple;
+	bh=3f9Ym9Pd0K33b8I/7KW2GFr/TT/wU87P+hjasPRaAAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tJXFpxc5cmIwzeQQLkz1V5kj5gNbfr1Vv3SHuH09MoLkFAgMa4DgPiZsb1dmGvdFcwIi0vOmJkSqAJaHxF9MGfvxaG4kakOszX4N4LgjAlmJ51Vv4TGjtu5q0IUJg8/PgYcD9b8++nph5LnU3e17TySdy6XQmuQmALYoscWPmX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GJ4Sp6wm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 558JvfDA013294;
+	Sun, 8 Jun 2025 20:10:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VMqwClsGucxOnCvIC7ieB8B3Zk2MDDXeIyx8pwhbeik=; b=GJ4Sp6wmMdsUKdSu
+	7XqPo69suRCI2VnCm7g6IliYhqnccb16OjIL4/cDiRS/25F6MOJ4FbOM2m8VjYpK
+	crH+93b0DmUeKWbPssRaBl7g80xquR8lKr4H1UxJHHynbr/8BCsWme20mrrZLC2c
+	iWgIn0QICd/exWbG+Kpf3qmds7szksYVVeZ3APJvnHwB78SjaDtuFpJZWzy6RqmJ
+	2SCdjM7/gEnwxjdkPwJQw6r3OATzMk2YYw1ouw+ldSQHWl43DxJY1ly+xKWQw6vM
+	YlJrvw8xqZhRg9AFpH9yUjFLgS7F9hzODjR6F6WwUI3p0w5H38akCwvjDmK5NJ9L
+	h+bUSg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ce9m1rv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 08 Jun 2025 20:10:36 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 558KAY2n004996
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 8 Jun 2025 20:10:34 GMT
+Received: from [10.216.51.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Jun 2025
+ 13:10:27 -0700
+Message-ID: <421aadf3-9e2d-4028-bfe2-e29d2ade8432@quicinc.com>
+Date: Mon, 9 Jun 2025 01:40:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANiq72k-FmZe3P_y6FjmiqXViqLKXkDqHY1-KLfmgwAe98oBAQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/msm/adreno: Add Adreno X1-45 support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Akhil P Oommen
+	<akhilpo@oss.qualcomm.com>
+CC: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar
+	<abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie
+	<airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+        Bjorn Andersson
+	<andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+References: <20250607-x1p-adreno-v1-0-a8ea80f3b18b@oss.qualcomm.com>
+ <20250607-x1p-adreno-v1-2-a8ea80f3b18b@oss.qualcomm.com>
+ <5xb35clc3wnnwpdnmqfminl4z6ok6nhoxg65hwgyxegxguby5d@fuks7fc2n3pf>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <5xb35clc3wnnwpdnmqfminl4z6ok6nhoxg65hwgyxegxguby5d@fuks7fc2n3pf>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BszDk49latyru2SxwMd1H6DHiNz1f0QD
+X-Authority-Analysis: v=2.4 cv=drjbC0g4 c=1 sm=1 tr=0 ts=6845ee3c cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8
+ a=XhjLoxLiZ051MZkV3CIA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: BszDk49latyru2SxwMd1H6DHiNz1f0QD
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA4MDE2MyBTYWx0ZWRfX7gpHMqsCA/Mu
+ SgkW+NQvexJf4ppn59QwKvLVTctgDptCXm1Go0AgfDSQVF90IF7qQZt7UBidbrznfHjyYjNmfea
+ BC5/m9zYvXkr7oqpvn/nvX20CMYZ/AxivdZapB0eu5gdQIY6CsPL3dkXvq+KC2VMSOlradtXddu
+ iEOyfA2gUvZrQyBjQ9CoNm6Y13MabNwtmoHPojmZ2gOkiRrGh7QyOxBVNPhmz0vPvkiBway6Qtg
+ fg5ApBxl+phdBN0AoplyHwBzZIaSXPi8CciPYFHOK39KF4SG0yhEn9pdd9uXb9Hukyt6ECvWvG1
+ x/nm6LGK6cCqi8qt+eAmO1o6d3RMt+rRwhr75e6Gm3UCZkJJc/cN0dPa/jpu8RUPrsHxKgTioOi
+ K1qG/EJmzaQIuBPXDdVvgNb5OL/d+Rtv8OEjSMYN/mujHypnzbx4un5ICQIDHTPVkbycsbQH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-08_04,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1011
+ priorityscore=1501 suspectscore=0 bulkscore=0 mlxlogscore=999 adultscore=0
+ phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506080163
 
-On Sun, Jun 08, 2025 at 07:14:18PM +0200, Miguel Ojeda wrote:
-> On Sun, Jun 8, 2025 at 6:58 PM Drew Fustini <drew@pdp7.com> wrote:
-> >
-> > I'm not sure if that bindgen warning matters?
+On 6/8/2025 1:44 AM, Dmitry Baryshkov wrote:
+> On Sat, Jun 07, 2025 at 07:45:00PM +0530, Akhil P Oommen wrote:
+>> Add support for Adreno X1-45 GPU present Snapdragon X1P42100
+>> series of compute chipsets. This GPU is a smaller version of
+>> X1-85 GPU with lower core count and smaller internal memories.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>> ---
+>>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 38 +++++++++++++++++++++++++++++++
+>>  1 file changed, 38 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>> index 70f7ad806c34076352d84f32d62c2833422b6e5e..2db748ce7df57a9151ed1e7f1b025a537bb5f653 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+>> @@ -1474,6 +1474,44 @@ static const struct adreno_info a7xx_gpus[] = {
+>>  			},
+>>  		},
+>>  		.preempt_record_size = 3572 * SZ_1K,
+>> +	}, {
+>> +		.chip_ids = ADRENO_CHIP_IDS(0x43030c00),
+>> +		.family = ADRENO_7XX_GEN2,
+>> +		.fw = {
+>> +			[ADRENO_FW_SQE] = "gen71500_sqe.fw",
+>> +			[ADRENO_FW_GMU] = "gen71500_gmu.bin",
 > 
-> If you don't see the `FromBytesWithNulError` error, then it should be
-> fine, but I would recommend using a newer version anyway.
+> Any chance of getting these and ZAP into linux-firmware?
+
+Yeah. Haven't got the legal clearance to publish the firmwares yet. Will
+post it in a few days.
+
+-Akhil.
+
 > 
-> I hope that helps.
 > 
-> Cheers,
-> Miguel
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> 
+> 
 
-Thanks for the quick response. I seemed to have updated it with:
-
- cargo install bindgen-cli
-
-And it seems Linux is now happy :)
-
- $ make LLVM=1 rustavailable
- Rust is available!
-
--Drew
 
