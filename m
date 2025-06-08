@@ -1,168 +1,143 @@
-Return-Path: <devicetree+bounces-183602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B782AD13DC
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 20:51:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EC9AD1416
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 21:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1145A1691C0
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 18:51:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC9B31679EA
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 19:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E6A1A9B4A;
-	Sun,  8 Jun 2025 18:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A8C1DB346;
+	Sun,  8 Jun 2025 19:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GA5Z/oZT"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="o0zl0a5W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954B38633F;
-	Sun,  8 Jun 2025 18:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BFC16132F
+	for <devicetree@vger.kernel.org>; Sun,  8 Jun 2025 19:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749408658; cv=none; b=dp8gqus3GalyL2KFfxrUtknrjHZBjD0GpidCxjusQ97Dz8JYBK8F4K21CBoPTDFMuLgNikPBx2QeF8HMZNZNIiKrnvobdVyYmg2/CDnT5rnl5xbwgDd9kSbeVecEK+Py42WqxcqOfe7fhT7DByVRixVcuCez/eFR0PjmU2v9wCU=
+	t=1749412714; cv=none; b=FN+cDaAKK/iloiU6L+QEIsUuWQoPRbXvyyZ6qCkc0nlo9dtjVClrHMlyXWQUzBoUVMdNGKUu017j6yCdZ4tuxzIdFynVSuPLTxzXAwFp9KQGHgcNcn9it2tIjsO6uDywDTjmaKgkUoP2tPBvaxUFDG+dRB5rCW206CDXKDYlCv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749408658; c=relaxed/simple;
-	bh=i7jidX805ido27bLSUjvsY/4xQhzmHpuM2DFF8z+37g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oP3csaxAe7RSotEBQX8C76NYiIYjWc0Q+LqbggUplC/c5rheT9PW38kXp1ufV9ZAGrxcs4ksie3WC6LkfYV2n5FCwAKh+ztgFyP0Gy3eVMwmg7171bIbDprZ1iZZsjE5bwMZvhkOpqgu+F2q5Xt23dbfJByPITkabXlZrosKiek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GA5Z/oZT; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-74800b81f1bso2740281b3a.1;
-        Sun, 08 Jun 2025 11:50:56 -0700 (PDT)
+	s=arc-20240116; t=1749412714; c=relaxed/simple;
+	bh=BLmXJzTM5ia8opzo1LdCoiOFsDBXD+MPSBLR8pplt3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ABNkRARBi9zD22MsZ7mFgCh92VlJmcebIJ80QrkWmruKj78teqQ1eVJe/qCvipkfKD9Sw9qaCpHI1C6Q/3n6VI7Jgd6LyXrS6J7DVwuw8piquHQkL6VkcYNVnpHg9z0q7KwLeC6x8DEMyFr5QrXSwcqL2Grf2CViu4tDyy9F+dQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=o0zl0a5W; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-747ef5996edso2711587b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 12:58:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749408656; x=1750013456; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4FkQOjW0dEQldWqVQqpMRcOS3E+ncteqKD5m7Do0e/E=;
-        b=GA5Z/oZTY1kKrbhB4bRfY/SHHmJe4h43+wV0mdEqfV+h82tOwiSyuYaH/XRiG5N4GE
-         ZParffbXqFHFOh6YUdQmPILrE9mSfrAZa4/gd9awDvdGRfG8udwUNSc4dAMObgeBO1ou
-         hNkhcx/uLYfPDEWeov2EHn+NYE0W8yDiNmvtcnZxBaAZ9bDhFx+NZDf5f2pzOtZdo48b
-         UnG3jneKI87MMJ4BGcC6G3QIQB5j2fBJRfyFjoyWyxW4cr3+Tyb8+XNTJqHpvyalmU7w
-         fyTJ0rlaAGfDD8YsuxJb4fn0BgpQcRAU5QrtDok6/hYncfiXH/gViEJfb4lPlMTQZv1n
-         Ljuw==
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749412713; x=1750017513; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SO/TiV/eetgiNfMpNbC5+xBYaQpqY6ayGmPuNTPhj0k=;
+        b=o0zl0a5W2JtCxMthNz0mlEdGoO5932iXTBqqEUQTXIn/7roxnt/UGnc6klhq1fFad/
+         oh7W4Kfc/lihWp2q1xXCxz6M8WnvrPn+3mzQNG7uUh3CLd8VhRVNxFg3FjF3/S7mHZaP
+         016iZkVXqfash9pU937ZpNr9TXAgRSGtp+LqVRHn3qrM5L79k+vD5A4LggEFd5JlMJ1t
+         Ma6f6aCvL4G14LkjX19k5u506at6hU4ZIUR5LwndFX9CH2frP2Ah4X2Hk4C5idOU2ydl
+         JHsRt0OhOdMQDdmzJ16QSRhHgh+OwFXY0QAQt5+r+X+s41FLNwT5zbxpjGSPt8Tj1ODE
+         0Gcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749408656; x=1750013456;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4FkQOjW0dEQldWqVQqpMRcOS3E+ncteqKD5m7Do0e/E=;
-        b=gemYf0ALUwBW43n8h/vqwAIK7ZFHiAUJf8dspggySCP3ZX18PgLYzvt769iyZIt0yb
-         NZyiJPunlpIPFlqicDr0vcRCCCuQ/sJCqXRytX3wkeOqC8511hzvkZYF6vMDguWzjXeo
-         eUNwbVtOUeae65fT9etf25dgTObLVUxMHQ3TzZNDz7M+DyHe+9GrstzF9YwL2FyrjiKY
-         T7zHxkylLNIqnXfi8nCEJRdcPGV7l3/Zj8/nJUXmks19mxYNPNxl2/j+hc77s5IwnhWW
-         v5lem//6XDDwTc9klz9tz9XxBFF92xPYjKogA++LxOZv7wJ8sjpQrX8xWgYII2xbchEs
-         Ti7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUMzHtIoGFSoPidp7iZw1UaqaKQQkW8QaFu0LbmOduQ9CJAwP1Czy4/f/9JTyIp5K9wv0LObc2z@vger.kernel.org, AJvYcCUqK7h1VnX/xRfdg8xT7PqEbBzNOVXaYnHJSkktxDsgpA23h9sMM1GCvTypM1GPYVwD1Jb45JX4JCA=@vger.kernel.org, AJvYcCV33jG9NBEpYL0+1O3QPjUgJnTtQcSuODkxPGfHhOnSdplYnvPPbSBlF57QGCbq7Cg3LjlmiIT1DZMoTXgo@vger.kernel.org, AJvYcCVN6/TrvNGIz+XUhffzHQxyQq7vr4S2Jmzai4/tnOwXK0HpYMABLeTh7ZbhW6JGH+IMVUPHSFVOD649@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1D+W0nDP4niWScHQWkN26rhkQTYpQ3gIM2aUDvu2/xN+ECdgI
-	FxD9afG3Sa20d3mzs8osFN/NXIwSWMg4Wvh5zE/Zd/jX21br4nJex1sC
-X-Gm-Gg: ASbGncv+iBSQ98995ti2wJtLrVVSyxd6qwxWgouiTW1+D8lvDdSk4HTmh/Wo4KDB/xd
-	7FxqzXTuNZ5hg0+d/m+s5P/akVh3xqveXE/FlvA4oq4h1u75b3kj1lF5h5Ur8cxaklqMRaWTgDt
-	cHTgl/+V1MMw/QhUo7k8XnaFe/HHxZJHRNqHsvW6HYBNJNIEqWLTiIyzdPCTy4k1Oec6Wj35zcK
-	AFE/e7T8OC1AfCVUSutOGnhHhqmx3SPdCB7+DqVWiITHHbA5CDKodpL3Rg2ugS66W6lUIJ3gjgA
-	XkN9hbI1f+2gNWgYKzpSdSzBIQCaAEJQ8P8zSiBDh9vSUAXfSZHyHqLl8JNBfqU=
-X-Google-Smtp-Source: AGHT+IFmkmDN5HJMtOVAkQ+D2VV/D9Hx1lj1672INza519ZQEJaZQhN5dtNTS2zy37PO0ZFmNvX1dw==
-X-Received: by 2002:a05:6a00:22c7:b0:748:3485:b99d with SMTP id d2e1a72fcca58-7483485d9d4mr10823644b3a.18.1749408655711;
-        Sun, 08 Jun 2025 11:50:55 -0700 (PDT)
-Received: from celestia.turtle.lan ([2601:1c2:c184:dc00:21ba:8ec7:ee03:e8ae])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7482af3824fsm4493278b3a.19.2025.06.08.11.50.53
+        d=1e100.net; s=20230601; t=1749412713; x=1750017513;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SO/TiV/eetgiNfMpNbC5+xBYaQpqY6ayGmPuNTPhj0k=;
+        b=k6Eq55LtJ+3nijl9c3+wNbyz5jt6IwX0hiT5kYBrAc4SEVS5xAF5flaYY4qGpIyOIS
+         nDbPK9pdHDHZtMd/fF5eHHkGCwSvASnkfGS/nUcQ23WrKyZfZPhPge007CFHl1hkwIwe
+         B/2/ioCuTz3mxuoF3+W+yS3zSjudRvzswSRcpNJhnq/F08r1vrMFDvPtJ2J/siFQoPz1
+         1CHnkFTaA1KSCf2V9RowAERjJo1aKaeV6Sf6JCtBewPm0+a/wsFxgstqxFxW552gSAzM
+         yIK1g1QHPNKt80Lxj6yi5gOvkwMpVtLjEJL/FxYQy4Wxk4moB2spIWGLbyoG07ChXGGb
+         2OeA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJaMJ12I88ZEVHm/na1FMOGxUC3V5sMs7GXoM4HBDilK8uoZwhaYrjTj0fzQ++D1kXkWCvYJoHw0Re@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX2j9wLvqTqIojU7wKcX/d4WtzPpA79i7hoAXdLcWct57HAeZD
+	k9asC6o8M8CoQaHtCUBg75n6qBK10clX7coawRyOE/t3HRj30z6VYw7Sx9uyDjcMxR8=
+X-Gm-Gg: ASbGncvL16QLc3h9V1QJbJCOoSdDbJI1+3qIXbKw1hwdD4ibBrbvrfnYaOetUpCKBER
+	WVKEeRb+nyoqIrc0zvH2RgCpYvwwAORgelO1jTivgnjKNgYsI40Ti1+CmtCGqyHPJJN3dgjD+++
+	AqLyFEzwHPx5kJB6JWw7Feofk4fYSumPjQO0+RiJjJBwyoJJL4t58g07pIOLHKalyU9/8LAJXBJ
+	loGSY0CvHs0255HaBk4kpLo1QLAXYAMlyhQw+26+rmQq/d4qOeXQB5d8Km93o6l1Brfk75WYfpi
+	JrLKdkHFNDbHbhXzY+q0KqgnLZiZoaTg
+X-Google-Smtp-Source: AGHT+IFbXbhXFIU9zLa+fXurTHgYmeXx2QZmDu603fA5wHw0+5DeqF3jW9IscpN1oxDbST4x8Tn+iw==
+X-Received: by 2002:a05:6300:6c03:b0:21f:54aa:2004 with SMTP id adf61e73a8af0-21f54aa2170mr4488578637.2.1749412712968;
+        Sun, 08 Jun 2025 12:58:32 -0700 (PDT)
+Received: from x1 ([97.120.245.255])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2f5ee73e2asm3467343a12.29.2025.06.08.12.58.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jun 2025 11:50:55 -0700 (PDT)
-From: Sam Edwards <cfsworks@gmail.com>
-X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Mark Brown <broonie@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+        Sun, 08 Jun 2025 12:58:32 -0700 (PDT)
+Date: Sun, 8 Jun 2025 12:58:30 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Benno Lossin <lossin@kernel.org>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	=?UTF-8?q?Adri=C3=A1n=20Mart=C3=ADnez=20Larumbe?= <adrian.larumbe@collabora.com>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Peter Geis <pgwipeout@gmail.com>,
-	Tomeu Vizoso <tomeu@tomeuvizoso.net>,
-	Vignesh Raman <vignesh.raman@collabora.com>,
-	=?UTF-8?q?Daniel=20Kukie=C5=82a?= <daniel@kukiela.pl>,
-	Sven Rademakers <sven.rademakers@gmail.com>,
-	Joshua Riek <jjriek@verizon.net>,
-	Sam Edwards <CFSworks@gmail.com>,
-	stable@vger.kernel.org
-Subject: [RESEND PATCH] arm64: dts: rockchip: Remove workaround that prevented Turing RK1 GPU power regulator control
-Date: Sun,  8 Jun 2025 11:48:55 -0700
-Message-ID: <20250608184855.130206-1-CFSworks@gmail.com>
-X-Mailer: git-send-email 2.49.0
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 0/6] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+Message-ID: <aEXrZvpTD30a5OhT@x1>
+References: <CGME20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187@eucas1p2.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <aDJGgLZ9tITwGBxq@x1>
+ <b5f4af17-05ef-453d-8f04-283590ae5b87@samsung.com>
+ <DA5YY0YF28GO.3DONTQDLY6VBD@kernel.org>
+ <aEXBH5r05FkTxpV+@x1>
+ <CANiq72k-FmZe3P_y6FjmiqXViqLKXkDqHY1-KLfmgwAe98oBAQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANiq72k-FmZe3P_y6FjmiqXViqLKXkDqHY1-KLfmgwAe98oBAQ@mail.gmail.com>
 
-The RK3588 GPU power domain cannot be activated unless the external
-power regulator is already on. When GPU support was added to this DT,
-we had no way to represent this requirement, so `regulator-always-on`
-was added to the `vdd_gpu_s0` regulator in order to ensure stability.
-A later patch series (see "Fixes:" commit) resolved this shortcoming,
-but that commit left the workaround -- and rendered the comment above
-it no longer correct.
+On Sun, Jun 08, 2025 at 07:14:18PM +0200, Miguel Ojeda wrote:
+> On Sun, Jun 8, 2025 at 6:58 PM Drew Fustini <drew@pdp7.com> wrote:
+> >
+> > I'm not sure if that bindgen warning matters?
+> 
+> If you don't see the `FromBytesWithNulError` error, then it should be
+> fine, but I would recommend using a newer version anyway.
+> 
+> I hope that helps.
+> 
+> Cheers,
+> Miguel
 
-Remove the workaround to allow the GPU power regulator to power off, now
-that the DT includes the necessary information to power it back on
-correctly.
+Thanks for the quick response. I seemed to have updated it with:
 
-Fixes: f94500eb7328b ("arm64: dts: rockchip: Add GPU power domain regulator dependency for RK3588")
-Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-Cc: <stable@vger.kernel.org>
----
+ cargo install bindgen-cli
 
-Hi friends,
+And it seems Linux is now happy :)
 
-This is a patch from about two weeks ago that I failed to address to all
-relevant recipients, so I'm resending it with the recipients of the "Fixes:"
-commit included, as I should have done originally.
+ $ make LLVM=1 rustavailable
+ Rust is available!
 
-The original thread had no discussion.
-
-Well wishes,
-Sam
-
----
- arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi | 11 -----------
- 1 file changed, 11 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-index 60ad272982ad..6daea8961fdd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-@@ -398,17 +398,6 @@ rk806_dvs3_null: dvs3-null-pins {
- 
- 		regulators {
- 			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
--				/*
--				 * RK3588's GPU power domain cannot be enabled
--				 * without this regulator active, but it
--				 * doesn't have to be on when the GPU PD is
--				 * disabled.  Because the PD binding does not
--				 * currently allow us to express this
--				 * relationship, we have no choice but to do
--				 * this instead:
--				 */
--				regulator-always-on;
--
- 				regulator-boot-on;
- 				regulator-min-microvolt = <550000>;
- 				regulator-max-microvolt = <950000>;
--- 
-2.48.1
-
+-Drew
 
