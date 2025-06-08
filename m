@@ -1,330 +1,123 @@
-Return-Path: <devicetree+bounces-183605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A65AD142E
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 22:19:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D28AD1450
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 22:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FB883AA1BE
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 20:19:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 639FA188A26A
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 20:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67451A9B3D;
-	Sun,  8 Jun 2025 20:19:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA1D1D9A54;
+	Sun,  8 Jun 2025 20:47:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bS5KRQr1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PbATWU2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109BA2F3E;
-	Sun,  8 Jun 2025 20:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E429BA45;
+	Sun,  8 Jun 2025 20:47:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749413961; cv=none; b=b8l0PYchE4Skp/jmp/Xs3zZiuWPQcQEd9hMts180z+RN5Pj+1TR9du419I999UKmh4UO6DjXI3wytsoLiyNYq/BM4JC85Tmo+Mx/ApvsH+j+4TLzo3SoIisAZmdxKpKyYv4OM4i9iShoC/jliZrx+kLh1jpa4yCb+Nw6QgaXfrE=
+	t=1749415674; cv=none; b=f3SPR3jhFKq08vJ1e+S+g9qnwYRUI9xmrULTYqJGWj8Df1ukyvd6j6NTACGWR9AyK6Yc0CtM526WIibs1jiSs/WbELNuCI3d7Z59NLGZ/Dfs0EWUxY2FNjneTlJgZfLD61sDkbBVN96K086Vj7M8uhpV1XGyH61E38I5gN2RA54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749413961; c=relaxed/simple;
-	bh=cONj4emF+bUKx+2/Fz9eaI7uHKJ65pmqUhKcwfxFXRc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZEQzeIxbcd1FPefrwRyrl1GQTNWpunkO0zrzIowS2hvi1yfd1y5NuohEATDs+2uBoWaU+SEKmuRc4qsJJPem9qX2ga08WOw9Wfxp1wg6yBEmiXd/iWxnIALuIlJ4dPpX3Jk1ouuDmgnpwWSOju2n5/Q99FKFhgj5a3RJXmAZArs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bS5KRQr1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5589eTe4001097;
-	Sun, 8 Jun 2025 20:18:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ebjeNRseKqUDttm9BjoWMCbWg+pOJ3HwUqTpbP41Hfg=; b=bS5KRQr1+FUcJVd6
-	2jLkeyN71QdLA56H3/wKqgC4H3NEPZNV4ffSyALggB2aCQEC/fHsFSj2hXeX6ACV
-	Hy6/j1WjSJ0pfsqZ4eOcbnMtVnVSsdeejtF+NvqM9lm26j3m1RqqV1PbxQGFBdLP
-	74NC3H/t/bc/K/5bMk1okQmgJBcIPss+slkzuAyiggjPlb3xzKmME6xW+i8LZ6Gj
-	TBEVKlxW227OMPh3UXTNN72p0EhdcFtw85njZqiPqZOoDyir1vuasT+EEB/B1NS0
-	oniaBg+aC2nuid2rrnVLL28qn7Bpva1/q8r5x0w/bEhGIVtVQaaDrfjrygsCDmnI
-	PyavVg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ccv3ryx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 08 Jun 2025 20:18:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 558KIowt001788
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 8 Jun 2025 20:18:50 GMT
-Received: from [10.216.51.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Jun 2025
- 13:18:43 -0700
-Message-ID: <dbbcc6b5-0d7d-440e-97e6-07b430d4f657@quicinc.com>
-Date: Mon, 9 Jun 2025 01:48:40 +0530
+	s=arc-20240116; t=1749415674; c=relaxed/simple;
+	bh=ebF6L3yW+3ohMAChacTbx/9GAwBaMrhyLwIY4VviJvQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ILSqCOJfMrw8AtpB77K1lQsKNcx4QWP1SGCWroHUyOpLZX2rhTatZMQ2woHPU1pZNpqCqqXfGw1O9NXgX9eZCbqBdwzL/2SQpdhScdMfs0tsrbztWwYqzQLpkVnu80Tt4gvbVCbscyFe3qKJWQ+gD/4A2NyxCV+Ime0Br/z+jWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PbATWU2c; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b1276984386so453254a12.0;
+        Sun, 08 Jun 2025 13:47:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749415672; x=1750020472; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e/NepSzNK7cHJVdKlMHYuPZmDL7EOzwuHy5xSr7Gp+s=;
+        b=PbATWU2cnA/SJSTcjsUFNYFRMnJxXPBSZ9jq4nykcGbBITiMTZICtDAAWGE9hbLc74
+         +r2aQEVQ1OPQTcC3XK3JtT9QGcemkMUOB/21Z3jn5CNgt2dlHajC0mqv/5z++UlKFTy1
+         DdJX0UjyPk32tsmb5Gyv/l1No5mHlhyWe7R6aBV1Hg7+mLOoSxiWlxS4PAwUmLa1aleo
+         4/SpROQjze/BRCflv4H2DBJzwAdVkZDoMMBqgtIdN8d8jTyheDtlp13NTPnxWgDbIRpb
+         NXMxgTF0o+ZbovwKO9cWOndgFOGJed/oaDAXgPdNqVE6ZnaxqssW9rd0zP0kY2jjt3CW
+         fpzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749415672; x=1750020472;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e/NepSzNK7cHJVdKlMHYuPZmDL7EOzwuHy5xSr7Gp+s=;
+        b=IckfEKyFQxNLYBh9Wv417YZZ6bst92mdKyBtY0VyGWGGO+9fAl8BQE19xH1c3FTFM9
+         PvOhR4Zo40fNHSPsLe6Abf/Mx4vpcfzi4ylEcSRN1vjAo/65fv024djde+IL3KIZ4LHR
+         k2C6BilEDOrPruYHCvMcHzSJ1VcK7iwqg+Ci+t66GTWUz3ALfcwkYabU89kzIuijb2Y1
+         hJK4H88EGa2JJpDF/K8bs+xLTSVGn4Tj9R4ZiiCME4fVPr8AUgjwhZGoDaaboSVEr6vJ
+         CeBfO7IyugGlt3/lP+DPz6d4M/y72EpuxUPT1XeI36cFunupsXss35z9Ch/gmwBeZUR+
+         r45A==
+X-Forwarded-Encrypted: i=1; AJvYcCV9ye9+OTO9RFOUjNXWkjxyzMzOZgyFAiCbE1rFkXeq3XRcZ1IeV74xjQ2OgjJR4HLfUx74cZkzHNeY3tBc@vger.kernel.org, AJvYcCWGbObFsCsw7vXZ04+vHgoKa7BkTwsK5wiAvpjE2xL/SRHb3BsNpExZI04ogaj7hKyaS1iVvVdrkb9Z@vger.kernel.org, AJvYcCX/uRfVnHGduK49IT2AmXlRs2HmLZxFWHsSHgz7ePUuvMS5JMJ5YlkRsQPOg/4JCq2dIeg70onVUuZd1PwR618=@vger.kernel.org, AJvYcCX0dNziQ/0bDSQRDd3Lnw3OiW88ooslvWM7r5PgEwuF/TK85DNTsGbBR+7CE69ZcUmvg990LiQdYFGU@vger.kernel.org
+X-Gm-Message-State: AOJu0YycDja4eIm0aEUIBvwLTVKu5nVRBUWzE2mVhhuxTllmFvMnlO5R
+	PLwT9sSsOFh06FI5gLtc87/2GZp8cL0LW+CDKKxWCwt40lYvNRDz3QfSaGygtDGPfahYHrWgPIz
+	wuM/sW13ymyI7GyGDFE8LVI9CQFzWzB0=
+X-Gm-Gg: ASbGncv/aVpDtkeUT0Jn3ZIrJc4PQNnxrp0NFNTkS38e40AIjEGFAHc3Hx9WPaLSTBN
+	PIRIu9MsqRvv3y09Oih00gFWphXd3z8OD6fyfo8n/MX4/r21gM0ybnSsIeUX+LeZuZuiTUYuI8u
+	5kvW0lUazJzTZKM0M+eeaCk0uP6CQI1VSi
+X-Google-Smtp-Source: AGHT+IGMuXINEZm4WUqJIT66MF2vg+ybkmXgawlTKOKqE5f3w0CWVXxYZlA0lxfrGl70z+aRQlCRwjGEVMSn8hyBYU4=
+X-Received: by 2002:a17:90b:4b85:b0:313:2bfc:94c with SMTP id
+ 98e67ed59e1d1-3134e43144amr5309627a91.8.1749415672501; Sun, 08 Jun 2025
+ 13:47:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add GPU support to X1P42100 SoC
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        <rob.clark@oss.qualcomm.com>
-CC: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Sean Paul
-	<sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar
-	<abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Bjorn Andersson
-	<andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-References: <20250607-x1p-adreno-v1-0-a8ea80f3b18b@oss.qualcomm.com>
- <20250607-x1p-adreno-v1-3-a8ea80f3b18b@oss.qualcomm.com>
- <wayrour74vlli27xrtxi2ff2v7q7ye2yknmk2mjpur5ry5gruv@hhh2mdb6lw2i>
- <CACSVV03X5EyAb5yCPDn1ot8vOFV_dKG7f6+yO5t9srr31AiUKw@mail.gmail.com>
- <rwjc7zkitubi6cdre5a7owmo76nopavkgifvvn6yq2mv2hrth4@bhwbodchd2gx>
- <CACSVV03mNkELWDB_uxdjEa5GeWZUY=42O8QG4qTrg6zquT1Bgw@mail.gmail.com>
- <42a69fa4-48ac-4a2f-a2ff-b4e1fe3a228a@oss.qualcomm.com>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <42a69fa4-48ac-4a2f-a2ff-b4e1fe3a228a@oss.qualcomm.com>
+References: <CGME20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187@eucas1p2.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <aDJGgLZ9tITwGBxq@x1> <b5f4af17-05ef-453d-8f04-283590ae5b87@samsung.com>
+ <DA5YY0YF28GO.3DONTQDLY6VBD@kernel.org> <aEXBH5r05FkTxpV+@x1>
+ <CANiq72k-FmZe3P_y6FjmiqXViqLKXkDqHY1-KLfmgwAe98oBAQ@mail.gmail.com> <aEXrZvpTD30a5OhT@x1>
+In-Reply-To: <aEXrZvpTD30a5OhT@x1>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sun, 8 Jun 2025 22:47:40 +0200
+X-Gm-Features: AX0GCFtkgb9NQ12mbcXrlhdSwOY0B7uS6yd2CXG1hnJnfVtwyAWwRJ7-DZ7mFxY
+Message-ID: <CANiq72mn4sRzmkFAJ0fKhwZMLUi33DBLNzyEF2BTPML_4Ya+Bg@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/6] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+To: Drew Fustini <drew@pdp7.com>
+Cc: Benno Lossin <lossin@kernel.org>, Michal Wilczynski <m.wilczynski@samsung.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gIssG8YUeIYlp7vgTBTkhvyilbuiGDki
-X-Authority-Analysis: v=2.4 cv=TsLmhCXh c=1 sm=1 tr=0 ts=6845f02b cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8
- a=jk5spBuy_7rvZDU0t7YA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: gIssG8YUeIYlp7vgTBTkhvyilbuiGDki
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA4MDE2NSBTYWx0ZWRfX8+GaHB3UvpfZ
- pNYvCtSCb/GhPuuKQlUpl8Zn7icxtjEtOnR/W1M/7wSLHpLDBjUapt3avXNkxwAWXqUjP0OE7r5
- s+D/ja+ayUtu+JF+WA7igMK1mdo6XsQRhKem1puBl11qRsklPrDb/LlJIXRck7gHCqWJTFH3NNo
- VqhU3fXoDFfwYSZO6vIKSWhDxWgsyABk2H/j34E8PngxTyskM5Me3jbaEe+gq+IZwc6GapZ7u+r
- f+xmYi/M7wt95Myj4B9yRGzz7wcJgY9aHKn2NL3cPVZNcu/CUcKg9eyDi/ik6tv6Q7uVAEPu3pe
- RcaHHKgRquPBaZXwAU1uolXVEKxFXsHNXe4BRECaHFG0+kG/LhGf/4ndH+CBC9g6I/pdO5u88Q9
- HIKIFqtLs8F7aRnhjaCTBYhJC/jQjWYJQz98OeO/w9woGKDSOYs7w8FjVBJVmWWr1F39h00H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-08_04,2025-06-05_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 spamscore=0 mlxlogscore=999 impostorscore=0
- priorityscore=1501 bulkscore=0 adultscore=0 clxscore=1015 mlxscore=0
- malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506080165
+Content-Transfer-Encoding: quoted-printable
 
-On 6/8/2025 8:52 PM, Dmitry Baryshkov wrote:
-> On 08/06/2025 18:20, Rob Clark wrote:
->> On Sun, Jun 8, 2025 at 8:09 AM Dmitry Baryshkov
->> <dmitry.baryshkov@oss.qualcomm.com> wrote:
->>>
->>> On Sun, Jun 08, 2025 at 07:10:11AM -0700, Rob Clark wrote:
->>>> On Sat, Jun 7, 2025 at 1:17 PM Dmitry Baryshkov
->>>> <dmitry.baryshkov@oss.qualcomm.com> wrote:
->>>>>
->>>>> On Sat, Jun 07, 2025 at 07:45:01PM +0530, Akhil P Oommen wrote:
->>>>>> X1P42100 SoC has a new GPU called Adreno X1-45 which is a smaller
->>>>>> version of Adreno X1-85 GPU. Describe this new GPU and also add
->>>>>> the secure gpu firmware path that should used for X1P42100 CRD.
->>>>>>
->>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
->>>>>> ---
->>>>>>   arch/arm64/boot/dts/qcom/x1e80100.dtsi    |   7 ++
->>>>>>   arch/arm64/boot/dts/qcom/x1p42100-crd.dts |   4 +
->>>>>>   arch/arm64/boot/dts/qcom/x1p42100.dtsi    | 121 ++++++++++++++++
->>>>>> +++++++++++++-
->>>>>>   3 files changed, 131 insertions(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/
->>>>>> boot/dts/qcom/x1e80100.dtsi
->>>>>> index
->>>>>> a8eb4c5fe99fe6dd49af200a738b6476d87279b2..558d7d387d7710770244fcc901f461384dd9b0d4 100644
->>>>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->>>>>> @@ -8245,6 +8245,13 @@ sbsa_watchdog: watchdog@1c840000 {
->>>>>>                        interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
->>>>>>                };
->>>>>>
->>>>>> +             qfprom: efuse@221c8000 {
->>>>>> +                     compatible = "qcom,x1e80100-qfprom",
->>>>>> "qcom,qfprom";
->>>>>> +                     reg = <0 0x221c8000 0 0x1000>;
->>>>>> +                     #address-cells = <1>;
->>>>>> +                     #size-cells = <1>;
->>>>>> +             };
->>>>>> +
->>>>>>                pmu@24091000 {
->>>>>>                        compatible = "qcom,x1e80100-llcc-bwmon",
->>>>>> "qcom,sc7280-llcc-bwmon";
->>>>>>                        reg = <0 0x24091000 0 0x1000>;
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1p42100-crd.dts b/arch/
->>>>>> arm64/boot/dts/qcom/x1p42100-crd.dts
->>>>>> index
->>>>>> cf07860a63e97c388909fb5721ae7b9729b6c586..cf999c2cf8d4e0af83078253fd39ece3a0c26a49 100644
->>>>>> --- a/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
->>>>>> +++ b/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
->>>>>> @@ -15,3 +15,7 @@ / {
->>>>>>        model = "Qualcomm Technologies, Inc. X1P42100 CRD";
->>>>>>        compatible = "qcom,x1p42100-crd", "qcom,x1p42100";
->>>>>>   };
->>>>>> +
->>>>>> +&gpu_zap_shader {
->>>>>> +     firmware-name = "qcom/x1p42100/gen71500_zap.mbn";
->>>>>> +};
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1p42100.dtsi b/arch/arm64/
->>>>>> boot/dts/qcom/x1p42100.dtsi
->>>>>> index
->>>>>> 27f479010bc330eb6445269a1c46bf78ec6f1bd4..5ed461ed5cca271d43647888aa6eacac3de2ac9d 100644
->>>>>> --- a/arch/arm64/boot/dts/qcom/x1p42100.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
->>>>>> @@ -17,15 +17,134 @@
->>>>>>   /delete-node/ &cpu_pd9;
->>>>>>   /delete-node/ &cpu_pd10;
->>>>>>   /delete-node/ &cpu_pd11;
->>>>>> +/delete-node/ &gpu_opp_table;
->>>>>>   /delete-node/ &pcie3_phy;
->>>>>>
->>>>>>   &gcc {
->>>>>>        compatible = "qcom,x1p42100-gcc", "qcom,x1e80100-gcc";
->>>>>>   };
->>>>>>
->>>>>> -/* The GPU is physically different and will be brought up later */
->>>>>> +&gmu {
->>>>>> +     /delete-property/ compatible;
->>>>>> +     compatible = "qcom,adreno-gmu-x145.0", "qcom,adreno-gmu";
->>>>>> +};
->>>>>> +
->>>>>> +&qfprom {
->>>>>> +     gpu_speed_bin: gpu_speed_bin@119 {
->>>>>> +             reg = <0x119 0x2>;
->>>>>> +             bits = <7 9>;
->>>>>> +     };
->>>>>> +};
->>>>>> +
->>>>>>   &gpu {
->>>>>>        /delete-property/ compatible;
->>>>>
->>>>> I think, you can drop this line.
+On Sun, Jun 8, 2025 at 9:58=E2=80=AFPM Drew Fustini <drew@pdp7.com> wrote:
+>
+> Thanks for the quick response. I seemed to have updated it with:
+>
+>  cargo install bindgen-cli
+>
+> And it seems Linux is now happy :)
 
-I wasn't sure about this and I thought it was harmless to delete it.
-Anyway, I will remove the "delete" from both GPU and GMU nodes.
+You're welcome!
 
->>>>>
->>>>>> +
->>>>>> +     compatible = "qcom,adreno-43030c00", "qcom,adreno";
->>>>>> +
->>>>>> +     nvmem-cells = <&gpu_speed_bin>;
->>>>>> +     nvmem-cell-names = "speed_bin";
->>>>>> +
->>>>>> +     gpu_opp_table: opp-table {
->>>>>> +             compatible = "operating-points-v2-adreno",
->>>>>> "operating-points-v2";
->>>>>> +
->>>>>> +             opp-1400000000 {
->>>>>> +                     opp-hz = /bits/ 64 <1400000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L4>;
->>>>>> +                     opp-peak-kBps = <16500000>;
->>>>>> +                     qcom,opp-acd-level = <0xa8295ffd>;
->>>>>> +                     opp-supported-hw = <0x3>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-1250000000 {
->>>>>> +                     opp-hz = /bits/ 64 <1250000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L3>;
->>>>>> +                     opp-peak-kBps = <16500000>;
->>>>>> +                     qcom,opp-acd-level = <0x882a5ffd>;
->>>>>> +                     opp-supported-hw = <0x7>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-1107000000 {
->>>>>> +                     opp-hz = /bits/ 64 <1107000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
->>>>>> +                     opp-peak-kBps = <16500000>;
->>>>>> +                     qcom,opp-acd-level = <0x882a5ffd>;
->>>>>> +                     opp-supported-hw = <0xf>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-1014000000 {
->>>>>> +                     opp-hz = /bits/ 64 <1014000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
->>>>>> +                     opp-peak-kBps = <14398438>;
->>>>>> +                     qcom,opp-acd-level = <0xa82a5ffd>;
->>>>>> +                     opp-supported-hw = <0xf>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-940000000 {
->>>>>> +                     opp-hz = /bits/ 64 <940000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
->>>>>> +                     opp-peak-kBps = <14398438>;
->>>>>> +                     qcom,opp-acd-level = <0xa82a5ffd>;
->>>>>> +                     opp-supported-hw = <0xf>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-825000000 {
->>>>>> +                     opp-hz = /bits/ 64 <825000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
->>>>>> +                     opp-peak-kBps = <12449219>;
->>>>>> +                     qcom,opp-acd-level = <0x882b5ffd>;
->>>>>> +                     opp-supported-hw = <0xf>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-720000000 {
->>>>>> +                     opp-hz = /bits/ 64 <720000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
->>>>>> +                     opp-peak-kBps = <10687500>;
->>>>>> +                     qcom,opp-acd-level = <0xa82c5ffd>;
->>>>>> +                     opp-supported-hw = <0xf>;
->>>>>> +             };
->>>>>> +
->>>>>> +             opp-666000000-0 {
->>>>>> +                     opp-hz = /bits/ 64 <666000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->>>>>> +                     opp-peak-kBps = <8171875>;
->>>>>> +                     qcom,opp-acd-level = <0xa82d5ffd>;
->>>>>> +                     opp-supported-hw = <0xf>;
->>>>>> +             };
->>>>>> +
->>>>>> +             /* Only applicable for SKUs which has 666Mhz as Fmax */
->>>>>> +             opp-666000000-1 {
->>>>>> +                     opp-hz = /bits/ 64 <666000000>;
->>>>>> +                     opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->>>>>> +                     opp-peak-kBps = <16500000>;
->>>>>
->>>>> This looks odd, why is it so high?
->>>>
->>>> You want max bandwidth on max opp
->>>
->>> Yes, but can it actually sustain / provide this BW?
->>>
->>
->> I'd have to trust Akhil on that one, but I have no reason to believe
->> otherwise.  Just pointing out we've done analogous things elsewhere
->> (for ex, cpu bw for sc7180-lite.dtsi)
+(By the way, I always recommend passing `--locked` to `cargo install`
+unless there is a good reason not to -- sadly it is not the default
+for that subcommand)
 
-Window's GPU KMD seems to vote Max bandwidth for this SKU, so I think
-this is fine. Our GPUs from last few generations can easily saturate DDR
-with the right usecase.
-
--Akhil
-
-> 
-> Ack. Then I'll wait for v2 with no deleting of compatible lines (a new
-> line here would just replace the existing one).
-> 
-> 
-
+Cheers,
+Miguel
 
