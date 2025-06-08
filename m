@@ -1,170 +1,307 @@
-Return-Path: <devicetree+bounces-183577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067BFAD11BD
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 11:47:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C11FBAD128A
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 16:10:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7AFB3ABF09
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 09:47:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F1E91888290
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 14:10:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35951F872D;
-	Sun,  8 Jun 2025 09:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB73822AE75;
+	Sun,  8 Jun 2025 14:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JDPPac+P"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CHyg7LiC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02188EEBB;
-	Sun,  8 Jun 2025 09:47:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25E917741
+	for <devicetree@vger.kernel.org>; Sun,  8 Jun 2025 14:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749376072; cv=none; b=KhuhmKEfWhN1/wvWtr1hOh5ggJeSXGfHaQGzcHggj9E3QN0+4QHxZjTi5OAes3WITBTsZMv4Ga4+eSxc6sLVnuqA0WPyLj9eR6s2cGAYHqHfwsYXki3o65ZWRU2Xk6Xww3RxJmIgrbWfeU1RjExdVN1vbgnoIIRbQwg83IPYpuk=
+	t=1749391826; cv=none; b=ZoEIEIcgFbZCgi0XrbWjkb3BUhtkrdzYCg7RnZdA34SOR2XPKHcxkjbJJTwoJhDnntOeIHoAm5Op54Iix0fEPmP+2hLz9bFQ4AyDPmEZmUCoOywr7UP0llb7PG7SVHHU4YDrMJOuXhcaOa2OuJN32lwjnWHNXPuNa37KMrj4C+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749376072; c=relaxed/simple;
-	bh=rpNI3IMbC6DwEi4B7NJPMihppGsO9Qhp2pkATeCsjOE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JahFb958e2IQI7juifkCTBczhyrTKQVkOfMGahaXzV9K+gJudPj0TDgZcUa26xzC2N/hzru/FHqlzOa7LGs0E1jUyl1nIq8Po+WxRyc/Yr3h6IOFmAZn3eFAS7HdiN8tElsofiWb4/gIhgCrUwXF4KFVY2JCmZ6YOYE46tPmkk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JDPPac+P; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749376070; x=1780912070;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rpNI3IMbC6DwEi4B7NJPMihppGsO9Qhp2pkATeCsjOE=;
-  b=JDPPac+PePkgqKXKANs3XSVK8Qt1BCz0oUe+TAg3qJ2L29StitRfVKAN
-   BRf7q/L+rybwyj9QGoxy/NwE4QUI/yc+DUuIaLKV5eVRJMz7piEejVY2e
-   F3OqkorRUlG5o6Kh9OC/Zygp1rd0lLMtWrcKRXLF4+9UBOtJuNRcy0ua8
-   p1L6prsTuQHgiuBEIyYvTSheidYGAnHwLEomtJkH4bqL73UumSx2zWCT2
-   f0bXHaIHsGq/4sIS7mjl0qzTawym4RZFV246jafYKPRdkagm1r9uFkMcT
-   SZZjnLy1fuk16inyYM3sGG4cVvw9czkBxPO5lDhS1ZO3vrV+Q/sfWXQgJ
-   Q==;
-X-CSE-ConnectionGUID: lnJs9U4CRCKBtgb0JhosLA==
-X-CSE-MsgGUID: oiQkpsc2SiK2xG5db/EYcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11457"; a="55261174"
-X-IronPort-AV: E=Sophos;i="6.16,220,1744095600"; 
-   d="scan'208";a="55261174"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2025 02:47:49 -0700
-X-CSE-ConnectionGUID: 65JjCYvHRB67cFOYb1OaCw==
-X-CSE-MsgGUID: kOnhTtSkQtSNSZY0g05BbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,220,1744095600"; 
-   d="scan'208";a="151107146"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 08 Jun 2025 02:47:47 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uOCcy-0006JF-1v;
-	Sun, 08 Jun 2025 09:47:44 +0000
-Date: Sun, 8 Jun 2025 17:47:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lukas Timmermann <linux@timmermann.space>, lee@kernel.org,
-	pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux@timmermann.space
-Subject: Re: [PATCH v4 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-Message-ID: <202506081754.yXYFC7WL-lkp@intel.com>
-References: <20250607215049.29259-3-linux@timmermann.space>
+	s=arc-20240116; t=1749391826; c=relaxed/simple;
+	bh=eRFqNCFkt+f4mqWQ/t/lLEJnab3T/eF+c+S1MTmC7OE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GQyT6gOJnHAcD0MpOrjQGdntoV9bX4NkgIWUXHwXSOhYYapFifUHgverFdHBAkM+vsbuKZGBYXT2EBGOX3IIzQGLEvRjeuV14KgD6EsSZ37lBBSZ0R8rgDq6EOQBm4Eyb5NXD4/G0ur5lTtQpQdcDQ++oDcH7IGlR8eVgMDjPWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CHyg7LiC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 558DTGBj002854
+	for <devicetree@vger.kernel.org>; Sun, 8 Jun 2025 14:10:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:to; s=
+	qcppdkim1; bh=yO2PTptqLO3J42jrF/h3pZfi+qlyfdweEdQ+r5qxEE8=; b=CH
+	yg7LiCRv4rvgF/3pTGCDSbQyGJkGoSqh0si9urg82KJ6HH2xb9C06FQMdw0CYuGN
+	jWBU1icw28udLpA7au2l4bsCbcgYkVDIc1BJTnmRundJQ7gP+D7NkglMphoG13iv
+	J303ljCEZEMFgzMkxCKCiIUzM0LVWCdKNkJsjS5T0rxwa/u0lq9eWCKYlNeLmvJ1
+	nqBSA+SpBarXvYlSq+7e4y3rJXyRZdEjQwXYPnsju7tg7Wl1gJMxohZKhBBgsAfl
+	JQJWfcBIkEnTXdHJYEzrEmJUd7kn0kOVqNjmGsQwZfJAXXScp6IfGSLNkp/AkxTW
+	vftf+rh/NNbYGRWDGI4w==
+Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com [209.85.160.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn62u1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 14:10:23 +0000 (GMT)
+Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-2e4a20bbd1aso3452176fac.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 07:10:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749391823; x=1749996623;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yO2PTptqLO3J42jrF/h3pZfi+qlyfdweEdQ+r5qxEE8=;
+        b=TAOHisnMTdO8pyCwRVnVA4gZ8cqv0McV4i+Wm/WQUD2aN5Lm07ULxQaU+rT77gdtXz
+         eVjgUHFKmfVCaSaTupxGfWskK3VrS460bvUcVW62Qblwc4YFeTyckGhdTOJU1SD6fhnZ
+         XK1CXQ6Q0t+vwoHMWlHvNyduKUNMoUdt+ja+SUKDdQAcdcRa89tcr/Q3P+kgoAwnKKIb
+         N5mnDCKywVXpjhsndlCRBu0h8phkAAMJTbL8vS0IW6uV8xhQlOETttXsHxcdna1AKNJy
+         741Cdu7CcPsYnB8akSg5iYQzQ/wSsHL3BpmOzZH5Y7xb79j+BQUzch28CshwQ+SbL5f0
+         e1Zg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNRMcf4siM1aA6B/XGFM2F+3c8SBuJyLdAa3wvlU2+towszL9xAYQpcuqrCs8H9JAGtceQUb7ffAnL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw80Xhg3j8VTLh9KMj1n+28pJYcf8DCFoZKxfzkE5iA6r8jAFjz
+	oAkE/NQ/YT0dAzNYOUj7Xsjle9ZnL3Krtvw41iJ4gMIezU0OF7VYuzuZicOQ55hggGc09Mkhd+F
+	Ihbx/QSbjKr2Qo5lcy+dubQfTwj569o6PjcmWY9q1B98iuVq8hDfbP9ktuaKbirP08ncQpRfCVI
+	owOF0cnZ9dJvMFhNpBviLMk4kygkDGCROQRGhJ2xU=
+X-Gm-Gg: ASbGncv1aqYXWk9bh5oS7XeqfmORW1QDRfsXlNqmKFTb9N//n8HiS3jbQW/j1FIEoCC
+	EHh/NV6A3/5WPhf6LsVrUi9EIePZuFLpD4P3ntYSdm+QPgwDev5IkdbHf7o0Hn/j153jaaEAjwB
+	sBSgMlE1fbtYj09Vvfqg55o2WlAIQ/GFDPeWs=
+X-Received: by 2002:a05:6870:a89b:b0:2b8:608d:5dd1 with SMTP id 586e51a60fabf-2ea24557e69mr2394047fac.18.1749391822713;
+        Sun, 08 Jun 2025 07:10:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF/1vxTU2Bz/RL3b0T47zztUUQuS+wl46jL0gULc1T9pUpmM4Jcmy2KcloGXMk7S33UepnxfJaeGsBnweZ2wPk=
+X-Received: by 2002:a05:6870:a89b:b0:2b8:608d:5dd1 with SMTP id
+ 586e51a60fabf-2ea24557e69mr2394030fac.18.1749391822287; Sun, 08 Jun 2025
+ 07:10:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250607215049.29259-3-linux@timmermann.space>
+References: <20250607-x1p-adreno-v1-0-a8ea80f3b18b@oss.qualcomm.com>
+ <20250607-x1p-adreno-v1-3-a8ea80f3b18b@oss.qualcomm.com> <wayrour74vlli27xrtxi2ff2v7q7ye2yknmk2mjpur5ry5gruv@hhh2mdb6lw2i>
+In-Reply-To: <wayrour74vlli27xrtxi2ff2v7q7ye2yknmk2mjpur5ry5gruv@hhh2mdb6lw2i>
+Reply-To: rob.clark@oss.qualcomm.com
+From: Rob Clark <rob.clark@oss.qualcomm.com>
+Date: Sun, 8 Jun 2025 07:10:11 -0700
+X-Gm-Features: AX0GCFsFNZiZEbNB5QOKdtpp_35NfPnwsAoCQZgzyWAJVSbekumFsonguuDtz3U
+Message-ID: <CACSVV03X5EyAb5yCPDn1ot8vOFV_dKG7f6+yO5t9srr31AiUKw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add GPU support to X1P42100 SoC
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA4MDExMiBTYWx0ZWRfX/iNb6+0kFix1
+ yasCJG0I/K8ydm74HYuWnyzeJgkb3W2/KbBEaCQpqN8CCFizK3xSVfN3zen3Kqoccmt5XR/tvRe
+ N7dpagHkAxoBsM7P8ETTYL7+EzezPbT46a3wCRcuE7U7Eh3Unu1LrW9/rZIzGZUevy9zzZn0dIH
+ 1oCTF3IS1fdQQsV/LBWGUuNOYbvp1U0bqGiKoyZfwNnQw6XPn1Wl62rZO0eRt3mJdb08hdK+hM2
+ Mq6Xgm/h45P/rxp1NnUfUsc9Phx26+WNJeD/D7cvUAnErcJEz4LieSnrpUXVkAiTnI6CRDRfTGW
+ E0lNS0eWcFurXQfdQMGuzjsxR3t+cVcc7QwRghBGEGzYOeDMVUJZbJitGbX2f+XiHofCB2bcwYR
+ xAXpSZlA5SO65Bmjp8y6ubn7fLKZT0Wu4D/l5tI9U+x8zofof/b8rPXRCZIXHXiaN0GQAksQ
+X-Proofpoint-GUID: 7hLk0blClLZ3CsL8UTylpYKXCDkXuQXy
+X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=684599cf cx=c_pps
+ a=CWtnpBpaoqyeOyNyJ5EW7Q==:117 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
+ a=EUspDBNiAAAA:8 a=rPe8LK6Ab3Gl33toulsA:9 a=QEXdDO2ut3YA:10
+ a=vh23qwtRXIYOdz9xvnmn:22
+X-Proofpoint-ORIG-GUID: 7hLk0blClLZ3CsL8UTylpYKXCDkXuQXy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-08_01,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
+ mlxlogscore=999 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1011 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506080112
 
-Hi Lukas,
+On Sat, Jun 7, 2025 at 1:17=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On Sat, Jun 07, 2025 at 07:45:01PM +0530, Akhil P Oommen wrote:
+> > X1P42100 SoC has a new GPU called Adreno X1-45 which is a smaller
+> > version of Adreno X1-85 GPU. Describe this new GPU and also add
+> > the secure gpu firmware path that should used for X1P42100 CRD.
+> >
+> > Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi    |   7 ++
+> >  arch/arm64/boot/dts/qcom/x1p42100-crd.dts |   4 +
+> >  arch/arm64/boot/dts/qcom/x1p42100.dtsi    | 121 ++++++++++++++++++++++=
++++++++-
+> >  3 files changed, 131 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/d=
+ts/qcom/x1e80100.dtsi
+> > index a8eb4c5fe99fe6dd49af200a738b6476d87279b2..558d7d387d7710770244fcc=
+901f461384dd9b0d4 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -8245,6 +8245,13 @@ sbsa_watchdog: watchdog@1c840000 {
+> >                       interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+> >               };
+> >
+> > +             qfprom: efuse@221c8000 {
+> > +                     compatible =3D "qcom,x1e80100-qfprom", "qcom,qfpr=
+om";
+> > +                     reg =3D <0 0x221c8000 0 0x1000>;
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <1>;
+> > +             };
+> > +
+> >               pmu@24091000 {
+> >                       compatible =3D "qcom,x1e80100-llcc-bwmon", "qcom,=
+sc7280-llcc-bwmon";
+> >                       reg =3D <0 0x24091000 0 0x1000>;
+> > diff --git a/arch/arm64/boot/dts/qcom/x1p42100-crd.dts b/arch/arm64/boo=
+t/dts/qcom/x1p42100-crd.dts
+> > index cf07860a63e97c388909fb5721ae7b9729b6c586..cf999c2cf8d4e0af8307825=
+3fd39ece3a0c26a49 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
+> > @@ -15,3 +15,7 @@ / {
+> >       model =3D "Qualcomm Technologies, Inc. X1P42100 CRD";
+> >       compatible =3D "qcom,x1p42100-crd", "qcom,x1p42100";
+> >  };
+> > +
+> > +&gpu_zap_shader {
+> > +     firmware-name =3D "qcom/x1p42100/gen71500_zap.mbn";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/qcom/x1p42100.dtsi b/arch/arm64/boot/d=
+ts/qcom/x1p42100.dtsi
+> > index 27f479010bc330eb6445269a1c46bf78ec6f1bd4..5ed461ed5cca271d4364788=
+8aa6eacac3de2ac9d 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1p42100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
+> > @@ -17,15 +17,134 @@
+> >  /delete-node/ &cpu_pd9;
+> >  /delete-node/ &cpu_pd10;
+> >  /delete-node/ &cpu_pd11;
+> > +/delete-node/ &gpu_opp_table;
+> >  /delete-node/ &pcie3_phy;
+> >
+> >  &gcc {
+> >       compatible =3D "qcom,x1p42100-gcc", "qcom,x1e80100-gcc";
+> >  };
+> >
+> > -/* The GPU is physically different and will be brought up later */
+> > +&gmu {
+> > +     /delete-property/ compatible;
+> > +     compatible =3D "qcom,adreno-gmu-x145.0", "qcom,adreno-gmu";
+> > +};
+> > +
+> > +&qfprom {
+> > +     gpu_speed_bin: gpu_speed_bin@119 {
+> > +             reg =3D <0x119 0x2>;
+> > +             bits =3D <7 9>;
+> > +     };
+> > +};
+> > +
+> >  &gpu {
+> >       /delete-property/ compatible;
+>
+> I think, you can drop this line.
+>
+> > +
+> > +     compatible =3D "qcom,adreno-43030c00", "qcom,adreno";
+> > +
+> > +     nvmem-cells =3D <&gpu_speed_bin>;
+> > +     nvmem-cell-names =3D "speed_bin";
+> > +
+> > +     gpu_opp_table: opp-table {
+> > +             compatible =3D "operating-points-v2-adreno", "operating-p=
+oints-v2";
+> > +
+> > +             opp-1400000000 {
+> > +                     opp-hz =3D /bits/ 64 <1400000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO_L4>;
+> > +                     opp-peak-kBps =3D <16500000>;
+> > +                     qcom,opp-acd-level =3D <0xa8295ffd>;
+> > +                     opp-supported-hw =3D <0x3>;
+> > +             };
+> > +
+> > +             opp-1250000000 {
+> > +                     opp-hz =3D /bits/ 64 <1250000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO_L3>;
+> > +                     opp-peak-kBps =3D <16500000>;
+> > +                     qcom,opp-acd-level =3D <0x882a5ffd>;
+> > +                     opp-supported-hw =3D <0x7>;
+> > +             };
+> > +
+> > +             opp-1107000000 {
+> > +                     opp-hz =3D /bits/ 64 <1107000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+> > +                     opp-peak-kBps =3D <16500000>;
+> > +                     qcom,opp-acd-level =3D <0x882a5ffd>;
+> > +                     opp-supported-hw =3D <0xf>;
+> > +             };
+> > +
+> > +             opp-1014000000 {
+> > +                     opp-hz =3D /bits/ 64 <1014000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO>;
+> > +                     opp-peak-kBps =3D <14398438>;
+> > +                     qcom,opp-acd-level =3D <0xa82a5ffd>;
+> > +                     opp-supported-hw =3D <0xf>;
+> > +             };
+> > +
+> > +             opp-940000000 {
+> > +                     opp-hz =3D /bits/ 64 <940000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_NOM_L1>;
+> > +                     opp-peak-kBps =3D <14398438>;
+> > +                     qcom,opp-acd-level =3D <0xa82a5ffd>;
+> > +                     opp-supported-hw =3D <0xf>;
+> > +             };
+> > +
+> > +             opp-825000000 {
+> > +                     opp-hz =3D /bits/ 64 <825000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_NOM>;
+> > +                     opp-peak-kBps =3D <12449219>;
+> > +                     qcom,opp-acd-level =3D <0x882b5ffd>;
+> > +                     opp-supported-hw =3D <0xf>;
+> > +             };
+> > +
+> > +             opp-720000000 {
+> > +                     opp-hz =3D /bits/ 64 <720000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_SVS_L2>;
+> > +                     opp-peak-kBps =3D <10687500>;
+> > +                     qcom,opp-acd-level =3D <0xa82c5ffd>;
+> > +                     opp-supported-hw =3D <0xf>;
+> > +             };
+> > +
+> > +             opp-666000000-0 {
+> > +                     opp-hz =3D /bits/ 64 <666000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> > +                     opp-peak-kBps =3D <8171875>;
+> > +                     qcom,opp-acd-level =3D <0xa82d5ffd>;
+> > +                     opp-supported-hw =3D <0xf>;
+> > +             };
+> > +
+> > +             /* Only applicable for SKUs which has 666Mhz as Fmax */
+> > +             opp-666000000-1 {
+> > +                     opp-hz =3D /bits/ 64 <666000000>;
+> > +                     opp-level =3D <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> > +                     opp-peak-kBps =3D <16500000>;
+>
+> This looks odd, why is it so high?
 
-kernel test robot noticed the following build errors:
+You want max bandwidth on max opp
 
-[auto build test ERROR on lee-leds/for-leds-next]
-[also build test ERROR on linus/master v6.15 next-20250606]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Lukas-Timmermann/dt-bindings-leds-Add-new-as3668-support/20250608-055330
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
-patch link:    https://lore.kernel.org/r/20250607215049.29259-3-linux%40timmermann.space
-patch subject: [PATCH v4 2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250608/202506081754.yXYFC7WL-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250608/202506081754.yXYFC7WL-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506081754.yXYFC7WL-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/leds/leds-as3668.c:137:16: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     137 |         chip_serial = FIELD_GET(AS3668_CHIP_ID2_SERIAL_MASK, chip_id2);
-         |                       ^
-   1 error generated.
-
-
-vim +/FIELD_GET +137 drivers/leds/leds-as3668.c
-
-   117	
-   118	static int as3668_probe(struct i2c_client *client)
-   119	{
-   120		u8 chip_id1, chip_id2, chip_serial, chip_rev;
-   121		struct as3668 *as3668;
-   122	
-   123		/* Check for sensible i2c address */
-   124		if (client->addr != 0x42)
-   125			return dev_err_probe(&client->dev, -EFAULT,
-   126					     "unexpected address for as3668 device\n");
-   127	
-   128		/* Read identifier from chip */
-   129		chip_id1 = as3668_read_value(client, AS3668_CHIP_ID1);
-   130	
-   131		if (chip_id1 != AS3668_CHIP_IDENT)
-   132			return dev_err_probe(&client->dev, -ENODEV,
-   133					"chip reported wrong id: 0x%tx\n", chip_id1);
-   134	
-   135		/* Check the revision*/
-   136		chip_id2 = as3668_read_value(client, AS3668_CHIP_ID2);
- > 137		chip_serial = FIELD_GET(AS3668_CHIP_ID2_SERIAL_MASK, chip_id2);
-   138		chip_rev = FIELD_GET(AS3668_CHIP_ID2_REV_MASK, chip_id2);
-   139	
-   140		if (chip_rev != AS3668_CHIP_REV1)
-   141			dev_warn(&client->dev, "unexpected chip revision\n");
-   142	
-   143		/* Print out information about the chip */
-   144		dev_dbg(&client->dev,
-   145			"chip_id: 0x%tx | chip_id2: 0x%tx | chip_serial: 0x%tx | chip_rev: 0x%tx\n",
-   146			chip_id1, chip_id2, chip_serial, chip_rev);
-   147	
-   148		as3668 = devm_kzalloc(&client->dev, struct_size(as3668, leds, AS3668_MAX_LEDS), GFP_KERNEL);
-   149		as3668->client = client;
-   150	
-   151		as3668_dt_init(as3668);
-   152	
-   153		/* Initialize the chip */
-   154		as3668_write_value(client, AS3668_CURRX_CONTROL, 0x55);
-   155		as3668_write_value(client, AS3668_CURR1, 0x00);
-   156		as3668_write_value(client, AS3668_CURR2, 0x00);
-   157		as3668_write_value(client, AS3668_CURR3, 0x00);
-   158		as3668_write_value(client, AS3668_CURR4, 0x00);
-   159	
-   160		return 0;
-   161	}
-   162	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+BR,
+-R
 
