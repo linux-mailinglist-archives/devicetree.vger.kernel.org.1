@@ -1,328 +1,129 @@
-Return-Path: <devicetree+bounces-183564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DE5BAD1032
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 23:52:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E25E0AD10C5
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 04:40:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1C257A38AB
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jun 2025 21:51:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B58116A409
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 02:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C52218821;
-	Sat,  7 Jun 2025 21:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0B9145B25;
+	Sun,  8 Jun 2025 02:40:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="SZzEyhhD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA0221ABA8;
-	Sat,  7 Jun 2025 21:52:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749333133; cv=none; b=ii7vxCL+QMQlriWGwPPtr7+YurgLYWCri9y9Z4FwnZPbF5VqD+7s0xAdCFAHKgjjy4h0iefQRoIihaBxR0ftXAmxHVKL7pqKNE1RfzOISI2Hmya52s/a6z2CaAQ16zMutS31CTLTpPNWiNM09ipCOfdpvjtrXe8Myf5RvO0KBK0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749333133; c=relaxed/simple;
-	bh=ro13YKGz88KYcj43BPL02gYx2FUdYxyATbykMLPoOio=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SxzGAd/9Pwn69XYuqDDPeef3/k/QsyY+V2sQINLgT+Q4xodt7vHSxM+ZrJ+SKKyjcOJOtWEkMSZLF5grvMqEGeQJNQmu5I/v/y+465WfWu9MuxnGv7fRm+UjCWOJPwmFKCBTpHvl5FiWh0Ch1VF1oVtMXwZqzds73FKrg5fbDL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bFBjg2RDlz9sqq;
-	Sat,  7 Jun 2025 23:52:07 +0200 (CEST)
-From: Lukas Timmermann <linux@timmermann.space>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@timmermann.space
-Subject: [PATCH v4 2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
-Date: Sat,  7 Jun 2025 23:50:49 +0200
-Message-ID: <20250607215049.29259-3-linux@timmermann.space>
-In-Reply-To: <20250607215049.29259-1-linux@timmermann.space>
-References: <20250607215049.29259-1-linux@timmermann.space>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EB4288DB;
+	Sun,  8 Jun 2025 02:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749350424; cv=pass; b=nBcZz10iMFvCaRTlBYfbGJ+zOWOd+zbAsntKsihGnXr6i3POZPwnKAOoOOvoUREacDZSk6AYZ2qYPRQ3Q3hxA07G/XvZYTNYmlIH3BeNMO166ZcgZg+40oUSeVR6unuhHC7ra7pvm0742tu13kEsL00YNZs2CXV/ufGR0lDUxNE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749350424; c=relaxed/simple;
+	bh=4JaWs42oRcbiCskMxvzOiMb1Ode/4TvCDQ0zEQk/uZQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tCimxx4xkv8TaCIvFkaG4UvVBZKRJBv5FVLtqz8TkY6+slQ826XFcselyx84tCXWkdLURbl3kUt1V/SCOtsdnURNSvUGt8eogeeRzz1vUY7rdYVr0IVMIRaD0HDadQ9lbogC6ah1T7LRhJt92JdXg5lMAUU/PG4eLuCaJez8wlo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=SZzEyhhD; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1749350381; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=UZPgJ884qwAlPtBPMwxlSHFsNL61bO6GNECSYc98aX0OY60p7luJqqJeJHqH3B5dYbmp9mRRxbAi2ZIdjdLk9vU0xr2ut7n3njZzgtak5bQkTC2aiAynO5TwRvFp1tSVrbbgJRSz0qk1+D5rcgV0lKtzxZ7xOzKNwWImk1sRZ+4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1749350381; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=OY6Q4B4SaMSAkmGry/tqLzhJiwrbuJVjfc9CQgmf7bU=; 
+	b=ANtmGHJZqIp5gHAEjtiQabnDZFEullr/QPDd1UELe1nMbXXNUMy7Tit6MB7ix95Ar22sOHKmADu08r8TKoUJTAo8WRomP4R+p2CTmRyXB6dHycOdjs/Aecj4Q3FC4CL/ohL4AqKeyHVZeHWVLkH+C5gFTn+ZcdPz+s+6i4IJm0E=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749350380;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=OY6Q4B4SaMSAkmGry/tqLzhJiwrbuJVjfc9CQgmf7bU=;
+	b=SZzEyhhD8DF75ycRGnEdjW1pVTqvVlm/aahvUhipU77Y6GySCFh5CA1d7QeUbzh9
+	YTJrhcLh+PSX0BkFaCuooVptdEGiTqmS56ev6glLyIBGv7NDqvW4Xx5Q8X4i7F4zt7D
+	JSO3amaqe7vLNZwy7bFZYh/FGVYBCOuTypzhZnas=
+Received: by mx.zohomail.com with SMTPS id 1749350378587260.1022596609505;
+	Sat, 7 Jun 2025 19:39:38 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH 0/2] remoteproc: cv1800b: Add initial support for C906L
+ processor
+Date: Sun, 08 Jun 2025 10:37:38 +0800
+Message-Id: <20250608-cv1800-rproc-v1-0-57cf66cdf6a3@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHL3RGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDUyNz3eQyQwsDA92igqL8ZF0DiyTjRMsUo1QTM0MloJaCotS0zAqwcdG
+ xtbUA9LWhFV4AAAA=
+X-Change-ID: 20250527-cv1800-rproc-08b3a9d2e461
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, Junhui Liu <junhui.liu@pigmoral.tech>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749350360; l=1502;
+ i=junhui.liu@pigmoral.tech; s=20250507; h=from:subject:message-id;
+ bh=4JaWs42oRcbiCskMxvzOiMb1Ode/4TvCDQ0zEQk/uZQ=;
+ b=/BdHfhW0WFtoqmv8DQ9O9k993tkWtrDz1R7QoVu0+q42mLd9NNIicU9j7a3FN3pejKfbBsDUy
+ UE7Q8Mo6yOlC7Dsnu2oeQl8Fo/8D3N/K3lzioG76K0aQfz+Oefx0+hp
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=d3i4H2mg9LUn4SQemoLAjLRQy0nTcyknIv6zgKMwiBA=
+X-ZohoMailClient: External
 
-Since there were no existing drivers for the AS3668 or related devices,
-a new driver was introduced in a separate file. Similar devices were
-reviewed, but none shared enough characteristics to justify code reuse.
-As a result, this driver is written specifically for the AS3668.
+This patch series introduces initial support for the C906L remote
+processor in the Sophgo CV1800B SoC. The CV1800B SoC integrates multiple
+cores, including a main application core running Linux, a C906L core
+typically running RTOS, and an 8051 MCU.
 
-Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+The C906L is an asymmetric processor designed to typically run RTOS.
+This patch adds the basic infrastructure to support remoteproc
+management of the C906L processor, including firmware loading and basic
+control (start/stop) from the main Linux core. Mailbox-related
+functionality will be added in a separate patch.
+
+The C906L remoteproc relies on the reset controller [1] to function
+correctly.
+
+A branch for testing is available at [2].
+
+Link: https://lore.kernel.org/all/20250209122936.2338821-1-inochiama@gmail.com/ [1]
+Link: https://github.com/pigmoral/linux/tree/cv1800-rproc-test [2]
+
 ---
- MAINTAINERS                |   1 +
- drivers/leds/Kconfig       |  13 +++
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-as3668.c | 196 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 211 insertions(+)
- create mode 100644 drivers/leds/leds-as3668.c
+Junhui Liu (2):
+      dt-bindings: remoteproc: Add C906L rproc for Sophgo CV1800B SoC
+      drivers: remoteproc: Add C906L controller for Sophgo CV1800B SoC
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 091206c54c63..945d78fef380 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-+F:	drivers/leds/leds-as3668.c
- 
- ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
- M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a104cbb0a001..8cfb423ddf82 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -100,6 +100,19 @@ config LEDS_ARIEL
- 
- 	  Say Y to if your machine is a Dell Wyse 3020 thin client.
- 
-+config LEDS_AS3668
-+	tristate "LED support for AMS AS3668"
-+	depends on LEDS_CLASS
-+	depends on I2C
-+	help
-+	  This option enables support for the AMS AS3668 LED controller.
-+	  The AS3668 provides up to four LED channels and is controlled via
-+	  the I2C bus. This driver offers basic brightness control for each
-+	  channel, without support for blinking or other advanced features.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-as3668.
-+
- config LEDS_AW200XX
- 	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 2f170d69dcbf..983811384fec 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
- obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
- obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
- obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
-+obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
- obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
- obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
- obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
-diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
-new file mode 100644
-index 000000000000..e3f90078f6ec
---- /dev/null
-+++ b/drivers/leds/leds-as3668.c
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ *  Osram AMS AS3668 LED Driver IC
-+ *
-+ *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/uleds.h>
-+
-+#define AS3668_MAX_LEDS 4
-+
-+/* Chip Registers */
-+#define AS3668_CHIP_ID1 0x3e
-+#define AS3668_CHIP_ID2 0x3f
-+
-+#define AS3668_CHIP_ID2_SERIAL_MASK GENMASK(7, 4)
-+#define AS3668_CHIP_ID2_REV_MASK GENMASK(3, 0)
-+
-+#define AS3668_CURRX_CONTROL 0x01
-+#define AS3668_CURR1 0x02
-+#define AS3668_CURR2 0x03
-+#define AS3668_CURR3 0x04
-+#define AS3668_CURR4 0x05
-+
-+/* Constants */
-+#define AS3668_CHIP_IDENT 0xa5
-+#define AS3668_CHIP_REV1 0x01
-+
-+struct as3668_led {
-+	struct led_classdev cdev;
-+	struct as3668 *chip;
-+	struct fwnode_handle *fwnode;
-+
-+	int num;
-+};
-+
-+struct as3668 {
-+	struct i2c_client *client;
-+	struct as3668_led leds[AS3668_MAX_LEDS];
-+};
-+
-+static int as3668_read_value(struct i2c_client *client, u8 reg)
-+{
-+	return i2c_smbus_read_byte_data(client, reg);
-+}
-+
-+static int as3668_write_value(struct i2c_client *client, u8 reg, u8 value)
-+{
-+	int err = i2c_smbus_write_byte_data(client, reg, value);
-+
-+	if (err)
-+		dev_err(&client->dev, "error writing to reg 0x%tx, returned %d", reg, err);
-+
-+	return err;
-+}
-+
-+static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+
-+	return as3668_read_value(led->chip->client, AS3668_CURR1 + led->num);
-+}
-+
-+static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+
-+	as3668_write_value(led->chip->client, AS3668_CURR1 + led->num, brightness);
-+}
-+
-+static int as3668_dt_init(struct as3668 *as3668)
-+{
-+	struct device *dev = &as3668->client->dev;
-+	struct as3668_led *led;
-+	struct led_init_data init_data = {};
-+	int err;
-+	u32 reg;
-+	int i = 0;
-+
-+	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
-+		err = of_property_read_u32(child, "reg", &reg);
-+		if (err)
-+			dev_err(dev, "unable to read device tree led reg, err %d", err);
-+
-+		i = reg;
-+
-+		if (i < 0 || i > AS3668_MAX_LEDS) {
-+			dev_err(dev, "unsupported led reg %d\n", i);
-+			return -EOPNOTSUPP;
-+		}
-+
-+		led = &as3668->leds[i];
-+		led->fwnode = of_fwnode_handle(child);
-+
-+		led->num = i;
-+		led->chip = as3668;
-+
-+		led->cdev.max_brightness = U8_MAX;
-+		led->cdev.brightness_get = as3668_brightness_get;
-+		led->cdev.brightness_set = as3668_brightness_set;
-+
-+		init_data.fwnode = led->fwnode;
-+		init_data.default_label = ":";
-+
-+		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-+		if (err) {
-+			dev_err(dev, "failed to register %d LED\n", i);
-+			return err;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int as3668_probe(struct i2c_client *client)
-+{
-+	u8 chip_id1, chip_id2, chip_serial, chip_rev;
-+	struct as3668 *as3668;
-+
-+	/* Check for sensible i2c address */
-+	if (client->addr != 0x42)
-+		return dev_err_probe(&client->dev, -EFAULT,
-+				     "unexpected address for as3668 device\n");
-+
-+	/* Read identifier from chip */
-+	chip_id1 = as3668_read_value(client, AS3668_CHIP_ID1);
-+
-+	if (chip_id1 != AS3668_CHIP_IDENT)
-+		return dev_err_probe(&client->dev, -ENODEV,
-+				"chip reported wrong id: 0x%tx\n", chip_id1);
-+
-+	/* Check the revision*/
-+	chip_id2 = as3668_read_value(client, AS3668_CHIP_ID2);
-+	chip_serial = FIELD_GET(AS3668_CHIP_ID2_SERIAL_MASK, chip_id2);
-+	chip_rev = FIELD_GET(AS3668_CHIP_ID2_REV_MASK, chip_id2);
-+
-+	if (chip_rev != AS3668_CHIP_REV1)
-+		dev_warn(&client->dev, "unexpected chip revision\n");
-+
-+	/* Print out information about the chip */
-+	dev_dbg(&client->dev,
-+		"chip_id: 0x%tx | chip_id2: 0x%tx | chip_serial: 0x%tx | chip_rev: 0x%tx\n",
-+		chip_id1, chip_id2, chip_serial, chip_rev);
-+
-+	as3668 = devm_kzalloc(&client->dev, struct_size(as3668, leds, AS3668_MAX_LEDS), GFP_KERNEL);
-+	as3668->client = client;
-+
-+	as3668_dt_init(as3668);
-+
-+	/* Initialize the chip */
-+	as3668_write_value(client, AS3668_CURRX_CONTROL, 0x55);
-+	as3668_write_value(client, AS3668_CURR1, 0x00);
-+	as3668_write_value(client, AS3668_CURR2, 0x00);
-+	as3668_write_value(client, AS3668_CURR3, 0x00);
-+	as3668_write_value(client, AS3668_CURR4, 0x00);
-+
-+	return 0;
-+}
-+
-+static void as3668_remove(struct i2c_client *client)
-+{
-+	as3668_write_value(client, AS3668_CURRX_CONTROL, 0x0);
-+}
-+
-+static const struct i2c_device_id as3668_idtable[] = {
-+	{"as3668"},
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, as3668_idtable);
-+
-+static const struct of_device_id as3668_match_table[] = {
-+	{.compatible = "ams,as3668"},
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, as3668_match_table);
-+
-+static struct i2c_driver as3668_driver = {
-+	.driver = {
-+		.name           = "leds_as3668",
-+		.of_match_table = as3668_match_table,
-+	},
-+	.probe          = as3668_probe,
-+	.remove         = as3668_remove,
-+	.id_table       = as3668_idtable,
-+};
-+
-+module_i2c_driver(as3668_driver);
-+
-+MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
-+MODULE_DESCRIPTION("AS3668 LED driver");
-+MODULE_LICENSE("GPL");
+ .../bindings/remoteproc/sophgo,cv1800b-c906l.yaml  |  68 ++++++
+ drivers/remoteproc/Kconfig                         |   9 +
+ drivers/remoteproc/Makefile                        |   1 +
+ drivers/remoteproc/sophgo_cv1800b_c906l.c          | 233 +++++++++++++++++++++
+ 4 files changed, 311 insertions(+)
+---
+base-commit: 8630c59e99363c4b655788fd01134aef9bcd9264
+change-id: 20250527-cv1800-rproc-08b3a9d2e461
+
+Best regards,
 -- 
-2.49.0
+Junhui Liu <junhui.liu@pigmoral.tech>
 
 
