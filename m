@@ -1,139 +1,162 @@
-Return-Path: <devicetree+bounces-183627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACA58AD14B9
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 23:32:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC8DAD14D8
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 23:48:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3599F188752D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 21:32:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE0DC1682DB
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 21:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91ABF255F4C;
-	Sun,  8 Jun 2025 21:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3A91FF601;
+	Sun,  8 Jun 2025 21:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w9VG/uwr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Aem3U1Hs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB3026AEC;
-	Sun,  8 Jun 2025 21:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5960319D880
+	for <devicetree@vger.kernel.org>; Sun,  8 Jun 2025 21:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749418321; cv=none; b=CpVptAhiB0EHL7fUbUNcBBMQil3R2mWBtegvRmpLuYZ37NBLndDr5qOA5OVWcSZRyxCcAjLvaq5vXKfXjlInE0svYAejJlAahiARt85rF/jWtKaiq25a4gb+I6A12weCJS054hU6j4ZynUtDWxtiopJw7AOGXhnj9vvxMQj4J9w=
+	t=1749419324; cv=none; b=F0F+oUMy1GFWYSd53ecu7Hm3jpRruA5Xv8/L8lmvx+U2yyxiySq7jDC5obDhv6zpK6KMDRdxEZ8+76/LZjN/rfsDv+l5d1Gwym4OlQV+6syxeHjW+t4v/W+/ZSQ+UaFGSZIFc5qGvUY/PfTn+1f3dZ49IhaVdOZQhOFyue2iqMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749418321; c=relaxed/simple;
-	bh=ulUePR5jT4qAREe0JlQxVCloNhSU+AG4wpLgSicpXVQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ap7n79IiT76/tx5ab+wcmkvfny4n+yfCyrMl6PbADAhTep9FuyrbTdfUUJ0X10/wrNilfH7qgMyGz7WRp1qm/OjxgVX3b2Ycgn6qFHaQqat7gojSjKUneicONGpC8KvrZKJrXCZW4y98NQ4w7tCmGSViwMIW2jGUS32EKiFCoWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w9VG/uwr; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=cNR/B7AqzdKfH857DzdE8tOVpJSvBSdIIAm71LoG8+Q=; b=w9VG/uwrH6ldVIbDNCSzexwlcA
-	0IkhUzqmyvjr8S5smyyX/m9une4wVH4uaSieDcpqc0vdEgdI/OJckwaOmoF0++WOuysWVwbdKKNOO
-	DZiNCTs/0sijtcNrgbwvQmednFxrbPPUH+WXRH8ZYxfB17hNyUJj3xP7iMFp8IU13dFI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uONcB-00F6it-L9; Sun, 08 Jun 2025 23:31:39 +0200
-Date: Sun, 8 Jun 2025 23:31:39 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1749419324; c=relaxed/simple;
+	bh=ueSxy0KQcD4C4HO5vVXnvVnlTMPX/SyWBmTCyfz3lOw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZRDYc/IXXOcyT6fxgm29LREvAZQ5ahAnPoAM+fWJ5p3Ae4srvFW2EiNtt1/Y4vFwsgq3ga+/iiImMDQ98hw35mGLbTL3ImK8UePAh7bQi2Sliv7szUk2Zpl4WHi1sseiaZZ36N/ji19Vn2UbC64noYwlibpMqd3xfEkDR0+pNzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Aem3U1Hs; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b2c4331c50eso2824557a12.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 14:48:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749419322; x=1750024122; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xWHZLAujtNtqfPCbaJxJNzcdk2VJW2Y+hzR2ZXPGjq4=;
+        b=Aem3U1HsiFcrOvo0jK2pAZoZTF721STGsY7Nw632YaAWmWguuUg36wzsphOio6uw2N
+         VxOklBQRD9SBsX2yrKAfGdUxI08ZzZQW27zy70R6KK7Ik/Pnadib90cqAYCsb6TjZXZS
+         cWfHI0kIOpVFFCNblo1BkWwj/z4Nxnhv3wDGmIVi/9Ulww6qiVf47ZJbM0oZQMfxyyR+
+         EmIi1ezvYjnNVtkPtSrLCoHM7FsVfb/8w2CFbMYYu7zMddFvtpM1RJyQIKaYchA6ykSP
+         Z6040yRo2fVbNMFxueWWr5RabMC/iQLuIwmjGI2HcI+I1/aDufvyyITxK39fWzoCesXq
+         c6Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749419322; x=1750024122;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xWHZLAujtNtqfPCbaJxJNzcdk2VJW2Y+hzR2ZXPGjq4=;
+        b=qKoPhh3387otNor9iHIAZcNJjXTDUN9GnlmJHX0ADRC00b3Hn8Se02T8Vs9b8d+TVp
+         dZuF+BKh2BWCQuEpt3YMQrDxRarI5DX1+UAicPVQOKXSNhBXou7fr99jv6A2zaap1CWO
+         2xWe+Br2tmaxHouM7Pky4Do/fWf5ME9kwMv3TQXs6MD+zIBxyGyiKdVJMpMy103x2nJq
+         sE19HovuFagYmhlmA2t56mrLDb+pAaezwUU4M/f4jEHvOhNQvKSc8rocx58+iBnQedh6
+         Bl+BPGec4VSFuQHxbFZ6rPbjA94fscxp3M7Dlt5ZGmW14aWw1akTY6dsJJsf9yO89l/+
+         5iWQ==
+X-Gm-Message-State: AOJu0YzEmAr/tP41jNzz23ZCPBaU2vSJrL5xVSpfoCFPGBO0ivcDDaDe
+	YrktMeR0QzvcIYgBcCSi3T3+93EVO3M/v5r7GNJaFlIvc9PXmz8gqSHrVpxeao4R
+X-Gm-Gg: ASbGncsI2p9idADFW0yZSyksTXHnMpaiWHfkX2hS9Ect7+IWSKAISaOa36TFjd0LkoT
+	v067VagsqngSgImRA9bOt11i2GwXbe8RiKARq0QE0dC+kkHb1IpLR446RABdtJV7kpRX/fL5O/R
+	rcJToy3pRhVDUj6/2k8ecnH05HOlah0MbpQKT2qi0Nw1gFPPcCfJahaqLYa83ZqErAzwpyM0GM+
+	7W6yNBfkezk+JA8Skd3Kdop1If6a/zBewPliy8C+FZ2CtwwGuxScJ9FCeEINE2X5Dtf0eGQIqNE
+	4EiHi99VFIsDcTfnbRSaLnjKvWbu/jo9F0zIMtlD4JpXYO2u7/UUDtgbAldZzzov8GMnei9aO/j
+	H2y8=
+X-Google-Smtp-Source: AGHT+IFFvtPT1+mFe/G+wPjO7ZMHcbj5JcqInw9t1EpwtS4T+MbJwD9yoKUdTFMnMVUTRtTk5YAjfQ==
+X-Received: by 2002:a17:902:dad0:b0:234:c5c1:9b73 with SMTP id d9443c01a7336-23601ec356fmr160627945ad.36.1749419322346;
+        Sun, 08 Jun 2025 14:48:42 -0700 (PDT)
+Received: from shankari-IdeaPad.. ([49.128.169.113])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603507401sm42710725ad.230.2025.06.08.14.48.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jun 2025 14:48:41 -0700 (PDT)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Jia-Wei Chang <jia-wei.chang@mediatek.com>,
-	Johnson Wang <johnson.wang@mediatek.com>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 12/13] arm64: dts: mediatek: mt7988a-bpi-r4: add sfp
- cages and link to gmac
-Message-ID: <934b1515-2da1-4479-848e-cd2475ebe98d@lunn.ch>
-References: <20250608211452.72920-1-linux@fw-web.de>
- <20250608211452.72920-13-linux@fw-web.de>
+	Matthew Gerlach <matthew.gerlach@altera.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH] dt-bindings: arm: Convert Altera SDRAM EDAC binding to YAML
+Date: Mon,  9 Jun 2025 03:18:22 +0530
+Message-Id: <20250608214822.192885-1-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250608211452.72920-13-linux@fw-web.de>
+Content-Transfer-Encoding: 8bit
 
-> +&gmac1 {
-> +	phy-mode = "internal";
-> +	phy-connection-type = "internal";
+Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
+.txt format to a YAML schema. This defines the compatible strings,
+required properties, and a usage example.
+The SDRAM EDAC controller monitors ECC errors on the memory bus and
+requires access to SDR registers and an ECC interrupt line.
 
-ethernet-controller.yaml says:
+Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+---
+ .../arm/altera/socfpga-sdram-edac.yaml        | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
 
-  phy-connection-type:
-    description:
-      Specifies interface type between the Ethernet device and a physical
-      layer (PHY) device.
-    enum:
-      # There is not a standard bus between the MAC and the PHY,
-      # something proprietary is being used to embed the PHY in the
-      # MAC.
-      - internal
-      - mii
-      - gmii
-  ...
-
-  phy-mode:
-    $ref: "#/properties/phy-connection-type"
-
-
-so phy-mode and phy-connection-type are the same thing.
-
-> +	/* SFP2 cage (LAN) */
-> +	sfp2: sfp2 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&i2c_sfp2>;
-> +		los-gpios = <&pio 2 GPIO_ACTIVE_HIGH>;
-> +		mod-def0-gpios = <&pio 83 GPIO_ACTIVE_LOW>;
-> +		tx-disable-gpios = <&pio 0 GPIO_ACTIVE_HIGH>;
-> +		tx-fault-gpios = <&pio 1 GPIO_ACTIVE_HIGH>;
-> +		rate-select0-gpios = <&pio 3 GPIO_ACTIVE_LOW>;
-> +		maximum-power-milliwatt = <3000>;
-
-sff,sfp.yaml says:
-
-  maximum-power-milliwatt:
-    minimum: 1000
-    default: 1000
-    description:
-      Maximum module power consumption Specifies the maximum power consumption
-      allowable by a module in the slot, in milli-Watts. Presently, modules can
-      be up to 1W, 1.5W or 2W.
-
-I've no idea what will happen when the SFP core sees 3000. Is the
-comment out of date?
-
-	Andrew
+diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+new file mode 100644
+index 000000000000..6e31632b09de
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/altera/socfpga-sdram-edac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera SOCFPGA SDRAM Error Detection and Correction (EDAC)
++
++maintainers:
++  - Matthew Gerlach <matthew.gerlach@altera.com>
++
++description: |
++  This describes the Altera SOCFPGA SDRAM EDAC controller which monitors
++  ECC errors from the SDRAM controller. It requires access to SDRAM
++  controller registers and an interrupt line for ECC event reporting.
++
++properties:
++  compatible:
++    enum:
++      - altr,sdram-edac
++      - altr,sdram-edac-a10
++
++  altr,sdr-syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the SDRAM system controller (SDR) syscon node.
++
++  interrupts:
++    maxItems: 1
++    description:
++      Interrupt specifier for the ECC error interrupt.
++
++required:
++  - compatible
++  - altr,sdr-syscon
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    sdramedac {
++        compatible = "altr,sdram-edac";
++        altr,sdr-syscon = <&sdr>;
++        interrupts = <0 39 4>;
++    };
++...
+-- 
+2.34.1
 
 
