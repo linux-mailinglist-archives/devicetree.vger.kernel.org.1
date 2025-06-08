@@ -1,117 +1,130 @@
-Return-Path: <devicetree+bounces-183594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB3AAD138A
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 19:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 386ABAD13D4
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 20:46:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9A65188A523
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 17:14:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7DF9188B116
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 18:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A208A199947;
-	Sun,  8 Jun 2025 17:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C3B18DB1F;
+	Sun,  8 Jun 2025 18:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K9lf2STX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mqPQASrM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D25417A586;
-	Sun,  8 Jun 2025 17:14:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377301373;
+	Sun,  8 Jun 2025 18:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749402873; cv=none; b=fvPqh2nOVAIDC6N17CRUJOD3wO/QM40Fp1nBZpaj4qNYIhkOtJiRVewv0cJjKCuZBbkiAgg+iHdIUj/lSFKVVoyKP+vOmHakHxbRzVvmhKVg5DIS66BRgyuWbi+ipurlkyl07qOe1TuqJAh4AV5/Te/tDpBi//AYbe66gvQ9J+c=
+	t=1749408365; cv=none; b=RvKnljOeFGJOqoi4y/YaI9QB40cv2cceD15TuKPM7Je5R3W7PKMvg101wnMkX/2z8JUSz97ZZBoiyVnJMY4mbdt0/zukzO6Hb7akWSVaxgPqAQfOiws3SQkAKRiF4EixOYwQpOXv587SNLrUcuInjwrTjkahOoZkJhGbZ8fNPKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749402873; c=relaxed/simple;
-	bh=RKQPMPxj4MfkIMcsHYvMcLK9KWRbyjeOgrUKCkOD1Ys=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Maf4XVt8NusK5YaUCCkSuE35pFstCkCaeXVQ+ofhkqXy0dhxSea9fNcuJWTXtpc3TU0hfrFsHbQNW+ARgJXbxj99sdeORaUOqX9ixCoDMmAauhGa06OK1DhXn3Y2KXLclhB64+egqgsvhLuGN4n9TSifK9o1SfOPBmtsrkGBJOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K9lf2STX; arc=none smtp.client-ip=209.85.216.54
+	s=arc-20240116; t=1749408365; c=relaxed/simple;
+	bh=Qs6+HE89AUgmyAavkV7HuAS3JlNL54D/qBhAGlU+hDs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=u0rK8Z8/IR/8ulCFmKOFloZOIhReZ0IHnlqLY32m2ekOf8jJiP1QnxWgL9kZmLwVaiWUq8VtiEzXHAGKb8hzEu78h6PloxeS8LNZNJmBFHwqvaVxkQ793as4QM9aFKqdlDPSZ4yD49V65zuIuwaAdDb04q5GzXG/A+KrG3mUHpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mqPQASrM; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-313290ea247so538643a91.3;
-        Sun, 08 Jun 2025 10:14:31 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a4ef2c2ef3so3077661f8f.2;
+        Sun, 08 Jun 2025 11:46:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749402871; x=1750007671; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RKQPMPxj4MfkIMcsHYvMcLK9KWRbyjeOgrUKCkOD1Ys=;
-        b=K9lf2STX2oVoTmZF2LnZFBFDN0nnG19hxr21QuqpTGdPKUPaZ7/P4OXYddSykL9/+r
-         kAy+fgowV0dxkOkaepM7tx0u35+PBJHztZhtWNRAyqhWjweX4PGaP1+666s6ZGj4Qm5j
-         Q3ht9Kfig5YGxuCo9Lux/HLA0903r0EU7BLCOAuqumU3se1ZdUcavbfzOU1kuTauV7wv
-         RgjTSesCiB85ipkDEJ1M79ow7mfyZu0RuCtSEQKSOdyLSIcfgbZTnACJwqc5xWHUvSuB
-         38zr1VkVJ2v2aFXMnRTjPas2VvmokqhFnjmWw1agnBUVKuNLorXmnmpCdtmHgrl2J5PE
-         MKDQ==
+        d=gmail.com; s=20230601; t=1749408362; x=1750013162; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CDenIljNSTVSHWuGkdw4tF8oL0H0P+4SvxvPT0+Mmn8=;
+        b=mqPQASrMn0oDfkpbxi3mkxvMmOwcBlq/Lpo2jS2Wb28NDRS3ff15byZWO+HBGeL+Vr
+         5iNM3gU0nzEiqdOW618NCJR3XuBgm5XggyQ0zn9SGJEG69sdLQl9+ikDxFeLPu9oRGnL
+         m4usTtZHmoRugQtkxIKdrCj3Em0PK2wn4w8FEeicJdCCn4tH97kmBoCTD+FFiEzCXrWc
+         Gge8XEhBtK23tUnDKy55T8xSUoaJPoDyR8EBw/fOxKNUm5Y/i2v8PZORxg9ymTL0B8pz
+         KaXZsaTnjdrLMtIyhmvaZ2X+Cub70wxadEonN9koCGz4tSZrCVi46vqHchTRuKCNXjel
+         375w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749402871; x=1750007671;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RKQPMPxj4MfkIMcsHYvMcLK9KWRbyjeOgrUKCkOD1Ys=;
-        b=Mbbg8scQs243PmI26VGm2wyaPWuRGPsQpNgMaEAqhwMHsp7nfO0SvrfaYMLTVMPV3J
-         swZ7ZSsca+0AlXrHVntf9Ta5WsrA3ePzQcPGEnyucnrPkQpcFBX7FRTvQ4YEvNVckmph
-         +v4lEXybx4ssMKtyzfBxVtGJXtrwCeINyPhnUB9TTVWVagpZrgqzxcPgS8uzmcVcSdLv
-         bWdhzMJ7UqPdrAS3WcO/XiKq+rahi/enfpN7aekTRnNiQ1lh28lXozwjramXFFneHhC6
-         8JqeUss+For5u2AFS2vrou+ZwS8W59fCQulFb81HKtZCFHJD8pVuxb2HI6p7WG7HwtYI
-         Gqcw==
-X-Forwarded-Encrypted: i=1; AJvYcCVX28QrazivnmxTBLvF94KN8AurV6kbWuc0A39F5OhnP0yi+iBt+ZJ1bU3RP5V5gMoosY1JxaCYdGpEQyFN@vger.kernel.org, AJvYcCVyICOZCOXbOjK/jfK/iU/la+MdQWyuAmFDl7nyjFvutBrxYKKEDj9TkXJlEN3nAuKnKCMprWKu9uzF@vger.kernel.org, AJvYcCW2An79ZBgg22xCl7HrJ71IIHZfi4bo8MbEGb/x/0JyDmdpHSVrzdiJ/U9tqU7xxA8D/BWbxDZjpyY7@vger.kernel.org, AJvYcCXRMosJzSV1UAFOr5++ONFu2JDZthH2LVqKFYU2YMEgq7vayFIHVbsOQ6NHAs7J99JarF0UrQuQmF9qbMhn9gE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE4ymzSZ8QZKK8q0Cw18BjiuEVPWWkfc7ABoKj1r5FWNuPrpaU
-	AZo2WdYAkrmLmPDuAom5YFBN9IWUc5TSgX8QzrY2XBUR73FBMZmG+tNKkmm18v8N/dnoLEBbG8z
-	DTbw/h/8P/Iyf87IeWN8hIcEXJcTRaCM=
-X-Gm-Gg: ASbGncvFm5N4SHenJb808/FYURddLc+givmqMTwhs//ptb3E4o59kbR+iDMs9nGq7yv
-	8Jqo0gUy3W/eeDLP07pYRUqoMFyc21LiiJ9dkzRHAPcVS3LRQbMXa+VS1AiYjpLPqed08wbxolQ
-	C4ng7M0LjzMTLcxH7RbnqFLmrx81KpZ9KG
-X-Google-Smtp-Source: AGHT+IEBvvvrAwdUwi0gkdHeXQhnZUDJ4usrBz8GyLnmW1wPT6jaQZ8Mxnlnj8F8TSVPOxQPYUkvrhO9C3hSgDaoKWQ=
-X-Received: by 2002:a17:90b:4b85:b0:313:2bfc:94c with SMTP id
- 98e67ed59e1d1-3134e43144amr5102920a91.8.1749402871506; Sun, 08 Jun 2025
- 10:14:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749408362; x=1750013162;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CDenIljNSTVSHWuGkdw4tF8oL0H0P+4SvxvPT0+Mmn8=;
+        b=MvrAlpY5Ibhk78i5UalBlxnyIyCrVfquhvo/OVdz4qMvuaixWX8rkGywETjrT+ddru
+         r8FuBofUnPVVWxnE38T67eEVdGZx8aw8iIE5O5KWnZgbzFqGWUrt4TfzB0W7mneJEiTH
+         tqXGIU9vAgwf4xy4hh3k+6I/fpMnpxloiAHlPLCfwe33TGL9T+3lwWBu39UNCMWsBvCO
+         JlT9kOddC0oxIyxJQwwaMLXNgeCG0I9pG3BL2oU+U+aiZb0LsCMC8X+hwCANwWeKBLTr
+         Jq7MacfHhTyo7/zBCUzEZ6RQtP3fc84eta+ozY7/tOPXnYrOLU4sQPO39a/s9kFzIe+x
+         ymbw==
+X-Forwarded-Encrypted: i=1; AJvYcCW+1PvsH7PD7WAGwTbwtqOFjgrhpWy/spauNy2Odkc8LE0iTJ4jdwbUjI7m2U/f8N31diwofN3+Vlyq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDNJFLUMgDHGGxLZ5DqzNcA+9UMvYQ4VIHhAUYZZgzN60BpX/r
+	NhLtKmOzD3ZKSUz0mZfIRY8gUkCGZgmzow5GHoT2n3JrDVBmxs8y20FoeC/1o5zc
+X-Gm-Gg: ASbGncv20Z125uSXCSp4/vyQNMuipaQz+jPrgv3Y1awShB5D//gOknnj1DQVwu/vXur
+	lAMHRm8an0K+mr7E2H+nRLWZS7M4fnARlNgDgGGBDg440h2n4KKQOsbifj0knrZV2r6q6MnHQ4K
+	cE9HN0plCJnAplRo37ET17zK1Teuxb4IppzM0s6dd67tZRtU495w+kLKr8Qq7GnPShUUuAcVOgT
+	rLP4b0NSlPP0me3QghDgGe4iRQ3qtBUAxMyDOhAuRIE7lovdioX1AF8QpG+7TVJ8s2d/8iuencj
+	Cq3zJvupn8xGM8ga3+Uk3jtdiZ/1t8weLeXjIxhNiWBN46E5rdzAXjOyOfGz6yXffYZlsQ8Lwhm
+	Xja0IpJZEHq4R0ZWf+czdDTEX
+X-Google-Smtp-Source: AGHT+IHCtGPfKczA/GlmJA89eJ/9KAvZ/o+z5gIzz0lAOOr8ivEFbvRnTl6W8h/FpOszEGG+Dg9xVw==
+X-Received: by 2002:a5d:5f4e:0:b0:3a5:1c0d:85e8 with SMTP id ffacd0b85a97d-3a531ca9955mr8566031f8f.22.1749408362143;
+        Sun, 08 Jun 2025 11:46:02 -0700 (PDT)
+Received: from masalkhi.. (ip-109-43-113-112.web.vodafone.de. [109.43.113.112])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5324361ffsm7621418f8f.47.2025.06.08.11.46.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jun 2025 11:46:01 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: arnd@arndb.de,
+	gregkh@linuxfoundation.org,
+	W_Armin@gmx.de,
+	luoyifan@cmss.chinamobile.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	abd.masalkhi@gmail.com
+Subject: [PATCH v4 0/3] Add support for STMicroelectronics M24LR EEPROM/NFC chips
+Date: Sun,  8 Jun 2025 18:27:11 +0000
+Message-ID: <20250608182714.3359441-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187@eucas1p2.samsung.com>
- <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
- <aDJGgLZ9tITwGBxq@x1> <b5f4af17-05ef-453d-8f04-283590ae5b87@samsung.com>
- <DA5YY0YF28GO.3DONTQDLY6VBD@kernel.org> <aEXBH5r05FkTxpV+@x1>
-In-Reply-To: <aEXBH5r05FkTxpV+@x1>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 8 Jun 2025 19:14:18 +0200
-X-Gm-Features: AX0GCFumCLeEEJCyPi9ehiEGEBsNiIydEW7gHiOseH77d-yj2IMt7X5ttFs-zc4
-Message-ID: <CANiq72k-FmZe3P_y6FjmiqXViqLKXkDqHY1-KLfmgwAe98oBAQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 0/6] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: Drew Fustini <drew@pdp7.com>
-Cc: Benno Lossin <lossin@kernel.org>, Michal Wilczynski <m.wilczynski@samsung.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jun 8, 2025 at 6:58=E2=80=AFPM Drew Fustini <drew@pdp7.com> wrote:
->
-> I'm not sure if that bindgen warning matters?
+This patch series adds support for the STMicroelectronics M24LR series
+RFID/NFC EEPROM devices. These chips expose two I2C addresses: the primary
+one provides access to system control and configuration registers, while
+the secondary address is used for EEPROM access.
 
-If you don't see the `FromBytesWithNulError` error, then it should be
-fine, but I would recommend using a newer version anyway.
+The driver implements both functionalities:
+ - A sysfs-based interface for the control and system parameter registers.
+ - EEPROM access via the nvmem subsystem using a secondary I2C dummy
+   client.
 
-I hope that helps.
+Tested on: M24LR04E-R using Yocto on Raspberry Pi 4
 
-Cheers,
-Miguel
+Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+
+Abd-Alrhman Masalkhi (3):
+  dt-bindings: eeprom: Add ST M24LR support
+  eeprom: add driver for ST M24LR series RFID/NFC EEPROM chips
+  ABI: sysfs: add documentation for ST M24LR EEPROM and control
+    interface
+
+ .../ABI/testing/sysfs-bus-i2c-devices-m24lr   | 100 +++
+ .../devicetree/bindings/eeprom/st,m24lr.yaml  |  52 ++
+ drivers/misc/eeprom/Kconfig                   |  18 +
+ drivers/misc/eeprom/Makefile                  |   1 +
+ drivers/misc/eeprom/m24lr.c                   | 653 ++++++++++++++++++
+ 5 files changed, 824 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-i2c-devices-m24lr
+ create mode 100644 Documentation/devicetree/bindings/eeprom/st,m24lr.yaml
+ create mode 100644 drivers/misc/eeprom/m24lr.c
+
+-- 
+2.43.0
+
 
