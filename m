@@ -1,103 +1,99 @@
-Return-Path: <devicetree+bounces-183633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1803FAD153D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 00:33:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A835AD154A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 00:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 224213A8E52
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 22:33:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30678167924
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jun 2025 22:43:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B841F8744;
-	Sun,  8 Jun 2025 22:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1603420B1FC;
+	Sun,  8 Jun 2025 22:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXG9j1IX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="At/yWD8z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4A01E25F8;
-	Sun,  8 Jun 2025 22:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5ECB1D47B4;
+	Sun,  8 Jun 2025 22:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749422027; cv=none; b=TW1mWcAfySsNYLAHA8KVYh3IuGdpr5eQ1LFiKb7ih7QR8RHH25avbJ2a1FZ8tg+xOGWJFTQj4Ofxw1pLT3tK9i1x7WnOHzTK0oxC1D+TwEIO3zOPzoh8RmlJUVvuf0wzAiAx2zZ/8L1K57fmsaLn/ykw/xVoJ7KIpRS46pbUPyc=
+	t=1749422578; cv=none; b=WgLfZtTetHqCamuglMtLPIxnpIXR47uGpNWtzOoOuN1arc+PFWPA3vE26YoATiOVQK40xhbhOCHBF0TymsCCDcN4G9QIqaxdWkwtL5qgRkAYPUk6zsiGOj9Wery+qInc3SDjlx4mSdVS98o+wCKxLIo+U392HXPMU1QF/Is779U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749422027; c=relaxed/simple;
-	bh=p6e6O6y2Pf8XwXH8KwfPsonKx6xmLEy+p8t4oVtHFiU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=SDTxJ/96cAVu73IDLXBC1ZnZFSg0Mz0qWUempB4hF3brSxHQaSG1WY+DCCg24WJ0DZBrmEJIj4Aj/pddbXK7/04x8QX+ScyPBFMArhbTWLESwNeFOfr7pFgNGD+mVJT8r8MNkjYOFEIptXEmBOhml9RwgKtV0AgkwQuP+jqwrlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXG9j1IX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6B8AC4CEEE;
-	Sun,  8 Jun 2025 22:33:46 +0000 (UTC)
+	s=arc-20240116; t=1749422578; c=relaxed/simple;
+	bh=+Ow8C5IDyvj7h168sBfQeN9yDKxNW7U1c0diPxjACy8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IDgIoQW0mMMM3OoQFTWmMKtQ0TXOqmZCgkuoe4wlu6HJpTKJrUxoMiGlE3TOyMhHGp4Wm8wgl4prb+v5YJnpwZof4jxWY13O5AXpUhqr3hvT9jFkr9WEaWPjjsYZwNNFOpRdz9BAWHzLX+VIeF0lb6io0d/KbEM6G/Kz0UCuvFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=At/yWD8z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A258C4CEEE;
+	Sun,  8 Jun 2025 22:42:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749422026;
-	bh=p6e6O6y2Pf8XwXH8KwfPsonKx6xmLEy+p8t4oVtHFiU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=oXG9j1IXnd7uqUad9rWrublROUqma5WYKkJFk7VKvsBObe3saFsB9O60ydQPeJHA9
-	 0rDaNCPi7k95xSMEoKxP9gkrjge0+j9NHDoGkiVjmcNG95b/5/89Kzmm1/FL5pI0d+
-	 JxA2y0/st2moSDYTdRaN12Ih4r04QvqCxpcOYL2UZcwj+GTI/h7tQg4+OaJ0DlJneD
-	 tOYZ4JwMkzIfKsAwlbeiKVyVHcKRx87nt90nMzf4Z9FZh/Ih3J55vFLrvx9D2mllLT
-	 VFNAbxbaVfWsM2vawLCwHgx81PANivaQuK4LgIWfxJFJDO2ZiuMAVUpUW36rpwecfj
-	 unTgWWxTMbpSw==
-Date: Sun, 08 Jun 2025 17:33:45 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1749422577;
+	bh=+Ow8C5IDyvj7h168sBfQeN9yDKxNW7U1c0diPxjACy8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=At/yWD8zn/DyP6c3CHHI5pK+CKgjyJU8SwVXiL7V8F3s/OeoVg5V428lBc0ahyxs3
+	 7xVOaOFJDFv0td7SbS1GwgWQLXKDXJ4dTf+V0cREAN48wlVQ/ZkW5dw/Arcoj6dFbw
+	 2R5LJTo/n9KYKHuuPW0p5JBaQFb5rfEOuTszmNaPC9AMjAHhuWuShc6DlzyS+vjwIl
+	 iuTnWjTiuB58EacNORhPo6EgBp4ZbjmlNvQszi9bIz3EUrlPwmh+op5YCGTP1KJmTf
+	 +Bn3dxleOLqRS5tINJFanfiI4iT8RGgIK9uNCzvf4h2lmJc3w3lQi9EmER2DA/nk3A
+	 /LmKBQ9x2DHMA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	sophgo@lists.linux.dev,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: Move sophgo,cv1800b-rtc to rtc directory
+Date: Sun,  8 Jun 2025 17:42:51 -0500
+Message-ID: <20250608224252.3902421-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, jens.glathe@oldschoolsolutions.biz, 
- Conor Dooley <conor+dt@kernel.org>, konrad.dybcio@oss.qualcomm.com, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-In-Reply-To: <20250607212654.126412-2-alex.vinarskis@gmail.com>
-References: <20250607212654.126412-1-alex.vinarskis@gmail.com>
- <20250607212654.126412-2-alex.vinarskis@gmail.com>
-Message-Id: <174942202584.3889182.15644402442833643578.robh@kernel.org>
-Subject: Re: [RFC PATCH v1 1/2] regulator: Add dummy regulator consumer
- binding
+Content-Transfer-Encoding: 8bit
 
+The $id path for the sophgo,cv1800b-rtc binding was missing part of the
+path 'soc'. However, the correct place for RTC bindings (even if it's
+also a "syscon") is the rtc directory, so move the binding there while
+fixing the $id value.
 
-On Sat, 07 Jun 2025 23:25:38 +0200, Aleksandrs Vinarskis wrote:
-> Add the devicetree binding for the upcoming driver.
-> 
-> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> ---
->  .../bindings/regulator/dummy-consumer.yaml    | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/dummy-consumer.yaml
-> 
+Fixes: 76517429dbfd ("dt-bindings: soc: sophgo: add RTC support for Sophgo CV1800 series")
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml (96%)
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/dummy-consumer.yaml: properties:vdd-supply: '$ref' is not one of ['description', 'deprecated']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250607212654.126412-2-alex.vinarskis@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+similarity index 96%
+rename from Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+rename to Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+index 5cf186c396c9..c695d2ff9fcc 100644
+--- a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sophgo/sophgo,cv1800b-rtc.yaml#
++$id: http://devicetree.org/schemas/rtc/sophgo,cv1800b-rtc.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Real Time Clock of the Sophgo CV1800 SoC
+-- 
+2.47.2
 
 
