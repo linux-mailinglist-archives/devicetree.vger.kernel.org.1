@@ -1,243 +1,137 @@
-Return-Path: <devicetree+bounces-183976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C2B7AD2930
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 00:09:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BAAEAD293E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 00:15:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A8C816E80E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:09:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D08416FF65
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F549224AF0;
-	Mon,  9 Jun 2025 22:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF151624CE;
+	Mon,  9 Jun 2025 22:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="Vln5kUvI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ViFYqRKQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7444222489A
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 22:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D2E8F40;
+	Mon,  9 Jun 2025 22:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749506990; cv=none; b=Ftyw9XhVLozdOrij3VCpm4YupYd/6MlAB4gPLBCSWPG993IrYQs5wbYNOqZakfXGpLDznWen79QmewmyotWNdR2nMoo742/zYCHoof9GZq9FDMZaIs87B8x1k/TCLd2sGtZdHH7utx6s6DhKsOcVCT0w2D32dPXy8pa9h6TDG8A=
+	t=1749507329; cv=none; b=PGSe1coACVhOQfk2BCJLiQm7nOZvIrrump1nSZpdaZ5QHyxic37teMeC/pG9HdLsyc1DGWiLrWhS0Ucf4EpqLE5FdQ9ATO8tJ9n/kdQfTrwiM+2uvxqYkl3BbHhxWpZ0hTKe/Vs+aCnIXuxlYHoykYaxx9etMLhNRUGwDe+eDr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749506990; c=relaxed/simple;
-	bh=FNpQEWBDwyXEagWhUdVdgd4CDdreeQKyCibBUA0RLwg=;
+	s=arc-20240116; t=1749507329; c=relaxed/simple;
+	bh=tdY7TyGTZciMTHoVs1nvnp6Q2CPWWnRP9rTcNFBGtKY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t1HIBEL05lGkC+SW0Vrry3Sdq+JCwsB9bHifXPAzPqSU+eJsD2rePXff7UESUfs5bk+xOrddgSObdwwzidCmTPkzaksXLVm5PIvtg9oNzIdIpMTitCClgX+sgYr/5OTRde/0u9rizO9dgTGt/LRE0BZutLp7hAPwav6UxOidkOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=Vln5kUvI; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2352e3db62cso45230255ad.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 15:09:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749506987; x=1750111787; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aXUrxDWDE1rz5GW1/FGYZyrQqnRIMW5wSQ+qWnYbv8k=;
-        b=Vln5kUvIPrZdzjaks/7fN/NQHnZl41fDDD0sqlbHFHdhLx8kpfxnY7F2rTCuK/3JeZ
-         eNdKwuuTgauR5Tgm7hFB2B0RecEXSyvBKNcd8irZkt9oC4XLNLawVUvjaQo66ZuOf8a9
-         oI4Ks0n1gLfAuhGTtTWcjEkFH//4w1F8CbtzfByrbY5uZGd7RbgA6ew2Jl/u7RGq2saE
-         ukfx5vtvGZjn6CJPlm6ncJG0nYFdpMudjSV/0dNPQWPkpw3mf6XZU7ht0cCK0x1GrYUX
-         dBV4x1NvT3n9jC6VPG0Jguoj30KDM2JwzgK0EgfVmv1NnQfb/maWg9jrCQbrMYj1H2St
-         6fYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749506987; x=1750111787;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aXUrxDWDE1rz5GW1/FGYZyrQqnRIMW5wSQ+qWnYbv8k=;
-        b=mJIRgxl6fgyzOJUw0g3NBq1S/U9qwy26bwlIc5c5SB2uZ5qAUyQtyr5xnEjnIQuqJT
-         o+i0kCcgqtkqVHgMLRvvq7k73JZ9mS9egN41phhdFlApaFnnGCdQ/OZoeIXjrls0NpP1
-         Em6pe01TGuL7p1cikfQCtpX8i922+DX9mPTSVDJPN60jvM/4/ZBbeuqdFW+wLtwz9rv2
-         7icfCzr0Z2j8fXVnjb8UIGVGK4RXsFiRWHU70yU+sAwxkJfgMT0pvk4/a2r146huRo5f
-         Uxo2Uf3X14Lzq+nRgz6MccSBUAQgzbGOxQ4YoG+SDxaQgMvtPvYTnFM/IWzYY5nAhf0v
-         kt8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVL+KCMGSv2fsMpYpKRNOORmmDMXd45mI8UERzqc/7IeJjGl3j2EQNRRtuncB+NMtGjlomQatfVbuhc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxhk7h3vaGn9lWv9PKe1Q2mHPyYNqF4ihCt+jwPOeq1jvuogZvf
-	bOU0pdL7CJp+BXN9pY3yonfUImTmYUW5PUiToF49eUW4A5e7YfoP6PaUrVqg63RLqhI=
-X-Gm-Gg: ASbGncuad8dyuacMiwQ7E+B2lAPTJu6bbuRJ0rQhic4V7WJmnTR7Gsq52UrLWkAEIpT
-	65TyxJNoEDmD3KfnhQ+UXsf/CcMPWKoeoEiLEsmnsGCAqbFMQ8P3dRoiHPrb40REzDvtFBq5efJ
-	rf6LQob14asYP9LAB1xYiO30xofTe0qkTV7stvfGFxBSe6xhSN2fASktd8QXgVcT079OjzMOFz+
-	SP2kK9hYIlD2cNyopqAGAvTNu2dIophjCI1dzlpaHmS20J36/44WipsokUq++LL5GHlrSDcFtIM
-	/JRuKmiZJ/7iG1pan+H8xLnmpWz2SU+t9Du1GwdainJA3lYPIzFK8I9K5CHnhK1gfT2LLW27mA=
-	=
-X-Google-Smtp-Source: AGHT+IEmC2cH56sY2Qaxupk/vYIkWpD0/7VSc7N28TaMH7rVO1PkIEtaUHkk3Y4nHUVSyRzLwMzWGg==
-X-Received: by 2002:a17:902:e888:b0:234:8a4a:ada5 with SMTP id d9443c01a7336-23638390915mr2466705ad.37.1749506987465;
-        Mon, 09 Jun 2025 15:09:47 -0700 (PDT)
-Received: from x1 (97-120-245-201.ptld.qwest.net. [97.120.245.201])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3134b13ba47sm6079708a91.40.2025.06.09.15.09.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 15:09:46 -0700 (PDT)
-Date: Mon, 9 Jun 2025 15:09:45 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 5/6] riscv: dts: thead: Add PVT node
-Message-ID: <aEdbqSjpHyHx54UF@x1>
-References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
- <CGME20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01@eucas1p2.samsung.com>
- <20250524-rust-next-pwm-working-fan-for-sending-v1-5-bdd2d5094ff7@samsung.com>
- <aDVxDJi0KkWXiPCK@x1>
- <61eecafb-8ad1-4306-88cb-a032eefb2e48@samsung.com>
- <aDyOyg6eqDEFg2ua@x1>
- <9e8a12db-236d-474c-b110-b3be96edf057@samsung.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bh2WIAYWKTHaDp0QNBxJvjrvW/100LbpMbg46cnrUVh3+jiHRqMTqjc/Q/Xgl5hyyDntTJzFYdBYLeOQdvVwLRD3Umnz8oW0DusB0SdWXdKs9kwFxgKdUlScbL0Z+Cs9REMyTni2+n70sUd41KNw+UaRWFUWmT1F/XIliSPQnos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ViFYqRKQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97853C4CEEB;
+	Mon,  9 Jun 2025 22:15:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749507328;
+	bh=tdY7TyGTZciMTHoVs1nvnp6Q2CPWWnRP9rTcNFBGtKY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ViFYqRKQ+8RHKDEt42aecvXrqhliLmgkaI/8JfVZPaVUeShtWjjuknJDCcSPz6zRu
+	 CetijwvqM6R1L49jdg502EEahptkdkenRMgWHoUYC58p4/MnYKOLYKxCQWAP3RBvQf
+	 8rwfyYymeeH9CerMuanuzhO2pCh0mErgs1n5w6lpCbzxT5i/4P4mn6W6rnvdRDYDKo
+	 JqghL8I1mq/4gcWoMddVfxyiD28eyT0GfDQy7sUL86vhehveyN6vX27yfSAylaXTfv
+	 Cq9MCIZNZWvc4A9ljdNXVWAWvnvEsFEkTRrZi8tpTV02irtcpEPkVPjASwaZKA7UO2
+	 0nVjitEQcw/bw==
+Date: Mon, 9 Jun 2025 17:15:27 -0500
+From: Rob Herring <robh@kernel.org>
+To: Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, maxime.chevallier@bootlin.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	richardcochran@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Mun Yew Tham <mun.yew.tham@altera.com>
+Subject: Re: [PATCH v4] dt-bindings: net: Convert socfpga-dwmac bindings to
+ yaml
+Message-ID: <20250609221527.GA3045671-robh@kernel.org>
+References: <20250609163725.6075-1-matthew.gerlach@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9e8a12db-236d-474c-b110-b3be96edf057@samsung.com>
+In-Reply-To: <20250609163725.6075-1-matthew.gerlach@altera.com>
 
-On Mon, Jun 09, 2025 at 08:49:57PM +0200, Michal Wilczynski wrote:
+On Mon, Jun 09, 2025 at 09:37:25AM -0700, Matthew Gerlach wrote:
+> Convert the bindings for socfpga-dwmac to yaml. Since the original
+> text contained descriptions for two separate nodes, two separate
+> yaml files were created.
 > 
+> Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> ---
+> v4:
+>  - Change filename from socfpga,dwmac.yaml to altr,socfpga-stmmac.yaml.
+>  - Updated compatible in select properties and main properties.
+>  - Fixed clocks so stmmaceth clock is required.
+>  - Added binding for altr,gmii-to-sgmii.
+>  - Update MAINTAINERS.
 > 
-> On 6/1/25 19:32, Drew Fustini wrote:
-> > On Sun, Jun 01, 2025 at 09:50:52AM +0200, Michal Wilczynski wrote:
-> >>
-> >>
-> >> On 5/27/25 10:00, Drew Fustini wrote:
-> >>> On Sat, May 24, 2025 at 11:14:59PM +0200, Michal Wilczynski wrote:
-> >>>> Add PVT DT node for thermal sensor.
-> >>>>
-> >>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> >>>> ---
-> >>>>  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
-> >>>>  1 file changed, 11 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> >>>> index f24e12d7259fabcfbdc2dfa966d759db06684ab4..faf5c3aaf209b24cd99ddc377a88e08a8cce24fe 100644
-> >>>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> >>>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> >>>> @@ -648,6 +648,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
-> >>>>  			thead,pad-group = <1>;
-> >>>>  		};
-> >>>>  
-> >>>> +		pvt: pvt@fffff4e000 {
-> >>>> +			compatible = "moortec,mr75203";
-> >>>> +			reg = <0xff 0xfff4e000 0x0 0x80>,
-> >>>> +			      <0xff 0xfff4e080 0x0 0x100>,
-> >>>> +			      <0xff 0xfff4e180 0x0 0x680>,
-> >>>> +			      <0xff 0xfff4e800 0x0 0x600>;
-> >>>> +			reg-names = "common", "ts", "pd", "vm";
-> >>>> +			clocks = <&aonsys_clk>;
-> >>>> +			#thermal-sensor-cells = <1>;
-> >>>> +		};
-> >>>> +
-> >>>>  		gpio@fffff52000 {
-> >>>>  			compatible = "snps,dw-apb-gpio";
-> >>>>  			reg = <0xff 0xfff52000 0x0 0x1000>;
-> >>>>
-> >>>> -- 
-> >>>> 2.34.1
-> >>>>
-> >>>
-> >>> I found that on my lpi4a that boot while hang after applying this patch.
-> >>> I think that it is related to clocks as boot finished okay when using
-> >>> clk_ignore_unused on the kernel cmdline. Do you happen have that in your
-> >>> kernel cmdline?
-> >>>
-> >>> I need to investigate further to understand which clocks are causing the
-> >>> problem.
-> >>>
-> >>> Thanks,
-> >>> Drew
-> >>>
-> >>
-> >> Thanks for your earlier message. I've investigated, and you were right
-> >> about the clocks – the specific one causing the hang is CLK_CPU2AON_X2H.
-> > 
-> > Thanks for tracking down the clk causing the hang. I can confirm that
-> > this fixes the boot hang:
-> > 
-> > diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
-> > index ebfb1d59401d..4d0179b8c17c 100644
-> > --- a/drivers/clk/thead/clk-th1520-ap.c
-> > +++ b/drivers/clk/thead/clk-th1520-ap.c
-> > @@ -792,7 +792,7 @@ static CCU_GATE(CLK_AON2CPU_A2X, aon2cpu_a2x_clk, "aon2cpu-a2x", axi4_cpusys2_ac
-> >                 0x134, BIT(8), 0);
-> >  static CCU_GATE(CLK_X2X_CPUSYS, x2x_cpusys_clk, "x2x-cpusys", axi4_cpusys2_aclk_pd,
-> >                 0x134, BIT(7), 0);
-> > -static CCU_GATE(CLK_CPU2AON_X2H, cpu2aon_x2h_clk, "cpu2aon-x2h", axi_aclk_pd, 0x138, BIT(8), 0);
-> > +static CCU_GATE(CLK_CPU2AON_X2H, cpu2aon_x2h_clk, "cpu2aon-x2h", axi_aclk_pd, 0x138, BIT(8), CLK_IGNORE_UNUSED);
-> >  static CCU_GATE(CLK_CPU2PERI_X2H, cpu2peri_x2h_clk, "cpu2peri-x2h", axi4_cpusys2_aclk_pd,
-> >                 0x140, BIT(9), CLK_IGNORE_UNUSED);
-> >  static CCU_GATE(CLK_PERISYS_APB1_HCLK, perisys_apb1_hclk, "perisys-apb1-hclk", perisys_ahb_hclk_pd,
-> > 
-> >>
-> >> This appears to be an AHB bus clock required for CPU access to the AON
-> >> domain. My proposed solution is to make the pvt node a child of a new
-> >> parent bus node in the Device Tree. This new "AON bus" node would then
-> >> explicitly request and manage CLK_CPU2AON_X2H, ensuring it's enabled
-> >> when its children are accessed.
-> >>
-> >> What are your thoughts on this approach?
-> > 
-> > I think that is a good approach. The alternative would be to just add
-> > CLK_IGNORE_UNUSED like above. I've done it before but it is a bit of a
-> > hack.
+> v3:
+>  - Add missing supported phy-modes.
 > 
-> I've followed up on the idea of creating a parent bus node. My attempt
-> using simple-pm-bus ran into a couple of significant issues that suggest
-> it's not the correct path.
-> 
-> First, the TRM doesn't seem to specify an address range for this bus.
-> The range I used in my test was only for the PVT controller itself,
-> which would be an incorrect abstraction in the device tree.
-> 
-> Second, simple-pm-bus requires its child nodes to use the PM runtime API
-> (pm_runtime_resume_and_get, etc.). Forcing this on consumer drivers like
-> the PVT sensor seems like an inappropriate dependency.
-> 
-> Additionally, I discovered that the PWM driver has a similar problem,
-> silently failing because another clock, CLK_PERISYS_APB1_HCLK, is not
-> enabled.
-> 
-> The most correct solution likely involves refactoring the clock parent
-> relationships in clk-th1520-ap.c. However, as a more immediate and less
-> invasive fix, I propose we apply the CLK_IGNORE_UNUSED flag for both
-> CLK_CPU2AON_X2H and CLK_PERISYS_APB1_HCLK in the v2 patch. This will fix
-> the boot hang and the PWM issue while we consider the larger clock
-> driver changes separately.
-> 
-> Does that sound like a reasonable plan for the v2 series?
+> v2:
+>  - Add compatible to required.
+>  - Add descriptions for clocks.
+>  - Add clock-names.
+>  - Clean up items: in altr,sysmgr-syscon.
+>  - Change "additionalProperties: true" to "unevaluatedProperties: false".
+>  - Add properties needed for "unevaluatedProperties: false".
+>  - Fix indentation in examples.
+>  - Drop gmac0: label in examples.
+>  - Exclude support for Arria10 that is not validating.
+> ---
+>  .../bindings/net/altr,gmii-to-sgmii.yaml      |  49 ++++++
+>  .../bindings/net/altr,socfpga-stmmac.yaml     | 162 ++++++++++++++++++
+>  .../devicetree/bindings/net/socfpga-dwmac.txt |  57 ------
+>  MAINTAINERS                                   |   7 +-
+>  4 files changed, 217 insertions(+), 58 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/altr,gmii-to-sgmii.yaml
 
-Yes, I think that sounds like a good plan. I am okay with adding
-CLK_IGNORE_UNUSED for CLK_CPU2AON_X2H and CLK_PERISYS_APB1_HCLK until a
-better solution is found.
+altr,gmii-to-sgmii-2.0.yaml
 
-I like the idea of revisting the parent relationships in the driver. I
-added CLK_IGNORE_UNUSED to several clocks in order to fix boot hangs
-when I removed clk_ignore_unused from the kernel cmdline. However, I
-don't think that I addressed the root cause.
+>  create mode 100644 Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii.yaml b/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii.yaml
+> new file mode 100644
+> index 000000000000..c0f61af3bde4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright (C) 2025 Altera Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/altr,gmii-to-sgmii.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Altera GMII to SGMII Converter
+> +
+> +maintainers:
+> +  - Matthew Gerlach <matthew.gerlach@altera.com>
+> +
+> +description:
+> +  This binding describes the Altera GMII to SGMII converter.
+> +
+> +properties:
+> +  comptatible:
 
-Thanks,
-Drew
-.
+typo
+
+> +    const: altr,gmii-to-sgmii-2.0
+> +
 
