@@ -1,226 +1,187 @@
-Return-Path: <devicetree+bounces-183739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0B3AD1A4D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 11:10:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0562EAD1A58
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 11:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E3C4167F0D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 09:10:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6CBF3A11D7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 09:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A0624DD1A;
-	Mon,  9 Jun 2025 09:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA3D24E4BD;
+	Mon,  9 Jun 2025 09:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="HaGVmXad"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BeHe+JF8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011012.outbound.protection.outlook.com [52.101.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368C21459F6
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 09:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749460247; cv=none; b=PFgoOV/apaaOZnq4l732aWick81SWrJ4E7kA3AlZnaTT23EyLp3aHzm09+IGT9KDFDt4e2mGoqg8Tqp19Sm5Qm0qk0/Dk1yF0f8+fKm2pUM68Dz74EiueszxuK0fqPHvavOrrQRdFQ3uTum6Emv/mD1ccTlV9nebkYudj0jRTu0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749460247; c=relaxed/simple;
-	bh=ZDHaPJOchoR/hqnrZl0N+DUeT8UZdeaTMXTUEFnbspw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZKtytq2i2cF5TEoiwUs/lzfCHQx22XrtA8yCcVcuOtiCWG2mqmF6U5hUVLLzZuevQzFxgXTaMuF5Wbpl5a82Dttr76TOb1KSlqUtbxPZg7L2zSGyMwWJ4Wukx040diMnW/oEMUVGIlY9icoBa/nhqpPk9xXDq6w52VtQ91uO0ds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=HaGVmXad; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5534edc6493so4484155e87.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 02:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1749460244; x=1750065044; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FMmw4G9aKaZU5qDapJFu/F3F/qwNFopqJUpdbcMKEQI=;
-        b=HaGVmXadMfaSSUlitAkJrhvVhwgWFHyX5USsKYyy7CIPtPtOjhzD7n2n+MLhduljMv
-         rx06MLFK/5MmakjXXIWB91QqSsqlESPfBLs2Eb6CeGPIAmXtGbYCSrEtft9CctVYQ950
-         FrgvOblqSrVw1jIyMZ+qZDWZCdM9tVXn2ugbFaii2SQHTqun4fDRAX2unjD7e16m+CpQ
-         frlXDqJvDlKnzB4A2hImk0dgcy62u1GU/K3k7x1tZoypj8hX7+BMeXA9bzywjaH5oc0g
-         VG+zTtnPaqh8XDWG0GLsr6Q0gVFX5AcHQ9b9DoAakqnbUbe7aiIBEeggTbsBSG0D4oTr
-         buiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749460244; x=1750065044;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FMmw4G9aKaZU5qDapJFu/F3F/qwNFopqJUpdbcMKEQI=;
-        b=vSwbcJmNM8hBXo20PTIiH8vqAh4AnABANzCxIR5KZ6DiU3iO8TOr4MaZVahmiF/aiS
-         /lahISUS8gWUAwsI1D6GrUBgJjopJuiTGnykSKsx1OKNiUF2S8QmP9+0an8DcZIo52s/
-         wy00I+xBL0yOTwRQ6BcmsjQAqFDZVTD5yYNWd8fEwT1IWaRskGC0V4+sM1QHQO34QNcN
-         swIUarlChU6izT+KSifoKsvCQR2DZTJYVgAR4qJ1qinZT9S6ptQJaTb9RLgqVNGQqD5x
-         KIRFMNX8UlXFvUFpWJFfDH9tN8eEf8TKNxNfnccomyZ3FAR58ejRFpc8iXOD5DhcSOEI
-         CvlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGgbImyGLN4KrDJIiQA6vgiQb6vJjIOf3EMGVc0ikyxaCdzvYFeDuUuHcdwHc/KdJMQ1l59bo24s/B@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFP5mD95AqzIztPj0tC9nMEQQGCV3mCQAYcBOqTVqjpixrO6KR
-	9CSLINhSLegtbEdpkrFJBJGpFp9TA9CypVm/I6aPtiEekpye2QBOJ9wxtgBSMTdqfoH0fO413rq
-	Q9/lu/bagO+31KyCF1iPUpVEQt4qlTR2f08GxlT/sMQ==
-X-Gm-Gg: ASbGncskSxIlI6plq0u4GaLENqJGydhxosSk9EDP1NpFp2j9eiF5qH0zWtF4emCODXc
-	fyfvaoXbD9+haBeNiFIpaaSb3wITawagdHzYXMmdpRwZEoI1PzQn5OvuuTO7JJg5LoFDnq7rINy
-	z/5QC7HOn1cDPe287FlnhzLqzDfi9gNwJs8HHKalf5q6vm
-X-Google-Smtp-Source: AGHT+IH+6vAFbi+7H9+Qq6oBFGjvfco9YJD10/KKGRGKVUqABbwLY2AZfQVHTc1As+KdJzrE2dw9ZkGPK2jj2n3kE2k=
-X-Received: by 2002:a05:6512:3da1:b0:553:2a2f:22eb with SMTP id
- 2adb3069b0e04-55366c35872mr2987129e87.36.1749460244141; Mon, 09 Jun 2025
- 02:10:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1851C5F1B;
+	Mon,  9 Jun 2025 09:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749460480; cv=fail; b=thM/GqyUnepPWFgcy+IuBM7EAoRxqtePDWlmLO2biHuJth/HHlxJdP7QCrBzArFaTh5s9qtTVBiAMzau0IzfqNy9DfBjc9cZrtrC856nyNyMQhmoa00oNpiqZBPQ7uZVdj9MARk5w+rU7sm7CtfTI2POc46jAsiQdjgJi6R8oRQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749460480; c=relaxed/simple;
+	bh=RWAT2+zoy2Ynea0faiejujeuEbahCItHb87bJ3UZyH8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=BzSjUKC5aEGQdh8YlleKQ7/wFWhclHP3lAq29Cw3ZdaDnLCp/L3dAZ6hA4XekkXDGIg/kxEPiorhYa3nhZ9tGj1oljRabmKhS6CXFD54mNBOoCHrKcTPPTck8YG6IROKYlzcVmrpOVlZo8T4FnMvjLM9QPXiIb4wtbV7dKXSn/8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BeHe+JF8; arc=fail smtp.client-ip=52.101.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V0fO7D3dWUZd7PVcI/yckLMBS7XGlUy7xmLoN/72If7EFNmoba68CjhH0I7856faXA21FK0fvwAkLu3zVOrWxjuMO5gYUuWbC0fdw7U4QJwefIaeyBzBN5oZFJn21coNkjCGoUapz7jsjuI00l/Etwr5SyKeMBOtn2J3OOUMZ1C8wVAY5ZRam/4L7s96fa+y6dETtfqw/U0Sm7Z7l8w0OxETufzjK+6HCKMCl510ykDWbjBKCcixFGMv+DbCxhD9Kh0foQbSFQIhm6aQ+08AWn0FGcJTAdBGXSeP7emBq5AOr8lXUEBNrT5AoZgVKrljBIWKH/B+600qfRbS5cow3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0yYYzXRAs+WBtxNtVVl3v2V01HepfsNY2V3zxzzUWN4=;
+ b=LZHr1dy6UuUW9nnv13MSdr41b7jO9+99SgWcBWJLBLltWntdqGRPZIzRPgiaZQOKlxNZhy/f9+rankEAtNChoxN+Xyw+VtVTEOx0D1wU9ThUDjrbZCtgjl0ZcLsnko9xKKVo4yKWh8V3pPjlqAW+J1OCkuXV3XpldbL3h99o/HzC2/TAhS9tdS4kwdiSdkF2Qx9xsJTA4ACQGgI7MIZtZhefT89sbxVR9WZ0OLRqz7Uj/rlD/UAKb+msALjK74PsCZqnlgqQNqbn4zR5Bk5AfLgTIe+BbFAsee29LiDfRT+5HJ/RoRwr7zkwZCAn+GBAVg8jOzq5JPtcbKUo9fC+RA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0yYYzXRAs+WBtxNtVVl3v2V01HepfsNY2V3zxzzUWN4=;
+ b=BeHe+JF8EV4wUy7XRoo3Tc8zikMbweyE8A1I8JRl7E04ty8WRzilOJPAEksY1p5/4ZchHHOrDF+k/RJ6n2KKt9K/q0l0goThFKA09FWnCukFlKbH+yJkOUniVUOMldA2O4fUYGsOzZR7aAYMg6V4VNHEoil5vP6ZMwe71ljDw3QwWLECECijOKywG2PFfWUN4FJKUnyx6aRYMwOaOiB2oXjIwLZqYAP3w3RRN1Wwv+20tUJHDU+O0VukuyT0gJxaWHHzQmLthGoS5Ghw5jgeBrawbbRtJ/ByWwWJyV0zKtkEAvNylz/VxRT0v/gS8KwQJxzvCW3WbT7tcIDpSYvdKQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
+ by DU4PR04MB10984.eurprd04.prod.outlook.com (2603:10a6:10:586::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.28; Mon, 9 Jun
+ 2025 09:14:34 +0000
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93]) by AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93%4]) with mapi id 15.20.8813.024; Mon, 9 Jun 2025
+ 09:14:34 +0000
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: frank.li@nxp.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Richard Zhu <hongxing.zhu@nxp.com>
+Subject: [PATCH v1] arm64: dts: imx95: Correct the DMA interrupter number of pcie0_ep
+Date: Mon,  9 Jun 2025 17:11:27 +0800
+Message-Id: <20250609091127.4188159-1-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0054.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::13) To AS8PR04MB8676.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42b::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-7-apatel@ventanamicro.com> <aDWk5kIN3lkB0Jw2@smile.fi.intel.com>
-In-Reply-To: <aDWk5kIN3lkB0Jw2@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Mon, 9 Jun 2025 14:40:32 +0530
-X-Gm-Features: AX0GCFu9QhcInm8OVXRkSGSXY6CJ1XzDih7D6CmQzSnxoRj96FTDd8_3JeLtE_U
-Message-ID: <CAK9=C2XbNeZRp9h4FevVBm-NdPH3w5t=C1NhAn5WQAkNLK9d_A@mail.gmail.com>
-Subject: Re: [PATCH v4 06/23] mailbox: Allow controller specific mapping using fwnode
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8676:EE_|DU4PR04MB10984:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e41ff37-0f72-4461-5c5b-08dda7360cfd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qay3qFxtcTDyRqJPjLVeM/+Y17YrWnY1+i3uEad/7ZDKKLJQFrziCSCOWIU7?=
+ =?us-ascii?Q?thRCYz4OVbVa3mqV/8w2sVG8NlGIY6qxF6eYq1uMCZMn1P7jigYqA1wu9ZrG?=
+ =?us-ascii?Q?IYdtG//j3PhEyuoknPS0prOtp7oiOYpD0FJg/n9EFinw9aQ1/4xdB6y53NTz?=
+ =?us-ascii?Q?OTHwzYd/pBFdAXDyN8YbFgXOXLxPbeBMPm2XPnIzyRAxMN6Ech+z2VthTFi7?=
+ =?us-ascii?Q?BIlzDmdFsZJ+wbt1+Tbqk8AcuF/pENmPyGexNP5CsXBEdHt3y+JrF1rNrD+K?=
+ =?us-ascii?Q?T/88w1YEAaIw6frq3SHlX/CkSDPOCDPtI3U4CciQmZMm9B5+VEZ0tVi3ZXtI?=
+ =?us-ascii?Q?6UOJuMPFqfme8GCKM43DhFUuEEwHCTuoiVabKePLCMux3ORHlCE6gCDMzpx9?=
+ =?us-ascii?Q?B4110+6ogii+b4Uqmiv9mofkeKR+ECXbS8LeRtllRfXW44IuY0Xau/VW5jOv?=
+ =?us-ascii?Q?OzwBOS124Juu0rHw3eI5IN3YF736du8zQwT0XDzXMo0BM6h02dhnFPxpB9Ci?=
+ =?us-ascii?Q?x6IB7U0Ia3oM+hDSdzT5bHDm20g3L7LuGh9MYQD5XJwo9nSRL2eXw6/PzhL4?=
+ =?us-ascii?Q?sJzGVCt34vg7UKuVi+E6GTEm9xnGSMKfP2WTjcvEtikf9q88N5NUqNhMLg9z?=
+ =?us-ascii?Q?f3HLBTriaysbKvljY3erSJNAnoIvz6fm9tH8IHM7xUXmIh+GupjbaMrIOEEB?=
+ =?us-ascii?Q?zwYtXIl+0sPW2S+ykshqaOuFiRUc+wtrCi8yYouT05v7Yv9/zibDDTyORr4i?=
+ =?us-ascii?Q?3GRM5eLwrhdTDfjcXErrcowEx7YfaQVb/oCqAcKlPcU/dMmBiFpsgc0gaaDl?=
+ =?us-ascii?Q?EMhOvUbQBYEafWWJMDy9uY0dBzxdj5adMgfQETegMON/LxjhyeWIVilRPUv8?=
+ =?us-ascii?Q?NahHkrEdgFBzeu8D+RtDvqnbiFmo3xrbfsvQgHYPfHJM8xaWBAfWbXm/rsl6?=
+ =?us-ascii?Q?r9uPreBFZVQ+LNM41S89jWd7klsjtR6qMfmhSxIFnHEgy08GB7WidZjYKqec?=
+ =?us-ascii?Q?/r9xdnX4xjrNjPF+eCl/CyWh0jCwWxFJjN8c3kYKXsyPjydX8u5J4GVqk1i2?=
+ =?us-ascii?Q?q5sXP/bD7wH8FNWXn3TouwqxrYAhRqiyaiAH2nA4F5/Q0m9vXeQrHtmyruSV?=
+ =?us-ascii?Q?OI9gbDLGCQdFuDbwoeeeysJubjLoPqznrpSPExVpT4uBFX/cJsOuyX5Yu9GA?=
+ =?us-ascii?Q?0S8kfaIk/P1PXIkeOx0pk/UXzr4qrJ3cSNSZ3CSbJ6oJqZOxUQMUB08UpqiO?=
+ =?us-ascii?Q?TYPgKu+UQyHoUYblwmMQg4rduBmo91iZNbn8f2TjPByZydzwsj4J12h0IT3U?=
+ =?us-ascii?Q?tHzUpY7OoBIIL6YDRGX2ao6q7IS69c8HQ+U5cIB9Il2WOS11Lsg6JNOpqR3H?=
+ =?us-ascii?Q?2WcNHdcEbYYGj5XPjG1AVW1cn5Dw6s0Vv8496j7PNIAZB/yBs3Zx59EBsvXp?=
+ =?us-ascii?Q?9cHHlhVLAcycaK5vF0cOGEmcg6fKwLwncocWfIZa91i/T1w/1vdZLg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?bd3opRD9XXJbGt8H/9+QxbVxM0xIUR50+ZvZtXVJc/+UgzYNgIfRWyzZ29Qd?=
+ =?us-ascii?Q?K6Cr0Mj0SoyYzJw7lwLlhAmQhggewvxZF+/Dbxf3zz0O4Gn9MlAy8jFUn9CU?=
+ =?us-ascii?Q?EOB1c9U4PCZcDa4SNsqRJM3dgsLW2IoZK7Lw5xfXTqXhnMDWrwr9Z6SZlMEu?=
+ =?us-ascii?Q?K6xIc63VU04/i8l7/Sei38q1edInqKFxNR/LDJQHSJVTIXFrL4PBs1nbZIyg?=
+ =?us-ascii?Q?q+yDfmKW0oUBNC1L04VrOXP1ouNSPFCk0Rs7TU1Hlo0JNUmdYmxSBZAxi9b5?=
+ =?us-ascii?Q?Ay/UOA+X3GRr0gkBYsiPHItiu+p7vcAcG51ipI6E/QSb1YAkQnsvJWRGa25M?=
+ =?us-ascii?Q?+iimR4lk3j2UWiyiJOvZhfRZOAEbAv9ZMQHGyIxWlSc9xroyV3txnt+M/OZn?=
+ =?us-ascii?Q?u3/aTRdKGPWN99lUBAzde1xxeCIUsvi7Bm90Dm6DVOZJm7eYVlNQuVDv0h/b?=
+ =?us-ascii?Q?1BlJ7TV2aJDARie0lYWzF5FJIpPP4MJszbvmHTMimPUEZK+DI4mtkhjOU4nb?=
+ =?us-ascii?Q?UIvG1+JUcxYquYrJcYCAmBjX0X09Dxlm/wA5QOXB1Tpr6/b1DyJ+GdEfG6ek?=
+ =?us-ascii?Q?oITyGJ+CCXQlBihqEy3oRG2R1Xaq1Nna29lsuczLsFSxtoLGkwVhv74dhqxt?=
+ =?us-ascii?Q?Az9KdmkMEyt4g6hmg2EbWONvLNZ5/2EGDIQg9ahZTwoJObFAamDhLE2MOilQ?=
+ =?us-ascii?Q?OSjMPV6SGNwjAosoIdVQGAVUhp2g6SGVxns/HCxJEpwt1DHFwCnSbR/9fBQ7?=
+ =?us-ascii?Q?/FF0Tg81DaJJmsmRPzoP/cKYWFUdZTGWghnwnq9GARWa09bVV9np37LxYXJE?=
+ =?us-ascii?Q?g918PKOmacIGMa/KO71wewFDi0MhDXpC/aVt6BXmN+CyszegZnDJrnXAM/YI?=
+ =?us-ascii?Q?Isj9B6+NS9ftJAtOEXlvHzfuedryIYC35eZ1vJZHfOPMP/SkFKi/tiEqRKO+?=
+ =?us-ascii?Q?94frZeyZxVNVuGvwyaCLq0E8VxubX8Q/xJX3jV67oHgTammd1uXYg13WLVjd?=
+ =?us-ascii?Q?NlKCBShZHgkXrGfdV91pryAlpOxwMZgmMEnXYl82ceEQEG4D3y9wSG29D4Y5?=
+ =?us-ascii?Q?YiRZiD7YA9yRL9taT+Ga18QVuVbACJ2YhY9LeekN6/jBc0s3AEKFQnW8l2fM?=
+ =?us-ascii?Q?n4v9DnvGU7iiVXNguvaNtTyQW6cWi0M+KzuoMMemWOeLX/WP83fYi5EFPv6D?=
+ =?us-ascii?Q?wnukWVJ98i5ofApRJbIKNlWIL99nAJKCwdaLq6sDpgRqX4A7PD8AK3vfNk6U?=
+ =?us-ascii?Q?fVbrpOE2uVq2p15UueoierRDTS9AlZo9Hs8WKNmwFsEgnZmZXz5/N5CUcNuU?=
+ =?us-ascii?Q?FPUzQdc/xYgEctltgLgKFwUcf03KXzvfT1ljalL/XLN4qY8qNqh9NiHO2cOg?=
+ =?us-ascii?Q?BoMIM7v/y8jC8JpEW7h7wcdkKWjqi45NjpUJTODIYtJPEW5tmQkM6GylhqVL?=
+ =?us-ascii?Q?yMCMC7LlWhHwr9+uoIilPQsTveFjJlWIyuxCbLTRCkzrivzjgyjtj1DhCxMk?=
+ =?us-ascii?Q?NJ+B+V0XNjsdVwc4Xx0ukJevawi8//llNhHNxluf24xZBvjCOohT2Jj7uvZp?=
+ =?us-ascii?Q?t8Os3fUs7BD2ddSkf1Eu8O27XxgwHIt4m0OZeD7t?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e41ff37-0f72-4461-5c5b-08dda7360cfd
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2025 09:14:34.8095
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P+Bw2vByjA61LSVUbrKtNRvRvX+U4pKbRLxdaqREv/Ki4HLuTi9/y1XogicQ/ktAHq52JrUyky4gLLuSU71QgQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10984
 
-On Tue, May 27, 2025 at 5:11=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Sun, May 25, 2025 at 02:16:53PM +0530, Anup Patel wrote:
-> > Introduce optional fw_node() callback which allows a mailbox controller
-> > driver to provide controller specific mapping using fwnode.
-> >
-> > The Linux OF framework already implements fwnode operations for the
-> > Linux DD framework so the fw_xlate() callback works fine with device
-> > tree as well.
->
-> ...
->
-> >  struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int ind=
-ex)
-> >  {
-> > +     struct fwnode_reference_args fwspec;
->
-> + property.h (if not done yet)
+Correct the DMA interrupter number of pcie0_ep from 317 to 311.
 
-This needs fwnode.h
+Fixes: 3b1d5deb29ff ("arm64: dts: imx95: add pcie[0,1] and pcie-ep[0,1] support")
+Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx95.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->
-> > -     int ret;
-> > +     int i, ret;
->
-> Why is 'i' signed?
+diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+index 59f057ba6fa7..7ad9adfb2653 100644
+--- a/arch/arm64/boot/dts/freescale/imx95.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+@@ -1678,7 +1678,7 @@ pcie0_ep: pcie-ep@4c300000 {
+ 			      <0x9 0 1 0>;
+ 			reg-names = "dbi","atu", "dbi2", "app", "dma", "addr_space";
+ 			num-lanes = <1>;
+-			interrupts = <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "dma";
+ 			clocks = <&scmi_clk IMX95_CLK_HSIO>,
+ 				 <&scmi_clk IMX95_CLK_HSIOPLL>,
+-- 
+2.37.1
 
-No particular reason because 'i' is not being assigned a negative
-value so both signed and unsigned will work fine.
-
->
-> > -     if (!dev || !dev->of_node) {
-> > -             pr_debug("%s: No owner device node\n", __func__);
-> > +     if (!dev || !dev->fwnode) {
->
-> Do not dereference fwnode directly. Use dev_fwnode.
->
-> > +             pr_debug("%s: No owner %s\n", __func__, !dev ? "device" :=
- "fwnode");
->
-> Use positive conditional.
->
-> __func__ is redundant it debug messages. With Dynamic Debug enabled it ma=
-y be
-> switched at run-time.
-
-Okay, I will drop the __func__
-
->
-> >               return ERR_PTR(-ENODEV);
-> >       }
-> >
-> > -     ret =3D of_parse_phandle_with_args(dev->of_node, "mboxes", "#mbox=
--cells",
-> > -                                      index, &spec);
-> > +     ret =3D fwnode_property_get_reference_args(dev->fwnode, "mboxes",
->
->         struct fwnode_handle *fwnode =3D dev_fwnode(dev);
->
-> > +                                              "#mbox-cells", 0, index,=
- &fwspec);
-> >       if (ret) {
-> >               dev_dbg(dev, "%s: can't parse \"mboxes\" property\n", __f=
-unc__);
-> >               return ERR_PTR(ret);
-> >       }
->
-> > +     memset(&spec, 0, sizeof(spec));
-> > +     if (dev->of_node) {
->
-> What is this check for?
-
-It's a paranoid check on my part. I will drop the check
-in the next revision.
-
->
-> > +             spec.np =3D to_of_node(fwspec.fwnode);
-> > +             spec.args_count =3D fwspec.nargs;
-> > +             for (i =3D 0; i < spec.args_count; i++)
-> > +                     spec.args[i] =3D fwspec.args[i];
-> > +     }
-> > +
-> >       mutex_lock(&con_mutex);
-> >
-> >       chan =3D ERR_PTR(-EPROBE_DEFER);
-> > -     list_for_each_entry(mbox, &mbox_cons, node)
-> > -             if (mbox->dev->of_node =3D=3D spec.np) {
-> > +     list_for_each_entry(mbox, &mbox_cons, node) {
-> > +             if (mbox->fw_xlate && mbox->dev->fwnode =3D=3D fwspec.fwn=
-ode) {
-> > +                     chan =3D mbox->fw_xlate(mbox, &fwspec);
-> > +                     if (!IS_ERR(chan))
-> > +                             break;
-> > +             } else if (mbox->of_xlate && mbox->dev->of_node =3D=3D sp=
-ec.np) {
-> >                       chan =3D mbox->of_xlate(mbox, &spec);
-> >                       if (!IS_ERR(chan))
-> >                               break;
-> >               }
->
->
->                 if (!IS_ERR(...))
->                         break;
->
-> is common.
-
-Latest mailbox.c has changed so I will check and update accordingly.
-
->
->
-> > +     }
->
-> ...
->
-> > +fw_mbox_index_xlate(struct mbox_controller *mbox,
-> > +                 const struct fwnode_reference_args *sp)
->
-> One line?
-
-Okay, I will update.
-
-Regards,
-Anup
 
