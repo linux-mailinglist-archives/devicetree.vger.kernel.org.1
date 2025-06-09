@@ -1,356 +1,166 @@
-Return-Path: <devicetree+bounces-183700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFC84AD186F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 07:58:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375E7AD1874
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 07:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C77116176B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 05:58:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24D983AB6BA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 05:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C36515E97;
-	Mon,  9 Jun 2025 05:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A8A280305;
+	Mon,  9 Jun 2025 05:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dD7ppcSN"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="O/4PbqNE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860FC25CC61
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 05:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9054E27FD7F
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 05:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749448680; cv=none; b=Kf57YCcRn/8x8+hu4/Que5i5cugewQHBcm5Eqjq4Ro0ytzlnACCL+2SgUGSrfeSdgYwCXSMe+gcgDAzdKhnlD0xHZcC5WR/seD1ijxldBsVUrAEgLU4NMldQzx03qClZLx7f6bLIXYzfiP3OLKYyRW/1fVpTtdR6DJW4HVLDzWE=
+	t=1749448702; cv=none; b=P3DwErnZUUJhuLyfhokcA3NaogUSbPvCOz/3JhEkUtHMO9nWusQffkPSKmTqH14UQdF3qLzHZ5SRiD0hg0srTspeUOaB1nsPGlrQFY/czuJXtVGoStNVog1MKNmXdfVyuGkvvC7rwi6W7Tw3IrKswiixmqB0jGumBrzS+dMmHXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749448680; c=relaxed/simple;
-	bh=Mpn3Zxli17D2OF2PlMwZa6rwNKulWuAjX+MzPpEib78=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cs0HF+IPUsvkF4QM+YnzEzvKptPmm4PcG0PsD/vUwws5I8r3Il8vm8mSBUIIDu2VHajO5q0W2jKVT4Dw9u/2D7/K2WByLNqpdU2hjJ0E1WepGG+emLeDDJQ4d0PkTOka8OTf6lp83+CdOPyU5pqgemy1qQdlM+lOjvRDxkCkIao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dD7ppcSN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 558MXCIj001132
-	for <devicetree@vger.kernel.org>; Mon, 9 Jun 2025 05:57:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SrUnZXfqt9KjlRqLlnrECKyis2VxRFCvtOYI6adzx6s=; b=dD7ppcSNozsk1fx/
-	D1i7xW6mTrzQDTsBetPetUZpgwdvXON/GGz+KHIJ+2zo6zBMsITQZGB4Mf/dcFAF
-	qkMUcRBxIrSSrUHMx4tU+MSTQVYQj2ALAoGgsc5v0iTvQb1U1ptjvVnLeL5jZSrH
-	ewgGsUmHOzchgLLJjTT8mMY4E8CxWm6nsI8/KRRftrAaT95Paych+FpK4EO5EvhE
-	fcrvsokCFmUAtztXj80dOCVNUjESvA5aQanMuG45sjNny+CbxEMAodFaWWNqOcAF
-	MRhznrKZ3/+0OEF6xhN/aW2RF2kpq1kr+FDuoJHN2ZwtyddwJG1mKbCXxQRgPY5m
-	2ZaAxQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dt9myhe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 05:57:57 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2358de17665so37462705ad.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 22:57:57 -0700 (PDT)
+	s=arc-20240116; t=1749448702; c=relaxed/simple;
+	bh=slXEZt1JN9lXv9PIIOCjVGjhjME8+mB5XUxfKMGsbd0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XqckPCLRKm8lUh8a+8coSxzCe1JOQu1+/Uu/wdpmOhutc87nj+qtMS/mnbI8v8Hn3x7lfh5ZqWxvjV040djjr027Lp8PwqsKjmTK2R5PFKtuh7mmTeDGQngUWEAlEUMsH2zRzvZywpww2Hnjd/WDceFc6pW60HcpsSrfMaHtlTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=O/4PbqNE; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5532a30ac41so4073633e87.0
+        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 22:58:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1749448699; x=1750053499; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=79dQYfKRjz/YesTMH1J35SSA7TkpXL6oM6f8PWhNqGs=;
+        b=O/4PbqNEZk9pBBLormo1ZrCdf5fYtzEYPQzBKvBGlddyieONBAtJG3PpwJDQQTXXAf
+         PJqG8PbF9Wch2UZoJb8IAsNLbWQ2vquBCV8TfqL8rGqFwFLJFUj/GDdjSV7UNlA7Karm
+         Z1EPFDoYRtAb5bwEQSPvBHL6yIE+8LWVhPY6lqigze1SAJTba0mFMaQqos5u6HMtHFfe
+         Z2++ewQGC/tvTQ8bpI0qa2lJ1yQphrhu4TrjE5ZqyggiKz1JQa9hLz8gIrFyKBKNcE/a
+         Zp+CWw8ecdYQGdbXeZ+KRqLoyCWvVCrkHkT0usYwERB7GqubDTwt75PFA+2i4ZoDQKuW
+         ZR5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749448676; x=1750053476;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SrUnZXfqt9KjlRqLlnrECKyis2VxRFCvtOYI6adzx6s=;
-        b=Qe2tprxFu/XshV9fgxLYxrLbvHlSVcDbJqpzO3l8wYc3l8vGDrdAmcZO/t6E+y51Wt
-         MueBQyh1cQP+6jgV6GDA2B7KgyWVsCIK0mByMC8vm8ETbN8Je/ByzJ62s7iSikG2icT4
-         nQCgdNtUwHrFyIAPHu//ssOEzwKZsyHmWtr5UYXZHEUbjqmr+sEB3BOin3bkU3sxNQxn
-         S9dn39wI1YpNWdjNzuH7qAheyGjsoZlnMtIXQZWg+D6vSHWMlSmhRIOw9Y/BbGv1MwUc
-         86yJQ5/S/+NePmIHqNb5fWI02pIKOaGTidZ7QVA19/tLSk0JkFKwQ62aoeZo3DLlCfI8
-         oZ+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXfG8daNQsnBmy8ULE6j/G2OhYkZLtlPOcL9vDjWcL44rcBB0cnNp+NpwO3PpxsIolaomK7J1bKl920@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkzD0gK+tD/BdEmf42BfywKd+N2ymjk7n2N6qSKdXfEhY4vlln
-	SLoMlppgf0Ew0Lw9LPIBV6LO26D9Mwy7x1JEiAiE5DZYz+UN2fih8ZSx7fY+jyORc83Xcf1SXBA
-	F4cYq9JjrIUAbfCRMG/EEG5nxthWkyl29tZKWd0jrr0gq/ncfuCN2+YoZSWKqV9G9
-X-Gm-Gg: ASbGncvayjnGrvNuJWksgRYV4k7jc9e0WPyk4kS9IWtELlFk9WzhEkWBXPlrhoYz4ju
-	wF/P5rEkO9ByKxDOOPv4z5ZHDxWL61td5ac4W0fj30xvobgLF7s6IsTeo/ySMgi0zpKWYK5+Cz2
-	LLo6U7JO7cb5hm5OU/rO4fiiQJ1vnEEoEBJKFr4k7V/rZjXzk4JnR8QK8suozOrs19wJcMcz9oX
-	KvAcV+PFVNfKPSWH/ga6SdmIw9IELqP6Pdrb+fPBv9uVFb5LqOppwlBCHdMqUBlC0FYoJHlFjXm
-	6IsT59QF4RPB+cUe8Ka51pLHnFRTTr0Obfrp7swSDQ==
-X-Received: by 2002:a17:902:d2c6:b0:234:cc7c:d2fc with SMTP id d9443c01a7336-23601d24945mr160464915ad.27.1749448675851;
-        Sun, 08 Jun 2025 22:57:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE78MvYavfGwv9UjYUEnj5TRNzYelwxltkwZqYUvbIetyfuwzjXm7VoteUx/HSe1LfF8827fg==
-X-Received: by 2002:a17:902:d2c6:b0:234:cc7c:d2fc with SMTP id d9443c01a7336-23601d24945mr160464555ad.27.1749448675392;
-        Sun, 08 Jun 2025 22:57:55 -0700 (PDT)
-Received: from [10.92.214.105] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2360340fe89sm47400665ad.204.2025.06.08.22.57.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jun 2025 22:57:54 -0700 (PDT)
-Message-ID: <7b91b725-6b47-bf8f-e6e5-e4584f274ec4@oss.qualcomm.com>
-Date: Mon, 9 Jun 2025 11:27:49 +0530
+        d=1e100.net; s=20230601; t=1749448699; x=1750053499;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=79dQYfKRjz/YesTMH1J35SSA7TkpXL6oM6f8PWhNqGs=;
+        b=JMCbqz01hZDC5dB4RczmyL2nU8UUkDiZgUW5tHTe6L2VXXvLJnyxsS9xRPZxCB9bvv
+         rvpbKrK1FRD9XLhmj+mXLAUhUrf6GICxGRSzmUXaOTnJggGMaju/rBMOyzFDCLDb5C/d
+         TLtJmUo53fZf8Je8sVld28W7vGEX802Sn1iVYyJmImV/3D2NT5RDgCic0XWxNEF/7C7a
+         askLWhnId+6tEjOIzg8ORYSDNrNOLV30f4duxLfE2TaR/czG+Is5XwVcHP6DkL1umoBO
+         9ovvEZLX3pjyNqB9Z6Z4g7Xfn83jSzLjKriNwgJ6jk3m9bALVU5DH7JdU09OGHEJc/eO
+         vtgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXkyoxwOJdcbZV6tAoyaPGatmVzYa7Rj+lVJVuLCjByQkXD0riIb/cDbdpEbdDTg7gm5lRSGPAP6MpI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUALHhTk3QH8s7rf3jDxfRPymDFmCe8NebflyciBN11XumQiNu
+	QFtan4W1sK2c64MSG37lprGPgxE9Jt7kF1lU1ZpZ2hxS2m3Zyp4PzPmRf5kMiB3JncunLoZqMUY
+	ApBFS+vvIhqW/oXEKPBAxNd98Q92pUFuO8MYfqW/PKA==
+X-Gm-Gg: ASbGncs+WWeUE5wf+OHPDBW/WPFTjIJeVnd/D9DoWzRe1K6/+sudsXXdz9hgbgh3vRZ
+	BJcyCllnk4jQ2cRFHiP7Fssk1w2yCvBfp1pXBIuFwS+6nTo6PfPQ2rRMFAHFfXaUZHPuscRKJr/
+	BvTP1nbrKVH4YwZi6eqV715YyUl1cZdbSA1M3K6phAJomw
+X-Google-Smtp-Source: AGHT+IEEAjCAU74AdDgZhPUpik9rwnZXkawnnn1BuceWjTl98W9A7+CL2sv8mgaup8C6oH709Ul1OgTzgtqBWZpTOi4=
+X-Received: by 2002:a05:6512:39c3:b0:553:2486:e0fd with SMTP id
+ 2adb3069b0e04-55366bfa7a2mr2653560e87.23.1749448698667; Sun, 08 Jun 2025
+ 22:58:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/2] PCI/portdrv: Add support for PCIe wake interrupt
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_mrana@quicinc.com, Sherry Sun <sherry.sun@nxp.com>
-References: <20250605202630.GA622231@bhelgaas>
-Content-Language: en-US
-In-Reply-To: <20250605202630.GA622231@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=KpNN2XWN c=1 sm=1 tr=0 ts=684677e5 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=8AirrxEcAAAA:8 a=sFKuWwQCCB-pgVPeRP0A:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22 a=ST-jHhOKWsTCqRlWije3:22
-X-Proofpoint-GUID: vNiSluFHRJ_3bDbituyI46Hv7SYSu1XC
-X-Proofpoint-ORIG-GUID: vNiSluFHRJ_3bDbituyI46Hv7SYSu1XC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA5MDA0NSBTYWx0ZWRfXw/SWzVl7e3i2
- IZCCpK026bE8GOnpqkR6o1Hu5I6wrC0xYoCS3dXmVjMFoy491FztvNrpR1tX7vEdIwIo7MGL9+m
- 5gnl3n64ml24w/DYEDbo9wyklg7NBEARTOpfHVaZpG4zwI97MK4eCguCPpWbUhPQN1oskWG8Nf7
- M3/K+G/rC5fg5pMWWEu4TWLJvfwuL+UbeUtnYJOzhQ+YI5WbYeEDAljbufQR5EmY0ot7q644qTO
- RTgGJckOC1LIulQ30B96C1PofIq2rLWvZ93Q28L1W8wiUDkKN/5Jo3FfaE/3Um+Sy9jWcKP8uI5
- hgucPAS+J5bwqJ39oSakH2Rpclp6QlViH0AWFA4bnfX6HeAPHHPQOzXIydUTHsSMtrDd29IV9Fg
- kj2YxbPoP67W7WjSY37AaT/jSq02DnTTh+B/eMZA9ix5TEQr9DXrE/Wo3B+gFLs+pdEqqBKF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-09_02,2025-06-05_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 phishscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
- suspectscore=0 adultscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
- spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506090045
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-2-apatel@ventanamicro.com> <53abb1fc-6236-4266-a6e7-25023e27e160@linux.dev>
+In-Reply-To: <53abb1fc-6236-4266-a6e7-25023e27e160@linux.dev>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 9 Jun 2025 11:28:06 +0530
+X-Gm-Features: AX0GCFsmWbRIoUi6nNFKjR9qXpFfrpwbKCN1t236wpZV7bl1kup6dBRNjwof4ew
+Message-ID: <CAK9=C2VhmU1a9TN4+oLMNRfweHY8jw=W71k+HpqnUxxve6hNfQ@mail.gmail.com>
+Subject: Re: [PATCH v4 01/23] riscv: Add new error codes defined by SBI v3.0
+To: Atish Patra <atish.patra@linux.dev>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, Jun 7, 2025 at 5:21=E2=80=AFAM Atish Patra <atish.patra@linux.dev> =
+wrote:
+>
+>
+> On 5/25/25 1:46 AM, Anup Patel wrote:
+> > The SBI v3.0 defines new error codes so add these new error codes
+> > to the asm/sbi.h for use by newer SBI extensions.
+>
+> This patch can be dropped as it is part of the FWFT series with minor
+> modifications in error mappings.
+>
+> https://lore.kernel.org/linux-riscv/20250523101932.1594077-4-cleger@rivos=
+inc.com/
 
+Yes, I am aware of Clement's patch. I was temporarily carrying
+this patch over here.
 
-On 6/6/2025 1:56 AM, Bjorn Helgaas wrote:
-> On Thu, Jun 05, 2025 at 10:54:45AM +0530, Krishna Chaitanya Chundru wrote:
->> PCIe wake interrupt is needed for bringing back PCIe device state
->> from D3cold to D0.
-> 
-> Does this refer to the WAKE# signal or Beacon or both?  I guess the
-> comments in the patch suggest WAKE#.  Is there any spec section we can
-> cite here?
-> 
-we are referring only WAKE# signal, I will add the PCIe spec r6.0, sec
-5.3.3.2 in next patch version.
->> Implement new functions, of_pci_setup_wake_irq() and
->> of_pci_teardown_wake_irq(), to manage wake interrupts for PCI devices
->> using the Device Tree.
->>
->>  From the port bus driver call these functions to enable wake support
->> for bridges.
-> 
-> What is the connection to bridges and portdrv?  WAKE# is described in
-> PCIe r6.0, sec 5.3.3.2, and PCIe CEM r6.0, sec 2.3, but AFAICS neither
-> restricts it to bridges.
-> 
-The wake# is used by the endpoints to wake host to bring PCIe device
-state to D0 again, in direct attach root port wake# will be connected
-to the root port and in switch cases the wake# will connected to the
-switch Downstream ports and switch will consolidate wake# from different
-downstream ports and sends to the root port. The wake# will be used by
-root port bridges only. portdrv is the driver for root port.
-> Unless there's some related functionality in a Root Port, RCEC, or
-> Switch Port, maybe this code should be elsewhere, like
-> set_pcie_port_type(), so we could set this up for any PCIe device that
-> has a WAKE# description?
-> 
-As this is only used by root port, I am ok to change it to there to
-enable this only in case of rootport.
-But we need to make some changes in the flow as of node is not assigned
-yet pci dev and also if wake registration fails we can't stop the driver
-from probing as driver is not yet in the picture yet.
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->> Tested-by: Sherry Sun <sherry.sun@nxp.com>
->> ---
->>   drivers/pci/of.c           | 67 ++++++++++++++++++++++++++++++++++++++++++++++
->>   drivers/pci/pci.h          |  6 +++++
->>   drivers/pci/pcie/portdrv.c | 12 ++++++++-
->>   3 files changed, 84 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
->> index ab7a8252bf4137a17971c3eb8ab70ce78ca70969..3487cd62d81f0a66e7408e286475e8d91c2e410a 100644
->> --- a/drivers/pci/of.c
->> +++ b/drivers/pci/of.c
->> @@ -7,6 +7,7 @@
->>   #define pr_fmt(fmt)	"PCI: OF: " fmt
->>   
->>   #include <linux/cleanup.h>
->> +#include <linux/gpio/consumer.h>
->>   #include <linux/irqdomain.h>
->>   #include <linux/kernel.h>
->>   #include <linux/pci.h>
->> @@ -15,6 +16,7 @@
->>   #include <linux/of_address.h>
->>   #include <linux/of_pci.h>
->>   #include <linux/platform_device.h>
->> +#include <linux/pm_wakeirq.h>
->>   #include "pci.h"
->>   
->>   #ifdef CONFIG_PCI
->> @@ -966,3 +968,68 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
->>   	return slot_power_limit_mw;
->>   }
->>   EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
->> +
->> +/**
->> + * of_pci_slot_setup_wake_irq - Set up wake interrupt for PCI device
->> + * @pdev: The PCI device structure
->> + *
->> + * This function sets up the wake interrupt for a PCI device by getting the
->> + * corresponding WAKE# gpio from the device tree, and configuring it as a
->> + * dedicated wake interrupt.
->> + *
->> + * Return: 0 if the WAKE# gpio is not available or successfully parsed else
->> + * errno otherwise.
->> + */
->> +int of_pci_slot_setup_wake_irq(struct pci_dev *pdev)
->> +{
->> +	struct gpio_desc *wake;
->> +	struct device_node *dn;
->> +	int ret, wake_irq;
->> +
->> +	dn = pci_device_to_OF_node(pdev);
->> +	if (!dn)
->> +		return 0;
->> +
->> +	wake = devm_fwnode_gpiod_get(&pdev->dev, of_fwnode_handle(dn),
->> +				     "wake", GPIOD_IN, NULL);
-> 
-> I guess this finds "wake-gpio" or "wake-gpios", as used in
-> Documentation/devicetree/bindings/pci/qcom,pcie.yaml,
-> qcom,pcie-sa8775p.yaml, etc?  Are these names specified in any generic
-> place, e.g.,
-> https://github.com/devicetree-org/dt-schema/tree/main/dtschema/schemas/pci?
-> 
-I created a patch to add them in common schemas:
-https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
+Regards,
+Anup
 
-- Krishna Chaitanya.
->> +	if (IS_ERR(wake) && PTR_ERR(wake) != -ENOENT) {
->> +		dev_err(&pdev->dev, "Failed to get wake GPIO: %ld\n", PTR_ERR(wake));
->> +		return PTR_ERR(wake);
->> +	}
->> +	if (IS_ERR(wake))
->> +		return 0;
->> +
->> +	wake_irq = gpiod_to_irq(wake);
->> +	if (wake_irq < 0) {
->> +		dev_err(&pdev->dev, "Dailed to get wake irq: %d\n", wake_irq);
-> 
-> s/Dailed/Failed/
-> 
->> +		return wake_irq;
->> +	}
->> +
->> +	device_init_wakeup(&pdev->dev, true);
->> +
->> +	ret = dev_pm_set_dedicated_wake_irq(&pdev->dev, wake_irq);
->> +	if (ret < 0) {
->> +		dev_err(&pdev->dev, "Failed to set wake IRQ: %d\n", ret);
->> +		device_init_wakeup(&pdev->dev, false);
->> +		return ret;
->> +	}
->> +	irq_set_irq_type(wake_irq, IRQ_TYPE_EDGE_FALLING);
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(of_pci_slot_setup_wake_irq);
->> +
->> +/**
->> + * of_pci_slot_teardown_wake_irq - Teardown wake interrupt setup for PCI device
->> + *
->> + * @pdev: The PCI device structure
->> + *
->> + * This function tears down the wake interrupt setup for a PCI device,
->> + * clearing the dedicated wake interrupt and disabling device wake-up.
->> + */
->> +void of_pci_slot_teardown_wake_irq(struct pci_dev *pdev)
->> +{
->> +	dev_pm_clear_wake_irq(&pdev->dev);
->> +	device_init_wakeup(&pdev->dev, false);
->> +}
->> +EXPORT_SYMBOL_GPL(of_pci_slot_teardown_wake_irq);
->> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
->> index 39f368d2f26de872f6484c6cb4e12752abfff7bc..dd7a4da1225bbdb1dff82707b580e7e0a95a5abf 100644
->> --- a/drivers/pci/pci.h
->> +++ b/drivers/pci/pci.h
->> @@ -888,6 +888,9 @@ void pci_release_of_node(struct pci_dev *dev);
->>   void pci_set_bus_of_node(struct pci_bus *bus);
->>   void pci_release_bus_of_node(struct pci_bus *bus);
->>   
->> +int of_pci_slot_setup_wake_irq(struct pci_dev *pdev);
->> +void of_pci_slot_teardown_wake_irq(struct pci_dev *pdev);
->> +
->>   int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
->>   bool of_pci_supply_present(struct device_node *np);
->>   
->> @@ -931,6 +934,9 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
->>   	return 0;
->>   }
->>   
->> +static int of_pci_slot_setup_wake_irq(struct pci_dev *pdev) { return 0; }
->> +static void of_pci_slot_teardown_wake_irq(struct pci_dev *pdev) { }
->> +
->>   static inline bool of_pci_supply_present(struct device_node *np)
->>   {
->>   	return false;
->> diff --git a/drivers/pci/pcie/portdrv.c b/drivers/pci/pcie/portdrv.c
->> index e8318fd5f6ed537a1b236a3a0f054161d5710abd..9a6beec87e4523a33ecace684109cd44e025c97b 100644
->> --- a/drivers/pci/pcie/portdrv.c
->> +++ b/drivers/pci/pcie/portdrv.c
->> @@ -694,12 +694,18 @@ static int pcie_portdrv_probe(struct pci_dev *dev,
->>   	     (type != PCI_EXP_TYPE_RC_EC)))
->>   		return -ENODEV;
->>   
->> +	status = of_pci_slot_setup_wake_irq(dev);
->> +	if (status)
->> +		return status;
->> +
->>   	if (type == PCI_EXP_TYPE_RC_EC)
->>   		pcie_link_rcec(dev);
->>   
->>   	status = pcie_port_device_register(dev);
->> -	if (status)
->> +	if (status) {
->> +		of_pci_slot_teardown_wake_irq(dev);
->>   		return status;
->> +	}
->>   
->>   	pci_save_state(dev);
->>   
->> @@ -732,6 +738,8 @@ static void pcie_portdrv_remove(struct pci_dev *dev)
->>   
->>   	pcie_port_device_remove(dev);
->>   
->> +	of_pci_slot_teardown_wake_irq(dev);
->> +
->>   	pci_disable_device(dev);
->>   }
->>   
->> @@ -744,6 +752,8 @@ static void pcie_portdrv_shutdown(struct pci_dev *dev)
->>   	}
->>   
->>   	pcie_port_device_remove(dev);
->> +
->> +	of_pci_slot_teardown_wake_irq(dev);
->>   }
->>   
->>   static pci_ers_result_t pcie_portdrv_error_detected(struct pci_dev *dev,
->>
->> -- 
->> 2.34.1
->>
+>
+>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >   arch/riscv/include/asm/sbi.h | 12 ++++++++++++
+> >   1 file changed, 12 insertions(+)
+> >
+> > diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.=
+h
+> > index 3d250824178b..4dd6aafb8468 100644
+> > --- a/arch/riscv/include/asm/sbi.h
+> > +++ b/arch/riscv/include/asm/sbi.h
+> > @@ -419,6 +419,11 @@ enum sbi_ext_nacl_feature {
+> >   #define SBI_ERR_ALREADY_STARTED -7
+> >   #define SBI_ERR_ALREADY_STOPPED -8
+> >   #define SBI_ERR_NO_SHMEM    -9
+> > +#define SBI_ERR_INVALID_STATE        -10
+> > +#define SBI_ERR_BAD_RANGE    -11
+> > +#define SBI_ERR_TIMEOUT              -12
+> > +#define SBI_ERR_IO           -13
+> > +#define SBI_ERR_DENIED_LOCKED        -14
+> >
+> >   extern unsigned long sbi_spec_version;
+> >   struct sbiret {
+> > @@ -503,11 +508,18 @@ static inline int sbi_err_map_linux_errno(int err=
+)
+> >       case SBI_SUCCESS:
+> >               return 0;
+> >       case SBI_ERR_DENIED:
+> > +     case SBI_ERR_DENIED_LOCKED:
+> >               return -EPERM;
+> >       case SBI_ERR_INVALID_PARAM:
+> > +     case SBI_ERR_INVALID_STATE:
+> > +     case SBI_ERR_BAD_RANGE:
+> >               return -EINVAL;
+> >       case SBI_ERR_INVALID_ADDRESS:
+> >               return -EFAULT;
+> > +     case SBI_ERR_TIMEOUT:
+> > +             return -ETIMEDOUT;
+> > +     case SBI_ERR_IO:
+> > +             return -EIO;
+> >       case SBI_ERR_NOT_SUPPORTED:
+> >       case SBI_ERR_FAILURE:
+> >       default:
 
