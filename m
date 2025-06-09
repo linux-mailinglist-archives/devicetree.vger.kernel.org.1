@@ -1,137 +1,243 @@
-Return-Path: <devicetree+bounces-183823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7115AD2083
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 16:06:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6BAAD208E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 16:07:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90E281887745
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:06:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CED43165E70
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2C8125A2CD;
-	Mon,  9 Jun 2025 14:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B272E257429;
+	Mon,  9 Jun 2025 14:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="q1n9aZFJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TTjl0zAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5276513C918;
-	Mon,  9 Jun 2025 14:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33221547D2;
+	Mon,  9 Jun 2025 14:07:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749477978; cv=none; b=rmiL75+pBOMdj27MS6hqYdatqQOyojnhA+aFo+i+nZGyZ9Kzzi8GOpG1ggcGN3Ks9JiJlAca7r+JhpKfyAxfdfFWY2Y0iO+7rVQYrucT+PEsVSJrrQ3nJ0ynHidEWKHabMl8SMDlnjtKU+EpRXRCg5CHwwu6EXcTJS7IaR1OpdA=
+	t=1749478049; cv=none; b=U4N2OAjI2Y/HbIopfTZ1xH7hHVP3n2EPbb5NzJ6xH6Zpyk6tJMeyI2OHkg1Ts19ecJIxdnAz5fIWArEPfFXAvaPk48YNK/QZZ170QyWyw3UEO/x1xHrjIAs9G+eusIR3uWin7B1NW/xFNo8+3Q6JY3mas/XkAd5SN7Kmpq44R60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749477978; c=relaxed/simple;
-	bh=Lqz2IXP0f71+stZWZq3nQhJN56DepDBP0MfIkkLnz0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a1kjUrqxLHctnrGxN6WMzn9X8NUaVigHqt73AhQUpXiJX9+qEG4tKghrymhEiyNfgPL1bdZtpZWO9s8nBl0MQzB8DYoRDz58CW31nFq6NI6DpwyE3X/nKFek4eLJF7UR6nXUvaY0IJRWCdp/bzGcMdKb2Ipkrprd23L2pYO8RpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=q1n9aZFJ; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=PIMYK36uvIqcecnw+wsNtJNA1jDZ1QoKID40Lzud8WI=; b=q1n9aZFJiH/t5KyVNuHn1TrEwy
-	oCdSvsEB67ZQ+fBQYTl7YItoe4V1LjF2GFhMIcpHV1Gr9pqNaQpxbeej2rDqF3+aqf34zBDgbJ1j2
-	xb6ZkIKNsbW5RWoQA9rZCvLvK6n4Z3emYvGqDFCvPgCc+DhE3KeHLDshhRE8nmpKmtJPbu8HH/J+j
-	RcaCU63UOyGiPTqCqPkftCEO+/IQNqFhlJGOhMUFqjG2fMB+u0cfXkdO/W41ak2IaANdaLhODp4gZ
-	A6QaH3W885a42EplVCctRTJsxWHX2JKjq1MwBPI3najMRLQ/iXZ2p5Cnj1tghQmCs1d7gZPhF8CEM
-	J46tkLtw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49642)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uOd8P-0003M3-14;
-	Mon, 09 Jun 2025 15:05:57 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uOd8M-0006HU-09;
-	Mon, 09 Jun 2025 15:05:54 +0100
-Date: Mon, 9 Jun 2025 15:05:53 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: george.moussalem@outlook.com
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1749478049; c=relaxed/simple;
+	bh=wAAJY/HrK/nuKtAaod/22OhduwbiOhuK1jiKS/alY2U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LgF+IQxZeV7pzF8CHIqjTE4JOeQsuDpT+U7H/E73KhOutcoMWT3B7mZWVpjcvrI03y3o+n0s37jTTfxOXASmCHHQYQgKKgzWNiwBlitglLb/HCBt9+R5lxt2VTVVnC/RGdoNIwtr72DgoSKXq5kp0TaLDw9HAGvbiUFW/bvmdhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TTjl0zAZ; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a50956e5d3so3628336f8f.1;
+        Mon, 09 Jun 2025 07:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749478046; x=1750082846; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wp465GBd29bhYSADM6T0VGSuzx4l+sqGwpURc4OujX4=;
+        b=TTjl0zAZKkCDAs6YO47kAl569t1b7RnhXlM3cqYZ8NqThu7ysKACbHM54pd4uhgLMs
+         RjiJl6gahVeLgARev80xjSXZYAZUsZczNQl0kGmlZtdLaK8hdio1Haif5ml8fDJfCI08
+         l45/HwvcgO9/KZJ2vnCh8MKDEMPwux5hRqjsDVrVnhGBTuyY3GPhIwZ3V2sZDn3EkdEE
+         uJbZ2xoYgjW/iMZqfPMylkGfiofGv703jfAn5lD9y+t3nxztrH/HzwliVEuiwiAv7rxw
+         /S5G9lqiiJnwvCOANKyH34YudyqfD3e8BYUBEfQp1KDJUbU3+WiBqPSm9t/ql/URzWj5
+         w3VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749478046; x=1750082846;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wp465GBd29bhYSADM6T0VGSuzx4l+sqGwpURc4OujX4=;
+        b=Qbjqdo3hEdNfPa8kVUbbAEmrcOh8GOFUgG6pJO70RyV2K/Zib1cUnlDnBP12Gsgvk8
+         e89vqbYCuqvz3x5EIg+dR9ctvLS6VF9ThGUMQQ1m/Gj9/pQNojhuN2NE/mNB8Bqpo0uq
+         J5TayiFxCAuPi+ZJtopPRFnh2RKpFauDZtB8f5ffHXL+BWUulP0FRYPbGIEpXLCXpWUv
+         HZ0QcHxYf+DKjwJ2jcRBuHwflHzP3pPH7Zub4fwusNqhrcim9Qhe5Sld+Z1dbac6drBG
+         jyv5lm2woarajvfmkM0aqGB3tUKzt9Kk+/v4F3OWbdYqXSjqJVrwcfw2S40epIvwazJI
+         HuEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUV5jMPznKGVA124rKnbvYl92E50mwfZrOVV5AKHAuAO9tzowhimYaFJY5jSjOm3MBbW0pVaNUtdTZwUng=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/HSy83FTTf0/ZuQSmuvv7wj6zFSYlTseQSTl3mVBHMADrjUDY
+	13wHWhzHgmKmiHj2WnSIDI5QBX6AN+ihcJJ11tl65y49HDm9WwlTw/DNsrs2pYH/
+X-Gm-Gg: ASbGncvbqauxxMh0RbZ990JXy//qf5mLU0WEvNT9/0PtShtxo4sc6jtG/HDKQar/Qf1
+	OHuToKQGC1AFik6MEOFeR+ZDOj4rR2modtgZ2Q1FGqje5QZFlGDOCnAcQJfyoQFWhed6fsEAN2E
+	i319s8rZom/KtsZodDuYh0FkVI3HGPnI80H+mKe1EKq5kbyHVTze2SCcg6e0H1ctSXT9MhJqS3n
+	vQVL7uy7VdXfHkdYkGgyqaoaet+M3+QUqyIpFXbNG9l60GW/RyV/Ic1eu5C8EEDP/a6k7kXPFeo
+	tobG1NgGQ9kXdzYSRIEjZQm246XaOKefoJ5Nw1WDM2keqQHQGIYMazkyljdvYIct8jmyaDJAQjG
+	JINugHlPYZPfYKG02Axa3t2VHrP4spGRYgkQ=
+X-Google-Smtp-Source: AGHT+IG0REgGH1fHd+dkuiR3Fo6WREiMEfAZe6OZVVichjBI/5GBIj0dx+h9EBokmXQjt5fQUEHrXA==
+X-Received: by 2002:a05:6000:401e:b0:3a4:fb33:85ce with SMTP id ffacd0b85a97d-3a531caf7f1mr11598279f8f.46.1749478045626;
+        Mon, 09 Jun 2025 07:07:25 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-70-53-177.cust.vodafonedsl.it. [93.70.53.177])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53229d9e9sm9803060f8f.13.2025.06.09.07.07.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jun 2025 07:07:25 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: andrew@lunn.ch,
+	Stefano Radaelli <stefano.radaelli21@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] net: phy: qcom: at803x: Add Qualcomm IPQ5018
- Internal PHY support
-Message-ID: <aEbqQYDi8_LN7lDj@shell.armlinux.org.uk>
-References: <20250609-ipq5018-ge-phy-v4-0-1d3a125282c3@outlook.com>
- <20250609-ipq5018-ge-phy-v4-3-1d3a125282c3@outlook.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1] arm64: dts: freescale: imx8mp-var-som: Add EQoS support with MaxLinear PHY
+Date: Mon,  9 Jun 2025 16:06:42 +0200
+Message-ID: <20250609140643.26270-1-stefano.radaelli21@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250609-ipq5018-ge-phy-v4-3-1d3a125282c3@outlook.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 09, 2025 at 03:44:36PM +0400, George Moussalem via B4 Relay wrote:
-> +static int ipq5018_config_init(struct phy_device *phydev)
-> +{
-> +	struct ipq5018_priv *priv = phydev->priv;
-> +	u16 val = 0;
+Enable the EQoS Ethernet controller on the i.MX8MP VAR-SOM with the
+integrated Maxlinear MXL86110 PHY. The PHY is connected to the EQOS
+MDIO bus at address 4.
 
-Useless initialisation. See the first statement below which immediately
-assigns a value to val. I've no idea why people think local variables
-need initialising in cases like this, but it seems to have become a
-common pattern. I can only guess that someone is teaching this IMHO bad
-practice.
+This patch adds:
+- EQOS controller configuration with RGMII interface.
+- Proper reset timings.
+- PHY power supply regulators.
+- RGMII pinmux configuration for all data, control and clock signals.
+- LED configuration for link status indication via the LED subsystem
+  under /sys/class/leds/, leveraging the support implemented in the.
+  mxl86110 PHY driver (drivers/net/phy/mxl-86110.c).
+  Two LEDs are defined to match the LED configuration on the Variscite
+  VAR-SOM Carrier Boards:
+    * LED@0: Yellow, netdev trigger.
+    * LED@1: Green, netdev trigger.
 
-> +
-> +	/*
-> +	 * set LDO efuse: first temporarily store ANA_DAC_FILTER value from
-> +	 * debug register as it will be reset once the ANA_LDO_EFUSE register
-> +	 * is written to
-> +	 */
-> +	val = at803x_debug_reg_read(phydev, IPQ5018_PHY_DEBUG_ANA_DAC_FILTER);
-> +	at803x_debug_reg_mask(phydev, IPQ5018_PHY_DEBUG_ANA_LDO_EFUSE,
-> +			      IPQ5018_PHY_DEBUG_ANA_LDO_EFUSE_MASK,
-> +			      IPQ5018_PHY_DEBUG_ANA_LDO_EFUSE_DEFAULT);
-> +	at803x_debug_reg_write(phydev, IPQ5018_PHY_DEBUG_ANA_DAC_FILTER, val);
-> +
-> +	/* set 8023AZ CTRL values */
-> +	phy_write_mmd(phydev, MDIO_MMD_PCS, IPQ5018_PHY_PCS_AZ_CTRL1,
-> +		      IPQ5018_PHY_PCS_AZ_CTRL1_VAL);
-> +	phy_write_mmd(phydev, MDIO_MMD_PCS, IPQ5018_PHY_PCS_AZ_CTRL2,
-> +		      IPQ5018_PHY_PCS_AZ_CTRL2_VAL);
+The RGMII TX/RX delays are implemented in SOM via PCB passive
+delays, so no software delay configuration is required.
 
-The comment doesn't help understand what's going on here, neither do the
-register definition names.
+Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+---
+ .../boot/dts/freescale/imx8mp-var-som.dtsi    | 87 +++++++++++++++++++
+ 1 file changed, 87 insertions(+)
 
-Also, what interface modes on the host side does this PHY actually
-support?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
+index b59da91fdd04..3be59692849f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
+@@ -55,6 +55,24 @@ reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
+ 		states = <3300000 0x0 1800000 0x1>;
+ 		vin-supply = <&ldo5>;
+ 	};
++
++	reg_phy_supply: regulator-phy-supply {
++		compatible = "regulator-fixed";
++		regulator-name = "phy-supply";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-enable-ramp-delay = <20000>;
++		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
++	reg_phy_vddio: regulator-phy-vddio {
++		compatible = "regulator-fixed";
++		regulator-name = "vddio-1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &A53_0 {
+@@ -73,6 +91,54 @@ &A53_3 {
+ 	cpu-supply = <&buck2>;
+ };
+ 
++&eqos {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_eqos>;
++	/*
++	 * The required RGMII TX and RX 2ns delays are implemented directly
++	 * in hardware via passive delay elements on the SOM PCB.
++	 * No delay configuration is needed in software via PHY driver.
++	 */
++	phy-mode = "rgmii";
++	phy-handle = <&ethphy0>;
++	status = "okay";
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@4 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <4>;
++			at803x,eee-disabled;
++			eee-broken-1000t;
++			reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <10000>;
++			reset-deassert-us = <100000>;
++			vddio-supply = <&reg_phy_vddio>;
++			leds {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				led@0 {
++					reg = <0>;
++					color = <LED_COLOR_ID_YELLOW>;
++					function = LED_FUNCTION_LAN;
++					linux,default-trigger = "netdev";
++				};
++
++				led@1 {
++					reg = <1>;
++					color = <LED_COLOR_ID_GREEN>;
++					function = LED_FUNCTION_LAN;
++					linux,default-trigger = "netdev";
++				};
++			};
++		};
++	};
++};
++
+ &i2c1 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+@@ -239,6 +305,27 @@ &wdog1 {
+ 
+ &iomuxc {
+ 
++	pinctrl_eqos: eqosgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
++			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
++			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
++			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
++			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
++			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
++			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
++			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
++			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
++			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
++			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
++			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
++			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
++			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
++			MX8MP_IOMUXC_SD2_WP__GPIO2_IO20					0x10
++			MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10				0x150
++		>;
++	};
++
+ 	pinctrl_i2c1: i2c1grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SD1_DATA4__I2C1_SCL				0x400001c2
 
-> +	priv->rst = devm_reset_control_array_get_exclusive(dev);
-> +	if (IS_ERR_OR_NULL(priv->rst))
-> +		return dev_err_probe(dev, PTR_ERR(priv->rst),
-> +				     "failed to acquire reset\n");
-
-Why IS_ERR_OR_NULL() ? What error do you think will be returned by this
-if priv->rst is NULL? (Hint: PTR_ERR(NULL) is 0.)
-
+base-commit: e271ed52b344ac02d4581286961d0c40acc54c03
+prerequisite-patch-id: 2335ebcc90360b008c840e7edf7e34a595880edf
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.43.0
+
 
