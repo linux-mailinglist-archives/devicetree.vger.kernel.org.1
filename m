@@ -1,138 +1,152 @@
-Return-Path: <devicetree+bounces-183979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466EAAD294A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 00:17:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 416E1AD2963
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 00:34:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE26D1701A0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:17:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E03E5188D01A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B481F22539F;
-	Mon,  9 Jun 2025 22:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108272206BE;
+	Mon,  9 Jun 2025 22:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="KQHk3kPX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORKyO9mn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3919B224AFE
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 22:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D59DB3597B;
+	Mon,  9 Jun 2025 22:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749507442; cv=none; b=Nx/jhGRYdZK2uaeONfENl3wGGRSzcmtAGkjw7oVzogd0/aJREAtpjFBH9D/zOKBVmPH0UrbVBJjf3tZX77v/PdTIMwDuPMOG1wsVeP5DvDRfcxgLvqhsLExjDaO0H1CzN3R5E+u14R5QnG/VA8Dex8EZNIzSKY6IQpxeMAgf48Q=
+	t=1749508471; cv=none; b=Pbo76jkvBxmu6mj3b8r+7lv46bCSsCOltLqNQDZD0HSiSC70j5rIh/QS3D1D1hqhNBea/O962XGgchIpbpGMkj4m1sxneNLdHBJH/znlIMb54dxJsGLl4xro2JKnS7Lh1C363WQwgrG8vTJO5ffbKGVK4/3Mgh1PrpLdqAG6vGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749507442; c=relaxed/simple;
-	bh=PTJgwmboDh3zwtCWo3X0HdMzg1bjCtzlOP89sJZk87U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uHv0QzK2BT7ZOauTUXG+X3pvMVkaG2wiJaMYHZzslCxdR30e9jeESSBkp3nj62MMpdUtBHkTyzLW8rf08Ft9Z9UlyR71VSEHg1VjKj6n/XEMV44kXBlSiEMubd8nwY85+RKUl9CkXIUpjiV582PJ4Aa0RdV3K7+5+tkctRh9RIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=KQHk3kPX; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-af6a315b491so4009820a12.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 15:17:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1749507440; x=1750112240; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vh/JtGXJq1ScSanttjAc4pgnb9sqVVMcQN566gVE5Cg=;
-        b=KQHk3kPX6AbRGseD7ZJk+RehSdnU2Hvit0xwGXTOxGe+7lmS3bZ6GzNYVOlogzoGE4
-         2NagoQhiP/eKPNTFR3TaIp2WKpK92mBKNlnQP7lXCNFJptocyaHvoaI2+T31Q1z692Jn
-         fMiUzdowM+d9pfN/w63PPa39YQRly1eUNw0Oc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749507440; x=1750112240;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vh/JtGXJq1ScSanttjAc4pgnb9sqVVMcQN566gVE5Cg=;
-        b=oxafRk7xREbIBIh7527J2vlJNJETU6Fs2RBKhqv/8esJb6QHQ1kHpdEUI5Jg9delxK
-         db65e6450aJRaiMyLfOLrBw1TFSGJFlQbsi3Mk6E0IGb93DyYOeuPPKuGQNllQ0IQeHZ
-         y57CjRqlPe3eNZ50k6eZvzaM0dDJ7boRHzh/cjvukH/2iyJGXiiit9eqwW4NRG8iGWYC
-         YilYfpux8BQQhM6YPUgfFIWGX/5paqtgspH8/ff3U9c5BAgoj1TJqBitAY3EOkAorKxR
-         J7URgA4ReU+Ngj1sH/JGnKhU9oFOLQd2HOYwqmLY3FNqg6MmtHHTwmHlEUloWU38BjEu
-         NDrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVLWyEytvun8sfhdDHbdASVm0PPewwOLwOD4QfpNGAikhYhHeVygbhNwvPB+sv985sGiPme3yqnD+Eq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLa91rDuKxZGx4DvY430JaFkf4WuQHQpcl0A/T+NjEqqlRZMq/
-	mamgHnO5Ii1eYdErGCu/570cWtD/wSyU85bzsy8JiARmRhYvof4HdVnsqcAGS1ciZA==
-X-Gm-Gg: ASbGncvVSGK0YG1bz33dVECQa5jZphKaL291l0hrKwuFsKPUOiA9uoDHRgckhAf8txm
-	Hx9BPLwQ6vEDCb2sJjJhBaHevkvGSooMF/ZNyJhBFCk/aiSgckzyGDKNFHIteWNX1KvUIyuQ+Xd
-	SoKhTCrOjakqmRmBjsJUBG7joFsW6BLkZYJCDD9SSWrX2vSIAREpdXqWw6Z5L4gLosL7K7ohtI9
-	uACE1t85t6kGSEluheGelvolWVBw9Kd8FAmtveBxEqedMfFFRY6VZ9k0o/68YOKBEL7dohoE6N0
-	aPUeM6eg/nKG4EOXayNN0bt2Vs6mS4MOJWV3jNbDHipEfB+/xxY1BnXUk5E8RsiMIHhwDBscZNj
-	Oa0xPMaL5CDwHfjeA5njGnkER9XCoQ77a+ZPJxNccQQ==
-X-Google-Smtp-Source: AGHT+IGu+nDuRxQ9N/1g/F5ZQ5bigX27pmvAno5gKj+c/t7BgQSFCAow3ysCS4pqkXEmCzwSGjxbww==
-X-Received: by 2002:a17:90b:3c8b:b0:311:f99e:7f4a with SMTP id 98e67ed59e1d1-313476822a8mr16779583a91.26.1749507440399;
-        Mon, 09 Jun 2025 15:17:20 -0700 (PDT)
-Received: from stbsrv-and-02.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603078d65sm59290415ad.5.2025.06.09.15.17.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 15:17:19 -0700 (PDT)
-From: Jim Quinlan <james.quinlan@broadcom.com>
-To: linux-pci@vger.kernel.org,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	jim2101024@gmail.com,
-	james.quinlan@broadcom.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
+	s=arc-20240116; t=1749508471; c=relaxed/simple;
+	bh=A4mU625j3YMMW9dfpyPGBAR8L+pq0PRwArA2Xezy+TU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ihgN/Ia/gtXR08319rV43NNviPWFQZyNh1h78pt6UU46yyMMi5O7mUdym3o0IGE1MehQbg4Qrfx0J5+eQnxXQLEI9mN9E7mwSoNivwg4M8rmw3yEQJmX2GobR6tWTlKREZ0q2r9iMlpJhSpK9zeNxG64yPqOClmZHAwnqdbcVAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORKyO9mn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E086C4CEEB;
+	Mon,  9 Jun 2025 22:34:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749508470;
+	bh=A4mU625j3YMMW9dfpyPGBAR8L+pq0PRwArA2Xezy+TU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ORKyO9mnfD6Q65zMU0f3Qax70JIW7o1BR8EfhqbNO86OSEM0KhHtD3MAmdQn6juMM
+	 OGgJ3yUdxs1ULO4V1IQTO4NHSQxqBSnWnovElca2H0TChRdMHucubyPcPYcpECu0Hl
+	 puVzsacU1/GdW/fEzr4vhtREA9C58j0YlAiMD+BEUfK85xRzMGWkPXLN1kK3NwuCYQ
+	 RIqrHXcjgH1iTpb+/XwqkKvaAnKTM5wjmsb955ZTth9g4ITlUobMYzgJHFfjQTAgev
+	 G9QK/4gwJj7k4fsqGm0WVagR4nTdyWXsJUH7ltPEKQhTxF15EC6EgET4n9i+j8Spy3
+	 lTcE4BUUJ8SgQ==
+Date: Mon, 9 Jun 2025 17:34:28 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Brian Norris <briannorris@chromium.org>,
+	"Rafael J. Wysocki" <rjw@rjwysocki.net>,
+	Tony Lindgren <tony@atomide.com>,
+	JeffyChen <jeffy.chen@rock-chips.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 1/3] dt bindings: PCI: brcmstb: Include cable-modem SoCs
-Date: Mon,  9 Jun 2025 18:17:04 -0400
-Message-ID: <20250609221710.10315-2-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250609221710.10315-1-james.quinlan@broadcom.com>
-References: <20250609221710.10315-1-james.quinlan@broadcom.com>
+	cros-qcom-dts-watchers@chromium.org,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, Sherry Sun <sherry.sun@nxp.com>
+Subject: Re: [PATCH v3 2/2] PCI/portdrv: Add support for PCIe wake interrupt
+Message-ID: <20250609223428.GA756387@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <pl262pfxe5mjtxzvr4qcsxwt4cyrdjzncd3ztsqpb6zuc7gi5b@hu6njospevgk>
 
-Add four Broadcom Cable Modem SoCs to the compatibility list.
+On Mon, Jun 09, 2025 at 05:29:49PM +0530, Manivannan Sadhasivam wrote:
+> + Brian, Rafael, Tony, Jeffy (who were part of the previous attempt to add WAKE#
+> GPIO/interrupt support:
+> https://lore.kernel.org/linux-pci/20171225114742.18920-1-jeffy.chen@rock-chips.com
+> 
+> On Mon, Jun 09, 2025 at 11:27:49AM +0530, Krishna Chaitanya Chundru wrote:
+> > On 6/6/2025 1:56 AM, Bjorn Helgaas wrote:
+> > > On Thu, Jun 05, 2025 at 10:54:45AM +0530, Krishna Chaitanya Chundru wrote:
+> > > > PCIe wake interrupt is needed for bringing back PCIe device state
+> > > > from D3cold to D0.
+> > > 
+> > > Does this refer to the WAKE# signal or Beacon or both?  I guess the
+> > > comments in the patch suggest WAKE#.  Is there any spec section we can
+> > > cite here?
+> > > 
+> > we are referring only WAKE# signal, I will add the PCIe spec r6.0, sec
+> > 5.3.3.2 in next patch version.
+> > > > Implement new functions, of_pci_setup_wake_irq() and
+> > > > of_pci_teardown_wake_irq(), to manage wake interrupts for PCI devices
+> > > > using the Device Tree.
+> > > > 
+> > > >  From the port bus driver call these functions to enable wake support
+> > > > for bridges.
+> > > 
+> > > What is the connection to bridges and portdrv?  WAKE# is described in
+> > > PCIe r6.0, sec 5.3.3.2, and PCIe CEM r6.0, sec 2.3, but AFAICS neither
+> > > restricts it to bridges.
+> 
+> You are right. WAKE# is really a PCIe slot/Endpoint property and
+> doesn't necessarily belong to a Root Port/Bridge. But the problem is
+> with handling the Wake interrupt in the host. For instance, below is
+> the DT representation of the PCIe hierarchy:
+> 
+> 	PCIe Host Bridge
+> 		|
+> 		v
+> 	PCIe Root Port/Bridge
+> 		|
+> 		|
+> 		v
+> PCIe Slot <-------------> PCIe Endpoint
+> 
+> DTs usually define both the WAKE# and PERST# GPIOs
+> ({wake/reset}-gpios property) in the PCIe Host Bridge node. But we
+> have decided to move atleast the PERST# to the Root Port node since
+> the PERST# lines are per slot and not per host bridge.
+> 
+> Similar interpretation applies to WAKE# as well, but the major
+> difference is that it is controlled by the endpoints, not by the
+> host (RC/Host Bridge/Root Port). The host only cares about the
+> interrupt that rises from the WAKE# GPIO.  The PCIe spec, r6.0,
+> Figure 5-4, tells us that the WAKE# is routed to the PM controller
+> on the host. In most of the systems that tends to be true as the
+> WAKE# is not tied to the PCIe IP itself, but to a GPIO controller in
+> the host.
 
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
----
- Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+If WAKE# is supported at all, it's a sideband signal independent of
+the link topology.  PCIe CEM r6.0, sec 2.3, says WAKE# from multiple
+connectors can be wire-ORed together, or can have individual
+connections to the PM controller.
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index c4f9674e8695..5a7b0ed9464d 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -15,6 +15,9 @@ properties:
-       - enum:
-           - brcm,bcm2711-pcie # The Raspberry Pi 4
-           - brcm,bcm2712-pcie # Raspberry Pi 5
-+          - brcm,bcm3162-pcie # Broadcom DOCSIS 4.0 CMTS w/ 64b ARM
-+          - brcm,bcm3390-pcie # Broadcom DOCSIS 3.1 CM w/ 32b ARM
-+          - brcm,bcm3392-pcie # Broadcom DOCSIS 3.1 CM w/ 64b ARM
-           - brcm,bcm4908-pcie
-           - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-           - brcm,bcm7216-pcie # Broadcom 7216 Arm
-@@ -23,6 +26,7 @@ properties:
-           - brcm,bcm7435-pcie # Broadcom 7435 MIPs
-           - brcm,bcm7445-pcie # Broadcom 7445 Arm
-           - brcm,bcm7712-pcie # Broadcom STB sibling of Rpi 5
-+          - brcm,bcm33940-pcie # Broadcom DOCSIS 4.0 CM w/ 64b ARM
- 
-   reg:
-     maxItems: 1
--- 
-2.43.0
+> In this case, the PCI core somehow needs to know the IRQ number
+> corresponding to the WAKE# GPIO, so that it can register an IRQ
+> handler for it to wakeup the endpoint when an interrupt happens.
+> Previous attempts [1], tried to add a new DT property for the
+> interrupts:
+> https://lore.kernel.org/linux-pci/20171225114742.18920-2-jeffy.chen@rock-chips.com
+> 
+> But that doesn't seem to fly. So Krishna came with the proposal to
+> reuse the WAKE# GPIO defined in the Root Port node (for DTs that
+> have moved the properties out of the Host Bridge node) and extract
+> the IRQ number from it using gpiod_to_irq() API.
 
+I don't think we can assume a single WAKE# GPIO in a Root Port, as
+above.  I think we'll have to start looking at the endpoint and search
+upward till we find one.
+
+Bjorn
 
