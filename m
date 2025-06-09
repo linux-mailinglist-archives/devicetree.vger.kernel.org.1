@@ -1,132 +1,196 @@
-Return-Path: <devicetree+bounces-183938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06A1AD2798
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:35:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BCFAD279E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDBB53B1E4B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:35:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D3593A7DCA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9888D221552;
-	Mon,  9 Jun 2025 20:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2500B221268;
+	Mon,  9 Jun 2025 20:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YrK78fOZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hgtct6qv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912D021D3EE;
-	Mon,  9 Jun 2025 20:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A1E220680;
+	Mon,  9 Jun 2025 20:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749501325; cv=none; b=N3Q2GwTo5KnjL1yUsy7CC40XRw3+aHiV3JPTL+H3IerGCE4knaspJmLWLSaG4FdUfZG3/PSIY92cabeGjs4smcrvWB5YZGiOxkAuzbm7BcU8nzukUwtb2tliq15vgD0lz1yyW8F/dQmwK1x7XCYTeS55yFCuikIR6rG5QaRK3xg=
+	t=1749501422; cv=none; b=qZJhJVSfiR9WJu4bVFgjGUv2tRYVpBRNZ9RR3MEXki/egYeLBOLQbmRio0gqW3Lt0qEWjTnnQVVVg4hTKPggeixf+Y1q3ND2tCp/Bwl2Dfb57pSE4niB8yHef7Suo9k3pLtEgpP8MYQ2q/JJQi1+m8LLoFWIQmsNu5DjV/CWls0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749501325; c=relaxed/simple;
-	bh=Fs6P0u7FSsyMJlOZbjCW9SUJIuR6W5jHyZmibIaJAZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZX1VwXXM+RguEFxbRNjtrVcScQHm0XdqjofAKO5XgbyvGk2fFIZbbzKsgjUkPVsnGAxnKl8U3Ed4Ao2dXWQc/lh+5cRtoEC7hQjRGvvQQQ6iMLKuq2IUfUYmTu9D2zSB1k8lN4IXamBUGJj3rUPLJyc+acxrM/3JBXVj9EU7ork=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YrK78fOZ; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E9510442C7;
-	Mon,  9 Jun 2025 20:35:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749501320;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MZOonTfrv64GIV5+rDFu+eH6vhEGsf8KKT5JpDnAQ04=;
-	b=YrK78fOZJDmLOg1RDpxGMfVw6vaSzXByQyQaykHVH/1X5NOCYhIm4g1T8qzTHme003x90b
-	VnwtXQG6E3xFyRfYrU7hSlHzRD162lYU64kTsqLgoLLmF6jKimBGtw0wQ91RimxpOgxvsz
-	Fjj6+uSdffdgYJ+k6BDdyyHCA0P9A3+uFbcPcaUY6npbyjb+aGuqFx/8Od5QMD/FKV1MmY
-	DdoYGs4QkA4O7Yg7S87xmuutd6w0GyjsDlaTg8FTDDAAq9u4NSW60dKjHpuatxw/rkIStT
-	O4SWy0Zii9SUoCuFoSZrOkqHZDjkJZBGQOpTz2H74DBpOE4YfnzSVDBIFBy26w==
-Date: Mon, 9 Jun 2025 22:35:16 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
- <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Russell King
- <linux@armlinux.org.uk>, Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/5] arm: dts: omap: Remove incorrect compatible
- strings from device trees
-Message-ID: <20250609223516.32ec18be@kmaincent-XPS-13-7390>
-In-Reply-To: <20250609220809.3a488972@akair>
-References: <20250609-bbg-v2-0-5278026b7498@bootlin.com>
-	<20250609-bbg-v2-1-5278026b7498@bootlin.com>
-	<20250609220809.3a488972@akair>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1749501422; c=relaxed/simple;
+	bh=bMo3wzMhKltZs7QMjn6YEMIpFXpusjz5hmvh1DJhHHw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y6Ds748HH4/3VV/eMesyCjKw7BO/zl3Gin3Z6/Jmg7Mnx9HZy2sygJu1NnagvaPez4XKuwOGlBNDNrT3Ns6HBrNlNatRl0l/skBNBcHSJ7JTMf9B97PNH6aacSqSprMLEL4nLowxfrMb4ORpv/PtErgrCEytbzYehJmMRXHnNgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hgtct6qv; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a54700a463so995670f8f.1;
+        Mon, 09 Jun 2025 13:36:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749501418; x=1750106218; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PRRMZrP2oXiS+2iiPhUnuzFCLiBggFlP7GuSrH2c3mM=;
+        b=Hgtct6qv2OsPW39Yo8Brm+pd//Ywv4ghcj0Xxr0i2Yt0hAXVd8BzUZAB1VB6zTHzHW
+         C4Rz9mryTV68PsFeMfFt6WJrp+kzSGPsLP/UkzGAlNkVXbAZ4FKxGnTM+FxRhWp3e2ij
+         6f4x4PL/iOalWpYRbAIz98eH8k4uWqm4rj9EH/o4sxGVCp1olGEQcFo9TxmDxO0VcgZV
+         RfGXZ6Gceo6oXlLr4TZgEPe0UTQvb32FlI36e2qgacw6T1uYrFVI+LilPwapohdK1AEp
+         MEieR6rwylxUold/TzrbldaCbhnwUeZ8ZoJR16BeCkD3qfUHCwbtVbK3Zw2wC1/zqpTF
+         ioqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749501418; x=1750106218;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PRRMZrP2oXiS+2iiPhUnuzFCLiBggFlP7GuSrH2c3mM=;
+        b=GO8/OUMKuJ4qPYorJqq3NKMTKGf7yQAYdiYAYiW1OBbw+fbcSIVI8FwGYoQ8qAyjIU
+         rakcbaC8JgEm881/5yNOb4jMN54ONqGYFultyHnecK6ry7CGb+tWIq/PM25hkjleyLVH
+         QLfVDdAaVekdvHavcTdK9pMjtfWHzNlRNt2bFQqZ7Mg2Dm104dBJTfy+8rQJgOiEJYBC
+         9D1kzdQEUJzzHbe6ZEa0WUjRVXDrBVciokeNIpbVnF5E+ySK8R86oEKp7l/TRNwkrc6z
+         3PCfRUhcYrIGuJk5quYwJJtXWmNEe0gjTsk63k/lh1Q1jNl00HHOeVoIxe4/WZchTS7s
+         lnVg==
+X-Forwarded-Encrypted: i=1; AJvYcCUztynf7nEbVYUoIMQgbqg5D+D3t75kVFeLjOU1qgPDBfQIZzhMAMWYciycmmGgv+wud81gouc8U+hR@vger.kernel.org, AJvYcCV+fzV40f1mGrhsvjWZZk00yhjI8t2tuHA7HrPKxyZ4XqsFBIocMj7ag/gO1uc9cqoqMtnQjXAQqcEcRh7v@vger.kernel.org, AJvYcCW3GKMqP+LEihATkmK8u7ryY/6sRwNChN4SMnEddredeKjAqD4Ca0tLnjji3wvcivoWeYYshXy1qJh5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNU94RpmhwjNunjZmGEcG8QZvIMG23+UN3snrCJ/Uh+YF39ddm
+	YNLOdnRSo+FyyCDmHaPsDkezAjO9CSc3pHXVe1b3vW/6GN116Bp3vgy+
+X-Gm-Gg: ASbGncv5tovsqXnTMvlQNxUztAB5MNQXiA/edMRNF68urU7Drvg1L92N+iygEwfAuZX
+	hHCNrWWIrZIM6qVuDEKibMzRMEDPxC9XE1Hz5kK7wSCXFx6t+8oRHTMboVnLbRknWrSPakWJOgJ
+	jBHtdUBrcOx72Um+RAK8MOES2GiJwYHlyX2WuVK90NrnWK/PJxCQAdBAFXRyG8WgXQJQ9XOrXjU
+	l4mJgi38PIQdwZnyEEpBH7cAdFnaXSlP8nwfCJN5Dkqz0Msnu1w6jcptwLshCDRysTCrjlTa7w3
+	KEE08QiwjiU5vqo9UPfY2b22LajIwYXCYaQUK0tma6btpmXgxyZxBfD5Kg2XyLUbKMN+bCVMQqy
+	r6QwQ8vNoNw5FAIT+WWk=
+X-Google-Smtp-Source: AGHT+IHBEbEPbt855qQ4gJTaWfzJVvRxq98v+liy5baKejXU6miw8aenSf5+UBaR0KaKAp9o8Ref4g==
+X-Received: by 2002:a05:6000:430d:b0:3a4:e238:6496 with SMTP id ffacd0b85a97d-3a5514174b2mr873507f8f.18.1749501417983;
+        Mon, 09 Jun 2025 13:36:57 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:3c26:913e:81d:9d46])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-452730c73d2sm118240345e9.30.2025.06.09.13.36.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jun 2025 13:36:57 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/8] Add support for Renesas RZ/N2H (R9A09G087) SoC and RZ/N2H EVK
+Date: Mon,  9 Jun 2025 21:36:48 +0100
+Message-ID: <20250609203656.333138-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdeljeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmeelhegvvgemrggvugdvmeeitgeksgemudgsfegsnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemleehvggvmegrvgguvdemiegtkegsmedusgefsgdphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudekpdhrtghpthhtoheprghnughrvggrsheskhgvmhhnrgguvgdrihhnfhhopdhrtghpthhtohepthhonhihsegrthhomhhiuggvrdgtohhmpdhrtghpthhtoheprhhosghhsehkv
- ghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprggrrhhordhkohhskhhinhgvnhesihhkihdrfhhipdhrtghpthhtohepkhhhihhlmhgrnhessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtoheprhhoghgvrhhqsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Le Mon, 9 Jun 2025 22:08:09 +0200,
-Andreas Kemnade <andreas@kemnade.info> a =C3=A9crit :
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> Am Mon, 09 Jun 2025 17:43:51 +0200
-> schrieb Kory Maincent <kory.maincent@bootlin.com>:
->=20
-> > Several device trees incorrectly included ti,am335x-bone-black or
-> > ti,am335x-bone in their compatible lists without including the
-> > corresponding bone-black-common or bone-common device tree files.
-> > Remove these incompatible strings to fix the inconsistency.
-> >  =20
-> thanks for cleaning up some mess.
->=20
-> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> > ---
-> >=20
-> > Change in v2:
-> > - New patch
-> > ---
-> >  arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts | 2 +-
-> >  arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts          | 2 +-
-> >  arch/arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts     | 2 +-
-> >  arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts       | 2 +-
-> >  arch/arm/boot/dts/ti/omap/am335x-shc.dts                | 2 +-
-> >  5 files changed, 5 insertions(+), 5 deletions(-)
-> >=20
-> > diff --git a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts
-> > b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts index
-> > a4f5b5262645..fb88eebb8c5d 100644 ---
-> > a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts +++
-> > b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts @@ -11,7 +11,=
-7 @@
-> > =20
-> >  / {
-> >  	model =3D "TI AM335x BeagleBone Green Wireless";
-> > -	compatible =3D "ti,am335x-bone-green-wireless",
-> > "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone",
-> > "ti,am33xx";
-> > +	compatible =3D "ti,am335x-bone-green-wireless", "ti,am335x-bone",
-> > "ti,am33xx";=20
-> this looks like too much cleanup, also according your omap.yaml stuff,
-> ti,am335x-bone-green should still be included.
+Hi All,
 
-Oh indeed! Thanks.
+This patch series adds support for the Renesas RZ/N2H (R9A09G087) SoC and
+the RZ/N2H EVK (R9A09G087M44-RZN2H-EVK) evaluation board. The RZ/N2H SoC
+is very much similar to the RZ/T2H (R9A09G077) SoC. 
 
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+RZ/N2H is a high-performance MPU that delivers advanced application
+processing and real-time operation for industrial applications. It
+features a quad-core Arm Cortex-A55 and dual-core Arm Cortex-R52
+configuration, with security features, and is designed for real-time
+control and high-speed communication.
+
+RZ/N2H SoC supports below features:
+- Quad-core Arm Cortex-A55 and dual-core Arm Cortex-R52 configuration
+- Security functions (optional)
+- Encoder interfaces
+  * 16 channels
+  * EnDat 2.2, BiSS-C, A-format, and HIPERFACE DSL-compliant interfaces
+  * Frequency-divided output from an encoder
+- Various communications interfaces
+  * Ethernet
+    - EtherCAT slave Controller: 3 ports
+    - Ethernet switch: 3 ports
+    - Ethernet MAC: 1 port x 3 units
+  *  USB 2.0 high-speed host/functions: 1 channel
+  * CAN/CANFD (compliant with ISO11898-1): 2 channels
+  * SCI with 16-byte transmission and reception FIFOs: 6 channels +
+    12 channels (for encoder)
+  * I2C bus interface: 3 channel for transfer at up to 400 kbps
+  * SPI: 4 channels
+  * xSPI: 2 channels
+  * PCI Express Gen3: 2 lane x 1 port or 1 lane x 2 ports
+  * SD card host interface: 2 channels
+- Serial host interface
+- 12 bits x 3 unit (4 channels for unit 0, 1, 15 channels for unit 2
+- LCD Controller
+- General-purpose I/O ports
+- Trigonometric function unit
+- 16-bit x 8 + 32-bit MTU3 (9 channels), 32-bit GPT (56 channels)
+- 6-bit CMT (6 channels), 32-bit CMTW (2 channels)
+
+For more information, please refer to the product page:
+
+https://www.renesas.com/en/products/microcontrollers-microprocessors/rz-mpus/rzn2h-advanced-mpu-delivers-high-performance-application-processing-and-real-time-operation-industrial?srsltid=AfmBOoro9kUrZ77ugeURFIlE5ToiFazSyzIsbjBDdGs83NHZfhlkFHlJ
+
+Note, this patch series applies on top of the patch series
+- "Add initial support for Renesas RZ/T2H SoC" [1].
+- "dt-bindings: serial: renesas,rsci: Document RZ/N2H support" [2].
+
+[1] https://lore.kernel.org/all/20250523142417.2840797-1-thierry.bultel.yh@bp.renesas.com/
+[2] https://lore.kernel.org/all/20250609192344.293317-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  soc: renesas: Add config option for RZ/N2H (R9A09G087) SoC
+  dt-bindings: clock: renesas,cpg-mssr: Document RZ/N2H support
+  clk: renesas: Add MSSR support to RZ/N2H SoC
+  arm64: dts: renesas: Add initial SoC DTSI for RZ/N2H SoC
+
+Paul Barker (4):
+  dt-bindings: soc: Add Renesas RZ/N2H (R9A09G087) SoC
+  arm64: dts: renesas: Refactor RZ/T2H EVK device tree
+  arm64: dts: renesas: Add DTSI for R9A09G087M44 variant of RZ/N2H SoC
+  arm64: dts: renesas: Add initial support for RZ/N2H EVK
+
+ .../bindings/clock/renesas,cpg-mssr.yaml      |   5 +-
+ .../bindings/soc/renesas/renesas.yaml         |  10 ++
+ arch/arm64/boot/dts/renesas/Makefile          |   1 +
+ .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    |  17 +--
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    | 135 ++++++++++++++++++
+ .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    |  16 +++
+ arch/arm64/boot/dts/renesas/r9a09g087m44.dtsi |  13 ++
+ .../boot/dts/renesas/rzt2h-evk-common.dtsi    |  24 ++++
+ drivers/clk/renesas/Kconfig                   |   5 +
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r9a09g077-cpg.c           |   1 +
+ drivers/clk/renesas/renesas-cpg-mssr.c        |   6 +
+ drivers/soc/renesas/Kconfig                   |   6 +
+ .../clock/renesas,r9a09g087-cpg-mssr.h        |  28 ++++
+ 14 files changed, 251 insertions(+), 17 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g087m44.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/rzt2h-evk-common.dtsi
+ create mode 100644 include/dt-bindings/clock/renesas,r9a09g087-cpg-mssr.h
+
+-- 
+2.49.0
+
 
