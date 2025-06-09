@@ -1,103 +1,146 @@
-Return-Path: <devicetree+bounces-183812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85784AD1F22
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 15:42:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96486AD204F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 15:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 131823ACA1B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:41:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E6E11887BCA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE2A25CC5C;
-	Mon,  9 Jun 2025 13:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8346425B667;
+	Mon,  9 Jun 2025 13:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jbxQAEZ7"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="ot3iqr1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa4.hc555-34.eu.iphmx.com (esa4.hc555-34.eu.iphmx.com [207.54.77.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D729125C83E;
-	Mon,  9 Jun 2025 13:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0682550C2;
+	Mon,  9 Jun 2025 13:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.54.77.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749476447; cv=none; b=TVkr8H2T9DwP05acYH7wRfndu8U7oCPT0TbTaX+8XrglRlj5gAJY43usEr9MsYHqPZu0+Lyddvu419IfQG3muiXZZHCG7ucjaqEawSVnp7b1C59vsVO+GxAV5jK34bTQLxZnfuuXMf7jv9owJN67Z0Ew/maob8bhRrMDiQYh2jM=
+	t=1749477074; cv=none; b=IovrmByX4rqBtedpTuiVjeYG8voUX2D8yo//GTAv5rOZjc32yUiVzVAqnjxDrWZukOV8ti76tmXfxr/6YAMKEA+75drqZ5kp0o3UCzWzJbU8niPFXp4jSn8PFuVi88Rl63uzaZIU/ETp0f+EIn7jNPd8BRnkOHIE6kbH9tOD07o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749476447; c=relaxed/simple;
-	bh=LikEvWObK5cLWG5kDOh8WIv3nJ7NrbLjTJ/RRELK4kc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gMShugR64qeZaUq1O7wF3YLvHiSCmLLuqI0BCaxAF5R+xx8SbxyWGxMqK3Jqdo2qlmIVirHnZ3tmmT/+0i7EQ6vr0N37TeneBaTdunR6qmRqaVKEtDB1WXAXhMIxCj51blOIIR1a4G1vI3oabibA53w134WG/Km75EEPUZDO39k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jbxQAEZ7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB2E5C4CEED;
-	Mon,  9 Jun 2025 13:40:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749476446;
-	bh=LikEvWObK5cLWG5kDOh8WIv3nJ7NrbLjTJ/RRELK4kc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jbxQAEZ7NNI+UWJCL+5wuwHeQk9bhLv9Y7FV2kwU8ZYrBWWkI8Sehiu+z5dX8+/Q7
-	 wsYiuGLoJNXHFBsYnbR7+osZJKsO/HVVXu5LNAP+P/EuiUZDQLp8OtEy3nJO1aiCab
-	 EunIHl2IMy7xrlV6y3i6cBWmsUCU4DhYaUFFTsvCAHycyYkwXcCvcE9u4ifxJspnWr
-	 TKbBPGO9D9ax/aYDJVgp+jkOF9HPRiWuZkUJpvVyeBGgLMoEoUlsyJRy90aEaTf9+f
-	 zP9Gc2WQ3JZQ8m4iFRl/rduCREWoI66Y8IlzpcfZG7wBZs+2atmmJjIvk/aiC8Hrro
-	 gLDa4/3H4snSQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>, 
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20250528222821.728544-1-Frank.Li@nxp.com>
-References: <20250528222821.728544-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/1] spi: dt-bindings: mxs-spi: allow clocks properpty
-Message-Id: <174947644363.127013.4646317883893758390.b4-ty@kernel.org>
-Date: Mon, 09 Jun 2025 14:40:43 +0100
+	s=arc-20240116; t=1749477074; c=relaxed/simple;
+	bh=401u0OSH88qHCJmEZO9VJhc7zw1kY/ESQqzyFm/CmVo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RP5EtA9uv37l/rybAgt/VH9/NCXFuXARusjh81GPId4/FVS6GhUlqzXZ7QGIaAsnF/mi4g10O3yvN0qlYnuCq4QFxrd7WkEPMlyjxG1VbvTj1ee0L58WkN6gwlp12Fd0ir8UPkQaqJRQGMVf+CMWxHZplWNTFStqyZ4zL/VLzT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=fail (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=ot3iqr1X reason="key not found in DNS"; arc=none smtp.client-ip=207.54.77.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
+  t=1749477072; x=1781013072;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=401u0OSH88qHCJmEZO9VJhc7zw1kY/ESQqzyFm/CmVo=;
+  b=ot3iqr1XErXffu3neJRM79Gz6C/Yyd7VI5GozhyQFYLTuGmLaY4ERpi3
+   z99+6nMwy44oNsoMWWRnG7/5QdUs6uzzDQ/B9FvUaHFya9n/KaGbfbtIw
+   z5LDo/a9nIRJGVOYnE86gjeLfQbQULfl84/KFYS2mjhgcXNw+SPsPJLRb
+   iwNY1/hxRbgPRLfsLyfCrAmjEk6Jxxq+uKDgyrX32EQFKTH5KEfW8Mf10
+   re0DDUfZ/A7oyduRu4sUpz4dwwIbQloNE/MR+TPA2W6WkGd60UlMuHHQQ
+   xkCdhjh7Hjr/6EaVLkjn28wYOTymQkG3VsxkgBgwFMLKIHHIJAHuAOrU4
+   A==;
+X-CSE-ConnectionGUID: yn9h3P1jRZ2wK6r2MNhrWg==
+X-CSE-MsgGUID: WIpOfn1KQWWaJrqXMXSUPA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from unknown (HELO ces01_data.me-corp.lan) ([146.255.191.134])
+  by esa4.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2025 16:47:58 +0300
+X-CSE-ConnectionGUID: fNBtzWk5Tyilkr2G/AR+EQ==
+X-CSE-MsgGUID: MUc4K3FVQWSfV2at324pHw==
+Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.1])
+  by ces01_data.me-corp.lan with SMTP; 09 Jun 2025 16:47:56 +0300
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Mon, 09 Jun 2025 16:47:56 +0300
+From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Anup Patel <anup@brainfault.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+	Ryo Takakura <takakura@valinux.co.jp>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: [PATCH v1 0/7] Risc-V ACLINT IPI controller
+Date: Mon,  9 Jun 2025 16:47:42 +0300
+Message-ID: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, 28 May 2025 18:28:20 -0400, Frank Li wrote:
-> Allow clocks property to fix below CHECK_DTB warnings:
-> arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80014000 (fsl,imx28-spi): Unevaluated properties are not allowed ('clocks' was unexpected)
-> 
-> 
+Risc-V specification for the ACLINT IPI controller
+describes an "SSWI" device that allows to send IPI by
+writing register from the S-mode (Linux kernel),
+as opposed to the "MSWI" device that does the same from
+the M-mode. Sending IPI through the M-mode requires
+extra SBI call, SSWI is much faster. Support for the
+SSWI exists for the Thead board, it is almost as by
+specification save for reading one custom CSR.
 
-Applied to
+Soon to be released Mobileye SoC based on the MIPS
+P8700 Risc-v CPU has pristine ACLINT SSWI.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+To support P8700, refactor Thead implementation -
+provide generic one while keeping Thead-specific variant.
 
-Thanks!
+In addition, support Risc-v "hart index" - it is
+required for the MIPS P8700 chip to be released soon
 
-[1/1] spi: dt-bindings: mxs-spi: allow clocks properpty
-      commit: 6b500757aef0b5b639253508cf93eb8134a2d340
+Patches 1 and 2 refactor "hart index" support, replacing
+APLIC specific implementation with generic helper
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Patch 3 documents generic "riscv,aclint-sswi" and optional
+property "riscv,hart-indexes", same as for ACLINT.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Patch 4 promotes Thead-specific SSWI to generic one
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Patch 5 adds "riscv,hart-indexes" support
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Patches 6 and 7 do some minor improvements for the SSWI
 
-Thanks,
-Mark
+Vladimir Kondratiev (7):
+  riscv: helper to parse hart index
+  irqchip: riscv aplic: use riscv_get_hart_index()
+  dt-bindings: interrupt-controller: add generic Risc-v aclint-sswi
+  irqchip: introduce generic Risc-V aclint-sswi
+  irqchip: aslint-sswi: resolve hart index
+  irqchip: aclint-sswi: reduce data scope
+  irqchip: aclint-sswi: remove extra includes
+
+ .../riscv,aclint-sswi.yaml                    |  89 ++++++++++++++
+ .../thead,c900-aclint-sswi.yaml               |  58 ---------
+ arch/riscv/include/asm/irq.h                  |   2 +
+ arch/riscv/kernel/irq.c                       |  34 ++++++
+ drivers/irqchip/Kconfig                       |  12 ++
+ drivers/irqchip/Makefile                      |   2 +-
+ ...d-c900-aclint-sswi.c => irq-aclint-sswi.c} | 114 ++++++++++++------
+ drivers/irqchip/irq-riscv-aplic-direct.c      |  16 +--
+ 8 files changed, 214 insertions(+), 113 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-sswi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/thead,c900-aclint-sswi.yaml
+ rename drivers/irqchip/{irq-thead-c900-aclint-sswi.c => irq-aclint-sswi.c} (63%)
+
+
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+-- 
+2.43.0
 
 
