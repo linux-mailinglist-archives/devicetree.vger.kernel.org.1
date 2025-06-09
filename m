@@ -1,163 +1,237 @@
-Return-Path: <devicetree+bounces-183995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E73AD2AA8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 01:42:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF625AD2ABE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 01:57:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4D341890333
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 23:43:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BAC23A6202
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 23:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BD4230BEE;
-	Mon,  9 Jun 2025 23:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71EF230264;
+	Mon,  9 Jun 2025 23:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JstRrvkD"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="nFPjWKAM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE7822FF5E;
-	Mon,  9 Jun 2025 23:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365D122FAC3
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 23:57:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749512518; cv=none; b=HKNe8JJRoz4MjYW8Of6nIbE7PzTX3btKICwWLUk1nvASKnsJv82gnnEhMGUXOZvyh1fTMvi5qARBUqBL6NKRtqEGrC0B8xpemsMDD4jrf9+rtkSWLHpkUNCt9T+jpda7SehWxA2zNb6MyyGUiZ44NT40uwRSnJwDUyZRDhxliGM=
+	t=1749513437; cv=none; b=rgI+QSDz7fKQEvhlVPWZx8UepRCBowFNG4x5JSIlHwW68nBcD5GnPzJv1VXQ/9V0vK+rrT8bY+hpSNz1R7MFHwNg2vgShbXN0P0Pace39Qu/Pkz/zz+YGIXsrwNcjutbO4bLqNlP4WJtP3rDp2eH1AzWXFhUp+5spf2Q2txkFlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749512518; c=relaxed/simple;
-	bh=lcxMmmgMJHInwGzpCFkRWzyLBb5iGz+frAxW/UIgQ4o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RytW8BQq+3fhFwYVdAKsBwPz4HCLYBNT31jzHxWKfrM0K8fgqnzwplVqtwuNybVt9eEh/nkY9SI2Ef5D1RokoM6Y/hHVniZ6Nc82CSN+TMdJwWFIMNYjtNz5620Ai528bMHjHtWguP/nxYBzyVOSrW4tISc/5pQOjhE+W7N9UGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JstRrvkD; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45310223677so13783165e9.0;
-        Mon, 09 Jun 2025 16:41:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749512515; x=1750117315; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qrPhTIZpQpTInVFelKb2k4Az/r9q2Weg3w4rxnkgyCU=;
-        b=JstRrvkD2N/X63T3SHeXhSRDwAQ926OuVtuM9XvRaoAleRV8gsWr0RcLBzhiYB1jB8
-         n5iQrQQAeDumh1LnAtm5QdcE6ogngmjtsNzBFHgQgPVAGOchaaVoZ7u/fpyr1GhRstgC
-         Kc3fLtV1H3HpeDAXFjp3dYceqeTx0SgseCKpS3ixXL8zd2oO5H8eFlG6OqkdoxltPjZw
-         cBWeDQ2GNEJo//fhncULQnH1PD8Qx/VXI7DcvIPPTRMgzH/DUG7ey37D1nnpPx63tM17
-         puR0InPMYcvXsPGb020NpAXRkGKTUKOLUiM+wsggyKHkjYTnULPdl08OD3dPX9TfqnN3
-         qscg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749512515; x=1750117315;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qrPhTIZpQpTInVFelKb2k4Az/r9q2Weg3w4rxnkgyCU=;
-        b=epwlRUDYHjUY4CMHM6szE7L+Qer7xsOdYSPr/1cG1IcOeUdH1r95HZY3TKvSBsV01t
-         ejQCXuic55oqXow2MAjva8mfGqhP+8rxMoc6ZIJsHDdcKITLQ4gCXw3ZZF4egIRSPB2p
-         elkkReZ0bNtb8x25ur1hDX/MJDysRtkB1val1koXwOCclxCrcCUVnXAvjHe7UtejdGqL
-         9qDVlOrsIxHxAM0bL7Fs15LYzjlcbva9RvvveROTF0LPM8EdEUMU0eI/U38UW6DgGAQP
-         dIfP2FQanVM3DPMZaGqgl00apObJiJ6zcHwaTLQND7Ful5/x1B4hxdLMM/c4tFGQ9ZsJ
-         htvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUNQFTCo+uERD01qjBKLx/+pHzDTEHw7gfmkvapxmyg5asrTbW4rz7TQsfl9/0F0vvd7TUv3gDNzcFO56Kb@vger.kernel.org, AJvYcCWd5lm1+Tixh2SeP9Jzd3rSUwofNKnvlc/FxCzhXXSF1aOWGBY5r0JpF2zoo6potXmkRMydnTPYi7Vt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXjDk7lqSg9E+MHOM3JRqmU2LbNx1Tfg1KvKi1zpeLoKjebzP2
-	1368e4ur/I5xdsM3hVX7EC+O1EhY2QcIiEp++tsqA1c3Nr+SXC/hYNGH
-X-Gm-Gg: ASbGnctN1Vh5MoJoZXrxqTVYpNpJ3al1jWplm3tmPwNy00o7f+xQazMUJcFGfP8lcU2
-	1P9I1tI1b3z6bz1QB6bmlmswq/hA+AxJ3LubETbPFU9c2xAlydpp9nxD/XB+ajzMXQJVLICppNi
-	DXgztQ53FT7jrEY4ojUkCpp6sqAlWxG2NBszMVqKOSFcr0rLxEwBsbXsnLMlg635BYokAHVeOZk
-	X4Juy4ORiUce79V0ZKcSrHjk2jPAVD5nDg5yl8K7pgqTAlcRglI2Q8i2dEvYIkP/EDc5QC35m5j
-	L7qn1StJ8HDy1JDlrhASezl0lGjpV9ftdRZFNTcNCKKyEiOla+ryvElCzc0DrLsevg6kTaM0p70
-	=
-X-Google-Smtp-Source: AGHT+IH8d+d87qasytIhytWan/WEKNQkCJ5MRSNoOqGEJq+vqhXarvhfJpA5UduVPDcP1PlcvnPGqQ==
-X-Received: by 2002:a5d:5f4b:0:b0:3a3:727d:10e8 with SMTP id ffacd0b85a97d-3a531ce7122mr10392078f8f.50.1749512514738;
-        Mon, 09 Jun 2025 16:41:54 -0700 (PDT)
-Received: from giga-mm.. ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53244df34sm10849846f8f.71.2025.06.09.16.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 16:41:54 -0700 (PDT)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: sophgo@lists.linux.dev,
-	soc@lists.linux.dev
-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 6/6] arm64: defconfig: Enable rudimentary Sophgo SG2000 support
-Date: Tue, 10 Jun 2025 01:41:17 +0200
-Message-ID: <20250609234125.722923-7-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250609234125.722923-1-alexander.sverdlin@gmail.com>
-References: <20250609234125.722923-1-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1749513437; c=relaxed/simple;
+	bh=tRzQqHrUutyzBhHIn6fDKm+FqsbWULiZFM05BhfTP+M=;
+	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=EnEFCfuezGjIi9BNivsbeqrqMLk8DwVeElR9b4Pk/p11+uyJ9+HEshkJJ3KGvvsRIvjYBzgIxrFgFdcl8tGrw5h1Btafyt2QQqhVSUzhy06BfbDBVdlpUE15kWfqUQLqha20Xl1AFrPHq2L+G2Ce6hQPCcSPUVh88vN4zDXqGfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=nFPjWKAM; arc=none smtp.client-ip=95.215.58.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749513432;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MA2f4Uv02tKPXsFx6OHw+Cx+7nXIdLjvoA4VfDNY4ak=;
+	b=nFPjWKAM4H/2hsS40TUC4K/2dozlE+zUTL+oHvQSylbgnqedmiWHYQxcsKB6OI5zGUEUkf
+	j9FQDMnXndb08pA2BVXura3IDpHXqRh5aFkAYY/kRCsdxu7pcerqVugmWxnruqjkGNXPyH
+	5V1h/AgsHLuFWFMOrfB8gSa6IeDMFIg=
+Date: Mon, 9 Jun 2025 19:57:05 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Saravana Kannan <saravanak@google.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+Subject: [BUG] Deferred probe loop with child devices
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Enable ARCH_SOPHGO, pinctrl (built-in, required to boot), ADC as module.
-This defconfig is able to boot from SD card on Milk-V Duo Module 01
-evalboard.
+Hi,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+I've been running into a deferred probe loop when a device gets
+EPROBE_DEFER after registering a bus with children:
+
+deferred_probe_work_func()
+  driver_probe_device(parent)
+    test_parent_probe(parent)
+      device_add(child)
+        (probe successful)
+        driver_bound(child)
+          driver_deferred_probe_trigger()
+      return -EPROBE_DEFER
+    driver_deferred_probe_add(parent)
+    // deferred_trigger_count changed, so...
+    driver_deferred_probe_trigger()
+
+Because there was another successful probe during the parent's probe,
+driver_probe_device thinks we need to retry the whole probe process. But
+we will never make progress this way because the only thing that changed
+was a direct result of our own probe function.
+
+Ideally I'd like to ignore probe events resulting from our own children
+when probing. I think this would need a per-device probe counter that
+gets added to the parent's on removal. Is that the right way to approach
+things?
+
+I've attached a minimal example below. When you load it, the console
+will be filled with 
+
+    test_parent_driver test_parent_driver.0: probing...
+
+If this occurs because the module for the affected resource is missing
+then the entire boot process will come to a halt (or not, depending on
+how you look at things) while waiting for the parent.
+
+While this example is contrived, this situation really does occur with
+netdevs that acquire resources after creating their internal MDIO bus.
+Reordering things so the MDIO bus is created last is not a very
+satisfying solution, since the affected resources may itself be on the
+MDIO bus.
+
+--Sean
+
 ---
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/base/test/Makefile              |   1 +
+ drivers/base/test/test_deferred_probe.c | 103 ++++++++++++++++++++++++
+ 2 files changed, 104 insertions(+)
+ create mode 100644 drivers/base/test/test_deferred_probe.c
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5bb8f09422a2..84c85a222b3b 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -66,6 +66,7 @@ CONFIG_ARCH_RENESAS=y
- CONFIG_ARCH_ROCKCHIP=y
- CONFIG_ARCH_SEATTLE=y
- CONFIG_ARCH_INTEL_SOCFPGA=y
-+CONFIG_ARCH_SOPHGO=y
- CONFIG_ARCH_STM32=y
- CONFIG_ARCH_SYNQUACER=y
- CONFIG_ARCH_TEGRA=y
-@@ -652,6 +653,7 @@ CONFIG_PINCTRL_SM8450_LPASS_LPI=m
- CONFIG_PINCTRL_SC8280XP_LPASS_LPI=m
- CONFIG_PINCTRL_SM8550_LPASS_LPI=m
- CONFIG_PINCTRL_SM8650_LPASS_LPI=m
-+CONFIG_PINCTRL_SOPHGO_SG2000=y
- CONFIG_GPIO_ALTERA=m
- CONFIG_GPIO_DAVINCI=y
- CONFIG_GPIO_DWAPB=y
-@@ -1411,6 +1413,7 @@ CONFIG_QCOM_HFPLL=y
- CONFIG_CLK_GFM_LPASS_SM8250=m
- CONFIG_CLK_RCAR_USB2_CLOCK_SEL=y
- CONFIG_CLK_RENESAS_VBATTB=m
-+CONFIG_CLK_SOPHGO_CV1800=y
- CONFIG_HWSPINLOCK=y
- CONFIG_HWSPINLOCK_QCOM=y
- CONFIG_TEGRA186_TIMER=y
-@@ -1530,6 +1533,7 @@ CONFIG_QCOM_SPMI_VADC=m
- CONFIG_QCOM_SPMI_ADC5=m
- CONFIG_ROCKCHIP_SARADC=m
- CONFIG_RZG2L_ADC=m
-+CONFIG_SOPHGO_CV1800B_ADC=m
- CONFIG_TI_ADS1015=m
- CONFIG_TI_AM335X_ADC=m
- CONFIG_IIO_CROS_EC_SENSORS_CORE=m
+diff --git a/drivers/base/test/Makefile b/drivers/base/test/Makefile
+index e321dfc7e922..f5ba5bca7bce 100644
+--- a/drivers/base/test/Makefile
++++ b/drivers/base/test/Makefile
+@@ -1,5 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0
+ obj-$(CONFIG_TEST_ASYNC_DRIVER_PROBE)	+= test_async_driver_probe.o
++obj-m += test_deferred_probe.o
+ 
+ obj-$(CONFIG_DM_KUNIT_TEST)	+= root-device-test.o
+ obj-$(CONFIG_DM_KUNIT_TEST)	+= platform-device-test.o
+diff --git a/drivers/base/test/test_deferred_probe.c b/drivers/base/test/test_deferred_probe.c
+new file mode 100644
+index 000000000000..89b68afed348
+--- /dev/null
++++ b/drivers/base/test/test_deferred_probe.c
+@@ -0,0 +1,103 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2025 Sean Anderson <sean.anderson@seco.com>
++ */
++
++#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
++
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++
++static struct platform_driver child_driver = {
++	.driver = {
++		.name = "test_child_driver",
++	},
++};
++
++static int test_parent_probe(struct platform_device *pdev)
++{
++	struct platform_device *child;
++	struct device *dev = &pdev->dev;
++	int ret;
++
++	dev_info(dev, "probing...\n");
++
++	/* Probe a child on a bus of some kind */
++	child = platform_device_alloc("test_child_driver", 0);
++	if (!child)
++		return -ENOMEM;
++
++	child->dev.parent = dev;
++	ret = platform_device_add(child);
++	if (ret) {
++		dev_err(dev, "could not add child: %d\n", ret);
++		platform_device_put(child);
++		return ret;
++	}
++
++	/* Whoops, we got -EPROBE_DEFER from something else! */
++	platform_device_unregister(child);
++	return dev_err_probe(dev, -EPROBE_DEFER, "deferring...\n");
++}
++
++static struct platform_driver parent_driver = {
++	.driver = {
++		.name = "test_parent_driver",
++	},
++	.probe = test_parent_probe,
++};
++
++static struct platform_device *parent;
++
++static int __init test_deferred_probe_init(void)
++{
++	int ret;
++
++	ret = platform_driver_register(&parent_driver);
++	if (ret) {
++		pr_err("could not register parent driver: %d\n", ret);
++		return ret;
++	}
++
++	ret = platform_driver_register(&child_driver);
++	if (ret) {
++		pr_err("could not register child driver: %d\n", ret);
++		goto err_parent_driver;
++	}
++
++	parent = platform_device_alloc("test_parent_driver", 0);
++	if (!parent) {
++		ret = -ENOMEM;
++		goto err_child_driver;
++	}
++
++	pr_info("registering parent device\n");
++	ret = platform_device_add(parent);
++	if (ret) {
++		pr_err("Failed to add parent: %d\n", ret);
++		platform_device_put(parent) ;
++		goto err_child_driver;
++	}
++
++	return 0;
++
++err_child_driver:
++	platform_driver_unregister(&child_driver);
++err_parent_driver:
++	platform_driver_unregister(&parent_driver);
++	return ret;
++}
++module_init(test_deferred_probe_init);
++
++static void __exit test_deferred_probe_exit(void)
++{
++	platform_driver_unregister(&parent_driver);
++	platform_driver_unregister(&child_driver);
++	platform_device_unregister(parent);
++}
++module_exit(test_deferred_probe_exit);
++
++MODULE_DESCRIPTION("Test module for deferred driver probing");
++MODULE_AUTHOR("Sean Anderson <sean.anderson@seco.com>");
++MODULE_LICENSE("GPL");
 -- 
-2.49.0
+2.35.1.1320.gc452695387.dirty
 
 
