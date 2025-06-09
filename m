@@ -1,115 +1,185 @@
-Return-Path: <devicetree+bounces-183723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 782E9AD19E6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:36:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 929C2AD19FF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B45823A4C9C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:36:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 879717A2057
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2716A22B5A5;
-	Mon,  9 Jun 2025 08:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F291F4C9F;
+	Mon,  9 Jun 2025 08:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E1KIr4JU"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Wp3H+kiA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727B013B58B;
-	Mon,  9 Jun 2025 08:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62B11E5705
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 08:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749458196; cv=none; b=fyckP0xloqfiwSrV+sdBfS1e06tw201QUa8xWyNgLWx3z/GZsfGIx/WyHZvFcRxbpPjr7Yz28BgeLaP/UGDmeLCkGkjw2/Zsso/7z9ciUbXCfkA1WFkTJcBrvB7bkrereFOvD9wO0T8pGih4ZXAOzfDJR0f5oVcPVtQ/m2kEEiQ=
+	t=1749458910; cv=none; b=u/vegCr4a6jlitSQ19Zlyo6sG+o5cXAQRaPAG03FJYppcUyoUxlX3PYRO+RLevkksIn/fgO9nLQe+PNmqcTSk9GAhr1OMrMTDFX5zrV26HHjO2t3rRiw6I2qfualzwC6QjmzTm1PgfUbqg0ONuUeQS6wuKrxepMiGXMF1/811Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749458196; c=relaxed/simple;
-	bh=L3nfufsxXxkliDYjJl9skzl9dEnwS4z0pKQv+TvCxeU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UHayUA/dD2dwThB1uRAOjIjDQuDPo8iYjCtXdS6vvXw53rH50s1BrOtuDT+UpwZn3fEITu/HNQyNPcU3T9ZyoBTn4CKAoVmlAD2aReXFJI/UtRltrGbVLSFAofq0Z9VjaPzoXOGy4hd5xxiP0WGYWj9cjbPSwVYop50XaEgehPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E1KIr4JU; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 470C14316C;
-	Mon,  9 Jun 2025 08:36:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749458185;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L3nfufsxXxkliDYjJl9skzl9dEnwS4z0pKQv+TvCxeU=;
-	b=E1KIr4JUbM5L2fJGk+ItoUEbP+1wikt2qhg+/RB4BO4VAB+j7qbb1i1YucsyZQwrqHSeEf
-	fp8Kabc1y3l6Y8deXtJSrcEOBIi2hhvz2hjY8DB8WJvLB7SS3p3VFmA4jAzaMrKtx4vqp4
-	A3tgqEyhcqmWDK8IfsVHqkWTy6nGzJUHQElRBovPJzACIafOQ5HTRl0ys+FhK4HCTyvye1
-	7aSqt/rejepgQlZ7kfs7g5Xp2H4kQCh1M0OBXkcGFaBnz5gpeFDpuLY4iAaC3GHusqwJN1
-	CXLJloukR1EpSIBT1YUU7vwlmdzNBXOyBFMtoVTwb1pV10Fl9Wqk19064tBuQQ==
-Date: Mon, 9 Jun 2025 10:36:22 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Gal Pressman <gal@nvidia.com>
-Cc: Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Oleksij
- Rempel <o.rempel@pengutronix.de>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>,
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon
- Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell
- King <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH net-next v12 00/13] Add support for PSE budget
- evaluation strategy
-Message-ID: <20250609103622.7e7e471d@kmaincent-XPS-13-7390>
-In-Reply-To: <71dc12de-410d-4c69-84c5-26c1a5b3fa6e@nvidia.com>
-References: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
-	<8b3cdc35-8bcc-41f6-84ec-aee50638b929@redhat.com>
-	<71dc12de-410d-4c69-84c5-26c1a5b3fa6e@nvidia.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1749458910; c=relaxed/simple;
+	bh=0XzL4kpmsZHZXN2qz7fHXQDCyKTAt3P/xJ06KG7pGfw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VAVf++RhfuwwHPRAzYNk8btT38OA/6ZdI6d/4mZmGVQmZI5JzeMBbt87V/uGKLrKNYfEfiaREI0oY7GQLnFo8yrfUhZkEBU9aej0qh55A8cGQAQGrx3nIrWFJPjMnCo7YXs7VjCf/zrUZ7osFfyhw0UG417lE0cIyq+XovNw+Fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Wp3H+kiA; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-551fc6d4a76so4329153e87.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 01:48:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1749458907; x=1750063707; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1+qulMhJZHk6X+tREHSphVBY4DmeNmnxx1NU3h6SyVE=;
+        b=Wp3H+kiAB/AEPhUIx+7SiPtMBZ8MvtQwOdpsop34wM/C1Zben+5ZQL/KClxsEhXKI7
+         xo0OKnQ6o1Umw64BkzdhkwJAAmB7wMoJnCPJAjg4YFkwaN4RHpfzn9BACp2H7ZzUz6BY
+         gpdt1/AJOqC+t9XtuhDbpJk6+kOtMeL/xsumM3TlB/5vY7Zqou+SFHzjcWVqSesp6Vm8
+         A/SKZTc23UaHVHM6dDgUu6fUcNrqi7XpcrLzJ2CnbVcQa/LQPFm/+jXepmhA7JU/bixn
+         d+sQUoFIc6pey2tY9ChVj/hWw9ZT6qG/Tp0fubewFaC1cc9zdXhRIFitLPNvvVovbm9B
+         SHMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749458907; x=1750063707;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1+qulMhJZHk6X+tREHSphVBY4DmeNmnxx1NU3h6SyVE=;
+        b=iwFIfOgeN59NSAw3eH1qXbTelY7ccJPrzTVHEOnokXnFYj/nOOiwKoNlqGTF5QCH29
+         ZtSANC6t5RHOxCLVemZKtAgomhUcLvMFjxkf351800SFKQYxv4qX8C15ZVtWArruLB63
+         HW9jYx8rn7x/vXCsZKg6t0aS0U2OLqBbfojjUIP+MluUtFy4wig/6e7kjeIMHhjjIWkF
+         zOzx9qW+H8E6ebaIEqaPirh10ZHbYT30MaINEK9G0BkAShSrDaXHJutBRXGIQ0ZNUil2
+         kXEn1r2Ay6y5UoeCotgBxBgBuKJz3PE1HNIxwAW74HhPpuiBi265ATJ64IrgdPuOcklY
+         8ktQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKgG6jex+85DPH9Q5NqVzKYsRmWkiFmqRDGQTMyq01U2AlhXuP9JJ0UyeiQ5DAiotfLcu9/yMxtco/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSHe+zrCF0jdJIWawWHnA40jBFLFhnr1GMGRBBsaeG2BncHvmZ
+	uKZMJsajx6G4qvJkHnkMe/G9jNg/sYyoge4eIPmzO3nd6x6mKb9ozyuvPT0E2TVeegKJfGd7H4n
+	rc8w8NNA6AsDRR1ADPcKNIo6UPuglbgsOdjEfl/5WxQ==
+X-Gm-Gg: ASbGncsT4psAb/VxIi4VBAVfGnU58kGZNIHY4T2InH8rRJTy6LZmkmtqfQMpbmjNeAY
+	evKS06gDKa9e3VReury2LP7bPztiXZ1MGqTePSNf9HbMcRp38046wqSQtysk5yJFYI6Fs9EpbKw
+	0Uotok12SAInT20BoZUPjPZYNIpE3vEzMtQA==
+X-Google-Smtp-Source: AGHT+IGD0pH7TFlMkgX9gTB2arw453UvhjyRmw09ACjbNfgzKN77QnxzN12Gz5PpF/wVzlrHBwVIxkmX2zq51K32rMQ=
+X-Received: by 2002:a05:6512:398b:b0:553:263d:ab90 with SMTP id
+ 2adb3069b0e04-55366be26b0mr2962896e87.18.1749458906940; Mon, 09 Jun 2025
+ 01:48:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-6-apatel@ventanamicro.com> <aDWfDZ_rmdZeuvX3@smile.fi.intel.com>
+In-Reply-To: <aDWfDZ_rmdZeuvX3@smile.fi.intel.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 9 Jun 2025 14:18:15 +0530
+X-Gm-Features: AX0GCFv7nT4kE5svL_VD2AT2FTxU3u5CwWlzFhZ6AhttmorGU6f8kX-CYBTFYjM
+Message-ID: <CAK9=C2Wc75EmvTnGF0m59eQjhXK0=htHCafpi5oPNE0_5TS-7A@mail.gmail.com>
+Subject: Re: [PATCH v4 05/23] mailbox: Add common header for RPMI messages
+ sent via mailbox
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdeltdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdelpdhrtghpthhtohepghgrlhesnhhvihguihgrrdgtohhmpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepuggrvhgvmhesuggrvhgvm
- hhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvth
-X-GND-Sasl: kory.maincent@bootlin.com
 
-Le Sun, 8 Jun 2025 09:17:59 +0300,
-Gal Pressman <gal@nvidia.com> a =C3=A9crit :
+On Tue, May 27, 2025 at 4:46=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Sun, May 25, 2025 at 02:16:52PM +0530, Anup Patel wrote:
+> > The RPMI based mailbox controller drivers and mailbox clients need to
+> > share defines related to RPMI messages over mailbox interface so add
+> > a common header for this purpose.
+>
+> ...
+>
+> > +#include <linux/mailbox_client.h>
+>
+> This is not even closer to the list of the headers the header is using.
+> E.g., types.h is missing.
 
-> On 28/05/2025 10:31, Paolo Abeni wrote:
-> > I'm sorry, even if this has been posted (just) before the merge window,
-> > I think an uAPI extension this late is a bit too dangerous, please
-> > repost when net-next will reopen after the merge window. =20
->=20
-> Are all new uapi changes expected to come with a test that exercises the
-> functionality?
+Okay, I will add types.h
 
-I don't think so and I don't think it is doable for now on PSE. There is no=
-thing
-that could get the PSE control of a dummy PSE controller driver. We need ei=
-ther
-the support for a dummy PHY driver similarly to netdevsim or the support fo=
-r the
-MDI ports.
-By luck Maxime Chevallier is currently working on both of these tasks and h=
-ad
-already sent several times the patch series for the MDI port support.
+>
+> > +/* RPMI version encode/decode macros */
+> > +#define RPMI_VER_MAJOR(__ver)                (((__ver) >> 16) & 0xffff=
+)
+> > +#define RPMI_VER_MINOR(__ver)                ((__ver) & 0xffff)
+>
+> Same comment as per previous patch.
 
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Okay, I will use macros from linux/wordpart.h
+
+>
+> ...
+>
+> > +     RPMI_ERR_NO_DATA                =3D -14,
+> > +     RPMI_ERR_RESERVED_START         =3D -15,
+> > +     RPMI_ERR_RESERVED_END           =3D -127,
+> > +     RPMI_ERR_VENDOR_START           =3D -128
+>
+> Leave the trailing comma, as it doesn't sound like a terminator.
+
+Okay
+
+>
+> ...
+>
+> > +             return -ETIMEDOUT;
+> > +             return -ECOMM;
+> > +             return -EOPNOTSUPP;
+>
+> + errno.h
+
+Okay, I will add errno.h
+
+>
+> ...
+>
+> > +/* RPMI linux mailbox attribute IDs */
+> > +enum rpmi_mbox_attribute_id {
+> > +     RPMI_MBOX_ATTR_SPEC_VERSION =3D 0,
+>
+> Why do you need an explicit initialiser? If it's a HW requirement, all of=
+ them
+> should be explicitly defined. This makes code robust against potential ch=
+anges.
+
+Explicit initializers are not needed. I will drop in the next revision.
+
+>
+> > +     RPMI_MBOX_ATTR_MAX_MSG_DATA_SIZE,
+> > +     RPMI_MBOX_ATTR_SERVICEGROUP_ID,
+> > +     RPMI_MBOX_ATTR_SERVICEGROUP_VERSION,
+> > +     RPMI_MBOX_ATTR_MAX_ID
+> > +};
+>
+> ...
+>
+> > +/* RPMI linux mailbox message types */
+>
+> linux --> Linux
+> (everywhere)
+
+Okay, I will update.
+
+Regards,
+Anup
 
