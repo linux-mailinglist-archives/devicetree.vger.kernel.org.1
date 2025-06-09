@@ -1,127 +1,124 @@
-Return-Path: <devicetree+bounces-183951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B382DAD2802
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:45:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256FEAD280D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:50:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 921133A463F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:44:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E426316DE96
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BD1221DB0;
-	Mon,  9 Jun 2025 20:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306F221CC49;
+	Mon,  9 Jun 2025 20:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O9dUXnOD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcWNN0t+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B9A220F5C;
-	Mon,  9 Jun 2025 20:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088FB8F40;
+	Mon,  9 Jun 2025 20:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749501909; cv=none; b=UYckLEFi3dfDAEVfU/Q6RAOQeZ4PUz9HgJTTrru1xFBwMKuOgnFrqcH7x9Z8Zom01FYKX0uwheGVaWCSgJr2ZDo9/oYOQDGNqyrWBwh8GDiybPcnsOwCI27vWKNDPddaUgJpcdCnnsd/pzsiT8OWPGVlbpbONadF0RcWRw2H0SM=
+	t=1749502214; cv=none; b=MMdzFtd+lqrEfEf2QprrPtAAKRCgEkHdTE+BwSqYuh1nXICjhjotjO0H4IguGZHi20HklzmLqsIVgUqXSGtXrf0U4oS75TY91lYA/wqiu6hIGrdb3YdHES6+jKI9DYxIkC9QGVx900tpaf9JIufkOv7kaOYF3QO8vE0IOZML5Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749501909; c=relaxed/simple;
-	bh=jPj7Sjc0AlG78SlEVxbzLFkY+icJgot4jPJU8v9Hg64=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M0yLLSg5h0RoJ5I/o/OHmr6NNKVJhX8/Q1kdBAVNu8cbnGTByVzwGLt2Ku0uqTdGVXxDrhmu2FLucysZdM8VEp/0Bn9tcUo6cxCsFi5t/FccYIAVsY2Ysok9wBh606pI4J4nPaZdMeuyaa+E5YvT+RHDM6NhPNmj6EunOlmlhxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O9dUXnOD; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B88CA44400;
-	Mon,  9 Jun 2025 20:45:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749501905;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SR2d9reP8TqJ3UfMOktGuMwu95S3n7zGli3lgi0UUmg=;
-	b=O9dUXnOD9YyA/wh8TMe9VcmiIPn+5MMmKcqUtv7n/HXwVsZBlk8SEbbuTTSsBHNVEpfTtQ
-	xPvkA94UOJJF6p6nYPgYx1gA7Ljdv7dZF1EuGP84P8VWRcQ2HHPpUQovBHzlBxY+NUI7jZ
-	S2+BVfM0x79jDSSnmEiHQJejDJBS2DU7VUBe+wJyYMCJ1lEkhN5xDkSLZwx5bbTHnYHCSi
-	Og85IJQ/z4rlELNony9HQr16gr726jcdlG6Rqat8y+fkfbFVP4ynbMPmQyzRphxRc0jTbh
-	L0wXVdAB0ebiFjq+SI3QQJetH5fkAO7u/A3EfNir102f4FvaUp2RoRDVFxeIKQ==
-Date: Mon, 9 Jun 2025 22:45:02 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas
- Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, Roger
- Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, Bajjuri
- Praneeth <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 4/5] arm: dts: omap: Add support for BeagleBone Green
- Eco board
-Message-ID: <20250609224502.1fce742c@kmaincent-XPS-13-7390>
-In-Reply-To: <20250609-helpful-immodest-0f195cdbcbf2@spud>
-References: <20250609-bbg-v2-0-5278026b7498@bootlin.com>
-	<20250609-bbg-v2-4-5278026b7498@bootlin.com>
-	<20250609-helpful-immodest-0f195cdbcbf2@spud>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1749502214; c=relaxed/simple;
+	bh=czj8XlBd8BGP8dnx691nvVAvffUO2lfVp4IK2xACIc0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VgmrXatHwqjyKJ8Ou0t/3iUz05Nm+e0PygKkmx33MwMr2zZ1XQz7k2/xG4EOWqZ5lAzGTVGqoek8ZunM2d8eE/oz26pJeyhT0ZiNbDFUuntDPREiPqk+Ufaw9oQ7sIGlgVSNsBoTvMAaVz1HrzhKEOtdMZ1qLZE9vOv3HEKclq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcWNN0t+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC322C4CEEB;
+	Mon,  9 Jun 2025 20:50:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749502213;
+	bh=czj8XlBd8BGP8dnx691nvVAvffUO2lfVp4IK2xACIc0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kcWNN0t+THEU96bQpoUx943YDNPZojBBESB36TN+5fcySVIv/orje5oDASiVlrfoD
+	 Cf2Nd3r2JZ8EYd6Yat2JsHhQ0n0x89mEOJKEn13e9aUvquTGzzVEr1L/FzqJvaEaV7
+	 1ttg3S6PgExOokmA8BU2Ef6rtv714Jj93FRWOdJcu3IxBYX2MP0WT5ZjUJw3gcsl5O
+	 f3/IyB/hNIyLlwwZpKgNGuxIPyIaWaEhM5ZWCYBVsgxqdbbC3yCkRQ74CT6MwKRLMD
+	 TEkjVnLjWe3HPodQCRXN8iumyPC7hJQ47/02fB2nHIlzvH4xj4WNnj00etWQirY6DU
+	 txScfQWqfnPaA==
+Date: Mon, 9 Jun 2025 21:50:08 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	jens.glathe@oldschoolsolutions.biz, konrad.dybcio@oss.qualcomm.com
+Subject: Re: [RFC PATCH v1 0/2] Introduce dummy regulator consumer
+Message-ID: <b481298e-319f-41ce-8a56-e3f78b8649ff@sirena.org.uk>
+References: <20250607212654.126412-1-alex.vinarskis@gmail.com>
+ <8a688e9f-012e-461c-a916-f06b34fdd913@sirena.org.uk>
+ <CAMcHhXpVKaWX8guog_M+5wHfJ+6uxBteNnV1xCjcDJuGFWOCkg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdeljeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmeelhegvvgemrggvugdvmeeitgeksgemudgsfegsnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemleehvggvmegrvgguvdemiegtkegsmedusgefsgdphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudelpdhrtghpthhtoheptghonhhorheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhonhihsegrthhomhhiuggvrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvl
- hdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprggrrhhordhkohhskhhinhgvnhesihhkihdrfhhipdhrtghpthhtoheprghnughrvggrsheskhgvmhhnrgguvgdrihhnfhhopdhrtghpthhtohepkhhhihhlmhgrnhessggrhihlihgsrhgvrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2n2I1qDF5MuPK56M"
+Content-Disposition: inline
+In-Reply-To: <CAMcHhXpVKaWX8guog_M+5wHfJ+6uxBteNnV1xCjcDJuGFWOCkg@mail.gmail.com>
+X-Cookie: Restaurant package, not for resale.
 
-Le Mon, 9 Jun 2025 18:04:01 +0100,
-Conor Dooley <conor@kernel.org> a =C3=A9crit :
 
-> On Mon, Jun 09, 2025 at 05:43:54PM +0200, Kory Maincent wrote:
-> > SeeedStudio BeagleBone Green Eco (BBGE) is a clone of the BeagleBone Gr=
-een
-> > (BBG). It has minor differences from the BBG, such as a different PMIC,
-> > a different Ethernet PHY, and a larger eMMC.
-> >=20
-> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> > ---
-> >=20
-> > Changes in v2:
-> > - Used generic pmic node name.
-> > - Add regulator prefix to fixed regulator node name.
-> > - Add the compatible to omap.yaml binding
-> > ---
-> >  Documentation/devicetree/bindings/arm/ti/omap.yaml |   1 +
-> >  arch/arm/boot/dts/ti/omap/Makefile                 |   1 +
-> >  arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts | 170
-> > +++++++++++++++++++++ 3 files changed, 172 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > b/Documentation/devicetree/bindings/arm/ti/omap.yaml index
-> > c43fa4f4af81..774c13157caa 100644 ---
-> > a/Documentation/devicetree/bindings/arm/ti/omap.yaml +++
-> > b/Documentation/devicetree/bindings/arm/ti/omap.yaml @@ -145,6 +145,7 @@
-> > properties:
-> >        - description: TI bone green variants based on TI AM335
-> >          items:
-> >            - enum:
-> > +              - ti,am335x-bone-green-eco
-> >                - ti,am335x-bone-green-wireless
-> >            - const: ti,am335x-bone-green
-> >            - const: ti,am335x-bone =20
->=20
-> Why is this hunk here?
+--2n2I1qDF5MuPK56M
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Do you mean that the binding change should be in another patch?
+On Mon, Jun 09, 2025 at 10:32:38PM +0200, Aleksandrs Vinarskis wrote:
 
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+> Thanks for your feedback. Yes, you are right, they _can_ have DT
+> bindings for them. And typically that's the way to go for _embedded_
+> devices that are eg. soldered on the motherboard. In this case of the
+> webcam on Lenovo Thinbook 16 [1] the proposed option was to utilize
+> the existing "onboard USB" driver, since it already has bindings and
+> can be used for that [2]. The issue with this approach is that being a
+> USB UVC device it is plug & play by definition, it does not need a
+> dedicated driver, yet we want to bind it to a vreg to avoid having it
+> always on. Thus, adding VID/PID to a driver just for controlling the
+> regulator is not very scalable.
+
+I don't see why not, and this can also be approached from the controller
+side - it's providing a USB bus which includes power as part of the
+specification.  That's just a question of where the binding happens
+though.
+
+I'm also not clear what the relevance is here?  If we have a dummy
+consumer we're still going to need to work out how to instantiate it -
+that's the same problem no matter what's getting instantiated.  A dummy
+consumer is a userspace interface, not a firmware interface.
+
+> Having to add VID/PID for every device that does not in fact need a
+> dedicated driver has another issue - it was just confirmed that Lenovo
+> Ideapad 5 uses a similar setup with USB UVC webcam, but of course
+> VID/PID are different. That would require yet another driver change.
+
+We already need relatively large sets of quirks because laptops have
+firmwares built for Windows which is happy to enumerate things based on
+DMI information even when there is a perfectly good enumerable interface
+that could describe things directly, never mind the bits that aren't
+enumerable.  This doesn't seem particularly different.
+
+--2n2I1qDF5MuPK56M
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhHSQAACgkQJNaLcl1U
+h9D/Xwf+IzuxzRyyXQ2qDMvaIo+/sQolGnz0vKNuHpQFXDgVWso98OSfQMY0Fe1Y
+Ubbviziy/OxB1zktvHqf2WDmVcQbQeKJFi2sXsZ5XKcD5HzbBYdkXL/MyJbv0NM3
+CXuN+TA9nbPn9g3Gpo10AnRU9FxpPGNbDMwS8Uf/SFcsOXQYSoeMHRBdknudx10J
+ibfveWt0TiK7OfldNMy2Pjco4xq71fyHjzHjGGlYBNbSOUihBfOcTVhEQtVWqVLp
+6RmOfNWWbZRrL1eEIeJ/fGll8ROTWwn7D5hkUpdNw5HVOiI8enWz8oLsxyui159c
+huUJrg0Xn310pF5q1t8GdW2B70K7gQ==
+=yv+h
+-----END PGP SIGNATURE-----
+
+--2n2I1qDF5MuPK56M--
 
