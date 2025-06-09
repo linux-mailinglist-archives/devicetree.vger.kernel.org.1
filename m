@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-183800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6F5AD1D19
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:22:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0432AD1CD5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:06:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A70F5188D8E6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 12:23:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA45E16188B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 12:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016102550C2;
-	Mon,  9 Jun 2025 12:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ljoFAD+3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B513254B14;
+	Mon,  9 Jun 2025 12:06:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0061E98FB;
-	Mon,  9 Jun 2025 12:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349051E766F
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 12:06:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749471767; cv=none; b=nVF3PFJRcaQVNpyO4jkpM3KQZc2BOFf6CxApvIdGdQmeI0jWlg9m4ytgMuD484u+rJM2YVAz4GSJvDdZdtQ6mnmTBKsiV7LBZckL37wQX69wZRkvSDffFY4DmiehRjj3wGmpaI6k1VA/5/Y4ppVXff4zHcBlSpp3gAMrDPGkpgY=
+	t=1749470784; cv=none; b=fn8N9SYtOSpDE3iZGI0TqSt4RVmfRrcoQb0ykOIxv5OnVZxinmDW+FmFREyaQH9LbySGxnX84d0aDfh9Pryfxw7xlHZL2JOZiycBzU+0LkdLGuiW6xR1kEViIsayENbNg8Jpn8wZnmmJFfxtbZ6s1CJwjas8XyuHv0JS6LvQnd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749471767; c=relaxed/simple;
-	bh=6l8ZTjY0d0DnRF5BA8fJMCrXwBY8OOHKBBbx8rUjqyc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=A7fHjBpyHlk3FfU+d7dKThH6hi9B0WZ69ZemQTIMuTKM5x3BuVvTH8+ZSh+pTU7aJJjO+s1Bea22wkh7bLvz8fWJrQm/+NcudtIrafe7R8OSYyRcL4hnbk/rmWgReB6xxCkp7YnfIpWBpOi5naZIMGjr0NVfKr9cz6pK+ckZjgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ljoFAD+3; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id 95E9E58052E;
-	Mon,  9 Jun 2025 12:02:51 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A901243280;
-	Mon,  9 Jun 2025 12:02:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749470564;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=hfNgM/UwK9Bgs6Z72i34/JIUtkeJLfZjGuO9+tnxnH0=;
-	b=ljoFAD+30tSZSx407+2w+YNK1fKSnD3cdTADkIFdznx6Rt/JlyhivF0fVhvp2IPAfRttnx
-	4XMFp8fcOrGTdM/valSvUkptmZH4+/E2gWu6M10YK2vX7bQztIc+WLyMJjhBMe/mMH8FwC
-	BcyNvFdPsVHWLxxArDn+0i5sVArRnHEfsr3Sm23MyzqZoTBme1lzWFHSSQsZd5YY4Owr6a
-	rZ4nlIJ1ye7QGZ4cEonhqEZvyVzZ/OiSCkLu6xJdgzSLwdI3wH1u0KlQbnTC39B/lasPAP
-	CHLZ/MpJy/VFzNgHfqV/3+T1Z4pBc9FBIqErUz5FBSawySGjltulFdGgXedaeQ==
-From: Thomas Richard <thomas.richard@bootlin.com>
-Date: Mon, 09 Jun 2025 14:02:34 +0200
-Subject: [PATCH v3] arm64: dts: imx8qm: add system controller watchdog
- support
+	s=arc-20240116; t=1749470784; c=relaxed/simple;
+	bh=sgkv4aiTTTlOa25f+2o8tc6D1nl+uYbgWoVrUsSkE8o=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZCn1n+1/FOLeptpKaqPIA4VsnbslB4l6167cDIr0b/Wwnz2fNpXOPL2YV92VOiIKv/f3WgSDYTYeeInC59MB3sM6HtxcVm0j91GeeKfvHCEtR5SY5BsQSX0V0+UNWjXgRCDKaG1GSSDBnX7R++eZR3qPN+xbBbFCyncJk1/lGRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 559C67ue032205
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Mon, 9 Jun 2025 20:06:07 +0800 (+08)
+	(envelope-from ben717@andestech.com)
+Received: from atctrx.andestech.com (10.0.15.173) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 9 Jun
+ 2025 20:06:07 +0800
+Date: Mon, 9 Jun 2025 20:06:07 +0800
+From: Ben Zong-You Xie <ben717@andestech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+        <alex@ghiti.fr>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <tglx@linutronix.de>,
+        <daniel.lezcano@linaro.org>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <tim609@andestech.com>
+Subject: Re: [PATCH v5 0/8] add Voyager board support
+Message-ID: <aEbOLztcBsKs84pn@atctrx.andestech.com>
+References: <20250602060747.689824-1-ben717@andestech.com>
+ <20250606-booth-icky-b416c1827a43@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,81 +58,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250609-imx8qm-watchdog-v3-1-5c22618606c8@bootlin.com>
-X-B4-Tracking: v=1; b=H4sIAFnNRmgC/2XNQQ6CMBCF4auQrq1ppwXBlfcwLkpbYBKh2pKKI
- dzdghsNy/8l881MgvVoAzlnM/E2YkA3pBCHjOhODa2laFITYJAzYIJiP5XPnr7UqDvjWlqXohB
- CQinBknT18LbBaROvt9QdhtH59/Yg8nX9WpKddlbklFFgGnhV87wxcKmdG+84HLXryapF+BG43
- AuQBCkrKHJVGSXtv7AsywcuBI9e8gAAAA==
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Oliver Graute <oliver.graute@kococonnector.com>, 
- Frank Li <Frank.Li@nxp.com>, Thomas Richard <thomas.richard@bootlin.com>
-X-Mailer: b4 0.14.1
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdelvdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkvfevofesthejredtredtjeenucfhrhhomhepvfhhohhmrghsucftihgthhgrrhguuceothhhohhmrghsrdhrihgthhgrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeiveefueeiveffvedvfeetvdfhkeeuudefkeeuffefgfekudelheeiffduveeikeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemuggtkedumegrrggutdemfhgutggrmegttgdurgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemuggtkedumegrrggutdemfhgutggrmegttgdurgdphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepthhhohhmrghsrdhrihgthhgrrhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduledprhgtphhtthhopefhrhgrnhhkrdfnihesnhigphdrtghomhdprhgtphhtthhopehimhigsehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnv
- ghlrdhorhhgpdhrtghpthhtoheplhhinhhugiesrhhovggtkhdquhhsrdhnvghtpdhrtghpthhtohepfihimheslhhinhhugidqfigrthgthhguohhgrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-GND-Sasl: thomas.richard@bootlin.com
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250606-booth-icky-b416c1827a43@spud>
+User-Agent: Mutt/2.1.4 (2021-12-11)
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 559C67ue032205
 
-Add system controller watchdog support for i.MX8QM.
+On Fri, Jun 06, 2025 at 05:00:06PM +0100, Conor Dooley wrote:
+> [EXTERNAL MAIL]
 
-Acked-by: Oliver Graute <oliver.graute@kococonnector.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
----
-Third version of this series. I just rebased it on v6.16-rc1, dropped the
-binding patch (already applied upstream) and took RB/AB tags for the
-devicetree patch.
----
-Changes in v3:
-- all: rebase on v6.16-rc1
-- bindings: remove patch
-- devicetree: take "Acked-by: Oliver Graute <oliver.graute@kococonnector.com>"
-- devicetree: take "Reviewed-by: Frank Li <Frank.Li@nxp.com>"
-- Link to v2: https://lore.kernel.org/r/20250414-imx8qm-watchdog-v2-0-449265a9da4e@bootlin.com
+> Date: Fri, 6 Jun 2025 17:00:06 +0100
+> From: Conor Dooley <conor@kernel.org>
+> To: Ben Zong-You Xie <ben717@andestech.com>
+> Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+>  alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+>  tglx@linutronix.de, daniel.lezcano@linaro.org,
+>  prabhakar.mahadev-lad.rj@bp.renesas.com, devicetree@vger.kernel.org,
+>  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+>  tim609@andestech.com
+> Subject: Re: [PATCH v5 0/8] add Voyager board support
+> 
+> On Mon, Jun 02, 2025 at 02:07:39PM +0800, Ben Zong-You Xie wrote:
+> > The Voyager is a 9.6” x 9.6” Micro ATX form factor development board
+> > including Andes QiLai SoC. This patch series adds minimal device tree
+> > files for the QiLai SoC and the Voyager board [1].
+> > 
+> > Now only support basic uart drivers to boot up into a basic console. Other
+> > features will be added later.
+> > 
+> > [1] https://www.andestech.com/en/products-solutions/andeshape-platforms/qilai-chip/
+> 
+> Ball is in your court now, after rc1 make a tree and get it in
+> linux-next, and then send a pr to soc@kernel.org with this new content.
+> Perhaps the defconfig should go separately, I can take that one if you
+> want.
+> 
+> Cheers,
+> Conor.
 
-Changes in v2:
-- bindings: take "Acked-by: Rob Herring (Arm) <robh@kernel.org>"
-- bindings: take "Reviewed-by: Frank Li <Frank.Li@nxp.com>"
-- devicetree: move the watchdog node just after thermal-sensor
-- Link to v1: https://lore.kernel.org/r/20250407-imx8qm-watchdog-v1-0-20c219b15fd2@bootlin.com
----
- arch/arm64/boot/dts/freescale/imx8qm.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Hi Conor,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-index 6fa31bc9ece8..11527050ac8b 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-@@ -356,6 +356,11 @@ tsens: thermal-sensor {
- 			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
- 			#thermal-sensor-cells = <1>;
- 		};
-+
-+		watchdog {
-+			compatible = "fsl,imx8qm-sc-wdt", "fsl,imx-sc-wdt";
-+			timeout-sec = <60>;
-+		};
- 	};
- 
- 	thermal-zones {
+Thanks for your guidance on these patches. I will send a PR to
+soc@kernel.org as you suggested.
 
----
-base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-change-id: 20250203-imx8qm-watchdog-b8363342842e
+For the defconfig patch, I'm happy for you to handle it. Just let me
+know if there's anything specific you'd like me to include.
 
-Best regards,
--- 
-Thomas Richard <thomas.richard@bootlin.com>
-
+Thanks,
+Ben
 
