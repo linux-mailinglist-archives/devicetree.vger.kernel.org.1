@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-183807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF23AAD1E91
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 15:15:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB780AD1E9B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 15:17:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9A2C16C0ED
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:15:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDA943ACE4B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE43A256C93;
-	Mon,  9 Jun 2025 13:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05DE256C9E;
+	Mon,  9 Jun 2025 13:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g/b3DS2z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lk9lTXNK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39B92505CB;
-	Mon,  9 Jun 2025 13:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CD42505CB;
+	Mon,  9 Jun 2025 13:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749474922; cv=none; b=RVG3A8lOmW8MNv9Wj75X9PH876XREBtY1oTdV2UqOoHh33BPDb9jsf1kFXt+/RnRT+EbFohFXqmXBKHWLtKD7JijqZghCTITv8Tg50ypkVbb45FY0vNX3tQ9nl3QPAbFDNUoK6uDYhIU34P0fV5YDVFugRwTg7/9dLTGlnw2fkU=
+	t=1749475020; cv=none; b=Dui+1xOIkGVfV45agU3a3wqR8Cly4BnYAb74RXepB7x8oeKaa4BjNjDcbzbt4geUXVZ7HD6falOSZNxWY66BIet/nzrvwaRvvJPEHmcfStC2DZoraY6pVLtJ/Jp3dHvhEZib0yribyOJmMPRaUhEegk4GTL8cFeWiCNK1Y+eb+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749474922; c=relaxed/simple;
-	bh=j8xoKgKfro/Bd9fgQpXYtZM22e8ov44Ze5bH5xPMj6k=;
+	s=arc-20240116; t=1749475020; c=relaxed/simple;
+	bh=YBrZfAOWC77371Om/Q2DCtJzOeAx6cYDgxkksmHBjdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mj8qK2m4bfmdn2Lyui54EthvTkMn1Hw18Nc5+hLLfEwCpjznDaBQF+mtAqTZYOZzj1A1k9gTzjw0OjhRYvVGxTgSRVgX/wDq9BQE9XTQcljjBCCu7vdiI90cUMTFZdmmh0wvIsFtIuajOJL8r4esX5wWSWlrw12mcpHrsWueAjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g/b3DS2z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14013C4CEEB;
-	Mon,  9 Jun 2025 13:15:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QKAti8vX61sUzsDfTCDoDU+KKq9BXZExP9lhtNGuY2qWTrtpuuS1ZCr+I+YNC7P/crojrEcjSgzDpyBNdUBBt5L/hCzJvaxg7cDlnEMBGRglNVaigBclLKkxL42ntKfLRvMCRpyfGN/5svdRL4QLmeLMOl7flJW0smnFSM2LvPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lk9lTXNK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2630C4CEEB;
+	Mon,  9 Jun 2025 13:16:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749474922;
-	bh=j8xoKgKfro/Bd9fgQpXYtZM22e8ov44Ze5bH5xPMj6k=;
+	s=k20201202; t=1749475020;
+	bh=YBrZfAOWC77371Om/Q2DCtJzOeAx6cYDgxkksmHBjdQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g/b3DS2zkUOqSHGxHWqLozKCbyHb5B10l1tzLgMvo+Ihd1shQFeXQFIWvtZkUYLe4
-	 6Hm1RQaMrYgqiyOh+mUY5CZPvq9S+ttacJScCgM1lh8PyDVoRSQNfIUqS3RKSTwtQb
-	 2ccfwPj7ZdwtYs6GFWEtfVH7aDNA1wrraYBP4INV1pHmZfysVQi+9FE1bEeHUe6o4w
-	 nKwVPY/87DET8ry1BO7DsXx7VACW60WUbmgCgrlcpvPpyDfiH9MW9xmycDw0SdmF1F
-	 s+V3+dC9LMZDPqoOk0ryt845fIktiSs0yA0GUoDJhBV7fSxdVXoFnoCKsX0bjnZA3O
-	 z4CubotZHdb3g==
-Date: Mon, 9 Jun 2025 08:15:21 -0500
+	b=lk9lTXNKiFFxmljg3Ocr/fnCIDgQULgMZHKldFFXmAGH67geDpLERAjwNU453CerI
+	 4wN0LYpigFOHVAcJAErYMGsl2DmnLt6QTNJypdNW6HEHA9SYz7JmvRa5Rwhxyx4NSF
+	 3r0pziDcEaGux+YEdgtWoMUvNhiKpcSUVAcr5ri73zsFY+uFmrvMWMmhFXjTxMIe1S
+	 aZhvL+gfvh8xodgZPGZ2EAHaAYKHYQmNYUcg+vL35OC/RvQQLmh5W7JqJjQ69rod4U
+	 mtuBJdPRO0cdptraCHTmOaVs6+OFRIvfOgGjWSmXg2X4EY0mg1i9fC7O6bWDeoPg/F
+	 fl3NnQBS8N/yg==
+Date: Mon, 9 Jun 2025 08:16:59 -0500
 From: Rob Herring <robh@kernel.org>
-To: Harsh Jain <h.jain@amd.com>
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	mounika.botcha@amd.com, sarat.chand.savitala@amd.com,
-	mohan.dhanawade@amd.com, michal.simek@amd.com
-Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Add node for True Random
- Number Generator
-Message-ID: <20250609131521.GA1700932-robh@kernel.org>
-References: <20250609045110.1786634-1-h.jain@amd.com>
- <20250609045110.1786634-2-h.jain@amd.com>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: andersson@kernel.org, dmitry.baryshkov@linaro.org,
+	manivannan.sadhasivam@linaro.org, krzk@kernel.org,
+	helgaas@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	quic_vbadigan@quicinc.com, sherry.sun@nxp.com
+Subject: Re: [PATCH] schemas: PCI: Add standard PCIe WAKE# signal
+Message-ID: <20250609131659.GA1737613-robh@kernel.org>
+References: <20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,50 +62,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250609045110.1786634-2-h.jain@amd.com>
+In-Reply-To: <20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com>
 
-On Mon, Jun 09, 2025 at 10:21:05AM +0530, Harsh Jain wrote:
-> From: Mounika Botcha <mounika.botcha@amd.com>
+On Thu, May 15, 2025 at 02:35:17PM +0530, Krishna Chaitanya Chundru wrote:
+> As per PCIe spec 6, sec 5.3.3.2 document PCI standard WAKE# signal,
+> which is used to re-establish power and reference clocks to the
+> components within its domain.
 > 
-> Add TRNG node compatible string and reg properities.
-> 
-> Signed-off-by: Mounika Botcha <mounika.botcha@amd.com>
-> Signed-off-by: Harsh Jain <h.jain@amd.com>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 > ---
->  .../bindings/crypto/xlnx,versal-trng.yaml     | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml b/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> new file mode 100644
-> index 000000000000..b6424eeb5966
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/xlnx,versal-rng.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx Versal True Random Number Generator Hardware Accelerator
-> +
-> +maintainers:
-> +  - Harsh Jain <h.jain@amd.com>
-> +  - Mounika Botcha <mounika.botcha@amd.com>
-> +
-> +description:
-> +  The Versal True Random Number Generator consists of Ring Oscillators as
-> +  entropy source and a deterministic CTR_DRBG random bit generator (DRBG).
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,versal-rng
+>  dtschema/schemas/pci/pci-bus-common.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-I believe the prior comment was only about the node name. If the block 
-is called 'trng' then you should call it that.
-
-And please test your bindings before sending.
+Applied, thanks.
 
 Rob
 
