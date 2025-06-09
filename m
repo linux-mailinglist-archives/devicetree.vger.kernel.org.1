@@ -1,255 +1,243 @@
-Return-Path: <devicetree+bounces-183975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2BE0AD292D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 00:09:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2B7AD2930
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 00:09:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB2E616DFEE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:09:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A8C816E80E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F58222422E;
-	Mon,  9 Jun 2025 22:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F549224AF0;
+	Mon,  9 Jun 2025 22:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hxAoL2iJ"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="Vln5kUvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1081222570
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 22:09:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7444222489A
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 22:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749506986; cv=none; b=RkIB+DkPf8e8VsNy1nGaSX3LdsOqxXPnfGgeL1ZLmMuxHIW20OMmgeRKklX2wZHdVe0WvCF+IBmh/5bu5txCp9Jn6dWzBVvTj60nyW199fFaCKCN/RvTc/Bh6Wvc6AT1OQ07NQMWjHD9biJPIgoCDVcu/8CpBH+CyxntZsSib1I=
+	t=1749506990; cv=none; b=Ftyw9XhVLozdOrij3VCpm4YupYd/6MlAB4gPLBCSWPG993IrYQs5wbYNOqZakfXGpLDznWen79QmewmyotWNdR2nMoo742/zYCHoof9GZq9FDMZaIs87B8x1k/TCLd2sGtZdHH7utx6s6DhKsOcVCT0w2D32dPXy8pa9h6TDG8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749506986; c=relaxed/simple;
-	bh=P86jwe07mJu0URyv7CIAAu6JKNG/T38Mc49w5ZxaFR4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eIeELe+Blr7smP+mbCZ7yqSxLFJww5XO+Z8XR5rOy65IpejQaLOxN3+GajUVC1YY537FlcFOV/JMM5rjArpQplFv5SwOy6MF47nYWn8bbUCwldKs4frjsxXPEjlfxXLgKzyDDncLNYxVr3BCGHoqf0UI0EXi5nznc0Pix8OizpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hxAoL2iJ; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-748582445cfso640676b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 15:09:43 -0700 (PDT)
+	s=arc-20240116; t=1749506990; c=relaxed/simple;
+	bh=FNpQEWBDwyXEagWhUdVdgd4CDdreeQKyCibBUA0RLwg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t1HIBEL05lGkC+SW0Vrry3Sdq+JCwsB9bHifXPAzPqSU+eJsD2rePXff7UESUfs5bk+xOrddgSObdwwzidCmTPkzaksXLVm5PIvtg9oNzIdIpMTitCClgX+sgYr/5OTRde/0u9rizO9dgTGt/LRE0BZutLp7hAPwav6UxOidkOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=Vln5kUvI; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2352e3db62cso45230255ad.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 15:09:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1749506980; x=1750111780; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lo+xuu6/evF7Kj69JUrQ4+v7ESydcrUGBnfBq/70hhU=;
-        b=hxAoL2iJzdzAVbj1WJ3RP6vhQPNqlUTTKahIr1ZC/9qj+AzyHqG+OnBl5NZIFu7gId
-         ZnqaW79Lfct2qKpDQ9X80ECZd4L0XzCqLv89cYaci0Wdarcy6j4+gmm4DEdnh5D479yq
-         esMqG1k0W2XiKCVvBrJwzwGeR3NBGpH83tVy0=
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749506987; x=1750111787; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aXUrxDWDE1rz5GW1/FGYZyrQqnRIMW5wSQ+qWnYbv8k=;
+        b=Vln5kUvIPrZdzjaks/7fN/NQHnZl41fDDD0sqlbHFHdhLx8kpfxnY7F2rTCuK/3JeZ
+         eNdKwuuTgauR5Tgm7hFB2B0RecEXSyvBKNcd8irZkt9oC4XLNLawVUvjaQo66ZuOf8a9
+         oI4Ks0n1gLfAuhGTtTWcjEkFH//4w1F8CbtzfByrbY5uZGd7RbgA6ew2Jl/u7RGq2saE
+         ukfx5vtvGZjn6CJPlm6ncJG0nYFdpMudjSV/0dNPQWPkpw3mf6XZU7ht0cCK0x1GrYUX
+         dBV4x1NvT3n9jC6VPG0Jguoj30KDM2JwzgK0EgfVmv1NnQfb/maWg9jrCQbrMYj1H2St
+         6fYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749506980; x=1750111780;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lo+xuu6/evF7Kj69JUrQ4+v7ESydcrUGBnfBq/70hhU=;
-        b=IT3yMNTRg2d0oi7ho5kOWSPndrxOP3Sph3jxIp+m1v5+uP/YktbELFgDeBy8L5OWg+
-         SO3M53Va9ILkCyAQuTSfvag7FD1AaZQwmrU7h7mheJ1U41y2tn4IlHuagdnxVI/C/PA5
-         yClu8NJPI2BBfRq0rbfJvhD3c+82aHTdvMg56qCcY0K4AaS85dOKiG+y2uCrQSbBSir/
-         wxNMwiSPHxhKWwaReurju0ndJOG5y5rml5d8dl0VyQ+cW2DInURATF9bbCRzgnlCjQz2
-         LCER5PZcdwRCRLHECjptxOwOcHW+4DdRUkdQAGOUCBJ25AnysypaM1VU6Cb/UCHQcM97
-         nfwg==
-X-Forwarded-Encrypted: i=1; AJvYcCW4KZ9LLDWtF6nn3dUYE/VVq5+wFoNonGU7qUpRkOkI2KHXWk/mH7lxj+ZahxJrESn6krPPbyBBDdeZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcyFy/oLgI+Y59XJLjoLtPDTq2Pq5fFlbbr3Pi7VvPMx1siiyw
-	jtTji7jTRm2OXy6yGmgDaduNdoVdQe6WFtJEQ+jCsek1CvhX3V3xerLghrd9VtwB7ai4JeOFmW6
-	c5mDgLg==
-X-Gm-Gg: ASbGncu2aHc+vhzdoUPKg1C6UXVoyNii/IfSeKmVJkRq30Bkvfz7t5I1e5GVLZQkhnF
-	ib9t0TroXcjIMByO6kmMdACA8zhH8Qy7fqQEdhV8uZEXbLjUbeSJYeIm58twPek1AFqdfdTDoom
-	FX1MPNez1JyHxMFStqdrYIYAGc0X/pG5pcxOrsvAOwmKvgC1z9a490/BhCxhQMjFwd3N1NoRyZb
-	d/B2meyKTnV1lJaZhnwxdkDNZF2pqAGKMj925rOmaxHyfLJDUhPuruQ16x4uj7tqe8ojsFpUyFJ
-	lbfcXqOBlg7w8jJgZF0QtAUO46DahZpKF11AvlJV62Zt5LsU6cwAPNqtKqlfgpS2hUETfdlG+6P
-	YUVjHZsq8E/P56L/vCFpbp5J/OmGqEQ==
-X-Google-Smtp-Source: AGHT+IGNUdveV0yt+32iywGFvAY8grBMK0urBRT1rx2DAzZBoEv7yhZLlIGQ2q6zDoKp410JnS9OpA==
-X-Received: by 2002:a05:6a21:2d8f:b0:1f5:8dea:bb93 with SMTP id adf61e73a8af0-21ee24fd015mr23193439637.7.1749506979955;
-        Mon, 09 Jun 2025 15:09:39 -0700 (PDT)
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com. [209.85.214.172])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7482b0ec4aasm6376636b3a.171.2025.06.09.15.09.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jun 2025 15:09:37 -0700 (PDT)
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-234c5b57557so44065895ad.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 15:09:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVRG9OpWnEKNEOMYf8c9OSusJeOIScFzCmxBqAev95sd16oZsMdLe9CBWPJ0tj+d2Xq4I1C58S2SAAE@vger.kernel.org
-X-Received: by 2002:a17:903:1b45:b0:234:c2e7:a103 with SMTP id
- d9443c01a7336-23601d82e8bmr214458545ad.33.1749506977132; Mon, 09 Jun 2025
- 15:09:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749506987; x=1750111787;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aXUrxDWDE1rz5GW1/FGYZyrQqnRIMW5wSQ+qWnYbv8k=;
+        b=mJIRgxl6fgyzOJUw0g3NBq1S/U9qwy26bwlIc5c5SB2uZ5qAUyQtyr5xnEjnIQuqJT
+         o+i0kCcgqtkqVHgMLRvvq7k73JZ9mS9egN41phhdFlApaFnnGCdQ/OZoeIXjrls0NpP1
+         Em6pe01TGuL7p1cikfQCtpX8i922+DX9mPTSVDJPN60jvM/4/ZBbeuqdFW+wLtwz9rv2
+         7icfCzr0Z2j8fXVnjb8UIGVGK4RXsFiRWHU70yU+sAwxkJfgMT0pvk4/a2r146huRo5f
+         Uxo2Uf3X14Lzq+nRgz6MccSBUAQgzbGOxQ4YoG+SDxaQgMvtPvYTnFM/IWzYY5nAhf0v
+         kt8g==
+X-Forwarded-Encrypted: i=1; AJvYcCVL+KCMGSv2fsMpYpKRNOORmmDMXd45mI8UERzqc/7IeJjGl3j2EQNRRtuncB+NMtGjlomQatfVbuhc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhk7h3vaGn9lWv9PKe1Q2mHPyYNqF4ihCt+jwPOeq1jvuogZvf
+	bOU0pdL7CJp+BXN9pY3yonfUImTmYUW5PUiToF49eUW4A5e7YfoP6PaUrVqg63RLqhI=
+X-Gm-Gg: ASbGncuad8dyuacMiwQ7E+B2lAPTJu6bbuRJ0rQhic4V7WJmnTR7Gsq52UrLWkAEIpT
+	65TyxJNoEDmD3KfnhQ+UXsf/CcMPWKoeoEiLEsmnsGCAqbFMQ8P3dRoiHPrb40REzDvtFBq5efJ
+	rf6LQob14asYP9LAB1xYiO30xofTe0qkTV7stvfGFxBSe6xhSN2fASktd8QXgVcT079OjzMOFz+
+	SP2kK9hYIlD2cNyopqAGAvTNu2dIophjCI1dzlpaHmS20J36/44WipsokUq++LL5GHlrSDcFtIM
+	/JRuKmiZJ/7iG1pan+H8xLnmpWz2SU+t9Du1GwdainJA3lYPIzFK8I9K5CHnhK1gfT2LLW27mA=
+	=
+X-Google-Smtp-Source: AGHT+IEmC2cH56sY2Qaxupk/vYIkWpD0/7VSc7N28TaMH7rVO1PkIEtaUHkk3Y4nHUVSyRzLwMzWGg==
+X-Received: by 2002:a17:902:e888:b0:234:8a4a:ada5 with SMTP id d9443c01a7336-23638390915mr2466705ad.37.1749506987465;
+        Mon, 09 Jun 2025 15:09:47 -0700 (PDT)
+Received: from x1 (97-120-245-201.ptld.qwest.net. [97.120.245.201])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3134b13ba47sm6079708a91.40.2025.06.09.15.09.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jun 2025 15:09:46 -0700 (PDT)
+Date: Mon, 9 Jun 2025 15:09:45 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 5/6] riscv: dts: thead: Add PVT node
+Message-ID: <aEdbqSjpHyHx54UF@x1>
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <CGME20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01@eucas1p2.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-5-bdd2d5094ff7@samsung.com>
+ <aDVxDJi0KkWXiPCK@x1>
+ <61eecafb-8ad1-4306-88cb-a032eefb2e48@samsung.com>
+ <aDyOyg6eqDEFg2ua@x1>
+ <9e8a12db-236d-474c-b110-b3be96edf057@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250529110418.481756-1-j-choudhary@ti.com> <2baf3c31-3edf-4c26-bd44-1d0560134871@ti.com>
- <CAMuHMdUi7pf1YfKRjMv_7VuKwjR5XekRXfcEzuPScGzHraGjyQ@mail.gmail.com> <84fdbd23-d694-453f-a225-dbac19b34719@ti.com>
-In-Reply-To: <84fdbd23-d694-453f-a225-dbac19b34719@ti.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 9 Jun 2025 15:09:25 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XaR6Pq7E-13zR5PC_u=3SD=sc05_TzxWJR2FS040zESg@mail.gmail.com>
-X-Gm-Features: AX0GCFuY9zmj0FHZgee9_PnbGi-N3ssFASItEBDN5ajNB22ll-m4fMNSbkRbwcE
-Message-ID: <CAD=FV=XaR6Pq7E-13zR5PC_u=3SD=sc05_TzxWJR2FS040zESg@mail.gmail.com>
-Subject: Re: [PATCH v3] drm/bridge: ti-sn65dsi86: Add HPD for DisplayPort
- connector type
-To: Jayesh Choudhary <j-choudhary@ti.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, dri-devel@lists.freedesktop.org, 
-	tomi.valkeinen@ideasonboard.com, max.krummenacher@toradex.com, 
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
-	kieran.bingham+renesas@ideasonboard.com, linux-kernel@vger.kernel.org, 
-	max.oss.09@gmail.com, devarsht@ti.com, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, ernestvanhoecke@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9e8a12db-236d-474c-b110-b3be96edf057@samsung.com>
 
-Hi,
-
-On Mon, Jun 2, 2025 at 4:05=E2=80=AFAM Jayesh Choudhary <j-choudhary@ti.com=
-> wrote:
->
-> Hello Geert, Krzysztof,
->
-> (continuing discussion from both patches on this thread...)
->
-> On 30/05/25 13:25, Geert Uytterhoeven wrote:
-> > Hi Jayesh,
-> >
-> > CC devicetree
-> >
-> > On Fri, 30 May 2025 at 04:54, Jayesh Choudhary <j-choudhary@ti.com> wro=
-te:
-> >> On 29/05/25 16:34, Jayesh Choudhary wrote:
-> >>> By default, HPD was disabled on SN65DSI86 bridge. When the driver was
-> >>> added (commit "a095f15c00e27"), the HPD_DISABLE bit was set in pre-en=
-able
-> >>> call which was moved to other function calls subsequently.
-> >>> Later on, commit "c312b0df3b13" added detect utility for DP mode. But=
- with
-> >>> HPD_DISABLE bit set, all the HPD events are disabled[0] and the debou=
-nced
-> >>> state always return 1 (always connected state).
-> >>>
-> >>> Set HPD_DISABLE bit conditionally based on "no-hpd" property.
-> >>> Since the HPD_STATE is reflected correctly only after waiting for deb=
-ounce
-> >>> time (~100-400ms) and adding this delay in detect() is not feasible
-> >>> owing to the performace impact (glitches and frame drop), remove runt=
-ime
-> >>> calls in detect() and add hpd_enable()/disable() bridge hooks with ru=
-ntime
-> >>> calls, to detect hpd properly without any delay.
-> >>>
-> >>> [0]: <https://www.ti.com/lit/gpn/SN65DSI86> (Pg. 32)
-> >>>
-> >>> Fixes: c312b0df3b13 ("drm/bridge: ti-sn65dsi86: Implement bridge conn=
-ector operations for DP")
-> >>> Cc: Max Krummenacher <max.krummenacher@toradex.com>
-> >>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> >>> ---
-> >>>
-> >>> Changelog v2->v3:
-> >>> - Change conditional based on no-hpd property to address [1]
-> >>> - Remove runtime calls in detect() with appropriate comments
-> >>> - Add hpd_enable() and hpd_disable() in drm_bridge_funcs
-> >>> - Not picking up "Tested-by" tag as there are new changes
-> >>>
-> >>> v2 patch link:
-> >>> <https://lore.kernel.org/all/20250508115433.449102-1-j-choudhary@ti.c=
-om/>
-> >>>
-> >>> [1]: <https://lore.kernel.org/all/mwh35anw57d6nvre3sguetzq3miu4kd43ro=
-kegvul7fk266lys@5h2euthpk7vq/>
-> >
-> > Thanks for your patch!
-> >
-> >>> This would also require dts changes in all the nodes of sn65dsi86
-> >>> to ensure that they have no-hpd property.
+On Mon, Jun 09, 2025 at 08:49:57PM +0200, Michal Wilczynski wrote:
+> 
+> 
+> On 6/1/25 19:32, Drew Fustini wrote:
+> > On Sun, Jun 01, 2025 at 09:50:52AM +0200, Michal Wilczynski wrote:
 > >>
-> >> DTS patch is posted now:
-> >> <https://lore.kernel.org/all/20250529112423.484232-1-j-choudhary@ti.co=
-m/>
-> >
-> > On all Renesas platforms handled by that patch, the DP bridge's HPD pin
-> > is wired to the HPD pin on the mini-DP connector.  What am I missing?
->
-> If the bridge's HPD is connected to that of the connector, then I am
-> pretty certain HPD will not work for renesas platform. The detect hook
-> always gives "connected" state in the driver (even if it is unplugged).
-> Do you have different observation on your end?
-> If not, then we do need something like this patch while addressing the
-> backwards-compatibility concerns.
->
-> During v1 RFC[2], I did observe that renesas also have DisplayPort
-> connector type and might require hpd, but since the support was
-> already there and no issue was raised, I assumed it does not require
-> HPD.
->
-> [2]:
-> https://lore.kernel.org/all/01b43a16-cffa-457f-a2e1-87dd27869d18@ti.com/
->
->
-> >
-> > Regardless, breaking backwards-compatibility with existing DTBs is
-> > definitely a no-go.
+> >>
+> >> On 5/27/25 10:00, Drew Fustini wrote:
+> >>> On Sat, May 24, 2025 at 11:14:59PM +0200, Michal Wilczynski wrote:
+> >>>> Add PVT DT node for thermal sensor.
+> >>>>
+> >>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> >>>> ---
+> >>>>  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
+> >>>>  1 file changed, 11 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >>>> index f24e12d7259fabcfbdc2dfa966d759db06684ab4..faf5c3aaf209b24cd99ddc377a88e08a8cce24fe 100644
+> >>>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> >>>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >>>> @@ -648,6 +648,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
+> >>>>  			thead,pad-group = <1>;
+> >>>>  		};
+> >>>>  
+> >>>> +		pvt: pvt@fffff4e000 {
+> >>>> +			compatible = "moortec,mr75203";
+> >>>> +			reg = <0xff 0xfff4e000 0x0 0x80>,
+> >>>> +			      <0xff 0xfff4e080 0x0 0x100>,
+> >>>> +			      <0xff 0xfff4e180 0x0 0x680>,
+> >>>> +			      <0xff 0xfff4e800 0x0 0x600>;
+> >>>> +			reg-names = "common", "ts", "pd", "vm";
+> >>>> +			clocks = <&aonsys_clk>;
+> >>>> +			#thermal-sensor-cells = <1>;
+> >>>> +		};
+> >>>> +
+> >>>>  		gpio@fffff52000 {
+> >>>>  			compatible = "snps,dw-apb-gpio";
+> >>>>  			reg = <0xff 0xfff52000 0x0 0x1000>;
+> >>>>
+> >>>> -- 
+> >>>> 2.34.1
+> >>>>
+> >>>
+> >>> I found that on my lpi4a that boot while hang after applying this patch.
+> >>> I think that it is related to clocks as boot finished okay when using
+> >>> clk_ignore_unused on the kernel cmdline. Do you happen have that in your
+> >>> kernel cmdline?
+> >>>
+> >>> I need to investigate further to understand which clocks are causing the
+> >>> problem.
+> >>>
+> >>> Thanks,
+> >>> Drew
+> >>>
+> >>
+> >> Thanks for your earlier message. I've investigated, and you were right
+> >> about the clocks – the specific one causing the hang is CLK_CPU2AON_X2H.
+> > 
+> > Thanks for tracking down the clk causing the hang. I can confirm that
+> > this fixes the boot hang:
+> > 
+> > diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
+> > index ebfb1d59401d..4d0179b8c17c 100644
+> > --- a/drivers/clk/thead/clk-th1520-ap.c
+> > +++ b/drivers/clk/thead/clk-th1520-ap.c
+> > @@ -792,7 +792,7 @@ static CCU_GATE(CLK_AON2CPU_A2X, aon2cpu_a2x_clk, "aon2cpu-a2x", axi4_cpusys2_ac
+> >                 0x134, BIT(8), 0);
+> >  static CCU_GATE(CLK_X2X_CPUSYS, x2x_cpusys_clk, "x2x-cpusys", axi4_cpusys2_aclk_pd,
+> >                 0x134, BIT(7), 0);
+> > -static CCU_GATE(CLK_CPU2AON_X2H, cpu2aon_x2h_clk, "cpu2aon-x2h", axi_aclk_pd, 0x138, BIT(8), 0);
+> > +static CCU_GATE(CLK_CPU2AON_X2H, cpu2aon_x2h_clk, "cpu2aon-x2h", axi_aclk_pd, 0x138, BIT(8), CLK_IGNORE_UNUSED);
+> >  static CCU_GATE(CLK_CPU2PERI_X2H, cpu2peri_x2h_clk, "cpu2peri-x2h", axi4_cpusys2_aclk_pd,
+> >                 0x140, BIT(9), CLK_IGNORE_UNUSED);
+> >  static CCU_GATE(CLK_PERISYS_APB1_HCLK, perisys_apb1_hclk, "perisys-apb1-hclk", perisys_ahb_hclk_pd,
+> > 
+> >>
+> >> This appears to be an AHB bus clock required for CPU access to the AON
+> >> domain. My proposed solution is to make the pvt node a child of a new
+> >> parent bus node in the Device Tree. This new "AON bus" node would then
+> >> explicitly request and manage CLK_CPU2AON_X2H, ensuring it's enabled
+> >> when its children are accessed.
+> >>
+> >> What are your thoughts on this approach?
+> > 
+> > I think that is a good approach. The alternative would be to just add
+> > CLK_IGNORE_UNUSED like above. I've done it before but it is a bit of a
+> > hack.
+> 
+> I've followed up on the idea of creating a parent bus node. My attempt
+> using simple-pm-bus ran into a couple of significant issues that suggest
+> it's not the correct path.
+> 
+> First, the TRM doesn't seem to specify an address range for this bus.
+> The range I used in my test was only for the PVT controller itself,
+> which would be an incorrect abstraction in the device tree.
+> 
+> Second, simple-pm-bus requires its child nodes to use the PM runtime API
+> (pm_runtime_resume_and_get, etc.). Forcing this on consumer drivers like
+> the PVT sensor seems like an inappropriate dependency.
+> 
+> Additionally, I discovered that the PWM driver has a similar problem,
+> silently failing because another clock, CLK_PERISYS_APB1_HCLK, is not
+> enabled.
+> 
+> The most correct solution likely involves refactoring the clock parent
+> relationships in clk-th1520-ap.c. However, as a more immediate and less
+> invasive fix, I propose we apply the CLK_IGNORE_UNUSED flag for both
+> CLK_CPU2AON_X2H and CLK_PERISYS_APB1_HCLK in the v2 patch. This will fix
+> the boot hang and the PWM issue while we consider the larger clock
+> driver changes separately.
+> 
+> Does that sound like a reasonable plan for the v2 series?
 
-FWIW, we are in a little bit of a sticky situation here. We were in a
-bit of a bad place from the start because the Linux driver ignored HPD
-from the beginning but we didn't actually document that people should
-be setting the "no-hpd" property until a little bit later. You can see
-some discussion about this in commit 1dbc979172af ("dt-bindings:
-drm/bridge: ti-sn65dsi86: Document no-hpd") where I noted "this is
-somewhat of a backward-incompatible change." ...but, at the time, it
-wasn't really a big deal because there were very few users (the one in
-tree at the time was cheza, which was a dev board used internally at
-Google).
+Yes, I think that sounds like a good plan. I am okay with adding
+CLK_IGNORE_UNUSED for CLK_CPU2AON_X2H and CLK_PERISYS_APB1_HCLK until a
+better solution is found.
 
-...so, as of that change in May of 2020, it was documented that eDP
-users were _supposed_ to be setting NO_HPD. I even remember Bjorn
-requesting the "or is otherwise unusable" phrasing because we pretty
-much wanted to set this property on everyone using sn65dsi86 as eDP
-(even if they have HPD hooked up) because the debouncing time is so
-long that it was better to hardcode the max delay instead of reading
-the HPD line. Of course, even though we documented that they were
-supposed to have the "no-hpd" property didn't necessarily mean that
-everyone did. The code has never enforced it. I don't believe it even
-checks the property...
+I like the idea of revisting the parent relationships in the driver. I
+added CLK_IGNORE_UNUSED to several clocks in order to fix boot hangs
+when I removed clk_ignore_unused from the kernel cmdline. However, I
+don't think that I addressed the root cause.
 
-So if there are dts files out there that don't set the property and
-they were submitted after the bindings change in 2020, _technically_
-they've been wrong the whole time. We're not changing history by
-adding a new requirement so much as fixing broken DTS files. Although
-the Linux driver always allowed them to get away with being broken,
-technically DTS is separate from Linux so if they've been violating
-the bindings then they've been wrong. :-P That being said, they've
-been working and it would be nice to keep them working if we can, but
-one could make an argument that maybe it would be OK to require them
-to change...
-
-
-> Got it.
-> Let me try to figure out a way to fix it without messing it up.
-
-While a bit on the ugly side, it seems like perhaps you could just do this:
-
-1. If enable_comms is called before the bridge probe happens, just go
-ahead and disable HPD.
-
-2. When the bridge probe happens, if you notice that HPD should be
-enabled and comms are on you can just enable HPD then (grabbing the
-comms_mutex while doing it).
-
-3. Any subsequent enable_comms called after the bridge probe happens
-shouldn't disable HPD.
-
-...you'd probably want a comment about the fact that "no-hpd" property
-is unreliable, which is why we can't figure this out in a better way.
-
-
--Doug
+Thanks,
+Drew
+.
 
