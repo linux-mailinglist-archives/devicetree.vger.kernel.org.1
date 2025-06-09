@@ -1,133 +1,137 @@
-Return-Path: <devicetree+bounces-183795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC1EAD1CC5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6F5AD1D19
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:22:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27125188B419
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 12:00:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A70F5188D8E6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 12:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7DA520D509;
-	Mon,  9 Jun 2025 12:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016102550C2;
+	Mon,  9 Jun 2025 12:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GKuIMGu3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ljoFAD+3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBD0382;
-	Mon,  9 Jun 2025 12:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0061E98FB;
+	Mon,  9 Jun 2025 12:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749470439; cv=none; b=FxizdTI5WNKriAgD5KMJr7r15j3sLrEf9dCaPnK4BQXW83NM7t8hbUXbTN+ch5sUG7nnzjd4mftVTEk5vsWRRxooE9XDCN8UIpEMZ8fDZCu/yJ4GYWMN81op/orK07sRNmwBjR57SNTJz2qp2QT+DUDQVZkSOXoC3rBT+vUCrOY=
+	t=1749471767; cv=none; b=nVF3PFJRcaQVNpyO4jkpM3KQZc2BOFf6CxApvIdGdQmeI0jWlg9m4ytgMuD484u+rJM2YVAz4GSJvDdZdtQ6mnmTBKsiV7LBZckL37wQX69wZRkvSDffFY4DmiehRjj3wGmpaI6k1VA/5/Y4ppVXff4zHcBlSpp3gAMrDPGkpgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749470439; c=relaxed/simple;
-	bh=Ch0K/QAxSkYrJl/3IsHQdVItmuPaMWgOraAhIo5Tel0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LmSCiKKppqRFyz49BBwd5pK5l+DMvTbGTzAxU4jV31j9l4P2TTW/N0xGzsIXUmEwsuDI9k6DkDbmtZ4gWWi0Ld/58SAS5559VIcOEP6gCMMBEX/JtTCsH8dQbeZ5TezSsSryvfcSiDcQTjsjkiMaKJWkJfc1SFE3i4m+Fd+CCR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GKuIMGu3; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 559C0WvK1981245;
-	Mon, 9 Jun 2025 07:00:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1749470432;
-	bh=KfT47f4YC4sHbAPf2iUwhK0CCB8qwr74xhJZbfhK/ps=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GKuIMGu3dJbx5hNpKhFmX5+IK+tGAbVy4vEAxw1Q6yZ98XOmPk3irPVZq6ws9XEBV
-	 EWOhujqkY0c6jLRvCmDfdP4WUcPrZEHmA0J78eB51IbHMaPg6b2X+GWMQ/QkJ+bn8t
-	 8fan9QnqIGpP6ewa5BUn7VKYMaa/hHb3dDIod7Q4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 559C0W431356753
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 9 Jun 2025 07:00:32 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
- Jun 2025 07:00:32 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 9 Jun 2025 07:00:32 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 559C0Wfc1365631;
-	Mon, 9 Jun 2025 07:00:32 -0500
-Date: Mon, 9 Jun 2025 07:00:32 -0500
-From: Nishanth Menon <nm@ti.com>
-To: "Kumar, Udit" <u-kumar1@ti.com>
-CC: <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <b-padhi@ti.com>
-Subject: Re: [RESEND PATCH] arm64: dts: ti: k3-j784s4-mcu-wakeup: Configure
- wkup_uart0 with clock settings
-Message-ID: <20250609120032.yxmcyiw7dchv2kmp@wanted>
-References: <20250603042448.783956-1-u-kumar1@ti.com>
- <20250603160147.47orn74obh2lz3qm@rethink>
- <51c56999-5f47-45fd-a4b2-4b79ecae0227@ti.com>
+	s=arc-20240116; t=1749471767; c=relaxed/simple;
+	bh=6l8ZTjY0d0DnRF5BA8fJMCrXwBY8OOHKBBbx8rUjqyc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=A7fHjBpyHlk3FfU+d7dKThH6hi9B0WZ69ZemQTIMuTKM5x3BuVvTH8+ZSh+pTU7aJJjO+s1Bea22wkh7bLvz8fWJrQm/+NcudtIrafe7R8OSYyRcL4hnbk/rmWgReB6xxCkp7YnfIpWBpOi5naZIMGjr0NVfKr9cz6pK+ckZjgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ljoFAD+3; arc=none smtp.client-ip=217.70.178.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+	by mslow3.mail.gandi.net (Postfix) with ESMTP id 95E9E58052E;
+	Mon,  9 Jun 2025 12:02:51 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A901243280;
+	Mon,  9 Jun 2025 12:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749470564;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hfNgM/UwK9Bgs6Z72i34/JIUtkeJLfZjGuO9+tnxnH0=;
+	b=ljoFAD+30tSZSx407+2w+YNK1fKSnD3cdTADkIFdznx6Rt/JlyhivF0fVhvp2IPAfRttnx
+	4XMFp8fcOrGTdM/valSvUkptmZH4+/E2gWu6M10YK2vX7bQztIc+WLyMJjhBMe/mMH8FwC
+	BcyNvFdPsVHWLxxArDn+0i5sVArRnHEfsr3Sm23MyzqZoTBme1lzWFHSSQsZd5YY4Owr6a
+	rZ4nlIJ1ye7QGZ4cEonhqEZvyVzZ/OiSCkLu6xJdgzSLwdI3wH1u0KlQbnTC39B/lasPAP
+	CHLZ/MpJy/VFzNgHfqV/3+T1Z4pBc9FBIqErUz5FBSawySGjltulFdGgXedaeQ==
+From: Thomas Richard <thomas.richard@bootlin.com>
+Date: Mon, 09 Jun 2025 14:02:34 +0200
+Subject: [PATCH v3] arm64: dts: imx8qm: add system controller watchdog
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <51c56999-5f47-45fd-a4b2-4b79ecae0227@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250609-imx8qm-watchdog-v3-1-5c22618606c8@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIAFnNRmgC/2XNQQ6CMBCF4auQrq1ppwXBlfcwLkpbYBKh2pKKI
+ dzdghsNy/8l881MgvVoAzlnM/E2YkA3pBCHjOhODa2laFITYJAzYIJiP5XPnr7UqDvjWlqXohB
+ CQinBknT18LbBaROvt9QdhtH59/Yg8nX9WpKddlbklFFgGnhV87wxcKmdG+84HLXryapF+BG43
+ AuQBCkrKHJVGSXtv7AsywcuBI9e8gAAAA==
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Oliver Graute <oliver.graute@kococonnector.com>, 
+ Frank Li <Frank.Li@nxp.com>, Thomas Richard <thomas.richard@bootlin.com>
+X-Mailer: b4 0.14.1
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdelvdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkvfevofesthejredtredtjeenucfhrhhomhepvfhhohhmrghsucftihgthhgrrhguuceothhhohhmrghsrdhrihgthhgrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeiveefueeiveffvedvfeetvdfhkeeuudefkeeuffefgfekudelheeiffduveeikeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemuggtkedumegrrggutdemfhgutggrmegttgdurgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemuggtkedumegrrggutdemfhgutggrmegttgdurgdphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepthhhohhmrghsrdhrihgthhgrrhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduledprhgtphhtthhopefhrhgrnhhkrdfnihesnhigphdrtghomhdprhgtphhtthhopehimhigsehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnv
+ ghlrdhorhhgpdhrtghpthhtoheplhhinhhugiesrhhovggtkhdquhhsrdhnvghtpdhrtghpthhtohepfihimheslhhinhhugidqfigrthgthhguohhgrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: thomas.richard@bootlin.com
 
-On 12:47-20250608, Kumar, Udit wrote:
-> Hello Nishanth
-> 
-> On 6/3/2025 9:31 PM, Nishanth Menon wrote:
-> > On 09:54-20250603, Udit Kumar wrote:
-> > > From: Bhavya Kapoor <b-kapoor@ti.com>
-> > > 
-> > > This commit adds the assigned-clocks and assigned-clock-parents
-> > > properties for wkup_uart0 in J784S4. Specifically, the assigned-clocks
-> > > property is set to reference the clock identified by
-> > > "wkup_usart_mcupll_bypass_out0", ensuring the UART operates with the
-> > > correct clock source.
-> > > 
-> > > The assigned-clock-parents property specifies "wkup_usart_clksel_out0"
-> > > as the parent clock. This configuration is critical for establishing
-> > > the proper clocking hierarchy, enabling the UART device to function
-> > > reliably across different baud rates.
-> > Please fix the commit message - not clear what specifically in the clock
-> > hierarchy does permit the multiple baud rates.
-> 
-> need your advise here .
-> 
-> unlike other UART of main domain.  wkup_uart currently has two parents clock
-> (clock-1 is at 96Mhz and clock-0 is at 19.2 Mhz).
-> 
-> By default, current fw selects clock-1 as parent.
-> 
-> Let me know, if explicitly we need to set parent as clock-1.
-> 
-> If yes then i will roll out v2 with current message , if no then please drop
-> this patch
+Add system controller watchdog support for i.MX8QM.
 
-I personally do not see a need for the patch, then.
-> 
-> Thanks
-> 
-> Udit
-> 
-> > 
-> > > Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> > You need to add your SoB.
-> > > ---
-> > > Link to v1: https://lore.kernel.org/all/20241009072056.3511346-1-b-kapoor@ti.com/
-> > [..]
+Acked-by: Oliver Graute <oliver.graute@kococonnector.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+---
+Third version of this series. I just rebased it on v6.16-rc1, dropped the
+binding patch (already applied upstream) and took RB/AB tags for the
+devicetree patch.
+---
+Changes in v3:
+- all: rebase on v6.16-rc1
+- bindings: remove patch
+- devicetree: take "Acked-by: Oliver Graute <oliver.graute@kococonnector.com>"
+- devicetree: take "Reviewed-by: Frank Li <Frank.Li@nxp.com>"
+- Link to v2: https://lore.kernel.org/r/20250414-imx8qm-watchdog-v2-0-449265a9da4e@bootlin.com
 
+Changes in v2:
+- bindings: take "Acked-by: Rob Herring (Arm) <robh@kernel.org>"
+- bindings: take "Reviewed-by: Frank Li <Frank.Li@nxp.com>"
+- devicetree: move the watchdog node just after thermal-sensor
+- Link to v1: https://lore.kernel.org/r/20250407-imx8qm-watchdog-v1-0-20c219b15fd2@bootlin.com
+---
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+index 6fa31bc9ece8..11527050ac8b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+@@ -356,6 +356,11 @@ tsens: thermal-sensor {
+ 			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
+ 			#thermal-sensor-cells = <1>;
+ 		};
++
++		watchdog {
++			compatible = "fsl,imx8qm-sc-wdt", "fsl,imx-sc-wdt";
++			timeout-sec = <60>;
++		};
+ 	};
+ 
+ 	thermal-zones {
+
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250203-imx8qm-watchdog-b8363342842e
+
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thomas Richard <thomas.richard@bootlin.com>
+
 
