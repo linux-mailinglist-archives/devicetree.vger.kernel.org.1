@@ -1,697 +1,288 @@
-Return-Path: <devicetree+bounces-183710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95A6AD1945
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 09:49:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51753AD1981
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:03:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B724916A7BE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 07:48:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 416BA3ACA8D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA24283154;
-	Mon,  9 Jun 2025 07:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CA5281365;
+	Mon,  9 Jun 2025 08:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="fYrm9hX+"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cWNaP7Fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010019.outbound.protection.outlook.com [52.101.69.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E176A28314D;
-	Mon,  9 Jun 2025 07:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749455291; cv=none; b=pebSQjKwMLCFtGW3I3l476Vyd8HkWcWT8qyTs61SvUyKeNY6YlsXKU1Fdnp6vhYur1IjjKMrLcKX4VQs7/scTJhJsVqVL8LG9pj48zz+5emC13HRN/fzzdhVkvaiMsznK5bo8JLD5RZ3Nz0E9kO8VcKirvnaXyEcyR0B7Qh8AgY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749455291; c=relaxed/simple;
-	bh=qPC0q7GioEnvZcm2ZqQixuQ2K2Uu4YeHceOEb+xfWFg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=prP7Mjy9bJZ8KXh9ohwHkMb/HGLYxl1VoxwXuqK4wMparOkvYmjrM+7qKbbqwqRA76i4qBQHv3/uFq7CDAHde8BgZ8ibrXMwrAF9YHjILTxLe3Dd8VqttKHZN3fb8mQS6SSPnEB8M85pdHOjKhFfCx3TSVt4C7Ku0OkB6iu8tes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=fYrm9hX+; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1749455272;
-	bh=0d3/a8brVCorl883+D1J0IAbiFxt6mvbldjN0aYBO/Y=; l=19398;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=fYrm9hX+oqAWlPCfa+qAyjLT36376+aNwZ95prgbM7FZJvXZo8KmRsfjY8Nn9wXlh
-	 yCykUKxUXyRBiJlrSV3j0E80WfNaSgWP4QeCvvcDgWyPoyRBwtwcSZTsn67oj82Seh
-	 Or51YW4S3fpf4S+zGtx2Fy+Fs7S82NI4uhzsNy6nQSWa7H7GX9Ze2uOTSY8TzrxMKj
-	 K+vZSYtwZ1mKb3skVYLMhQyGJmxsNWQpnyMARXaWm9jlnnD916DYgtMVK7GGdCJvQ9
-	 fzGirSKgd3vxX8yaAkkHoDh46ghE9nS8broz1Hij4eUF0/s7nYpdc2zB13rqWkUS5f
-	 qNGcgvwt/Jwug==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(2288478:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 09 Jun 2025 15:47:22 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6072F192B7D;
+	Mon,  9 Jun 2025 08:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749456203; cv=fail; b=t1oApdlbG1HErIX3pY7UBGrX07tnVxwBz0iQx2mjkdGhay4AkWOIw+hkb7nDBcLivqgNUpGdE3k0Q3SmEYKVJp11oYNG6OBmeXTiYKZDCJtXhibXeVDO9b6pTKD+icrEaMaHIJfQd9/20SQ5bnkIcfhBPZ7cWs/pssM5HCf1dpw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749456203; c=relaxed/simple;
+	bh=DstghKZpwOR+RUOcCOqBfvnukifzUfxbDszPq0nrZjs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Phy9hxarX+apLesAV+e2aA9jOUVx2Q2SbsBs67FqmGJhtrGt/N26PjPwQoxCi5q+IHqe/BPIVinlIc4vZbkV3w3KKPYLgCrPyDnMiI2nxQ9xtJXkV0OEytkdFBSUBGyK2Ndi2Qkx5YHoVSu1YvurTlkmqMnEc/8Ov4RKDtMp7BY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cWNaP7Fq; arc=fail smtp.client-ip=52.101.69.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zFxCMESTu8LMQDZgquuZw8ojwjkrAY3WA0zP0hyNEXdJA7TaXQt5JVH72s9XpxI/Nunxttf1ZuhxX/pRLhjH+8Bj+xauq576dcZGsWNXk6E1fHzDaPhsJpkEKNVPRxv2a5/kJD/xyCwJDvOPZtx1/336O3IrKkBHXinMDWpR0YTTOdMKMmrOW9Puq873jfCczBB0erk8xf5k0aO0OUhINGK1WBnIKOmU49wXd81Y9UmbNCqn/zmIUxOAt1EBpBJdpJFn8zOjrV5A23vt/0Ts47Jm0iz2YxZnrVJlnuO0DkGNK5Ux2nSVv4Ng9rj4TLwE9cHhpk9LEyS8aZV1bJ+cIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DstghKZpwOR+RUOcCOqBfvnukifzUfxbDszPq0nrZjs=;
+ b=YacLVP9MNl8zrY/t0+1N5piQfTeFp2t30iTfwhVbL0OAcpiNPHNAZzZoztSnjSOQRl27bPFZ2mLeJBbLF6NWSWrgjKPWaLCYVaUs7yleyXvYakF3AJ1kEbgYNHZfFi9imxk3oBZcY8bqRm7SUPQ9i8F3vpL2KHnaiAKBtmqxSAyLXcnYtVZq6eSdabFo6kRtnPBmNat9eLcepSSegFCDzZWdeeUXxeF1f9MB5/u0uCOMLY7KNl1nPY/9NoWxbuV6cz7Bthf71vifcMtSE6csQLi1fZxfR+IKR5ASCVMDXvpvdXqJELCBWnTA8ylpsZEnHf94rRreU7NbXd6dopXw/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DstghKZpwOR+RUOcCOqBfvnukifzUfxbDszPq0nrZjs=;
+ b=cWNaP7FqMUl9MLhylxxHMWu56Rohdt2vk7Jpj1libNi86cHYfwS8yX/r9S7//EDOsdUfoYWVqP4tDhnB/uChhTISxhw5r8c8hjYIBzO2e2kjD3ihsE+l0IE5ZPC/KetwkWw+eddGG23e5TjUd3KAf4QmPwTNCNq8zRjlhiyG+DQRO7en0hha6shHS/Ggg0GaNBcfIxhzduL0b/J/nS2FQBeyTuq9qAo64WYemRgEZXlS8Mpphelft/9EPU859c9rrlU+B5eVnfNxPdI1wnv3UNh0jSkq0glNR+RD4kv4WVWj4Vfw66UBz5wE0EUL6b1NQ3zdcW2X5aa039igL1sf/g==
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
+ by GV1PR04MB11062.eurprd04.prod.outlook.com (2603:10a6:150:20a::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 9 Jun
- 2025 15:47:22 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Mon, 9 Jun 2025 15:47:22 +0800
-From: <cy_huang@richtek.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>
-CC: Liam Girdwood <lgirdwood@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, "ChiYuan
- Huang" <cy_huang@richtek.com>, Roy Chiu <roy_chiu@richtek.com>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.30; Mon, 9 Jun
+ 2025 08:03:16 +0000
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93]) by AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93%4]) with mapi id 15.20.8813.024; Mon, 9 Jun 2025
+ 08:03:16 +0000
+From: Hongxing Zhu <hongxing.zhu@nxp.com>
+To: "tharvey@gateworks.com" <tharvey@gateworks.com>
+CC: "l.stach@pengutronix.de" <l.stach@pengutronix.de>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "manivannan.sadhasivam@linaro.org"
+	<manivannan.sadhasivam@linaro.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, Frank Li
+	<frank.li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
 	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] ASoC: codecs: Add support for Richtek RTQ9124
-Date: Mon, 9 Jun 2025 15:47:28 +0800
-Message-ID: <aca49d1912bfd1b90e82146df6393760a731810c.1749454717.git.cy_huang@richtek.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1749454717.git.cy_huang@richtek.com>
-References: <cover.1749454717.git.cy_huang@richtek.com>
+Subject: RE: [PATCH v7 05/10] PCI: imx6: Deassert apps_reset in
+ imx_pcie_deassert_core_reset()
+Thread-Topic: [PATCH v7 05/10] PCI: imx6: Deassert apps_reset in
+ imx_pcie_deassert_core_reset()
+Thread-Index: AQHbP9jwKL/mPeFjWkuIr6TbMYW/mrP3zVeAgAPAlqA=
+Date: Mon, 9 Jun 2025 08:03:16 +0000
+Message-ID:
+ <AS8PR04MB8676C1206066A3215DB5F3B78C6BA@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <20241126075702.4099164-1-hongxing.zhu@nxp.com>
+ <20241126075702.4099164-6-hongxing.zhu@nxp.com>
+ <CAJ+vNU3ohR2YKTwC4xoYrc1z-neDoH2TTZcMHDy+poj9=jSy+w@mail.gmail.com>
+In-Reply-To:
+ <CAJ+vNU3ohR2YKTwC4xoYrc1z-neDoH2TTZcMHDy+poj9=jSy+w@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8676:EE_|GV1PR04MB11062:EE_
+x-ms-office365-filtering-correlation-id: 8b9af0f4-77a3-4a2e-18c8-08dda72c16df
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?RlM0a3hXbjhGSWtRWEUrd3g3c1ZRcm1RdldNa3ZPanZyb0paelB3WGttQTd2?=
+ =?utf-8?B?Z1FpTS9BekZzUXZkWm92Qm1CMTRWTE5TeDE1eHBlZ3ZvTXIxR21zbFlzL1dz?=
+ =?utf-8?B?dDNXa3d4TjRHZzYvMHF0emQ0WUlhVlkwRmJuYmJYUnJPeGZiU1FVcGdiSlpY?=
+ =?utf-8?B?TGRxVCtwaHliL2t3d3FlQ2t2dVBmeHVkN1JGM29xTnlyYWdMZlFMY1BCdG9R?=
+ =?utf-8?B?Ym5CUHE4SktKbmk4dUVoSHA0SHJJa2ttdGErM2k4SHJ4OWQxZ1htQ081WjQx?=
+ =?utf-8?B?cUNOYVRaR1N3dDQyaUJhRmlqVVMrRUhMc051aHBLaUlZWjU2RUZFeXNRWHdh?=
+ =?utf-8?B?YzJvU0F4VWMxeHQ4VGpwOC84NkQ4YzNSaGlsbVc2c1Z1R1I5SjRJWUd0dkpq?=
+ =?utf-8?B?L2NLaVhwVDVvNEQrL05rYk1SN2x6M0ZDaTlwbEU1YTdyZTBhSUZacEtucGNW?=
+ =?utf-8?B?SzY1WmdVWXQ4QUFjaDU4aW91VE5EbEpyRXFVSzgwcVNNaUdGV2toS1dyMUVx?=
+ =?utf-8?B?NFpOWkd6S3hMaklZZFZGbUVpL1NoVStuU0Z0Q2wrV2ROSXRhWEZSR2hpc0pH?=
+ =?utf-8?B?Q1VQVm5yYzdwYy9CZ3dGaWtDMG4yY1V0ODZzbURML3FOQmIwZnI1ZUhoWVcr?=
+ =?utf-8?B?VElVdTMzT3haU2FkcjFIY3U5OXBTcHFhQ1k1SGpXU0FWd1p3UXpzVUU3b2VY?=
+ =?utf-8?B?MURGSWpnT3I2Qmk2ZkZjYjB6MUx5K1ZUUWNoNVdGbjB3a0pDSDRJcHZZT0Jx?=
+ =?utf-8?B?QzAvMGE3WDFwZFRzaGZ6V01MdHVEYm43NzA2eWNXbG9YUWpDeHB1UVZRaGhx?=
+ =?utf-8?B?T2V5WEY1OXYvMjhmWFJGd0hQRUJGelJQOTUxdzRuMlpQMzMzZlc1WGwxeTIw?=
+ =?utf-8?B?OGFMUWhDU1IxNlZVNEc3YzBNdjBiMk91V0xvTktOWTZjS3o0NVJmV0tlOUlx?=
+ =?utf-8?B?eE5ScXI4TkZLeXBUdFpCY1RQckhPKzU2UGl5QlFpU3kvaUxnbnh5K3ZjOEIx?=
+ =?utf-8?B?QWx1Ym9VQmZESm9DUEdrUExtcUxQVHBxS3JsVjhmbTFvd0ZWUEtIbEcvYW9R?=
+ =?utf-8?B?M2ZNRmZPNkswRXlBVXdIdTAxazFpSU9DaDlLODluVG9PT01NT25HQzk2Q0lX?=
+ =?utf-8?B?ZGkramd2T2duZ1o2MGpOMUpoZ2pLcDRSVHBJWUtSQkRZbDhPOTBzenJyVGlQ?=
+ =?utf-8?B?ZjdSbnlEVkE5WTM5dWN0Q29iOXBiWHRNYmxhbVFtakRTcUJTU0hIc3UrQW9Z?=
+ =?utf-8?B?OWVXQjFxR3R0eC9CYkhpcjc0YjU4L3hYWjR6aWhibXcybFpMaHhNZmRRUzJP?=
+ =?utf-8?B?SXZlb1NWNDBBY3Q4NWJCSkJlMlFQWE0vTzZVMGdsY1JEdkdsaEpweUhwQ1hk?=
+ =?utf-8?B?ZXpFaHZWTG8rREhyamhGMkRVRTk5ODI3T3BXZkx4TnZKMGVUaGtoaWpwbGF4?=
+ =?utf-8?B?NVhnZStpWG1WL1Y2NWY3YlErNlQrMitIbENBdnNNVDBFR0R5dGRkY3Z0YkVK?=
+ =?utf-8?B?YlVUWDZ6eXVmTmJjd3YwblJrNk1lcjR1ZURyK2hVYS96bzlGNVRnNGl5MDAv?=
+ =?utf-8?B?dmRSOE5BOU5pdFRab0wxVi9KaytEeVNSblBUSUczRU5wRUIxdE53UkwyVXdo?=
+ =?utf-8?B?aWF5TzFqbmtWWWZ6U2VQWWViUnlna0hhc2tuZE4rZ1BscGkzbFJpQXVtdFVt?=
+ =?utf-8?B?d1hqS3RSdVlud080Y3Q5dGtHdllQRnNTcWFrektVWG1iUW1FWVY0OGlLK0k1?=
+ =?utf-8?B?RmVtM0ZYZHdVcnlZK3NHOEtBczNHYlpZZFVtblRIR1BjaHUweFd3NTEvQ1ov?=
+ =?utf-8?B?dnd5U1dOaEFVQU9hZkFiTEl0MGpCSXlIVVk4d3YyL0MySE5QcDA4V3B3Wlc1?=
+ =?utf-8?B?cjdsS21mM0ZwaWtrSk9kNmI4SzhVWWhaQzJ4NXErc1pSalFQVURlQVB6cnBS?=
+ =?utf-8?B?WnY3T09OZUZGckZPUFZqRHVFR3NLK29KRkp4N3NWbW4reCtzSmIrVXFvSkYv?=
+ =?utf-8?Q?NBJL1tWBKzFoyhrFSL7cSFkR07l2LU=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Y1E2bUhGaEdTRmdXS0NCMjVHbCtmcVZjU2hHbjFlemZQYitLb0lvdnF6M01L?=
+ =?utf-8?B?N1FSUlk5RVJpb1p0OTI4aHp5S1pKQ3JROXBHY1loeUtlZmMwczVGUTNCbTI5?=
+ =?utf-8?B?cHNYeC8rcktuNmh6Vm9ZcnVxb2xxSUg2ZGhyNnRkcE5WQzFqODBCNGowZXZR?=
+ =?utf-8?B?VFBtUEs2cThvUU40bUtjWUgrSWI1eFJuYk9IempqamJlWkJrZU8zeVl6OGha?=
+ =?utf-8?B?Vy9iKzN4RjJIZUpPS0wyUUY2OTEzeWZjcDR5bHc3NmE0NDVoZFBOZXl0c0JD?=
+ =?utf-8?B?d3BYNU1Jb285VzFBNkdIS0l3TXZiZnNvWGx4aFhGRE5xS1VNOG1lSW5ram5k?=
+ =?utf-8?B?QTRvNExhNFIvMGFHL2FlR1MzV2ZhZ2FnNXJMaGFISkxSK2NQWks1TzFkTUFh?=
+ =?utf-8?B?SGFkMURuaFdCRktVZVVDYVRBZTQ3RVh4MVRkbVE2TCtaNmplYjQyWE5EeTJ6?=
+ =?utf-8?B?Tkl5eThrT1lsZVhlT2owME0wUUo5cXNWaFVmek44MzV0dXlDZkJ2cllWMjgz?=
+ =?utf-8?B?SkVnWWRqeE44c29TbHA1MTZpd1VwVXd2WmVOU3dFeGNsUERHeDdNdFg4aStq?=
+ =?utf-8?B?Q3lYQjBBY0J5WTBCR3JLVnlPd0lyRmdKL1NzWk5FZ2FMWXZTWmZYNFplTXlo?=
+ =?utf-8?B?Yi9ia2ZzS0JWVDZITGVKblpUQmppRVlCRm4zTGtsVU81QUJhU0xNWTY3bDAr?=
+ =?utf-8?B?M2ZiWnE3NDYzMldrSU5kQ3E2akluWUszeWYzaFhUaXFhV0M1YWtlOUZWdEhO?=
+ =?utf-8?B?dVN1MG9jcFlwREd4ZmxPMm9CRzlBZWRQcTdwd3VKYmxPTXIyejZjejBZNTlL?=
+ =?utf-8?B?V3lNUEkrc3ROVDZPRG5sM2VrK2VEZ0JRNWkrR2pUNExOQUd4YUNBWktJRnVy?=
+ =?utf-8?B?ZFVmaWJ4c1E4TzR0ZkFEeUtLVkxHSmdvakpkblpRbmlRWUpCOTZQQTFCTTM5?=
+ =?utf-8?B?WkRrdi9FZStBYmZycGNrTWg4R0s1aGYzQzdRV2dmVVBibjZGTStsTUoxUitw?=
+ =?utf-8?B?SXBEK1pPaGE1QlRYS0pKMS9qUEk2NnVSUHVXR1Y1RU5DZmZEMXMrSlpONWNu?=
+ =?utf-8?B?RFdsOGt0YllCZjJzb3BOcE9pTlR6K0t1dytaTG9UbFRhNmpUNVFtemNmWXVs?=
+ =?utf-8?B?VHZiZXB5NEFWcjJHbjJwSUVsNnFoWWJCdnExUWdsRVc1TGNDUlBaWk9kbVY2?=
+ =?utf-8?B?bkV0bXNDQmFQSHpjRmRlQWhQbW9LS0lXMlJDYVdkaTMxaEhkMklNc2RLZnBS?=
+ =?utf-8?B?NGgyUlVDVnhQMHRseEZRNjRocE9oTmFTUlNPU21aUUxEdFNUQU41a0ZIc0E1?=
+ =?utf-8?B?d3U3NUVrUk1sT2pmOWFhUzF3djJ6YmlNVGMzK1dNREw4RU9Dc3Y5dEcrVHhv?=
+ =?utf-8?B?NUVzRVNna2VhTHdXeFpYRTR0SmtPRkdiMkQ5amsxU25CVEZLZkhoSkdlelJk?=
+ =?utf-8?B?NXZ5TmdkdENuNnZoV3dEWklpeEZrS3J1dWVPc0s3cU85SFdxM3hWNVg0MEJF?=
+ =?utf-8?B?ZWZOTTBqUVA3bXM5SG02RVBTSldrMkxVdlpEWHhrdjRJUzd0MmprQ2VMeGFv?=
+ =?utf-8?B?aUtkQTA0bUorYTN3MmI5YjA5UjdvNUdub0NTYkpVOE9tTUhzS3N2dmZNNEYv?=
+ =?utf-8?B?RmFQVjBaUlh1cVBZbzAzR3FYaThxZm5KNE9FMjNTRWt6MFFCRXF1UG9yL3dZ?=
+ =?utf-8?B?bUpIdkNsaTdnVzloMnV4a1UrOUNTRmlTakxUU2ZPaDl0SWFyTDBZOUhJY0Nj?=
+ =?utf-8?B?U0NRSHNxYmJOOEFqOVZiWkp5Zzd4S0ZwT3YxbWk3QjFxTytCdUwvTmtuQ1Y2?=
+ =?utf-8?B?a0hZNndDNXl0R2RyWFlhcjJpL0JSMVNoYjRrcTMzVHMyTnl0TFYwZ21FTkdL?=
+ =?utf-8?B?OG1yTG03alBsdVh6TlpKbnJhV3lIazJrSTdaTE9oOWcrUVU2SkFhRjAweWpC?=
+ =?utf-8?B?NWEvNjIyTkZRWnYveFhGR0RIenFtaTlUWkF5cWNmbkU0ZmNLcEh6U2V1cVQx?=
+ =?utf-8?B?cThEOXQ2anBSV2hEMmNldTNvR1V5UDJVWFl6WmNwcG54TnpDbWpUOHZ0YmV2?=
+ =?utf-8?B?YWJ0akd2Y2RWbWtkTnpWbmhDOUtHaFN0WVI3dHM4clRORTJzU2ZxYVF5N2pm?=
+ =?utf-8?Q?kZU/+d3+mf5X+Eh4MoKcq84E/?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b9af0f4-77a3-4a2e-18c8-08dda72c16df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2025 08:03:16.0317
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: o6CcwQKENVdffddjwMFTU6e7H1VR0V7gfJEOZK6vVvJbgWhJ49Gja2XvbXNErDtywclYSPWF8UC0neR825LTNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11062
 
-From: ChiYuan Huang <cy_huang@richtek.com>
-
-Add codecs driver for Richtek RTQ9124.
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- sound/soc/codecs/Kconfig   |   9 +
- sound/soc/codecs/Makefile  |   4 +-
- sound/soc/codecs/rtq9124.c | 543 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 555 insertions(+), 1 deletion(-)
- create mode 100644 sound/soc/codecs/rtq9124.c
-
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 126f897312d4..d0c01f49a8ba 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -238,6 +238,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_RT1320_SDW
- 	imply SND_SOC_RT9120
- 	imply SND_SOC_RT9123
-+	imply SND_SOC_RTQ9124
- 	imply SND_SOC_RTQ9128
- 	imply SND_SOC_SDW_MOCKUP
- 	imply SND_SOC_SGTL5000
-@@ -1858,6 +1859,14 @@ config SND_SOC_RT9123P
- 	  Enable support for the HW control mode of Richtek RT9123P 3.2W mono
- 	  Class-D audio amplifier.
- 
-+config SND_SOC_RTQ9124
-+	tristate "Richtek RTQ9124 Mono Class-D Amplifier"
-+	depends on I2C
-+	select REGMAP
-+	help
-+	  Enable support for Richtek RTQ9124 1x30W digital input automotive
-+	  audio amplifier with current sense and real-time load diagnostics.
-+
- config SND_SOC_RTQ9128
- 	tristate "Richtek RTQ9128 45W Digital Input Amplifier"
- 	depends on I2C
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 6d7aa109ede7..a68c3d192a1b 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -275,6 +275,7 @@ snd-soc-rt722-sdca-y := rt722-sdca.o rt722-sdca-sdw.o
- snd-soc-rt9120-y := rt9120.o
- snd-soc-rt9123-y := rt9123.o
- snd-soc-rt9123p-y := rt9123p.o
-+snd-soc-rtq9124-y := rtq9124.o
- snd-soc-rtq9128-y := rtq9128.o
- snd-soc-sdw-mockup-y := sdw-mockup.o
- snd-soc-sgtl5000-y := sgtl5000.o
-@@ -695,6 +696,7 @@ obj-$(CONFIG_SND_SOC_RT722_SDCA_SDW)     += snd-soc-rt722-sdca.o
- obj-$(CONFIG_SND_SOC_RT9120)	+= snd-soc-rt9120.o
- obj-$(CONFIG_SND_SOC_RT9123)	+= snd-soc-rt9123.o
- obj-$(CONFIG_SND_SOC_RT9123P)	+= snd-soc-rt9123p.o
-+obj-$(CONFIG_SND_SOC_RTQ9124)	+= snd-soc-rtq9124.o
- obj-$(CONFIG_SND_SOC_RTQ9128)	+= snd-soc-rtq9128.o
- obj-$(CONFIG_SND_SOC_SDW_MOCKUP)     += snd-soc-sdw-mockup.o
- obj-$(CONFIG_SND_SOC_SGTL5000)  += snd-soc-sgtl5000.o
-@@ -853,4 +855,4 @@ obj-$(CONFIG_SND_SOC_LPASS_RX_MACRO)	+= snd-soc-lpass-rx-macro.o
- obj-$(CONFIG_SND_SOC_LPASS_TX_MACRO)	+= snd-soc-lpass-tx-macro.o
- 
- # Mux
--obj-$(CONFIG_SND_SOC_SIMPLE_MUX)	+= snd-soc-simple-mux.o
-\ No newline at end of file
-+obj-$(CONFIG_SND_SOC_SIMPLE_MUX)	+= snd-soc-simple-mux.o
-diff --git a/sound/soc/codecs/rtq9124.c b/sound/soc/codecs/rtq9124.c
-new file mode 100644
-index 000000000000..186904b31434
---- /dev/null
-+++ b/sound/soc/codecs/rtq9124.c
-@@ -0,0 +1,543 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// rtq9124.c -- RTQ9124 ALSA SoC Codec driver
-+//
-+// Author: ChiYuan Huang <cy_huang@richtek.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/byteorder/generic.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <sound/pcm.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+#include <sound/soc-dapm.h>
-+#include <sound/tlv.h>
-+
-+#define RTQ9124_REG_SDI_SEL		0x00
-+#define RTQ9124_REG_SDO_SEL		0x01
-+#define RTQ9124_REG_I2S_OPT		0x02
-+#define RTQ9124_REG_AMP_OPT		0x03
-+#define RTQ9124_REG_STATE_CTRL		0x04
-+#define RTQ9124_REG_PWM_PHASE		0x05
-+#define RTQ9124_REG_SIL_CTRL		0x06
-+#define RTQ9124_REG_PWM_SS_OPT		0x07
-+#define RTQ9124_REG_ERR_INT_0		0x10
-+#define RTQ9124_REG_ERR_MASK6		0x26
-+#define RTQ9124_REG_TDM_TX_CH0		0x32
-+#define RTQ9124_REG_TDM_RX_CH0		0x34
-+#define RTQ9124_REG_VOL_OPT		0x38
-+#define RTQ9124_REG_DCR_TH		0x4B
-+#define RTQ9124_REG_ERR_TH		0x4C
-+#define RTQ9124_REG_PROT_EN		0x5B
-+#define RTQ9124_REG_PRJ_CODE		0xF9
-+
-+#define RTQ9124_MASK_CS_DATA_INV	BIT(9)
-+#define RTQ9124_MASK_VDDIO_SDO_SEL	BIT(8)
-+#define RTQ9124_MASK_AUD_BITS		GENMASK(5, 4)
-+#define RTQ9124_MASK_AUD_FMT		GENMASK(3, 0)
-+#define RTQ9124_MASK_CH_STATE		GENMASK(1, 0)
-+#define RTQ9124_MASK_SF_RESET		BIT(15)
-+
-+#define RTQ9124_FIXED_VENID		0x9124
-+
-+struct rtq9124_priv {
-+	struct gpio_desc *enable;
-+	unsigned int dai_fmt;
-+	int tdm_slots;
-+	int tdm_slot_width;
-+};
-+
-+static int rtq9124_enable_event(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
-+				int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	unsigned int i, chan_state;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		/* Change state to normal */
-+		chan_state = 0;
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		/* Change state to HiZ */
-+		chan_state = 1;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	/* Before amp turn on, clear old events first */
-+	for (i = 0; !chan_state && i < 8; i++)
-+		snd_soc_component_write(comp, RTQ9124_REG_ERR_INT_0 + i, 0xffff);
-+
-+	snd_soc_component_write_field(comp, RTQ9124_REG_STATE_CTRL, RTQ9124_MASK_CH_STATE,
-+				      chan_state);
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget rtq9124_dapm_widgets[] = {
-+	SND_SOC_DAPM_OUTPUT("SPK"),
-+	SND_SOC_DAPM_OUT_DRV_E("Amp Drv", SND_SOC_NOPM, 0, 0, NULL, 0, rtq9124_enable_event,
-+			       SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
-+};
-+
-+static const struct snd_soc_dapm_route rtq9124_dapm_routes[] = {
-+	{ "Amp Drv", NULL, "HiFi Playback" },
-+	{ "SPK", NULL, "Amp Drv" },
-+};
-+
-+static const DECLARE_TLV_DB_SCALE(dig_tlv, -10375, 25, 0);
-+static const DECLARE_TLV_DB_RANGE(ana_tlv,
-+				  0, 3, TLV_DB_SCALE_ITEM(-600, 600, 0),
-+				  4, 6, TLV_DB_SCALE_ITEM(1400, 200, 0));
-+static const char * const i2sch_text[] = { "(L+R)/2", "LCH", "RCH", "(L+R)/2" };
-+static const struct soc_enum rtq9124_i2sch_select_enum =
-+	SOC_ENUM_SINGLE(RTQ9124_REG_SDI_SEL, 0, ARRAY_SIZE(i2sch_text), i2sch_text);
-+static const char * const sdo_vsel_text[] = { "1.8V", "3.3V" };
-+static const struct soc_enum rtq9124_sdo_vselect_enum =
-+	SOC_ENUM_SINGLE(RTQ9124_REG_SDO_SEL, 8, ARRAY_SIZE(sdo_vsel_text), sdo_vsel_text);
-+static const char * const pwmfreq_text[] = { "8*fs", "10*fs", "40*fs", "44*fs", "48*fs" };
-+static const struct soc_enum rtq9124_pwm_freq_enum =
-+	SOC_ENUM_SINGLE(RTQ9124_REG_AMP_OPT, 4, ARRAY_SIZE(pwmfreq_text), pwmfreq_text);
-+static const char * const out_angle_text[] = { "0", "45", "90", "135", "180", "225", "270", "315" };
-+static const struct soc_enum rtq9124_out_angle_enum =
-+	SOC_ENUM_SINGLE(RTQ9124_REG_PWM_PHASE, 0, ARRAY_SIZE(out_angle_text), out_angle_text);
-+static const char * const sdo_select_text[] = {
-+	"None", "I2S DataI", "Interface", "DSP", "DF", "ISense", "ACLoad Cos", "ACLoad Sin",
-+	"DCR",
-+};
-+static const struct soc_enum rtq9124_sdo_select_enum =
-+	SOC_ENUM_DOUBLE(RTQ9124_REG_SDO_SEL, 4, 0, ARRAY_SIZE(sdo_select_text), sdo_select_text);
-+static const char * const ulqm_dcvt_text[] = { "Disable", "DC", "VT", "DC+VT" };
-+static const struct soc_enum rtq9124_ulqm_dcvt_select_enum =
-+	SOC_ENUM_SINGLE(RTQ9124_REG_STATE_CTRL, 10, ARRAY_SIZE(ulqm_dcvt_text), ulqm_dcvt_text);
-+
-+static const struct snd_kcontrol_new rtq9124_controls[] = {
-+	SOC_SINGLE_TLV("Master Volume", RTQ9124_REG_VOL_OPT, 2, 511, 1, dig_tlv),
-+	SOC_SINGLE_TLV("Speaker Volume", RTQ9124_REG_AMP_OPT, 0, 6, 0, ana_tlv),
-+	SOC_ENUM("I2S CH Select", rtq9124_i2sch_select_enum),
-+	SOC_ENUM("SDO VDDIO Select", rtq9124_sdo_vselect_enum),
-+	SOC_ENUM("PWM Frequency Select", rtq9124_pwm_freq_enum),
-+	SOC_ENUM("PWM Output Phase Select", rtq9124_out_angle_enum),
-+	SOC_ENUM("SDO Select", rtq9124_sdo_select_enum),
-+	SOC_ENUM("ULQM DCVT Select", rtq9124_ulqm_dcvt_select_enum),
-+	SOC_SINGLE("Silence Detect Enable Switch", RTQ9124_REG_SIL_CTRL, 7, 1, 0),
-+	SOC_SINGLE("Spread Spectrum Enable Switch", RTQ9124_REG_PWM_SS_OPT, 7, 1, 0),
-+};
-+
-+static int rtq9124_comp_probe(struct snd_soc_component *comp)
-+{
-+	/* CS Data INV */
-+	snd_soc_component_write_field(comp, RTQ9124_REG_SDO_SEL, RTQ9124_MASK_CS_DATA_INV, 1);
-+
-+	/* RTLD */
-+	snd_soc_component_write(comp, RTQ9124_REG_DCR_TH, 0x5e30);
-+	snd_soc_component_write(comp, RTQ9124_REG_ERR_TH, 0x3ff);
-+	snd_soc_component_write(comp, RTQ9124_REG_PROT_EN, 0x3fc);
-+	snd_soc_component_write(comp, RTQ9124_REG_ERR_MASK6, 0);
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_component_driver rtq9124_comp_driver = {
-+	.probe			= rtq9124_comp_probe,
-+	.controls		= rtq9124_controls,
-+	.num_controls		= ARRAY_SIZE(rtq9124_controls),
-+	.dapm_widgets		= rtq9124_dapm_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(rtq9124_dapm_widgets),
-+	.dapm_routes		= rtq9124_dapm_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(rtq9124_dapm_routes),
-+	.use_pmdown_time	= 1,
-+	.endianness		= 1,
-+};
-+
-+static int rtq9124_dai_set_format(struct snd_soc_dai *dai, unsigned int fmt)
-+{
-+	struct rtq9124_priv *rtq9124 = snd_soc_dai_get_drvdata(dai);
-+
-+	rtq9124->dai_fmt = fmt;
-+	return 0;
-+}
-+
-+static int rtq9124_dai_set_tdm_slot(struct snd_soc_dai *dai, unsigned int tx_mask,
-+				    unsigned int rx_mask, int slots, int slot_width)
-+{
-+	struct rtq9124_priv *rtq9124 = snd_soc_dai_get_drvdata(dai);
-+	struct snd_soc_component *comp = dai->component;
-+	struct device *dev = dai->dev;
-+	unsigned int byte_loc, i;
-+
-+	dev_dbg(dev, "(slots, slot_width) = (%d, %d), (txmask, rxmask) = 0x%x, 0x%x\n", slots,
-+		slot_width, tx_mask, rx_mask);
-+
-+	if (slots <= 0 || slots > 16 || slot_width <= 0 || slots % 2 || slot_width % 8) {
-+		dev_err(dev, "Invalid slot parameter (%d, %d)\n", slots, slot_width);
-+		return -EINVAL;
-+	}
-+
-+	if (tx_mask && (hweight_long(tx_mask) > 2 || fls(tx_mask) > slots)) {
-+		dev_err(dev, "Invalid tx_mask 0x%08x, slots = %d\n", tx_mask, slots);
-+		return -EINVAL;
-+	}
-+
-+	if (!rx_mask || hweight_long(rx_mask) > 1 || fls(rx_mask) > slots) {
-+		dev_err(dev, "Invalid rx_mask 0x%08x, slots = %d\n", rx_mask, slots);
-+		return -EINVAL;
-+	}
-+
-+	/* Configure tx channel data location */
-+	for (i = 0; tx_mask; i++, tx_mask ^= BIT(ffs(tx_mask) - 1)) {
-+		byte_loc = (ffs(tx_mask) - 1) * slot_width / 8;
-+		snd_soc_component_write(comp, RTQ9124_REG_TDM_TX_CH0 + i, byte_loc);
-+	}
-+
-+	/* Configure rx channel data location */
-+	byte_loc = (ffs(rx_mask) - 1) * slot_width / 8;
-+	snd_soc_component_write(comp, RTQ9124_REG_TDM_RX_CH0, byte_loc);
-+
-+	rtq9124->tdm_slots = slots;
-+	rtq9124->tdm_slot_width = slot_width;
-+
-+	return 0;
-+}
-+
-+static int rtq9124_dai_hw_params(struct snd_pcm_substream *substream,
-+				 struct snd_pcm_hw_params *param, struct snd_soc_dai *dai)
-+{
-+	struct rtq9124_priv *rtq9124 = snd_soc_dai_get_drvdata(dai);
-+	struct snd_soc_component *comp = dai->component;
-+	unsigned int fmtval, width, slot_width, bitrate;
-+	struct device *dev = dai->dev;
-+	unsigned int audfmt, audbit;
-+
-+	fmtval = FIELD_GET(SND_SOC_DAIFMT_FORMAT_MASK, rtq9124->dai_fmt);
-+	if (rtq9124->tdm_slots && fmtval != SND_SOC_DAIFMT_DSP_A &&
-+	    fmtval != SND_SOC_DAIFMT_DSP_B) {
-+		dev_err(dev, "TDM only can support DSP_A or DSP_B format\n");
-+		return -EINVAL;
-+	}
-+
-+	switch (fmtval) {
-+	case SND_SOC_DAIFMT_I2S:
-+		audfmt = 0;
-+		break;
-+	case SND_SOC_DAIFMT_LEFT_J:
-+		audfmt = 1;
-+		break;
-+	case SND_SOC_DAIFMT_RIGHT_J:
-+		audfmt = 2;
-+		break;
-+	case SND_SOC_DAIFMT_DSP_B:
-+		audfmt = rtq9124->tdm_slots ? 7 : 3;
-+		break;
-+	case SND_SOC_DAIFMT_DSP_A:
-+		audfmt = rtq9124->tdm_slots ? 15 : 11;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported format %d\n", fmtval);
-+		return -EINVAL;
-+	}
-+
-+	switch (width = params_width(param)) {
-+	case 16:
-+		audbit = 0;
-+		break;
-+	case 20:
-+		audbit = 1;
-+		break;
-+	case 24:
-+	case 32:
-+		audbit = 3;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported width %d\n", width);
-+		return -EINVAL;
-+	}
-+
-+	if (rtq9124->tdm_slots) {
-+		slot_width = params_physical_width(param);
-+		if (slot_width > rtq9124->tdm_slot_width) {
-+			dev_err(dev, "Slot width is larger than TDM slot width\n");
-+			return -EINVAL;
-+		}
-+
-+		bitrate = rtq9124->tdm_slots * rtq9124->tdm_slot_width * params_rate(param);
-+		if (bitrate > 24576000) {
-+			dev_err(dev, "Bitrate exceed the internal PLL 24.576MHz (%d)\n", bitrate);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	snd_soc_component_write_field(comp, RTQ9124_REG_I2S_OPT, RTQ9124_MASK_AUD_FMT, audfmt);
-+	snd_soc_component_write_field(comp, RTQ9124_REG_I2S_OPT, RTQ9124_MASK_AUD_BITS, audbit);
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops rtq9124_dai_ops = {
-+	.set_fmt	= rtq9124_dai_set_format,
-+	.set_tdm_slot	= rtq9124_dai_set_tdm_slot,
-+	.hw_params	= rtq9124_dai_hw_params,
-+};
-+
-+static struct snd_soc_dai_driver rtq9124_dai_driver = {
-+	.name = "HiFi",
-+	.playback = {
-+		.stream_name	= "HiFi Playback",
-+		.formats	= SNDRV_PCM_FMTBIT_S16 | SNDRV_PCM_FMTBIT_S24 |
-+				  SNDRV_PCM_FMTBIT_S32,
-+		.rates		= SNDRV_PCM_RATE_8000_48000 | SNDRV_PCM_RATE_24000 |
-+				  SNDRV_PCM_RATE_88200 | SNDRV_PCM_RATE_96000 |
-+				  SNDRV_PCM_RATE_192000,
-+		.rate_min	= 8000,
-+		.rate_max	= 192000,
-+		.channels_min	= 1,
-+		.channels_max	= 2,
-+	},
-+	.ops = &rtq9124_dai_ops,
-+	.symmetric_rate = 1,
-+	.symmetric_sample_bits = 1,
-+};
-+
-+static bool rtq9124_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case 0x00 ... 0x17:
-+	case 0x20 ... 0x27:
-+	case 0x30 ... 0x3D:
-+	case 0x40 ... 0x68:
-+	case 0x80 ... 0xBC:
-+	case 0xC0 ... 0xDE:
-+	case 0xE0 ... 0xE7:
-+	case 0xF0 ... 0xFD:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool rtq9124_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case 0x00 ... 0x09:
-+	case 0x0C ... 0x0E:
-+	case 0x10 ... 0x17:
-+	case 0x20 ... 0x27:
-+	case 0x30:
-+	case 0x32 ... 0x3D:
-+	case 0x40 ... 0x4E:
-+	case 0x50 ... 0x68:
-+	case 0x80 ... 0xBC:
-+	case 0xC0 ... 0xDE:
-+	case 0xE0 ... 0xE7:
-+	case 0xF0 ... 0xFD:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool rtq9124_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case 0x0A ... 0x0B:
-+	case 0x0F ... 0x17:
-+	case 0x31:
-+	case 0x4F:
-+	case 0x51:
-+	case 0x53 ... 0x57:
-+	case 0x80 ... 0xBC:
-+	case 0xC0 ... 0xDE:
-+	case 0xE0 ... 0xE7:
-+	case 0xF0 ... 0xFD:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static inline u8 rtq9124_get_reg_len(unsigned int reg)
-+{
-+	return (reg >= 0x40 && reg <= 0x47) ? 4 : 2;
-+}
-+
-+static int rtq9124_regmap_read(void *context, const void *reg_buf, size_t reg_size, void *val_buf,
-+			       size_t val_size)
-+{
-+	struct i2c_client *i2c = context;
-+	u8 reg = *(u8 *)reg_buf;
-+	u8 size = rtq9124_get_reg_len(reg);
-+	u32 *val = val_buf;
-+	int ret;
-+
-+	ret = i2c_smbus_read_i2c_block_data(i2c, reg, size, val_buf);
-+	if (ret < 0)
-+		return ret;
-+	else if (ret != size)
-+		return -EIO;
-+
-+	*val = size == 4 ? be32_to_cpup(val_buf) : be16_to_cpup(val_buf);
-+
-+	return 0;
-+}
-+
-+static int rtq9124_regmap_write(void *context, const void *data, size_t count)
-+{
-+	struct i2c_client *i2c = context;
-+	u8 reg = *(u8 *)data, *vbuf;
-+	u8 size = rtq9124_get_reg_len(reg);
-+	__be16 val16 = cpu_to_be16p(data + 1);
-+	__be32 val32 = cpu_to_be32p(data + 1);
-+
-+	vbuf = size == 4 ? (u8 *)&val32 : (u8 *)&val16;
-+	return i2c_smbus_write_i2c_block_data(i2c, reg, size, vbuf);
-+}
-+
-+static const struct regmap_config rtq9124_regmap_config = {
-+	.name			= "rtq9124",
-+	.reg_bits		= 8,
-+	.val_bits		= 32,
-+	.read			= rtq9124_regmap_read,
-+	.write			= rtq9124_regmap_write,
-+	.readable_reg		= rtq9124_readable_reg,
-+	.writeable_reg		= rtq9124_writeable_reg,
-+	.volatile_reg		= rtq9124_volatile_reg,
-+	.cache_type		= REGCACHE_MAPLE,
-+	.num_reg_defaults_raw	= 0xFD + 1,
-+	.use_single_read	= 1,
-+	.use_single_write	= 1,
-+};
-+
-+static const struct reg_sequence rtq9124_init_regs[] = {
-+	{ 0xfb, 0x0065 },
-+	{ 0x93, 0x2000 },
-+	{ 0xfb, 0x0000 },
-+};
-+
-+static int rtq9124_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct rtq9124_priv *rtq9124;
-+	struct regmap *regmap;
-+	int ret;
-+
-+	rtq9124 = devm_kzalloc(dev, sizeof(*rtq9124), GFP_KERNEL);
-+	if (!rtq9124)
-+		return -ENOMEM;
-+
-+	rtq9124->enable = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(rtq9124->enable))
-+		return PTR_ERR(rtq9124->enable);
-+	else if (rtq9124->enable)
-+		usleep_range(6000, 7000);
-+	else
-+		dev_dbg(dev, "No 'enable' GPIO specified, treat it as default on\n");
-+
-+	/* Check vendor id information */
-+	ret = i2c_smbus_read_word_swapped(i2c, RTQ9124_REG_PRJ_CODE);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to read project code\n");
-+	else if (ret != RTQ9124_FIXED_VENID)
-+		return dev_err_probe(dev, -ENODEV, "Incorrect project-code 0x%04x\n", ret);
-+
-+	/* Trigger RG reset before regmap init */
-+	ret = i2c_smbus_write_word_swapped(i2c, RTQ9124_REG_STATE_CTRL, RTQ9124_MASK_SF_RESET);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to trigger RG reset\n");
-+
-+	/* Need to wait 10ms for the reset to complete */
-+	usleep_range(10000, 11000);
-+
-+	regmap = devm_regmap_init(dev, NULL, i2c, &rtq9124_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
-+
-+	ret = regmap_register_patch(regmap, rtq9124_init_regs, ARRAY_SIZE(rtq9124_init_regs));
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register regmap patch\n");
-+
-+	i2c_set_clientdata(i2c, rtq9124);
-+
-+	pm_runtime_set_autosuspend_delay(dev, 1000);
-+	pm_runtime_use_autosuspend(dev);
-+	pm_runtime_set_active(dev);
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to enable pm runtime\n");
-+
-+	return devm_snd_soc_register_component(dev, &rtq9124_comp_driver, &rtq9124_dai_driver, 1);
-+}
-+
-+#ifdef CONFIG_PM
-+static int rtq9124_runtime_suspend(struct device *dev)
-+{
-+	struct rtq9124_priv *rtq9124 = dev_get_drvdata(dev);
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+
-+	if (rtq9124->enable) {
-+		regcache_cache_only(regmap, true);
-+		regcache_mark_dirty(regmap);
-+		gpiod_set_value(rtq9124->enable, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtq9124_runtime_resume(struct device *dev)
-+{
-+	struct rtq9124_priv *rtq9124 = dev_get_drvdata(dev);
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+	int ret;
-+
-+	if (rtq9124->enable) {
-+		gpiod_set_value(rtq9124->enable, 1);
-+		usleep_range(6000, 7000);
-+
-+		regcache_cache_only(regmap, false);
-+		ret = regcache_sync(regmap);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+#endif
-+
-+static const struct dev_pm_ops rtq9124_dev_pm_ops = {
-+	SET_RUNTIME_PM_OPS(rtq9124_runtime_suspend, rtq9124_runtime_resume, NULL)
-+};
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id rtq9124_device_id[] = {
-+	{ .compatible = "richtek,rtq9124" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rtq9124_device_id);
-+#endif
-+
-+static struct i2c_driver rtq9124_driver = {
-+	.driver = {
-+		.name = "rtq9124",
-+		.of_match_table = of_match_ptr(rtq9124_device_id),
-+		.pm = pm_ptr(&rtq9124_dev_pm_ops),
-+	},
-+	.probe	= rtq9124_probe,
-+};
-+module_i2c_driver(rtq9124_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("ASoC RTQ9124 Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBUaW0gSGFydmV5IDx0aGFydmV5
+QGdhdGV3b3Jrcy5jb20+DQo+IFNlbnQ6IDIwMjXlubQ25pyIN+aXpSA1OjA0DQo+IFRvOiBIb25n
+eGluZyBaaHUgPGhvbmd4aW5nLnpodUBueHAuY29tPg0KPiBDYzogbC5zdGFjaEBwZW5ndXRyb25p
+eC5kZTsgYmhlbGdhYXNAZ29vZ2xlLmNvbTsgbHBpZXJhbGlzaUBrZXJuZWwub3JnOw0KPiBrd0Bs
+aW51eC5jb207IG1hbml2YW5uYW4uc2FkaGFzaXZhbUBsaW5hcm8ub3JnOyByb2JoQGtlcm5lbC5v
+cmc7DQo+IGtyemsrZHRAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsgc2hhd25ndW9A
+a2VybmVsLm9yZzsgRnJhbmsgTGkNCj4gPGZyYW5rLmxpQG54cC5jb20+OyBzLmhhdWVyQHBlbmd1
+dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5jb207DQo+IGlteEBsaXN0cy5saW51eC5kZXY7IGtl
+cm5lbEBwZW5ndXRyb25peC5kZTsgbGludXgtcGNpQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgt
+YXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENI
+IHY3IDA1LzEwXSBQQ0k6IGlteDY6IERlYXNzZXJ0IGFwcHNfcmVzZXQgaW4NCj4gaW14X3BjaWVf
+ZGVhc3NlcnRfY29yZV9yZXNldCgpDQo+IA0KPiBPbiBUdWUsIE5vdiAyNiwgMjAyNCBhdCAxMjow
+M+KAr0FNIFJpY2hhcmQgWmh1IDxob25neGluZy56aHVAbnhwLmNvbT4NCj4gd3JvdGU6DQo+ID4N
+Cj4gPiBTaW5jZSB0aGUgYXBwc19yZXNldCBpcyBhc3NlcnRlZCBpbiBpbXhfcGNpZV9hc3NlcnRf
+Y29yZV9yZXNldCgpLCBpdA0KPiA+IHNob3VsZCBiZSBkZWFzc2VydGVkIGluIGlteF9wY2llX2Rl
+YXNzZXJ0X2NvcmVfcmVzZXQoKS4NCj4gPg0KPiA+IEZpeGVzOiA5YjNmZTY3OTZkN2MgKCJQQ0k6
+IGlteDY6IEFkZCBjb2RlIHRvIHN1cHBvcnQgaS5NWDdEIikNCj4gPiBTaWduZWQtb2ZmLWJ5OiBS
+aWNoYXJkIFpodSA8aG9uZ3hpbmcuemh1QG54cC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IE1hbml2
+YW5uYW4gU2FkaGFzaXZhbQ0KPiA8bWFuaXZhbm5hbi5zYWRoYXNpdmFtQGxpbmFyby5vcmc+DQo+
+ID4gUmV2aWV3ZWQtYnk6IEZyYW5rIExpIDxGcmFuay5MaUBueHAuY29tPg0KPiA+IC0tLQ0KPiA+
+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktaW14Ni5jIHwgMSArDQo+ID4gIDEgZmls
+ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+cGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1pbXg2LmMNCj4gPiBiL2RyaXZlcnMvcGNpL2NvbnRyb2xs
+ZXIvZHdjL3BjaS1pbXg2LmMNCj4gPiBpbmRleCAzNTM4NDQwNjAxYTcuLjQxM2RiMTgyY2U5ZiAx
+MDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktaW14Ni5jDQo+
+ID4gKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpLWlteDYuYw0KPiA+IEBAIC03
+NzYsNiArNzc2LDcgQEAgc3RhdGljIHZvaWQgaW14X3BjaWVfYXNzZXJ0X2NvcmVfcmVzZXQoc3Ry
+dWN0DQo+ID4gaW14X3BjaWUgKmlteF9wY2llKSAgc3RhdGljIGludCBpbXhfcGNpZV9kZWFzc2Vy
+dF9jb3JlX3Jlc2V0KHN0cnVjdA0KPiA+IGlteF9wY2llICppbXhfcGNpZSkgIHsNCj4gPiAgICAg
+ICAgIHJlc2V0X2NvbnRyb2xfZGVhc3NlcnQoaW14X3BjaWUtPnBjaWVwaHlfcmVzZXQpOw0KPiA+
+ICsgICAgICAgcmVzZXRfY29udHJvbF9kZWFzc2VydChpbXhfcGNpZS0+YXBwc19yZXNldCk7DQo+
+ID4NCj4gPiAgICAgICAgIGlmIChpbXhfcGNpZS0+ZHJ2ZGF0YS0+Y29yZV9yZXNldCkNCj4gPiAg
+ICAgICAgICAgICAgICAgaW14X3BjaWUtPmRydmRhdGEtPmNvcmVfcmVzZXQoaW14X3BjaWUsIGZh
+bHNlKTsNCj4gPiAtLQ0KPiA+IDIuMzcuMQ0KPiA+DQo+ID4NCj4gDQo+IEhpIFJpY2hhcmQsDQo+
+IA0KPiBJJ3ZlIGZvdW5kIHRoYXQgdGhpcyBwYXRjaCBjYXVzZXMgYSByZWdyZXNzaW9uIG9uIGku
+TVg4TU0gYW5kIGkuTVg4TVANCj4gYm9hcmRzIHdpdGggaG90cGx1ZyBjYXBhYmxlIGJyaWRnZXM6
+DQo+IGkuTVg4TU0rUEk3QzlYMkc0MDRFViAodGhpcyBzd2l0Y2ggZG9lcyBub3Qgc3VwcG9ydCBo
+b3RwbHVnKSAtIG5vIGlzc3Vlcw0KPiBpLk1YOE1NK1BJN0M5WDJHNjA4R1AgKGhvdHBsdWcpIC0g
+ZmFpbHMgdG8gcmVsaWFibHkgZW51bWVyYXRlDQo+IGRvd25zdHJlYW0gZGV2aWNlcyBhYm91dCA4
+MCUgb2YgdGhlIHRpbWUgXl5eIHdoZW4gdGhpcyBvY2N1cnMNCj4gUENJX1BSSU1BUllfQlVTICgw
+eDE4KSBmb3IgdGhlIHJvb3QgY29tcGxleA0KPiAwMDAwOjAwOjAwLjAgcmVhZHMgMHgwMDAwMDAw
+MCBpbnN0ZWFkIG9mIDB4MDBmZjAxMDANCj4gKFBDSV9TRUNPTkRBUllfQlVTIGlzIDAgaW5zdGVh
+ZCBvZiAxIGFuZCBQQ0lfU1VCQk9SRElOQVRFX0JVUyBpcyAwDQo+IGluc3RlYWQgb2YgMHhmZikg
+aS5NWDhNUCtQSTdDOVgyRzYwOEdQIChob3RwbHVnKSAtIGhhbmdzIGF0DQo+IGlteF9wY2llX2x0
+c3NtX2VuYWJsZSBkZWFzc2VydCBhcHBzX3Jlc2V0DQo+IA0KPiBJbiBib3RoIGNhc2VzIGhlcmUg
+cmV2ZXJ0aW5nIGVmNjFjN2Q4ZDAzMiAoIlBDSTogaW14NjogRGVhc3NlcnQgYXBwc19yZXNldA0K
+PiBpbiBpbXhfcGNpZV9kZWFzc2VydF9jb3JlX3Jlc2V0KCkiKSByZXNvbHZlcyB0aGlzLg0KPiAN
+CltSaWNoYXJkIFpodV0gSSdtIGFmcmFpZCB0aGF0IHRoZSBsdHNzbV9lbiBiaXQgYXNzZXJ0IHRv
+IDFiJzEgaW4NCiBpbXhfcGNpZV9kZWFzc2VydF9jb3JlX3Jlc2V0KCkgaXMgbm90IGNvcnJlY3Qg
+aW4geW91ciB1c2UgY2FzZS4NCg0KQWN0dWFsbHksIHRoZSBhcHBzX3Jlc2V0IGlzbid0IGEgcmVh
+bCByZXNldC4gSXQncyB0aGUgbHRzc21fZW4gYml0Lg0KRnJvbSB0aGlzIHBlcnNwZWN0aXZlIHZp
+ZXcsIEl0J3MgaW5hcHByb3ByaWF0ZSB0byB0b2dnbGUgdGhlIGx0c3NtX2VuIGJpdCBpbg0KIGlt
+eF9wY2llX2Fzc2VydC9kZWFzc2VydF9jb3JlX3Jlc2V0KCkgZnVuY3Rpb25zLg0KSSBjb25zaWRl
+ciB0byBtb3ZlIHRoZSBhcHBzX3Jlc2V0IG91dCBvZiBfcmVzZXRfIGZ1bmN0aW9ucy4gDQpDYW4g
+eW91IGhlbHAgdG8gdGVzdCB0aGUgZm9sbG93aW5nIGNoYW5nZXMgaW4geW91IHVzZS1jYXNlPw0K
+DQotLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktaW14Ni5jDQorKysgYi9kcml2
+ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktaW14Ni5jDQpAQCAtNzc2LDcgKzc3Niw2IEBAIHN0
+YXRpYyBpbnQgaW14N2RfcGNpZV9jb3JlX3Jlc2V0KHN0cnVjdCBpbXhfcGNpZSAqaW14X3BjaWUs
+IGJvb2wgYXNzZXJ0KQ0KIHN0YXRpYyB2b2lkIGlteF9wY2llX2Fzc2VydF9jb3JlX3Jlc2V0KHN0
+cnVjdCBpbXhfcGNpZSAqaW14X3BjaWUpDQogew0KICAgICAgICByZXNldF9jb250cm9sX2Fzc2Vy
+dChpbXhfcGNpZS0+cGNpZXBoeV9yZXNldCk7DQotICAgICAgIHJlc2V0X2NvbnRyb2xfYXNzZXJ0
+KGlteF9wY2llLT5hcHBzX3Jlc2V0KTsNCg0KICAgICAgICBpZiAoaW14X3BjaWUtPmRydmRhdGEt
+PmNvcmVfcmVzZXQpDQogICAgICAgICAgICAgICAgaW14X3BjaWUtPmRydmRhdGEtPmNvcmVfcmVz
+ZXQoaW14X3BjaWUsIHRydWUpOw0KQEAgLTc4OCw3ICs3ODcsNiBAQCBzdGF0aWMgdm9pZCBpbXhf
+cGNpZV9hc3NlcnRfY29yZV9yZXNldChzdHJ1Y3QgaW14X3BjaWUgKmlteF9wY2llKQ0KIHN0YXRp
+YyBpbnQgaW14X3BjaWVfZGVhc3NlcnRfY29yZV9yZXNldChzdHJ1Y3QgaW14X3BjaWUgKmlteF9w
+Y2llKQ0KIHsNCiAgICAgICAgcmVzZXRfY29udHJvbF9kZWFzc2VydChpbXhfcGNpZS0+cGNpZXBo
+eV9yZXNldCk7DQotICAgICAgIHJlc2V0X2NvbnRyb2xfZGVhc3NlcnQoaW14X3BjaWUtPmFwcHNf
+cmVzZXQpOw0KDQogICAgICAgIGlmIChpbXhfcGNpZS0+ZHJ2ZGF0YS0+Y29yZV9yZXNldCkNCiAg
+ICAgICAgICAgICAgICBpbXhfcGNpZS0+ZHJ2ZGF0YS0+Y29yZV9yZXNldChpbXhfcGNpZSwgZmFs
+c2UpOw0KQEAgLTExNzYsNiArMTE3NCw5IEBAIHN0YXRpYyBpbnQgaW14X3BjaWVfaG9zdF9pbml0
+KHN0cnVjdCBkd19wY2llX3JwICpwcCkNCiAgICAgICAgICAgICAgICB9DQogICAgICAgIH0NCg0K
+KyAgICAgICAvKiBNYWtlIHN1cmUgdGhhdCBQQ0llIExUU1NNIGlzIGNsZWFyZWQgKi8NCisgICAg
+ICAgaW14X3BjaWVfbHRzc21fZGlzYWJsZShkZXYpOw0KKw0KICAgICAgICByZXQgPSBpbXhfcGNp
+ZV9kZWFzc2VydF9jb3JlX3Jlc2V0KGlteF9wY2llKTsNCiAgICAgICAgaWYgKHJldCA8IDApIHsN
+CiAgICAgICAgICAgICAgICBkZXZfZXJyKGRldiwgInBjaWUgZGVhc3NlcnQgY29yZSByZXNldCBm
+YWlsZWQ6ICVkXG4iLCByZXQpOw0KDQo+IEkgbm90aWNlIHRoZSBzZXF1ZW5jZSBvZiBldmVudHMg
+aGVyZSBpczoNCj4gaW14X3BjaWVfYXNzZXJ0X2NvcmVfcmVzZXQgYXNzZXJ0cyBhcHBzX3Jlc2V0
+IChkaXNhYmxlcyBMVFNTTSkNCj4gaW14X3BjaWVfZGVhc3NlcnRfY29yZV9yZXNldCBkZWFzc2Vy
+dHMgYXBwc19yZXNldCAoZW5hYmxlcyBMVFNTTSkNCj4gaW14X3BjaWVfbHRzc21fZW5hYmxlIGRl
+YXNzZXJ0cyBhcHBzX3Jlc2V0IChlbmFibGVzIExUU1NNOyB0aGlzIGlzIHdoZXJlIGl0DQo+IGhh
+bmdzIG9uIGlteDhtcCkNCj4gDQo+IElzIHRoZXJlIHBlcmhhcHMgc29tZSBpc3N1ZSB3aXRoIGRl
+LWFzc2VydGluZyB0aGlzIChlbmFibGluZyBMVFNTTSkgd2hlbiBpdCdzDQo+IGFscmVhZHkgaW4g
+dGhpcyBzdGF0ZT8NCltSaWNoYXJkIFpodV1UaGUgYXBwc19yZXNldCBpcyB1cGRhdGVkIGJ5IHNy
+YyBkcml2ZXIgYnkgcmVnbWFwX3VwZGF0ZV9iaXRzKCkuDQpJIGNhbid0IGZpbmQgdGhlIGV4Y2Vw
+dGlvbnMgdG8gdXBkYXRlIG9uZSBiaXQsIGFscmVhZHkgaGFzIHRoZSBhY2NvcmRpbmcgdmFsdWUu
+DQoNCkJlc3QgUmVnYXJkcw0KUmljaGFyZCBaaHUNCj4gDQo+IEluIHRoZSBjYXNlIHdoZXJlIGRv
+d25zdHJlYW0gZGV2aWNlcyBkbyBub3QgZW51bWVyYXRlIHNvbWUgaW52ZXN0aWdhdGlvbg0KPiBw
+b2ludHMgdG8gdGhlbSBub3QgYmVpbmcgaGFwcHkgdGhhdCB0aGUgbGluayBkcm9wcyBzbyBwZXJo
+YXBzIGRlYXNzZXJ0aW5nDQo+IGFwcHNfcmVzZXQgd2hlbiBpdHMgYWxyZWFkeSBhc3NlcnRlZCBk
+cm9wcyB0aGUgbGluayBhbmQgcmVzdGFydHMgaXQ/DQo+IA0KPiBCZXN0IFJlZ2FyZHMsDQo+IA0K
+PiBUaW0NCg==
 
