@@ -1,206 +1,214 @@
-Return-Path: <devicetree+bounces-183927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664B9AD25EE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74864AD2607
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:50:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DC533B319D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 18:43:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CE543AAC8F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 18:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E28225396;
-	Mon,  9 Jun 2025 18:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E5421CC79;
+	Mon,  9 Jun 2025 18:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dKdLeCaN"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CnSEZOH5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247632206BC;
-	Mon,  9 Jun 2025 18:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F0621CC49
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 18:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749494493; cv=none; b=tGh5g24o4++dZcUK6yh2UJ2bi2VXM83AUmt7/drcwKJDNK8a1z6v7TDSjn/eNsAhq1kCtn3+wWn3jmhp4Md2ijfUYTeGvndSFA7iNtI00iPbGeIRhAoyCC5S8B5S6jObo3p8s3pFe7WBYMk761tRlYasuTyi8Uf6wL3JXMtELjw=
+	t=1749495005; cv=none; b=N/0dG3bA0jstvBGO3b408jAmiKY9nXTR6cLA3LOIGgOEQVlgeE+gta3/v6rxwVAOlTYYcrd/kw/QofOB7dCBpUrkHLBRXJl1HT7HDSqlsEm7CTueENJmdV0BONtNXaEthT7d52U3OJ27E+Bau4taCmHj6rTZLZoAkRgsyY8Es1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749494493; c=relaxed/simple;
-	bh=j8goozVk+DiYlp4GJTvl5ymKQRo3e0oyL/7h8bqvJi0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=E7soVtmfD7ZPxxYazVEror2bvQF5LiwEin/zX4iXgkt5x8wtaw3H2/T5S73M6nuIXywiyN6jxY/ICrGs3q8nFb5ali22jYDkQURtxoPIHMjUOQpLsvfkXgR79TZ487NbJu04PL58Fmx+KxdYc46ZS3VA1/scxQVZSfQ0jgXhP84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dKdLeCaN; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a50fc7ac4dso3018808f8f.0;
-        Mon, 09 Jun 2025 11:41:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749494489; x=1750099289; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eBVA8u7P9K0qf+hyn4RTzfCpu8dbeDyo/DFXP1/igMY=;
-        b=dKdLeCaNGKs4u2XjjTsDwI2AXIosgqzayyrPGR3WrG04H/z7mhW7UA5a8Tv1lY5Uga
-         KR0Tw5ZqkMdY9d23/q5ofRmFEPdhV3wpCwVXMX37sr3THs04aocdUO+LYkPombBKNJJ/
-         6LYj5NOv0v/HHTbVwtweKylvj69YXlhjgsJiKaaW2AK/7kAAtz4ckS+sKcHq2ijkkHvu
-         94LU3G9byBwfLrdB67aDuB+Emykru/+JYDft+IQW82QL3kgRi45wc/MZa4pq4q/ESj5Q
-         Bk/kTfSWZEDDLmD1YhkL4ym3lzPkO28djyRz5rBomMk0sr1a93xlTqWPqJKGX1/2ET4P
-         SO5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749494489; x=1750099289;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eBVA8u7P9K0qf+hyn4RTzfCpu8dbeDyo/DFXP1/igMY=;
-        b=pV+kVJknDWt7GQ8WpOuDGXdYdTnRIxzixge0zWebsNmk+a5NzpvGC+LMCgSiQINDCj
-         Q4YlEcZ3f4j/EIxVime7OeDyd+23nF2btBgsplNtsSCSI8xMDa8t3U0hEmSOxbuIFRgf
-         hKZaz7/pTJzvWPyEKKudSLEQy+GNHfhftxSKfmZZ8AxaOJdTKx/v03DMX1rYKA5YIHaQ
-         YXV3itwBc37JwdqL4i/aHvux7D2erywDJgOLgXgyPxjTbU2HoD91u5qc1GXWEzzNStx3
-         Vs/MIymxAOpzIyzoIMaavfRhmBq+Hu26s8O34NCIvLAAfOFG7+iXhpDqcuoxhJjSBAKS
-         bcmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUosZRoap/xeytKbAsu3zVwcSux0WFfK1Gex8ICTlP0fbueF4UD8kR87szpDe7AVZzkJ9rid7c8TGURiO97@vger.kernel.org, AJvYcCWSTbwwbzEjnC1+jWgT2NquopLNe260opYE4lmPfZ58Gg9OkpkbhHDYis4lLFqLeslUwtchct+3u3h1@vger.kernel.org, AJvYcCWXpBMz2yKNbKLS4ZgEfvT/VESnd+agORUCxje+WRoG4BxJKg9J4+dGdTyttHPQ4RBb2CZNlCcWPMj3@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNVroxAWjBzrlcykNzZpayCcxkeZsgBuAZ1e/DUYQUcZEbwn7i
-	chKg+7Xb9UjMqg/GMgEE5jqPGk3tFpIijGi6J7cKeB2QgLrxImIkx2i6
-X-Gm-Gg: ASbGncu8LMlAt9iDlwhiwLrjtF2HySe1arVLnSgHQXMgkBsxhl+LilMAY6e/ROm9H4u
-	n6eyFS6wlFq7fBF87yY5s4ny3kJ1vWzB88Dld23yf//93Rzs7iS/WBb8WvefQJGF49/9n3oVyCg
-	LuvQQ9/DLrEX9NKMZv9EoNT5ygtgvgGLKagSdyZFYTPd5AyJHUN8VEDKuEWbFpaqVY6ZUOH0UGL
-	z9vWdmudvufmtuM2GkWlOxt8tYS7g67vwc6lkdpfphyDRHT6uF67KIwO3OUFIzAN6mRcr7yxdP6
-	xzxRsiQeSsg4hpFJh1+ZDY2kxNbHuSb47HWaiNHYNKEIAqyvTSNln5qZID7Fydsewda4UfZCfIW
-	trkWFBvku9fZrBW6Beyw=
-X-Google-Smtp-Source: AGHT+IHa/uotTBQXRzJhNiKxf6x007lJmL946HjbCVUwqKj9SP4PvPBTpQK30grFpJTrfnG5QqSIzA==
-X-Received: by 2002:a05:6000:2c10:b0:3a5:2653:7308 with SMTP id ffacd0b85a97d-3a531cf5becmr11040710f8f.57.1749494489223;
-        Mon, 09 Jun 2025 11:41:29 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:3c26:913e:81d:9d46])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53244f04dsm10137865f8f.73.2025.06.09.11.41.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 11:41:28 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andy Shevchenko <andy@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 6/6] i2c: riic: Add support for RZ/T2H SoC
-Date: Mon,  9 Jun 2025 19:41:14 +0100
-Message-ID: <20250609184114.282732-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250609184114.282732-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250609184114.282732-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1749495005; c=relaxed/simple;
+	bh=dlB/izkdaB1ozoX7/2o/IAFt5/gOoG9WnvZcUvg5Fbs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=UyLjsgB7bgINlQnUKF04EF8sRJYiLnzWbmxMGpW0zoV1j/N0JkjeBzf3GHKN///4NDOtDDDLsMkSymY96EvO14DoMtYkcdF/Hxc1FgAgMQf1wl+qmzbQInWoOelkS4TBIKSjiOGQHOpMGJsDPVCVrvi7/eFuB3jVTE6/NaeHgx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CnSEZOH5; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250609185000euoutp01f5c936d1575afb0ae658d009110f0801~HdG8QW43w2022420224euoutp01D
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 18:50:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250609185000euoutp01f5c936d1575afb0ae658d009110f0801~HdG8QW43w2022420224euoutp01D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749495000;
+	bh=D3EwerJDP3/oe+lpK7aG+PkHixXXb/9NDy3mgdvJFy0=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=CnSEZOH5OhpnceUvwFY1EbrdFJRLtcez/h2usFjBAY+rFD/xHRx+wJMhVhSKcTL+e
+	 3UeuHM88PyfCmoLYICDhRath6GwL/8f/8wXP07sW6EmF3BcNswgDlft+bl8qASQUOr
+	 FsbGWY2gX352WKe2Ur4sjl09tp1RXJGs6D+CqnDg=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250609184959eucas1p19815e72a3491891985d9793e0d144818~HdG6-FGOr2469924699eucas1p1W;
+	Mon,  9 Jun 2025 18:49:59 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250609184958eusmtip1b172ca4c99c57fffacd869a372c9d211~HdG59PY_L1659816598eusmtip1V;
+	Mon,  9 Jun 2025 18:49:58 +0000 (GMT)
+Message-ID: <9e8a12db-236d-474c-b110-b3be96edf057@samsung.com>
+Date: Mon, 9 Jun 2025 20:49:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 5/6] riscv: dts: thead: Add PVT node
+To: Drew Fustini <drew@pdp7.com>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
+	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
+	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Benno Lossin
+	<benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, Alice
+	Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo
+	Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <aDyOyg6eqDEFg2ua@x1>
 Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250609184959eucas1p19815e72a3491891985d9793e0d144818
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01
+X-EPHeader: CA
+X-CMS-RootMailID: 20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+	<CGME20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01@eucas1p2.samsung.com>
+	<20250524-rust-next-pwm-working-fan-for-sending-v1-5-bdd2d5094ff7@samsung.com>
+	<aDVxDJi0KkWXiPCK@x1> <61eecafb-8ad1-4306-88cb-a032eefb2e48@samsung.com>
+	<aDyOyg6eqDEFg2ua@x1>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add support for the Renesas RZ/T2H (R9A09G077) SoC, which features a
-different interrupt layout for the RIIC controller. Unlike other SoCs
-with individual error interrupts, RZ/T2H uses a combined error interrupt
-(EEI).
 
-Introduce a new IRQ descriptor table for RZ/T2H, along with a custom
-ISR (`riic_eei_isr`) to handle STOP and NACK detection from the shared
-interrupt.
+On 6/1/25 19:32, Drew Fustini wrote:
+> On Sun, Jun 01, 2025 at 09:50:52AM +0200, Michal Wilczynski wrote:
+>>
+>>
+>> On 5/27/25 10:00, Drew Fustini wrote:
+>>> On Sat, May 24, 2025 at 11:14:59PM +0200, Michal Wilczynski wrote:
+>>>> Add PVT DT node for thermal sensor.
+>>>>
+>>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>>>> ---
+>>>>  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
+>>>>  1 file changed, 11 insertions(+)
+>>>>
+>>>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+>>>> index f24e12d7259fabcfbdc2dfa966d759db06684ab4..faf5c3aaf209b24cd99ddc377a88e08a8cce24fe 100644
+>>>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+>>>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+>>>> @@ -648,6 +648,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
+>>>>  			thead,pad-group = <1>;
+>>>>  		};
+>>>>  
+>>>> +		pvt: pvt@fffff4e000 {
+>>>> +			compatible = "moortec,mr75203";
+>>>> +			reg = <0xff 0xfff4e000 0x0 0x80>,
+>>>> +			      <0xff 0xfff4e080 0x0 0x100>,
+>>>> +			      <0xff 0xfff4e180 0x0 0x680>,
+>>>> +			      <0xff 0xfff4e800 0x0 0x600>;
+>>>> +			reg-names = "common", "ts", "pd", "vm";
+>>>> +			clocks = <&aonsys_clk>;
+>>>> +			#thermal-sensor-cells = <1>;
+>>>> +		};
+>>>> +
+>>>>  		gpio@fffff52000 {
+>>>>  			compatible = "snps,dw-apb-gpio";
+>>>>  			reg = <0xff 0xfff52000 0x0 0x1000>;
+>>>>
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>>
+>>> I found that on my lpi4a that boot while hang after applying this patch.
+>>> I think that it is related to clocks as boot finished okay when using
+>>> clk_ignore_unused on the kernel cmdline. Do you happen have that in your
+>>> kernel cmdline?
+>>>
+>>> I need to investigate further to understand which clocks are causing the
+>>> problem.
+>>>
+>>> Thanks,
+>>> Drew
+>>>
+>>
+>> Thanks for your earlier message. I've investigated, and you were right
+>> about the clocks – the specific one causing the hang is CLK_CPU2AON_X2H.
+> 
+> Thanks for tracking down the clk causing the hang. I can confirm that
+> this fixes the boot hang:
+> 
+> diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
+> index ebfb1d59401d..4d0179b8c17c 100644
+> --- a/drivers/clk/thead/clk-th1520-ap.c
+> +++ b/drivers/clk/thead/clk-th1520-ap.c
+> @@ -792,7 +792,7 @@ static CCU_GATE(CLK_AON2CPU_A2X, aon2cpu_a2x_clk, "aon2cpu-a2x", axi4_cpusys2_ac
+>                 0x134, BIT(8), 0);
+>  static CCU_GATE(CLK_X2X_CPUSYS, x2x_cpusys_clk, "x2x-cpusys", axi4_cpusys2_aclk_pd,
+>                 0x134, BIT(7), 0);
+> -static CCU_GATE(CLK_CPU2AON_X2H, cpu2aon_x2h_clk, "cpu2aon-x2h", axi_aclk_pd, 0x138, BIT(8), 0);
+> +static CCU_GATE(CLK_CPU2AON_X2H, cpu2aon_x2h_clk, "cpu2aon-x2h", axi_aclk_pd, 0x138, BIT(8), CLK_IGNORE_UNUSED);
+>  static CCU_GATE(CLK_CPU2PERI_X2H, cpu2peri_x2h_clk, "cpu2peri-x2h", axi4_cpusys2_aclk_pd,
+>                 0x140, BIT(9), CLK_IGNORE_UNUSED);
+>  static CCU_GATE(CLK_PERISYS_APB1_HCLK, perisys_apb1_hclk, "perisys-apb1-hclk", perisys_ahb_hclk_pd,
+> 
+>>
+>> This appears to be an AHB bus clock required for CPU access to the AON
+>> domain. My proposed solution is to make the pvt node a child of a new
+>> parent bus node in the Device Tree. This new "AON bus" node would then
+>> explicitly request and manage CLK_CPU2AON_X2H, ensuring it's enabled
+>> when its children are accessed.
+>>
+>> What are your thoughts on this approach?
+> 
+> I think that is a good approach. The alternative would be to just add
+> CLK_IGNORE_UNUSED like above. I've done it before but it is a bit of a
+> hack.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com> # on RZ/A1
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
----
-v1->v2:
-- Updated the riic_rzt2h_irqs array to match the order of
-  interrupts as mentioned in the DT binding.
-- Updated the interrupt names in the riic_rzt2h_irqs array to
-  match the HW manual.
-- Added Tested-by and Reviewed-by tags.
----
- drivers/i2c/busses/i2c-riic.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+I've followed up on the idea of creating a parent bus node. My attempt
+using simple-pm-bus ran into a couple of significant issues that suggest
+it's not the correct path.
 
-diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-riic.c
-index d0b975e45595..9c164a4b9bb9 100644
---- a/drivers/i2c/busses/i2c-riic.c
-+++ b/drivers/i2c/busses/i2c-riic.c
-@@ -79,6 +79,7 @@
- #define ICIER_SPIE	BIT(3)
- 
- #define ICSR2_NACKF	BIT(4)
-+#define ICSR2_STOP	BIT(3)
- 
- #define ICBR_RESERVED	GENMASK(7, 5) /* Should be 1 on writes */
- 
-@@ -326,6 +327,19 @@ static irqreturn_t riic_stop_isr(int irq, void *data)
- 	return IRQ_HANDLED;
- }
- 
-+static irqreturn_t riic_eei_isr(int irq, void *data)
-+{
-+	u8 icsr2 = riic_readb(data, RIIC_ICSR2);
-+
-+	if (icsr2 & ICSR2_NACKF)
-+		return riic_tend_isr(irq, data);
-+
-+	if (icsr2 & ICSR2_STOP)
-+		return riic_stop_isr(irq, data);
-+
-+	return IRQ_NONE;
-+}
-+
- static u32 riic_func(struct i2c_adapter *adap)
- {
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-@@ -497,6 +511,13 @@ static const struct riic_irq_desc riic_irqs[] = {
- 	{ .res_num = 5, .isr = riic_tend_isr, .name = "riic-nack" },
- };
- 
-+static const struct riic_irq_desc riic_rzt2h_irqs[] = {
-+	{ .res_num = 0, .isr = riic_eei_isr,  .name = "riic-eei" },
-+	{ .res_num = 1, .isr = riic_rdrf_isr, .name = "riic-rxi" },
-+	{ .res_num = 2, .isr = riic_tdre_isr, .name = "riic-txi" },
-+	{ .res_num = 3, .isr = riic_tend_isr, .name = "riic-tei" },
-+};
-+
- static int riic_i2c_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -643,6 +664,12 @@ static const struct riic_of_data riic_rz_v2h_info = {
- 	.fast_mode_plus = true,
- };
- 
-+static const struct riic_of_data riic_rz_t2h_info = {
-+	.regs = riic_rz_v2h_regs,
-+	.irqs = riic_rzt2h_irqs,
-+	.num_irqs = ARRAY_SIZE(riic_rzt2h_irqs),
-+};
-+
- static int riic_i2c_suspend(struct device *dev)
- {
- 	struct riic_dev *riic = dev_get_drvdata(dev);
-@@ -695,6 +722,7 @@ static const struct dev_pm_ops riic_i2c_pm_ops = {
- static const struct of_device_id riic_i2c_dt_ids[] = {
- 	{ .compatible = "renesas,riic-r7s72100", .data =  &riic_rz_a1h_info, },
- 	{ .compatible = "renesas,riic-r9a09g057", .data = &riic_rz_v2h_info },
-+	{ .compatible = "renesas,riic-r9a09g077", .data = &riic_rz_t2h_info },
- 	{ .compatible = "renesas,riic-rz", .data = &riic_rz_a_info },
- 	{ /* Sentinel */ }
- };
+First, the TRM doesn't seem to specify an address range for this bus.
+The range I used in my test was only for the PVT controller itself,
+which would be an incorrect abstraction in the device tree.
+
+Second, simple-pm-bus requires its child nodes to use the PM runtime API
+(pm_runtime_resume_and_get, etc.). Forcing this on consumer drivers like
+the PVT sensor seems like an inappropriate dependency.
+
+Additionally, I discovered that the PWM driver has a similar problem,
+silently failing because another clock, CLK_PERISYS_APB1_HCLK, is not
+enabled.
+
+The most correct solution likely involves refactoring the clock parent
+relationships in clk-th1520-ap.c. However, as a more immediate and less
+invasive fix, I propose we apply the CLK_IGNORE_UNUSED flag for both
+CLK_CPU2AON_X2H and CLK_PERISYS_APB1_HCLK in the v2 patch. This will fix
+the boot hang and the PWM issue while we consider the larger clock
+driver changes separately.
+
+Does that sound like a reasonable plan for the v2 series?
+
+> 
+> Thanks,
+> Drew
+> 
+
+Best regards,
 -- 
-2.49.0
-
+Michal Wilczynski <m.wilczynski@samsung.com>
 
