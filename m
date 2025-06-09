@@ -1,102 +1,137 @@
-Return-Path: <devicetree+bounces-183781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E4DAD1C3F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:11:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFBDAD1C64
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 551993AD3A3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 11:11:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B24CC3AC486
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 11:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01A2255F26;
-	Mon,  9 Jun 2025 11:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="LsanE9Q4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CCD70830;
+	Mon,  9 Jun 2025 11:32:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FBA255E4E;
-	Mon,  9 Jun 2025 11:11:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7444A3C;
+	Mon,  9 Jun 2025 11:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749467478; cv=none; b=DeILwISFaVhYWKEw6j9vvShzX1vjv3DvlannVOCLpYVD0RHuDW0/JUYtMxdCFpgMYXXxagjv9suxGMSE/JQFROv2MlZLu9xU9Of4rfjKQdjqEnywrj4qnz+Gas0Mz4nYspG9MwZr7Ut9ys8SH01q0CG4HxCPBGJwCc3eEn7cFlQ=
+	t=1749468735; cv=none; b=ezs52TM9xDb/gaVdObzpNxB9oEu0tBNpAIWkS9HJCjwLZBtTo8WDKiQemgsavGaoVbHnECaqCw4HvNeHn46U8y0pv0nz+XsnwueytwvEAf0c1r/uoTe/KbjB8O/ihMD60YXlxYoHSrw/9DNjbneLsWxU6iEsVH9Sb6BeHriWHM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749467478; c=relaxed/simple;
-	bh=2HYhwoOhKt75va0EWw0LYFrIVbslkLkVS6cFPbTav2M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MV2Y/gVwNp8p0qOUlqMMw/7SpsIiyRMJYCJ2qAs1BEcLK8Qdu9sXTq4B/oIvtbBQCFahOfXFPzCRWWzTE2/vZnk/+JYhlUKZXlVIQZhMH9C7/X1IaggFOgC3ACI+VPzHPe0gW2sR/KKNFJtwri3IgnxNomP4sLMlI4hE66qU6cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=LsanE9Q4; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Jkdk2cmI+tf4XuI/p/OZj8CiZ22SFvFvvlSth/i8zEM=; b=LsanE9Q4OYhoH+jUUcTCuVKoUH
-	ei9Y2ysD6pK2AjAMQP51Nd6bF2U+JZkxErJGAtmAoJYmoJ1Xyg4r3DoDazi3jPm283q5UNXI+c01K
-	tb4Y7Yq8Z8LkfG7H7AXBJijXAQaF9copDxDokSHEw3Ins6QebA8Te32DdZheI5SuZ5eu0/hLqLnNo
-	NX5TBHuoVEW7cbKTu28ZVohSFsyqRD6m0/MzzEin4jx9cRLENVd+YjEFwrTrAH4wsLiQMMawr9ieR
-	5NbOqkdeNuArjkAJeRX0bkfgI8lv6CK7uQpcQeMB3BjMfsrBw+GawVPlD4r0efFpWv1YBXgnIYXaJ
-	/Wh+VWVQ==;
-Received: from i53875b1c.versanet.de ([83.135.91.28] helo=phil.fritz.box)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uOaPD-0006VT-FW; Mon, 09 Jun 2025 13:11:07 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	John Clark <inindev@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
+	s=arc-20240116; t=1749468735; c=relaxed/simple;
+	bh=mRDJbWLmmCHETsb5PuNct2QeQlKbO5aeeo2ZTshg8B0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TBRIVGm0IJSKLz5meT6KQ5JWM3uDObzvnw6vKpaZlIljG0fkClLH/YT2g1yFN+m+qDxDtJ2quSy+ThWkA9lNwInusCulgBJZLpgevBDl1lBQyYfompLYxlNoFDIT71DyC99/Ib6p7xapU5WfXuXq7E+c+ftRQs0ygbzjFi/oFw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=pass smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=18.169.211.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chainsx.cn
+X-QQ-mid: zesmtpgz1t1749468649t03990109
+X-QQ-Originating-IP: DgbvBjSokVTQG43IbUieazUxITiBXvTzFEVmAUCGFIk=
+Received: from chainsx-ubuntu-server.lan ( [182.245.65.180])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 09 Jun 2025 19:30:47 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 9665082274307116488
+EX-QQ-RecipientCnt: 16
+From: Hsun Lai <i@chainsx.cn>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: i@chainsx.cn,
+	heiko@sntech.de,
+	andrew@lunn.ch,
+	inindev@gmail.com,
+	quentin.schulz@cherry.de,
+	jonas@kwiboo.se,
+	sfr@canb.auug.org.au,
+	nicolas.frattaroli@collabora.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] [PATCH v5 0/3] Add device tree support for Luckfox Omni3576 and Core3576
-Date: Mon,  9 Jun 2025 13:11:03 +0200
-Message-ID: <174946744890.771907.15442191334944143359.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250516002713.145026-1-inindev@gmail.com>
-References: <20250516002713.145026-1-inindev@gmail.com>
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-rockchip@lists.infradead.org
+Subject: [RESEND PATCH v5 0/2] Add support for Firefly Station-M3/ROC-RK3588S-PC
+Date: Mon,  9 Jun 2025 19:30:42 +0800
+Message-Id: <20250609113044.8846-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MjlOSqg8Riw0yiHnc7w/miRMh0pW4B5/XCjNIs6r0zyd6XZwtH/XQn3c
+	CDfYXtiUiEdlCpE8HXNfMGKVah4VLoosN+3xUsKZKOaK3sYXscneRKNClatFbxe4jF3iPRM
+	TdfrtB9HDneMnNFb/roBi4i+LgZL3DEgU0OB5Ugxa3Vw6OPtpetVlz/8ba19KVv2U/rsdcs
+	UF7FV+g5+TbuvXjplfDBWBYrH0zkWdYgsVFrfeDXzuksi/4HPaH3PNGHgnn51N0AGx/BwPJ
+	+X22OuGLAHg2lAwI19L/B+sV7zq2BBP7zXg0hGphvALug/3hNR8tVtqnoBmJfAykxiUnniU
+	qVzHjlHZ5FtJ/6DP2AYpw4KeSjphHWsobN4LnHzGkAjD2aZ7XVTX6yXrECulGXivgV29WZo
+	36da4I+ZAF012AsbTMQICDVp19hcr+sfirnf93qJYw+Q14XzObhEYwl4lbqt5aCm+J4jpaL
+	Dp9Ei9j96LXokNGWPspYB9koUZhmG1aNXRz9JFfPwkG71A1o6d919BFRQ9gjulnq7ugI4sl
+	HaWkGRhMgHOkK0/B/gW0YZXYhEQkuiKfueA3PQZq9cinss4XSH4MiYYZPZAhGYJypTOydDQ
+	WPt7vHJ0RBhHzoPMD8J+aFWEGbs4hGc4gI3kCOQpAjRDx/e3cRVBpr3YW4c6zrScOLa9Cvo
+	QB9DOwn0NAtEECzpmrLgz173J1oTa/DrC2fJCggKyFWnj9AEKZ9P+w3AQk+YSYH1rCkBP4c
+	VAdbPjIMR++Wn3Clrg+yTe5J31gYkeq90s9FhOLAGEbYT3F2MYTCZV0qGYDl0m8f25P9O0q
+	tG7xJOXc7b138GL0X0017Fupz7N/C0RAkQ2OoigRQmVT1YpYjnaJls8MGDuhr2JuzVXiPA5
+	B6EdS43Hut88qq6oIv8DweRTKPu8cIoa2EtYKhSnNKKN1ArI4tKM+jbU9Hau2mr75zRZPkE
+	DFHwv7LBFAi6Ay3DzLTyE5Xu2PLU3kaHIrQiQjVJHAxMRLgMNdapI0OBW5Urxlta5IP8=
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-RECHKSPAM: 0
 
+This series add support for Firefly Station-M3/ROC-RK3588S-PC.
 
-On Thu, 15 May 2025 20:27:10 -0400, John Clark wrote:
-> This series adds device tree support for the Luckfox Omni3576 Carrier
-> Board with the Core3576 Module, powered by the Rockchip RK3576 SoC
-> (four Cortex-A72 cores, four Cortex-A53 cores, Mali-G52 MC3 GPU). It
-> enables essential functionality for booting Linux and basic connectivity,
-> with plans for future support of peripherals like WiFi, MIPI-DSI, HDMI,
-> and Ethernet.
-> 
-> [...]
+Info of device can be found at:
+https://wiki.t-firefly.com/en/Station-M3/index.html
 
-Applied, thanks!
+Changes in v5:
+- Make led-1 off by default (Chukun Pan, v4)
+- Add color settings for led (Chukun Pan, v4)
+- Remove vcc5v0_usbdcin
+- Put enable/gpio before regulator (Chukun Pan, v4)
+- Remove always-on and boot-on from vcc5v0_host (Chukun Pan, v4)
+- Update the name of vbus_typec (Chukun Pan, v4)
+- Remove always-on and boot-on from vbus5v0_typec (Chukun Pan, v4)
+- Put pinctrl-names before pinctrl-0 (Chukun Pan, v4)
+- Remove usb_con node
+- Remove extra blank lines (Chukun Pan, v4)
+- Add phy-supply for u2phy3_host (Chukun Pan, v4)
 
-[1/3] dt-bindings: vendor-prefixes: Add luckfox prefix
-      commit: a6fed060c79971d528285e3e2fa5fbaf30abf30d
-[2/3] dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
-      commit: cae568ff88fd8f25d51e120c2de30b094fd5ad02
-[3/3] arm64: dts: rockchip: Add Luckfox Omni3576 Board support
-      commit: f244d596ebb34b819a5414f8f7d37180ab833233
+Changes in v4:
+- Update the name of the regulator
+- Remove the i2s5_8ch node
 
-Best regards,
+Changes in v3:
+- Update the name of leds
+- Add more cpu nodes
+- Update mdio compatible
+- Fix the order in the node
+- Add the default serial port(uart2)
+- Patch 1: Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+
+Changes in v2:
+- Fix rgmii delays
+
+Changes in v1:
+- Add support for Firefly ROC-RK3588S-PC
+
+Hsun Lai (2):
+  dt-bindings: arm: rockchip: Add Firefly ROC-RK3588S-PC
+  arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 838 ++++++++++++++++++
+ 3 files changed, 844 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.34.1
+
 
