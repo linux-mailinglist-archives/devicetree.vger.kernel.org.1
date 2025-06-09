@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-183967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308C0AD28CD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 23:29:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08345AD28D5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 23:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E89E2188BDF0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 21:30:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C608D16F09D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 21:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6780D221FC0;
-	Mon,  9 Jun 2025 21:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBB9223DF0;
+	Mon,  9 Jun 2025 21:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="UO3LtBzY"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="kFl3RpCb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.228])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1017B1E3DF2;
-	Mon,  9 Jun 2025 21:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE9F220F2F;
+	Mon,  9 Jun 2025 21:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749504590; cv=none; b=gXTGSlYSbs3EODeeJTFTOBuZZbwx2sEP5kmTqhIPKRaDKy1J8zJHMXJ0vIAX6JEiS3OocJ/tfIN43H3NoMkTZexx2ynCqayxIrmDWTxD6FAGfbHEGhe+QMpYEmiUaqDtipbHMdPPvwL/mFkqOUVDAjJbBYBC+UfuN8xfGBXo+cs=
+	t=1749504680; cv=none; b=eKtfT+lgMs4czCDh9niR2yB4ryx9npmP0aFfigq9+sRmzbL3sHRq6oGL3j3rBklANtoPNUIgpAkvCg+aGLYHZl4yFe/Tu5Krxbd7smoF29YDMuGrAxRDsfv9EupBL2i07ghIABAeTTxQpqEQX+GDDi4FGrP7OAgpCfpOuNEjCDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749504590; c=relaxed/simple;
-	bh=8B9T9fn+R7WMR3vhm8/H3/wrhSAPlt2l7bsP0FgP/s4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t5dJCav7ZBJvFNj6t1h9rjwavwYb9gsSw4HlLtIgfCsXiXS3P/x5Fd010NMHFqUIZdw2LCPOZmDu/AfVfldPhzJadA4gv5JrW0QNObaMyagOxsO0cIWV9Izqe3vALwMOWBy+Lc/VpuuxrvdcT3prxR9d06pyoect3mrWIGQ2fYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=UO3LtBzY; arc=none smtp.client-ip=192.19.166.228
+	s=arc-20240116; t=1749504680; c=relaxed/simple;
+	bh=siG3t5h5VI/vBQgaAeu+KAIZnYD30RwbGz60qGNfCG8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=nVNiZJ7apR2jYIt3zMwLZmBm2zHVL+euIE1KBlf10URCKkGMwk8QD5/v4SGQGaw7v4f+JgLSTmtaAwuEO8y8BdKk18qIIlp68SdywaoddHhQ+p5M/vdPbDbzAZJMB1Ke2FveSvlF+MIk3vbFxWUKAcfXnJGRXSHHr0exT6qp32c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=kFl3RpCb; arc=none smtp.client-ip=192.19.166.231
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 7904EC0000F4;
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 94DF8C000320;
 	Mon,  9 Jun 2025 14:23:13 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 7904EC0000F4
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 94DF8C000320
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
 	s=dkimrelay; t=1749504193;
-	bh=8B9T9fn+R7WMR3vhm8/H3/wrhSAPlt2l7bsP0FgP/s4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=UO3LtBzYqhiICZRjUBNeBG25UcPnjsbEEjH2A6kagf111YN/VBcxkycxwKSU8e8Ju
-	 5YJ5J1lwTRn8li2Mz9sQ1q+PgCH8nB/BFwsNm5kVqUzgx6cZA80wvyJ2brB8LWJ4Nl
-	 r5qhHPvW3aEGWPyHv1wjdEM88rFsQ0SloLeTYK3s=
+	bh=siG3t5h5VI/vBQgaAeu+KAIZnYD30RwbGz60qGNfCG8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=kFl3RpCbWaRqC2pY0b+rw6E2shSaIF4eRTIO6zVbjFUz4hA/kJfOt1SfTXkVbzjlL
+	 1NgVl/JfkF56q/xMcDYzo7EPauESG6Ssj0KZdvXeHRvjD4nY33s+IKEQwz94ESqluu
+	 KP6yZz8veLgC/YcAJjxzTV/iaE/PGN/U+csJeMzk=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 4C8051800051E;
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 75C5418000847;
 	Mon,  9 Jun 2025 14:23:13 -0700 (PDT)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: linux-kernel@vger.kernel.orgg
@@ -57,10 +58,12 @@ Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
 	linux-kernel@vger.kernel.org (open list:MEMORY CONTROLLER DRIVERS),
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE)
-Subject: [PATCH v2 0/2] Simplify compatible matching for brcmstb_memc
-Date: Mon,  9 Jun 2025 14:23:09 -0700
-Message-ID: <20250609212311.2264108-1-florian.fainelli@broadcom.com>
+Subject: [PATCH v2 1/2] dt-bindings: memory-controller: Define fallback compatible
+Date: Mon,  9 Jun 2025 14:23:10 -0700
+Message-ID: <20250609212311.2264108-2-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250609212311.2264108-1-florian.fainelli@broadcom.com>
+References: <20250609212311.2264108-1-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,23 +72,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Since the conversation died off in
-https://lore.kernel.org/all/20241217194439.929040-2-florian.fainelli@broadcom.com/
-here is a second attempt at addressing what I understood from the
-conversation back then.
+All of the DDR controllers beyond revision b.2.1 have had a consistent
+layout, therefore define a "brcm,brcmstb-memc-ddr-rev-b.2.1" fallback
+compatible string to match them all rather than having to continuously
+add to the list.
 
-Changes in v2:
+Link: https://lore.kernel.org/all/20241217194439.929040-2-florian.fainelli@broadcom.com/
+Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+---
+ .../brcm,brcmstb-memc-ddr.yaml                | 54 ++++++++++++-------
+ 1 file changed, 34 insertions(+), 20 deletions(-)
 
-- define "brcm,brcmstb-memc-ddr-rev-b.2.1" as the fallback property
-
-Florian Fainelli (2):
-  dt-bindings: memory-controller: Define fallback compatible
-  memory: brcmstb_memc: Simplify compatible matching
-
- .../brcm,brcmstb-memc-ddr.yaml                | 54 +++++++++++-------
- drivers/memory/brcmstb_memc.c                 | 56 +------------------
- 2 files changed, 36 insertions(+), 74 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
+index 4b072c879b02..b935894bd4fc 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
+@@ -11,25 +11,37 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - brcm,brcmstb-memc-ddr-rev-b.1.x
+-          - brcm,brcmstb-memc-ddr-rev-b.2.0
+-          - brcm,brcmstb-memc-ddr-rev-b.2.1
+-          - brcm,brcmstb-memc-ddr-rev-b.2.2
+-          - brcm,brcmstb-memc-ddr-rev-b.2.3
+-          - brcm,brcmstb-memc-ddr-rev-b.2.5
+-          - brcm,brcmstb-memc-ddr-rev-b.2.6
+-          - brcm,brcmstb-memc-ddr-rev-b.2.7
+-          - brcm,brcmstb-memc-ddr-rev-b.2.8
+-          - brcm,brcmstb-memc-ddr-rev-b.3.0
+-          - brcm,brcmstb-memc-ddr-rev-b.3.1
+-          - brcm,brcmstb-memc-ddr-rev-c.1.0
+-          - brcm,brcmstb-memc-ddr-rev-c.1.1
+-          - brcm,brcmstb-memc-ddr-rev-c.1.2
+-          - brcm,brcmstb-memc-ddr-rev-c.1.3
+-          - brcm,brcmstb-memc-ddr-rev-c.1.4
+-      - const: brcm,brcmstb-memc-ddr
++    oneOf:
++      - description: Revision > 2.1 controllers
++        items:
++          - enum:
++              - brcm,brcmstb-memc-ddr-rev-b.2.2
++              - brcm,brcmstb-memc-ddr-rev-b.2.3
++              - brcm,brcmstb-memc-ddr-rev-b.2.5
++              - brcm,brcmstb-memc-ddr-rev-b.2.6
++              - brcm,brcmstb-memc-ddr-rev-b.2.7
++              - brcm,brcmstb-memc-ddr-rev-b.2.8
++              - brcm,brcmstb-memc-ddr-rev-b.3.0
++              - brcm,brcmstb-memc-ddr-rev-b.3.1
++              - brcm,brcmstb-memc-ddr-rev-c.1.0
++              - brcm,brcmstb-memc-ddr-rev-c.1.1
++              - brcm,brcmstb-memc-ddr-rev-c.1.2
++              - brcm,brcmstb-memc-ddr-rev-c.1.3
++              - brcm,brcmstb-memc-ddr-rev-c.1.4
++          - const: brcm,brcmstb-memc-ddr-rev-b.2.1
++          - const: brcm,brcmstb-memc-ddr
++      - description: Revision 2.1 controllers
++        items:
++          - const: brcm,brcmstb-memc-ddr-rev-b.2.1
++          - const: brcm,brcmstb-memc-ddr
++      - description: Revision 2.0 controllers
++        items:
++          - const: brcm,brcmstb-memc-ddr-rev-b.2.0
++          - const: brcm,brcmstb-memc-ddr
++      - description: Revision 1.x controllers
++        items:
++          - const: brcm,brcmstb-memc-ddr-rev-b.1.x
++          - const: brcm,brcmstb-memc-ddr
+ 
+   reg:
+     maxItems: 1
+@@ -46,7 +58,9 @@ additionalProperties: false
+ examples:
+   - |
+     memory-controller@9902000 {
+-        compatible = "brcm,brcmstb-memc-ddr-rev-c.1.1", "brcm,brcmstb-memc-ddr";
++        compatible = "brcm,brcmstb-memc-ddr-rev-c.1.1",
++                     "brcm,brcmstb-memc-ddr-rev-b.2.1",
++                     "brcm,brcmstb-memc-ddr";
+         reg = <0x9902000 0x600>;
+         clock-frequency = <2133000000>;
+     };
 -- 
 2.43.0
 
