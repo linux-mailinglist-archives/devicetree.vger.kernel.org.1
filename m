@@ -1,149 +1,132 @@
-Return-Path: <devicetree+bounces-183937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF5AAD2791
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E06A1AD2798
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 22:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 852C8165772
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:32:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDBB53B1E4B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 20:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4565A207DF7;
-	Mon,  9 Jun 2025 20:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9888D221552;
+	Mon,  9 Jun 2025 20:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HB0l2ac1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YrK78fOZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683A91CF7AF;
-	Mon,  9 Jun 2025 20:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912D021D3EE;
+	Mon,  9 Jun 2025 20:35:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749501174; cv=none; b=or9wDIxfoc0/yXC4R+oe7eVAHQDElypyYWWND/pfKb74Jw1fMAac2+0crnNwWSj/sY3EH11a83GQrmnsYvZk78F2C7sR6vdEA9fpeNp8jB6oy6FlDLUY6ZPrTh7iakR5y31MAkVApc8elisFnN6iZA/f1HwsPGtvl8jFtaTtvSM=
+	t=1749501325; cv=none; b=N3Q2GwTo5KnjL1yUsy7CC40XRw3+aHiV3JPTL+H3IerGCE4knaspJmLWLSaG4FdUfZG3/PSIY92cabeGjs4smcrvWB5YZGiOxkAuzbm7BcU8nzukUwtb2tliq15vgD0lz1yyW8F/dQmwK1x7XCYTeS55yFCuikIR6rG5QaRK3xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749501174; c=relaxed/simple;
-	bh=smOKQlyhKjQukF0aXiYyuQbS9EWlJvDyPq0X+IMEKx0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uHD87FXjs/xZXHNPkWYUN67gPBRJeAcQ7Kxa+TEca8rhVD4ayZsiqeM9rLzaiGUJmuC4NxOjeiJt0AWSGhL1ZvHQ8crvxQxA2qiGotZtti2i+lwrDjeMTdcJql3TULl4607Se05i7kSwTJPqSqzt7NSXs4Oj+2OpxPQMo6DbkUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HB0l2ac1; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a35c894313so4251183f8f.2;
-        Mon, 09 Jun 2025 13:32:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749501171; x=1750105971; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fGp7IgckCtKKIeH8vrBlmb/psah8M0E2VWFW5sVOdaQ=;
-        b=HB0l2ac1WhaFaGJ5aZdePs1UOLmLkSSkvQNz3f7gxr566CoNi+cQgSLV4Ohe43zs8y
-         xcZ3FTnFtnC3YQ2q8F6iQWf2ar7fv5/7xKdxSD4iicOOaCoMjSzSEtBiY7h+0Jt+BZ4L
-         t2M2B4DQE1/+SbmLf+JFpTUvvEng+BDu58CcP+Gcudy/EcI5pwlp17q4wqG7pY2SIcQr
-         ofX3yTvd9GvcDKl5aRVIvzPBglA0JzcVOGMse6W5pwL77vZAXhCG6CRUA6t8oP4i2mvr
-         Pe2nO3KRg5XY0kbiGslAbzSsAyTsjjLpcHIs1/2KRFTqR3wIjkaTBFATecDiL1TDp33O
-         ggZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749501171; x=1750105971;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fGp7IgckCtKKIeH8vrBlmb/psah8M0E2VWFW5sVOdaQ=;
-        b=UV5rsfu6LHX0qEiaRxdTv7mKUJhM/MwUEUuG+jLnbWudsHZawUaDgvBWfQxo0OtkCo
-         Mb0ujChQbhvjv4APP6ej9cLGQ8Z3moO71PdpEvW3EHaTJaz2vy9XKIA+5bhDHlXuBNqD
-         nMIzOZTD5zbSEtinlPVgcObZUuxUbikKsNsHKSSaebTlNmshthGHUOBx7e3Z7Qcu7t/8
-         nRRwjnavv+gI0JhYC7azw2CP9nlCI8lAJLjKx3XfINtXX9jUicryBwU9JdrxYWtSJMJS
-         i0w9kCnjYZ1TzQnMMObMUBKc+Qb2p/XNv4TYMUSzRdESvJOd0zY64g7mcuXCMFfVz9Hv
-         mN3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU1YjfXgij5g9v7uGkOHz6REQEwBX5DGXJk73/KVki3PWhpmx5XxNoBDpPtKAk4VCCzK9w6Avjp9yYu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh4VnJa9+MlLlX6ktCLWSV9Yh/hlHjNvQdYQOaDH664kxYZJSh
-	GEVE2LTIBNXVzAfDgxFSfF6iOyxS8CYeEwJrExxmbgqnS6MrhOPGsAblNNynCYdL3r46o7ZjMvq
-	e1EncQnDRQvKlhwd9WNqxBqZ754/oyQ==
-X-Gm-Gg: ASbGncsiQQpkFGmE4CIMkfYEgEQI+kFjRBGhZTjcJYlcNWrhYKat8ufoiT7Jq9q7K4b
-	ZAnBMcQt9xub4VozvnB5K/XHApTzybwEl3U79h2SRJ+i1EDw2RFuz4xtM8PzCbXcxWoAqKSatIB
-	ch9FStRt8vmll/oonOLUGidTd6KAgdoMfdJI9KKoHhvAM=
-X-Google-Smtp-Source: AGHT+IFbS+aOU7AdeF8A8vygcuhjRtwhld9m24XdDeW/iFPxd8B3CUbbuKS3sRFQfJJM9x6sezbefdDtegkqK6+U0XQ=
-X-Received: by 2002:a05:6000:2c0f:b0:3a1:fcd6:1e6b with SMTP id
- ffacd0b85a97d-3a531cea596mr11473661f8f.57.1749501170298; Mon, 09 Jun 2025
- 13:32:50 -0700 (PDT)
+	s=arc-20240116; t=1749501325; c=relaxed/simple;
+	bh=Fs6P0u7FSsyMJlOZbjCW9SUJIuR6W5jHyZmibIaJAZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZX1VwXXM+RguEFxbRNjtrVcScQHm0XdqjofAKO5XgbyvGk2fFIZbbzKsgjUkPVsnGAxnKl8U3Ed4Ao2dXWQc/lh+5cRtoEC7hQjRGvvQQQ6iMLKuq2IUfUYmTu9D2zSB1k8lN4IXamBUGJj3rUPLJyc+acxrM/3JBXVj9EU7ork=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YrK78fOZ; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E9510442C7;
+	Mon,  9 Jun 2025 20:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749501320;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MZOonTfrv64GIV5+rDFu+eH6vhEGsf8KKT5JpDnAQ04=;
+	b=YrK78fOZJDmLOg1RDpxGMfVw6vaSzXByQyQaykHVH/1X5NOCYhIm4g1T8qzTHme003x90b
+	VnwtXQG6E3xFyRfYrU7hSlHzRD162lYU64kTsqLgoLLmF6jKimBGtw0wQ91RimxpOgxvsz
+	Fjj6+uSdffdgYJ+k6BDdyyHCA0P9A3+uFbcPcaUY6npbyjb+aGuqFx/8Od5QMD/FKV1MmY
+	DdoYGs4QkA4O7Yg7S87xmuutd6w0GyjsDlaTg8FTDDAAq9u4NSW60dKjHpuatxw/rkIStT
+	O4SWy0Zii9SUoCuFoSZrOkqHZDjkJZBGQOpTz2H74DBpOE4YfnzSVDBIFBy26w==
+Date: Mon, 9 Jun 2025 22:35:16 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/5] arm: dts: omap: Remove incorrect compatible
+ strings from device trees
+Message-ID: <20250609223516.32ec18be@kmaincent-XPS-13-7390>
+In-Reply-To: <20250609220809.3a488972@akair>
+References: <20250609-bbg-v2-0-5278026b7498@bootlin.com>
+	<20250609-bbg-v2-1-5278026b7498@bootlin.com>
+	<20250609220809.3a488972@akair>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250607212654.126412-1-alex.vinarskis@gmail.com> <8a688e9f-012e-461c-a916-f06b34fdd913@sirena.org.uk>
-In-Reply-To: <8a688e9f-012e-461c-a916-f06b34fdd913@sirena.org.uk>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Mon, 9 Jun 2025 22:32:38 +0200
-X-Gm-Features: AX0GCFsOM8DAuGFV23OsqQCHLh964vlF0-CIAi6KT4oEuTxcuiqUGnH24_qyZz8
-Message-ID: <CAMcHhXpVKaWX8guog_M+5wHfJ+6uxBteNnV1xCjcDJuGFWOCkg@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 0/2] Introduce dummy regulator consumer
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	jens.glathe@oldschoolsolutions.biz, konrad.dybcio@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdeljeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmeelhegvvgemrggvugdvmeeitgeksgemudgsfegsnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemleehvggvmegrvgguvdemiegtkegsmedusgefsgdphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudekpdhrtghpthhtoheprghnughrvggrsheskhgvmhhnrgguvgdrihhnfhhopdhrtghpthhtohepthhonhihsegrthhomhhiuggvrdgtohhmpdhrtghpthhtoheprhhosghhsehkv
+ ghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprggrrhhordhkohhskhhinhgvnhesihhkihdrfhhipdhrtghpthhtohepkhhhihhlmhgrnhessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtoheprhhoghgvrhhqsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Mon, 9 Jun 2025 at 00:33, Mark Brown <broonie@kernel.org> wrote:
->
-> On Sat, Jun 07, 2025 at 11:25:37PM +0200, Aleksandrs Vinarskis wrote:
->
-> > There are two main reasons for this driver:
-> > 1. Create a pseudo-consumer in place of real devices which are not or
-> >    cannot be described in the device-tree. Examples would be integrated
-> >    USB UVC camera (present on some arm64 laptops) or dedicated keyboard
-> >    backlight regulator (hypothetical). Instead of leaving regulator
-> >    without consumer and `regulator-always-on` property, one could bind
-> >    to dummy consumer to save some power during suspend.
->
-> Those examples both seem like physical things that exist and can have DT
-> bindings written for them, why not do that?
+Le Mon, 9 Jun 2025 22:08:09 +0200,
+Andreas Kemnade <andreas@kemnade.info> a =C3=A9crit :
 
-Hi,
+> Am Mon, 09 Jun 2025 17:43:51 +0200
+> schrieb Kory Maincent <kory.maincent@bootlin.com>:
+>=20
+> > Several device trees incorrectly included ti,am335x-bone-black or
+> > ti,am335x-bone in their compatible lists without including the
+> > corresponding bone-black-common or bone-common device tree files.
+> > Remove these incompatible strings to fix the inconsistency.
+> >  =20
+> thanks for cleaning up some mess.
+>=20
+> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > ---
+> >=20
+> > Change in v2:
+> > - New patch
+> > ---
+> >  arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts | 2 +-
+> >  arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts          | 2 +-
+> >  arch/arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts     | 2 +-
+> >  arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts       | 2 +-
+> >  arch/arm/boot/dts/ti/omap/am335x-shc.dts                | 2 +-
+> >  5 files changed, 5 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts
+> > b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts index
+> > a4f5b5262645..fb88eebb8c5d 100644 ---
+> > a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts +++
+> > b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts @@ -11,7 +11,=
+7 @@
+> > =20
+> >  / {
+> >  	model =3D "TI AM335x BeagleBone Green Wireless";
+> > -	compatible =3D "ti,am335x-bone-green-wireless",
+> > "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone",
+> > "ti,am33xx";
+> > +	compatible =3D "ti,am335x-bone-green-wireless", "ti,am335x-bone",
+> > "ti,am33xx";=20
+> this looks like too much cleanup, also according your omap.yaml stuff,
+> ti,am335x-bone-green should still be included.
 
-Thanks for your feedback. Yes, you are right, they _can_ have DT
-bindings for them. And typically that's the way to go for _embedded_
-devices that are eg. soldered on the motherboard. In this case of the
-webcam on Lenovo Thinbook 16 [1] the proposed option was to utilize
-the existing "onboard USB" driver, since it already has bindings and
-can be used for that [2]. The issue with this approach is that being a
-USB UVC device it is plug & play by definition, it does not need a
-dedicated driver, yet we want to bind it to a vreg to avoid having it
-always on. Thus, adding VID/PID to a driver just for controlling the
-regulator is not very scalable.
+Oh indeed! Thanks.
 
-Having to add VID/PID for every device that does not in fact need a
-dedicated driver has another issue - it was just confirmed that Lenovo
-Ideapad 5 uses a similar setup with USB UVC webcam, but of course
-VID/PID are different. That would require yet another driver change.
-Moreover, manufacturers are known for using multiple SKUs of parts,
-especially in these budget laptops we sometimes see as high as 3
-versions of touchpad models  listed in DSDT on the same machine. Being
-a USB device, the VID/PID are not even listed in DSDT, hence even if
-one were to use 'onboard USB' or any other dedicated driver/binding to
-hardcode _this_ camera's VID/PID, we cannot be sure whether another
-unit of the same laptop model will have the same camera and thus will
-work or not.
-
-My initial thought was like you suggest to create a USB camera driver
-with a binding instead of using VID/PID matching to be used for vreg
-control. Thinking one step further, this in fact has nothing to do
-with USB cameras, but rather any device that does not need to be
-described in DT as such, but we would want to have its vreg
-controlled.
-
->
-> > 2. A great development tool.
->
-> That's what the userspace consumer is there for...
-
-Fair point.
-
-Alex
-
-[1] https://lore.kernel.org/all/20250607-tb16-dt-v6-0-61a31914ee72@oldschoolsolutions.biz/
-[2] https://lore.kernel.org/all/20250607-tb16-dt-v6-2-61a31914ee72@oldschoolsolutions.biz/
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
