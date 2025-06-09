@@ -1,114 +1,142 @@
-Return-Path: <devicetree+bounces-183796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0432AD1CD5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE37AD1CED
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA45E16188B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 12:06:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 165CD168008
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 12:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B513254B14;
-	Mon,  9 Jun 2025 12:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E5D256C9E;
+	Mon,  9 Jun 2025 12:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GELQe7zl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349051E766F
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 12:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AB4256C9B;
+	Mon,  9 Jun 2025 12:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749470784; cv=none; b=fn8N9SYtOSpDE3iZGI0TqSt4RVmfRrcoQb0ykOIxv5OnVZxinmDW+FmFREyaQH9LbySGxnX84d0aDfh9Pryfxw7xlHZL2JOZiycBzU+0LkdLGuiW6xR1kEViIsayENbNg8Jpn8wZnmmJFfxtbZ6s1CJwjas8XyuHv0JS6LvQnd8=
+	t=1749471204; cv=none; b=nLGD8XeGwDo6F8sa7V/YBCarmGhvhxQAJeqr0vLscJOCAeJq/XscTeyd5UP6VBx7QlXXUvJOsXKaf8jdCWZTgRofZIbdH1ZO5Eui4PjbroVjbJQsS/Zowp5wi1Je5nOJcgYQH06cMN8xGymFjPd/444BbpeUpv01agpGJ4Um5mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749470784; c=relaxed/simple;
-	bh=sgkv4aiTTTlOa25f+2o8tc6D1nl+uYbgWoVrUsSkE8o=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZCn1n+1/FOLeptpKaqPIA4VsnbslB4l6167cDIr0b/Wwnz2fNpXOPL2YV92VOiIKv/f3WgSDYTYeeInC59MB3sM6HtxcVm0j91GeeKfvHCEtR5SY5BsQSX0V0+UNWjXgRCDKaG1GSSDBnX7R++eZR3qPN+xbBbFCyncJk1/lGRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 559C67ue032205
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Mon, 9 Jun 2025 20:06:07 +0800 (+08)
-	(envelope-from ben717@andestech.com)
-Received: from atctrx.andestech.com (10.0.15.173) by ATCPCS34.andestech.com
- (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 9 Jun
- 2025 20:06:07 +0800
-Date: Mon, 9 Jun 2025 20:06:07 +0800
-From: Ben Zong-You Xie <ben717@andestech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-        <alex@ghiti.fr>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <tglx@linutronix.de>,
-        <daniel.lezcano@linaro.org>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <tim609@andestech.com>
-Subject: Re: [PATCH v5 0/8] add Voyager board support
-Message-ID: <aEbOLztcBsKs84pn@atctrx.andestech.com>
-References: <20250602060747.689824-1-ben717@andestech.com>
- <20250606-booth-icky-b416c1827a43@spud>
+	s=arc-20240116; t=1749471204; c=relaxed/simple;
+	bh=PjWv2JVHoaGy0VTS2P6IlLGrSZt154xP1RtHIPoptTs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kvv+ko017wQbNuw37KAUBVKkGJNFFzzyFyAScw2AdV/1rMMVyiwfXkjxts6sLbSgYWlnrvYo9wTx31NqfNpNC7NSW0WbSZLrb9n4VQ4jAE9ef9/y848KSKlPT2YjmUyQ8P5yWcYCLydz0WJh3BQlIpOo1nxHbifcaV7c+j2YrVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GELQe7zl; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=NueSzK31DadYmmhRVawstIJJP48eqaOR7oYF5vEnWFE=; b=GELQe7zlFulZ3w8scQGOg8Bdph
+	qmSuWlEQovDrrtDkxsJHB8b7o9FWIvW5gzD/DF+r0DMgiYc5LOhBBw+OhvM2B1pPGkUzM7riKoSc7
+	xsFzUDNgO29L1XHNB9QZWzUSYJBTUV4grY00EkB+ig27NwqE82kIMJl39FuFa8HLAvVQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uObMx-00F9CK-5J; Mon, 09 Jun 2025 14:12:51 +0200
+Date: Mon, 9 Jun 2025 14:12:51 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: linux@fw-web.de, daniel@makrotopia.org, myungjoo.ham@samsung.com,
+	kyungmin.park@samsung.com, cw00.choi@samsung.com, djakov@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, jia-wei.chang@mediatek.com,
+	johnson.wang@mediatek.com, arinc.unal@arinc9.com,
+	Landen.Chao@mediatek.com, dqfext@gmail.com, sean.wang@mediatek.com,
+	lorenzo@kernel.org, nbd@nbd.name, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: Re: [PATCH v3 06/13] arm64: dts: mediatek: mt7988: add basic
+ ethernet-nodes
+Message-ID: <9d27e0d3-5ecb-4dcd-b8aa-d4e0affbb915@lunn.ch>
+References: <20250608211452.72920-1-linux@fw-web.de>
+ <20250608211452.72920-7-linux@fw-web.de>
+ <cc73b532-f31b-443e-8127-0e5667c3f9c3@lunn.ch>
+ <trinity-87fadcdb-eee3-4e66-b62d-5cef65f1462d-1749464918307@trinity-msg-rest-gmx-gmx-live-5d9b465786-mldbm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250606-booth-icky-b416c1827a43@spud>
-User-Agent: Mutt/2.1.4 (2021-12-11)
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 559C67ue032205
+In-Reply-To: <trinity-87fadcdb-eee3-4e66-b62d-5cef65f1462d-1749464918307@trinity-msg-rest-gmx-gmx-live-5d9b465786-mldbm>
 
-On Fri, Jun 06, 2025 at 05:00:06PM +0100, Conor Dooley wrote:
-> [EXTERNAL MAIL]
-
-> Date: Fri, 6 Jun 2025 17:00:06 +0100
-> From: Conor Dooley <conor@kernel.org>
-> To: Ben Zong-You Xie <ben717@andestech.com>
-> Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
->  alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
->  tglx@linutronix.de, daniel.lezcano@linaro.org,
->  prabhakar.mahadev-lad.rj@bp.renesas.com, devicetree@vger.kernel.org,
->  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
->  tim609@andestech.com
-> Subject: Re: [PATCH v5 0/8] add Voyager board support
-> 
-> On Mon, Jun 02, 2025 at 02:07:39PM +0800, Ben Zong-You Xie wrote:
-> > The Voyager is a 9.6” x 9.6” Micro ATX form factor development board
-> > including Andes QiLai SoC. This patch series adds minimal device tree
-> > files for the QiLai SoC and the Voyager board [1].
+> > > +			gmac0: mac@0 {
+> > > +				compatible = "mediatek,eth-mac";
+> > > +				reg = <0>;
+> > > +				phy-mode = "internal";
+> > > +
+> > > +				fixed-link {
+> > > +					speed = <10000>;
+> > > +					full-duplex;
+> > > +					pause;
+> > > +				};
 > > 
-> > Now only support basic uart drivers to boot up into a basic console. Other
-> > features will be added later.
+> > Maybe i've asked this before? What is on the other end of this link?
+> > phy-mode internal and fixed link seems an odd combination. It might
+> > just need some comments, if this is internally connected to a switch.
+> 
+> yes you've asked in v1 and i responded :)
+> 
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20250511141942.10284-9-linux@fw-web.de/
+> 
+> connected to internal (mt7530) switch. Which kind of comment do you want here? Only "connected to internal switch"
+> or some more details?
+
+"Connected to internal switch" will do. The word switch explains the
+fixed-link, and internal the phy-mode.
+
+It is not the case here, but i've seen DT misused like this because
+the MAC is connected to a PHY and there is no PHY driver yet, so a
+fixed link is used instead.
+
+> > > +			mdio_bus: mdio-bus {
+> > > +				#address-cells = <1>;
+> > > +				#size-cells = <0>;
+> > > +
+> > > +				/* internal 2.5G PHY */
+> > > +				int_2p5g_phy: ethernet-phy@f {
+> > > +					reg = <15>;
 > > 
-> > [1] https://www.andestech.com/en/products-solutions/andeshape-platforms/qilai-chip/
+> > It is a bit odd mixing hex and decimal.
 > 
-> Ball is in your court now, after rc1 make a tree and get it in
-> linux-next, and then send a pr to soc@kernel.org with this new content.
-> Perhaps the defconfig should go separately, I can take that one if you
-> want.
+> do you prefer hex or decimal for both? for r3mini i used decimal for both, so i would change unit-address
+> to 15.
+
+I suspect decimal is more common, but i don't care.
+
 > 
-> Cheers,
-> Conor.
+> > > +					compatible = "ethernet-phy-ieee802.3-c45";
+> > 
+> > I _think_ the coding standard say the compatible should be first.
+> 
+> i can move this up of course
+> 
+> > > +					phy-mode = "internal";
+> > 
+> > A phy should not have a phy-mode.
+> 
+> not sure if this is needed for mt7988 internal 2.5g phy driver, but seems not when i look at the driver
+> (drivers/net/phy/mediatek/mtk-2p5ge.c). The switch phys also use this and also here i do not see any
+> access in the driver (drivers/net/dsa/mt7530-mmio.c + mt7530.c) on a quick look.
+> Afaik binding required the property and should be read by phylink (to be not unknown, but looks like
+> handled the same way).
 
-Hi Conor,
+Which binding requires this? This is a PHY node, but i don't see
+anything about it in ethernet-phy.yaml.
 
-Thanks for your guidance on these patches. I will send a PR to
-soc@kernel.org as you suggested.
-
-For the defconfig patch, I'm happy for you to handle it. Just let me
-know if there's anything specific you'd like me to include.
-
-Thanks,
-Ben
+	Andrew
 
