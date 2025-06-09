@@ -1,158 +1,91 @@
-Return-Path: <devicetree+bounces-183968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87AEFAD28D3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 23:31:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82269AD28FB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 23:55:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5399A16856B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 21:31:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5155D1892A8A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 21:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F33521A457;
-	Mon,  9 Jun 2025 21:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775BB220F3E;
+	Mon,  9 Jun 2025 21:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="mPZAI9Fd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mctYzr1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21D0B221726;
-	Mon,  9 Jun 2025 21:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBBE21D587;
+	Mon,  9 Jun 2025 21:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749504679; cv=none; b=YmcIiO/SeZPHffw8TJlD/KR8+lRlAJGGSUEF6PEzPwYcOZPhEMNhYPGbWTiCcC2F/X968HRMn0PQ3ReZqbLW4Xq4FyTBqzjXlVIjghYI8BgXYGMYD6C/VNUmS7zO/05IdsqXw05V423KbK/ccqNrU8vO983knBmCpybC1n5dX0A=
+	t=1749506107; cv=none; b=r4matr1ZVy6RnOvWbPO4RXOrwKsy/LaogFAg7hvMv3QAaLceYVqAiWZ56qHrHBWtJQbXDGHfrJf9EFcWdhTP/LmPSUmX8Gd57kjHE7z2sgJCUEk8KBqssuKFB2Mf6d3ss7eWO50oCn8KlqhCWk5yVIQWkoTCWxsJOU69uREESu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749504679; c=relaxed/simple;
-	bh=adVcvFQAO98qXYOyxqASBRwBadBn9tp/mRSFQhpO32M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KQYj0UwNm0bXlB4FuOaTjNJOzMLrWHXVbq4wZsyarKTaSC5GHeoRcg3rW0gH3wt/odQir/VMGIocilYdHeOGrT0lzSL3Z1J2dDCime2bOHTa7xKyyx9RBmMl2u2f8Z9f6VFUnRtQ3in91Vgt1Io3Mkqizb9UTpoUh9YB6aooIvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=mPZAI9Fd; arc=none smtp.client-ip=192.19.144.205
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id BF601C0019E2;
-	Mon,  9 Jun 2025 14:23:58 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com BF601C0019E2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1749504238;
-	bh=adVcvFQAO98qXYOyxqASBRwBadBn9tp/mRSFQhpO32M=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mPZAI9Fdeb9/EgKBHpCtWjKc3OoLaRsb/rLRLFFLq+cWDqiwsJNUFItSPmPEAfMaR
-	 RSiYnWV+CyPcFLBYzhdTU2InOFo8k31OC3TGgemH927x8hsr9G7VMs2whXU/5CS1WN
-	 ATXUyObwvOeCwlzqOUxW1C6h1HWvJNQKhy+9lwdU=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 747551800051E;
-	Mon,  9 Jun 2025 14:23:58 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: linux-kernel@vger.kernel.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE)
-Subject: [PATCH v2 2/2] memory: brcmstb_memc: Simplify compatible matching
-Date: Mon,  9 Jun 2025 14:23:56 -0700
-Message-ID: <20250609212356.2264244-3-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250609212356.2264244-1-florian.fainelli@broadcom.com>
-References: <20250609212356.2264244-1-florian.fainelli@broadcom.com>
+	s=arc-20240116; t=1749506107; c=relaxed/simple;
+	bh=tEg6PR5QER8nznaQf7QFJoHg+OzeWOX4wO8uqnYGdc8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oi92qOncAt1BwpPA9QLoriWfjdjdA/KHe/B838nVEoIrtx5rf+tp5cL6s9Bab7HHJ3hKTCKcjbB6SOyWZ6a3R06aIRDPT12NbbFBTpeytuUk+SP3C/tGVTAI3++TZTh62jWDUgb/hIMZdlJFLry0qX580iw0wodUmbYFBn5sbxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mctYzr1b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A6BC4CEEB;
+	Mon,  9 Jun 2025 21:55:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749506106;
+	bh=tEg6PR5QER8nznaQf7QFJoHg+OzeWOX4wO8uqnYGdc8=;
+	h=From:Subject:Date:To:Cc:From;
+	b=mctYzr1b6Khssu2nuC9T6oTY4Wv9Ij2j01N71eP93PVIafVh24HP4ThErGwYQgmAU
+	 DpCX11HIdFJT/6CNTzyZ3oyE6L0k8vAaIOcXMK4PyPGQv/uODIdrrFEfyazJAZxJEH
+	 Wv5F8T2eTRalwVxuTMw74l1DIq5btwGE8PcbOCoV4fYA5BipxJy9wn99+CC/b2E83F
+	 PXrVb9FYZs1aYIhGRu5xMPGwx7er6YF+D57kDSUtx1GjSnhYrmeP74cgfAS1P4UrOP
+	 bhQc38u9vavH3eAmG6OfKX1wWY/gNYgBzznH2R4AlOhLXVt9sZUY0PeCQnQ++TjdSX
+	 Twx/jrXTLWFxw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/2] arm64: dts: lg: DT cleanups
+Date: Mon, 09 Jun 2025 16:54:55 -0500
+Message-Id: <20250609-dt-lg-fixes-v1-0-e210e797c2d7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC9YR2gC/x3LQQqAIBBA0avIrBtQQaGuEi0sRxsIC40IxLsnL
+ R+fX6FQZiowiQqZHi58pg41CNh2lyIh+27QUhtp5Yj+xiNi4JcKOq+CtaRWIw3048r0hz7MS2s
+ f9O1Wml0AAAA=
+X-Change-ID: 20250609-dt-lg-fixes-ad1f66e1b505
+To: soc@kernel.org, Chanho Min <chanho.min@lge.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.15-dev
 
-Now that a "brcm,brcmstb-memc-ddr-rev-b.2.x" fallback compatible string
-has been defined, we can greatly simplify the matching within the driver
-to only look for that compatible string and nothing else.
+This short series fixes some arm,pl011 DT schema warnings. I noticed 
+that the lg1312 and lg1313 .dtsi files are almost identical, so I've 
+refactored them to make the fix once instead of twice.
 
-The fallback "brcm,brcmstb-memc-ddr" is also updated to assume the V21
-register layout since that is the most common nowadays.
+Arnd, You probably need to take this directly if LG maintainers don't 
+respond.
 
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/memory/brcmstb_memc.c | 56 ++---------------------------------
- 1 file changed, 2 insertions(+), 54 deletions(-)
+Rob Herring (Arm) (2):
+      arm64: dts: lg: Refactor common LG1312 and LG1313 parts
+      arm64: dts: lg: Add missing PL011 "uartclk"
 
-diff --git a/drivers/memory/brcmstb_memc.c b/drivers/memory/brcmstb_memc.c
-index c87b37e2c1f0..ba73470b1b13 100644
---- a/drivers/memory/brcmstb_memc.c
-+++ b/drivers/memory/brcmstb_memc.c
-@@ -184,62 +184,10 @@ static const struct of_device_id brcmstb_memc_of_match[] = {
- 		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.1",
- 		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
- 	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.2",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.3",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.5",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.6",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.7",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.8",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.3.0",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-b.3.1",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.0",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.1",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.2",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.3",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	{
--		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.4",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
--	},
--	/* default to the original offset */
-+	/* default to the V21 offset */
- 	{
- 		.compatible = "brcm,brcmstb-memc-ddr",
--		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V1X]
-+		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
- 	},
- 	{}
- };
+ arch/arm64/boot/dts/lg/lg1312.dtsi                 | 324 +--------------------
+ arch/arm64/boot/dts/lg/lg1313.dtsi                 | 324 +--------------------
+ .../arm64/boot/dts/lg/{lg1312.dtsi => lg131x.dtsi} |  35 +--
+ 3 files changed, 11 insertions(+), 672 deletions(-)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250609-dt-lg-fixes-ad1f66e1b505
+
+Best regards,
 -- 
-2.43.0
+Rob Herring (Arm) <robh@kernel.org>
 
 
