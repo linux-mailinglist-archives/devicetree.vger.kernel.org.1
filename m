@@ -1,156 +1,162 @@
-Return-Path: <devicetree+bounces-183716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B79AD19B2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:18:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECAE3AD19D7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:33:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F1B93A2B3B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:17:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8E18164915
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FB91DEFD9;
-	Mon,  9 Jun 2025 08:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0F224DD04;
+	Mon,  9 Jun 2025 08:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FdDdrXDU"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GOoEi8dn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD3913633F
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 08:17:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F0F211297
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 08:32:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749457075; cv=none; b=rMeDsfFsTzjN237bExIp66vu3FnuqURnmmXVRNIfxjXuoCQVnJy/k3bOp5OhNNYdEBJjab4yW+Z8DXliVAmVyFulY/QOmDiBSQy016zjKCJ6e0DCGtq07oyh8W12z3oe8AgybetC+RCsu+1/XUpXO6WQPHcS5Ah7uVJl7BqSiCE=
+	t=1749457980; cv=none; b=K4nC35xrQfEsai+zyJav3UpN9MCOk14Rf3mjIFlcWzqtD5GoE+nyzSnYzI50I+UTulY5zAdz0cB5IH2BkSwjv9ibB+MuVSZBNbCxUWS4jlvBO/1cxtk9i6rpKe/N0YIY+M55KqzuQ/kBmP7rjoZttCSrFY/9PawuIQemJKidoVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749457075; c=relaxed/simple;
-	bh=6YHW+DFdIWtllvbQlf3/6rMj2nD7j4IotHgXQvmo/Fc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=PSuMqPPjnOOzZXR+WbZK4Cl2Vp58GmGHq4SBiV+2C6hZaV9DEvCO5XjPkNkcTi5mXaFwjWZGvYdUxTyrWy2MR/m6WM2uyK473NF6M1t6el9NFZJcXEcCTn97sDlVdUDJIfH55WubZMUbMlDlLergbHr6zBYJ0ILWwOYXvMfqbjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FdDdrXDU; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ad51ba0af48so959144066b.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 01:17:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749457072; x=1750061872; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=diVPl0lQKW0yQkA4YVUek0ZBF2jN3vlUnkn9DLqfm9E=;
-        b=FdDdrXDUnN2uZ5fKr3VWZSQADIV6Wbf8PeHraG9AvEKKpcol3/dMVIQTIu+CPn7yFq
-         PzaYNJCVEXAwqrO5hGAki92mXAWDT32Ik7HoR0UX24VEUY5a4eAbe+P/h7wMpKN2cZee
-         RF6xp81jK6SVljUyGiO6YjJ1AHghq1IX/53uMVYwE+39i5pR+I43MrF/cmHhPj6V7kii
-         ucTBUz9GFTbC77zNcQNtEUn6J9q8EcToxThQ61adxVQnFspdWY5LVJ+y3McDpUVX7tzp
-         8h9SRypB5KV10F+D4psgV3HIn1rYPXcTZsVGDL5OUvmKMw3ADJxfSU9oQw9Ka5o8Up0V
-         SWLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749457072; x=1750061872;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=diVPl0lQKW0yQkA4YVUek0ZBF2jN3vlUnkn9DLqfm9E=;
-        b=v8Y2GPvf9uEMXoHLzqfyj+alDwcvpOa5927T1ppwPN/OrPSlyQJbP76NMk50UJt6fS
-         Fem3tOnbfmUnhLBcXI5F6Vcq+Xl9WZGA9CiE0ZqYlCl0GBMYHqLzAzVMrGw2EKyibehv
-         P6n2b7O68twW6FppemmDUVfoV0bdfU8LK7Jl0rL21Gy9YLmBNaXpGwHdyYX46cO1W/IS
-         XJBu7BsKIeQllxO3w/Y+s6q8SbLYPv24ipDVk/7GOmU92VFJrrB5nJn1AgaDcoLXdD8+
-         mTcxxIXFei1N3D6jQt4ZKXo9i1axD6NCQxZOY8//exe2kTPqsMBy/TJFVNRxIEJjNUiG
-         Gm/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWTcynMPJQH3M/811fZU7GRxND2oKdRdJY5HhRHkIRr22tz8jlLGMrDV/p7RHxMaDdVhcdA4vubUx2k@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzd5Bk6yuLg8qgbeDqWjqsOKYXdkelUXY4qZQ+HiDx8p6fIHlig
-	H7Glb5m48KN/FzUR9kb3Ppdx5S3tDQNtA/EQtgrpC51kZm8DnqLgBMkxNS/eU+Vrld8=
-X-Gm-Gg: ASbGnctKc3LiUAdHlJBJrNmagTIupUVv7rpy2H546VZpRJ+7rp2lAU2MrfGnbrPiDgu
-	chkgmHF1OeFJXQlt0jKygt3V6ZX/PmfSLBb4+AtCiso1Kt8mlmexMPZGpC8BE3RElusDmdK+U0V
-	Ei0e7peij657ylYmJk7NVfDQlATtWwDMtCF4c5QjTSSgF2ppT+ksm0NytuadlMjTT7HN5RPqtx7
-	KRN9ikO9RDDhkWsc/G5Zyj6GMCc+7J44nkPJlUtMNDMq0wOHNCC7/P/NoU3QOaheXDchhsIF/aT
-	aakbswp+hs8W45I6Zy0WhQg1j0dE7AwLz1fv0KAXgR1e0z3L+Nue1DGWxVy5MdTTuROH5vkk
-X-Google-Smtp-Source: AGHT+IHlo5foO57lawT0iBE8NHWy/Wh5VTZ1hRUSX/LNop16FvKZAplu9cVdl/qMvDgzI+koFNCPcw==
-X-Received: by 2002:a17:907:cd0d:b0:add:ee2c:7307 with SMTP id a640c23a62f3a-ade075bedd1mr1646702666b.6.1749457071737;
-        Mon, 09 Jun 2025 01:17:51 -0700 (PDT)
-Received: from [192.168.0.251] ([79.115.63.158])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc78f47sm511997066b.153.2025.06.09.01.17.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jun 2025 01:17:51 -0700 (PDT)
-Message-ID: <a15fd377-1828-4cb5-8c7b-7d26ea2a7733@linaro.org>
-Date: Mon, 9 Jun 2025 09:17:48 +0100
+	s=arc-20240116; t=1749457980; c=relaxed/simple;
+	bh=YvbeRS0CNwTQZDVWn3o5Ny73fqKXWOdsBfUGNRzl0Jw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=ZgF37sC3LA2MMZotrpe0hgzdWrnXAJe4Pavua/8j/afSw5qpv/xCci4Ggn4FTEVMuwEH2aZ3YK41cT5p5WJapur6skTQRjkJTNodm6KFYd8Fr5rVLn2kyXEQvPJ9twZ2uZkEvdCCQS5OiTOFvkCx7DWHWC25aFLAx+5hi2NZrU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GOoEi8dn; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250609083255epoutp04f7813a1c9735f4f0822e3bb88de24458~HUsJ03CZA0212702127epoutp04S
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 08:32:55 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250609083255epoutp04f7813a1c9735f4f0822e3bb88de24458~HUsJ03CZA0212702127epoutp04S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749457975;
+	bh=raYhcpxvaUZ+U3DFFXokA1FxIAXMkZbDHQQsHnlKWKI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=GOoEi8dngFVNeJONQ9mfq/T09fwR7WYEGOMbyQK+/rtoK0dGisjvx6pEr8hFVh6At
+	 ZfK9QzcjKwu+ZraOf0+tatFdzdLep5bvLjWdCBJlcycDJocNu+xUafHoNDqc2Y42Vu
+	 xv6kbPMU863HBsH29OktGcSRHPjWjLGG+hVYZ8j0=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250609083254epcas5p4582a8ece71f15b0d09c96fde109aabc7~HUsJBovem0515605156epcas5p49;
+	Mon,  9 Jun 2025 08:32:54 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.183]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4bG4tX4gGSz6B9m9; Mon,  9 Jun
+	2025 08:32:52 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250609083251epcas5p1380bd5ffe9b5b91f776a1c7f48b317df~HUsGa3UxF3208532085epcas5p1d;
+	Mon,  9 Jun 2025 08:32:51 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250609083249epsmtip1185a8a7cdb024a1a522bad1061beae6f~HUsEApVOx2620026200epsmtip1X;
+	Mon,  9 Jun 2025 08:32:49 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Raghav Sharma'" <raghav.s@samsung.com>, <krzk@kernel.org>,
+	<s.nawrocki@samsung.com>, <cw00.choi@samsung.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <richardcochran@gmail.com>,
+	<sunyeal.hong@samsung.com>, <shin.son@samsung.com>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<chandan.vn@samsung.com>, <karthik.sun@samsung.com>,
+	<dev.tailor@samsung.com>
+In-Reply-To: <20250529112640.1646740-5-raghav.s@samsung.com>
+Subject: RE: [PATCH v3 4/4] arm64: dts: exynosautov920: add CMU_HSI2 clock
+ DT nodes
+Date: Mon, 9 Jun 2025 14:02:47 +0530
+Message-ID: <047901dbd919$16a39270$43eab750$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] ARM: dts: microchip: sama5d27_wlsom1: Add
- nvmem-layout in QSPI for EUI48 MAC Address
-To: Manikandan Muralidharan <manikandan.m@microchip.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
- pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com,
- richard@nod.at, vigneshr@ti.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org
-References: <20250521070336.402202-1-manikandan.m@microchip.com>
- <20250521070336.402202-4-manikandan.m@microchip.com>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20250521070336.402202-4-manikandan.m@microchip.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRyuXPQglR2pg1tLiplohNF2WAzQHWb0Q+AhHSDDezb1SDcA==
+Content-Language: en-us
+X-CMS-MailID: 20250609083251epcas5p1380bd5ffe9b5b91f776a1c7f48b317df
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250529111718epcas5p4572d6aa7ae959b585b658d5a94f2b4ef
+References: <20250529112640.1646740-1-raghav.s@samsung.com>
+	<CGME20250529111718epcas5p4572d6aa7ae959b585b658d5a94f2b4ef@epcas5p4.samsung.com>
+	<20250529112640.1646740-5-raghav.s@samsung.com>
 
+Hi Raghav
 
-
-On 5/21/25 8:03 AM, Manikandan Muralidharan wrote:
-> Add nvmem-layout in QSPI to read the EUI48 Mac address by the
-> net drivers using the nvmem property.The offset is set to 0x0
-> since the factory programmed address is available in the
-> resource managed space and the size determine if the requested
-> address is of EUI48 (0x6) or EUI-64 (0x8) type.
-> This is useful for cases where U-Boot is skipped and the Ethernet
-> MAC address is needed to be configured by the kernel
+> -----Original Message-----
+> From: Raghav Sharma <raghav.s@samsung.com>
+> Sent: Thursday, May 29, 2025 4:57 PM
+> To: krzk@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
+> alim.akhtar@samsung.com; mturquette@baylibre.com; sboyd@kernel.org;
+> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
+> sunyeal.hong@samsung.com; shin.son@samsung.com
+> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; netdev@vger.kernel.org;
+> chandan.vn@samsung.com; karthik.sun@samsung.com;
+> dev.tailor@samsung.com; Raghav Sharma <raghav.s@samsung.com>
+> Subject: [PATCH v3 4/4] arm64: dts: exynosautov920: add CMU_HSI2 clock DT
+> nodes
 > 
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> Add required dt node for CMU_HSI2 block, which provides clocks to ufs and
+> ethernet IPs
+> 
+> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 > ---
->  .../boot/dts/microchip/at91-sama5d27_wlsom1.dtsi    | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+
+>  arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 17
+> +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> index b34c5072425a..be06df1b7d66 100644
-> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> @@ -210,6 +210,9 @@ &macb0 {
->  	#size-cells = <0>;
->  	phy-mode = "rmii";
->  
-> +	nvmem-cells = <&mac_address_eui48>;
-> +	nvmem-cell-names = "mac-address";
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> index 2cb8041c8a9f..7890373f5da0 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> @@ -1048,6 +1048,23 @@ pinctrl_hsi1: pinctrl@16450000 {
+>  			interrupts = <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+> 
+> +		cmu_hsi2: clock-controller@16b00000 {
+> +			compatible = "samsung,exynosautov920-cmu-hsi2";
+> +			reg = <0x16b00000 0x8000>;
+> +			#clock-cells = <1>;
 > +
->  	ethernet-phy@0 {
->  		reg = <0x0>;
->  		interrupt-parent = <&pioA>;
-> @@ -238,6 +241,16 @@ qspi1_flash: flash@0 {
->  		m25p,fast-read;
->  		status = "disabled";
->  
-> +		nvmem-layout {
-> +			compatible = "fixed-layout";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			mac_address_eui48: mac-address@0 {
-> +				reg = <0x0 0x6>;
-> +			};
-
-How would this work if in the future the mchp vendor table adds some
-other info that needs to be referenced as nvmem? How do you distinguish
-the info from the table?
-Would it be possible to have some kind of address and size to reference
-the SFDP?
-
+> +			clocks = <&xtcxo>,
+> +				 <&cmu_top DOUT_CLKCMU_HSI2_NOC>,
+> +				 <&cmu_top
+> DOUT_CLKCMU_HSI2_NOC_UFS>,
+> +				 <&cmu_top
+> DOUT_CLKCMU_HSI2_UFS_EMBD>,
+> +				 <&cmu_top
+> DOUT_CLKCMU_HSI2_ETHERNET>;
+> +			clock-names = "oscclk",
+> +				      "noc",
+> +				      "ufs",
+> +				      "embd",
+> +				      "ethernet";
 > +		};
 > +
->  		partitions {
->  			compatible = "fixed-partitions";
->  			#address-cells = <1>;
+>  		pinctrl_hsi2: pinctrl@16c10000 {
+>  			compatible = "samsung,exynosautov920-pinctrl";
+>  			reg = <0x16c10000 0x10000>;
+> --
+> 2.34.1
+
 
 
