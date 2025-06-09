@@ -1,172 +1,112 @@
-Return-Path: <devicetree+bounces-183791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB28DAD1C9D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F7EAD1CBB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 13:59:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7600916B2F5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 11:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6C8169B42
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 11:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223CF257440;
-	Mon,  9 Jun 2025 11:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA45253F16;
+	Mon,  9 Jun 2025 11:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D9v2g+/m"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tW3C2TkU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6944256C7C;
-	Mon,  9 Jun 2025 11:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53821AA782;
+	Mon,  9 Jun 2025 11:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749469491; cv=none; b=bqSRv4G564rcZ1Td505qLONCTBEecX4luAlN0vRN/arAWly2MYvd8lsrKlN7SEMBxXNda23GZqe99EvHhqpIHbM/FiISaYP9sP8ov3xvnUWRSGpYaidJr4i/fpXeqH+628y3XRoje2UIrFdBG+t3YU0ZRVTXwub4FAiRA5Vt19A=
+	t=1749470382; cv=none; b=HoBMEq+6f6rgWKncwwmRm+prrD2WCHbgnZpZkERiXOU0m6vAOERHNkZgsJq3NGJYv5KAT6JJKITOIlGhZqifchuD/rYzxLdI2x5CeDzlYwZ9Vp/8wXqu1vSs6lhboRB6OVy2vSBdEW1isQxJGZq40KHIKoHNdvjypOhTy/LrMsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749469491; c=relaxed/simple;
-	bh=YW0aYGk44OBGXMXwnXBPhhKQgB+lh/nINEBWmVaTupA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J0YcDu/XYKIfdw5NKA10Opr079iKzqq0Bv5FXDG5/PbVePTcGgqFvymO3OilhT0rRj6RzteB83ql4VQLrN67dBBMnwxs8/bO9G4eJewSpS1TzkUnhBQZfGoKnRmaMwoWlht/K9+7t+Eqf97D7bBMMsh3aqfMRflfxkvJAkrBr6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D9v2g+/m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 22CC7C4AF10;
-	Mon,  9 Jun 2025 11:44:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749469491;
-	bh=YW0aYGk44OBGXMXwnXBPhhKQgB+lh/nINEBWmVaTupA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=D9v2g+/mNvGdWqIGkeep2Ubl7BtwISFnfdV7Ta2z51F83v88MrufnKHnAXizkbRpC
-	 1kmyG+GM82WqAuepKI6KQwBAV/2fQs1oVmOywKbsIwi8vjz0uSLmxieLq16ZQOOl8o
-	 ON5nfTvLMJu1lBwI+nnGm8w46zCr4Y1N67pHg7nmymKHDiQWesZIojG/n7GtZS54so
-	 SUi/AOr7RJz86ydMANk3/cibUgGv8pVopYRgS/DnucaUWYHFOnCzLjy/m69mGxl65v
-	 Dp3/3l2c6f3TFean5Y7eGYg5CIWqCNGr5Wvt+7X4Ag0QX0Q8VMZv98r+PJ9F7nPO8/
-	 JCAHJkk/1tswA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19D49C5B552;
-	Mon,  9 Jun 2025 11:44:51 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Mon, 09 Jun 2025 15:44:38 +0400
-Subject: [PATCH v4 5/5] arm64: dts: qcom: ipq5018: Add GE PHY to internal
- mdio bus
+	s=arc-20240116; t=1749470382; c=relaxed/simple;
+	bh=nRcYijPZLSRyXuUwblns5rumyAR5s6CpxM0gY4SkUug=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=N4/M470Hx0ThFg9OfUvLp6E45SUN/NMb/vPWgigwjTGMk6ORfR1AqL2LElooUJchX/V0Mt7TNfr+uZJkxriq+KZ9CPwe7itwG19PJcK5DexhzaUoYstfPD+YoOQG8FgJx+KW4nzvnhH6/16eDQLHQlU8KHp1Hmr1nu5pyZcCbqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tW3C2TkU; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 559BxQQ1782641;
+	Mon, 9 Jun 2025 06:59:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1749470366;
+	bh=CT9OzqLKGP3slmO04oTd4+ZqOpXmjF3nDMw40m4fEEI=;
+	h=From:To:CC:Subject:Date;
+	b=tW3C2TkU8OHhNymxqYVkfkYyjo/sg4nwiGEI2rTWt9vMMb1iWjWcdxeeo3fLQzdyC
+	 G5bj9WwvPOfkZ8AYwpn63yE52ScLae7RTJPZr5aKnH7HHdZfu7CsEnwQLsF6KFLYWG
+	 ezx0JarxACRJi+7mezAL3QzTbVPnc/GizcGa6PLE=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 559BxQ4x060736
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 9 Jun 2025 06:59:26 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
+ Jun 2025 06:59:26 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 9 Jun 2025 06:59:26 -0500
+Received: from hp-z2-tower.dhcp.ti.com (hp-z2-tower.dhcp.ti.com [172.24.227.4])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 559BxM2w1361878;
+	Mon, 9 Jun 2025 06:59:22 -0500
+From: Hrushikesh Salunke <h-salunke@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <h-salunke@ti.com>, <danishanwar@ti.com>, <srk@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Add idle-states for remaining SERDES instances
+Date: Mon, 9 Jun 2025 17:29:21 +0530
+Message-ID: <20250609115921.2380611-1-h-salunke@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250609-ipq5018-ge-phy-v4-5-1d3a125282c3@outlook.com>
-References: <20250609-ipq5018-ge-phy-v4-0-1d3a125282c3@outlook.com>
-In-Reply-To: <20250609-ipq5018-ge-phy-v4-0-1d3a125282c3@outlook.com>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-clk@vger.kernel.org, George Moussalem <george.moussalem@outlook.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749469488; l=2285;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=hFpy0osU/0n+A52muRC0D3Drst6JCZAX5hmtJZDrLks=;
- b=xF58fHaVe5CdBWFWgt/+XyW54YYT7Y+h9PffZNYc34X3UhJbm3MdOio9g8b+5Sr0s/pUDINcH
- o0iDVafNj+YDHqToxyrAFB/0nJDAiZkxDgdECVJ12CUfALaUIiFwUbX
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: George Moussalem <george.moussalem@outlook.com>
+In AM69 SoC there are 4 instances of the 4 lane SERDES. So in
+"serdes_ln_ctrl" node there are total 16 entries in "mux-reg-mask"
+property. But "idle-states" is defined only for the lanes of first two
+SERDES instances. For completeness, set the "idle-states" of lanes of
+remaining SERDES instances to a default value of "unused".
 
-The IPQ5018 SoC contains an internal GE PHY, always at phy address 7.
-As such, let's add the GE PHY node to the SoC dtsi.
-
-The LDO controller found in the SoC must be enabled to provide constant
-low voltages to the PHY. The mdio-ipq4019 driver already has support
-for this, so adding the appropriate TCSR register offset.
-
-In addition, the GE PHY outputs both the RX and TX clocks to the GCC
-which gate controls them and routes them back to the PHY itself.
-So let's create two DT fixed clocks and register them in the GCC node.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
 ---
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 26 +++++++++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+This patch is based on commit
+475c850a7fdd  Add linux-next specific files for 20250606
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 03ebc3e305b267c98a034c41ce47a39269afce75..d47ad62b01991fafa51e7082bd1fcf6670d9b0bc 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -16,6 +16,18 @@ / {
- 	#size-cells = <2>;
- 
- 	clocks {
-+		gephy_rx_clk: gephy-rx-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <125000000>;
-+			#clock-cells = <0>;
-+		};
-+
-+		gephy_tx_clk: gephy-tx-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <125000000>;
-+			#clock-cells = <0>;
-+		};
-+
- 		sleep_clk: sleep-clk {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
-@@ -184,7 +196,8 @@ pcie0_phy: phy@86000 {
- 
- 		mdio0: mdio@88000 {
- 			compatible = "qcom,ipq5018-mdio";
--			reg = <0x00088000 0x64>;
-+			reg = <0x00088000 0x64>,
-+			      <0x019475c4 0x4>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
-@@ -192,6 +205,13 @@ mdio0: mdio@88000 {
- 			clock-names = "gcc_mdio_ahb_clk";
- 
- 			status = "disabled";
-+
-+			ge_phy: ethernet-phy@7 {
-+				compatible = "ethernet-phy-id004d.d0c0";
-+				reg = <7>;
-+
-+				resets = <&gcc GCC_GEPHY_MISC_ARES>;
-+			};
- 		};
- 
- 		mdio1: mdio@90000 {
-@@ -232,8 +252,8 @@ gcc: clock-controller@1800000 {
- 				 <&pcie0_phy>,
- 				 <&pcie1_phy>,
- 				 <0>,
--				 <0>,
--				 <0>,
-+				 <&gephy_rx_clk>,
-+				 <&gephy_tx_clk>,
- 				 <0>,
- 				 <0>;
- 			#clock-cells = <1>;
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index f28375629739..dcd7eb079766 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -1295,7 +1295,11 @@ &serdes_ln_ctrl {
+ 	idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
+ 		      <J784S4_SERDES0_LANE2_PCIE3_LANE0>, <J784S4_SERDES0_LANE3_USB>,
+ 			<J784S4_SERDES1_LANE0_PCIE0_LANE0>, <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
+-			<J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>;
++			<J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
++			<J784S4_SERDES2_LANE0_IP2_UNUSED>, <J784S4_SERDES2_LANE1_IP2_UNUSED>,
++			<J784S4_SERDES2_LANE2_IP3_UNUSED>, <J784S4_SERDES2_LANE3_IP3_UNUSED>,
++			<J784S4_SERDES4_LANE0_IP3_UNUSED>, <J784S4_SERDES4_LANE1_IP3_UNUSED>,
++			<J784S4_SERDES4_LANE2_IP3_UNUSED>, <J784S4_SERDES4_LANE3_IP4_UNUSED>;
+ };
+ 
+ &serdes_wiz0 {
 -- 
-2.49.0
-
+2.34.1
 
 
