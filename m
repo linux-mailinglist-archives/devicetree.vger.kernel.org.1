@@ -1,184 +1,120 @@
-Return-Path: <devicetree+bounces-183684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586CAAD1771
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 05:17:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73CB8AD179A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 06:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F71188BB4A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 03:17:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70A593A717A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 04:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98589280328;
-	Mon,  9 Jun 2025 03:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F7991E9B31;
+	Mon,  9 Jun 2025 04:05:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rN3/KtQr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023124.outbound.protection.outlook.com [52.101.127.124])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F7B27FD7B;
-	Mon,  9 Jun 2025 03:16:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.124
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749439000; cv=fail; b=gi2Tfxo6TuoBR+w0dFfkpuKQp3WlTMG+p8t+0VFeoy+YbALDm+s+IDN7P+HWpHti2HfFNZOgaTn/kYfa/rPXAOKCMuXrRzgYCD/Y7kS3JCmlvtCuyPHjuLo90Q/4oTDQVKxwlpyWCN7J0w0A74xj9atza0u2+r3bgZy57p/WX98=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749439000; c=relaxed/simple;
-	bh=tMmOSqfNgOrSQtRP0F2jvK4f1idy+21oUbh12OoY8bs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jv1Kztlo2ud9XtgBbhtjBL2ydlMgp6xbmURgofh+QLZN3lZs40/Ok40pF1gbDRcoa7RcyD7Bfp+TaolEKapqXSbOu8wAoJJAKh7DYrzEv+ML1qT7VY6gLG2ChvDaDyN3uIjoM1/EpVPhYhjFpDNxHKgH5iaoSUNrp7Ng2y6LeHg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lKpihub5trKoZxoyghF5iYA/4szc3PEU2kC17OqwJeA0Z7OVGIMzNtHiLQ/O8QWRwgQ+pHKIUMxROjn3YHfzk93zgLQfyI9tTgV2GYicaWMWxgnRLHHTre04N0CKfP8oKbt+RwohI9kPricxOlWCkF8yetjWpSkoPFk2seituPoFjGYUSSKhygE4/tS2SInICiajFichgS6JL+limOVYJwExGpZ1IkmtNLpaMm99FTIscmNWDiPW6Xem1PeZvKPxldwT/rh4CAwK2QMCTU9hDy8l1chZtakqV1eWTUc26my0NaIsCmNMU0RGf1D3peB9293uxeZh1yXcaQv/FRwOGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zCs9a5p5Td23Mt561yilMwolyjDmNJQXYXB86a3+F0g=;
- b=E+V445mL4e7ekgKRf+xDdc2fbsL+gimtwKLje8XfzIH/DKvnr7HE4xoSRN0wyMCCEeA0ePuebvgCY0iA8Wjgd2DhJC07CoXHe02gNxzrdXdQKFlr4EGgmojHioc9Texl0+no4iMDWb3Bm4lF+aA66mDbVFAz8vWA7hT5xRQ4nSwJEcIeBmGF734Dj56sDsj7TbY3s3xDaE5n+btDVMy/EmfAOkUKp3QxgA2WU3RzYsJwD/YBdEDFgLulmLLbEZZ7vdQ1ZQZ4dmZ52FHG/6x9roJxBk6KVXJyH8pNifFsuJfq2se3z2hdkRfbHnuNHDmc0sGX/dvxI1wz/8bFAYFIDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from TYBP286CA0025.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:10a::13)
- by SI6PR06MB7165.apcprd06.prod.outlook.com (2603:1096:4:252::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.27; Mon, 9 Jun
- 2025 03:16:30 +0000
-Received: from OSA0EPF000000CA.apcprd02.prod.outlook.com
- (2603:1096:404:10a:cafe::71) by TYBP286CA0025.outlook.office365.com
- (2603:1096:404:10a::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.35 via Frontend Transport; Mon,
- 9 Jun 2025 03:16:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000CA.mail.protection.outlook.com (10.167.240.56) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8835.15 via Frontend Transport; Mon, 9 Jun 2025 03:16:28 +0000
-Received: from localhost.localdomain (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 068824160CAC;
-	Mon,  9 Jun 2025 11:16:28 +0800 (CST)
-From: Peter Chen <peter.chen@cixtech.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de,
-	jassisinghbrar@gmail.com
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	maz@kernel.org,
-	sudeep.holla@arm.com,
-	kajetan.puchalski@arm.com,
-	eballetb@redhat.com,
-	Peter Chen <peter.chen@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: [PATCH v9 9/9] MAINTAINERS: Add CIX SoC maintainer entry
-Date: Mon,  9 Jun 2025 11:16:27 +0800
-Message-Id: <20250609031627.1605851-10-peter.chen@cixtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250609031627.1605851-1-peter.chen@cixtech.com>
-References: <20250609031627.1605851-1-peter.chen@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BCD258CE5
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 04:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749441955; cv=none; b=AawkmjUJF3mOat3FGhMh+NVKwhtcxp5VVNwLVKPzHB/ikvAGL2mV/DcjCU27rRX4RvNmpWosWdCIqIw2sMUYYteZEE/Ho7r4fAw42V2KiNdtLoBfaL8XksTcb0RjYs+bFEMGfq1qLhhjxqxjBjcUFL9FWp7KQrLgXJkJ3jW4UN4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749441955; c=relaxed/simple;
+	bh=L6+1C4CzYabfehH0G4+8SaStDGBeWyrLmUOvSeRJYh4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=DGVF+e4HGuoPDzugKL4Gro7hzB5fU1gCBngNhtwgfFJS9oomoLl5pM9nMbhnajpEXJOjlf1JoNUzzCvEcFxLxz1KfSq6ymyvl5W9wcFoRVLofFtmbLGp0iW9J54+V8CpQbps0HCi7DL43Op1Upp2HiE3vLvPSGUN157eWYrHgyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rN3/KtQr; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250609040550epoutp040bec9af7d6a21619d51c6272166f4a32~HRC9jMTWM2141121411epoutp048
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 04:05:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250609040550epoutp040bec9af7d6a21619d51c6272166f4a32~HRC9jMTWM2141121411epoutp048
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749441950;
+	bh=W0Ty8uQC2ggf7ArBdnQeDtKQVIMY78+qF9VWC+NFGdo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=rN3/KtQrvZoO5EJWpXFAE+yCgtvoPe7amkm1tf5cMF7fvZ8T0UTH9fjy4usrOHJAh
+	 NpvEbnOX/rv9zDxq2MAyKUMi3Yaxq6RwNNpFqVXAjg7IFwLMnndpieOCpPNZacU381
+	 079KqPrn/a2xLCYM8AuH05zDe665qLdT1Lp6xaPs=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250609040550epcas5p44ffe74ab72a0659449132c1e2595348c~HRC9FgbNP1796017960epcas5p4L;
+	Mon,  9 Jun 2025 04:05:50 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.175]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4bFyyH4tpDz2SSKY; Mon,  9 Jun
+	2025 04:05:43 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250609040543epcas5p4a339f4920addf5bd274e54778172e78b~HRC2pfZzh2015720157epcas5p4t;
+	Mon,  9 Jun 2025 04:05:43 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250609040540epsmtip23ac06c81db24768155a370ce8cdcaa13~HRC0J7VFH1644916449epsmtip2m;
+	Mon,  9 Jun 2025 04:05:40 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Raghav Sharma'" <raghav.s@samsung.com>, <krzk@kernel.org>,
+	<s.nawrocki@samsung.com>, <cw00.choi@samsung.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <richardcochran@gmail.com>,
+	<sunyeal.hong@samsung.com>, <shin.son@samsung.com>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<chandan.vn@samsung.com>, <karthik.sun@samsung.com>,
+	<dev.tailor@samsung.com>
+In-Reply-To: <20250529112640.1646740-2-raghav.s@samsung.com>
+Subject: RE: [PATCH v3 1/4] dt-bindings: clock: exynosautov920: sort clock
+ definitions
+Date: Mon, 9 Jun 2025 09:35:38 +0530
+Message-ID: <03cd01dbd8f3$c4c18130$4e448390$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000CA:EE_|SI6PR06MB7165:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: f9f0f801-f79e-4895-48e2-08dda70406bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?lhBDJ+9LGSQrZtKFkam6Ovrl62Y43LIAdJWNjBWqxY/IOyON4ylqm63J3a1E?=
- =?us-ascii?Q?gtXpu/9l6z8PynAR3HLUuXyr9uKawXXsfFZxE1l7CLe3p2aPSkUzsUvjDvde?=
- =?us-ascii?Q?CqKxhYuRACzH+OraHpRAW1HrEE9XxKPYzTXkUT+yMy7Q5gQ95qz4pJLgEBmN?=
- =?us-ascii?Q?TdrFhSvJTjAKtXckY193FTlsxiaw4fvD6sWuc432bWPJaCcD0iazybtex/YF?=
- =?us-ascii?Q?67v0xlYwNiD9Kv4CY6JfR4TvRRInrqkz0XpDLiOBwBWcojOWBfR00Uj5Az5r?=
- =?us-ascii?Q?UI+Ohxlt4jRjANf7XyZJCmou5BWO+PPvc2Btynj3HK5UIDAaD/4o8zAdUzFU?=
- =?us-ascii?Q?j61JfjadDSFGCCj1QUPDueSW1AjpWapy4ySPtNIXxHEiIrVqXqny0Sk5ex1y?=
- =?us-ascii?Q?kEngtLOCxiaw3TZpP/Jv7b9ZQ64V0A4pLxVy1/lYInFfu8bHAZD7F/4CDk/q?=
- =?us-ascii?Q?4lwr8X20QMVhb+SvCD/HZDogJ+jI5z9Ev5evTJUUQWFT8Wk/Dcw1YcsT13Pq?=
- =?us-ascii?Q?IWqatfHGewJyQJufzs1rzyzJ+EuOr+0d6v3R0I+dwPPbX7LNNaQyBFaAe3Lo?=
- =?us-ascii?Q?qpCdoAeXSejkei4atUWf0rsy+JUqiwc3VOuVDkolcLy6ESl03mV7xvykIQkk?=
- =?us-ascii?Q?sRGQc44PHOJZJxxD1vRhveKivPj2XWEBHFHtZac5fhaOXJn1YgnpvCNey7fG?=
- =?us-ascii?Q?9aB8LBNWYg9KNRsV8nf1ZqkDy+3BAq+gBEDPZaQ1DJ51+8sBRHlWhTf8vCC8?=
- =?us-ascii?Q?+daqrmlRWY3Nwn6G/1RoC3u+xf2Skj9mgo7fR6J81ntU7ZALGBtg9hpfQySa?=
- =?us-ascii?Q?OavNAV0UJ52+vp9BSvakEUMeLfjMOrReiWsaW+QCjzPW4lcZPMjqTKV4PQRR?=
- =?us-ascii?Q?+HexZVWoDDyTjxPQKQt9/RAK3hMSTK3QFidvGBjFUFCySTPs9ToPcwijOq5J?=
- =?us-ascii?Q?pitkdfqf2fjxHDGJRKtxdUpFL/GEdJdWHM92wjvHj5B03NpejlpkjaOlXCGy?=
- =?us-ascii?Q?/L9+Ih/sl9sSANb3PfyoZiED0GesrxJ0stmW4gXrjFHwDtTyPUbIHjnvdvE/?=
- =?us-ascii?Q?dkSVWgaDl0viObeDh3aOXi8Gdd0CfQSYO/JDS9KPMs1rnaU/YFJB/tun5gHV?=
- =?us-ascii?Q?sEpTL60Ano9plIsox05tB8TN/G5NL/BgaKDYZ2lKeBgZxoxgGcjUzfgg0nE7?=
- =?us-ascii?Q?F5/eR1K9Za6NyQDUOdbZJKsedjWYJre6P/PnokrhfBV98zP5PUu4QMriH/J9?=
- =?us-ascii?Q?NcuyCeiRAKa679kLIuFGttKsAlObtC/EbxVimCJSW6QWpo6h3L6RnEFz1ryG?=
- =?us-ascii?Q?PkqvxZurNc6H4MvoaNRB4a4P9JG5j3wZS07RAbkvW0v5RM9fQQgYeK2POBM9?=
- =?us-ascii?Q?cG97snvOtkEqwp/kdFiJhmicd2PtSjWFfMini6X+2mcnJUSoVPiK3L8DIQe7?=
- =?us-ascii?Q?CQujHbANtERlHv14Pk+8+h5ReG35OQrLo6Jcv/z2SG4+xh/5FQxkMm3fpBx3?=
- =?us-ascii?Q?liE4E9ELx5uSMu16xyiMhmA8GFL6tU28YW0F?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2025 03:16:28.9294
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9f0f801-f79e-4895-48e2-08dda70406bf
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000CA.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI6PR06MB7165
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRyuXPQglR2pg1tLiplohNF2WAzQJJNEBAALUq35Ozdl5VAA==
+Content-Language: en-us
+X-CMS-MailID: 20250609040543epcas5p4a339f4920addf5bd274e54778172e78b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250529111708epcas5p232b8bb6b05795b7014d718003daef0cb
+References: <20250529112640.1646740-1-raghav.s@samsung.com>
+	<CGME20250529111708epcas5p232b8bb6b05795b7014d718003daef0cb@epcas5p2.samsung.com>
+	<20250529112640.1646740-2-raghav.s@samsung.com>
 
-Using this entry as the maintainers information for CIX SoCs.
+Hi Raghav
 
-Acked-by: Fugang Duan <fugang.duan@cixtech.com>
-Signed-off-by: Peter Chen <peter.chen@cixtech.com>
----
-Changes for v9:
-- Add mailbox driver information
-
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a92290fffa16..7f8bee29bb8f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2473,6 +2473,19 @@ F:	arch/arm/boot/compressed/misc-ep93xx.h
- F:	arch/arm/mach-ep93xx/
- F:	drivers/iio/adc/ep93xx_adc.c
- 
-+ARM/CIX SOC SUPPORT
-+M:	Peter Chen <peter.chen@cixtech.com>
-+M:	Fugang Duan <fugang.duan@cixtech.com>
-+R:	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/peter.chen/cix.git
-+F:	Documentation/devicetree/bindings/arm/cix.yaml
-+F:	Documentation/devicetree/bindings/mailbox/cix,sky1-mbox.yaml
-+F:	arch/arm64/boot/dts/cix/
-+F:	drivers/mailbox/cix-mailbox.c
-+K:	\bcix\b
-+
- ARM/CLKDEV SUPPORT
- M:	Russell King <linux@armlinux.org.uk>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.25.1
+> -----Original Message-----
+> From: Raghav Sharma <raghav.s@samsung.com>
+> Sent: Thursday, May 29, 2025 4:57 PM
+> To: krzk@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
+> alim.akhtar@samsung.com; mturquette@baylibre.com; sboyd@kernel.org;
+> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
+> sunyeal.hong@samsung.com; shin.son@samsung.com
+> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; netdev@vger.kernel.org;
+> chandan.vn@samsung.com; karthik.sun@samsung.com;
+> dev.tailor@samsung.com; Raghav Sharma <raghav.s@samsung.com>
+> Subject: [PATCH v3 1/4] dt-bindings: clock: exynosautov920: sort clock
+> definitions
+> 
+> Sort all the clock compatible strings in alphabetical order
+> 
+> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+> ---
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 
 
