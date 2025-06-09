@@ -1,243 +1,156 @@
-Return-Path: <devicetree+bounces-183824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6BAAD208E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 16:07:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 393D5AD20AD
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 16:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CED43165E70
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:07:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EC3E3A1BF4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 14:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B272E257429;
-	Mon,  9 Jun 2025 14:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF1625B69B;
+	Mon,  9 Jun 2025 14:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TTjl0zAZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OvHAe8Yo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33221547D2;
-	Mon,  9 Jun 2025 14:07:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BA025A62D;
+	Mon,  9 Jun 2025 14:13:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749478049; cv=none; b=U4N2OAjI2Y/HbIopfTZ1xH7hHVP3n2EPbb5NzJ6xH6Zpyk6tJMeyI2OHkg1Ts19ecJIxdnAz5fIWArEPfFXAvaPk48YNK/QZZ170QyWyw3UEO/x1xHrjIAs9G+eusIR3uWin7B1NW/xFNo8+3Q6JY3mas/XkAd5SN7Kmpq44R60=
+	t=1749478441; cv=none; b=FlwhnVFFAua0ad9yDuiYidNGYvnJVdk/yEaQva+hr4+5Spn9zPxGVPCufGyhqbHfZt88fdzSVMwmWg87E68NWgW8kdRgT2yf893NKOatMGZuD+lecy+lKBuaDBU8VsbhVgiiRzfCMyJKrFSdjD/xcEsz7jF2btuOjflJFBExXiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749478049; c=relaxed/simple;
-	bh=wAAJY/HrK/nuKtAaod/22OhduwbiOhuK1jiKS/alY2U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LgF+IQxZeV7pzF8CHIqjTE4JOeQsuDpT+U7H/E73KhOutcoMWT3B7mZWVpjcvrI03y3o+n0s37jTTfxOXASmCHHQYQgKKgzWNiwBlitglLb/HCBt9+R5lxt2VTVVnC/RGdoNIwtr72DgoSKXq5kp0TaLDw9HAGvbiUFW/bvmdhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TTjl0zAZ; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a50956e5d3so3628336f8f.1;
-        Mon, 09 Jun 2025 07:07:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749478046; x=1750082846; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wp465GBd29bhYSADM6T0VGSuzx4l+sqGwpURc4OujX4=;
-        b=TTjl0zAZKkCDAs6YO47kAl569t1b7RnhXlM3cqYZ8NqThu7ysKACbHM54pd4uhgLMs
-         RjiJl6gahVeLgARev80xjSXZYAZUsZczNQl0kGmlZtdLaK8hdio1Haif5ml8fDJfCI08
-         l45/HwvcgO9/KZJ2vnCh8MKDEMPwux5hRqjsDVrVnhGBTuyY3GPhIwZ3V2sZDn3EkdEE
-         uJbZ2xoYgjW/iMZqfPMylkGfiofGv703jfAn5lD9y+t3nxztrH/HzwliVEuiwiAv7rxw
-         /S5G9lqiiJnwvCOANKyH34YudyqfD3e8BYUBEfQp1KDJUbU3+WiBqPSm9t/ql/URzWj5
-         w3VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749478046; x=1750082846;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wp465GBd29bhYSADM6T0VGSuzx4l+sqGwpURc4OujX4=;
-        b=Qbjqdo3hEdNfPa8kVUbbAEmrcOh8GOFUgG6pJO70RyV2K/Zib1cUnlDnBP12Gsgvk8
-         e89vqbYCuqvz3x5EIg+dR9ctvLS6VF9ThGUMQQ1m/Gj9/pQNojhuN2NE/mNB8Bqpo0uq
-         J5TayiFxCAuPi+ZJtopPRFnh2RKpFauDZtB8f5ffHXL+BWUulP0FRYPbGIEpXLCXpWUv
-         HZ0QcHxYf+DKjwJ2jcRBuHwflHzP3pPH7Zub4fwusNqhrcim9Qhe5Sld+Z1dbac6drBG
-         jyv5lm2woarajvfmkM0aqGB3tUKzt9Kk+/v4F3OWbdYqXSjqJVrwcfw2S40epIvwazJI
-         HuEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUV5jMPznKGVA124rKnbvYl92E50mwfZrOVV5AKHAuAO9tzowhimYaFJY5jSjOm3MBbW0pVaNUtdTZwUng=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/HSy83FTTf0/ZuQSmuvv7wj6zFSYlTseQSTl3mVBHMADrjUDY
-	13wHWhzHgmKmiHj2WnSIDI5QBX6AN+ihcJJ11tl65y49HDm9WwlTw/DNsrs2pYH/
-X-Gm-Gg: ASbGncvbqauxxMh0RbZ990JXy//qf5mLU0WEvNT9/0PtShtxo4sc6jtG/HDKQar/Qf1
-	OHuToKQGC1AFik6MEOFeR+ZDOj4rR2modtgZ2Q1FGqje5QZFlGDOCnAcQJfyoQFWhed6fsEAN2E
-	i319s8rZom/KtsZodDuYh0FkVI3HGPnI80H+mKe1EKq5kbyHVTze2SCcg6e0H1ctSXT9MhJqS3n
-	vQVL7uy7VdXfHkdYkGgyqaoaet+M3+QUqyIpFXbNG9l60GW/RyV/Ic1eu5C8EEDP/a6k7kXPFeo
-	tobG1NgGQ9kXdzYSRIEjZQm246XaOKefoJ5Nw1WDM2keqQHQGIYMazkyljdvYIct8jmyaDJAQjG
-	JINugHlPYZPfYKG02Axa3t2VHrP4spGRYgkQ=
-X-Google-Smtp-Source: AGHT+IG0REgGH1fHd+dkuiR3Fo6WREiMEfAZe6OZVVichjBI/5GBIj0dx+h9EBokmXQjt5fQUEHrXA==
-X-Received: by 2002:a05:6000:401e:b0:3a4:fb33:85ce with SMTP id ffacd0b85a97d-3a531caf7f1mr11598279f8f.46.1749478045626;
-        Mon, 09 Jun 2025 07:07:25 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-70-53-177.cust.vodafonedsl.it. [93.70.53.177])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53229d9e9sm9803060f8f.13.2025.06.09.07.07.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 07:07:25 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: andrew@lunn.ch,
-	Stefano Radaelli <stefano.radaelli21@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1] arm64: dts: freescale: imx8mp-var-som: Add EQoS support with MaxLinear PHY
-Date: Mon,  9 Jun 2025 16:06:42 +0200
-Message-ID: <20250609140643.26270-1-stefano.radaelli21@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1749478441; c=relaxed/simple;
+	bh=qRwc+V22833uXLUk+aGciP92AVaKePA/6rxSGLy/Fx0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=O3cyTFvVVCNoXM5gSK0R2siZWYbPwX2wi0kFWEDtemoCzmUNBrV0GnRsRfFXlPmPG0iDiqJyq7ajqb9NOj/fHFtx45v6AihFCXcPT5g61R+pstpzAMMQIPFri0BAduGV65xFdK3ZbEh4POGyALhbWHL/6aOcG3Xh9mjFa7igRMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OvHAe8Yo; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2766942EA6;
+	Mon,  9 Jun 2025 14:13:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749478437;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qRwc+V22833uXLUk+aGciP92AVaKePA/6rxSGLy/Fx0=;
+	b=OvHAe8YoSQ8/mEnE+TrwB5HO9I42enWLdO29Zq5bqTvXSuBRgIf3cB8LhqB9RyesJcaYEZ
+	piTFhrtRl64Yyuhh55zSdfmsGmbgeF9UkMbPNOSIeepYUnvk3GbgPfIpQAycUPN9vpAekA
+	VxHK10r+qzisSvd4zl2QUzOj61AaPsooHl9m2ae6dvGJ5KsTXC7nCwrePiKD8ZN3PMbczE
+	bj1qNrzV77M5HZnjA8+1MJIVXNV/AcvK1e9ekYR0PpoYTi2d3PiF0qbUT0cd1tTx3XhMaV
+	0HhcY61Bjj6lFPna3YClhXi3t9uUVAGwMtwlJZyaYkx66pAPnzHVEe+tR62U7w==
+Date: Mon, 9 Jun 2025 16:13:53 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Andrew Davis <afd@ti.com>, xypron.glpk@gmx.de, Jason Kridner
+ <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>,
+ Dhruva Gole <d-gole@ti.com>, Robert Nelson <robertcnelson@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, David Gibson <david@gibson.dropbear.id.au>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>, Herve Codina
+ <herve.codina@bootlin.com>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS" <devicetree@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [Discussion] Global vs Local devicetree overlays for addon
+ board + connector setups
+Message-ID: <20250609161353.49214dee@booty>
+In-Reply-To: <46bb7e4f-1e65-4510-a27f-19ae87c4c272@beagleboard.org>
+References: <b1990c97-8751-4964-a3e8-9598f4cfac2a@beagleboard.org>
+	<967bc855-76f3-4598-853c-d65ce142995d@ti.com>
+	<46bb7e4f-1e65-4510-a27f-19ae87c4c272@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdelgedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfefueegjefghfffteeigeegvefgkeduvdetffelhfdvgeeuleefgffhveeiiedvnecuffhomhgrihhnpehlphgtrdgvvhgvnhhtshdphihouhhtuhgsvgdrtghomhdpkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtt
+ hhopeighihprhhonhdrghhlphhksehgmhigrdguvgdprhgtphhtthhopehjkhhrihgunhgvrhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopehlohhrfhhorhhlihhnuhigsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepugdqghholhgvsehtihdrtghomhdprhgtphhtthhopehrohgsvghrthgtnhgvlhhsohhnsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhg
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Enable the EQoS Ethernet controller on the i.MX8MP VAR-SOM with the
-integrated Maxlinear MXL86110 PHY. The PHY is connected to the EQOS
-MDIO bus at address 4.
+Hello Andrew,
 
-This patch adds:
-- EQOS controller configuration with RGMII interface.
-- Proper reset timings.
-- PHY power supply regulators.
-- RGMII pinmux configuration for all data, control and clock signals.
-- LED configuration for link status indication via the LED subsystem
-  under /sys/class/leds/, leveraging the support implemented in the.
-  mxl86110 PHY driver (drivers/net/phy/mxl-86110.c).
-  Two LEDs are defined to match the LED configuration on the Variscite
-  VAR-SOM Carrier Boards:
-    * LED@0: Yellow, netdev trigger.
-    * LED@1: Green, netdev trigger.
+adding a bit more to the discussion.
 
-The RGMII TX/RX delays are implemented in SOM via PCB passive
-delays, so no software delay configuration is required.
+On Thu, 5 Jun 2025 12:52:19 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
----
- .../boot/dts/freescale/imx8mp-var-som.dtsi    | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
+[...]
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-index b59da91fdd04..3be59692849f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-@@ -55,6 +55,24 @@ reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
- 		states = <3300000 0x0 1800000 0x1>;
- 		vin-supply = <&ldo5>;
- 	};
-+
-+	reg_phy_supply: regulator-phy-supply {
-+		compatible = "regulator-fixed";
-+		regulator-name = "phy-supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-enable-ramp-delay = <20000>;
-+		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	reg_phy_vddio: regulator-phy-vddio {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vddio-1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
- };
- 
- &A53_0 {
-@@ -73,6 +91,54 @@ &A53_3 {
- 	cpu-supply = <&buck2>;
- };
- 
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	/*
-+	 * The required RGMII TX and RX 2ns delays are implemented directly
-+	 * in hardware via passive delay elements on the SOM PCB.
-+	 * No delay configuration is needed in software via PHY driver.
-+	 */
-+	phy-mode = "rgmii";
-+	phy-handle = <&ethphy0>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@4 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <4>;
-+			at803x,eee-disabled;
-+			eee-broken-1000t;
-+			reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <100000>;
-+			vddio-supply = <&reg_phy_vddio>;
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_YELLOW>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -239,6 +305,27 @@ &wdog1 {
- 
- &iomuxc {
- 
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
-+			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
-+			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
-+			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
-+			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
-+			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
-+			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
-+			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
-+			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
-+			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
-+			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
-+			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
-+			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
-+			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
-+			MX8MP_IOMUXC_SD2_WP__GPIO2_IO20					0x10
-+			MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10				0x150
-+		>;
-+	};
-+
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SD1_DATA4__I2C1_SCL				0x400001c2
+> >> Basic Requirements
+> >>
+> >> *********************
+> >>
+> >>
+> >> Here are some basic functionality that the chosen approach can do for=
+=20
+> >> it to be viable for the connector + addon board setups:
+> >>
+> >>
+> >> 1. Dynamic device addition/removal from userspace
+> >> =20
+> >
+> > I'm going to suggest we ignore the removal part. Not because it is too
+> > difficult to solve, but because it is impossible to solve.
+> >
+> > A huge amount of drivers and devices do not actually allow for removal.
+> >
+> > The reason is because there is no need, hot-pluggable busses are the
+> > exception, not the rule. The rare cases like USB are built to handle
+> > this both in hardware and software. None of the connectors we have
+> > talked about are actually hot-pluggable! I2C, SPI, etc.. none of
+> > these are hot-pluggable. Even if you get away with yanking the cape
+> > off a BeagleBone while it is running once or twice, it is violating
+> > the electrical specifications and you will eventually break something.
+> >
+> > If we don't focus on the (non-valid) removal part, so many other parts
+> > solutions become viable again. Right now we have no good way to even
+> > *add* an add-on board, even statically, so let's not let "perfect" be
+> > the enemy of good.. =20
+>=20
+>=20
+> Not quite, removal is a very important part of the equation, specially=20
+> for mikroBUS. mikroBUS iteself is not exactly hot-pluggable, but Beagle=20
+> has a usecase of mikroBUS over greybus (over 6lowpan). Since the node=20
+> can be removed, you now have a setup where mikroBUS becomes removable.
 
-base-commit: e271ed52b344ac02d4581286961d0c40acc54c03
-prerequisite-patch-id: 2335ebcc90360b008c840e7edf7e34a595880edf
--- 
-2.43.0
+Removal is indeed valid.
 
+There are use cases for removal, as discussed at LPC2024 [1][2]. And
+for the use case Herv=C3=A9 and I am working on, mentioned at LPC, addition
+without removal is totally useless.
+
+Busses that are non-natively hotplug are surely tricky to handle but
+they work if 1) the hardware is designed to be electrically safe against
+removal (HDMI DDC is a simple example based on I=C2=B2C) and 2) the drivers
+and related subsystems are resilient to removal. We are working on 2,
+and I'm working particularly on DRM (some series I sent recently: [3],
+[4]).
+
+[1] https://lpc.events/event/18/contributions/1696/attachments/1404/3464/ce=
+resoli-codina-hotplug-overlays.pdf
+[2] https://www.youtube.com/watch?v=3DACDCiC1r8Xw
+[3] https://lore.kernel.org/lkml/20250528-drm-bridge-convert-to-alloc-api-v=
+4-1-f04e698c9a77@bootlin.com/
+[4] https://lore.kernel.org/lkml/20250606-drm-bridge-alloc-doc-test-v9-0-b5=
+bf7b43ed92@bootlin.com/
+
+Luca
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
