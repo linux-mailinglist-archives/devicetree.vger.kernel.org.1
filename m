@@ -1,185 +1,106 @@
-Return-Path: <devicetree+bounces-183724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929C2AD19FF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:48:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40351AD1A12
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 10:55:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 879717A2057
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:47:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 069A4168B2F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 08:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F291F4C9F;
-	Mon,  9 Jun 2025 08:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D4F20F09C;
+	Mon,  9 Jun 2025 08:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Wp3H+kiA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eqbp3nyA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62B11E5705
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 08:48:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229861F8AC5;
+	Mon,  9 Jun 2025 08:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749458910; cv=none; b=u/vegCr4a6jlitSQ19Zlyo6sG+o5cXAQRaPAG03FJYppcUyoUxlX3PYRO+RLevkksIn/fgO9nLQe+PNmqcTSk9GAhr1OMrMTDFX5zrV26HHjO2t3rRiw6I2qfualzwC6QjmzTm1PgfUbqg0ONuUeQS6wuKrxepMiGXMF1/811Xo=
+	t=1749459297; cv=none; b=L5nCyEpq7fhNnh5nbuipYUVgA5NCwi7mDQvajP1GOwOh6gQjHq7cEblBa8vWBwVcXNQHvc4GVqecn4Vomuz0ZjxNNkz+yiXe1aeLNZhvAR0yyVWFBfAhJjAQkOrdY0HXKKFYNyGSASSVRblRG9Xm+VcXUUMedDlRhRr8yeroqQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749458910; c=relaxed/simple;
-	bh=0XzL4kpmsZHZXN2qz7fHXQDCyKTAt3P/xJ06KG7pGfw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VAVf++RhfuwwHPRAzYNk8btT38OA/6ZdI6d/4mZmGVQmZI5JzeMBbt87V/uGKLrKNYfEfiaREI0oY7GQLnFo8yrfUhZkEBU9aej0qh55A8cGQAQGrx3nIrWFJPjMnCo7YXs7VjCf/zrUZ7osFfyhw0UG417lE0cIyq+XovNw+Fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Wp3H+kiA; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-551fc6d4a76so4329153e87.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 01:48:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1749458907; x=1750063707; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1+qulMhJZHk6X+tREHSphVBY4DmeNmnxx1NU3h6SyVE=;
-        b=Wp3H+kiAB/AEPhUIx+7SiPtMBZ8MvtQwOdpsop34wM/C1Zben+5ZQL/KClxsEhXKI7
-         xo0OKnQ6o1Umw64BkzdhkwJAAmB7wMoJnCPJAjg4YFkwaN4RHpfzn9BACp2H7ZzUz6BY
-         gpdt1/AJOqC+t9XtuhDbpJk6+kOtMeL/xsumM3TlB/5vY7Zqou+SFHzjcWVqSesp6Vm8
-         A/SKZTc23UaHVHM6dDgUu6fUcNrqi7XpcrLzJ2CnbVcQa/LQPFm/+jXepmhA7JU/bixn
-         d+sQUoFIc6pey2tY9ChVj/hWw9ZT6qG/Tp0fubewFaC1cc9zdXhRIFitLPNvvVovbm9B
-         SHMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749458907; x=1750063707;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1+qulMhJZHk6X+tREHSphVBY4DmeNmnxx1NU3h6SyVE=;
-        b=iwFIfOgeN59NSAw3eH1qXbTelY7ccJPrzTVHEOnokXnFYj/nOOiwKoNlqGTF5QCH29
-         ZtSANC6t5RHOxCLVemZKtAgomhUcLvMFjxkf351800SFKQYxv4qX8C15ZVtWArruLB63
-         HW9jYx8rn7x/vXCsZKg6t0aS0U2OLqBbfojjUIP+MluUtFy4wig/6e7kjeIMHhjjIWkF
-         zOzx9qW+H8E6ebaIEqaPirh10ZHbYT30MaINEK9G0BkAShSrDaXHJutBRXGIQ0ZNUil2
-         kXEn1r2Ay6y5UoeCotgBxBgBuKJz3PE1HNIxwAW74HhPpuiBi265ATJ64IrgdPuOcklY
-         8ktQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKgG6jex+85DPH9Q5NqVzKYsRmWkiFmqRDGQTMyq01U2AlhXuP9JJ0UyeiQ5DAiotfLcu9/yMxtco/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSHe+zrCF0jdJIWawWHnA40jBFLFhnr1GMGRBBsaeG2BncHvmZ
-	uKZMJsajx6G4qvJkHnkMe/G9jNg/sYyoge4eIPmzO3nd6x6mKb9ozyuvPT0E2TVeegKJfGd7H4n
-	rc8w8NNA6AsDRR1ADPcKNIo6UPuglbgsOdjEfl/5WxQ==
-X-Gm-Gg: ASbGncsT4psAb/VxIi4VBAVfGnU58kGZNIHY4T2InH8rRJTy6LZmkmtqfQMpbmjNeAY
-	evKS06gDKa9e3VReury2LP7bPztiXZ1MGqTePSNf9HbMcRp38046wqSQtysk5yJFYI6Fs9EpbKw
-	0Uotok12SAInT20BoZUPjPZYNIpE3vEzMtQA==
-X-Google-Smtp-Source: AGHT+IGD0pH7TFlMkgX9gTB2arw453UvhjyRmw09ACjbNfgzKN77QnxzN12Gz5PpF/wVzlrHBwVIxkmX2zq51K32rMQ=
-X-Received: by 2002:a05:6512:398b:b0:553:263d:ab90 with SMTP id
- 2adb3069b0e04-55366be26b0mr2962896e87.18.1749458906940; Mon, 09 Jun 2025
- 01:48:26 -0700 (PDT)
+	s=arc-20240116; t=1749459297; c=relaxed/simple;
+	bh=C51/7vaB9OCZ1AukCQuPqIi38RMlWpr/hcjbdRh7rU0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Kpqwh7+nMmxWg5ggw6aW5OIWC6sG+/Usgu9vaoV7bBqdkwqQTwSEFZMX5UrQcGDqonZyc/BQdafFyG/fb+ttv3dJ7j6ts4l9J26w/KQP+bdd20SauIdHn+LEC4NbWlb51k0DG8bvALrfiZ6p+iYwX7wqkMVG3VK22+gbJI83lhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eqbp3nyA; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5598sYhh723398;
+	Mon, 9 Jun 2025 03:54:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1749459274;
+	bh=D3AW8Z2GaXCnvayX3h6iYYRk4HsizirZYceih+sKzFI=;
+	h=From:To:CC:Subject:Date;
+	b=eqbp3nyAe/EaVd8yge9lYWCGvjgXz6w1NmkIT4l4/6H+TWfBYeZaWzY64zk588VfI
+	 48PjphRpRxbJgCdvhnJCWR2o5NpaKAs5MGzJy0VQKum0pcDcQ3Z6SaDnIcDkDdSgt4
+	 yUYxTEjS1FjGB9+d/WjU/Wk1TzmbPrdFDgoudG2w=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5598sYuN4149176
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 9 Jun 2025 03:54:34 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
+ Jun 2025 03:54:34 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 9 Jun 2025 03:54:34 -0500
+Received: from hp-z2-tower.dhcp.ti.com (hp-z2-tower.dhcp.ti.com [172.24.227.4])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5598sTbD1008464;
+	Mon, 9 Jun 2025 03:54:30 -0500
+From: Hrushikesh Salunke <h-salunke@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <h-salunke@ti.com>, <danishanwar@ti.com>, <srk@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-evm-pcie0-ep: Add boot phase tag to "pcie0_ep"
+Date: Mon, 9 Jun 2025 14:24:29 +0530
+Message-ID: <20250609085429.2334652-1-h-salunke@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-6-apatel@ventanamicro.com> <aDWfDZ_rmdZeuvX3@smile.fi.intel.com>
-In-Reply-To: <aDWfDZ_rmdZeuvX3@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Mon, 9 Jun 2025 14:18:15 +0530
-X-Gm-Features: AX0GCFv7nT4kE5svL_VD2AT2FTxU3u5CwWlzFhZ6AhttmorGU6f8kX-CYBTFYjM
-Message-ID: <CAK9=C2Wc75EmvTnGF0m59eQjhXK0=htHCafpi5oPNE0_5TS-7A@mail.gmail.com>
-Subject: Re: [PATCH v4 05/23] mailbox: Add common header for RPMI messages
- sent via mailbox
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, May 27, 2025 at 4:46=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Sun, May 25, 2025 at 02:16:52PM +0530, Anup Patel wrote:
-> > The RPMI based mailbox controller drivers and mailbox clients need to
-> > share defines related to RPMI messages over mailbox interface so add
-> > a common header for this purpose.
->
-> ...
->
-> > +#include <linux/mailbox_client.h>
->
-> This is not even closer to the list of the headers the header is using.
-> E.g., types.h is missing.
+AM64X SoC has one instance of PCIe PCIe0. To support PCIe boot on
+AM64X SoC PCIe0 instance needs to be in endpoint mode and it needs to
+be functional at all stages of PCIe boot process. Thus add the
+"bootph-all" boot phase tag to "pcie0_ep" device tree node.
 
-Okay, I will add types.h
+Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
+---
+This patch is based on commit
+475c850a7fdd Add linux-next specific files for 20250606
 
->
-> > +/* RPMI version encode/decode macros */
-> > +#define RPMI_VER_MAJOR(__ver)                (((__ver) >> 16) & 0xffff=
-)
-> > +#define RPMI_VER_MINOR(__ver)                ((__ver) & 0xffff)
->
-> Same comment as per previous patch.
+ arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso | 1 +
+ 1 file changed, 1 insertion(+)
 
-Okay, I will use macros from linux/wordpart.h
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+index 432751774853..268a3183753e 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+@@ -30,6 +30,7 @@ &cbass_main {
+ 	interrupt-parent = <&gic500>;
+ 
+ 	pcie0_ep: pcie-ep@f102000 {
++		bootph-all;
+ 		compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
+ 		reg = <0x00 0x0f102000 0x00 0x1000>,
+ 		      <0x00 0x0f100000 0x00 0x400>,
+-- 
+2.34.1
 
->
-> ...
->
-> > +     RPMI_ERR_NO_DATA                =3D -14,
-> > +     RPMI_ERR_RESERVED_START         =3D -15,
-> > +     RPMI_ERR_RESERVED_END           =3D -127,
-> > +     RPMI_ERR_VENDOR_START           =3D -128
->
-> Leave the trailing comma, as it doesn't sound like a terminator.
-
-Okay
-
->
-> ...
->
-> > +             return -ETIMEDOUT;
-> > +             return -ECOMM;
-> > +             return -EOPNOTSUPP;
->
-> + errno.h
-
-Okay, I will add errno.h
-
->
-> ...
->
-> > +/* RPMI linux mailbox attribute IDs */
-> > +enum rpmi_mbox_attribute_id {
-> > +     RPMI_MBOX_ATTR_SPEC_VERSION =3D 0,
->
-> Why do you need an explicit initialiser? If it's a HW requirement, all of=
- them
-> should be explicitly defined. This makes code robust against potential ch=
-anges.
-
-Explicit initializers are not needed. I will drop in the next revision.
-
->
-> > +     RPMI_MBOX_ATTR_MAX_MSG_DATA_SIZE,
-> > +     RPMI_MBOX_ATTR_SERVICEGROUP_ID,
-> > +     RPMI_MBOX_ATTR_SERVICEGROUP_VERSION,
-> > +     RPMI_MBOX_ATTR_MAX_ID
-> > +};
->
-> ...
->
-> > +/* RPMI linux mailbox message types */
->
-> linux --> Linux
-> (everywhere)
-
-Okay, I will update.
-
-Regards,
-Anup
 
