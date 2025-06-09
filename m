@@ -1,207 +1,187 @@
-Return-Path: <devicetree+bounces-183857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF81BAD2250
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 17:23:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA0FAD2254
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 17:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E59B6164EEE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 15:23:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C19303A3BBE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 15:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAC91E1DE3;
-	Mon,  9 Jun 2025 15:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BF71A3148;
+	Mon,  9 Jun 2025 15:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XgXgzR5A"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VdiKpDwS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013012.outbound.protection.outlook.com [40.107.159.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7161DA5F
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 15:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749482595; cv=none; b=UfPKS74iFo9KjLAwjBe/Aw+3BWQY6zvra1M/jt43xyemGUylSCrakc1xbPMDg40imFfxPZNlxq1zd9zOIdPhuIrAQx5cbc3dEF4M/NaUeEt3X/BO+tLOxTLnSqsLhmsjM2HQECvwN4LtyKKLDxhLlCaiCrHAlle4AFDms8l3ylQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749482595; c=relaxed/simple;
-	bh=y4AY4K62fedPencGjJKnWwfhgTpyhRQDI5r8TTyeqzk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IcA55uDuKxpLlyaf5RU3m7T7pQsKqyaChhcS2Wwwq3fwBLzmx3oL4/AwzuDu3T6weJ4ANrGgv1crUOYlcuVXZB/960cYWo9SZpUNFAwg5Irict9yHoy4Lpcon0e0Jok1RVedXvX/3W2bMK+bGQixlk6IXyNdMIcqI7oIhnZrzV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XgXgzR5A; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-af51596da56so3034766a12.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 08:23:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749482592; x=1750087392; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4+Mg6PW+/K0QnsP+hIHi7hEEWjzJrekcG6Ta5Fzf3T0=;
-        b=XgXgzR5ANHitIHH0VJjxs3FyAjGiHv+rBlOwj1v8iFspna7K0lqlMO+uaD/t6uJy0t
-         rNuUeoeiSJvpbIapxpWmkDan5gda5AAWG1Ek+LDI1hw00stscPSd1e90s9VKZJFgbx0a
-         wjQxkyUb3gB9xq5L6/C6jchjBFtbqcb8pWT/D+EInouXBpnWQgQNsZMAUVvJbaQ/nV4e
-         JQ/4/GwEokHpWlNxRUuSTvcf1TMaZ6kYq+wNzCBVjyQJrEjqVazUU0Iu9mwJdLjuvTvx
-         QEM/LTa+zUbeMwzQDf7IX0ke11Yfrs+LVeI05iOjN+OEKMJZ+Ods8omu/NMGB+qsXmUV
-         mlZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749482592; x=1750087392;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4+Mg6PW+/K0QnsP+hIHi7hEEWjzJrekcG6Ta5Fzf3T0=;
-        b=rPiTe29uBprv84jhkwSjpowRSf1gGtg/DJ8fDwXi+UTrssj0Fc4Vc4a7C5K/lE3cqm
-         wX0u03WpF7XBgrsrkjMEMRVxz7VOYwdRbY5kswNhGo7Cd+XaLYq/MaYVARvl5XOoz11W
-         u8mFiHb4Z+RTBsEhrKXHDyLG+qUMKz9bYA7WYylxVWTV1hSadqKWcL7e/DH9oU3S+y0u
-         dnpY8MBQR141vBjScIfBHf1z4GkTsh4GVCNnXAFSQorajwbYzLLAjt4Nzi8wte25eGsQ
-         noHOoNl/leguKlIcsxMnks+KqqlaTykzulUJKNeQaFywiiiooAlqzkxJRiJ6Ozxn0AO5
-         yzzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfy5xdR3pJO6RScAl9Zxe1lgbLRVfj0H5NxRVgbQtQRgTrLqVEJR9Zd9b+Wg4F6CMG5BDWO8Mt5GKc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA88RasFiM8iMACzsiMqX4d6LRi09MaPXBYJuJj3JujTikXDEq
-	qCb3eM190R4n7nfIkPG19PaJulx3iPoL1DCZ1g2w9oycShPqjY8MqWz+ArtDS83sk/Y=
-X-Gm-Gg: ASbGncucpN4EqPRyClRy/z1y6JPHaJLGMQYY7jac/LHAnJx6G1HzlAZal3dT7MolFm/
-	8pISQI69OdFH/Bywkp2FOwk93/pAQDJySijWp5BoAmAVBj6Vl+y7MzDqVnDQ7iD/Ff15HHQJtrN
-	zSlawuEArijBO3hpXa+2OChIE/O1lKqmL8b13I88Gt/d6cB3I8XlFUCd4sr/0B1ODZQJBxN37cK
-	4Z210i8ZGC0JvWbuoMciocQU6tCtDTofrt3s1tIt8hyPDt7obhOwcfkSy04Qbe6xbk3vb2YGaFJ
-	PuDrIKCephT9X2BjZnpNvylVAQZd21v1cFoN24H8NcCDqAeDDdDgPZviAx9rMC3AEeFM6C1X1ro
-	0
-X-Google-Smtp-Source: AGHT+IEHQs24xS7vzskFJPPr8eh6p9W8ZrujNawhU2iz0AreagkiHluW65S1z22AdhoPCthNzNJd4g==
-X-Received: by 2002:a17:90b:3891:b0:312:26d9:d5b4 with SMTP id 98e67ed59e1d1-3134740b55cmr21132387a91.17.1749482592330;
-        Mon, 09 Jun 2025 08:23:12 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:1329:68ff:ffeb:cd9c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31349fc374asm5791390a91.29.2025.06.09.08.23.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 08:23:11 -0700 (PDT)
-Date: Mon, 9 Jun 2025 09:23:09 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH v16 0/6] Introduction of a remoteproc tee to load
- signed firmware
-Message-ID: <aEb8XbhY5dR__GM-@p14s>
-References: <20250603100808.1074812-1-arnaud.pouliquen@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D5814B959;
+	Mon,  9 Jun 2025 15:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749482682; cv=fail; b=o75PoeNCaiH5vaznM0Zbhk5Cq4ENPTh85zgfuhqh/TiAREzzN6OFntSLZr14hFzOb054WiyYIyF9F9lLRjyUPHAwvqxxnXVNjtbCAC1M5OU1dLYr2/uz5A6wtCFj+8PjZA6362IStQr4uD2BMTFqNJIRpflpmcT/Ecm50aUjk9M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749482682; c=relaxed/simple;
+	bh=aXYE866WQlA4SqaYftaH1gXiFIvD9+sKNNaJp+1RKfM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=G31lkOzg3mv0zvVNRVomH+LYh7lp7D5uXMTFhJqOdtqy5q6/jRVzZtcW2iijcP2bjn0WjnAE8OJ5kIMFOwhdd7ffGw3F8FuptSwK979k21LzJmoddE170qVgVtGf8xMBrpwt1xAjogeRrVIu/3FxqKa8M79bwK8pp1du+lUD19o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VdiKpDwS; arc=fail smtp.client-ip=40.107.159.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nhJfwFQtVnX5475/Us2deFh0i7rCsE8l67NzSyEYzDImsNI2YKJdqoh8QDuL8J3UZUeDgUe4ocMjri8No6+nKrxZkJYGm87T8Ns9DN7iNDyRwmQE7XcVLsnEWUywhzXD9NgyNJ7PzjX7RXYzPz5nb6nK0bkhuLoRlLduIeQZ4pDwKTZQNmgo32CLihZP9vjozXBZmElFjom3hrw/j5/oQhAUZt9dCG/Y9MHxI/zJJijw+0ENHPsxQhgRBPTZ006umdUvaKIdLmLJIPIJwSWtvqizF69Q9ip930EM2+Jem6MZtRGpJwBBVkd58r7e5h491ipg+ddjmIB85y+Y72gjkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s1mYmfhdowP4AzxI3WR83rk2fef6ZgjK2CQikh0pda4=;
+ b=VyU2GlKgZRjPXivUyXbSM8tZhdcc2ihYruX5DadWpGvGkFdhg9KWUOl7yP6UJdUNmTqyKyaN5d5MtvpwyGyekXj4PeI6nh0oWI4HJikah1ekwzo5t10wTqQmhPJWVxAjm5CinY3Qo/wHReYegxYcb04nwb9myEeWUYvQf1MPFYQ78bQm6OvzpXbly37Dv76uywaz/CunysrUtBihOOX1SA/Jy4tXA2co9pCzH+UAwUBB+ICRX7bhoe1HyvQlH3JBqvyXhgzf5nLZ+cmdohDumRE6bXZ5ubLxAUnamO+CxUgBGwosKLpUqFNcM9nTmPPEs8v1Zoy1u/ZXMcrXRaycqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s1mYmfhdowP4AzxI3WR83rk2fef6ZgjK2CQikh0pda4=;
+ b=VdiKpDwSlieC/CIjoAbct3WURBbNiF9I4JhR9s04s5r9Rq2rilHx6YRJCrMzVzV1i46wCsWEvCTwyjApxxO2yPjr5AL0qKaRtZT29JVYHqduw9rvHNW8TiZ+gWhSlaX/6jSHXRhbeDMUaPiVwHb5Bgzsp61VebR37HlZ74zjjRjHY2fSNa118gymr3H4LwHbWT8TGj5POoFjzcThdbkQdPIxImR6kKXB3F8fNb5pIxWu2wotHYN9Ubcb7a6QQ0PiNwlYQE0l7Iv6c0VIqfrSkayAaCU1Lh6uzn1fIreXt1c5yfmuzmWFuCogbMGt4aAJygith2v+VlI/rOk5ZhZnnw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB9777.eurprd04.prod.outlook.com (2603:10a6:150:115::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.25; Mon, 9 Jun
+ 2025 15:24:37 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8813.024; Mon, 9 Jun 2025
+ 15:24:37 +0000
+Date: Mon, 9 Jun 2025 11:24:29 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: imx95: Correct the DMA interrupter number
+ of pcie0_ep
+Message-ID: <aEb8rThg5lmqFVqR@lizhi-Precision-Tower-5810>
+References: <20250609091127.4188159-1-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250609091127.4188159-1-hongxing.zhu@nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0096.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::11) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250603100808.1074812-1-arnaud.pouliquen@foss.st.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB9777:EE_
+X-MS-Office365-Filtering-Correlation-Id: bc2fa725-68e2-46d3-3e11-08dda769beec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?NLMb0HjN/DQUWDyy9UzEf/mDACTza64c4UZDnfyj5JcPJonWQB/I2LWD/g6G?=
+ =?us-ascii?Q?3/mYB/bHCGfSvCSVPqbmRkB256y/yHSLs3s4Y4Z+bJFcpmVadg6OPB+Dnk36?=
+ =?us-ascii?Q?WfOgAyBxwIawgSOLU21+Z5Enz1nIutG1rCBwpI7Ebr3P6vHv9Y+rC/+0uLAg?=
+ =?us-ascii?Q?jtLw3UyXEIVgCAzdXa5tSe4pBxuPMdWzGWgeY8yio3/6O0xMitxvQCsxUjEz?=
+ =?us-ascii?Q?+kwv7013pofkCh+6uSYfoQPE/1Pm8ow+O8d3l2z7oeQ6efVLB6rQTHCJnaPy?=
+ =?us-ascii?Q?heJeTIjKqj32bXnhNgQgZcUv1/ZvVsVkQc5xuB4a+XHVFYjsIKjJny0ATRrW?=
+ =?us-ascii?Q?BZC+9azfVBGJjJlxvI8DAcPUTaWSI9fMeq9C2USV4Tx5wCOVBhiZKYkqhamV?=
+ =?us-ascii?Q?zJNtDCLVspToraspLmEgechIKxQ5QiwapxqsdWwT+Vil8fHeCmSd2guHEnS+?=
+ =?us-ascii?Q?nMZCZJ18wAprtTIlkPjsCHS52vQIK4zHCC+VeCPv8I2M63B0lcwqwi8u2+I+?=
+ =?us-ascii?Q?lQLeGAK96+XFGcZbYJ8YjdaJcc1kNs4DkI1k2IqTborNmOGxhG+tiaRU0Pao?=
+ =?us-ascii?Q?6XziNZnSVBj/Y+VJBZmh8lXWgnlA7m9/uLPxvj+jXRDyeZmBVfyY3NQDijtI?=
+ =?us-ascii?Q?bFzyvvcog8XC60nTAWaN9hNDO0TVyPTzt9v+0+6i9HLA8ia4srUvlafNmvH5?=
+ =?us-ascii?Q?nuBg277BnEHUn79OLKoVPigzpR+4aFDZcUO8V5ycYFmS5NMrAdR78SxnOiE9?=
+ =?us-ascii?Q?hCHUC8FgxM+G6foB2iOQDc50ShNP4t/FqpS86LoQhFdnn7CW8p3C1E3umh7x?=
+ =?us-ascii?Q?0PSJX+NuWkV3pAIMRStXNUGicYTudN/wvpOrQpRQRbJ13SwlPDzVVB9CEKXZ?=
+ =?us-ascii?Q?HOgAnAwEdWlbo0uBWudL4slFrEDl6d+kVr9he/SZa69zSK1pzL61Z7H1C48R?=
+ =?us-ascii?Q?MZuMRTE+4VPg+KT9QMADvP9xPvvQw6EamNmB7x5lavXZiP9mvTFJVS0vID5F?=
+ =?us-ascii?Q?XBrKaNTHnbtCAudWSl8qvBXUMKP+dJiZXMCg9FUSmmBZR0pyibyin1/W8Dsz?=
+ =?us-ascii?Q?SItPz5hJTqPgpUs6ZnLyUNdRjLn5jxSj3oF8HQw7JJc+SlZH54gZzkP4vAiA?=
+ =?us-ascii?Q?+tAbMIie9wUSP1GbuxeYzknmi8PJ2sx+UiV11wZQ3ydYE7rU7+u+6XKwgaIz?=
+ =?us-ascii?Q?g6wNYSsLh7HrGXsRpIej9V7a01uTLuIyA3b3Ww7uGo+ELWoQEYIG/Tv2BDHF?=
+ =?us-ascii?Q?fZO/0cH7inTls/lN3/DN3VLS7I+1G9sh0Umh8q2GTz95wWt3JQGgerdxaO81?=
+ =?us-ascii?Q?bAFSfM27S9p/dB4peDQpg2sZ1fEScnNp5qLZJCh7Z09Rn/T//g8oXMJ1rbGi?=
+ =?us-ascii?Q?CQnxtLx6nTQ5IrYEBfNBMi2xUNcdLMd3j3LMayhkPQMbNoIL650BrYUPkJsp?=
+ =?us-ascii?Q?7jKP+SRTrcJ6Sj8Jkmt3xxFxSVJBufjE+LFX6fcJ/tIWrUUtnnh5kw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?QHahkQAfvDvLEu32CMBvzao2BCw5I4mzxIbDZNbkk65wXITAwRph7VCPDdNo?=
+ =?us-ascii?Q?aCO7hkz/wVlFe0Tsn/gVTYLY2TER3G8QoxniWbiN5Zm067nqFNcmeMhCum4v?=
+ =?us-ascii?Q?ARfEJyFEI6SyvWibagcdEzpHCmpHoEAYw6PmGsuJUiIYbM81pNVHptl+31xd?=
+ =?us-ascii?Q?pAi2YHSkEg2u/cjnVLLBuuyxVpx5xDejdwEmXRR5iaM8Zz5jAaN/tkrIvXqZ?=
+ =?us-ascii?Q?9QkmkS7rGGf4noCfJ7zhe3rnKHTSiiklzghptt5+4FpiQQukstkGvWtrQUTp?=
+ =?us-ascii?Q?GgjOjbhf/yQign13OpTzus9IoM+sUC6feOIo4oJMg35rxuy3ZzNQAwoYDEQr?=
+ =?us-ascii?Q?PMF0UqxylPXcvxvmhN79ppFEeOgQDTOb4w0XvS4FYMMIu8NsRb6gbMxRXftH?=
+ =?us-ascii?Q?Wz2/PENB/BskHcTqE9K/k2BIgcZawrufpB2TWcQ8IaZD0HVKRy8e3FrVsbsF?=
+ =?us-ascii?Q?u1Lre7sEwvNYyv4sKdhEHzByoj26bdHJKu3LvDIljut+In9nMO+qKkxUemtY?=
+ =?us-ascii?Q?8CvZfM9x9gaIJvxd90K0XcKpF/vCODnJW/z5Q4VsFf/bVDQG77PQYAFKcAQs?=
+ =?us-ascii?Q?80k/DPJFizw2TmKNacOlgwey4cjaE9AHOV21DYke6CtALEMmKfRJQYsJ2HG0?=
+ =?us-ascii?Q?ed0/ebeXjq8LJr1PE6WE8Uq+ZYYeCUnZf9/Vik8WIzD9XuJ22v1tOzuXCefv?=
+ =?us-ascii?Q?2LJwjkQ6jfYElDfPlBn7HTyBGxVMye/c5JSZFusKtCFRXht9b30Sv4OLPUzb?=
+ =?us-ascii?Q?WT6d74OXEkXwyjaUHdLZdq9KhsKffwj01L549fOV8eA+jX+9W+Z0DdRLZFbb?=
+ =?us-ascii?Q?B17OkVRUx6I8QtaujLvCt4c4IMWMKiDCRRVwy0BDVwDwlfHN713ibr/80eoO?=
+ =?us-ascii?Q?/e/3MTCLGewGPUFc6pPLb3V+Mic+1OFofiY08VSHhd0A90AkPIj44rU7A+nM?=
+ =?us-ascii?Q?KDhYhUCbamVMLx14dlZz5z/2yGVNy9tQ95MjLEW71P3HUtJP54V/2VS5BQmJ?=
+ =?us-ascii?Q?R7u6AEwxNbyHFtSCvOXr3AcWGzWWUbMiKwzWSB3Kee1YslgE5fOZkcdxJ7IY?=
+ =?us-ascii?Q?y3Bw7n+1LJgwQwKtO8eyyAdhygD+5C01yMja8ug4lC0P3HAkKtwxe7IpXWnY?=
+ =?us-ascii?Q?s1/I9mPVUa3Huv368dK5VIPDjIGB0EAwjyKFR5S5Qt8rQ4ge4x4YslEN4JNv?=
+ =?us-ascii?Q?mngEaK90kO7UnokI2iRVbtLZETRl8OLGzit2so81yTLQRg/bVJvnSk4Ptu2W?=
+ =?us-ascii?Q?Jz9U/sZ6gJtLBuhVZYoAB9zXDvhzP8wPkfoDk2Fcvr47xZrV/UFPlmcfwlRT?=
+ =?us-ascii?Q?M5/pXg5ayJ5lZzBFHjEYZx70Fjc8m3pSWtcdWVKuWu4IHSQQVwmOfXwTaFk4?=
+ =?us-ascii?Q?VcaoC96sEJJfIpFkq5/ZCYn9VsVsxoE5+K9IWakG7kIN5lFcXrv0SzEhDoeb?=
+ =?us-ascii?Q?v3gWbXcn16gEMYDNqQ7SREO1JdPkOuF0A+FBG4sf/cgPRb5oUprLqSO+kBY/?=
+ =?us-ascii?Q?A+7/MPKYyViubxh5ySPwXvfesdeSfrQNKSME4DdaYfKkbkYMr+nGHPZ7lejY?=
+ =?us-ascii?Q?VSvsqlGx6LGjeB+ATYlRZGMoHVpXRhB1Mk0fDCrZ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc2fa725-68e2-46d3-3e11-08dda769beec
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2025 15:24:37.4628
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IRlH5/NIH8QwKkIK+4DTkzZSvsIrnyUapZ8z6n8ThFAN8sN1/gF21BowNpDCdwUoPjCtGHKc3dgnZIBavfInIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9777
 
-On Tue, Jun 03, 2025 at 12:08:02PM +0200, Arnaud Pouliquen wrote:
-> Hello Bjorn and Mathieu,
-> 
-> I am resending this series after waiting for over two months for Bjorn's
-> feedback, despite a prior reminder.
-> 
-> Please could you coordinate between yourselves to determine who will continue
-> reviewing this series? It would be greatly appreciated if the review could
-> proceed within a more reasonable timeframe.
-> 
-> Thanks in advance and best regards,
-> Arnaud
-> 
-> 
-> Main updates from version V15[1]:
-> - Removed the rproc_ops:load_fw() operation introduced in the previous version.
-> - Returned to managing the remoteproc firmware loading in rproc_tee_parse_fw to
->   load and authenticate the firmware before getting the resource table.
-> - Added spinlock and dev_link mechanisms in remoteproc TEE to better manage
->   bind/unbind.
+On Mon, Jun 09, 2025 at 05:11:27PM +0800, Richard Zhu wrote:
+> Correct the DMA interrupter number of pcie0_ep from 317 to 311.
 >
+> Fixes: 3b1d5deb29ff ("arm64: dts: imx95: add pcie[0,1] and pcie-ep[0,1] support")
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 
-Have all pending issues been resolved or is there still questions about some
-aspects of the design?
- 
-> More details are available in each patch commit message.
-> 
-> [1] https://lore.kernel.org/linux-remoteproc/20241128084219.2159197-7-arnaud.pouliquen@foss.st.com/T/
-> 
-> Tested-on: commit 0ff41df1cb26 ("Linux 6.15")
-> 
-> Description of the feature:
-> --------------------------
-> This series proposes the implementation of a remoteproc tee driver to
-> communicate with a TEE trusted application responsible for authenticating
-> and loading the remoteproc firmware image in an Arm secure context.
-> 
-> 1) Principle:
-> 
-> The remoteproc tee driver provides services to communicate with the OP-TEE
-> trusted application running on the Trusted Execution Context (TEE).
-> The trusted application in TEE manages the remote processor lifecycle:
-> 
-> - authenticating and loading firmware images,
-> - isolating and securing the remote processor memories,
-> - supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
-> - managing the start and stop of the firmware by the TEE.
-> 
-> 2) Format of the signed image:
-> 
-> Refer to:
-> https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
-> 
-> 3) OP-TEE trusted application API:
-> 
-> Refer to:
-> https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
-> 
-> 4) OP-TEE signature script
-> 
-> Refer to:
-> https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
-> 
-> Example of usage:
-> sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
-> 
-> 
-> 5) Impact on User space Application
-> 
-> No sysfs impact. The user only needs to provide the signed firmware image
-> instead of the ELF image.
-> 
-> 
-> For more information about the implementation, a presentation is available here
-> (note that the format of the signed image has evolved between the presentation
-> and the integration in OP-TEE).
-> 
-> https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
-> 
-> Arnaud Pouliquen (6):
->   remoteproc: core: Introduce rproc_pa_to_va helper
->   remoteproc: Add TEE support
->   remoteproc: Introduce release_fw optional operation
->   dt-bindings: remoteproc: Add compatibility for TEE support
->   remoteproc: stm32: Create sub-functions to request shutdown and
->     release
->   remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-> 
->  .../bindings/remoteproc/st,stm32-rproc.yaml   |  58 +-
->  drivers/remoteproc/Kconfig                    |  10 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/remoteproc_core.c          |  52 ++
->  drivers/remoteproc/remoteproc_internal.h      |   6 +
->  drivers/remoteproc/remoteproc_tee.c           | 619 ++++++++++++++++++
->  drivers/remoteproc/stm32_rproc.c              | 139 +++-
->  include/linux/remoteproc.h                    |   4 +
->  include/linux/remoteproc_tee.h                |  90 +++
->  9 files changed, 935 insertions(+), 44 deletions(-)
->  create mode 100644 drivers/remoteproc/remoteproc_tee.c
->  create mode 100644 include/linux/remoteproc_tee.h
-> 
-> 
-> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-> -- 
-> 2.25.1
-> 
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+> ---
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> index 59f057ba6fa7..7ad9adfb2653 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -1678,7 +1678,7 @@ pcie0_ep: pcie-ep@4c300000 {
+>  			      <0x9 0 1 0>;
+>  			reg-names = "dbi","atu", "dbi2", "app", "dma", "addr_space";
+>  			num-lanes = <1>;
+> -			interrupts = <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupts = <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>;
+>  			interrupt-names = "dma";
+>  			clocks = <&scmi_clk IMX95_CLK_HSIO>,
+>  				 <&scmi_clk IMX95_CLK_HSIOPLL>,
+> --
+> 2.37.1
+>
 
