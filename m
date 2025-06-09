@@ -1,120 +1,101 @@
-Return-Path: <devicetree+bounces-183688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CB8AD179A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 06:05:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC8AAD17BD
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 06:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70A593A717A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 04:05:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3B43168804
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 04:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F7991E9B31;
-	Mon,  9 Jun 2025 04:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC0C27FD4F;
+	Mon,  9 Jun 2025 04:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rN3/KtQr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cVcxzpDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BCD258CE5
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 04:05:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6583D544;
+	Mon,  9 Jun 2025 04:24:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749441955; cv=none; b=AawkmjUJF3mOat3FGhMh+NVKwhtcxp5VVNwLVKPzHB/ikvAGL2mV/DcjCU27rRX4RvNmpWosWdCIqIw2sMUYYteZEE/Ho7r4fAw42V2KiNdtLoBfaL8XksTcb0RjYs+bFEMGfq1qLhhjxqxjBjcUFL9FWp7KQrLgXJkJ3jW4UN4=
+	t=1749443084; cv=none; b=i5InU/ltil2XR8dn22N5SsKTQZNg4QTotwfVg4dUJx0uOEzgZqT+TGQoOpposUKKHLwTgKzUCtJTlfxm7K+nUK9TXOJhl/VRhA2x07c6SwBkWZ7kxqv1ykl94bhgdezNVhqwxOmdUfFpA82oR7BWoXjwJao3tx/fAbC/+QH1DA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749441955; c=relaxed/simple;
-	bh=L6+1C4CzYabfehH0G4+8SaStDGBeWyrLmUOvSeRJYh4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=DGVF+e4HGuoPDzugKL4Gro7hzB5fU1gCBngNhtwgfFJS9oomoLl5pM9nMbhnajpEXJOjlf1JoNUzzCvEcFxLxz1KfSq6ymyvl5W9wcFoRVLofFtmbLGp0iW9J54+V8CpQbps0HCi7DL43Op1Upp2HiE3vLvPSGUN157eWYrHgyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rN3/KtQr; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250609040550epoutp040bec9af7d6a21619d51c6272166f4a32~HRC9jMTWM2141121411epoutp048
-	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 04:05:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250609040550epoutp040bec9af7d6a21619d51c6272166f4a32~HRC9jMTWM2141121411epoutp048
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1749441950;
-	bh=W0Ty8uQC2ggf7ArBdnQeDtKQVIMY78+qF9VWC+NFGdo=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=rN3/KtQrvZoO5EJWpXFAE+yCgtvoPe7amkm1tf5cMF7fvZ8T0UTH9fjy4usrOHJAh
-	 NpvEbnOX/rv9zDxq2MAyKUMi3Yaxq6RwNNpFqVXAjg7IFwLMnndpieOCpPNZacU381
-	 079KqPrn/a2xLCYM8AuH05zDe665qLdT1Lp6xaPs=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250609040550epcas5p44ffe74ab72a0659449132c1e2595348c~HRC9FgbNP1796017960epcas5p4L;
-	Mon,  9 Jun 2025 04:05:50 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.175]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4bFyyH4tpDz2SSKY; Mon,  9 Jun
-	2025 04:05:43 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250609040543epcas5p4a339f4920addf5bd274e54778172e78b~HRC2pfZzh2015720157epcas5p4t;
-	Mon,  9 Jun 2025 04:05:43 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250609040540epsmtip23ac06c81db24768155a370ce8cdcaa13~HRC0J7VFH1644916449epsmtip2m;
-	Mon,  9 Jun 2025 04:05:40 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Raghav Sharma'" <raghav.s@samsung.com>, <krzk@kernel.org>,
-	<s.nawrocki@samsung.com>, <cw00.choi@samsung.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<conor+dt@kernel.org>, <richardcochran@gmail.com>,
-	<sunyeal.hong@samsung.com>, <shin.son@samsung.com>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<chandan.vn@samsung.com>, <karthik.sun@samsung.com>,
-	<dev.tailor@samsung.com>
-In-Reply-To: <20250529112640.1646740-2-raghav.s@samsung.com>
-Subject: RE: [PATCH v3 1/4] dt-bindings: clock: exynosautov920: sort clock
- definitions
-Date: Mon, 9 Jun 2025 09:35:38 +0530
-Message-ID: <03cd01dbd8f3$c4c18130$4e448390$@samsung.com>
+	s=arc-20240116; t=1749443084; c=relaxed/simple;
+	bh=nA4pr8rR8GdTPJG1GEj2FJ2dYpGn+ljhMBTSZXnCjfw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mqXz1osUcMFvKce8Nt6oyGYvJp0bhQHKoRvBVz3TcujWPz6I4uV6q4bV+c0ErEM2cim9HBc/oCooZ/Cjvx9skdDmCjEub7R/vzQk2GFJazu1/YjrEISABuLImLAqJJQAoQHi/GSJUUoqKJvSbR+Wshu85/qxNnXdSPgnL4agYpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cVcxzpDu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 35AF6C4CEED;
+	Mon,  9 Jun 2025 04:24:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749443084;
+	bh=nA4pr8rR8GdTPJG1GEj2FJ2dYpGn+ljhMBTSZXnCjfw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=cVcxzpDuEraFhdpW7J67sDmKDDlbT3xG796Wbx1mHcjKH9fM42tQoyXNAcuTxnkFe
+	 Q92amqZ8H9L3RcKTvvNn/ytyEYe2POutaO0oR9JrVtmgg1xEABqOFSTT63K7olUkdy
+	 WhW/BhZ6x/DGU0n4W3UjHITjSMw5p63aV7vyt3A0WfNfwJc26jo+Gvb6UK1SP7wFDg
+	 uTdINLnQJmRUFE/dXrVF8TtfPwEpOFQFJArbOBDUmo2J+nr7Rzq8bnjHAyD01OdgAJ
+	 StsvpyGiZ1CxuXMiRut6KDlmAbfBUxybrvbC5evhTJRA/Vvnpz67q2baxMWOaEZL7E
+	 1kwNq+MLS9blw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F598C61DB2;
+	Mon,  9 Jun 2025 04:24:44 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH RFC 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer
+ Kit support
+Date: Sun, 08 Jun 2025 23:24:34 -0500
+Message-Id: <20250608-p3452-v1-0-4c2c1d7e4310@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIRyuXPQglR2pg1tLiplohNF2WAzQJJNEBAALUq35Ozdl5VAA==
-Content-Language: en-us
-X-CMS-MailID: 20250609040543epcas5p4a339f4920addf5bd274e54778172e78b
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250529111708epcas5p232b8bb6b05795b7014d718003daef0cb
-References: <20250529112640.1646740-1-raghav.s@samsung.com>
-	<CGME20250529111708epcas5p232b8bb6b05795b7014d718003daef0cb@epcas5p2.samsung.com>
-	<20250529112640.1646740-2-raghav.s@samsung.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAJiRmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDU0Nj3QJjE1MjXQNTS3MDi+RES0tLYyWg2oKi1LTMCrA50UpBbs5KsbW
+ 1ABmodlpcAAAA
+X-Change-ID: 20250513-p3452-059708ca9993
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749443083; l=606;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=nA4pr8rR8GdTPJG1GEj2FJ2dYpGn+ljhMBTSZXnCjfw=;
+ b=3whLJDhEmZEwU8CgXuejrd87bVi5K1GSxA2ybAQz6muihICLk3igRj4rBsRDHAJUSejhtoOZs
+ lKQcri3FujqByhHbo5T43vkhqLy7BhYxw7ZvjIKUHsSHIcUq9AXbprh
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-Hi Raghav
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Aaron Kling (2):
+      dt-bindings: arm: tegra: Document Jetson Nano Devkits
+      arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
 
-> -----Original Message-----
-> From: Raghav Sharma <raghav.s@samsung.com>
-> Sent: Thursday, May 29, 2025 4:57 PM
-> To: krzk@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
-> alim.akhtar@samsung.com; mturquette@baylibre.com; sboyd@kernel.org;
-> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
-> sunyeal.hong@samsung.com; shin.son@samsung.com
-> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; netdev@vger.kernel.org;
-> chandan.vn@samsung.com; karthik.sun@samsung.com;
-> dev.tailor@samsung.com; Raghav Sharma <raghav.s@samsung.com>
-> Subject: [PATCH v3 1/4] dt-bindings: clock: exynosautov920: sort clock
-> definitions
-> 
-> Sort all the clock compatible strings in alphabetical order
-> 
-> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
-> ---
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+ Documentation/devicetree/bindings/arm/tegra.yaml   |  5 +++
+ arch/arm64/boot/dts/nvidia/Makefile                |  2 +
+ arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 43 ++++++++++++++++++++++
+ 3 files changed, 50 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250513-p3452-059708ca9993
+
+Best regards,
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
 
 
