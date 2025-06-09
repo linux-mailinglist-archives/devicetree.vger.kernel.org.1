@@ -1,179 +1,356 @@
-Return-Path: <devicetree+bounces-183699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F71AD1824
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 06:51:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC84AD186F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 07:58:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C95188845B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 04:52:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C77116176B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 05:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C3D27F75C;
-	Mon,  9 Jun 2025 04:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C36515E97;
+	Mon,  9 Jun 2025 05:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="093Lv2NS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dD7ppcSN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2081.outbound.protection.outlook.com [40.107.244.81])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B513A27F166;
-	Mon,  9 Jun 2025 04:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749444710; cv=fail; b=bGYOySbNvOWlnEfIM0h683N5H2b9ekiT9Buzoz405o61o+bHUWu08LCYxvPxCvNKvEMCR761SmaS2ippL3jtLFXxOSKI0bi/Y1UMDvu83N9hKw9vhmEgSCQTec8ZmXhwNPeeMgFRirQRLDrOSlAwYNwpOLlLgmN84hNOYSUuafw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749444710; c=relaxed/simple;
-	bh=CF7fhwE5HjwVMZ7sdD4qmwvuIiCG8Aogj94nQ7IzrGQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s6BIY6S0BEErYm7Sd/r4FXbUUB2AZmrnIK1kh2vjQbUu0ZarTB3XGW4vt2BzVqjNhjgU0j1rkgeozHejeifQ1N/AnT7Dn/M38cf3tKSxtW0OtWzt6fsNxiUu4hT5aIWP5nxsHbe4TspjLz0DJbdjSOUVnbyFu8+Outs5ip3iaJk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=093Lv2NS; arc=fail smtp.client-ip=40.107.244.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RkL34o5X7RXCGCAEAIsvd6c4MMuBQoM7g+fLnnoG4QFtAX2Oajml/c0LGUPbv+FtsGu1UTUqAiQZ4cJ9wVGBcpfajAdo161NxX0yOZgAeoKSq6Uy/Aq+wrBxn48vOQns4GlRtij6UyQ/KERMB7nnhH0N2wb8kc7BQyHnCuiTGPL+nqU7V9MGKhkQi8R6cHkmAvP8SZeMfgP4LHgMheerLLa6002HGwUxhYJ0C6L8rjdw6mVGrIYvSv8pvBbhg0CRgKgoIMOum0OItw3yApzJkK290EDY8+3k3gBYqD6AC+tCo3jFKXZShxz5SN6nWURL/YnREVKeqmwYrjVtnC5HeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6DFzQU6Fzm83VtVBnD1KMNhwIcXZ32Qbj1a+LA5OiZQ=;
- b=bVlMrIdkN9viYEShv6xrz+SRi99NrPfV2xQug3Eoncgl80tchKlnzUxKMq72r8jn7mpgFN/El9XAD3iEl+5oeb8/TbIk/rga1yxUjrOjnQTiUKj8Krh8XGdWSwhbpsFDXBkJUVRUHw3DdoBXY4jUCfB1ct7NAs7Oh/Z7fLMnAUpM6lkWOV6yIsRxUWQsDMhQoh7h1WuuzNA65IdU97F3/dAk3JYfpbJ68wQrQnq0xHbCgJ4XHryZjVmFm+j4TvOzTTlTc0Q5bCVfQx5oWP6NKCiasOwe9GRkhPtr6yQB9IZlIyBf4okmp7h1eU2D9LPxhHlLZ6O0jPafIm0Mk3TiWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gondor.apana.org.au smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6DFzQU6Fzm83VtVBnD1KMNhwIcXZ32Qbj1a+LA5OiZQ=;
- b=093Lv2NSvTIwBaWvCOtSWTjN1/DOIMxPXxNkoCT+Y3VmyouXV6ho2J0y3lEaV5NmJdn6ywWPpqk8rBsH+nn52DdowqEurDYgNhBtpw+Uq0OtIpqoTVGnPF6ejI8hUyNs3bS/Maa3XreWgjYovAD5ixP+C6ZgRr4LoLMwAXFD7gs=
-Received: from CY5PR19CA0065.namprd19.prod.outlook.com (2603:10b6:930:69::13)
- by IA1PR12MB7493.namprd12.prod.outlook.com (2603:10b6:208:41b::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.36; Mon, 9 Jun
- 2025 04:51:43 +0000
-Received: from CY4PEPF0000E9DB.namprd05.prod.outlook.com
- (2603:10b6:930:69:cafe::77) by CY5PR19CA0065.outlook.office365.com
- (2603:10b6:930:69::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.35 via Frontend Transport; Mon,
- 9 Jun 2025 04:51:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000E9DB.mail.protection.outlook.com (10.167.241.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8835.15 via Frontend Transport; Mon, 9 Jun 2025 04:51:42 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 8 Jun
- 2025 23:51:41 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 8 Jun
- 2025 23:51:41 -0500
-Received: from xhdharshah40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Sun, 8 Jun 2025 23:51:38 -0500
-From: Harsh Jain <h.jain@amd.com>
-To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-	<linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<mounika.botcha@amd.com>, <sarat.chand.savitala@amd.com>,
-	<mohan.dhanawade@amd.com>, <michal.simek@amd.com>
-CC: Harsh Jain <h.jain@amd.com>, kernel test robot <lkp@intel.com>
-Subject: [PATCH v2 6/6] crypto: xilinx: Use min_t macro to compare value
-Date: Mon, 9 Jun 2025 10:21:10 +0530
-Message-ID: <20250609045110.1786634-7-h.jain@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250609045110.1786634-1-h.jain@amd.com>
-References: <20250609045110.1786634-1-h.jain@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860FC25CC61
+	for <devicetree@vger.kernel.org>; Mon,  9 Jun 2025 05:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749448680; cv=none; b=Kf57YCcRn/8x8+hu4/Que5i5cugewQHBcm5Eqjq4Ro0ytzlnACCL+2SgUGSrfeSdgYwCXSMe+gcgDAzdKhnlD0xHZcC5WR/seD1ijxldBsVUrAEgLU4NMldQzx03qClZLx7f6bLIXYzfiP3OLKYyRW/1fVpTtdR6DJW4HVLDzWE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749448680; c=relaxed/simple;
+	bh=Mpn3Zxli17D2OF2PlMwZa6rwNKulWuAjX+MzPpEib78=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=cs0HF+IPUsvkF4QM+YnzEzvKptPmm4PcG0PsD/vUwws5I8r3Il8vm8mSBUIIDu2VHajO5q0W2jKVT4Dw9u/2D7/K2WByLNqpdU2hjJ0E1WepGG+emLeDDJQ4d0PkTOka8OTf6lp83+CdOPyU5pqgemy1qQdlM+lOjvRDxkCkIao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dD7ppcSN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 558MXCIj001132
+	for <devicetree@vger.kernel.org>; Mon, 9 Jun 2025 05:57:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SrUnZXfqt9KjlRqLlnrECKyis2VxRFCvtOYI6adzx6s=; b=dD7ppcSNozsk1fx/
+	D1i7xW6mTrzQDTsBetPetUZpgwdvXON/GGz+KHIJ+2zo6zBMsITQZGB4Mf/dcFAF
+	qkMUcRBxIrSSrUHMx4tU+MSTQVYQj2ALAoGgsc5v0iTvQb1U1ptjvVnLeL5jZSrH
+	ewgGsUmHOzchgLLJjTT8mMY4E8CxWm6nsI8/KRRftrAaT95Paych+FpK4EO5EvhE
+	fcrvsokCFmUAtztXj80dOCVNUjESvA5aQanMuG45sjNny+CbxEMAodFaWWNqOcAF
+	MRhznrKZ3/+0OEF6xhN/aW2RF2kpq1kr+FDuoJHN2ZwtyddwJG1mKbCXxQRgPY5m
+	2ZaAxQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dt9myhe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 05:57:57 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2358de17665so37462705ad.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Jun 2025 22:57:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749448676; x=1750053476;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SrUnZXfqt9KjlRqLlnrECKyis2VxRFCvtOYI6adzx6s=;
+        b=Qe2tprxFu/XshV9fgxLYxrLbvHlSVcDbJqpzO3l8wYc3l8vGDrdAmcZO/t6E+y51Wt
+         MueBQyh1cQP+6jgV6GDA2B7KgyWVsCIK0mByMC8vm8ETbN8Je/ByzJ62s7iSikG2icT4
+         nQCgdNtUwHrFyIAPHu//ssOEzwKZsyHmWtr5UYXZHEUbjqmr+sEB3BOin3bkU3sxNQxn
+         S9dn39wI1YpNWdjNzuH7qAheyGjsoZlnMtIXQZWg+D6vSHWMlSmhRIOw9Y/BbGv1MwUc
+         86yJQ5/S/+NePmIHqNb5fWI02pIKOaGTidZ7QVA19/tLSk0JkFKwQ62aoeZo3DLlCfI8
+         oZ+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXfG8daNQsnBmy8ULE6j/G2OhYkZLtlPOcL9vDjWcL44rcBB0cnNp+NpwO3PpxsIolaomK7J1bKl920@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkzD0gK+tD/BdEmf42BfywKd+N2ymjk7n2N6qSKdXfEhY4vlln
+	SLoMlppgf0Ew0Lw9LPIBV6LO26D9Mwy7x1JEiAiE5DZYz+UN2fih8ZSx7fY+jyORc83Xcf1SXBA
+	F4cYq9JjrIUAbfCRMG/EEG5nxthWkyl29tZKWd0jrr0gq/ncfuCN2+YoZSWKqV9G9
+X-Gm-Gg: ASbGncvayjnGrvNuJWksgRYV4k7jc9e0WPyk4kS9IWtELlFk9WzhEkWBXPlrhoYz4ju
+	wF/P5rEkO9ByKxDOOPv4z5ZHDxWL61td5ac4W0fj30xvobgLF7s6IsTeo/ySMgi0zpKWYK5+Cz2
+	LLo6U7JO7cb5hm5OU/rO4fiiQJ1vnEEoEBJKFr4k7V/rZjXzk4JnR8QK8suozOrs19wJcMcz9oX
+	KvAcV+PFVNfKPSWH/ga6SdmIw9IELqP6Pdrb+fPBv9uVFb5LqOppwlBCHdMqUBlC0FYoJHlFjXm
+	6IsT59QF4RPB+cUe8Ka51pLHnFRTTr0Obfrp7swSDQ==
+X-Received: by 2002:a17:902:d2c6:b0:234:cc7c:d2fc with SMTP id d9443c01a7336-23601d24945mr160464915ad.27.1749448675851;
+        Sun, 08 Jun 2025 22:57:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE78MvYavfGwv9UjYUEnj5TRNzYelwxltkwZqYUvbIetyfuwzjXm7VoteUx/HSe1LfF8827fg==
+X-Received: by 2002:a17:902:d2c6:b0:234:cc7c:d2fc with SMTP id d9443c01a7336-23601d24945mr160464555ad.27.1749448675392;
+        Sun, 08 Jun 2025 22:57:55 -0700 (PDT)
+Received: from [10.92.214.105] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2360340fe89sm47400665ad.204.2025.06.08.22.57.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Jun 2025 22:57:54 -0700 (PDT)
+Message-ID: <7b91b725-6b47-bf8f-e6e5-e4584f274ec4@oss.qualcomm.com>
+Date: Mon, 9 Jun 2025 11:27:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: h.jain@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DB:EE_|IA1PR12MB7493:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b7078c8-7b5b-43b6-170c-08dda7115402
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ufZIYwOhyXLeTyzvFg1KKLE0DQw0+r2wFRh9oDw96LCEB/JNoAFoJnzGvVWM?=
- =?us-ascii?Q?ClEHJ0+cmSQiD1vR/eli56DONYde4C7SihKFfN3upJgxx1uDq1ANGD1WTm1X?=
- =?us-ascii?Q?PoemfmTNHSQXKQT4++WpwMuon0OnNZm3jQ6qJUlMHssYSqgH+EnRaoLDdq4M?=
- =?us-ascii?Q?6MrkR4MOQNA7jv5y0fSEfVmmxhh4A+I+KxliMIzn2ZFFqSspGcn3+U9s9tiQ?=
- =?us-ascii?Q?qYQc3kpmPVE1i50EEoHLDOacmldLSbDuXXM6gLMzzh5tBCFBr3FeHZlL33r2?=
- =?us-ascii?Q?kfWR2lEzPtk8UNU7+cIDRfa7d5iH8W0alujS0UO1nRnSEh1NEKRHln7e5Xxr?=
- =?us-ascii?Q?exZ18zvmjaptTbopYVOAR+KluQo4rqAK25Muvq0lvypg2so9SxkIjtoMmCM8?=
- =?us-ascii?Q?H4RgiZ64giNACLvJVrsx6tQgP7a2usvIz7P6XcfTgU++q7AXt98Gw7r8jo0U?=
- =?us-ascii?Q?7SAYY5HCybjzynH/JhMX4f1a7NkMXE86YGoO82lDzUxl64xLrwUEuwYpbhiI?=
- =?us-ascii?Q?5+6tiCM2HY1723m5Nj6SbyCQEgmkGxIztokSTLP6fsm6Rv37uJUk7SHosfO4?=
- =?us-ascii?Q?7u4Dv8CgRj+DaGqZ2PFYiKDU5xsWDlV3W+UOpNp3Uv+VOBLKkmwwxuJFUKta?=
- =?us-ascii?Q?euJj7LSED/eUn8m+V+YmyeTrEZ3FYmga/hnzKkjVCdMvLaXRVdrY62/k4pyo?=
- =?us-ascii?Q?zg4+eovBbXQ1w/22xfUn2NLaX0DPJeheFGovBcXb1ubyvqdAFkuFBU/olkF9?=
- =?us-ascii?Q?KAUwTYaj9tU9yTZngalVw3iaZGSiCU5i0fuYtz5rxi/IkjwxZs1ZNVTVUQRf?=
- =?us-ascii?Q?2HbDrPKVB6I6y7D5jls6ws5OeUtSdOflLM6u/zeB6l5n861h1RJjsFGcpr7K?=
- =?us-ascii?Q?QTU6f9dSW75PpIeWPpjg3uZmhefczGAzRfqHwproB32uOq1g4CTDmoGO1qsd?=
- =?us-ascii?Q?pkP8Q4NoWC0ah0/c9gI0xr+cGE9rCZV3XB3YN2Usn4K1iDTZ+jLuZvn8ccqa?=
- =?us-ascii?Q?L6wHNp3+UOrrTPSD24CVkNb5c76A8UKxOVACA2odIvSunAgdjrDHcw//i4JP?=
- =?us-ascii?Q?hMplN/EYo4buNqdyigtwhQqSUOPQzU4qTECB0j87YK/SLJPZLImzQ1IDqHk6?=
- =?us-ascii?Q?GYc0UQoettJ4vVCa3jgJ6TvkDXJC9ljS08rmo0EVl4COaUuMQ/8XMNEhiN9E?=
- =?us-ascii?Q?nTZhemxnL9wQ06p4bAKoTY7MNRosTmK79+ENpxTx5mQ22lq2WoUH+VnfFXAl?=
- =?us-ascii?Q?fRXNyA8T6VmAjlT6knn7A7aj+G6SzknuuNGoxbxma4ISx09PvrXLjvNOle59?=
- =?us-ascii?Q?HvXdq2CN0JW2BbGYc+7QntaNNQ7sIxV8/YNZ4RpmFMU6h/Cu2A+46KR+Ue0l?=
- =?us-ascii?Q?+T0M2wXklQf1+c08xyGqUP618HrMECgUmVYslIKOQxrEdLqopSvtIZcNv0Ng?=
- =?us-ascii?Q?5/TJj5xYWX0Ju/1QSocGSWBdH3nrtmzD7k+hREGnXmsWn/Gdnt7+EI+v7fuF?=
- =?us-ascii?Q?bBi3AWTbHWf9L+lGaOz2Bp78DhzQ0nhI4dNVARO6EoODcomD1t56nmXD8Q?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2025 04:51:42.1143
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b7078c8-7b5b-43b6-170c-08dda7115402
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9DB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7493
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: Re: [PATCH v3 2/2] PCI/portdrv: Add support for PCIe wake interrupt
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+        quic_mrana@quicinc.com, Sherry Sun <sherry.sun@nxp.com>
+References: <20250605202630.GA622231@bhelgaas>
+Content-Language: en-US
+In-Reply-To: <20250605202630.GA622231@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=KpNN2XWN c=1 sm=1 tr=0 ts=684677e5 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=8AirrxEcAAAA:8 a=sFKuWwQCCB-pgVPeRP0A:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-GUID: vNiSluFHRJ_3bDbituyI46Hv7SYSu1XC
+X-Proofpoint-ORIG-GUID: vNiSluFHRJ_3bDbituyI46Hv7SYSu1XC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA5MDA0NSBTYWx0ZWRfXw/SWzVl7e3i2
+ IZCCpK026bE8GOnpqkR6o1Hu5I6wrC0xYoCS3dXmVjMFoy491FztvNrpR1tX7vEdIwIo7MGL9+m
+ 5gnl3n64ml24w/DYEDbo9wyklg7NBEARTOpfHVaZpG4zwI97MK4eCguCPpWbUhPQN1oskWG8Nf7
+ M3/K+G/rC5fg5pMWWEu4TWLJvfwuL+UbeUtnYJOzhQ+YI5WbYeEDAljbufQR5EmY0ot7q644qTO
+ RTgGJckOC1LIulQ30B96C1PofIq2rLWvZ93Q28L1W8wiUDkKN/5Jo3FfaE/3Um+Sy9jWcKP8uI5
+ hgucPAS+J5bwqJ39oSakH2Rpclp6QlViH0AWFA4bnfX6HeAPHHPQOzXIydUTHsSMtrDd29IV9Fg
+ kj2YxbPoP67W7WjSY37AaT/jSq02DnTTh+B/eMZA9ix5TEQr9DXrE/Wo3B+gFLs+pdEqqBKF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-09_02,2025-06-05_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 phishscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
+ spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506090045
 
-Fix signedness error reported by kernel test robot.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202505310740.bRheYmxs-lkp@intel.com/
-Signed-off-by: Harsh Jain <h.jain@amd.com>
----
- drivers/crypto/xilinx/xilinx-trng.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/crypto/xilinx/xilinx-trng.c b/drivers/crypto/xilinx/xilinx-trng.c
-index 8ec0f83b53f1..4edcaf911475 100644
---- a/drivers/crypto/xilinx/xilinx-trng.c
-+++ b/drivers/crypto/xilinx/xilinx-trng.c
-@@ -304,8 +304,8 @@ static int xtrng_hwrng_trng_read(struct hwrng *hwrng, void *data, size_t max, bo
- 		if (ret < 0)
- 			break;
- 
--		memcpy(data + i, buf, min(ret, (max - i)));
--		i += min(ret, (max - i));
-+		memcpy(data + i, buf, min_t(int, ret, (max - i)));
-+		i += min_t(int, ret, (max - i));
- 	}
- 	mutex_unlock(&rng->lock);
- 
--- 
-2.34.1
+On 6/6/2025 1:56 AM, Bjorn Helgaas wrote:
+> On Thu, Jun 05, 2025 at 10:54:45AM +0530, Krishna Chaitanya Chundru wrote:
+>> PCIe wake interrupt is needed for bringing back PCIe device state
+>> from D3cold to D0.
+> 
+> Does this refer to the WAKE# signal or Beacon or both?  I guess the
+> comments in the patch suggest WAKE#.  Is there any spec section we can
+> cite here?
+> 
+we are referring only WAKE# signal, I will add the PCIe spec r6.0, sec
+5.3.3.2 in next patch version.
+>> Implement new functions, of_pci_setup_wake_irq() and
+>> of_pci_teardown_wake_irq(), to manage wake interrupts for PCI devices
+>> using the Device Tree.
+>>
+>>  From the port bus driver call these functions to enable wake support
+>> for bridges.
+> 
+> What is the connection to bridges and portdrv?  WAKE# is described in
+> PCIe r6.0, sec 5.3.3.2, and PCIe CEM r6.0, sec 2.3, but AFAICS neither
+> restricts it to bridges.
+> 
+The wake# is used by the endpoints to wake host to bring PCIe device
+state to D0 again, in direct attach root port wake# will be connected
+to the root port and in switch cases the wake# will connected to the
+switch Downstream ports and switch will consolidate wake# from different
+downstream ports and sends to the root port. The wake# will be used by
+root port bridges only. portdrv is the driver for root port.
+> Unless there's some related functionality in a Root Port, RCEC, or
+> Switch Port, maybe this code should be elsewhere, like
+> set_pcie_port_type(), so we could set this up for any PCIe device that
+> has a WAKE# description?
+> 
+As this is only used by root port, I am ok to change it to there to
+enable this only in case of rootport.
+But we need to make some changes in the flow as of node is not assigned
+yet pci dev and also if wake registration fails we can't stop the driver
+from probing as driver is not yet in the picture yet.
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> Tested-by: Sherry Sun <sherry.sun@nxp.com>
+>> ---
+>>   drivers/pci/of.c           | 67 ++++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/pci/pci.h          |  6 +++++
+>>   drivers/pci/pcie/portdrv.c | 12 ++++++++-
+>>   3 files changed, 84 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index ab7a8252bf4137a17971c3eb8ab70ce78ca70969..3487cd62d81f0a66e7408e286475e8d91c2e410a 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -7,6 +7,7 @@
+>>   #define pr_fmt(fmt)	"PCI: OF: " fmt
+>>   
+>>   #include <linux/cleanup.h>
+>> +#include <linux/gpio/consumer.h>
+>>   #include <linux/irqdomain.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/pci.h>
+>> @@ -15,6 +16,7 @@
+>>   #include <linux/of_address.h>
+>>   #include <linux/of_pci.h>
+>>   #include <linux/platform_device.h>
+>> +#include <linux/pm_wakeirq.h>
+>>   #include "pci.h"
+>>   
+>>   #ifdef CONFIG_PCI
+>> @@ -966,3 +968,68 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
+>>   	return slot_power_limit_mw;
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+>> +
+>> +/**
+>> + * of_pci_slot_setup_wake_irq - Set up wake interrupt for PCI device
+>> + * @pdev: The PCI device structure
+>> + *
+>> + * This function sets up the wake interrupt for a PCI device by getting the
+>> + * corresponding WAKE# gpio from the device tree, and configuring it as a
+>> + * dedicated wake interrupt.
+>> + *
+>> + * Return: 0 if the WAKE# gpio is not available or successfully parsed else
+>> + * errno otherwise.
+>> + */
+>> +int of_pci_slot_setup_wake_irq(struct pci_dev *pdev)
+>> +{
+>> +	struct gpio_desc *wake;
+>> +	struct device_node *dn;
+>> +	int ret, wake_irq;
+>> +
+>> +	dn = pci_device_to_OF_node(pdev);
+>> +	if (!dn)
+>> +		return 0;
+>> +
+>> +	wake = devm_fwnode_gpiod_get(&pdev->dev, of_fwnode_handle(dn),
+>> +				     "wake", GPIOD_IN, NULL);
+> 
+> I guess this finds "wake-gpio" or "wake-gpios", as used in
+> Documentation/devicetree/bindings/pci/qcom,pcie.yaml,
+> qcom,pcie-sa8775p.yaml, etc?  Are these names specified in any generic
+> place, e.g.,
+> https://github.com/devicetree-org/dt-schema/tree/main/dtschema/schemas/pci?
+> 
+I created a patch to add them in common schemas:
+https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
 
+- Krishna Chaitanya.
+>> +	if (IS_ERR(wake) && PTR_ERR(wake) != -ENOENT) {
+>> +		dev_err(&pdev->dev, "Failed to get wake GPIO: %ld\n", PTR_ERR(wake));
+>> +		return PTR_ERR(wake);
+>> +	}
+>> +	if (IS_ERR(wake))
+>> +		return 0;
+>> +
+>> +	wake_irq = gpiod_to_irq(wake);
+>> +	if (wake_irq < 0) {
+>> +		dev_err(&pdev->dev, "Dailed to get wake irq: %d\n", wake_irq);
+> 
+> s/Dailed/Failed/
+> 
+>> +		return wake_irq;
+>> +	}
+>> +
+>> +	device_init_wakeup(&pdev->dev, true);
+>> +
+>> +	ret = dev_pm_set_dedicated_wake_irq(&pdev->dev, wake_irq);
+>> +	if (ret < 0) {
+>> +		dev_err(&pdev->dev, "Failed to set wake IRQ: %d\n", ret);
+>> +		device_init_wakeup(&pdev->dev, false);
+>> +		return ret;
+>> +	}
+>> +	irq_set_irq_type(wake_irq, IRQ_TYPE_EDGE_FALLING);
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(of_pci_slot_setup_wake_irq);
+>> +
+>> +/**
+>> + * of_pci_slot_teardown_wake_irq - Teardown wake interrupt setup for PCI device
+>> + *
+>> + * @pdev: The PCI device structure
+>> + *
+>> + * This function tears down the wake interrupt setup for a PCI device,
+>> + * clearing the dedicated wake interrupt and disabling device wake-up.
+>> + */
+>> +void of_pci_slot_teardown_wake_irq(struct pci_dev *pdev)
+>> +{
+>> +	dev_pm_clear_wake_irq(&pdev->dev);
+>> +	device_init_wakeup(&pdev->dev, false);
+>> +}
+>> +EXPORT_SYMBOL_GPL(of_pci_slot_teardown_wake_irq);
+>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+>> index 39f368d2f26de872f6484c6cb4e12752abfff7bc..dd7a4da1225bbdb1dff82707b580e7e0a95a5abf 100644
+>> --- a/drivers/pci/pci.h
+>> +++ b/drivers/pci/pci.h
+>> @@ -888,6 +888,9 @@ void pci_release_of_node(struct pci_dev *dev);
+>>   void pci_set_bus_of_node(struct pci_bus *bus);
+>>   void pci_release_bus_of_node(struct pci_bus *bus);
+>>   
+>> +int of_pci_slot_setup_wake_irq(struct pci_dev *pdev);
+>> +void of_pci_slot_teardown_wake_irq(struct pci_dev *pdev);
+>> +
+>>   int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
+>>   bool of_pci_supply_present(struct device_node *np);
+>>   
+>> @@ -931,6 +934,9 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
+>>   	return 0;
+>>   }
+>>   
+>> +static int of_pci_slot_setup_wake_irq(struct pci_dev *pdev) { return 0; }
+>> +static void of_pci_slot_teardown_wake_irq(struct pci_dev *pdev) { }
+>> +
+>>   static inline bool of_pci_supply_present(struct device_node *np)
+>>   {
+>>   	return false;
+>> diff --git a/drivers/pci/pcie/portdrv.c b/drivers/pci/pcie/portdrv.c
+>> index e8318fd5f6ed537a1b236a3a0f054161d5710abd..9a6beec87e4523a33ecace684109cd44e025c97b 100644
+>> --- a/drivers/pci/pcie/portdrv.c
+>> +++ b/drivers/pci/pcie/portdrv.c
+>> @@ -694,12 +694,18 @@ static int pcie_portdrv_probe(struct pci_dev *dev,
+>>   	     (type != PCI_EXP_TYPE_RC_EC)))
+>>   		return -ENODEV;
+>>   
+>> +	status = of_pci_slot_setup_wake_irq(dev);
+>> +	if (status)
+>> +		return status;
+>> +
+>>   	if (type == PCI_EXP_TYPE_RC_EC)
+>>   		pcie_link_rcec(dev);
+>>   
+>>   	status = pcie_port_device_register(dev);
+>> -	if (status)
+>> +	if (status) {
+>> +		of_pci_slot_teardown_wake_irq(dev);
+>>   		return status;
+>> +	}
+>>   
+>>   	pci_save_state(dev);
+>>   
+>> @@ -732,6 +738,8 @@ static void pcie_portdrv_remove(struct pci_dev *dev)
+>>   
+>>   	pcie_port_device_remove(dev);
+>>   
+>> +	of_pci_slot_teardown_wake_irq(dev);
+>> +
+>>   	pci_disable_device(dev);
+>>   }
+>>   
+>> @@ -744,6 +752,8 @@ static void pcie_portdrv_shutdown(struct pci_dev *dev)
+>>   	}
+>>   
+>>   	pcie_port_device_remove(dev);
+>> +
+>> +	of_pci_slot_teardown_wake_irq(dev);
+>>   }
+>>   
+>>   static pci_ers_result_t pcie_portdrv_error_detected(struct pci_dev *dev,
+>>
+>> -- 
+>> 2.34.1
+>>
 
