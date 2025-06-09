@@ -1,64 +1,68 @@
-Return-Path: <devicetree+bounces-183901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7616AD244D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 18:42:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4119AD245B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 18:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B74F13A1EF3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 16:41:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DCAC188FE92
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jun 2025 16:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1909C21ABC2;
-	Mon,  9 Jun 2025 16:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A396189513;
+	Mon,  9 Jun 2025 16:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZGpygfuQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s1LbqluM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E260620AF98;
-	Mon,  9 Jun 2025 16:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4B5B67F;
+	Mon,  9 Jun 2025 16:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749487308; cv=none; b=cGwR5PGODrLwp8qaVBQ7TWyWkX6O514CWxQw0iopRGiKztKnS2379eTdUZX4MrZootnp9XwbM4Nc39gRmajaOOu84BUWqcJY2u//h3AOKEJ8d6cQWt5tbfDe7cbW8/aVM2+HHPsm+l41I0hiJ4PqbZe94nb3DDFkI2mJEU0HvHQ=
+	t=1749487612; cv=none; b=sjP0cG7KKV32roxkUpqY5p8jd3cpEo12X2CLuKR9NjN7u2EM60nAfrLgrWFhM0C/M7qBV0IKcKZbXpiak1WyONbU6VSDdZCyjvvqoT6h4Znts6t8VHNW3+bOwqh/DioXEIVOZC5Gh0oHCSUbtB0hApaQNPGIJVsEH4OyxdChLyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749487308; c=relaxed/simple;
-	bh=n93YRT55tXc9tbl3XYCTeVbqkoJGRfkc8a+57xFlO9w=;
+	s=arc-20240116; t=1749487612; c=relaxed/simple;
+	bh=TK6tGbJcUMuZu75QjQxKe05bUU/syp0jxs7xDI9V27g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XsgE4BHTjGBHsSPFalKdrwmNmHpFdZ3oQYTfY74WPejPSZ6Sm4JCs+ZK/MrtUvmxZrbAfYBV/NiVadlREXsXNlCwGWpCp//RQRLbS/f6twjpXY9LewAWwVRicwuer74opfYfwSrNWZG0ZyYvATKQhmlRzReawUQZLyeh71qDk2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZGpygfuQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A5DC4CEEB;
-	Mon,  9 Jun 2025 16:41:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LExSXIpEiZHGd+aR/tgegmAsWpl+qwwnByfKRjEtgj0H6wFuEuZc6gF7ybeOTJCOxwy9Hr/IicAjiejQ2wfTPZEGfZye3qxxRr3sIlHqjimXtT3y8Wyjd83Ea7ztVCyHuvV8tQ+6vz57bSvWMmtLpg1wnA+0ojRRWK1pnq/chAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s1LbqluM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32E2CC4CEEB;
+	Mon,  9 Jun 2025 16:46:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749487307;
-	bh=n93YRT55tXc9tbl3XYCTeVbqkoJGRfkc8a+57xFlO9w=;
+	s=k20201202; t=1749487611;
+	bh=TK6tGbJcUMuZu75QjQxKe05bUU/syp0jxs7xDI9V27g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZGpygfuQD7nH/8Xgo5iqvTCx3DHg226iju7zdE+0x3iNpM8PJynWLc9ykM8jJLOAD
-	 8ZZYTIzbCDgkIdYnujLlz/A7+NJOtRd1LxFCsCblq6OpqM3NTntCy6RZM6Bp3duhQR
-	 Gf/7Sj5ggOVDzjc37/9CYZ4g6gZWqSVWpChksf44DyfSLbuIy7ZKMTDOFbU33ISXs7
-	 +ljgs/DioyNPg8ZtrAIhrp7ujPEantS8d1UKkcNuoJOA/yRAo1JsHsqQ34Y8mSMBTO
-	 vAOufuVbwKh2WQeu8KqV9BwyOpvAm6mW4KaC9pP2xh1+iOjYS04X7L0sRTi8s5l7lr
-	 V2eCpYjPEdu1A==
-Date: Mon, 9 Jun 2025 17:41:41 +0100
+	b=s1LbqluMiEaiO2h6exrz79zNV8Pch3vDTrZ3DvnLKqavS25HpeHkFZuKPoCH5tMI8
+	 rPU1KasRwZk6DL4s6TpA4ZYR0w0RgxM/qzQ70wh6SuUXNRCd8JN/9iSYkkkI6jMKXq
+	 H/qLY/24Bg9vypzDOZlTd5JC7AvoG7nBlC0A2KAYtSlCavoMWtPxHh1nHXo4/Mk9rJ
+	 4FlQM3vEtFSPJ8vr/z8E5vLt09o7u4oy/SThJ7bwhAPTAWFyG2j5CCEDQ2KS7muHat
+	 fPcnKa+xXdUA4wSERV/guP6RhDuQiogKRISgdbnVGiZGPF2NWi3NmSnX0g7MA+yki3
+	 pWGd6lQubSPnQ==
+Date: Mon, 9 Jun 2025 17:46:46 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
+	linux-amarula@amarulasolutions.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: ili9881c: Document 7" Raspberry Pi
- 720x1280
-Message-ID: <20250609-habitat-oxford-a9abba471303@spud>
-References: <20250608142908.54121-1-marek.vasut+renesas@mailbox.org>
+	Marek Vasut <marex@denx.de>,
+	Markus Niebel <Markus.Niebel@tq-group.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/10] dt-bindings: arm: fsl: support Engicam MicroGEA
+ BMM board
+Message-ID: <20250609-lustrous-transform-63168641988e@spud>
+References: <20250607093342.2248695-1-dario.binacchi@amarulasolutions.com>
+ <20250607093342.2248695-2-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,33 +70,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jIsME3oLcJFkBqGc"
+	protocol="application/pgp-signature"; boundary="Egw77kuvcxTAEcOm"
 Content-Disposition: inline
-In-Reply-To: <20250608142908.54121-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250607093342.2248695-2-dario.binacchi@amarulasolutions.com>
 
 
---jIsME3oLcJFkBqGc
+--Egw77kuvcxTAEcOm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jun 08, 2025 at 04:28:16PM +0200, Marek Vasut wrote:
-> Document the 7" Raspberry Pi 720x1280 DSI panel based on ili9881.
+On Sat, Jun 07, 2025 at 11:33:13AM +0200, Dario Binacchi wrote:
+> Add devicetree bindings for Engicam MicroGEA BMM board based on the
+> Engicam MicroGEA SoM (System-on-Module).
 >=20
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> The use of an enum for a single element is justified by the future
+> addition of other boards based on the same SoM.
+>=20
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---jIsME3oLcJFkBqGc
+--Egw77kuvcxTAEcOm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEcOxQAKCRB4tDGHoIJi
-0lmPAP4pIv3sgq4LD66AOamHXrQc/NzJVU0NWG2keJQb3rlYKgEAqYAKGnGLeUuJ
-p/l7RxdEHGzoMyn/1VAOoD80Ay55sQs=
-=agje
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEcP9QAKCRB4tDGHoIJi
+0tgDAP97XyYMeqfOZjZ2d+V+75gF4yNRVxGLkFEvL9XvQZ2lVwD/S6RVXm5m88NK
+xL1WUA1nFP0eWC6zMNsW8O3iP7KX9Ac=
+=3koq
 -----END PGP SIGNATURE-----
 
---jIsME3oLcJFkBqGc--
+--Egw77kuvcxTAEcOm--
 
