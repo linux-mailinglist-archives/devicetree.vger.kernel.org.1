@@ -1,119 +1,103 @@
-Return-Path: <devicetree+bounces-184546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1768AD46D6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 01:37:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA86AD46F5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 01:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A363E17BF73
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 23:37:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68E98177059
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 23:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7169A264F89;
-	Tue, 10 Jun 2025 23:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB8121CC7D;
+	Tue, 10 Jun 2025 23:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="sHhkKiLe"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="INO9hqen"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDB221D5AF
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2418C26058B
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749598635; cv=none; b=g7/SLhfiZUPBkBaSVvCXQbgnFG1CVa4DaXUdhRwLHKCVfJ8atz+/qzB4tIbzv0JdgcnYTOf1MOpWEaMpzZx4UkoINUV2XALfl5jg31t44q9vb4UsIdqIuWf1q026DNLR6yfi9A0kzjF+LtTbKTDCiQ5xFFjhR/vXlni8qRcYDLE=
+	t=1749599074; cv=none; b=PE/T3lg8hQyH2UoqLBgmb+XO2KXB6Ubko9GMfM7YiDlYBD+T1eUWRDakFM+qWVMrBV+JT5XNslIus0xspOn+m5EpvcJy8Ui1sxJE5cI+2OGt5X8kHOt8ajQqUKU7Udu1aNbd1N2zoUjeHv/9+UZkV/NE+QoVGTpoCrW/HN+fzyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749598635; c=relaxed/simple;
-	bh=73lc/rPP9eGUfkWT58IBLrpi8r/eruXKFdJ45xDIfH0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BuiEc152ARdd5wTIvT6r96u9boP8PURG1eBwvSsS/lSv+iU3FJJ9Hth810Jo2zkoTj4m1A7KE45S9LVkj7fENsimCzN2vMPkPsMOCkXTRhCm6IEyP3S3vaE7+bmcOgMIr8sKgtWj5mS7fkXY10A2nJ8K/PtLCKO/ifFlnmphGiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=sHhkKiLe; arc=none smtp.client-ip=95.215.58.181
+	s=arc-20240116; t=1749599074; c=relaxed/simple;
+	bh=+NHDg/TZdGaWS46USoZyJNFawAdIOaZjICwQvYlS42Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UYylIoJk/kTUwv6PhUxsuyRHWhyUnTUVjiyNSB5jM0EYOiOvwU7tRAXcFSXdApMOg6NEj8XBaT9b7vxvT+jllWLNKCmGp5gKMYIQwMTLnbNpwmOho5/mqZnu/Awbf3vSm7WwADKLu8g47jpG1QenJBHG8vjY/X/sMIhd9FVSgZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=INO9hqen; arc=none smtp.client-ip=91.218.175.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+Message-ID: <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749598631;
+	t=1749599070;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=GTViHUqHHL7FVcOYR+13mg8Z5ebv/l3Vzj9gh5nlRwU=;
-	b=sHhkKiLen38MxONS5oqPQ3AbQ7uX4vmybQ3V1Rj8coOvLZYGHzib3RlR2tuQnkkfrLKbRs
-	vqksnMv6etx0AA9oH59aMfIhE9BeFOYHXmLP2X3x/Hf8X3mTjTFAB3oz04luoBZ/6VAOaW
-	0yKvuEASBCjhtTXyeUQYVhLZAub0YL4=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: netdev@vger.kernel.org,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>
-Cc: linux-kernel@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Simon Horman <horms@kernel.org>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Lei Wei <quic_leiwei@quicinc.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [net-next PATCH v6 10/10] of: property: Add device link support for PCS
-Date: Tue, 10 Jun 2025 19:37:03 -0400
-Message-Id: <20250610233704.3588448-1-sean.anderson@linux.dev>
-In-Reply-To: <20250610233134.3588011-1-sean.anderson@linux.dev>
-References: <20250610233134.3588011-1-sean.anderson@linux.dev>
+	bh=AXEZaUrWxmsqaTfrveqpH4IHsdKVgloXB+dHWV0moyk=;
+	b=INO9hqenzIusKFJVsLMuY/j92TNnowTPdd07otbSZxWmRg2s3Hqc2EEeXOVp1esuYkL+++
+	DsL9ozt1z4B2JVFgf4dlVqgIvANYZxqbT0aEiN3W+COhuG2dPiY1oDE8WUNNMyesRFiDrS
+	ss6ipPrbmbDWr6t/sjNohRUDtjE8R4U=
+Date: Tue, 10 Jun 2025 19:44:27 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH] driver core: Prevent deferred probe loops
+To: Saravana Kannan <saravanak@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich
+ <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
+ Grant Likely <grant.likely@linaro.org>
+References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
+ <20250610183459.3395328-1-sean.anderson@linux.dev>
+ <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-This adds device link support for PCS devices, providing
-better probe ordering.
+On 6/10/25 19:32, Saravana Kannan wrote:
+> On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
+>>
+>> A deferred probe loop can occur when a device returns EPROBE_DEFER after
+>> registering a bus with children:
+> 
+> This is a broken driver. A parent device shouldn't register child
+> devices unless it is fully read itself. It's not logical to say the
+> child devices are available, if the parent itself isn't fully ready.
+> So, adding child devices/the bus should be the last thing done in the
+> parent's probe function.
+>
+> I know there are odd exceptions where the parent depends on the child,
+> so they might add the child a bit earlier in the probe
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Saravana Kannan <saravanak@google.com>
----
+This is exactly the case here. So the bus probing cannot happen any
+later than it already does.
 
-(no changes since v2)
+> but in those cases, the parent's probe should still do all the checks
+> ahead of time.
 
-Changes in v2:
-- Reorder pcs_handle to come before suffix props
-
- drivers/of/property.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index c1feb631e383..1aa28bfadb12 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1377,6 +1377,7 @@ DEFINE_SIMPLE_PROP(post_init_providers, "post-init-providers", NULL)
- DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-controller-cells")
- DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
- DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
-+DEFINE_SIMPLE_PROP(pcs_handle, "pcs-handle", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+Such as what? How is the parent going to know the resource is missing
+without checking for it?
  
-@@ -1528,6 +1529,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_interrupt_map, },
- 	{ .parse_prop = parse_access_controllers, },
-+	{ .parse_prop = parse_pcs_handle, },
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
--- 
-2.35.1.1320.gc452695387.dirty
+> Can you be more specific about the actual failure you are seeing?
 
+MAC is looking for a PCS that's on its internal MDIO bus, but that PCS's
+driver isn't loaded. The PCS has to be loaded at probe time because
+phylink_create needs it, and phylink is necessary to register the
+netdev. The latter situation is not ideal, but it would be quite a bit
+of work to untangle.
+
+--Sean
 
