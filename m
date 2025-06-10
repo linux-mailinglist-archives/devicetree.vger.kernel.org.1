@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-184055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7FEAAD2E8D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7C8AD2E90
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 910D1166EA5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:23:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48AC2165FB9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E93C27A93B;
-	Tue, 10 Jun 2025 07:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED8B27AC5A;
+	Tue, 10 Jun 2025 07:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NIQNl20R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zdav+lxV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0020E25F988
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 07:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C7A25F988
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 07:24:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749540190; cv=none; b=AC+yYzbmRLgRjQ+70lYtl6gowyjwWQYO7msQwR9yo3n5IjkvL5kN1R7NeUkvdI7PQLfrqhM0su0CWocrIPe7KhJk+osIsOcu2YcOvN7/OORVD9BqUmqVc9Avlw9Pa8M4EiVegy9hauGwyMDekmxFT/cDx4mMcJCrpLs+RnpsUAU=
+	t=1749540243; cv=none; b=tqa0MSYXraCmvefcoQYZiKEpeWlkTRC9i8n2jrcNFaNH8ws16XPDnldz47so8D0aWpxqSkTjB5PMSV9wkvclXybd5qRR0Go8PSjhLGqC7esn6QKbHg/e30KWNP6O885lB/J8o04/XjxAkCS9+UNHfDlUDy9gBTfvjLh9OZFtwrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749540190; c=relaxed/simple;
-	bh=JUyO236iIaJS36o+JL7CCopXke1lwxQKEY1yS62Fv+k=;
+	s=arc-20240116; t=1749540243; c=relaxed/simple;
+	bh=/b5Xyw258iapMtG4jORCwU8kRU+ZgOsLTonWUI/+cpA=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=sdAgSi2bGoBXB2hZl3mfb3QzjlLhPgvXiZNQH2kGSJDSxCyy025CKGVWZl3UCRYjMDAAUwKMfOAPvywUhVM5g38DnQ7PtKOMiNjoaQw4OgCJLqQ3NtfDqr20yfBNzpDqlyv2fO2y4wOHNLtABPhtn1uFleM7/lsNx9vIMh9s/C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NIQNl20R; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=Lozse7/PTdZc9M6G6VTu7Kn4tlWfHvmw4940IIFwz92COH5XCittOHshOY7z4F+lywc2YiUppl2Mgvx3jfGqm8yJvvTvJmeXRqzt8/zoaG3uQW9jmDyj+D1qlWToVwhLPCW3oAyxTXBvYLInqb0NVfuchu3IPi0vy/Q3LMHkcJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zdav+lxV; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so64112635e9.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 00:23:08 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a4f379662cso4228095f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 00:24:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749540187; x=1750144987; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1749540240; x=1750145040; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pMeFbqWSelBjQeRhda/8MDNAHw2IH4aC9na4wSNAaDA=;
-        b=NIQNl20R8bq3KrIRm5BcgE2kGGYhounHrIVqgeqCchK25Laglo57vMjHX3EebwWfla
-         bI/KjmtWBjrihwxg899+ve9WotdXvb9UmbPRWVsl+RRPYyjV7WwZbhO+qwKXLVKiZxAV
-         YN7+9qvuGUr67kpndCx81Vdoy4jRRD2gWu0oxNltAg8UMpdzL7LIyYKgHkeYV/B/UNkl
-         mnX2dNToiIvq5ELmL2k7l3XKcyvEiJueltA/jwHZSU/YYbdrQuHyQYkfa0ODnuYJt3SQ
-         83s/v7iBk+/7E/sbQoMjVDlR5i8ppjOyHtOKmhdGHs3hZ4MDMW/5h9VaiKLw0NZornWu
-         9TJg==
+        bh=CNfpzrOFenW/QLhsdS6ZGajYFLyQXEOSuS4E3749yys=;
+        b=zdav+lxVZu372/fis2n0dn+yU3CAVI+uBbrtuz7c9aPaZqkSrbRBZanGqk7XsBpjrh
+         LslCpILFsFcvFJNOT1lN73fpZkF6nQXAgy5PdPXZn6Q9g4c0NY6J4AWoT/lCVypsciV/
+         l7lyRJIe38MjZXvRO2J+GaV1aCMzhjWAIjPnUxrUayVxfmpk4ds5vc1TId0ZP+tylKa3
+         bvxPOSC2fc2pwVc78g4eHhFpYW8hSULHBouYYdeIjA5wHC9r073nLUyLBXnbIpFYjugz
+         sVJEUvnLMk3t5J3QWb/sSsywun80kUefZP+XyrzwNpG0aQvLzQoDk2AY6GO/tlIGxTAI
+         /njQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749540187; x=1750144987;
+        d=1e100.net; s=20230601; t=1749540240; x=1750145040;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=pMeFbqWSelBjQeRhda/8MDNAHw2IH4aC9na4wSNAaDA=;
-        b=cSkZ8hWfe6G/9FgEuzYkZ0FAQDQCBKnEXEx1YIW5xdnc48crfw3uB8eyLppCkVTZvs
-         A83ZGSVVPguch7vhJ9QlrgowgAc/iMfsuH2ITp+fLkcyTF4loE1AVUid5yHnHqRab9hv
-         GrN643gaamJVlLOkN9LCEBJRUCeCt3IXjZQYRasLFE/aEU/WxaJYu9wpvQUoMYwJd4K1
-         Cyd98hQda4qrykTSXb1F/wjbJGaNA0koPH7hRvB6DANzfgdIUSc7RrrcefztdtJ27Rdg
-         UuztZHMpVu0YY5HvZy7NuhUsdNJlAygV9y6MXvZz4RQ45Z1o8P8YDs8HY8AmIu9c0ZdM
-         GREA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVG/C7+SlNX8uDjy32Itet3zzwwSyS8TrLM4W2X6/fhmSXqu5T4ceQ98rk/K4qwR5M9cUPU/6FXoox@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMlMWpk2FhfQzu79u47GRGoxFdzsGNxy0yvkXW/iqY//YVntqG
-	0AcslDEQXmFkvgq9h+/rGWpeG2fCnUoum45PFUe14o0jOWlU0rsCf4GAZtW2MQz6J+8=
-X-Gm-Gg: ASbGncvN2Xzj8AJEwAEEJg6y06Ibh57P5R9aXOmfjcMyrjcfxje7juOZD8CdEUIQI5Z
-	0gmIpvJDSI8JlrZjd9CIOs43PWQ2G+s6jxLV8jG4SoC5PjbwayYjmc2Py69ZFDrMnKgbGnpekb2
-	j2NkZyXeADyz2yLTCtAQQbeTbefSkgexF/gPMiGWY9leXHsoGcUG7xxyFDItRmtMVekvoMv0Mot
-	4604aKweAPA2f/ySt7S19dY+G5XWs1irWX0aYkxMR8BAn8Dv1558CGgUQRHw2ZgYCBPVgABb4fz
-	FQ2+jcKv9mS7KwODCl7nTdZLB9tctCQsp3bq6K4SbGEDuT/my9GWyuD+AFxPfxTClXtElIjjxfL
-	erwiglSBIq7U18/RBRlHNLIu3Xwm78q2UReeZ
-X-Google-Smtp-Source: AGHT+IFZ5n5bVF9PbhERIWR1Ra4W0m2ESVyC1hgWyc2zbm5xEWzBTEhyEkeAeXb/Bmv+Pqp7qYAYvQ==
-X-Received: by 2002:a05:600c:a02:b0:43d:745a:5a50 with SMTP id 5b1f17b1804b1-4531de70ff8mr11777095e9.19.1749540187289;
-        Tue, 10 Jun 2025 00:23:07 -0700 (PDT)
+        bh=CNfpzrOFenW/QLhsdS6ZGajYFLyQXEOSuS4E3749yys=;
+        b=oytExhCQgSeh/yCQHPpXCgCOE7TPk7/OB5xr7bwMlnJ09WNnDfzY3IVO453zTK7MAn
+         eiP94N1oceRDslsEPy6CnpfXiiphQZxjEDRfGPZZqyv45GkqRv7/YCQSllQd+/5GXfAF
+         lHgXD/mxdSMDWa21/AoPsLokYRtry/StASkb2Lh+Exc5YxckOvp6GwVKtjreSfySlw6z
+         kvKQ16QBvIyMkBwHoqqpJvWN94sNQBd/+fVLdOU2GFuVRu9y1VU52G9/ub1DrgSlJxOi
+         Z6yyCEkj/65WPcKQ3Fb2f8HyFHiBAvreZn2Z1pwA4shX73Tp/s/rX2qKz0H7difKPyjl
+         w5yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV43VwYIbxucjF741cil5yYV4odAvvmhYZglexIeFfdCcbCdzspUq6FPsAFMIlSrUvoVq17q/scA2Gf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCjgekicxSv5tIqPk3D6gYEqsCgd3FOsa5YK1d+3HTFO/lutHS
+	G0qeyOt6LfocAhLv7BUp0UDmETlYhYz6CTAJlmNsUyczfQZuMor6FtLepx1FS8SCVVY=
+X-Gm-Gg: ASbGnctv1ag+Gb7GSDnVIo1+dHiy+/2fKE46GCqHv4hxy0u362EWMCAFEIt/dDRntkD
+	23Xzmw7KybG/wiXSivZzMNZlr/Ujh0kJ1K3+lUOlYALzfmVY+T6iinpjCT8uASghd+Nr9n0noc7
+	qvMfDQywn1MOQ/hPzmL8CKS5t0NC6zwoJpo7YqXTHjzIFo6Fjj5g09I8spUIHbRwR9EZTmTk149
+	ug4tcfuonIpCxUk2rtFIrMEvr87kh3N8VzAMAsDIjTgEJ9UPUzQF97x1ady8nt6GNuhe9BnvajG
+	6viATr29mKoS/SJ3Urb/1I1PvOIxJ/L6a4bChrK40LDFBFhSHNtLmL3eJXbbW3Q3xO2z8rPrT4/
+	aQTVRgbSt8h7yaPoxn9EyjrpQLh1rJTPUER5F
+X-Google-Smtp-Source: AGHT+IH6L020nl91HxJzqBefF4jPmNluzqAmrXBJ2litambE6J99Sh/JVOVprQvJU+1I830E+pK6Qg==
+X-Received: by 2002:a05:6000:1acb:b0:3a4:ebc4:45a9 with SMTP id ffacd0b85a97d-3a531ca80ecmr11833618f8f.19.1749540239660;
+        Tue, 10 Jun 2025 00:23:59 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14? ([2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53229ddf6sm11314064f8f.2.2025.06.10.00.23.06
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53229de17sm11773770f8f.18.2025.06.10.00.23.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 00:23:06 -0700 (PDT)
-Message-ID: <94c0c7ca-d604-4aed-83ec-cfdf196dfd7f@linaro.org>
-Date: Tue, 10 Jun 2025 09:23:06 +0200
+        Tue, 10 Jun 2025 00:23:59 -0700 (PDT)
+Message-ID: <da96ae22-c566-4c4c-ad44-261ea124ab8e@linaro.org>
+Date: Tue, 10 Jun 2025 09:23:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,18 +84,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v1 1/2] drm/panel: st7701: Add Winstar wf40eswaa6mnn0
- panel support
-To: Stefan Eichenberger <eichest@gmail.com>, jagan@amarulasolutions.com,
- quic_jesszhan@quicinc.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250606114644.105371-1-eichest@gmail.com>
- <20250606114644.105371-2-eichest@gmail.com>
+Subject: Re: [PATCH 2/3] drm/panel: ilitek-ili9881c: Allow configuration of
+ the number of lanes
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ dri-devel@lists.freedesktop.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Airlie <airlied@gmail.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250608142908.54121-1-marek.vasut+renesas@mailbox.org>
+ <20250608142908.54121-2-marek.vasut+renesas@mailbox.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -122,175 +126,82 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250606114644.105371-2-eichest@gmail.com>
+In-Reply-To: <20250608142908.54121-2-marek.vasut+renesas@mailbox.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 06/06/2025 13:45, Stefan Eichenberger wrote:
-> The Winstar wf40eswaa6mnn0 panel is a square 4.0" TFT LCD with a
-> resolution of 480x480 pixels.
+On 08/06/2025 16:28, Marek Vasut wrote:
+> Not all panels use all 4 data lanes, so allow configuration based
+> on the compatible string.
 > 
-> This panel is driven by the Sitronix ST7701 controller and uses a MIPI
-> DSI interface. The settings are based on the panel's datasheet and the
-> init sequence provided by Winstar.
-> 
-> It was tested on a Verdin iMX8MP from Toradex with a Carrier Board
-> providing a MIPI DSI interface.
-> 
-> Signed-off-by: Stefan Eichenberger <eichest@gmail.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 > ---
->   drivers/gpu/drm/panel/panel-sitronix-st7701.c | 124 ++++++++++++++++++
->   1 file changed, 124 insertions(+)
+> Based on https://github.com/raspberrypi/linux 0d7ac78a3dd9 ("Extending ili9881c driver support for nwe080 panel")
+> by Dave Stevenson <dave.stevenson@raspberrypi.com> and others
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+>   drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-> index 1f72ef7ca74c9..cf42281393dd9 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-> @@ -520,6 +520,28 @@ static void rg28xx_gip_sequence(struct st7701 *st7701)
->   	st7701_switch_cmd_bkx(st7701, false, 0);
+> diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
+> index 28cd7560e5db..2f5ae69148cc 100644
+> --- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
+> +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
+> @@ -43,6 +43,7 @@ struct ili9881c_desc {
+>   	const struct drm_display_mode *mode;
+>   	const unsigned long mode_flags;
+>   	u8 default_address_mode;
+> +	unsigned int lanes;
+>   };
+>   
+>   struct ili9881c {
+> @@ -1549,7 +1550,7 @@ static int ili9881c_dsi_probe(struct mipi_dsi_device *dsi)
+>   
+>   	dsi->mode_flags = ctx->desc->mode_flags;
+>   	dsi->format = MIPI_DSI_FMT_RGB888;
+> -	dsi->lanes = 4;
+> +	dsi->lanes = ctx->desc->lanes;
+>   
+>   	return mipi_dsi_attach(dsi);
 >   }
->   
-> +static void wf40eswaa6mnn0_gip_sequence(struct st7701 *st7701)
-> +{
-> +	ST7701_WRITE(st7701, 0xE0, 0x00, 0x28, 0x02);
-> +	ST7701_WRITE(st7701, 0xE1, 0x08, 0xA0, 0x00, 0x00, 0x07, 0xA0, 0x00,
-> +		   0x00, 0x00, 0x44, 0x44);
-> +	ST7701_WRITE(st7701, 0xE2, 0x11, 0x11, 0x44, 0x44, 0xED, 0xA0, 0x00,
-> +		   0x00, 0xEC, 0xA0, 0x00, 0x00);
-> +	ST7701_WRITE(st7701, 0xE3, 0x00, 0x00, 0x11, 0x11);
-> +	ST7701_WRITE(st7701, 0xE4, 0x44, 0x44);
-> +	ST7701_WRITE(st7701, 0xE5, 0x0A, 0xE9, 0xD8, 0xA0, 0x0C, 0xEB, 0xD8,
-> +		   0xA0, 0x0E, 0xED, 0xD8, 0xA0, 0x10, 0xEF, 0xD8, 0xA0);
-> +	ST7701_WRITE(st7701, 0xE6, 0x00, 0x00, 0x11, 0x11);
-> +	ST7701_WRITE(st7701, 0xE7, 0x44, 0x44);
-> +	ST7701_WRITE(st7701, 0xE8, 0x09, 0xE8, 0xD8, 0xA0, 0x0B, 0xEA, 0xD8,
-> +		   0xA0, 0x0D, 0xEC, 0xD8, 0xA0, 0x0F, 0xEE, 0xD8, 0xA0);
-> +	ST7701_WRITE(st7701, 0xEB, 0x00, 0x00, 0xE4, 0xE4, 0x88, 0x00, 0x40);
-> +	ST7701_WRITE(st7701, 0xEC, 0x3C, 0x00);
-> +	ST7701_WRITE(st7701, 0xED, 0xAB, 0x89, 0x76, 0x54, 0x02, 0xFF, 0xFF,
-> +		   0xFF, 0xFF, 0xFF, 0xFF, 0x20, 0x45, 0x67, 0x98, 0xBA);
-> +	ST7701_WRITE(st7701, MIPI_DCS_SET_ADDRESS_MODE, 0);
-> +}
-> +
->   static int st7701_prepare(struct drm_panel *panel)
->   {
->   	struct st7701 *st7701 = panel_to_st7701(panel);
-> @@ -1135,6 +1157,107 @@ static const struct st7701_panel_desc rg28xx_desc = {
->   	.gip_sequence = rg28xx_gip_sequence,
+> @@ -1567,6 +1568,7 @@ static const struct ili9881c_desc lhr050h41_desc = {
+>   	.init_length = ARRAY_SIZE(lhr050h41_init),
+>   	.mode = &lhr050h41_default_mode,
+>   	.mode_flags = MIPI_DSI_MODE_VIDEO_SYNC_PULSE,
+> +	.lanes = 4,
 >   };
 >   
-> +static const struct drm_display_mode wf40eswaa6mnn0_mode = {
-> +	.clock		= 18306,
-> +
-> +	.hdisplay	= 480,
-> +	.hsync_start	= 480 + 2,
-> +	.hsync_end	= 480 + 2 + 45,
-> +	.htotal		= 480 + 2 + 45  + 13,
-> +
-> +	.vdisplay	= 480,
-> +	.vsync_start	= 480 + 2,
-> +	.vsync_end	= 480 + 2 + 70,
-> +	.vtotal		= 480 + 2 + 70 + 13,
-> +
-> +	.width_mm	= 72,
-> +	.height_mm	= 70,
-> +
-> +	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> +
-> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-> +};
-> +
-> +static const struct st7701_panel_desc wf40eswaa6mnn0_desc = {
-> +	.mode = &wf40eswaa6mnn0_mode,
-> +	.lanes = 2,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.panel_sleep_delay = 0,
-> +
-> +	.pv_gamma = {
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC0_MASK, 0x1),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC4_MASK, 0x08),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC8_MASK, 0x10),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC16_MASK, 0x0c),
-> +
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC24_MASK, 0x10),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC52_MASK, 0x08),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC80_MASK, 0x10),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC108_MASK, 0x0c),
-> +
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC147_MASK, 0x08),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC175_MASK, 0x22),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC203_MASK, 0x04),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC231_MASK, 0x14),
-> +
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC239_MASK, 0x12),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC247_MASK, 0xb3),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC251_MASK, 0x3a),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC255_MASK, 0x1f)
-> +	},
-> +	.nv_gamma = {
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC4_MASK, 0x13),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC4_MASK, 0x19),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC8_MASK, 0x1f),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC16_MASK, 0x0f),
-> +
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC24_MASK, 0x14),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC52_MASK, 0x07),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC80_MASK, 0x07),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC108_MASK, 0x08),
-> +
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC147_MASK, 0x07),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC175_MASK, 0x22),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC203_MASK, 0x02),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC231_MASK, 0xf),
-> +
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC239_MASK, 0x0f),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC247_MASK, 0xa3),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC251_MASK, 0x29),
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-> +		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC255_MASK, 0x0d)
-> +	},
-> +	.nlinv = 3,
-> +	.vop_uv = 4737500,
-> +	.vcom_uv = 662500,
-> +	.vgh_mv = 15000,
-> +	.vgl_mv = -10170,
-> +	.avdd_mv = 6600,
-> +	.avcl_mv = -4600,
-> +	.gamma_op_bias = OP_BIAS_MIDDLE,
-> +	.input_op_bias = OP_BIAS_MIDDLE,
-> +	.output_op_bias = OP_BIAS_MIN,
-> +	.t2d_ns = 1600,
-> +	.t3d_ns = 10400,
-> +	.eot_en = true,
-> +	.gip_sequence = wf40eswaa6mnn0_gip_sequence,
-> +};
-> +
->   static void st7701_cleanup(void *data)
->   {
->   	struct st7701 *st7701 = (struct st7701 *)data;
-> @@ -1265,6 +1388,7 @@ static const struct of_device_id st7701_dsi_of_match[] = {
->   	{ .compatible = "densitron,dmt028vghmcmi-1a", .data = &dmt028vghmcmi_1a_desc },
->   	{ .compatible = "elida,kd50t048a", .data = &kd50t048a_desc },
->   	{ .compatible = "techstar,ts8550b", .data = &ts8550b_desc },
-> +	{ .compatible = "winstar,wf40eswaa6mnn0", .data = &wf40eswaa6mnn0_desc },
->   	{ }
+>   static const struct ili9881c_desc k101_im2byl02_desc = {
+> @@ -1574,6 +1576,7 @@ static const struct ili9881c_desc k101_im2byl02_desc = {
+>   	.init_length = ARRAY_SIZE(k101_im2byl02_init),
+>   	.mode = &k101_im2byl02_default_mode,
+>   	.mode_flags = MIPI_DSI_MODE_VIDEO_SYNC_PULSE,
+> +	.lanes = 4,
 >   };
->   MODULE_DEVICE_TABLE(of, st7701_dsi_of_match);
+>   
+>   static const struct ili9881c_desc kd050hdfia020_desc = {
+> @@ -1599,6 +1602,7 @@ static const struct ili9881c_desc w552946aba_desc = {
+>   	.mode = &w552946aba_default_mode,
+>   	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+>   		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET,
+> +	.lanes = 4,
+>   };
+>   
+>   static const struct ili9881c_desc am8001280g_desc = {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
