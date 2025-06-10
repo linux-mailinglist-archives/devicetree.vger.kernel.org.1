@@ -1,112 +1,105 @@
-Return-Path: <devicetree+bounces-184464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D1DAD41B2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:08:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEA6AD41C0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:13:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5403B189FA46
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:08:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B714E17C0AC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C962472B4;
-	Tue, 10 Jun 2025 18:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984AC245027;
+	Tue, 10 Jun 2025 18:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4X6Ytvx"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="I8gGceFX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C35D24728D;
-	Tue, 10 Jun 2025 18:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E426F1EFFB0;
+	Tue, 10 Jun 2025 18:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749578903; cv=none; b=aK7oQDK3G9tOEg95C/YEeGFXqP1UIDvwEZ9BwEVq1CZAVD/NPof/gJU+/jmEeEvNOOHvZj8Kq2WW5nYaOE+BalaokGgSPWqQDqT8qjvVq1FlhwJ7+/fKvGRN3o4C5cLm/0a8YB5kmebstsFM2Iu32R5zgHAcxI0QJ2jQiIvtVGk=
+	t=1749579212; cv=none; b=lwaPDNg1uWfbAXljI+rESPlm62EeyCaDdnJbOGKXXUreE70jyJWM9UB/m/zyyeBzLhKR8b+H/dOFjGaczHkxRCAlQ8JEB25Peg3pm8NXBrHR1DKyYPgXk2bckuBKRlk1mGc3X2P0WANz0lHMqTVWskPBOKSlUPoybCj/nmiTQAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749578903; c=relaxed/simple;
-	bh=EqLBaFrOMBGQ7zuSKchgyUU5IO7yC/PR2AFrIa0Lguc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=NWhh/nOxuIkLk6ntZUAAdm+sck7MLjGLqBRI7na4VQML/nJR1CRi9xfvp1v09etQ4yaONd46hhbmCsskXgCMhuvL+iKhFWTdCySElbnVnfjn74STRyK4tHzh6iuXgRHsO1hebO49KoYU5/A0GqbXSFoXo10Tz4G1vJeb8g8aBRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4X6Ytvx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4B3EC4CEF0;
-	Tue, 10 Jun 2025 18:08:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749578902;
-	bh=EqLBaFrOMBGQ7zuSKchgyUU5IO7yC/PR2AFrIa0Lguc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=C4X6YtvxjNpCzlR1Bfd/uK4KIHTn08RKsw9h+sQqFVu++ch1HzPm5Sb7a0LUKSFCr
-	 zcGersk+Ab0EW6D/F8A/Fqy6EBrSjCeqoL4aJtCGzalh8XdjGLuiIDbMjU4J/PDxeF
-	 e09b/Z6WmqyICn8P2i4nTOMONatoAGYiehJmX8VqkuJsA0LUuVoMgHez5j1RrBDleM
-	 ikKLTWU1MTN6SZjSZBSWCSFqmgHyu+fwaTO/R53MExZCiP7gsejtuvFTHiTb0gmNhd
-	 gp4Xqno3mkhXX9cA1CfLRRrCEbg1gW3vmV2u0QgbuMkVhNGHoS+MXEANOfRRphhd7G
-	 ymwpq6B1xElpA==
-Date: Tue, 10 Jun 2025 13:08:18 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1749579212; c=relaxed/simple;
+	bh=5K76vAyO3mXwsdKGSY8sDy43DTUzEL4sTBtr19b7DJU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RQjoZnURlld2AiX/7u/OIDZfXBpkFuBKVJZg8Xz69LkkQV1Xzzqwr7fFpiovLqSQd8nnvcsAdFiZ2bUjunTmoRNkxivXVx2tPYsghGjkStDLcuDqcm2MGJRseCQhYXRgJGv2XF6uregkQGXTZr+XFFDJJkvFykDzGM35r/drBP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=I8gGceFX; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=UiP1HNk84qh0COEAXQ4AqfZ8ry4GsFrRYXKAs0x+oy0=; b=I8gGceFXf2VJiI90YczP11k9TM
+	Rp7uKCwCBBPVd09pJIBdo0jF7dv9WKmR7CPc+lA6RzdK4HXE6IjvI+pRk3kMzz/64GEUVD06Y4jL2
+	eqdmqomRRYVt60GwMq/dyYyU3N5PS7Opw1qVZgWiD08UTOUy6tFPTHjSkzl+HjnXbbbM1mgJe9ylp
+	R5YyKEQ4MMhuIVvgpWwCJ/9g3typTBYf51c4PJXYGlXM6OdOfLy4IHCJc5Gnt4vx+o4d8iL5jqIit
+	05688v5Hx9BpBhHnOJKmAk8buO3SutUGTXRsyi/gzxGzoCx0sp6MO4WKW/imyVwTLsKJa/5K18OuL
+	qhmcwdvA==;
+Received: from [50.53.25.54] (helo=[192.168.254.17])
+	by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uP3TS-00000001ySd-37Yb;
+	Tue, 10 Jun 2025 18:13:27 +0000
+Message-ID: <8a9647fc-3156-461e-8460-e3cade2c6f5d@infradead.org>
+Date: Tue, 10 Jun 2025 11:13:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Marco Felsch <m.felsch@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
- Daniel Baluta <daniel.baluta@nxp.com>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Marc Kleine-Budde <mkl@pengutronix.de>, 
- Shengjiu Wang <shengjiu.wang@nxp.com>, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <20250610160152.1113930-2-laurentiumihalcea111@gmail.com>
-References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
- <20250610160152.1113930-2-laurentiumihalcea111@gmail.com>
-Message-Id: <174957889856.2397515.16063954809229071708.robh@kernel.org>
-Subject: Re: [PATCH v7 1/6] dt-bindings: bus: document the IMX AIPSTZ
- bridge
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/4] leds: add TI/National Semiconductor LP5812 LED
+ Driver
+To: Nam Tran <trannamatk@gmail.com>, lee@kernel.org
+Cc: pavel@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20250610174319.183375-1-trannamatk@gmail.com>
+ <20250610174319.183375-4-trannamatk@gmail.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20250610174319.183375-4-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-On Tue, 10 Jun 2025 12:01:47 -0400, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> 
-> Add documentation for IMX AIPSTZ bridge.
-> 
-> Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On 6/10/25 10:43 AM, Nam Tran wrote:
+> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> index 222d943d826a..becee5c1d21c 100644
+> --- a/drivers/leds/rgb/Kconfig
+> +++ b/drivers/leds/rgb/Kconfig
+> @@ -26,6 +26,19 @@ config LEDS_KTD202X
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called leds-ktd202x.
+>  
+> +config LEDS_LP5812
+> +	tristate "LED support for Texas Instruments LP5812"
+> +	depends on I2C
+> +	help
+> +	  If you say Y here you get support for TI LP5812 LED driver.
+> +	  The LP5812 is a 4 × 3 matrix RGB LED driver with autonomous
 
-yamllint warnings/errors:
+	The '×' character does not display well (not at all) in menuconfig
+	or nconfig. The graphical configs (gconfig, xconfig) can display it.
+	I would change it to 4x3 (letter 'x') but it's up to you.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml: oneOf: Missing additionalProperties/unevaluatedProperties constraint
 
-doc reference errors (make refcheckdocs):
+> +	  animation engine control.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called leds-lp5812.
+> +
+> +	  If unsure, say N.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250610160152.1113930-2-laurentiumihalcea111@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+~Randy
 
 
