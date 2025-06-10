@@ -1,134 +1,123 @@
-Return-Path: <devicetree+bounces-184235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38311AD35B2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:13:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75DEEAD35BC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:13:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0098D1705A7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:13:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D07CD18987D4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28BEA28EA61;
-	Tue, 10 Jun 2025 12:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F0928F521;
+	Tue, 10 Jun 2025 12:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IBiW8Pd2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="COk2D9Cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741AD28EA58;
-	Tue, 10 Jun 2025 12:12:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9335728F501
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 12:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749557578; cv=none; b=dXtpLNTVKr+RQCfhM7HaE4LXr3jPVOoF20FUu+CqyfWmQW+LMnD3VLho2MUXHNDWXYWmldK4hxZInW57oo2YrfU0wJ1QTfWMFGaPkjLPxU9XznvDEKlr7HFnMk2gUUXnPV3ysdEEL0BxHo6vMraTuUH125+t2jv2FUkeZTuO1es=
+	t=1749557585; cv=none; b=XAhAfN/Igm4iyl1FcoVirkMA6p6ZDCUF1C6ngQWd43wavTTg6nYzNOvMtB5xUNItgJw0lW8UOj8uLStvQ1y6GJLnAdbtFaRiu9+DDCBKzO0g+hmBjnU+4qooIUx9UP6ZauPgZgJftOGknxAwAjqnBk6m/fdga3TupFDsBuQIgV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749557578; c=relaxed/simple;
-	bh=zTU3AkzKUPbLNpOvwNZlm0Nojlq2PZZ8y5WaFs4xjW0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=M89iYi0eSwr2U21dsupbaZFdAhjSrLOEqtWqf8EMMPZ1KsQTjEzU8h9owDCxj76VUv960Rwa9j1xG4kVqfEHYPgpLPOT1XGGMVd5a+d5jpWV9GW55AB7lKO6Ew89dc5KLjHC9Vjgfqk7xFw7WHMFfCk76HODk0YSXBH6duxbkCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=IBiW8Pd2; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AC97NU007654;
-	Tue, 10 Jun 2025 14:12:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	3JoIjs0rN0Mef0RCPvvnCGsgeRN+4kOPLLI4ZD9o2Mw=; b=IBiW8Pd2ALdNOtHN
-	XRPdHmX5cTFMzfSFGNahSDjWx6E60NVZHz7RlKXUmNwfGV20G7xd9V9G3HiR6ujB
-	s+AZQL0BORu4XoQQw2qgCAB1ogBecjXstW5BDDTJ1IdEXR5HIP5dzWhaDQwR2xTr
-	DN++VSdsEGrCF7mKiFWci9lVp2CO6zMKD0zCB5hhG1erz3Wu/jwuqg/GKdjloTbj
-	tBUQ6/vo43atWvHUG7qXWWX2LRMnpUjlBn8AmANT14iUFewIlwezop9IJIL2CRl5
-	Q6Pbbq/R0mNtnUVfPtNb2+Az+ReLy0hp7cE7LzTFCBZ5rEOk5XssMErKjm6G6nvk
-	K0WZLg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 474cs2mt3y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Jun 2025 14:12:43 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C66614006E;
-	Tue, 10 Jun 2025 14:11:39 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AB802B39A25;
-	Tue, 10 Jun 2025 14:11:27 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 10 Jun
- 2025 14:11:26 +0200
-Message-ID: <e4a1bbd0-3886-4a88-bfaf-1e5ce5b27625@foss.st.com>
-Date: Tue, 10 Jun 2025 14:11:26 +0200
+	s=arc-20240116; t=1749557585; c=relaxed/simple;
+	bh=mj744QkzoH+nE/lLDIyNovnhMn+rrkaZjjUq94bNIhg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=F+y0ibDFnDL2kJoIW/JQwKwYKVNUuYu788/GNmKvYLrZ4II4DppoyUBUMexFXQrRd00KBACz5Na0FM2yTOrsrpj3aqqfzL2RbvgXhn2H6L5aPTg2OzJnEdnjB/SmJD1nYM4EqkLjUar6g36UsOFYIk72eLuL80kXqdM/MyOYE80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=COk2D9Cj; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so44808005e9.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 05:13:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749557582; x=1750162382; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aC7BrX8x1EswiMMGxYjxP264vmuUgiUiNAi3UiM8Gaw=;
+        b=COk2D9Cj0NWV63uWbbksFfKOll05MGIfTwaO9hs5xQWyQ3JKabyHqVm5ggpVVWmb9O
+         tdh3pkrlklekqNOZEFXWUlEsnp0BcV6CL/Zzwwkp9F+QUBWJCoXr2+u3gEUIFBSzrWDt
+         yA1MeNl46J815x2Z3zSI67dzfFc2QBSf55H2iRinOQrRT8gbEuoysTN2Mu1gJlVqExPP
+         SGt0QbJA71Asxn8Hj7LeLILzhxwJ/SPWrtc466e5dQPQip4wnUNNF4MopMkOqU3Thh1e
+         lm4B06kggur3fwtP0k3jU+WRFa7TaNpI+g+FDp6/IOxGYx0bXzTP2dho5yWX91W6+iqP
+         g56w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749557582; x=1750162382;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aC7BrX8x1EswiMMGxYjxP264vmuUgiUiNAi3UiM8Gaw=;
+        b=IUmMPDkDGUONpOEm98mrbtllBff4e7b4kDWwoAjp/b5GWJKZbdp8MdvA9c9vCYQ5IS
+         QDYv+5ElTNlBOiYHePtpC4Q8qrXx4HNz0U7asb2tPTd1GDiJTh6DNGf5yprWnELwECRP
+         q0vsgbJRD6pCkj2NWbZz7p9uJ4Hl50RbPTFKEd9fbB59hpYHqMGScNFEBbOE253MT0NU
+         vk3wVaw0cbCICpLcvgW9876zd4cEXn2fwR7mk+aydLQQP9F0hRx7NY0lVCutISg+/EVC
+         x7ASYT8iFGwMZ3URgfo1zzu59JlR1R6KTmb+ICy3VNDDwC2jdryy5uMNRssgeVpeBa+t
+         lqtg==
+X-Forwarded-Encrypted: i=1; AJvYcCXfLTnDXQnR6VEplJC+7GtnBlwcfAnUhsZB81OqW9dRKLom7Q2kFyEu8uOQkgtWLPfSq+yrp12QXFmQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywzt6Re64JrgPA5+UPxlHtn9L5xufVSss4SHUC3Mwps0Q/YoX3Y
+	XqTdWjVZIoB7OPNT5yLPuZ78uDDB2gzntKY0VOU4ubRBkdd1C9Un/agAywjkYBgOVSec6+fB24v
+	WfMDE8dk=
+X-Gm-Gg: ASbGnctC9W8iGSzGNAu22bYdYuLTBmBMJfc73Svwec7KetUzM6WBBwzYWpffsE62Uus
+	arPbs5B41H9+9EOdMN0C8oZWrPKZe6703rw/4qd8knCybiZ9dn5rR7RuVLSgNC9IzhZjH7icg4m
+	vWC6HaDTgdJc1armpeH5K8FeTgToTreZzelSZPQZDq6Kdlm8S4qAFEqzMMfZac29J7jsD1MMNMf
+	lz23m1De1GsQ6oJwCYb1NirJoaR0ohVuWpuPpzCe0Evc+6Wi5DPyVyuAyQWFZUwFD5vXkOSUbGx
+	WBxJ7AZyxr2nrmPoDS6NAdJaib8XcArXsED2ZMYgY3h3Cu1jjUrMccOwiR5/TpkfSjPd4/1gKIx
+	3peB1rN0=
+X-Google-Smtp-Source: AGHT+IFyqTvtGwvnuc3FS7zne0Ce5Fz6EfGEy/ON5HolQgJhZJPOh9o/jA/qGYT7EuGw5oynDbNm/A==
+X-Received: by 2002:a05:600c:8b72:b0:43b:ca39:6c7d with SMTP id 5b1f17b1804b1-452013674e0mr170246245e9.3.1749557581771;
+        Tue, 10 Jun 2025 05:13:01 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4531fe85260sm9841035e9.0.2025.06.10.05.13.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 05:13:01 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: jagan@amarulasolutions.com, quic_jesszhan@quicinc.com, 
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, 
+ Stefan Eichenberger <eichest@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250606114644.105371-1-eichest@gmail.com>
+References: <20250606114644.105371-1-eichest@gmail.com>
+Subject: Re: [PATCH v1 0/2] Add Winstar wf40eswaa6mnn0 panel support
+Message-Id: <174955758106.1700488.8043298951772545828.b4-ty@linaro.org>
+Date: Tue, 10 Jun 2025 14:13:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp13
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
- <20250528-hdp-upstream-v4-5-7e9b3ad2036d@foss.st.com>
- <c0336f46-1fbc-4766-9e0a-a3812d48083e@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <c0336f46-1fbc-4766-9e0a-a3812d48083e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_04,2025-06-10_01,2025-03-28_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 5/29/25 11:13, Krzysztof Kozlowski wrote:
-> On 28/05/2025 15:30, Clément Le Goffic wrote:
->> Add the hdp devicetree node for stm32mp13 SoC family
->>
->> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->> ---
->>   arch/arm/boot/dts/st/stm32mp131.dtsi | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
->> index 8512a6e46b33..9e3797ee1f7b 100644
->> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
->> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
->> @@ -954,6 +954,13 @@ dts: thermal@50028000 {
->>   			status = "disabled";
->>   		};
->>   
->> +		hdp: pinctrl@5002a000 {
->> +			compatible = "st,stm32mp131-hdp";
->> +			reg = <0x5002a000 0x400>;
->> +			clocks = <&rcc HDP>;
->> +			status = "disabled";
-> Don't send new versions while discussion is going.
+Hi,
+
+On Fri, 06 Jun 2025 13:45:49 +0200, Stefan Eichenberger wrote:
+> This patch series adds support for the Winstar wf40eswaa6mnn0 panel. The
+> datasheet including the init sequence was taken from here:
+> https://www.winstar.com.tw/d/308/WF40ESWAA6MNN0.pdf
 > 
-> My comments are still valid here.
+> Stefan Eichenberger (2):
+>   drm/panel: st7701: Add Winstar wf40eswaa6mnn0 panel support
+>   dt-bindings: display: st7701: Add Winstar wf40eswaa6mnn0 panel
 > 
-> Best regards,
-> Krzysztof
+> [...]
 
-Ok keep discussing in the V3 so.
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-Clément
+[1/2] drm/panel: st7701: Add Winstar wf40eswaa6mnn0 panel support
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/d04f6367d39918461d0335d30b860d38668d4b54
+[2/2] dt-bindings: display: st7701: Add Winstar wf40eswaa6mnn0 panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/f79692d0c386bf8b815c92fc0f832d1a0af03628
+
+-- 
+Neil
+
 
