@@ -1,141 +1,101 @@
-Return-Path: <devicetree+bounces-184503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C0CAD4397
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 22:17:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5136CAD439F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 22:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4736417BDFB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:17:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6263A580E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D514925E478;
-	Tue, 10 Jun 2025 20:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U/D/fk6n"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BD92641CA;
+	Tue, 10 Jun 2025 20:20:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD9919A2A3;
-	Tue, 10 Jun 2025 20:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C662459E5;
+	Tue, 10 Jun 2025 20:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749586643; cv=none; b=gGCAhKNTCo1aw4ZYQiR+/74TtxiLrA7xXDUnk28rzVK3hAMXw58Efxw0mFikle6tPenFNDw+//4VmstXGgleG7CBf3I+67OPIx0J19AX5Pf1nopgoio5oc/vvhzTFwX+16+csQh3tyJZpVzuWkUMKjVgtwcVTFbxFqEDjQeEt5I=
+	t=1749586851; cv=none; b=sVFF4X+rVNMvORY3bSUh3OWc3aoTVriy74IOh9AmDES2XiK7zexMp7gyIBPJM6o+F23kvAZ3qFllcb+JiJhO/QDv3Wh5xRSg2vIlWzrTEVde4ow/1M4BKHxOaYrtkcTZcQDk8rnyvy50HsnBk4pJb9u8SBkI2muZ31Warce11uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749586643; c=relaxed/simple;
-	bh=KkMPpLWarAObIGFdc/4Gj8U/zmuf7yOK4LH5HnaJns8=;
+	s=arc-20240116; t=1749586851; c=relaxed/simple;
+	bh=4YIahBu4rd17/nPYwIZ2ksHhwSOzzkxA9okvbsuDZhI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hDbBTu/IDxzQiH1ZcTGCmlpLnvlwiL38iavDMIxx1cqvtL74wecCZ58Ozu7wzex4ciMTx6tOc1eGye4jorjOMSzcNfQiRAPEuN2O7xqw2JjzrGVFD4o+T21b+W7Ha9RPkSs/5Z++77jcVhU8mIZx7w4eQTWqlIr+D0lZWuuCo6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U/D/fk6n; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749586642; x=1781122642;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KkMPpLWarAObIGFdc/4Gj8U/zmuf7yOK4LH5HnaJns8=;
-  b=U/D/fk6nw+LSXzVxNPDemOLSzMl++rdBvPsfxn91Dp++J9WdjLhj+e3w
-   Jvp2zFIchcn/v9iliWliqcT+z243NcmvV8W+5fKz6O8jXkblkLmnUm5lK
-   F0bd4bToZsXyb8GeMK1O+UH6uQr59t/PEO0Z8a7Sc2iN5exIyI1Gd3HSM
-   QPZnWUQy1MAKddDq9SZDa4Ch5iKDc/6cnw7CcEWSaQMBB/BmJufQyGPt+
-   wA4jQsC5no3cLiquV/YoLXQx3ZK2N0uusb94zffY84HWeye5FqPVul19s
-   Ht8Efk6AQn7zuSPc9pYGYSAPjq2yk63lq0TeOjLpDnfARBZNvuZCwV+kX
-   A==;
-X-CSE-ConnectionGUID: gvIU2YZyTv2/q6Ods3v4IQ==
-X-CSE-MsgGUID: U1HGsKehRRiewPzxaINxhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="51811055"
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cf5sW1ybXxc1V54CaPoaEm24oIVOl6ea4z6K0JIjJM5s0ykMXY4LDJEQrJek+6IKAKAx2w10+9uigYte0jVyE/yIDy9IWKLn5jAoHsyFTozUzYN9w13g8iqUDPOYgLDjtkOFajG1ZjfLwJ3KgYzmLPTJ/xyJcS5EKQhQPeDgIPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: hVr5P4C3SgiSy2bW/Vrk/g==
+X-CSE-MsgGUID: g1GlOl9nR5i26uuTCVuFTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="62368865"
 X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; 
-   d="scan'208";a="51811055"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:17:21 -0700
-X-CSE-ConnectionGUID: mULnA7/tT0Sddi3uk+PAJQ==
-X-CSE-MsgGUID: +G96++PuQdm5BLTlEDt8iw==
+   d="scan'208";a="62368865"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:20:49 -0700
+X-CSE-ConnectionGUID: iTzFtAzzT9C/4t/9IquyYA==
+X-CSE-MsgGUID: IkXTW6PVTFWtPYx2pYxcAg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; 
-   d="scan'208";a="146864596"
+   d="scan'208";a="147880186"
 Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:17:15 -0700
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:20:46 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uP5PC-00000005RU8-34rs;
-	Tue, 10 Jun 2025 23:17:10 +0300
-Date: Tue, 10 Jun 2025 23:17:10 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>,
-	"zhangzekun (A)" <zhangzekun11@huawei.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>, robh@kernel.org,
-	saravanak@google.com, justin.chen@broadcom.com,
-	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
-	kuba@kernel.org, kory.maincent@bootlin.com,
-	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
-	maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com,
-	olteanv@gmail.com, davem@davemloft.net, taras.chornyi@plvision.eu,
-	edumazet@google.com, pabeni@redhat.com, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, arm-scmi@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	chenjun102@huawei.com, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 1/9] of: Add warpper function
- of_find_node_by_name_balanced()
-Message-ID: <aEiSxq6lNNJq5DJM@smile.fi.intel.com>
-References: <20250207013117.104205-1-zhangzekun11@huawei.com>
- <20250207013117.104205-2-zhangzekun11@huawei.com>
- <Z6XDKi_V0BZSdCeL@pengutronix.de>
- <80b1c21c-096b-4a11-b9d7-069c972b146a@huawei.com>
- <20250207153722.GA24886@pendragon.ideasonboard.com>
- <be93486b-91bb-4fdd-9f6c-ec295c448476@stanley.mountain>
- <aAuqgiSxrh24-L-D@stanley.mountain>
- <20250425170732.GA21390@pendragon.ideasonboard.com>
- <aEiJ856egeMCC6ao@black.fi.intel.com>
- <20250610200339.GA1233@pendragon.ideasonboard.com>
+	(envelope-from <andy@kernel.org>)
+	id 1uP5Sd-00000005RWs-3JB3;
+	Tue, 10 Jun 2025 23:20:43 +0300
+Date: Tue, 10 Jun 2025 23:20:43 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Marius.Cristea@microchip.com
+Cc: jic23@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: adding support for PAC194X
+Message-ID: <aEiTm9rbJsFYtSfE@smile.fi.intel.com>
+References: <20250606093929.100118-1-marius.cristea@microchip.com>
+ <20250606093929.100118-3-marius.cristea@microchip.com>
+ <1c7946f1-d712-4baa-8243-be6a55eec528@baylibre.com>
+ <1b8b10816d1f2f34724e77c68de869422d6c84b6.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250610200339.GA1233@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1b8b10816d1f2f34724e77c68de869422d6c84b6.camel@microchip.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, Jun 10, 2025 at 11:03:39PM +0300, Laurent Pinchart wrote:
-> On Tue, Jun 10, 2025 at 10:39:31PM +0300, Andy Shevchenko wrote:
-> > On Fri, Apr 25, 2025 at 08:07:32PM +0300, Laurent Pinchart wrote:
-> > > On Fri, Apr 25, 2025 at 06:30:10PM +0300, Dan Carpenter wrote:
-> > > > Whatever happened with this thread from Feb.
-> > > > https://lore.kernel.org/all/20250207013117.104205-1-zhangzekun11@huawei.com/
-> > > > 
-> > > > The issue was that people weren't expecting of_find_node_by_name() to
-> > > > drop the reference on the of_node.  The patchset introduced a wrapper
-> > > > which basically worked as expected except no liked the naming.  Krzysztof
-> > > > suggested that maybe the callers should be using of_get_child_by_name()
-> > > > instead.
-> > > 
-> > > My conclusion is that most of the users of of_find_node_by_name() with a
-> > > non-NULL first argument are wrong, and should be replaced by
-> > > of_get_child_by_name(). We need a volunteer to do that work.
+On Tue, Jun 10, 2025 at 03:07:34PM +0000, Marius.Cristea@microchip.com wrote:
+> On Fri, 2025-06-06 at 12:02 -0500, David Lechner wrote:
+> > On 6/6/25 4:39 AM, marius.cristea@microchip.com wrote:
+
+...
+
+> > > +#include <linux/acpi.h>
+> > > +#include <linux/bitfield.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/err.h>
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/iio/iio.h>
+> > > +#include <linux/iio/events.h>
+> > > +#include <linux/iio/sysfs.h>
+> > > +#include <linux/unaligned.h>
 > > 
-> > Wouldn't be coccinelle a good worker for this job done?
+> > This seems incomplete. Expecting at least linux/module.h,
+> > linux/property.h, etc.
 > 
-> It's not mechanical work, every single user need to be audited manually.
+> I will double check. Most probably those module are already included by
+> a header.
 
-Sure, but at least it can do some job that can be done automatically.
-
-> Finding the call sites is the easy part, and we have them already.
-
-> > > > I created a Smatch warning for this and here are the four issues it
-> > > > found.  The line numbers are from linux-next.
-> > > > 
-> > > > drivers/net/ethernet/broadcom/asp2/bcmasp.c:1370 bcmasp_probe() warn: 'dev->of_node' was not incremented
-> > > > drivers/net/pse-pd/tps23881.c:505 tps23881_get_of_channels() warn: 'priv->np' was not incremented
-> > > > drivers/media/platform/qcom/venus/core.c:301 venus_add_video_core() warn: 'dev->of_node' was not incremented
-> > > > drivers/regulator/tps6594-regulator.c:618 tps6594_regulator_probe() warn: 'tps->dev->of_node' was not incremented
+And this is exactly the problem needs to be addressed.
+Read about IFYU principle. That's what we want.
 
 -- 
 With Best Regards,
