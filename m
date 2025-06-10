@@ -1,145 +1,118 @@
-Return-Path: <devicetree+bounces-184265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0EE8AD37C0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF339AD3861
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:12:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1524F1BA187C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:58:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D533718884A8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:06:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BA1299A93;
-	Tue, 10 Jun 2025 12:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613002C3761;
+	Tue, 10 Jun 2025 12:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fgWOMiAc"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ujDB7z68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8A6299933;
-	Tue, 10 Jun 2025 12:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9382C17B0;
+	Tue, 10 Jun 2025 12:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749559994; cv=none; b=GCqh8P+I+I5kos6uMkjFAaFjHJp4tPegKl3azxMhaPJ9Th+ZYbc8TaoK3xCMTuN6aYtgljEBJOxx7eaG0gLm2AlsgM8tSXZ3KafHWHBTcKgCxHm1MG6HcdTOnc1VhXUAAR+bbRetnLBSLVw4oD/sJivaYw6ASbJftZBLoAPXw08=
+	t=1749560350; cv=none; b=Y39wb7toxWXHPuyfdmb1sSxMRdHRMIwWgA5zCiFTdXO+XI9sCmBFnz5oKtT1sBDpwkjPitE1RBgXwuxahHIpgWWEsBbO1e0WesGGweVPGi+70CpTOzGw9kfJmwoi8OrNjKGmN2B6EwzBboQmMU8uhZvq7v7I2klBtG3bKhvP3ek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749559994; c=relaxed/simple;
-	bh=ISYaAhggFyjnVtTWRorHjZCRnq1DLz9VGr6XjpJVG7U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g6GjAuLXvUq+dxQMoMDir02SKqSnHOGaIDfipvf71OQwpqcKdWxf0SOBjIMeppvGGyiVTHJaLwbjliBbqCJ2brkIyhkwrBNNYOfWpZoz5n3SSCPUIZ6ytWElPVjkDHXFyyYk0LCIB5U4BWG/l0q5TrXVurnhVUSNE7j9mIjhnYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fgWOMiAc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3FBDC4CEED;
-	Tue, 10 Jun 2025 12:53:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749559993;
-	bh=ISYaAhggFyjnVtTWRorHjZCRnq1DLz9VGr6XjpJVG7U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fgWOMiAcTYjMjBVI/Z4s8WvdzFuQ5LLsV3FLWEMo670XZ8buZ8OyjsASrIcMoICvv
-	 ri+y5rf8Fd0oO3DTqf3TIlGOPeWMN3uEVC5cGejHpHgbiPihsaReBiUWLM2k/L6BB1
-	 NXK7SR4smEjC3+tjlGjZ7ew1jxrOUciLQukf5Dehj7exiI0ZI5f0TO2k1ePWhAja7l
-	 Mz9QPWA0QK4kEXcIEBccMRau4e3jrSL8iXExIip8EROw0iQygCM7cr8JahGGGU7QHn
-	 Lmdwkixbvw6TBHsvPwE9Q7CG74fyxEAxW/AgeKAEzJTuPtS3Q+LTPzhyjqD4Q2ZHQL
-	 fERVymuPdEBfQ==
-Message-ID: <18053999-c337-47e5-b6df-72c2be6a72df@kernel.org>
-Date: Tue, 10 Jun 2025 14:53:08 +0200
+	s=arc-20240116; t=1749560350; c=relaxed/simple;
+	bh=oFMazrCuecngzoa++NkSmIOCoYRid8dS5A/ERnGJBpo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YWOOKWvX3q1WpRLyacAq9irJmo78J0Eo965EWeL24SXMzVx6EIlfIitRTjU0P5Qk6AzqK7iSdyhQWU5RV760ZEePfFOxfz5QuDSSQxMZZNVHunnjp20deeEEyFN9lKdM+JuQZ4eeyyZ6VUzrSbKJQ+aBd5/yS9EM9PUDqFqYh4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ujDB7z68; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=0mN0Y6VG8wJwIHBPmUq5Ichmc5b23YwTM3GHpfC0Ov0=; b=ujDB7z68qrrQWLKAjGzbmCQGy3
+	LdOtDJSTUvPJoAR+dlK+SCrvQO4qgGvAcvh2Obe7Xf1qUhfc6kUAHntYjvGObWD50/ANPKe97yd3y
+	StFdUf5u32nQt5lMjBOlGoqnG9dJYy8rhkzxAKLYPIrFSRwObLsOO0zSTHB4qQv0slmA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uOyYu-00FGk5-Tp; Tue, 10 Jun 2025 14:58:44 +0200
+Date: Tue, 10 Jun 2025 14:58:44 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: linux@fw-web.de, myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+	cw00.choi@samsung.com, djakov@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, olteanv@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, jia-wei.chang@mediatek.com,
+	johnson.wang@mediatek.com, arinc.unal@arinc9.com,
+	Landen.Chao@mediatek.com, dqfext@gmail.com, sean.wang@mediatek.com,
+	daniel@makrotopia.org, lorenzo@kernel.org, nbd@nbd.name,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: Re: [PATCH v3 12/13] arm64: dts: mediatek: mt7988a-bpi-r4: add
+ sfp cages and link to gmac
+Message-ID: <e1a49ca7-f082-4983-89fe-1a8f8c8a3de1@lunn.ch>
+References: <20250608211452.72920-1-linux@fw-web.de>
+ <20250608211452.72920-13-linux@fw-web.de>
+ <934b1515-2da1-4479-848e-cd2475ebe98d@lunn.ch>
+ <trinity-b9ab960d-38f8-4524-b645-fc0832ce72ec-1749546239525@trinity-msg-rest-gmx-gmx-live-5d9b465786-6phds>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
- HS200 modes
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>,
- Sachin Gupta <quic_sachgupt@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_bhaskarv@quicinc.com,
- quic_mapa@quicinc.com, quic_narepall@quicinc.com, quic_nitirawa@quicinc.com,
- quic_sartgarg@quicinc.com
-References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
- <20250122094707.24859-2-quic_sachgupt@quicinc.com>
- <72b02fd1-5195-4bb0-b01d-5481b49a5680@kernel.org>
- <e0f43fc7-2f38-335d-1515-c97594a55566@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e0f43fc7-2f38-335d-1515-c97594a55566@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <trinity-b9ab960d-38f8-4524-b645-fc0832ce72ec-1749546239525@trinity-msg-rest-gmx-gmx-live-5d9b465786-6phds>
 
-On 10/06/2025 14:07, Ram Prakash Gupta wrote:
-> Hi Krzysztof,
+> > sff,sfp.yaml says:
+> > 
+> >   maximum-power-milliwatt:
+> >     minimum: 1000
+> >     default: 1000
+> >     description:
+> >       Maximum module power consumption Specifies the maximum power consumption
+> >       allowable by a module in the slot, in milli-Watts. Presently, modules can
+> >       be up to 1W, 1.5W or 2W.
+> > 
+> > I've no idea what will happen when the SFP core sees 3000. Is the
+> > comment out of date?
 > 
-> Thanks for your comment, The Qualcomm Engineer who initiated this work,
-> is no longer working on this and I am taking up the responsibility to continue
-> on this work. I have started to check this and will start with addressing your
-> comment next.
+> at least sfp-core has no issue with the setting
 > 
-> Thanks,
-> Ram
+> root@bpi-r4-phy-8G:~# dmesg | grep sfp
+> [    1.269437] sfp sfp1: Host maximum power 3.0W
+> [    1.613749] sfp sfp1: module CISCO-FINISAR    FTLX8571D3BCL-C2 rev A    sn S2209167650      dc 220916  
 > 
-> On 1/22/2025 3:56 PM, Krzysztof Kozlowski wrote:
->> On 22/01/2025 10:47, Sachin Gupta wrote:
+> imho some modules require more than 2W (some gpon/xpon and 10G copper ethernet).
 
-Above timeline is interesting:
-1. Patch sent on 22nd January.
-2. I provided comments few hours later, the same day.
-3. Silence.
-4. Employee changes job.
-5. Five months later...
+Looking at the code:
 
-Not your fault Ram of course, but above timeline is not a responsible
-way of upstreaming patches.
+static int sfp_module_parse_power(struct sfp *sfp)
+{
+        u32 power_mW = 1000;
+        bool supports_a2;
 
-Best regards,
-Krzysztof
+        if (sfp->id.ext.sff8472_compliance >= SFP_SFF8472_COMPLIANCE_REV10_2 &&
+            sfp->id.ext.options & cpu_to_be16(SFP_OPTIONS_POWER_DECL))
+                power_mW = 1500;
+        /* Added in Rev 11.9, but there is no compliance code for this */
+        if (sfp->id.ext.sff8472_compliance >= SFP_SFF8472_COMPLIANCE_REV11_4 &&
+            sfp->id.ext.options & cpu_to_be16(SFP_OPTIONS_HIGH_POWER_LEVEL))
+                power_mW = 2000;
+
+How does your module indicate it needs 3000 mW? Does this bit of code
+need extending to read additional bits?
+
+	Andrew
 
