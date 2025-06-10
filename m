@@ -1,489 +1,351 @@
-Return-Path: <devicetree+bounces-184386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8A8AD3DAA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:42:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50FAEAD3DD1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6B5C3A3FCB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:37:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BBA7189281F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C9C23958D;
-	Tue, 10 Jun 2025 15:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC6623504C;
+	Tue, 10 Jun 2025 15:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4ikQudC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="STsVFGk1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB28123816B;
-	Tue, 10 Jun 2025 15:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AB9224AFE;
+	Tue, 10 Jun 2025 15:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749569837; cv=none; b=ADpZuYgJO95Wd6/CXNvmR6FM9XgojpGfXQvSjwsW0brLr8lGWTy0lpaQLurx+lhFnKK8FiF/1r6pfW7Jm52+QsyB/IQHlOJZgyq3I5Slfb1mjAKf4mA+ELjtE129ne+EppWACb//sLA5tJV9PrV76Z9o1WYjKp5IdAtA7ybbilg=
+	t=1749570391; cv=none; b=MlmGPhhhRaHPglw5NGedEG4rI/5lTCfgEf1RJ4as80NV1kO8kVWU2n8zuZ6mVtZCB71JEX9cGNkEsUqxOjyyaJMGSkQjaDdjMUs7tji0PxsEpKTGmgkuIMngGc+JRfMKAYppJWzAbkxYS56Dn3RtnvK26fVUL7INNziZDtuhTiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749569837; c=relaxed/simple;
-	bh=Mg5I9GQaPwUd+79TO7AVQNChtWaRs7LbsN5ONrDkgus=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Dv57ZT9BD4gddmIfuzyF0WQ+W0yjig3u2Fo64tm78Xqk/rAN3SoJh0+004v6iTp9EjuvbtU+WcuOu2LxF1PBH5/SU9X2bhcmdccOc6MhFSJueEfYNRfjI2VkLqCtub6V+z+JpmWZu3DCHcxVxI3h1a82V7RybSNgzEBZCs/HaUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4ikQudC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 54C41C4CEFD;
-	Tue, 10 Jun 2025 15:37:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749569837;
-	bh=Mg5I9GQaPwUd+79TO7AVQNChtWaRs7LbsN5ONrDkgus=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=R4ikQudCs/V6nNUNuH9kTaWvBScujTRdis2jD8qgfhT2lxUZrMelji3Yik0wAdzYq
-	 rwRIUVGBApwlT0cLtbx8zn3dJdzyCzvYyN/cTRUWpFdJ+sRTq1A1EB7ritD0pDD0UT
-	 XEvLi5sLk8OsEOU6pWdUw+8YRoKw5MLfoy7UENH9b0tfonGoZOybgHB8OV5isFfjlp
-	 TkcqYmuDOFIxFQ29bUPjM3R1DAJ0akp7CiAsLWwjjB0k3nu5i396u7AosJUqgGqPHK
-	 cA1sHlgG9Gm1aYeVqR840Fo3dZmzeFLj+9yUEqgO4zMep9+Ki6gQvYw9ukaK9EQy04
-	 aAn9c92iP8cow==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4BFB6C678DA;
-	Tue, 10 Jun 2025 15:37:17 +0000 (UTC)
-From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
-Date: Tue, 10 Jun 2025 23:37:12 +0800
-Subject: [PATCH v4 5/5] firmware: stratix10-rsu: Migrate RSU driver to use
- stratix10 asynchronous framework.
+	s=arc-20240116; t=1749570391; c=relaxed/simple;
+	bh=pfG1s9183abezt7qZiUMs/BwwFhBunVV8SYSk6+J1I4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CX2wHQ13HMqeuOWEADfciXiCAS0OyjgJhnZrTjD2R44Y1iGlGu32wFrn8f86a/BlsKbd1liyAY/mVd7sziMgMT2TX/OBQ32LOdxuuBrTnElD6rFQL8NBUJiwOWijSN/srG3RffdSP+zb4uOUe4EppkEKcWrCIQoXKtjAl2coCAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=STsVFGk1; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-607ec30df2bso4732456a12.1;
+        Tue, 10 Jun 2025 08:46:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749570387; x=1750175187; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d4YS4P0Up7khVvMxUsDAYxrG2IpA3abnuSN0A4MRVwo=;
+        b=STsVFGk1UHiQ6yVpeeuetXvMgslZo3y/vAQ53rcXNk9eNNEnv23HB1GtzBd82Z73kd
+         fs3FlEhSPik0+ipr2Qhn1LYQkhaoaH83nNI0NW2fhGlTzpMn7IqKAVBxy2w/AbT31Go0
+         2p4qPu1R3txhJB5bFeGFx200bOnXUFLHpQdpg41eYqJml+RUqFLQgtKKfsGkNM7k9+cw
+         kptqCe4ftHmDyS2r7rTiGFIjpl61KwGE6QzsYBpNbQ38kS7hBCiJnbP4bVablaVTZ0JP
+         Qs+2zqG8zocjeBx2JQ3NO1YhUQJ4agPJchkhxCzdAJQHtNOKL6AlnNtaJMreY8EiFyY0
+         ws3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749570388; x=1750175188;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d4YS4P0Up7khVvMxUsDAYxrG2IpA3abnuSN0A4MRVwo=;
+        b=Jsz1YLzqA9YmQXrXmGud7epQCe0mqVehB7vBTkfs1Z/BKDMS33RDXkr91aHfKxnKzR
+         PBLc4gnQ5zNkKYhO1qx8OFQN8SZJ91ERQHOeQQCy4VsuPc3NoJUwbCmdBmK5HkjHPG6U
+         B25Lk0OXC/a0huO4iO+2hai6QByBC0TTqE7McrSEIo+0SiMDa2U6dKMFiJu+2hqms5KG
+         b1Wf4EKZld11o/+r4JCwTTaACu4KaXLoi4fm4z+B1h1REoIEfmi1tqeA/ZIeZGLPND7R
+         zJlkBeX92+9HeS0/0BZAWSURTAZTk8oIgJOMkpSOda1YlRs7H59B5iT6V6qr507vBRfc
+         uWSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULHtJFbGcCH6D6TYfpBrSpLMYWMFLrVADR+8JI+SjZ2DxoKc/KfvU3S6X3EXbdioKfOSFUQb667Y3w@vger.kernel.org, AJvYcCWZJ8x1JdpSSkBTcXntoJae9jkAxXRSx7ZsOlxt/I76Sb35EWSQLvbTOpupAsoniAdATSAqFwARt9ZCRN4=@vger.kernel.org, AJvYcCWq157IaHQQ0q/pU42M0ydf9aREwO2OD4BX5c2f2ywOEa34DlTL9PrLV2oQCP35beUtAnEIQIkld7Lg1rIO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwImm4pf+Ix5hWJCAjrrVAP6OjjpnJxPkXyzluQSeHHwT0ZsgV
+	/MKrLUBgop2dJJX31XzkKywE9O1qLnC2+Nmib2J74+SX3VNDYJNVpbhC
+X-Gm-Gg: ASbGncvjWrsNja4RKcal2C3+LCXkDIrGl9qiiE98tR30K1cT8wvEmTk+dr2sRIOAu99
+	W46pznN4e1O5KTkibM/irnuNxM25eNBRcxx7+vfMJ3xzwVhh9zE4ReM4TLOKuukc2vIuwF9BoFH
+	4FCkbPjGwtXUGdhbvvmRMT90dXVG01I4IFx6/gLD4pvIfr4iRS+uP5ELaMa1DJ2HgSPEHGbLu8Z
+	5nsjL9a7ur7y2kjXhw3bpbx5apZiJE5eLv3jGOIN5dlUx9/fn4dcO9DumFThG9B3xFB8343TgfX
+	jsXIing104gjAjl38VRsULcQH5hYX8vUWYqXLCMgFViG78+isE8UISlcy/UEQXr0pgjaRqoeAf2
+	gJSv5g5U19zk=
+X-Google-Smtp-Source: AGHT+IEDXtfS66XNV/mYblarMp3AlD3RJypXTbsURR1nOQJSYGHfyO5uBLmrdUAls16LsBGLPzUjIA==
+X-Received: by 2002:a05:6402:40c1:b0:606:741f:194e with SMTP id 4fb4d7f45d1cf-6082dbed2c2mr3007949a12.32.1749570387328;
+        Tue, 10 Jun 2025 08:46:27 -0700 (PDT)
+Received: from jurenat-workstationFai.utb.cz ([195.178.92.53])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6078a54da54sm5390609a12.6.2025.06.10.08.46.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 08:46:26 -0700 (PDT)
+From: =?UTF-8?q?Tom=C3=A1=C5=A1=20Ju=C5=99ena?= <jurenatomas@gmail.com>
+To: dmitry.torokhov@gmail.com
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tomas Jurena <jurenatomas@gmail.com>
+Subject: [PATCH] Input: tca6416-keypad - Add OF support for driver instantiation
+Date: Tue, 10 Jun 2025 17:46:10 +0200
+Message-Id: <20250610154609.1382818-1-jurenatomas@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250610-sip_svc_upstream-v4-5-bcd9d6089071@altera.com>
-References: <20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com>
-In-Reply-To: <20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com>
-To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749569835; l=13278;
- i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
- bh=kI23gIa6PngF5SYH1gAyhV6qX0hobd+0qY9aPOd8c7U=;
- b=gdY+7QiobUcZk2EV8wO5pf4GTh8115EDp6Z2bOeWn7DhX80Ge1gdq44i8DRP4dDRNb/NCa8g9
- WScspgG/jFbCE2XNZSU0SCYJ/6Wju5JjY6cd7JMbLwiQPvZhtzPsO3V
-X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
- pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
-X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
- auth_id=337
-X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
-Reply-To: mahesh.rao@altera.com
+Content-Transfer-Encoding: 8bit
 
-From: Mahesh Rao <mahesh.rao@altera.com>
+From: Tomas Jurena <jurenatomas@gmail.com>
 
-* Add support for asynchronous communication to the
-  RSU client channel.
-* Migrate functions that communicate with the SDM
-  to use the asynchronous framework.
+Adds support for instantiating the tca6416-keypad driver via
+Device Tree. If no platform data is present, the driver can now be
+probed based on OF bindings.
 
-Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
+A corresponding Device Tree binding document is added at:
+  Documentation/devicetree/bindings/input/tca6416-keypad.yaml
+
+This allows the driver to be used in systems that rely solely on the
+Device Tree for hardware description, such as embedded ARM platforms.
+
+Tested on Toradex Ixora 1.3A board and Apalis imx8 SOM.
+
+Signed-off-by: Tomas Jurena <jurenatomas@gmail.com>
 ---
- drivers/firmware/stratix10-rsu.c | 272 ++++++++++++++++++++-------------------
- 1 file changed, 142 insertions(+), 130 deletions(-)
+ .../bindings/input/tca6416-keypad.yaml        | 87 ++++++++++++++++++
+ drivers/input/keyboard/tca6416-keypad.c       | 88 +++++++++++++++++--
+ 2 files changed, 170 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/tca6416-keypad.yaml
 
-diff --git a/drivers/firmware/stratix10-rsu.c b/drivers/firmware/stratix10-rsu.c
-index 1ea39a0a76c787c6396300734b636b4b3a0ae04d..53b67b242cf0afa4102340aa099cef66b642effa 100644
---- a/drivers/firmware/stratix10-rsu.c
-+++ b/drivers/firmware/stratix10-rsu.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (C) 2018-2019, Intel Corporation
-+ * Copyright (C) 2025, Altera Corporation
-  */
- 
- #include <linux/arm-smccc.h>
-@@ -14,11 +15,9 @@
- #include <linux/firmware/intel/stratix10-svc-client.h>
- #include <linux/string.h>
- #include <linux/sysfs.h>
-+#include <linux/delay.h>
- 
--#define RSU_STATE_MASK			GENMASK_ULL(31, 0)
--#define RSU_VERSION_MASK		GENMASK_ULL(63, 32)
--#define RSU_ERROR_LOCATION_MASK		GENMASK_ULL(31, 0)
--#define RSU_ERROR_DETAIL_MASK		GENMASK_ULL(63, 32)
-+#define RSU_ERASE_SIZE_MASK		GENMASK_ULL(63, 32)
- #define RSU_DCMF0_MASK			GENMASK_ULL(31, 0)
- #define RSU_DCMF1_MASK			GENMASK_ULL(63, 32)
- #define RSU_DCMF2_MASK			GENMASK_ULL(31, 0)
-@@ -35,7 +34,8 @@
- #define INVALID_DCMF_STATUS		0xFFFFFFFF
- #define INVALID_SPT_ADDRESS		0x0
- 
--#define RSU_GET_SPT_CMD			0x5A
-+#define RSU_RETRY_SLEEP_MS		(1U)
-+#define RSU_ASYNC_MSG_RETRY		(3U)
- #define RSU_GET_SPT_RESP_LEN		(4 * sizeof(unsigned int))
- 
- typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-@@ -64,7 +64,6 @@ typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-  * @max_retry: the preset max retry value
-  * @spt0_address: address of spt0
-  * @spt1_address: address of spt1
-- * @get_spt_response_buf: response from sdm for get_spt command
-  */
- struct stratix10_rsu_priv {
- 	struct stratix10_svc_chan *chan;
-@@ -99,47 +98,32 @@ struct stratix10_rsu_priv {
- 
- 	unsigned long spt0_address;
- 	unsigned long spt1_address;
--
--	unsigned int *get_spt_response_buf;
- };
- 
-+typedef void (*rsu_async_callback)(struct device *dev,
-+	struct stratix10_rsu_priv *priv, struct stratix10_svc_cb_data *data);
+diff --git a/Documentation/devicetree/bindings/input/tca6416-keypad.yaml b/Documentation/devicetree/bindings/input/tca6416-keypad.yaml
+new file mode 100644
+index 000000000000..f050403c4dbe
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/tca6416-keypad.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/tca6416-keypad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- /**
-- * rsu_status_callback() - Status callback from Intel Service Layer
-- * @client: pointer to service client
-+ * rsu_async_status_callback() - Status callback from rsu_async_send()
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-  * @data: pointer to callback data structure
-  *
-- * Callback from Intel service layer for RSU status request. Status is
-- * only updated after a system reboot, so a get updated status call is
-- * made during driver probe.
-+ * Callback from rsu_async_send() to get the system rsu error status.
-  */
--static void rsu_status_callback(struct stratix10_svc_client *client,
--				struct stratix10_svc_cb_data *data)
-+static void rsu_async_status_callback(struct device *dev,
-+				      struct stratix10_rsu_priv *priv,
-+				      struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	struct arm_smccc_res *res = (struct arm_smccc_res *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK)) {
--		priv->status.version = FIELD_GET(RSU_VERSION_MASK,
--						 res->a2);
--		priv->status.state = FIELD_GET(RSU_STATE_MASK, res->a2);
--		priv->status.fail_image = res->a1;
--		priv->status.current_image = res->a0;
--		priv->status.error_location =
--			FIELD_GET(RSU_ERROR_LOCATION_MASK, res->a3);
--		priv->status.error_details =
--			FIELD_GET(RSU_ERROR_DETAIL_MASK, res->a3);
--	} else {
--		dev_err(client->dev, "COMMAND_RSU_STATUS returned 0x%lX\n",
--			res->a0);
--		priv->status.version = 0;
--		priv->status.state = 0;
--		priv->status.fail_image = 0;
--		priv->status.current_image = 0;
--		priv->status.error_location = 0;
--		priv->status.error_details = 0;
--	}
--
--	complete(&priv->completion);
-+	struct arm_smccc_1_2_regs *res = (struct arm_smccc_1_2_regs *)data->kaddr1;
++title: TI TCA6416 keypad
 +
-+	priv->status.current_image = res->a2;
-+	priv->status.fail_image = res->a3;
-+	priv->status.state = res->a4;
-+	priv->status.version = res->a5;
-+	priv->status.error_location = res->a7;
-+	priv->status.error_details = res->a8;
-+	priv->retry_counter = res->a9;
++maintainers:
++
++description: |
++  Texas Instruments TCA6416 IO expander as a keypad input device.
++
++allOf:
++  - $ref: input.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,tca6416_keys
++      - ti,tca6408_keys
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  linux,gpio-keymap:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      Array of gpio keys provided by the driver instance. Each entry is a
++      bitfield holding configuration of the input key. The bitfield looks like
++      this:
++      +------------------------------------------------------------+
++      | Bits     | 31:18    |         17 | 16:14 | 13:10    | 9:0  |
++      | Function | reserved | active_low | type  | reserved | code |
++      +------------------------------------------------------------+
++      code - Linux key code
++      type - EV_KEY or EV_SW
++      active_low - Key is active in low state
++
++  linux,keycodes:
++    minItems: 1
++    maxItems: 16
++
++  autorepeat:
++    type: boolean
++    description: |
++      Enables the Linux input system's autorepeat feature on the input device.
++
++  polling:
++    type: boolean
++    description: |
++      Forces driver to use polling mode instead of IRQ.
++
++  pinmask:
++    description: |
++      Allows to disable certain keys. By default are all inputs enabled.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      keypad@21 {
++        compatible = "ti,tca6416_keys";
++        reg = <0x21>;
++        interrupt-parent = <&gpio>;
++        interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
++        linux,gpio-keymap = <
++                            0x24290, // active low, EV_KEY, 0, KEY_MACRO1
++                            0x24291, // active low, EV_KEY, 1, KEY_MACRO2
++                            0x24292, // active low, EV_KEY, 2, KEY_MACRO3
++        >;
++      };
++    };
++
++...
+diff --git a/drivers/input/keyboard/tca6416-keypad.c b/drivers/input/keyboard/tca6416-keypad.c
+index fbc674d7b9f0..8910498cf266 100644
+--- a/drivers/input/keyboard/tca6416-keypad.c
++++ b/drivers/input/keyboard/tca6416-keypad.c
+@@ -17,6 +17,7 @@
+ #include <linux/i2c.h>
+ #include <linux/input.h>
+ #include <linux/tca6416_keypad.h>
++#include <linux/bitfield.h>
+ 
+ #define TCA6416_INPUT          0
+ #define TCA6416_OUTPUT         1
+@@ -24,6 +25,7 @@
+ #define TCA6416_DIRECTION      3
+ 
+ #define TCA6416_POLL_INTERVAL	100 /* msec */
++#define TCA6416_MAX_IO_SIZE 16 /* maximum number of inputs */
+ 
+ static const struct i2c_device_id tca6416_id[] = {
+ 	{ "tca6416-keys", 16, },
+@@ -173,9 +175,67 @@ static int tca6416_setup_registers(struct tca6416_keypad_chip *chip)
+ 	return 0;
  }
  
- /**
-@@ -163,32 +147,6 @@ static void rsu_command_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--/**
-- * rsu_retry_callback() - Callback from Intel service layer for getting
-- * the current image's retry counter from the firmware
-- * @client: pointer to client
-- * @data: pointer to callback data structure
-- *
-- * Callback from Intel service layer for retry counter, which is used by
-- * user to know how many times the images is still allowed to reload
-- * itself before giving up and starting RSU fail-over flow.
-- */
--static void rsu_retry_callback(struct stratix10_svc_client *client,
--			       struct stratix10_svc_cb_data *data)
--{
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned int *counter = (unsigned int *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK))
--		priv->retry_counter = *counter;
--	else if (data->status == BIT(SVC_STATUS_NO_SUPPORT))
--		dev_warn(client->dev, "Secure FW doesn't support retry\n");
--	else
--		dev_err(client->dev, "Failed to get retry counter %lu\n",
--			BIT(data->status));
--
--	complete(&priv->completion);
--}
- 
- /**
-  * rsu_max_retry_callback() - Callback from Intel service layer for getting
-@@ -270,34 +228,19 @@ static void rsu_dcmf_status_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--static void rsu_get_spt_callback(struct stratix10_svc_client *client,
--				 struct stratix10_svc_cb_data *data)
-+/**
-+ * rsu_async_get_spt_table_callback() - Callback to be used by the rsu_async_send()
-+ * to retrieve the SPT table information.
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-+ * @data: pointer to callback data structure
++/* Configuration bitmap
++ * | 31:18    |         17 | 16:14 | 13:10    | 9:0  |
++ * | reserved | active_low | type  | reserved | code |
 + */
-+static void rsu_async_get_spt_table_callback(struct device *dev,
-+					     struct stratix10_rsu_priv *priv,
-+					     struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned long *mbox_err = (unsigned long *)data->kaddr1;
--	unsigned long *resp_len = (unsigned long *)data->kaddr2;
--
--	if (data->status != BIT(SVC_STATUS_OK) || (*mbox_err) ||
--	    (*resp_len != RSU_GET_SPT_RESP_LEN))
--		goto error;
--
--	priv->spt0_address = priv->get_spt_response_buf[0];
--	priv->spt0_address <<= 32;
--	priv->spt0_address |= priv->get_spt_response_buf[1];
--
--	priv->spt1_address = priv->get_spt_response_buf[2];
--	priv->spt1_address <<= 32;
--	priv->spt1_address |= priv->get_spt_response_buf[3];
--
--	goto complete;
--
--error:
--	dev_err(client->dev, "failed to get SPTs\n");
--
--complete:
--	stratix10_svc_free_memory(priv->chan, priv->get_spt_response_buf);
--	priv->get_spt_response_buf = NULL;
--	complete(&priv->completion);
-+	priv->spt0_address = *((unsigned long *)data->kaddr1);
-+	priv->spt1_address = *((unsigned long *)data->kaddr2);
- }
- 
- /**
-@@ -329,14 +272,6 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	if (arg)
- 		msg.arg[0] = arg;
- 
--	if (command == COMMAND_MBOX_SEND_CMD) {
--		msg.arg[1] = 0;
--		msg.payload = NULL;
--		msg.payload_length = 0;
--		msg.payload_output = priv->get_spt_response_buf;
--		msg.payload_length_output = RSU_GET_SPT_RESP_LEN;
--	}
--
- 	ret = stratix10_svc_send(priv->chan, &msg);
- 	if (ret < 0)
- 		goto status_done;
-@@ -362,6 +297,95 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	return ret;
- }
- 
-+/**
-+ * soc64_async_callback() - Callback from Intel service layer for async requests
-+ * @ptr: pointer to the completion object
-+ */
-+static void soc64_async_callback(void *ptr)
++#define CFG_CODE GENMASK(9, 0)
++#define CFG_TYPE GENMASK(16, 14)
++#define CFG_ACTIVE_LOW BIT(17)
++
++static struct tca6416_keys_platform_data *
++tca6416_parse_properties(struct device *dev, uint8_t io_size)
 +{
-+	if (ptr)
-+		complete(ptr);
++	static const char keymap_property[] = "linux,gpio-keymap";
++	struct tca6416_keys_platform_data *pdata;
++	u32 keymap[TCA6416_MAX_IO_SIZE];
++	struct tca6416_button *buttons;
++	int ret, i;
++	u8 pin;
++
++	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
++	if (!pdata)
++		return NULL;
++
++	ret = device_property_count_u32(dev, keymap_property);
++	if (ret <= 0)
++		return NULL;
++
++	pdata->nbuttons = ret;
++	if (pdata->nbuttons > io_size)
++		pdata->nbuttons = io_size;
++
++	ret = device_property_read_u32_array(dev, keymap_property, keymap,
++					     pdata->nbuttons);
++	if (ret)
++		return NULL;
++
++	buttons = devm_kcalloc(dev, pdata->nbuttons, sizeof(*buttons),
++			       GFP_KERNEL);
++	if (!buttons)
++		return NULL;
++
++	for (i = 0; i < pdata->nbuttons; i++) {
++		buttons[i].code = FIELD_GET(CFG_CODE, keymap[i]);
++		buttons[i].type = FIELD_GET(CFG_TYPE, keymap[i]);
++		buttons[i].active_low = FIELD_GET(CFG_ACTIVE_LOW, keymap[i]);
++		/* enable all inputs by default */
++		pdata->pinmask |= BIT(i);
++	}
++
++	pdata->buttons = buttons;
++
++	pdata->rep = device_property_read_bool(dev, "autorepeat");
++	/* we can ignore the result as by default all inputs are enabled */
++	device_property_read_u16(dev, "pinmask", &pdata->pinmask);
++	pdata->use_polling = device_property_read_bool(dev, "polling");
++
++	return pdata;
 +}
 +
-+/**
-+ * rsu_send_async_msg() - send an async message to Intel service layer
-+ * @dev: pointer to device object
-+ * @priv: pointer to rsu private data
-+ * @command: RSU status or update command
-+ * @arg: the request argument, notify status
-+ * @callback: function pointer for the callback (status or update)
-+ */
-+static int rsu_send_async_msg(struct device *dev, struct stratix10_rsu_priv *priv,
-+			      enum stratix10_svc_command_code command,
-+			      unsigned long arg,
-+			      rsu_async_callback callback)
-+{
-+	struct stratix10_svc_client_msg msg = {0};
-+	struct stratix10_svc_cb_data data = {0};
-+	struct completion completion;
-+	int status, index, ret;
-+	void *handle = NULL;
-+
-+	msg.command = command;
-+	msg.arg[0] = arg;
-+
-+	init_completion(&completion);
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_send(priv->chan, &msg,
-+						  &handle, soc64_async_callback,
-+						  &completion);
-+		if (status == 0)
-+			break;
-+		dev_warn(dev, "Failed to send async message\n");
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (status && !handle) {
-+		dev_err(dev, "Failed to send async message\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	ret = wait_for_completion_io_timeout(&completion, RSU_TIMEOUT);
-+	if (ret > 0)
-+		dev_dbg(dev, "Received async interrupt\n");
-+	else if (ret == 0)
-+		dev_dbg(dev, "Timeout occurred. Trying to poll the response\n");
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_poll(priv->chan, handle, &data);
-+		if (status == -EAGAIN) {
-+			dev_dbg(dev, "Async message is still in progress\n");
-+		} else if (status < 0) {
-+			dev_alert(dev, "Failed to poll async message\n");
-+			ret = -ETIMEDOUT;
-+		} else if (status == 0) {
-+			ret = 0;
-+			break;
+ static int tca6416_keypad_probe(struct i2c_client *client)
+ {
+-	const struct i2c_device_id *id = i2c_client_get_device_id(client);
++	uint8_t io_size = (uintptr_t)i2c_get_match_data(client);
+ 	struct tca6416_keys_platform_data *pdata;
+ 	struct tca6416_keypad_chip *chip;
+ 	struct input_dev *input;
+@@ -190,9 +250,13 @@ static int tca6416_keypad_probe(struct i2c_client *client)
+ 	}
+ 
+ 	pdata = dev_get_platdata(&client->dev);
+-	if (!pdata) {
+-		dev_dbg(&client->dev, "no platform data\n");
+-		return -EINVAL;
++	if (!pdata && dev_fwnode(&client->dev)) {
++		pdata = tca6416_parse_properties(&client->dev, io_size);
++		if (!pdata) {
++			dev_err(&client->dev,
++				"Failed to parse device configuration from properties\n");
++			return -EINVAL;
 +		}
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (ret) {
-+		dev_err(dev, "Failed to get async response\n");
-+		goto status_done;
-+	}
-+
-+	if (data.status == 0) {
-+		ret = 0;
-+		if (callback)
-+			callback(dev, priv, &data);
-+	} else {
-+		dev_err(dev, "%s returned 0x%x from SDM\n", __func__,
-+			data.status);
-+		ret = -EFAULT;
-+	}
-+
-+status_done:
-+	stratix10_svc_async_done(priv->chan, handle);
-+	return ret;
-+}
-+
- /*
-  * This driver exposes some optional features of the Intel Stratix 10 SoC FPGA.
-  * The sysfs interfaces exposed here are FPGA Remote System Update (RSU)
-@@ -597,27 +621,20 @@ static ssize_t notify_store(struct device *dev,
- 	if (ret)
- 		return ret;
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_NOTIFY,
--			   status, rsu_command_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_NOTIFY, status, NULL);
- 	if (ret) {
- 		dev_err(dev, "Error, RSU notify returned %i\n", ret);
- 		return ret;
  	}
  
- 	/* to get the updated state */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		return ret;
- 	}
+ 	chip = devm_kzalloc(&client->dev,
+@@ -207,7 +271,7 @@ static int tca6416_keypad_probe(struct i2c_client *client)
  
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		return ret;
--	}
--
- 	return count;
+ 	chip->client = client;
+ 	chip->input = input;
+-	chip->io_size = id->driver_data;
++	chip->io_size = io_size;
+ 	chip->pinmask = pdata->pinmask;
+ 	chip->use_polling = pdata->use_polling;
+ 
+@@ -279,9 +343,23 @@ static int tca6416_keypad_probe(struct i2c_client *client)
+ 	return 0;
  }
  
-@@ -737,12 +754,19 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		return PTR_ERR(priv->chan);
- 	}
- 
-+	ret = stratix10_svc_add_async_client(priv->chan, false);
-+	if (ret) {
-+		dev_err(dev, "failed to add async client\n");
-+		stratix10_svc_free_channel(priv->chan);
-+		return ret;
-+	}
++static const struct of_device_id tca6416_of_match[] = {
++	{
++		.compatible = "ti,tca6416_keys",
++		.data = (void *)16,
++	},
++	{
++		.compatible = "ti,tca6408_keys",
++		.data = (void *)8,
++	},
++	{}
++};
++MODULE_DEVICE_TABLE(of, tca6416_of_match);
 +
- 	init_completion(&priv->completion);
- 	platform_set_drvdata(pdev, priv);
- 
- 	/* get the initial state from firmware */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		stratix10_svc_free_channel(priv->chan);
-@@ -763,12 +787,6 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		stratix10_svc_free_channel(priv->chan);
--	}
--
- 	ret = rsu_send_msg(priv, COMMAND_RSU_MAX_RETRY, 0,
- 			   rsu_max_retry_callback);
- 	if (ret) {
-@@ -776,18 +794,12 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	priv->get_spt_response_buf =
--		stratix10_svc_allocate_memory(priv->chan, RSU_GET_SPT_RESP_LEN);
- 
--	if (IS_ERR(priv->get_spt_response_buf)) {
--		dev_err(dev, "failed to allocate get spt buffer\n");
--	} else {
--		ret = rsu_send_msg(priv, COMMAND_MBOX_SEND_CMD,
--				   RSU_GET_SPT_CMD, rsu_get_spt_callback);
--		if (ret) {
--			dev_err(dev, "Error, getting SPT table %i\n", ret);
--			stratix10_svc_free_channel(priv->chan);
--		}
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_GET_SPT_TABLE, 0,
-+				 rsu_async_get_spt_table_callback);
-+	if (ret) {
-+		dev_err(dev, "Error, getting SPT table %i\n", ret);
-+		stratix10_svc_free_channel(priv->chan);
- 	}
- 
- 	return ret;
-
+ static struct i2c_driver tca6416_keypad_driver = {
+ 	.driver = {
+ 		.name	= "tca6416-keypad",
++		.of_match_table = tca6416_of_match,
+ 	},
+ 	.probe		= tca6416_keypad_probe,
+ 	.id_table	= tca6416_id,
 -- 
-2.35.3
-
+2.34.1
 
 
