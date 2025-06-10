@@ -1,86 +1,118 @@
-Return-Path: <devicetree+bounces-184438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C49EAD4004
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:05:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8566EAD404E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:17:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5E5F175895
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:05:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 826A5166E96
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC2D24500A;
-	Tue, 10 Jun 2025 17:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1299424500A;
+	Tue, 10 Jun 2025 17:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="I0Xs/87x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HF8Vdgds"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A61242D97;
-	Tue, 10 Jun 2025 17:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D999024469A;
+	Tue, 10 Jun 2025 17:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749575114; cv=none; b=Xuz23TFF+8R/Uky8rZMXtkHxSvdht0RtIa4Nxp9CH+TXCYq7kIs9Aowyvv0MDpwhX0o7M9Osr96YRF55HzI1ZHvuKy1nHfsW99Gk3lpeSHF7QG8KXKGg0mwJFg3+CUaAikrbpnDYOAAZDMepv0zV4hJ+irYHE4IJtln5NLHNxDU=
+	t=1749575862; cv=none; b=B3oLvcjtRyYlZXEegPF4FAeWUI+CaY3CVXFJoZ9VhithLrmuDg/ehSkRW/HRro/IzpnhmLJZ/D3anrR8RLnFxPc1f15vXDLemtHEOW0ubWS4FLw3/JhXq/ePuK7W7s2C1o1mL0Ok+mbWNcOq/Z72lX3/oWlHhm+OCk0IknP0FlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749575114; c=relaxed/simple;
-	bh=PzeAzduunYZau5o/6CmFk/6Cqsgz/Cuzms58X9YsVig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dqd3pRa/LHBKMSdVMaM2RerpbrJeyOObivKt3K21ON75RcX3MRUn36VKo3iS8oUJ+FYTqU8W9VMVzLzNA1W3TnMKXodyhw+/ExXh6mBwt1nx+SjoT3KjiB5lK+s0uJ61W6d90PAflrQdNKrAt4dvQRG5CUc20ToIfz2QlfouuuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=I0Xs/87x; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1749575111; bh=PzeAzduunYZau5o/6CmFk/6Cqsgz/Cuzms58X9YsVig=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=I0Xs/87xVuuPN9B5QIwPjx+/ESoBx4wnxwFFHw5puHX6aT9mSeG0nTVHFHHBSQruG
-	 QkFe9PdO8ghZa/cpK3uE8N/8+Ct/CEuP1dOqqGejo3uHVO16XWHDIqOrKEBxlWCqsn
-	 dyBK+JDddpBHDf2HKMetWpqJW0whZ7FNQpldiRAE=
-Message-ID: <97a76eee-1c06-49bc-a572-809c6e8de4aa@lucaweiss.eu>
-Date: Tue, 10 Jun 2025 19:05:10 +0200
+	s=arc-20240116; t=1749575862; c=relaxed/simple;
+	bh=fPg8S/rzUTKuex98/cz90LlEdInNu16JQUmeSFP4WQQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DtqS1/UfWrDwdmPtiuAOBmYVFUO2/92I5Kklw23QNzNyj1UuESkm4RL6FmbnwNahJfOmz/FI7Ah9+whBWHBu1KQHniUHsajwN9XWfROmZ4+Oq3i3STVbURXhzT8woN7edn80bxlHSjuZjJQK8TyI+RvxhLR5xgg4zB8zh+/SNHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HF8Vdgds; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 65E24C4AF0C;
+	Tue, 10 Jun 2025 17:17:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749575861;
+	bh=fPg8S/rzUTKuex98/cz90LlEdInNu16JQUmeSFP4WQQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=HF8VdgdsRREyh6x7u8wIIm9S4csdwObyTpVrnS4h31UNuK2xXExpUVGvr8hnI5cyZ
+	 CFV9VdVLJXt3CtZyzRDx4t31uZuG5mJDIUWA2ligbablPoJOIHkNImi8Rc4zUXmP6t
+	 5RQqUHer6RR2oAag9Dh0Y54h3zGmJ7MUquK2sGsbBt1KFmZCzLqPy51TOy8PgWX2aE
+	 ClEQQQRe2+mtFguqRs80CLkEO6m1qXX7bzaI37p07TwVb14Lyu4Xpl01ckd/DI5hdN
+	 rrfF73squxIC78JvbzYjx9GCbJcFsabOxjpkaUcL9jUbtloX4mAJJXi3/3wvTmP5CX
+	 mmw7HSVOLZBwA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E3ACC5B552;
+	Tue, 10 Jun 2025 17:17:40 +0000 (UTC)
+From: Sven Peter <sven@kernel.org>
+Subject: [PATCH 0/2] Extend nvmem patternProperties and then fix W=1
+ warnings in Apple dts
+Date: Tue, 10 Jun 2025 17:17:33 +0000
+Message-Id: <20250610-nvmem-bit-pattern-v1-0-55ed5c1b369c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/4] Add support for Sony Xperia Z Ultra (togari)
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Widjaja <kevin.widjaja21@gmail.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250419-togari-v1-0-45840c677364@lucaweiss.eu>
- <8c0c0740-3f75-47dd-8f11-c03fbf8b1583@oss.qualcomm.com>
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <8c0c0740-3f75-47dd-8f11-c03fbf8b1583@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK1oSGgC/x3MTQqAIBBA4avErBtQ+6G6SrTInGoWWqhEIN49a
+ fkt3ksQyDMFmKoEnh4OfLkCWVewnas7CNkUgxKqE51q0D2WLGqOeK8xkncojd6acae2HySU7va
+ 08/s/5yXnD5+geepjAAAA
+X-Change-ID: 20250523-nvmem-bit-pattern-1dbc39fe4681
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Hector Martin <marcan@marcan.st>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>, asahi@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Sven Peter <sven@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1262; i=sven@kernel.org;
+ h=from:subject:message-id;
+ bh=fPg8S/rzUTKuex98/cz90LlEdInNu16JQUmeSFP4WQQ=;
+ b=owGbwMvMwCHmIlirolUq95LxtFoSQ4ZHxnqnyK9d9eznZB4WMUlWvjKfn3RvUdCspLZfzxXYO
+ JKbHl7pKGVhEONgkBVTZNm+3970ycM3gks3XXoPM4eVCWQIAxenAExEpoeR4UDJjhVa69UPLAk5
+ cG3+3Sfacd89/6b+2FCf82FtJe8GRzVGhnmsV2o27b4eGjr/dsKeGo53czUe3Hrbs071pNNmC17
+ 9O+wA
+X-Developer-Key: i=sven@kernel.org; a=openpgp;
+ fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
+X-Endpoint-Received: by B4 Relay for sven@kernel.org/default with
+ auth_id=407
 
-On 23-04-2025 1:55 a.m., Konrad Dybcio wrote:
-> On 4/19/25 11:00 AM, Luca Weiss wrote:
->> Do some tweaks to the common file for the devices in the 'rhine' family
->> of Sony devices, and add a dts for togari.
->>
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->> ---
-> 
-> I don't really know for sure, but maybe this driver could be suitable
-> for its touchscreen
-> 
-> drivers/input/touchscreen/atmel_mxt_ts.c
+Hi,
 
-I don't have this device myself, but maybe Kevin plans on continuing 
-work on this device. Thanks!
+This brief series fixes a W=1 warning recently introduced with the Apple
+Silicon PMIC NVMEM nodes. We have cells that are the same bytes but a
+different bit offset and these currently result in the same node name.
+The legcy layout already allows to specify the bit offset in the name as
+a suffix but this isn't possible in the new fixed-layout.
+Thus first adjust the fixed-layout cell patternProperties to the same pattern
+as the legacy one and then fix the node names in our device tree files.
 
-Regards
-Luca
+Best,
 
-> 
-> Konrad
+Sven
+
+Signed-off-by: Sven Peter <sven@kernel.org>
+---
+Sven Peter (2):
+      dt-bindings: nvmem: fixed-layout: Allow optional bit positions
+      arm64: dts: apple: Add bit offset to PMIC NVMEM node names
+
+ Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml | 2 +-
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi                         | 6 +++---
+ arch/arm64/boot/dts/apple/t8103.dtsi                              | 6 +++---
+ arch/arm64/boot/dts/apple/t8112.dtsi                              | 6 +++---
+ 4 files changed, 10 insertions(+), 10 deletions(-)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250523-nvmem-bit-pattern-1dbc39fe4681
+
+Best regards,
+-- 
+Sven Peter <sven@kernel.org>
+
 
 
