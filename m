@@ -1,167 +1,279 @@
-Return-Path: <devicetree+bounces-184145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B785AD319E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:19:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5EEAD319A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:19:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 857857A5C54
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:17:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 548443A43C0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB2928A409;
-	Tue, 10 Jun 2025 09:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B42F28BA85;
+	Tue, 10 Jun 2025 09:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T6ZeSvMf"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mwaWdgOM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612DE278754;
-	Tue, 10 Jun 2025 09:15:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8061C28B4F2;
+	Tue, 10 Jun 2025 09:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749546918; cv=none; b=nzWZJbinwZ9WqUBTq4C24BbBMXUQNZW5t+0IxBW9NSYx2gTmNwayfGXp3jf0xUs+ocAmruAPAHLtonmgFdC0oWBW61MYac1wCY8EMPXu4KvijFgdQoPQ2ZvBNsyi7nqShizxIVD77FYDy5tICvrB6WbUP55p//vUKLWbeAHpyOE=
+	t=1749547009; cv=none; b=jHJqua9yR0z0AZcG9RHzdJsU2XvsUMsE7Yimnzz5oEkvoUQC7U9OUwcbP6PJ/WS94CF11TgJ6RqyMKZCWhZGbJuea8Oq/gmH/mWZvUqiUI2GtOhmFYhUitQe51SBLtOW2Q9lfrWYI/i7qNd0EQTAnGd9z+8my6S+omhE/3/7ysQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749546918; c=relaxed/simple;
-	bh=OMjEdAFdmcV6ZwyVPelJvNH18GruRxDe/BNmKSl3e84=;
+	s=arc-20240116; t=1749547009; c=relaxed/simple;
+	bh=Q+OZ7g6V3LXKnAvLoFoKYNotBv9+t1H/YpraEjFfDH8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RelJBOpGsoUsYyeOrDWlkh8bJUvJp6zfJVone+9sFO2epAxDpV245+yedbnhMooIwktSRd9rd0eemxupg1LA1j4CKHjC/X6wWXa9xqelT3fkVZINARQiALGKO83sJIn7tcUw72ekartykRFb/Hyg06OhAlWhMhuUqWGJP33vknY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T6ZeSvMf; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4508287895dso38023685e9.1;
-        Tue, 10 Jun 2025 02:15:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749546914; x=1750151714; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MAzL9OJNNLRO4WKadHozIzXtPHjuC0n6jvYRjDJjK58=;
-        b=T6ZeSvMfD3ytLqMsT+axDGAcN3aFEZwxQde0ISoMNGy2vyIDCeYFUtvueQuJ2JOaYt
-         o75Sa3GS0S8WhFCqToUBFm17ZW2RHIHSpuRuIvrBScbddbhaDwOZdDFozeJKvxFJF9Ki
-         VliYN/xw8nBSCJKcgqa+P1r6xTnkZ9eHF2vBu3j3Lym2GaqYEfsSqwv7d62G7XTZJgdT
-         +bVYITQQzyz+MGhx1oApsGviK7cGQ/rnZ5J+WcPusUIpeLKucbuVKDmiDi8DqzieIdLd
-         U837lfwqINUis0yLXPbLTHBSEbAf9R2RTzmlRquVqmgVeHycsZb8dGCHktLPaYV7vqzX
-         7O0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749546914; x=1750151714;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MAzL9OJNNLRO4WKadHozIzXtPHjuC0n6jvYRjDJjK58=;
-        b=FwGIB51kLz+N5Qu3d8NXE7fbNc2DNEw7Rx9sg1hWDiskKDhJYq8jGjGnmgdtPGmIjd
-         Q4x9Koh1myovZqQOB8GrIrep/qXFg7TZAbyyUNVrljUvqspDB/thebc/kMp9aFgnvZPy
-         vRS4PH3Z4PmHCWx47D1gG4xBgXrA44z1tqRAQ98SZiwhK9bUaBDvx8oGbJ8aMt4nYiVP
-         DgS4VuwoyyDXsed8zhcK8H5jCk2u6KwqrCishCDdv7JBFGWlcG/gAcM3NW+vI+8gP/H+
-         u2+k+MyFSX5d+Uzx8Ow/tzNkZLfichjBjjOvkFHtMSYKJeWsMzANjKczj7SKyC8LirOW
-         SNZw==
-X-Forwarded-Encrypted: i=1; AJvYcCVBrl6xOigaJDeDEk5sGMvth69tupIxvfSeKoHPTprLzWdA9Dd+wnQjr7Cx1xsRuFBqt5syR7WJVceCMa4=@vger.kernel.org, AJvYcCWstaDqs/YdaUqUS/IARmb0QPE4orjXCxoPooQbkZkdI1OHM28lpkWuoEh1nQrGsH7tFm5m0+LZukLiBtOw@vger.kernel.org, AJvYcCX5ogq1+O3JSwZB4gXsAA7dNo1wer6huQUhNTiRC4333+narl8f/ibYvSgm3HhtNfIRr7jrkVu4bVg2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzF3MX+mBHlTvGdr8rKeF5fn9SdYJiR3LTbnQiKOl4AFqwADBml
-	SBivpNJDQRfjUdThMVNG4D+XhIiV3usgLf5FvaHAmKXzbB7KwtvgOFKH
-X-Gm-Gg: ASbGnctqSd38vjnAXDLdP/AP8U/j5llCljNkCVtcSquSeWDeMNfy693BdhEhL+EOONY
-	itOKduqa6w0CnxSv3583QgtAkjFUcTqRNqsxQl8rlK7s4B9XMWcsbwE27W0BdxoiwnnfF88Cabj
-	p8md1nwwms1UjshOqHJinrB2ZfNx5SsK7jaY4dVBs5Mt//Y2g9yDDJT81+JOU8ONYXW4q462w/y
-	v7kQ4DBdfkBSOBg08954Ze+QVmO5rEaKGrygF/+ZD3wey3ucRzEvwGenhambee0bsUYfAIfqLja
-	aTVWW73+oLA4a6Dl7RrMfA/7lfkooon9LHvAq0lRkbF74k4ih6n60MovV0qmRZXmkO6hBjCH2gs
-	GKbhGR+9trrLRiXLP0Ty7nO1pD+uTltFOUFVvauxoM1M81W1W
-X-Google-Smtp-Source: AGHT+IGM2+afJT+5RliiXm/UFRz6U4gnEGVbbtSS/DN7WoURs9vyYezUQ2aVrpksBzox70qfANRxog==
-X-Received: by 2002:a05:600c:5303:b0:442:f4a3:a2c0 with SMTP id 5b1f17b1804b1-4531cffa4bemr26081645e9.13.1749546913541;
-        Tue, 10 Jun 2025 02:15:13 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5324638e9sm11573567f8f.89.2025.06.10.02.15.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 02:15:12 -0700 (PDT)
-Date: Tue, 10 Jun 2025 11:15:10 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB
- Developer Kit support
-Message-ID: <tx7zodgijgip7jhaxookffpa6g6wdnbbl75mz46aff5ch524iv@ky3ltt35amon>
-References: <20250608-p3452-v1-0-4c2c1d7e4310@gmail.com>
- <CALHNRZ_Zo6w2KgRTEPcJuZi93bOqQD4Spzr4+YfqnxJZVnUPsw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SfIcinuC+5GEogEBabtS7S+NlVO6ynPU+QOpPH1fPhYCi87ZVVyCNem4+iQipja2tpfooSfWFko1UOtdL6ajqYRtLuP0hJMNjE5nSEgFvJ/X2Dg1epCoUAl3zsOkMJ9/T8lHgBdNmvSsflyF6oreV7V7h5XE3gjbrRLYYCAqMgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mwaWdgOM; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 879462EC;
+	Tue, 10 Jun 2025 11:16:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1749546997;
+	bh=Q+OZ7g6V3LXKnAvLoFoKYNotBv9+t1H/YpraEjFfDH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mwaWdgOMzZ3jGsW3vKdoubdUvUz6vxEm26kcAdWngSNwWWCEWCnXdLQhrNpTT6PoY
+	 yaSKMOmokriJadwM+gXm+VaZtOPbnwUYTi6LzSEVCKp6ExzH4JUSGjuRffnEWx5tgR
+	 +KJmCp2UrVKWhFaywTlrFJKoV2LcgHv1ZSWgzIaY=
+Date: Tue, 10 Jun 2025 12:16:32 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-media@vger.kernel.org, Isaac Scott <isaac.scott@ideasonboard.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/8] media: imx-mipi-csis: Rename register macros to
+ match reference manual
+Message-ID: <20250610091632.GM27510@pendragon.ideasonboard.com>
+References: <20250608235840.23871-1-laurent.pinchart@ideasonboard.com>
+ <20250608235840.23871-2-laurent.pinchart@ideasonboard.com>
+ <3358871.aeNJFYEL58@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zlxe6zmtcamlsoiq"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CALHNRZ_Zo6w2KgRTEPcJuZi93bOqQD4Spzr4+YfqnxJZVnUPsw@mail.gmail.com>
+In-Reply-To: <3358871.aeNJFYEL58@steina-w>
 
-
---zlxe6zmtcamlsoiq
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH RFC 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB
- Developer Kit support
-MIME-Version: 1.0
-
-On Sun, Jun 08, 2025 at 11:25:53PM -0500, Aaron Kling wrote:
-> On Sun, Jun 8, 2025 at 11:24=E2=80=AFPM Aaron Kling via B4 Relay
-> <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+On Tue, Jun 10, 2025 at 11:10:54AM +0200, Alexander Stein wrote:
+> Am Montag, 9. Juni 2025, 01:58:33 CEST schrieb Laurent Pinchart:
+> > The CSIS driver uses register macro names that do not match the
+> > reference manual of the i.MX7[DS] and i.MX8M[MNP] SoCs in which the CSIS
+> > is integrated. Rename them to match the documentation, making the code
+> > easier to read alongside the reference manuals.
+> > 
+> > One of the misnamed register fields is MIPI_CSIS_INT_SRC_ERR_UNKNOWN,
+> > which led to the corresponding event being logged as "Unknown Error".
+> > The correct register field name is MIPI_CSIS_INT_SRC_ERR_ID, documented
+> > as "Unknown ID error". Update the event description accordingly.
+> > 
+> > While at it, also replace a few *_OFFSET macros with parametric macros
+> > for consistency, and add the missing MIPI_CSIS_ISP_RESOL_VRESOL and
+> > MIPI_CSIS_ISP_RESOL_HRESOL register field macros.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > > ---
-> > Aaron Kling (2):
-> >       dt-bindings: arm: tegra: Document Jetson Nano Devkits
-> >       arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
-> >
-> >  Documentation/devicetree/bindings/arm/tegra.yaml   |  5 +++
-> >  arch/arm64/boot/dts/nvidia/Makefile                |  2 +
-> >  arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 43 ++++++++++++++=
-++++++++
-> >  3 files changed, 50 insertions(+)
-> > ---
-> > base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> > change-id: 20250513-p3452-059708ca9993
-> >
-> > Best regards,
-> > --
-> > Aaron Kling <webgeek1234@gmail.com>
->=20
-> This is sent as an RFC, because it doesn't fully work. In my tests,
-> this boots and everything I can see works, except for hdmi. The
-> hotplug detect pin never changes, regardless of hdmi plug state. This
-> works as expected on the downstream 4.9 kernel. Based on the
-> downstream kernel dt for p3541, it's almost identical to p3540, and
-> I've mirrored those differences in this series. Things like the hpd
-> pin are the same. I'm failing to see why hpd would work on p3450, but
-> not on p3541, when using the same boot stack. Does anyone know why
-> this doesn't work?
+> >  drivers/media/platform/nxp/imx-mipi-csis.c | 69 +++++++++++-----------
+> >  1 file changed, 36 insertions(+), 33 deletions(-)
+> > 
+> > diff --git a/drivers/media/platform/nxp/imx-mipi-csis.c b/drivers/media/platform/nxp/imx-mipi-csis.c
+> > index 2beb5f43c2c0..d59666ef7545 100644
+> > --- a/drivers/media/platform/nxp/imx-mipi-csis.c
+> > +++ b/drivers/media/platform/nxp/imx-mipi-csis.c
+> > @@ -55,13 +55,13 @@
+> >  /* CSIS common control */
+> >  #define MIPI_CSIS_CMN_CTRL			0x04
+> >  #define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW	BIT(16)
+> > -#define MIPI_CSIS_CMN_CTRL_INTER_MODE		BIT(10)
+> > +#define MIPI_CSIS_CMN_CTRL_INTERLEAVE_MODE_NONE	(0 << 10)
+> > +#define MIPI_CSIS_CMN_CTRL_INTERLEAVE_MODE_DT	(1 << 10)
+> > +#define MIPI_CSIS_CMN_CTRL_LANE_NUMBER(n)	((n) << 8)
+> > +#define MIPI_CSIS_CMN_CTRL_LANE_NUMBER_MASK	(3 << 8)
+> >  #define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW_CTRL	BIT(2)
+> > -#define MIPI_CSIS_CMN_CTRL_RESET		BIT(1)
+> > -#define MIPI_CSIS_CMN_CTRL_ENABLE		BIT(0)
+> > -
+> > -#define MIPI_CSIS_CMN_CTRL_LANE_NR_OFFSET	8
+> > -#define MIPI_CSIS_CMN_CTRL_LANE_NR_MASK		(3 << 8)
+> > +#define MIPI_CSIS_CMN_CTRL_SW_RESET		BIT(1)
+> > +#define MIPI_CSIS_CMN_CTRL_CSI_EN		BIT(0)
+> >  
+> >  /* CSIS clock control */
+> >  #define MIPI_CSIS_CLK_CTRL			0x08
+> > @@ -87,7 +87,7 @@
+> >  #define MIPI_CSIS_INT_MSK_ERR_WRONG_CFG		BIT(3)
+> >  #define MIPI_CSIS_INT_MSK_ERR_ECC		BIT(2)
+> >  #define MIPI_CSIS_INT_MSK_ERR_CRC		BIT(1)
+> > -#define MIPI_CSIS_INT_MSK_ERR_UNKNOWN		BIT(0)
+> > +#define MIPI_CSIS_INT_MSK_ERR_ID		BIT(0)
+> >  
+> >  /* CSIS Interrupt source */
+> >  #define MIPI_CSIS_INT_SRC			0x14
+> > @@ -107,7 +107,7 @@
+> >  #define MIPI_CSIS_INT_SRC_ERR_WRONG_CFG		BIT(3)
+> >  #define MIPI_CSIS_INT_SRC_ERR_ECC		BIT(2)
+> >  #define MIPI_CSIS_INT_SRC_ERR_CRC		BIT(1)
+> > -#define MIPI_CSIS_INT_SRC_ERR_UNKNOWN		BIT(0)
+> > +#define MIPI_CSIS_INT_SRC_ERR_ID		BIT(0)
+> >  #define MIPI_CSIS_INT_SRC_ERRORS		0xfffff
+> >  
+> >  /* D-PHY status control */
+> > @@ -123,8 +123,8 @@
+> >  #define MIPI_CSIS_DPHY_CMN_CTRL_HSSETTLE_MASK	GENMASK(31, 24)
+> >  #define MIPI_CSIS_DPHY_CMN_CTRL_CLKSETTLE(n)	((n) << 22)
+> >  #define MIPI_CSIS_DPHY_CMN_CTRL_CLKSETTLE_MASK	GENMASK(23, 22)
+> > -#define MIPI_CSIS_DPHY_CMN_CTRL_DPDN_SWAP_CLK	BIT(6)
+> > -#define MIPI_CSIS_DPHY_CMN_CTRL_DPDN_SWAP_DAT	BIT(5)
+> > +#define MIPI_CSIS_DPHY_CMN_CTRL_S_DPDN_SWAP_CLK	BIT(6)
+> > +#define MIPI_CSIS_DPHY_CMN_CTRL_S_DPDN_SWAP_DAT	BIT(5)
+> >  #define MIPI_CSIS_DPHY_CMN_CTRL_ENABLE_DAT	BIT(1)
+> >  #define MIPI_CSIS_DPHY_CMN_CTRL_ENABLE_CLK	BIT(0)
+> >  #define MIPI_CSIS_DPHY_CMN_CTRL_ENABLE		(0x1f << 0)
+> > @@ -179,21 +179,23 @@
+> >  #define MIPI_CSIS_ISPCFG_PIXEL_MODE_SINGLE	(0 << 12)
+> >  #define MIPI_CSIS_ISPCFG_PIXEL_MODE_DUAL	(1 << 12)
+> >  #define MIPI_CSIS_ISPCFG_PIXEL_MODE_QUAD	(2 << 12)	/* i.MX8M[MNP] only */
+> > -#define MIPI_CSIS_ISPCFG_PIXEL_MASK		(3 << 12)
+> > -#define MIPI_CSIS_ISPCFG_ALIGN_32BIT		BIT(11)
+> > -#define MIPI_CSIS_ISPCFG_FMT(fmt)		((fmt) << 2)
+> > -#define MIPI_CSIS_ISPCFG_FMT_MASK		(0x3f << 2)
+> > +#define MIPI_CSIS_ISPCFG_PIXEL_MODE_MASK	(3 << 12)
+> > +#define MIPI_CSIS_ISPCFG_PARALLEL		BIT(11)
+> > +#define MIPI_CSIS_ISPCFG_DATAFORMAT(fmt)	((fmt) << 2)
+> > +#define MIPI_CSIS_ISPCFG_DATAFORMAT_MASK	(0x3f << 2)
+> >  
+> >  /* ISP Image Resolution register */
+> >  #define MIPI_CSIS_ISP_RESOL_CH(n)		(0x44 + (n) * 0x10)
+> > +#define MIPI_CSIS_ISP_RESOL_VRESOL(n)		((n) << 16)
+> > +#define MIPI_CSIS_ISP_RESOL_HRESOL(n)		((n) << 0)
+> >  #define CSIS_MAX_PIX_WIDTH			0xffff
+> >  #define CSIS_MAX_PIX_HEIGHT			0xffff
+> >  
+> >  /* ISP SYNC register */
+> >  #define MIPI_CSIS_ISP_SYNC_CH(n)		(0x48 + (n) * 0x10)
+> > -#define MIPI_CSIS_ISP_SYNC_HSYNC_LINTV_OFFSET	18
+> > -#define MIPI_CSIS_ISP_SYNC_VSYNC_SINTV_OFFSET	12
+> > -#define MIPI_CSIS_ISP_SYNC_VSYNC_EINTV_OFFSET	0
+> > +#define MIPI_CSIS_ISP_SYNC_HSYNC_LINTV(n)	((n) << 18)
+> > +#define MIPI_CSIS_ISP_SYNC_VSYNC_SINTV(n)	((n) << 12)
+> > +#define MIPI_CSIS_ISP_SYNC_VSYNC_EINTV(n)	((n) << 0)
+> >  
+> >  /* ISP shadow registers */
+> >  #define MIPI_CSIS_SDW_CONFIG_CH(n)		(0x80 + (n) * 0x10)
+> > @@ -246,7 +248,7 @@ static const struct mipi_csis_event mipi_csis_events[] = {
+> >  	{ false, MIPI_CSIS_INT_SRC_ERR_WRONG_CFG,	"Wrong Configuration Error" },
+> >  	{ false, MIPI_CSIS_INT_SRC_ERR_ECC,		"ECC Error" },
+> >  	{ false, MIPI_CSIS_INT_SRC_ERR_CRC,		"CRC Error" },
+> > -	{ false, MIPI_CSIS_INT_SRC_ERR_UNKNOWN,		"Unknown Error" },
+> > +	{ false, MIPI_CSIS_INT_SRC_ERR_ID,		"Unknown ID Error" },
+> >  	{ true, MIPI_CSIS_DBG_INTR_SRC_DT_NOT_SUPPORT,	"Data Type Not Supported" },
+> >  	{ true, MIPI_CSIS_DBG_INTR_SRC_DT_IGNORE,	"Data Type Ignored" },
+> >  	{ true, MIPI_CSIS_DBG_INTR_SRC_ERR_FRAME_SIZE,	"Frame Size Error" },
+> > @@ -517,7 +519,7 @@ static void mipi_csis_sw_reset(struct mipi_csis_device *csis)
+> >  	u32 val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
+> >  
+> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL,
+> > -			val | MIPI_CSIS_CMN_CTRL_RESET);
+> > +			val | MIPI_CSIS_CMN_CTRL_SW_RESET);
+> >  	usleep_range(10, 20);
+> >  }
+> >  
+> > @@ -527,9 +529,9 @@ static void mipi_csis_system_enable(struct mipi_csis_device *csis, int on)
+> >  
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
+> >  	if (on)
+> > -		val |= MIPI_CSIS_CMN_CTRL_ENABLE;
+> > +		val |= MIPI_CSIS_CMN_CTRL_CSI_EN;
+> >  	else
+> > -		val &= ~MIPI_CSIS_CMN_CTRL_ENABLE;
+> > +		val &= ~MIPI_CSIS_CMN_CTRL_CSI_EN;
+> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL, val);
+> >  
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_DPHY_CMN_CTRL);
+> > @@ -549,8 +551,8 @@ static void __mipi_csis_set_format(struct mipi_csis_device *csis,
+> >  
+> >  	/* Color format */
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_ISP_CONFIG_CH(0));
+> > -	val &= ~(MIPI_CSIS_ISPCFG_ALIGN_32BIT | MIPI_CSIS_ISPCFG_FMT_MASK
+> > -		| MIPI_CSIS_ISPCFG_PIXEL_MASK);
+> > +	val &= ~(MIPI_CSIS_ISPCFG_PARALLEL | MIPI_CSIS_ISPCFG_PIXEL_MODE_MASK |
+> > +		 MIPI_CSIS_ISPCFG_DATAFORMAT_MASK);
+> >  
+> >  	/*
+> >  	 * YUV 4:2:2 can be transferred with 8 or 16 bits per clock sample
+> > @@ -568,12 +570,13 @@ static void __mipi_csis_set_format(struct mipi_csis_device *csis,
+> >  	if (csis_fmt->data_type == MIPI_CSI2_DT_YUV422_8B)
+> >  		val |= MIPI_CSIS_ISPCFG_PIXEL_MODE_DUAL;
+> >  
+> > -	val |= MIPI_CSIS_ISPCFG_FMT(csis_fmt->data_type);
+> > +	val |= MIPI_CSIS_ISPCFG_DATAFORMAT(csis_fmt->data_type);
+> >  	mipi_csis_write(csis, MIPI_CSIS_ISP_CONFIG_CH(0), val);
+> >  
+> >  	/* Pixel resolution */
+> > -	val = format->width | (format->height << 16);
+> > -	mipi_csis_write(csis, MIPI_CSIS_ISP_RESOL_CH(0), val);
+> > +	mipi_csis_write(csis, MIPI_CSIS_ISP_RESOL_CH(0),
+> > +			MIPI_CSIS_ISP_RESOL_VRESOL(format->height) |
+> > +			MIPI_CSIS_ISP_RESOL_HRESOL(format->width));
+> >  }
+> >  
+> >  static int mipi_csis_calculate_params(struct mipi_csis_device *csis,
+> > @@ -635,10 +638,10 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
+> >  	u32 val;
+> >  
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
+> > -	val &= ~MIPI_CSIS_CMN_CTRL_LANE_NR_MASK;
+> > -	val |= (lanes - 1) << MIPI_CSIS_CMN_CTRL_LANE_NR_OFFSET;
+> > +	val &= ~MIPI_CSIS_CMN_CTRL_LANE_NUMBER_MASK;
+> > +	val |= MIPI_CSIS_CMN_CTRL_LANE_NUMBER(lanes - 1);
+> >  	if (csis->info->version == MIPI_CSIS_V3_3)
+> > -		val |= MIPI_CSIS_CMN_CTRL_INTER_MODE;
+> > +		val |= MIPI_CSIS_CMN_CTRL_INTERLEAVE_MODE_DT;
+> 
+> Mh, what about i.MX8MP which also has these bitfield defined, but is
+> not a MIPI_CSIS_V3_3 core?
 
-My recollection is that the HPD pin essentially loops back the +5V pin,
-so that would be my prime suspect. Other than that I suppose it could be
-a pinmux issue where HPD is muxed as something else.
+Short answer: no idea yet. Has anyone been able to capture embedded data
+through the ISI on the i.MX8MP ?
 
-Thierry
+> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL, val);
+> >  
+> >  	__mipi_csis_set_format(csis, format, csis_fmt);
+> > @@ -647,10 +650,10 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
+> >  			MIPI_CSIS_DPHY_CMN_CTRL_HSSETTLE(csis->hs_settle) |
+> >  			MIPI_CSIS_DPHY_CMN_CTRL_CLKSETTLE(csis->clk_settle));
+> >  
+> > -	val = (0 << MIPI_CSIS_ISP_SYNC_HSYNC_LINTV_OFFSET)
+> > -	    | (0 << MIPI_CSIS_ISP_SYNC_VSYNC_SINTV_OFFSET)
+> > -	    | (0 << MIPI_CSIS_ISP_SYNC_VSYNC_EINTV_OFFSET);
+> > -	mipi_csis_write(csis, MIPI_CSIS_ISP_SYNC_CH(0), val);
+> > +	mipi_csis_write(csis, MIPI_CSIS_ISP_SYNC_CH(0),
+> > +			MIPI_CSIS_ISP_SYNC_HSYNC_LINTV(0) |
+> > +			MIPI_CSIS_ISP_SYNC_VSYNC_SINTV(0) |
+> > +			MIPI_CSIS_ISP_SYNC_VSYNC_EINTV(0));
+> >  
+> >  	val = mipi_csis_read(csis, MIPI_CSIS_CLK_CTRL);
+> >  	val |= MIPI_CSIS_CLK_CTRL_WCLK_SRC;
 
---zlxe6zmtcamlsoiq
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Regards,
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH954ACgkQ3SOs138+
-s6G9exAAi6ISleCAMzkbsYYuFcCui+KRvTLHXLfAvJw/MXABJhQgTYH9sxavgRiu
-cniBxxOLvTcXINg8BdTbTM4dgPcHBIqfo0A5SiQelsET5PXRMvfNjzN0FzwwfjaF
-Ht3kzFmkPRCLqkW75+UFKYHLJdtujAe334hkIg5wk8Wvse1FDR2bmPxkRa2ljP6+
-d81kkl+IkMajJXdzjFUoYAl8c7uHTWDL061F/XlOA4IYrSUErZFZb5CI72AilvD5
-z29FZllWusetqE8Q4muzRnCZ7OMGPZ+MlhYejSCBS0CQjjFAx8z5cV1/b2crw4yk
-lio3ZqkuhPZUo5peLR7vn7TPLV1uUPeM8o5/LYsfsSYvkHQKJdCl+BAf4kY45pNs
-QSjr0vq37oEYSQxO3UB0I08bWJBbnVC0TKG7v7olOYiB66J7/b3gbQhWAvargIIT
-O2LzG4xPMihWahgdUjKWEuP3SvEnYdGzX6D2Te3xD8B856dKedMXGDkSDXVvR2FA
-Cb7LtuwdjQXT7DMDiA8icRBdKb6AB0OfMhM4cv1FtEr6BAXeUFKSyL1GlYCzhie3
-rnuwci3GaSlGbg8Ea3KPBoyw40wnINqGbb6dGYQbFO6zsD++GqvjDeiTAaKLIm5T
-RupESDMo7ugVeHJnnOtvtDSzi//04oVXTtW/K5vfc48qJml0tkQ=
-=7Edi
------END PGP SIGNATURE-----
-
---zlxe6zmtcamlsoiq--
+Laurent Pinchart
 
