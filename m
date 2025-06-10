@@ -1,351 +1,260 @@
-Return-Path: <devicetree+bounces-184387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FAEAD3DD1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:47:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F1DAD3E0A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:58:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BBA7189281F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:46:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82D4A3A2812
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC6623504C;
-	Tue, 10 Jun 2025 15:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C24223C4F5;
+	Tue, 10 Jun 2025 15:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="STsVFGk1"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WyXurDPC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2082.outbound.protection.outlook.com [40.107.102.82])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AB9224AFE;
-	Tue, 10 Jun 2025 15:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749570391; cv=none; b=MlmGPhhhRaHPglw5NGedEG4rI/5lTCfgEf1RJ4as80NV1kO8kVWU2n8zuZ6mVtZCB71JEX9cGNkEsUqxOjyyaJMGSkQjaDdjMUs7tji0PxsEpKTGmgkuIMngGc+JRfMKAYppJWzAbkxYS56Dn3RtnvK26fVUL7INNziZDtuhTiM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749570391; c=relaxed/simple;
-	bh=pfG1s9183abezt7qZiUMs/BwwFhBunVV8SYSk6+J1I4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CX2wHQ13HMqeuOWEADfciXiCAS0OyjgJhnZrTjD2R44Y1iGlGu32wFrn8f86a/BlsKbd1liyAY/mVd7sziMgMT2TX/OBQ32LOdxuuBrTnElD6rFQL8NBUJiwOWijSN/srG3RffdSP+zb4uOUe4EppkEKcWrCIQoXKtjAl2coCAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=STsVFGk1; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-607ec30df2bso4732456a12.1;
-        Tue, 10 Jun 2025 08:46:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749570387; x=1750175187; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=d4YS4P0Up7khVvMxUsDAYxrG2IpA3abnuSN0A4MRVwo=;
-        b=STsVFGk1UHiQ6yVpeeuetXvMgslZo3y/vAQ53rcXNk9eNNEnv23HB1GtzBd82Z73kd
-         fs3FlEhSPik0+ipr2Qhn1LYQkhaoaH83nNI0NW2fhGlTzpMn7IqKAVBxy2w/AbT31Go0
-         2p4qPu1R3txhJB5bFeGFx200bOnXUFLHpQdpg41eYqJml+RUqFLQgtKKfsGkNM7k9+cw
-         kptqCe4ftHmDyS2r7rTiGFIjpl61KwGE6QzsYBpNbQ38kS7hBCiJnbP4bVablaVTZ0JP
-         Qs+2zqG8zocjeBx2JQ3NO1YhUQJ4agPJchkhxCzdAJQHtNOKL6AlnNtaJMreY8EiFyY0
-         ws3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749570388; x=1750175188;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d4YS4P0Up7khVvMxUsDAYxrG2IpA3abnuSN0A4MRVwo=;
-        b=Jsz1YLzqA9YmQXrXmGud7epQCe0mqVehB7vBTkfs1Z/BKDMS33RDXkr91aHfKxnKzR
-         PBLc4gnQ5zNkKYhO1qx8OFQN8SZJ91ERQHOeQQCy4VsuPc3NoJUwbCmdBmK5HkjHPG6U
-         B25Lk0OXC/a0huO4iO+2hai6QByBC0TTqE7McrSEIo+0SiMDa2U6dKMFiJu+2hqms5KG
-         b1Wf4EKZld11o/+r4JCwTTaACu4KaXLoi4fm4z+B1h1REoIEfmi1tqeA/ZIeZGLPND7R
-         zJlkBeX92+9HeS0/0BZAWSURTAZTk8oIgJOMkpSOda1YlRs7H59B5iT6V6qr507vBRfc
-         uWSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULHtJFbGcCH6D6TYfpBrSpLMYWMFLrVADR+8JI+SjZ2DxoKc/KfvU3S6X3EXbdioKfOSFUQb667Y3w@vger.kernel.org, AJvYcCWZJ8x1JdpSSkBTcXntoJae9jkAxXRSx7ZsOlxt/I76Sb35EWSQLvbTOpupAsoniAdATSAqFwARt9ZCRN4=@vger.kernel.org, AJvYcCWq157IaHQQ0q/pU42M0ydf9aREwO2OD4BX5c2f2ywOEa34DlTL9PrLV2oQCP35beUtAnEIQIkld7Lg1rIO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwImm4pf+Ix5hWJCAjrrVAP6OjjpnJxPkXyzluQSeHHwT0ZsgV
-	/MKrLUBgop2dJJX31XzkKywE9O1qLnC2+Nmib2J74+SX3VNDYJNVpbhC
-X-Gm-Gg: ASbGncvjWrsNja4RKcal2C3+LCXkDIrGl9qiiE98tR30K1cT8wvEmTk+dr2sRIOAu99
-	W46pznN4e1O5KTkibM/irnuNxM25eNBRcxx7+vfMJ3xzwVhh9zE4ReM4TLOKuukc2vIuwF9BoFH
-	4FCkbPjGwtXUGdhbvvmRMT90dXVG01I4IFx6/gLD4pvIfr4iRS+uP5ELaMa1DJ2HgSPEHGbLu8Z
-	5nsjL9a7ur7y2kjXhw3bpbx5apZiJE5eLv3jGOIN5dlUx9/fn4dcO9DumFThG9B3xFB8343TgfX
-	jsXIing104gjAjl38VRsULcQH5hYX8vUWYqXLCMgFViG78+isE8UISlcy/UEQXr0pgjaRqoeAf2
-	gJSv5g5U19zk=
-X-Google-Smtp-Source: AGHT+IEDXtfS66XNV/mYblarMp3AlD3RJypXTbsURR1nOQJSYGHfyO5uBLmrdUAls16LsBGLPzUjIA==
-X-Received: by 2002:a05:6402:40c1:b0:606:741f:194e with SMTP id 4fb4d7f45d1cf-6082dbed2c2mr3007949a12.32.1749570387328;
-        Tue, 10 Jun 2025 08:46:27 -0700 (PDT)
-Received: from jurenat-workstationFai.utb.cz ([195.178.92.53])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6078a54da54sm5390609a12.6.2025.06.10.08.46.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 08:46:26 -0700 (PDT)
-From: =?UTF-8?q?Tom=C3=A1=C5=A1=20Ju=C5=99ena?= <jurenatomas@gmail.com>
-To: dmitry.torokhov@gmail.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomas Jurena <jurenatomas@gmail.com>
-Subject: [PATCH] Input: tca6416-keypad - Add OF support for driver instantiation
-Date: Tue, 10 Jun 2025 17:46:10 +0200
-Message-Id: <20250610154609.1382818-1-jurenatomas@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98ADC23A99D;
+	Tue, 10 Jun 2025 15:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.82
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749571100; cv=fail; b=fKt11bz2NIybmLK0bX9l+fB1YCxTN7vpurE+03T9HRVW5i5yM/z/g0PSDNowEGCrRiCI/jLziW5HWwWMoFOTSPW8Gqs1xvrSN+awzd20i0g84nGIFYVMpVEJ7nRFUSf+dyy+BLuKydPs6kTnr9eVHhPbuHYl6VYldGnfwU26KdQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749571100; c=relaxed/simple;
+	bh=LPeBaM1vFXDKWpNYNxIoDXcRKIQzSlh/hOqDvBthp0A=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=kNA2Hbz5EO48S3K6r98sjLaplUupdZer7pVShTSsP2XI8HoaUDkzB17ECfw1oU8E2cJAwO/wWpBcrbL0Bxds9z4mRAYD2f8tnFgvOFohkMMAdTUH8UALY2NxcKAEmqivQ6xUv+jk5Oh6C4x8u7ONuWPwqoSnZZKNG+wCNE/VqH8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WyXurDPC; arc=fail smtp.client-ip=40.107.102.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QdLD4+hu6MePROPm8UBE0+8FBrr5ZBdZ7M3ogwtMdtCyZdhf9kNhTY0BxoMSCPb6nIzXcnAc0McziWW9omcYG74cKufN1wdH4IaJTLAA/7jug2JlKq+DANBdaR8pu3qsfabmjtB91lXgKKEJ3bIPvntH/sIDDxFNe5ysUpAUWjtsfRUgw30Mp/ShOfHNK+6ImmPB1k4UtX4NGX2C0r+E29aBGwpdsSTRXnH+nPjRbyOxtXPPf1heVZAkfnkS4BwmytA15phBXkeV8a/mxtJx+4W4w8TmsEeXNiCjT06NnXzB7QlQkvK5zqjKLN2SS8VHLZzu72KqaynkRTt9EOYljA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LPeBaM1vFXDKWpNYNxIoDXcRKIQzSlh/hOqDvBthp0A=;
+ b=jA8dqnofEMsGYL8wpOwxWjso/xfiBq81SKmGIEEATU/u0xBrg6H2BLcmznDCfUne70sLZLVe3DOfj06qD7m0Aym4xx5ZND6MonHqk3KHRCA6+EBO0JP3rvJdNAE23zR5AmRJ9VRF+gCFZ0012ZPs4IRn5BiXPCLczXi0/JzBkNuosQNpI9Jp+A+feBiXqeWVdOoRnJsxt2TXoxekniHOMRO1IAY3NgyFUw7L2ozsadP/JbGEn5o6oqshQc/V9N7QfRiJDZkOipfqQQg7H4OnrLTHqNWwXXJKvWeUWGU9ym6AywpHkQ5RFHLYwcLVsSPbEb69yFG+jWGYR9U2k1FCpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LPeBaM1vFXDKWpNYNxIoDXcRKIQzSlh/hOqDvBthp0A=;
+ b=WyXurDPCyKRTuC6rI+is42qS6LHSHZGhdphEZ0t3fOcuJFywak7EFbgS0kJAMtKwFHZ2GGwEZWWYv4MywUEIChscSKa6NEXyvsmcC3eDf2I2sTh80mO4APYQ2aksB/v1EzbxIfpC19Sb9vufcdiR3FMfwbgjT/NARvMjq8wYXf0jTGnY7yje/KbZrKoiNa1Qa/QRIrlNt35m8U7nSTzfCbTN68YByMBedoWfzAQPonul2WhHtsXX1jnWxvppg5NojXhMXT/FA8zSpVHLnppr0G+OAUgjXzpM4q0EUJIOhD3XUbBtJfL8g7sb8ekPVg71K+64JRFPGouSPPyZlE6wFA==
+Received: from BY5PR11MB4088.namprd11.prod.outlook.com (2603:10b6:a03:185::32)
+ by SA2PR11MB4796.namprd11.prod.outlook.com (2603:10b6:806:117::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.31; Tue, 10 Jun
+ 2025 15:58:14 +0000
+Received: from BY5PR11MB4088.namprd11.prod.outlook.com
+ ([fe80::cd6c:df72:8d4c:16fa]) by BY5PR11MB4088.namprd11.prod.outlook.com
+ ([fe80::cd6c:df72:8d4c:16fa%7]) with mapi id 15.20.8813.018; Tue, 10 Jun 2025
+ 15:58:14 +0000
+From: <Marius.Cristea@microchip.com>
+To: <jic23@kernel.org>
+CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>, <broonie@kernel.org>,
+	<linux-iio@vger.kernel.org>, <robh@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <andy@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: adc: adding support for PAC194X
+Thread-Topic: [PATCH v3 2/2] iio: adc: adding support for PAC194X
+Thread-Index: AQHb1scEgfOm29yMSUyi0CDB7r2o8rP308SAgAS/nQA=
+Date: Tue, 10 Jun 2025 15:58:13 +0000
+Message-ID: <a2d9c24e2f72378d445b40d24bd808f29b87d122.camel@microchip.com>
+References: <20250606093929.100118-1-marius.cristea@microchip.com>
+		<20250606093929.100118-3-marius.cristea@microchip.com>
+	 <20250607162721.0142ba42@jic23-huawei>
+In-Reply-To: <20250607162721.0142ba42@jic23-huawei>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR11MB4088:EE_|SA2PR11MB4796:EE_
+x-ms-office365-filtering-correlation-id: 619942f4-170c-41d1-3a9f-08dda8379b6d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?dGt0TU5hS0E2QXZYTG5NeUExcDRjdTg5VUZuQTUyT3FWTDFIdGxGbSthYnJk?=
+ =?utf-8?B?K0YyTjJTTzlRSVlTZm93aFplQUJwU0hKeElhMVROQjRrTVNHcDZhd3ZFenJy?=
+ =?utf-8?B?aVp6NTJOMmY1eXRpUS8zb2MvdU1lU0kzTzBYN1d5TldiTjFGVWJvSGJXcUQ0?=
+ =?utf-8?B?V29vVlNtTWNHaEtnN0tyZFo5QytwTElrQVF0ZS9YenZlRlFWSHhMTHJFbVNX?=
+ =?utf-8?B?bG5nVFk4L1FZZEx1V20zbktnVFFEL3dXWG5QZnZNdFJ0M2Y5WWhRVTUzOS92?=
+ =?utf-8?B?MGZEampmR1BZSS80Nk5OU2gxSHhZbmFmMnNXdXdYWmpjd0JMT0tBbEdwdlYz?=
+ =?utf-8?B?Zkd6MVBzQllpQ0gwRVBoNDVSWGxacUFTc3pXQ2pqV3kwU252UjFicWgxT3Ba?=
+ =?utf-8?B?djJuWDh1ejlzVkhwOGh6SU9LaDhacnFYblNaR2NDQ3ArVlB6KzF6dWU3ejFW?=
+ =?utf-8?B?b0puaVR3SWJqYk10Z1NVRWc1aTh6UnlET1VOTXVrV3RQbHkxTU1UWjZEWFpY?=
+ =?utf-8?B?MFpSUHZBWWZ4Sm1VZlE0c3NSNTZwVkYwaUQ3ZTdtS2s1bnJoSUx3OENVVFRC?=
+ =?utf-8?B?UjBBcEc0aTZsTlVkQW5vdndTVXZDMzlvVjRHSkpzUFlOelRobS9JdmtpelAz?=
+ =?utf-8?B?QnNQaDMreUZHb0lsMkMzOTlQRGUyRnE0SERxeE85TW9GTWxMdCt2QmkwMnhF?=
+ =?utf-8?B?cWE4eGhPUUcvYmFQMGNoRVMzem9kZDZqVElFeDgySG9YZDNhQWpkRmxRL28v?=
+ =?utf-8?B?SVEweW93QmxYUFZTYnA1ejJVSjE4YmM1NmwyMkFoTkhxZlcvK3lYTUk2cGVv?=
+ =?utf-8?B?MFFySUU5ZXVyek5KNWdTQ2NpQk1JTlJicURaVTkya1M4dDN3SVlxMjBGdUV2?=
+ =?utf-8?B?QUoxMlUzQnNpQTZ0cUdFKys3MUdqV1dtV2g3eXY1eTZFL1RaNVJPa1ZOT3B6?=
+ =?utf-8?B?TlVla2lnakhWbVlUc21CVjhqTmt5QStFa21BajVybG5pUElLbDB0REJPdUdn?=
+ =?utf-8?B?bmFZNjc1MjQ1VWJCWFVzazErdGI5S3JPdTJBUklDczQxT0RNanhpMGRaZkUx?=
+ =?utf-8?B?THJ6YlNoQ1NodkZOenVhOUlOcVhHeXBoZ0tSK1c2dm1Nci9KNk5yK1F2d2N1?=
+ =?utf-8?B?Smt5ZkIyRWtUU1VKTjhDZ3ZWM05GdzdKUEZNL1hGNXVFQmllOE5VUmZBV0Nj?=
+ =?utf-8?B?RVNmaTAyb3BFKzc2NHFuOGFGLzRNeTlubTB1MnJpRHl5emNaWGFpajNrTE84?=
+ =?utf-8?B?QWltVXFtVkpSYjR5WnlIM0FVc0N2M1djMUxRS0xQeURJYVdiOW5zcHFPU3V5?=
+ =?utf-8?B?UXdBNlFSa0Zpbk1ad2djMVFtZDQxZDE5cHZDaTZNMkJxVGlUMFpwTmU5THFq?=
+ =?utf-8?B?K0NrSUx3dnZ1ZXhWOVBtS2QybzIzL0x2VjRvRzdkL0dQK1pBYnh1TTdMMUNp?=
+ =?utf-8?B?WTFJQXVmK1hpNlBBZDhLVzEwQkhHYUcyMkpvMnphVDBzVEphMXJVdEhVUm93?=
+ =?utf-8?B?NlplVEN2N1RVNnZYZ2gwb2VlclBaZERVRk5zTmlHRW9ac0pHSmV4Zk43S2tx?=
+ =?utf-8?B?TTlva3VXcUpmeHBhMmk1M0Y2ZjI0cnQ5T1IwWE5laXV2QVkwLzlRWnV1L3R3?=
+ =?utf-8?B?dVJMQmlTVGh4NzU5aWtybURBNlp3dU9DWU55RmRVaXFhV0RhMTFnMWNpamc4?=
+ =?utf-8?B?ajFNRDBOelM0bFo2ekl6UkxaODR5bE03MjgvV0N0WjZKRTYzaDZSVmdrREl1?=
+ =?utf-8?B?bG5KTEhqZUFDTWlTZmpQRnAybTlWclNqT3NKMTFiL3JFNjZlUFB0aTNhQXhw?=
+ =?utf-8?B?T0RvVVkxYUpiSmJ2aGFCT3hiY3ZvMlVvcnpaVFU0Q2NOMnBxOHlHZGFjSnFT?=
+ =?utf-8?B?Ky9NeWxzWGoxWG4rVnR6Q2JsQ3RhL290bGZvSm5wVUFTNFJzMC9kY3JGV29m?=
+ =?utf-8?B?aVJvZElQTjVibUp3ZWdFMTVsNzJSeE9yOWNNeHlFR2czSkNraUJjSnNvSzFO?=
+ =?utf-8?B?bFZFam5FZHV3PT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4088.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?NlJsWUtlcVBlNmJVTDV1OVU0QTJ5YXhkRlN0OGdBK1g0OUJWRDFZcysrU3pK?=
+ =?utf-8?B?WGRxeEdtalB6bHpUOFBld1lJODhibjdtek1XYkhLVVQ1aEpJZkNrQko2ai82?=
+ =?utf-8?B?WDloNmhWMm1Pd0dLNlZUcExVak9ka2prZjVMd25xQ2RuT2xvQlBDb3BLZlpY?=
+ =?utf-8?B?a0VCcmhwZ1BCQjFkWHc4ellWZ0NCODBMejBzYkpWMVU2Tlg1cDJ0WHFWWTNJ?=
+ =?utf-8?B?d29XTE91Uzltd0c3ZlE1WkxJN2RTZ3JTUE8xcjRWZmpVTm9UL1ZsWTNHdGNn?=
+ =?utf-8?B?RUlTcDZqc1hOTGI0V2h3bkQxc0pwMHVQaHduWmdMczVtMDdkNTlTeFE3c29q?=
+ =?utf-8?B?SEhPdm1GTmdjdXQvTjhETVRIZHpRN0gwbWdIb2dOSVZFWG5OeXJDWUlVTEpr?=
+ =?utf-8?B?VHRkZjRydjc3cFpNNFh4dVU3TUZNQXQzNjNMTUJoWmxOc3hvSmsxL0tzQkJD?=
+ =?utf-8?B?SFh3UzNvQWxJdjRDOVVCMVdjNk1DL3NITk80aFZGUVlzN0N5T0F0bGFoaFc4?=
+ =?utf-8?B?TE4yTStQUzdFZTRDK1BYSjkwamVVdzlnUC9MUk1pekVSU3h0YVVxRlc0L0wr?=
+ =?utf-8?B?dTFJb0ZnSEVFYzR4ZWxBRUtuN0x2cTFKdUtjWERZYlhHUlVacmQ3SlUvTEkz?=
+ =?utf-8?B?U1hSYlN2M0ZWNTZpQ0t0ZXFjWmYzWVZtc2JmcWdYRFRDcExDekg0dUFqYVZD?=
+ =?utf-8?B?Y0NNL3piRUpFcmk1YkN1dWJhR1I4akQraWpqdERjRmJOa3Z6RXFWMVBIUDNP?=
+ =?utf-8?B?TUJWRnFmVTBUaVJQVDJKYmRPZExVeWxlWGdZRlorQTJPVk5ycGJSUS9jRlB1?=
+ =?utf-8?B?RElzYnlLRER6dStEQW5tUWwrT2xlaVJpNGJjQ1dSbEJiY3RDUEQxVTNtTWEx?=
+ =?utf-8?B?TzVuUWR5VHRDOVU3YzV2b0Z2UHR3N1cxSmk5dERFdFFjbTIxczhkQmJPODdN?=
+ =?utf-8?B?QTdUanBhVi9CMUNGdldNdmVRVVlDbUdCeWI1VVd1bExyV1A4bUFyVzJsNlVK?=
+ =?utf-8?B?cERzMUdDazBqRlFnMERvaHY1aTJSMldYM2dQcDBjOFV2NzAyWjVYeGpnc2hN?=
+ =?utf-8?B?RXIvdnUyalp1eU9MRlg2bmxLYi8xTnFzMWpWTTZRMXN5WWlVc2N0UzlVMXlz?=
+ =?utf-8?B?NVMyUmNxT2hKZUpaWXk0SjVCMTN4WlZFdWtTenRXa25ncklKU2FFQlpTM1Vx?=
+ =?utf-8?B?MDRPbzZBVmNWN2FZUjBlVE90bkxkbVVEMXRZYmt5dW43WnJyc21PMDBJZzJJ?=
+ =?utf-8?B?YzdMVXRIVTZBMU42SXRKOGNRNTl5MGJtZUNsM0ZqT3ZxMzlMVFl4NTZPVWZM?=
+ =?utf-8?B?OFhoNDkyNFZBa0pQcFR3Z3pJOW1LKzY1SHkyT3MzSU5EUkQzeGV4RTNtYmpU?=
+ =?utf-8?B?cTZjNEdobTBmZ3lOOXZNZmJiKzVWOU5GZmJMek5JRTViR09aK3dXb1ptT3F1?=
+ =?utf-8?B?TWJCaEVucERFTXl0UkVNZlRxeWJMSFlPcENPbzZwa2VVek9pYmQ0T3RCeDhQ?=
+ =?utf-8?B?OFhXanhhTXBueHRKcXp6bktnZGV1ZnRxZFpOYVA4UjBrN3JuU1dQNXdweXFX?=
+ =?utf-8?B?V1NaM1Fob0lpYXJ5VkRDakhTblFPRGcyNGRNU3N4OEx5allQMEgrMklab204?=
+ =?utf-8?B?RU00U01LZUw2akt3SEJ6Mjg4eTQ0Zk93a3RZOG5WYkhzVVdWMk44WW02U2h0?=
+ =?utf-8?B?eVB2NWpudGtzQVY0WTlxQ3NKSklPMXJYd281dGI2WWR1TkZxNnU1VENSQVVN?=
+ =?utf-8?B?RUduUlZuTWdHMEpPUVpOQlFvcmFxNGJ1WXJmTUZQV3RkamFERnYrd281NHVz?=
+ =?utf-8?B?WHBTNlRja0REUlJ0bVc5WGVRdFRoR055am1GeEZHcFNKTWxFUnpMOEVKcjZN?=
+ =?utf-8?B?bGFIYUxtRnNBYzd2MDZxUURtVXpOQmhTblIrQVhYZWVHTksyL1FnS2RTN0hI?=
+ =?utf-8?B?aU42TXM0MjQ4QzNPOFFSZEdPK09mU2tpSTBRUXVNUTh5UEJsS3g4OVlJREhN?=
+ =?utf-8?B?b05WSmVWNmoyTFhHR1NNUk5yVGg4RU1iMHZxeVgwblJyZ254SHpDMHVYWVI3?=
+ =?utf-8?B?eG9hN2pYQkdaWDJXbmZtTTAwdFNLa256bDRNNDdkN2paZkJlR2NWZDFNNzBQ?=
+ =?utf-8?B?ZVJUOEtEZlNoeXdSb0h3b0Z3M1NTcmUyaU9rYWZOQlNta0RIVUVUSUhvUnAr?=
+ =?utf-8?Q?/s8sz3JulKpfqq06szaBjmc=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <463F39CA54054A4F97B7A353AB87481E@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4088.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 619942f4-170c-41d1-3a9f-08dda8379b6d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2025 15:58:14.0281
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9mKxsmVv+9SipA544ZwZC3irYWL6aCeEKqgqjBmSsEbz6vaTzAmwqRW1Fi9UB8xD0vMcrR4B36/qlfW5UhJFnwuYuSBU6O2IDS/T2+FqUzY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4796
 
-From: Tomas Jurena <jurenatomas@gmail.com>
-
-Adds support for instantiating the tca6416-keypad driver via
-Device Tree. If no platform data is present, the driver can now be
-probed based on OF bindings.
-
-A corresponding Device Tree binding document is added at:
-  Documentation/devicetree/bindings/input/tca6416-keypad.yaml
-
-This allows the driver to be used in systems that rely solely on the
-Device Tree for hardware description, such as embedded ARM platforms.
-
-Tested on Toradex Ixora 1.3A board and Apalis imx8 SOM.
-
-Signed-off-by: Tomas Jurena <jurenatomas@gmail.com>
----
- .../bindings/input/tca6416-keypad.yaml        | 87 ++++++++++++++++++
- drivers/input/keyboard/tca6416-keypad.c       | 88 +++++++++++++++++--
- 2 files changed, 170 insertions(+), 5 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/tca6416-keypad.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/tca6416-keypad.yaml b/Documentation/devicetree/bindings/input/tca6416-keypad.yaml
-new file mode 100644
-index 000000000000..f050403c4dbe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/tca6416-keypad.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/tca6416-keypad.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI TCA6416 keypad
-+
-+maintainers:
-+
-+description: |
-+  Texas Instruments TCA6416 IO expander as a keypad input device.
-+
-+allOf:
-+  - $ref: input.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tca6416_keys
-+      - ti,tca6408_keys
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  linux,gpio-keymap:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Array of gpio keys provided by the driver instance. Each entry is a
-+      bitfield holding configuration of the input key. The bitfield looks like
-+      this:
-+      +------------------------------------------------------------+
-+      | Bits     | 31:18    |         17 | 16:14 | 13:10    | 9:0  |
-+      | Function | reserved | active_low | type  | reserved | code |
-+      +------------------------------------------------------------+
-+      code - Linux key code
-+      type - EV_KEY or EV_SW
-+      active_low - Key is active in low state
-+
-+  linux,keycodes:
-+    minItems: 1
-+    maxItems: 16
-+
-+  autorepeat:
-+    type: boolean
-+    description: |
-+      Enables the Linux input system's autorepeat feature on the input device.
-+
-+  polling:
-+    type: boolean
-+    description: |
-+      Forces driver to use polling mode instead of IRQ.
-+
-+  pinmask:
-+    description: |
-+      Allows to disable certain keys. By default are all inputs enabled.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      keypad@21 {
-+        compatible = "ti,tca6416_keys";
-+        reg = <0x21>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+        linux,gpio-keymap = <
-+                            0x24290, // active low, EV_KEY, 0, KEY_MACRO1
-+                            0x24291, // active low, EV_KEY, 1, KEY_MACRO2
-+                            0x24292, // active low, EV_KEY, 2, KEY_MACRO3
-+        >;
-+      };
-+    };
-+
-+...
-diff --git a/drivers/input/keyboard/tca6416-keypad.c b/drivers/input/keyboard/tca6416-keypad.c
-index fbc674d7b9f0..8910498cf266 100644
---- a/drivers/input/keyboard/tca6416-keypad.c
-+++ b/drivers/input/keyboard/tca6416-keypad.c
-@@ -17,6 +17,7 @@
- #include <linux/i2c.h>
- #include <linux/input.h>
- #include <linux/tca6416_keypad.h>
-+#include <linux/bitfield.h>
- 
- #define TCA6416_INPUT          0
- #define TCA6416_OUTPUT         1
-@@ -24,6 +25,7 @@
- #define TCA6416_DIRECTION      3
- 
- #define TCA6416_POLL_INTERVAL	100 /* msec */
-+#define TCA6416_MAX_IO_SIZE 16 /* maximum number of inputs */
- 
- static const struct i2c_device_id tca6416_id[] = {
- 	{ "tca6416-keys", 16, },
-@@ -173,9 +175,67 @@ static int tca6416_setup_registers(struct tca6416_keypad_chip *chip)
- 	return 0;
- }
- 
-+/* Configuration bitmap
-+ * | 31:18    |         17 | 16:14 | 13:10    | 9:0  |
-+ * | reserved | active_low | type  | reserved | code |
-+ */
-+#define CFG_CODE GENMASK(9, 0)
-+#define CFG_TYPE GENMASK(16, 14)
-+#define CFG_ACTIVE_LOW BIT(17)
-+
-+static struct tca6416_keys_platform_data *
-+tca6416_parse_properties(struct device *dev, uint8_t io_size)
-+{
-+	static const char keymap_property[] = "linux,gpio-keymap";
-+	struct tca6416_keys_platform_data *pdata;
-+	u32 keymap[TCA6416_MAX_IO_SIZE];
-+	struct tca6416_button *buttons;
-+	int ret, i;
-+	u8 pin;
-+
-+	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-+	if (!pdata)
-+		return NULL;
-+
-+	ret = device_property_count_u32(dev, keymap_property);
-+	if (ret <= 0)
-+		return NULL;
-+
-+	pdata->nbuttons = ret;
-+	if (pdata->nbuttons > io_size)
-+		pdata->nbuttons = io_size;
-+
-+	ret = device_property_read_u32_array(dev, keymap_property, keymap,
-+					     pdata->nbuttons);
-+	if (ret)
-+		return NULL;
-+
-+	buttons = devm_kcalloc(dev, pdata->nbuttons, sizeof(*buttons),
-+			       GFP_KERNEL);
-+	if (!buttons)
-+		return NULL;
-+
-+	for (i = 0; i < pdata->nbuttons; i++) {
-+		buttons[i].code = FIELD_GET(CFG_CODE, keymap[i]);
-+		buttons[i].type = FIELD_GET(CFG_TYPE, keymap[i]);
-+		buttons[i].active_low = FIELD_GET(CFG_ACTIVE_LOW, keymap[i]);
-+		/* enable all inputs by default */
-+		pdata->pinmask |= BIT(i);
-+	}
-+
-+	pdata->buttons = buttons;
-+
-+	pdata->rep = device_property_read_bool(dev, "autorepeat");
-+	/* we can ignore the result as by default all inputs are enabled */
-+	device_property_read_u16(dev, "pinmask", &pdata->pinmask);
-+	pdata->use_polling = device_property_read_bool(dev, "polling");
-+
-+	return pdata;
-+}
-+
- static int tca6416_keypad_probe(struct i2c_client *client)
- {
--	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-+	uint8_t io_size = (uintptr_t)i2c_get_match_data(client);
- 	struct tca6416_keys_platform_data *pdata;
- 	struct tca6416_keypad_chip *chip;
- 	struct input_dev *input;
-@@ -190,9 +250,13 @@ static int tca6416_keypad_probe(struct i2c_client *client)
- 	}
- 
- 	pdata = dev_get_platdata(&client->dev);
--	if (!pdata) {
--		dev_dbg(&client->dev, "no platform data\n");
--		return -EINVAL;
-+	if (!pdata && dev_fwnode(&client->dev)) {
-+		pdata = tca6416_parse_properties(&client->dev, io_size);
-+		if (!pdata) {
-+			dev_err(&client->dev,
-+				"Failed to parse device configuration from properties\n");
-+			return -EINVAL;
-+		}
- 	}
- 
- 	chip = devm_kzalloc(&client->dev,
-@@ -207,7 +271,7 @@ static int tca6416_keypad_probe(struct i2c_client *client)
- 
- 	chip->client = client;
- 	chip->input = input;
--	chip->io_size = id->driver_data;
-+	chip->io_size = io_size;
- 	chip->pinmask = pdata->pinmask;
- 	chip->use_polling = pdata->use_polling;
- 
-@@ -279,9 +343,23 @@ static int tca6416_keypad_probe(struct i2c_client *client)
- 	return 0;
- }
- 
-+static const struct of_device_id tca6416_of_match[] = {
-+	{
-+		.compatible = "ti,tca6416_keys",
-+		.data = (void *)16,
-+	},
-+	{
-+		.compatible = "ti,tca6408_keys",
-+		.data = (void *)8,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, tca6416_of_match);
-+
- static struct i2c_driver tca6416_keypad_driver = {
- 	.driver = {
- 		.name	= "tca6416-keypad",
-+		.of_match_table = tca6416_of_match,
- 	},
- 	.probe		= tca6416_keypad_probe,
- 	.id_table	= tca6416_id,
--- 
-2.34.1
-
+T24gU2F0LCAyMDI1LTA2LTA3IGF0IDE2OjI3ICswMTAwLCBKb25hdGhhbiBDYW1lcm9uIHdyb3Rl
+Og0KPiBFWFRFUk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVu
+dHMgdW5sZXNzIHlvdQ0KPiBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIEZyaSwg
+NiBKdW4gMjAyNSAxMjozOToyOSArMDMwMA0KPiA8bWFyaXVzLmNyaXN0ZWFAbWljcm9jaGlwLmNv
+bT4gd3JvdGU6DQo+IA0KPiA+IEZyb206IE1hcml1cyBDcmlzdGVhIDxtYXJpdXMuY3Jpc3RlYUBt
+aWNyb2NoaXAuY29tPg0KPiA+IA0KPiA+IFRoaXMgaXMgdGhlIGlpbyBkcml2ZXIgZm9yIE1pY3Jv
+Y2hpcCBQQUMxOTRYIGFuZCBQQUMxOTVYIHNlcmllcyBvZg0KPiA+IFBvd2VyIE1vbml0b3JzIHdp
+dGggQWNjdW11bGF0b3IuIFRoZSBQQUMxOTRYIGZhbWlseSBzdXBwb3J0cyA5Vg0KPiA+IEZ1bGwt
+U2NhbGUgUmFuZ2UgYW5kIHRoZSBQQUMxOTVYIHN1cHBvcnRzIDMyViBGdWxsLVNjYWxlIFJhbmdl
+Lg0KPiA+IA0KPiA+IFRoZXJlIGFyZSB0d28gdmVyc2lvbnMgb2YgdGhlIFBBQzE5NFgvNVg6IHRo
+ZSBQQUMxOTRYLzVYLTEgZGV2aWNlcw0KPiA+IGFyZSBmb3IgaGlnaC1zaWRlIGN1cnJlbnQgc2Vu
+c2luZyBhbmQgdGhlIFBBQzE5NFgvNVgtMiBkZXZpY2VzIGFyZQ0KPiA+IGZvciBsb3ctc2lkZSBj
+dXJyZW50IHNlbnNpbmcgb3IgZmxvYXRpbmcgVkJVUyBhcHBsaWNhdGlvbnMuIFRoZQ0KPiA+IFBB
+QzE5NFgvNVgtMSBpcyBuYW1lZCBzaG9ydGx5IFBBQzE5NFgvNVguDQo+ID4gDQo+ID4gU2lnbmVk
+LW9mZi1ieTogTWFyaXVzIENyaXN0ZWEgPG1hcml1cy5jcmlzdGVhQG1pY3JvY2hpcC5jb20+DQo+
+IEhpIE1hcml1cywNCj4gDQo+IEkgZW50aXJlbHkgYWdyZWUgd2l0aCBEYXZpZCBvbiB0aGlzIHdh
+bnRpbmcgc3BsaXR0aW5nIHVwIGludG8NCj4gYSBiYXNlIGRyaXZlciArIHBhdGNoZXMgdGhhdCBh
+ZGQgZmVhdHVyZXMgdG8gdGhhdCBpbiBvcmRlciB0bw0KPiBtYWtlIGl0IGVhc2llciB0byByZXZp
+ZXcuwqAgVGhhdCBhbHNvIHBvdGVudGlhbGx5IGFsbG93cyBtZSB0byBwaWNrIHVwDQo+IHRoZSBi
+YXNpYyBzdXBwb3J0IHdoaWxzdCBhbnkgbW9yZSBjb250cm92ZXJzaWFsIHBhcnRzIGFyZSBzdGls
+bCB1bmRlcg0KPiBkaXNjdXNzaW9uLg0KPiANCj4gSm9uYXRoYW4NCg0KSSB3aWxsIHRyeSB0byBt
+YWtlIGl0IHNtYWxsZXIgYW5kIGJ1aWxkIG9uIHRoYXQuDQoNCj4gDQo+ID4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZSBiL2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZQ0KPiA+
+IGluZGV4IDA5YWU2ZWRiMjY1MC4uZWU0N2Q4ODBiYWJmIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZl
+cnMvaWlvL2FkYy9NYWtlZmlsZQ0KPiA+ICsrKyBiL2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZQ0K
+PiA+IEBAIC0xMDMsNiArMTAzLDcgQEAgb2JqLSQoQ09ORklHX05DVDcyMDEpICs9IG5jdDcyMDEu
+bw0KPiA+IMKgb2JqLSQoQ09ORklHX05QQ01fQURDKSArPSBucGNtX2FkYy5vDQo+ID4gwqBvYmot
+JChDT05GSUdfUEFDMTkyMSkgKz0gcGFjMTkyMS5vDQo+ID4gwqBvYmotJChDT05GSUdfUEFDMTkz
+NCkgKz0gcGFjMTkzNC5vDQo+ID4gK29iai0kKENPTkZJR19QQUMxOTQ0KSArPSBwYWMxOTQ0Lm8N
+Cj4gPiDCoG9iai0kKENPTkZJR19QQUxNQVNfR1BBREMpICs9IHBhbG1hc19ncGFkYy5vDQo+ID4g
+wqBvYmotJChDT05GSUdfUUNPTV9QTThYWFhfWE9BREMpICs9IHFjb20tcG04eHh4LXhvYWRjLm8N
+Cj4gPiDCoG9iai0kKENPTkZJR19RQ09NX1NQTUlfQURDNSkgKz0gcWNvbS1zcG1pLWFkYzUubw0K
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lpby9hZGMvcGFjMTk0NC5jIGIvZHJpdmVycy9paW8v
+YWRjL3BhYzE5NDQuYw0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAw
+MDAwMDAwLi5jZTA5MzM0YjA3NmENCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVy
+cy9paW8vYWRjL3BhYzE5NDQuYw0KPiA+IEBAIC0wLDAgKzEsMjg0MSBAQA0KPiANCj4gDQo+ID4g
+Ky8qIEF2YWlsYWJsZSBTYW1wbGUgTW9kZXMgKi8NCj4gPiArc3RhdGljIGNvbnN0IGNoYXIgKiBj
+b25zdCBwYWMxOTQ0X2ZyZXF1ZW5jeV9hdmFpbFtdID0gew0KPiA+ICvCoMKgwqDCoCAiMTAyNF9B
+REFQIiwNCj4gPiArwqDCoMKgwqAgIjI1Nl9BREFQIiwNCj4gDQo+IFRoaXMgYWRhcHRpdmUgbW9k
+ZSBzaG91bGRuJ3QgYmUgY29udHJvbGxlZCB2aWEgdGhpcyBzdGFuZGFyZA0KPiBBQkkuwqAgVGhh
+dCBuZWVkcyB0byBiZSBjb25zaWRlcmVkIHNlcGFyYXRlbHkuDQo+IA0KPiA+ICvCoMKgwqDCoCAi
+NjRfQURBUCIsDQo+ID4gK8KgwqDCoMKgICI4X0FEQVAiLA0KPiA+ICvCoMKgwqDCoCAiMTAyNCIs
+DQo+ID4gK8KgwqDCoMKgICIyNTYiLA0KPiA+ICvCoMKgwqDCoCAiNjQiLA0KPiA+ICvCoMKgwqDC
+oCAiOCIsDQo+IFRoaXMgZG9lcyBub3QgbG9vayBldmVuIGNsb3NlIHRvIEFCSSBjb21wbGFpbnQu
+DQo+IA0KPiBUaGUgbnVtYmVycyBjYXNlcyBhcmUgZmluZS4gVGhlIG90aGVycyBub3QgcmVhbGx5
+Lg0KPiA+ICvCoMKgwqDCoCAic2luZ2xlX3Nob3RfMXgiLA0KPiANCj4gVGhhdCBoYXMgbm90aGlu
+ZyBkaXJlY3RseSB0byBkbyB3aXRoIHRoZSBzYW1wbGluZyBmcmVxdWVuY3kuDQo+IFNvbWUgb3Ro
+ZXJzIGxvb2sgc3VzcGljaW91cy7CoCBJJ2Qgc3RpY2sgdG8gbm9ybWFsDQo+IHNhbXBsaW5nX2Zy
+ZXF1ZW5jeSBoYW5kbGluZyBhbmQgaGF2ZSB0aGUgZGlzY3Vzc2lvbiBhYm91dCB0aGUgb3RoZXIN
+Cj4gbW9kZXMgaW4gaGVyZSBhdCBhIGxhdGVyIGRhdGUuDQo+IA0KPiA+ICvCoMKgwqDCoCAic2lu
+Z2xlX3Nob3RfOHgiLA0KPiA+ICvCoMKgwqDCoCAiZmFzdCIsDQo+ID4gK8KgwqDCoMKgICJidXJz
+dCIsDQo+ID4gK307DQoNClRoZSBhZGFwdGl2ZSBtb2RlIGlzIHVzZWQgdG8gbG93ZXIgdGhlIHBv
+d2VyIGNvbnN1bXB0aW9uIG9mIHRoZSBkZXZpY2UNCmFuZCBrZWVwIHRoZSAic2FtZSIgY2FsY3Vs
+YXRpb24gaW50byB0aGUgZHJpdmVyLiBJIHdpbGwgdHJ5IHRvIGxvb2sNCm92ZXIgYW4gQUJJIHRv
+IHB1dCB0aGUgZGV2aWNlIGludG8gYSBsb3cgcG93ZXIgbW9kZSBhbmQgaW4gdGhpcyB3YXkgSQ0K
+Y291bGQgY2hhbmdlIHRoZSBmcmVxdWVuY3kgdG8gQURBUFRJVkUuDQoNClRoZSAic2luZ2xlX3No
+b3RfMXgiIGFuZCAic2luZ2xlX3Nob3RfOHgiIGlzIGEgc3BlY2lhbCBjYXNlIHdoZW4gdGhlDQp1
+c2VyIGNvdWxkIHRha2Ugb25seSBvbmUgbWVhc3VyZW1lbnQgYW5kIHRoYXQgbWVhc3VyZW1lbnQg
+Y291bGQgYmUNCnRyaWdnZXJlZC9zeW5jaGVkLg0KDQo+ID4gDQo+ID4gDQouLi4NCg0KPiANCj4g
+DQo+IA0KPiANCj4gDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgYXR0cmlidXRlICpwYWMxOTQ0X3Bvd2Vy
+X2FjY19hdHRyW10gPSB7DQo+ID4gK8KgwqDCoMKgICZpaW9fZGV2X2F0dHJfaW5fZW5lcmd5MV9y
+YXcuZGV2X2F0dHIuYXR0ciwNCj4gPiArwqDCoMKgwqAgJmlpb19kZXZfYXR0cl9pbl9lbmVyZ3ky
+X3Jhdy5kZXZfYXR0ci5hdHRyLA0KPiA+ICvCoMKgwqDCoCAmaWlvX2Rldl9hdHRyX2luX2VuZXJn
+eTNfcmF3LmRldl9hdHRyLmF0dHIsDQo+ID4gK8KgwqDCoMKgICZpaW9fZGV2X2F0dHJfaW5fZW5l
+cmd5NF9yYXcuZGV2X2F0dHIuYXR0ciwNCj4gPiArwqDCoMKgwqAgJmlpb19kZXZfYXR0cl9pbl9l
+bmVyZ3kxX3NjYWxlLmRldl9hdHRyLmF0dHIsDQo+ID4gK8KgwqDCoMKgICZpaW9fZGV2X2F0dHJf
+aW5fZW5lcmd5Ml9zY2FsZS5kZXZfYXR0ci5hdHRyLA0KPiA+ICvCoMKgwqDCoCAmaWlvX2Rldl9h
+dHRyX2luX2VuZXJneTNfc2NhbGUuZGV2X2F0dHIuYXR0ciwNCj4gPiArwqDCoMKgwqAgJmlpb19k
+ZXZfYXR0cl9pbl9lbmVyZ3k0X3NjYWxlLmRldl9hdHRyLmF0dHIsDQo+IA0KPiBUaGVzZSBsb29r
+IGxpa2Ugc3RhbmRhcmQgcmVhZF9yYXcgLyBpbmZvX21hc2sgYmFzZWQgYXR0cmlidXRlcyB3aWxs
+DQo+IHdvcmsuDQo+IFNvIGRvIHRoYXQsIG5vdCBjdXN0b20gYXR0cmlidXRlcyB0aGF0IGFyZSBi
+b3RoIGhhcmRlciB0byByZXZpZXcgYW5kDQo+IGRvbid0IHdvcmsgd2l0aCBpbiBrZXJuZWwgY29u
+c3VtZXJzICh3aGljaCB3ZSBtYXkgd2VsbCBzZWUgZm9yIGENCj4gcG93ZXINCj4gbW9uaXRvcmlu
+ZyBjaGlwKS4NCj4gDQoNCkJlY2F1c2UgdGhlIGRldmljZSBjb3VsZCBzdXBwb3J0IGRpZmZlcmVu
+dCBtb2RlcyBvZiBvcGVyYXRpb24gZm9yIHRoZQ0Kc2FtZSBhY2N1bXVsYXRvciwgYnV0IG9ubHkg
+b25lIGF0IGEgdGltZS4gSSB3YXMgdHJ5aW5nIHRvIGFkZCB0byB0aGUNCnN5c2ZzIG9ubHkgdGhl
+IG1vZGUgdGhhdCB3YXMgc2V0IGZyb20gdGhlIGRldmljZSB0cmVlLg0KDQo+IA0KPiANCg==
 
