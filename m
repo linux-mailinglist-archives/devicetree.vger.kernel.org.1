@@ -1,129 +1,183 @@
-Return-Path: <devicetree+bounces-184113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93241AD307C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:33:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B87AD3091
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 154003A5EF7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:33:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D846188C51D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D6727FD70;
-	Tue, 10 Jun 2025 08:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F30225F797;
+	Tue, 10 Jun 2025 08:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TJeqOGkH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rjm4/r/y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A4D25F797
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05E41D555;
+	Tue, 10 Jun 2025 08:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749544417; cv=none; b=YY+sZeoQ/2hkJIhX5s5pzXVRclsrY5zczkYi87NRAg3tGBA7KzfSImBjWiuPiKtVqmWkQJEfwUNdEc3LiPvbZ/j4VonUqlBFEwvsP+3uvKcgvGsnxkTk1SlgSpG6e2I9RIR/HJ4dWJL73M2viu26t6e7O0Qr4leAYWDJ6WpTGMY=
+	t=1749544687; cv=none; b=jNoJuDdVMbMm83A52uDFKMbtTJxfDQHJNhObLgazLorOZpT398THTE23jg+KA/9fWNzQ4sxufhbHLEzPzxpsiI3UPlbkCEhXmixHpMVCDkP1RRse7CeVmWNuN+k/3OTn9XnDDRNXT7zC7DoIZVmTrm1XdHEu+8Bn1qixSrkQ/mA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749544417; c=relaxed/simple;
-	bh=pux6+eb/W9FN2HoN5vMcC3kEUTHEg5oAoFHBsjMsScY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GWuaX/cy6uqxZdzzq7fyshWJ9VCix8gJFJMRVT6wx0269+p51OqbZS2ta8g9YMI66+3qglAoojereoIpTRse26oWZi4Y2PwTBezIJUjSz0t/1Efc+DCUg6x4BNmIbzc3gX8rOycOrf/rSjH5C6377CwVUOJVm9ODSCjZsJsKSxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TJeqOGkH; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-55325956c93so427671e87.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 01:33:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749544412; x=1750149212; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tXDUs5/+IldxO7NKXVBzYozOWgACkNjwwUA9PlSG+Pk=;
-        b=TJeqOGkHNUqiOE4tJvs+tT66+FmeSoHy6MS4IlIinxIApsc+JABWnhNxFyKw/LK/8v
-         lbiRcsjS/9/4lZNSXM09ENZSOTB3G0kGWZiYhxy7osUxWkTWcifhsjdgvde78q9QMkXu
-         NmjT+0Qsj9NW08dJqbehZe46HCZ5j22UFsdscZeaOuUukmslMbDRnGsoc/cAX2Y6bsvc
-         fA3DaKNuueGcraUxNI5AgYuGA68JY9wjuoMx2O4GzAKjoVWGvZG0yVX7FSZ8DMfQhwr9
-         Eva1VDD2S6uw9NEBfBe83NgEN0bt/VVCdbL3GxlyBPIekdVeYcb4C5jaorxErwoqSNO3
-         ouWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749544412; x=1750149212;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tXDUs5/+IldxO7NKXVBzYozOWgACkNjwwUA9PlSG+Pk=;
-        b=jbQi5bDpZaHE4xcK/tegwc3yY981MIwEpZISNejjq/Xz6ufNbPYc7xDrJ7mtR3q+w5
-         mHb6HhLXQCDH05VGWjN6hsmdW9EnKzHWifhxk4CTNaO7V+NfvBC/JLRPzOEWfpcJRqEB
-         s1xy3e71HuUtXPK6897c2m2XATDVEe8jKBPfOyXBG0qx8idhAZf0p2swtC9VH4wof0Z4
-         VGwN7TWhzgTZRsjDFeN7yBtOYlDEInB1bMWBcBuF7WdCug3qkDF+qdTAXr5nF1E1jdML
-         080qGH/yQ5XtQoRHYF4uYIcod7sf6Dil7Jb41w6BKOFGsnQD5m9T5VYFJagXBVEpUbib
-         WjAA==
-X-Forwarded-Encrypted: i=1; AJvYcCX0wwLhwrlxj9mzAVFvvEl9Hgq+xHsrh5Wfc/NMntiHAYjHhHegQPh+oA1u0SQxneA/uq8OLCcc8KRn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPDLumtEubAfN6c1SN8JRXHuGQwL0yIA2HyYNxbdEiZK8j2kYp
-	hhautqeFH0YQZmYDpEC3OWLJPlHrwkJS3MhgOVDHwTRgchHJxiJZdnO8VZJhewfutMo=
-X-Gm-Gg: ASbGncteYJar8WZk8mapK05+SfiTkrlcFHeuwttjZqfjACiOM+B39o9XvLuqo/wSPGy
-	FSegqBz4oBhJTmJuB7dVXdH7PLlnKdkdp/hC0sSanYwXo0QEwzHmsOlsLT6qk0HI9kIYY1s5opi
-	Y8HEffNzFaGtzPTbyAmoqR292cDojsBFeERQ5x5pe8+i8msVGAFGTXeM7epVR7ripXuLlQUvSyn
-	Wl0pp5mPlOdFOzk4SjLJbgEDrXcrWURAgf5I19qtxRb3DjkGn+WgIwZxLUy2I/GDl4s4cFqJVVJ
-	fTe0lVmG52BH4fCZ8Ita+4Rhfxv3trsgdhdn18ic77Ljw7ol1+neGIaxMEvzYLKkVy/IBlLCL3m
-	q3gg4K9lby4UNqQ5EbtQg1Jpg0CU5+2L3Qi6XyZIRO3L2ejShYZdgx/sG0MzZVQ==
-X-Google-Smtp-Source: AGHT+IEYIQ2Xi67OSgwXBvj/zFL581W4WKugfySCgFBUviW8ff4ybP4NOKQ1O0rlnOZq1iQ1Xqg5oA==
-X-Received: by 2002:a05:6512:15a9:b0:54f:c5e7:8f7c with SMTP id 2adb3069b0e04-55366c35abbmr1383687e87.16.1749544412391;
-        Tue, 10 Jun 2025 01:33:32 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32ae1b351fcsm14167241fa.35.2025.06.10.01.33.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 01:33:32 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	linux-arm-msm@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: media: qcom,x1e80100-camss: Fix isp unit address
-Date: Tue, 10 Jun 2025 11:33:18 +0300
-Message-ID: <20250610083318.2773727-2-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250610083318.2773727-1-vladimir.zapolskiy@linaro.org>
-References: <20250610083318.2773727-1-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1749544687; c=relaxed/simple;
+	bh=/aYos+rPD2Y4dFN66OBYv1f3rtmQl6eqmHlQLOMph6w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GjqIKyLv472nyFPleB4hNEDImR49YpUtg0TdPzfc0U59lBm8TQujUJbns4+SxQ8Tm8MSktTksMoyBWxEVGINZh7Dt3QjN/3SBmsnUApi9GDdcti9aT6zKdLcU3/Wc/tGCulMi6Eg32H4Tr8VgxGEnNrfh5K6CQEh6DAEbs/uyzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rjm4/r/y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8CFE2C4CEEF;
+	Tue, 10 Jun 2025 08:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749544686;
+	bh=/aYos+rPD2Y4dFN66OBYv1f3rtmQl6eqmHlQLOMph6w=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Rjm4/r/y4LWZt/taUrSjd849ukEIigVyqsK9NcwaJVCWXWbt0sIMtYPU02FDiTP/5
+	 Rdy7O20Fu6pIvaAVTfMHx16QKBzUJ9o+GvLp1WehVLMXsAHUJc5pftCmPBh6R/d89W
+	 U9TEe1nsIa1+aTpvffnN9mTXf+F2Zw3SiO01wLAMq4lp7RjQ/A3NLHSDvPVhBEvnmK
+	 PzZLTi6TCnfBKAUkj5yZD9OHPvZD40d19EeyGVoakU9jiKvu6cFzzbDsYECCMUEkjg
+	 T+rBQTzPXbRol7c+cL4kj5S+4TdOjWNL0Kv3hFrUP9wvmMzXqRL5UmMrBFLqwRxkJG
+	 ni1ozzbz99O6A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73094C5B552;
+	Tue, 10 Jun 2025 08:38:06 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v5 0/5] Add support for the IPQ5018 Internal GE PHY
+Date: Tue, 10 Jun 2025 12:37:54 +0400
+Message-Id: <20250610-ipq5018-ge-phy-v5-0-daa9694bdbd1@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOLuR2gC/2XPQQ6CMBAF0KuYrq1pZ1pAV97DuChtkUalCEgkh
+ LtbcCGhyz+T/zIzktY2zrbktBtJY3vXOl+FIPc7oktV3Sx1JmQCDCQTyKirX5LxjIZNXQ7U5Ik
+ UqlBCW0NCqW5s4T4LeLmGXLq2882w+D2fpz9KgtxSPaeMGqPyLJPCgsSzf3cP7+8H7Z9kxnpYA
+ 1kEwAKwBJNU6JTrGMA/kDCIAAyAAI6YKoY8hxgQa+AYASIA3KDiEO4DvXlhmqYvQajisnEBAAA
+ =
+X-Change-ID: 20250430-ipq5018-ge-phy-db654afa4ced
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-clk@vger.kernel.org, George Moussalem <george.moussalem@outlook.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749544683; l=4433;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=/aYos+rPD2Y4dFN66OBYv1f3rtmQl6eqmHlQLOMph6w=;
+ b=ErY5VM5/oi8F8MyZ8xNVUFP8isDxbUNFIt0N0v1lRgTUTd/ciHKkyFtfqhYIUmT8NYRH9cYS0
+ nYesuaI0rKMB0kaXcNXiB92GPAVKQw7ikoyC1VgFywYwQLVg20qHZ1C
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-According to the devicetree specification a unit address shall match
-the first address value of the reg property.
+The IPQ5018 SoC contains an internal Gigabit Ethernet PHY with its
+output pins that provide an MDI interface to either an external switch
+in a PHY to PHY link architecture or directly to an attached RJ45
+connector.
 
-Fixes: 2ab7f87a7f4b ("dt-bindings: media: Add qcom,x1e80100-camss")
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+The PHY supports 10BASE-T/100BASE-TX/1000BASE-T link modes in SGMII
+interface mode, CDT, auto-negotiation and 802.3az EEE.
+
+The LDO controller found in the IPQ5018 SoC needs to be enabled to drive
+power to the CMN Ethernet Block (CMN BLK) which the GE PHY depends on.
+The LDO must be enabled in TCSR by writing to a specific register.
+
+In a phy to phy architecture, DAC values need to be set to accommodate
+for the short cable length.
+
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 ---
-Another fix on top of https://lore.kernel.org/all/20250502204142.2064496-1-vladimir.zapolskiy@linaro.org/
+Changes in v5:
+- Removed unused macro definition (IPQ5018_TCSR_ETH_LDO_READY)
+- Reverted sorting of header files for which a separate patch can be
+  submitted
+- Added a comment to explain why the FIFO buffer needs to be reset
+- Do not initialize local variable as caught by Russell
+- Updated macro definition names to more accurately describe the PHY
+  registers and their functions
+- Include SGMII as supported interface mode in driver commit message
+- Changed error handling of acquirement of PHY reset to use IR_ERR
+  instead of IS_ERR_OR_NULL
+- Link to v4: https://lore.kernel.org/r/20250609-ipq5018-ge-phy-v4-0-1d3a125282c3@outlook.com
 
- .../devicetree/bindings/media/qcom,x1e80100-camss.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v4:
+- Updated description of qcom,dac-preset-short-cable property in
+  accordance with Andrew's recommendation to indicate that if the
+  property is not set, no DAC values will be modified.
+- Added newlines between properties
+- Added PHY ID as compatible in DT bindings for conditional check to
+  evaluate correctly. Did a 'git grep' on all other PHY IDs defined in
+  the driver but none are explicitly referenced so I haven't added them
+- Link to v3: https://lore.kernel.org/r/20250602-ipq5018-ge-phy-v3-0-421337a031b2@outlook.com
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-index 7d4e6ef57bf8..959cff1a31a8 100644
---- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-@@ -190,7 +190,7 @@ examples:
-         #address-cells = <2>;
-         #size-cells = <2>;
- 
--        camss: isp@acb6000 {
-+        camss: isp@acb7000 {
-             compatible = "qcom,x1e80100-camss";
- 
-             reg = <0 0x0acb7000 0 0x2000>,
+Changes in v3:
+- Replace bitmask of GEPHY_MISC_ARES with GENMASK as suggested by Konrad
+- Removed references to RX and TX clocks as the driver need not
+  explicitly enable them. The GCC gatecontrols and routes the PHY's
+  output clocks, registered in the DT as fixed clocks, back to the PHY.
+  The bindings file has been updated accordingly.
+- Removed acquisition and enablement of RX and TX clocks from the driver
+- Link to v2: https://lore.kernel.org/r/20250528-ipq5018-ge-phy-v2-0-dd063674c71c@outlook.com
+
+Changes in v2:
+- Moved values for MDAC and EDAC into the driver and converted DT
+  property qca,dac to a new boolean: qcom,dac-preset-short-cable as per
+  discussion.
+- Added compatible string along with a condition with a description of
+  properties including clocks, resets, and qcom,dac-preset-short-cable
+  in the bindings to address bindings issues reported by Rob and to
+  bypass restrictions on nr of clocks and resets in ethernet-phy.yaml
+- Added example to bindings file
+- Renamed all instances of IPQ5018_PHY_MMD3* macros to IPQ5018_PHY_PCS*
+- Removed qca,eth-ldo-ready property and moved the TCSR register to the
+  mdio bus the phy is on as there's already support for setting this reg
+  property in the mdio-ipq4019 driver as per commit:
+  23a890d493e3ec1e957bc925fabb120962ae90a7
+- Explicitly probe on PHY ID as otherwise the PHY wouldn't come up and
+  initialize as found during further testing when the kernel is flashed
+  to NAND
+- Link to v1: https://lore.kernel.org/r/20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com
+
+---
+George Moussalem (5):
+      clk: qcom: gcc-ipq5018: fix GE PHY reset
+      dt-bindings: net: qca,ar803x: Add IPQ5018 Internal GE PHY support
+      net: phy: qcom: at803x: Add Qualcomm IPQ5018 Internal PHY support
+      arm64: dts: qcom: ipq5018: Add MDIO buses
+      arm64: dts: qcom: ipq5018: Add GE PHY to internal mdio bus
+
+ .../devicetree/bindings/net/qca,ar803x.yaml        |  43 ++++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  48 +++++-
+ drivers/clk/qcom/gcc-ipq5018.c                     |   2 +-
+ drivers/net/phy/qcom/Kconfig                       |   2 +-
+ drivers/net/phy/qcom/at803x.c                      | 167 +++++++++++++++++++++
+ 5 files changed, 258 insertions(+), 4 deletions(-)
+---
+base-commit: ebfff09f63e3efb6b75b0328b3536d3ce0e26565
+change-id: 20250430-ipq5018-ge-phy-db654afa4ced
+
+Best regards,
 -- 
-2.49.0
+George Moussalem <george.moussalem@outlook.com>
+
 
 
