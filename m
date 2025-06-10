@@ -1,195 +1,121 @@
-Return-Path: <devicetree+bounces-184048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EA2AD2E13
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:48:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A47AD2E16
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DD1916EBF0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:49:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85CD23A7FA2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C51278173;
-	Tue, 10 Jun 2025 06:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639B127A469;
+	Tue, 10 Jun 2025 06:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AW0godgu"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="YAKdNLp9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FA72206BE
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF0E27A13A;
+	Tue, 10 Jun 2025 06:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749538136; cv=none; b=rwZHc1ICX3xSkCtmgZ3K3XMAt8FFRVWFRnMs/onv5/ZrzfNAPJ0ZDFuYe0pfVcBSrnlEd4kAPs474HIHMnULQkRD7nEKpU411tdGA2fFh9uQTn2XATcGHSFdPcWxlw8wNxjjR9zQ/xy/LV5NetUbuelFsBt21vA1iquRmAtgWxw=
+	t=1749538260; cv=none; b=bCeU0pmoPndtd/wMvaYFz9WuOmR5YhSMvJsiTYyIYDEf+tDX60VMeQs8Y8jmP54YOjcgUeIjm4DtGilBElttitawFj54iU6s7W7gLk1QHAIeex2U67uCgPNFjLML8U1uj8l8j694ClMvW2xIlMe1+TwaiR0O90qW34K2U8J0IWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749538136; c=relaxed/simple;
-	bh=t76P3l/VjCEs9UkCvZilByfXHHh0JX8QGuxLZgXi3eE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S1gUtOADrPMYg7zXfmfsXdjalBV5r/ClHoPBcHlQYfRkyJaBVWocKLi1pXk9pkQkadjHtcE4BsHRbCaXPIS0RdX3XgAy5XZxPOaG3Xd6PoYT9IQXD4wEJFS9vScMzuBiFDqqmoElTaXgtx6sxOR8nlPk0UeU9LsoblGxfy3zKzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AW0godgu; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b271f3ae786so3430869a12.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 23:48:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749538134; x=1750142934; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uSAjnIfzbodsdWyJIJlgnunzj6AEInF/5u7qfcVepWY=;
-        b=AW0godgugdk6LcXRPMq/fejhK0SZBbHpkrOtuDUR3cl8VcU1g8+6MqCBHdeHBXFjUq
-         +/KKEosCvMYhBeL6O4WdJmOCiL0ox+wzqJAQwKX+NfQTfYEZKR9p3ddfbBbXirYeCG/L
-         vFrxJ+G6b7fdvbLrssXvzpM9Olt/A9qWVdXHNUtAakNPSE8RuMUGmRryKEO9Tsz7sN5m
-         dzLHC9JMXXxoq8fLxgKiHeRP5qsrX3+clD3m91SyGwHxbeCoHAzWedUA8Yo3YmZXJJX+
-         K/U0wgmzsDwdVGwua2p7Al/K08b001H1FjenV4BOfrYvb5e2eyyCFiVUgfcmsqAKxSQt
-         io4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749538134; x=1750142934;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uSAjnIfzbodsdWyJIJlgnunzj6AEInF/5u7qfcVepWY=;
-        b=A7T9EswBBAgoYsckU+0q99CTvNA4L6jDJu1mIvZq74nqC/TuLD7mRnZmYq7LJ7X7vl
-         Zx+nz0o2CSdUPk0evceBriIUUpZJIDF5UMBiJmprxz6hsQMckGD1KGiUvlR2RODR+dI7
-         C3QYdLFuv+u61wCrQw4CwsYitLqqSzoh4/K8i67dApVVkGqUSgfFlo7lb0DI9sAHOavt
-         jwD12s1t0CqFALuzyjNrnM3aQvY9bMqR7SOOQcmRCWs554/pDHHDg5GEDCtmTZfuyyiO
-         737HfiDHpzCImkGMwWm4ru8ry41g0MBKAYuakH30WAvfBRLZbKPUFi8B2i8yTu8a1Ox1
-         PjUg==
-X-Gm-Message-State: AOJu0Yyy53WvkArzRjGGPmhCcif12o8TOBKjm7DNZ+kRoRvO1chOgfIL
-	DpiARA3kNmsBPMN/pxW/aDwsFAkSBV4I2bJCIS6oWgVr4j0kIuEoIBlvRdC2XdQjUzlCfp4ObgW
-	goC+FfuNapG/B7gmzoUqk3Gs50/VfnV5mmU6V
-X-Gm-Gg: ASbGncuLQVmy8Qh8SH/5Z0YkKRoL3ARI29FbplTDBSAP4MQO1G4l474vtw0trt8MXHR
-	Vt1zZ1Whl7lXs0l5UnECw0UjYviYH5qAbvXl4dPGZQS3QMvchVLSUaCmSGbYzwuFcWjbv6a1uHh
-	q0acf0gJRDrjMvRs0TYs3yljMDxiPB3baTyKStJ+dVLNc=
-X-Google-Smtp-Source: AGHT+IFOnn4DaTlyjzVHwLlBMN7Ol4CihB2Z0PxrBhsW84qkw76WAVJGY7YXHnfRxIC3TPZJqh/9ac2v9HkXvGTs2ig=
-X-Received: by 2002:a17:90b:3c4b:b0:311:baa0:89ca with SMTP id
- 98e67ed59e1d1-3134769f71cmr19855691a91.34.1749538133769; Mon, 09 Jun 2025
- 23:48:53 -0700 (PDT)
+	s=arc-20240116; t=1749538260; c=relaxed/simple;
+	bh=soyPmKOiyPuF13kTyA1g1EHVtL0HTpl2yGsgbJZwClc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UclhqjcbCm02EWvb32F/6PwUT+tb4qw9isf4mGNudBi9ME+87MZtDgm0MIypQCTNtka5srqglY9A/RoURomK4ex+dt5yVsZLHFmRKHygthBZKGxI61yPCWQaQfdxiwbaECavT2JIzXvRu/bul7kZFgdlW8EtaTMZTIXdSesZ2VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=YAKdNLp9; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1749538258; x=1781074258;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=soyPmKOiyPuF13kTyA1g1EHVtL0HTpl2yGsgbJZwClc=;
+  b=YAKdNLp9nzzinfboLcoIyX/rRVupMPFFYIaS7U9YbjgLwkQzUbU7697M
+   oQ/mnRu1Y5+XjRMx+t336jKd139ZgIDwYSxmiLxADGifIU/mWrp/MRNvv
+   dSZ5SfPjzov6eP/j/jFjjdoZRBmtgfa98hYgrQmuQ+WZzlYrHFbbjJQgT
+   kfwsHqx7VovDVmEUjMi/jY4z+P8ASJRUi8D0706whdxqteFMPCrfSlxzj
+   6YaZgo9qMuXd5YROj0bX+DD21aZW4BzcWt+mNPm/uJVWexIVCHp0bSB2G
+   u+acixKUOo/gs+cfxP4U2RtI9Znsm/V8VVul6RrNqP/TawEoimi/iecwf
+   w==;
+X-CSE-ConnectionGUID: o/k/Usq3QdaIxjSukshv+w==
+X-CSE-MsgGUID: NibftaXXSSmHn/JY2WykbA==
+X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; 
+   d="scan'208";a="47577425"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Jun 2025 23:50:52 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 9 Jun 2025 23:50:21 -0700
+Received: from che-lt-i67070.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Mon, 9 Jun 2025 23:50:16 -0700
+From: Varshini Rajendran <varshini.rajendran@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <andrei.simion@microchip.com>,
+	<lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <varshini.rajendran@microchip.com>
+Subject: [PATCH] ASoC: dt-bindings: atmel,at91-ssc: add microchip,sam9x7-ssc
+Date: Tue, 10 Jun 2025 12:20:05 +0530
+Message-ID: <20250610065005.64070-1-varshini.rajendran@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250608183745.126190-1-shankari.ak0208@gmail.com> <8b53a76e-cb6c-49d4-8369-c5fda9866734@kernel.org>
-In-Reply-To: <8b53a76e-cb6c-49d4-8369-c5fda9866734@kernel.org>
-From: Shankari Anand <shankari.ak0208@gmail.com>
-Date: Tue, 10 Jun 2025 12:18:39 +0530
-X-Gm-Features: AX0GCFv4HMbMfqrEsamVW00JOG3oqqqDydOm6cLAtUySDGBsK7r-Fy1ZB7R48SI
-Message-ID: <CAPRMd3nwr6fqbeUVBNkAVK6RSz_fgh3X7g79C6vc9GvKXMzAFA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: misc: Add binding for BCM63138 BootLUT
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
+Add microchip,sam9x7-ssc to DT bindings documentation.
 
+Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+---
 
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> </form letter>
+This patch is a rework (adapting to the newly converted yaml file) of the
+leftout patch sent [1] as a part of the series adding support for sam9x7 SoC
+and sam9x75 curiosity board.
 
+[1] https://lore.kernel.org/lkml/20241010120345.92844-1-varshini.rajendran@microchip.com/
 
-Thankyou, I shall use b4 henceforth and shall be careful of sending
-the mail to the correct maintainers.
+---
+ .../devicetree/bindings/sound/atmel,at91-ssc.yaml     | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml b/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+index a05e61431824..ce99c2d8c35d 100644
+--- a/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
++++ b/Documentation/devicetree/bindings/sound/atmel,at91-ssc.yaml
+@@ -16,9 +16,14 @@ description:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - atmel,at91rm9200-ssc
+-      - atmel,at91sam9g45-ssc
++    oneOf:
++      - enum:
++          - atmel,at91rm9200-ssc
++          - atmel,at91sam9g45-ssc
++      - items:
++          - enum:
++              - microchip,sam9x7-ssc
++          - const: atmel,at91sam9g45-ssc
+ 
+   reg:
+     maxItems: 1
+-- 
+2.45.2
 
-> There are bindings for this already, why are you duplicating them? Maybe
-> you want to convert? Anyway, commit msg should explain that.
-
-
-Yes, there's already a YAML binding for brcm,bcmbca which covers the
-brcm,bcm63138 compatible. However, that schema doesn't account for the
-brcm,bcm63138-bootlut node or its register region, which is used for
-secondary CPU initialization.I=E2=80=99ll update the commit message to clar=
-ify
-that this is not a duplicate but an addition for a previously
-undocumented subnode.
-
-
-On Tue, Jun 10, 2025 at 11:50=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 08/06/2025 20:37, Shankari Anand wrote:
-> > Add a device tree binding schema for the Broadcom BCM63138 BootLUT node=
-.
-> > This binding specifies required properties for the boot lookup table us=
-ed
-> > for secondary CPU initialization on BCM63138 SoCs, including 'compatibl=
-e'
-> > and 'reg' properties.
-> >
-> > Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
-> > ---
-> >  .../bindings/misc/brcm,bcm63138-bootlut.yaml  | 35 +++++++++++++++++++
->
->
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
->
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> </form letter>
->
->
-> >  1 file changed, 35 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/misc/brcm,bcm6313=
-8-bootlut.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/misc/brcm,bcm63138-bootl=
-ut.yaml b/Documentation/devicetree/bindings/misc/brcm,bcm63138-bootlut.yaml
-> > new file mode 100644
-> > index 000000000000..af4b879ba6bc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/misc/brcm,bcm63138-bootlut.yaml
-> > @@ -0,0 +1,35 @@
-> > +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/misc/brcm,bcm63138-bootlut.yaml#
->
-> There are bindings for this already, why are you duplicating them? Maybe
-> you want to convert? Anyway, commit msg should explain that.
->
->
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom BCM63138 Boot Lookup Table
-> > +
-> > +maintainers:
-> > +  - William Zhang <william.zhang@broadcom.com>
-> > +
-> > +description: |
-> > +  This describes the Boot Lookup Table (BootLUT) region for the BCM631=
-38
->
-> Describe the hardware not "what this document is".
->
-> > +...
->
->
-> Best regards,
-> Krzysztof
 
