@@ -1,120 +1,181 @@
-Return-Path: <devicetree+bounces-184107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B575FAD303C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:27:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21014AD304A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:29:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95CBC1885A20
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:26:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E58C518842B0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F122820C1;
-	Tue, 10 Jun 2025 08:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C1627A906;
+	Tue, 10 Jun 2025 08:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lAglozZL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T5DY7We+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94252820A4;
-	Tue, 10 Jun 2025 08:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3A0482EB;
+	Tue, 10 Jun 2025 08:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749543871; cv=none; b=kDaHQ4CtO3PDRnMS9cG2DBaofUUlfAjPQPUXqifqrOlJt+QUbwm/jpvpLPasyyo3zURCWq8OigTO6GKnSBT1gvF9fTD4QizYnmA72wCkh60mZATb8P0NGDtiuYeCFi58j82yzw204NV+Gzpki0/eRgs82Y81L2xFMPH07bWZ8QU=
+	t=1749544098; cv=none; b=HuYOW/KICshrevZpDMoG1gEKl8r99C5gGWwqoAzv/BAYxjc5q2XBTwNN65hHoGH59cgHpnwNndAcHwnuXa6dLC+qmD3mV8NuUJUQWRcTWGYS88SsD7V37iv/X67X4/DOgc4XBYEH0GPQoxdqtxbqh9eNB+ZidMVt2hPQOBOtrHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749543871; c=relaxed/simple;
-	bh=66lxnOdLEeO03f3f5flu/jjR23hhyoD7CI23MWhCBmI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aUxYkpIqyWGhKtOadGLQV2buZpwiQ0jmalpwZ5vqGm4pCg0yG3YX8TWHxiMQDoVcanjkjz6RSHkZFsMEx+MRJ1Sd9Qd2TNfe4o7WEayglKU8IMOb5eV9FDFuWU6jnyoIiDC01kUSvddwQsGzPZ5axEJZzTAjHktzmRIX07o5E3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lAglozZL; arc=none smtp.client-ip=209.85.221.45
+	s=arc-20240116; t=1749544098; c=relaxed/simple;
+	bh=/fRyzCVQCiFEDkQInhIowcouSEKQgag8GXH2jYiOinE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FiCP7ZBVY3cg3ube5QzK3TxSFRQHyHRZUfVqfeNjeQvAXjIZSdBeuJXPUM6RLh9KVlCz2pQBwhb6aBeCZckFh4YEYNNPSnGTMAPPGW8cn+Aa8Ddqctjn3Q7A9VJtzZD3iyD75uQ3pu1TaYNgshlOkg5uxT5Tvm1BRTuRNZWY7UY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T5DY7We+; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a51481a598so2973494f8f.3;
-        Tue, 10 Jun 2025 01:24:29 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a54836cb7fso1281278f8f.2;
+        Tue, 10 Jun 2025 01:28:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749543868; x=1750148668; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cqQEs3AYaoL0gKOjKPSZkWHvVXObTv1esvtISy7Z9CE=;
-        b=lAglozZLS4vliTD0WAUlj/jm/JzuPUyV8GVgSYwDAaDFwJZNaOkx6eGeSpTf3fqVLa
-         4apoEj6xd/eJ1Ib2T5onjAf2lKmjlcauJeS2wBUlHailm88qI7RLMqzbZ9F6ercGKHns
-         zSIvxGr3ydztiyBEFbymHbf1c4sJdfejAECsSVxQ3kgAZUJbAh5xwyRCiwZYABNs+1cr
-         BitVeDYd1T5pvHzoPcCSGOtOl0VPAT+TUMDLNILB94W0YalfkT8cAFmEwHHSdWKxv7Th
-         nyLVFBf8+zbQ1IT5Dfpe4Ln1h/yNtDhdbTASvSpL8gdmCGqAsFJkwUuo/MDjoMQfpsWP
-         BmSw==
+        d=gmail.com; s=20230601; t=1749544094; x=1750148894; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OSc2ejrxwbqoW48QeuL4dH/UMS/dbklDTegGTuVuC18=;
+        b=T5DY7We+TzTa7wotukb0Mdc5eC1BETrR0lzhTNZTGd/++MJdlTqf77pj+YxHyTjDDn
+         bvWF9JjlCDoYznyLcZmKRnf6HQyfuWwuCTTbMyI0fxb7+X8HQqjiXgPGdHR4k6VXn1Gm
+         J7/IRAORfSJ4w7Ium9clUOIn+DN/fzJk1Zc+EumMEtqkOYNR0yU2rMGuCj1uhGFwrjgC
+         Dsp9k5xJoyYKMIYrAzvufhP4zkZnKr9NezuuGyIyR3ZgxqrHQvUI20dIKGL+M5ULEe2U
+         hLhcFkeyU9KOVPDWMI/P3OSXjNmvCTIJMsS9g5xY9myRysdf3djMQcN5T6YGYhw8v47s
+         WCfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749543868; x=1750148668;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cqQEs3AYaoL0gKOjKPSZkWHvVXObTv1esvtISy7Z9CE=;
-        b=IS2zlVZmAxUY6cytYe4L0af8yRB17uswwIbFj7iDDPOnGdNjpTfdfVE5+K9Mb0BWLZ
-         6t938qtKosFgPuLmCrAs7UfgjWAJAYXMkLhUHCo7B0fEbdc5oK91Ucn2HiQjTHAiDu3m
-         o8q09oK2gP7AGC2Lv65N5+ASb47qupheRg8IqRjGuFJg62RILaI+EDrkQVTKuESu79XV
-         UsqZ3iJUB4ZLXidAVD0l/LyRZRKdIt+4uWY1ZdU5sD1pgWq7MUPCFXbSw+a6Who16w5X
-         rOsxy4l0CLUnlBi7SbeyljRfX8pPEvdHChnxZ1W8pByyRgdL5UqzqbWENMO6Sn0n4lnb
-         7TVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWLZXLzXRdfaDTUj4DAkinJwt+Da7lqeO8BMrLMnkD8qPpR6yULsLTxaa6weGdZvy7G9PILRlyegXFGJsJF@vger.kernel.org, AJvYcCX8E3uYXXLjVRcyT8qv60z2COzNt4ncnfMu7qGU54+tjJYgsuOM2sjOz1nSny8UlHCEMpPAlxpvI7yd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFLG5Z/EGyw68gwW1lDvEe7nt4ZTsiUesgXr4yXdIIs+ex6Hkm
-	T9W+FB8tB3XsBwFrmBbL7A2BS3KmcpNY8Rxe0c5UA9hS4QZdIL1/4jXf
-X-Gm-Gg: ASbGncs6SgGsCPV0MuF0vAzuViJiq9vBDBOzAP5cNYiIs/K8st64dEQfReHzmv9DyJa
-	Q1S8PwN3UvjCjOY9Ziwhepq8Xqc6QluFbYsZ6ThFumfG6fOlxFPEBK0mFOkjJG7jXJC9i8FXIM7
-	2z6puRFNI1Jvchity8ZY8XXNjGGk3SdXZbl/BRQj8a0KpXN8APSc7GK4W/KAE/WmiDjbb6NHKP5
-	U9yDknLQbHowqA9gFBhmiEtVowCweIaFHHZXfui39Od/Z6SNcdYVBoKc0w67zhvvtnjRfcru6uq
-	PeTdhxObwY+S1pF7o+kVX90VfZQsJAlCZjjHc4/cRX7UZh9ue36VxYMVQifWQsQPDov9wmLMRFt
-	18iflsjpIA4I71ROjEJIeYA==
-X-Google-Smtp-Source: AGHT+IHq0yyKhrUtImiehOp32y/Vb9Nwaew2THNFw7WC+A4KfUrKVNKggo0D04iVTwMH9yptoNgA0A==
-X-Received: by 2002:a05:6000:230c:b0:3a4:d0fe:42b2 with SMTP id ffacd0b85a97d-3a5317868f5mr12249227f8f.19.1749543868010;
-        Tue, 10 Jun 2025 01:24:28 -0700 (PDT)
-Received: from masalkhi.. (ip-109-43-115-15.web.vodafone.de. [109.43.115.15])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5323c08fasm11402462f8f.44.2025.06.10.01.24.26
+        d=1e100.net; s=20230601; t=1749544094; x=1750148894;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OSc2ejrxwbqoW48QeuL4dH/UMS/dbklDTegGTuVuC18=;
+        b=btGHwPq/lrjC3rboomzcSEOQhxGhUuHrdSCAbko9ukuf6qa/AfvnfcXGEMe8l6Eun1
+         nomJWatugLK5W/wm0k5ZD3lgAhOJduGlP5QqXTGy/5PdyxUCQYZePGMhMBrFN8cPlm0q
+         3WzjZebNap6pEquKhSLrvXxt1EI7ms/Xp+4BYNf6o2oHkVDbDx+fx3AeE02dphDorzMt
+         mNJaXWntN0xAMmCAZU6iCYER5QPhLMc3NISVakKjXJVIzlzuxWCuZfjsLQeXr0uSSj61
+         M8143k7yGp9YkJVeBO5WuD4LVyMm2AHhH/2M2wzwNw1um16Sc3IdXDfLVCRzJ2u8QGv7
+         QLLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUZaQKnrhFf1o6/+FwyHPWhguGbR9QedRAu13mZMnNIjsHcdazDybGXZ9UUtjc7R+1SCDb9ocQzpBEip73o@vger.kernel.org, AJvYcCVSm+YtW9iHQRe4GzjhpRaTkzx3u70xEneJPsnzSPTF0KY20Bn6QluCUZyjBh3CiLK9Hpis77M30tmV@vger.kernel.org, AJvYcCVTpp0500/wBfo/d1duBU8Fg+WpDchVHh0lX1At4dAWQSI34cXqoQuaJf10QB7KfgS5DBCuvOHr1sZY+CM=@vger.kernel.org, AJvYcCVaOgyvaE/rX0LDQ4W6Ft051C0B4MviVFA/pGalBNso7EImfbMDr8aczIA7aPyWjftnYGnpPJR02dKN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlkXlmutYi47o3c7tLlsE0pwKE8PZnhC4r+5y3q90y8GduC2N7
+	Za5Ol1lGJrDWlRhD9BOVeb7k5ua1Wr4rBIP9sGHlk4ANqRZwu4Fo5hxW
+X-Gm-Gg: ASbGncs9lDyqpTa+hWp72RIWyMRivncHiC3tpVE78C2+d5YIvErsiK+eFbCglg4Hmkl
+	9NSmzl8iO7OzBkoQVYh8xIGFREy4NRa6sokTk8PnCisuFpGjuamWY8auIwlLqkYqWriBh+tLwyy
+	Okd5Gh/LXnELlFTJKFDDX0C1aOFePh6rQlW99xcjVBfOll5/fYiFqu5nNhBEAjayEhX3Ru/gzEr
+	XbDKVMky42a9oV2bF/uxD/VOs6SZI1CJty3SBMVT6w9UYKxTqY49TtwzIUtpESoBewsrf2XyFwV
+	4nWI/WPFjW/tYYUkkRozntXTFvK/N9XPeezBhv1zmnwIOR/P4CccX53Z2NVrqS0eplQVj8nulb6
+	SoIRY5ATRcqNLkYJ5dmgqLpx930/qeuEXWhYBW9UmLahuclglzP3iiA0+9+M=
+X-Google-Smtp-Source: AGHT+IGym2uDPn67i56Q4gRKCTF1Pq14CJwDdfPHVy4xpa4B/IUkGHpA4PhRj8/8Xv7nveP1ajMo9w==
+X-Received: by 2002:a05:6000:2893:b0:3a5:2575:6b45 with SMTP id ffacd0b85a97d-3a531cb899fmr12589503f8f.48.1749544094252;
+        Tue, 10 Jun 2025 01:28:14 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5324360a3sm11750965f8f.50.2025.06.10.01.28.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 01:24:27 -0700 (PDT)
-From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-To: krzk@kernel.org
-Cc: W_Armin@gmx.de,
-	abd.masalkhi@gmail.com,
-	arnd@arndb.de,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	luoyifan@cmss.chinamobile.com,
-	robh@kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: eeprom: Add ST M24LR support
-Date: Tue, 10 Jun 2025 08:24:25 +0000
-Message-ID: <20250610082425.3368993-1-abd.masalkhi@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250610-spectral-passionate-chameleon-bc0b4b@kuoka>
-References: <20250610-spectral-passionate-chameleon-bc0b4b@kuoka>
+        Tue, 10 Jun 2025 01:28:13 -0700 (PDT)
+Date: Tue, 10 Jun 2025 10:28:11 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: akhilrajeev@nvidia.com, andi.shyti@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jonathanh@nvidia.com, ldewangan@nvidia.com, 
+	digetx@gmail.com, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] i2c: tegra: Do not configure DMA if not supported
+Message-ID: <z3evk6j53hbgf426kc4ltdv4dbisoqnwkfwhapyenpadhey6v7@zvbljg5svppi>
+References: <20250609093420.3050641-1-kkartik@nvidia.com>
+ <20250609093420.3050641-3-kkartik@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dme36rf6gwp73n2r"
+Content-Disposition: inline
+In-Reply-To: <20250609093420.3050641-3-kkartik@nvidia.com>
 
-Hi Krzysztof,
 
-Thank you for the review.
+--dme36rf6gwp73n2r
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 2/5] i2c: tegra: Do not configure DMA if not supported
+MIME-Version: 1.0
 
-> > Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-> > ---
-> > Changes in v4:
-> >  - Moved the binding file to the eeprom/ directory
-> >  - Updated reg property to use items: with per-address descriptions
-> >    instead of minItems/maxItems
-> 
-> And the rest of the changelog? Where is v2, v3?
+On Mon, Jun 09, 2025 at 03:04:17PM +0530, Kartik Rajput wrote:
+> On Tegra264, not all I2C controllers have the necessary interface to
+> GPC DMA, this causes failures when function tegra_i2c_init_dma()
+> is called.
+>=20
+> Ensure that "dmas" device-tree property is present before initializing
+> DMA in function tegra_i2c_init_dma().
+>=20
+> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+> ---
+> v1 -> v2:
+> 	* Update commit message to clarify that some I2C controllers may
+> 	  not have the necessary interface to GPC DMA.
+> ---
+>  drivers/i2c/busses/i2c-tegra.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegr=
+a.c
+> index ebd51165c46b..c7237d26b813 100644
+> --- a/drivers/i2c/busses/i2c-tegra.c
+> +++ b/drivers/i2c/busses/i2c-tegra.c
+> @@ -448,6 +448,9 @@ static int tegra_i2c_init_dma(struct tegra_i2c_dev *i=
+2c_dev)
+>  	if (IS_VI(i2c_dev))
+>  		return 0;
+> =20
+> +	if (!device_property_present(i2c_dev->dev, "dmas"))
+> +		return 0;
 
-Apologies for the omission, I'll make sure to include all previous
-changes in any future patches.
+I know that you use the OF-independent variant here, but has this been
+tested on ACPI?
 
-Best regards,
-Abd-Alrhman Masalkhi
+Originally the intention behind this code was to get some sort of
+validation of the DT (i.e. dmas property is desired, so we want to flag
+if it isn't provided) with the fallback existing mostly just so things
+can operate in the absence (or if APB/GPC DMA isn't available for some
+reason).
+
+If we now solely make this depend on the availability of the DT (or
+ACPI) property, then we loose all of that validation. I suppose we have
+DT schema to check for these kinds of things now, but since we're not
+marking these properties as required, there's really no validation at
+all anymore.
+
+My concern is that if somebody's left out the dmas/dma-names properties
+by accident, they may not get what they were asking for and we have no
+hints to provide whatsoever. Maybe that's okay if we provide the base
+DT, which has been unmodified for a while.
+
+If that's what we want to do, it no longer makes sense to keep the
+IS_VI() check above, though, because that's just redundant now.
+
+Thierry
+
+--dme36rf6gwp73n2r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH7JcACgkQ3SOs138+
+s6G0fRAArMsGVATba0A4EvRyeLCGBYaQjICk09syX5VL65IABICLYMcmNCPCUKC/
+hFqmUvswVXuCfe2FeOdvISnITTN3fcqY1Hsp82jBVmvEmCFP6USleSYGAc+Qvn5o
+rtIUJI4BTTjm9p3G1dy/4IG92uSIIaXhwpo0P6Ras7rzVoPnqFi/0vIHnemoAeFX
+NfDpnYeapDcvOWiJCxtxhTRLWo5A9L46m2i0S27cYzJWr85Kna1buYutJWfSun1v
+zrdiSs6hA5SBEV2Sp/Pm52LuAgLDj0GGFFj6so7XhSvxnUAi13VjInNXA9DLEIJo
+toR0BLzWH3pIMT0pmGw/X/ztvbuoch+WFJMmAmcyR5mTya4wSd+V3lrBIFZPy2rk
+mwM5EXUwr6AMBb03dAE2ALIH/ECPnA062KTMaI9dLeWZFglWgoUDmX/jxDeU1YRG
+Mlp3tkHnlYd2Q6Q9IjKYh34Wk12TESoY/5kkTGZg6i9PYBy8xN6LTDrw0AExUphY
+EBzA22vX056uQ5llqXPGKdKbmrGAKKUG71gR/E3NdgbvxrCNKu7QeSA0aMTfSJBe
+H8Z45PTPHgphire57LHajB2l00zLfH3BSkyW8z2q+AxnqAbYEqvRMhg8HyDDlWF6
+RvR4E2ugPIKqNmiMHVtnrdSUt7ZlRalD/xBgB4RZI71ljVXdOME=
+=yWqp
+-----END PGP SIGNATURE-----
+
+--dme36rf6gwp73n2r--
 
