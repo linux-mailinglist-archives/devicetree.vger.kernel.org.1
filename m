@@ -1,179 +1,112 @@
-Return-Path: <devicetree+bounces-184058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B88C4AD2E95
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:24:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E7BAD2EB6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EE203B1BE1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:24:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A016A7A4564
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9083A27E1CE;
-	Tue, 10 Jun 2025 07:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADECB279783;
+	Tue, 10 Jun 2025 07:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdJ99Gbl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ChwgSYmk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADF922B8CB;
-	Tue, 10 Jun 2025 07:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC1A21B8F8;
+	Tue, 10 Jun 2025 07:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749540283; cv=none; b=a5w5T64sR80XZ2xpCiRNLowKynFPMgYdmfry18zi4OlXkXUWkImwDeR3IpdQMit0LHs4ygSZhBps8ylJFkwklnaPOorY0TN3oPeCGWd/5NfNeyccHR6rd9tEP7NISaZIMIcBKVVIsinncAGFYFMPtPY0waL5OvM9XqJm6SsOSlg=
+	t=1749540710; cv=none; b=TRo5gSFC3xzHC7kQ5FQSVtbzYaFpalHmPLk1brMrMv9kdNefAnISlt8GwPhRK3GaCUJtNrRAeE+BJxLxKqxHkBpj4l3V9E5GFGDgLRLbroLi4KIC9JkuqRkmPBoQ8nDEqxYcWJRIMNu8n9WteX4BAaHMLHQaSuAV3R/Mbm9hPQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749540283; c=relaxed/simple;
-	bh=lc8UFtQQBjZAimb2twHYvmy8+mDtymOWgoS4qaJHG1U=;
+	s=arc-20240116; t=1749540710; c=relaxed/simple;
+	bh=iR2vQrDHdkl1KFcMSrsPENkuxkcESc+evrbedHigiAY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GJVnT/FzSQvzd12zVZB7mB7FoD2XKsEGOHtnnQ0PKblQFqp2Nwq+MismI8pI8/QAHxA0W7FMMmuV55ppqgJyqevZfL5oqPGvU5/jGBq0JHsgK0TxxbCjm6d07xFfAEXiRWiHNLtGQ1CmVxQHO5joMFU9TFfCbv0u92kw9hLeipQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdJ99Gbl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50FC8C4CEEF;
-	Tue, 10 Jun 2025 07:24:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=R7AHVAZvkZM3z2HDmu1y4OUkCPoxSGNOiYbtckAE2SyUukJVKKQvJsAoprnMpHQbJEVslQN0uzDXdHjsIINs5rBiT5/+f/3lN4w5w3jF0pdhdmahr6FO+Y1jHjWtxCQONxTifL2cTmDL0Yezl2yqehQ4d5MaW7dgPpCj2GbY1sI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ChwgSYmk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0E27C4CEEF;
+	Tue, 10 Jun 2025 07:31:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749540282;
-	bh=lc8UFtQQBjZAimb2twHYvmy8+mDtymOWgoS4qaJHG1U=;
+	s=k20201202; t=1749540710;
+	bh=iR2vQrDHdkl1KFcMSrsPENkuxkcESc+evrbedHigiAY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pdJ99GblQqDmDeQjiQqHTN1/NuxDWFmZFZ/bda0ZG1QdUi3pBpQ5tXVbSn0D7f4kf
-	 Xct4CyZAzfA2d2ivm0KkOm/dQXMQo8VUmhHSWH8EkPPQr7wSauBON4gRaE0f71sZu5
-	 h0dkEvGY0o6YXF5tH6ZSrSxz4b34xkyAy2pDTmr4HCRL8Gf943jQC5X9mZ327fJ22+
-	 CDm9yB5RnTRzcMQjztOow3EVG98qfU8LAWoAEd5DN9hHo6aByYYSjK+FRAf2r1/UH4
-	 6yzhwWPgrAuYCDqfxzqJ3mmyvObuDDdS02sw6JLhsgWtXpf2C0D3qV7cEzqeRGInfV
-	 fSVn14mi17zIw==
-Date: Tue, 10 Jun 2025 09:24:40 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stefan Wahren <wahrenst@gmx.net>, "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v3 1/1] dt-bindings: net: convert qca,qca7000.txt yaml
- format
-Message-ID: <20250610-thick-gifted-tuna-7eab4f@kuoka>
-References: <20250606155118.1355413-1-Frank.Li@nxp.com>
+	b=ChwgSYmktP6WfLNZH6vaxPWOHJMdO3I405K9JApjtyBfDmF4tNgNccgTRNddLXbFP
+	 hjFLJhhpgdnzbyyaAwlODk7giTmhZZVXXYH9oCDNuJPQ78QUn658kCt4TAAjYYjIYe
+	 bzVHL1/5D2/xMrDjfGekgsQAn2sSUbPfZRmOuQhIH0wystZ/HjtAMPSxjYaIXDXjDH
+	 HszkrSNaepqcC48mrhbPXa/qerGTg5g0vkWeGjqnUxNcW/QbC35KRQL6sWWiQiCgAN
+	 S0WDsCXltdGKY4XMLZf4zqo88L/4EvVtuuuratfnJFEnIADGOTQh09HE3YgWSU2hkR
+	 42Y7F/jYcVMlQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uOtST-000000001kc-2cCF;
+	Tue, 10 Jun 2025 09:31:46 +0200
+Date: Tue, 10 Jun 2025 09:31:45 +0200
+From: Johan Hovold <johan@kernel.org>
+To: jens.glathe@oldschoolsolutions.biz
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v2] dt: arm64: qcom: sc8280xp-x13s: amend usb0-sbu-mux
+ enable gpio
+Message-ID: <aEffYQND8eUgJbua@hovoldconsulting.com>
+References: <20250610-x13s-usb0-mux-v2-1-598454e6ad64@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250606155118.1355413-1-Frank.Li@nxp.com>
+In-Reply-To: <20250610-x13s-usb0-mux-v2-1-598454e6ad64@oldschoolsolutions.biz>
 
-On Fri, Jun 06, 2025 at 11:51:17AM GMT, Frank Li wrote:
-> +description: |
-> +  The QCA7000 is a serial-to-powerline bridge with a host interface which could
-> +  be configured either as SPI or UART slave. This configuration is done by
-> +  the QCA7000 firmware.
-> +
-> +  (a) Ethernet over SPI
-> +
-> +  In order to use the QCA7000 as SPI device it must be defined as a child of a
-> +  SPI master in the device tree.
-> +
-> +  (b) Ethernet over UART
-> +
-> +  In order to use the QCA7000 as UART slave it must be defined as a child of a
-> +  UART master in the device tree. It is possible to preconfigure the UART
-> +  settings of the QCA7000 firmware, but it's not possible to change them during
-> +  runtime
-> +
-> +properties:
-> +  compatible:
-> +    const: qca,qca7000
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +if:
+On Tue, Jun 10, 2025 at 07:04:46AM +0200, Jens Glathe via B4 Relay wrote:
+> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> 
+> The usb0 port didn't switch to dp altmode, investigation into DSDT
+> UCS0 device resulted in GPIO 165.
 
-Please put this if: inside allOf: section, so you won't need to
-re-indent it when adding one more if-clause.
+DP alt mode works on both ports of the X13s and "resulted in
+gpio165" makes little sense so this commit message would need to be
+extended.
 
-> +  required:
-> +    - reg
-> +
-> +then:
-> +  properties:
-> +    spi-cpha: true
-> +
-> +    spi-cpol: true
-> +
-> +    spi-max-frequency:
-> +      default: 8000000
-> +      maximum: 16000000
-> +      minimum: 1000000
-> +
-> +    qca,legacy-mode:
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> ---
+> This patch amends the enable gpio for the usb0-sbu-mux to the one
+> found in the DSDT file for this laptop. UCS0 shows a list of GPIOs in 
+> a certain order, and it has 2 buffers with slightly different length. 
+> At the place where one would expect the GPIO for the select pin of USB0 
+> (by pattern application from USB1) is a deviating value (165 instead of 
+> 101). This value is the same in both buffers. The GPIO previously used
+> is also there, but at the end of the UCS0 buffer structure. Changing it
+> resulted in a working dp altmode functionality on usb0.
 
-This should be defined in top-level properties and you only do:
-"foo: false" in "else:" part.
+GPIO 101 *is* the OE_N pin, while GPIO 165 is not even connected
+according to the schematics. The mux may still work after this change,
+but you'd be relying on it having been enabled by the boot firmware.
 
-> +      $ref: /schemas/types.yaml#/definitions/flag
-> +      description:
-> +        Set the SPI data transfer of the QCA7000 to legacy mode.
-> +        In this mode the SPI master must toggle the chip select
-> +        between each data word. In burst mode these gaps aren't
-> +        necessary, which is faster. This setting depends on how
-> +        the QCA7000 is setup via GPIO pin strapping. If the
-> +        property is missing the driver defaults to burst mode.
-> +
-> +  allOf:
-> +    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> Since the X13s dt looks derived from the SC8280XP CRD, it is likely that
+> the change also needs to be done there. 
 
-This should be part of top-level allOf.
+To some degree that's true, but we have schematics for both machines and
+they are not identical.
 
-> +
-> +else:
-> +  properties:
-> +    current-speed:
-> +      default: 115200
-> +
-> +  allOf:
-> +    - $ref: /schemas/serial/serial-peripheral-props.yaml#
+> This debug effort is a result of work / testing of the 4-lanes patch
+> [1] on all available devices. Independent of it, it enables dp 
+> altmode on usb0, and with it, also 4 lanes, making it even more useful.
+> 
+> [1]: https://lore.kernel.org/all/20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com/
 
-Same here.
+NAK
 
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet@0 {
-> +            compatible = "qca,qca7000";
-> +            reg = <0x0>;
-> +            interrupt-parent = <&gpio3>;      /* GPIO Bank 3 */
-> +            interrupts = <25 0x1>;            /* Index: 25, rising edge */
-> +            spi-cpha;                         /* SPI mode: CPHA=1 */
-> +            spi-cpol;                         /* SPI mode: CPOL=1 */
-> +            spi-max-frequency = <8000000>;    /* freq: 8 MHz */
-> +            local-mac-address = [ a0 b0 c0 d0 e0 f0 ];
-> +        };
-> +    };
-> +
-> +  - |
-> +    serial {
-> +        ethernet {
-> +            compatible = "qca,qca7000";
-> +            local-mac-address = [ a0 b0 c0 d0 e0 f0 ];
-> +            current-speed = <38400>;
-> +        };
-
-Best regards,
-Krzysztof
-
+Johan
 
