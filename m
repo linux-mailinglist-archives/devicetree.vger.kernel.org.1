@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-184377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A8CAD3D7D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:38:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14A6AD3D8F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CA6418914D7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:33:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E7E3AEFB6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECA4241691;
-	Tue, 10 Jun 2025 15:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1724238C10;
+	Tue, 10 Jun 2025 15:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDZTTs+4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V0Hco7bm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5AF24167A;
-	Tue, 10 Jun 2025 15:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED5022A4CC;
+	Tue, 10 Jun 2025 15:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749569403; cv=none; b=CC3LRBa2+xLr8tVThOxBfuArOsDM6jD/M+zsuQo+gmVZhTMAlMllhGQYehz0W6NvxScfax88OoXtKkyfz7kGOqSn2L9YS6mhnOakfL7aWIur7s+D3rjAlSFxSp5/dyIEMO5E2FD1AKLri8zKdhi04hAHl9ips5NVtUmRRSNiHW4=
+	t=1749569578; cv=none; b=bs+T/Ik/HPBaLycgoBss15VfL0d5+5xX/BKdEMMQ9QhpbrLnCr4n3Ke9Lvi1j/9y+qejRAsnF5JNdSuMAeu4pFQh3CeMUxYx69IGI4Q7HQKOc8PWlojfMPs5BgxXZVywzjX7oUJieML9pm9l1XkywX/Bee0/kSNNbVfe8GAynOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749569403; c=relaxed/simple;
-	bh=kyCy/imDquzLmhCOynV44NQ7rOEtssv66ztxY9qztlI=;
+	s=arc-20240116; t=1749569578; c=relaxed/simple;
+	bh=q6RS+C7zhMB25iOBQZc/9f89PNf4OlYGhPMsZzpqjfM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ucb/DWgyP+RnHKjiH/6GS4jvBOhgs/7zg+0jjYNd2zFz50GB+XVDTVbybWjhd7lPXy00qmeCwHmQUAg2n5mY5yhPhh4dzfiB6K3MMi+4Dn6fCdAIwE2vTSguQTFJRzUUTCwH9XASLt5KkuMP+KywxJdemjhePaCtV/J33sJdZNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDZTTs+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9A94C4CEED;
-	Tue, 10 Jun 2025 15:29:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eaWDL4RHOKOQEF3x1Nrt+IaonbM9sZvGQg7rmK2oxFIlgvn+a+an3HDgZijp6FtTj7TMudFoSFLuNZ1Ib8RvpkLSXqoIeSCYpxpahxZKuWxPl6S1uQZ2sUNZEi/1bs55SRxi375522JaXNKfb7tgB9DF1rv5gznGpIRC1brdxh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V0Hco7bm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F51DC4CEED;
+	Tue, 10 Jun 2025 15:32:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749569402;
-	bh=kyCy/imDquzLmhCOynV44NQ7rOEtssv66ztxY9qztlI=;
+	s=k20201202; t=1749569578;
+	bh=q6RS+C7zhMB25iOBQZc/9f89PNf4OlYGhPMsZzpqjfM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CDZTTs+4lNSsJUif/5/GIgi5WfDonSiL174XP1rohp203SNXmPwX0jfdA8h8w1jww
-	 1b3RvkBTCZfZzHt+OfaB3IU55MvZyHOazFqR2xAF2BhtXrQeuosIOJHWIjuqxIk/Hz
-	 EVmLQRYPeshqsrAK7wLgOA5PdtZKoBsXErkF+y0LDImaQ/BamsynmK1xoRrji/hG9a
-	 Lzyx1abVuS7vZox5vKTycxn2zXJxmqHFOcNYyTEqVMhYSUnuBA6oVU+NGPusQEb/yh
-	 BFzMzUPIBjVR95QaZcbuvN3BFxG/YxTI+7H3mY/utQ8C2GS/dZ5IrmnTkUlkrCuIbm
-	 ix2VsQ6pbS0Cg==
-Date: Tue, 10 Jun 2025 16:29:57 +0100
+	b=V0Hco7bmWY8LdPkZ4LFbstckfrj0sRITV0hyXuN5O7BQY4TLrMq+JMw2Kuj2oBXgp
+	 iPlfxpnVgHKKz6fqdO7lOBBMjkLR8XIB5nyrT2mscI2c7iQpMwS8qVByuB5RgR0Qpn
+	 fq3qY4T//LWNkv11StE8oq2CZWrtXVbvD9s+XCTkmhzZQiIoi7FophCSbF2nwsNbaD
+	 rGpIfk2DlQ4+HS31zvpqB1JuvY09EdQl4qnp+tp6tZvyHbsh5PF4HF5C0cg0IpDasc
+	 vjhngrsOw6vIsVBGc2yEbScLHPVHlI6bZhEXhapJsFHgBVqWCuuV9NIhqRiG1Sdxwi
+	 6eLaP2uDlKV8A==
+Date: Tue, 10 Jun 2025 16:32:53 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] dt-bindings: serial: renesas,rsci: Document RZ/N2H
- support
-Message-ID: <20250610-scenic-primary-1dcc3d7fca20@spud>
-References: <20250609192344.293317-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, Sven Peter <sven@kernel.org>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: i2c: apple,i2c: Document Apple
+ A7-A11, T2 compatibles
+Message-ID: <20250610-connector-agility-f2d75a8ab825@spud>
+References: <20250610-i2c-no-t2-v2-0-a5a71080fba9@gmail.com>
+ <20250610-i2c-no-t2-v2-1-a5a71080fba9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,38 +64,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HmWQajhFgxFlmDaU"
+	protocol="application/pgp-signature"; boundary="x4dHHzQr44MfMq5x"
 Content-Disposition: inline
-In-Reply-To: <20250609192344.293317-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250610-i2c-no-t2-v2-1-a5a71080fba9@gmail.com>
 
 
---HmWQajhFgxFlmDaU
+--x4dHHzQr44MfMq5x
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 09, 2025 at 08:23:44PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Jun 10, 2025 at 09:45:20PM +0800, Nick Chan wrote:
+> The I2C controllers found on Apple A7-A11, T2 SoCs are compatible with
+> the existing driver so add their per-SoC compatibles.
 >=20
-> Add documentation for the serial communication interface (RSCI) found on
-> the Renesas RZ/N2H (R9A09G087) SoC. The RSCI IP on this SoC is identical
-> to that on the RZ/T2H (R9A09G077) SoC. Therefore, "renesas,r9a09g077-rsci"
-> is used as a fallback compatible string for RZ/N2H.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> ---
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---HmWQajhFgxFlmDaU
+--x4dHHzQr44MfMq5x
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEhPdQAKCRB4tDGHoIJi
-0tV8AQC7gtdOkM7CyA1in1xw/ToVkVEQcqwtjM+M0xAUpTK5fAEAihia99XC7k3W
-cT2RxrgiyCEhVf25i3oa0qF6JSLsSQY=
-=Hf28
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEhQJQAKCRB4tDGHoIJi
+0iShAP0aNRWibVunJQxPKvAgQLEjADb3xVu5IbW7ACnrlSyizwD/SBjcrfNCx6LI
+j/CfImGYmkxvjKvzuDmkDe88dmljGQU=
+=fLjK
 -----END PGP SIGNATURE-----
 
---HmWQajhFgxFlmDaU--
+--x4dHHzQr44MfMq5x--
 
