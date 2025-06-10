@@ -1,123 +1,82 @@
-Return-Path: <devicetree+bounces-184468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BEEAD41D4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:19:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EF73AD41E1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:25:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31E9A1768B4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:19:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E8881885B5D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC7224679C;
-	Tue, 10 Jun 2025 18:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9CD524679B;
+	Tue, 10 Jun 2025 18:25:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="W1JWv9Kp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1grllPP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA4323AE96;
-	Tue, 10 Jun 2025 18:19:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FCF4235062;
+	Tue, 10 Jun 2025 18:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749579579; cv=none; b=j288ZOVEvsodzSRs5jI9Vm7S+NYrRHD11oJXDwpiZ5kJfQ4q/vGgP0n9rEN9DrRCfO2Y1jNHunPcj4jgk4++xfvFwnAMAJxNlm+wNAI59S1KFpxAu1DWId2xhORyO9LbZl3nJ7N+zpMmsKKa0Y646JF2emVSps8/nfj7GpuojGk=
+	t=1749579930; cv=none; b=LXhwup0OOOqw1QArz30veM3+RA7Ttzkf5j1f5ZsScwplfBO7jUaNo9UnZBp4sZkUyTcf5An26JZKdab7CIPtSjByutwOJqOaVV35xemTkP8xYXON3+kOd2e4h5VXqFFE1+p3fvCbeP96iefsv7CU1jnKDo7CpDRzbKRc7ePIj54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749579579; c=relaxed/simple;
-	bh=Sf+/PTs/Lz5YxcSzgeZ6krRCOhaKZUsHSbB6B664SQM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sAwi8Pqz3p8Jl0XiNiHiTxgsnPfjzqP6Dt1ngT2wRLlo6La3QzuKyCymElQ7a5jdsrgBa7gr1p5wrLMUqAq3XGDs0DEgHcejQ1OmJgWoxy9dCqE4nd0zAiO9qZXKomu5UdL8F42g+19i44hn22jAIDjtn0148LO7bJDezheDwzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=W1JWv9Kp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1749579569;
-	bh=Sf+/PTs/Lz5YxcSzgeZ6krRCOhaKZUsHSbB6B664SQM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=W1JWv9KpviFteALr6LtWRjuNi/DB62SY7Z7oPEpnHgI/4Lfy85z1VLQ+27tsGhOxY
-	 vRxxj/L5s8IpBFHQuyOPcflvF7qUr87yiWLTk9ezT/TWxhfODcCbJIh34EPjqKGM3h
-	 wrDIld7ZbHxppg0CNIkKJkh2h7ioXurEzICh4rsVOGu8shQgfzrRPxXym+8iqz1Gcc
-	 d6QC7gHCDkaxNsqQggPfMPbkoXAI4w417r4SV+ituO8JQjEynKMllEBoQ9zoLGkfAa
-	 9emBbI3vCLjLtvkCek1B6kkL/ZpMXmcjeoaOoQxGLD1lKy0Wbknxog7jm7VJj9RnSf
-	 g/Y2ednB6sYtw==
-Received: from [172.19.207.65] (unknown [66.205.13.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E891C17E0FAD;
-	Tue, 10 Jun 2025 20:19:09 +0200 (CEST)
-Message-ID: <c666ab1bbc619cbb99fa38b96891a24ca22c9672.camel@collabora.com>
-Subject: Re: [RFC PATCH 00/11] VC8000E H.264 V4L2 Stateless Encoder
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Marco Felsch <m.felsch@pengutronix.de>, benjamin.gaignard@collabora.com,
- 	p.zabel@pengutronix.de, mchehab@kernel.org, shawnguo@kernel.org, Sascha
- Hauer	 <s.hauer@pengutronix.de>, kernel@pengutronix.de, festevam@gmail.com,
- 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- paulk@sys-base.io, 	hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com, 
-	sebastian.fricke@collabora.com, ming.qian@nxp.com
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Date: Tue, 10 Jun 2025 14:19:02 -0400
-In-Reply-To: <20250502150513.4169098-1-m.felsch@pengutronix.de>
-References: <20250502150513.4169098-1-m.felsch@pengutronix.de>
-Organization: Collabora Canada
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1749579930; c=relaxed/simple;
+	bh=vV+zLlcDSXwtI6VzeEwGPed4NzhJqKATMkkeQ6fc7BY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WXUyWh7PQhQB/aC/ZYMniqEOBVE0EAs+lq8n2om3IuhQDhOuztLNH8zSGWC/PHeKjUTNkQ+0m37FGE9qyXGeH3RQsw/3dxfNRXeDe34RJeqzy+A7kCJH9rTAN9VOuYF9IIFMODZ6+CVVc48k0mwRdTzZB40k+aZMMVgE+tV3cXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1grllPP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7190C4CEED;
+	Tue, 10 Jun 2025 18:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749579930;
+	bh=vV+zLlcDSXwtI6VzeEwGPed4NzhJqKATMkkeQ6fc7BY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m1grllPPHXth1TJlkbaw4qXNOwj+92Ex/TvtFotue/oourA6MJVvYWIxlZmSdl4Ym
+	 5aM3anf5/kYMb0RdQ4aE9OtniMf3ZI6Tv5owKL9oD6MGzD0oeYLmMJY9Nu6MEHEXRQ
+	 aszZWaUsYTwHv1+mOiHQYAlck++1Vz+RM9Cw3C5AFtZ7zkMK8h5EfZBy0ZHknDaFHz
+	 Hlv9PwUB/0qMFBgtQAlTHTo9Ly5IaN5dQ9FOAvMqY42XjXBqniEaXbT8CJ91VGEbHk
+	 vognlTrhTUxYYG2ABpcgudfKEgAzn4J/UUy2luncTwM8HHbSstolZRJC48+HIg520J
+	 f23unPKzuG79Q==
+Date: Tue, 10 Jun 2025 13:25:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Chiang Brian <chiang.brian@inventec.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 1/2] dt-bindings: trivial: Add tps53685 support
+Message-ID: <20250610182529.GA2478194-robh@kernel.org>
+References: <20250610102556.236300-1-chiang.brian@inventec.com>
+ <20250610102556.236300-2-chiang.brian@inventec.com>
+ <99f846c6-4041-4d68-b2f7-c686aa8c2bca@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <99f846c6-4041-4d68-b2f7-c686aa8c2bca@linaro.org>
 
-Hi Marco,
+On Tue, Jun 10, 2025 at 12:41:15PM +0200, Krzysztof Kozlowski wrote:
+> On 10/06/2025 12:25, Chiang Brian wrote:
+> > Add device type support for tps53685
+> > 
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
+> > ---
+> > v8 -> v9:
+> > - No code changed, correct the order of Acked-by tag
+> > - Link to v8: https://lore.kernel.org/all/20250602042454.184643-2-chiang.brian@inventec.com/
+> Stop sending this to me 6 or more times. Every version you send multiple
+> times, that's way too much.
 
+I only have v1, 2, 3, 8 and 9...
 
-Le vendredi 02 mai 2025 à 17:05 +0200, Marco Felsch a écrit
-> 
-> [1] https://github.com/bootlin/linux/tree/hantro/h264-encoding-v5.11
-> [2] https://gitlab.freedesktop.org/dude/gstreamer/-/tree/h264-stateless-encoder
-
-Can you rebase against the upstream work:
-
-https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/5676
-
-A lot of changes Michael made in your branch are already in the upstream MR
-branch. An example, in the upstream version, the src pad (CAPTURE) is already
-being set before the sink pad (OUTPUT).
-
-I'd like to open the discussion about sizes, as I'm writing things down.
-In your modification, you affirm that the encoder must ignore the size
-set on the CAPTURE. At the moment I tend to disagree with this
-interpretation and would like some feedback.
-
-There is couple of different sizes we'll have to support:
-
-1. Allocation sizes
-2. coded size
-3. display size
-
-My believe is that we want to split the size in 1 and 2 since the padding
-added to the allocated size should not affect the amount of bits that will
-be compressed. We should be able to further pad frames without increasing
-the compressed size.
-
-For this, I wanted to mimic the stateless decoders, and define the coded
-size, the one that occupy space in the bitstream and found in the sequence
-headers to match the CATPURE size.
-
-3. does not exists in stateless decoders, since it has no implication
-in the decoding process. This one I'll leave open for now, since its
-only needed if we have to generate some headers in the kernel. We have
-had a lot of discussion toward that, and if so, I will pull in the
-use of S_SELECTION.
-
-regards,
-Nicolas
-
- 
+Rob
 
