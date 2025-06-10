@@ -1,136 +1,137 @@
-Return-Path: <devicetree+bounces-184077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F46AD2F4A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:53:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395E3AD2F52
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:56:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A43ED7A427C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:52:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FE8D3A3231
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071F4280007;
-	Tue, 10 Jun 2025 07:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A58280001;
+	Tue, 10 Jun 2025 07:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jhPOg7zO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a8ojwWOq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DDF27FD49;
-	Tue, 10 Jun 2025 07:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFC522DF9F;
+	Tue, 10 Jun 2025 07:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749542001; cv=none; b=UkTXPps5zUaxZTptMWvxGdyrzYgjE72GIWH4R9nTduUd0TTglOoJAKFdHw8XtFrlniYBK604OU5XWJqQtt6/YLOj8LDUg9/daKn7bZxEGBpWKcYao/4Z8ZkGdXcPJRjgMs7+IbA3FUBKjaKkXmxhjmCmMHFRyCHV50SdJuSYnMg=
+	t=1749542203; cv=none; b=l3Z14uZHF75ULMUP9BmtXzjShVIAmQ8L/86xAQmGfi/IHvbrX6bf55YG5y+dwDfyEsYvlm45wKTZYCACv12XcCv/G25XHEAdrngjjDGpyQ9G2aJjf7IPRJegg5kPQy6Srp01PAoGrKdvv46DTGTwKpOtaYwuBO1JG9mM2KsDp9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749542001; c=relaxed/simple;
-	bh=D93wrwrug+T7phvKNJP76KESEMVNJ0xHk87qxJW+p58=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RtOErsfnf1IoI6I7NKcVxor4FI4bR9PmW/TfqhHc9Q4qE+wEb/EHC9cW8WlVOT7aRhwD+LfvZ7UJFIexJ0+Xd4PYOvHqFkRE8PiFFHEuXZ6566Ys2vZ9O6U17x4b3F0Qu0j8S6yrWz71j8cb5SyPCSQAN+0F8AUc7SZHlMpo2dU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jhPOg7zO; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1749542203; c=relaxed/simple;
+	bh=8KSFgIfeJ75CBDfAAmC8H9y35NzbCDTmXTTDHHmbZ54=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bUFRy+yjxvAgSnlTVWKZFn7GjSnqtLGRERS9Iha5RyuLqk9eIsFlXtW4Vz379uEC0j43G76KcEpB0+KaLv/w2kXe/gMlUsHFUM8PM+FkCkEXJjO5CSOgYSjMa4wwDO0zt6hTZRRBgww759Y8NJ5kmTHbEtyH6p8qxFIyFZYFQH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a8ojwWOq; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-442e9c00bf4so41953695e9.3;
-        Tue, 10 Jun 2025 00:53:20 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ad8826c05f2so974095466b.3;
+        Tue, 10 Jun 2025 00:56:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749541999; x=1750146799; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=D93wrwrug+T7phvKNJP76KESEMVNJ0xHk87qxJW+p58=;
-        b=jhPOg7zO/p81vdnqNl6+0txTYwf38xXS5VfhA0pDvyDCI2g8eDGzRpHog3x5P5DOwY
-         JR1xzSCZK4rMuK4htmI7SM8IyiJC7FofdDGFQjvZr4dF3lTMquXuy4Y9udHhplkzMF/9
-         Yp58Af3mKJbpzoq8RePRVOwOEcYkP3mcXe4jNltYmACTWq24qojgVcbeEg6QSO5LXpki
-         PX9PU+Fg8U/HHtSxS2pktanKKYN7qJnmDuJB0DyhAMdHleGYNYW2Kal2tvU6XfKdvZzp
-         d9wRtd6WgFcKI1AMXd7vfbxEQfhgT+xpTwu0Bg1Db6K9G0sHRdsZ0GRDUjK/oHPHr7kQ
-         /Ghw==
+        d=gmail.com; s=20230601; t=1749542199; x=1750146999; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QOUbBqM3ir5KebfQ8XMq8ZIcUlqPnpdgMkRLby67yUs=;
+        b=a8ojwWOq0tplFhkXZiwOy0Z0KT7nZlD4DOfyyBMb2pIhLmqEJfYuJs5ilGUqok2qji
+         mJ9nDIBWtIjR7zRR2pCzI9ILhobS2cF4fcfECMDxtLSdgtKIuAxG9YaBYXe5FNYhDxrG
+         oLGczQUVIwuhhIcfg+enbLAKjDuxXdeOyR47ILqtwBYedONwYk88pK3/6gdemWVoF48G
+         07oQrB1g6WK0KWWTNKy2hOTmL/fF1LVUlB22y19JcEyxApbpjeKh3pMHTxRMkhd+2JeQ
+         NM72IjMG+tpqRCMGl/hxv7NAlY8cBEsnebsbKqhrt0yNZoz3HWNudu7L+CwL6XJ1Fzzk
+         bwvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749541999; x=1750146799;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D93wrwrug+T7phvKNJP76KESEMVNJ0xHk87qxJW+p58=;
-        b=vD8esIW8ZKT1SNH4+LjBohULRGTOjjl3P/h4D1yjwJUnTWZAsrNKm/Tiw7SZoaAX9R
-         SCgXUael7OTgqwaMpeVkKh75SF2jhyEcg4ja60VOUTijp+Cm1VE47k1FXoLSGFsiKk/m
-         GlN1Ai4aTh+uX41vFZIdwC2ka6uk8OshNmyyjfDr4LZ7vCAZyQ614CrS67P/HfSK0bjY
-         ilblfrks/hJSKpJya1zHVK5u3LhPYuwcgvw5idZ73V7UDSVMToNEIa56l295QIP/NWyh
-         oRdHGEmHZ1U1NeOswQ6lnlRaKTcsbsjwQSSTRhw4JWVY4q/lKjuONejE5HrBbqgpQu+/
-         HCbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUd17q/+1txeoM7K9S0ftglh9JLZicHz9QVElce8jMWXXsKvHNRNIOcrFXk11Yad04ZNPX7kyogee/aeWjt@vger.kernel.org, AJvYcCV/2wMLisUqs83FaMgDI9KWrBy7Nna2ePMzYqx9GMwICIvHA5H2cMs6pYN3h1Tadf41m4E5Vco+k6qXda8=@vger.kernel.org, AJvYcCW5bsTqhFgE9H0kULnEUYX/NKUH3Te1g9ggB4R6CZOJNZCn2l7h7YCLfGXwbP6sT119SDhOyydDvone@vger.kernel.org, AJvYcCXhXdljLoxXszwMNrmLvG2cq9Dd93vnS/cWevH/HllZYJv2tS/+qlL+Y5o9/8cli1iFLNEF496Oro64@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwuFU3rHgGNzNfR0PJgEQeqVAgvcG8GuiDxmnnpy657bvxWQjv
-	nUWWd8KnjEvbqd7BgeybYj/bUXrs78LK4wHbvw6L7nvxDyH8WEQav05F9lczrg==
-X-Gm-Gg: ASbGncvuMHwcC6Se/B3GGrX0PdofkRPlTiQ1AVJ5id6VRZiDuMtnr5LvRTw9wfjvtQR
-	tFNqpk3k+er20n1Uw0Vfx7pLWXt39r1stvApgnSytKA6FcfGj0ZrLipoSWLtoi4ahFMZ20YrYfp
-	jdgvSRlvIjDSf8cXC9RUBMae5CEjwmwlv9g6y7QeS2AuGUsUa/IEDdBRGlm53jyiHwybQVSyKp0
-	8gtfX4IgHQ+Y8//YLFHOczTNr0myHuP/DnQ4CpHxZOO3rYJTvw4/A/zGw5ZNkxrB6uu6SkBZIbC
-	NQgcF059y3DqJuU61NNGHXx3LGcONMB0ha6Y1Ygd0nDPuokzx57kwV2uh0aeWjF4UxzwGVWEYc3
-	0Hm4lFn85PiEBrsm6NSG71oxMVUe0FU5oGVo+xfhrB6eJ/K2N
-X-Google-Smtp-Source: AGHT+IFh9YhJnqhWDkVmmvuw004LvuNmD2yeN3hYhtP9reA+plSwptUHsmV7EJfZF3m7Whz33ZBByA==
-X-Received: by 2002:a05:600c:8b48:b0:43d:9d5:474d with SMTP id 5b1f17b1804b1-452013141b3mr160712685e9.0.1749541998248;
-        Tue, 10 Jun 2025 00:53:18 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45307b4788fsm83220535e9.21.2025.06.10.00.53.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 00:53:17 -0700 (PDT)
-Date: Tue, 10 Jun 2025 09:53:15 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: akhilrajeev@nvidia.com, andi.shyti@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, jonathanh@nvidia.com, ldewangan@nvidia.com, 
-	digetx@gmail.com, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] i2c: tegra: Add Tegra264 support
-Message-ID: <kbfl4ye72chc4avrpjzirh73belp6waue22sa4qypuljjaus44@hpxr5dkthezd>
-References: <20250609093420.3050641-1-kkartik@nvidia.com>
- <20250609093420.3050641-6-kkartik@nvidia.com>
+        d=1e100.net; s=20230601; t=1749542199; x=1750146999;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QOUbBqM3ir5KebfQ8XMq8ZIcUlqPnpdgMkRLby67yUs=;
+        b=QUkOI+HqPFcSOQrUoAt0eJg/dNk4Oc9avbWDOr8HbCVWVdK22lw0EbMuRXVDiEzLpV
+         X+OququdYhK5+cbHt9NBNdgWFP8HFI2fHc1Oh9Hq/XgVqJBBAm4OfZ0+VWxvSjandl9j
+         C+xm4sDqsLhDGEsmbBKrCbHjHm44U9mUitdRYgC6N0EzQ/ybimfW42o5+31p7vpTafwK
+         6MHl9dlF4H8uzWftkEEXxO8WrCO7nUlTTZBrbXnyedRTMVjapXREt7ISQ78dVvaoynwX
+         dQoaLDLCXfWkRutNM+9v3ext9SeqB0RXtReHUdPCIX4Yq8qO+tIomv4dZ7Gge9DBjHrb
+         m12A==
+X-Forwarded-Encrypted: i=1; AJvYcCVK165fNYC18TJZd/hmO4GGI9qZT6S5UbG6o/YUPYSBZq1mSJf57JkEuJLyPE6e0Usz04oo+Xhd9E2RP8k=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPagJ9CHcOLsZ1d/BA8k8pHb2TU4G5qvgrM9c+49KDR5TpeTtK
+	YOiR2o/V/xKB7NDa9eeke79aGW84SZdR+XgZSOZi04oWUqM7lAU+MEH5
+X-Gm-Gg: ASbGnct7RhW+FTx1UAijSnxomr3FWd1pz4Rsd9ChSg8FX4OkeL6BrFg7pD+c/KfLKiI
+	CTslHWUObfqsxmH/2UJJhMCj6Llve/id2ylWDzL/8vzNBDMMJAV0rgH33+w5ZgUH4Xf3jg1GVlM
+	xxh/Ko3rFHxD73uE3khuTk/8VrpWVIWxDg3pTBrB1eilZxysoPc2eguOb9GB/wMgmwrvBclcdOm
+	yu8k7W4zR0D9zwu1PJpibAXbzEXsheHdA/bRmZNDi40AX+tKDhAJdD2vai04FK5pmARsYuhBaQA
+	hL4Bjl6DjNi+H8hGvqCV3pjx4AvTLFDVDZqYlVRDCcNc6A6a/CBoWVBo2nNxIGuq3kDVhyshBuD
+	4+Z6WJE8QOINyaSXyfg==
+X-Google-Smtp-Source: AGHT+IEqUuioeF06M4UEhjTf6G4KshJFWg/fKaZGLmzrQ29pFCkBaqkegPYTZzwVhiaXN+0O8ZO3Bw==
+X-Received: by 2002:a17:907:2d08:b0:ad8:96d2:f38 with SMTP id a640c23a62f3a-ade1a9fd8b8mr1496967966b.18.1749542198602;
+        Tue, 10 Jun 2025 00:56:38 -0700 (PDT)
+Received: from [192.168.1.130] (11-127.static.abakusbp.net. [46.17.127.11])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc389afsm683838466b.132.2025.06.10.00.56.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jun 2025 00:56:38 -0700 (PDT)
+Message-ID: <a787b26c-a721-4079-a6b3-31ab06dab8c5@gmail.com>
+Date: Tue, 10 Jun 2025 09:56:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hfqhgukshndrcmfj"
-Content-Disposition: inline
-In-Reply-To: <20250609093420.3050641-6-kkartik@nvidia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: arm: imx8mp: Add Ultratronik Ultra-MACH
+ SBC
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>
+References: <20250605142728.2891465-1-goran.radni@gmail.com>
+ <20250605142728.2891465-3-goran.radni@gmail.com>
+ <9bac057f-efcd-4ff2-9217-9f2c3720f857@kernel.org>
+Content-Language: en-US
+From: Goran Radenovic <goran.radni@gmail.com>
+In-Reply-To: <9bac057f-efcd-4ff2-9217-9f2c3720f857@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi Krzysztof,
 
---hfqhgukshndrcmfj
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v3 5/5] i2c: tegra: Add Tegra264 support
-MIME-Version: 1.0
+thank You for the review. I'll fix it in v2.
 
-On Mon, Jun 09, 2025 at 03:04:20PM +0530, Kartik Rajput wrote:
-> Add support for Tegra264 SoC which supports 17 generic I2C controllers,
-> two of which are in the AON (always-on) partition of the SoC. Tegra264
-> I2C supports all the features supported by Tegra194 I2C controllers.
+Best regards
+Goran
 
-Maybe mention here as well that there's an additional SW mutex feature?
-It's not that big a deal, but since you already mention that it's
-similar to Tegra194, might as well be as accurate as possible.
+Krzysztof Kozlowski wrote:
+> On 05/06/2025 16:27, Goran Rađenović wrote:
+>> Document the Ultratronik Ultra-MACH SBC, based on the NXP i.MX8MP SoC.
+>>
+>> This board is manufactured by Ultratronik GmbH and uses the compatible
+>> string "ux,imx8mp-ultra-mach-sbc".
+>>
+>> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
+>> ---
+>>   Documentation/devicetree/bindings/arm/fsl.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> index d3b5e6923e41..49fa640b6806 100644
+>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> @@ -1232,6 +1232,11 @@ properties:
+>>             - const: tq,imx8mp-tqma8mpql            # TQ-Systems GmbH i.MX8MP TQMa8MPQL SOM
+>>             - const: fsl,imx8mp
+>>   
+>> +      - description: Ultratronik SBC i.MX8MP based boards
+>> +        items:
+>> +          - const: ultratronik,imx8mp-ultra-mach-sbc
+> 
+> That's just part of the standard/first enum.
+> 
+> Best regards,
+> Krzysztof
 
-Thierry
-
---hfqhgukshndrcmfj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH5GsACgkQ3SOs138+
-s6EspQ/+PB6DNO8iUCugszKnl/8J65y10Nd+TPJXhkeLJrDX17RbSzbLQc6iBLZx
-GT+RxN3uLVU+bCcun1b5OnG5yH4wK3zKb6WBVga36vlhYPhei83qwzQt3c4w6W6w
-EcgZR9WVSUCjxuEYwqbO66QNwG20CoO+3n6IV34fhaOMLvvekZtvvdQeT8+rQnB8
-WIErkxJHmyphc0i5oPwmPyAdKYLVzs41Vyyod1e5UEEF+xQoMiew9fuaq2eGo9eT
-j9AXFXgCR6y/elW8id3OB+N5V/K5WD0cv9rWusRctXxMBUL/oXXHk8p3HLnU8fOl
-qGPRzweeOiRx+U0+85xgp4E4RGWomKNeifJ9o8h5zieaG5+2P/plAWzPGOVXzfIu
-c1T6vVtAkTwZjLRC2ZmueAytR7sSkOwtJ+uiPRAFD4+6jLc2OGk9kSiuqK+sj2sx
-soeilJLLG3ixHlJCVtNfl9nwG32Vq3roIAjNKNr4LQcS2sospX0PaOmsLH+pbNYL
-35PrCTWHiRy9utj1PY7a7tgj8btPEsazI5a956Evj5o9FLum6oz4FQuKg5CsVGji
-OICNxW5Ij5GHpSN1DrBQiK1XqY2jBA0AuMBV9jAwpj/cbTm758b4OsVt9DI2zwbf
-25a85IkmzVeS1qUNiu0LrkiUinvAOTcvHANfBnOsQwZ1D1eEh4c=
-=7cXs
------END PGP SIGNATURE-----
-
---hfqhgukshndrcmfj--
 
