@@ -1,153 +1,203 @@
-Return-Path: <devicetree+bounces-184030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953C5AD2D17
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F39EAD2D3A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:20:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5885C16E6EE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 05:15:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44FD3170890
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 05:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF42721A425;
-	Tue, 10 Jun 2025 05:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4134925E479;
+	Tue, 10 Jun 2025 05:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UDAKVw0M"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="EkRedGyP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B4B1D9A5F;
-	Tue, 10 Jun 2025 05:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58DF4259CBF
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 05:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749532527; cv=none; b=FcDSi/Xvy7oiGRsu6BmFdBJ0Sp+axhHFCCSfXoy4Xk/5MbgYmbu7nrLqwlg2ict1oZmjwDhPbHktILfv6C9lx3h7t4VH3dfVXNsJgOJO04Hkq3FxnHGw6f8feFeH112hp5230APa3VCLL8FnTkuruh8UjKg/gi0gsCKZHj0e6X8=
+	t=1749532851; cv=none; b=AND+A59EYOgncG0sK/El1vsMGmcdBDwEwYSEqgk4rPjV6VcuPNbd5ImoMYTWorjqom/jxwLsaDSH8Wavq6w4Qgx9159jQGrSIiBVK76EysW14S63oBVPkRvbOnxw2I5nAW+94RciYxqCCApcpjPFVEyV0RpY23HED+efJ/1GIiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749532527; c=relaxed/simple;
-	bh=wwx1RGlswAft6HtyBTWGHwM1xvSwaWadQVlRSN2NE4k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gnhUtN1Au5A9WmHHTNXy+yi/LUbFxXab+6k1IFa8HURuLV32gF0DeOrMdAqDWDk+10izM3XsmtkhtpXfvQJCZOfXVkg/TsM6f3nzxWwYn39AR6yByFUHEFWHsaBvAhOtorBQQKHifwrLYeeDzdyk/uxfolDHpvLNyhZY43tN8jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UDAKVw0M; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749532526; x=1781068526;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wwx1RGlswAft6HtyBTWGHwM1xvSwaWadQVlRSN2NE4k=;
-  b=UDAKVw0MteH4xz1yfvGIkdJ99nSh5wPfb1NJKgQYxASFj2CLleV1GGUs
-   /yF0MlKTw+hBoLgUFKBdZNFnpJ4ImjuCaPlrz4Xt92s9tRheiQie2fD3I
-   YuaRLm/Mxw+vXYJEPsOY7M9A3Pfybnv7nM4sd5QMOybdtbYPwtrBNlChm
-   CU78oRSbVtb05SLYwnnHha28Xk59OO5/Q/0iiyHSxLVdJLn902s0E9Zmz
-   entzeR9eqjy3NlzhoXlCa5IXYUwgUvLPYYSqbo/YfrW2xQ3+usnVEpaMj
-   2kyZJnR1r6Ipd7B3Awvy01YQYJxmpCHP9UIBx9ttfDmYxavIo9fOolhh4
-   A==;
-X-CSE-ConnectionGUID: FREsnZaQQ5WVG30NFz3v0A==
-X-CSE-MsgGUID: yS0VvP1pRJ6re6FhOZNVpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55431728"
-X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; 
-   d="scan'208";a="55431728"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2025 22:15:26 -0700
-X-CSE-ConnectionGUID: GoXFIom2SbCGSvZIugHs+A==
-X-CSE-MsgGUID: 3dgGJazITluB05ndUhbYHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,224,1744095600"; 
-   d="scan'208";a="147076646"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 09 Jun 2025 22:15:21 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uOrKQ-0007nV-2j;
-	Tue, 10 Jun 2025 05:15:18 +0000
-Date: Tue, 10 Jun 2025 13:15:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Junhui Liu <junhui.liu@pigmoral.tech>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: oe-kbuild-all@lists.linux.dev, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/2] drivers: remoteproc: Add C906L controller for Sophgo
- CV1800B SoC
-Message-ID: <202506101252.4HRoLbL7-lkp@intel.com>
-References: <20250608-cv1800-rproc-v1-2-57cf66cdf6a3@pigmoral.tech>
+	s=arc-20240116; t=1749532851; c=relaxed/simple;
+	bh=2oite7cEAOqYfMc15nQ7u1+djDNCxUal8aR0webzx4A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VStF0FyL9P5uCPmis5qk6OApR9UkR4YfOWzgncgX1DUqYdbgxtHzOfeHaU7pzFDmMw0TTK67CbQqCgFRZzjX3C61HPNJfAGKQu++AsJD1lrwpXD4mVLgQn2rLQGPC87EDW2uQmwfRGio6ihJk5OiswxAOI/vR3Wb3YxQc81H7Ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=EkRedGyP; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5532a30ac45so4648587e87.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 22:20:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1749532847; x=1750137647; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gmTF4qV0RYmWw+ybuIh+3cVh2LX7i9DDgBKJzM2NILw=;
+        b=EkRedGyPsJ8OvpgBSnXKFTd+FxJ5xf/TSqTJks9lm436dJi1MJKRzGleMBxiQztrOz
+         9SQhjQJcVDtqDv6XiY8DxZUmDOBfpi1raH7EK7126zPCH4IoGcZBTLvQBH9IHpDVz3uu
+         dPvTF4LQbpKIhF6mPJgDjiYnJp6E5sD9iRz9UTW9mIZBbyxD8bpCeL0I8PEFZkBFgZgH
+         2p/q8brLUDTFgchiheuYevPtHdFO10xJLpU+NIVASQwjtMjgCfyJuR0TwyNHGx+C2P6j
+         TEeOQ+EMeXJLhcgZ6hYou/p3wZbVfGGa18CFM9zmsJeC/J5QQhW3AKYNYL5NyLyQi+g/
+         9VwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749532847; x=1750137647;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gmTF4qV0RYmWw+ybuIh+3cVh2LX7i9DDgBKJzM2NILw=;
+        b=hGXn1EWNZAohOCdq71y3wHZvaGhfBrpnx6TIfnuYEBEhZ7Va2fzdcu2Mdtb9XJpc4/
+         GI+eoALcYSY+y5yEtduUITW6RCstnDGJRt3Fryen3H35F249X11wPqOjszr3NLeaoPHy
+         +fsRVlG/tE0l0YpJmriv3cyITkPciLiIsm5BNjS1Q7XkpYGyjuqEMrc8BVj7KG4TBYUM
+         M3ASfLdYN44oUnB6IfcRlsgR6KKiGxDz/jFygsJAMqt3QVpSJV+1ROIC/psvaa9STgh2
+         gYnmYpSsxYHXs3ZheHlUYfAIShhoaZL4HrQ2xR/sv8iX3n0l3wrHcBzHgxsVrEL4wAdB
+         FKAw==
+X-Forwarded-Encrypted: i=1; AJvYcCVPnmzmO7ciEviuqY0oNu4lsKhfddTnWMn/9Do0wlQ7F8VtXuaozW90zsX4xw0/ErkiaCky5MVOX+lB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFvkAq3WuCyrdqJrivsE8vUK7FDVCuXVmslSaOM2raKKVdOPhS
+	Q6cAATXEYsvAQURsIpRfLc/MqVOrOvqpAn6cReEQ4h2p5jSDuvW4WR4+DVGZ0jMzwVEC5QbDg3P
+	TQQllAHPTA2t5MwDyxGjvC8xIKCy61PJAbfia8i5SkA==
+X-Gm-Gg: ASbGncu7OpBT4hfb4qQ5itmYzjrSZq5GpZmVR6Jr9pRBgrk10E6LfdDcDItIFXoOMXT
+	r9IVHmFsHjwx7snhpUQuJP41RL1HBvLl5I02LPI4xT7pYUSWzYq/FLbCe7E21f2IM7FQTsQ0iSQ
+	0y3MPfKBIhVlLrHbhGNFGorjH5NBzrUaNgOi3CDQqzNhP+
+X-Google-Smtp-Source: AGHT+IE3kgKkVTatiXjLhBs2ID8jLzFcQgDLrCorEvfhipa1LZ7VqXob3i0ScHraWw7Nta7tAX4V3YYaxNtr4ZvTZ0E=
+X-Received: by 2002:a05:6512:ea0:b0:553:660a:4c9a with SMTP id
+ 2adb3069b0e04-5539316961dmr599951e87.9.1749532847227; Mon, 09 Jun 2025
+ 22:20:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250608-cv1800-rproc-v1-2-57cf66cdf6a3@pigmoral.tech>
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-10-apatel@ventanamicro.com> <20250530-squatting-chatroom-230f035f18ef@spud>
+In-Reply-To: <20250530-squatting-chatroom-230f035f18ef@spud>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Tue, 10 Jun 2025 10:50:34 +0530
+X-Gm-Features: AX0GCFuSkYjuAn0nKTg3vjMOZr-vbcntRpWviUWfwQSNW1KeC5eZy6YDX8Ko6Mc
+Message-ID: <CAK9=C2X1svSheL8KFF40vXT9Fc2a5_zyX4PzWRkcR44rd3KmBw@mail.gmail.com>
+Subject: Re: [PATCH v4 09/23] dt-bindings: clock: Add RPMI clock service
+ controller bindings
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Junhui,
+On Fri, May 30, 2025 at 10:11=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Sun, May 25, 2025 at 02:16:56PM +0530, Anup Patel wrote:
+> > Add device tree bindings for the RPMI clock service group based
+> > controller for the supervisor software.
+> >
+> > The RPMI clock service group is defined by the RISC-V platform
+> > management interface (RPMI) specification.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  .../bindings/clock/riscv,rpmi-clock.yaml      | 61 +++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-=
+clock.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/riscv,rpmi-clock.y=
+aml b/Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
+> > new file mode 100644
+> > index 000000000000..9c672a38595a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/riscv,rpmi-clock.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V RPMI clock service group based clock controller
+> > +
+> > +maintainers:
+> > +  - Anup Patel <anup@brainfault.org>
+> > +
+> > +description: |
+> > +  The RISC-V Platform Management Interface (RPMI) [1] defines a
+> > +  messaging protocol which is modular and extensible. The supervisor
+> > +  software can send/receive RPMI messages via SBI MPXY extension [2]
+> > +  or some dedicated supervisor-mode RPMI transport.
+> > +
+> > +  The RPMI specification [1] defines clock service group for accessing
+> > +  system clocks managed by a platform microcontroller. The supervisor
+> > +  software can access RPMI clock service group via SBI MPXY channel or
+> > +  some dedicated supervisor-mode RPMI transport.
+> > +
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +  References
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +  [1] RISC-V Platform Management Interface (RPMI)
+> > +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> > +
+> > +  [2] RISC-V Supervisor Binary Interface (SBI)
+> > +      https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+> > +
+> > +properties:
+> > +  compatible:
+> > +    description:
+> > +      Intended for use by the supervisor software.
+> > +    const: riscv,rpmi-clock
+> > +
+> > +  mboxes:
+> > +    maxItems: 1
+> > +    description:
+> > +      Mailbox channel of the underlying RPMI transport or SBI message =
+proxy channel.
+> > +
+> > +  "#clock-cells":
+> > +    const: 1
+>
+> Could you please add some description here as to what this clock-cell
+> actually does? On a normal clock controller someone might cite an
+> include file with a huge list of defines for what numbers map to what
+> clock. In this case, this value is CLOCK_ID in the spec, so it's
+> completely platform specific as to what they mean so citing some include
+> isn't helpful, so just mention that it is CLOCK_ID and the meanings are
+> platform specific.
+>
+> I suppose technically it can be something other than CLOCK_ID, if this is
+> used when the SBI message proxy extension is provided by an SBI
+> implementation that uses a non-RPMI transport, but I don't think that's a
+> can of worms worth bringing up in the binding. Anyone doing that can put
+> 2+2 together I think.
 
-kernel test robot noticed the following build warnings:
+The #clock-cell value must be the platform specific CLOCK_ID as defined by
+the RISC-V Platform Management Interface (RPMI) specification irrespective
+of the underlying mechanism (e.g. SBI MPXY or RPMI transport) used to
+access the RPMI Clock service group.
 
-[auto build test WARNING on 8630c59e99363c4b655788fd01134aef9bcd9264]
+Each platform must publish their CLOCK_ID values as part of their SoC docs
+or as a header used by their SoC DTS files.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Junhui-Liu/dt-bindings-remoteproc-Add-C906L-rproc-for-Sophgo-CV1800B-SoC/20250608-104249
-base:   8630c59e99363c4b655788fd01134aef9bcd9264
-patch link:    https://lore.kernel.org/r/20250608-cv1800-rproc-v1-2-57cf66cdf6a3%40pigmoral.tech
-patch subject: [PATCH 2/2] drivers: remoteproc: Add C906L controller for Sophgo CV1800B SoC
-config: nios2-randconfig-r132-20250610 (https://download.01.org/0day-ci/archive/20250610/202506101252.4HRoLbL7-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 8.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250610/202506101252.4HRoLbL7-lkp@intel.com/reproduce)
+I will add "description:" for clock-cells along these lines.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506101252.4HRoLbL7-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/remoteproc/sophgo_cv1800b_c906l.c:41:12: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void *va @@     got void [noderef] __iomem * @@
-   drivers/remoteproc/sophgo_cv1800b_c906l.c:41:12: sparse:     expected void *va
-   drivers/remoteproc/sophgo_cv1800b_c906l.c:41:12: sparse:     got void [noderef] __iomem *
->> drivers/remoteproc/sophgo_cv1800b_c906l.c:54:20: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void [noderef] __iomem *addr @@     got void *va @@
-   drivers/remoteproc/sophgo_cv1800b_c906l.c:54:20: sparse:     expected void [noderef] __iomem *addr
-   drivers/remoteproc/sophgo_cv1800b_c906l.c:54:20: sparse:     got void *va
-
-vim +41 drivers/remoteproc/sophgo_cv1800b_c906l.c
-
-    35	
-    36	static int cv1800b_c906l_mem_alloc(struct rproc *rproc,
-    37					   struct rproc_mem_entry *mem)
-    38	{
-    39		void *va;
-    40	
-  > 41		va = ioremap_wc(mem->dma, mem->len);
-    42		if (IS_ERR_OR_NULL(va))
-    43			return -ENOMEM;
-    44	
-    45		/* Update memory entry va */
-    46		mem->va = va;
-    47	
-    48		return 0;
-    49	}
-    50	
-    51	static int cv1800b_c906l_mem_release(struct rproc *rproc,
-    52					     struct rproc_mem_entry *mem)
-    53	{
-  > 54		iounmap(mem->va);
-    55	
-    56		return 0;
-    57	}
-    58	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Anup
 
