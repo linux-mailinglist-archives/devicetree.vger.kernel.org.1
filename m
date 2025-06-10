@@ -1,156 +1,118 @@
-Return-Path: <devicetree+bounces-184527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E440AD448F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 23:13:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8998DAD449C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 23:18:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF2D0189C8C7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 21:13:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30D943A47AD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 21:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603DC269CF0;
-	Tue, 10 Jun 2025 21:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KwXFrcy4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE0C28313F;
+	Tue, 10 Jun 2025 21:17:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BDE22741C9
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 21:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E610265CB0;
+	Tue, 10 Jun 2025 21:17:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749589992; cv=none; b=r2bHF6K1uZ9usINvGP4DPe7aPcNZ+jLHSxTYEdPqHg2QgBeqHkNRX+dXPXQNXd77LtDxxO0igmifOe+OySx7zKrn2umUED5Zh/7MznPF2bjTuuqEQTzbia6ZrMCWCFDECRxDVfISYfttSFdxqiKUUle8Vkdm09tkaCjkQ8a5EYw=
+	t=1749590276; cv=none; b=kwiEaZExhNuKn6ZwNYzT1MTJLBpd5/yg9MfjaHM7g+O8kApL+fhXc5K1Hm9EBIKE5/25wDOeNHArI/vux/auZyMlEwcnevTNumjEgsuvgXu8oy9koBbPftRGNyGeCweeKhhVs+S/ELoFW5LQFQB9dPVXBdyDPiN28jJkPPWHh0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749589992; c=relaxed/simple;
-	bh=LKWM/AKNK8qV65zQK7Jy6+2LGnIoiSxOh8JQeCjGVoA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Okb1qfxXfRK+I5yirtqOBBu2kdF7GUiVZJ8Ae1DxhWsumXXNjGYwa0G4aUl3yLJIRpV0vluaIaG6Btn0FB/09iv6wDr0jgZ+atZnUnf1IFOrJXb9IWoGMouQHh9eMOqiJquNemvTxQ+eL2Q5nfHDlGtT7E3wDeV6FhHLizAx84A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KwXFrcy4; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-32a6c0d613eso5819381fa.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:13:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749589989; x=1750194789; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Jm3QNJuhpnWPil7MXWGSQJymiOAg47jty10YrAXHYA=;
-        b=KwXFrcy460yCn7r6faVdnqJ6U2Ht5DCc9sZMY/Xui2HztaOriVCYRN6MG0NRyVpt4N
-         Z6j8IP16+UQXuLlWPk0CuzUxfcQWlmi2qxfp30YBIyWb5rS0McZ1Yz7uWMxz+7EPLQH/
-         OVUpo6DfgMehivtbVBhZmkUWGrR6q3usOyHZel6VoXoP19rcybLalrk/UVb+KOB4vJhm
-         FnSWilA4xgqLuKTXcDlwTsXUzbiwrLoQH+wRZvll5lT8WUj2xo9B1mSNKeX4wXl3J3xS
-         EBgIubWNU+ytE7DQKWYmUegbQ0lsOp6D4Slbgx7T3PvhCbwXE1/TrmI9J64CqkT6hyV5
-         JsBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749589989; x=1750194789;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Jm3QNJuhpnWPil7MXWGSQJymiOAg47jty10YrAXHYA=;
-        b=tOudWvuCu7TUaOZgk+ZeMpXnJIXjNpG4ist/QUMJB1sstZ/oE13tEUNd3y1E4ynlb4
-         8w6hbgh7ONBYXtIfe+sXoyY1AXHOzP7CNR0f7kcbMh2DmZbuC4U2Qxxe+otx9HAc+5nl
-         SETn13wslcIc5rgDqlLIQ4GSZ4CgAvRI35zMyUw+dY85S5k30BDxH5ZNwbxV+iv6OxAV
-         Vq0TZwDdpc4OhODthJ25KP/i6Zrso6YaplrQVpzCIE7K0lALxLp88vDAluUGoSuQ+3bE
-         taZ5Q8z52CcysGNMv88kB5PwqI9cz+dYi4SA3S4nP21g/whI30QRxoCR9Ba97hGmlkuO
-         WokA==
-X-Forwarded-Encrypted: i=1; AJvYcCWbv7OFyQazBbFUasIoSUZJ9hoH8N8IkAebL0AuTGuCt0nAKXAVN7psTrjLvaFImCjp/pHR5KKM24z3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMg5gQr4YAWQ8/QW2WicEWqj7o+7ysndsofWGUnoCTQ2hg92ps
-	B6Xe0H/RFWRy5QxFK8wFDW6g9e9RZ0wdFzhgelHw6Qwr9RD5RGv9wrHef+QFD4AgFGY=
-X-Gm-Gg: ASbGncsLSpS9NForVHBgTRtKZAGMJwbmx9uLanRYSwPmkKfDZ+8I0MjOR63MSPkgqDM
-	x5dhsxiRuc8dU9VcQIBRZSHdpAX5OvrftBBkbRA9cQnD/T8TYUhvJelQWD0P3mudoqi0/almg/b
-	Smv2dZ/8mQ3kQp1AlwDbxUUpa+HX3I76atC624KYMFLSRRpt3KFMjLJtPBbyNHb7fYB1qC/ITEd
-	AqyRqxqRxfsjJ+QYqiHbgi0Z/YzQpSRwyzx75FCYKK5Gx3YZqkQx29mT4V869xn+aycPZgDheDD
-	qvCgWDDj7e+bEvzKUImQn9bJQI3T3nL0m3b4LMDHHFtgX9j5eleVZCl71Wjrynh+L0G60IsLh1g
-	FIdApHNo4rx3glqPTFGg3Srg1LTLQFdrC0qgP7jDu
-X-Google-Smtp-Source: AGHT+IETS+TB0TrvfrEPPA2p4kx9c0fT3yVUwc0NfXrGV2E7vpHmY4Len4elBMuw0mxhWpUCsDohWQ==
-X-Received: by 2002:a05:6512:3daa:b0:54f:c51b:d828 with SMTP id 2adb3069b0e04-5539c0c55b3mr101719e87.4.1749589988651;
-        Tue, 10 Jun 2025 14:13:08 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5536772a9d2sm1710622e87.186.2025.06.10.14.13.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 14:13:08 -0700 (PDT)
-Message-ID: <b4a7aed0-a05e-4d1b-965f-78e0c5e0709b@linaro.org>
-Date: Wed, 11 Jun 2025 00:13:07 +0300
+	s=arc-20240116; t=1749590276; c=relaxed/simple;
+	bh=eamKRgaYxAXQ07Oy/QgqWcISiwbzjUAkHbWUL2iYvQg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PL6sopVmeMwLI1H+zr36ZxgV040O4JPX3+f4a+b71aghatEEpbKLkNE3p6KIOkz6G+s0somF/u1a2joEaMAULc3Bbyv312dNuHxpOoXs2oTYQzIbMWrT3JUYY2TmF421IZWS28sxatSdgwgme5ORjygJVFE/SMHPGrKt9tVdg+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: EZ2bM47zTHqG73QoNjbdEg==
+X-CSE-MsgGUID: 88GGSAUoRpm/YHbbdubbhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="51428641"
+X-IronPort-AV: E=Sophos;i="6.16,226,1744095600"; 
+   d="scan'208";a="51428641"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 14:17:54 -0700
+X-CSE-ConnectionGUID: 1y60cC8FTHuqF3DnjwJsnA==
+X-CSE-MsgGUID: JFEqMThxSUuDOrHR7whurQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,226,1744095600"; 
+   d="scan'208";a="147898138"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 14:17:50 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1uP6Lq-00000005SHX-32Ai;
+	Wed, 11 Jun 2025 00:17:46 +0300
+Date: Wed, 11 Jun 2025 00:17:46 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v5 06/11] iio: adc: ad4170: Add support for buffered data
+ capture
+Message-ID: <aEig-gz5_fTEheiW@smile.fi.intel.com>
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <4dc5e8b4878f6442cb2ad80c1695c859daf19d47.1749582679.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] arm64: dts: qcom: sm8550: Add support for camss
-Content-Language: ru-RU
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Wenmeng Liu <quic_wenmliu@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, andersson@kernel.org, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- quic_depengs@quicinc.com
-References: <20250516072707.388332-1-quic_wenmliu@quicinc.com>
- <0367d5bd-a42e-4b6c-b841-ba20190b3127@linaro.org>
- <dc4720a8-2f15-44aa-9a52-8440c7518328@linaro.org>
- <739bad1b-f26d-44a6-9cc1-eee28023474f@linaro.org>
- <dc82457e-de2b-43ec-a50c-08f7d8bdeff1@linaro.org>
- <1883d9d7-26d4-40b1-9848-ae0477cf95c7@linaro.org>
- <6bbd526c-3193-40c7-91be-e629949dca8a@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <6bbd526c-3193-40c7-91be-e629949dca8a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4dc5e8b4878f6442cb2ad80c1695c859daf19d47.1749582679.git.marcelo.schmitt@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Konrad.
+On Tue, Jun 10, 2025 at 05:32:43PM -0300, Marcelo Schmitt wrote:
+> Extend the AD4170 driver to allow buffered data capture in continuous read
+> mode. In continuous read mode, the chip skips the instruction phase and
+> outputs just ADC sample data, enabling faster sample rates to be reached.
+> The internal channel sequencer always starts sampling from channel 0 and
+> channel 0 must be enabled if more than one channel is selected for data
+> capture. The scan mask validation callback checks if the aforementioned
+> condition is met.
 
-On 6/11/25 00:04, Konrad Dybcio wrote:
-> On 6/10/25 11:02 PM, Vladimir Zapolskiy wrote:
->> On 6/10/25 22:02, Bryan O'Donoghue wrote:
->>> On 10/06/2025 13:49, Vladimir Zapolskiy wrote:
->>>>>
->>>>> List feedback from DT people is isp@ is the correct prefix.
->>>>>
->>>>
->>>> My bad, but I don't understand this comment, it seems irrelevant...
->>>>
->>>> The expressed concern is about the novel label name.
->>>
->>> I mean to say the feedback from Krzysztof was that we should use isp@
->>> not camss@ and I agree.
->>>
->>
->> Let me repeat it thrice, it's okay...
->>
->> I don't object against the properly selected device tree node name "isp",
->> here I object against a never used and very questionable label name "isp".
->>
->> Please feel free to ask more questions, if you still find it confusing.
->>
->> Again, I may missed a discussion about the need to get and use a novel
->> label name, then please share a link to it, it'll be very much appreciated.
-> 
-> To hopefully help out:
-> 
-> label: node-name@unit-address {
-> 	property = value;
-> };
-> 
+...
 
-Thank you, here is a link to the wanted section of the dt specification
-for Bryan's comprehension:
+> +static bool ad4170_validate_scan_mask(struct iio_dev *indio_dev,
+> +				      const unsigned long *scan_mask)
+> +{
+> +	unsigned int masklength = iio_get_masklength(indio_dev);
+> +
+> +	/*
+> +	 * The channel sequencer cycles through the enabled channels in
+> +	 * sequential order, from channel 0 to channel 15, bypassing disabled
+> +	 * channels. When more than one channel is enabled, channel 0 must
+> +	 * always be enabled. See datasheet channel_en register description at
+> +	 * page 95.
+> +	 */
+> +	if (bitmap_weight(scan_mask, masklength) > 1)
+> +		return test_bit(0, scan_mask);
+> +
+> +	return bitmap_weight(scan_mask, masklength) == 1;
 
-* https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter6-source-language.rst.
+Hopefully compiler is smart enough to see the two calls for the same which
+can't be modified on the fly, but it definitely can't assume that the
+mask is one word long, meaning the bitmap API will choose the slow path
+for them. I would rather take a temporary variable approach.
 
-If for whatever reason a proposed "isp" label is preferred, then
-since a label rename is not an ABI change, it would make sense to
-do a massive change of renaming all camss labels. Otherwise there will
-be an outstanding incorrespondence/confusion of the label names in
-board .dts files, and that's bad.
+It also minimizes the risk of race conditions in case something changes the
+data beneath (which is quite a nasty situation to begin with).
 
---
-Best wishes,
-Vladimir
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
