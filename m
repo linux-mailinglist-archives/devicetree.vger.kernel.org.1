@@ -1,159 +1,201 @@
-Return-Path: <devicetree+bounces-184264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C22AD3782
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F9CAD37C7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 039C217BEEF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51F5316E2CF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D41E29614C;
-	Tue, 10 Jun 2025 12:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB702C17A0;
+	Tue, 10 Jun 2025 12:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bhm5/DLv"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="SxCZlUF6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351F322D4D1
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 12:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 004152C1793
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 12:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749559755; cv=none; b=UbpBYMfcMaoot7OEnTw+kifzqUBHLPaoa3LPVVZ0CY1/OrEpi7nH3lePip9crehQhh93hKcPHGPLeL4ZCDjeGZ8PROnIf4gphQcCj1NEV5YmAkVPVVbWXq8xICH7h6x7gtNZi84AI/kpXejADJd4y8p2Pk/e93GUfG4Q9JZEWUk=
+	t=1749560016; cv=none; b=XmKek5SdySpK240LJrcOfVvzim/nDagvsyfTUPanz/rTon9n27eDyJyiyMc6MhqpygGlMHokSDObrT+ebCX4sMEKL91Oeg7hTUXStVzqinMIYkGCvA1UVKDc3Dl0yiDVTZsqWff82yNB6SDhrAnUuPgfU4igzRJKxS5wZwtq4Xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749559755; c=relaxed/simple;
-	bh=8pGLEakmr5aQtq0MNQDWSHLHa7dbD9TZs7Ms+ip8HFY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uCGu3QmqCzUF3jRkjJ4na6KBtpk28tH9jQ6FmX7QuxNZX+0VG2AtDYWzYPPJwHjg+TuyTqRQeV5+6eaaLpGvNBbHCP/D8lC0ta7WSAjcg5G1yqN1noN3yqiiEHBv6PY9XzbcXLSipDBO55gmF2spMspFQxZ8Bp58LcRQSgYGdYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bhm5/DLv; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-32a6c0d613eso5246631fa.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 05:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749559751; x=1750164551; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SMSrvswUbazeYbvuGhFOqonwWDg71HMAispluXuK8zE=;
-        b=Bhm5/DLvjaW7Lzd2TrS1xdXkF4QN/1Kj5tZuUxkAr48g7SwiTdS+236ISfos/7uzUT
-         K4nsyz6XH2RXYlDoqvQazhA7kytzjNDRQWUZNOwC1mxcANVeCVs5MgeVvfTC4apAhgPP
-         YLUgAT/K+IOeuhOBvq0Z18IlzfBZEt+Nxl+2yhpIYKYocs6ElD7plIjPKt10xZ8QREDY
-         AZYafGM4N9tR6xRBZWDo9FtRYsrF4RU0kMfd+jF0ogJA14hEWYPj/kOssvG3G6BdWQ7q
-         iEDa/qLT61X33uQb6BguiUlYh3zbkH6FGov0oxVd8HNdVnvYc7ljcJYJAoOPrPfz0QUY
-         eQ2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749559751; x=1750164551;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SMSrvswUbazeYbvuGhFOqonwWDg71HMAispluXuK8zE=;
-        b=blD+/vqh3Y4+btaGlzEb5RHydQgHV4Guks/Ll1q3R+q8tEcJBzUg+f2RC9vgOfrEuP
-         MF7I3H6z1Am5yk6MMSD1LY5HxEtf0n3ccbpEmaPZyo/PMkHOu0dJ3EsqOUV5CKmE8LEB
-         e7ghOw+j0k2v0tJKnVnQx96lHoARIC4X72oNxSB+K1Bod4solvZF7voklKDJdtCY90aD
-         phJnEGV92OEx/2jQ3oT0RZpzu5Q5JmeDQ+e4NxeGnhqmlFmqzRI35WAtuE65x5/A1R2M
-         2zwhWvq17dR51qLZIaZAXwuCO1kdLRoBPCwyTxoswbs2RSxp7Ax9pi5IPLIoCFnQ3759
-         qIGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVs6/d7+4Jbw32Ru4gvgjJwRHARjV3gYV+nkQIl8vPnHXN/XHx8uatXK4m/QupPa1AWpQyIE1MK/Ctm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCLwa5EBJJD93qow1z6lnE9cYs5wUZXLhgJ8KkH8/GLHrLuOhs
-	5OmribqsE9lGc2WHL2J7wqZebcvY1v6Qv3mkjnyauyWMzNLTRazCh8fYFTwrJPMKJVw=
-X-Gm-Gg: ASbGncv82+tmDAriFIzGjmJdaL8zdDYMWDfrllKS1xU5ej8LEi+pRLUa8OqKqXBiiqx
-	fg486Eq9Py6hAeMrBA5p91MRLJdg3jji9RTTOIOCzUtWgEYSeWCVQqWAkmJbgUZUIcnNpg9xOT0
-	Irx0KLAnUPhZ2wJEaaOknSHZBS6sXII/TxOMU136O1SkKX8yOqcidklP9bZ2n08I/yeqU49X13b
-	39/c60VhKN6K1eIK7N8+MmnbIlfrwc0x7/qWvD55JhXsXwS6t+sIJCdE5rIoqIBeurEHFHr5N/S
-	9GH8/xH0w0BfFxyd0lcEBIUrefSiXQD8zS9Ng+UVy3deQJqKYKmJ8rlfVH10tSnHCub8HdXhHL8
-	idCg3uYsuMo9REu2iLd80qDtM4L6pm42BJGEOKivb
-X-Google-Smtp-Source: AGHT+IHY1q8YmyvtVFQkg3FZFwHokHT/o2o35vML8BOoO8vhLwLta089+v0mypfDQ7uA7zZsqXirAw==
-X-Received: by 2002:a05:651c:2107:b0:32a:85f9:5c0b with SMTP id 38308e7fff4ca-32ae3359b7bmr15305731fa.10.1749559751259;
-        Tue, 10 Jun 2025 05:49:11 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32ae1b0d1e2sm14474271fa.19.2025.06.10.05.49.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 05:49:10 -0700 (PDT)
-Message-ID: <739bad1b-f26d-44a6-9cc1-eee28023474f@linaro.org>
-Date: Tue, 10 Jun 2025 15:49:09 +0300
+	s=arc-20240116; t=1749560016; c=relaxed/simple;
+	bh=z3tFrj8Is0tlWbTaR1dFYf5Wzkb8JI4zk00/9zhEqyw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To:Cc:Content-Type:
+	 References; b=LTs232vdDjgpsFbHmnCrIFiioteWJpz3JtG0K4qB6BRnpMax3LWsVqN+Y0sb1Xiyacs8Kz7HuD/mtTnWYIOqP6i/vbjkMvl+2QydEIqK1Qb3QiGjULw52+050qOhPUTc+ngEd6K5WvDAzDB28Dba8vfbVhsAnuX0Ec06dY+USfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=SxCZlUF6; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250610125331euoutp02a376e3aa6c27cc7381252ceda344c316~Hr4_JJZ_v2359723597euoutp02F
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 12:53:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250610125331euoutp02a376e3aa6c27cc7381252ceda344c316~Hr4_JJZ_v2359723597euoutp02F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749560011;
+	bh=5jkDNM40mTwv8+zOl9nXA5sZSf4SwXnlr2AR06+Yrkk=;
+	h=From:Subject:Date:To:Cc:References:From;
+	b=SxCZlUF6Pus0tzUWSzcbnLT6zzJs4rPkcbAyXs5fM+I+6JgLyVEBi5jcBzXxRG5v7
+	 LlaGrZCuYh6sdHntHf5TVNQDDc+dtJ5Ag1UUEFU8dPkPYMp7BsnThM8mQkwsCGjA34
+	 +z5CYiwfBZHbxh6qB3wgifAa2CbJq3z0hBcSKgI4=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9~Hr49nKOym1183211832eucas1p24;
+	Tue, 10 Jun 2025 12:53:30 +0000 (GMT)
+Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
+	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250610125329eusmtip1ff1aeefd8b667cc1406dd4f764a5c237~Hr48aYX0q0363103631eusmtip1N;
+	Tue, 10 Jun 2025 12:53:29 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: [PATCH v2 0/7] Rust Abstractions for PWM subsystem with TH1520 PWM
+ driver
+Date: Tue, 10 Jun 2025 14:52:48 +0200
+Message-Id: <20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] arm64: dts: qcom: sm8550: Add support for camss
-Content-Language: ru-RU
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Wenmeng Liu <quic_wenmliu@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, andersson@kernel.org, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- quic_depengs@quicinc.com
-References: <20250516072707.388332-1-quic_wenmliu@quicinc.com>
- <0367d5bd-a42e-4b6c-b841-ba20190b3127@linaro.org>
- <dc4720a8-2f15-44aa-9a52-8440c7518328@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <dc4720a8-2f15-44aa-9a52-8440c7518328@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKAqSGgC/5XNTQ6CMBCG4auQWTumrTQGV97DsCi0hcbQmhn+D
+	OHuFm7g8v0W37MBOwqO4VFsQG4OHFLMoS4FtL2JncNgc4MSSgutSqSJR4xuHfGzDLgkeofYoTc
+	RfSJkF+3RWitjlZWNrG6Qvz7kfFhP51Xn7gOPib4nO8tj/VeYJQpsbEa0qErv7082A0+xu7Zpg
+	Hrf9x+Baqxm3AAAAA==
+X-Change-ID: 20250524-rust-next-pwm-working-fan-for-sending-552ad2d1b193
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,  Miguel Ojeda
+	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
+	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,  Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,  Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,  Michal
+	Wilczynski <m.wilczynski@samsung.com>, Drew Fustini <drew@pdp7.com>,  Guo
+	Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,  Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+	<conor+dt@kernel.org>,  Paul Walmsley <paul.walmsley@sifive.com>,  Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,  Alexandre
+	Ghiti <alex@ghiti.fr>,  Marek Szyprowski <m.szyprowski@samsung.com>,  Benno
+	Lossin <lossin@kernel.org>,  Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Benno Lossin <lossin@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+X-Mailer: b4 0.15-dev
+X-CMS-MailID: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+X-EPHeader: CA
+X-CMS-RootMailID: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+References: <CGME20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9@eucas1p2.samsung.com>
 
-On 6/10/25 12:50, Bryan O'Donoghue wrote:
-> On 10/06/2025 10:48, Vladimir Zapolskiy wrote:
->> Hello Wenmeng.
->>
->> On 5/16/25 10:27, Wenmeng Liu wrote:
->>> Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
->>> includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
->>>
->>> SM8550 provides
->>> - 3 x VFE, 3 RDI per VFE
->>> - 2 x VFE Lite, 4 RDI per VFE
->>> - 3 x CSID
->>> - 2 x CSID Lite
->>> - 8 x CSI PHY
->>>
->>> Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
->>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->>> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
->>> ---
->>>    arch/arm64/boot/dts/qcom/sm8550.dtsi | 210 +++++++++++++++++++++++++++
->>>    1 file changed, 210 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/
->>> dts/qcom/sm8550.dtsi
->>> index e9bb077aa9f0..722521496a2d 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->>> @@ -3326,6 +3326,216 @@ cci2_i2c1: i2c-bus@1 {
->>>                };
->>>            };
->>> +        isp: isp@acb7000 {
->>> +            compatible = "qcom,sm8550-camss";
->>> +
->>
->> This is the first time, when 'isp' label is used instead of 'camss', it
->> might
->> be I missed the context, is there any particular reason to do such a
->> change?
->>
->> If the label name is changed to the regular 'camss', then
->>
->> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->>
->> -- 
->> Best wishes,
->> Vladimir
-> 
-> List feedback from DT people is isp@ is the correct prefix.
-> 
+This patch series introduces Rust support for the T-HEAD TH1520 PWM
+controller and demonstrates its use for fan control on the Sipeed Lichee
+Pi 4A board.
 
-My bad, but I don't understand this comment, it seems irrelevant...
+The primary goal of this patch series is to introduce a basic set of
+Rust abstractions for the Linux PWM subsystem. As a first user and
+practical demonstration of these abstractions, the series also provides
+a functional PWM driver for the T-HEAD TH1520 SoC. This allows control
+of its PWM channels and ultimately enables temperature controlled fan
+support for the Lichee Pi 4A board. This work aims to explore the use of
+Rust for PWM drivers and lay a foundation for potential future
+Rust based PWM drivers.
 
-The expressed concern is about the novel label name.
+The core of this series is a new rust/kernel/pwm.rs module that provides
+abstractions for writing PWM chip provider drivers in Rust. This has
+been significantly reworked from v1 based on extensive feedback. The key
+features of the new abstraction layer include:
 
---
-Best wishes,
-Vladimir
+ - Ownership and Lifetime Management: The pwm::Chip wrapper is managed
+   by ARef, correctly tying its lifetime to its embedded struct device
+   reference counter. Chip registration is handled by a pwm::Registration
+   RAII guard, which guarantees that pwmchip_add is always paired with
+   pwmchip_remove, preventing resource leaks.
+
+ - Modern and Safe API: The PwmOps trait is now based on the modern
+   waveform API (round_waveform_tohw, write_waveform, etc.) as recommended
+   by the subsystem maintainer. It is generic over a driver's
+   hardware specific data structure, moving all unsafe serialization logic
+   into the abstraction layer and allowing drivers to be written in 100%
+   safe Rust.
+
+ - Ergonomics: The API provides safe, idiomatic wrappers for other PWM
+   types (State, Args, Device, etc.) and uses standard kernel error
+   handling patterns.
+
+The series is structured as follows:
+ - Rust PWM Abstractions: The new safe abstraction layer.
+ - TH1520 PWM Driver: A new Rust driver for the TH1520 SoC, built on
+   top of the new abstractions.
+ - Clock Fix: A necessary fix to the TH1520 clock driver to ensure bus
+   clocks remain enabled.
+ - Device Tree Bindings & Nodes: The remaining patches add the necessary
+   DT bindings and nodes for the TH1520 PWM controller, a thermal
+   sensor, and the PWM fan configuration for the Lichee Pi 4A board.
+
+Testing:
+Tested on the TH1520 SoC. The fan works correctly. The duty/period
+calculaties are correct. Fan starts slow when the chip is not hot and
+gradually increases the speed when PVT reports higher temperatures.
+
+The patches are based on mainline, with some dependencies which are not
+merged yet - platform Io support [1] and math wrapper [2].
+
+Reference repository with all the patches together can be found on
+github [3].
+
+[1] - https://lore.kernel.org/rust-for-linux/20250509-topics-tyr-platform_iomem-v8-0-e9f1725a40da@collabora.com/
+[2] - https://lore.kernel.org/all/20250609-math-rust-v1-v1-1-285fac00031f@samsung.com/
+[3] - https://github.com/mwilczy/linux/commits/rust-next-pwm-working-fan-for-sending-v4
+
+---
+Changes in v2:
+ - Reworked the PWM abstraction layer based on extensive feedback.
+ - Replaced initial devm allocation with a proper ARef<Chip> lifetime model
+   using AlwaysRefCounted.
+ - Implemented a Registration RAII guard to ensure safe chip add/remove.
+ - Migrated the PwmOps trait from the legacy .apply callback to the modern
+   waveform API.
+ - Refactored the TH1520 driver to use the new, safer abstractions.
+ - Added a patch to mark essential bus clocks as CLK_IGNORE_UNUSED to fix
+   boot hangs when the PWM and thermal sensors are enabled.
+- Link to v1: https://lore.kernel.org/r/20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com
+
+---
+Michal Wilczynski (7):
+      rust: Add basic PWM abstractions
+      pwm: Add Rust driver for T-HEAD TH1520 SoC
+      clk: thead: Mark essential bus clocks as CLK_IGNORE_UNUSED
+      dt-bindings: pwm: thead: Add T-HEAD TH1520 PWM controller
+      riscv: dts: thead: Add PWM controller node
+      riscv: dts: thead: Add PVT node
+      riscv: dts: thead: Add PWM fan and thermal control
+
+ .../devicetree/bindings/pwm/thead,th1520-pwm.yaml  |  48 ++
+ MAINTAINERS                                        |   8 +
+ arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  |  67 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi              |  18 +
+ drivers/clk/thead/clk-th1520-ap.c                  |   5 +-
+ drivers/pwm/Kconfig                                |  23 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm_th1520.rs                          | 287 +++++++
+ rust/bindings/bindings_helper.h                    |   1 +
+ rust/helpers/helpers.c                             |   1 +
+ rust/helpers/pwm.c                                 |  20 +
+ rust/kernel/lib.rs                                 |   2 +
+ rust/kernel/pwm.rs                                 | 864 +++++++++++++++++++++
+ 13 files changed, 1343 insertions(+), 2 deletions(-)
+---
+base-commit: f153d0d0221f9d3d31872c934800d271ae8a3767
+change-id: 20250524-rust-next-pwm-working-fan-for-sending-552ad2d1b193
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
+
 
