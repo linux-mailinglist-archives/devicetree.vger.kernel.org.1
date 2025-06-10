@@ -1,218 +1,254 @@
-Return-Path: <devicetree+bounces-184084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81CE4AD2F8C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:10:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E66AD2FBC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33498188E368
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:11:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CF617A2951
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47017280A22;
-	Tue, 10 Jun 2025 08:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC05225F797;
+	Tue, 10 Jun 2025 08:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z8fOOhUs"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jO4QuuS+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586DE22172F;
-	Tue, 10 Jun 2025 08:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 245DF21578D;
+	Tue, 10 Jun 2025 08:18:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749543040; cv=none; b=mzIla6PWvjRFNcA1l6vozzDxmn8LoLUpWVTHCf/SxKLDye5sMTQC4DEmiJWa4GXAgoKDl+n/kp5tkO7Szk0LH65JeqvGjoXKcX+a/1ywP75HZSN5Lrq7A87osUnJhO8vX4WdBlV4e42TsodjVBhoAl+nz+z+lI1VXmFEJ4xLxM8=
+	t=1749543520; cv=none; b=Iav9A7NZ4s2k2QRsmQWO52ew1/OU9acb0VpDd0DpAlKt2JPFb5GbL78VjFCtqqbx4SHLKqaHnGlyl5lsZgk4AB49pGLbDQf5yq0nHJNFalFqyLD8mtAoUMrhEneprRz8S1z4tA6LUlIJSMuGxPPTzlPBCd/efGMB4gS2Ciba/Ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749543040; c=relaxed/simple;
-	bh=pxQqTLeJGrzRcba35v6Sv8J7W+lYfStZ+/qrHNswdu8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TUC6300h09M7cVsmTu3oBWipqZwbbJLjTQe+Q50iYgA53avrx5e9a8xjC9TBipXB0qddgYlk9LXCs0BPrJltBLQLCd3PmljZz88+sLKVJdS9lGXt8BDclUVy2N9H+M6L0+dDrpLGq6oh9H5yiuoSpVET3Ce0jqC8s+AGOfh3RZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z8fOOhUs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 559KOrqf017669;
-	Tue, 10 Jun 2025 08:10:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PyVKbeyNtvyCYpKab0D2gGv0Ts2lWek+MIyPqd7++uA=; b=Z8fOOhUs2OA+V4Zs
-	sPSYC/PvKZknaAL61rAArdH75Oo3pzXwuLEo/lXwa8b/U9WNFBjEbliiiZD6W7yu
-	GDrOmBJYK7J5uXOGw2Lxa0+Tziwhi5SBcZHVPIJRSRaP74hNG8ampSUS8FhOtZFU
-	Iu6yWdDVv2yd2ZgMGtUlxY3gvl18eRJfF62/lKOeXdoRBHBhk1b4jL1+cBD1fdWV
-	7nRK6kY94G06vUOxgbOnoml2aJ4g/WiiVVJX/f/RUTXb8aBX1xevNjn0N04z1aqu
-	bX9UeQwlQCMukd2KZwQSblUWNupd+ldvoDkxOIfjaIMe3NQTt2QnR75Zi5eGXl9H
-	RRFTzg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4766mchcdt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Jun 2025 08:10:29 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55A8ASAj020415
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Jun 2025 08:10:28 GMT
-Received: from [10.218.32.171] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Jun
- 2025 01:10:23 -0700
-Message-ID: <d744b518-2ae9-4ca0-86ce-11cf74c945e6@quicinc.com>
-Date: Tue, 10 Jun 2025 13:40:20 +0530
+	s=arc-20240116; t=1749543520; c=relaxed/simple;
+	bh=0O8yujLEJLMJ3hUgzFfiYx8X6y8n0uKkiblzYtmGvtw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Skv6e4+unATqlVJKoypkA8GMT6wbvGHV9k33N2tXQKUr5h15xiNSdZWJvsvXgDCfpLs/Rwzt5vQxoJdNtk76gQFkTHhpxp+ixnlbREEjT7fWi+SNoV3AGjn1vpt2sMH9nPWiwX3XLBtAUxNNvqc4FCSQymi5E3gZ+NKRCFIEYkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jO4QuuS+; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 57B464426E;
+	Tue, 10 Jun 2025 08:18:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749543515;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=0LzaDuer9xNWjAddXjLU6iPOUE3PiHIk5+pn0I9K6wQ=;
+	b=jO4QuuS+a5O24WThoIYuFwA9x+6PkLFXHYythzHObGmD7fdH3sIFh5+8NRdT62+P6fqdsQ
+	DPKBQk7aozNSwYh0LQnOMckCSYj7rPMno9cIHtCfjgn6hbF/8sAtuxGZagdMuiDghiNw96
+	jqYmvbTqn8eDw+Cf4wn4Rb4/kNNG6d1PhHGm1bi2+zaWJ91f83hfavM5AvD9qadnfe8H87
+	WSM4pb7UxwNDsnVlGzOs42vahY3EH7870uDH2WCcRrHeLSdvfDXLwXguRHFfdIEJp+CPEw
+	/J5Q4twYyfZ7E73jT9y4SVko2umiptJGV727zr5lgmsMHotTJv7a/XiImPc1pg==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH net-next v13 00/13] Add support for PSE budget evaluation
+ strategy
+Date: Tue, 10 Jun 2025 10:11:34 +0200
+Message-Id: <20250610-feature_poe_port_prio-v13-0-c5edc16b9ee2@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/8] dt-bindings: serial: describe SA8255p
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <psodagud@quicinc.com>, <djaggi@quicinc.com>,
-        <quic_msavaliy@quicinc.com>, <quic_vtanuku@quicinc.com>,
-        <quic_arandive@quicinc.com>, <quic_mnaresh@quicinc.com>,
-        <quic_shazhuss@quicinc.com>, Nikunj Kela
-	<quic_nkela@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-2-quic_ptalari@quicinc.com>
- <20250610-tested-lilac-raccoon-6c59c4@kuoka>
-Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <20250610-tested-lilac-raccoon-6c59c4@kuoka>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=T8KMT+KQ c=1 sm=1 tr=0 ts=6847e875 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gEfo2CItAAAA:8
- a=COk6AnOGAAAA:8 a=7yBbA8StSmaZYdc8j60A:9 a=QEXdDO2ut3YA:10
- a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: HoZ9RDAgzfOybucuaFDqukYoeTGxroit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDA2MSBTYWx0ZWRfX03wNyGDMBgwe
- QgAeBgOnfhf0FXcn1EzcbSOc//rjExxsfYiKiv/w1YYiSJUViueb/CzLuPDNYlUpPX51TqF4JcZ
- ElxdaA1ONXJXD4FTbXpHJl3KcuzU5/f4MSAHsSh/7/yFaoKQNnYklDmhdZGCPu6H/hS5fub5H6w
- ooBtzYzJqWqp6Tzprf4PX8x8qQDde3JoA3BtHTy1NDWmvtZw/hxS68o6rISgdSinrVy3Yp+XLkC
- n2YC9AfHY2yHH2M3tSoNSmWjMX4Rbo/1KzppgC98Gmded3qQWJls5jW+LGBsqL+9spX6Q1XvneL
- bSTOcCc0HcdeC1wbS3o8MdnZOw8LwJ0rIt0ieAEJ49St9NUi1XHTdcjHCGD93HGYssfHlza+amV
- iZ/ecPqJhZ9Wmj+BERt86EDoPcHsRKd8pFevnV2dfYnTp4vWNwSqLrHgW9ouHoWXjUh5ORu8
-X-Proofpoint-GUID: HoZ9RDAgzfOybucuaFDqukYoeTGxroit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_03,2025-06-09_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0 impostorscore=0
- spamscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0 phishscore=0
- mlxlogscore=999 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506100061
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIALfoR2gC/3XSzW7DIAwA4FepOC8T5s+w095jmioCZkXakirJo
+ k5V330k0tRoKQcOYPFhY1/ZSEOmkb0crmygOY+578oG5NOBhZPvPqjJsRwwwYXiDmSTyE/fAx3
+ P/bKG6Xgect94DZ4iSikosHL3PFDKlxV+Yx1NTUeXib2XyCmPUz/8rC/OsMYXGzgXFXuGhjdok
+ WuVUFHUr23fT5+5ew7912rOYuNIXnNEcZzWzghBpNDvHXl3QEDNkcWxUjiXvHEGw95Rf47mJaG
+ ao4oTgwMvAw9gce/ouyPA1hxdHBm9soZ0ikbtHbw7ilcdXP4n6RQclepC3Dt244CpObY4SpkgX
+ QwSpd07buOIat/d4gCmwDlqFA/yAX6HNK8mBLxIWht05ZOcTu6BBBtJVEcIlllsW5+UQoJWPKg
+ NxFZSVWmZxmiWhkFM6P91/3a7/QJC9sZYnQMAAA==
+To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
+ Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-8cb71
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddutdeglecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffufffkgggtgffvvefosehtkeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepudfhveduteffgfekvdfhveehgeehtdelgefhffduiefffedvheefgeeiiedvkeetnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepuggvnhhtphhrohhjvggttheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhli
+ hhnrdgtohhmpdhrtghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhhkrghllhifvghithdusehgmhgrihhlrdgtohhmpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggv
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hi Krzysztof
+From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 
-Thank you for review.
+This series brings support for budget evaluation strategy in the PSE
+subsystem. PSE controllers can set priorities to decide which ports should
+be turned off in case of special events like over-current.
 
-On 6/10/2025 12:34 PM, Krzysztof Kozlowski wrote:
-> On Fri, Jun 06, 2025 at 10:51:07PM GMT, Praveen Talari wrote:
->> From: Nikunj Kela <quic_nkela@quicinc.com>
->>
->> SA8255p platform abstracts resources such as clocks, interconnect and
->> GPIO pins configuration in Firmware. SCMI power and perf protocols are
->> used to send request for resource configurations.
->>
->> Add DT bindings for the QUP GENI UART controller on sa8255p platform.
->>
->> The wakeup interrupt (IRQ) is treated as optional, as not all UART
->> instances have a wakeup-capable interrupt routed via the PDC.
->>
->> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
->> Co-developed-by: Praveen Talari <quic_ptalari@quicinc.com>
->> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
->> ---
->> v5 -> v6
->> - added description for interrupt-names
->> - added wakeup irq as optional information in commit text and
->>    property description.
->> - removed wake irq form example node.
->>
->> v4 -> v5
->> - added wake irq in example node
->>
->> v3 -> v4
->> - added version log after ---
->>
->> v2 -> v3
->> - dropped description for interrupt-names
->> - rebased reg property order in required option
->>
->> v1 -> v2
->> - reorder sequence of tags in commit text
->> - moved reg property after compatible field
->> - added interrupt-names property
->> ---
->>   .../serial/qcom,sa8255p-geni-uart.yaml        | 68 +++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml b/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
->> new file mode 100644
->> index 000000000000..c2e11ddcc0f6
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/serial/qcom,sa8255p-geni-uart.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Geni based QUP UART interface
->> +
->> +maintainers:
->> +  - Praveen Talari <quic_ptalari@quicinc.com>
->> +
->> +allOf:
->> +  - $ref: /schemas/serial/serial.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,sa8255p-geni-uart
->> +      - qcom,sa8255p-geni-debug-uart
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    minItems: 1
-> 
-> Drop, this is not in sync with interrupt-names. You already received
-> comments on this. We talk about this since v4!
-I hope you have reviewed the commit message and the description under 
-interrupt-name regarding the optional wakeup IRQ. I believe that address 
-your query.
+This patch series adds support for two budget evaluation strategy.
+1. Static Method:
 
-I can include minItems:1 in the interrupt-name property in the next 
-patch set to align/sync with interrupts property.
+   This method involves distributing power based on PD classification.
+   It’s straightforward and stable, the PSE core keeping track of the
+   budget and subtracting the power requested by each PD’s class.
 
-Thanks,
-Praveen Talari
-> 
-> I am not reviewing the rest. Implement complete feedback given to you in
-> v4 and v5.
-> 
-> Best regards,
-> Krzysztof
-> 
+   Advantages: Every PD gets its promised power at any time, which
+   guarantees reliability.
+
+   Disadvantages: PD classification steps are large, meaning devices
+   request much more power than they actually need. As a result, the power
+   supply may only operate at, say, 50% capacity, which is inefficient and
+   wastes money.
+
+2. Dynamic Method:
+
+   To address the inefficiencies of the static method, vendors like
+   Microchip have introduced dynamic power budgeting, as seen in the
+   PD692x0 firmware. This method monitors the current consumption per port
+   and subtracts it from the available power budget. When the budget is
+   exceeded, lower-priority ports are shut down.
+
+   Advantages: This method optimizes resource utilization, saving costs.
+
+   Disadvantages: Low-priority devices may experience instability.
+
+The UAPI allows adding support for software port priority mode managed from
+userspace later if needed.
+
+Patches 1-2: Add support for interrupt event report in PSE core, ethtool
+	     and ethtool specs.
+Patch 3: Adds support for interrupt and event report in TPS23881 driver.
+Patches 4,5: Add support for PSE power domain in PSE core and ethtool.
+Patches 6-8: Add support for budget evaluation strategy in PSE core,
+	     ethtool and ethtool specs.
+Patches 9-11: Add support for port priority and power supplies in PD692x0
+	      drivers.
+Patches 12,13: Add support for port priority in TPS23881 drivers.
+
+Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+---
+Changes in v13:
+- Small change, no need for >0 condition check for unsigned variables.
+- Link to v12: https://lore.kernel.org/r/20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com
+
+Changes in v12:
+- Rebase on net-next.
+- Link to v11: https://lore.kernel.org/r/20250520-feature_poe_port_prio-v11-0-bbaf447e1b28@bootlin.com
+
+Changes in v11:
+- Move the PSE events enum description fully in the ethtool spec.
+- Remove the first patch which was useless as not used.
+- Split the second patch to separate the attached_phydev introduction to
+  the PSE interrupt support.
+- Link to v10: https://lore.kernel.org/r/20250506-feature_poe_port_prio-v10-0-55679a4895f9@bootlin.com
+
+Changes in v10:
+- Change patch 2 and 7 due to possible used after free scenario or
+  deadlock scenario. Move the PSE notification send management to a
+  workqueue to protect it from the deadlock scenario.
+- Link to v9: https://lore.kernel.org/r/20250422-feature_poe_port_prio-v9-0-417fc007572d@bootlin.com
+
+Changes in v9:
+- Add a missing check after skb creation.
+- Link to v8: https://lore.kernel.org/r/20250416-feature_poe_port_prio-v8-0-446c39dc3738@bootlin.com
+
+Changes in v8:
+- Rename a few functions for better clarity.
+- Add missing kref_init in PSE power domain support and a wrong error
+  check condition.
+- Link to v7: https://lore.kernel.org/r/20250408-feature_poe_port_prio-v7-0-9f5fc9e329cd@bootlin.com
+
+Changes in v7:
+- Add reference count and mutex lock for PSE power domain.
+- Add support to retry enabling port that failed to be powered in case of
+  port disconnection or priority change.
+- Use flags definition for pse events in ethtool specs.
+- Small changes in the TPS23881 driver.
+- Link to v6: https://lore.kernel.org/r/20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com
+
+Changes in v6:
+- Few typos.
+- Use uint instead of bitset for PSE_EVENT.
+- Remove report of budget evaluation strategy in the uAPI.
+- Link to v5: https://lore.kernel.org/r/20250218-feature_poe_port_prio-v5-0-3da486e5fd64@bootlin.com
+
+Changes in v5:
+- Remove the first part of the patch series which tackled PSE
+  improvement and already gets merged:
+  https://lore.kernel.org/netdev/20250110-b4-feature_poe_arrange-v3-0-142279aedb94@bootlin.com/
+- Remove the PSE index support which is useless for now. The PSE power
+  domain ID is sufficient.
+- Add support for PD692x0 power supplies other than Vmain which was already
+  in the patch series.
+- Few other small fixes.
+- Link to v4: https://lore.kernel.org/r/20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com
+
+Changes in v4:
+- Remove disconnection policy.
+- Rename port priority mode to budget evaluation strategy.
+- Add cosmetic changes in PSE core.
+- Add support for port priority in PD692x0 driver.
+- Link to v3: https://lore.kernel.org/r/20241121-feature_poe_port_prio-v3-0-83299fa6967c@bootlin.com
+
+Changes in v3:
+- Move power budget to regulator core.
+- Add disconnection policies with PIs using the same priority.
+- Several fixes on the TPS23881 drivers.
+- Several new cosmetic patches.
+- Link to v2: https://lore.kernel.org/r/20241030-feature_poe_port_prio-v2-0-9559622ee47a@bootlin.com
+
+Changes in v2:
+- Rethink the port priority management.
+- Add PSE id.
+- Add support for PSE power domains.
+- Add get power budget regulator constraint.
+- Link to v1: https://lore.kernel.org/r/20241002-feature_poe_port_prio-v1-0-787054f74ed5@bootlin.com
+
+---
+Kory Maincent (13):
+      net: pse-pd: Introduce attached_phydev to pse control
+      net: pse-pd: Add support for reporting events
+      net: pse-pd: tps23881: Add support for PSE events and interrupts
+      net: pse-pd: Add support for PSE power domains
+      net: ethtool: Add support for new power domains index description
+      net: pse-pd: Add helper to report hardware enable status of the PI
+      net: pse-pd: Add support for budget evaluation strategies
+      net: ethtool: Add PSE port priority support feature
+      net: pse-pd: pd692x0: Add support for PSE PI priority feature
+      net: pse-pd: pd692x0: Add support for controller and manager power supplies
+      dt-bindings: net: pse-pd: microchip,pd692x0: Add manager regulator supply
+      net: pse-pd: tps23881: Add support for static port priority feature
+      dt-bindings: net: pse-pd: ti,tps23881: Add interrupt description
+
+ .../bindings/net/pse-pd/microchip,pd692x0.yaml     |   22 +-
+ .../bindings/net/pse-pd/ti,tps23881.yaml           |    8 +
+ Documentation/netlink/specs/ethtool.yaml           |   76 ++
+ Documentation/networking/ethtool-netlink.rst       |   49 +
+ drivers/net/mdio/fwnode_mdio.c                     |   26 +-
+ drivers/net/pse-pd/pd692x0.c                       |  225 +++++
+ drivers/net/pse-pd/pse_core.c                      | 1068 +++++++++++++++++++-
+ drivers/net/pse-pd/tps23881.c                      |  403 +++++++-
+ include/linux/ethtool_netlink.h                    |    9 +
+ include/linux/pse-pd/pse.h                         |  108 +-
+ include/uapi/linux/ethtool_netlink_generated.h     |   40 +
+ net/ethtool/pse-pd.c                               |   63 ++
+ 12 files changed, 2043 insertions(+), 54 deletions(-)
+---
+base-commit: 62937b656898ae9039071a41f6e06e8bea9cb67c
+change-id: 20240913-feature_poe_port_prio-a51aed7332ec
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
