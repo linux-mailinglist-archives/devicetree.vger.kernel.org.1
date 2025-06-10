@@ -1,119 +1,148 @@
-Return-Path: <devicetree+bounces-184211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F898AD340F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:52:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBDFAD33DB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:43:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 434F1163D61
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:52:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7384B7A1C69
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEBC027F72C;
-	Tue, 10 Jun 2025 10:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173E828C87D;
+	Tue, 10 Jun 2025 10:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="MG5aGefb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OVqNtd/M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A310A1A2564
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 10:51:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66939284B4C;
+	Tue, 10 Jun 2025 10:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749552716; cv=none; b=s9jZ6nAaES0vp1TRPKTb+Cu6hpwSixdWQUBt1qV+ow2bjLfn7Zt/TfjQ02I+6PNtKjoA9DmHruORfuJv3sVaiJLd7jg2CWX45H4B53uJFgN/WEWvdnU6uXIgU4AnXvnHuT1Qqmx4pr6vPkzyyyfJiGzrFzvNVZWIJm9/xCpLtQM=
+	t=1749552203; cv=none; b=vBt0PIzBn0wrMd4a+nv89RTkGqwHHzO6+H/8HE1wE6pd5BYTpzrMTf+zMtmhjGultNUoZp9UQTX8jswqIUNPv0XI8SzusirrPj5/6nqbqrB49M7VsH/Ci7sOwk7vBsG6/fvC3z4ssG9Uf5P3I/AmCm1uyZnumI13Er+rP9wuXZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749552716; c=relaxed/simple;
-	bh=BpGOCGjfMVwXLTb7pDRDKwkdHxA+xvVJY7qPvU3osOQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PQ7G9/oBuwDOH5wrC/66v0b4KxvnbRFfg585mpDlX6PssQJm0e0El5IEvUCNqjicKCCm5ZgnupnUDQIZ+LdqhdLIZMOGuyFsOD0OAEuunfO5QXhZV2niuwTJGB64Ehg9714a4HQEENmV8mwQL4ZU5EiNXZhlKQQQV1mZqLSSN4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=MG5aGefb; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inventec.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4a58ba6c945so88629521cf.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 03:51:53 -0700 (PDT)
+	s=arc-20240116; t=1749552203; c=relaxed/simple;
+	bh=z2e8Cx4N22j0jFPYP9dn1ksvGApxjY/BLZUazVli9yA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YDM8FumG1cOduVHOhoqvVmYTszpFFjspBnyQtR8Z2YzOhMTuaI3gKgk9CAyFdo8bIizXLEHoMwf8WqiD16QFl5stZBxqeN9UydjY8zlrhjydLMwR0OpPNdffXUF0q/Ldoqn92uw3WsGE5QJUV+Pg6JGOcZOuPR+5UxfFWicclSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OVqNtd/M; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-450cb2ddd46so31917115e9.2;
+        Tue, 10 Jun 2025 03:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=inventec.com; s=google; t=1749552712; x=1750157512; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gBzbb0j4JDUNUzQL10G0m3L9NxDCF3vqx3Mg0oudS78=;
-        b=MG5aGefbKJzfz5oyxLpgq/smIBCJe60qJTZuXl3p4wLaEWLzMNeCHc276ySFZRLPWE
-         bWHidNgjJmp3aW4+HUzUDE/yFmyI4vtbmH/pDvJkqB94+hy2jbKH17DuzrgYci6VNyr3
-         3kaeA5NCrDPaG/EkjiujAf50ziP/jHXDKwYI8FV2LrsrCqhxz3b/9ttp4jkf4BjXGtmf
-         cv8nhVcEH066Rrg43/E8suRF7HWis/ytscOmqtrQQKJgjmx8djSoMvW4VsgT8Ld6hRSB
-         S6vrhigmo/7wSGBUMHFHG0eqe9iLP3W7t1XSHIv8wrtTdg6RtzVi31WpUv6XbhMQo/JY
-         daSg==
+        d=gmail.com; s=20230601; t=1749552200; x=1750157000; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kOaDoz9H3gJVjVkXf5SppnF68Xo6KIKjXhIxBWkW7q8=;
+        b=OVqNtd/MkKBwLKdX1eaDYWbcIZHVkLTPtropkpmNz2rKGwdMVZlWNiue9eT+halpQZ
+         9J7bZIQ560j3TO+t2E2PMwmdvTw/NoW4dapBUbaEsvblZgJvweh+VuK+LT16x+4OMGpg
+         kz5EDMQZuYUybLjLIkqnX385BjtDE2SI8H8NDnbJt6cGdJUOoQknOd7MJxWf21hzjegY
+         NjT0XWQdVlV7GubgvjwS4cRyj7ssmYxyWp86aInL0i7dU8XOYGGYLhMgfMZr1FhRM4r8
+         I9Mx8HAkAhqjuNYA0kgJkcAyFgr2dDBAZcmj/JSOqn76tBf5c99y0gxNCtmZM6bNwIXW
+         V76Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749552712; x=1750157512;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gBzbb0j4JDUNUzQL10G0m3L9NxDCF3vqx3Mg0oudS78=;
-        b=WE+1hXTjnl+qBZCOZvjJ53aA+sHl7Y14taYnsoE61p8TrVKnaC0G+AP/0BkYUD/A8t
-         ffsvsJ83ONGBOXieLhsthfP3HX/wspLOeSEWYPKf7tSsNBZEcp8nLCBa6AYaoyGn93Nq
-         b1PaT05IOHxLDQ1hq6+3b60YRmprcInhqM4m3AfY/K+VmwR8tUu6N/FcIPhJhLIFGxhA
-         Eqq9H/THr3E/aMe3Gc/4WS1U5tyKk0X1T2lswlhhjLDN/shWAQUQqYA4V0D4MMzg6mXi
-         w7/nsZdmOHvLCop8bcF6aG7su17F3HI1aRM3CbwovyJEK7uPq7T6B2emzyDQ9Td68r98
-         vQEw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKRgISkSTljf0mLhlwPe++mHU+Xu2xfRHYB1AUyHk+r/aaUyvNOkP5vAfCgTfHOm52is/UJqoRLt4F@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwQJ+GDVMicgPccRjCGJVey5OQiYiskzEzQ+ZbP9/g5a9qhxJi
-	fbcBYG4tnklbxlaySOJ1pcvIgRoU+teKE7mBHykv7UY0eCx9QVZPMSLhxKOh2CKwIM2DWgOljTf
-	MlShI
-X-Gm-Gg: ASbGncsbB3l0xwih1VjCG/9S65V24sJyZle636iDkZqa4651gWdaa97ICg3tiFy9Wj5
-	Vmt3xDSWbQ0BWp169gNaYAKV40XsAkapJ6y5lqje5dp1WRO3SkvMSe4oGA2s05BDJ5Fuu5gA2Y2
-	u7sdLIYurdwfTWG9xoav61LeeE7MGyINm4RwyOk5nlY2annFilY/YGDXhFCK0fZoFeJCSJrC+M8
-	EJ9oqExhhcuWe2EN9dgnHSSnfHeS4KI46CIX3WFs8mLAGPlGnXhaAOwTM3pUCEL4+SA590pLZGr
-	7Yp7/Kz66/WDnmNzas1ddOpId9vy2XcoYn+sUGB0sdDYtvWG0ODzoX9kOKKlwNJLNdXfvSnhY2q
-	hWk6ghpYBmVFGBbq09Emu9EZ5Kwrj1COHEVUk8AdXj8c=
-X-Google-Smtp-Source: AGHT+IHsRIE9+ok5ecCFJYm3GaEvcQAvlGCjKV9hMDLuhdOPy6VEujh5/w0caWC/jaE8aj9tt3UXTg==
-X-Received: by 2002:a17:902:e5c4:b0:235:ecf2:397 with SMTP id d9443c01a7336-23601d70bd7mr240122475ad.33.1749552701532;
-        Tue, 10 Jun 2025 03:51:41 -0700 (PDT)
-Received: from localhost.localdomain (60-250-242-163.hinet-ip.hinet.net. [60.250.242.163])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603405e7asm68484365ad.171.2025.06.10.03.51.39
+        d=1e100.net; s=20230601; t=1749552200; x=1750157000;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kOaDoz9H3gJVjVkXf5SppnF68Xo6KIKjXhIxBWkW7q8=;
+        b=ueqZjvcu71X5/3nwLqA7BP8ZJlByc5ralwYeWi5D6Uwj3OYwb+MNZ975MIGuimxKxG
+         SmF/1Ej1Qr0M0OlKPra6xSXtlZ1TEL740u4PlVQ1qeAbDIgkm6WkSCvNyozVyrrqhofP
+         EQ0px6ZBldi+7uJKTAzqhdD1a4ogfereBRcgVNAzl6om2vE7vRhMItrQiVD+ZiFvJ/gP
+         qfEPoq/2p68XMVsfxn7+mS0hb2JK3UDbN7Fft4XWfEaEhFPIga4DEtXJ+mLUnoHTu7Qb
+         vSdzsJ2DWvEcrzGHuHfiIfrKOb0iGb1ZBbrCsRgIt35xVhGvU6R+/Ou/1i1W3QmhvI9B
+         e7yA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAV2OoSZS3Hy6qGlg4xfL2aJ4QCM0SeLFJCmCuXMO4RCT406OXO/6V6QCvj4Kauj5W7EqHzsOIegkl@vger.kernel.org, AJvYcCUyOTqUVKKyRO3k3szOWJPsLyia8byE/9ZbGaytTALhJq7OCxIpR1D0AeK1ZOAqStuYRcQq+biW8jRH6/s=@vger.kernel.org, AJvYcCWRzzlhUGf/73cGv+ymQBqs5Yli9TpxX0rwnLXJYNi4xadwDyKgoOioJvhgnPuIvY8sAq3FQmXSsXr/U/FruQ==@vger.kernel.org, AJvYcCXLRQI1E3EAvIh0/tXHUv6xDPCue5x3Ylt4sDaUqjJUF3nTtiWcJapVMzWVwBBSeLhilAtSZOt/RUzf6QL5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw04nr+7aj/wSb/lZrk7WJKzJfgPlNl0vEGk7WfYJaTrtKA6SiD
+	jOf1KQyS33/qzLBzXjJuQcaGGumI8FhsjkHT/I9FmApdjS4wjz9bMmb9
+X-Gm-Gg: ASbGnctoJ/IARBtHeHXIwIatqHTz/O5WPwkocVbxl84N1lsEWwwiAX5FKIZKIHO18pd
+	TZfYpREkJP+OTwqeEvp1CfdYu/RgLPkE+PyujWdREIe2HVmoz6kTv8R1h8U/9tBngtEe+1iRrtW
+	IDNbDWSkbZ8cTQL3nbDl/lloK3jg3SLEsY360/NbKPLWZ1fEdCCInpJS3zeYJKMy7GeUzG9KGBx
+	YJm9xn8SxjMJVKTVkf0cjfQl2MgyihsRVTKJeYqagROqVTS2DSebZXvh/JcGZqbtVDiSJrnSIwT
+	K0u441gFQaSBUE7oT2QymDE0FSkxTIRA2lMDZ3R+tV7It6CZcppUB/EBAk7Jdrz3f+nFevsuY/v
+	qtlTInThqIw1Yb4hRvwK+/4jSFx0Sj/o3Wu6OoStulbMHr82dCBd4YAobxGM=
+X-Google-Smtp-Source: AGHT+IHQ/+H0xmT4/n8SzqPJO5wYfpUJEhNk4WbIofE8jpTP1D8Vxb32j//I2sl0mRwL2FnnAavasQ==
+X-Received: by 2002:a05:600c:8218:b0:43d:5ec:b2f4 with SMTP id 5b1f17b1804b1-4531de00602mr28517275e9.10.1749552199291;
+        Tue, 10 Jun 2025 03:43:19 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4521370961csm137172115e9.22.2025.06.10.03.43.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 03:51:40 -0700 (PDT)
-From: Chiang Brian <chiang.brian@inventec.com>
-To: krzysztof.kozlowski@linaro.org
-Cc: chiang.brian@inventec.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v9 1/2] dt-bindings: trivial: Add tps53685 support
-Date: Tue, 10 Jun 2025 18:41:46 +0800
-Message-Id: <20250610104146.250692-1-chiang.brian@inventec.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <99f846c6-4041-4d68-b2f7-c686aa8c2bca@linaro.org>
-References: <99f846c6-4041-4d68-b2f7-c686aa8c2bca@linaro.org>
+        Tue, 10 Jun 2025 03:43:17 -0700 (PDT)
+Date: Tue, 10 Jun 2025 12:43:15 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Nishanth Menon <nm@ti.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Suman Anna <s-anna@ti.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, asahi@lists.linux.dev, 
+	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: mailbox: nvidia,tegra186-hsp: Use
+ generic node name
+Message-ID: <hcw6q4iwiout2htnq7wdd3bijozjoqbfdk3tdt42ynr4cx53uy@rxd4io4oua3a>
+References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
+ <20250603-dt-bindings-mailbox-cleanup-v1-4-724407563997@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="abxrtw4wmi4tc3x3"
+Content-Disposition: inline
+In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-4-724407563997@linaro.org>
 
-> On 10/06/2025 12:41, Krzysztof Kozlowski wrote:
->
-> On 10/06/2025 12:25, Chiang Brian wrote:
-> > Add device type support for tps53685
-> > 
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
-> > ---
-> > v8 -> v9:
-> > - No code changed, correct the order of Acked-by tag
-> > - Link to v8: https://lore.kernel.org/all/20250602042454.184643-2-chiang.brian@inventec.com/
-> Stop sending this to me 6 or more times. Every version you send multiple
-> times, that's way too much.
 
-But how do I avoid sending to you even though I need to send this patch 
-series?
-I apologize for the spamming due to familiar with the workflow.
+--abxrtw4wmi4tc3x3
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 4/5] dt-bindings: mailbox: nvidia,tegra186-hsp: Use
+ generic node name
+MIME-Version: 1.0
 
-Best Regards,
-Brian Chiang
+On Tue, Jun 03, 2025 at 01:57:11PM +0200, Krzysztof Kozlowski wrote:
+> According to Devicetree specifications, device node names should be
+> generic, thus Mailbox provider should be called "mailbox", not "hsp".
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml | 5 +=
+----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--abxrtw4wmi4tc3x3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhIDEAACgkQ3SOs138+
+s6FLeA/8C28wIE1XdUrfWbZVBn7aovpLS99DRcLoPyMvhw8fjByqxokguQTPyVMb
+uUYMChlSTxFTyYulzP+K2kv12E04Yeu6n4nhk6gOx90ItrPuiqCqPsBrp8WU6Ktu
+/Xr/DpwTy6DdlN+Xb5RZ6FtcncU0CMdf7bpB0ZxYIciQfRnimdpG6e8JTxE5ShIa
+uLTNQjPYdtJb7RSE4jaQ3KZFLP5tUsb43sh/Yr+8356lE0ehI+L994IO+H8J5OKn
+0A8ZKhCRzXwMdMb3N9bYfP0BpMRlgnk5BhGMEu5BTGVt1QjNTlSSstt3kaees5pd
+3D+2vN4NLXtkSoSUjyxIwUK+nJhZudE7DjySBZpIf1TiJ3Js64i6wMwWEqs4v+0/
+7jPjZp9JXKzFvBoBUtmEpGt3YM9B4kALq9gqooFzH8IkowTK6FUlamTqSlBytDrd
+0ZjwrGllN7fYZZaxZ4L/5CIeLyo/XLG/AgVm45QeuGIpT3uBRVdox3X1oPgHKz57
+dCnGomNKN7WyMEqXCE2TSJQkIh3qdhtpHg0p/Wf3gvKg+ak8kJYE099TTtOYS6VN
+DyHrxbecTi/ktRX9d7TmReGlCkFwrmLrl5FECpWWUEO0ZnrFXuQj5cNues8Y5wSQ
+V3Ey7khUayaf0c9EiafF4zDHDgx4YBeHw7Rn3bRM6PzdboL3EcQ=
+=rTWv
+-----END PGP SIGNATURE-----
+
+--abxrtw4wmi4tc3x3--
 
