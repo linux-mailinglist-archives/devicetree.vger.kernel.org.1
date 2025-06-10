@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E43AD2DD5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:18:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71534AD2DDA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:20:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE9DC7A35EA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:17:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11AB37A383F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A762222D7;
-	Tue, 10 Jun 2025 06:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5795F25C83E;
+	Tue, 10 Jun 2025 06:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TqxU8SVw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZ0jk5Dx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD57521CA0C;
-	Tue, 10 Jun 2025 06:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3039523E334
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749536307; cv=none; b=ZoDcb+ZgkBZy2bdoz9eRLeKmkHFVClbBTI2FxrrIxOycxNW9w3zZF0Ep4lV8sUYhkLXz245+owDak/bryeiS9pbpjVf2/PmxvXoQ9ZA2nVvREbwiZaOTRJXYvYTsIoQDPlMRinULJ1B7ZVvGo9jMXMOIz0ptN935HDPQVDgZtn0=
+	t=1749536439; cv=none; b=OwMAogcSElByC18Mv29vYhOIyv9oHME9O/RZhY+6uj8pVSJSBfybofm3ucncKZn3a3PCn0kKb0uGRFxR3LqFCT+Iq2p1JDNTvMFY/lbhEq3UhtyPJL60OcVCA/7+LMrb3v0aKeP8T3ZDkQTMjD/ZnoVnv9yYdMmL0XBchnXWJ6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749536307; c=relaxed/simple;
-	bh=SWp3cpXEm3vbwzQ5pE76rMFs7UvyrooB0GXuLIDg0fU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aEBhxay1BmhAMwyvzg0NhI85nxEpz/SMb2ctagxSZsU5vER/z92F5BluAumPoAeZEF5rYTxRTJP0xV3hVoXm230JnaCpNRo16YmSQ6QTYqSEJKelgGtdsP8VcR8kcN0WG2Vr0mfhC8V3qX+PwT0BcDBU4uDnzmHDzYFodzA68dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TqxU8SVw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D5FC4CEEF;
-	Tue, 10 Jun 2025 06:18:24 +0000 (UTC)
+	s=arc-20240116; t=1749536439; c=relaxed/simple;
+	bh=xK5h08i148eDouyzcCiEI9SHPKP9bJMOuwWQ/SbAAeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=chVQ32EwGKtgHU/CaGjko6b3nnq05xu3dTtjJduYzIrAxOi+KNh64nerJuOsP531Eg1RCA7UaOi3Ih0AY4nazCvy2WTzzrmOiKfXFrGT9ZIscU1tgY8hhRGNn1uwbo1dfvw3n58GHmSwOgwcGl62U7R7DgPDw+fiLAUQEhMQLTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZ0jk5Dx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9936C4CEEF;
+	Tue, 10 Jun 2025 06:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749536306;
-	bh=SWp3cpXEm3vbwzQ5pE76rMFs7UvyrooB0GXuLIDg0fU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TqxU8SVwWX+8F0Y87CJGVFHL7S50hQru+zsZ+CrjJPzZnfTa+Wo9lezQt4xl97fWU
-	 v9fNgT7zA3a+KNAdIGt8wTeJ8oCKUitGlKPWTkz8uojMjNOg6hMoJ/20CBf8OuKghW
-	 2Va/Kwhbni5b8EhuY7GIr/z8mvqwmXj+GxqVTLuZAB3Abzb0hQfS7CdmqhT0NG4xck
-	 nSIezT8rxWhywofXWj+Wr5SACjRP0ZaWCcTO3DucPbEBmreHz6fGsuNpU51O2dw9+6
-	 CFxYLa06gwzEDPIGyYeMqJjnCnZd2FlRPxpepjLqg/0tEHVOhdBP7UuFrwKISrlGkH
-	 lmbXnAXZVy3yw==
-Message-ID: <7626c26e-2722-4e8b-bc8d-9226d3e1d419@kernel.org>
-Date: Tue, 10 Jun 2025 08:18:22 +0200
+	s=k20201202; t=1749536435;
+	bh=xK5h08i148eDouyzcCiEI9SHPKP9bJMOuwWQ/SbAAeA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=bZ0jk5DxWQ/9qP2Ra3jKoEq14jrdurX+NUAfsQJ5Gm6H6Kt3NgmRaix25OUz+G9ys
+	 2XyfhDzo3BV0iXyp7DoW/UEM41u/51FZ8+GMQ2/usKwL5b7ASgQh5YyO30ZUH4n+B/
+	 6pfAaE9Zav7Hv6GPpqcXLVyjlEm3PcGjfcZ9Imuf6oQwsJJ8EYtlIPSusbtireXPDp
+	 JvkRXRBZGF5vA6GVDYgLxd4bLtMkFiscUg71V5aKLEueaJ/ugr08BOPc1XAp1TfK/T
+	 HQpoKnnatQjZg57HKiA+K0NR5QdJxhAB/pW8YHX+eshjmWa3uFGNVXDLi8Y8kJ+7XH
+	 rbEE8p1xcOTDQ==
+Message-ID: <8b53a76e-cb6c-49d4-8369-c5fda9866734@kernel.org>
+Date: Tue, 10 Jun 2025 08:20:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] crypto: xilinx: Use min_t macro to compare value
-To: Harsh Jain <h.jain@amd.com>, herbert@gondor.apana.org.au,
- davem@davemloft.net, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, mounika.botcha@amd.com,
- sarat.chand.savitala@amd.com, mohan.dhanawade@amd.com, michal.simek@amd.com
-Cc: kernel test robot <lkp@intel.com>
-References: <20250609045110.1786634-1-h.jain@amd.com>
- <20250609045110.1786634-7-h.jain@amd.com>
+Subject: Re: [PATCH v2] dt-bindings: misc: Add binding for BCM63138 BootLUT
+To: Shankari Anand <shankari.ak0208@gmail.com>, devicetree@vger.kernel.org
+References: <20250608183745.126190-1-shankari.ak0208@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,17 +98,70 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250609045110.1786634-7-h.jain@amd.com>
+In-Reply-To: <20250608183745.126190-1-shankari.ak0208@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/06/2025 06:51, Harsh Jain wrote:
-> Fix signedness error reported by kernel test robot.
+On 08/06/2025 20:37, Shankari Anand wrote:
+> Add a device tree binding schema for the Broadcom BCM63138 BootLUT node.
+> This binding specifies required properties for the boot lookup table used
+> for secondary CPU initialization on BCM63138 SoCs, including 'compatible'
+> and 'reg' properties.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202505310740.bRheYmxs-lkp@intel.com/
-> Signed-off-by: Harsh Jain <h.jain@amd.com>
-NAK
+> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+> ---
+>  .../bindings/misc/brcm,bcm63138-bootlut.yaml  | 35 +++++++++++++++++++
+
+
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
+
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
+
+
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/brcm,bcm63138-bootlut.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/brcm,bcm63138-bootlut.yaml b/Documentation/devicetree/bindings/misc/brcm,bcm63138-bootlut.yaml
+> new file mode 100644
+> index 000000000000..af4b879ba6bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/brcm,bcm63138-bootlut.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/brcm,bcm63138-bootlut.yaml#
+
+There are bindings for this already, why are you duplicating them? Maybe
+you want to convert? Anyway, commit msg should explain that.
+
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM63138 Boot Lookup Table
+> +
+> +maintainers:
+> +  - William Zhang <william.zhang@broadcom.com>
+> +
+> +description: |
+> +  This describes the Boot Lookup Table (BootLUT) region for the BCM63138
+
+Describe the hardware not "what this document is".
+
+> +...
+
 
 Best regards,
 Krzysztof
