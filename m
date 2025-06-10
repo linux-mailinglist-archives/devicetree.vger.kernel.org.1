@@ -1,637 +1,259 @@
-Return-Path: <devicetree+bounces-184070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC97AD2EF5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:36:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D380CAD2F11
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:44:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1241B17184B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:36:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A67943A1E58
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628F427F73A;
-	Tue, 10 Jun 2025 07:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78D227FB18;
+	Tue, 10 Jun 2025 07:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="WxlO+A3H"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QxqUQ39l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3624128150E;
-	Tue, 10 Jun 2025 07:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BFF27F19F;
+	Tue, 10 Jun 2025 07:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749540935; cv=none; b=R5ioruTWYk97GLMX5Jp/hMat8/sEZyjiehfAhWjUyevgNVd31wz2P9gyb9iJI/Ch/VL3jpksEoQ5xLSUrVTWJup983F6Fg+RKN/EXbp0ym6v4tVb0x1taaxA9DH6BY9qdFksq65NCFCg3vC/4krRmFTT/HJoEsy9cQEDKoc+W1U=
+	t=1749541442; cv=none; b=DL55l8gDefTi6ih0OpHpxtZF7JYJjuTywbP4YGoTguJkbC1jwpwOdNiLMML3sjra3nK5jHnk3nGz6caoyJ9a+iVLpmBGUcvos2geXQKUnXGd1byQuCt9SYZ8W+q1lP3tj+LsYN3KDZFKGf3P6kbR9ddryvN7SJE9FjeVqYAYtyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749540935; c=relaxed/simple;
-	bh=67vqsQFKrx+1Cvq6u0R9aLnvPfGFMBTPpy5ZRrwcVdo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Bu5be/pnfVShLhgitLZOLEJI0o2euwDCLs6xTrxy2qQEAZk+8Ig0YIl/cXKJcA0ZiTy0KcrhB61DraOy85CDplJtHiDVuJQlBElzY0DqOnt3naolqUGuOZu2o8qSCivIxhHl/ubMkwTG884nUqwG1eCqcmnweIPTALhugFeNfVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=WxlO+A3H; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55A6g8Bw023177;
-	Tue, 10 Jun 2025 03:35:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=PdiwW
-	te0EQfXZhMDSFids8Uilx5wSOu5fIwj73rqFe0=; b=WxlO+A3H5jgXlhLj3K0U3
-	qYPCp4BDFGXS2m9sVzvI9J+B3qgswO92lA0tDepgr57Lj57vaJdhcdyzAxkrDpMx
-	0z0Jvq/IXJeqwnOvi48jKqexilMLVAdw4jhHhmkcXLsKerXanQfzPHIJ387VTGMJ
-	cou0mAqx6kcUIscSaa1oC6Z7Nbs71b8hgx+hvi94DSW5iMKOtBS/qtQb2sDNn1Oq
-	jDFBkGkoEPeYRdpRwa4VRTatWkKw/kI+BUpt46bL2hDaj1CqgKTA9xAkV6ARLGKr
-	AVPQTqJPJANWROVh3UrkHSdMWQ1cq3m85szUQ1Ai3yd8ZbXjkN4DOtNU6K+PjhZs
-	A==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 476fc30bm5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Jun 2025 03:35:18 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 55A7ZHeK056193
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 10 Jun 2025 03:35:17 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 10 Jun
- 2025 03:35:17 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Tue, 10 Jun 2025 03:35:17 -0400
-Received: from HYB-DlYm71t3hSl.ad.analog.com (HYB-DlYm71t3hSl.ad.analog.com [10.44.3.51])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55A7YkMm002608;
-	Tue, 10 Jun 2025 03:35:08 -0400
-From: Jorge Marques <jorge.marques@analog.com>
-Date: Tue, 10 Jun 2025 09:34:41 +0200
-Subject: [PATCH v3 8/8] iio: adc: Add events support to ad4052
+	s=arc-20240116; t=1749541442; c=relaxed/simple;
+	bh=n4N0PgYoQWEoPkKDFB+wwPYRnrm8QkyXvo3El4B0B0w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EofpeEnmWpng5nyz3pFB3Qd0CpfUwLuXEKj9bMdTNlJAIwSg5Pzb0uNM6eJOA9TMAuuxMLc3kN0yjArHwaijkVvjwllpNvnjsL7gntsNejwAyI+XjbEEquWWNidEdW4RKFkVjX/HthPC/K5PLfT90A0IlYWJuEiA3YrXPQ56Tqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QxqUQ39l; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55A7hWmC2222638;
+	Tue, 10 Jun 2025 02:43:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1749541412;
+	bh=EpKnCinqiW5Ium/sM9lgT6Fdt1dZKQWiUdDaDX0h6y8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=QxqUQ39lb7skYNIj1xxCq0qaIUbsSxdGRyv3UVYSNXoHunjfjzDTRGKpJfvyAGSS3
+	 aZn/r5KPQSRxa2dhsGpexQISPhaSii3T4YQY0DU2dTpZcMtn30z7IEAO2DG/0+3iYM
+	 k86ZSLCS6iaiiCL+sgfu72hMDBa+I8xLHHalW+wU=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55A7hVaY1959234
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 10 Jun 2025 02:43:31 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 10
+ Jun 2025 02:43:30 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 10 Jun 2025 02:43:31 -0500
+Received: from [172.24.227.14] (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.14])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55A7hN5o2564104;
+	Tue, 10 Jun 2025 02:43:24 -0500
+Message-ID: <71c41c44-1c2e-4fee-a1a8-31472c9f838d@ti.com>
+Date: Tue, 10 Jun 2025 13:13:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
-In-Reply-To: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        David Lechner
-	<dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-        Andy
- Shevchenko <andy@kernel.org>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
-	<ukleinek@kernel.org>
-CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, Jorge Marques <jorge.marques@analog.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749540886; l=14324;
- i=jorge.marques@analog.com; s=20250303; h=from:subject:message-id;
- bh=67vqsQFKrx+1Cvq6u0R9aLnvPfGFMBTPpy5ZRrwcVdo=;
- b=r1eUQMrtq0Ig2WfeFCktd3ICTFupK/fokJk7mNgVZmsy4tnRNY5su5brytsanCBUnV+9o3mBu
- mX35kDrGZ+oAsEHO6Y1U2HFO5RoDBULTIgtZLXOodwRXjyBKqThziIX
-X-Developer-Key: i=jorge.marques@analog.com; a=ed25519;
- pk=NUR1IZZMH0Da3QbJ2tBSznSPVfRpuoWdhBzKGSpAdbg=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: Q_qD2OjAl66vdp0xwe2bECq9tlrKjF9d
-X-Proofpoint-ORIG-GUID: Q_qD2OjAl66vdp0xwe2bECq9tlrKjF9d
-X-Authority-Analysis: v=2.4 cv=LtaSymdc c=1 sm=1 tr=0 ts=6847e036 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gAnH3GRIAAAA:8 a=U75sXf5VTUVOPaN5l64A:9
- a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDA1NiBTYWx0ZWRfX9vMwO2rdf8Ij
- z1a6rGTzhv/VUNDPx0xXecu4//5RNXcSV0ufodU4Vf/uQHCsxoxiKgLaygrPPnWaib4QpNlt86h
- U0W55rQALaxURNUbTH1rtyg9rM0zr2a+DJ6luIXVYu0NL/uwitq3wEtLYcv427A9g0FHq/4uNrv
- TaQznLZ3pTlFutmHoD+n0EIhvMt4Zt+9W36UyBnSOAPXQAVP+hnppyuq0AFB66drn3GJrKdaEhR
- pYvlCAnq46aPI6I0PZY2a7DXQLYAcu/DrtmGHfDkxBKwuLfeTYlLn+tBI/pCGk6Qg8aVSnQg7F+
- ICfMVfcqPuOH/mn6IRs4spotaEY0SRu9CBFmnu9R6s2J90QmKfAMcSyrBVWxEpCthz6RU7rByrz
- hA2nIi2remoAsQcDMPnFlC/J8SbeiNA2YJ/+thT7jWlPPjFS3z2fxDAjzniktP1jqmtWQ2CT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_02,2025-06-09_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 malwarescore=0 priorityscore=1501 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0 spamscore=0
- clxscore=1015 suspectscore=0 bulkscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506100056
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm/bridge: ti-sn65dsi86: Add HPD for DisplayPort
+ connector type
+To: Doug Anderson <dianders@chromium.org>, <ernestvanhoecke@gmail.com>
+CC: Geert Uytterhoeven <geert@linux-m68k.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, <andrzej.hajda@intel.com>,
+        <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <dri-devel@lists.freedesktop.org>,
+        <tomi.valkeinen@ideasonboard.com>, <max.krummenacher@toradex.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
+        <kieran.bingham+renesas@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <max.oss.09@gmail.com>,
+        <devarsht@ti.com>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "open
+ list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+	<devicetree@vger.kernel.org>
+References: <20250529110418.481756-1-j-choudhary@ti.com>
+ <2baf3c31-3edf-4c26-bd44-1d0560134871@ti.com>
+ <CAMuHMdUi7pf1YfKRjMv_7VuKwjR5XekRXfcEzuPScGzHraGjyQ@mail.gmail.com>
+ <84fdbd23-d694-453f-a225-dbac19b34719@ti.com>
+ <CAD=FV=XaR6Pq7E-13zR5PC_u=3SD=sc05_TzxWJR2FS040zESg@mail.gmail.com>
+Content-Language: en-US
+From: Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <CAD=FV=XaR6Pq7E-13zR5PC_u=3SD=sc05_TzxWJR2FS040zESg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The AD4052 family supports autonomous monitoring readings for threshold
-crossings. Add support for catching the GPIO interrupt and expose as an IIO
-event. The device allows to set either, rising and falling directions. Only
-either threshold crossing is implemented.
+Hello Doug,
 
-Signed-off-by: Jorge Marques <jorge.marques@analog.com>
----
- drivers/iio/adc/ad4052.c | 369 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 369 insertions(+)
+On 10/06/25 03:39, Doug Anderson wrote:
+> Hi,
+> 
+> On Mon, Jun 2, 2025 at 4:05 AM Jayesh Choudhary <j-choudhary@ti.com> wrote:
+>>
+>> Hello Geert, Krzysztof,
+>>
+>> (continuing discussion from both patches on this thread...)
+>>
+>> On 30/05/25 13:25, Geert Uytterhoeven wrote:
+>>> Hi Jayesh,
+>>>
+>>> CC devicetree
+>>>
+>>> On Fri, 30 May 2025 at 04:54, Jayesh Choudhary <j-choudhary@ti.com> wrote:
+>>>> On 29/05/25 16:34, Jayesh Choudhary wrote:
+>>>>> By default, HPD was disabled on SN65DSI86 bridge. When the driver was
+>>>>> added (commit "a095f15c00e27"), the HPD_DISABLE bit was set in pre-enable
+>>>>> call which was moved to other function calls subsequently.
+>>>>> Later on, commit "c312b0df3b13" added detect utility for DP mode. But with
+>>>>> HPD_DISABLE bit set, all the HPD events are disabled[0] and the debounced
+>>>>> state always return 1 (always connected state).
+>>>>>
+>>>>> Set HPD_DISABLE bit conditionally based on "no-hpd" property.
+>>>>> Since the HPD_STATE is reflected correctly only after waiting for debounce
+>>>>> time (~100-400ms) and adding this delay in detect() is not feasible
+>>>>> owing to the performace impact (glitches and frame drop), remove runtime
+>>>>> calls in detect() and add hpd_enable()/disable() bridge hooks with runtime
+>>>>> calls, to detect hpd properly without any delay.
+>>>>>
+>>>>> [0]: <https://www.ti.com/lit/gpn/SN65DSI86> (Pg. 32)
+>>>>>
+>>>>> Fixes: c312b0df3b13 ("drm/bridge: ti-sn65dsi86: Implement bridge connector operations for DP")
+>>>>> Cc: Max Krummenacher <max.krummenacher@toradex.com>
+>>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>>>> ---
+>>>>>
+>>>>> Changelog v2->v3:
+>>>>> - Change conditional based on no-hpd property to address [1]
+>>>>> - Remove runtime calls in detect() with appropriate comments
+>>>>> - Add hpd_enable() and hpd_disable() in drm_bridge_funcs
+>>>>> - Not picking up "Tested-by" tag as there are new changes
+>>>>>
+>>>>> v2 patch link:
+>>>>> <https://lore.kernel.org/all/20250508115433.449102-1-j-choudhary@ti.com/>
+>>>>>
+>>>>> [1]: <https://lore.kernel.org/all/mwh35anw57d6nvre3sguetzq3miu4kd43rokegvul7fk266lys@5h2euthpk7vq/>
+>>>
+>>> Thanks for your patch!
+>>>
+>>>>> This would also require dts changes in all the nodes of sn65dsi86
+>>>>> to ensure that they have no-hpd property.
+>>>>
+>>>> DTS patch is posted now:
+>>>> <https://lore.kernel.org/all/20250529112423.484232-1-j-choudhary@ti.com/>
+>>>
+>>> On all Renesas platforms handled by that patch, the DP bridge's HPD pin
+>>> is wired to the HPD pin on the mini-DP connector.  What am I missing?
+>>
+>> If the bridge's HPD is connected to that of the connector, then I am
+>> pretty certain HPD will not work for renesas platform. The detect hook
+>> always gives "connected" state in the driver (even if it is unplugged).
+>> Do you have different observation on your end?
+>> If not, then we do need something like this patch while addressing the
+>> backwards-compatibility concerns.
+>>
+>> During v1 RFC[2], I did observe that renesas also have DisplayPort
+>> connector type and might require hpd, but since the support was
+>> already there and no issue was raised, I assumed it does not require
+>> HPD.
+>>
+>> [2]:
+>> https://lore.kernel.org/all/01b43a16-cffa-457f-a2e1-87dd27869d18@ti.com/
+>>
+>>
+>>>
+>>> Regardless, breaking backwards-compatibility with existing DTBs is
+>>> definitely a no-go.
+> 
+> FWIW, we are in a little bit of a sticky situation here. We were in a
+> bit of a bad place from the start because the Linux driver ignored HPD
+> from the beginning but we didn't actually document that people should
+> be setting the "no-hpd" property until a little bit later. You can see
+> some discussion about this in commit 1dbc979172af ("dt-bindings:
+> drm/bridge: ti-sn65dsi86: Document no-hpd") where I noted "this is
+> somewhat of a backward-incompatible change." ...but, at the time, it
+> wasn't really a big deal because there were very few users (the one in
+> tree at the time was cheza, which was a dev board used internally at
+> Google).
+> 
+> ...so, as of that change in May of 2020, it was documented that eDP
+> users were _supposed_ to be setting NO_HPD. I even remember Bjorn
+> requesting the "or is otherwise unusable" phrasing because we pretty
+> much wanted to set this property on everyone using sn65dsi86 as eDP
+> (even if they have HPD hooked up) because the debouncing time is so
+> long that it was better to hardcode the max delay instead of reading
+> the HPD line. Of course, even though we documented that they were
+> supposed to have the "no-hpd" property didn't necessarily mean that
+> everyone did. The code has never enforced it. I don't believe it even
+> checks the property...
+> 
+> So if there are dts files out there that don't set the property and
+> they were submitted after the bindings change in 2020, _technically_
+> they've been wrong the whole time. We're not changing history by
+> adding a new requirement so much as fixing broken DTS files. Although
+> the Linux driver always allowed them to get away with being broken,
+> technically DTS is separate from Linux so if they've been violating
+> the bindings then they've been wrong. :-P That being said, they've
+> been working and it would be nice to keep them working if we can, but
+> one could make an argument that maybe it would be OK to require them
+> to change...
+> 
+> 
+>> Got it.
+>> Let me try to figure out a way to fix it without messing it up.
+> 
+> While a bit on the ugly side, it seems like perhaps you could just do this:
+> 
+> 1. If enable_comms is called before the bridge probe happens, just go
+> ahead and disable HPD.
+> 
+> 2. When the bridge probe happens, if you notice that HPD should be
+> enabled and comms are on you can just enable HPD then (grabbing the
+> comms_mutex while doing it).
+> 
+> 3. Any subsequent enable_comms called after the bridge probe happens
+> shouldn't disable HPD.
+> 
+> ...you'd probably want a comment about the fact that "no-hpd" property
+> is unreliable, which is why we can't figure this out in a better way.
+> 
+> 
 
-diff --git a/drivers/iio/adc/ad4052.c b/drivers/iio/adc/ad4052.c
-index 7d32dc4701ddb0204b5505a650ce7caafc2cb5ed..ff52ff002bfe0ee413ae352b0c1854798b8e89f8 100644
---- a/drivers/iio/adc/ad4052.c
-+++ b/drivers/iio/adc/ad4052.c
-@@ -13,6 +13,7 @@
- #include <linux/gpio/consumer.h>
- #include <linux/iio/buffer.h>
- #include <linux/iio/buffer-dmaengine.h>
-+#include <linux/iio/events.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- #include <linux/interrupt.h>
-@@ -69,6 +70,8 @@
- #define AD4052_REG_MON_VAL				0x2F
- #define AD4052_REG_FUSE_CRC				0x40
- #define AD4052_REG_DEVICE_STATUS			0x41
-+#define     AD4052_REG_DEVICE_STATUS_MIN_FLAG		BIT(2)
-+#define     AD4052_REG_DEVICE_STATUS_MAX_FLAG		BIT(3)
- #define     AD4052_REG_DEVICE_STATUS_DEVICE_RDY		BIT(7)
- #define     AD4052_REG_DEVICE_STATUS_DEVICE_RESET	BIT(6)
- #define AD4052_REG_MIN_SAMPLE				0x45
-@@ -173,6 +176,8 @@ struct ad4052_state {
- 	struct completion completion;
- 	struct regmap *regmap;
- 	u16 oversampling_frequency;
-+	u16 events_frequency;
-+	bool wait_event;
- 	int gp1_irq;
- 	int vio_uv;
- 	int vref_uv;
-@@ -259,6 +264,26 @@ static const struct regmap_access_table ad4052_regmap_wr_table = {
- 	.n_yes_ranges = ARRAY_SIZE(ad4052_regmap_wr_ranges),
- };
- 
-+static const struct iio_event_spec ad4052_events[] = {
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_EITHER,
-+		.mask_shared_by_all = BIT(IIO_EV_INFO_ENABLE),
-+	},
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_RISING,
-+		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
-+				      BIT(IIO_EV_INFO_HYSTERESIS),
-+	},
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
-+				      BIT(IIO_EV_INFO_HYSTERESIS),
-+	},
-+};
-+
- static const char *const ad4052_conversion_freqs[] = {
- 	"2000000", "1000000", "300000", "100000",	/*  0 -  3 */
- 	"33300", "10000", "3000", "500",		/*  4 -  7 */
-@@ -328,6 +353,8 @@ AD4052_EXT_INFO(AD4052_500KSPS);
- 	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
- 	.indexed = 1,									\
- 	.channel = 0,									\
-+	.event_spec = ad4052_events,							\
-+	.num_event_specs = ARRAY_SIZE(ad4052_events),					\
- 	.has_ext_scan_type = 1,								\
- 	.ext_scan_type = ad4052_scan_type_##bits##_s,					\
- 	.num_ext_scan_type = ARRAY_SIZE(ad4052_scan_type_##bits##_s),			\
-@@ -344,6 +371,8 @@ AD4052_EXT_INFO(AD4052_500KSPS);
- 	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
- 	.indexed = 1,									\
- 	.channel = 0,									\
-+	.event_spec = ad4052_events,							\
-+	.num_event_specs = ARRAY_SIZE(ad4052_events),					\
- 	.has_ext_scan_type = 1,								\
- 	.ext_scan_type = ad4052_scan_type_##bits##_s,					\
- 	.num_ext_scan_type = ARRAY_SIZE(ad4052_scan_type_##bits##_s),			\
-@@ -386,6 +415,74 @@ static const struct ad4052_chip_info ad4058_chip_info = {
- 	.grade = AD4052_500KSPS,
- };
- 
-+static ssize_t ad4052_events_frequency_show(struct device *dev,
-+					    struct device_attribute *attr,
-+					    char *buf)
-+{
-+	struct ad4052_state *st = iio_priv(dev_to_iio_dev(dev));
-+
-+	return sysfs_emit(buf, "%s\n", ad4052_conversion_freqs[st->events_frequency]);
-+}
-+
-+static ssize_t ad4052_events_frequency_store(struct device *dev,
-+					     struct device_attribute *attr,
-+					     const char *buf,
-+					     size_t len)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct ad4052_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	if (st->wait_event) {
-+		ret = -EBUSY;
-+		goto out_release;
-+	}
-+
-+	ret = __sysfs_match_string(AD4052_FS(st->chip->grade),
-+				   AD4052_FS_LEN(st->chip->grade), buf);
-+	if (ret < 0)
-+		goto out_release;
-+
-+	st->events_frequency = ret;
-+
-+out_release:
-+	iio_device_release_direct(indio_dev);
-+	return ret ? ret : len;
-+}
-+
-+static IIO_DEVICE_ATTR(sampling_frequency, 0644,
-+		       ad4052_events_frequency_show,
-+		       ad4052_events_frequency_store, 0);
-+
-+static ssize_t sampling_frequency_available_show(struct device *dev,
-+						 struct device_attribute *attr,
-+						 char *buf)
-+{
-+	struct ad4052_state *st = iio_priv(dev_to_iio_dev(dev));
-+	int ret = 0;
-+
-+	for (u8 i = AD4052_FS_OFFSET(st->chip->grade);
-+	     i < AD4052_FS_LEN(st->chip->grade); i++)
-+		ret += sysfs_emit_at(buf, ret, "%s ", ad4052_conversion_freqs[i]);
-+
-+	ret += sysfs_emit_at(buf, ret, "\n");
-+	return ret;
-+}
-+
-+static IIO_DEVICE_ATTR_RO(sampling_frequency_available, 0);
-+
-+static struct attribute *ad4052_event_attributes[] = {
-+	&iio_dev_attr_sampling_frequency.dev_attr.attr,
-+	&iio_dev_attr_sampling_frequency_available.dev_attr.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group ad4052_event_attribute_group = {
-+	.attrs = ad4052_event_attributes,
-+};
-+
- static int ad4052_update_xfer_raw(struct iio_dev *indio_dev,
- 				   struct iio_chan_spec const *chan)
- {
-@@ -602,6 +699,19 @@ static int ad4052_setup(struct iio_dev *indio_dev, struct iio_chan_spec const *c
- 				  val);
- }
- 
-+static irqreturn_t ad4052_irq_handler_thresh(int irq, void *private)
-+{
-+	struct iio_dev *indio_dev = private;
-+
-+	iio_push_event(indio_dev,
-+		       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
-+					    IIO_EV_TYPE_THRESH,
-+					    IIO_EV_DIR_EITHER),
-+		       iio_get_time_ns(indio_dev));
-+
-+	return IRQ_HANDLED;
-+}
-+
- static irqreturn_t ad4052_irq_handler_drdy(int irq, void *private)
- {
- 	struct ad4052_state *st = private;
-@@ -616,6 +726,18 @@ static int ad4052_request_irq(struct iio_dev *indio_dev)
- 	struct device *dev = &st->spi->dev;
- 	int ret;
- 
-+	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp0");
-+	if (ret > 0) {
-+		ret = devm_request_threaded_irq(dev, ret, NULL,
-+						ad4052_irq_handler_thresh,
-+						IRQF_ONESHOT, indio_dev->name,
-+						indio_dev);
-+		if (ret)
-+			return ret;
-+	} else if (ret == -EPROBE_DEFER) {
-+		return ret;
-+	}
-+
- 	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp1");
- 	if (ret > 0) {
- 		ret = devm_request_threaded_irq(dev, ret, NULL,
-@@ -822,6 +944,7 @@ static int ad4052_read_raw(struct iio_dev *indio_dev,
- 			   struct iio_chan_spec const *chan, int *val,
- 			   int *val2, long info)
- {
-+	struct ad4052_state *st = iio_priv(indio_dev);
- 	int ret;
- 
- 	if (info ==  IIO_CHAN_INFO_SAMP_FREQ)
-@@ -831,8 +954,14 @@ static int ad4052_read_raw(struct iio_dev *indio_dev,
- 
- 	if (!iio_device_claim_direct(indio_dev))
- 		return -EBUSY;
-+	if (st->wait_event) {
-+		ret = -EBUSY;
-+		goto out_release;
-+	}
- 
- 	ret = ad4052_read_raw_dispatch(indio_dev, chan, val, val2, info);
-+
-+out_release:
- 	iio_device_release_direct(indio_dev);
- 	return ret ? ret : IIO_VAL_INT;
- }
-@@ -867,8 +996,231 @@ static int ad4052_write_raw(struct iio_dev *indio_dev,
- 
- 	if (!iio_device_claim_direct(indio_dev))
- 		return -EBUSY;
-+	if (st->wait_event) {
-+		ret = -EBUSY;
-+		goto out_release;
-+	}
- 
- 	ret = ad4052_write_raw_dispatch(indio_dev, chan, val, val2, info);
-+
-+out_release:
-+	iio_device_release_direct(indio_dev);
-+	return ret;
-+}
-+
-+static int ad4052_monitor_mode_enable(struct ad4052_state *st)
-+{
-+	int ret;
-+
-+	ret = pm_runtime_resume_and_get(&st->spi->dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = ad4052_conversion_frequency_set(st, st->events_frequency);
-+	if (ret)
-+		goto out_error;
-+
-+	ret = ad4052_set_operation_mode(st, AD4052_MONITOR_MODE);
-+	if (ret)
-+		goto out_error;
-+
-+	return ret;
-+out_error:
-+	pm_runtime_mark_last_busy(&st->spi->dev);
-+	pm_runtime_put_autosuspend(&st->spi->dev);
-+	return ret;
-+}
-+
-+static int ad4052_monitor_mode_disable(struct ad4052_state *st)
-+{
-+	int ret;
-+
-+	pm_runtime_mark_last_busy(&st->spi->dev);
-+	pm_runtime_put_autosuspend(&st->spi->dev);
-+
-+	ret = ad4052_exit_command(st);
-+	if (ret)
-+		return ret;
-+	return regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
-+			    AD4052_REG_DEVICE_STATUS_MAX_FLAG |
-+			    AD4052_REG_DEVICE_STATUS_MIN_FLAG);
-+}
-+
-+static int ad4052_read_event_config(struct iio_dev *indio_dev,
-+				    const struct iio_chan_spec *chan,
-+				    enum iio_event_type type,
-+				    enum iio_event_direction dir)
-+{
-+	struct ad4052_state *st = iio_priv(indio_dev);
-+
-+	return st->wait_event;
-+}
-+
-+static int ad4052_write_event_config(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir,
-+				     bool state)
-+{
-+	struct ad4052_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	if (st->wait_event == state) {
-+		ret = 0;
-+		goto out_release;
-+	}
-+
-+	if (state)
-+		ret = ad4052_monitor_mode_enable(st);
-+	else
-+		ret = ad4052_monitor_mode_disable(st);
-+
-+	if (!ret)
-+		st->wait_event = state;
-+
-+out_release:
-+	iio_device_release_direct(indio_dev);
-+	return ret;
-+}
-+
-+static int __ad4052_read_event_info_value(struct ad4052_state *st,
-+					   enum iio_event_direction dir, int *val)
-+{
-+	int ret;
-+	u8 reg;
-+
-+	if (dir == IIO_EV_DIR_RISING)
-+		reg = AD4052_REG_MAX_LIMIT;
-+	else
-+		reg = AD4052_REG_MIN_LIMIT;
-+
-+	ret = regmap_bulk_read(st->regmap, reg, &st->raw, 2);
-+	if (ret)
-+		return ret;
-+
-+	*val = sign_extend32(get_unaligned_be16(st->raw), 11);
-+
-+	return 0;
-+}
-+
-+static int __ad4052_read_event_info_hysteresis(struct ad4052_state *st,
-+						enum iio_event_direction dir, int *val)
-+{
-+	u8 reg;
-+
-+	if (dir == IIO_EV_DIR_RISING)
-+		reg = AD4052_REG_MAX_HYST;
-+	else
-+		reg = AD4052_REG_MIN_HYST;
-+	return regmap_read(st->regmap, reg, val);
-+}
-+
-+static int ad4052_read_event_value(struct iio_dev *indio_dev,
-+				   const struct iio_chan_spec *chan,
-+				   enum iio_event_type type,
-+				   enum iio_event_direction dir,
-+				   enum iio_event_info info, int *val,
-+				   int *val2)
-+{
-+	struct ad4052_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+
-+	if (st->wait_event) {
-+		ret = -EBUSY;
-+		goto out_release;
-+	}
-+
-+	switch (info) {
-+	case IIO_EV_INFO_VALUE:
-+		ret = __ad4052_read_event_info_value(st, dir, val);
-+		break;
-+	case IIO_EV_INFO_HYSTERESIS:
-+		ret = __ad4052_read_event_info_hysteresis(st, dir, val);
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+out_release:
-+	iio_device_release_direct(indio_dev);
-+	return ret ? ret : IIO_VAL_INT;
-+}
-+
-+static int __ad4052_write_event_info_value(struct ad4052_state *st,
-+					   enum iio_event_direction dir, int val)
-+{
-+	u8 reg;
-+
-+	if (val > 2047 || val < -2048)
-+		return -EINVAL;
-+	if (dir == IIO_EV_DIR_RISING)
-+		reg = AD4052_REG_MAX_LIMIT;
-+	else
-+		reg = AD4052_REG_MIN_LIMIT;
-+	put_unaligned_be16(val, &st->raw);
-+
-+	return regmap_bulk_write(st->regmap, reg, &st->raw, 2);
-+}
-+
-+static int __ad4052_write_event_info_hysteresis(struct ad4052_state *st,
-+						enum iio_event_direction dir, int val)
-+{
-+	u8 reg;
-+
-+	if (val >= BIT(7))
-+		return -EINVAL;
-+	if (dir == IIO_EV_DIR_RISING)
-+		reg = AD4052_REG_MAX_HYST;
-+	else
-+		reg = AD4052_REG_MIN_HYST;
-+
-+	return regmap_write(st->regmap, reg, val);
-+}
-+
-+static int ad4052_write_event_value(struct iio_dev *indio_dev,
-+				    const struct iio_chan_spec *chan,
-+				    enum iio_event_type type,
-+				    enum iio_event_direction dir,
-+				    enum iio_event_info info, int val,
-+				    int val2)
-+{
-+	struct ad4052_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+
-+	if (st->wait_event) {
-+		ret = -EBUSY;
-+		goto out_release;
-+	}
-+
-+	switch (type) {
-+	case IIO_EV_TYPE_THRESH:
-+		switch (info) {
-+		case IIO_EV_INFO_VALUE:
-+			ret = __ad4052_write_event_info_value(st, dir, val);
-+			break;
-+		case IIO_EV_INFO_HYSTERESIS:
-+			ret = __ad4052_write_event_info_hysteresis(st, dir, val);
-+			break;
-+		default:
-+			ret = -EINVAL;
-+			break;
-+		}
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+out_release:
- 	iio_device_release_direct(indio_dev);
- 	return ret;
- }
-@@ -881,6 +1233,9 @@ static int ad4052_offload_buffer_postenable(struct iio_dev *indio_dev)
- 	};
- 	int ret;
- 
-+	if (st->wait_event)
-+		return -EBUSY;
-+
- 	ret = pm_runtime_resume_and_get(&st->spi->dev);
- 	if (ret)
- 		return ret;
-@@ -963,10 +1318,17 @@ static int ad4052_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg
- 	if (!iio_device_claim_direct(indio_dev))
- 		return -EBUSY;
- 
-+	if (st->wait_event) {
-+		ret = -EBUSY;
-+		goto out_release;
-+	}
-+
- 	if (readval)
- 		ret = regmap_read(st->regmap, reg, readval);
- 	else
- 		ret = regmap_write(st->regmap, reg, writeval);
-+
-+out_release:
- 	iio_device_release_direct(indio_dev);
- 	return ret;
- }
-@@ -985,6 +1347,11 @@ static const struct iio_info ad4052_info = {
- 	.read_raw = ad4052_read_raw,
- 	.write_raw = ad4052_write_raw,
- 	.read_avail = ad4052_read_avail,
-+	.read_event_config = &ad4052_read_event_config,
-+	.write_event_config = &ad4052_write_event_config,
-+	.read_event_value = &ad4052_read_event_value,
-+	.write_event_value = &ad4052_write_event_value,
-+	.event_attrs = &ad4052_event_attribute_group,
- 	.get_current_scan_type = &ad4052_get_current_scan_type,
- 	.debugfs_reg_access = &ad4052_debugfs_reg_access,
- };
-@@ -1193,8 +1560,10 @@ static int ad4052_probe(struct spi_device *spi)
- 				     "Failed to initialize regmap\n");
- 
- 	st->mode = AD4052_SAMPLE_MODE;
-+	st->wait_event = false;
- 	st->chip = chip;
- 	st->oversampling_frequency = AD4052_FS_OFFSET(st->chip->grade);
-+	st->events_frequency = AD4052_FS_OFFSET(st->chip->grade);
- 
- 	st->cnv_gp = devm_gpiod_get_optional(dev, "cnv", GPIOD_OUT_LOW);
- 	if (IS_ERR(st->cnv_gp))
 
--- 
-2.49.0
+Ernest mentioned in v2[3] that when pdata->bridge.type is not
+set, the type field is 0 causing issue for eDP when enable_comms
+is called before auxiliary_driver probe.
+
+So it should be okay to check the bridge type for
+DRM_MODE_CONNECTOR_Unknown (0) OR DRM_MODE_CONNECTOR_eDP (14) and
+disable HPD in both case?
+Or equivalently using !(DRM_MODE_CONNECTOR_DisplayPort) as this bridge
+would support only these 2 connector types???
+
+Then for DP case, it should behave like you mentioned: First disabling
+HPD till types is set in auxiliary_driver probe. And once set to 10,
+(for DRM_MODE_CONNECTOR_DisplayPort) enabling it for DisplayPort
+connector type.
+
+
+[3]: 
+https://lore.kernel.org/all/mwh35anw57d6nvre3sguetzq3miu4kd43rokegvul7fk266lys@5h2euthpk7vq/
+
+Warm Regards,
+Jayesh
+
+> -Doug
 
 
