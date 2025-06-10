@@ -1,174 +1,123 @@
-Return-Path: <devicetree+bounces-184121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663FCAD30C1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:44:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B86F5AD30EB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ADD9188D86C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:44:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E32E18929F6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE86427FD48;
-	Tue, 10 Jun 2025 08:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8vwcNtU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 980632836AF;
+	Tue, 10 Jun 2025 08:51:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail.actia.se (mail.actia.se [212.181.117.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20EBA22DFBB;
-	Tue, 10 Jun 2025 08:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580952820AF;
+	Tue, 10 Jun 2025 08:51:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.181.117.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749545058; cv=none; b=Aiq489R4AFO+wQSgxku51b+mUJjhRPOJ9UCqUKB8HOgaFIvONW3crMujE6WlXZPMgMtuaWLw8e0NW4lqbAXsZ6fkyptB8W3tU3oMQ9h82cRwbV1j1sNf0BFke9RZlTxGH8q1AYAi2jKpJMQrp8TZZxS4vTm/Swb9g7XB+RtCf8g=
+	t=1749545486; cv=none; b=jmNY/9UzDDyC5SQiOSjua/fiBpBwZzdhCMb0tui8VhjbXANzaZOEw9zpgiaQjD9S2xeITWNsEOOyHCMtOpwWJnyZEYs4tmk+fJ3Z2z80b/zRNLeTiPzc30HH7zU4RYRFkpE4JrxjBrL7Pc0sR2TS4keWJo2SeOKzX/+Zrg7Mi1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749545058; c=relaxed/simple;
-	bh=ybgxTm+kvB6cJ0D3DyEVRKBYFC8Z0+U7/NRwx8tLwLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=heSSyInBmnnVEbXCE6ZOLDFEz5n9aaa4Oo5QuJcc9Ql0xHEotFAHEbszmyQI7HeO1DDArKqTrTacmK0GE1iyaRjccKnn9QZnianAAYbSm5r4i5th2RiICEsVvpsPxXJK6QiVKuWN/J88Sgq8ARecn12TpSK7sYrcuIoXb58UZhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8vwcNtU; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-451d54214adso42213985e9.3;
-        Tue, 10 Jun 2025 01:44:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749545054; x=1750149854; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ufg6uwyWwGQNdeZaC5T+n52EK93yzGWyzvZoh5XZFzA=;
-        b=f8vwcNtUnKy6qZMHoBLqDQyW/S11geLbj7lsOq1Gzqj3RgwSOOk6yxlEf92zK0Ccun
-         BV+6AwzYRuzSWLPiImp68NennUC0vfBLnngu8q1QPuLr/Km8zQBj1wN5OetnpQmOM5gX
-         HuzUUAoeIprfHO95Ljn372PGiOuxLGBjkqedZBr1zStxkk6lobUf14Xw4Y2VxX/JwnSD
-         dhd2yZ7AaS3gzQFwiFLTCpbpagt3GTerL983WQmwAVqZBFJIaIvrzycYK6vj17lkaNjD
-         oEPF6UG4qualjwXRUgWK80ohzWt3k+ngL4vmvrIAq2lrPLn5jdnMLmoA9PGINqRGDCdw
-         4VAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749545054; x=1750149854;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ufg6uwyWwGQNdeZaC5T+n52EK93yzGWyzvZoh5XZFzA=;
-        b=W2IerGAvhfkkW4vlrM5jNPeXvOvConZJjw1Gj447XX2ZFqQXhOb5yH4qf9+ECYslfM
-         e2rBGco6P0q+ElJ0ktUFyBml0Amn9zOuZPQDhvPVEXz7AU1MmEewMUrpPIveMKo83RaW
-         l3mhSXo2eLZ3aGHEeyS9v+yCwuWPfBc8PJoIWtuPmZAPEiKGGZ0nuSUgtT5KsfBQ5Vvg
-         CkAizT5dc3JWS6senCZI6wv7Hc97nthY3R19Ddx3DFSMUq8Xg0SwpRY0TW83o3/fIjy8
-         xfsZj78QIFxb4Uv8FZu8Nt+XG/4qd8HHX2J0vzRGHTCAoyrE1gfewhKRzy+0bEtwFY1J
-         473w==
-X-Forwarded-Encrypted: i=1; AJvYcCUN62rokCTKnBiBZMRgZ/9qWEkjB9MOIQtgW5//9rXcOuZN1BmiyJQTBE71+q7jeijSTV1BuX730pBReDS6@vger.kernel.org, AJvYcCV9qMCBDUMsidm+lO1sX8hFfmM0j8hfYnmMaBd6/B0QqOYAkrCZtcEUf6v9LtJhlMU/bwJJkKPf423M@vger.kernel.org, AJvYcCWRcUs6GXTINnM8YQXOejYvcyqyVj+jVSzPINfL+3KgvcwpIZQiej3TqokeBzscviKK0SEps7sp7ncDoak=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4MyId7ElAdMpZKWHSjfYfPTqeIUdcRLz5NzqthmllPap2aAe8
-	pWJRopvABdiLdbLfIz9+teIhyDcbltYDpVUK5HYbisVrmGIQsLvWStJ0
-X-Gm-Gg: ASbGncvwbN0BtydCqMNeINfNfuPr1o195iHyHWEDxRW8U4Hpulf8E1gzpLN7hscAEU/
-	Y/BNZp01Z3/l17WOKJO9ZdgUflZO/FCwRFKqaKXt4pIzXzS3SDiflmej9cVIyq1bzQ5BH3rrd7P
-	Ln/tPAnphnr1OREbAjxrkuIL9FaYC1cJugQv3XkVlmkKc1mTrm+apuvBYN6BZJ9SCVRxkStLZzi
-	IpENHwOnGbFP7oeVX1BGlgPLPTmwc1qw5QZ9ca8alQML1VGpfypkO4UNHB1vuCqFustI2fVTQ7K
-	nJ44JI90NDDHP8w9xWwlAcu9ihqthncIIpbcHO61w/SEONcCeOVM6XnqasZ4iHatFeqPT2xvjK6
-	frGsEik6BffztXyQdvr+rq+1lCOuQQ1pekP35r/NFSFyE4ApP
-X-Google-Smtp-Source: AGHT+IEI6U/wlkyv60EtHKpGkOxvKNc8dBNCAlpQUDw7Gbe+DfsHFVL8q5OU8MIyrQVeRvXJaoxmiQ==
-X-Received: by 2002:a05:6000:2082:b0:3a5:2cb5:6402 with SMTP id ffacd0b85a97d-3a55226815cmr1210790f8f.12.1749545054244;
-        Tue, 10 Jun 2025 01:44:14 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a532452d7esm11567635f8f.85.2025.06.10.01.44.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 01:44:13 -0700 (PDT)
-Date: Tue, 10 Jun 2025 10:44:11 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Mikko Perttunen <cyndis@kapsi.fi>
-Cc: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] drm/tegra: Add NVJPG driver
-Message-ID: <fhumfjczxcohn5h5mnrdmz3x23ituxktzudtfutly35jkziiou@ocffx4vennrn>
-References: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
- <20250606-diogo-nvjpg-v1-1-5f2c36feeb39@tecnico.ulisboa.pt>
- <811ad406-4afb-45c5-9783-683779f874cc@kapsi.fi>
+	s=arc-20240116; t=1749545486; c=relaxed/simple;
+	bh=RWy8yPJilC69TYAy3q25BRrNte4rjuEjuCZAHDMAGnA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=EMmEesauqMKwZ7gZenE61fZiFQT4Ajtz1acvf5h1uuzTLiRL0toQpriOrAh9mJSK/zqpFfYzud3EyAoKntMw6cPEXQzXtxmLtvW6XZqQt+L0goxl9KUatMSDjpIn+vJfvIWmk4sfIT9yz/ie+nbpqszuzpopfrrwIz1/zgS67aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se; spf=pass smtp.mailfrom=actia.se; arc=none smtp.client-ip=212.181.117.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=actia.se
+Received: from S036ANL.actianordic.se (10.12.31.117) by S036ANL.actianordic.se
+ (10.12.31.117) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 10 Jun
+ 2025 10:51:17 +0200
+Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
+ S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
+ 15.01.2507.039; Tue, 10 Jun 2025 10:51:17 +0200
+From: John Ernberg <john.ernberg@actia.se>
+To: =?iso-8859-2?Q?Horia_Geant=E3?= <horia.geanta@nxp.com>, Pankaj Gupta
+	<pankaj.gupta@nxp.com>, Gaurav Jain <gaurav.jain@nxp.com>, Herbert Xu
+	<herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>
+CC: Frank Li <Frank.Li@nxp.com>, Peng Fan <peng.fan@nxp.com>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, John Ernberg <john.ernberg@actia.se>
+Subject: [PATCH v5 2/4] crypto: caam - Support iMX8QXP and variants thereof
+Thread-Topic: [PATCH v5 2/4] crypto: caam - Support iMX8QXP and variants
+ thereof
+Thread-Index: AQHb2eTUC9Cp7KL6lkKcbctbdtZZjA==
+Date: Tue, 10 Jun 2025 08:51:17 +0000
+Message-ID: <20250610085110.2295392-3-john.ernberg@actia.se>
+References: <20250610085110.2295392-1-john.ernberg@actia.se>
+In-Reply-To: <20250610085110.2295392-1-john.ernberg@actia.se>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-mailer: git-send-email 2.49.0
+x-esetresult: clean, is OK
+x-esetid: 37303A2955B1445362776A
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4tgir5eftbmngfvg"
-Content-Disposition: inline
-In-Reply-To: <811ad406-4afb-45c5-9783-683779f874cc@kapsi.fi>
 
+The iMX8QXP (and variants such as the QX, DX, DXP) all identify as iMX8QXP.
 
---4tgir5eftbmngfvg
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/3] drm/tegra: Add NVJPG driver
-MIME-Version: 1.0
+They have the exact same restrictions as the supported iMX8QM introduced
+at commit 61bb8db6f682 ("crypto: caam - Add support for i.MX8QM")
 
-On Tue, Jun 10, 2025 at 12:26:07PM +0900, Mikko Perttunen wrote:
-> On 6/6/25 7:45 PM, Diogo Ivo wrote:
-> > Add support for booting and using NVJPG on Tegra210 to the Host1x
-> > and TegraDRM drivers. This driver only supports the new TegraDRM uAPI.
->=20
-> Hello Diogo -- I'm happy to see this driver!
+Loosen the check a little bit with a wildcard to also match the iMX8QXP
+and its variants.
 
-So am I, nice work!
+Signed-off-by: John Ernberg <john.ernberg@actia.se>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
-[...]
-> > +	if (IS_ERR(nvjpg->regs))
-> > +		return PTR_ERR(nvjpg->regs);
-> > +
-> > +	nvjpg->rst =3D devm_reset_control_get_exclusive_released(&pdev->dev, =
-"nvjpg");
-> > +	if (IS_ERR(nvjpg->rst)) {
-> > +		err =3D PTR_ERR(nvjpg->rst);
-> > +
-> > +		if (err !=3D -EBUSY || WARN_ON(!pdev->dev.pm_domain)) {
-> > +			dev_err(&pdev->dev, "failed to get reset control: %d\n",
-> > +				err);
-> > +			return err;
-> > +		}
-> > +
-> > +		/*
-> > +		 * At this point, the reset control is most likely being used
-> > +		 * by the generic power domain implementation. With any luck
-> > +		 * the power domain will have taken care of resetting the SOR
-> > +		 * and we don't have to do anything.
-> > +		 */
-> > +		nvjpg->rst =3D NULL;
-> > +	}
->=20
-> I see you've taken this from sor.c, but I think it should be unnecessary.=
- I
-> imagine the code in sor.c is overcomplicated as well, maybe because we us=
-ed
-> not to have the power domain implementation.
+---
 
-Agreed. SOR is also slightly older than NVJPG and used on Tegra124 where
-we don't use power domains, so most of these quirks are for backwards-
-compatibility. If we can avoid them for NVJPG, that'd be great.
+v5:
+ - Collect tags
 
-Thierry
+v4:
+ - no changes
 
---4tgir5eftbmngfvg
-Content-Type: application/pgp-signature; name="signature.asc"
+v3:
+ - no changes
 
------BEGIN PGP SIGNATURE-----
+v2:
+ - Collect review tag
+---
+ drivers/crypto/caam/ctrl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH8FcACgkQ3SOs138+
-s6HO5xAAuFcTDTd//elXh91lR+ye68vqyuQs9ieD1JizLFCjtviETpAU/eRizVY3
-nptiSkEPE3sVenbPIFwveqnkYiAGWAk6oOcixS3TG7GSEJg8iZKhT9firLCNNp7h
-lJWHQVN4RLywgBHPeZx8vpupyZBWi7Qv8uiSu37b6EsOWiUacvI7nQgQGY19/Iwe
-H/EnohUJL5mN79V4Y8P+8gwuy+8gJAl1iAa39oeFBR9xJFtxDMm582nWb5txhyY+
-8smkQfRYdNmsyxJtzewPIoUTxSpycM7OjCv3idK6ezYQ1kaXtx55IVzgwlaKO4SP
-oOW6U7Vzj40bufDjOyKCCIc1BUrnxsiQGBKdqJKTUVQSVC2xFiafHWIDD9w9mLYN
-Cspt1zyGIM0rAF+RB+Az4FQwly21KVlyruZ5BnhES2LrZIEDcFWhbjvftqvSFV8r
-EJDSZyVDyGg37Sgl3VkRWYdtt3Ao/tv/Lii0VBOS8v5wvkZ9xv9OXN1GSV4DGF18
-G40Ixjy3362iiecmwA8DU+ExFQGx2JTPtMIf+Cqb6yP9qHGY6ZrN00ai1Gu8ti3U
-EpMs7y7hRbuLP4TdZGnXMhGGUh1wjF/h3dLszxLUKunYkDRegAV6N2cpal7NwiVv
-JBrwR/L8nJMVO5fkhMlybop1j0c6SwJaVY/7BAe3U97G9GyNlCg=
-=tF10
------END PGP SIGNATURE-----
-
---4tgir5eftbmngfvg--
+diff --git a/drivers/crypto/caam/ctrl.c b/drivers/crypto/caam/ctrl.c
+index 766c447c9cfb..ce7b99019537 100644
+--- a/drivers/crypto/caam/ctrl.c
++++ b/drivers/crypto/caam/ctrl.c
+@@ -573,7 +573,7 @@ static const struct soc_device_attribute caam_imx_soc_t=
+able[] =3D {
+ 	{ .soc_id =3D "i.MX7*",  .data =3D &caam_imx7_data },
+ 	{ .soc_id =3D "i.MX8M*", .data =3D &caam_imx7_data },
+ 	{ .soc_id =3D "i.MX8ULP", .data =3D &caam_imx8ulp_data },
+-	{ .soc_id =3D "i.MX8QM", .data =3D &caam_imx8ulp_data },
++	{ .soc_id =3D "i.MX8Q*", .data =3D &caam_imx8ulp_data },
+ 	{ .soc_id =3D "VF*",     .data =3D &caam_vf610_data },
+ 	{ .family =3D "Freescale i.MX" },
+ 	{ /* sentinel */ }
+--=20
+2.49.0
 
