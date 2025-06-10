@@ -1,186 +1,150 @@
-Return-Path: <devicetree+bounces-184209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134EEAD33FE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:48:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A50AD340A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:49:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1074169723
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:47:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D6EC3A28C9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4481A28DF43;
-	Tue, 10 Jun 2025 10:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E84FF22259C;
+	Tue, 10 Jun 2025 10:48:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="OOw1xfAj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fjkEfkhj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013014.outbound.protection.outlook.com [40.107.159.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C2C28DF12;
-	Tue, 10 Jun 2025 10:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749552389; cv=fail; b=GrmGmWpYIcAa7OZZoYmK/fh7lsj4Ozveogrxpy9leObfFvXr57wnTW5Xz7tdKgFzrHllDolnyiWtSKa5/HM38ln5DukVXYkUlb7PypmognAgd/loiRcbEEnFThZ1S/xBLTN0yjVGwEHOe948YY2aUNK/U638/A46oiq33wcWWl0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749552389; c=relaxed/simple;
-	bh=mtw+HUu5aMz3hd6YbFmPh/2C77EoJe+9w/0BElDp3V0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HZLHfDsOzweQqwumTZbZbP8VaWoq5ggUPvNLm2laNJoghh/aJpFncXgzpWlYDVOwAWlnx9kx+HYiIK97swvPDxjqt6BW9JnvRZzJsHD+uBhN4WIExwxp+RXmPUFtTYeihq7iVXqR5n3WpVwhxhrfRWXka82eYVVxN95Z8GQZnWU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=pass (1024-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=OOw1xfAj; arc=fail smtp.client-ip=40.107.159.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MUZOiePJ1mfhx86pFl4oSkqyxVMB6TxN1muQbYaM0NPOuOMWXRr/NmqtZyJm/Hd1k9Jn/hxE6UQ4rJQypf70Gf3NfhJJQ19lfa/rS7JvnHVYNVtNmdQfSuj9fC3+BlCUMjXe5+LJmPrmMjlu/M1SJ2nKxljFrbKRr1UUV3+Uy79d1UF5guu95luHFMuvRRUG+hOVZDDpWcwZKT8Dw2paylA55oOqho4cG6s+fP5TM2S9tSlM+AvFQebsdVDYnb2qXuZyATopgPd9sUzW5fcRHoTagdRhRxjZDwo1gSEPvuR+ddg4gKLDNAkeg1CmvA8oZ08SQheGoEXjK0/b+E51vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mtw+HUu5aMz3hd6YbFmPh/2C77EoJe+9w/0BElDp3V0=;
- b=bBBEzIQSqvDoAd39j5nsyVDnk3ODjljS8VoT+RcHrpvExKob2HHSmQw/Yi8LN3gZwcHUHFCJNxUt4qdHnUL7E8QBecevHH26X5z+Suu9pzmMdhrRSVahnNGkjMAEkQoXXRDTI3AaRSmdmof9vefmOPSaNJ4xjQbWSK3tyfPSMTs/MekJfuWuKI1+eyoQ3CmEl/VS1q1WZhz3UQmY1Xz9c/ke409yQ6BadfZjjY/KpimZOtGg7QcDW6UCAlgk8i2/aKP0FWZVx38JvzEkFG2PCm111zpfrIOCjyvyMVjc6sjom4wAxmZGy3qthNRBpACQdtHpyPNl7sGSx/GCaKr81w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mobileye.com; dmarc=pass action=none header.from=mobileye.com;
- dkim=pass header.d=mobileye.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mobileye.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mtw+HUu5aMz3hd6YbFmPh/2C77EoJe+9w/0BElDp3V0=;
- b=OOw1xfAjHurbfWWGQ8vzrmC6S6Nz76/iJU2ZlumEe0OD1bRAjAwtPrMIRSIDTJ/NYFDO+b6hduxwAQT7SxwAWFkBAYym/ezMEYApHTUEeCYB4u82hlZKIPl7NOA5phifp/wQYWj5mFTC1SU0bY3z1bCo3tWp7ZjdrxSwzHhilFs=
-Received: from AS2PR09MB6296.eurprd09.prod.outlook.com (2603:10a6:20b:578::5)
- by AS2PR09MB6341.eurprd09.prod.outlook.com (2603:10a6:20b:57b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.31; Tue, 10 Jun
- 2025 10:46:24 +0000
-Received: from AS2PR09MB6296.eurprd09.prod.outlook.com
- ([fe80::2f35:bc64:a118:5e0d]) by AS2PR09MB6296.eurprd09.prod.outlook.com
- ([fe80::2f35:bc64:a118:5e0d%6]) with mapi id 15.20.8792.039; Tue, 10 Jun 2025
- 10:46:23 +0000
-From: Vladimir Kondratiev <Vladimir.Kondratiev@mobileye.com>
-To: Inochi Amaoto <inochiama@gmail.com>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, Chen Wang
-	<unicorn_wang@outlook.com>, Sunil V L <sunilvl@ventanamicro.com>, "Rafael J .
- Wysocki" <rafael.j.wysocki@intel.com>, Ryo Takakura <takakura@valinux.co.jp>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"sophgo@lists.linux.dev" <sophgo@lists.linux.dev>
-Subject: Re: [PATCH v2 4/7] irqchip: MIPS P800 variant of aclint-sswi
-Thread-Topic: [PATCH v2 4/7] irqchip: MIPS P800 variant of aclint-sswi
-Thread-Index: AQHb2e9dx3+lqnXWh06WW4bwNfR8k7P8K5cAgAAIhUo=
-Date: Tue, 10 Jun 2025 10:46:23 +0000
-Message-ID:
- <AS2PR09MB6296822D5ADAEAECCC06F976946AA@AS2PR09MB6296.eurprd09.prod.outlook.com>
-References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
- <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
- <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
- <iewyo4h3yiqnyn6qrgmckwcaalovpv2udf46jwpor4s5ni5bvu@eg2ikgmswcbg>
-In-Reply-To: <iewyo4h3yiqnyn6qrgmckwcaalovpv2udf46jwpor4s5ni5bvu@eg2ikgmswcbg>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mobileye.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS2PR09MB6296:EE_|AS2PR09MB6341:EE_
-x-ms-office365-filtering-correlation-id: 19472622-1380-43a7-572d-08dda80c0b41
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|921020|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?zYw0y8MBbz+ZG8eid3i7DEOLLTIyroAU9FW3PQaFDAlICGJxymeBdvkw/K?=
- =?iso-8859-1?Q?WWK87CnGSVUPJ9TqTJG2R74h1xF3Gyjla8FFifMJck1BUnay4yorj+gg8N?=
- =?iso-8859-1?Q?bEt3dv/yKBYpQsGXcqROMSrTqN1P0xE4jX1a55jTwxSA9UO+2nseYpaV44?=
- =?iso-8859-1?Q?uLcSFnGcbU55LbH8/adT5OefCxY13tHw/v+7uc4bMAw6LM9rmS0dgOvKpv?=
- =?iso-8859-1?Q?cnN87AhFslkd6EfQk8n5Z3dHtErt8CHupTpGLH7gRsr8NGlrLFs7MAsmIg?=
- =?iso-8859-1?Q?D2Ug3TOFkhkAm2GOn1+pQQgoATbRZrcsc/sUjpOPYEDUoIDTkx8eQfIFA2?=
- =?iso-8859-1?Q?GCDrE+9ZvdcqPauEQBxX2PMbRoUlwcNH/RaPGYfXRKaA0RIHntNgQGTtE1?=
- =?iso-8859-1?Q?jmWiTmqhA0gG2zZ6SUGdFeGiN57rjcjLVZeBjBssgu87iwGEycV9JxgxTv?=
- =?iso-8859-1?Q?eWRODIi8F5nYUtG6FbFlG5dSOVcARFPBhITSs7op83sUcsv2nlDid5IX7z?=
- =?iso-8859-1?Q?NWDOSTTX/KJVhcrU2TNU+SbtU8rB/tpJT5vG8dkOb0MuDEgSc8czcz+TPu?=
- =?iso-8859-1?Q?2XA/NOVMKfCCrZP/USKn1L/9OGGVZa/APf3jL974cy0WY7jxGV0qAAz7Vh?=
- =?iso-8859-1?Q?ZmutwRUylDwaXdo77PNHxDYw2KVTGKtee+pHr4aCbtpHQ6cM8Ouo9liX9F?=
- =?iso-8859-1?Q?Hc11CfU44q3ZCfBchX42LOt+YLbUkvJo7tu6oIwLa6yNrIqYRGV8SC8ijw?=
- =?iso-8859-1?Q?Jlffu6dQdH10xcA6rzuAiVrp5ApBsK5Jos9YLlADm5jZJsfg5MZ7R4dPiJ?=
- =?iso-8859-1?Q?mNMyzIrBtAQDT2Pb9o3nEmyCMY0BxCo5h0+mg51O15OtszAHOHpp/hv8c9?=
- =?iso-8859-1?Q?7Rd9pC8ZP2p9uGtkq9pe07lr2ka6wdXTCU+xonTevVq0TGE23f8r3DDfCM?=
- =?iso-8859-1?Q?zFoy2zZH2JG7tCmOUk9+dXpyyGsZxTcsSJbfWtcLZq7hlI4AFKWAFPv8no?=
- =?iso-8859-1?Q?Y9rpYkGkLN+bo5v907gzWEMRj8aupEcFWrYWROrQrgnVFm+PlQ7Kt+0B/v?=
- =?iso-8859-1?Q?LXvFTLf2Qcx8TgcNMgaX2IviS+d27Mp5BJop85w4CZULsHQf6gyogAyFih?=
- =?iso-8859-1?Q?pDLHkU0jy0bqmtXPfCKKe+KI30husv0exBIii2B6wQXitTeWQ0BLcuBZKx?=
- =?iso-8859-1?Q?wcXm9giELafNNf3/BNb8HeY3Obnpex7v5pYBJclCm0hJSn2cwVpRshpU2n?=
- =?iso-8859-1?Q?vp7mU2yI6zDfTo0rClrz5v16nUaihce+HCoqhhMjcrmZHYXyhqLXyRYFMX?=
- =?iso-8859-1?Q?0vZBaN4RtN60Tf/erOzasgPHvcoteAUjw90IOfeRIVAsExHmbE6rajO3ao?=
- =?iso-8859-1?Q?TUTT76T1vcYhE0xpP4AeQGgZyvjq/eMrsivgPJPfghsHfm+QKyeGq0bpPx?=
- =?iso-8859-1?Q?hqTN2pC10wp19rvyfPxZk7BhrblXcjqw4WSHr0g4/7scZD+UVxhUA/9orS?=
- =?iso-8859-1?Q?ISB1AdUAgHdNln2HVxyUFGF2/YcgGVdWBhHlBXqU6ljsf6y5jWRdIKRSiu?=
- =?iso-8859-1?Q?BvHeswY=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR09MB6296.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?IScCwTFYjKSknx4vuDc5wtGgNiIxfp5mgGZ7VYYYOJoCboTXnhwVzBeUf0?=
- =?iso-8859-1?Q?MJ4xXRUUNMrmqf/TghCx1s7oNFo1BHNnHx4vnuZb9VfWDbBsBgy9mes6xN?=
- =?iso-8859-1?Q?568eo9AaWTModDBcJGNhBLRUqA2Iif50+I6kbdQexAiqW2yg7pUG+Q64bo?=
- =?iso-8859-1?Q?eNNfNrYjqdZwXiY27pBS/nLQuQ0WfbwhYAkU7KYj8D8AjE5j9Y1bGyPZZG?=
- =?iso-8859-1?Q?ul1x6hIJb3db3e+372HSmdBBzLRMnqrwHodev2ChTcweBognd1HpLJ9NGq?=
- =?iso-8859-1?Q?gBd2V5xTWyyVAvpBL91IONw+S3VrC0wGHd873Wh7+n9Lha3B/vjpdA56qx?=
- =?iso-8859-1?Q?hbOTz+RN2Q5XP3QRkNvNpaloiphvCnqB8PcFbHKroGHpzpOst3ZrbBtQkk?=
- =?iso-8859-1?Q?QlSscZ0ipuWxt8JfOiD0JmDg01Rvn0rj7gWaYKvHlKafBRTPDMQjROwuYQ?=
- =?iso-8859-1?Q?WR41D0J+gPQxFmRE/xJBgkqNjW8Jw1VLu+DcGv13iKm2Cpp142K1oezwy4?=
- =?iso-8859-1?Q?NKHgUt64Nl7fGp5JMy5SAuMS7uiLm9OMO1aHmwNW0P75xAisw5RtvlKGzc?=
- =?iso-8859-1?Q?1x05oHGH7kZNuJe3dZT6Ip7YXAZkOcNh15exDOqNEEPW0Y19hmHJfkGPTb?=
- =?iso-8859-1?Q?KgxgEHNkFA4dTm1DMyr9NCVIIoTZ5QzkUZRyM/RUSZ1Wgvg/rsmf5Ixv7F?=
- =?iso-8859-1?Q?4m4QAFwtE6TxIBjeIX7aU/GOImVHdQpEr0CDXOLdz87YEkh1G0bTeRh26t?=
- =?iso-8859-1?Q?5haS1d3OzFxeWszljjeDkRCVF/WNxSQTBLUo+CkCMSqDQVBOuYXZArp4Fv?=
- =?iso-8859-1?Q?5XveJao6HdrustkI63NK7Eo63kNQKWEWHsKjeM2bOWp0Kk4z7pe+5uBzoY?=
- =?iso-8859-1?Q?8rwleXQhdQeD1c2yjU3E8tPpk00sBsHgcw261KTKgYZRCGE/F9EXIOTslZ?=
- =?iso-8859-1?Q?gKV6ED2TxvYi6RQ6PNAPnZf1an22GEQeBd7YQfaMxFfucfSZmON8PgltWK?=
- =?iso-8859-1?Q?LlmkphSwbWrRA1jW46xc7sA80zRH5HdwZWpsfzPtN7bWM3zVOiziYQr3jl?=
- =?iso-8859-1?Q?IPWPwPlIFWiXV96rt6feDak+EG8l+faaSSKG3sFG5WnGjF5wHkhnWDJA5D?=
- =?iso-8859-1?Q?ULh+WFk8JdSgeTeTKT+ymSN3HUxf0XivRsrhSkIPpBfBbV2roCbQ/hb/XD?=
- =?iso-8859-1?Q?Hwy0+DolGJB2DHjl7dNUM4wzbG/aUhrfWjEE6thazWKfhDAPrZaggk2oFK?=
- =?iso-8859-1?Q?j79bk4R8Jmu1JK2q7m5W1l9zXIFy4L3SfhCFUAFdvuPqUOfausGc/V4hrm?=
- =?iso-8859-1?Q?C4MjxjptNNS7NZLtiGaMVA9aIJhOFFi7B5V1dZJWpJs4W7GlmfwlkmoTTj?=
- =?iso-8859-1?Q?Jy13eya3wONS0I5kK6fSjhLUVQYD1/qSCwxoL9AjW5YfWazeI03p14l1he?=
- =?iso-8859-1?Q?ACPVr2G4q1U7n/MMSOaCNh8DMb6FYIKeFBbOkDXJjnzRXIco1IQ7uOzbVt?=
- =?iso-8859-1?Q?pQDl0t4dit+meknLmfpTl08p6L8MuAXmIeEQj5aMqggxsvLyMaKqGTEjfY?=
- =?iso-8859-1?Q?PY6pLhVfA9LraIuxV3CV2KsBnwpLJoCrV+WNGEoBosbrhJvchOJ38w071r?=
- =?iso-8859-1?Q?3+6fdf1MGCPhfP+HtMe7uLACvjeLwAIEsq?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C308821D3F4
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 10:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749552534; cv=none; b=jNDIv3tEBzsrL4n4ak3W/ctLeIVN/Yx96rS0wJxyWdUi14XkIVFovAeSVKbj7in2TgY4IJy9FOdAiULIHyqDP2ETtrMUOW0k3uOAzScSpPRqKz1sE4HH8K7y6klvDIKcj33qFgRbLahOlY/kgdrJ7wEV6LfXhscorV+2AugFbbM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749552534; c=relaxed/simple;
+	bh=OVlJwNJ0zjXqHrd/DK9avXIyHcps1devVANm+166hrI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=FKCXXw3vGue0haafPNEmKejqQOKS7luGq2sy/GiGSSCriIZQ1PNpJey/bSgEPQBcQT4Xox8lUb5Xkg/zkZCdVhUEgYuPHvNL/9cegy1ahXKlhwi1N8b7dddxn9hgP57z+yu7yBpzrent8vT9YeJNHTO+X6826gD4x77jDM9TY+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fjkEfkhj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79002C4CEED;
+	Tue, 10 Jun 2025 10:48:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749552534;
+	bh=OVlJwNJ0zjXqHrd/DK9avXIyHcps1devVANm+166hrI=;
+	h=Date:Subject:From:To:References:In-Reply-To:From;
+	b=fjkEfkhj2cBdseFZiHg0oeHZCc1lYUHkfbCjNjgwiCQw+yuGsiGgKOUU+GecIO/fk
+	 YLgr9Do9SJ+zji7mqAYAP/6721DRLiuXgD79JleObFdt7knNMcCsmIq28L5bEd3euK
+	 IZzQuUnQmJ9zPnkuZ96+0BSOKAD4fLpTki7fZ7ID2aKM/SizvrDQp7BFT7tia80Nh2
+	 RrmwgVc2vL3NHUjRcXqsA9SgU2b5IMVk5QL3o6/3gBrah6nrvMHcZIEA5bB2y46Twe
+	 M6KKvs/4dsWc50dh4PBFIR2f4C5xHnQlDMu46L5IMJMC9sI4y7h7jaP8DNgBIoUP6P
+	 BeDQdjiA1iZyA==
+Message-ID: <78773d27-d815-4fac-a131-275bde51788d@kernel.org>
+Date: Tue, 10 Jun 2025 12:48:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: mobileye.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS2PR09MB6296.eurprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19472622-1380-43a7-572d-08dda80c0b41
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2025 10:46:23.8183
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4f85ba13-6953-46a6-9c5b-7599fd80e9aa
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0rKcDCEuKDmPONzJJHFspvuXBM0rQhpy2Ykb1V4j6TjEXEoGAvrt9gMWBUozFixLVhdKmO8T7k615jt830Fb5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR09MB6341
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add overlay for RockPro64
+ screen
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Peter Geis <pgwipeout@gmail.com>
+References: <20250518215944.178582-1-pbrobinson@gmail.com>
+ <20250518215944.178582-2-pbrobinson@gmail.com>
+ <62276efe-13ca-448c-ad1d-ec0a8657737f@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <62276efe-13ca-448c-ad1d-ec0a8657737f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
->> +#if defined(CONFIG_MIPS_P8700_ACLINT_SSWI)=0A=
->> +/* generic/MIPS variant */=0A=
-=0A=
->I do not think there is a must to add these defines=0A=
-=0A=
-OK, if there is no objections from others, I'll remove it. To clarify,=0A=
-we're about removing both #if defined(CONFIG_MIPS_P8700_ACLINT_SSWI)=0A=
-and #if defined(CONFIG_THEAD_C900_ACLINT_SSWI) ? And, I'll keep logic in Kc=
-onfig to select whole .c file if one of variants selected=0A=
-=0A=
-Thanks, Vladimir=
+On 10/06/2025 12:44, Krzysztof Kozlowski wrote:
+> On 18/05/2025 23:59, Peter Robinson wrote:
+>> The Pine64 touch panel is a panel consisting of the Feiyang fy07024di26a30d
+>> panel with a Goodix gt911 touch screen. Add a device tree overlay to
+>> allow the display to be easily used on the device.
+>>
+>> This was previously included in the main device tree but left disabled
+>> by default which still required rebuilding the DT to use the device, now
+>> overlays can go upstream the overlay is the best way to handle the
+>> add on devices.
+>>
+>> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/Makefile         |  9 ++
+>>  .../dts/rockchip/rk3399-rockpro64-screen.dtso | 89 +++++++++++++++++++
+>>  2 files changed, 98 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>> index 3e8771ef69ba1..c7b13bff3ac20 100644
+>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>> @@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4c.dtb
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock960.dtb
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-v2.dtb
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-screen.dtso
+> 
+> 
+> This was absolutely never built as reported by Naresh. You should never
+> sent patches which are at least built tested... although they should be
+> actually tested as well, but if code does not build actual testing is
+> impossible.
+
+Huh, I was wrong - this actually builds, just cannot execute install target.
+
+Best regards,
+Krzysztof
 
