@@ -1,120 +1,135 @@
-Return-Path: <devicetree+bounces-184194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4813CAD3330
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:07:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3214DAD333E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCE3B18977C1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:07:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4387E3A82BE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1D728C876;
-	Tue, 10 Jun 2025 10:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460BF2857D1;
+	Tue, 10 Jun 2025 10:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="gU6U4WlK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DZ297P/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa3.hc555-34.eu.iphmx.com (esa3.hc555-34.eu.iphmx.com [207.54.77.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58F828C2B2;
-	Tue, 10 Jun 2025 10:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.54.77.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7120B283CAF;
+	Tue, 10 Jun 2025 10:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749550005; cv=none; b=dEKnqGsI4JCMeG82/bXqrF3RMgnJiIHG7V3/GT1fuaGsVou4hmjj2PMvgh/Tzcrn+xa8HhrZPizbay4dVWqyuXyRjF/orLrbfJMchNVGcfmp55nZ1d3Vn5g9DvkDwonw8TeK48p9E0kB00Tn66OgIvVsljhyc2uMCXvtJpa/w1c=
+	t=1749550165; cv=none; b=R4CN0tfFg/MGpLGR8YDmcB01fqc70GnX+QtC127a3CNhtHWKy/OQ7ykF8o2xMT2OI+SnvrQimgrHeo2D2UDLGJYtUHWAdpoJJfzKwPiQKC1pv9Te2BcB0+uT8tlc/4yCGDVOX9j88fsHhvoYO6H6OqSObMOb2/hOZyg0Q08gsfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749550005; c=relaxed/simple;
-	bh=lPz7wkEBE69zrXNtMCgnkyFvmJop4UtCSyWeiYqIwfA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RZciV8mi8OdhOAVA0JYQJaqRDEWx/Qc1i2ynSJGKz/lljFyIPUjEgR/4VIgwJGOgdJm3oanCNfQvc8V+eJgu6sc2z4XZ6ELuktZWJ0MYjsOpm4OzDp7UEhzcAnYasZKEnbx/fQnR8FtRjqCFoh5I/3LFdCmxj477T73UoMfVxRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=fail (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=gU6U4WlK reason="key not found in DNS"; arc=none smtp.client-ip=207.54.77.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1749550004; x=1781086004;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=lPz7wkEBE69zrXNtMCgnkyFvmJop4UtCSyWeiYqIwfA=;
-  b=gU6U4WlKwFNqXFAewbsenvWaMMO6i0C5WsUs2LB3I0lAOqXXY6tEyalt
-   ZQj3SsSVnnG++MI9Hnibj57Nci6R8QZEWW+ex93UZvhlfhOMzM7/NtKaR
-   2U9Ody0794ZSOACSZNpK4LeCdeGyK5xbM87EnEx7BLaCW3n3V29ph2H74
-   V+75FAVsbhw3bh1TpzCewElqgGswSePxxyxu3D3Y5mlJgHTypfLeNuAKM
-   68ZWr2fkYOy0eK5BdJhYoPcS7kw78Aqfd/FPgZncR/RzsYKwKcCKteNRR
-   0S0ILH2PDw2pn8z+N2qkJpJ4hjpC2itwjSsuH98xO4aRdRilBbC4pB43m
-   g==;
-X-CSE-ConnectionGUID: TSqU/aK9R1y2qCI6ux7EpA==
-X-CSE-MsgGUID: NojkzEXeQLe+V1qQZVgAZw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces03_data.me-corp.lan) ([146.255.191.134])
-  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:06:43 +0300
-X-CSE-ConnectionGUID: ax2a7oOURvuO1SiclmLw5w==
-X-CSE-MsgGUID: VpswVmopSHSN8kdMQv7iGg==
-Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.6])
-  by ces03_data.me-corp.lan with SMTP; 10 Jun 2025 13:06:41 +0300
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Tue, 10 Jun 2025 13:06:41 +0300
-From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Anup Patel <anup@brainfault.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Ryo Takakura <takakura@valinux.co.jp>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: [PATCH v2 7/7] irqchip: aclint-sswi: remove extra includes
-Date: Tue, 10 Jun 2025 13:05:40 +0300
-Message-ID: <20250610100540.2834044-8-vladimir.kondratiev@mobileye.com>
-In-Reply-To: <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
-References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
- <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
+	s=arc-20240116; t=1749550165; c=relaxed/simple;
+	bh=Mu3tJ3WQQn2lPprGjrNb/HlokFlYuCSBcp9oAp61tB4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ULZP1Ae5hPK2zSFOj/Z/2SCOJLb0kqTyJziKSPAPADZbcwQb6fxoqcK4T5Zvs8UYMYyUNlNmD9hQbTIOaY3ZF/k0YZFF4rLZGWVEgn5C3mmsW21TVDqpfx87V1nig3LzNsFjUTzPbSttmE2ZJ7VQtNZJOrrlkwoLhBs5FgXZew8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DZ297P/Y; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a3798794d3so4483848f8f.1;
+        Tue, 10 Jun 2025 03:09:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749550162; x=1750154962; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Mu3tJ3WQQn2lPprGjrNb/HlokFlYuCSBcp9oAp61tB4=;
+        b=DZ297P/YeXjCP5/56Wsjb9cnTG8WH6TDtQfIUShKBHXk26H/nx5KTWZce1ilNU6i31
+         FtzKlnA4cxJU9MH/9mL83VhS0Gi1c5VEiIU2jPWPHL5uJQmoApTAnbNS6YUs8RmSBUe1
+         a2PWoflHj/BoSMzcrZ7BtX2Gsxh1C2ryuTQzPx+v6XblTdNEdwtcruiG+bmoaGQsZUYd
+         i6AbPRbGx35Zz9HVdx9yOdC9KvJx+LBPwvHnoqnm2p45z85oOneIKrWG4JAn2KC9th6I
+         XRJ/LG5mRR9DGYwc+vUGugahpC4YIwck2HPzcZoLrFiV+3MHxQ7uuzppT9yPXCmgcwQh
+         bQlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749550162; x=1750154962;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mu3tJ3WQQn2lPprGjrNb/HlokFlYuCSBcp9oAp61tB4=;
+        b=CygdJKDiemdf7iBJh0FasxTEupKAGloqgYpmVBX5Wx2N3CFzBiJBHdMYKjKMUvFUZB
+         TAYZKy+v7GHAaX2oR657IRvHOZ7XIU16WYMSBFpkCdSq16nd/r3yXTzSRWzf3ZacQK7m
+         WjTgOm5PccJkl4cTgXajgSuhu74/3qWDgUJqRgzdQgAyormuliahz7/gMKzrrGf33JlS
+         YO6Nn29xCgr3BG++M1mhHeH06FuidPLIuV1BK1NTHXrCfFjvUWR1gkV2sZv12oJbn8qT
+         GUZjgbpDDmt8xSn4i7yu3UKo9S9CoRDvzBSOLefHz2mr4tejbHzXdyL9ewWXmseZijIQ
+         +xqA==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ5XaSx3luQdXIAoHFdT9wKZIHTd7C9S4pSGvnVpINnv0B3sC/xOrffZaB8Ak/8RPpfvsqdR4X58FvzbK4@vger.kernel.org, AJvYcCVgz18gJxtbmu3OJhHETsBYDKRDiyuaHGzi6do4ffSTpDvehxm+VAnkGO9HIk2W5lID+NGSqA1R2ULQG0FDUX4FP2k=@vger.kernel.org, AJvYcCVw7a1fhA3GS//vBh8vH2TLO+49805mC4AuVfOL5skdZTFmLry6g7DjRb6AfPYv2ndBIG2uV+rXwYX+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYVQQDedQ4IVt7U+Ia9ar8MPYrFwRrcHEMJcC+eH2zI0K7Yg82
+	i2ue9ITB505tjIARI8YrWh21j6coB+mF3hNicQn+84mzFZLNpbLkRdQH25+7k0w1Gq08LuvEx6w
+	KRQyixntX/3katceEyvzHZkAUCVpU9Sw=
+X-Gm-Gg: ASbGncsun3aHY+qSIDA1F1EeK/hdNWqI8cxpP6kFlMhHK6seGKJ1P1A+GPo39PXRVN3
+	HAumCTfiS327bqcruLzz7Vf4qoOEu8cdtlCICnLWOza+V+GFpOdWc1kM768uLBR20HprHNKv5dY
+	ZhULClmZsm4OcQPk/nb1SwAs0bY6jVTkRCMIJbiG9qCFg15HtgWSSXshS0Ga4JLSVzJRLXhUoa9
+	CI22s9gJSMSNQ==
+X-Google-Smtp-Source: AGHT+IGjgvRkM2W8kgSyX4TbWWmhSsHWLzeNNdPZfCrgDmOedOEofl5Xw6zzPhED/r+Zf+OBYUsJu2Nd2s2pudULcBw=
+X-Received: by 2002:a05:6000:1ac9:b0:3a5:2e9c:ef0 with SMTP id
+ ffacd0b85a97d-3a531cdd224mr13644239f8f.46.1749550161590; Tue, 10 Jun 2025
+ 03:09:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250609231905.511904-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250610095753.GD24465@pendragon.ideasonboard.com>
+In-Reply-To: <20250610095753.GD24465@pendragon.ideasonboard.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 10 Jun 2025 11:08:55 +0100
+X-Gm-Features: AX0GCFtKRVuCrs4eEulMDJyNEUDBid3H4vZNN_u0ANsEVyoc5QWq-7m8nQNNlaM
+Message-ID: <CA+V-a8tOZEfZzXzT8hvKcRt+2TSYb0LEw_WsBfm++ug6xJ5UDg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: renesas,rzg2l-du: Add support for
+ RZ/V2N SoC
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
----
- drivers/irqchip/irq-aclint-sswi.c | 6 ------
- 1 file changed, 6 deletions(-)
+Hi Laurent,
 
-diff --git a/drivers/irqchip/irq-aclint-sswi.c b/drivers/irqchip/irq-aclint-sswi.c
-index 3aa074004dca..dc437a4f82db 100644
---- a/drivers/irqchip/irq-aclint-sswi.c
-+++ b/drivers/irqchip/irq-aclint-sswi.c
-@@ -6,15 +6,9 @@
- #define pr_fmt(fmt) "aclint-sswi: " fmt
- #include <linux/cpu.h>
- #include <linux/interrupt.h>
--#include <linux/io.h>
--#include <linux/irq.h>
- #include <linux/irqchip.h>
- #include <linux/irqchip/chained_irq.h>
--#include <linux/module.h>
--#include <linux/of.h>
- #include <linux/of_address.h>
--#include <linux/of_irq.h>
--#include <linux/pci.h>
- #include <linux/spinlock.h>
- #include <linux/smp.h>
- #include <linux/string_choices.h>
--- 
-2.43.0
+Thank you for the review.
 
+On Tue, Jun 10, 2025 at 10:58=E2=80=AFAM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> Thank you for the patch.
+>
+> On Tue, Jun 10, 2025 at 12:19:05AM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document support for the DU IP found on the Renesas RZ/V2N (R9A09G056) =
+SoC.
+> > The DU IP is functionally identical to that on the RZ/V2H(P) SoC, so no
+> > driver changes are needed. The existing `renesas,r9a09g057-du` compatib=
+le
+> > will be used as a fallback for the RZ/V2N SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Assuming this gets merged after
+> https://lore.kernel.org/r/20250530165906.411144-2-prabhakar.mahadev-lad.r=
+j@bp.renesas.com
+> ("[PATCH v6 01/12] dt-bindings: display: renesas, rzg2l-du: Add support
+> for RZ/V2H(P) SoC"),
+>
+Above patch is already merged into drm-misc.
+
+https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3Ded6a6d63513ee5199841=
+c0a0dc2772ad944e63ee
+
+Cheers,
+Prabhakar
 
