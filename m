@@ -1,154 +1,229 @@
-Return-Path: <devicetree+bounces-184162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993B7AD3230
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:35:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B045AD3257
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:41:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9853718967ED
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:34:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0146E3B6EF8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39FC1D63F0;
-	Tue, 10 Jun 2025 09:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A7E28B7C5;
+	Tue, 10 Jun 2025 09:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pXIjezdV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W9LrnvGO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FDC28A3ED
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03F728B40E;
+	Tue, 10 Jun 2025 09:40:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749548060; cv=none; b=T4m8mPoNNNwQan+nbT6tv2QSqD9tAhpuw9J1xLOrjzTIRLPHeizZezuwTpE+a03XJ0kqmC9PM0N9oWz/SrHcuvVYCFBa9AF+BdC9UdB9cSP5z76qRkzORz4dTHyUINMMle8ePTnkXvAop1ehi4VJros0NcymqyN44XBHn1vqX68=
+	t=1749548434; cv=none; b=eZc3ssbW3R97jsR+xsksB2bKvv5PN6mfkVYmYIBZagrFFM4eAjqiTsmfz6IkxobtoFgk++ylsbYKgOHSFO6Heii7kuDM3CGSkydpy52LNfVOFwveK8ykST9yrcI7fGhMTEpRxjO9OEfNdELPyqEyFa+gGzq9U5mGC2W5ngXm9K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749548060; c=relaxed/simple;
-	bh=I1K9tWbjDdnJVLwMOtJQ8wqurk7EW2N8ZkjWa+a8L44=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oBQdYq/0iV8gc9XZAf6eVe+07CkteHVm2Be9FWVuBD8uuKOK/YS/bAk4R07tew+HJPdnv0pcPocga3xwXkiVU/WE6+HgZSD29JTbhJYn/eXQTtSb3ACP63npfSx0yEHNHsEpcZKGmDfMvYz5ek2eqa6yYvPQIZTO1frWLuL/154=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pXIjezdV; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a35c894313so4696998f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 02:34:18 -0700 (PDT)
+	s=arc-20240116; t=1749548434; c=relaxed/simple;
+	bh=bc3ArTVUw4P5VtScDalALhWhOUuTjLnFF0E/aUNzDbQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NiMyvZogy+kV6BZmqg6iz4+CfRDnmJ+X7X7pSHBrG4K7/2UXN8QspikJtKAH/dj6hSEW2YWUZrIUQwFL91X1CgtOWUKhKiLtxpU0MwC4Yop7QZUm+LnR4GAeemKnM4TzH/vXpMrSZwyxwMKIIuSwq7G1gbe+BtvPthgGPOFPAto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W9LrnvGO; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-453066fad06so17512245e9.2;
+        Tue, 10 Jun 2025 02:40:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749548057; x=1750152857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2sgAb1XNW7IcbUYG5Vl92Yrpvf31sMblVDDnz2uwCdM=;
-        b=pXIjezdV6M6plzz0/iPNRsy58Mu6zGYhkIfc6X/ZBubfdYOHqsOK6LtZNuQD+Gblph
-         IXECnlWpzsBha7Xsf0sFMZdKUZZen9g7fPHhDGKm9ARNL+fnEbPLMV2a6PKRpiK+zhGc
-         cgPW8BjUzUYJWouVLxiv1eRCduRB1S/rNFa0Q3kSpIPPadU5oD+02hWWfBXJnK4LkSRz
-         DBgOdmLE2M3cOea3rR1Vr3q9r7O+cvB4tDzJ7IuLH/yK4aLDsVd+pn5JoDNCiWPGyhdb
-         f2fv0H1+VMI8Po0Kbu3ONoF0aDlOg1ofXJo9H0af5o0Tgt9ZrhTgphcTNYsjcI6ZiwYK
-         thSg==
+        d=gmail.com; s=20230601; t=1749548431; x=1750153231; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j3V5HrYJtU5hIgsrllrDB6dJf8rX+Q/4NXndWlhVdio=;
+        b=W9LrnvGO8u+taNjV+sgvQbfL4fsfw+8qG2ommwvv6E6VHxvlA7tHciSFBdvY3OgH4b
+         JjPtrqzLKq//twtv7A4eTKeJeKL0VdgN3adFR9U2059pDDTZmkBee6JkZrkbt9/+T5yI
+         T2vKLVTIU7zbOT529M3C5iKrBXCbEGeOLCHzwpsYx4kixAPbLstA06VKkPIPDnITaTs8
+         eVXpbv8tiKWggsFSVBych6kWyhbC/y3A+vZgiJLOgaN8NnjkfvA0bkODSFr865y/F9vu
+         506p1OzafOxEZx6kuOBmSE6BeYbgHKMCRYx9flm4TLwI6RIUJOtdz/uZe6K9wnAPDJkE
+         7vag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749548057; x=1750152857;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2sgAb1XNW7IcbUYG5Vl92Yrpvf31sMblVDDnz2uwCdM=;
-        b=JD6NaPpgF6rmsOT/KBIv1LZjWskPEE2w9xzQQmw9uZrv0pdFfv3tUukEM8O/ilF0WN
-         nVwWKcis9yLCi4XmzbvhHqlnSjvV2ljMAAIDWKK7aUrTszKncasm4upJmCgs03+Q5Wgh
-         UGobAoWsIACc30pDEEsQbfsJa8/XvLtOwRoOsLQgkOk3fysik/lEHuJ/Ai09ACwxXMZt
-         xTV102Ztmfh4lrcx3Fe4ygEanWWPBgBFrU8Hop1E3YIzTF+aKh2HAjAAy6YDnww82jZl
-         bNwBFr1wFVIGyHprGsKtnwBJHwTlCXbKgSGQXLLrkRBzYDi1P+UBu0v8P13Fp6gASUhS
-         81nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEsRPCSOZR1+FSy2Knq30GV5DLQ074MZOmiVwkzzWS1pY4z5RCsETUxauUhBfxS0og5fZyMG4uFbgT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOIaDDRbNf0evkl0HBU8SNyBVe4x8ANl/ATzdmF2uLrJ8NM+wR
-	9wRs6Rysz5zJZozxiOLrKO1LYAylF+awQDXF3XUglW1mgE+VY/pNPO3lgNKAbwfJ/k7d10E16zX
-	EzCC/fTs=
-X-Gm-Gg: ASbGncvnZk81bqPW7xOIwPjzfazcqy3XiOdwmCOU56Nh4uZknDhM3S0BlzXhkNsvfvc
-	Iq1MJQEGDks0mWW2kE7dxEM6z9OjgkRLIVjEwQ84tQ9HfKG33bKetXsYnGKLlK0CpKBORYOgyOl
-	NbJsMudwKMZr1vHInewyI0C09ZqiwF5fG3NsPM3rTgjZ1Z3v2mEAeQ6DfS5cr0NknoZXp96A+GH
-	r67rh4AuA6c/5Y4ieKv8gT78s3ldN//Pi//4bH3aYMnMWNX4/lLtCSABvY7pwJVtmEPw4EHlYgb
-	XfUmWbnpbMnS2z84I1mmdCsuNDPxOTOa1WDMK7ahRON4r9tQLTmJDCEMXnB1DOElFSkLNittr34
-	GqgQbiGRBoQeATc4VtaeF3Xd+4plROM9n4kIQ
-X-Google-Smtp-Source: AGHT+IFH0HuMjwqMdNYVSnjDPrZbsV6mlwKgIbS1lF2FMgN1dbTtzO2vCD3SgrqFOHSyP+hq+BtSTQ==
-X-Received: by 2002:a5d:588a:0:b0:3a5:2e9c:edb with SMTP id ffacd0b85a97d-3a531cde0cbmr13358935f8f.47.1749548057284;
-        Tue, 10 Jun 2025 02:34:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14? ([2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-452fba4621csm123988285e9.13.2025.06.10.02.34.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 02:34:16 -0700 (PDT)
-Message-ID: <7f5b7a49-28a0-4923-bbf4-8b0afdefe571@linaro.org>
-Date: Tue, 10 Jun 2025 11:34:16 +0200
+        d=1e100.net; s=20230601; t=1749548431; x=1750153231;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j3V5HrYJtU5hIgsrllrDB6dJf8rX+Q/4NXndWlhVdio=;
+        b=rgxtJDwJHZFBd90CH+GTGPW6qxB1drxqRgz9hZUVEZG61GsLIqdtCIFcIjdmlemyu2
+         4WDSVpS0gSN/dB4iEaMxFyVxqWy/ZuKVvk1SKaKr6KNqTIkpxwA7OCtN+AXo45B/2hqO
+         GrG4BVWTXR1Hb4J1UlpzeZLdrk+LAjfSzJAZazppFhdtmN9V4xe9icX6GRLLaC5OLWIl
+         cR5tQ+7+Pvmdaza8vsy+OAOxsAnCa3NCyUyOcETXQanY/yG6tEOob9bfs4jWlOIdwI+4
+         bNbkxCoYOY826Lt2+otY4Sjh9QhlZQ7BP9IVAJEtXVm5rvxd7ljLUiKYRIxNcXuXC73t
+         HDGg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFeAJxW48GcJ4ADC+1LIjYUAz4qzljQGyfhZbeZNXqCS0IaHA9AgwSX7ui8Qyrl6Fw8r/X7/3Z68XLa+4=@vger.kernel.org, AJvYcCWbnLSmeTgeBhM6s0OiqeeBvwPaN125u2J2/kwEbpejnfE9YD1EBl4W7eOZbiODPiqMFw41yzLr6Yc/5QJS@vger.kernel.org, AJvYcCWdtoddQDzc79qbG5WvU7y4P6nNDTpDjlIwbT0WDc6Aop6rIsd0stIRIzfFcWP8AN/Qi1LymtFMEP56YQ==@vger.kernel.org, AJvYcCXr4gvBLERCoqqyWAdRJr1lOZUtvTxxayOwUMzf0jONn7ZwOobvzIo5VCOJCxXPQcrqNGnNfEO46lZ+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAlhC1QjRds6AtyZv4201SwDsxdfNH08a/c8cyz4sZBhBg2R5H
+	Ro7ZbX5I8NelAzBjmb1VUH4h5u1fwFdlsQsBAorq1pNurEOMbRwpCpXj
+X-Gm-Gg: ASbGnct8wy39N3tgpy4LmQL/+O17Jc3FtQMIHukTrfvSR6XwBDCTY4PRhyBej0m6N+Y
+	nj9GlNUQiF5ULiict+mMjEUacqoK7A79ySDJLUohbHnEbjd6vHTFB6i1F4cOQRISTM5g+KFaiGN
+	QIXcbPRxymstVJ6MMXiKvtTIP8vnMcbX7eqp3g/Qr08quRBspetV0ycf9cINfRQtXWrj8mRAMgl
+	fHt4skI2F2vHKnJu507eHHF737o7u4u4HRwQc+YfHlUk2vBkqFNgDRTxie3ZYXukV9r7BlCT4lt
+	f3XkW0ysYKO/L1yLwNHakG1YEhLUCkhQRSa+1J2HyALpxDEJdWySx+4PaMgO8fBaHqw5l659b/L
+	8g684sIRWsR/QTwRr1iFrzt17YzzYw5lM1Ia2FEdmLKbsgPfZ
+X-Google-Smtp-Source: AGHT+IHhEUfYh/4N1lGaiXcMB3u3JRzvlrUtVSKhzNzblyDKGclQtPc9Ir85S4ccQrzyJpoLCLb4Nw==
+X-Received: by 2002:a05:600c:4751:b0:453:c39:d0d0 with SMTP id 5b1f17b1804b1-4530c39d65fmr77488045e9.13.1749548430901;
+        Tue, 10 Jun 2025 02:40:30 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532063ebf6sm4571485e9.3.2025.06.10.02.40.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 02:40:29 -0700 (PDT)
+Date: Tue, 10 Jun 2025 11:40:27 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: webgeek1234@gmail.com
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
+Message-ID: <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
+References: <20250608-tegra186-pinctrl-v2-0-502d41f3eedd@gmail.com>
+ <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 0/2] Flattening USB controller on SM8450 QRD
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250610091805.2997546-1-krishna.kurapati@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250610091805.2997546-1-krishna.kurapati@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="koz7pqhubwkgry26"
+Content-Disposition: inline
+In-Reply-To: <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com>
 
-On 10/06/2025 11:18, Krishna Kurapati wrote:
-> Flatten USB Controller node on SM8450 QRD to move away from legacy USB
-> Qualcomm glue driver and make use of new one. The series has been tested
-> with driver changes [1] to enable runtime suspend/resume during cable
-> disconnect/connect scenarios.
-> 
-> I was testing on SM8450 QRD and hence flattened usb node on that platform
-> only. If the community suggests to flatten all platforms of sm8450, I can
-> do a compile test for the ones I can't get hands on and send a follow up
-> series.
 
-I can test on an SM8450 HDK, so please flatten for all the boards and CC me
+--koz7pqhubwkgry26
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
+MIME-Version: 1.0
 
-Neil
+On Sun, Jun 08, 2025 at 09:13:14PM -0500, Aaron Kling via B4 Relay wrote:
+> From: Aaron Kling <webgeek1234@gmail.com>
+>=20
+> This is based on Nvidia's downstream 5.10 driver, rewritten to match the
+> mainline Tegra194 pinmux driver.
 
-> 
-> [1]: https://lore.kernel.org/all/20250610091357.2983085-1-krishna.kurapati@oss.qualcomm.com/
-> 
-> Krishna Kurapati (2):
->    arm64: dts: qcom: sm8450-qrd: add pmic glink node
->    arm64: dts: qcom: sm8450-qrd: Flatten usb controller node
-> 
->   arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 110 +++++++++++++++++++++++-
->   1 file changed, 108 insertions(+), 2 deletions(-)
-> 
+A few words upfront, to justify why I'm being pedantic. Originally the
+pinmux drivers were generated using the tegra-pinmux-scripts[0]. This
+project was later archived because Tegra210 was deemed to be the last
+chip to need a pin controller. It then turned out that Tegra194 needed
+pinmuxing for certain pins, and then more, so we ended up with a full
+pinmux driver for it. However, we also deemed Tegra194 to be an
+exception, so that's why that pinctrl driver was a one-off job.
 
+I now regret these decisions because the same formatting mistakes are
+now proliferating, which is exactly what the scripts were meant to
+avoid.
+
+One thing that's not clear from this patch set is whether we actually
+need the Tegra186 pinmux driver, or you're only adding it because it
+happens to be present in a 5.10 downstream driver. Do you actually have
+a requirement for setting pins dynamically at runtime? Do you need to be
+able to set a static configuration at boot that can't be set using some
+earlier bootloader/firmware mechanism?
+
+If we really need this pinctrl driver it may be worth resurrecting the
+tegra-pinmux-scripts so that we can add these drivers based on the
+generated files as originally intended.
+
+As announced, there's a few pedantic nitpicks down below.
+
+[0]: https://github.com/NVIDIA/tegra-pinmux-scripts
+
+[...]
+> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra186.c b/drivers/pinctrl/t=
+egra/pinctrl-tegra186.c
+[...]
+> +static const unsigned int pex_l0_rst_n_pa0_pins[] =3D {
+> +	TEGRA_PIN_PEX_L0_RST_N_PA0,
+> +};
+> +static const unsigned int pex_l0_clkreq_n_pa1_pins[] =3D {
+> +	TEGRA_PIN_PEX_L0_CLKREQ_N_PA1,
+> +};
+
+Typically there'd be a blank line to separate each of these structures.
+Or maybe we can come up with some notation to make these single lines?
+
+> +static const unsigned int sdmmc4_clk_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_cmd_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dqs_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat7_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat6_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat5_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat4_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat3_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat2_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat1_pins[] =3D {};
+> +
+> +static const unsigned int sdmmc4_dat0_pins[] =3D {};
+
+These look out of place. Ideally these would simply be NULL and 0 in the
+respective PINGROUP definitions, but not sure if that's something that
+can be done with the preprocessor. Are these guaranteed not to take up
+any space in the generated binary?
+
+[...]
+> +#define PIN_PINGROUP_ENTRY_Y(r, bank, pupd, e_io_hv, e_lpbk, e_input,	\
+> +			     e_lpdr, e_pbias_buf, gpio_sfio_sel, \
+> +			     e_od, schmitt_b, drvtype, epreemp,	\
+> +			     io_reset, rfu_in)			\
+
+It looks like there's an alignment issue in this macro.
+
+> +#define PINGROUP(pg_name, f0, f1, f2, f3, r, bank, pupd, e_io_hv, e_lpbk=
+, e_input, e_lpdr, e_pbias_buf, \
+> +			gpio_sfio_sel, e_od, schmitt_b, drvtype, epreemp, io_reset, rfu_in)		\
+> +	{							\
+> +		.name =3D #pg_name,				\
+> +		.pins =3D pg_name##_pins,				\
+> +		.npins =3D ARRAY_SIZE(pg_name##_pins),		\
+> +			.funcs =3D {				\
+> +				TEGRA_MUX_##f0,			\
+> +				TEGRA_MUX_##f1,			\
+> +				TEGRA_MUX_##f2,			\
+> +				TEGRA_MUX_##f3,			\
+> +			},					\
+
+This .funcs substructure seems to be indented wrongly. I see that that's
+also the case for Tegra194, but it's correct on Tegra210, so it looks
+like you copied from the wrong source. =3D)
+
+Thierry
+
+--koz7pqhubwkgry26
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH/YgACgkQ3SOs138+
+s6E3vQ/7BbhIeEooFiDj0/uIixGcizRegwHcKrtrqsFTfHYcdG1Eeoo3b1lDjtXG
+yon6OYCL0C3HodxYmACCb0Pbpif3QV34wDDIe6N2380WIJmTYIWNLF6DFsioY06A
+aA1kvwU9gH24w7SoviwfWcNp5SzcYUegUF6n6G6bjGoVNbgmig9P0ZxsmaQNRUT9
+SN/rlqUmgE8djmIZPZzzVYWFJbbXkZd8bHf5F8SBSTf/C0L+iqar02z4cI+auW9A
+6KDR/qdpKvKywQs30fTNcYnD7eRpIiSxvxR4yt6Mi9v2Ax1z4XuUpvbTPT5urO52
+PB2LcrxhXd6IyC3fJ/ltjiRoQ21nUsiwUBBkT7a28Gn1LHrmy3naNwLFIrcAlwlL
+g0Bo/NXYag2VqjJ44mXYZUCHE4DoQXhSWJdAX8iKyc2IgWP1GghCkMNDrPqJy54E
+p2dgUEIVfq8nhci3m0VmL3Fq0g+4h0NLmbxTb5syQwwo1DMTPSZEhSM8WC2MpCH1
+yuJb6uPGv+f0Ic+dvt6D49XQI7Oscy89rVwTOlLckwO53VgODdn4mW18uVNNB50Q
+CEiYXvV2YPTgyX5k93E4v+6mrFMmN14uqW3NnQiirOSrnoD5tLVy7u2Q27gClq6b
+W89SGKPYxvUCnhRj+QXmOnzvW202qnSQshoTlrNsnRspZrS3uaU=
+=k3CP
+-----END PGP SIGNATURE-----
+
+--koz7pqhubwkgry26--
 
