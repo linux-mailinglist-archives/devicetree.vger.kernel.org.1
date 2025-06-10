@@ -1,158 +1,226 @@
-Return-Path: <devicetree+bounces-184334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 321B5AD3AE3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:14:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55FCAD3B0B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB6AE3A2E71
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:14:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A260189623F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A941C2951B5;
-	Tue, 10 Jun 2025 14:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD3529DB77;
+	Tue, 10 Jun 2025 14:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g8UlAxUx"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="dSzJq2bZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2022.outbound.protection.outlook.com [40.92.22.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B5142A8B;
-	Tue, 10 Jun 2025 14:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749564870; cv=none; b=YvAt46+FQBKuqe+058Jr8jpjVkD8SD/yEZtgZwsTnZy1ct7+DT3Oqe70FOWYg5XGVdZ636dPBgCab7RAg84oyUEB7L0vzcUMBis22yRryzzEDK1RMBaDL+VJ4svi3FGddjEkPL+cG9nR9dAOgv51QE73ELEU+At2l4qtMxrSGDY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749564870; c=relaxed/simple;
-	bh=sPd2q1kJbN8qnD3LntQitJqqVFUiNmhSJ4fKZSeUThU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=srPMpNtA7DIJbNU/zAWgJ0beYInB2PhBpgyeB85neD1IYuZldM6CZD1380QFqrxyEOGbsI622Zo8h5IZPWYaswZaa4SMARllkZ3GTUKm7HhCpJo5O48F9jMKVgLA0XbAb1G+l735fxveVI36GQQ0tl7WU8w8ggLnjX0bec7DFa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g8UlAxUx; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-32ac52f78c1so55855131fa.3;
-        Tue, 10 Jun 2025 07:14:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749564867; x=1750169667; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vuMEGKtcKU7mmxYrWQc80Di8yLcBsgrY66zcTsKw9jA=;
-        b=g8UlAxUxrXM4AsYNAA8aOhoRbCxuPAcvCUC28HKuwkE5XUq08VNP9dvqgVwhtcEWyF
-         zImAtUEH2m+Oo5fbH0p+wEThiQLtpBaGv1O9ph6wTEEbi8znOkBRu+hBcrhcPyxD6FBd
-         4IJGpQlRSjS71G3y0qrH35W3VUfZAsOh6VK4G70zAHIo25l8nbOWvo2e+L32ZMZwLxwB
-         Saq40EEuYgdPN3v2IvOV41NohXG/hbOZ4jl5BAARzhD5phxSkZYFDdADlijxm4n4Y9US
-         VOxh0MtBzTAJUGmj39Yh0q7ja4T3xXKjg1sLY53lOnovViJ/1jcG4P1yH2wVgYLGjR2Q
-         j6hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749564867; x=1750169667;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vuMEGKtcKU7mmxYrWQc80Di8yLcBsgrY66zcTsKw9jA=;
-        b=bQZ4Pv4k7RmBSHz1JgVDtM6uWuCLZ0mfzlb+WaZCMfWaiqZn9tMlK8ZcuuZ3BVesC6
-         VRPJ+KvRut1ZllExL20oPdUBc5gxnxWJSgYKfgW1yf0P70QAnBI9UEVOvEa/53qPN19M
-         HS+SLad50/QEEnn8PO/9PrV4wi5OrBhqbOesfhRn/FMx3kM2ujFNRrp3xzOXXJBB/pEM
-         5BWsdr5qOe47NZjsaGypzOag5k7LjypRbOoufzpirFup0Ds3yrul+wMGQYw8EijQRV4x
-         xGis3Dzlt+9XRuStwM0q1otaWeg6KR3gxyLFqs+pu9oeu6gFZh2qQqUrx32A7P/mM1/e
-         umtw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHna4Pr6LqCVGR+P1y+VkJzgc8mhb55I4pkBxVxbzswb0oBvh1Hbc80C9ZjR2kUzIWZclWY8bbtYvte/U=@vger.kernel.org, AJvYcCVoWOpO9aR3ZGm1CTPC6heKUjwmotd4oFYipiKV+RmcrkH0TOUZnKrO8moaY7wldJ7Ryl7vgmIf@vger.kernel.org, AJvYcCWsxhbz4rSi4lxorsfztj2LXoju7Z4ARj06D0/xhVZfrBEvAPytokcmor46xh9oNCy28lUN59GKlhgO@vger.kernel.org, AJvYcCX0miSQcONPypmRY0DYXZRCcac3ZQsjScNUVFATHFkku5FLu2gWC8SBEt1L/S2mbKfvdPsNU8Il5ujSTYEfhTU=@vger.kernel.org, AJvYcCXKhBKzxZLJ5ar1LwR1FLQWKM3+i22C7QFNjM6+Nw7z1rVeCWB1cADuOb0LWvqvQ1HkoiECmDQfLrmf@vger.kernel.org, AJvYcCXNw9qqJ9xrIbNYR30U0L2mwGU9KYPDRXXSJJzY1btWsC0FDVK9gVIY6ysoJ65B0tCUrje0iPTBSg8BXJPp@vger.kernel.org, AJvYcCXQ+nBdjDmbhD7bxfYB32xvFQHL5CXV5/hLY/VcKx8DUfKsAFgS1r1EPBal0lWXseaH6HZ1/u+z6Dn/icP+@vger.kernel.org, AJvYcCXv+VaQoxkq9k6+VmkXcKXwuULAQhe6IG6/zc+2MOpH0FLvODcTo1lJ6mnIJ590eGaeunbIewbdLTqD4tNtry87@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywh9fyHduOEO/xYcSna2NypfHSg3eCUZVoSn7jl6yJLhnUnidT8
-	gUrrBg9M5izryLwge1HKF7OXZxAwF1duBMegLL560D/fnFKtLXbmeG0M9THgL76iGr7KIh6ef3e
-	DyeicIQKT7iL6liO+oZg5CqzBQPHvxiQ=
-X-Gm-Gg: ASbGncu1NsWIngkWysdKWPmXIgwAxni+ocAXc+pHvae1QQ6l+NNatw2wcxUIOmo7X1u
-	ok3btoL2x7XqQXdLKsf/L70wyxsFETcnFwODB+2XniwQKLD5hntt3HtoDm2kCRYAsDF/CKITQ/c
-	yKBv6dbl59AeaHt1ALQDmwDsnCEmumnPUykGqR65IdOPku0i6iIcGa7WoMdRs=
-X-Google-Smtp-Source: AGHT+IFs+FOaKv26OTPjKCXkGEVIsKYLeIeoc9L5o7yKIFbtvD9PHVbw58XaSCpX4CNs2yC2qsatn7XHITlBY36o8SI=
-X-Received: by 2002:a05:651c:19a2:b0:32a:6b16:3a27 with SMTP id
- 38308e7fff4ca-32adfe1dbf3mr46462091fa.35.1749564866581; Tue, 10 Jun 2025
- 07:14:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D381522E406;
+	Tue, 10 Jun 2025 14:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.22
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749565305; cv=fail; b=onVaPVgYywpnXZ4GgsaPMPkWmnVA8GjrI1nRefMTys3L4hEcQFuO3AHRb9bRZQqzpAuzeCoUTq7+4HNuXXeilcGf0VTLxZ0TrwZVJaBpJNzqpsmGbOrI6UQqW29DdMSzF5ehRp51k5gF0/laHcgfgF1D47qEI7bGalig2PKyhZQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749565305; c=relaxed/simple;
+	bh=xYepsnAew9dF6cUFBPOjVC7dlv74O6SRSu9bxH/Q6Fo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=b9LtVqoqV5n9fStz7gqFuBQ3TnZ6JKt0VOBo83r5rXZqgj6v2KmxtGtsUxY7PX90qE+1ekeeM/ceqjXrT7keL8CbVSVfpc0cGIfSoGnlTsQlBhamas3ov4XkuFXR8Jj5NF8YMVhNmbL++liRanroj+4ACJVHDtSGfIG3PbWRhls=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=dSzJq2bZ; arc=fail smtp.client-ip=40.92.22.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=agFbVG8BFFnPwjhe69E/LU/xciSMy7UwTTQTPKm3a0kaBNgt8dtHybR/QiCMXghflTeIYh6NixtlLcAr6l6v6egtV7tA6ciV9MpjXUT2a+97ZTd3yZtADrlon09yXnLKt66LBoCiLRMlHqxVe4dEWQm6djzqiIC7ZxStFxsC15wDEgW637XoQhNNEnp4E3K/BcSK+YJyxWLBUzVONH6ePYCdrbdbBW8+fwRQvzyZuqh1TRlUWRUs9mS4VniHiTdw3Fkek+OPj/mvQ+7I6sWuDKDcJXScnRT7kmXEgNRjESmZNKzCkLudmXlU5uHa8M9JRlJLqSglutVf2UilktAKDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LOkvkkkoaQmKhyghlS3HsPpM0aLxTxoUjfS/xX38kCE=;
+ b=CzEFTikzieepWJzsiAVa5NshdevZfyeLwKofK1CpDqV2vTg3qQlqZRtze0IZbd/uqkE7OXoLobSKowZRhYU7Z32BSgMtYp+wfgKlX2vdMmWuAfj0A/D0Oc2rNHoV8YE6JQNxoupyCUwW/chmbpx4uHVmn+7aEVhFm5X07prEqSdDXZY4iU60dJyRcZTAoSPfzqotLyimJFpFJ8MpLHs/qZVzfIx4WBep3bXcX7mPlCNLL5M7lRiNF+399FqAQ+SE9yWVMdmjW14IzAZy5YDv4OEbDUqb99KKgF9e/BNgHcf+2x1NvAeqjilEQ7/27xUKZxdtJ5PmyxtA7qizeJ6jAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LOkvkkkoaQmKhyghlS3HsPpM0aLxTxoUjfS/xX38kCE=;
+ b=dSzJq2bZ5AWUhVP1enQxulxMDk260emQQX2Rt5zXziHP77ro4oMEf4hfi2C/v40IdTtg4nlZ+du4hpiJArO88bnLM0YzQyAWZVqobt4i1r30kK2d+96vRxkQshrS4pyG52sMsdwaH6aBMsthOTuqeSmfl0w6hIF4eh61Hzb+8kf3Ug3xrERcsquTj0wisJT32XDJ9TskAYsJUBszXiinulkT+QPHGQT9IPWa5qyeSokOOUaWqdRqsr98nBTNIlSWNbuDRgN5qztsXkohr6abyzwr4TaQ/Ta6Zk+NvSRaMwmdGVc6f1MmkNXIPfC/9A6DOrtHEV1OsvHSNzPwkaTJuQ==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by PH0PR19MB7320.namprd19.prod.outlook.com (2603:10b6:510:287::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.13; Tue, 10 Jun
+ 2025 14:21:40 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8835.012; Tue, 10 Jun 2025
+ 14:21:40 +0000
+Message-ID:
+ <DS7PR19MB8883150D952EC3C753211B7F9D6AA@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Tue, 10 Jun 2025 18:21:26 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10] arm64: dts: qcom: ipq5018: Add tsens node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+ Dmitry Baryshkov <lumag@kernel.org>
+References: <20250610-ipq5018-tsens-v10-1-3a10a5a2642c@outlook.com>
+ <f123294b-b944-4723-bd74-713970468d51@oss.qualcomm.com>
+ <DS7PR19MB8883BEBE4168DD1682F858749D6AA@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <73e2881f-b899-45a4-a59e-47593283b63b@oss.qualcomm.com>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <73e2881f-b899-45a4-a59e-47593283b63b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DX0P273CA0089.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:5d::13) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <4612d0bd-f9ca-4e29-bf7f-80f0e419a45f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250418-ptr-as-ptr-v10-0-3d63d27907aa@gmail.com>
- <20250418-ptr-as-ptr-v10-4-3d63d27907aa@gmail.com> <CANiq72kWtEsXDuoXpbTNRLiZ=c==Ne=v4igxCWMwWFj0LOC-Yw@mail.gmail.com>
-In-Reply-To: <CANiq72kWtEsXDuoXpbTNRLiZ=c==Ne=v4igxCWMwWFj0LOC-Yw@mail.gmail.com>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Tue, 10 Jun 2025 10:13:50 -0400
-X-Gm-Features: AX0GCFuew5JuDEc_jx48ZSACU5BVvcLvpbd6GdnUaVlDV59_UtgyTusAE2HFbXQ
-Message-ID: <CAJ-ks9ny_VNvKM-w04kkk4Yw=UpYEt82TyFZZuXEFK=DxfwcgQ@mail.gmail.com>
-Subject: Re: [PATCH v10 4/6] rust: enable `clippy::as_underscore` lint
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
-	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	FUJITA Tomonori <fujita.tomonori@gmail.com>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Anna-Maria Behnsen <anna-maria@linutronix.de>, 
-	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
-	linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|PH0PR19MB7320:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0eddd1c1-fe15-4367-1ad6-08dda82a1dc1
+X-MS-Exchange-SLBlob-MailProps:
+	WaIXnCbdHrM7rjyNOMJrj2U6VUnrNAgQe43QEcWqXdEcJyiKdsoBsUJTbvK5YdkmHLO4iaTNWmk7TgkY8LsdfQTCQ0D3/LbJxMU2IYKhXGWi9i8/GEzm7gcTaNwRVMIhOnA3yyJ8iXiTTg1LiAGcot1wHZ0g0NxVKdimia+xv7QXH16Cd22oq63KQyqXwEhalJpKaY6RfCsEjLZdN/xfKZvIhOc0/0thrMq8v7tu1jEHZPhPSJvMWeF7Do3cf44dLf8WyqbM11RkaB7hR2Gvewum+Ap7BgsN/7Q9m8z3+4XfI+LFljcYZuUuX8HSzc0Jgxl6NvxI/Rq0qRZJQDlWCqBYrnzBuJ8gyK29nVQV64yV00xe92xPPJyU5Uau0Vu/4ZaucQmzTyDzu5RdNDSNEBXLO6rG2XSnRekQ7TFZfG1X2nKoDlswDnoOOAfCeBaU5UQGQtkapRQWFjvCUvmeoIFN4M677Ufvz6fh9puYtxaOTEWnoFK5o37WdNB1z7osjmw9Cp69Ww5sCN/XLq9tsuonrxkPC1dgrr3ht7PMomG7q0vI9JnZU8kKHHUS+mY7RF2YC+mWNKau8PaY/SeJ+26tfLCoTSEYn5P5d8RAIMapSiqeIfZsuiwfJlJeyCoFlQBqRYnHFKbUtu9T8daT9h8y717Jgreqp+XvnyqHtDE2oXqkPd69EIMHc3+4TrA17kRNwwx0fcLomftBoeeOMvEZERqb0sPH8ymCyCnsfquXgGUfokqTmWRm/A0hYZ5ShZbzC26uneU=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799006|13031999003|7092599006|8060799009|6090799003|5072599009|15080799009|461199028|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SWNQbUhseGRXQXhrRlh1ZUg3UWZoRk9NZmhielU1ajVaS2NYL0kwWWV6OUhS?=
+ =?utf-8?B?T0NubHI5dGF4VjB0eG5md0h5Wkh4cFg4TVI0KzNNMmxNTnpCOWkzUzN0RzBp?=
+ =?utf-8?B?bGhwSlpmL3JYV1d2djNHdG56OWRxOXlyUXhWZk1NL1JHYjh5NFQ0d3lQNHE1?=
+ =?utf-8?B?dHhNQ3NMVTNGcFlnRk44OTcyL215UnRpa3c5dGpJSlFuMzlrdEhEWlAyNjVo?=
+ =?utf-8?B?SER2YVV1eEp2WkduSkpPbFJxcEk3SXRqWTVYUWk1bzY3TjhhaEE2ZENHNnR1?=
+ =?utf-8?B?YVBHZGtLZlRLb29HTHZPbEh3cEVHYmE0TGdzVTZGeXE0dGZNQ3kyejFBVlRE?=
+ =?utf-8?B?MDNsbXlBeS9PckVMTDNzNUh1S0cvRm1iY1Z0VHp1VWduVnNqYmhBeDlwUUpF?=
+ =?utf-8?B?YlMva1hEYU1QR2k4WXZnU3FuQ2RjR1VVbnYwdm5ORjl0TXo1TUFyT1pqUkE2?=
+ =?utf-8?B?S05relN4MWMyaTlzamRGdllGc0NFdE94ekluZnorOW0xYkVTRnd3UG03VEhS?=
+ =?utf-8?B?YzBob2Q0c0laaEFlWWRUeUpMc2o2bHNRNmdscWNtVmhHSzZTcXFGWWxtdk1T?=
+ =?utf-8?B?WjJwSittMjJHa1ZYc1RxRG9CRjROV1lpMlNSTkJDbUhGanpUUmxsSUNBZjh0?=
+ =?utf-8?B?QkJOOXdsTDBBLy9vNUhyaUp4ZHV1aHhneDM0SnJLMjhEdlhQRForZkdBYytZ?=
+ =?utf-8?B?NTNndmlBUS8xbDk3dTFWdHc4TTdPL3AxQjlwZHkzL0NQZjRtZDVXaENYRzl3?=
+ =?utf-8?B?WXpJczJpOEpwbnN2M3IyVGhSOEx4N3VhRUt2NmdLZ1o2NGVFV2h1L2w4NHVR?=
+ =?utf-8?B?U1VYbmM1V3YxeXVrdVFrMHRaek93NVMzN0ZuaWJWUDdub0UzUEMwTUNHbTh6?=
+ =?utf-8?B?V0xJZ1VPenVoSjNlTzlualR1VDFLSEYrVW04c1lmU204QjNmSHEvOVI4K25K?=
+ =?utf-8?B?Wm9XcEhGRElxRlAyRlVKcWtoUE9hZEhxeTY0a0VlTGM4TE9naVI2aCs4R0Qx?=
+ =?utf-8?B?cFVBVEpRVXBaWXVnenBUQS9mdkY4aGpRTVlKR2ZsSVBhUlJLOWtWWnF6MXZz?=
+ =?utf-8?B?MGhhVk9xWEg5djIyTU00NjB2ZmJscDY3ZnRkenNyVlR3UUVLNERIUC8vWFhO?=
+ =?utf-8?B?NzNYRHk1dWVXNHpXVEFHbWRDY1diOWEvbjNRTjRPVkY5emdJL1F0OHpvYng1?=
+ =?utf-8?B?QXU1TzdTZjhWa3lQUHBlRHNpeTRqMkpIT0YxQ2x2c2Qya0ZoUjFyV1BZNFlr?=
+ =?utf-8?B?Y2VTV3F5cVdsMEYxNnhNTUhVeVNSbVJUQzBGSUk4azBVNXVqRnBUbFRGZC83?=
+ =?utf-8?B?ZUVONitjUzFtNzJxL005WUpMRWs4bFpZVTViVU52SmxLblZhRUpMTlJ0ZXNx?=
+ =?utf-8?B?RmhadVNrY2o3VXVrTE9ZQXU0S1o2SDZ2MkYrYitVYmI4RUxEVDkyNWFHNktD?=
+ =?utf-8?B?dTFuSG4zVHJINjdWeFZmME5OQWtyTldYa2Rhb0Vub0pEOWh2clFXMHdid05n?=
+ =?utf-8?B?QVBQL0hQdWp4ZW9Wd3BBQVZnNk1xb09jakV5V2pvbWdFTStwbjVaMyt5Nzkr?=
+ =?utf-8?Q?MHAxQxYVCtGuVjgsPhz6t2JQc=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?R0lBamZDdUN5UUlCbTRyRnd0Z2Joc0RlN0RWbmxXTnlGRXdKWGdwd1lPckFJ?=
+ =?utf-8?B?T1dPOEUwbU5xV21PeGoxbGN6Qk9mQVh5WTFyUHZTSGtlSTNoc2grYXg4SkI0?=
+ =?utf-8?B?R3B0MTQ0TXlRUjNnNGVMdC9LdEJjTFU0eVlFME5scjN1dmZmd0hPcU5nVXRQ?=
+ =?utf-8?B?OWZVYWhCL2NQRnRrTHB1bXphNTlnV1pzR3Q4cDV1bXZkT0VLdW5qUFJ2SnVn?=
+ =?utf-8?B?OVJtRnJSRVJqTmd3QUdLMzhBaHdPRUhMbWZkeEJ0UlBlMTl6VXR1bmZuVWQr?=
+ =?utf-8?B?Vy8wYnJQRmdKb2ZmTkxxbDlLU0ZYQm1QTmE0V1FxWTVpNXNyVkoySkRWZkdL?=
+ =?utf-8?B?VFpDeURhcmM3T0hSWWpCKzFyNHkvdDFON0FUb3ovTFg0MGxWdUJidkZ0b0JZ?=
+ =?utf-8?B?VmkwVTlFV2s1T0NVYlZSWlA3U2tDdWQ3NXZiRmZzSFlrdXpISDV0L0l5blBm?=
+ =?utf-8?B?QlA3MUpMZ2MrbXFnTlRTVHFiOXFRQTFsS1FzRGF1Mm8yYStDVnlrYW1VVnFN?=
+ =?utf-8?B?RktvTTNNOG1vSjBzdklROXZMVVVwb0IzWHNGWWpENEZQMFNPV2RsUHdHS1ds?=
+ =?utf-8?B?ZVZMNDQ0QnpKUnpsbVFTZHRqMGMyVzMvaGFwZE84UFpjNnpKbnAvVCsrWTky?=
+ =?utf-8?B?azhWb3ZHbFdkLzlENEU4V1F4aXZZeFYyUnVBSmQ1SlBQT3VyeXovelBMeDFh?=
+ =?utf-8?B?enNNanJTZVdyUzN4emFxd1FzOTI0MTZWTzZxYUZsSi85SXQxam0vYkhXcnJM?=
+ =?utf-8?B?M09jSHJ1STJQQ2xpNFlORkx5YmZWQjlKREUwR1RNeDRKL0R1VEE2bU1weHZp?=
+ =?utf-8?B?WGpxV2xOVWdpb3NDeVRJLzFmYjV6SW9IMlVtOXRWQWFMSlplY1ZiZU9rZEs1?=
+ =?utf-8?B?SU5xK01aaHNkWkFJSDNGS0RwTGNJczFORmtjMTZEOHJjaW8vcTJob0JaM21n?=
+ =?utf-8?B?TEtWVWVHWG5nbXRwaHIyYUp0Q3BLRFJxdXdyQUprVWdKRUJHZGNJTEo5Z0o4?=
+ =?utf-8?B?QmczaWNMdm1NUm53VU5ObnZyaTBzRGxVUGdzdWFhdWxBTmNkUTc5NGs5bWdm?=
+ =?utf-8?B?Q0JQMGNNOUlNNG5YUGx2UzZ5aHhXTy84VzNZNGFtTWUvSTdmZlBtcGY1Vncz?=
+ =?utf-8?B?S0NYZUZtTDBvZStmS2w0TktDcUJoc05DTUUzRGxldnQzNEFRaG1oUXVsZjFv?=
+ =?utf-8?B?VWZ3em1NZklMNHEzQTdVME9TRWlKNW51TFRmR0haaXRJajNJZnZweE4xWFNB?=
+ =?utf-8?B?WkRreW1zN0lRSkhDd3VoMFJWenlUaUNhNTN0RHBrNHZHSjAzVGdpdGRucWdX?=
+ =?utf-8?B?YzAyUG8rRk9mYkp4d3FicEhnM0VtMVZ0QlhSdEVya2Z5cWtuZitEa2N4NmFF?=
+ =?utf-8?B?OG9wcE5namh3VCswZUpkd1lmVUhyN0ZESFM5YlpCRFVHMHUrWHJ3ODhwN1Z5?=
+ =?utf-8?B?YUtNVlN4YWhpMThheW9RV2pGN0I1S1U3b2NQZDEvZE5NUEFvK3FQb1FQaHRa?=
+ =?utf-8?B?Mk9PV294N0hXZ3VzTGxGdFNQMXZyRFBtcEhobkRJZUFhSmoxdkZhRExlWjlG?=
+ =?utf-8?B?TmJDOWt5UGJJT3cyQVJzTGJTVTRvN1VsOHRhTUJlZHhDb2duVTR1R0JKaDRO?=
+ =?utf-8?B?NGtMc1BrcjYrSUxFdlYxYUpJdlpyb3hab0pLWTQ1NWNmSStoUkhMa1BOY0dC?=
+ =?utf-8?B?Q3ZZVmlwSFB1L0s1R3JFRG9PV0lpaG9jczJvMU11RzVaOUxmR2ozcGNUcmZB?=
+ =?utf-8?Q?QTAnDTDFy3u/md9FKAPXOcKcp8dJPukfK3iKGpY?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0eddd1c1-fe15-4367-1ad6-08dda82a1dc1
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2025 14:21:40.5640
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR19MB7320
 
-On Sun, Jun 8, 2025 at 5:06=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
->
-> On Fri, Apr 18, 2025 at 5:37=E2=80=AFPM Tamir Duberstein <tamird@gmail.co=
-m> wrote:
-> >
-> > -            bindings::BLK_STS_OK as _
-> > +            bindings::BLK_STS_OK as u8
->
-> > -        unsafe { bindings::blk_mq_end_request(request_ptr, bindings::B=
-LK_STS_OK as _) };
-> > +        unsafe { bindings::blk_mq_end_request(request_ptr, bindings::B=
-LK_STS_OK as u8) };
->
-> For these two: `BLK_STS_OK` was discussed in a previous version, but
-> why are we not using `blk_status_t` type instead?
->
-> We are even already using it in the first case, and in the second it
-> is the parameter's type.
->
-> > -/// # use kernel::{bindings, c_str, device::Device, devres::Devres, io=
-::{Io, IoRaw}};
-> > +/// # use kernel::{bindings, c_str, device::Device, devres::Devres, ff=
-i::c_void, io::{Io, IoRaw}};
->
-> For v11 this can be removed since it is now in the prelude. There may
-> others that can be removed too (I would not add an import just to use
-> it in these patches, but if the prelude is already imported, then we
-> should use it).
->
-> > -        result.minor =3D bindings::MISC_DYNAMIC_MINOR as _;
-> > +        result.minor =3D bindings::MISC_DYNAMIC_MINOR as i32;
->
-> Similarly here, shouldn't we use `c_int`?
->
-> i.e. it is the one in the C side, not the "resolved" `i32` that the
-> compiler suggests.
->
-> > -                    bindings::wq_misc_consts_WORK_CPU_UNBOUND as _,
-> > +                    bindings::wq_misc_consts_WORK_CPU_UNBOUND as i32,
->
-> Similarly, this should probably be `c_int` since that is the
-> parameter's type, right?
 
-Yeah, I think these are good calls - I'll fix it in v11. When would
-you like me to send it?
+
+On 6/10/25 18:09, Konrad Dybcio wrote:
+> On 6/10/25 4:06 PM, George Moussalem wrote:
+>>
+>>
+>> On 6/10/25 17:08, Konrad Dybcio wrote:
+>>> On 6/10/25 3:03 PM, George Moussalem via B4 Relay wrote:
+>>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>>
+>>>> IPQ5018 has tsens V1.0 IP with 5 sensors, though 4 are in use.
+>>>> There is no RPM, so tsens has to be manually enabled. Adding the tsens
+>>>> and nvmem nodes and adding 4 thermal sensors (zones). With the
+>>>> critical temperature being 120'C and action is to reboot.
+>>>>
+>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>>>> ---
+> 
+> [...]
+> 
+>>>> +        gephy-thermal {
+>>>> +            polling-delay-passive = <0>;
+>>>> +            polling-delay = <0>;
+>>>> +            thermal-sensors = <&tsens 4>;
+>>>> +
+>>>> +            trips {
+>>>> +                gephy-critical {
+>>>> +                    temperature = <120000>;
+>>>
+>>> I'm not sure whether there's any firmware/hardware measure to shut
+>>> down these beforehand. It's better to have a software trip at 120C
+>>> than to not have any at all, but you may want to try and find a
+>>> case_therm or so thermistor for your devices..
+>>
+>> these are the temps as defined for the critical trips by qcom. IPQ8074 has the temp set at 110C, while IPQ6018 even higher at 125C.
+>> They've also defined lower temp trips in the downstream DTS files.
+>> Should I try and add those? I could check if the driver supports them..
+> 
+> you can register the CPUs as a cooling device and add some sort of a
+> trip point (see e.g. ipq6018.dtsi)
+
+great, will add and test if the driver registers them appropriately.
+Will use 100C as the passive trip temp which is the next value lower 
+than the critical trip defined in the downstream dtsi.
+
+> 
+> Konrad
+
+Thanks,
+George
 
