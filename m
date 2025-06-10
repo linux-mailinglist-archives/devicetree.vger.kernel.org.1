@@ -1,68 +1,65 @@
-Return-Path: <devicetree+bounces-184363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4B8AD3D3C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:33:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD9AEAD3D43
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:34:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0D80189B045
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:29:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3F331BA2BBE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25C3248F56;
-	Tue, 10 Jun 2025 15:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EEE6242D78;
+	Tue, 10 Jun 2025 15:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTpMfumv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="naZwS8LK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A3D248F50;
-	Tue, 10 Jun 2025 15:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1A6239E84;
+	Tue, 10 Jun 2025 15:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749569017; cv=none; b=TGOE5DId7AzW1+LGCN+Z6xNjPOyHfhjnR2ydxKpo0jpt/mpgeQrpbMsucdQ2Cwnu0UKXhuZ7A4smQAV0BYxhh1nvdqhEV0q9EbxyYXew25WJpMNA+RAL137n+Ju2tkqK8KduA4YflGpkC47s1GrjFAWipIfUj/cIH3lUOSjSO/o=
+	t=1749569058; cv=none; b=RIsiT9Fk4VRH4bN9OR0rHh/9SjMvWULCLPDxN6JeGuOhFvoUY4UwJvNtnxmENmNHFWWfa3FJfZoudlqgNoODfndP+hr1b74sJpsPRSHb3syprjaNiFnPtee6qulfbe3KYHCNeH85+C+v4l/wQQwz5/n03aThI7oVR/O2Nzm+5JU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749569017; c=relaxed/simple;
-	bh=GdC3hbu2lBWJrq1c5FNhywQS8uf44LJI+yaHMwNtUZY=;
+	s=arc-20240116; t=1749569058; c=relaxed/simple;
+	bh=7RTD/hKazwSOcIO51Bw2eV5ROVv5ZTuBKh3I5QbzMuU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nhvA2Ic36b8XOJdGzMUvfBG2YvnChzeZPfJPPJG4f17Fn/vHJty+FpU25WoWxeS/wvO/ulUCktyboLu5TA6mpLkPtWlyhm0IMj5zkCrAnMMzNEXn3+Hfnn2Ess5mU0hp9miZ0TmnYbQ8jvnO7N7eGrl0IEFTvdVBG/ly93/38aQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTpMfumv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACBF9C4CEED;
-	Tue, 10 Jun 2025 15:23:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XKn/InwhvuCphA941ljbXFOmPBkwGqbfB0B8Oq7dD9g13ClldyUez7O+I6KjdEJVXMe4FrSXs58+nl1FlDZsqUZtS2FBSoZPZXPQ00AI+O0xfgggGF+MG/eUVfLe/UQE24/82Ni/vnVNZzj/LzGH1VYLQ245DjZH7Y/cuT/SE3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=naZwS8LK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0A54C4CEF0;
+	Tue, 10 Jun 2025 15:24:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749569017;
-	bh=GdC3hbu2lBWJrq1c5FNhywQS8uf44LJI+yaHMwNtUZY=;
+	s=k20201202; t=1749569057;
+	bh=7RTD/hKazwSOcIO51Bw2eV5ROVv5ZTuBKh3I5QbzMuU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YTpMfumv//WkKeU1pjfa4/ARYTp4er7sYZcbWH7Qgd06JSTvoaaIHYhvfyV+OsRxe
-	 KlD8ovmvs9jUneKVjEbQDT47TlVjrD+OWWBAXgl/QLAhgxu8jpyrQgIYSNb/AYIfVo
-	 j9kLNX5UZ4TTUVtAn9cBmjIK4UTTWyT6FbUjk7eodk0Hmks8lKuGonOfGsOotLGu9J
-	 4Ch1Rc44Zy/t9sG0UhEZ5Sjqoc9R33EQ5+n9c0p6RuhlUZ+jylbx/+TgiM5Xv33iPO
-	 WhT/r9Ntl0xzsZVZUR2PCoYdHhCLAdkUAFJZlAflyHLada9PrrTsc7zQNzdTumIozf
-	 1fPqbyu51psrQ==
-Date: Tue, 10 Jun 2025 16:23:31 +0100
+	b=naZwS8LKVimmMLixNrt5XdGdIawylg25FquFXREt5tiUz7YXPiQku6aXRDwqnyc8e
+	 KXLe1vVv2x2n+blKcfonTqsJ6vzFMlChGyzX9SySskStHiyeRYt37FDga8rD5D2FaO
+	 g80ufAtVOIHXhkAuzb59hdXDa1V5/VYcW+dTamqgqm6lh8u8iTEaJLGl/jJBeIvNfE
+	 uiwTYQR5B4UBuSUq0ZAsYKfs3tkd0n0QtqC+kE4+lyx+E3B1xKUCLwyJkF+o5b986n
+	 lO3O80/XI8IjkXxgEQqoMoVSpxjcpdpovrvvVOfq6rGtQemsacOK/rSwo13h+ONlCF
+	 8micbStOP6SQA==
+Date: Tue, 10 Jun 2025 16:24:12 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt bindings: PCI: brcmstb: Include cable-modem SoCs
-Message-ID: <20250610-satin-wages-2ae29a2a3520@spud>
-References: <20250609221710.10315-1-james.quinlan@broadcom.com>
- <20250609221710.10315-2-james.quinlan@broadcom.com>
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 3/8] dt-bindings: clock: renesas,cpg-mssr: Document
+ RZ/N2H support
+Message-ID: <20250610-sizzling-onto-60238d9d5658@spud>
+References: <20250609203656.333138-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250609203656.333138-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,66 +67,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZDyAQUps/4oIxyh6"
+	protocol="application/pgp-signature"; boundary="CSDeHKHMQxmnViqQ"
 Content-Disposition: inline
-In-Reply-To: <20250609221710.10315-2-james.quinlan@broadcom.com>
+In-Reply-To: <20250609203656.333138-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
---ZDyAQUps/4oIxyh6
+--CSDeHKHMQxmnViqQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 09, 2025 at 06:17:04PM -0400, Jim Quinlan wrote:
-> Add four Broadcom Cable Modem SoCs to the compatibility list.
+On Mon, Jun 09, 2025 at 09:36:51PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Document support for Module Standby and Software Reset found on the
+> Renesas RZ/N2H (R9A09G087) SoC. The Module Standby and Software Reset IP
+> is similar to that found on the RZ/T2H SoC.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-In your commit messages, you should mention why these devices are not
-capable of using fallbacks.
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/D=
-ocumentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index c4f9674e8695..5a7b0ed9464d 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -15,6 +15,9 @@ properties:
->        - enum:
->            - brcm,bcm2711-pcie # The Raspberry Pi 4
->            - brcm,bcm2712-pcie # Raspberry Pi 5
-> +          - brcm,bcm3162-pcie # Broadcom DOCSIS 4.0 CMTS w/ 64b ARM
-> +          - brcm,bcm3390-pcie # Broadcom DOCSIS 3.1 CM w/ 32b ARM
-> +          - brcm,bcm3392-pcie # Broadcom DOCSIS 3.1 CM w/ 64b ARM
->            - brcm,bcm4908-pcie
->            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
->            - brcm,bcm7216-pcie # Broadcom 7216 Arm
-> @@ -23,6 +26,7 @@ properties:
->            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
->            - brcm,bcm7445-pcie # Broadcom 7445 Arm
->            - brcm,bcm7712-pcie # Broadcom STB sibling of Rpi 5
-> +          - brcm,bcm33940-pcie # Broadcom DOCSIS 4.0 CM w/ 64b ARM
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.43.0
->=20
-
---ZDyAQUps/4oIxyh6
+--CSDeHKHMQxmnViqQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEhN8wAKCRB4tDGHoIJi
-0tmAAQDHXwi683jRmX1Bx3NVDFjzYk9W0gkH+7s8QG2OnV8LrAEA133Af6pObKAg
-bs044xuxHkN8aohFLG72Xi6Q3IdYyQ0=
-=Bkpe
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEhOHAAKCRB4tDGHoIJi
+0s/pAPUSom8POJPMO6VwBEytFqfxX2fx3sj4VrUMjrFNamSVAQCCho07QZ6+R+dm
+gYn4cgk2x6irpyUIbVJ4596Xc6rqBg==
+=02Qs
 -----END PGP SIGNATURE-----
 
---ZDyAQUps/4oIxyh6--
+--CSDeHKHMQxmnViqQ--
 
