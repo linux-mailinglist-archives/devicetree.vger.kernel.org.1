@@ -1,229 +1,247 @@
-Return-Path: <devicetree+bounces-184163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B045AD3257
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:41:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E23AD326A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0146E3B6EF8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:41:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C2547A9D14
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A7E28B7C5;
-	Tue, 10 Jun 2025 09:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE84028AAE3;
+	Tue, 10 Jun 2025 09:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W9LrnvGO"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="O709jW9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03F728B40E;
-	Tue, 10 Jun 2025 09:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4849E1FF5F9;
+	Tue, 10 Jun 2025 09:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749548434; cv=none; b=eZc3ssbW3R97jsR+xsksB2bKvv5PN6mfkVYmYIBZagrFFM4eAjqiTsmfz6IkxobtoFgk++ylsbYKgOHSFO6Heii7kuDM3CGSkydpy52LNfVOFwveK8ykST9yrcI7fGhMTEpRxjO9OEfNdELPyqEyFa+gGzq9U5mGC2W5ngXm9K4=
+	t=1749548572; cv=none; b=qcmA5b5T5TlUl/OM+WfbETNcWKBQ6YhF+XebXaiK7fH0k7rmhsOwGtGI+rDfpoz/oAy9o5fV8pa2hKgh32R1nkJVxVvpPwzTDusI8yJY26XuLkeSLUI6+RG+0qMjBY4C5meyA8OKSvzONksbqVhaDAtkaoKIZE1HRzDpg/SjpgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749548434; c=relaxed/simple;
-	bh=bc3ArTVUw4P5VtScDalALhWhOUuTjLnFF0E/aUNzDbQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NiMyvZogy+kV6BZmqg6iz4+CfRDnmJ+X7X7pSHBrG4K7/2UXN8QspikJtKAH/dj6hSEW2YWUZrIUQwFL91X1CgtOWUKhKiLtxpU0MwC4Yop7QZUm+LnR4GAeemKnM4TzH/vXpMrSZwyxwMKIIuSwq7G1gbe+BtvPthgGPOFPAto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W9LrnvGO; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-453066fad06so17512245e9.2;
-        Tue, 10 Jun 2025 02:40:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749548431; x=1750153231; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=j3V5HrYJtU5hIgsrllrDB6dJf8rX+Q/4NXndWlhVdio=;
-        b=W9LrnvGO8u+taNjV+sgvQbfL4fsfw+8qG2ommwvv6E6VHxvlA7tHciSFBdvY3OgH4b
-         JjPtrqzLKq//twtv7A4eTKeJeKL0VdgN3adFR9U2059pDDTZmkBee6JkZrkbt9/+T5yI
-         T2vKLVTIU7zbOT529M3C5iKrBXCbEGeOLCHzwpsYx4kixAPbLstA06VKkPIPDnITaTs8
-         eVXpbv8tiKWggsFSVBych6kWyhbC/y3A+vZgiJLOgaN8NnjkfvA0bkODSFr865y/F9vu
-         506p1OzafOxEZx6kuOBmSE6BeYbgHKMCRYx9flm4TLwI6RIUJOtdz/uZe6K9wnAPDJkE
-         7vag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749548431; x=1750153231;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j3V5HrYJtU5hIgsrllrDB6dJf8rX+Q/4NXndWlhVdio=;
-        b=rgxtJDwJHZFBd90CH+GTGPW6qxB1drxqRgz9hZUVEZG61GsLIqdtCIFcIjdmlemyu2
-         4WDSVpS0gSN/dB4iEaMxFyVxqWy/ZuKVvk1SKaKr6KNqTIkpxwA7OCtN+AXo45B/2hqO
-         GrG4BVWTXR1Hb4J1UlpzeZLdrk+LAjfSzJAZazppFhdtmN9V4xe9icX6GRLLaC5OLWIl
-         cR5tQ+7+Pvmdaza8vsy+OAOxsAnCa3NCyUyOcETXQanY/yG6tEOob9bfs4jWlOIdwI+4
-         bNbkxCoYOY826Lt2+otY4Sjh9QhlZQ7BP9IVAJEtXVm5rvxd7ljLUiKYRIxNcXuXC73t
-         HDGg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFeAJxW48GcJ4ADC+1LIjYUAz4qzljQGyfhZbeZNXqCS0IaHA9AgwSX7ui8Qyrl6Fw8r/X7/3Z68XLa+4=@vger.kernel.org, AJvYcCWbnLSmeTgeBhM6s0OiqeeBvwPaN125u2J2/kwEbpejnfE9YD1EBl4W7eOZbiODPiqMFw41yzLr6Yc/5QJS@vger.kernel.org, AJvYcCWdtoddQDzc79qbG5WvU7y4P6nNDTpDjlIwbT0WDc6Aop6rIsd0stIRIzfFcWP8AN/Qi1LymtFMEP56YQ==@vger.kernel.org, AJvYcCXr4gvBLERCoqqyWAdRJr1lOZUtvTxxayOwUMzf0jONn7ZwOobvzIo5VCOJCxXPQcrqNGnNfEO46lZ+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAlhC1QjRds6AtyZv4201SwDsxdfNH08a/c8cyz4sZBhBg2R5H
-	Ro7ZbX5I8NelAzBjmb1VUH4h5u1fwFdlsQsBAorq1pNurEOMbRwpCpXj
-X-Gm-Gg: ASbGnct8wy39N3tgpy4LmQL/+O17Jc3FtQMIHukTrfvSR6XwBDCTY4PRhyBej0m6N+Y
-	nj9GlNUQiF5ULiict+mMjEUacqoK7A79ySDJLUohbHnEbjd6vHTFB6i1F4cOQRISTM5g+KFaiGN
-	QIXcbPRxymstVJ6MMXiKvtTIP8vnMcbX7eqp3g/Qr08quRBspetV0ycf9cINfRQtXWrj8mRAMgl
-	fHt4skI2F2vHKnJu507eHHF737o7u4u4HRwQc+YfHlUk2vBkqFNgDRTxie3ZYXukV9r7BlCT4lt
-	f3XkW0ysYKO/L1yLwNHakG1YEhLUCkhQRSa+1J2HyALpxDEJdWySx+4PaMgO8fBaHqw5l659b/L
-	8g684sIRWsR/QTwRr1iFrzt17YzzYw5lM1Ia2FEdmLKbsgPfZ
-X-Google-Smtp-Source: AGHT+IHhEUfYh/4N1lGaiXcMB3u3JRzvlrUtVSKhzNzblyDKGclQtPc9Ir85S4ccQrzyJpoLCLb4Nw==
-X-Received: by 2002:a05:600c:4751:b0:453:c39:d0d0 with SMTP id 5b1f17b1804b1-4530c39d65fmr77488045e9.13.1749548430901;
-        Tue, 10 Jun 2025 02:40:30 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532063ebf6sm4571485e9.3.2025.06.10.02.40.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 02:40:29 -0700 (PDT)
-Date: Tue, 10 Jun 2025 11:40:27 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: webgeek1234@gmail.com
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
-Message-ID: <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
-References: <20250608-tegra186-pinctrl-v2-0-502d41f3eedd@gmail.com>
- <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com>
+	s=arc-20240116; t=1749548572; c=relaxed/simple;
+	bh=g7il55jPrFO1v06PKMJzNZzN4apYm85+tt2TBu0NQ0s=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=bROWYt0LbCI6FsgUZIAYpQPwS59JYpmLjvRIGQ7OnmAlDfzajz8+GhZLAuhwxZtxOC8q62osTDKl1F6N88OzJoJ/p4HLZA5OhVLWW1YASYkez1e6au/k8sYsc4Xc5fp3jvdB+r57I+zdV6NYVGewVo9fvGkpqlsngZAylruwBDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=O709jW9J; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1749548543; x=1750153343; i=frank-w@public-files.de;
+	bh=/oeMfzgpDyFenP1NeZBi5mnHFeuCvixDO862rdadX3U=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=O709jW9JdwF2bH69ynEqbMJT5oYUnmDgxbsYXX5lpRIOJ+Nw4UC3vDWbHXz4wKWz
+	 V6p69e76Zgnu1UDi0x/c/uOh5jat48j2+DNZO9UMD737ERj289I57xk2uWffaceBm
+	 U0VG4fO5VgR4w7wq2eIPPAepMaDrqjB17cQGlL0KPJKosqlLVeNqvmLWfBV5VXy0/
+	 upwfKzQ9x/gBN/mU7ybt5hGOESEPKQD3laWnm/FzWQpgREp2484Tf/gnxXMcPV1PM
+	 i35iRcV+2QsdA70ar9GHYbDOj0KksIxTqZDvCAE4J72pr4Hm0a1SBuutSQpDRplW2
+	 sKOxyWQJeHfxJHCLFw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [100.64.173.171] ([100.64.173.171]) by
+ trinity-msg-rest-gmx-gmx-live-5d9b465786-6h7cc (via HTTP); Tue, 10 Jun 2025
+ 09:42:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="koz7pqhubwkgry26"
-Content-Disposition: inline
-In-Reply-To: <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com>
-
-
---koz7pqhubwkgry26
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Message-ID: <trinity-ccdae81d-0e10-4e78-a29d-917b623095e8-1749548543301@trinity-msg-rest-gmx-gmx-live-5d9b465786-6h7cc>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: andrew@lunn.ch
+Cc: linux@fw-web.de, daniel@makrotopia.org, myungjoo.ham@samsung.com,
+ kyungmin.park@samsung.com, cw00.choi@samsung.com, djakov@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, johnson.wang@mediatek.com,
+ arinc.unal@arinc9.com, Landen.Chao@mediatek.com, dqfext@gmail.com,
+ sean.wang@mediatek.com, lorenzo@kernel.org, nbd@nbd.name,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Aw: Re: Re: [PATCH v3 06/13] arm64: dts: mediatek: mt7988: add
+ basic ethernet-nodes
+Content-Type: text/plain; charset=UTF-8
+Importance: normal
+Date: Tue, 10 Jun 2025 09:42:23 +0000
+Sensitivity: Normal
+In-Reply-To: <9d27e0d3-5ecb-4dcd-b8aa-d4e0affbb915@lunn.ch>
+References: <20250608211452.72920-1-linux@fw-web.de>
+ <20250608211452.72920-7-linux@fw-web.de>
+ <cc73b532-f31b-443e-8127-0e5667c3f9c3@lunn.ch>
+ <trinity-87fadcdb-eee3-4e66-b62d-5cef65f1462d-1749464918307@trinity-msg-rest-gmx-gmx-live-5d9b465786-mldbm>
+ <9d27e0d3-5ecb-4dcd-b8aa-d4e0affbb915@lunn.ch>
+X-Priority: 3
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:OFjOchg4Lqw5a2CcWeQW6D2v8sr1/Y8LlEK+V8kJRAC6XO3xezQhXNFFp4W0wJLFECOo+
+ hwlRt6DSTEY7Jy3Og1AF+OGuqFbLdNJcnjmYFZl+qXQq/7in26PqtFhTKqMo0nQSayMzrCQgTIgw
+ sJL9QmM19VHbi9WreLyIzlB+oIEMMSv5a5TXyC5RO4MaHZmk3CLiKz3UrbuH1/sphDTuZZt0ezlE
+ 9WQSzYVGw8TH6MSoxzzpbNZJltAaif+NqHVP8o6rLST2Apyir6IpzLsRc9i8NRMTFByR/Ze4tEoj
+ +sPQzbVAFbmsYphGwXp85KZKULPNc5U5dUWBoOmswVymFwNljY3sY7Waf+QnR6Jo34=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:N0TFurw6qdA=;dnuAdwIY17K7lvPuKBOx2H95Knc
+ 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
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
-MIME-Version: 1.0
 
-On Sun, Jun 08, 2025 at 09:13:14PM -0500, Aaron Kling via B4 Relay wrote:
-> From: Aaron Kling <webgeek1234@gmail.com>
+Hi
+
+
+> Gesendet: Montag, 9. Juni 2025 um 14:12
+> Von: "Andrew Lunn" <andrew@lunn.ch>
+> An: "Frank Wunderlich" <frank-w@public-files.de>
+> Betreff: Re: Re: [PATCH v3 06/13] arm64: dts: mediatek: mt7988: add basi=
+c ethernet-nodes
+>
+> > > > +			gmac0: mac@0 {
+> > > > +				compatible =3D "mediatek,eth-mac";
+> > > > +				reg =3D <0>;
+> > > > +				phy-mode =3D "internal";
+> > > > +
+> > > > +				fixed-link {
+> > > > +					speed =3D <10000>;
+> > > > +					full-duplex;
+> > > > +					pause;
+> > > > +				};
+> > >=20
+> > > Maybe i've asked this before? What is on the other end of this link?
+> > > phy-mode internal and fixed link seems an odd combination. It might
+> > > just need some comments, if this is internally connected to a switch=
+.
+> >=20
+> > yes you've asked in v1 and i responded :)
+> >=20
+> > https://patchwork.kernel.org/project/linux-mediatek/patch/202505111419=
+42.10284-9-linux@fw-web.de/
+> >=20
+> > connected to internal (mt7530) switch. Which kind of comment do you wa=
+nt here? Only "connected to internal switch"
+> > or some more details?
 >=20
-> This is based on Nvidia's downstream 5.10 driver, rewritten to match the
-> mainline Tegra194 pinmux driver.
+> "Connected to internal switch" will do. The word switch explains the
+> fixed-link, and internal the phy-mode.
+>=20
+> It is not the case here, but i've seen DT misused like this because
+> the MAC is connected to a PHY and there is no PHY driver yet, so a
+> fixed link is used instead.
+>=20
+> > > > +			mdio_bus: mdio-bus {
+> > > > +				#address-cells =3D <1>;
+> > > > +				#size-cells =3D <0>;
+> > > > +
+> > > > +				/* internal 2.5G PHY */
+> > > > +				int_2p5g_phy: ethernet-phy@f {
+> > > > +					reg =3D <15>;
+> > >=20
+> > > It is a bit odd mixing hex and decimal.
+> >=20
+> > do you prefer hex or decimal for both? for r3mini i used decimal for b=
+oth, so i would change unit-address
+> > to 15.
+>=20
+> I suspect decimal is more common, but i don't care.
+>=20
+> >=20
+> > > > +					compatible =3D "ethernet-phy-ieee802.3-c45";
+> > >=20
+> > > I _think_ the coding standard say the compatible should be first.
+> >=20
+> > i can move this up of course
+> >=20
+> > > > +					phy-mode =3D "internal";
+> > >=20
+> > > A phy should not have a phy-mode.
+> >=20
+> > not sure if this is needed for mt7988 internal 2.5g phy driver, but se=
+ems not when i look at the driver
+> > (drivers/net/phy/mediatek/mtk-2p5ge.c). The switch phys also use this =
+and also here i do not see any
+> > access in the driver (drivers/net/dsa/mt7530-mmio.c + mt7530.c) on a q=
+uick look.
+> > Afaik binding required the property and should be read by phylink (to =
+be not unknown, but looks like
+> > handled the same way).
+>=20
+> Which binding requires this? This is a PHY node, but i don't see
+> anything about it in ethernet-phy.yaml.
 
-A few words upfront, to justify why I'm being pedantic. Originally the
-pinmux drivers were generated using the tegra-pinmux-scripts[0]. This
-project was later archived because Tegra210 was deemed to be the last
-chip to need a pin controller. It then turned out that Tegra194 needed
-pinmuxing for certain pins, and then more, so we ended up with a full
-pinmux driver for it. However, we also deemed Tegra194 to be an
-exception, so that's why that pinctrl driver was a one-off job.
+seems like only the cpu-port on switch requires the phy-mode for binding..=
+.
 
-I now regret these decisions because the same formatting mistakes are
-now proliferating, which is exactly what the scripts were meant to
-avoid.
+  DTC [C] arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtb
+arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtb: switch@15020000:=
+ ports:port@6: 'phy-mode' is a required property
+	from schema $id: http://devicetree.org/schemas/net/dsa/mediatek,mt7530.ya=
+ml#
 
-One thing that's not clear from this patch set is whether we actually
-need the Tegra186 pinmux driver, or you're only adding it because it
-happens to be present in a 5.10 downstream driver. Do you actually have
-a requirement for setting pins dynamically at runtime? Do you need to be
-able to set a static configuration at boot that can't be set using some
-earlier bootloader/firmware mechanism?
+tested on hardware with the others disabled:
 
-If we really need this pinctrl driver it may be worth resurrecting the
-tegra-pinmux-scripts so that we can add these drivers based on the
-generated files as originally intended.
+- phy-mode on gsw-ports are needed else i get this:
+[    1.386586] mt7530-mmio 15020000.switch wan (uninitialized): validation=
+ of gmii with support 0000000,00000000,00000000,000062ef and advertisement=
+ 0000000,00000000,00000000,000062ef failed: -EINVAL
+[    1.408209] mt7530-mmio 15020000.switch wan (uninitialized): failed to =
+connect to PHY: -EINVAL
+[    1.421308] mt7530-mmio 15020000.switch wan (uninitialized): error -22 =
+setting up PHY for tree 0, switch 0, port 0
+- phy-mode on gmac0 is needed alse ethernet-controller (and switch) does n=
+ot get up
 
-As announced, there's a few pedantic nitpicks down below.
+the phy-modes (gsw_phyX) can be dropped, the 2g5 phy-mode is currently set=
+ twice (mt7988a.dtsi and in 2g5 dts), so i would leave this in mt7988a.dts=
+i
 
-[0]: https://github.com/NVIDIA/tegra-pinmux-scripts
+>=20
+> 	Andrew
 
-[...]
-> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra186.c b/drivers/pinctrl/t=
-egra/pinctrl-tegra186.c
-[...]
-> +static const unsigned int pex_l0_rst_n_pa0_pins[] =3D {
-> +	TEGRA_PIN_PEX_L0_RST_N_PA0,
-> +};
-> +static const unsigned int pex_l0_clkreq_n_pa1_pins[] =3D {
-> +	TEGRA_PIN_PEX_L0_CLKREQ_N_PA1,
-> +};
-
-Typically there'd be a blank line to separate each of these structures.
-Or maybe we can come up with some notation to make these single lines?
-
-> +static const unsigned int sdmmc4_clk_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_cmd_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dqs_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat7_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat6_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat5_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat4_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat3_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat2_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat1_pins[] =3D {};
-> +
-> +static const unsigned int sdmmc4_dat0_pins[] =3D {};
-
-These look out of place. Ideally these would simply be NULL and 0 in the
-respective PINGROUP definitions, but not sure if that's something that
-can be done with the preprocessor. Are these guaranteed not to take up
-any space in the generated binary?
-
-[...]
-> +#define PIN_PINGROUP_ENTRY_Y(r, bank, pupd, e_io_hv, e_lpbk, e_input,	\
-> +			     e_lpdr, e_pbias_buf, gpio_sfio_sel, \
-> +			     e_od, schmitt_b, drvtype, epreemp,	\
-> +			     io_reset, rfu_in)			\
-
-It looks like there's an alignment issue in this macro.
-
-> +#define PINGROUP(pg_name, f0, f1, f2, f3, r, bank, pupd, e_io_hv, e_lpbk=
-, e_input, e_lpdr, e_pbias_buf, \
-> +			gpio_sfio_sel, e_od, schmitt_b, drvtype, epreemp, io_reset, rfu_in)		\
-> +	{							\
-> +		.name =3D #pg_name,				\
-> +		.pins =3D pg_name##_pins,				\
-> +		.npins =3D ARRAY_SIZE(pg_name##_pins),		\
-> +			.funcs =3D {				\
-> +				TEGRA_MUX_##f0,			\
-> +				TEGRA_MUX_##f1,			\
-> +				TEGRA_MUX_##f2,			\
-> +				TEGRA_MUX_##f3,			\
-> +			},					\
-
-This .funcs substructure seems to be indented wrongly. I see that that's
-also the case for Tegra194, but it's correct on Tegra210, so it looks
-like you copied from the wrong source. =3D)
-
-Thierry
-
---koz7pqhubwkgry26
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH/YgACgkQ3SOs138+
-s6E3vQ/7BbhIeEooFiDj0/uIixGcizRegwHcKrtrqsFTfHYcdG1Eeoo3b1lDjtXG
-yon6OYCL0C3HodxYmACCb0Pbpif3QV34wDDIe6N2380WIJmTYIWNLF6DFsioY06A
-aA1kvwU9gH24w7SoviwfWcNp5SzcYUegUF6n6G6bjGoVNbgmig9P0ZxsmaQNRUT9
-SN/rlqUmgE8djmIZPZzzVYWFJbbXkZd8bHf5F8SBSTf/C0L+iqar02z4cI+auW9A
-6KDR/qdpKvKywQs30fTNcYnD7eRpIiSxvxR4yt6Mi9v2Ax1z4XuUpvbTPT5urO52
-PB2LcrxhXd6IyC3fJ/ltjiRoQ21nUsiwUBBkT7a28Gn1LHrmy3naNwLFIrcAlwlL
-g0Bo/NXYag2VqjJ44mXYZUCHE4DoQXhSWJdAX8iKyc2IgWP1GghCkMNDrPqJy54E
-p2dgUEIVfq8nhci3m0VmL3Fq0g+4h0NLmbxTb5syQwwo1DMTPSZEhSM8WC2MpCH1
-yuJb6uPGv+f0Ic+dvt6D49XQI7Oscy89rVwTOlLckwO53VgODdn4mW18uVNNB50Q
-CEiYXvV2YPTgyX5k93E4v+6mrFMmN14uqW3NnQiirOSrnoD5tLVy7u2Q27gClq6b
-W89SGKPYxvUCnhRj+QXmOnzvW202qnSQshoTlrNsnRspZrS3uaU=
-=k3CP
------END PGP SIGNATURE-----
-
---koz7pqhubwkgry26--
+regards Frank
 
