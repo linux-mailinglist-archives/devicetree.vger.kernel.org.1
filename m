@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-184051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB6FAD2E49
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:04:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E4BAD2E61
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FFD816E872
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61F38170DEF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 07:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995BF27AC30;
-	Tue, 10 Jun 2025 07:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CBC27E7D9;
+	Tue, 10 Jun 2025 07:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dikWmzdJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sgs3Y2gx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6411327A93B;
-	Tue, 10 Jun 2025 07:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE8727AC45;
+	Tue, 10 Jun 2025 07:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749539092; cv=none; b=O0BqBv18kAJfDBE65c6pUKF1r639SuOnYtKiOQGBLNzyZhZJyKnMmW3hTX+iqFF8i6GaiG1CFrxZb5GXKcwXVts/N1x3VsHzaVz1ZxU6UuCV7EQdzcFsx23Z3/eXL+9wE8hLMWqa5SItOwUE3CzBCvn0SUdA6g1iC+fo2K9WwEQ=
+	t=1749539343; cv=none; b=HhbSgl8myHyzpWYrOI+2bmiJ9vWJSNC4blnjGmEle2486t5+D+ml4ty1t/zeK1c9i7r4mDQgU2UI8MTupkzbV/qje4JAc5MQ7/e6sVbXZxkndArcVYkDl6WEomTtAp6RspNwZFxNY6hmjsi4Z6Z570ztCERxBig8uSFhWvwfwyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749539092; c=relaxed/simple;
-	bh=EDArvMn23IRQWiGpT6P5zmpMFs5mKcA/S91Me1PLceg=;
+	s=arc-20240116; t=1749539343; c=relaxed/simple;
+	bh=0hrlPg9RGZCoOBqsD37kKZfuBUR6TyOBeuE8tY1ffLg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QuiAHlAh9Co/wjAEgi5taadCgRm2Ao5BkZ4el5U4iFL0tjjWBRKzBr63AXmkSeKQlTu5rxYY5m8eT/P2VR5Cb5EjL1kLgmE7lJ+/IITJ7/YJbW2NORV+E37+iMkSzyQleVoG7vMOVQSpYLXEpvTN40Xnbi02E+ggg85x6MgkUFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dikWmzdJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 435C5C4CEEF;
-	Tue, 10 Jun 2025 07:04:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gDOZSzRIlegwQ60XH8oasIEvH+oagvhLZ03ilGChV9XXDRENpTHSbNWvgrJMtGZL2HvDYrxDnHrcXvHfakqlcBDmsy65MTRlybKaAKxOYZlDMbnW1q19IiHIkG3eV+m1TVqRu36Yc+zVRgmPoyVeZO2tgqxLAAx3rrdE5hjJDW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sgs3Y2gx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63DD8C4CEEF;
+	Tue, 10 Jun 2025 07:09:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749539091;
-	bh=EDArvMn23IRQWiGpT6P5zmpMFs5mKcA/S91Me1PLceg=;
+	s=k20201202; t=1749539343;
+	bh=0hrlPg9RGZCoOBqsD37kKZfuBUR6TyOBeuE8tY1ffLg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dikWmzdJyHwZWQIV0whOGGmSzBYYmuTkmLW7e8qRqd4KB/lk2jrhhMpZC/9DGxzRj
-	 hrehjdscyXpOD+JVfINFU1pq3sGvgNmHtbjGlZOROcHlYDhXS04DWEHu5fVoB/I3Jm
-	 QXXlZLtJ/0QXYffaJ3Ci5IdiVO+WWK6ySWgVhTdeifA2MjF3NbNtcf9R7BSGjZ9BF2
-	 R29Sddv4nqvYExGgL8gT1dLHeFS5I+4BUcCOsrCjOdj1ozN/TQU7FM4F6f5Dbm3RHh
-	 kq51mMaz8HRIkZhJQEgUGgNqDuUYaAbSxuWLxu/vYQD/HLQUn/dkGZoNruL3gVsO2D
-	 7I5JscyDVs1ow==
-Date: Tue, 10 Jun 2025 09:04:49 +0200
+	b=sgs3Y2gxxVxjase5MKEcCuoJxMLn3NrjTXg8Beng2580u0ay2ZWkQ6duDl+33T2Z1
+	 JryeUWEZkVkn4o44BxZsGB+S8dLDBLNz1jBYBFgmzBrTYW0676MID7PUjxKcwy5KEG
+	 o0m45vrvNjhUstmXwbaTh45egzeRls0UO4nOn1lvI/E9FWM1ilKuwbfHIglr/YshWW
+	 5wL+GTE2T7Z70I8Fi8hjUr/A7RxQ9oYcQqMQ5irsB1EtPPh8nyKyWUR9pLmQW+cmVL
+	 JZMeYXaGjiMZc4y0hPnlbsAQP8B7YmVnDBdlDDsLvWckjquqTYNqYhKADcVOUpWdHN
+	 atFHx2cS34lzw==
+Date: Tue, 10 Jun 2025 09:09:00 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com, 
-	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, quic_arandive@quicinc.com, 
-	quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
-Subject: Re: [PATCH v6 1/8] dt-bindings: serial: describe SA8255p
-Message-ID: <20250610-tested-lilac-raccoon-6c59c4@kuoka>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-2-quic_ptalari@quicinc.com>
+To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	arnd@arndb.de, gregkh@linuxfoundation.org, W_Armin@gmx.de, 
+	luoyifan@cmss.chinamobile.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: eeprom: Add ST M24LR support
+Message-ID: <20250610-spectral-passionate-chameleon-bc0b4b@kuoka>
+References: <20250608182714.3359441-1-abd.masalkhi@gmail.com>
+ <20250608182714.3359441-2-abd.masalkhi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,86 +59,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250606172114.6618-2-quic_ptalari@quicinc.com>
+In-Reply-To: <20250608182714.3359441-2-abd.masalkhi@gmail.com>
 
-On Fri, Jun 06, 2025 at 10:51:07PM GMT, Praveen Talari wrote:
-> From: Nikunj Kela <quic_nkela@quicinc.com>
+On Sun, Jun 08, 2025 at 06:27:12PM GMT, Abd-Alrhman Masalkhi wrote:
+> Add support for STMicroelectronics M24LR RFID/NFC EEPROM chips.
+> These devices use two I2C addresses: the primary address provides
+> access to control and system parameter registers, while the
+> secondary address is used for EEPROM access.
 > 
-> SA8255p platform abstracts resources such as clocks, interconnect and
-> GPIO pins configuration in Firmware. SCMI power and perf protocols are
-> used to send request for resource configurations.
-> 
-> Add DT bindings for the QUP GENI UART controller on sa8255p platform.
-> 
-> The wakeup interrupt (IRQ) is treated as optional, as not all UART
-> instances have a wakeup-capable interrupt routed via the PDC.
-> 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> Co-developed-by: Praveen Talari <quic_ptalari@quicinc.com>
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> Signed-off-by: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
 > ---
-> v5 -> v6
-> - added description for interrupt-names
-> - added wakeup irq as optional information in commit text and
->   property description.
-> - removed wake irq form example node.
-> 
-> v4 -> v5
-> - added wake irq in example node
-> 
-> v3 -> v4
-> - added version log after ---
-> 
-> v2 -> v3
-> - dropped description for interrupt-names
-> - rebased reg property order in required option
-> 
-> v1 -> v2
-> - reorder sequence of tags in commit text
-> - moved reg property after compatible field
-> - added interrupt-names property
+> Changes in v4:
+>  - Moved the binding file to the eeprom/ directory
+>  - Updated reg property to use items: with per-address descriptions
+>    instead of minItems/maxItems
+
+And the rest of the changelog? Where is v2, v3?
+
+
 > ---
->  .../serial/qcom,sa8255p-geni-uart.yaml        | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml b/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
-> new file mode 100644
-> index 000000000000..c2e11ddcc0f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/qcom,sa8255p-geni-uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Geni based QUP UART interface
-> +
-> +maintainers:
-> +  - Praveen Talari <quic_ptalari@quicinc.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/serial/serial.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sa8255p-geni-uart
-> +      - qcom,sa8255p-geni-debug-uart
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
+>  .../devicetree/bindings/eeprom/st,m24lr.yaml  | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/eeprom/st,m24lr.yaml
 
-Drop, this is not in sync with interrupt-names. You already received
-comments on this. We talk about this since v4!
-
-I am not reviewing the rest. Implement complete feedback given to you in
-v4 and v5.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
