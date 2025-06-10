@@ -1,216 +1,189 @@
-Return-Path: <devicetree+bounces-184347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0E7AD3C66
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:14:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A6FCAD3CFB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB47B175B7A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:12:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E2393A338E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3F4238144;
-	Tue, 10 Jun 2025 15:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD3D239E68;
+	Tue, 10 Jun 2025 15:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mpO7o5IR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JautMI9p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9FF238143
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 15:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A1D22E3FF;
+	Tue, 10 Jun 2025 15:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749568276; cv=none; b=sONFVwscvsK6Y02+aE8AOIlJKM0e0+EiVwo96yEerGmU/D5aUpJ+ipMI8zR0FhzydvVLGKkOC7HpJi+cWyc1+hCiD5woLH5HmqsxT1QI2UYv4q0tkpzS/H8aBS7to2YDNiRfzk5bOoCt0teM72CfZRP+sc9bEjAstCyEVuthuFY=
+	t=1749568637; cv=none; b=t2mtXM+ZxnguWaMrGMB36D6f/ztn6setUsCEsOnfCXTTq8VK3ZlNZnLRV2/r1aPypWQvPOMf5myNqURYxLkxsIzq7su1k+yunQFtFVTmZWGbaaZApfFH+yz4q7bo1+qU53pto2aDQD0OnenCv7CovK36qmANX9c5faBTcoKfoxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749568276; c=relaxed/simple;
-	bh=u4vc+v5Fz9O/MYhCPULElhld1nyWHGPPMgiN0bipu8o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=c84P97gaVuBCagbj5JvtlqxqMXRZuf3x231jcuhTg9c+WZPoeCdhs9NWsdR7IqlamXEpWfOENWVwbmDdwW39tX15ekUDnQWZJkxMA4DrW4jqoVCpFk8Ovo/qv3so9RSx9oaJXp2j/NGysyITIPsdQNTv2T6vfsN5DPXbg8w5aXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mpO7o5IR; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b2c49373c15so3879071a12.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749568274; x=1750173074; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cQcueqzZnFK32zi9dDUNjBa1UB19iwsLgXKjnnX46Qc=;
-        b=mpO7o5IR6XY8SDFmJl8lLm1tCq1YlZ3dXumP+1j14eezhBPWrAVbpd+Ni9+1afiEmE
-         XACMnfvTYaygUnExuGQkEgn72+E+3rFQtOOsA6w5OD1ZHe/Sin8KOgRR7j+cJrnVpYbL
-         0NOjNGqtmQwHQxapq4Lh8GGT2wlny4ZcbLB1m4I9vtgt7FyUAom75wiBUeWpedxJXRTX
-         MIJ80OleX9kNGP5mDkauoGwsMCI+PodZILoVn26XyYjMGIttgToTKG3SAefw5o8qiZj2
-         nYFP2LDjnKJ/As04ATzXXpcItXG2DsTNyvB9CTnOFIJhnqSE3wvYfbM4DR5YswtCw3Cu
-         NFHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749568274; x=1750173074;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cQcueqzZnFK32zi9dDUNjBa1UB19iwsLgXKjnnX46Qc=;
-        b=iHk5tfrwpXLGG9BhmKmgagWzFDTo655tonhWi4iuaNZHCTaxGHXfn1lm8F3ir8L1LW
-         2gBZAYWumoC31G+6UncBFpQgZVx/xH6MT9XZ+Fg949I5eqadDL6aDscnpnbC08pM7t+j
-         qSzEwGVOHeQyoKAUA4ll98XyVgrzWUxfhwjrKk4KdmDUNIqNeTZW8eUCdgJR3FZ/lkMt
-         EcMyk7wZVpQvsoEWqab9qOs2LT17/6+/SLR89L13MGI9rV612KqEjg1MKLheBxI88hdD
-         X2CmRoSuxTGBDVWEmm2/zTFF7OOzfIR1WTGNldjnKc4mOydeiCckAox29yMppAiC1DA8
-         E9TA==
-X-Gm-Message-State: AOJu0YzPxJbjMVvyfigQVTyXMDvceEQSU8Y790uP1pGk0wF9ga6LJR1a
-	cpPCHioi4ZGg1ILGXWTYXWh4fRlQWYjfCT7X3Ei6GtzOJzFNTQAXKkrzyNu3bgG6
-X-Gm-Gg: ASbGncsVi6CTRYTLBo1UXz8ymo0+2IW+/nCdrcUuKlmX8e/9PBxrsZ9x0gIXc3UVtoB
-	fN8d2nj8S2qmZ4T8lBF7a50VRuVtMvEzO8MWX3vgi0lVAKJ9KRMkMWKT6nspyXga+oLXdfyiawj
-	AkV1l5sGbL9PTOvMxQEA3u49n/CW5TiE0Xl5gHJFpatjgBm/CpNoFsVLluUToMnwaPR3Oq681op
-	xoUnrkmDDCcPLN1AYV5x0IXGK5I73XdqypIKdSoIUy8mlze2mfsKVgHJBS7oI1kzGLOW/CEOwbG
-	md4YHQ8ag1Ht64ZUNDkzoDHJrDmpB/Et5JgnzqysVeBcv/zsDpEtAMWBcfFkmCfQCaZO+lQEA7i
-	kOOuvjJRhwInFsw==
-X-Google-Smtp-Source: AGHT+IHzueOBw/Fmnc1LTdu0YGcZGcNu/TUDZetnx1r7SyMVJ4u0x12DtC4xExMLrt1rUgsnJCeFZw==
-X-Received: by 2002:a05:6a21:3398:b0:1f5:97c3:41b9 with SMTP id adf61e73a8af0-21ee250cc5amr23235893637.5.1749568273467;
-        Tue, 10 Jun 2025 08:11:13 -0700 (PDT)
-Received: from shankari-IdeaPad.. ([49.128.169.113])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2f5ee70090sm6988829a12.28.2025.06.10.08.11.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 08:11:12 -0700 (PDT)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH v4] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to YAML
-Date: Tue, 10 Jun 2025 20:41:05 +0530
-Message-Id: <20250610151105.393011-1-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <174954801086.147754.9306389006765920749.robh@kernel.org>
-References: <174954801086.147754.9306389006765920749.robh@kernel.org>
+	s=arc-20240116; t=1749568637; c=relaxed/simple;
+	bh=GANCpbbjp1dEyMei37sYfj7Nawi1r4Qtwq/RVj9ktGY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oJ06P6KJSLrcR4WkNAtB8vQ/Trb1acec5eSj3R0GiZWtEazqYAdT1YxTdtsHwThrlMr3Tv+Fe3wvCQyC7ctM1eKYotY6aivqBrgkf5sDXgHi43vr/XBa/4FXZtcS1WAH0JLRlsODt2F0g9GiJFSNq88Heqhrd9aM/l/3HvfHhWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JautMI9p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 100A8C4CEED;
+	Tue, 10 Jun 2025 15:17:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749568636;
+	bh=GANCpbbjp1dEyMei37sYfj7Nawi1r4Qtwq/RVj9ktGY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JautMI9p9ONh4STBnvMad/8IOkXxrGXSRniQtStJW5TppexAFWjuo8+6LUw+fzbRD
+	 PV/4ZH5VkK2I/fjGrlBbqsGqa7koGjDPpcI1hN/aPzqCzEs+P5gFgyXnUKnKDwWA5+
+	 qavNk3G10CCqFrsaeaf4++xDYJE9g3WyR7Lnd2slSa54Dnt+2iQ+KKkk7CFWlxXIjX
+	 WqQKFUku/h1+qPQPmLlgPb6L3vZU5gg5D5VBxn8VZWllIOl2OVE0st4B5e381AY3UT
+	 eeH2/uTk8n579lEphACBsROfnbxsP78fZ/wI9fQSL9q7cgO2CNbxXCX87tGRa6YrYj
+	 OhJJj9w1A3Aww==
+Date: Tue, 10 Jun 2025 16:17:11 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Victor.Duicu@microchip.com
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, robh@kernel.org, jic23@kernel.org,
+	krzk+dt@kernel.org, andy@kernel.org, linux-kernel@vger.kernel.org,
+	Marius.Cristea@microchip.com, conor+dt@kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: add support for
+ MCP998X
+Message-ID: <20250610-thong-trump-f131522201c4@spud>
+References: <20250529093628.15042-1-victor.duicu@microchip.com>
+ <20250529093628.15042-2-victor.duicu@microchip.com>
+ <0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com>
+ <20250530-dramatize-camisole-0a1aa9a38281@spud>
+ <91c1d757a4ac051c115a821779a8c1fba764ea05.camel@microchip.com>
+ <20250606-unfeeling-legacy-c7eab453b062@spud>
+ <c5de1b615c40cd4d4380cf5f340bda3da23f4069.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TMB2KrwSJzB3PpjT"
+Content-Disposition: inline
+In-Reply-To: <c5de1b615c40cd4d4380cf5f340bda3da23f4069.camel@microchip.com>
 
-Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
-.txt format to a YAML schema.
 
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- .../arm/altera/socfpga-sdram-edac.txt         | 15 ----
- .../arm/altera/socfpga-sdram-edac.yaml        | 79 +++++++++++++++++++
- 2 files changed, 79 insertions(+), 15 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
- create mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+--TMB2KrwSJzB3PpjT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
-deleted file mode 100644
-index f5ad0ff69fae..000000000000
---- a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
--The EDAC accesses a range of registers in the SDRAM controller.
--
--Required properties:
--- compatible : should contain "altr,sdram-edac" or "altr,sdram-edac-a10"
--- altr,sdr-syscon : phandle of the sdr module
--- interrupts : Should contain the SDRAM ECC IRQ in the
--	appropriate format for the IRQ controller.
--
--Example:
--	sdramedac {
--		compatible = "altr,sdram-edac";
--		altr,sdr-syscon = <&sdr>;
--		interrupts = <0 39 4>;
--	};
-diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
-new file mode 100644
-index 000000000000..f41e949f8ba2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/altera/socfpga-sdram-edac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera SoCFPGA SDRAM EDAC Controller
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@altera.com>
-+
-+description: |
-+  EDAC-compatible controller for SDRAM error detection and correction on
-+  Altera (Intel) SoCFPGA platforms.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - altr,sdram-edac
-+      - altr,sdram-edac-a10
-+      - altr,sdram-edac-s10
-+
-+  altr,sdr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the SDRAM system controller (SDR) syscon node.
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      One or two interrupt specifiers for ECC error interrupt(s).
-+      Arria 10 SoCs use two interrupt lines.
-+
-+  reg:
-+    maxItems: 1
-+    description: Memory-mapped base address and size of the SDRAM EDAC controller.
-+
-+required:
-+  - compatible
-+  - altr,sdr-syscon
-+  - interrupts
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    edac@ffb90000 {
-+    compatible = "altr,sdram-edac-a10";
-+    reg = <0xffb90000 0x1000>;
-+    altr,sdr-syscon = <&sdr>;
-+    interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-+                 <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    edac@f8004000 {
-+    compatible = "altr,sdram-edac-s10";
-+    reg = <0xf8004000 0x1000>;
-+    altr,sdr-syscon = <&sdr>;
-+    interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    edac@ffc25000 {
-+    compatible = "altr,sdram-edac";
-+    reg = <0xffc25000 0x1000>;
-+    altr,sdr-syscon = <&sdr>;
-+    interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-+    };
--- 
-2.34.1
+On Tue, Jun 10, 2025 at 01:29:01PM +0000, Victor.Duicu@microchip.com wrote:
+> On Fri, 2025-06-06 at 16:15 +0100, Conor Dooley wrote:
+> > Jonathan,
+> >=20
+> > On Mon, Jun 02, 2025 at 02:48:52PM +0000,
+> > Victor.Duicu@microchip.com=A0wrote:
+> > > On Fri, 2025-05-30 at 16:55 +0100, Conor Dooley wrote:
+> > > > On Thu, May 29, 2025 at 01:13:38PM -0500, David Lechner wrote:
+> > > > > On 5/29/25 4:36 AM, victor.duicu@microchip.com=A0wrote:
+> > > > > > From: Victor Duicu <victor.duicu@microchip.com>
+> > > > > > +=A0 microchip,recd12:
+> > > > > > +=A0=A0=A0 description:
+> > > > > > +=A0=A0=A0=A0=A0 Enable resistance error correction for external
+> > > > > > channels 1
+> > > > > > and 2.
+> > > > > > +=A0=A0=A0=A0=A0 Omit this tag to disable REC for channels 1 an=
+d 2.
+> > > > > > +=A0=A0=A0 type: boolean
+> > > > > > +
+> > > > > > +=A0 microchip,recd34:
+> > > > > > +=A0=A0=A0 description:
+> > > > > > +=A0=A0=A0=A0=A0 Enable resistance error correction for external
+> > > > > > channels 3
+> > > > > > and 4.
+> > > > > > +=A0=A0=A0=A0=A0 Omit this tag to disable REC for channels 3 an=
+d 4.
+> > > >=20
+> > > > Why are these two devicetree properties, rather than runtime
+> > > > controls?
+> > >=20
+> > > The parasitic resistance added to the series resistance is
+> > > dependent
+> > > only on the circuit.=A0
+> > > It is possible for the chip and the transistor to be at some
+> > > distance
+> > > from each other. The manufacturer can approximate the error added
+> > > and
+> > > decide if resistance error correction should be applied.
+> >=20
+> > I don't think I buy this line of argument. The property is not
+> > describing the hardware, it's literally being used as a toggle for
+> > some
+> > software feature. It'd be more acceptable if it indicated that the
+> > chip
+> > and transistor were distant, leaving software to make a decision on
+> > what
+> > that meant. One user (say bsd) might want decide that the driver
+> > should
+> > always enable it, but another (say linux) might expose it as a
+> > control
+> > to userspace defaulting based the dt property.
+> > Additionally, the name of the property is pretty awful, and does not
+> > even hint at what it's doing - and there's no mention of why channel
+> > 1/2
+> > and 3/4 are bound together.
+> >=20
+> You are correct that the parameters recd12 and recd34 do not directly
+> describe the hardware, but they control a software feature of the chip
+> itself. Resistance error correction is capable of counterbalancing
+> the parasitic resistance added to the external diodes, which can be
+> significant.
 
+> The manufacturer knows where the chip and diode are and can decide if
+> correction is necessary. The user does not have that insight.
+
+The user _may_ not have it. The properties should not be written such
+that they exclude the control of these things from userspace, and just
+indicate that the hardware configuration has the chip and diode
+sufficiently far apart that the feature can help.
+
+
+> I can change the name of the parameter to something like
+> resistance_err_correction and mention in the description which channels
+> are affected.
+
+No _s are allowed in properties, so bear that in mind. Again, I don't
+think the property should be responsible for turning it on, just
+indicate that there is a parasitic resistance, so and the name should
+really be something that indicates a parasitic resistance. E.g.
+microchip,parasitic-res-on-channel1. Software (be it userspace or
+driver) can then made a decision about turning on the error correction
+with that information.
+
+> > > The user cannot influence the parasitic resistance nor calculate
+> > > it.
+> >=20
+> > I don't think that's super relevant here, since the property has
+> > nothing
+> > to do with influencing or calculating the value. I meant deciding
+> > whether
+> > or not the correction is applied, just as the dt property you propose
+> > does now.
+> >=20
+> > Cheers,
+> > Conor.
+>=20
+> Kind Regards,
+> Victor Duicu
+
+--TMB2KrwSJzB3PpjT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEhMdwAKCRB4tDGHoIJi
+0knNAQD3eZV0z01TD2z03LI5AOH9ZO9lIwOXo6GAjoCVVJhMGwEA1psJeGy8ijEA
+ueWlKRe/8keetXzAuYBeRsXWYOJAAQo=
+=Gp4g
+-----END PGP SIGNATURE-----
+
+--TMB2KrwSJzB3PpjT--
 
