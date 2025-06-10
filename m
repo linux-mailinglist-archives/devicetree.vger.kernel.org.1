@@ -1,164 +1,145 @@
-Return-Path: <devicetree+bounces-184502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA560AD4390
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 22:14:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C0CAD4397
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 22:17:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15D587AA50B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:12:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4736417BDFB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83674267F72;
-	Tue, 10 Jun 2025 20:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D514925E478;
+	Tue, 10 Jun 2025 20:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KdzMxRaI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U/D/fk6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC998267B6F;
-	Tue, 10 Jun 2025 20:12:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD9919A2A3;
+	Tue, 10 Jun 2025 20:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749586374; cv=none; b=ogabXn8kzlTZosdTkxpKh6whbHNNYb1kzH1RC0bGEOtL0QmYpJsRy+XxvqLeDcru6cGXNYYgkorxqjeWcVBvZxT1vfFSeOg7j05o6NbT2bNDvZCW51J/yjPPqrAAfcFJTotLXVhQaOy+0Tr5ztM6k6YxJNhEsL1EzMhNt13lKro=
+	t=1749586643; cv=none; b=gGCAhKNTCo1aw4ZYQiR+/74TtxiLrA7xXDUnk28rzVK3hAMXw58Efxw0mFikle6tPenFNDw+//4VmstXGgleG7CBf3I+67OPIx0J19AX5Pf1nopgoio5oc/vvhzTFwX+16+csQh3tyJZpVzuWkUMKjVgtwcVTFbxFqEDjQeEt5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749586374; c=relaxed/simple;
-	bh=NzF8D+jscEUsAE/1/Fd1SPvbvgtFxlYHFfAZNNIr8K8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mySzFlv0jAxAqxwPj+kM0G24GOFHg8zI2oLkPwOPTeibP/UCKkglngdXt9KipT8RJ3j3WgkNBaGlFG8n6vj9uzsAqU8owlPW32Usyq7X8YFHE2o8NVUeDMirgU1Ejp1+/ADuLp/1TOfHU3OCzRlXJnATqrrnxIM4Jt7gCpc5W7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KdzMxRaI; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-450cfb79177so29126325e9.0;
-        Tue, 10 Jun 2025 13:12:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749586371; x=1750191171; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m0Nsk7L1UKeSgGVwlEzlmQB/17oGC9kEiuXWeGaDs0s=;
-        b=KdzMxRaIa2jZVk8fYOL5Xxxm/PC4+R+e0nw3EHImTR5X9qf+A0xCFv1S2NcfRYQjbL
-         WJ4jJYCEMhkNUmtGoCCut5iQUJfxsm17xyaiv86RJ0ndu+KLVTRUdN5kV8JVo84F2TYI
-         UM3CO21N6GNqsJKH9fadDkZtzjau1GkIx01nDN8bpY1F5DmEzNuYdDyt/BdA7CvLbFOP
-         xBRLbsQA8PT4TjLMFp8NOQyK3L9yITM4P4sYDGAWOL72ugQ2vX5fcE12JgrRy+ZwToL0
-         8JJx3YhD2V7IPGayV+iU8NwNI66rUvwhDU1y//vhpIrTdO2nhOvtVm2/G3GmzNdqXhVW
-         FCUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749586371; x=1750191171;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m0Nsk7L1UKeSgGVwlEzlmQB/17oGC9kEiuXWeGaDs0s=;
-        b=eTqra1pfd8YnM4CHo9zj23l5imjfiAaS8/5K94S9ivsv8uv/KHQssx6tpEEeXehdiG
-         fyCsatqhDoc62uysTuyvRCIG0lbKAUeJE1O/XuP0ZaAWx7MOstpD9CUSENqth9b/bi2N
-         xtr3TOXoWGCPuJdZizJxp0jAuu+vQW1RV823gcR7gg48U0Qz6giWoctehImWNdb6m3GU
-         0LN8nWwMkGoxSTNMSwNd+/oPNfTzzeowkq/lIzYjfwOj9WxsccZDZ5AcMlR3wAvI5uKT
-         yIefP2Wo4IZbWTnDzhShBo4JUk2yMOLM6rRGvNBfi0RzTPqbusNnDE61Jv448sjaFTRc
-         2maA==
-X-Forwarded-Encrypted: i=1; AJvYcCWov1zSh5+B5bBTwAlALwlNDT/cZKbQ72RTnszLMWisoCzUQblrtr7OaeqEVSEt2PhTGFAToT8er+2tKJeM@vger.kernel.org, AJvYcCXWEjAWouXK4lpnuE5xW3ovHZZSWz3EMPLzXW7noFArQciUmhHFvwUtOXWe8odVULPK7Wi0/8QG5jfH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLIZo2+NhizwGQrMzPuo5VRLuXlmFgIGTYQhWfXyK1If/VqebS
-	FKTfSP+x3D7vgYYuRSmJeIRjOd9H7etsFhRxv/iZtVmzMQ3h1aP2kPKN
-X-Gm-Gg: ASbGncv9/XOL3zMQv8FnprjDy2EB+xFaH94eBM42shEtXhMSNbuUhq8/9glpNFxyywu
-	bGnCLTZusTIjFpeX6DDSpcPkBdqI+/u0KkW+yhIX7FsjG9ax4VA4JkHm6GBOKEI/OUx3dTCrQA8
-	fryMna9JRC3jGYFhFgBlH0AED+RuwUFqdDH3IhyR9UmBP6b702/wHYPlezL/AXqqAsHSUE2MxsB
-	mTpr0jocTdYcBuiZiVevH0c3g6Why4E8S0ZbjRROzOddPQeQZnyQOqGZLSxdI8C29/MeF13zkhd
-	VTk+CSrVoH0o7GzlJsnXRbgvNWogXVBiOA8oMtpjklSUGgEBtq+xw6596hyiJLpVNcjETEEuNTg
-	=
-X-Google-Smtp-Source: AGHT+IHAfus2as8xEX4iDfu63duVTXHrbs5exQRrMVtiCIQNQ6/TZbKnWxqRaxxHybEddLqJocBNng==
-X-Received: by 2002:a05:600c:1395:b0:43c:f513:958a with SMTP id 5b1f17b1804b1-45324ec37d2mr1288935e9.13.1749586370869;
-        Tue, 10 Jun 2025 13:12:50 -0700 (PDT)
-Received: from giga-mm.. ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a532462d93sm13434970f8f.91.2025.06.10.13.12.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 13:12:50 -0700 (PDT)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: sophgo@lists.linux.dev,
-	soc@lists.linux.dev
-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 6/6] arm64: defconfig: Enable rudimentary Sophgo SG2000 support
-Date: Tue, 10 Jun 2025 22:12:19 +0200
-Message-ID: <20250610201241.730983-7-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250610201241.730983-1-alexander.sverdlin@gmail.com>
-References: <20250610201241.730983-1-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1749586643; c=relaxed/simple;
+	bh=KkMPpLWarAObIGFdc/4Gj8U/zmuf7yOK4LH5HnaJns8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hDbBTu/IDxzQiH1ZcTGCmlpLnvlwiL38iavDMIxx1cqvtL74wecCZ58Ozu7wzex4ciMTx6tOc1eGye4jorjOMSzcNfQiRAPEuN2O7xqw2JjzrGVFD4o+T21b+W7Ha9RPkSs/5Z++77jcVhU8mIZx7w4eQTWqlIr+D0lZWuuCo6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U/D/fk6n; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1749586642; x=1781122642;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KkMPpLWarAObIGFdc/4Gj8U/zmuf7yOK4LH5HnaJns8=;
+  b=U/D/fk6nw+LSXzVxNPDemOLSzMl++rdBvPsfxn91Dp++J9WdjLhj+e3w
+   Jvp2zFIchcn/v9iliWliqcT+z243NcmvV8W+5fKz6O8jXkblkLmnUm5lK
+   F0bd4bToZsXyb8GeMK1O+UH6uQr59t/PEO0Z8a7Sc2iN5exIyI1Gd3HSM
+   QPZnWUQy1MAKddDq9SZDa4Ch5iKDc/6cnw7CcEWSaQMBB/BmJufQyGPt+
+   wA4jQsC5no3cLiquV/YoLXQx3ZK2N0uusb94zffY84HWeye5FqPVul19s
+   Ht8Efk6AQn7zuSPc9pYGYSAPjq2yk63lq0TeOjLpDnfARBZNvuZCwV+kX
+   A==;
+X-CSE-ConnectionGUID: gvIU2YZyTv2/q6Ods3v4IQ==
+X-CSE-MsgGUID: U1HGsKehRRiewPzxaINxhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="51811055"
+X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; 
+   d="scan'208";a="51811055"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:17:21 -0700
+X-CSE-ConnectionGUID: mULnA7/tT0Sddi3uk+PAJQ==
+X-CSE-MsgGUID: +G96++PuQdm5BLTlEDt8iw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,225,1744095600"; 
+   d="scan'208";a="146864596"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2025 13:17:15 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uP5PC-00000005RU8-34rs;
+	Tue, 10 Jun 2025 23:17:10 +0300
+Date: Tue, 10 Jun 2025 23:17:10 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>,
+	"zhangzekun (A)" <zhangzekun11@huawei.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>, robh@kernel.org,
+	saravanak@google.com, justin.chen@broadcom.com,
+	florian.fainelli@broadcom.com, andrew+netdev@lunn.ch,
+	kuba@kernel.org, kory.maincent@bootlin.com,
+	jacopo+renesas@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+	maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, taras.chornyi@plvision.eu,
+	edumazet@google.com, pabeni@redhat.com, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, arm-scmi@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-media@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	chenjun102@huawei.com, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/9] of: Add warpper function
+ of_find_node_by_name_balanced()
+Message-ID: <aEiSxq6lNNJq5DJM@smile.fi.intel.com>
+References: <20250207013117.104205-1-zhangzekun11@huawei.com>
+ <20250207013117.104205-2-zhangzekun11@huawei.com>
+ <Z6XDKi_V0BZSdCeL@pengutronix.de>
+ <80b1c21c-096b-4a11-b9d7-069c972b146a@huawei.com>
+ <20250207153722.GA24886@pendragon.ideasonboard.com>
+ <be93486b-91bb-4fdd-9f6c-ec295c448476@stanley.mountain>
+ <aAuqgiSxrh24-L-D@stanley.mountain>
+ <20250425170732.GA21390@pendragon.ideasonboard.com>
+ <aEiJ856egeMCC6ao@black.fi.intel.com>
+ <20250610200339.GA1233@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250610200339.GA1233@pendragon.ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Enable ARCH_SOPHGO, pinctrl (built-in, required to boot), ADC as module.
-This defconfig is able to boot from SD card on Milk-V Duo Module 01
-evalboard.
+On Tue, Jun 10, 2025 at 11:03:39PM +0300, Laurent Pinchart wrote:
+> On Tue, Jun 10, 2025 at 10:39:31PM +0300, Andy Shevchenko wrote:
+> > On Fri, Apr 25, 2025 at 08:07:32PM +0300, Laurent Pinchart wrote:
+> > > On Fri, Apr 25, 2025 at 06:30:10PM +0300, Dan Carpenter wrote:
+> > > > Whatever happened with this thread from Feb.
+> > > > https://lore.kernel.org/all/20250207013117.104205-1-zhangzekun11@huawei.com/
+> > > > 
+> > > > The issue was that people weren't expecting of_find_node_by_name() to
+> > > > drop the reference on the of_node.  The patchset introduced a wrapper
+> > > > which basically worked as expected except no liked the naming.  Krzysztof
+> > > > suggested that maybe the callers should be using of_get_child_by_name()
+> > > > instead.
+> > > 
+> > > My conclusion is that most of the users of of_find_node_by_name() with a
+> > > non-NULL first argument are wrong, and should be replaced by
+> > > of_get_child_by_name(). We need a volunteer to do that work.
+> > 
+> > Wouldn't be coccinelle a good worker for this job done?
+> 
+> It's not mechanical work, every single user need to be audited manually.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+Sure, but at least it can do some job that can be done automatically.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 897fc686e6a9..b43f9502acce 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -66,6 +66,7 @@ CONFIG_ARCH_RENESAS=y
- CONFIG_ARCH_ROCKCHIP=y
- CONFIG_ARCH_SEATTLE=y
- CONFIG_ARCH_INTEL_SOCFPGA=y
-+CONFIG_ARCH_SOPHGO=y
- CONFIG_ARCH_STM32=y
- CONFIG_ARCH_SYNQUACER=y
- CONFIG_ARCH_TEGRA=y
-@@ -654,6 +655,7 @@ CONFIG_PINCTRL_SM8450_LPASS_LPI=m
- CONFIG_PINCTRL_SC8280XP_LPASS_LPI=m
- CONFIG_PINCTRL_SM8550_LPASS_LPI=m
- CONFIG_PINCTRL_SM8650_LPASS_LPI=m
-+CONFIG_PINCTRL_SOPHGO_SG2000=y
- CONFIG_GPIO_ALTERA=m
- CONFIG_GPIO_DAVINCI=y
- CONFIG_GPIO_DWAPB=y
-@@ -1430,6 +1432,7 @@ CONFIG_QCOM_HFPLL=y
- CONFIG_CLK_GFM_LPASS_SM8250=m
- CONFIG_CLK_RCAR_USB2_CLOCK_SEL=y
- CONFIG_CLK_RENESAS_VBATTB=m
-+CONFIG_CLK_SOPHGO_CV1800=y
- CONFIG_HWSPINLOCK=y
- CONFIG_HWSPINLOCK_OMAP=m
- CONFIG_HWSPINLOCK_QCOM=y
-@@ -1530,6 +1533,7 @@ CONFIG_QCOM_SPMI_VADC=m
- CONFIG_QCOM_SPMI_ADC5=m
- CONFIG_ROCKCHIP_SARADC=m
- CONFIG_RZG2L_ADC=m
-+CONFIG_SOPHGO_CV1800B_ADC=m
- CONFIG_TI_ADS1015=m
- CONFIG_TI_AM335X_ADC=m
- CONFIG_IIO_CROS_EC_SENSORS_CORE=m
+> Finding the call sites is the easy part, and we have them already.
+
+> > > > I created a Smatch warning for this and here are the four issues it
+> > > > found.  The line numbers are from linux-next.
+> > > > 
+> > > > drivers/net/ethernet/broadcom/asp2/bcmasp.c:1370 bcmasp_probe() warn: 'dev->of_node' was not incremented
+> > > > drivers/net/pse-pd/tps23881.c:505 tps23881_get_of_channels() warn: 'priv->np' was not incremented
+> > > > drivers/media/platform/qcom/venus/core.c:301 venus_add_video_core() warn: 'dev->of_node' was not incremented
+> > > > drivers/regulator/tps6594-regulator.c:618 tps6594_regulator_probe() warn: 'tps->dev->of_node' was not incremented
+
 -- 
-2.49.0
+With Best Regards,
+Andy Shevchenko
+
 
 
