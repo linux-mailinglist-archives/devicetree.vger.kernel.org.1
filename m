@@ -1,181 +1,123 @@
-Return-Path: <devicetree+bounces-184109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21014AD304A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:29:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 550F7AD3070
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:33:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E58C518842B0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:28:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30F593A9AF4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C1627A906;
-	Tue, 10 Jun 2025 08:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7285D21FF42;
+	Tue, 10 Jun 2025 08:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T5DY7We+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oNUnm/0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3A0482EB;
-	Tue, 10 Jun 2025 08:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CD61D555;
+	Tue, 10 Jun 2025 08:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749544098; cv=none; b=HuYOW/KICshrevZpDMoG1gEKl8r99C5gGWwqoAzv/BAYxjc5q2XBTwNN65hHoGH59cgHpnwNndAcHwnuXa6dLC+qmD3mV8NuUJUQWRcTWGYS88SsD7V37iv/X67X4/DOgc4XBYEH0GPQoxdqtxbqh9eNB+ZidMVt2hPQOBOtrHE=
+	t=1749544377; cv=none; b=WSJyQj6o3GeY2sw83lscGsK5Ud/uZuEg6hOQqsMua1VPJaX1mtO6UuhzSNV3FCbIp8tsEEemPVmAR0UB3STY87XpXxnrD82MZ4YC6AlJBfnyJ8EHvXLeaGRQngmdzER8fpj6bxH0iGeddC8SSVkC/KHqUQid7KLTer7l1f4rEO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749544098; c=relaxed/simple;
-	bh=/fRyzCVQCiFEDkQInhIowcouSEKQgag8GXH2jYiOinE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FiCP7ZBVY3cg3ube5QzK3TxSFRQHyHRZUfVqfeNjeQvAXjIZSdBeuJXPUM6RLh9KVlCz2pQBwhb6aBeCZckFh4YEYNNPSnGTMAPPGW8cn+Aa8Ddqctjn3Q7A9VJtzZD3iyD75uQ3pu1TaYNgshlOkg5uxT5Tvm1BRTuRNZWY7UY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T5DY7We+; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a54836cb7fso1281278f8f.2;
-        Tue, 10 Jun 2025 01:28:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749544094; x=1750148894; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OSc2ejrxwbqoW48QeuL4dH/UMS/dbklDTegGTuVuC18=;
-        b=T5DY7We+TzTa7wotukb0Mdc5eC1BETrR0lzhTNZTGd/++MJdlTqf77pj+YxHyTjDDn
-         bvWF9JjlCDoYznyLcZmKRnf6HQyfuWwuCTTbMyI0fxb7+X8HQqjiXgPGdHR4k6VXn1Gm
-         J7/IRAORfSJ4w7Ium9clUOIn+DN/fzJk1Zc+EumMEtqkOYNR0yU2rMGuCj1uhGFwrjgC
-         Dsp9k5xJoyYKMIYrAzvufhP4zkZnKr9NezuuGyIyR3ZgxqrHQvUI20dIKGL+M5ULEe2U
-         hLhcFkeyU9KOVPDWMI/P3OSXjNmvCTIJMsS9g5xY9myRysdf3djMQcN5T6YGYhw8v47s
-         WCfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749544094; x=1750148894;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OSc2ejrxwbqoW48QeuL4dH/UMS/dbklDTegGTuVuC18=;
-        b=btGHwPq/lrjC3rboomzcSEOQhxGhUuHrdSCAbko9ukuf6qa/AfvnfcXGEMe8l6Eun1
-         nomJWatugLK5W/wm0k5ZD3lgAhOJduGlP5QqXTGy/5PdyxUCQYZePGMhMBrFN8cPlm0q
-         3WzjZebNap6pEquKhSLrvXxt1EI7ms/Xp+4BYNf6o2oHkVDbDx+fx3AeE02dphDorzMt
-         mNJaXWntN0xAMmCAZU6iCYER5QPhLMc3NISVakKjXJVIzlzuxWCuZfjsLQeXr0uSSj61
-         M8143k7yGp9YkJVeBO5WuD4LVyMm2AHhH/2M2wzwNw1um16Sc3IdXDfLVCRzJ2u8QGv7
-         QLLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZaQKnrhFf1o6/+FwyHPWhguGbR9QedRAu13mZMnNIjsHcdazDybGXZ9UUtjc7R+1SCDb9ocQzpBEip73o@vger.kernel.org, AJvYcCVSm+YtW9iHQRe4GzjhpRaTkzx3u70xEneJPsnzSPTF0KY20Bn6QluCUZyjBh3CiLK9Hpis77M30tmV@vger.kernel.org, AJvYcCVTpp0500/wBfo/d1duBU8Fg+WpDchVHh0lX1At4dAWQSI34cXqoQuaJf10QB7KfgS5DBCuvOHr1sZY+CM=@vger.kernel.org, AJvYcCVaOgyvaE/rX0LDQ4W6Ft051C0B4MviVFA/pGalBNso7EImfbMDr8aczIA7aPyWjftnYGnpPJR02dKN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlkXlmutYi47o3c7tLlsE0pwKE8PZnhC4r+5y3q90y8GduC2N7
-	Za5Ol1lGJrDWlRhD9BOVeb7k5ua1Wr4rBIP9sGHlk4ANqRZwu4Fo5hxW
-X-Gm-Gg: ASbGncs9lDyqpTa+hWp72RIWyMRivncHiC3tpVE78C2+d5YIvErsiK+eFbCglg4Hmkl
-	9NSmzl8iO7OzBkoQVYh8xIGFREy4NRa6sokTk8PnCisuFpGjuamWY8auIwlLqkYqWriBh+tLwyy
-	Okd5Gh/LXnELlFTJKFDDX0C1aOFePh6rQlW99xcjVBfOll5/fYiFqu5nNhBEAjayEhX3Ru/gzEr
-	XbDKVMky42a9oV2bF/uxD/VOs6SZI1CJty3SBMVT6w9UYKxTqY49TtwzIUtpESoBewsrf2XyFwV
-	4nWI/WPFjW/tYYUkkRozntXTFvK/N9XPeezBhv1zmnwIOR/P4CccX53Z2NVrqS0eplQVj8nulb6
-	SoIRY5ATRcqNLkYJ5dmgqLpx930/qeuEXWhYBW9UmLahuclglzP3iiA0+9+M=
-X-Google-Smtp-Source: AGHT+IGym2uDPn67i56Q4gRKCTF1Pq14CJwDdfPHVy4xpa4B/IUkGHpA4PhRj8/8Xv7nveP1ajMo9w==
-X-Received: by 2002:a05:6000:2893:b0:3a5:2575:6b45 with SMTP id ffacd0b85a97d-3a531cb899fmr12589503f8f.48.1749544094252;
-        Tue, 10 Jun 2025 01:28:14 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5324360a3sm11750965f8f.50.2025.06.10.01.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 01:28:13 -0700 (PDT)
-Date: Tue, 10 Jun 2025 10:28:11 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: akhilrajeev@nvidia.com, andi.shyti@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, jonathanh@nvidia.com, ldewangan@nvidia.com, 
-	digetx@gmail.com, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] i2c: tegra: Do not configure DMA if not supported
-Message-ID: <z3evk6j53hbgf426kc4ltdv4dbisoqnwkfwhapyenpadhey6v7@zvbljg5svppi>
-References: <20250609093420.3050641-1-kkartik@nvidia.com>
- <20250609093420.3050641-3-kkartik@nvidia.com>
+	s=arc-20240116; t=1749544377; c=relaxed/simple;
+	bh=SeM2fX3V7rJHEICuoUesxqz8Z/Gb6XXlCMnMM8yJjo4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=LzyNRNp0d9ABMWoimqOC1hZCqQvhHCri7HnKGfsdumfe+KrbPn3M3NtJXlVKCN2xbJBj2UqyVXwTJ6RPw6ZuZ1pVUIAsAB+EyNDvY2yL2GRhfvgdq0ElmN/01ILKSKc690e3+4UFr/ngJP24UwcyW0gmluA+2zs1BPXwCF22L2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oNUnm/0d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0218C4CEF0;
+	Tue, 10 Jun 2025 08:32:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749544376;
+	bh=SeM2fX3V7rJHEICuoUesxqz8Z/Gb6XXlCMnMM8yJjo4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=oNUnm/0d0NSyV1KpxCElUMuB7NV/RWA1VylR1xJD38v2VZ4vXD3fAj7l+Purr3T+G
+	 /w/H19u1gmrtKw+9nu9ac/G594YLZ75qXNFE+b+9H7NQ8M5tX3xVKDyBXDZFw7Q3Lu
+	 S9j+gsEf1XeyyIHIGHQ8A2SIsJS+/tNlxu2XN6KS2GwnkIEYEMId6Vacjj8ONvLmxi
+	 oqAVfxRELEdUbuR9ifYUEhSNJooDSuS75RT2mDhOsV6yQ+d5wYsHDZlKjKjshtNQgi
+	 OOHBu58tOtWzhqK7ce88/rmpeD+7hiMN2A1s6BUpimb+E2FhHARmuVa9gP9VgRmosL
+	 WZverJznxiS6w==
+Date: Tue, 10 Jun 2025 03:32:55 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dme36rf6gwp73n2r"
-Content-Disposition: inline
-In-Reply-To: <20250609093420.3050641-3-kkartik@nvidia.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, michal.simek@xilinx.com, 
+ monstr@monstr.eu, 
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, 
+ "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+ linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Conor Dooley <conor+dt@kernel.org>, Srinivas Neeli <srinivas.neeli@amd.com>, 
+ git@xilinx.com
+To: Michal Simek <michal.simek@amd.com>
+In-Reply-To: <dba4f2c39a25b54010c292c36e349cb289d6cd98.1749540869.git.michal.simek@amd.com>
+References: <dba4f2c39a25b54010c292c36e349cb289d6cd98.1749540869.git.michal.simek@amd.com>
+Message-Id: <174954437576.4177094.15371626866789542129.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-xilinx: Mark clocks as
+ required property
 
 
---dme36rf6gwp73n2r
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/5] i2c: tegra: Do not configure DMA if not supported
-MIME-Version: 1.0
-
-On Mon, Jun 09, 2025 at 03:04:17PM +0530, Kartik Rajput wrote:
-> On Tegra264, not all I2C controllers have the necessary interface to
-> GPC DMA, this causes failures when function tegra_i2c_init_dma()
-> is called.
->=20
-> Ensure that "dmas" device-tree property is present before initializing
-> DMA in function tegra_i2c_init_dma().
->=20
-> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+On Tue, 10 Jun 2025 09:34:31 +0200, Michal Simek wrote:
+> On Microblaze platforms there is no need to handle clocks because the
+> system is starting with clocks enabled (can be described via fixed clock
+> node or clock-frequency property or not described at all).
+> With using soft IPs with SOC platforms there is mandatory to handle clocks
+> as is explained in commit 60dbdc6e08d6 ("dt-bindings: net: emaclite: Add
+> clock support").
+> That's why make clock as required in dt binding because it is present in
+> both configurations and should be described even there is no way how to
+> handle it on Microblaze systems.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
-> v1 -> v2:
-> 	* Update commit message to clarify that some I2C controllers may
-> 	  not have the necessary interface to GPC DMA.
+> 
+> Based on discussion at
+> https://lore.kernel.org/lkml/20241002-revivable-crummy-f780adec538c@spud/
+> 
+> Actually this shouldn't be only targetting GPIO but also for example
+> xlnx,xps-timebase-wdt-1.00.a but I would like to check it first on gpio
+> before starting to check other bindings.
+> 
 > ---
->  drivers/i2c/busses/i2c-tegra.c | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegr=
-a.c
-> index ebd51165c46b..c7237d26b813 100644
-> --- a/drivers/i2c/busses/i2c-tegra.c
-> +++ b/drivers/i2c/busses/i2c-tegra.c
-> @@ -448,6 +448,9 @@ static int tegra_i2c_init_dma(struct tegra_i2c_dev *i=
-2c_dev)
->  	if (IS_VI(i2c_dev))
->  		return 0;
-> =20
-> +	if (!device_property_present(i2c_dev->dev, "dmas"))
-> +		return 0;
+>  Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-I know that you use the OF-independent variant here, but has this been
-tested on ACPI?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Originally the intention behind this code was to get some sort of
-validation of the DT (i.e. dmas property is desired, so we want to flag
-if it isn't provided) with the fallback existing mostly just so things
-can operate in the absence (or if APB/GPC DMA isn't available for some
-reason).
+yamllint warnings/errors:
 
-If we now solely make this depend on the availability of the DT (or
-ACPI) property, then we loose all of that validation. I suppose we have
-DT schema to check for these kinds of things now, but since we're not
-marking these properties as required, there's really no validation at
-all anymore.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/fpga/fpga-region.example.dtb: gpio@40000000 (xlnx,xps-gpio-1.00.a): 'clocks' is a required property
+	from schema $id: http://devicetree.org/schemas/gpio/xlnx,gpio-xilinx.yaml#
 
-My concern is that if somebody's left out the dmas/dma-names properties
-by accident, they may not get what they were asking for and we have no
-hints to provide whatsoever. Maybe that's okay if we provide the base
-DT, which has been unmodified for a while.
+doc reference errors (make refcheckdocs):
 
-If that's what we want to do, it no longer makes sense to keep the
-IS_VI() check above, though, because that's just redundant now.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/dba4f2c39a25b54010c292c36e349cb289d6cd98.1749540869.git.michal.simek@amd.com
 
-Thierry
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---dme36rf6gwp73n2r
-Content-Type: application/pgp-signature; name="signature.asc"
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
------BEGIN PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH7JcACgkQ3SOs138+
-s6G0fRAArMsGVATba0A4EvRyeLCGBYaQjICk09syX5VL65IABICLYMcmNCPCUKC/
-hFqmUvswVXuCfe2FeOdvISnITTN3fcqY1Hsp82jBVmvEmCFP6USleSYGAc+Qvn5o
-rtIUJI4BTTjm9p3G1dy/4IG92uSIIaXhwpo0P6Ras7rzVoPnqFi/0vIHnemoAeFX
-NfDpnYeapDcvOWiJCxtxhTRLWo5A9L46m2i0S27cYzJWr85Kna1buYutJWfSun1v
-zrdiSs6hA5SBEV2Sp/Pm52LuAgLDj0GGFFj6so7XhSvxnUAi13VjInNXA9DLEIJo
-toR0BLzWH3pIMT0pmGw/X/ztvbuoch+WFJMmAmcyR5mTya4wSd+V3lrBIFZPy2rk
-mwM5EXUwr6AMBb03dAE2ALIH/ECPnA062KTMaI9dLeWZFglWgoUDmX/jxDeU1YRG
-Mlp3tkHnlYd2Q6Q9IjKYh34Wk12TESoY/5kkTGZg6i9PYBy8xN6LTDrw0AExUphY
-EBzA22vX056uQ5llqXPGKdKbmrGAKKUG71gR/E3NdgbvxrCNKu7QeSA0aMTfSJBe
-H8Z45PTPHgphire57LHajB2l00zLfH3BSkyW8z2q+AxnqAbYEqvRMhg8HyDDlWF6
-RvR4E2ugPIKqNmiMHVtnrdSUt7ZlRalD/xBgB4RZI71ljVXdOME=
-=yWqp
------END PGP SIGNATURE-----
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
---dme36rf6gwp73n2r--
 
