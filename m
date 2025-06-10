@@ -1,245 +1,159 @@
-Return-Path: <devicetree+bounces-184263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 983BBAD3764
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:54:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C22AD3782
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A06227A9ED2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:52:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 039C217BEEF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E0529ACCA;
-	Tue, 10 Jun 2025 12:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D41E29614C;
+	Tue, 10 Jun 2025 12:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IDxW8kOJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bhm5/DLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE89328CF5D;
-	Tue, 10 Jun 2025 12:48:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351F322D4D1
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 12:49:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749559711; cv=none; b=n1vVgBm5AhObWobMjDXp84rm7LzsxRNdpxDjIzF4thdip9F8ks3x11RAGt1a2uFuE7ct6KqdpI9nfmJq2qYI6fHe8jRcd8q/ahSvqQnDI/Sw7FMDsOUMregJ4sBx2NN+demoKCvXhvoNtDOAbl2d0WiO3i5ZyORyQunnY306e4g=
+	t=1749559755; cv=none; b=UbpBYMfcMaoot7OEnTw+kifzqUBHLPaoa3LPVVZ0CY1/OrEpi7nH3lePip9crehQhh93hKcPHGPLeL4ZCDjeGZ8PROnIf4gphQcCj1NEV5YmAkVPVVbWXq8xICH7h6x7gtNZi84AI/kpXejADJd4y8p2Pk/e93GUfG4Q9JZEWUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749559711; c=relaxed/simple;
-	bh=4+lKuBWusMuD5aQll58u24JjCw59i5+HaxKROrmnh7w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=abKBkepgFEIBGUgh2WOrlbR6omrPfim7EfjrowkT0K9EoU7dhdFVA7Fnq9VABhyVsHKCg+UjQPpE3crdCxSsFGuC/f/nmT7Q3yik8xnGNX7ug5T7uDX7rzbBw8pVLJWxROIWDAiKQiOjK2tyEBY1JJ8iskX9Hg+QPIOFbV3li5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IDxW8kOJ; arc=none smtp.client-ip=209.85.160.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2cc82edcf49so1622837fac.1;
-        Tue, 10 Jun 2025 05:48:29 -0700 (PDT)
+	s=arc-20240116; t=1749559755; c=relaxed/simple;
+	bh=8pGLEakmr5aQtq0MNQDWSHLHa7dbD9TZs7Ms+ip8HFY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uCGu3QmqCzUF3jRkjJ4na6KBtpk28tH9jQ6FmX7QuxNZX+0VG2AtDYWzYPPJwHjg+TuyTqRQeV5+6eaaLpGvNBbHCP/D8lC0ta7WSAjcg5G1yqN1noN3yqiiEHBv6PY9XzbcXLSipDBO55gmF2spMspFQxZ8Bp58LcRQSgYGdYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bhm5/DLv; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-32a6c0d613eso5246631fa.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 05:49:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749559709; x=1750164509; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wOjXPe8NVJxqY9cA3/rXFnzAlTaT0lIlpmhgjVsyJZM=;
-        b=IDxW8kOJhcWJiru15OrPLrkoeOQhcOgPB4yn9vU6IgJEybBUnZcQT8eQI5ZfVdAcj3
-         zVjZnf28lOMFMmfKZUmw/rLWWuQS9k07EAy57yPA2CVc0Mvkh1cBseQegESb4PNZWOR1
-         Ulgc4+8ss4czJJxLGqI0sRaPrBQEUcrbGWl/nq4LJnwhG/4zmmj4dAWx7sTO82fzYnQk
-         4EKW3qiExHCu802tMvCudGLFeD/YF6whx4A4mASaUyZQuleJ8E7wDWHK6Z/47jNXSdoK
-         NrJC3VbjSvVthK+pWjVzdwYh4PEPWIQLtcALeJrYvSFafViZ8R4HvTYzwi8OQSmXnLDe
-         +0nA==
+        d=linaro.org; s=google; t=1749559751; x=1750164551; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SMSrvswUbazeYbvuGhFOqonwWDg71HMAispluXuK8zE=;
+        b=Bhm5/DLvjaW7Lzd2TrS1xdXkF4QN/1Kj5tZuUxkAr48g7SwiTdS+236ISfos/7uzUT
+         K4nsyz6XH2RXYlDoqvQazhA7kytzjNDRQWUZNOwC1mxcANVeCVs5MgeVvfTC4apAhgPP
+         YLUgAT/K+IOeuhOBvq0Z18IlzfBZEt+Nxl+2yhpIYKYocs6ElD7plIjPKt10xZ8QREDY
+         AZYafGM4N9tR6xRBZWDo9FtRYsrF4RU0kMfd+jF0ogJA14hEWYPj/kOssvG3G6BdWQ7q
+         iEDa/qLT61X33uQb6BguiUlYh3zbkH6FGov0oxVd8HNdVnvYc7ljcJYJAoOPrPfz0QUY
+         eQ2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749559709; x=1750164509;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wOjXPe8NVJxqY9cA3/rXFnzAlTaT0lIlpmhgjVsyJZM=;
-        b=wb8KmneMPeWil8eKLvIRw24cNdJs7GnkTMVFuMs2ln3iOcaa8cBSGzeZluJ5yOR2a3
-         8BH5bGe6PU4rLESKRTPCgyYadJn7LAdHCYiUINltTh1FiT3qnJnIBAh3YWn9Cpi6Y+fb
-         uIxmAM/byGuiUPtcxcnKGd3hXC/FQQ4jwRgjqlw9zOtK41TfWJ05UzjAMxktE3Skz7wW
-         NFY8/Kfqt6FShjkUt9PRH3TAcR3Bk6huSYFzKTPSFb3ArbLWuOs7Pj8xUV9K7q8h/xA5
-         evUep2o7vBgNRAmigfnMlS5+M9YvRa04yzsgapOJ1CEhtW+ZcgjJ8mbmsBRf9gprU0yA
-         YS3A==
-X-Forwarded-Encrypted: i=1; AJvYcCVSMUZOvDE+H+NsC2NEmJnYj3Al/ZuZh1kUCmI5eskhoorS6tieBAqvHBxPhDFRxLBbmZXV2PvKP54hYA==@vger.kernel.org, AJvYcCWIWYnOOKA3XgDB1GcR4Tvn1ife1l/saIpXOIw4AN04xeAErNRS4VroMGrtj46uuJ2LN5ReuXwmZxYOBzrb@vger.kernel.org, AJvYcCWdD7KVz22TcYiWy721YZR8aDNDe+Wh40SDcvbCjgqpqIpwnh1LMingseQ1qqAl2Pg6jXpLHOLjJFqX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOluZpEUgvO7mxpMg5VMhAZbaeU3FyeGuSB8xdXKdHujYkMwwd
-	RXSoDUyVM0E23YYyszAEXsE84H1+TxeOFGplDf+sRw7zoV33BLH3CJMejc0+eam4pHOTpoadAnv
-	XF6ejhXtImVtUUfS3To9uebClzlRMDQI=
-X-Gm-Gg: ASbGncvUvS5HrYLTEPGzIuAT2nB3KijkIzescaAlqdiyK2rwGQQlxa2Yi9VcAItU4b5
-	Cp7LBGx1fisdhXQacsgH1jYDW6C788C+pA1ggXuZpgbL+GUOq1Uzu1/tvi/qSYqWLm/20gL6fHx
-	9uHroDD7CN8AXZBkWzvs0K8ZNc3WaIbR6kSxGuX99j7GkLA13DgVCiwoQoPg==
-X-Google-Smtp-Source: AGHT+IEJkSHuAGQdalloHnhm/KPuTWMMm47KacsCwCjSaDxe3Ht+ktdr1ZxnlrLVEu4bU9Ld02X4PkCAm/YKMs7Fce0=
-X-Received: by 2002:a05:6870:164e:b0:2e9:b6:2edd with SMTP id
- 586e51a60fabf-2ea011dacb5mr10416784fac.32.1749559708578; Tue, 10 Jun 2025
- 05:48:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749559751; x=1750164551;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SMSrvswUbazeYbvuGhFOqonwWDg71HMAispluXuK8zE=;
+        b=blD+/vqh3Y4+btaGlzEb5RHydQgHV4Guks/Ll1q3R+q8tEcJBzUg+f2RC9vgOfrEuP
+         MF7I3H6z1Am5yk6MMSD1LY5HxEtf0n3ccbpEmaPZyo/PMkHOu0dJ3EsqOUV5CKmE8LEB
+         e7ghOw+j0k2v0tJKnVnQx96lHoARIC4X72oNxSB+K1Bod4solvZF7voklKDJdtCY90aD
+         phJnEGV92OEx/2jQ3oT0RZpzu5Q5JmeDQ+e4NxeGnhqmlFmqzRI35WAtuE65x5/A1R2M
+         2zwhWvq17dR51qLZIaZAXwuCO1kdLRoBPCwyTxoswbs2RSxp7Ax9pi5IPLIoCFnQ3759
+         qIGw==
+X-Forwarded-Encrypted: i=1; AJvYcCVs6/d7+4Jbw32Ru4gvgjJwRHARjV3gYV+nkQIl8vPnHXN/XHx8uatXK4m/QupPa1AWpQyIE1MK/Ctm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCLwa5EBJJD93qow1z6lnE9cYs5wUZXLhgJ8KkH8/GLHrLuOhs
+	5OmribqsE9lGc2WHL2J7wqZebcvY1v6Qv3mkjnyauyWMzNLTRazCh8fYFTwrJPMKJVw=
+X-Gm-Gg: ASbGncv82+tmDAriFIzGjmJdaL8zdDYMWDfrllKS1xU5ej8LEi+pRLUa8OqKqXBiiqx
+	fg486Eq9Py6hAeMrBA5p91MRLJdg3jji9RTTOIOCzUtWgEYSeWCVQqWAkmJbgUZUIcnNpg9xOT0
+	Irx0KLAnUPhZ2wJEaaOknSHZBS6sXII/TxOMU136O1SkKX8yOqcidklP9bZ2n08I/yeqU49X13b
+	39/c60VhKN6K1eIK7N8+MmnbIlfrwc0x7/qWvD55JhXsXwS6t+sIJCdE5rIoqIBeurEHFHr5N/S
+	9GH8/xH0w0BfFxyd0lcEBIUrefSiXQD8zS9Ng+UVy3deQJqKYKmJ8rlfVH10tSnHCub8HdXhHL8
+	idCg3uYsuMo9REu2iLd80qDtM4L6pm42BJGEOKivb
+X-Google-Smtp-Source: AGHT+IHY1q8YmyvtVFQkg3FZFwHokHT/o2o35vML8BOoO8vhLwLta089+v0mypfDQ7uA7zZsqXirAw==
+X-Received: by 2002:a05:651c:2107:b0:32a:85f9:5c0b with SMTP id 38308e7fff4ca-32ae3359b7bmr15305731fa.10.1749559751259;
+        Tue, 10 Jun 2025 05:49:11 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32ae1b0d1e2sm14474271fa.19.2025.06.10.05.49.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jun 2025 05:49:10 -0700 (PDT)
+Message-ID: <739bad1b-f26d-44a6-9cc1-eee28023474f@linaro.org>
+Date: Tue, 10 Jun 2025 15:49:09 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250609-bbg-v2-0-5278026b7498@bootlin.com> <20250609-bbg-v2-2-5278026b7498@bootlin.com>
- <20250609-hacking-corporate-d53531577680@spud>
-In-Reply-To: <20250609-hacking-corporate-d53531577680@spud>
-From: Jason Kridner <jkridner@gmail.com>
-Date: Tue, 10 Jun 2025 08:48:16 -0400
-X-Gm-Features: AX0GCFvR7zhEYzZzWjg_mjpYwaq3wTlIpZbFoKrzFhLnZGCZZpbjY0Ty6K2T5Io
-Message-ID: <CA+T6QPma+4DquH8wfY0gSdn9yaQvsK051tJrYiF6fUGBiMvQrQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] binding: omap: Add lots of missing omap AM33 compatibles
-To: Conor Dooley <conor@kernel.org>
-Cc: Kory Maincent <kory.maincent@bootlin.com>, Tony Lindgren <tony@atomide.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Bajjuri Praneeth <praneeth@ti.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND] arm64: dts: qcom: sm8550: Add support for camss
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Wenmeng Liu <quic_wenmliu@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, andersson@kernel.org, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ quic_depengs@quicinc.com
+References: <20250516072707.388332-1-quic_wenmliu@quicinc.com>
+ <0367d5bd-a42e-4b6c-b841-ba20190b3127@linaro.org>
+ <dc4720a8-2f15-44aa-9a52-8440c7518328@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <dc4720a8-2f15-44aa-9a52-8440c7518328@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 9, 2025 at 1:03=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Mon, Jun 09, 2025 at 05:43:52PM +0200, Kory Maincent wrote:
-> > Add several compatible strings that were missing from the binding
-> > documentation. Add description for Bone, BoneBlack and BoneGreen
-> > variants.
-> >
-> > Add several compatible that were missing from the binding.
-> >
-> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> > ---
-> >
-> > Change in v2:
-> > - New patch
-> > ---
-> >  Documentation/devicetree/bindings/arm/ti/omap.yaml | 38 ++++++++++++++=
-++++++++
-> >  1 file changed, 38 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml b/Docum=
-entation/devicetree/bindings/arm/ti/omap.yaml
-> > index 3603edd7361d..c43fa4f4af81 100644
-> > --- a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > @@ -104,12 +104,50 @@ properties:
-> >        - description: TI AM33 based platform
-> >          items:
-> >            - enum:
-> > +              - bosch,am335x-guardian
-> >                - compulab,cm-t335
-> > +              - grinn,am335x-chilisom
-> > +              - gumstix,am335x-pepper
-> > +              - moxa,uc-2101
-> >                - moxa,uc-8100-me-t
-> > +              - myir,myc-am335x
-> > +              - myir,myd-am335x
-> >                - novatech,am335x-lxm
-> > +              - oct,osd3358-sm-refdesign
-> > +              - tcl,am335x-sl50
-> >                - ti,am335x-bone
+On 6/10/25 12:50, Bryan O'Donoghue wrote:
+> On 10/06/2025 10:48, Vladimir Zapolskiy wrote:
+>> Hello Wenmeng.
+>>
+>> On 5/16/25 10:27, Wenmeng Liu wrote:
+>>> Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
+>>> includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
+>>>
+>>> SM8550 provides
+>>> - 3 x VFE, 3 RDI per VFE
+>>> - 2 x VFE Lite, 4 RDI per VFE
+>>> - 3 x CSID
+>>> - 2 x CSID Lite
+>>> - 8 x CSI PHY
+>>>
+>>> Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
+>>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
+>>> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+>>> ---
+>>>    arch/arm64/boot/dts/qcom/sm8550.dtsi | 210 +++++++++++++++++++++++++++
+>>>    1 file changed, 210 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/
+>>> dts/qcom/sm8550.dtsi
+>>> index e9bb077aa9f0..722521496a2d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>>> @@ -3326,6 +3326,216 @@ cci2_i2c1: i2c-bus@1 {
+>>>                };
+>>>            };
+>>> +        isp: isp@acb7000 {
+>>> +            compatible = "qcom,sm8550-camss";
+>>> +
+>>
+>> This is the first time, when 'isp' label is used instead of 'camss', it
+>> might
+>> be I missed the context, is there any particular reason to do such a
+>> change?
+>>
+>> If the label name is changed to the regular 'camss', then
+>>
+>> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>
+>> -- 
+>> Best wishes,
+>> Vladimir
+> 
+> List feedback from DT people is isp@ is the correct prefix.
+> 
 
-What is the convention here? "beagle" is a vendor, so not sure why
-this continues to be "ti". The owner of the brand for this board is
-"The BeagleBoard.org Foundation". Not sure if it is reasonable to fix
-this.
+My bad, but I don't understand this comment, it seems irrelevant...
 
-> >                - ti,am335x-evm
-> > +              - ti,am335x-evmsk
-> > +              - ti,am335x-pocketbeagle
+The expressed concern is about the novel label name.
 
-This one is also "beagle", not "ti".
-
-> > +              - ti,am335x-shc
-> >                - ti,am3359-icev2
-> > +              - vscom,onrisc
-> > +          - const: ti,am33xx
-> > +
-> > +      - description: TI bone variants based on TI AM335
->
-> "bone variant" sounds like some shortand or nickname. Are the boards not
-> called "beaglebone green" and "beaglebone black"? Whatever about the
-> compatible, the description should use the full name I think.
-
-I'm not sure this is really needed. There is some desire to fall-back
-to a building block level of functionality around these derivatives of
-"BeagleBoard.org BeagleBone", including compatibility with the
-expansion headers, but I don't think that will happen at this level.
-In u-boot, it is possible to make the determination to utilize a
-less-complete devicetree, but it seems impractical here.
-
-What are the objections to just listing these all as TI AM33 based platform=
-s?
-
->
-> > +        items:
-> > +          - enum:
-> > +              - ti,am335x-bone-black
-
-"beagle"
-
-> > +              - ti,am335x-bone-green
-
-This is a Seeed Technology Co., Ltd. board that licenses the
-BeagleBone brand from the BeagleBoard.org Foundation, so "seeed", not
-"ti".
-
-> > +              - ti,am335x-pocketbeagle
-
-Not sure why this one is repeated. Also, it very much begs the
-definition of being a BeagleBone derivative outside of usage of the
-PMIC.
-
-> > +          - const: ti,am335x-bone
-> > +          - const: ti,am33xx
-> > +
-> > +      - description: TI bone black variants based on TI AM335
-
-There are lots of derivatives of BeagleBoard.org BeagleBone Black and
-falling back to a compatible makes some sense, but I don't think it is
-of practical benefit here the way things have worked out. The smarts
-have to be in the bootloader based off of the board IDs and the kernel
-is just going to do what it is told.
-
-Now, if we had some practical overlays performed by the kernel, this
-would all make some sense as patches between these variants provide
-useful fallback operation, but this is otherwise confusing. I
-appreciate the credit given to BeagleBoard.org for them being
-variants, but this really isn't the place.
-
-> > +        items:
-> > +          - enum:
-> > +              - sancloud,am335x-boneenhanced
-
-Note that this one is correct to be "sancloud", who licenses the
-BeagleBone brand from the BeagleBoard.org Foundation.
-
-> > +              - ti,am335x-bone-black-wireless
-
-"beagle"
-
-> > +          - const: ti,am335x-bone-black
-> > +          - const: ti,am335x-bone
-> > +          - const: ti,am33xx
-> > +
-> > +      - description: TI bone green variants based on TI AM335
-> > +        items:
-> > +          - enum:
-> > +              - ti,am335x-bone-green-wireless
-
-"seeed"
-
-> > +          - const: ti,am335x-bone-green
-> > +          - const: ti,am335x-bone
-> >            - const: ti,am33xx
-> >
-> >        - description: Compulab board variants based on TI AM33
-> >
-> > --
-> > 2.43.0
-> >
-
-
---=20
-Learn about me and setup a meeting at
-https://beagleboard.org/about/jkridner - a 501c3 non-profit educating
-around open hardware computing
+--
+Best wishes,
+Vladimir
 
