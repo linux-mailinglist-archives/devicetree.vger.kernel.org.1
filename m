@@ -1,201 +1,129 @@
-Return-Path: <devicetree+bounces-184362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAA9AD3D49
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:34:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD734AD3D54
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 235B33AA477
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:27:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71B8017F684
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:31:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F2024679A;
-	Tue, 10 Jun 2025 15:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E722550AD;
+	Tue, 10 Jun 2025 15:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y9z1JJwC"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="TpN4N10T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24807247289
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 15:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2FC4252284;
+	Tue, 10 Jun 2025 15:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749568960; cv=none; b=H/6tYWjYwPPFhoyt8KnGLlKSGK8V+RHmhLnZr3FiEsSwWa7hs1vMY/PcvFJuhaPbr0LgdyHfFsj99ujiRZfH0FLzRRWDsZ3PPBSoSU5naK5T31xYQ4sgwjZsmn2UTCBBSc2MR7jFIu4peTg2qm0UJPFzFbObKe8L803rh01RR7E=
+	t=1749569100; cv=none; b=YmnKTcrpj9DFbmrLJyBA/IdPf4rWz2MdlHbO+O93h3XE+PeqY1EXyYwzf9qkNXxlvXl9wCjA0h8nnXwjSx4d53OHW4LqgOUinLXJFiwBCbRKAROHEqP6lkNQ8WUkSSAOjUX+B8TA/ktxpIjgu/EdG/74VfeVWvXp+Fy6NL8gFAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749568960; c=relaxed/simple;
-	bh=hchnrIDBJ/edKu4zAm3y3cqjcujUW60/YPHrwJKD/zQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bm4jXqOZdpeFqG6fgUN0v1apEMtb2p3K3XZmpnU27UZVk/RDz0XlEKX6TzJfeWRcBTsU3ulhQ7UXLuIC7O6GH9XSVxf8dZQpZPjxLV838afTHWlLGx9/FMjobuSCMeVgoObYzaaoz1x9kATWv9BhudgeewdxCLaToStRvXlObLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y9z1JJwC; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-73a01a7bee7so124927a34.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:22:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749568957; x=1750173757; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WgqBcp898rtX5fY8nnMSJASni1KQNJz9k+MA5T3aUho=;
-        b=y9z1JJwC5WJwde8QMX/hl1Q0JYszJMx8ANeOgfamkQXUvKtvP+ldu2qs+TNvxPWST2
-         MthGnz2ecGVpoQv45pT9FUSxB1Xgh/AQVh1819B+why9An7DxWfs6N6k91GUV+nc/bXx
-         cRvN9GactFc2dSIgVzkxAYM6wsJduwFVhJ1E76GUIeUP27HtpDfYlMjTFriis9GN/beV
-         2jcqT4a7JBU3MY3rTSJqX8JpqWoKmRxh7nqE0qHtqof/F1W8Zf9hbhwAkYNwEfyEesUe
-         Z0vVTPPfkyeK7zrAXtT95BWCT7iyPn14W3gEw0JP+bHOg97tC9SWr2WuejIJSgFKf2tb
-         RU3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749568957; x=1750173757;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WgqBcp898rtX5fY8nnMSJASni1KQNJz9k+MA5T3aUho=;
-        b=DMJyfY+xPez0+ZOQEXlNTKXxNWAuGNVEoWNK7C9otZTYyvSr7HsBq8fL4iW0+nc1Co
-         /KrOMjoolTzfXBUKyfkvGtnNMZO/nJ/KQucBg/iZ80GZEMd/9ev+CFU+MTjELQ7IS7X4
-         KpnMt7KLUe9zGc9AHG1c8LRYzbfIyDZ4DIXFyTaFHfs9Gs0h4HrZIEpyLwVgqDHhOxAi
-         tBpjtTKhcqmpWqjodod5af2xcSmnJUJ/BHvRrqmilF/fz6+0CpM4SVMeKCfWfrBJkYqA
-         vl9ihf422w7lXA+I0ftYNL8tGhfbktMIP5tmfLvPgaBg+VmjQtA6vglC0YVIbVjmYWUD
-         6mkg==
-X-Forwarded-Encrypted: i=1; AJvYcCVfTT8rQTqPF3OkJ5f4ZNUcJhD6RtZzt9HqHDqAT2LvrIvPON9KvkkQt74P15P1kcOcc170uY4r3ixj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzjQipzgoZ508LHL9MIDlqfqL7eARENaCZgifJTrC/BpmSrxJq
-	Gg8Ujad9Stq2yqO8bLFMRLlaIy6pnqp1JeME2MLkJ4XthzhPDCBWcn8a7LkigR8gXgQ=
-X-Gm-Gg: ASbGncu0gngz55eTcl3gP/58lut+MiHqLV8jdt23leXFn7blX1tIakqIfqabE76L7d1
-	BadiYDjXUMnxA1lb8K9+8GWKwo8v4uBRSx/WyZuTysvYzQGfqZuyP5bv7Qz5otlIIo5/+3TWkoD
-	XmWbRGQiUztZ8+jJdszO9ogsknL975yZztzUmPcgA7l13B7GunTN3UmeFOOEL+ew3cCpGiLgJT6
-	clNcFrwulswUK33AcUXNay6P5sNKyw6og0F5X1F33ue5M9dGcNNN++LRhMoBjudp4llMzSi1r1z
-	C5MVgl8T+H3UV+yuS8ppgcHn2H8BkjKy0RKrgGcZNDnICIZAONT1aim7bcDkd7NTRotZti2osMf
-	phgkJ0TuqtSVYRDmzdMWcr5RS9rVq9HL5IlUM
-X-Google-Smtp-Source: AGHT+IHxpTUjNC23qJnebWthwoWgqhpyFQhhpZJFRkAkLQNVpExAu309GNzss51U4GPATJs9EjhXDg==
-X-Received: by 2002:a05:6808:3a05:b0:408:e711:9aa with SMTP id 5614622812f47-40a56b7e0e3mr2114950b6e.37.1749568957142;
-        Tue, 10 Jun 2025 08:22:37 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:a49:6255:d8db:1aea? ([2600:8803:e7e4:1d00:a49:6255:d8db:1aea])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7388a08979csm2044314a34.62.2025.06.10.08.22.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 08:22:36 -0700 (PDT)
-Message-ID: <db78ac20-9b58-49d1-ba38-cc269eaff254@baylibre.com>
-Date: Tue, 10 Jun 2025 10:22:36 -0500
+	s=arc-20240116; t=1749569100; c=relaxed/simple;
+	bh=6CTIG54ldEtBHRVvsF1cC3SKsD3cwAiQewve9PGFX/A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fRLXMJyKaY5/sI3cH/2y9hfar1AnmotlImLeE4edrit8ctmfIXEOcbtX3nDjgdrf6+ht/kkgUgSLiltIF4OTOT3Y+SUnqurmatiHCYSRlQgBrGQYSiQ3LhDjK6Uol7l6EOLNcbiYZSqkwGuqOM8hwQ3/t2FEoJIjLFyu9I5MKeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=TpN4N10T; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AEYo1Q005348;
+	Tue, 10 Jun 2025 17:24:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=Mmod6GyCvN+xKlhUHyHmJv
+	0MBU3r0IJh4g+WMqECjq0=; b=TpN4N10TD7/Ta96HeLV3PHeOLQVvVjlxnjEF4Z
+	sUyPyu98fN+cdvqhcpjiUX2r0yiMIrvY08OU6f8qEKcFvWDRWnHzz/c0Z7kCYw7q
+	rxilDs7VK+yG9zU0UVYvKBcqAt+2P6tWbeuR5YyMQPeKIKvNcJfrjn19zmAoAK08
+	O1Jm8q3CgGYZvxwh0FrFIuUyVmtOwTHEmKqrdFMRteYnCd5sE2sZA9b82Luwq/J9
+	js3ZeEjewG43OJ7BQJXYiLPUtFV+6gUSDlgSMm/uw200CTSYqOsayj9CxreZ4p2I
+	eAh4+LZ2fAYt7D7Nuj6WPq96ZvTtWe5A86GWG6FALPnQX5Fg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 474cs2nuej-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jun 2025 17:24:45 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8AA5B4002D;
+	Tue, 10 Jun 2025 17:23:51 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D0B50B79BB7;
+	Tue, 10 Jun 2025 17:23:12 +0200 (CEST)
+Received: from localhost (10.48.86.132) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 10 Jun
+ 2025 17:23:12 +0200
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Antonio Borneo <antonio.borneo@foss.st.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Fabien Dessenne <fabien.dessenne@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [RESEND PATCH v2 0/5] STM32 pinctrl: Add mux function RSVD
+Date: Tue, 10 Jun 2025 17:23:04 +0200
+Message-ID: <20250610152309.299438-1-antonio.borneo@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: adding support for PAC194X
-To: Marius.Cristea@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
- andy@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- broonie@kernel.org, devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250606093929.100118-1-marius.cristea@microchip.com>
- <20250606093929.100118-2-marius.cristea@microchip.com>
- <92c36ad9-5f8e-4ba7-9af4-9cb640f0aa5c@baylibre.com>
- <d364524bad53f5c665071287f55a96e28dc9b231.camel@microchip.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <d364524bad53f5c665071287f55a96e28dc9b231.camel@microchip.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_07,2025-06-10_01,2025-03-28_01
 
-On 6/10/25 9:46 AM, Marius.Cristea@microchip.com wrote:
-> Hi David,
-> 
->    Thank you for the feedback. Please see my comments below...
-> 
+This v2 is a subset of the v1, split-out to simplify the review.
 
-...
+This subset:
+- introduces the pinctrl mux function RSVD,
+- adds two use cases requiring RSVD,
+- minor re-format of the dt-bindings.
 
->>> +  interrupts:
->>> +    maxItems: 2
->>> +
->>> +  interrupt-names:
->>
->> Needs minItems: 1 if we want to allow a single named interrupt.
->>
-> the driver as it is right now it doesn't support any interrupt. I was
-> thinking to add them here, just in case there will be a request to be
-> added later.
-> 
+Changes v1 -> v2 subset:
+- rebased on v6.16-rc1,
+- added use cases of the new mux function RSVD,
+- added Reviewed-by: on 2/5 (former 04/14 in v1),
+- added commit to re-format the dt-bindings,
+- Link to v1: https://lore.kernel.org/lkml/20241022155658.1647350-1-antonio.borneo@foss.st.com/
 
-Making the bindings complete even if the driver isn't using it
-yet is the right thing to do. :-)
 
-I meant allowing just a single interrupt wired up though. So it
-doesn't matter how the driver would handle it.
+Antonio Borneo (3):
+  ARM: dts: stm32: Add pinmux for CM4 leds pins
+  ARM: dts: stm32: Add leds for CM4 on stm32mp15xx-ed1 and
+    stm32mp15xx-dkx
+  dt-bindings: pinctrl: stm32: Add missing blank lines
 
-> 
->>> +    description:
->>> +      alert1 indicates a HIGH or LOW limit was exceeded.
->>> +      alert2 indicates a THERM limit was exceeded.
->>> +    items:
->>> +      - const: alert1
->>> +      - const: alert2
->>> +
->>
+Fabien Dessenne (2):
+  pinctrl: stm32: Handle RSVD pin configuration
+  dt-bindings: pinctrl: stm32: Add RSVD mux function
 
-...
+ .../bindings/pinctrl/st,stm32-pinctrl.yaml    | 25 +++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi   | 14 +++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ed1.dts      |  2 ++
+ arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi     |  2 ++
+ drivers/pinctrl/stm32/pinctrl-stm32.c         |  9 +++++++
+ drivers/pinctrl/stm32/pinctrl-stm32.h         |  3 ++-
+ include/dt-bindings/pinctrl/stm32-pinfunc.h   |  1 +
+ 7 files changed, 55 insertions(+), 1 deletion(-)
 
->>> +
->>> +      microchip,vbus-half-range:
->>> +        $ref: /schemas/types.yaml#/definitions/flag
->>> +        description: |
->>> +          In order to increase measurement resolution and keeping
->>> the same
->>> +          number the of bits the device has a configurable VBUS
->>> full range scale
->>> +          (FSR). The range should be set by hardware design and it
->>> should not be
->>> +          changed during runtime. The bipolar capability for VBUS
->>> enables
->>> +          accurate offset measurement and correction.
->>> +          The VBUS could be configured into the following full
->>> scale range:
->>> +            - VBUS has unipolar 0V to 32V FSR (default) for
->>> PAC195X or 0V to 9V
->>> +              (default) for PAC194X.
->>> +            - VBUS has bipolar -32V to 32V FSR for PAC195X or -9V
->>> to 9V for
->>> +              PAC194X. The actual range is limited to about -200
->>> mV due to the
->>> +              impact of the ESD structures.
->>> +            - VBUS has bipolar -16V to 16V FSR for PAC195X or -
->>> 4.5V to 4.5V for
->>> +              PAC194X. The actual range is limited to about -200
->>> mV due to the
->>> +              impact of the ESD structures.
->>> +
->>> +      microchip,vbus-bipolar:
->>> +        $ref: /schemas/types.yaml#/definitions/flag
->>> +        description:
->>> +          If provided, the channel is to be used in bipolar mode.
->>> The
->>> +          actual range is limited to about -200 mV due to the
->>> impact of the ESD
->>> +          structures.
->>> +
->>
->> Using Jonathan's suggestion from v2 to just have a single property
->> with 3 different
->> ranges to chose from seems simpler that this. It would only require
->> one property
->> and would be self-documenting. The description could be shortened to
->> just a couple
->> of lines.
-> 
-> I was thinking to add the range for this property, but it looks (for me
-> at least) more complicated from the checking point of view. The driver
-> is supporting two family of devices that has, each, 3 different voltage
-> range as an input.
-> 
 
-Usually, having a consistent binding for the same thing among similar
-devices is more important than how easy it is to implement in the driver.
-
-Since this seems to be a common pattern, we could probably justify an
-iio_property_match_ranges() helper function that would simplify the
-implementation in drivers that would need to use such a property. Then
-in each driver it would just be a matter of making a static const array
-lookup table of ranges for each device and calling the helper function.
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+-- 
+2.34.1
 
 
