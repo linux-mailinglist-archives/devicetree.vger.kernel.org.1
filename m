@@ -1,223 +1,196 @@
-Return-Path: <devicetree+bounces-184041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98ADDAD2DE1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:22:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 805A1AD2DE7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:23:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 707723AF46D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:22:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A4E6171187
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBFE927935A;
-	Tue, 10 Jun 2025 06:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D44F244677;
+	Tue, 10 Jun 2025 06:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="R73/pvEq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IeyLxRkP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF297279354
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462AB19CC3C
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749536558; cv=none; b=DtphjdMyCgc0n4HP5iTVWYBDj2Tz/bm1ghjEIQKGnsNm8tBtBMiugoiGep4lLs3pwWaWBa7SU02gZtLGZFg0tx710ZOLRaYxjSzmMDx+m1rtJ72wd0jKkXAPoHniWwwjo7pbckIcPsMdzo7lysD7d5xrZyQujfMpk4MWUkJHx8s=
+	t=1749536610; cv=none; b=Ib2UZvLLAdRRWoF5eIs0ZsgVjtPIxOYzsGAcBf+xT3TOGBcPZTxjbBpf8Dj4QITX3LI/vjADsjSMTijV6SO22be25S3u5k78ngSr1nQSrlYT1+7CqT5B6N5Q1I1TDfuvDgF7UX3gK2/SMIn/GeDf/161Wvinu5vPNjn6ApLUtcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749536558; c=relaxed/simple;
-	bh=43KLnRsyvO0tiWhgbqvJeLpm30esHdsuJEJIl1OCoag=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Sl0Xed6Ni7wPpvopY++meVz34UABWy1NVQgVJ9/hHmXChi5MtCFnWtNzuz+QBzLXExaCCwIz0LQET8osrgHd3/+b5+XshJQztZY2JeRsjzcykdQhMKzSOBZPC0LloQHyAmGkKmEgVzIFYXNKUcguR8GHoA8t0iOJHu5ZedHVMeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=R73/pvEq; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5532a30ac45so4683761e87.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 23:22:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1749536555; x=1750141355; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DB4ehjm6ObGiT+zk3hEYWsaNwCd4xVOzRB3uomCd3eo=;
-        b=R73/pvEqh92z7pHc36U5/hkARSD64xR6HxV69eCUdFmvUei3t5IR0vdVMKxi6nN8Kn
-         TO3ID1a3BeTSpCXGlCvgzw55oT3qiKChi8ah9z6YiQZ8kPPA23SqXYf0CnWXcup0qn6L
-         GMI8Q19R/DN8XFSlV0uNAPw/ecQUzPHHDAchW+13WcyEKqtmMI3elAvh3ttUpUvidxZZ
-         /3qG3DIvVZoy3ALyNjmGztBIr8oSu8qEyTlKvDLTt05For9g2qSb43zgCGvEyx+YSCSx
-         pkX1ubAyFHtPX1LpWg011S85J4/icQPqbr6HzGaXng4r2v26ZNV6kLaQMD5OhgA4u24T
-         2kAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749536555; x=1750141355;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DB4ehjm6ObGiT+zk3hEYWsaNwCd4xVOzRB3uomCd3eo=;
-        b=QymQpM+4YaoFNF12QXUQoN9NWqMhoxoLtsxuWN7UtKqDDmJ4qn+mFoKT2zQA5SPAif
-         8LXbkkkJW0lf+adag4403uoNmFNi6IZDT8VOGZI8c1vN3NwvtoqsxVVCz2Kjo98ZTgpn
-         cPGdx17ylqrRCq0VutXow0o7fwx+u+57S6IiH6gA0LeuLZdRvhdWeMYhkygAm4ALZq7o
-         yk5NLPMf5S04fLg2+gVCN5wvQ80gybgVBpNluyxH0GMbiciAlZDAjjaYNkUTDizXFco4
-         Wza8nbfoO8Es/4HINgkyMD6XYaZtvxnuiKYU1womsaMfHSo8sAU/ITalZYD12V+aVHcK
-         95NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUXnlxGQzOVOJrCU/zjtXOcpHjFmu/mYbY/uqzH95N/dR4Ws2OKGOAYbP/cVrbNuQyY9LaW5E/3JFMM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6tFoaJRU6Bj5yxWXHhqHsy95FDVDcSLLiR1358nbHatvfS3/d
-	uOuKQcyRdf7c+IkY5tXbRnG+J2eTiGT0NG6RPLTb2FfLarCzJo4O7gKO0YSY1sqonu9HiUjQWwK
-	AtTyJeZcULY47JSsXvrSRNa8rSV0HJV0el18fQW2IjA==
-X-Gm-Gg: ASbGncs8x7uTBWhJTD3s+rZZIahlN8efF/s8rFCws56iJM4uLdwKcj/hbTJJR0w1k7C
-	3K33Pkeke0+guhNK3l5lzZ9N1nEpcYoLTBEOePCWIe2bYecvgXPpM7y/+6qB3gEULKSN7kMPgU4
-	s+y5esnDMUfYPwKnxxL/pru3tIj7p6mrdN4yXOp030GEb4
-X-Google-Smtp-Source: AGHT+IFgemJZ7kG2F8XgEhfvR0SOkaw84uYimQM0ic6wTdIsKvJiAdX6chuiGxpnG0pLj9VEVULnGD9buu+lY7bXnsc=
-X-Received: by 2002:a05:6512:3d88:b0:553:29cc:c49c with SMTP id
- 2adb3069b0e04-55393181e5emr633542e87.7.1749536554598; Mon, 09 Jun 2025
- 23:22:34 -0700 (PDT)
+	s=arc-20240116; t=1749536610; c=relaxed/simple;
+	bh=0+0aaoFq4PsNLbTKlMf9VyxhVbvwPu4XZsabu7DECVI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XfAl8CEjrkbFATxvfqOs21vaADhi6MifaVx9I2OXHzd3tmSTKDRYW8h1nw7U0W78o7s8nDY7pjmq4xx0pqSCW0qaCAjOKpKNzzTsPyKxeGYQ4yDQZSoK3cGjCONYbqd4vKj3jvs4rG0Y2am/wSd5rWlr/Muj/3FE0c/efHNVDY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IeyLxRkP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E100C4CEEF;
+	Tue, 10 Jun 2025 06:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749536610;
+	bh=0+0aaoFq4PsNLbTKlMf9VyxhVbvwPu4XZsabu7DECVI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IeyLxRkPqG605JoRiiZzTyZmtaNatwMi+j2Jaojw+FsCEuTwByT8LJebg1EbBEbDg
+	 vUiM2wlxm/MSQ5dNVJR866/oKT/wnhYtbbY8mP/sqP0HNnGOgP9TaPwJwKedJp9mBc
+	 lLhzo5ic/xeAEHIRnx6vZXJvTQ+c5agKc4f9gjTmXbODr/ONdsMnB1vQhPZ3azVjnx
+	 yMRkTe3u69rvXLmYFUfj6FN5QDSpwdQ38UIpbvmFex5U2dgq4WFx6LpV6rc7tBauCQ
+	 fwl5rvKMMM9iZF2ji7a9PM6sMoFV6MJgT/8WOOCjWk43ExDUuGIFj5GD6se56dhy17
+	 UwRc78rnwEI6Q==
+Message-ID: <08b51022-b65d-4c33-9f01-d5e6f5bcffe9@kernel.org>
+Date: Tue, 10 Jun 2025 08:23:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-13-apatel@ventanamicro.com> <c691cf5e-695e-4a29-b31a-76b3376442b2@linux.dev>
-In-Reply-To: <c691cf5e-695e-4a29-b31a-76b3376442b2@linux.dev>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 10 Jun 2025 11:52:22 +0530
-X-Gm-Features: AX0GCFvoavACeRUD8FpjiBKHCKwOiwWVItSFykOssn8ajeKua3l6UtUtY_QL-G4
-Message-ID: <CAK9=C2U-oFe6QpJZ36yqCzbvv0x6+m8nBYfPOjd61hRaW1cxZQ@mail.gmail.com>
-Subject: Re: [PATCH v4 12/23] dt-bindings: Add RPMI system MSI interrupt
- controller bindings
-To: Atish Patra <atish.patra@linux.dev>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: Convert Altera SDRAM EDAC binding to
+ YAML
+To: Shankari Anand <shankari.ak0208@gmail.com>, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthew Gerlach <matthew.gerlach@altera.com>,
+ Dinh Nguyen <dinguyen@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>
+References: <20250608214822.192885-1-shankari.ak0208@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250608214822.192885-1-shankari.ak0208@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Jun 7, 2025 at 4:33=E2=80=AFAM Atish Patra <atish.patra@linux.dev> =
-wrote:
->
->
-> On 5/25/25 1:46 AM, Anup Patel wrote:
-> > Add device tree bindings for the RPMI system MSI service group
-> > based interrupt controller for the supervisor software.
-> >
-> > The RPMI system MSI service group is defined by the RISC-V
-> > platform management interface (RPMI) specification.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >   .../riscv,rpmi-system-msi.yaml                | 74 ++++++++++++++++++=
-+
-> >   1 file changed, 74 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/interrupt-contro=
-ller/riscv,rpmi-system-msi.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ris=
-cv,rpmi-system-msi.yaml b/Documentation/devicetree/bindings/interrupt-contr=
-oller/riscv,rpmi-system-msi.yaml
-> > new file mode 100644
-> > index 000000000000..ac13cec0666e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi=
--system-msi.yaml
-> > @@ -0,0 +1,74 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,rpmi-sys=
-tem-msi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V RPMI system MSI service group based interrupt controller
-> > +
-> > +maintainers:
-> > +  - Anup Patel <anup@brainfault.org>
-> > +
-> > +description: |
-> > +  The RISC-V Platform Management Interface (RPMI) [1] defines a
-> > +  messaging protocol which is modular and extensible. The supervisor
-> > +  software can send/receive RPMI messages via SBI MPXY extension [2]
-> > +  or some dedicated supervisor-mode RPMI transport.
-> > +
-> > +  The RPMI specification [1] defines system MSI service group which
-> > +  allow application processors to receive MSIs upon system events
-> > +  such as P2A doorbell, graceful shutdown/reboot request, CPU hotplug
-> > +  event, memory hotplug event, etc from the platform microcontroller.
-> > +  The supervisor software can access RPMI system MSI service group via
-> > +  SBI MPXY channel or some dedicated supervisor-mode RPMI transport.
-> > +
-> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > +  References
-> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > +
-> > +  [1] RISC-V Platform Management Interface (RPMI)
-> > +      https://github.com/riscv-non-isa/riscv-rpmi/releases
-> > +
-> > +  [2] RISC-V Supervisor Binary Interface (SBI)
-> > +      https://github.com/riscv-non-isa/riscv-sbi-doc/releases
-> > +
-> nit: Same comment as previous patch.
+On 08/06/2025 23:48, Shankari Anand wrote:
+> Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
+> .txt format to a YAML schema. This defines the compatible strings,
+> required properties, and a usage example.
 
-Like mentioned in the previous patch, I will add the spec version to the te=
-xt.
+Drop last sentence from all your patches - also other broadcom patch.
+Don't state the obvious.
 
-> > +allOf:
-> > +  - $ref: /schemas/interrupt-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    description:
-> > +      Intended for use by the supervisor software.
-> > +    const: riscv,rpmi-system-msi
-> > +
-> > +  mboxes:
-> > +    maxItems: 1
-> > +    description:
-> > +      Mailbox channel of the underlying RPMI transport or SBI message =
-proxy channel.
-> > +
-> > +  msi-parent: true
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  "#interrupt-cells":
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - mboxes
-> > +  - msi-parent
-> > +  - interrupt-controller
-> > +  - "#interrupt-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    interrupt-controller {
-> > +        compatible =3D "riscv,rpmi-system-msi";
-> > +        mboxes =3D <&mpxy_mbox 0x2000 0x0>;
-> > +        msi-parent =3D <&imsic_slevel>;
-> > +        interrupt-controller;
-> > +        #interrupt-cells =3D <1>;
-> > +    };
-> > +...
->
-> Otherwise, LGTM.
-> Reviewed-by: Atish Patra <atishp@rivosinc.com>
->
->
->
+> The SDRAM EDAC controller monitors ECC errors on the memory bus and
+> requires access to SDR registers and an ECC interrupt line.
 
-Regards,
-Anup
+Drop, not relevant to the commit. Anyway, place it in memory-controllers.
+
+> 
+> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+> ---
+>  .../arm/altera/socfpga-sdram-edac.yaml        | 47 +++++++++++++++++++
+
+Where is the conversion?
+
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+> new file mode 100644
+> index 000000000000..6e31632b09de
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/altera/socfpga-sdram-edac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Altera SOCFPGA SDRAM Error Detection and Correction (EDAC)
+> +
+> +maintainers:
+> +  - Matthew Gerlach <matthew.gerlach@altera.com>
+> +
+> +description: |
+> +  This describes the Altera SOCFPGA SDRAM EDAC controller which monitors
+> +  ECC errors from the SDRAM controller. It requires access to SDRAM
+> +  controller registers and an interrupt line for ECC event reporting.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - altr,sdram-edac
+> +      - altr,sdram-edac-a10
+> +
+> +  altr,sdr-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the SDRAM system controller (SDR) syscon node.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Interrupt specifier for the ECC error interrupt.
+> +
+> +required:
+> +  - compatible
+> +  - altr,sdr-syscon
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sdramedac {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +        compatible = "altr,sdram-edac";
+> +        altr,sdr-syscon = <&sdr>;
+> +        interrupts = <0 39 4>;
+> +    };
+> +...
+
+
+Best regards,
+Krzysztof
 
