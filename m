@@ -1,80 +1,46 @@
-Return-Path: <devicetree+bounces-184437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68ED8AD3FFC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE956AD3FE7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECD973A8790
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:04:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9981A3A7AC4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D0123504C;
-	Tue, 10 Jun 2025 17:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C1E242D98;
+	Tue, 10 Jun 2025 17:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W92UpArF"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="12yg+hg6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A4B242D7C;
-	Tue, 10 Jun 2025 17:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9AD4230BF5;
+	Tue, 10 Jun 2025 17:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749575089; cv=none; b=RqDOsvPZr7KxJwEfSSI0huUgMYsBzWFsyPhAn7FAL8rvzHzkO6TD2LBQNhR7nWXiF/TyXmcBHrMzevn/05pf/ovXi3MKQna9J2wBYQWrXhHsGj0f1FqDEdkfuqvqZu1MrJOzF+x+u3D+EHtUn16EooC8ZRNBb7NDrX8vZe55C6c=
+	t=1749575046; cv=none; b=WoicnQNqHb5tfThhBN9JXzMy8Z1Y1/+ZdlPPkGwaOhJSpccrpjmhyMqmfOIyhpl4Qkq+ljBHI6h7vLJMZSdyiQLrNq2J1kYxsK8Ku7g2AYtarDIQcf6NvKDYuZZktNPKseZ6XrGOIGLSag5L6+aW8ii2swLZrerGdIaYzHx3chA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749575089; c=relaxed/simple;
-	bh=FeGGqTV3hMLvtuAUwQjWTQyZXr9HDJB5RrZEzdTh77s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=N9MBCpgVgVTIIJ0zzlsjnQLFHLg+O9P2JXE8vgZiQ4Cfji9aZdBli1DxCKTzdt9cRjLd4+WGW9vQtcl34ZwVR3PjgpewDgwPi8aKi9/EL5i0LzUMBv8sDoUWZpI9cyivw7U4wYjTRQrTsy2afCSpBMJGrEFtW3B9THLR7kYPrzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W92UpArF; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-234c5b57557so53443105ad.3;
-        Tue, 10 Jun 2025 10:04:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749575088; x=1750179888; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=l1SAMsGs37SGD+chia/RQyRlWwAaxqTB5CEOsEmZAX0=;
-        b=W92UpArFJRh9sgQMpe/ysaNsasvC7Fwa/MprFd2w9/aUTaEpkOWGVBMP/cEH+uliH6
-         aTYVFPgVJNoFniVlOsa32P9OV+iuBtbPhnJppDuhxE7ZFF+ClK7NNKzY1+oXeBmNcXfs
-         +pL2gVpP2Wu8q+e7xvFBArM+eEv8Q9cjAzMvVsnpJ3YUtd5I+xhip1qKN4VCb59W7ziZ
-         T4MtL7OE2zKNL8pk19fv3hgLItX1i50y0PT5uAcjwoUrNB1RxWx4vSbe2Mj0+UJYhpie
-         24D3wqPXFM8uSvBsTk1AKYaDuuXvVc92rxx73FEWTSzdazpM9yPc67j7G/ATu+X+bmFR
-         78Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749575088; x=1750179888;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l1SAMsGs37SGD+chia/RQyRlWwAaxqTB5CEOsEmZAX0=;
-        b=up1gy8zVThOfUxeegDlBG81S80PM3SIBThhNgtNa6+35k/DZGvKeOjrloQGmhuxN7r
-         fmsycqicBEjOwgFegQmqVk6WXPRlUKpEeaOtJEtyCaTqcAtUlykW13S8U0FqBf0nRdU1
-         00ZmGc74DF+CdXGDhUV9CyQw/cNnqICuh0Hhb5BYRC2hH3oJU6UG1f00Y3spJuOqiqj+
-         jjpVKo2S1MlfTYgWHol+4i5SUcQilaG3hhm7JR4xNzjAHT2/QqWkkRG+mtLkLNbBUhfF
-         xXwXoomDCLtWRlBhHTsB4TTMkk8y3sHzXpucC204O8Ivm19dJ+ZmhHxkgq2ZYNBDMT/6
-         c60g==
-X-Forwarded-Encrypted: i=1; AJvYcCWomffkN2EcH0iSr0Fw0Lyobi89fzScTm2+PW3jP6sUEu9Z0ARTkvLf+nDY4xuijwINLN3lPUWpa0CzcNk=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzrsct8DQB+QyqqsWU4aFv79+p7tq5r1jZl9gFBD54/jkKSP/lm
-	GMKZN6VcnEatHT7EH6F+bmNCIpU/IY9N6YRtb4X24oZWQf40d5u5pEuj
-X-Gm-Gg: ASbGnctd/UKjjx7N9hxMzsnccGt55dLysNbnMUs5inuaU5ZaEa+A25Mq4DiufMZeTk2
-	DBy+8LCPYwJnOJ4xoqE6YlswzwgDhruX3SSEQHMN7GBBPaKhcBsNc0xL5dswT/FmwiSnujRPq8E
-	GGKfSHbpQMsJNR3p94kjpldxpw5k7K/kCwBqvYnv2U/gBcWremWFI7exUplWCCaHzm0ATjElBru
-	8dsXS8Xh5jz1vs+3vYj3wG2XJipf7v7Ay/q8e0fb7mAMdWiLCaJ7J3Sz7KcWEDv3hhtZCepVB+I
-	ZcEDx0HIChrDd897ZBbidFd5iO7Qa0Au5EOLbf3jIYDa6r1o5F2wt/J0dVY74QN6ScwkgI8NLmY
-	sG6jN5bMD8ZKMGzEqKwYLrEJN3C+dCBNRZF9KQ+4EiwydTJw9XQ==
-X-Google-Smtp-Source: AGHT+IGN8fWm1wd/rYS+vEB4RxNmREuCEW79sACTf92qnjh+StZfwWgh0XTKc+e8n8+kZsmS0X1KRQ==
-X-Received: by 2002:a17:902:c94c:b0:235:81c7:3c45 with SMTP id d9443c01a7336-23641b26eeamr523415ad.46.1749575086817;
-        Tue, 10 Jun 2025 10:04:46 -0700 (PDT)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236034065edsm72958615ad.185.2025.06.10.10.04.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 10:04:46 -0700 (PDT)
-From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Wed, 11 Jun 2025 01:02:09 +0800
-Subject: [PATCH] ARM: dts: aspeed: catalina: Enable MCTP for frontend NIC
- management
+	s=arc-20240116; t=1749575046; c=relaxed/simple;
+	bh=nEJHW4wNPzS2N/9ze+d/67j7fjzeMqQ+h8hJFz8lGgk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i4eCV+TWH67Sy/OFrxizgRWht+y8kkWI4ptBcRzhMs6LKzEewTeszRWG7odI04ao8+uTQwz7/mgrlrow5Rxcha5c30U4lsPB3QctUJZJQ1Vwm+nvlUZ3vWM0nvm8KwC9sfCSKH6GmjEdD6ZXFS1fN5PlQXUiTdwoyTSc/yi3x58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=12yg+hg6; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1749575042; bh=nEJHW4wNPzS2N/9ze+d/67j7fjzeMqQ+h8hJFz8lGgk=;
+	h=From:Subject:Date:To:Cc;
+	b=12yg+hg6iP3lOx0fluDHlgUw9vADP2tweia/3DIkhtaMwh86gJgAiVqO/yAvFDgbf
+	 bFvTIXna2gzt5Ao6Bwk3bSFmwFMolLLhiPZLweXx5LWQb3iYdBFfPQurYo8E/+Wgsp
+	 EolK+u+i40/bnIeq0YH923ZxQvp41yOX+74TMjKo=
+From: Luca Weiss <luca@lucaweiss.eu>
+Subject: [PATCH v2 0/3] Add devicetree aliases for mmc on multiple MSM8974
+ devices
+Date: Tue, 10 Jun 2025 19:03:48 +0200
+Message-Id: <20250610-msm8974-mmc-alias-v2-0-1d8808478fba@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,76 +49,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250611-catalina-mctp-i2c-10-15-v1-1-2a882e461ed9@gmail.com>
-X-B4-Tracking: v=1; b=H4sIABBlSGgC/x3MSwqAMAwA0atI1gaa4v8q4qLWqAGt0hYRxLtbX
- L7FzAOBvXCALnvA8yVBDpdAeQZ2NW5hlCkZtNKlqojQmmg2cQZ3G08UbZEUUontWHNbFJUa5wZ
- SfXqe5f7P/fC+H35ZZLBpAAAA
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Patrick Williams <patrick@stwcx.xyz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Cosmo Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
- Potin Lai <potin.lai.pt@gmail.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749575084; l=1422;
- i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
- bh=FeGGqTV3hMLvtuAUwQjWTQyZXr9HDJB5RrZEzdTh77s=;
- b=lRWcKzdCWOshs6fYek3iMrxbKcUD0Q0b2Tn4RqRTi0y+t19th2ZR1mJJ/o5nxpConHX4xZfj9
- M55WJ2w/KdyB4EiBoVxPni3QOtFCBWVk2dtVdkjJqPvrVw6cQn81u4y
-X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
- pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
+X-B4-Tracking: v=1; b=H4sIAHRlSGgC/32NQQ6CMBBFr0K6dgxTEKgr72FYjGWUSaiYjqCGc
+ HcrB3D5XvLfX4xyFFZzzBYTeRaV8Z7A7jLje7rfGKRLbGxuD3mJDoKGxtUlhOCBBiGFxhUdurr
+ zFZJJu0fkq7y35rlN3Is+x/jZLmb82X+1GSGHxhJhgdaWl+o0TJ5eLKp7nky7rusXREb+6bUAA
+ AA=
+X-Change-ID: 20250419-msm8974-mmc-alias-893d197dc61a
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca@lucaweiss.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1103; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=nEJHW4wNPzS2N/9ze+d/67j7fjzeMqQ+h8hJFz8lGgk=;
+ b=owEBbQKS/ZANAwAKAXLYQ7idTddWAcsmYgBoSGV7ISSA0IyU2p2m9XUCPIZLuDzvVsnnkVo7f
+ e9N5klOUGKJAjMEAAEKAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCaEhlewAKCRBy2EO4nU3X
+ Vj/EEADapAMGKuq7m3ob85I3BsTXxzWJEOEepHDOGhBUZPAwbIcS4ebUENsy/5kQSJ1zwpQMkN9
+ 1udZKH+jV4eqW7UVx4z7OXTY0XoPul0BJnZJt9PJUN2b6C5qoJcodPgVG+w9ngoTQu/ushYCoPW
+ SAjkU1VGgy95MusPQvFVmAophThCK5Qu+7tOvYrRHR7CBEVbpCMY3sS50dK2dlAjjTjS2V1IZC6
+ 1fdyhmrByDvQ1yHfyB2dFBfdABzLkcJydLViiobE0x+YFkb91xvwTH3haHHRAG1IT7P0nAlNFcW
+ DXeITubPH7xud+HvezBIy/r3zTkQt2pFmapd6InnRcRqBdWAW+Tfp5Icaz7N59lGszXvOaHQrpD
+ 2XrKFsZ0iFIjzDWq0b1eSRxxth93gJOuiTousJQbgOpZEm+5Iy/jFyZQfdQ6q9+DezmUYzYWp/v
+ QNzok4qe8tbh9kvqghBNZx47SPjoYSGupcQVYMwgueYYhd9RZnrsVnLTxqGCTEUDregvDSpgg33
+ EEGpP7VSFUCYz2o2ntCjpql3j94H+SsTN4kH/etXmtAHLW3rcsXBbk1LZVVOU78qHt5eaydm0kI
+ eeaReIiK2Q+1YZ3M5v39BVoqrAguu3NY3UI4HMmMRHEumgFp2pfCFEqmjg0MOVQa9N0RR2OTS68
+ HETEBVAKvHfj+fA==
+X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-Add the `mctp-controller` property and MCTP nodes to enable support for
-frontend NIC management via PLDM over MCTP.
+Add an alias for the internal storage so it always becomes mmcblk0 and
+- where applicable - SD card becomes mmcblk1.
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+This avoids issues with internal storage becoming mmcblk1 unexpectedly
+and aligns this board with other boards that use MMC storage.
+
+Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 ---
-Add the mctp-controller property and MCTP nodes to enable support for
-frontend NIC management via PLDM over MCTP.
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-index 5fb67ad2d777..8d786510167f 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-@@ -797,6 +797,12 @@ eeprom@56 {
- 
- &i2c10 {
- 	status = "okay";
-+	multi-master;
-+	mctp-controller;
-+	mctp@10 {
-+		compatible = "mctp-i2c-controller";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+	};
- 
- 	// OCP NIC0 TEMP
- 	temperature-sensor@1f {
-@@ -926,6 +932,12 @@ io_expander14: gpio@15 {
- 
- &i2c15 {
- 	status = "okay";
-+	multi-master;
-+	mctp-controller;
-+	mctp@10 {
-+		compatible = "mctp-i2c-controller";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+	};
- 
- 	// OCP NIC1 TEMP
- 	temperature-sensor@1f {
+Changes in v2:
+- Expand on commit messages (Bjorn)
+- Link to v1: https://lore.kernel.org/r/20250419-msm8974-mmc-alias-v1-0-82aa131224b6@lucaweiss.eu
 
 ---
-base-commit: 4d75f5c664195b970e1cd2fd25b65b5eff257a0a
-change-id: 20250611-catalina-mctp-i2c-10-15-9b7e94460bf8
+Luca Weiss (3):
+      ARM: dts: qcom: msm8974-oneplus-bacon: Add alias for mmc0
+      ARM: dts: qcom: msm8974-hammerhead: Add alias for mmc0
+      ARM: dts: qcom: msm8974-sony-xperia-rhine: Add alias for mmc0 & mmc1
+
+ arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts | 1 +
+ arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi    | 2 ++
+ arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts      | 1 +
+ 3 files changed, 4 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250419-msm8974-mmc-alias-893d197dc61a
 
 Best regards,
 -- 
-Potin Lai <potin.lai.pt@gmail.com>
+Luca Weiss <luca@lucaweiss.eu>
 
 
