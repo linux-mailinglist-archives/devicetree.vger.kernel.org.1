@@ -1,92 +1,93 @@
-Return-Path: <devicetree+bounces-184008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B741AD2BAC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 04:01:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5ED1AD2BCD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 04:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 538B43B0543
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 02:00:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BA3517058C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 02:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0DC273FD;
-	Tue, 10 Jun 2025 02:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6CE1B0411;
+	Tue, 10 Jun 2025 02:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZIpuRrWY"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="ELeBHnP1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04FB029A0;
-	Tue, 10 Jun 2025 02:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068821A8419
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 02:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749520871; cv=none; b=kAdkgKZvpqBrrrE2nhe9VkQNhdKOfqHPQKR9hEC/XR1+OMomIdHZPJC7APvK4BpY6umEzXdVGfR3v4PtDql6XGEIddH+e/5d9Os4tgdzLhjlY1DCVJWSh4vlyeO1EPMmk4k5RVHW/5AsJLubFkM5ZEoNguN/z+Ez0zcqWj9ORWg=
+	t=1749521448; cv=none; b=P9F7gAIT1qDhyt/4x1q6WOsTkRwjssZXfqH3AaPPj6a1y1AMT0mtEOcUAiwHwO9U+IUXByNPbKiMRymtgt3NmbvT0SUQruXRo+cmJ6Z4RxgXvwyN/DNmVkehi4tZufsczj0bLPE1YuRq2sSr587TWV0JGGGUEl8nQr6FGbL5SfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749520871; c=relaxed/simple;
-	bh=CyNwbY6nEr0olQ6LJ2zGtYSCQHhinzwFP0N0A0awhxM=;
+	s=arc-20240116; t=1749521448; c=relaxed/simple;
+	bh=5aU7eapGM/ei5f45aN1KDGXaOdpkZ89epyfvqNAl4eA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qq8Psdhbd5i7cgfVL9ZTeafMNE7GTrMjiLOgGAocVXX3GymzOHPCWQNkFJn+l0AYqxbH04WPjxpROuOkt/w9uFYv5bdDL3ChOUJmKwkYw8WYgoT4Nwm86QxbHJRylORJKhUJsZ5oKvVABY7ZoZfGsJPQgYxVp6cpYRPQ2jZH7K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZIpuRrWY; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7c5a88b34a6so482404885a.3;
-        Mon, 09 Jun 2025 19:01:09 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bPvCeM3ZndXoFXokao3zxEpIj/PYpshvlDmrBAJcBIeuYmVJ3SLxlJRCEA9EL/sAODw7L+43Mmyp+buXJcBHzZKr2ftVNZBdkBOYXv1mNr6zKh+rOSpFZyWaTXQeuEq3vY/umc9scaDys4mBqbGDpCRtPtHRB6v7jf3IXfnZfuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=ELeBHnP1; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-235e1d710d8so60013045ad.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 19:10:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749520869; x=1750125669; darn=vger.kernel.org;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749521445; x=1750126245; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=w6JdwJlEWwWtngse9JGszpYE1mZus0TKH2ovIgjd1RE=;
-        b=ZIpuRrWYG8Ax2jqI/AgHHhjvqA4gg97DqRIwhIyWcQh6D3+RuMH6rafZguEmpwzFwJ
-         LhXInf9B+He1c0XyLcqHzQqBlb/afxLRYIwG6kkpiWV9f+mhZCXWeAM9HbpaMEnrpGq1
-         s66mCWUbrOjsKq9BNyOHj6p20Gtjk7QuMGqvmXa/lKgQF3sSLWkbTUbchATYkqoDvTXY
-         570bUahlzrdD0VzPBb07cP8XkOP5HTE7KtWRG4z+eusN0tRQb1k7MTNNTjLiSr4dAVKR
-         72cX4mISX8VdoHkGaQQd4cl2pM4HzRoUD7KqppRzARWfZt8Nfrm1/LEGdiI2/uknO8fY
-         yjpw==
+        bh=ya/YooFCKAb0uxl/VSVdQA32RSK9pJJ/D62fB+0PERk=;
+        b=ELeBHnP1u/i5PlAoyN3PB0tbjxVTHs3n0ABGReccegrjNSbyC6nICA3ukRT1ccUQkK
+         R6ONKB4TcddbEzV7+f2H1nu2ADq/ids6mqnu5/N01kGPBWtWURSwf3MuGAMLHeugoeM/
+         vTdXv+Husmic/yjyZb+k/1kGPl2af2kB144q7PKeMYAncBbOrC7H5CPysik5MMiuoFQ4
+         7WcnvSZgaXI8bDIfkPe5SzKtdV9cEWyAHcw/CluHlQwrj39pz2W+xhykq1qQMc5ca6e5
+         b4LxuA5WmUZvnhOb/9hzJ+GRmwxU7JTCVXXvxt0FSj6lvgW3qetBFYiV5qzk9BVsXZJ8
+         n5Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749520869; x=1750125669;
+        d=1e100.net; s=20230601; t=1749521445; x=1750126245;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w6JdwJlEWwWtngse9JGszpYE1mZus0TKH2ovIgjd1RE=;
-        b=cG5K2+y66vSxeDKDOmHW/PlxZ7z4qW9x7cHkTtCD+c/+14n8iTfWWtDVO2qDY4x/EQ
-         uHG6X/b+MHay91/WwYkyyv6ydmvsUESKnVvEXMW8tRhQaoahO5ajZbB0GlpsJl6oBryt
-         P4Sl1D6sWoRje66aYBcTiylLIDNb+9HCemamxfCxhXLWEG7zJIUkdAXfcISjpw+Xc6Yc
-         ygsl4qxvFBalxYkYFueTUyAKFlEs9UEgCmmtVbipbVtf/OwlMQMFEpXL5/lFOGupGaqe
-         mUVHAJZxVFy6GUZrP6XyJmOW/ekene8H7PtJdUmuLh+fONtgJ5nBK8qjH5mZoVRkJmFl
-         HDGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEETsvsqJhz+mOLfR9XxwtGAaOUWg96qBdhtWF5BGu6UWJWCaM7ZbIsE2mJL1R3mRdpdAEZInihkC3i9d5@vger.kernel.org, AJvYcCX0L03sWC0fx4pEvuAZL6Yi/ElroqNhP2m1jc+8jgo3BIuHFkQWAdihiUgvosacOSK3oiBiLw1wTA3Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzITakhDda5xVacfCj73pR272uURLMpgGFIhpygDHGKWS5hJT9L
-	+Sx2Qz2EXJexpwvtApeIVijqasbkb8fEIV6F/vfGhCA7rwbv1p8+DSHE
-X-Gm-Gg: ASbGncuVLStpJI8XOJZJ9qDYLnO4j6fL4xT9WsHNmq7cGjKfUKflyNmvCq2InUTbQbu
-	iDzd6VBrU3F7PW1GAsvUbO3QuMyOM0TCMpJFKKCqma39jxPR6wGA1coF42yWw9TrgMEdtavirfZ
-	M93d9J2E/Bb2WXawYQgQDjXKEQfYjM6U6+W8vy/cuzEvvt5Bbpg076Frh2C4Ul2YkdFelT0GATk
-	CfDj5E6t39mdpUjj0yKX63fjPIlUBk8/EQgsqTZN2Lki83bqIdXLzEnxHVn24JSsmGtVX6jn2Kc
-	P6MeSWZq6iJ/pQHLC3y8r73XD8bp6kICrkw7TA==
-X-Google-Smtp-Source: AGHT+IH15GV3DBze0O0Pg4+wloDqugMihWd6D/DIzMiu1G03qL/lbAtUUB6hL47UJJsPSF118+iHFw==
-X-Received: by 2002:a05:620a:4151:b0:7d2:279d:c18d with SMTP id af79cd13be357-7d2298ec94amr2846349785a.36.1749520868837;
-        Mon, 09 Jun 2025 19:01:08 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7d2513357dbsm625576185a.13.2025.06.09.19.01.08
+        bh=ya/YooFCKAb0uxl/VSVdQA32RSK9pJJ/D62fB+0PERk=;
+        b=o9fTdpXD1jjbnYYvVEoHyApexAhbEqAdNW5AyPMeHnYYUMSsAJ1z4DiGle5spw7lso
+         JbmbEZsGoiBxBmiOKYW+phAEGBKFF78tcH9FkNWtBtaZikkHvoe2WO9qdtCsCYi8F6xy
+         LACQ9RSnhnZnrGFEGc4gYYM/56S4zG+4h9emTQklIPhbNq/8+fkqV3spr74YZ8AgpzmE
+         Zo6JPYSDn+MpZEa2Syop188N4Ncr7tofRkxr0yBt2CGHkuER99O648dI+nrsuha49JyI
+         cqL+9V9VJ5WbW19kuLyEOoRRW04k+zqCw3mkblLogJD47pkizzqzkL0mnnILcnNlR+u8
+         qyIA==
+X-Forwarded-Encrypted: i=1; AJvYcCV0RL0VbY32dXKxIIJhehkb5/hw1A73eOaF4zgsv+BhBA7I2ZzxSe88gb4lsybHBFqHCQ3jOf0Fp/KR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfvjaFUMKvfrn3e80p8ixL5JbL+xqi+L+FaeVg6sDE0L913hV4
+	1m1K3r5A8CaUbL6OAPsRJLd53BbhwzBgitScYalO+v2cV01iCMJziWQjU/4FcFtTKnY=
+X-Gm-Gg: ASbGncv4p4ivoRW4YQ5cvumHmZ8HjClL85MRd9EPdi9OFSEiYN/dvE/ZmEMWEEaZ4rz
+	QteIQD1uZ8CNQFIaDZTZJxrGpxl3hs7vT6rTrtJZz1Bc+Wvm9zR8b+wOgbF4FD55QnwQ+r2SvnA
+	ipEgRFZoZaFOms7oXUqPNUTJBWbGQcBTWAke1Q+s15V5XeJR7xtURfvlu1SiAKWi0rp0+DBdb4u
+	M06t8crKOLCM8WNm2V33fyyoAt6B43374zrzvpL8BkhCFVN3C7pkaLaFHGvxe28UnjHcon4v+W3
+	jS44aLhFlOO5/EOwMKcjXUAdy1IupaHrCTp0Ey2a1H8lpkxCbTJX91rhPh0RPHIJpAVX2sr+ioE
+	Fy7ESS6th
+X-Google-Smtp-Source: AGHT+IHiLzOREAtFVISmftxMjRL3+S4jCj4+M1zY33h7bufBc03vR1T1goruVVU0oe6Aj5IJJ3iEbg==
+X-Received: by 2002:a17:903:f87:b0:236:15b7:62e8 with SMTP id d9443c01a7336-23638331c1emr13447465ad.25.1749521445312;
+        Mon, 09 Jun 2025 19:10:45 -0700 (PDT)
+Received: from x1 (97-120-245-201.ptld.qwest.net. [97.120.245.201])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603078175sm60500825ad.9.2025.06.09.19.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jun 2025 19:01:08 -0700 (PDT)
-Date: Tue, 10 Jun 2025 10:00:02 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	sophgo@lists.linux.dev, soc@lists.linux.dev
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Jisheng Zhang <jszhang@kernel.org>, Haylen Chu <heylenay@outlook.com>, 
-	Chao Wei <chao.wei@sophgo.com>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 0/6] arm64 support for Milk-V Duo Module 01 EVB
-Message-ID: <yavt4eztc4n74h55ilqbw46df6hxh4j3uwuefbzcsx7vxezrnn@5mpll7lymyp4>
-References: <20250609234125.722923-1-alexander.sverdlin@gmail.com>
+        Mon, 09 Jun 2025 19:10:44 -0700 (PDT)
+Date: Mon, 9 Jun 2025 19:10:42 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Ira Weiny <ira.weiny@intel.com>
+Cc: Dan Williams <dan.j.williams@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Dave Jiang <dave.jiang@intel.com>, nvdimm@lists.linux.dev,
+	Oliver O'Halloran <oohall@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3] dt-bindings: pmem: Convert binding to YAML
+Message-ID: <aEeUInXN6U40YSog@x1>
+References: <20250606184405.359812-4-drew@pdp7.com>
+ <6843a4159242e_249110032@dwillia2-xfh.jf.intel.com.notmuch>
+ <6846f03e7b695_1a3419294dc@iweiny-mobl.notmuch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,96 +96,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250609234125.722923-1-alexander.sverdlin@gmail.com>
+In-Reply-To: <6846f03e7b695_1a3419294dc@iweiny-mobl.notmuch>
 
-On Tue, Jun 10, 2025 at 01:41:11AM +0200, Alexander Sverdlin wrote:
-> This series adds very basic support for Milk-V Duo Module 01 EVB [1] in
-> arm64 mode. The SoC (SG2000) is dual-arch, RiscV and ARM64, the latter has
-> been chosen because the upstream toolchain can be utilized.
+On Mon, Jun 09, 2025 at 09:31:26AM -0500, Ira Weiny wrote:
+> Dan Williams wrote:
+> > [ add Ira ]
+> > 
+> > Drew Fustini wrote:
+> > > Convert the PMEM device tree binding from text to YAML. This will allow
+> > > device trees with pmem-region nodes to pass dtbs_check.
+> > > 
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Acked-by: Oliver O'Halloran <oohall@gmail.com>
+> > > Signed-off-by: Drew Fustini <drew@pdp7.com>
+> > > ---
+> > > Dan/Dave/Vishal: does it make sense for this pmem binding patch to go
+> > > through the nvdimm tree?
+> > 
+> > Ira has been handling nvdimm pull requests as of late. Oliver's ack is
+> > sufficient for me.
+> > 
+> > Acked-by: Dan Williams <dan.j.williams@intel.com>
+> > 
+> > @Ira do you have anything else pending?
+> > 
 > 
-> Sophgo SG2000 seems to be a continuation of the Cvitek CV18xx series, same
-> peripherals with an addition of ARM64 core. Therefore it would be
-> beneficial not to copy-paste the peripherals' device-tree, but rather split
-> the most suitable riscv DT into ARCH-specific and peripherals parts and
-> just include the latter on the arm64 side.
+> I don't.  I've never built the device tree make targets to test.
 > 
-> This series adds the device-tree for Milk-V Duo Module 01 EVB, which
-> in turn contains Milk-V Duo Module 01 (separate .dtsi) on it, which has
-> SG2000 SoC inside (separate .dtsi).
+> The docs[1] say to run make dtbs_check but it is failing:
 > 
-> This series has been tested with Sophgo-provided U-Boot binary [2]: it
-> boots from SD card; pinctrl, serial, GPIO drivers are functional (same
-> as for RiscV-based CV18xx SoCs).
-> 
-> Partial SoC documentation is available [3].
-> 
-> This series lacks the support of:
-> - USB
-> - Audio
-> - Ethernet
-> - WiFi
-> - Bluetooth
-> - eMMC
-> - Video
-> 
-> Changelog:
-> v6:
-> - rebase onto sophgo/for-next (108a76779829)
-> - dropped first patch refactoring RiscV counterpart (equivalent present in
->   sophgo/for-next)
-> - added cpu_on/cpu_off properties into psci node
-> - added reset-controller node, compatible comes in [4]
-> v5:
-> - PSCI node in DT
-> v4:
-> - minimized patch 1/7 (cleanups dropped)
-> - cv18xx-cpu-intc.dtsi instead of cv18xx-cpu.dtsi+cv18xx-intc.dtsi in
-> patch 1/7
-> v3:
-> - &cpus node has been moved into cv18xx-cpu.dtsi, &plic and &clint nodes
-> were moved into cv18xx-intc.dtsi to reduce code duplication;
-> v2:
-> - dropped all patches related to the new reboot driver and corresponding DT
-> and bindings;
-> - grouped DT-related and config-related patches together;
-> - added patch moving sophgo.yaml from riscv into soc (to share it with
-> ARM); added SG2000 SoC and Milk-V Duo Module 01 EVB into it;
-> - other changes are documented in the corresponding patches;
-> 
-> [1] https://milkv.io/docs/duo/getting-started/duo-module-01
-> [2] https://github.com/milkv-duo/duo-buildroot-sdk-v2/releases/
-> [3] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.01/sg2000_trm_en.pdf
-> [4] https://lore.kernel.org/sophgo/20250609230417.620089-1-alexander.sverdlin@gmail.com/
-> 
-> Alexander Sverdlin (6):
->   dt-bindings: soc: sophgo: Move SoCs/boards from riscv into soc, add
->     SG2000
->   arm64: dts: sophgo: Add initial SG2000 SoC device tree
->   arm64: dts: sophgo: Add Duo Module 01
->   arm64: dts: sophgo: Add Duo Module 01 Evaluation Board
->   arm64: Add SOPHGO SOC family Kconfig support
->   arm64: defconfig: Enable rudimentary Sophgo SG2000 support
-> 
->  .../{riscv => soc/sophgo}/sophgo.yaml         |  7 +-
->  arch/arm64/Kconfig.platforms                  |  6 ++
->  arch/arm64/boot/dts/Makefile                  |  1 +
->  arch/arm64/boot/dts/sophgo/Makefile           |  2 +
->  .../sophgo/sg2000-milkv-duo-module-01-evb.dts | 31 +++++++
->  .../sophgo/sg2000-milkv-duo-module-01.dtsi    | 85 +++++++++++++++++
->  arch/arm64/boot/dts/sophgo/sg2000.dtsi        | 91 +++++++++++++++++++
->  arch/arm64/configs/defconfig                  |  4 +
->  8 files changed, 226 insertions(+), 1 deletion(-)
->  rename Documentation/devicetree/bindings/{riscv => soc/sophgo}/sophgo.yaml (81%)
->  create mode 100644 arch/arm64/boot/dts/sophgo/Makefile
->  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01-evb.dts
->  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01.dtsi
->  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
-> 
-> -- 
-> 2.49.0
-> 
+> $ make dtbs_check
+> make[1]: *** No rule to make target 'dtbs_check'.  Stop.
+> make: *** [Makefile:248: __sub-make] Error 2
 
-With all change I mention fixed:
+I believe this is because the ARCH is set to x86 and I don't believe
+dtbs_check is valid for that. I work on riscv which does use device tree
+so I use this command:
 
-Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
+make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check
+
+
+> 
+> 
+> dt_binding_check fails too.
+> 
+> $ make dt_binding_check
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> Traceback (most recent call last):
+>   File "/usr/bin/dt-mk-schema", line 8, in <module>
+>     sys.exit(main())
+>              ~~~~^^
+>   File "/usr/lib/python3.13/site-packages/dtschema/mk_schema.py", line 28, in main
+>     schemas = dtschema.DTValidator(args.schemas).schemas
+>               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+>   File "/usr/lib/python3.13/site-packages/dtschema/validator.py", line 373, in __init__
+>     self.make_property_type_cache()
+>     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+>   File "/usr/lib/python3.13/site-packages/dtschema/validator.py", line 460, in make_property_type_cache
+>     self.props, self.pat_props = get_prop_types(self.schemas)
+>                                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+>   File "/usr/lib/python3.13/site-packages/dtschema/validator.py", line 194, in get_prop_types
+>     del props[r'^[a-z][a-z0-9\-]*$']
+>         ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+> KeyError: '^[a-z][a-z0-9\\-]*$'
+> make[2]: *** [Documentation/devicetree/bindings/Makefile:63: Documentation/devicetree/bindings/processed-schema.json] Error 1
+> make[2]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.json'
+> make[1]: *** [/home/iweiny/dev/linux-nvdimm/Makefile:1522: dt_binding_schemas] Error 2
+> make: *** [Makefile:248: __sub-make] Error 2
+> 
+> How do I test this?
+
+dt_binding_check should work on x86. Maybe you don't have dtschema and
+yamllint installed?
+
+You should be able to install with:
+
+pip3 install dtschema yamllint
+
+And run the binding check with:
+
+make dt_binding_check DT_SCHEMA_FILES=pmem-region.yaml
+
+You should see the following output:
+
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   ./Documentation/devicetree/bindings
+  LINT    ./Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/pmem/pmem-region.example.dts
+  DTC [C] Documentation/devicetree/bindings/pmem/pmem-region.example.dtb
+
+Thanks,
+Drew
 
