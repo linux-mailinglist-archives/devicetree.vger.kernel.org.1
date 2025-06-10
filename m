@@ -1,88 +1,82 @@
-Return-Path: <devicetree+bounces-184331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E65AD3AC6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67DE7AD3ACA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:12:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64EDA161494
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:12:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD378166A54
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1A12BD5B6;
-	Tue, 10 Jun 2025 14:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E356F2D1925;
+	Tue, 10 Jun 2025 14:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XBIx6CtN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VsEYR77C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6C223ABBB
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38C72BDC05
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:10:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749564565; cv=none; b=MT/Rk1M0ZBJNyF83iR9HjWf7zz6bs9E0ZNcTFT01jL4swyMRcCmoV9+u0uj7qUWAmU7l9XcgeiNugAKfBh4HswJdQL6zagHjVBfujEwvdxehonmfAyfDXaZ0did9XE3LDLJcVgBSQiVRB0JmlI11m1UvTu8E1j9ABzmwg5EttB8=
+	t=1749564610; cv=none; b=lJLJUl8pJehwnVowSI9iboUOYkDO+BZg2LSBA5SKA89ImBbwjKSyLRY/w9FwObWX02+EQMTegisQtwzhf0SBckH86bpfvg3grIbF6+caBgt7h5C5/xRkN/ZdePd9FlDfpnp56Kw4/PJh/lpO6HpNw8YkEjqfUYAnGJ1PUg0Lvrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749564565; c=relaxed/simple;
-	bh=64oL1IuUL6LDShJrW7z+kKTXElQQl4FAWK8vmLE6BNg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZbA8drADkOLrZDc16VCvFoRwS2a77UPOFdct800n1fE90ssBS3YwfJk6FlUzZJ91Xbftf8Uv86EHzjpeguanW0NLXVjfbZkZSlZt+BOU35HVAycL/kNjGp1PXRxt4OlylaAwZmDSFdIWJHkQ/uQ75kURolPH2L49vmrU200xR98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XBIx6CtN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55A8hC02026990
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:09:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gP4Jd0wZuukS80MSwtMl4EeLp4f+KtIALdhGXarYaPU=; b=XBIx6CtNaZzvB0WU
-	a6Jyu2bBHjsjyam2qsljk1cGYDp644pMzaMwezxnE80cCmN2AduJtDXRYv8JlN3d
-	sanK5mMNYey47Fqu6Fun4HV5HL39fM2tNcGMVw+/5xlKEfMPCQhxm74xutYPbjNk
-	XaEpffomlc94SLryZ8Sgxw5dAuy0uEoiayVkyTL3DLwitAVhSp9g3FsK8BEQzr55
-	2WDTdwu/va8MPQfarXvqzRC6cJ/Pv55DOcA+yKixkpExrBoeubw/VjaYwPhI6HKM
-	HFNSWPnH5yaVGejWAFrw+7/alL5b6Zvab9F5NB2G+/VG43n2h4cEOh+c7fsifZKv
-	p/+c5A==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn69mw4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:09:23 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4a6f59d5ac6so8443121cf.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 07:09:23 -0700 (PDT)
+	s=arc-20240116; t=1749564610; c=relaxed/simple;
+	bh=PZXZV7FSHjLrW/Xjz4hHaW1Kus7p5ylj0H8R79ZSXO8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=cYsH2chtpXOD1bQZ8pObGAut3vf9oWVCNnVEvkpPoGqxekm9vQsjXru5QVlcWUzNIBSda5hoAsesL5pKMfNZoJs5I4CSN90pvZuSE7FGS+I8Tc2AGmBMc0i1MFfB3zbUuSyslDIPm1erYOi1rEcQSypf0+v3XQGMWGrpY1d0JVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VsEYR77C; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-450ce3a2dd5so49173655e9.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 07:10:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749564607; x=1750169407; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z4OxVv8oJv1GqLYHYzTXE75rIdx5RHpc0k5r0cFg+Cw=;
+        b=VsEYR77Ck0TXnQEbP3tA1sFGImnHWzecqqlLr95YVslQ99hDOwRgyYplpG7kBDScle
+         WDaUqf6iyW7g7xNg1ASrU3q2s7xw7vgAEy3oYNxxPPu4dUIYVjQGlFJwh1rpDTzx0Jt9
+         4elTtB4/LJuSmFQCkWBPrt4O2BdAiRh4cwCmi4e9Ab4rooEDlKTsS1RgnlPi+kquib5o
+         I5J5wjKXx9FgKQYQVemUD3yJdLgrLwjnoY9GzuO6A3DDons5kaVq6i39w11Lc2WKntM0
+         ArEqhssOh0ZS1ua3EkRgMyCkthNxn+ztokG7nqCCTG49QdOL5Qi2urONCQNlwBhFq94V
+         asWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749564562; x=1750169362;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gP4Jd0wZuukS80MSwtMl4EeLp4f+KtIALdhGXarYaPU=;
-        b=PC+DO1lXth4t7P6NPYBTudO6eLy5g7kAXZvYZcUrImdpNkn0TDGSqf+ovRWSllqEc9
-         RKx+/S3SP6CqAOuel1oKVqSaBuj+vDaEylAWaNKYX2h42flL6p/PcavEr75yabhLTsXm
-         fVi6q4Fhynpaa5YomhOcE8reb2uUYXK3KZTLHeNW2E+eQYC9DWdtLJel67hIkkQ3/cR7
-         HsVg8KZdECuus4VK+hR/+/NLqadP5jfaakcDdNkwSuTPmcqnJBqm73azksgMPaDZi+nu
-         q/H+pZsZwWne/SCIutalOlfVp9nl3mctZQA2l/M0yRcQEeNf8ZL5VX64w0PHerDBjDBc
-         4ltA==
-X-Forwarded-Encrypted: i=1; AJvYcCVT8+y0f9g7JsuRob+Rb5b7PgO7TNPsKvf/GGG7IDDsX05UwDGt7ZlAoOELC2mEXeUbPVln7fPPKkPc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9kUR9MsU49UVrPY78awpgp8mtYo5OMZv5B8Qv2ggM0XThXgip
-	udH7GqOlLSNmKvXUMpeNXWuy/ldCXQ3jA96pQ3qO5jMCGWeTwYdLv795f5GRRvebXTrDa4GYnk/
-	K//Apq2gZBgZiQdGfqaIyB3wW9KjNPX4gzhUkaMMuIs+I54dC+0hl6a6GKri+vgOH
-X-Gm-Gg: ASbGncvXiGCLr5pSHJxUakA9KEnq69BMNLaN82DmDtNM27HPgczvBj+nUvXcG9KS7HO
-	bd4kk6TA43Q4jxJifEAEr2685a8K38YO/kkmFJkc0PkakY+SWbP4OlCASbKB0Fc8e3mcXexS1VV
-	QxOMGBcS2YhvBibkV7/gzLz//xAZBi//N3NRLob0bpw9BkC6jXQIc99Vc+y0utx9s3tSezJ0iyz
-	Jwn3/9NHW/KDvoEw9UAcoBmLNxaWqK3j5AyB1g6ptuHFJpOVEirCZJLzF8Vub4FEPlVlFTDZIDP
-	1VbzWPpMdfS9YVRDfqf9qg8gVoRmWIDq3E/nVDIL9/W7fFvmll66JTDLYFIBMyXWnyTYI8iu2jb
-	g
-X-Received: by 2002:a05:620a:294a:b0:7d0:aafe:dd6 with SMTP id af79cd13be357-7d331c11a81mr969897085a.1.1749564561943;
-        Tue, 10 Jun 2025 07:09:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IERgZgp2y5pYp48AInVGbjIfwav55zx9yDpitn4roraA79eZtpYgR9Fcxn3XP8O4dbac3evfg==
-X-Received: by 2002:a05:620a:294a:b0:7d0:aafe:dd6 with SMTP id af79cd13be357-7d331c11a81mr969893985a.1.1749564561524;
-        Tue, 10 Jun 2025 07:09:21 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc7e770sm729541666b.183.2025.06.10.07.09.19
+        d=1e100.net; s=20230601; t=1749564607; x=1750169407;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=z4OxVv8oJv1GqLYHYzTXE75rIdx5RHpc0k5r0cFg+Cw=;
+        b=jNFeQ5n+ddXxlGWRZQOjBBcEH8oHrUcnufqx5xJYfVbY7xiovessHV5h2pi0Dq2B/G
+         EmNQ+qG+S6L6aLVT3PSfH/VuRc4RgTZG6OvW0DHk+lBGqoPpW4GVgaFxSOKJ/y4XLVDr
+         HyxaF85jfVgW8H3FDLI6AhN6wRJyQnHqD+3uJ21WuoOv9nReIeUFOIa/IgkfdgPQgleC
+         hD18JCnJRlztbc0LQeRw/4fKpSrpdWQc5fDRSsnpgGCTVA43k6O4MA5TVUYlO/BCNv++
+         zpkUkyds19PoerNQ77KyawLf+U/+djtiuYgV65nnhSrTjLs8XN2qpZI2i0gD6w3qQLqF
+         Yogg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkVXtYI1LT5HwOp6A4RtqJP2XHgZIbkl3HVAWdgB3Og3aY8f6iweezgrNzrEwjJAAMFvDryg5fJ1zJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3kmMtGIKvX6v7EhCoHe3sQ4iMfhG8C8UxnWNjI7bqFDOnUl/M
+	rnTK3mYaHxOIkSRgWb4kQnjg8SZHTRYr5hv2IdQZ/rmawOoXRsOIHsrSPC6O0LgWenI=
+X-Gm-Gg: ASbGncsmKUGDF09b839AVoJMB8ewxj4I+OSEhvFtMnsZulsAOK5m51LYQq5kmJGTPzV
+	R9iUV+4WLdwMkBOHaIldiJIaCVC4vlpGPBq34nU3f8r9Evj1FXoFT8VTve2jOPVM2OVVows6aZ5
+	eCx6/vcIz54qBN/GI8lIvmJrlgti1cSL7CBx6GF8LDxvuVHr6vVaSTSo7ESUmUVUI3tY+wNPDGB
+	N4+2TGz0UQ/BYoNE/7129f85iFG2qTCVLEag4714VomNN/V5aspmwfMwfaP+Izb4jxuBBnf+vTh
+	k/f8GChEjjna/bOyxkKVCsc4mY9qQ3b9R6CJzIwClxiQv64NNAgfd24aWaocsy9RxPeRx87Abq/
+	Zq+2miBoGpoBbxlEuAsJohtgyr7ifiptFPNlS
+X-Google-Smtp-Source: AGHT+IEkqCEXSbEGN2qKWC1bgGuh0Dpru4IMLoe0WkTjzMUjiyMf9422e97D4rL4Jdk8panjohDk+w==
+X-Received: by 2002:a05:600c:4ecf:b0:450:d61f:dd45 with SMTP id 5b1f17b1804b1-4520134088bmr172213265e9.4.1749564607020;
+        Tue, 10 Jun 2025 07:10:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14? ([2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5323b3992sm12497663f8f.35.2025.06.10.07.10.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 07:09:21 -0700 (PDT)
-Message-ID: <73e2881f-b899-45a4-a59e-47593283b63b@oss.qualcomm.com>
-Date: Tue, 10 Jun 2025 16:09:18 +0200
+        Tue, 10 Jun 2025 07:10:06 -0700 (PDT)
+Message-ID: <eb9bd4e4-3032-4f36-94e7-b89ff74bf327@linaro.org>
+Date: Tue, 10 Jun 2025 16:10:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,94 +84,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10] arm64: dts: qcom: ipq5018: Add tsens node
-To: George Moussalem <george.moussalem@outlook.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>
-References: <20250610-ipq5018-tsens-v10-1-3a10a5a2642c@outlook.com>
- <f123294b-b944-4723-bd74-713970468d51@oss.qualcomm.com>
- <DS7PR19MB8883BEBE4168DD1682F858749D6AA@DS7PR19MB8883.namprd19.prod.outlook.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <DS7PR19MB8883BEBE4168DD1682F858749D6AA@DS7PR19MB8883.namprd19.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDExMiBTYWx0ZWRfX4OClcUoGmlZ6
- IAqT1JxxQQ3zrVZA9KXcPr9iTm0DbpgmBGBe5N0jy7mjrQtiAy6XGxkCZrWsIPfcBWYbJtWOCAk
- xDO98e/qW75XelfuYheG7N4VAxqXX+BkPLBgjQrTd4ulzpPC0KuWV9RqF8NcNOPlfzvJqHYzw2s
- g4BJNhCHYhUolf2q3M4TloHM5l0Dw0fnuSZ1NPnRPD3SfVHZfltbexzp9n11BDBs7bGb3jxd/6x
- GfsCfe3pg67Bl0CFfjgkq5lbLMmlKtiWPuGKXfD/MwfePYb2r5K/OLy85FobKtQa0z6DNWHUBdo
- ZIbVDOps9OBgzWtK8zvZcTjR9RLA34IN3uaPvDDto3CVlFrYKNwZ+CRznMv3ESke84q9VyFnHZD
- HQGAeTQbXRiwTD+sopG1RjxS9XQULwZ/Qu4MD2b4w6YEbncKMmMKXJPpC9A9aUpH/G7KLqsx
-X-Proofpoint-GUID: EoNe_E9wIS_Gh0MDjck3u9i3Lc6BnlTS
-X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=68483c93 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
- a=UqCG9HQmAAAA:8 a=E6Ly0PRcfj7wCC4qtTcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: EoNe_E9wIS_Gh0MDjck3u9i3Lc6BnlTS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_05,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
- mlxlogscore=999 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506100112
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v6 13/17] drm/msm/dpu: Consistently use u32 instead of
+ uint32_t
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>
+References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-13-ee633e3ddbff@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250610-b4-sm8750-display-v6-13-ee633e3ddbff@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 6/10/25 4:06 PM, George Moussalem wrote:
+On 10/06/2025 16:05, Krzysztof Kozlowski wrote:
+> Linux coding style asks to use kernel types like u32 instead of uint32_t
+> and code already has it in other places, so unify the remaining pieces.
 > 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 > 
-> On 6/10/25 17:08, Konrad Dybcio wrote:
->> On 6/10/25 3:03 PM, George Moussalem via B4 Relay wrote:
->>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>
->>> IPQ5018 has tsens V1.0 IP with 5 sensors, though 4 are in use.
->>> There is no RPM, so tsens has to be manually enabled. Adding the tsens
->>> and nvmem nodes and adding 4 thermal sensors (zones). With the
->>> critical temperature being 120'C and action is to reboot.
->>>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
->>> ---
-
-[...]
-
->>> +        gephy-thermal {
->>> +            polling-delay-passive = <0>;
->>> +            polling-delay = <0>;
->>> +            thermal-sensors = <&tsens 4>;
->>> +
->>> +            trips {
->>> +                gephy-critical {
->>> +                    temperature = <120000>;
->>
->> I'm not sure whether there's any firmware/hardware measure to shut
->> down these beforehand. It's better to have a software trip at 120C
->> than to not have any at all, but you may want to try and find a
->> case_therm or so thermistor for your devices..
+> Changes in v6:
+> 1. New patch
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 9 ++++-----
+>   1 file changed, 4 insertions(+), 5 deletions(-)
 > 
-> these are the temps as defined for the critical trips by qcom. IPQ8074 has the temp set at 110C, while IPQ6018 even higher at 125C.
-> They've also defined lower temp trips in the downstream DTS files.
-> Should I try and add those? I could check if the driver supports them..
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> index a4b0fe0d9899b32141928f0b6a16503a49b3c27a..92f6c39eee3dc090bd957239e58793e5b0437548 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> @@ -323,8 +323,8 @@ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+>   		struct dpu_plane_state *pstate, const struct msm_format *format)
+>   {
+>   	struct dpu_hw_mixer *lm = mixer->hw_lm;
+> -	uint32_t blend_op;
+> -	uint32_t fg_alpha, bg_alpha;
+> +	u32 blend_op;
+> +	u32 fg_alpha, bg_alpha;
+>   
+>   	fg_alpha = pstate->base.alpha >> 8;
+>   	bg_alpha = 0xff - fg_alpha;
+> @@ -402,7 +402,7 @@ static void _dpu_crtc_blend_setup_pipe(struct drm_crtc *crtc,
+>   				       struct dpu_hw_stage_cfg *stage_cfg
+>   				      )
+>   {
+> -	uint32_t lm_idx;
+> +	u32 lm_idx;
+>   	enum dpu_sspp sspp_idx;
+>   	struct drm_plane_state *state;
+>   
+> @@ -442,8 +442,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+>   	struct dpu_plane_state *pstate = NULL;
+>   	const struct msm_format *format;
+>   	struct dpu_hw_ctl *ctl = mixer->lm_ctl;
+> -
+> -	uint32_t lm_idx;
+> +	u32 lm_idx;
+>   	bool bg_alpha_enable = false;
+>   	DECLARE_BITMAP(active_fetch, SSPP_MAX);
+>   
+> 
 
-you can register the CPUs as a cooling device and add some sort of a
-trip point (see e.g. ipq6018.dtsi)
-
-Konrad
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
