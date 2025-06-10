@@ -1,206 +1,228 @@
-Return-Path: <devicetree+bounces-184505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C048AD43BC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 22:29:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB02AD43C2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 22:31:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A22773A60F5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:28:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A46F317AEB9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3F5265CAA;
-	Tue, 10 Jun 2025 20:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9B0261390;
+	Tue, 10 Jun 2025 20:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TKMeyR/K"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="zkObtTk5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011066.outbound.protection.outlook.com [40.107.130.66])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7167A264F99;
-	Tue, 10 Jun 2025 20:28:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749587314; cv=fail; b=D1+kgmeWtcszF59E70RCqxFUrJCGYmmYDvhMDq8b+pI+b4ZD+Wwg8/Nu5qwm52mL0z81c2yilB7elVy5s+yILXGIYAkYwvEne2tJc1HFAOazc3O2o/5l4+bk4SrKyLuU2HtfmqNi10zx/ZJ0gOYBnDSp3LOYuVNQXVhKPLK6+LM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749587314; c=relaxed/simple;
-	bh=RG0QaP2l26j1pHoX/miYiTNa7qKrOjLtSlS5s2Fk8Ng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=WKHOr9NDHI3fvW71ARmXlm0LRb3/ywLYcXAi5guvuOrhMfgWRIRF9mrVWGQT4SzGUcYbaj9Z8UkyI1hYTrglw4ar0FPLDF3E6qgJHkk00l9Vwn7/o3ubHyZDda5jb9BBprg3Nkofxudvom9ug1Xrs2MCXhLIjLedBtmqzPBGPwc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TKMeyR/K; arc=fail smtp.client-ip=40.107.130.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xvKDyTq90sS/wjwmSHiKdx1+YaAOsCxoKybTkZtGrFY1Wt5Qa0ym3tUTRkwRmoZwKL0gYshFpGraR3iue84wAnFHkUFO3z1qfV2gFfvXjdVx/IntnIk41WMjwBQq/QI4lpGJywMwMEzm4zMtKBSNcSozzOasFNFBSad+q21RBiaUITDIXIo5wWp9ng1EcbJPrR5/3fxuJ7MJHjB5MGm/n4Hy/5Vt/sObhUd5qBFSoxZecf/H9umCKuF+MgRDbz2Tyy6dBZmoOqbBaypkecolvYnSmfihg9AW28XJPJOfkP0RZTR40JWThzk5bxVuewTKzWsU/Oi6dia2XQ816DqzxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SdcKnFAfJgRj7zmQcjxwJRtnmQ7D94/FQizql7yE9q8=;
- b=DNWwBlLHlKy6jnnEvddoKTEPHM768Jb4S5bKkIX68d3yitPtJ3Ke916QsY7rVA7e3woqlQm9jJFefsjrNh4paa+yRByvgmLu5gqaat+AUFE5jX1VEe2REsNg+0YTPGSoN9rdbhK4IJWqGHhxA00DBafrtjAJ6F2lwtZLHQwKhbspyCwabInDR+d5kiD0IbspAAL8+BTnoYLPJSBhNzuNMo4QAkEnX1uh/c1Ls7U1LKQLG62OyeECzgzLgjRa/qFBxXuMYy0S38ZurIR/f+6BOqepkmX1Ah+qmLgatHDEsce/7p8AGfEuCSU/PQUy72t2ITz8h8OIs1sICc1MgONvBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SdcKnFAfJgRj7zmQcjxwJRtnmQ7D94/FQizql7yE9q8=;
- b=TKMeyR/Kq+nNvkoa0JW49eQSqQJsaVUZERGmuN6/c58a+7GkKkqtmX75u4DG3F1gJO3ijM2oENSTIIqTjyLHh8VKc+QfY8wpjsY9V4AMHY28mbZGm3c/tug3VG9YBHKPGCGbKZ8Mh9QxO7hT7glL7ApXbirXKo/8OU46uRdHqC21MjzB1vh7EfVfm5NY+F6TMeJD9b/ZGPeKNgY7VXXZbLDxu119CNV1irvENgpx3PDSOynXcxOgdFnroyaftDn+zH48JEGhtW7X4WFsigGQpv7MeyJPwuSGuGffpX0O6fnklti882D3i9nzaJkTD61sa4GpN/VQzfTRbb5d0Sk5Nw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI0PR04MB10927.eurprd04.prod.outlook.com (2603:10a6:800:265::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.18; Tue, 10 Jun
- 2025 20:28:29 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8813.024; Tue, 10 Jun 2025
- 20:28:29 +0000
-Date: Tue, 10 Jun 2025 16:28:20 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 6/6] MAINTAINERS: add an entry for pf1550 mfd driver
-Message-ID: <aEiVZBloUxYcNOIP@lizhi-Precision-Tower-5810>
-References: <20250610-pf1550-v5-0-ed0d9e3aaac7@savoirfairelinux.com>
- <20250610-pf1550-v5-6-ed0d9e3aaac7@savoirfairelinux.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250610-pf1550-v5-6-ed0d9e3aaac7@savoirfairelinux.com>
-X-ClientProxiedBy: PH7PR17CA0015.namprd17.prod.outlook.com
- (2603:10b6:510:324::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F97517BD3;
+	Tue, 10 Jun 2025 20:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749587487; cv=none; b=DCrMiliUQtT4cM7pxN/8EmDJLHBN93v/c1guDEh4iF0LW35kTAMw8Bj2jjreA4ozdQX6gue/QFjXg1cIdwQMxupGX1FbHeV1yjtEU6CVkJx7eDeArNzVNhW18xh16NjMmCuWr7Y4VEjCakswjOABA84O1j46pRkq5Vwq2lqZhk0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749587487; c=relaxed/simple;
+	bh=ZAEXPdMeYO8J6cW6q3eX2ifwtQb6905rr4b9a10ownI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dj7s+qC8bE2rGVVvC1sTckXzS1M7wq9wneY+OXi0Csmlj1P75ApMvOiQ8OU0mm02lG0JEyj8L2aAPH8PWtzHzf89FFRtoykqIBlVKFEkGH8u2mc1a/1g68nqfBi811xalH90OYgcNoMl1OxWAuqCuT965yaOBeRiZtMLnLXFTOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=zkObtTk5; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIC1ii012727;
+	Tue, 10 Jun 2025 16:31:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=iXi2KKLWPCYYSFHVwRvK/lhvXM9
+	YyMHB1a/b653UoK8=; b=zkObtTk5+XKR9Sl54uEYFfLEr/dsonxgdUOQnMKx1g8
+	F7ZKc0O7oL4ljph7K8MibZm+pYVqtn8YQupdtoKHpr1WvarIBRLS+SOYa1RI6RTH
+	VWHPu0QhuScWO2rdiF9Am8cCQcwIHlr0P5Ya+awMRB3qZt6yaYRaq+2LFzyAgd1X
+	Awc7vU/zJ8subZbjwP8k9X8yvSdcRo5UWxBCCfxIbnjU9xe1o8Bn0dVDEu/EyEza
+	Lbuo/k5tbX/7ASg6nKOVWgxddKVC17vb2RzaC6vwGKuIW368DaBziUVZeS8/VK+D
+	26zPeNm8SsxrO1flIZlBn+XbHax7wMZz2ii5w8NnvCg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 476hwsbk5g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jun 2025 16:31:05 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 55AKV4OO037587
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 10 Jun 2025 16:31:04 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 10 Jun
+ 2025 16:31:04 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 10 Jun 2025 16:31:04 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55AKUgsQ019861;
+	Tue, 10 Jun 2025 16:30:45 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
+        <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v5 00/11] iio: adc: Add support for AD4170 series of ADCs
+Date: Tue, 10 Jun 2025 17:30:40 -0300
+Message-ID: <cover.1749582679.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10927:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff2202f7-8ada-4fb8-4086-08dda85d5c19
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|52116014|1800799024|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?qJusIKAPXSbzZOef8ag4HMbNjPjPb0La4OUw526kmV+C+Br2aU6qarbi1tFC?=
- =?us-ascii?Q?sgFBrRvQ7MPuHq7D3fBnk/PGUWhjRZDLDqEcnA7DlZfKl0KLE0WaVu7K+358?=
- =?us-ascii?Q?hsJzeGmZY8AvIGDxc+Vxv0qmi/LCujlwX16eOjq20Ni0IiuaG2PueAaJTzKJ?=
- =?us-ascii?Q?RyaQ7QhWsTCN0C3wQXEZBmUBas38YMMpKsisnW4RIM9iwx1pFrhkEB6gLr+B?=
- =?us-ascii?Q?XylED1qISxrJOiWqs6aAIzJVWFXayu6kvvLk2y3OOYAS2PUtI9cAhSVC4GbS?=
- =?us-ascii?Q?iGiUi0aMQjAVNXR1hwo9bxEgAyV6FwMYBtGD9NMMkmUhRo+WiycJhPx/kyB0?=
- =?us-ascii?Q?SXvtS7UyniBeS/HhJpTEvuqClceJ4bnpbMIw0tN7JS4iNHSbx3+c++NzKEWs?=
- =?us-ascii?Q?JanqD03hlrP2L0Bv8jnZolfWxwVToIoesQfSbL3gqSJ7CFNlck+tvzCaWVtb?=
- =?us-ascii?Q?MQKMSYzU+YvC6YEULYKCjKZJ6vpsh4L/cUt8UlTZ9ecU/EvjH4Td0HgWcss7?=
- =?us-ascii?Q?q+s8xXGDwU1dGQdo1NoLWjjoIcODGov6iHugnQWeOahnF+VtBNgsb/AmMCNF?=
- =?us-ascii?Q?gXcRkPr28X+3/bFA30ytBLHsTVSIxtDfM8NiWCaeN+8gndOeXDCVQJnxUedz?=
- =?us-ascii?Q?GdKReSClRA685JBWOVExbZ+H2Z+Z0RGw7MOznvBjYe9I8rVDLE5bK7bZF6N6?=
- =?us-ascii?Q?Rr3UWVe9S5E+d5ZzTYJAQHV766NWcDwzL4v/L+glQEYsKH7sGvd+15qdfvQy?=
- =?us-ascii?Q?gL5dZDhJhX7hhnYq9bylUX7AuDwxDy94FoZDPSSlrO0uoZL46hBUvJkT9l8M?=
- =?us-ascii?Q?EgBwZ0yMkzeb5r004KlnQvOAuQgKzdNpzTnHR4Lzx/Xv+ejaFA5p6dG4INPu?=
- =?us-ascii?Q?rLP1v2qroE7/UQzed/fTQWv04niADrsZ1JSxV0/DyvC2j4fNSW6c2AInanBr?=
- =?us-ascii?Q?wIGDiE+R1M2qG1cQcNGJ7WFe7z48RMMdGvvlbjsfDJa7jDIHcSyRT6dzB236?=
- =?us-ascii?Q?143OKqgNy0TsPFQMma/dsPRVukaqqW7Bg7rAdkUpsnQ8DoewykPCpDg5EbD1?=
- =?us-ascii?Q?w2s34Kfm2VG3d/kimS/+AWFSj9hLvwK4PKN9phjjedLEPFL8zNKk6oStMmZY?=
- =?us-ascii?Q?ZqDJXXzplE3Z8fljiWXHrTzYVUDnZyNjKBaabxnIdhUzzmhH8ZrkwdDVFCIi?=
- =?us-ascii?Q?TZcRk2lg7yVdQnyJ96hrJrqr+qG7vxyZruuASDR91nvNSmVliJGgMiH6qg7V?=
- =?us-ascii?Q?zqTNSsbyWiiaGhnAbLi2/B2UkstBi2BFpA210bhvAwYheXTT/N/TdG5ZD9EJ?=
- =?us-ascii?Q?4/WVXyiBDa+5PXrLpL4+LBoFCDFDNxhJKEH4fizuItVdI1AQUMgTgvZbyh8C?=
- =?us-ascii?Q?3r3XqWJnxhL5SmpGg91ANG1muta0FZX5X+IODSoAV1myli/ueMZGFLLm7eIC?=
- =?us-ascii?Q?3NWVAd6DF3vK1BK/xQQBXxaMSYvonlZ7uEwl2zJc+tgsao7ESm0jKQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?y3tZVPdy7NqB8tMbRFAesXkJaKe0y8ZA9B+2Sg9r1nVH1NVNiTJssjiFokhh?=
- =?us-ascii?Q?VRgNcvk1ESHdirqE8qkFn+M4yQ6uwAZsK2E/PpvkLWVkB8snKVx+Bpv0YvAl?=
- =?us-ascii?Q?KwrgFTswsXUdvKBQ2C1cEGDy6P6Rrtbj11v9HvSaY+Etw2uDlOzbeuTPf9sC?=
- =?us-ascii?Q?/NpfYA9YcW2h/UXmRIEZbEcSK/tGTtyvR9KrikhFkPWs5UbKyJuxOZj10TEh?=
- =?us-ascii?Q?lpIu9BmYc77yqhYI34j5vKqLZBkvWnaL33J63n5kiM+ttiuTm41Sh3rO8TTu?=
- =?us-ascii?Q?kb4sONXhK1Con+cd7AVzj49llLAKwDNxKbofKZN9JrzXD37xSuHquHydnANV?=
- =?us-ascii?Q?1gJpzCA/cMHatx+xNZODHvLfRqhdouujdMKSOObthYn/iRWm9W8yOKhsOrl1?=
- =?us-ascii?Q?db4tmBsiMevyQV2/8FucoP0YmniZPlNtaX6CK3v/AZXAKneGT+5JV9xDBPA7?=
- =?us-ascii?Q?Vlrg06BAZepsLYOXjYK6ROPzOUvLTDGqbnKIq/hhcxOq1fondcNP70k1/mL8?=
- =?us-ascii?Q?1bdzB/ebrf3RPFMzgPlgxnCY2D87ITV8277VR+zhmjcyUdDt7IBiLIrZSCRW?=
- =?us-ascii?Q?3GtidfINApWtSPolZjKnhqEEGd2HllNFcdIh+JQ4uGjLaE3p4S2JqeVNSSiz?=
- =?us-ascii?Q?Uck52qZmFsl+kBsqYrXIwSERv9SZOM43HXdjLuvW6sGDzBUia2Sqh5m8RoWU?=
- =?us-ascii?Q?alhnNS07mQ6NlX3bVBkSWT7TXDU6564OxnOi1aXhtm4OaO5VHdqwyr7iisVD?=
- =?us-ascii?Q?urGh2UAkVMNJL0d56RPT0k3Q6U9gZ0GWqc5kyh4+Rvs/zKg3ZMq31uTTfEHi?=
- =?us-ascii?Q?iZTgS0LTKYeswrdwsiTFjLDG+A2FlKBpnpk4hi80iuY1h9KmJp3Z7eFmlT2H?=
- =?us-ascii?Q?I11WALFdH5mkS/2kt347QF7wmrGaRZVubxILo2DW2aksdv7GJK3AyiU3ap0w?=
- =?us-ascii?Q?FUThbQ7N3tyLO4cBg683XMwyqSq+3P+lwzmVHqDpVuaWrBWOHldcf4Xu43JX?=
- =?us-ascii?Q?jFbd/iFysA3TRWxj7BNINM5/vPJfqzJRvEfvzBi4dl5NpNoTUd3Fdce3wcep?=
- =?us-ascii?Q?J80ML4/ecWmv8HYAi23uuMGWP13mvj4GldELmtaEeT7BlR1m3eaEdTK9bUhJ?=
- =?us-ascii?Q?kOd8yyp/fQmFB7Gj89h7QDN144r+VrXxEa6Du6k9MurLgV/NFSYnWU3mSWXP?=
- =?us-ascii?Q?1X4MVGwYK8Fp39HuAL8JLybcQDRu9ZqowfaxIIIHO9xSp3FhlHk1wd7Gutlr?=
- =?us-ascii?Q?T37bxgDMfZx14RfKafFnIIDBSOSGVsa4J5GwFi47zBNFv0/I86VdLB1/28Xt?=
- =?us-ascii?Q?noLDJMPaFLEV/fv1PVKVkk/wc8zYkJYE0N54tC9tZAljg8isLtWSafmOkxt8?=
- =?us-ascii?Q?OIdyk0mgBieR+f6iWHXX09iOY/9krBv7ALXypjjZP3balXI095NWnt9baZw4?=
- =?us-ascii?Q?vkC4vfLhsQxdBqdq0EHs41AIx/rlP0OxpG0TGyps5phY7+944dwmdthxpEUO?=
- =?us-ascii?Q?UjL89NXuopFb0kPBhgOKSXlW5upikCC2VKR9oxapkGVQxc7fhY304StFZ7Jf?=
- =?us-ascii?Q?8TGlg3oSS82pAV8gPriAVszFrfebWyUKOREUncPY?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff2202f7-8ada-4fb8-4086-08dda85d5c19
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2025 20:28:28.9075
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WaElo752JQ9pPafiaWWRI8CLt86UA4OmekkNssvz3Fsjc45+VATrYs8cmJLIaYJEnqDhUDOYCzCiIyUULR5ztQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10927
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: nBlzYEd8X1TX35dMOFjD1VoDxsn5k3_t
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDE2NiBTYWx0ZWRfX25nmBeTwGmWS
+ CXmSHfH6fdgkP6BbxARAW/1OyCJ9AT46QrV8AIgE5Ub3mikUInbKq8uKUDHLH3gRVf+oQDSgHSV
+ DgVUKXhjw42jTJJXd40ihZE3MO29TCSMhZzxTwZuOjGlsbjabmMmF3nNvWzJ7PmFtxUJYpfgJpm
+ 0dkZMjvanoL0MHPdt4nIcSA5Pkz+Gw4v8a6YQCDUg6JacjZeVCAS3jNqGOoW4y90kJaCdye/V0Y
+ EXzgQnVFWml47Jmhukj8nIcQNcDns2329gWnuF5cLF3E+FP0qzhuGPsyG95mOMnJVvQZjMBeb1k
+ 5+/GcopxyDfsPSDp3fhSOD+O3FmH6Tz+RwPjX1mM3PU4VU45bDrgq8Aa8aHbPGp1hhlwM/WZvhP
+ JptoE0tH23k2iUnY3kT2pmmadNhXb7fC/CF5qm9l2xfW5nZtNz07SP625dbwth08fJNWCgio
+X-Authority-Analysis: v=2.4 cv=daWA3WXe c=1 sm=1 tr=0 ts=68489609 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8
+ a=y9xVB-MOXfL2-Q0W-_0A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: nBlzYEd8X1TX35dMOFjD1VoDxsn5k3_t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_09,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 bulkscore=0 mlxscore=0 phishscore=0
+ adultscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
+ mlxlogscore=999 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506100166
 
-On Tue, Jun 10, 2025 at 03:47:34PM -0400, Samuel Kayode wrote:
-> Add MAINTAINERS entry for pf1550 PMIC.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-> ---
->  MAINTAINERS | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 98201e1f4ab5908ff49d32d19275e123cedb4b66..29287ab3c9d00240ecb0ac9793aa908ec75a9bd0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17853,6 +17853,16 @@ F:	Documentation/devicetree/bindings/clock/imx*
->  F:	drivers/clk/imx/
->  F:	include/dt-bindings/clock/imx*
->
-> +NXP PF1550 PMIC MFD DRIVER
-> +M:	Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-> +S:	Maintained
+Hello,
 
-Can you add mail list imx@lists.linux.dev ?
+This is version 5 of AD4170 support patch set.
+Not many changes from v4 to v5 and not waiting as long between the previous and
+this new version so, keeping both change logs below.
 
-Frank
+Thank you to all reviewers.
 
-> +F:	Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml
-> +F:	drivers/input/misc/pf1550-onkey.c
-> +F:	drivers/mfd/pf1550.c
-> +F:	drivers/power/supply/pf1550-charger.c
-> +F:	drivers/regulator/pf1550-regulator.c
-> +F:	include/linux/mfd/pfd1550.h
-> +
->  NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
->  M:	Jagan Teki <jagan@amarulasolutions.com>
->  S:	Maintained
->
-> --
-> 2.49.0
->
+This patch set adds support for Analog Devices AD4170 and similar sigma-delta ADCs.
+
+Patch 1 adds device tree documentation for the parts.
+Patch 2 adds basic device support.
+Patch 3 adds support for calibration scale.
+Patch 4 adds support for calibration bias.
+Patch 5 adds support for sample frequency along with filter type configuration.
+Patch 6 adds support for buffered ADC reading.
+Patch 7 adds clock provider support
+Patch 8 adds GPIO controller support.
+Patch 9 adds internal temperature sensor support.
+Patch 10 adds support for external RTD and bridge circuit sensors.
+Patch 11 adds timestamp channel
+
+
+Change log v4 -> v5
+
+[device tree changes]
+- Dropped interrupt maxItems constraint.
+- Spelled out RC acronym in reference-buffer description.
+- Require to specify interrupt-names when using interrupts.
+- Added interrupt-names to the examples.
+- Made adi,excitation-pin properties identical to adi,ad4130.
+- Removed interrupt-parent props from the examples.
+
+[Basic driver patch]
+- Dropped 'ret' variable set but not used, warned by 0-day test bot.
+- Rephrased comment about static_assert to clarify the reason for it's usage.
+- Added missing includes.
+- Did a few minor code readability improvements, complying with review suggestions.
+
+[Calibration scale/gain patch]
+- Squeezed info_mask_separate additions to reduce change diff.
+
+[External sensor patch]
+- Tweaked commits/patches to reduce diff.
+- Dropped unneeded local variable.
+
+Change log v3 -> v4
+
+[device tree changes]
+- Dropped sensor-node and most of defs.
+- Updated external sensor props to have similar name and type of adi,ad4130 ones.
+- Added constraints for properties for related to external bridge sensor excitation.
+
+[General IIO driver changes]
+- Locked device mutex to ensure attribute read correctness on all archs
+- Fixed typo unasigned -> unassigned
+
+[Basic driver patch]
+- Added previously missing #include <linux/cleanup.h>.
+- Moved struct completion declaration to reduce commit diff.
+
+[Calibration scale/gain patch]
+[Calibration bias/offset patch]
+- No longer restoring calib gain or calib offset on reg write fail.
+
+[Digital filter and sample frequency config patch]
+- Use scoped_guard to ensure correct lock release order in ad4170_set_filter_type().
+
+[Buffer support patch]
+- Fixed a bug in the filling of the IIO device buffer.
+
+[CLOCK provider patch]
+- Explicitly stated that clock divider (CLKDIV) control support is not provided.
+- Skipped clock provider register if "#clock-cells" is not present.
+
+[GPIO controller patch]
+- Made AD4170 depend on GPIOLIB.
+
+[External sensor patch]
+- Update to string adi,sensor-type dt property.
+- Adapted external sensor dt prop parsing to work with the updated version of those props.
+
+[New patch - Add timestamp channel]
+
+
+Link to v4: https://lore.kernel.org/linux-iio/cover.1748829860.git.marcelo.schmitt@analog.com/
+Link to v3: https://lore.kernel.org/linux-iio/cover.1747083143.git.marcelo.schmitt@analog.com/
+Link to v2: https://lore.kernel.org/linux-iio/cover.1745841276.git.marcelo.schmitt@analog.com/
+Link to v1: https://lore.kernel.org/linux-iio/cover.1744200264.git.marcelo.schmitt@analog.com/
+
+
+Ana-Maria Cusco (1):
+  iio: adc: Add basic support for AD4170
+
+Marcelo Schmitt (10):
+  dt-bindings: iio: adc: Add AD4170
+  iio: adc: ad4170: Add support for calibration gain
+  iio: adc: ad4170: Add support for calibration bias
+  iio: adc: ad4170: Add digital filter and sample frequency config
+    support
+  iio: adc: ad4170: Add support for buffered data capture
+  iio: adc: ad4170: Add clock provider support
+  iio: adc: ad4170: Add GPIO controller support
+  iio: adc: ad4170: Add support for internal temperature sensor
+  iio: adc: ad4170: Add support for weigh scale and RTD sensors
+  iio: adc: ad4170: Add timestamp channel
+
+ .../bindings/iio/adc/adi,ad4170.yaml          |  564 ++++
+ MAINTAINERS                                   |    8 +
+ drivers/iio/adc/Kconfig                       |   16 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4170.c                      | 2975 +++++++++++++++++
+ 5 files changed, 3564 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml
+ create mode 100644 drivers/iio/adc/ad4170.c
+
+
+base-commit: 4c6073fec2fee4827fa0dd8a4ab4e6f7bbc05ee6
+-- 
+2.47.2
+
 
