@@ -1,142 +1,129 @@
-Return-Path: <devicetree+bounces-184241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE06AD35FE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:21:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C53AD360F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:23:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E34593A4EAB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:20:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39D657A8647
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8A828DF4E;
-	Tue, 10 Jun 2025 12:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD97290DA6;
+	Tue, 10 Jun 2025 12:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="MEQgziFX"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sB2y45r3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com [95.215.58.180])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E50D28FFDD
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 12:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66EFA290D84;
+	Tue, 10 Jun 2025 12:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749558042; cv=none; b=e2EXwcVplkvtc5RW1Amy2RrBDaj2/TU80iUO2KIi0NNnjdBSI6lztRRFVCn0JlllPL+UEFPpNM7m/DEMkpO8wm30a+p5mhk4LviqecwmZy8eaNZDQ9xsuiGXHiNH2lQco4Cbc2tJcbCqz/a+WOiUFiWjmIiRAwdRxSm/MOmniyk=
+	t=1749558188; cv=none; b=KroyWTsXLwK0KLCFU+A46KPuJS7xMjfG1L7e7f1gEO+kHK+1111m3JNzufotYtFM6TNlM9rX5/EkW1xy6sOFodTyTxF50C4tZDURL1qL7umH6xuQ+JR3fepTRGuvYLgq+3A+RQuRAcHB/hPUJ/9Z2gqfhbufnC9aolOIKdnbRAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749558042; c=relaxed/simple;
-	bh=f0JUTCHk85Zu0CSqMUExpWZ7n4+hrbzlLAUUzoK5/OY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:
-	 References:In-Reply-To; b=AgyuBWaW1otcRzUwV3Fl0YEpG/euK8FTC0u2PcK03VqIq7nCpuFfHXEQAtC2rV40NXh7CGSnErtdMO/8aaVeeEIYxVvZjEYG1yGgE3Jfg8IyUJjn3NaWATnFVgYBG97Gmgwd1SVwXKwzoGbDnMnw7oXUfCn6Z7dMkZRoCmkBEZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=MEQgziFX; arc=none smtp.client-ip=95.215.58.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1749558188; c=relaxed/simple;
+	bh=KfeUVbcSCFP1T2kBXbqY1+q2hxmS4hdRneI4dnE/UAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HvscKPYEtkZ7VSUeVy/V6Sk0aW4kO2u2cuva3wxW6QfC3JfZcoraPQqhJ/aRr0XfpzHWJ8hEPdlDg5gTt0fgRYfm/fnTem1XDwsXUAHcJxlwP3PA38nLtfB+gnqvAwkw/SVFEfUEHzbKuWPfMGwaNe2TTDVK5Ecpviq3IfRNL8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=sB2y45r3; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55ACLEIT013926;
+	Tue, 10 Jun 2025 14:22:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	vtivjLTREzj3xhUyN5Ni31CViS5Q+PvnvLeG0iZlrcE=; b=sB2y45r3vLSNQ2D3
+	Uvp21XuXqL78esQhQKZfXzybGiUPlzMD5WzROhXNXMhz5I2Qf6sA+3XtzhPR6yhA
+	z8goGGaGkQfFtjmXGXrITS0+041glQb3O3RAHkD58LC4eqNMq4bPjj/V9bRwFoH0
+	Oew+fMowKFeQ0HrorR+qQvpTuDI2ZqoHx3uNe14eopQ7fy/o5JjlOEA3njYbw8Du
+	HQTCZLXPseBl7Upk4UihrQCFvMqq4vL+M/eTnYzp4d/sxCysSXNVI6GfdpjxMVwc
+	VvtKTNsQVCO3Lo/tedoEj5C6QHjUPdt5wRzxrBEFflTbQF98Zr9vHHmVkQLz5bfH
+	jqVooQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 474cahm2yt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jun 2025 14:22:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3F73440066;
+	Tue, 10 Jun 2025 14:21:42 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DD68CB2149E;
+	Tue, 10 Jun 2025 14:20:28 +0200 (CEST)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 10 Jun
+ 2025 14:20:28 +0200
+Message-ID: <3a9e5a1b-41fd-4ddf-938a-bed98551a024@foss.st.com>
+Date: Tue, 10 Jun 2025 14:20:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1749558038;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8gK2SwvVpB0iJPc79lktbOi60vhhEtYSC0FV683UEdM=;
-	b=MEQgziFX2kglVeu7ANROwKONEqK31HGcNB4WqQ1yJavHnCWNzadDg6T9lt3JrK4q7HnlLV
-	OTY2zEh1JoaLjJt2yeuTyPXSQFREz0OBiVPGvClJHqfKZ/HuSZWalW1yYqRvHiEINDQhi+
-	aDsvLMtS8J4VwlPDmKPYD7nhbpq2az3RFC/NlX1Ky+Pec+X87Hek/jH33YwTphKP8ztIqq
-	n4mqaI45JbJUTOLaggoxvBZgH8TJT48VITX0V97exxBCctpaNp7rp3/vY/iQgr4JPdcrSl
-	kEOPbTiMOlHWMham3KM+YZ8RtpyhH2Gk8CRDxjc03IiZjIog6ZHHd9h/EFNotQ==
-Content-Type: multipart/signed;
- boundary=25c824350af353d1b2d73749738e31465e8af16df69736d7a0df7feb6d52;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Tue, 10 Jun 2025 14:20:00 +0200
-Message-Id: <DAIUJTK7T4P4.29G3ADVPS0NWG@cknow.org>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add overlay for RockPro64
- screen
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Diederik de Haas" <didi.debian@cknow.org>, "Peter Robinson"
- <pbrobinson@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Heiko Stuebner" <heiko@sntech.de>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, "Peter Geis" <pgwipeout@gmail.com>
-References: <20250518215944.178582-1-pbrobinson@gmail.com>
- <20250518215944.178582-2-pbrobinson@gmail.com>
- <DAITK5IPG0QA.2EMB23KS83SBE@cknow.org>
-In-Reply-To: <DAITK5IPG0QA.2EMB23KS83SBE@cknow.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/9] Introduce HDP support for STM32MP platforms
+To: Linus Walleij <linus.walleij@linaro.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
+ <CACRpkdZ2NUfcn7O7tKSFDyAr8Hni3pvpTN6QpOz7N3J+EsFdLg@mail.gmail.com>
+Content-Language: en-US
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <CACRpkdZ2NUfcn7O7tKSFDyAr8Hni3pvpTN6QpOz7N3J+EsFdLg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_04,2025-06-10_01,2025-03-28_01
 
---25c824350af353d1b2d73749738e31465e8af16df69736d7a0df7feb6d52
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 6/5/25 15:03, Linus Walleij wrote:
+> On Wed, May 28, 2025 at 3:33 PM Clément Le Goffic
+> <clement.legoffic@foss.st.com> wrote:
+> 
+>> Clément Le Goffic (9):
+>>        gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
+>>        dt-bindings: pinctrl: stm32: Introduce HDP
+>>        pinctrl: stm32: Introduce HDP driver
+>>        MAINTAINERS: add Clément Le Goffic as STM32 HDP maintainer
+> 
+> Can I apply the driver and bindings patches 1-4 separately
+> from the rest of the series?
 
-On Tue Jun 10, 2025 at 1:33 PM CEST, Diederik de Haas wrote:
-> On Sun May 18, 2025 at 11:59 PM CEST, Peter Robinson wrote:
->> The Pine64 touch panel is a panel consisting of the Feiyang fy07024di26a=
-30d
->> panel with a Goodix gt911 touch screen. Add a device tree overlay to
->> allow the display to be easily used on the device.
->> ...
->> ---
->>  arch/arm64/boot/dts/rockchip/Makefile         |  9 ++
->>  .../dts/rockchip/rk3399-rockpro64-screen.dtso | 89 +++++++++++++++++++
->>  2 files changed, 98 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen=
-.dtso
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts=
-/rockchip/Makefile
->> index 3e8771ef69ba1..c7b13bff3ac20 100644
->> --- a/arch/arm64/boot/dts/rockchip/Makefile
->> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->> @@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-pi-4c.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock960.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64-v2.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64-screen.dtso
->
-> ``s/rk3399-rockpro64-screen.dtso/rk3399-rockpro64-screen.dtbo``
+The MAINTAINERS file will need a fix in the future revision.
+I'll wait Krzysztof answers before submitting a V5 with the fix.
 
-nvm, it was already correctly applied by Heiko.
+Otherwise patch 1-3 can be merged, but I think you may need the 
+MAINTAINERS file to merge the driver + bindings.
 
-> Cheers,
->   Diederik
->
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-sapphire.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-sapphire-excavator.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399pro-rock-pi-n10.dtb
->> @@ -209,6 +210,14 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-puma-haikou=
--haikou-video-demo.dtb
->>  rk3399-puma-haikou-haikou-video-demo-dtbs :=3D rk3399-puma-haikou.dtb \
->>  	rk3399-puma-haikou-video-demo.dtbo
->> =20
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64-screen.dtb
->> +rk3399-rockpro64-screen-dtbs :=3D rk3399-rockpro64.dtb \
->> +	rk3399-rockpro64-screen.dtbo
->> +
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64-screen.dtb
->> +rk3399-rockpro64-v2-screen-dtbs :=3D rk3399-rockpro64-v2.dtb \
->> +	rk3399-rockpro64-screen.dtbo
->> +
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-wolfvision-pf5-vz-2-uhd.dtb
->>  rk3568-wolfvision-pf5-vz-2-uhd-dtbs :=3D rk3568-wolfvision-pf5.dtb \
->>  	rk3568-wolfvision-pf5-display-vz.dtbo \
->> <snip>
+Clément
 
+> 
+>>        ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp13
+>>        ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp15
+>>        ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp25
+>>        ARM: dts: stm32: add alternate pinmux for HDP pin and add HDP pinctrl node
+>>        ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp157c-dk2 board
+> 
+> Or does it need to be merged along with these?
+> 
+> Yours,
+> Linus Walleij
 
---25c824350af353d1b2d73749738e31465e8af16df69736d7a0df7feb6d52
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaEgjDAAKCRDXblvOeH7b
-bsRUAP9XR9PtWm858vBGa90HrSmYJ/WeviycqMnzM+r8WvPOpQEAzd4rmOMsaI/O
-/ufPoni2PgpXh+vcJekght8agtKniQ8=
-=fLEb
------END PGP SIGNATURE-----
-
---25c824350af353d1b2d73749738e31465e8af16df69736d7a0df7feb6d52--
 
