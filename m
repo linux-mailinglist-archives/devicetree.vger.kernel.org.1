@@ -1,219 +1,175 @@
-Return-Path: <devicetree+bounces-184301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C43AD39E6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:49:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C37AD39F8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7450316FC44
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:49:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EEC11884A91
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF942D3A6B;
-	Tue, 10 Jun 2025 13:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96A728B7FC;
+	Tue, 10 Jun 2025 13:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dH8jjE9F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0q/2EnS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1736729B8DB;
-	Tue, 10 Jun 2025 13:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E9A3246BC7;
+	Tue, 10 Jun 2025 13:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749563184; cv=none; b=KVMlp18ia47mCzm1Ip2sjCo1HqE+MPbQrKprddOoNdF0MrNcpaxyMsXk45pJMs8YZsB9qGM6E/ZLwH5JwntrD7FdM5nvVaaE0iOVARhlYM7tWbuAct1JbK67vmB4bM+GWEvwajKRmEGHz6ZGECug2CIoXwTmaDZI64OYK+o62dg=
+	t=1749563501; cv=none; b=MAHQIcLTUJ07lmVseWe6+celjNbSBBGdNnxVAht52FqKBgFbrBCWddW5qNyQcZzRXct9tmuH5QfvmYqTghLKrEE/X+Cf+bk3rgYFVPwpXvAVc3kv3QXNeZN1Et52GU1aMrgTsBTBVY66pQ2V8gFeNWzchERaQ4Ji/GP1429X7gE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749563184; c=relaxed/simple;
-	bh=onusbAGTeKZDibm8BvV42Zc7VsUIDMtHO+9C2/7TIY4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CkKQKkc84/BzkOIb5ODp8KlXLYuJgGVJQT0AsOJPoEPNAsZ9rurtPOgFuURzr/2mcvUutcSAcF+iu0nNagXwgTFf38N+WJn4BRezRVEm+/q5sUXZ8O7hq4zoH62A+aCxwu7E66gUj8AFCOags2uxqVdTcuLRs5OEmd34Mcm+To8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dH8jjE9F; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b2f62bbb5d6so2769296a12.0;
-        Tue, 10 Jun 2025 06:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749563182; x=1750167982; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DRQckTsTT83xbLwigtiX4m5LksrcbOPbtVMh/FhriaY=;
-        b=dH8jjE9FwQTxD7oiMV46IsxwcxbfBqzxtloBEa+m6GPC7y0EYpHEAgKn/F/1ZStLRO
-         UX7Bhoj5Fae0HCthrpVUCfrFDcABnw/xw06RNMbhQjETasoRqcZcn9H+KUdi1ixQ3vaq
-         7uJLlxgG7Yf1x1iI5wP996VZisy0D82qnLZ/m5oXeA2ao4NyDhQ6mBRdIC9bGIfVgUIt
-         GeomClfGmfVG9p5hKODldOkeil4gO9OVVZBZNr9+G50ZW8VfBxe47aRLupktPWXUa9q4
-         kES+5aqIqhXA/OkcrMQQPVRqDCw5pWfl7TjlGzLG3YZ+imKDb5op5+HjrT7BFAyxHMwK
-         gwAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749563182; x=1750167982;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DRQckTsTT83xbLwigtiX4m5LksrcbOPbtVMh/FhriaY=;
-        b=Ig3gCUTOEcG4gqSRtleSoc9gDuM9EMprGf6KIBjJoL59BWjcgKWtQwaxAUlCkg3jip
-         IpU2UyDa/ymPd8LqNGuWBNAeeVvcofGmTNXwB+hZGmFpXzzztdwNOtvjqwpYrki7Sz1+
-         dgWCHoxZBTBBMIM48KDyZZXcl72Fjb5/6xqJy1RIzTptHCdk1ZTnW8J+an9lbbxIzxM2
-         3Fy2XDM1sDyfA7RxuKGm1S5QRvYzIkSo7z4ez0qzrYQVB6xODzC+hNJqa243mUpUCisf
-         3qmMjgWa9QDlOsQPAjFrBPgQftsfQKcPyeyPtd+UBkTHsMvb6oGadeSIsy5PanIKTOn9
-         sYSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUnXp3Ttehq/QMPG06BgHNPfSqPSwY5VQ9rv7c5OOGbPBEa2BPC6Ao8AiOu3lGknba/J4Et05QYPB5t@vger.kernel.org, AJvYcCVG9f85RAsINPgt5BkHI2I2eiJyUWxsMmQy4wvE81ZvnVFiZnanaPWB2e5MfYJtaCnbm3/jgiQ9zXIojKSS@vger.kernel.org, AJvYcCWazmA6qPu/XywT9FwvHXtAJlFNOZWkk/qg2qbB5r/wwaME3zEJYFsQ7zGaML6HU5hEAHZYF+cA4X7d@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMyfKXqBcsWtGKuVVB5NRv02b2MiAI3swpL7sOf0Eb/G1glKjd
-	7AwZw9lyk9U+KxNdeBptKeT4WKSSfkDBdbWuCmkTulQGf0wt9YBul8uv
-X-Gm-Gg: ASbGncsgTtKuMddVriIcJ7noCutRkPTRYxrOXthtghIxF0DIG4Upl9uUdehNuIfjq0d
-	xB96ZIm4KuVAopTOdJZClRvSEjUns80mx7/YwyHGR07C4wAvKOIUCCrPWZBGww58rab1ZzPn30G
-	ExLgD3VBlkfu1cchHr6TiK3czOvfjKzQhSq9jl3coQq5zn6Pp76rxxa3RX5XMQOb7ybaqr627kv
-	dE/EgVAfdEO07nHQd8ewMIlP+ifpBdRva9z8jrmu9J1p+sAnGk+z2nZDAQHrgwsDss/Fk73QlR4
-	GNTz6Cs/G32bzXDZYowjYqzl8pzTjFaKbKK+EH6t/DBilRhrt9AKc6huIEPoWjqU
-X-Google-Smtp-Source: AGHT+IFnBfu22zv3Ouu8/mJ9OqridU9aBWmKTkj+xaTICPJRqJSyMf3R+DvVjf3tmKBM0nKTvRSwLQ==
-X-Received: by 2002:a17:90b:3c84:b0:312:e744:5b76 with SMTP id 98e67ed59e1d1-31347695306mr25071825a91.33.1749563182238;
-        Tue, 10 Jun 2025 06:46:22 -0700 (PDT)
-Received: from [127.0.1.1] ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-31349f32df7sm7288522a91.15.2025.06.10.06.46.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 06:46:21 -0700 (PDT)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Tue, 10 Jun 2025 21:45:28 +0800
-Subject: [PATCH v2 9/9] arm64: dts: apple: t8015: Add I2C nodes
+	s=arc-20240116; t=1749563501; c=relaxed/simple;
+	bh=2xpav1gssifbJiMTvuagJlH8sA2SHN3RwD3C3+ICz/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CupjzndqmLGr1SfBMXM0GMI8lpICO5qatgv26IggDnm1baIfkfCJU2B946LnbKCm9OwxHXRXT7n8GhMPis84zeugmlzvcChdxj3kBkQJxbThDwADwDXnN19yt5wtvzzd85aQqZwdc2i+NWHdkC9qLQRxucpBlIyZQmrrFFk0VKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0q/2EnS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B18CC4CEED;
+	Tue, 10 Jun 2025 13:51:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749563501;
+	bh=2xpav1gssifbJiMTvuagJlH8sA2SHN3RwD3C3+ICz/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i0q/2EnSQWJnZs3eHYfUdN9RsmsrF5oFiyG6W6foNdcY3DMpW52TXjQrQEDTctfQ3
+	 KObwHOz4QyJBf1i3yg3aoynhBn51cs1uDNvkmxiJt0bcPLQT+Lsmv1F5C4vgA/i8w2
+	 vvlWKXDtgsAA6rJ0rO9CgKNOne4QjKe82L6NNLEUNQqhHhaiyV3YPhhSy1yJSeBCjT
+	 Dc0LcrgXCNBRy/E0ol648jDWrjfSvcu7Dz5n7uqGndYpAaQTnqGZSMTG+6KEvOaZAa
+	 PmxQgQEUBysSCwKY2pN6/sv199m8BKOL9EkibW/u1242By6FQG38naChZgEaVbvj3R
+	 zn75MdgBQ15pg==
+Date: Tue, 10 Jun 2025 14:51:36 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	jens.glathe@oldschoolsolutions.biz, konrad.dybcio@oss.qualcomm.com
+Subject: Re: [RFC PATCH v1 0/2] Introduce dummy regulator consumer
+Message-ID: <6fcbedb3-eb41-449f-9b6d-10699153c9dc@sirena.org.uk>
+References: <20250607212654.126412-1-alex.vinarskis@gmail.com>
+ <8a688e9f-012e-461c-a916-f06b34fdd913@sirena.org.uk>
+ <CAMcHhXpVKaWX8guog_M+5wHfJ+6uxBteNnV1xCjcDJuGFWOCkg@mail.gmail.com>
+ <b481298e-319f-41ce-8a56-e3f78b8649ff@sirena.org.uk>
+ <CAMcHhXoioEJH+KnLYbXmnt5eyGT-tXg0-CzLQpvj=8Jy5sGXuw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250610-i2c-no-t2-v2-9-a5a71080fba9@gmail.com>
-References: <20250610-i2c-no-t2-v2-0-a5a71080fba9@gmail.com>
-In-Reply-To: <20250610-i2c-no-t2-v2-0-a5a71080fba9@gmail.com>
-To: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Neal Gompa <neal@gompa.dev>, Andi Shyti <andi.shyti@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sven Peter <sven@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3029; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=onusbAGTeKZDibm8BvV42Zc7VsUIDMtHO+9C2/7TIY4=;
- b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBoSDcMfQB3E9FUiFPW5MawR4g4G1LbR7F8Nl1PM
- MDN9xnbL2SJAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaEg3DAAKCRABygi3psUI
- JKJ6D/4rPbodonMfukKOY2SD9RCuDnOe3XuP5GF8nzTJHzCP92+5tU6SCrGWa5TcqVVJv9mRFoh
- +Ycv00c9BGxiIA+SgwwnvQye5fPMd6X13C8yrvms11oZlXjtx017SagHToOn0PDDa5Xh2l+30zq
- EP0npSyXzbfTfznBR8JBgrOreDdHhYKUMzDmdhkAeBvSx/4iUOrM2R5u1HRB7lXwurw7hXLVIsp
- 7xUbfRN4KC9BOK+iuj1QVWKAUp0Zim52gdpLW+D0F4paR41WZ6fnEG5nmbIMV9V0dHZEfud9o0b
- o0u+4F9hb/Uc/nO7oXP5spiFP/0s+MvNhp/nInshMGqN5ntO2zJ0ug/TIGIJgIA1Vie4jHM70bF
- MUYTbV/WTXvwEFZqwqHdaCDyB8HScYxYZFYfy19G7S5HqkjNtGZZO5mJDSLteuhZ82cywO0RDby
- qgP/MjAr9vo9ZJCzD182C6qK2IA2e8lgfqhCZxEiWccYyMqRT3qcMRJmh3+Loy9Ab2aHRWyvpps
- qxCQszZIMSA1V3kBQbK1VVpJA03oi+kXo+B8ZZTrbKAXX3C68bHqlxkpKm8+CUPRS7r6a6u4p4x
- kPB59aDz6oSUFjE/Ws5z87RkYQulDA90++2JjacdJYB4fD6TeA2XHvOAJt6fyV4qBIxsI6oBR6Y
- 14RtP6csmMrWLpQ==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3JbEwhaoPZrgoyLF"
+Content-Disposition: inline
+In-Reply-To: <CAMcHhXoioEJH+KnLYbXmnt5eyGT-tXg0-CzLQpvj=8Jy5sGXuw@mail.gmail.com>
+X-Cookie: When in doubt, follow your heart.
 
-Add I2C nodes for Apple A11 SoC.
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- arch/arm64/boot/dts/apple/t8015.dtsi | 76 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+--3JbEwhaoPZrgoyLF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/apple/t8015.dtsi b/arch/arm64/boot/dts/apple/t8015.dtsi
-index 12acf8fc8bc6bcde6b11773cadd97e9ee115f510..e002ecee339013194537910db2168c143ab3d00a 100644
---- a/arch/arm64/boot/dts/apple/t8015.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8015.dtsi
-@@ -265,6 +265,62 @@ cpufreq_p: performance-controller@208ea0000 {
- 			#performance-domain-cells = <0>;
- 		};
- 
-+		i2c0: i2c@22e200000 {
-+			compatible = "apple,t8015-i2c", "apple,i2c";
-+			reg = <0x2 0x2e200000 0x0 0x1000>;
-+			clocks = <&clkref>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 304 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c0_pins>;
-+			pinctrl-names = "default";
-+			power-domains = <&ps_i2c0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@22e204000 {
-+			compatible = "apple,t8015-i2c", "apple,i2c";
-+			reg = <0x2 0x2e204000 0x0 0x1000>;
-+			clocks = <&clkref>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 305 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c1_pins>;
-+			pinctrl-names = "default";
-+			power-domains = <&ps_i2c1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@22e208000 {
-+			compatible = "apple,t8015-i2c", "apple,i2c";
-+			reg = <0x2 0x2e208000 0x0 0x1000>;
-+			clocks = <&clkref>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 306 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c2_pins>;
-+			pinctrl-names = "default";
-+			power-domains = <&ps_i2c2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c3: i2c@22e20c000 {
-+			compatible = "apple,t8015-i2c", "apple,i2c";
-+			reg = <0x2 0x2e20c000 0x0 0x1000>;
-+			clocks = <&clkref>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 307 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c3_pins>;
-+			pinctrl-names = "default";
-+			power-domains = <&ps_i2c3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		serial0: serial@22e600000 {
- 			compatible = "apple,s5l-uart";
- 			reg = <0x2 0x2e600000 0x0 0x4000>;
-@@ -321,6 +377,26 @@ pinctrl_ap: pinctrl@233100000 {
- 				     <AIC_IRQ 54 IRQ_TYPE_LEVEL_HIGH>,
- 				     <AIC_IRQ 55 IRQ_TYPE_LEVEL_HIGH>,
- 				     <AIC_IRQ 56 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			i2c0_pins: i2c0-pins {
-+				pinmux = <APPLE_PINMUX(73, 1)>,
-+					 <APPLE_PINMUX(72, 1)>;
-+			};
-+
-+			i2c1_pins: i2c1-pins {
-+				pinmux = <APPLE_PINMUX(182, 1)>,
-+					 <APPLE_PINMUX(181, 1)>;
-+			};
-+
-+			i2c2_pins: i2c2-pins {
-+				pinmux = <APPLE_PINMUX(4, 1)>,
-+					 <APPLE_PINMUX(3, 1)>;
-+			};
-+
-+			i2c3_pins: i2c3-pins {
-+				pinmux = <APPLE_PINMUX(184, 1)>,
-+					 <APPLE_PINMUX(183, 1)>;
-+			};
- 		};
- 
- 		pinctrl_aop: pinctrl@2340f0000 {
+On Mon, Jun 09, 2025 at 11:15:09PM +0200, Aleksandrs Vinarskis wrote:
+> On Mon, 9 Jun 2025 at 22:50, Mark Brown <broonie@kernel.org> wrote:
 
--- 
-2.49.0
+> > I don't see why not, and this can also be approached from the controller
+> > side - it's providing a USB bus which includes power as part of the
+> > specification.  That's just a question of where the binding happens
+> > though.
 
+> That would be another option. Could you elaborate on this, please?
+> If I understand you correctly, you mean to extend controller binding
+> (and driver) to take in an additional supply? If yes - I'm afraid that
+
+Yes.
+
+> will be hard to justify to USB controller folks - as per my
+> understanding bindings (and device's driver) shall describe the
+> physical specification of the device, and in this case the root
+> controller does not in fact provide powered rail(s), nor a way to
+> control it - its an external addition controlled by SoC's GPIO for a
+> specific device, so it shall be described as such. Perhaps Konrad
+> could share his view on this?
+
+There's also the potential that there isn't a single 5V supply for the
+bus, depending on the system design.
+
+> > I'm also not clear what the relevance is here?  If we have a dummy
+> > consumer we're still going to need to work out how to instantiate it -
+> > that's the same problem no matter what's getting instantiated.  A dummy
+> > consumer is a userspace interface, not a firmware interface.
+
+> Ah perhaps I should have shared more examples, my bad.
+> Currently suggested solution, which in my opinion is not scalable:
+> * Add VID/PID (of every camera, iff known) to onboard usb driver [1]
+> * Define in DT as:
+> ```
+> camera {
+>   compatible =3D "usb5986,1198";
+>=20
+>   vdd-supply =3D <&vreg_cam_5p0>;
+> };
+
+That's what I'd understood.
+
+> Proposed solution with dummy regulator consumer:
+> * No need to explicitly set VID/PID. Define in DT as:
+> ```
+> camera {
+>   compatible =3D "regulator-dummy-consumer";
+>=20
+>   vdd-supply =3D <&vreg_cam_5p0>;
+> };
+> ```
+
+This is clearly not describing the hardware and therefore not a good fit
+for DT.
+
+> > > Having to add VID/PID for every device that does not in fact need a
+> > > dedicated driver has another issue - it was just confirmed that Lenovo
+> > > Ideapad 5 uses a similar setup with USB UVC webcam, but of course
+> > > VID/PID are different. That would require yet another driver change.
+
+> > We already need relatively large sets of quirks because laptops have
+> > firmwares built for Windows which is happy to enumerate things based on
+> > DMI information even when there is a perfectly good enumerable interface
+> > that could describe things directly, never mind the bits that aren't
+> > enumerable.  This doesn't seem particularly different.
+
+> But how would we approach the lack of particular information, in this
+> case all possible VID/PID for an embedded camera? VID/PID was
+> identified by checking the actual device, which does not rule out OEM
+> switching camera SKU on the next batch, same way they do with other
+> peripherals.
+
+I'm not saying this a particularly great or pleasant solution, just that
+it's where things are at.  You're trying to solve an OS problem with a
+firmware description which is a bit of a mismatch, ideally the firmware
+descriptions would be better but that's just not how ACPI laptops work
+unfortunately.
+
+It does seem a lot easier to just mark the supplies as always on if
+there's no integration with an actual client driver TBH.
+
+--3JbEwhaoPZrgoyLF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhIOGcACgkQJNaLcl1U
+h9DFAgf+Ig6Pk3xzKH/Flc4oxj6yfik8pQQR5k6Q+d0vmCRBVTHDBy35mSrlVK3B
+8kq0mjhguQXGyNunIyaXK8H9REm0rQb4L/+IGxfgHOUadqDIWFQd5AlLoCanWT+2
+NA75g1FhLuJsmPQjxx8ZG0Ai2/IbYFhjpLQQT5ZA7hC7Dnib31v1ermXfkBUPbqj
+bK17nmw9gVZFX+6H+00ecrgRRxXnVX2T4Pwt1+mshL2fF0LXIX/0yioWnDHCvjAi
+wrGPiYrcGQ8Xkvhh3MzYle1XSZ/koiND4rfsr1twPWEkFvkDEQQ+lkSWd6RZeYbr
+VAiU9Ma6c5KzBz3YQKWxRla7CMvEzQ==
+=NxSu
+-----END PGP SIGNATURE-----
+
+--3JbEwhaoPZrgoyLF--
 
