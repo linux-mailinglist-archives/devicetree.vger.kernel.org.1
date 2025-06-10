@@ -1,150 +1,121 @@
-Return-Path: <devicetree+bounces-184210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A50AD340A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:49:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1EA7AD341E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D6EC3A28C9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:49:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64177172B70
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E84FF22259C;
-	Tue, 10 Jun 2025 10:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E3D22259C;
+	Tue, 10 Jun 2025 10:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fjkEfkhj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lwvM+Z4t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C308821D3F4
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 10:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2C1224AFB;
+	Tue, 10 Jun 2025 10:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749552534; cv=none; b=jNDIv3tEBzsrL4n4ak3W/ctLeIVN/Yx96rS0wJxyWdUi14XkIVFovAeSVKbj7in2TgY4IJy9FOdAiULIHyqDP2ETtrMUOW0k3uOAzScSpPRqKz1sE4HH8K7y6klvDIKcj33qFgRbLahOlY/kgdrJ7wEV6LfXhscorV+2AugFbbM=
+	t=1749552852; cv=none; b=okFRR2ec00Yx08irk73Npfpg2OhSOA0Z35EY1+J2hWBTRKBj42FeRcYY/hUTLOGEfet7mVGUdHBxWEWQwNRTAGvtfcQN8glU4HIj2Og9abOOp+PjTWGxiBk9GqlJLT8hHrNatd2Jo7OqQF0pK3iIeclduxYSC+S2scdayhsgF/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749552534; c=relaxed/simple;
-	bh=OVlJwNJ0zjXqHrd/DK9avXIyHcps1devVANm+166hrI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=FKCXXw3vGue0haafPNEmKejqQOKS7luGq2sy/GiGSSCriIZQ1PNpJey/bSgEPQBcQT4Xox8lUb5Xkg/zkZCdVhUEgYuPHvNL/9cegy1ahXKlhwi1N8b7dddxn9hgP57z+yu7yBpzrent8vT9YeJNHTO+X6826gD4x77jDM9TY+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fjkEfkhj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79002C4CEED;
-	Tue, 10 Jun 2025 10:48:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749552534;
-	bh=OVlJwNJ0zjXqHrd/DK9avXIyHcps1devVANm+166hrI=;
-	h=Date:Subject:From:To:References:In-Reply-To:From;
-	b=fjkEfkhj2cBdseFZiHg0oeHZCc1lYUHkfbCjNjgwiCQw+yuGsiGgKOUU+GecIO/fk
-	 YLgr9Do9SJ+zji7mqAYAP/6721DRLiuXgD79JleObFdt7knNMcCsmIq28L5bEd3euK
-	 IZzQuUnQmJ9zPnkuZ96+0BSOKAD4fLpTki7fZ7ID2aKM/SizvrDQp7BFT7tia80Nh2
-	 RrmwgVc2vL3NHUjRcXqsA9SgU2b5IMVk5QL3o6/3gBrah6nrvMHcZIEA5bB2y46Twe
-	 M6KKvs/4dsWc50dh4PBFIR2f4C5xHnQlDMu46L5IMJMC9sI4y7h7jaP8DNgBIoUP6P
-	 BeDQdjiA1iZyA==
-Message-ID: <78773d27-d815-4fac-a131-275bde51788d@kernel.org>
-Date: Tue, 10 Jun 2025 12:48:50 +0200
+	s=arc-20240116; t=1749552852; c=relaxed/simple;
+	bh=mQviaa5V2BjjhvHYyZlmKWM1K820SYfQTPKwzwoi/sk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xo4FGdZNsgnqC08gkjWiGUtRbLf76cOdkvz1EolNR+/oCu9MCksmh6MvpYUJzP60T1pGv2jcl1hJxW1F/+eNTb9NYObYrTN2yPrO3LUWdbDNs9FM4v9f/C/SiJtLAuGjruA/Q//vaCOjlzTAJSoz7L+hJ/hEtbm44Ot1LG+XWZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lwvM+Z4t; arc=none smtp.client-ip=209.85.219.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6fad4e6d949so29589896d6.0;
+        Tue, 10 Jun 2025 03:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749552850; x=1750157650; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=aciM/RtAI+o7KSDm0f9yisjYVs/6j85ozLAsY02zURs=;
+        b=lwvM+Z4toaurWTGAyoUHD5xOoVubI9nfEIewQ/b1Fimc1do0zLsSOaVO/VNSgejkRx
+         EyZJ+kHSfE04eUitxeSkUg8Ra46OBp3iFwVW4jqE9a3eX/9QsbsScOzwRjUv6Ma7IyxZ
+         4hW4DbcfvAHhA6g2vBLF/59wwXQ3ohEDQ9kh+A8ndlumrFkwxT3RH6kuV15XwV62OveT
+         /Q0wUSEN1VhP/ADKjeNmM/8MnMPKG+1QxQWE8N88aFwC/2vhz7kzX1PZpehdMxkIyfZ9
+         Xr2B8lMcMWQmKDnJ9NC6zah8a7eGhDkqiYgMvZ70dQgeyeVowLNdUorLJV20rINHhtvW
+         TuCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749552850; x=1750157650;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aciM/RtAI+o7KSDm0f9yisjYVs/6j85ozLAsY02zURs=;
+        b=QDPVJj6af5Fi0ctMHc8gDKKarsmNz/LJ9C6GsdM9non6Lg/AOueH94kbOUwghnDu+e
+         j58cYCInxpe+7wpu9/dox0T0QW6ZwfqzCTkbn6VWAQuulmNj1uWLH0wMu0cy7b1wTykl
+         L2muqUz1tq2TiAl+3cxWwPAVGO3SIJnyo9UJW34E9lJnQsBN+snvTvtl/Bx/ILksALaj
+         9xqv2BWtxJj6LS2obb63sLRiRvLNFT2UkYA7VD5pgWEd5mj22Li8gw7Le9MEjocxOxcw
+         akqo429LkKywV7cxgSSqFGayZBhQZ8EPKORmJZVN0xsweGIh18LpeQBnGRCL/go8S8E9
+         XDmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW3aSL2xZ7eGA5iVwgy8WK/NuMMGmfqR8n8ZGItoEBCi5vtMN2Y3G3R5561QwX58JelEOwxxBEWR4+M@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFXGEcc4jzHiy/gjzr5yi97ik4eVbwAzoc8qBf/eGZ1zsYZ+hB
+	Okvl1Hr//3WqPzeW441NXHnAubnHt2CTQUdrFuR/ZWu0LUjKWmCfDnFB
+X-Gm-Gg: ASbGncuXENofQM1J+C7Phwwz2rm0meLXySsUs0lk+Pdfgd6cQNk1+XmqibaQDXWNK5i
+	jkyrhnMTRTK6UtodcKnclc3YCpDkfr8+HJqErjZPYTploariqSJbnE9Sqm/a02Fr5BHTHLYreDV
+	iYXFS66MLLyQrdsr9EFq7K1S5BQ0MNCO3YdFAdAutt/1bWHdaajSX1jZJepQZ1Jx+fXKD+GlRlX
+	JQlJF4aelB2IPrVsCzjUtqOmo/YPwErCQCLdyBHIjYtKCXB46bouYr+NjmT5sC/7WEwW9q8w8FB
+	Ej8AMAXuhTWerjMSy6K1Mw6zpCno5NS21mza1g==
+X-Google-Smtp-Source: AGHT+IEo8uu+V6aspY6hh94sC7blb0U3CV9AGlaOO83e1hYVMKVKokyGqG4hkNCz9kFeCPCNDFjT6g==
+X-Received: by 2002:a05:6214:2022:b0:6eb:1e80:19fa with SMTP id 6a1803df08f44-6fb08f43185mr264918966d6.1.1749552850108;
+        Tue, 10 Jun 2025 03:54:10 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6fb09ac94afsm64332126d6.44.2025.06.10.03.54.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 03:54:09 -0700 (PDT)
+Date: Tue, 10 Jun 2025 18:53:02 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Vladimir Kondratiev <Vladimir.Kondratiev@mobileye.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Ryo Takakura <takakura@valinux.co.jp>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, "sophgo@lists.linux.dev" <sophgo@lists.linux.dev>
+Subject: Re: [PATCH v2 4/7] irqchip: MIPS P800 variant of aclint-sswi
+Message-ID: <r5sdm4vs5wayictlhx2zfui76ksrei7bq7wpd55eo5o6ommkhm@lsx2mqsldlu5>
+References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
+ <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
+ <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
+ <iewyo4h3yiqnyn6qrgmckwcaalovpv2udf46jwpor4s5ni5bvu@eg2ikgmswcbg>
+ <AS2PR09MB6296822D5ADAEAECCC06F976946AA@AS2PR09MB6296.eurprd09.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: add overlay for RockPro64
- screen
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Peter Geis <pgwipeout@gmail.com>
-References: <20250518215944.178582-1-pbrobinson@gmail.com>
- <20250518215944.178582-2-pbrobinson@gmail.com>
- <62276efe-13ca-448c-ad1d-ec0a8657737f@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <62276efe-13ca-448c-ad1d-ec0a8657737f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AS2PR09MB6296822D5ADAEAECCC06F976946AA@AS2PR09MB6296.eurprd09.prod.outlook.com>
 
-On 10/06/2025 12:44, Krzysztof Kozlowski wrote:
-> On 18/05/2025 23:59, Peter Robinson wrote:
->> The Pine64 touch panel is a panel consisting of the Feiyang fy07024di26a30d
->> panel with a Goodix gt911 touch screen. Add a device tree overlay to
->> allow the display to be easily used on the device.
->>
->> This was previously included in the main device tree but left disabled
->> by default which still required rebuilding the DT to use the device, now
->> overlays can go upstream the overlay is the best way to handle the
->> add on devices.
->>
->> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/Makefile         |  9 ++
->>  .../dts/rockchip/rk3399-rockpro64-screen.dtso | 89 +++++++++++++++++++
->>  2 files changed, 98 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rockpro64-screen.dtso
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
->> index 3e8771ef69ba1..c7b13bff3ac20 100644
->> --- a/arch/arm64/boot/dts/rockchip/Makefile
->> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->> @@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4c.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock960.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-v2.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-screen.dtso
+On Tue, Jun 10, 2025 at 10:46:23AM +0000, Vladimir Kondratiev wrote:
+> >> +#if defined(CONFIG_MIPS_P8700_ACLINT_SSWI)
+> >> +/* generic/MIPS variant */
 > 
+> >I do not think there is a must to add these defines
 > 
-> This was absolutely never built as reported by Naresh. You should never
-> sent patches which are at least built tested... although they should be
-> actually tested as well, but if code does not build actual testing is
-> impossible.
+> OK, if there is no objections from others, I'll remove it. To clarify,
+> we're about removing both #if defined(CONFIG_MIPS_P8700_ACLINT_SSWI)
+> and #if defined(CONFIG_THEAD_C900_ACLINT_SSWI) ? And, I'll keep logic in Kconfig to select whole .c file if one of variants selected
+> 
 
-Huh, I was wrong - this actually builds, just cannot execute install target.
+I think all should be removed and it is OK to use old THEAD_C900_ACLINT_SSWI
+as driver config. At least for now, I see no similar case about using defined.
+Maybe the subsystem maintainer can give some more meaningful advice.
 
-Best regards,
-Krzysztof
+Regards,
+Inochi
 
