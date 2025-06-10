@@ -1,308 +1,429 @@
-Return-Path: <devicetree+bounces-184412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6446EAD3E94
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:14:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC2FAD3EAD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:21:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A945317B523
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:13:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64070189AE43
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11DE324113C;
-	Tue, 10 Jun 2025 16:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D507F231831;
+	Tue, 10 Jun 2025 16:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="umGu3KKN"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="bwTBn242"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010046.outbound.protection.outlook.com [52.101.193.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF50238C39
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 16:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749571897; cv=none; b=nGXPPg5g01gtq3Yf3KOK4Hkbpq9M9xK49dnFqiPn66Vw7O9Ob08trebP+sh7TmptHExL0Tdma51snNEkmG6+Yo6Fh4T7lnhAXYbN/mPsy8TQrKR870RXwGLFuL8PgAWIcDLNScOedZ2W83IGGvhUb6G4fjdLZgFkiTop/snbpuI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749571897; c=relaxed/simple;
-	bh=H6kKcbtQyCNsRpuQdzx1Ij4f1xHwXmSeJMEq6Npzo00=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jFHvfE+A1cS50ne5DmUaeGGoiSga4YYAmGdt1sdIzNw9buV34kG4vGNzHhnah6kBv0zSpAHi82E9eaZVlJAN8ZGAjcezu0xX+dFTIcZD7cWX6IhWQnxIbZLgEebhWccJIzr8V5djEcF3G3FWID/Hz1YTXOJetKh4/ppRrJZpG40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=umGu3KKN; arc=none smtp.client-ip=209.85.161.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-610d87553b6so734152eaf.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:11:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749571894; x=1750176694; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IjFNPLsLmPIFbKpYACH0ExKk8a2pmT3QZbM6wkI9HdI=;
-        b=umGu3KKNhYALIrRlldlf8kTq3fzDvimB2poZztA5A+JFRC7BiP3z8HtHtGUxY2eYcM
-         Mzo1Kq4emjXwJV6QSFzJM/TZE1/MrQm+hJdT5la9D9X1IHNVwKXxRMesDCkLcpeoonj1
-         CIIO4YjBxiPtclvM49L/JB005AHkkrpkVwTep38KW/C2JQeqcNUYR737KZnM3v6zwYw+
-         P0goi4RiLQfvNOvaJB07dgMI3PCkNX+EYKkIcQAlXqPkysJ3OCevACQf6b9QbY3K2nfw
-         dFLmo+R5XfEG+5QGVFsZXdDpyCri64IcZmkgt30NCHXUhHgBaCOgFdSE4yt/pEQfNgps
-         VBXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749571894; x=1750176694;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IjFNPLsLmPIFbKpYACH0ExKk8a2pmT3QZbM6wkI9HdI=;
-        b=F3328Xau9ExPab4MULPYcEUAoMVxBhBQfVmcoLm8X5dL7ACJ0TIys0ZRosAK3CLO1a
-         PXnNDMrmD0pXWyetVGngIRdKrkweeo/mDMH5ZcrSavZMxndaNMt+I8BL4kJk3xu4u6Xg
-         zqaq4VnNjtKuqb/vk5X5LapZZpGmdC42s8wyjuilcDTv4x4DLofprh54RjRbjoskKKpk
-         0y/JNtvgM9SNAFInzRXPx5PyM5eQg7jsIMO5s4q3s+sK7zy99w1VXgwlk5ZSsAcBxODu
-         CMQ0f5uP614EOfW1rUkMiNGfVKG2DbmnjSb0nRJjBbdOGyQsMas8MiGzgvVE9BGXyJOX
-         KFxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXlu/qPQmgaa3hsTYg+B5tNNaSOHE7nan9mZDCPtcW+XS2nh/8EQZX0hf7wfZySh0sCx6uKGe69eOVP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVeWh1E/35vLbBYRBa8Q0Dvp/9N3Tr9fU7+EX2KXalD2JlE4Bc
-	6zl/6s9e9pF6FK91WsG9tU8dx6cwacyCXDzg6chmV1bSSNBqGJBAQd6Ae4XEYpZE8aw=
-X-Gm-Gg: ASbGnctVcGUkQomWUHYF08+yLoCIArKCrvGi7K/2YGa6v1k69XLlPG6c3gup2WwBAMh
-	Ip97vAPS6QgHO+YA5lTCHGrlARqJlXJGjrnBwxIF40h3r540pMJbzreuBoPjHnLrg9d5JQFl4DL
-	15kPNlw8GHfECme9bR7SN4BruiO0V1t3QmdXZXexcZTdhRhqHsWfrGHQMW+6BCzeoTi12to7zFQ
-	EEH1wMD/eCYk0+SrIXbNnCVpLD0TaZLmA2IRrzbvBWZAdywPp69E3e+yPPA7mNXz3ph+U7p+U6a
-	IHz9ox2qmelfINg7dvQxR50OyQsVMBkJd6pWD+avkw1zZm4qBwHLkZVnlyPyWz3oaQnjGUqZVSl
-	a0whgc2/1XrxofMXs/fQiGN5wFYrpbyrmNdyT
-X-Google-Smtp-Source: AGHT+IEe5j4VAuvAkgd3yNgpCuM13S6tjJh4vDjtrY7qQ16ReDKME1+DnXtNYfBdugeTmqYAaZF+8g==
-X-Received: by 2002:a05:6820:2604:b0:60e:d47d:f616 with SMTP id 006d021491bc7-610e2d24dc9mr1981664eaf.3.1749571893530;
-        Tue, 10 Jun 2025 09:11:33 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:a49:6255:d8db:1aea? ([2600:8803:e7e4:1d00:a49:6255:d8db:1aea])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7388a0704f4sm2066466a34.58.2025.06.10.09.11.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 09:11:33 -0700 (PDT)
-Message-ID: <3d95641d-c1c2-44bc-8478-c60734bcf420@baylibre.com>
-Date: Tue, 10 Jun 2025 11:11:32 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA723246BAC;
+	Tue, 10 Jun 2025 16:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749572498; cv=fail; b=sUVU/s/o5WufpKuFYI+hqmYQLxhgisn/+ItcLp4o+jw3K+v8nZmXSEiEnrwTngjm1g2NYqEdAoI3MBT48O9D0hAtZcmAGac+s9Y93KnUnwqGhVRSzxy/2ZPz0x1wpHzo43Np4lNUZa6cgNt9yr+rEoEFnLxoH0b3rK9tRfxqeg0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749572498; c=relaxed/simple;
+	bh=EX9wSNw7VpWbgx8/tdYUGx1Q39okUahA6UEn1pW/lzw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=cmq/SBUCWnE51exaAdTFiH9tU10PcxIdYxuQMHryFb9JpwpPJ4xOUL+WaRzD1Fq1g6UrHIKB3IVWELau7ta4GE9COHDVrU4+yItVaNzihyh6jlU7XVHPEFf26WtdaqwBVqaMUhze50v7zUSiqG1IrZlKrCNYpyyRfDhmnwxy61c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=bwTBn242; arc=fail smtp.client-ip=52.101.193.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FnyaUF73vQSASrd8s6Y/S/Gcgla0Qd30eSbAHxM4Ur9etlj/CwZi3yunuSAcH+OEob5WV3mwe72vtujFphPhKO5PXdNCmhxGOpHkTYyO7gadN7LX6DX7qN3foYVaOvoAoBrwyNeHXCf7gD8u3O41Zg5QkeBpmZsvKEOy+6Yp1ubTlaBq8SFjK0Xc3TWTP/KQy5boGQdnm4lWBgwYrQwa7tkLAJOvsht8/NdswmRkfTL8d4SclGjyAL4CpI5jUR1AQe8srfJnwK8/PZcsEjBsRKUVU6s6P/DIGMU7h8KrF8I+jagAxcPMA77Y2t0IH2mKvlMzmjZ9XDXFfCe7Y1xTaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+h/lfLvMt2N+rw4HW75DaoSISXNHv98nykXNho/9C44=;
+ b=Q2OrXvym444hIlC8SxIpqXyIfvlMSyUcBve915QfKzJzNCE0IQ6J9Jw41fmyWvGO3exXPlMUVYci0M8TV1g20WkXeSqziZZfG6OYklEPxQjaU8/3Nv//8v4BnkNJ+F3fXLNIkDLWAhELz1VDGjZZAmNBA/wUkzzkX/z7w2qjIdxZAQLZlt4D0j1p1vLS1el3MKCUESKTFfdnCeqhZDUCqRPeXRGlzDG1Fh64IdsNLS37oizCXzpt0IJjoQE6+LeKS/cn9CcTjuKUi0J6C5nniIaSXV+NGCBKxKF7qbAqw5CpT9XKIp8i18nt1UyC7IMfFEFRQ/ke9p3EYMFZbSMasA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+h/lfLvMt2N+rw4HW75DaoSISXNHv98nykXNho/9C44=;
+ b=bwTBn242VY46mGF1E/NfYuX3qVbOrEKN41waS9YDw+SOstjGM+BegGkDFGKLdeNZ2C7xeXYmPiO9Ca4TzY1Qbn/zh5tzs0OT/eNGRZsg3Hk55wFGexlNm848hKYYOCdnfWeyLzr0PRC0JCQftlSoB+wXPXto4lE0AsP6b800x5IW8ETCCVtBCB9te/dUr6hGX6HyiX6UUFNrH+KdV8wCsGk8nxizs5ZXiQAQyoFLDR0G9T3iEL8BL4wytG/hhPCD4/+cacqlaV256QCM33Ze3UhDCIxf4lXd49wwvCrqum0G+0isUUHLfxC52YR8Aq2dY+2piNNj5LNAbFr8vNUojg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
+ by IA3PR03MB7596.namprd03.prod.outlook.com (2603:10b6:208:508::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.37; Tue, 10 Jun
+ 2025 16:21:32 +0000
+Received: from BYAPR03MB3461.namprd03.prod.outlook.com
+ ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
+ ([fe80::706b:dd15:bc81:313c%5]) with mapi id 15.20.8792.040; Tue, 10 Jun 2025
+ 16:21:32 +0000
+Message-ID: <7ca5a936-b5e6-40e5-9d40-a1cf5ff37131@altera.com>
+Date: Tue, 10 Jun 2025 09:21:31 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/5] firmware: stratix10-svc: Implement ID pool
+ management for asynchronous operations
+To: mahesh.rao@altera.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com>
+ <20250610-sip_svc_upstream-v4-2-bcd9d6089071@altera.com>
+Content-Language: en-US
+From: Matthew Gerlach <matthew.gerlach@altera.com>
+In-Reply-To: <20250610-sip_svc_upstream-v4-2-bcd9d6089071@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ2PR07CA0023.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::9) To BYAPR03MB3461.namprd03.prod.outlook.com
+ (2603:10b6:a02:b4::23)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] iio: adc: adding support for PAC194X
-To: Marius.Cristea@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
- andy@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- broonie@kernel.org, devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250606093929.100118-1-marius.cristea@microchip.com>
- <20250606093929.100118-3-marius.cristea@microchip.com>
- <1c7946f1-d712-4baa-8243-be6a55eec528@baylibre.com>
- <1b8b10816d1f2f34724e77c68de869422d6c84b6.camel@microchip.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <1b8b10816d1f2f34724e77c68de869422d6c84b6.camel@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|IA3PR03MB7596:EE_
+X-MS-Office365-Filtering-Correlation-Id: 648c2f9b-21d2-40e4-c049-08dda83adce3
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NmxjMEFSbHBSTEdPTEZlOUE3a1pKbGR0dWxNT1FnS3d4MWpjSTlJek4wY3VJ?=
+ =?utf-8?B?bkp2elVnTFlLNmZQN2VPcCtNMVBEcW5obzFlNXNxUXlOUjVlbm9TNThZWUVr?=
+ =?utf-8?B?QWIxRVZjQmFySnVXSEN4UXIrMTNqY3ZyakZTNyt5cXJsZ0oyU09JWXVDbWlE?=
+ =?utf-8?B?b0VRbHJ4dWdaOHQxczE3OFZlcldDd2JaNHY0L01ZRUZMMHIxM3crVzRidVEz?=
+ =?utf-8?B?MTUvbUwyVUFKWWlYb1ZIT2Z6NjJJaHRxQjBBd05mTFdEeU5hOHRLeExPYlBI?=
+ =?utf-8?B?T1ZRZWdPOTBpbjJ2djVkdUtocUtqaDJPYUFEdURzYlI2RUlwR2ozSWt1S3lw?=
+ =?utf-8?B?YXV1dm1sN1NDaHY5N0FEUzNnRy9sUmhJVXlrWENFdUh4S3JJRGg3RkxrUWwr?=
+ =?utf-8?B?Zzg4RmJJVFIzeDNDeW5YbkxJZi9YeXZSaDFYNlduWS9lUVhoY2ZGaC9rbHdD?=
+ =?utf-8?B?dVdZWHFTN2hadTlGTlBISmk2Z3pFN0tRTGhIT3MxRTVacWw1Ui9pWUlXOThH?=
+ =?utf-8?B?L1ZOMVZ6TDhLOVFHa0xvS0dlVUdhM1R0cWZkZWJvZHpnTmRiK3RNVER0TkxW?=
+ =?utf-8?B?YWZDeGsxOEV3bTcyN1M4dVVnb0hIS0NiU0l0K21NMlgyUDB1bU83L08rT25W?=
+ =?utf-8?B?SzREK0JEMU1EbmlaNW44VWJjdEtyOFE4YUFFUVRwUkJmM1hKRVl0ZnVVbmFn?=
+ =?utf-8?B?Z0Rkb3BTQU1ya2p2SERwS2xub1Z2NDNvcXBsRFlMdFFsczFRanhGZGVZWDZC?=
+ =?utf-8?B?eHphMUxqSnV6OXpWaU5WTzcwMHBtUng0MDR6SVJUMXJES2g0c3h4WFVTMXoy?=
+ =?utf-8?B?UEpiY3dsU3NnK0FKV1BwRm15dHREbC96M3NKSi9SU2xkcnpDRytqNkVpd01Y?=
+ =?utf-8?B?Y1hSalFLbVgzSHlqUWdmRThER3BWK3BIRmUvQVlZOW1SeW9jRjVWSjN2RTZV?=
+ =?utf-8?B?UUc1aFROeE5UdUUxdUtKangzSS9nc1NkK0czSy8wMmVWdFFOTmZ5dEdWRTNP?=
+ =?utf-8?B?NFZLa1hkQ1JqRzNoZ3R0Wld1akhRRUcxbEthSllzcVd2LzJZT1pQOC8rMkp4?=
+ =?utf-8?B?V0FoRjZSQVZQS1VVTE5xOHNWVlNJWW94dHlmQThEM1pPMHpwejNLZHFvMXQ1?=
+ =?utf-8?B?WHp3eUNxdHpPeC82OHpWUy9maE5hcm5SLytEejFRdXc2a2FncDlPT1dzTUZU?=
+ =?utf-8?B?ZkwzUExGek1ZQjFEazZMSXdvOTB6UTQ5TDZFVjBYYVdpa2dqVTI0dXp6RFhE?=
+ =?utf-8?B?bWZLUXFsZldicCtkaGtPZzVRK3VNbnBFNDl2TXFhb1lKVmNrSlBJUGhocW9p?=
+ =?utf-8?B?QmhYQWhwMDFUTnpaamd4Qk40eFRBYVNWbzRTZUdWb0NZWDlpRkE5V3Rja0ZW?=
+ =?utf-8?B?YmY5SXc3VURPS3JtRDM5RDF0MkZTbC84ZHdjSitwYU5ZbHJmdXVReGRudzh3?=
+ =?utf-8?B?QVdWbnAvTnNzQUd5SnE5Nk9FajZ6ekt4MDhNVFRvOWlvd2tEVjhpZVNYR3Vx?=
+ =?utf-8?B?VSswMlJCNnNUa291VFAzanlRVHl5NFJZUExCUWw5MmxlZkJ5WXVRdDh0WmZq?=
+ =?utf-8?B?QnZkNDBDbm1JWFRJblJPSnlaemdEOGdON0Ezc0ZyZlkxNGhrK3N4bzJlTUxM?=
+ =?utf-8?B?N01EbkVhTkEwQnZZYTYzUWwxWjRNLzZVd29iVFVpVmQwMXVsT1FDNmVvUlFz?=
+ =?utf-8?B?akl0SDZ6SHpqYURES1JzVGdwZUJFSEhiOEVtL3pTSWJlMnhyNTZUeFFkbCts?=
+ =?utf-8?B?OUVld0cwcmRXQzlkVi95ZlpYL29TQzcwaG1wcWxlejFubXZ6U3Q1YjZBSG8v?=
+ =?utf-8?B?cU9hZStqN3hVcVFRRnQ1SUVtbm9NK0FGRlo5K0x6Qk1iY0lvRXAxZGhuUWdy?=
+ =?utf-8?B?N0dRdURlZGhTSnBGTHdUM2poQThLN0cyaUdNeGEwaVExVDNLNDVSbEd3cWxl?=
+ =?utf-8?Q?gZVRN+4HHFw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?STB1aEE2bW9IamJ2eENQcGVTN21tRlplT0NwZjE5SmJGZVp2TU9DcmxRMlBT?=
+ =?utf-8?B?K3l1dWxIVTcrTDh6WUVrWGp4M29palg5bkkveFAvS1NQK1JvWWpnRWYzKzF3?=
+ =?utf-8?B?ZnNhOGtVcmZDdG15azMwaW1Jd1RWZ09VQnVad2NuMUtXVXBVOW53M2M0cU5J?=
+ =?utf-8?B?NGQ2QmtYdGRtNkJ6ZmUrc0tEbTRYUURhL25kcGpndm53ZDVaaVRPd3B2ak1Q?=
+ =?utf-8?B?ZlE3V3BrWTdXMnRNZy9zWHJLUUVCdEhmbWdMTUc0WGdVRE1NZUtEOHFhdEp5?=
+ =?utf-8?B?OXFBN29ac3lONzY1dVI5NmVIRHhPSjZvK1hHQ1U3WkJkZjA0MnBWd0RGaW0x?=
+ =?utf-8?B?SEVvYkNIZkliNFNZMWRXUi9CZmFNN2tRRTI0YlhaZnU2Vlo5WWtxamtybGE0?=
+ =?utf-8?B?eFFHenozNEljYXpTcXM3Q2t2Sllla2RqRWNoZ0NaSUcrUDVpQ2xNTlJ0Vlpv?=
+ =?utf-8?B?enloZms5b0hjTzRhWjgvOVFxTEF1MkExeVdSb24wOXpzR2k4YitsTXRxM0NJ?=
+ =?utf-8?B?bGVyaTcvRTB2YW9Vb2hZTkxZSmV0WXJUVjFKdHluMUpaTkRESnRLUko4b3Zl?=
+ =?utf-8?B?Ukg0R2FkajJ6MmRHU0VjRlVHd3dQbmw4emNSLzlONU9lQnNwV3hkclg4SVFu?=
+ =?utf-8?B?SVgrZUNMUDBQMGxXd2xNUVBCOHczQ3VyTG0rREo0ejRaZkhmVUl1M3g5RnJa?=
+ =?utf-8?B?SmttT2wwenhGUEVOWS9IaDgxRFlxUmFxNnNaTFR2UGJYbzRERUQ5M0hLWm1z?=
+ =?utf-8?B?Q051elZDUG92Vyt4ZHdIcGtyUkkyZnArbnJ1b0ltaEsrSXpCYjMzc2FKMTRD?=
+ =?utf-8?B?MkpRYTBETFdGay9FaTdaV0p1ZjZXS0NLNU5xS3VxVjZtMkRGSk1ObUhiN2JY?=
+ =?utf-8?B?bmx1Qk5VdXJCazlxVzFKTEtHakhCM2paa1gyZ3VYWHdua1pSZG9PTEh4YjNE?=
+ =?utf-8?B?TWhJSWxGT3g4eFZ5ZjNsTHByTU5OajMwQXJqQUdzK1c3VFhNdlVsQlFzN09P?=
+ =?utf-8?B?cCtrcXdabnNaTktBUlNKZUN2Y2M0NE8yMkl0aHJxMFY4cWpSN3NzWElmSi9X?=
+ =?utf-8?B?bVpMbHBmN0czeHdGVnRsclJDUUFKVUYvNWEweFRYTy9kVHQ3Sko3Q0x5akli?=
+ =?utf-8?B?OS9ZVUdGcHRiQm13bEZBbUx4ZEp6eGxFb0wxWnhxdzlLZ2crMGxZa1kveGlJ?=
+ =?utf-8?B?dThySjFtRUk3U096SzFCM3FLRVBDVy80UkFrTTFQbTg2TnFlMGV6VXo0WSsz?=
+ =?utf-8?B?cVFoVWhBc2l3OGVjVmF2blFRTnB5U2RnZDFTaHp1eitHN0w4ZXdwcWZTZFlB?=
+ =?utf-8?B?MUVjV1ZGS2JrbFEvWWsydUZxbkFreXNKV3p1dWlkUVhueGlWVW4xaXpEZi8z?=
+ =?utf-8?B?em5tVERTL2lLWExjT2ZMMmF2TkthcDBQN0hmVW13dVFqZE1WN3NEK3U2bTRq?=
+ =?utf-8?B?bmhxc3gzT3p6aFNNY3pGOXkyaEZSemhnUkZ4ZFFPWXpFNkQvWWVyVFEzWE1k?=
+ =?utf-8?B?Mjh6N1BzRndiUDBjUk1iaVR4Yzh3M2hIcCsyTmI3NUlHM1ViQlk4Z0xNbm1n?=
+ =?utf-8?B?K01jYUxxNHEweXJNZ2xBdGNrbi82V3I3Y0lmTFhiekorUmFRUXVOR0NSYXQ0?=
+ =?utf-8?B?NEMrVUZVTGc2YWpuQ09qQW9CWTZPb1VWdEFzV25Ba0p0NGpCRkNmRmw5Rysv?=
+ =?utf-8?B?UHF4Ynd0aXVUdzI2OFZCR2lWaDdkQzh0dFZoQjBVY3djb2VkOGZzNEFXT3Vm?=
+ =?utf-8?B?ZjhJS3RQS0JNeGRIQ0RNb2ZIMFd3Q2x5WXcxYlpSSUtxTHRydmd2bVhnOCt6?=
+ =?utf-8?B?ZkF5ejBNZ1B1dDFHR093ZkpjcUNBRVNxWDk1eTY4M1FraC9aZDVuaTBrbytE?=
+ =?utf-8?B?eTNwdkE1YWN5RGRvd0F3czJUSDFhc09tT0hpY3A3cGdaTjY1bnpDK2hCc0l0?=
+ =?utf-8?B?VUJIVkxLMkR2YVh6SkdvMllDYks0Z2wwUWx1b2ZaTEc4cGRpYXh5Um1vQjRq?=
+ =?utf-8?B?QTM1WHhxYm5JMWNCOXNqY0kySExOQUdMV1BFWklZNkJ0TWVnQ0x3dkZNdjlF?=
+ =?utf-8?B?MGhDN0RYdEM1MzNMcHR0a0FFNXlTK1M5UU12T252SXM1cDE3VGdrU3UvTlFk?=
+ =?utf-8?B?V3M0NmhoZDBZYzc1SURGODVxY1Fid2JZTHRkUHlrV2pHeVZBZUo0Yy9OQUph?=
+ =?utf-8?B?OHc9PQ==?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 648c2f9b-21d2-40e4-c049-08dda83adce3
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2025 16:21:32.6157
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dO5qQk5jBlUmGn5CehjddSx2PnJIIwdgIUDe61UnB/tpvLy2RmVDkXMENgv9cI5C74QTJFA5g1400ZDEpDD+IMR0WCinJVlpCJ5jKr/KEwE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR03MB7596
 
-On 6/10/25 10:07 AM, Marius.Cristea@microchip.com wrote:
-> On Fri, 2025-06-06 at 12:02 -0500, David Lechner wrote:
+
+On 6/10/25 8:37 AM, Mahesh Rao via B4 Relay wrote:
+> From: Mahesh Rao <mahesh.rao@altera.com>
+>
+> Implement ID pool management API's which will be
+> used for Stratix10 Asynchronous communication with
+> Secure Device Manager. These API's will be used
+> in subsequent patches for ID management in
+> asynchronous operations.
+>
+> Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
+> Reviewed-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> ---
+>   drivers/firmware/stratix10-svc.c | 195 +++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 195 insertions(+)
+>
+> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
+> index 955468555738b2031dfcf6dc4db7dbf11ccc482c..6d21f0301c3457c1b1bed52e39ee03d14294943d 100644
+> --- a/drivers/firmware/stratix10-svc.c
+> +++ b/drivers/firmware/stratix10-svc.c
+> @@ -170,6 +170,21 @@ struct stratix10_svc_chan {
+>   	spinlock_t lock;
+>   };
+>   
+> +/**
+> + * struct stratix10_sip_id_pool - Structure representing a pool of IDs for
+> + *                                asynchronous operations.
+> + * @head:         The head index of the ID pool.
+> + * @size:         The total size of the ID pool.
+> + * @id_mask:      Pointer to an array representing the mask of allocated IDs.
+> + * @lock:         Mutex lock to protect access to the ID pool.
+> + */
+> +struct stratix10_sip_id_pool {
+> +	unsigned long head;
+> +	unsigned long size;
+> +	unsigned long *id_mask;
+> +	struct mutex lock;
+> +};
+> +
+>   static LIST_HEAD(svc_ctrl);
+>   static LIST_HEAD(svc_data_mem);
+>   /* svc_mem_lock protects access to the svc_data_mem list for
+> @@ -177,6 +192,186 @@ static LIST_HEAD(svc_data_mem);
+>    */
+>   static DEFINE_MUTEX(svc_mem_lock);
+>   
+> +/**
+> + * stratix10_id_pool_create - Create a new ID pool for Stratix10
+> + * async operation
+> + * @size: The size of the ID pool to create
+> + *
+> + * This function allocates and initializes a new ID pool structure
+> + * for Stratix10 async operations. It allocates memory for the ID
+> + * pool structure and the associated bitmaps for ID management.
+> + *
+> + * Return: Pointer to the newly created ID pool structure, or NULL
+> + * on failure.
+> + */
+> +static struct stratix10_sip_id_pool *stratix10_id_pool_create(unsigned long size)
+> +{
+> +	struct stratix10_sip_id_pool *id_pool = NULL;
+> +
+> +	if (size == 0)
+> +		return NULL;
+> +
+> +	id_pool = kzalloc(sizeof(*id_pool), GFP_KERNEL);
+> +	if (!id_pool)
+> +		return NULL;
+> +
+> +	id_pool->size = size;
+> +
+> +	id_pool->id_mask = bitmap_zalloc(size, GFP_KERNEL);
+> +	if (!id_pool->id_mask) {
+> +		kfree(id_pool);
+> +		return NULL;
+> +	}
+> +
+> +	id_pool->head = 0;
+The above is not necessary because you used kzalloc() above.
+> +
+> +	mutex_init(&id_pool->lock);
+> +
+> +	return id_pool;
+> +}
+> +
+> +/**
+> + * stratix10_id_pool_destroy - Destroy an ID pool for Stratix10 async operation
+> + * @id_pool: Pointer to the ID pool structure
+> + *
+> + * This function destroys an ID pool for Stratix10 async operations. It first
+> + * checks if the ID pool is valid, then frees the associated bitmap and the
+> + * ID pool structure itself.
+> + *
+> + * Return: 0 on success, -EINVAL if the ID pool is invalid.
+> + */
+> +static int stratix10_id_pool_destroy(struct stratix10_sip_id_pool *id_pool)
+> +{
+> +	if (!id_pool)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&id_pool->lock);
+> +
+> +	if (id_pool->id_mask)
+> +		bitmap_free(id_pool->id_mask);
+> +
+> +	mutex_unlock(&id_pool->lock);
+> +	mutex_destroy(&id_pool->lock);
+> +
+> +	kfree(id_pool);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * stratix10_reserve_id - Reserve an ID in the ID pool
+> + * @id_pool: Pointer to the ID pool structure
+> + * @id: The ID to be reserved
+> + *
+> + * This function reserves an ID in the given ID pool. It first checks if
+> + * the ID pool is valid and if the ID is within the valid range.
+> + *
+> + * Return:
+> + * 0 on success,
+> + * -EINVAL if the ID pool is invalid, the ID is out of range, or the ID is
+> + * already reserved.
+> + */
+> +static int stratix10_reserve_id(struct stratix10_sip_id_pool *id_pool, unsigned long id)
+> +{
+> +	if (!id_pool)
+> +		return -EINVAL;
+> +
+> +	if (id >= id_pool->size)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&id_pool->lock);
+> +
+> +	if (test_bit(id, id_pool->id_mask)) {
+> +		mutex_unlock(&id_pool->lock);
+> +		return -EINVAL;
+> +	}
+> +	set_bit(id, id_pool->id_mask);
+> +
+> +	mutex_unlock(&id_pool->lock);
+> +	return 0;
+> +}
+> +
+> +/**
+> + * stratix10_allocate_id - Allocate an ID from the ID pool
+> + * @id_pool: Pointer to the ID pool structure
+> + *
+> + * This function allocates an ID from the given ID pool. It searches for
+> + * the next available ID in the pool, marks it as allocated,
+> + * and returns it.
+> + *
+> + * Return:
+> + * A non-negative integer representing the allocated ID on success
+> + * -EINVAL if the id_pool is NULL
+> + * -ENOMEM if no IDs are available in the pool
+> + */
+> +static int stratix10_allocate_id(struct stratix10_sip_id_pool *id_pool)
+> +{
+> +	unsigned long tries = 0;
+> +	int id;
+> +
+> +	if (!id_pool)
+> +		return -EINVAL;
+> +
+> +	if (id_pool->head >= id_pool->size)
+> +		return -ENOMEM;
+> +
+> +	mutex_lock(&id_pool->lock);
+> +
+> +	do {
+> +		id_pool->head = find_next_zero_bit(id_pool->id_mask,
+> +						   id_pool->size, id_pool->head);
+> +		if (id_pool->head >= id_pool->size) {
+> +			id_pool->head = 0;
+> +			tries++;
+> +		}
+> +		/* cycle through the whole bitmap at least once*/
+> +	} while (tries < 2 && test_bit(id_pool->head, id_pool->id_mask));
+> +
+> +	if (tries >= 2) {
+> +		mutex_unlock(&id_pool->lock);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	set_bit(id_pool->head, id_pool->id_mask);
+> +	id = id_pool->head;
+> +	id_pool->head = (id_pool->head + 1) % id_pool->size;
+> +	mutex_unlock(&id_pool->lock);
+> +	return id;
+> +}
+> +
+> +/**
+> + * stratix10_deallocate_id - Deallocate an ID in the ID pool
+> + * @id_pool: Pointer to the ID pool structure
+> + * @id: The ID to be deallocated
+> + *
+> + * This function deallocates an ID in the given ID pool. It first
+> + * checks if the ID pool is valid and if the ID is within the valid
+> + * range.
+> + *
+> + * Return:
+> + * 0 on success,
+> + * -EINVAL if the ID pool is invalid, the ID is out of range, or the
+> + * ID is not set.
+> + */
+> +static int stratix10_deallocate_id(struct stratix10_sip_id_pool *id_pool, unsigned long id)
+> +{
+> +	if (!id_pool)
+> +		return -EINVAL;
+> +
+> +	if (id >= id_pool->size)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&id_pool->lock);
+> +	if (!test_bit(id, id_pool->id_mask)) {
+> +		mutex_unlock(&id_pool->lock);
+> +		return -EINVAL;
+> +	}
+> +	clear_bit(id, id_pool->id_mask);
+> +	mutex_unlock(&id_pool->lock);
+> +
+> +	return 0;
+
+Inverting the if statement would allow for a single exit path:
+
+     int ret = -EINVAL;
 
 ...
 
->>> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
->>> b/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
->>> new file mode 100644
->>> index 000000000000..ae88eac354a4
->>> --- /dev/null
->>> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
->>> @@ -0,0 +1,17 @@
->>> +What:               
->>> /sys/bus/iio/devices/iio:deviceX/slow_alert1_cfg
->>> +KernelVersion:       6.16
->>> +Contact:     linux-iio@vger.kernel.org
->>> +Description:
->>> +             A read/write property used to route, inside the PAC
->>> device, a specific ALERT
->>> +             signal to the SLOW/ALERT1 pin. The SLOW/ALERT1 pin
->>> must be configured for the
->>> +             ALERT function in order to control the device
->>> hardware pin (this is the default
->>> +             functionality of the device hardware pin).
->>> +
->>> +What:               
->>> /sys/bus/iio/devices/iio:deviceX/gpio_alert2_cfg
->>> +KernelVersion:       6.16
->>> +Contact:     linux-iio@vger.kernel.org
->>> +Description:
->>> +             A read/write property used to route, inside the PAC
->>> device, a specific ALERT
->>> +             signal to the GPIO/ALERT2 hardware pin. The
->>> GPIO/ALERT2 pin must be configured
->>> +             for ALERT function in order to control the device
->>> hardware pin (this is the
->>> +             default functionality of the device hardware pin).
->>
->>
->> What is the use case for needing these? In otherwords, why can't the
->> driver just
->> make best use of available resources as it sees fit?
->>
-> 
-> Here inside the PAC the user could choose what limit to be routeed
-> outside the chip. For sure, all of the limits could be routed to the
-> same hardware pin, but there are some use cases where the user will
-> want to connect that output pin to a safety hardware (e.g. over-current
-> protection or over-voltage and over-current) and in this case we need a
-> way to allow the user to do the setup.
-> 
+     if (test_bit(id, id_pool->id_mask)) {
 
-This sounds like it depends on what is wired to the alert pin, so sounds
-like something that should be specified in the devicetree.
+         clear_bit(id, id_pool->id_mask);
 
-I.e. in the devicetree, have a bool property microchip,alert1-is-safety
-to indicate the ALERT1 pin is wired to the safety hardware. (It could
-still be also wired as an interrupt input at the same time - or not,
-doesn't really matter.)
+         ret = 0;
 
-Then, on the event attributes add a boolean "safety" attribute to allow
-routing the signal to either the pin that was flagged as the safety pin
-or not. This would allow the user to chose which signals control the
-safety hardware at runtime without them having to know how the hardware
-is actually wired up.
+     }
 
->>
->>> subsidiaries
->>> + *
->>> + * Author: Marius Cristea marius.cristea@microchip.com
->>> + *
->>> + * Datasheet for PAC1941, PAC1942, PAC1943 and PAC1944 can be
->>> found here:
->>> + *
->>> https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC194X-Family-Data-Sheet-DS20006543.pdf
->>> + * Datasheet for PAC1951, PAC1952, PAC1953 and PAC1954 can be
->>> found here:
->>> + *
->>> https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/PAC195X-Family-Data-Sheet-DS20006539.pdf
->>> + */
->>> +
->>> +#include <linux/acpi.h>
->>> +#include <linux/bitfield.h>
->>> +#include <linux/delay.h>
->>> +#include <linux/err.h>
->>> +#include <linux/i2c.h>
->>> +#include <linux/iio/iio.h>
->>> +#include <linux/iio/events.h>
->>> +#include <linux/iio/sysfs.h>
->>> +#include <linux/unaligned.h>
->>
->> This seems incomplete. Expecting at least linux/module.h,
->> linux/property.h, etc.
-> 
-> I will double check. Most probably those module are already included by
-> a header.
-> 
+     mutex_unlock(&id_pool->lock);
 
-Even if some things happens to be indirectly included by another
-header, we still prefer to have the "primary" header included for
-everything that is actually used in this file. E.g. since this
-file uses the MODULE_DESCRIPTION() macro, we expect to see
-linux/module.h even if another header already includes that
-indirectly.
+     return ret;
 
-Usually the "primary" header is the one where a symbol/macro is
-defined, but not always, e.g. if there is a linux/something.h
-that incldues asm/something.h, we would prefer the linux/ one
-rather than including the asm/ one directly.
-
-
->>
->> ...
->>
->>> +static IIO_DEVICE_ATTR(in_current1_shunt_resistor, 0644,
->>> +                    pac1944_shunt_value_show,
->>> pac1944_shunt_value_store, 0);
->>> +static IIO_DEVICE_ATTR(in_current2_shunt_resistor, 0644,
->>> +                    pac1944_shunt_value_show,
->>> pac1944_shunt_value_store, 1);
->>> +static IIO_DEVICE_ATTR(in_current3_shunt_resistor, 0644,
->>> +                    pac1944_shunt_value_show,
->>> pac1944_shunt_value_store, 2);
->>> +static IIO_DEVICE_ATTR(in_current4_shunt_resistor, 0644,
->>> +                    pac1944_shunt_value_show,
->>> pac1944_shunt_value_store, 3);
->>
->> These are specified in the devicetree. Why are there also sysfs
->> attribtes?
-> 
-> Yes, you could put a generic shunt resistor into the device tree but
-> this resistor will have a tolerance. Because the end user could
-> calibrate the system, it could also save the calculated/calibrated
-> shunt resistor somewhere and restore that calibrated value each time
-> the driver is loaded.
-> 
-
-If changing the resistor value changes the measured raw value, we
-could probably use one of the existing standard calibration attributes
-instead, like calibbias or calibscale.
-
-> 
->>
->>
->>> +/* Available Sample Modes */
->>> +static const char * const pac1944_frequency_avail[] = {
->>> +     "1024_ADAP",
->>> +     "256_ADAP",
->>> +     "64_ADAP",
->>> +     "8_ADAP",
->>> +     "1024",
->>> +     "256",
->>> +     "64",
->>> +     "8",
->>> +     "single_shot_1x",
->>> +     "single_shot_8x",
->>> +     "fast",
->>> +     "burst",
->>> +};
->>
->>>
-> ...
->>> +
->>> +static const struct iio_chan_spec_ext_info pac1944_ext_info[] = {
->>> +     IIO_ENUM("sampling_frequency", IIO_SHARED_BY_ALL,
->>> &sampling_mode_enum),
->>> +     {
->>> +             .name = "sampling_frequency_available",
->>> +             .shared = IIO_SHARED_BY_ALL,
->>> +             .read = iio_enum_available_read,
->>> +             .private = (uintptr_t)&sampling_mode_enum,
->>> +     },
->>> +     { }
->>> +};
->>
->> sampling_frequency{_avialable} are already standard attributes in IIO
->> and is
->> defined to be a number in Hz. So we will need to find a way to make
->> this
->> work with the standard attribute (can use IIO_CHAN_INFO_SAMPLE_FREQ,
->> by the way).
->> And figure out how the other parts fit into other existing IIO
->> features.
-> 
-> I can change to the standard attributes but I still have some question
-> related to how to handle the ADAPTIVE sampling frequency that the chip
-> supports and that it could be used to lower the power consumption of
-> the chip.
-> 
->>
-
-From a quick look at one of the datasheets, it sounds like this
-"adaptive" mode only applies when using an accumulator. And it doesn't
-actually change the sample rate, but rather other factors, like scale
-and the accumulator counter incitement. So it seems like it would be
-a separate custom boolean attribute.
-
-Also, I noticed that the fast mode and burst mode make the sampling
-frequency dependent on the number of enabled channels. So to handle
-this, normally, that would mean that IIO_CHAN_INFO_SAMP_FREQ would
-need to be IIO_SEPARATE rather than IIO_SHARED_BY_ALL.
-
-But since these chips support can work both ways (there are modes
-where sample rate doesn't depend on the number of channels enabled
-and there are modes where it does), I'm not sure what the right way
-to handle that would be here. Maybe Jonathan will have some suggestion?
-
+> +}
+> +
+>   /**
+>    * svc_pa_to_va() - translate physical address to virtual address
+>    * @addr: to be translated physical address
+>
 
