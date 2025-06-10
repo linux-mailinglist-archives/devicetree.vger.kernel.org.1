@@ -1,303 +1,225 @@
-Return-Path: <devicetree+bounces-184217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EDABAD3475
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D33EFAD3487
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:07:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6173C3B4EBB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:03:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5D513AEECA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0219528DF1F;
-	Tue, 10 Jun 2025 11:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC3728DF1F;
+	Tue, 10 Jun 2025 11:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="MyPwLmaw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ozUwuk4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF6328DF13
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A15728DF12
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749553442; cv=none; b=MSQKL/N9jossqfDmkCZeeyhFcVCnNNuleklZDYxgYIu5iDyTa86Ep/Ldr8xqqO3nuMTkqK+Dozq1VIPQ9po0MEMWIM2OgnWm4i2vCDBI8835BaGwesmDNk6e9iM3sjgCcwIL8mh9A3XIBhbFpN9a9o8J6xAIUw2B7z4GZkgUW3Q=
+	t=1749553649; cv=none; b=qiS3sdg9Z0+42DQ3VeFrrjci1YT4eT2cxkKp1bUUrMJbeots6s70SLb9dLWlgcK41Jlogm5Y85k34FmO0MiUP1F9OI0lmPI6DRbCOTRtNACVuGRxXAg8hlkkaR872AknJfCbDSAtdm10ESCjLTU0WjQvSF5k2UR0riVSxPHa9jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749553442; c=relaxed/simple;
-	bh=8fNQgjatY1ybh3/ip3WOZMx4IyIUcueMoDOkViRKZd8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ujno+VNrEXZQw+Vd/lZox1KUHUY3WoWQf/BK/hnm8foneSheCf2vvJG0VeTB/fkF/fjpQMCoYKhj1VGIJpR4gTO2ESXoyYYbNDiHmaURGB2yo4Xz7+Ek+Ev6sPm53Axlry3VwopSw1rilkvg74iow9rqpHeeLI9FiypzBwNDA70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=MyPwLmaw; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-553543ddfc7so5106481e87.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 04:04:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1749553439; x=1750158239; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XKrG+/t13RZcj2XOvH9v9z8+L2fFTYYa3Ltd42Ng0rE=;
-        b=MyPwLmawmguJu8VPMGIASo7MS3uN2CUDw5+K1JkfdI3XwUe3aIOnt+7XeEbaxFYsfw
-         dyig0/cE0IuVw6vxqMbeUxc4WJkd2DE2T04xmITFKkrzErmb6XtvkzaCGkNOFTHk9iS5
-         gx/xmfvzZMVpf1ACgIIczmhSbn6RZN8EzY3eczxmpbJZGOnhwNfuZksBBVn9NwTv0QNM
-         8Em9Y9A4ENlkAY4i0jmIOmSKo9d7iJCWFVHVgkzonXH8Gqn4FYSkXUNrSbT0leeiFNC+
-         2tQIZ7LTLigPRDvP465LjYIVwXggsp97mpau9TWzONJT7k43MSpi+2dSbpw+uW73nYab
-         DJSA==
+	s=arc-20240116; t=1749553649; c=relaxed/simple;
+	bh=UPlSsOeQrv5JUW5Lfe0X5nkvCTI9hlUwH96nurL1irc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mKxmV32YQxGfD7mBNbDlw1IqLfhYEPtjCm9lYQxc/iYZ4mjpLRH6hl1huyt3VxuluneAYDhNKqduNB74q22T57YiReJLPX0FMYmHH/waCcmcYgPh8Cj5Kz4o7UHHYnWEbFBtFqHJmPb23lBlT75mIP3uCT43cOOoHq9s1F7MCeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ozUwuk4p; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55A8RltV014709
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:07:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=67IOVthVyAUCNLQvy2dAGJFK
+	71qcOVj/j2a2DCuKxFc=; b=ozUwuk4pI0e+BxTK6z0TRimpey/N3EVTyiLkO8F/
+	ZdhOSPQny7XTvFSQtffbeCuqqhPCZhVcUfTxOOwAlIJsoJztI3ck/uc/lAMXBcxQ
+	2CkfXC9Y58MUy9wKtnaeSLhFEE/Iy+gp/WxWMk4uXl/z/rdE8nZqg4WPcFBNz4+K
+	+nPw3fv2LnzRgJYv8YObNiOedcMZOCahxWelcy/FEIi32XGtuq8vTck+vFh2Vsvp
+	jHHS17fUDzCywifq6rOXnC1Lm5hFSPciCBNMFebGqVvptcWfnEBGJmyYyzEztA3I
+	Q2CU4gQ5O0p2w1WTnWWqjnT4bSMQsqRdwlSzlfdU0uaTNA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn693vp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:07:27 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d0981315c8so544018285a.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 04:07:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749553439; x=1750158239;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XKrG+/t13RZcj2XOvH9v9z8+L2fFTYYa3Ltd42Ng0rE=;
-        b=I2Gob/ecHPV0z/bc4ZW5aZ13vUnMoZ7NrMssPwY73DyqxuiLIuTH6sHCBTlgyDdmjK
-         lUhH1M1DeAjKFG0g05VShRA7pmxN0wpOItU+HqU2NnWFXEqTzCge/UbiFIHSuu8mBJQu
-         floz9MyKNXI7lKvHEJj0Lj72pczbe06HLBKvy4tVijXxtlO2XEjamQLnKO0XrjIQc15x
-         zvOkssQlIbyz4k522qusgB5YOScS2R1J7s4y9OBxzfRaG8/ERtaIeU7zp9mixid0GIrk
-         rXUhgZbeU6fR4PO4GNmhRXyn7qW0fZeOJBu4uM7a4xKqfbJXDR70hoVh2NpvosA8ntYV
-         bfyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFLFZq4qpAFL9phdd/9Kn8iRWGhCMVVxszrjkRosweXxK3Bo76uEsNWwqYDycep25dK1y+ZAiPWHfp@vger.kernel.org
-X-Gm-Message-State: AOJu0YypDQA4EhTTzQISmntjgjVDnJ+7YWzqwgN6S0D5zE8+eeS9yjQO
-	ahj+iSaK3E5YzJg2RfJXu0xBLWUbB2NDnNzJTFYDZ0R0YZB59i3H5yfipGTKNiom/y1HmWWQwDC
-	UjTn2TWWQQJBuS0BlM7FGNTdG2qiT11ifUTKcCONPqA==
-X-Gm-Gg: ASbGncuMDtbEXY29MqNXzRTD8XfUV7E/3tiCpheKeoKEcAjlGJGAPUvyujheynL9XhE
-	G5H4UgUjWlzgqY6E8bPgNksnwkE7kHzwb42J+8aDLLrpfGpdQbJe2ZhBrptfdFcfV/t40TTMUTQ
-	u2/Nwl/qY0cT/dotpqRitg42rv8xjcQEa9KO6bIkh45rUH
-X-Google-Smtp-Source: AGHT+IESMN1xY0S0unbcyTuOy1IpGOvKrvakY0krrQjYzGxBna97nQp1FPjoYQhSDGAOnzFkYRrS1ke1WZ4KLHhwEvw=
-X-Received: by 2002:a05:6512:1390:b0:553:349c:6465 with SMTP id
- 2adb3069b0e04-553947c776fmr618266e87.33.1749553439019; Tue, 10 Jun 2025
- 04:03:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749553646; x=1750158446;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=67IOVthVyAUCNLQvy2dAGJFK71qcOVj/j2a2DCuKxFc=;
+        b=gY5AY6AlaCeIDM+NBmd2gdVq47jB0vBJx5/D8am745DP+HGwQKc48BSoDcWpB5z7Tp
+         oTW7/BENkJ7+M6RE78VVyp3TjHG9zWv2UBGyG06AuHud5NL/tjDhVotF0z8adcsk+W1V
+         ZQRQH5gOg2AkfQkhhHVIhVwt3SQBwuSSLdeo0BOwqMTGLoXAHYonCd3YDEqCA4xR4Ic+
+         d4pto0Pde7dXKeyWHz4fB8ZlLQs7eB5fmnTlwlFvoZxrhrTyhtUaCGmT5IrOK8BQVygI
+         kwhGAE1fPA7nS7HVZ1ijgL13t29B+dF10Xi9FAE7mt1oVA9eKBf5ERNqedgdqzNQDp4D
+         FWng==
+X-Forwarded-Encrypted: i=1; AJvYcCVnSLuiK9QC7QpFeTGdgthEcb3K43r2c2ln3MgJQDdZCwjJMzR3Cr9jOXVJdWobG1+7a5SRpPI3vl6+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5jQhkwgDiIf/5+MDjF57p95E+fwzSHTuGPCclUVga7aBySbRn
+	bHQ1Pd+PMBlIorSAg26F6tgAlYGgkVBjnm69UapdJdPVg3THLTrqLFJVm3tWEhwQMFA1sBwTKo0
+	8D4VIVHTdzg77+4tgiajqIh5Z/OvmVX0/RPgB2OX6u2huPeUELhMUe4cEEMGeRqwQ
+X-Gm-Gg: ASbGncv7ASRRHbpKeQ813ReiJjy9PCJDydD/vx4yx56T6bQjzOlk1CpBttPKqUl4tt7
+	J8dkV6gbnXNOB8wYasQj8SWRxcToc/2CAzK25fkvDE0UynxodrHkOJDty2GBZ5CaPjtC/yuGOBr
+	BrYYZ47enfjXt8McP1L4eFcewY6hy6YU9GErNha0sjDMHaeVFwfOn6zTy7StkhCt/v97QF/KygZ
+	uIwAwNsyISSNUGro2oQnfDdcz19Lq1iYR3L8N9CjFqEkv8z/tyPPC8VLirLi588/l1qBpqK+mnK
+	UuI1APbTRmmPKMIReDW2uTXXMMNpWYE3Bn2AscmJfRRGrq4UxuBwVm2tVwpI9zHAy/4L0sn7E93
+	kAZUurtPJmjFq9kpmz1zUYdjoYtZQKV/mpkI=
+X-Received: by 2002:a05:620a:17a5:b0:7ca:f09d:1473 with SMTP id af79cd13be357-7d22997212cmr2105916785a.28.1749553646129;
+        Tue, 10 Jun 2025 04:07:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFQUgDPSzkOF7xlBQA+g6oVPlHMD5leL1gdy86R0SYpc/kGI1tFwHixo/KGMNQxz18+0VYj+A==
+X-Received: by 2002:a05:620a:17a5:b0:7ca:f09d:1473 with SMTP id af79cd13be357-7d22997212cmr2105912785a.28.1749553645647;
+        Tue, 10 Jun 2025 04:07:25 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5536772aa46sm1503884e87.187.2025.06.10.04.07.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 04:07:24 -0700 (PDT)
+Date: Tue, 10 Jun 2025 14:07:21 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sm8450-qrd: add pmic glink node
+Message-ID: <20250610110721.tn7kkbcucbfx2o2e@umbar.lan>
+References: <20250610091805.2997546-1-krishna.kurapati@oss.qualcomm.com>
+ <20250610091805.2997546-2-krishna.kurapati@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-14-apatel@ventanamicro.com> <aDWjG9jAJ7kSaC9b@smile.fi.intel.com>
-In-Reply-To: <aDWjG9jAJ7kSaC9b@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 10 Jun 2025 16:33:46 +0530
-X-Gm-Features: AX0GCFshka7Yxp7fjO1jD3jzFyiwSbjQL6yn3YQHCZzypSxtbBGLaVxP7eVlcr8
-Message-ID: <CAK9=C2VYCSkMV5zoyVEKHTY30Y0KpUr_M8FELm37M8=WYi+4HQ@mail.gmail.com>
-Subject: Re: [PATCH v4 13/23] irqchip: Add driver for the RPMI system MSI
- service group
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250610091805.2997546-2-krishna.kurapati@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDA4NiBTYWx0ZWRfX/aaLjNp2gftX
+ jtWwZ3dn94bihazeEajM8eXZgj/rR8nr1Y4sYaA5Q02JYJI1j+iDu3cOsKIANO9P3yGqHmeAd8y
+ 849biFw5PKS2EgA3IZ2apLiE8XqNTC7fizrq/CzaW7ojy0JGTsL585+DVrTq+sN2OW+OwhzNIw8
+ ycloRLoUrwFlwsVcMtoHUJz9BrZjes8JA3M+Wl4gWN5Oek2PexrLkUTGJ/na6QuD/qlj8EDGYkh
+ kj3DmdiaX+Kryuu2B0Eb6cn+4kE51776sQEVMUL7tHgK3Cybo4BBNHdH2sRtsI/g95jHfJLrFsK
+ XPimsPpJRU1HzdrNtN+zCV9ITcEcEDprBQaUqfucJlfRVYv5mGOQ2pLX7xQgrgcqu6WMut7YTM1
+ hUEHZde+wWauLbHrhAX4lNYd2EssPUr61l5pbB0dK+LBTtBXuatGlyUGqreUIgJFU7ZO699y
+X-Proofpoint-GUID: PAewTCGsggz57nG8cCjfoVAyfM1N5CNF
+X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=684811ef cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=5fFL1RxHffGAKPhwOvIA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: PAewTCGsggz57nG8cCjfoVAyfM1N5CNF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_04,2025-06-09_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
+ mlxlogscore=899 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1015 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506100086
 
-On Tue, May 27, 2025 at 5:03=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Sun, May 25, 2025 at 02:17:00PM +0530, Anup Patel wrote:
-> > The RPMI specification defines a system MSI service group which
-> > allows application processors to receive MSIs upon system events
-> > such as graceful shutdown/reboot request, CPU hotplug event, memory
-> > hotplug event, etc.
-> >
-> > Add an irqchip driver for the RISC-V RPMI system MSI service group
-> > to directly receive system MSIs in Linux kernel.
->
-> ...
->
-> > +#include <linux/device.h>
->
-> Perhaps I missed something, but devm_kzalloc() is in device/devres.h. Do =
-you
-> need it for something else?
+On Tue, Jun 10, 2025 at 02:48:04PM +0530, Krishna Kurapati wrote:
+> Add the pmic glink node linked with the DWC3 USB controller
+> switched to OTG mode and tagged with usb-role-switch.
+> 
+> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 54 ++++++++++++++++++++++++-
+>  1 file changed, 53 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> index 8c39fbcaad80..0580408485eb 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> @@ -37,6 +37,49 @@ vph_pwr: vph-pwr-regulator {
+>  		regulator-always-on;
+>  		regulator-boot-on;
+>  	};
+> +
+> +	pmic-glink {
+> +		compatible = "qcom,sm8450-pmic-glink", "qcom,pmic-glink";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		orientation-gpios = <&tlmm 91 GPIO_ACTIVE_HIGH>;
+> +
+> +		connector@0 {
+> +			compatible = "usb-c-connector";
+> +			reg = <0>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss_in: endpoint {
+> +						remote-endpoint = <&usb_1_qmpphy_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					pmic_glink_sbu: endpoint {
+> +					};
+> +				};
+> +
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &apps_rsc {
+> @@ -462,7 +505,12 @@ &usb_1 {
+>  };
+>  
+>  &usb_1_dwc3 {
+> -	dr_mode = "peripheral";
+> +	dr_mode = "otg";
 
-dev_get_msi_domain() is part of linux/device.h hence it should
-be included.
+It should be a default, you can drop it.
 
-I will add linux/device/devres.h as well.
+> +	usb-role-switch;
 
->
-> > +#include <linux/dev_printk.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/mailbox_client.h>
-> > +#include <linux/mailbox/riscv-rpmi-message.h>
-> > +#include <linux/module.h>
-> > +#include <linux/msi.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/types.h>
->
-> > +#include <vdso/bits.h>
->
-> Just make it linux/bits.h as vdso is for user space libvdso and related.
->
-> But
->
-> + asm/byteorder.h
->
-> ...
->
-> > +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
-> > +{
-> > +     struct rpmi_sysmsi_priv *priv =3D irq_data_get_irq_chip_data(d);
->
-> Declare temporary variable for hwirq and do irqd_to_hwirq() only once.
+This should go to sm8450.dtsi
 
-Okay, I will update.
+> +};
+> +
+> +&usb_1_dwc3_hs {
+> +	remote-endpoint = <&pmic_glink_hs_in>;
+>  };
+>  
+>  &usb_1_hsphy {
+> @@ -487,3 +535,7 @@ &usb_1_qmpphy {
+>  	vdda-phy-supply = <&vreg_l6b_1p2>;
+>  	vdda-pll-supply = <&vreg_l1b_0p91>;
+>  };
+> +
+> +&usb_1_qmpphy_out {
+> +	remote-endpoint = <&pmic_glink_ss_in>;
+> +};
+> -- 
+> 2.34.1
+> 
 
->
-> > +     int ret;
-> > +
-> > +     ret =3D rpmi_sysmsi_set_msi_state(priv, irqd_to_hwirq(d), 0);
-> > +     if (ret) {
-> > +             dev_warn(priv->dev, "Failed to mask hwirq %lu (error %d)\=
-n",
-> > +                      irqd_to_hwirq(d), ret);
-> > +     }
-> > +     irq_chip_mask_parent(d);
-> > +}
->
-> ...
->
-> > +static void rpmi_sysmsi_irq_unmask(struct irq_data *d)
->
-> Ditto.
->
-> ...
->
-> > +static void rpmi_sysmsi_set_desc(msi_alloc_info_t *arg, struct msi_des=
-c *desc)
-> > +{
-> > +     arg->desc =3D desc;
-> > +     arg->hwirq =3D (u32)desc->data.icookie.value;
->
-> Hmm... Why do you need an explicit casting?
-
-Not needed, I will drop the casting in the next revision.
-
->
-> > +}
->
-> ...
->
-> > +     if (WARN_ON(fwspec->param_count < 1))
->
-> + bug.h
-
-Okay, I will update.
-
->
-> > +             return -EINVAL;
->
-> + errno.h (but actually you need err.h due to PTR_ERR() et al.)
->
-> ...
->
-> > +static int rpmi_sysmsi_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct rpmi_sysmsi_priv *priv;
-> > +     int rc;
->
-> Be consistent with variable naming for the same (semantically) stuff.
->
-> > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +     priv->dev =3D dev;
->
-> > +     platform_set_drvdata(pdev, priv);
->
-> How is being used?
-
-Typically, it's for driver_remove() but since we don't have
-driver_remove() we can drop it.
-
->
-> > +
-> > +     /* Setup mailbox client */
-> > +     priv->client.dev                =3D priv->dev;
-> > +     priv->client.rx_callback        =3D NULL;
-> > +     priv->client.tx_block           =3D false;
-> > +     priv->client.knows_txdone       =3D true;
-> > +     priv->client.tx_tout            =3D 0;
-> > +
-> > +     /* Request mailbox channel */
-> > +     priv->chan =3D mbox_request_channel(&priv->client, 0);
-> > +     if (IS_ERR(priv->chan))
-> > +             return PTR_ERR(priv->chan);
-> > +
-> > +     /* Get number of system MSIs */
-> > +     rc =3D rpmi_sysmsi_get_num_msi(priv);
-> > +     if (rc < 1) {
-> > +             mbox_free_channel(priv->chan);
-> > +             if (rc)
-> > +                     return dev_err_probe(dev, rc, "Failed to get numb=
-er of system MSIs\n");
-> > +             else
-> > +                     return dev_err_probe(dev, -ENODEV, "No system MSI=
-s found\n");
-> > +     }
-> > +     priv->nr_irqs =3D rc;
-> > +
-> > +     /* Set the device MSI domain if not available */
-> > +     if (!dev_get_msi_domain(dev)) {
-> > +             /*
-> > +              * The device MSI domain for OF devices is only set at th=
-e
-> > +              * time of populating/creating OF device. If the device M=
-SI
-> > +              * domain is discovered later after the OF device is crea=
-ted
-> > +              * then we need to set it explicitly before using any pla=
-tform
-> > +              * MSI functions.
-> > +              */
->
-> > +             if (is_of_node(dev_fwnode(dev)))
-> > +                     of_msi_configure(dev, to_of_node(dev_fwnode(dev))=
-);
->
->                 if (dev_of_node(dev))
->                         of_msi_configure(dev, dev_of_node(dev));
-
-Okay, I will update.
-
->
-> > +             if (!dev_get_msi_domain(dev)) {
-> > +                     mbox_free_channel(priv->chan);
-> > +                     return -EPROBE_DEFER;
-> > +             }
-> > +     }
-> > +
-> > +     if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN,
-> > +                                       &rpmi_sysmsi_template,
-> > +                                       priv->nr_irqs, priv, priv)) {
-> > +             mbox_free_channel(priv->chan);
-> > +             return dev_err_probe(dev, -ENOMEM, "failed to create MSI =
-irq domain\n");
-> > +     }
-> > +
-> > +     dev_info(dev, "%u system MSIs registered\n", priv->nr_irqs);
-> > +     return 0;
-> > +}
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
-
-Regards,
-Anup
+-- 
+With best wishes
+Dmitry
 
