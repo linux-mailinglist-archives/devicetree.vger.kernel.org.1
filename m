@@ -1,279 +1,145 @@
-Return-Path: <devicetree+bounces-184146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5EEAD319A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:19:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0D07AD31B4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 548443A43C0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:18:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C2B17A5D68
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B42F28BA85;
-	Tue, 10 Jun 2025 09:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9501B28C031;
+	Tue, 10 Jun 2025 09:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mwaWdgOM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BKfdBQj+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8061C28B4F2;
-	Tue, 10 Jun 2025 09:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E1E28B7FB
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749547009; cv=none; b=jHJqua9yR0z0AZcG9RHzdJsU2XvsUMsE7Yimnzz5oEkvoUQC7U9OUwcbP6PJ/WS94CF11TgJ6RqyMKZCWhZGbJuea8Oq/gmH/mWZvUqiUI2GtOhmFYhUitQe51SBLtOW2Q9lfrWYI/i7qNd0EQTAnGd9z+8my6S+omhE/3/7ysQ=
+	t=1749547095; cv=none; b=pZozvM2HRba9VzrfuD5jVHvjZqUYYBEpNJqPrLPQs5ATJidMvisxszu9VuxLoHEsb6FL/YqjBVT3x9n3uY7fJshYYMc01D0bp7TTObeywsRx7Xfohm1Qq0moRmG5QuZ3vRjmkJlsIBpUOQc9DE26AoKWXBdouDbRPWDLpo3r4QI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749547009; c=relaxed/simple;
-	bh=Q+OZ7g6V3LXKnAvLoFoKYNotBv9+t1H/YpraEjFfDH8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SfIcinuC+5GEogEBabtS7S+NlVO6ynPU+QOpPH1fPhYCi87ZVVyCNem4+iQipja2tpfooSfWFko1UOtdL6ajqYRtLuP0hJMNjE5nSEgFvJ/X2Dg1epCoUAl3zsOkMJ9/T8lHgBdNmvSsflyF6oreV7V7h5XE3gjbrRLYYCAqMgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mwaWdgOM; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 879462EC;
-	Tue, 10 Jun 2025 11:16:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1749546997;
-	bh=Q+OZ7g6V3LXKnAvLoFoKYNotBv9+t1H/YpraEjFfDH8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mwaWdgOMzZ3jGsW3vKdoubdUvUz6vxEm26kcAdWngSNwWWCEWCnXdLQhrNpTT6PoY
-	 yaSKMOmokriJadwM+gXm+VaZtOPbnwUYTi6LzSEVCKp6ExzH4JUSGjuRffnEWx5tgR
-	 +KJmCp2UrVKWhFaywTlrFJKoV2LcgHv1ZSWgzIaY=
-Date: Tue, 10 Jun 2025 12:16:32 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-media@vger.kernel.org, Isaac Scott <isaac.scott@ideasonboard.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/8] media: imx-mipi-csis: Rename register macros to
- match reference manual
-Message-ID: <20250610091632.GM27510@pendragon.ideasonboard.com>
-References: <20250608235840.23871-1-laurent.pinchart@ideasonboard.com>
- <20250608235840.23871-2-laurent.pinchart@ideasonboard.com>
- <3358871.aeNJFYEL58@steina-w>
+	s=arc-20240116; t=1749547095; c=relaxed/simple;
+	bh=S02eX3cwwq3IqD5T1Y/z8bQjR5t8zDb4jbbctA55FK8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AhZXpyq73xKmAlahDOrNU+TzwCqx18LItdQRegjYPaPTuHyvWCcOtGVhSDgVIDid4xEYJJvnk1pU9k3ryHnAZP87+P9gSGnyCtPmho5p8dhZ57pmVPaVHFnIlJpnrg1O+etX2nX7GCGhA4cOc4Xk0r9DzjLEaxbthXHG/8ttE2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BKfdBQj+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 559LLYQb002402
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:18:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=LD/9cXhB15D7e64MfPVXxDkC/NmdpQlnbE3
+	wwb3R8hk=; b=BKfdBQj+v9xEWynAzywk0NwBVBT3M0DtiZKhfuxUDLOCxQ0V/nj
+	UnBrLTaBQ4zIOzH5gaw2i9ikz5hCsw5e+cnyFjkFenwNorTF4TcON+cYglxsR4rm
+	uJ/TmR3HpQZg9UeSDI40K0ZYD7hJgGU3ngrQcAjdAus8WpfZM/k+8WhLrKxk9488
+	3A2OSyip7MkMZB44YBw2p7YIA31PSMzrD1qwIzDX5PXEZvgShq3hy+ddGJ6HhyVL
+	4yWTc1JzCotvU64PxjgfqFKvCDY5+Nw7n5o4F/3kH+EX7pkoZR2ijZYSr/EvKlTY
+	kv9X8ZgZf3q1jOU3EHaRkm9DDT6srsZlBHg==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn68rmq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:18:13 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3139c0001b5so942266a91.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 02:18:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749547092; x=1750151892;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LD/9cXhB15D7e64MfPVXxDkC/NmdpQlnbE3wwb3R8hk=;
+        b=EwY0fZt8IApLwbLPtojrSja0zyrT0ZXynfdQD7iH4OqQJD3hbcM70jq4/RCLkzim+i
+         Cn1Ks17IveRyudeGgTDBNWShifwy22xvEn8+CyliXYv+7hGyghSX2f1rlJbfDAH3Brfi
+         Qo7acoHoXSQI5+wMBJ76nTwrYjyJMmrcDwv0pVphCmChgPr1Ob4eBrtAn7yCtTbjM5hc
+         L8kGTqGPV7qEtE6o2yagnheCmWmUk0E1QK4Tq1wDt6O+FQlsmmeuNadFKKw/NdIWq+lJ
+         KR5i12tHFvqUSaJEE5PSaAY5T58XK1/J8RxmjD6oQFfctAYJll7xCf9NHKyLIcx2vP3Y
+         3aHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUyZk4XJJq+rvHDg5YVZi6fG62uMitfHwiTO6a7Er02/u7eOoeiNjsUjvgMR1tT7ybSS7vEM7658Ti/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuCuRf3+dTvsyWnhCHNIcESozAUFd+pCyIMMH0Pbg43iIM0/Ry
+	uzI1qqvre02VgJH9OjGLL8dVlvuohTVledl93E0N7QjGlpt+31TUReYwCFcEWJItf1U5J4ilFh3
+	V4075NgHox32f+k7Z3bmeQxeYWV7csq44SfmQ56/viFbdnygWXyrvr0RKJjZbdhh7
+X-Gm-Gg: ASbGncve52W+QE7v7N2fFA+YsHjX61Rgd3166NuP+ZwcmJLanAoLLmNwTH8iDHXI87x
+	inDRgBBzwKViQ3yCRR+XQng6D6OwKfqtrNTaR/Q0gL6rhGJmuXL/y1uxLHd4ofhJS/aM3j0PW32
+	VEDXnH1Af3fKG9SWQvapTVeDfGRF3P4SjvLUidy+xO1W+Jz2yK3b2DQu/7FOu8VoYd6d7yNW948
+	Ko7PxqWjCVEF8TuBz9QJhyLgSBHbNNEyhDbbEnuda4rL7WU9UvgTQr4GPuHiy8LTIul+WErMn2D
+	J/HTtLOEouSc5eZjuT2einywNhjJt4lciv39zBOQ+JcfROQMFqCOwPcAY5fT
+X-Received: by 2002:a17:90b:254d:b0:311:c939:c851 with SMTP id 98e67ed59e1d1-31346afa132mr21731765a91.4.1749547092321;
+        Tue, 10 Jun 2025 02:18:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHA6A7Fb6MP+DJ9bPZH2QmIbZNP81kULJOwxSyuh+v1p3lpVKxB4ERFlDWV9kdLaXlo1o/WCA==
+X-Received: by 2002:a17:90b:254d:b0:311:c939:c851 with SMTP id 98e67ed59e1d1-31346afa132mr21731729a91.4.1749547091884;
+        Tue, 10 Jun 2025 02:18:11 -0700 (PDT)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603d14206sm66951195ad.34.2025.06.10.02.18.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 02:18:11 -0700 (PDT)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH v2 0/2] Flattening USB controller on SM8450 QRD
+Date: Tue, 10 Jun 2025 14:48:03 +0530
+Message-Id: <20250610091805.2997546-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3358871.aeNJFYEL58@steina-w>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDA3MCBTYWx0ZWRfX/ZZ3kaqSMzCj
+ P3dv3+R/USLKWtbrFkX/QTUdaY9oQ5y2U/9GGYYtmU4slNWvcJnwTjCCE/pVX6Wx1rUo9gjxni3
+ p9bqxyxzhvB2GQoilIOjgOv/aXLSyiyP9UUbbAdchUEIcg8CK1tDS3DyhOJhJhP8aLcHKxyRWKN
+ O+HwoTXwJJaw+zjFkixvi918XIgUHbmN1sOkI/OdreoE5wL0JgJCutpQYtKvGmLwUaa7QexU5+P
+ Bgcpl0gnkAwZZyQQ6tqsfBSzbN0pRrbUEy69ZTMvK7oRu2D9Vm/YjGHDRJ+i2hOLcTykqo8Sgqk
+ g1vHjL/snDHTS4rL5pdH5/2hsXT8arzwLYK+VYdXizWekF0++OSGe2Pk/5Lwl31B8El/AeEDYcp
+ bfLV16DKrkdvGdoWrABXfrVdVldm5/hhazLWB/QVs6QLWFwWLczWFh58x11QAfL2BWB+H8/h
+X-Proofpoint-GUID: 7AsIK7tcSblIaqRTdbfRwAXTUG2OTatx
+X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=6847f855 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=h4yBHxX_cEBQcTB0eGkA:9
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: 7AsIK7tcSblIaqRTdbfRwAXTUG2OTatx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_03,2025-06-09_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
+ mlxlogscore=796 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1015 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506100070
 
-On Tue, Jun 10, 2025 at 11:10:54AM +0200, Alexander Stein wrote:
-> Am Montag, 9. Juni 2025, 01:58:33 CEST schrieb Laurent Pinchart:
-> > The CSIS driver uses register macro names that do not match the
-> > reference manual of the i.MX7[DS] and i.MX8M[MNP] SoCs in which the CSIS
-> > is integrated. Rename them to match the documentation, making the code
-> > easier to read alongside the reference manuals.
-> > 
-> > One of the misnamed register fields is MIPI_CSIS_INT_SRC_ERR_UNKNOWN,
-> > which led to the corresponding event being logged as "Unknown Error".
-> > The correct register field name is MIPI_CSIS_INT_SRC_ERR_ID, documented
-> > as "Unknown ID error". Update the event description accordingly.
-> > 
-> > While at it, also replace a few *_OFFSET macros with parametric macros
-> > for consistency, and add the missing MIPI_CSIS_ISP_RESOL_VRESOL and
-> > MIPI_CSIS_ISP_RESOL_HRESOL register field macros.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  drivers/media/platform/nxp/imx-mipi-csis.c | 69 +++++++++++-----------
-> >  1 file changed, 36 insertions(+), 33 deletions(-)
-> > 
-> > diff --git a/drivers/media/platform/nxp/imx-mipi-csis.c b/drivers/media/platform/nxp/imx-mipi-csis.c
-> > index 2beb5f43c2c0..d59666ef7545 100644
-> > --- a/drivers/media/platform/nxp/imx-mipi-csis.c
-> > +++ b/drivers/media/platform/nxp/imx-mipi-csis.c
-> > @@ -55,13 +55,13 @@
-> >  /* CSIS common control */
-> >  #define MIPI_CSIS_CMN_CTRL			0x04
-> >  #define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW	BIT(16)
-> > -#define MIPI_CSIS_CMN_CTRL_INTER_MODE		BIT(10)
-> > +#define MIPI_CSIS_CMN_CTRL_INTERLEAVE_MODE_NONE	(0 << 10)
-> > +#define MIPI_CSIS_CMN_CTRL_INTERLEAVE_MODE_DT	(1 << 10)
-> > +#define MIPI_CSIS_CMN_CTRL_LANE_NUMBER(n)	((n) << 8)
-> > +#define MIPI_CSIS_CMN_CTRL_LANE_NUMBER_MASK	(3 << 8)
-> >  #define MIPI_CSIS_CMN_CTRL_UPDATE_SHADOW_CTRL	BIT(2)
-> > -#define MIPI_CSIS_CMN_CTRL_RESET		BIT(1)
-> > -#define MIPI_CSIS_CMN_CTRL_ENABLE		BIT(0)
-> > -
-> > -#define MIPI_CSIS_CMN_CTRL_LANE_NR_OFFSET	8
-> > -#define MIPI_CSIS_CMN_CTRL_LANE_NR_MASK		(3 << 8)
-> > +#define MIPI_CSIS_CMN_CTRL_SW_RESET		BIT(1)
-> > +#define MIPI_CSIS_CMN_CTRL_CSI_EN		BIT(0)
-> >  
-> >  /* CSIS clock control */
-> >  #define MIPI_CSIS_CLK_CTRL			0x08
-> > @@ -87,7 +87,7 @@
-> >  #define MIPI_CSIS_INT_MSK_ERR_WRONG_CFG		BIT(3)
-> >  #define MIPI_CSIS_INT_MSK_ERR_ECC		BIT(2)
-> >  #define MIPI_CSIS_INT_MSK_ERR_CRC		BIT(1)
-> > -#define MIPI_CSIS_INT_MSK_ERR_UNKNOWN		BIT(0)
-> > +#define MIPI_CSIS_INT_MSK_ERR_ID		BIT(0)
-> >  
-> >  /* CSIS Interrupt source */
-> >  #define MIPI_CSIS_INT_SRC			0x14
-> > @@ -107,7 +107,7 @@
-> >  #define MIPI_CSIS_INT_SRC_ERR_WRONG_CFG		BIT(3)
-> >  #define MIPI_CSIS_INT_SRC_ERR_ECC		BIT(2)
-> >  #define MIPI_CSIS_INT_SRC_ERR_CRC		BIT(1)
-> > -#define MIPI_CSIS_INT_SRC_ERR_UNKNOWN		BIT(0)
-> > +#define MIPI_CSIS_INT_SRC_ERR_ID		BIT(0)
-> >  #define MIPI_CSIS_INT_SRC_ERRORS		0xfffff
-> >  
-> >  /* D-PHY status control */
-> > @@ -123,8 +123,8 @@
-> >  #define MIPI_CSIS_DPHY_CMN_CTRL_HSSETTLE_MASK	GENMASK(31, 24)
-> >  #define MIPI_CSIS_DPHY_CMN_CTRL_CLKSETTLE(n)	((n) << 22)
-> >  #define MIPI_CSIS_DPHY_CMN_CTRL_CLKSETTLE_MASK	GENMASK(23, 22)
-> > -#define MIPI_CSIS_DPHY_CMN_CTRL_DPDN_SWAP_CLK	BIT(6)
-> > -#define MIPI_CSIS_DPHY_CMN_CTRL_DPDN_SWAP_DAT	BIT(5)
-> > +#define MIPI_CSIS_DPHY_CMN_CTRL_S_DPDN_SWAP_CLK	BIT(6)
-> > +#define MIPI_CSIS_DPHY_CMN_CTRL_S_DPDN_SWAP_DAT	BIT(5)
-> >  #define MIPI_CSIS_DPHY_CMN_CTRL_ENABLE_DAT	BIT(1)
-> >  #define MIPI_CSIS_DPHY_CMN_CTRL_ENABLE_CLK	BIT(0)
-> >  #define MIPI_CSIS_DPHY_CMN_CTRL_ENABLE		(0x1f << 0)
-> > @@ -179,21 +179,23 @@
-> >  #define MIPI_CSIS_ISPCFG_PIXEL_MODE_SINGLE	(0 << 12)
-> >  #define MIPI_CSIS_ISPCFG_PIXEL_MODE_DUAL	(1 << 12)
-> >  #define MIPI_CSIS_ISPCFG_PIXEL_MODE_QUAD	(2 << 12)	/* i.MX8M[MNP] only */
-> > -#define MIPI_CSIS_ISPCFG_PIXEL_MASK		(3 << 12)
-> > -#define MIPI_CSIS_ISPCFG_ALIGN_32BIT		BIT(11)
-> > -#define MIPI_CSIS_ISPCFG_FMT(fmt)		((fmt) << 2)
-> > -#define MIPI_CSIS_ISPCFG_FMT_MASK		(0x3f << 2)
-> > +#define MIPI_CSIS_ISPCFG_PIXEL_MODE_MASK	(3 << 12)
-> > +#define MIPI_CSIS_ISPCFG_PARALLEL		BIT(11)
-> > +#define MIPI_CSIS_ISPCFG_DATAFORMAT(fmt)	((fmt) << 2)
-> > +#define MIPI_CSIS_ISPCFG_DATAFORMAT_MASK	(0x3f << 2)
-> >  
-> >  /* ISP Image Resolution register */
-> >  #define MIPI_CSIS_ISP_RESOL_CH(n)		(0x44 + (n) * 0x10)
-> > +#define MIPI_CSIS_ISP_RESOL_VRESOL(n)		((n) << 16)
-> > +#define MIPI_CSIS_ISP_RESOL_HRESOL(n)		((n) << 0)
-> >  #define CSIS_MAX_PIX_WIDTH			0xffff
-> >  #define CSIS_MAX_PIX_HEIGHT			0xffff
-> >  
-> >  /* ISP SYNC register */
-> >  #define MIPI_CSIS_ISP_SYNC_CH(n)		(0x48 + (n) * 0x10)
-> > -#define MIPI_CSIS_ISP_SYNC_HSYNC_LINTV_OFFSET	18
-> > -#define MIPI_CSIS_ISP_SYNC_VSYNC_SINTV_OFFSET	12
-> > -#define MIPI_CSIS_ISP_SYNC_VSYNC_EINTV_OFFSET	0
-> > +#define MIPI_CSIS_ISP_SYNC_HSYNC_LINTV(n)	((n) << 18)
-> > +#define MIPI_CSIS_ISP_SYNC_VSYNC_SINTV(n)	((n) << 12)
-> > +#define MIPI_CSIS_ISP_SYNC_VSYNC_EINTV(n)	((n) << 0)
-> >  
-> >  /* ISP shadow registers */
-> >  #define MIPI_CSIS_SDW_CONFIG_CH(n)		(0x80 + (n) * 0x10)
-> > @@ -246,7 +248,7 @@ static const struct mipi_csis_event mipi_csis_events[] = {
-> >  	{ false, MIPI_CSIS_INT_SRC_ERR_WRONG_CFG,	"Wrong Configuration Error" },
-> >  	{ false, MIPI_CSIS_INT_SRC_ERR_ECC,		"ECC Error" },
-> >  	{ false, MIPI_CSIS_INT_SRC_ERR_CRC,		"CRC Error" },
-> > -	{ false, MIPI_CSIS_INT_SRC_ERR_UNKNOWN,		"Unknown Error" },
-> > +	{ false, MIPI_CSIS_INT_SRC_ERR_ID,		"Unknown ID Error" },
-> >  	{ true, MIPI_CSIS_DBG_INTR_SRC_DT_NOT_SUPPORT,	"Data Type Not Supported" },
-> >  	{ true, MIPI_CSIS_DBG_INTR_SRC_DT_IGNORE,	"Data Type Ignored" },
-> >  	{ true, MIPI_CSIS_DBG_INTR_SRC_ERR_FRAME_SIZE,	"Frame Size Error" },
-> > @@ -517,7 +519,7 @@ static void mipi_csis_sw_reset(struct mipi_csis_device *csis)
-> >  	u32 val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
-> >  
-> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL,
-> > -			val | MIPI_CSIS_CMN_CTRL_RESET);
-> > +			val | MIPI_CSIS_CMN_CTRL_SW_RESET);
-> >  	usleep_range(10, 20);
-> >  }
-> >  
-> > @@ -527,9 +529,9 @@ static void mipi_csis_system_enable(struct mipi_csis_device *csis, int on)
-> >  
-> >  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
-> >  	if (on)
-> > -		val |= MIPI_CSIS_CMN_CTRL_ENABLE;
-> > +		val |= MIPI_CSIS_CMN_CTRL_CSI_EN;
-> >  	else
-> > -		val &= ~MIPI_CSIS_CMN_CTRL_ENABLE;
-> > +		val &= ~MIPI_CSIS_CMN_CTRL_CSI_EN;
-> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL, val);
-> >  
-> >  	val = mipi_csis_read(csis, MIPI_CSIS_DPHY_CMN_CTRL);
-> > @@ -549,8 +551,8 @@ static void __mipi_csis_set_format(struct mipi_csis_device *csis,
-> >  
-> >  	/* Color format */
-> >  	val = mipi_csis_read(csis, MIPI_CSIS_ISP_CONFIG_CH(0));
-> > -	val &= ~(MIPI_CSIS_ISPCFG_ALIGN_32BIT | MIPI_CSIS_ISPCFG_FMT_MASK
-> > -		| MIPI_CSIS_ISPCFG_PIXEL_MASK);
-> > +	val &= ~(MIPI_CSIS_ISPCFG_PARALLEL | MIPI_CSIS_ISPCFG_PIXEL_MODE_MASK |
-> > +		 MIPI_CSIS_ISPCFG_DATAFORMAT_MASK);
-> >  
-> >  	/*
-> >  	 * YUV 4:2:2 can be transferred with 8 or 16 bits per clock sample
-> > @@ -568,12 +570,13 @@ static void __mipi_csis_set_format(struct mipi_csis_device *csis,
-> >  	if (csis_fmt->data_type == MIPI_CSI2_DT_YUV422_8B)
-> >  		val |= MIPI_CSIS_ISPCFG_PIXEL_MODE_DUAL;
-> >  
-> > -	val |= MIPI_CSIS_ISPCFG_FMT(csis_fmt->data_type);
-> > +	val |= MIPI_CSIS_ISPCFG_DATAFORMAT(csis_fmt->data_type);
-> >  	mipi_csis_write(csis, MIPI_CSIS_ISP_CONFIG_CH(0), val);
-> >  
-> >  	/* Pixel resolution */
-> > -	val = format->width | (format->height << 16);
-> > -	mipi_csis_write(csis, MIPI_CSIS_ISP_RESOL_CH(0), val);
-> > +	mipi_csis_write(csis, MIPI_CSIS_ISP_RESOL_CH(0),
-> > +			MIPI_CSIS_ISP_RESOL_VRESOL(format->height) |
-> > +			MIPI_CSIS_ISP_RESOL_HRESOL(format->width));
-> >  }
-> >  
-> >  static int mipi_csis_calculate_params(struct mipi_csis_device *csis,
-> > @@ -635,10 +638,10 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
-> >  	u32 val;
-> >  
-> >  	val = mipi_csis_read(csis, MIPI_CSIS_CMN_CTRL);
-> > -	val &= ~MIPI_CSIS_CMN_CTRL_LANE_NR_MASK;
-> > -	val |= (lanes - 1) << MIPI_CSIS_CMN_CTRL_LANE_NR_OFFSET;
-> > +	val &= ~MIPI_CSIS_CMN_CTRL_LANE_NUMBER_MASK;
-> > +	val |= MIPI_CSIS_CMN_CTRL_LANE_NUMBER(lanes - 1);
-> >  	if (csis->info->version == MIPI_CSIS_V3_3)
-> > -		val |= MIPI_CSIS_CMN_CTRL_INTER_MODE;
-> > +		val |= MIPI_CSIS_CMN_CTRL_INTERLEAVE_MODE_DT;
-> 
-> Mh, what about i.MX8MP which also has these bitfield defined, but is
-> not a MIPI_CSIS_V3_3 core?
+Flatten USB Controller node on SM8450 QRD to move away from legacy USB
+Qualcomm glue driver and make use of new one. The series has been tested
+with driver changes [1] to enable runtime suspend/resume during cable
+disconnect/connect scenarios.
 
-Short answer: no idea yet. Has anyone been able to capture embedded data
-through the ISI on the i.MX8MP ?
+I was testing on SM8450 QRD and hence flattened usb node on that platform
+only. If the community suggests to flatten all platforms of sm8450, I can
+do a compile test for the ones I can't get hands on and send a follow up
+series.
 
-> >  	mipi_csis_write(csis, MIPI_CSIS_CMN_CTRL, val);
-> >  
-> >  	__mipi_csis_set_format(csis, format, csis_fmt);
-> > @@ -647,10 +650,10 @@ static void mipi_csis_set_params(struct mipi_csis_device *csis,
-> >  			MIPI_CSIS_DPHY_CMN_CTRL_HSSETTLE(csis->hs_settle) |
-> >  			MIPI_CSIS_DPHY_CMN_CTRL_CLKSETTLE(csis->clk_settle));
-> >  
-> > -	val = (0 << MIPI_CSIS_ISP_SYNC_HSYNC_LINTV_OFFSET)
-> > -	    | (0 << MIPI_CSIS_ISP_SYNC_VSYNC_SINTV_OFFSET)
-> > -	    | (0 << MIPI_CSIS_ISP_SYNC_VSYNC_EINTV_OFFSET);
-> > -	mipi_csis_write(csis, MIPI_CSIS_ISP_SYNC_CH(0), val);
-> > +	mipi_csis_write(csis, MIPI_CSIS_ISP_SYNC_CH(0),
-> > +			MIPI_CSIS_ISP_SYNC_HSYNC_LINTV(0) |
-> > +			MIPI_CSIS_ISP_SYNC_VSYNC_SINTV(0) |
-> > +			MIPI_CSIS_ISP_SYNC_VSYNC_EINTV(0));
-> >  
-> >  	val = mipi_csis_read(csis, MIPI_CSIS_CLK_CTRL);
-> >  	val |= MIPI_CSIS_CLK_CTRL_WCLK_SRC;
+[1]: https://lore.kernel.org/all/20250610091357.2983085-1-krishna.kurapati@oss.qualcomm.com/
+
+Krishna Kurapati (2):
+  arm64: dts: qcom: sm8450-qrd: add pmic glink node
+  arm64: dts: qcom: sm8450-qrd: Flatten usb controller node
+
+ arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 110 +++++++++++++++++++++++-
+ 1 file changed, 108 insertions(+), 2 deletions(-)
 
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
