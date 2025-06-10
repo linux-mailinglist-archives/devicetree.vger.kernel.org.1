@@ -1,289 +1,139 @@
-Return-Path: <devicetree+bounces-184431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F70AD3FC6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:00:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD01BAD3FD1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:01:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDBE517B923
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:00:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75ABF7A462A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC54F242D90;
-	Tue, 10 Jun 2025 16:59:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016B4242914;
+	Tue, 10 Jun 2025 17:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IcxEiXWT"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="bVG20vhx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966A61E9905;
-	Tue, 10 Jun 2025 16:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F82242A9D
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 17:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749574799; cv=none; b=DtN05hXmYsR+KPzMPi/EZOrH55Y+g611VFaNhpoPk7IQL9AJghAg/n630EP+GmiYi1PuAa+S0XcBgwZz4ryM9vtzFOYhWHcOYn9VLf2R0IcmvaydAhZN5nNzl0HPrunNytN8fT1LhYCri0vItbrRAJpvDa+xSYj3ajtuUY8EL3I=
+	t=1749574892; cv=none; b=D2xiOszQZ7S+dQM4417nAzsmtxms6CoaeTakF6qh3CgJHSZjDpbkn7qi5ddoo7y/YZ8G7dv7uoP8o8KCD19LQDXmLSGWbdYzBTVl+9bD3Zn00R5ZttRM/he8SQDZRdqmW8B4nCr9IFjHn7TGaeTQty5epfT8CDZTo2YqIlQ5law=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749574799; c=relaxed/simple;
-	bh=OSpF9ZkhqKynpdtZ8deCD/HZpMg3Ub5prYUVfVoF9i0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=rvgQilT6CsVei+6SeWvgM0czcfnlFBPE8wXyWQTL+RmQNIEyW8Ky5cIRFFI4v3ZADZy/QzZDGf+1JgygejwvpazEdbPYSr2lypqx5xOhw9RHkCFHXtcE+PlR0Ue8W5ycciwZgu6Dgwh3iH4whx1ZVFOD9/biUbd+mbGHyHOXJDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IcxEiXWT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6EBFFC4CEF0;
-	Tue, 10 Jun 2025 16:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749574799;
-	bh=OSpF9ZkhqKynpdtZ8deCD/HZpMg3Ub5prYUVfVoF9i0=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=IcxEiXWTbBe+diAxSlYq/9NiLJ/Xc+CAqWk5Q4886K+KV1C+lAGrKi/SY3dnJHvcy
-	 aWii7B1iFB2m80qwibIrimCftGSrmLYMwwvK3fkfJEbNnj0UK3w8SKVDt0Z9B84c8J
-	 SndEH5EiOUqcM0M620gQUwJLq+LlC5mGionupeyZnUk0dIxA/KU9ZfLafub0cWgO/x
-	 V1oxZvC9lHBkL3MUi9WUpCqMwKmz92wTkaO8sRbXB6cX61IJvxSfvYhCd5QXcD0Wsj
-	 EAqBlRzjBn6vFCPM1SW44oHYcfs8EepBYR7fz8xJ6LTvbHQkpNBJED+ifjfLz/7oK9
-	 2K/xZxlIUOPlg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DF7DC5B552;
-	Tue, 10 Jun 2025 16:59:59 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Tue, 10 Jun 2025 18:59:56 +0200
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: add
- Bluetooth support
+	s=arc-20240116; t=1749574892; c=relaxed/simple;
+	bh=ahXm0c4rtJ92rxuI7mSW9/ZW29+20fL7IwSWH1turAs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e1rH+4pi9OerCk26s3sSBb2vgmbq9yLLaRBB9ew+SPsFQLbY8oUH7T151Nmi9eC1aCaWWjye9tsxH6Pn8DnPb1i6YF7VHGxiCNueeTUYgD9MNHiORPksny1fyvEhXa8Rq7gaqV2D4THjCQ9vKdnJ9dDdGz7b9QC5x8oMo2ElyrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=bVG20vhx; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234d3261631so40108295ad.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 10:01:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1749574891; x=1750179691; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GEfizgcdloDSHEfL4nwI4ypLmP1PdRkcy++iUoXBHOc=;
+        b=bVG20vhxWFQxGqPNh89PpFGHOmFF751kMt+1023Cii2iCBYhUS1X+1W2FCfi3Z3GFr
+         i0HnjgDZesRwvUHtstuviUNNPbKgmUkpVb1AHXM/uHdMabbn/MI0HD7G3GdNskzFcA1z
+         5dhC1x/czaLEMYCtwxf+Q2/SLXE7Y5o7R2Vow=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749574891; x=1750179691;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GEfizgcdloDSHEfL4nwI4ypLmP1PdRkcy++iUoXBHOc=;
+        b=gTcvOp5Hb+T4TLs1wRMbX06nt7M/WXOvWsb8e4p7Wb8FhK+bGxk4aNRzz5PNqhllXo
+         g+qHUhSPqlVzhsCmJRiLmanKeCSbIkcZozmMOawA09uuvbnCT+BxY9ZqPdib8NTHNhqX
+         Y4lHhFeg3mSxbNoaNXPdFjTL7oDPn5WHRSGmihSNAZEzMTgUem14MQBRXmiVy9rKaRms
+         1NTjrxxijP4y2JNHqOM8Y6GVtk0as+7tk7/1e7c0S5E11AmiUb12366jzDXY7Lcg9nov
+         Yr/eHcZWcSUxZiDg7bVkPtf0Hn6VQeOdGlTu7jV5vDkXg6ATTZbSWuAGPFOX+4GRmPlS
+         djfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWsgAsnMR1hPACSO8fqILB0ZcXQB8s+ErlQarUnY/lpgmSpw2rdrR493GT76SHjDJjFIynqqoHmaPKM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrTdO4rXtiRosB0L0C4/hHsl6CfT4sWM+Ss+dIefkTsprifu0N
+	fkg8RKK5iFbdz/oo+AReX6nLcGVQqG16E0KGObv+boetR1BmvEoSfITiI86d3tRdQA==
+X-Gm-Gg: ASbGnct3j2CsLYc7N16rt4rM4Hh2aPpBp/enBO8OzxyMjv02/ZVZUVQkNcFVU3F/MN/
+	e6w1seRfiefbkHOoh8BU1vPJU2lUmh9vbVcSfw40MjcTeSLxPcjR+wphmi5o1j65u3xGN2ILi+Y
+	icIaN2bV5QDXNKX59WYV5NvfHjPKjjPbplUxknujGHKfUaE/EsgfYodGZGR6lXyVKsjDl/JimGP
+	HQHs0PPItM4E7Kp2aHDm097R7+RUflH4/ZRsfCqZQXDnRDpelhXv8uJqHVd8m3rI2YNHJd1kbu+
+	DkRVLTKNvqCxQJB+LdxDHtfxZAly16JafEhaN07wGMAb114aQBIiLYeKLA15eNRdKSn5i3l/6sU
+	eBFY4oHjoZ6zK9hXf7C6hl/Gj5LAoLDz1XfJI
+X-Google-Smtp-Source: AGHT+IEDsXiBlVA7FVMENTeGgQdvLlZXNAQiUGUTlJkIvmv4c11p25UNxrdKTp1DzYF1z74E2FJZ3g==
+X-Received: by 2002:a17:903:32c8:b0:235:e1d6:4e45 with SMTP id d9443c01a7336-23641b1a245mr413505ad.25.1749574889444;
+        Tue, 10 Jun 2025 10:01:29 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236037ae33dsm73023625ad.206.2025.06.10.10.01.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jun 2025 10:01:27 -0700 (PDT)
+Message-ID: <4c580225-a1d5-48cb-80dd-14759134baba@broadcom.com>
+Date: Tue, 10 Jun 2025 10:01:26 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] mailbox: Add support for bcm74110
+To: Justin Chen <justin.chen@broadcom.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: conor+dt@kernel.org, bcm-kernel-feedback-list@broadcom.com,
+ krzk+dt@kernel.org, robh@kernel.org, jassisinghbrar@gmail.com
+References: <20250602222311.2940850-1-justin.chen@broadcom.com>
+ <20250602222311.2940850-3-justin.chen@broadcom.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250602222311.2940850-3-justin.chen@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250610-slim7x-bt-v2-1-0dcd9d6576e9@oldschoolsolutions.biz>
-X-B4-Tracking: v=1; b=H4sIAItkSGgC/22OQQ6CMBBFr0JmbQ3TaAFX3sOwANrKJJWaTm1Q0
- rtbWbt8Lz8vfwM2gQzDpdogmERMfikgDxVM87DcjSBdGGQtz/VJKsGOHs0qxiiUrhFlIzvUCGX
- /DMbSurdufeGZOPrw3tMJf/ZfJaFAoVVrO4WDbVt19U7zNHvv2LtXLH/4ONIH+pzzF7vGQOCvA
- AAA
-X-Change-ID: 20250426-slim7x-bt-6d01127291d1
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Anthony Ruhier <aruhier@mailbox.org>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749574798; l=5316;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=MEFwA6FS4gwwcixWXBosonpMOiLeohbMEMi1CPsp0QM=;
- b=y7xcS6Txh6A6Wq8tfLtmGxLh8ddheXK1OTYAIHAoACNEzrgozpG0iogF4XrC7XPFyeghRuBHa
- /xcbaTKA0JGBKjWsm3n+fJpHSe4JpctCmKcRx+ssdEj2t85uKxpbbLM
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+On 6/2/25 15:23, Justin Chen wrote:
+> The bcm74110 mailbox driver is used to communicate with
+> a co-processor for various power management and firmware
+> related tasks.
+> 
+> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
 
-To enable Bluetooth pwrseq appears to be required for the WCN7850.
-Add the nodes from QCP.
-Add uart14 for the BT interface.
-
-Tested-by: Anthony Ruhier <aruhier@mailbox.org>
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
-This patch adds the Bluetooth support for the WCN7850 card on this laptop.
-Since WCN7850 is supposed to need pwrseq, also added this from the QCP.
-
-This is also part of my tree [1] for the Yoga Slim 7X.
-definition for the pwrseq and regulators.
-
-[1] https://github.com/jglathe/linux_ms_dev_kit/blob/jg/ubuntu-qcom-x1e-6.15.0-jg-6/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts 
----
-Changes in v2:
-- rebased to next-20250610
-- added tested-by from Anthony Ruhier
-- Link to v1: https://lore.kernel.org/r/20250426-slim7x-bt-v1-1-d68f961af886@oldschoolsolutions.biz
----
- .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 137 +++++++++++++++++++++
- 1 file changed, 137 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index dad0f11e8e8583df6fd8aeec5be2af86739d85fb..720a514611248bb3d6d9518c2920a11631888e5d 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -18,6 +18,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart21;
-+		serial1 = &uart14;
- 	};
- 
- 	chosen {
-@@ -404,6 +405,101 @@ vph_pwr: regulator-vph-pwr {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	vreg_wcn_0p95: regulator-wcn-0p95 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_0P95";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+
-+		vin-supply = <&vreg_wcn_3p3>;
-+	};
-+
-+	vreg_wcn_1p9: regulator-wcn-1p9 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_1P9";
-+		regulator-min-microvolt = <1900000>;
-+		regulator-max-microvolt = <1900000>;
-+
-+		vin-supply = <&vreg_wcn_3p3>;
-+	};
-+
-+	vreg_wcn_3p3: regulator-wcn-3p3 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&wcn_sw_en>;
-+		pinctrl-names = "default";
-+
-+		regulator-boot-on;
-+	};
-+
-+	wcn7850-pmu {
-+		compatible = "qcom,wcn7850-pmu";
-+
-+		vdd-supply = <&vreg_wcn_0p95>;
-+		vddio-supply = <&vreg_l15b_1p8>;
-+		vddaon-supply = <&vreg_wcn_0p95>;
-+		vdddig-supply = <&vreg_wcn_0p95>;
-+		vddrfa1p2-supply = <&vreg_wcn_1p9>;
-+		vddrfa1p8-supply = <&vreg_wcn_1p9>;
-+
-+		wlan-enable-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&wcn_wlan_bt_en>;
-+		pinctrl-names = "default";
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -1045,6 +1141,16 @@ &pcie4_port0 {
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
- 	};
- };
- 
-@@ -1403,6 +1509,37 @@ usb2_pwr_3p3_reg_en: usb2-pwr-3p3-reg-en-state {
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
-+
-+	wcn_sw_en: wcn-sw-en-state {
-+		pins = "gpio214";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	wcn_wlan_bt_en: wcn-wlan-bt-en-state {
-+		pins = "gpio116", "gpio117";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
-+
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+		max-speed = <3200000>;
-+
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+	};
- };
- 
- &uart21 {
-
----
-base-commit: b27cc623e01be9de1580eaa913508b237a7a9673
-change-id: 20250426-slim7x-bt-6d01127291d1
-
-Best regards,
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
-Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-
-
+Florian
 
