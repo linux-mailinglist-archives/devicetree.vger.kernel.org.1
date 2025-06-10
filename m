@@ -1,241 +1,381 @@
-Return-Path: <devicetree+bounces-184544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E0AAD46B4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 01:32:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF39CAD46CD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 01:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87D5C189E13F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 23:32:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E079E3A445A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 23:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C6B28B7F3;
-	Tue, 10 Jun 2025 23:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2B5286D62;
+	Tue, 10 Jun 2025 23:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="wRWzVcOa"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FgTugazE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4732820D7
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71872264F89
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749598309; cv=none; b=YAfwoWJr/5VVqf7ST8SgSlRRTV30k9cESjiGf0S9s+18u4QWpciazYtMrAmgGTfkCsk8agYqYfQqv/bWwA2RasGvLG6pgWttyhET0nbaDW9TCDDCSBwq675GSFcjRRPzXgfwsd2BiYqO1DS4XmkJXH0V8NXigU/PkjqGAnItjQ0=
+	t=1749598411; cv=none; b=MfdlmeeLQ8zUWhIXOGm56pSbEeT8l+pqnQ1CNPcbrKqlZEO1C8N5HuaLYQetFgGvgzURdo+Ti0+G7+0OmldSAXuUvIHrP01VcVQVR9Snf/vqMdW+PKCHZl6VQjey5weWw8m2VhSIMH2iB3Z+a8zd4QjQaktAaxqlO5Zr6TvneCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749598309; c=relaxed/simple;
-	bh=4Rk4PcZp/P0dgRokTbY66gQ53B57GAnzFe0P29JFxrQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=X7s05MlJwZYpqtmwDKYYSZ9RAqXKSm9rX5IS/v17x7/sftwKXf2vaiYRY6wcoz1ZgNiFKZJpqZGkBmu8GI3/Tq+b/QVQcvciVK+59G59APbWUQJgsajNsc5gW+lp33XNAzJQHcxAydoS6pNUDicEPaBae/egC1JrE0hz8V10fTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=wRWzVcOa; arc=none smtp.client-ip=91.218.175.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749598305;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nOaKt+XhutGsACo0AIeTjd+wJVp9zlX2M1zDj3epVuo=;
-	b=wRWzVcOalWralpljSZBtABeIpDrwhCoLsoRM0ng1KJSS/flJLAOcTR9ojSRhTQi/YoMMFx
-	0cbUWAoxrnuE4PpT9tKnQS/oIkr6jE3fp0gdIwivFPk+0TKsyAetaT9Hbld1+HZd+6k5N/
-	/lpU/j3kjtGz5usKdWg2rW324IN2meo=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: netdev@vger.kernel.org,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>
-Cc: Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Simon Horman <horms@kernel.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Lei Wei <quic_leiwei@quicinc.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	Robert Hancock <robert.hancock@calian.com>,
-	devicetree@vger.kernel.org
-Subject: [net-next PATCH v6 01/10] dt-bindings: net: Add Xilinx PCS
-Date: Tue, 10 Jun 2025 19:31:25 -0400
-Message-Id: <20250610233134.3588011-2-sean.anderson@linux.dev>
-In-Reply-To: <20250610233134.3588011-1-sean.anderson@linux.dev>
-References: <20250610233134.3588011-1-sean.anderson@linux.dev>
+	s=arc-20240116; t=1749598411; c=relaxed/simple;
+	bh=ruZJQCh9ryZ+I+XuYigqxnoLTdidbeWj9HQUWJc2Zmo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NCRZZUC4vljNo5e7cqkA89Cv2+I3idt+QA6vp7q8LSZmtCtt+gzDa6i0XhrX+M+gWN3TtOSrpMWuyvA/elvctV7IVlP7KTIXKwGHyn1GTwpOH5yNXeLXwfILX3Jd19uV2JQquwPhvL8gFTc3I1corV5yM+g+t2VB2DMaoUuFfWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=FgTugazE; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4e7b3363c5aso208280137.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 16:33:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1749598408; x=1750203208; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V5EtFSny9a3QKkQNZQ4QZE664zRM6QOaDf/5gMSog4w=;
+        b=FgTugazEJMPVHSD0OdCn3ysJqPhZwcSAn507/47D76BOTt54cFRm4G2QDygc+g2P+h
+         boakBVHS/9+9VLNwnlm4mfHbntNQwzYfxY1E9sGJ5GqfotmQYj9xaaGbEhoj4sYCPvZV
+         zE3KpKkIuLrLBUzsm4HMrOmdbEckTp9jNSPGWrP5QSUxccz4nip2l963L/Ky5olqEVXm
+         Lw1zkfL/8S4P4bQYJCMNeaSse1RiYShJMhs79cTtEFCesltCJgLE7l4PE3f4JDxgMNg3
+         Tlqf2O0Gc8Yr3jRI7c/Lv2jyAAvZokm/4hoTKlh6muzzzbVLwyXWdLQ9KMx2q0tdwvvb
+         zBqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749598408; x=1750203208;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=V5EtFSny9a3QKkQNZQ4QZE664zRM6QOaDf/5gMSog4w=;
+        b=kXGc8YXUhr80pB9ePji3BaC9QfcvlpdHtZL9cdae5sU16jbt4eMbFjAbWCB6akrKHV
+         7awWFMZb2r//DQ+fLdHkHnCVrkzCsYnCTGERiGrZhaNATIdkXGgnBg7+BR/WiH2pEJez
+         3gDr2Ix/1xdoHF6pk81AUO8VWc/IhZzvOViZDEmbS3hgQXl66OZAWUGkFGBT8ow5Sus2
+         KDL4L1+riV+Um45JYrA9sFrvy62rMU3vUGtmJyeQLQS8BVJPmUVnwGd505APa8GQY3pC
+         LCMqxiSRCRtBz8YmmPjHdwYr/6+yCdgW2l16HEl6CoJf4uVXEAkLRsRIrgfoXVHqr5+B
+         os9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUd9tIxdRRny60omxl0H/Cf9MCJUQmJic0cvIZUev+aVROuEWSehBhwPNV9ItaFZi5jdvcWyf80+PNR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV8T/EgxMRxpF2MT3D9NdtmfxQuwPb8dCa3j1lG516WUBFpj5T
+	N7H4Qa2TiKIbRvI3m+gXnMie7j5ea/jbcg1oC/I3NFNiBWvgFV/S8W4nMpvIoDwPkzyQR8Pg522
+	07KcfaWNd+ert6VBwccNQrRCFicJ+nStq+eo+uDh21JdBkh0Uu3UGDRSd
+X-Gm-Gg: ASbGncuJ0Z5GNLcOm2N6FDy9KO3KjRKSdAz2Sv4beOOG1oQDHmfAH/4+miO+GZDfpWz
+	SzfQv+5SXHfm23JC5n/qcztGN302EZujO/OTj+k1tCCOgwny6XeZd0Rhx+MCFgWdrq7L7jutUZY
+	VRRGCoVQxH+e257147QlErBoSg9oE9NQ5WgqbEpM10WaXmHVw/zDu79Ul9dzH182VyAv+TqJnKk
+	g1fVp1Hj/2g
+X-Google-Smtp-Source: AGHT+IEcsSHhHIIu81SM+BOR5aTDT1K9zkwKsejYm+2eolXTze4JNqYutalDoK6kpHgBOnvztSJ6wFzNmFGMZzgT5a0=
+X-Received: by 2002:a67:cf4a:0:b0:4e7:70cf:b537 with SMTP id
+ ada2fe7eead31-4e7ba5b75eamr1323852137.6.1749598407852; Tue, 10 Jun 2025
+ 16:33:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev> <20250610183459.3395328-1-sean.anderson@linux.dev>
+In-Reply-To: <20250610183459.3395328-1-sean.anderson@linux.dev>
+From: Saravana Kannan <saravanak@google.com>
+Date: Tue, 10 Jun 2025 16:32:51 -0700
+X-Gm-Features: AX0GCFvKgpTxqr1mM_UL-c0KtL5e6Pwn-8QrXYyRkrz6mEh3bGy2fWkm5gxu91E
+Message-ID: <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
+Subject: Re: [PATCH] driver core: Prevent deferred probe loops
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>, Grant Likely <grant.likely@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add a binding for the Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE
-IP. This device is a soft device typically used to adapt between GMII
-and SGMII or 1000BASE-X (possbilty in combination with a serdes).
-pcs-modes reflects the modes available with the as configured when the
-device is synthesized. Multiple modes may be specified if dynamic
-reconfiguration is supported.
+On Tue, Jun 10, 2025 at 11:35=E2=80=AFAM Sean Anderson <sean.anderson@linux=
+.dev> wrote:
+>
+> A deferred probe loop can occur when a device returns EPROBE_DEFER after
+> registering a bus with children:
 
-One PCS may contain "shared logic in core" which can be connected to
-other PCSs with "shared logic in example design." This primarily refers
-to clocking resources, allowing a reference clock to be shared by a bank
-of PCSs. To support this, if #clock-cells is defined then the PCS will
-register itself as a clock provider for other PCSs.
+This is a broken driver. A parent device shouldn't register child
+devices unless it is fully read itself. It's not logical to say the
+child devices are available, if the parent itself isn't fully ready.
+So, adding child devices/the bus should be the last thing done in the
+parent's probe function.
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
----
+I know there are odd exceptions where the parent depends on the child,
+so they might add the child a bit earlier in the probe, but in those
+cases, the parent's probe should still do all the checks ahead of
+time.
 
-(no changes since v3)
+Can you be more specific about the actual failure you are seeing?
 
-Changes in v3:
-- Add '>' modifier for paragraph to description
-- Edit description to reference clocks instead of resets
+Thanks,
+Saravana
 
-Changes in v2:
-- Change base compatible to just xlnx,pcs
-- Drop #clock-cells description
-- Move #clock-cells after compatible
-- Remove second example
-- Rename pcs-modes to xlnx,pcs-modes
-- Reword commit message
 
- .../devicetree/bindings/net/xilinx,pcs.yaml   | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/xilinx,pcs.yaml b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-new file mode 100644
-index 000000000000..11bbae6936eb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/xilinx,pcs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE IP
-+
-+maintainers:
-+  - Sean Anderson <sean.anderson@seco.com>
-+
-+description: >
-+  This is a soft device which implements the PCS and (depending on
-+  configuration) PMA layers of an IEEE Ethernet PHY. On the MAC side, it
-+  implements GMII. It may have an attached SERDES (internal or external), or
-+  may directly use LVDS IO resources. Depending on the configuration, it may
-+  implement 1000BASE-X, SGMII, 2500BASE-X, or 2.5G SGMII.
-+
-+  This device has a notion of "shared logic" such as reset and clocking
-+  resources which must be shared between multiple PCSs using the same I/O
-+  banks. Each PCS can be configured to have the shared logic in the "core"
-+  (instantiated internally and made available to other PCSs) or in the "example
-+  design" (provided by another PCS). PCSs with shared logic in the core provide
-+  a clock for other PCSs in the same bank.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: xlnx,pcs-16.2
-+      - const: xlnx,pcs
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 0
-+
-+  clocks:
-+    items:
-+      - description:
-+          The reference clock for the PCS. Depending on your setup, this may be
-+          the gtrefclk, refclk, clk125m signal, or clocks from another PCS.
-+
-+  clock-names:
-+    const: refclk
-+
-+  done-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the reset-done output, if present.
-+
-+  interrupts:
-+    items:
-+      - description:
-+          The an_interrupt autonegotiation-complete interrupt.
-+
-+  interrupt-names:
-+    const: an
-+
-+  xlnx,pcs-modes:
-+    description:
-+      The interfaces that the PCS supports. Multiple interfaces may be
-+      specified if dynamic reconfiguration is enabled.
-+    oneOf:
-+      - const: sgmii
-+      - const: 1000base-x
-+      - const: 2500base-x
-+      - items:
-+          - const: sgmii
-+          - const: 1000base-x
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the reset input.
-+
-+required:
-+  - compatible
-+  - reg
-+  - xlnx,pcs-modes
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pcs0: ethernet-pcs@0 {
-+            compatible = "xlnx,pcs-16.2", "xlnx,pcs";
-+            reg = <0>;
-+            #clock-cells = <0>;
-+            clocks = <&si570>;
-+            clock-names = "refclk";
-+            interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "an";
-+            reset-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
-+            done-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
-+            xlnx,pcs-modes = "sgmii", "1000base-x";
-+        };
-+
-+        pcs1: ethernet-pcs@1 {
-+            compatible = "xlnx,pcs-16.2", "xlnx,pcs";
-+            reg = <1>;
-+            xlnx,pcs-modes = "sgmii";
-+            clocks = <&pcs0>;
-+            clock-names = "refclk";
-+        };
-+    };
--- 
-2.35.1.1320.gc452695387.dirty
-
+> deferred_probe_work_func()
+>   driver_probe_device(parent)
+>     test_parent_probe(parent)
+>       device_add(child)
+>         (probe successful)
+>         driver_bound(child)
+>           driver_deferred_probe_trigger()
+>       return -EPROBE_DEFER
+>     driver_deferred_probe_add(parent)
+>     // deferred_trigger_count changed, so...
+>     driver_deferred_probe_trigger()
+>
+> Because there was another successful probe during the parent's probe,
+> driver_probe_device thinks we need to retry the whole probe process. But
+> we will never make progress this way because the only thing that changed
+> was a direct result of our own probe function.
+>
+> To prevent this, add a per-device trigger_count. This allows us to
+> determine if the global deferred_trigger_count was modified by some
+> unrelated device or only by our own children. The read side does the
+> work of summing children because I expect most deferred devices to be
+> childless. The alternative is to walk up the device's parents in
+> driver_deferred_probe_trigger.
+>
+> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> ---
+>
+>  drivers/base/base.h    |  2 +-
+>  drivers/base/core.c    |  8 ++++-
+>  drivers/base/dd.c      | 67 ++++++++++++++++++++++++++++++++++--------
+>  include/linux/device.h |  3 ++
+>  4 files changed, 66 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/base/base.h b/drivers/base/base.h
+> index 123031a757d9..54263b186d1f 100644
+> --- a/drivers/base/base.h
+> +++ b/drivers/base/base.h
+> @@ -201,7 +201,7 @@ int devres_release_all(struct device *dev);
+>  void device_block_probing(void);
+>  void device_unblock_probing(void);
+>  void deferred_probe_extend_timeout(void);
+> -void driver_deferred_probe_trigger(void);
+> +void driver_deferred_probe_trigger(struct device *dev);
+>  const char *device_get_devnode(const struct device *dev, umode_t *mode,
+>                                kuid_t *uid, kgid_t *gid, const char **tmp=
+);
+>
+> diff --git a/drivers/base/core.c b/drivers/base/core.c
+> index cbc0099d8ef2..8ba231ec469b 100644
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -1858,7 +1858,7 @@ void __init wait_for_init_devices_probe(void)
+>
+>         pr_info("Trying to probe devices needed for running init ...\n");
+>         fw_devlink_best_effort =3D true;
+> -       driver_deferred_probe_trigger();
+> +       driver_deferred_probe_trigger(NULL);
+>
+>         /*
+>          * Wait for all "best effort" probes to finish before going back =
+to
+> @@ -3739,6 +3739,9 @@ int device_add(struct device *dev)
+>         kobject_uevent(&dev->kobj, KOBJ_REMOVE);
+>         glue_dir =3D get_glue_dir(dev);
+>         kobject_del(&dev->kobj);
+> +       if (parent)
+> +               atomic_add(atomic_read(&dev->trigger_count),
+> +                          &dev->parent->trigger_count);
+>   Error:
+>         cleanup_glue_dir(dev, glue_dir);
+>  parent_error:
+> @@ -3899,6 +3902,9 @@ void device_del(struct device *dev)
+>         kobject_uevent(&dev->kobj, KOBJ_REMOVE);
+>         glue_dir =3D get_glue_dir(dev);
+>         kobject_del(&dev->kobj);
+> +       if (parent)
+> +               atomic_add(atomic_read(&dev->trigger_count),
+> +                          &parent->trigger_count);
+>         cleanup_glue_dir(dev, glue_dir);
+>         memalloc_noio_restore(noio_flag);
+>         put_device(parent);
+> diff --git a/drivers/base/dd.c b/drivers/base/dd.c
+> index b526e0e0f52d..8ce638c02275 100644
+> --- a/drivers/base/dd.c
+> +++ b/drivers/base/dd.c
+> @@ -156,6 +156,7 @@ void driver_deferred_probe_del(struct device *dev)
+>  static bool driver_deferred_probe_enable;
+>  /**
+>   * driver_deferred_probe_trigger() - Kick off re-probing deferred device=
+s
+> + * @dev: the successfully-bound device, or %NULL if not applicable
+>   *
+>   * This functions moves all devices from the pending list to the active
+>   * list and schedules the deferred probe workqueue to process them.  It
+> @@ -172,7 +173,7 @@ static bool driver_deferred_probe_enable;
+>   * changes in the midst of a probe, then deferred processing should be t=
+riggered
+>   * again.
+>   */
+> -void driver_deferred_probe_trigger(void)
+> +void driver_deferred_probe_trigger(struct device *dev)
+>  {
+>         if (!driver_deferred_probe_enable)
+>                 return;
+> @@ -184,6 +185,10 @@ void driver_deferred_probe_trigger(void)
+>          */
+>         mutex_lock(&deferred_probe_mutex);
+>         atomic_inc(&deferred_trigger_count);
+> +       if (dev) {
+> +               smp_wmb(); /* paired with device_needs_retrigger */
+> +               atomic_inc(&dev->trigger_count);
+> +       }
+>         list_splice_tail_init(&deferred_probe_pending_list,
+>                               &deferred_probe_active_list);
+>         mutex_unlock(&deferred_probe_mutex);
+> @@ -216,7 +221,7 @@ void device_block_probing(void)
+>  void device_unblock_probing(void)
+>  {
+>         defer_all_probes =3D false;
+> -       driver_deferred_probe_trigger();
+> +       driver_deferred_probe_trigger(NULL);
+>  }
+>
+>  /**
+> @@ -308,7 +313,7 @@ static void deferred_probe_timeout_work_func(struct w=
+ork_struct *work)
+>         fw_devlink_drivers_done();
+>
+>         driver_deferred_probe_timeout =3D 0;
+> -       driver_deferred_probe_trigger();
+> +       driver_deferred_probe_trigger(NULL);
+>         flush_work(&deferred_probe_work);
+>
+>         mutex_lock(&deferred_probe_mutex);
+> @@ -347,7 +352,7 @@ static int deferred_probe_initcall(void)
+>                             &deferred_devs_fops);
+>
+>         driver_deferred_probe_enable =3D true;
+> -       driver_deferred_probe_trigger();
+> +       driver_deferred_probe_trigger(NULL);
+>         /* Sort as many dependencies as possible before exiting initcalls=
+ */
+>         flush_work(&deferred_probe_work);
+>         initcalls_done =3D true;
+> @@ -359,7 +364,7 @@ static int deferred_probe_initcall(void)
+>          * Trigger deferred probe again, this time we won't defer anythin=
+g
+>          * that is optional
+>          */
+> -       driver_deferred_probe_trigger();
+> +       driver_deferred_probe_trigger(NULL);
+>         flush_work(&deferred_probe_work);
+>
+>         if (driver_deferred_probe_timeout > 0) {
+> @@ -415,7 +420,7 @@ static void driver_bound(struct device *dev)
+>          * kick off retrying all pending devices
+>          */
+>         driver_deferred_probe_del(dev);
+> -       driver_deferred_probe_trigger();
+> +       driver_deferred_probe_trigger(dev);
+>
+>         bus_notify(dev, BUS_NOTIFY_BOUND_DRIVER);
+>         kobject_uevent(&dev->kobj, KOBJ_BIND);
+> @@ -806,6 +811,47 @@ static int __driver_probe_device(const struct device=
+_driver *drv, struct device
+>         return ret;
+>  }
+>
+> +/**
+> + * dev_get_trigger_count() - Recursively read trigger_count
+> + * @dev: device to read from
+> + * @data: pointer to the int result; should be initialized to 0
+> + *
+> + * Read @dev's trigger_count, as well as all its children's trigger coun=
+ts,
+> + * recursively. The result is the number of times @dev or any of its
+> + * (possibly-removed) children have been successfully probed.
+> + *
+> + * Return: 0
+> + */
+> +static int dev_get_trigger_count(struct device *dev, void *data)
+> +{
+> +       *(int *)data +=3D atomic_read(&dev->trigger_count);
+> +       return device_for_each_child(dev, dev_get_trigger_count, data);
+> +}
+> +
+> +/*
+> + * device_needs_retrigger() - Determine if we need to re-trigger a defer=
+red probe
+> + * @dev: Device that failed to probe with %EPROBE_DEFER
+> + * @old_trigger_count: Value of deferred_trigger_count before probing th=
+e device
+> + *
+> + * The resource @dev was looking for could have been probed between when=
+ @dev
+> + * looked up the resource and when the probe process finished. If this o=
+ccurred
+> + * we need to retrigger deferred probing so that @dev gets another shot =
+at
+> + * probing. However, we need to ignore deferred probe triggers from @dev=
+'s own
+> + * children, since that could result in an infinite probe loop.
+> + *
+> + * Return: %true if we should retrigger probing of deferred devices
+> + */
+> +static bool device_needs_retrigger(struct device *dev, int old_trigger_c=
+ount)
+> +{
+> +       int dev_trigger_count =3D 0;
+> +       int new_trigger_count;
+> +
+> +       dev_get_trigger_count(dev, &dev_trigger_count);
+> +       smp_rmb(); /* paired with driver_deferred_probe_trigger */
+> +       new_trigger_count =3D atomic_read(&deferred_trigger_count);
+> +       return new_trigger_count > old_trigger_count + dev_trigger_count;
+> +}
+> +
+>  /**
+>   * driver_probe_device - attempt to bind device & driver together
+>   * @drv: driver to bind a device to
+> @@ -830,12 +876,9 @@ static int driver_probe_device(const struct device_d=
+river *drv, struct device *d
+>         if (ret =3D=3D -EPROBE_DEFER || ret =3D=3D EPROBE_DEFER) {
+>                 driver_deferred_probe_add(dev);
+>
+> -               /*
+> -                * Did a trigger occur while probing? Need to re-trigger =
+if yes
+> -                */
+> -               if (trigger_count !=3D atomic_read(&deferred_trigger_coun=
+t) &&
+> -                   !defer_all_probes)
+> -                       driver_deferred_probe_trigger();
+> +               if (!defer_all_probes &&
+> +                   device_needs_retrigger(dev, trigger_count))
+> +                       driver_deferred_probe_trigger(NULL);
+>         }
+>         atomic_dec(&probe_count);
+>         wake_up_all(&probe_waitqueue);
+> diff --git a/include/linux/device.h b/include/linux/device.h
+> index 4940db137fff..9c9153adb8d6 100644
+> --- a/include/linux/device.h
+> +++ b/include/linux/device.h
+> @@ -486,6 +486,8 @@ struct device_physical_location {
+>   * @p:         Holds the private data of the driver core portions of the=
+ device.
+>   *             See the comment of the struct device_private for detail.
+>   * @kobj:      A top-level, abstract class from which other classes are =
+derived.
+> + * @trigger_count: Number of times this device (or any of its removed ch=
+ildren)
+> + *              has been successfully bound to a driver.
+>   * @init_name: Initial name of the device.
+>   * @type:      The type of device.
+>   *             This identifies the device type and carries type-specific
+> @@ -581,6 +583,7 @@ struct device_physical_location {
+>   */
+>  struct device {
+>         struct kobject kobj;
+> +       atomic_t                trigger_count;
+>         struct device           *parent;
+>
+>         struct device_private   *p;
+> --
+> 2.35.1.1320.gc452695387.dirty
+>
 
