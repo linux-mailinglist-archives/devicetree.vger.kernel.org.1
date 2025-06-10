@@ -1,212 +1,147 @@
-Return-Path: <devicetree+bounces-184022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8050AD2CC2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:35:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3FEAD2CD4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:42:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D66216B48B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 04:35:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD0A97A7B14
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 04:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2683A258CF9;
-	Tue, 10 Jun 2025 04:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA81725D1F3;
+	Tue, 10 Jun 2025 04:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Vbe6L+zs"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="jSVXQt6c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F47E21883F
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 04:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F8321322F
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 04:42:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749530143; cv=none; b=ZdTnH6u5WPpOwamjvJ9P1AoU9D3VJRdomYMgwxdA0aBO5Eaf/MtuI+1uTiypeFZ/dXckDNwWkmB+S51N9KHHLISxOTIdK90HktdIYHwM0B50R7SQDU3Tq2fSeyinZVbIq07nm2civszRYaYF9j3V02441ZWBCq5yhJSTGrYHdjc=
+	t=1749530537; cv=none; b=LhCkgPm34yCMyErgN367+LsFcIugA/WnQ9PipcO/RLLm8RABVx76pCZKA7SKVsrPlT6iBlXy4NqA9fB0L8mZQj5g9wpt5pMmfNDM/Synb8ygkRGoIcbSvjtnzcVPIajv5Y+1M6DCl2sKI0YFBVABqLWmL5ASuML+FU3Wg7BW3/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749530143; c=relaxed/simple;
-	bh=+vjfbM7qqAK0wXxezlHayMmhbq1IaZ9tTIr+C3ezwK4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=epCHP0weBsnUWyFm1TLajik9adH8oyHTC6vO/mPwLt4HXM33cDnLDYRUjZF02SByTZ4CoT5a3nL+1hYOGd3o7Xl1/LWAKKEgtaKwzjhFD6MwVoYJSZ8u77BBRkaC4umSL9mX8lVI6HWTPKgY8W4z1xqr+F7rpOUAms9M8/qZhq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Vbe6L+zs; arc=none smtp.client-ip=209.85.167.49
+	s=arc-20240116; t=1749530537; c=relaxed/simple;
+	bh=CAzDFjhSAzbmD8Txu7d1pGievjGb5rkrE7JNed1lhig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nnG/jrTK6NwS6E53ZxXjDft5BEx75VdDcs+NvIV46Nli3W5TQrzpgT+Y/tG31bQdGF6BKGff4zXXeW7ldzoHrxfZChUK4lsIAOZ/hWZdC6o4tyIcWZWAq6lF0Rutx+pAaMsilB1p8QDiK4lPNyFB5weTZBjQrf4uwhzG2O0RbQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=jSVXQt6c; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5533c562608so4896355e87.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 21:35:40 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2350b1b9129so32225045ad.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 21:42:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1749530139; x=1750134939; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ed8RxUAjYyp2LZZaxVzqOY+SgZzJQWB9mmLBoWY3jwg=;
-        b=Vbe6L+zs/5pWBRPba5ctupjKictxAHVF2LHzhFto7ztoPt8fOo0qOKIZQ2yh/2YNJ+
-         QvaVC5rN5HlOU3RyFHLOGZgVMc/SAjxddb1VIQjtAUxDFBDa8dajgAXcgLAGxTF0uId7
-         2XLKmfafjYxerKNemsh6XXc80jHFTXXLZWUNvNfQrpdxCtY7iuQi9fSnhLEnLVgm/xVk
-         GnI2z1XO2A/DkZZbx2ZUHA99SyU3SVz43JvuHpbPPHtTgyR+AO6cf8Ar1zXmahdyP6Tt
-         OpVvUUa1UD1Do7SLBUGAH2wf0J3Aek4QwRcbrK8u8upD22Kw6B9XTcNhFlpzrbi+NCRq
-         YukQ==
+        d=ventanamicro.com; s=google; t=1749530535; x=1750135335; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KVeTEtZcl1m4ClJ2o9p5dHCV4fbTAw96xygmKyHd+ZA=;
+        b=jSVXQt6cLqIWP2AdpnrUhsBreW4p2wU25oiaJN790VwdPuc+ze2tIRIQ7mDrgv6rFF
+         uY/yfialTOt6CMMNQiGP1bxkV1VrWS+M0CvGPEHv1hoLmjuu4UbQXch4WTOB4uKXXn/W
+         4rqK6PbVoPtqNUgi/1Ytoucsy9MD+ylnZY7NZjQfSYay1/yEGf6o4ahiE24XHg+SUmN6
+         6Et8ze4Tz/BNL+qIQgD1qfSrrMmOm3fvD8fFpZUOsg/dtS76F1Yf7XQCOHSKqoO/lpia
+         vXtXUBhWdqVe3PV8po5IUOGQqUzn/5NQp9qxvFsEDlfURhM/3wPsVoAFbCfrfQ7DJKfr
+         +QXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749530139; x=1750134939;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ed8RxUAjYyp2LZZaxVzqOY+SgZzJQWB9mmLBoWY3jwg=;
-        b=cdwDa37JibVnAziZAndzdvfGHTfL+KTp2GYvnJFCZEJDAJ9jLrdn50AOlLTXEnEDEC
-         T/U8eY1B+e+9u6jWzB6qa1SbcMsYWCYwxV5z39I4MIwZbmryW/G3XIAgcbki8NgVqdSp
-         8oam56YVMYX/7gZsw7V/LQAOA5rBgJYmJ6HUSqNswveLfXf8ZAeXayHM0QfiMeuYzUWZ
-         4WBO+WhZ8RvmQixSDJWv4+zQmDhlCvxiiLhUeNMOJYGdDF/dwbu//XSV6+j6jxMNe1Rh
-         wi4NCU41ZeiAYq4LuPkT6QqltAc0ZachMqIicFFOgIE092QmB6mSRY1CcHABjvS9l/n4
-         S2Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCWhgcFZAELuMq5FgfaauvgJm3wTgF/JUoyl8h1AIvU/ONAN9BhbMZ+pdAzCLeSDCWGgwLwYGKR2BYNP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoePImxQkTWQZgeG5O2nNW9TXVyHth2PhrVO5UUcjg4FzLPvok
-	t/cICyDCZC16TZg9/TAzL0qk24UMmh7DiDP7vqcmdQq3dNwWZxlrOdbDNdlRbwaFCkb3iBhdr37
-	JJE+WX02MewxwMHMxKzTPrTjVyWlcx4JpAVcZN9bcrA==
-X-Gm-Gg: ASbGncsU/dnRAvJVdlVc7HL8HK4iWvofOS+S92Q8wopruUXd61RTXrqM9uvan68hrND
-	18Wpx4HMiJ9hZr04qgW0RjxVG1bSEtsKFgzS7UEe1XoIm8akCko5td+RYb8te+CrkN6lUYaPODk
-	ph+b5FCuvxdXdG+HPS0MXRjxRETEHI9CtX+JLRQp+YbiUV
-X-Google-Smtp-Source: AGHT+IFxFmkHQ3fGwNL4owR0g3OIQgJ/V8z3FZMMkX4FuLFUg5JQYB9HKU+r2AMKe1MFWDs5KmtPabb7AI8QwZPozUs=
-X-Received: by 2002:ac2:4c4d:0:b0:553:3a0a:1892 with SMTP id
- 2adb3069b0e04-55366bee654mr3830038e87.15.1749530139008; Mon, 09 Jun 2025
- 21:35:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749530535; x=1750135335;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KVeTEtZcl1m4ClJ2o9p5dHCV4fbTAw96xygmKyHd+ZA=;
+        b=gHxTc7KKZWLSFgxPsNQeQJg8v6zO6t90eKUk+EbY/w8jznxbVUfwaCsF7y/xRHUZ4t
+         uSqT23/nnfmla33wMwA9YntFlbxVPmqhIlwyKlKLrbXjbImPrJwuVfn4GUjO9BoUFNu8
+         KJqMO+DcWK+/C7FvQgEN3xaUiq+VfCUni19zehQ00nOyKnZKbvdDjunrRoMuQYlbqt6W
+         B1gOFw7rLcz2t8PgNodMp9Xf+Rbicsn3wq6pTeuLvSLqTzu+ZiXSYXqXvHdSEaJlJx81
+         PnrjVY6wX6WCUB+xf2Ey09+kJlDNN2Q409BYHTgd9DRwKmMFlQ7gd72Ww/8wvNN/dZrU
+         iGcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVindrW9fpveI8pi5fnC5PCv3OipG762Uv6bvrVqcvmgebXvs7p9HGWlZJdww5hWWFKlAY1DDLQNSw8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxia+MXRLzO7HcwZAedUk1CiIF9YAsQO4vApgqiLuC7USX7tHWE
+	7oguykbLlKFF+XGhYaJt94JWA3R2ZzUH2XQ1aovqDhRuRsvFT46h6OzR8ZlHH919mB8=
+X-Gm-Gg: ASbGncujHUToJPAkdsaRmZNu+E8merJdjDuS1QJjW6bpwGoVBnw2S5zwhBc5UB4WmOz
+	vuOEaa7wBtHyEh8XiKhFko+Z27qQYW4Tq5hmtPdAlhajHojQ/Y4YRHbURGqAUkqjHOcY6GrM2i1
+	7SOVvU/P2zyjwsRAApatZ2seqzF/+rPSMAf+rCUJ6vtZMtkYa7fbrEXiJoV6lVHOZnlqYxvGkWs
+	ENiE4GOh0K0uCJuwEUnpPbQm+sDY7L/M96jtlEM0al09ood0a0jsyNAC5uzafiFtmaJkoy0Z2cj
+	8TExKNCiwtrCkgy/SOsV6FXv1/4nkwd2gERH9/Y5v9c3mc+Yz6m/IjxkCRQTyh+jMlnXCA==
+X-Google-Smtp-Source: AGHT+IEkTU+gBcq13St9Qw/Wf0Um/jTGbpeL8M59SViyqMxrr/ADp4BVSyewhIKv47GXRKYXDjzYQQ==
+X-Received: by 2002:a17:902:d2c3:b0:235:7c6:ebd2 with SMTP id d9443c01a7336-23601d2296bmr201118235ad.31.1749530535298;
+        Mon, 09 Jun 2025 21:42:15 -0700 (PDT)
+Received: from sunil-laptop ([103.97.166.196])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2363ad3492esm1896875ad.154.2025.06.09.21.42.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jun 2025 21:42:14 -0700 (PDT)
+Date: Tue, 10 Jun 2025 10:12:03 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 17/23] ACPI: RISC-V: Create interrupt controller list
+ in sorted order
+Message-ID: <aEe3m23wIDM1I-AH@sunil-laptop>
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-18-apatel@ventanamicro.com>
+ <aDbuABrlO30TIrx1@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-8-apatel@ventanamicro.com> <aDbrBFcgaJxgBRVZ@smile.fi.intel.com>
- <CAK9=C2XJwgsC5AK-eVOHQqN1tPxtrsTjVoKdHgALbREv=sb8zQ@mail.gmail.com> <aEc-SHvL187xdj-m@smile.fi.intel.com>
-In-Reply-To: <aEc-SHvL187xdj-m@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 10 Jun 2025 10:05:27 +0530
-X-Gm-Features: AX0GCFs_6x-PmQkIdN0TNx_kOYhGk1jP9YjELf3l8YvJWCRscxqU6ceG469MS-c
-Message-ID: <CAK9=C2VjOZ22smYdxDg1bjnx-+wwjngEN3c-iOpdtaADFcQ0+w@mail.gmail.com>
-Subject: Re: [PATCH v4 07/23] mailbox: Add RISC-V SBI message proxy (MPXY)
- based mailbox driver
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aDbuABrlO30TIrx1@smile.fi.intel.com>
 
-On Tue, Jun 10, 2025 at 1:34=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Mon, Jun 09, 2025 at 05:59:40PM +0530, Anup Patel wrote:
-> > On Wed, May 28, 2025 at 4:23=E2=80=AFPM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Sun, May 25, 2025 at 02:16:54PM +0530, Anup Patel wrote:
->
+On Wed, May 28, 2025 at 02:05:36PM +0300, Andy Shevchenko wrote:
+> On Sun, May 25, 2025 at 02:17:04PM +0530, Anup Patel wrote:
+> > 
+> > Currently, the interrupt controller list is created without any order.
+> > Create the list sorted with the GSI base of the interrupt controllers.
+> 
 > ...
->
-> > > > +#include <asm/sbi.h>
-> > >
-> > > asm/* usually goes after generic linux/* ones. Why here?
-> >
-> > I am not aware of any such convention but I will update anyway.
->
-> It's just a common sense. We include most generic first and most custom a=
-t
-> last.
->
-> ...
->
-> > > > +static int mpxy_write_attrs(u32 channel_id, u32 base_attrid, u32 a=
-ttr_count,
-> > > > +                         u32 *attrs_buf)
-> > > > +{
-> > > > +     struct mpxy_local *mpxy =3D this_cpu_ptr(&mpxy_local);
-> > > > +     struct sbiret sret;
-> > > > +     u32 i;
-> > > > +
-> > > > +     if (!mpxy->shmem_active)
-> > > > +             return -ENODEV;
-> > > > +     if (!attr_count || !attrs_buf)
-> > > > +             return -EINVAL;
-> > > > +
-> > > > +     get_cpu();
-> > > > +
-> > > > +     for (i =3D 0; i < attr_count; i++)
-> > > > +             ((__le32 *)mpxy->shmem)[i] =3D cpu_to_le32(attrs_buf[=
-i]);
-> > >
-> > > Don't we have helpers for this? They are suffixed with _array.
-> > > https://elixir.bootlin.com/linux/v6.15-rc6/source/include/linux/byteo=
-rder/generic.h#L168
-> > > Don't forget to have asm/byteorder.h being included.
-> > >
-> > > Ditto for the similar case(s).
-> >
-> > The cpu_to_le32_array() and le32_to_cpu_array() helpers update data
-> > in-place but over here we have separate source and destination.
->
-> Fair enough. Perhaps add something like memcpy_to_le32() / memcpy_from_le=
-32()
-> or alike for your case?
+> 
+> > -	list_add_tail(&ext_intc_element->list, &ext_intc_list);
+> > +	if (list_empty(&ext_intc_list)) {
+> > +		list_add(&ext_intc_element->list, &ext_intc_list);
+> > +		return 0;
+> > +	}
+> 
+> With the below done the above can be optimized (hopefully).
+> 
+> > +	list_for_each_entry(node, &ext_intc_list, list) {
+> > +		if (node->gsi_base < ext_intc_element->gsi_base)
+> > +			break;
+> > +	}
+> > +
+> > +	__list_add(&ext_intc_element->list, node->list.prev, &node->list);
+> 
+> Is this reimplementation of list_add_tail()? And why list debug is excluded here?
+> 
+Sure. Let me use list_add_tail() itself in the next revision. However, I
+didn't understand the list debug question. IIUC, list_add_tail() is a
+wrapper around __list_add() and doesn't exclude the list debug, right?
 
-Okay, I will add memcpy_to_le32() / memcpy_from_le32()
-in include/linux/byteorder/generic.h and use it over here.
-
->
-> > > > +     sret =3D sbi_ecall(SBI_EXT_MPXY, SBI_EXT_MPXY_WRITE_ATTRS,
-> > > > +                      channel_id, base_attrid, attr_count, 0, 0, 0=
-);
-> > > > +
-> > > > +     put_cpu();
-> > > > +     return sbi_err_map_linux_errno(sret.error);
-> > > > +}
->
-> ...
->
-> > > > +                            sizeof(mchan->rpmi_attrs) / sizeof(u32=
-),
-> > > > +                            (u32 *)&mchan->rpmi_attrs);
-> > >
-> > > Why casting? What about alignment?
-> >
-> > The RPMI attributes (aka struct sbi_mpxy_rpmi_channel_attrs) are
-> > a collection of u32 attributes hence we can also treat rpmi_attrs
-> > as a u32 array. Further, the rpmi_attrs is XLEN aligned within the
-> > struct mpxy_mbox_channel so no alignment issue with the casting
-> > on both RV32 and RV64.
-> >
-> > If we want to avoid the casting then we will have to use a temporary
-> > u32 array plus additional memcpy().
->
-> OK.
->
-> ...
->
-> > > > +     if (mbox->msi_count)
-> > >
-> > > Is this check really needed?
-> >
-> > MSIs are optional for the SBI MPXY mailbox so we should only use
-> > platform_device_msi_xyz() APIs only when MSIs are available.
->
-> > > > +             platform_device_msi_free_irqs_all(mbox->dev);
->
-> Hmm... I am not sure why. Do you have any Oops or warnings if the check
-> is not there and no MSI provided?
-
-We don't see any oops or warnings. This check is to avoid unnecessary
-work (such as acquiring lock, checking default domain, etc) in the
-msi_domain_free_irqs_all() called by platform_device_msi_free_irqs_all().
-
-I don't mind dropping the check so I will update in the next revision.
-
-Regards,
-Anup
+Thanks!
+Sunil
 
