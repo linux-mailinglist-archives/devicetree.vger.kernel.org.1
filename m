@@ -1,213 +1,133 @@
-Return-Path: <devicetree+bounces-184345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E7DAD3C46
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:10:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B94CAD3C6A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47B161896990
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:10:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 264FB3AB3DC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15FE235073;
-	Tue, 10 Jun 2025 15:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19C123536E;
+	Tue, 10 Jun 2025 15:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IjXcYFl2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uNo1kwLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A884235064
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 15:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DE8235064
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 15:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749568205; cv=none; b=itGmqcvKX19z7yIpZX3RHpavlHhWoIRL8tZFWjLhtt6bs4ss8ANvN7gdCnq52xuatk2d9VFVGQG69nPFItI3ZEBO92mbz1G+zdIlpnRMviKpLRa3NC0K44J58CyieUntfHgx0LGfziGYSNXcHB2ZZ8zl/wCpeV3pVPlx6pSKzC0=
+	t=1749568238; cv=none; b=sE5Gd5bXdHnr9CPeJQQTmoXEq3zesXDsrEkQY8bcsoFo2QCAzCzTEmhysX8nbC8IO/aYaL+q7PPkBCpkIjTbC1T6CQf0z6Kz/4JID89+9V7fbGR5QsrY/3P5A2mPW8og29JAHOx3kSto5sfpaIA/ZfoRUZ/WGGDO5cigoLL3UHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749568205; c=relaxed/simple;
-	bh=UVMsrOYVWgzj+N8I791ZfdW7df1Whpr4LC8BgEEPEUY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lJe+UOi3Oyet+TCz8UjsquLmFz9txwRyK2naMOb6GjC32uIt3dMOJq+mO8xLA9iwgvNsglnH6ivYNSFhjFHNgzeTlUnEaHt0+aHYr34/tsg2Ixi7I0ekD02KPD7rvmhZCjWB5RANO2XRSvkC/OPDvr1DJcGBR4muqNXHA0sEQkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IjXcYFl2; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2352400344aso48665765ad.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:10:03 -0700 (PDT)
+	s=arc-20240116; t=1749568238; c=relaxed/simple;
+	bh=K16qniHpP1rKeMQwwTwoeEHkNwIBAmZZGNj2G/YDHZc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nL8cMqJTkn8cUezfyj4O+SCc3M+CYMvpYrTQPYJa1tKqkeL7ak6AotdFhrjmGlBFbgE6pMBDbruDIrom3nuwzXFdmI9dhjzPD5q8cBx9KWvqjSeb1cF4pmDcxKhpoNQ4tCsynULfkPgggpIQq0aTZj6SvNYI8k6v/M9Vf5tk1jQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uNo1kwLA; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5532bb8687dso508442e87.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:10:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749568203; x=1750173003; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MvJb8Wmmmp0fIsEisoM93f7os/oTyVJG3S5yuzRo0nA=;
-        b=IjXcYFl2jfsfi2O3At4cHbRzT6cij22QZbTzXlo+DoqtFlPNy6UmEcOaYYukiD4blC
-         AERM7nJM9YCaZd3qgkczTEL8C048G1uJlSc2zg9TRQWZ6fVvus3HVNnxKNcVax8GCfj1
-         z1j1Bfq5hfsIXTWQeOCHwjHBSglnnDPDii6wclEDs9X0jft3Z9slfPxZliRV6qDR/LXi
-         msEjAFMCBoA8dPZDrX7nKnUEdTWWj00Nz/Iz/UnsWkJTCd5Ni727e+XwfRETh6LHQS8d
-         CzyLOY/o5Tn7+QCWKDhs3QQX6Ao3P2ftWytFSDTVqt5Vc9BkHGwOS9JeyYKSCyDvF5nq
-         M8Mg==
+        d=linaro.org; s=google; t=1749568235; x=1750173035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3/NJem0CCXpUoiew+hmOOEKe+Dga4CVHATU4U2OxMVQ=;
+        b=uNo1kwLAv51ceXp833OhKyCYE5ERoiUMYBBtdbZv8rluN18y5Yhiv9PG0q7nCrhOk4
+         iP7Qvec0ck/nxLmKITDjdKGx7sl8uiJet0UOryS+NxWlfpBADQZtKCajzAUJw7LyVI3O
+         8ZCzpeT+9+MiZilXNz/5VCPT3iOlqX8WWokLKCH9HfiBeHQO+aHceC3HPrH4LVexSMRz
+         47KT2VR2Uz3nLMiH3uJ2kVXtCTHtJqzr5OzP0BdYNUUEvrM8KuEij5cgDu5Is9gq0uha
+         h8X6ot4/v024E7Ryjpkkbd8cbIsEckzJo8IJj5wAPZCXpkD49paxMKCWn1LLpnR2vv+b
+         PCuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749568203; x=1750173003;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MvJb8Wmmmp0fIsEisoM93f7os/oTyVJG3S5yuzRo0nA=;
-        b=Ku4X73LD1VM/hgi5tpfBDwy07aGc0F7vQnPjqCUOYxJZEbe/+EC7r6kQvN+XkNu/nB
-         nVRwy4BJkfoqGfThiM+6z/yvCNZ/SfGi6Q/m2MBPNfKjSZKfguB2KEShoDIMJdk7atLA
-         K/A4um24767s0VxJVUHUNahPCG8T3TOSAYJH7eeg+9H8Q0KLwzUggEk5M7diTEcBai5t
-         PqtbtzsuEXhkreBeUZ6MZrprAm7iUGBxKNAgskR125PhaBkqqY2R6aTNqS4ViwBbU2+7
-         959i1nMU2w9EweopstLllr365YKPm7ZaysA2IrCWOk2RimYonlPoBhgbpXRGmvjJg9JI
-         xiQQ==
-X-Gm-Message-State: AOJu0YyC8hR8zZ2xO2JeJ0Nrn6Gufqu/EvsBR0q9jTde0FLG2zmlcExh
-	qovqj4QBbhP3ysx6iurZlIQE57+eAaYfmzJWTn7dEHI6MVJ8onwiH7XKXYgEVpXU
-X-Gm-Gg: ASbGnculpsFJiHp2pl+bzAZ6VVZWkKWWVNFoJYpxm9l8iAITQZjfnvHqzh+gMP60iER
-	VKKdt6NPFLIGpVa8y+Hf5ZpL+A35IaVCj/U2a3n72oJCetDuFq1BHtzKUSUb/70ysni9hzJYdRH
-	SYv68y51gI9mxogRHF2RMI0pVgUzSIEsgZQjeWmD7d98dRDzRLCw3ijkGiYOEj6XnQ5SUWVDak/
-	K9K2jdZ9D9Tpyf5n+SAi3ghj+YLG56oge/Mpttbl1PIYIMunm3eVT0zcLHFPNRSI9lAMrqZtb8g
-	F6jCAR9ncwIe1MIcfbnpSY97L9B0OkdLP2wWh++kLGyol/+6a5SiN6rQwMKCEx1R5gONILW8YCI
-	81BADr2TL0dn1jA==
-X-Google-Smtp-Source: AGHT+IEmLaf9ZUrgGYPWC/+MNiZRcuh1HALjgfo07oz+wUC0CaBxpLmUfxksMdAAIjrZDHDH/+NlZg==
-X-Received: by 2002:a17:902:f70c:b0:224:1af1:87f4 with SMTP id d9443c01a7336-23640c937e6mr3437095ad.22.1749568202965;
-        Tue, 10 Jun 2025 08:10:02 -0700 (PDT)
-Received: from shankari-IdeaPad.. ([49.128.169.113])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603097091sm71854055ad.69.2025.06.10.08.10.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 08:10:02 -0700 (PDT)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH v2] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to YAML
-Date: Tue, 10 Jun 2025 20:39:55 +0530
-Message-Id: <20250610150955.392612-1-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <174954801086.147754.9306389006765920749.robh@kernel.org>
-References: <174954801086.147754.9306389006765920749.robh@kernel.org>
+        d=1e100.net; s=20230601; t=1749568235; x=1750173035;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3/NJem0CCXpUoiew+hmOOEKe+Dga4CVHATU4U2OxMVQ=;
+        b=qzwuT6OJ6QMOh/wmc19nKOHg3QO6rC/FqaStWQHo5SRejUzvEKCfuGuYYOD0QU8zdx
+         xPFsHOKUGhAoha8TTgZyXV1zNcJRdSsqBNbvoGjKXG3srYvyuGN1Oj2TcRGkeIk85zqS
+         ajurLrjEsiEGMrkQxkNOCrxoX8MZ9XqcLVxjuBHdDlFVlDTT2tCImQohQ5AbDuZgCa4I
+         eQq/j19gj9nvMyCqLGA+1Xo8bMycoISfORXZTTFSxtTdTqIly7uQxI4+zOcPHBDFQuyk
+         lYZ68KalSn3kgebqOq/xvNpPPaJwJjyvf1qBmXw5Iz4r9gSznlKr2U/mHR7G8yBnW5Pq
+         sIMA==
+X-Forwarded-Encrypted: i=1; AJvYcCW2tvJWM48rNLfOZYdTRyrSjVx5K62wuLgt8bfCOv10biSfNqpHxNTuUIWWLTA2Tqk9rke3S35ihhOj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9S0mTS2rA9kZbjES9MqDPvJkr8Vslv4Gvej1HjKiPg3jvAoNE
+	2lwhPQqMMRHIPnonbCR8BkAkqkeXvSb0EJkGfehGXuAk1wmiSBsjWmY2qq9EPNhkbKk=
+X-Gm-Gg: ASbGncsLu1b5XP1Gx8ZSaPic+ySzCDGk0B33p2wGrr+JF0+Z5po74is5Ce+y3Zkzo9q
+	1i2nHvBRkleTT2HFSQVedw966I1bwCnWlcxhM5Lg0cEVKIixt0yeXEiqIBPFLfvbCf5A5CGocP1
+	QxlLrUQ8uMLLJbEiKe2fHhDi0fAbDAtFLhQC+CiSI+yttIHrsuwNJHQEwR6myDbFhydgzd/ERHQ
+	wuyZs9ZfzkprtOBt7X0BuFkuc2z9krYcS5SkGMi/J1blGKXjK8ncHBFjtcWflKNsnbkjg76K31T
+	Izg6cTBDtp8buMaazyFUhbbEQOGvKf8D2MHtxF62L/uCnAMiTa4Eq0ZxSucyHc/F7OnoeVEBc1D
+	1eeZuQ8+z7+nRHXb9tejQOSXj9aNxH3uCtmOZBksx
+X-Google-Smtp-Source: AGHT+IGWP0mYIM0V+jmKRvUZVJcYGowyFpThgb2g5qr9J0zY4ATJ9nMZs6lGrCBfIU9ObrVo71xwwA==
+X-Received: by 2002:a05:6512:3e1b:b0:553:391f:2554 with SMTP id 2adb3069b0e04-5536860f8a4mr1434711e87.5.1749568234994;
+        Tue, 10 Jun 2025 08:10:34 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553677222aasm1578146e87.105.2025.06.10.08.10.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jun 2025 08:10:34 -0700 (PDT)
+Message-ID: <97e51ab0-737b-496e-81df-b73c9f598bb0@linaro.org>
+Date: Tue, 10 Jun 2025 18:10:33 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: media: qcom,x1e80100-camss: Sort
+ interconnect alphabetically
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250610083318.2773727-1-vladimir.zapolskiy@linaro.org>
+ <a072d00e-df91-420b-9363-424bcdf1ed8e@linaro.org>
+ <3e8f8220-1fad-437e-9fa4-5eb628891110@linaro.org>
+ <ae364f1c-5d64-4178-b26c-e58e352feee0@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <ae364f1c-5d64-4178-b26c-e58e352feee0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
-.txt format to a YAML schema.
+On 6/10/25 18:02, Bryan O'Donoghue wrote:
+> On 10/06/2025 13:45, Vladimir Zapolskiy wrote:
+>>>
+>>> How is this a Fixes: ?
+>>
+>> I call it the fix to the dt-bindings documentation, then what is this
+>> change, if it's not a fix?..
+>>
+>> Anyway, if there is a strong disagreement about if it's a fix or not,
+>> the Fixes tag can be dropped from the change, since it's so secondary.
+> 
+> Since we don't have a committed upstream user I don't think this is an
+> ABI break.
 
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- .../arm/altera/socfpga-sdram-edac.txt         | 15 ----
- .../arm/altera/socfpga-sdram-edac.yaml        | 76 +++++++++++++++++++
- 2 files changed, 76 insertions(+), 15 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
- create mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
+Well, Dmitry says it's an ABI break... It would be beneficial to come to
+a common understanding here.
 
-diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
-deleted file mode 100644
-index f5ad0ff69fae..000000000000
---- a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
--The EDAC accesses a range of registers in the SDRAM controller.
--
--Required properties:
--- compatible : should contain "altr,sdram-edac" or "altr,sdram-edac-a10"
--- altr,sdr-syscon : phandle of the sdr module
--- interrupts : Should contain the SDRAM ECC IRQ in the
--	appropriate format for the IRQ controller.
--
--Example:
--	sdramedac {
--		compatible = "altr,sdram-edac";
--		altr,sdr-syscon = <&sdr>;
--		interrupts = <0 39 4>;
--	};
-diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
-new file mode 100644
-index 000000000000..535a5d66e4e3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/edac/altr,sdram-edac.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Altera SoCFPGA SDRAM EDAC Controller
-+
-+maintainers:
-+  - name: Dinh Nguyen
-+    email: dinguyen@kernel.org
-+
-+description: |
-+  EDAC-compatible controller for SDRAM error detection and correction on
-+  Altera (Intel) SoCFPGA platforms.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: altr,sdram-edac
-+      - const: altr,sdram-edac-a10
-+      - const: altr,sdram-edac-s10
-+
-+  altr,sdr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the SDRAM system controller (SDR) syscon node.
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      One or two interrupt specifiers for ECC error interrupt(s).
-+      Arria 10 SoCs use two interrupt lines.
-+
-+required:
-+  - compatible
-+  - altr,sdr-syscon
-+  - interrupts
-+
-+$nodename:
-+  pattern: "^edac@[0-9a-f]+$"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    edac@0 {
-+        compatible = "altr,sdram-edac-a10";
-+        altr,sdr-syscon = <&sdr>;
-+        interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    edac@0 {
-+        compatible = "altr,sdram-edac-s10";
-+        altr,sdr-syscon = <&sdr>;
-+        interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    edac@0 {
-+        compatible = "altr,sdram-edac";
-+        altr,sdr-syscon = <&sdr>;
-+        interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-+    };
--- 
-2.34.1
+> But I also don't think it warrants a Fixes: tag either, there's no bug.
 
+There is no bug, but there are Documentation/ changes with Fixes tags,
+it's okay.
+
+I will resend the changes with whatever updates requested by both of you,
+if they do not contradict to each other.
+
+--
+Best wishes,
+Vladimir
 
