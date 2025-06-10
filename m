@@ -1,172 +1,152 @@
-Return-Path: <devicetree+bounces-184119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C75AD30A5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:38:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6160AD30B1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 437D13ADC2C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:38:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2636A189015F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74C62820D0;
-	Tue, 10 Jun 2025 08:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6488328134C;
+	Tue, 10 Jun 2025 08:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SFIXccSH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QjdNqlvb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3A328134E;
-	Tue, 10 Jun 2025 08:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E006B28000A
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749544687; cv=none; b=k8SiALqhRWRdQsvPOpk6TTeEq6J6pj/9TlMZvxBbDZXUB2G10BT/FQsSmPBG2yVTPLYswcUXxs3AlrrIv0GuYvp+CHeOIHQ7T8k2TG0yl0s+ybqmyQAwwkW8dNSuxOisVBC+0Vnl5adA2JcDIzT32wzollH1KyHwiCNDtQu2FIc=
+	t=1749544753; cv=none; b=iaREVaK1OBE+K46YNxzxcyvlu5z2peJmqoYbOccMweKmYPG6Uy4L4VwyxZO8MZVeQcZsD0LtHKt1kxn79mPFz3gTIcij3Dw7FKg93WkhLA0MEF5N9/3Ny4n7SftZ/AhDiYgocXe8CK3OM4ceoZO/2mAzqeaCBPlJ6giHvoH2zww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749544687; c=relaxed/simple;
-	bh=YW0aYGk44OBGXMXwnXBPhhKQgB+lh/nINEBWmVaTupA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Y4GXQHOSGznNYnrZdTuEfZq9xiVngpzfA+W8aPXq33d6YXgI6KgPspie3qyh7q5emhjXoPczzBjzvLti7QjQUs3z3YsjxTvugkSIATj9/U1Opb3DLs/3liGsiJGn95llhD4ijDhXEna/6UGQISgtnQ9+ECw8s4N2pZw59OtcwKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SFIXccSH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CC05AC4CEF5;
-	Tue, 10 Jun 2025 08:38:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749544686;
-	bh=YW0aYGk44OBGXMXwnXBPhhKQgB+lh/nINEBWmVaTupA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SFIXccSH7RpfZmy9fQXhsOmQBdyuLthpHn6jExJY9Y1yEoAH2urzKGdKmfBJYuCWD
-	 tu9u9xA13wbutNtOZeMkLEuQGnv4tJV/66W/xrh4kKsf83hpdJHkeyvh7GHj3Mr1Zx
-	 JbnOwOvrQIUxiZ+CCmsXG6u+YC7WvhPiZngCOU3sbJ5bfxHyguGksgRdSlXEIsmvxs
-	 otnW4wl5s6x8TgIAx8IS2FIdrs5ozlBAqRbMPgfKeg/Ajy02Z7iiH8OxsPwdEomaoQ
-	 /FujURbqWrgMOgAbi+92jay6DbWEuFuwaVtsUN9LY5YrTWBf1YouiOKkQGi63ZZY+H
-	 /b19VGlmAX2+w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0CDEC71132;
-	Tue, 10 Jun 2025 08:38:06 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Tue, 10 Jun 2025 12:37:59 +0400
-Subject: [PATCH v5 5/5] arm64: dts: qcom: ipq5018: Add GE PHY to internal
- mdio bus
+	s=arc-20240116; t=1749544753; c=relaxed/simple;
+	bh=Yl4VK5rapXeTeoJSO8TtkOTrZLDEqTO12ZY4/dzcD+U=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=BqA+I3ltK2Q9243iuHmdm8Cr+1M9Rb0Q+qPMk/1YPc46vLlq/gHBJSIiLYK9QrY2WF68fMl+GAswtJlqiPcBQ4RYtxtSZqu43Pe6fKurLR1D3XRE/J5lRoVc2saTgXk84G2SUOXyqy7OjRKZVc/uCnAK8/P/var6z0wrT2YE+Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QjdNqlvb; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-450d668c2a1so41517445e9.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 01:39:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749544749; x=1750149549; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Yl4VK5rapXeTeoJSO8TtkOTrZLDEqTO12ZY4/dzcD+U=;
+        b=QjdNqlvbVtV/1IHx2p5MIEVmfvFmv7GtiPiU8legWaocfKjNdHysysQo4h6cNUqZ+e
+         OTMf2Mism+kkeKvq11TzU3s+St3N+sAfCqE7EDwUp7Hbapa5HIP2Vbk64egX9HISYu7b
+         Y4Lpp/74+8OCyr5YjFFfpTGNSzzlxS1XL9jzrntxB082g80t7AMHan/BWflkZChTk6RQ
+         a4dIkvke1p8eJdaEoHaTAHfus7EiV+7xANQYuS+N52QlBLjPYpcF8FVqR70oYZZMLWEL
+         t7YRu/EqnVU54W3SaEMegVOCbP67hv6lZsKQLEA4iFRRh1TLYve+DN9eZrcVgv3QhjoW
+         o1gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749544749; x=1750149549;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yl4VK5rapXeTeoJSO8TtkOTrZLDEqTO12ZY4/dzcD+U=;
+        b=ImWdBFKJ55Qjjxu19gAkwJzXCg3DmRzfbygrBjyts5FCtXwIXOicVXFMq8IHtGBX/c
+         23lkUY9kUK8gaVqGo7mf1DaBhDtHHHOsYs+5KPJk8zCa0X4PtdDuJxW34nba5ithsX1W
+         14XL/0vrif2woTZpi/tnlHM/7QZdFM8Fm6P8buVAqZKn/5bq5292onL4QWbUnWKgis67
+         nZVPWH1kzdD+vwCumCeWQgTmu7iY16FAoSgGNg2EnLqGi9szlGFXaDlV1IzDGnOnJ901
+         p3pH730jdyRiqRji5bbTWDLXggGsbRJzjjzDKFMb4GkH7Sxi8zLPlBMBLfqHGx7qb6N7
+         wm1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWTXZRxZ2MB58mhZD9AKskGgiu9n7srkwEciHHJRfwcdctO4pyp8EKf2ziyoLKtlUO02fZp/NKPHy6a@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlAaEhogzQayzqxXvPqUXjKQY68+X6UK1BPT5MfN6EHij5c2RU
+	3rBdQ1yX3AZwVioiWuRjUujQfrFAsoSQndk9tzZxJCzzhlo1PXYW7jHC96lFfbwm6VI=
+X-Gm-Gg: ASbGncuIKsielth6pp5Z9UOGdAULFPgDdNkskadzWOO5dc1c/JxCA+Afp5M3XjbE/De
+	qjCIsT0GBMAvu/Jo/MNzfB1pggrw9Bpp0Q8/Kgku70pPmtGlMLFs2/ffY0XiaFMcXF8HZ8jY9b2
+	MtoZFJSUIm2FzpuPuWRyxqC3mG0AbcUpja51F71MDvsJ0LleZ8RxC/MWp1Fno2w6bB18TjgVk2O
+	1aQNbX7PQb9t94moGCBIGk8JKRhtGzsPXfRjTM+V8wpO4MyRsUmAtGYvD3PKRTQw6Iya8QvIQO6
+	WX0exC42LCHfqcrp+6+PkMO08TRFT+3FyRH2I8Q6lUxnx4SMomsNG0xCb5PbXMnxE3wjO+caAN8
+	Rwg==
+X-Google-Smtp-Source: AGHT+IEgnzAuPZxC9PK7wFrxzn2rTCPjmEyvknSgU3kvtfzCGxGRajpBv/Wk8P5qBxM/ob8j0SfRdA==
+X-Received: by 2002:a5d:5f94:0:b0:3a4:ebfc:8c7 with SMTP id ffacd0b85a97d-3a5513ed8dfmr2108902f8f.8.1749544749195;
+        Tue, 10 Jun 2025 01:39:09 -0700 (PDT)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5322ae43fsm11467552f8f.25.2025.06.10.01.39.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 01:39:08 -0700 (PDT)
+Message-ID: <f44579e51082cd2d77dec514c1d2128981f6b3dc.camel@linaro.org>
+Subject: Re: [PATCH v2 06/17] dt-bindings: firmware: google,gs101-acpm-ipc:
+ update PMIC examples
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>, Lee
+ Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
+ Golaszewski	 <brgl@bgdev.pl>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Will McVicker
+	 <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Date: Tue, 10 Jun 2025 09:39:07 +0100
+In-Reply-To: <20250606-s2mpg1x-regulators-v2-6-b03feffd2621@linaro.org>
+References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
+	 <20250606-s2mpg1x-regulators-v2-6-b03feffd2621@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.55.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250610-ipq5018-ge-phy-v5-5-daa9694bdbd1@outlook.com>
-References: <20250610-ipq5018-ge-phy-v5-0-daa9694bdbd1@outlook.com>
-In-Reply-To: <20250610-ipq5018-ge-phy-v5-0-daa9694bdbd1@outlook.com>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-clk@vger.kernel.org, George Moussalem <george.moussalem@outlook.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749544683; l=2285;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=hFpy0osU/0n+A52muRC0D3Drst6JCZAX5hmtJZDrLks=;
- b=un9tciC84pDmPnVnCf6Uie9NGEQ6Hd5vibaYUdIvTGuG8+/rnLmHQVbnV/UwXhl3YMHXPCqml
- K7G9SC7SM27BTOaRCX1l9VJrPxs4PqCQ1UOA5HOIdXpOK582Tm1ZjcU
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
 
-From: George Moussalem <george.moussalem@outlook.com>
+Copying my comment below from v1 of this series to make sure it doesn't get=
+ lost.
 
-The IPQ5018 SoC contains an internal GE PHY, always at phy address 7.
-As such, let's add the GE PHY node to the SoC dtsi.
+On Fri, 2025-06-06 at 16:03 +0100, Andr=C3=A9 Draszik wrote:
+> In a typical system using the Samsung S2MPG10 PMIC, an S2MPG11 is used
+> as a sub-PMIC.
+>=20
+> The interface for both is the ACPM firmware protocol, so update the
+> example here to describe the connection for both.
+>=20
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
+> =C2=A0.../bindings/firmware/google,gs101-acpm-ipc.yaml=C2=A0=C2=A0 | 40 +=
++++++++++++++++++++--
+> =C2=A01 file changed, 37 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-acpm=
+-ipc.yaml
+> b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+> index 62a3a7dac5bd250a7f216c72f3315cd9632d93e1..408cf84e426b80b6c06e69fda=
+87d0f8bfc61498d 100644
+> --- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.ya=
+ml
+> @@ -36,6 +36,15 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: samsung,s2mpg10-p=
+mic
+> =C2=A0
+> +=C2=A0 pmic2:
+> +=C2=A0=C2=A0=C2=A0 description: Child node describing the sub PMIC.
+> +=C2=A0=C2=A0=C2=A0 type: object
+> +=C2=A0=C2=A0=C2=A0 additionalProperties: true
+> +
+> +=C2=A0=C2=A0=C2=A0 properties:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: samsung,s2mpg11-pmic
+> +
 
-The LDO controller found in the SoC must be enabled to provide constant
-low voltages to the PHY. The mdio-ipq4019 driver already has support
-for this, so adding the appropriate TCSR register offset.
+Since we have two PMICs here, but can not use the 'reg' property (as the
+addressing is based on software, i.e. the ACPM firmware), I've opted
+for 'pmic' (existing) and 'pmic2' (new) as nodenames.
 
-In addition, the GE PHY outputs both the RX and TX clocks to the GCC
-which gate controls them and routes them back to the PHY itself.
-So let's create two DT fixed clocks and register them in the GCC node.
+Maybe 'pmic-main' and 'pmic-sub' would be more appropriate, but 'pmic' is a
+bit more standard I believe. I'm open for better suggestions :-)
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 26 +++++++++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 03ebc3e305b267c98a034c41ce47a39269afce75..d47ad62b01991fafa51e7082bd1fcf6670d9b0bc 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -16,6 +16,18 @@ / {
- 	#size-cells = <2>;
- 
- 	clocks {
-+		gephy_rx_clk: gephy-rx-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <125000000>;
-+			#clock-cells = <0>;
-+		};
-+
-+		gephy_tx_clk: gephy-tx-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <125000000>;
-+			#clock-cells = <0>;
-+		};
-+
- 		sleep_clk: sleep-clk {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
-@@ -184,7 +196,8 @@ pcie0_phy: phy@86000 {
- 
- 		mdio0: mdio@88000 {
- 			compatible = "qcom,ipq5018-mdio";
--			reg = <0x00088000 0x64>;
-+			reg = <0x00088000 0x64>,
-+			      <0x019475c4 0x4>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
-@@ -192,6 +205,13 @@ mdio0: mdio@88000 {
- 			clock-names = "gcc_mdio_ahb_clk";
- 
- 			status = "disabled";
-+
-+			ge_phy: ethernet-phy@7 {
-+				compatible = "ethernet-phy-id004d.d0c0";
-+				reg = <7>;
-+
-+				resets = <&gcc GCC_GEPHY_MISC_ARES>;
-+			};
- 		};
- 
- 		mdio1: mdio@90000 {
-@@ -232,8 +252,8 @@ gcc: clock-controller@1800000 {
- 				 <&pcie0_phy>,
- 				 <&pcie1_phy>,
- 				 <0>,
--				 <0>,
--				 <0>,
-+				 <&gephy_rx_clk>,
-+				 <&gephy_tx_clk>,
- 				 <0>,
- 				 <0>;
- 			#clock-cells = <1>;
-
--- 
-2.49.0
-
-
+Cheers,
+Andre'
 
