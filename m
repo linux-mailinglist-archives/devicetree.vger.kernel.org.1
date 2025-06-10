@@ -1,197 +1,176 @@
-Return-Path: <devicetree+bounces-184446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38386AD40D3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:31:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE9C5AD40E7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:35:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F17C03A3A78
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:31:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129B4189039E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC475244687;
-	Tue, 10 Jun 2025 17:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638E124468D;
+	Tue, 10 Jun 2025 17:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ezEoASOg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f7mTbqcV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5962D2417D9
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 17:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8D62367CC;
+	Tue, 10 Jun 2025 17:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749576711; cv=none; b=It9gZi+3Rfsswf3s174ZbIGnlrn7Zgj7ug+JBlV2qq/jGeYbDQehGtLiJx4H1c8S3mK8kfUhhhL8anfgaF11aXM3H+vyq0taePjB6Joqily+Lg3qir7Dnir6ow8jQ7l+7oVfZ7CZ54e96HrcFAyVoKzckAbf/f28YdXmm27vNEg=
+	t=1749576860; cv=none; b=tvUQ9p9Ufvedf+T/hMIaDk3yXdtfU//HTQx60dDdTf4PWTTCuUsmaSzZ87gSQcSP2Wk8Mb+tSSzX+L5Go3GaztrxkSJV3SXs2H+/bzIAawI8cqpjN+rkbuuNgnDzKxG0kHWSqBBH8rqDEiNt7YsHmIOX8NrwqG9a4i6wrCF8Ilw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749576711; c=relaxed/simple;
-	bh=R5uhB20/0UGTdOKJLuYVBRHmxvIec2lBvJlw3o+4Dug=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xa86zFudrCKKrsgLzlTFo8EBrWgsbZEckcNGLoFg9kWEAED6NU0czGZW/zwEyIPQJ5emfTS3o2p2tBxhWFcJpTkbrvX4FGr4tmYaZJwOv/ge8u7ro/7eyRrrFddl/aA6/NjBrXrAWUfHJstH3Bt/zctEHckwI8eKPN60+IFHRKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ezEoASOg; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-306b6ae4fb2so4949857a91.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 10:31:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749576709; x=1750181509; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rHp15Q0G62WtHlJHQnssmi/HO7FqvGMRsAPtVdp5qNU=;
-        b=ezEoASOgdNj32eCztNSmtEXK9JKB+zVxFChCM0cDkKRjXd3OgXkp2wiLCY2AoaLPst
-         S7RiNj4bV3O357/lWDm87dijHvuluQ1JaHMfAEjK3LXEKbjIp9VZSv0gqMFA7FUqGmxH
-         xTkbbW6k5sdSHdjiXHD2lscfpyq/QGLf6HR+4XP0QIwSz1/hLUshxE9rbPzQeoMapgtG
-         5CIqLIe2kYA+gX9Y+GSyPZi8i10VkadIkG9U6icA3wEftxUz0Kwo29cp6HBFMEHHckt3
-         Md9aqAK0gfo6QvQ/DO5EYZ0TCKO7CYPbabOq03/C0xe2E/AhW/bJ/tPy2SPBji1TshlZ
-         FsRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749576709; x=1750181509;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rHp15Q0G62WtHlJHQnssmi/HO7FqvGMRsAPtVdp5qNU=;
-        b=Em+J3fe6NaqI4TaxzABEcYHMqmKL4SPu6972nkVOmEkSKHVDJxHX/xMdzoMtrWr8d1
-         nM2NDo8BWo9VOO/IqdaaGMZfXYqKY11LCAG1ZRqW8uGDyBub35022raVUK2mYSidZRUD
-         1cfl2F0Esh8c+TIP2I3Hxd6Mh3PSea+DWmf5y7+55MwcB06mH8EmvxWmkhUttzhcKyWB
-         0UlM/dzjEj3QsUv1ZeExQlZHsb9jgCPcZJkYs1Hof2fou53VBjI+s3Xe5fGqIE6gmtpJ
-         e/awaPTQbzXO0BvWc6/a8/LlCyqPBjBkjz7Hr41LRqscNEAivIVNKRA3Kjg0i05OQBlw
-         sA+Q==
-X-Gm-Message-State: AOJu0Ywy4t8QTX5MF9/PKX7Iac/bIwMJA8O0Wbf3srizH87nrRN/khxm
-	BDmTPlQlXoOsVcgJcZgYMF2qB36BeApkzo404U2BXfebeAUyONmKq5UHM7ySdPe9jUgdeuY8Ut6
-	evcqO7Tese0efaDZBBfBgUwxaHqRK2jE=
-X-Gm-Gg: ASbGnctmNNArasRwQMeednNEcAyI2jTagoP8q0kJc+OT7rRUhkN+X4V8SCjhop7UoFv
-	r8Rk8bolN3lK9WiF84+le9EGCEAZYCoyqTzrRGgo0YyGMPwIvC5tFzL4sTPbZGfXcbV6M7Rs2bc
-	Yh7beLFrDpco2oKlr9QZfsmAJGgYWtkgbEJNlQF20Gtsbm
-X-Google-Smtp-Source: AGHT+IHsdE00RqxvgGuc9K29yM2+GF+pyCqc+82ajx70ihCGXd6suuW/NalW3XI5lGM6/5vkE76afR0jIJlFdGWMPKo=
-X-Received: by 2002:a17:90b:4b84:b0:312:2bb:aa89 with SMTP id
- 98e67ed59e1d1-313af19697cmr449834a91.20.1749576709417; Tue, 10 Jun 2025
- 10:31:49 -0700 (PDT)
+	s=arc-20240116; t=1749576860; c=relaxed/simple;
+	bh=r0iZ2Pb8qBk4fg/2LTSgcyfMLeF15guSoN8V+6upqsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZIJoe7yi78qFgJc/w12RPu1/4HQAv6iqH1MJ7OjOV6b6qTdggTw0gLGFhwolPzRi5Wtn12prTy2XfiTizUrm6DKtByIbECnYfdGlJ4HNHREFdXeUZ3TuqJhgqWECTl/JsECAffaRKALd7SS2XoAFbPLCj/yHJ5JA3EQviNeoHU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f7mTbqcV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA3CCC4CEF2;
+	Tue, 10 Jun 2025 17:34:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749576859;
+	bh=r0iZ2Pb8qBk4fg/2LTSgcyfMLeF15guSoN8V+6upqsg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f7mTbqcVRdxIdlDpEjH4CeKNmi/aSrdr/0FOGFF6oAT0oV0t1LATT9qZIpqlJrFcC
+	 QKRdoUAbP+pYbLX9a0Y7xzPTsNUmRzJlD58wzyiRnrf4d/5Yv+E1Qmh9suleqhf0Bu
+	 3OR98SOWseL0tj9EsXV2F2cRdfEUIFpJdWn1K7aGsOGzgAQSr5KIMf27FxqoT99VWV
+	 1K4NnZM8cMNjVeI3bVzi6mCLsdRaDA1dAKA9R91AlHxqf58ai10uTIQAKe2mDY/hdB
+	 eI5+Kh+AsAS0DW/RNQe/Swqm+SBqmOYlM0o9b+9a3AK3G6tdZR6SFhJS6MaqlhWIod
+	 XogS65rOgY/6g==
+Date: Tue, 10 Jun 2025 12:34:17 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, patches@lists.linux.dev, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
+	Pin-yen Lin <treapking@chromium.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: Add binding for ChromeOS Pogo
+ pin keyboard connector
+Message-ID: <bskramnbdsoxdjuqmevt7mtcylottyd4jtwa5svz565ceqzflx@orivp6ypzksk>
+References: <20250225223038.879614-1-swboyd@chromium.org>
+ <20250225223038.879614-2-swboyd@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <174954801086.147754.9306389006765920749.robh@kernel.org>
- <20250610151105.393011-1-shankari.ak0208@gmail.com> <174957433232.1948621.146243109364629093.robh@kernel.org>
-In-Reply-To: <174957433232.1948621.146243109364629093.robh@kernel.org>
-From: Shankari Anand <shankari.ak0208@gmail.com>
-Date: Tue, 10 Jun 2025 23:01:37 +0530
-X-Gm-Features: AX0GCFuz9HYV8x9krXQeTdelWWK_y0BDaj_F-90aUqMthW_NXKAHbxpvvV4zDPs
-Message-ID: <CAPRMd3nnu9TyQnMNtN6W+PUuZ_q4ZBENWtrf8DLeWt2AH0n91Q@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to YAML
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, skhan@linuxfoundation.org, 
-	conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250225223038.879614-2-swboyd@chromium.org>
 
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/e=
-dac/altr,socfpga-ecc-manager.example.dtb: sdramedac (altr,sdram-edac-s10): =
-'reg' is a required property
->         from schema $id: http://devicetree.org/schemas/arm/altera/socfpga=
--sdram-edac.yaml#
+On Tue, Feb 25, 2025 at 02:30:36PM -0800, Stephen Boyd wrote:
+> Describe the set of pins used to connect the detachable keyboard on
+> detachable ChromeOS devices. The set of pins is called the "pogo pins".
+> It's basically USB 2.0 with an extra pin for base detection. We expect
+> to find a keyboard on the other side of this connector with a specific
+> vid/pid, so describe that as a child device at the port of the usb
+> device connected upstream.
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Pin-yen Lin <treapking@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-The command ran without any errors for me.
-shankari@shankari-IdeaPad:~/linux$ make dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/arm/altera/socfpga-sdra=
-m-edac.yaml
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  CHKDT   ./Documentation/devicetree/bindings
-  LINT    ./Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.e=
-xample.dts
-  DTC [C] Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.e=
-xample.dtb
+Still waiting for the binding (patch 1) to be picked up in the USB
+subsystem, or an ack...so that I can pick the dts change.
 
-Also my patch includes reg for all compatibles.
->
+Binding looks good to me.
+
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
+> ---
+>  .../usb/google,usb-pogo-keyboard.yaml         | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/google,usb-pogo-keyboard.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/google,usb-pogo-keyboard.yaml b/Documentation/devicetree/bindings/usb/google,usb-pogo-keyboard.yaml
+> new file mode 100644
+> index 000000000000..053c1cfed6d4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/google,usb-pogo-keyboard.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/google,usb-pogo-keyboard.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google USB Pogo Pin Keyboard
+> +
+> +maintainers:
+> +  - Stephen Boyd <swboyd@chromium.org>
+> +
+> +description:
+> +  ChromeOS devices with a detachable keyboard have a set of five pogo pins that
+> +  are the typical four pins for USB (D+/D-, VBUS, GND) and an extra pin for
+> +  base detection. The detachable keyboard is a USB device that connects to the
+> +  four USB pogo pins.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,usb-pogo-keyboard
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description: Connection to USB2 port providing USB HS signals
+> +    required:
+> +      - endpoint
+> +
+> +patternProperties:
+> +  '^keyboard@[0-9a-f]{1,2}$':
+> +    description: The detachable keyboard
+> +    type: object
+> +    $ref: /schemas/usb/usb-device.yaml
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - port
+> +
+> +additionalProperties: false
+> +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
->
+> +    connector {
+> +      compatible = "google,usb-pogo-keyboard";
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
 > +
-> +    edac@ffb90000 {
-> +    compatible =3D "altr,sdram-edac-a10";
-> +    reg =3D <0xffb90000 0x1000>;
-> +    altr,sdr-syscon =3D <&sdr>;
-> +    interrupts =3D <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-> +                 <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> +      keyboard@2 {
+> +        compatible = "usb18d1,504c";
+> +        reg = <2>;
+> +      };
+> +
+> +      port {
+> +        pogo_connector_in: endpoint {
+> +          remote-endpoint = <&usb_hub_dsp3_hs>;
+> +        };
+> +      };
 > +    };
->
 > +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
->
-> +    edac@f8004000 {
-> +    compatible =3D "altr,sdram-edac-s10";
-> +    reg =3D <0xf8004000 0x1000>;
-> +    altr,sdr-syscon =3D <&sdr>;
-> +    interrupts =3D <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
->
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    edac@ffc25000 {
-> +    compatible =3D "altr,sdram-edac";
-> +    reg =3D <0xffc25000 0x1000>;
-
-
-On Tue, Jun 10, 2025 at 10:22=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org=
-> wrote:
->
->
-> On Tue, 10 Jun 2025 20:41:05 +0530, Shankari Anand wrote:
-> > Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
-> > .txt format to a YAML schema.
-> >
-> > Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
-> > ---
-> >  .../arm/altera/socfpga-sdram-edac.txt         | 15 ----
-> >  .../arm/altera/socfpga-sdram-edac.yaml        | 79 +++++++++++++++++++
-> >  2 files changed, 79 insertions(+), 15 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpg=
-a-sdram-edac.txt
-> >  create mode 100644 Documentation/devicetree/bindings/arm/altera/socfpg=
-a-sdram-edac.yaml
-> >
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/e=
-dac/altr,socfpga-ecc-manager.example.dtb: sdramedac (altr,sdram-edac-s10): =
-'reg' is a required property
->         from schema $id: http://devicetree.org/schemas/arm/altera/socfpga=
--sdram-edac.yaml#
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202506=
-10151105.393011-1-shankari.ak0208@gmail.com
->
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->
+> +...
+> -- 
+> https://chromeos.dev
+> 
 
