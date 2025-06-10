@@ -1,129 +1,133 @@
-Return-Path: <devicetree+bounces-184285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A91AD399F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1CBAD39AF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:45:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DAED3AB1D6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:38:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47FB83ABC96
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0412923ABA1;
-	Tue, 10 Jun 2025 13:39:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 301D128ECFC;
+	Tue, 10 Jun 2025 13:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CFh9PXzw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N3FtDsyt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411D128D8D1
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 13:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD6D188CAE
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 13:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749562740; cv=none; b=fPBk521wwtnz/Uhp2NwfY7QQSyhHYd25ZvLBRnXKZQih7wnIB8DrasddD5QpUUu+4zUCz3ACuAkiel5OEQ0larJqZ0tJ2qA6Vf8ujMC/xiuQz1BMQmuQJ34QXXVBTFwLc6SZspFU6F2FRnyhgslCS6K/Rzf1WJlyauzA/6YI4+E=
+	t=1749563132; cv=none; b=nqJVN8jit9AWix3tIOcvkjuqgsMmE/r/iCkRylPqr8b0yYBRuWcT467tpL4s7dhKOuq3PdBus5vj+c6oS1RvLh5fjHPnqVyxUGtFxq5yMBzU37jO4M7TbH6jxFkekxVd97kUTyZBE3wmBieZDVYx33yr5C5b6RV34WiJ6mdTHFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749562740; c=relaxed/simple;
-	bh=55DDuiOaro/SoFIoPOAKogqoXdCBebxNBcecJkFZFkw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eAdgCaqVrw7wnImU0wBWgob3sA7RwJeJTUfcwsaBm9mST+MWXx8SUsjrkBhuot0ghU9n253anBhpAV92xbDq5Lku1mFNoILHg+oFWUMMGGYaijy/XzTOyS5eKfl0+6EdJ5sPzbQ8eRlI0PqG4l+gCX61pwFif0nNwIfdhyGx96Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CFh9PXzw; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1749563132; c=relaxed/simple;
+	bh=dv3Hvk9p48gd7VFAefP+8+Vtb7cmVN0Z2O9TcNsN42s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a+DfTz2hn/3SRxT5Sb2GN27I43o4LuMy8cYTPxHeU+FwV6OrKiQLbPA903nxCjbi2hxQpIu33Uqug4rWSI5cvBTZ4hfVOk8EXKiDEkN7XqefxPqeKP73DB8m9/E3o1JzUcs+PPLVhgjPpQleKr+eZWWG/FGYxMCe+f5pknvOIs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N3FtDsyt; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55A9MZm2021370
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 13:38:58 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55A9t6sC021751
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 13:45:29 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=VfbkD6ITLHOjUUf6T2RvScNE
-	AhIb47h0hB0wTslzk6w=; b=CFh9PXzwrTVv/Q10p+cexE7FbpiJsTVYv/g5AZaF
-	RSII9mhJCewX8smSnBB9tbn21xjEvB5Ir32l0X8JxTp6adUO55yBOq9TThZMQouG
-	xxPfcjtP9uxsoZCBKg7dodhztJQ0E3OoDoESu5XtAsHj2CY39MUgAp7uSfKjAvQy
-	434nyCOTyJ7m0mfGTa3X9H0rZlTJDzis5dTTZ38PA3Vng7wFIy61ktOwwVOpERI5
-	QqJk4QcUYl8J5xfPop6O0HW4zm+2MbGa580JjErEX4PBgWvpnOb+cc/rDfJMuiCu
-	vCa+aDkNoW++5TlAm8XoBETJk2A7IwWY0EonK4vfFWUPJA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ce9sn8m-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=xH2KQv7sgrK758uLs/6IyR
+	Mr+4xC8wLvLt9nlR+5ejE=; b=N3FtDsytXAVpxCWCKXP2+Q5k5L9my8aJNzN5Ht
+	CPm3XspNcY9tcYLDtcLcRto8wBwmv0iwNhs/T7QzQ1dVpJOaO4A0V+VAHQ/AaGov
+	F3gtYW9fkhJGu476Igvd5in7fzEO4zMAz1BIVhRtCGRNVWUIPTAbIqZugJmfb1BS
+	7hlEX0mWkQQzdbkuxWC63YodLi4t6fQylCEMkPcCHbR7URu8FMLMWJso49Os5jQb
+	WHd77RMMYvCejL60RvVynfvE+SmjVn91l96mYo4phST1/NqypRhvl5ZQStdraFfI
+	xHfVsl9yjcgPYHADV2y2BDUoUVSBIaUTdMmuD41cR7SzX3EA==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ce9snsu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 13:38:57 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d099c1779dso988806585a.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:38:57 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 13:45:28 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7391d68617cso4806041b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:45:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749562715; x=1750167515;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VfbkD6ITLHOjUUf6T2RvScNEAhIb47h0hB0wTslzk6w=;
-        b=W3lVQKAH9AyHV89SrbRr9zo63ShrIhl5W20+rCgiKuIQfZqMVErhV0Zcm1dbdmbYkj
-         U5i/QN4dMX/NpRxK+C4FytS5sOdE1Hf33D9F5QYDjE03NzvIpVmJN2t18oQ9hpuq4V+f
-         3ZOjg1hmEpJ9SVEUqvR4HmAyR5QpJn2Mz0cS5uy8hh7iQMt/m6NZsS8HA3K0Pv8BDjjt
-         fcRMZl1Jbep1fHZwKFqn5PsFwH66yIL6MKG3y0hhaBeYyPj8grswv+VfekkWtFWcx9sA
-         YqnmcdbIFv6qQR8zFwWFR4Xft+O2tqtMiZfMS+gkImb5UBtWxHFG4ZxxdsWbDCKaQ88Z
-         BLKw==
-X-Forwarded-Encrypted: i=1; AJvYcCWEHAZOKJ7uIxNvh9WGpzYH9Z/22SODaxtvVoFIMuMXsWYxynKoziu1QbLbH4GH/5DwuyhBgU4oZrEU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8WU7ofVAr72sIOzw9xqtFAxAEGfEx5GzeTKydYwoSiJ1q03tj
-	qKnY0d/oRlZbJt7DbQpMzO7HFx5GqyNoQxzBGCZy6br+ANQJ/Cf9+XouvkkLHUhvTPyglxS90ry
-	U27TUq2+ZpSkSi8c6HH+3ohcpQNBik20SjEX8KO2wKy0BM2NAI+MCoeXud5vmNrIO
-X-Gm-Gg: ASbGncsDpOgh8CZcDM2JTP4aH3sOT6HjVxNuxiPY81v6NcQ8aB3uXYB80GUFgRiWUTU
-	Z7j36904eE6xmYOLkpnNz/OGBHwk1cRI/5pB09RRFdusY/M+A4J/n+FaO4UuzuaSxKgESkxgsHe
-	5dAv8HBe9WLBmiQtVtWlBNcKNT7/fKKsYz2cxbAb2akp3yX7mQSVGo7euMpFsed1tXuynUu0TQo
-	5jAVI6kIp0a6QIPrCIRXXDoexgsZhgvYxO94sKfL36sivS2az7NeRAtUDLdot74L0nx5nxjTpF2
-	9kusNvEmY8Mojd3e27jOwP8GbLL9X4+7wcbKXV8xr98ZpXCth8blyG9QKt0R9NN5sxnzjL5qBKk
-	xbS08rDiQr4/sX++bmBKnDeMqaGFEZsaEDWo=
-X-Received: by 2002:a05:620a:478d:b0:7d3:8dc9:f438 with SMTP id af79cd13be357-7d38dc9f43emr1021647185a.17.1749562715429;
-        Tue, 10 Jun 2025 06:38:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHfAM4VaNuFAie2Y6pq7R5HM0Fh9jAG10QS13nVqGILa1cGlh7pr3Ew62wRyjOoTLVSFBP2WQ==
-X-Received: by 2002:a05:620a:478d:b0:7d3:8dc9:f438 with SMTP id af79cd13be357-7d38dc9f43emr1021644785a.17.1749562714967;
-        Tue, 10 Jun 2025 06:38:34 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553676d04e9sm1548162e87.5.2025.06.10.06.38.33
+        d=1e100.net; s=20230601; t=1749563128; x=1750167928;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xH2KQv7sgrK758uLs/6IyRMr+4xC8wLvLt9nlR+5ejE=;
+        b=cGQ5yLlUQ0X2pdxkYa224icsFGFMCX7P3vxqRT3mAbmsWpWIRkpTpc1nfjJJTKFvHX
+         cG267QWZn4CJVBLPZ4RvjvClMpBlx1f0eEhc6Dt58y8s+DrWjzOTo6z5PisGR0NBpkzF
+         xY7EEFLO7zTVJ/DP6FemWlvSsz+qw4NjgDdJbdnw7qhwesjoVl1rLcj24E5Me4+iJUFb
+         moaZvaj/ceb2TZmSQXD28Y+knTaxWt0MSCo1wWUsghovs/kxHdJDijKHmmKrKK2PNoEQ
+         LIr54MOncngrInQJ1HT3q2ok8ewLZXudknWHUaR2PheGNiOQIDJ6XL79t+PAgKG7Jy8S
+         kV8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVYptI8WHE3cvPXIG3bShP5gJ6QBTC+QL5SC7mjzKUk3FpDgZZrw28qV8lNS+/qI8iPbkTJvlaTGQ59@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhjGt99jEDyEOSQcj6tjx6v6bhPUkOAXs05gb7jTeASuNcjvOx
+	eh+Do6rAPuVky5mKn+suQSrh07UdUpRJ6GZvP7rq8bLdhO3ENanglsAGxgDv8ztK1PdEM90pZ4z
+	nUIpXthh2yniZikQd5gzeGJosCBAyyFw4mob8Sjc4rBQ/v/qjZBYDVS7lfuBvZgDi
+X-Gm-Gg: ASbGncuMJBagmH2BsK8915ckojQm73INAPwp8CBS8FEVHN64D/hWwdjRPwyajUT8kkg
+	9Gg2HdmCyE0xUY2UwSRRRlrhYar9WEzqbLUdr9gsSAueHNdEt87MJVmlj3X3cKwJq80RNFMkcRI
+	n8OLbtOOETNOMW6jvHH87S8bybOq45zgKdweLg0MScsXuzzIlb3USkR6+oA4cto0mxa2AqqnY1D
+	X3/B33ADDS9HZL5ErOBI4OLDK2686sULcl80SUqJuoV9aV6u2fqS4w3/nR09nHiOHlJNlWRxKmL
+	pzhx1MBpgpsRICCHjdoFhVRgYNlkRhkfOcgFplfJAjFcCtj83KEVgTKQamrwCmX07PWr03HaOFb
+	VMePgzAK9O9eySuQkCwOKaeqmxCV4qnK2Uys9vZ+b2UVxAajRISA3gwuFFA==
+X-Received: by 2002:a05:6a21:6d92:b0:215:d64d:412e with SMTP id adf61e73a8af0-21f7698b308mr5987086637.20.1749563127490;
+        Tue, 10 Jun 2025 06:45:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHGcARb34ssWxbNot4ia6+tBWBCtiJuSosdEn5XdfGATdAMmEq5BIaiIvEbLrX9hwPwFyDoGA==
+X-Received: by 2002:a05:6a21:6d92:b0:215:d64d:412e with SMTP id adf61e73a8af0-21f7698b308mr5987045637.20.1749563127072;
+        Tue, 10 Jun 2025 06:45:27 -0700 (PDT)
+Received: from hu-kathirav-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2f5ee70085sm5858107a12.25.2025.06.10.06.45.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 06:38:34 -0700 (PDT)
-Date: Tue, 10 Jun 2025 16:38:32 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sachin Gupta <quic_sachgupt@quicinc.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, quic_cang@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_bhaskarv@quicinc.com,
-        quic_mapa@quicinc.com, quic_nitirawa@quicinc.com,
-        quic_sartgarg@quicinc.com
-Subject: Re: [PATCH V3 4/4] mmc: sdhci-msm: Rectify DLL programming sequence
- for SDCC
-Message-ID: <sar4bvjd5ntniucgrqvpnorywlyifuzvta6h2nggqodxinj6d3@5zwwjjhc5ycn>
-References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
- <20250122094707.24859-5-quic_sachgupt@quicinc.com>
- <nmsm6bb5biptmzruggs4f3mweq7d7hcmwqjdidf6bi7gyoliw2@x4yitguzz6zx>
- <94f3e5e0-f04f-ca4a-6133-513223919c72@quicinc.com>
+        Tue, 10 Jun 2025 06:45:26 -0700 (PDT)
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Subject: [PATCH v5 0/5] Add support to read the watchdog bootstatus from
+ IMEM
+Date: Tue, 10 Jun 2025 19:15:16 +0530
+Message-Id: <20250610-wdt_reset_reason-v5-0-2d2835160ab5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <94f3e5e0-f04f-ca4a-6133-513223919c72@quicinc.com>
-X-Proofpoint-GUID: B-frLidm9bGKJnbG764pSewDMtn_OdM4
-X-Authority-Analysis: v=2.4 cv=drjbC0g4 c=1 sm=1 tr=0 ts=68483571 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=9sPEnqXd4bbI6Z3rhAAA:9 a=CjuIK1q_8ugA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: B-frLidm9bGKJnbG764pSewDMtn_OdM4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDEwOCBTYWx0ZWRfX/D6lW8Mi7fmU
- BlVD72ki2yFfFI7Bs9xj4a/wdD87hbpMO5/imFIosdIxg7LN2j9GgAozTI4viVNtzTJbjhzNVBT
- dM3IA355QRB/VfHNHPm3tZ7/J9wtcKPp6Vhwmqlr1+gPbStQIDCDyZKCYZ0k8MEUEmNt+HkkUyK
- cc62d90eR7QtVBBDBtSXjfikN/2R2lpXrnIAY4TmyYbD7MdOttl+nIXqxOTfoKMKBlzsifaF5N8
- Fjqnm7vVTnCc+iyJNgbClKho1mrTKsO3wnpNCsk+zKTAkhELjgjd7FGms4pNbYVfnan+q43wQrR
- TXDOYD/xkn70YRiBWUxFaqYaMKaSfmxmy+J7cgg1gE5mCk8KJUmApjHr/We0CM2RKSF8iuybfuD
- idfk5uvb3HArsuVEFJ16Phwx6DbLQuJVGZStXv9LjEIgvScJibiXoVjGwwUXlXaFiNj5/os8
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOw2SGgC/x2MQQqAIBAAvxJ7TtgEE/pKREiutRcNNyqQ/p51G
+ ZjDTAGhzCQwNAUynSycYhXTNrBsLq6k2FcHjdpg36G6/DFnEvroJEVlnXGBLGq0Bmq2Zwp8/8t
+ xep4XajbhiGIAAAA=
+X-Change-ID: 20250610-wdt_reset_reason-7a5afe702075
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749563123; l=2858;
+ i=kathiravan.thirumoorthy@oss.qualcomm.com; s=20230906;
+ h=from:subject:message-id; bh=dv3Hvk9p48gd7VFAefP+8+Vtb7cmVN0Z2O9TcNsN42s=;
+ b=tHyhZgb3CmEiZAspeTy/FvdJvh94GQqCLJKDhTNqSiLazj13Eavw/gBp8apubAnx0OAA7Inxr
+ Dj7buW9eM+FCyecTz0aKWzbwrYVQE/nZw4Je/oCi+HXeN6kUfdhU4HK
+X-Developer-Key: i=kathiravan.thirumoorthy@oss.qualcomm.com; a=ed25519;
+ pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
+X-Proofpoint-GUID: E13lxwYD0oG63GbFzeRByGXHuYvFNOqn
+X-Authority-Analysis: v=2.4 cv=drjbC0g4 c=1 sm=1 tr=0 ts=684836f8 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=-Vf3EJXieAsgESLsksMA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-ORIG-GUID: E13lxwYD0oG63GbFzeRByGXHuYvFNOqn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDEwOCBTYWx0ZWRfX9B7hltk36XQJ
+ +J0LYIQkim/L2Qs9KPkxS34BjDdWETTqH7BLHSNc3Glg/UCMwrQMDPB0jAvBwS4yW4E/xMUcwTU
+ aURzNsAZHBPU1Fa6e0zGlknRhrNsoSGvMbzfdnBKfaXhUTG1BsaVo5+lIgg5o8pmVRRIu/OO+Md
+ jP5s+fvws/9iMSp2zDa0GzUlCi25moT6lS8o7hVNaMZLJs5qVSnmpzh9Mz+9OksO/WVbjMzkYc+
+ z07wrxC2NDzebhU5nusQtnbZ7XjyX6aXn5WW6jGj09jbHUKNkfhdsKqM6avi+Npg9IJjwqRfyvH
+ 5EeKXlpRkHX6xp2J6coy0quMCOGzET8gSyUur2vrZ/81fmxM4jyS72Q7WmoLZaffHqRjz6NSUTP
+ Sk39XTrgcrin4REoevHloB4+BdaNQuXnbSvCB60vMq3o2G+bgC/eN0/3VhjnEEZt9ln20oZu
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-10_05,2025-06-10_01,2025-03-28_01
@@ -134,112 +138,75 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
  definitions=main-2506100108
 
-On Tue, Jun 10, 2025 at 05:52:02PM +0530, Ram Prakash Gupta wrote:
-> Hi Dmitry,
-> 
-> I will start on this with addressing your comments in previous version as
-> suggested.
+In Qualcomm IPQ SoCs, if the system is rebooted due to the watchdog
+timeout, there is no way to identify it. Current approach of checking
+the EXPIRED_STATUS in WDT_STS is not working.
 
-- Please don't top-post. Ever.
+To achieve this, if the system is rebooted due to watchdog timeout, the
+information is captured in the IMEM by the bootloader (along with other
+reason codes as well).
 
-- Please provide some actual response the comments where they were
-  posted. From the upstream community side that's more important than 'I
-  will address comments' announcement.
+This series attempts to address this by adding the support to read the
+IMEM and populate the information via bootstatus sysfs file.
 
-> 
-> Thanks,
-> Ram
-> 
-> On 1/22/2025 3:30 PM, Dmitry Baryshkov wrote:
-> > On Wed, Jan 22, 2025 at 03:17:07PM +0530, Sachin Gupta wrote:
-> >> With the current DLL sequence stability issues for data
-> >> transfer seen in HS400 and HS200 modes.
-> >>
-> >> "mmc0: cqhci: error IRQ status: 0x00000000 cmd error -84
-> >> data error 0"
-> >>
-> >> Rectify the DLL programming sequence as per latest hardware
-> >> programming guide
-> >>
-> >> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
-> >> ---
-> >>  drivers/mmc/host/sdhci-msm.c | 270 ++++++++++++++++++++++++++++++++---
-> >>  1 file changed, 252 insertions(+), 18 deletions(-)
-> >>
-> >> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> >> index cc7756a59c55..17f17a635d83 100644
-> >> --- a/drivers/mmc/host/sdhci-msm.c
-> >> +++ b/drivers/mmc/host/sdhci-msm.c
-> >> @@ -28,6 +28,7 @@
-> >>  #define CORE_VERSION_MAJOR_SHIFT	28
-> >>  #define CORE_VERSION_MAJOR_MASK		(0xf << CORE_VERSION_MAJOR_SHIFT)
-> >>  #define CORE_VERSION_MINOR_MASK		0xff
-> >> +#define SDHCI_MSM_MIN_V_7FF		0x6e
-> >>  
-> >>  #define CORE_MCI_GENERICS		0x70
-> >>  #define SWITCHABLE_SIGNALING_VOLTAGE	BIT(29)
-> >> @@ -118,7 +119,8 @@
-> >>  #define CORE_PWRSAVE_DLL	BIT(3)
-> >>  
-> >>  #define DDR_CONFIG_POR_VAL	0x80040873
-> >> -
-> >> +#define DLL_CONFIG_3_POR_VAL	0x10
-> >> +#define TCXO_FREQ               19200000
-> >>  
-> >>  #define INVALID_TUNING_PHASE	-1
-> >>  #define SDHCI_MSM_MIN_CLOCK	400000
-> >> @@ -309,6 +311,16 @@ struct sdhci_msm_host {
-> >>  	bool artanis_dll;
-> >>  };
-> >>  
-> >> +enum dll_init_context {
-> >> +	DLL_INIT_NORMAL,
-> >> +	DLL_INIT_FROM_CX_COLLAPSE_EXIT,
-> >> +};
-> >> +
-> >> +enum mode {
-> >> +	HS400, // equivalent to SDR104 mode for DLL.
-> >> +	HS200, // equivalent to SDR50 mode for DLL.
-> >> +};
-> >> +
-> >>  static const struct sdhci_msm_offset *sdhci_priv_msm_offset(struct sdhci_host *host)
-> >>  {
-> >>  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> >> @@ -793,6 +805,211 @@ static int msm_init_cm_dll(struct sdhci_host *host)
-> >>  	return 0;
-> >>  }
-> >>  
-> >> +static unsigned int sdhci_msm_get_min_clock(struct sdhci_host *host)
-> >> +{
-> >> +	return SDHCI_MSM_MIN_CLOCK;
-> >> +}
-> >> +
-> >> +static unsigned int sdhci_msm_get_clk_rate(struct sdhci_host *host, u32 req_clk)
-> >> +{
-> >> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> >> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> >> +	struct clk *core_clk = msm_host->bulk_clks[0].clk;
-> >> +	unsigned int sup_clk;
-> >> +
-> >> +	if (req_clk < sdhci_msm_get_min_clock(host))
-> >> +		return sdhci_msm_get_min_clock(host);
-> >> +
-> >> +	sup_clk = clk_get_rate(core_clk);
-> >> +
-> >> +	if (host->clock != msm_host->clk_rate)
-> >> +		sup_clk = sup_clk / 2;
-> > Please resolve previous discussions before sending new versions. Just
-> > sending a response and then sending next iteration of the patchset is
-> > not a proper way to communicate.
-> >
-> > NAK until the discussion is resolved in the previous thread.
-> >
-> >> +
-> >> +	return sup_clk;
-> >> +}
-> >> +
+With the CONFIG_WATCHDOG_SYSFS enabled, user can extract the information
+as below:
 
+cat
+/sys/devices/platform/soc@0/f410000.watchdog/watchdog/watchdog0/bootstatus
+32
+
+Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+---
+Changes in v5:
+- Rename property 'qcom,imem' to 'sram'
+- Use dev_err_probe instead of dev_err
+- Link to v4:
+  https://lore.kernel.org/linux-arm-msm/20250519-wdt_reset_reason-v4-0-d59d21275c75@oss.qualcomm.com/
+
+Changes in v4:
+- Kept only the WDIOF_CARDRESET and dropped other codes (Guenter)
+- Renamed qcom_wdt_get_restart_reason() to qcom_wdt_get_bootstatus()
+- Dropped the device data and describe the required information in the
+  DT (Konrad)
+- Link to v3:
+  https://lore.kernel.org/linux-arm-msm/20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com/
+
+Changes in v3:
+- Picked up the relevant tags
+- Dropped the fallback compatible handling
+- Split the driver changes into 2. Introduce the device data in one and
+  extend the same in another for the use case
+- Link to v2:
+  https://lore.kernel.org/linux-arm-msm/20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com/
+
+Changes in v2:
+- Dropped the RFC tag
+- Reworked the driver changes to use the syscon API
+- Link to v1:
+  https://lore.kernel.org/linux-arm-msm/20250408-wdt_reset_reason-v1-0-e6ec30c2c926@oss.qualcomm.com/
+
+Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+
+---
+Kathiravan Thirumoorthy (5):
+      dt-bindings: sram: qcom,imem: Document IPQ5424 compatible
+      arm64: dts: qcom: ipq5424: Add the IMEM node
+      dt-bindings: watchdog: qcom-wdt: Document sram property
+      watchdog: qcom: add support to get the bootstatus from IMEM
+      arm64: dts: qcom: ipq5424: add support to get watchdog bootstatus from IMEM
+
+ .../devicetree/bindings/sram/qcom,imem.yaml        |  1 +
+ .../devicetree/bindings/watchdog/qcom-wdt.yaml     | 20 ++++++++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi              | 10 +++++
+ drivers/watchdog/qcom-wdt.c                        | 43 +++++++++++++++++++++-
+ 4 files changed, 72 insertions(+), 2 deletions(-)
+---
+base-commit: b27cc623e01be9de1580eaa913508b237a7a9673
+change-id: 20250610-wdt_reset_reason-7a5afe702075
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+
 
