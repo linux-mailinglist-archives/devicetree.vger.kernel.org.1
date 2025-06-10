@@ -1,139 +1,158 @@
-Return-Path: <devicetree+bounces-184432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD01BAD3FD1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:01:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68ED8AD3FFC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:05:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75ABF7A462A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:00:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECD973A8790
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016B4242914;
-	Tue, 10 Jun 2025 17:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D0123504C;
+	Tue, 10 Jun 2025 17:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="bVG20vhx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W92UpArF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F82242A9D
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 17:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A4B242D7C;
+	Tue, 10 Jun 2025 17:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749574892; cv=none; b=D2xiOszQZ7S+dQM4417nAzsmtxms6CoaeTakF6qh3CgJHSZjDpbkn7qi5ddoo7y/YZ8G7dv7uoP8o8KCD19LQDXmLSGWbdYzBTVl+9bD3Zn00R5ZttRM/he8SQDZRdqmW8B4nCr9IFjHn7TGaeTQty5epfT8CDZTo2YqIlQ5law=
+	t=1749575089; cv=none; b=RqDOsvPZr7KxJwEfSSI0huUgMYsBzWFsyPhAn7FAL8rvzHzkO6TD2LBQNhR7nWXiF/TyXmcBHrMzevn/05pf/ovXi3MKQna9J2wBYQWrXhHsGj0f1FqDEdkfuqvqZu1MrJOzF+x+u3D+EHtUn16EooC8ZRNBb7NDrX8vZe55C6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749574892; c=relaxed/simple;
-	bh=ahXm0c4rtJ92rxuI7mSW9/ZW29+20fL7IwSWH1turAs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e1rH+4pi9OerCk26s3sSBb2vgmbq9yLLaRBB9ew+SPsFQLbY8oUH7T151Nmi9eC1aCaWWjye9tsxH6Pn8DnPb1i6YF7VHGxiCNueeTUYgD9MNHiORPksny1fyvEhXa8Rq7gaqV2D4THjCQ9vKdnJ9dDdGz7b9QC5x8oMo2ElyrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=bVG20vhx; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234d3261631so40108295ad.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 10:01:31 -0700 (PDT)
+	s=arc-20240116; t=1749575089; c=relaxed/simple;
+	bh=FeGGqTV3hMLvtuAUwQjWTQyZXr9HDJB5RrZEzdTh77s=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=N9MBCpgVgVTIIJ0zzlsjnQLFHLg+O9P2JXE8vgZiQ4Cfji9aZdBli1DxCKTzdt9cRjLd4+WGW9vQtcl34ZwVR3PjgpewDgwPi8aKi9/EL5i0LzUMBv8sDoUWZpI9cyivw7U4wYjTRQrTsy2afCSpBMJGrEFtW3B9THLR7kYPrzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W92UpArF; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-234c5b57557so53443105ad.3;
+        Tue, 10 Jun 2025 10:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1749574891; x=1750179691; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GEfizgcdloDSHEfL4nwI4ypLmP1PdRkcy++iUoXBHOc=;
-        b=bVG20vhxWFQxGqPNh89PpFGHOmFF751kMt+1023Cii2iCBYhUS1X+1W2FCfi3Z3GFr
-         i0HnjgDZesRwvUHtstuviUNNPbKgmUkpVb1AHXM/uHdMabbn/MI0HD7G3GdNskzFcA1z
-         5dhC1x/czaLEMYCtwxf+Q2/SLXE7Y5o7R2Vow=
+        d=gmail.com; s=20230601; t=1749575088; x=1750179888; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l1SAMsGs37SGD+chia/RQyRlWwAaxqTB5CEOsEmZAX0=;
+        b=W92UpArFJRh9sgQMpe/ysaNsasvC7Fwa/MprFd2w9/aUTaEpkOWGVBMP/cEH+uliH6
+         aTYVFPgVJNoFniVlOsa32P9OV+iuBtbPhnJppDuhxE7ZFF+ClK7NNKzY1+oXeBmNcXfs
+         +pL2gVpP2Wu8q+e7xvFBArM+eEv8Q9cjAzMvVsnpJ3YUtd5I+xhip1qKN4VCb59W7ziZ
+         T4MtL7OE2zKNL8pk19fv3hgLItX1i50y0PT5uAcjwoUrNB1RxWx4vSbe2Mj0+UJYhpie
+         24D3wqPXFM8uSvBsTk1AKYaDuuXvVc92rxx73FEWTSzdazpM9yPc67j7G/ATu+X+bmFR
+         78Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749574891; x=1750179691;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GEfizgcdloDSHEfL4nwI4ypLmP1PdRkcy++iUoXBHOc=;
-        b=gTcvOp5Hb+T4TLs1wRMbX06nt7M/WXOvWsb8e4p7Wb8FhK+bGxk4aNRzz5PNqhllXo
-         g+qHUhSPqlVzhsCmJRiLmanKeCSbIkcZozmMOawA09uuvbnCT+BxY9ZqPdib8NTHNhqX
-         Y4lHhFeg3mSxbNoaNXPdFjTL7oDPn5WHRSGmihSNAZEzMTgUem14MQBRXmiVy9rKaRms
-         1NTjrxxijP4y2JNHqOM8Y6GVtk0as+7tk7/1e7c0S5E11AmiUb12366jzDXY7Lcg9nov
-         Yr/eHcZWcSUxZiDg7bVkPtf0Hn6VQeOdGlTu7jV5vDkXg6ATTZbSWuAGPFOX+4GRmPlS
-         djfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsgAsnMR1hPACSO8fqILB0ZcXQB8s+ErlQarUnY/lpgmSpw2rdrR493GT76SHjDJjFIynqqoHmaPKM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrTdO4rXtiRosB0L0C4/hHsl6CfT4sWM+Ss+dIefkTsprifu0N
-	fkg8RKK5iFbdz/oo+AReX6nLcGVQqG16E0KGObv+boetR1BmvEoSfITiI86d3tRdQA==
-X-Gm-Gg: ASbGnct3j2CsLYc7N16rt4rM4Hh2aPpBp/enBO8OzxyMjv02/ZVZUVQkNcFVU3F/MN/
-	e6w1seRfiefbkHOoh8BU1vPJU2lUmh9vbVcSfw40MjcTeSLxPcjR+wphmi5o1j65u3xGN2ILi+Y
-	icIaN2bV5QDXNKX59WYV5NvfHjPKjjPbplUxknujGHKfUaE/EsgfYodGZGR6lXyVKsjDl/JimGP
-	HQHs0PPItM4E7Kp2aHDm097R7+RUflH4/ZRsfCqZQXDnRDpelhXv8uJqHVd8m3rI2YNHJd1kbu+
-	DkRVLTKNvqCxQJB+LdxDHtfxZAly16JafEhaN07wGMAb114aQBIiLYeKLA15eNRdKSn5i3l/6sU
-	eBFY4oHjoZ6zK9hXf7C6hl/Gj5LAoLDz1XfJI
-X-Google-Smtp-Source: AGHT+IEDsXiBlVA7FVMENTeGgQdvLlZXNAQiUGUTlJkIvmv4c11p25UNxrdKTp1DzYF1z74E2FJZ3g==
-X-Received: by 2002:a17:903:32c8:b0:235:e1d6:4e45 with SMTP id d9443c01a7336-23641b1a245mr413505ad.25.1749574889444;
-        Tue, 10 Jun 2025 10:01:29 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236037ae33dsm73023625ad.206.2025.06.10.10.01.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 10:01:27 -0700 (PDT)
-Message-ID: <4c580225-a1d5-48cb-80dd-14759134baba@broadcom.com>
-Date: Tue, 10 Jun 2025 10:01:26 -0700
+        d=1e100.net; s=20230601; t=1749575088; x=1750179888;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l1SAMsGs37SGD+chia/RQyRlWwAaxqTB5CEOsEmZAX0=;
+        b=up1gy8zVThOfUxeegDlBG81S80PM3SIBThhNgtNa6+35k/DZGvKeOjrloQGmhuxN7r
+         fmsycqicBEjOwgFegQmqVk6WXPRlUKpEeaOtJEtyCaTqcAtUlykW13S8U0FqBf0nRdU1
+         00ZmGc74DF+CdXGDhUV9CyQw/cNnqICuh0Hhb5BYRC2hH3oJU6UG1f00Y3spJuOqiqj+
+         jjpVKo2S1MlfTYgWHol+4i5SUcQilaG3hhm7JR4xNzjAHT2/QqWkkRG+mtLkLNbBUhfF
+         xXwXoomDCLtWRlBhHTsB4TTMkk8y3sHzXpucC204O8Ivm19dJ+ZmhHxkgq2ZYNBDMT/6
+         c60g==
+X-Forwarded-Encrypted: i=1; AJvYcCWomffkN2EcH0iSr0Fw0Lyobi89fzScTm2+PW3jP6sUEu9Z0ARTkvLf+nDY4xuijwINLN3lPUWpa0CzcNk=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzrsct8DQB+QyqqsWU4aFv79+p7tq5r1jZl9gFBD54/jkKSP/lm
+	GMKZN6VcnEatHT7EH6F+bmNCIpU/IY9N6YRtb4X24oZWQf40d5u5pEuj
+X-Gm-Gg: ASbGnctd/UKjjx7N9hxMzsnccGt55dLysNbnMUs5inuaU5ZaEa+A25Mq4DiufMZeTk2
+	DBy+8LCPYwJnOJ4xoqE6YlswzwgDhruX3SSEQHMN7GBBPaKhcBsNc0xL5dswT/FmwiSnujRPq8E
+	GGKfSHbpQMsJNR3p94kjpldxpw5k7K/kCwBqvYnv2U/gBcWremWFI7exUplWCCaHzm0ATjElBru
+	8dsXS8Xh5jz1vs+3vYj3wG2XJipf7v7Ay/q8e0fb7mAMdWiLCaJ7J3Sz7KcWEDv3hhtZCepVB+I
+	ZcEDx0HIChrDd897ZBbidFd5iO7Qa0Au5EOLbf3jIYDa6r1o5F2wt/J0dVY74QN6ScwkgI8NLmY
+	sG6jN5bMD8ZKMGzEqKwYLrEJN3C+dCBNRZF9KQ+4EiwydTJw9XQ==
+X-Google-Smtp-Source: AGHT+IGN8fWm1wd/rYS+vEB4RxNmREuCEW79sACTf92qnjh+StZfwWgh0XTKc+e8n8+kZsmS0X1KRQ==
+X-Received: by 2002:a17:902:c94c:b0:235:81c7:3c45 with SMTP id d9443c01a7336-23641b26eeamr523415ad.46.1749575086817;
+        Tue, 10 Jun 2025 10:04:46 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236034065edsm72958615ad.185.2025.06.10.10.04.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 10:04:46 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Date: Wed, 11 Jun 2025 01:02:09 +0800
+Subject: [PATCH] ARM: dts: aspeed: catalina: Enable MCTP for frontend NIC
+ management
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] mailbox: Add support for bcm74110
-To: Justin Chen <justin.chen@broadcom.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: conor+dt@kernel.org, bcm-kernel-feedback-list@broadcom.com,
- krzk+dt@kernel.org, robh@kernel.org, jassisinghbrar@gmail.com
-References: <20250602222311.2940850-1-justin.chen@broadcom.com>
- <20250602222311.2940850-3-justin.chen@broadcom.com>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250602222311.2940850-3-justin.chen@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250611-catalina-mctp-i2c-10-15-v1-1-2a882e461ed9@gmail.com>
+X-B4-Tracking: v=1; b=H4sIABBlSGgC/x3MSwqAMAwA0atI1gaa4v8q4qLWqAGt0hYRxLtbX
+ L7FzAOBvXCALnvA8yVBDpdAeQZ2NW5hlCkZtNKlqojQmmg2cQZ3G08UbZEUUontWHNbFJUa5wZ
+ SfXqe5f7P/fC+H35ZZLBpAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Cosmo Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
+ Potin Lai <potin.lai.pt@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749575084; l=1422;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=FeGGqTV3hMLvtuAUwQjWTQyZXr9HDJB5RrZEzdTh77s=;
+ b=lRWcKzdCWOshs6fYek3iMrxbKcUD0Q0b2Tn4RqRTi0y+t19th2ZR1mJJ/o5nxpConHX4xZfj9
+ M55WJ2w/KdyB4EiBoVxPni3QOtFCBWVk2dtVdkjJqPvrVw6cQn81u4y
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-On 6/2/25 15:23, Justin Chen wrote:
-> The bcm74110 mailbox driver is used to communicate with
-> a co-processor for various power management and firmware
-> related tasks.
-> 
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+Add the `mctp-controller` property and MCTP nodes to enable support for
+frontend NIC management via PLDM over MCTP.
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Add the mctp-controller property and MCTP nodes to enable support for
+frontend NIC management via PLDM over MCTP.
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
+index 5fb67ad2d777..8d786510167f 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
+@@ -797,6 +797,12 @@ eeprom@56 {
+ 
+ &i2c10 {
+ 	status = "okay";
++	multi-master;
++	mctp-controller;
++	mctp@10 {
++		compatible = "mctp-i2c-controller";
++		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++	};
+ 
+ 	// OCP NIC0 TEMP
+ 	temperature-sensor@1f {
+@@ -926,6 +932,12 @@ io_expander14: gpio@15 {
+ 
+ &i2c15 {
+ 	status = "okay";
++	multi-master;
++	mctp-controller;
++	mctp@10 {
++		compatible = "mctp-i2c-controller";
++		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++	};
+ 
+ 	// OCP NIC1 TEMP
+ 	temperature-sensor@1f {
+
+---
+base-commit: 4d75f5c664195b970e1cd2fd25b65b5eff257a0a
+change-id: 20250611-catalina-mctp-i2c-10-15-9b7e94460bf8
+
+Best regards,
 -- 
-Florian
+Potin Lai <potin.lai.pt@gmail.com>
+
 
