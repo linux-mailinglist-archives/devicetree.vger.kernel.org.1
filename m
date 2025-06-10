@@ -1,163 +1,159 @@
-Return-Path: <devicetree+bounces-184380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 174EEAD3D92
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:40:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F8BAD3D71
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AA8D1BA117F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:35:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BCE67A25FB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 15:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2655C236A88;
-	Tue, 10 Jun 2025 15:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1F6236A70;
+	Tue, 10 Jun 2025 15:37:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bUdRhzdR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ovvHo31L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8A22A4CC;
-	Tue, 10 Jun 2025 15:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73673230BF5;
+	Tue, 10 Jun 2025 15:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749569691; cv=none; b=ZHuFmM6LrtSmaLhP4k0s8fyOS86N4kC/zBcYez/CtS1aZA6jZSAZ1VAvu3zDtkNzHhi+1GiYRB4X6sB2OOn6RWcNXT+3Oml4WfRJEUYkHGMJNJjTdVzmLbETRy6wy1Cxy/WhUHm8k/jz1pf5BkpeBE6X8ZOl0kzhA1KT91B8TmU=
+	t=1749569837; cv=none; b=ehHEVHxZ6QM+adWIYFGNi7F9OqUrJQo7/mfdphnCCDK3UnPyC4U6G1wLuwl5aaJlr+lUjFGsJB09i6KF+9pXSMC7peG0ZKt+ncPUzhBE1zZSJVrP5wAp/+qT3rWGrOownbKjMjLTJtI7t0mLqLBI7OJqcvDXLg8f2uAu/4ETwOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749569691; c=relaxed/simple;
-	bh=MqIeJ3Z/v9s5PB39f8ATtxRcPHFnymAolwGEhww+kAw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=usPIpWpQZ1/nlX6/OuNk7ZZfnWJFFN236WKIwyekO2U5sVhJtjpCbUfcsO7U9Gcux8tt9TBPNB+gMz4ZVuD5v2UeZ86JM4rUE5b6c3Qg7u3H6WDoN4GKQ7tuwNICDgDVikzNMG9nlgKgRaRW0E1EI5oXQprSI6XEp4gjCZ+CRVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bUdRhzdR; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-551ed563740so6935453e87.2;
-        Tue, 10 Jun 2025 08:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749569687; x=1750174487; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MqIeJ3Z/v9s5PB39f8ATtxRcPHFnymAolwGEhww+kAw=;
-        b=bUdRhzdRSIG7PiIhtzBR+B3559hGuRAIhLZtlPV7RoZ/mWWyOwGVLLg71RbgeECBwC
-         QRb53niQ0/JEMSb8V/f/MgP+E47MFLYthXMTr42gBeJ45BLKzCVZt1s2f5XsqyW+30rE
-         9SdNZTku1orNJ6o+s4TS0XJv9l4OoAM0kVmkAYIYz26sxEGiwxs5cM5RfRFqeYLszCGM
-         IfAhtKBNARxVC2FTkwesNSVLX6GJQMa/n6Lw6FCmpVhVFwH3LuchCZw7y77sCf0ttupb
-         CZQzOBi5jnxKtaegdmEhVxCXKiK/IlkoqrYOI+akY7VytM9wsidLeWcZ4OEEO6JCpM9C
-         I3XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749569687; x=1750174487;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MqIeJ3Z/v9s5PB39f8ATtxRcPHFnymAolwGEhww+kAw=;
-        b=eMtEep6wf4CnXxlb6CBz3t2fITfhpWmkVsiAF19MdipT2Rh039bTS5ZhchEqmQw/ps
-         z1qj8LfgL+tzbGxzKLwqXru664xcTR7VagZms+UI1yZ9JPCyBHeRUeANuXkXpMRMh52D
-         zhl3vhi6td+utPT1KlhoPD5O0MDmnu3JCepnI5YAl4qi8qhCNYWhVY8PB5P0mg96rgy7
-         JpHiZbdBkVJ+xXdX3l2PhN0xv09Xy/nnWq5eL7VqbeUytaKWGbfZOBB9fSvwZZMR3/hV
-         +GoBD9RRImHE8tkOUJv3h+dxMSsK5czxkW842VL5wCu4V6hBGInfaMFxbgIbzeBjliLx
-         IHsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUBQhy1QAdXINgHZxvl8wkWAU2fLKpEldr1nqeWzeNIP+BTpWFLQDTJRzbjQlpYXnEze3B7wLHI1nQz@vger.kernel.org, AJvYcCV3aCT6yIMufr1I6gVgAaqzSho1Toswf1FcWwkaRXKii/OCe/VSvteh+Ze4JhnyGyTVdSAHCVqIDzs5xw==@vger.kernel.org, AJvYcCVuQH8/p8XKY3wEG+KxFEXrTFsk6XmJf5U736Kvs5AESfzwiPNKeLwE/GCQ/A9aBpwj+4vaW6qN0rz1uoaj@vger.kernel.org, AJvYcCW8/oXf4nKigmKuAo4HGaapoP+OVvn/CqToejC7kM91SF8p9anLgs9na+VKH5Ut1oPmXwcGhyuYuXFigNA=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7rSBHkRzMeFwPM1ElZ6G4f5Jh5rX0Fmpb0ItLQWiYq+f/S/Ld
-	u7dz2Zgv44zxJ6WjDkCq5gSmjNTCGUwuq1ceuR/zXqONZ9H9IwL3fP/Lqxz2M3fuktpmvWTzywr
-	UXOACQIwk3gjSJ88i8zM3up4HldwlcHM=
-X-Gm-Gg: ASbGncvRIC9qUB5q1KurYOWKLMf+gdHK+aXpkHkNl8wx/Mhq3QJlUEUObEVF5xKH9uZ
-	UKp1hWwadyRTBY4MBuL1eMF9nLA7GZHNdCZfpUK7hhMZaBWYVkW34WWEk+eNKNtzWSOxf+ZuOJc
-	6E73wLhsFRkQzhKwOlERuxkbkv0QkWT7MUd9tRsCiDhmc=
-X-Google-Smtp-Source: AGHT+IEJ1ZmrGjCVMSTlbre49ihcrED5/bqIPNHDU9iGhqG87iTWzIVwBOxMYwIwqyAgvBsr9yQYrbRSg02Hs0mulTM=
-X-Received: by 2002:a05:6512:12ca:b0:549:8a44:493e with SMTP id
- 2adb3069b0e04-5539c0a32a6mr14812e87.5.1749569687142; Tue, 10 Jun 2025
- 08:34:47 -0700 (PDT)
+	s=arc-20240116; t=1749569837; c=relaxed/simple;
+	bh=BaMCopdFsyf97DgXqkRC4ITODJy4XrlKF7Fhset0d1w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=A+AsLeCNG3i0JnpEIf/1TtS88pSxb1i4DyZtp9TXo0wEiW0YX4NJnnPwWNIwsag3D2bM667udfXfuw58cTX1rdJUaM8xVM4NqKO1bXPZU8AjmbzlqEh+aGCBKWnkq0ghtA/btWZWbiKLDVu3F9BNmqOtXvFuSJ7Qy4GQ2ATJQrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ovvHo31L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0C094C4CEF0;
+	Tue, 10 Jun 2025 15:37:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749569837;
+	bh=BaMCopdFsyf97DgXqkRC4ITODJy4XrlKF7Fhset0d1w=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ovvHo31LihN3bqay3oxdNAZg8ziXGuJMFzBf/bDoJchcVuTQEBhFh0STNaRk1YMTz
+	 BKChWJsjYzZ9da9D9wjke+9cVy7LuzEb9CZh8zp9htnrJBh/YjSMpW7OiqFmhZQdIL
+	 0A30zqDIb3oJUgHuk9Sa+b4rUW7eWL7q6X+i3aPltNsu/ditrWKFJCMogt8+ZbDdyx
+	 vSioFA6JPCIwrdosvm6OdaRb8GF+trwD2b1mMTZQPp8qihJIlOmjVfZXZ7JPLfN2Uk
+	 oBGaRdsF5pYVZ3/4UHX2ZeB3b5T9FCqb6TgX4uC5hEmbVvYv2weSdcqikOFjywoMxd
+	 Cpi/xnpk3+x2A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EDCA9C5B552;
+	Tue, 10 Jun 2025 15:37:16 +0000 (UTC)
+From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
+Subject: [PATCH v4 0/5] stratix10: Add framework for asynchronous
+ communication with SDM
+Date: Tue, 10 Jun 2025 23:37:07 +0800
+Message-Id: <20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250608-tegra186-pinctrl-v2-0-502d41f3eedd@gmail.com>
- <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com> <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
-In-Reply-To: <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Tue, 10 Jun 2025 10:34:35 -0500
-X-Gm-Features: AX0GCFsd7xdIB9QWQua1RQ4pRCI39zZoWW2thwkZ7CPS9rox8nnF-LfaH58f7aE
-Message-ID: <CALHNRZ_gy_wJxAW85d0EnpY4Qa2h+tuR=CM2AE26r0UEdYz8ag@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACNRSGgC/23PQW7DIBAF0KtYrEs0gHGwV71HVVkYxglSHbtAU
+ KLIdy/BqtIqWf6R5v2ZGwnoHQbSVTfiMbng5lMO9VtFzFGfDkidzZlw4BKYYDS4pQ/J9OclRI9
+ 6orhXVpl2qIWQJK8tHkd3KeTH55Y9fp+zHLfhA+6qjYWWhtmMy0H3v/zkgqHDYOw47DUAV10Sd
+ 33QAamZp8nFrkrNjklyLzm6EGd/LW8kVloKXXP+fHFiFCgoBbJlLYyCveuviF7vslu0xB+CZK8
+ EnoVRozS1NJmxT4L4I/DmhSCy0GhQupbALYp/wrquP8yoZ62aAQAA
+X-Change-ID: 20250131-sip_svc_upstream-e78d8c9b4335
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749569835; l=3196;
+ i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
+ bh=BaMCopdFsyf97DgXqkRC4ITODJy4XrlKF7Fhset0d1w=;
+ b=Dg/uJSgebPZk7zffIlpCTxoQsG5cXKLK/GheSOMKIUb21q96Avuu9QQCzZGYCgaLJm9h2nnhQ
+ iyZFxStkiDaA2s/gNv2nN+6pR8tFZCR4s6g37iIB8VBfjf0NQy2vkX9
+X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
+X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
+ auth_id=337
+X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
+Reply-To: mahesh.rao@altera.com
 
-On Tue, Jun 10, 2025 at 4:40=E2=80=AFAM Thierry Reding <thierry.reding@gmai=
-l.com> wrote:
->
-> On Sun, Jun 08, 2025 at 09:13:14PM -0500, Aaron Kling via B4 Relay wrote:
-> > From: Aaron Kling <webgeek1234@gmail.com>
-> >
-> > This is based on Nvidia's downstream 5.10 driver, rewritten to match th=
-e
-> > mainline Tegra194 pinmux driver.
->
-> A few words upfront, to justify why I'm being pedantic. Originally the
+The patch set includes the following changes:
 
-I don't mind pedantic. Get it right the first time, save later pain.
+- Add protection for querying memory objects in
+  multi-threaded flow.
+- Add support to generate and maintain message id
+  and client id for asynchronous communication with SDM.
+- Add framework to communicate with Secure Device
+  Manager(SDM) asynchronously by sending a request
+  and polling for response.
+- Add commands for performing Remote System Update
+  (RSU) operations asynchronously.
+- Migrate RSU driver to use the asynchronous
+  communication framework.
 
-> pinmux drivers were generated using the tegra-pinmux-scripts[0]. This
-> project was later archived because Tegra210 was deemed to be the last
-> chip to need a pin controller. It then turned out that Tegra194 needed
-> pinmuxing for certain pins, and then more, so we ended up with a full
-> pinmux driver for it. However, we also deemed Tegra194 to be an
-> exception, so that's why that pinctrl driver was a one-off job.
+---
+Changes in v4:
+- Added description for svc_mem_lock mutex.
+- Wrapped commit message and comments in source
+  code to kernel coding style as per coding style.
+- Added minor code fixes.
+- Moved variables to the top of the function
+- Removed HWMON support from in the patch-set, this
+  will be sent in a separate patch-set.
+- Added support for RSU commands to asynchronously
+  communicate with SDM.
+- Migrated RSU driver to use the supported 
+  asynchronous commands.
 
-Tegra234 also has a pinctrl driver, which makes tegra186 the
-exception, when looking at the driver list without any other context.
+- Link to v3: https://lore.kernel.org/r/20250526-sip_svc_upstream-v3-0-6a08a4502de3@altera.com
 
->
-> I now regret these decisions because the same formatting mistakes are
-> now proliferating, which is exactly what the scripts were meant to
-> avoid.
->
-> One thing that's not clear from this patch set is whether we actually
-> need the Tegra186 pinmux driver, or you're only adding it because it
-> happens to be present in a 5.10 downstream driver. Do you actually have
-> a requirement for setting pins dynamically at runtime? Do you need to be
-> able to set a static configuration at boot that can't be set using some
-> earlier bootloader/firmware mechanism?
+Changes in v3:
+- Changed "Stratix 10" to "Stratix10" in the commit
+  message and in source code.
+- Simplified stratix10_svc_add_async_client() by removing
+  redundant code for async common channel initialization.
+- Fixed resource cleanup on negative path in
+  stratix10_svc_remove_async_client() and stratix10_svc_async_init().
+- Removed optional interrupt handler support, will send the patches
+  in a separate patch-set.
 
-I have a device that's based on p3509+p3636 with an audio codec,
-originally targeting l4t r32. The odm provided instructions to use the
-codec was to first run the jetson pinmux python script after boot... I
-made that less bad by putting the pinmux in the kernel dt. But I see
-similar recommendations all over the nvidia dev forums, even for t194
-and t234. Solely for that reason, I'd think it reasonable to support
-the kernel pinmux driver on all tegra platforms: to allow easier
-porting of l4t devices. And a secondary argument could be made for the
-devkits: they have expansion headers with mux-able pins, prototyping /
-experimenting with those at runtime via sysfs is a valid use case.
+- Link to v2: https://lore.kernel.org/r/20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com
 
-Taking a look through the public cboot sources for t186, I'm not
-seeing that it handles pinmux at all. With one or two exceptions like
-the t194 pcie stuff. How is it expected to configure pinmux at the
-bootloader level? Using the auto-generated mb1 flash config? I'm
-unaware of this being publicly documented anywhere, not just for t186
-but for any tegra arch. And the format of those aren't particularly
-easy to read and hand modify.
+Changes in v2:
+- Added Reviewed by tag from Rob Herring for dt-binding
+  patch.
+- Resending the patch-set as there is no response from
+  the maintainers for the previous patch submission.
 
->
-> If we really need this pinctrl driver it may be worth resurrecting the
-> tegra-pinmux-scripts so that we can add these drivers based on the
-> generated files as originally intended.
+- Link to v1: https://lore.kernel.org/r/20250422-sip_svc_upstream-v1-0-088059190f31@altera.com
 
-Imo, this would be ideal. That will require some updates to the
-scripts to handle the main/aon split. I don't think it's something
-that can be done externally either as it depends on the internal only
-pinmux spreadsheets as the starting point for a soc or device. But if
-that's done, all the format issues will be sidestepped and this series
-will be superseded.
+---
+Mahesh Rao (5):
+      firmware: stratix10-svc: Add mutex lock and unlock in stratix10 memory allocation/free
+      firmware: stratix10-svc: Implement ID pool management for asynchronous operations
+      firmware: stratix10-svc: Add initial support for asynchronous communication with Stratix10 service channel
+      firmware: stratix10-svc: Add support for RSU commands in asynchronous framework
+      firmware: stratix10-rsu: Migrate RSU driver to use stratix10 asynchronous framework.
 
-Sincerely,
-Aaron Kling
+ drivers/firmware/stratix10-rsu.c                   | 272 +++---
+ drivers/firmware/stratix10-svc.c                   | 934 ++++++++++++++++++++-
+ include/linux/firmware/intel/stratix10-smc.h       |  76 ++
+ .../linux/firmware/intel/stratix10-svc-client.h    |  92 ++
+ 4 files changed, 1234 insertions(+), 140 deletions(-)
+---
+base-commit: 0a4b866d08c6adaea2f4592d31edac6deeb4dcbd
+change-id: 20250131-sip_svc_upstream-e78d8c9b4335
+prerequisite-change-id: 20250109-socfpga_sip_svc_misc-bbcdfb7a0028:v3
+prerequisite-patch-id: 6a4223bd2c01a0fd20925e597c906dc64e11ec2f
+prerequisite-patch-id: 33ca4dbe8b8e18d3e51145c6bcaae55170878b22
+prerequisite-patch-id: a02bca91874f4405191e60704574a0c99f37d184
+
+Best regards,
+-- 
+Mahesh Rao <mahesh.rao@altera.com>
+
+
 
