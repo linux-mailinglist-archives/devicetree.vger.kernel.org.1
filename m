@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B7CDAD36EB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:44:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DD0AD3731
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C2F57AB888
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:43:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF27F18846FE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 12:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939522BDC09;
-	Tue, 10 Jun 2025 12:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949CC2D1932;
+	Tue, 10 Jun 2025 12:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZxoyScq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nG6WjNtG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6654929993B;
-	Tue, 10 Jun 2025 12:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5662D1926;
+	Tue, 10 Jun 2025 12:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749559071; cv=none; b=ZeAaRqf09nC7tXmR2MZ6VRzhzqMUruDkB6L4F8PUBOYayTNqIXNkww0XOVwINQVSGCfzZ7nezKM+K/qslfbvptbIc0ELhHitLsQYkyi9y2AXLoXf2o8SctObu8yMCkWWgIqMjnKtdRCkKsfC/PzQGQUm35a9L4jliIK8vk5svNc=
+	t=1749559143; cv=none; b=DnFjLYybfaNNNGfV+OyY7qIHwhEEXCAgMzRbiy5ts/w7mknCfLSOaBlOehQH9ZFUBtOvfs3B+USj7LMqkrWQefE6Lqm2OYKgFCvobHwGmOpnRoCJ7JYuBQfaTztc3IXheBeLHTV5FGBN8qjnj/Ew7GHiyKNVjeG0FG2iEhVBBWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749559071; c=relaxed/simple;
-	bh=ArW2/cfjiYvgjVqObVhL4JL7syCfeOsoHCZCVAJhKW0=;
+	s=arc-20240116; t=1749559143; c=relaxed/simple;
+	bh=fWHTM0XLFokZBXTTjppSI7itXW3nmi75qDHSGly0j1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Oshnwk1kwG5eC2UtE5e6CZRm6wTeGIe4pfZl2rqObcntA18F1bTJJgIk0SSgVrYSBvhC6Q9e9Sw9c6543AP7u6cdiVme3olQhIoZd9l+lMVpH/dLNGNu70wnEnPO40gIAJWqaCDKxheIvIwR8fy8epQOaGXMLpnDSV9+7uozuVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZxoyScq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FF07C2BCF5;
-	Tue, 10 Jun 2025 12:37:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NQ73mgFh2FaEpT6+j77TFSOWtfN1lDNfgukhADS7Il7tzHBVXJSPpgY/t5epl17I8UaK0yjQDa2qzcZZGaPu1B2LZmHDLDBIl/T2MujxKywO0ILdvq66TlJnl9wuBJ+1xC60ZaV/MEStUbanW3zXPrFweSN4bbXotd+qzTWxfVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nG6WjNtG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4359C4CEED;
+	Tue, 10 Jun 2025 12:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749559071;
-	bh=ArW2/cfjiYvgjVqObVhL4JL7syCfeOsoHCZCVAJhKW0=;
+	s=k20201202; t=1749559142;
+	bh=fWHTM0XLFokZBXTTjppSI7itXW3nmi75qDHSGly0j1k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FZxoyScq8bX45QEcKl3p5GJFAdqQW+EH8RJ5OaXuUPgCeqcLK5ohNb/mUF30klThu
-	 6Xwb9AvTawJdL5IBbNoEwX8f9CE5qH8Z940URNj7Ov+swW8fgi59W55pFLycjDxDuX
-	 Wwu+GY+oyIkEgAsnEBCNmDBDl0p3rQMFHIgMtkk6qXxv3P2uyF2DQelPai06zdTTm5
-	 7eUZaoAEa2oNTPsVeusnYif289ARMpx29C8OtOwtehv+1R7nsBZc3gY05/3Ixj69tr
-	 3xeZjOM/c40VkH6g5+drH98IgCUJD+bRTCQa6cLa7Z5oKLsc7fr6+3fnZATTOyi7Qg
-	 FthpJB/nf/fQA==
-Message-ID: <01b5a85d-05f5-4f39-9581-c6fed7123a31@kernel.org>
-Date: Tue, 10 Jun 2025 14:37:46 +0200
+	b=nG6WjNtGrTe9PTc88OsPzK4SaVzs+PEPzODSC2F0yc6UrXCYTi6UcxiDCbengYWp4
+	 qbPO1up3qkZlyp7NB2bNr961qNV4aIPpprpS6TRsVBtxNFpLyr/+EN05OGcACt8JhP
+	 mBfXiACtHhH1hVFm9uwYKix0Y0DLy4vYdTDNzns+TjRP4JrSk8MJDqnQrxdueTLPtD
+	 /9QTLmS8/ZFOHpKfzHYBBSujMk1ScfiU5cs7eBAJ1rEFIgEV7QWbVDY4eq7npxcKjE
+	 9A9Zz4h+zJwJxNpNtqxwmC2+SDqi+nPFQ3dynGqkkBMv/p5lfh3zoJNuw5YQbWdw9R
+	 wjzN5FzJFB/9w==
+Message-ID: <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
+Date: Tue, 10 Jun 2025 14:38:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/9] Introduce HDP support for STM32MP platforms
+Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp13
 To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
- <CACRpkdZ2NUfcn7O7tKSFDyAr8Hni3pvpTN6QpOz7N3J+EsFdLg@mail.gmail.com>
- <3a9e5a1b-41fd-4ddf-938a-bed98551a024@foss.st.com>
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
+ <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
+ <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
+ <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
+ <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
+ <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,33 +112,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3a9e5a1b-41fd-4ddf-938a-bed98551a024@foss.st.com>
+In-Reply-To: <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/06/2025 14:20, Clement LE GOFFIC wrote:
-> On 6/5/25 15:03, Linus Walleij wrote:
->> On Wed, May 28, 2025 at 3:33 PM Clément Le Goffic
->> <clement.legoffic@foss.st.com> wrote:
->>
->>> Clément Le Goffic (9):
->>>        gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
->>>        dt-bindings: pinctrl: stm32: Introduce HDP
->>>        pinctrl: stm32: Introduce HDP driver
->>>        MAINTAINERS: add Clément Le Goffic as STM32 HDP maintainer
->>
->> Can I apply the driver and bindings patches 1-4 separately
->> from the rest of the series?
+On 10/06/2025 14:02, Clement LE GOFFIC wrote:
+> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
+>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
+>>>>
+>>>>> +		};
+>>>>> +
+>>>>> +		hdp: pinctrl@5002a000 {
+>>>>> +			compatible = "st,stm32mp131-hdp";
+>>>>> +			reg = <0x5002a000 0x400>;
+>>>>> +			clocks = <&rcc HDP>;
+>>>>>    			status = "disabled";
+>>>>
+>>>> Why are you disabling it? What is missing?
+>>>
+>>> Nothing is missing just disabled by default.
+>>> The node is then enabled when needed in board's dts file.
+>> Nodes should not be disabled by default if they are complete. That's why
+>> I asked what is missing. Drop.
 > 
-> The MAINTAINERS file will need a fix in the future revision.
-> I'll wait Krzysztof answers before submitting a V5 with the fix.
+> Hi Krzysztof, OK I better understand now.
+> So yes the 'pinctrl-*' properties which are board dependent are lacking.
+
+These are not properties of this node.
+
 > 
-> Otherwise patch 1-3 can be merged, but I think you may need the 
+> In the last patch of my serie I add them (only for stm32mp157f-dk2) but 
+> keep it disabled because the pin is on an external connector (the 
+> Arduino connector of the board).
+> This prevent any issue with a possible connected module.
 
-No, they cannot be merged. They were unreviewed because they were never
-tested by the author and will obviously break the next.
-
-Don't apply.
+Not relevant. Pin control for connector are board specific, but pinctrl
+SoC part is SoC.
 
 Best regards,
 Krzysztof
