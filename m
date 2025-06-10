@@ -1,113 +1,178 @@
-Return-Path: <devicetree+bounces-184013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE71AD2BF4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 04:31:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0ACAD2C0B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 05:03:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C7CE3A88A4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 02:30:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4812F16BDEA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 03:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC3B25E469;
-	Tue, 10 Jun 2025 02:30:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B63E5789D;
+	Tue, 10 Jun 2025 03:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QtPCtTdA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LSUZJxjg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80119219FC;
-	Tue, 10 Jun 2025 02:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83159460;
+	Tue, 10 Jun 2025 03:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749522659; cv=none; b=EfspWV4l5nlhX4oCCUBk3HV0GoHCXMd6Rjoxx6uuawIZHUaQx0iPAr9njqjgc91kjCOXYVys15MycS2ggv5zMe02Vm7y7gdE5EwKjZVojZ+cEM4CsRNlI/77CvAPdPoj930qkBZgPuXB/1iwAjEDEjoNeQ2mUFfs9r1vzqzF0Lg=
+	t=1749524596; cv=none; b=sYkevT6kck1uUgkqQ/Waw2H3v4dGfPX6BdxNCigosovjD9cLDluBGJu4nofZOhUJy3P52Pu3uDUZPY3UxEpkhv5dlDXhR4xjNI0b8rxBEqCbwXWsoGGk7O7AphrBRnsR2HI/5h/3OTmsJY+DWx4DyLAnTRjCk3g3lz9+LgsyXyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749522659; c=relaxed/simple;
-	bh=MF9eFED5nRvQBjnkQkaYBoOXrlZbPXE3oEhI6hM3hIM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=jCmIBHnDp6LsUcnexYSs8Gze+iEQEHRMchhvj6CqriYmVL+BPYrLEcbPBUMDOVtLz3UdcZ0jkyyWjNeBD9NW1BP1xtOFdLIa+VXwMDp6c+8exXrk5jP2JlImVGwcwiput8Pfa72Fep768FJZwgahEVmk+XUVSyngf860xBoRMhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QtPCtTdA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14B1BC4CEEB;
-	Tue, 10 Jun 2025 02:30:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749522659;
-	bh=MF9eFED5nRvQBjnkQkaYBoOXrlZbPXE3oEhI6hM3hIM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=QtPCtTdAWiYNrWfnLL1Egie323Tgg630GTtlhtKZVSX9uBqa1Gr88E9RsbxDT91td
-	 g8N2E1mXP6KQ3i2S6j5SfrRj0MaXKnbtvuE83BlJUxGGpTiVbnl2rxiJMDCs4KEyTx
-	 8GoA9PljkQes7HFBNnlOgpA+P9Osn1lcp/7BumzmdOTDsooqKlOoMYKrU0N+NtBleL
-	 XDFNcpnclJnjOq5Ft8al8OYLgep4MJTJBH3B1r74QqveEOOgVHBzBa3R7cBj3KbHtg
-	 aOW4kofCS51lkO8XkZR1GLTWMCjnZ4wICUfyW4BwQFGxs5B6ZFfvE6OYVB/idqhdt2
-	 m/aI3IhosKoyA==
-Date: Mon, 09 Jun 2025 21:30:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1749524596; c=relaxed/simple;
+	bh=3dKk6SPl34eNEsYEw8G4Gkc3qv2CKIVl9VFP4C0w/Vk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bVFam0uXi3wsAIiebWrnHbjuk34lZm6yHGy6N6WqURZzXxgkPXCmqQBmfed/AslkjeMHfHiNHCuvEQi+bgJPTPhGvGYqLmoz6QKNtpv+L6p0reU37l6xQmTWkulS4DHjHcehVXcSI1c5fo6b062bN44Ih/d/CeeaoD6AQKTKqjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LSUZJxjg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 559JDIXY007352;
+	Tue, 10 Jun 2025 03:03:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ArfNvnxR4/D58nIc1VUnd+S5AAkbAYFa23X9JAICe2Y=; b=LSUZJxjgh7L35jxv
+	qSv11Yd70mXhRsrqLwoICVuj1VyDHxzzadpJgwBOYy2rRetP0FeOO0xB4Gcx08IT
+	hH7W7qTVwxTSLEE72NS0tmGhnAOHEePRZWRxGZ9Iys4pNSn6oK+/j9ZaTJhTz2rZ
+	4I+HnHdsnxBzrmDa6TkfTE7cjjaADcv6oCsXf8OMhDsRZn2Z4U5WkNSPJEcFbpz8
+	4IhJ2V2FkGVkKktsN4g3iXX80laWFZ6VWcbpk3Re8QGwtaUvWCmMb0qfViiNxBMK
+	9rQ+ZFb5yIbxaVY4nbZCNfFAA5oCsnYNmYdOKXwab0mlo8j6/WsBO28d5Oa+JrYY
+	d3wHXg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474eqcfrhy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jun 2025 03:03:02 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55A3310h026094
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jun 2025 03:03:01 GMT
+Received: from [10.231.195.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Jun 2025
+ 20:02:59 -0700
+Message-ID: <de532ef3-6f24-40dd-9a92-6f2e6c3b4ff5@quicinc.com>
+Date: Tue, 10 Jun 2025 11:02:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: edumazet@google.com, netdev@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, mturquette@baylibre.com, 
- BMC-SW@aspeedtech.com, linux-kernel@vger.kernel.org, kuba@kernel.org, 
- krzk+dt@kernel.org, p.zabel@pengutronix.de, sboyd@kernel.org, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- davem@davemloft.net, conor+dt@kernel.org, joel@jms.id.au, 
- andrew+netdev@lunn.ch, devicetree@vger.kernel.org, pabeni@redhat.com, 
- andrew@codeconstruct.com.au
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-In-Reply-To: <20250610012406.3703769-2-jacky_chou@aspeedtech.com>
-References: <20250610012406.3703769-1-jacky_chou@aspeedtech.com>
- <20250610012406.3703769-2-jacky_chou@aspeedtech.com>
-Message-Id: <174952265793.3644019.286629373000016480.robh@kernel.org>
-Subject: Re: [net-next v2 1/4] dt-bindings: net: ftgmac100: Add resets
- property
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH ath-next 2/2] wifi: ath11k: support usercase-specific
+ firmware overrides
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, <jjohnson@kernel.org>,
+        <johannes@sipsolutions.net>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250522013444.1301330-1-miaoqing.pan@oss.qualcomm.com>
+ <20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com>
+Content-Language: en-US
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+In-Reply-To: <20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDAyMiBTYWx0ZWRfX9+ysD0Ci7QQa
+ 6h6vgZsUOMgnSNbYlreF5c2GZGSevioggPg1QlNQkh8IO4bIr2GC2XKwYbnHjvCg998jIDKB8i/
+ gcknhQqLqLhMYdvsGXs5k0prfec4EB8EQnD2Yv6kXONabzl4cR8KMFk4zICvnPtRt7EraoFrqgA
+ J/CrtGk4u/mF2BDtJ1RdtbfuEZ2SswxyBqOTuSpL0KtO+q31MQpf2gWgLQlynrvWMgmrj/drIk0
+ RqOhC7f50CY9k1QzgcoZQvFV8hrVdHDXTIgDYqScApfSLcKRKqlTV/2acmR2SgFVgS6dyEot/xQ
+ l2/5iBqec0lfvvGZQhzUeCh4Y0n7eIEG7aCi9r4Q6DUORZwUWuE47yqQBX1iwowNYD/4YZtO4Tw
+ 8gA/nCzDV7bzE/ibi4q4E7wDE8Vy7XZdD+bRXxaWT0sRM7K1LMRtVHejoLsmTzJuSy58+4Bb
+X-Authority-Analysis: v=2.4 cv=Q7TS452a c=1 sm=1 tr=0 ts=6847a066 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=J7dR-uFlIZdojmd15SYA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: fRCW05m_DI0nbHLbYFxvVi1U4fBhkiW3
+X-Proofpoint-ORIG-GUID: fRCW05m_DI0nbHLbYFxvVi1U4fBhkiW3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_01,2025-06-09_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 mlxscore=0 spamscore=0 mlxlogscore=824
+ bulkscore=0 clxscore=1011 lowpriorityscore=0 adultscore=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506100022
 
 
-On Tue, 10 Jun 2025 09:24:03 +0800, Jacky Chou wrote:
-> Add optional resets property for Aspeed SoCs to reset the MAC and
-> RGMII/RMII.
+
+On 5/22/2025 9:34 AM, Miaoqing Pan wrote:
+> Introduce 'firmware-name' property to allow end-users and/or integrators to
+> decide which usecase-specific firmware to run on the WCN6855. This is
+> necessary due to resource limitations such as memory capacity and CPU
+> capability, or performance and power optimization for different application
+> scenarios.
 > 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> Currently, there are two firmwares, both files can be executed
+> interchangeably.
+> For example:
+> 
+> - ath11k/WCN6855/hw2.0/amss.bin,
+>   ath11k/WCN6855/hw2.0/m3.bin
+>   ath11k/WCN6855/hw2.0/board-2.bin
+> 
+> - ath11k/WCN6855/hw2.0/nfa765/amss.bin,
+>   ath11k/WCN6855/hw2.0/nfa765/m3.bin
+>   ath11k/WCN6855/hw2.0/board-2.bin
+> 
+> The former is the default firmware, suitable for most WiFi 6 STA functions.
+> The latter adds support for commercial-quality SAP and optimizes power
+> consumption for IoT applications. And both use the same BDF/regdb data
+> within the main board-2.bin.
+> 
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04479-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> 
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
 > ---
->  .../bindings/net/faraday,ftgmac100.yaml       | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  drivers/net/wireless/ath/ath11k/core.h | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
 > 
+> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+> index 339d4fca1ed5..67b3b6d898fa 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.h
+> +++ b/drivers/net/wireless/ath/ath11k/core.h
+> @@ -17,6 +17,7 @@
+>  #include <linux/average.h>
+>  #include <linux/firmware.h>
+>  #include <linux/suspend.h>
+> +#include <linux/of.h>
+>  
+>  #include "qmi.h"
+>  #include "htc.h"
+> @@ -1320,8 +1321,16 @@ static inline void ath11k_core_create_firmware_path(struct ath11k_base *ab,
+>  						    const char *filename,
+>  						    void *buf, size_t buf_len)
+>  {
+> -	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
+> -		 ab->hw_params.fw.dir, filename);
+> +	const char *fw_name = NULL;
+> +
+> +	of_property_read_string(ab->dev->of_node, "firmware-name", &fw_name);
+> +
+> +	if (fw_name && strncmp(filename, "board", 5))
+> +		snprintf(buf, buf_len, "%s/%s/%s/%s", ATH11K_FW_DIR,
+> +			 ab->hw_params.fw.dir, fw_name, filename);
+> +	else
+> +		snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
+> +			 ab->hw_params.fw.dir, filename);
+>  }
+>  
+>  static inline const char *ath11k_bus_str(enum ath11k_bus bus)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Reviewed-by: Baochen Qiang <quic_bqiang@quicinc.com>
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml:82:1: [error] duplication of key "allOf" in mapping (key-duplicates)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml:82:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/faraday,ftgmac100.example.dts'
-Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml:82:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/faraday,ftgmac100.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1519: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250610012406.3703769-2-jacky_chou@aspeedtech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
