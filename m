@@ -1,149 +1,138 @@
-Return-Path: <devicetree+bounces-184082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3561AD2F7C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:05:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B859DAD2F83
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:09:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9C6C3A1F7A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:05:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 929D816E3BD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A072609F1;
-	Tue, 10 Jun 2025 08:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D627027FB1E;
+	Tue, 10 Jun 2025 08:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AMYHv+YB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ded4H/wv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F13E21FF25;
-	Tue, 10 Jun 2025 08:05:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28E322172F;
+	Tue, 10 Jun 2025 08:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749542752; cv=none; b=OdHR5uNtzAbHfTGMVAstZH9FhMBY2IudJWZEf7WjHkViRHkGr8Ls4wIxyNcmdM+NmnsBcVprYTLLtqJLEKhEvPXZjk97CqU7MfJWsjHwDPdmizHygSex+SuGisdKSnN6cTNb3F/gd/xkaaYVyN7tjmTwvlRKE3BYD8wbWY06rk0=
+	t=1749542977; cv=none; b=RUL6dJAQRVIlpjuW1tQN2GzSNgEEYmhmOH4+JDzp0m9vpv4UsKuCADxYmwO2bnDhQ8g3Fvgn4Xaxfb/sQz6TrFZRxYW3SWhhIl170sqBlXkjE6ISopgICuJTlyX5UJ6sHvCjoIESj5tnqkxX3jKNIPoHdq5ouJaTAEXvecrm2yU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749542752; c=relaxed/simple;
-	bh=R0LZ4WPp+OZg/a0tufPN45j+fi9t2hD3NjBIp0M9uzM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cD875/VCiDHO63N8Qb2pjqzWK4zVedylTlKkTtXZoFDAG19kAy99BMnCry9A89vYiDQV2m7SQW//ca+67061wh7DOgkxD2P9EniSuA61AqIX5xHa/b7qZXs726dlKm4jk/cPjbzvGBECUaqjmEbhvf/DPPdF9cMFaux21kg2PCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AMYHv+YB; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3485B43B18;
-	Tue, 10 Jun 2025 08:05:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749542747;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tbFv7luxCC5IISk2uJse1688WeTghFStrZlFWtawY5I=;
-	b=AMYHv+YB2V7GGqx349LfS0wy7zrqWUk+OUwn0m+foMWfBSDDu5wpy+lDYu019KHki8B4YE
-	BQBxd6TlDpxQWsejIBbs9J7RWu+BCJRDcHfjvRbRLm68MKlhzst1Nq7pyacfC2PpiF4Ei5
-	NsQwQzU/SxuxZ8pKvZJBdVYU4H8/S7MLDs1R7stTtZAJUAExVtevtUrZ1sTAfTpLcvPMKZ
-	wly9lvCjL7kqqmPRMUjTCYWpbpwIqZDEZAXCWlZf1EBndFl7S4yKOvtBImE4kpmJUPDno6
-	bcXXcjnnNaW/x66rz/2j0xZCVbaY5Ps8BS4gADOgWkEwBPuEHvEtBuoKsXUMKw==
-Date: Tue, 10 Jun 2025 10:05:44 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Andrew Davis <afd@ti.com>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas
- Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, Roger
- Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, Bajjuri
- Praneeth <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/5] binding: omap: Add lots of missing omap AM33
- compatibles
-Message-ID: <20250610100544.4beb07e2@kmaincent-XPS-13-7390>
-In-Reply-To: <53b48816-37e6-49e8-a5cf-adcca04c57a7@ti.com>
-References: <20250609-bbg-v2-0-5278026b7498@bootlin.com>
-	<20250609-bbg-v2-2-5278026b7498@bootlin.com>
-	<53b48816-37e6-49e8-a5cf-adcca04c57a7@ti.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1749542977; c=relaxed/simple;
+	bh=wog5ODe4eh+cmPzvRdkxZrYrSXA9MiXw0UkMruDR7PI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=H9J6lmo5x1mWb76fgdF200052a8WYX1IybxpsIE7dEZins1P2LudzYw++X2dO4eO9vxP73lc2GhHmBeUvgxfKUSJWzmW95fKlJeI/R9u/8zZeOBePzR2YTe/ZW0tSdYT3KbowKWYOvFpfbwMqt1ml0veALYbqT0auR24MGspdAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ded4H/wv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A438FC4CEF0;
+	Tue, 10 Jun 2025 08:09:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749542976;
+	bh=wog5ODe4eh+cmPzvRdkxZrYrSXA9MiXw0UkMruDR7PI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ded4H/wvMG9GadoQ7RXtE4KDqSWPiuMqy73CT4elYUpo3kjgCM9m1po23+MWatYn6
+	 uXl86M6lq30ysc3Xg/ezUwgAtzlUv6VzUd0w5H0guK876RHA4OE6xuiYLGzPawH453
+	 h65HBXVeo4ulA+iU1n0jKAFTCDYWVtbS40ftTKgL8clCIb8gl5WmeH9FvV401Vbq3h
+	 xqVZSjrCZQSNgSwys466xLEcFOfSnH1dFAey7+AJieWPC4MgycHyDcnHADKtfrX0vu
+	 4jKsam+1RCjAuhS77VuBrxgHNFl6QHoX/1kCTzRzMcFGdZ/ALWMbYZQYHK6wwRLDZ8
+	 4oiWiLPU4c20A==
+Message-ID: <9101806c-61ce-4897-be85-603dc4a07870@kernel.org>
+Date: Tue, 10 Jun 2025 10:09:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: i2c: nvidia,tegra20-i2c: Specify the
+ required properties
+To: Akhil R <akhilrajeev@nvidia.com>, andi.shyti@kernel.org, wsa@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, digetx@gmail.com,
+ jonathanh@nvidia.com, krzk+dt@kernel.org, ldewangan@nvidia.com,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-tegra@vger.kernel.org, p.zabel@pengutronix.de, robh@kernel.org,
+ thierry.reding@gmail.com
+References: <9803c165-fa2f-44ba-a6fb-f11852c319e1@kernel.org>
+ <20250609090212.48820-1-akhilrajeev@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20250609090212.48820-1-akhilrajeev@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddutdegjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduledprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopehtohhnhiesrghtohhmihguvgdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrg
- hdprhgtphhtthhopegrrghrohdrkhhoshhkihhnvghnsehikhhirdhfihdprhgtphhtthhopegrnhgurhgvrghssehkvghmnhgruggvrdhinhhfohdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Le Mon, 9 Jun 2025 18:34:10 -0500,
-Andrew Davis <afd@ti.com> a =C3=A9crit :
+On 09/06/2025 11:02, Akhil R wrote:
+>>> Specify the properties which are essential and which are not for the
+>>> Tegra I2C driver to function correctly. This was not added correctly when
+>>> the TXT binding was converted to yaml. All the existing DT nodes have
+>>> these properties already and hence this does not break the ABI.
+>>>
+>>> dmas and dma-names which were specified as a must in the TXT binding
+>>> is now made optional since the driver can work in PIO mode if dmas are
+>>> missing.
+>>>
+>>> Fixes: f10a9b722f80 ("dt-bindings: i2c: tegra: Convert to json-schema”)
+>>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Thanks Krzysztof for the review.
+> 
+> Hi Andi and Wolfram,
+> 
+> Could you share if you see any more concerns with these patches?
+You sent it during merge window and a week later you ping? Considering
+the quiet time, you sent it basically yesterday, so you gave people only
+1 day... Don't ping after one day. Two weeks.
 
-> On 6/9/25 10:43 AM, Kory Maincent wrote:
-> > Add several compatible strings that were missing from the binding
-> > documentation. Add description for Bone, BoneBlack and BoneGreen
-> > variants.
-> >=20
-> > Add several compatible that were missing from the binding.
-> >=20
-> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> > ---
-> >=20
-> > Change in v2:
-> > - New patch
-> > ---
-> >   Documentation/devicetree/bindings/arm/ti/omap.yaml | 38
-> > ++++++++++++++++++++++ 1 file changed, 38 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > b/Documentation/devicetree/bindings/arm/ti/omap.yaml index
-> > 3603edd7361d..c43fa4f4af81 100644 ---
-> > a/Documentation/devicetree/bindings/arm/ti/omap.yaml +++
-> > b/Documentation/devicetree/bindings/arm/ti/omap.yaml @@ -104,12 +104,50=
- @@
-> > properties:
-> >         - description: TI AM33 based platform
-> >           items:
-> >             - enum:
-> > +              - bosch,am335x-guardian
-> >                 - compulab,cm-t335
-> > +              - grinn,am335x-chilisom
-> > +              - gumstix,am335x-pepper
-> > +              - moxa,uc-2101
-> >                 - moxa,uc-8100-me-t
-> > +              - myir,myc-am335x
-> > +              - myir,myd-am335x
-> >                 - novatech,am335x-lxm
-> > +              - oct,osd3358-sm-refdesign
-> > +              - tcl,am335x-sl50
-> >                 - ti,am335x-bone
-> >                 - ti,am335x-evm
-> > +              - ti,am335x-evmsk
-> > +              - ti,am335x-pocketbeagle
-> > +              - ti,am335x-shc
-> >                 - ti,am3359-icev2
-> > +              - vscom,onrisc
-> > +          - const: ti,am33xx
-> > +
-> > +      - description: TI bone variants based on TI AM335 =20
->=20
-> Do we really need these "bone variants" split out from the above
-> list of TI AM33 based boards? We don't do that for any of the other
-> boards, you get a SoC and a Board compatible, every classification
-> in-between is just unneeded.
-
-As omap maintainers prefer. I did that to have the least amount of change in
-the devicetree. We could have U-boot using these compatible but after a qui=
-ck
-check it seems not.
-
-Regards,
---
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Best regards,
+Krzysztof
 
