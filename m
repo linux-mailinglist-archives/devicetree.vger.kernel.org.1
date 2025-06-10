@@ -1,151 +1,236 @@
-Return-Path: <devicetree+bounces-184171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52254AD32B7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:52:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9715AD32C9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:54:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8221D1895FF9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:52:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BC003B7874
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD5E28B501;
-	Tue, 10 Jun 2025 09:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4B328A708;
+	Tue, 10 Jun 2025 09:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p8Kh8YV+"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Dl0J1fLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647E728A708
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749549045; cv=none; b=Bg7gaZGN5UoVYRlABf+8miDxmpytFbEQZnCXeMcnqwPNg8HqU5DyzcE7gE24KfGyaOgkwl9o3XRpCHgaDpHu1qZA0BhY1o0v/AdmrtbyZW2vQ+lSQUtqPgfyeJ0YzKLF+p8oxUycuzHOlIjrGHLqjEJ57BhzIfCNMxyFph1O8W0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749549045; c=relaxed/simple;
-	bh=8Ll2kob0wSYtYqhFir3rxUwGEptHOBJiRRepu1pCBG0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a3F8HHHXWoSFSn1iAB0sU2rfqV2lpxgUiUO/pbXOZn+eM73c0NqSsYEGpbjxaMOsc52t1ORJUQ73+S7ZMC+9VELEnZvF8Zuiw1iRhWtBC1ULbwBFDkOAf1s3CKhsHOxmSuLox6NpOR6nyC4OQTeldiUDkA4K+9nxp3Qf95PkLGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p8Kh8YV+; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a50fc819f2so4251351f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 02:50:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749549042; x=1750153842; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s8TznzlpknrW4G6RXb6OY8061/Q2TUa7Ep05qd1XEIo=;
-        b=p8Kh8YV+1h0Mtfja6dRk9SorulJQLx5zlkXLR4MhDw7Mzhwf3dam/zWzfjekXS5ElO
-         TmDj8LqG0qOcGo1VeUPBJZQtltFAC7UpeFbsVy7u2lCE4aYnMfBsjpz7Vwa0IJJ4O1V3
-         qxvd49C1MtYbOazkrUhv+gzXq5y+yN8cbZ31ajzKji7Ge9d36QoWQl8lpSW5Y2bT49/U
-         cPmVYFU/8/xQ9q3oRRKDKCHOHUhZkP4DlcCrnjika9XKGb8/Y0htUZQ7Ikm6FjpD1aw3
-         T+G6elY0pcY1WqjyRh8yfR0L8tIJ8sYsftNpxK3k4EX2lvNnprRkMIuiBFqfq+RpZBwv
-         e5RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749549042; x=1750153842;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s8TznzlpknrW4G6RXb6OY8061/Q2TUa7Ep05qd1XEIo=;
-        b=fvAnrP30OF4du+XzMJQ5hnJqLhidP2XDDN5xHGlm2Tp50M21Nk0/U/NAytVlXQMTfB
-         pYWz6Jr+EqTaiEI6MWN+mqFuJHfF3PLXw+yob/ygihIvcjAZV/EjH8W1VZZUCEsBm/bf
-         L5QdYSnlMAsLr5JTpQDZIUYh2MjUspkzA3v4tuLJGWz/dKDPVYRjN00d2t5qP+ajTzFI
-         fxhrypjPSg7N/y/gvamMbv3WcJyAUOWc+Ltxr+kzW6vaSL8LKMR1cubK4pQ64N6RFnGo
-         nm1xbM2aLSW1DzYnALKYN1TFF49dOF8buCWMixS4OiVqH7BG2Wyosc2FiS0jRTtUVIH8
-         +X1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVjcCePoilKYz82hy1t4+WglO6RCdjzHXrNXKRfuCAkUaf5L1GHlPe1OQS6gTYEozBzVNDCeTvkIzCX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4e0Jnu5M1HIFr9gbvkLG2HZotAHP2tM3LepenyUu/I3IbCvrM
-	GoBh3zhyE8mTJ4LwFLTshZxyxFq8cKXf2N/L12j9fhmP63WaWRWrnnt7T4HT3nedXpQ=
-X-Gm-Gg: ASbGncv0VomH97s67/XBY/QHj2IctpauqWY+B4BeVv147CNBvd87CIg502pQ/CJNFtn
-	BCH+PRyc+wFoaCpP/+kNTETpBH4GAjSrvx5CkARtRwiRmX/raHY/h9W2PP7mST0TqcOraYFbYwS
-	FatzKjfJ5D5b+CKjyJKiVdy7wmd2H3IcAm9FWRYESZRB9yHU3zd0Cj+N7Ll0u3tvKuufIMUCql9
-	cgvcbeG2Mh2XGMvl8OHzhjVScmj0lqL6Q88f5xSGWNmjufXj7K8FLvPKQ3rxkeL+rvC16rDUrHh
-	HQ0FAlkHPSv5pE0Vf4n1hUvlPx24c29F/zo2EWiUKz4srXR3NAi9uPsGnw5AESLXyxFwzJQZ7J4
-	TwHfUMZMtm0AwTfJNojIFo7ynwSE=
-X-Google-Smtp-Source: AGHT+IFusBXxkEoy5ESx9MfQVNtq1yC/GkKu9UVFSbJCvfrUmjZpjS8AwFM+vB8gJqBUqNEpqvdK3g==
-X-Received: by 2002:a05:6000:288b:b0:3a4:fc3f:b7fd with SMTP id ffacd0b85a97d-3a552275450mr1444778f8f.19.1749549041672;
-        Tue, 10 Jun 2025 02:50:41 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53244fceasm11618998f8f.82.2025.06.10.02.50.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 02:50:41 -0700 (PDT)
-Message-ID: <dc4720a8-2f15-44aa-9a52-8440c7518328@linaro.org>
-Date: Tue, 10 Jun 2025 10:50:39 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FDDE288C34;
+	Tue, 10 Jun 2025 09:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749549142; cv=fail; b=V1v3aRm61oDN8TsbrSDU3YAYHJf1LaV5hd86lNpQlLlsJRuY/yJmlJuGPy5yu1lyMlxDQ5W/abeLTPU0tzZe5fj3OdJOITL+RWoZEe96C9Zdag2VfD5Htas32GlHChGqcTP3myvqvs/A8kX5NpUfSK0XPg3zQc2wZ2mVU8YjGEY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749549142; c=relaxed/simple;
+	bh=F/izLIFxGTY828OgjwKl4X9qWxbz11O0L+ubDiejuMM=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kJuPHxC2n5DewgloLi/782St/19UEUOusbwHiWUetbPp/SLy9DWtgcUxIYzcBIxxPo8bvZqkMYpILxXhEOIa3cklFJy/jmYdypCCpl2ePThjcY4YUVuyzIffBCXbUbMLUNh5T00E5dE0C3VsXJEPn2K0F8jvdhTHCYwGtpIfBgM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Dl0J1fLv; arc=fail smtp.client-ip=40.107.94.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uCuI7KChB5xfJx9sogZIiyYLlqjUybIEm//NU2ILI2dgF2xm77xCesMzL58/qLA8U2nHPzNLBWK5p1vIez+UBKGpI/doE2UCy4zhFOQQ6IHIZmjfbL0HIsWyeoipcWsI+2Z9tkfF3GrzmuwZ0UxTbhW+tAIQiEWxfHC/aopMFnmz9Q1vECQinjxCVs8Z4QSP5Ybar+SZDfCHYVMGnnHQAL+Syat2p8YBWBL+twfFo1AU1l7wOp78H9aQm2bO4MC96L/Ge1r7vSCgjF5xSgTft+oixcHvMzHTMdTwlhQt9Y3eskoMPd6AOQG8AVFORX6ztyJ4LK3t8/gttp5eT++S9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KtbfbtyMJN0zIkRVU9DSKM/lvIzkJ1XYVY3FgWLd+m4=;
+ b=EpihUb8HBGVQmvr1HEIMpPbZcFFN0hsHSSChZR+HRzDYuomBridPDJCQrt70IoW/WA2kYNmJv7sLtks9r9KYp1r5ea9Q0JEM9XVkMbQEZl/lXfKs7CSNKTdefrYZjFWAZpdtAuD6F8MmfVOjeR52j7fjP3Y2DppCuiDgCox/JovHRAr3JE9FlULi5zdPv6iYIaa9hZxP8mMAbnFJR4uFCc4vfTBmxTCq7iLRwsCDUcTIGr8IskwnP4qaVtWVznzlLf2JeqfKRKm8JijNYGzy5gY9IjTgKx3n6FIiqPETAQaRzLPIgi1H2qvPciPWbIe5/mWBc3h1z3sINSTO6mlM4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KtbfbtyMJN0zIkRVU9DSKM/lvIzkJ1XYVY3FgWLd+m4=;
+ b=Dl0J1fLvYxQgIH3ungdQGJCs1ZlOQbJ76WZ/Aqwgs4iLCvvzGPQGeGjdFh9y4FiltHsPF5G1JWoeOpfYBcUZzIoaRPCI+rT10J1OXIA5bDEhM0WfAgOBXAqz5oBJ17ysGiHJJuLI3rX/ZSzkY+va2pTahnLy1ug6w0TZkBrFJO8YJCnbEW4EpHlC7oI217ErYwBuU+2HYWJjnNB4VNJM7E/rv9Cp8W50wy1Ni8rUA9RzFI93IngsGb7rb/13JkAKs/6P1kZaGBArLhge+cbqIOY3qNhMXfUfAGygONYSvSHxQJ7ZOrFuoYFmjNlbF4MO3URnTwNQhZMLMS5tkOYOFw==
+Received: from MW4PR02CA0020.namprd02.prod.outlook.com (2603:10b6:303:16d::26)
+ by CY8PR12MB7659.namprd12.prod.outlook.com (2603:10b6:930:9f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Tue, 10 Jun
+ 2025 09:52:14 +0000
+Received: from BY1PEPF0001AE1B.namprd04.prod.outlook.com
+ (2603:10b6:303:16d:cafe::75) by MW4PR02CA0020.outlook.office365.com
+ (2603:10b6:303:16d::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.24 via Frontend Transport; Tue,
+ 10 Jun 2025 09:52:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ BY1PEPF0001AE1B.mail.protection.outlook.com (10.167.242.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8835.15 via Frontend Transport; Tue, 10 Jun 2025 09:52:14 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 10 Jun
+ 2025 02:52:02 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Tue, 10 Jun 2025 02:52:02 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Tue, 10 Jun 2025 02:51:58 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <thierry.reding@gmail.com>
+CC: <akhilrajeev@nvidia.com>, <andi.shyti@kernel.org>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <digetx@gmail.com>, <jonathanh@nvidia.com>,
+	<krzk+dt@kernel.org>, <ldewangan@nvidia.com>, <linux-i2c@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<p.zabel@pengutronix.de>, <robh@kernel.org>
+Subject: Re: [PATCH v4 2/3] i2c: tegra: make reset an optional property
+Date: Tue, 10 Jun 2025 15:21:57 +0530
+Message-ID: <20250610095157.12138-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <cs7polavxoyphttd4uuzb63eguayc5zrd6l6tvyq5nbizpkq2r@g6qvgewu2d2d>
+References: <cs7polavxoyphttd4uuzb63eguayc5zrd6l6tvyq5nbizpkq2r@g6qvgewu2d2d>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] arm64: dts: qcom: sm8550: Add support for camss
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Wenmeng Liu <quic_wenmliu@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, andersson@kernel.org, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- quic_depengs@quicinc.com
-References: <20250516072707.388332-1-quic_wenmliu@quicinc.com>
- <0367d5bd-a42e-4b6c-b841-ba20190b3127@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <0367d5bd-a42e-4b6c-b841-ba20190b3127@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1B:EE_|CY8PR12MB7659:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52bcba37-1e0b-42ba-8115-08dda8047a37
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?QACgVfVlkWxJEHehy4EUFNzajC27PQP+gmiumETLRGYnkA2emhyp9z+UL49n?=
+ =?us-ascii?Q?cQeKeI5dMw0AMObrl3aQU3XlbQxC0oEE3tR2kBdTX7NIk/rcTiB1cjco3eQD?=
+ =?us-ascii?Q?ufpjOycQKGqzy9KoOYP2zJoEjcRvFJtZjeZuX97Q9Z/PamcnFoRG0jjrSniU?=
+ =?us-ascii?Q?RsuKzmH21d1SA+iBchtY2EEEbMikL3fQP+bkRulE+sVs2r0FjgeVrM7dP+pT?=
+ =?us-ascii?Q?qBtks/Le6p3BwR/eaj+cx0id4iNd+DEaAEQV+uCIOFNpLw3inPGZOrBn0Z6X?=
+ =?us-ascii?Q?/Zlg4BslAjKKhzp1TBrcQ2eTTo5a1wpv8n49xpsOR9jjfAbmLNRYTfOpUwRi?=
+ =?us-ascii?Q?36jfiQUoonlMCbpVHAIxC1vRjxvJoFT1fW+Ry395LhPHzf600nIA9GPSLvIT?=
+ =?us-ascii?Q?pSCXi+rKYfxBfIBMR1TXxZx+hK8RkLaHP8SH1TEwYwARQfqFJufeU6YlxoRU?=
+ =?us-ascii?Q?NclwLcyMx3FpjqrsazDXp8yo6nZ7fQXd6aNZa2qTfiDbvXeWGBXaWxx+vbki?=
+ =?us-ascii?Q?WxY/mrdA192bEsiF80QxDW4vZR2qLxxIdikUWEQpIziVOfAbEuay4QtxN/Rc?=
+ =?us-ascii?Q?SmTRngDYXb99GurDoaLoYeFcU/8Db8sZQa6fQWez3Xl3QsF4vqeGCSgS8nq2?=
+ =?us-ascii?Q?ucpc3zETAgz4LhJW1rgjQADf4PM4zokLtHtYY2UQopCWpxVMaFvRE6Ybi1iT?=
+ =?us-ascii?Q?9J82SojtOgwcqkgagrtPmGgvnG4ZBwmLExdrw8MIaPlmaC7M3A/P6w6zuk2T?=
+ =?us-ascii?Q?ByFjn8J7j9dzR+EOeH1E5alCLmDAz3+JVAsjpjXq2hqR3rrriyK5f0eEEk6x?=
+ =?us-ascii?Q?uo8nKv4UUEWCwcKWl4XkN/NECanQWI/YQnkmQV9mRgVFAOw3EqiCmdLyzx50?=
+ =?us-ascii?Q?Gqo11i2C1hgiv3eOwwh5w2GReBMlrQ3k04Wy93MSzFk7NmcvSwHozuX/XrOb?=
+ =?us-ascii?Q?KwWSBwrsTNaZX53spFh5zUJ/9DXgVuljWkkFaQgsKzwy/dVddB/b5gRl7iSz?=
+ =?us-ascii?Q?z/W1Qe+p5roLJA9INJ/19V29xNxcnc3I8h5F11g9EewW3ptv2gWykgJmnZU3?=
+ =?us-ascii?Q?w1ZxiFT0/+Oso6cdFp9nLuxYuXStYNRb7KfqWjrv4LerdaizsIP3Llr2m7f4?=
+ =?us-ascii?Q?Di+mdfponydH0ua0AESNvLy/ylm8lEIt7Qvndli9Pn4ryqb8kjLYizSBMZug?=
+ =?us-ascii?Q?j1JurhIwdGSnJgTPXny5fJcSNJ3506qUbhxLjvEJPS18BXrDnLWVntWXoYZS?=
+ =?us-ascii?Q?bbf4f8y+gsuyl1/pyKKuBsjmeRq0Nno0zmkOR9REZj64y8DDGGWo7Ss7BywG?=
+ =?us-ascii?Q?D/nUsg8KS+biWrDem3APPpgeu2m9IefQljquuLxshf5gGix8lTv1u/RI2qkf?=
+ =?us-ascii?Q?nwy2+kFB3MtejX3Gjy8jzzkm+rpyTFjiA6WK0845DyRUt15utqCKdKxR+Y66?=
+ =?us-ascii?Q?swaWjUgMSbwKF49hqtBDXV/YIR/GP6YNumRiRNKGcFEdiaDb1IWa/Zb2rzoR?=
+ =?us-ascii?Q?rcQTTkslE1/bZqQt9u5Qen8p3FhsmBdNHnGQ?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2025 09:52:14.0002
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52bcba37-1e0b-42ba-8115-08dda8047a37
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BY1PEPF0001AE1B.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7659
 
-On 10/06/2025 10:48, Vladimir Zapolskiy wrote:
-> Hello Wenmeng.
-> 
-> On 5/16/25 10:27, Wenmeng Liu wrote:
->> Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
->> includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
->>
->> SM8550 provides
->> - 3 x VFE, 3 RDI per VFE
->> - 2 x VFE Lite, 4 RDI per VFE
->> - 3 x CSID
->> - 2 x CSID Lite
->> - 8 x CSI PHY
->>
->> Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
->> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+On Tue, 10 Jun 2025 10:32:56 +0200, Thierry Reding wrote:
+>> For controllers that has an internal software reset, make the reset
+>> property optional. This is useful in systems that choose to restrict
+>> reset control from Linux.
+>> 
+>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
 >> ---
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 210 +++++++++++++++++++++++++++
->>   1 file changed, 210 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/ 
->> dts/qcom/sm8550.dtsi
->> index e9bb077aa9f0..722521496a2d 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -3326,6 +3326,216 @@ cci2_i2c1: i2c-bus@1 {
->>               };
->>           };
->> +        isp: isp@acb7000 {
->> +            compatible = "qcom,sm8550-camss";
+>> v3->v4: No change
+>> v2->v3: No change
+>> v1->v2:
+>>   * Call devm_reset_control_get_optional_exclusive() unconditionally.
+>>   * Add more delay based on HW recommendation.
+>> 
+>>  drivers/i2c/busses/i2c-tegra.c | 33 +++++++++++++++++++++++++++++++--
+>>  1 file changed, 31 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+>> index 87976e99e6d0..22ddbae9d847 100644
+>> --- a/drivers/i2c/busses/i2c-tegra.c
+>> +++ b/drivers/i2c/busses/i2c-tegra.c
+>> @@ -134,6 +134,8 @@
+>>  #define I2C_MST_FIFO_STATUS_TX			GENMASK(23, 16)
+>>  #define I2C_MST_FIFO_STATUS_RX			GENMASK(7, 0)
+>>  
+>> +#define I2C_MASTER_RESET_CNTRL			0x0a8
 >> +
-> 
-> This is the first time, when 'isp' label is used instead of 'camss', it 
-> might
-> be I missed the context, is there any particular reason to do such a 
-> change?
-> 
-> If the label name is changed to the regular 'camss', then
-> 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> 
-> -- 
-> Best wishes,
-> Vladimir
+>>  /* configuration load timeout in microseconds */
+>>  #define I2C_CONFIG_LOAD_TIMEOUT			1000000
+>>  
+>> @@ -184,6 +186,9 @@ enum msg_end_type {
+>>   * @has_mst_fifo: The I2C controller contains the new MST FIFO interface that
+>>   *		provides additional features and allows for longer messages to
+>>   *		be transferred in one go.
+>> + * @has_mst_reset: The I2C controller contains MASTER_RESET_CTRL register which
+>> + *		provides an alternative to controller reset when configured as
+>> + *		I2C master
+>>   * @quirks: I2C adapter quirks for limiting write/read transfer size and not
+>>   *		allowing 0 length transfers.
+>>   * @supports_bus_clear: Bus Clear support to recover from bus hang during
+>> @@ -213,6 +218,7 @@ struct tegra_i2c_hw_feature {
+>>  	bool has_multi_master_mode;
+>>  	bool has_slcg_override_reg;
+>>  	bool has_mst_fifo;
+>> +	bool has_mst_reset;
+>>  	const struct i2c_adapter_quirks *quirks;
+>>  	bool supports_bus_clear;
+>>  	bool has_apb_dma;
+>> @@ -604,6 +610,20 @@ static int tegra_i2c_wait_for_config_load(struct tegra_i2c_dev *i2c_dev)
+>>  	return 0;
+>>  }
+>>  
+>> +static int tegra_i2c_master_reset(struct tegra_i2c_dev *i2c_dev)
+>> +{
+>> +	if (!i2c_dev->hw->has_mst_reset)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	i2c_writel(i2c_dev, 0x1, I2C_MASTER_RESET_CNTRL);
+>> +	udelay(2);
+>> +
+>> +	i2c_writel(i2c_dev, 0x0, I2C_MASTER_RESET_CNTRL);
+>> +	udelay(2);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
+>>  {
+>>  	u32 val, clk_divisor, clk_multiplier, tsu_thd, tlow, thigh, non_hs_mode;
+>> @@ -621,8 +641,10 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
+>>  	 */
+>>  	if (handle)
+>>  		err = acpi_evaluate_object(handle, "_RST", NULL, NULL);
+>
+> How is the internal reset handled on ACPI? Does the _RST method do the
+> internal reset?
 
-List feedback from DT people is isp@ is the correct prefix.
+Right now, devices using ACPI would have to rely on the _RST method implementation.
+It is unlikely that it implements an internal reset mechanism.
 
----
-bod
+Do you suggest adding a check with 'acpi_has_method(handle, "_RST")' and fallback to
+internal reset when it is false?
+
+Regards,
+Akhil
 
