@@ -1,128 +1,126 @@
-Return-Path: <devicetree+bounces-184223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EB9AD34B3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:15:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14285AD34D8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 13:21:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A37A162C8F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:15:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3E901893B77
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19718221279;
-	Tue, 10 Jun 2025 11:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E77227EA3;
+	Tue, 10 Jun 2025 11:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="tsBVOirO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hJv0NM6X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2CA18CBFC
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0684918024;
+	Tue, 10 Jun 2025 11:21:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749554132; cv=none; b=Y7pMC10XVJwLUtLxCWEUIJu1GV81HmmtZt9Knr7R/ELmsu6cgYBy2q+r+KNe5FPznyhFgAF58EZRu/3aaRQJJMMGaoHCHfEy0HTEJrM/pwlMGoW1zo24yDwxHOrKq7y8H3vNzRIFeuJ+xY2UFPAyRzRTe6d67eoDzzZo96eM6Tc=
+	t=1749554491; cv=none; b=J/zZeIeeFuKz3SnElec/n3Q/QEMTPEETveBXnoMQ0fXpOYLihLVzLLFXvsTP3XDUeZMEEDxdT8OecBs4v7hyGBDMINOXVNIC1nU4mX0WJ4UcE76si09/RG/uANykPrwvmxENO2I5m4gFiqFFl62P5EKBqsCBTFQZWftTtmJ97YY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749554132; c=relaxed/simple;
-	bh=pMn2nRk8RWXxNh93pibIwonhn/a2Vk+Qm8FPNIWwaWk=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XcuGyYXKbYNUKMbBjXI5VwTS9d2JWk19e88vqVa0PLljReJFcGk8tq+AU8NhkpYsAdRm4wrWLqHE+d8vViXcWjM4oeno7DvASUTk/H+0Sdkn4MNfRaoqHsZuy6MwaQ261y43uDJqM9LUrewatMjfb1rTzNih3Njtjt/MeNTjNmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=tsBVOirO; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=/85cBozlC2xgCBTAbhplu80kMsNDggD57qUAZNnBQxI=; b=tsBVOirOAvOm71dK34kUlVeUNi
-	ouTxpOtMJtNNtzjjiUEZWob1gPEsFEEPEOqcSoM3KdScCZBo/7t+WyOcGCd2XMRbdY1ROI9/wzWBN
-	IrOADU6laOx8+wUXbBcCZD80AN35RejZHuXm2s/ozUkfql+al0+JYH7sPfNgaSxItrTm9KzOOKEm4
-	cxB7A8agEwhqAIL5dAPt3k6iOEIV0pRtKFkGYxnS+cZ2yFOIFZ8MA2LMf9wjET5/DDQMl7o4h0dFz
-	hIkIEhaE7GXDXV6L4a/19zTHLwBBvfxmudLReOsyXQEYiMdIrYadRoijTI4tS1XIDp+pgYdMNw/xf
-	6pdcmNtA==;
-Received: from i53875b1c.versanet.de ([83.135.91.28] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uOwwq-0000iK-Fz; Tue, 10 Jun 2025 13:15:20 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Peter Geis <pgwipeout@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Subject:
- Re: [PATCH 2/2] arm64: dts: rockchip: add overlay for RockPro64 screen
-Date: Tue, 10 Jun 2025 13:15:19 +0200
-Message-ID: <7187768.GXAFRqVoOG@diego>
-In-Reply-To: <78773d27-d815-4fac-a131-275bde51788d@kernel.org>
-References:
- <20250518215944.178582-1-pbrobinson@gmail.com>
- <62276efe-13ca-448c-ad1d-ec0a8657737f@kernel.org>
- <78773d27-d815-4fac-a131-275bde51788d@kernel.org>
+	s=arc-20240116; t=1749554491; c=relaxed/simple;
+	bh=Lk6yHtpywKA2mu+OirYg/vHASkhb/xK68Pv5VAmQpp4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TrXfwThQyq9idSSfQzWu1F5V+sb610vSTm+SsHPpV0+daB9z2oh5fkbBjbr6gCJLvAKxsBh7okFCq5yaRxi9LjRSEQzrUbyw1XBbY46POwBASCprmkm7bAUzQcAvkQ5krd4d565CL247irr2YTwZP6AtCtkc5A8/IOS1ieNjsKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hJv0NM6X; arc=none smtp.client-ip=209.85.219.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6f0ad74483fso52894716d6.1;
+        Tue, 10 Jun 2025 04:21:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749554489; x=1750159289; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=szmKV8/hLRD/BfhCLVO1JNR0megTPDNxGFTPqcHtGK4=;
+        b=hJv0NM6XeyUIrwTUfo80+gmpPsKO7C/gNkOsr7xSzsjHmBVrUvTgLtCwYY2R0u4cEZ
+         fXgr3xoInlsnhbYW1lRFt1j2vT9ZYN8o7FktqKsyj4/RPTHLOVOHWbfi113yulbP87oS
+         mJ+rHQLhDGCj1w+LgwYZthZzf6Y7fkRZ/noPWgcxT2aaK2ARjXnZLfEWrGN8JK9KjO6Y
+         FJ120wE40dmDe/cCYv7R1Sh/JRFeyTxODDEvgT2zRBJ13uGk10ORrVuMHJyyx5Y/S1bY
+         njnaCRfpaatx/BeK+rZlp56r9mXO0qvAk7kjPo+XoK+4TmGUf2bEveFbKrXIJofAAvpD
+         siTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749554489; x=1750159289;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=szmKV8/hLRD/BfhCLVO1JNR0megTPDNxGFTPqcHtGK4=;
+        b=ZSuc6RBe2y+oW52N7DQhs9kOcgZYs+gXHFBPGidRXoKN1hLmluGP5+66w314DKBL7u
+         tXaB/SbhaCEae/SPoNXThI7EcxgXoscy4Bl5Ua5EVeDxXFy/0zzT+OQqsYHMHufVZS48
+         sifRxC5FsNxST17t584HycGxAkhME+HgK8Wpbjk8JEgucgMa/SL5hBJfvwuZ+GjxotG+
+         wcH8GfI8DbmFdfRVNTuNxDOGPq0lO2rIwAlB6Sw9w4clv20PpI9IEK7PdZiuTau/piiV
+         EvHd91qXqT0D5DE9LI0MzFLvTipVelw1+/B1XVk/3h6YXTk7EuBSz9G9/KxVAq0qMB+h
+         WsvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGw5uw5h6CCyqbyblskQ9BzMj0ofuFcl9txluX401mLuT492EpWENBOe9xJ4Emb1H/EW/4T2SAwxDs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrpotlHTe11oIB+J9UVg/V4Nxw1YvLUcT3SAvu5ETl1tSdtCCR
+	e1cAethXuj0jZwIXSE/sF9RUuYh39AswxMDXG8rJMgiipIpc8Z7pyvtplJxRk/pG
+X-Gm-Gg: ASbGncusOZu1T18y+a+ef/8FTaxGXrUybcov7o/VHa9PEF4XueoI6gCBNnXeWaCzQcx
+	vZ128Y8WcNiLdW/Yl5htwQ2AJ8yGuvnjSmjDPWOsKGssVfAb3USh0hM3PVK1KuFMi5T/yFU/k2B
+	ViUEXh+OWrnob9ERTJ0nRIOUwvhTVBlP/aezLxAxdmMWAkicJIUejpEUiptR/zu4bPtkNN3MYPj
+	awmfvGNLXgkPqfucfSoaYO8cnXV4u80gQUpEiHaoKEH5nNErhq+qHJG09wuQxFUd+qh7nhLmMoA
+	wHB6K6tDpHI60EudK/U/6uvOncwBtLyKXiTLpw==
+X-Google-Smtp-Source: AGHT+IFY5rvDpdmdyeaeDG/4L19R5LPs+YWIFLKwWB5tjYm4meLynLzPKZHGYa0vfPuvDWlt/nZlZg==
+X-Received: by 2002:ad4:5f4e:0:b0:6f9:201a:c05d with SMTP id 6a1803df08f44-6fb24cabc19mr37122406d6.33.1749554488907;
+        Tue, 10 Jun 2025 04:21:28 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6fb09b1cb6fsm64260546d6.79.2025.06.10.04.21.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 04:21:28 -0700 (PDT)
+Date: Tue, 10 Jun 2025 19:20:21 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Vladimir Kondratiev <Vladimir.Kondratiev@mobileye.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Ryo Takakura <takakura@valinux.co.jp>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, "sophgo@lists.linux.dev" <sophgo@lists.linux.dev>
+Subject: Re: [PATCH v2 4/7] irqchip: MIPS P800 variant of aclint-sswi
+Message-ID: <qsxwdfgrn2wsho3cgqbkfrmzngwbnt3mymem5rf23xpu7s44mm@mc7bzri26sfn>
+References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
+ <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
+ <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
+ <iewyo4h3yiqnyn6qrgmckwcaalovpv2udf46jwpor4s5ni5bvu@eg2ikgmswcbg>
+ <AS2PR09MB6296822D5ADAEAECCC06F976946AA@AS2PR09MB6296.eurprd09.prod.outlook.com>
+ <r5sdm4vs5wayictlhx2zfui76ksrei7bq7wpd55eo5o6ommkhm@lsx2mqsldlu5>
+ <AS2PR09MB62968E478451D6D4480A8FCE946AA@AS2PR09MB6296.eurprd09.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AS2PR09MB62968E478451D6D4480A8FCE946AA@AS2PR09MB6296.eurprd09.prod.outlook.com>
 
-Am Dienstag, 10. Juni 2025, 12:48:50 Mitteleurop=C3=A4ische Sommerzeit schr=
-ieb Krzysztof Kozlowski:
-> On 10/06/2025 12:44, Krzysztof Kozlowski wrote:
-> > On 18/05/2025 23:59, Peter Robinson wrote:
-> >> The Pine64 touch panel is a panel consisting of the Feiyang fy07024di2=
-6a30d
-> >> panel with a Goodix gt911 touch screen. Add a device tree overlay to
-> >> allow the display to be easily used on the device.
-> >>
-> >> This was previously included in the main device tree but left disabled
-> >> by default which still required rebuilding the DT to use the device, n=
-ow
-> >> overlays can go upstream the overlay is the best way to handle the
-> >> add on devices.
-> >>
-> >> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-> >> ---
-> >>  arch/arm64/boot/dts/rockchip/Makefile         |  9 ++
-> >>  .../dts/rockchip/rk3399-rockpro64-screen.dtso | 89 +++++++++++++++++++
-> >>  2 files changed, 98 insertions(+)
-> >>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rockpro64-scre=
-en.dtso
-> >>
-> >> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/d=
-ts/rockchip/Makefile
-> >> index 3e8771ef69ba1..c7b13bff3ac20 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> >> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> >> @@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-pi-4c.d=
-tb
-> >>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock960.dtb
-> >>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64-v2.dtb
-> >>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64.dtb
-> >> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rockpro64-screen.dtso
-> >=20
-> >=20
-> > This was absolutely never built as reported by Naresh. You should never
-> > sent patches which are at least built tested... although they should be
-> > actually tested as well, but if code does not build actual testing is
-> > impossible.
->=20
-> Huh, I was wrong - this actually builds, just cannot execute install targ=
-et.
+On Tue, Jun 10, 2025 at 11:09:26AM +0000, Vladimir Kondratiev wrote:
+> >I think all should be removed and it is OK to use old >THEAD_C900_ACLINT_SSWI
+> >as driver config. At least for now, I see no similar case about using defined.
+> >Maybe the subsystem maintainer can give some more meaningful advice.
+> 
+> OK, I see. Then, in the Kconfig for THEAD_C900_ACLINT_SSWI say it
+> selects both THEAD and MIPS variants? I am a bit not comfortable
+> keeping THEAD specific option for non-THEAD stuff. Here it is indeed
+> good to see what subsystem maintainer will say. If I remove logic added to
+> the Kconfig, maybe I need to rename a single config option to just
+> ACLINT_SSWI and list supported variants in help text? If going this way, your
+> input is important.
+> 
 
-I did build it as well after applying - but still managed to overlook the d=
-tso vs. dtbo
-But I'm surprised that still built yesterday
+IIRC, I was asked to use vendor specific prefix for a vendor driver. I
+am not sure how it can be changed when another vendor comes, so let's
+wait and see whether there is some advice to improve this.
 
-I'll amend the commit for the dtso -> dtbo change.
-
-
-Heiko
-
-
+Regards,
+Inochi
 
