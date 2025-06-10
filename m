@@ -1,209 +1,167 @@
-Return-Path: <devicetree+bounces-184129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1D6AD3120
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:04:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD31AAD312C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F8CA3B319F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:04:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68DA9172A89
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7853828A3E2;
-	Tue, 10 Jun 2025 09:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3244128A3E1;
+	Tue, 10 Jun 2025 09:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="IJ5Ea6W7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JVqR2yp2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FCE1EE033;
-	Tue, 10 Jun 2025 09:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7527627A93B;
+	Tue, 10 Jun 2025 09:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749546260; cv=none; b=uEhG3TEvMadqABGnZQAOTIyt5aHaWk9obEgp0LGuxzjoMOVKQkx8bKG7KIo7mO4JJouiv/GG3c7JQSIhdtjublgtqHmym3Dnh0dX6NNsB3iZ0t6i5e3SDrx+FKCtl+Qe1AjepG5M8XTOQzMvNz511BK9UDZVwoNxzgq4Qi4R0i8=
+	t=1749546337; cv=none; b=sykGwlTnk+QW1rCCo7PwSwahUPTJ7LgUFPGpql5kdlvoJjZbBwk222kkJDOjFk8ZDDqdlDyjqlN8V3ZpnN85+8Lc8ct6AFYctoCbSUf74INWVTDHfQG4sTUMW5xUwR5YsbApI85IJJwQKfXr4gynVws9Y/9MSewO9J5FfzW0zeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749546260; c=relaxed/simple;
-	bh=c7eXqn3OR8hXh/I05OT0JGgKzgXMbXPO7tWOiXvXpQo=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=cnkL+pe9fzF833e3VyR5DzBmj7PX/z9buD4rt1T1Z+ITtgHeSxMFtYotQ5U3xTVzDpX4Ng3KRA+X4hbz5LhIz3AVkOYeEtJP8FrQru3H1Ql369oPfl69uM2PO7Hm9i3bZGV8y4lIgP0PfrdwumAjfcDxc93hUQy4MMv/TbOPw0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=IJ5Ea6W7; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1749546239; x=1750151039; i=frank-w@public-files.de;
-	bh=x9isndutnG7FzSCz38wRWR3/GK7vlaPRNBGI74YSN5E=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=IJ5Ea6W7y6sTzEDB05dbUDocNZCqcni0Hii/uaCZIuM0Zg/7l8U89wwEXWC0u7PI
-	 fYgLeMT7BIOvyx1mbGJVu/s033MIr4CbHo+0uRS8hAsXSFrNEXiblFuJBONebx1i/
-	 kCqAI2G0WQCKQtIfRH6QtbdeRTaMLSRjJM6ss5Ihb/PIQelp+XlC5V9TuSbifXu40
-	 2CGrvxqkxKmgI2MvYE10hzuN3ucSkVkCjwZC6Xal71MdGyY3+CwYaCLf9YLqdOa7M
-	 tSXyPJ1LdBjiVd3iRL6o9wBZtLlYtTM3nOAp9mdaiQ4DjFv+TenKPtDN9pnG7AbJD
-	 PK7vX4n1uYJPspO/fg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [100.70.254.165] ([100.70.254.165]) by
- trinity-msg-rest-gmx-gmx-live-5d9b465786-6phds (via HTTP); Tue, 10 Jun 2025
- 09:03:59 +0000
+	s=arc-20240116; t=1749546337; c=relaxed/simple;
+	bh=KL/uDixEO0uqaMR1zfvj+/xR4Xa0bhl0UH5rBFHnnxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K4UGT+QGTHX5282NofnWdoxvvWhUvGYVpOQHuwtu57za+HcYQkdsSd6ZwMkfkwBep2XVTVN0HiKGYt19yJck1vLE1z63WLcQlNQPueqQexQW6b1a+CWmWjEi74KSmB5Z0KH0eXmRJXcRnTfMGY6io0dcXIlYhMtaCRhIGx4xgy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JVqR2yp2; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-441d437cfaaso32414745e9.1;
+        Tue, 10 Jun 2025 02:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749546334; x=1750151134; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KL/uDixEO0uqaMR1zfvj+/xR4Xa0bhl0UH5rBFHnnxg=;
+        b=JVqR2yp2SDWN0myPDvUjwtuPNiTT4kHpDDWibp8EQagdd2vyTvzIZ19A1g/obTepAL
+         DSu1/d0EF9YJOnD3iU+Lb3sxBkoPHLSNHxG3Zzf9jdP5f444qun0SOYAI60pXmAuiDit
+         3h9dtawFgpsnKJyines1NO2LPdytZC2GO4EtC53exKmHLZR61dZHc4jAKBkio7o89AUa
+         W1K7+KgjIHgdBRVhlixFdKcA0MzWdmcMCp9l5bBUYx7K4hH/ahT1Qu5lKVONX5g1i/ZL
+         ah2MQXTV+VSqQYlubwS26VQrPVUDGRugF3VbytzG+pp+RNiBXOBhqyo4ZUium03wH2t0
+         btTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749546334; x=1750151134;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KL/uDixEO0uqaMR1zfvj+/xR4Xa0bhl0UH5rBFHnnxg=;
+        b=cMoXGuNxno0HyTUwvCYik5ld2gUQAGbQfxQ3CF4IVp946h+/Fvrdsux6tvb0l914PE
+         zaJGhu/0BGfNPH6n6VsJEv711+NzHfEyHIIZ+3i+OE/pUtR6jxWJ78pFQYqgunBQpKkn
+         GoDp8XfZaSM1M5j+XfFmDRvXMzsp+yTcjGKdeT0uIKhOJgluWk6mA7Wu8PleJm4zrojR
+         Lu7NiB1HKopWbunDEhtf9nB6B8lEd92AD+LrQ8BuQYxZnr3uq8Kk1/Gyb3VkXN5WMa1I
+         IF8gG3dUIB4wJdj0lQf9lqaUXbrIs+C3wweUdNaeMOFohMSo5Kurg+voShEDKDg684cl
+         7Gyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUc7pWgiDvgVqfoA9l46iJTHREeKHMESN8NXFI+vN0AFBQfKi7dLqa9HtiTcTDkpaX2m8kUB9TnnhlItJA=@vger.kernel.org, AJvYcCX63NXIzwY5TrUwPiRGHPuHPquI7K9yfkv6+H2BEmNl0UpI+6X09myVM+J2p2hFqbDdDSZ14BmTyjd9Qm87@vger.kernel.org, AJvYcCXd6IP9VP86313KPF8dDlFbOeQpXWv0n8aH8DjT3Oi1ioc5/Ala9cqidRGh1eTWqOf6XFO6X6ITp9d3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlVrwoFMWt4snihuqXeIXKv7JZLuqI5WptYh2eJ0OzXs0wkE79
+	qFfwEIUyY8pj80vlwjv500a8SZ2uLus9b4423ioRDYkLPslQRY2boWoo
+X-Gm-Gg: ASbGnct6+IWmtmGV8lWEotf0A6vcx7fCg6fC+yWmYoKXdfFWtadtYpoQraFBKZP5+wG
+	3ZFRc0glm6LW/feJbssgNE1N+shHgM2/Ulu0jaRrwk9iYIM4zlSlNaUFKH+AeOY8LX8ISHpLXg7
+	VDHd0/4h+QG7Dnlu+LnCJUBWVYnexu7qGzEbuEwUgKjIyXF+KbB9vQ5OlrsA1MIA5GYfty2gAUR
+	+AA7KtLGKNTxcXynbU7Q0AEk37eC6lxmaNQk5TJjgFvs0SeNvaMzPSHw/srqTcQQ9u85ZMRlwZ+
+	5eNdZYPik3bibYhudn6fhtTdFAaKejYHg6i0YtmoFmuFU5VszfZxsLLBkeHPK3HHz6j5ajPQ6lF
+	SKsJwY4kNwg6WD2nc6ONl24jMd24QMMMyBZSQhzK9Auf/QPOQ
+X-Google-Smtp-Source: AGHT+IEgPNecmjzb+Ctnp0wqP7s4JFIXLpI2LAR/XRW3fHpThmYO53BTNRvoSuaQcH3XtZR/LG9fTA==
+X-Received: by 2002:a05:600c:1c99:b0:44a:b793:9e4f with SMTP id 5b1f17b1804b1-4520143724fmr122630355e9.19.1749546333563;
+        Tue, 10 Jun 2025 02:05:33 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45209bc6c6csm135308205e9.2.2025.06.10.02.05.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 02:05:32 -0700 (PDT)
+Date: Tue, 10 Jun 2025 11:05:30 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc: Mikko Perttunen <mperttunen@nvidia.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] NVIDIA Tegra210 NVJPG support
+Message-ID: <mz5sytol6aw7ouwiimmrd7lqhtvq6nj7pqpxq4ie6em6nwvvkh@2cux3no33gre>
+References: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-b9ab960d-38f8-4524-b645-fc0832ce72ec-1749546239525@trinity-msg-rest-gmx-gmx-live-5d9b465786-6phds>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: andrew@lunn.ch, linux@fw-web.de
-Cc: myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
- cw00.choi@samsung.com, djakov@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, olteanv@gmail.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, jia-wei.chang@mediatek.com,
- johnson.wang@mediatek.com, arinc.unal@arinc9.com, Landen.Chao@mediatek.com,
- dqfext@gmail.com, sean.wang@mediatek.com, daniel@makrotopia.org,
- lorenzo@kernel.org, nbd@nbd.name, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject: Aw: Re: [PATCH v3 12/13] arm64: dts: mediatek: mt7988a-bpi-r4: add
- sfp cages and link to gmac
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Jun 2025 09:03:59 +0000
-In-Reply-To: <934b1515-2da1-4479-848e-cd2475ebe98d@lunn.ch>
-References: <20250608211452.72920-1-linux@fw-web.de>
- <20250608211452.72920-13-linux@fw-web.de>
- <934b1515-2da1-4479-848e-cd2475ebe98d@lunn.ch>
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:P+w5LatxuczWjuU5VjC2cu3RusygmzTEcHnWEMF+vMd+V144Nuq0nbegfrwU1/70t+IO5
- ZZCfjP1mt0nBNkGjj7f83sEa1HX3LswwVcLmtn0EkewzcBQy+5sk93/FE8OFJGz2cjArfnRlYVfB
- 3XMrQQsXoPxZtNXsZP8bmZLVhtzLablHfLA6+NXenDy0XEURhrtBRk+vVZ+h17JVyrBl/eHW2FY2
- uaWJKp0HW8d7z76dXGwZ1/AAP+8bL2oTm6hnK6iomw2WSiz0PVS0NPZKi4ROB6MkXRYd1FGSV6CI
- oFPPiTF5PBKHUC5CAEdu/94Ju1rZzvA0FeA3Gu9s0Qj3j8HbE5+i4yztEMvFIiZFnY=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:TLvXeFIDP6E=;qZFVm6ncGdxJPw6owUfJx41Igss
- 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
- AmzvamVKyQ==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qrycf46pmvsbxq6v"
+Content-Disposition: inline
+In-Reply-To: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
+
+
+--qrycf46pmvsbxq6v
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 0/3] NVIDIA Tegra210 NVJPG support
+MIME-Version: 1.0
 
-Hi Andrew
+On Fri, Jun 06, 2025 at 11:45:33AM +0100, Diogo Ivo wrote:
+> Hello,
+>=20
+> This series adds support for the NVJPG hardware accelerator found in the
+> Tegra210 SoC.
+>=20
+> The kernel driver is essentially a copy of the NVDEC driver as both
+> engines are Falcon-based.
+>=20
+> For the userspace part I have written a Mesa Gallium backend [1] that,
+> while still very much experimental, works in decoding images with VA-API.
+>=20
+> I have been using ffmpeg to call VA-API with the following command:
+>=20
+> ffmpeg -v verbose -hwaccel vaapi -hwaccel_device /dev/dri/renderD129 -i <=
+input.jpg> -pix_fmt bgra -f fbdev /dev/fb0
+>=20
+> which decodes <input.jpg> and shows the result in the framebuffer.
+>=20
+> The firmware for the engine can be obtained from a Linux for Tegra
+> distribution.
 
-> Gesendet: Sonntag, 8. Juni 2025 um 23:31
-> Von: "Andrew Lunn" <andrew@lunn.ch>
-> Betreff: Re: [PATCH v3 12/13] arm64: dts: mediatek: mt7988a-bpi-r4: add =
-sfp cages and link to gmac
->
-> > +&gmac1 {
-> > +	phy-mode =3D "internal";
-> > +	phy-connection-type =3D "internal";
->=20
-> ethernet-controller.yaml says:
->=20
->   phy-connection-type:
->     description:
->       Specifies interface type between the Ethernet device and a physica=
-l
->       layer (PHY) device.
->     enum:
->       # There is not a standard bus between the MAC and the PHY,
->       # something proprietary is being used to embed the PHY in the
->       # MAC.
->       - internal
->       - mii
->       - gmii
->   ...
->=20
->   phy-mode:
->     $ref: "#/properties/phy-connection-type"
->=20
->=20
-> so phy-mode and phy-connection-type are the same thing.
+By the way, have you tried running this on anything newer than Tegra210?
+Given your progress on this, we can probably start thinking about
+submitting the binaries to linux-firmware.
 
-phy-connection-type seems not needed, tested without it and 2.5G phy works=
- without this property in the 2g5 dts.
+> Due to the way the Gallium implementation works for Tegra
+> the GPU also needs to be enabled.
 
-> > +	/* SFP2 cage (LAN) */
-> > +	sfp2: sfp2 {
-> > +		compatible =3D "sff,sfp";
-> > +		i2c-bus =3D <&i2c_sfp2>;
-> > +		los-gpios =3D <&pio 2 GPIO_ACTIVE_HIGH>;
-> > +		mod-def0-gpios =3D <&pio 83 GPIO_ACTIVE_LOW>;
-> > +		tx-disable-gpios =3D <&pio 0 GPIO_ACTIVE_HIGH>;
-> > +		tx-fault-gpios =3D <&pio 1 GPIO_ACTIVE_HIGH>;
-> > +		rate-select0-gpios =3D <&pio 3 GPIO_ACTIVE_LOW>;
-> > +		maximum-power-milliwatt =3D <3000>;
->=20
-> sff,sfp.yaml says:
->=20
->   maximum-power-milliwatt:
->     minimum: 1000
->     default: 1000
->     description:
->       Maximum module power consumption Specifies the maximum power consu=
-mption
->       allowable by a module in the slot, in milli-Watts. Presently, modu=
-les can
->       be up to 1W, 1.5W or 2W.
->=20
-> I've no idea what will happen when the SFP core sees 3000. Is the
-> comment out of date?
+I wonder if maybe we can get rid of this requirement. While it's
+certainly nice to have the GPU enabled, there may be cases where using
+only the other engines may be advantageous. Originally when I had worked
+on VIC, I was looking at how it could be used for compositing without
+getting the GPU involved. That's something that Android devices tend(ed)
+to do because of the power savings that come with it.
 
-at least sfp-core has no issue with the setting
+Anyway, not a big deal, depending on the GPU for now is fine.
 
-root@bpi-r4-phy-8G:~# dmesg | grep sfp
-[    1.269437] sfp sfp1: Host maximum power 3.0W
-[    1.613749] sfp sfp1: module CISCO-FINISAR    FTLX8571D3BCL-C2 rev A   =
- sn S2209167650      dc 220916 =20
+Thierry
 
-imho some modules require more than 2W (some gpon/xpon and 10G copper ethe=
-rnet).
+--qrycf46pmvsbxq6v
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 	Andrew
->=20
+-----BEGIN PGP SIGNATURE-----
 
-regards Frank
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhH9VoACgkQ3SOs138+
+s6GCFA/9Gql524NDm3mA8nM/2jhyFLLx/IoLsmG28ioRNfL5u0WW4uB1jK5czjpa
+tUJTMDIDovZi97kH/afurMgNdd9QYZCe1Zk50Jpx+wIMegsAhd1yW3/PLneWGRpw
+nZU6D/Grk6sac7JLqC0M/WMf8lNjtL23uxeMzCbghOB9oNaM90cp8ueMJlJOBpWN
+PNbZdCwnTxs9ov1zGqFyFZ+jjNDbOYE1b0Ltquglf4eUI+u8PXa3Xbc32z/Tx8T+
+MP4fXcH+MFem2XcW+RDmoMD4FAkocbGPIYiv1755zwrzkuy8HwYr7bQsX9CB1mf/
+ywoKbfac2tUej1uYT2ETVydHv7MQ8HX9Vb+ITOj/cJBY0qa5inVMN/6eEtT6Yig4
+3nIbkCPW1alBcPYt1SIfIuixYIApDgexDMQlvhJBo3wNTeDcI/10hoAdD2E2A7np
+i3bl9Vj+t2vCRhMwZt5dofNsgcQDc55prb59gLcHYdDO6AldIYtVpFRsT7YH+QW4
+Bpy6+lWOCEvPLdbDM249AFTCzc7V+nzHALp9gjL0lDq6Jn6aqMFrUUubwIOHVmNP
+MxlKFzv5aVqVwA9kPUCv80QGKksrb2DB7yEBTvL0H1V2V0QOMiO+2k5f/FFNpAVj
+2LazjJB/ivKVWAkD/5TK8tLUpsGLSpNu3kf40T7PZ0CkWG5uMJc=
+=0cjH
+-----END PGP SIGNATURE-----
+
+--qrycf46pmvsbxq6v--
 
