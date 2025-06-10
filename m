@@ -1,106 +1,221 @@
-Return-Path: <devicetree+bounces-184036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554AAAD2DCB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA235AD2DBA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 330453B1CE8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:16:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 836323B215D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 06:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43A22222D7;
-	Tue, 10 Jun 2025 06:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EB425F985;
+	Tue, 10 Jun 2025 06:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="DxP4gN/o"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="asStmQI+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FDC7464;
-	Tue, 10 Jun 2025 06:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8BD25DAF7
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 06:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749536191; cv=none; b=qJbKH1QoX9Oo6cZRKMjyWqR30Ct29XXDBUBMTq1opf31dYHT4dw6RmabuvYHVQTHYkX1mGmEhq8T5GOnMNKQZK1YnzpPFW+vqwuNCtVOf/6Z4aAaMoC219X/fxgOj1h016XCjFDrLZPyyu+YLioXJn3ol/2WljA0/aiK8AuPY6o=
+	t=1749535791; cv=none; b=NivbhJRuzdSCER7Rq9kJiGFrpsPCaac8rv7RWqQiw8iE7VazqqPlBl4TT6Y9pOsIbJpGy/7+bQuiQk5ZUpsBpeaq81fesA5uDjWYP8znk7Qko3b7seKZABWPlblsexdkwFWSMUNjXERQ444wnkGqwTcdOQ+oJW/RWDwmvZPVGGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749536191; c=relaxed/simple;
-	bh=x0Xt63bNLSJDQD8ocdTTG0aGRtfg3vP02MPH/I2anUs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=H1D2Fr6zhC2RF2a8994nmOnIKJuifDvBt87a4nImQb5tfhLYavRzSAHqhWBffP9rG3g79VsjUD8gA1O3FlkMO9TlIwxAg4DwxxH4iSBmOsFap5ro1skvqlMtKecQE7Jm/E8dsaV8/djkjb/LfFHC21UeSxE2GHBpLWdPFE5js3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=DxP4gN/o; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB8E81485BB5;
-	Tue, 10 Jun 2025 08:08:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1749535683; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=I4ti+/foQg3QbjYgEJL1AVz6uH68ooxEzV0rGfw+TYU=;
-	b=DxP4gN/oqr6gN9kmsdPBSyeLw6tkZIOAmwNldabPG+7Hhp9EtGCtotcehqu0dNUnjHlOAT
-	LUIMnguyEn0vT5FWSRzuscfaELFyJOCVX1wO0fZcHVSYt+HJDqUwaayGGPj3Hakr3cg0Gn
-	bnaPOVZtSmsP/J+kZRd8jUoHnr+ratbdESmBrU1vRgAaK+m8fShfZXIYEUyJ+Wv6C3AC1m
-	Nv1QLKDjAZcP5FBDWSbj7o0TrI97MxCRCFA8K8AuiGpw9v8KPJxU4DSPYyKKEG2J9K2UnP
-	9U+cEqXuI8FsOxG9eSbLlMNp0TuSRFkP9Vgel0sLaD5fzh6IZdzJry7VcrjbEw==
-From: Alexander Dahl <ada@thorsis.com>
-To: devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: imx8dxl-ss-conn: Disable USB3 nodes
-Date: Tue, 10 Jun 2025 08:07:56 +0200
-Message-Id: <20250610060756.8212-1-ada@thorsis.com>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1749535791; c=relaxed/simple;
+	bh=deL0AORLTTGY5BQlHNdX7DRyFTNvXJD5bCgwvsWjOdQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cxJWwAwPKM6EgTyIChMerasTr0dypIsTXKh0/WfNcoS3zvXqHOVkxe1M9kcrwrsQe8jzlnMqRdSXMntJcBh23135CPES+b51NQe4yMpHVeUYfk4tTrn1uXpOn3c65aK/blqOLLEPtrNxrMmY1LumtumrkTRXq1arIRnnkGIlRM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=asStmQI+; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-553241d30b3so4670861e87.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jun 2025 23:09:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1749535787; x=1750140587; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=INX7+gU0Hnih0cIeBLJvT7vRQcQo+5vRos0OigVcuPk=;
+        b=asStmQI+gWGAHT6yjv5ieGkbDd/Z3pWnsiNvGwdGPxz2Snt1RJEWmMUpk0nbjcU3Yl
+         t5ZIul5ov8rVh2T6ew+trJc8WG5rBckLQlI44dU1k9JZgE2Ihn3bW3AwnDCRInONnl0A
+         +SLiLlbZlTzXKdrJGAqtXU4PNT5ymKYJaDkLqRoUNbQy428fcjdmg9rGQ1XXDBBEC7NB
+         f615GW4jYOkyjVFclgZwYxoqFQDxD/As7mw5GvMiNryi8zSN9QwbGmR4YCyDo+aIVkrB
+         sWwVNOBWGOAjJ7oH8W1f/LiLCr1xmbC5DvZdXjccovXPwWyRP6FyVqtLyj01d2IV/q5x
+         oB/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749535787; x=1750140587;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=INX7+gU0Hnih0cIeBLJvT7vRQcQo+5vRos0OigVcuPk=;
+        b=nZ6r+brX0eplWOHkrOq4f+6oPOWe9BTzK6Y/WeNX5y2sn2sbFPgejKEKo/08EuXUTf
+         E+Qve1d+qKEBb2eE+y0DsN8j1Ay2q3iCKdHp2tHWa/tYH510orZRn9kiDAdv+WI3fpd7
+         WN3RrQAskw0Zb534sqLxxA8+QjVvRMoD83SxpmeckXBwfxDiihC07ABhSBfanIfLkv6U
+         vi34j9TPkoIrFfuDw3RDufZVPlkrMOekz9zp3jXpg+PlAbqyQWGAiV7XK921kHA44AP3
+         Y+5R6zdicb/T2PcAJQfppgIqNzldDm1Vqq1eXtUdkieyX+mnGLWanyiG4KUhx9ywD7w4
+         DxYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU8mXtaOkPIxtY9AwefFInQ0lc1KWeB+aPV0vzEdcWa2RVYgUug2scUGjnMwpGz4lfFj3PlOvHyAaR3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkzQVtFD+LYyQdIqTIaRIHG6uKmOyz0Qvi0Xh0vhbIP/LjkMhm
+	x5xzGMLZ2fTBFNcN/d3kc54inmp0H0uqOXGeNBteL7uPuhLUoCCZB9J6ra0kbLLIX9SbYT1xeI+
+	S23lrDVbF69StYP6MR9JRazCXZBqkOxPVVi2krRXuEA==
+X-Gm-Gg: ASbGncsriyNIol7Pf/3Mp+Wf9cjn/pSU3wueho7aRC8ivP0o4GuTUqI4CH6isQA+NdX
+	6xe8tZ7UQtLF1f2fPQSz6K9iGduL8P/uWB/aiEKNJmEvyKxdK7qzY2XxYPNR4DMi933xRi2HfKn
+	8FOSluu0LNKDK6Z4aH8+mDMFbvQ3VGeLk3BI44X51UfWBY
+X-Google-Smtp-Source: AGHT+IGkcoUE3xlnQMYl1o7j1hnkz7cT7TnZBE2tt+E9xu1wPE99h1iWmlxxu85+hyVu269VB3sueRiisqT0j70UOq8=
+X-Received: by 2002:a05:6512:1387:b0:553:2bf2:e30b with SMTP id
+ 2adb3069b0e04-55366be6735mr3903750e87.18.1749535787322; Mon, 09 Jun 2025
+ 23:09:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-12-apatel@ventanamicro.com> <b355406d-c79f-4d81-bc36-a8889b54aa03@linux.dev>
+In-Reply-To: <b355406d-c79f-4d81-bc36-a8889b54aa03@linux.dev>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Tue, 10 Jun 2025 11:39:35 +0530
+X-Gm-Features: AX0GCFt-V6DR7WSCvS_15t_rjYO_PCMDY_MmyOZ2P-IZ0Vijw-NrT_XPrxpCJ90
+Message-ID: <CAK9=C2V7E5dmJdMffadXOo839945XNRT_mMKcVfT7bTDz5fBZA@mail.gmail.com>
+Subject: Re: [PATCH v4 11/23] dt-bindings: Add RPMI system MSI message proxy bindings
+To: Atish Patra <atish.patra@linux.dev>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The i.MX 8DualXLite/8SoloXLite has a different connectivity memory map
-than the generic i.MX8 has.  One conflicting resource is usb, where the
-imx8dxl has a second usb2 phy @5b110000, while the generic imx8 dtsi has
-one usb2 phy and one usb3 phy, and the usb3otg @5b110000.  When
-including both imx8dxl-ss-conn.dtsi and imx8-ss-conn.dtsi as done in
-imx8dxl.dtsi this leads to a duplicate unit-address warning.
+On Sat, Jun 7, 2025 at 4:29=E2=80=AFAM Atish Patra <atish.patra@linux.dev> =
+wrote:
+>
+>
+> On 5/25/25 1:46 AM, Anup Patel wrote:
+> > Add device tree bindings for the RPMI system MSI service group
+> > based message proxy implemented by the SBI implementation (machine
+> > mode firmware or hypervisor).
+> >
+> > The RPMI system MSI service group is defined by the RISC-V
+> > platform management interface (RPMI) specification.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >   .../riscv,rpmi-mpxy-system-msi.yaml           | 67 ++++++++++++++++++=
++
+> >   1 file changed, 67 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/interrupt-contro=
+ller/riscv,rpmi-mpxy-system-msi.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ris=
+cv,rpmi-mpxy-system-msi.yaml b/Documentation/devicetree/bindings/interrupt-=
+controller/riscv,rpmi-mpxy-system-msi.yaml
+> > new file mode 100644
+> > index 000000000000..26dd13731350
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi=
+-mpxy-system-msi.yaml
+> > @@ -0,0 +1,67 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,rpmi-mpx=
+y-system-msi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V RPMI system MSI service group based message proxy
+> > +
+> > +maintainers:
+> > +  - Anup Patel <anup@brainfault.org>
+> > +
+> > +description: |
+> > +  The RISC-V Platform Management Interface (RPMI) [1] defines a
+> > +  messaging protocol which is modular and extensible. The supervisor
+> > +  software can send/receive RPMI messages via SBI MPXY extension [2]
+> > +  or some dedicated supervisor-mode RPMI transport.
+> > +
+> > +  The RPMI specification [1] defines system MSI service group which
+> > +  allow application processors to receive MSIs upon system events
+> > +  such as P2A doorbell, graceful shutdown/reboot request, CPU hotplug
+> > +  event, memory hotplug event, etc from the platform microcontroller.
+> > +  The SBI implementation machine mode firmware or hypervisor) can
+> nit:
+> The SBI implementation in machine mode
 
-The usb3otg node was introduced after the initial imx8dxl support with
-commit a8bd7f155126 ("arm64: dts: imx8qxp: add cadence usb3 support")
-and since then leads to warnings like this (when building with ptxdist):
+Actually there should be a "(" just before "machine mode ...". I will
+update in the next revision.
 
-    CPP generic/platform-v8a/build-target/linux-6.12/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-    DTC generic/platform-v8a/packages/linux-6.12/boot/imx8dxl-evk.dtb
-    /home/adahl/Work/bsp/thorsis/generic/platform-v8a/build-target/linux-6.12/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi:148.24-182.4: Warning (unique_unit_address): /bus@5b000000/usb@5b110000: duplicate unit-address (also used in node /bus@5b000000/usbphy@5b110000)
+> > +  implement an SBI MPXY channel to allow RPMI system MSI service
+> > +  group access to the supervisor software.
+> > +
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +  References
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +  [1] RISC-V Platform Management Interface (RPMI)
+> > +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> > +
+> > +  [2] RISC-V Supervisor Binary Interface (SBI)
+> > +      https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+> > +
+> nit: Refer the latest frozen version of the spec ?
 
-Signed-off-by: Alexander Dahl <ada@thorsis.com>
----
- arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Actually, we should specify the spec version number in the text
+and avoid a specific link because the link of the final ratified version
+will be different.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
-index 9b114bed084b..a66ba6d0a8c0 100644
---- a/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
-@@ -5,6 +5,8 @@
- 
- /delete-node/ &enet1_lpcg;
- /delete-node/ &fec2;
-+/delete-node/ &usbotg3;
-+/delete-node/ &usb3_phy;
- 
- / {
- 	conn_enet0_root_clk: clock-conn-enet0-root {
+> > +properties:
+> > +  compatible:
+> > +    description:
+> > +      Intended for use by the SBI implementation.
+> > +    const: riscv,rpmi-mpxy-system-msi
+> > +
+> > +  mboxes:
+> > +    maxItems: 1
+> > +    description:
+> > +      Mailbox channel of the underlying RPMI transport.
+> > +
+> > +  riscv,sbi-mpxy-channel-id:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      The SBI MPXY channel id to be used for providing RPMI access to
+> > +      the supervisor software.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - mboxes
+> > +  - riscv,sbi-mpxy-channel-id
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    interrupt-controller {
+> > +        compatible =3D "riscv,rpmi-mpxy-system-msi";
+> > +        mboxes =3D <&rpmi_shmem_mbox 0x2>;
+> > +        riscv,sbi-mpxy-channel-id =3D <0x2000>;
+> > +    };
+> > +...
+>
+> Otherwise, lgtm.
+>
+> Reviewed-by: Atish Patra <atishp@rivosinc.com>
+>
 
-base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
--- 
-2.39.5
-
+Regards,
+Anup
 
