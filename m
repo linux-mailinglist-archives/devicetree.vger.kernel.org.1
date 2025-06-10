@@ -1,154 +1,272 @@
-Return-Path: <devicetree+bounces-184176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31D7AD32DF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:56:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FFDFAD32E6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 11:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7733C3A4322
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:56:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 499EC16686B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 09:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF14528B7F8;
-	Tue, 10 Jun 2025 09:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103AC28BAA1;
+	Tue, 10 Jun 2025 09:57:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RafLornX"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="EJob9pHR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360C91F0984;
-	Tue, 10 Jun 2025 09:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E254628B412
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 09:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749549393; cv=none; b=Mx4Y/VScvcxbaGRLtnpiCjr7dd+LfTWoq/wreBWY9AuEH3eh72Yw3ZKW6spC97TrbQA/Z9TbQMNSCcmvIIAaa3m0mcHsi1WVmIfg6xqr8QrMnaggWb7NJPNnmn0w+54SuEiooRjzy+Q6tEYN8mM2VF/nH/2ARvaaLo8jLoFeC3U=
+	t=1749549465; cv=none; b=e6g/1v8IBPgqrUo+si1NWdRhSqv5AikxXoUB0R5lQZM6hy2UDItFwup4fI/arY2aTChzxOFLtTB4TYYYvfPJfq+Oe40qBN9PNDNMFKXCFzjOj7lU1A62+75j0mQvXkO5hR7WaGrTYm5X0sFpqQ60tKWrzp0JxJjIb6msPoPCuhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749549393; c=relaxed/simple;
-	bh=7WC6JszKdFjuYtwE1Sh6X5oOE2rmwf/LbZyZmSM2UqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mga5OAVJbUI6iFOPLTEJC4gITLMaE+QQJu42SrMm9KJqYMmVXJ5GzTSamhyhz/8i9ftJuJjrKdbmS44mFB9JCWC7dIpnj5WVGdkIjNJrpdBTbAoVGFTy0KgeGUrAiAxp12jD/hWdxk4CJGH/ZWnzrJBkCamINUj+NUW0E4nHTq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RafLornX; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-450cf0120cdso45628005e9.2;
-        Tue, 10 Jun 2025 02:56:32 -0700 (PDT)
+	s=arc-20240116; t=1749549465; c=relaxed/simple;
+	bh=N7gYYHLZCiIa80T8uyfmFC7KQ4wN+euvQF5YpOGeAoE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FXge7kiVPJi3OTs3NdCTEDoJeIPTBlGLKSJQADJmGdR+on+nYorLfwT5TQUEcEKPBw2/c47cGHJTrpqmH2fZEkctzqFkd2pZ8VxE7+/qzu3KlJWDURCg2d3OCNhkIOvy7c/z1OHU7JorPYz8nCnwNb1G4pbrbsWm33HmTUGZsqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=EJob9pHR; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e7d8eb10c06so3910058276.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 02:57:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749549390; x=1750154190; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gplEX6r/F7V7kXoAgH0gPrYjD7RVn/2m11wpBALxX1g=;
-        b=RafLornXvRUuYb5kJKo7Ks8FBpvRTNielG2mptpBMskDgPbZuV+2FtiniEaQYDAD8d
-         fDotuusOOiYlUhni2R+Ag/s0Vv7ByHwi0sHNxpEouiAiQnPr/oux2K3edwhgAT6+epj3
-         XoM8UMRxcoQsUYO+5JzqYWOTD/d3ICNobgs6kBMZhWBGCI/NfZYtvkhzzc1W1p7n/j4F
-         ARcDYZQdoiUX5Jl9TxQ50SoWGF6fvvejiUzDys8JfqABhI+goJbkuIm8Ci0ishgmLVfx
-         iFlxyK7Lf3ACkZPDdFORwbmSBqcTR+2XIIpcQBW/zMZjvFh3UgED2Pb3SmtMlFFZC+ld
-         qOyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749549390; x=1750154190;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=amarulasolutions.com; s=google; t=1749549461; x=1750154261; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gplEX6r/F7V7kXoAgH0gPrYjD7RVn/2m11wpBALxX1g=;
-        b=COaD8DBpW42CwOlm8djGxmQeRO3uDGBCAJtbuUXHuuwLzEkMxGZXyYuAisBkSJ4Y1w
-         wQxpCvnSDnWmpCW5vwEFqhQnwAE59Y7ABB4ZyxC6WsrN7DiSCm9OJFoDkLTSab1efvRj
-         r/SSSbDJNTeEJovg0iIIq9vXyA5BDilRz3osnbfKP0QAgg9/XHjOi5kwoN2TCJiQGCOQ
-         QxP1M18FUsO+h9W0Ue6tJmduebSzL5azLO0ZvilGkR/NQ8IpMB0pCrgavNP6EO73njIh
-         KtmY/gN+WkcjzCuEZPxIvmyvXTlZV2fdTW8OZRMWhc6BNF2bfHU8kyCWLvcOL+Fup08b
-         5qOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU3QNYR9STbhTNN8fk+o73eu+Z6mKycrXiVr1ohs95amg7l+oRKO8rBAMpNlfcK61330xBF7p091o10YbGN@vger.kernel.org, AJvYcCVwexBdOIbC+xIN+huF46OOnscWkpjrzU50Pz4xFqOuutChP1NY034ZgID8HYPsbBzUDU0SQPR413vJ@vger.kernel.org, AJvYcCWHJPrCvGiLNNdMWl2z1xbk53xHl+/5uvhIrjd07pAnEZAqM19Pt2rp/FV1v7DGVm2a2a3n0Y8mJeyu1dw=@vger.kernel.org, AJvYcCXVbmefgt7gfLsxwqe2FSrYIqyyggBwqGLHA/B3Ua0GCZ+LETd2FV9wDjGpdOJWOeuMGIIFuejsH189@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxo3IGW2ZC9NJXt3CQ4tgsebKUtZTDvYRVpFdxgKU1dmk708rh7
-	qVnoQmJudG3fPmW3Kg2FEeJF4FhrUjpb3NNmTks1C2jm3KnomWC6Nmmo
-X-Gm-Gg: ASbGncvXZwo5czgdDAdLvvaNkst16/hR8iBVViqBWa9tFSYOrG6x+sBHd8UPi5eFY/M
-	gE6VpS1eviIb3uqtrfNACt4fVpyXbuxnzSCzWiiUlxTAJc4MOs4K5m4ZPxk6Uz9ACQL9PI0uIMy
-	WWb76DvX7c+RiKa5tTC2BA71WDLhOrXfMYodEi2/KdiJfbACVY0WnluX/dTzEueuU8WJDWcyByU
-	cyq9G9uckyGqRdPvjC6lGyDUIZ9Y/6iy3lJg185ymA8Pju2XT8gHIxc4Tq2yrmO8yGx3YDNZ+0y
-	qOEMFiPTsbKFzM7RGKtVTMEB0Z7PpDxBP+hHtoCXcTNTgmm8uzvYATaUdTzsDL0V81lw+z9jd2s
-	16Dk9tkdeHRTL7bE6Eap2fOVU8Pxp9Gy8FWZ59kLOBu6OYum5
-X-Google-Smtp-Source: AGHT+IGy8HQBEplQLRX26x+Fi9X5O/Q3+s+/Na3IbqLPC8OShsE1x0QUjapG+7x9GXX8CKT80Ic66A==
-X-Received: by 2002:a05:600c:1913:b0:453:9bf:6f7c with SMTP id 5b1f17b1804b1-45309bf71a7mr94403275e9.9.1749549390530;
-        Tue, 10 Jun 2025 02:56:30 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45209bc6d6dsm135936935e9.3.2025.06.10.02.56.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 02:56:29 -0700 (PDT)
-Date: Tue, 10 Jun 2025 11:56:27 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: andi.shyti@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	digetx@gmail.com, jonathanh@nvidia.com, krzk+dt@kernel.org, ldewangan@nvidia.com, 
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	p.zabel@pengutronix.de, robh@kernel.org
-Subject: Re: [PATCH v4 2/3] i2c: tegra: make reset an optional property
-Message-ID: <qhrsdrtq4qeyntpqz4edu6uj25hxqdxlc5a25pexw7mj3iuwi3@35vrlxvkl6kq>
-References: <cs7polavxoyphttd4uuzb63eguayc5zrd6l6tvyq5nbizpkq2r@g6qvgewu2d2d>
- <20250610095157.12138-1-akhilrajeev@nvidia.com>
+        bh=d9dEIw1urmXPXSyEjfiptdSoKUNx7ybVNTHvf2bqei8=;
+        b=EJob9pHRH5F+wxe0FWaouFoARtIaSRUBtRtOWsEibLyVxQCBM+aQjGMq4gWtifTddL
+         rkFI0EQ69KTxovcyAnwNdPaidj6pIbUTxnde7yPPFJ7c5xU1bdM3d+7UazXkVh47FBmx
+         +GaRNCzIsaEfnnl29wxPimH+CsQIpPqKVYQN0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749549461; x=1750154261;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=d9dEIw1urmXPXSyEjfiptdSoKUNx7ybVNTHvf2bqei8=;
+        b=fyqn/rkGZ0hqeJdLRzRfYGLS3tx27t7wSIDGPv88dLpp4Ef8Jh3tcwF9GoPtGCsADa
+         al0r6THblUXGkOSF4xLB4yN2PTlabkGE/Qhzdez/O9MZ9tkrDv4+WV24jOLIo5skcTJN
+         1pgpCfXQ9TMEZwipMjSNvDB8SHnuWmxHO7VXbI9MYvzfw3xQAQ1NOdp7MRyz4ewnK0tV
+         ApAklDgCdFw62bMAl/dV+gIUnuclMksNb7wdvRrQanO6dNwt4uj5XDVYlwgXDMWeCAZc
+         7oaS2DinK1Vqx6+ynKAjd2ArZm3PTZUaxoEPMzu2g7zpSdNzYsEdQJnm6pd3o3gCjDmn
+         LPuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWbi+4d71YD6wyF3rmPOMx0DDKX9x/ieQN+TPhMGMTFR9JsxT/TQgY2WldOpIdsopf3u3mQb25j1IRG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4YR2NJ5xYrDBRxmzUoaCZKgQPLMIMY4gqzdnBSTzlRVS1Q2MX
+	dHmCGJNBb6FlN9EKBLvcMSvuGo5Dfd5mbZedW8L1ntdLXOZFTg4B8+3/qkFtoNVh30EDO2nXwxG
+	2+2+fqV1vIYdMhLMvZSTIHuoSUvON01FT6co2mduj4Q==
+X-Gm-Gg: ASbGncsv/utKr2WmVvj9P1oBgtmYye2pPhf6IEPbeh1fzUNKTXTaUHOirjqQP41drb1
+	uDa0BYMQ1nlJ8OcvKCijsRXFpL5MYg2RBljTK6OR67MtWquOjrXx2aivTJCzfM8tYi3bEQI/mDd
+	RYt/WshpR1EFte2TBmYT+qV6bILvHKJAurWuKuW7la3A==
+X-Google-Smtp-Source: AGHT+IFodtS1VYnVo9bbt5qXymWY3lsJGCo0KtXDocUtEfb/F89rGPTFtUZIHa5j2tOsbpXapJCL6XzrNaw6xaDkRr0=
+X-Received: by 2002:a05:6902:2841:b0:e81:45da:4aed with SMTP id
+ 3f1490d57ef6-e81a215345amr21634275276.26.1749549460846; Tue, 10 Jun 2025
+ 02:57:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jmdul6m3ak5z4bke"
-Content-Disposition: inline
-In-Reply-To: <20250610095157.12138-1-akhilrajeev@nvidia.com>
-
-
---jmdul6m3ak5z4bke
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20250609101637.2322809-1-dario.binacchi@amarulasolutions.com>
+ <20250609101637.2322809-3-dario.binacchi@amarulasolutions.com> <aEb6uQNDHYRKpiI6@lizhi-Precision-Tower-5810>
+In-Reply-To: <aEb6uQNDHYRKpiI6@lizhi-Precision-Tower-5810>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Tue, 10 Jun 2025 11:57:29 +0200
+X-Gm-Features: AX0GCFvXGARRqo4WtdQpGt4geFTzn6cBu8i4y7nYSpclBk1GV6MofVQXo2ClbwU
+Message-ID: <CABGWkvp4aEb-QusmJPat=khJk9cAaqq6CVxcC8ma8Wzqecbvfg@mail.gmail.com>
+Subject: Re: [PATCH v2 02/10] ARM: dts: imx6ul: support Engicam MicroGEA-MX6UL SoM
+To: Frank Li <Frank.li@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Matteo Lisi <matteo.lisi@engicam.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 2/3] i2c: tegra: make reset an optional property
-MIME-Version: 1.0
 
-On Tue, Jun 10, 2025 at 03:21:57PM +0530, Akhil R wrote:
-[...]
-> >> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-t=
-egra.c
-[...]
-> >> @@ -621,8 +641,10 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i=
-2c_dev)
-> >>  	 */
-> >>  	if (handle)
-> >>  		err =3D acpi_evaluate_object(handle, "_RST", NULL, NULL);
+Hi Frank,
+
+On Mon, Jun 9, 2025 at 5:16=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Mon, Jun 09, 2025 at 12:15:35PM +0200, Dario Binacchi wrote:
+> > Support Engicam MicroGEA-MX6UL SoM with:
 > >
-> > How is the internal reset handled on ACPI? Does the _RST method do the
-> > internal reset?
->=20
-> Right now, devices using ACPI would have to rely on the _RST method imple=
-mentation.
-> It is unlikely that it implements an internal reset mechanism.
->=20
-> Do you suggest adding a check with 'acpi_has_method(handle, "_RST")' and =
-fallback to
-> internal reset when it is false?
+> >  - 256 Mbytes NAND Flash
+> >  - 512 Mbytes DRAM DDR2
+> >  - Ethernet MAC
+> >
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >
+> > ---
+> >
+> > Changes in v2:
+> > - Change local-mac-address to 00 00 00 00 00 00. The actual value will
+> >   be set by the bootloader. The previous one was assigned to Freescale
+> >   Semiconductor.
+> >
+> >  .../dts/nxp/imx/imx6ull-engicam-microgea.dtsi | 96 +++++++++++++++++++
+> >  1 file changed, 96 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.=
+dtsi
+> >
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi b/=
+arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
+> > new file mode 100644
+> > index 000000000000..38971f6512a2
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
+> > @@ -0,0 +1,96 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2025 Amarula Solutions, Dario Binacchi <dario.binacch=
+i@amarulasolutions.com>
+> > + * Copyright (C) 2025 Engicam srl
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > + #include "imx6ull.dtsi"
+> > +
+> > +/ {
+> > +     compatible =3D "engicam,microgea-imx6ull", "fsl,imx6ull";
+> > +
+> > +     memory@80000000 {
+> > +             device_type =3D "memory";
+> > +             reg =3D <0x80000000 0x20000000>;
+> > +     };
+> > +};
+> > +
+> > +&fec1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_enet1>, <&pinctrl_phy_reset>;
+> > +     phy-mode =3D "rmii";
+> > +     phy-handle =3D <&ethphy0>;
+> > +     local-mac-address =3D [00 00 00 00 00 00];
+> > +     status =3D "okay";
+> > +
+> > +     mdio {
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +
+> > +             ethphy0: ethernet-phy@0 {
+> > +                     compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +                     reg =3D <0>;
+> > +                     reset-gpios =3D <&gpio5 9 GPIO_ACTIVE_LOW>;
+> > +                     reset-assert-us =3D <4000>;
+> > +                     reset-deassert-us =3D <4000>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +/* NAND */
+> > +&gpmi {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_gpmi_nand>;
+> > +     nand-ecc-mode =3D "hw";
+> > +     nand-ecc-strength =3D <0>;
+> > +     nand-ecc-step-size =3D <0>;
+> > +     nand-on-flash-bbt;
+>
+> Not related this patch, latest device tree binding for nand-controler sho=
+uld
+> look like
+>
+>         nand@0 {
+>                 reg =3D <0>;
+>                 nand-ecc-mode =3D "hw";
+>                 ...
+>         }
+>
+> I am not sure if above dts work at your ul board.
 
-I don't know if that's desirable (because _RST may be left unimplemented
-on purpose on an ACPI platform, and using the internal reset may break
-something), but yeah, that would be the equivalent of the DT path.
+I tested the change you suggested, but it's not working on my board.
 
-Thierry
+I also did a search through various DTS files on the i.MX6ULL SOM, and inde=
+ed,
+the scheme I adopted is used by other boards that have already been merged.
 
---jmdul6m3ak5z4bke
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks and regards,
+Dario
 
------BEGIN PGP SIGNATURE-----
+>
+> Frank
+>
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&iomuxc {
+> > +
+> > +     pinctrl_enet1: enet1grp {
+> > +             fsl,pins =3D <
+> > +                     MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN      0x1b0b0
+> > +                     MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00 0x1b0b0
+> > +                     MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01 0x1b0b0
+> > +                     MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN      0x1b0b0
+> > +                     MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00 0x1b0b0
+> > +                     MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01 0x1b0b0
+> > +                     MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1  0x4001b00=
+9
+> > +                     MX6UL_PAD_GPIO1_IO07__ENET1_MDC         0x1b0b0
+> > +                     MX6UL_PAD_GPIO1_IO06__ENET1_MDIO        0x1b0b0
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_gpmi_nand: gpminandgrp {
+> > +             fsl,pins =3D <
+> > +                     MX6UL_PAD_NAND_CLE__RAWNAND_CLE         0xb0b1
+> > +                     MX6UL_PAD_NAND_ALE__RAWNAND_ALE         0xb0b1
+> > +                     MX6UL_PAD_NAND_WP_B__RAWNAND_WP_B       0xb0b1
+> > +                     MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B 0xb000
+> > +                     MX6UL_PAD_NAND_CE0_B__RAWNAND_CE0_B     0xb0b1
+> > +                     MX6UL_PAD_NAND_RE_B__RAWNAND_RE_B       0xb0b1
+> > +                     MX6UL_PAD_NAND_WE_B__RAWNAND_WE_B       0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA02__RAWNAND_DATA02   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA03__RAWNAND_DATA03   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA04__RAWNAND_DATA04   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA05__RAWNAND_DATA05   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA06__RAWNAND_DATA06   0xb0b1
+> > +                     MX6UL_PAD_NAND_DATA07__RAWNAND_DATA07   0xb0b1
+> > +             >;
+> > +     };
+> > +};
+> > +
+> > +&iomuxc_snvs {
+> > +     pinctrl_phy_reset: phy-resetgrp {
+> > +             fsl,pins =3D <
+> > +                     MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09     0x1b0b0
+> > +             >;
+> > +     };
+> > +};
+> > --
+> > 2.43.0
+> >
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhIAUsACgkQ3SOs138+
-s6GSVw/+IN10Qn2zw91/SHZSyOjTa2VRsulLNdp5/eSY4HfNEHtEe32iL+Wma/AL
-F9W0MnWQ/7wNMD1H5/atyFeP4tzMeiUev1irfeVcmIChZtOMOUrw7JWbmonebK2V
-FeO+JqIzNZK2sW1RsFEv3dhKfkye+31KJY/7NsGI2kJWXOyEjM0m1qG754Gs9xvU
-qiZdWTdmtWbB8rTK+goIzh2H1bZCohFeaHiEy39NDYRGAffSmvhqCUT2DQ+YDb0j
-Z5XC2fofhr3gNwVCiumsYTi3pPIgM9bo1tIJD+FebL+svHC685AqP9rDTeJTq+zY
-4ltXjAESN40vz+LZ8uc71S+kuYI9/r789nMgNh6N7bzfzPdrOVwNvRiE/V5dIBrQ
-hLQ2yWzAGWKHpsgIQ0O/ZOrikUJgxWlse9a/rS5AmkhlmJhb0HUipoQmXQQFCtvZ
-P47FR99JhnllSC7I+N7bzz8eBcIuqV58m3gX3K3Tz9MIM8qms8Hw+eE2SnNBHRdH
-ZEk5pGyoIvFvxPObatwNjyCaEx/ZygXZ/t2ksRYHB4rW/l1AjJfL0ReR+73Pmfyq
-40Y+qX5JvJvZht9hwRnqGxrb5gFwzD3ar6SulkEwWkHqdJAbO86t9BHQtw16kr7b
-lnOK/Xo5G8MSB35X6TAAgCjCRBccpIwuBZhdH/v1B6nZiQ/ErpY=
-=q6fL
------END PGP SIGNATURE-----
 
---jmdul6m3ak5z4bke--
+
+--=20
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
 
