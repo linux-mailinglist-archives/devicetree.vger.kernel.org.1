@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-184332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67DE7AD3ACA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:12:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D28E5AD3AD2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 16:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD378166A54
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:12:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03CDD7AE07A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 14:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E356F2D1925;
-	Tue, 10 Jun 2025 14:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001B22D3A98;
+	Tue, 10 Jun 2025 14:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VsEYR77C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o72j2XEB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38C72BDC05
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:10:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2FD2D3A9F
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 14:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749564610; cv=none; b=lJLJUl8pJehwnVowSI9iboUOYkDO+BZg2LSBA5SKA89ImBbwjKSyLRY/w9FwObWX02+EQMTegisQtwzhf0SBckH86bpfvg3grIbF6+caBgt7h5C5/xRkN/ZdePd9FlDfpnp56Kw4/PJh/lpO6HpNw8YkEjqfUYAnGJ1PUg0Lvrk=
+	t=1749564654; cv=none; b=SMkEaE1CZBAYC6hpBmy3bIx3EEu+xu+r8UK37pKhEYYgD0dYD5uk48K/Goz0S0uUxDcZmxlxrllR/K/upadIAvIeZOEY2pI/zTgi3XZ5X6w4ZxgnKvqisxtkdcT42UFbZsc5yuWfTYB2b/0U9o0Y4to/2ZHERofbjCv7KjIvV0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749564610; c=relaxed/simple;
-	bh=PZXZV7FSHjLrW/Xjz4hHaW1Kus7p5ylj0H8R79ZSXO8=;
+	s=arc-20240116; t=1749564654; c=relaxed/simple;
+	bh=dL+NAXdmEtaqnYTL9u3c/bcaID5JjMQc7h8b0o0L+C0=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cYsH2chtpXOD1bQZ8pObGAut3vf9oWVCNnVEvkpPoGqxekm9vQsjXru5QVlcWUzNIBSda5hoAsesL5pKMfNZoJs5I4CSN90pvZuSE7FGS+I8Tc2AGmBMc0i1MFfB3zbUuSyslDIPm1erYOi1rEcQSypf0+v3XQGMWGrpY1d0JVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VsEYR77C; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=HUK9GsWGMgI9ypRLaJerdsBZ5aB9tZKaPoYvS1mcwNQeViwCzhbzzdPgF3idVneWbrBNtGBMmUVy52N04F49+uRvSqX39OzLGaEHtZz5+eRcP1GxXHOoGRCxYdBapfhQtUnGNxoHJtGeBOPtAo47sJ96Yv9QXH91e/ETJ2ptxNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o72j2XEB; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-450ce3a2dd5so49173655e9.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 07:10:08 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-451dbe494d6so67082095e9.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 07:10:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749564607; x=1750169407; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1749564651; x=1750169451; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=z4OxVv8oJv1GqLYHYzTXE75rIdx5RHpc0k5r0cFg+Cw=;
-        b=VsEYR77Ck0TXnQEbP3tA1sFGImnHWzecqqlLr95YVslQ99hDOwRgyYplpG7kBDScle
-         WDaUqf6iyW7g7xNg1ASrU3q2s7xw7vgAEy3oYNxxPPu4dUIYVjQGlFJwh1rpDTzx0Jt9
-         4elTtB4/LJuSmFQCkWBPrt4O2BdAiRh4cwCmi4e9Ab4rooEDlKTsS1RgnlPi+kquib5o
-         I5J5wjKXx9FgKQYQVemUD3yJdLgrLwjnoY9GzuO6A3DDons5kaVq6i39w11Lc2WKntM0
-         ArEqhssOh0ZS1ua3EkRgMyCkthNxn+ztokG7nqCCTG49QdOL5Qi2urONCQNlwBhFq94V
-         asWw==
+        bh=7xRZaCqfgFQZF5DtUD0UWiWLPdXpNsrUellAmF4l02M=;
+        b=o72j2XEBctMdgnAdgo38vEEt2lUEtrzAWXFefDVv5CZoNPnyHE6IM73v9zDTmKPU9s
+         +SsygzK22ZkC4+j9gwXf7Xgi1LLQSpzzE9Slk+fUYS4h59sb56a7sBKtiobKKh+dbvam
+         jL+WjevEDlqZS2WgjG6jWE8U+GEwUtXJAoWOnOgvD20ZnBVqdf0Ve0LebeGGZKhMkxcs
+         +6TZ4SowNwinJVftvcH3GuXgcUibhlp0lvX1jowIniVMGGAvIO3oiRFSYKxqZVM9snnJ
+         Ev+lp/JmS9zwJFOPevYnIz3EKnmTBKpY9YxzMJsk6LKnSC3H+WOCfVO7TyuCbnCiI7WY
+         Bdsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749564607; x=1750169407;
+        d=1e100.net; s=20230601; t=1749564651; x=1750169451;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=z4OxVv8oJv1GqLYHYzTXE75rIdx5RHpc0k5r0cFg+Cw=;
-        b=jNFeQ5n+ddXxlGWRZQOjBBcEH8oHrUcnufqx5xJYfVbY7xiovessHV5h2pi0Dq2B/G
-         EmNQ+qG+S6L6aLVT3PSfH/VuRc4RgTZG6OvW0DHk+lBGqoPpW4GVgaFxSOKJ/y4XLVDr
-         HyxaF85jfVgW8H3FDLI6AhN6wRJyQnHqD+3uJ21WuoOv9nReIeUFOIa/IgkfdgPQgleC
-         hD18JCnJRlztbc0LQeRw/4fKpSrpdWQc5fDRSsnpgGCTVA43k6O4MA5TVUYlO/BCNv++
-         zpkUkyds19PoerNQ77KyawLf+U/+djtiuYgV65nnhSrTjLs8XN2qpZI2i0gD6w3qQLqF
-         Yogg==
-X-Forwarded-Encrypted: i=1; AJvYcCWkVXtYI1LT5HwOp6A4RtqJP2XHgZIbkl3HVAWdgB3Og3aY8f6iweezgrNzrEwjJAAMFvDryg5fJ1zJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3kmMtGIKvX6v7EhCoHe3sQ4iMfhG8C8UxnWNjI7bqFDOnUl/M
-	rnTK3mYaHxOIkSRgWb4kQnjg8SZHTRYr5hv2IdQZ/rmawOoXRsOIHsrSPC6O0LgWenI=
-X-Gm-Gg: ASbGncsmKUGDF09b839AVoJMB8ewxj4I+OSEhvFtMnsZulsAOK5m51LYQq5kmJGTPzV
-	R9iUV+4WLdwMkBOHaIldiJIaCVC4vlpGPBq34nU3f8r9Evj1FXoFT8VTve2jOPVM2OVVows6aZ5
-	eCx6/vcIz54qBN/GI8lIvmJrlgti1cSL7CBx6GF8LDxvuVHr6vVaSTSo7ESUmUVUI3tY+wNPDGB
-	N4+2TGz0UQ/BYoNE/7129f85iFG2qTCVLEag4714VomNN/V5aspmwfMwfaP+Izb4jxuBBnf+vTh
-	k/f8GChEjjna/bOyxkKVCsc4mY9qQ3b9R6CJzIwClxiQv64NNAgfd24aWaocsy9RxPeRx87Abq/
-	Zq+2miBoGpoBbxlEuAsJohtgyr7ifiptFPNlS
-X-Google-Smtp-Source: AGHT+IEkqCEXSbEGN2qKWC1bgGuh0Dpru4IMLoe0WkTjzMUjiyMf9422e97D4rL4Jdk8panjohDk+w==
-X-Received: by 2002:a05:600c:4ecf:b0:450:d61f:dd45 with SMTP id 5b1f17b1804b1-4520134088bmr172213265e9.4.1749564607020;
-        Tue, 10 Jun 2025 07:10:07 -0700 (PDT)
+        bh=7xRZaCqfgFQZF5DtUD0UWiWLPdXpNsrUellAmF4l02M=;
+        b=ZObaF/GZUCBAx6w8wBEwWi92lhA9TkIHzAfnN3nsLlulXIKA2xd7i1VsWCqhM0/ddu
+         4yM19F3TtWAuSVkL9IMP8A0yM3sJLe+M6G/Tned7R+muoLNFAvZPGsfq1Vrba7IH7pbc
+         euUeXrbVlTXToLzVblVkB50FRVhu2BsVW7SIzd6VKW8z/JhOpVCGPFGlgUSwMgURB7Q5
+         bpFEFWzDYevTqJDACm6PmPFO2vTba5quJNaasvsdfE49V+a/V5h+WrN9D0Su5fieSWWm
+         vXJfDZv3p43ALYgNE5vsAelc+EVTcIXJ7VgoWcsjMG3EDfTEzXtsWL2YhUJFaeDMZL/s
+         tLbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX76bdt3WCLGn3zjq7OmUNw+PWrT5hn64VCfQzQu7CS3euyOx4k0+rg/34YeAM6kPmbLU4yKkwTqY0C@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzkY88O/aBtBlWTuCVTaHUk002Pc7OuJQNVy4tuXHlro1qMc8r
+	SLVA9tgUflouIoCk4BrA661HyBUhH9BWhphaTmvwh1cGDGszE7M0mPu7xo+kgVmlqus=
+X-Gm-Gg: ASbGncvRImqPaseqZp7kyD+xD6Se6yYgQ2H/VnOMcADCuvwn+uKBzMRCwrB2lHkDbz8
+	sehuHrKCKHnkGDHNhWL3Wb00ujLDN9Xo3c08bPOnd8yt92KS13AhxIe3CcMl8diDtjsDLKE4tj8
+	OfeMyEf5HBeLXKN5nCiE1jZVhmrcFZh3EJei2UL72ePKlmWeedWrC5bmZbiWm4Thkzj/eKSf5PD
+	j6tHo04LbZxFvqD7YqHwA+6ASXzpE4SV5za7tEySMT45Ai0gk3xMXiD79IHTIRf7sWZ05qJRQXu
+	+oEq3c8a3iLoNYuTpuwC6ifhLhhQPaukdigNr/OLPu4epLlJeuPbpWqbrvwmBm1Qdo6779z8xch
+	S5T2VLBO2KP+6e3pt+rOqRbzUbSyvEQ5vcpX7
+X-Google-Smtp-Source: AGHT+IH6nxPw4SGNIKULUDGmYJNLzg0CR+d3wDgQkU66TIShv8ZdQB2lSNRbrUl7wqsrLTx0uzCF8Q==
+X-Received: by 2002:a05:600c:c4b7:b0:441:b19c:96fe with SMTP id 5b1f17b1804b1-452013841d8mr197717025e9.10.1749564650836;
+        Tue, 10 Jun 2025 07:10:50 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14? ([2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5323b3992sm12497663f8f.35.2025.06.10.07.10.05
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4531febf905sm14161215e9.0.2025.06.10.07.10.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 07:10:06 -0700 (PDT)
-Message-ID: <eb9bd4e4-3032-4f36-94e7-b89ff74bf327@linaro.org>
-Date: Tue, 10 Jun 2025 16:10:05 +0200
+        Tue, 10 Jun 2025 07:10:50 -0700 (PDT)
+Message-ID: <3d576c19-6f68-4f04-b89a-e269c438b339@linaro.org>
+Date: Tue, 10 Jun 2025 16:10:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,8 +86,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v6 13/17] drm/msm/dpu: Consistently use u32 instead of
- uint32_t
+Subject: Re: [PATCH v6 14/17] drm/msm/dpu: Implement 10-bit color alpha for
+ v12.0 DPU
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
  Marijn Suijten <marijn.suijten@somainline.org>,
@@ -104,9 +104,10 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>
+ Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
- <20250610-b4-sm8750-display-v6-13-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-14-ee633e3ddbff@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,58 +134,234 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250610-b4-sm8750-display-v6-13-ee633e3ddbff@linaro.org>
+In-Reply-To: <20250610-b4-sm8750-display-v6-14-ee633e3ddbff@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 10/06/2025 16:05, Krzysztof Kozlowski wrote:
-> Linux coding style asks to use kernel types like u32 instead of uint32_t
-> and code already has it in other places, so unify the remaining pieces.
+> v12.0 DPU on SM8750 comes with 10-bit color alpha.  Add register
+> differences and new implementations of setup_alpha_out(),
+> setup_border_color() and setup_blend_config().
 > 
+> Notable changes in v6:
+> Correct fg_alpha shift on new DPU, pointed out by Abel Vesas.
+
+-------------------------------------------------------- Vesa
+
+Not sure this should be in the commit message.
+
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
 > 
 > Changes in v6:
-> 1. New patch
+> 1. Checkpatch: CHECK: Prefer kernel type 'u32' over 'uint32_t'
+> 2. Fix for fg_alpha shift (Abel Vesa).
+> 
+> Changes in v4:
+> 1. Lowercase hex, use spaces for define indentation
+> 2. _dpu_crtc_setup_blend_cfg(): pass mdss_ver instead of ctl
+> 
+> Changes in v3:
+> 1. New patch, split from previous big DPU v12.0.
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 9 ++++-----
->   1 file changed, 4 insertions(+), 5 deletions(-)
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c  | 23 ++++++---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c | 84 +++++++++++++++++++++++++++++--
+>   2 files changed, 97 insertions(+), 10 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index a4b0fe0d9899b32141928f0b6a16503a49b3c27a..92f6c39eee3dc090bd957239e58793e5b0437548 100644
+> index 92f6c39eee3dc090bd957239e58793e5b0437548..5e986640c8ce5b49d0ce2f91cc47f677a2e3f061 100644
 > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
 > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -323,8 +323,8 @@ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
->   		struct dpu_plane_state *pstate, const struct msm_format *format)
+> @@ -320,14 +320,22 @@ static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
+>   }
+>   
+>   static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+> -		struct dpu_plane_state *pstate, const struct msm_format *format)
+> +				      struct dpu_plane_state *pstate,
+> +				      const struct msm_format *format,
+> +				      const struct dpu_mdss_version *mdss_ver)
 >   {
 >   	struct dpu_hw_mixer *lm = mixer->hw_lm;
-> -	uint32_t blend_op;
-> -	uint32_t fg_alpha, bg_alpha;
-> +	u32 blend_op;
-> +	u32 fg_alpha, bg_alpha;
+>   	u32 blend_op;
+> -	u32 fg_alpha, bg_alpha;
+> +	u32 fg_alpha, bg_alpha, max_alpha;
 >   
->   	fg_alpha = pstate->base.alpha >> 8;
->   	bg_alpha = 0xff - fg_alpha;
-> @@ -402,7 +402,7 @@ static void _dpu_crtc_blend_setup_pipe(struct drm_crtc *crtc,
->   				       struct dpu_hw_stage_cfg *stage_cfg
->   				      )
+> -	fg_alpha = pstate->base.alpha >> 8;
+> -	bg_alpha = 0xff - fg_alpha;
+> +	if (mdss_ver->core_major_ver < 12) {
+> +		max_alpha = 0xff;
+> +		fg_alpha = pstate->base.alpha >> 8;
+> +	} else {
+> +		max_alpha = 0x3ff;
+> +		fg_alpha = pstate->base.alpha >> 6;
+> +	}
+> +	bg_alpha = max_alpha - fg_alpha;
+>   
+>   	/* default to opaque blending */
+>   	if (pstate->base.pixel_blend_mode == DRM_MODE_BLEND_PIXEL_NONE ||
+> @@ -337,7 +345,7 @@ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+>   	} else if (pstate->base.pixel_blend_mode == DRM_MODE_BLEND_PREMULTI) {
+>   		blend_op = DPU_BLEND_FG_ALPHA_FG_CONST |
+>   			DPU_BLEND_BG_ALPHA_FG_PIXEL;
+> -		if (fg_alpha != 0xff) {
+> +		if (fg_alpha != max_alpha) {
+>   			bg_alpha = fg_alpha;
+>   			blend_op |= DPU_BLEND_BG_MOD_ALPHA |
+>   				    DPU_BLEND_BG_INV_MOD_ALPHA;
+> @@ -348,7 +356,7 @@ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+>   		/* coverage blending */
+>   		blend_op = DPU_BLEND_FG_ALPHA_FG_PIXEL |
+>   			DPU_BLEND_BG_ALPHA_FG_PIXEL;
+> -		if (fg_alpha != 0xff) {
+> +		if (fg_alpha != max_alpha) {
+>   			bg_alpha = fg_alpha;
+>   			blend_op |= DPU_BLEND_FG_MOD_ALPHA |
+>   				    DPU_BLEND_FG_INV_MOD_ALPHA |
+> @@ -481,7 +489,8 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
+>   
+>   		/* blend config update */
+>   		for (lm_idx = 0; lm_idx < cstate->num_mixers; lm_idx++) {
+> -			_dpu_crtc_setup_blend_cfg(mixer + lm_idx, pstate, format);
+> +			_dpu_crtc_setup_blend_cfg(mixer + lm_idx, pstate, format,
+> +						  ctl->mdss_ver);
+>   
+>   			if (bg_alpha_enable && !format->alpha_enable)
+>   				mixer[lm_idx].mixer_op_mode = 0;
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c
+> index 3bfb61cb83672dca4236bdbbbfb1e442223576d2..f220a68e138cb9e7c88194e53e47391de7ed04f7 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c
+> @@ -19,12 +19,20 @@
+>   
+>   /* These register are offset to mixer base + stage base */
+>   #define LM_BLEND0_OP                     0x00
+> +
+> +/* <v12 DPU with offset to mixer base + stage base */
+>   #define LM_BLEND0_CONST_ALPHA            0x04
+>   #define LM_FG_COLOR_FILL_COLOR_0         0x08
+>   #define LM_FG_COLOR_FILL_COLOR_1         0x0C
+>   #define LM_FG_COLOR_FILL_SIZE            0x10
+>   #define LM_FG_COLOR_FILL_XY              0x14
+>   
+> +/* >= v12 DPU */
+> +#define LM_BORDER_COLOR_0_V12            0x1c
+> +#define LM_BORDER_COLOR_1_V12            0x20
+> +
+> +/* >= v12 DPU with offset to mixer base + stage base */
+> +#define LM_BLEND0_CONST_ALPHA_V12        0x08
+>   #define LM_BLEND0_FG_ALPHA               0x04
+>   #define LM_BLEND0_BG_ALPHA               0x08
+>   
+> @@ -83,6 +91,22 @@ static void dpu_hw_lm_setup_border_color(struct dpu_hw_mixer *ctx,
+>   	}
+>   }
+>   
+> +static void dpu_hw_lm_setup_border_color_v12(struct dpu_hw_mixer *ctx,
+> +					     struct dpu_mdss_color *color,
+> +					     u8 border_en)
+> +{
+> +	struct dpu_hw_blk_reg_map *c = &ctx->hw;
+> +
+> +	if (border_en) {
+> +		DPU_REG_WRITE(c, LM_BORDER_COLOR_0_V12,
+> +			      (color->color_0 & 0x3ff) |
+> +			      ((color->color_1 & 0x3ff) << 16));
+> +		DPU_REG_WRITE(c, LM_BORDER_COLOR_1_V12,
+> +			      (color->color_2 & 0x3ff) |
+> +			      ((color->color_3 & 0x3ff) << 16));
+> +	}
+> +}
+> +
+>   static void dpu_hw_lm_setup_misr(struct dpu_hw_mixer *ctx)
 >   {
-> -	uint32_t lm_idx;
-> +	u32 lm_idx;
->   	enum dpu_sspp sspp_idx;
->   	struct drm_plane_state *state;
+>   	dpu_hw_setup_misr(&ctx->hw, LM_MISR_CTRL, 0x0);
+> @@ -112,6 +136,27 @@ static void dpu_hw_lm_setup_blend_config_combined_alpha(struct dpu_hw_mixer *ctx
+>   	DPU_REG_WRITE(c, LM_BLEND0_OP + stage_off, blend_op);
+>   }
 >   
-> @@ -442,8 +442,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
->   	struct dpu_plane_state *pstate = NULL;
->   	const struct msm_format *format;
->   	struct dpu_hw_ctl *ctl = mixer->lm_ctl;
-> -
-> -	uint32_t lm_idx;
-> +	u32 lm_idx;
->   	bool bg_alpha_enable = false;
->   	DECLARE_BITMAP(active_fetch, SSPP_MAX);
+> +static void
+> +dpu_hw_lm_setup_blend_config_combined_alpha_v12(struct dpu_hw_mixer *ctx,
+> +						u32 stage, u32 fg_alpha,
+> +						u32 bg_alpha, u32 blend_op)
+> +{
+> +	struct dpu_hw_blk_reg_map *c = &ctx->hw;
+> +	int stage_off;
+> +	u32 const_alpha;
+> +
+> +	if (stage == DPU_STAGE_BASE)
+> +		return;
+> +
+> +	stage_off = _stage_offset(ctx, stage);
+> +	if (WARN_ON(stage_off < 0))
+> +		return;
+> +
+> +	const_alpha = (bg_alpha & 0x3ff) | ((fg_alpha & 0x3ff) << 16);
+> +	DPU_REG_WRITE(c, LM_BLEND0_CONST_ALPHA_V12 + stage_off, const_alpha);
+> +	DPU_REG_WRITE(c, LM_BLEND0_OP + stage_off, blend_op);
+> +}
+> +
+>   static void dpu_hw_lm_setup_blend_config(struct dpu_hw_mixer *ctx,
+>   	u32 stage, u32 fg_alpha, u32 bg_alpha, u32 blend_op)
+>   {
+> @@ -144,6 +189,32 @@ static void dpu_hw_lm_setup_color3(struct dpu_hw_mixer *ctx,
+>   	DPU_REG_WRITE(c, LM_OP_MODE, op_mode);
+>   }
+>   
+> +static void dpu_hw_lm_setup_color3_v12(struct dpu_hw_mixer *ctx,
+> +				       uint32_t mixer_op_mode)
+> +{
+> +	struct dpu_hw_blk_reg_map *c = &ctx->hw;
+> +	int op_mode, stages, stage_off, i;
+> +
+> +	stages = ctx->cap->sblk->maxblendstages;
+> +	if (stages <= 0)
+> +		return;
+> +
+> +	for (i = DPU_STAGE_0; i <= stages; i++) {
+> +		stage_off = _stage_offset(ctx, i);
+> +		if (WARN_ON(stage_off < 0))
+> +			return;
+> +
+> +		/* set color_out3 bit in blend0_op when enabled in mixer_op_mode */
+> +		op_mode = DPU_REG_READ(c, LM_BLEND0_OP + stage_off);
+> +		if (mixer_op_mode & BIT(i))
+> +			op_mode |= BIT(30);
+> +		else
+> +			op_mode &= ~BIT(30);
+> +
+> +		DPU_REG_WRITE(c, LM_BLEND0_OP + stage_off, op_mode);
+> +	}
+> +}
+> +
+>   /**
+>    * dpu_hw_lm_init() - Initializes the mixer hw driver object.
+>    * should be called once before accessing every mixer.
+> @@ -175,12 +246,19 @@ struct dpu_hw_mixer *dpu_hw_lm_init(struct drm_device *dev,
+>   	c->idx = cfg->id;
+>   	c->cap = cfg;
+>   	c->ops.setup_mixer_out = dpu_hw_lm_setup_out;
+> -	if (mdss_ver->core_major_ver >= 4)
+> +	if (mdss_ver->core_major_ver >= 12)
+> +		c->ops.setup_blend_config = dpu_hw_lm_setup_blend_config_combined_alpha_v12;
+> +	else if (mdss_ver->core_major_ver >= 4)
+>   		c->ops.setup_blend_config = dpu_hw_lm_setup_blend_config_combined_alpha;
+>   	else
+>   		c->ops.setup_blend_config = dpu_hw_lm_setup_blend_config;
+> -	c->ops.setup_alpha_out = dpu_hw_lm_setup_color3;
+> -	c->ops.setup_border_color = dpu_hw_lm_setup_border_color;
+> +	if (mdss_ver->core_major_ver < 12) {
+> +		c->ops.setup_alpha_out = dpu_hw_lm_setup_color3;
+> +		c->ops.setup_border_color = dpu_hw_lm_setup_border_color;
+> +	} else {
+> +		c->ops.setup_alpha_out = dpu_hw_lm_setup_color3_v12;
+> +		c->ops.setup_border_color = dpu_hw_lm_setup_border_color_v12;
+> +	}
+>   	c->ops.setup_misr = dpu_hw_lm_setup_misr;
+>   	c->ops.collect_misr = dpu_hw_lm_collect_misr;
 >   
 > 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
