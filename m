@@ -1,54 +1,96 @@
-Return-Path: <devicetree+bounces-184102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C99AD2FF4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:22:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 480AFAD2FA2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 10:13:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B627172896
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:22:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 064ED3B468C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 08:12:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A5328A1DA;
-	Tue, 10 Jun 2025 08:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42342820C8;
+	Tue, 10 Jun 2025 08:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SSHuZ3nc"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="HP00iorz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06496289376;
-	Tue, 10 Jun 2025 08:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C881628033F
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 08:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749543537; cv=none; b=TNwY1v5BY7mLJWgYdP75lmhWH/94siKf+kyKVRzxCDpsP3c2nJDoumyzmkPpfMoXzUyFi6KO+c2mPu4DqIbSJn19gnspm7XZWwn/+6p+BOVEqvb9IlpYlPNLbblhURZ7/78tfxEbXz9qQm1+Jwl5vw5m5pueyz3fMwn7L35ISzE=
+	t=1749543129; cv=none; b=rEVnPT1J8eA/MFK3XWQloLLumjLtj1H99eDUXGKa5MKfe2weHuOiDIxHJji9BRX7/cYV5Q9uEcCCQPQDWJAxSo6fBgvINrpJtGa9ArCQbh97WP0E0ZUWqjbBx7glWa6Ji76A/PHEzzM2vdBFUWpurMYXDbGsWZKLntv2yb0iXQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749543537; c=relaxed/simple;
-	bh=TYmhhQzdL/cD2JJdewLa/1qf8twd/OUcCt86/tJZJdc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hUXU83x0abDNyicntGCrNyKGooZOV7EjBD78e33pWiqt2tXEZtCO2kaUV4Nn7MGjQfQF3OU4F/JGXicwRaQspubGeTX3WIGGxElsf5hkMXCqz+Ep9FHv4costShfnNe0rce0cDbr8MmjtJX1X1WMHnmiDNAjl9DhDUlgKd/c2Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SSHuZ3nc; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0F2F444281;
-	Tue, 10 Jun 2025 08:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749543533;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ywh2RgVGTSPBCH7D9W/NIFmHWpb1iZOWNtwG6KvDLXs=;
-	b=SSHuZ3ncUpsCa/w2l/NCRfZs9GzjTfgfAGYvaXTW5mlDPY1zw2YQ36BfVDaSd35gg5zeEi
-	Q3tBI1qAId8OprBzbEAoPaNWzP1VFJ/uk2f1IlQMDLP+9G3HP3lFqJbGKF76K+fMWtbJ5j
-	g1e/fvT6sYMVsGtX8c1ijGo8mLQPeJ9RErD1geqtFfWkiGEgVlfYajW4DQzKLPHZkOJ+8h
-	m+lZSyPKR/Fj+KZAo9LJM26IF5JfYi752S4Em3aBGVqu3ZJ5Z9xbjnK6jk+r+q8imYbhQY
-	uxVXGUTbQ3F/cuf2T7WXX3o8obxp1OlY9O2fhG47auSOtqJlq8GIF2JtJf8hsg==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Tue, 10 Jun 2025 10:11:47 +0200
-Subject: [PATCH net-next v13 13/13] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
+	s=arc-20240116; t=1749543129; c=relaxed/simple;
+	bh=LlCBFvgGHBbep8sr+0DAiL37oJOemIk9HgQQlbWJ7yU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bdexS1hJXqvgMUUiNko+hkeedrSELv5/qMD2HL+8vUjgFu45+4oQ1JGOShK7GDPZbVRhA0eR6UkTVnssdAvG4gmxZ03NxSBjVNfWJak4U/aG0GtSHP6kDb2j5uOdBUC6crRuz/81SDqrSh7PFQ2gZvBae/9PRr4YFDd3ezISoDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=HP00iorz; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-451d3f72391so66921105e9.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 01:12:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1749543126; x=1750147926; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gVpJs8S/HjaMxfZMJXEcmbSoaRFUt+5llRjDdfcTQ0c=;
+        b=HP00iorzToU/HqO+E8upO545HFBDrKqsemL2rKKKi3IW2Yeq6ydAlbjI5zwBLY9L1h
+         UIjPZMcgQ8DNgfXW1wn08okr9o5QVDJSr+nT9kdWLL/smwmu30hlOf8ZJilPOZpCg5Q9
+         HBgfi457yUqdwlBxR8JmCjuvLXyvcGTHSSwL4vmfod2sZRGOW14VT9E7K7ROigbI/AKF
+         AGEpF75qacc5I33ZLSdO6vMp7S8u0wQgcHzqiXFmUMb3h7dMoLTIFQYD+A8XTHcFRPWa
+         PC9pb3zXb1ArGXuHoERGEJskM4P6NHoQTQEtXDgiBr+vOGRRMs+fSWPeJfm5DfheA61H
+         lBXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749543126; x=1750147926;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gVpJs8S/HjaMxfZMJXEcmbSoaRFUt+5llRjDdfcTQ0c=;
+        b=FYYo5x2+YyUjR54xV9KN2nNjz4TbIyVJeQjVTP7MrsWvl+TwaxniU4EwYk12mFw9uj
+         k8ZZhfvP6FJ4b+sdtYvrUHnFI6TeuVGmmTRXhBlxTCz96miauvJgHGMS5Z6uOXjSqnZp
+         GhXSvFPzLU0hSJmLjTbJRUUFcpEFQt+b2f7W4vWnnbkQ9YqzsJSYgiwwQ0lPIpMw79vj
+         2IZUL1pjcmewyAjUcIGaZB/Xq0qHo53fAUyAA2s39wCJ0HrMc8R4UJ9gQ3nFM6Z1+LYZ
+         M/L3Vqb8SZZBk7OmIw6bIquTWCOlK8n+6BDwtfo8O51sjdVVs37xrJ5mgHpj77jjnDlh
+         diFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3LnjR8i0nm4JCYUkl/Mnj3FPq9MZEs4B2EFw0UzpogFrDp2HOD1evDhpwwbwdBwlffKHLrEdAH7dl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHc2fY3cU/YQqm4c+xq40G/+wFo2jwWicAL3ssYdoN7ku0U26C
+	OPDsAGfROuomXFJBVmeP/fX7aHcQ2FKHLV7fDLac8sEfq+jkUOnWY4KdjyH8mMQwKHNGo9/NtV6
+	8pjHC
+X-Gm-Gg: ASbGncv2CAU62Z585j9Y5ntuxFkgXD0vVHUVuzAxTur1alEsCxdwpZ0Kto77P3oplVr
+	n3qUKzYn2b5aIgmrCLGqhE2PwW/ZnKYpOeLTWfIFb8fEp5Q11vJf2rNBhywN1bmeNRvy/qR801b
+	0Jl8l+CCoWHnb1JfTNNM/cXy/kgxmKjUQwFui6U90yycqJBDFXhPmwMCE8gWss0MNPWiq3bBPGk
+	kCTD4WQjZBAC2Hpfgiltu+qTaz+2vMet4D/AUatv0Eqt1j9UCQAwts73XlMyi0IgWbAePSZCKUr
+	fQ2LPY34UpN/vj2d54UOoWVgh+oqpmPmYuKhivEGbzc6JINUHoO9yPiilys5
+X-Google-Smtp-Source: AGHT+IGqKuY3Cpizdlhx4JXiy9x4C18UAtODglyX5DLPCu5C90go6V8r9W9aiiWBn1UaTTcmkgTekA==
+X-Received: by 2002:a05:600c:3e0c:b0:441:b3eb:574e with SMTP id 5b1f17b1804b1-4531ce6e9camr20957955e9.5.1749543125773;
+        Tue, 10 Jun 2025 01:12:05 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:4d:e52b:812d:eb7c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-452730b9b3esm130838565e9.25.2025.06.10.01.12.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 01:12:05 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: gpio: convert gpio-pisosr.txt to yaml format
+Date: Tue, 10 Jun 2025 10:11:53 +0200
+Message-ID: <174954311120.28634.7991564107488098129.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250522223742.516254-1-Frank.Li@nxp.com>
+References: <20250522223742.516254-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,98 +98,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250610-feature_poe_port_prio-v13-13-c5edc16b9ee2@bootlin.com>
-References: <20250610-feature_poe_port_prio-v13-0-c5edc16b9ee2@bootlin.com>
-In-Reply-To: <20250610-feature_poe_port_prio-v13-0-c5edc16b9ee2@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-8cb71
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddutdeglecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvefgvdfgkeetgfefgfegkedugffghfdtffeftdeuteehjedtvdelvddvleehtdevnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgepleenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdekpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopeguvghnthhprhhojhgvtghtsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrn
- hgvlhdrohhrghdprhgtphhtthhopehhkhgrlhhlfigvihhtudesghhmrghilhdrtghomhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add an interrupt property to the device tree bindings for the TI TPS23881
-PSE controller. The interrupt is primarily used to detect classification
-and disconnection events, which are essential for managing the PSE
-controller in compliance with the PoE standard.
 
-Interrupt support is essential for the proper functioning of the TPS23881
-controller. Without it, after a power-on (PWON), the controller will
-no longer perform detection and classification. This could lead to
-potential hazards, such as connecting a non-PoE device after a PoE device,
-which might result in magic smoke.
+On Thu, 22 May 2025 18:37:41 -0400, Frank Li wrote:
+> Covert gpio-pisosr.txt to yaml format.
+> 
+> Additional changes:
+> - Add ref to spi-peripheral-props.yaml.
+> - Set ngpios max value to 32.
+> 
+> 
+> [...]
 
-Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Applied, thanks!
 
-Change in v5:
-- Use standard interrupt flag in the example.
+[1/1] dt-bindings: gpio: convert gpio-pisosr.txt to yaml format
+      https://git.kernel.org/brgl/linux/c/08894232efa4b53e7cd064450a6d444b92ab24ae
 
-Change in v3:
-- New patch
----
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index 116c00f6f19c..d0b2515cfba6 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -20,6 +20,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   '#pse-cells':
-     const: 1
- 
-@@ -64,9 +67,12 @@ unevaluatedProperties: false
- required:
-   - compatible
-   - reg
-+  - interrupts
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -74,6 +80,8 @@ examples:
-       ethernet-pse@20 {
-         compatible = "ti,tps23881";
-         reg = <0x20>;
-+        interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gpiog>;
- 
-         channels {
-           #address-cells = <1>;
-
+Best regards,
 -- 
-2.43.0
-
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
