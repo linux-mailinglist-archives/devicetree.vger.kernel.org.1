@@ -1,99 +1,108 @@
-Return-Path: <devicetree+bounces-184460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6369AAD4137
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:50:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A06AAD4147
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 19:56:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B7D4189EFC3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:50:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 297773A75EE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 17:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC61A24466A;
-	Tue, 10 Jun 2025 17:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DE4247289;
+	Tue, 10 Jun 2025 17:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="AkXZAxeS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZoWifYh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4909A218EA7;
-	Tue, 10 Jun 2025 17:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2CB8245027;
+	Tue, 10 Jun 2025 17:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749577800; cv=none; b=E8kvPDtxbOA8qWONsN2IZrfmCyg8yL/pUBid49nQkU0GU/8edqHdMOkOT/4qNcQmd8JmtpoXvYUM3NgVilqs1ESql0QiUVeJEfrq27W1OMkYS/Eb0aciBZ0WV75s3rzua1W4scrdf0Rsu3G5ImLy0dc89UrFeSSpy7k6JlLbyMs=
+	t=1749578118; cv=none; b=nkdfuYUrrerNubv9JrLWViL0jcGv+Kmk5Id4/MfZJHGQinNNZwZJKvm/eq7mL0lh8JCBviA5pUnMBwYR2wFBnm5LIA1G5CYzAjnfr0XxOOdCkiJqSfG7N3U+lXVb1c9vCM5F2gHGoY0EFzFc3UDqjAQT9DtsAHHBL2uZh8KD5Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749577800; c=relaxed/simple;
-	bh=pU2TVlS9NicsYGkGcp7LE0teQgsE61GXl4hYMMJ+Hso=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pW57sQtVknO4IK++Hqnc7dsgd5tQRc9irwOVnzhxFUhtBKWD0/ARu0IB3GemmlFApqfZIL5H4Nwvb6AVBrpp5evXBJd7zzrzr9i0nhF2SpHnlhM8xMHWmRFKbezwRNdhJIpG8lqqyrXT2Ydf0pPK3LnPTnj5rX3Yx5riqFxGy50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=AkXZAxeS; arc=none smtp.client-ip=192.19.166.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 92749C0000D0;
-	Tue, 10 Jun 2025 10:49:58 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 92749C0000D0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1749577798;
-	bh=pU2TVlS9NicsYGkGcp7LE0teQgsE61GXl4hYMMJ+Hso=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=AkXZAxeSTF7vkZR2y2qGfiH1/j1xhYv3XH6G6PCpaiOwgXhtvDdLNNarmnqkvPYcP
-	 5R4IvqyCX/R0/DS/36bP4NMWzORddlzJQxxSWVeQDyGXkF5wfh818a09O1OkI75v/6
-	 kBXBqw7waXQTwL5EPZyrN+BHjYldOFEOsPatHggw=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 6DA2018000A5F;
-	Tue, 10 Jun 2025 10:49:58 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1749578118; c=relaxed/simple;
+	bh=qDMlj5Xw4H0umu922A8fBL2sbekOqw18yJyz9IeZPP4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=usAgzfK/8jlRwvjUe7CR62OMslJhmHS5AC/jtcUveRuta0SL0dUeM3g+cb2GmlDt81FWkIaBxUBn6IKHZmZTHfcnxXlUG/MF+G0QmUL2IaQQCvxZwyaOsIidANH9SgIrIzQs3+FetH9jEOiEllASOUxmuHo0fdJWg7HN18jSRWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZoWifYh/; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-74264d1832eso6652290b3a.0;
+        Tue, 10 Jun 2025 10:55:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749578116; x=1750182916; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qDMlj5Xw4H0umu922A8fBL2sbekOqw18yJyz9IeZPP4=;
+        b=ZoWifYh/S7gTYpJB1awh80lAKTV6mWRjbrY/TZTAtbnju+Oib7U+CeLuz5xAhZp0ep
+         h4xa0UXJLUlgN/0VARp05RqRNe7EBNw0EY76Zczk1TnIW63OZO/lrXyJ/L6JLNCHxcQW
+         JQLnjSKXBkTF9EabTT67XCfr8uu8YRiiYJOI7pm+HzoaSMDRq93NvDHTw6YF2gXbFI6S
+         apFO6BqTz1KDnOuEOLfvzrrTWDtZ/SUT4N8a4QyeinV1PiLhV8uDnUU0f2PJAMkqpVLi
+         82uKGopJwJkL5i0eyQn7dgmfWwhWprAUzD+VesGE6hUUZA7y4ftM1pvA2ZE9KywMylL0
+         0NnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749578116; x=1750182916;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qDMlj5Xw4H0umu922A8fBL2sbekOqw18yJyz9IeZPP4=;
+        b=Sbokp7rKm68gMaG/iaW7859ahChR07DX94bGax45SeOomJnnGgVyWtpmZiZ2N++yid
+         /HpSjuD0NSsr5HGhqfsfZiBKuWU0KhPqRoW0kx8j5J7cFs/nsryzdNYNCRIf0QIUIJrf
+         PP1AwdpQLzVBB85xMHgjKr9DYZwsSlGoOYDSOXQcWH+lj8iX2hZ+FWXnBVqEYtNB1VWa
+         ZZ4pqqCRBK+UhOQcDhGQW0pPlXREhY1ZBzGiEPaY44NiJdOwmjFxqjaXwL5rH9YB0HmY
+         bYjWOWQUp04wHQDOoxpRAJLSuzWO+RiKLUHhE7Mnml7Twn0u0y69MHD9iTrl1HlPgMJG
+         xPsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlujOJOD301CSb9H5YdGDwwN4/uyclWu4z67aaCyX1VfqXq+jAbiCMX/Lm4QnbgzkxdmOfjquQG20QWw==@vger.kernel.org, AJvYcCVje0J2pF7xxJi7sOsPTtOWqr6JudbC2fcLtIVRxsSjLCQVC8qJA0509WFQWD0jDEX3D+C913k77Xbsw022@vger.kernel.org, AJvYcCWp9eGtEAYHjanCJtw8mXvkL7BfYdfHDXNJdyEAXPSDQX0sXK7BfW/c4Bjh3uy9nHaS3JCUkBgroz+w@vger.kernel.org, AJvYcCXa90V7zcjQjnJVUmriIBiqHTlBaP+teuJS0mtzVTj5RmPFOBvCf5vHHhXz/TRZ5NDsP8fknBQwE6fI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxC6/QJU3u587c7PM7Z8UCcPq1FQHheoV3+rWCae/EE8eX0DbO
+	VwyFU5PlOAQK/ZzXmSMJCdt3V86UyiAyPB1utskeHR3ySpcv4u9ZDTRFMmGAcg==
+X-Gm-Gg: ASbGncuIL3IiWop+kuHqWBIs2zcbHKywNF/8oLrLUQTn/DnBFHOEvPP8Nk1FpDlgEWM
+	u7ArLvl35Po/cl8gjSZgq/7EIAHHFyoEQV9kZGdxZ/Ehq6tsmQELYeEEg0xVRQpG1F/yKVbOD4S
+	xSQyOuXwXHhw6mPNtAMRUn0Pt10FQkC9vgO2nQeAp2l1uyIClvjVXRkQW0KfK+3eMVDvW3rbm6+
+	EsupXbK8FhyLgPgHxHmiJt91HaWlgM7pozSBTkFZhwRaCaduWVcd+7NoXkwLx0oex851CRg/CAz
+	J6mMScQu9BogtmkDbemv3IBuIOHIuWLRlnH/VP9ZFsFGnH4ElyzNtxkc8UL6jn7MznxbYGAM
+X-Google-Smtp-Source: AGHT+IH4M22F32APFBMSyxLZm9HztQBxbVHDL1fBimHA12si69nFzdQCqAyTKoXcuIQbMRRAbOwE1Q==
+X-Received: by 2002:a05:6a00:2e07:b0:746:3200:5f8 with SMTP id d2e1a72fcca58-7486ce55a9amr541548b3a.22.1749578115873;
+        Tue, 10 Jun 2025 10:55:15 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([42.113.163.91])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7482af3aba1sm7725343b3a.33.2025.06.10.10.55.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 10:55:15 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: pavel@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: broadcom: northstar2: Drop GIC V2M "interrupt-parent"
-Date: Tue, 10 Jun 2025 10:49:57 -0700
-Message-ID: <20250610174958.3482215-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250609203705.2852500-1-robh@kernel.org>
-References: <20250609203705.2852500-1-robh@kernel.org>
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 0/4] leds: add new LED driver for TI LP5812
+Date: Wed, 11 Jun 2025 00:55:11 +0700
+Message-Id: <20250610175511.186473-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250610174319.183375-1-trannamatk@gmail.com>
+References: <20250610174319.183375-1-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Please disregard the mistakenly sent patch named "[PATCH v5] test"
+— it was sent in error and is not part of this series.
 
-On Mon,  9 Jun 2025 15:37:04 -0500, "Rob Herring (Arm)" <robh@kernel.org> wrote:
-> The default interrupt parent is a parent node containing
-> "#interrupt-cells", so an explicit "interrupt-parent" is not necessary.
-> 
-> Fixes these dtschema warnings:
-> 
-> (arm,gic-400): v2m@70000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@60000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@50000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@40000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@30000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@20000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@10000: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> (arm,gic-400): v2m@0: 'interrupt-parent' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
+Apologies for the noise.
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
 --
-Florian
+Nam Tran
 
