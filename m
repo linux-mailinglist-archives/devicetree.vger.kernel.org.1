@@ -1,201 +1,162 @@
-Return-Path: <devicetree+bounces-184476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559E2AD4220
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:43:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3ED9AD4259
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 20:58:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024B318813A0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62D33166104
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jun 2025 18:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2B0248878;
-	Tue, 10 Jun 2025 18:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17FF256C88;
+	Tue, 10 Jun 2025 18:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="LD3JVty0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UvZQfX6/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0541F24679B
-	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 18:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748C520A5EC
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 18:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749581008; cv=none; b=WTlJxzC07edMvvZpHnsQlnQ7DWHnCbE6/j5ZP+SOC238zP4glue2373NRvgBbTgtJ5qIZbOQECx2oUK0h3Mvm4Y7GcnC+LGYk8teV3LDRfGDdBrbxpTqcdIrlIMgo36HzAK6C+PelD7bEVhEVhBDTFanR/sOXzy/jufgGg1Gq8M=
+	t=1749581875; cv=none; b=E5M94nHrZw4R07AB/bpxoTBCOzdiefapoQH62u1FRqZxbBs6X9OSh8wa6fsMPfxv+8DUtDA77iBxC4OPKFojqWf8MVPHGUPGCpGH43XKuMtLgsOvbOs0dg+m4dVzDqHpaRuejbBbxrYm9jh7Nlk9vCJ2e7tnJIooX8wX5TMKwbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749581008; c=relaxed/simple;
-	bh=H0nK1yRH6Fa3Tpm4vRAHHO9zV6GTdkLWgIgRr2wQc7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I4TGZuMkUKsLY0qZGRZE86gIVnaVxs5md8Xxa0Nqx2OjlHdM3PkuwrO+SOHwEHaZcvhOU/uFFp7Jqpcyi4gPU7JOVf7W587oi+iC5vLdMHw+A8eb/eBSJnptC6HRjDg6F+QyzZBDJUKPdjuVvwacsh8myi7FdWsDETFdnvjbSV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=LD3JVty0; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-235f9ea8d08so47152225ad.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:43:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1749581005; x=1750185805; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+lDJBueIA7ygqvnNMLa8xo7uOqi0/yR422aJm+FXmc0=;
-        b=LD3JVty0lsBLuy+zhnsT0bIMIanQeynuH7h20UEjG7957+twFBvXQ1FCG747DP7007
-         EYY2ZC09Xw/OAme9HWMzvYgCi5FSti1/IZXz/U20/7SU+4tAB6QrP7Dun5r0AnQ6pL/g
-         24Y1PZThmqrgj+VLJKCU0LSq6GNdlb8Z459lqV2oYIFeqStXNE377ysONghrHbu/LDvX
-         t9zP4tlVnNQKs1C40dJVnn5/scHXOCQ/zWFi7getxDW9i+PJr2pfboz5uLgfJNZIUc1h
-         8Wwj55mZ/i4NIqA36c945RbmysTp7DjQTbN/VTgeZL55ezCBBmAeeAkdtVRQDy9mFBJt
-         XJng==
+	s=arc-20240116; t=1749581875; c=relaxed/simple;
+	bh=OHkRo8FvD4elBOPDQqurUw3uyz5hZ0e8dTn8vLmfrJM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d/1dlgkSeIAHHWwlo1COR4M7WQJbSPRfWKJM+gfISA6oNzh/LLTqxJkJdxiq2MfYecRyhVONNQB3KD4H5PdegN6jb99s9/pXIDJ8+gaBiJ18ZkrqHpz5t1xgUQSwArpZAEVFGkr7S+PK4kRbz2/atrofGTYKHGFH8MWaPxOe6Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UvZQfX6/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIPxh9003172
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 18:57:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yrN1HUZD6Bynbfi5bC2hLc7uKiSyjY36xQNKue8CeUY=; b=UvZQfX6/cSgx18Dd
+	lvTE6esc8Ims4sjnSW67RQsYweRHZRelc374HhxEwhyRhjSUL8cnNtwLbPo4sSPr
+	6mKAO5mE4yN3xGDIq/seQxrc4zENSJLkW7Xz/lg+QYGc9unwisjXPDfpQTtHgkvf
+	9JsybKdR9V68ijniYzNTG3zOxhnGbypOx38pgX5to0Evuh56LKtzIrSe5+dltFQk
+	cLBq1jgc/vjOiRHEfBs4VQwnd8AkbukSZ7k9VOHs2V5CUW/aJR0dZt/eXYT7pQ3q
+	AmkMciEr1Te2jpQ+eYmgX1D9LJNccY+8g/GZvGSMCS8GGXJlOc2zn4u3pEsaaVTH
+	jusFRw==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 475v2y5cab-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 18:57:52 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c76062c513so103197985a.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 11:57:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749581005; x=1750185805;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+lDJBueIA7ygqvnNMLa8xo7uOqi0/yR422aJm+FXmc0=;
-        b=DHn272olFZ8aa6lwiU43H5PDuVMM0tI/f/re2hTwdE+DmtT7KZTn3kSOTinSyEq8XV
-         OEj5NWVdTweCmVrwevKUw1qdPm57F0uNryCvxO6tK/xBMFxuTO+EDxhZB3k0G7cmC9Tz
-         9er+LxM9qQDAhJyWWQStO6tA5ft0jMuXIbmaIK1qOSaUX4nPNH8Mcjwb06UeSD406gY/
-         awFSQsytDcUXH955rcCinf4jv5Z8QNPlp5RO3Za0x1bu81NcISEDenxt6SBiTa5YNJLX
-         iAgz2ibEY2DZru/GKDsAKiOPAlMW3J6UAXhXbGmPv6NixIEyRqeVYa9yijJZbMyFahsl
-         vS4A==
-X-Forwarded-Encrypted: i=1; AJvYcCXwp+Ip5FiDNgDBDEKxVJ8g0WO0PsF1URZtM7BW6W4rmIg3yALsGqlasOtU/qFXlpNuG1SkrTl3YKYT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/drzJNcqaJzhllzv6ze3GBQ6DoqOaGWf1PJ8QuJfAABNgXS4P
-	wFMI3VYsh3v7ADg1Tzj6U5NEAUWwjbjSHTZGclNqwvhEMZBtD6EHYON/TDLofzyUW/s=
-X-Gm-Gg: ASbGncvYs6zUlqD6j4tsGHPNodgn9X9G4smSc1uWO7+GFnjufME0whY5hmwFuTwxgF9
-	1eMle2PkdB/yr4eL4CKrfbAvKRSlP1FZ0RepchGBUdG8mBoervzTlnT87QlZjQ/ssJKFK7nnGsW
-	r3F815LyQEIyrh9XRjP+wyeJMKpaIFGuRy2ApVgUdIxR1FcY/ONywUTDmDkHFp8fUsBSD02yqeO
-	AQst3pOiITt2zyYOu0gVPZ3vlNe6KvD5j3PC+L27aQQiqCp+7bDrvmvd83rKpSWZQxpSxFtmM+b
-	2HhicKDKbpuKymIIfyzVbjvoTWPpzo+c68NmgBlnVB0P0JmXWdDygEbHuPwohsEme+UY3c4xvQ=
-	=
-X-Google-Smtp-Source: AGHT+IFsZ6Fe4BO0DoFerKCZiwMbhqQEYzPjvBgPPWjLKuOTaxg2oQ5N+H6uSTtx1zCOgQ7bs75qKg==
-X-Received: by 2002:a17:902:d586:b0:234:d7b2:2aa9 with SMTP id d9443c01a7336-23641b1aa38mr4058485ad.29.1749581004938;
-        Tue, 10 Jun 2025 11:43:24 -0700 (PDT)
-Received: from x1 (97-120-245-201.ptld.qwest.net. [97.120.245.201])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2f5f66a977sm7190114a12.43.2025.06.10.11.43.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 11:43:24 -0700 (PDT)
-Date: Tue, 10 Jun 2025 11:43:22 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Ira Weiny <ira.weiny@intel.com>
-Cc: Dan Williams <dan.j.williams@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Dave Jiang <dave.jiang@intel.com>, nvdimm@lists.linux.dev,
-	Oliver O'Halloran <oohall@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3] dt-bindings: pmem: Convert binding to YAML
-Message-ID: <aEh8yq/PVwEZ3980@x1>
-References: <20250606184405.359812-4-drew@pdp7.com>
- <6843a4159242e_249110032@dwillia2-xfh.jf.intel.com.notmuch>
- <6846f03e7b695_1a3419294dc@iweiny-mobl.notmuch>
- <aEeUInXN6U40YSog@x1>
+        d=1e100.net; s=20230601; t=1749581871; x=1750186671;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yrN1HUZD6Bynbfi5bC2hLc7uKiSyjY36xQNKue8CeUY=;
+        b=ajpvs8Ddf4MLcTy+9tx6LoG9cVQoYMqIVVofcaiptd8bc5lLZbp4Y3bf8P2ACU7+Og
+         JMwPwceOlNX8Gy4yV6NSdfk3coxlrLevVnXvQw8R1J7KmiqBOIkXaz8IXjI9JItukz8t
+         y1Wb8pLLkyrX2WMqcr0ucWZ2w/KPEBoEaoYMEFxLxk+N3Za3m0wZdD8KHGwCyZVnd9hK
+         upRIFsc6V9d7Npk6IEChZ8PtFVFCgXqsKBDtNv1vPXjHTXJKOv4FousGfFeEISd98eW+
+         zBpB+EgD7wk8NVgoWA8lR4Bbi5k5qyJDyBMkmV+oYIYT6CrG6lbC3AXKXOvifbtE/beE
+         oEIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVEnZHqZkfvqKoLHLPNrlcXajwJnFT9pjvHrqxwu6peC8qsvKTVMJcRJrem/6k5F7YCH5hEvOuW7IBA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwljtQe+PjsV68kttT5Zmlc+wD1ECRq22LFDksvbo/LtNLeidR6
+	0uLD8S7heLKH8/9A8xg17jaY2pzTwRPOZMSXkDTfGnECQhyGA7eELUyGVjLKNDQ7yE72Je/H6o7
+	K905cAUnbZpMJloUXCXgRpETtiRqRN2QpOUZafi29o58WkJxS4pJThT2bOzHwV9jA
+X-Gm-Gg: ASbGncvt5kr9xFWqTSEYvZiXTneDqKBt2aCQmqwvcjKx19nZdl06qzQB2xUKqgB1tiL
+	YzgbmtoCq9oECVuA6TaHJAQKmXcw4Stp40OLl4PRPT95IOXVO51j/uKMzYgTrvXFZ1AbtFJPsk1
+	kM6auoombgvsM+iZoxUKl8Uv53dy9qbND4hwAsHZAg3W8bQDi8id+jtW6UIImUmAfbeQ5w0IQSy
+	LyvNw5pZ00yV5SQSmbJArFSSGAbJuW17Hhug84o/q7X+jLmPRF/mbUMtW/Ek3TdYUUg5+fXW57e
+	gqjEMqXWOsYR/wM+9ZniwLNVlsAt1idOjkgO4UyW1u6aqbBmPOHL1TrJ61+9V9jRxLw5pkixIUF
+	EHWs=
+X-Received: by 2002:a05:620a:2a0a:b0:7d2:2019:c14b with SMTP id af79cd13be357-7d3a884427bmr28136585a.10.1749581870535;
+        Tue, 10 Jun 2025 11:57:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFL9+1OgozdcD0e49HSLFtrscbL8pflDN77oeih/OFQ2Al80bPXOe/82xvA4uxsalTvF4826A==
+X-Received: by 2002:a05:620a:2a0a:b0:7d2:2019:c14b with SMTP id af79cd13be357-7d3a884427bmr28133985a.10.1749581870126;
+        Tue, 10 Jun 2025 11:57:50 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc3a4absm774105366b.143.2025.06.10.11.57.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jun 2025 11:57:49 -0700 (PDT)
+Message-ID: <38e161a2-2f93-4042-9db7-50559ad5f381@oss.qualcomm.com>
+Date: Tue, 10 Jun 2025 20:57:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aEeUInXN6U40YSog@x1>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974-samsung-hlte: Add touchkey
+ support
+To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Adam Honse <calcprogrammer1@gmail.com>
+References: <20250419-hlte-touchkey-v1-1-9d93c3e2b31f@lucaweiss.eu>
+ <1e7afaab-e050-4376-8dde-07f09fb01e51@oss.qualcomm.com>
+ <28770566-ed85-4c8f-b01c-c4c14efee743@lucaweiss.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <28770566-ed85-4c8f-b01c-c4c14efee743@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEwMDE1NCBTYWx0ZWRfXzi00R9G83noN
+ bJzwPwUwqvyqR0Z5sUDNlBqmwx5acdLCvzt1+EBN0/QBZFqHeJilGuWZ2HN8Z+ynPyykyH/uStl
+ RqeCF89uIKulPNUnQcqhDb+pizqDWtXnBhYlPILWBePF5dDMEuvLgeJjXKMnoYxxkOkItICaq3F
+ RqD8pWTh5wEL2+zCyMKVC2OTcFqgEE+Ot/lj1ZJEN6LG4/ITHKMBer31FOAwvztFadwu35vGaoF
+ m1IGVC+RrkUf94HZFph+cC/nZABhCIf1hi73js7FoBlQBLj560QgZREfNf0kDHC94DJ3LHTdR0f
+ 9DEKfAMTi9IYymOaVkVcl9pRAg9GLx3tRtFT8xpHmZrTUmvGHVRfDx0kRFEcBf/z9Gh5nq/7ApG
+ wKQAGVKGaRr8pfuQbg+Rn7iSFvsF5Z+IV0HLhqHAdL7IQL8JP1DooI0Nu2Ka0XGzZmDUUttk
+X-Proofpoint-GUID: BOOq5ICONYmLO1yDILhY4vcPDt1jg7KW
+X-Proofpoint-ORIG-GUID: BOOq5ICONYmLO1yDILhY4vcPDt1jg7KW
+X-Authority-Analysis: v=2.4 cv=f+BIBPyM c=1 sm=1 tr=0 ts=68488030 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=pGLkceISAAAA:8 a=dlmhaOwlAAAA:8
+ a=QR4-IV6K3ZDuD3Off1kA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=y4cfut4LVr_MrANMpYTh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-10_09,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 priorityscore=1501 adultscore=0 phishscore=0 mlxscore=0
+ malwarescore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506100154
 
-On Mon, Jun 09, 2025 at 07:10:42PM -0700, Drew Fustini wrote:
-> On Mon, Jun 09, 2025 at 09:31:26AM -0500, Ira Weiny wrote:
-> > Dan Williams wrote:
-> > > [ add Ira ]
-> > > 
-> > > Drew Fustini wrote:
-> > > > Convert the PMEM device tree binding from text to YAML. This will allow
-> > > > device trees with pmem-region nodes to pass dtbs_check.
-> > > > 
-> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > Acked-by: Oliver O'Halloran <oohall@gmail.com>
-> > > > Signed-off-by: Drew Fustini <drew@pdp7.com>
-> > > > ---
-> > > > Dan/Dave/Vishal: does it make sense for this pmem binding patch to go
-> > > > through the nvdimm tree?
-> > > 
-> > > Ira has been handling nvdimm pull requests as of late. Oliver's ack is
-> > > sufficient for me.
-> > > 
-> > > Acked-by: Dan Williams <dan.j.williams@intel.com>
-> > > 
-> > > @Ira do you have anything else pending?
-> > > 
-> > 
-> > I don't.  I've never built the device tree make targets to test.
-> > 
-> > The docs[1] say to run make dtbs_check but it is failing:
-> > 
-> > $ make dtbs_check
-> > make[1]: *** No rule to make target 'dtbs_check'.  Stop.
-> > make: *** [Makefile:248: __sub-make] Error 2
-> 
-> I believe this is because the ARCH is set to x86 and I don't believe
-> dtbs_check is valid for that. I work on riscv which does use device tree
-> so I use this command:
-> 
-> make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check
-> 
-> 
-> > 
-> > 
-> > dt_binding_check fails too.
-> > 
-> > $ make dt_binding_check
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > Traceback (most recent call last):
-> >   File "/usr/bin/dt-mk-schema", line 8, in <module>
-> >     sys.exit(main())
-> >              ~~~~^^
-> >   File "/usr/lib/python3.13/site-packages/dtschema/mk_schema.py", line 28, in main
-> >     schemas = dtschema.DTValidator(args.schemas).schemas
-> >               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-> >   File "/usr/lib/python3.13/site-packages/dtschema/validator.py", line 373, in __init__
-> >     self.make_property_type_cache()
-> >     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-> >   File "/usr/lib/python3.13/site-packages/dtschema/validator.py", line 460, in make_property_type_cache
-> >     self.props, self.pat_props = get_prop_types(self.schemas)
-> >                                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-> >   File "/usr/lib/python3.13/site-packages/dtschema/validator.py", line 194, in get_prop_types
-> >     del props[r'^[a-z][a-z0-9\-]*$']
-> >         ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-> > KeyError: '^[a-z][a-z0-9\\-]*$'
-> > make[2]: *** [Documentation/devicetree/bindings/Makefile:63: Documentation/devicetree/bindings/processed-schema.json] Error 1
-> > make[2]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.json'
-> > make[1]: *** [/home/iweiny/dev/linux-nvdimm/Makefile:1522: dt_binding_schemas] Error 2
-> > make: *** [Makefile:248: __sub-make] Error 2
-> > 
-> > How do I test this?
-> 
-> dt_binding_check should work on x86. Maybe you don't have dtschema and
-> yamllint installed?
-> 
-> You should be able to install with:
-> 
-> pip3 install dtschema yamllint
-> 
-> And run the binding check with:
-> 
-> make dt_binding_check DT_SCHEMA_FILES=pmem-region.yaml
-> 
-> You should see the following output:
-> 
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   CHKDT   ./Documentation/devicetree/bindings
->   LINT    ./Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/pmem/pmem-region.example.dts
->   DTC [C] Documentation/devicetree/bindings/pmem/pmem-region.example.dtb
-> 
-> Thanks,
-> Drew
+On 6/10/25 6:57 PM, Luca Weiss wrote:
+> On 22-04-2025 9:43 p.m., Konrad Dybcio wrote:
+>> On 4/19/25 11:08 AM, Luca Weiss wrote:
+>>> From: Adam Honse <calcprogrammer1@gmail.com>
+>>>
+>>> Add support for the touchkeys on the Samsung Galaxy Note 3 (hlte).
+>>>
+>>> Signed-off-by: Adam Honse <calcprogrammer1@gmail.com>
+>>> ---
+>>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 
-I'm also on libera.chat [1] irc as drewfustini. There is a #devicetree
-channel where we should be able to get things sorted quickly if you are
-still getting those errors.
+[...]
 
-Thanks,
-Drew
+>>> @@ -332,6 +368,9 @@ pm8941_l24: l24 {
+>>>               regulator-min-microvolt = <3075000>;
+>>>               regulator-max-microvolt = <3075000>;
+>>>           };
+>>> +
+>>> +        pm8941_lvs1: lvs1 {};
+>>
+>> LVS1 is unused by anything here - it's probably good to define it, so
+>> that the driver picks it up and regulator_ignore_unused is aware of it
+> 
+> Yes, did you mean here to put the addition of lvs1 into a separate commit?
 
-[1] https://libera.chat/
+I guess I was just thinking out loud, it's okay
+
+Konrad
 
