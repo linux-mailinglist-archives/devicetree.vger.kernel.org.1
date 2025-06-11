@@ -1,245 +1,194 @@
-Return-Path: <devicetree+bounces-184623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1A7AD4C4D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:06:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA94CAD4C54
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:11:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF0E8173F71
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:06:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91C0B3A7DE9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160D722DF9A;
-	Wed, 11 Jun 2025 07:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A332253B5;
+	Wed, 11 Jun 2025 07:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="JmgN6dmu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NewYGlJv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2015.outbound.protection.outlook.com [40.92.22.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3379D2D543C;
-	Wed, 11 Jun 2025 07:06:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749625612; cv=fail; b=UtB9y8kARo9IwCsCLUad1Ck9XFZlc1lmAzOhMH9pKsstYIPvr8a18dkJLhYi7qgYIS1WLNDHwnl1mJHovu15jVmqekPrmJfwiJOdfhcyawvgHDrZKHLWeyh7kP7BTzABc5BIqI8p8DEocjRDEeYuvSseICxwUSQFM8qKkCkNFYA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749625612; c=relaxed/simple;
-	bh=SRXz4cy98ixducQ4aW0m5p/9e1afELIHY9qAE20Cl4c=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ZeZzVSlBxQs25cj5VMtAcqSaB1LzKsu203DYYMhIE5ccgZQc1/5yzq0tXZJOYPkqhDBDbRiyTxQMPVY2/rp12zkIH6ePDYPqMuJ5jFYQY/6h9c2sNtY6/1PekLI+Vv8eibrhil1isKQ2Pkqud65gCwl5n34QDmZHc53tavywXYY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=JmgN6dmu; arc=fail smtp.client-ip=40.92.22.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qURPb85rX5J0wvGuDYgh/Bs/O4JsMG4a2oDAc79ZnWzQUfCaBBgaR8bwwsbjq5y62SaSlF4xJcVcm4VfVDr6y+vI9uk1FdOqdKFF2beMxBMzS1CFUAD8iGJ6t+uG3jrLvl/GXE7/lbHxZWNmbNtYKmnMsA6psoGh407dLNOk8uxSwhcWS9oXtRWpHF7PItmVW2eUMVPGadFvI4C5+PvKblRfTftxcWMqtGetqm4tWyQki3wAdcIoubROJ8Y6GfSt0O9yyp/27cU1qLwK3rFU26fHJFsq24XYcQKvrnVwt/gUgxK/zIuV42IJcxhi8u4y+v5vzQb0XZKYqzVQyFmiJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HCMuPiTAQeEfSp1iolha2clbPjgQNvk8/dysYbczu5E=;
- b=aUMVsnc01B9K2sDaL+iEgeZ4VCubhcGUV+vUP6EdL7YL3iz1K6qR93xSRsmKxfMJN21kUO3oah3sfNiyIQ6LTXCsr2riWdTbbG0Dxicy3Lr3TTarrS4Q/FPk5hx16WqtPVF7q2QcrRLiMHdeUuueWrX3iMYKLVHfZQkGPE8p01e4UoFjyjYak5gQNPoQGZ4XI1zp3tzOJ2khuQibI7BGji84IAjTAsLc5a7zYT5qn+eIEKJKOkPvOe2/ly8wpCKPzkbtSaTfkEcHdoJAusYTl/N1S5pveNB1eKPEsQAIKFfN/lENQnqPYymMpK1+7XXyWorBDDLr/BzZ/iZVZbL5aw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HCMuPiTAQeEfSp1iolha2clbPjgQNvk8/dysYbczu5E=;
- b=JmgN6dmu/DLuXnprfzbgDabbQepHJEJSFhZeiR7yfQD53RiF2MKF6XOfMdxdRk2Zu270Zfb7aK1LkTQyeuzy/Wz0DDh42+likwMeJkvLJXcBR7816FuLE4IgjBftOMx0pJCbhtrw5Uwca/6zrZtlKAvsf0MVGrq7DWQQ3fTwhJ7QcwF0v6AbDzRiCY5QskWwYiZiL+r/xx40/+nqAVw5fWIZItZiRSM9NIAo5EIwCf1d7tVmk/Pu3u2qc7VFboE9xeA5ZKjLcmYGCOBz+95yCj0kxoB3RNF4P+ZtlTcZ0RTdQXVk3AmIpG7fTd/daRQwsyAZbxpHWBWXSFG6nFg77Q==
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by BLAPR19MB4628.namprd19.prod.outlook.com (2603:10b6:208:295::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.16; Wed, 11 Jun
- 2025 07:06:47 +0000
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8835.012; Wed, 11 Jun 2025
- 07:06:47 +0000
-Message-ID:
- <DS7PR19MB8883034308D6642B6B567CAD9D75A@DS7PR19MB8883.namprd19.prod.outlook.com>
-Date: Wed, 11 Jun 2025 11:06:36 +0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 1/2] dt-bindings: thermal: qcom-tsens: make ipq5018
- tsens standalone compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250611-ipq5018-tsens-v11-0-266566bfd16a@outlook.com>
- <20250611-ipq5018-tsens-v11-1-266566bfd16a@outlook.com>
- <17eaaad4-7713-4149-b66c-1c48db3ab42f@kernel.org>
-Content-Language: en-US
-From: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <17eaaad4-7713-4149-b66c-1c48db3ab42f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DX0P273CA0043.AREP273.PROD.OUTLOOK.COM
- (2603:1086:300:58::11) To DS7PR19MB8883.namprd19.prod.outlook.com
- (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID:
- <3c9138ea-c088-44cb-a59b-5aaeb1b34217@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1430C1494A8
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749625878; cv=none; b=hlGn79ZQJFItktjsfunjAnC6eY95eRhlSHYtu6lISDqDYP3OoXSvysPr+c/KbTrlEC+9AxC+4xPpbum0ODp/Hw0aSkCpwYh5BFvvMYUl9U9TvazxDE3Fr4VqgMUrOBC5S6lW02oHJ1Q8fFlIDWAOOGBYVDl8xOgMMPhZAmCQDXg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749625878; c=relaxed/simple;
+	bh=m0b8oAwGJgxqUIEP+6pLyaommzl5HsRsbrTpWtjJ93g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bVp/tMfsgFfPAiaNyeYVln8rYqBBGy6ogU5m8JkKXZHlyls7u/wPfEf7tCjIBj/zqgubjcZTLmdJeA47JFKfBdiItzb988E4QtuBQK2n6ahyJPz4/bR8LqwJM8XxMAoE3K0g64yVyyYK3Sc8o4owzXvkGQ6hub7VjCYQ6T+f4do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NewYGlJv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 768EEC4CEEE;
+	Wed, 11 Jun 2025 07:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749625877;
+	bh=m0b8oAwGJgxqUIEP+6pLyaommzl5HsRsbrTpWtjJ93g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NewYGlJvfdFpX0/m9wkT+/GBuNQI0kOA/jrHlMTXdixGTrnU5otLwH6z1rIGQPLyp
+	 wELfa82zHaUaKE2TSRQVAS6BYomdw6JJ4Z7DMnkWCh1EUFOgwolKwke9WRzQHanOCV
+	 k+9b5r79H3ucScbo6bkhF89O3/2ayV3Gf11j9tC/rnooY5gj9gAVgiUEYO4F9e58GD
+	 WOrKkZt1ZOn/ikGtfdYqRdIuQ+1jxqDf6sn9yg9pjaSOtaYtmXFd3wqmnebmkogEEx
+	 pRaginJAj2ZgirVNrAMk6vm99m7Oh1Ds4Dhj82wx8HsT9UFyQFRPfsvt/6IwgWqc0d
+	 x3KG2hw/0rWAA==
+Message-ID: <afe90a1f-ac43-46bf-b5bd-723a214a6a2b@kernel.org>
+Date: Wed, 11 Jun 2025 09:11:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|BLAPR19MB4628:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd67b1dd-9787-44ae-6a8b-08dda8b68719
-X-MS-Exchange-SLBlob-MailProps:
-	qdrM8TqeFBvbAt8nrAK1sszYZ7KbVe5e5mMvtLM6tHmZrBV7mvXXb4ALwMUGdvdjkwa6YVsT0hsL4UdpdYvYIzG6TYLYmO3VE7VyK8Oq7/sqJlwkUjUGp6snU+hY7XhSRP6ddroMivVpooITskqULzzYefppH8aXJglvxCbaP11IRCjbfzfWzv8Mzq4wqmC/6WWhpVHKzvpv4w5n0dPYifThg1UEoL69BAEbQLNxfgzQmMEWFPn2bmhLO27D4Ssi9LJcRBxbjGEpz4fuG2dSYly/5c4pqlGNIuASQMKobsO/w/LwWUvPWr/fV/vJZHOi9YlOFx6QGqvyghkoP5w3o95hMi+ka6F5Puquoa0UQxqkAhJF0aAy+siRa9CSuknWI7y4iiMR4eMvew99MPk0D5cyqOl5+SyBjEW84V6SSScqPe+a6BesdW+yiODuqhFy68a/k1HAOVk333VLiM1j1CI80GerBkzen+6rt4/w9Ue50EarAmJ+GTd5oi+lg48u11v0DcMqRtkAdkYHSBPaAnEOnl9FxD8z40hC8TpqYTzB2ZA7iFu+PJMuJZyhOEobweHtCC/I/4dt6wsBn5MrS3g/pJXJeFzUj5P2vMGvMpssqXbMpfoXnzKMkZfQ5sCQQwm6XNT8MOXeS6Db+Bl6xYspMKgrFcm8yiaTIekxJgN3UN5GheGAt1u5UBZ3DaJ2w7L50WDHpYIaCIsjAIdHMxSI7cfnEJMwvj4vNwezWU0+oPVhN9Hbivcr5N1mqsEWsahE5maYe3D5lpQfqchMNpEIVOp0DdFf
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799009|6090799003|5072599009|461199028|19110799006|15080799009|7092599006|440099028|3412199025|4302099013|10035399007|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?V2RhamhxL2loRGxXRkZBWUk1SWZQcHpRaEpXT3hRTmtOUGduNERHQlc5TEQ3?=
- =?utf-8?B?a2RuTFRNQWJXdXRFeHZZU1QrNGpVc0hpM1dyVUhTUzU4d29WU2RiU212bUhn?=
- =?utf-8?B?MHp0cnFtUk9vT0RCSG9MdXhLcWxTSitreEhPYnhwdVQzQmFjQzBYL2w2Rm1N?=
- =?utf-8?B?dDZzSTFkd3pjdUNkOWxNTzRTYUZUcGl6Uy9XYmFyM2ZrMmthR3dRSTR6bm4y?=
- =?utf-8?B?TjVNdWhRU2hpbmpLMUJqclNVdG5kUDRMU0xiQjlmQ2lyTllPNGVrYUl5bFdD?=
- =?utf-8?B?RnlaMDhzaldnMVFDR3RJV21pdUNtRzBjcFFQdkNIV2c5T1BrYzBzaXVoc29B?=
- =?utf-8?B?NnNyemthaVBGMmx4b1BuRUVwRDBDaWlHS3M3WjNaRVJLc3RXeWJoQ1plSlht?=
- =?utf-8?B?QnN5WGVwNWRyc1FsTUwwb01HQktvY3hjL2NIQ0hFZnd6VVRhSHZsa2JCT3dl?=
- =?utf-8?B?MTFGZTA1NTlZMGt4UE8wT3hJU09UTzh3cEh1RGxndjhFWTRtU0FHR1NRUXZl?=
- =?utf-8?B?aWdUQWlpWnBkc3llSWZ6aEZhbnN4N1pXZkhxS2FmRk5wNnkyWUd3Y0h4L3Vu?=
- =?utf-8?B?R1I0LzJGTy81aWUyZjhBby9BK3FBMm0zd3YwR0duMjRBeG9hRlR1YUVOUTZv?=
- =?utf-8?B?ZTF2eWtCWWU4M3E3QTNLM1BNeGRuU2JyeHFxK3NBaUwwdU5rMTRaVGVCSUlu?=
- =?utf-8?B?N1pmOEIrd0xuUzVzc2Jib1QwSnB1aVQ1anl5K1MvVERXd3YxcTZSNXkxd1o0?=
- =?utf-8?B?UkltVkRMaGg1SXF4cnN3SkdUMGlRcG12QUY5bWloOWU2NjAvbEwxdGVSTzRm?=
- =?utf-8?B?VWxtYW85aXh4cHd6Vnkya2FIL3BuVWhtV3Uzd2pJRWg0RW5GeGtOMnpNMXNz?=
- =?utf-8?B?WU1zUHgxTzJ1aWQwckZ0eldIc29MaUowM3RoNHB0ZEVwVG4rKytDb1N3dTRt?=
- =?utf-8?B?bUI0OXNKN3ZxZkdRVzhmQ1hVZ0NUOGQrdHg0Vm1mdFNuVkpoR0UvcE5UWlpI?=
- =?utf-8?B?YUJhYmZIS2ZwcWtGeGY1MHVPSEloeVBQL1VNTEV1UHJRM1RhLysxRWFBV2I1?=
- =?utf-8?B?V1FRR1l4Tk1HMFhGa3RKMk15aDY1Q0x5djhscTV6MHFhbkxtR2V1R1BFMndP?=
- =?utf-8?B?R2haTnFvS2hTWHVyeWZkZ2todWphUG5GTkdXYk9aQWdrdmhNUEJVWFZDOXhn?=
- =?utf-8?B?VnZHdWNKQzM5RENoRG1UMkhEMzVvTWsxb1Zma0E3cHhzWFd4aHF2OFJQY3dM?=
- =?utf-8?B?bnhzNXpuaHRoc2xMT3hIemtKSFp0dy9wcGl0cmxjdnFFV1NpQmRteEZhbndy?=
- =?utf-8?B?M2ptYXBqTFhGUTZhRkZ3WDZrNW1LUFVrV3BaL0ZZbFhuMyttdGZHRUpDWVM1?=
- =?utf-8?B?K3Q1U1czU0c5K295Um9QdnlCMmJsOUxCVUppQTZTeU15VHlrbDN6Ly94cko1?=
- =?utf-8?B?Y09NVjBJZlZBRkU5bkZDeCtEQ3E1VllPdHE5MFhGNHZrNWV0VEpvYWZueExa?=
- =?utf-8?B?NGNDSEh6b2NrbzFoV1plVjhXTk1xQzRQM0hRUVdNbnY5NEh1Vyt0RmM0QU9y?=
- =?utf-8?B?dTR0WmNhODUyQnhRM0FwVGhKWmloOFNWN3VoWTVxamhnQVZuZ21nRlp2dEhC?=
- =?utf-8?B?bmtVTGtFQlY4OWVKclhmTml2R3AwVkRjbDhKMUhOaEVhOEZ0M3BRZ3FCem9U?=
- =?utf-8?B?a2VGS2VUTFRLbFl0ZlRTVGM3UHBtblg4THVxV25ONERITWJLWGZwcko2VVRl?=
- =?utf-8?Q?m8H8Ipf5TpF+BIktt8=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TkFzbE0yNUw2TXNObkZuVGFYNzFoNDl0eDVOS1FwR1YxbHlVSHllZDlkTUxH?=
- =?utf-8?B?UnMzT2FCU1VNU3Y1VVJadGpXWVBBV1R5c3JvNFo4YlBLUHFkMVdkVzBLd1Rp?=
- =?utf-8?B?SHNlZ2oyUUVGNDIrWWpDamhGQm9lUWgvQ3c3ZExndzF6Y0I3YUNBUUMwMnBn?=
- =?utf-8?B?eVlFMFJCRDVJaVo0Wmx4dEdPUHdOZEJCS1pFTDhvb3RQcUp2UEJaaDU2SmVZ?=
- =?utf-8?B?ZVlOQ3lhbGEvQ3UxQ3p0Ym5hWVZraTJsajEwbWZ6RSt4dkJ6eTA2S1RqY2po?=
- =?utf-8?B?ZVZVODdZNDRhY1V5eEpKWEVWanEvK2xDa3FwOUlRZ2ZJa2xiTnQ0VXRwM2Z3?=
- =?utf-8?B?cEtSeWs5SWgrZ0Z3WlZFSk5KZUtyV1pqT2FVaVR4bkFnZzYwWUUwSFQ1VWJx?=
- =?utf-8?B?Z2dPWjdrNUZIQmlSMHhseDZJSCtKbHE1eE5RWlI0bXY0R29kL1kwcWhKeldQ?=
- =?utf-8?B?OHRIUXVQdDMwbGt5TnA3Rlp2blhTd0EvQVYxMEM3Tkovd20yWVNwRjZJa1dD?=
- =?utf-8?B?QmEwK1oyTmFuaG4vck9DVkN2ZWFQRU8zcnJFMkdjYktlcWNlV2xHQkFnb2d6?=
- =?utf-8?B?TlZodWY5U0d6Y0RBYmV4MTY2RG9ZWTdFTlRPOWt2TDI5elJLVGlsTTNRTVZ0?=
- =?utf-8?B?MnhXVWQrTFUrS0NaTzNMM2NSano5RXcrZWpDUDNWTVoxSmJsRE5PZ3JtS1FE?=
- =?utf-8?B?eWFuRG9NVjFHKzRPMkJVL2J1UzdMTm9jWFZWN1hGRUExSVhBWStsbXJzN0cy?=
- =?utf-8?B?QzYzY3hJVVdvYzRNUlZDYllsdCtwYkcwaVYyb1pLc002elhNWTJDVkNUK3RW?=
- =?utf-8?B?K2xVV1ZYekVBNHRrNFBXZzZLWDNRRGFQVUY2QjA1cnpXVGRraFY0dmhaUGFv?=
- =?utf-8?B?b2xmYXBLaEdGV0cwbmxMMElOYm9QSUpjbTlreXc2UjdxaUtqYy9lTGNsOWcx?=
- =?utf-8?B?M2NJNlRxMEhpTHl3eU0yR0wwVTNSRnhPRXg3b0tBQ3NHbSswdzZJVGV4R2NF?=
- =?utf-8?B?SEVBUGNodjFCZlZHTCs5L1RJM2FBaFVLVis2cDFNVHVpWm9mYVdUSUV1dTY0?=
- =?utf-8?B?d3FWb2lwK0IxRHo0VHhtTnpXa2o4eUQ4TnRtcm1HNTB6eFhvS3dFbzhCcEJI?=
- =?utf-8?B?UzRpNC9LaTA2U1kyVFlXMlNockpGTXdvOFB5b3Y1UVFydG9mZ05EN0c3ejQy?=
- =?utf-8?B?SnlYMGRuVklnT0RUUDE1cGNGOEs5L3dpbjNHOGVPVTVrSkUwYUh6c2ZwMThI?=
- =?utf-8?B?SkdkaGMwNTVaeWRvUnl3YWdqSmJWZG15cXp2dEFBamw5MkhEV0ZzcUEybCtB?=
- =?utf-8?B?OURFQmR4aWxMWkl6UVJ1My8zU2pSQStGWDJOREhaeGl5MHpJUnRVREtyZXFR?=
- =?utf-8?B?MGxtS1ZLTHhvdmxWbnl0RWVJNnhSRHNSQWRLc2hoOFVCb0ZpbktKdXR5TkRT?=
- =?utf-8?B?dVFBT1U1ajNZUnozTzRuNWdLL0VQS0tXeWQxRlhUR1RraEhzS25JNXMySnpu?=
- =?utf-8?B?Tmk1Umt2c3NzSCs5UWFDOUFEYXgwbVVpVE9Rbm0yTUx4eTJuVk9tRVBLZW51?=
- =?utf-8?B?UGM0ZXV5eE02djZ3eVlBZ3lLRHg1WUhJMHFHeEVCdEJWelpTd0JlNEZlTWtF?=
- =?utf-8?B?Y3lDMHRiVWl5WlNhV3R2T1A2MTZxdTZPWmRucVR2bk5Ddml1eUJ0b3hHNUZJ?=
- =?utf-8?Q?85VYjz0xXjXCoaHfcD5N?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd67b1dd-9787-44ae-6a8b-08dda8b68719
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 07:06:47.0664
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR19MB4628
+User-Agent: Mozilla Thunderbird
+Subject: Re: 6.16rc1 dts-bindings check fails
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org
+References: <CANiDSCvB5yytOgvk1QC812x4zOBn5Z4_C5wqUnV+2hSQXKM54g@mail.gmail.com>
+ <a2efd2e3-bab8-43ba-a236-aa5052bc35c7@kernel.org>
+ <CANiDSCs0xp_PsKmyNpY3zHh9xuvJEgYXysB2wyLEZOL_+4Lokw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CANiDSCs0xp_PsKmyNpY3zHh9xuvJEgYXysB2wyLEZOL_+4Lokw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
-
-On 6/11/25 10:51, Krzysztof Kozlowski wrote:
-> On 11/06/2025 07:12, George Moussalem via B4 Relay wrote:
->> From: George Moussalem <george.moussalem@outlook.com>
+On 11/06/2025 09:06, Ricardo Ribalda wrote:
+> Hi Krzysztof
+> 
+> On Wed, 11 Jun 2025 at 08:41, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> IPQ5018 tsens should not use qcom,tsens-v1 as fallback since it has no RPM
->> and, as such, deviates from the standard v1 init routine in the driver.
->> So let's make qcom,ipq5018-tsens a standalone compatible in the bindings.
+>> On 10/06/2025 18:11, Ricardo Ribalda wrote:
+>>> Hi
+>>>
+>>> Media-CI is reporting some dts binding errors:
 >>
->> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
->> ---
->>   Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 5 ++++-
-> 
-> You just added it recently with the fallback (in v9 of this patchset)
-> and now remove it?
-> 
-> And what does it mean it has no RPM? How does it affect the driver? Does
-> fallback work or not?
-
-IPQ5018 tsens IP is V1, but since it's got no RPM, it follows a 
-different init routine for which VER_1_X_NO_RPM was created just like 
-there is one for V2 without RPM, else the driver wouldn't probe. This 
-was added as part of:
-
-https://patchwork.kernel.org/project/linux-arm-msm/patch/DS7PR19MB8883C5D7974C7735E23923769DCC2@DS7PR19MB8883.namprd19.prod.outlook.com/
-
-Since its introduction, I missed updating the bindings which caused a 
-binding issue (as reported by Rob) on the compatible as it expects the 
-qcom,tsens-v1 as a fallback. But we can't use that fallback, so that's 
-why it needs to be a standalone compatible.
-
-> 
-> 
->>   1 file changed, 4 insertions(+), 1 deletion(-)
+>> Every builder of linux-next sees this, it's not specific to media.
 >>
->> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> index 0e653bbe9884953b58c4d8569b8d096db47fd54f..73d722bda8adc2c930edfc3373e6011f19c7c491 100644
->> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> @@ -36,10 +36,13 @@ properties:
->>                 - qcom,msm8974-tsens
->>             - const: qcom,tsens-v0_1
->>   
->> +      - description: v1 of TSENS
+>>>
+>>> /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml:
+>>> properties:reg-names:items:1: 'deprecated' is not one of ['const',
+>>> 'description', 'enum', 'not', 'pattern']
+>>> from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+>>> /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/pci/marvell,armada8k-pcie.example.dtb:
+>>> pcie@f2600000: interrupts: [[0], [32], [4]] is too long
+>>> from schema $id: http://devicetree.org/schemas/pci/marvell,armada8k-pcie.yaml#
+>>>
+>>> When I test your  for-next tree I have the same issue:
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/log/Documentation/devicetree/bindings/crypto?h=for-next
+>>>
+>>> They do not affect media drivers so right now I am just ignoring them,
+>>> but I wanted to know if they are under your radar.
+>>>
+>> You need to update your dtschema.
 > 
-> So that's still v1... I don't understand.
+> I was using the dtschema from pip.
 
-As mentioned, the IP is still v1 but with a different init routine in 
-the driver for IP v1 without RPM
+Latest from pip, so June, does not have these warnings. I think you
+still use May.
 
 > 
->> +        enum:
->> +          - qcom,ipq5018-tsens
->> +
->>         - description: v1 of TSENS
->>           items:
->>             - enum:
->> -              - qcom,ipq5018-tsens
->>                 - qcom,msm8937-tsens
->>                 - qcom,msm8956-tsens
->>                 - qcom,msm8976-tsens
->>
+> If I use the version from git, There are other issues as well:
 > 
+> $ python3 -m venv venv
+> $ . venv/bin/activate
+> $  pip3 install
+> git+https://github.com/devicetree-org/dt-schema.git@master yamllint
+> $ make dt_binding_check
 > 
-> Best regards,
-> Krzysztof
+> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml:
+> mac-mode: missing type definition
+
+This is old.
+
+> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml:
+> maintainers:0: 'Not Me.' does not match '@'
+>         from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml:
+>         Error in referenced schema matching $id:
+> http://devicetree.org/schemas/power/reset/syscon-reboot.yaml
+>         Tried these paths (check schema $id if path is wrong):
+>         /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindingspower/reset/syscon-reboot.yaml
+>         /usr/local/google/home/ribalda/work/linux/venv/lib/python3.12/site-packages/dtschema/schemas/power/reset/syscon-reboot.yaml
+> 
+> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/pinctrl/xlnx,versal-pinctrl.yaml:
+> allOf: Missing additionalProperties/unevaluatedProperties constraint
+> 
+> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml:
+>         Error in referenced schema matching $id:
+> http://devicetree.org/schemas/rtc/rtc.yaml
+>         Tried these paths (check schema $id if path is wrong):
+>         /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/rtc/rtc.yaml
+>         /usr/local/google/home/ribalda/work/linux/venv/lib/python3.12/site-packages/dtschema/schemas/rtc/rtc.yaml
+
+
+These are known:
+https://gitlab.com/robherring/linux-dt/-/jobs/10290125099
+https://krzk.eu/#/builders/117/builds/613/steps/11/logs/warnings__2_
+
+> 
+> Is there a doc besides
+> https://www.kernel.org/doc/Documentation/devicetree/writing-schema.md
+> that I can follow to set up media-ci properly?
+
+
+To update dtschema? No clue, I just run pipx upgrade. Works for me, but
+depends on your OS/packaging.
+
 
 Best regards,
-George
-
+Krzysztof
 
