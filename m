@@ -1,180 +1,213 @@
-Return-Path: <devicetree+bounces-184912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388FFAD5A55
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:26:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9166BAD5A8E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:33:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5962F167DD1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:23:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ACF01BC4B62
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F02C1A9B52;
-	Wed, 11 Jun 2025 15:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5415B1ADFFB;
+	Wed, 11 Jun 2025 15:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gz4gC06+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="opoaqt25"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E51F1991B8;
-	Wed, 11 Jun 2025 15:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275011632D7;
+	Wed, 11 Jun 2025 15:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749655388; cv=none; b=C+0wAkotHFv0rnqW0IHnysxmwXV42BrEWtSBDXGVaTqRJzTuJ7qd8E2OgxtbuEkyizrj4GloQL97MJ7Ihl1csYoUtDBNOTdQr0glY7LXGmc2wE40558JO2sTTqv7F9oK222YkUJAUhLdwooPD6XvdqfC6sDev/HSr0n+CmS1I+Y=
+	t=1749655521; cv=none; b=nLQL+ry1mp5cGkTHdUzH0KEl40mf5k6LCpFQGlJ5fvWL+QR7rIXT42d030dYuWobElDsPfDRKsFIYnL7oEQblOjf67o6/dcOSRSHlPJRMjuNWdJXGVl3CwEwWlL8LesP3oOPWT6WrBy2vmot41lK5CP2d3RCHMMCWNASA7MNaWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749655388; c=relaxed/simple;
-	bh=OcFx0OPiyVtSIEok0hOGBDNb+WaSxUqfVYCf+tXb+sw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VQhLMqDBDnJ10QJ3jn7mUjjsWtvEfaJjcrLZLomPqihXvtqewkTBeDNIdK0rQ1gSDVvM3+ZmTtB50TOTF7xxVsOujllw23D952xF24ZrBeCxTE15xq8h6n2Er0qWhQ2lTov3CNqPwXr9176/cvQIPxM05SGAbaAe3lI4j3IgTQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gz4gC06+; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45024721cbdso58621865e9.2;
-        Wed, 11 Jun 2025 08:23:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749655385; x=1750260185; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+ltahiKvsCCzMEDlcxd6cs8qre5FafzSYn4Is2Jfei0=;
-        b=gz4gC06+bqrZ7B2yaa5DI7ggS/BADS7DmkQ+2hckN0mhEIuDQzSXWARt6o2Itk8RDN
-         NIc8gk5to/Zj7XlGec566kSeozIMF4JdcK2thfpY9IJ+xsArW1zQGd5LYwrXvt4McwhK
-         +/tE8Dmx+sQxyG2S5kAyoY5uLx07SI4qOHPpX/nCdE0h44U1aCRTLKsN8O19QNrA3FHa
-         lVkK/SoaF3Br2Zyp9JY8ctYVnC/Ynio9lVf3zVY9NHmpzZmYMLOeRzuiUU3PaWg4JjIv
-         cI1JN9rfz+9EdsDFWeVqJLCKQOnhSCaa/Gp+/yDGDMdgh6HyfyTb6eAxLdu3CS+YZFlF
-         a5Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749655385; x=1750260185;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+ltahiKvsCCzMEDlcxd6cs8qre5FafzSYn4Is2Jfei0=;
-        b=JULv/GjdeuMOd3EpSyq2RqpuJejD9neQcdEBOA0/ujrC10uZgGcjc+bWpen0XXhHIa
-         k7NgvhL8Mna8YOlgJEyHtZTckA9MbEu+UKUOiT9UzXm0JTf9Cu6s0fMH+eG8CBjzPUV6
-         tOfzk/rTTdgMwaoS2kdbp89xqIcqg1tk1apbS+ChF7URx9OJcN+nuT4ZTP7YgaxcaDVk
-         yyQ+bPJnvlbnPNe9n9ZCI/R11DzHe5xDAgfxxjscQEIwq4ZpxLNV7/eKJoV9unyVTNli
-         HhdRPMi5UMxStKhOiBjMP8uGk1ACW7LOLdWXl1d6bZkACzcGpOyghfp0ZtVfe+1Bv5EN
-         34xw==
-X-Forwarded-Encrypted: i=1; AJvYcCVWkknOGz/lteDk2dAKFgc5lnJf2EOSCP+C1+ieYAwxfcrgQcz+9o7EAA9GQWHU/r82hcjUHuw1gkuHPw==@vger.kernel.org, AJvYcCVfG8CcDKIQEskGQ8BbGPGuG2Nk8KurIjQCFJMLouiPIG4VDBXlY0UB5syxl1R9dazcEWJBg+25IXPgpHvs@vger.kernel.org, AJvYcCW/Hlsi6yOBkYT6smGAPBAc/UuQTfipXpIL2Y3EfaAQb3C+C6JLY9OUtGr3RdCd+5hkXgm/wNvcp3pnc7Y=@vger.kernel.org, AJvYcCXYBMTfJOil5UudVLZUv3UBZc/yMep0OWqbLm1Od+Ga8swi10tAdGyVjIqf/GExKgtAHSAGyhd2TqwZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZNeJLjppZbobiM0kO9uPWVxeXVgcP3wJYLWGyJUp0ozQKoB1A
-	AWaWCziGJ4+vYYZGQ6VRkJR9LkZjSDPRUZQJ+l9b63U5gZOWifZnj1k5
-X-Gm-Gg: ASbGnctz2MoyGjaTfhuVdIS/wZnTQnwFHHP8VJ9YzEg6quUVzWmP5TS7vJHOG+Kwb3D
-	rfmmVtG7bP4aNUImexelcY7TCcsG6rEGYbqn8tFMXHdIoqr04IJpXrW+7cNbz4s5J+X3NItEsNA
-	KqTI8U8Ljmu/2HNAw9wK32wAI9zY8prosncJiFMQKnzMoC6KGa6Ia1LV7Tvn74Ka7l5i4JDvDZ6
-	V3S+BzWy6N0FmjF7/2VAq17p2TTXttBqSBH5n0lyG4oRssMDA+8nkBtgrNOHy34KEKCZjfbxPiD
-	b4fip3WvHsBQVV37cFaXYWPWSr8YsXgcSBB6wIRZvEqGfzqBzOI2SccUuyt7UuSVPH6G8x9qJxn
-	SkCBYnu9eL6ICpIOKF3mFxFDVN/dGhoI5ZA3fynGwlohYAMd5
-X-Google-Smtp-Source: AGHT+IHphyA66Q8e/eqXWCCxRS7ufKANsxLIZgpVR0wE0Sof8sTOrzgXgFeYQw9TKFI2q0StLBmzRw==
-X-Received: by 2002:a05:600c:384a:b0:43d:4686:5cfb with SMTP id 5b1f17b1804b1-453248cc53dmr34170825e9.27.1749655385355;
-        Wed, 11 Jun 2025 08:23:05 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5322a9bbdsm15345101f8f.21.2025.06.11.08.23.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 08:23:02 -0700 (PDT)
-Date: Wed, 11 Jun 2025 17:23:00 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
-Message-ID: <yslfabklduaybg255d3ulaxmzpghyj54zdfeqkx3oxgisxf6fo@2wecuqpvvefc>
-References: <20250608-tegra186-pinctrl-v2-0-502d41f3eedd@gmail.com>
- <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com>
- <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
- <CACRpkdZha_ucjWvP_NQ+z2vbD65Y3u7Q0U57NYbJ=vqQ6uPGGA@mail.gmail.com>
+	s=arc-20240116; t=1749655521; c=relaxed/simple;
+	bh=IzxKk/Q/rHFtELufmehQFw1qSKOWCXL50Kire+AoROo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VhG1CUjj2aRmTmGIFlRQjkv7V10MOm+EWxFCjgr8bm3F2UW4d3FyopAQYfueDtEnN5li1tPGsrM4ctGEw3TxsGCQESh/LbYTRGkWatZtr8pceNQ0Np4iiqIz2lwVCeBn6R6EERZsbKk9Tw7v1UMj8xyGDnyokuOVjDBoQtqIdfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=opoaqt25; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82BDAC4CEEA;
+	Wed, 11 Jun 2025 15:25:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749655520;
+	bh=IzxKk/Q/rHFtELufmehQFw1qSKOWCXL50Kire+AoROo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=opoaqt25Ud+nc8M0XmqGGcIvv2RL49TLbsut/GXV3oPsfG7msmMgEHqCc5VMDsDXL
+	 662GVyR78xUmiupTlAah11eTbOlaY3Q3Ax5Nl2PAxAY2ntybsJet/ry/Q4RFkQ72x3
+	 u/AaUSSbE2Nm/PStE9kwj+7b9VtfqrOVq9gRKoTpXjV9LQLUlUgXkJmMDAceABq7D0
+	 SVZayDKYZu39mwY1z7c8nz07mS5Zc9p7d7JTSFU3jHD3/XojW+sdN9untcgSkMzSjH
+	 z/MSmG6NDF7kaJoiWhJqXm+rHB2AJTtJY7eiqomWnmteoChyMImjteUxA98fWQN1A4
+	 XRgZ4QYXvGyKA==
+Date: Wed, 11 Jun 2025 16:25:07 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Ioan-daniel, Pop" <Pop.Ioan-daniel@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael"
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, "Sa,
+ Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>,
+ "Bogdan, Dragos" <Dragos.Bogdan@analog.com>, "Miclaus, Antoniu"
+ <Antoniu.Miclaus@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, adureghello <adureghello@baylibre.com>,
+ Guillaume Stols <gstols@baylibre.com>, Tobias Sperling
+ <tobias.sperling@softing.com>, "Schmitt, Marcelo"
+ <Marcelo.Schmitt@analog.com>, Trevor Gamblin <tgamblin@baylibre.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>, "Nechita, Ramona"
+ <Ramona.Nechita@analog.com>, Herve Codina <herve.codina@bootlin.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>, =?UTF-8?B?Sm/Do28=?=
+ Paulo =?UTF-8?B?R29uw6dhbHZlcw==?= <joao.goncalves@toradex.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 5/5] iio: adc: ad7405: add ad7405 driver
+Message-ID: <20250611162507.6868c8c6@jic23-huawei>
+In-Reply-To: <PH0PR03MB63351F2AA87604CC10BB6EC8D16AA@PH0PR03MB6335.namprd03.prod.outlook.com>
+References: <20250605150948.3091827-1-pop.ioan-daniel@analog.com>
+	<20250605150948.3091827-6-pop.ioan-daniel@analog.com>
+	<20250607164428.7a245af5@jic23-huawei>
+	<PH0PR03MB63351F2AA87604CC10BB6EC8D16AA@PH0PR03MB6335.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="onb3f7hrvum6ompk"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZha_ucjWvP_NQ+z2vbD65Y3u7Q0U57NYbJ=vqQ6uPGGA@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+
+On Tue, 10 Jun 2025 12:09:22 +0000
+"Ioan-daniel, Pop" <Pop.Ioan-daniel@analog.com> wrote:
+
+> > 
+> > Why do we need this .channel element if all instances use the same one?  If you
+> > are are shortly going to add support for more devices where this will change
+> > then this is ok.  If not, just have one static const channel and use that without
+> > looking it up via these chip_info structures.
+> >  
+> 
+> Hi! I'm not aware of any other parts that use different channel types. It's true that all parts use the same .channel.
+> Should I submit a new patch version with the requested change?
+
+No need - it's an easy tweak (hopefully).  I fixed up the owner thing Nuno noticed
+and applied this diff whilst picking this up.
 
 
---onb3f7hrvum6ompk
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
-MIME-Version: 1.0
+diff --git a/drivers/iio/adc/ad7405.c b/drivers/iio/adc/ad7405.c
+index 487d661f9050..9adf85a732ce 100644
+--- a/drivers/iio/adc/ad7405.c
++++ b/drivers/iio/adc/ad7405.c
+@@ -25,7 +25,6 @@ static const unsigned int ad7405_dec_rates_range[] = {
+ 
+ struct ad7405_chip_info {
+        const char *name;
+-       struct iio_chan_spec channel;
+        const unsigned int full_scale_mv;
+ };
+ 
+@@ -69,7 +68,7 @@ static int ad7405_read_raw(struct iio_dev *indio_dev,
+        switch (info) {
+        case IIO_CHAN_INFO_SCALE:
+                *val = st->info->full_scale_mv;
+-               *val2 = st->info->channel.scan_type.realbits - 1;
++               *val2 = indio_dev->channels[0].scan_type.realbits - 1;
+                return IIO_VAL_FRACTIONAL_LOG2;
+        case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+                *val = st->dec_rate;
+@@ -78,7 +77,7 @@ static int ad7405_read_raw(struct iio_dev *indio_dev,
+                *val = DIV_ROUND_CLOSEST_ULL(st->ref_frequency, st->dec_rate);
+                return IIO_VAL_INT;
+        case IIO_CHAN_INFO_OFFSET:
+-               *val = -(1 << (st->info->channel.scan_type.realbits - 1));
++               *val = -(1 << (indio_dev->channels[0].scan_type.realbits - 1));
+                return IIO_VAL_INT;
+        default:
+                return -EINVAL;
+@@ -120,48 +119,44 @@ static const struct iio_info ad7405_iio_info = {
+        .read_avail = &ad7405_read_avail,
+ };
+ 
+-#define AD7405_IIO_CHANNEL {                                   \
+-       .type = IIO_VOLTAGE,                                    \
+-       .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |  \
+-                       BIT(IIO_CHAN_INFO_OFFSET),              \
+-       .info_mask_shared_by_all = IIO_CHAN_INFO_SAMP_FREQ |    \
+-                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
+-       .info_mask_shared_by_all_available =                    \
+-                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
+-       .indexed = 1,                                           \
+-       .channel = 0,                                           \
+-       .channel2 = 1,                                          \
+-       .differential = 1,                                      \
+-       .scan_index = 0,                                        \
+-       .scan_type = {                                          \
+-               .sign = 'u',                                    \
+-               .realbits = 16,                                 \
+-               .storagebits = 16,                              \
+-       },                                                      \
+-}
++static const struct iio_chan_spec ad7405_channel = {
++       .type = IIO_VOLTAGE,
++       .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |
++                       BIT(IIO_CHAN_INFO_OFFSET),
++       .info_mask_shared_by_all = IIO_CHAN_INFO_SAMP_FREQ |
++                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
++       .info_mask_shared_by_all_available =
++                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
++       .indexed = 1,
++       .channel = 0,
++       .channel2 = 1,
++       .differential = 1,
++       .scan_index = 0,
++       .scan_type = {
++               .sign = 'u',
++               .realbits = 16,
++               .storagebits = 16,
++       },
++};
+ 
+ static const struct ad7405_chip_info ad7405_chip_info = {
+        .name = "ad7405",
+        .full_scale_mv = 320,
+-       .channel = AD7405_IIO_CHANNEL,
+ };
+ 
+ static const struct ad7405_chip_info adum7701_chip_info = {
+        .name = "adum7701",
+        .full_scale_mv = 320,
+-       .channel = AD7405_IIO_CHANNEL,
+ };
+ 
+ static const struct ad7405_chip_info adum7702_chip_info = {
+        .name = "adum7702",
+        .full_scale_mv = 64,
+-       .channel = AD7405_IIO_CHANNEL,
+ };
+ 
+ static const struct ad7405_chip_info adum7703_chip_info = {
+        .name = "adum7703",
+        .full_scale_mv = 320,
+-       .channel = AD7405_IIO_CHANNEL,
+ };
+ 
+ static const char * const ad7405_power_supplies[] = {
+@@ -200,7 +195,7 @@ static int ad7405_probe(struct platform_device *pdev)
+                return -EINVAL;
+ 
+        indio_dev->name = st->info->name;
+-       indio_dev->channels = &st->info->channel;
++       indio_dev->channels = &ad7405_channel;
+        indio_dev->num_channels = 1;
+        indio_dev->info = &ad7405_iio_info;
+ 
+Let me know if I messed it up.  Pushed out as testing for now.
 
-On Wed, Jun 11, 2025 at 08:58:49AM +0200, Linus Walleij wrote:
-> On Tue, Jun 10, 2025 at 11:40=E2=80=AFAM Thierry Reding
-> <thierry.reding@gmail.com> wrote:
->=20
-> > One thing that's not clear from this patch set is whether we actually
-> > need the Tegra186 pinmux driver, or you're only adding it because it
-> > happens to be present in a 5.10 downstream driver. Do you actually have
-> > a requirement for setting pins dynamically at runtime? Do you need to be
-> > able to set a static configuration at boot that can't be set using some
-> > earlier bootloader/firmware mechanism?
->=20
-> Actually, speaking as the maintainer of pin control I hear the following
-> a lot:
->=20
-> - We don't need pin control, the BIOS/firmware deals with it
-> - We don't need runtime pin control, the BIOS/firmware deals
->   with it
-> - We don't need runtime pin control, static set-up should be
->   enough
->=20
-> These are all enthusiastic estimates, but in practice, for any
-> successful SoC we always need pin control. Either the BIOS
-> firmware authors got things wrong or made errors (bugs) and
-> there is no path to upgrade the firmware safely, or runtime
-> usecases appear that no-one ever thought about.
->=20
-> Aarons case looks like that latter.
+Thanks,
 
-This was a long time ago now, but I have a vague recollection about
-hardware engineers telling software engineers that muxing pins
-dynamically at runtime wasn't safe for all pins and hence we had to
-do static configuration during early boot.
-
-But then along came devkits with expansion headers and then people
-started using scripts to mux pins to the right functions and such.
-
-> I think it'd be wise to send the message to any SoC system
-> architects (or Linux base port overseer or whatever title
-> this person may have) that a pin control driver is usually
-> needed.
->=20
-> The SCMI people heard the message and have added pin
-> control into the specification for that firmware interface.
-
-I'd agree with you that there's plenty of evidence that we need these
-drivers, so maybe I need to go back and look at what exactly the risks
-are that come with this and maybe there's something we need to do to
-avoid that (I'm thinking along the lines of certain pins being generally
-safe to mux at runtime, but not all).
-
-Thierry
-
---onb3f7hrvum6ompk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmhJn1QACgkQ3SOs138+
-s6GsmA/+OwAKGK0M2/en1lm7TGWqxLGsE8YlgXUYMiZ+7OKWTh4CK4+LNtH9m1dE
-JGIcn0qjUuD4ZNDiMUC3bVjRnMfdfOnRI9nmlIl2iWt0qI63CMX0d3UA+lK3gaK8
-hlhdex8sVMoxWQ2ugaJ323buKfiRQS9oMajS4rqchWrIjIkTfAPEPo7lNQteNBUu
-ImTlSKCoaIzLtXfE6l0sTZEgNxpmvyG8hcXMcSnxtckG7OlTsmmRULisS6/uUNSr
-VJuKIdy+/l6DdJPQ0VUggr+JklCIF0jHPEhrQFOsNGGvAIE8y4+KU1ipKaRU3mUx
-1YxBxjl9PhHjuFLEkQBX9cLXMG292thP9dlVHO/vBH9Abexam8zbG7Nei3zGelTV
-MMGRf1fBQ8oVSz+1/0bGsoQDYYH+GkVID7eGALr1pqe9drqqGOhNIXGx1XScH1U9
-TcAWekoyvcs2l9K4n5GYS+KFP/Xn/RSteDxWBjcsEj4t7Qirse1tHMUtuLAbkAp4
-OLbN7og0Uy0ojmCFQy0nuBxYOnf/YuOuGGesEAZgVqhxGa+vIdjVQlSrivt1kJP4
-Q+5ROiP7eGJh/iT6fKPPfT09qrkvtpvhPkcSAV4aOm4NX/rkqQHsJkGzaPu6PKb6
-M2xQzREVtnOWIeHrsPwd59ErgUk0CglXQEyMHJYaOtvNt5gnoTE=
-=LcNM
------END PGP SIGNATURE-----
-
---onb3f7hrvum6ompk--
+Jonathan
 
