@@ -1,132 +1,107 @@
-Return-Path: <devicetree+bounces-184981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC3F7AD5EBB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:01:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C49CAD5ECB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:07:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 469A27AD055
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:00:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 031DF7AAB70
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4714129B211;
-	Wed, 11 Jun 2025 19:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EF5288C0C;
+	Wed, 11 Jun 2025 19:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7d89dHb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CNsI87mp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F10B18D;
-	Wed, 11 Jun 2025 19:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4A920127D;
+	Wed, 11 Jun 2025 19:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749668468; cv=none; b=kmnzdOK+kb6TrColUZA+DLCg+E4XJ3A4KUDI6kcAbq4+uUn2NwM1TQHMYeGKdwuf2cc2qBMh7f6cK0kgpePRamZW3RMUt194eM+UQ6Q3gxINi1NJf2U/+9reQPjm8DMlvLoCW1bUvVn9gsfOwQhce9Xmw8MUf5o20ICq4cJL5uY=
+	t=1749668828; cv=none; b=SsMgnMhSkDb9XKCX3nv1rN94KNK3xVvFz7vnDJ4rZfuSGEWPwnyTMogwadN/T3Yip3Wgn1p8LdWQ7/2YaDG6J6hoyT1AkEWCWXb4aZaRLCp0AWa+B+I8qESrrksouwNUAIWNGdHdxxNLyFe9SyPBO0LG2t0noj0aahbNSXKP8tY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749668468; c=relaxed/simple;
-	bh=HEU4YutA9kG/s0/mba3Ytoq2491mLHZZ1L9DBov7nkM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AbBdgoQVtKqyrB8A3WBZNQwlTjiIYFlS1ofKxboHUe+tBVZj2qUBgwl7+LHi5LUD/Jd/xeLUs2iytxEf1vbxsaDlRaRAVZkFj0ax3chgk6IVhzKWaiccVBKUnTWs/Z44v2pY2wNXizM8xFw3TljAV6j+3rvmGL58Y1hKTDaiXtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7d89dHb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F5D0C4CEEA;
-	Wed, 11 Jun 2025 19:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749668467;
-	bh=HEU4YutA9kG/s0/mba3Ytoq2491mLHZZ1L9DBov7nkM=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=s7d89dHbjMDYIEd1Gn4wI/fitFyYw4wUZNjZKDx64yneWUFCGbbWUgIBliO8RBCLl
-	 s+3mZuC5dTu99y8EHqyNt8pcLNhBIekbr7QiD7MkvGSPPhA3lp1R+XgewCLdpcW0en
-	 PhzRiFpANFU8jm83mTp0Hi8Bl3taTUCHLlZL9HF82U9zXwhG5h9e8njw3nCtiohzCu
-	 wlcU3EV2c9qR4I12+s/ho7t5CNIKd1rfO9SG69VFXa6rLpUolrkhM2xhmn856INgha
-	 yKmNhwggG9t1utPlyN5XcUzbJ4T4i3QBCqclNSlRF4CZXHYSt068+2LT4Yj77g3XUF
-	 HXq/tkc+MOlKw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94910C71136;
-	Wed, 11 Jun 2025 19:01:07 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Wed, 11 Jun 2025 21:01:01 +0200
-Subject: [PATCH RESEND] powerpc: dts: mpc8315erdb: Add GPIO controller node
+	s=arc-20240116; t=1749668828; c=relaxed/simple;
+	bh=pdnpO1YxkWzXV5U9M40ePTBWbqEr3apcyjJa/6o3ZT4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cOyEzD0TR+6lD818uHgdIsU3iJcxX8/QQCAERJ5WUeg0KjewSg3n5IyUu1RB+dcPau3wRgzRJKjhuN0du90/TS/dOXN4Qz1wFqwPKdg+DRgyjYlPjrcGSczsHP2ni86WLwbAtX1HULJVDA5YN3l2iRORoRkOcUGFu/iscFGU+aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CNsI87mp; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e818a572828so114987276.1;
+        Wed, 11 Jun 2025 12:07:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749668826; x=1750273626; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1MF1dHTik4WYDT1dqFKnZOlAFt0Xaso+/EljV+ZdGk8=;
+        b=CNsI87mpzIyNTSX0NLELYbHVn/bqYdAISvCJwe9KCqavnHKrCsBpTP5mbecD4do1vZ
+         4NpbVyjlUlnLzTJKX2Jyy7nOTcdzz2VloZJebwnRaDTcdx6gxMvu7SjDBncA+PATSMrH
+         qD9dQotEDe0mS1iJRsnXe6VbB07lc+hfuqavi18PBfqb68y5UvekjE54TKvTnCWY14/Y
+         854TkIRN7rLGNNFxaTwG7IuPfCsOdysvMXxkGVems60H6/QIyHidXq0UT9N14DEuDKt+
+         mhSf2H0ixwcsggKVlNrIPAZFqfrNZ0g6+ZwRcJV1VE9vazMf7IBu+s0OO5jYV957YWNm
+         SAaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749668826; x=1750273626;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1MF1dHTik4WYDT1dqFKnZOlAFt0Xaso+/EljV+ZdGk8=;
+        b=BX8+7KOjEu0xfed20EqTeH6wBghZvh3sg+UympX+Pho0sQyNY2Q10CMfSpvZ7HPLou
+         pDXa0F7ipfN8egd7VSGwmYeusxChy2YD5P2tkhK+u2jGePJad4/9ac5rLlCfPq3yMppu
+         DD0vPGEtV2oJULj0GeqxUC0nGqUdYbCKfI3H+CAF/0t3TIdzu1F1jdqpV9LkZxIm4TNf
+         FWqmo02YJ6BqKGy7LwKd4uXZ0O318i63hMVy+0X4Z+gmS8RETCVGw9T0rKkpiXgNaD4P
+         3h5WYYbbVSwMmd3eZuq9fKEZSLsj3PkqEZpAThmqqPqDp9cmQp1Qk+1FJ3NQXO9+yTmp
+         jTdw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYDc+5NMX3p+8GmOo4VxG/1cTMsieX/BsvSEQr7kZu9v2m6HFOfFraHLkODCmEDc+q2Ym8/RdBEVotaSyP@vger.kernel.org, AJvYcCXqagW9taD6+okOXUIiE1YXiSYHqfvyxHoMwr+7daxIDGS7p1HvsfjIPI+r+bRb92qtTaEWsZqW4I4M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/CJdmutO+PUEMtdDfLq4iJcEhnmS/E0J+NiCMi9JNaV5oLbNp
+	DOLzABEMJTDS7vtO5pGk/r9/P4+q3JPOb7Zwe1ap7rRaG+6ITdP8zGEp9suKHrDFG/MYqCPTsVN
+	W8YDC6YdHH2svxS5JpzbSS3GygJ2NHvmA+A==
+X-Gm-Gg: ASbGncu6KTiMSoIuCpWhd9AnSbTKin6mqO0rfxyVCeqFqaxGuIvZpW0ZzZL/Qz9AV+7
+	O26Njj0hP4m3fjE8M8AEniPmcoz/flz5ns6CDaz2woAlBGPiz3oLQihPa6bhvwTSVSryNSdrT8s
+	FbonE4YLJmCp/Xp/wqtAt+t8aET5RE3VKq7D39nMNoNWWts9qxrKRzqfA=
+X-Google-Smtp-Source: AGHT+IFsZ3UIOk9VseJbWKxt8KvtKbfGOyN+aFYnhFj7EA+lzwyye2nE75imMRB1Spn6prKv90Mi/kjbFVIWTts4th0=
+X-Received: by 2002:a05:6902:250b:b0:e81:99cd:9be with SMTP id
+ 3f1490d57ef6-e820b64d1a3mr1175425276.14.1749668826227; Wed, 11 Jun 2025
+ 12:07:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250611-mpc-gpio-v1-1-02d1f75336e2@posteo.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749668466; l=1409;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=yIo4OMFzwIHk/Y7Ad7fIh7vacgPJLYwfWJ8zjzP38HI=;
- b=t2XtzKk2H7rwfNQdpvWOKJG4VX8BR/rxKH6Dz6UQMgVFtZru+BUuVAF8xZp/evmj28KZWpxgG
- JgO+ojw6KFlC8hwxoeHM7YdVVX7H+wqjB0xhsUl8KqDVM9xAD42Bznx
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+References: <20250611-sgx-dt-v1-0-7a11f3885c60@gmail.com> <20250611-sgx-dt-v1-1-7a11f3885c60@gmail.com>
+ <edf14a64-decc-4392-a038-08b5dd942f8d@kernel.org>
+In-Reply-To: <edf14a64-decc-4392-a038-08b5dd942f8d@kernel.org>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Wed, 11 Jun 2025 21:06:55 +0200
+X-Gm-Features: AX0GCFvMeV5Ol-Irt1s6ubsKN_ZZGACBjoQJdDOoAp2hIzH0XLvrHdYRqZQPnT0
+Message-ID: <CAMT+MTRYybR=tFJrcUn43UK3iW-fqEH3rmCLUezq2eTrEK=nQw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: Add Apple SoC GPU
+To: Sven Peter <sven@kernel.org>
+Cc: asahi@lists.linux.dev, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Simona Vetter <simona@ffwll.ch>, 
+	David Airlie <airlied@gmail.com>, Neal Gompa <neal@gompa.dev>, Maxime Ripard <mripard@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Janne Grunau <j@jannau.net>, 
+	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Wed, 11 Jun 2025 at 20:44, Sven Peter <sven@kernel.org> wrote:
+> > +      - description: Driver-opaque calibration blob
+> > +      - description: Calibration blob
+>
+> Like Alyssa mentioned, this description also raises more questions than
+> it answers for me. Do we know what these two blobs contain or why they
+> are two separate blobs?
 
-The MPC8315E SoC and variants have a GPIO controller at IMMR + 0xc00.
-This node was previously missing from the device tree.
-
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-A version of this patch was previously part of the series "powerpc:
-MPC83xx cleanup and LANCOM NWAPP2 board", but I'm splitting it out to
-reduce the size of that series.
----
- arch/powerpc/boot/dts/mpc8315erdb.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/powerpc/boot/dts/mpc8315erdb.dts b/arch/powerpc/boot/dts/mpc8315erdb.dts
-index e09b37d7489d01bfd16a26e9786868f630fa0262..a89cb3139ca8c3d4f22e43838a4b7d2dd5109aa5 100644
---- a/arch/powerpc/boot/dts/mpc8315erdb.dts
-+++ b/arch/powerpc/boot/dts/mpc8315erdb.dts
-@@ -6,6 +6,7 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	compatible = "fsl,mpc8315erdb";
-@@ -358,6 +359,15 @@ pmc: power@b00 {
- 			interrupt-parent = <&ipic>;
- 			fsl,mpc8313-wakeup-timer = <&gtm1>;
- 		};
-+
-+		gpio: gpio-controller@c00 {
-+			compatible = "fsl,mpc8314-gpio";
-+			reg = <0xc00 0x100>;
-+			interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
-+			interrupt-parent = <&ipic>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
- 	};
- 
- 	pci0: pci@e0008500 {
-
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250418-mpc-gpio-79dca9f70546
-
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
-
-
+At some point in the gpu initialization process we give the firmware a bag
+of pointers to various stuff it needs. HwCalA and HwCalB are separate
+pointers, and they use separate gpu allocations. We do not fully know
+what is in there, but we know what some of the fields do and how to
+create the blobs based on data from apple device tree.
 
