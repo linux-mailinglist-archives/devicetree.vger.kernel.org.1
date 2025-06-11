@@ -1,149 +1,257 @@
-Return-Path: <devicetree+bounces-184888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24661AD5840
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:14:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E76AD5849
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:15:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 073AD3A7756
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:12:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA5447A7F45
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7A62BD03C;
-	Wed, 11 Jun 2025 14:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C6E2BD038;
+	Wed, 11 Jun 2025 14:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X5oJtr8J"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UOt6HpUk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B64295502;
-	Wed, 11 Jun 2025 14:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F0935897;
+	Wed, 11 Jun 2025 14:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749651181; cv=none; b=ridoR01HZk9yyqNKaIGZEvGAFrWKZP2cvUbn3iEnt0wxbAMIy9CkoXX9/8SFqK4Nt3kQFXFefb9/18fMb3P1elmyxmQi/1/ruF4aZTVzWst4jZUQnxybQCE265XtUA7KTMvamCWT8vFIbij1n0sm5/IobiDtOpaOnIsg6IF0mzw=
+	t=1749651305; cv=none; b=N79b60YC0aWP5ox+5MuLrC2fIegczqoO2SaGV/uIfX2T+ZbgZn8KexRl3VvRL6Mn5CNs1AXJ+xZJUodf4HPdoFiD1BWL+0mJE8wYaTAtC8TdZST4soxJ7BO1cbk6J7hs9M1lN7Jnw+8v9wW+0dXhhEMMPPHtnAk4+C6uvtWNAOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749651181; c=relaxed/simple;
-	bh=atmhHy6QpcP64ofmiEEwUrG4vMaYmZXjgF3h18/VPdU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jY6FXdZbmUQzr3f5mTXTKeOqkq7NhYhc/4nVvXeFTAgavR8ocfun4A1hYFqXrRmm2xLnvz1UvSjYlWPpNl7XnhP3ZyVsyRNajfH0ecsaSWFlhPRtOEEjEsWO34Fcwehz4KLmzjUmz/uEr/hkEHO8yoClUuzcqlyR8PILfVkZKQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=X5oJtr8J; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DGt8026057;
-	Wed, 11 Jun 2025 14:12:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rZWGVsTR3YY/nyjtsNCnhYm+76PbrRj0mIU9l49BmHs=; b=X5oJtr8J6xLfPVEt
-	TObmZGGXWyPq3X3Q2rB+HIHwBK594Zv3kQnxo5Hn8BNbmsIHeL2iOvyxD0EALq4V
-	+iEtobY6F3P/Fv8xKbcZR+hDUM9U0L5GA2OAV930vEjZForjvrVW6BadLzlU+pXc
-	9XkJbY/icluo3nsIxXI1O9MWyD2YhoXMLgwcMBeIHoy7rQ7R/jlq6OB+eV0BXN2n
-	Bo6TuSS1ur8pbrAhuGghWqMrXlo/MUcKWKoT9s7Xt4bZhbWzCZfVLj9R9HcWryO9
-	GdtlCQIWDgKbd8963ehUlKvlJhrDLUfQyIPbFeG7xxJaqbsDx/ii42gU3ERDNEEf
-	DsGiXA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 475v2y81w6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Jun 2025 14:12:52 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55BECp7b021265
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Jun 2025 14:12:52 GMT
-Received: from [10.216.3.123] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Jun
- 2025 07:12:46 -0700
-Message-ID: <ee2affe2-7d9e-4ced-bbe7-c7decf8bf336@quicinc.com>
-Date: Wed, 11 Jun 2025 19:42:43 +0530
+	s=arc-20240116; t=1749651305; c=relaxed/simple;
+	bh=gPozdbI3xpmxAv+kXn407bfUh6hLjnr47SUlGsJ5RY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LFdVMXxyUoUYqkdmaQ3g37f4JClsnxyScr9mlOcmDmk9vmqJwln4Cs6SjfDSjiF6DWioaWPQOsVLSVgJ214hz/Tb9Lh7oCcgG/5SBXgbHMPlykrVek3mbhl4O7AT/ttOpvmDMuFh0KOgw/3RApqthsD192oK/sF8bu0d9Ds1jag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UOt6HpUk; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 53EAC526;
+	Wed, 11 Jun 2025 16:14:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1749651293;
+	bh=gPozdbI3xpmxAv+kXn407bfUh6hLjnr47SUlGsJ5RY0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UOt6HpUk9flKVzBrV8edTT7seyKAKmte8Yfx+4gNSJ9azP9NzWTKbG/MmcfOLgDMX
+	 1rdkMDvcCLkiMrNuyccUiei49CSOPbo3TzWOuCHYOfESslReCu16XrFQBBpa6DcliV
+	 Wz/VZY3TuNfK79OPX5bo1LospmsQOFtdHjLUcmR8=
+Date: Wed, 11 Jun 2025 17:14:49 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v4 04/13] media: nxp: imx8-isi: Use
+ devm_clk_bulk_get_all() to fetch clocks
+Message-ID: <20250611141449.GA24607@pendragon.ideasonboard.com>
+References: <20250408-8qxp_camera-v4-0-ef695f1b47c4@nxp.com>
+ <20250408-8qxp_camera-v4-4-ef695f1b47c4@nxp.com>
+ <20250421211438.GN17813@pendragon.ideasonboard.com>
+ <aBQZjFsExJh2uRfK@lizhi-Precision-Tower-5810>
+ <20250502155747.GB20093@pendragon.ideasonboard.com>
+ <aBylKcZyFInlKQAR@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/8] dt-bindings: serial: describe SA8255p
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <psodagud@quicinc.com>, <djaggi@quicinc.com>,
-        <quic_msavaliy@quicinc.com>, <quic_vtanuku@quicinc.com>,
-        <quic_arandive@quicinc.com>, <quic_mnaresh@quicinc.com>,
-        <quic_shazhuss@quicinc.com>, Nikunj Kela
-	<quic_nkela@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-2-quic_ptalari@quicinc.com>
- <20250610-tested-lilac-raccoon-6c59c4@kuoka>
- <d744b518-2ae9-4ca0-86ce-11cf74c945e6@quicinc.com>
- <b137e6bb-7380-4f4c-8469-422587d08c60@kernel.org>
-Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <b137e6bb-7380-4f4c-8469-422587d08c60@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDExOCBTYWx0ZWRfX5R5K13Jr6jbB
- lfUsjdPmEPzDBt0OtaSr60rfl/sCAenoNLyBXMGXfYHFYHtB9sZU9W8DpUg2ynpHYF+zPN+8a2r
- Snlu4gRtESE8rPV6GPK6hjkVL+wC1kcPo/Unbbl/9kXK+clirlOrncq+jWjlcokNPibkYJfovi/
- oZbW3jqOw1qn3uNwpS6uv7wmeS0qTwkywFLzJOB5OB3ETZfN7gaTCHK0cf9y1WcEEdSaP554X8q
- U5/QrfTGcVf2k02oXrAIQLdJwVDanKSQpAZTMXXROA6wS1b/chhBRp7UzkpTy5ukXbniY2Ai0VB
- oojDVOEOzO5LEQYmTPQ6qXg/ujyMcTWM2/kHNToCOIyM0hsJmxE+1r0K7qCaST64dRIZuDH1Pp1
- PezApOakaG2uMcmT9k+S8UDatL3ba90pfi8E8GuH17PfxtaxoPkZI4FNqdmqYxPgfxJmP+ey
-X-Proofpoint-GUID: ZOCsCpc2dl9pviTiiGwzO_XevpbnGGRG
-X-Proofpoint-ORIG-GUID: ZOCsCpc2dl9pviTiiGwzO_XevpbnGGRG
-X-Authority-Analysis: v=2.4 cv=f+BIBPyM c=1 sm=1 tr=0 ts=68498ee4 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
- a=o5fqufYwVcAoi6U72LcA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-11_05,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 mlxlogscore=717 bulkscore=0 impostorscore=0
- lowpriorityscore=0 priorityscore=1501 adultscore=0 phishscore=0 mlxscore=0
- malwarescore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506110118
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aBylKcZyFInlKQAR@lizhi-Precision-Tower-5810>
 
-Hi Krzysztof,
+Hi Rob,
 
-Thank you for review.
-
-On 6/11/2025 12:47 PM, Krzysztof Kozlowski wrote:
-> On 10/06/2025 10:10, Praveen Talari wrote:
->>>> +
->>>> +  interrupts:
->>>> +    minItems: 1
->>>
->>> Drop, this is not in sync with interrupt-names. You already received
->>> comments on this. We talk about this since v4!
->> I hope you have reviewed the commit message and the description under
->> interrupt-name regarding the optional wakeup IRQ. I believe that address
->> your query.
->>
->> I can include minItems:1 in the interrupt-name property in the next
->> patch set to align/sync with interrupts property.
-> Yes, then the interrupt-names needs minItems.
-Sure, will update in next patch-set.
-
-Thanks,
-Praveen Talari
+On Thu, May 08, 2025 at 08:35:53AM -0400, Frank Li wrote:
+> On Fri, May 02, 2025 at 06:57:47PM +0300, Laurent Pinchart wrote:
+> > On Thu, May 01, 2025 at 09:02:04PM -0400, Frank Li wrote:
+> > > On Tue, Apr 22, 2025 at 12:14:38AM +0300, Laurent Pinchart wrote:
+> > > > On Tue, Apr 08, 2025 at 05:53:02PM -0400, Frank Li wrote:
+> > > > > Use devm_clk_bulk_get_all() helper to simplify clock handle code.
+> > > > >
+> > > > > No functional changes intended.
+> > > > >
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 46 +++-------------------
+> > > > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  3 +-
+> > > > >  2 files changed, 6 insertions(+), 43 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > > > index ecfc95882f903..015350c6f2784 100644
+> > > > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > > > @@ -275,11 +275,6 @@ static const struct mxc_isi_set_thd mxc_imx8_isi_thd_v1 = {
+> > > > >  	.panic_set_thd_v = { .mask = 0xf0000, .offset = 16, .threshold = 0x7 },
+> > > > >  };
+> > > > >
+> > > > > -static const struct clk_bulk_data mxc_imx8mn_clks[] = {
+> > > > > -	{ .id = "axi" },
+> > > > > -	{ .id = "apb" },
+> > > > > -};
+> > > > > -
+> > > > >  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+> > > > >  	.model			= MXC_ISI_IMX8MN,
+> > > > >  	.num_ports		= 1,
+> > > > > @@ -287,8 +282,6 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+> > > > >  	.reg_offset		= 0,
+> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v1,
+> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> > > > > -	.clks			= mxc_imx8mn_clks,
+> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+> > > > >  	.buf_active_reverse	= false,
+> > > > >  	.gasket_ops		= &mxc_imx8_gasket_ops,
+> > > > >  	.has_36bit_dma		= false,
+> > > > > @@ -301,8 +294,6 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
+> > > > >  	.reg_offset		= 0x2000,
+> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
+> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> > > > > -	.clks			= mxc_imx8mn_clks,
+> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+> > > > >  	.buf_active_reverse	= true,
+> > > > >  	.gasket_ops		= &mxc_imx8_gasket_ops,
+> > > > >  	.has_36bit_dma		= true,
+> > > > > @@ -315,8 +306,6 @@ static const struct mxc_isi_plat_data mxc_imx8ulp_data = {
+> > > > >  	.reg_offset		= 0x0,
+> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
+> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> > > > > -	.clks			= mxc_imx8mn_clks,
+> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+> > > > >  	.buf_active_reverse	= true,
+> > > > >  	.has_36bit_dma		= false,
+> > > > >  };
+> > > > > @@ -328,8 +317,6 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
+> > > > >  	.reg_offset		= 0,
+> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
+> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> > > > > -	.clks			= mxc_imx8mn_clks,
+> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+> > > > >  	.buf_active_reverse	= true,
+> > > > >  	.gasket_ops		= &mxc_imx93_gasket_ops,
+> > > > >  	.has_36bit_dma		= false,
+> > > > > @@ -386,7 +373,7 @@ static int mxc_isi_runtime_suspend(struct device *dev)
+> > > > >  {
+> > > > >  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
+> > > > >
+> > > > > -	clk_bulk_disable_unprepare(isi->pdata->num_clks, isi->clks);
+> > > > > +	clk_bulk_disable_unprepare(isi->num_clks, isi->clks);
+> > > > >
+> > > > >  	return 0;
+> > > > >  }
+> > > > > @@ -396,7 +383,7 @@ static int mxc_isi_runtime_resume(struct device *dev)
+> > > > >  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
+> > > > >  	int ret;
+> > > > >
+> > > > > -	ret = clk_bulk_prepare_enable(isi->pdata->num_clks, isi->clks);
+> > > > > +	ret = clk_bulk_prepare_enable(isi->num_clks, isi->clks);
+> > > > >  	if (ret) {
+> > > > >  		dev_err(dev, "Failed to enable clocks (%d)\n", ret);
+> > > > >  		return ret;
+> > > > > @@ -414,27 +401,6 @@ static const struct dev_pm_ops mxc_isi_pm_ops = {
+> > > > >   * Probe, remove & driver
+> > > > >   */
+> > > > >
+> > > > > -static int mxc_isi_clk_get(struct mxc_isi_dev *isi)
+> > > > > -{
+> > > > > -	unsigned int size = isi->pdata->num_clks
+> > > > > -			  * sizeof(*isi->clks);
+> > > > > -	int ret;
+> > > > > -
+> > > > > -	isi->clks = devm_kmemdup(isi->dev, isi->pdata->clks, size, GFP_KERNEL);
+> > > > > -	if (!isi->clks)
+> > > > > -		return -ENOMEM;
+> > > > > -
+> > > > > -	ret = devm_clk_bulk_get(isi->dev, isi->pdata->num_clks,
+> > > > > -				isi->clks);
+> > > > > -	if (ret < 0) {
+> > > > > -		dev_err(isi->dev, "Failed to acquire clocks: %d\n",
+> > > > > -			ret);
+> > > > > -		return ret;
+> > > > > -	}
+> > > > > -
+> > > > > -	return 0;
+> > > > > -}
+> > > > > -
+> > > > >  static int mxc_isi_probe(struct platform_device *pdev)
+> > > > >  {
+> > > > >  	struct device *dev = &pdev->dev;
+> > > > > @@ -457,11 +423,9 @@ static int mxc_isi_probe(struct platform_device *pdev)
+> > > > >  	if (!isi->pipes)
+> > > > >  		return -ENOMEM;
+> > > > >
+> > > > > -	ret = mxc_isi_clk_get(isi);
+> > > > > -	if (ret < 0) {
+> > > > > -		dev_err(dev, "Failed to get clocks\n");
+> > > > > -		return ret;
+> > > > > -	}
+> > > > > +	isi->num_clks = devm_clk_bulk_get_all(dev, &isi->clks);
+> > > >
+> > > > This prevents validating that the DT contains the expected clocks, which
+> > > > could cause hard to debug issues. Isn't it a problem ?
+> > >
+> > > It is checked by dt-binding. Now no warning by DTB_CHECK under arm64 freecale.
+> > > CHECK_DTB should be enough to find expected clocks.
+> >
+> > Yes, the DTB check will catch issues at build time, but the driver will
+> > not enforce that. I'm not sure if there's a clear policy here, and if
+> > ensuring at runtime in drivers that the expected clocks are present is
+> > considered as a good practice by the DT maintainers. Rob, Krzysztof,
+> > Conor, do you have an opinion ?
 > 
-> Best regards,
-> Krzysztof
+> Rob:
+> 	can you comment this?
+
+Rob, any comment on this ?
+
+> Laurent:
+> 	Many driver already switch to devm_clk_bulk_get_all() such as qcom/imx6
+> pci drivers recently.
+> 
+> > > > > +	if (isi->num_clks < 0)
+> > > > > +		return dev_err_probe(dev, isi->num_clks, "Failed to get clocks\n");
+> > > > >
+> > > > >  	isi->regs = devm_platform_ioremap_resource(pdev, 0);
+> > > > >  	if (IS_ERR(isi->regs)) {
+> > > > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > > > index e7534a80af7b4..bd3cfe5fbe063 100644
+> > > > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > > > @@ -169,8 +169,6 @@ struct mxc_isi_plat_data {
+> > > > >  	const struct mxc_isi_ier_reg  *ier_reg;
+> > > > >  	const struct mxc_isi_set_thd *set_thd;
+> > > > >  	const struct mxc_gasket_ops *gasket_ops;
+> > > > > -	const struct clk_bulk_data *clks;
+> > > > > -	unsigned int num_clks;
+> > > > >  	bool buf_active_reverse;
+> > > > >  	bool has_36bit_dma;
+> > > > >  };
+> > > > > @@ -282,6 +280,7 @@ struct mxc_isi_dev {
+> > > > >
+> > > > >  	void __iomem			*regs;
+> > > > >  	struct clk_bulk_data		*clks;
+> > > > > +	int				num_clks;
+> > > > >  	struct regmap			*gasket;
+> > > > >
+> > > > >  	struct mxc_isi_crossbar		crossbar;
+
+-- 
+Regards,
+
+Laurent Pinchart
 
