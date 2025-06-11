@@ -1,111 +1,98 @@
-Return-Path: <devicetree+bounces-184938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6071AAD5BFF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:22:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4151BAD5C0E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:26:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7959A3A6E27
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:22:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DFD41894A1A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6441F0E39;
-	Wed, 11 Jun 2025 16:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B021F4CA1;
+	Wed, 11 Jun 2025 16:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EYDhMv3P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duQbIDmM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D37E1E47BA;
-	Wed, 11 Jun 2025 16:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1F81E521A;
+	Wed, 11 Jun 2025 16:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749658936; cv=none; b=tm0DIESBiyvDUx4x+OGwCqLwpDgGBXAkben7o4BbJurioSqJ3hOEyqlcQEgRmHZqrUIVNtEdXf33I9f6w+axAqjn7QlPeUOs5WWiy4WHVkIYCHNola7tOndkrpfO6QvLBHnY2Jh1gtSsa3+9ncz+RErjrlJqIzoGuNLHngIgf+k=
+	t=1749659138; cv=none; b=P+r4viBxV9rTNvxuMVjYvtZxAUq9WpOe+BeUM5LdgcZ+Mbm21svfbhv/1TP8gOit8z0nvw4m706HXGwWGMzOsJ443KR+d6H8drQCTVkNufasBUwgUEGhxsmoF4AJj7TogHLceUVpy8RJSMg7YWdFnE+T1IdHwsdH+Vh7o8kcsiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749658936; c=relaxed/simple;
-	bh=ziAnfRxyNjEpCFfJWS21721Am3P++TML+hoaHXrdOSE=;
+	s=arc-20240116; t=1749659138; c=relaxed/simple;
+	bh=JoKvHcd/16FOMfJ8hZS2otWQ1fq0YEBXKYnmBQ5qxos=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lvCwbJS9XyiKLr5OAY66hIC+FVwcWMxA0ebo/kRf+I5i8alNdXElYyMrGCbGjDYUMk5xqPpUvJidAk4AH3A6hfE3tbTayAA2GjFnzTlhrZW66CzF3xkwWcNrL9WaMD2gPna1bDDytgDFKuHVnaYExlUTEvVz0yR54+YIwloF+7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EYDhMv3P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D1A4C4CEEA;
-	Wed, 11 Jun 2025 16:22:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=X3iBo4JzThsLQrEbNDXSfb5cK1gfkJwSSUSygiHDFlxKfcvTLZU/7HGwhr9u+8Yr9Ar/HBYQ53RZeAKRH7PLAEwaEsdqTQmFhT1epywWI25nrDujpHbFrl0rrnQYpOrjmLyDrg3V/4/IX5Ido0PDGeKuISe/72kVJi+wirzVvrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duQbIDmM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B85C4CEEA;
+	Wed, 11 Jun 2025 16:25:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749658936;
-	bh=ziAnfRxyNjEpCFfJWS21721Am3P++TML+hoaHXrdOSE=;
+	s=k20201202; t=1749659136;
+	bh=JoKvHcd/16FOMfJ8hZS2otWQ1fq0YEBXKYnmBQ5qxos=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EYDhMv3P1nNHg7yQuL9LjYXiZ9ORAsq3I68fYTi/2MNVIkJkwzZ9gQUBM0bw6BRD/
-	 uOIgFxIblO8opvv5LsAMfBCV3JzloO1RU+Z4O+h9gN3jmb6Vowpf4LdTv8LZrRZx8U
-	 qvOBN+9Vt3fAIFctk5tBrnICe6qGbKihcNe/SvUJ9H0r6vDlte0Zlgl6JYjjVAA17L
-	 Ei96J7SqN5MeI5JlM8IpMY+pHQH96geciXxUkoTsa6Ienw5cOXVqs2vQ9odQol+RmC
-	 ZQPMz+HK68AAsgRKnxaAgBoJOJpt+oUgPyyTdJvs4dET0RNjYu6wJZlVWNql8nkVQT
-	 L0h3l3NTO/8Mg==
-Date: Wed, 11 Jun 2025 17:22:10 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
+	b=duQbIDmML9WvmIyfdCPqarFvaytffHe4zKpMK0erbva9VbrUlErgN/6KcJi4OyCA7
+	 AN4DOtRiELMvi4IvMnKWVfkrD44EOr4cgyg12PZFlhvvCnuXmlgUXctRBNxlkg7NvZ
+	 Zn6fqbk5jhLnKDtn0FlKO0DJKbJ9U4MpM5KKc62GOFXRPFBUjlpEWIxZoMneaszy5U
+	 nk+2HWCa+0dsE9UkEF7TRsOorBHwcjDY0w7Iap3O+EcdS3hcbpzG/PkmsRwLNX9zWw
+	 clCwiLW/Wy2K+Q1KoMqG92sy56+6ak8cxblNoL6NqJ4Jv473Iy7X7fyWRrYgu27Db8
+	 vkq4KbbBM1IOQ==
+Date: Wed, 11 Jun 2025 17:25:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Jiaxin Yu <jiaxin.yu@mediatek.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 09/13] ASoC: mediatek: mt8183-afe-pcm: use local `dev`
- pointer in driver callbacks
-Message-ID: <d9107e29-ccb3-4a60-b6d7-dfd938c45b4f@sirena.org.uk>
-References: <20250424102509.1083185-1-wenst@chromium.org>
- <20250424102509.1083185-10-wenst@chromium.org>
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Julien Panis <jpanis@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] dt-bindings: mfd: ti,tps6594: Add TI TPS652G1 PMIC
+Message-ID: <20250611-ion-barrette-1e43f2620c03@spud>
+References: <20250611133137.1686183-1-mwalle@kernel.org>
+ <20250611133137.1686183-2-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OKDsn+6sk/Ui8xxs"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NPyqz6VEAkXZBKkJ"
 Content-Disposition: inline
-In-Reply-To: <20250424102509.1083185-10-wenst@chromium.org>
-X-Cookie: I've Been Moved!
+In-Reply-To: <20250611133137.1686183-2-mwalle@kernel.org>
 
 
---OKDsn+6sk/Ui8xxs
+--NPyqz6VEAkXZBKkJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 24, 2025 at 06:25:03PM +0800, Chen-Yu Tsai wrote:
-> The probe and remove functions in the mt8183-afe-pcm driver repeatedly us=
-es
-> `&pdev->dev` for |struct device *|, but then assigns this value to
-> `afe->dev` and uses that in other places in the same function.
+On Wed, Jun 11, 2025 at 03:31:33PM +0200, Michael Walle wrote:
+> The TPS652G1 is a stripped down version of the TPS65224. From a software
+> point of view, it lacks any voltage monitoring, the watchdog, the ESM
+> and the ADC.
 >=20
-> Store `&pdev->dev` in a local pointer and use that exclusively to avoid
-> the numerous dereferences and to make the code more consistent. Lines
-> are reflowed where it makes sense.
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 
-This doesn't apply against current code, please check and resend.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-I'm just about to drop everything else into CI so it should just be the
-couple of patches I flagged.
-
---OKDsn+6sk/Ui8xxs
+--NPyqz6VEAkXZBKkJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhJrTIACgkQJNaLcl1U
-h9A0swf/YV8Fwq4XzOoUcESeG40woM73Nf36oZKuCPnJShafmWlvwGNu1nrxUXgT
-B5uc4HFldlyHz9V+Z3ICpZcWX8BxfVGgGQz6gdUFv0dHmTrF1Uw8jMLQnRzW7Ay8
-mPUO4wGiDkOzS4Fr2c0CIs1rjLnFlRg+V4cwfXgC7Tt9MEZl/A0Njgp/WF85PD9A
-fHpwE5sBvo57t2tkt/Jy9p6F7JT7QkVTAGljnbiuxQMBkqrX6rj+Old5UhDaYoaJ
-R7ktKAYju/Xa2ChFYSwSipX7Mg/7vPMepYJSW8WsYf+XHkUYjjHPqZ99mpCOPvsC
-AZJCtp3kY5y+dz8R35xID2GHWqvstA==
-=F1JI
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEmt+wAKCRB4tDGHoIJi
+0qOfAP9B2sAwIv6xmvc26A60sTqWMV2cr7IVjvVfmX7DHSkg/wD/QjCLgH9LDlwO
+hmaJmmJp9+R/hjvg0es3TISpx02CFgU=
+=uyTT
 -----END PGP SIGNATURE-----
 
---OKDsn+6sk/Ui8xxs--
+--NPyqz6VEAkXZBKkJ--
 
