@@ -1,160 +1,185 @@
-Return-Path: <devicetree+bounces-184839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521F1AD5504
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:08:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82805AD5523
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:12:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8571189F8FB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:08:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13F727A51BA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31FF278158;
-	Wed, 11 Jun 2025 12:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF81127BF80;
+	Wed, 11 Jun 2025 12:12:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wu7T6Ezs"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="KmYJVR/G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45602777F9;
-	Wed, 11 Jun 2025 12:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749643718; cv=none; b=dEkYOXAI14APbXApiBJg/+Vbene9G2zp3mbuG+KQdQ9ZIe53Cw/nhH/P99enl8SGvtrcE8B3u4GNmGaTbkdCVGUVtyPDAIG4+fCBmsgr9wCdyV7ZjxJGzYH87IKig7idT0NFucuJXKYj2RtzmHa4ZzsdtFFY/jP7uFYP9IH5t5c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749643718; c=relaxed/simple;
-	bh=AnIiuo8BIh5hjVnofxK+qJ7JMiLRx8UmXZqyBno9Lv0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=siWRoiS24gQAXvHFgfvhucxPCEH5J7UOTrz5KvFTdneW7FvTJvEDcdii+uRMxB/yRtRqlnni6CPoMjYz9K5xNhljS3PU8DQ/ejdc1mX0zLpm79sjEXvbVL9HgZynOiaQSbFxH7OD9w9s3/7hxc3nL3WODA/u4Dypju5WbqHfUm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wu7T6Ezs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81DDBC4CEEE;
-	Wed, 11 Jun 2025 12:08:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749643718;
-	bh=AnIiuo8BIh5hjVnofxK+qJ7JMiLRx8UmXZqyBno9Lv0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wu7T6EzsDP3hw85m+kw487h0aX/by7owc5icNs8fS3XI90yYgAP6DpsJA/Y/et4zV
-	 UUo1Vumm5U/Znx2Tqr9dlWz9bl/sRE27B7g6OlxEdNtfmlBAV+3styJ23XlldwDwLX
-	 IO58CaqW/tCIxWEaJ9SRYN6gpZu1wuNF+FCrc1efFLF82/Hi7dYx9K+XYa3y+Lw87+
-	 SG70TW5hs1+FDQaisn5yvymCBjFYZrOU8QdHqWUV4014c3NffZsSEHfu3rJDBL0cxR
-	 Plhn+fevcmqECIw24pnOXQnxHJFy+QY+mwdE+yh6BghIPBDwuZP7xUFtot9HgKmfX5
-	 4qFjA+b9n5yIA==
-Date: Wed, 11 Jun 2025 14:08:31 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>,
-	Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v8 3/9] rust: device: Move property_present() to FwNode
-Message-ID: <aElxv3hRIc6Z_7jg@cassiopeiae>
-References: <20250611102908.212514-1-remo@buenzli.dev>
- <20250611102908.212514-4-remo@buenzli.dev>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF26E27A12B;
+	Wed, 11 Jun 2025 12:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749643931; cv=pass; b=XEe0EavM6ILXJmKu+DCdXvqkFgu6IvggmIRHPZab1sCOeT1ENRJQWyBxLUKt8r8oGwNdX2xav/M6z1Mv1A9z2OXrnfzx4zbCfJQsVfw9lhvCZV20iuHBvq/d3E+vAbd3ZgeUJdzhYniLj7otRmHCuUpWLg+9ROwksotV9dpfcqU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749643931; c=relaxed/simple;
+	bh=MUQIuXRfDl4RcuDYVB8bOPsQcL3xPBAHH23OTMB03Dk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KJPDncCxvc4sWV6gS8wZFp0w1/NI3ISzzUMAT5UBSnibrWrcDux7iJY3EpIy31PIXP48vG8u0RbywAAaISlY5tdz4JSVsyPqcM9CaulwkqWfFzFFUkXVEmciBBwLL4tgKa56i980M1asMNaBGYkQmZQzrqouDymwO5fbiYUsSX4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=KmYJVR/G; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1749643898; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=KAKS2d25mKM+c3gQJaSDpijQ6lBIC/PooR62+Nyt1sMtPknLcb8EpK69IMKmoxR7YGd3wyJpOhGYdy0RKTYakv3kVUfbYlz8RmHhFo8DKuN/xadwgBO1VFROvBrIc/IdyA7vtcnCtHnEkVm+MXr5LafKqPH/e3mpNf8Gw5mj+bQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1749643898; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=MUQIuXRfDl4RcuDYVB8bOPsQcL3xPBAHH23OTMB03Dk=; 
+	b=S3aqBXL9IkTTac9qExicp1WjO4c1sMQgwqedC3bKe6vVfHX8rryNO3ECeauVsIhxwdAqteoqTojGhDmdkaDf6jBuWNnx4RqdQu7sclawXopZ8z9kTKX1H5Va1b+yl8bulqP/cA9bqV+cqkW3r8LGz0LHF27cYLkfGpAfO++Jr9c=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749643898;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=MUQIuXRfDl4RcuDYVB8bOPsQcL3xPBAHH23OTMB03Dk=;
+	b=KmYJVR/GJDNOAg3ysa/7iANuO/cg0bi2jebZA5pLshppm6DYT0igSpWfisx+iVaG
+	mUZRCch8ytO11vC/MYGYP4/RrzpsVkTI0Ls1o5Jdsvy+UmERPX/NU0o5gLN6gSIFnhp
+	B1/EMorJ8oZsOGh1PpuyvgCr+CEVkcAqSjpyeSCZT5/sTtVuAiYhYVq+kL8rpvIE15s
+	do9FTzOPn38QwLecjqj5ZvMw6+TTUrmUF5Ny/U2wjtc6DXiKZlHDIV0lAkzhqgzCZwi
+	Zbw87nZj7wE01xGJpjv1z6DLPA6xSw7C2EyDkwdGq8+x7PWBJ7xyUfmPsanUIN8vVou
+	S39YO26cgw==
+Received: by mx.zohomail.com with SMTPS id 1749643895949130.74543462284248;
+	Wed, 11 Jun 2025 05:11:35 -0700 (PDT)
+Message-ID: <fc7ad44b922ec931e935adb96dcc33b89e9293b0.camel@icenowy.me>
+Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
+ informative text about RGMII delays
+From: Icenowy Zheng <uwu@icenowy.me>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>,  netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Wed, 11 Jun 2025 20:11:27 +0800
+In-Reply-To: <aElArNHIwm1--GUn@shell.armlinux.org.uk>
+References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
+	 <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
+	 <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
+	 <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
+	 <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
+	 <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
+	 <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
+	 <9ebe16a8d33e00c39c142748a1ea6fff96b9565a.camel@icenowy.me>
+	 <aElArNHIwm1--GUn@shell.armlinux.org.uk>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250611102908.212514-4-remo@buenzli.dev>
+X-ZohoMailClient: External
 
-(+Viresh, FYI)
+=E5=9C=A8 2025-06-11=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 09:39 +0100=EF=BC=
+=8CRussell King (Oracle)=E5=86=99=E9=81=93=EF=BC=9A
+> On Wed, Jun 11, 2025 at 04:03:11PM +0800, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-06-05=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 15:48 +0200=EF=
+=BC=8CAndrew Lunn=E5=86=99=E9=81=93=EF=BC=9A
+> > > Which is theoretically fine. I've not looked at this driver in
+> > > particular, but there are some MACs were you cannot disable the
+> > > delay.
+> > > The MAC always imposes 2ns delay. That would mean a PCB which
+> > > also
+> > > has
+> > > extra long clock lines is simply FUBAR, cannot work, and 'rgmii'
+> > > is
+> > > invalid, so reject it.
+> >=20
+> > BTW I found that in some case the assumption of PHY-side delay
+> > being
+> > always better than MAC-side one is wrong -- modern MACs usually
+> > have
+> > adjustable delay line, but Realtek 8211-series PHYs have only
+> > on/off
+> > delay with a fixed 2ns value.
+>=20
+> The only time that MACs may implement delays based on the
+> PHY_INTERFACE_MODE_RGMII* is if they also include code to pass
+> PHY_INTERFACE_MODE_RGMII (no suffixes) to phylink / phylib to ensure
+> that the PHY doesn't _also_ add delays. This isn't something we
+> encourage because it's more code, more review, and a different way
+> of implementing it - thus adding to maintainers workloads that are
+> already high enough.
 
-On Wed, Jun 11, 2025 at 12:29:02PM +0200, Remo Senekowitsch wrote:
-> The new FwNode abstraction will be used for accessing all device
-> properties.
-> 
-> It would be possible to duplicate the methods on the device itself, but
-> since some of the methods on Device would have different type sigatures
-> as the ones on FwNode, this would only lead to inconsistency and
-> confusion. For this reason, property_present is removed from Device and
-> existing users are updated.
-> 
-> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> ---
->  drivers/cpufreq/rcpufreq_dt.rs | 3 ++-
->  rust/kernel/device.rs          | 7 -------
->  rust/kernel/device/property.rs | 7 +++++++
->  3 files changed, 9 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/rcpufreq_dt.rs b/drivers/cpufreq/rcpufreq_dt.rs
-> index 94ed81644fe1c..4eb240dc9fdc8 100644
-> --- a/drivers/cpufreq/rcpufreq_dt.rs
-> +++ b/drivers/cpufreq/rcpufreq_dt.rs
-> @@ -20,7 +20,8 @@
->  /// Finds exact supply name from the OF node.
->  fn find_supply_name_exact(dev: &Device, name: &str) -> Option<CString> {
->      let prop_name = CString::try_from_fmt(fmt!("{}-supply", name)).ok()?;
-> -    dev.property_present(&prop_name)
-> +    dev.fwnode()?
-> +        .property_present(&prop_name)
->          .then(|| CString::try_from_fmt(fmt!("{name}")).ok())
->          .flatten()
->  }
-> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-> index b69f03a7f8d30..241a395d529a1 100644
-> --- a/rust/kernel/device.rs
-> +++ b/rust/kernel/device.rs
-> @@ -6,7 +6,6 @@
->  
->  use crate::{
->      bindings,
-> -    str::CStr,
->      types::{ARef, Opaque},
->  };
->  use core::{fmt, marker::PhantomData, ptr};
-> @@ -219,12 +218,6 @@ pub fn fwnode(&self) -> Option<&property::FwNode> {
->          // defined as a `#[repr(transparent)]` wrapper around `fwnode_handle`.
->          Some(unsafe { &*fwnode_handle.cast() })
->      }
-> -
-> -    /// Checks if property is present or not.
-> -    pub fn property_present(&self, name: &CStr) -> bool {
-> -        // SAFETY: By the invariant of `CStr`, `name` is null-terminated.
-> -        unsafe { bindings::device_property_present(self.as_raw().cast_const(), name.as_char_ptr()) }
-> -    }
->  }
->  
->  // SAFETY: `Device` is a transparent wrapper of a type that doesn't depend on `Device`'s generic
-> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> index 03850b7bb8087..50c61aa056e6b 100644
-> --- a/rust/kernel/device/property.rs
-> +++ b/rust/kernel/device/property.rs
-> @@ -8,6 +8,7 @@
->  
->  use crate::{
->      bindings,
-> +    str::CStr,
->      types::{ARef, Opaque},
->  };
->  
-> @@ -55,6 +56,12 @@ unsafe fn from_raw(raw: *mut bindings::fwnode_handle) -> ARef<Self> {
->      pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_handle {
->          self.0.get()
->      }
-> +
-> +    /// Checks if property is present or not.
-> +    pub fn property_present(&self, name: &CStr) -> bool {
-> +        // SAFETY: By the invariant of `CStr`, `name` is null-terminated.
-> +        unsafe { bindings::fwnode_property_present(self.as_raw().cast_const(), name.as_char_ptr()) }
-> +    }
->  }
->  
->  // SAFETY: Instances of `FwNode` are always reference-counted.
-> -- 
-> 2.49.0
-> 
+Well in fact I have an additional question: when the MAC has any extra
+[tr]x-internal-delay-ps property, what's the threshold of MAC
+triggering patching phy mode? (The property might be only used for a
+slight a few hundred ps delay for tweak instead of the full 2ns one)
+
+>=20
+> > > Just for a minute, consider your interpretation of the old text
+> > > is
+> > > wrong. Read the old text again and again, and see if you can find
+> > > an
+> > > interpretation which is the same as the new text. If you do:
+> > >=20
+> > > * It proves our point that describing what this means is hard,
+> > > and
+> > > =C2=A0 developers will get it wrong.
+> > >=20
+> > > * There is an interpretation of both the old and new where
+> > > nothing
+> > > =C2=A0 changed.
+> > >=20
+> > > * You have to be careful looking at drivers, because some percent
+> > > of
+> > > =C2=A0 developers also interpreted it wrongly, and have broken
+> > > =C2=A0 implementations as a result.=C2=A0 You cannot say the binding =
+means
+> > > X,
+> > > =C2=A0 not Y, because there is a driver using meaning X.
+> > >=20
+> > > My hope with the new text is that it focuses on hardware, which
+> > > is
+> > > what DT is about. You can look at the schematic, see if there is
+> > > extra
+> > > long clock lines or not, and then decided on 'rgmii-id' if there
+> > > are
+> > > not, and 'rgmii' is there are. The rest then follows from that.
+> >=20
+> > Well I think "rgmii-*" shouldn't exist at all, if focusing on
+> > hardware.
+> > I prefer only "rgmii" with properties describing the delay numbers.
+>=20
+> Yes, I think we as phylib maintainers have also come to the same
+> conclusion with all the hassle this causes, but we can't get rid
+> of this without breaking the kernel and breaking device-tree
+> compatibility. So, we're stuck with it.
+>=20
+> > > You are not reading it carefully enough. The binding describes
+> > > hardware, the board. phy.rst describes the phylib interface. They
+> > > are
+> > > different.
+> >=20
+> > Well I can't find the reason of phy-mode being so designed except
+> > for
+> > leaky abstraction from phylib.
+>=20
+> I have no idea what that sentence means, sorry.
+
+Well, I mean the existence of rgmii-* modes is coupled with the
+internal of phylib, did I get it right?
+
+>=20
+
 
