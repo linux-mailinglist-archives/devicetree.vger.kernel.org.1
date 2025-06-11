@@ -1,185 +1,132 @@
-Return-Path: <devicetree+bounces-184840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82805AD5523
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:12:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE790AD5536
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13F727A51BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:10:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 987793AA7F9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF81127BF80;
-	Wed, 11 Jun 2025 12:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6ACD278165;
+	Wed, 11 Jun 2025 12:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="KmYJVR/G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MNP+LcgP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF26E27A12B;
-	Wed, 11 Jun 2025 12:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749643931; cv=pass; b=XEe0EavM6ILXJmKu+DCdXvqkFgu6IvggmIRHPZab1sCOeT1ENRJQWyBxLUKt8r8oGwNdX2xav/M6z1Mv1A9z2OXrnfzx4zbCfJQsVfw9lhvCZV20iuHBvq/d3E+vAbd3ZgeUJdzhYniLj7otRmHCuUpWLg+9ROwksotV9dpfcqU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749643931; c=relaxed/simple;
-	bh=MUQIuXRfDl4RcuDYVB8bOPsQcL3xPBAHH23OTMB03Dk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KJPDncCxvc4sWV6gS8wZFp0w1/NI3ISzzUMAT5UBSnibrWrcDux7iJY3EpIy31PIXP48vG8u0RbywAAaISlY5tdz4JSVsyPqcM9CaulwkqWfFzFFUkXVEmciBBwLL4tgKa56i980M1asMNaBGYkQmZQzrqouDymwO5fbiYUsSX4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=KmYJVR/G; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1749643898; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=KAKS2d25mKM+c3gQJaSDpijQ6lBIC/PooR62+Nyt1sMtPknLcb8EpK69IMKmoxR7YGd3wyJpOhGYdy0RKTYakv3kVUfbYlz8RmHhFo8DKuN/xadwgBO1VFROvBrIc/IdyA7vtcnCtHnEkVm+MXr5LafKqPH/e3mpNf8Gw5mj+bQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749643898; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=MUQIuXRfDl4RcuDYVB8bOPsQcL3xPBAHH23OTMB03Dk=; 
-	b=S3aqBXL9IkTTac9qExicp1WjO4c1sMQgwqedC3bKe6vVfHX8rryNO3ECeauVsIhxwdAqteoqTojGhDmdkaDf6jBuWNnx4RqdQu7sclawXopZ8z9kTKX1H5Va1b+yl8bulqP/cA9bqV+cqkW3r8LGz0LHF27cYLkfGpAfO++Jr9c=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749643898;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=MUQIuXRfDl4RcuDYVB8bOPsQcL3xPBAHH23OTMB03Dk=;
-	b=KmYJVR/GJDNOAg3ysa/7iANuO/cg0bi2jebZA5pLshppm6DYT0igSpWfisx+iVaG
-	mUZRCch8ytO11vC/MYGYP4/RrzpsVkTI0Ls1o5Jdsvy+UmERPX/NU0o5gLN6gSIFnhp
-	B1/EMorJ8oZsOGh1PpuyvgCr+CEVkcAqSjpyeSCZT5/sTtVuAiYhYVq+kL8rpvIE15s
-	do9FTzOPn38QwLecjqj5ZvMw6+TTUrmUF5Ny/U2wjtc6DXiKZlHDIV0lAkzhqgzCZwi
-	Zbw87nZj7wE01xGJpjv1z6DLPA6xSw7C2EyDkwdGq8+x7PWBJ7xyUfmPsanUIN8vVou
-	S39YO26cgw==
-Received: by mx.zohomail.com with SMTPS id 1749643895949130.74543462284248;
-	Wed, 11 Jun 2025 05:11:35 -0700 (PDT)
-Message-ID: <fc7ad44b922ec931e935adb96dcc33b89e9293b0.camel@icenowy.me>
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-From: Icenowy Zheng <uwu@icenowy.me>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Heiner Kallweit
- <hkallweit1@gmail.com>,  netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Wed, 11 Jun 2025 20:11:27 +0800
-In-Reply-To: <aElArNHIwm1--GUn@shell.armlinux.org.uk>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
-	 <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
-	 <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
-	 <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
-	 <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
-	 <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
-	 <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
-	 <9ebe16a8d33e00c39c142748a1ea6fff96b9565a.camel@icenowy.me>
-	 <aElArNHIwm1--GUn@shell.armlinux.org.uk>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F4A78F34;
+	Wed, 11 Jun 2025 12:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749644176; cv=none; b=YyCtLMRnJ/sj8DJhDv2d7/SR7i1HvjGBm+sNyNSENvBgWz8Of6+qWu0SDaBJCnVnkgWxYp+AYDa/+NSpPjvIHtC95SnL2omgrgFzVB2V+7n3Y6ixWWGo32CwYXxBgb0ZsuVqfwlmLoSu4BY3GHR+fGthrilE8aeUFbsj/ltMa1I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749644176; c=relaxed/simple;
+	bh=i5Kxi63qWoofSavUm+pcIB+Uafiv7oyd/3nL/pRB+eE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TEc7gi9yRsOZ+hCoaw6Fejxn6i6wAq7ySeeZoQFij1/THJ9SiHNjGTg7+ugSfQ7NpZuhKLpS3LT8ha1uZtbi0GW13m76S2Dl+WiXTECLwk16twqrK2mRNMHYDzbqOGbjwhmjnhiI9lSxT30/ngWLUZ+0CvdfDos+Q/uRq8P3Nts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MNP+LcgP; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b1fd59851baso3826527a12.0;
+        Wed, 11 Jun 2025 05:16:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749644174; x=1750248974; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i5Kxi63qWoofSavUm+pcIB+Uafiv7oyd/3nL/pRB+eE=;
+        b=MNP+LcgPPmq1toZ0sst2wOJD4POz1hTZKAZxww1BI2DEBKQFd5Frcx2E4e/btowucS
+         e5oJrxH/lhPSQFG0UJJYwFAFQV1Rp9l6gKTL2w8TPvARhk3mqci6Qu2kterHhootkLbS
+         CHdSUUfrp6oY7qLLoHv+Gxeq9lb6xp59zbyD6uYK1sIFNSMXFo5wd1ff3JUUoFXVOtcY
+         Kfrkb7biAx3nr6rVP4AlQivs76R92uxh3VhepLWNexZk9lYb5utKq8zWrLTEGTQ+GenB
+         KNd95TdpZfYD729ytnF1l2Pwp9oHS+RaghCXnGDXPzuaEe5OkXzGAOteZiG4xs+LwD/2
+         kriA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749644174; x=1750248974;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i5Kxi63qWoofSavUm+pcIB+Uafiv7oyd/3nL/pRB+eE=;
+        b=rT8nUB6PzLXRfa+Pukn7ZAdnth3+liBd/OYuoiSwo4xfCncj24RreZlbugRuMogR7A
+         Elm5VnbE3AD9Nhv+AjdCsABIWO2/UMFnGJ5rv+6LJUHaxS6AUc9XbVSO77DahzM3Aqzg
+         L88LUs2QQch/k0zEWag3gLQZnt+KiQ8Pu8UcudVJ3HJoIu4Tv8EXkUL/uAPrY9oeUSmh
+         Y6Q72k5nq/07tjH7/TQO7n7c+Y96isWFvS0UoI8t6JATVNXtlZqyDwT+2ThCHt9YoUd9
+         Cgd6TifVBzL+n4Hv/irOSeMS0LYDCjs4/2HM59NdpSTXRvbu0OeBdMZiLOI1hHK/VcM7
+         yroQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWBXy4B7SDIru0jJBBwi50JLARZqpR32Q9SRV9YKOPjAMdryN7wnBa8YRkuPXV8DYcJmKT8RnLBkHfU@vger.kernel.org, AJvYcCWXWt8Sak/rPabVHehKVGWX+U3N5AN57Cbk/RCSX16gEy6QSnPJqK9pLq7HropavWQotaAXND6eu2YdLkyD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZygWzaaYCX7+RZGFhewx6PMhqr2SVWjIXZYGY+hNdeM7SIiL0
+	XSojLnANonyrFX1j9sI36RWoOGtDlZbE6eVvqI/rL1S//NpDTeMSq7Sc87UG3tuF3V9j79P5fyO
+	3jiXkJIbe1SdDakCpalCfxwB3qlZxAE0=
+X-Gm-Gg: ASbGncsX9wO3EuMUOc4fS4KlAcG0fhj8ZsOMyB9KGAfmwlmq1iRjTGsdC3MpiuJHejs
+	6Y5qSh7MEPfkIHm7CsOCvueo46ZpxE2X5xvMbdw0PQ+OhJq23SUnbGfnMfV7bqdSCTQPMyo/9MA
+	F391N1FTqpLiDxDoffiLi79/1BTqKBfLMBaUgzDzf7HqD51Dtd3rC8AHk=
+X-Google-Smtp-Source: AGHT+IGX+IZijO75twzZ+fvU3wN8yS0J4BDLwNnzMx0C35iseQJIKnNAJ+smyd8hhsrs6cFi35u7iNDE7NOY/g7z/bY=
+X-Received: by 2002:a17:90a:3d09:b0:311:d05c:936 with SMTP id
+ 98e67ed59e1d1-313b1fbe78cmr2804206a91.17.1749644174339; Wed, 11 Jun 2025
+ 05:16:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+References: <20250606025251.887953-1-jasonhell19@gmail.com>
+ <20250606025251.887953-3-jasonhell19@gmail.com> <27c1a3fe-4536-4e6f-a636-ffc0fbd52568@kernel.org>
+In-Reply-To: <27c1a3fe-4536-4e6f-a636-ffc0fbd52568@kernel.org>
+From: =?UTF-8?B?5b6Q5YKR55Sf?= <jasonhell19@gmail.com>
+Date: Wed, 11 Jun 2025 20:16:02 +0800
+X-Gm-Features: AX0GCFt9W87odWQcElyj27DLucsMkiMaKS5cZNd0kp8klMHeN1RPxkibO2hVj1w
+Message-ID: <CAFGtgY35x=QdmvUrvBTZNDeaV4iMefznzc7d-RD6aHj8LgUaVw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] dt-bindings: arm: aspeed: add Meta Ventura board
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
+	andrew@codeconstruct.com.au, patrick@stwcx.xyz, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, yang.chen@quantatw.com, jerry.lin@quantatw.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-=E5=9C=A8 2025-06-11=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 09:39 +0100=EF=BC=
-=8CRussell King (Oracle)=E5=86=99=E9=81=93=EF=BC=9A
-> On Wed, Jun 11, 2025 at 04:03:11PM +0800, Icenowy Zheng wrote:
-> > =E5=9C=A8 2025-06-05=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 15:48 +0200=EF=
-=BC=8CAndrew Lunn=E5=86=99=E9=81=93=EF=BC=9A
-> > > Which is theoretically fine. I've not looked at this driver in
-> > > particular, but there are some MACs were you cannot disable the
-> > > delay.
-> > > The MAC always imposes 2ns delay. That would mean a PCB which
-> > > also
-> > > has
-> > > extra long clock lines is simply FUBAR, cannot work, and 'rgmii'
-> > > is
-> > > invalid, so reject it.
-> >=20
-> > BTW I found that in some case the assumption of PHY-side delay
-> > being
-> > always better than MAC-side one is wrong -- modern MACs usually
-> > have
-> > adjustable delay line, but Realtek 8211-series PHYs have only
-> > on/off
-> > delay with a fixed 2ns value.
->=20
-> The only time that MACs may implement delays based on the
-> PHY_INTERFACE_MODE_RGMII* is if they also include code to pass
-> PHY_INTERFACE_MODE_RGMII (no suffixes) to phylink / phylib to ensure
-> that the PHY doesn't _also_ add delays. This isn't something we
-> encourage because it's more code, more review, and a different way
-> of implementing it - thus adding to maintainers workloads that are
-> already high enough.
-
-Well in fact I have an additional question: when the MAC has any extra
-[tr]x-internal-delay-ps property, what's the threshold of MAC
-triggering patching phy mode? (The property might be only used for a
-slight a few hundred ps delay for tweak instead of the full 2ns one)
-
->=20
-> > > Just for a minute, consider your interpretation of the old text
-> > > is
-> > > wrong. Read the old text again and again, and see if you can find
-> > > an
-> > > interpretation which is the same as the new text. If you do:
-> > >=20
-> > > * It proves our point that describing what this means is hard,
-> > > and
-> > > =C2=A0 developers will get it wrong.
-> > >=20
-> > > * There is an interpretation of both the old and new where
-> > > nothing
-> > > =C2=A0 changed.
-> > >=20
-> > > * You have to be careful looking at drivers, because some percent
-> > > of
-> > > =C2=A0 developers also interpreted it wrongly, and have broken
-> > > =C2=A0 implementations as a result.=C2=A0 You cannot say the binding =
-means
-> > > X,
-> > > =C2=A0 not Y, because there is a driver using meaning X.
-> > >=20
-> > > My hope with the new text is that it focuses on hardware, which
-> > > is
-> > > what DT is about. You can look at the schematic, see if there is
-> > > extra
-> > > long clock lines or not, and then decided on 'rgmii-id' if there
-> > > are
-> > > not, and 'rgmii' is there are. The rest then follows from that.
-> >=20
-> > Well I think "rgmii-*" shouldn't exist at all, if focusing on
-> > hardware.
-> > I prefer only "rgmii" with properties describing the delay numbers.
->=20
-> Yes, I think we as phylib maintainers have also come to the same
-> conclusion with all the hassle this causes, but we can't get rid
-> of this without breaking the kernel and breaking device-tree
-> compatibility. So, we're stuck with it.
->=20
-> > > You are not reading it carefully enough. The binding describes
-> > > hardware, the board. phy.rst describes the phylib interface. They
-> > > are
-> > > different.
-> >=20
-> > Well I can't find the reason of phy-mode being so designed except
-> > for
-> > leaky abstraction from phylib.
->=20
-> I have no idea what that sentence means, sorry.
-
-Well, I mean the existence of rgmii-* modes is coupled with the
-internal of phylib, did I get it right?
-
->=20
-
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B46=E6=9C=886=E6=
+=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=882:52=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 06/06/2025 04:52, Jason Hsu wrote:
+> > Document the new compatibles used on Meta Ventura.
+>
+> This is not what is happening here.
+>
+> > Add subject prefix for the patch.
+>
+> No clue what is "subject prefix" for a patch.
+>
+> >
+> > Signed-off-by: Jason Hsu <jasonhell19@gmail.com>
+>
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-pat=
+ches.html#i-for-patch-submitters
+>
+>
+> Best regards,
+> Krzysztof
+>
+>>
+>Appreciate the feedback.
+>
+>> No clue what is "subject prefix" for a patch.
+>
+>v8 updated the commit message to more accurately describe the changes,
+>and removed the unclear note about the "subject prefix".
+>
+>
+>Best regards,
+>Jason
+>
+>
 
