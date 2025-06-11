@@ -1,190 +1,237 @@
-Return-Path: <devicetree+bounces-184556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60944AD495E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:32:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EE7AD498E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:44:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D24D0189E76E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:32:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 017C417B63D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906451624E5;
-	Wed, 11 Jun 2025 03:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B6C218EA7;
+	Wed, 11 Jun 2025 03:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wcv93IdU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W93cHrYg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDC6186A;
-	Wed, 11 Jun 2025 03:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8406221171F;
+	Wed, 11 Jun 2025 03:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749612721; cv=none; b=oOlplzs8uz+00y0cEMBALqUQFW4/lEST9YAf2KbYdGjf1nydCDPsWPLEFribR87bbf4DCztCkicg/2QecSOF6EkjjSQWkJe8g1mCc0ir4sGvgnSTttwtebvRMUhWpGjVgjmzvI8MvcuvNFfcZR30Ed8lWjeO9S8XinEhdcAG3mc=
+	t=1749613466; cv=none; b=tcvIrf8QeJpP9uj2A7nOkxH6a5OENn3WLGk/FvopRsh/Kv1Wbbv143gSMLkq9Mcgi8eFqf1MrcgYHEkYW/aC9IJ3T+Zc2AQscnqSg4uhOwYfE+EZlCy42U5ysrZPdoq8fevK2v4fLT3m8hRTgOk1IRGSf7Qhh2LEhD3k//xlUYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749612721; c=relaxed/simple;
-	bh=mQqY2nlpKETxKF8IqYbRQfTFn/65IiZ6gxTWsY7DuPw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZdW7vT1xGRJgQe8GJcejCqmFrOJsMjvk08TfffhY/BrHPsp4hvmnee8+86xZoJwt+6pokoZoRP707EhMN/JsqXYomUXuQQgCe7NRt9A8gn1MYjvw00fOEK/WZnBeuiByxwd9gUOpKdQEkcTLSzhlDIoZQa25MdQ2lRhnlLVLcA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wcv93IdU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4B18C4CEEE;
-	Wed, 11 Jun 2025 03:31:59 +0000 (UTC)
+	s=arc-20240116; t=1749613466; c=relaxed/simple;
+	bh=LxRm4DeSEs//MKBHHs/GlVji1LewyuuLa0J18JhIIkw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=D9nqMZ12pCPrDusWa3io3Uojr7fY97QjnbM3RdmmlAPmKBF0rk/QG3pMC1pBbHU0S+jIyJ0syDBkHpkIv0xa7vRpIg8OTHkl9IrsQImktJ6YfItSVh8r6mJH8KxTmCX4pUNhKXreb7sXiHtPhJzBlt0ryvO9XcliSMAxP+uOf3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W93cHrYg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4712C4CEEE;
+	Wed, 11 Jun 2025 03:44:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749612720;
-	bh=mQqY2nlpKETxKF8IqYbRQfTFn/65IiZ6gxTWsY7DuPw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wcv93IdUXwp68YX/swroJFHhKxd3MEKLTB+F664TY3vs/+/IGmnunw6fPYKu5MYOZ
-	 et6w9RZm8nH24sebcYUf9lnmYg9pIUuwaSsXpCBEXny1XIdgyoSRlMTUPjBwRpWHRf
-	 fkhyZUvSaF+D8pOoKBmZFpJX0r6GsEKOFjKLXmQp19eLopSR4atV7ymrdWAL9S10AB
-	 ffZll8k7Zn5VbNyj9lnwjlpVmqcTtq8wHaMuTFBnl/YHi9d1TnUeIQBWRGTYeECkp/
-	 0iP9R6+l4CqyDYCBrv+UU4ciExM/hntdVr9ESAfPQuA4JSZqlmiRP1bBU5Sg+LuDhy
-	 0JVgxn/1dvyHg==
-Date: Tue, 10 Jun 2025 22:31:57 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom,apcs: Add separate node
- for clock-controller
-Message-ID: <jvsdn67x2qm2avaktnpqzoixcd46xuuf6i5kpeolsnewgoqt6q@jid7unlmmu65>
-References: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org>
- <20250506-qcom-apcs-mailbox-cc-v1-1-b54dddb150a5@linaro.org>
- <7vszdea2djl43oojvw3vlrip23f7cfyxkyn6jw3wc2f7yowht5@bgsc2pqscujc>
- <aCNGSwL7043GoJBz@linaro.org>
- <20250514160841.GA2427890-robh@kernel.org>
- <aCUHTJGktLFhXq4Q@linaro.org>
- <20250521-psychedelic-cute-grouse-ee1291@kuoka>
- <aC-AqDa8cjq2AYeM@linaro.org>
- <20250523-markhor-of-fortunate-experience-1f575e@kuoka>
+	s=k20201202; t=1749613466;
+	bh=LxRm4DeSEs//MKBHHs/GlVji1LewyuuLa0J18JhIIkw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=W93cHrYgMjscdCqoOGFK76Xdsq0+4Ic+6c1WIcC0ch7RSKvRNiK6g36QFtyNbXSau
+	 OH/boEDl4JKhNmg3RZUHTEBUvG8P2Fj0J5F3MocYYMcu5Tl8E24xJ52Foj9YRPu3wf
+	 Vc9Z9vlheU2tD4u/XImruBo9mBOgC3FUSj3DIMWGgaLXMtv3U83hHqkcogVNXbFkVe
+	 ihsU+88xgk2uPndu5+AQQQfOzmEpNwUanXHwrWDB4ZNsmKWamfpPRMj/K7tphLxHNX
+	 cz8c3S1QWD4eBMlY5GkgrI6ZtA1c2q3FDJpi/qPvOfq5hbiWfZ5I0T08erXH66DHIX
+	 D8auzCV/f1bFg==
+Date: Tue, 10 Jun 2025 22:44:24 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250523-markhor-of-fortunate-experience-1f575e@kuoka>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, 
+ Amit Kucheria <amitk@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, linux-pm@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <lumag@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org, 
+ Sricharan Ramabadhran <quic_srichara@quicinc.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, linux-arm-msm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <20250610-ipq5018-tsens-v10-1-3a10a5a2642c@outlook.com>
+References: <20250610-ipq5018-tsens-v10-1-3a10a5a2642c@outlook.com>
+Message-Id: <174961323702.3426131.5549067137523335657.robh@kernel.org>
+Subject: Re: [PATCH v10] arm64: dts: qcom: ipq5018: Add tsens node
 
-On Fri, May 23, 2025 at 11:06:04AM +0200, Krzysztof Kozlowski wrote:
-> On Thu, May 22, 2025 at 09:53:12PM GMT, Stephan Gerhold wrote:
-> > +Saravana
-> > 
-> > On Wed, May 21, 2025 at 11:20:40AM +0200, Krzysztof Kozlowski wrote:
-> > > On Wed, May 14, 2025 at 10:12:44PM GMT, Stephan Gerhold wrote:
-> > > > > > > > The mailbox itself does not need any clocks and should probe early to
-> > > 
-> > > ... so probe it early.
-> > > 
-> > > > > > > > unblock the rest of the boot process. The "clocks" are only needed for the
-> > > > > > > > separate clock controller. In Linux, these are already two separate drivers
-> > > > > > > > that can probe independently.
-> > > 
-> > > They can probe later, no problem and DT does not stop that. Linux, not
-> > > DT, controls the ways of probing of devices and their children.
-> > > 
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > Why does this circular dependency need to be broken in the DeviceTree
-> > > > > > > representation?
-> > > > > > > 
-> > > > > > > As you describe, the mailbox probes and register the mailbox controller
-> > > > > > > and it registers the clock controller. The mailbox device isn't affected
-> > > > > > > by the clock controller failing to find rpmcc...
-> > > > > > > 
-> > > > > > 
-> > > > > > That's right, but the problem is that the probe() function of the
-> > > > > > mailbox driver won't be called at all. The device tree *looks* like the
-> > > > > > mailbox depends on the clock, so fw_devlink tries to defer probing until
-> > > > > > the clock is probed (which won't ever happen, because the mailbox is
-> > > > > > needed to make the clock available).
-> > > > > > 
-> > > > > > I'm not sure why fw_devlink doesn't detect this cycle and tries to probe
-> > > > > > them anyway, but fact is that we need to split this up in order to avoid
-> > > > > > warnings and have the supplies/consumers set up properly. Those device
-> > > > > > links are created based on the device tree and not the drivers.
-> > > > > 
-> > > > > Does "post-init-providers" providers solve your problem?
-> > > > > 
-> > > > 
-> > > > I would expect that it does, but it feels like the wrong solution to the
-> > > > problem to me. The clock is not really a post-init provider: It's not
-> > > > consumed at all by the mailbox and needed immediately to initialize the
-> > > > clock controller. The real problem in my opinion is that we're
-> > > > describing two essentially distinct devices/drivers in a single device
-> > > > node, and there is no way to distinguish that.
-> > > > 
-> > > > By splitting up the two distinct components into separate device tree
-> > > > nodes, the relation between the providers/consumers is clearly
-> > > > described.
-> > > 
-> > > You can split devices without splitting the nodes. I do not see reason
-> > > why the DT is the problem here.
-> > > 
-> > 
-> > The Linux drivers for this particular mailbox/clock controller already
-> > work exactly the way you propose. They are split into two devices that
-> > can probe independently.
-> > 
-> > The problem is outside of the drivers, because fw_devlink in Linux
-> > blocks probing until all resources specified in the device tree nodes
-> > become available. fw_devlink has no knowledge that the mailbox described
-> > by this peculiar device tree node does not actually need the clocks:
-> > 
-> > 	apcs1_mbox: mailbox@b011000 {
-> > 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
-> > 		reg = <0x0b011000 0x1000>;
-> > 		#mbox-cells = <1>;
-> > 		clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> > 		clock-names = "pll", "aux", "ref";
-> > 		#clock-cells = <0>;
-> > 	};
-> > 
-> > Without device-specific quirks in fw_devlink, the fact that these clocks
-> > are only used by an unrelated clock controller only becomes clear if we
-> > split the device tree node like I propose in this series:
-> > 
-> > 	apcs1_mbox: mailbox@b011000 {
-> > 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
-> > 		reg = <0x0b011000 0x1000>;
-> > 		#mbox-cells = <1>;
-> > 
-> > 		apcs1_clk: clock-controller {
-> > 			clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> > 			clock-names = "pll", "aux", "ref";
-> > 			#clock-cells = <0>;
-> > 		};
-> > 	};
+
+On Tue, 10 Jun 2025 17:03:34 +0400, George Moussalem wrote:
+> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > 
-> Above code suggests that clocks are not needed for the mailbox at all.
-> You need to be really sure of that. If that's the case, then this
-> description looks like correct hardware description, more detailed then
-> the first case, though.
+> IPQ5018 has tsens V1.0 IP with 5 sensors, though 4 are in use.
+> There is no RPM, so tsens has to be manually enabled. Adding the tsens
+> and nvmem nodes and adding 4 thermal sensors (zones). With the
+> critical temperature being 120'C and action is to reboot.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+> IPQ5018 has tsens V1.0 IP with 5 sensors, of which 4 are in use,
+> and 1 interrupt. There is no RPM present in the soc to do tsens early
+> enable. Adding support for the same here.
+> 
+> Last patch series sent by Qualcomm dates back to Sep 22, 2023.
+> Since I'm working on OpenWrt support for IPQ5018 based boards (routers)
+> and Sricharan Ramabadhran <quic_srichara@quicinc.com> in below email
+> confirmed this SoC is still active, I'm continuing the efforts to send
+> patches upstream for Linux kernel support.
+> https://lore.kernel.org/all/63dc4054-b1e2-4e7a-94e7-643beb26a6f3@quicinc.com/
+> 
+> [v10]
+> 	*) Rebased onto updated pull of master to resolve merge conflicts in the
+> 	   DTS patch
+> 	*) Link to v9: https://lore.kernel.org/all/DS7PR19MB88836DC6965515E12D70BB2C9DCC2@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> [v9]
+> 	*) Updated checks in tsens to more strictly evaluate for v2+ upon enabling
+> 	   v2 features as suggsted by Dmitry.
+> 	*) Split patch 3 into two, one to update conditional statements as
+> 	   mentioned above and the other to implement tsens IP v1 without RPM.
+> 	*) Added back Dmitry's RB tag on patch 6 which wasn't carried over
+> 	   from v7 to v8
+> 	*) Link to v8: https://lore.kernel.org/all/DS7PR19MB88833F7A9C8F4FC484977BA69DCD2@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> [v8]
+> 	*) Tsens V1 uses v1 interrupts and watchdog is not present (only on v2.3+).
+> 	   As such, replaced VER_1_X with VER_1_X_NO_RPM in conditons to ensure
+> 	   v1 interrupts are set and watchdog isn't enabled.
+> 	*) Tested on Linksys MX2000 and SPNMX56
+> 	*) Link to v7: https://lore.kernel.org/all/DS7PR19MB88831624F11516945C63400F9DC22@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> [v7]
+> 	*) Updated cover letter
+> 	*) Replaced patch 3 with a new one to add support for tsens v1.0 with
+> 	   no RPM and removed Dmitry's 'Reviewed-by tag
+> 	*) Refactored patch 4 and split support for IPQ5018 from support for
+> 	   tsens v1.0 without RPM. As such, also removed Dmitry's RB tag.
+> 	*) Depends on patch 1 and 2 from patch series to add support for
+> 	   IQP5332 and IPQ5424 applied on Feb 11 2025:
+> 	   https://patchwork.kernel.org/project/linux-arm-msm/cover/20250210120436.821684-1-quic_mmanikan@quicinc.com/
+> 	*) Link to v6: https://lore.kernel.org/all/DS7PR19MB88838833C0A3BFC3C7FC481F9DC02@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> [v6]
+> 	*) Include (this) cover letter
+> 	*) Picked up Dmitry's Reviewed-by tag on patch 5
+> 	*) Link to v5: https://lore.kernel.org/all/DS7PR19MB88832FDED68D3EBB0EE7E99F9DC72@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> [v5]
+> 	*) Adjusted commit messages to indicate IPQ5018 has 5 sensors of
+> 	   which 4 are described and in use as per downstream driver and dts.
+> 	*) Padded addresses of tsens and qfprom nodes with leading zeros.
+> 	*) Link to v4: https://lore.kernel.org/all/DS7PR19MB8883BE38C2B500D03213747A9DC72@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> [v4]
+> 	*) Documented ipq5018 in qcom,qfprom bindings
+> 	*) Constrained ipq5018-tsens to one interrupt with description
+> 	*) Added Rob's Acked-by tag
+> 	*) Added Dmitry's Reviewed-by tag
+> 	*) Fixed modpost warning: added __init to init_common
+> 	*) Sorted tsens nodes by address
+> 	*) Sorted thermal-zones nodes by name
+> 	*) Link to v3: https://lore.kernel.org/all/20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com/
+> 
+> [v3]
+> 	*) Added the tsens-ipq5018 as  new binding without rpm
+> 	*) Added Dmitry's Reviewed tag
+> 	*) Fixed Dmitry's comments for error checks in init_ipq5018
+> 	*) Ordered the qfprom device node properties
+> 	*) Link to v2: https://lore.kernel.org/all/20230915121504.806672-1-quic_srichara@quicinc.com/
+> 
+> [v2]
+> 	*) Sorted the compatible and removed example
+> 	*) Fixed the name for new tsens_feature
+> 	*) Used tsend_calibrate_common instead of legacy
+> 	   and addressed comments from Dmitry.
+> 	*) Squashed patch 3 & 4
+> 	*) Fixed node names, order and added qfprom cells
+>             for points seprately
+> 	*) Squashed patch 6 & 7
+> 	*) Link to v1: https://lore.kernel.org/all/1693250307-8910-1-git-send-email-quic_srichara@quicinc.com/
+> 
+> George Moussalem (2):
+>   thermal: qcom: tsens: update conditions to strictly evaluate for IP
+>     v2+
+>   thermal: qcom: tsens: add support for tsens v1 without RPM
+> 
+> Sricharan Ramabadhran (4):
+>   dt-bindings: nvmem: Add compatible for IPQ5018
+>   dt-bindings: thermal: qcom-tsens: Add ipq5018 compatible
+>   thermal: qcom: tsens: Add support for IPQ5018 tsens
+>   arm64: dts: qcom: ipq5018: Add tsens node
+> 
+>  .../bindings/nvmem/qcom,qfprom.yaml           |   1 +
+>  .../bindings/thermal/qcom-tsens.yaml          |   2 +
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 169 ++++++++++++++++++
+>  drivers/thermal/qcom/tsens-v1.c               |  62 +++++++
+>  drivers/thermal/qcom/tsens.c                  |  27 ++-
+>  drivers/thermal/qcom/tsens.h                  |   4 +
+>  6 files changed, 256 insertions(+), 9 deletions(-)
+> 
+> --
+> 2.48.1
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 169 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 169 insertions(+)
 > 
 
-I'm still sceptical here.
 
-In the first snippet above, we describe a single IP block which provides
-mailboxes and clocks.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-In the second snippet we're saying that the IP block is a mailbox, and
-then it somehow have a subcomponent which is a clock provider.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-It seems to me that we're choosing the second option because it better
-fits the Linux implementation, rather than that it would be a better
-representation of the hardware. To the point that we can't even describe
-the register range of the subcomponent...
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
 
 
-Can you confirm that this is the path we want to go here?
+This patch series was applied (using b4) to base:
+ Base: base-commit afc582fb6563b8eb5cd73f9eca52e55da827567f not known, ignoring
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250610 (exact match)
 
-Regards,
-Bjorn
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250610-ipq5018-tsens-v10-1-3a10a5a2642c@outlook.com:
+
+arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dtb: thermal-sensor@4a9000 (qcom,ipq5018-tsens): compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,ipq5018-tsens'] is too short
+	'qcom,ipq5018-tsens' is not one of ['qcom,ipq8064-tsens', 'qcom,msm8960-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,mdm9607-tsens', 'qcom,msm8226-tsens', 'qcom,msm8909-tsens', 'qcom,msm8916-tsens', 'qcom,msm8939-tsens', 'qcom,msm8974-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,msm8953-tsens', 'qcom,msm8996-tsens', 'qcom,msm8998-tsens', 'qcom,qcm2290-tsens', 'qcom,sa8255p-tsens', 'qcom,sa8775p-tsens', 'qcom,sar2130p-tsens', 'qcom,sc7180-tsens', 'qcom,sc7280-tsens', 'qcom,sc8180x-tsens', 'qcom,sc8280xp-tsens', 'qcom,sdm630-tsens', 'qcom,sdm845-tsens', 'qcom,sm6115-tsens', 'qcom,sm6350-tsens', 'qcom,sm6375-tsens', 'qcom,sm8150-tsens', 'qcom,sm8250-tsens', 'qcom,sm8350-tsens', 'qcom,sm8450-tsens', 'qcom,sm8550-tsens', 'qcom,sm8650-tsens', 'qcom,x1e80100-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,ipq5332-tsens', 'qcom,ipq5424-tsens', 'qcom,ipq8074-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,ipq6018-tsens', 'qcom,ipq9574-tsens']
+	from schema $id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml#
+arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: thermal-sensor@4a9000 (qcom,ipq5018-tsens): compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,ipq5018-tsens'] is too short
+	'qcom,ipq5018-tsens' is not one of ['qcom,ipq8064-tsens', 'qcom,msm8960-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,mdm9607-tsens', 'qcom,msm8226-tsens', 'qcom,msm8909-tsens', 'qcom,msm8916-tsens', 'qcom,msm8939-tsens', 'qcom,msm8974-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,msm8953-tsens', 'qcom,msm8996-tsens', 'qcom,msm8998-tsens', 'qcom,qcm2290-tsens', 'qcom,sa8255p-tsens', 'qcom,sa8775p-tsens', 'qcom,sar2130p-tsens', 'qcom,sc7180-tsens', 'qcom,sc7280-tsens', 'qcom,sc8180x-tsens', 'qcom,sc8280xp-tsens', 'qcom,sdm630-tsens', 'qcom,sdm845-tsens', 'qcom,sm6115-tsens', 'qcom,sm6350-tsens', 'qcom,sm6375-tsens', 'qcom,sm8150-tsens', 'qcom,sm8250-tsens', 'qcom,sm8350-tsens', 'qcom,sm8450-tsens', 'qcom,sm8550-tsens', 'qcom,sm8650-tsens', 'qcom,x1e80100-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,ipq5332-tsens', 'qcom,ipq5424-tsens', 'qcom,ipq8074-tsens']
+	'qcom,ipq5018-tsens' is not one of ['qcom,ipq6018-tsens', 'qcom,ipq9574-tsens']
+	from schema $id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml#
+
+
+
+
+
 
