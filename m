@@ -1,130 +1,192 @@
-Return-Path: <devicetree+bounces-185034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD3DAD61DC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 23:49:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27368AD61E3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 23:50:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A6C6188FDA7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:49:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30A9E3A900F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F99213224;
-	Wed, 11 Jun 2025 21:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71ECF24A056;
+	Wed, 11 Jun 2025 21:49:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EidgVnMi"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="CkNekZTx";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ant+dIKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from fout-a1-smtp.messagingengine.com (fout-a1-smtp.messagingengine.com [103.168.172.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8048246BD8;
-	Wed, 11 Jun 2025 21:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266FC2E610F;
+	Wed, 11 Jun 2025 21:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749678529; cv=none; b=BqcjPag/0/NoS3C8G108NVe5iBcy4YgjyZaPgUD0yCM6Tc9GcXToah6wqp41vhxXeqyWExPStXKUYaXnEvLvoDdoxCOvpfQ4wOJLbX9J1WnG605QszJs6IfCYVxVutnk+iu5SiBZizvByT4Es48T714dii66vqT5A7fMBCykA0c=
+	t=1749678584; cv=none; b=O1VpyL7YZamEv1qEzhRi+CLZxDcmiiJhekw2X9D3YWQjUpE2jXYCXDcRChQfE3Liv698BtK+YVq+DtqIbokKOGhO/o3DtscBhG+ZqhExr2t/BaclhOJYFXTKIZHYpmhJji558jaM7OLQv7pHD5wPLVKhXW+ZhYhZkANH+nT2qZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749678529; c=relaxed/simple;
-	bh=p125Qdh7AXpcJlrV+7yqlZZwam5I0mnuIIk+bsJi8UU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jehTSceDXq4wo1appcXu70F3UOJ1vdHDSDRPeHkRp9fKN6OV5uNThmxov70mPe9yQCOR5atiOpJbyRu/l6Epci36QnHGsiFM4gxNBPJFyxpmOhL7ckxSQpTsHTkenuYL2BKpDQipUQ1T+WhQDJ57fhwOYmnCbcz45pXPTxLG3Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EidgVnMi; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1749678526;
-	bh=p125Qdh7AXpcJlrV+7yqlZZwam5I0mnuIIk+bsJi8UU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=EidgVnMiQFzztrReyrHUBVJ/dgBh0iS528uSU6ZSU0dw/oVXjLTONw6yvYb3IBPqR
-	 fKgkeucn1eAdTsG9IGr5r2aUrGrxN6zYq7QdHqiCmC4B2zFZDg7TQ2Scgu1sd8Vkma
-	 /SDNw9lX2QVSf79dLPn5C6nN0SqBisjOIt9F2xoXzfsDGUwlygMqnwXUlB33nyq/cD
-	 J+eh0MSZQk8Vd1Il9blFhNbKZsEAk+7KZhyEnvNY1mRQzI+tfGnnc6nJ1MWCJYMAHN
-	 elozjHQDkEKzQZ3L1vxI/6Li0jeFjXFFpvi0NF2PChhCmw9F5Y1S3CwcqhF6ed1T5e
-	 1bPu91kPSGFTQ==
-Received: from localhost (unknown [212.93.144.165])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with UTF8SMTPSA id EFA8C17E0342;
-	Wed, 11 Jun 2025 23:48:45 +0200 (CEST)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Thu, 12 Jun 2025 00:47:49 +0300
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add HDMI PHY PLL clock source to
- VOP2 on rk3576
+	s=arc-20240116; t=1749678584; c=relaxed/simple;
+	bh=0Luy/GZTvOJxbPT9HRmWme4ywxjUebdc3U2uMURoMxU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q/8rc0LTCrl7cJc9T8/NtLDhaAY/EaaGWWmn3KYHrbTiw+uybVvEhQWnnBPtuNDth4GGUgji+hEpR74cIrbSy5YQz9naJUnIow7uKZADuG3bgq1e8O7n6h6z1qNMRXQndgyOuUEsaiHGk/v7cbHUbJYejKwBJZ4pAHepPXCd8kM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=CkNekZTx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ant+dIKY; arc=none smtp.client-ip=103.168.172.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
+	by mailfout.phl.internal (Postfix) with ESMTP id 219C313804DF;
+	Wed, 11 Jun 2025 17:49:41 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-03.internal (MEProxy); Wed, 11 Jun 2025 17:49:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm3; t=1749678581; x=1749764981; bh=y1uszv6YuO
+	g7iXkALbp8AWMQ97qKkEmgUUlVgFz7u14=; b=CkNekZTxGSrPDNFW85kwvoRH/0
+	SEUP/xNDPmAhXmFMr/Wpin5NGjzqcID9l3RwDKpgUwygn/08nF4CjT//PHs3DK+E
+	6peA+qscBI71W830jYYnioR2n4QC+iPKAKJtZB1KlAD0K46xktFsymu2zFofR9CA
+	SqrgVY1bVnupP8e/eab5kkY6GRzHzZPrBR7qcjkaQTQ/vD1BTvxIMmeWUC9U0ovl
+	v/nfpqm6pfzf31R8I4RokiOOXIF5eFY8G8p1rpiB2EUyp46nPbXPAgRjGup2dAxH
+	xpFpl2jcpm0dh9KPTtR1uFEAPQhzX7tHGoktozdwSDCyZFdAgTNhS5tm+hMw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1749678581; x=1749764981; bh=y1uszv6YuOg7iXkALbp8AWMQ97qKkEmgUUl
+	VgFz7u14=; b=Ant+dIKYLfq0AD1oHGVibCDhOFd8mcpdEerSRQbaxBM32DHCefh
+	cR7aORIl3W6J8EoSK3OZmWoHksavhPQr9mpEiLoU32afs69OHOJpRA1Azj0snK+u
+	MUBOq8HIfkyN02BwxH7Q9KG71WCtG8cG7llc3IFUKEkiaPhfq5u0cgb8rkyatMXw
+	Dhy7S5Vb/5hsdNppjrxqzuYmyxjNu24HRKb4oZG9tZ4aoY+ujaDOI72/VU946pQy
+	ZMk9ctqTbmuQ1yMUbWthfAgdKxc2vv1pb/fEGPvCmQhMUVzlQ4sgcsbK+ZXxX0JX
+	77NFIrT3KpoxeyLHauIGzHuEabpgXowYSIw==
+X-ME-Sender: <xms:9PlJaKudVxquCH7_4r3Y1BeoIEJ49suMGftNvKEy8S4yJOcXHSIWvA>
+    <xme:9PlJaPffj9qQv1LLLA72rcmy2EHQLAME7CxZ26nWVxSP-xehrhL-OCGjhS5SPQ03v
+    ptfrhdfpubnowu8_ZU>
+X-ME-Received: <xmr:9PlJaFyejvOjoJxqPka68BOO7cBzp1H4y8dGka4wD_CJ_5OSoEDAO0_nuzhKGj_zVJmbkpAx5qslCTEbWFmJM-bDTyNUkMfROnQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddufeefudcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttdej
+    necuhfhrohhmpeflrghnnhgvucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqne
+    cuggftrfgrthhtvghrnhepgfdvffevleegudejfeefheehkeehleehfefgjefffeetudeg
+    tefhuedufeehfeetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
+    hfrhhomhepjhesjhgrnhhnrghurdhnvghtpdhnsggprhgtphhtthhopeduvddpmhhouggv
+    pehsmhhtphhouhhtpdhrtghpthhtohepshhvvghnsehkvghrnhgvlhdrohhrghdprhgtph
+    htthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhiohdprhgtphhtthhopehnvggr
+    lhesghhomhhprgdruggvvhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptgho
+    nhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehfnhhklhdrkhgvrhhnvg
+    hlsehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhofihinhgthhgvnhhmihesghhmrghi
+    lhdrtghomhdprhgtphhtthhopegrshgrhhhisehlihhsthhsrdhlihhnuhigrdguvghv
+X-ME-Proxy: <xmx:9PlJaFOBs99OoFiBNi-CXRmGeMsqDoGh4kJpz2Bg9bWmXFTZJqRX7A>
+    <xmx:9PlJaK9mZvTTmeT2mcoIq7OhhD4wGAiGi_kE30yjBinKj6Nb73T46Q>
+    <xmx:9PlJaNWOFfwDpHV85nZVncClUot-bl6mFPS6u-PDJPFc8NcBA0L8eQ>
+    <xmx:9PlJaDfAeohEKGZ5QihTgkr0uD4OGdko8_y45z-FRT8Y9evXrMdthA>
+    <xmx:9flJaD_0sbA4UmwT--1OstRHr2Mw_fbWWMwiex02gQrwMtPZTpFzEX8t>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 11 Jun 2025 17:49:40 -0400 (EDT)
+Date: Wed, 11 Jun 2025 23:49:38 +0200
+From: Janne Grunau <j@jannau.net>
+To: Sven Peter <sven@kernel.org>
+Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>,
+	Nick Chan <towinchenmi@gmail.com>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: apple: Move touchbar mipi
+ {address,size}-cells from dtsi to dts
+Message-ID: <20250611214938.GD3141695@robin.jannau.net>
+References: <20250611-display-pipe-mipi-warning-v1-1-bd80ba2c0eea@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250612-rk3576-hdmitx-fix-v1-3-4b11007d8675@collabora.com>
-References: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
-In-Reply-To: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250611-display-pipe-mipi-warning-v1-1-bd80ba2c0eea@kernel.org>
 
-Since commit c871a311edf0 ("phy: rockchip: samsung-hdptx: Setup TMDS
-char rate via phy_configure_opts_hdmi"), the workaround of passing the
-rate from DW HDMI QP bridge driver via phy_set_bus_width() became
-partially broken, as it cannot reliably handle mode switches anymore.
+On Wed, Jun 11, 2025 at 03:18:53PM +0000, Sven Peter wrote:
+> Move the {address,size}-cells property from the (disabled) touchbar screen
+> mipi node inside the dtsi file to the model-specific dts file where it's
+> enabled to fix the following W=1 warnings:
+> 
+> t8103.dtsi:404.34-433.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@228600000: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
+> t8112.dtsi:419.34-448.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@228600000: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
+> 
+> Fixes: 7275e795e520 ("arm64: dts: apple: Add touchbar screen nodes")
+> Signed-off-by: Sven Peter <sven@kernel.org>
+> ---
+>  arch/arm64/boot/dts/apple/t8103-j293.dts | 2 ++
+>  arch/arm64/boot/dts/apple/t8103.dtsi     | 2 --
+>  arch/arm64/boot/dts/apple/t8112-j493.dts | 2 ++
+>  arch/arm64/boot/dts/apple/t8112.dtsi     | 2 --
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
+> index e2d9439397f71a93c28b75a7eea589f4bcb3e374..5b3c42e9f0e6776241bf746d3458766e44e3639a 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-j293.dts
+> +++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
+> @@ -100,6 +100,8 @@ dfr_mipi_out_panel: endpoint@0 {
+>  
+>  &displaydfr_mipi {
+>  	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+>  
+>  	dfr_panel: panel@0 {
+>  		compatible = "apple,j293-summit", "apple,summit";
+> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+> index 20faf0c0d80927b2e18dd966a61b5507b322c72f..3a204845b85befb093dd470b4280e778c2894b09 100644
+> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> @@ -405,8 +405,6 @@ displaydfr_mipi: dsi@228600000 {
+>  			compatible = "apple,t8103-display-pipe-mipi", "apple,h7-display-pipe-mipi";
+>  			reg = <0x2 0x28600000 0x0 0x100000>;
+>  			power-domains = <&ps_mipi_dsi>;
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			status = "disabled";
+>  
+>  			ports {
+> diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
+> index be86d34c6696cb47d31696541266e504cee8ce10..fb8ad7d4c65a8fe7966f5541f24f03a379143cfb 100644
+> --- a/arch/arm64/boot/dts/apple/t8112-j493.dts
+> +++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
+> @@ -63,6 +63,8 @@ dfr_mipi_out_panel: endpoint@0 {
+>  
+>  &displaydfr_mipi {
+>  	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+>  
+>  	dfr_panel: panel@0 {
+>  		compatible = "apple,j493-summit", "apple,summit";
+> diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
+> index e95711d8337f6cea898e88a3d564caf2c4f94404..f68354194355807dae9b5922bb8aff74da3c29e6 100644
+> --- a/arch/arm64/boot/dts/apple/t8112.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8112.dtsi
+> @@ -420,8 +420,6 @@ displaydfr_mipi: dsi@228600000 {
+>  			compatible = "apple,t8112-display-pipe-mipi", "apple,h7-display-pipe-mipi";
+>  			reg = <0x2 0x28600000 0x0 0x100000>;
+>  			power-domains = <&ps_mipi_dsi>;
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			status = "disabled";
+>  
+>  			ports {
+> 
 
-Attempting to fix this up at PHY level would not only introduce
-additional hacks, but it would also fail to adequately resolve the
-display issues that are a consequence of the system CRU limitations.
+This looks a little odd and the two qcom devicetrees I've looked at have
+the same "issue". Fixing warnings is welcome and the resulting dtbs are
+unchanged.
 
-Instead, proceed with the solution already implemented for RK3588: make
-use of the HDMI PHY PLL as a better suited DCLK source for VOP2. This
-will not only address the aforementioned problem, but it should also
-facilitate the proper operation of display modes up to 4K@60Hz.
+Reviewed-by: Janne Grunau <j@jannau.net>
 
-It's worth noting that anything above 4K@30Hz still requires high TMDS
-clock ratio and scrambling support, which hasn't been mainlined yet.
-
-Fixes: d74b842cab08 ("arm64: dts: rockchip: Add vop for rk3576")
-Cc: stable@vger.kernel.org
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 6a13fe0c3513fb2ff7cd535aa70e3386c37696e4..b1ac23035dd789f0478bf10c78c74ef167d94904 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1155,12 +1155,14 @@ vop: vop@27d00000 {
- 				 <&cru HCLK_VOP>,
- 				 <&cru DCLK_VP0>,
- 				 <&cru DCLK_VP1>,
--				 <&cru DCLK_VP2>;
-+				 <&cru DCLK_VP2>,
-+				 <&hdptxphy>;
- 			clock-names = "aclk",
- 				      "hclk",
- 				      "dclk_vp0",
- 				      "dclk_vp1",
--				      "dclk_vp2";
-+				      "dclk_vp2",
-+				      "pll_hdmiphy0";
- 			iommus = <&vop_mmu>;
- 			power-domains = <&power RK3576_PD_VOP>;
- 			rockchip,grf = <&sys_grf>;
-
--- 
-2.49.0
-
+Janne
 
