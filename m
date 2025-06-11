@@ -1,65 +1,78 @@
-Return-Path: <devicetree+bounces-184930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347D3AD5BD2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E488AD5BEE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:19:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1E261893868
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:16:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9BF11886C0E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5F118DB0E;
-	Wed, 11 Jun 2025 16:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B9F81749;
+	Wed, 11 Jun 2025 16:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCUZmOVO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kX5Y9v6L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BB715A8;
-	Wed, 11 Jun 2025 16:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E083B182B4;
+	Wed, 11 Jun 2025 16:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749658506; cv=none; b=i6NuK6+TiubESaXIpMAVx+M+7g7B7tFpuzgz3oNcAS8UeFKME2Wp5jUa7XZ/FeGt26ANV3NUUPN9/LIDvhnu+A2Unmo8hVapRfNTfH9eiYDWXcYmR1X+0/DwM0mVzlydfNE3IbncWuP+cO39eJ6w7RokFRKac5U1bblb2TD7vew=
+	t=1749658627; cv=none; b=pH4asdfzfGjpX5wjmQyq4BDqjokPw976b7S59JFeOeCTlUGRSlbpzKpFxzLh7/6tGD09Mj8yHRbnroSjP0JLoDqnh+kNXkfENz+LjaXjLBRcrYdbMp3YYFt/2dX3uR8YKlLEFDQJG5p/VZmbtzX6rS3z4BmXRLNRmAkoFUk4aLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749658506; c=relaxed/simple;
-	bh=O9MOBWHvWZ5MN0ix5avPsdQVSs2Pd615xfzCnOn1X34=;
+	s=arc-20240116; t=1749658627; c=relaxed/simple;
+	bh=9WqLpEYfcD+QLhrUn74iN5+OPqJiISIfCkK29TLRZ30=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0ai3LOy2AXSAs4vNZFEDyVeFkyV8hXLAThOIP0AxR0OPb1EbaBVcSUwkGGVBWZyEFeOIgEctKcj9h84bEra5hW18Y25ZKhA2ueGsr+S40Zm5DThm6aypjZNMY0S2YwOst1aVKu+AfhF9Sp2g73L0aSevNzpP+N5UjXqbBjFN+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCUZmOVO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B25C4CEE3;
-	Wed, 11 Jun 2025 16:15:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lEF9RwLxNiVSruCrSPXn9ogPvuB6BmATdnDnrOVK+CJKoYe5WrZYNIm4HrwOS6OP4ARJW2fJyPI8Cmjldy/BLQ1d/LYK6OeM3ReQBZDLmWOK+QR+il9Hkz5lZrNwBfWGJISXXV2GNzJ6v+21018xzS94i+HQI6k3R12JqofLHyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kX5Y9v6L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EB16C4CEE3;
+	Wed, 11 Jun 2025 16:17:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749658505;
-	bh=O9MOBWHvWZ5MN0ix5avPsdQVSs2Pd615xfzCnOn1X34=;
+	s=k20201202; t=1749658626;
+	bh=9WqLpEYfcD+QLhrUn74iN5+OPqJiISIfCkK29TLRZ30=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oCUZmOVOhAomOZhebCoHlJAVMUeSTmncz16T0PwafTIuwYEXqioMK49DZFFjThD19
-	 D7kjcJ/VF4nLxxCid4Id3aQC5LQhit7BSZsTY0xTNeccjhEnc5d72DTpLuoRsj2jQm
-	 /fZcSjgP94qDmWt1OR5FzNyNTNMF+Cr8q0qBrt9TWzuykR4dPZGgFRzh5wa/pdLsT8
-	 oyWjbH0WBVIqoFS00TyVfnI6UtOzBf+KQj4h7DUT9rZl6kKqp7qak5Ax8vtgCqbJQa
-	 U1g+ZxJ96HsoirQNOrIKfq/UCwkhOWc+jf/L6gA1Vwcmwp1knTPmELuifkyDyo7I9f
-	 InHgJCZJmVcOA==
-Date: Wed, 11 Jun 2025 17:14:59 +0100
+	b=kX5Y9v6LeSQKvbq/icf0BM3kfSjmvsyIMQP70Aoi/9VJhJbOd4SDlZS2QKLewojyG
+	 v5iqUmNVZ73E3bLWCixjjRu+NAr6koYPohiyOtQDKtZ9HsfEVrjzChstwLoOZ78oal
+	 491bZ1r4gZUAu/IjUFce5XJQRr355ldkYWuToNy5AfxtvRoZsazQ2Rt0uc7MxcKMeB
+	 f6xmSnkRmDMsdOWRV8M0fAp2+4z4EjW4GnmWqQl3yfJ6P5nWXaDz7zJjd5gN2opytC
+	 pTOjxHjipSzP/YalsKXihfpHX55JdmcP1VpqObt5tJKVXMkQKPznQNaRtA3lF36sDR
+	 TGLYad0a3xWTg==
+Date: Wed, 11 Jun 2025 17:16:59 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Yu Yuan <yu.yuan@sjtu.edu.cn>, Yixun Lan <dlan@gentoo.org>,
-	Ze Huang <huangze@whut.edu.cn>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH RFC 0/3] riscv: sophgo: add top syscon device for cv18xx
-Message-ID: <20250611-doodle-storage-f1f23230adee@spud>
-References: <20250611082452.1218817-1-inochiama@gmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 08/23] dt-bindings: clock: Add RPMI clock service
+ controller bindings
+Message-ID: <20250611-sprint-playable-07774a23f027@spud>
+References: <20250611062238.636753-1-apatel@ventanamicro.com>
+ <20250611062238.636753-9-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,39 +80,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="l4ajHlLW4CTqOoSC"
+	protocol="application/pgp-signature"; boundary="BfZ5oRqjm3LAqNK8"
 Content-Disposition: inline
-In-Reply-To: <20250611082452.1218817-1-inochiama@gmail.com>
+In-Reply-To: <20250611062238.636753-9-apatel@ventanamicro.com>
 
 
---l4ajHlLW4CTqOoSC
+--BfZ5oRqjm3LAqNK8
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 11, 2025 at 04:24:48PM +0800, Inochi Amaoto wrote:
-> Add top syscon device bindings related DTS change for CV1800.
+On Wed, Jun 11, 2025 at 11:52:23AM +0530, Anup Patel wrote:
+> Add device tree bindings for the RPMI clock service group based
+> controller for the supervisor software.
 >=20
-> The patch required the following 3 patch series.
-> 1. https://lore.kernel.org/all/20250611075321.1160973-1-inochiama@gmail.c=
-om
-> 2. https://lore.kernel.org/all/20250611081804.1196397-1-inochiama@gmail.c=
-om
-> 3. https://lore.kernel.org/all/20250611081000.1187374-1-inochiama@gmail.c=
-om
+> The RPMI clock service group is defined by the RISC-V platform
+> management interface (RPMI) specification.
+>=20
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-What is RFC about this?
+On v4 I said the tag I provided was for all binding patches.
+Is there a reason, other than using b4 to grab tags, or not noticing,
+for why you only added it here?
 
---l4ajHlLW4CTqOoSC
+--BfZ5oRqjm3LAqNK8
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEmrgwAKCRB4tDGHoIJi
-0oEGAP9CowrUU72dQHLlJwso523NN6agE/wQrGVa7TAkoMkGHAEArgoSYWu2Xe+n
-LLB9vYJIT+FexWc/jyDGiCGXj/Dn/A8=
-=3V/H
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEmr+wAKCRB4tDGHoIJi
+0kujAQDLET9FZ9Gc8aN2OlODGIIifyLalFZ9jfQUhim5Kazv1gEApYD2AXEXq+/U
+2d795Qo7pM/xNs/jCWwACDW+0un1SgI=
+=4cmR
 -----END PGP SIGNATURE-----
 
---l4ajHlLW4CTqOoSC--
+--BfZ5oRqjm3LAqNK8--
 
