@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA55AD4C6D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:17:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25891AD4C76
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:20:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB4D6189FD59
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:18:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ED533A7DAC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F2C52185AA;
-	Wed, 11 Jun 2025 07:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4821F2206BE;
+	Wed, 11 Jun 2025 07:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n37MAECU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OzQBkf+x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A5FA923;
-	Wed, 11 Jun 2025 07:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E923A923;
+	Wed, 11 Jun 2025 07:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749626269; cv=none; b=l9QZiEvasg1DCkIzAhwHxDjD2Kdy2Barqmb/6zjxEZSHcLeK6vL6bEr5nNHMPTsvmg+nSfnXW7KWFtDnPZU/j/uPUqCkYnaYx5aR+C0PKD72tUiXQ9gpde8fRhO3q5RxdzpKfWrq31WaUZ8Wp6AURtLrwuuqBqxmndW/lEv7I4w=
+	t=1749626413; cv=none; b=gKTKMu4sPbOIADa3p569hVARNamuNuuXLMuoUfglwZmXfZ40oORCaI/8BE57uTrcuYLjqnZ8OeIOtN2L6orDh7C8aqr5Kd+CJaoN5n/k0RsR3yYH/0OLsdWlPhiC42vuIV+2lICiinN5mVpHaygIjUc6mX48T+hq2Ixy9PJSTjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749626269; c=relaxed/simple;
-	bh=iHrPvVx1WWrg1knUNOkgUot4HWCPgK9t4nazhE6gR8o=;
+	s=arc-20240116; t=1749626413; c=relaxed/simple;
+	bh=/7F7WpshDjelGHatVoqukDPGIQiPrcJCWYW44DDjwdc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RZtLJKwD+Tsx2w1HEm6FZqXRiG4rGqlGqIXKRGN8ni6E7QBZ1QGfC5jalqDBjUIIQoCM4Y7A2pQqt4isDYELHojnD/tOrq0+9mQHKH65l13KPpyB+EODMO6l6Zh76LgwIRZ/z7Y1kwHmsVVLDta9KzNB/VrxCjoB371wjHBIAYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n37MAECU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7ADBC4CEEE;
-	Wed, 11 Jun 2025 07:17:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ncncDCYk7b0lnRNmjT9tb4KP15FxzcpAG5R4d74rtEhJnhD8jgvWwb3hLYTsqw9AiKM0+5ArY5qChSLd4sowMrV5BRqprMhdPHVbuegwgLlIEHqnTgCpmEZLqtunB7ZqUdKAaF6g0udfwxutsgJm6I46KPbrFAsCuwFQw5St9Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OzQBkf+x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CD6C4CEEE;
+	Wed, 11 Jun 2025 07:20:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749626268;
-	bh=iHrPvVx1WWrg1knUNOkgUot4HWCPgK9t4nazhE6gR8o=;
+	s=k20201202; t=1749626412;
+	bh=/7F7WpshDjelGHatVoqukDPGIQiPrcJCWYW44DDjwdc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n37MAECUXxjw+k6WTr221FhWxHuilUlwS7gxTQD6iKFT3Jmmkp8WHls+zxXLSq7Ih
-	 xQ/Ok+l05QGc+/wBuUXIgNAnRVbZzwv3FpO1CwIfFn6fCQTWYeOmTbbgS3rpdK3qzc
-	 YKhYoHMJs4VGnZe2Y7ZijjhuOem/e9CZfHOL659o6HaYM6sNmF2dABerp3N1ZcwgPg
-	 3NQ0jI1+AkIGMyRgR/MkV+U8OBlwHyU690V+qbUgil+NZeVgHQs86gw6DLaTMWnR+W
-	 Src1vabhPrSd/e5aXh6sbzOPt6ZYW4e6rxOXkaK+ZX5sH9bARo/U6JceNMyqLKq1IV
-	 7CuGSnp3SZY0Q==
-Message-ID: <b137e6bb-7380-4f4c-8469-422587d08c60@kernel.org>
-Date: Wed, 11 Jun 2025 09:17:42 +0200
+	b=OzQBkf+x0narII+HmtYjWGCDN8/DOMdf4UkTkqxLguCdwRjHLR5+rHwNe1cAfZREB
+	 9pPCpyuhKjmwtzIzueeRyPw5gAAjv/xdaCTYM9MxqqDtxMmKId5ORA9IlQZDcV/0I7
+	 w41ze7A30V5bt0/fPf/sXTv48tG1KawkM9+0GzmoX5Wz8bXUVwRy2T2jN8vSy2tXZ/
+	 cRfhKFJyHsomqx59QY39eHhrjtVUzVaIFIxBQx6MjwgoaLTTTKLVWQPmn29dNe3xmO
+	 6mG7chv3fwK1VWl9325TmhHvN9LgpFDuGnW9erlb0hUw2KJJ5kKvp4xr9udzZg/Kw+
+	 SWh2e0vPAyJZA==
+Message-ID: <19dd3d16-aadd-469c-a090-238baba14d4e@kernel.org>
+Date: Wed, 11 Jun 2025 09:20:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/8] dt-bindings: serial: describe SA8255p
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
- quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
- quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
- quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-2-quic_ptalari@quicinc.com>
- <20250610-tested-lilac-raccoon-6c59c4@kuoka>
- <d744b518-2ae9-4ca0-86ce-11cf74c945e6@quicinc.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: Add SiFive Domain Management
+ controllers
+To: Nick Hu <nick.hu@sifive.com>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, Cyan Yang
+ <cyan.yang@sifive.com>, Samuel Holland <samuel.holland@sifive.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>
+References: <20250611031023.28769-1-nick.hu@sifive.com>
+ <20250611031023.28769-2-nick.hu@sifive.com>
+ <9c429671-8409-4911-8559-73a069d66964@kernel.org>
+ <CAKddAkAyvRdAz9X_rCGgfdxD0Z_Q7sAt8e5nuJe7=s7G-Y3+AQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,24 +107,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <d744b518-2ae9-4ca0-86ce-11cf74c945e6@quicinc.com>
+In-Reply-To: <CAKddAkAyvRdAz9X_rCGgfdxD0Z_Q7sAt8e5nuJe7=s7G-Y3+AQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/06/2025 10:10, Praveen Talari wrote:
->>> +
->>> +  interrupts:
->>> +    minItems: 1
+On 11/06/2025 09:15, Nick Hu wrote:
+> On Wed, Jun 11, 2025 at 2:57 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> Drop, this is not in sync with interrupt-names. You already received
->> comments on this. We talk about this since v4!
-> I hope you have reviewed the commit message and the description under 
-> interrupt-name regarding the optional wakeup IRQ. I believe that address 
-> your query.
-> 
-> I can include minItems:1 in the interrupt-name property in the next 
-> patch set to align/sync with interrupts property.
-Yes, then the interrupt-names needs minItems.
+>> On 11/06/2025 05:10, Nick Hu wrote:
+>>> SiFive Domain Management controller includes the following components
+>>> - SiFive Tile Management Controller
+>>> - SiFive Cluster Management Controller
+>>> - SiFive Core Complex Management Controller
+>>>
+>>> These controllers control the clock and power domain of the
+>>> corresponding domain.
+>>>
+>>> However, Since we don't have a SoC specific compatible string yet, so
+>>> add '- {}' for the first entry [1][2].
+>>
+>>
+>> But you must have Soc specific compatible strings. See previous discussion.
+>>
+> Maybe I'm missing something, but since we don't have a SoC-specific compatible
+> string yet, I thought we agreed to include a `- {}` as the first
+> entry, along with an
+> explanation in both the commit message and comments [1].
+But your commit msg does not explain. You need to explain why you do not
+have SoC specific compatibles. Saying "I do not have a SoC specific
+compatible" is not an argument explaining why you do not have SoC
+specific compatible.
 
 Best regards,
 Krzysztof
