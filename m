@@ -1,106 +1,178 @@
-Return-Path: <devicetree+bounces-184935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE112AD5BFB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:22:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A172DAD5BFA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:22:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC4231888484
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:21:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66EEF163522
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331C61DED53;
-	Wed, 11 Jun 2025 16:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9771DED53;
+	Wed, 11 Jun 2025 16:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L/PnBta6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ejXfaqT5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045BB1A725A;
-	Wed, 11 Jun 2025 16:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4070182B4;
+	Wed, 11 Jun 2025 16:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749658876; cv=none; b=K6YfSpDXF+K5YV3q0HIwiNpQ8tUsVjTTIaDvE8hgq0tudMYZO8ahIunxH59u/gkJpvNsqYiCsE9tRNvZo4tdljRLkcVdIXG51PuOvGvZFk4z277aIMWErqtOqH1IuP7YthWACx8Yh1wEDn52m+9Jd6xxCCLN9p5vA8qPjTETmhg=
+	t=1749658917; cv=none; b=LjhCaYWQPsv/6C34EiF3iweCsBWL0rFDXQK7nuv+qNCUx0LiOh8etXnAnmRo3t0YnsypJiCKTKsQFbG4HBgSemNjbRPCEHvTNTWNP2ZcP9PI5dAA64GVAPdTj7IJJ+iexQRYDBWo0CbqMEMWfG+Z+Jn3daFiXFptiKE7jdAkQWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749658876; c=relaxed/simple;
-	bh=/L2dGUpW09AvMNpTRzGqIRxdazsuqBgLkgcIZOJe1Z0=;
+	s=arc-20240116; t=1749658917; c=relaxed/simple;
+	bh=yhHILjKN4KyXc1dRjfmoVhQCyL5X32w0a/kSF1NLxBg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wse5HPG5jPV7eSCuGcswn4d2lKVvdBpyVh3lyJmZHpxR2WJ6BvP4FrxYhgVO1hCRqs3RZV79bTDFEg8HB6JVYJyGqi/c3h87toXx/B7ZTdNw0PLBwIZ1oRQ/Pbr05IXdXuHIkfIkWeim7mEgdxljSUhReiK8nWbfXHmIVxh0JUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/PnBta6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 966A5C4CEE3;
-	Wed, 11 Jun 2025 16:21:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oVTBpbAZbNPtT4tuf7jS4StzXvEi3y5uXE8RbJFUTYrqsURvtKUeK3KdO00USp0yip9/L1ivpMfaJ//bLkTCN1DkooJpwnDX4MEr5F0RlHdBPI3oUH0pav8Rz2/75UNCnNuJ7sqdMT9IuOa/u18okEztX2uaxBHH6lnprTTSGYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ejXfaqT5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F368C4CEE3;
+	Wed, 11 Jun 2025 16:21:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749658874;
-	bh=/L2dGUpW09AvMNpTRzGqIRxdazsuqBgLkgcIZOJe1Z0=;
+	s=k20201202; t=1749658917;
+	bh=yhHILjKN4KyXc1dRjfmoVhQCyL5X32w0a/kSF1NLxBg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L/PnBta6Iy+ClZux3wRoK4yrCk9t4MPLyyuTpRp0Y7qcVus/mxM+svP3md8SSnjL2
-	 UCUr+Yl1neMOpEOYjBzjPUM+w2ZEFqfEamafnyotP3BEwv7F21nMnigZV3N1lwf7AW
-	 5uahA+KLvgZRw2OfVrjzHyoMQ6Q/OezymhXceo/wopr4TPMNj4nrj/RN7jvKYlQhOR
-	 dpAbJPIo0qgyMpmtA5o4DsbFFZGyQyyF+bTf1WsTwZaThKXLv5Tp2wpPGuJr8SKWeJ
-	 wucpMB5FOLCy5qEGH/mQ6IIAApOzyB9f1euBcw58K9DeTl1bIVr+FGmw1VIqfCdIP7
-	 f/VhO2cbEF5pA==
-Date: Wed, 11 Jun 2025 17:21:08 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Jiaxin Yu <jiaxin.yu@mediatek.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 07/13] ASoC: mediatek: mt8183-afe-pcm: Support >32 bit
- DMA addresses
-Message-ID: <e9baeb61-9cb1-4b58-b957-fe753e629f12@sirena.org.uk>
-References: <20250424102509.1083185-1-wenst@chromium.org>
- <20250424102509.1083185-8-wenst@chromium.org>
+	b=ejXfaqT5ChdI9lgxLtgwiwpEUUdoc1+RZsXtNiosz3LchFdWCUqSR8Q0bgwYt/Q18
+	 3+ppiRipP3woOMIi2Am2nrwOlIjyk9yAZq/FjOH15PcGPKXpbYpAWErFzB08MK3yIv
+	 35vhhrA5WAahlU85+oRRA9sD/5GjVkw4bNN1kYoAGqEm7jhgsCX+MnpCDxF5/xt9xP
+	 edXaXtO8K1ftob4CjK/toomYa/ChJJSNi9pwSfADBgOVINVAIAOXkfY67dxj6fChCU
+	 BQwRqspGLTF10ryMJb4LpDj3zE2k5KLHMHm1I6lSsN9G7ysycHXMxJ06rJ8K6jW6wv
+	 TYvmCI8ikEMTQ==
+Date: Wed, 11 Jun 2025 17:21:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ben Zong-You Xie <ben717@andestech.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, tglx@linutronix.de, daniel.lezcano@linaro.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	tim609@andestech.com, arnd@arndb.de
+Subject: Re: [PATCH v5 0/8] add Voyager board support
+Message-ID: <20250611-tapeless-arson-a6ace3c42c00@spud>
+References: <20250602060747.689824-1-ben717@andestech.com>
+ <20250606-booth-icky-b416c1827a43@spud>
+ <aEbOLztcBsKs84pn@atctrx.andestech.com>
+ <20250609-donut-oozy-4dcc8b8a292d@spud>
+ <20250609-twiddling-clamp-eaa0dd2b1cad@spud>
+ <aEmrHPd7RxUSOLAY@atctrx.andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9PAPZhOpllzoEdZ4"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WFYaPWbEs/9kFIBx"
 Content-Disposition: inline
-In-Reply-To: <20250424102509.1083185-8-wenst@chromium.org>
-X-Cookie: Metermaids eat their young.
+In-Reply-To: <aEmrHPd7RxUSOLAY@atctrx.andestech.com>
 
 
---9PAPZhOpllzoEdZ4
-Content-Type: text/plain; charset=us-ascii
+--WFYaPWbEs/9kFIBx
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 24, 2025 at 06:25:01PM +0800, Chen-Yu Tsai wrote:
-> The AFE DMA hardware supports up to 34 bits for DMA addresses. This is
-> missing from the driver and prevents reserved memory regions from
-> working properly when the allocated region is above the 4GB line.
++CC Arnd,
+
+On Thu, Jun 12, 2025 at 12:13:16AM +0800, Ben Zong-You Xie wrote:
+> On Mon, Jun 09, 2025 at 05:17:50PM +0100, Conor Dooley wrote:
+> > [EXTERNAL MAIL]
 >=20
-> Fill in the related register offsets for each DAI, and also set the
-> DMA mask. Also fill in the LSB end register offsets for completeness.
+> > Date: Mon, 9 Jun 2025 17:17:50 +0100
+> > From: Conor Dooley <conor@kernel.org>
+> > To: Ben Zong-You Xie <ben717@andestech.com>
+> > Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+> >  alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.or=
+g,
+> >  tglx@linutronix.de, daniel.lezcano@linaro.org,
+> >  prabhakar.mahadev-lad.rj@bp.renesas.com, devicetree@vger.kernel.org,
+> >  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+> >  tim609@andestech.com
+> > Subject: Re: [PATCH v5 0/8] add Voyager board support
+> >=20
+> > On Mon, Jun 09, 2025 at 05:16:54PM +0100, Conor Dooley wrote:
+> > > On Mon, Jun 09, 2025 at 08:06:07PM +0800, Ben Zong-You Xie wrote:
+> > > > On Fri, Jun 06, 2025 at 05:00:06PM +0100, Conor Dooley wrote:
+> > > > > [EXTERNAL MAIL]
+> > > >=20
+> > > > > Date: Fri, 6 Jun 2025 17:00:06 +0100
+> > > > > From: Conor Dooley <conor@kernel.org>
+> > > > > To: Ben Zong-You Xie <ben717@andestech.com>
+> > > > > Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkel=
+ey.edu,
+> > > > >  alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@ker=
+nel.org,
+> > > > >  tglx@linutronix.de, daniel.lezcano@linaro.org,
+> > > > >  prabhakar.mahadev-lad.rj@bp.renesas.com, devicetree@vger.kernel.=
+org,
+> > > > >  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+> > > > >  tim609@andestech.com
+> > > > > Subject: Re: [PATCH v5 0/8] add Voyager board support
+> > > > >=20
+> > > > > On Mon, Jun 02, 2025 at 02:07:39PM +0800, Ben Zong-You Xie wrote:
+> > > > > > The Voyager is a 9.6=E2=80=9D x 9.6=E2=80=9D Micro ATX form fac=
+tor development board
+> > > > > > including Andes QiLai SoC. This patch series adds minimal devic=
+e tree
+> > > > > > files for the QiLai SoC and the Voyager board [1].
+> > > > > >=20
+> > > > > > Now only support basic uart drivers to boot up into a basic con=
+sole. Other
+> > > > > > features will be added later.
+> > > > > >=20
+> > > > > > [1] https://www.andestech.com/en/products-solutions/andeshape-p=
+latforms/qilai-chip/
+> > > > >=20
+> > > > > Ball is in your court now, after rc1 make a tree and get it in
+> > > > > linux-next, and then send a pr to soc@kernel.org with this new co=
+ntent.
+> > > > > Perhaps the defconfig should go separately, I can take that one i=
+f you
+> > > > > want.
 
-This doesn't apply against current code, please check and resend.
+> > > > Thanks for your guidance on these patches. I will send a PR to
+> > > > soc@kernel.org as you suggested.
+> > > >=20
+> > > > For the defconfig patch, I'm happy for you to handle it. Just let me
+> > > > know if there's anything specific you'd like me to include.
+> > >=20
+> > > Okay, I picked it up on the basis that you'll send this all to Arnd f=
+or
+> > > 6.17
+> >=20
+> > Sorry, I think that was really poorly worded. I picked it up on the
+> > basis that you're going to send the other patches in the series to Arnd
+> > for 6.17.
+>=20
+> According to the SoC maintainer documentation [1], I should send a
+> patchset (not a PR) to soc@kernel.org. Since I'm not a submaintainer yet.
+> I think I should not sent a PR to the main SoC maintainer. Is that right?
 
---9PAPZhOpllzoEdZ4
+I think you can send a PR and not worry about it.
+
+> Further, I have two questions about sending a patchset:  =20
+> 1. Should I send v5 or start a new patchset?
+> 2. Should I continue excluding the defconfig patch, as we discussed
+>    previously? I think it should be included now.
+
+Arnd, you okay with a defconfig in the same branch as the dts/core
+bindings for a new platform? I'll happily drop it from by branch if it
+can all go as one.
+
+
+--WFYaPWbEs/9kFIBx
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhJrPMACgkQJNaLcl1U
-h9BXaAf8Cp0/Qk9S9BCu/1WQ9b7h9uIwroAKxXnge/cWjZAaw3lpUGDxTZlGp4uf
-yIxD1RWhQNL2YeHVH+6Wq9x142AZ5jCCme/GswQGThwVPxau9mVVCV1nJzSMbnlf
-kUfAQcRN9S4a1FpsRqcfHXIwww8LT7Kog75DmLv9weUHy5biFlThiQkqcaR5nOm7
-9cbzIK8FzYHgpgP5E2nEpSbP2z/czOjR0SVGql2pwalRa0lGYoZ9/3a38cipDbc5
-bCEIXr9b48FLg4ZKOPO2qRb/pXvOQ0abFlye4lOjd5OhRkFXtZEEX7u6IZSej66s
-Tmv8ID9+Oy7Ej3ybPmH24gNdTcpCuA==
-=W2oV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEmtHwAKCRB4tDGHoIJi
+0hxOAQC1qmiuQTIkth0fjU0BJkWcNXeY7/dI2Y9Yvqiy9smpQAEAuhnCv1kfdYjO
+ksxcZcHeMKiBLF6hIeHx76zK6daflAo=
+=jply
 -----END PGP SIGNATURE-----
 
---9PAPZhOpllzoEdZ4--
+--WFYaPWbEs/9kFIBx--
 
