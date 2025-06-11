@@ -1,215 +1,132 @@
-Return-Path: <devicetree+bounces-184653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E0DAD4DD3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:05:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB6CAD4DDE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:05:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A59041BC0C53
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:05:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E9CC1798C6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91E123A9BF;
-	Wed, 11 Jun 2025 08:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFCB23278D;
+	Wed, 11 Jun 2025 08:05:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="aSI3qojW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YchtfF3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED9C2397BE;
-	Wed, 11 Jun 2025 08:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749629037; cv=pass; b=R4E3oyuvOHqwHDfMCv0YbwQBFLpO2MDGeHoDuQmwB+VkPBWhnnFC+U11ufth1sjdVGdYu+BZq4P2YogUoL/4ETC4UlvSQK9PaEfEUSjK4cafKV44eJFZLH9yX9ctqF6b67OL1YV9PNggDKhUCWXOy36EMID/1vpLo1V0yGXc3bs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749629037; c=relaxed/simple;
-	bh=BDu5u8r6NxnLidcAlJTIjfUCAqMvyw4nnccApf0j0XQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LSJco3S1/MjIrNba+pViBA0lyv1QiIuoHtYHTiLM5otShcCCQDzxOKcb/Iywz/VZo862cCGozR2X41VBfnXeYJvWiC3IzoBv63EHmjrql8vPRpaQb5Yn2TS5nW0nDR84h46JH7YJw1vQ7etLFs/V4dmlhABtnPKpdkSEOyrKQzQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=aSI3qojW; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1749629000; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=f/EysTF9raz2svykPFGdFJNU0IzTEjVdFxmGmeU/aQfU8CN1sy44rS09KtiWuglUxWnKMoiv+G/MmPYBj3T6dEDxK28jtMXgV3Yym3XqarO5uB5rwClzYXP2ddZDwfRslCO9W5FtmXeDDKW5ynkkKIqqpPLsbCGgq5Zfz9ORHVA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749629000; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=BDu5u8r6NxnLidcAlJTIjfUCAqMvyw4nnccApf0j0XQ=; 
-	b=MBvDXU7kP1xSkKZ/AUpiQb5D1kxynNrJfyuLn0ogVB6MmL8ftgS+VLiEIF3r0Igse3RhK5FXab65Ngg6iGfuc5htvD8/y7UqxUINNSa8G/NPnMuDpBnfiATr2f3GVW9Te7uKwpz80bi2mcKNrRaTPj9i/6VM55rRbwUAydkwbAI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749629000;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=BDu5u8r6NxnLidcAlJTIjfUCAqMvyw4nnccApf0j0XQ=;
-	b=aSI3qojW3+ygrOnzwqKDqEW4EykcF9gw4oGzptZ6aiZzD5aesD0pvK27g26NKROz
-	D27mwcNpcKsruAJKQkQovyVBqVAdNxb7iRQcwp1ZJ3+BUzSu9nzHcDrUgNt8OLwspjq
-	O59cvuKzQLikvCa7ZrA98RVG2nVUvozYqNScXJO1bwfwcJTJyTZu6ShK8G6Z/uvw6si
-	p9om+r8WxOS3SNJNQyZAabXgWDuVVdpcIk89BoiJcwL1zPfzQduqHbyO+Yi4MrYEgey
-	vmHbry7zvmuD/LIAPsuY8sPVmipArDZvyM46uD/QmL+eB36UkywDAGOHRP4aJmoE5Al
-	qqelW37hqw==
-Received: by mx.zohomail.com with SMTPS id 1749628998705473.0702499938236;
-	Wed, 11 Jun 2025 01:03:18 -0700 (PDT)
-Message-ID: <9ebe16a8d33e00c39c142748a1ea6fff96b9565a.camel@icenowy.me>
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, Rob Herring
- <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chaoyi Chen
- <chaoyi.chen@rock-chips.com>, Matthias Schiffer
- <matthias.schiffer@ew.tq-group.com>, Heiner Kallweit
- <hkallweit1@gmail.com>,  netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Wed, 11 Jun 2025 16:03:11 +0800
-In-Reply-To: <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
-	 <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
-	 <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
-	 <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
-	 <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
-	 <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
-	 <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6BE231839;
+	Wed, 11 Jun 2025 08:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749629121; cv=none; b=TEPokdcQ/B4/ZpJV3Hk7XRIFA+q6HQ/upowM2dBQ6MPhn9k6fDx/bwphQ2GtVFfovUFzKHx5J4g9ds8TvMOAXqgbpqE3DI62KdihVnfjmB8N1xpIbea3pDAr8DfW71g1BDDWz+4HktlYQOwL8UUJSqxxFMkXBuc2hMaZLmyuZgA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749629121; c=relaxed/simple;
+	bh=SQl2eyv6jLz5JeUPDZu+f0mJ2UZL6D4bC62grEciy60=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PEXlPBCEHn1rqDG72S795n1Aja8GOdadphK6iNNsQTGGgocNyUwnR8kqL3cpHgTDHMl1cCQPOfDQ6DsB4jgGB6/dZ5WE0iNgXZ+P8yDwhsc+433Ne+/XMpTXnk6NoWZUCLEshYCVeT+S32xCWoO1w+Sfxt9u+vnBFbtBwIhCUpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YchtfF3j; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2345c60507bso44824155ad.0;
+        Wed, 11 Jun 2025 01:05:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749629119; x=1750233919; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lXPMVnUwf3/EoxHQfzIlGfhIh7pfwuueI5x8/O9yKtc=;
+        b=YchtfF3jmNYIn6WDFwlJ/ae4L932Jtk9Z0+tbHQdTA+fBXtI5S091UXXJ7bzM0VpMa
+         wvR6REbAttQ/0YRkP+rnP79AvQZfWM+ChQPsfKvbzPbnmJZu4HDl4trtNpAWU2wGHtXN
+         1bL5np1VuHPfiSh05cyJyyeA3rPL+FhxRdzjlkBbBbmqZMQYJfqWQTb7GwUhJZh3wrlD
+         igFrp7o68uaH0r0WHcA4gy9sYzfcLJuZIb3X6JmjA68Wu5fEkyC0fdJ/ogkc5P/WlvUC
+         8JhK9gzdVmeS5ceO5M2ivwDLS10Jvs3HYvPg5enqJXrR/08blP5LPikvTLD9fo1T0kh5
+         W0QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749629119; x=1750233919;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lXPMVnUwf3/EoxHQfzIlGfhIh7pfwuueI5x8/O9yKtc=;
+        b=LwRsYHXPGlqwj24ZZ6mhx66TQkA4m8KCepCushylvC6a0V2V7Z0fbawMXmbTrdtk5H
+         psMqe0ex+FkY+SqUCekqQnufdMfEw9GDrPM5AiuFCCO1L2Nj6vWrcfQbi6zrm8mReqwb
+         VCrdrP39xdUQyB/3t0+tUJ0sVbOS+s7P85X3gzMWAgOBBrUH30iiP9tlIodjIMkMv5dg
+         LCYwqfYZLcBNTW/TxCoZvYOEA8T1omIAGxLFJKAPCvZhD892IBimBEbmmZ8fN1Yki7bu
+         UE5O+lGC/RXC6xI+6XTdkWnMhwOO/PzBahp3GiX2yAu3HQdIKm59ekW3X+ytH5bLOtYz
+         kBsg==
+X-Forwarded-Encrypted: i=1; AJvYcCUejfQcY+Fpyef52Hzs0JbZLkr0WFcvl2mPntrdM7xZ88gtGTRJeJeWR6vTLKvZmAPjCHP6C/aN5Ha77utn@vger.kernel.org, AJvYcCV8QQvo0CZs27f6dEJ0GeyajLqDLkCnbTHgM6sx6ikAcPWqlgBJqKY1EDO5gaPW6IdgE2tGvf9adQaM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9c7zVE4HjfVqi2gzfEyHix/+/JH6J46jHuIUVG37SHfRIKGc0
+	bVA7M+9pBXTzxCoOh8POj0/yEMdt5DafL2p/iBSzSobEk2XPO7FVAVKn
+X-Gm-Gg: ASbGncvm6vd2QYTAwcVAVx86s4pNsfK5vJvgbuTqH+o9FrvYcQiTRUwTm2JmjZeBYso
+	i7J/udFtIWf58djv5Fcrcp0RcU64qU3nSNBCfUjaFLf7v+lx2XKYz2S8P9NxwoBdMVTXJkX1NnB
+	0MEvOP0W1darcggcPcOPpLEC+2FEV002Ug9zZ2mCzDrWp08dxbvkiYkt3elRBzSirYufoTv80M9
+	XKv/iK5Es1M0xfqOTxq5uWftDh+z6N0/VOcouFqAvf45aUk/HeZ8GvGuDSIuNTEigK2/Vk81INv
+	i2qSIGk6I/Hh2fu8OrWRH7CImmRfF+SzwlhbpOevbBjj0wIfmvZ8XUm6MWu9k2Kd8XkmT7T8FMx
+	RfPSC6BJZoWa3/fNRAn1JOZYvCXkBgycvlWLmv/dxpvzeBkarJtPsQ6eLgQmSAJJ/ror5EtnzTC
+	2M9jb++JqUfWniTLPb
+X-Google-Smtp-Source: AGHT+IHeguJ9PfRvFO2Sr8bPSpOlwMx9Qn9l4lODdIxgT6Z8X+BhIHgTKrD1PU4ZUCit2Tge/jE+KA==
+X-Received: by 2002:a17:902:ecc1:b0:234:ed31:fc98 with SMTP id d9443c01a7336-23641b14d61mr29238475ad.37.1749629118911;
+        Wed, 11 Jun 2025 01:05:18 -0700 (PDT)
+Received: from localhost.localdomain (2001-b400-e357-b8a8-7759-271d-6134-9aa3.emome-ip6.hinet.net. [2001:b400:e357:b8a8:7759:271d:6134:9aa3])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2363ad90982sm21283835ad.220.2025.06.11.01.05.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 01:05:18 -0700 (PDT)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Cc: peteryin.openbmc@gmail.com
+Subject: [PATCH v2 0/5] Revise Meta(Facebook) Harma BMC(AST2600)
+Date: Wed, 11 Jun 2025 16:05:09 +0800
+Message-Id: <20250611080514.3123335-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-=E5=9C=A8 2025-06-05=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 15:48 +0200=EF=BC=
-=8CAndrew Lunn=E5=86=99=E9=81=93=EF=BC=9A
-> On Thu, Jun 05, 2025 at 06:51:43PM +0800, Icenowy Zheng wrote:
-> > =E5=9C=A8 2025-06-05=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 10:41 +0100=EF=
-=BC=8CRussell King (Oracle)=E5=86=99=E9=81=93=EF=BC=9A
-> > > On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
-> > > > In addition, analyzing existing Ethernet drivers, I found two
-> > > > drivers
-> > > > with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
-> > > > ti/icssg/icssg_prueth.c .
-> > > >=20
-> > > > The QCOM ETHQOS driver enables the MAC's TX delay if the
-> > > > phy_mode
-> > > > is
-> > > > rgmii or rgmii-rxid, and the PRU ETH driver, which works on
-> > > > some
-> > > > MAC
-> > > > with hardcoded TX delay, rejects rgmii and rgmii-rxid, and
-> > > > patches
-> > > > rgmii-id or rgmii-txid to remove the txid part.
-> > >=20
-> > > No, this is wrong.
-> > >=20
-> > > First, it does not reject any RGMII mode. See qcom_ethqos_probe()
-> > > and
-> > > the switch() in there. All four RGMII modes are accepted.
-> >=20
-> > Well my sentence have its subject switched here. I mean the TI PRU
-> > ETH
-> > driver is rejecting modes.
->=20
-> Which is theoretically fine. I've not looked at this driver in
-> particular, but there are some MACs were you cannot disable the
-> delay.
-> The MAC always imposes 2ns delay. That would mean a PCB which also
-> has
-> extra long clock lines is simply FUBAR, cannot work, and 'rgmii' is
-> invalid, so reject it.
+Summary:
+Revise linux device tree entry related to Meta(Facebook) Harma
+specific devices connected to BMC(AST2600) SoC.
 
-BTW I found that in some case the assumption of PHY-side delay being
-always better than MAC-side one is wrong -- modern MACs usually have
-adjustable delay line, but Realtek 8211-series PHYs have only on/off
-delay with a fixed 2ns value.
+Based on:
+https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+commit-id: cb3f397b17bbda3f2998eff9e54b040c8fa85cc9
 
->=20
-> > Well I am not sure, considering two examples I raised here (please
-> > note
-> > I am comparing QCOM ETHQOS and TI PRUETH two drivers, they have
-> > contrary handling of RGMII modes, and one matches the old binding
-> > document, one matches the new one).
->=20
-> Nope, i fully agree with Russell, the binding has not changed, just
-> the
-> words to explain the binding.
+v1 -> v2
+  - Patch 0001: ARM: dts: aspeed: harma: add E1.S power monitor
+  - Patch 0002: ARM: dts: aspeed: harma: add fan board I/O expander
+  - Patch 0003: ARM: dts: aspeed: harma: add ADC128D818 for voltage monitoring
+  - Patch 0004: ARM: dts: aspeed: Harma: revise gpio bride pin for battery
+  - Patch 0005: ARM: dts: aspeed: harma: add mmc health
+v1
+  - Patch 0001 - Harma: Revise node name
+  - Patch 0002 - Harma: Add retimer device
+  - Patch 0003 - Harma: Revise GPIO line name
+  - Patch 0004 - Harma: add e1s power monitor
+  - Patch 0005 - Harma: fan board io-expander
 
-Well I read about phy.rst, and I found my understanding of the old
-binding matches my understanding of phy.rst, but does not match the new
-binding.
+Peter Yin (5):
+  ARM: dts: aspeed: harma: add E1.S power monitor
+  ARM: dts: aspeed: harma: add fan board I/O expander
+  ARM: dts: aspeed: harma: add ADC128D818 for voltage monitoring
+  ARM: dts: aspeed: Harma: revise gpio bride pin for battery
+  ARM: dts: aspeed: harma: add mmc health
 
->=20
-> Just for a minute, consider your interpretation of the old text is
-> wrong. Read the old text again and again, and see if you can find an
-> interpretation which is the same as the new text. If you do:
->=20
-> * It proves our point that describing what this means is hard, and
-> =C2=A0 developers will get it wrong.
->=20
-> * There is an interpretation of both the old and new where nothing
-> =C2=A0 changed.
->=20
-> * You have to be careful looking at drivers, because some percent of
-> =C2=A0 developers also interpreted it wrongly, and have broken
-> =C2=A0 implementations as a result.=C2=A0 You cannot say the binding mean=
-s X,
-> =C2=A0 not Y, because there is a driver using meaning X.
->=20
-> My hope with the new text is that it focuses on hardware, which is
-> what DT is about. You can look at the schematic, see if there is
-> extra
-> long clock lines or not, and then decided on 'rgmii-id' if there are
-> not, and 'rgmii' is there are. The rest then follows from that.
+ .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 85 ++++++++++++++++++-
+ 1 file changed, 83 insertions(+), 2 deletions(-)
 
-Well I think "rgmii-*" shouldn't exist at all, if focusing on hardware.
-I prefer only "rgmii" with properties describing the delay numbers.
-
->=20
-> And if you look at the questions i've been asking for the last year
-> or
-> more, i always start with, "Does the PCB have extra long clock
-> lines?".
->=20
-> > > The RGMII modes have been documented in
-> > > Documentation/networking/phy.rst
-> > > (Documentation/networking/phy.txt predating) since:
-> >=20
-> > I checked the document here, and it seems that it's against the
-> > changed
-> > binding document (it matches the original one):
-> >=20
-> > The phy.rst document says:
-> > ```
-> > * PHY_INTERFACE_MODE_RGMII: the PHY is not responsible for
-> > inserting
-> > any
-> > =C2=A0 internal delay by itself, it assumes that either the Ethernet MA=
-C
-> > (if
-> > capable)
-> > =C2=A0 or the PCB traces insert the correct 1.5-2ns delay
-> > ```
-> >=20
-> > The changed binding document says:
->=20
-> You are not reading it carefully enough. The binding describes
-> hardware, the board. phy.rst describes the phylib interface. They are
-> different.
-
-Well I can't find the reason of phy-mode being so designed except for
-leaky abstraction from phylib.
-
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Andrew
+-- 
+2.25.1
 
 
