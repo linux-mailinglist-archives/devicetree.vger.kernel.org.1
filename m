@@ -1,368 +1,156 @@
-Return-Path: <devicetree+bounces-184730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AED1AD5015
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:38:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A32AD502C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:40:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7B037ADA27
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:36:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86F5816CB09
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303CA26B2AE;
-	Wed, 11 Jun 2025 09:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A67E261585;
+	Wed, 11 Jun 2025 09:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KTjfz7cE"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="VFNVNpSb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C6F82638A6
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:34:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBA7233722
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749634480; cv=none; b=A4fn47FstdJ9QAtK7u6xYixuQJZXAF/VxVYC9rIZylX4GC0PynZEO/U3iPyPu6HJUqKMEibX/ulNBGMGwEVWmp2IiEaQR3QCv1XfEH5Esg2IC2VYvR+R754kHatVFMwQmzwedQyfsBItpEWgSyM29cJvvqnJsGVX6o9p9Pfr0Cc=
+	t=1749634802; cv=none; b=PmpDMKyv6MDxcu9KhzHA1L+NHf1RooT3vBoBClwVL5hvT3oEIhKkeo0qQiqxMgFKGz/6+kMBMCd3JI8TJeRvw755Fq21QZP3ps/1XFQcf+KaVvq2I4HAeIb00bLXoJnDbzDJO+EVEPWobmAXxpofpPvi61HztGp9y6xYtk+15r4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749634480; c=relaxed/simple;
-	bh=qTs3IRLu5xA+mhLIgJ44rsQgmMvxnUCHZ/EW6gO8Vwk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HaUwYVSliEQwWV118pqbf3TJvP+GJYfdqpiY35Ocvv34HhpNhM7VmeEounUOr8grm/PkRfL8SuUTVyZfvz8M8+C3SkRDZtSADnzngrukHkFzwHLrzDzdAZMCOqLEJAlNz3DtL5EhEcf1vufYf1sS3Sr401h4lZi/lRiewPGsO18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KTjfz7cE; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4530921461aso29447415e9.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 02:34:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749634476; x=1750239276; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PVeXPFuPVbQsXF19uNENjG1a5bYP5vKL7OyCc5YR918=;
-        b=KTjfz7cER/eUSzfoKtqll9Na7qTxZjM5NjeUSZbSsv0tOf1w94/H6mHmE8WVqNeadl
-         HOEGplYkeNuZ5SlkwnfDwPApUcKwRPV3W/Wm370E340BXcTxGmVCwB//A597LssuaMcz
-         ZakoOD433nYqcrhKsDbvPFueWzN7MzyHPkHqZzPuOBrBERVov/g1cRvdhEwSunwx/gw6
-         WliGtnh2oWlBl1ZSq29FmK4j/bZoKZ5AefHhz1qAzXkjLO7YwgMdtjqy9LjnPzl3npEs
-         X6gaMTwBhcKjWHJALOD82eHZNZodjoTn4p3rAZlYQP34A+yqyCFIlhjVSsWwvFUxQcOX
-         lPAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749634476; x=1750239276;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PVeXPFuPVbQsXF19uNENjG1a5bYP5vKL7OyCc5YR918=;
-        b=i+92C+MyH2oKm64d/rmEIza1M1Vy6rk76InQzXtJ75ij8rw7psH2genpS1PesrJx4j
-         XlptG8oPKU8c5pY6Qbp14FEWXTtjLYWEt3Cawrp5iUAT1uo6u7CUkqp4tQTbubZtZlEd
-         J33ivgIe4jU6DtwGsBgmYsjqF2cNt1U9s1oeakuxmFZDAKXo0hi7EaY+bJmunD4n7tnP
-         R26kjy997p+m3jzyyy6pQMnnqwOqw6KjxBtYZ5H9QsUv9EHukviv8PLl3/b7xHFqoeYs
-         DUFS70wVIrs/ZTYD5Zd5j+SvZ0//+w7Yx+UMLq3dkg5D+E5+3mL9nrt0nCrUwpYUuWWV
-         jj0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVA9SBNEsngRfJeJ91c9mTcBhgrsj+Mf6TWec8u/szng1yHaXzRqJFZBjnItgzuDYdpfPkhBdxxlIei@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpMfQCZTL6rc9k5Mpwek5veOf6fJA9mAnVP7i+xcnqhP7GhKnW
-	u/GtisgcatvOlv0mdo4AChze1Y3wEX2ivvRagdK5b/qA+QZYNt2qN36eskv6pxhOIM8=
-X-Gm-Gg: ASbGnctKB3I6CxDzEJvaOO85X+BOLAgTN3WuLAslXdBjAHmSW1Vot8JqQIPvBao541t
-	upEiail6WkdNuXP1/1N0/o8ioxG0Dq6UD7jxj9UpTwr0iAJ0JzpsnjSc73fxfcLmg1oXK/dCwVZ
-	SbFAsDhgY1xZNlmTBa6UQFCGzAvhY+mNhgc0OplAMOTQVawP1AKuikXscyNXiBreie6MJOIG5+n
-	RNSiHQQUVaVFmBPdkz0k3/v5BhFOednqqFGSOvWy04UCsJ6ElehfloVoz9P9Vqk+odC+OSjlSeG
-	F0uy4Q6r4RyOsI41ow8UIxp8HsbZWlPn3FjKjCXtCPSSd6rJm6as69eVLlMeTJlPGIph9CmxSDP
-	FvzDT7Cs3z0bQtj4=
-X-Google-Smtp-Source: AGHT+IFezP6rZ6NJam3qkYM1ont9V/Ju3WNFxU4NhSoAWiBk+tW7MeR71vKuui0yalRYjWiHv6SH+w==
-X-Received: by 2002:a05:600c:8719:b0:442:f482:c432 with SMTP id 5b1f17b1804b1-453248f9836mr22050755e9.18.1749634476351;
-        Wed, 11 Jun 2025 02:34:36 -0700 (PDT)
-Received: from gpeter-l.roam.corp.google.com ([145.224.65.90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453251a2303sm15467005e9.31.2025.06.11.02.34.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 02:34:35 -0700 (PDT)
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 11 Jun 2025 10:34:26 +0100
-Subject: [PATCH v2 2/2] soc: samsung: exynos-pmu: Enable CPU Idle for gs101
+	s=arc-20240116; t=1749634802; c=relaxed/simple;
+	bh=djmGttJvgdrAuT76sTzzM7mwhva2mmL/CWA7Yznfn9I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j/coqR/vnzM9o1hAN/lkb9EUSTyhE5aHUw8cc70rUp1d0g/z4s/oK9Z6jd+PE9QIorX+aXbCKfgKOoKVHvIpDaMzfHsOw8Gh0dm8+NtvPj1tP6nvFVHba/PlyBBNX4BJF1mNl8Guqbf289ONRMO1udqtXSuo5c0kXr6f0unSSZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=VFNVNpSb; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=zH0VzyGLR/mOki
+	AFq6apyRlsnaQD4TKPWwgqIVI/8Ew=; b=VFNVNpSbvQWU5HJ5S3bJmFMYPyssop
+	9Kdmvnr0gWqtRkWE0lq0z8lz4U+TJr8pKSwhd1DpHFsWj9/g+NDUEBLscwAOILa/
+	eOxecLtRZS+aThdI32f0HEJsqfBjJyY1YrGtHZURtQNkDl5zlT4PGsISf6a8MMAr
+	0PolMggQk72ZK3oopSOZ+WiQ4Ovgl1jVXITUU/4rJQN3nZOcwXvYfwKTjXuIASNz
+	a/GmQyd0+WTSagKcidSAAs7fsFEnEvxKJzQ9U7xWEwXCuZ5ac8ZVLzcq4hjFfLzW
+	2+m1XlN5fs8ITMH/W8yMyfZlNZKufKfcExK9abUMZ1/G9DvM1hyEDGYQ==
+Received: (qmail 3186264 invoked from network); 11 Jun 2025 11:39:48 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2025 11:39:48 +0200
+X-UD-Smtp-Session: l3s3148p1@EIQHmEg33rAgAwDPXy2/ACpZfVCNKldR
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-clk@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH RFC 0/7] i3c: add driver for the Renesas IP and support RZ/G3S+G3E
+Date: Wed, 11 Jun 2025 11:39:24 +0200
+Message-ID: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250611-gs101-cpuidle-v2-2-4fa811ec404d@linaro.org>
-References: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
-In-Reply-To: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
-To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: William Mcvicker <willmcvicker@google.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7073;
- i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=qTs3IRLu5xA+mhLIgJ44rsQgmMvxnUCHZ/EW6gO8Vwk=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoSU2lxp0CXerInpZzjgxAxPDiAXS+cx5GGZ3wL
- 66Mv1PObHKJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaElNpQAKCRDO6LjWAjRy
- ugz7D/9ycWCS+1kysD81RwKEkYsnWRulQwV4baIqdf8qXrUZQnpecMUToyOmrIR/oJVJ0yzWByh
- gAmVsSxSHNJrzgTq+f9ebDMNTPtCx9xQMoBc+RVSUcNIhhMl3gohnBz1+1jpIERNxn/yreNT5Us
- frHSHyEUzMJl+njMaelO9Vlz6/Pcl3JTWOC651/TU22n5lHFkf3ljfx4oPnv6u6uKhobVHBdBmZ
- ITISASnTUdBdbAEQ+ZQOUBj0Nhdc595E/McvaeMoqWa4OkYxRT3ngMpiBJFkQUoH/e/XNln/ncB
- 2l+yKdB2B3ss20rnc62oXlstrqkSM6aCJ/bzuyJeRoLfMHdH0jRPTk9h6xrpgZYgtdGQD1J0Vhv
- C1+CJxE5PY1tS0VwZCRjG92jYLcfAgdPwUeajIxA1w7oyOv72MaMGh5+8ye8mizG2RzGVsO6Ed0
- o3eS8zWc6GNsSMoedxDBHU4TtIsZ5AC40onJL2nPnKk3Ro8pQCxGRhWehSqUjkhh5e0Be+lRRxh
- aArz7RINoGwZu/y+MYbq0xlNY7dfXKBXja9N/ge15MBWkTsnSMqzzFQqX033Sgizr4i5hhP/63l
- bV1gZHhoVXUSKfKvwPG/mjBRR3KvmMfQCUkkFTUiiRg8rlx/kuPjuHuAD3omWXAa0AwsSEuGFTT
- IhL6HciJ6J7uRRA==
-X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
- fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
+Content-Transfer-Encoding: 8bit
 
-Register cpu pm notifiers for gs101 which call the
-gs101_cpu_pmu_online/offline callbacks which in turn
-program the ACPM hint. This is required to actually
-enter the idle state.
+Here is finally the first RFC of a driver for the Renesas I3C IP. It was
+created by merging two versions of it from two different BSPs. Then,
+improved according to code analyzers, cleaned up with regard to coding
+style, and then refactored to hopefully match I3C subsystem standards.
 
-A couple of corner cases are handled, namely when the
-system is rebooting or suspending we ignore the request.
-Additionally the request is ignored if the CPU is in
-CPU hot plug.
+It is a basic driver for the I3C IP found in various SoCs like RZ/G3S
+and G3E. Missing features to be added incrementally are IBI, HotJoin and
+maybe target support. Other than that, this driver has been tested with
+I3C pure busses (2 targets) and mixed busses (2 I3C + various I2C
+targets). DAA and reading/writing to the temperature sensors worked
+reliably at different speeds. Scoping the bus, the output from the
+protocol analyzer seems reasonable, too. But hey, I am still new to all
+this, so I might have overlooked something.
 
-Note: this patch has a runtime dependency on adding
-'local-timer-stop' dt property to the CPU nodes. This
-informs the time framework to switch to a broadcast timer
-as the local timer will be shutdown. Without that DT
-property specified the system hangs in early boot with
-this patch applied.
+The first patches are needed to enable I3C on the RZ/G3S and G3E boards.
+Once this series loses RFC status, they will be sent out individually,
+of course. All is on top of 6.16-rc1. A branch can be found here:
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
-Changes in v2
- * Add ifdef CONFIG_PM_SLEEP to avoid
-   Fix warning: unused variable 'cpupm_pm_ops' [-Wunused-const-variable] (0-day)
----
- drivers/soc/samsung/exynos-pmu.c | 137 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 133 insertions(+), 4 deletions(-)
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/g3s/i3c
 
-diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
-index a77288f49d249f890060c595556708334383c910..7f72ecd60994f18bb639dd8e09e1c6ff6158066b 100644
---- a/drivers/soc/samsung/exynos-pmu.c
-+++ b/drivers/soc/samsung/exynos-pmu.c
-@@ -8,6 +8,7 @@
- #include <linux/array_size.h>
- #include <linux/arm-smccc.h>
- #include <linux/cpuhotplug.h>
-+#include <linux/cpu_pm.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/mfd/core.h>
-@@ -15,6 +16,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/delay.h>
-+#include <linux/reboot.h>
- #include <linux/regmap.h>
- 
- #include <linux/soc/samsung/exynos-regs-pmu.h>
-@@ -35,6 +37,10 @@ struct exynos_pmu_context {
- 	const struct exynos_pmu_data *pmu_data;
- 	struct regmap *pmureg;
- 	struct regmap *pmuintrgen;
-+	spinlock_t cpupm_lock;	/* serialization lock */
-+	bool __percpu *hotplug_ing;
-+	atomic_t sys_suspended;
-+	atomic_t sys_rebooting;
- };
- 
- void __iomem *pmu_base_addr;
-@@ -336,7 +342,7 @@ EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
- #define CPU_INFORM_CLEAR	0
- #define CPU_INFORM_C2		1
- 
--static int gs101_cpuhp_pmu_online(unsigned int cpu)
-+static int gs101_cpu_pmu_online(unsigned int cpu)
- {
- 	unsigned int cpuhint = smp_processor_id();
- 	u32 reg, mask;
-@@ -358,10 +364,26 @@ static int gs101_cpuhp_pmu_online(unsigned int cpu)
- 	return 0;
- }
- 
--static int gs101_cpuhp_pmu_offline(unsigned int cpu)
-+static int gs101_cpuhp_pmu_online(unsigned int cpu)
-+{
-+	gs101_cpu_pmu_online(cpu);
-+
-+	/*
-+	 * Mark this CPU as having finished the hotplug.
-+	 * This means this CPU can now enter C2 idle state.
-+	 */
-+	*per_cpu_ptr(pmu_context->hotplug_ing, cpu) = false;
-+
-+	return 0;
-+}
-+
-+static int gs101_cpu_pmu_offline(unsigned int cpu)
- {
- 	u32 reg, mask;
--	unsigned int cpuhint = smp_processor_id();
-+	unsigned int cpuhint;
-+
-+	spin_lock(&pmu_context->cpupm_lock);
-+	cpuhint	= smp_processor_id();
- 
- 	/* set cpu inform hint */
- 	regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
-@@ -379,16 +401,89 @@ static int gs101_cpuhp_pmu_offline(unsigned int cpu)
- 	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
- 	regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
- 		     reg & mask);
-+
-+	spin_unlock(&pmu_context->cpupm_lock);
- 	return 0;
- }
- 
-+static int gs101_cpuhp_pmu_offline(unsigned int cpu)
-+{
-+	/*
-+	 * Mark this CPU as entering hotplug. So as not to confuse
-+	 * ACPM the CPU entering hotplug should not enter C2 idle state.
-+	 */
-+	*per_cpu_ptr(pmu_context->hotplug_ing, cpu) = true;
-+
-+	gs101_cpu_pmu_offline(cpu);
-+
-+	return 0;
-+}
-+
-+static int gs101_cpu_pm_notify_callback(struct notifier_block *self,
-+					unsigned long action, void *v)
-+{
-+	int cpu = smp_processor_id();
-+
-+	switch (action) {
-+	case CPU_PM_ENTER:
-+		/*
-+		 * Ignore CPU_PM_ENTER event in reboot or
-+		 * suspend sequence.
-+		 */
-+
-+		if (atomic_read(&pmu_context->sys_suspended) ||
-+		    atomic_read(&pmu_context->sys_rebooting))
-+			return NOTIFY_OK;
-+
-+		if (*per_cpu_ptr(pmu_context->hotplug_ing, cpu))
-+			return NOTIFY_BAD;
-+
-+		gs101_cpu_pmu_offline(cpu);
-+
-+		break;
-+	case CPU_PM_EXIT:
-+
-+		if (atomic_read(&pmu_context->sys_rebooting))
-+			return NOTIFY_OK;
-+
-+		gs101_cpu_pmu_online(cpu);
-+
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static struct notifier_block gs101_cpu_pm_notifier = {
-+	.notifier_call = gs101_cpu_pm_notify_callback,
-+	.priority = INT_MAX	/* we want to be called first */
-+};
-+
-+static int exynos_cpupm_reboot_notifier(struct notifier_block *nb,
-+					unsigned long event, void *v)
-+{
-+	switch (event) {
-+	case SYS_POWER_OFF:
-+	case SYS_RESTART:
-+		atomic_set(&pmu_context->sys_rebooting, 1);
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static struct notifier_block exynos_cpupm_reboot_nb = {
-+	.priority = INT_MAX,
-+	.notifier_call = exynos_cpupm_reboot_notifier,
-+};
-+
- static int exynos_pmu_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct regmap_config pmu_regmcfg;
- 	struct regmap *regmap;
- 	struct resource *res;
--	int ret;
-+	int ret, cpu;
- 
- 	pmu_base_addr = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(pmu_base_addr))
-@@ -444,6 +539,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
- 			 */
- 			dev_warn(&pdev->dev, "pmu-intr-gen syscon unavailable\n");
- 		} else {
-+			pmu_context->hotplug_ing = alloc_percpu(bool);
-+
-+			/* set PMU to power on */
-+			for_each_online_cpu(cpu)
-+				gs101_cpuhp_pmu_online(cpu);
-+
- 			cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,
- 					  "soc/exynos-pmu:prepare",
- 					  gs101_cpuhp_pmu_online, NULL);
-@@ -451,6 +552,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
- 			cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
- 					  "soc/exynos-pmu:online",
- 					  NULL, gs101_cpuhp_pmu_offline);
-+
-+			cpu_pm_register_notifier(&gs101_cpu_pm_notifier);
-+			spin_lock_init(&pmu_context->cpupm_lock);
-+			atomic_set(&pmu_context->sys_rebooting, 0);
-+			atomic_set(&pmu_context->sys_suspended, 0);
-+			register_reboot_notifier(&exynos_cpupm_reboot_nb);
- 		}
- 	}
- 
-@@ -471,10 +578,32 @@ static int exynos_pmu_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+#ifdef CONFIG_PM_SLEEP
-+static int exynos_cpupm_suspend_noirq(struct device *dev)
-+{
-+	atomic_set(&pmu_context->sys_suspended, 1);
-+	return 0;
-+}
-+
-+static int exynos_cpupm_resume_noirq(struct device *dev)
-+{
-+	atomic_set(&pmu_context->sys_suspended, 0);
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops cpupm_pm_ops = {
-+	.suspend_noirq = exynos_cpupm_suspend_noirq,
-+	.resume_noirq = exynos_cpupm_resume_noirq,
-+};
-+#endif
-+
- static struct platform_driver exynos_pmu_driver = {
- 	.driver  = {
- 		.name   = "exynos-pmu",
- 		.of_match_table = exynos_pmu_of_device_ids,
-+#ifdef CONFIG_PM_SLEEP
-+		.pm = &cpupm_pm_ops,
-+#endif
- 	},
- 	.probe = exynos_pmu_probe,
- };
+Why is this still RFC?
+
+- On G3E (but not G3S), we get a spurious irq during boot. We are
+  working on it. This is just platform dependent, though, kind of
+  independent of the high level design of the driver. For this, we
+  would love to get comments already. So, we can fix things in parallel
+
+- G3S has 17 irqs, G3E only 16. The way we handle this might need
+  discussion (see patch 3)
+
+- On G3S, clocks are named 'i3c' while on G3E they are named 'i3c0'
+  I don't have all the needed docs for this, but Tommaso can surely
+  figure this out meanwhile
+
+- There are some open questions regarding the driver itself
+  (see patch 4)
+
+Really looking forward to comments! This has been quite a ride. Getting
+a suitable test setup was a surprisingly big task. If someone knows an
+off-the-shelf device supporting HotJoin, I am all ears. I couldn't find
+one.
+
+So much for now here, some patches have more details.
+
+All the best,
+
+   Wolfram
+
+
+Quynh Nguyen (1):
+  arm64: dts: renesas: r9a08g045: Add I3C node
+
+Tommaso Merciai (3):
+  clk: renesas: r9a09g047: Add I3C0 clocks and resets
+  dt-bindings: i3c: renesas,i3c: Add binding for Renesas I3C controller
+  arm64: dts: renesas: r9a09g047: Add I3C node
+
+Wolfram Sang (3):
+  clk: renesas: r9a08g045: Add I3C clocks, resets and power domain
+  i3c: add driver for Renesas I3C IP
+  WIP: arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
+
+ .../devicetree/bindings/i3c/renesas,i3c.yaml  |  186 +++
+ MAINTAINERS                                   |    7 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   35 +
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |   35 +
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |   33 +
+ drivers/clk/renesas/r9a08g045-cpg.c           |    7 +
+ drivers/clk/renesas/r9a09g047-cpg.c           |    8 +
+ drivers/i3c/master/Kconfig                    |   10 +
+ drivers/i3c/master/Makefile                   |    1 +
+ drivers/i3c/master/renesas-i3c.c              | 1441 +++++++++++++++++
+ 10 files changed, 1763 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+ create mode 100644 drivers/i3c/master/renesas-i3c.c
 
 -- 
-2.50.0.rc1.591.g9c95f17f64-goog
+2.47.2
 
 
