@@ -1,84 +1,68 @@
-Return-Path: <devicetree+bounces-184555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468F0AD493E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:15:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60944AD495E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:32:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 595CA1799D7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:15:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D24D0189E76E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA376BFCE;
-	Wed, 11 Jun 2025 03:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906451624E5;
+	Wed, 11 Jun 2025 03:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="ud1rhdty"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wcv93IdU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4540C382;
-	Wed, 11 Jun 2025 03:15:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDC6186A;
+	Wed, 11 Jun 2025 03:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749611719; cv=none; b=UuVNgOilyuKoYR1SoeX0ELx9BrmlZmkbf75rBIz02ahaQti9NoTXdiolR3hCc6Zii1l7MzEPG1X7LMz/BLOKLJXX6Qk5gCavA3WqzHyEhU3E/JMz7DUoaaLscesRWqE0/b08tpdXmt7YAQnHHZPvQ6ZGo8jnM95tO15NfArJVUY=
+	t=1749612721; cv=none; b=oOlplzs8uz+00y0cEMBALqUQFW4/lEST9YAf2KbYdGjf1nydCDPsWPLEFribR87bbf4DCztCkicg/2QecSOF6EkjjSQWkJe8g1mCc0ir4sGvgnSTttwtebvRMUhWpGjVgjmzvI8MvcuvNFfcZR30Ed8lWjeO9S8XinEhdcAG3mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749611719; c=relaxed/simple;
-	bh=DVA5qFswk6iXJ/N1plbE7chdHkrDmca4dgefxI9a7qM=;
+	s=arc-20240116; t=1749612721; c=relaxed/simple;
+	bh=mQqY2nlpKETxKF8IqYbRQfTFn/65IiZ6gxTWsY7DuPw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pnvAVpRvcH9eOEsCp2s4X2tJMxnnAOxR678CNKMNUiG7Gqiohsj9IQG8ipFLBYBsAtNLv5sUkXzX20j93WqQqZynno86iLUwWADKoTW5lmiir0n7Xvu96bIF40XFnvCWzFjqQDWMxnEq7UhZG+s3wHskHv72z99rtJLfS1yR3po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=ud1rhdty; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 4D1EC3D875C7;
-	Tue, 10 Jun 2025 23:15:09 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id atB_blumOGNh; Tue, 10 Jun 2025 23:15:08 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id DB55D3D8760A;
-	Tue, 10 Jun 2025 23:15:07 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com DB55D3D8760A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1749611707; bh=lUqSdGomfcXWRdfKxjUuLGoqWQaLYyPcpWf4O0c0pSg=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=ud1rhdty7qh7DmmQ3zxh270/Mn2E0gqn/nr76xbHtOJeTpdeYoQnafN4Mg/NySJCw
-	 2xsQz1B6acejnDdCr9nzhhHVfj/yF3maOOzfCPa3XpE364EjcnFVdGop4mzSdwq5ww
-	 YM/sQDbWofDd+4NgDQbEGXiX12jrFs3fRplJ9zLtXpA7RaxUsHY1QqNTRZVWDu6TFu
-	 ciPj/F+HWiBsDjnfcbV+Oa/oqOTXoy/Xx7CllxeHqwjLOlwUbjrD5fo+FjeuvQH3vi
-	 Cfcc42fMeQiPa/ipWh8VHkxxn4ex1EaxIVwrg7LiesRj93+6Cm26Xd0N4TBTAcbG/c
-	 7Sk4ABVimsjww==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id YhwpZXGteoB4; Tue, 10 Jun 2025 23:15:07 -0400 (EDT)
-Received: from sam-fedora (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 1E2733D875C7;
-	Tue, 10 Jun 2025 23:15:07 -0400 (EDT)
-Date: Tue, 10 Jun 2025 23:15:05 -0400
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 6/6] MAINTAINERS: add an entry for pf1550 mfd driver
-Message-ID: <aEj0uYahiPOZBrv8@sam-fedora>
-References: <20250610-pf1550-v5-0-ed0d9e3aaac7@savoirfairelinux.com>
- <20250610-pf1550-v5-6-ed0d9e3aaac7@savoirfairelinux.com>
- <aEiVZBloUxYcNOIP@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZdW7vT1xGRJgQe8GJcejCqmFrOJsMjvk08TfffhY/BrHPsp4hvmnee8+86xZoJwt+6pokoZoRP707EhMN/JsqXYomUXuQQgCe7NRt9A8gn1MYjvw00fOEK/WZnBeuiByxwd9gUOpKdQEkcTLSzhlDIoZQa25MdQ2lRhnlLVLcA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wcv93IdU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4B18C4CEEE;
+	Wed, 11 Jun 2025 03:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749612720;
+	bh=mQqY2nlpKETxKF8IqYbRQfTFn/65IiZ6gxTWsY7DuPw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Wcv93IdUXwp68YX/swroJFHhKxd3MEKLTB+F664TY3vs/+/IGmnunw6fPYKu5MYOZ
+	 et6w9RZm8nH24sebcYUf9lnmYg9pIUuwaSsXpCBEXny1XIdgyoSRlMTUPjBwRpWHRf
+	 fkhyZUvSaF+D8pOoKBmZFpJX0r6GsEKOFjKLXmQp19eLopSR4atV7ymrdWAL9S10AB
+	 ffZll8k7Zn5VbNyj9lnwjlpVmqcTtq8wHaMuTFBnl/YHi9d1TnUeIQBWRGTYeECkp/
+	 0iP9R6+l4CqyDYCBrv+UU4ciExM/hntdVr9ESAfPQuA4JSZqlmiRP1bBU5Sg+LuDhy
+	 0JVgxn/1dvyHg==
+Date: Tue, 10 Jun 2025 22:31:57 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom,apcs: Add separate node
+ for clock-controller
+Message-ID: <jvsdn67x2qm2avaktnpqzoixcd46xuuf6i5kpeolsnewgoqt6q@jid7unlmmu65>
+References: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org>
+ <20250506-qcom-apcs-mailbox-cc-v1-1-b54dddb150a5@linaro.org>
+ <7vszdea2djl43oojvw3vlrip23f7cfyxkyn6jw3wc2f7yowht5@bgsc2pqscujc>
+ <aCNGSwL7043GoJBz@linaro.org>
+ <20250514160841.GA2427890-robh@kernel.org>
+ <aCUHTJGktLFhXq4Q@linaro.org>
+ <20250521-psychedelic-cute-grouse-ee1291@kuoka>
+ <aC-AqDa8cjq2AYeM@linaro.org>
+ <20250523-markhor-of-fortunate-experience-1f575e@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,34 +71,120 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aEiVZBloUxYcNOIP@lizhi-Precision-Tower-5810>
+In-Reply-To: <20250523-markhor-of-fortunate-experience-1f575e@kuoka>
 
-On Tue, Jun 10, 2025 at 04:28:20PM -0400, Frank Li wrote:
-> On Tue, Jun 10, 2025 at 03:47:34PM -0400, Samuel Kayode wrote:
-> > Add MAINTAINERS entry for pf1550 PMIC.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-> > ---
-> >  MAINTAINERS | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 98201e1f4ab5908ff49d32d19275e123cedb4b66..29287ab3c9d00240ecb0ac9793aa908ec75a9bd0 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -17853,6 +17853,16 @@ F:	Documentation/devicetree/bindings/clock/imx*
-> >  F:	drivers/clk/imx/
-> >  F:	include/dt-bindings/clock/imx*
-> >
-> > +NXP PF1550 PMIC MFD DRIVER
-> > +M:	Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-> > +S:	Maintained
+On Fri, May 23, 2025 at 11:06:04AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, May 22, 2025 at 09:53:12PM GMT, Stephan Gerhold wrote:
+> > +Saravana
+> > 
+> > On Wed, May 21, 2025 at 11:20:40AM +0200, Krzysztof Kozlowski wrote:
+> > > On Wed, May 14, 2025 at 10:12:44PM GMT, Stephan Gerhold wrote:
+> > > > > > > > The mailbox itself does not need any clocks and should probe early to
+> > > 
+> > > ... so probe it early.
+> > > 
+> > > > > > > > unblock the rest of the boot process. The "clocks" are only needed for the
+> > > > > > > > separate clock controller. In Linux, these are already two separate drivers
+> > > > > > > > that can probe independently.
+> > > 
+> > > They can probe later, no problem and DT does not stop that. Linux, not
+> > > DT, controls the ways of probing of devices and their children.
+> > > 
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > Why does this circular dependency need to be broken in the DeviceTree
+> > > > > > > representation?
+> > > > > > > 
+> > > > > > > As you describe, the mailbox probes and register the mailbox controller
+> > > > > > > and it registers the clock controller. The mailbox device isn't affected
+> > > > > > > by the clock controller failing to find rpmcc...
+> > > > > > > 
+> > > > > > 
+> > > > > > That's right, but the problem is that the probe() function of the
+> > > > > > mailbox driver won't be called at all. The device tree *looks* like the
+> > > > > > mailbox depends on the clock, so fw_devlink tries to defer probing until
+> > > > > > the clock is probed (which won't ever happen, because the mailbox is
+> > > > > > needed to make the clock available).
+> > > > > > 
+> > > > > > I'm not sure why fw_devlink doesn't detect this cycle and tries to probe
+> > > > > > them anyway, but fact is that we need to split this up in order to avoid
+> > > > > > warnings and have the supplies/consumers set up properly. Those device
+> > > > > > links are created based on the device tree and not the drivers.
+> > > > > 
+> > > > > Does "post-init-providers" providers solve your problem?
+> > > > > 
+> > > > 
+> > > > I would expect that it does, but it feels like the wrong solution to the
+> > > > problem to me. The clock is not really a post-init provider: It's not
+> > > > consumed at all by the mailbox and needed immediately to initialize the
+> > > > clock controller. The real problem in my opinion is that we're
+> > > > describing two essentially distinct devices/drivers in a single device
+> > > > node, and there is no way to distinguish that.
+> > > > 
+> > > > By splitting up the two distinct components into separate device tree
+> > > > nodes, the relation between the providers/consumers is clearly
+> > > > described.
+> > > 
+> > > You can split devices without splitting the nodes. I do not see reason
+> > > why the DT is the problem here.
+> > > 
+> > 
+> > The Linux drivers for this particular mailbox/clock controller already
+> > work exactly the way you propose. They are split into two devices that
+> > can probe independently.
+> > 
+> > The problem is outside of the drivers, because fw_devlink in Linux
+> > blocks probing until all resources specified in the device tree nodes
+> > become available. fw_devlink has no knowledge that the mailbox described
+> > by this peculiar device tree node does not actually need the clocks:
+> > 
+> > 	apcs1_mbox: mailbox@b011000 {
+> > 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
+> > 		reg = <0x0b011000 0x1000>;
+> > 		#mbox-cells = <1>;
+> > 		clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+> > 		clock-names = "pll", "aux", "ref";
+> > 		#clock-cells = <0>;
+> > 	};
+> > 
+> > Without device-specific quirks in fw_devlink, the fact that these clocks
+> > are only used by an unrelated clock controller only becomes clear if we
+> > split the device tree node like I propose in this series:
+> > 
+> > 	apcs1_mbox: mailbox@b011000 {
+> > 		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
+> > 		reg = <0x0b011000 0x1000>;
+> > 		#mbox-cells = <1>;
+> > 
+> > 		apcs1_clk: clock-controller {
+> > 			clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+> > 			clock-names = "pll", "aux", "ref";
+> > 			#clock-cells = <0>;
+> > 		};
+> > 	};
 > 
-> Can you add mail list imx@lists.linux.dev ?
+> Above code suggests that clocks are not needed for the mailbox at all.
+> You need to be really sure of that. If that's the case, then this
+> description looks like correct hardware description, more detailed then
+> the first case, though.
+> 
 
-Definitely. I'll add it in the next version.
+I'm still sceptical here.
 
-Thanks,
-Sam
+In the first snippet above, we describe a single IP block which provides
+mailboxes and clocks.
+
+In the second snippet we're saying that the IP block is a mailbox, and
+then it somehow have a subcomponent which is a clock provider.
+
+It seems to me that we're choosing the second option because it better
+fits the Linux implementation, rather than that it would be a better
+representation of the hardware. To the point that we can't even describe
+the register range of the subcomponent...
+
+
+Can you confirm that this is the path we want to go here?
+
+Regards,
+Bjorn
 
