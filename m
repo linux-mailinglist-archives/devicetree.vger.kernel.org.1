@@ -1,155 +1,115 @@
-Return-Path: <devicetree+bounces-184767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9150AD51E3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F757AD51FE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:34:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E535E1899086
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:31:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A55881BC06BB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503FA264634;
-	Wed, 11 Jun 2025 10:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDF527602A;
+	Wed, 11 Jun 2025 10:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="fRSPguXx"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Og+Ohgdr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00AB5268C6F
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 10:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436CE26A1AA;
+	Wed, 11 Jun 2025 10:31:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749637797; cv=none; b=d0Xu31hvkt1IP6Y34EwgtywFjyYLFloTQ5G4yKjJcGpnDUjipB5pdNNRRUt6qXpupF6wavEeIDFJAmrSUwNMIUsvy+iTLBaKGCECKeBk0jFFyPglrg4dW8Qa5FuZBlNniNO05FLmxb04eCmLIuD8Wfu76Rg4rzHWnLMjMzFcD48=
+	t=1749637916; cv=none; b=KSLHWZcd8a6nosBHPEKI5VzGxwBKyyF2KalRqCEkKaWWxsA6eI+Fw9+mBVYRyvUPvSddHowQTEz2e64PKtEksVUouG0TWQpaCLVlTJMimz0qCq0UFexB+moIB6uRX0PH8GoZAcsewr2EJbXO8kKyj8iQMAM2QwAbmKXkHwtwUng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749637797; c=relaxed/simple;
-	bh=YlHXxMugl9yjOiNKeFUjiSUYbzIfe6d6gCIYXllOlIE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BtSlYA+K0e2ttQm6q6VxrCH/l7/fIQeCaXH3TzIFqt+t2mF+8pj6RV2lsXMP3fiBzjEexJRPDphRpQ3ql7t3bfIDg0lUWdThW/7wzKxrORQmqXyqfIevmHjP1/gYqWKvRqlzch+PDERdZC233nZYAxjPy6hyZphM1L1bn2/xjOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=fRSPguXx; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <cdcd54ff-ff67-4ad8-8aa7-baa711928242@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749637792;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vsD0r2ubczrvxe7E6Hz3oR1VDIOnDQXAzS4kwGFiDY0=;
-	b=fRSPguXxdP+bxFKXzw8IXPvBDS7PNhulrJ5AKNaVBxE/HU5Sy8+bASY2d9tYSO8RYqBZ9Y
-	OpqAXd/4ejqf/HgKyaGjLGSfkBizkMG/JrEgEFI7RHEL4hePKPX68ihcfBIQpWBtJrwZle
-	LX45PMC+xyaBy+CAu+fxUDRdbDXZk9s=
-Date: Wed, 11 Jun 2025 11:29:46 +0100
+	s=arc-20240116; t=1749637916; c=relaxed/simple;
+	bh=3z8hZFa9//bUvzwLa3zjwL+7K6avZpJg2PLIMuQmLL4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JZnBJJVnmIB7XEjaCo5HiGr31ZbRdYLA5bzdK/1IpmhesjsTqphhfmipD08rL1EEZZwinG67YPUqKNXdKiaIBGgL1eFfmo7lsguOq8fzv063mP3MzcJUW9s78Ajo09OTdpb6lFhEsV6spp51ETgBcauwMlrVP1gLGfT2WbBZX/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Og+Ohgdr; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1749637912;
+	bh=3z8hZFa9//bUvzwLa3zjwL+7K6avZpJg2PLIMuQmLL4=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=Og+Ohgdrlx/tf6pMagXXUidF1owJ7JRpFiMxz0sXLlLR9I2U8xFsYL9B+0W1w1MT3
+	 ABTGmg3o1ZfpZDQW+9sCzpec1N0npade21fFY2BIdbUSmoTiAndGHckAXyVLBin1Zw
+	 SEFLxL2fNGuiAOER7JvOE7F5hrIsNSMOMWwk5wJLRaG04QJoWl4/qY1oXWuzJBb6Af
+	 wsSwTI7WHVnBOjhKpaaXNrSKvb/y52T44HaGHpXZpxyCXBT0I6xgzKADXngnaMedXD
+	 TeT5RIjeDhQMAfnPxWxgjbiRGw9wPUnIqens1694qMuudhCCCtN7OR2QcCO8DmFrm2
+	 P+aTeW0M3kohQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F6D417E02B0;
+	Wed, 11 Jun 2025 12:31:51 +0200 (CEST)
+Message-ID: <ccd10443-c643-487b-ab2b-f1da00f97ed7@collabora.com>
+Date: Wed, 11 Jun 2025 12:31:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v8 06/11] net: ti: prueth: Adds HW timestamping
- support for PTP using PRU-ICSS IEP module
-To: Parvathi Pudi <parvathi@couthit.com>, danishanwar@ti.com,
- rogerq@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, ssantosh@kernel.org,
- richardcochran@gmail.com, s.hauer@pengutronix.de, m-karicheri2@ti.com,
- glaroque@baylibre.com, afd@ti.com, saikrishnag@marvell.com,
- m-malladi@ti.com, jacob.e.keller@intel.com, diogo.ivo@siemens.com,
- javier.carrasco.cruz@gmail.com, horms@kernel.org, s-anna@ti.com,
- basharath@couthit.com
-Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pratheesh@ti.com,
- prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
- krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-References: <20250610105721.3063503-1-parvathi@couthit.com>
- <20250610123245.3063659-7-parvathi@couthit.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/13] ASoC: mediatek: use reserved memory or enable
+ buffer pre-allocation
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250424102509.1083185-1-wenst@chromium.org>
+ <aCRaTY76dnaavsrd@finisterre.sirena.org.uk>
+ <89e2699a-94cc-4d1d-9788-2c5bce1c361c@collabora.com>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20250610123245.3063659-7-parvathi@couthit.com>
+In-Reply-To: <89e2699a-94cc-4d1d-9788-2c5bce1c361c@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
-On 10/06/2025 13:32, Parvathi Pudi wrote:
-> From: Roger Quadros <rogerq@ti.com>
+Il 11/06/25 12:22, AngeloGioacchino Del Regno ha scritto:
+> Il 14/05/25 10:54, Mark Brown ha scritto:
+>> On Thu, Apr 24, 2025 at 06:24:54PM +0800, Chen-Yu Tsai wrote:
+>>
+>>> This is v2 of what was just a single patch "ASoC: mediatek: re-enable
+>>> buffer pre-allocation on some platforms". Link to v1:
+>>>
+>>>      https://lore.kernel.org/all/20250401085659.1222008-1-wenst@chromium.org/
+>>>
+>>> Angelo requested that these platforms use reserved memory regions if
+>>> possible, and fall back to pre-allocated buffers only if that fails,
+>>> to align with other MediaTek SoCs / platforms that already use reserved
+>>> memory. The series covers MediaTek's MT8173, MT8183, MT8186, and MT8192
+>>> SoCs.
+>>
+>> AngeloGioacchino?
 > 
-> PRU-ICSS IEP module, which is capable of timestamping RX and
-> TX packets at HW level, is used for time synchronization by PTP4L.
+> Truly sorry for this slipping through the cracks - and thank you for the pings.
+> Also, thank you for all this code, love it.
 > 
-> This change includes interaction between firmware and user space
-> application (ptp4l) with required packet timestamps. The driver
-> initializes the PRU firmware with appropriate mode and configuration
-> flags. Firmware updates local registers with the flags set by driver
-> and uses for further operation. RX SOF timestamp comes along with
-> packet and firmware will rise interrupt with TX SOF timestamp after
-> pushing the packet on to the wire.
+> Whole series is:
 > 
-> IEP driver is available in upstream and we are reusing for hardware
-> configuration for ICSSM as well. On top of that we have extended it
-> with the changes for AM57xx SoC.
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > 
-> Extended ethtool for reading HW timestamping capability of the PRU
-> interfaces.
+> Sorry again for all the wait.
 > 
-> Currently ordinary clock (OC) configuration has been validated with
-> Linux ptp4l.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> ---
->   drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
->   drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  23 +
->   drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 443 +++++++++++++++++-
->   drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
->   .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
->   5 files changed, 602 insertions(+), 2 deletions(-)
->   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
+> Cheers!
+> Angelo
 
-[...]
+Also, I picked patches 10 to 13, applied to v6.16-next/dts64 and manually fixed
+a merge issue with patch 13.
 
-> @@ -732,9 +949,22 @@ int icssm_emac_rx_packet(struct prueth_emac *emac, u16 *bd_rd_ptr,
->   		src_addr += actual_pkt_len;
->   	}
->   
-> +	if (pkt_info->timestamp) {
-> +		src_addr = (void *)PTR_ALIGN((uintptr_t)src_addr,
-> +					   ICSS_BLOCK_SIZE);
-> +		dst_addr = &ts;
-> +		memcpy(dst_addr, src_addr, sizeof(ts));
-> +	}
-> +
->   	if (!pkt_info->sv_frame) {
->   		skb_put(skb, actual_pkt_len);
->   
-> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
-> +		    pkt_info->timestamp) {
-> +			ssh = skb_hwtstamps(skb);
-> +			memset(ssh, 0, sizeof(*ssh));
-> +			ssh->hwtstamp = ns_to_ktime(ts);
-> +		}
->   		/* send packet up the stack */
->   		skb->protocol = eth_type_trans(skb, ndev);
->   		netif_receive_skb(skb);
+https://git.kernel.org/pub/scm/linux/kernel/git/mediatek/linux.git/log/?h=v6.16-next/dts64
 
-Could you please explain why do you need to copy timestamp to a
-temporary variable if you won't use it in some cases? I believe these
-2 blocks should be placed under the last if condition and simplified a
-bit, like
-
-+		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
-+		    pkt_info->timestamp) {
-+			src_addr = (void*)PTR_ALIGN((uintptr_t)src_addr,
-+					   ICSS_BLOCK_SIZE);
-+			memcpy(&ts, src_addr, sizeof(ts));
-+			ssh = skb_hwtstamps(skb);
-+			ssh->hwtstamp = ns_to_ktime(ts);
-+		}
-
-This will avoid useless copy when the packet will be dropped anyway, WDYT?
+Cheers!
 
