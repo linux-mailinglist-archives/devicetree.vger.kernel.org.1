@@ -1,330 +1,210 @@
-Return-Path: <devicetree+bounces-184562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF34AD4A51
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:13:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0C2AD4A61
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:21:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD6B97A5C56
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:11:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0CC7189E084
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6976C2253E8;
-	Wed, 11 Jun 2025 05:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD8C2253F3;
+	Wed, 11 Jun 2025 05:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O796kNJQ"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="cIaZVpyr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3613020DD48;
-	Wed, 11 Jun 2025 05:13:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FBE20DD48
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 05:21:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749618785; cv=none; b=azJwQ7PHVzRhamdeJEfIJy34jgIGlv+PUGh1ygsm9JYTo6LOtJpVzPP9ipuPQHJg9n4T87/UZg0o3LEGGMk+sTOjfy0WMd4pzndkznboSXceG0PhkqZjGM5TB6pcZ3RE2RHAEj/dWNKEVbd2RcUZOzQ55TW48SB/0gcjUkCVVGI=
+	t=1749619291; cv=none; b=qqSPBJDTlshMRWqWflYvoRaaN6clmwBWKXodq9WXeUOeGxaWO5yuXJepaLKVScXn8/EhfEbdpNp3cRyhepr7BiT/QjDIsHZg8yk3xAEj0rwY4vY+x6M2qmr1pU+G3Kx/J4XP6Oydj0ZMDKcp7/P8wDGwGLPI/sq/KTIrtpf/tqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749618785; c=relaxed/simple;
-	bh=BkxTyX33gHEtjP2JawH8Psdf9hWjmqaryNkUQiqnx24=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a7pOXACfQ5zse/A69Ra2V7H1d4afetydmyvGzqb4WpTeCBXZDaI1sg4IoyOKEZ5QNthZGKcxgIv+Tglghq/+wfWQ24rMBayDvIdIKABLES9BtKoBXKG106FSs+OWW04VzvvCNLdZV2qOGh2IinKXPVkWmbYidUowsp1s5Xu6UJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O796kNJQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C30F6C4CEF2;
-	Wed, 11 Jun 2025 05:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749618784;
-	bh=BkxTyX33gHEtjP2JawH8Psdf9hWjmqaryNkUQiqnx24=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=O796kNJQxYSE4m7qAahv1pwhGygVxfUhZ/KhkNpaypoMt4RBH5Lw9mjK19MrVYfo2
-	 Iq/wz8ipzzXM+ND8LP/66ASI9ONG24solRtIQ6pmC7mT+YWvPnS7eeNnDmWvQPNzMY
-	 NGnAsHuPQVguCFT1WD9qs15O+9jnKJg220qicd+TyjUo4VU+sPM70fGKLxbptCfrJg
-	 8U177wPAw4SmLR+gd1qsHJrdkjdz16lbp0/reoZezErnFMNLPx/0X1a+iHruDCLgSP
-	 rrJyXSJxarMSvejRks9930BG7UWdBFTRfqESzakzn0vIIVNWNM/j+oW7XpIoQ4GhxZ
-	 3GdSIt2NXq6zg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B35F5C71135;
-	Wed, 11 Jun 2025 05:13:04 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 11 Jun 2025 09:12:46 +0400
-Subject: [PATCH v11 2/2] arm64: dts: qcom: ipq5018: Add tsens node
+	s=arc-20240116; t=1749619291; c=relaxed/simple;
+	bh=Hf+lkGaUqaa3E7rZXs3fvFcSb8MaDoq9N7PpKV1SFWY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zw9AeYmiTMR8PDfbuZoGG982TUZGBvZMD0+Jf6uZ9stDhp1GU/SKhhQ9TsAXUSOnIPPKH8Sls2Qe/Sv8h670zZUapM2xrI+BUag2dMaqkuXgpvMGhrSAHwF6Ur1uBWGDM+035dlVBMhETY00V8s1saslS1cNMQ/zX5PPMtSJ3KE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=cIaZVpyr; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32925727810so52620071fa.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 22:21:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1749619288; x=1750224088; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CZBCRuywHIrHwB4Y6CUEmtf4oyW/dhVJ1DZHpWrRRRc=;
+        b=cIaZVpyrGmbtfG9DEmittwHhTJGAwUmt5GTccOjEFW/8RuReQg9x3QS/m/uDCe+xHO
+         5vCS21iejai+faDwO6c9RIoXzEjK6br6ZkGJMWF/DMeYL7OSBzhiolK9qun2QW7xnV/W
+         v8prh+cM9rzXAB3y3idfe6Ox4/bG4iqdNjoO5wWJVLYSbgLr/Eqiy1w0q9ZuyzRsMxqs
+         G6CupV9O5iUT9lnxaYHP3wJYAsSz6al2q20gfyJzTsC/xHxNsbipT2/+tYuljBtDGfMO
+         OnmJaZG2aEri60Gj4l+7LuTeSiY2mFoVVvPb66Srt8U9iDSRRwb336vDNSLDP4iPeHru
+         1uAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749619288; x=1750224088;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CZBCRuywHIrHwB4Y6CUEmtf4oyW/dhVJ1DZHpWrRRRc=;
+        b=CmrSRiV5qpjHZ6T+FPlQhceMgwFsKlHYnM0Qj6XEo8mQbfcyKovFBeTf1+8DDigEni
+         S/tsvYbu2yUsK06x1jwZtEJ/TNkk9l8lqbHR3UR3Fqp03wxKcB/FzJH4bdgtq2KLAmiC
+         sHdzZt2lpkugmSknCnKGaLc3Rd/NhMowyPwoBo4Ej1X+d/IPL/ADwGkBqTpSW98woFtf
+         M5ptPFiW3wPw/MR+vWlJxOR7Ka8UmNaOT8xJL4CKx/Yh+4fd5QlXYYq0NIZ943Cycosp
+         vQ9jhFvXPeBYQ48DNM8v6h9859x5YNs0QWhpmNJLgANfBqL0mjLSpwjcaBVA0kRYhjog
+         JuUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhPfH0EGtM68me9LdEY2QO/Fj1jKC9hq4g5B+iup+neS5kQZ96zYx6tgVU/AHTixO/jAWCmEaBhGra@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVYc1Xy5hiGdNUYllnCZCnG75CqkQ8j+sCNeikP5KaTZTQwjXN
+	6AN/Z0SflkuQ3LwvY3QBC3aHEnPh1ozxWP+OdCkae3sK4gg0q63017KDyzwQmxwuklqqrdLsPjq
+	5G0qhslIwR28F0khaYZM8+cNxu4XMSOS/adAPYMTdOQ==
+X-Gm-Gg: ASbGncsz7xx0gHqh0tOfv1mfaQfJIW1a93P7T1H88REAgA9sQIhaFTGT4EwJQO2pa8g
+	+QZHIOth1zhDte1W0TDNwVWbba6WIUGS34Op7P3Jt62QnLKMqYEnJwaqqyhzu0JH+PW4oBuj43R
+	G85CVmPC9veY+xq6PoxsZQ6fOtFjZ9rlAyuWgTbynS1ohPxPcp7dFlhHE=
+X-Google-Smtp-Source: AGHT+IGcTZB8S6Gd3hIZot1w2/0Yfybi+OExqcLnX1AZuMKGrGy+Zh6YIGrowqLXEqln+XAK8JxzBWfPL5Z462AVQRQ=
+X-Received: by 2002:a05:6512:ea0:b0:553:2411:b4ef with SMTP id
+ 2adb3069b0e04-5539c14d883mr614133e87.34.1749619287649; Tue, 10 Jun 2025
+ 22:21:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250611-ipq5018-tsens-v11-2-266566bfd16a@outlook.com>
-References: <20250611-ipq5018-tsens-v11-0-266566bfd16a@outlook.com>
-In-Reply-To: <20250611-ipq5018-tsens-v11-0-266566bfd16a@outlook.com>
-To: Amit Kucheria <amitk@kernel.org>, 
- Thara Gopinath <thara.gopinath@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sricharan Ramabadhran <quic_srichara@quicinc.com>, 
- George Moussalem <george.moussalem@outlook.com>, 
- Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749618782; l=5540;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=8VbrGnbVEEGlTeBi9Ev67z9HvHAIvHkO/H7Vls/aG78=;
- b=uOrwg1pLM1xnBOdSnqUhLxR/M9QsRaBVSVdexIJRe/jspGlxZe9X9D+Ky/iFCkoTrB9DS2Uoh
- 1QMLjyVpQXhBjoCEFc7DMSCUq4nLNgsG5mzSrx5QD6QiYB3nkLJ4WO0
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-8-apatel@ventanamicro.com> <aDbrBFcgaJxgBRVZ@smile.fi.intel.com>
+ <CAK9=C2XJwgsC5AK-eVOHQqN1tPxtrsTjVoKdHgALbREv=sb8zQ@mail.gmail.com>
+ <aEc-SHvL187xdj-m@smile.fi.intel.com> <CAK9=C2VjOZ22smYdxDg1bjnx-+wwjngEN3c-iOpdtaADFcQ0+w@mail.gmail.com>
+ <aEgBGup553Pki98e@smile.fi.intel.com>
+In-Reply-To: <aEgBGup553Pki98e@smile.fi.intel.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 11 Jun 2025 10:51:15 +0530
+X-Gm-Features: AX0GCFt0zvXLqPkqunyCtbvdd6VWwuT7DuTT2gaTg9GfnLxzDC88KAV9zwbxwm8
+Message-ID: <CAK9=C2Ww0Mt91x_r0VTffse-AiWcOyBYvWpxxK7p5=+EDUEoMw@mail.gmail.com>
+Subject: Re: [PATCH v4 07/23] mailbox: Add RISC-V SBI message proxy (MPXY)
+ based mailbox driver
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On Tue, Jun 10, 2025 at 3:25=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Tue, Jun 10, 2025 at 10:05:27AM +0530, Anup Patel wrote:
+> > On Tue, Jun 10, 2025 at 1:34=E2=80=AFAM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Mon, Jun 09, 2025 at 05:59:40PM +0530, Anup Patel wrote:
+> > > > On Wed, May 28, 2025 at 4:23=E2=80=AFPM Andy Shevchenko
+> > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > On Sun, May 25, 2025 at 02:16:54PM +0530, Anup Patel wrote:
+>
+> ...
+>
+> > > > > > +     if (mbox->msi_count)
+> > > > >
+> > > > > Is this check really needed?
+> > > >
+> > > > MSIs are optional for the SBI MPXY mailbox so we should only use
+> > > > platform_device_msi_xyz() APIs only when MSIs are available.
+> > >
+> > > > > > +             platform_device_msi_free_irqs_all(mbox->dev);
+> > >
+> > > Hmm... I am not sure why. Do you have any Oops or warnings if the che=
+ck
+> > > is not there and no MSI provided?
+> >
+> > We don't see any oops or warnings. This check is to avoid unnecessary
+> > work (such as acquiring lock, checking default domain, etc) in the
+> > msi_domain_free_irqs_all() called by platform_device_msi_free_irqs_all(=
+).
+> >
+> > I don't mind dropping the check so I will update in the next revision.
+>
+> Perhaps you can rather add this check into the callee? Seems to me that
+> you have a justification for it. Usual pattern in the kernel that freeing
+> resources should be aware of the NULL pointers or optional resources
+> so we may call it unconditionally from the user(s).
+>
 
-IPQ5018 has tsens V1.0 IP with 5 sensors, though 4 are in use.
-There is no RPM, so tsens has to be manually enabled. Adding the tsens
-and nvmem nodes and adding 4 thermal sensors (zones). The critical trip
-temperature is set to 120'C with an action to reboot.
+Unconditionally calling platform_device_msi_free_irqs_all() when there
+were no MSIs allocated causes the below crash because "dev->msi.data"
+is non-NULL only when:
 
-In addition, adding a cooling device to the CPU thermal zone which uses
-CPU frequency scaling.
+[    1.355735] Unable to handle kernel NULL pointer dereference at
+virtual address 0000000000000008
+[    1.358212] Current swapper/0 pgtable: 4K pagesize, 57-bit VAs,
+pgdp=3D0x0000000081a2b000
+[    1.360632] [0000000000000008] pgd=3D0000000000000000
+[    1.363132] Oops [#1]
+[    1.363748] Modules linked in:
+[    1.364768] CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted
+6.16.0-rc1-00037-gab55e1c1d97a-dirty #7 NONE
+[    1.368325] epc : mutex_lock+0x0/0x28
+[    1.369796]  ra : __msi_lock_descs+0x32/0x3c
+[    1.370234] epc : ffffffff80af96e8 ra : ffffffff800038e6 sp :
+ff2000000004ba90
+[    1.372412]  gp : ffffffff81819c00 tp : ff60000001dc0000 t0 :
+6900000000000000
+[    1.373527]  t1 : 0000000000000072 t2 : 6962732d76637369 s0 :
+ff2000000004bab0
+[    1.376628]  s1 : ff6000000241c410 a0 : 0000000000000008 a1 :
+ffffffff8168ca58
+[    1.379110]  a2 : 0000000000000010 a3 : 00000000000000a3 a4 :
+0000000000000000
+[    1.380410]  a5 : 0000000000000000 a6 : 0000000000000000 a7 :
+000000004442434e
+[    1.381019]  s2 : 0000000000000000 s3 : ff6000003fff30a0 s4 :
+ff6000000241c410
+[    1.381579]  s5 : ff600000039f9320 s6 : ff6000000241c400 s7 :
+0000000000000002
+[    1.382242]  s8 : ffffffff81821fa0 s9 : 0000000000000000 s10:
+0000000000000000
+[    1.384018]  s11: 0000000000000000 t3 : ffffffff81830a37 t4 :
+ffffffff81830a37
+[    1.385958]  t5 : ffffffff81830a38 t6 : ff2000000004b7c8
+[    1.387306] status: 0000000200000120 badaddr: 0000000000000008
+cause: 000000000000000d
+[    1.388407] [<ffffffff80af96e8>] mutex_lock+0x0/0x28
+[    1.389333] [<ffffffff80003dba>] msi_domain_free_irqs_all+0x2a/0x48
+[    1.390275] [<ffffffff80714e86>] platform_device_msi_free_irqs_all+0x16/=
+0x2c
+[    1.391715] [<ffffffff808d8114>] mpxy_mbox_probe+0x6dc/0x750
+[    1.392522] [<ffffffff806f1706>] platform_probe+0x4e/0xb4
+[    1.393169] [<ffffffff806eef58>] really_probe+0x84/0x230
+[    1.393789] [<ffffffff806ef160>] __driver_probe_device+0x5c/0xdc
+[    1.394282] [<ffffffff806ef2a4>] driver_probe_device+0x2c/0xf8
+[    1.396577] [<ffffffff806ef4ac>] __driver_attach+0x6c/0x15c
+[    1.397634] [<ffffffff806ed146>] bus_for_each_dev+0x62/0xb0
+[    1.399060] [<ffffffff806eea9a>] driver_attach+0x1a/0x24
+[    1.399792] [<ffffffff806ee31e>] bus_add_driver+0xce/0x1d8
+[    1.400363] [<ffffffff806f020c>] driver_register+0x40/0xdc
+[    1.400832] [<ffffffff806f1414>] __platform_driver_register+0x1c/0x24
+[    1.401551] [<ffffffff80c3df7e>] mpxy_mbox_driver_init+0x1a/0x24
+[    1.402328] [<ffffffff800108b2>] do_one_initcall+0x56/0x1d8
+[    1.403674] [<ffffffff80c01236>] kernel_init_freeable+0x266/0x2d0
+[    1.404956] [<ffffffff80af549a>] kernel_init+0x1e/0x13c
+[    1.405422] [<ffffffff80012266>] ret_from_fork_kernel+0xe/0xcc
+[    1.405870] [<ffffffff80aff042>] ret_from_fork_kernel_asm+0x16/0x18
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 182 ++++++++++++++++++++++++++++++++++
- 1 file changed, 182 insertions(+)
+It is better to have the check on "mbox->msi_count" before calling
+platform_device_msi_free_irqs_all().
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 130360014c5e14c778e348d37e601f60325b0b14..defeb697c8d89686e3aaf2e6f7b6cb7493219336 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
- #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&intc>;
-@@ -39,6 +40,7 @@ cpu0: cpu@0 {
- 			next-level-cache = <&l2_0>;
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -49,6 +51,7 @@ cpu1: cpu@1 {
- 			next-level-cache = <&l2_0>;
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		l2_0: l2-cache {
-@@ -182,6 +185,117 @@ pcie0_phy: phy@86000 {
- 			status = "disabled";
- 		};
- 
-+		qfprom: qfprom@a0000 {
-+			compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
-+			reg = <0x000a0000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			tsens_mode: mode@249 {
-+				reg = <0x249 0x1>;
-+				bits = <0 3>;
-+			};
-+
-+			tsens_base1: base1@249 {
-+				reg = <0x249 0x2>;
-+				bits = <3 8>;
-+			};
-+
-+			tsens_base2: base2@24a {
-+				reg = <0x24a 0x2>;
-+				bits = <3 8>;
-+			};
-+
-+			tsens_s0_p1: s0-p1@24b {
-+				reg = <0x24b 0x2>;
-+				bits = <2 6>;
-+			};
-+
-+			tsens_s0_p2: s0-p2@24c {
-+				reg = <0x24c 0x1>;
-+				bits = <1 6>;
-+			};
-+
-+			tsens_s1_p1: s1-p1@24c {
-+				reg = <0x24c 0x2>;
-+				bits = <7 6>;
-+			};
-+
-+			tsens_s1_p2: s1-p2@24d {
-+				reg = <0x24d 0x2>;
-+				bits = <5 6>;
-+			};
-+
-+			tsens_s2_p1: s2-p1@24e {
-+				reg = <0x24e 0x2>;
-+				bits = <3 6>;
-+			};
-+
-+			tsens_s2_p2: s2-p2@24f {
-+				reg = <0x24f 0x1>;
-+				bits = <1 6>;
-+			};
-+
-+			tsens_s3_p1: s3-p1@24f {
-+				reg = <0x24f 0x2>;
-+				bits = <7 6>;
-+			};
-+
-+			tsens_s3_p2: s3-p2@250 {
-+				reg = <0x250 0x2>;
-+				bits = <5 6>;
-+			};
-+
-+			tsens_s4_p1: s4-p1@251 {
-+				reg = <0x251 0x2>;
-+				bits = <3 6>;
-+			};
-+
-+			tsens_s4_p2: s4-p2@254 {
-+				reg = <0x254 0x1>;
-+				bits = <0 6>;
-+			};
-+		};
-+
-+		tsens: thermal-sensor@4a9000 {
-+			compatible = "qcom,ipq5018-tsens";
-+			reg = <0x004a9000 0x1000>,
-+			      <0x004a8000 0x1000>;
-+
-+			nvmem-cells = <&tsens_mode>,
-+				      <&tsens_base1>,
-+				      <&tsens_base2>,
-+				      <&tsens_s0_p1>,
-+				      <&tsens_s0_p2>,
-+				      <&tsens_s1_p1>,
-+				      <&tsens_s1_p2>,
-+				      <&tsens_s2_p1>,
-+				      <&tsens_s2_p2>,
-+				      <&tsens_s3_p1>,
-+				      <&tsens_s3_p2>,
-+				      <&tsens_s4_p1>,
-+				      <&tsens_s4_p2>;
-+
-+			nvmem-cell-names = "mode",
-+					   "base1",
-+					   "base2",
-+					   "s0_p1",
-+					   "s0_p2",
-+					   "s1_p1",
-+					   "s1_p2",
-+					   "s2_p1",
-+					   "s2_p2",
-+					   "s3_p1",
-+					   "s3_p2",
-+					   "s4_p1",
-+					   "s4_p2";
-+
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "uplow";
-+			#qcom,sensors = <5>;
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,ipq5018-tlmm";
- 			reg = <0x01000000 0x300000>;
-@@ -631,6 +745,74 @@ pcie@0 {
- 		};
- 	};
- 
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&tsens 2>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+
-+				cpu_alert: cpu-passive {
-+					temperature = <100000>;
-+					hysteresis = <2>;
-+					type = "passive";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		gephy-thermal {
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&tsens 4>;
-+
-+			trips {
-+				gephy-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		top-glue-thermal {
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&tsens 3>;
-+
-+			trips {
-+				top-glue-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi32-thermal {
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&tsens 1>;
-+
-+			trips {
-+				ubi32-critical {
-+					temperature = <120000>;
-+					hysteresis = <2>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-
--- 
-2.49.0
-
-
+Regards,
+Anup
 
