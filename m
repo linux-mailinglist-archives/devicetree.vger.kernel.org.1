@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA94CAD4C54
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:11:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7106FAD4C58
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:13:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91C0B3A7DE9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:10:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8017D189F5DF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A332253B5;
-	Wed, 11 Jun 2025 07:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945D322F749;
+	Wed, 11 Jun 2025 07:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NewYGlJv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggpUFbak"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1430C1494A8
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64D5C1494A8;
+	Wed, 11 Jun 2025 07:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749625878; cv=none; b=hlGn79ZQJFItktjsfunjAnC6eY95eRhlSHYtu6lISDqDYP3OoXSvysPr+c/KbTrlEC+9AxC+4xPpbum0ODp/Hw0aSkCpwYh5BFvvMYUl9U9TvazxDE3Fr4VqgMUrOBC5S6lW02oHJ1Q8fFlIDWAOOGBYVDl8xOgMMPhZAmCQDXg=
+	t=1749625987; cv=none; b=hpZlzaaH9zypVepE0GTU/LH4HLl7h4a7OdS4gkw4eGrBOlstw2ZcPRb1RCqMGerH/MT52bm0WRprZIxOBEVjGt30Oo10R3qrjNYJzVzKe1h5+YotQQi0n0840w4Ocl/T9h76U6QGfc1E2bX9XHYk812s531V+f8f8uDHgeLFpB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749625878; c=relaxed/simple;
-	bh=m0b8oAwGJgxqUIEP+6pLyaommzl5HsRsbrTpWtjJ93g=;
+	s=arc-20240116; t=1749625987; c=relaxed/simple;
+	bh=BU/YIa0ZINv1YKgZsp2RiDxt77s+yheUVlOxVKJfnoI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bVp/tMfsgFfPAiaNyeYVln8rYqBBGy6ogU5m8JkKXZHlyls7u/wPfEf7tCjIBj/zqgubjcZTLmdJeA47JFKfBdiItzb988E4QtuBQK2n6ahyJPz4/bR8LqwJM8XxMAoE3K0g64yVyyYK3Sc8o4owzXvkGQ6hub7VjCYQ6T+f4do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NewYGlJv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 768EEC4CEEE;
-	Wed, 11 Jun 2025 07:11:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=l5Dd/EUntMLFlp8uOCBSboTZ04tmD3/bi8TzillrIwVVolEJWM46mr1Tfz2wC//hG3dV9rTeTKfFJzWZ6MhfNV0+cnyRKHwSD/uKlD6R9pvogz4q5lrI95LgUTRtiDZjlZvKo0oaDwSEsoKm4D3PQZ+ZTT5Jm0ek+PiOfaiRy70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ggpUFbak; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B3EC4CEEE;
+	Wed, 11 Jun 2025 07:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749625877;
-	bh=m0b8oAwGJgxqUIEP+6pLyaommzl5HsRsbrTpWtjJ93g=;
+	s=k20201202; t=1749625986;
+	bh=BU/YIa0ZINv1YKgZsp2RiDxt77s+yheUVlOxVKJfnoI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NewYGlJvfdFpX0/m9wkT+/GBuNQI0kOA/jrHlMTXdixGTrnU5otLwH6z1rIGQPLyp
-	 wELfa82zHaUaKE2TSRQVAS6BYomdw6JJ4Z7DMnkWCh1EUFOgwolKwke9WRzQHanOCV
-	 k+9b5r79H3ucScbo6bkhF89O3/2ayV3Gf11j9tC/rnooY5gj9gAVgiUEYO4F9e58GD
-	 WOrKkZt1ZOn/ikGtfdYqRdIuQ+1jxqDf6sn9yg9pjaSOtaYtmXFd3wqmnebmkogEEx
-	 pRaginJAj2ZgirVNrAMk6vm99m7Oh1Ds4Dhj82wx8HsT9UFyQFRPfsvt/6IwgWqc0d
-	 x3KG2hw/0rWAA==
-Message-ID: <afe90a1f-ac43-46bf-b5bd-723a214a6a2b@kernel.org>
-Date: Wed, 11 Jun 2025 09:11:14 +0200
+	b=ggpUFbakPeZUwoBwH3YDz6XB4SvzLcIv93QmM46YM+pk7TkxphJmt2AVm4vM4d2I4
+	 9YRikKRU79nDuRh9+COoO01myW8eoqucdmNmT0Ss1NCLtMRHoQi+mRpjdkuLVTi3YZ
+	 /K9HDQFxYSEToErX9mnDPVlsYlxvYn0ED1ktHAcIeATAh8ADHulLe6C8+BO+qvC+hx
+	 cfPS/DEEHI1kDaHTrdbqUBDDirhU5SFwmKEB38XR0R3eA24RPfN19S29wSdIYx2FOX
+	 wbcLBHbnidiJVTIn2ldh2CCZKuXrE2VsfLWS6K+Q3cnP9a/+ipMcSUyziEumMJXQnN
+	 2mnFPkDF9EUTw==
+Message-ID: <61e53f55-394d-422f-8600-9035eac40ff4@kernel.org>
+Date: Wed, 11 Jun 2025 09:13:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: 6.16rc1 dts-bindings check fails
-To: Ricardo Ribalda <ribalda@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org
-References: <CANiDSCvB5yytOgvk1QC812x4zOBn5Z4_C5wqUnV+2hSQXKM54g@mail.gmail.com>
- <a2efd2e3-bab8-43ba-a236-aa5052bc35c7@kernel.org>
- <CANiDSCs0xp_PsKmyNpY3zHh9xuvJEgYXysB2wyLEZOL_+4Lokw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v11 1/2] dt-bindings: thermal: qcom-tsens: make ipq5018
+ tsens standalone compatible
+To: George Moussalem <george.moussalem@outlook.com>,
+ Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250611-ipq5018-tsens-v11-0-266566bfd16a@outlook.com>
+ <20250611-ipq5018-tsens-v11-1-266566bfd16a@outlook.com>
+ <17eaaad4-7713-4149-b66c-1c48db3ab42f@kernel.org>
+ <DS7PR19MB8883034308D6642B6B567CAD9D75A@DS7PR19MB8883.namprd19.prod.outlook.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -102,92 +111,67 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CANiDSCs0xp_PsKmyNpY3zHh9xuvJEgYXysB2wyLEZOL_+4Lokw@mail.gmail.com>
+In-Reply-To: <DS7PR19MB8883034308D6642B6B567CAD9D75A@DS7PR19MB8883.namprd19.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/06/2025 09:06, Ricardo Ribalda wrote:
-> Hi Krzysztof
+On 11/06/2025 09:06, George Moussalem wrote:
+> Hi Krzysztof,
 > 
-> On Wed, 11 Jun 2025 at 08:41, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On 6/11/25 10:51, Krzysztof Kozlowski wrote:
+>> On 11/06/2025 07:12, George Moussalem via B4 Relay wrote:
+>>> From: George Moussalem <george.moussalem@outlook.com>
+>>>
+>>> IPQ5018 tsens should not use qcom,tsens-v1 as fallback since it has no RPM
+>>> and, as such, deviates from the standard v1 init routine in the driver.
+>>> So let's make qcom,ipq5018-tsens a standalone compatible in the bindings.
+>>>
+>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 5 ++++-
 >>
->> On 10/06/2025 18:11, Ricardo Ribalda wrote:
->>> Hi
->>>
->>> Media-CI is reporting some dts binding errors:
+>> You just added it recently with the fallback (in v9 of this patchset)
+>> and now remove it?
 >>
->> Every builder of linux-next sees this, it's not specific to media.
+>> And what does it mean it has no RPM? How does it affect the driver? Does
+>> fallback work or not?
+> 
+> IPQ5018 tsens IP is V1, but since it's got no RPM, it follows a 
+> different init routine for which VER_1_X_NO_RPM was created just like 
+> there is one for V2 without RPM, else the driver wouldn't probe. This 
+> was added as part of:
+> 
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/DS7PR19MB8883C5D7974C7735E23923769DCC2@DS7PR19MB8883.namprd19.prod.outlook.com/
+> 
+> Since its introduction, I missed updating the bindings which caused a 
+> binding issue (as reported by Rob) on the compatible as it expects the 
+> qcom,tsens-v1 as a fallback. But we can't use that fallback, so that's 
+> why it needs to be a standalone compatible.
+
+
+So you need Fixes tag and explain what was buggy in previous patch.
+
+> 
 >>
+>>
+>>>   1 file changed, 4 insertions(+), 1 deletion(-)
 >>>
->>> /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml:
->>> properties:reg-names:items:1: 'deprecated' is not one of ['const',
->>> 'description', 'enum', 'not', 'pattern']
->>> from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
->>> /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/pci/marvell,armada8k-pcie.example.dtb:
->>> pcie@f2600000: interrupts: [[0], [32], [4]] is too long
->>> from schema $id: http://devicetree.org/schemas/pci/marvell,armada8k-pcie.yaml#
->>>
->>> When I test your  for-next tree I have the same issue:
->>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/log/Documentation/devicetree/bindings/crypto?h=for-next
->>>
->>> They do not affect media drivers so right now I am just ignoring them,
->>> but I wanted to know if they are under your radar.
->>>
->> You need to update your dtschema.
+>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> index 0e653bbe9884953b58c4d8569b8d096db47fd54f..73d722bda8adc2c930edfc3373e6011f19c7c491 100644
+>>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> @@ -36,10 +36,13 @@ properties:
+>>>                 - qcom,msm8974-tsens
+>>>             - const: qcom,tsens-v0_1
+>>>   
+>>> +      - description: v1 of TSENS
+>>
+>> So that's still v1... I don't understand.
 > 
-> I was using the dtschema from pip.
+> As mentioned, the IP is still v1 but with a different init routine in 
+> the driver for IP v1 without RPM
 
-Latest from pip, so June, does not have these warnings. I think you
-still use May.
-
-> 
-> If I use the version from git, There are other issues as well:
-> 
-> $ python3 -m venv venv
-> $ . venv/bin/activate
-> $  pip3 install
-> git+https://github.com/devicetree-org/dt-schema.git@master yamllint
-> $ make dt_binding_check
-> 
-> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml:
-> mac-mode: missing type definition
-
-This is old.
-
-> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml:
-> maintainers:0: 'Not Me.' does not match '@'
->         from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml:
->         Error in referenced schema matching $id:
-> http://devicetree.org/schemas/power/reset/syscon-reboot.yaml
->         Tried these paths (check schema $id if path is wrong):
->         /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindingspower/reset/syscon-reboot.yaml
->         /usr/local/google/home/ribalda/work/linux/venv/lib/python3.12/site-packages/dtschema/schemas/power/reset/syscon-reboot.yaml
-> 
-> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/pinctrl/xlnx,versal-pinctrl.yaml:
-> allOf: Missing additionalProperties/unevaluatedProperties constraint
-> 
-> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml:
->         Error in referenced schema matching $id:
-> http://devicetree.org/schemas/rtc/rtc.yaml
->         Tried these paths (check schema $id if path is wrong):
->         /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/rtc/rtc.yaml
->         /usr/local/google/home/ribalda/work/linux/venv/lib/python3.12/site-packages/dtschema/schemas/rtc/rtc.yaml
-
-
-These are known:
-https://gitlab.com/robherring/linux-dt/-/jobs/10290125099
-https://krzk.eu/#/builders/117/builds/613/steps/11/logs/warnings__2_
-
-> 
-> Is there a doc besides
-> https://www.kernel.org/doc/Documentation/devicetree/writing-schema.md
-> that I can follow to set up media-ci properly?
-
-
-To update dtschema? No clue, I just run pipx upgrade. Works for me, but
-depends on your OS/packaging.
-
+OK, just merge it into first enum and drop the description there.
 
 Best regards,
 Krzysztof
