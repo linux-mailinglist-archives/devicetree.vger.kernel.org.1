@@ -1,188 +1,317 @@
-Return-Path: <devicetree+bounces-184923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91348AD5B28
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83978AD5B52
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:00:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C32D81895A79
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:48:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EF21188D22D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5921DDA14;
-	Wed, 11 Jun 2025 15:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C7D1DED77;
+	Wed, 11 Jun 2025 15:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eZvumMgG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SVayobUV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BF71C84D5;
-	Wed, 11 Jun 2025 15:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B101A8F82;
+	Wed, 11 Jun 2025 15:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749656905; cv=none; b=Td1+gKQhdjsuBw3plHig6FA/9hFDi3qsEuqaQ8rmk2VkMcbaIVWGLqev5CQgHECnVGeziNo1g+BuMAQ+2gZ6q/vF0KZd4Maac8PAkF6KeJapeXpPJmQLCRHOTccx6cg8B8DCSFpXk3PYBdqA8DBLgq0hXM7DMXx+VnAs6kbQAjU=
+	t=1749657588; cv=none; b=G7HceuA6XXg5UJZGyFwrcn5euhqpHzI3ERd106F0WQMpqK9jzrCkRbQIeuy+VHEUIE6IWrA8dIyFrUgXK4Dz+zuRqYmRDotKOqqgKyEa5huFZT31fBDC6+c8p6thN+ZT08bC/uzfZgxZqrjZMB8HlJo0fhUev5UJbFZsMTBfnAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749656905; c=relaxed/simple;
-	bh=LNb7YbVus4nbWzU8eQUbtfq2tisE72p1WUOPyk88UIk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uet0tD4MMdPK7cnORY6lgxFjm91bA6TllJERkY+nQwpodDDvIGoTrgpm7DcNx3ZKcbrXRkT7MOFNkX31ZtRfyYKnZ8s9qu4q2n0Y8YoSc50ziWtu8XlG517jl+arXbvODtPrmKlzR97OdHnBVT5R0tgaIZD1454SArBkiHTV+9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eZvumMgG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE600C4CEE3;
-	Wed, 11 Jun 2025 15:48:21 +0000 (UTC)
+	s=arc-20240116; t=1749657588; c=relaxed/simple;
+	bh=89BiTjHBE1lw2kMhVAJalnI8x+UkGxbeH28FkW7pcDE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JXwn4X0qz0E8aWhn0etX5nw6PnYZNXu8meprgD47tlUULZKk7X4oNqFhf+PTWge49xlMPmIzXN4C7qv4j4IbOoA/edAuUNE9TcKOxmyTPeCsfIqEZvQ2SrDBJ0dErijnOce3BQZqe2FpK3zpiDMiQptooBSnnD6f8KyZWw9xSL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SVayobUV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF130C4CEEA;
+	Wed, 11 Jun 2025 15:59:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749656904;
-	bh=LNb7YbVus4nbWzU8eQUbtfq2tisE72p1WUOPyk88UIk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eZvumMgGK6SbKsBcFzKeJeRL43GMbesaZDPm1UXUDNwThKkF01+7651Besemd7NH2
-	 34NbeyYs5sWouLFZhNHPlI5XpHwcTBwxHUpHhYBMjpjedaD1ebRHaJi2pey9UAPTyR
-	 Ngi7JRognCRZZlA0LQ+z1b2lox/5DpFv/NL0rJTQZ30SAk0HZjKuBrY03kfJFmLABa
-	 8DV62B14yT1S+bH3EwHdijXQWb7ssNnzBqIkGD1/whEbYQQn0pjemfMbtjsL2qnyQD
-	 Hg9tfh9Ti5kYg0KYU0XuLZY2LSjCzS1v7jb41B5+N13etyPHnXU22FpVen9/iJKTbc
-	 OLVwzEraB/MzA==
-Message-ID: <f1a63830-0533-4f1c-9116-32e8c1e61a8b@kernel.org>
-Date: Wed, 11 Jun 2025 17:48:20 +0200
+	s=k20201202; t=1749657587;
+	bh=89BiTjHBE1lw2kMhVAJalnI8x+UkGxbeH28FkW7pcDE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=SVayobUVp3aRvF48EyWbLwH90CUS9XtWd6DT2NJPPfkvZi4/Ej9I43IKWun+HFcb0
+	 nRHltTxYcB6Qxfz61p7XckqnhXfyontfKCIS5mkY8AoLiPX9THBWd1JBhCK+fT8MMZ
+	 So91hBGYyqiJywryQwG23FzmWNoX+YFgmL1mzQ7o/Uj2TBCTh/j6xbjgGMzlK0GZHk
+	 A/Xeguy7nCljEZwEx+wlIvaq16xUqMQwqlEZ+QCyIFqLhc5aIQPHpgiZoakb9odsVT
+	 Z17Jukibctyn3iQJwUA2pW9TNYzuf0Va0YRhuRWZZLuWmO01nmPzeI7I/mhiR65gV+
+	 rCk7FwINZM5TQ==
+Date: Wed, 11 Jun 2025 16:59:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marius.Cristea@microchip.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ broonie@kernel.org, devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: adding support for PAC194X
+Message-ID: <20250611165939.45bb50ad@jic23-huawei>
+In-Reply-To: <3d95641d-c1c2-44bc-8478-c60734bcf420@baylibre.com>
+References: <20250606093929.100118-1-marius.cristea@microchip.com>
+	<20250606093929.100118-3-marius.cristea@microchip.com>
+	<1c7946f1-d712-4baa-8243-be6a55eec528@baylibre.com>
+	<1b8b10816d1f2f34724e77c68de869422d6c84b6.camel@microchip.com>
+	<3d95641d-c1c2-44bc-8478-c60734bcf420@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp13
-To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
- <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
- <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
- <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
- <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
- <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
- <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
- <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
- <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
- <2865ab3a-1c20-4951-8132-4be98d73d70e@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <2865ab3a-1c20-4951-8132-4be98d73d70e@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 11/06/2025 16:08, Clement LE GOFFIC wrote:
-> On 6/11/25 08:35, Krzysztof Kozlowski wrote:
->> On 10/06/2025 15:33, Clement LE GOFFIC wrote:
->>> On 6/10/25 14:38, Krzysztof Kozlowski wrote:
->>>> On 10/06/2025 14:02, Clement LE GOFFIC wrote:
->>>>> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
->>>>>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
->>>>>>>>
->>>>>>>>> +		};
->>>>>>>>> +
->>>>>>>>> +		hdp: pinctrl@5002a000 {
->>>>>>>>> +			compatible = "st,stm32mp131-hdp";
->>>>>>>>> +			reg = <0x5002a000 0x400>;
->>>>>>>>> +			clocks = <&rcc HDP>;
->>>>>>>>>      			status = "disabled";
->>>>>>>>
->>>>>>>> Why are you disabling it? What is missing?
->>>>>>>
->>>>>>> Nothing is missing just disabled by default.
->>>>>>> The node is then enabled when needed in board's dts file.
->>>>>> Nodes should not be disabled by default if they are complete. That's why
->>>>>> I asked what is missing. Drop.
->>>>>
->>>>> Hi Krzysztof, OK I better understand now.
->>>>> So yes the 'pinctrl-*' properties which are board dependent are lacking.
->>>>
->>>> These are not properties of this node.
->>>
->>> Does this mean I should add 'pinctrl-*' properties in bindings yaml file ?
->>> I don't get it..
->>
->> These properties have no meaning here, so the hardware description is
->> complete. You claim that you miss them thus device is incomplete is just
->> not correct: these properties do not belong here! They belong to the
->> board but even there they are totally optional. Why would they be a
->> required resource?
->>
->> To remind: we talk here ONLY about required resources.
-> 
-> Yes, 'pinctrl-*' properties belongs to the board and are not required.
-> So nothing is missing.
-> 
-> This hdp node in the SoC dtsi file can be enabled by default.
-> But the hdp driver will probe and do nothing because without the 
-> 'pinctrl-*' properties from the board files it would not be able to 
-> access to any pin.
+On Tue, 10 Jun 2025 11:11:32 -0500
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On 6/10/25 10:07 AM, Marius.Cristea@microchip.com wrote:
+> > On Fri, 2025-06-06 at 12:02 -0500, David Lechner wrote: =20
+>=20
+> ...
+>=20
+> >>> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
+> >>> b/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
+> >>> new file mode 100644
+> >>> index 000000000000..ae88eac354a4
+> >>> --- /dev/null
+> >>> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
+> >>> @@ -0,0 +1,17 @@
+> >>> +What:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> >>> /sys/bus/iio/devices/iio:deviceX/slow_alert1_cfg
+> >>> +KernelVersion:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.16
+> >>> +Contact:=C2=A0=C2=A0=C2=A0=C2=A0 linux-iio@vger.kernel.org
+> >>> +Description:
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 A read/write property used to route, inside the PAC
+> >>> device, a specific ALERT
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 signal to the SLOW/ALERT1 pin. The SLOW/ALERT1 pin
+> >>> must be configured for the
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 ALERT function in order to control the device
+> >>> hardware pin (this is the default
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 functionality of the device hardware pin).
+> >>> +
+> >>> +What:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> >>> /sys/bus/iio/devices/iio:deviceX/gpio_alert2_cfg
+> >>> +KernelVersion:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.16
+> >>> +Contact:=C2=A0=C2=A0=C2=A0=C2=A0 linux-iio@vger.kernel.org
+> >>> +Description:
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 A read/write property used to route, inside the PAC
+> >>> device, a specific ALERT
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 signal to the GPIO/ALERT2 hardware pin. The
+> >>> GPIO/ALERT2 pin must be configured
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 for ALERT function in order to control the device
+> >>> hardware pin (this is the
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 default functionality of the device hardware pin). =20
+> >>
+> >>
+> >> What is the use case for needing these? In otherwords, why can't the
+> >> driver just
+> >> make best use of available resources as it sees fit?
+> >> =20
+> >=20
+> > Here inside the PAC the user could choose what limit to be routeed
+> > outside the chip. For sure, all of the limits could be routed to the
+> > same hardware pin, but there are some use cases where the user will
+> > want to connect that output pin to a safety hardware (e.g. over-current
+> > protection or over-voltage and over-current) and in this case we need a
+> > way to allow the user to do the setup.
+> >  =20
+>=20
+> This sounds like it depends on what is wired to the alert pin, so sounds
+> like something that should be specified in the devicetree.
+
+Absolutely agree.
+
+These corners tend to be tricky to handle cleanly
+in either DT or userspace interfaces though and sometimes we've
+just decided not to be fully flexible to keep that sane.
+
+>=20
+> I.e. in the devicetree, have a bool property microchip,alert1-is-safety
+> to indicate the ALERT1 pin is wired to the safety hardware. (It could
+> still be also wired as an interrupt input at the same time - or not,
+> doesn't really matter.)
+>=20
+> Then, on the event attributes add a boolean "safety" attribute to allow
+> routing the signal to either the pin that was flagged as the safety pin
+> or not. This would allow the user to chose which signals control the
+> safety hardware at runtime without them having to know how the hardware
+> is actually wired up.
+
+I'd question if the use cases are such that it makes sense to expose the
+option to user space. Generally if you have a way to trigger a safety circu=
+it
+it's there for a reason and you want it always on for that reason (i.e.
+you might tweak exactly when a cut off on power usage fires, but you always
+do it on power usage).
+
+We probably want to propose a binding to he DT folk + take a look at
+what the ABI David suggests looks like in the driver. That's
+messy if it isn't double wired to the interrupt controller though as
+we then have events that never fire.
 
 
-Pinctrl has other features in general, including interfaces to userspace
-(as pretty often combined with gpio, although not sure if relevant here).
+> >>
+> >> ...
+> >> =20
+> >>> +static IIO_DEVICE_ATTR(in_current1_shunt_resistor, 0644,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pac1944_shunt_value_show,
+> >>> pac1944_shunt_value_store, 0);
+> >>> +static IIO_DEVICE_ATTR(in_current2_shunt_resistor, 0644,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pac1944_shunt_value_show,
+> >>> pac1944_shunt_value_store, 1);
+> >>> +static IIO_DEVICE_ATTR(in_current3_shunt_resistor, 0644,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pac1944_shunt_value_show,
+> >>> pac1944_shunt_value_store, 2);
+> >>> +static IIO_DEVICE_ATTR(in_current4_shunt_resistor, 0644,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pac1944_shunt_value_show,
+> >>> pac1944_shunt_value_store, 3); =20
+> >>
+> >> These are specified in the devicetree. Why are there also sysfs
+> >> attribtes? =20
+> >=20
+> > Yes, you could put a generic shunt resistor into the device tree but
+> > this resistor will have a tolerance. Because the end user could
+> > calibrate the system, it could also save the calculated/calibrated
+> > shunt resistor somewhere and restore that calibrated value each time
+> > the driver is loaded.
+> >  =20
+>=20
+> If changing the resistor value changes the measured raw value, we
+> could probably use one of the existing standard calibration attributes
+> instead, like calibbias or calibscale.
 
-> I consider enabling this driver by default in SoC dtsi file as just 
-> increasing the boot time on "every" board.
-> It's the board dts that requires the hdp and provides the 'pinctrl-*' 
-> properties to connect the hdp to some SoC pin and then to some signal on 
-> the board. For me it's natural to have the status okay only in the board 
-> dts file.
+We have precedence for shunt resistor ABI for this reason, so I agree with
+David if we were starting from scratch (and it's a viable option to
+use the calibration attributes) but we can't drop the existing ABI
+and it does limited harm to carry on using it.
 
-The DTS is not the way to optimize boot processes. It is OS-independent
-hardware description. My BSD system for example uses smart driver which
-avoids probing, but also my user-space needs this device to talk over
-exposed interface, so why choice of Linux probing should affect others?
+>=20
+> >  =20
+> >>
+> >> =20
+> >>> +/* Available Sample Modes */
+> >>> +static const char * const pac1944_frequency_avail[] =3D {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "1024_ADAP",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "256_ADAP",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "64_ADAP",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "8_ADAP",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "1024",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "256",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "64",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "8",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "single_shot_1x",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "single_shot_8x",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "fast",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 "burst",
+> >>> +}; =20
+> >> =20
+> >>> =20
+> > ... =20
+> >>> +
+> >>> +static const struct iio_chan_spec_ext_info pac1944_ext_info[] =3D {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 IIO_ENUM("sampling_frequency", IIO_SHARED_B=
+Y_ALL,
+> >>> &sampling_mode_enum),
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 {
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 .name =3D "sampling_frequency_available",
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 .shared =3D IIO_SHARED_BY_ALL,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 .read =3D iio_enum_available_read,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 .private =3D (uintptr_t)&sampling_mode_enum,
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 },
+> >>> +=C2=A0=C2=A0=C2=A0=C2=A0 { }
+> >>> +}; =20
+> >>
+> >> sampling_frequency{_avialable} are already standard attributes in IIO
+> >> and is
+> >> defined to be a number in Hz. So we will need to find a way to make
+> >> this
+> >> work with the standard attribute (can use IIO_CHAN_INFO_SAMPLE_FREQ,
+> >> by the way).
+> >> And figure out how the other parts fit into other existing IIO
+> >> features. =20
+> >=20
+> > I can change to the standard attributes but I still have some question
+> > related to how to handle the ADAPTIVE sampling frequency that the chip
+> > supports and that it could be used to lower the power consumption of
+> > the chip.
 
-Best regards,
-Krzysztof
+Gah.  Second device to do something like this that we've seen this month.
+(ADXL313 does something similar when enough activity detection modes are
+turned on).  We don't have a good answer yet :(
+
+> >  =20
+> >> =20
+>=20
+> From a quick look at one of the datasheets, it sounds like this
+> "adaptive" mode only applies when using an accumulator. And it doesn't
+> actually change the sample rate, but rather other factors, like scale
+> and the accumulator counter incitement. So it seems like it would be
+> a separate custom boolean attribute.
+
+Generally when I see this sort of thing my first instinct is hide it.
+What use is it for userspace to see that the frequency is changing?
+Maybe we just report the highest (or lowest?) frequency that might
+be going on?  Here it doesn't seem to be coupled to anything else
+though (unlikely the accelerometer) so I'm not sure how the driver
+would guess it makes sense to enable it?
+
+>=20
+> Also, I noticed that the fast mode and burst mode make the sampling
+> frequency dependent on the number of enabled channels. So to handle
+> this, normally, that would mean that IIO_CHAN_INFO_SAMP_FREQ would
+> need to be IIO_SEPARATE rather than IIO_SHARED_BY_ALL.
+>=20
+> But since these chips support can work both ways (there are modes
+> where sample rate doesn't depend on the number of channels enabled
+> and there are modes where it does), I'm not sure what the right way
+> to handle that would be here. Maybe Jonathan will have some suggestion?
+
+Oh goody a new way to stretch that already much stretched interface.
+It's actually more fun because it's not the sum of the number of channels
+for fast mode but 1 more than that.
+
+Given we can't do both ways of reporting it at the same time we will
+probably have to just do IIO_SHARED_BY_ALL.  We can only then report
+the effective sampling frequency as it is fixed in these modes (so
+we can't attempt to match a userspace request by cranking it down
+if there are fewer channels enabled or similar).
+
+So we need
+sampling_frequency_available where the fastest frequency presented
+changes depending on the enabled channels.  Lower values match
+the 8/64/256/1024 values however many are enabled.
+
+if sampling_frequency =3D=3D top value then we just change it if more
+channels are enabled.  ABI always allows for other attributes to
+change 'randomly' when you touch a different one.  That flexibility
+is a pain for users but necessary for cases like this :(
+
+I'm not sure how we pick between burst and fast mode though
+as seems to be about auto offset stuff.
+
+Jonathan
+
 
