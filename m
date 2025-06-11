@@ -1,350 +1,132 @@
-Return-Path: <devicetree+bounces-184609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6039BAD4BE5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:38:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF6AAD4BF0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:41:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5A56189C50D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:38:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4778A17B76B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B110C22CBD5;
-	Wed, 11 Jun 2025 06:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD01227E90;
+	Wed, 11 Jun 2025 06:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ASkqsBsq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ea3hJAW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC07A22B5AD;
-	Wed, 11 Jun 2025 06:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885332576
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749623902; cv=none; b=pPVATQOrCpoRPWZeXvvPTSzdE+4HaZF0n00b7aT+2Z4kTPPl8wOrNkbvFfBHy8xFjMPaic1RIvRHmAL4+ZX9AhCKcLSxWtnTanlItWiJuEqkuphhwsocY7D3ZThY2ZCbIbCAB0fwXvDbsyRXxK6ylI7/dZ4KeptFcg+tdsYpFdk=
+	t=1749624063; cv=none; b=IkpFhVP+JQnHgJWzNUGXX+tIuYjOSeufCcYoXvHkr5ibIy/XmRsacY8PJ57+RERbnDiT4P3f/uNdHqCyxLIRBmihLn8ftNZSuV11xRMXWZLHpqQF+1w/OVHQoxVM3mATuKukClPUlwWrdcM0adIMOPbAIyZPMcyaFAA0Ncp+p/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749623902; c=relaxed/simple;
-	bh=by01+6bkiNjcw2guSx+ZK5tYg3bKc4RqWti/1PN0ivE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lYrzv8xCOKPenkalczZNLWeCu7o4nMa9VtySVk2Gg1nw62UyK0g1F9h2yyaf7z2+O6Zm1mq9GpjGohAhVL55QcW4fxo3hucQORvJ5WPupGqSis6pI5q6FWU9QM/Rf0TBXb2JWTj9eaGkAEnU/GL+IVISpYolN7aTWM/6uCAv4/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ASkqsBsq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIPqCf023657;
-	Wed, 11 Jun 2025 06:38:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KWcjnl5rnaEBQHdaSbbvBEgn0HyplXQ8bEiwzfkxnzk=; b=ASkqsBsqB6l44lfF
-	fm4A+Ce8EjTnLW2E/BKkuIXe5wXUk5Di7u56eZ9aGYXKtymeWmrmAnRHgeJb8bXK
-	swYFap969HFDabImV2++UAojODOxdV9OrW5wB26at5P3dpk6nC+l8xqStKJ605z7
-	1gpZX8HXn1nT2H+IqEUP0cS9T8V4cF1K66zShIABvH9mm204JkUkB3tDt0M0gLBb
-	zWmWuO/c36WL0NqzvLR/uE9U8URbYY7/B5oSNDFOciCLBYOTQSHsk4B2vrzZHTZk
-	fozgN5BWS8IwTK0uRSbUlrOv+gXNoEMoGGgT7LYRIJObetlUGTsTm7TGqWoW9rvS
-	TFF6pA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474eqckwvk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Jun 2025 06:38:15 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55B6cFJ5005592
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Jun 2025 06:38:15 GMT
-Received: from hu-gkohli-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 10 Jun 2025 23:38:11 -0700
-From: Gaurav Kohli <quic_gkohli@quicinc.com>
-To: <amitk@kernel.org>, <daniel.lezcano@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_manafm@quicinc.com>,
-        Gaurav Kohli
-	<quic_gkohli@quicinc.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: qcs615: Enable TSENS support for QCS615 SoC
-Date: Wed, 11 Jun 2025 12:07:43 +0530
-Message-ID: <1758b5c2d839d40a9cb1dd17c734f36c279ac81c.1744955863.git.gkohli@qti.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1744955863.git.gkohli@qti.qualcomm.com>
-References: <cover.1744955863.git.gkohli@qti.qualcomm.com>
+	s=arc-20240116; t=1749624063; c=relaxed/simple;
+	bh=VEJXlkeROqAXhx2T1dHsPjcaPbvZcoo4DC+f2hkFbR0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=oULKLjDk2CaIalo4N0qHWn0viYeDq/9i/1K1gXNhWPGznXCF49uj3COfoiEDpdTPKyv8KyhVogGOiIAMh7qp42J/BgzCbDUjY1j342xQL6QI4TG1VPk+MYeWE2Xlh14Wy6vgGLUZNc65lczOsQAYJAbOAm/S5ROTBL4ypjzp3eY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ea3hJAW7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF205C4CEEE;
+	Wed, 11 Jun 2025 06:41:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749624063;
+	bh=VEJXlkeROqAXhx2T1dHsPjcaPbvZcoo4DC+f2hkFbR0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ea3hJAW7VB1CNw+jW//ONtYrLCXXRN60xkwSNe2zQwQ02Q4+mjdz+83YEBH9AgmtU
+	 EFuZJHIyYXmIAOcLDGp3MIoYhJdz4e6uRkywKkC8HRSfReLeYYE369kA5hfU7xzV37
+	 Ybs08NTm9fkWD9yxFatNRpR7kVL7j0rerni8H2QbKEcZS7ghxCNeIqrLXEVMfljIXq
+	 kFUi4JOImBMoGPdSgc2SnQi0K/Y/5yYxaOc7hDre74jPLnMxxKw6BqpbHPhBwqspn8
+	 M/rQEj/KSfZuJe9OiPpW9v+lbBDeFR35Gd7ehmWz7ZsE4iO2JzEiZ/ZjcSzLWTdQUp
+	 y8IOTHH6BbpGg==
+Message-ID: <a2efd2e3-bab8-43ba-a236-aa5052bc35c7@kernel.org>
+Date: Wed, 11 Jun 2025 08:41:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDA1NyBTYWx0ZWRfXzm7B7mnx80XO
- dGV9YQAToALi/SenPMqqPc0cgp/deV+DO18nS/l5x2VOogg3AHNEXc+I5VCY1Duo2zhUiX3yPzV
- M+i8KtvqGqfmWlwnPx2xjtaU0ZA8tLQpmFnbXxE5tqRVEaXLqltWXovrwQpMEFIhwll0/qn2e2r
- wdgjFIkMi+WNPgtpeMErgnJkXIKpABADSHPVq26JpJegeafoghAFUwe4Eaty7NccYPK4aI004Bn
- IDODDjbS6U5NiXafVzyd3HcLNipAUvVS2AEWAP921+gcMIH1vxr6eGKKYcS1WrQFPX3MLho63Ks
- zU5utEsdcTmJ+hAK607PiGp4kBDUVLlhYJGfrHiqiehwSd7naa8NAnLh8uIdOD5Yg8c1huT7jEo
- 9svUjiXIWab7zxcc0hOhZmFYW+/HCJ/1nWtstz8RTZr19pBYxS5k0IR3l2YQW37Sk0Ynn+iJ
-X-Authority-Analysis: v=2.4 cv=Q7TS452a c=1 sm=1 tr=0 ts=68492457 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=3mcCAZ4DCuo2i6UhkvcA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: vDvCwaLDXnUE7QlqJcvz9qMER7jKq6aZ
-X-Proofpoint-ORIG-GUID: vDvCwaLDXnUE7QlqJcvz9qMER7jKq6aZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-11_02,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 mlxscore=0 spamscore=0 mlxlogscore=658
- bulkscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 impostorscore=0
- priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506110057
+User-Agent: Mozilla Thunderbird
+Subject: Re: 6.16rc1 dts-bindings check fails
+To: Ricardo Ribalda <ribalda@chromium.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+References: <CANiDSCvB5yytOgvk1QC812x4zOBn5Z4_C5wqUnV+2hSQXKM54g@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CANiDSCvB5yytOgvk1QC812x4zOBn5Z4_C5wqUnV+2hSQXKM54g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add TSENS and thermal devicetree node for QCS615 SoC.
+On 10/06/2025 18:11, Ricardo Ribalda wrote:
+> Hi
+> 
+> Media-CI is reporting some dts binding errors:
 
-Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615.dtsi | 217 +++++++++++++++++++++++++++
- 1 file changed, 217 insertions(+)
+Every builder of linux-next sees this, it's not specific to media.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-index edfb796d8dd3..bbc132a1df46 100644
---- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-@@ -3668,6 +3668,17 @@ usb_2_dwc3: usb@a800000 {
- 				maximum-speed = "high-speed";
- 			};
- 		};
-+
-+		tsens0: tsens@c222000 {
-+			compatible = "qcom,qcs615-tsens", "qcom,tsens-v2";
-+			reg = <0x0 0x0c263000 0x0 0x1ff>,
-+				<0x0 0x0c222000 0x0 0x8>;
-+			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#qcom,sensors = <16>;
-+			#thermal-sensor-cells = <1>;
-+		};
- 	};
- 
- 	arch_timer: timer {
-@@ -3677,4 +3688,210 @@ arch_timer: timer {
- 			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 0 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
-+
-+	thermal-zones {
-+		aoss-thermal {
-+			thermal-sensors = <&tsens0 0>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpuss-0-thermal {
-+			thermal-sensors = <&tsens0 1>;
-+
-+			trips {
-+				cpuss0-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpuss-1-thermal {
-+			thermal-sensors = <&tsens0 2>;
-+
-+			trips {
-+				cpuss1-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpuss-2-thermal {
-+			thermal-sensors = <&tsens0 3>;
-+
-+			trips {
-+				cpuss2-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpuss-3-thermal {
-+			thermal-sensors = <&tsens0 4>;
-+
-+			trips {
-+				cpuss3-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu-1-0-thermal {
-+			thermal-sensors = <&tsens0 5>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu-1-1-thermal {
-+			thermal-sensors = <&tsens0 6>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu-1-2-thermal {
-+			thermal-sensors = <&tsens0 7>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu-1-3-thermal {
-+			thermal-sensors = <&tsens0 8>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		gpu-thermal {
-+			thermal-sensors = <&tsens0 9>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		q6-hvx-thermal {
-+			thermal-sensors = <&tsens0 10>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		mdm-core-thermal {
-+			thermal-sensors = <&tsens0 11>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <110000>;
-+					hysteresis = <10000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		camera-thermal {
-+			thermal-sensors = <&tsens0 12>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wlan-thermal {
-+			thermal-sensors = <&tsens0 13>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		display-thermal {
-+			thermal-sensors = <&tsens0 14>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		video-thermal {
-+			thermal-sensors = <&tsens0 15>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <110000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
- };
--- 
-2.34.1
+> 
+> /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml:
+> properties:reg-names:items:1: 'deprecated' is not one of ['const',
+> 'description', 'enum', 'not', 'pattern']
+> from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+> /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/pci/marvell,armada8k-pcie.example.dtb:
+> pcie@f2600000: interrupts: [[0], [32], [4]] is too long
+> from schema $id: http://devicetree.org/schemas/pci/marvell,armada8k-pcie.yaml#
+> 
+> When I test your  for-next tree I have the same issue:
+> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/log/Documentation/devicetree/bindings/crypto?h=for-next
+> 
+> They do not affect media drivers so right now I am just ignoring them,
+> but I wanted to know if they are under your radar.
+> 
+You need to update your dtschema.
 
+Best regards,
+Krzysztof
 
