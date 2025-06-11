@@ -1,132 +1,102 @@
-Return-Path: <devicetree+bounces-184735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA707AD503B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:40:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE677AD503F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:40:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F01B73A5041
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:40:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE6607A4821
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8B025A2CD;
-	Wed, 11 Jun 2025 09:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192D5262FE6;
+	Wed, 11 Jun 2025 09:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="exkK4yIi"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KkgND5am"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4254225C804
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433D82206BB;
+	Wed, 11 Jun 2025 09:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749634810; cv=none; b=HZD1JZ3z1P0DGnmzizsZaPyHCYGgIV0l7bNZ4VZW4wQX5CeHWaayZBoEzNnvD0tMvx25zJ9xFjsWaOa+qenxBdBbEi06cokzVuswzZiAZQNjmYvKv7EQfkyfWD20igGtn4yBXTe+nsu1YRze2d2k4Tom2gGXrm7Oe/n7Scb/Y5E=
+	t=1749634828; cv=none; b=s0fW18zqQrbzJ2V25MypNqW0L8Sf1IZw3Ezvr4nAwURn7ImRVHHSXQ3d8JYLpKoQONYNJO5n7Db8Y0p3oTPdPAzrd8VRBjKDm02I7b3WDOCLJKvrXsydvyuvQRYlpmJsq5USMHWQyUcPVebitcAaajRucQrqItgXa2OzCoQdlAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749634810; c=relaxed/simple;
-	bh=1ariPDdAF0qt5/fcBAjFaLJrSa62Ai9e3cfkcdrzMRg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ibnE1pmm7FuEDk4K45kypI2Zer0PGD8N1DgFnDDKpAHUDy02inZkG+hzISiDAZE2orE99fejLhAtDrGaYm7P30D8TMS0j+O9LmdXpZEPmMpqEe1kHs/tB9h5s7iQUNbAwyU3KNUhi5aISo98kNx6BnEoswiI3yulvvzMOkD7TMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=exkK4yIi; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=xabZjMptbgVpuIdQcIbvSq4bTxC5UfzZllfb5CCab0g=; b=exkK4y
-	IimD4REgDp/S4/rBujARlqepDZbruSPN8unp3mEsL2FtAd1MR8tsNOLxtRrfqmxT
-	bS2jm4rA1nrLqX897EZz8pklNMFcYH8A/RMlscUGws8qOpmBDLhCX4qMIyDm3GN6
-	NAOBt6ujR9DxrSr5PPdNutkQ9UIK9I6SSfbSjhOukN+9awIVAjNvipR7okCC6hI9
-	ePT3ab6PJ/+dx4AUpGBdRwfJSZdraM6k5ROB8iZIrQelx5LyM1PimPZkjvhdIBLt
-	sv+wh/DzOpKeHl5odO+VSds9wudS7UGeYDIEnee+2csflR+haaAQcU/Whph8vt3M
-	thvwynMNQxQtSNng==
-Received: (qmail 3186504 invoked from network); 11 Jun 2025 11:39:56 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2025 11:39:56 +0200
-X-UD-Smtp-Session: l3s3148p1@Lop9mEg3CLEgAwDPXy2/ACpZfVCNKldR
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH RFC 7/7] WIP: arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
-Date: Wed, 11 Jun 2025 11:39:31 +0200
-Message-ID: <20250611093934.4208-8-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
-References: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1749634828; c=relaxed/simple;
+	bh=aWSrVg6trcSvidS1Tw5OfSRqvl9oKQxDz8kbvLt0OCk=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TERaD2K3bzl3itZaYUnk8C+sbkNxwaMM+RKfmSJ9m+eFGy4wer20cidPWyHqKcuvK2LRWoLmrjYnLadgTEjOqicFrmiCwZiWu63RIohClydPNOqZVpSR2ZvWDV8v5um7HI8olizLOoJBTqh2Rps0rNxyo1WmUnHitMLlYe1wv9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KkgND5am; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1749634824;
+	bh=aWSrVg6trcSvidS1Tw5OfSRqvl9oKQxDz8kbvLt0OCk=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=KkgND5amME3BftnewrZ+UluRD84GILsHRZ+b9TWEVUfhepgjrDHrP8OA4oBwOJ3Tj
+	 faQ4Ubh4lXj3guMCFSRGwNVY9q4GeGoghqcJVYY8wUxg4bSfIQdlPbE7JnnQJ/6kdB
+	 KHt034d0PVhAyJESrZVUTLlnbaVgVFH1j8Oy5QsLwYaqobWGtTS78ws9V2pT0NtqxM
+	 eDIEsmF3OFGTj69U/+8WoTLzDC+OJ6IBF0vW0zTYhGrq6B0+3WHrXi+MQSMwRqLcYZ
+	 srFlTEaJxHNXvMj9xT5Sy3dR8TQkbxswJyCXK4zbf+FUNW4QJfwHwhIrbc1aiLDCm/
+	 t3oFOs/HGTLQQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1194117E3789;
+	Wed, 11 Jun 2025 11:40:23 +0200 (CEST)
+Message-ID: <2f03fe56-f471-43be-8774-1db92d376861@collabora.com>
+Date: Wed, 11 Jun 2025 11:40:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 04/13] dt-bindings: interconnect: add mt7988-cci
+ compatible
+To: Frank Wunderlich <linux@fw-web.de>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+ Jia-Wei Chang <jia-wei.chang@mediatek.com>,
+ Johnson Wang <johnson.wang@mediatek.com>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?=
+ <arinc.unal@arinc9.com>, Landen Chao <Landen.Chao@mediatek.com>,
+ DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
+ Daniel Golle <daniel@makrotopia.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Felix Fietkau <nbd@nbd.name>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250608211452.72920-1-linux@fw-web.de>
+ <20250608211452.72920-5-linux@fw-web.de>
+Content-Language: en-US
+In-Reply-To: <20250608211452.72920-5-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This is really only for testing. Not for upstream!
+Il 08/06/25 23:14, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Add compatible for Mediatek MT7988 SoC with mediatek,mt8183-cci fallback
+> which is taken by driver.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Not-signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-index 39845faec894..f3f391c609d3 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/clock/renesas,r9a08g045-vbattb.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/i3c/i3c.h>
- #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
- 
- #include "rzg3s-smarc-switches.h"
-@@ -172,6 +173,38 @@ a0 80 30 30 9c
- 	};
- };
- 
-+#undef I3C_BUS_PURE
-+#ifdef I3C_BUS_PURE
-+&i3c {
-+	i2c-scl-hz = <1000000>;
-+	i3c-scl-hz = <2000000>;		/* slow Logic Analyzer here */
-+	//i3c-scl-hz = <12500000>;
-+	status = "okay";
-+};
-+#else
-+&i3c {
-+	i2c-scl-hz = <400000>;		/* Max speed of the ADT7411 below */
-+	/*
-+	 * 10MHz works somewhat with my 24MHz logic analyzer as well as
-+	 * signal width < 50ns for the legacy I2C filters
-+	 */
-+	i3c-scl-hz = <10000000>;
-+	status = "okay";
-+
-+	/* I2C bus from SMARC via PMOD6A. EEPROM driver only used to verify register content */
-+	eeprom@1a {
-+		compatible = "atmel,24c02";
-+		reg = <0x1a 0 (I2C_FM | I2C_FILTER)>;
-+	};
-+
-+	/* externel development board */
-+	temp@4a {
-+		compatible = "adi,adt7411";
-+		reg = <0x4a 0 (I2C_FM | I2C_FILTER)>;
-+	};
-+};
-+#endif
-+
- #if SW_CONFIG2 == SW_ON
- /* SD0 slot */
- &sdhi0 {
--- 
-2.47.2
 
 
