@@ -1,109 +1,200 @@
-Return-Path: <devicetree+bounces-184846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD3AAD5562
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:23:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCEA0AD5571
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:25:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D54D3AC471
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:23:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECA051BC30C0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C28A27EC74;
-	Wed, 11 Jun 2025 12:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D161B280CC8;
+	Wed, 11 Jun 2025 12:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="AgMQE4jt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gYDy+ZM8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EB4276031;
-	Wed, 11 Jun 2025 12:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEE3280300;
+	Wed, 11 Jun 2025 12:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749644624; cv=none; b=FYokkZ0TxdHS2V3m/aYEpQFnebF59ALfVyZGAywciFjQDIpL3OAo66EnpnTwNRlWqBjS4AvvMp9wa40saX2rk12jyIqVlc9y/QMjBSGbkeYhUK902sIau71wasbQTp7MtNY2FFtz5K8sxJqZ50kJJL63SZPAwURjSaj9HCmk46g=
+	t=1749644733; cv=none; b=E8EFdZVD+Q6xuEuUubxsSVqhcB72ljvN/t4bI3iDGJdnIk1xfJie3t2R86TB9Vq2veiUOesQwWtLJ2B8tgC2QMw/fjhaV+WnVQZarXznhBpE9HHo6LyHURC30BKviGFSgLWKERDYQAi6NirmCUyw8PCf6ZGmZzJsti7hfK4K/E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749644624; c=relaxed/simple;
-	bh=qU0EWVOHmyfXZmfiha9iuQgF+i0AoLy669DcGhO9gIA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hu63T0L8YCsXSk3zUkqaZ2PQ2+hnPhJsx1tXGp/GZpGJPKkd1EErQ1I0kRIiMmkzYHB0rFKB7V4DcVYks3ZQzEr8xpSvmtrIrdimj1wSDq1Jrp82MFs1r3NwD/462apatzKK5gKvlPg0rgO4StHR9Z5hzTi97DIM1Cj843E+zCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=AgMQE4jt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1424EC4CEEE;
-	Wed, 11 Jun 2025 12:23:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1749644623;
-	bh=qU0EWVOHmyfXZmfiha9iuQgF+i0AoLy669DcGhO9gIA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AgMQE4jtWqqtRUJxAK6BFIAAXJhbZkkrolQBU7+As75rDmuS0vyTQhCgUvTruVlHn
-	 43W3brK7eMurkPyu9Zp06nMoVqCTH2KjP3nHwwy2kLANVeX/HfM1p1cEmBYI6xHPe8
-	 WWOOlE1fHWTsu9YI2+yKj9bRzuDElqvFr/gaaM4s=
-Date: Wed, 11 Jun 2025 08:23:40 -0400
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Saravana Kannan <saravanak@google.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Grant Likely <grant.likely@linaro.org>
-Subject: Re: [PATCH] driver core: Prevent deferred probe loops
-Message-ID: <2025061147-squishier-oversleep-80cd@gregkh>
-References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
- <20250610183459.3395328-1-sean.anderson@linux.dev>
- <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
- <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
+	s=arc-20240116; t=1749644733; c=relaxed/simple;
+	bh=mq5fQh6TxmI6S2ebT8lugj5Q9NravY0okjLw4RPOEH0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=K95staXafmM/IMl3xcNgqGCjEfGIjjGNZ5bBj2QtqKTFth5GTzieF6dwaEwy3dyhUh8RIixmycyzf3hLZD8jZU+dscWdE23p36Ap3vqIpMOHLAR6vEsOf8gl4+pWJJ9sIsrZ3g14/yzYtrf/sx53t5EOrHCsl1IQlIsz6jBrWCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gYDy+ZM8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DDrF023918;
+	Wed, 11 Jun 2025 12:24:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pGAuQJnCZRenSUKeUSJste/qOhgDi8yuC9MgXtEQqHA=; b=gYDy+ZM8lCRyvKb8
+	Y927Tqu4+0a16Mf2gDCVxhZfsUWS5YCE0iwHFZy79ojO1v5ENqTp3uLJv/Gb8cHK
+	dX+rqJioT+ndWZCbQBq2xZA2324/Uce0Z4PNyFMX29jyvhLAT/I1HMEXodVLEN3x
+	c45z59T9GTrijJd3hoWvOLkgnL+gJFkYhozjust+Ql9CRbCYCh2I9jcQEWZ6VXv8
+	5c9n+wNGZ+qt0pQ5/QtgvYTR5utTiAlUW1QXEUlJpzM0Ck0zxXDtvCStQDwjduha
+	arMy/gPTPJUJOxqkiFXoytpRBain2Z70mRSRHT6/N10L8uzVBYKGUQ27KDnaDYuH
+	ALHz4A==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 475v2tfhvs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Jun 2025 12:24:57 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55BCOuWd012122
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Jun 2025 12:24:56 GMT
+Received: from [10.216.28.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Jun
+ 2025 05:24:48 -0700
+Message-ID: <d482653e-5c0e-4b03-98d6-2c898b445917@quicinc.com>
+Date: Wed, 11 Jun 2025 17:54:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: opp: adreno: Update regex of OPP
+ entry
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Akhil P Oommen
+	<akhilpo@oss.qualcomm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will
+ Deacon" <will@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean
+ Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry
+ Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+        Nishanth
+ Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+References: <20250611-x1p-adreno-v2-0-5074907bebbd@oss.qualcomm.com>
+ <20250611-x1p-adreno-v2-1-5074907bebbd@oss.qualcomm.com>
+ <492417fe-c086-4980-b108-0487bad08155@kernel.org>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <492417fe-c086-4980-b108-0487bad08155@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 19Wy04pcgBOYQabLMROi2WkoaX8g-IgR
+X-Authority-Analysis: v=2.4 cv=GoxC+l1C c=1 sm=1 tr=0 ts=68497599 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8
+ a=snIp_u72ujy8X2fHCcYA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: 19Wy04pcgBOYQabLMROi2WkoaX8g-IgR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDEwNiBTYWx0ZWRfX8/VpQ35K3txV
+ 0LE/3vFvyiqLM1KGZhDyw53Hlk7CMoEbHrqhh0/DhZeXDc2YvHYAhicvpnujZyStWiy35n5K4rN
+ wX+m80mCGjHNIvl0Ry5I0BXYGwz2LJkpBnyDmGlIYSi7/tbFY8dMtk83X/vB6RgHmK5fw+8c0EZ
+ 1tBW63P14pVPPyK4NJNNqZllRWwtW5xPwNXQmYHRSX51BdA4l+o+AJAbmK+dYX6PkXgilZMY1YD
+ 97BZ15yjVYz+ddZTvlddufqXy/JvHXCV4meWLqWU0hFePNdgnlmBm6zvH61JLpWiSjEKeuSuerb
+ YAp5p1kVZMVHOG5K/h5A8NQ3RXIfacvN3HXqnu0oAnM2Cz9bgn65fbnu+MQSk5laoYL/BJ7jXq1
+ iJwZdswf/j6MgVIP9xJSsJ/e2KTjOb7Yy2aXssLnpEXAsVAq6Jf5HNnu93XhdMqpcd+ZfrTZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-11_05,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=999 adultscore=0 impostorscore=0 malwarescore=0 mlxscore=0
+ suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506110106
 
-On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
-> On 6/10/25 19:32, Saravana Kannan wrote:
-> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
-> >>
-> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
-> >> registering a bus with children:
-> > 
-> > This is a broken driver. A parent device shouldn't register child
-> > devices unless it is fully read itself. It's not logical to say the
-> > child devices are available, if the parent itself isn't fully ready.
-> > So, adding child devices/the bus should be the last thing done in the
-> > parent's probe function.
-> >
-> > I know there are odd exceptions where the parent depends on the child,
-> > so they might add the child a bit earlier in the probe
+On 6/11/2025 4:50 PM, Krzysztof Kozlowski wrote:
+> On 11/06/2025 13:15, Akhil P Oommen wrote:
+>> Update regex to allow multi-worded OPP entry names.
 > 
-> This is exactly the case here. So the bus probing cannot happen any
-> later than it already does.
+> Why would we want multi-worded? This needs to be explained here.
 
-Please fix the driver not to do this.
+I took the new regex from "opp-v2-base.yaml" file, so I thought it was
+obvious enough. The requirement is that sometimes Adreno GPU may require
+variants of OPP entries with same frequency. As an example, we may want
+to vote different peak bandwidths in different SKUs for the same GPU
+frequency. So to denote this minor variation, we can add an integer
+suffix to the OPP entry name separated by '-'. An example from another
+patch in this series:
 
-> > but in those cases, the parent's probe should still do all the checks
-> > ahead of time.
+ opp-666000000-0 {
+         opp-hz = /bits/ 64 <666000000>;
+         opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+         opp-peak-kBps = <8171875>;
+         qcom,opp-acd-level = <0xa82d5ffd>;
+         opp-supported-hw = <0xf>;
+ };
+
+ /* Only applicable for SKUs which has 666Mhz as Fmax */
+ opp-666000000-1 {
+         opp-hz = /bits/ 64 <666000000>;
+         opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+         opp-peak-kBps = <16500000>;
+         qcom,opp-acd-level = <0xa82d5ffd>;
+         opp-supported-hw = <0x10>;
+ };
+
+I will add this explanation in the commit text in the next revision.
+
 > 
-> Such as what? How is the parent going to know the resource is missing
-> without checking for it?
->  
-> > Can you be more specific about the actual failure you are seeing?
 > 
-> MAC is looking for a PCS that's on its internal MDIO bus, but that PCS's
-> driver isn't loaded. The PCS has to be loaded at probe time because
-> phylink_create needs it, and phylink is necessary to register the
-> netdev. The latter situation is not ideal, but it would be quite a bit
-> of work to untangle.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>> index a27ba7b663d456f964628a91a661b51a684de1be..bba95799919eb52d12afa42354ed909d0ef3c627 100644
+>> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>> @@ -23,7 +23,7 @@ properties:
+>>        const: operating-points-v2-adreno
+>>  
+>>  patternProperties:
+>> -  '^opp-[0-9]+$':
+>> +  '^opp(-?[0-9]+)*$':
+> 
+> Not correct regex. You allow "opp", "opp1" and all other unusual
+> variants. Commit does not explain what problem you are solving, so I
+> have no clue what you want here, but for sure opp1 is wrong.
 
-Please untangle, don't put stuff in the driver core for broken
-subsystems.  That is just pushing the maintaince of this from the driver
-authors to the driver core maintainers for the next 20+ years :(
+Just to confirm, would this be fine for the requirement I mentioned above?
 
-thanks,
+"'^opp(-[0-9]+)*$'"
 
-greg k-h
+-Akhil.
+
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
