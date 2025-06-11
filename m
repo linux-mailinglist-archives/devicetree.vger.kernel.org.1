@@ -1,209 +1,191 @@
-Return-Path: <devicetree+bounces-184548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFEFAD47BB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:07:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7419EAD47DC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E69E117B929
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 01:06:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 347911892101
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 01:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F99E22338;
-	Wed, 11 Jun 2025 01:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA5CCA52;
+	Wed, 11 Jun 2025 01:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fUmzr6VA"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="PT64cYXR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2044.outbound.protection.outlook.com [40.107.236.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 413971F949;
-	Wed, 11 Jun 2025 01:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749603929; cv=none; b=Oy8jKchh44EaCq5uxubPxEw7kpBiULEGZBMjfP0QAkWc/sa3uqis8wcTjhTb7dj5PKtUDlMYPH+xyWd7wZvZinS1vjLSxkDJNgcGSSENvA/ofAKUeY/uyBYINsJlhMTxynEqU2QVvA4ffyq2eYJG49TOnDrkv4wCN8yjukl9LOQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749603929; c=relaxed/simple;
-	bh=dOkoIKcGlaQosiiCi9rgVkqR/O0cr1xBBo61BLwUxgY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P1oU45R4JqWTrRg37h63/7iVv5hx5KINkeW1PyG2cKxZ+B2uSBgYHfO7CF1hsCNU1YmaJZoVG4Kvam8aborpEquZ8zdZGFbphzWzTOyp753URIqdmnkam8RtwYLI2lJOTGIc6CgVZhBxtGan4f4RQySCtpWds464NLoV424lko8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fUmzr6VA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIPqps030889;
-	Wed, 11 Jun 2025 01:05:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	v+a+SXakBgY50D6h/qPLnwaw5txhUBpHruIFhwWc8qY=; b=fUmzr6VA47VhQnXC
-	EP3/0eJesu+tjlNO0HFMUEUfX4ISm02lnF4TfeuOoHRHMPdQqYijoZgcM9Fi54uU
-	rvqB2XtsapJIdQ+spj/0X+W0JSwXRr5jvpR5GoE8R+8jOLN6hYhqeY791B10LMqo
-	3tFe1huk3AMsIddZ8FkjKapE+G1WC1ObWY8aqPRYtasXy113KTPcF/1SQSgy9OyF
-	u63X/xQUWp/6ce9LCtN8b0Y8oTpyUhQKpB0wLF4yw72uALg8y+xlWCsr5UMQm5ym
-	7u8wMjcwfwVQsnNS6KAqu76yod73kEpjgkBwC5X7+A6rSpIjRV/P3SfIoZSdnkze
-	t3x/yA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 475v2tdw05-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Jun 2025 01:05:23 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55B15LIQ010262
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Jun 2025 01:05:22 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Jun
- 2025 18:05:18 -0700
-Message-ID: <6759e8c9-53a6-42cf-8199-d6836c77445c@quicinc.com>
-Date: Wed, 11 Jun 2025 09:05:16 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3694685;
+	Wed, 11 Jun 2025 01:30:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749605456; cv=fail; b=XaMku2N8TWcMOr/JJ3gKF3xM3AeB+qoq8VZzBIBUTCp3FkqtA80HDBaGTfM9Gozr/tCrm30yX3ZxupJ5BIl4mu84Bmo6c1FrGQuexdUHe4AOu9BrgB9h3Mm/QtE5ymE4WdOErVjJZTkxCUK7R4PeOh8I3vW5sQTDQ+80T3PPOdQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749605456; c=relaxed/simple;
+	bh=Lnugd1v0aAlzBGQQ+8BdsTtU/zYFq223XOn6RlwkeXw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ksZGp5iYg1LuUyGtAMGz83Pg3kCHIRnR71Rna0Xzf0WKHbGsT4rg5rpILVLX69fsIMVSVIzg429VIk6hJ65gD1a0Q87t+SX1a5dfYEIoDZ3btkYo4aO08CUGeeNlPTdVBB300CEl2bG50wierAtBYmQXh70HqHxeI0Jn4nRzRp0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=PT64cYXR; arc=fail smtp.client-ip=40.107.236.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U0svVGVR88wqW0SoeGc+0h5xHs3A1kzxWPLHKucjZQZftSJKKeol71mIwLUQBAzmkhLB+vCiKRh1uGVGcHx9jf97zEkuAARYOxybG3HoUjWrIHYu2DhjdSx4VTszYVKVovLxBSK4P/VHjj/ZeqrrD4k11XEGoZQQmlO4UcxAc/xgLphZQK7nz+wNNqZsGjBKJAmOGQJjKmUq/atzi5UstW/WIG9LjvA+ZMGd+C3+bCCrOfOF8/ohekpWD3lO0mZnIaIoLP1t1w+iS0btgzufwWtRwCuQxkaaFFtb+aCTxNf5GVKb82vBVYWrOym18Gmp+R230iuJ3Qfj9oPm0ztRAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=++/x0W7ekADfWJSr6zLBqZf9TmVR/5WzBIGDff14kTY=;
+ b=aR91WSIwwduwXnlKP+XZdAxdMx9dviCnka/NmnCn8MLQEESR3rxPdqZFoMTEAGUJvwnGFz8YaOtaopEqhFkrZvCDKr81iamMiObrlNyktpnAFvYunERH0Sw2ObgfrcYNyRCGXr0JxIX2OQKjkwy5SVldyLu2YfjhQztZraYUYjRsDuZnaJZxvKxgsJ3+rkk7XfVJlwIAlUVMfNyXtvJ1VFvoFFu5HDVSZ3JlLhSYlCBIRYTgSQEVnElIECHvZB7jiVKj6Wbp7x2wX2VbSDd6ocA4P9P7eaHnUoEMJ2jDVGxfCAE2up3buwTRylhD/awbYHmviHMA5/nVHliOVuruJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=++/x0W7ekADfWJSr6zLBqZf9TmVR/5WzBIGDff14kTY=;
+ b=PT64cYXRqXVVZo/+Wm0xw9yCcpBv8bew1mvkQvkPbz0CYS23LkxETO9VY7tOSUHaK8TTC1e0iRQdY2j/ozWDIrxHA+eb1bWZltP6gumujYsV76DKu4MiNSRIP+9S3RPAKwvfX5dMzrmeYcJyCL6al3nBCaqGTB1oLitzViKPlEeV0g4yuV81hxThJxsuDrfyXJYE/b/z0yOzQi09rIQkEIr/YvpCu1+JAe7SoN+mSNi53eGdOW1zPe1ifkbAlHOIZac6PBGtClYCL4ZiSzp3I6JkkHttZkI/7zAeLyJkC7FgFHL0aOE4Y8z/L6pMwmLW9froS4Qm4pgdZ49zf5H6jw==
+Received: from MN2PR14CA0009.namprd14.prod.outlook.com (2603:10b6:208:23e::14)
+ by SA1PR12MB6702.namprd12.prod.outlook.com (2603:10b6:806:252::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Wed, 11 Jun
+ 2025 01:30:50 +0000
+Received: from BL6PEPF0001AB50.namprd04.prod.outlook.com
+ (2603:10b6:208:23e:cafe::e6) by MN2PR14CA0009.outlook.office365.com
+ (2603:10b6:208:23e::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.35 via Frontend Transport; Wed,
+ 11 Jun 2025 01:30:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BL6PEPF0001AB50.mail.protection.outlook.com (10.167.242.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8835.15 via Frontend Transport; Wed, 11 Jun 2025 01:30:49 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 10 Jun
+ 2025 18:30:28 -0700
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 10 Jun
+ 2025 18:30:28 -0700
+Received: from dondevbox.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Tue, 10 Jun 2025 18:30:28 -0700
+From: Donald Shannon <donalds@nvidia.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+	<etanous@nvidia.com>, Donald Shannon <donalds@nvidia.com>
+Subject: [PATCH v4 1/1] ARM: dts: aspeed: Add device tree for Nvidia's GB200 UT3.0b platform BMC
+Date: Tue, 10 Jun 2025 18:30:24 -0700
+Message-ID: <20250611013025.2898412-1-donalds@nvidia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs615: disable the CTI device of the
- camera block
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Jie Gan
-	<jie.gan@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250527015224.7343-1-jie.gan@oss.qualcomm.com>
- <5fbb515a-c3d0-4bbe-a689-41e730ecd952@oss.qualcomm.com>
- <9a156925-cf7b-4d2e-88a8-fdfed5528553@quicinc.com>
- <1fef810c-47fe-4f6d-95bc-0d72dbd63bf0@oss.qualcomm.com>
- <79f5e42f-f857-4247-abf9-d0f3f5c1a498@quicinc.com>
- <f3f8f446-4f0d-482d-952d-35c80d7d7881@oss.qualcomm.com>
- <405f0432-3f07-45be-8511-06235dcd84d0@oss.qualcomm.com>
- <a63ff3a7-c67b-4251-81f3-ce6cc3a3d068@oss.qualcomm.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <a63ff3a7-c67b-4251-81f3-ce6cc3a3d068@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ivas1hn-Oh8OBIRpnoa1XYVwqQ8lY5Ki
-X-Authority-Analysis: v=2.4 cv=GoxC+l1C c=1 sm=1 tr=0 ts=6848d653 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=P-IC7800AAAA:8
- a=OefDGO8NFz7VKNv-hUoA:9 a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-ORIG-GUID: ivas1hn-Oh8OBIRpnoa1XYVwqQ8lY5Ki
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDAwOCBTYWx0ZWRfX7BjdkqVQz4HV
- JGegskcinglcHH+M0Rfv28+o3qXvhu+j8GpOORbqy0sVEDSbjI1OF3sDd5r0C6S/FVV7VE6LMiF
- OKvf+I8fHMa9E/GphiQ3mWiwOdABHvJjF9IK3B653PZ+X12bRudN3bqVqxm8lVqM/DpzHK5Ka8R
- nfNAA5+R/IcK5D6gJPsatGlufG/AkZidJpNKCDCUn1SnManFqseGdzyla0Ls0PGc4jgVSdR9lEo
- Mx+HooWb3R0kLaQmTUgEUuq1n/e8jmL8leUSHYDpZ/kseiQIrxkUlFq/aNS7UUgwq3iGvRHy+n6
- okCB60p+vLP74EkglY2d+I8qWBppvMRVxwrYbG8STEZHDX61d11BsRErtR1t8LSHTT+hZOwnmrr
- lRvMMaAMzYwezo2SPKB+bJCCaTSKxeN36fNZLGma/acLQMgRWcDcWLZ2qtckuyBd7VHO+V6+
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-10_11,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=956 adultscore=0 impostorscore=0 malwarescore=0 mlxscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506110008
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB50:EE_|SA1PR12MB6702:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8610e73-addc-44db-9c02-08dda887991a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dHgLVNGuGub2wI3T8xBldhk0SGudz/lMeIA4dhpYiH3Ku4C/as8XAyyx8FI0?=
+ =?us-ascii?Q?1KaFetc7Za6Iss3RHVXb67tSZdOrwR37kRzuc9CeyYwDLOvqOYBPeRiIZavY?=
+ =?us-ascii?Q?0mpF1c/AX3mn6knnPe/qZP+Ks4WmlS77p1SEha0llZqBlcnR444HF06SV6IY?=
+ =?us-ascii?Q?O+C8kdRUga87QKHgazwDXiO8QdwhJ/LDjrlmp5ODK3ICKgG4hyD3ZcB4rRZJ?=
+ =?us-ascii?Q?ZyvgGh4e/uDBaV6A10WIu/Ex0BpV7Bgpp/ewaqmr6U9CpicLy3r6Ie0+hghV?=
+ =?us-ascii?Q?818Zi9Wth0uBT+sUBMxfZrMc8kqSwlDq9MPaINTsz5TNDHvuiAX1UGNM9eP1?=
+ =?us-ascii?Q?HMsjwz72SYxpqF9YlyXIeKs9qmz3mFZiLx/4cHLaQBHV/EkCdc4OlOBNwo9d?=
+ =?us-ascii?Q?9lp513WfZP0evUA/ChFKE6Pv821hTKjwAeqKurS245jv0XS/MghdXzFC6qKu?=
+ =?us-ascii?Q?I9IyGWUHvI7GKhyymkYpF+rSsdbFxujWoiwR4ZCTaf6MombvjNz/ZevPJx5x?=
+ =?us-ascii?Q?FOyP/BwDn4gNzZlu08O/aEb/oNCXyBPfilpdQVdnfwaxJReeTqfYtevk19Nm?=
+ =?us-ascii?Q?0GTfh34j6IWtd+r2D3AJI9m6009CqPMzB6dPstp07/b0AbmJB5ekfElhtkFU?=
+ =?us-ascii?Q?1hwuJsM4TSS2FJgDVl1FUenMD+1JR84mVwmQOQeZFF28235SHC6PoDE8v2D0?=
+ =?us-ascii?Q?lF/pL7swsp0G/kIfTM3Nx12hRaSe9x7cJLcB0gEqXS3Kuy6bXEqELlALXCpf?=
+ =?us-ascii?Q?OWcpA5LZ8ELbRPW/p4EXKWzHq5zsI8nY8gB98PNFLmBKRhJQAQDBDlqIqj8P?=
+ =?us-ascii?Q?XZVcGb2OOUu6+8gHi11lJ82R1ZLRjcywaRYw+U7tcuT7KqWCYHvxqe4JhCVj?=
+ =?us-ascii?Q?x0MzCufXjYryluAFmlMmUUb4AwnhQdXoSLQVbzK9fanwmqBrRECBqUxlxUXx?=
+ =?us-ascii?Q?jKIaNARo+G/f4SRoJEK3vkSRTEXzCEjdrntrVV0+Wle5c/PbWgXWtH2Dtlxi?=
+ =?us-ascii?Q?ylsi1gg5DAj8H0zMgS46Edcn3tVa6bp8RA1npuW1cL8gfrNXQz7ZjzuIU/Gn?=
+ =?us-ascii?Q?b8kP+pmvHYOrMtoYGl/RRag61qDMBVIvu667I6J2KP+6AziPDjr0j9xHLdxq?=
+ =?us-ascii?Q?mzEAv32TvyNQS3NWdVWbCoeEQTJmGOxRJ8pR5ntAI6dt2DLcEMA+i1rq/P9h?=
+ =?us-ascii?Q?SEwqaibzBlcaPq079Ugjly1ticXgb6790a5ydxCC0Aqd/5OQcBbqeLpi/n4O?=
+ =?us-ascii?Q?4TFrjAqBYilvY2LviAPP0MbAieFBkZrgRwuhYA+uYytCvmkH6cYqRTmU3zbK?=
+ =?us-ascii?Q?NAPlqOAdHLa6tSemZjOptHI9NWT2LvhP4GTM4dO9gSYq+iBIirXpC+EzaQak?=
+ =?us-ascii?Q?Jscnryz+/Lmi12MBOdmd3dN0Wxms7qYL2NWaIJUBAGTrL+0SW/YqdyGYwxnj?=
+ =?us-ascii?Q?zweszvpXExcNsDK+7vtQrG1rv/qnhbRnrlA6y0O2gb9Y+WTl6RhXAlv6WEJv?=
+ =?us-ascii?Q?nIKggqZULp4c541XFQQIa/oBiv/jkQ8ret/o?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 01:30:49.7144
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8610e73-addc-44db-9c02-08dda887991a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB50.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6702
+
+The GB200NVL UT3.0b BMC is an Aspeed Ast2600 based BMC
+for Nvidia Blackwell GB200NVL platform.
+Reference to Ast2600 SOC [1].
+Reference to Blackwell GB200NVL Platform [2].
+
+Link: https://www.aspeedtech.com/server_ast2600/ [1]
+Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
+
+Signed-off-by: Donald Shannon <donalds@nvidia.com>
+---
+Changes v1 -> v2:
+  - Changed phy-mode to rgmii-id [Lunn]
+  - Removed redundant max-speed for mac0 [Lunn]
+  - Fixed typo from gb200nvl to gb200 in Makefile
+Changes v2 -> v3:
+  - Fixed whitespace issues [Krzysztof]
+  - Fixed schema validation issues from my end ( there are still issues with the aspeed dtsi file that are not related to this new dts) [Herring]
+  - Reordered to follow style guide [Krzysztof]
+  - Removed redundant status okays
+  - Changed vcc to vdd for the power gating on the gpio expanders
+Changes v3 -> v4:
+  - Added changelog [Krzysztof]
+  - Added nvidia,gb200-ut30b board binding [Krzysztof]
+  - Removed unused imports
+  - Reordered a couple other style guide violations
+  - Added back in a couple needed "status okay"s
+---
+
+Donald Shannon (1):
+  ARM: dts: aspeed: Add device tree for Nvidia's GB200 UT3.0b platform
+    BMC
+
+ .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1154 +++++++++++++++++
+ 3 files changed, 1156 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
 
 
-
-On 6/10/2025 9:24 PM, Konrad Dybcio wrote:
-> On 6/3/25 5:17 AM, Jie Gan wrote:
->>
->>
->> On 5/31/2025 7:05 AM, Konrad Dybcio wrote:
->>> On 5/28/25 5:02 AM, Jie Gan wrote:
->>>>
->>>>
->>>> On 5/27/2025 6:41 PM, Konrad Dybcio wrote:
->>>>> On 5/27/25 12:32 PM, Jie Gan wrote:
->>>>>>
->>>>>>
->>>>>> On 5/27/2025 6:23 PM, Konrad Dybcio wrote:
->>>>>>> On 5/27/25 3:52 AM, Jie Gan wrote:
->>>>>>>> Disable the CTI device of the camera block to prevent potential NoC errors
->>>>>>>> during AMBA bus device matching.
->>>>>>>>
->>>>>>>> The clocks for the Qualcomm Debug Subsystem (QDSS) are managed by aoss_qmp
->>>>>>>> through a mailbox. However, the camera block resides outside the AP domain,
->>>>>>>> meaning its QDSS clock cannot be controlled via aoss_qmp.
->>>>>>>
->>>>>>> Which clock drives it then?
->>>>>>
->>>>>> It's qcom,aoss-qmp.
->>>>>>
->>>>>> clk_prepare->qmp_qdss_clk_prepare
->>>>>> https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/soc/qcom/qcom_aoss.c#L280
->>>>>
->>>>> I'm confused about this part:
->>>>>
->>>>>> However, the camera block resides outside the AP domain,
->>>>>> meaning its QDSS clock cannot be controlled via aoss_qmp.
->>>>>
->>>>> Do we need to poke the QMP of another DRV?
->>>>
->>>> The AOSS has a clock control register for all QDSS clocks. when we vote the qdss clock, the aoss_qmp driver will send a message to AOSS to enable the clock control register, then the clock control register will enable all QDSS clocks.
->>>>
->>>> The QDSS clock is not a single clock source, it is a term that representing all the clock sources utilized by the QDSS.
->>>
->>> What I'm trying to ask is, is there any way we could enable that
->>> clock from Linux? Can the camera hw turn these on? Maybe we could
->>> trick it into enabling them?
->>
->> There is a power issue if we keep the debug clock on with a long time.
->>
->> We had a discussion with AOP to check if possible to add the debug clock of titan to the QDSS clock list, but they need time to evaluate it.
-> 
-> Changing the firmware is a band-aid solution, as the update will never
-> reach millions of devices on the market. I'm curious in whether there's
-> any way (or os-accessible debug register) to manage the necessary clocks
-> from Linux, as a workaround.
-> 
->>  From Coresight view, what we can do by now is disable it in DT to prevent the unexpected NoC error.
-> 
-> How about something like this:
-
-Thanks for the suggestion. It makes sense for me and much better than 
-current version.
-
-I will send a new version to fix it.
-
-Thanks,
-Jie
-
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index bb8b6c3ebd03..fc2ab750f2cd 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -2461,6 +2461,9 @@ cti@6c13000 {
->   
->                          clocks = <&aoss_qmp>;
->                          clock-names = "apb_pclk";
-> +
-> +                       /* Not all required clocks can be enabled from the OS */
-> +                       status = "fail";
->                  };
->   
->                  cti@6c20000 {
-> 
-> Konrad
+base-commit: 460178e842c7a1e48a06df684c66eb5fd630bcf7
+-- 
+2.43.0
 
 
