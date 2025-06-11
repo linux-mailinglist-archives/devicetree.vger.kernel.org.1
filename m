@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36928AD4C3E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:01:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26334AD4C3F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:03:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A93B17D22C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:01:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9556189AF1C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CBB28FD;
-	Wed, 11 Jun 2025 07:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202071FBEB9;
+	Wed, 11 Jun 2025 07:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2bBnzXL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeBSzHg8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2AD034CF5
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF36D28FD
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749625307; cv=none; b=nQkKoC4snOV70MnmvG2GKIN79UZyHflz1IdWj0gukouQLRRNx9w0q9sD+ui2rjVIfLIB2gB1LNBqQoBihF1VpJhctXVLZIVfCd/t6XpUw7nO8U+O4aSiSpyPPUU/68adulTi4P9nsZRi8H8xO1pT/9UAtfWt3yxllQSHAvLtZLw=
+	t=1749625376; cv=none; b=aeVV8/h5d9orXLgNskxejxtgWQVpthYYr+OuDHgH5D0ERG3fpzLXqLsHnCITXftA6f8MIqbNyqpqv+IZNalnYJskBaKa46np8UlFxopF7L/DRAzr7qtKkOu6YG+Bje7m8unSfAP65kWintpdloYI16TlbF5POLXompXT9bf9+Ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749625307; c=relaxed/simple;
-	bh=up9sWsSUUNEkid2W7UagnT9Pyb6UByHDjEDRvyNXTRA=;
+	s=arc-20240116; t=1749625376; c=relaxed/simple;
+	bh=V3z9VvXjvOJb7kyILBvQXH3M2JliAZyzzDjv3tmt7R4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SgYQvG3STxEchbKvbRwdlMONesI8BLAAZ8OzsBG30lYoMJk0euiPL38j8thv4KV2kyclLMjEv+Y81h8o0wrCOs4ysxoPkx49gVhscOdK+xyZ0CAyeShlSx6agX9KVuYlAgZfnyFKMF3tgbPUUeVmOXoTvH8GRVQVyETaK/B5wZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2bBnzXL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A29C4CEEE;
-	Wed, 11 Jun 2025 07:01:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=k5MpES21pOLGehALz7u1fgky7csOsJOYVcBUO6XJQIIMS9UkeQ4oy6fAlMYi74WC11Fhk3Zm52quUsLXXFWZ8sMsl3KgIj0hYXqdC4iQ+oLICZ95OdMFq7luFse2VrQpMJPE74XeRlWh5I/+/ZfvVR+YUVsBfA76Cvi4r/vGvYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeBSzHg8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D9BC4CEEE;
+	Wed, 11 Jun 2025 07:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749625307;
-	bh=up9sWsSUUNEkid2W7UagnT9Pyb6UByHDjEDRvyNXTRA=;
+	s=k20201202; t=1749625374;
+	bh=V3z9VvXjvOJb7kyILBvQXH3M2JliAZyzzDjv3tmt7R4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J2bBnzXLZvMAjymeeQSVDAsjz4wVkldMjLdPDNAj611DPl36wbWf2q1mtEuaBq7wP
-	 oR0J0qwGLxgifsrLt1KnNlzzK+cCQlbIRKBZFH3EsLXLNQFt28miYTKccQlp6ihf2t
-	 DyinlCZXFIE66Uj0q1llQpwqrp8ohjfIcvIuMofNDALjqDoMVcCUnG2r7EYhEROcRK
-	 f4m95cjj2sHdjQr/w9K8q7PJcLeI4bpzWr5lzzFyiQZuAwQQDw8fzeJC6r2X/7hACC
-	 7HD+Ux0Rn6gnXh7QyP7d2DrVnd89FGWeZPHHcAokIy66GcsRxnCVv4PsWvte7EtVD8
-	 ACTkG8EmLfamw==
-Message-ID: <e3ea89a3-b457-429b-acce-4450e876d8b0@kernel.org>
-Date: Wed, 11 Jun 2025 09:01:44 +0200
+	b=aeBSzHg8UmxmP6gboL6gX7HCVAL7EV4vHjmFoxm38AX83visDX9JtTibKgY55M29b
+	 I31GHwg1l8ZtaE3qHf2hN/qv1rTcks4uMY2ZP8YP7LoKZTvz/iWrFEZs6ngxYDJ1ge
+	 K8TLpjhSF3uCPm1PjzCQayGspgN1KIBG+DaFpoh29ky8iL037HZF+WmhNxFxqgp3iv
+	 YOtV1PWUyLxLGEG/AxHAfqVH95MSfUVtrk6Wp7vr3CJelazqy7lyyO/ZEdGF2URxaN
+	 GKKy0da12PxkObots6Jm1p9udTcZX75NHuk07Y9DZwGnwBYjt+SNKqJeoxpr69I/Fo
+	 KjMW7mLu0Np7g==
+Message-ID: <3bca33d3-d34d-4d57-abaf-c4f2f15010bf@kernel.org>
+Date: Wed, 11 Jun 2025 09:02:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to
+Subject: Re: [PATCH v4] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to
  YAML
 To: Shankari Anand <shankari.ak0208@gmail.com>, devicetree@vger.kernel.org
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  skhan@linuxfoundation.org
 References: <174954801086.147754.9306389006765920749.robh@kernel.org>
- <20250610150955.392612-1-shankari.ak0208@gmail.com>
+ <20250610151105.393011-1-shankari.ak0208@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,25 +102,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250610150955.392612-1-shankari.ak0208@gmail.com>
+In-Reply-To: <20250610151105.393011-1-shankari.ak0208@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/06/2025 17:09, Shankari Anand wrote:
+On 10/06/2025 17:11, Shankari Anand wrote:
 > Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
 > .txt format to a YAML schema.
 > 
 > Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
 > ---
 >  .../arm/altera/socfpga-sdram-edac.txt         | 15 ----
->  .../arm/altera/socfpga-sdram-edac.yaml        | 76 +++++++++++++++++++
+>  .../arm/altera/socfpga-sdram-edac.yaml        | 79 +++++++++++++++++++
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
+Nothing improved about location. Also entire example is corrupted now.
 
-Also nothing previously was tested... We are not a testing service.
-
+Can you slow down? One patch per day, learn from the mistakes and
+reports, test before sending and then double check your patch before
+sending.
 
 Best regards,
 Krzysztof
