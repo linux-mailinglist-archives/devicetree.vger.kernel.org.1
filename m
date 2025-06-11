@@ -1,213 +1,133 @@
-Return-Path: <devicetree+bounces-184913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9166BAD5A8E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:33:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C890AD5A71
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:29:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ACF01BC4B62
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:25:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6C8516B1D5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5415B1ADFFB;
-	Wed, 11 Jun 2025 15:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287F01C4609;
+	Wed, 11 Jun 2025 15:28:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="opoaqt25"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kaybggE1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275011632D7;
-	Wed, 11 Jun 2025 15:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654E21A317A;
+	Wed, 11 Jun 2025 15:28:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749655521; cv=none; b=nLQL+ry1mp5cGkTHdUzH0KEl40mf5k6LCpFQGlJ5fvWL+QR7rIXT42d030dYuWobElDsPfDRKsFIYnL7oEQblOjf67o6/dcOSRSHlPJRMjuNWdJXGVl3CwEwWlL8LesP3oOPWT6WrBy2vmot41lK5CP2d3RCHMMCWNASA7MNaWg=
+	t=1749655734; cv=none; b=klIVhlKAvEUn+U7smuJ4y+kfmceOpfxluSFhvIzE0kSMIiejbz+/MqtdkmVZ4D8aUwU9b+tb/Qg0V4375nncDvq8j1l0f7tIZEngjRql+OBDIDWc4ldDGLPlZ6mntQMwvT/cqD76bVsuxsAjdo8jz8Mfn0ieoK0x2Fn43IRPaMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749655521; c=relaxed/simple;
-	bh=IzxKk/Q/rHFtELufmehQFw1qSKOWCXL50Kire+AoROo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VhG1CUjj2aRmTmGIFlRQjkv7V10MOm+EWxFCjgr8bm3F2UW4d3FyopAQYfueDtEnN5li1tPGsrM4ctGEw3TxsGCQESh/LbYTRGkWatZtr8pceNQ0Np4iiqIz2lwVCeBn6R6EERZsbKk9Tw7v1UMj8xyGDnyokuOVjDBoQtqIdfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=opoaqt25; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82BDAC4CEEA;
-	Wed, 11 Jun 2025 15:25:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749655520;
-	bh=IzxKk/Q/rHFtELufmehQFw1qSKOWCXL50Kire+AoROo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=opoaqt25Ud+nc8M0XmqGGcIvv2RL49TLbsut/GXV3oPsfG7msmMgEHqCc5VMDsDXL
-	 662GVyR78xUmiupTlAah11eTbOlaY3Q3Ax5Nl2PAxAY2ntybsJet/ry/Q4RFkQ72x3
-	 u/AaUSSbE2Nm/PStE9kwj+7b9VtfqrOVq9gRKoTpXjV9LQLUlUgXkJmMDAceABq7D0
-	 SVZayDKYZu39mwY1z7c8nz07mS5Zc9p7d7JTSFU3jHD3/XojW+sdN9untcgSkMzSjH
-	 z/MSmG6NDF7kaJoiWhJqXm+rHB2AJTtJY7eiqomWnmteoChyMImjteUxA98fWQN1A4
-	 XRgZ4QYXvGyKA==
-Date: Wed, 11 Jun 2025 16:25:07 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Ioan-daniel, Pop" <Pop.Ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael"
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, "Sa,
- Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>,
- "Bogdan, Dragos" <Dragos.Bogdan@analog.com>, "Miclaus, Antoniu"
- <Antoniu.Miclaus@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, adureghello <adureghello@baylibre.com>,
- Guillaume Stols <gstols@baylibre.com>, Tobias Sperling
- <tobias.sperling@softing.com>, "Schmitt, Marcelo"
- <Marcelo.Schmitt@analog.com>, Trevor Gamblin <tgamblin@baylibre.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>, "Nechita, Ramona"
- <Ramona.Nechita@analog.com>, Herve Codina <herve.codina@bootlin.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>, =?UTF-8?B?Sm/Do28=?=
- Paulo =?UTF-8?B?R29uw6dhbHZlcw==?= <joao.goncalves@toradex.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] iio: adc: ad7405: add ad7405 driver
-Message-ID: <20250611162507.6868c8c6@jic23-huawei>
-In-Reply-To: <PH0PR03MB63351F2AA87604CC10BB6EC8D16AA@PH0PR03MB6335.namprd03.prod.outlook.com>
-References: <20250605150948.3091827-1-pop.ioan-daniel@analog.com>
-	<20250605150948.3091827-6-pop.ioan-daniel@analog.com>
-	<20250607164428.7a245af5@jic23-huawei>
-	<PH0PR03MB63351F2AA87604CC10BB6EC8D16AA@PH0PR03MB6335.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1749655734; c=relaxed/simple;
+	bh=yuwScAGctOlp0niszogMAEbB0PR4iR2+jwikJypvgQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lgkM2xZRC1BFFEc7hcRQCQ5WlVrxZl2PJ9JMMrAES+ZtT32rsZs6jVNBXqk0Lbkz6CBSqt9TRY0ELVjEzB+Zf4VxKVDq+qN0RDb89Ca5ZcboXu6wTSdpbspmMOENxa21Yj/c8Giz2rUIQyjizxHz+cm9+PFnB1dovykZUELg8kA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kaybggE1; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=rB+IDZViBhVUmd7CnVGvTKDAaSMJSZkOj3zCM83yO+U=; b=kaybggE1EO6H0Z389UOZ+tStbq
+	2UtSf9qU8IoOILCqXrCu9SAJhVQyoLF00FMti6ytyuc/eb/cYpAQb9FRD7waT17+dRCUvPAMgWL+X
+	+ZVYU/svnOkPeEAjgIydHI+63a75FP7x3wEVQMajs80ftMv5hMbvXkz6BBR4elABmPEw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uPNNX-00FPyB-66; Wed, 11 Jun 2025 17:28:39 +0200
+Date: Wed, 11 Jun 2025 17:28:39 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
+ informative text about RGMII delays
+Message-ID: <f82a86d3-6e06-4f24-beb5-68231383e635@lunn.ch>
+References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
+ <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
+ <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
+ <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
+ <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
+ <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
+ <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
+ <9ebe16a8d33e00c39c142748a1ea6fff96b9565a.camel@icenowy.me>
+ <aElArNHIwm1--GUn@shell.armlinux.org.uk>
+ <fc7ad44b922ec931e935adb96dcc33b89e9293b0.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fc7ad44b922ec931e935adb96dcc33b89e9293b0.camel@icenowy.me>
 
-On Tue, 10 Jun 2025 12:09:22 +0000
-"Ioan-daniel, Pop" <Pop.Ioan-daniel@analog.com> wrote:
+> Well in fact I have an additional question: when the MAC has any extra
+> [tr]x-internal-delay-ps property, what's the threshold of MAC
+> triggering patching phy mode? (The property might be only used for a
+> slight a few hundred ps delay for tweak instead of the full 2ns one)
 
+Maybe you should read the text.
+
+The text says:
+
+  In the MAC node, the Device Tree properties 'rx-internal-delay-ps'
+  and 'tx-internal-delay-ps' should be used to indicate fine tuning
+  performed by the MAC. The values expected here are small. A value of
+  2000ps, i.e 2ns, and a phy-mode of 'rgmii' will not be accepted by
+  Reviewers.
+
+So a few hundred ps delay is fine. The MAC is not providing the 2ns
+delay, the PHY needs to do that, so you don't mask the value.
+
+> > > Well I can't find the reason of phy-mode being so designed except
+> > > for
+> > > leaky abstraction from phylib.
 > > 
-> > Why do we need this .channel element if all instances use the same one?  If you
-> > are are shortly going to add support for more devices where this will change
-> > then this is ok.  If not, just have one static const channel and use that without
-> > looking it up via these chip_info structures.
-> >  
+> > I have no idea what that sentence means, sorry.
 > 
-> Hi! I'm not aware of any other parts that use different channel types. It's true that all parts use the same .channel.
-> Should I submit a new patch version with the requested change?
+> Well, I mean the existence of rgmii-* modes is coupled with the
+> internal of phylib, did I get it right?
 
-No need - it's an easy tweak (hopefully).  I fixed up the owner thing Nuno noticed
-and applied this diff whilst picking this up.
+This is the external API of phylib, it has nothing to do with the
+internals of phylib.
 
+/**
+ * phy_attach - attach a network device to a particular PHY device
+ * @dev: network device to attach
+ * @bus_id: Bus ID of PHY device to attach
+ * @interface: PHY device's interface
+ *
+ * Description: Same as phy_attach_direct() except that a PHY bus_id
+ *     string is passed instead of a pointer to a struct phy_device.
+ */
+struct phy_device *phy_attach(struct net_device *dev, const char *bus_id,
+			      phy_interface_t interface)
 
-diff --git a/drivers/iio/adc/ad7405.c b/drivers/iio/adc/ad7405.c
-index 487d661f9050..9adf85a732ce 100644
---- a/drivers/iio/adc/ad7405.c
-+++ b/drivers/iio/adc/ad7405.c
-@@ -25,7 +25,6 @@ static const unsigned int ad7405_dec_rates_range[] = {
- 
- struct ad7405_chip_info {
-        const char *name;
--       struct iio_chan_spec channel;
-        const unsigned int full_scale_mv;
- };
- 
-@@ -69,7 +68,7 @@ static int ad7405_read_raw(struct iio_dev *indio_dev,
-        switch (info) {
-        case IIO_CHAN_INFO_SCALE:
-                *val = st->info->full_scale_mv;
--               *val2 = st->info->channel.scan_type.realbits - 1;
-+               *val2 = indio_dev->channels[0].scan_type.realbits - 1;
-                return IIO_VAL_FRACTIONAL_LOG2;
-        case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-                *val = st->dec_rate;
-@@ -78,7 +77,7 @@ static int ad7405_read_raw(struct iio_dev *indio_dev,
-                *val = DIV_ROUND_CLOSEST_ULL(st->ref_frequency, st->dec_rate);
-                return IIO_VAL_INT;
-        case IIO_CHAN_INFO_OFFSET:
--               *val = -(1 << (st->info->channel.scan_type.realbits - 1));
-+               *val = -(1 << (indio_dev->channels[0].scan_type.realbits - 1));
-                return IIO_VAL_INT;
-        default:
-                return -EINVAL;
-@@ -120,48 +119,44 @@ static const struct iio_info ad7405_iio_info = {
-        .read_avail = &ad7405_read_avail,
- };
- 
--#define AD7405_IIO_CHANNEL {                                   \
--       .type = IIO_VOLTAGE,                                    \
--       .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |  \
--                       BIT(IIO_CHAN_INFO_OFFSET),              \
--       .info_mask_shared_by_all = IIO_CHAN_INFO_SAMP_FREQ |    \
--                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
--       .info_mask_shared_by_all_available =                    \
--                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
--       .indexed = 1,                                           \
--       .channel = 0,                                           \
--       .channel2 = 1,                                          \
--       .differential = 1,                                      \
--       .scan_index = 0,                                        \
--       .scan_type = {                                          \
--               .sign = 'u',                                    \
--               .realbits = 16,                                 \
--               .storagebits = 16,                              \
--       },                                                      \
--}
-+static const struct iio_chan_spec ad7405_channel = {
-+       .type = IIO_VOLTAGE,
-+       .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |
-+                       BIT(IIO_CHAN_INFO_OFFSET),
-+       .info_mask_shared_by_all = IIO_CHAN_INFO_SAMP_FREQ |
-+                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+       .info_mask_shared_by_all_available =
-+                       BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+       .indexed = 1,
-+       .channel = 0,
-+       .channel2 = 1,
-+       .differential = 1,
-+       .scan_index = 0,
-+       .scan_type = {
-+               .sign = 'u',
-+               .realbits = 16,
-+               .storagebits = 16,
-+       },
-+};
- 
- static const struct ad7405_chip_info ad7405_chip_info = {
-        .name = "ad7405",
-        .full_scale_mv = 320,
--       .channel = AD7405_IIO_CHANNEL,
- };
- 
- static const struct ad7405_chip_info adum7701_chip_info = {
-        .name = "adum7701",
-        .full_scale_mv = 320,
--       .channel = AD7405_IIO_CHANNEL,
- };
- 
- static const struct ad7405_chip_info adum7702_chip_info = {
-        .name = "adum7702",
-        .full_scale_mv = 64,
--       .channel = AD7405_IIO_CHANNEL,
- };
- 
- static const struct ad7405_chip_info adum7703_chip_info = {
-        .name = "adum7703",
-        .full_scale_mv = 320,
--       .channel = AD7405_IIO_CHANNEL,
- };
- 
- static const char * const ad7405_power_supplies[] = {
-@@ -200,7 +195,7 @@ static int ad7405_probe(struct platform_device *pdev)
-                return -EINVAL;
- 
-        indio_dev->name = st->info->name;
--       indio_dev->channels = &st->info->channel;
-+       indio_dev->channels = &ad7405_channel;
-        indio_dev->num_channels = 1;
-        indio_dev->info = &ad7405_iio_info;
- 
-Let me know if I messed it up.  Pushed out as testing for now.
+interface tells the PHY how it should configure its interface.
 
-Thanks,
+If you follow the guidelines, the PHY adds the delay if needed, you
+get interface == phy-mode. However, interface and phy-mode are
+different things. phy-mode describes the hardware, the PCB. interface
+tells the PHY what to do. There are legitimate cases where
+interface != phy-mode.
 
-Jonathan
+	Andrew
 
