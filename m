@@ -1,102 +1,92 @@
-Return-Path: <devicetree+bounces-184971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6444AD5D6D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:48:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B79CAD5D82
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:52:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B8BD175DC0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:48:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E801D188A738
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D8B225787;
-	Wed, 11 Jun 2025 17:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BE122253E0;
+	Wed, 11 Jun 2025 17:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IuTbjOnU"
+	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="WkGh9g68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A93152253E0;
-	Wed, 11 Jun 2025 17:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE191CF7AF
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 17:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749664118; cv=none; b=fyVfmSvy8zW54GG7EQKYkpbbX83jxnIwkYWB/hfzXrbFT/gAxdbrNy2aJzNfhLnV0Czm+KmqY5jhG6xr8RexwFNGqnU3lJZLOa4uKy4NSrdASSaYQxJMtrHQUH93DOrvV/UxBZgRMKUW496lUFOactZtndA9+zXHqPiyfN5bZ8Q=
+	t=1749664360; cv=none; b=ABnpqra+ADVJu9gEMoSZ6xR3SPApiN+nMVD9G2263/TsSayW+CihNykarfeQC5yaaHQ/ki+k+9mR1IXUZduq55w19uvU8FMv/IifrwpowSkg1xIL24gPi43gZKprrxZYYZOuw9sjlx19V6ETPHy6hAeNUcXpp9qVEW7rWvcnPAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749664118; c=relaxed/simple;
-	bh=PpvQih8tMJUPnoS+0lHOgNjam/wL5Ni1Nop7KyDY858=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VYRp9t0sY805FNfkVTqOcWSRcPWpEQeIRg09FBiwWiNkAaMiLXdYib7l5yQ66OVrClNlidhHlPj7mcFkTpVcNFgLqVu4w7ljEUPfafL7fuv5Y+EZCFikeSU3dF+xddDV1TAFP7XJ/O3S0sc2UBi34veZ1lXQt3jbGoRy80Zxbgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IuTbjOnU; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e73e9e18556so115760276.0;
-        Wed, 11 Jun 2025 10:48:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749664115; x=1750268915; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PpvQih8tMJUPnoS+0lHOgNjam/wL5Ni1Nop7KyDY858=;
-        b=IuTbjOnU2KYoQboUXU9n9vdfLhkduOlLOG2tzGVaDOSUc2iPKB+/GWWUBpElSqG3g+
-         pNS8nexW48RBfqsXI8xdLkkD5Mq7pSmvu3ubxI4QQzUXKDnRK9sMH+7kTVBnsCZEaKaq
-         QJ3x+sMBL25nd1dHtihxedYDf7Gx8xujaxYNG5Bjm8v0dQfEsrLIttcxnueQRzI0OIcN
-         JsUUKpUjISG8uTvHaka/Gns8IyaHfgzi9y/lKnQ4UhZtYRmquyYHrSRygjDIJjQKHJ1y
-         qAY6fBQIe5k0BjuHGtD/yzs3vFDEyy0b6LGETlV949mQwO+uyQ8l+pQbxYXxzp3XU3b3
-         +M4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749664115; x=1750268915;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PpvQih8tMJUPnoS+0lHOgNjam/wL5Ni1Nop7KyDY858=;
-        b=el6NgghyQRGHvrOY44P0UBbYwfTyH0Qi8vb/gUvBsWvBl8enm6Btow8eN7uen2I1Yc
-         BUNUiVmjPji7zt5/l2XGlFGBpuym9vBhDMGdGyyvxsB7I7fPKLljcEWgnZXeHYQ4n0B7
-         6RmNh2K2gkzCHGWu57XqX6z2A4w4u79evBRwtjrd277kJRu/fjBzPjkSZbYDfBtdHBvi
-         rxVog2Z8coMowUvWxPTzhe0eSlP9/L6IyBcSOwMhvMTwARkBeiFVGHHI5zJSdHtsRN8A
-         mG3kfQF3xoHuIetXuqIN3zNZ842A23rMGFeiOGBED6Q2xisO2pA6eZNxmJJqkmkjpvWh
-         wvaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1D2berBsLff59evX++HhZpHtGISAwWPHgiAgf13FS+6ofYLKcr5f+exaqW/Z17HZ/gwtTiH5h9Pjm@vger.kernel.org, AJvYcCWye3xVl+qy7Kv5BnzRxjcewkgBvuE0xv0VoHXX6hs51WfV9GwijqhjneBjMZDZEH4im5xhuQVRPzmlSRJs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5XXJx3SZ1vyGzK5C07StLrQZlEZlsyskY8MQGgxyUjBKQE4KI
-	iOEHkEFg9thQ9UD6bOyHDugRFFChKYNE4RZMwsXZil3yeCfckUPp89KOOYGi+3Os6JR3XcE8jaY
-	1u4MpmrrVuSyy6OMooyazt8fD5K9HCBI=
-X-Gm-Gg: ASbGncte+ilcLg0d4G6W4tu8NfaB8WUOYWnM2fX6OcVoGoNabCNTRx9zUl7JSNGBST7
-	R9AwvHZevCLhfc4HYgrEhpXvFJ2m/DeRIEokwFEDeZI+4DmjBsLPs9VCM1H1/8TeU07SNdlsfmX
-	VWTJstSKNoTsxcUAbNKjgMD9pJUnZgFhJaoS8mf8mNlSLT
-X-Google-Smtp-Source: AGHT+IH9DABL4wlDn/GdD9XoHB+8QanMkWBj0pjVvFYJ/W1MuhG7BWxLo4YCnNzNiDDh2Shj91H32KBlXFkEPsp6D3I=
-X-Received: by 2002:a05:6902:2501:b0:e81:7e20:d737 with SMTP id
- 3f1490d57ef6-e820baf7827mr480844276.18.1749664115677; Wed, 11 Jun 2025
- 10:48:35 -0700 (PDT)
+	s=arc-20240116; t=1749664360; c=relaxed/simple;
+	bh=v3gfeWhWlgNnRcklEzn20GE/Y5B0cBsP/hP0KM4rXYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GAKL72Lolu3iz4RDEiJrkusA4V4n6VIBLtdZBcItgcpe9KLBWy9D5yzdUwtg5L9Xj2GRsW+GyCTik01ECHHfpd0xbiLWQqraSTttP0MDqQt4zciXxpzxcfBm6ixZ8y8VOks7wN8SNvhAj6z5pZ/qmRWmdvicEViZn1AnnLFDsIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=WkGh9g68; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
+Date: Wed, 11 Jun 2025 13:52:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
+	s=key1; t=1749664344;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4xFAvj2G5VnN2oADUrjOMQLWSOzD8+mWMWxdA4/gXps=;
+	b=WkGh9g68gWOHLnoNJXve7+hzhqKiQAdR0Rj2NXjDUlGVWZX161sjbqguO+g/sxHPJ0Hpq+
+	KLWaJQh0bx6ndqXMpvcQP/Y3tnZVGEU7ZheePnFoegfMFq5p2wn/CraG//QBRUH032nazx
+	HTPz8t4b+NrczcM3aEMNBf8xZeAaVnxIioyk+5t9SolpoofK9fGl/v4RJIFSe/+Y4FSz/S
+	xCJ7tetaSPzQk7U4usSIJCroH6cbYALUSXstGLeSR+/Fk4t3usc3vWWZRoHdfMjy19Od98
+	jql7hgU2r+FswNQ0YiQY7H7YD4ArtkVbBjV1RA2krIu5r0TsjfqMsKByaXa+GQ==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To: fnkl.kernel@gmail.com
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: Add Apple SoC GPU
+Message-ID: <aEnCUycX_x1zNN1D@blossom>
+References: <20250611-sgx-dt-v1-0-7a11f3885c60@gmail.com>
+ <20250611-sgx-dt-v1-1-7a11f3885c60@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611-sgx-dt-v1-0-7a11f3885c60@gmail.com> <aEm_7NECSykMX5cs@blossom>
-In-Reply-To: <aEm_7NECSykMX5cs@blossom>
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date: Wed, 11 Jun 2025 19:48:24 +0200
-X-Gm-Features: AX0GCFsfxtx0nWUUwofAcCujP5Iz-6oqoAbr15qgAOq6KTl9zDhKhhwtvESKTto
-Message-ID: <CAMT+MTQ=oxfdq+tqjxLXqDUPEAHzLtJe1qy1vDBf_SA6wQ+tkA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Bindings and DTS for Apple SoC GPUs
-To: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250611-sgx-dt-v1-1-7a11f3885c60@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, 11 Jun 2025 at 19:42, Alyssa Rosenzweig <alyssa@rosenzweig.io> wrote:
->
-> It would be good to include links to the kernel + m1n1 branches that
-> support this binding, since it's not what downstream ships.
+> +      - description: Driver-opaque calibration blob
+> +      - description: Calibration blob
+...
+> +      - const: hw-cal-a
+> +      - const: hw-cal-b
 
-Right, will add to cover message on v2.
-Kernel: https://github.com/WhatAmISupposedToPutHere/linux/tree/starlight
-m1n1 (the bootloader):
-https://github.com/WhatAmISupposedToPutHere/m1n1/tree/bootloader-cal-blobs
+For me these descriptions raise more questions than what they're meant
+to describe... Maybe "First hardware calibration blob" and "Second
+hardware calibration blob" or something. I don't fully get why A is
+opaque and B is not, I don't think there's really such a distinction in
+reality.
+
+> +    description:
+> +      MacOS version the current firmware is paired with, used to pick
+
+macOS
 
