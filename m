@@ -1,198 +1,120 @@
-Return-Path: <devicetree+bounces-184554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB110AD4938
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 468F0AD493E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:15:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13054165F53
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:10:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 595CA1799D7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 03:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079642253F3;
-	Wed, 11 Jun 2025 03:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA376BFCE;
+	Wed, 11 Jun 2025 03:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="EJ24A5lP"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="ud1rhdty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62ACA15B54C
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 03:10:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4540C382;
+	Wed, 11 Jun 2025 03:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749611444; cv=none; b=qbP3d/af1mnlUU7vV5dwWNpRlIZWts0ikEdbMPe2rTmjWqFc3OJXI6o9I0Nbib45ihp6vij0dfdGViSCKATmMExDQapTmOQkvLJju3CzipWVQktjUEq1V0IPmNanoRgYFctzu1ScVtzSjqHKV/IsLM0/0jkM++z0mewtccxljmc=
+	t=1749611719; cv=none; b=UuVNgOilyuKoYR1SoeX0ELx9BrmlZmkbf75rBIz02ahaQti9NoTXdiolR3hCc6Zii1l7MzEPG1X7LMz/BLOKLJXX6Qk5gCavA3WqzHyEhU3E/JMz7DUoaaLscesRWqE0/b08tpdXmt7YAQnHHZPvQ6ZGo8jnM95tO15NfArJVUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749611444; c=relaxed/simple;
-	bh=cQCoqGfVXgfH6RP6u627QjM4iBrGZCHy/CEOkuwAHpY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=qVN461xsOhWR2s4XVjSsw51Rs70grIb0acTvLQSjC5ph9owkYNUbM6hA9t6ln7UCF9j5RTiSgKfggJG11gURENYz5dpWvGnh0PMM5JFiM8LW8rwOzxsz8O+0W0fqOfgMWDWDQ3yx8wUaBlbm3K47ynllqFCRk+/5J/i4OlzqE+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=EJ24A5lP; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-235e1d710d8so76041535ad.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 20:10:43 -0700 (PDT)
+	s=arc-20240116; t=1749611719; c=relaxed/simple;
+	bh=DVA5qFswk6iXJ/N1plbE7chdHkrDmca4dgefxI9a7qM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pnvAVpRvcH9eOEsCp2s4X2tJMxnnAOxR678CNKMNUiG7Gqiohsj9IQG8ipFLBYBsAtNLv5sUkXzX20j93WqQqZynno86iLUwWADKoTW5lmiir0n7Xvu96bIF40XFnvCWzFjqQDWMxnEq7UhZG+s3wHskHv72z99rtJLfS1yR3po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=ud1rhdty; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 4D1EC3D875C7;
+	Tue, 10 Jun 2025 23:15:09 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id atB_blumOGNh; Tue, 10 Jun 2025 23:15:08 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id DB55D3D8760A;
+	Tue, 10 Jun 2025 23:15:07 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com DB55D3D8760A
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1749611443; x=1750216243; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yB2voV3T1S6s0kr9GCPOg8+T/mhra2+9mwe9rgHhrTY=;
-        b=EJ24A5lPD8Ad9YwaZENdBBMg+jHKDm8bClXh+vcVWCWe8+conWAeTnfSeYMiak343C
-         UA/SPdVjn9NaPqlIbpKAKwsvAQIW/bA5AtRKIRXaGdjzcGKfsA2XpE0p987Bkqh+BCws
-         QKRm0XK5xWdQApyXs3Z7Ov26/6G8t/t8N3JPCBbcImOw32aYfYv9NBwo3pzDdTO78qfM
-         Ub/CN0yrvUXgfFjA9CjWcH2ub0pJbilKksEIBSVgfi03Ldjzpd2bBVRxKiRym9sjAOX+
-         FDYYjUWS0l5fNtmd4ELXMtPgmX+rMd/csVcBB3Jfy6aKR/xyHiNQEmwMPTHRrJEhKU9T
-         a25Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749611443; x=1750216243;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yB2voV3T1S6s0kr9GCPOg8+T/mhra2+9mwe9rgHhrTY=;
-        b=JeiFFUBoxYA+H4BBQSZ6duiPyJbUQMT69LOJL63hIZp6cx44lVGrRKzLPxe+3E9tim
-         ntN/qBCu15lToEiublEErJsuVY1qRTjf5gVv84rf25giw9BGaRNULZTaHDnikMZdFAoD
-         X+OiKKsMmmn+wUN5zmNs9lgzIYQclbxpQOVPDK5OQo1KF0qHr8OhfOf6q5zsSwMak676
-         PH9/LF+8/xUfJz+MxGku5z60ciCPMCKWadbuVtFIlHrXJI/nFZAnNynUBN93hClwk6EZ
-         cymERCMEi8ZH03IS6Q/vIPzR3gxLf4yBkNUuplZvAnprJXznJ0c0USRI6dFusZ4PnViZ
-         6opw==
-X-Forwarded-Encrypted: i=1; AJvYcCViAGiySYkDQiVbjh5xUBJhld7L9RynbM0uZFIcdwqXkLlIkA0GNg/1Afbx+2HiNqKQyB+rSav+JPQ5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL1dZahMZ+04M89e4/eFas2/ELMbGj2m0JQH9b/EW0DsDg1zNC
-	6FzZQVouAabhXDcWO5v3pdrQ21QCVsmlMnbo5PsWYxwU3EjIMEhkyFckJXb9nFk96fvslEE3RMA
-	Zowcw
-X-Gm-Gg: ASbGncvCh2sxsgGvQhtGtU6W6Z3rptz8iT+cE9aGcdHnQgibFbiZ96t4ml7BdtNq+QO
-	Q+8vFMXIbSk51/1DFMrwwENjDoR8uXwwXeedOkFcO7qZcqvosoENuw3iJXTY/CVDSfBGgxLP0Al
-	4Izz8fPz+j4ERxSIeHUbX5DiH1Xve31CX+O+qzwWu1bmRUsHC31/ab3/ugHU2uHlM8yKwgO5Jj2
-	xdhANzsZi/Mp92dOHYLzE1ZnsWzBF0rOrUJwC3KNYTLZB/q6tH0a47d05WNZXVWD2Sg+4oKUbeo
-	Mfis7XPS5FV3dH5VT7IKL+8PfAXWkEi35McPVeGScqJFXsCgf3xo/SNW9ADIqTXF+dc9EGcu2mV
-	kEuvbQo42
-X-Google-Smtp-Source: AGHT+IF31vP92Jv6j9lEk0SYqK0SMTOB/iLYB6Qw7J13ixzOTBSXlAdB2rxPm5OhCWdhoVqhRABcCw==
-X-Received: by 2002:a17:902:c40a:b0:235:f1e4:3383 with SMTP id d9443c01a7336-23641aa2426mr19809255ad.7.1749611442683;
-        Tue, 10 Jun 2025 20:10:42 -0700 (PDT)
-Received: from hsinchu26.internal.sifive.com ([210.176.154.34])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236030789c2sm77669035ad.29.2025.06.10.20.10.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 20:10:42 -0700 (PDT)
-From: Nick Hu <nick.hu@sifive.com>
-To: conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	Cyan Yang <cyan.yang@sifive.com>,
-	Nick Hu <nick.hu@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: [PATCH v2 1/3] dt-bindings: power: Add SiFive Domain Management controllers
-Date: Wed, 11 Jun 2025 11:10:20 +0800
-Message-Id: <20250611031023.28769-2-nick.hu@sifive.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250611031023.28769-1-nick.hu@sifive.com>
-References: <20250611031023.28769-1-nick.hu@sifive.com>
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1749611707; bh=lUqSdGomfcXWRdfKxjUuLGoqWQaLYyPcpWf4O0c0pSg=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=ud1rhdty7qh7DmmQ3zxh270/Mn2E0gqn/nr76xbHtOJeTpdeYoQnafN4Mg/NySJCw
+	 2xsQz1B6acejnDdCr9nzhhHVfj/yF3maOOzfCPa3XpE364EjcnFVdGop4mzSdwq5ww
+	 YM/sQDbWofDd+4NgDQbEGXiX12jrFs3fRplJ9zLtXpA7RaxUsHY1QqNTRZVWDu6TFu
+	 ciPj/F+HWiBsDjnfcbV+Oa/oqOTXoy/Xx7CllxeHqwjLOlwUbjrD5fo+FjeuvQH3vi
+	 Cfcc42fMeQiPa/ipWh8VHkxxn4ex1EaxIVwrg7LiesRj93+6Cm26Xd0N4TBTAcbG/c
+	 7Sk4ABVimsjww==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id YhwpZXGteoB4; Tue, 10 Jun 2025 23:15:07 -0400 (EDT)
+Received: from sam-fedora (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 1E2733D875C7;
+	Tue, 10 Jun 2025 23:15:07 -0400 (EDT)
+Date: Tue, 10 Jun 2025 23:15:05 -0400
+From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 6/6] MAINTAINERS: add an entry for pf1550 mfd driver
+Message-ID: <aEj0uYahiPOZBrv8@sam-fedora>
+References: <20250610-pf1550-v5-0-ed0d9e3aaac7@savoirfairelinux.com>
+ <20250610-pf1550-v5-6-ed0d9e3aaac7@savoirfairelinux.com>
+ <aEiVZBloUxYcNOIP@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aEiVZBloUxYcNOIP@lizhi-Precision-Tower-5810>
 
-SiFive Domain Management controller includes the following components
-- SiFive Tile Management Controller
-- SiFive Cluster Management Controller
-- SiFive Core Complex Management Controller
+On Tue, Jun 10, 2025 at 04:28:20PM -0400, Frank Li wrote:
+> On Tue, Jun 10, 2025 at 03:47:34PM -0400, Samuel Kayode wrote:
+> > Add MAINTAINERS entry for pf1550 PMIC.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> > ---
+> >  MAINTAINERS | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 98201e1f4ab5908ff49d32d19275e123cedb4b66..29287ab3c9d00240ecb0ac9793aa908ec75a9bd0 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -17853,6 +17853,16 @@ F:	Documentation/devicetree/bindings/clock/imx*
+> >  F:	drivers/clk/imx/
+> >  F:	include/dt-bindings/clock/imx*
+> >
+> > +NXP PF1550 PMIC MFD DRIVER
+> > +M:	Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> > +S:	Maintained
+> 
+> Can you add mail list imx@lists.linux.dev ?
 
-These controllers control the clock and power domain of the
-corresponding domain.
+Definitely. I'll add it in the next version.
 
-However, Since we don't have a SoC specific compatible string yet, so
-add '- {}' for the first entry [1][2].
-
-Links:
-- [1] https://lore.kernel.org/lkml/20250311195953.GA14239-robh@kernel.org/
-- [2] https://lore.kernel.org/lkml/CAKddAkAzDGL-7MbroRqQnZzPXOquUMKNuGGppqB-d_XZXbcvBA@mail.gmail.com/T/#t
-
-Signed-off-by: Nick Hu <nick.hu@sifive.com>
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
----
- .../devicetree/bindings/power/sifive,tmc.yaml | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/sifive,tmc.yaml
-
-diff --git a/Documentation/devicetree/bindings/power/sifive,tmc.yaml b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
-new file mode 100644
-index 000000000000..4567d51148e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/sifive,tmc.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/sifive,tmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive Domain Management Controller
-+
-+maintainers:
-+  - Cyan Yang <cyan.yang@sifive.com>
-+  - Nick Hu <nick.hu@sifive.com>
-+  - Samuel Holland <samuel.holland@sifive.com>
-+
-+description: |
-+  SiFive Domain Management Controllers includes the following components
-+    - Tile Management Controller (TMC)
-+    - Cluster Management Controller (CMC)
-+    - Subsystem Management Controller (SMC)
-+  These controllers manage both the clock and power domains of the
-+  associated components. They support the SiFive Quiet Interface Protocol
-+  (SQIP) starting from Version 1. The control method differs from Version
-+  0, making them incompatible.
-+
-+allOf:
-+  - $ref: power-domain.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,cmc3
-+          - const: sifive,cmc2
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,cmc2
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,smc0
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,smc1
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,smc3
-+          - const: sifive,smc1
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,tmc0
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,tmc1
-+      - items:
-+          - {} # Leave a empty for future SoC specific compatible string
-+          - const: sifive,tmc3
-+          - const: sifive,tmc1
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#power-domain-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+# The example will be added once the SoC specific compatible string is available
--- 
-2.17.1
-
+Thanks,
+Sam
 
