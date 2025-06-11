@@ -1,123 +1,172 @@
-Return-Path: <devicetree+bounces-184621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26B0AD4C44
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:04:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26705AD4C4B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 090923A767F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:03:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9D953A76D1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39599221DAD;
-	Wed, 11 Jun 2025 07:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED0B2288D6;
+	Wed, 11 Jun 2025 07:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5pTcMa/"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dFLftccN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D1E9478
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921452D543C
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749625445; cv=none; b=OWfdhX0USebMp1jpjnAddqHwQSCMgzrWx4wdcf1CtU4+jwzWcgeHpXNDTOZ+7Wl4z+vDH1l5Si7nzxorNRn+Wb+eWKKTvY04VVm1bl2OoRuE8sbKjhZKb74TMBnI7WZurG7/7XV/v/eM35IElvWMRbt188/1vwoWO8AZhyEt5n4=
+	t=1749625595; cv=none; b=XOgI38uAUj8lb1ehVU2wcrl2kLq8Rh9Z24M+dpUXSzqzefBKv4qJvTVLYYuAhyV9o/jSp91UKEnwjn8s334rWXMgHfTHFQXRTfMXrdGJg/3h2dbtenrYe/Paa204XSwaosmq72UTNpmEW22Z7OOsBVN20IahAi9+m5zYfPthrM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749625445; c=relaxed/simple;
-	bh=bJnfd4AoEo4s85u3+DeEqgD14M7tJE0PUbyGvu2U2tU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rnCggxaddUX3t1nSkQDMYHa//1+tv0jPSzrRLacsBrbZtbuUhYVzKBq6T+MbqPJx8c+7lBcuZlUeNAwylVdOphyonmyO/jfJ6BkQToD+DR1WeQ8HF//aE50zU86IusOpF2yd3tEa0lBdPF1qLhPgythccl7t3XPZUN+5BwxW+qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5pTcMa/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA11C4CEEF;
-	Wed, 11 Jun 2025 07:04:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749625444;
-	bh=bJnfd4AoEo4s85u3+DeEqgD14M7tJE0PUbyGvu2U2tU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k5pTcMa/XiOBnliDASFJ4dYyDbUxFyJca0dHXpjq2hpPQ4dZNKmerfQi4rWBG8m1w
-	 jwHqIKluGkTZTRNurZWYjdImuPjODQTI+lyQj018ogYMqz1/oRpbWVcWWhD5k4SJzE
-	 /v+ThDrflT2+mD3CiR2TMX6cyFsJZQLCz7Z4qmdGwJme21CnPjWvV/ZtMiBl48EI7c
-	 hpvJyF5csJWvbGMGO3mspW8PZW3a2bag6kpPhAaveDRXSoN+T521b0MV66VqLb75T+
-	 qmIFIel4SJ8cnqhh7828ilHzYPAzhknpd7MkmyOSrGC/wjAbGye6bFss1pXVuKhAAg
-	 J8imkRlLHuwig==
-Message-ID: <31a0e625-28e7-4ee2-b8d9-0043afb72a64@kernel.org>
-Date: Wed, 11 Jun 2025 09:04:01 +0200
+	s=arc-20240116; t=1749625595; c=relaxed/simple;
+	bh=O0LWLY6iLk7Lr3uOYJTWTSY0gujr/jg2BfBLyDxpxFQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tpaYqoPzI0jvTJt1dfcIOjFaTpi6j4xLvxPYYTtl4aTkRN6fyV9GebmD1eeigc9T/zYnlcdQOEjKxOjKmlYaV/G+W1Qo5ODxd9cR4EHe2sFL0KCiSH0nWiBVztV+18W1x/Praw4B+oK4bcys3CsNXu+tkhSePUxAp62A7sFbDjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dFLftccN; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55365c63fa5so5474010e87.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 00:06:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1749625591; x=1750230391; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GUREcdWtmShI/aKyd4LC2w+kncL/d6qeFx0o1ANjQXs=;
+        b=dFLftccNOJ1jBkqKPtcot8iItD4msG5Tg8xV9ExtzxtW2P5qCvw7GHPH0lR9O2Ae8v
+         yNseAXQ9QvSXQX1yqnALlNhjAqvslx4Rpq97ZXI44d8dQ3HnOYVIRVGzMMRFfvxi2g0u
+         hFDCJJmSsIiUvZo3UEKbEwncg+qqYkowVEOuY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749625591; x=1750230391;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GUREcdWtmShI/aKyd4LC2w+kncL/d6qeFx0o1ANjQXs=;
+        b=ZP7ENUvFTbOi7Y113x+WWF/6Zfgq/uKh/2H4SmCxrpFzO9YSUrAVuCyWthKYqpgUUv
+         SPipeNUpgPf/UJXnzrluWvj8gCxVNYkq+vqTQQVt/U+qIcAI2lhxMP6G1u8xQ6BL8sa0
+         dQQJhwIaQ//qgZ5YPnVtfYQHAN7U+UVG3RlkzBm+NthmNKk8iLpzC9/JlcdV5RAoJ2BJ
+         hgjSOQYUxvoi0+dZUAx3KzqHoxJXjjTOE6nu9LTDX8TyYFXkoVGzCKd2XDiF7H/rf43e
+         XyOy6M9NMsBHBEe4FT+lUtFD4ZMiziqgghfPbWhn+ChnIXnpxbo+xca7jZc5ziIiMu9G
+         f/Fg==
+X-Forwarded-Encrypted: i=1; AJvYcCVaQGHuGnosJpFbL+7NWiyM/9MxpqCNALfGOXyuA1+dk7LqrRLTc9MWUqDbDMZRgkvxnIiZlYFsWKgU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6Dr8i4dakr9d7LOSQ9r6Kp0T5xV1SOKZl8cv8E0aLNRZyG/Mw
+	a7JagnfLMqj1h8NgtM7kLApHJeL1l4t94rm6vWWMbhfvrxE4LRE+i6cNoWOTxAi30tRPNCUrcmD
+	eM6s=
+X-Gm-Gg: ASbGncuOvG0crEaExN9dYZcIWRT/qGk+N7Pvn4QPaBZhyFgaCAdlYwo826GFJ1W1r4f
+	h6N+0tTFj4c7BUBdQtNgbEb5QzLuqLHuF3FnjmyPgMlfHt8be6xtcf3mUfHduklW1KgNNXAcPYH
+	kCuStyjOtotnrejO/CLO0P7kbrKVRTC5xu8SkjYPgL5tPnVpJzeBYxf1RRFIPQrdaOL8V1lR8Ap
+	JmnmyE0BSmu9rHvCATrlRbugMVtJI+sg2qSH6Q67QvtHs+ceWzh5aWg+n6GiMTPbdKwEY5e3gdz
+	946vkonOeYZ/T7CTfQIV+riKYYNErgzp+HQ96DHGD73VVTiO5nYa6CWZ+VsEo1V5Ve78kXGh9Jw
+	Yw2yPT4SftQLCu7YSjRrszEij
+X-Google-Smtp-Source: AGHT+IEp5YVSjdZ3G9zda7xjPNSipnRoO5325AIZbbrz939iX3OpFkFV1uQteqdLqCvDN4rMPx0JZg==
+X-Received: by 2002:a05:6512:3e26:b0:553:390a:e1e3 with SMTP id 2adb3069b0e04-5539d4dec55mr438259e87.44.1749625591440;
+        Wed, 11 Jun 2025 00:06:31 -0700 (PDT)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553676d022dsm1837062e87.17.2025.06.11.00.06.30
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jun 2025 00:06:31 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-55350d0eedeso6540984e87.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 00:06:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUwLwYX9llUtNfx1nouEJTLplilybpbLIwMBgq7ElWHuahxjZCGZhTqIRxnsADV/QJu+9ECcWwUABhE@vger.kernel.org
+X-Received: by 2002:a05:6512:3f27:b0:553:3674:1df with SMTP id
+ 2adb3069b0e04-5539d4e5a98mr421501e87.56.1749625590474; Wed, 11 Jun 2025
+ 00:06:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to
- YAML
-To: Shankari Anand <shankari.ak0208@gmail.com>, devicetree@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- skhan@linuxfoundation.org
-References: <174954801086.147754.9306389006765920749.robh@kernel.org>
- <20250610151105.393011-1-shankari.ak0208@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250610151105.393011-1-shankari.ak0208@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CANiDSCvB5yytOgvk1QC812x4zOBn5Z4_C5wqUnV+2hSQXKM54g@mail.gmail.com>
+ <a2efd2e3-bab8-43ba-a236-aa5052bc35c7@kernel.org>
+In-Reply-To: <a2efd2e3-bab8-43ba-a236-aa5052bc35c7@kernel.org>
+From: Ricardo Ribalda <ribalda@chromium.org>
+Date: Wed, 11 Jun 2025 09:06:15 +0200
+X-Gmail-Original-Message-ID: <CANiDSCs0xp_PsKmyNpY3zHh9xuvJEgYXysB2wyLEZOL_+4Lokw@mail.gmail.com>
+X-Gm-Features: AX0GCFvsypmgzwNAaJWuHJzEiYbQK7oV2mLU_U4qZ2fVbg9_hmcu3PhUZ8iYayA
+Message-ID: <CANiDSCs0xp_PsKmyNpY3zHh9xuvJEgYXysB2wyLEZOL_+4Lokw@mail.gmail.com>
+Subject: Re: 6.16rc1 dts-bindings check fails
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/06/2025 17:11, Shankari Anand wrote:
-> Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
-> .txt format to a YAML schema.
-> 
-> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
-> ---
->  .../arm/altera/socfpga-sdram-edac.txt         | 15 ----
->  .../arm/altera/socfpga-sdram-edac.yaml        | 79 +++++++++++++++++++
-Also, where is the changelog? You sent like 4 emails - are these all the
-same? Provide detailed changelog in cover letter or under '---' of
-individual patches describing changes from previous version.
+Hi Krzysztof
 
-Best regards,
-Krzysztof
+On Wed, 11 Jun 2025 at 08:41, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 10/06/2025 18:11, Ricardo Ribalda wrote:
+> > Hi
+> >
+> > Media-CI is reporting some dts binding errors:
+>
+> Every builder of linux-next sees this, it's not specific to media.
+>
+> >
+> > /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml:
+> > properties:reg-names:items:1: 'deprecated' is not one of ['const',
+> > 'description', 'enum', 'not', 'pattern']
+> > from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+> > /builds/linux-media/users/ribalda/Documentation/devicetree/bindings/pci/marvell,armada8k-pcie.example.dtb:
+> > pcie@f2600000: interrupts: [[0], [32], [4]] is too long
+> > from schema $id: http://devicetree.org/schemas/pci/marvell,armada8k-pcie.yaml#
+> >
+> > When I test your  for-next tree I have the same issue:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/log/Documentation/devicetree/bindings/crypto?h=for-next
+> >
+> > They do not affect media drivers so right now I am just ignoring them,
+> > but I wanted to know if they are under your radar.
+> >
+> You need to update your dtschema.
+
+I was using the dtschema from pip.
+
+If I use the version from git, There are other issues as well:
+
+$ python3 -m venv venv
+$ . venv/bin/activate
+$  pip3 install
+git+https://github.com/devicetree-org/dt-schema.git@master yamllint
+$ make dt_binding_check
+
+/usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml:
+mac-mode: missing type definition
+/usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml:
+maintainers:0: 'Not Me.' does not match '@'
+        from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml:
+        Error in referenced schema matching $id:
+http://devicetree.org/schemas/power/reset/syscon-reboot.yaml
+        Tried these paths (check schema $id if path is wrong):
+        /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindingspower/reset/syscon-reboot.yaml
+        /usr/local/google/home/ribalda/work/linux/venv/lib/python3.12/site-packages/dtschema/schemas/power/reset/syscon-reboot.yaml
+
+/usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/pinctrl/xlnx,versal-pinctrl.yaml:
+allOf: Missing additionalProperties/unevaluatedProperties constraint
+
+/usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml:
+        Error in referenced schema matching $id:
+http://devicetree.org/schemas/rtc/rtc.yaml
+        Tried these paths (check schema $id if path is wrong):
+        /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindings/soc/rtc/rtc.yaml
+        /usr/local/google/home/ribalda/work/linux/venv/lib/python3.12/site-packages/dtschema/schemas/rtc/rtc.yaml
+
+
+Is there a doc besides
+https://www.kernel.org/doc/Documentation/devicetree/writing-schema.md
+that I can follow to set up media-ci properly?
+
+>
+> Best regards,
+> Krzysztof
+
+
+
+-- 
+Ricardo Ribalda
 
