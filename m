@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F980AD4BC9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:32:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13351AD4BD1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D2FE17B6FB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:32:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98A35178BFE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A37D227EBE;
-	Wed, 11 Jun 2025 06:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB34227EB2;
+	Wed, 11 Jun 2025 06:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVMQlmEW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lFHm5ll2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF1A21B19D;
-	Wed, 11 Jun 2025 06:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD5F17A300;
+	Wed, 11 Jun 2025 06:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749623537; cv=none; b=gRpYShnjmpx2Y//HeCod/NBsIMgDiuLoIEQX2RRQysYBfK+gADEPxf67dLzPOymfQZAk2mqatDIIksgeYk/CS+fVjX6jifm84oNAxP5S9wIc3jnZa8HymOJWHXZSKwoNpQakOitKL5ft9mfkjroywsPz906MGUnamcRaDZ9Pso4=
+	t=1749623724; cv=none; b=cpexiIZryKEDI7EmeoVwr6C0lRKLsLwnkJ1xQVVWMSRFzk4PDITCotBdMCp2t+nm9i5UdenbPLinht1QJQghA4jV4Mxkw8DMeQuLAepRN0V19Ov/Oz5hbnrpqi9YBL2uAtf4lKGHjLAlRxNiQj+k5aU/Ia4xommnEtrK04HrIbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749623537; c=relaxed/simple;
-	bh=J3UGwgi7fwDEC+FexveDUmJHugoo+CsBZ5+yIQEJbUU=;
+	s=arc-20240116; t=1749623724; c=relaxed/simple;
+	bh=ELB3hJiU1T7xtJltoyGn8FsVokJlMe8K24HTgDOgpWE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=StFT4G2z3S3s3H3mL/OIOjNyh22LAtu/LjvnKBQPFXy19b29K8Opb9kYazz/h1iKQG/pbujMQhGzE/Ly2sawZa3BzNrXcgBtjMOnLsy1a3/7wsxbb1yVHMZ+W0u1iuxy8dGg1x8LrcpT270GA5PZkRg6meVLNQMubaYL+AUUJV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVMQlmEW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3228EC4CEEF;
-	Wed, 11 Jun 2025 06:32:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=X3ma6yEbwSNvl8tnwVbKp042UZh0E2PdKMc5AfCCtecrn0UVTMYi8SxXbZIOEz+rFSYQpECEsp6SB9p0yYyBk3fj1dT/BIxfsqrdyvyPJToOD8ff4CekCcB0SAUeLuP+3sUHJ8SpTy4+z9xsbt86hW+v9187W/mh+c6Jp7IZnm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lFHm5ll2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 111FFC4CEEE;
+	Wed, 11 Jun 2025 06:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749623535;
-	bh=J3UGwgi7fwDEC+FexveDUmJHugoo+CsBZ5+yIQEJbUU=;
+	s=k20201202; t=1749623724;
+	bh=ELB3hJiU1T7xtJltoyGn8FsVokJlMe8K24HTgDOgpWE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IVMQlmEW+ijtbmKTyDHg7FCcoEq+Ygux3RaWTquf9ajIdFOIyWuDPGwkXWQHq2CMg
-	 UYEa9GibvvAX8tnfxrnEF75PAfSAmSAoy6kJr0tzrhzOMLjkYLsbJdI1fHYITTtdKK
-	 mZNL/v+w3w2hSt6ysmnYfEN46Zg0AgwHi0fsaSqm5z5JuPtWzAQQdeSulwKJgtcQr0
-	 8euWoK08HuDq/25lCI4IodeWSQmv+X0OKwPZoc5ajfrx5QI0lEwpJxnsvIFbB24Rmp
-	 D9j0q8Az7Ga9g9AciHKYlvTvVOpKK+AsD18Ztr5aEi5XvfhQeUE4rC0nAjrmHfkoae
-	 ungWZ97qQvReQ==
-Message-ID: <d0b13867-9aa4-4fb1-8492-0cc58e92c61d@kernel.org>
-Date: Wed, 11 Jun 2025 08:32:10 +0200
+	b=lFHm5ll299wjWXF5XOP4i0kYFF9keEvryTuaaUjWbmYkj3djGLqkFczJlmvu0h+rJ
+	 /1oGNE/VjC63Djq8s4JfQYe1oks96ILDO+uTMctBrtpEo7kQ7RDqLHSd0u9OHZgR9B
+	 I2gqJ05+gmN4xrqF9dOWvheUuZgweSp9ZRpR4+vL9AKqjZZ99EL7WcUKgJS/1alr2n
+	 fI/1kcr9y+z99/DdffbEjzlYDHHAJp+ou3UDA8DC070k0dicUMn8OoFZ+aNSYhShJu
+	 DScHxfTzGZoG3n2/3xl0PjQA0sa9LP5+RhczYhLaK9r1wbQ1rj0ElaglspSTEaJvhd
+	 DZFapxLD3CNew==
+Message-ID: <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
+Date: Wed, 11 Jun 2025 08:35:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] dt-bindings: net: convert qca,qca7000.txt yaml
- format
-To: Frank Li <Frank.li@nxp.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stefan Wahren <wahrenst@gmx.net>,
- "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20250606155118.1355413-1-Frank.Li@nxp.com>
- <20250610-thick-gifted-tuna-7eab4f@kuoka>
- <aEhPTXHHulIP5MqG@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp13
+To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
+ <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
+ <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
+ <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
+ <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
+ <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
+ <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
+ <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,41 +114,81 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aEhPTXHHulIP5MqG@lizhi-Precision-Tower-5810>
+In-Reply-To: <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/06/2025 17:29, Frank Li wrote:
+On 10/06/2025 15:33, Clement LE GOFFIC wrote:
+> On 6/10/25 14:38, Krzysztof Kozlowski wrote:
+>> On 10/06/2025 14:02, Clement LE GOFFIC wrote:
+>>> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
+>>>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
+>>>>>>
+>>>>>>> +		};
+>>>>>>> +
+>>>>>>> +		hdp: pinctrl@5002a000 {
+>>>>>>> +			compatible = "st,stm32mp131-hdp";
+>>>>>>> +			reg = <0x5002a000 0x400>;
+>>>>>>> +			clocks = <&rcc HDP>;
+>>>>>>>     			status = "disabled";
+>>>>>>
+>>>>>> Why are you disabling it? What is missing?
+>>>>>
+>>>>> Nothing is missing just disabled by default.
+>>>>> The node is then enabled when needed in board's dts file.
+>>>> Nodes should not be disabled by default if they are complete. That's why
+>>>> I asked what is missing. Drop.
+>>>
+>>> Hi Krzysztof, OK I better understand now.
+>>> So yes the 'pinctrl-*' properties which are board dependent are lacking.
 >>
->>> +      $ref: /schemas/types.yaml#/definitions/flag
->>> +      description:
->>> +        Set the SPI data transfer of the QCA7000 to legacy mode.
->>> +        In this mode the SPI master must toggle the chip select
->>> +        between each data word. In burst mode these gaps aren't
->>> +        necessary, which is faster. This setting depends on how
->>> +        the QCA7000 is setup via GPIO pin strapping. If the
->>> +        property is missing the driver defaults to burst mode.
->>> +
->>> +  allOf:
->>> +    - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>
->> This should be part of top-level allOf.
->>
->>> +
->>> +else:
->>> +  properties:
->>> +    current-speed:
->>> +      default: 115200
->>> +
->>> +  allOf:
->>> +    - $ref: /schemas/serial/serial-peripheral-props.yaml#
->>
->> Same here.
+>> These are not properties of this node.
 > 
-> If it is one top, how to disable all properties in serial-peripheral-props.yaml
-> if it connect to spi (reg exist).
-You do not have to disallow them. If this is somehow useful, it can stay
-here, although the earlier properties still need to be defined in top level.
+> Does this mean I should add 'pinctrl-*' properties in bindings yaml file ?
+> I don't get it..
+
+These properties have no meaning here, so the hardware description is
+complete. You claim that you miss them thus device is incomplete is just
+not correct: these properties do not belong here! They belong to the
+board but even there they are totally optional. Why would they be a
+required resource?
+
+To remind: we talk here ONLY about required resources.
+
+> 
+>>>
+>>> In the last patch of my serie I add them (only for stm32mp157f-dk2) but
+>>> keep it disabled because the pin is on an external connector (the
+>>> Arduino connector of the board).
+>>> This prevent any issue with a possible connected module.
+>>
+>> Not relevant. Pin control for connector are board specific, but pinctrl
+>> SoC part is SoC.
+> 
+> I think we don't understand each other here too. I don't understand the 
+> end of your sentence "pinctrl SoC part is SoC".
+
+Please read first how DTS is organized.
+
+The pin controller device is part of SoC not part of a board.
+
+Pins configuration for devices on the board are not part of the SoC.
+What is not clear here? We talk here in terms how DTS is supposed to be
+organized.
+
+> 
+> Maybe some informations that could help:
+> The 'pinctrl-*' properties are used in the HDP case to select the 
+> internal signal to output AND the alternate function on the pin to 
+> output the HDP function.
+
+We all know this.
+
+> 
+>> Best regards,
+>> Krzysztof
+> 
+
 
 Best regards,
 Krzysztof
