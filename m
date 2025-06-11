@@ -1,87 +1,89 @@
-Return-Path: <devicetree+bounces-184567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E078AD4AA1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:04:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 593ABAD4AA4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:04:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F3211897536
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:04:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AC817AA30F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D355225A31;
-	Wed, 11 Jun 2025 06:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155F822836C;
+	Wed, 11 Jun 2025 06:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jlm5bDpb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZgtEv90i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5045EEA8
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5816C22759C
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749621860; cv=none; b=L/lTeUskwtgBcEJMMLR02h+xak5WOV16CSpGoIahxMVUEvtCiXQh6h8ZPE+cGfpLd0NQJes0BL6pswPtqQ+uUHRfviGWpYrngA2BLO2ej6wlQOkVt7hyllGlCBn1eGhOuE41G7vLyesPURDWvK8guEQugHnSqrK3lY41ZRQvVt8=
+	t=1749621863; cv=none; b=OZU431xdCDOCni1OxauBWNolbW7dNMyBEx6sK/9vxeJieJDNxBmTeRb1+GDI9VqQbL5WisC1WnO/GTl0gMs0oSfzfwlqUHIg9t1PNJPf4BD6UCB74XqLc0epiwRjeMx7un71jdsm2FiN4pPOqUdgs5cUJUUNTb+KUbPzpSTNhCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749621860; c=relaxed/simple;
-	bh=HV18Og1I2iEUxD4I8eDexzTJxa5Uyj7M5o26NT89eUg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SC1WbRkIUYez7aYgoKUKYS7yb+B1HmTiJYH3fYllwKSd1mJPeYC2oUM5YHBDHcaQ5NEsnCIdjGseQm10g86RjkLjWjUO/yq6Xkg0C4B/w8nQZdST39lpH+aGE5u93aE5d1YAGIfrb/zJx4/07U7JLak2yPwBBrjIK+E/dsqZ4BU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jlm5bDpb; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1749621863; c=relaxed/simple;
+	bh=OMWPxL/RJj1wZGlBCPW3BNMK3VJw9nTYMNoWG71YwMA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=GpyI0soHhVuLVUP3LfH65GwnKCCJOZwiOKmC42ea9lf/NVgc6gqY7mWr/6cA7309PReu6ydisjFluhkvS9EOGDrq8VeJigJEMU3DKllmRXeTl+alvkpzGqi33giSPhQbGn5hlWGc9FiM8xSnobZFScad19M44vY7Op6ULvEoJlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZgtEv90i; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIPt4g027426
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:16 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIQ03o012185
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=aEKGonfkNlVgj0BYAtHacH
-	r3N8cUCIWxQs0+ZU6isQw=; b=jlm5bDpbQauuXqzHdyjULCxRD1JF3r4qMBKE2t
-	9Vk3thDxHu4L6cRep7hbkKxh8QZN1pskztqdaoMVvn6NCunfAFpS93aX2weGx4/c
-	fYp90XRgVOp1K0TfqHnFGOLbNyzdb5Kl3YmnxsZ1N0L9AcNG5Lea3fUKhOXZgHmm
-	ggmS6NqSX4KnHN9kYIun+DMeSYLN5WRT1wIKpH68mNQBYCNC5dKoxdt04OMRmKyq
-	cK+j1jbukaPbkfFepru2zq0QKgQhbdVyJBce3GN1Idqp65ST9zDUTYfPb3x8kM2d
-	u1bh4C9WG6kfwL3PhJGLv8ymcUzjpxkx1MYNxKLAi4Q50L0w==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4766mcmhha-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Mn8nakS7+FX6lZ1H5BDsVrdgaPJ+uuBfj+DDGpDXmis=; b=ZgtEv90i0YaPWff7
+	/7ZS1pPqW+Kbh2ahKOWVbeDIjNOnHfW52UdAr5K+6NnrelKmMcpzLRcv5yfJSRG5
+	lym+USCnmSS3JV0f7Xy+r17PG6nzOtMWqgPxVW7fp3XFdSHQgR5JbVr48NdFon3v
+	kYFxlZsN9jHqiZkLa0cXjJDl1bRxDyTpDT131DVteI4LbL00rpd8JedZrfeZW5M9
+	h0vkZHHAELGvRcDSqbbToAqxtIJdFKiGV2NobsDWTT1+S95rBCpCMQybznLkGjsl
+	lMJxzWSEZI9tIvZeAleR4TDPL/+6BxuapVIc9Rw3TxxBEPG+092Y1oylogezxsrz
+	ucezKA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dgxv2nk-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:16 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3132c8437ffso7378145a91.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:04:16 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:20 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-234aceaf591so42405375ad.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:04:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749621855; x=1750226655;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aEKGonfkNlVgj0BYAtHacHr3N8cUCIWxQs0+ZU6isQw=;
-        b=Uiv27qUGCgvC40zu0RD8K+gm/Vqppl+HGRu6Xhz5De2nobjNUhdR+ik2ndNHZgCWyy
-         O/kfVc34D8+qW8njheT65K2RHtbT+KaMM3oDvzF+lHek31kjHLb7MD54P/YIVFyeFo6w
-         ShFn8Hp7b8VMjmDy+vf6HtZd9ffo1gCxrZdoB1V4E2qdu4GBUbNCsuGX/gbQIQYuYeHC
-         EpcYO50bcTouWIrc2zWnPBBQ1MgZ0Fsp5jLcXjSoWGq2Mpb8tdctw0H+9oMwrEmkec2+
-         Vl5tRdAWgDS3HDsJt8rB00p16bWPpdWl5LF0ZXpFbwaaYR7bwNakcSjM+XnPr5O/mm+E
-         M7Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCXEqboJJ6pQRw3xQNQUjIMyLyh4ga+FjVd3YwFOFM0Cz3pfI0jOW82SMx7X7OdENLto/hShGvO0wOAK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlIaDlcUumZhBI56z3lovCa8T1u42nG4znRzhwsOHI+GcxTjXV
-	tT2Iyxi/JJyZCP8FAEO8jUmuu632boS7pIPHUUuehANAnmLdvL0JqhRYSbdlfiDwuc5oPKybeiv
-	KDjed0e1QPPWhLfLhwmzySCIMqYgiSgCgtONbWQvvNZPYFquSyl1017aS5juxSVdf14E6mV0J
-X-Gm-Gg: ASbGnculUdxDzjkPktt7COXN2wYSHzphZgrcC78bbCePVPRm1nCug4uXtX35JT/UlOi
-	FMFBddD1tpFmdvyAKzKvxQI68hymoYVgdpKXXLXou2xdraSmowEdKHDMHj/EGBKrTqBt1rqCWlK
-	WENs+K6RBThXh7lSzB6GVD5KGtrl3qcoopE0ApDyJERU1DzWK86zNWzSLp5tGgIdovGCCtsMfz+
-	3baxIXOAPRB/+1yvjraKOVYmhPTclyJbxgCmJTkDmcoJqDUxtG+fYZ0BDEJ3oXlf8Q9EsGSLgO6
-	+t19Wdvurej0jkDhxARPstPQo7yZaE7bN8Zz
-X-Received: by 2002:a17:90b:1807:b0:311:ff18:b84b with SMTP id 98e67ed59e1d1-313b1ff14b1mr1889824a91.25.1749621854915;
-        Tue, 10 Jun 2025 23:04:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF2De2CfAW/nhEXwzxH/8Z5sn0yu3qhpnc8aALmeXRtyxM55oEzv+7QcLPFeXeCVL74G67uBw==
-X-Received: by 2002:a17:90b:1807:b0:311:ff18:b84b with SMTP id 98e67ed59e1d1-313b1ff14b1mr1889776a91.25.1749621854346;
-        Tue, 10 Jun 2025 23:04:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749621859; x=1750226659;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mn8nakS7+FX6lZ1H5BDsVrdgaPJ+uuBfj+DDGpDXmis=;
+        b=Kal6puTixLP79O9AnIrfTuyehhDbcSQ5haQsUeMGbsgWD490AomgEc8o2sxDJ23/X0
+         SCetH8z3pQ9XoTh+ly7NLnR5IFdfYqLFNHQ01JfZVN8NDCuEmIWYQvGMhW4nRnpXpyM0
+         umiB8SiVEp0NTQkPeNOOdFE5n9YsXMExUX0xgD10ca+kNqKSI6GVnX7BUNo/Z1oVI64d
+         M9nIoAvukDAWYOtBWuIe0xqHlMUFlP1ifwjoAGFmMaNAnA8yHZ7SZt1Xa7zChxuyKiad
+         2CwdMZ4vkTe0MWf13hGcgd7xHzcYTOmdjYfOWqN19PUrVU5rkuDrUjM/RqpHaW6HNy3F
+         73Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2aCgF+zthX7usxh9hqyDV+s5LklB+yCyeJ0VtlTbq3y26WoANtou2Lgh6q4AuxYDy4VYzvhKUykBw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxSLrIC+ZdqG6qqp5XfxTstQ4H6BbCMLA9ur5apmVwuxG52H9X
+	L8+D76OXpFKbTWYxMSgtfNySIdlHkxgMjPtIqzidXqm4HOjOUZ/sjS8aIfui9nHPIERNsmYzw2B
+	pVAvLWcIDXFTXfMNJa3RrwvunOXXdEpmdeQDUyAJlZqq79v4tKSxIfLwlbC+TeQweAhdj32Dp
+X-Gm-Gg: ASbGncuo8dtpv7RGsll1b2iJQmU8+N3STkJzqqG0nVhxXXrzolMIqzvLaelk1RnwoKo
+	tbEc8mbElV5aSyw1rx8MXIntjw70+dJRnA5sWUKTdsEM6WqMzDF6joV8B6Eg31Aj3vkGmIYbWCT
+	cfO2V/M+r7Fgnn7guaDp1YkqkBqbo8aHG3UlN59/SC+88rIGw6/EHa1ROKNqv2Zsy+Tg6rb6x0B
+	vcSwNeLqcUnz3h+wlLwVV97dz5QRhAvc9ScFpxFqwM8nWBINjTA8dqCFjOFqBnQKdLLXGKYuLdj
+	5+hi668S/DBa4SrH34rmjCbQQ0wwA7Y2dNrt
+X-Received: by 2002:a17:902:f690:b0:220:cb1a:da5 with SMTP id d9443c01a7336-23641b14213mr27796975ad.40.1749621858743;
+        Tue, 10 Jun 2025 23:04:18 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IERoNrZVeQJCFjcFNdOXb+/6hR8aEZnulnKw97bOBeyBESiWjzzsi/oaN6dKz+QkVMEKrHd8Q==
+X-Received: by 2002:a17:902:f690:b0:220:cb1a:da5 with SMTP id d9443c01a7336-23641b14213mr27796535ad.40.1749621858224;
+        Tue, 10 Jun 2025 23:04:18 -0700 (PDT)
 Received: from [10.213.103.17] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236032ff05esm79429685ad.135.2025.06.10.23.04.10
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236032ff05esm79429685ad.135.2025.06.10.23.04.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jun 2025 23:04:14 -0700 (PDT)
+        Tue, 10 Jun 2025 23:04:17 -0700 (PDT)
 From: Maulik Shah <maulik.shah@oss.qualcomm.com>
-Subject: [PATCH v5 0/3] soc: qcom: qcom_stats: Add DDR stats
-Date: Wed, 11 Jun 2025 11:33:44 +0530
-Message-Id: <20250611-ddr_stats_-v5-0-24b16dd67c9c@oss.qualcomm.com>
+Date: Wed, 11 Jun 2025 11:33:45 +0530
+Subject: [PATCH v5 1/3] soc: qcom: qcom_stats: Add support to read DDR
+ statistic
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,12 +92,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEAcSWgC/3XOSwrCMBCA4atI1qYkk8S0rryHiEweakBbTWpRp
- Hc3LYgt6GbgH5iPeZHkY/CJrBcvEn0XUmjqHGq5IPaE9dHT4HITYKCYhBV1Lu5Ti23aU1FxxZQ
- RDldI8sE1+kN4jNh2l/sUUtvE52h3fNh+mGrKdJwyKg+25CWi0cZsmpSK2x3PtrlcijzIoHXwF
- RTwmQBZAKukx+wwzf8IYiqomSCGHyoUlnsJzug/gpwK5UyQWTDSaIeeaXD2h9D3/Rv/3pg9cQE
- AAA==
-X-Change-ID: 20250426-ddr_stats_-391505b3da6a
+Message-Id: <20250611-ddr_stats_-v5-1-24b16dd67c9c@oss.qualcomm.com>
+References: <20250611-ddr_stats_-v5-0-24b16dd67c9c@oss.qualcomm.com>
+In-Reply-To: <20250611-ddr_stats_-v5-0-24b16dd67c9c@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -108,115 +107,203 @@ Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
         Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749621850; l=3512;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749621850; l=5388;
  i=maulik.shah@oss.qualcomm.com; s=20240109; h=from:subject:message-id;
- bh=HV18Og1I2iEUxD4I8eDexzTJxa5Uyj7M5o26NT89eUg=;
- b=EBn3cNXv1JB7OAk3LIJqZwyiMSbER4sTYQ/rElyMXW2YZAuBazMe37Ldvl+PXWpTVBGtgSUAq
- p9ihzVGk1j4BFToCZbdmLzuZHstmsFrKhEYPQlDMBfT7YdEXcZZ51sv
+ bh=OMWPxL/RJj1wZGlBCPW3BNMK3VJw9nTYMNoWG71YwMA=;
+ b=OKSnQK2saL402erEUsid5mTqYUYaaQzSdlqQv7FEsZl3SNvJZt6DNZUApCKtORYdMSnZjcx18
+ FZdB5H3ry3lCx7Uay0Kw2yRvTkfcT2tffCxEK99du7ahBIOtEiWB+tJ
 X-Developer-Key: i=maulik.shah@oss.qualcomm.com; a=ed25519;
  pk=bd9h5FIIliUddIk8p3BlQWBlzKEQ/YW5V+fe759hTWQ=
-X-Authority-Analysis: v=2.4 cv=T8KMT+KQ c=1 sm=1 tr=0 ts=68491c60 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=ubf2v9fuHxWRXcPCyOcA:9 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Vi1LwIAfMuIOhc-zPOee0WSjNlFHZPXO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDA1MiBTYWx0ZWRfX3KUphpCDd3XN
- 5Hl8peWWsxu4bCsUpm1MvWWEhNSwF61soaaKIPz4w04ZsNKaHVnYbLRBz8AMPKiAku2Wu4Mn03n
- 0+yw7XVi226MIqoy11Ahw9NwDpBx8HqdaCltnHkQ11QXQdf8IzNa0tvJ6rFJB8PLX8TYpkyjxJ2
- 2+CSdKVt2ZNqwlWH47AC0orijBwdIp42EuI1hIB3sZKVmd6GRNnyUkrJxkjNIICc1ejkDS5mx7s
- zAv4IWLSJGqLvtPG5/vpdWe8CG8KprpugyytafFM4KDZfI3CrsmkLs3boyZob90HcXjkrzAE0Qp
- 1ujjJTOyvBf/SdX0yRvKnvG3N95Fx0LDpVxfnrdWbimWK4PM2zLH/Igrsji6mwgMcg/Mg3uSlJp
- TBJ1zCBCPZaTYfBSja6HbgYSNo5TR6t7xzxcU0K0hv9X7HoGSZlpTS0KydAqjxb78EHOPxuD
-X-Proofpoint-GUID: Vi1LwIAfMuIOhc-zPOee0WSjNlFHZPXO
+X-Proofpoint-GUID: kVGTzF28piwteCxjFi4y-8KAJoH4Gzyt
+X-Authority-Analysis: v=2.4 cv=HMbDFptv c=1 sm=1 tr=0 ts=68491c64 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=4QwxTSDsR6DxlQvKCcYA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: kVGTzF28piwteCxjFi4y-8KAJoH4Gzyt
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDA1MiBTYWx0ZWRfX+TbqG2qmWXNM
+ 77LyUi8zg/Q5pEbiKprjekaaeWE7WtLgZiEbBWHn6oje3YOdOWUmkt5F+Yf3fVDcUhk/B1IXmQ7
+ HCc7q++lxksiLcowguIOKR9dfThOwSCxCHdmYyKyMtKke6l+X1QfODSM1O+tPthnudHsSk5qYvr
+ OZ+08EID3b45JtVekioy3D8LlPJm/Fb69ogrq8RnnxLG+j2wScvL9RyoUj1L5kTjlTJcfxFS0Ra
+ P2lf3VWmv9WUD3Xav9KFoqM2dl+aJTeLuLZfKmGjXdB24Rxo7nHxl+6NgPiDIRIXfhKx55Z8fEs
+ fOgpt3NCEJiWCrs/rNq85mBvBrqF2dDBSSNRnT1bQjkShAdMZMKzcbNxRrMjpMLpqT+608fmc7p
+ gFLEHadHOetB3KBxsADaedDmHBb9P/QjhHMShelPM4PmjB2jHIEuqe546doFOQRZ/kQOIu0E
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-11_02,2025-06-10_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0 impostorscore=0
- spamscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0 phishscore=0
- mlxlogscore=999 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506110052
+ clxscore=1015 mlxlogscore=999 priorityscore=1501 impostorscore=0
+ suspectscore=0 malwarescore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506110052
 
-This series adds support to read various DDR low power mode and frequency
-stats. This was added in past with series [1] but reverted with [4] due
-to some SoCs boot up failures. This series is more aligned to downstream
-implementation and fixes the issues mentioned in [4].
+DDR statistic provide different DDR LPM and DDR frequency statistic.
+Add support to read from MSGRAM and display via debugfs.
 
-The series [1] tried to add three feature support
-
-A. Reading DDR Frequency and low power stats from MSG RAM
-   (targets where DDR stats are readily available in MSG RAM to read)
-
-B. Trigger QMP to ask AOP to populate DDR Frequency and low power stats
-   (targets where DDR stats are available but duration field syncing
-   requires QMP message to be sent to AOP)
-
-C. Trigger QMP to ask AOP to populate DDR vote table information
-   (To read different DRV / Direct Resource Voter, CPUSS, DSPs's votes
-   for DDR frequency)
-
-Current series do not include reading the DDR vote table information (C)
-part from [1] which is to be separately sent potentially including reading
-other resources votes like Cx Rail level vote information. These vote
-tables details are not strictly related to DDR Frequency and low power
-stats (A) and (B) this series is adding.
-
-This series updates respective SoC devicetree with QMP handle (where DDR
-stats syncing is required) and it is backward compatible with older
-devicetree as without the QMP handle present, ddr stats can be still be
-read (duration field will be read as 0).
-
-Note that [1] was only partially reverted and hence device binding update
-for QMP handle [2] is already present along with the fix to have
-dependency on AOSS QMP driver in Kconfig [3].
-
-[1] https://lore.kernel.org/all/20231130-topic-ddr_sleep_stats-v1-0-5981c2e764b6@linaro.org/
-[2] https://lore.kernel.org/all/20231130-topic-ddr_sleep_stats-v1-2-5981c2e764b6@linaro.org/
-[3] https://lore.kernel.org/lkml/20231205-qcom_stats-aoss_qmp-dependency-v1-1-8dabe1b5c32a@quicinc.com/T/
-[4] https://lore.kernel.org/all/20231214-topic-undo_ddr_stats-v1-1-1fe32c258e56@linaro.org/
-
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
 ---
-Changes in v5:
-- Handle the qmp_get() failure cases
-- Add Reviewed-by.
-- Link to v4: https://lore.kernel.org/r/20250528-ddr_stats_-v4-0-b4b7dae072dc@oss.qualcomm.com
+ drivers/soc/qcom/qcom_stats.c | 99 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 99 insertions(+)
 
-Changes in v4:
-- Handle clean up for qmp_get() probe defer case
-- Link to v3: https://lore.kernel.org/r/20250525-ddr_stats_-v3-0-49a3c1e42db7@oss.qualcomm.com
+diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
+index 5de99cf59b9fbe32c0580e371c3cc362dfabb895..33fd2a1574464768bd07289e743fbb79ba415e84 100644
+--- a/drivers/soc/qcom/qcom_stats.c
++++ b/drivers/soc/qcom/qcom_stats.c
+@@ -1,8 +1,10 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Copyright (c) 2011-2021, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2022-2025, Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
++#include <linux/bitfield.h>
+ #include <linux/debugfs.h>
+ #include <linux/device.h>
+ #include <linux/io.h>
+@@ -24,6 +26,17 @@
+ #define ACCUMULATED_OFFSET	0x18
+ #define CLIENT_VOTES_OFFSET	0x20
+ 
++#define DDR_STATS_MAGIC_KEY		0xA1157A75
++#define DDR_STATS_MAX_NUM_MODES		20
++#define DDR_STATS_MAGIC_KEY_ADDR	0x0
++#define DDR_STATS_NUM_MODES_ADDR	0x4
++#define DDR_STATS_ENTRY_START_ADDR	0x8
++
++#define DDR_STATS_CP_IDX(data)		FIELD_GET(GENMASK(4, 0), data)
++#define DDR_STATS_LPM_NAME(data)	FIELD_GET(GENMASK(7, 0), data)
++#define DDR_STATS_TYPE(data)		FIELD_GET(GENMASK(15, 8), data)
++#define DDR_STATS_FREQ(data)		FIELD_GET(GENMASK(31, 16), data)
++
+ struct subsystem_data {
+ 	const char *name;
+ 	u32 smem_item;
+@@ -48,12 +61,19 @@ static const struct subsystem_data subsystems[] = {
+ 
+ struct stats_config {
+ 	size_t stats_offset;
++	size_t ddr_stats_offset;
+ 	size_t num_records;
+ 	bool appended_stats_avail;
+ 	bool dynamic_offset;
+ 	bool subsystem_stats_in_smem;
+ };
+ 
++struct ddr_stats_entry {
++	u32 name;
++	u32 count;
++	u64 duration;
++};
++
+ struct stats_data {
+ 	bool appended_stats_avail;
+ 	void __iomem *base;
+@@ -122,8 +142,85 @@ static int qcom_soc_sleep_stats_show(struct seq_file *s, void *unused)
+ 	return 0;
+ }
+ 
++static void qcom_ddr_stats_print(struct seq_file *s, struct ddr_stats_entry *data)
++{
++	u32 cp_idx;
++
++	/*
++	 * DDR statistic have two different types of details encoded.
++	 * (1) DDR LPM Stats
++	 * (2) DDR Frequency Stats
++	 *
++	 * The name field have details like which type of DDR stat (bits 8:15)
++	 * along with other details as explained below
++	 *
++	 * In case of DDR LPM stat, name field will be encoded as,
++	 * Bits	 -  Meaning
++	 * 0:7	 -  DDR LPM name, can be of 0xd4, 0xd3, 0x11 and 0xd0.
++	 * 8:15	 -  0x0 (indicates its a LPM stat)
++	 * 16:31 -  Unused
++	 *
++	 * In case of DDR FREQ stats, name field will be encoded as,
++	 * Bits  -  Meaning
++	 * 0:4   -  DDR Clock plan index (CP IDX)
++	 * 5:7   -  Unused
++	 * 8:15  -  0x1 (indicates its Freq stat)
++	 * 16:31 -  Frequency value in Mhz
++	 */
++	switch (DDR_STATS_TYPE(data->name)) {
++	case 0:
++		seq_printf(s, "DDR LPM Stat Name:0x%lx\tcount:%u\tDuration (ticks):%llu\n",
++			   DDR_STATS_LPM_NAME(data->name), data->count, data->duration);
++		break;
++	case 1:
++		if (!data->count || !DDR_STATS_FREQ(data->name))
++			return;
++
++		cp_idx = DDR_STATS_CP_IDX(data->name);
++		seq_printf(s, "DDR Freq %luMhz:\tCP IDX:%u\tcount:%u\tDuration (ticks):%llu\n",
++			   DDR_STATS_FREQ(data->name), cp_idx, data->count, data->duration);
++		break;
++	}
++}
++
++static int qcom_ddr_stats_show(struct seq_file *s, void *d)
++{
++	struct ddr_stats_entry data[DDR_STATS_MAX_NUM_MODES];
++	void __iomem *reg = (void __iomem *)s->private;
++	u32 entry_count;
++	int i;
++
++	entry_count = readl_relaxed(reg + DDR_STATS_NUM_MODES_ADDR);
++	if (entry_count > DDR_STATS_MAX_NUM_MODES)
++		return -EINVAL;
++
++	reg += DDR_STATS_ENTRY_START_ADDR;
++	memcpy_fromio(data, reg, sizeof(struct ddr_stats_entry) * entry_count);
++
++	for (i = 0; i < entry_count; i++)
++		qcom_ddr_stats_print(s, &data[i]);
++
++	return 0;
++}
++
+ DEFINE_SHOW_ATTRIBUTE(qcom_soc_sleep_stats);
+ DEFINE_SHOW_ATTRIBUTE(qcom_subsystem_sleep_stats);
++DEFINE_SHOW_ATTRIBUTE(qcom_ddr_stats);
++
++static void qcom_create_ddr_stat_files(struct dentry *root, void __iomem *reg,
++				       const struct stats_config *config)
++{
++	u32 key;
++
++	if (!config->ddr_stats_offset)
++		return;
++
++	key = readl_relaxed(reg + config->ddr_stats_offset + DDR_STATS_MAGIC_KEY_ADDR);
++	if (key == DDR_STATS_MAGIC_KEY)
++		debugfs_create_file("ddr_stats", 0400, root,
++				    (__force void *)reg + config->ddr_stats_offset,
++				    &qcom_ddr_stats_fops);
++}
+ 
+ static void qcom_create_soc_sleep_stat_files(struct dentry *root, void __iomem *reg,
+ 					     struct stats_data *d,
+@@ -212,6 +309,7 @@ static int qcom_stats_probe(struct platform_device *pdev)
+ 
+ 	qcom_create_subsystem_stat_files(root, config);
+ 	qcom_create_soc_sleep_stat_files(root, reg, d, config);
++	qcom_create_ddr_stat_files(root, reg, config);
+ 
+ 	platform_set_drvdata(pdev, root);
+ 
+@@ -254,6 +352,7 @@ static const struct stats_config rpmh_data_sdm845 = {
+ 
+ static const struct stats_config rpmh_data = {
+ 	.stats_offset = 0x48,
++	.ddr_stats_offset = 0xb8,
+ 	.num_records = 3,
+ 	.appended_stats_avail = false,
+ 	.dynamic_offset = false,
 
-Changes in v3:
-- Use correct format specifiers
-- Handle qmp_get() failure cases
-- Link to v2: https://lore.kernel.org/r/20250521-ddr_stats_-v2-0-2c54ea4fc071@oss.qualcomm.com
-
-Changes in v2:
-- Mention count in decimal instead of hex
-- Update read failure cases to return error code instead of success
-- Fix typo in comment
-- Link to v1: https://lore.kernel.org/r/20250429-ddr_stats_-v1-0-4fc818aab7bb@oss.qualcomm.com
-
----
-Maulik Shah (3):
-      soc: qcom: qcom_stats: Add support to read DDR statistic
-      soc: qcom: qcom_stats: Add QMP support for syncing ddr stats
-      arm64: dts: qcom: Add QMP handle for qcom_stats
-
- arch/arm64/boot/dts/qcom/sm8450.dtsi |   1 +
- arch/arm64/boot/dts/qcom/sm8550.dtsi |   1 +
- arch/arm64/boot/dts/qcom/sm8650.dtsi |   1 +
- arch/arm64/boot/dts/qcom/sm8750.dtsi |   1 +
- drivers/soc/qcom/qcom_stats.c        | 133 +++++++++++++++++++++++++++++++++++
- 5 files changed, 137 insertions(+)
----
-base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
-change-id: 20250426-ddr_stats_-391505b3da6a
-
-Best regards,
 -- 
-Maulik Shah <maulik.shah@oss.qualcomm.com>
+2.34.1
 
 
