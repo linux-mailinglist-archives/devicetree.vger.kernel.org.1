@@ -1,101 +1,122 @@
-Return-Path: <devicetree+bounces-184882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2241AD578D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:51:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F8EAD579F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65BAB7A6B33
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 13:50:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB2F117F42D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 13:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D89280A5B;
-	Wed, 11 Jun 2025 13:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87BD22918C8;
+	Wed, 11 Jun 2025 13:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BB7a8MDf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EB2A283CB8;
-	Wed, 11 Jun 2025 13:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5683E28D836;
+	Wed, 11 Jun 2025 13:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749649888; cv=none; b=pj4CpC0B+vPCmR7A9/v74uc/ASu6GQhJCTLmFw+fF3Hg6Ke5dGF23m3JwFWl8wsES6hHMPG+7eQcEXjGOHKT3Uq47zdVKCAA+xYsFpQcxO7kRQ3Wc6I3fuHw/+H48igihbVqNUyOqV/tsJ4gvtrsQKUAIES5PlGaI8Zx4DcIrI4=
+	t=1749650040; cv=none; b=dGIwpOrfvzyjwUMgGQPtcrtsQOG3SyUc8ny/zm534Jmh4QJv6dJupKc8/egPe66janBpchVtHLDpZir8eobecmg39tf+UrfzH4ZCOhvykgUwrSCBP56D5wQTa4gaWHWBMl01VsGm27xh0p6mb1Rlq06beFJvtWKKLFXC1U8EvP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749649888; c=relaxed/simple;
-	bh=yAlRVV0IYpPAr1Khu9WPG25QKxrpg+ulUL9ZM5P9qaM=;
+	s=arc-20240116; t=1749650040; c=relaxed/simple;
+	bh=ekZAr3CEJWDzff5er4X5jw1Q0ODtHKyY9RG8ZM87MUQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lpz1ElXYCD6Nm1N3GXmwPW2NAnAAaffHG9LRYQ36onxUHP5q8PusGNFQK12UjUmhg7AiiqPH3EZbXHPc4W9Ix5XDFGf0JWvm3puL6z2sAqutAaShg/ZC1GnNfCbvphGQg7aUgYGQinLxuWnHpe2xvZUB7BJOuLrecX8nSIfdoTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.147.71])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 7C8C2340D31;
-	Wed, 11 Jun 2025 13:51:24 +0000 (UTC)
-Date: Wed, 11 Jun 2025 13:51:16 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
-	drew@pdp7.com, emil.renner.berthing@canonical.com,
-	inochiama@gmail.com, geert+renesas@glider.be, tglx@linutronix.de,
-	hal.feng@starfivetech.com, joel@jms.id.au, duje.mihanovic@skole.hr,
-	elder@riscstar.com, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 7/8] dma: Kconfig: MMP_PDMA: Add support for ARCH_SPACEMIT
-Message-ID: <20250611135116-GYB125008@gentoo>
-References: <20250611125723.181711-1-guodong@riscstar.com>
- <20250611125723.181711-8-guodong@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CO8TRvTkgjdmmq4NycubgVOxvnGke+m9LeSQ/JS0IDPAvZbaMIR59p63e/G3h84l78NYpxfFYBHPwHiiNK2ghXG8/YN8rQtmiO1+XBebjvtFWGjo6snNNxgpMAR6W5HEMVxrRYnmj6g3IoORAHA+bI+Z8c0c9Gp7G6+68NNsLb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BB7a8MDf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 391A8C4CEEE;
+	Wed, 11 Jun 2025 13:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749650040;
+	bh=ekZAr3CEJWDzff5er4X5jw1Q0ODtHKyY9RG8ZM87MUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BB7a8MDf5KzPB6OObcwJpakmulnwJFPAwwkyiMMNwbfYuQA97tfHdYyiv2siBb/sA
+	 agU0SrYv9VWP3bCMjey9CP6+2NolyeFEnob4mGCI06ULY6VdhyjRwCdaODXfafNWE8
+	 l4UYxNl64lqpfmutaL3w2TynxMa2L5aLsJYWzFFSn2ixUdwJQHQQuwhWpk2e4XvIAO
+	 8LeeIsmGqrI6UaRxj2sKkzax1HmA37yQuRsW80YK1aVc54C+Jf7/UxZ3i4/xJLHkX0
+	 d2fTn32EFcgNxemMNzz0JNX7ZuWh6CReaDQeXUP7zbs5cxWXZNkbzYThqxuuhee8Lw
+	 jPEERwBq8luDQ==
+Date: Wed, 11 Jun 2025 14:53:54 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 02/17] regulator: dt-bindings: add s2mpg10-pmic
+ regulators
+Message-ID: <f5fcaac5-fa8e-41da-b1d2-e84197992e3c@sirena.org.uk>
+References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
+ <20250606-s2mpg1x-regulators-v2-2-b03feffd2621@linaro.org>
+ <20250611-statuesque-dolphin-of-felicity-6fbf54@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="II5ctZhWLoXlcVcY"
 Content-Disposition: inline
-In-Reply-To: <20250611125723.181711-8-guodong@riscstar.com>
+In-Reply-To: <20250611-statuesque-dolphin-of-felicity-6fbf54@kuoka>
+X-Cookie: No skis take rocks like rental skis!
 
-Hi Guodong,
-  I'd suggest moving this patch after 4/8, as both of them should go
-via DMA susbystem tree, or simply squash them?
 
-On 20:57 Wed 11 Jun     , Guodong Xu wrote:
-> Extend the MMP_PDMA driver to support the SpacemiT architecture
-> by adding ARCH_SPACEMIT as a dependency in Kconfig.
-> 
-> This allows the driver to be built for SpacemiT-based platforms
-> alongside existing ARCH_MMP and ARCH_PXA architectures.
-> 
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
->  drivers/dma/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> index db87dd2a07f7..fff70f66c773 100644
-> --- a/drivers/dma/Kconfig
-> +++ b/drivers/dma/Kconfig
-> @@ -451,7 +451,7 @@ config MILBEAUT_XDMAC
->  
->  config MMP_PDMA
->  	tristate "MMP PDMA support"
-> -	depends on ARCH_MMP || ARCH_PXA || COMPILE_TEST
-> +	depends on ARCH_MMP || ARCH_PXA || ARCH_SPACEMIT || COMPILE_TEST
->  	select DMA_ENGINE
->  	help
->  	  Support the MMP PDMA engine for PXA and MMP platform.
-> -- 
-> 2.43.0
-> 
-> 
+--II5ctZhWLoXlcVcY
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Yixun Lan (dlan)
+On Wed, Jun 11, 2025 at 10:55:44AM +0200, Krzysztof Kozlowski wrote:
+> On Fri, Jun 06, 2025 at 04:02:58PM GMT, Andr=E9 Draszik wrote:
+
+> > +          For S2MPG10 ldo20m, the following values are valid
+> > +            - 0 # S2MPG10_PCTRLSEL_LDO20M_ON - always on
+
+> No, use standard regulator properties - regulator-always-on
+
+> > +            - 1 # S2MPG10_PCTRLSEL_LDO20M_EN_SFR - VLDO20M_EN & LDO20M=
+_SFR
+> > +            - 2 # S2MPG10_PCTRLSEL_LDO20M_EN - VLDO20M_EN pin
+> > +            - 3 # S2MPG10_PCTRLSEL_LDO20M_SFR - LDO20M_SFR in LDO_CTRL=
+1 register
+> > +            - 4 # S2MPG10_PCTRLSEL_LDO20M_OFF - disable
+
+> I don't think we allowed such property in the past. I don't get what is
+> here the actual signal - you described registers in multiple places, not
+> signals. Few of these duplicate standard properties, so this looks like
+> exact copy of downstream which was doing exactly that way and that was
+> exactly never upstreamed.
+
+It looks like we can infer the configuration needed here from the
+existing properties, if a GPIO is provided then use value 2 otherwise
+use value 3.
+
+--II5ctZhWLoXlcVcY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhJinEACgkQJNaLcl1U
+h9B/KQf/So5r1954Cqj0MGQ3kptk5Nq5KmqHw0TJIbhPv2N+8N6g7os3+rryQOed
+F2TMFmttMHHFoSD/aeBVyPGgd7ynr02oAau+FGX9Jfii4FkHyvaTLEycwnRvUJEn
+oFf6CWb/DJa/9THCjgduw5I8j4qG4PH0kXjQ3FSgA7q+du7g2U/8FDAD0naJQfes
+mlG1EVq1ncI89vJuRfjQt5QXeYO3GqwCK9XGhmVxrqVXeP871hJLJEGl84ZOrihY
+5n5bktH5BVCfJa+SnoWc7VNlMe3poy5ya+hCtUD4BXoJXKjszzdfFvTZsKfZchbJ
+4KiMIP+5AmKJyIGujjqHcyiG0lp3aw==
+=XBpF
+-----END PGP SIGNATURE-----
+
+--II5ctZhWLoXlcVcY--
 
