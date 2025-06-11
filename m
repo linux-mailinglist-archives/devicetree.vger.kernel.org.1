@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-184939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4151BAD5C0E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:26:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9119AD5C18
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DFD41894A1A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:26:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1F591E1D59
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B021F4CA1;
-	Wed, 11 Jun 2025 16:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40E51E8837;
+	Wed, 11 Jun 2025 16:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duQbIDmM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Of69h1mo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1F81E521A;
-	Wed, 11 Jun 2025 16:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C291714AC;
+	Wed, 11 Jun 2025 16:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749659138; cv=none; b=P+r4viBxV9rTNvxuMVjYvtZxAUq9WpOe+BeUM5LdgcZ+Mbm21svfbhv/1TP8gOit8z0nvw4m706HXGwWGMzOsJ443KR+d6H8drQCTVkNufasBUwgUEGhxsmoF4AJj7TogHLceUVpy8RJSMg7YWdFnE+T1IdHwsdH+Vh7o8kcsiM=
+	t=1749659240; cv=none; b=G2Rgn0wF3+LostotEAsGlAKVKmkfDV4lYqiZz2LoMIpmMDFADrUGO7LwNqChSh7P0DiQzRGH3s05ThD66P9YygxTGQSD34MvYwgSfrEgLNoGw0Mq7VyH9RJM28kU6hJgkyFA8qBzkGD2FlGzMkBnCOlZ7FfeAYahpkVIlzBMFL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749659138; c=relaxed/simple;
-	bh=JoKvHcd/16FOMfJ8hZS2otWQ1fq0YEBXKYnmBQ5qxos=;
+	s=arc-20240116; t=1749659240; c=relaxed/simple;
+	bh=TtXVw+PkPXOitHU74/zipxEl0FGTF6GQcOkD9yWCbmk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X3iBo4JzThsLQrEbNDXSfb5cK1gfkJwSSUSygiHDFlxKfcvTLZU/7HGwhr9u+8Yr9Ar/HBYQ53RZeAKRH7PLAEwaEsdqTQmFhT1epywWI25nrDujpHbFrl0rrnQYpOrjmLyDrg3V/4/IX5Ido0PDGeKuISe/72kVJi+wirzVvrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duQbIDmM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B85C4CEEA;
-	Wed, 11 Jun 2025 16:25:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=X2DxVWIYcHIv7XisqMD3MFRXddyhh1o1KPBdcWxR5CLXdXPfgPJo5B/T8F07eZUVMEtZQS3k6n1wiSIZKstrqPBEEfI+ENyj5AMH4njsj2ydUbFV4S9Zb/OXBjKWMeGzOfHlvsDjD6KKhON31lA/w6+hQ2w6/ZCe79oHNrm9jIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Of69h1mo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA55FC4CEE3;
+	Wed, 11 Jun 2025 16:27:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749659136;
-	bh=JoKvHcd/16FOMfJ8hZS2otWQ1fq0YEBXKYnmBQ5qxos=;
+	s=k20201202; t=1749659237;
+	bh=TtXVw+PkPXOitHU74/zipxEl0FGTF6GQcOkD9yWCbmk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=duQbIDmML9WvmIyfdCPqarFvaytffHe4zKpMK0erbva9VbrUlErgN/6KcJi4OyCA7
-	 AN4DOtRiELMvi4IvMnKWVfkrD44EOr4cgyg12PZFlhvvCnuXmlgUXctRBNxlkg7NvZ
-	 Zn6fqbk5jhLnKDtn0FlKO0DJKbJ9U4MpM5KKc62GOFXRPFBUjlpEWIxZoMneaszy5U
-	 nk+2HWCa+0dsE9UkEF7TRsOorBHwcjDY0w7Iap3O+EcdS3hcbpzG/PkmsRwLNX9zWw
-	 clCwiLW/Wy2K+Q1KoMqG92sy56+6ak8cxblNoL6NqJ4Jv473Iy7X7fyWRrYgu27Db8
-	 vkq4KbbBM1IOQ==
-Date: Wed, 11 Jun 2025 17:25:31 +0100
+	b=Of69h1moi0kvk/wUGfC8qUrYlhnSf5HEF+Y08XuY4uWhQgQIfpaKOOUbCMBEfU5Xk
+	 m/JmMjypFT5H6Z6KZT9Xv21j9YKSR30BKLl/NooP9nZIhmaUOfKcyzJA2elWTRd3P9
+	 hFJ624oP/nZmvLkDU/piWDaokPP0F1GVWpqbJR7jkfAplrVxOzjdVU26f2IpGcog7O
+	 mg5HZ8bMfTz3ruS03ExOSyhMCWXHURuTNmaa98JNQ9U8OpEQ1m0e+kNssvJYZBijpf
+	 y6GipI71Y3uYOfaC45cKAzEi5+mYe9X9xhkHHxx9GgsD0Y++ECkyvhmT32xNjnDd7H
+	 EaRKgPT4P2IKA==
+Date: Wed, 11 Jun 2025 17:27:10 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Julien Panis <jpanis@baylibre.com>,
+To: Guodong Xu <guodong@riscstar.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dlan@gentoo.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, drew@pdp7.com,
+	emil.renner.berthing@canonical.com, inochiama@gmail.com,
+	geert+renesas@glider.be, tglx@linutronix.de,
+	hal.feng@starfivetech.com, joel@jms.id.au, duje.mihanovic@skole.hr,
+	elder@riscstar.com, dmaengine@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v1 1/5] dt-bindings: mfd: ti,tps6594: Add TI TPS652G1 PMIC
-Message-ID: <20250611-ion-barrette-1e43f2620c03@spud>
-References: <20250611133137.1686183-1-mwalle@kernel.org>
- <20250611133137.1686183-2-mwalle@kernel.org>
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT PDMA
+ compatibility
+Message-ID: <20250611-kabob-unmindful-3b1e9728e77d@spud>
+References: <20250611125723.181711-1-guodong@riscstar.com>
+ <20250611125723.181711-2-guodong@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,35 +66,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NPyqz6VEAkXZBKkJ"
+	protocol="application/pgp-signature"; boundary="82h4siQLdNk8igEh"
 Content-Disposition: inline
-In-Reply-To: <20250611133137.1686183-2-mwalle@kernel.org>
+In-Reply-To: <20250611125723.181711-2-guodong@riscstar.com>
 
 
---NPyqz6VEAkXZBKkJ
+--82h4siQLdNk8igEh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 11, 2025 at 03:31:33PM +0200, Michael Walle wrote:
-> The TPS652G1 is a stripped down version of the TPS65224. From a software
-> point of view, it lacks any voltage monitoring, the watchdog, the ESM
-> and the ADC.
+On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
+> Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
+> controller in the Marvell MMP DMA device tree bindings. This enables:
 >=20
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> - Support for SpacemiT PDMA controller configuration
+> - New optional properties for platform-specific integration:
+>   * clocks: Clock controller for the DMA
+>   * resets: Reset controller for the DMA
+>=20
+> Also, add explicit #dma-cells property definition to avoid
+> "make dtbs_check W=3D3" warnings about unevaluated properties.
+>=20
+> The #dma-cells property is defined as 2 cells to maintain compatibility
+> with existing ARM device trees. The first cell specifies the DMA request
+> line number, while the second cell is currently unused by the driver but
+> required for backward compatibility with PXA device tree files.
+>=20
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> ---
+>  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml b=
+/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> index d447d5207be0..e117a81414bd 100644
+> --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - marvell,pdma-1.0
+>        - marvell,adma-1.0
+>        - marvell,pxa910-squ
+> +      - spacemit,pdma-1.0
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+You need a soc-specific compatible here.
 
---NPyqz6VEAkXZBKkJ
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -32,6 +33,21 @@ properties:
+>        A phandle to the SRAM pool
+>      $ref: /schemas/types.yaml#/definitions/phandle
+> =20
+> +  clocks:
+> +    description: Clock for the controller
+> +    maxItems: 1
+> +
+> +  resets:
+> +    description: Reset controller for the DMA controller
+> +    maxItems: 1
+> +
+> +  '#dma-cells':
+> +    const: 2
+> +    description:
+> +      The first cell contains the DMA request number for the peripheral
+> +      device. The second cell is currently unused but must be present for
+> +      backward compatibility.
+
+These properties are only valid for your new device, right?
+If so, please restrict them to only the spacemit platform.
+
+> +
+>    '#dma-channels':
+>      deprecated: true
+> =20
+> @@ -52,6 +68,7 @@ allOf:
+>            contains:
+>              enum:
+>                - marvell,pdma-1.0
+> +              - spacemit,pdma-1.0
+>      then:
+>        properties:
+>          asram: false
+> --=20
+> 2.43.0
+>=20
+
+--82h4siQLdNk8igEh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEmt+wAKCRB4tDGHoIJi
-0qOfAP9B2sAwIv6xmvc26A60sTqWMV2cr7IVjvVfmX7DHSkg/wD/QjCLgH9LDlwO
-hmaJmmJp9+R/hjvg0es3TISpx02CFgU=
-=uyTT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEmuXgAKCRB4tDGHoIJi
+0qVeAQDGipWedss8FsQk82+JZZWNvXPOTFMRXZ9UZDbpVDtD9AD9HKL4/k0Gara+
+cP7bfGhZRfjr9QcvF763N1YHTn34eg0=
+=BguH
 -----END PGP SIGNATURE-----
 
---NPyqz6VEAkXZBKkJ--
+--82h4siQLdNk8igEh--
 
