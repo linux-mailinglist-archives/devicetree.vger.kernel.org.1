@@ -1,244 +1,224 @@
-Return-Path: <devicetree+bounces-184560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35C4AD4A03
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:23:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D38AD4A4F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:13:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E490189CFA8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 04:23:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30DC9189992A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A66F1B87F2;
-	Wed, 11 Jun 2025 04:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6BE22540B;
+	Wed, 11 Jun 2025 05:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="2UXI8dSF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T60vkEcj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915161779B8;
-	Wed, 11 Jun 2025 04:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749615804; cv=fail; b=pfg7tYoWX3MJy6LBy3jlpxBHsyleTCEH4M9rXcpMska+iPzDBFPtG6ac68/A4O0ioKp5c0DCnvIcRQ6NeKjcvBaELGYMDSgKFH5p1wlXHinWd+YWm+3C2gwiTM/OwPDVHwJ7PrsLlsILWHC8JyMzrbbE8pAaAnOeToG775dIMtc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749615804; c=relaxed/simple;
-	bh=3k8fM/cgg69eF5MlfXAb2CzhG5iieFJjztiC28ETCr0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=iD8WWAgDSetQjOrph8nfAKs3NyXKn9ZEf0H8VNRjUNSynf4Zh/Hnkv3Jr3vtvDrJRYe3npYBqLVmVHFUhYCOpRlUGiqvzynoQjHw5VpNjQYt1lzabBqaqzMa8V/2INXWiLhcPNeVXsQcPLPVLVp5UWBjit2G/eZyzjFwn0WMMt4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=2UXI8dSF; arc=fail smtp.client-ip=40.107.220.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UVztH+Jy6n648yHc635QPgGCO8ytNxTBd4fFM4sV+1tiuW/MDQUfHWGsKJyZIDTEDnImCwabpupJ1c9KMIzqRL4/PEusrT8Cc2s2N7aFftkCOBERBlF8crtQ2PccANDvylt2RUXRC6++HaHRj0eAk6Z+n5vsigO4vE7/FmFt3k9jan/2UBro6OcWv9ayDksAf8OAsHYknYWA5kQMimEnQd7+vJ57XU6njA9al785KLbufKZ0W4WHqZc8J/PVPBISbwXXUc4YkTNGv65VJWeAa2hw4SvBqteQHWS6hvK3CAaZG41+ignNmoLn7H33ZSEqv2p4lapjrXKVd8QimUCdEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bg+lRmo4528TFQZYkLc2ANHwbT9qthHCOrQ2tXEygwg=;
- b=T8EZN8CkmyS6+eXnItJtLH4W6cFlpD+2CojYNt/HclI3GNVUXzGx7eUEuMnY0WUG2WqwPRwUB6piPEDIJjyJOCRGx+zBrFUAQRQQGsX2qf14i+tYRCvhWEzvD8tfFhiy/o0Bkqi7iM7zZP4zwKJWya+E9IMFwx3H5cRo+pngASn5qW9JvVPztvfU8+FPQ346lm7O41XJNEcPKJH99wcPUUE1bsYnwOIVppSZzyWI4brqGlkypYatxPHAWy6b04U/pvT9FXi1SUYGPaqNXFBrBZg+L7MqEHhZ/DxqdXDDq8/tXYmA8CExfKLjtYk7m1MuAlSoe2TNW1YLBiNF20QqEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bg+lRmo4528TFQZYkLc2ANHwbT9qthHCOrQ2tXEygwg=;
- b=2UXI8dSFd5WYE5CVQdiYKcbPUtDJzQQEaCfQMTuWGf4XLhb9jWpKq8EbjXkdJM6Tk80bNCdYFHUvgR27NL5n6B8q/mRNYBBdRvcvn7Spv8+sS5vrl52QEJ1kd583m87uSaOgUC0XbDnvANhmMI/a7IMAhePpWrXGFTwGxRYOc5U=
-Received: from DS0PR12MB9345.namprd12.prod.outlook.com (2603:10b6:8:1a9::10)
- by BL1PR12MB5801.namprd12.prod.outlook.com (2603:10b6:208:391::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Wed, 11 Jun
- 2025 04:23:18 +0000
-Received: from DS0PR12MB9345.namprd12.prod.outlook.com
- ([fe80::65ab:d63c:7341:edbb]) by DS0PR12MB9345.namprd12.prod.outlook.com
- ([fe80::65ab:d63c:7341:edbb%3]) with mapi id 15.20.8835.018; Wed, 11 Jun 2025
- 04:23:17 +0000
-From: "Jain, Harsh (AECG-SSW)" <h.jain@amd.com>
-To: Rob Herring <robh@kernel.org>
-CC: "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-	"davem@davemloft.net" <davem@davemloft.net>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "Botcha, Mounika" <Mounika.Botcha@amd.com>,
-	"Savitala, Sarat Chand" <sarat.chand.savitala@amd.com>, "Dhanawade, Mohan"
-	<mohan.dhanawade@amd.com>, "Simek, Michal" <michal.simek@amd.com>
-Subject: RE: [PATCH v2 1/6] dt-bindings: crypto: Add node for True Random
- Number Generator
-Thread-Topic: [PATCH v2 1/6] dt-bindings: crypto: Add node for True Random
- Number Generator
-Thread-Index: AQHb2Pos9qp4lX7G/0KL13KXwmK5H7P6zyaAgAKPyTA=
-Date: Wed, 11 Jun 2025 04:23:17 +0000
-Message-ID:
- <DS0PR12MB93451D18D77A48C713E6EE9F9775A@DS0PR12MB9345.namprd12.prod.outlook.com>
-References: <20250609045110.1786634-1-h.jain@amd.com>
- <20250609045110.1786634-2-h.jain@amd.com>
- <20250609131521.GA1700932-robh@kernel.org>
-In-Reply-To: <20250609131521.GA1700932-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=60a5d33c-2bdb-45f1-ace1-b0ebfce08cee;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-06-11T04:22:29Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10,
- 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB9345:EE_|BL1PR12MB5801:EE_
-x-ms-office365-filtering-correlation-id: 9346b58e-f133-49d0-0f96-08dda89fb0cc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?0YOHsNCN1RAVerCe0uvDhyzaD6x0HwG94+nRrNHwlkseU1464keNb748ZTDm?=
- =?us-ascii?Q?i6szk0l0C3Myz1n2u1w7fY5PHTQMuLmAalz+7t1LbOkx99uzYJ3o5xNkLVJk?=
- =?us-ascii?Q?qZaf0781Cp/X5eESSiZU3yT+mIhGZlBU5T2vx1TSrPC3xHI8a6UUa4XU3n15?=
- =?us-ascii?Q?fBbVfXSepmH26S69e4HuEeJmzHA1wZhw1Hl+L0RcUm9oAEMqXzDS0gC0K6kw?=
- =?us-ascii?Q?AjjQknPETpsbnwOyRp73O2+/hnu4g6T7yE1QGzA/xxYqE1t2cB6EIM7XXeJo?=
- =?us-ascii?Q?iSECMCDiG65PhvehS2pqRpZfJYUP6MnQq9/Qo1uPYqoDLfj5QobRiJftPXb9?=
- =?us-ascii?Q?DjREpcRJ3hQrj5FKUa8vwpAF0NeS8vmosewjaY4ldgSS5FcBbUoaM0o29vhp?=
- =?us-ascii?Q?6Q03YVXMFmY/CpT7HD0BZHoIE2fR2CqlpRfFfqEfYssgTEnncM9zIqOJ1ZfZ?=
- =?us-ascii?Q?0YqmDKGzndROH7La25pD4PrzYdTaif03HNB3WR7OawWpaV6LxlB1wLCdzpwl?=
- =?us-ascii?Q?eK7TcbMy+BzTluJREd6c8vAGasCYoUprvY3vDL74pRTlq1zgrgSOKbsx5Rln?=
- =?us-ascii?Q?MmTdGJcuppK9+6sZDEcCCiGr9osDQycPtDhTa7qL9sQqyEJT8vTvsR8b3y4M?=
- =?us-ascii?Q?pZ4kYTlAgU8MdL5yqEWsXufQY8hkb7joAuaR/qaMsUGfxrge95KvZIneMMMa?=
- =?us-ascii?Q?D3IB6XWr625M0wre988rUgCHiiRy9qPEiGCTlkRYl53ESFApxNTwnKb0YJLT?=
- =?us-ascii?Q?FAa4YunjUIwxIjfjt0OfFY51Orv9l/VrmD35s8JtJX8cbGosiC8Bn7xCJjtH?=
- =?us-ascii?Q?UaEDxOCUDUKOL9b316QnJqQ5Pq5svsi5pdySYm8bv4IB2zsnHjH2xLWQZ+Z3?=
- =?us-ascii?Q?BYzFYOexM5tng1w8AIjPp9d9H6ayUqaxPvSzuATuQ6cwZbw/OMah1OgUgAHX?=
- =?us-ascii?Q?1hBOFem+8Rn8QEuUivjMfGsMPE67eFUu1U0Er+tWzFt2EpUacI/htRGF4BW1?=
- =?us-ascii?Q?weZMQyT3k7X7eA46Eaxv+GCtg2c6bvtEfrfocCkYuwGedu+zoYtdt1SOmFsq?=
- =?us-ascii?Q?OgXw9ph5jxq2RBpg0dHjwgWtmN1WrODa9zINESkGBNIN7O4lOhrjDKWp/U4S?=
- =?us-ascii?Q?X74g9bM7JYia8qetvpofIEqVzj2MXnz/7H+dMP4SHYWoNbCczKGtBI9rHSL2?=
- =?us-ascii?Q?2ZfxZjhtZRmUJMGqBj7F3lI1pJXtd0RbfMWrNuaPE9Lk5EifeUoBISOSi27S?=
- =?us-ascii?Q?wk1HQqV0/FSsqg5AHlkzM7gOOujJ8S1qgizOcW2exwvz5YnZ2kgH5B7Ji021?=
- =?us-ascii?Q?g9tHIkvo/xul0UpJHvJDYPh42kbUa6u3Cwnlow/YpgfZKkGvgWhIWlJ7urKC?=
- =?us-ascii?Q?IwkZeOz/obHH9JNEW2qQ1bqSVITQbuXcgSLvyLmvWBsn/zYeeC7BV5MrhqGa?=
- =?us-ascii?Q?GMF+/xLgwqU=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB9345.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?nrxfviNzFuvqUJz4VPoqviW4tjFJH5e57sFrayTk7gTyeIFvSQ5iY1N1ckhX?=
- =?us-ascii?Q?JtapZSDzACaFNr0U0OKQexKzno2Cxis0s8WxFF1kyVbvjxFByerkyddy1bhn?=
- =?us-ascii?Q?q7gBwM5dwnxleYMy7phb6bRvCzCfkBzDzhH5uoJZ+9rZh6t+88DJ+vBmp9GI?=
- =?us-ascii?Q?s/jA+QnOY13NVC78xvuKTFN/kbRiknxdlZGjUVgaBY8tkFZgTwRfTM3xYTFN?=
- =?us-ascii?Q?HajZ3kuKBQgz2ZfvnfbW9U3eoowrousFIUlRrfg5FTjB7yVCmuvStVU4JitQ?=
- =?us-ascii?Q?6slrOwJRN1Uuvot3q3csoXdFguaLuKpf5y7BPf1EO9beEHxOVbhoajGnMZLg?=
- =?us-ascii?Q?tH14vuIujj3w8W1bZDcdYspFu1F2tdu+Ud02UupDj1BXvEtWC00SV3Psw0V8?=
- =?us-ascii?Q?jsXHnqCZRKLVNnJiaQGF1JZXld6hN0fbYg6VaH1hStuBKeSe0/8oBxQ5V01f?=
- =?us-ascii?Q?6c0a744yTTGMHu90pHFzlOuvViVjze+Jf/Avmliu0gXIg/Ewbok2ke1lFuej?=
- =?us-ascii?Q?moX9DIIcRf+bPZKcj8gZU2C0/BUauFjbHHB7YR+l3ok9u1IXMA24c+yAsHK/?=
- =?us-ascii?Q?zQzI+jRdhmueE4Sje2YGs9lGlRGmS0QjuWiUxh16yrMbRFEtQVeJfY0wiqrM?=
- =?us-ascii?Q?lvHpAspBmFTcVjCdKqDpg4wYTvOBWoNJOj5TOCt1553XBVjJQRXjJPLtPwNt?=
- =?us-ascii?Q?fU+2l6fWTkRuXDNcNbowUFlx8jUPcJE0Y0jB2/Vq0vV2HlhYca/9QNpJU4j1?=
- =?us-ascii?Q?SK48gvm/nlyl11nqnXXkvpx76lkcBCSSI6mevrSkCsOB4qwv1Yl1sqX0P/pY?=
- =?us-ascii?Q?v2WCAGMtMiSAbelhjUL5ejXHzhBUFg/U536ZkdY2KUVuNm+y6uefQ9BUFw1d?=
- =?us-ascii?Q?Wk/leTfLOkwLAuy/CRYWO4ebkwXKeNqIPBD/pgW+Z2lkk/zvsjt5gfCVMpte?=
- =?us-ascii?Q?koQrv6F37Mh+NUSsU1NjZYvRQOpirdJ3Ni9l5118LLGY6XbYz2evTj0+Sf+C?=
- =?us-ascii?Q?WsCdymiDh6OPzfWCcacN28ftoDL1kJCgfDM6RrrvRyEjGwQ/eeEvGKKPUT32?=
- =?us-ascii?Q?85oTjd9Sd0MtWynvIAKLnIriUdbM4LhtxKHKlOXCY9Z7GCK721merWeN2lj9?=
- =?us-ascii?Q?HgsYE47tWvp+ReLqucvzaquGp3kt+dm+C8ycdI2Af7yWGhA8XB1P+11blDk5?=
- =?us-ascii?Q?JjqVhzKhOlL5kEGClwHxOKVMr6pr2hSXFrgsdY35a90CFSUfCneEMWWIerbw?=
- =?us-ascii?Q?w+OrBk7Qz/OcswN0cn0XD7yxJC4UjOmD2GfFzqFcotBPdCJsJ4DSROaSwwUV?=
- =?us-ascii?Q?Ec3v9NK0MTClnfEdSZgZ1npa0qDcfeMvM0zao4LG4QS1gVnR1yyyUFPv879B?=
- =?us-ascii?Q?o/qaH9vxVDx7oycskto0bZav4u//BnuijUxAWQCRDpnwegS9Hg1p1sjGnN3z?=
- =?us-ascii?Q?jUNVQDDXHfG1+NDqJM1zy/J178vqPTLna1CRjvj/fFuA7lcsDgMNnJ3EYKl3?=
- =?us-ascii?Q?IgYFyyddJOZLXl1fgU8YsygfK+mgK+Mg45nbq9YXMft4yasHgVn6b04MwfzC?=
- =?us-ascii?Q?OynTxRvSq6iRUSzOF8A=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 361892236F7;
+	Wed, 11 Jun 2025 05:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749618785; cv=none; b=Np8jKnhH1/UvOu7BLPWi9QBs0KTqqETlQ4wuup2aJiH9NM52GVSgXHZyOc7DbZhG8wqAXN4l0Pe9wYayPR9aLijUYdgkdD/VaWBgvepFUfIS7ad+5///h+qRCbGpBNg1WNnu9uFVDsR2MQRTlg0f9SwqHuuHUmnWVQYasuzB2Z4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749618785; c=relaxed/simple;
+	bh=FZ77rZmKrowroBjfFiCTpiqeBpzxShU0u3fUrllz5rc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gPmiVrY51MrsL8eRYg/BDHFuYjNKGRMzSaQ3kl1hD7ru7jrTz/jhILrMMqtdnq1hPuB6B9RD31lVMdd5mz/4O1C9qpcnTGTo2+m3Y8gBhV/o+zzDjX87hvb/m/M2Igk52+VhhzQBaZMFucGvTNgDYNSgZmti9sSlZGYSzA1Tjj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T60vkEcj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A2860C4CEEE;
+	Wed, 11 Jun 2025 05:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749618784;
+	bh=FZ77rZmKrowroBjfFiCTpiqeBpzxShU0u3fUrllz5rc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=T60vkEcjW3Ji7yHb76wuCLVsfLYxkVTT7KQ1I3TEr8FD//G/Vi46FxOFREMNcsb9/
+	 6Tik4xQQpUhWWfdH0rETrQu8gJ8c+3PWAFXsf8v6pyS6HPftowdxBd3CrIgMSpZGi6
+	 61shhB2OZJ7ElPC+YEM9XjlhFodlduSo6WIt2gb0VBWaE+LuR9Nc0b4VhWh4k8atRi
+	 c99taU0qb2b9CavoXohjQWGcSiaBkZC2HqlSYZAFVjH6S9kD7XsVXHfprhUDBQpDBr
+	 SI15vnMT6yhAoWB3mn09uLlDI/itdQog5L6EU41biLEXcUq9WGr4fmSSMkZSQuEsHm
+	 I5UTRXgbOHZUg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 903A0C677C4;
+	Wed, 11 Jun 2025 05:13:04 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v11 0/2] Add support for IPQ5018 tsens
+Date: Wed, 11 Jun 2025 09:12:44 +0400
+Message-Id: <20250611-ipq5018-tsens-v11-0-266566bfd16a@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB9345.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9346b58e-f133-49d0-0f96-08dda89fb0cc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2025 04:23:17.5369
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ME6kxTvRO6hG0aiEWN4/km61xWK+TkWn9l/q17cs9Q9pxsVhunP6nOD7veu8yWmo
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5801
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEwQSWgC/12PwQ6CMBBEf8X0bEm30EI9EcCjidGj8VChSKNQb
+ NFoDP9uxYt6nN3ZN7NP5JTVyqHF7ImsummnTecFwHyGykZ2R4V15QeIEspIRCKs+wsjkODBqc5
+ hHh1qweoqDCFG/qa3qtb3Cbjbe11b0+KhsUpOlGIbrzcgVlmSJCEvci44Y8CWQIuYZBnNRZHnN
+ P2xBZ1se1uBCHprqsBch7Mxp6A07Tuw0W4w9jE9cAPyzv105UD+uvo1BhxKIJJJyiNapt+w/Ti
+ OL7VNnDcQAQAA
+X-Change-ID: 20250404-ipq5018-tsens-64bf95fd3317
+To: Amit Kucheria <amitk@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>, 
+ Sricharan Ramabadhran <quic_srichara@quicinc.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749618782; l=5954;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=FZ77rZmKrowroBjfFiCTpiqeBpzxShU0u3fUrllz5rc=;
+ b=YiF93byp3tuckD8J//y9zG+sqcwWVOio+dOVJ+6UNAF9EyQs/Dr56aLYcmPkQsSwQ4gnE9Nve
+ GXJhWEew1rJCa49XjkxxENVjyLcEi1jDaa5CEn6UUXfsvhjCsOZ9814
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+IPQ5018 has tsens V1.0 IP with 5 sensors, of which 4 are in use,
+and 1 interrupt. There is no RPM present in the soc to do tsens early
+enable. Adding support for the same here.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Monday, June 9, 2025 6:45 PM
-> To: Jain, Harsh (AECG-SSW) <h.jain@amd.com>
-> Cc: herbert@gondor.apana.org.au; davem@davemloft.net; linux-
-> crypto@vger.kernel.org; devicetree@vger.kernel.org; Botcha, Mounika
-> <Mounika.Botcha@amd.com>; Savitala, Sarat Chand
-> <sarat.chand.savitala@amd.com>; Dhanawade, Mohan
-> <mohan.dhanawade@amd.com>; Simek, Michal <michal.simek@amd.com>
-> Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Add node for True Random
-> Number Generator
->
-> Caution: This message originated from an External Source. Use proper caut=
-ion
-> when opening attachments, clicking links, or responding.
->
->
-> On Mon, Jun 09, 2025 at 10:21:05AM +0530, Harsh Jain wrote:
-> > From: Mounika Botcha <mounika.botcha@amd.com>
-> >
-> > Add TRNG node compatible string and reg properities.
-> >
-> > Signed-off-by: Mounika Botcha <mounika.botcha@amd.com>
-> > Signed-off-by: Harsh Jain <h.jain@amd.com>
-> > ---
-> >  .../bindings/crypto/xlnx,versal-trng.yaml     | 36 +++++++++++++++++++
-> >  1 file changed, 36 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/crypto/xlnx,versa=
-l-
-> trng.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.=
-yaml
-> b/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> > new file mode 100644
-> > index 000000000000..b6424eeb5966
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> > @@ -0,0 +1,36 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/crypto/xlnx,versal-rng.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Xilinx Versal True Random Number Generator Hardware Accelerator
-> > +
-> > +maintainers:
-> > +  - Harsh Jain <h.jain@amd.com>
-> > +  - Mounika Botcha <mounika.botcha@amd.com>
-> > +
-> > +description:
-> > +  The Versal True Random Number Generator consists of Ring Oscillators=
- as
-> > +  entropy source and a deterministic CTR_DRBG random bit generator (DR=
-BG).
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: xlnx,versal-rng
->
-> I believe the prior comment was only about the node name. If the block
-> is called 'trng' then you should call it that.
->
-> And please test your bindings before sending.
+Last patch series sent by Qualcomm dates back to Sep 22, 2023.
+Since I'm working on OpenWrt support for IPQ5018 based boards (routers)
+and Sricharan Ramabadhran <quic_srichara@quicinc.com> in below email
+confirmed this SoC is still active, I'm continuing the efforts to send
+patches upstream for Linux kernel support.
+https://lore.kernel.org/all/63dc4054-b1e2-4e7a-94e7-643beb26a6f3@quicinc.com/
+
+[v11]
+	*) Dropped polling-delay property as its value of 0 is the default value
+	*) Removed comments for TM and SROT in tsens node
+	*) Replace underscore by hyphen in node name of top-glue-critical trip
+	*) Added cooling device using CPU freq scaling making use of the passive
+	   trip defined under the CPU trips
+	*) Make qcom,ipq5018-tsens a standalone compatible in the bindings as it
+	   should not use qcom,tsens-v1 as a fallback. This also fixes the issue
+	   reported by Rob's bot
+
+[v10]
+	*) Rebased onto updated pull of master to resolve merge conflicts in the
+	   DTS patch
+	*) Link to v9: https://lore.kernel.org/all/DS7PR19MB88836DC6965515E12D70BB2C9DCC2@DS7PR19MB8883.namprd19.prod.outlook.com/
+
+[v9]
+	*) Updated checks in tsens to more strictly evaluate for v2+ upon enabling
+	   v2 features as suggsted by Dmitry.
+	*) Split patch 3 into two, one to update conditional statements as
+	   mentioned above and the other to implement tsens IP v1 without RPM.
+	*) Added back Dmitry's RB tag on patch 6 which wasn't carried over
+	   from v7 to v8
+	*) Link to v8: https://lore.kernel.org/all/DS7PR19MB88833F7A9C8F4FC484977BA69DCD2@DS7PR19MB8883.namprd19.prod.outlook.com/
+
+[v8]
+	*) Tsens V1 uses v1 interrupts and watchdog is not present (only on v2.3+).
+	   As such, replaced VER_1_X with VER_1_X_NO_RPM in conditons to ensure
+	   v1 interrupts are set and watchdog isn't enabled.
+	*) Tested on Linksys MX2000 and SPNMX56
+	*) Link to v7: https://lore.kernel.org/all/DS7PR19MB88831624F11516945C63400F9DC22@DS7PR19MB8883.namprd19.prod.outlook.com/
+
+[v7]
+	*) Updated cover letter
+	*) Replaced patch 3 with a new one to add support for tsens v1.0 with
+	   no RPM and removed Dmitry's 'Reviewed-by tag
+	*) Refactored patch 4 and split support for IPQ5018 from support for
+	   tsens v1.0 without RPM. As such, also removed Dmitry's RB tag.
+	*) Depends on patch 1 and 2 from patch series to add support for
+	   IQP5332 and IPQ5424 applied on Feb 11 2025:
+	   https://patchwork.kernel.org/project/linux-arm-msm/cover/20250210120436.821684-1-quic_mmanikan@quicinc.com/
+	*) Link to v6: https://lore.kernel.org/all/DS7PR19MB88838833C0A3BFC3C7FC481F9DC02@DS7PR19MB8883.namprd19.prod.outlook.com/
+
+[v6]
+	*) Include (this) cover letter
+	*) Picked up Dmitry's Reviewed-by tag on patch 5
+	*) Link to v5: https://lore.kernel.org/all/DS7PR19MB88832FDED68D3EBB0EE7E99F9DC72@DS7PR19MB8883.namprd19.prod.outlook.com/
+
+[v5]
+	*) Adjusted commit messages to indicate IPQ5018 has 5 sensors of
+	   which 4 are described and in use as per downstream driver and dts.
+	*) Padded addresses of tsens and qfprom nodes with leading zeros.
+	*) Link to v4: https://lore.kernel.org/all/DS7PR19MB8883BE38C2B500D03213747A9DC72@DS7PR19MB8883.namprd19.prod.outlook.com/
+
+[v4]
+	*) Documented ipq5018 in qcom,qfprom bindings
+	*) Constrained ipq5018-tsens to one interrupt with description
+	*) Added Rob's Acked-by tag
+	*) Added Dmitry's Reviewed-by tag
+	*) Fixed modpost warning: added __init to init_common
+	*) Sorted tsens nodes by address
+	*) Sorted thermal-zones nodes by name
+	*) Link to v3: https://lore.kernel.org/all/20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com/
+
+[v3]
+	*) Added the tsens-ipq5018 as  new binding without rpm
+	*) Added Dmitry's Reviewed tag
+	*) Fixed Dmitry's comments for error checks in init_ipq5018
+	*) Ordered the qfprom device node properties
+	*) Link to v2: https://lore.kernel.org/all/20230915121504.806672-1-quic_srichara@quicinc.com/
+
+[v2]
+	*) Sorted the compatible and removed example
+	*) Fixed the name for new tsens_feature
+	*) Used tsend_calibrate_common instead of legacy
+	   and addressed comments from Dmitry.
+	*) Squashed patch 3 & 4
+	*) Fixed node names, order and added qfprom cells
+            for points seprately
+	*) Squashed patch 6 & 7
+	*) Link to v1: https://lore.kernel.org/all/1693250307-8910-1-git-send-email-quic_srichara@quicinc.com/
+
+George Moussalem (2):
+  thermal: qcom: tsens: update conditions to strictly evaluate for IP
+    v2+
+  thermal: qcom: tsens: add support for tsens v1 without RPM
+
+Sricharan Ramabadhran (4):
+  dt-bindings: nvmem: Add compatible for IPQ5018
+  dt-bindings: thermal: qcom-tsens: Add ipq5018 compatible
+  thermal: qcom: tsens: Add support for IPQ5018 tsens
+  arm64: dts: qcom: ipq5018: Add tsens node
+
+ .../bindings/nvmem/qcom,qfprom.yaml           |   1 +
+ .../bindings/thermal/qcom-tsens.yaml          |   2 +
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 169 ++++++++++++++++++
+ drivers/thermal/qcom/tsens-v1.c               |  62 +++++++
+ drivers/thermal/qcom/tsens.c                  |  27 ++-
+ drivers/thermal/qcom/tsens.h                  |   4 +
+ 6 files changed, 256 insertions(+), 9 deletions(-)
+
+--
+2.48.1
+
+---
+---
+George Moussalem (1):
+      dt-bindings: thermal: qcom-tsens: make ipq5018 tsens standalone compatible
+
+Sricharan Ramabadhran (1):
+      arm64: dts: qcom: ipq5018: Add tsens node
+
+ .../devicetree/bindings/thermal/qcom-tsens.yaml    |   5 +-
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              | 182 +++++++++++++++++++++
+ 2 files changed, 186 insertions(+), 1 deletion(-)
+---
+base-commit: afc582fb6563b8eb5cd73f9eca52e55da827567f
+change-id: 20250404-ipq5018-tsens-64bf95fd3317
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
 
 
-Thanks Rob, Will fix and test.
-
->
-> Rob
 
