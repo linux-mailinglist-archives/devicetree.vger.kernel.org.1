@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7254AD4C0D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:52:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB0FFAD4C1D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:56:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95BE617BCE3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:52:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F0603A7644
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A25227B81;
-	Wed, 11 Jun 2025 06:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F236226883;
+	Wed, 11 Jun 2025 06:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fchDWAkO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPLZWO2k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53B014B07A;
-	Wed, 11 Jun 2025 06:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CA41494A8;
+	Wed, 11 Jun 2025 06:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749624719; cv=none; b=pnoIkMd7ErqIOa3SyqGoicS3hjueMZrhZkW1fD3A1qiHZkoFHgnz6weaRSxi5tRiJhJPcnSA5rSwyByOMDxvZEVgVsfJNmRi5S0FtYhMZRtphgrO/NjEQqQy09o5TDzsLZgO4klnnOZn9RxDRUJM1oDqTZ95pKRQ5zmQDqck/Cw=
+	t=1749624962; cv=none; b=huMdwxmCrxdPdxezzj4m20c6htDGAWoy/R+I+VpRRQPFeF+Xn2htvWoDlhISzgsOUnH35iaLqcXG72PPC785DHobnQB52wJUQqs51fcwMoAeASDPxLmLDjVBwnulQAjVFKCWhshlS3jrAbhRuRVZsK1YvRN2T66Ws26W5g+NWjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749624719; c=relaxed/simple;
-	bh=szXoYLleDDeUV39thdUuvfqybaNXKW0uWbkX75i96yE=;
+	s=arc-20240116; t=1749624962; c=relaxed/simple;
+	bh=9xu7F9Un18ntXhzfrFPvaeitxgsg5unScCrEL0+lNHI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fdr1Rx3T7Zsf1xjAAWpAW8eMLE1HMUKbHt6T0kfQJo5a0Eg1l99xw3Mhrd9SBMNoAFI7j2X2dUbTGqZEAeHTQsE4M7mftMGW3rBQxgXHqJ4jBCxFfGnjOinhhwnwF6LgLyakjWXqVG93JzuBVm6pf3EjAhW4dbpRxyX0Q4ACoZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fchDWAkO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9EEC4CEEE;
-	Wed, 11 Jun 2025 06:51:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SDmeVEkA11EeZndqcjKIQFsR/eRuEvn+338BvO1yqpNDVceM0/Kd4bBN19QiVKNNmUKLkapFfHmmBgeU+wdosYlva+kXQa8jXoPXa1JoeNgHKlChQQmIcmjJQnnjBGd/JgmKWvqU/GIvVUULiE5XYK6/3096sdfj3sUObns+pQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPLZWO2k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F24C4CEEE;
+	Wed, 11 Jun 2025 06:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749624719;
-	bh=szXoYLleDDeUV39thdUuvfqybaNXKW0uWbkX75i96yE=;
+	s=k20201202; t=1749624962;
+	bh=9xu7F9Un18ntXhzfrFPvaeitxgsg5unScCrEL0+lNHI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fchDWAkO4Rz8+uWItSHpa1PC0P2HAYjsuAO/hcZtuvHmupoRiB39pbuzpo7lrlH56
-	 d7VaaS9o8tBNK4WBzF7aqMwbE6o5ZeMGUmRbEyDnZhrHMy5NXF8mzbnqLQFgBhSm8+
-	 t8EkjQ2JRDTJVqL3uSEniBjRXpteHKkeGhFWyvfdWTSkiK0g2uyo+w864RFZpT5ufK
-	 5CvqGqN6jQ4WCPEXHcWVdY6Um6c9oiMdCIQYXNNMtfHottqiP3QUC1sWNa8kFQ2y58
-	 C4/s6RNAlbskkNXHtfWnsDQH7PUraUYOI7n8mPcAdzMUy4nxJ21XcIchH+lYh29VyF
-	 TjaBqAhwSjsvQ==
-Message-ID: <17eaaad4-7713-4149-b66c-1c48db3ab42f@kernel.org>
-Date: Wed, 11 Jun 2025 08:51:54 +0200
+	b=BPLZWO2kq6hlqgVRNgP+wqFojvW28PmmcDYJyyx4ImqnL72ul43Y3XavbR231dR4F
+	 bUEdmacN+/yktDkLwn0cs/6ZYKn6KTmAdGn8/XBWLiHhAHxqaFip2LqmORnj/l0dGV
+	 6lU76fEeBkhZRNXUFXh8RjWzpYo2LZu0tyC5ZCs2BJKiVgMSN8bZOiRHflz7qAA6nG
+	 bRgjusHNshMmHsMH6fcoOVqkCplM401bRtccJ+9PorVr9WjcnDn1EeAAA2HgBfnU0E
+	 q8NHDD/W4+SMltnCOpu3aLbUhwL2Wzca02wYMsScdM4QFBWD69bNQD8mhDicNhb3EK
+	 ZKMlcKW+REU4A==
+Message-ID: <046810d9-c2f5-47b3-91c7-bdaceb4c6fc0@kernel.org>
+Date: Wed, 11 Jun 2025 08:55:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 1/2] dt-bindings: thermal: qcom-tsens: make ipq5018
- tsens standalone compatible
-To: george.moussalem@outlook.com, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250611-ipq5018-tsens-v11-0-266566bfd16a@outlook.com>
- <20250611-ipq5018-tsens-v11-1-266566bfd16a@outlook.com>
+Subject: Re: [PATCH v4 1/1] ARM: dts: aspeed: Add device tree for Nvidia's
+ GB200 UT3.0b platform BMC
+To: Donald Shannon <donalds@nvidia.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, etanous@nvidia.com
+References: <20250611013025.2898412-1-donalds@nvidia.com>
+ <20250611013025.2898412-2-donalds@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,54 +104,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250611-ipq5018-tsens-v11-1-266566bfd16a@outlook.com>
+In-Reply-To: <20250611013025.2898412-2-donalds@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/06/2025 07:12, George Moussalem via B4 Relay wrote:
-> From: George Moussalem <george.moussalem@outlook.com>
+On 11/06/2025 03:30, Donald Shannon wrote:
+> The GB200NVL UT3.0b BMC is an Aspeed Ast2600 based BMC
+> for Nvidia Blackwell GB200NVL platform.
+> Reference to Ast2600 SOC [1].
+> Reference to Blackwell GB200NVL Platform [2].
 > 
-> IPQ5018 tsens should not use qcom,tsens-v1 as fallback since it has no RPM
-> and, as such, deviates from the standard v1 init routine in the driver.
-> So let's make qcom,ipq5018-tsens a standalone compatible in the bindings.
+> Link: https://www.aspeedtech.com/server_ast2600/ [1]
+> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
 > 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> Signed-off-by: Donald Shannon <donalds@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 5 ++++-
-
-You just added it recently with the fallback (in v9 of this patchset)
-and now remove it?
-
-And what does it mean it has no RPM? How does it affect the driver? Does
-fallback work or not?
-
-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> Changes v1 -> v2:
+>   - Changed phy-mode to rgmii-id [Lunn]
+>   - Removed redundant max-speed for mac0 [Lunn]
+>   - Fixed typo from gb200nvl to gb200 in Makefile
+> Changes v2 -> v3:
+>   - Fixed whitespace issues [Krzysztof]
+>   - Fixed schema validation issues from my end ( there are still issues with the aspeed dtsi file that are not related to this new dts) [Herring]
+>   - Reordered to follow style guide [Krzysztof]
+>   - Removed redundant status okays
+>   - Changed vcc to vdd for the power gating on the gpio expanders
+> Changes v3 -> v4:
+>   - Added changelog [Krzysztof]
+>   - Added nvidia,gb200-ut30b board binding [Krzysztof]
+>   - Removed unused imports
+>   - Reordered a couple other style guide violations
+>   - Added back in a couple needed "status okay"s
+> ---
+>  .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |    1 +
+>  .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1154 +++++++++++++++++
+>  3 files changed, 1156 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 0e653bbe9884953b58c4d8569b8d096db47fd54f..73d722bda8adc2c930edfc3373e6011f19c7c491 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -36,10 +36,13 @@ properties:
->                - qcom,msm8974-tsens
->            - const: qcom,tsens-v0_1
->  
-> +      - description: v1 of TSENS
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index a3736f134130..420fabf05b24 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
 
-So that's still v1... I don't understand.
 
-> +        enum:
-> +          - qcom,ipq5018-tsens
-> +
->        - description: v1 of TSENS
->          items:
->            - enum:
-> -              - qcom,ipq5018-tsens
->                - qcom,msm8937-tsens
->                - qcom,msm8956-tsens
->                - qcom,msm8976-tsens
-> 
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
+You already got this comment, didn't you?
 
 Best regards,
 Krzysztof
