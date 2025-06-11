@@ -1,142 +1,233 @@
-Return-Path: <devicetree+bounces-185020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6604AD6055
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 22:48:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AAB5AD609F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 23:03:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CF043A31E0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 20:48:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1390D3AACBB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB35226D03;
-	Wed, 11 Jun 2025 20:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB3523ABB9;
+	Wed, 11 Jun 2025 21:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="lccOqZ4z";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gEiLVlyS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hojascee"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A169329D19;
-	Wed, 11 Jun 2025 20:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F40919A;
+	Wed, 11 Jun 2025 21:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749674899; cv=none; b=p6H2u+jzZUvaGnDZPjXBK1lIIOSbH2NpIAWRf/Cz2TImcUSB8WZNhQYPjeGz7RnI7GiEMsle2E5ynLJvmxS2kNMDUuBiwwSfaDT32eMH5sfCbbrzQCbyecFDED5vFVfE0zF0JyCktsyZ2SIwMmiNOrVtMuazFN0J5IxH5brviR4=
+	t=1749675790; cv=none; b=omcPfXVEPBgtge+BLf9Gs/Pkb+eIbJWoIie5JgmuPJ6Y3eVvZOr25fQt7RkwyyxERSPxfbKzgDFv5J1J+aFvPo01swPsiT4S9o1qAApNar8WAGApje1oBo8SxMkESmGeWtPVy1yut8PEdndv6E3ltrljr670I+fAP3FJUmpg3s4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749674899; c=relaxed/simple;
-	bh=ZeSIxqRw+KDkZduoO9BBG4LMBdyh/NL6CX6I3GxMP+o=;
+	s=arc-20240116; t=1749675790; c=relaxed/simple;
+	bh=uhaxMZ7pEvrEqe0KuIX5jDb9dCyw5EALuBZfNdz+7aM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tZGGIgGUl2kdf1pcQasws6iKyBDBIHNXcIDnJCD2pTTDZv75thIO5q+eCOrNWuQIl9X3LX2uZjgxhUDJvcf6u5BE+QkCoqq0WNsWiwK4Acsv6lLR74UTubMU7kuVVMtO/kRkGJZ+IGVvKCeRwm+iO3ikkpO1/4DiXAng2HBat0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=lccOqZ4z; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=gEiLVlyS; arc=none smtp.client-ip=103.168.172.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id D87C211401F7;
-	Wed, 11 Jun 2025 16:48:16 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-09.internal (MEProxy); Wed, 11 Jun 2025 16:48:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1749674896; x=1749761296; bh=cW5kHqGoMg
-	cJPCZRWrn/3XY+/PqK7bC2f+q7PxYZJmI=; b=lccOqZ4zDxD5QnxYqtuNw7kx61
-	UfSXSwslOKC1hlVyRlsCP/+2aU8f/QlFjHGFaXZcrSRXH3OZzJosB+u41yQ341G2
-	notTs7uCv74XxLa6yP+H5v0tnlLM0BFmYCekjHpbIFvNL+mSKds67ob40vG7nCwJ
-	CJUuqd8ubW8zgIu0sRpI7Qhck4v/+otxVGd99diTuzy/Yn6B/njdP20r8LNd0r4m
-	q/2QjCz0qHrKZWQffh9eNsqiDH8ljzro3KzD1hyKa7x03Y+npAJfuYTEa+hzBfj8
-	Cy55kfl00+QsYT5HFNIdqKDGo6tgrJ/1ZVX+ol7rwiStMx+SY/hi+VLdAlrw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1749674896; x=1749761296; bh=cW5kHqGoMgcJPCZRWrn/3XY+/PqK7bC2f+q
-	7PxYZJmI=; b=gEiLVlyS0LmftbzpaTBiNHWXFGAXALENeNIFVlxu5BbBJmIBQOy
-	6biybY2D/PcrA7qcunHQRIk0Lc7WO6BwVI2Vwr6UX1D2dnaKfebIhWC1Z/qs4auR
-	gBJ/xgaLTafA3GIV9vClFbd4vRcHV0dFA7PFAaQwZXGmNWNZ/koWUeSU92lVb3l8
-	HjJqTSS00nvAKczI1SQWNGBD7ypQ4C+9T0ueW3gQisPaUKyLeeY6azQbCkZpii8M
-	73ldWbhtUwVIVg/3NybE6S+Kx3k/n8bnLsUULHkLyfzlbgLXgIrLY4aXzmZbwVuD
-	ch313qsow9TD9gUh4Sq+xfsTLGUcvZ4kTTg==
-X-ME-Sender: <xms:kOtJaPGBJ8VxML_IFDAM5ojYhisoWLK_dLE_cSg_W0kFUD6pFPaWYQ>
-    <xme:kOtJaMX1soAQHQ6TLFzPL0Tafd6Rou3A4xiDRr39IwAagrc35JAkop911DY103BL-
-    8V6uTrUWnk5j7c4h4g>
-X-ME-Received: <xmr:kOtJaBL7_fPCWP-umOJvhjENK8D6xi_bjdXa8MMhmRuE3r1hmEp7XeTqRSKvuQ48CG4V61A-hpMRSTmJxk_AgL6giBxGKFoL-pc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddufedulecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttdej
-    necuhfhrohhmpeflrghnnhgvucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqne
-    cuggftrfgrthhtvghrnhepgfdvffevleegudejfeefheehkeehleehfefgjefffeetudeg
-    tefhuedufeehfeetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepjhesjhgrnhhnrghurdhnvghtpdhnsggprhgtphhtthhopedutddpmhhouggv
-    pehsmhhtphhouhhtpdhrtghpthhtohepshhvvghnsehkvghrnhgvlhdrohhrghdprhgtph
-    htthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhiohdprhgtphhtthhopehnvggr
-    lhesghhomhhprgdruggvvhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpd
-    hrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptgho
-    nhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsth
-    hsrdhlihhnuhigrdguvghvpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghl
-    sehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvth
-    hrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:kOtJaNF-MWh_9aGOL3AXtXQwiIMLr0T-Num_Cz6QwEHVnVC4sDNXAQ>
-    <xmx:kOtJaFWJ8jcZCzOeD8Me2ZoAJC7GIDSOreY0thhO6Haq5rROJNxNRg>
-    <xmx:kOtJaINz6Yq6x3cT23Xr67urYegzm8UXXJ-sVrEV134fn1b4PP2sNw>
-    <xmx:kOtJaE1yj2w5sxV8CUxJ9CZqGMiZxobzyHRKXUdVcli9BxE_OMtafg>
-    <xmx:kOtJaK4tgj967JTcmaHAgZtX46seZ9XqRRELL3oU5M_5c5dZqVa6ZBHr>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 11 Jun 2025 16:48:16 -0400 (EDT)
-Date: Wed, 11 Jun 2025 22:48:14 +0200
-From: Janne Grunau <j@jannau.net>
-To: Sven Peter <sven@kernel.org>
-Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: apple: Drop {address,size}-cells from SPI NOR
-Message-ID: <20250611204814.GC3141695@robin.jannau.net>
-References: <20250610-apple-dts-warnings-v1-1-70b53e8108a0@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FeD27LIiMzlTRdqpsUn58mf6327ffes/q60TfQFKtEbVigLtwp7EM0uhQCiFE1nn/mXPUIML/qzr0c5LYhRr6pno1BlYA6VkPP+fgFNGPSc+vahq+1q3OHR1L+Y6tjv6WNtOfzLjLVfXzgaBps5myA/29j0l+tJmzDkavMwGnjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hojascee; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-742caef5896so352515b3a.3;
+        Wed, 11 Jun 2025 14:03:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749675788; x=1750280588; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KUQvYGXAJM9vFj/+RVHEyx0Hqdg+1ObhRxvVS6G9TV8=;
+        b=hojascee9YJHkqUhFleUbJlOoi313xMWxXntZazRUw7xI0Wk21NiovQWUWdXDtb10V
+         rTT3fPM7fthcJq4Vt+E9W7ErKIGIx4GM+0feNbWDaB4JjU64/Pi4pWje5KqQaE6kKsZX
+         2j7RrBh9ZSvq1tk/0z2kIHN4tLnkkKmz9+Ctu/IWcNRgGS029ZupNpCaDGHZf1GGlcZU
+         yKkQFQE/22NANbrX1FHZtMoMJCeyKtexf4xf49EhkOI6sXg2ZbFHF2iBLSaLnNgXnBlv
+         l7pO6HFk2ryoFvc0wE4NUFVPBOGlEIyTtaa/8XlF7YDppZpp25m3gMgYT8Tmq9zQEeKZ
+         kc/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749675788; x=1750280588;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KUQvYGXAJM9vFj/+RVHEyx0Hqdg+1ObhRxvVS6G9TV8=;
+        b=IsF59amE5Hc30nMJEvjMsHP+7YECspneAM1T7RGwRNUutXl32D9EV+ZIW5uxxnW32O
+         hXk2RyJ273JC6efKx2w4tkQSgp/qJKEyIf/q6f20xRryu3a8YYySdqTIOjs5TjYC+flX
+         y1no8bsnIobV5xxa3j6Fmx6VrsiawTaVFf50KlSgoOBcVxU3BjDsms794roF0U+bn5ur
+         GFcNk0sZ/18t0d0Up9rvJ1DUcAeboS77p0HTqpclHNXnHDbCyTnW8R098oMHLuCYbuAT
+         Gd1+08FlcTTQ6MPGAZ/6z18iEs6tL49/nVbASN66DalqAQAt+azr3/Bsld6OrfpA2pOH
+         +MGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUiVCu24aIXMWFVl9pWtoKf+eSdFKYQS5PKO+d5qYsNsGGbi+wD+6CTcviIQpDRRmiJ9EgQqxx2Mx0JgA==@vger.kernel.org, AJvYcCV+t+v8EGt1haZywHJFyHvFHFcHdU+n9RFWgEFQBWhwGH0UrZQnX9e6cVtkOzQNR8vnnP9wy6GDq3nu@vger.kernel.org, AJvYcCVYhQ0kk4KFRmQUtbHAugOquaJd+CvpsowVD/MnlguM7V6BbBsv16P23Oytp7KaoSNKRt8Gl5dsEBa0D/A8@vger.kernel.org, AJvYcCWJ0TTb1bZehm09S48NOiVo1N8guwItgni+vd+PEigiuswgWktuz2u/n6rpy2Bkp87nZEiZ8X6w1Irt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnYCA3R7wMSEroNXbVdn1Ut3SecVZ4HljiYCUxoCYhSjKbaQeO
+	sTyIvWvRzqwnGByT1ULZ8v07QnrvtrGS/kafmILpBES3qX3eGVYX5zfH
+X-Gm-Gg: ASbGncsruh4h2QOZMWp2zkaX+ejL2nolJH9+i+9a2h9b4LQiJehRMJjsKj8mVtdGAde
+	0SRnkdA+/Dy8XtyrDaCZmvGf/uhhDViC5tdnYJHpAb1hQcmChdP5oJsLFBdIqnMDfYk0aLMlKbX
+	obX/AhLcQgWFiCnKjqhvSErG4Nv9I+nuhahlkx2mfHzllSxxmid9qoEeteaAvOcT8lGDZ5rvw/F
+	/jZCop4jRn4bVfnEBy8dA/30qDzy4bH0n4phfCVC7Nn02oon6flEZv0lI0MHx+pe829mUS5K4tC
+	z/zQt06FeDqJtxQU48yvJC2NCC7RiZ8mfb1YDyYnPNluS79SDs3ioE/rGFdL0+dZQYtGOiw=
+X-Google-Smtp-Source: AGHT+IHlK8nHYrKD/bCEgRio+M7EtJzGL+GvmhPnyqnoxAK7qV/Wtjitblya1OljGJE7+lGZIlIjGA==
+X-Received: by 2002:aa7:8882:0:b0:73d:ff02:8d83 with SMTP id d2e1a72fcca58-7486cb21c08mr7368322b3a.3.1749675788093;
+        Wed, 11 Jun 2025 14:03:08 -0700 (PDT)
+Received: from localhost ([2804:30c:4000:5900:b4c4:6073:1a92:4077])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-748808962b3sm6396b3a.61.2025.06.11.14.03.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 14:03:06 -0700 (PDT)
+Date: Wed, 11 Jun 2025 18:04:49 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl
+Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <aEnvcaP2ZNPLhzXi@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
+ <aEifWXPV1nsIyWbT@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250610-apple-dts-warnings-v1-1-70b53e8108a0@kernel.org>
+In-Reply-To: <aEifWXPV1nsIyWbT@smile.fi.intel.com>
 
-On Tue, Jun 10, 2025 at 07:19:24PM +0000, Sven Peter wrote:
-> Fix the following warning by dropping #{address,size}-cells from the SPI
-> NOR node which only has a single child node without reg property:
+On 06/11, Andy Shevchenko wrote:
+> On Tue, Jun 10, 2025 at 05:31:25PM -0300, Marcelo Schmitt wrote:
+> > From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+> > 
+> > The AD4170 is a multichannel, low noise, 24-bit precision sigma-delta
+> > analog to digital converter. The AD4170 design offers a flexible data
+> > acquisition solution with crosspoint multiplexed analog inputs,
+> > configurable ADC voltage reference inputs, ultra-low noise integrated PGA,
+> > digital filtering, wide range of configurable output data rates, internal
+> > oscillator and temperature sensor, four GPIOs, and integrated features for
+> > interfacing with load cell weigh scales, RTD, and thermocouple sensors.
+> > 
+> > Add basic support for the AD4170 ADC with the following features:
+> > - Single-shot read.
+> > - Analog front end PGA configuration.
+> > - Differential and pseudo-differential input configuration.
 > 
-> spi1-nvram.dtsi:19.10-38.4: Warning (avoid_unnecessary_addr_size): /soc/spi@235104000/flash@0: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
+> ...
 > 
-> Fixes: 3febe9de5ca5 ("arm64: dts: apple: Add SPI NOR nvram partition to all devices")
-> Signed-off-by: Sven Peter <sven@kernel.org>
-> ---
->  arch/arm64/boot/dts/apple/spi1-nvram.dtsi | 2 --
->  1 file changed, 2 deletions(-)
+> > +	return spi_write(st->spi, st->tx_buf, size + 2);
 > 
-> diff --git a/arch/arm64/boot/dts/apple/spi1-nvram.dtsi b/arch/arm64/boot/dts/apple/spi1-nvram.dtsi
-> index 3df2fd3993b52884d7c00b65099c88d830a7a4c3..9740fbf200f0bcd0e7d1b81885fe9d9ff8f04fdc 100644
-> --- a/arch/arm64/boot/dts/apple/spi1-nvram.dtsi
-> +++ b/arch/arm64/boot/dts/apple/spi1-nvram.dtsi
-> @@ -20,8 +20,6 @@ flash@0 {
->  		compatible = "jedec,spi-nor";
->  		reg = <0x0>;
->  		spi-max-frequency = <25000000>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
->  
->  		partitions {
->  			compatible = "fixed-partitions";
-> 
+> ... + sizeof(reg) ?
 
-Reviewed-by: Janne Grunau <j@jannau.net>
+The size of the specific ADC register is stored in the size variable.
+The result of sizeof(reg) can be different on different machines and will
+probably not be equal to the size of the register in the ADC chip.
 
-Janne
+> ...
+> 
+> > +static bool ad4170_setup_eq(struct ad4170_setup *a, struct ad4170_setup *b)
+> > +{
+> > +	/*
+> > +	 * The use of static_assert() here is to make sure that, if
+> > +	 * struct ad4170_setup is ever changed (e.g. a field is added to the
+> > +	 * struct's declaration), the comparison below is adapted to keep
+> > +	 * comparing each of struct ad4170_setup fields.
+> > +	 */
+> 
+> Okay. But this also will trigger the case when the field just changes the type.
+> So, it also brings false positives. I really think this is wrong place to put
+> static_assert(). To me it looks like a solving rare problem, if any.
+
+I think it is unlikely that struct ad4170_setup declaration will ever change.
+The fields match the registers that are associated with a channel setup and
+the their types match the size of the respective registers. So, I do agree
+that triggering this assert would be something rare.
+
+> 
+> But I leave this to the IIO maintainers.
+> 
+> In my opinion static_assert() makes only sense when memcmp() is being used.
+> Otherwise it has prons and cons.
+
+I think the most relevant reason to have this static_assert would be to keep
+some consistency with ad4130, ad7124, and ad7173, but no strong opinion about it.
+Actually, I don't get why static_assert() would only matter if memcmp() was
+being used. Would it be better to not bother if the fields change type?
+
+Anyway, I'll go with whatever be IIO maintainer's preference.
+
+> 
+> > +	static_assert(sizeof(*a) ==
+> > +		      sizeof(struct {
+> > +				     u16 misc;
+> > +				     u16 afe;
+> > +				     u16 filter;
+> > +				     u16 filter_fs;
+> > +				     u32 offset;
+> > +				     u32 gain;
+> > +			     }));
+> > +
+> > +	if (a->misc != b->misc ||
+> > +	    a->afe != b->afe ||
+> > +	    a->filter != b->filter ||
+> > +	    a->filter_fs != b->filter_fs ||
+> > +	    a->offset != b->offset ||
+> > +	    a->gain != b->gain)
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> 
+> ...
+> 
+> > +	/*
+> > +	 * Some configurations can lead to invalid setups.
+> > +	 * For example, if AVSS = -2.5V, REF_SELECT set to REFOUT (REFOUT/AVSS),
+> > +	 * and pseudo-diff channel configuration set, then the input range
+> > +	 * should go from 0V to +VREF (single-ended - datasheet pg 10), but
+> > +	 * REFOUT/AVSS range would be -2.5V to 0V.
+> > +	 * Check the positive reference is higher than 0V for pseudo-diff
+> > +	 * channels.
+> > +	 */
+> 
+> Right, the Q is, can refp contain an error code here, rather than negative
+> value? The code above hints that in some case it may, but are all those cases
+> were caught up already? (Comment can be extended to explain this)
+
+I don't think refp can contain an error code at this point. All regulators are
+read at ad4170_regulator_setup(). After that setup,
+st->vrefs_uv[AD4170_<SUPPLY>] will either contain the voltage read from the
+regulator framework (which is >= 0) or -ENODEV. Then, we check the supply value
+at the beginning of ad4170_get_input_range() (this function) and error out if
+the value is -ENODEV. Will extend the comment to explain that.
+
+> 
+> > +	if (refp <= 0)
+> > +		return dev_err_probe(dev, -EINVAL,
+> > +				     "REF+ <= GND for pseudo-diff chan %u\n",
+> > +				     ch_reg);
+> 
+...
+> 
+> > +	/* Assume AVSS at GND (0V) if not provided */
+> > +	st->vrefs_uv[AD4170_AVSS_SUP] = ret == -ENODEV ? 0 : -ret;
+> 
+> -ret ?!?!
+
+That's because AVSS is never above system ground level (i.e. AVSS is either GND
+or a negative voltage). But we currently don't have support for reading negative
+voltages with the regulator framework. So, the current AD4170 support reads
+a positive value from the regulator, then inverts signal to make it negative :)
+
+> 
+> Even if you know that *now* it can't have any other error code, it's quite
+> fragile.
+
+Yeah, I guess ADCs that can take bipolar power supplies are not that common.
+I couldn't think of any better way to have that, though.
+
+
+Thanks,
+Marcelo
 
