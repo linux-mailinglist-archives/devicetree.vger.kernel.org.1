@@ -1,201 +1,166 @@
-Return-Path: <devicetree+bounces-184713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C7EAAD4FAA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:24:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 531DCAD4FB6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:27:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E04F7A8BBC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:23:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF371893774
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42CD525E816;
-	Wed, 11 Jun 2025 09:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0DA25F7BF;
+	Wed, 11 Jun 2025 09:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="a+pYiCO4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnwGGS1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DEE25E824;
-	Wed, 11 Jun 2025 09:24:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749633864; cv=pass; b=BBIEjtRzh2JZ8O8yZcE/ILH7XBSEVM1dqOxZrOpVxJ9vsbKPg2Vay8wludguRqAPAhKJ6TtriJ1QOhWmpBzYQI8yzxZBVcIAki8clZ/1m1sRq6AAf7u/dbyhNOSOnMRs94PHOvYOxFe0K2LHcU4OKtiSwsMDIS4MUEnKFqQo7Kw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749633864; c=relaxed/simple;
-	bh=VnSbD1P4ZjAZCmO2ADIJNQ7jUY0E3k9VW+EXMPbQOn4=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=MAEkIK1k/hP04EyQ4nkmGR32/BqxPyxf4MxDjS265+srTYhAhOjrop5SKdgNzss4ap6BUbEeeZ9pkE6QOKyxuzzE6Y5raEnubiqwYNX6X8pjs/yn/Ct2AVjRz/B65mR+oDDp8z7y6TT7Vw1H/E8hDI1D8RIuzJ1p+SIifpYyibU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=a+pYiCO4; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1749633823; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=kO7V+IP0kjxzIQrvpS/6WXoN0TFYQnAdYvQGYN+M9EESRHDfLx2LCr1edGpmh9cjbvAT5xwjplUUPKz+umH5NtVuLrTULPRkrGqrV7In1UfBxOqixKddCXdCIgW3NaauDabDKpWYmoZTfURa2Di7RLaEpcuxpdYs5lRG0cOfqOc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749633823; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=KzDcoJuyvrXRTjMEF0wU3nDIzXU2u1U4shVlfR4W+g0=; 
-	b=FE+KHIohmMpt4W6j3U8MwU1rB1n8R4l99wCSWzLGlsbxKUeyw9ZZze9ZOxdsUY/AYSoxbmBM7WfFx5sW3ZHAVzRNhe2uBX5hwN2IGwpBTrCrz4jpHiEpI7HWK3tUjBe7g3W4cki8S2aYUr0K8RRG3etZQ/chDm9qNKG7Q/N3VTY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749633823;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=KzDcoJuyvrXRTjMEF0wU3nDIzXU2u1U4shVlfR4W+g0=;
-	b=a+pYiCO4nqHRRMmAzxo1pgcIPNgGvRa5/G8eM0OyG/USjABXBKDmOp62M8xqS8bB
-	stmSILeijgOv1bjOGGKKYq7grIZS1kSuVn+yn/qK76nKny0gHR6FCgxnZF8X7UD9eH2
-	brtIG723Rdy5/3HT1CcNH7Ypk9dPzmd59RdcC/Kc=
-Received: by mx.zohomail.com with SMTPS id 1749633819809581.0689137008978;
-	Wed, 11 Jun 2025 02:23:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B0B25F7A8;
+	Wed, 11 Jun 2025 09:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749634020; cv=none; b=s1s+1EJa5iZ1+dWADj8LqoAEWQKl442MXb/RsHaO4dKoKFCt+lxCPMCaY9EymNbKEtq3QS81UG4IAwcxfM5GpQU2aYSyw9cCVmNBK5UKKtBUEKKeY+UagZWnOknrJ0NwmX/j+nnyHsLCamdxVkhC3yzAExzvjD/40jo8234gxjU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749634020; c=relaxed/simple;
+	bh=kubvO9a5J9TCMTW9jmX1mZZl7Tpjh1wDB67JD4ZFKvY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sgbx9vqwDJEZsGf7HQHbHUQHVV56gbYxvUxeqpA4rDo7WS+srl2QtOdaepH4ck3eVykJik1fNwbfqODvvSzs66oV/+GBPkX4Mcq2PAt7+ooS+NqZZfHbz35+o9T383vnJGwVMd2lGRZuishQJQSiMcl1GVJ4fMb3lOeuL0yGt44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnwGGS1Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A28DC4CEEE;
+	Wed, 11 Jun 2025 09:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749634020;
+	bh=kubvO9a5J9TCMTW9jmX1mZZl7Tpjh1wDB67JD4ZFKvY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AnwGGS1ZBEfJhqAb/K5CbTN/+/F54cJYJWtE6Np8/DqerNZ5MHZxz9e6E3Cd/pBoK
+	 9OHJfP1IXv/NQmY9fzPAzgVCGR22vnM5GxZIF5R7F56P9e8tHpJ0i/VUEtQ/s1gbjl
+	 T0vfrKvt3VMdjZ0KCAEYJwYlgdZZ7GkSAz8nMqwxiw7/CXdSfsnKq2iTMg5JhHhA+H
+	 P0z9XsGBTwsOqRMa9YthsmNeZ2tra6ct2X+SDvA3yM0dnYJkf3Wg6prI5xcSDs9+TN
+	 Zjy4BmrAY24fRGvKqBF2h7SJlBtc3aaMwBJo0jOw4sH4q328qjqWqr2ETaBfkbz5wX
+	 9DWL7N/ek5gTg==
+Message-ID: <7e197546-4bae-441c-a69f-9ae2566e8600@kernel.org>
+Date: Wed, 11 Jun 2025 11:26:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Chen Wang" <unicorn_wang@outlook.com>, 
-	"Bjorn Andersson" <andersson@kernel.org>, 
-	"Mathieu Poirier" <mathieu.poirier@linaro.org>, 
-	"Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Inochi Amaoto" <inochiama@gmail.com>, 
-	"Philipp Zabel" <p.zabel@pengutronix.de>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>
-In-Reply-To: <PN0P287MB22589781F2D49353E7C66C46FE75A@PN0P287MB2258.INDP287.PROD.OUTLOOK.COM>
-Cc: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>, 
-	<sophgo@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add C906L rproc for Sophgo
-	 CV1800B SoC
-Message-ID: <1847f2ae7cdd9de8.639eddc348629bd0.78776f2b552d9090@Jude-Air.local>
-Date: Wed, 11 Jun 2025 09:23:31 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/10] ASoC: dt-bindings: mediatek,mt8196-afe: add
+ audio AFE document
+To: =?UTF-8?B?RGFycmVuIFllICjlj7bpo54p?= <Darren.Ye@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "broonie@kernel.org" <broonie@kernel.org>, "brgl@bgdev.pl" <brgl@bgdev.pl>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "tiwai@suse.com"
+ <tiwai@suse.com>, "robh@kernel.org" <robh@kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "perex@perex.cz"
+ <perex@perex.cz>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+References: <20250610092852.21986-1-darren.ye@mediatek.com>
+ <20250610092852.21986-9-darren.ye@mediatek.com>
+ <20250611-private-magnificent-asp-63ef5d@kuoka>
+ <bed13d4bba5923e0d71a5e32e61163c2e7958d68.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <bed13d4bba5923e0d71a5e32e61163c2e7958d68.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 11/06/2025 17:01, Chen Wang wrote:
-> On 2025/6/8 10:37, Junhui Liu wrote:
->> Add C906L remote processor for CV1800B SoC, which is an asymmetric
->> processor typically running RTOS.
->=20
-> In the cover email, I saw that remoteproc also uses mailbox as the=20
-> underlying communication. So I guess some mailbox-related properties=20
-> will need to be added to the bindings? I suggest that these should be=20
-> determined before officially merging this bindings.
-
-Yes, thanks for your suggestion. I will try to add mailbox-related
-properties and functions in the bindings and driver in v2, since the
-mailbox driver has been merged. At the very least, I will ensure the
-mailbox-related properties are included in the bindings.
-
->=20
-> Thanks=EF=BC=8C
->=20
-> Chen
->=20
+On 11/06/2025 11:09, Darren Ye (叶飞) wrote:
+> On Wed, 2025-06-11 at 10:27 +0200, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
->>   .../bindings/remoteproc/sophgo,cv1800b-c906l.yaml  | 68 +++++++++++++++=
-+++++++
->>   1 file changed, 68 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-=
-c906l.yaml b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c90=
-6l.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..455e957dec01c16424c49ebe5=
-ef451883b0c3d4a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.y=
-aml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/remoteproc/sophgo,cv1800b-c906l.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sophgo C906L remote processor controller for CV1800B SoC
->> +
->> +maintainers:
->> +  - Junhui Liu <junhui.liu@pigmoral.tech>
->> +
->> +description:
->> +  Document the bindings for the C906L remoteproc component that loads an=
-d boots
->> +  firmwares on the CV1800B SoC.
->> +
->> +properties:
->> +  compatible:
->> +    const: sophgo,cv1800b-c906l
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description:
->> +      The name of the firmware file to load for this remote processor, r=
-elative
->> +      to the firmware search path (typically /lib/firmware/).
->> +
->> +  memory-region:
->> +    description:
->> +      Phandle to a reserved memory region that is used to load the firmw=
-are for
->> +      this remote processor. The remote processor will use this memory r=
-egion
->> +      as its execution memory.
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  sophgo,syscon:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      A phandle to the SEC_SYS region, used for configuration of the rem=
-ote processor.
->> +
->> +required:
->> +  - compatible
->> +  - firmware-name
->> +  - memory-region
->> +  - resets
->> +  - sophgo,syscon
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    reserved-memory {
->> +        #address-cells =3D <1>;
->> +        #size-cells =3D <1>;
->> +        ranges;
->> +
->> +        c906l_mem: region@83f40000 {
->> +            reg =3D <0x83f40000 0xc0000>;
->> +            no-map;
->> +        };
->> +    };
->> +
->> +    c906l-rproc {
->> +        compatible =3D "sophgo,cv1800b-c906l";
->> +        firmware-name =3D "c906l-firmware.elf";
->> +        memory-region =3D <&c906l_mem>;
->> +        resets =3D <&rst 294>;
->> +        sophgo,syscon =3D <&sec_sys>;
->> +    };
+>> On Tue, Jun 10, 2025 at 05:27:25PM GMT, Darren.Ye wrote:
+>>> From: Darren Ye <darren.ye@mediatek.com>
+>>>
+>>> Add mt8196 audio AFE document.
+>>>
+>>> Signed-off-by: Darren Ye <darren.ye@mediatek.com>
+>>> ---
 >>
+>>
+>> I gave you detailed instruction last time. Did you read it or you
+>> decided to just ignore my review?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> Hi Krzysztof,
+> 
+> I would never ignore your suggestions, on the contrary, I really
+> appreciate them. I may have missed your advice, and I'm very sorry for
+> causing any confusion. However, I haven't noticed it so far. Could you
+> please point it out or directly paste what needs to be revised? Thank
+> you.
+You ignored all comments, so how can I point what was missing? Everything.
 
---=20
+If this helps you to understand the comments, then go to previous email,
+read each comment and respond to each how did you implement it. If you
+cannot come with the answer how you implement it, then you did not
+implement it...
+
+I don't know how to be helpful? I even wrote long detailed instruction,
+with references, explaining you what to do.
+
 Best regards,
-Junhui Liu
+Krzysztof
 
