@@ -1,132 +1,160 @@
-Return-Path: <devicetree+bounces-184841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE790AD5536
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:16:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4745AD554C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 987793AA7F9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:15:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7237F1E01FD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6ACD278165;
-	Wed, 11 Jun 2025 12:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF4F2820D0;
+	Wed, 11 Jun 2025 12:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MNP+LcgP"
+	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="hlPy9Ian"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F4A78F34;
-	Wed, 11 Jun 2025 12:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381EF279345;
+	Wed, 11 Jun 2025 12:18:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749644176; cv=none; b=YyCtLMRnJ/sj8DJhDv2d7/SR7i1HvjGBm+sNyNSENvBgWz8Of6+qWu0SDaBJCnVnkgWxYp+AYDa/+NSpPjvIHtC95SnL2omgrgFzVB2V+7n3Y6ixWWGo32CwYXxBgb0ZsuVqfwlmLoSu4BY3GHR+fGthrilE8aeUFbsj/ltMa1I=
+	t=1749644331; cv=none; b=ani+fhpasqiVO4UwRnmTSYIEtm7XxuuD3Cka6e9sGttLot+IrHvreO22IXrerDvtnung7mskQVTAgfHKxrohzxWS92GHOt0r5cMWjP/Z2pb1WGi8TBBSsX9EVqKn4KzIm6MX8jNvNcrshPSbq1zMVPgTuq3y7IibKRs5xMoXWYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749644176; c=relaxed/simple;
-	bh=i5Kxi63qWoofSavUm+pcIB+Uafiv7oyd/3nL/pRB+eE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TEc7gi9yRsOZ+hCoaw6Fejxn6i6wAq7ySeeZoQFij1/THJ9SiHNjGTg7+ugSfQ7NpZuhKLpS3LT8ha1uZtbi0GW13m76S2Dl+WiXTECLwk16twqrK2mRNMHYDzbqOGbjwhmjnhiI9lSxT30/ngWLUZ+0CvdfDos+Q/uRq8P3Nts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MNP+LcgP; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b1fd59851baso3826527a12.0;
-        Wed, 11 Jun 2025 05:16:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749644174; x=1750248974; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i5Kxi63qWoofSavUm+pcIB+Uafiv7oyd/3nL/pRB+eE=;
-        b=MNP+LcgPPmq1toZ0sst2wOJD4POz1hTZKAZxww1BI2DEBKQFd5Frcx2E4e/btowucS
-         e5oJrxH/lhPSQFG0UJJYwFAFQV1Rp9l6gKTL2w8TPvARhk3mqci6Qu2kterHhootkLbS
-         CHdSUUfrp6oY7qLLoHv+Gxeq9lb6xp59zbyD6uYK1sIFNSMXFo5wd1ff3JUUoFXVOtcY
-         Kfrkb7biAx3nr6rVP4AlQivs76R92uxh3VhepLWNexZk9lYb5utKq8zWrLTEGTQ+GenB
-         KNd95TdpZfYD729ytnF1l2Pwp9oHS+RaghCXnGDXPzuaEe5OkXzGAOteZiG4xs+LwD/2
-         kriA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749644174; x=1750248974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i5Kxi63qWoofSavUm+pcIB+Uafiv7oyd/3nL/pRB+eE=;
-        b=rT8nUB6PzLXRfa+Pukn7ZAdnth3+liBd/OYuoiSwo4xfCncj24RreZlbugRuMogR7A
-         Elm5VnbE3AD9Nhv+AjdCsABIWO2/UMFnGJ5rv+6LJUHaxS6AUc9XbVSO77DahzM3Aqzg
-         L88LUs2QQch/k0zEWag3gLQZnt+KiQ8Pu8UcudVJ3HJoIu4Tv8EXkUL/uAPrY9oeUSmh
-         Y6Q72k5nq/07tjH7/TQO7n7c+Y96isWFvS0UoI8t6JATVNXtlZqyDwT+2ThCHt9YoUd9
-         Cgd6TifVBzL+n4Hv/irOSeMS0LYDCjs4/2HM59NdpSTXRvbu0OeBdMZiLOI1hHK/VcM7
-         yroQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWBXy4B7SDIru0jJBBwi50JLARZqpR32Q9SRV9YKOPjAMdryN7wnBa8YRkuPXV8DYcJmKT8RnLBkHfU@vger.kernel.org, AJvYcCWXWt8Sak/rPabVHehKVGWX+U3N5AN57Cbk/RCSX16gEy6QSnPJqK9pLq7HropavWQotaAXND6eu2YdLkyD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZygWzaaYCX7+RZGFhewx6PMhqr2SVWjIXZYGY+hNdeM7SIiL0
-	XSojLnANonyrFX1j9sI36RWoOGtDlZbE6eVvqI/rL1S//NpDTeMSq7Sc87UG3tuF3V9j79P5fyO
-	3jiXkJIbe1SdDakCpalCfxwB3qlZxAE0=
-X-Gm-Gg: ASbGncsX9wO3EuMUOc4fS4KlAcG0fhj8ZsOMyB9KGAfmwlmq1iRjTGsdC3MpiuJHejs
-	6Y5qSh7MEPfkIHm7CsOCvueo46ZpxE2X5xvMbdw0PQ+OhJq23SUnbGfnMfV7bqdSCTQPMyo/9MA
-	F391N1FTqpLiDxDoffiLi79/1BTqKBfLMBaUgzDzf7HqD51Dtd3rC8AHk=
-X-Google-Smtp-Source: AGHT+IGX+IZijO75twzZ+fvU3wN8yS0J4BDLwNnzMx0C35iseQJIKnNAJ+smyd8hhsrs6cFi35u7iNDE7NOY/g7z/bY=
-X-Received: by 2002:a17:90a:3d09:b0:311:d05c:936 with SMTP id
- 98e67ed59e1d1-313b1fbe78cmr2804206a91.17.1749644174339; Wed, 11 Jun 2025
- 05:16:14 -0700 (PDT)
+	s=arc-20240116; t=1749644331; c=relaxed/simple;
+	bh=v5RXLigG8aIKIExdJGg5HcvBIh2/wkBko4AAd6qmGmI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jIvW5glPKTWAdVn3luf4r2vifpBL8l2pDVNXI+rak/gQotXLCg1DaaPk/LXzj9xaxwFNLCv2PhLNHKhqoCyaH6NN0loWWZolc80OHTtRt58peJmOjku7EW2fglwQymXtIqpixRMwB1l6ok+wKa8yTsZg93yWsJyHQtR11PoAJ5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=hlPy9Ian; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 7827D6002409;
+	Wed, 11 Jun 2025 13:18:46 +0100 (WEST)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id TKkBtBk9tKFT; Wed, 11 Jun 2025 13:18:43 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 63E766002306;
+	Wed, 11 Jun 2025 13:18:43 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail; t=1749644323;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bsCIytP8F7I0Dm27535yA17bXs0Y3AmhN8O0FTm92vU=;
+	b=hlPy9Ian4tmKDvnbSBxADY5p4WcAy2WopGd9PAvbepwIC6hd5C7a5d+34u2ukIQWHfwSVd
+	GOE8GwXrxbCkSsTAlr7IpC8G1jRgE1rbiCOv6O/D6ZvyxiN8G4c4/UiVsKEYEk5lifpFsx
+	pEE616DIlN7qtOLQa++ikxJZtwM+V74=
+Received: from [192.168.1.151] (unknown [IPv6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 279DD360084;
+	Wed, 11 Jun 2025 13:18:43 +0100 (WEST)
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Subject: [PATCH v2 0/3] NVIDIA Tegra210 NVJPG support
+Date: Wed, 11 Jun 2025 13:18:00 +0100
+Message-Id: <20250611-diogo-nvjpg-v2-0-01f8c76ea90f@tecnico.ulisboa.pt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250606025251.887953-1-jasonhell19@gmail.com>
- <20250606025251.887953-3-jasonhell19@gmail.com> <27c1a3fe-4536-4e6f-a636-ffc0fbd52568@kernel.org>
-In-Reply-To: <27c1a3fe-4536-4e6f-a636-ffc0fbd52568@kernel.org>
-From: =?UTF-8?B?5b6Q5YKR55Sf?= <jasonhell19@gmail.com>
-Date: Wed, 11 Jun 2025 20:16:02 +0800
-X-Gm-Features: AX0GCFt9W87odWQcElyj27DLucsMkiMaKS5cZNd0kp8klMHeN1RPxkibO2hVj1w
-Message-ID: <CAFGtgY35x=QdmvUrvBTZNDeaV4iMefznzc7d-RD6aHj8LgUaVw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] dt-bindings: arm: aspeed: add Meta Ventura board
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
-	andrew@codeconstruct.com.au, patrick@stwcx.xyz, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, yang.chen@quantatw.com, jerry.lin@quantatw.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPhzSWgC/1XMQQrCMBCF4auUWZuSpiaiK+8hXbTJtB2RTEhqU
+ Ervbiy4cPk/eN8KCSNhgku1QsRMidiXUIcK7Nz7CQW50qCk0tJILRzxxMLne5gESne0+tQoYzW
+ UR4g40mvXbl3pmdLC8b3jufmuP8f8ObkRUuhR2daMiEN7vi5oPVmunw9KA/d1WKDbtu0D9hBil
+ q8AAAA=
+X-Change-ID: 20250605-diogo-nvjpg-e0d4c57126c5
+To: Thierry Reding <thierry.reding@gmail.com>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749644321; l=2448;
+ i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
+ bh=v5RXLigG8aIKIExdJGg5HcvBIh2/wkBko4AAd6qmGmI=;
+ b=UU2A7JimG4deA21OVUCUZKd30eaNbTbzfEDJzxtmPgPbgXSU41wHwdNrrnIW4BrF5KDitB1lP
+ 7HwLpdm/0MEDvsF0m2zzmxffRhEU3d2srPGHo9/mV4Pr8k6wpXf/H/E
+X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B46=E6=9C=886=E6=
-=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=882:52=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 06/06/2025 04:52, Jason Hsu wrote:
-> > Document the new compatibles used on Meta Ventura.
->
-> This is not what is happening here.
->
-> > Add subject prefix for the patch.
->
-> No clue what is "subject prefix" for a patch.
->
-> >
-> > Signed-off-by: Jason Hsu <jasonhell19@gmail.com>
->
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-pat=
-ches.html#i-for-patch-submitters
->
->
-> Best regards,
-> Krzysztof
->
->>
->Appreciate the feedback.
->
->> No clue what is "subject prefix" for a patch.
->
->v8 updated the commit message to more accurately describe the changes,
->and removed the unclear note about the "subject prefix".
->
->
->Best regards,
->Jason
->
->
+Hello,
+
+This series adds support for the NVJPG hardware accelerator found in the
+Tegra210 SoC.
+
+The kernel driver is essentially a copy of the NVDEC driver as both
+engines are Falcon-based.
+
+For the userspace part I have written a Mesa Gallium backend [1] that,
+while still very much experimental, works in decoding images with VA-API.
+
+I have been using ffmpeg to call VA-API with the following command:
+
+ffmpeg -v verbose -hwaccel vaapi -hwaccel_device /dev/dri/renderD129 -i <input.jpg> -pix_fmt bgra -f fbdev /dev/fb0
+
+which decodes <input.jpg> and shows the result in the framebuffer.
+
+The firmware for the engine can be obtained from a Linux for Tegra
+distribution. Due to the way the Gallium implementation works for Tegra
+the GPU also needs to be enabled.
+
+Thanks!
+
+Diogo
+
+To: Thierry Reding <thierry.reding@gmail.com>
+To: Mikko Perttunen <mperttunen@nvidia.com>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Jonathan Hunter <jonathanh@nvidia.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-tegra@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+
+[1]: https://gitlab.freedesktop.org/d.ivo/mesa/-/tree/diogo/vaapi_gl?ref_type=heads
+
+---
+Changes in v2:
+- [01/03]: Remove reset handling, set clk rate to max
+- [02/03]: Explicitly mention Tegra210 in the commit subject
+- [03/03]: Explicitly mention Tegra210 in the commit subject
+- Link to v1: https://lore.kernel.org/r/20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt
+
+---
+Diogo Ivo (3):
+      drm/tegra: Add NVJPG driver
+      arm64: tegra: Add Tegra210 NVJPG power-domain node
+      arm64: tegra: Add NVJPG node for Tegra210 platforms
+
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi |  14 +-
+ drivers/gpu/drm/tegra/Makefile           |   1 +
+ drivers/gpu/drm/tegra/drm.c              |   2 +
+ drivers/gpu/drm/tegra/drm.h              |   1 +
+ drivers/gpu/drm/tegra/nvjpg.c            | 331 +++++++++++++++++++++++++++++++
+ 5 files changed, 348 insertions(+), 1 deletion(-)
+---
+base-commit: 736ecbbf1e57fc3bc6575c76f6a46c84760233f8
+change-id: 20250605-diogo-nvjpg-e0d4c57126c5
+
+Best regards,
+-- 
+Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+
 
