@@ -1,188 +1,135 @@
-Return-Path: <devicetree+bounces-184979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B224AD5E96
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 20:54:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DBCAD5EA8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 20:56:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A89753A9103
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:53:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEEFC189FB16
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763C129AB0E;
-	Wed, 11 Jun 2025 18:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A011227CCF8;
+	Wed, 11 Jun 2025 18:56:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1nPY+BW"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="O0Su8fYL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DF6288C0C;
-	Wed, 11 Jun 2025 18:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4B026E6ED
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749668026; cv=none; b=s2JRM+waULqjkTbbVrifdGN/P+SNH374mvhe4O58+1Nqyc97xCWVTnlIbCHS7ma5t/nXZ+5Rsi0alnyAdWiIGB4VYEOAbzlfV1WbvNDm6omPrnO0/yxy9lTEFB1PHYKiu2iMq/+bvJC/LiMfZ3c1S4IWcaVR2rzO/9uOS/k2oNs=
+	t=1749668190; cv=none; b=kx76R6pRNXzzrsscomqk6FxChdResGR2n56x0BEoQRnG2gsodZn7l61YxL2Zs2v5FDcpicoY/MPtUg3gjBj7hF9alxrRzwrEQC13EWNiGT0a1K4wNIjMervQnf0Qa3az7KurO14HMJu/XMwLtMlp7OH+56XfC6Z2BevMYg2XSY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749668026; c=relaxed/simple;
-	bh=OrWtfE0k8fSxvMydg+gq6xQRUTFOXMBiDeg+VK4LNAo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OErOr4iktmHq3LSn/KM1uqGTK5EeHCP1cZW/RteYAdIO3xhvKc+Xqvgc0idUoTmiILw+QQ88KPx4HBAwyCq+u6nKW77Hlw7e2gdTTVOm+S1Wzd4li+5QwtVpybv7ecdIWI0K9LsH9vWq0uQoPik2UQgukmuy3vyKnkI/GhNbAdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1nPY+BW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CD1A7C4CEF1;
-	Wed, 11 Jun 2025 18:53:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749668025;
-	bh=OrWtfE0k8fSxvMydg+gq6xQRUTFOXMBiDeg+VK4LNAo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=e1nPY+BWIXwpv6n98YDwrMgmy1z0RPEtC9XT5DnT+Ih4yEO3htdSeK6UD0sh3GjST
-	 NVfKMrKRaAaR12HmHO2q3YqufBY9024ycYH60MwmKUmBC0rIEFSOkUQPpGLXA3L3Z3
-	 F6BtTaD6gAHTw8C7Lj86Tmh+S27mrkKBPUb+i2JmlqeplZ3M4WnKu+duAp4hD7P0GM
-	 E0z4tk4bzw2ENkdzVHI9/PmJvh9SXV9CJIgRO80bx9qtvqp1ww+StdRteY+W/iAg1l
-	 tDBne7eBp0hfPdoO/HcHaaiH8COPONmGcBoaoxOgVgvRAB41RrnBLXZzt8W5t2q+S2
-	 geXZV1NOldLiw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD5F2C71141;
-	Wed, 11 Jun 2025 18:53:45 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Wed, 11 Jun 2025 13:53:38 -0500
-Subject: [PATCH v2 2/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer
- Kit support
+	s=arc-20240116; t=1749668190; c=relaxed/simple;
+	bh=+sHLOtvVQAWPzK90izduJIoY+Zm6g8PEnogD+3ePDdk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vfmnxpi1yMAGY7zfCOyVXRXIlh41YYLJvd3y5QWE79DwIVRzoTim8RVtsSRo5eksiphOl3U44I1UrbEPZDCLtZcPh5mO9Kn6AuAl6amFFqQtOwhOlRh3f6mZ1PII2TM7cL0q8hjT14k86nKI+SHQq1f1zVjMMYJ3B+BwnWmoI4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=O0Su8fYL; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=+sHL
+	OtvVQAWPzK90izduJIoY+Zm6g8PEnogD+3ePDdk=; b=O0Su8fYL2y6JCn4UtX02
+	MxQ8BZJNCO6R1O8DyI5SQxIYUYq2CuHf4RF/TxYVy9Qilfc2b9attcXNGbmYOcos
+	SfUSDlBGmw1Y0cSjfzp3X33b1JVjNIbwrnL+ed/nxle2WVaAWJcgL83xEC7V5KeS
+	s3z4dCk20wFvFlGF8FFRRe3SoGaQ/AN2M0d0lgLm9afs2xQrPFQyGV2Csg5Oyaqn
+	DwJAN2xeSjTdLKgblPllneWRFWmnb1HkNNccwRGsZYl4SWO0lPFOAQ463VslSb9C
+	WbxHLglYdhvLLbcFRc1AZzXARaD5smw7dM0SvflySCOXhxR4ORo9G9GQAVIDBrKw
+	yQ==
+Received: (qmail 3350333 invoked from network); 11 Jun 2025 20:56:24 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2025 20:56:24 +0200
+X-UD-Smtp-Session: l3s3148p1@x1CSXlA3cIEujnuC
+Date: Wed, 11 Jun 2025 20:56:23 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-hardening@vger.kernel.org, linux-i3c@lists.infradead.org,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>
+Subject: Re: [PATCH RFC 0/7] i3c: add driver for the Renesas IP and support
+ RZ/G3S+G3E
+Message-ID: <aEnRV_ORTzoxv0sM@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	"Rob Herring (Arm)" <robh@kernel.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-hardening@vger.kernel.org, linux-i3c@lists.infradead.org,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>
+References: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
+ <174964724485.330045.2181706921272138816.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250611-p3452-v2-2-fd2679706c63@gmail.com>
-References: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
-In-Reply-To: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749668025; l=3203;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=42OimoFJFrvH09yIqaz1jWdoda8v/mnkO8i3GiH9JpM=;
- b=s9iva6uoq+uW+o+2KkN3I/3FReqx2GkSwk5aFp5eApaNzLaZxXMZdb9o6G5SFcQyryaIz6W4u
- hJeNJRTC1A3DPtrb7saPzfe9Bq4TIacnCWDgeuliVkSm52C6EnDKWeU
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
-
-From: Aaron Kling <webgeek1234@gmail.com>
-
-This devkit is very similar to P3450, except it has less ram, no display
-port, and only 3 usb host ports. Derive from P3450 and disable the
-hardware that is unavailable.
-
-Gpio PA6 is used to control the hdmi power rail and needs to be on for
-hotplug detect to work. This is mapped to the 3.3V usb hub on P3450.
-That usb rail is not used here, so delete the regulator to avoid
-conflicts.
-
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/nvidia/Makefile                |  2 +
- arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 59 ++++++++++++++++++++++
- 2 files changed, 61 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/Makefile b/arch/arm64/boot/dts/nvidia/Makefile
-index 0fbb8a494dba5089d9b7243e766bd6028b7f3744..2989550e0d482e0dde09c1ff89930f7eb7b5b644 100644
---- a/arch/arm64/boot/dts/nvidia/Makefile
-+++ b/arch/arm64/boot/dts/nvidia/Makefile
-@@ -3,6 +3,7 @@
- # Enables support for device-tree overlays
- DTC_FLAGS_tegra210-p2371-2180 := -@
- DTC_FLAGS_tegra210-p3450-0000 := -@
-+DTC_FLAGS_tegra210-p3541-0000 := -@
- DTC_FLAGS_tegra186-p2771-0000 := -@
- DTC_FLAGS_tegra186-p3509-0000+p3636-0001 := -@
- DTC_FLAGS_tegra194-p2972-0000 := -@
-@@ -18,6 +19,7 @@ dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p2371-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p2371-2180.dtb
- dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p2571.dtb
- dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3450-0000.dtb
-+dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p3541-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-smaug.dtb
- dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-p2894-0050-a08.dtb
- dtb-$(CONFIG_ARCH_TEGRA_186_SOC) += tegra186-p2771-0000.dtb
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..b86e271dde0bee7ceb70f16113eba5cf06da98e2
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts
-@@ -0,0 +1,59 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "tegra210-p3450-0000.dts"
-+
-+/ {
-+	model = "NVIDIA Jetson Nano 2GB Developer Kit";
-+	compatible = "nvidia,p3541-0000", "nvidia,p3450-0000", "nvidia,tegra210";
-+
-+	memory@80000000 {
-+		reg = <0x0 0x80000000 0x0 0x80000000>;
-+	};
-+
-+	host1x@50000000 {
-+		sor@54540000 {
-+			status = "disabled";
-+		};
-+
-+		dpaux@545c0000 {
-+			status = "disabled";
-+		};
-+	};
-+
-+	padctl@7009f000 {
-+		ports {
-+			usb2-1 {
-+				vbus-supply = <&vdd_hub_5v0>;
-+			};
-+
-+			usb2-2 {
-+				vbus-supply = <&vdd_hub_5v0>;
-+			};
-+
-+			usb3-0 {
-+				/delete-property/ vbus-supply;
-+			};
-+		};
-+	};
-+
-+	regulator-vdd-hdmi-5v0 {
-+		gpio = <&gpio TEGRA_GPIO(A, 6) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	/delete-node/ regulator-vdd-hub-3v3;
-+
-+	vdd_hub_5v0: regulator-vdd-hub-5v0 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VDD_HUB_5V0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&gpio TEGRA_GPIO(I, 2) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		vin-supply = <&vdd_5v0_sys>;
-+	};
-+};
-
--- 
-2.49.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="aSViWGA52tcJQoQY"
+Content-Disposition: inline
+In-Reply-To: <174964724485.330045.2181706921272138816.robh@kernel.org>
 
 
+--aSViWGA52tcJQoQY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/renesas=
+/' for 20250611093934.4208-1-wsa+renesas@sang-engineering.com:
+>=20
+> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: /soc/i3c@1005b000/tem=
+p@4a: failed to match any schema with compatible: ['adi,adt7411']
+
+I sent a patch for 'trivial-devices' to fix this already [1]. I forgot
+to add it to this series, sorry.
+
+[1] https://lore.kernel.org/r/20250608162240.3023-2-wsa+renesas@sang-engine=
+ering.com
+
+
+--aSViWGA52tcJQoQY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmhJ0VQACgkQFA3kzBSg
+KbbGQQ/+Jku4T09kmX5TY0+yOrTfJx5eErXFxKVs/BqNK8vt10Uwi8RNOe0E8cb3
+kiOQjG2P1cbu6KD/jH4hbKJh/AiQXUJTfYWt95PDLqsLTa/9XzdbeOE5BoH1syl/
+UZ2vmjA5cEIUgdTx1YdHMK5XipyeeKa6giMj56jFajjXKayAnpfYn+kKDKgvfYs4
+sYuIX1jyhOoJRP1DADW3sLrMXVBgCnmaKwbR05OK8VshzXjYDdPLZYgH/W6rzEb7
+hZ4yT3vGCXYw5Sz7aVk1+q/u91ZhTAcz08A3oEhHmSpuuaeCViWk+mOpPhhHR7Gf
+V18zhJVyapl4Mm0XfwgmeAp/g7iPsMga1V72ajDNs85PO9V2itHtpysMepHGXT0K
+Jag70wsEDL+gm+eg1MWmx80ucltZ78ytY71p4mtszJ8IA/QTdyhf6FFXZeo+r/Dk
+HmL7RWiFSvKh6iukMcs+/+EEfo5d0InJ8ALbTq9Slv/TvuCJxrIdOEi7K5o2vXAW
+NhfzbJ6EyamcMxRmDwj4ubcVk/TQcu5RYmpMj1TrNgYgSpIRymhe5I0XLpLsB3Km
+9dtw0bqAn7FLRcCyISn+TJK1L4FZ2Ps6fi5hFXUvyeM9uXP6R1yoy6EvTNeIDKru
+FMPv8Xn2ksbKeP+a4rSVyQqJvmWJ1jhkAVNeq1LTjr2RI+OUSJI=
+=coKS
+-----END PGP SIGNATURE-----
+
+--aSViWGA52tcJQoQY--
 
