@@ -1,79 +1,127 @@
-Return-Path: <devicetree+bounces-184973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB45AD5D86
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:54:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A0CAD5DF3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 20:15:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D668188C0DC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:54:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B70B9177CFE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 18:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E65C223DD7;
-	Wed, 11 Jun 2025 17:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="R2yckc6b"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BDE170A26;
+	Wed, 11 Jun 2025 18:15:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD8F481DD
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 17:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0B42E6128
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749664476; cv=none; b=O58j3BwqDGMZFA/b0VUPqNvj/mqqKKfN+LwTCX15N1zaE9jKYbSNl1wFeKIR0pHYqTpL1E4PAgl6EBYmlWziueD9COmAn1GRKdaYA1yqN/rZpAOGJnl1KBYn3wqahGrzYJg8vfu0iIdvawr4wDKKYmToBjRErfrXdVoSXU0rmhw=
+	t=1749665735; cv=none; b=YAKSRYtgWLzehaLadswdeNsWP7PtCkfiyc+wxcBkti4TAhhcH4hIkxIs0kUiRGnNhGFTIg8klIimfsh7Dq+enFRkszoG2cJTh1BeSp963POa65IAUf7s9ldNzBYsipFrGAw2Ac9O6IcR/HNjxoHQsEDK6jDU74EOdzczaNnUa5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749664476; c=relaxed/simple;
-	bh=7FqzQMbtN46MspgzRLzfkBpN56u2tDVXmIle8ZV/dB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mOWKahjrTgMs0LQiST5trThuPIhlpOEjkG4VF7BA4Hyv2oeHQy2+GYauYpaMldYnebmpe0PT3keWuHRITb0+Xsqh1WKsCGC5DkM9IpzcLRHbN0E7C2e2xbDHlvTuXQ7bqOt0y/v85P+pWqn2MJMOwxW9jREOTgT2xj0MadvdIfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=R2yckc6b; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
-Date: Wed, 11 Jun 2025 13:53:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
-	s=key1; t=1749664472;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7FqzQMbtN46MspgzRLzfkBpN56u2tDVXmIle8ZV/dB4=;
-	b=R2yckc6bmzZk4s5WE8kaNgGeZlyfwhXLd8Za/KDmBBgDom2THZmz36Ym3HMjwRgBVG0rWb
-	vMiknBmb0KbudvIGthcospMNqqc4sWJfsOjGLl4g4FK9GOHZHwfOZiBAYtkwre3kxYW21V
-	z/SPFz/+eXw01gb9S6WqkxjAoewGkJ+fdmRQ5thRQUq3j+6mYlHW4P1GJX9D5t92RWSxqB
-	wXz8RyLPexYeBIb3dsHnrq7uciaQTEeNAhp2MiDvjw6v13Db42a3ME4CMPgIAvVBHPoDz6
-	YPDa3of5HyHXPXvZtNumP2hCVvJtcynlemUhaFCzf3AXf54vhecjj4lv8uN4+w==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-To: fnkl.kernel@gmail.com
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Neal Gompa <neal@gompa.dev>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: Add Apple SoC GPU
-Message-ID: <aEnCthA1AXrWqxEi@blossom>
-References: <20250611-sgx-dt-v1-0-7a11f3885c60@gmail.com>
- <20250611-sgx-dt-v1-2-7a11f3885c60@gmail.com>
+	s=arc-20240116; t=1749665735; c=relaxed/simple;
+	bh=ShxLF+BQufGmHMrV74DXXvxSMTrFEmKWtn9TGUP97OY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TFD7k84kEcddsN64ebtRtTAhg7gP9avv6yDQX4uyJEkJw48Kxucntinp7bZcxfNkRoApOwIVbQZ/EisA0LtcY1cjgnKkqiBW5tBFF8Gdd4mB2PoVt4FhC3k0gFnkfwuiYrebXlmVyfpxIJjTvWW6YHQNv2XF60nbPkoIg6dNFjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1uPPyh-0004Yh-S0; Wed, 11 Jun 2025 20:15:11 +0200
+Message-ID: <e3e7d5fc-ed5b-4292-bf60-4e536386f3b9@pengutronix.de>
+Date: Wed, 11 Jun 2025 20:15:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250611-sgx-dt-v1-2-7a11f3885c60@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: Co-existence of GPT and fixed partitions (Was: Re: [PATCH v6 5/6]
+ block: add support for partition table defined in OF)
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+To: "Christian Marangi (Ansuel)" <ansuelsmth@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Riyan Dhiman <riyandhiman14@gmail.com>, linux-doc@vger.kernel.org,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Dominique Martinet <dominique.martinet@atmark-techno.com>,
+ Li Zhijian <lizhijian@fujitsu.com>, Daniel Golle <daniel@makrotopia.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Christoph Hellwig <hch@lst.de>,
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Christoph Hellwig <hch@infradead.org>,
+ Jorge Ramirez-Ortiz <jorge@foundries.io>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Ming Lei <ming.lei@redhat.com>,
+ linux-block@vger.kernel.org, Avri Altman <avri.altman@wdc.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,
+ INAGAKI Hiroshi <musashino.open@gmail.com>, linux-mmc@vger.kernel.org,
+ Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org,
+ Mikko Rapeli <mikko.rapeli@linaro.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, upstream@airoha.com,
+ Christian Heusel <christian@heusel.eu>,
+ Jens Wiklander <jens.wiklander@linaro.org>
+References: <20241002221306.4403-1-ansuelsmth@gmail.com>
+ <20241002221306.4403-6-ansuelsmth@gmail.com>
+ <5e9a80d6-6c89-478e-99c9-584647661f5e@pengutronix.de>
+ <CA+_ehUwa69Qa96yy0=K9AiCEJbaZt9oGCRf5gJDh-0_14shbtA@mail.gmail.com>
+ <4218cdae-07ee-433c-8a68-bb07885e43ab@pengutronix.de>
+Content-Language: en-US, de-DE, de-BE
+In-Reply-To: <4218cdae-07ee-433c-8a68-bb07885e43ab@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Hi,
 
+On 12/5/24 13:12, Ahmad Fatoum wrote:
+>> Or you are telling me you had a downstream patch that declares additional
+>> partition in addition to a disk with a GPT partition table?
+>> If that's the case, I'm confused of why the additional partition can't
+>> be declared
+>> directly in GPT.
+> 
+> Many of the older boards supported by barebox used to place the barebox image
+> and the environment prior to the first partition in the unpartitioned area.
+> 
+> To still be able to access them, fixed partitions were used and the rest
+> of the system was described by MBR/GPT partitions.
+> 
+> This was partially made necessary by BootROMs having strange expectations
+> of where the bootloader needs to be placed, which partially overlapped
+> the MBR/GPT itself, making it difficult to define a partition for the bootloader.
+> 
+> For newer boards, it's more common to place the bootloader in a GPT partition
+> now. barebox has no DT binding for generically describing such a GPT partition
+> though, so boards may create a fixed-partition "alias" and use that.
+
+FTR, starting with barebox v2025.03.0, barebox' default is to fix up a
+partitions container with a barebox,fixed-partition compatible for
+everything that's not an MTD. This avoids clashing with the binding
+added here for MMCs and possibly a future binding for partitioning EEPROMs.
+
+Cheers,
+Ahmad
+
+> 
+> Cheers,
+> Ahmad 
+> 
+
+-- 
+Pengutronix e.K.                  |                             |
+Steuerwalder Str. 21              | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
 
 
