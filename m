@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26334AD4C3F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:03:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C26B0AD4C44
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9556189AF1C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:03:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 090923A767F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202071FBEB9;
-	Wed, 11 Jun 2025 07:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39599221DAD;
+	Wed, 11 Jun 2025 07:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeBSzHg8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5pTcMa/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF36D28FD
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D1E9478
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749625376; cv=none; b=aeVV8/h5d9orXLgNskxejxtgWQVpthYYr+OuDHgH5D0ERG3fpzLXqLsHnCITXftA6f8MIqbNyqpqv+IZNalnYJskBaKa46np8UlFxopF7L/DRAzr7qtKkOu6YG+Bje7m8unSfAP65kWintpdloYI16TlbF5POLXompXT9bf9+Ds=
+	t=1749625445; cv=none; b=OWfdhX0USebMp1jpjnAddqHwQSCMgzrWx4wdcf1CtU4+jwzWcgeHpXNDTOZ+7Wl4z+vDH1l5Si7nzxorNRn+Wb+eWKKTvY04VVm1bl2OoRuE8sbKjhZKb74TMBnI7WZurG7/7XV/v/eM35IElvWMRbt188/1vwoWO8AZhyEt5n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749625376; c=relaxed/simple;
-	bh=V3z9VvXjvOJb7kyILBvQXH3M2JliAZyzzDjv3tmt7R4=;
+	s=arc-20240116; t=1749625445; c=relaxed/simple;
+	bh=bJnfd4AoEo4s85u3+DeEqgD14M7tJE0PUbyGvu2U2tU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k5MpES21pOLGehALz7u1fgky7csOsJOYVcBUO6XJQIIMS9UkeQ4oy6fAlMYi74WC11Fhk3Zm52quUsLXXFWZ8sMsl3KgIj0hYXqdC4iQ+oLICZ95OdMFq7luFse2VrQpMJPE74XeRlWh5I/+/ZfvVR+YUVsBfA76Cvi4r/vGvYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeBSzHg8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D9BC4CEEE;
-	Wed, 11 Jun 2025 07:02:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rnCggxaddUX3t1nSkQDMYHa//1+tv0jPSzrRLacsBrbZtbuUhYVzKBq6T+MbqPJx8c+7lBcuZlUeNAwylVdOphyonmyO/jfJ6BkQToD+DR1WeQ8HF//aE50zU86IusOpF2yd3tEa0lBdPF1qLhPgythccl7t3XPZUN+5BwxW+qY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5pTcMa/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA11C4CEEF;
+	Wed, 11 Jun 2025 07:04:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749625374;
-	bh=V3z9VvXjvOJb7kyILBvQXH3M2JliAZyzzDjv3tmt7R4=;
+	s=k20201202; t=1749625444;
+	bh=bJnfd4AoEo4s85u3+DeEqgD14M7tJE0PUbyGvu2U2tU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aeBSzHg8UmxmP6gboL6gX7HCVAL7EV4vHjmFoxm38AX83visDX9JtTibKgY55M29b
-	 I31GHwg1l8ZtaE3qHf2hN/qv1rTcks4uMY2ZP8YP7LoKZTvz/iWrFEZs6ngxYDJ1ge
-	 K8TLpjhSF3uCPm1PjzCQayGspgN1KIBG+DaFpoh29ky8iL037HZF+WmhNxFxqgp3iv
-	 YOtV1PWUyLxLGEG/AxHAfqVH95MSfUVtrk6Wp7vr3CJelazqy7lyyO/ZEdGF2URxaN
-	 GKKy0da12PxkObots6Jm1p9udTcZX75NHuk07Y9DZwGnwBYjt+SNKqJeoxpr69I/Fo
-	 KjMW7mLu0Np7g==
-Message-ID: <3bca33d3-d34d-4d57-abaf-c4f2f15010bf@kernel.org>
-Date: Wed, 11 Jun 2025 09:02:51 +0200
+	b=k5pTcMa/XiOBnliDASFJ4dYyDbUxFyJca0dHXpjq2hpPQ4dZNKmerfQi4rWBG8m1w
+	 jwHqIKluGkTZTRNurZWYjdImuPjODQTI+lyQj018ogYMqz1/oRpbWVcWWhD5k4SJzE
+	 /v+ThDrflT2+mD3CiR2TMX6cyFsJZQLCz7Z4qmdGwJme21CnPjWvV/ZtMiBl48EI7c
+	 hpvJyF5csJWvbGMGO3mspW8PZW3a2bag6kpPhAaveDRXSoN+T521b0MV66VqLb75T+
+	 qmIFIel4SJ8cnqhh7828ilHzYPAzhknpd7MkmyOSrGC/wjAbGye6bFss1pXVuKhAAg
+	 J8imkRlLHuwig==
+Message-ID: <31a0e625-28e7-4ee2-b8d9-0043afb72a64@kernel.org>
+Date: Wed, 11 Jun 2025 09:04:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,12 +114,9 @@ On 10/06/2025 17:11, Shankari Anand wrote:
 > ---
 >  .../arm/altera/socfpga-sdram-edac.txt         | 15 ----
 >  .../arm/altera/socfpga-sdram-edac.yaml        | 79 +++++++++++++++++++
-
-Nothing improved about location. Also entire example is corrupted now.
-
-Can you slow down? One patch per day, learn from the mistakes and
-reports, test before sending and then double check your patch before
-sending.
+Also, where is the changelog? You sent like 4 emails - are these all the
+same? Provide detailed changelog in cover letter or under '---' of
+individual patches describing changes from previous version.
 
 Best regards,
 Krzysztof
