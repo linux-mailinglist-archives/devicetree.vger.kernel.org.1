@@ -1,132 +1,122 @@
-Return-Path: <devicetree+bounces-184687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF88AD4E66
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:30:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D57C1AD4E78
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:32:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26FDC16BD02
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:30:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 866AA1769AD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60ABE23ABAF;
-	Wed, 11 Jun 2025 08:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HfqRcl/D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1F123E359;
+	Wed, 11 Jun 2025 08:32:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E85234964;
-	Wed, 11 Jun 2025 08:30:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F31D23E336;
+	Wed, 11 Jun 2025 08:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749630619; cv=none; b=REDNDT2I4GmLm+y5cfninUXBcZjSyyK30cRC7OTxAle0uJVHt2p2UX9RRQ3/eVSwVu8KJNdnfZtft3W5vlaFHW/Di1SERq6Q7Mjfkm+fTWDY3Jq+t+RHyQ/vBZ8bd5clWTaQ/axIpgBi7Hl709U5gKGAI5Lmn65GdU6wBFauHm4=
+	t=1749630735; cv=none; b=S0TvTkYkpyY9QaLV0QPiqZeyTLIANXMAklApmsLgvyhMeBwC4E4kjTMwjyzTUDUgsjP4hIUOyRFHKPQqmtCVUyhCzM3f50XPZT5gMBFQ3QH4b8IxaRGpnYGgODtgqilGyphB2Qq9EYsAau+84qKObPhQlJhjT2VRNAuJV+DKDeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749630619; c=relaxed/simple;
-	bh=jZ9Hv45HUZkteVQv6ya9VOMC0pxuG2odAMafRrZj2qI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t0Lb1eg6E+RKuBDENvB0oWP8Zzhxuw6z7hOC2JAjxlC4XiWFNPP7LP/TzvC2tSUJtzES0sUQOLE8cjSoUfEVFKt86l2bKfmOjyOKWWLdwzorY0HzYh6Je5zu0z1XpoBOkAeLE21w7d6rz0miisLmnELax4BafWT4ZGU1f5n2mzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HfqRcl/D; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7d3862646eeso220134685a.2;
-        Wed, 11 Jun 2025 01:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749630616; x=1750235416; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qcSP2lVjFJ/bu0C3VkfzSJDndgidRs2bj0/IW68A3/k=;
-        b=HfqRcl/DIq0pEUqS+MFGATn8ec+U1Y+bKQiSbrJu7oHVQExgo/lMXlmpIEfxrgIuEB
-         V3VxFLApqvJgv1wfGof9mXeVK3gY/YhzBj8cWCffp+XEUwalaOLci0mUuBT3uroxYvKJ
-         0bhEAQwGs6+NxEyFISxAX2772plxzh6XKtSO28B9KOqhqT7RI0P5fiNWR40ZSFbAhVQJ
-         FvOEOQMZdFlYCsDdHzhxx9p+oAIuOB1HNqDDgHbEV/uioRy1lMSPsZ01B6h5Qrc6neRd
-         7Uw7EoHpvWEwQbuQcHAFLgZDWX5mSgqBZSuEbp/NqovMvxM2XdiPk7IfDRLJdVpPsXBA
-         hrhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749630616; x=1750235416;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qcSP2lVjFJ/bu0C3VkfzSJDndgidRs2bj0/IW68A3/k=;
-        b=U+54/Bttd6CagRgqtfUJZY7c4AmBdnsIAVQ/WEuQRcNJVFY18o6LiFtLWW2cMGv61J
-         Wn1h9tpZy1cTf6xiiL5JDJcPi4KvvhFnlRSbq3J0JwCK7LFc0LGYb75MrAb0iejk6wz+
-         VOSTkchiKgWxOscg6zn1E2+xBNOJNfpeYfRKoVhjNXMTH0nwllkoZRYVrn/0mE04kEUV
-         TxgWBZb8Gq1CHKsX17PbNFsxab7altRjh7PZvGtJy6wiTyMk6+BStfBGKGb6KubOCkDP
-         FCdsVUM0zyzwl+aigasr3Gx2x8LUfQqodbmD+0CQc0aeLBq9TvilNjrtYpuxebGMUTCh
-         gGbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVK11/wROIWXFIcSSu3zx1Zg5ShhvTFFlsNpLDWAFNLJCuElnZBmg2UmAKJwRrONpkdYjpywZB2QOF04ksh@vger.kernel.org, AJvYcCXRs4kSRSsFIUz7F9ONn//+qBLItaIfzalbV3vP8pwJrcxXr8ZTwiBn8xIe128Lhk0BIRZcGOQ9H69V@vger.kernel.org, AJvYcCXoYCcRsNDDIVs1V2lfTaxKqhKhUoRg3YJ4a5vDDX1uaMfNwwAiCiQtiQWSEWtiID49qT6VXs8spXQ8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyay4kU51ZsSRU1jxHMbB0LRsytRneGMRjBpKsxfhaETSsE7qfF
-	wgHiIJM4xqzfoTqavsJe0YCce23B6zU0KR2VKRFBA2ZFRJSYv7JwMIyr
-X-Gm-Gg: ASbGncu7gcUn43TgNnEjP0lfMDmQe/mR2TIelgt1IGeGDWyUFHRmbuCcLtmDHC2Pf+t
-	jukcg0xnYv5DxHmAAzWcFDubJnxA9NAPdndDHSi3w4nICt1qJwtYFtYo6hQPCGwuhBfNrFWnmX2
-	h27BjxWJAYcBgtiOXIGnm2RQEchQOT1wrrzNrg/n5x13maYdhtaZoH+9IlCOLFSvWLjkcboUMPx
-	OxDB1Ousqv87+q4j5US0yJU1hglDFpXxxJW8Crdtqs3Dx5MwyRAI8zwBVkYub7wbVIZPE1/gNOI
-	vQivOVrUyBoogltNfvzFK0L3uOvbfcy2/n1re1jgFEicBKJC
-X-Google-Smtp-Source: AGHT+IGCumupGFYJr2miTmB5pZGshAqhyq5KGLzPXAmspYahxEndxqWSVq6p8juUyI8Wq6JrkTAl1w==
-X-Received: by 2002:a05:620a:2489:b0:7d3:99db:c4c with SMTP id af79cd13be357-7d3a8805820mr382875185a.6.1749630615951;
-        Wed, 11 Jun 2025 01:30:15 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6fb09b2a085sm78890866d6.82.2025.06.11.01.30.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 01:30:15 -0700 (PDT)
-Date: Wed, 11 Jun 2025 16:29:07 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Vinod Koul <vkoul@kernel.org>, 
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Junhui Liu <junhui.liu@pigmoral.tech>, 
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, dmaengine@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: reset: sophgo: Add CV1800B support
-Message-ID: <2v4hfzqgz22k6s776onexnhd5cnhfr7s7ggvcmh4mfiviigq66@a2ehkwbv7oll>
-References: <20250611075321.1160973-1-inochiama@gmail.com>
- <20250611075321.1160973-2-inochiama@gmail.com>
- <20250611-brown-turtle-of-election-87c324@kuoka>
+	s=arc-20240116; t=1749630735; c=relaxed/simple;
+	bh=PPynbfnkIjXxGpaTo686aW4m3QhtkxNND5E/kPM/9N4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=D9YmqeEha9tV14u1LHI3pF2vIx7SoWWQlbMFxndXDKS5+zsyp9olgOnlekvICt5O9hMkOM3LZJo6drq/HV946lTcQawKZbygZtm7J6KNb/29SAdlDL8vHLYibM5ByFI08EoWJQR/Q2BZDwwrdoowGLL6ZV13Az55ghAX5w84yaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bHJmg5fsLz9tPJ;
+	Wed, 11 Jun 2025 10:32:03 +0200 (CEST)
+From: Lukas Timmermann <linux@timmermann.space>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@timmermann.space
+Subject: [PATCH v6 0/2] Support for Osram as3668 LED driver
+Date: Wed, 11 Jun 2025 10:31:49 +0200
+Message-ID: <20250611083151.22150-1-linux@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250611-brown-turtle-of-election-87c324@kuoka>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4bHJmg5fsLz9tPJ
 
-On Wed, Jun 11, 2025 at 10:19:49AM +0200, Krzysztof Kozlowski wrote:
-> On Wed, Jun 11, 2025 at 03:53:15PM GMT, Inochi Amaoto wrote:
-> > Add bindings for the reset generator on the SOPHGO CV1800B
-> > RISC-V SoC.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml b/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
-> > index 1d1b84575960..bd8dfa998939 100644
-> > --- a/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
-> > +++ b/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
-> > @@ -17,6 +17,7 @@ properties:
-> >                - sophgo,sg2044-reset
-> >            - const: sophgo,sg2042-reset
-> >        - const: sophgo,sg2042-reset
-> > +      - const: sophgo,cv1800b-reset
-> 
-> Keep alphabetical order. That's enum with previous entry, btw.
-> 
+This patch adds basic support for the as3668 driver IC via I2C interface. 
+The IC is capable of driving four individual LEDs up to 25.5mA per 
+channel. Hardware blinking would be theoretically possible, but this chip
+only supports a few set on/off-delays which makes using that feature 
+unfeasable, therefore my driver doesn't offer that capability. 
+It's intended applications is in mobile devices such as phones, 
+tablets and cameras. This driver was tested and is working on 
+a samsung-manta which is running postmarketOS with a near mainline kernel.
 
-There is a small question for this: should I move this before the entry
-"const: sophgo,sg2042-reset", or before the first item entry?
+Please note: This is my first suggested patch to the kernel. 
+checkpatch.pl runs without warnings or errors. 
+I've read the docs in regards to the led subsystem, 
+coding style and submission of patches, 
+but I'm still a bit unsure about the general workflow. 
 
-Regards,
-Inochi
+I will try my best.
+
+Changes in v6:
+- Fixed missing error handling during init
+- Fixed missing newline in error messages
+- Fixed size calculation for memory allocation
+- Fixed error handling for memory allocation
+- Link to v5: https://lore.kernel.org/lkml/20250608231854.75668-1-linux@timmermann.space/
+Changes in v5:
+- Fixed debug and error messages using wrong format specifiers.
+- Fixed missing include bitwise.h.
+- Changed commit message for dt file to fit expected style.
+- Link to v4: https://lore.kernel.org/lkml/20250607215049.29259-1-linux@timmermann.space/
+Changes in v4:
+- Fixed some mistakes made in the dt file pointed out in v3.
+- Swapped dt and driver in patch series. DT now comes first.
+- Fixed errors in Kconfig due to last minute changes.
+- Added dt file into MAINTAINERS file.
+- Link to v3: https://lore.kernel.org/lkml/20250604225838.102910-2-linux@timmermann.space/
+Changes in v3:
+- Fixed an extra whitespace in the dt bindings documentation.
+- Sent patch to all related lists and maintainers.
+- Link to v2: https://lore.kernel.org/lkml/20250531120715.302870-4-linux@timmermann.space/
+Changes in v2:
+- Fixed reading led subnodes in dt incorrectly, 
+  which caused wrong numbering and a segfault when removing the driver module
+- Fixed calling of_property_read_u8 with an int, causing a compiler error
+- Added more error checking during writes to the i2c bus
+- Link to v1: https://lore.kernel.org/linux-leds/20250530184219.78085-3-linux@timmermann.space/
+
+Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+
+Lukas Timmermann (2):
+  dt-bindings: leds: Add new as3668 support
+  leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
+
+ .../devicetree/bindings/leds/ams,as3668.yaml  |  74 +++++++
+ MAINTAINERS                                   |   7 +
+ drivers/leds/Kconfig                          |  13 ++
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-as3668.c                    | 204 ++++++++++++++++++
+ 5 files changed, 299 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/ams,as3668.yaml
+ create mode 100644 drivers/leds/leds-as3668.c
+
+-- 
+2.49.0
+
 
