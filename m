@@ -1,88 +1,57 @@
-Return-Path: <devicetree+bounces-184907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852D5AD59F5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:13:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69340AD5A20
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 17:19:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D89A81E3244
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:11:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A4123AA3C4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDA01CEAA3;
-	Wed, 11 Jun 2025 15:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC581E0B9C;
+	Wed, 11 Jun 2025 15:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oAa3HckZ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ihUI4pic"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800081C8605
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 15:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5850E1DE2A4
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 15:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749654670; cv=none; b=UtAitV8Zjxa2UocAMQCCUQDJROW4bR1SYZsKwV1/iJ1aQinIAIkkPXBLIeSNheSLJ1aXLOLz7NlcjwlVF3kmEXomIl9FmLOJoYdqqerQqvrfUIQsdjktaCRbX9aO0RtGhpVha2goHE2+HkLs1XsRscvabCdqRjQQhyv3bNAr2sY=
+	t=1749654887; cv=none; b=TSd+3WD9Z8vzDrdd9uJuN5/ELgcMA0V85vFblW6T6+Ievhe5rI5yhHFEZag1y8ic2zhV6BqMs6yp5uvx2NMdOdaUAUmItbk/ib/iOBqgOyMWhXhYfrSbehUv4eZHcr3/xMpTSfyvpMv9H4oNlk7n1GoMJ7hSZCI5tvIik40fdqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749654670; c=relaxed/simple;
-	bh=xIY+8vOXdTA2r3NFwtuqB6f0FhcbF1mjiXLO5Kqlg/U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nKq1J0d8pbOGVJdmgRhe2bsUMDYn4OJYs6sWs8oFgbupwjHzXx83kJqOhKazkwRLYqLZkyFUTU5AvRvPSbCeMUQWBty7yc6ec3dG/nbMbZlBa6DCJHY/TuaSsindRoZiI6PXdE24I9dC0EmgQOM4bL2j373lkFIs/ro5+KNTBnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oAa3HckZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DMQL029379
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 15:11:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XRHkflpiDITTbNLmPmmf2fFvfeQDPpqdt8UJpTn703A=; b=oAa3HckZ02gycP0B
-	Byr9IfZpMhU9dSCUa9WSbADnqkgFESYBvfzroEyhEKPxbUkp+4xlqcymVkIPe9g4
-	GwtnAupEP7Fyea331nGAu8o9zV3zH6Ri1UmqSauXGAZKE+KtPcq7oKEcC3UKD1Sk
-	EGmVTdKQy9h/0SlbNK6sLXuPoLTq37e69OaSZfWEYKBvytOoJbvU6CMqgximyKEs
-	w5K6mhovWagsqY/qHKyhClvFe4ypvGDCLLkZFdWL+YCaB4jdqWM+Oy/EO+gXIIei
-	cjxs6b2JbfYEMsnNY2ry+91q+YjFgq0zZEj1+iKakyOIQ0o1iZ2L5C/JyYn2E+M4
-	tATx6w==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn6dcbk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 15:11:07 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4a5ae436badso1489411cf.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 08:11:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749654666; x=1750259466;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XRHkflpiDITTbNLmPmmf2fFvfeQDPpqdt8UJpTn703A=;
-        b=gQ1j0cv+VUd8pJnNY9Tl80N1xXkjB+7LtHSJLJ25HPyYRa9dqAUf7gFh5NYhCTLMGp
-         IYXF5ywfBKAPqggEz9AIeyQmA79yrFvR6jBtXveuP709JuAd1qntpA5/YjiW+/bXpXOY
-         NqQwGz5qI5syb+27n9aTzZ57UE9TgCMfQjlfTuhNUX/eg5hTq0RhX4JNs5JqjaMiVJWv
-         vUKB+Wh9I1Qb8MxQnibv/JpSnzbkZ1v61XtXueD4Dloz5bdtw5zKnUw6kXC8yzcVnFxN
-         0qFTN6F7utxewzOjv+1V296WuiYOsoWeLWfyGxl7t4cTYelFJ+mcXcQJa60HOK6Cjemu
-         sJ4w==
-X-Forwarded-Encrypted: i=1; AJvYcCW98TPrPlpepQC/gOA2Se5dH4cVGN0uOA3ynAO6z9J05oh1a8NGyglUyvxnDa5vhoYtDkxaMAAkR1lL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUMq8nU35EJ01lC4VL2rI8Um89+fuj8q0jde943Mx/HnOT7O1I
-	9oK+4yx9Hcr4CYQkSF5meCADgB6nvj2q1dQL2xwlA4++QTH1mNAK1urwikrsbmNQITwnNvlfxGM
-	k7jFx7ByDouVex/VlNZv3gnrFBxvkumgmQKbieLwMOm9tFQdieV0LdIv2W88fKp80
-X-Gm-Gg: ASbGnctubIIwwGCZSDqUyh3YnE3iS6+kvRPEPv4ZyUd+/D8oIY+IGR76hTL7xWo1K1H
-	9Sw53iOqfeiZfjtvOZA/+RZvVyNozsbrAGdNjOTl8g4z4PA4QU9dEVao6z73Np+ZfG8qzHu+s1e
-	VKRHWf56lN8/UH88tQ2iZPKizkXVa9AKSDXnYhFINEuXD3lPw0QY9uXTzudJ45ruI/h0XkvVdZ9
-	qJ1HAhZhJ9XgDXsMR3rEAoMNAGifg/vPOiFlShnQamIrVupwAYZ6p4Edf9bOmkJoxZ99xZZEnAK
-	mWFr/8bMtPrC7zcWZ+x6cCq5lLxABIIzR5LEvb2dWqkVYW4A6oQcmS2aD4e279GR9JWkHBE13wN
-	KFzU=
-X-Received: by 2002:a05:620a:c44:b0:7d0:9a77:fb0b with SMTP id af79cd13be357-7d3a888175amr184309185a.12.1749654665968;
-        Wed, 11 Jun 2025 08:11:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFAMLco/lP1MiIm1Dc5YET2BYjUFpCExzSZhN/HK38bVJxSEhowNFeEa+jpy1xWNrJRJx/r7g==
-X-Received: by 2002:a05:620a:c44:b0:7d0:9a77:fb0b with SMTP id af79cd13be357-7d3a888175amr184307285a.12.1749654665540;
-        Wed, 11 Jun 2025 08:11:05 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc1c316sm913363866b.98.2025.06.11.08.11.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jun 2025 08:11:05 -0700 (PDT)
-Message-ID: <aa9f23c2-8979-4e31-9f18-9be6ed0a45b8@oss.qualcomm.com>
-Date: Wed, 11 Jun 2025 17:11:03 +0200
+	s=arc-20240116; t=1749654887; c=relaxed/simple;
+	bh=pb1NQueabVI9wQkdaC+YDQL17yZ/J3cirFxX0Ib+CQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=MySujDPwEPiANDg98DP6u55cS63qUdpVnC9xAcG02hxh8yvrdWBMfNPJmOBPUDirB9FqQPGUevgo0CEPLB6AYohV7aMJ4+zglN6wOen1vVWuc8HPzarTeFnwcThouco5FbvIYqD3LtBDfK6ApnYb7oup388yK6WUc1MdC+PFG6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ihUI4pic; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250611151442euoutp020fe539faa7506ee474edc3653c24af17~IBdh--7661920619206euoutp02Y
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 15:14:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250611151442euoutp020fe539faa7506ee474edc3653c24af17~IBdh--7661920619206euoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749654882;
+	bh=/aG3yXc2EucpbW7sa9J+WzUETPZ1G5/7AvZ60LGbpt8=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=ihUI4picgtqUec1YrsKY2X8y+lZtQi5PEzaMdY1POhzjEGEKAYKdwrIPJowunk9ho
+	 McMbITHYYQQRjiqckByAn6RcHEdimhnM9Ieyp+MhmKyNYPlmxMJ9cYHkMutsHLsxM/
+	 jYGC2BBusGkTjcJqayLlYd3mMorqFK1VDaKlb0y8=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250611151441eucas1p1c5b30da3e0bd7484b27c9ad78a91f678~IBdhUjG441932119321eucas1p1c;
+	Wed, 11 Jun 2025 15:14:41 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250611151440eusmtip2d72d1b30d77ba1ed35d675241db8b411~IBdgIHHGO2985829858eusmtip2g;
+	Wed, 11 Jun 2025 15:14:40 +0000 (GMT)
+Message-ID: <6ca6016e-3b17-48a0-ad8d-bb05317aa100@samsung.com>
+Date: Wed, 11 Jun 2025 17:14:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,56 +59,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: x1e80100-hp-x14: amend order of
- nodes
-To: jens.glathe@oldschoolsolutions.biz,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250610-hp-x14-v3-0-35d5b50efae0@oldschoolsolutions.biz>
- <20250610-hp-x14-v3-3-35d5b50efae0@oldschoolsolutions.biz>
+Subject: Re: [PATCH v2 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+To: Drew Fustini <drew@pdp7.com>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
+	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
+	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
+	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
+	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250610-hp-x14-v3-3-35d5b50efae0@oldschoolsolutions.biz>
-Content-Type: text/plain; charset=UTF-8
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <aEifXZnLxKd2wa0w@x1>
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDEyNiBTYWx0ZWRfXy4VQ1pCfurd3
- XJ4ABKdtD152VDqtxH9JImewqOci1nrj63U+RG5RRrVhfy8Ifmp63quJ5LKIX3ZzaftCSmNzayZ
- zWjqQwR439un8YSnU3J3auJcRx691e4G4MTyfjVwEb/se9VvpbPT9tPw7TJzMhxhwPJ/5pjnCG4
- ijRTN4gTPZ7u2+dwD5g+L7/VATis0E4NO0qyEPKHO3JKySXI6fUeZciZmanK7sxwpkbCLZrhtk/
- Hx248zbO4agPsaQYZ63BvhFSP6MTzNWczReMLeK9zUE1B6lqVjCL+PvRmOMabHtDa4w20v+I7TO
- YHzSpYtAuw1DWPgB/RxZsfBd0Q2mUr58CtXccipp8Ntg6teSxuttEX7RxOCe5SJCpGHGc3efPC9
- YOM/WtV++zblRjWl/5GwEDTp5+NNc8WaztKgCS6eKcWo3XNVCQw4rAJeR9GjWfDKWOYJWGqd
-X-Proofpoint-GUID: ekU74ywaF1Bt--FhdOzRi72do7juhNxY
-X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=68499c8b cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gxl3bz0cAAAA:8 a=EUspDBNiAAAA:8
- a=vdNxfUKwvXZ3YRcdAeoA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
- a=kiRiLd-pWN9FGgpmzFdl:22
-X-Proofpoint-ORIG-GUID: ekU74ywaF1Bt--FhdOzRi72do7juhNxY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-11_05,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
- mlxlogscore=788 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506110126
+X-CMS-MailID: 20250611151441eucas1p1c5b30da3e0bd7484b27c9ad78a91f678
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+X-EPHeader: CA
+X-CMS-RootMailID: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+References: <CGME20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9@eucas1p2.samsung.com>
+	<20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com>
+	<aEifXZnLxKd2wa0w@x1>
 
-On 6/10/25 7:25 PM, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+
+On 6/10/25 23:10, Drew Fustini wrote:
+> On Tue, Jun 10, 2025 at 02:52:48PM +0200, Michal Wilczynski wrote:
+>> This patch series introduces Rust support for the T-HEAD TH1520 PWM
+>> controller and demonstrates its use for fan control on the Sipeed Lichee
+>> Pi 4A board.
+>>
+>> The primary goal of this patch series is to introduce a basic set of
+>> Rust abstractions for the Linux PWM subsystem. As a first user and
+>> practical demonstration of these abstractions, the series also provides
+>> a functional PWM driver for the T-HEAD TH1520 SoC. This allows control
+>> of its PWM channels and ultimately enables temperature controlled fan
+>> support for the Lichee Pi 4A board. This work aims to explore the use of
+>> Rust for PWM drivers and lay a foundation for potential future
+>> Rust based PWM drivers.
+>>
+>> The core of this series is a new rust/kernel/pwm.rs module that provides
+>> abstractions for writing PWM chip provider drivers in Rust. This has
+>> been significantly reworked from v1 based on extensive feedback. The key
+>> features of the new abstraction layer include:
+>>
+>>  - Ownership and Lifetime Management: The pwm::Chip wrapper is managed
+>>    by ARef, correctly tying its lifetime to its embedded struct device
+>>    reference counter. Chip registration is handled by a pwm::Registration
+>>    RAII guard, which guarantees that pwmchip_add is always paired with
+>>    pwmchip_remove, preventing resource leaks.
+>>
+>>  - Modern and Safe API: The PwmOps trait is now based on the modern
+>>    waveform API (round_waveform_tohw, write_waveform, etc.) as recommended
+>>    by the subsystem maintainer. It is generic over a driver's
+>>    hardware specific data structure, moving all unsafe serialization logic
+>>    into the abstraction layer and allowing drivers to be written in 100%
+>>    safe Rust.
+>>
+>>  - Ergonomics: The API provides safe, idiomatic wrappers for other PWM
+>>    types (State, Args, Device, etc.) and uses standard kernel error
+>>    handling patterns.
+>>
+>> The series is structured as follows:
+>>  - Rust PWM Abstractions: The new safe abstraction layer.
+>>  - TH1520 PWM Driver: A new Rust driver for the TH1520 SoC, built on
+>>    top of the new abstractions.
+>>  - Clock Fix: A necessary fix to the TH1520 clock driver to ensure bus
+>>    clocks remain enabled.
+>>  - Device Tree Bindings & Nodes: The remaining patches add the necessary
+>>    DT bindings and nodes for the TH1520 PWM controller, a thermal
+>>    sensor, and the PWM fan configuration for the Lichee Pi 4A board.
+>>
+>> Testing:
+>> Tested on the TH1520 SoC. The fan works correctly. The duty/period
+>> calculaties are correct. Fan starts slow when the chip is not hot and
+>> gradually increases the speed when PVT reports higher temperatures.
+>>
+>> The patches are based on mainline, with some dependencies which are not
+>> merged yet - platform Io support [1] and math wrapper [2].
+>>
+>> Reference repository with all the patches together can be found on
+>> github [3].
 > 
-> amend the order of pmk8550_* nodes afte pmc8380_*
+> I'm trying to build your rust-next-pwm-working-fan-for-sending-v4 branch
+> but I get this error:
 > 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
+> $ make W=1 LLVM=1 ARCH=riscv -j16
+>   CALL    scripts/checksyscalls.sh
+> .pylintrc: warning: ignored by one of the .gitignore files
+>   UPD     include/generated/utsversion.h
+>   CC      init/version-timestamp.o
+>   KSYMS   .tmp_vmlinux0.kallsyms.S
+>   AS      .tmp_vmlinux0.kallsyms.o
+>   LD      .tmp_vmlinux1
+> ld.lld: error: undefined symbol: rust_build_error
+>     referenced by pwm_th1520.4789668fc0b4e501-cgu.0
+>                   drivers/pwm/pwm_th1520.o:(<pwm_th1520::Th1520PwmDriverData as kernel::pwm::PwmOps>::get_state) in archive vmlinux.a
+>     referenced by pwm_th1520.4789668fc0b4e501-cgu.0
+>                   drivers/pwm/pwm_th1520.o:(<pwm_th1520::Th1520PwmDriverData as kernel::pwm::PwmOps>::write_waveform) in archive vmlinux.a
+>     referenced by pwm_th1520.4789668fc0b4e501-cgu.0
+>                   drivers/pwm/pwm_th1520.o:(<pwm_th1520::Th1520PwmDriverData as kernel::pwm::PwmOps>::write_waveform) in archive vmlinux.a
+> make[2]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
+> make[1]: *** [/home/pdp7/linux/Makefile:1241: vmlinux] Error 2
+> make: *** [Makefile:248: __sub-make] Error 2
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Hi,
 
-Konrad
+Thanks for testing !
+I can reproduce the issue with your config.
+
+The root of the problem was a failing compile time assertion
+(build_assert!) in the underlying Rust abstracions, I think IoMem since
+get_state and write_waveform functions are impacted. My development
+configuration was accidentally hiding this issue, but your configuration
+correctly exposed it.
+
+The kernel config option that is different on my setup is:
+CONFIG_RUST_BUILD_ASSERT_ALLOW=y
+
+Now I have to take a look at the IoMem abstractions, I think there is
+a new revision [1]. Will apply it and check why exactly compile
+assertions are triggering.
+
+[1] - https://lore.kernel.org/all/20250603-topics-tyr-platform_iomem-v9-0-a27e04157e3e@collabora.com/
+
+> 
+> I've uploaded the config to:
+> https://protect2.fireeye.com/v1/url?k=0cc1a518-535a9c14-0cc02e57-000babff3563-8df2dfc535042c2a&q=1&e=eaf92127-0b5a-4559-9796-3264da753ae3&u=https%3A%2F%2Fgist.github.com%2Fpdp7%2Fe2c34dd7e4349a54bd67b53254bd3a22
+> 
+> Thanks,
+> Drew
+> 
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
