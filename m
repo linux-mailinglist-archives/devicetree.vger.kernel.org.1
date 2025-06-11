@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-184734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B27DAD503C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA707AD503B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:40:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A3253A51D3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:40:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F01B73A5041
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC4525C83E;
-	Wed, 11 Jun 2025 09:40:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8B025A2CD;
+	Wed, 11 Jun 2025 09:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="cCLQagFi"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="exkK4yIi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B72C2620CA
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4254225C804
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749634808; cv=none; b=g/mi3aRHq8BW3brJr8m5urUgS/tuOuAi7GnbI3tCKmJLxt3dZTxS7F4hF2AtGWbK0B8l2SAcKGv36IRQg/Y693I4NOKEduwLTaTvGutXozqcwf+I73T4ZWa69s7C58TknCbGiTRmZIJpaOiYniz4ydXuWOqoYRrWjYgmduN6msU=
+	t=1749634810; cv=none; b=HZD1JZ3z1P0DGnmzizsZaPyHCYGgIV0l7bNZ4VZW4wQX5CeHWaayZBoEzNnvD0tMvx25zJ9xFjsWaOa+qenxBdBbEi06cokzVuswzZiAZQNjmYvKv7EQfkyfWD20igGtn4yBXTe+nsu1YRze2d2k4Tom2gGXrm7Oe/n7Scb/Y5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749634808; c=relaxed/simple;
-	bh=rsK4BlAYhH0hOyfLO0pQZiE7QebI40IMovxqlgiM4fs=;
+	s=arc-20240116; t=1749634810; c=relaxed/simple;
+	bh=1ariPDdAF0qt5/fcBAjFaLJrSa62Ai9e3cfkcdrzMRg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F+eHj6KJxsMLHCjPpvBZP297jznVTdxOsdT1mIGhbJcvFJzczQoDj12lRCZLHOYib74v9l1aLZDewxl10Rk+nS1niSsnZkRQSRMWLmIO7NSsSkU1as9KleDIybXwPzcOVUsrtJX5w6A/oojtH9oeEpNARAf4c9JhSffQhnjdeVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=cCLQagFi; arc=none smtp.client-ip=194.117.254.33
+	 MIME-Version; b=ibnE1pmm7FuEDk4K45kypI2Zer0PGD8N1DgFnDDKpAHUDy02inZkG+hzISiDAZE2orE99fejLhAtDrGaYm7P30D8TMS0j+O9LmdXpZEPmMpqEe1kHs/tB9h5s7iQUNbAwyU3KNUhi5aISo98kNx6BnEoswiI3yulvvzMOkD7TMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=exkK4yIi; arc=none smtp.client-ip=194.117.254.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=from:to:cc:subject:date:message-id
 	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=AwgCxBaxeHErhOrt73l4s8Ky1IwiqVrn4SH13z6dx1A=; b=cCLQag
-	FiabJzZRMWMYTURxbQXORSxk6nh65ugnktkH3SAU32bUxsasquRhQAb4gMsVhwMv
-	Zy4vDBJg1kFHn+z/rEdHyoFk8F0fZ41kJ37WuT513vHGCgcII5smcZbofiD1tOE6
-	O/4ASu0Gev6dpo2uJNe1YPVKTdLOlV0JgV/S81TS3jjGSlsDybh0vr4uKVP9ks3B
-	CTpWHV/hgaDA2Sr6SGYYtHa477gLkrFjwOO8jeiMhCpsTpa28BBTPU6tG7HTRAMD
-	amYg7GFwSPilkh4ehN5x+WfJJqimqM8dc7PzfiN6Df3mua6jkZvK28rhpLrirgS8
-	TBmlbIg1KX0oVYsQ==
-Received: (qmail 3186488 invoked from network); 11 Jun 2025 11:39:55 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2025 11:39:55 +0200
-X-UD-Smtp-Session: l3s3148p1@1pVwmEg3ALEgAwDPXy2/ACpZfVCNKldR
+	 s=k1; bh=xabZjMptbgVpuIdQcIbvSq4bTxC5UfzZllfb5CCab0g=; b=exkK4y
+	IimD4REgDp/S4/rBujARlqepDZbruSPN8unp3mEsL2FtAd1MR8tsNOLxtRrfqmxT
+	bS2jm4rA1nrLqX897EZz8pklNMFcYH8A/RMlscUGws8qOpmBDLhCX4qMIyDm3GN6
+	NAOBt6ujR9DxrSr5PPdNutkQ9UIK9I6SSfbSjhOukN+9awIVAjNvipR7okCC6hI9
+	ePT3ab6PJ/+dx4AUpGBdRwfJSZdraM6k5ROB8iZIrQelx5LyM1PimPZkjvhdIBLt
+	sv+wh/DzOpKeHl5odO+VSds9wudS7UGeYDIEnee+2csflR+haaAQcU/Whph8vt3M
+	thvwynMNQxQtSNng==
+Received: (qmail 3186504 invoked from network); 11 Jun 2025 11:39:56 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2025 11:39:56 +0200
+X-UD-Smtp-Session: l3s3148p1@Lop9mEg3CLEgAwDPXy2/ACpZfVCNKldR
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: linux-renesas-soc@vger.kernel.org
 Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
@@ -54,9 +54,9 @@ Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH RFC 6/7] arm64: dts: renesas: r9a09g047: Add I3C node
-Date: Wed, 11 Jun 2025 11:39:30 +0200
-Message-ID: <20250611093934.4208-7-wsa+renesas@sang-engineering.com>
+Subject: [PATCH RFC 7/7] WIP: arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
+Date: Wed, 11 Jun 2025 11:39:31 +0200
+Message-ID: <20250611093934.4208-8-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
 References: <20250611093934.4208-1-wsa+renesas@sang-engineering.com>
@@ -68,62 +68,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+This is really only for testing. Not for upstream!
 
-Add I3C node support.
-
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Not-signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
- arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 35 ++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-index 876f70fed433..0c0fbddfd7d4 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-@@ -580,6 +580,41 @@ i2c8: i2c@11c01000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+index 39845faec894..f3f391c609d3 100644
+--- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+@@ -7,6 +7,7 @@
  
-+		i3c0: i3c@12400000 {
-+			compatible = "renesas,r9a09g047-i3c", "renesas,i3c";
-+			reg = <0 0x12400000 0 0x10000>;
-+			clocks = <&cpg CPG_MOD 0x90>,
-+				 <&cpg CPG_MOD 0x91>,
-+				 <&cpg CPG_MOD 0x92>;
-+			clock-names = "pclk", "pclkrw", "tclk";
-+			interrupts = <GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 675 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 677 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 678 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 679 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 680 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 681 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 682 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 689 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 690 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 692 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 693 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 694 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 695 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 696 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "ierr", "terr", "abort", "resp",
-+					  "cmd", "ibi", "rx", "tx", "rcv",
-+					  "st", "sp", "tend", "nack", "al",
-+					  "tmo", "wu";
-+			resets = <&cpg 0x96>, <&cpg 0x97>;
-+			reset-names = "presetn", "tresetn";
-+			power-domains = <&cpg>;
-+			#address-cells = <3>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
+ #include <dt-bindings/clock/renesas,r9a08g045-vbattb.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/i3c/i3c.h>
+ #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+ 
+ #include "rzg3s-smarc-switches.h"
+@@ -172,6 +173,38 @@ a0 80 30 30 9c
+ 	};
+ };
+ 
++#undef I3C_BUS_PURE
++#ifdef I3C_BUS_PURE
++&i3c {
++	i2c-scl-hz = <1000000>;
++	i3c-scl-hz = <2000000>;		/* slow Logic Analyzer here */
++	//i3c-scl-hz = <12500000>;
++	status = "okay";
++};
++#else
++&i3c {
++	i2c-scl-hz = <400000>;		/* Max speed of the ADT7411 below */
++	/*
++	 * 10MHz works somewhat with my 24MHz logic analyzer as well as
++	 * signal width < 50ns for the legacy I2C filters
++	 */
++	i3c-scl-hz = <10000000>;
++	status = "okay";
 +
- 		gpu: gpu@14850000 {
- 			compatible = "renesas,r9a09g047-mali",
- 				     "arm,mali-bifrost";
++	/* I2C bus from SMARC via PMOD6A. EEPROM driver only used to verify register content */
++	eeprom@1a {
++		compatible = "atmel,24c02";
++		reg = <0x1a 0 (I2C_FM | I2C_FILTER)>;
++	};
++
++	/* externel development board */
++	temp@4a {
++		compatible = "adi,adt7411";
++		reg = <0x4a 0 (I2C_FM | I2C_FILTER)>;
++	};
++};
++#endif
++
+ #if SW_CONFIG2 == SW_ON
+ /* SD0 slot */
+ &sdhi0 {
 -- 
 2.47.2
 
