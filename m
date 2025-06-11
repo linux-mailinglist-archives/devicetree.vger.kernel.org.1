@@ -1,403 +1,141 @@
-Return-Path: <devicetree+bounces-184737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF86AD5074
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:47:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C918CAD5075
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:47:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50B7C188DE3C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:43:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BA0216E31C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DAD42528F3;
-	Wed, 11 Jun 2025 09:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DD123ED69;
+	Wed, 11 Jun 2025 09:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="po1L40Wu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jzq/UKss"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BB22206BB;
-	Wed, 11 Jun 2025 09:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D0E229B13;
+	Wed, 11 Jun 2025 09:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749634940; cv=none; b=hH2CJP92S+BDl2lFKzJrtMVUOdm2thpE/kEKPRRQMtaf5aQv741RdL2O9ySAg8OHq951YgNUB879xCJmQ/C7HNbiGzDXsZSj/FrtDkFHjl0rp9+DhEnjLbCiC2ZRIhYsUmtrdWou4VliYyg3k/nUb78wHTrprmOUjcXCT39jXmI=
+	t=1749635232; cv=none; b=iwoTcphnElmSrWcy1vwLyi1QerHkHx7vXoDYqeNSK9eP0+MP4mw2d8ZQAtRTYcISIKO6dJUSFd/4I7pWdSZlnurfDVY2hyDO7zrKJOji5JgCrNisICNYYki5NrQsG3H6fJokhgI6t74LyVlV7WaHG0Zq19wxgAqNjY1kO/ttkWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749634940; c=relaxed/simple;
-	bh=CcgRlLXETHRpeInrxUE3E2it7GJcMNq7PX+06owqi0o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=e5S9i8OU49olQVrotfJWTSuZE3W5UxxIDinTPyrsJpP3xRSCTWRtaHuzwWxgM3qtZM14UTvUczyWeDu4Jn+rvFXiKDJ0h+k2xXbT7qg+J9OS412kZzZjvSn5YDAa8sgaXDHVnr31SuxKFT5+j0QH9kqYY7RL22GUoAn2JAZ2HAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=po1L40Wu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 03470C4CEEE;
-	Wed, 11 Jun 2025 09:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749634938;
-	bh=CcgRlLXETHRpeInrxUE3E2it7GJcMNq7PX+06owqi0o=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=po1L40WuQNTVuRPWGTQDNYTAudRLTImSEe/JbVBBzA0Wt799CFoK7h0cc8mxcZWNk
-	 t0ODkQgt3KfAwaY/EKtKklnIokLSzFGK1mjKNQsRu/vTtRTRMJP3ydM0KgSgGRW0dx
-	 z6rW5eUZJKqWNww0DCVN5VgzoSb7h1ZfhmdtweSqKf6hmqwgrt8AHoVvI33ivddCML
-	 PiRmXJaZdWbD4BUSkh7zOdSiA8cXOAy7fvy4GDx63PuoJq47jl8IBiLHB7nKjkALnk
-	 LhDDDRzYcISLxrxEojqNW+mVzm9FdQBHqeQ3UQ1phwRTW8spdn7Ml78YcxtlEhmFV3
-	 CBHs/DOiSXvWQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E03EFC677C4;
-	Wed, 11 Jun 2025 09:42:17 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Wed, 11 Jun 2025 11:42:09 +0200
-Subject: [PATCH v2] dt-bindings: interrupt-controller: Convert fsl,mpic-msi
- to YAML
+	s=arc-20240116; t=1749635232; c=relaxed/simple;
+	bh=QY+5Tek/02AwNhLeuvLKVoyIRN55q5XqE2CxxS2Khq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CWiHID7SxFPW2DOWpiXKeR1xQhmLlF0JhQdCgq4bJQs589haDX/7hVSSajV0XMUEKCtZIJ+ckslg3Uv6es29nXLhzkYV7qT3REyFSy3vII4fVn7xL9bUeVDUPuSjaqwTYdcCuryiN02E3OXVKe/T3kqhzpnkiEA/O4gIyYigEeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jzq/UKss; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4a6f6d07bb5so38529031cf.2;
+        Wed, 11 Jun 2025 02:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749635228; x=1750240028; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=n9rPiGNTaPA7/GngQM8aAU/prJJW46EXooVz3Uq/Q3M=;
+        b=Jzq/UKssfnFewDURRWKfInIsY+4gt6/t3ZjHVjkPetU1Z5y9Sd5bxA5EGxrfAwBMxT
+         4HZV5ogXPZpUV47HwZfOJXxQVMFyPXVvo2Y4B0eFVHf7iv67H7wt9SRXVdipBHhMaSUG
+         2S37a/jIaZkAnPbWzV8COJyEhNEylfRxuShSx6Upbd5rqO0yz6LH1Ow/4SoOvpcxE2na
+         SenaUpeVwtmtfklRb2+zALUeJik7z+m3jhSo0GF8UeOKbecj3BhvwB0INld6x6ExtqhA
+         QqZxXjLhgeISm0Bk3ldCfKTULfcrl967XaJYtgl6wDGyCcPOYHCDPEjqVXNgfB5SDR1s
+         OZwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749635228; x=1750240028;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n9rPiGNTaPA7/GngQM8aAU/prJJW46EXooVz3Uq/Q3M=;
+        b=PxZym4fYipP2ryUely1HMToykdiqUr8v8NdnG6B0lsp2JayAjdnY2xK5gANbl9lJYF
+         xI2PSIlXi+ROB8I/SMGEjCIayTjxEpkUFMZnW+IMgDHvmrHwylfQB112YmLmAdh5eseh
+         FcJ8Z/Tb8540uARMh9P77LTxWAl+KT8PrPk57DLkzDzV9qozb6krxLqeGsQvemjcMBPF
+         +dVpFcrsnwv14Tc0jyyg/2CIqL24b3pEjSZ4c6vyUAQx1NgNYrnNKivtFcb+BvSlSrqW
+         UgXQ31BmWzkQgbHu/MNEAzaTYkrHl5RiiMPwPyHhgAp/GGQtG5j6sGDXVzqT7wPQ6OBm
+         TEcg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqG+2Q9YWosbD3YrwC3TCPNWGRPFSwN9uy/nvzR082Xt1q/5A1Zq/EjDfS9UWNrX26N2Wah9E9XG+nlwLb@vger.kernel.org, AJvYcCV/yj+TOithtZcnEFvwjuYv9Rxs2aSrogtkUcR+Z/YJYatKRNh3Rng8fmk6puTBguiw+N3y0qsRDwtN@vger.kernel.org, AJvYcCVYZbd5F8AkYFQr+swEBNT0yWI2gpZyEK3c5UrOz5vnWKXk0gIymFR6+fKdzfLWIYk/281IPo6jzEN0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYet7EJI7PJUW23X4Y69SWjZOVRylV04FkEStU39bgYVLpS2HH
+	IhRnYTZVMJcSaoZXXGhqrmZgCSV2KYlFX6PmkcZEv4wJ8kGH/TgxNeXB
+X-Gm-Gg: ASbGnctaux+P8qa3UM8lAhHf9sJCWsFb421LAXZWQZNNfdzFC0I0ixi3TpOK33X8u2G
+	zEE630zASaubapLvduD9xvGIjMvcY9UTkeMeVN+NGuHuNZDkDLjUjq1jkv5CMmzptHURT38JcZP
+	GIBw8bwn8crswFsI0b29qomBbRB3H7Al6ps/xgODT8g9zTqxI0bj9nRDz9ZX7/GNV0RE2sx4P9A
+	36RhEc4NYdRHy6RAdLZIdYyu/67Kfn1c7xpFdXuAN6VsycjhTAIX8Sc/8tnsHR89n4a410YDfEg
+	hWb3yHMzWTbA484sVxl+ZV1qZ55GuIk+vTSgrw==
+X-Google-Smtp-Source: AGHT+IHoucd0pTsqUEMuvaSjWbfTQOjCUx6k4huksi1dJ/QwFsl1H1FuuHsdR5T8wu60/r37DLUb9A==
+X-Received: by 2002:a05:622a:5595:b0:4a5:911d:52f6 with SMTP id d75a77b69052e-4a713c5ecc3mr52302751cf.39.1749635228486;
+        Wed, 11 Jun 2025 02:47:08 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-4a61116bc4esm86576941cf.28.2025.06.11.02.47.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 02:47:08 -0700 (PDT)
+Date: Wed, 11 Jun 2025 17:45:59 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Vinod Koul <vkoul@kernel.org>, 
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Junhui Liu <junhui.liu@pigmoral.tech>, 
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, dmaengine@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: reset: sophgo: Add CV1800B support
+Message-ID: <mbvzlggbisa4zvvbjvlg5lrmhb455av37mrtwmphqiqi53iuyu@ybql2m773x4c>
+References: <20250611075321.1160973-1-inochiama@gmail.com>
+ <20250611075321.1160973-2-inochiama@gmail.com>
+ <20250611-brown-turtle-of-election-87c324@kuoka>
+ <2v4hfzqgz22k6s776onexnhd5cnhfr7s7ggvcmh4mfiviigq66@a2ehkwbv7oll>
+ <ec60631a-7e55-4dc0-83f7-6e6cb156dbf2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250611-msipic-yaml-v2-1-f2e174c48802@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAHBPSWgC/1XMQQ7CIBCF4as0sxYDFIpx1XuYLmod7CS2ECDEp
- uHuYl25/F/yvh0iBsII12aHgJkiubWGPDUwzeP6REaP2iC51FzKji2RPE1sG5cXMx22lvO71Yh
- QHz6gpfeh3YbaM8XkwnbgWXzXn6N4++dkwQSzSqqLMtoIZXvvYkJ3XjHBUEr5ANtsRX6nAAAA
-X-Change-ID: 20250226-msipic-yaml-76e3f00bf5ee
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Crystal Wood <oss@buserror.net>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749634936; l=12697;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=93Rhmig5L5zB9a0kXFywVlymV8E3tuGkGjN+qrmRYXs=;
- b=WgwFZpfj419E3pvGAJeIH8mxbS4ecOCGH3SgnDGBj44TW4SzTp907y0qLD83/fZkKKKaNUNmr
- J7Lmzs7OPXrCALZKQ8P2bp7XWx5T3tO6Cy3cigQCAajIn8OpCX8Pr6Y
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ec60631a-7e55-4dc0-83f7-6e6cb156dbf2@kernel.org>
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Wed, Jun 11, 2025 at 11:09:50AM +0200, Krzysztof Kozlowski wrote:
+> On 11/06/2025 10:29, Inochi Amaoto wrote:
+> > On Wed, Jun 11, 2025 at 10:19:49AM +0200, Krzysztof Kozlowski wrote:
+> >> On Wed, Jun 11, 2025 at 03:53:15PM GMT, Inochi Amaoto wrote:
+> >>> Add bindings for the reset generator on the SOPHGO CV1800B
+> >>> RISC-V SoC.
+> >>>
+> >>> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> >>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml b/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
+> >>> index 1d1b84575960..bd8dfa998939 100644
+> >>> --- a/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
+> >>> +++ b/Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
+> >>> @@ -17,6 +17,7 @@ properties:
+> >>>                - sophgo,sg2044-reset
+> >>>            - const: sophgo,sg2042-reset
+> >>>        - const: sophgo,sg2042-reset
+> >>> +      - const: sophgo,cv1800b-reset
+> >>
+> >> Keep alphabetical order. That's enum with previous entry, btw.
+> >>
+> > 
+> > There is a small question for this: should I move this before the entry
+> > "const: sophgo,sg2042-reset", or before the first item entry?
+> It does not matter where you place the enum. There is no convention for
+> that.
+> 
 
-As part of a larger effort to bring various PowerPC-related bindings
-into the YAML world, this patch converts msi-pic.txt to YAML and moves
-it into the bindings/interrupt-controller/ directory. The conversion may
-necessarily be a bit hard to read because the binding is quite verbose.
+Thanks. I will fix it
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-Changes in v2:
-- Rebase on v6.16-rc1
-- Address Conor Dooley's review comments:
-  - Add multiline marker (|) to preserve formatting
-  - Split 'reg' list in second example
-  - Rewrite version dependent information as an if/else schema
-
-Link to v1: https://lore.kernel.org/r/20250403-msipic-yaml-v1-1-f4248475714f@posteo.net
----
----
- .../interrupt-controller/fsl,mpic-msi.yaml         | 161 +++++++++++++++++++++
- .../devicetree/bindings/powerpc/fsl/msi-pic.txt    | 111 --------------
- 2 files changed, 161 insertions(+), 111 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,mpic-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,mpic-msi.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..89db7742c28b3650207b361bfa6fbaf4e69ccc45
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,mpic-msi.yaml
-@@ -0,0 +1,161 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/fsl,mpic-msi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale MSI interrupt controller
-+
-+description: |
-+  The Freescale hypervisor and msi-address-64
-+  -------------------------------------------
-+
-+  Normally, PCI devices have access to all of CCSR via an ATMU mapping.  The
-+  Freescale MSI driver calculates the address of MSIIR (in the MSI register
-+  block) and sets that address as the MSI message address.
-+
-+  In a virtualized environment, the hypervisor may need to create an IOMMU
-+  mapping for MSIIR.  The Freescale ePAPR hypervisor has this requirement
-+  because of hardware limitations of the Peripheral Access Management Unit
-+  (PAMU), which is currently the only IOMMU that the hypervisor supports.
-+  The ATMU is programmed with the guest physical address, and the PAMU
-+  intercepts transactions and reroutes them to the true physical address.
-+
-+  In the PAMU, each PCI controller is given only one primary window.  The
-+  PAMU restricts DMA operations so that they can only occur within a window.
-+  Because PCI devices must be able to DMA to memory, the primary window must
-+  be used to cover all of the guest's memory space.
-+
-+  PAMU primary windows can be divided into 256 subwindows, and each
-+  subwindow can have its own address mapping ("guest physical" to "true
-+  physical").  However, each subwindow has to have the same alignment, which
-+  means they cannot be located at just any address.  Because of these
-+  restrictions, it is usually impossible to create a 4KB subwindow that
-+  covers MSIIR where it's normally located.
-+
-+  Therefore, the hypervisor has to create a subwindow inside the same
-+  primary window used for memory, but mapped to the MSIR block (where MSIIR
-+  lives).  The first subwindow after the end of guest memory is used for
-+  this.  The address specified in the msi-address-64 property is the PCI
-+  address of MSIIR.  The hypervisor configures the PAMU to map that address to
-+  the true physical address of MSIIR.
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - fsl,mpic-msi
-+          - fsl,mpic-msi-v4.3
-+          - fsl,ipic-msi
-+          - fsl,vmpic-msi
-+          - fsl,vmpic-msi-v4.3
-+      - items:
-+          - enum:
-+              - fsl,mpc8572-msi
-+              - fsl,mpc8610-msi
-+              - fsl,mpc8641-msi
-+          - const: fsl,mpic-msi
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description: Address and length of the shared message interrupt
-+          register set
-+      - description: Address of aliased MSIIR or MSIIR1 register for platforms
-+          that have such an alias. If using MSIIR1, the second region must be
-+          added because different MSI group has different MSIIR1 offset.
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 16
-+    description:
-+      Each one of the interrupts here is one entry per 32 MSIs, and routed to
-+      the host interrupt controller. The interrupts should be set as edge
-+      sensitive. If msi-available-ranges is present, only the interrupts that
-+      correspond to available ranges shall be present.
-+
-+  msi-available-ranges:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    items:
-+      items:
-+        - description: First MSI interrupt in this range
-+        - description: Number of MSI interrupts in this range
-+    description:
-+      Define which MSI interrupt can be used in the 256 MSI interrupts.
-+      If not specified, all the MSI interrupts can be used.
-+      Each available range must begin and end on a multiple of 32 (i.e. no
-+      splitting an individual MSI register or the associated PIC interrupt).
-+
-+  msi-address-64:
-+    $ref: /schemas/types.yaml#/definitions/uint64
-+    description:
-+      64-bit PCI address of the MSIIR register. The MSIIR register is used for
-+      MSI messaging.  The address of MSIIR in PCI address space is the MSI
-+      message address.
-+
-+      This property may be used in virtualized environments where the hypervisor
-+      has created an alternate mapping for the MSIR block.  See the top-level
-+      description for an explanation.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+anyOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,mpic-msi-v4.3
-+              - fsl,vmpic-msi-v4.3
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 16
-+          description:
-+            Version 4.3 implies that there are 16 shared interrupts, and they
-+            are configured through MSIIR1.
-+
-+        # MPIC v4.3 does not support this property because the 32 interrupts of
-+        # an individual register are not continuous when using MSIIR1.
-+        msi-available-ranges: false
-+
-+        reg:
-+          minItems: 2
-+
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 8
-+          description:
-+            In versions before 4.3, only 8 shared interrupts are available, and
-+            they are configured through MSIIR.
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    msi@41600 {
-+            compatible = "fsl,mpc8610-msi", "fsl,mpic-msi";
-+            reg = <0x41600 0x80>;
-+            msi-available-ranges = <0 0x100>;
-+            interrupts = <0xe0 0>, <0xe1 0>, <0xe2 0>, <0xe3 0>,
-+                         <0xe4 0>, <0xe5 0>, <0xe6 0>, <0xe7 0>;
-+    };
-+
-+  - |
-+    msi@41600 {
-+            compatible = "fsl,mpic-msi-v4.3";
-+            reg = <0x41600 0x200>, <0x44148 4>;
-+            interrupts = <0xe0 0 0 0>, <0xe1 0 0 0>, <0xe2 0 0 0>, <0xe3 0 0 0>,
-+                         <0xe4 0 0 0>, <0xe5 0 0 0>, <0xe6 0 0 0>, <0xe7 0 0 0>,
-+                         <0x100 0 0 0>, <0x101 0 0 0>, <0x102 0 0 0>, <0x103 0 0 0>,
-+                         <0x104 0 0 0>, <0x105 0 0 0>, <0x106 0 0 0>, <0x107 0 0 0>;
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/msi-pic.txt b/Documentation/devicetree/bindings/powerpc/fsl/msi-pic.txt
-deleted file mode 100644
-index f8d2b7fe06d695971d48ba21ab67e5b72a212fe9..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/powerpc/fsl/msi-pic.txt
-+++ /dev/null
-@@ -1,111 +0,0 @@
--* Freescale MSI interrupt controller
--
--Required properties:
--- compatible : compatible list, may contain one or two entries
--  The first is "fsl,CHIP-msi", where CHIP is the processor(mpc8610, mpc8572,
--  etc.) and the second is "fsl,mpic-msi" or "fsl,ipic-msi" or
--  "fsl,mpic-msi-v4.3" depending on the parent type and version. If mpic
--  version is 4.3, the number of MSI registers is increased to 16, MSIIR1 is
--  provided to access these 16 registers, and compatible "fsl,mpic-msi-v4.3"
--  should be used. The first entry is optional; the second entry is
--  required.
--
--- reg : It may contain one or two regions. The first region should contain
--  the address and the length of the shared message interrupt register set.
--  The second region should contain the address of aliased MSIIR or MSIIR1
--  register for platforms that have such an alias, if using MSIIR1, the second
--  region must be added because different MSI group has different MSIIR1 offset.
--
--- interrupts : each one of the interrupts here is one entry per 32 MSIs,
--  and routed to the host interrupt controller. the interrupts should
--  be set as edge sensitive.  If msi-available-ranges is present, only
--  the interrupts that correspond to available ranges shall be present.
--
--Optional properties:
--- msi-available-ranges: use <start count> style section to define which
--  msi interrupt can be used in the 256 msi interrupts. This property is
--  optional, without this, all the MSI interrupts can be used.
--  Each available range must begin and end on a multiple of 32 (i.e.
--  no splitting an individual MSI register or the associated PIC interrupt).
--  MPIC v4.3 does not support this property because the 32 interrupts of an
--  individual register are not continuous when using MSIIR1.
--
--- msi-address-64: 64-bit PCI address of the MSIIR register. The MSIIR register
--  is used for MSI messaging.  The address of MSIIR in PCI address space is
--  the MSI message address.
--
--  This property may be used in virtualized environments where the hypervisor
--  has created an alternate mapping for the MSIR block.  See below for an
--  explanation.
--
--
--Example:
--	msi@41600 {
--		compatible = "fsl,mpc8610-msi", "fsl,mpic-msi";
--		reg = <0x41600 0x80>;
--		msi-available-ranges = <0 0x100>;
--		interrupts = <
--			0xe0 0
--			0xe1 0
--			0xe2 0
--			0xe3 0
--			0xe4 0
--			0xe5 0
--			0xe6 0
--			0xe7 0>;
--		interrupt-parent = <&mpic>;
--	};
--
--	msi@41600 {
--		compatible = "fsl,mpic-msi-v4.3";
--		reg = <0x41600 0x200 0x44148 4>;
--		interrupts = <
--			0xe0 0 0 0
--			0xe1 0 0 0
--			0xe2 0 0 0
--			0xe3 0 0 0
--			0xe4 0 0 0
--			0xe5 0 0 0
--			0xe6 0 0 0
--			0xe7 0 0 0
--			0x100 0 0 0
--			0x101 0 0 0
--			0x102 0 0 0
--			0x103 0 0 0
--			0x104 0 0 0
--			0x105 0 0 0
--			0x106 0 0 0
--			0x107 0 0 0>;
--	};
--
--The Freescale hypervisor and msi-address-64
---------------------------------------------
--Normally, PCI devices have access to all of CCSR via an ATMU mapping.  The
--Freescale MSI driver calculates the address of MSIIR (in the MSI register
--block) and sets that address as the MSI message address.
--
--In a virtualized environment, the hypervisor may need to create an IOMMU
--mapping for MSIIR.  The Freescale ePAPR hypervisor has this requirement
--because of hardware limitations of the Peripheral Access Management Unit
--(PAMU), which is currently the only IOMMU that the hypervisor supports.
--The ATMU is programmed with the guest physical address, and the PAMU
--intercepts transactions and reroutes them to the true physical address.
--
--In the PAMU, each PCI controller is given only one primary window.  The
--PAMU restricts DMA operations so that they can only occur within a window.
--Because PCI devices must be able to DMA to memory, the primary window must
--be used to cover all of the guest's memory space.
--
--PAMU primary windows can be divided into 256 subwindows, and each
--subwindow can have its own address mapping ("guest physical" to "true
--physical").  However, each subwindow has to have the same alignment, which
--means they cannot be located at just any address.  Because of these
--restrictions, it is usually impossible to create a 4KB subwindow that
--covers MSIIR where it's normally located.
--
--Therefore, the hypervisor has to create a subwindow inside the same
--primary window used for memory, but mapped to the MSIR block (where MSIIR
--lives).  The first subwindow after the end of guest memory is used for
--this.  The address specified in the msi-address-64 property is the PCI
--address of MSIIR.  The hypervisor configures the PAMU to map that address to
--the true physical address of MSIIR.
-
----
-base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-change-id: 20250226-msipic-yaml-76e3f00bf5ee
-
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
-
-
+Regards,
+Inochi
 
