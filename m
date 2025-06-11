@@ -1,210 +1,204 @@
-Return-Path: <devicetree+bounces-184565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0C2AD4A61
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:21:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED1A6AD4A90
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0CC7189E084
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:21:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB5AC3A562A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD8C2253F3;
-	Wed, 11 Jun 2025 05:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C89222687C;
+	Wed, 11 Jun 2025 05:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="cIaZVpyr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWEg9al0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FBE20DD48
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 05:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5F2225791;
+	Wed, 11 Jun 2025 05:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749619291; cv=none; b=qqSPBJDTlshMRWqWflYvoRaaN6clmwBWKXodq9WXeUOeGxaWO5yuXJepaLKVScXn8/EhfEbdpNp3cRyhepr7BiT/QjDIsHZg8yk3xAEj0rwY4vY+x6M2qmr1pU+G3Kx/J4XP6Oydj0ZMDKcp7/P8wDGwGLPI/sq/KTIrtpf/tqQ=
+	t=1749621319; cv=none; b=itePEDWJQMMp93EGprcxPyWhyLN/bZNGRnBiyfe7LObStpeBeWHqyUCJbvQzVlrLVvgrpn11kgooCUnBy81rAPsXXtf5TwjMBJ7ZR/gX4HTtK6AzQRH+whZl7YnBuF7bZDscxFpntQFaJccFak/iOfZQUIi0I+aVug7oeGwBI+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749619291; c=relaxed/simple;
-	bh=Hf+lkGaUqaa3E7rZXs3fvFcSb8MaDoq9N7PpKV1SFWY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zw9AeYmiTMR8PDfbuZoGG982TUZGBvZMD0+Jf6uZ9stDhp1GU/SKhhQ9TsAXUSOnIPPKH8Sls2Qe/Sv8h670zZUapM2xrI+BUag2dMaqkuXgpvMGhrSAHwF6Ur1uBWGDM+035dlVBMhETY00V8s1saslS1cNMQ/zX5PPMtSJ3KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=cIaZVpyr; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32925727810so52620071fa.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 22:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1749619288; x=1750224088; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CZBCRuywHIrHwB4Y6CUEmtf4oyW/dhVJ1DZHpWrRRRc=;
-        b=cIaZVpyrGmbtfG9DEmittwHhTJGAwUmt5GTccOjEFW/8RuReQg9x3QS/m/uDCe+xHO
-         5vCS21iejai+faDwO6c9RIoXzEjK6br6ZkGJMWF/DMeYL7OSBzhiolK9qun2QW7xnV/W
-         v8prh+cM9rzXAB3y3idfe6Ox4/bG4iqdNjoO5wWJVLYSbgLr/Eqiy1w0q9ZuyzRsMxqs
-         G6CupV9O5iUT9lnxaYHP3wJYAsSz6al2q20gfyJzTsC/xHxNsbipT2/+tYuljBtDGfMO
-         OnmJaZG2aEri60Gj4l+7LuTeSiY2mFoVVvPb66Srt8U9iDSRRwb336vDNSLDP4iPeHru
-         1uAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749619288; x=1750224088;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CZBCRuywHIrHwB4Y6CUEmtf4oyW/dhVJ1DZHpWrRRRc=;
-        b=CmrSRiV5qpjHZ6T+FPlQhceMgwFsKlHYnM0Qj6XEo8mQbfcyKovFBeTf1+8DDigEni
-         S/tsvYbu2yUsK06x1jwZtEJ/TNkk9l8lqbHR3UR3Fqp03wxKcB/FzJH4bdgtq2KLAmiC
-         sHdzZt2lpkugmSknCnKGaLc3Rd/NhMowyPwoBo4Ej1X+d/IPL/ADwGkBqTpSW98woFtf
-         M5ptPFiW3wPw/MR+vWlJxOR7Ka8UmNaOT8xJL4CKx/Yh+4fd5QlXYYq0NIZ943Cycosp
-         vQ9jhFvXPeBYQ48DNM8v6h9859x5YNs0QWhpmNJLgANfBqL0mjLSpwjcaBVA0kRYhjog
-         JuUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhPfH0EGtM68me9LdEY2QO/Fj1jKC9hq4g5B+iup+neS5kQZ96zYx6tgVU/AHTixO/jAWCmEaBhGra@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVYc1Xy5hiGdNUYllnCZCnG75CqkQ8j+sCNeikP5KaTZTQwjXN
-	6AN/Z0SflkuQ3LwvY3QBC3aHEnPh1ozxWP+OdCkae3sK4gg0q63017KDyzwQmxwuklqqrdLsPjq
-	5G0qhslIwR28F0khaYZM8+cNxu4XMSOS/adAPYMTdOQ==
-X-Gm-Gg: ASbGncsz7xx0gHqh0tOfv1mfaQfJIW1a93P7T1H88REAgA9sQIhaFTGT4EwJQO2pa8g
-	+QZHIOth1zhDte1W0TDNwVWbba6WIUGS34Op7P3Jt62QnLKMqYEnJwaqqyhzu0JH+PW4oBuj43R
-	G85CVmPC9veY+xq6PoxsZQ6fOtFjZ9rlAyuWgTbynS1ohPxPcp7dFlhHE=
-X-Google-Smtp-Source: AGHT+IGcTZB8S6Gd3hIZot1w2/0Yfybi+OExqcLnX1AZuMKGrGy+Zh6YIGrowqLXEqln+XAK8JxzBWfPL5Z462AVQRQ=
-X-Received: by 2002:a05:6512:ea0:b0:553:2411:b4ef with SMTP id
- 2adb3069b0e04-5539c14d883mr614133e87.34.1749619287649; Tue, 10 Jun 2025
- 22:21:27 -0700 (PDT)
+	s=arc-20240116; t=1749621319; c=relaxed/simple;
+	bh=GWjF0qwx3dUxDRAtPR0ca68BBSoBy4uLsOdkXKWrPeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ScnR7ftxmb+YPyQRZ5Z67xvzpfNrXnp7NSL50VtxybZ+iCxmKrVYifLLJmrx0oZolTt+N2UQX1VSiZiAHoS6I7VH//MJp5k+MnPnOMde7N3hki1fuW3oueJdFamidVE+ExXGXFHu5GaSA92/YjWXaP+lab23leXOvBs2I/QIuyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWEg9al0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 861B8C4CEEE;
+	Wed, 11 Jun 2025 05:55:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749621319;
+	bh=GWjF0qwx3dUxDRAtPR0ca68BBSoBy4uLsOdkXKWrPeI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DWEg9al03Y2k8DvigYipWxQSdbV+J8yrrewvAc+q4y7em82rrITE/N4IrkG1KRLN7
+	 oWZ5f/UvUay4li48uw1oJNsVq7/XzkAbItF2bAw05VjWVkPfi5jmhH0/SKYqyvjOTo
+	 EPye7wQZxIx63A2fxgIAFXG2IMLu8jeWbt8NCAtEifQS8BnZ5odspZX/u9Ka2RZD5Y
+	 3/EtRMWci5Y8H50lUmKGHHE5jfVdcG06V4ZtA6lyU90Vipcqoq4qt5RygoP+JpWaI+
+	 K4dLzbVPGejZ6bL97w96KaaW8L24s6rfwUWT+Ih7eNfFro0QAX8YEZL7ZhXmNTJ3Xi
+	 +qo9Ms+8g4n3Q==
+Date: Wed, 11 Jun 2025 07:55:16 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+Message-ID: <3vfic5s64fzs5e4k33dik74rrwpsivj6fiwzdy5xckald43y4c@kcalsxmse6mp>
+References: <20250610220814.167318-1-marek.vasut+renesas@mailbox.org>
+ <20250610220814.167318-3-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-8-apatel@ventanamicro.com> <aDbrBFcgaJxgBRVZ@smile.fi.intel.com>
- <CAK9=C2XJwgsC5AK-eVOHQqN1tPxtrsTjVoKdHgALbREv=sb8zQ@mail.gmail.com>
- <aEc-SHvL187xdj-m@smile.fi.intel.com> <CAK9=C2VjOZ22smYdxDg1bjnx-+wwjngEN3c-iOpdtaADFcQ0+w@mail.gmail.com>
- <aEgBGup553Pki98e@smile.fi.intel.com>
-In-Reply-To: <aEgBGup553Pki98e@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 11 Jun 2025 10:51:15 +0530
-X-Gm-Features: AX0GCFt0zvXLqPkqunyCtbvdd6VWwuT7DuTT2gaTg9GfnLxzDC88KAV9zwbxwm8
-Message-ID: <CAK9=C2Ww0Mt91x_r0VTffse-AiWcOyBYvWpxxK7p5=+EDUEoMw@mail.gmail.com>
-Subject: Re: [PATCH v4 07/23] mailbox: Add RISC-V SBI message proxy (MPXY)
- based mailbox driver
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nqpz4wckjlyez23h"
+Content-Disposition: inline
+In-Reply-To: <20250610220814.167318-3-marek.vasut+renesas@mailbox.org>
+
+
+--nqpz4wckjlyez23h
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+MIME-Version: 1.0
 
-On Tue, Jun 10, 2025 at 3:25=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Tue, Jun 10, 2025 at 10:05:27AM +0530, Anup Patel wrote:
-> > On Tue, Jun 10, 2025 at 1:34=E2=80=AFAM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Mon, Jun 09, 2025 at 05:59:40PM +0530, Anup Patel wrote:
-> > > > On Wed, May 28, 2025 at 4:23=E2=80=AFPM Andy Shevchenko
-> > > > <andriy.shevchenko@linux.intel.com> wrote:
-> > > > > On Sun, May 25, 2025 at 02:16:54PM +0530, Anup Patel wrote:
->
-> ...
->
-> > > > > > +     if (mbox->msi_count)
-> > > > >
-> > > > > Is this check really needed?
-> > > >
-> > > > MSIs are optional for the SBI MPXY mailbox so we should only use
-> > > > platform_device_msi_xyz() APIs only when MSIs are available.
-> > >
-> > > > > > +             platform_device_msi_free_irqs_all(mbox->dev);
-> > >
-> > > Hmm... I am not sure why. Do you have any Oops or warnings if the che=
-ck
-> > > is not there and no MSI provided?
-> >
-> > We don't see any oops or warnings. This check is to avoid unnecessary
-> > work (such as acquiring lock, checking default domain, etc) in the
-> > msi_domain_free_irqs_all() called by platform_device_msi_free_irqs_all(=
-).
-> >
-> > I don't mind dropping the check so I will update in the next revision.
->
-> Perhaps you can rather add this check into the callee? Seems to me that
-> you have a justification for it. Usual pattern in the kernel that freeing
-> resources should be aware of the NULL pointers or optional resources
-> so we may call it unconditionally from the user(s).
->
+Hello Marek,
 
-Unconditionally calling platform_device_msi_free_irqs_all() when there
-were no MSIs allocated causes the below crash because "dev->msi.data"
-is non-NULL only when:
+I wonder how this device works in rpios, I didn't find a matching driver
+(but I also didn't try more than two minutes).
 
-[    1.355735] Unable to handle kernel NULL pointer dereference at
-virtual address 0000000000000008
-[    1.358212] Current swapper/0 pgtable: 4K pagesize, 57-bit VAs,
-pgdp=3D0x0000000081a2b000
-[    1.360632] [0000000000000008] pgd=3D0000000000000000
-[    1.363132] Oops [#1]
-[    1.363748] Modules linked in:
-[    1.364768] CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted
-6.16.0-rc1-00037-gab55e1c1d97a-dirty #7 NONE
-[    1.368325] epc : mutex_lock+0x0/0x28
-[    1.369796]  ra : __msi_lock_descs+0x32/0x3c
-[    1.370234] epc : ffffffff80af96e8 ra : ffffffff800038e6 sp :
-ff2000000004ba90
-[    1.372412]  gp : ffffffff81819c00 tp : ff60000001dc0000 t0 :
-6900000000000000
-[    1.373527]  t1 : 0000000000000072 t2 : 6962732d76637369 s0 :
-ff2000000004bab0
-[    1.376628]  s1 : ff6000000241c410 a0 : 0000000000000008 a1 :
-ffffffff8168ca58
-[    1.379110]  a2 : 0000000000000010 a3 : 00000000000000a3 a4 :
-0000000000000000
-[    1.380410]  a5 : 0000000000000000 a6 : 0000000000000000 a7 :
-000000004442434e
-[    1.381019]  s2 : 0000000000000000 s3 : ff6000003fff30a0 s4 :
-ff6000000241c410
-[    1.381579]  s5 : ff600000039f9320 s6 : ff6000000241c400 s7 :
-0000000000000002
-[    1.382242]  s8 : ffffffff81821fa0 s9 : 0000000000000000 s10:
-0000000000000000
-[    1.384018]  s11: 0000000000000000 t3 : ffffffff81830a37 t4 :
-ffffffff81830a37
-[    1.385958]  t5 : ffffffff81830a38 t6 : ff2000000004b7c8
-[    1.387306] status: 0000000200000120 badaddr: 0000000000000008
-cause: 000000000000000d
-[    1.388407] [<ffffffff80af96e8>] mutex_lock+0x0/0x28
-[    1.389333] [<ffffffff80003dba>] msi_domain_free_irqs_all+0x2a/0x48
-[    1.390275] [<ffffffff80714e86>] platform_device_msi_free_irqs_all+0x16/=
-0x2c
-[    1.391715] [<ffffffff808d8114>] mpxy_mbox_probe+0x6dc/0x750
-[    1.392522] [<ffffffff806f1706>] platform_probe+0x4e/0xb4
-[    1.393169] [<ffffffff806eef58>] really_probe+0x84/0x230
-[    1.393789] [<ffffffff806ef160>] __driver_probe_device+0x5c/0xdc
-[    1.394282] [<ffffffff806ef2a4>] driver_probe_device+0x2c/0xf8
-[    1.396577] [<ffffffff806ef4ac>] __driver_attach+0x6c/0x15c
-[    1.397634] [<ffffffff806ed146>] bus_for_each_dev+0x62/0xb0
-[    1.399060] [<ffffffff806eea9a>] driver_attach+0x1a/0x24
-[    1.399792] [<ffffffff806ee31e>] bus_add_driver+0xce/0x1d8
-[    1.400363] [<ffffffff806f020c>] driver_register+0x40/0xdc
-[    1.400832] [<ffffffff806f1414>] __platform_driver_register+0x1c/0x24
-[    1.401551] [<ffffffff80c3df7e>] mpxy_mbox_driver_init+0x1a/0x24
-[    1.402328] [<ffffffff800108b2>] do_one_initcall+0x56/0x1d8
-[    1.403674] [<ffffffff80c01236>] kernel_init_freeable+0x266/0x2d0
-[    1.404956] [<ffffffff80af549a>] kernel_init+0x1e/0x13c
-[    1.405422] [<ffffffff80012266>] ret_from_fork_kernel+0xe/0xcc
-[    1.405870] [<ffffffff80aff042>] ret_from_fork_kernel_asm+0x16/0x18
+On Wed, Jun 11, 2025 at 12:07:27AM +0200, Marek Vasut wrote:
+> diff --git a/drivers/pwm/pwm-argon-fan-hat.c b/drivers/pwm/pwm-argon-fan-=
+hat.c
+> new file mode 100644
+> index 000000000000..3d04abdbd349
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-argon-fan-hat.c
+> @@ -0,0 +1,64 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2025 Marek Vasut
+> + */
 
-It is better to have the check on "mbox->msi_count" before calling
-platform_device_msi_free_irqs_all().
+ * Limitations:
+ * - fixed period (which?)
+ * - no support for offset/polarity
 
-Regards,
-Anup
+If you can find out if it completes a period when reconfigured that
+would also be nice to document.
+
+This device is really trivial, but for completeness' sake: If there is a
+data sheet publicly available, please add a link here.
+
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pwm.h>
+> +
+> +static int argon_fan_hat_pwm_apply(struct pwm_chip *chip, struct pwm_dev=
+ice *pwm,
+> +				   const struct pwm_state *state)
+
+Can you please implement the new-style callbacks?
+
+> +{
+> +	struct i2c_client *i2c =3D pwmchip_get_drvdata(chip);
+> +	u8 tx[2] =3D { 0x80, state->enabled ? pwm_get_relative_duty_cycle(state=
+, 100) : 0 };
+
+This is too simple. I won't go into details about the right algorithm
+for .apply() as I want you to implement .round_waveform_tohw() +
+=2Eround_waveform_fromhw() + .read_waveform() + .write_waveform() anyhow.
+
+For .round_waveform_tohw() you have to know the actual period length and
+then use something like:
+
+	duty =3D wf->duty_length_ns;
+
+	if (duty > ARGON_FAN_HAT_PERIOD)
+		duty =3D ARGON_FAN_HAT_PERIOD;
+
+	duty_percent =3D 100 * duty / ARGON_FAN_HAT_PERIOD;
+=09
+
+> +	struct i2c_msg msg =3D {
+> +		.addr =3D i2c->addr,
+> +		.len =3D 2,
+> +		.buf =3D tx,
+> +	};
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -EINVAL;
+> +
+> +	return (i2c_transfer(i2c->adapter, &msg, 1) =3D=3D 1) ? 0 : -EINVAL;
+> +}
+> +
+> +static const struct pwm_ops argon_fan_hat_pwm_ops =3D {
+> +	.apply =3D argon_fan_hat_pwm_apply,
+
+Can you read back the configuration? If yes then please implement
+=2Eread_waveform().
+
+> +};
+> +
+> +static int argon_fan_hat_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	struct pwm_chip *pc =3D devm_pwmchip_alloc(&i2c->dev, 1, 0);
+> +
+> +	if (IS_ERR(pc))
+> +		return PTR_ERR(pc);
+> +
+> +	pc->ops =3D &argon_fan_hat_pwm_ops;
+> +	pwmchip_set_drvdata(pc, i2c);
+> +
+> +	return devm_pwmchip_add(&i2c->dev, pc);
+
+Error message on failure please. (-> dev_err_probe())
+
+> +}
+> +
+> +static const struct of_device_id argon_fan_hat_dt_ids[] =3D {
+> +	{ .compatible =3D "argon40,fan-hat" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, argon_fan_hat_dt_ids);
+> +
+> +static struct i2c_driver argon_fan_hat_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "argon-fan-hat",
+> +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
+> +		.of_match_table =3D argon_fan_hat_dt_ids,
+> +	},
+> +	.probe =3D argon_fan_hat_i2c_probe,
+> +};
+
+TIL about PROBE_PREFER_ASYNCHRONOUS.
+
+Best regards
+Uwe
+
+--nqpz4wckjlyez23h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhJGkEACgkQj4D7WH0S
+/k6w2wf/Yy5kBMGeDlXmdGvdWJLczbwyCVwY6zIHQrKX9YvMAsOWip2jV8D+tsmc
+SCf03FUlPZT3Davt5kcESZvpGHwWWQdVvWmWDlx27K9NJYpIJI2Ko9wdxyYtTWOr
+f8OQCAk6YpAGyY2yZknZZnLxeYdAMdWVydyIiq+Tht5cV1S32wzo961nYCtsxl9B
+nas2LUxxmw5VPNo+nqqFm2gkmVzAUIWYvpOdBoGNVyV1CHxwV1wiGiTBxSfHeUNi
+kPlzQymHCDkmVXjs0EZg4ROZDQjhgRDsB8J7cMLjo8an1Egwjg/vDSn1NSdvFPeu
+WpLulwIl4dLnQrOBPAie2tUJHw3zxQ==
+=qRjD
+-----END PGP SIGNATURE-----
+
+--nqpz4wckjlyez23h--
 
