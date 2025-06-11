@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-184613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB0FFAD4C1D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:56:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D00A6AD4C24
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F0603A7644
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:55:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA6141899323
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F236226883;
-	Wed, 11 Jun 2025 06:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3506D22DFA2;
+	Wed, 11 Jun 2025 06:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPLZWO2k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxhPsoqP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CA41494A8;
-	Wed, 11 Jun 2025 06:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A9722D4C4;
+	Wed, 11 Jun 2025 06:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749624962; cv=none; b=huMdwxmCrxdPdxezzj4m20c6htDGAWoy/R+I+VpRRQPFeF+Xn2htvWoDlhISzgsOUnH35iaLqcXG72PPC785DHobnQB52wJUQqs51fcwMoAeASDPxLmLDjVBwnulQAjVFKCWhshlS3jrAbhRuRVZsK1YvRN2T66Ws26W5g+NWjs=
+	t=1749625044; cv=none; b=CWoG3jXoYWm0RYM206KzQbD7gL7SgDKyfWoaRNT1sxhap1Vq++hXgR1Xeq6D3wEYcAHS33JOcwoo+dUwyub5j1bzFEiVFLI5Txsw3gCl2186dZoawi38A0wWjznwANnwBFyTVplL7DA2EarbBmLhLCqb3veykKy+w6cSWH+u7r4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749624962; c=relaxed/simple;
-	bh=9xu7F9Un18ntXhzfrFPvaeitxgsg5unScCrEL0+lNHI=;
+	s=arc-20240116; t=1749625044; c=relaxed/simple;
+	bh=HQD1qP16jRst/7UWSaReZRSj3BP6Vnu9YIcMaoz13D4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SDmeVEkA11EeZndqcjKIQFsR/eRuEvn+338BvO1yqpNDVceM0/Kd4bBN19QiVKNNmUKLkapFfHmmBgeU+wdosYlva+kXQa8jXoPXa1JoeNgHKlChQQmIcmjJQnnjBGd/JgmKWvqU/GIvVUULiE5XYK6/3096sdfj3sUObns+pQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPLZWO2k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F24C4CEEE;
-	Wed, 11 Jun 2025 06:55:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ihxTZogJEIEJZJWEcT3VL8Dh5KzkiebY41+4YerCXKcHrVnmdVAKSi90UttjHIAjxyBMJsl9zktXTnwdAZsVBfTHn5jO5uWQkPDCgFYkmgO3xfSQCnXjEnronbR8i1VLilJfrnowHtYDEvkwUJoN5WNsXuwOj8z+OIwFBEzlso4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxhPsoqP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E2B7C4CEEF;
+	Wed, 11 Jun 2025 06:57:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749624962;
-	bh=9xu7F9Un18ntXhzfrFPvaeitxgsg5unScCrEL0+lNHI=;
+	s=k20201202; t=1749625043;
+	bh=HQD1qP16jRst/7UWSaReZRSj3BP6Vnu9YIcMaoz13D4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BPLZWO2kq6hlqgVRNgP+wqFojvW28PmmcDYJyyx4ImqnL72ul43Y3XavbR231dR4F
-	 bUEdmacN+/yktDkLwn0cs/6ZYKn6KTmAdGn8/XBWLiHhAHxqaFip2LqmORnj/l0dGV
-	 6lU76fEeBkhZRNXUFXh8RjWzpYo2LZu0tyC5ZCs2BJKiVgMSN8bZOiRHflz7qAA6nG
-	 bRgjusHNshMmHsMH6fcoOVqkCplM401bRtccJ+9PorVr9WjcnDn1EeAAA2HgBfnU0E
-	 q8NHDD/W4+SMltnCOpu3aLbUhwL2Wzca02wYMsScdM4QFBWD69bNQD8mhDicNhb3EK
-	 ZKMlcKW+REU4A==
-Message-ID: <046810d9-c2f5-47b3-91c7-bdaceb4c6fc0@kernel.org>
-Date: Wed, 11 Jun 2025 08:55:57 +0200
+	b=mxhPsoqP+JHum932MQeuDpoY/TElOmeDdd8GfOepvDSrSuHdZSQs1A2t534jCCWLS
+	 yElo6smLmDI5ypFd4ETBGQbTbywE/YalByP3O7GRu+/ARmiUeIsI+X8OYqZGgm0mft
+	 aavNbQdCseBXCCXaSn8u6NzEoZzHmARLs/cafJAR9rMxE+95Lt4LlTqCQOGY8VGziJ
+	 5vnfp0RwHByXeyXbIZAZiwlLNPod+jyjsY83Df01rBpY/PFAGmXSLeYtpxJDOHyyfv
+	 83PVzC+VafAt4xCJAUnK+9fzjY/6yIhfKimNKYehNanbLUh/z8mfvRkw2d1tzwFvEw
+	 JtwjlkGsFaXKw==
+Message-ID: <9c429671-8409-4911-8559-73a069d66964@kernel.org>
+Date: Wed, 11 Jun 2025 08:57:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] ARM: dts: aspeed: Add device tree for Nvidia's
- GB200 UT3.0b platform BMC
-To: Donald Shannon <donalds@nvidia.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, etanous@nvidia.com
-References: <20250611013025.2898412-1-donalds@nvidia.com>
- <20250611013025.2898412-2-donalds@nvidia.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: Add SiFive Domain Management
+ controllers
+To: Nick Hu <nick.hu@sifive.com>, conor+dt@kernel.org, krzk+dt@kernel.org,
+ Cyan Yang <cyan.yang@sifive.com>, Samuel Holland
+ <samuel.holland@sifive.com>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>
+References: <20250611031023.28769-1-nick.hu@sifive.com>
+ <20250611031023.28769-2-nick.hu@sifive.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,57 +104,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250611013025.2898412-2-donalds@nvidia.com>
+In-Reply-To: <20250611031023.28769-2-nick.hu@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/06/2025 03:30, Donald Shannon wrote:
-> The GB200NVL UT3.0b BMC is an Aspeed Ast2600 based BMC
-> for Nvidia Blackwell GB200NVL platform.
-> Reference to Ast2600 SOC [1].
-> Reference to Blackwell GB200NVL Platform [2].
+On 11/06/2025 05:10, Nick Hu wrote:
+> SiFive Domain Management controller includes the following components
+> - SiFive Tile Management Controller
+> - SiFive Cluster Management Controller
+> - SiFive Core Complex Management Controller
 > 
-> Link: https://www.aspeedtech.com/server_ast2600/ [1]
-> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
+> These controllers control the clock and power domain of the
+> corresponding domain.
 > 
-> Signed-off-by: Donald Shannon <donalds@nvidia.com>
-> ---
-> Changes v1 -> v2:
->   - Changed phy-mode to rgmii-id [Lunn]
->   - Removed redundant max-speed for mac0 [Lunn]
->   - Fixed typo from gb200nvl to gb200 in Makefile
-> Changes v2 -> v3:
->   - Fixed whitespace issues [Krzysztof]
->   - Fixed schema validation issues from my end ( there are still issues with the aspeed dtsi file that are not related to this new dts) [Herring]
->   - Reordered to follow style guide [Krzysztof]
->   - Removed redundant status okays
->   - Changed vcc to vdd for the power gating on the gpio expanders
-> Changes v3 -> v4:
->   - Added changelog [Krzysztof]
->   - Added nvidia,gb200-ut30b board binding [Krzysztof]
->   - Removed unused imports
->   - Reordered a couple other style guide violations
->   - Added back in a couple needed "status okay"s
-> ---
->  .../bindings/arm/aspeed/aspeed.yaml           |    1 +
->  arch/arm/boot/dts/aspeed/Makefile             |    1 +
->  .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1154 +++++++++++++++++
->  3 files changed, 1156 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index a3736f134130..420fabf05b24 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> However, Since we don't have a SoC specific compatible string yet, so
+> add '- {}' for the first entry [1][2].
 
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
-You already got this comment, didn't you?
+But you must have Soc specific compatible strings. See previous discussion.
 
 Best regards,
 Krzysztof
