@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-184577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C72AD4B6B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:22:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D01F2AD4B67
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F1B4189C55C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:20:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AECC83A6C69
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F827227EB2;
-	Wed, 11 Jun 2025 06:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DCF228C9C;
+	Wed, 11 Jun 2025 06:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ifg4eYR7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VxQrljdX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739E91E9905
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:19:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 496B415C0
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749622791; cv=none; b=H8xARbaHiq2yFBesaqgUnOKHCLJz2JWkbTKwViN/TRgG+LWc92lxop8l5YlfEt5QeqnH0Bz16mYRAYFulvcYU+GgozxKiwb7h609fAUnBd+LlVuUhkdZkiL/h5uFbeMvP2ckD7WXYmE+nULmQZeuUvVW/n+cV3nCDICGh8450Lk=
+	t=1749622872; cv=none; b=RuLNYae9Icc5oDRBgy6dgccxCnrw1AD5zgqnzkeBlLY9FMCnhgiOs76qspgaELSMZNumcZWiaIIwb71hCMe9aDHJSv2zTERpWIk59XKBntruLRX8IrsZFyGuKnHQ0S78mQ7q8W107Pgbj0Pk6yHxG8bf0iSiN9YEvibQTALl0Bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749622791; c=relaxed/simple;
-	bh=f+TZIH+OvuMcmsC9YDjDFhI7vhNxroBRVOfK1cNy8Lw=;
+	s=arc-20240116; t=1749622872; c=relaxed/simple;
+	bh=wgfIdpRvO+AZaghNHz0zFC8jXc0J+BUrOlmFO4Hw5s8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fXA70A5OW1lsb75j3iFQI284ahQqWht93oyS7QL+bwjwMRccS0Knb/EsxzHSzU0h8HTjpvf5BQkdN5WZpHPdL5Z0UaR7+iVdfzhbLOwY1zhbj0WukymDaVccqmH4htfbyGHWwwZNHsyGIPSl10hM+y665cPWUz3zqod1EL/oqQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ifg4eYR7; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=VTobdzFVnYI5USdPqAXVlbJCPOCYO7Fy75hMfld4NcJtVaCA6A40rzZj51v4HbvTwr8Y0KJxFvDke7EYOi8YaG6tBsRPquu12oP0ISYrT1+5wGuP+dvijyp/1KP0Tez4hlsUViJc2rANzEsKbkpv2jvQPfnCu3H5HuddOdhcKfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VxQrljdX; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4531898b208so319785e9.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:19:49 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a4ef05f631so25884f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749622788; x=1750227588; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1749622868; x=1750227668; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QoR2E6cvbA9nuFXqrIB4RinQ3TDFQBQ7cYzlTTfpPNE=;
-        b=ifg4eYR7F9R9pnAMXLV7j10H8aDhgCt+PAbb+yfzSAINEaWAcW9jlnIbRIuRghGylN
-         SPEAETV5hLdQI38H7APDNgfXKrHKtrMU8FntztRORdjyFZWRGwLLbFk6mNgS43fBIvPo
-         IxLWHDf8nVqY6cIwJ4sxdRfCE20ZZL3b8++92sgYPqge1+mFiQbdKScpMXu/SUjTaFF3
-         VXQWGyapJQB5ygsnJvv3OzZmcCBZzyndc9OqIAn0HP4saSG8Ms1pd9WeSRz3UNbW/JzW
-         ldXqHM/R9xVpRwDftXMFsuejTRlE3d5lzm4tyzo22ZryXZ8SsljLU/6fp55hWEPqAmov
-         IkQw==
+        bh=H49y5YVCCcLC59k0m8v0JycfHHDJlxdG1p1wxeBPnio=;
+        b=VxQrljdXAfggaMtHvav8BlYpvQ5murvfI6qYUXtjWnyMLlqn9vSHt2nkBLYhcMVWgr
+         rngMgpaOCnnVkxcQOTpVOONfor4q3J7QpsT3Sw5nZv7FodvDZp5tSednFqBN/FNrz7lO
+         mCjKyEWrWWmkRcL5EahradspPRz1NlgIxRHt3+8Kyl51rrbGOrhejb9n2ik1hhJ8ivKf
+         Y6UbzkPx4grY1IOvwzmlOM/XohyWxhnHoATav0d15iDDTiGkiiWojQ9aLvZGDIG107/E
+         Tij44DHITxccZWImlqC8f6nlMonL0IKJQKMH8r85IBSfoaT4nkfm6g6t+b/4vtXRytvz
+         bnUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749622788; x=1750227588;
+        d=1e100.net; s=20230601; t=1749622868; x=1750227668;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QoR2E6cvbA9nuFXqrIB4RinQ3TDFQBQ7cYzlTTfpPNE=;
-        b=gBtIl46HIDerZXEWP6VhJy1giVr8w8tTHalc9G3STUuZb7GKr3m2fh1XqmPiJVhqP+
-         VgllkLk2vDgnZ+G6suv2+wmDLs0ap549SKydbeX2IFKw74fP5seGO5lSj8Du7dK5d+AR
-         98WsBNjJ70+yIOR3g5hdmViH2t0z7Q3L9z4H/kTYuR4jHcuyF4DlLHd9FPTJAgbcYzEI
-         6TYpy871H5p5uK2l6KztFyTmzrpD/DXUcrufAix3oRxzcML3LYgj9dyqpSYke9E/5WIJ
-         Ybc+11ytsCIr7E6W/kW3Nq3XQSPChMv75rAbOYU8OWiLvRlnXc7gbky4fojFf5d0Dblx
-         UMCg==
-X-Forwarded-Encrypted: i=1; AJvYcCVHzz2tUg4V2yc0ljyD23InyK3hMP2FUkehM3IbgLCwoa73IboN/390sfCVJZBoi1p4sVphl7/4D8Eq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrzJvoJU+FmhLE3KqB2luhdNaUGal8xN8SbgJw+FkwnA7UNd3A
-	V8y7bj+gbnVIuf6mTqhu0+KP+uLqYZlNhMCN2vyyLoeVbpTwQMXvFd8Tu3otlIJIsn0=
-X-Gm-Gg: ASbGncu4FQpMf5w+lp+3gAidnsqwXnRnVoAHV1Vfc7MphcVwS/f8pnSzkuKUTjpkFIb
-	tCr+IxsywvYyNCyGp3yzuMEnVW1AEeAjB2nSPHFphsPhpw8SjzvhfqXOJY673IrSmGNO2C/sj3e
-	g8OgypF8UgNLxzHax886tb5siIa93z5fARAlREJ71clC7nFiGJ5/S6WoXguRBWqw8NFXC9ToqSO
-	te+86CGXZYSKh8pr7LAocVxEm4b32dzRfHulJVE2aVbtBxYodpnsq74Pw19cSdaE21g1rbVdiMO
-	vdpFXcN2VcrdfPqpUjigRuYCg8OkX3gyAkHqF0g8oQPYRug1/hLhR3JZsUQmPSFkUwN0h/0m1p0
-	gYKTr+so=
-X-Google-Smtp-Source: AGHT+IEwhURta/9QKf3wYw9WrsFgWhhcnAZSph77CJoa4So6G1cKaBJC3KnRcF7Zgczj7b+2JzUvZA==
-X-Received: by 2002:a05:6000:2409:b0:3a4:e0e1:8dbd with SMTP id ffacd0b85a97d-3a558803fa1mr560986f8f.11.1749622787736;
-        Tue, 10 Jun 2025 23:19:47 -0700 (PDT)
+        bh=H49y5YVCCcLC59k0m8v0JycfHHDJlxdG1p1wxeBPnio=;
+        b=SUqKKhf9Xrf0c/pE6f42XDKB3hLLrpZrsm9/x33/b3iQ9Zj0t1sRDHROm1kHys29S7
+         M761TxPE71CMc9gIdTm4mFoR7HJoj/NdJy36Zg2f1/dzJOL8o3Rt5L/LkK2w/z58Q3Au
+         SYjhYFIRdA5BfK9HkWKzzoxDVU2BJQ42/z6u+RlcVHaY6cOteINlBc4Vxnu/zQ+Aw3TH
+         LlpxIRtzIK1CtGdnGsdkjIqrTgrV/Tcc0kGw/lgKs/alddoqfEh6B2XgICfJOFrfAAPX
+         grS6fqj5RIrVesL2bD8tTACZluoUFvWVCGd/cn5b1QJ0zyGWd/h2qmSyuvMYrkE1NfK0
+         ARqA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbigQp7w+JCMUo7XNgb3O/xrYLRq1ET5yH3JeehqEmrxVSzLN8pJ52ZmD6AvP8+Bms/gvSeWp66vVc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqNIr3EClYXuax2OqScvf8zYDws8cctCWIRmeUCwng/8dyG+CB
+	9kpBg3+t9xzNWHzclIyD+H86eF+/2CPq2bWFQ/avt2WGGHL03XAM5cd6WfPJmrx5ThU=
+X-Gm-Gg: ASbGncuvJiNipq8wQ5C3x0krHcA11c4Y7lTat6Mj6mFr2yBGJio/xui8BwL2GYx0kN/
+	sA+G2Ai1/cZnWdSA5g6Ii0JGEiX8+5OtjquxIpOUEmUgCSMXx4HorKUC7QljDGANkdBq48QFvJQ
+	K6XHsCKuZQnUw+9Xn5QKoVjMfC2snzsRzRFnrptTVWnURECfg3lI/PK/QM+0fjZ70EKOVUkZBBX
+	BPk191nxsNQ0TF4fTOtVPE+nvhSBUSrcJnAYQwM+sAl9oWG+4lm45V9N4Z891n2HNKJcPsM1eQl
+	YoQVeQ2ZWwrJ6kqa6ffEUWItGttHtyA1R2QsNXfWlpXU/8yYdemDY9T4DatKfSlXa4pkVK6mqtQ
+	DMcwAu4U=
+X-Google-Smtp-Source: AGHT+IEarnczQxYkldyQAgqK7gAPAp5A+If3BCU9tfItzyU2/3kobA5cfdLuXp5ux1yaylvgS8DRSg==
+X-Received: by 2002:a05:600c:c087:b0:451:df07:f41e with SMTP id 5b1f17b1804b1-45324871143mr3839615e9.1.1749622868451;
+        Tue, 10 Jun 2025 23:21:08 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a532435771sm14660068f8f.63.2025.06.10.23.19.46
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53229de70sm13890748f8f.5.2025.06.10.23.21.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 23:19:47 -0700 (PDT)
-Message-ID: <f193825b-f6d8-4c27-b1f5-286af7affee1@linaro.org>
-Date: Wed, 11 Jun 2025 08:19:46 +0200
+        Tue, 10 Jun 2025 23:21:06 -0700 (PDT)
+Message-ID: <82733f35-f5d4-4927-b2f3-4d739b388bc3@linaro.org>
+Date: Wed, 11 Jun 2025 08:21:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,12 +83,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: trivial: Add tps53685 support
-To: Chiang Brian <chiang.brian@inventec.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-References: <99f846c6-4041-4d68-b2f7-c686aa8c2bca@linaro.org>
- <20250610104146.250692-1-chiang.brian@inventec.com>
+Subject: Re: [PATCH v6 14/17] drm/msm/dpu: Implement 10-bit color alpha for
+ v12.0 DPU
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-14-ee633e3ddbff@linaro.org>
+ <3d576c19-6f68-4f04-b89a-e269c438b339@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,36 +152,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250610104146.250692-1-chiang.brian@inventec.com>
+In-Reply-To: <3d576c19-6f68-4f04-b89a-e269c438b339@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/06/2025 12:41, Chiang Brian wrote:
->> On 10/06/2025 12:41, Krzysztof Kozlowski wrote:
+On 10/06/2025 16:10, Neil Armstrong wrote:
+> On 10/06/2025 16:05, Krzysztof Kozlowski wrote:
+>> v12.0 DPU on SM8750 comes with 10-bit color alpha.  Add register
+>> differences and new implementations of setup_alpha_out(),
+>> setup_border_color() and setup_blend_config().
 >>
->> On 10/06/2025 12:25, Chiang Brian wrote:
->>> Add device type support for tps53685
->>>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
->>> ---
->>> v8 -> v9:
->>> - No code changed, correct the order of Acked-by tag
->>> - Link to v8: https://lore.kernel.org/all/20250602042454.184643-2-chiang.brian@inventec.com/
->> Stop sending this to me 6 or more times. Every version you send multiple
->> times, that's way too much.
+>> Notable changes in v6:
+>> Correct fg_alpha shift on new DPU, pointed out by Abel Vesas.
 > 
-> But how do I avoid sending to you even though I need to send this patch 
-> series?
-> I apologize for the spamming due to familiar with the workflow.
+> -------------------------------------------------------- Vesa
+> 
+> Not sure this should be in the commit message.
 
-You sent three times previous version to me ONLY, for testing or
-whatever other process. Now you did the same.
-
-How to avoid it? Well, you type things into the keyboard, so type things
-which will do not perform above action. E.g. when executing git
-send-email it shows you recipients and then ABORT and correct the git
-send-email cc-list so it won't add CC based on tags (see manual).
+DRM, at least multiple DRM-subsystems, adds full changelogs to the
+commit msg, so I think adding notable part is worth.
 
 Best regards,
 Krzysztof
