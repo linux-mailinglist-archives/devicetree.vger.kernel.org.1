@@ -1,151 +1,139 @@
-Return-Path: <devicetree+bounces-185001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B248AD5F72
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:51:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DE88AD5F7D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:53:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CE6B1BC31F5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:51:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB6841BC3681
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1B42D29D3;
-	Wed, 11 Jun 2025 19:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C422BDC28;
+	Wed, 11 Jun 2025 19:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CMk1MzrK"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="zrmGE8V/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928212C3279;
-	Wed, 11 Jun 2025 19:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480CB221F1C;
+	Wed, 11 Jun 2025 19:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749671334; cv=none; b=Co4v7fsYo/EhHOjeRhMUjeJYjbB/BTrapzWMlWenJPBhEvA1nbcjrLjTO0n+rxUSxAYs6spOjFdZ/jJ45y3Z475jMIqOfSLuB+7NBAM+Eb1ulmOUpbEh58ZmiKXr5c+mB3cdgjaAMFICaiGCj4kwaTNmYvZ5XS1U67Lwr/u4Uy8=
+	t=1749671517; cv=none; b=uz/SZrRUpkh2zVJh967zCmInm739kDY0MTyciAqbOvHUn3n6LrpM/CWZJXmpyIY9j6lJe5O8JZCtz9Owjo7xgAjbxDOWMUM5w+ZeB73OKOHgtRO85XBIYbB14x1t0TAd60tBuTJcYDQMLZzU9r6hpvNRiLswW8Tk2dpTPY1imUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749671334; c=relaxed/simple;
-	bh=aDdyZCDm5RtgTX/poDkJ6S5z8PkXxnmyIfnGWdKweUk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jT436D/3neUZP+J3SZDX2l7vlkK5g7lhqAh4ayYw9As2juBeRDJ6XQsfF9a9foCYlYe4GHDJU44MRe7C1q1gw/yieW7zrLIKt3LOcDjK719I0I12B5JTZGbj8ivq75erif58Dv3vAk8YhQCYFgkvnQP7bozrzPlTEC29YDtr3dY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CMk1MzrK; arc=none smtp.client-ip=68.232.154.123
+	s=arc-20240116; t=1749671517; c=relaxed/simple;
+	bh=0JxLNWRlX6k+uwatmqej4dYDRJCNBxE+haXmVURsNd0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=E9zUgDeZPqPfAQWm8EejMXHxN7EqtbTyevmMMNoRrxhZl/B9k5nybudcRi++ooQpr7P/Zt+RsdVmSpt0HrHwZlfKc9h89Icn29+Z1+CBx+zSt22+D7kToww8T7Sc0UOwwuXE7EP8NYZPUxbFAcDU1q/TEpZWfx4aEs3qXhrTJ3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=zrmGE8V/; arc=none smtp.client-ip=68.232.154.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1749671332; x=1781207332;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=aDdyZCDm5RtgTX/poDkJ6S5z8PkXxnmyIfnGWdKweUk=;
-  b=CMk1MzrKUCUwiATUmskOr0S3phVO72XTSjkE+xlaljzqe4Ip/gxGm8xR
-   G5gryjOL4jjmpMQtNkRinhNjJIyZpFYoH1B9gV/yOi4j2UV1ZpgAlPVF7
-   TVloBFSEjdQkn80jqkQsMf+oUt1GNto33w3329CM4v0HYMJP7PGulCQds
-   2KVYq18jQ4DtoV60PjMANCwXeolsm6lNKE1Lplm/rG0PHVvW7H1wVPBtC
-   pqjPs9/hm6tR/p+oMZhOleLwh0HGu+RuWBHTFaUTJHsZXZVYk7X0vBSf2
-   P6hbRokjfIJd6/3dLRVGIfARu+GZyuxYP3xdiytm3mWDXvnLCoq4nPqN0
-   Q==;
-X-CSE-ConnectionGUID: Mlj04rVUS3aXDCaAEgxBzw==
-X-CSE-MsgGUID: 6Xo02CoxSyS+i1Yy/BDTYg==
+  t=1749671513; x=1781207513;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=0JxLNWRlX6k+uwatmqej4dYDRJCNBxE+haXmVURsNd0=;
+  b=zrmGE8V/viznWBjRaVCW7EXc4JXs6uPztzNTiM213L7V12dHP888hvxa
+   2jFxJ764o0NwXoUr1/OxRNXssP2zg4PW9EEV7nl7o2W+gYAnNDH8DPzcS
+   ANctnnwJFB0aMelamjpAO+g5yFTakIllfvA+Q+DJeCj29dIHf3slcBXbd
+   jsHQ/NSd/XhLFkWZLd3nDUTFgp9WEbLmYqpB1UJLtU7v903ZUcySNbjMg
+   e2qd5jdgeIMnrLTbz6gb2dabloxg8omxJPorRSW4t7ZhauDzJqjd/6Mbo
+   AowfRSc2LnFcPZnlGB72s/Hz0x3AjhQFXbmALHbZXNc5K2V4v2U63Mt/Z
+   w==;
+X-CSE-ConnectionGUID: PFE2adCJQrWAEgiYnjIERA==
+X-CSE-MsgGUID: 5eHzcbFMTH+pyjY0H6lqDQ==
 X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; 
-   d="scan'208";a="210175099"
+   d="scan'208";a="210175217"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Jun 2025 12:48:50 -0700
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Jun 2025 12:51:52 -0700
 Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 11 Jun 2025 12:48:17 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Wed, 11 Jun 2025 12:48:17 -0700
-From: <Ryan.Wanner@microchip.com>
-To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<olivia@selenic.com>
-CC: <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, "Ryan
- Wanner" <Ryan.Wanner@microchip.com>
-Subject: [PATCH v2 10/10] ARM: dts: microchip: sama7d65: Enable CAN bus
-Date: Wed, 11 Jun 2025 12:47:34 -0700
-Message-ID: <ab719861de53432bdf19593fa4eee40adf57aed9.1749666053.git.Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1749666053.git.Ryan.Wanner@microchip.com>
-References: <cover.1749666053.git.Ryan.Wanner@microchip.com>
+ 15.1.2507.44; Wed, 11 Jun 2025 12:51:21 -0700
+Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Wed, 11 Jun 2025 12:51:21 -0700
+Message-ID: <5373558c-d075-4a35-a941-623e385cdc22@microchip.com>
+Date: Wed, 11 Jun 2025 12:51:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] ARM: dts: microchip: sama7d65: Add clock name
+ property
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <cover.1748030737.git.Ryan.Wanner@microchip.com>
+ <f6ae8a38a005e1a4e025b25ddb29113c5e65dead.1748030737.git.Ryan.Wanner@microchip.com>
+ <dc0c2777-ed5b-4729-8ae3-6563d8996e2e@tuxon.dev>
+From: Ryan Wanner <ryan.wanner@microchip.com>
+Content-Language: en-US
+In-Reply-To: <dc0c2777-ed5b-4729-8ae3-6563d8996e2e@tuxon.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 6/7/25 04:57, Claudiu Beznea wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> Hi, Ryan,
+> 
+> On 23.05.2025 23:24, Ryan.Wanner@microchip.com wrote:
+>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>
+>> Add clock-output-names to the xtal nodes, so the driver can correctly
+>> register the main and slow xtal.
+>>
+>> This fixes the issue of the SoC clock driver not being able to find
+>> the main xtal and slow xtal correctly causing a bad clock tree.
+>>
+>> Fixes: 261dcfad1b59 ("ARM: dts: microchip: add sama7d65 SoC DT")
+> 
+> Can you please prepare a similar fix for sam9x7. It is also affected by
+> this, right?
+The driver looks for the xtal differently in the sam9x75 than in the
+SAMA7 clock drivers, so it is not immediately affected. But I will add a
+sam9x7 in the v2 of the patch since in the future it will be needed.
 
-Enable CAN bus for SAMA7D65 curiosity board.
-
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
----
- .../dts/microchip/at91-sama7d65_curiosity.dts | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
-
-diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-index 759b963d987c..7eaf6ca233ec 100644
---- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-@@ -40,6 +40,24 @@ reg_5v: regulator-5v {
- 	};
- };
- 
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1_default>;
-+	status = "okay";
-+};
-+
-+&can2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can2_default>;
-+	status = "okay";
-+};
-+
-+&can3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can3_default>;
-+	status = "okay";
-+};
-+
- &dma0 {
- 	status = "okay";
- };
-@@ -277,6 +295,24 @@ &main_xtal {
- };
- 
- &pioa {
-+	pinctrl_can1_default: can1-default {
-+		pinmux = <PIN_PD10__CANTX1>,
-+			 <PIN_PD11__CANRX1>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_can2_default: can2-default {
-+		pinmux = <PIN_PD12__CANTX2>,
-+			 <PIN_PD13__CANRX2>;
-+		bias-disable;
-+	};
-+
-+	pinctrl_can3_default: can3-default {
-+		pinmux = <PIN_PD14__CANTX3>,
-+			 <PIN_PD15__CANRX3>;
-+		bias-disable;
-+	};
-+
- 	pinctrl_gmac0_default: gmac0-default {
- 		pinmux = <PIN_PA26__G0_TX0>,
- 			 <PIN_PA27__G0_TX1>,
--- 
-2.43.0
+Thank you,
+Ryan
+> 
+> Thank you,
+> Claudiu
+> 
+>> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+>> ---
+>>  arch/arm/boot/dts/microchip/sama7d65.dtsi | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+>> index b6710ccd4c36..7b1dd28a2cfa 100644
+>> --- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
+>> +++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+>> @@ -38,11 +38,13 @@ cpu0: cpu@0 {
+>>       clocks {
+>>               main_xtal: clock-mainxtal {
+>>                       compatible = "fixed-clock";
+>> +                     clock-output-names = "main_xtal";
+>>                       #clock-cells = <0>;
+>>               };
+>>
+>>               slow_xtal: clock-slowxtal {
+>>                       compatible = "fixed-clock";
+>> +                     clock-output-names = "slow_xtal";
+>>                       #clock-cells = <0>;
+>>               };
+>>       };
+> 
 
 
