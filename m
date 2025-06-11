@@ -1,128 +1,131 @@
-Return-Path: <devicetree+bounces-184614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D00A6AD4C24
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:57:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2063AAD4C2F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:59:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA6141899323
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:57:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECBBD7A9A3C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3506D22DFA2;
-	Wed, 11 Jun 2025 06:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A745123026B;
+	Wed, 11 Jun 2025 06:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxhPsoqP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jocJ9c58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A9722D4C4;
-	Wed, 11 Jun 2025 06:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF9122F742
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:59:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749625044; cv=none; b=CWoG3jXoYWm0RYM206KzQbD7gL7SgDKyfWoaRNT1sxhap1Vq++hXgR1Xeq6D3wEYcAHS33JOcwoo+dUwyub5j1bzFEiVFLI5Txsw3gCl2186dZoawi38A0wWjznwANnwBFyTVplL7DA2EarbBmLhLCqb3veykKy+w6cSWH+u7r4=
+	t=1749625144; cv=none; b=Rgmo1OyeK46d60noCkaOnvwKVjw19fkALel0HqFg58FjYHHQW00PZERnGCv5J++/Qt3GRR/tzCgVsMOfAr9CHNAJjp91cTFpqWrxf5zLwje+f2MKmDWD4cjfXG2jTjQeVl6HwWTIsHkF0j3v5O+JdEm8dCwvuhL8yX1tdFOP0rA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749625044; c=relaxed/simple;
-	bh=HQD1qP16jRst/7UWSaReZRSj3BP6Vnu9YIcMaoz13D4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ihxTZogJEIEJZJWEcT3VL8Dh5KzkiebY41+4YerCXKcHrVnmdVAKSi90UttjHIAjxyBMJsl9zktXTnwdAZsVBfTHn5jO5uWQkPDCgFYkmgO3xfSQCnXjEnronbR8i1VLilJfrnowHtYDEvkwUJoN5WNsXuwOj8z+OIwFBEzlso4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxhPsoqP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E2B7C4CEEF;
-	Wed, 11 Jun 2025 06:57:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749625043;
-	bh=HQD1qP16jRst/7UWSaReZRSj3BP6Vnu9YIcMaoz13D4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mxhPsoqP+JHum932MQeuDpoY/TElOmeDdd8GfOepvDSrSuHdZSQs1A2t534jCCWLS
-	 yElo6smLmDI5ypFd4ETBGQbTbywE/YalByP3O7GRu+/ARmiUeIsI+X8OYqZGgm0mft
-	 aavNbQdCseBXCCXaSn8u6NzEoZzHmARLs/cafJAR9rMxE+95Lt4LlTqCQOGY8VGziJ
-	 5vnfp0RwHByXeyXbIZAZiwlLNPod+jyjsY83Df01rBpY/PFAGmXSLeYtpxJDOHyyfv
-	 83PVzC+VafAt4xCJAUnK+9fzjY/6yIhfKimNKYehNanbLUh/z8mfvRkw2d1tzwFvEw
-	 JtwjlkGsFaXKw==
-Message-ID: <9c429671-8409-4911-8559-73a069d66964@kernel.org>
-Date: Wed, 11 Jun 2025 08:57:19 +0200
+	s=arc-20240116; t=1749625144; c=relaxed/simple;
+	bh=dhY8tTIaHxzBeyhk1xPMKaQLngS8G/RjM44iDX1MTQE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LZ9bALvzpttq+xWTQzr3t3ifRoeOok155B7l5oVuGAfFH/e/qG2DZ29FyZYnt5R6ij3M5zI3JpK5icNTHaSOJgXsEC/nQOUsNP/gZbWuwXAaI3EVzYyZuigAhIHNYsloMrSZPwt1z7bEqfvJfNeQoILRfpITpb65CEk+ZDA1TyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jocJ9c58; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-553246e975fso7344054e87.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:59:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749625141; x=1750229941; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U8nA2PNnIRRvEbnFF50ioWvbhGVteh9Ywj6FtJtDCnA=;
+        b=jocJ9c584qlVDVn6UJhYMjrkzw9Wz7thkJ+41v8/8fjP4fZD9JlkteyJbZBgMs60zu
+         Ehr56YhE/IZZsEMaddr0kcfsM1TOO0094kwB6XyGKTuQSpH28mmYhWpUTk6vmwkSf3hP
+         Wl8JHP3mzrncyKn+5pYIlREWzw0ImLZ8SScx1A+wg59wy5sA7XgYTGS5KFFQU6MmNjb3
+         tl9rPz/ix2vZmjFlgzhY4eeVvlq1UFrZcz5fVjtSE2C9l8l2wYKgdr4evEt1hSkgg9yN
+         lcHEdQxtyzCUcQn+gqVH1mhhgN3avvekWhpK1tSDlEVQPS+k0putfQPOMpxjjDVYjHdD
+         H8RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749625141; x=1750229941;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U8nA2PNnIRRvEbnFF50ioWvbhGVteh9Ywj6FtJtDCnA=;
+        b=JEg/ZUL7G8Q94GLvQcvswcwGNSv4/m/mL7wlahuBqp7B/JVDt9nsP18ZHoc0fHKlVF
+         3RQigUiR/ulrGkvaB7SPyRqrAz6S7ELMVtZWZfdy+piD3eQZtKIP6bIEjJeRUnRNrlMg
+         mW4nC31eqYI2eaF7BCzObkk0rKv61gz2F0J3eqrAz5NlMglxchLVHwYB3qA1WgunxNlB
+         +PNk2wv8X0aBe/Os3GELnal7mst00SpdRUklzSpL3XduKulefFdgvYIgN0n9+qrsUAmu
+         ap8fBWXMNVyWtSVXBn7H3Xypy4+Hic8oOMKOFVv2Pte68CxrY9xef3AKBH4JWiAJtL7L
+         DObQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgDELHMlLScG6b/HNDdD+uR60jTg4iKQeed9H3AyxkZ3S0olSNbnGiAhUmb+1jVRSBayp4/Bu3jBBT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2lSjd3+89wVaczDlzXK/dzaoRBpb9ain3y7TlIjZdp3vWQw34
+	c0elTrLP4iDRvirbz0AIC5QKDRhKXpMpxxM9BUu+kGow3cxQNcPMpSzE8KjgKu5PhHfeRO3E07Y
+	KRboRAnhNyvJl/pyaCyPwzGeQ2pNMeaCkJiK+H+uq5g==
+X-Gm-Gg: ASbGncuHpdzbvGDMIkmUJr9RGWxkPqmTIu3NRAvXlHYTskdijYsut2KEb1XncJWtyIG
+	5SGcfZkQg5rLVxy/V2o7Nd9j0uRG/7aRL1Hn5IrmMauEyDA1fHWj+6cyc39XJYe2zUf7BXRR/UZ
+	L21JmaXLrO1ZdUstxoIz43skf/X2UYp4ElnUag3YF/8MI=
+X-Google-Smtp-Source: AGHT+IG6utHIOdDkcpuozNh2nqM9zH/+sRrcv4+dUano9lJ8/d+qcOtmsSZATDFdcJvRJ4JBx+FV6cWHmQ4clAOQL1E=
+X-Received: by 2002:a05:651c:221f:b0:30b:edfc:5d8a with SMTP id
+ 38308e7fff4ca-32b22100cf8mr5212561fa.0.1749625140694; Tue, 10 Jun 2025
+ 23:59:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: Add SiFive Domain Management
- controllers
-To: Nick Hu <nick.hu@sifive.com>, conor+dt@kernel.org, krzk+dt@kernel.org,
- Cyan Yang <cyan.yang@sifive.com>, Samuel Holland
- <samuel.holland@sifive.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>
-References: <20250611031023.28769-1-nick.hu@sifive.com>
- <20250611031023.28769-2-nick.hu@sifive.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250611031023.28769-2-nick.hu@sifive.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250608-tegra186-pinctrl-v2-0-502d41f3eedd@gmail.com>
+ <20250608-tegra186-pinctrl-v2-2-502d41f3eedd@gmail.com> <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
+In-Reply-To: <yw2uglyxxx22d3lwyezy34wdniouu32zppfgwqs5omny3ge5zd@iuqo4qmi55a2>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 11 Jun 2025 08:58:49 +0200
+X-Gm-Features: AX0GCFtY4lWmGfSr3aKIZM_841dA1Q0ZW3SK2jFhQhq_82hUZBSPfb71HJ3Q2qM
+Message-ID: <CACRpkdZha_ucjWvP_NQ+z2vbD65Y3u7Q0U57NYbJ=vqQ6uPGGA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] pinctrl: tegra: Add Tegra186 pinmux driver
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/06/2025 05:10, Nick Hu wrote:
-> SiFive Domain Management controller includes the following components
-> - SiFive Tile Management Controller
-> - SiFive Cluster Management Controller
-> - SiFive Core Complex Management Controller
-> 
-> These controllers control the clock and power domain of the
-> corresponding domain.
-> 
-> However, Since we don't have a SoC specific compatible string yet, so
-> add '- {}' for the first entry [1][2].
+On Tue, Jun 10, 2025 at 11:40=E2=80=AFAM Thierry Reding
+<thierry.reding@gmail.com> wrote:
 
+> One thing that's not clear from this patch set is whether we actually
+> need the Tegra186 pinmux driver, or you're only adding it because it
+> happens to be present in a 5.10 downstream driver. Do you actually have
+> a requirement for setting pins dynamically at runtime? Do you need to be
+> able to set a static configuration at boot that can't be set using some
+> earlier bootloader/firmware mechanism?
 
-But you must have Soc specific compatible strings. See previous discussion.
+Actually, speaking as the maintainer of pin control I hear the following
+a lot:
 
-Best regards,
-Krzysztof
+- We don't need pin control, the BIOS/firmware deals with it
+- We don't need runtime pin control, the BIOS/firmware deals
+  with it
+- We don't need runtime pin control, static set-up should be
+  enough
+
+These are all enthusiastic estimates, but in practice, for any
+successful SoC we always need pin control. Either the BIOS
+firmware authors got things wrong or made errors (bugs) and
+there is no path to upgrade the firmware safely, or runtime
+usecases appear that no-one ever thought about.
+
+Aarons case looks like that latter.
+
+I think it'd be wise to send the message to any SoC system
+architects (or Linux base port overseer or whatever title
+this person may have) that a pin control driver is usually
+needed.
+
+The SCMI people heard the message and have added pin
+control into the specification for that firmware interface.
+
+Yours,
+Linus Walleij
 
