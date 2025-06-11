@@ -1,213 +1,171 @@
-Return-Path: <devicetree+bounces-184576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CF2AD4B66
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C72AD4B6B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:22:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0CC8188A156
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:19:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F1B4189C55C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC6623370A;
-	Wed, 11 Jun 2025 06:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F827227EB2;
+	Wed, 11 Jun 2025 06:19:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ifg4eYR7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10ADF22CBD0;
-	Wed, 11 Jun 2025 06:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739E91E9905
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749622596; cv=none; b=QXIaMdJEnKkvsBmqHl+cnD8HqihfCzM5pIg9gphA6A5fDtOjNMHU0HX9qzPt38pcYlSr6i72BgoqzDkgfGaQMXywnjdzjxKP3EkLMiJBVqn1O2V/puc2n8B2Z2cek54B8GJLhODozuur8+TOckDn0mUlxzq3y87neC5efuMf0YU=
+	t=1749622791; cv=none; b=H8xARbaHiq2yFBesaqgUnOKHCLJz2JWkbTKwViN/TRgG+LWc92lxop8l5YlfEt5QeqnH0Bz16mYRAYFulvcYU+GgozxKiwb7h609fAUnBd+LlVuUhkdZkiL/h5uFbeMvP2ckD7WXYmE+nULmQZeuUvVW/n+cV3nCDICGh8450Lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749622596; c=relaxed/simple;
-	bh=v4L2wlZ33mOuGPZDs6teD614QmYCP+zr9rUg3UN7axQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GptMUUWeKohINqhPMX8wAUM56ZzPgCkKtv0rPjxYbJiKoVYiKrb10M90D4eVEy15qv/a1huLPA0VdeXxOMm2isF2vEvYHA6BeEkJe5xfQRsx6M0AmrhgndAnjdCeRvz5mop5oYH/i+z7UJiDhrbEEa67kY+wawaAzfDWRFM9YzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: W6AiPcQpSEaYDJP7WfYCYQ==
-X-CSE-MsgGUID: 6gH0QCHpSF2f9qsz7CjlXQ==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 11 Jun 2025 15:16:33 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.57])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id A33D64012643;
-	Wed, 11 Jun 2025 15:16:28 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: andrew+netdev@lunn.ch,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	geert+renesas@glider.be,
-	krzk+dt@kernel.org,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	robh@kernel.org
-Cc: biju.das.jz@bp.renesas.com,
-	devicetree@vger.kernel.org,
-	john.madieu@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	magnus.damm@gmail.com,
-	netdev@vger.kernel.org,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH v2 3/3] arm64: dts: renesas: rzg3e-smarc-som: Enable eth{0-1} (GBETH) interfaces
-Date: Wed, 11 Jun 2025 08:16:09 +0200
-Message-ID: <20250611061609.15527-4-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250611061609.15527-1-john.madieu.xa@bp.renesas.com>
-References: <20250611061609.15527-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1749622791; c=relaxed/simple;
+	bh=f+TZIH+OvuMcmsC9YDjDFhI7vhNxroBRVOfK1cNy8Lw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fXA70A5OW1lsb75j3iFQI284ahQqWht93oyS7QL+bwjwMRccS0Knb/EsxzHSzU0h8HTjpvf5BQkdN5WZpHPdL5Z0UaR7+iVdfzhbLOwY1zhbj0WukymDaVccqmH4htfbyGHWwwZNHsyGIPSl10hM+y665cPWUz3zqod1EL/oqQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ifg4eYR7; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4531898b208so319785e9.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:19:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749622788; x=1750227588; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=QoR2E6cvbA9nuFXqrIB4RinQ3TDFQBQ7cYzlTTfpPNE=;
+        b=ifg4eYR7F9R9pnAMXLV7j10H8aDhgCt+PAbb+yfzSAINEaWAcW9jlnIbRIuRghGylN
+         SPEAETV5hLdQI38H7APDNgfXKrHKtrMU8FntztRORdjyFZWRGwLLbFk6mNgS43fBIvPo
+         IxLWHDf8nVqY6cIwJ4sxdRfCE20ZZL3b8++92sgYPqge1+mFiQbdKScpMXu/SUjTaFF3
+         VXQWGyapJQB5ygsnJvv3OzZmcCBZzyndc9OqIAn0HP4saSG8Ms1pd9WeSRz3UNbW/JzW
+         ldXqHM/R9xVpRwDftXMFsuejTRlE3d5lzm4tyzo22ZryXZ8SsljLU/6fp55hWEPqAmov
+         IkQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749622788; x=1750227588;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QoR2E6cvbA9nuFXqrIB4RinQ3TDFQBQ7cYzlTTfpPNE=;
+        b=gBtIl46HIDerZXEWP6VhJy1giVr8w8tTHalc9G3STUuZb7GKr3m2fh1XqmPiJVhqP+
+         VgllkLk2vDgnZ+G6suv2+wmDLs0ap549SKydbeX2IFKw74fP5seGO5lSj8Du7dK5d+AR
+         98WsBNjJ70+yIOR3g5hdmViH2t0z7Q3L9z4H/kTYuR4jHcuyF4DlLHd9FPTJAgbcYzEI
+         6TYpy871H5p5uK2l6KztFyTmzrpD/DXUcrufAix3oRxzcML3LYgj9dyqpSYke9E/5WIJ
+         Ybc+11ytsCIr7E6W/kW3Nq3XQSPChMv75rAbOYU8OWiLvRlnXc7gbky4fojFf5d0Dblx
+         UMCg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHzz2tUg4V2yc0ljyD23InyK3hMP2FUkehM3IbgLCwoa73IboN/390sfCVJZBoi1p4sVphl7/4D8Eq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrzJvoJU+FmhLE3KqB2luhdNaUGal8xN8SbgJw+FkwnA7UNd3A
+	V8y7bj+gbnVIuf6mTqhu0+KP+uLqYZlNhMCN2vyyLoeVbpTwQMXvFd8Tu3otlIJIsn0=
+X-Gm-Gg: ASbGncu4FQpMf5w+lp+3gAidnsqwXnRnVoAHV1Vfc7MphcVwS/f8pnSzkuKUTjpkFIb
+	tCr+IxsywvYyNCyGp3yzuMEnVW1AEeAjB2nSPHFphsPhpw8SjzvhfqXOJY673IrSmGNO2C/sj3e
+	g8OgypF8UgNLxzHax886tb5siIa93z5fARAlREJ71clC7nFiGJ5/S6WoXguRBWqw8NFXC9ToqSO
+	te+86CGXZYSKh8pr7LAocVxEm4b32dzRfHulJVE2aVbtBxYodpnsq74Pw19cSdaE21g1rbVdiMO
+	vdpFXcN2VcrdfPqpUjigRuYCg8OkX3gyAkHqF0g8oQPYRug1/hLhR3JZsUQmPSFkUwN0h/0m1p0
+	gYKTr+so=
+X-Google-Smtp-Source: AGHT+IEwhURta/9QKf3wYw9WrsFgWhhcnAZSph77CJoa4So6G1cKaBJC3KnRcF7Zgczj7b+2JzUvZA==
+X-Received: by 2002:a05:6000:2409:b0:3a4:e0e1:8dbd with SMTP id ffacd0b85a97d-3a558803fa1mr560986f8f.11.1749622787736;
+        Tue, 10 Jun 2025 23:19:47 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.223.125])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a532435771sm14660068f8f.63.2025.06.10.23.19.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jun 2025 23:19:47 -0700 (PDT)
+Message-ID: <f193825b-f6d8-4c27-b1f5-286af7affee1@linaro.org>
+Date: Wed, 11 Jun 2025 08:19:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/2] dt-bindings: trivial: Add tps53685 support
+To: Chiang Brian <chiang.brian@inventec.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <99f846c6-4041-4d68-b2f7-c686aa8c2bca@linaro.org>
+ <20250610104146.250692-1-chiang.brian@inventec.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250610104146.250692-1-chiang.brian@inventec.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable the Gigabit Ethernet Interfaces (GBETH) populated on the RZ/G3E SMARC EVK
+On 10/06/2025 12:41, Chiang Brian wrote:
+>> On 10/06/2025 12:41, Krzysztof Kozlowski wrote:
+>>
+>> On 10/06/2025 12:25, Chiang Brian wrote:
+>>> Add device type support for tps53685
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
+>>> ---
+>>> v8 -> v9:
+>>> - No code changed, correct the order of Acked-by tag
+>>> - Link to v8: https://lore.kernel.org/all/20250602042454.184643-2-chiang.brian@inventec.com/
+>> Stop sending this to me 6 or more times. Every version you send multiple
+>> times, that's way too much.
+> 
+> But how do I avoid sending to you even though I need to send this patch 
+> series?
+> I apologize for the spamming due to familiar with the workflow.
 
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
- .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 106 ++++++++++++++++++
- 1 file changed, 106 insertions(+)
+You sent three times previous version to me ONLY, for testing or
+whatever other process. Now you did the same.
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-index f99a09d04ddd..4b4c7f3381ad 100644
---- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-@@ -26,6 +26,8 @@ / {
- 	compatible = "renesas,rzg3e-smarcm", "renesas,r9a09g047e57", "renesas,r9a09g047";
- 
- 	aliases {
-+		ethernet0 = &eth0;
-+		ethernet1 = &eth1;
- 		i2c2 = &i2c2;
- 		mmc0 = &sdhi0;
- 		mmc2 = &sdhi2;
-@@ -77,6 +79,74 @@ &audio_extal_clk {
- 	clock-frequency = <48000000>;
- };
- 
-+&eth0 {
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+
-+	pinctrl-0 = <&eth0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy0: ethernet-phy@7 {
-+			compatible = "ethernet-phy-id0022.1640",
-+				     "ethernet-phy-ieee802.3-c22";
-+			reg = <7>;
-+			interrupts-extended = <&icu 3 IRQ_TYPE_LEVEL_LOW>;
-+			rxc-skew-psec = <1400>;
-+			txc-skew-psec = <1400>;
-+			rxdv-skew-psec = <0>;
-+			txdv-skew-psec = <0>;
-+			rxd0-skew-psec = <0>;
-+			rxd1-skew-psec = <0>;
-+			rxd2-skew-psec = <0>;
-+			rxd3-skew-psec = <0>;
-+			txd0-skew-psec = <0>;
-+			txd1-skew-psec = <0>;
-+			txd2-skew-psec = <0>;
-+			txd3-skew-psec = <0>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&phy1>;
-+	phy-mode = "rgmii-id";
-+
-+	pinctrl-0 = <&eth1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy1: ethernet-phy@7 {
-+			compatible = "ethernet-phy-id0022.1640",
-+				     "ethernet-phy-ieee802.3-c22";
-+			reg = <7>;
-+			interrupts-extended = <&icu 16 IRQ_TYPE_LEVEL_LOW>;
-+			rxc-skew-psec = <1400>;
-+			txc-skew-psec = <1400>;
-+			rxdv-skew-psec = <0>;
-+			txdv-skew-psec = <0>;
-+			rxd0-skew-psec = <0>;
-+			rxd1-skew-psec = <0>;
-+			rxd2-skew-psec = <0>;
-+			rxd3-skew-psec = <0>;
-+			txd0-skew-psec = <0>;
-+			txd1-skew-psec = <0>;
-+			txd2-skew-psec = <0>;
-+			txd3-skew-psec = <0>;
-+		};
-+	};
-+};
-+
- &gpu {
- 	status = "okay";
- 	mali-supply = <&reg_vdd0p8v_others>;
-@@ -103,6 +173,42 @@ raa215300: pmic@12 {
- };
- 
- &pinctrl {
-+	eth0_pins: eth0 {
-+		pinmux = <RZG3E_PORT_PINMUX(A, 1, 1)>, /* MDC */
-+			 <RZG3E_PORT_PINMUX(A, 0, 1)>, /* MDIO */
-+			 <RZG3E_PORT_PINMUX(C, 2, 15)>, /* PHY_INTR (IRQ2) */
-+			 <RZG3E_PORT_PINMUX(C, 1, 1)>, /* RXD3 */
-+			 <RZG3E_PORT_PINMUX(C, 0, 1)>, /* RXD2 */
-+			 <RZG3E_PORT_PINMUX(B, 7, 1)>, /* RXD1 */
-+			 <RZG3E_PORT_PINMUX(B, 6, 1)>, /* RXD0 */
-+			 <RZG3E_PORT_PINMUX(B, 0, 1)>, /* RXC */
-+			 <RZG3E_PORT_PINMUX(A, 2, 1)>, /* RX_CTL */
-+			 <RZG3E_PORT_PINMUX(B, 5, 1)>, /* TXD3 */
-+			 <RZG3E_PORT_PINMUX(B, 4, 1)>, /* TXD2 */
-+			 <RZG3E_PORT_PINMUX(B, 3, 1)>, /* TXD1 */
-+			 <RZG3E_PORT_PINMUX(B, 2, 1)>, /* TXD0 */
-+			 <RZG3E_PORT_PINMUX(B, 1, 1)>, /* TXC */
-+			 <RZG3E_PORT_PINMUX(A, 3, 1)>; /* TX_CTL */
-+	};
-+
-+	eth1_pins: eth1 {
-+		pinmux = <RZG3E_PORT_PINMUX(D, 1, 1)>, /* MDC */
-+			 <RZG3E_PORT_PINMUX(D, 0, 1)>, /* MDIO */
-+			 <RZG3E_PORT_PINMUX(F, 2, 15)>, /* PHY_INTR (IRQ15) */
-+			 <RZG3E_PORT_PINMUX(F, 1, 1)>, /* RXD3 */
-+			 <RZG3E_PORT_PINMUX(F, 0, 1)>, /* RXD2 */
-+			 <RZG3E_PORT_PINMUX(E, 7, 1)>, /* RXD1 */
-+			 <RZG3E_PORT_PINMUX(E, 6, 1)>, /* RXD0 */
-+			 <RZG3E_PORT_PINMUX(E, 0, 1)>, /* RXC */
-+			 <RZG3E_PORT_PINMUX(D, 2, 1)>, /* RX_CTL */
-+			 <RZG3E_PORT_PINMUX(E, 5, 1)>, /* TXD3 */
-+			 <RZG3E_PORT_PINMUX(E, 4, 1)>, /* TXD2 */
-+			 <RZG3E_PORT_PINMUX(E, 3, 1)>, /* TXD1 */
-+			 <RZG3E_PORT_PINMUX(E, 2, 1)>, /* TXD0 */
-+			 <RZG3E_PORT_PINMUX(E, 1, 1)>, /* TXC */
-+			 <RZG3E_PORT_PINMUX(D, 3, 1)>; /* TX_CTL */
-+	};
-+
- 	i2c2_pins: i2c {
- 		pinmux = <RZG3E_PORT_PINMUX(3, 4, 1)>, /* SCL2 */
- 			 <RZG3E_PORT_PINMUX(3, 5, 1)>; /* SDA2 */
--- 
-2.25.1
+How to avoid it? Well, you type things into the keyboard, so type things
+which will do not perform above action. E.g. when executing git
+send-email it shows you recipients and then ABORT and correct the git
+send-email cc-list so it won't add CC based on tags (see manual).
 
+Best regards,
+Krzysztof
 
