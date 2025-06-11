@@ -1,129 +1,103 @@
-Return-Path: <devicetree+bounces-184879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFF6AD5758
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C2FAD5760
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:39:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D6921888909
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 13:37:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 679F61897E26
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 13:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3419129AAE3;
-	Wed, 11 Jun 2025 13:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2011E28B3EB;
+	Wed, 11 Jun 2025 13:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DVgMGJU0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLRupa31"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE34528C037;
-	Wed, 11 Jun 2025 13:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EE228A708;
+	Wed, 11 Jun 2025 13:38:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749648994; cv=none; b=C5zjstb2lidWxf94a/8mvFvB/jn7k+ss+PLHIbTbINsswgrzSsWr4pxxW61/f7Xzx7Wxd9wYj0O37NYRqCxZPFv6ddzqHGYHfo6+O5EiNS2sY1Pf+NemYapINXkMf3PFcWGlEh/NgeInd8iFivhrjFwBHzw2qKUiAZMEAOKmO/k=
+	t=1749649140; cv=none; b=PKm5hPVFk8PsvKzhztXfm4YorMlryL8mgU6VZ0VcK8aBqR2XWHGOMtypeepISW1FMS5J5+EwOWhhQE+CtslDOGrsE9EXLsNh8mlULf1N9iC94NVpOiMhhI8rLp7EhPxiecmAojS4FRPFTnHTglmn+Vs7ubFOH6Sq72xW51D0SHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749648994; c=relaxed/simple;
-	bh=qxeEX+fpLYiFMxZjd8T8WFKqd8/tarfK/1nXUbP+oow=;
+	s=arc-20240116; t=1749649140; c=relaxed/simple;
+	bh=63IhMGujIE76xxRJqBogkMKfsCEBW7EEoUN4xVCORIw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m3j494GdEfFM+myfAyp1KgSww09c9Std2z4DlzRW+FVccuPOL8zPMBIBCkX1nQwzKGfxOVWxIptZA8Sjx0kqUPBrDXbITh9irD/WVft2V/24ysPIM1FojuaPgbNE07+8Sy8jDkWMkp2JuBov0mQEuqbiZ7EtG9VSaUvTXLA6JMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DVgMGJU0; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=vVK1lv1eg0ugU/Wlcq0qw8RSX2k3WrhR6fk/iNeFFPc=; b=DVgMGJU05gH/oIK5E5D9B47wVC
-	GIR3UdOd8V+Wd5k0QiTngzWgSaDshWYZqcxKeXPOgRgvN7NV/q6mfkM2faOnAzMEBNdMRH/wAYIvp
-	dZxers4Mp06vL74YaphTtZ+8PSeLS76pFIIro7UzfXnc0Ong0p1ps2qiJrDJOOtQYGcM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uPLcV-00FOq5-P6; Wed, 11 Jun 2025 15:35:59 +0200
-Date: Wed, 11 Jun 2025 15:35:59 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Gal Pressman <gal@nvidia.com>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZH1fLlKA8YORIWIyd/ZULC1+O+woDFhQ+OdPlVJDb0LjbXRzKLxqZx19nUYgRB8kN8WbjlSld7urLf2kOrotM3ISbf+j1omqyH/szfuyBwUHnWdp1jRuvk8f9vN2Ht7gms+TlfPr+lJjcboDS/7yVuPALkOO/dRhIzoZoTfEfjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jLRupa31; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1064FC4CEEE;
+	Wed, 11 Jun 2025 13:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749649139;
+	bh=63IhMGujIE76xxRJqBogkMKfsCEBW7EEoUN4xVCORIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jLRupa31DcdHMpeqvWd2JxRsIqMozTO0qVGc+ZgbEM98ciEypc8hKEqLBz/ZQB8pt
+	 ACd9zXZIl+QoQ6cJ/6J1Ja/xd75SFkRbB00eHbUZDa/5QQVJFWCfSCMw8S9a+rMssb
+	 iTbLlag1YXktOrn9OsznKb4izJ8GnqPTcbPOT2m0YMXhDvCTuKFc1E6BwgZZ5sLfkA
+	 eN3DDJ7FmhQQ4ZLhQhRyS2akDjVaWUGJDpsD9tnEtcPIv9C6Hgcw0v6OtYoUNxAjkC
+	 mbuiFOBWNwIQNjJ93HuYFoX4KVkYToJdLnGX2efT5lZEjIt1QYGaRq7XKEoAr9QGvK
+	 UjRaoDR6JXq8g==
+Date: Wed, 11 Jun 2025 14:38:54 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH net-next v12 00/13] Add support for PSE budget evaluation
- strategy
-Message-ID: <78daedb4-afe7-429d-9447-a3f76ea65e16@lunn.ch>
-References: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
- <8b3cdc35-8bcc-41f6-84ec-aee50638b929@redhat.com>
- <71dc12de-410d-4c69-84c5-26c1a5b3fa6e@nvidia.com>
- <20250609103622.7e7e471d@kmaincent-XPS-13-7390>
- <f5fb49b6-1007-4879-956d-cead2b0f1c86@nvidia.com>
- <20250609160346.39776688@kmaincent-XPS-13-7390>
- <0ba3c459-f95f-483e-923d-78bf406554ea@nvidia.com>
- <cfb35f07-7f35-4c1f-9239-5c35cc301fce@lunn.ch>
- <b1b7b052-ceac-4119-9b72-ed8f4c1fbfe2@nvidia.com>
+	Julien Panis <jpanis@baylibre.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v1 5/5] regulator: tps6594-regulator: Add TI TPS652G1
+ PMIC regulators
+Message-ID: <fcfc6310-4418-49e4-85de-f2a58f877a51@sirena.org.uk>
+References: <20250611133137.1686183-1-mwalle@kernel.org>
+ <20250611133137.1686183-6-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jFgXsVfndX71CoWO"
+Content-Disposition: inline
+In-Reply-To: <20250611133137.1686183-6-mwalle@kernel.org>
+X-Cookie: No skis take rocks like rental skis!
+
+
+--jFgXsVfndX71CoWO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b1b7b052-ceac-4119-9b72-ed8f4c1fbfe2@nvidia.com>
 
-On Wed, Jun 11, 2025 at 09:05:01AM +0300, Gal Pressman wrote:
-> On 09/06/2025 18:12, Andrew Lunn wrote:
-> >> I think that in theory the userspace patches need to be posted together
-> >> with the kernel, from maintainer-netdev.rst:
-> >>
-> >> 	User space code exercising kernel features should be posted
-> >> 	alongside kernel patches. This gives reviewers a chance to see
-> >> 	how any new interface is used and how well it works.
-> >>
-> >> I am not sure if that's really the case though.
-> > 
-> > The ethtool Maintainer tends to wait to the end of the cycle to pick
-> > up all patches and then applies and releases a new ethtool binary. The
-> > same applies for iproute2. That means the CI tests are not capable of
-> > testing new features using ethtool. I'm also not sure if it needs a
-> > human to update the ethtool binary on the CI systems, and how active
-> > that human is. Could this be changed, sure, if somebody has the needed
-> > bandwidth.
-> > 
-> > Using the APIs directly via ynl python is possible in CI, since that
-> > is all in tree, as far as i know. However, ethtool is the primary user
-> > tool, so i do see having tests for it as useful. But they might need
-> > to wait for a cycle, or at least fail gracefully until the ethtool
-> > binary is updated.
-> 
-> Thanks Andrew, so I interpret this as selftests should be added when the
-> userspace patches get accepted (or released?)? Not part of the original
-> kernel submission?
+On Wed, Jun 11, 2025 at 03:31:37PM +0200, Michael Walle wrote:
 
-I personally would submit the tests at the same time, but make them
-gracefully fail when the ethtool binary is too old. As a reviewer,
-seeing the tests as well and the ethtool patches and the kernel code
-gives me a warm fuzzy feeling the overall quality is good, the new
-code is actually tested, etc and the code should be merged.
+> +	} else if (tps->chip_id == TPS652G1) {
+> +		nr_buck = ARRAY_SIZE(tps65224_buck_regs);
+> +		nr_ldo = ARRAY_SIZE(tps65224_ldo_regs);
+>  	} else {
 
-     Andrew
+These should all be converted to switch statements rather than if/else
+chains for clarity and extensibility.  Otherwise this looks good.
+
+--jFgXsVfndX71CoWO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhJhu0ACgkQJNaLcl1U
+h9CAcgf/cBq05ewfKtbZLh8OaZCa3NBuacDHtla43RZvmP2t+9Q5zGr3ApPCrGcK
+Hjfk2Qu0WJ4WruAKN3Pb7y7A1GNoFFWoLSlTA/orPOMkGa2kgqAG2tKTqVD7cK6g
+U5BvBor+udqMpUkyJGJhvCqRs57ANSP94gbnEv8LdoPBDEku1NqrIdmWh31cXCf+
+q+1uZupN2GdwB16eAiJBAmHKIsylzqVlb3jfltY/kqOckEBOZmg4LKg+IjZUEyaC
+ZA8crHWGG3wsMAjdSzObepydSfE+wqnU0iaD3hBAZ1SkXtW7dWAP2pCEb7MyWu4L
+T7J+vfvZmtlD6TqK8fYHTWOtLK3I3g==
+=sdkv
+-----END PGP SIGNATURE-----
+
+--jFgXsVfndX71CoWO--
 
