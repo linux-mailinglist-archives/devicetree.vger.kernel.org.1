@@ -1,257 +1,159 @@
-Return-Path: <devicetree+bounces-184889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E76AD5849
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:15:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 927EFAD587D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA5447A7F45
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:13:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 047DB177E18
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C6E2BD038;
-	Wed, 11 Jun 2025 14:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900F328C017;
+	Wed, 11 Jun 2025 14:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UOt6HpUk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="W1sgz+rH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F0935897;
-	Wed, 11 Jun 2025 14:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC982951A0
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 14:19:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749651305; cv=none; b=N79b60YC0aWP5ox+5MuLrC2fIegczqoO2SaGV/uIfX2T+ZbgZn8KexRl3VvRL6Mn5CNs1AXJ+xZJUodf4HPdoFiD1BWL+0mJE8wYaTAtC8TdZST4soxJ7BO1cbk6J7hs9M1lN7Jnw+8v9wW+0dXhhEMMPPHtnAk4+C6uvtWNAOA=
+	t=1749651573; cv=none; b=IxRLaWl5Aq+Gxm6Uw0mFx5vCQs/ZeB/53rFoZpPP3uJFjSsaxtXRQuMdRiN6Z3KEe5k3F3RJeKEormy2E7ZDOD3vPYfETBpocaiRhylP3VT0Ngtwrt+atD34L0HRB3xwcMYLxanZrpgssYtAJBGSR33wb/T4TMUkuCYwa4qKdsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749651305; c=relaxed/simple;
-	bh=gPozdbI3xpmxAv+kXn407bfUh6hLjnr47SUlGsJ5RY0=;
+	s=arc-20240116; t=1749651573; c=relaxed/simple;
+	bh=UfnHdSKZ0T9IHQZh4HA/F4jJyg+5+9FOJsW1zZ6W8Mo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LFdVMXxyUoUYqkdmaQ3g37f4JClsnxyScr9mlOcmDmk9vmqJwln4Cs6SjfDSjiF6DWioaWPQOsVLSVgJ214hz/Tb9Lh7oCcgG/5SBXgbHMPlykrVek3mbhl4O7AT/ttOpvmDMuFh0KOgw/3RApqthsD192oK/sF8bu0d9Ds1jag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UOt6HpUk; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 53EAC526;
-	Wed, 11 Jun 2025 16:14:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1749651293;
-	bh=gPozdbI3xpmxAv+kXn407bfUh6hLjnr47SUlGsJ5RY0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UOt6HpUk9flKVzBrV8edTT7seyKAKmte8Yfx+4gNSJ9azP9NzWTKbG/MmcfOLgDMX
-	 1rdkMDvcCLkiMrNuyccUiei49CSOPbo3TzWOuCHYOfESslReCu16XrFQBBpa6DcliV
-	 Wz/VZY3TuNfK79OPX5bo1LospmsQOFtdHjLUcmR8=
-Date: Wed, 11 Jun 2025 17:14:49 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Robert Chiras <robert.chiras@nxp.com>,
-	"Guoniu.zhou" <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v4 04/13] media: nxp: imx8-isi: Use
- devm_clk_bulk_get_all() to fetch clocks
-Message-ID: <20250611141449.GA24607@pendragon.ideasonboard.com>
-References: <20250408-8qxp_camera-v4-0-ef695f1b47c4@nxp.com>
- <20250408-8qxp_camera-v4-4-ef695f1b47c4@nxp.com>
- <20250421211438.GN17813@pendragon.ideasonboard.com>
- <aBQZjFsExJh2uRfK@lizhi-Precision-Tower-5810>
- <20250502155747.GB20093@pendragon.ideasonboard.com>
- <aBylKcZyFInlKQAR@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MzlVFhOxbtKEawKXqoRYH1FdB5l3uIHQZN65WBdOPpYrSnQMkVBDhNsvkkJNdlRJBktRANHGJ3pYL2WinO5Y1e74lNuwguaZ58yUsXec0biWLFbqhfrgE6PpRY0xkIevp6RqQcJq8hTPYZFfe2jt7s81wvtaFvOcNCm0eSecfrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W1sgz+rH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DCXT002338
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 14:19:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=874Q5YVFPtejmOnGeVJRP8KZ
+	m5kEcEGmP2NS8rGVaww=; b=W1sgz+rH9iaGWziEFkvmzRbJOZ1/u+RfoZOJNjxC
+	vLez+0c9NEeHtJclxnRVEXeGByYrf1UfJt5vO5oYxAPlQcwzm4930nv9G/ls7FXO
+	sBL9Z8XJWt4sTSBODjMi59Ke8d9pI//8NMN+vlvWHZvvYdsCJNIrsK76XJ1HdQqs
+	TINgf41whSBuPMl79Qr4BE8FEV7C/P70bCx3K0u85WiWkpqJ8mXXAP+DfsJX7NeR
+	y6y/RIhbbzf6mMk1+i7+qyzmKm0Gf4jJ+Q4VB2CyPasVIDxutrCc3ikJAyb0A1DC
+	d+YI6EGIWDX4r2aQCXfrFLMHiNiDfwHr7C8vNegGCHQ7Fw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dgxwfjx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 14:19:25 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d099c1779dso1178358885a.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:19:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749651565; x=1750256365;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=874Q5YVFPtejmOnGeVJRP8KZm5kEcEGmP2NS8rGVaww=;
+        b=cYWVv70Czoop7EPvR5Jc5mtQXjosZpP0mfMPcKE6ImBsbcGuazcPN3A7nEP6awM9wA
+         3E2mWNsC66+M4PcP7rtnxndOz1UJGJmHzwi10InvFwXawx5jAGR2T72LIy/V9qVyAaWq
+         fqSgy715UxGgv4tf+XJ30S7tE8x5iDbaYBTcNcRd2KVGPzMjRxMQC1xeqqJyY9yVLqdG
+         UbOag2h1ihN1+ooKizHMyWk4jS7kTGBwfGfbykvU9oCppWt9ZITZrBoR3apCVpQLs82T
+         9jeuD0jLxvcHsN4G6pcbBX3v7Vfy1FHMvDCtMad3cCl2t7z83BQhaE1R1SWImsveT/0D
+         WRIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWikV4b8Mjs3RtcBWT/8V3+qPE3E8y7qdh2/LKAYMnLwIpFqMipfuXpi3LKc2UeITH3fTM659vXbaLV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWCBgWMRVsvwgqoJbDesqI9mzQI/lQuuxFWqdsXf1lIk7YLi+c
+	Mb1e0b+mcTBAVKeed48Owbb+ZLPBqDqCf7PqVg1znamTkTkmfveejtecq6oNHkEACDctwQ/lUCw
+	1wplvpxk8eEAzAwXxse3F9y+LK8K/n/CfQEhgOSHQWzMIvsPbrtZzBD2/f5J0tk7d
+X-Gm-Gg: ASbGnctsnKqQTsBGV80MXJP4H1g1PNDULEErola05SN+5SVrOva1bTfpF773729wo8o
+	d8rYYpxqukgq/MekDJD6ABQHwtg+qL90BoCYoDe9OXZFti5ChT1oXlmPIb1Kad+QmzaSdx6lodh
+	g1DCN/Lpil191W4D/aCxqwX+Sxa1aZ6x93IOv882E7G+EshWVs/9WK42xdmENfiDdzX057bTG8T
+	V9xPtjN579fEzTfJwMmCdYU3A6vhLI4cwwDqj/j80Wy55zxFOsgBRYs6+VesvBb+rRqfjesF3UC
+	w8ZSyx6z2DcdlQsKwuNqK0TkY1rcV4lpwPSJk7e79I9QtgN/NYUn6uPuxrS+5fs0a87c1Kznk/g
+	9AmiF9PzTqFugeDSb9qd/nkFsAYmVeLqyLIk=
+X-Received: by 2002:a05:620a:1d07:b0:7d3:96ba:78d9 with SMTP id af79cd13be357-7d3a95d7ebcmr462332185a.29.1749651564655;
+        Wed, 11 Jun 2025 07:19:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGAaOi73AYWlSbDOB5FoX5maZieuX6BK9CyazXK7gUyraDN4tNP1BHcDiW8mhiwHO8YmQIfKg==
+X-Received: by 2002:a05:620a:1d07:b0:7d3:96ba:78d9 with SMTP id af79cd13be357-7d3a95d7ebcmr462328285a.29.1749651564172;
+        Wed, 11 Jun 2025 07:19:24 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32ae1cccad8sm18806571fa.80.2025.06.11.07.19.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 07:19:23 -0700 (PDT)
+Date: Wed, 11 Jun 2025 17:19:21 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Gaurav Kohli <quic_gkohli@quicinc.com>, amitk@kernel.org,
+        daniel.lezcano@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, quic_manafm@quicinc.com
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615: Enable TSENS support
+ for QCS615 SoC
+Message-ID: <x2avlatyjo7sgcjubefexsfk6gerdbhx5dcug2kszk2hukcusm@srs5dwuc2m22>
+References: <cover.1744955863.git.gkohli@qti.qualcomm.com>
+ <1758b5c2d839d40a9cb1dd17c734f36c279ac81c.1744955863.git.gkohli@qti.qualcomm.com>
+ <74b017c2-7144-4446-969c-8502fb2cb74b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aBylKcZyFInlKQAR@lizhi-Precision-Tower-5810>
+In-Reply-To: <74b017c2-7144-4446-969c-8502fb2cb74b@oss.qualcomm.com>
+X-Proofpoint-GUID: MMe2zKR55kFmmSQ-PzpEGZIjkzvNC1cD
+X-Authority-Analysis: v=2.4 cv=HMbDFptv c=1 sm=1 tr=0 ts=6849906d cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=fHpipdgcYPiT0vFNL1EA:9 a=CjuIK1q_8ugA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: MMe2zKR55kFmmSQ-PzpEGZIjkzvNC1cD
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDExOSBTYWx0ZWRfX7YW7WjL+wkLG
+ r0C4SWe3Ae0XYct6DEu/JWDMP9DEuxXCtu9rnuqe/2WyanpXD2YMlls727IIxjCTCW1zBXBabsI
+ OxLucKwwuZpawVpBzLcdbin/I//tlZWKcV06O5yU6nJR0QIVQaey4x46aR6AZuqhEsOmJUS6m41
+ YB7w5u4vmFpCNd4nc2kpAf9vktrCaru6ZnO2tYxGFbRpB3w7XI6yHDgS/oe44K207yF6h+UB7FG
+ +jlA1SJLDXlsJit8+QxDxzMKFjV3haI5KrHP7qbNlX0k1idIpttIfDVqV5vlVh0uVcWsTW6fDVk
+ dG+eC7ar7NVAP1I9H2MdYeOTgGryEBKlr5SUvQdh9inswEP/k4LThQCRwOWeqeFsn5PJ7tR3BLn
+ Yn431l7eBv7VfJIF+eOOYtUpwKCFenh1myfSpAsdcZJL4tgL8LC0XvTIxViONoIuY/Vne82p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-11_05,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 mlxlogscore=719 priorityscore=1501 impostorscore=0
+ suspectscore=0 malwarescore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506110119
 
-Hi Rob,
-
-On Thu, May 08, 2025 at 08:35:53AM -0400, Frank Li wrote:
-> On Fri, May 02, 2025 at 06:57:47PM +0300, Laurent Pinchart wrote:
-> > On Thu, May 01, 2025 at 09:02:04PM -0400, Frank Li wrote:
-> > > On Tue, Apr 22, 2025 at 12:14:38AM +0300, Laurent Pinchart wrote:
-> > > > On Tue, Apr 08, 2025 at 05:53:02PM -0400, Frank Li wrote:
-> > > > > Use devm_clk_bulk_get_all() helper to simplify clock handle code.
-> > > > >
-> > > > > No functional changes intended.
-> > > > >
-> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > ---
-> > > > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 46 +++-------------------
-> > > > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  3 +-
-> > > > >  2 files changed, 6 insertions(+), 43 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > > > index ecfc95882f903..015350c6f2784 100644
-> > > > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > > > @@ -275,11 +275,6 @@ static const struct mxc_isi_set_thd mxc_imx8_isi_thd_v1 = {
-> > > > >  	.panic_set_thd_v = { .mask = 0xf0000, .offset = 16, .threshold = 0x7 },
-> > > > >  };
-> > > > >
-> > > > > -static const struct clk_bulk_data mxc_imx8mn_clks[] = {
-> > > > > -	{ .id = "axi" },
-> > > > > -	{ .id = "apb" },
-> > > > > -};
-> > > > > -
-> > > > >  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
-> > > > >  	.model			= MXC_ISI_IMX8MN,
-> > > > >  	.num_ports		= 1,
-> > > > > @@ -287,8 +282,6 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
-> > > > >  	.reg_offset		= 0,
-> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v1,
-> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > > > -	.clks			= mxc_imx8mn_clks,
-> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > > > >  	.buf_active_reverse	= false,
-> > > > >  	.gasket_ops		= &mxc_imx8_gasket_ops,
-> > > > >  	.has_36bit_dma		= false,
-> > > > > @@ -301,8 +294,6 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
-> > > > >  	.reg_offset		= 0x2000,
-> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > > > -	.clks			= mxc_imx8mn_clks,
-> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > > > >  	.buf_active_reverse	= true,
-> > > > >  	.gasket_ops		= &mxc_imx8_gasket_ops,
-> > > > >  	.has_36bit_dma		= true,
-> > > > > @@ -315,8 +306,6 @@ static const struct mxc_isi_plat_data mxc_imx8ulp_data = {
-> > > > >  	.reg_offset		= 0x0,
-> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > > > -	.clks			= mxc_imx8mn_clks,
-> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > > > >  	.buf_active_reverse	= true,
-> > > > >  	.has_36bit_dma		= false,
-> > > > >  };
-> > > > > @@ -328,8 +317,6 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
-> > > > >  	.reg_offset		= 0,
-> > > > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> > > > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > > > -	.clks			= mxc_imx8mn_clks,
-> > > > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > > > >  	.buf_active_reverse	= true,
-> > > > >  	.gasket_ops		= &mxc_imx93_gasket_ops,
-> > > > >  	.has_36bit_dma		= false,
-> > > > > @@ -386,7 +373,7 @@ static int mxc_isi_runtime_suspend(struct device *dev)
-> > > > >  {
-> > > > >  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
-> > > > >
-> > > > > -	clk_bulk_disable_unprepare(isi->pdata->num_clks, isi->clks);
-> > > > > +	clk_bulk_disable_unprepare(isi->num_clks, isi->clks);
-> > > > >
-> > > > >  	return 0;
-> > > > >  }
-> > > > > @@ -396,7 +383,7 @@ static int mxc_isi_runtime_resume(struct device *dev)
-> > > > >  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
-> > > > >  	int ret;
-> > > > >
-> > > > > -	ret = clk_bulk_prepare_enable(isi->pdata->num_clks, isi->clks);
-> > > > > +	ret = clk_bulk_prepare_enable(isi->num_clks, isi->clks);
-> > > > >  	if (ret) {
-> > > > >  		dev_err(dev, "Failed to enable clocks (%d)\n", ret);
-> > > > >  		return ret;
-> > > > > @@ -414,27 +401,6 @@ static const struct dev_pm_ops mxc_isi_pm_ops = {
-> > > > >   * Probe, remove & driver
-> > > > >   */
-> > > > >
-> > > > > -static int mxc_isi_clk_get(struct mxc_isi_dev *isi)
-> > > > > -{
-> > > > > -	unsigned int size = isi->pdata->num_clks
-> > > > > -			  * sizeof(*isi->clks);
-> > > > > -	int ret;
-> > > > > -
-> > > > > -	isi->clks = devm_kmemdup(isi->dev, isi->pdata->clks, size, GFP_KERNEL);
-> > > > > -	if (!isi->clks)
-> > > > > -		return -ENOMEM;
-> > > > > -
-> > > > > -	ret = devm_clk_bulk_get(isi->dev, isi->pdata->num_clks,
-> > > > > -				isi->clks);
-> > > > > -	if (ret < 0) {
-> > > > > -		dev_err(isi->dev, "Failed to acquire clocks: %d\n",
-> > > > > -			ret);
-> > > > > -		return ret;
-> > > > > -	}
-> > > > > -
-> > > > > -	return 0;
-> > > > > -}
-> > > > > -
-> > > > >  static int mxc_isi_probe(struct platform_device *pdev)
-> > > > >  {
-> > > > >  	struct device *dev = &pdev->dev;
-> > > > > @@ -457,11 +423,9 @@ static int mxc_isi_probe(struct platform_device *pdev)
-> > > > >  	if (!isi->pipes)
-> > > > >  		return -ENOMEM;
-> > > > >
-> > > > > -	ret = mxc_isi_clk_get(isi);
-> > > > > -	if (ret < 0) {
-> > > > > -		dev_err(dev, "Failed to get clocks\n");
-> > > > > -		return ret;
-> > > > > -	}
-> > > > > +	isi->num_clks = devm_clk_bulk_get_all(dev, &isi->clks);
-> > > >
-> > > > This prevents validating that the DT contains the expected clocks, which
-> > > > could cause hard to debug issues. Isn't it a problem ?
-> > >
-> > > It is checked by dt-binding. Now no warning by DTB_CHECK under arm64 freecale.
-> > > CHECK_DTB should be enough to find expected clocks.
-> >
-> > Yes, the DTB check will catch issues at build time, but the driver will
-> > not enforce that. I'm not sure if there's a clear policy here, and if
-> > ensuring at runtime in drivers that the expected clocks are present is
-> > considered as a good practice by the DT maintainers. Rob, Krzysztof,
-> > Conor, do you have an opinion ?
+On Wed, Jun 11, 2025 at 04:08:57PM +0200, Konrad Dybcio wrote:
+> On 6/11/25 8:37 AM, Gaurav Kohli wrote:
+> > Add TSENS and thermal devicetree node for QCS615 SoC.
+> > 
+> > Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+> > ---
 > 
-> Rob:
-> 	can you comment this?
-
-Rob, any comment on this ?
-
-> Laurent:
-> 	Many driver already switch to devm_clk_bulk_get_all() such as qcom/imx6
-> pci drivers recently.
+> [...]
 > 
-> > > > > +	if (isi->num_clks < 0)
-> > > > > +		return dev_err_probe(dev, isi->num_clks, "Failed to get clocks\n");
-> > > > >
-> > > > >  	isi->regs = devm_platform_ioremap_resource(pdev, 0);
-> > > > >  	if (IS_ERR(isi->regs)) {
-> > > > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > > > index e7534a80af7b4..bd3cfe5fbe063 100644
-> > > > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > > > @@ -169,8 +169,6 @@ struct mxc_isi_plat_data {
-> > > > >  	const struct mxc_isi_ier_reg  *ier_reg;
-> > > > >  	const struct mxc_isi_set_thd *set_thd;
-> > > > >  	const struct mxc_gasket_ops *gasket_ops;
-> > > > > -	const struct clk_bulk_data *clks;
-> > > > > -	unsigned int num_clks;
-> > > > >  	bool buf_active_reverse;
-> > > > >  	bool has_36bit_dma;
-> > > > >  };
-> > > > > @@ -282,6 +280,7 @@ struct mxc_isi_dev {
-> > > > >
-> > > > >  	void __iomem			*regs;
-> > > > >  	struct clk_bulk_data		*clks;
-> > > > > +	int				num_clks;
-> > > > >  	struct regmap			*gasket;
-> > > > >
-> > > > >  	struct mxc_isi_crossbar		crossbar;
+> > +	thermal-zones {
+> > +		aoss-thermal {
+> > +			thermal-sensors = <&tsens0 0>;
+> > +
+> > +			trips {
+> > +				trip-point0 {
+> > +					temperature = <110000>;
+> > +					hysteresis = <5000>;
+> > +					type = "passive";
+> 
+> All of the passive trip points you added that aren't bound to any
+> cooling devices should be critical instead (otherwise they're not
+> doing anything)
+> 
+> otherwise, looks good
+
+Don't we need cooling-maps for CPU thermal zones?
 
 -- 
-Regards,
-
-Laurent Pinchart
+With best wishes
+Dmitry
 
