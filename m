@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-184729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE65AD5037
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:40:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AED1AD5015
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 11:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF1B51BC2DB9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:37:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7B037ADA27
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 09:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EAD5263C68;
-	Wed, 11 Jun 2025 09:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303CA26B2AE;
+	Wed, 11 Jun 2025 09:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RIbrROf2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KTjfz7cE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B34C25A2CD
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C6F82638A6
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 09:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749634478; cv=none; b=Wk0S0G2RxqkG4xHyo4oXx3aQ4B9l03AvD1dNb5NUQKmj5ZTpfWY2UUYOtKgkC6zm9fTJgxPA6R+CGCf2qa2JQRalNza65PWzs5E110p0rBrWAN3nftlLRxSmojQb7PyEL4h9i2NrASUv+mTXnWSDxd8dGwqDHZZykIcZZP/s+5k=
+	t=1749634480; cv=none; b=A4fn47FstdJ9QAtK7u6xYixuQJZXAF/VxVYC9rIZylX4GC0PynZEO/U3iPyPu6HJUqKMEibX/ulNBGMGwEVWmp2IiEaQR3QCv1XfEH5Esg2IC2VYvR+R754kHatVFMwQmzwedQyfsBItpEWgSyM29cJvvqnJsGVX6o9p9Pfr0Cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749634478; c=relaxed/simple;
-	bh=JRh4yWQSKvPb+HTPm3KU+z0OTAcK+vDeUqT7eLU7d7E=;
+	s=arc-20240116; t=1749634480; c=relaxed/simple;
+	bh=qTs3IRLu5xA+mhLIgJ44rsQgmMvxnUCHZ/EW6gO8Vwk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EdC45vMWEj6eFrsfxFt0KUVRGV9v9n3lEEwk1IyCwz9Ey0VMnlGZbwvb5wBSyvjyh2A6ZQ4H3XdFmtIqUeGm/hPS0nx4562fbBrk3H9Vec92HkKrbM4b/AX3ubPqZOq6qK9nKWONBalLZqJ7I18OuZfsvEah5wCqkUjKiixoZ5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RIbrROf2; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:To:Cc; b=HaUwYVSliEQwWV118pqbf3TJvP+GJYfdqpiY35Ocvv34HhpNhM7VmeEounUOr8grm/PkRfL8SuUTVyZfvz8M8+C3SkRDZtSADnzngrukHkFzwHLrzDzdAZMCOqLEJAlNz3DtL5EhEcf1vufYf1sS3Sr401h4lZi/lRiewPGsO18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KTjfz7cE; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3a4f71831abso5962100f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 02:34:35 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4530921461aso29447415e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 02:34:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749634474; x=1750239274; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1749634476; x=1750239276; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=umjNWPKDERjTwunqlhctbYZ5OjrmC9Gy7QVgvFKys+c=;
-        b=RIbrROf2fvWfWIAX0B2WMEi3bCl0s8v0iaia9XJCYBey+AnGF8EizYBbgtx1k3sYQU
-         Zmsadauk0E4kiqUIGQISVrW55tF1CgiVecx65M0X5PTbH1auN/ECA3C37N6ERYEwgnR4
-         4VQWfOwTRT7KJi/qn5savJcIQ7gLeb+BTizbwPKpI1iBLZclFwHWWecSSZCNT/a7sUrX
-         E/5H4ge3NaX40cTzf72XhXxpE7BhXw4mM+KzuO2C/eDL7Nxg78Mc+zH/ddYJWNpitE00
-         aL6pJgtnh98L2tWY2CymZ3xRff5cDkwUm2RyOdwGCTyv7yFoXWi7YDKODgd0TXAOcrIp
-         XEgg==
+        bh=PVeXPFuPVbQsXF19uNENjG1a5bYP5vKL7OyCc5YR918=;
+        b=KTjfz7cER/eUSzfoKtqll9Na7qTxZjM5NjeUSZbSsv0tOf1w94/H6mHmE8WVqNeadl
+         HOEGplYkeNuZ5SlkwnfDwPApUcKwRPV3W/Wm370E340BXcTxGmVCwB//A597LssuaMcz
+         ZakoOD433nYqcrhKsDbvPFueWzN7MzyHPkHqZzPuOBrBERVov/g1cRvdhEwSunwx/gw6
+         WliGtnh2oWlBl1ZSq29FmK4j/bZoKZ5AefHhz1qAzXkjLO7YwgMdtjqy9LjnPzl3npEs
+         X6gaMTwBhcKjWHJALOD82eHZNZodjoTn4p3rAZlYQP34A+yqyCFIlhjVSsWwvFUxQcOX
+         lPAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749634474; x=1750239274;
+        d=1e100.net; s=20230601; t=1749634476; x=1750239276;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=umjNWPKDERjTwunqlhctbYZ5OjrmC9Gy7QVgvFKys+c=;
-        b=NALPBtkek2fh6zUT+M9WTKMiGqwlz+2xWRDBu/IvfjnTjI7PNhMu2HIWuFpllu7rXh
-         kM/oESeN0Ps/O8Bcmq6WomQqSnAu0cbmqb28AM0LHKxHqRaVdvAgwqtyrcALQKEZGrQE
-         T14BAjkyPoOs7ooSvogemHt1lsijvZKRrCL+4cM1hFKkvvrALDjS6mXvhyVbNC0H0Lig
-         fVHngjwa/ex3iSys9pPMK2L4XVg8ZdJB4Pob2JiG37xVu9gDb3Yab6El4nJ++deW7Buu
-         ys0a2KT4aqcGtxy1PmjIRaOx2BtA7udOkkxVpc3vSMUgEWoJACcxJ62oYCmHJJwfuR3n
-         I5SA==
-X-Forwarded-Encrypted: i=1; AJvYcCVssltK0N2HRvquKH6jqfTgcAToIOVwbBDzyUrZworn4+I6o38+sA/7f1JAUzd2Q2x1qFfRrkzHfNcf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy65uaH9vFDaGZK33r3WY3FLejDgsR7ro9AqS8s/QoX+BZ1HT5l
-	vn/zxObaiYm7R6humKHf7dFgxELWaqVwJN0Syc2P1A5PSo87k1nYztekkB6gb2Yq1Vo=
-X-Gm-Gg: ASbGnctP4Gu+WLPujUX4J62wZTia4ptHi9kUy0Cet7s54MQlHo1oSLOZ7aPnrVw58m5
-	+MQW+HbvJt6Ck0N5bQ61WD8zuynGA/2gQmzTpKmc4Y5hDFbkbAK/9JzMZuD3RYEeuxs4iwveB0J
-	bQp1JlWCMuXo9hUF0C73RuoNR2vgtNDg/TAhAv+xNjMR8l35VH05YzfjfM2/op66SjXYiQrnshp
-	F5XvAi99HdvPItqAX0uDmAsCG0616bWN5OyClbYt5et9t6D6f0if/4rmsn7U5BA7+HEBgSiSykd
-	ZGGRoZk1HBqL8YpZitMlFg044U13GvXLEvQBK0W30lxqjbwoA72BIBHMTJujiWZE/G/XwiUq05N
-	1k1SS7CtnWTkwh8A=
-X-Google-Smtp-Source: AGHT+IEWBMj7CqwS07MNQkBH5I2Kfcy9sAeVsKYwFR/3Yu7E4iKy8d8DQwqF6l9GtrYs6FgzlssFCA==
-X-Received: by 2002:a05:6000:2913:b0:3a3:6e85:a529 with SMTP id ffacd0b85a97d-3a558af7c26mr1878681f8f.51.1749634474379;
-        Wed, 11 Jun 2025 02:34:34 -0700 (PDT)
+        bh=PVeXPFuPVbQsXF19uNENjG1a5bYP5vKL7OyCc5YR918=;
+        b=i+92C+MyH2oKm64d/rmEIza1M1Vy6rk76InQzXtJ75ij8rw7psH2genpS1PesrJx4j
+         XlptG8oPKU8c5pY6Qbp14FEWXTtjLYWEt3Cawrp5iUAT1uo6u7CUkqp4tQTbubZtZlEd
+         J33ivgIe4jU6DtwGsBgmYsjqF2cNt1U9s1oeakuxmFZDAKXo0hi7EaY+bJmunD4n7tnP
+         R26kjy997p+m3jzyyy6pQMnnqwOqw6KjxBtYZ5H9QsUv9EHukviv8PLl3/b7xHFqoeYs
+         DUFS70wVIrs/ZTYD5Zd5j+SvZ0//+w7Yx+UMLq3dkg5D+E5+3mL9nrt0nCrUwpYUuWWV
+         jj0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVA9SBNEsngRfJeJ91c9mTcBhgrsj+Mf6TWec8u/szng1yHaXzRqJFZBjnItgzuDYdpfPkhBdxxlIei@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpMfQCZTL6rc9k5Mpwek5veOf6fJA9mAnVP7i+xcnqhP7GhKnW
+	u/GtisgcatvOlv0mdo4AChze1Y3wEX2ivvRagdK5b/qA+QZYNt2qN36eskv6pxhOIM8=
+X-Gm-Gg: ASbGnctKB3I6CxDzEJvaOO85X+BOLAgTN3WuLAslXdBjAHmSW1Vot8JqQIPvBao541t
+	upEiail6WkdNuXP1/1N0/o8ioxG0Dq6UD7jxj9UpTwr0iAJ0JzpsnjSc73fxfcLmg1oXK/dCwVZ
+	SbFAsDhgY1xZNlmTBa6UQFCGzAvhY+mNhgc0OplAMOTQVawP1AKuikXscyNXiBreie6MJOIG5+n
+	RNSiHQQUVaVFmBPdkz0k3/v5BhFOednqqFGSOvWy04UCsJ6ElehfloVoz9P9Vqk+odC+OSjlSeG
+	F0uy4Q6r4RyOsI41ow8UIxp8HsbZWlPn3FjKjCXtCPSSd6rJm6as69eVLlMeTJlPGIph9CmxSDP
+	FvzDT7Cs3z0bQtj4=
+X-Google-Smtp-Source: AGHT+IFezP6rZ6NJam3qkYM1ont9V/Ju3WNFxU4NhSoAWiBk+tW7MeR71vKuui0yalRYjWiHv6SH+w==
+X-Received: by 2002:a05:600c:8719:b0:442:f482:c432 with SMTP id 5b1f17b1804b1-453248f9836mr22050755e9.18.1749634476351;
+        Wed, 11 Jun 2025 02:34:36 -0700 (PDT)
 Received: from gpeter-l.roam.corp.google.com ([145.224.65.90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453251a2303sm15467005e9.31.2025.06.11.02.34.32
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453251a2303sm15467005e9.31.2025.06.11.02.34.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 02:34:33 -0700 (PDT)
+        Wed, 11 Jun 2025 02:34:35 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 11 Jun 2025 10:34:25 +0100
-Subject: [PATCH v2 1/2] arm64: dts: exynos: gs101: Add 'local-timer-stop'
- to cpuidle nodes
+Date: Wed, 11 Jun 2025 10:34:26 +0100
+Subject: [PATCH v2 2/2] soc: samsung: exynos-pmu: Enable CPU Idle for gs101
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250611-gs101-cpuidle-v2-1-4fa811ec404d@linaro.org>
+Message-Id: <20250611-gs101-cpuidle-v2-2-4fa811ec404d@linaro.org>
 References: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
 In-Reply-To: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
 To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
@@ -97,74 +96,271 @@ Cc: William Mcvicker <willmcvicker@google.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>, 
- Will Deacon <willdeacon@google.com>, 
- Youngmin Nam <youngmin.nam@samsung.com>
+ kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2031;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7073;
  i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=GNkE/x3QELPf9uEv5AeKZxVXHxNGOdHNzMbUcWU+Scg=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoSU2k/uEPXjihPn+w3dlTSEkJlfoWeDSKU0p9w
- 37LXIXg2GqJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaElNpAAKCRDO6LjWAjRy
- uoFuD/4rGwT+igTL4ZuLmclGc7CRg4Sw/1TwTnyN/BTh71f9GewP9YV0B5cusbH9f98FQClTs3t
- wlhpRQ5saF4lj4s9lSZqT9xYZvQ3Hh4gEBANrlSHI9jnXEFC9JNHy3JquCOrca1+a42gelFj9sb
- Gwu8TyFvQAepHFY2wcimsvIge+tM2W30YChXX3EPhlIrCLyqS1d5FwrI7j+1mt/OQpPBTaoKqFU
- ysYc9R9aFw6gnrpcAMNEH1Bvn5AhE60ANyd+o31h1vsELt8qaXTZF9GLhX3H9kDN8wowQnEg3MX
- iWjNvc4j7U4jLJ6RgQHVuk/jy0KodAYRcG4LcygKwimHECJFP8KYpg/SKV80OC1rSm6hWTL3PlZ
- AOFlU121+clnRJpOrm0BF9qIqDCqiAg/cO2V/X1stE7AoGqwTpEg0Df4zhhtDS3Zmvpw77XlsYT
- xxt41j0W2Q9AtOtn2qzPZ18SKm5mgWJA1xpYqxolsUIowr5acU7awSS58TA2RNoT9LizOZira5S
- sUQLhrud89K8X86RnjbzXCu+fmNwUFxJ711+rPE2rblTKwO7YakhcPKGHIUQyFo3ehSfGYMnmcr
- YbgwwmBbfsaChKEWGs8WHBP8caa8+CcpJpodG/ZfdNCpFsm3R1o6l3gak+Ohm2qCH/WG2bN3ctV
- fCxBW9dBst6tT8Q==
+ bh=qTs3IRLu5xA+mhLIgJ44rsQgmMvxnUCHZ/EW6gO8Vwk=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoSU2lxp0CXerInpZzjgxAxPDiAXS+cx5GGZ3wL
+ 66Mv1PObHKJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaElNpQAKCRDO6LjWAjRy
+ ugz7D/9ycWCS+1kysD81RwKEkYsnWRulQwV4baIqdf8qXrUZQnpecMUToyOmrIR/oJVJ0yzWByh
+ gAmVsSxSHNJrzgTq+f9ebDMNTPtCx9xQMoBc+RVSUcNIhhMl3gohnBz1+1jpIERNxn/yreNT5Us
+ frHSHyEUzMJl+njMaelO9Vlz6/Pcl3JTWOC651/TU22n5lHFkf3ljfx4oPnv6u6uKhobVHBdBmZ
+ ITISASnTUdBdbAEQ+ZQOUBj0Nhdc595E/McvaeMoqWa4OkYxRT3ngMpiBJFkQUoH/e/XNln/ncB
+ 2l+yKdB2B3ss20rnc62oXlstrqkSM6aCJ/bzuyJeRoLfMHdH0jRPTk9h6xrpgZYgtdGQD1J0Vhv
+ C1+CJxE5PY1tS0VwZCRjG92jYLcfAgdPwUeajIxA1w7oyOv72MaMGh5+8ye8mizG2RzGVsO6Ed0
+ o3eS8zWc6GNsSMoedxDBHU4TtIsZ5AC40onJL2nPnKk3Ro8pQCxGRhWehSqUjkhh5e0Be+lRRxh
+ aArz7RINoGwZu/y+MYbq0xlNY7dfXKBXja9N/ge15MBWkTsnSMqzzFQqX033Sgizr4i5hhP/63l
+ bV1gZHhoVXUSKfKvwPG/mjBRR3KvmMfQCUkkFTUiiRg8rlx/kuPjuHuAD3omWXAa0AwsSEuGFTT
+ IhL6HciJ6J7uRRA==
 X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
  fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-From: Will Deacon <willdeacon@google.com>
+Register cpu pm notifiers for gs101 which call the
+gs101_cpu_pmu_online/offline callbacks which in turn
+program the ACPM hint. This is required to actually
+enter the idle state.
 
-In preparation for switching to the architected timer as the primary
-clockevents device, mark the cpuidle nodes with the 'local-timer-stop'
-property to indicate that an alternative clockevents device must be
-used for waking up from the "c2" idle state.
+A couple of corner cases are handled, namely when the
+system is rebooting or suspending we ignore the request.
+Additionally the request is ignored if the CPU is in
+CPU hot plug.
 
-Signed-off-by: Will Deacon <willdeacon@google.com>
-[Original commit from https://android.googlesource.com/kernel/gs/+/a896fd98638047989513d05556faebd28a62b27c]
-Signed-off-by: Will McVicker <willmcvicker@google.com>
-Reviewed-by: Youngmin Nam <youngmin.nam@samsung.com>
-Tested-by: Youngmin Nam <youngmin.nam@samsung.com>
-Fixes: ea89fdf24fd9 ("arm64: dts: exynos: google: Add initial Google gs101 SoC support")
+Note: this patch has a runtime dependency on adding
+'local-timer-stop' dt property to the CPU nodes. This
+informs the time framework to switch to a broadcast timer
+as the local timer will be shutdown. Without that DT
+property specified the system hangs in early boot with
+this patch applied.
+
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v2
+ * Add ifdef CONFIG_PM_SLEEP to avoid
+   Fix warning: unused variable 'cpupm_pm_ops' [-Wunused-const-variable] (0-day)
+---
+ drivers/soc/samsung/exynos-pmu.c | 137 +++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 133 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 48c691fd0a3ae430b5d66b402610d23b72b144d7..94aa0ffb9a9760c58818c0417001fd187b048ea8 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -155,6 +155,7 @@ ananke_cpu_sleep: cpu-ananke-sleep {
- 				idle-state-name = "c2";
- 				compatible = "arm,idle-state";
- 				arm,psci-suspend-param = <0x0010000>;
-+				local-timer-stop;
- 				entry-latency-us = <70>;
- 				exit-latency-us = <160>;
- 				min-residency-us = <2000>;
-@@ -164,6 +165,7 @@ enyo_cpu_sleep: cpu-enyo-sleep {
- 				idle-state-name = "c2";
- 				compatible = "arm,idle-state";
- 				arm,psci-suspend-param = <0x0010000>;
-+				local-timer-stop;
- 				entry-latency-us = <150>;
- 				exit-latency-us = <190>;
- 				min-residency-us = <2500>;
-@@ -173,6 +175,7 @@ hera_cpu_sleep: cpu-hera-sleep {
- 				idle-state-name = "c2";
- 				compatible = "arm,idle-state";
- 				arm,psci-suspend-param = <0x0010000>;
-+				local-timer-stop;
- 				entry-latency-us = <235>;
- 				exit-latency-us = <220>;
- 				min-residency-us = <3500>;
+diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
+index a77288f49d249f890060c595556708334383c910..7f72ecd60994f18bb639dd8e09e1c6ff6158066b 100644
+--- a/drivers/soc/samsung/exynos-pmu.c
++++ b/drivers/soc/samsung/exynos-pmu.c
+@@ -8,6 +8,7 @@
+ #include <linux/array_size.h>
+ #include <linux/arm-smccc.h>
+ #include <linux/cpuhotplug.h>
++#include <linux/cpu_pm.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/mfd/core.h>
+@@ -15,6 +16,7 @@
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/delay.h>
++#include <linux/reboot.h>
+ #include <linux/regmap.h>
+ 
+ #include <linux/soc/samsung/exynos-regs-pmu.h>
+@@ -35,6 +37,10 @@ struct exynos_pmu_context {
+ 	const struct exynos_pmu_data *pmu_data;
+ 	struct regmap *pmureg;
+ 	struct regmap *pmuintrgen;
++	spinlock_t cpupm_lock;	/* serialization lock */
++	bool __percpu *hotplug_ing;
++	atomic_t sys_suspended;
++	atomic_t sys_rebooting;
+ };
+ 
+ void __iomem *pmu_base_addr;
+@@ -336,7 +342,7 @@ EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
+ #define CPU_INFORM_CLEAR	0
+ #define CPU_INFORM_C2		1
+ 
+-static int gs101_cpuhp_pmu_online(unsigned int cpu)
++static int gs101_cpu_pmu_online(unsigned int cpu)
+ {
+ 	unsigned int cpuhint = smp_processor_id();
+ 	u32 reg, mask;
+@@ -358,10 +364,26 @@ static int gs101_cpuhp_pmu_online(unsigned int cpu)
+ 	return 0;
+ }
+ 
+-static int gs101_cpuhp_pmu_offline(unsigned int cpu)
++static int gs101_cpuhp_pmu_online(unsigned int cpu)
++{
++	gs101_cpu_pmu_online(cpu);
++
++	/*
++	 * Mark this CPU as having finished the hotplug.
++	 * This means this CPU can now enter C2 idle state.
++	 */
++	*per_cpu_ptr(pmu_context->hotplug_ing, cpu) = false;
++
++	return 0;
++}
++
++static int gs101_cpu_pmu_offline(unsigned int cpu)
+ {
+ 	u32 reg, mask;
+-	unsigned int cpuhint = smp_processor_id();
++	unsigned int cpuhint;
++
++	spin_lock(&pmu_context->cpupm_lock);
++	cpuhint	= smp_processor_id();
+ 
+ 	/* set cpu inform hint */
+ 	regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
+@@ -379,16 +401,89 @@ static int gs101_cpuhp_pmu_offline(unsigned int cpu)
+ 	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
+ 	regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
+ 		     reg & mask);
++
++	spin_unlock(&pmu_context->cpupm_lock);
+ 	return 0;
+ }
+ 
++static int gs101_cpuhp_pmu_offline(unsigned int cpu)
++{
++	/*
++	 * Mark this CPU as entering hotplug. So as not to confuse
++	 * ACPM the CPU entering hotplug should not enter C2 idle state.
++	 */
++	*per_cpu_ptr(pmu_context->hotplug_ing, cpu) = true;
++
++	gs101_cpu_pmu_offline(cpu);
++
++	return 0;
++}
++
++static int gs101_cpu_pm_notify_callback(struct notifier_block *self,
++					unsigned long action, void *v)
++{
++	int cpu = smp_processor_id();
++
++	switch (action) {
++	case CPU_PM_ENTER:
++		/*
++		 * Ignore CPU_PM_ENTER event in reboot or
++		 * suspend sequence.
++		 */
++
++		if (atomic_read(&pmu_context->sys_suspended) ||
++		    atomic_read(&pmu_context->sys_rebooting))
++			return NOTIFY_OK;
++
++		if (*per_cpu_ptr(pmu_context->hotplug_ing, cpu))
++			return NOTIFY_BAD;
++
++		gs101_cpu_pmu_offline(cpu);
++
++		break;
++	case CPU_PM_EXIT:
++
++		if (atomic_read(&pmu_context->sys_rebooting))
++			return NOTIFY_OK;
++
++		gs101_cpu_pmu_online(cpu);
++
++		break;
++	}
++
++	return NOTIFY_OK;
++}
++
++static struct notifier_block gs101_cpu_pm_notifier = {
++	.notifier_call = gs101_cpu_pm_notify_callback,
++	.priority = INT_MAX	/* we want to be called first */
++};
++
++static int exynos_cpupm_reboot_notifier(struct notifier_block *nb,
++					unsigned long event, void *v)
++{
++	switch (event) {
++	case SYS_POWER_OFF:
++	case SYS_RESTART:
++		atomic_set(&pmu_context->sys_rebooting, 1);
++		break;
++	}
++
++	return NOTIFY_OK;
++}
++
++static struct notifier_block exynos_cpupm_reboot_nb = {
++	.priority = INT_MAX,
++	.notifier_call = exynos_cpupm_reboot_notifier,
++};
++
+ static int exynos_pmu_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct regmap_config pmu_regmcfg;
+ 	struct regmap *regmap;
+ 	struct resource *res;
+-	int ret;
++	int ret, cpu;
+ 
+ 	pmu_base_addr = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(pmu_base_addr))
+@@ -444,6 +539,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+ 			 */
+ 			dev_warn(&pdev->dev, "pmu-intr-gen syscon unavailable\n");
+ 		} else {
++			pmu_context->hotplug_ing = alloc_percpu(bool);
++
++			/* set PMU to power on */
++			for_each_online_cpu(cpu)
++				gs101_cpuhp_pmu_online(cpu);
++
+ 			cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,
+ 					  "soc/exynos-pmu:prepare",
+ 					  gs101_cpuhp_pmu_online, NULL);
+@@ -451,6 +552,12 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+ 			cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+ 					  "soc/exynos-pmu:online",
+ 					  NULL, gs101_cpuhp_pmu_offline);
++
++			cpu_pm_register_notifier(&gs101_cpu_pm_notifier);
++			spin_lock_init(&pmu_context->cpupm_lock);
++			atomic_set(&pmu_context->sys_rebooting, 0);
++			atomic_set(&pmu_context->sys_suspended, 0);
++			register_reboot_notifier(&exynos_cpupm_reboot_nb);
+ 		}
+ 	}
+ 
+@@ -471,10 +578,32 @@ static int exynos_pmu_probe(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++#ifdef CONFIG_PM_SLEEP
++static int exynos_cpupm_suspend_noirq(struct device *dev)
++{
++	atomic_set(&pmu_context->sys_suspended, 1);
++	return 0;
++}
++
++static int exynos_cpupm_resume_noirq(struct device *dev)
++{
++	atomic_set(&pmu_context->sys_suspended, 0);
++	return 0;
++}
++
++static const struct dev_pm_ops cpupm_pm_ops = {
++	.suspend_noirq = exynos_cpupm_suspend_noirq,
++	.resume_noirq = exynos_cpupm_resume_noirq,
++};
++#endif
++
+ static struct platform_driver exynos_pmu_driver = {
+ 	.driver  = {
+ 		.name   = "exynos-pmu",
+ 		.of_match_table = exynos_pmu_of_device_ids,
++#ifdef CONFIG_PM_SLEEP
++		.pm = &cpupm_pm_ops,
++#endif
+ 	},
+ 	.probe = exynos_pmu_probe,
+ };
 
 -- 
 2.50.0.rc1.591.g9c95f17f64-goog
