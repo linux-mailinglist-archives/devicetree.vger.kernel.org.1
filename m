@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-184863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92495AD5657
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:02:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5C1AD5669
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 15:04:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 656721E170F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 13:01:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A2FE1BC413C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 13:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F5F28368F;
-	Wed, 11 Jun 2025 13:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E01283CA2;
+	Wed, 11 Jun 2025 13:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="eS4L6Oud"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="QbPMM9gW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D29283CAA
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 13:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456B52741D0
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 13:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749646851; cv=none; b=lDcWEutyDTNoeO8GuzlAl500EqI0CCbc1vjrU5Sd+nNApAewytH7UObwZl//TD9c+U/Kw6LWkFdgbmkIuRrjm9TcZLMzgOzHV+iTiIbHMsPkQ+rGdW6/EKn8IYvZBC/2JuAwaoCuPhWKN3mD/5T8ZNPqBleJGkZt2phjMUuVDog=
+	t=1749646865; cv=none; b=KjNq8MUkcuyL8otiLTx2/txejLKLejvGGslLVC/y9ZNpPYty6wSmq4bz5tkG8R13I2f6Hi1jmop9DignvcRnguxeD1C1k7TVSo5KIZUbMUJmVBqXLMz6uny77JE83K32v5Sy/fyQmCgi06bHUpg3i9gk8Fk9P3adpYDMMV/VVn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749646851; c=relaxed/simple;
-	bh=BsrvoibobNdRj5bx2FV7FFPriwpl6oIPTWKF+TJb8js=;
+	s=arc-20240116; t=1749646865; c=relaxed/simple;
+	bh=OUo46ask5zEdNnxgtDRLYOxKjqeZYpKbIvKQrOHiQr4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IUMcaaFjtX8Mmrr+iKAAtufvFhyLibefHuPM8zkKd7BWdnoatjc9Uepdy+sA8pNq46n3HJVQ/k5oGB42EbFZaFac3VDAkKnsLffeCCw6b6+kaLHSRKKGK9pTxSr9/qkOXAIy/+HVVFY1NC5UhzoRiHY7jcAapzx6FNks4rJHirE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=eS4L6Oud; arc=none smtp.client-ip=209.85.214.176
+	 MIME-Version; b=Ra3lp8BQ39yLAZoHigX9yk/M6esZGshyxMK3I0YTXckaB5zeeWyhr/bb0a7f9nkQtbcuWK3FYCOc7sxvf5WTbErsZc+hc8szJztuL3ApRKhQb3H75GoGuMztAUVZ9TW/anasq3DR2FUMFeoUQx3eIQ2ASLEw35iuDw4cZbXLlxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=QbPMM9gW; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-234bfe37cccso80672595ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:00:49 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23649faf69fso1048645ad.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:01:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749646849; x=1750251649; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749646864; x=1750251664; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=l3Hj23NsfOD62jCqYZdTyo05Iy3n4LV0OoIjBt95NQs=;
-        b=eS4L6Oud2XZqymAcK9cWsBA58MUdJwHnOAKjUBMAHBedEb/rJsHMyAqwAfCZYxGCbw
-         ohON8Qudxhb4TmZVqYjp6hjl7GBOvILNAq1kOgSpMPlubG9zbr466afYz0IVzV6vb3Ge
-         Nc5deyJkuuARgIuoOlErfV9TSAxQ/sBfLJHVcF3G9GmaP+egEhtPEe3BDj6MaejoCTbI
-         DU26bIZ05CwEU6XjocTZgjGP8by9JeSWbOHsgMA9j3WbXPKoqi5WGWhtxoP+tjhDOk5u
-         cX31cpD3oHAbSqq2aR7gCB4Vk7G2YEJ6w1LtmC/Kxf10QFv2a5QvF/l/6HsNKxrCyB8+
-         kgMg==
+        bh=CSKx+jiwSQ8DJGzzvr3skZPVBhTTim+uSj665SiqoD0=;
+        b=QbPMM9gWoczJsDC0oLzWD3iFJK53GT6JRMtpLCBIDg+Ub+xFO9Jif9egm9lljW8vtR
+         rWcjApI4GscBPCBAOcRJ8G2HP0YMlc5tCZ6RBzf/SD7XRdiwQbiaGNdX+vNcUv+UwVYM
+         nnbFUE0yK8TjEh4/8+HlIDZjs+XVJsdOvYOf/JlO2Dk0aYZhUDpcia3u8+eUcNyubEdQ
+         lNLHYmg5zsXzQh7NeJS1MBPhJIJHuasHIiVBTxN2mzoImm4t6Mm0GAF6qFsdN4FCk5gl
+         KsMp1SOndgeKTghBNQKTTh0fiWiJcgFdkfekkyzZXiVZUP8gqbFJ4DWOvzhTx7IrVjRZ
+         HRng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749646849; x=1750251649;
+        d=1e100.net; s=20230601; t=1749646864; x=1750251664;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l3Hj23NsfOD62jCqYZdTyo05Iy3n4LV0OoIjBt95NQs=;
-        b=iOq/O09QpM+YkrPIwBoNBWyG8vPKROhJn661evLWU7zPdS3TVde5JnQRYrStqB9Oc/
-         ihjIs2vYLYoUkkkjbi4rVCcVPCn1/hjnw6nEY52E3HNxBfNdDmtIx77Rs43oTtZpFL+6
-         dhka8+HYsMEAZhmC/y7Cs3WiWVQH5I56CVSmN6sj/qGlmBrBPqtyzs5UPOYw9zNFGOgz
-         FDAJQAAJCW/AZtA6fylER7CTWKO9NWTGH8ov9QHCsHoSvmOKSrtHqRteGemFI49C5skq
-         7JJs3JosoyRbJIkiwqRxQ2uIMmkyppiWt92gYD9B+vqchlMCp0K5LOZqxkQi16Wqp8ug
-         Ky8A==
-X-Forwarded-Encrypted: i=1; AJvYcCWMuUjVjNakLoSs5YeAJOA+oxJjGSvFJhCTOKocXveLwFdwTGW4JpGvc73Qnzpi8bxwTSUweT6dP8IK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzUdzJwWxjFVf/4/hbdO/O9frGLkuXwJeiQij8iGQlshIZOzgQ
-	fpULF+l1PZ7Mx/JicEcoPDgIGc5nlmmGawCa40seogx+C0Dr9KiHhC2OPlMAd18vsro=
-X-Gm-Gg: ASbGnctNSw4YaMsE52183Fw9fsLuhw+KM/Qnt3MlPtrGYr7RDo7Pbyv+3K5gHu2u1F3
-	kZpXH8W71KqiA8NY4/o8eEw0pIr537GAd8h/HhNmwzZASEMMKCT8ys1wQ1b1muvwrTNc1vDEmKq
-	qYx0W70BOeAb6aN2cSDHtuUVgQQ+Ht0Klcn8+XRoVnKcvkVSGKOSVqhMUis3UrOGy/a1B0RtYgf
-	d33/cF+WHDoqN78bfT2vrleC5YWHgmVZMFVJ5L0BN/m7tEU1v24zSjY+DWfeFF7y0v5c1Bw667O
-	DuRTOiNEg8GLKyGOOzcMAnZMCdfYHU/4XnHMNsnlBKMVn/J8PreIlYePef9ssx/DxrIU502cdRN
-	5Fh4RzF/mB5UGXXUivKUyZg==
-X-Google-Smtp-Source: AGHT+IHVBo9LkzNee2JKYrKdwtZHZLkreGBOXP7vX/U81FjBHvUbwcdU17sovy3MyAgANjjIbprzmQ==
-X-Received: by 2002:a17:902:fc85:b0:234:d1f2:da31 with SMTP id d9443c01a7336-2364260d38amr40073705ad.2.1749646848615;
-        Wed, 11 Jun 2025 06:00:48 -0700 (PDT)
+        bh=CSKx+jiwSQ8DJGzzvr3skZPVBhTTim+uSj665SiqoD0=;
+        b=ocX6c4eFp9JZEKDmixcjm4Zo/xoysHhybipF46xfysbpokr1Cy5gvjmKIOBmFXNzZ0
+         qKAaPip/p2fzzJsFSE7WvF1cJmB/OQlhrtOFKmgyIadmK1e5N4YcCXpO6jjkZHr4FZ6j
+         YnuhVP4I6Hi0sdc6gJsw7dFAR01sMYZIS2bONwYHmGQxVmxx/Rr4GJ6h/tqnK9m9CV7s
+         DD0AFppwDCI/3zHW1YW3fLuTMgvF7RZ8En5W+JcYZEE+8Sm7HwMmMetjgaqeSpSY46SF
+         ulJSCcCT0SlhMprJC/KvVPQCsdxJ62EJJWCWhKxM5Q5EXCxs4QQp/vX+TDUJy4rVBC6h
+         Vtdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWxwloN/Wn8pXy0EaZ2IPRFKdVDKJN7xj8JoZDTWLITfmVDaqTOz9biKspi9KXpc/zS/UZ9EPTO6sMO@vger.kernel.org
+X-Gm-Message-State: AOJu0YztAgwTnQ9R3r2yWtSXu5zh5WBQYOtkSM/N8ux4MduPZ8otp8oZ
+	+gDT5zS+4qEJet7BfsYV5j3m2PXGBTzqtemY4rb+hsHV+LhsPG0JEqXd7aST6d4RzJw=
+X-Gm-Gg: ASbGnctKGD4QYjbeVG/4/nq9qVD7ot7Dqhgj5b9pM5b/8xacITOTD0uWJfLzb4WEMCa
+	QNxkkCLXeW3FoKXT3SBPNFJJNWwsuzVNOxihsNclI4d5Txuc2NSknq9XBX5fk/9+qGAZgB3fu/h
+	OYa7inziKvEdIIyP+VRkkMhw4AWZJt+nHYa4zuKKc9tCmYoYA6OD//y1sdH5/30zjXcRZPo5LLC
+	3w6tYZNzw0Eq7CwLm0qKpWtLNLTlMo6qWWkPkK8E+/FkqjDU9QUsZWzhIoRX/QOAskc+NC4H4rB
+	k1WOvKeXglp6/SLsNC2sM9/4dldtC/SuQ7GHJUt6yVEk07RybnxR1ONzCdagbRYcPP+wQRC1Gfu
+	yyjnzYqDN2VN9WMzrWdVzwWxG9DmnwzPn
+X-Google-Smtp-Source: AGHT+IHRhbcivXCxN135O16ueeb4/aUJWfnS89ixSiurI5FZ7uV83frEUoZkuyXDNWNmUKyh7r0P9A==
+X-Received: by 2002:a17:902:c94d:b0:234:8c52:1f9b with SMTP id d9443c01a7336-23641b1553emr48488375ad.43.1749646862200;
+        Wed, 11 Jun 2025 06:01:02 -0700 (PDT)
 Received: from localhost.localdomain ([2409:8a00:31a4:6520:3d67:ceb1:7c60:9098])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236030925e3sm86984115ad.53.2025.06.11.06.00.37
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236030925e3sm86984115ad.53.2025.06.11.06.00.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 06:00:48 -0700 (PDT)
+        Wed, 11 Jun 2025 06:01:01 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
 To: vkoul@kernel.org,
 	robh@kernel.org,
@@ -99,9 +99,9 @@ Cc: guodong@riscstar.com,
 	linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev
-Subject: [PATCH 7/8] dma: Kconfig: MMP_PDMA: Add support for ARCH_SPACEMIT
-Date: Wed, 11 Jun 2025 20:57:22 +0800
-Message-ID: <20250611125723.181711-8-guodong@riscstar.com>
+Subject: [PATCH 8/8] riscv: defconfig: Enable MMP_PDMA support for SpacemiT K1 SoC
+Date: Wed, 11 Jun 2025 20:57:23 +0800
+Message-ID: <20250611125723.181711-9-guodong@riscstar.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250611125723.181711-1-guodong@riscstar.com>
 References: <20250611125723.181711-1-guodong@riscstar.com>
@@ -113,30 +113,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Extend the MMP_PDMA driver to support the SpacemiT architecture
-by adding ARCH_SPACEMIT as a dependency in Kconfig.
+Enable CONFIG_MMP_PDMA in the riscv defconfig for SpacemiT K1 SoC boards
+like the BananaPI-F3 (BPI-F3) and the Sipeed LicheePi 3A.
 
-This allows the driver to be built for SpacemiT-based platforms
-alongside existing ARCH_MMP and ARCH_PXA architectures.
+According to make savedefconfig, the position of CONFIG_DWMAC_THEAD=m
+should be in another place. It was updated in this patch.
+
+CONFIG_DWMAC_THEAD was initially introduced into riscv defconfig in
+commit 0207244ea0e7 ("riscv: defconfig: enable pinctrl and dwmac support
+for TH1520")
 
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
- drivers/dma/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/riscv/configs/defconfig | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index db87dd2a07f7..fff70f66c773 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -451,7 +451,7 @@ config MILBEAUT_XDMAC
- 
- config MMP_PDMA
- 	tristate "MMP PDMA support"
--	depends on ARCH_MMP || ARCH_PXA || COMPILE_TEST
-+	depends on ARCH_MMP || ARCH_PXA || ARCH_SPACEMIT || COMPILE_TEST
- 	select DMA_ENGINE
- 	help
- 	  Support the MMP PDMA engine for PXA and MMP platform.
+diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+index 517cc4c99efc..83d0366194ba 100644
+--- a/arch/riscv/configs/defconfig
++++ b/arch/riscv/configs/defconfig
+@@ -134,6 +134,7 @@ CONFIG_MACB=y
+ CONFIG_E1000E=y
+ CONFIG_R8169=y
+ CONFIG_STMMAC_ETH=m
++CONFIG_DWMAC_THEAD=m
+ CONFIG_MICREL_PHY=y
+ CONFIG_MICROSEMI_PHY=y
+ CONFIG_MOTORCOMM_PHY=y
+@@ -240,7 +241,7 @@ CONFIG_RTC_DRV_SUN6I=y
+ CONFIG_DMADEVICES=y
+ CONFIG_DMA_SUN6I=m
+ CONFIG_DW_AXI_DMAC=y
+-CONFIG_DWMAC_THEAD=m
++CONFIG_MMP_PDMA=m
+ CONFIG_VIRTIO_PCI=y
+ CONFIG_VIRTIO_BALLOON=y
+ CONFIG_VIRTIO_INPUT=y
 -- 
 2.43.0
 
