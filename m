@@ -1,140 +1,113 @@
-Return-Path: <devicetree+bounces-184986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E241BAD5EFC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:25:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54596AD5F43
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 21:47:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6425D189E9C8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:25:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA113A9A83
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 19:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB8929B226;
-	Wed, 11 Jun 2025 19:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8D629B214;
+	Wed, 11 Jun 2025 19:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="RNavwkus"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="Vtqaf/GR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91C727CCDB;
-	Wed, 11 Jun 2025 19:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.135
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBD11DFF7
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 19:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749669926; cv=none; b=JTdBgd0/w6/kENaHqUByDsRgytqSk5fHqbfYiEiPdJCONTWXAzOS9yjZXFiEcSNyWTfT0in5U0qoCkEKpCiXZ3QPD6R4UMq/SAV9t5GyVaFRBm2LPO+mRQfsyZY0NM7cqdJBwTJI5DXllIcyIlOJRyPIX3AMDF1GR+vCxiZSLlw=
+	t=1749671245; cv=none; b=Ms7Utw5GH+O1FRqWj+r9QgbvdHvujzWIzCUqN/v79bP9rnktk39XRajlDwgRBbMf8ns6cX14XrnaoLyy3un0kejFgxBpUdR3SCr2uiQUoClcXxQcRKS6RL5Gp8rV5bs8p0s5mdHXOfxdGN8v0ZueX+Sh53skkgKJVu7UTex0GxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749669926; c=relaxed/simple;
-	bh=rMrecsMLV05QJATkaLBYEZHt+MUdO5IkweZcLHHNWPU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=GjrI6ywXUjODMnp09nwd2vpILPYTIuwovmy5Zfzpditu+xEypo5LHLd2/+vWd4CSZ6ORfPBTlNtRMvq3gMxqVBJ9y9l+4NzB1FMAmhJlm84BEzQdW0kWhgOat9p04wySpwRWfkZGrG1r3kEtm6PFZG/3HorrkcLAKAVxooo9heE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=RNavwkus; arc=none smtp.client-ip=212.227.126.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+	s=arc-20240116; t=1749671245; c=relaxed/simple;
+	bh=qvatDExCgebdAU2j4wyFD6D0pfoMWXHYTe2aEbp6kZc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QYjP0oJ9EtUkRif7oZKxCohQ2POv+LYlCSbRpypquF6qDZ3hYExb+5iuQ0zdX1fna2tMWOg8VgbUfzJCi6YutCkvAch+bh9yd3A05hjkpYtsU1bgsSzlhdf2rwrl7a7fMDXmDXezbe8fAuOARkF/wX591LCUn7skppq5VliZFSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=Vtqaf/GR; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a510432236so251313f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 12:47:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1749669921; x=1750274721;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=rMrecsMLV05QJATkaLBYEZHt+MUdO5IkweZcLHHNWPU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
-	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=RNavwkusowpDrsPNRnGLUItYxG1uNkOcG3yrpdLMEhYpIvP2DpzlUqpIJPqLG6Jf
-	 DKyhS14JO+tjDNe/AsDHXYL+rNMHKs4ypt/sTjfE0u6DcuoStSJL7P0kzNzmNgPpX
-	 NQAZzwgtm3cqJMRXh2QDjxcT1r9kez/IRLPJhSfvljls7cUuUf9nOo4NFrBKBBIVx
-	 nsN+2apwe4yT3pCtltvKI9EJQ1ZtHKf61iHkGuzjYmnJ5Nemj24qz8FvH5qmRn+Wq
-	 sDhgPrEGaUOuJW63G0fyCeprq78r44gyuhP60O2XqV9m4rWGchriQntvJFnWccijZ
-	 bIR6jG+gvipHT9VQIA==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.235.193]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1Mum2d-1uh6iQ2xSV-00z90C; Wed, 11 Jun 2025 21:25:21 +0200
-Message-ID: <64d963bd-b38c-4f14-bb1d-f7e89dad999a@oldschoolsolutions.biz>
-Date: Wed, 11 Jun 2025 21:25:20 +0200
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1749671240; x=1750276040; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8RpoZJq2iKyPHdMzM6e03ta7krL20P5snKJVVti21nQ=;
+        b=Vtqaf/GRsW8gY8q3NSMUXogenJnq+bKUPO9NU5zWhgDbDpOz9/pkwjTiD9gquXw6Eo
+         dpoGSVtWQf4a8362uUNrQRs7TDj/oeqeMlMnQpvy7y/rkjnECHtkKoctpSmb5FnoW5BT
+         lLW0M+l3hX/v6CjouF7kWZbwu8jt0IUcDkuaPJ0IXq6Pp5CRvOpy2cKdCwH8ZI0kzIFt
+         mKvW8kPpx6hEAWmizps5a+bqtnNkAMBL0QxRlc5jTJFGeT2jjHFj68sO6wYpWOl+mGMZ
+         GniY/21NWJMaZHkHgzYOm+zKdhVKSL3YyjLWhJ0PFLajdt381XpXtvVq2l2hnYnJOEuq
+         m6ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749671240; x=1750276040;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8RpoZJq2iKyPHdMzM6e03ta7krL20P5snKJVVti21nQ=;
+        b=o5WuXu03phDqfXXugnSWT/jNwS8O2ry07OS/iaGNa/vt3g9vmKE1cDQOMms7M6lJ2T
+         OWCOEMi8+k1zDha0VxbxSnVn0222D2crUDF/rVu/0pnxDLwud5Kwb7AiezHu+SKNt38X
+         JDvQgkdEXSh61oAZ9YOtWM8qyZf+/tkEcrDWcdHoCRE4REBmXOIjm07KkEjerQdcZID4
+         vgkIRKvZUI0Kyzfi/I79Xch+21k2gNN1P1C2HjgPXWYoA/aOHI9izOKCZBlWkb7+iTGM
+         7eDAufxJiFPGHNJLk6COz+M3SO88qm5t3OJ5gGlC28/i35aab30HXlm6sIUE9/gEDBS1
+         7CXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVV9yyBylfdBkqbQCBiV2MShDJ1hScDh+VXdd4qjLmDjc81x8IRdtjeMsI3Gqh9C1mnfFe4x5R63NrH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEP8Ew7yrZUytTtALOu/Wm+OKkPy2Vs4V2NZdssbDOA2v9JpxR
+	2qKnylNYW88FaYByoksnDtxqzft5TmvBljsz+KLk5qFVHR3ITJv3uoJZBc5bUY5oguM=
+X-Gm-Gg: ASbGncsuefJi2gKlRUQTZaqM016wInV8mn2G7Fg/PqsCmwHpxhHQU+YQ1MJEMzqs4LF
+	u8OvIORKfwWp7h38tLbc9+FXJkjHprcRPkog1LzYTl4R+8OY+96KX2gWsrxrhxVgW15VyQQxINq
+	YOBZI6L/NxAIfuUswGEH+3rOaeOyKa7xZqF8kUs8fqZTfHExQIaTGEe44WQQRU8yZKlPTWA2TDm
+	+vP6ICQvbN/qlo6as8QKVlUXWcnUcCnG52IMGvAKenCyApTGWqSduun2hWMM+R5NuXpnP3KHdsF
+	HUVqiL8cPu3JmQxpj6tfDhha2eYcCeFK53Rxuk81cdreeBhW0HK+U/LODSfJ
+X-Google-Smtp-Source: AGHT+IGN8LdRU2cQl/anZ9naq/oRl2rhKsUNsmL37962FNilm3Q2DGChyK39wNII1l1LzwSLePLGYQ==
+X-Received: by 2002:a5d:5f84:0:b0:3a4:db49:94aa with SMTP id ffacd0b85a97d-3a56128d18bmr179900f8f.21.1749671240347;
+        Wed, 11 Jun 2025 12:47:20 -0700 (PDT)
+Received: from fraxinus.home ([2a02:21b4:9a83:1500:4cac:8ba0:e616:6d2e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53244fceasm15949433f8f.82.2025.06.11.12.47.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 12:47:19 -0700 (PDT)
+From: Ezra Buehler <ezra@easyb.ch>
+To: linux-mips@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Harvey Hunt <harveyhuntnexus@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Reto Schneider <reto.schneider@husqvarnagroup.com>,
+	Rob Herring <robh@kernel.org>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Stefan Roese <sr@denx.de>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	devicetree@vger.kernel.org,
+	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+Subject: [PATCH v1 0/3] MIPS: dts: ralink: mt7628a: Tweak for GARDENA smart Gateway
+Date: Wed, 11 Jun 2025 21:47:13 +0200
+Message-ID: <20250611194716.302126-1-ezra@easyb.ch>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Subject: Re: [PATCH v2] dt: arm64: qcom: sc8280xp-x13s: amend usb0-sbu-mux
- enable gpio
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Johan Hovold <johan+linaro@kernel.org>
-References: <20250610-x13s-usb0-mux-v2-1-598454e6ad64@oldschoolsolutions.biz>
- <aEffYQND8eUgJbua@hovoldconsulting.com>
-Content-Language: en-US
-In-Reply-To: <aEffYQND8eUgJbua@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:+BhG55VDLfj/+sqJDIgRGg/xEIZuxqkARB81LAmByP2KY+VvmwX
- KbxPjrXWTlmUZAEMU7pQDVK828BKjt2i6RiCmh/RUONusVBym3XRDQ3HZc/HC9w6PmqmHBk
- Xs+X4KawGhyM4AB3K2noTmfFsm1+HPy4r8qBRLiVO+cgWcHow3Rg8q/whOPnYbV2/bmm38o
- umPbLH2OXC3SZV04lSRsQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:gHbHn8FrmBY=;4+vtrRykcxVoC5UInwTgKOlID5D
- k8WcsuUZC2Zo1K/b2Ee6q32HE36RplDskMb2TNuJ9F6wmWrmgKKsv2jbX4D1/9MzQ7lGTW16f
- z0bQnot+f+iMuhA+XecQbuRr8ZctysUjOlCISJFJSwdgwqiMUm97fUwPMBaCTtHwC8KaYSOiR
- +Ht9aRM/LWXaIJcwxnG6+NX7ylBtpVBNvfUIaNZ6UY9Ofy2RP0xBuATgEKuuUdr9FCO4dwPy3
- y7TsGcqrqx6/MsrIF9hSSfNr+c8ANPL6T32C/+fBsm7Z1UA3zCpbp4I34rAWsIocKT32W8J0R
- Myiiz6QI41VvdMAV7fzCLwtpZmgpLZQLY/8PtbgFL9C25P9bnAYpFKxCdLFrIsYF6gBaCR+l4
- eQ15KzoxUOuF3SXo0B2ETUhhTizNFnsI6h9SS4SP7YxUCHzxxlbr0Y3XCtSRUKkOi1fNoufkb
- qUO8F5+/MD92kMYcNBadTNl/oJk1riaX7YMQIpsJm4XRCO5UR0iQkO34J7ak8Do6CwXLkoczJ
- Ge8q3VJknFH/gbhhWdsVASg3wUzNpverYFTf9HH6je25wVHsFA8936vNmnTl06G5xWzrh9iCe
- KhKTzovNGVWfHnaNPEE+rpsEK+Cty3qpnWC2cR+hogHnV7v/7IoQa0lEAxwQaSdJqKiym9HPM
- Dy1agpSIwx0becGHzAKNgHOId1gVZ5PjokeG1uD8wSh3+hkodlShKccXPdYgvxXIaUKOBwFD0
- 0SZDa2dQFfF18/bo86dAxrat4nDwuNUcvI/NI69jgFw5kNnJJflFadxXyEBLnLiDD/58QBKDS
- ha+LZIfF6kKuWnC9K164JaNox/FU2AxYGHHBs7wD9dawRO9/832c7g/gnU/zGE9kgMUhs/uTh
- gSZ/2LZUigBxlX7Qw4U5koVfcIePAlJXQ2ndSTIC+VO0qjM30K7xMzwpzUqD4AMVZw+K1lkSa
- 2Zt8sIQFr4+/EbgzOWcp4UBI3+DDXpxYIZahfWBbOsy2kydGDRHWMHHa7NqxtGbAI0e1Fgcht
- 58i6LrVCeuuQAusrf3+rTNKYGEIDQaYV8YagL9u4Il7CgYJLbSV8qULxI4TcpRioSYHvPgnnD
- aToxUU4SSjIPIXm2ynAfeknoD83FNRgz9rrZg6CABRKfJtMOdm58fhfUZC3+8E+VtbDrXmP4k
- YbhlNUjfX3yWCfl/AOPsKJLcXqXUm5Wi2aM3znUdFfrQsxdfnvZ9Pp/cOEDzv2DYQi6BX1nQs
- koPv/mjSPAU6WN2cn9OlU+rNYH8QjsrKQ1phPQJBm5dagVSSkQSAKpxfOGnvUFz8RGsL6c5S3
- 6211vtMTDaTnLBGTzg3a1gPU93ILZtAr8nNH302BNidiEJ0KiVVoFMu2/PYCC/F2G4I0QUva9
- aNZDbR49NZCOqaB/4O/+cA2RXfHWTDxTZA3tVSSbPXlnk6xCB669htflOx
+Content-Transfer-Encoding: 8bit
 
+From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 
-On 6/10/25 09:31, Johan Hovold wrote:
-> On Tue, Jun 10, 2025 at 07:04:46AM +0200, Jens Glathe via B4 Relay wrote=
-:
-> DP alt mode works on both ports of the X13s and "resulted in
-> gpio165" makes little sense so this commit message would need to be
-> extended.
+Various devicetree changes needed for the MT7688-based GARDENA smart
+Gateway.
 
-Well, that was the problem. It didn't on USB0. without and with the 4=20
-lanes patch.
+Ezra Buehler (3):
+  MIPS: dts: ralink: mt7628a: Fix sysc's compatible property for MT7688
+  MIPS: dts: ralink: mt7628a: Update watchdog node according to bindings
+  MIPS: dts: ralink: gardena_smart_gateway_mt7688: Fix power LED
 
-Observed on Windows Dev Kit 2023 and X13s, what prompted me to look deeper=
-.
+ .../boot/dts/ralink/gardena_smart_gateway_mt7688.dts  |  2 +-
+ arch/mips/boot/dts/ralink/mt7628a.dtsi                | 11 +++--------
+ 2 files changed, 4 insertions(+), 9 deletions(-)
 
-> GPIO 101 *is* the OE_N pin, while GPIO 165 is not even connected
-> according to the schematics. The mux may still work after this change,
-> but you'd be relying on it having been enabled by the boot firmware.
->
-Schematics trump any other data, of course. After a lot of tests and=20
-some wild
-results I could narrow it down to the display I used for testing, iiyama=
-=20
-XUB2792QSN.
-It works with HDMI adapters on ~all other displays I have - with and=20
-without any
-4-lanes, lttpr patches. And the original GPIO.=C2=A0The issue with the=20
-display appears to
-be something linked to how negotiation is done by it on that specific port=
-.
-
-Do I need to do anything since its already NAK?
-
-with best regards
-
-Jens
-
+--
+2.43.0
 
