@@ -1,294 +1,210 @@
-Return-Path: <devicetree+bounces-184776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E444CAD523E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:42:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33C49AD524B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:43:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 219491893BBC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:41:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C3607A20FC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512F026A0C7;
-	Wed, 11 Jun 2025 10:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED7A267B8E;
+	Wed, 11 Jun 2025 10:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OUeBoSri"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kU4clNMt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EE12D7BF
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 10:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BB223F404;
+	Wed, 11 Jun 2025 10:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749638485; cv=none; b=ZAiSNeoml8aHpToaEMIqgBMCeUhQJHD4LXX8VcnnoTXzlJiOBMhwD/x+wTiL76VZMjWVZlj4bsyTFhlNQ+kkU3+Pvn2udGBWyJCSAKwUQQCb4gFFEr+bSLXbRv5mtq7T7o1PFZTuFS7Qj0JZk6ewhbZNXIfqvfL358nMGLShmDE=
+	t=1749638593; cv=none; b=hJSUJojSdQSlDHwVPHXdLiqGv5Qa+f5YqGuzmXJfua7pUH0F5wmwz1sR9IvDPa3ZdfNI+h1PfcjNqj7+MqUxAYChUOIlwXguCTRLh8ZE8adatbQyHJ6Xn/taVoaRhFPdpiOJl01YMT+QqFDWy/azjBEBh+M4t8cbgcJ6JNSGJZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749638485; c=relaxed/simple;
-	bh=XBJE0UUkb4WlIJxUnvESJgmCoTguyN2zJQW+GnbUZZs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IMOHrA8xP0Z2zkbcEKPb150hLK2kRjNQffw7d6CnDOiUfoDvJ3jI2z57FenKG0/or3QzFDILKPUPwjJKVwzaB+BEhqJcX2DzwZQ6qvovC69D97uL/CBomaY7P99DRFUX+C6+y/QjLc5RbXBgL+/09RwpVtv7eRmHIr95Q8ZdBkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OUeBoSri; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-450ce3a2dd5so57935345e9.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 03:41:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749638481; x=1750243281; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XBJE0UUkb4WlIJxUnvESJgmCoTguyN2zJQW+GnbUZZs=;
-        b=OUeBoSriZhcbBzhkpeA4ENMiKTuv7QaJmrmzkWjsWQB2zZ0Dw8YNRbW9t7ghLaAmG/
-         tabO+FcTr6+srA2eS2j2mCDKd8IiNFDtLmjVB3dxUyzDaPOrVF+EBYx9cRFUnUYHT715
-         Mb6z6vFN407gPMUvEbc2xQP+9D1+y/oklkvAs04RHgQTlhMo23yABdT49r1El0h+F4KP
-         cfhZ2ner2/AbopEls3LzDZZz1SKQ8UsKd8BhMlbanUSlzTimnaqg0fiRtkwXWvGtDr9I
-         GFdLzOmNBuDJEP98q7Z8rVS/cNgjg3r6vK94T/X/i5tzltNKEz39TQjW48r01alDyoc3
-         OmgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749638481; x=1750243281;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XBJE0UUkb4WlIJxUnvESJgmCoTguyN2zJQW+GnbUZZs=;
-        b=nHOi5iCfzaK18eFJoHJgc+cqfo2ZFe/EvXMkkzWRzAcbZ2ZmqjVrRoMqPQ7bb/zjk/
-         bD/8NbNM3z9QIxzIpQwxK6DMeKPtvoL0TO9bqiTIXJbhqVq3Y3MJsOo5ZZbYlAo3nfAD
-         TkVAjvDwtpkOoZE39OVLi7+GXB77HCagRjV7yO74Lifp7uQa+SidXDPJUIh2i5W0V/oF
-         svuTmFqSwUGKIoucbrRLMv+7qdRxts92fpKtKyk7LbTBQoimDX0nyomRlH3fTXRyX2Bm
-         MKaXQI6qug5nTIN9DHzizX5U7dcQvCQdj+LLDMoa5khdar+Kwdw9u1HnTJrG7lpgvg9r
-         XGcA==
-X-Forwarded-Encrypted: i=1; AJvYcCUuDbtW5nsbxqxxixv0EelO63rcWGYNyZiT043sTwwWO45VW6F9k6N4xIBtfBSvEcKm7hwrT3SUZumy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPzOwWjmjPiy80p+lP5JsU4YJ/oUAenyNKcvPVTHsyfTq2Z9hj
-	1uR5lhHM2NqoCG+TGz+qG2tScT2lPceEJ4Ra+S2ufT+WDqlS04QI+TnwmTIr+OGCsPU=
-X-Gm-Gg: ASbGncutbv2cStqcKL+mkfjcSN73U2ovQWKJIiEAgBPyulbL7rO/LiuTyJMeHilWTvk
-	URI3/XH+zWNPYWCarfveJwwvTlC6gZHGGqOod7ETWR3SnDdumi3WexDEd8XRmmoT8reJ5sVyt20
-	/owOnTyDWlhjYwpwlhg4xxfh6XMZktgiOe1D9ZGsLgT1go8u9QqhsLBpm8Wl26i5vHqb1NGOIrS
-	hoO4mxllccbjx4u+qmX5Htuszx/QgdjTNpp8dMxG4reT4XXamhXe1C/VZcv6j9MY8eszbPtdyYJ
-	uHQkNPwdWgUbr9SLmS+w+X4g8GTSMrOrSFMUzPP3TF6pb3IM+DaAaaQnNxJIvfawdg==
-X-Google-Smtp-Source: AGHT+IEp2Z3v7vO+k7iz1/ljixUxn26m4gMIUOFRAzHd/4cJj5qsGsoZZZdPm2wkgnSeYm5bHOeEew==
-X-Received: by 2002:a05:6000:288c:b0:3a4:eb92:39b6 with SMTP id ffacd0b85a97d-3a558a4277cmr2115115f8f.54.1749638480806;
-        Wed, 11 Jun 2025 03:41:20 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532518bc06sm17147605e9.24.2025.06.11.03.41.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 03:41:20 -0700 (PDT)
-Message-ID: <05508556283ffeb8a128ad58be06736b11a91842.camel@linaro.org>
-Subject: Re: [PATCH v2 02/17] regulator: dt-bindings: add s2mpg10-pmic
- regulators
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Peter
- Griffin <peter.griffin@linaro.org>, Will McVicker	
- <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Date: Wed, 11 Jun 2025 11:41:19 +0100
-In-Reply-To: <20250611-statuesque-dolphin-of-felicity-6fbf54@kuoka>
-References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
-	 <20250606-s2mpg1x-regulators-v2-2-b03feffd2621@linaro.org>
-	 <20250611-statuesque-dolphin-of-felicity-6fbf54@kuoka>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1749638593; c=relaxed/simple;
+	bh=+Lh2WA+mCURa50Xk69lFYbFMRgESdfHw3F5dmtdL/mM=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=XMAQQljCJ5I2OKCvMagvBXQZe5bEItj02/ZtjlpPKJMkCYBwnsjey1UJ2P0fSULgZH/9OYSYGHC+xU8WmM/uRt3/9VfR2c3Bjy2+PNDX1EFyzOTwBKpIGhlxIWkeLNEDadQRFjvX4aghzya+JHKZK1VU5dw82esJTLdvhP7sMKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kU4clNMt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DFqo010996;
+	Wed, 11 Jun 2025 10:43:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=p97Ev2RuE3rrH3D62Y1GwR
+	SKc2IQC0Xeb8OQTZxtX3U=; b=kU4clNMtesU1mUmqm05Iqb6JRy9hKe0Iaijz+Q
+	66v9oBxM7kk3TjFXydIfjF28K9XB+efNFvYQxCHZsERM8/QCaz8plHav1L0FnG9L
+	m9jABMRhSHEsJiJ1l/F/l9PkuU6cN94WRfCd/ky9CMKzhUTRGwgwi8I4bfHcIX8Q
+	nZa3zswFkD2zQEA0vWi1O+x2kPpCPn5RNwIdtOE77R6qebaHMKVwtsFkD+O58iAQ
+	JUn1tl2nCqHHgqM6WQHaj6DKTdvWzAqC4uyuy3Yjp7/d5dOkvdHjI1wVAGI9GsW7
+	M+LITMZYJlLbodXGsIRDnQzLLC9juopZIE6RtRqJ6/MXIGog==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ekpvaqg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Jun 2025 10:43:00 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55BAgxP8019392
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Jun 2025 10:42:59 GMT
+Received: from yuanfang4-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 11 Jun 2025 03:42:55 -0700
+From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Subject: [PATCH v10 0/2] coresight: Add Coresight Trace Network On Chip
+ driver
+Date: Wed, 11 Jun 2025 18:42:20 +0800
+Message-ID: <20250611-trace-noc-v10-0-a83b5c63da34@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIxdSWgC/3WSy07DMBBFf6XyGiO/7WHFfyAWfsxQL0ggKRGo6
+ r/jVqCmSbqckc+c0fge2YhDxZE97Y5swKmOte9aIcXDjuV97N6Q19IaTAllhRGaH4aYkXd95hR
+ UcEm3bkDW3n8MSPX7MuzltdX7Oh764ecye5LnLjPOGS0C8BRC4QZK5gmF5T6RSElJCsY/f37VX
+ Lv8mPt3dp4z6Qv7t4GfbTBpLrg1CaioWCLBDfvwv7WUS0aShFLIO4C09pm7PtNYCM5Eytr4FO7
+ 47IrxADoQFiph7bN3fbax2pPXMpPBhJs+K9WSIYUkvEgR0a59bu4Lc9ad76lcdjIq4clt+5RaM
+ mQjpBwRBOLa568+q+YJmnxji7NYUkwKYOPvw5V1ws3Z0NigNYHxUmW7wcKMvc0ANNZopYrJFMg
+ sMnA6nX4Bn06nLhkDAAA=
+X-Change-ID: 20250403-trace-noc-f8286b30408e
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>
+CC: <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Yuanfang Zhang
+	<quic_yuanfang@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Leo Yan <leo.yan@arm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749638575; l=3146;
+ i=quic_yuanfang@quicinc.com; s=20241209; h=from:subject:message-id;
+ bh=+Lh2WA+mCURa50Xk69lFYbFMRgESdfHw3F5dmtdL/mM=;
+ b=PacmEHCiEXb333LVmuEvEBgl6fsP09DG/Sh4Sxl2tIuwwT6VZJTf1GFZvuDPuWK44EMLIxZ4A
+ NAlPIpA/2p1Cp2+snVIQJrLUSyu4YQjCqFmIgHg2k5A916DHBFxNOQ9
+X-Developer-Key: i=quic_yuanfang@quicinc.com; a=ed25519;
+ pk=ZrIjRVq9LN8/zCQGbDEwrZK/sfnVjwQ2elyEZAOaV1Q=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=JcO8rVKV c=1 sm=1 tr=0 ts=68495db4 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=9Mfdxx16wSnRITkP5VIA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDA5MCBTYWx0ZWRfX+93Mt520xwtU
+ xF1LZrkjsgzTRV0dn8sHHtL+ocekN7K7hKCt0K0GyMP1PHioYggJTNpubijZaHqmL+7aWGAk54j
+ MwlBnki8QeCq2/Ax+QmePF8SL+yx4blNKo+yjG1yqxfLroMTihDnGtlG31iRU6MASQLFywT+osw
+ h0maj4DxX6QqPvuQ8+2rbvJz9rbp73oXdsW7eIp4ylzDzcASbDBqSBUPHhYMJrH7hgPCep18YAh
+ vgxG9ojEAhoTWeBAcax6f7OJRnWsswfqC2JQwUw34h6bqUPYiIO6SD1wYJWWDPLtK5eIomHvpUv
+ nUv3R5AEPdWv4ETuoq0CWx+dg2KWXLjgD2EkZ4D4B7G1s1FVdOkH2YhMfEvBB1BRKTTcuzEgKov
+ aMXpHAwdguVyf+M4q4yjaqcjInz6IPounO5SofLlpuCehbkYWCpoAYh92oYg/2kyeBQ/oq8W
+X-Proofpoint-GUID: JFkXi9ndG10OiwhqPKx34ka1hLfP_xCR
+X-Proofpoint-ORIG-GUID: JFkXi9ndG10OiwhqPKx34ka1hLfP_xCR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-11_04,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=999 bulkscore=0 spamscore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015 malwarescore=0
+ suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506110090
 
-Hi Krzysztof,
+The Trace Network On Chip (TNOC) is an integration hierarchy which is a
+hardware component that integrates the functionalities of TPDA and
+funnels. It collects trace from subsystems and transfers it to coresight
+sink.
 
-Thanks for your review!
+In addition to the generic TNOC mentioned above, there is also a special type
+of TNOC called Interconnect TNOC. Unlike the generic TNOC, the Interconnect
+TNOC doesn't need ATID. Its primary function is to connect the source of
+subsystems to the Aggregator TNOC. Its driver is different from this patch and
+will describe it and upstream its driver separately.
 
-On Wed, 2025-06-11 at 10:55 +0200, Krzysztof Kozlowski wrote:
-> On Fri, Jun 06, 2025 at 04:02:58PM GMT, Andr=C3=A9 Draszik wrote:
-> > The S2MPG10 PMIC is a Power Management IC for mobile applications with
-> > buck converters, various LDOs, power meters, RTC, clock outputs, and
-> > additional GPIO interfaces.
-> >=20
-> > It has 10 buck and 31 LDO rails. Several of these can either be
-> > controlled via software or via external signals, e.g. input pins
-> > connected to a main processor's GPIO pins.
-> >=20
-> > Add documentation related to the regulator (buck & ldo) parts like
-> > devicetree definitions, regulator naming patterns, and additional
-> > properties.
-> >=20
-> > S2MPG10 is typically used as the main-PMIC together with an S2MPG11
-> > PMIC in a main/sub configuration, hence the datasheet and the binding
-> > both suffix the rails with an 'm'.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> >=20
-> > ---
-> > v2:
-> > - drop | (literal style mark) from samsung,ext-control-gpios
-> > =C2=A0 description
-> > ---
-> > =C2=A0.../regulator/samsung,s2mpg10-regulator.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 147 +++++++++++++++++++++
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0.../regulator/samsung,s2mpg10-regulator.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 48 +++++++
-> > =C2=A03 files changed, 196 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/regulator/samsung,s2mpg1=
-0-regulator.yaml
-> > b/Documentation/devicetree/bindings/regulator/samsung,s2mpg10-regulator=
-.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..82f2b06205e9bdb15cf90b1=
-e896fe52c335c52c4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/samsung,s2mpg10-regul=
-ator.yaml
-> > @@ -0,0 +1,147 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/samsung,s2mpg10-regulator=
-.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Samsung S2MPG10 Power Management IC regulators
-> > +
-> > +maintainers:
-> > +=C2=A0 - Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > +
-> > +description: |
-> > +=C2=A0 This is part of the device tree bindings for the S2MG10 Power M=
-anagement IC
-> > +=C2=A0 (PMIC).
-> > +
-> > +=C2=A0 The S2MPG10 PMIC provides 10 buck and 31 LDO regulators.
-> > +
-> > +=C2=A0 See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.=
-yaml for
-> > +=C2=A0 additional information and example.
-> > +
-> > +definitions:
-> > +=C2=A0 s2mpg10-ext-control:
-> > +=C2=A0=C2=A0=C2=A0 properties:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samsung,ext-control:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 These rails can=
- be controlled via one of several possible external
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (hardware) sign=
-als. If so, this property configures the signal the PMIC
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 should monitor.=
- For S2MPG10 rails where external control is possible other
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 than ldo20m, th=
-e following values generally corresponding to the
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 respective on-c=
-hip pin are valid:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 0=
- # S2MPG10_PCTRLSEL_ON - always on
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
- # S2MPG10_PCTRLSEL_PWREN - PWREN pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 2=
- # S2MPG10_PCTRLSEL_PWREN_TRG - PWREN_TRG bit in MIMICKING_CTRL
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 3=
- # S2MPG10_PCTRLSEL_PWREN_MIF - PWREN_MIF pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 4=
- # S2MPG10_PCTRLSEL_PWREN_MIF_TRG - PWREN_MIF_TRG bit in MIMICKING_CTRL
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 5=
- # S2MPG10_PCTRLSEL_AP_ACTIVE_N - ~AP_ACTIVE_N pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 6=
- # S2MPG10_PCTRLSEL_AP_ACTIVE_N_TRG - ~AP_ACTIVE_N_TRG bit in MIMICKING_CTR=
-L
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 7=
- # S2MPG10_PCTRLSEL_CPUCL1_EN - CPUCL1_EN pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 8=
- # S2MPG10_PCTRLSEL_CPUCL1_EN2 - CPUCL1_EN & PWREN pins
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 9=
- # S2MPG10_PCTRLSEL_CPUCL2_EN - CPUCL2_EN pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-0 # S2MPG10_PCTRLSEL_CPUCL2_EN2 - CPUCL2_E2 & PWREN pins
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-1 # S2MPG10_PCTRLSEL_TPU_EN - TPU_EN pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-2 # S2MPG10_PCTRLSEL_TPU_EN2 - TPU_EN & ~AP_ACTIVE_N pins
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-3 # S2MPG10_PCTRLSEL_TCXO_ON - TCXO_ON pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-4 # S2MPG10_PCTRLSEL_TCXO_ON2 - TCXO_ON & ~AP_ACTIVE_N pins
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 For S2MPG10 ldo=
-20m, the following values are valid
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 0=
- # S2MPG10_PCTRLSEL_LDO20M_ON - always on
->=20
-> No, use standard regulator properties - regulator-always-on
+Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+---
+Changes in v10:
+- Rebase to coresight/next branch.
+- Link to v9: https://lore.kernel.org/r/20250611-trace-noc-v9-0-4322d4cf8f4b@quicinc.com
 
-Same reason as in patch 3. I'll update this one.
+Changes in v9:
+- Mention the binding is only for Aggregator TNOC.
+- Link to v8: https://lore.kernel.org/r/20250606-trace-noc-v8-0-833f94712c57@quicinc.com
 
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
- # S2MPG10_PCTRLSEL_LDO20M_EN_SFR - VLDO20M_EN & LDO20M_SFR
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 2=
- # S2MPG10_PCTRLSEL_LDO20M_EN - VLDO20M_EN pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 3=
- # S2MPG10_PCTRLSEL_LDO20M_SFR - LDO20M_SFR in LDO_CTRL1 register
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 4=
- # S2MPG10_PCTRLSEL_LDO20M_OFF - disable
->=20
-> I don't think we allowed such property in the past. I don't get what is
-> here the actual signal - you described registers in multiple places, not
-> signals. Few of these duplicate standard properties, so this looks like
-> exact copy of downstream which was doing exactly that way and that was
-> exactly never upstreamed.
+Changes in v8:
+- Add sysfs node to expose atid.
+- Link to v7: https://lore.kernel.org/r/20250523-trace-noc-v7-0-d65edbab2997@quicinc.com
 
-For lack of a better word, I used the generic term 'signal' in the
-descriptions to refer to either a pin (VLDO20M_EN in this case), or
-a PMIC-internal register bit (LDO20M_SFR in this case), or a
-combination, they're all signals to the internal PMIC logic. That's
-what the property description above is trying to convey.
+Changes in v7:
+- Move the content in header file into coresight-tnoc.c.
+- Use scoped_guard() to replace spin_lock().
+- Invoke coresight_trace_id_put_system_id() for registration failure.
+- Link to v6: https://lore.kernel.org/r/20250522-trace-noc-v6-0-f5a9bcae90ee@quicinc.com
 
-The 'samsung,ext-control' property itself is required to configure the
-PMIC so that it knows which of the signals (e.g. which input pin)
-should affect a certain rail. In effect, this allows controlling more
-than one rail atomically, while being flexible in the board design wrt.
-which rail is affected by which pin.
+Changes in v6:
+- Add a newline after return statements.
+- Use 'x &= foo' to replace 'x = x & foo'.
+- Use 'x |= foo' to replace 'x = x | foo'.
+- Link to v5: https://lore.kernel.org/r/20250512-trace-noc-v5-0-f2ef070baee5@quicinc.com
 
-This is not a copy of downstream, and the ones that in effect duplicate
-standard properties like 'always on' I simply added for completeness,
-to fully describe the hardware. I'll leave them out in the next revision
-to avoid possible abuse.
+Changes in v5:
+- update cover-letter to describe the Interconnect TNOC.
+- Link to v4: https://lore.kernel.org/r/20250415-trace-noc-v4-0-979938fedfd8@quicinc.com
 
->=20
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/=
-definitions/uint32
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum: 0
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 14
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samsung,ext-control-gpios:
->=20
-> enable-gpios
+Changes in v4:
+- Fix dt_binding warning.
+- update mask of trace_noc amba_id.
+- Modify driver comments.
+- rename TRACE_NOC_SYN_VAL to TRACE_NOC_SYNC_INTERVAL.
+- Link to v3: https://lore.kernel.org/r/20250411-trace-noc-v3-0-1f19ddf7699b@quicinc.com
 
-OK.
+Changes in v3:
+- Remove unnecessary sysfs nodes.
+- update commit messages.
+- Use 'writel' instead of 'write_relaxed' when writing to the register for the last time.
+- Add trace_id ops.
+- Link to v2: https://lore.kernel.org/r/20250226-trace-noc-driver-v2-0-8afc6584afc5@quicinc.com
 
->=20
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 For rails where=
- external control is done via a GPIO, this optional
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 property descri=
-bes the GPIO line used.
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
->=20
-> And this can be dropped.
+Changes in v2:
+- Modified the format of DT binging file.
+- Fix compile warnings.
+- Link to v1: https://lore.kernel.org/r/46643089-b88d-49dc-be05-7bf0bb21f847@quicinc.com
 
-OK.
+---
+Yuanfang Zhang (2):
+      dt-bindings: arm: Add device Trace Network On Chip definition
+      coresight: add coresight Trace Network On Chip driver
 
-Cheers,
-Andre'
+ .../bindings/arm/qcom,coresight-tnoc.yaml          | 113 ++++++++++
+ drivers/hwtracing/coresight/Kconfig                |  12 +
+ drivers/hwtracing/coresight/Makefile               |   1 +
+ drivers/hwtracing/coresight/coresight-tnoc.c       | 242 +++++++++++++++++++++
+ 4 files changed, 368 insertions(+)
+---
+base-commit: 408c97c4a5e0b634dcd15bf8b8808b382e888164
+change-id: 20250403-trace-noc-f8286b30408e
+
+Best regards,
+-- 
+Yuanfang Zhang <quic_yuanfang@quicinc.com>
+
 
