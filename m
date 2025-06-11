@@ -1,130 +1,109 @@
-Return-Path: <devicetree+bounces-184843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FC9AD5542
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:18:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD3AAD5562
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:23:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF2E01BC26F0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:19:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D54D3AC471
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F2327E7F0;
-	Wed, 11 Jun 2025 12:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C28A27EC74;
+	Wed, 11 Jun 2025 12:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="Yat2uFwF"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="AgMQE4jt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BA726E6FF;
-	Wed, 11 Jun 2025 12:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EB4276031;
+	Wed, 11 Jun 2025 12:23:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749644330; cv=none; b=sm+BwWkh2XFcYOMbaC0og4MEW5ePmuACU/ABUspZlNR1EzrihAPAs8iS36vXFikD8c+9+bAaTHQHONqf+uzphTshjlU1th9t7nhA6msUd6HssfUcfN9IQZrooaUmLosWB9AcBot4MfLYrKhCzFoDI768fbtRaW0aAGUv1uTOW4k=
+	t=1749644624; cv=none; b=FYokkZ0TxdHS2V3m/aYEpQFnebF59ALfVyZGAywciFjQDIpL3OAo66EnpnTwNRlWqBjS4AvvMp9wa40saX2rk12jyIqVlc9y/QMjBSGbkeYhUK902sIau71wasbQTp7MtNY2FFtz5K8sxJqZ50kJJL63SZPAwURjSaj9HCmk46g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749644330; c=relaxed/simple;
-	bh=JVD0QnQ3fH6fknvuzPpR26nJeyTlDpQGPKgijvosEWY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n4vLWQPmS92Qd17/GzigS8VedgO8RNNdf9wVLORedjGOFjJlBzuHS4G/PsVhhxZw9ZERk9ebKITtvQT30yCPB6nLbEZ2d9f2UHCDbt1MrXdpOHeUCWaLdqg+lqEsmrbmSoncSQHx7RSN90jeISnkI2RMKxjEgvnQExfZxGGJyaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=Yat2uFwF; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 6FB426002407;
-	Wed, 11 Jun 2025 13:18:46 +0100 (WEST)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id IuhmtmC9y_TL; Wed, 11 Jun 2025 13:18:44 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id AC43C600231F;
-	Wed, 11 Jun 2025 13:18:43 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail; t=1749644323;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=caItnQseM7jUl17RpSfQgqCHqKWQly3zbEi1LRHqMW4=;
-	b=Yat2uFwFKvlaArNh4sVjczx9sBZGJuLdKnENicEF3md36TlvmJSOdsQ6BYY+6aujHdgQu6
-	XEpG05llRmeBp6Cnm7Cb+uI+7krxj62Zj1eAm6DPL3SC2f5F/eaUEITtDNyrDonyhmu2Rg
-	2vIk1dHA1+Vhdb1mM9u4N4I/drVnGZ0=
-Received: from [192.168.1.151] (unknown [IPv6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 882FA360092;
-	Wed, 11 Jun 2025 13:18:43 +0100 (WEST)
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Date: Wed, 11 Jun 2025 13:18:03 +0100
-Subject: [PATCH v2 3/3] arm64: tegra: Add NVJPG node for Tegra210 platforms
+	s=arc-20240116; t=1749644624; c=relaxed/simple;
+	bh=qU0EWVOHmyfXZmfiha9iuQgF+i0AoLy669DcGhO9gIA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hu63T0L8YCsXSk3zUkqaZ2PQ2+hnPhJsx1tXGp/GZpGJPKkd1EErQ1I0kRIiMmkzYHB0rFKB7V4DcVYks3ZQzEr8xpSvmtrIrdimj1wSDq1Jrp82MFs1r3NwD/462apatzKK5gKvlPg0rgO4StHR9Z5hzTi97DIM1Cj843E+zCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=AgMQE4jt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1424EC4CEEE;
+	Wed, 11 Jun 2025 12:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1749644623;
+	bh=qU0EWVOHmyfXZmfiha9iuQgF+i0AoLy669DcGhO9gIA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AgMQE4jtWqqtRUJxAK6BFIAAXJhbZkkrolQBU7+As75rDmuS0vyTQhCgUvTruVlHn
+	 43W3brK7eMurkPyu9Zp06nMoVqCTH2KjP3nHwwy2kLANVeX/HfM1p1cEmBYI6xHPe8
+	 WWOOlE1fHWTsu9YI2+yKj9bRzuDElqvFr/gaaM4s=
+Date: Wed, 11 Jun 2025 08:23:40 -0400
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Saravana Kannan <saravanak@google.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Grant Likely <grant.likely@linaro.org>
+Subject: Re: [PATCH] driver core: Prevent deferred probe loops
+Message-ID: <2025061147-squishier-oversleep-80cd@gregkh>
+References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
+ <20250610183459.3395328-1-sean.anderson@linux.dev>
+ <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
+ <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250611-diogo-nvjpg-v2-3-01f8c76ea90f@tecnico.ulisboa.pt>
-References: <20250611-diogo-nvjpg-v2-0-01f8c76ea90f@tecnico.ulisboa.pt>
-In-Reply-To: <20250611-diogo-nvjpg-v2-0-01f8c76ea90f@tecnico.ulisboa.pt>
-To: Thierry Reding <thierry.reding@gmail.com>, 
- Mikko Perttunen <mperttunen@nvidia.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
- Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749644321; l=1266;
- i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
- bh=JVD0QnQ3fH6fknvuzPpR26nJeyTlDpQGPKgijvosEWY=;
- b=nX1+bm2O8YN9G2bPlhqaKJN7WJlbDxhqI+A3r6pj8PonDW1cYhgcGV8hxb8ZyLZ/ckII2/Qzf
- yFVjtmE80V2DH0WI8Whjbj+eGNUlAaKyV0ViQYvDkXj0KyqrDVumHkG
-X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
- pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
 
-The Tegra X1 chip contains a NVJPG accelerator capable of
-encoding/decoding JPEG files in hardware. Complete its DT node
-and enable it.
+On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
+> On 6/10/25 19:32, Saravana Kannan wrote:
+> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
+> >>
+> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
+> >> registering a bus with children:
+> > 
+> > This is a broken driver. A parent device shouldn't register child
+> > devices unless it is fully read itself. It's not logical to say the
+> > child devices are available, if the parent itself isn't fully ready.
+> > So, adding child devices/the bus should be the last thing done in the
+> > parent's probe function.
+> >
+> > I know there are odd exceptions where the parent depends on the child,
+> > so they might add the child a bit earlier in the probe
+> 
+> This is exactly the case here. So the bus probing cannot happen any
+> later than it already does.
 
-Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Please fix the driver not to do this.
 
----
-v1->v2:
-- Collect R-b from Mikko
-- Explicitly mention Tegra210 in commit subject
-- Be more precise in commit message about filling in an already existing
-  DT node.
----
- arch/arm64/boot/dts/nvidia/tegra210.dtsi | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+> > but in those cases, the parent's probe should still do all the checks
+> > ahead of time.
+> 
+> Such as what? How is the parent going to know the resource is missing
+> without checking for it?
+>  
+> > Can you be more specific about the actual failure you are seeing?
+> 
+> MAC is looking for a PCS that's on its internal MDIO bus, but that PCS's
+> driver isn't loaded. The PCS has to be loaded at probe time because
+> phylink_create needs it, and phylink is necessary to register the
+> netdev. The latter situation is not ideal, but it would be quite a bit
+> of work to untangle.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 6f8cdf012f0f12a16716e9d479c46b330bbb7dda..087f38256fd40f57c4685e907f9682eb49ee31db 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -253,7 +253,13 @@ vic@54340000 {
- 		nvjpg@54380000 {
- 			compatible = "nvidia,tegra210-nvjpg";
- 			reg = <0x0 0x54380000 0x0 0x00040000>;
--			status = "disabled";
-+			clocks = <&tegra_car TEGRA210_CLK_NVJPG>;
-+			clock-names = "nvjpg";
-+			resets = <&tegra_car 195>;
-+			reset-names = "nvjpg";
-+
-+			iommus = <&mc TEGRA_SWGROUP_NVJPG>;
-+			power-domains = <&pd_nvjpg>;
- 		};
- 
- 		dsib: dsi@54400000 {
+Please untangle, don't put stuff in the driver core for broken
+subsystems.  That is just pushing the maintaince of this from the driver
+authors to the driver core maintainers for the next 20+ years :(
 
--- 
-2.49.0
+thanks,
 
+greg k-h
 
