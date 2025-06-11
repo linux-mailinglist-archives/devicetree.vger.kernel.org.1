@@ -1,204 +1,222 @@
-Return-Path: <devicetree+bounces-184566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED1A6AD4A90
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 07:55:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E078AD4AA1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 08:04:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB5AC3A562A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 05:55:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F3211897536
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 06:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C89222687C;
-	Wed, 11 Jun 2025 05:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D355225A31;
+	Wed, 11 Jun 2025 06:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWEg9al0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jlm5bDpb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5F2225791;
-	Wed, 11 Jun 2025 05:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5045EEA8
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749621319; cv=none; b=itePEDWJQMMp93EGprcxPyWhyLN/bZNGRnBiyfe7LObStpeBeWHqyUCJbvQzVlrLVvgrpn11kgooCUnBy81rAPsXXtf5TwjMBJ7ZR/gX4HTtK6AzQRH+whZl7YnBuF7bZDscxFpntQFaJccFak/iOfZQUIi0I+aVug7oeGwBI+U=
+	t=1749621860; cv=none; b=L/lTeUskwtgBcEJMMLR02h+xak5WOV16CSpGoIahxMVUEvtCiXQh6h8ZPE+cGfpLd0NQJes0BL6pswPtqQ+uUHRfviGWpYrngA2BLO2ej6wlQOkVt7hyllGlCBn1eGhOuE41G7vLyesPURDWvK8guEQugHnSqrK3lY41ZRQvVt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749621319; c=relaxed/simple;
-	bh=GWjF0qwx3dUxDRAtPR0ca68BBSoBy4uLsOdkXKWrPeI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ScnR7ftxmb+YPyQRZ5Z67xvzpfNrXnp7NSL50VtxybZ+iCxmKrVYifLLJmrx0oZolTt+N2UQX1VSiZiAHoS6I7VH//MJp5k+MnPnOMde7N3hki1fuW3oueJdFamidVE+ExXGXFHu5GaSA92/YjWXaP+lab23leXOvBs2I/QIuyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWEg9al0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 861B8C4CEEE;
-	Wed, 11 Jun 2025 05:55:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749621319;
-	bh=GWjF0qwx3dUxDRAtPR0ca68BBSoBy4uLsOdkXKWrPeI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DWEg9al03Y2k8DvigYipWxQSdbV+J8yrrewvAc+q4y7em82rrITE/N4IrkG1KRLN7
-	 oWZ5f/UvUay4li48uw1oJNsVq7/XzkAbItF2bAw05VjWVkPfi5jmhH0/SKYqyvjOTo
-	 EPye7wQZxIx63A2fxgIAFXG2IMLu8jeWbt8NCAtEifQS8BnZ5odspZX/u9Ka2RZD5Y
-	 3/EtRMWci5Y8H50lUmKGHHE5jfVdcG06V4ZtA6lyU90Vipcqoq4qt5RygoP+JpWaI+
-	 K4dLzbVPGejZ6bL97w96KaaW8L24s6rfwUWT+Ih7eNfFro0QAX8YEZL7ZhXmNTJ3Xi
-	 +qo9Ms+8g4n3Q==
-Date: Wed, 11 Jun 2025 07:55:16 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-Message-ID: <3vfic5s64fzs5e4k33dik74rrwpsivj6fiwzdy5xckald43y4c@kcalsxmse6mp>
-References: <20250610220814.167318-1-marek.vasut+renesas@mailbox.org>
- <20250610220814.167318-3-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1749621860; c=relaxed/simple;
+	bh=HV18Og1I2iEUxD4I8eDexzTJxa5Uyj7M5o26NT89eUg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SC1WbRkIUYez7aYgoKUKYS7yb+B1HmTiJYH3fYllwKSd1mJPeYC2oUM5YHBDHcaQ5NEsnCIdjGseQm10g86RjkLjWjUO/yq6Xkg0C4B/w8nQZdST39lpH+aGE5u93aE5d1YAGIfrb/zJx4/07U7JLak2yPwBBrjIK+E/dsqZ4BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jlm5bDpb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55AIPt4g027426
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=aEKGonfkNlVgj0BYAtHacH
+	r3N8cUCIWxQs0+ZU6isQw=; b=jlm5bDpbQauuXqzHdyjULCxRD1JF3r4qMBKE2t
+	9Vk3thDxHu4L6cRep7hbkKxh8QZN1pskztqdaoMVvn6NCunfAFpS93aX2weGx4/c
+	fYp90XRgVOp1K0TfqHnFGOLbNyzdb5Kl3YmnxsZ1N0L9AcNG5Lea3fUKhOXZgHmm
+	ggmS6NqSX4KnHN9kYIun+DMeSYLN5WRT1wIKpH68mNQBYCNC5dKoxdt04OMRmKyq
+	cK+j1jbukaPbkfFepru2zq0QKgQhbdVyJBce3GN1Idqp65ST9zDUTYfPb3x8kM2d
+	u1bh4C9WG6kfwL3PhJGLv8ymcUzjpxkx1MYNxKLAi4Q50L0w==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4766mcmhha-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 06:04:16 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3132c8437ffso7378145a91.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jun 2025 23:04:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749621855; x=1750226655;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aEKGonfkNlVgj0BYAtHacHr3N8cUCIWxQs0+ZU6isQw=;
+        b=Uiv27qUGCgvC40zu0RD8K+gm/Vqppl+HGRu6Xhz5De2nobjNUhdR+ik2ndNHZgCWyy
+         O/kfVc34D8+qW8njheT65K2RHtbT+KaMM3oDvzF+lHek31kjHLb7MD54P/YIVFyeFo6w
+         ShFn8Hp7b8VMjmDy+vf6HtZd9ffo1gCxrZdoB1V4E2qdu4GBUbNCsuGX/gbQIQYuYeHC
+         EpcYO50bcTouWIrc2zWnPBBQ1MgZ0Fsp5jLcXjSoWGq2Mpb8tdctw0H+9oMwrEmkec2+
+         Vl5tRdAWgDS3HDsJt8rB00p16bWPpdWl5LF0ZXpFbwaaYR7bwNakcSjM+XnPr5O/mm+E
+         M7Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCXEqboJJ6pQRw3xQNQUjIMyLyh4ga+FjVd3YwFOFM0Cz3pfI0jOW82SMx7X7OdENLto/hShGvO0wOAK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlIaDlcUumZhBI56z3lovCa8T1u42nG4znRzhwsOHI+GcxTjXV
+	tT2Iyxi/JJyZCP8FAEO8jUmuu632boS7pIPHUUuehANAnmLdvL0JqhRYSbdlfiDwuc5oPKybeiv
+	KDjed0e1QPPWhLfLhwmzySCIMqYgiSgCgtONbWQvvNZPYFquSyl1017aS5juxSVdf14E6mV0J
+X-Gm-Gg: ASbGnculUdxDzjkPktt7COXN2wYSHzphZgrcC78bbCePVPRm1nCug4uXtX35JT/UlOi
+	FMFBddD1tpFmdvyAKzKvxQI68hymoYVgdpKXXLXou2xdraSmowEdKHDMHj/EGBKrTqBt1rqCWlK
+	WENs+K6RBThXh7lSzB6GVD5KGtrl3qcoopE0ApDyJERU1DzWK86zNWzSLp5tGgIdovGCCtsMfz+
+	3baxIXOAPRB/+1yvjraKOVYmhPTclyJbxgCmJTkDmcoJqDUxtG+fYZ0BDEJ3oXlf8Q9EsGSLgO6
+	+t19Wdvurej0jkDhxARPstPQo7yZaE7bN8Zz
+X-Received: by 2002:a17:90b:1807:b0:311:ff18:b84b with SMTP id 98e67ed59e1d1-313b1ff14b1mr1889824a91.25.1749621854915;
+        Tue, 10 Jun 2025 23:04:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF2De2CfAW/nhEXwzxH/8Z5sn0yu3qhpnc8aALmeXRtyxM55oEzv+7QcLPFeXeCVL74G67uBw==
+X-Received: by 2002:a17:90b:1807:b0:311:ff18:b84b with SMTP id 98e67ed59e1d1-313b1ff14b1mr1889776a91.25.1749621854346;
+        Tue, 10 Jun 2025 23:04:14 -0700 (PDT)
+Received: from [10.213.103.17] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236032ff05esm79429685ad.135.2025.06.10.23.04.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jun 2025 23:04:14 -0700 (PDT)
+From: Maulik Shah <maulik.shah@oss.qualcomm.com>
+Subject: [PATCH v5 0/3] soc: qcom: qcom_stats: Add DDR stats
+Date: Wed, 11 Jun 2025 11:33:44 +0530
+Message-Id: <20250611-ddr_stats_-v5-0-24b16dd67c9c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nqpz4wckjlyez23h"
-Content-Disposition: inline
-In-Reply-To: <20250610220814.167318-3-marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEAcSWgC/3XOSwrCMBCA4atI1qYkk8S0rryHiEweakBbTWpRp
+ Hc3LYgt6GbgH5iPeZHkY/CJrBcvEn0XUmjqHGq5IPaE9dHT4HITYKCYhBV1Lu5Ti23aU1FxxZQ
+ RDldI8sE1+kN4jNh2l/sUUtvE52h3fNh+mGrKdJwyKg+25CWi0cZsmpSK2x3PtrlcijzIoHXwF
+ RTwmQBZAKukx+wwzf8IYiqomSCGHyoUlnsJzug/gpwK5UyQWTDSaIeeaXD2h9D3/Rv/3pg9cQE
+ AAA==
+X-Change-ID: 20250426-ddr_stats_-391505b3da6a
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749621850; l=3512;
+ i=maulik.shah@oss.qualcomm.com; s=20240109; h=from:subject:message-id;
+ bh=HV18Og1I2iEUxD4I8eDexzTJxa5Uyj7M5o26NT89eUg=;
+ b=EBn3cNXv1JB7OAk3LIJqZwyiMSbER4sTYQ/rElyMXW2YZAuBazMe37Ldvl+PXWpTVBGtgSUAq
+ p9ihzVGk1j4BFToCZbdmLzuZHstmsFrKhEYPQlDMBfT7YdEXcZZ51sv
+X-Developer-Key: i=maulik.shah@oss.qualcomm.com; a=ed25519;
+ pk=bd9h5FIIliUddIk8p3BlQWBlzKEQ/YW5V+fe759hTWQ=
+X-Authority-Analysis: v=2.4 cv=T8KMT+KQ c=1 sm=1 tr=0 ts=68491c60 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=ubf2v9fuHxWRXcPCyOcA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: Vi1LwIAfMuIOhc-zPOee0WSjNlFHZPXO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDA1MiBTYWx0ZWRfX3KUphpCDd3XN
+ 5Hl8peWWsxu4bCsUpm1MvWWEhNSwF61soaaKIPz4w04ZsNKaHVnYbLRBz8AMPKiAku2Wu4Mn03n
+ 0+yw7XVi226MIqoy11Ahw9NwDpBx8HqdaCltnHkQ11QXQdf8IzNa0tvJ6rFJB8PLX8TYpkyjxJ2
+ 2+CSdKVt2ZNqwlWH47AC0orijBwdIp42EuI1hIB3sZKVmd6GRNnyUkrJxkjNIICc1ejkDS5mx7s
+ zAv4IWLSJGqLvtPG5/vpdWe8CG8KprpugyytafFM4KDZfI3CrsmkLs3boyZob90HcXjkrzAE0Qp
+ 1ujjJTOyvBf/SdX0yRvKnvG3N95Fx0LDpVxfnrdWbimWK4PM2zLH/Igrsji6mwgMcg/Mg3uSlJp
+ TBJ1zCBCPZaTYfBSja6HbgYSNo5TR6t7xzxcU0K0hv9X7HoGSZlpTS0KydAqjxb78EHOPxuD
+X-Proofpoint-GUID: Vi1LwIAfMuIOhc-zPOee0WSjNlFHZPXO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-11_02,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0 impostorscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0 phishscore=0
+ mlxlogscore=999 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506110052
 
+This series adds support to read various DDR low power mode and frequency
+stats. This was added in past with series [1] but reverted with [4] due
+to some SoCs boot up failures. This series is more aligned to downstream
+implementation and fixes the issues mentioned in [4].
 
---nqpz4wckjlyez23h
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-MIME-Version: 1.0
+The series [1] tried to add three feature support
 
-Hello Marek,
+A. Reading DDR Frequency and low power stats from MSG RAM
+   (targets where DDR stats are readily available in MSG RAM to read)
 
-I wonder how this device works in rpios, I didn't find a matching driver
-(but I also didn't try more than two minutes).
+B. Trigger QMP to ask AOP to populate DDR Frequency and low power stats
+   (targets where DDR stats are available but duration field syncing
+   requires QMP message to be sent to AOP)
 
-On Wed, Jun 11, 2025 at 12:07:27AM +0200, Marek Vasut wrote:
-> diff --git a/drivers/pwm/pwm-argon-fan-hat.c b/drivers/pwm/pwm-argon-fan-=
-hat.c
-> new file mode 100644
-> index 000000000000..3d04abdbd349
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-argon-fan-hat.c
-> @@ -0,0 +1,64 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2025 Marek Vasut
-> + */
+C. Trigger QMP to ask AOP to populate DDR vote table information
+   (To read different DRV / Direct Resource Voter, CPUSS, DSPs's votes
+   for DDR frequency)
 
- * Limitations:
- * - fixed period (which?)
- * - no support for offset/polarity
+Current series do not include reading the DDR vote table information (C)
+part from [1] which is to be separately sent potentially including reading
+other resources votes like Cx Rail level vote information. These vote
+tables details are not strictly related to DDR Frequency and low power
+stats (A) and (B) this series is adding.
 
-If you can find out if it completes a period when reconfigured that
-would also be nice to document.
+This series updates respective SoC devicetree with QMP handle (where DDR
+stats syncing is required) and it is backward compatible with older
+devicetree as without the QMP handle present, ddr stats can be still be
+read (duration field will be read as 0).
 
-This device is really trivial, but for completeness' sake: If there is a
-data sheet publicly available, please add a link here.
+Note that [1] was only partially reverted and hence device binding update
+for QMP handle [2] is already present along with the fix to have
+dependency on AOSS QMP driver in Kconfig [3].
 
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/pwm.h>
-> +
-> +static int argon_fan_hat_pwm_apply(struct pwm_chip *chip, struct pwm_dev=
-ice *pwm,
-> +				   const struct pwm_state *state)
+[1] https://lore.kernel.org/all/20231130-topic-ddr_sleep_stats-v1-0-5981c2e764b6@linaro.org/
+[2] https://lore.kernel.org/all/20231130-topic-ddr_sleep_stats-v1-2-5981c2e764b6@linaro.org/
+[3] https://lore.kernel.org/lkml/20231205-qcom_stats-aoss_qmp-dependency-v1-1-8dabe1b5c32a@quicinc.com/T/
+[4] https://lore.kernel.org/all/20231214-topic-undo_ddr_stats-v1-1-1fe32c258e56@linaro.org/
 
-Can you please implement the new-style callbacks?
+Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+---
+Changes in v5:
+- Handle the qmp_get() failure cases
+- Add Reviewed-by.
+- Link to v4: https://lore.kernel.org/r/20250528-ddr_stats_-v4-0-b4b7dae072dc@oss.qualcomm.com
 
-> +{
-> +	struct i2c_client *i2c =3D pwmchip_get_drvdata(chip);
-> +	u8 tx[2] =3D { 0x80, state->enabled ? pwm_get_relative_duty_cycle(state=
-, 100) : 0 };
+Changes in v4:
+- Handle clean up for qmp_get() probe defer case
+- Link to v3: https://lore.kernel.org/r/20250525-ddr_stats_-v3-0-49a3c1e42db7@oss.qualcomm.com
 
-This is too simple. I won't go into details about the right algorithm
-for .apply() as I want you to implement .round_waveform_tohw() +
-=2Eround_waveform_fromhw() + .read_waveform() + .write_waveform() anyhow.
+Changes in v3:
+- Use correct format specifiers
+- Handle qmp_get() failure cases
+- Link to v2: https://lore.kernel.org/r/20250521-ddr_stats_-v2-0-2c54ea4fc071@oss.qualcomm.com
 
-For .round_waveform_tohw() you have to know the actual period length and
-then use something like:
+Changes in v2:
+- Mention count in decimal instead of hex
+- Update read failure cases to return error code instead of success
+- Fix typo in comment
+- Link to v1: https://lore.kernel.org/r/20250429-ddr_stats_-v1-0-4fc818aab7bb@oss.qualcomm.com
 
-	duty =3D wf->duty_length_ns;
+---
+Maulik Shah (3):
+      soc: qcom: qcom_stats: Add support to read DDR statistic
+      soc: qcom: qcom_stats: Add QMP support for syncing ddr stats
+      arm64: dts: qcom: Add QMP handle for qcom_stats
 
-	if (duty > ARGON_FAN_HAT_PERIOD)
-		duty =3D ARGON_FAN_HAT_PERIOD;
+ arch/arm64/boot/dts/qcom/sm8450.dtsi |   1 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi |   1 +
+ arch/arm64/boot/dts/qcom/sm8650.dtsi |   1 +
+ arch/arm64/boot/dts/qcom/sm8750.dtsi |   1 +
+ drivers/soc/qcom/qcom_stats.c        | 133 +++++++++++++++++++++++++++++++++++
+ 5 files changed, 137 insertions(+)
+---
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
+change-id: 20250426-ddr_stats_-391505b3da6a
 
-	duty_percent =3D 100 * duty / ARGON_FAN_HAT_PERIOD;
-=09
+Best regards,
+-- 
+Maulik Shah <maulik.shah@oss.qualcomm.com>
 
-> +	struct i2c_msg msg =3D {
-> +		.addr =3D i2c->addr,
-> +		.len =3D 2,
-> +		.buf =3D tx,
-> +	};
-> +
-> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> +		return -EINVAL;
-> +
-> +	return (i2c_transfer(i2c->adapter, &msg, 1) =3D=3D 1) ? 0 : -EINVAL;
-> +}
-> +
-> +static const struct pwm_ops argon_fan_hat_pwm_ops =3D {
-> +	.apply =3D argon_fan_hat_pwm_apply,
-
-Can you read back the configuration? If yes then please implement
-=2Eread_waveform().
-
-> +};
-> +
-> +static int argon_fan_hat_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct pwm_chip *pc =3D devm_pwmchip_alloc(&i2c->dev, 1, 0);
-> +
-> +	if (IS_ERR(pc))
-> +		return PTR_ERR(pc);
-> +
-> +	pc->ops =3D &argon_fan_hat_pwm_ops;
-> +	pwmchip_set_drvdata(pc, i2c);
-> +
-> +	return devm_pwmchip_add(&i2c->dev, pc);
-
-Error message on failure please. (-> dev_err_probe())
-
-> +}
-> +
-> +static const struct of_device_id argon_fan_hat_dt_ids[] =3D {
-> +	{ .compatible =3D "argon40,fan-hat" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, argon_fan_hat_dt_ids);
-> +
-> +static struct i2c_driver argon_fan_hat_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "argon-fan-hat",
-> +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
-> +		.of_match_table =3D argon_fan_hat_dt_ids,
-> +	},
-> +	.probe =3D argon_fan_hat_i2c_probe,
-> +};
-
-TIL about PROBE_PREFER_ASYNCHRONOUS.
-
-Best regards
-Uwe
-
---nqpz4wckjlyez23h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhJGkEACgkQj4D7WH0S
-/k6w2wf/Yy5kBMGeDlXmdGvdWJLczbwyCVwY6zIHQrKX9YvMAsOWip2jV8D+tsmc
-SCf03FUlPZT3Davt5kcESZvpGHwWWQdVvWmWDlx27K9NJYpIJI2Ko9wdxyYtTWOr
-f8OQCAk6YpAGyY2yZknZZnLxeYdAMdWVydyIiq+Tht5cV1S32wzo961nYCtsxl9B
-nas2LUxxmw5VPNo+nqqFm2gkmVzAUIWYvpOdBoGNVyV1CHxwV1wiGiTBxSfHeUNi
-kPlzQymHCDkmVXjs0EZg4ROZDQjhgRDsB8J7cMLjo8an1Egwjg/vDSn1NSdvFPeu
-WpLulwIl4dLnQrOBPAie2tUJHw3zxQ==
-=qRjD
------END PGP SIGNATURE-----
-
---nqpz4wckjlyez23h--
 
