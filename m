@@ -1,88 +1,65 @@
-Return-Path: <devicetree+bounces-184886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A085DAD5800
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:06:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB1DAD588E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 16:23:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D74017C5F6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:05:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBC131730CF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 14:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BAC288527;
-	Wed, 11 Jun 2025 14:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA71B28C017;
+	Wed, 11 Jun 2025 14:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BJy/RFzt"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="slImy+QR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAE3276046
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 14:05:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047BB15B102;
+	Wed, 11 Jun 2025 14:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749650735; cv=none; b=NBVXuRtadCxLnxKsCnWO3BO3We/V8r2nGqQJD79SZX0qLziT8w/Y6Sl3X5J5v2PzYI48FLjyTxiZHLOLFdngfpsnk4cN84g6HCOXSK/O2MXHFrk2+zw5rmewYf6j8lR5tdSEXqH2dl1JKcilfFOAENv1rSzFVvi8E0uUawdy+SM=
+	t=1749651738; cv=none; b=Dw4mi2lhZlzHAJ55joBRh8LGpQ7eb2t7eBwdVme8pD68hfuBo5Zoe1XIJZ13o5QVeyKCwrpOTCC3AqdAC94njOWh2mFZ6u2TDBlBIuPY3k2atZ6Pr8pEl4KlzG8ZUFgQhDX+48jLKiDYM694kiif+qbchhi6TQDa5YbW5sFBvus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749650735; c=relaxed/simple;
-	bh=6G9tui49Pl6t8FhP304AnRe5Leht2tjw78tlBb8NDg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZBwkSvvNw/w0Aaa6muIuj2LTec/KwoV/dOu5MuJLvm8Q7Hl2ntl/9aIIshdh0RRNM6VXC0roa+lzyNPa3m9CK0Ihdjv8eDXnJAUIpyxPDFp6AJ5+BZfIbJXUQpWMKu1wdyygkMJ6pLCNN1rTEuBpsl5lKL2a0zCA/CviIyVtjZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BJy/RFzt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55B9DLbP011142
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 14:05:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1749651738; c=relaxed/simple;
+	bh=MxkAPoPHOjgZGHnlpvUdpozWu5MFnKcrlN7m+0nR5Tk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JHV1PnY5wSwVwZY8kWkT0Hr9iXWNvnQC4RenCKA41CSxaVb9fhwqrbl4Y7gspGKE/yglufaHR/rzXXAIMfkCaabfEbKPiEZdUhJj1S7IqK03rQ6qfFaJ026w3c4F0c+/dDMbAWFJCppnCzv6d9OxwEWIz1lSK4eOf2ZetAb4CXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=slImy+QR; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55BDrZjD022309;
+	Wed, 11 Jun 2025 16:21:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/Iob8U7YD7MEMiWqzIOI3EZ7da32JCzTnZeJI7FMOQk=; b=BJy/RFztREifvkwo
-	DWm2CpYTJ1Y9NIR0hzC9mPX32l0eRoPB3zi/emMldy7IlVNIYsJWG9QlvtN32yEl
-	VwhcOxnv4ayZJIhFOQ5K6PyRoBgFAWRd5b1nCtzQqGVcoscFDzytgglPtAU1FKdV
-	vT6ftCHz48QWboVq12qi/dyeziUuAuFy44ShNiVa4MSSfsfeJ0PtZCEl/5nDUu0P
-	nYoBFbwEI6loxQ6PVhqen974OBIm3BGQwFlvTmJDI8qenwva4RIsB+OQgpO0cAnf
-	dTNB4A8VFy7ZAaeRbi/7L1zdRuDmMeiP4pzW0GAiRMaB8Uycp+DQ33oXpDO7a5ka
-	V7R8Qw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ekpvva6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 14:05:33 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d094e04aa4so19111685a.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 07:05:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749650732; x=1750255532;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Iob8U7YD7MEMiWqzIOI3EZ7da32JCzTnZeJI7FMOQk=;
-        b=dp78jx4ivCin46W87Qhr6aB6wNXC2T0UvY3yiuTlTZENw49CSpmfE9bNqS00Jlvr8a
-         QQx5Xewtdrx0nPD96/X+yL+I2m1K+NZUBbITsVy2ELMhOR4jn05W1ZD2V0vz3AoOneqc
-         YaOU6YWpIxQS6yGgZJczrJIBCLoDTvrF8FVL8Ml2legXVMyKnYPO9tD8bInGdjjYANkE
-         qyuC6uwCB33LHsdho6Ay5TPMwWZeM3ZbuYaWH4m0hWNA5QZesTcpzO1QiVIMo5GX2S17
-         J915POMvW8z7uXVQ5bZAFTha7XQ6UXj8NygPftjpzx58iGFmMl0sWj5Uv3l3nDST1DwD
-         WMYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrKnI6SkSjDb6O8JVictj2C2CHTNkf037QrMeBlVdbBbfq6SO3vnKeLZjEUfEW8vxZKEK+Cdfi7wl8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDGZOmyhK8C2a5PmEqf8Lpb9hmnMYCMmlgYvwxDicPNgzi/CGi
-	mnp/Dqm7FtwV2g7ZRs4iWUes9oCmSPohzLo8qlRx5C1K4mChBe0V6Uh5PQk/DmWKjvwCM9kCrhw
-	esx14Wr9cMi0Y/p30g/0d87TBix74Eo38oEtbor+4Mv9zf2PB9w6O1nsSmm5VvTPn
-X-Gm-Gg: ASbGncvqZ3qylSzB9uuTMAz07wmwOECfLCO796blK+brpdD4uBbLNBCcBeAfJU2l5b0
-	h63rCv4sssnQdHrrIBkrZyru/BN0WqMW8W1uinG5MsaVBW9gvTzV2QOYp1/5seTNtGP0QQWagcT
-	cCliwZ5cdldtNZ5CijrhGum4iFzK5JzFyUfEymfihP9pdlNNwT1NKcE0xf25sdISqDmUqxP0NMu
-	lrFercoDpHbk79D0hv++0Z3c9XrRSkLchuI0anQDnbXYzY7w9eV9kLmkXVPtZBgqeQ2nnGiyNSL
-	ZIdIjz1R1TClZEcT9AJA8uL0FU3g1wNpp+uJGw5kz8mRIlITMdqykWjRq5S9FAoikUuZ9X/kn66
-	OYkA=
-X-Received: by 2002:a05:620a:40d3:b0:7d0:a1da:3a3f with SMTP id af79cd13be357-7d3a87bfca6mr202127685a.3.1749650731716;
-        Wed, 11 Jun 2025 07:05:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEsjWsY1cXUFTQcF+ifXByM9+WwgbDrztbt+NRy9N//FCfd4BglmorTmESm5A47wcPzSWX2Qw==
-X-Received: by 2002:a05:620a:40d3:b0:7d0:a1da:3a3f with SMTP id af79cd13be357-7d3a87bfca6mr202126485a.3.1749650731259;
-        Wed, 11 Jun 2025 07:05:31 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-607783e6728sm7502889a12.77.2025.06.11.07.05.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jun 2025 07:05:30 -0700 (PDT)
-Message-ID: <a848f4b3-43fd-4225-a2ef-9c1b29c3f306@oss.qualcomm.com>
-Date: Wed, 11 Jun 2025 16:05:28 +0200
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	r3EVnRbmSMlgRrDXB3H2BP/1li0w1Wem69SzKRryKtY=; b=slImy+QRerHTh1HU
+	DGp3sqBUjbpbzZCKMOaa3BESUZhhR2hcTAY6+HsBb5ffnGMuxumTknxTMo28yi9K
+	mu0Zu+nz6c2ycnQlXEUWXBCWWZu8BIlTHXY4RDdqQLZ8e3tD7av+vd5d7ifycU6V
+	J5NjDzwHTFhIYAPnlbRYdZ2QwSDeaM0/NhpbblmhOPGD/Gf8Uc6xEgUl2xV6PK8x
+	zDhf7yFiaaKt3YaTmx0+fEH+agbWtBF4FSKjTCmYeMSt8Co98XhPqY3sAPixCd0J
+	jgzt3YYac9fOvo66CPMoRkyeXwRq5v7xrV/2M+JNBI1MjpHknsMhFC7WcXZlbV3x
+	LE2vVQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 474cs2u085-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Jun 2025 16:21:52 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id AE89940059;
+	Wed, 11 Jun 2025 16:20:45 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B159DB23F16;
+	Wed, 11 Jun 2025 16:08:27 +0200 (CEST)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Jun
+ 2025 16:08:27 +0200
+Message-ID: <2865ab3a-1c20-4951-8132-4be98d73d70e@foss.st.com>
+Date: Wed, 11 Jun 2025 16:08:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,59 +67,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: qcs615: disable the CTI device of
- the camera block
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jie Gan <quic_jiegan@quicinc.com>
-Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250611030003.3801-1-jie.gan@oss.qualcomm.com>
+Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp13
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
+ <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
+ <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
+ <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
+ <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
+ <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
+ <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
+ <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
+ <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250611030003.3801-1-jie.gan@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=JcO8rVKV c=1 sm=1 tr=0 ts=68498d2d cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=22OTyeyB-Dq4f2GHltIA:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjExMDExOCBTYWx0ZWRfXzCW+Zi4QTymB
- scLpRV1PPOou5MWuw+AoR9e3BxAMAUzWlj7pv8I1XCu5jUl7Oc2Z4z+b/W4/AqKWZbB6KnQRDt5
- DVgmlPtBDrffT0H5oAU+ZpzSQxWVhm4kqnTOhikRY3fMQ7NXkTUJajNQjIcZ/aoZ9AWLI4tCiQE
- niRHlQndItn2d71JdAtGSOudlNF9Bg9Hvz5NpxWaI5hKQ7c1+LblU/EMI6PtkRxG1JNXVriW+S0
- +/9qPwO2SkQ0Spd5sdaXE4fOEgifPHkeHspUda6Fzp63keV7nT07qVteguTgfohgZ6fSNX/RZXy
- NovVYwuZQeRM7V3m5zbPFrq8gsYGsnHWY09oAvT68de2T1AGWZz3kXQEcjXdlG1K8251acdhOPf
- dwXb0jI6PlRxvbTbsuLQbBIKK+RYnQuN/zQ469cu9JVMFQA6MtsDjW4MEJ4c5O34eDzXaP1B
-X-Proofpoint-GUID: 3hejA5g62gnFFtM4enUUfHReWI581wMj
-X-Proofpoint-ORIG-GUID: 3hejA5g62gnFFtM4enUUfHReWI581wMj
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-11_05,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=654 bulkscore=0 spamscore=0 impostorscore=0 phishscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506110118
 
-On 6/11/25 5:00 AM, Jie Gan wrote:
-> Disable the CTI device of the camera block to prevent potential NoC errors
-> during AMBA bus device matching.
+On 6/11/25 08:35, Krzysztof Kozlowski wrote:
+> On 10/06/2025 15:33, Clement LE GOFFIC wrote:
+>> On 6/10/25 14:38, Krzysztof Kozlowski wrote:
+>>> On 10/06/2025 14:02, Clement LE GOFFIC wrote:
+>>>> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
+>>>>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
+>>>>>>>
+>>>>>>>> +		};
+>>>>>>>> +
+>>>>>>>> +		hdp: pinctrl@5002a000 {
+>>>>>>>> +			compatible = "st,stm32mp131-hdp";
+>>>>>>>> +			reg = <0x5002a000 0x400>;
+>>>>>>>> +			clocks = <&rcc HDP>;
+>>>>>>>>      			status = "disabled";
+>>>>>>>
+>>>>>>> Why are you disabling it? What is missing?
+>>>>>>
+>>>>>> Nothing is missing just disabled by default.
+>>>>>> The node is then enabled when needed in board's dts file.
+>>>>> Nodes should not be disabled by default if they are complete. That's why
+>>>>> I asked what is missing. Drop.
+>>>>
+>>>> Hi Krzysztof, OK I better understand now.
+>>>> So yes the 'pinctrl-*' properties which are board dependent are lacking.
+>>>
+>>> These are not properties of this node.
+>>
+>> Does this mean I should add 'pinctrl-*' properties in bindings yaml file ?
+>> I don't get it..
 > 
-> The clocks for the Qualcomm Debug Subsystem (QDSS) are managed by aoss_qmp
-> through a mailbox. However, the camera block resides outside the AP domain,
-> meaning its QDSS clock cannot be controlled via aoss_qmp.
+> These properties have no meaning here, so the hardware description is
+> complete. You claim that you miss them thus device is incomplete is just
+> not correct: these properties do not belong here! They belong to the
+> board but even there they are totally optional. Why would they be a
+> required resource?
 > 
-> Fixes: bf469630552a ("arm64: dts: qcom: qcs615: Add coresight nodes")
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
+> To remind: we talk here ONLY about required resources.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Yes, 'pinctrl-*' properties belongs to the board and are not required.
+So nothing is missing.
 
-Konrad
+This hdp node in the SoC dtsi file can be enabled by default.
+But the hdp driver will probe and do nothing because without the 
+'pinctrl-*' properties from the board files it would not be able to 
+access to any pin.
+I consider enabling this driver by default in SoC dtsi file as just 
+increasing the boot time on "every" board.
+It's the board dts that requires the hdp and provides the 'pinctrl-*' 
+properties to connect the hdp to some SoC pin and then to some signal on 
+the board. For me it's natural to have the status okay only in the board 
+dts file.
+
+>>
+>>>>
+>>>> In the last patch of my serie I add them (only for stm32mp157f-dk2) but
+>>>> keep it disabled because the pin is on an external connector (the
+>>>> Arduino connector of the board).
+>>>> This prevent any issue with a possible connected module.
+>>>
+>>> Not relevant. Pin control for connector are board specific, but pinctrl
+>>> SoC part is SoC.
+>>
+>> I think we don't understand each other here too. I don't understand the
+>> end of your sentence "pinctrl SoC part is SoC".
+> 
+> Please read first how DTS is organized.
+> 
+> The pin controller device is part of SoC not part of a board.
+> 
+> Pins configuration for devices on the board are not part of the SoC.
+> What is not clear here? We talk here in terms how DTS is supposed to be
+> organized.
+
+Now everything is clear, you want me to just set status enable in soc 
+dtsi file but I disagree, keep discussing.
+
+> 
+>>
+>> Maybe some informations that could help:
+>> The 'pinctrl-*' properties are used in the HDP case to select the
+>> internal signal to output AND the alternate function on the pin to
+>> output the HDP function.
+> 
+> We all know this.
+
+Ok fine
+
+Best regards,
+
+Clément
+
+> 
+>>
+>>> Best regards,
+>>> Krzysztof
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
