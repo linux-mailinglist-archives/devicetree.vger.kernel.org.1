@@ -1,256 +1,108 @@
-Return-Path: <devicetree+bounces-184760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-184761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7A7AD51C0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:26:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2ABAAD51D1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 12:29:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0E7C17FF92
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:26:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1D4D3A2F89
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jun 2025 10:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9289B2367B0;
-	Wed, 11 Jun 2025 10:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HeQmBsr7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB71A2609DD;
+	Wed, 11 Jun 2025 10:29:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788CA233722
-	for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 10:24:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088A925A2CD;
+	Wed, 11 Jun 2025 10:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749637453; cv=none; b=isdQIA0TOcgqrh9xF3JQ9BX4PSf3ieHOvstUhDnv5gxj+ZYUJ+yZmCJbKbS+GF1Ni4kyYLykgENysLw6HiJzn+g3lYaNQTscFoGCHo8zU5ZOvR5dX//Yo/XM5HPetgOc4X3LnVzmZd5mm9driNQLhz4rcH7pTvFaFp1GsiLyCW8=
+	t=1749637773; cv=none; b=GQa3EaJvFCSSIPtxakhLm9ZaeqmyJ7C2KHXRV/+tBJhJalNez28JASimEKWYnd3Yfc1h0o6PzBDsQnYhLaBzuuoxegz4U4EF4NkbQWH9DwRzJLigLW4zxSptNtNoxaPBgrTCAVEKJHjgu42vWZVajQFIwReho1a2nclNCNlbAps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749637453; c=relaxed/simple;
-	bh=HcgoTLAfHeJFUpaLy0Qtf0ddGHc6Ei2KwGMl7zeFXi8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XWcDHmiAoEDG6iq83uDq6JRUgcTPHyA+fzu7sJlzoaWK++HhNbBV2A742MwINrjzrXWQT2B/4/Yi39VdkLY0FKocFh4vpezsr11bdPC+6dc59RF9X9rFcA67mUSu0nD2LCms1n2zFfoSljifbVPofV+4sSj0J6CK7bzkHHtkfsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HeQmBsr7; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4508287895dso4699225e9.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 03:24:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749637450; x=1750242250; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HcgoTLAfHeJFUpaLy0Qtf0ddGHc6Ei2KwGMl7zeFXi8=;
-        b=HeQmBsr7c+SkScccNJ/dlNDTisyK3tsOIHmadYsJY3DoBERaNuRCp9GvmBhOip6vol
-         vIMjyTNc/yTUSF/XmlqD4d3o7RnsvSySbIvpLHyfniikAj5Qmejqq9N5vKMV0zGXR1Gt
-         0JrJtz50R6aOkgBjGj7qMFnhLuTJMIWcfGk05JjvUv5ripqyJ/AHRS+BxJZdWVtNw5bM
-         /7BcHzoUmwlPFeUfWPPzXJlfUImHf/ztgTy1eJFsR7+EFWG7SHXN8mcZU7QE/EF6y9S0
-         0NXFxHWatrUpqdfU3KGBYDMymhrs3K+fmMd5tj9l1TFIUnFo/sSHhmZ5Q7sWi7+X7IhT
-         N5Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749637450; x=1750242250;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HcgoTLAfHeJFUpaLy0Qtf0ddGHc6Ei2KwGMl7zeFXi8=;
-        b=dOBEcLnJnzWHEHkuMIQ2getd8UcwpEmD8YOniwUmWmvkM9FtRm8Um8/dOuOGeBS2lv
-         khbn4jH9UPIKVv39ZabVSWYPuFKK+0nXefh1m4j+v4kvv5j90I04Ul6U0KUb9G33wIVz
-         Y2HJF3aa5b475DBwtRa05YmOyDg3BHGIPtkUk08gbeU0JEj7BuCCVvrOky2i8psX1goy
-         MHEg+Qdnai7qTCnqDZWfSQ/HnswJFAeogugYDmInhuUi1FkO699jMH7+XubQKAcf7uPM
-         uyZ/x/BpE3LFQtrSZO9QaCSh7V/bexi/+GqseUWzCHRbDQh/Zd4eH3D3WnoLZIOexXIb
-         NL6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUpLGcTk8fmfrt3+DW8oPqQHn1xP4dnqIcQiQQ6oxNROZjnghtByh7VVE+ayHDnSXH0etNoZTAIzYQj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx68OKnP1nVxofxsfbPR9vSUyidmMPRSuX72WXtf+RkoH1YqLEU
-	W28Buv2cP2tXqT2Hv6zgTvvVQ5E/g8IQIZkNGV34syv0rVTvdcQTdwNapYtz1+MwZ90=
-X-Gm-Gg: ASbGnct+a7aVW1ZXAZlWyjZDBgv3NidzvJBEqi5ZWH9b+YqvITs6UU5Zzhy0xMQnn0q
-	oZ9rCSn+O5MRIwGruMo0GcVPkK6Dm/wGcA90ELVjDcAh9aH4g+Wls4UxRxn5EgXTVkD/S3DpCue
-	VdTVQ7kYrRkTUd94P+/06XoDM8bTeHCtEThDwDL9+kdupUYD3Gkxh3BKrmXhHfX44pAc2OoVwMM
-	CE+Kv/JNbo3OtHIu6Z/Z8jocSHLunH95/d9umTlANmAoAqdScbFYUcDtOq497mZtOsHK4Og0OrK
-	b4Vlrsf5YsjbvzbNFYmpPqU/zYTelFBIzh0EXHVw0ovr8ta2t80M+DsJBxcegSgw5w==
-X-Google-Smtp-Source: AGHT+IG9m+kxWKjGRtPwO1sYhhzUEaX5KsBy8nQtuB2u3NbqDTwQEhMKuqK7uGhNPxTPQU1llC5yLw==
-X-Received: by 2002:a05:600c:a016:b0:450:d79d:3b16 with SMTP id 5b1f17b1804b1-453241fb5a6mr26538495e9.14.1749637449759;
-        Wed, 11 Jun 2025 03:24:09 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a53229d9adsm14638751f8f.9.2025.06.11.03.24.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 03:24:09 -0700 (PDT)
-Message-ID: <cee62201bbebecd6082dd097b87670fcb2cdb9c7.camel@linaro.org>
-Subject: Re: [PATCH v2 03/17] regulator: dt-bindings: add s2mpg11-pmic
- regulators
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Peter
- Griffin <peter.griffin@linaro.org>, Will McVicker	
- <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Date: Wed, 11 Jun 2025 11:24:08 +0100
-In-Reply-To: <20250611-spectral-bullfrog-of-perfection-cb8e01@kuoka>
-References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
-	 <20250606-s2mpg1x-regulators-v2-3-b03feffd2621@linaro.org>
-	 <20250611-spectral-bullfrog-of-perfection-cb8e01@kuoka>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1749637773; c=relaxed/simple;
+	bh=GdfdVxxvPpEPnhvwHt+aDqH4owJvon2RBxJusb+XMv8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HAYJOFrK5gfE084uPChyFUCCVXOcf2jAD4Ezuc9I+omomnUZXy4ijiB/1W8W3w6BVUL/hRr1HAk5OELCv6taHBfZrakNfWF3f5OX4mKG/yP58IrbiMN12cMi3iatYk/eJPAvJAW1WrJyLeOSo5MT1r39IZ7xFmM4m6E8znYoLT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bHMN81QxLz9tPP;
+	Wed, 11 Jun 2025 12:29:28 +0200 (CEST)
+From: Remo Senekowitsch <remo@buenzli.dev>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Remo Senekowitsch <remo@buenzli.dev>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	rust-for-linux@vger.kernel.org
+Subject: [PATCH v8 0/9] More Rust bindings for device property reads
+Date: Wed, 11 Jun 2025 12:28:59 +0200
+Message-ID: <20250611102908.212514-1-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4bHMN81QxLz9tPP
 
-Hi Krzysztof,
+changes in v8:
+* Use a custom enum instead of `Either`, which is scheduled for removal.
+* Add Tested-by tags from Dirk Behme (thanks!)
+* Implement `Display` directly on `FwNode`, which prints the full path
+  by default. Printing only the name is still possible with the method
+  `display_name`.
+* Rebase onto 6.16-rc1.
+* Remove `property_present` from `Device` and update users.
 
-Thanks for your review!
+Best regards,
+Remo
 
-On Wed, 2025-06-11 at 10:57 +0200, Krzysztof Kozlowski wrote:
-> On Fri, Jun 06, 2025 at 04:02:59PM GMT, Andr=C3=A9 Draszik wrote:
-> > The S2MPG11 PMIC is a Power Management IC for mobile applications with
-> > buck converters, various LDOs, power meters, and additional GPIO
-> > interfaces. It typically complements an S2MPG10 PMIC in a main/sub
-> > configuration as the sub-PMIC.
-> >=20
-> > S2MPG11 has 12 buck, 1 buck-boost, and 15 LDO rails. Several of these
-> > can either be controlled via software or via external signals, e.g.
-> > input pins connected to a main processor's GPIO pins.
-> >=20
-> > Add documentation related to the regulator (buck & ldo) parts like
-> > devicetree definitions, regulator naming patterns, and additional
-> > properties.
-> >=20
-> > Since S2MPG11 is typically used as the sub-PMIC together with an
-> > S2MPG10 as the main-PMIC, the datasheet and the binding both suffix the
-> > rails with an 's'.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> >=20
-> > ---
-> > Note: checkpatch suggests to update MAINTAINERS, but the new file is
-> > covered already due to using a wildcard.
-> >=20
-> > v2:
-> > - fix commit message typos: s2mp1 -> s2mpg1
-> > - mention GPIOs in commit message
-> > ---
-> > =C2=A0.../regulator/samsung,s2mpg11-regulator.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 150 +++++++++++++++++++++
-> > =C2=A0.../regulator/samsung,s2mpg10-regulator.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 18 +++
-> > =C2=A02 files changed, 168 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/regulator/samsung,s2mpg1=
-1-regulator.yaml
-> > b/Documentation/devicetree/bindings/regulator/samsung,s2mpg11-regulator=
-.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..f2d596642501c197e2911ee=
-3b9caac189cf541a4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/samsung,s2mpg11-regul=
-ator.yaml
-> > @@ -0,0 +1,150 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/samsung,s2mpg11-regulator=
-.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Samsung S2MPG11 Power Management IC regulators
-> > +
-> > +maintainers:
-> > +=C2=A0 - Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > +
-> > +description: |
-> > +=C2=A0 This is part of the device tree bindings for the S2MG11 Power M=
-anagement IC
-> > +=C2=A0 (PMIC).
-> > +
-> > +=C2=A0 The S2MPG11 PMIC provides 12 buck, 1 buck-boost, and 15 LDO reg=
-ulators.
-> > +
-> > +=C2=A0 See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.=
-yaml for
-> > +=C2=A0 additional information and example.
-> > +
-> > +definitions:
-> > +=C2=A0 s2mpg11-ext-control:
-> > +=C2=A0=C2=A0=C2=A0 properties:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samsung,ext-control:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 These rails can=
- be controlled via one of several possible external
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (hardware) sign=
-als. If so, this property configures the signal the PMIC
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 should monitor.=
- The following values generally corresponding to the
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 respective on-c=
-hip pin are valid:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 0=
- # S2MPG11_PCTRLSEL_ON - always on
->=20
-> Use regulator-always-on
+Remo Senekowitsch (9):
+  rust: device: Create FwNode abstraction for accessing device
+    properties
+  rust: device: Enable accessing the FwNode of a Device
+  rust: device: Move property_present() to FwNode
+  rust: device: Enable printing fwnode name and path
+  rust: device: Introduce PropertyGuard
+  rust: device: Implement accessors for firmware properties
+  rust: device: Add child accessor and iterator
+  rust: device: Add property_get_reference_args
+  samples: rust: platform: Add property read examples
 
-Yes, the end-result would be the same. I still added this one for
-completeness, because they all describe the hardware. I can leave
-this one out and thereby force use of the regulator-always-on
-property instead.
+ MAINTAINERS                                  |   1 +
+ drivers/cpufreq/rcpufreq_dt.rs               |   3 +-
+ drivers/of/unittest-data/tests-platform.dtsi |   3 +
+ rust/helpers/helpers.c                       |   1 +
+ rust/helpers/property.c                      |   8 +
+ rust/kernel/device.rs                        |  20 +-
+ rust/kernel/device/property.rs               | 589 +++++++++++++++++++
+ samples/rust/rust_driver_platform.rs         |  60 +-
+ 8 files changed, 678 insertions(+), 7 deletions(-)
+ create mode 100644 rust/helpers/property.c
+ create mode 100644 rust/kernel/device/property.rs
 
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
- # S2MPG11_PCTRLSEL_PWREN - PWREN pin
->=20
-> That's duplicating regulator in standby properties.
+-- 
+2.49.0
 
-OK, I'll double-check this.
-
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 2=
- # S2MPG11_PCTRLSEL_PWREN_TRG - PWREN_TRG bit in MIMICKING_CTRL
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 3=
- # S2MPG11_PCTRLSEL_PWREN_MIF - PWREN_MIF pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 4=
- # S2MPG11_PCTRLSEL_PWREN_MIF_TRG - PWREN_MIF_TRG bit in MIMICKING_CTRL
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 5=
- # S2MPG11_PCTRLSEL_AP_ACTIVE_N - ~AP_ACTIVE_N pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 6=
- # S2MPG11_PCTRLSEL_AP_ACTIVE_N_TRG - ~AP_ACTIVE_N_TRG bit in MIMICKING_CTR=
-L
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 7=
- # S2MPG11_PCTRLSEL_G3D_EN - G3D_EN pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 8=
- # S2MPG11_PCTRLSEL_G3D_EN2 - G3D_EN & ~AP_ACTIVE_N pins
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 9=
- # S2MPG11_PCTRLSEL_AOC_VDD - AOC_VDD pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-0 # S2MPG11_PCTRLSEL_AOC_RET - AOC_RET pin
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-1 # S2MPG11_PCTRLSEL_UFS_EN - UFS_EN pin
->=20
-> Now I have doubts these are real signals. Are you saying that S2MPG11
-> has a pin named UFS_EN (such pin on ballmap)?
-
-Yes. I used the generic term 'external signal' in the descriptions above
-rather than the more specific pin, because some of these are bits in
-some registers, and most are indeed input pins, or a combination. Not all
-of the pins are connected to actual GPIOs on the AP, though.
-
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - 1=
-2 # S2MPG11_PCTRLSEL_LDO13S_EN - VLDO13S_EN pin
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/=
-definitions/uint32
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum: 0
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 12
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samsung,ext-control-gpios:
->=20
-> Same comments as previous patch.
-
-I used this one to align with s2mps14, but will switch to enable-gpios.
-
-Cheers,
-Andre'
 
