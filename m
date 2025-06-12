@@ -1,82 +1,105 @@
-Return-Path: <devicetree+bounces-185130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C7DAD6923
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:34:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E157CAD695C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:43:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 910CB3ABCA8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:34:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE3787A5C93
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D80F1F5435;
-	Thu, 12 Jun 2025 07:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FMRKpDL9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E7D21771F;
+	Thu, 12 Jun 2025 07:43:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-u-107.mailbox.org (mout-u-107.mailbox.org [80.241.59.207])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4014F1C7013;
-	Thu, 12 Jun 2025 07:34:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F412147E7;
+	Thu, 12 Jun 2025 07:43:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.59.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749713668; cv=none; b=lHY90bMXKOSN2bYupwi6n+fH//O1+eqLlYpuxsqGkdfkTp0rnLqwEaUMysdnR7HvHBws+wecoNhCokGGMqWoIKDrIJfSpgeh5HtJefnkEufGalToDt/fbkPDNFyR6HF2xRoyB26dEueG02MKI8KUsI+f9zu4OTcx2vgOL/qO05w=
+	t=1749714227; cv=none; b=PXAVlAn32siuykS9wpqChlg9HfndYGP5ildpN5w2GSzREmpNNBh3FyFDPZVhsL7Jxf+VH/SLGn5Iycuenlt8uo49GAouT/HD7rUtGS6AZ2xpGjZw9C67wxvMXy2AwbIxj9oXCaYaTyOzO4+mfJfwX62EeGtBcnjJdO+FJeBUDtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749713668; c=relaxed/simple;
-	bh=5tUhyhCzLi7X2fjwezCeRgGy4c5FGMVY8jjpVGZDy1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WaiNRwimZ8ovHPl0EuI52yHyXwUb32joe52xCPW1xbRdBPZbG6awlOX+nq+cb799vUd8CHZm4rscBQIYovuhZlkMu+le9550XEZUg04tDHaX/csZyS26Q3i8RPtp18loPcPFzt3uPXlwf6yu/6N5b25r6PSw8O2pce5pJthXzFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FMRKpDL9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA23C4CEEA;
-	Thu, 12 Jun 2025 07:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749713667;
-	bh=5tUhyhCzLi7X2fjwezCeRgGy4c5FGMVY8jjpVGZDy1U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FMRKpDL9xlzOV+NXaRbfM3FimpTlF3nmvGTw5+Z+CTvbgLuTlVkMAHQfigpZn3Op6
-	 +US/3edDLTIpz8dKqMS88V/Bjota/q8RgKOhNR/etsOU0I/v2jUvKr4YpUSJZtSWxm
-	 bSqK2552dfvydKPmGDc8o1YcSA8PuH9zJiz/vp9MyJlVsDA2qfwgbHPXbwxj5eOER5
-	 BqqGlMmvPAAzv+3JvQTzrZ08dSOHAEyUWGWWk8kgPngHinTpowY1HUZ7kk1NYJESlY
-	 FW4aIBGSBtar4Y6/KQr0uVX04HpTIxyMDaT6pCCHgFi5dDImqtfK/3bLulV1JH0XPU
-	 +pcRO7H7ikPRg==
-Date: Thu, 12 Jun 2025 09:34:25 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan.Wanner@microchip.com
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com, 
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, olivia@selenic.com, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/10] dt-bindings: crypto: add sama7d65 in Atmel TDES
-Message-ID: <20250612-vigilant-chestnut-mamba-400bb2@kuoka>
-References: <cover.1749666053.git.Ryan.Wanner@microchip.com>
- <1fa63c0ff667c61c924f1571d9c2f03cd1fcf7b2.1749666053.git.Ryan.Wanner@microchip.com>
+	s=arc-20240116; t=1749714227; c=relaxed/simple;
+	bh=vnCbR/HzZbgU5wNd8mKc20nhhKPSaZCgt9Y3cvhubt8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DZJ3VBX19fiAfTUG8fiSMJidEYHiZA7p7tTETXNPQhvLxD1cg2FkmrQFEeTLazCqim+OzbNiAsC0Lp0IbfkX0tIV+a9nE+khemwSrTUILaiVnXLhgzHZ8OmHWwwRddsmLOOK+to1AP5tBo82ACvncxHOCqybzU7ntwTQwXVbS2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=denx.de; spf=fail smtp.mailfrom=denx.de; arc=none smtp.client-ip=80.241.59.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=denx.de
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-u-107.mailbox.org (Postfix) with ESMTPS id 4bHvRw1nNcz9tf2;
+	Thu, 12 Jun 2025 09:34:36 +0200 (CEST)
+Message-ID: <d81d54d9-1e22-4895-9700-c4f4a50026a4@denx.de>
+Date: Thu, 12 Jun 2025 09:34:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1fa63c0ff667c61c924f1571d9c2f03cd1fcf7b2.1749666053.git.Ryan.Wanner@microchip.com>
+Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
+ property for MT7688
+To: Ezra Buehler <ezra@easyb.ch>, linux-mips@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Harvey Hunt <harveyhuntnexus@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Reto Schneider <reto.schneider@husqvarnagroup.com>,
+ Rob Herring <robh@kernel.org>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, devicetree@vger.kernel.org,
+ Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+References: <20250611194716.302126-1-ezra@easyb.ch>
+ <20250611194716.302126-2-ezra@easyb.ch>
+Content-Language: en-US
+From: Stefan Roese <sr@denx.de>
+In-Reply-To: <20250611194716.302126-2-ezra@easyb.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4bHvRw1nNcz9tf2
 
-On Wed, Jun 11, 2025 at 12:47:27PM GMT, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 11.06.25 21:47, Ezra Buehler wrote:
+> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 > 
-> Add DT bindings for SAMA7D65 SoC Atmel TDES.
+> Otherwise, the MT7688-based GARDENA smart Gateway will fail to boot
+> printing "Kernel panic - not syncing: unable to get CPU clock, err=-2".
 > 
-> The SAMA7D65 SoC has the same capability as the SAM9x75 SoC.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+
+Reviewed-by: Stefan Roese <sr@denx.de>
+
+Thanks,
+Stefan
+
 > ---
->  .../devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml    | 4 +++-
+>   arch/mips/boot/dts/ralink/mt7628a.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+> index 0212700c4fb4..10221a41f02a 100644
+> --- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
+> +++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+> @@ -33,7 +33,7 @@ palmbus@10000000 {
+>   		#size-cells = <1>;
+>   
+>   		sysc: syscon@0 {
+> -			compatible = "ralink,mt7628-sysc", "syscon";
+> +			compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+>   			reg = <0x0 0x60>;
+>   			#clock-cells = <1>;
+>   			#reset-cells = <1>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Viele Grüße,
+Stefan Roese
 
-Best regards,
-Krzysztof
+-- 
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-51 Fax: (+49)-8142-66989-80 Email: sr@denx.de
 
 
