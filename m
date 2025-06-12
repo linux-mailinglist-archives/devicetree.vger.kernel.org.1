@@ -1,115 +1,109 @@
-Return-Path: <devicetree+bounces-185291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069DDAD72CC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:58:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E28AD72E2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:02:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D47171885E52
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:53:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A81C18874FF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A11246BD6;
-	Thu, 12 Jun 2025 13:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD1E23D2AE;
+	Thu, 12 Jun 2025 13:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CZ576ryH"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="cB79ZboY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F75220F2A;
-	Thu, 12 Jun 2025 13:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749736370; cv=none; b=Y5HV5P8GTDMcbK7fZIqNM20WIIGuppeTEliSJPTy/ezwZHwuurzeteq2ht/ZuUX0Qt5YP66Vp7WjKcRsuLpr0iTbSSBJva8jRZluGfU5omiKGvLl5Y/iPkWDxchW6P4eqs4WJsX6LeI+eiMjGPmTxiyNsWkpsK/SJ0WIkqQumM0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749736370; c=relaxed/simple;
-	bh=S5qtNAXCpRXuIJHkgSFJUeAvSjADu2RXd2r/n4jbK0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ptcX9+kYx69FS/3ehRUjtVgWIG9Yi2tWU5j5FhGi4t0k/Wi12ERzITCxOBpUoCxyglXlUiTj3FU4oJ6E8s7nlxdzh6M9xxRjefm0ThiWKR8FBRwWyDltB5HiylL8tOJhKM64eBZAfAwujs3HO6Paz5W0+z4+cec0WlHIwQ+Nm7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CZ576ryH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 514C4C4CEEA;
-	Thu, 12 Jun 2025 13:52:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749736370;
-	bh=S5qtNAXCpRXuIJHkgSFJUeAvSjADu2RXd2r/n4jbK0I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CZ576ryHXNGQ547s7LE6F+wUGVxvdrMiZ+qHyaJ5axp6VaK15awFGbW2LqrDI/jAT
-	 X1vw2xIOYKUjulm/YmyAu8KXissvgc+PVhXyAj3BzG4dFEJJ5XR3WUCmy2w/tCRroI
-	 tdHf5EsEn+taetHjsil3ReDw0BnpcHeRkoDH7UkyOfMZA7cOyuGAMdFQd6hdbsP8RZ
-	 72MBluGC8Bn81kXlrd76pAKDUjLUNm03uJw+5nmaEbeT1jZiZS+UAWYrPOPEEeJJFQ
-	 514ZX20538PFJheI2vRNTbvsXjj1BnSm8OQT+7i/i58bT6gAMd8SSdLuhxzZx0AY/u
-	 IGm64rtC/Cofg==
-Date: Thu, 12 Jun 2025 14:52:45 +0100
-From: Lee Jones <lee@kernel.org>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001E823C4E1;
+	Thu, 12 Jun 2025 13:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749736605; cv=pass; b=h8Kt8//UGXb2dHs8YwjJFGLpMJL0Y8K2U5wBaSObAAKewqtyGYRd9AqgY7yjhJk3oOsP6vXmJBTKl0iAsFTkkrxQxb/dsIvXEuCr73c6oVY8HQxCMt8RiyTV37saTLHdHtEOZrl11pUFgzxSha4GwLPu+PIkjiU/qJwtmJrhX7E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749736605; c=relaxed/simple;
+	bh=jjyzOPli1ra635E/Ffy/tg1VaUvXRkSQuP8371mstPo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A8i5vS2+ZjIfxPfPZ0sipK5ECDs3+7wvqMafdjOCrZcc7gDtxSSu8seg5JNAh0KikCvbNfR1ZivRz9CeUUinkRcHkW6odrjwm5dOa7FaiP3896caEYPNwgiR6C7Qg1+VhO0IhESqEHE8D5xBbMfDhH3AMdRFpImTaTaEJDxcNa4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=cB79ZboY; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1749736578; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Z9Q6LpwOskFzXu7qFIqDahCinDV85umIMp0V5V90dF7bGYa5NYV89EM6WS0OwHQqd4/Uv2GrLuC17jCqKWGsiS3DgT6YHgWlkx0nVLYDPAGFWkjHJgF1egrIEVsnPr+yAxCQm6AkbkBgWNKa4ARXHPstwsiFDVRpeo62daoIcjA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1749736578; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=KUIfLwvoP44U5nDfSmqojpW++w9cxu2WaXPKkzeIK40=; 
+	b=i68huo5HXEszm0XtLDeI3hap5XBQ0TEjonhcTuFAHwLyctmv+zfAdxJP4AYyOPd8EytdSiiU+3o/mbGHoDKTg5IKe0tEmkpcVlco54i1d6deoZqw1NQjgQnM6VIICB5TrmIq5V89n7yuMrsDQX3jW3TUWT/GhE2Med+bYTb+2/w=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749736578;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=KUIfLwvoP44U5nDfSmqojpW++w9cxu2WaXPKkzeIK40=;
+	b=cB79ZboY1lFL9af6mnwgT0N6Y0FcjVW7L4hsO0ita2ELplHFr9csDJsspMYpZ+wM
+	iXN1J/COAX88HG2r91O8+liDKQ6izRy+6ZX5HT6MKqoixIRZP/0CbfNrk5lnI7DeQbd
+	TBdTShZFNU85CZzECc15JWt2HEJ50Peaeil1iaVjkeBp1k8SD5taNTsYM0mU8Wz0QF+
+	7hzKXd4o8bVxpr13ffHrBOSFy6Jw4cREKjzEXFUfwM5e9h8BwKqt6gUhnuKsPW1XfbR
+	b0bg3k2M5B1ZX0UVvHPM698VsCqcF5tzp4MCl/VVL5Z+bAJsfgNJZ0UHYrKPqwM39nb
+	VWTuVDzl5A==
+Received: by mx.zohomail.com with SMTPS id 174973657610749.98040995348208;
+	Thu, 12 Jun 2025 06:56:16 -0700 (PDT)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Steffen Trumtrar <kernel@pengutronix.de>,
-	Pavel Machek <pavel@kernel.org>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] leds: lp5860: save count of multi_leds
-Message-ID: <20250612135245.GE381401@google.com>
-References: <20250514-v6-14-topic-ti-lp5860-v2-0-72ecc8fa4ad7@pengutronix.de>
- <20250514-v6-14-topic-ti-lp5860-v2-3-72ecc8fa4ad7@pengutronix.de>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH 1/2] dt-bindings: arm: mediatek: add mt8173-hana rev2
+Date: Thu, 12 Jun 2025 21:55:58 +0800
+Message-ID: <20250612135559.2601139-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250514-v6-14-topic-ti-lp5860-v2-3-72ecc8fa4ad7@pengutronix.de>
+X-ZohoMailClient: External
+X-ZohoMail-Owner: <20250612135559.2601139-1-uwu@icenowy.me>+zmo_0_
 
-On Wed, 14 May 2025, Steffen Trumtrar wrote:
+My Lenovo Flex 11 Chromebook contains a board with revision ID 2.
 
-> Save the count of multi_leds child nodes for later use.
-> As the leds are added to a flex array, the size needs to be saved at
-> runtime.
+Add rev2 to the compatible list of base hana DTB to allow depthcharge to
+match the DTB.
 
-Size of the LEDs?  Length in millimeters?
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
->  drivers/leds/leds-lp5860-spi.c | 2 ++
->  drivers/leds/leds-lp5860.h     | 1 +
->  2 files changed, 3 insertions(+)
-> 
-> diff --git a/drivers/leds/leds-lp5860-spi.c b/drivers/leds/leds-lp5860-spi.c
-> index 751cc4184037c3c0e14d3493d0a43f0885786523..eee41ee8a8c226db6a68413998642624fabffe7c 100644
-> --- a/drivers/leds/leds-lp5860-spi.c
-> +++ b/drivers/leds/leds-lp5860-spi.c
-> @@ -50,6 +50,8 @@ static int lp5860_probe(struct spi_device *spi)
->  	if (!lp5860)
->  		return -ENOMEM;
->  
-> +	lp5860->leds_size = multi_leds;
-> +
->  	spi_set_drvdata(spi, lp5860);
->  
->  	spi->mode = SPI_MODE_0;
-> diff --git a/drivers/leds/leds-lp5860.h b/drivers/leds/leds-lp5860.h
-> index b4255fb48372814c7fda86ada96f504c2036f534..3b8342a832bc75afdf2318fd4ee1ee9ce105cbe3 100644
-> --- a/drivers/leds/leds-lp5860.h
-> +++ b/drivers/leds/leds-lp5860.h
-> @@ -305,6 +305,7 @@ struct lp5860_led {
->  struct lp5860 {
->  	struct device *dev;
->  	struct regmap *regmap;
-> +	unsigned int leds_size;
->  
->  	DECLARE_FLEX_ARRAY(struct lp5860_led, leds);
->  };
-> 
-> -- 
-> 2.47.1
-> 
-> 
-
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 108ae5e0185d9..7d13547ff57ba 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -132,6 +132,7 @@ properties:
+           - const: google,hana-rev5
+           - const: google,hana-rev4
+           - const: google,hana-rev3
++          - const: google,hana-rev2
+           - const: google,hana
+           - const: mediatek,mt8173
+       - description: Google Hana rev7 (Poin2 Chromebook 11C)
 -- 
-Lee Jones [李琼斯]
+2.49.0
+
 
