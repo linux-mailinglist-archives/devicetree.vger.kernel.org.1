@@ -1,56 +1,79 @@
-Return-Path: <devicetree+bounces-185457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC25AAD7C89
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:37:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9DFAD7C67
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:33:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A32F3A495B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:37:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70CAE1898900
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBED42D6605;
-	Thu, 12 Jun 2025 20:37:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F334E2D3A85;
+	Thu, 12 Jun 2025 20:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="LxkrIfVV"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Qxlfl7P7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-74.smtpout.orange.fr [80.12.242.74])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B072D6616;
-	Thu, 12 Jun 2025 20:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B80170A26
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 20:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749760620; cv=none; b=iSd5LgHkRzkC1lJ2LhK/bLkhNTJtZoAPG2aIdviPBxpeHAc/6M4VUWG2Ir9geCZUfM0EQmhI1RSWZqmtg3OPOoUlReHK+d+v8yQeuglCK6zaj5mpCeEjcDnwZi3YTkCoGl+PcnCK67H+t4PRoHhVge4E96yYPgl4pXfx/Nhm+CQ=
+	t=1749760400; cv=none; b=AOCm8P46KYJ20US+xYiXe/VbvhbW2P9mbdiH3nGtJE7YOIlCvOv1QHlOztPpGACWl1KQhKrYl1VK6mh2/BPSlJ77CwQcTy6OOel0R3sOPYHwkHnHq1d6fVcK44fl+vWBN4WlZFG1w8tYEFrkRe8AwK9Vp/W05d5qhdgOkTorsd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749760620; c=relaxed/simple;
-	bh=H8u1w/YwStaUJxudyE2L3/g/KCe1Lq6vTTC/Fx7X2wI=;
+	s=arc-20240116; t=1749760400; c=relaxed/simple;
+	bh=fGBDmziyIRuXQZJnl6uQGrXC23dRZIVMVbpxEXsAiKA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Srqx2mipeCBcHhKlKNlnTMlu1dRY/uqfz2rcqGyjRr5uV5cyS+rG1EiQy1tCEFr1IXMBsWM3iv87XuYLuTWE0kKoSP1tis6PDkGsQFNSsGrN8j0xvcKbasLR5TsB50dx4RPSzRnhbQ7yVTCVffcw41UJOzZPbSAzspzX5k1/M0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=LxkrIfVV; arc=none smtp.client-ip=80.12.242.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id PoWIuYWF3h2MlPoWJutI1a; Thu, 12 Jun 2025 22:27:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1749760052;
-	bh=30F9MeODJaJtiCyPTKPIaDBgYSsnYVpZ0EqQQiVnKc4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=LxkrIfVVst3GNiCIT4KgzwDqBS7GHuyxt1F86CTNcjmtrqWPq33ea8kN0AFZ79R1J
-	 OrSf46HuFOMk24s6lePYsB7lz+Nd2k8lLOHWUj/tG/uBUBjQX9P8r9FPX268lSo+VH
-	 NeNSbLfs4Hk+UYZn9E0s3zR/R98L2WllTR2hieQPjAJ+nyKdk/CmL6oKx/60MtMg7m
-	 sna5jFMu7AO5g/194HqUqmj8Tx16xrjoFZmcQR0dogrwNzQ5UPt6zKArBLmeUeq4cc
-	 0NLouo5u4hMqCHaXj8/6nnCLcrq86m+ZsQv/Kj7yubTx7rQRQsUYRsUpaDSd6+8Dtm
-	 xM5bAJeS6ZrIQ==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Thu, 12 Jun 2025 22:27:32 +0200
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <5e131f07-9753-4d2f-a043-35751c278a63@wanadoo.fr>
-Date: Thu, 12 Jun 2025 22:27:30 +0200
+	 In-Reply-To:Content-Type; b=a2foApyMGEuiYKE89N/P5msG20lq6dOMF4mvqcgyG4vlIC/TNe2FJLkfeh6pTc12xNIrdZYme7BT12mQpOeRzYp7R5py7mAZ0WPLkbyaqd5ro8HbyZWjWkHup4Q8aujkWGdVckGVMp/TVDWzFlZ3SJb9YabtJKN2bJFOLOFHJoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Qxlfl7P7; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-747d59045a0so1164258b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 13:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1749760399; x=1750365199; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qwZraCb/toXwxJFa7U6Iu6ktQLnnjzZR5/ifzAHb2qM=;
+        b=Qxlfl7P7uFObmjIuD3P7kAV0IzBSKzRjicpmiuilJRgmxEAUbrJRWBl5rH4fKKVtSG
+         i1zcrduwEZaVEiP/Ofo8BTF49Ckk6APtHbE3t7irI3p7GEwCLYE0VbuK974c1G+BFaqH
+         tixUbSiiZe8hiZNkuhp69U9pP8426jUceUEds=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749760399; x=1750365199;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qwZraCb/toXwxJFa7U6Iu6ktQLnnjzZR5/ifzAHb2qM=;
+        b=C4cfykwibq3q01CPZoXBSCuERecV6dmR/HAEM7mlmeSds229yaTlXSlWBGrmSh0yk0
+         rbn8w3f4L9YD4KfF2BYMcitBvF6lxn7yYqWBarLIyBYVGjh1huoGhDSPspTVfplctTlS
+         5Xe/yPHSFALwqjarEITDg9Ek1TGEIpfrcAs42BMj+RSl1xlSCrb20ulcVq3zl7mRhT7Z
+         7NL9tmSpKwEUsqEA2CdWtycikvj6nxteJDOyoxya6S9uPKxK7sXc//q/JIscI07+Ki0S
+         MncIQwAon8zPTBvyoEEE6aXwlbWDj0LD6C8mtulwFmjJ842QONlqt50wlVgz+zYgoWGv
+         Qdbg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/8WxhgUJ6ap4IyDAe7eRPZoIk7UYzB1mI2RELKq7xE4zw/eX2tPyeMk2Ranmb5Z9QwJsf7jrzbrpa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4Hyh1bM4J7up9OddlRg3XEOiXJwRSr/gfaEJFzthQeHYgaBgn
+	qXyfB72nStL51iiapNR2AH8k31Zi4/+jVVAJcPNHOKMDuSzGFOg3mc710OytvqQBoDE9PTgL5RD
+	v9qgGiST4
+X-Gm-Gg: ASbGncsH47aYuBBsu8xaiUzhtTzVncwoiwe2tAF1pkPTw6pQTk0HZbAoiHNKnH16Asn
+	j0e14jPlaLGNkwKmloK+v3jwEdb60NdKKnadzeDrAxVjx4K4VQjMwJdnEydneg2WQVCoJD9Rd1C
+	/u0RRyYshrurK2PuNJ5x6i6z5H10Bof6POqGh0F3S8sBew4sF6VKSs7bCmGkPsCVd9mTQOUWzK+
+	K6lbV31nRzYGlN/0nNNmkDFA/owsywn+dsgST9hCi9yjtmIQ8m87qWtC51Ppr7j0EvfV/zX7KX4
+	oPFjDQla/b1uIAq7RaVisBNRbH3BBxsJ78mxqlhXa15CFLlQp3j8yMNmuIGJojDQ/uR4iWQY+W+
+	eiv4dqZ3jAzQL/3aGNVvk8dHq1g==
+X-Google-Smtp-Source: AGHT+IGmDN5dx5IZAbkRjssr+2utVCHnvk8DVR8P7vF8WVwd5EOmE77VMLC93zSUoOrUzZXL5NP8+g==
+X-Received: by 2002:a05:6a00:2e90:b0:740:596e:1489 with SMTP id d2e1a72fcca58-7488f73f776mr864997b3a.23.1749760398965;
+        Thu, 12 Jun 2025 13:33:18 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7488ffec9d1sm161700b3a.30.2025.06.12.13.33.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 13:33:18 -0700 (PDT)
+Message-ID: <b24a0359-50e2-482d-9241-7889af85c365@broadcom.com>
+Date: Thu, 12 Jun 2025 13:33:16 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,164 +81,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-To: Lukas Timmermann <linux@timmermann.space>, lee@kernel.org,
- pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250611083151.22150-1-linux@timmermann.space>
- <20250611083151.22150-3-linux@timmermann.space>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250611083151.22150-3-linux@timmermann.space>
+Subject: Re: [PATCH 1/3] dt bindings: PCI: brcmstb: Include cable-modem SoCs
+To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250609221710.10315-1-james.quinlan@broadcom.com>
+ <20250609221710.10315-2-james.quinlan@broadcom.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250609221710.10315-2-james.quinlan@broadcom.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Le 11/06/2025 à 10:31, Lukas Timmermann a écrit :
-> Since there were no existing drivers for the AS3668 or related devices,
-> a new driver was introduced in a separate file. Similar devices were
-> reviewed, but none shared enough characteristics to justify code reuse.
-> As a result, this driver is written specifically for the AS3668.
+On 6/9/25 15:17, Jim Quinlan wrote:
+> Add four Broadcom Cable Modem SoCs to the compatibility list.
 > 
-> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
 
-Hi,
-
-first, I should that you should wait longer before sending each new 
-version, so that you can collect more feedback.
-
-> ---
->   MAINTAINERS                |   1 +
->   drivers/leds/Kconfig       |  13 +++
->   drivers/leds/Makefile      |   1 +
->   drivers/leds/leds-as3668.c | 204 +++++++++++++++++++++++++++++++++++++
->   4 files changed, 219 insertions(+)
->   create mode 100644 drivers/leds/leds-as3668.c
-
-...
-
-> +static int as3668_dt_init(struct as3668 *as3668)
-> +{
-> +	struct device *dev = &as3668->client->dev;
-> +	struct as3668_led *led;
-> +	struct led_init_data init_data = {};
-> +	int err;
-> +	u32 reg;
-> +
-> +	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
-> +		err = of_property_read_u32(child, "reg", &reg);
-> +		if (err) {
-> +			dev_err(dev, "unable to read device tree led reg, err %d\n", err);
-
-as3668_dt_init() is only called from the probe. Sometimes maintainers 
-prefer using "return dev_err_probe()" in such a case, to have less 
-verbose code.
-(I don't know if it is the case for the leds subsystem)
-
-> +			return err;
-> +		}
-> +
-> +		if (reg < 0 || reg > AS3668_MAX_LEDS) {
-> +			dev_err(dev, "unsupported led reg %d\n", reg);
-> +			return -EOPNOTSUPP;
-
-Same.
-
-> +		}
-> +
-> +		led = &as3668->leds[reg];
-> +		led->fwnode = of_fwnode_handle(child);
-> +
-> +		led->num = reg;
-> +		led->chip = as3668;
-> +
-> +		led->cdev.max_brightness = U8_MAX;
-> +		led->cdev.brightness_get = as3668_brightness_get;
-> +		led->cdev.brightness_set = as3668_brightness_set;
-> +
-> +		init_data.fwnode = led->fwnode;
-> +		init_data.default_label = ":";
-> +
-> +		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-> +		if (err) {
-> +			dev_err(dev, "failed to register %d LED\n", reg);
-> +			return err;
-
-Same.
-
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int as3668_probe(struct i2c_client *client)
-> +{
-> +	u8 chip_id1, chip_id2, chip_serial, chip_rev;
-> +	struct as3668 *as3668;
-> +
-> +	/* Check for sensible i2c address */
-> +	if (client->addr != 0x42)
-> +		return dev_err_probe(&client->dev, -EFAULT,
-> +				     "unexpected address for as3668 device\n");
-> +
-> +	/* Read identifier from chip */
-> +	chip_id1 = as3668_read_value(client, AS3668_CHIP_ID1);
-> +
-> +	if (chip_id1 != AS3668_CHIP_IDENT)
-> +		return dev_err_probe(&client->dev, -ENODEV,
-> +				"chip reported wrong id: 0x%02x\n", chip_id1);
-> +
-> +	/* Check the revision */
-> +	chip_id2 = as3668_read_value(client, AS3668_CHIP_ID2);
-> +	chip_serial = FIELD_GET(AS3668_CHIP_ID2_SERIAL_MASK, chip_id2);
-> +	chip_rev = FIELD_GET(AS3668_CHIP_ID2_REV_MASK, chip_id2);
-> +
-> +	if (chip_rev != AS3668_CHIP_REV1)
-> +		dev_warn(&client->dev, "unexpected chip revision\n");
-> +
-> +	/* Print out information about the chip */
-> +	dev_dbg(&client->dev,
-> +		"chip_id: 0x%02x | chip_id2: 0x%02x | chip_serial: 0x%02x | chip_rev: 0x%02x\n",
-> +		chip_id1, chip_id2, chip_serial, chip_rev);
-> +
-> +	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
-> +
-
-Unneeded new line.
-
-> +	if (!as3668)
-> +		return -ENOMEM;
-> +
-> +	as3668->client = client;
-> +	int err = as3668_dt_init(as3668);
-
-Would be better, IMHO, if err was declared at the top of the function.
-
-> +
-
-Unneeded new line.
-
-> +	if (err) {
-> +		dev_err(&client->dev, "failed to initialize device, err %d\n", err);
-
-return dev_err_probe() to be consistent with the code above.
-
-> +		return err;
-> +	}
-> +
-> +	/* Initialize the chip */
-> +	as3668_write_value(client, AS3668_CURRX_CONTROL, 0x55);
-> +	as3668_write_value(client, AS3668_CURR1, 0x00);
-> +	as3668_write_value(client, AS3668_CURR2, 0x00);
-> +	as3668_write_value(client, AS3668_CURR3, 0x00);
-> +	as3668_write_value(client, AS3668_CURR4, 0x00);
-> +
-> +	return 0;
-> +}
-
-...
-
-CJ
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
