@@ -1,151 +1,217 @@
-Return-Path: <devicetree+bounces-185065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A9AAD650E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:16:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46E74AD653A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:44:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 047807AD307
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:15:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF7107AA27D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256B314658D;
-	Thu, 12 Jun 2025 01:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFE715624B;
+	Thu, 12 Jun 2025 01:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dAXqvdJp"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UaJ1SaFp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562E1183CC3
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:16:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC0F153BF0
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749690962; cv=none; b=gKKEBUms+IBoxTiMB05aV0FIlREX1DQ3xF4CQDhY31jyMSh2aenzfY5lDwZoT8BSzrozoKZ4+TmfZDFGGtoYowpXg4DQmD0Z5tyT2cCl/ayFLvifCzVH/+hvADR2lWOWmY43ipXLsKBftA7idZtmVfKHII/Qpe40wAAOAWvhULw=
+	t=1749692681; cv=none; b=kGqzhttEbYPzxpjLwYblpT8ru94o0gC3oYtaa6EZkhKVBSadbFLq1ltlYu5fVYpfCuAVVHbj0Njnnr17mkpCKGWFF2zO5ev0r4JfN6Rl/I7pU102g0tsk300SR802ZRPjaD0EYj5paR0cRMdiJ3ZWlOxg8yim/qBXaYjIhkN0yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749690962; c=relaxed/simple;
-	bh=XYwKha3UeOCXy5MI8s9ICvr5AKzds6ClCI+fu8IvSMA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aKyYdNVSAKXfvqobGA+n1HZZaMi2nKuZTYa5ZAk9eEEaB0z1tXiRX0EGe7H+mwe827liZd+YvubJUeuZF79ZLJ32oMYLHOqNGAgkKl0Vz3jqrLaQqTFilAD6SQwTesxdjq+1hGpwenBeKvghyCp8RcFSBWwi/r3Vn50Hue6Wz6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dAXqvdJp; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5532f3b51f7so24013e87.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:16:00 -0700 (PDT)
+	s=arc-20240116; t=1749692681; c=relaxed/simple;
+	bh=FwB48C92tnVCEdIyHZlamtIixxVon3uYizSE7TbXBRU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rcdG/Y+eD8yMMrqR6BrqJwWA+mIp8Ycb95jRwWUTiYhSgyY0OEJo+XlenqHa+xmvWXoHWkfrtayIKGbzpH1t/H6l7AVuaWPwRXOuhEpWi3htycS0OodK0xa3sF6vGj5c13O8e8OVBLHorRj1NwbwxxpyW68I0rAjIA5Lct0D0R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UaJ1SaFp; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ad8a6c202ffso76794366b.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:44:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749690958; x=1750295758; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749692678; x=1750297478; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JfMw7lCjvYKdcM5p3TAGjbMu4qQ11U0/d1S9yd9mYvA=;
-        b=dAXqvdJp9q6L20EicYlT8phaRuYr06yQxS7WX3A15C/MJvTRIZ81hx1e89jbVLf/wl
-         s4me8zIuDicwLjJ+t1YfapD+6B22L8H9l6nLX7F9qJrkJUwmccbbhyrHZDXc7HG5a82O
-         siGKJpy8QXfDpB95JbkPFWNxc9yCNifMesW5ivYENQIUbqqCz3u6jhcNzASX+MuWVKZW
-         WwZJpDAjUv3kM2gGaSyzyigDDQ5Rfc7D+DBUXWFj/5aeucK1yYRlnejATRTYBbXxlYSC
-         MMtxlPWmP8KL4f9Ugr5XkEtHydr9skvlimRwYmViK6yNA5MQx2nieVB36YkP9z23I7ZL
-         YbeQ==
+        bh=fWcAfXUk5P+0YJPyZ9SkX3gkuCc87P45hLw4l1DcQZA=;
+        b=UaJ1SaFp/vwlrqIMqaZYWeHnvhJmdzCuHTgu+R9vPuH54gj6TtYWBvOZgRWZW+Ju4G
+         4RUi0UQk1WUhDLgQEOM1kzgSyT/C98Achso9c3YnIS2FrTKklEJLm2oSr5UTGQIxhLQG
+         Ymous/9w8SQoivlyHZnA49qvrj+hWrUWsXx0WtTyfia8CtNNjA4o8qobuArElEuzzQCe
+         ZVM+lgfvpxGFcyDiwH4ZhIM4/2pZm8H6vXm6q/7B8bOKMaKWWiimIkEpXvO5TAeYrwI9
+         QNcJcj+Mc9SLeMmsoZOlPDQNDjyu0iMGn5yk9YQVC1Fb1uKz0zlJKctzJbNbSAXpFFH2
+         fFXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749690958; x=1750295758;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1749692678; x=1750297478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JfMw7lCjvYKdcM5p3TAGjbMu4qQ11U0/d1S9yd9mYvA=;
-        b=gD7a1pnfI67W5sWqdJLwBuctpcFni3JiIlimjfbTZepxC7vbCjoD2iqmjZDxEDOPSX
-         Ken1kuffbLGJJePqjeujuxuD986mMV7E7+Agj0LnaXGIB+byGoxwJ6jQz03cMzJKfrmo
-         Ae2bXPFr1u8+08t5kNYKazGyfhXr8met/JLYDTNp1AaHxbOXJUmwCLM2k6nGR8uUYvHn
-         XcIjfJok6Yr7RY8Y1esJz9j+r3QRk+6CaBXwGJXT8liUukGGw1A3rHN6UeaH1iGsP+8A
-         cqD1S3vHCnvNnnsTKbBSdtmW9evas/1AoFi64MXTTlewMTCwH0GvIRUYedLLapRND+Uo
-         GWsA==
-X-Forwarded-Encrypted: i=1; AJvYcCWV99TuL/lQSVqMDOwmGp7HVhs3nD95yfJcT44fI4IGiQXuZbf/QAvlNiE0Kms8CFK5SioDQFKKCGv9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDC1RH14KEcecr8HWll2dE8MNH6aQ4iPWo25vS8Z7SGKOjWq+B
-	ahkqTK3S76qBb7o7sq7curHs8CgPbBDQoMQr9de0fWb/+qytAb3ksDjb6DkcHafQGpQ=
-X-Gm-Gg: ASbGncsDoTdzE0Yn26jNBddl0NOobPcgJT2wIKX+ArUTYtR7xqPFh+Y/j4q2GE/Bpao
-	1eJNBZsUirj4sKq6othGzdwFJ0e+JDGhpyzpHe+3s25qkUrM91BDkuWAVzvhdPu9OHTZTyVb3FN
-	Zm0XeKHzSrfWBnTZ+AK1t4cgtkg4kGup5+Vuu9YdK69Gk4ZOBU+Sqc52BtOzcHIbew5R6VSWQS9
-	5ykH5thmksIMmjWbdnUTpN0vejbKGPF4x2PAV8lTM9S+CG2wU0hQZ2UHwzYHQtbiz4MwpKhYlWI
-	8Ju22qFOMKYl8IzMlhSFBtZD3B8h/YirOIGYo/pvArMx6A866aydiXVbvuuh43ubo7LQJMgkmGy
-	1srpjb+YCx9B1ENy4KjBkRkEZk69i7Gx91w+gLzK2lAH7K73bfqI=
-X-Google-Smtp-Source: AGHT+IGeelyLNCfDUasPCOxCiFIpmwYhXzHyBgUxVTWvZiNU2GFAsGcklviFQwAc52LvrzaoCM1JTw==
-X-Received: by 2002:a05:6512:32c6:b0:553:35e6:af10 with SMTP id 2adb3069b0e04-5539c0d2457mr540666e87.7.1749690958367;
-        Wed, 11 Jun 2025 18:15:58 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553a7018069sm62808e87.157.2025.06.11.18.15.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 18:15:57 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 10/10] [RFT] arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: switch to new CSIPHY scheme
-Date: Thu, 12 Jun 2025 04:15:31 +0300
-Message-ID: <20250612011531.2923701-11-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
-References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+        bh=fWcAfXUk5P+0YJPyZ9SkX3gkuCc87P45hLw4l1DcQZA=;
+        b=ghz74WLpyQkwK1NRRoyq3aooVr7CAQ20jY2Vbdl8CyxlJtaoyULD45qqIF55u+3gKC
+         xCqvCQDE8PrWIxiEdhsGHNmEECX73ByP54JBoJRCQycZNm7neurdvu/+Hn3IC5kWXnK7
+         DSgfMdKN6ZOjxkw1efXBZ9VwCtvGACm67hx16hV0u1WfsdmjJqrVdaOtaSlDcDWyNxRG
+         MCzML/O7/vO2oKew7cIW12HkzH6oCr/+IggT8lOFz9mPrwA4YS6sT4jZhSeU/19hQSE9
+         t4pL7upjmH2Ee6dl6v6QmgO7Ga/TmMI4GNTnBo6mgkcuiTJmDvFB7gFufdVrE3R2aPB6
+         q3RQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX/emh2OiiTS6FydcjJOPTQxdC0SuI9HzMAicvGT8qDBPKs1AL+McjgUfv3Xpgcp6VgDvfpcc7HXFhv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUwjyBONQR8/UL7pyBf5S1V4ydstXYeKorcDiEqEOqA4rmw9XF
+	Tqzun2Zfzc1ANuXjEqrGptu2bpwNoaGiiDMqcjgG9g//3joPz31nqzk9ZIRwn/x3SM79HdVtqth
+	sAepctqC0xSQMtFCJgCtis4LRQ44MFczZUtikvdIZcg==
+X-Gm-Gg: ASbGncumcPaguOzbEr9W1QtZxEeG043vL2L425m3qp48B/xX09lcD4/R4kPD9SwDTZ3
+	ytxsKe3Xgbhj+YHBZRviIG4VUT+Ph2VstK2z5vqrxUuTl/xPkAV7EFEksdM0uD5dCVHPWMBF/uu
+	rZse5v5p2aw/BCHioMsXs3vKZxxMS+YQnbwwmqZPtcjCYLYNNTFS7HOZU=
+X-Google-Smtp-Source: AGHT+IF6ozO6AyxwG4za9A7i83BSzRL3SEEnwk5MfwoXwPW6m7AZDLNJEhC2j3KTRCG2+36HHH9N7IUrHjCnjqIf3Hs=
+X-Received: by 2002:a17:907:7fa9:b0:ade:3a7a:26cb with SMTP id
+ a640c23a62f3a-adea9a5a8f2mr111569866b.58.1749692677584; Wed, 11 Jun 2025
+ 18:44:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250611125723.181711-1-guodong@riscstar.com> <20250611125723.181711-2-guodong@riscstar.com>
+ <20250611-kabob-unmindful-3b1e9728e77d@spud>
+In-Reply-To: <20250611-kabob-unmindful-3b1e9728e77d@spud>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Thu, 12 Jun 2025 09:44:25 +0800
+X-Gm-Features: AX0GCFsy-sakH0jotNRCx536oNAS4R_g03uEq1Dp3TLhuOr7_lBJgrQdKtIkepA
+Message-ID: <CAH1PCMYBPOerGKhMGUi_4AD-abF9wce2PgFMSfzi056FJvRJgQ@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT PDMA compatibility
+To: Conor Dooley <conor@kernel.org>, duje.mihanovic@skole.hr
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com, 
+	emil.renner.berthing@canonical.com, inochiama@gmail.com, 
+	geert+renesas@glider.be, tglx@linutronix.de, hal.feng@starfivetech.com, 
+	joel@jms.id.au, elder@riscstar.com, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The change provides a working example of using a new scheme of describing
-CSIPHY devices under CAMSS.
+On Thu, Jun 12, 2025 at 12:27=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
+> > Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
+> > controller in the Marvell MMP DMA device tree bindings. This enables:
+> >
+> > - Support for SpacemiT PDMA controller configuration
+> > - New optional properties for platform-specific integration:
+> >   * clocks: Clock controller for the DMA
+> >   * resets: Reset controller for the DMA
+> >
+> > Also, add explicit #dma-cells property definition to avoid
+> > "make dtbs_check W=3D3" warnings about unevaluated properties.
+> >
+> > The #dma-cells property is defined as 2 cells to maintain compatibility
+> > with existing ARM device trees. The first cell specifies the DMA reques=
+t
+> > line number, while the second cell is currently unused by the driver bu=
+t
+> > required for backward compatibility with PXA device tree files.
+> >
+> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > ---
+> >  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml=
+ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > index d447d5207be0..e117a81414bd 100644
+> > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >        - marvell,pdma-1.0
+> >        - marvell,adma-1.0
+> >        - marvell,pxa910-squ
+> > +      - spacemit,pdma-1.0
+>
+> You need a soc-specific compatible here.
+>
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -32,6 +33,21 @@ properties:
+> >        A phandle to the SRAM pool
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> >
+> > +  clocks:
+> > +    description: Clock for the controller
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    description: Reset controller for the DMA controller
+> > +    maxItems: 1
+> > +
+> > +  '#dma-cells':
+> > +    const: 2
+> > +    description:
+> > +      The first cell contains the DMA request number for the periphera=
+l
+> > +      device. The second cell is currently unused but must be present =
+for
+> > +      backward compatibility.
+>
+> These properties are only valid for your new device, right?
+> If so, please restrict them to only the spacemit platform.
+>
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
-For testing only, do not merge.
+For clocks and resets, yes that's correct, only for spacemit k1. I'll add
+conditional constraints to restrict them to the spacemit platform.
 
- .../dts/qcom/qrb5165-rb5-vision-mezzanine.dtso | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+Regarding #dma-cells, it's used by other platforms too. You are right that
+it requires clarification. I should have been more careful in my initial
+analysis.
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
-index 5fe331923dd3..939eec7a039f 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dtso
-@@ -14,18 +14,20 @@ &camcc {
- };
- 
- &camss {
-+	status = "okay";
- 	vdda-phy-supply = <&vreg_l5a_0p88>;
- 	vdda-pll-supply = <&vreg_l9a_1p2>;
-+
-+	phys = <0>, <0>, <&csiphy2>, <0>, <0>, <0>;
-+};
-+
-+&csiphy2 {
- 	status = "okay";
- 
--	ports {
--		/* The port index denotes CSIPHY id i.e. csiphy2 */
--		port@2 {
--			csiphy2_ep: endpoint {
--				clock-lanes = <7>;
--				data-lanes = <0 1 2 3>;
--				remote-endpoint = <&imx577_ep>;
--			};
-+	port {
-+		csiphy2_ep: endpoint {
-+			data-lanes = <0 1 2 3>;
-+			remote-endpoint = <&imx577_ep>;
- 		};
- 	};
- };
--- 
-2.49.0
+After reviewing the in-tree device trees and driver code, here's what I fou=
+nd:
 
+For PDMA controllers:
+Both "marvell,pdma-1.0" and the spacemit pdma use #dma-cells =3D <2>;
+Handled by drivers/dma/mmp_pdma.c with _xlate() callback
+
+For ADMA/audio controllers:
+"marvell,adma-1.0" uses #dma-cells =3D <1>
+
+"marvell,pxa910-squ" is not found in any in-tree device trees, but based
+on the original TXT binding [1], both adma and pxa910-squ are "Marvell
+Two Channel DMA Controller used specifically for audio", and the shared
+driver code (drivers/dma/mmp_tdma.c) also shows it should use
+#dma-cells =3D <1>.
+
+So, I'll add conditional constraints in the allOf section.
+For "marvell,pdma-1.0" and spacemit pdma, #dma-cells must be 2;
+For "marvell,adma-1.0" and "marvell,pxa910-squ", #dma-cells must be 1.
+Also, as said, I will restrict clocks and resets to spacemit only.
+
+Thank you again for catching this. Let me know what you think.
+
+Link: https://lore.kernel.org/all/20240131-pxa-dma-yaml-v2-2-9611d0af0edc@s=
+kole.hr/
+[1]
+
+-Guodong
+
+
+> > +
+> >    '#dma-channels':
+> >      deprecated: true
+> >
+> > @@ -52,6 +68,7 @@ allOf:
+> >            contains:
+> >              enum:
+> >                - marvell,pdma-1.0
+> > +              - spacemit,pdma-1.0
+> >      then:
+> >        properties:
+> >          asram: false
+> > --
+> > 2.43.0
+> >
 
