@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B97AD7573
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1471AD7577
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85D6A18837EA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:14:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9A591883EEA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:17:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA4528983B;
-	Thu, 12 Jun 2025 15:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9452260567;
+	Thu, 12 Jun 2025 15:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WK+7L1pn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GyZFqjto"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0D327511A;
-	Thu, 12 Jun 2025 15:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06801BC2A;
+	Thu, 12 Jun 2025 15:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749741254; cv=none; b=LfL5raP9svynDCLhPXStX68J1SiffrRvicfyoi02JFRSwiJSCOGT6yJRaF2LrXwnsIVsbJI3WtqVUJZW07AutqxT90VcZ5EY4wxN3ZhwJKM3lcj8Vj389dwmXGmxKYq84kuvvhfwpwtxGutTe8WPqhD0lg0Qd0F3lmkj352HkHM=
+	t=1749741410; cv=none; b=NeP9Du9fLewKbsIHRTmRr4ZJnYajN/iY6LzE4pVtOvuqf0PhWiZnUZZSnwiPe9QCELvKqIaGqQHfGHURdzMRQNVv4XxHnmDH2KCUpnFgbcBHiviudzffflLWTuCKuRPWgwguPwKimPk5K4x85r5hXA57LIWDK/JFf3f0UxOZyF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749741254; c=relaxed/simple;
-	bh=q+Ksmp3kFe/2n+9tRqHIhnbRaQ8WfHecqvPh7RinC24=;
+	s=arc-20240116; t=1749741410; c=relaxed/simple;
+	bh=DqlPn31+KZM4hJMsUtsN1+zFo6hqlMwhcnMVWvDMcbw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kRIE+lifu5gjiBRZO7mWQYrg2RT30bc8dEEJygg+kXJ+d65VycaNUhot9AB01ZNdPmC8ga9IMNHdN6kLWgbgwepvsrIzOOktNjJ+begTq6mRrlm1nIsgx9fubAPT2xxvYooSe+3V5nhCrfFvYAVeTFFXLRX6sCgncrGv6IMFvZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WK+7L1pn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C339C4CEEA;
-	Thu, 12 Jun 2025 15:14:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gnf9MsEeq3m7EuuhZZpSb1KuJs4eU/hmxl5OtdQJN/L1MkVV6GvwldJoIpTTR2x6EEunCEy8XIY6O39Un/SK41L3IkMbhAu/pbCAX1EQn5FDIrancFvULpLdn8tdGf3ViKDoLL8uNAA7GPXo5gSVbm4zP5ZpUhEUEXiCbicgpDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GyZFqjto; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F7C2C4CEEA;
+	Thu, 12 Jun 2025 15:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749741253;
-	bh=q+Ksmp3kFe/2n+9tRqHIhnbRaQ8WfHecqvPh7RinC24=;
+	s=k20201202; t=1749741410;
+	bh=DqlPn31+KZM4hJMsUtsN1+zFo6hqlMwhcnMVWvDMcbw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WK+7L1pncwJJLleN3YHC3MadeMv6BTEtYg+KiR9psiC+5ABhujrVMeTy2+sX8TpE9
-	 ntJvIzgSlBL5EJaVcubeB0Fo6Oa589UFc5azQcbNANljfqLMJg6EVkbAKkLxoT1f5l
-	 SKfGqx0c1yfRZxiACgM2HNdwEvzMg9KSPfDuVdJPQg22WG7CMGV9LleUkoG7yhsFN0
-	 sJwreKZkUoYVKRcxAORzWOga/PMGb/Vzu7s/SHZgCqXLzwIEfG6VNv3GkvLagawKCq
-	 +Ravog2sje2ujlGvsf1tdwanoMbDJWKPHMPrMXIqJq/5a2JhnjFP9A+S3jZHjDbv8R
-	 HZ9zMWzs8w2dA==
-Message-ID: <3db9ff0d-6bdf-4faa-b534-af7b7c5a235f@kernel.org>
-Date: Thu, 12 Jun 2025 17:14:08 +0200
+	b=GyZFqjtoH/ZrLiNXoOWtDY7USCOkILKdvLPY190q572lgpUVppz8uIph/6BvuCIur
+	 UPifclw/IRxXFUk345aBFGB/Sn9uSVYp6pLxmvtVVCWoT2Q6Yg5oAL/EBvb/OYpymi
+	 FtYM6Ac91on2G330xQ1F2Ng79gbFTIa3GpwupHHvbnR92SmoFbuoI5THP4A15I4GNR
+	 TSf7MZokADkly9q1MKpHegMhHCOs6SrNXTv/M5nKWtgr6mJgkWnth4sF5wmpwbACnN
+	 XlExincfkj70SfFqNq26R/1Gzz+Rpu7n8RsiOEaqRBL+7i+qmbN/iRJ+u1PlSMvAoC
+	 M1zLkpzFDAAAA==
+Message-ID: <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
+Date: Thu, 12 Jun 2025 17:16:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] clk: samsung: exynos990: Add CMU_HSI1 block
-To: Umer Uddin <umer.uddin@mentallysanemainliners.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
+ for MT8188
+To: Friday Yang <friday.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250528105252.157533-1-umer.uddin@mentallysanemainliners.org>
- <20250528105252.157533-3-umer.uddin@mentallysanemainliners.org>
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250521063347.31578-1-friday.yang@mediatek.com>
+ <20250521063347.31578-3-friday.yang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,109 +107,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250528105252.157533-3-umer.uddin@mentallysanemainliners.org>
+In-Reply-To: <20250521063347.31578-3-friday.yang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/05/2025 12:52, Umer Uddin wrote:
-> The CMU_HSI1 block is used for providing clocks for the DesignWare
-> MMC Controller, PCIE Subsystem and UFS subsystem, and has six
-> dependency clocks from CMU_TOP.
+On 21/05/2025 08:33, Friday Yang wrote:
+> From: "Friday Yang" <friday.yang@mediatek.com>
 > 
-> Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-> ---
->  drivers/clk/samsung/clk-exynos990.c | 221 ++++++++++++++++++++++++++++
->  1 file changed, 221 insertions(+)
+> To prevent handling glitch signals during MTCMOS on/off transitions,
+> SMI requires clamp and reset operations. Parse the reset settings for
+> SMI LARBs and the clamp settings for the SMI Sub-Common. Register
+> genpd callback for the SMI LARBs located in image, camera and IPE
+> subsystems, and apply reset and clamp operations within the callback.
 > 
-> diff --git a/drivers/clk/samsung/clk-exynos990.c b/drivers/clk/samsung/clk-exynos990.c
-> index 8d3f193d2..91ecbafcf 100644
-> --- a/drivers/clk/samsung/clk-exynos990.c
-> +++ b/drivers/clk/samsung/clk-exynos990.c
-> @@ -20,6 +20,7 @@
->  #define CLKS_NR_TOP (CLK_GOUT_CMU_VRA_BUS + 1)
->  #define CLKS_NR_HSI0 (CLK_GOUT_HSI0_XIU_D_HSI0_ACLK + 1)
->  #define CLKS_NR_PERIS (CLK_GOUT_PERIS_OTP_CON_TOP_OSCCLK + 1)
-> +#define CLKS_NR_HSI1 (CLK_MOUT_HSI1_UFS_EMBD_USER + 1)
->  
->  /* ---- CMU_TOP ------------------------------------------------------------- */
->  
-> @@ -1483,6 +1484,222 @@ static void __init exynos990_cmu_peris_init(struct device_node *np)
->  CLK_OF_DECLARE(exynos990_cmu_peris, "samsung,exynos990-cmu-peris",
->  	       exynos990_cmu_peris_init);
->  
-> +/* ---- CMU_HSI1 ------------------------------------------------------------ */
-> +
-> +/* Register Offset definitions for CMU_HSI1 (0x13000000) */
-> +#define PLL_CON0_MUX_CLKCMU_HSI1_BUS_USER												0x0600
+> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-
-This is way past coding style limit: 80.
-
-This is way past hard cut-off: checkpatch.
-
-> +#define PLL_CON1_MUX_CLKCMU_HSI1_BUS_USER												0x0604
-> +#define PLL_CON0_MUX_CLKCMU_HSI1_MMC_CARD_USER												0x0610
-> +#define PLL_CON1_MUX_CLKCMU_HSI1_MMC_CARD_USER												0x0614
-> +#define PLL_CON0_MUX_CLKCMU_HSI1_PCIE_USER												0x0620
-> +#define PLL_CON1_MUX_CLKCMU_HSI1_PCIE_USER												0x0624
-> +#define PLL_CON0_MUX_CLKCMU_HSI1_UFS_CARD_USER												0x0630
-> +#define PLL_CON1_MUX_CLKCMU_HSI1_UFS_CARD_USER												0x0634
-> +#define PLL_CON0_MUX_CLKCMU_HSI1_UFS_EMBD_USER												0x0640
-> +#define PLL_CON1_MUX_CLKCMU_HSI1_UFS_EMBD_USER												0x0644
-> +#define HSI1_CMU_HSI1_CONTROLLER_OPTION													0x0800
-> +#define CLK_CON_GAT_CLK_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_PHY_REFCLK_IN									0x2000
-> +#define CLK_CON_GAT_CLK_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCIE_001_PCIE_SUB_CTRL_INST_0_PHY_REFCLK_IN					0x2004
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_D_TZPC_HSI1_IPCLKPORT_PCLK									0x2008
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_GPIO_HSI1_IPCLKPORT_PCLK										0x200c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_HSI1_CMU_HSI1_IPCLKPORT_PCLK									0x2010
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_LHM_AXI_P_HSI1_IPCLKPORT_I_CLK									0x2014
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_LHS_ACEL_D_HSI1_IPCLKPORT_I_CLK									0x2018
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_MMC_CARD_IPCLKPORT_I_ACLK										0x201c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_MMC_CARD_IPCLKPORT_SDCLKIN									0x2020
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_DBI_ACLK									0x2024
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_IEEE1500_WRAPPER_FOR_PCIEG2_PHY_X1_INST_0_I_SCL_APB_PCLK			0x2028
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_MSTR_ACLK									0x202c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_PCIE_SUB_CTRL_INST_0_I_DRIVER_APB_CLK						0x2030
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_PIPE2_DIGITAL_X1_WRAP_INST_0_I_APB_PCLK_SCL					0x2034
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN2_IPCLKPORT_SLV_ACLK									0x2038
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCIE_001_G4X2_DWC_PCIE_CTL_INST_0_DBI_ACLK_UG				0x203c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCIE_001_G4X2_DWC_PCIE_CTL_INST_0_MSTR_ACLK_UG				0x2040
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCIE_001_G4X2_DWC_PCIE_CTL_INST_0_SLV_ACLK_UG				0x2044
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCIE_001_PCIE_SUB_CTRL_INST_0_I_DRIVER_APB_CLK				0x2048
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCS_PMA_INST_0_PIPE_PAL_PCIE_INST_0_I_APB_PCLK				0x204c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_GEN4_0_IPCLKPORT_PCS_PMA_INST_0_SF_PCIEPHY000X2_LN07LPP_QCH_TM_WRAPPER_INST_0_I_APB_PCLK	0x2050
-
-These names are not really useful. Please shorten them to 50-55 characters.
-
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_IA_GEN2_IPCLKPORT_I_CLK									0x2054
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PCIE_IA_GEN4_0_IPCLKPORT_I_CLK									0x2058
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PPMU_HSI1_IPCLKPORT_ACLK										0x205c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_PPMU_HSI1_IPCLKPORT_PCLK										0x2060
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_RSTNSYNC_CLK_HSI1_BUS_IPCLKPORT_CLK								0x2064
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_RSTNSYNC_CLK_HSI1_OSCCLK_IPCLKPORT_CLK								0x2068
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_SYSMMU_HSI1_IPCLKPORT_CLK_S2									0x206c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_SYSREG_HSI1_IPCLKPORT_PCLK									0x2070
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_UFS_CARD_IPCLKPORT_I_ACLK										0x2074
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_UFS_CARD_IPCLKPORT_I_CLK_UNIPRO									0x2078
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_UFS_CARD_IPCLKPORT_I_FMP_CLK									0x207c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_UFS_EMBD_IPCLKPORT_I_ACLK										0x2080
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_UFS_EMBD_IPCLKPORT_I_CLK_UNIPRO									0x2084
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_UFS_EMBD_IPCLKPORT_I_FMP_CLK									0x2088
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_VGEN_LITE_HSI1_IPCLKPORT_CLK									0x208c
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_XIU_D_HSI1_IPCLKPORT_ACLK										0x2090
-> +#define CLK_CON_GAT_GOUT_BLK_HSI1_UID_XIU_P_HSI1_IPCLKPORT_ACLK										0x2094
-> +#define DMYQCH_CON_PCIE_GEN2_QCH_REF													0x3000
-> +#define DMYQCH_CON_PCIE_GEN4_0_QCH_REF													0x3004
-> +#define QCH_CON_D_TZPC_HSI1_QCH														0x3024
-> +#define QCH_CON_GPIO_HSI1_QCH														0x3028
-> +#define QCH_CON_HSI1_CMU_HSI1_QCH													0x302c
-> +#define QCH_CON_LHM_AXI_P_HSI1_QCH													0x3030
-> +#define QCH_CON_LHS_ACEL_D_HSI1_QCH													0x3034
-> +#define QCH_CON_MMC_CARD_QCH														0x3038
-> +#define QCH_CON_PCIE_GEN2_QCH_APB													0x303c
-> +#define QCH_CON_PCIE_GEN2_QCH_DBI													0x3040
-> +#define QCH_CON_PCIE_GEN2_QCH_MSTR	
-
+You did not respond to previous review. Sending the same while ignoring
+previous review is obvious NAK.
 
 Best regards,
 Krzysztof
