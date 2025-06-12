@@ -1,201 +1,129 @@
-Return-Path: <devicetree+bounces-185252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBE8AD704F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:27:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A1CAD7072
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:31:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0274A3A78F7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:26:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AC111884C8D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96BD21CC71;
-	Thu, 12 Jun 2025 12:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EB319D8BC;
+	Thu, 12 Jun 2025 12:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcfBFAxr"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Pdr3jsG8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9A22192F8;
-	Thu, 12 Jun 2025 12:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5687B46B8;
+	Thu, 12 Jun 2025 12:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749731223; cv=none; b=TWyxNIUt82QVruePAQUOlN1vQVNHiVRElEawxEcHcva+SUrnfyZfpgtlxBMrUeOj48mJMZzPCrqdVFAtivEBEAcVkNR7kjmy2Vt7ui74fMAENcqKELop+3+iNU+X9omzji/7PR53IW4evwxPPUq8hA4ZsCiTzYCci3wt40rOgjU=
+	t=1749731441; cv=none; b=SpsbHFIUyaU/x6nNCJXUPI6EOC1NzNZRgEevN4UmmoBTqD062cVsdnfoEcsD0qag1EGwVMdnoYAvm52+2uuaLXJIfnhTDJkAYdxoYIaSfk60AOeEqvF6LENVuTGQ7K+jSi/3wNYzg74nCEyxKZoVdOfxSuEbe0YAIBQ3Ubomr00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749731223; c=relaxed/simple;
-	bh=5MEjtAv0TqGxOCKaA9pBWp/Tk5XUhQhcp65ZW/zGUnc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q7kAR9tE9yL1lhF9itfFHOSRn6nHYL+DGv9dXKNeV0xEZicz6jUMj+BExRjU0FCBn4gdk++d5GulL2rUdeHEIk1QiVhEug/kiHSIizrpgKMnWUYZlLDlcVuxQOAorKXklmCoOCk3i/EPIhUfUEPkJ7bxJjY4/B/yAFJ+5uPYonI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcfBFAxr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE706C4CEEA;
-	Thu, 12 Jun 2025 12:27:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749731223;
-	bh=5MEjtAv0TqGxOCKaA9pBWp/Tk5XUhQhcp65ZW/zGUnc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UcfBFAxr3a6JicMjX5aD0ukleYBYEeRoFZ+Pmer0DVHYGclj7exMVMdaEexYOHPuK
-	 x0mAY62mxzio5CNVjOfKkExAONLtMqAZTKnqldh9SHu3cjxykNBZhlvgG5YeXEncL/
-	 y4k+R/2mTgJzyYlxFgX/bn7tI91ryNNskeDgxRCRycgjrGcULabmcfo4tlRlwstQ14
-	 BRrU0ts1myPa3jtRWg7nhuEFXG6ksLkfWPesebnBOg39aGrwXDHges66egPTFKRbM2
-	 02rNYPTYuH2ZQV6psft2dEVwiCX0ygIeSaig+lMneQC4t1oZRGRdUMYB2JTYURK/24
-	 4a4prVDWMBeIQ==
-Date: Thu, 12 Jun 2025 07:27:01 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-Cc: Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
-	vigneshr@ti.com, u-kumar1@ti.com, a-chavda@ti.com, p-mantena@ti.com
-Subject: Re: [PATCH v2 12/17] dt-bindings: dma: ti: Add document for K3 BCDMA
- V2
-Message-ID: <20250612122701.GA1171082-robh@kernel.org>
-References: <20250612071521.3116831-1-s-adivi@ti.com>
- <20250612071521.3116831-13-s-adivi@ti.com>
+	s=arc-20240116; t=1749731441; c=relaxed/simple;
+	bh=xMj0PeXUpejsICB72qzZq/FU9wUca+EJE4sWUqWhTeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y7VMaqWD4eU68EnxbP99yz5RrT+JDjUYMq4rZaWMCH4L73bwsuaP1Z+4SCovQ5+dyF91JBvRLPPRz7QV6mE6EmgrLPPYg6ZufvUDLwgiV/DyLrTSe5QlC1iRE7KA2HLrt+AAr/nYZGY1JYvnHOsC4NL/WN+zA+/Krrz5qV1fL4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Pdr3jsG8; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1749731436;
+	bh=xMj0PeXUpejsICB72qzZq/FU9wUca+EJE4sWUqWhTeA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Pdr3jsG8LEBbrTq48ZzhTF8vjLwU0K+gNO+X2iv7Gdtf7LmKBdaFEIz5QMWdeccwD
+	 GLCxrTWkvx74UkGx64K3aPq/B4r5m2wWanFUdRsvxE/zkUcEWjvmC0tdmaSl7DthRD
+	 5BeuUwEdjAOZP363EEtatAdEPq2wvbL19UMWfJpDqLJEWqCebJY82sVUPdY5Cah+Bp
+	 d6wLrrwIXhisc4G9pCT8qm9/8yoDg9PO+QNBA6isGJKMkProKjiDrtP+vHW8of9oIv
+	 T0bBlbb2VBZy8YlsWjQe1n9JNo/CshEopiXzxi9osJgM+NETN7+2eF9RvK13lDKGw6
+	 5cndkuogjgGWQ==
+Received: from [192.168.1.90] (unknown [212.93.144.165])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 48C9D17E06BF;
+	Thu, 12 Jun 2025 14:30:35 +0200 (CEST)
+Message-ID: <85cb44fd-f597-443e-81b4-e259513aec9f@collabora.com>
+Date: Thu, 12 Jun 2025 15:30:23 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250612071521.3116831-13-s-adivi@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Fix HDMI output on RK3576
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org
+Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
+ <3011644.e9J7NaK4W3@workhorse>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <3011644.e9J7NaK4W3@workhorse>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 12, 2025 at 12:45:16PM +0530, Sai Sree Kartheek Adivi wrote:
-> New binding document for
-> Texas Instruments K3 Block Copy DMA (BCDMA) V2.
+Hi Nicolas,
 
-Drop 'document for' in the subject.
-
+On 6/12/25 3:13 PM, Nicolas Frattaroli wrote:
+> On Wednesday, 11 June 2025 23:47:46 Central European Summer Time Cristian Ciocaltea wrote:
+>> Since commit c871a311edf0 ("phy: rockchip: samsung-hdptx: Setup TMDS
+>> char rate via phy_configure_opts_hdmi"), the workaround of passing the
+>> PHY rate from DW HDMI QP bridge driver via phy_set_bus_width() became
+>> partially broken, unless the rate adjustment is done as with RK3588,
+>> i.e. by CCF from VOP2.
+>>
+>> Attempting to fix this up at PHY level would not only introduce
+>> additional hacks, but it would also fail to adequately resolve the
+>> display issues that are a consequence of the system CRU limitations.
+>>
+>> Therefore, let's proceed with the solution already implemented for
+>> RK3588, that is to make use of the HDMI PHY PLL as a more accurate DCLK
+>> source in VOP2.
+>>
+>> It's worth noting a follow-up patch is going to drop the hack from the
+>> bridge driver altogether, while switching to HDMI PHY configuration API
+>> for setting up the TMDS character rate.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>> Cristian Ciocaltea (3):
+>>       dt-bindings: display: vop2: Add optional PLL clock property for rk3576
+>>       arm64: dts: rockchip: Enable HDMI PHY clk provider on rk3576
+>>       arm64: dts: rockchip: Add HDMI PHY PLL clock source to VOP2 on rk3576
+>>
+>>  .../bindings/display/rockchip/rockchip-vop2.yaml   | 56 +++++++++++++++++-----
+>>  arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  7 ++-
+>>  2 files changed, 49 insertions(+), 14 deletions(-)
+>> ---
+>> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+>> change-id: 20250611-rk3576-hdmitx-fix-e030fbdb0d17
+>>
 > 
-> BCDMA V2 is introduced as part of AM62L.
+> For the whole series:
 > 
-> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-> ---
->  .../bindings/dma/ti/k3-bcdma-v2.yaml          | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-bcdma-v2.yaml
+> Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma-v2.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma-v2.yaml
-> new file mode 100644
-> index 0000000000000..9d86e515bdefb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma-v2.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024-2025 Texas Instruments Incorporated
-> +# Author: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+> This fixes HDMI output for 4K resolutions on my RK3576 ArmSoM Sige5.
+> The DTB checks and bindings checks pass as well.
+Many thanks for the additional testing!
 
-git records the author. Don't need it here.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/ti/k3-bcdma-v2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments K3 DMSS BCDMA V2
-> +
-> +maintainers:
-> +  - Sai Sree Kartheek Adivi <s-adivi@ti.com>
-> +
-> +description: |
-> +  The BCDMA V2 is intended to perform similar functions as the TR
-> +  mode channels of K3 UDMA-P.
-> +  BCDMA V2 includes block copy channels and Split channels.
-
-Is this one paragraph or 2? Either blank line between paragraphs or wrap 
-at 80 char.
-
-> +
-> +  Block copy channels mainly used for memory to memory transfers, but with
-> +  optional triggers a block copy channel can service peripherals by accessing
-> +  directly to memory mapped registers or area.
-> +
-> +  Split channels can be used to service PSI-L based peripherals.
-> +  The peripherals can be PSI-L native or legacy, non PSI-L native peripherals
-> +  with PDMAs. PDMA is tasked to act as a bridge between the PSI-L fabric and the
-> +  legacy peripheral.
-> +
-> +allOf:
-> +  - $ref: /schemas/dma/dma-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,am62l-dmss-bcdma
-> +
-> +  reg:
-> +    items:
-> +      - description: BCDMA Control /Status
-> +      - description: Block Copy Channel Realtime
-> +      - description: Channel Realtime
-> +      - description: Ring Realtime
-> +
-> +  reg-names:
-> +    items:
-> +      - const: gcfg
-> +      - const: bchanrt
-> +      - const: chanrt
-> +      - const: ringrt
-> +
-> +  "#dma-cells":
-> +    const: 4
-> +    description: |
-> +      cell 1: Trigger type for the channel
-> +        0 - disable / no trigger
-> +        1 - internal channel event
-> +        2 - external signal
-> +        3 - timer manager event
-> +
-> +      cell 2: parameter for the trigger:
-> +        if cell 1 is 0 (disable / no trigger):
-> +          Unused, ignored
-> +        if cell 1 is 1 (internal channel event):
-> +          channel number whose TR event should trigger the current channel.
-> +        if cell 1 is 2 or 3 (external signal or timer manager event):
-> +          index of global interfaces that come into the DMA.
-> +
-> +          Please refer to the device documentation for global interface indexes.
-> +
-> +      cell 3: Channel number for the peripheral
-> +
-> +        Please refer to the device documentation for the channel map.
-> +
-> +      cell 4: ASEL value for the channel
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#dma-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    cbass_main {
-
-Don't use '_' in node names. 
-
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        dma-controller@485c4000 {
-> +            compatible = "ti,dmss-bcdma-v2";
-> +            reg = <0x00 0x485c4000 0x00 0x4000>,
-> +                  <0x00 0x48880000 0x00 0x10000>,
-> +                  <0x00 0x48800000 0x00 0x80000>,
-> +                  <0x00 0x47000000 0x00 0x200000>;
-> +            reg-names = "gcfg", "bchanrt", "chanrt", "ringrt";
-> +            #dma-cells = <4>;
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
+Regards,
+Cristian
 
