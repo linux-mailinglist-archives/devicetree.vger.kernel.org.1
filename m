@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-185079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2BE0AD666D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 06:01:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552EAAD6678
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 06:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F7D61BC1D9B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 04:02:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF7333A0896
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 04:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC12C21128D;
-	Thu, 12 Jun 2025 04:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BC3223704;
+	Thu, 12 Jun 2025 04:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LU+txM/W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4bpqTBM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE42520B81E;
-	Thu, 12 Jun 2025 04:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048D3223321;
+	Thu, 12 Jun 2025 04:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749700859; cv=none; b=pEe4XWbGtPI8lBNut3COnNdQPShookY/gH4aNicQ7gMGukAHX0PkPZhDIMi5CiQIOW4Qn4Z97GgWXcnSDpmeWM86XDbnR+4WtjpxshyUrr32oROzVh29xPcojZs8+7pqJkSIAbLcr6WSrW8Zo2R1644Mu4PVJzCTY7Uvj69kD7c=
+	t=1749700862; cv=none; b=aJgVKWt2kTxy58O0hQCjsXjFPynN7m62i0H3KSt9aBrqceRmNMdq57MbffsxrLlFEGiQn27aTVXXkZbdldiErArq5WqlXqrTG6f/3YDrx5lY6RyVdt6FBuLVxUYrptbrw5p7QRbJOVPtGINZjoes5ACHs9TdHOsQyE0S8y21Z3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749700859; c=relaxed/simple;
-	bh=n5qIWRLEp+KCJIzcgFkNr9a8YYeFWWgX2UXPJeOOJqI=;
+	s=arc-20240116; t=1749700862; c=relaxed/simple;
+	bh=XrRnPW4i8g+EE6wExOMowCi5/zyzGT+vghLHGrMqlh8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qOPYhtjnkmF86ll7VRTA0CIB5Cp1evvYJhJqXgWO0hkx/3b+K4d1kC4HqQggTtBAs30XWMkAVBi/AKVJqYzA/6rpxSnzoJFunF9OON4NkFDDy1eTRwNMUXwpdqKLHr9CaUO6+OEVNDPN6+U1unZ40VzujCj1YNSDKO8EcW1MkcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LU+txM/W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91417C4CEEA;
-	Thu, 12 Jun 2025 04:00:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=q2cvApz0oCi8Gi0hgmp6hpzbee8Gp3fWZzJOdvd5Tblfu2MBUkNYgJuHr/LMmDf6AOGthZcPhOIKMz2XjXZR9oNHxvvxKa75JK7ov1t629wlueSpnK32vNSQKy/YZ9EVTNFdPEDsURbLgbYUHbwanHS0VzWA41qCnGZfBTzjW0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4bpqTBM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F98C4CEF2;
+	Thu, 12 Jun 2025 04:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749700859;
-	bh=n5qIWRLEp+KCJIzcgFkNr9a8YYeFWWgX2UXPJeOOJqI=;
+	s=k20201202; t=1749700861;
+	bh=XrRnPW4i8g+EE6wExOMowCi5/zyzGT+vghLHGrMqlh8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LU+txM/WmchyeRWGJiuxxmKg1PM6js93skQnlFVxb5xD+SKZRKlUYYphFc+ufvNc0
-	 rFX90n2esE0A86zCJLMgBQcS26sViKKtjnkLNMsJ17T+7tfRRbH1XK8HguzUh/N8/e
-	 LAzN9fUu1fbKZzOPqn4qpe2CeYYB9s7vEUSfNgEjD3m65pm0+yDJ5v+B6fApbvibIz
-	 FtEGe/gdhPx/63P2TiTfeFAiScteqfKNE5sN3N6Ym3AIjVfQXDO63tiu38+AieD+TQ
-	 pGrCAFtlWsA9AolqlYE/+0vU+U048+rGeA2V7m/xt0mmSC/n59IZq+bPxnsuW6AjIG
-	 flPGB1ZbIIJ4A==
+	b=D4bpqTBMIk6s6SHw5Cq7AiRWLWE4DyEJXAkXXzk7BE8D3gKbnfyDJ0O57ykJuTbP0
+	 WPa9ApGBFAUetJeJ3jjU2CtJQm20zkztcJzbCRGe0oxv2GY9gCGh3S1ifRb0MqRpH6
+	 1WoxO38vWQA3H2GgqGB7l9U9viixieEtlE5iKqUlCmLxzJ4WDgi16zvEw2JrvoeWWT
+	 QlzQw9tbidhOoI9eNqgXmTtvuTeM0MqQFK63IX+EeGtQzmYV2dEByRsL6t60eR3igr
+	 qJaxJcQ5V0Q9IY36pUS7pOBcmZnw/Q1HJUtEe0CTPOY8YR2x0DEwEJTMDJkgIWpire
+	 pUFWQY1WZsX6A==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	Luca Weiss <luca@lucaweiss.eu>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: sm8750: Add sound
-Date: Wed, 11 Jun 2025 23:00:39 -0500
-Message-ID: <174970084203.547582.11155224197455531897.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Add devicetree aliases for mmc on multiple MSM8974 devices
+Date: Wed, 11 Jun 2025 23:00:42 -0500
+Message-ID: <174970084206.547582.8116096585283415678.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250526-sm8750-audio-part-2-v3-0-74429c686bb1@linaro.org>
-References: <20250526-sm8750-audio-part-2-v3-0-74429c686bb1@linaro.org>
+In-Reply-To: <20250610-msm8974-mmc-alias-v2-0-1d8808478fba@lucaweiss.eu>
+References: <20250610-msm8974-mmc-alias-v2-0-1d8808478fba@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,32 +68,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 26 May 2025 13:46:31 +0200, Krzysztof Kozlowski wrote:
-> Changes in v3:
-> - Add vdd-px-supply to audio-codec node
-> - Add tags
-> - New patch #3 for QRD8750.
-> - Link to v2: https://lore.kernel.org/r/20250519-sm8750-audio-part-2-v2-0-5ac5afdf4ee2@linaro.org
+On Tue, 10 Jun 2025 19:03:48 +0200, Luca Weiss wrote:
+> Add an alias for the internal storage so it always becomes mmcblk0 and
+> - where applicable - SD card becomes mmcblk1.
 > 
-> Changes in v2:
-> - Patch #1:
->   - Use v2.1 compatible with v2.0 fallback (Konrad)
->   - Use hex address in <reg>
->   - Re-order nodes to keep proper sorting by unit address
-> - Patch #2:
->   - Re-order codec/cpu nodes (Konrad)
-> - Link to v1: https://lore.kernel.org/r/20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org
+> This avoids issues with internal storage becoming mmcblk1 unexpectedly
+> and aligns this board with other boards that use MMC storage.
+> 
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sm8750: Add Soundwire nodes
-      commit: 5b87cad934105e87f43de305122965444a36aecb
-[2/3] arm64: dts: qcom: sm8750-mtp: Add sound (speakers, headset codec, dmics)
-      commit: bd227f88faeb4cd9efc76f26c9ed91c058e6158a
-[3/3] arm64: dts: qcom: sm8750-qrd: Add sound (speakers, headset codec, dmics)
-      commit: 6f018e1881fb3460870c7e50152886fc4b076495
+[1/3] ARM: dts: qcom: msm8974-oneplus-bacon: Add alias for mmc0
+      commit: d9abbfd3212b5873e827e3760cc698686d7a8c3b
+[2/3] ARM: dts: qcom: msm8974-hammerhead: Add alias for mmc0
+      commit: 9dd98b0f7a646c08f357189e9d5e733df08f0430
+[3/3] ARM: dts: qcom: msm8974-sony-xperia-rhine: Add alias for mmc0 & mmc1
+      commit: fb84f0ec527c50c54ab662d45c441f6789ec3550
 
 Best regards,
 -- 
