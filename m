@@ -1,136 +1,112 @@
-Return-Path: <devicetree+bounces-185177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB849AD6BE1
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:13:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 867BFAD6C0B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:22:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6F661882091
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:12:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33E3C16B3E1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:22:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457EB224244;
-	Thu, 12 Jun 2025 09:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F2E22425B;
+	Thu, 12 Jun 2025 09:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vNmY3HVZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J9iywj6e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049C41DDC1B;
-	Thu, 12 Jun 2025 09:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D1A71DDC1B;
+	Thu, 12 Jun 2025 09:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749719546; cv=none; b=MbV2Wau/N+m90dX8sqm5dcGMjMqgSUhKSmB+QDvTKNUCeizNhvoO/RN3ckZHoT8v6DImQz8C+B9rrKpYJr87m7iVQD4OBPYPqcpPbTPV5/0MYshD7sB7hqOohgrLEDnXkKWq32aa9mLcYsHEhICvBZgNWEjvRqa160sjefKlcy0=
+	t=1749720135; cv=none; b=HpgGJiM00Kgodi2Yd3NaHPf13tU08pBXbx/QraN0NGBOcrUYSkm5ASH5bG1RfVNtU9A42X1YPr/TsK1+XRFzyViGqZ+rpj2QLE7AaXYSkxls6P+nQwnsfj+/wM0wNHrhLXvw0X7YcpCsI7emEpKwAUFRG/YRjppZFXDC1r7nIMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749719546; c=relaxed/simple;
-	bh=zJQ79n0+FenXg8CW9hXrEPBZ2mMHVHaVY55v6bEoH3c=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=UO6DLSYZEyJZgs9oQngoiTsDK97+dk7YRZqsiCrPmyrc7RktifkEg8lvKbC2y3t5uWMBtvInnqTvxal3XrqgQO24Re69E0Zd3CzU+sEUm/laExl5BQw34D47Gjp7eIuRE0L5UGBPHXycbusSjxAt7v9IhGvo3i9OiIVz41lyr4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vNmY3HVZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 333E9C4CEEA;
-	Thu, 12 Jun 2025 09:12:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749719545;
-	bh=zJQ79n0+FenXg8CW9hXrEPBZ2mMHVHaVY55v6bEoH3c=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=vNmY3HVZoPLE2n2l1u5VMrnXXjfglJfJQkQW/kG9MSzoncNmdaVGVF/Zw0VdhSd+2
-	 3+zr6nieafadxOb84+tYiZSE33Iz+U0ONwWQLxb5+sDYXYrzn9EF4QTGZlREZVq/zq
-	 Y4Gg/fT7BII/gpL1zRNomeJYsQqlCwd5uZC14eZjOx//CxZ3nRpEtdZrFCkYF4gsTZ
-	 tphePEpk50umpQ61omEd+GsAQtVOFyun0lIgSpexo5QiBohESdem3p1NFx9DZucQZk
-	 MEsSLIQKk31UVAkkrQ8bIv0OypuJ0QRzSRHZoZhseI3nEmGq9m9auyauKk0xWUhlAC
-	 FAAKddH+Qwn/Q==
+	s=arc-20240116; t=1749720135; c=relaxed/simple;
+	bh=csdVaR13d/wScxApjumsCps0/lUheL7VO5t19sO1IxQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bIOq3rSPXp5+RNUAMhoTEAhvGzDlYZEftwWRl8NkD+iPSXYN0FRGo5objbJemGzYamUQOXpZWgBg9tVsdsS9JFcW7gX3qGZiirs3YE+mCDm5/8l4CHOPAnzmvVsGM4CfYPw54s00PD0hgGMD7I1IO/e8/itqelAGKzdL+tPKz/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J9iywj6e; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55BM9dPk002508;
+	Thu, 12 Jun 2025 09:22:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=ddg27i+DGtDxyoqA+T6jMDHRlbegr4YcOVGp72z3dUU=; b=J9
+	iywj6eKU2ncwZlulKf75MPFQTyrbzY1udcTNIMbnLwLeDRazY+Vi8Jl+om2Tjvtu
+	vILnN3L4FTjLLjpQbvWUXWUkjP1m9o7K3B86ODmxy0M4gAAqORtcuWN7Ah7h2XWS
+	PhsvQ68UyI8JsNCkh5p6h6DbBqReBvx9IGv5hddkTUxCBsP4zMl98jh50/6HudIJ
+	ZmEhAWwnrZAmuoIeYi7+/vKCYMM1GvSaCoKLjnXWhr+uOGuZcfzRvqqwxVikaRXj
+	fsT5okKfqIHnm8Wk3jtrr23Vi+fnTL4ta0gdrWBBp7ylT0VbVwxo/Cr9bF1XxVO9
+	ja5A7VQRA9XOs9jDxIDw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 477jbphfqk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Jun 2025 09:22:10 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55C9M98f008176
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Jun 2025 09:22:09 GMT
+Received: from hu-sayalil-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 12 Jun 2025 02:22:06 -0700
+From: Sayali Lokhande <quic_sayalil@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc-owner@vger.kernel.org>
+Subject: [PATCH 0/1] Add eMMC support for qcs8300
+Date: Thu, 12 Jun 2025 14:51:45 +0530
+Message-ID: <20250612092146.5170-1-quic_sayalil@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 12 Jun 2025 11:12:18 +0200
-Message-Id: <DAKFT7C8IRC4.2ID8TJIKN4Z5R@kernel.org>
-Cc: <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v2 1/7] rust: Add basic PWM abstractions
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Michal Wilczynski" <m.wilczynski@samsung.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
- "Drew Fustini" <drew@pdp7.com>, "Guo Ren" <guoren@kernel.org>, "Fu Wei"
- <wefu@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Paul Walmsley"
- <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Marek
- Szyprowski" <m.szyprowski@samsung.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com> <CGME20250610125332eucas1p2da441aa44760236527afc82495af95d1@eucas1p2.samsung.com> <20250610-rust-next-pwm-working-fan-for-sending-v2-1-753e2955f110@samsung.com>
-In-Reply-To: <20250610-rust-next-pwm-working-fan-for-sending-v2-1-753e2955f110@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PcqWjn7XBugI1haU2i1Dcc7XWfTU3Avm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDA3MSBTYWx0ZWRfX5zW8TNempoHJ
+ JuEaQ+zaInoZBN7q11ek6rr4GZKS3K6ztsKPQv30WXYHiU65SM+967QxRW5a1tWVMV6qaa78gYR
+ MJ9YABdALxGcVZBFiXCp66tfWQPN/6GyKOTu1iNIf/AstTCZAoTyq3NwYuHNLcC5SyapGz8xSWy
+ KMmT6NB5v0CJJ0qh8uClt2Zw42hcFaTIz7LW60GfUGBrutOELxswTMm4w5x0tFM/9D4dlVwfmbb
+ 02rT/s63ZDQWtq7I0wW6GQWolMbhZvG0QT1VrMmlzw1ecHrMN8p1BvBTv9VxXGiaJramUAYsr5X
+ I3IlFC9HFo6tUJO4UGBkYrMT7Z/8Z9yQob74tY0ggBjC2bggRRZ4T1glOGhMjckdplL7ozUGCLo
+ tM4sRJ034jUdy30KrDZlNRILWLe8PPjU1UvWrNT0pif94eK/1fMZEGkgYzss2rNhZH0jGM5Z
+X-Proofpoint-ORIG-GUID: PcqWjn7XBugI1haU2i1Dcc7XWfTU3Avm
+X-Authority-Analysis: v=2.4 cv=OLgn3TaB c=1 sm=1 tr=0 ts=684a9c42 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=7Is_6JkwcPGrsfUxyFUA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-12_06,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1011
+ lowpriorityscore=0 mlxscore=0 mlxlogscore=433 suspectscore=0 adultscore=0
+ malwarescore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506120071
 
-On Tue Jun 10, 2025 at 2:52 PM CEST, Michal Wilczynski wrote:
-> Introduce safe Rust abstractions for the Linux PWM subsystem. These
-> abstractions provide ergonomic, lifetime managed wrappers around the
-> core C data structures and functions, enabling the development of PWM
-> chip drivers in safe Rust.
->
-> This initial version provides the core building blocks for writing a PWM
-> chip provider driver, with a focus on safety, resource management, and
-> idiomatic Rust patterns.
->
-> The main components are:
->
-> Ownership and Lifetime Management:
->  - The pwm::Chip type, an ARef managed wrapper for struct pwm_chip,
->    correctly handles the object's lifetime by using the embedded struct
->    device's reference counter.
->  - A pwm::Registration RAII guard ensures that a call to register a
->    chip (pwmchip_add) is always paired with a call to unregister it
->    (pwmchip_remove), preventing resource leaks.
->
-> Safe Type Wrappers:
->  - Safe, idiomatic Rust types (Polarity, Waveform, State, Args,
->    Device) are provided to abstract away the raw C structs and enums.
->    The State wrapper holds its data by value, avoiding unnecessary
->    heap allocations.
->
-> Driver Operations (PwmOps):
->  - A generic PwmOps trait allows drivers to implement the standard
->    PWM operations. It uses an associated type (WfHw) for the driver's
->    hardware specific waveform data, moving unsafe serialization logic int=
-o
->    the abstraction layer.
->    The trait exposes the modern waveform API (round_waveform_tohw,
->    write_waveform, etc.) as well as the other standard kernel callbacks
->    (get_state, request, apply).
->  - A create_pwm_ops function generates a C-compatible vtable from a
->    PwmOps implementor.
->
-> This foundational layer is designed to be used by subsequent patches to
-> implement specific PWM chip drivers in Rust.
->
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  MAINTAINERS                     |   6 +
->  drivers/pwm/Kconfig             |  13 +
->  rust/bindings/bindings_helper.h |   1 +
->  rust/helpers/helpers.c          |   1 +
->  rust/helpers/pwm.c              |  20 +
->  rust/kernel/lib.rs              |   2 +
->  rust/kernel/pwm.rs              | 864 ++++++++++++++++++++++++++++++++++=
-++++++
->  7 files changed, 907 insertions(+)
+Add eMMC support for qcs8300 board.
 
-Do you mind splitting this into smaller commits to make review easier?
+Sayali Lokhande (1):
+  arm64: dts: msm: Add eMMC support for qcs8300
 
----
-Cheers,
-Benno
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 33 ++++++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 97 +++++++++++++++++++++++
+ 2 files changed, 130 insertions(+)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
 
