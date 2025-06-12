@@ -1,129 +1,137 @@
-Return-Path: <devicetree+bounces-185363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663CFAD761B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:31:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C95AD75DA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:25:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46852188A734
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:29:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24892176A8E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B6F2E0B50;
-	Thu, 12 Jun 2025 15:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC82629898E;
+	Thu, 12 Jun 2025 15:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="kFFFIFT0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B//CU/O9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C412DFA25;
-	Thu, 12 Jun 2025 15:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADCA929827D;
+	Thu, 12 Jun 2025 15:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749741626; cv=none; b=kvjQD3VHdlg01MmhfmhdNwDCG19UHC2+WRRlgGQxCpnWW4ZGGmwchFZvMDFOzf8SIkkM2S8nHEFu6FDrD0/GTUhI6svtxOizoQaTzAcN6V8588HYR05e/3LWnh6b6Y/jcPpDliOxG8y7g5RxHo1utkPnzeLhn5rc2dFx0A+vCbw=
+	t=1749741511; cv=none; b=Pg01YinOepyPY70J2DIdarUEhzjEybpKz0JXn0GQK8MmBT9Z0wAEx+1cMhYwk64TXwQ32188X0b9yIG00LIMw5671Q4xvJ7fSDa/5Xr3adNasdqVm9Ee0TJkHGrrNWZIADO8cTpHuFApr8CnzQ9HQTNSZ98mqBCONZh52H0Mo2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749741626; c=relaxed/simple;
-	bh=l4Nuu5usU3hvRSdSwV3bQf/gyHyhMjDbMhpD0WU6O88=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h5+U3pn5etNbz0rSou/NWyGHA5Gh1DHs1mDtbTI7w/0qYlhVHVNVDhFS6RIBXwLT95qWZJAU8qi7iIKz5sVFUavSYzp1ldzRmms8vr3iXEhG1xaz8rW+8LY0dAzuuzN2VLHq/d+JhXq7PyB3GrkZoTge892r5gYy3U1AiWf+tkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=kFFFIFT0; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 324B22609A;
-	Thu, 12 Jun 2025 17:20:24 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id hPNr3ZLvaQWh; Thu, 12 Jun 2025 17:20:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1749741622; bh=l4Nuu5usU3hvRSdSwV3bQf/gyHyhMjDbMhpD0WU6O88=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=kFFFIFT0+KQGlDZejDKTYu8pW3aBpvHIFYD3tycWyjxc2ZRDJADepxWPL/soNwGtF
-	 YTIBgsTn3YHbaEU+Ld+MPx0R4YMy3PH6Oz1fbyHDI+Qi5hp62cL7FQTxkPa1cZZHjl
-	 TjrLpM+bnVO8ib6iKBvYZjNRaXmFdwB7ocMvIw7Yi3bEePdtYhN4HGFmu9YVCWKUdm
-	 srZsPbe1hQRI3TncwrLTLbyaXiDnprEUsJoLVA+rWz73zR/tLAoj1ftlVCt7XHqttM
-	 21ACTYm34CF5ilIasRLvJlMAn0mGaNZRaonpwcQdysr29jG7YMY3ZFdci/RFIG0/AB
-	 L3AL9XThmSkOQ==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Thu, 12 Jun 2025 20:48:16 +0530
-Subject: [PATCH 12/12] drm/exynos: dsi: add support for exynos7870
+	s=arc-20240116; t=1749741511; c=relaxed/simple;
+	bh=FbhY2QR9Ge9sT7AznVigo8OUCoOekLoMdfaIP/6SVpE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eqQ2sAyQYmeZES26Mv8GbrItlDJKM6h8jXqs5pnhnVs2NlsXzBgl1/3pRWBdKRGG8pTWlXbI1XuEoLSaEjAWU+S3/xm+bfwnIk7MKRGYK24yvYpe+H8Y7JA4YeJ7+231flxyIpvwL349bZP7vguc9gUG6ZjA+bCNCGW9+VLjW/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B//CU/O9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA32EC4CEEA;
+	Thu, 12 Jun 2025 15:18:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749741511;
+	bh=FbhY2QR9Ge9sT7AznVigo8OUCoOekLoMdfaIP/6SVpE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B//CU/O9L3vAXNK8cYOr6ndIN2zcAgPDpKj7ic24nC7yc2d+ecHMZ/0cMZJq841DA
+	 s7CQZ+WUXYw4cBYlXbqqRJ4eKVzCyVW3JrU6woGRiaVzs6r6bsnRAnCZv20wNkVzK4
+	 JZEgHh+wzweujH4ydWow9NSbiZuU9tZcfdwLIfp6RAZ0qz4Zt/b5n9mr1dicgisym5
+	 wHMORlIPfm7ei5KeIKSRkfmp1PKelSzZDPg2x1xs5Q8wLbYbXSAU5B1s2d95yqtO4L
+	 S43sEmNVa08iXo4mHmsbVj7kjtQaqWPTw3vHJJ1kIkN3MlItyfTsbbjPgmLUvxNr6X
+	 OssD1FqAuB01Q==
+Date: Thu, 12 Jun 2025 16:18:26 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v4 20/20] mfd: adp5585: add support for a reset pin
+Message-ID: <20250612151826.GN381401@google.com>
+References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
+ <20250521-dev-adp5589-fw-v4-20-f2c988d7a7a0@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250612-exynos7870-dsim-v1-12-1a330bca89df@disroot.org>
-References: <20250612-exynos7870-dsim-v1-0-1a330bca89df@disroot.org>
-In-Reply-To: <20250612-exynos7870-dsim-v1-0-1a330bca89df@disroot.org>
-To: Inki Dae <inki.dae@samsung.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749741499; l=1284;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=l4Nuu5usU3hvRSdSwV3bQf/gyHyhMjDbMhpD0WU6O88=;
- b=lQbb3yX2weNNjAz5shqRd54kvetuaJZEBMG9UE72Vk906suF41Yeq3NuuzkpDG0MGcm2nHTu5
- IA3fIU8kjM8C4lj/pkCLcMAqHYPccUrTi1UHBh/kqOgTtmjZu0+Y0If
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250521-dev-adp5589-fw-v4-20-f2c988d7a7a0@analog.com>
 
-Add glue layer support for Exynos7870's DSIM IP bridge driver.
+On Wed, 21 May 2025, Nuno Sá via B4 Relay wrote:
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- drivers/gpu/drm/exynos/exynos_drm_dsi.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> From: Nuno Sá <nuno.sa@analog.com>
+> 
+> Make sure to perform an Hardware reset during probe  if the pin is given
+> in FW.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  drivers/mfd/adp5585.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> index e8b9a0ef4ee654ac1abc4042152fe0933f1d9f0d..164da0b804c4fce4e3af1ac0c2813020a77f4938 100644
+> --- a/drivers/mfd/adp5585.c
+> +++ b/drivers/mfd/adp5585.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/device.h>
+>  #include <linux/err.h>
+>  #include <linux/i2c.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/mfd/adp5585.h>
+>  #include <linux/mfd/core.h>
+>  #include <linux/mod_devicetable.h>
+> @@ -697,6 +698,7 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct regmap_config regmap_config;
+>  	struct adp5585_dev *adp5585;
+> +	struct gpio_desc *gpio;
+>  	unsigned int id;
+>  	int ret;
+>  
+> @@ -718,6 +720,20 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  	if (ret)
+>  		return ret;
+>  
+> +	gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(gpio))
+> +		return PTR_ERR(gpio);
+> +
+> +	/*
+> +	 * Note the timings are not documented anywhere in the DS. They are just
 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-index 896a03639e2d9b80971d43aff540fc7fb9f005bd..c4d098ab7863890b2111742c07953c148304e4ec 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-@@ -154,6 +154,11 @@ static const struct samsung_dsim_plat_data exynos5433_dsi_pdata = {
- 	.host_ops = &exynos_dsi_exynos_host_ops,
- };
- 
-+static const struct samsung_dsim_plat_data exynos7870_dsi_pdata = {
-+	.hw_type = DSIM_TYPE_EXYNOS7870,
-+	.host_ops = &exynos_dsi_exynos_host_ops,
-+};
-+
- static const struct of_device_id exynos_dsi_of_match[] = {
- 	{
- 		.compatible = "samsung,exynos3250-mipi-dsi",
-@@ -175,6 +180,10 @@ static const struct of_device_id exynos_dsi_of_match[] = {
- 		.compatible = "samsung,exynos5433-mipi-dsi",
- 		.data = &exynos5433_dsi_pdata,
- 	},
-+	{
-+		.compatible = "samsung,exynos7870-mipi-dsi",
-+		.data = &exynos7870_dsi_pdata,
-+	},
- 	{ /* sentinel. */ }
- };
- MODULE_DEVICE_TABLE(of, exynos_dsi_of_match);
+"datasheet"
+
+> +	 * reasonable values that work.
+> +	 */
+> +	if (gpio) {
+> +		fsleep(30);
+> +		gpiod_set_value_cansleep(gpio, 0);
+> +		fsleep(60);
+> +	}
+> +
+>  	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
+>  	if (IS_ERR(adp5585->regmap))
+>  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+> 
+> -- 
+> 2.49.0
+> 
+> 
 
 -- 
-2.49.0
-
+Lee Jones [李琼斯]
 
