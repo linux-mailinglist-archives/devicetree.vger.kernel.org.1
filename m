@@ -1,132 +1,285 @@
-Return-Path: <devicetree+bounces-185346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1471AD7577
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:16:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8C2AD757B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:17:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9A591883EEA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:17:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B0003A6703
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9452260567;
-	Thu, 12 Jun 2025 15:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CDF29827B;
+	Thu, 12 Jun 2025 15:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GyZFqjto"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HqfvEvcO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06801BC2A;
-	Thu, 12 Jun 2025 15:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D041BC2A;
+	Thu, 12 Jun 2025 15:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749741410; cv=none; b=NeP9Du9fLewKbsIHRTmRr4ZJnYajN/iY6LzE4pVtOvuqf0PhWiZnUZZSnwiPe9QCELvKqIaGqQHfGHURdzMRQNVv4XxHnmDH2KCUpnFgbcBHiviudzffflLWTuCKuRPWgwguPwKimPk5K4x85r5hXA57LIWDK/JFf3f0UxOZyF8=
+	t=1749741424; cv=none; b=PMuCKim+UJjsJQhimQEMcAPqWfUYoUSlgtaK4Tf6URTvpWt28PzOIp8l5coM6L4Y6ydxeBHetgYCeY9WfMiPg2gfibTOxvOzUMLwVO9YwWfR9+siYdyS8nuvIN7L7yvU9jcg4Avp+b+kkKI603/HSWd3x7F/wYVhCUazu0s5GA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749741410; c=relaxed/simple;
-	bh=DqlPn31+KZM4hJMsUtsN1+zFo6hqlMwhcnMVWvDMcbw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gnf9MsEeq3m7EuuhZZpSb1KuJs4eU/hmxl5OtdQJN/L1MkVV6GvwldJoIpTTR2x6EEunCEy8XIY6O39Un/SK41L3IkMbhAu/pbCAX1EQn5FDIrancFvULpLdn8tdGf3ViKDoLL8uNAA7GPXo5gSVbm4zP5ZpUhEUEXiCbicgpDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GyZFqjto; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F7C2C4CEEA;
-	Thu, 12 Jun 2025 15:16:47 +0000 (UTC)
+	s=arc-20240116; t=1749741424; c=relaxed/simple;
+	bh=Dvj5LFY5RO3EHClSFerz0zlL/OIN8SVF52drVXU9e9c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LB5dHlqkQlibQx2Nw/ObJakxcXOrVrchoxyA5NJULxUzShQDVry8lZsfDgRtexWE4feGBBOKHAOea2+iracTFw/36ktgsgywjyNMNrAbTwplP6OKykeWeSqYvj4eIo225tQZBlfoboiBA3eloAmqSBv7rFrCzfK4rctKMgFtj/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HqfvEvcO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85C25C4CEEA;
+	Thu, 12 Jun 2025 15:17:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749741410;
-	bh=DqlPn31+KZM4hJMsUtsN1+zFo6hqlMwhcnMVWvDMcbw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GyZFqjtoH/ZrLiNXoOWtDY7USCOkILKdvLPY190q572lgpUVppz8uIph/6BvuCIur
-	 UPifclw/IRxXFUk345aBFGB/Sn9uSVYp6pLxmvtVVCWoT2Q6Yg5oAL/EBvb/OYpymi
-	 FtYM6Ac91on2G330xQ1F2Ng79gbFTIa3GpwupHHvbnR92SmoFbuoI5THP4A15I4GNR
-	 TSf7MZokADkly9q1MKpHegMhHCOs6SrNXTv/M5nKWtgr6mJgkWnth4sF5wmpwbACnN
-	 XlExincfkj70SfFqNq26R/1Gzz+Rpu7n8RsiOEaqRBL+7i+qmbN/iRJ+u1PlSMvAoC
-	 M1zLkpzFDAAAA==
-Message-ID: <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
-Date: Thu, 12 Jun 2025 17:16:45 +0200
+	s=k20201202; t=1749741424;
+	bh=Dvj5LFY5RO3EHClSFerz0zlL/OIN8SVF52drVXU9e9c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HqfvEvcOZFoBdJFrNxY0X9fH/8dRKiYJmEf4AZYQlaCdHh0YIJgKqRJV+aKhgRqH9
+	 wNepx0Bw2y/OGLaUW5aLcBFAibY+WZdw3V0TCx8CCOYhQQV7+R07o2Xg5MLnUao7Fi
+	 uwy+JtVN4hDL6AtNARIO7wF0B3dR74m8eLd00jIXSFxUz8wyQML7uoAnFGBo9vD4lM
+	 hNWOoYHRheBLwp4Iqs3oyRzGr3kBBaqm/6Sl6FQVdmY8MwlkVvmdRXPfge3k8HX585
+	 N8fV266awqDLEfJjqHweDzXs78MMGnCiWymwcM3zKGdtAvb8qLWlbGc1qDLfroCozf
+	 5PppsL8oMZVDA==
+Date: Thu, 12 Jun 2025 16:16:58 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v4 14/20] mfd: adp5585: add support for input devices
+Message-ID: <20250612151658.GL381401@google.com>
+References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
+ <20250521-dev-adp5589-fw-v4-14-f2c988d7a7a0@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
- for MT8188
-To: Friday Yang <friday.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250521063347.31578-1-friday.yang@mediatek.com>
- <20250521063347.31578-3-friday.yang@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250521063347.31578-3-friday.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250521-dev-adp5589-fw-v4-14-f2c988d7a7a0@analog.com>
 
-On 21/05/2025 08:33, Friday Yang wrote:
-> From: "Friday Yang" <friday.yang@mediatek.com>
+On Wed, 21 May 2025, Nuno Sá via B4 Relay wrote:
+
+> From: Nuno Sá <nuno.sa@analog.com>
 > 
-> To prevent handling glitch signals during MTCMOS on/off transitions,
-> SMI requires clamp and reset operations. Parse the reset settings for
-> SMI LARBs and the clamp settings for the SMI Sub-Common. Register
-> genpd callback for the SMI LARBs located in image, camera and IPE
-> subsystems, and apply reset and clamp operations within the callback.
+> The ADP558x family supports a built in keypad matrix decoder which can
+> be added as an Input device. In order to both support the Input and the
+> GPIO device, we need to create a bitmap of the supported pins and track
+> their usage since they can either be used as GPIOs (GPIs) or as part of
+> the keymap.
 > 
-> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> We also need to mark special pins busy in case some features are being
+> used (ex: pwm or reset events).
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  drivers/mfd/adp5585.c       | 33 +++++++++++++++++++++++++++++++++
+>  include/linux/mfd/adp5585.h |  9 +++++++++
+>  2 files changed, 42 insertions(+)
+> 
+> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> index 6737d622a7ed9f280c439399f3709ca8162dee01..122e2c95385f8d5cbd7839db78dda77ad7ba4ae4 100644
+> --- a/drivers/mfd/adp5585.c
+> +++ b/drivers/mfd/adp5585.c
+> @@ -22,17 +22,20 @@
+>  enum {
+>  	ADP5585_DEV_GPIO,
+>  	ADP5585_DEV_PWM,
+> +	ADP5585_DEV_INPUT,
+>  	ADP5585_DEV_MAX
+>  };
+>  
+>  static const struct mfd_cell adp5585_devs[ADP5585_DEV_MAX] = {
+>  	MFD_CELL_NAME("adp5585-gpio"),
+>  	MFD_CELL_NAME("adp5585-pwm"),
+> +	MFD_CELL_NAME("adp5585-keys"),
+>  };
+>  
+>  static const struct mfd_cell adp5589_devs[] = {
+>  	MFD_CELL_NAME("adp5589-gpio"),
+>  	MFD_CELL_NAME("adp5589-pwm"),
+> +	MFD_CELL_NAME("adp5589-keys"),
+>  };
+>  
+>  static const struct regmap_range adp5585_volatile_ranges[] = {
+> @@ -173,6 +176,7 @@ static const struct adp5585_regs adp5585_regs = {
+>  	.reset_cfg = ADP5585_RESET_CFG,
+>  	.reset1_event_a = ADP5585_RESET1_EVENT_A,
+>  	.reset2_event_a = ADP5585_RESET2_EVENT_A,
+> +	.pin_cfg_a = ADP5585_PIN_CONFIG_A,
+>  };
+>  
+>  static const struct adp5585_regs adp5589_regs = {
+> @@ -183,6 +187,7 @@ static const struct adp5585_regs adp5589_regs = {
+>  	.reset_cfg = ADP5589_RESET_CFG,
+>  	.reset1_event_a = ADP5589_RESET1_EVENT_A,
+>  	.reset2_event_a = ADP5589_RESET2_EVENT_A,
+> +	.pin_cfg_a = ADP5589_PIN_CONFIG_A,
+>  };
+>  
+>  static int adp5585_validate_event(const struct adp5585_dev *adp5585, unsigned int ev)
+> @@ -236,6 +241,8 @@ static int adp5585_fill_variant_config(struct adp5585_dev *adp5585,
+>  		*regmap_config = adp5585_regmap_config_template;
+>  		adp5585->id = ADP5585_MAN_ID_VALUE;
+>  		adp5585->regs = &adp5585_regs;
+> +		adp5585->n_pins = ADP5585_PIN_MAX;
+> +		adp5585->reset2_out = ADP5585_RESET2_OUT;
+>  		if (adp5585->variant == ADP5585_01)
+>  			adp5585->has_pin6 = true;
+>  		break;
+> @@ -247,6 +254,8 @@ static int adp5585_fill_variant_config(struct adp5585_dev *adp5585,
+>  		adp5585->regs = &adp5589_regs;
+>  		adp5585->has_unlock = true;
+>  		adp5585->has_pin6 = true;
+> +		adp5585->n_pins = ADP5589_PIN_MAX;
+> +		adp5585->reset2_out = ADP5589_RESET2_OUT;
+>  		break;
+>  	default:
+>  		return -ENODEV;
+> @@ -434,6 +443,8 @@ static int adp5585_add_devices(const struct adp5585_dev *adp5585)
+>  		cells = adp5589_devs;
+>  
+>  	if (device_property_present(adp5585->dev, "#pwm-cells")) {
+> +		/* Make sure the PWM output pin is not used by the GPIO or INPUT  devices */
 
-You did not respond to previous review. Sending the same while ignoring
-previous review is obvious NAK.
+Nit: Remove the double space.
 
-Best regards,
-Krzysztof
+> +		__set_bit(ADP5585_PWM_OUT, adp5585->pin_usage);
+>  		ret = mfd_add_devices(adp5585->dev, PLATFORM_DEVID_AUTO,
+>  				      &cells[ADP5585_DEV_PWM], 1, NULL, 0, NULL);
+>  		if (ret)
+> @@ -449,6 +460,15 @@ static int adp5585_add_devices(const struct adp5585_dev *adp5585)
+>  		}
+>  	}
+>  
+> +	if (device_property_present(adp5585->dev, "adi,keypad-pins")) {
+> +		ret = mfd_add_devices(adp5585->dev, PLATFORM_DEVID_AUTO,
+> +				      &cells[ADP5585_DEV_INPUT], 1, NULL, 0, NULL);
+> +		if (ret) {
+> +			ret = dev_err_probe(adp5585->dev, ret, "Failed to add input device\n");
+> +			goto out_error;
+> +		}
+> +	}
+> +
+>  	return devm_add_action_or_reset(adp5585->dev, adp5585_remove_devices, adp5585->dev);
+>  out_error:
+>  	mfd_remove_devices(adp5585->dev);
+> @@ -518,6 +538,10 @@ static int adp5585_setup(struct adp5585_dev *adp5585)
+>  	unsigned int reg_val, i;
+>  	int ret;
+>  
+> +	/* if pin_6 (ROW5/GPI6) is not available, make sure to mark it as "busy" */
+
+Same thing about comments (I'll not mention it again).
+
+> +	if (!adp5585->has_pin6)
+> +		__set_bit(5, adp5585->pin_usage);
+
+Please define all magic numbers.
+
+> +
+>  	/* Configure the device with reset and unlock events */
+>  	for (i = 0; i < adp5585->nkeys_unlock; i++) {
+>  		ret = regmap_write(adp5585->regmap, ADP5589_UNLOCK1 + i,
+> @@ -542,6 +566,9 @@ static int adp5585_setup(struct adp5585_dev *adp5585)
+>  				   adp5585->reset1_keys[i] | ADP5585_RESET_EV_PRESS);
+>  		if (ret)
+>  			return ret;
+> +
+> +		/* mark that pin as not usable for the input and gpio devices */
+
+Input or INPUT and GPIO.
+
+> +		__set_bit(ADP5585_RESET1_OUT, adp5585->pin_usage);
+>  	}
+>  
+>  	for (i = 0; i < adp5585->nkeys_reset2; i++) {
+> @@ -549,6 +576,8 @@ static int adp5585_setup(struct adp5585_dev *adp5585)
+>  				   adp5585->reset2_keys[i] | ADP5585_RESET_EV_PRESS);
+>  		if (ret)
+>  			return ret;
+> +
+> +		__set_bit(adp5585->reset2_out, adp5585->pin_usage);
+>  	}
+>  
+>  	if (adp5585->nkeys_reset1 || adp5585->nkeys_reset2) {
+> @@ -703,6 +732,10 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  		return dev_err_probe(&i2c->dev, -ENODEV,
+>  				     "Invalid device ID 0x%02x\n", id);
+>  
+> +	adp5585->pin_usage = devm_bitmap_zalloc(&i2c->dev, adp5585->n_pins, GFP_KERNEL);
+> +	if (!adp5585->pin_usage)
+> +		return -ENOMEM;
+> +
+>  	ret = adp5585_parse_fw(adp5585);
+>  	if (ret)
+>  		return ret;
+> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
+> index 5a1de5ae4bb144ed49a03a4e9e93eb614abe9fa3..5aa042a30c6e9eb2736fb5ab91b505324168d7b5 100644
+> --- a/include/linux/mfd/adp5585.h
+> +++ b/include/linux/mfd/adp5585.h
+> @@ -126,6 +126,9 @@
+>  #define ADP5585_GPI_EVENT_END		47
+>  #define ADP5585_ROW5_KEY_EVENT_START	1
+>  #define ADP5585_ROW5_KEY_EVENT_END	30
+> +#define ADP5585_PWM_OUT			3
+> +#define ADP5585_RESET1_OUT		4
+> +#define ADP5585_RESET2_OUT		9
+>  
+>  /* ADP5589 */
+>  #define		ADP5589_MAN_ID_VALUE		0x10
+> @@ -154,6 +157,7 @@
+>  #define ADP5589_PWM_ONT_LOW		0x40
+>  #define ADP5589_PWM_CFG			0x42
+>  #define ADP5589_POLL_PTIME_CFG		0x48
+> +#define ADP5589_PIN_CONFIG_A		0x49
+>  #define ADP5589_PIN_CONFIG_D		0x4C
+>  #define ADP5589_GENERAL_CFG		0x4d
+>  #define ADP5589_INT_EN			0x4e
+> @@ -164,6 +168,7 @@
+>  #define ADP5589_KEY_EVENT_END		88
+>  #define ADP5589_GPI_EVENT_START		97
+>  #define ADP5589_GPI_EVENT_END		115
+> +#define ADP5589_RESET2_OUT		12
+>  
+>  struct regmap;
+>  
+> @@ -187,6 +192,7 @@ struct adp5585_regs {
+>  	unsigned int reset_cfg;
+>  	unsigned int reset1_event_a;
+>  	unsigned int reset2_event_a;
+> +	unsigned int pin_cfg_a;
+>  };
+>  
+>  struct adp5585_dev {
+> @@ -194,6 +200,9 @@ struct adp5585_dev {
+>  	struct regmap *regmap;
+>  	struct device *dev;
+>  	struct blocking_notifier_head event_notifier;
+> +	unsigned long *pin_usage;
+> +	unsigned int n_pins;
+> +	unsigned int reset2_out;
+>  	enum adp5585_variant variant;
+>  	unsigned int id;
+>  	bool has_unlock;
+> 
+> -- 
+> 2.49.0
+> 
+> 
+
+-- 
+Lee Jones [李琼斯]
 
