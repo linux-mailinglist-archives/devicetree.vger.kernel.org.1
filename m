@@ -1,150 +1,322 @@
-Return-Path: <devicetree+bounces-185422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB66AD79F9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:51:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5D1BAD7B1F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 21:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 812123A3AED
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 18:51:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 981D81891A78
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 19:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5DB2D321B;
-	Thu, 12 Jun 2025 18:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E51752D3A9B;
+	Thu, 12 Jun 2025 19:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xBvyZXaQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="X+5aB0fR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6DD2D3207
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 18:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C6A2D323E
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 19:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749754258; cv=none; b=EbotYGwTKGX6hXnVrS9vspxDFxrdesucrDLaejjzZjVmFqe6KD+kSb1P3sGzqzKFbX1GxuUwkRn5OG5tX8xeTPNaDtcNc7Ysr0pooDfWjt4NJNHwkZCiSwvCwJGBNUOpxH4cKGhTx9Qg6bDBaIiOxBthlxtUneVGJKwV+VtQ2+c=
+	t=1749757131; cv=none; b=CXzL77ANQrPUl4QuI/cAbAJ8kCJ8zpRohvUNnzhrnz7HTITQcOjVyCK0lcP2za7bJOsFXknfiPTqkfeNJK/Dxexpcp/pVisIYSNgF70gGwrWG/2QhPv6A2kTEHoeKoE8xJvDceCk/kt8OJ2FYbA1rbtMsGJBuVj1qcCkjK7xcpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749754258; c=relaxed/simple;
-	bh=KzTTs/ugVGZL81EZM6r1DC5THbX9ekJQpMdwtR6aQYo=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MSHB7GeRsq6GXZMC6jdb3MwnHIgCdX7Q30T/liKtGoEz7kcGB1Fi1rn7OalrAI5d16fqyX9Xya9yTpGwq55gAa+2NVbDscdT+ExkUMmlQ/07HmP079b4ce8cnNFAOoUayzHJllIuQaBR+27f0Cg7m12vzCAF2f/qOij8XN4yxvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xBvyZXaQ; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-451ebd3d149so9092335e9.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 11:50:56 -0700 (PDT)
+	s=arc-20240116; t=1749757131; c=relaxed/simple;
+	bh=laFRfpo6M2yi0Eap8PdzW1E/iGcfKxTFD9eXJXJZJzs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XRoP4Jpts7GHKmo5kgn5NdS66dXksPQgBsxIBb1H0UDBA1hAdx2wRmRqf66l6EnmMCERsYne/0P4aRYie8tfHkovYh5bDrTAPE+f4irDbypnnPsqDy6eU9ZghhJTqYhhoowln0Ju8lRy1+z7m459xVwLO3UEK2MIHpLN45BMkr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=X+5aB0fR; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-40667dc8a62so624978b6e.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 12:38:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749754255; x=1750359055; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S/WDJPrQPxRbp8NBRHRZm/xuQ8N47zspth9KJHjwxXA=;
-        b=xBvyZXaQ2Bz5cnyFeSnoX6Z/yRzq0YGnlNUieoHehNcwKdWDRKMzyfKhfekGv0+fg3
-         rFRf5JoN4zwcimmYxD3wUCawZ5Rd9MhcGpJ6j4wBU/75EXB1G0UO7NeWOcDn1ikjUsQy
-         4cqCkYJF2iGr6QjngOmNaaD8Sp0DGhsl2/1VnI5oMp1vBVHPHJw5g2y1+CW/GnxHvZtn
-         o79T3xFuCGbhIum8urJSfQKKj1cZTImKh1/fFOUYtkmpVgY1/hdTBhllw+b2myWDGc7F
-         inVSV0BeNdtZ8A9upXsEdauQB8iA1TNMQ4H+BhNBzzvY+IB+QwUY4CeEPdW3CdDPYBFd
-         YXdg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749757128; x=1750361928; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RjlYJhvz+w/i3+8SI6xuf86sFHKHxf82C/x8Ha6fKVw=;
+        b=X+5aB0fRey6S/K8SebvuYx17EkdU48UEWAfSZP60MZENSjU63jk1TV2l9p2B1V5WPQ
+         JPdAP+9sEfoRVxbCdAR1zobunvR38RJVk1nTBugNCm3qswVTyLhckg5kc7YT9kqtTqK/
+         7J+uY+8jJxQb4tNz3ZLzuNrGRLFPUdalqIYI770vUDoOiYLjKLEumUKjocna0zAgkTVe
+         iECi/+tvXbBwH/V/Wr7QlYECaraDD4mvCmSypDUjeX6I4VeDhZuMo+RH7VLUzAG3nUiR
+         MkGj5yi6IH9ZCBwfS98DI78KLUAsYlrLnB2zlPcIyWAy3B2sx1FB3gKJYQtBXx0JRwVn
+         YdCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749754255; x=1750359055;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S/WDJPrQPxRbp8NBRHRZm/xuQ8N47zspth9KJHjwxXA=;
-        b=Lnqxd8z7srdzHAZ0WMn1iM5QHZEd7Vfej4DJM23paUxYMb5I2P5khxHAohqG69f1wc
-         deYfllqPlhqXggYWZcsDHUhlrsqdCX1tUe15ygyg6fhngKjBkC+YFE39mqJpX2fpDr4o
-         sZCh3cfNgO4jWh6sa4WCqtyeYXGph2Ez6rvLOnD/KeGUPN2ViJQOnOpcxfXVc0bOCno0
-         ZfNlvS54zGuBcpiqdzBv1Xt6HG72/oIp/pn12Sh2eJrYu1NdaOxbZ9gIztpvwRnhyhij
-         tXWwecTxJ51T6FW8iSSRJoCiyXasJfF2yqdbjReLR2L8qD0feIG8ttWSNdWmfqICWAZg
-         9ZAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMoOz/I/OycDl+BdQppabG9lv8Mgcf6xhkP4LN5Wi8oFj1zKKsBIJxTOt3mhpngxGLLakP7ajHLd6B@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn8fcAl01ci4sdUBImr0gof9hjVvn5qyuvNeR2CzvEDsTyOeXp
-	ttAK8+YQOeCgwMKiiErkzTenbp/j9/j2LJngbgDhlDEHFWOc9C/PHt9PhOQQwYvamp8=
-X-Gm-Gg: ASbGncvlkOFxh+vUPFDx1PEd8AVXCsLuo8paDqryTn9Pw/O2yn7yATi3aPRLr9n89HW
-	li1ut3JvbsQU9kShPQtyPXVwd9wmbxWHvfMfNChz7gpKYK8zL6iiEfobWilpDao+v1Vfrv/jEK/
-	bBB+sJtb9UQQkALdo3jXxYdBYJC6j4VNmEvXjpZ4BGrEesNxsdpdkno8OGHdrkuDAP3dgQWtweQ
-	qneMgxcqdujDM2xPczhO1gbAC/+LYs2Q+hI6Sxy1Ou14WLDyJ2b8QjDalbf703sLYEKMHX8frky
-	bwFwIkL9d7hEb4EqeQ2ScnDlP1uZC+7i4CpX/kwIUGip9LNVYAb/5BSn4CkSGSf+kJI7H/gKvTq
-	eMEe0YA==
-X-Google-Smtp-Source: AGHT+IGzQ7CInmhyLVNO9NWc9ioy6OsDMOMV4BghZVu8RO7M8cKhgzv5GG0sczaNKS+6ukRU1kkY5g==
-X-Received: by 2002:a05:600c:1c86:b0:442:f4a3:8c5c with SMTP id 5b1f17b1804b1-45334a83221mr2953015e9.10.1749754254976;
-        Thu, 12 Jun 2025 11:50:54 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-453305a0d9dsm22086435e9.21.2025.06.12.11.50.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jun 2025 11:50:54 -0700 (PDT)
-From: Ghennadi Procopciuc <dan.carpenter@linaro.org>
-X-Google-Original-From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Date: Thu, 12 Jun 2025 21:50:51 +0300
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, s32@nxp.com, linaro-s32@linaro.org,
-	Larisa Grigore <larisa.grigore@nxp.com>,
-	Ionut Vicovan <Ionut.Vicovan@nxp.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Subject: [PATCH 1/3 v2] dt-bindings: usb: Add compatible strings for
- s32g2/s32g3
-Message-ID: <cb3970d93f2df0d350f3f3de27d9f0cdb41d0d3b.1749747898.git.dan.carpenter@linaro.org>
-References: <cover.1749747898.git.dan.carpenter@linaro.org>
+        d=1e100.net; s=20230601; t=1749757128; x=1750361928;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RjlYJhvz+w/i3+8SI6xuf86sFHKHxf82C/x8Ha6fKVw=;
+        b=t9rrisZy5oIu995g/uWDemnkEa+1vygA/YwsBN6IydFujYYquSPCiJ4kyT9JX0qp29
+         G9mCTWQBSbCuzi/ccPJmcsF2fHGtr7QlGJr48+F/eboUAjuH+QCMIIoAMj83yQl7Ztkv
+         ees14dE5yCImoD4ZDslYH7aiELv3CszyJMkqQGgLZDWUiVEaWiNqv0ktFvyvCnGY+MZz
+         tRLATEl2jkQwkokoEY2I86yodmqn8ErIXHKOWjh5VfOxO7G2Z61qohwfs0rGy9COIXBq
+         PIvnxhSwa3IcpHk7F/H6XDkMg50nmOsyBweLVm0k63f5/7ghO9Rz1xxzKZuACScM6frH
+         pkJw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBpGuil/U22j9NgWhEpqiVT+gBok3ad7lN8qZqerVgDdxjEKRUz65aXrIUpnoY8rnQx8mVCTDvYAe3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLJdx0muzhvJ13q8ni51Vz+Wmgj9+ph8PJc+dinGcQlkusG9xf
+	o8EoyJS/YpS6mgzxEpbcvATK7o+JK0N6cMP+BwzvEb83R4qHwebNHraUl/PtkCzCLak=
+X-Gm-Gg: ASbGncseHHv367G+AeQHuVPksfChCEdCh8iiXXX88aT5bEekDY+/ryUXHJk2KBae5xI
+	o3cv5NcM5E73FwtXvg9idT7p3QXiAqc4wsJee3jGhgX9rUTcPpy+4pvetFcPwcflGhNCwu+3E0n
+	fEQlx22zL+uHV2kNbDMiRStQVqWuWApBzU6udhb8RyWbF7OFPnOW/KdVQq4mJMKy35Zc6Dx4UN3
+	YV2p7VjNlWu6bfSVIbTgU8OE4Ozmp7zocufXy5//RqLT/SYNnBCcwdh7szfSM6SGqAxBI5o7tZq
+	ENmmUgni5LdCzFdRAalJxnDPEGS37bnLCPyOOyqmrCl6FZGnU5D9HZH//K5A3OHzYMEMoQ8j43B
+	1RkRV9xI5wfhcbF877igpJY7pXuA6ISGEqM1n
+X-Google-Smtp-Source: AGHT+IFH1cKNohq9ppvOp1WyK9G10CYwqkl9hidC8ms628muweoVG62JwEwc7Yt73xcQFHHa6K+JRQ==
+X-Received: by 2002:a05:6808:16a0:b0:3f7:d16c:e283 with SMTP id 5614622812f47-40a71d5aa37mr453389b6e.11.1749757128275;
+        Thu, 12 Jun 2025 12:38:48 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:f808:847:b3ae:ff1a? ([2600:8803:e7e4:1d00:f808:847:b3ae:ff1a])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40a68201a51sm422149b6e.10.2025.06.12.12.38.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 12:38:47 -0700 (PDT)
+Message-ID: <afc85a4b-1535-406d-ad14-143049267b98@baylibre.com>
+Date: Thu, 12 Jun 2025 14:38:45 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1749747898.git.dan.carpenter@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 8/8] iio: adc: Add events support to ad4052
+To: Jorge Marques <jorge.marques@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
+ <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+On 6/10/25 2:34 AM, Jorge Marques wrote:
+> The AD4052 family supports autonomous monitoring readings for threshold
+> crossings. Add support for catching the GPIO interrupt and expose as an IIO
+> event. The device allows to set either, rising and falling directions. Only
+> either threshold crossing is implemented.
+> 
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> ---
 
-Add the compatible strings for the NXP s32g2 and s32g3.  These chips
-are mostly compatible.  The one difference is that the s32g2-usbmisc
-device has an errata ERR050474 which requires a special flag to be set
-for handling packages that aren't 4 byte aligned.
+...
 
-Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-Changes since v1:
-1: Alphabetize
-2: Update the commit message a bit.
+> +
+> +static ssize_t ad4052_events_frequency_store(struct device *dev,
+> +					     struct device_attribute *attr,
+> +					     const char *buf,
+> +					     size_t len)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct ad4052_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (!iio_device_claim_direct(indio_dev))
+> +		return -EBUSY;
+> +	if (st->wait_event) {
+> +		ret = -EBUSY;
+> +		goto out_release;
+> +	}
 
- Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 2 ++
- Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml  | 2 ++
- 2 files changed, 4 insertions(+)
+I'm wondering if we should instead have some kind of iio_device_claim_monitor_mode()
+so that we don't have to implement this manually everywhere. If monitor mode was
+claimed, then iio_device_claim_direct() and iio_device_claim_buffer_mode() would
+both return -EBUSY. If buffer mode was claimed, iio_device_claim_monitor_mode()
+would fail. If direct mode was claimed, iio_device_claim_monitor_mode() would wait.
 
-diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-index cc5787a8cfa3..f6372b76ed5a 100644
---- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-@@ -23,6 +23,8 @@ properties:
-           - nvidia,tegra30-udc
-           - nvidia,tegra114-udc
-           - nvidia,tegra124-udc
-+          - nxp,s32g2-usb
-+          - nxp,s32g3-usb
-           - qcom,ci-hdrc
-       - items:
-           - enum:
-diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-index 019435540df0..ca677d1a8274 100644
---- a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-+++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-@@ -21,6 +21,8 @@ properties:
-           - fsl,imx53-usbmisc
-           - fsl,imx6q-usbmisc
-           - fsl,vf610-usbmisc
-+          - nxp,s32g2-usbmisc
-+          - nxp,s32g3-usbmisc
-       - items:
-           - enum:
-               - fsl,imx6ul-usbmisc
--- 
-2.47.2
+> +
+> +	ret = __sysfs_match_string(AD4052_FS(st->chip->grade),
+> +				   AD4052_FS_LEN(st->chip->grade), buf);
+> +	if (ret < 0)
+> +		goto out_release;
+> +
+> +	st->events_frequency = ret;
+> +
+> +out_release:
+> +	iio_device_release_direct(indio_dev);
+> +	return ret ? ret : len;
+> +}
+> +
+> +static IIO_DEVICE_ATTR(sampling_frequency, 0644,
+> +		       ad4052_events_frequency_show,
+> +		       ad4052_events_frequency_store, 0);
+> +
+> +static ssize_t sampling_frequency_available_show(struct device *dev,
+> +						 struct device_attribute *attr,
+> +						 char *buf)
+> +{
+> +	struct ad4052_state *st = iio_priv(dev_to_iio_dev(dev));
+> +	int ret = 0;
+> +
+> +	for (u8 i = AD4052_FS_OFFSET(st->chip->grade);
+> +	     i < AD4052_FS_LEN(st->chip->grade); i++)
+> +		ret += sysfs_emit_at(buf, ret, "%s ", ad4052_conversion_freqs[i]);
+> +
+> +	ret += sysfs_emit_at(buf, ret, "\n");
+> +	return ret;
+> +}
+> +
+> +static IIO_DEVICE_ATTR_RO(sampling_frequency_available, 0);
+> +
+> +static struct attribute *ad4052_event_attributes[] = {
+> +	&iio_dev_attr_sampling_frequency.dev_attr.attr,
+> +	&iio_dev_attr_sampling_frequency_available.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group ad4052_event_attribute_group = {
+> +	.attrs = ad4052_event_attributes,
+> +};
+> +
+>  static int ad4052_update_xfer_raw(struct iio_dev *indio_dev,
+>  				   struct iio_chan_spec const *chan)
+>  {
+> @@ -602,6 +699,19 @@ static int ad4052_setup(struct iio_dev *indio_dev, struct iio_chan_spec const *c
+>  				  val);
+>  }
+>  
+> +static irqreturn_t ad4052_irq_handler_thresh(int irq, void *private)
+> +{
+> +	struct iio_dev *indio_dev = private;
+> +
 
+Can we not read the status register here to find out what the exact
+event was? I guess that would require taking it out of monitor mode.
+
+> +	iio_push_event(indio_dev,
+> +		       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
+> +					    IIO_EV_TYPE_THRESH,
+> +					    IIO_EV_DIR_EITHER),
+> +		       iio_get_time_ns(indio_dev));
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  static irqreturn_t ad4052_irq_handler_drdy(int irq, void *private)
+>  {
+>  	struct ad4052_state *st = private;
+> @@ -616,6 +726,18 @@ static int ad4052_request_irq(struct iio_dev *indio_dev)
+>  	struct device *dev = &st->spi->dev;
+>  	int ret;
+>  
+> +	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp0");
+> +	if (ret > 0) {
+> +		ret = devm_request_threaded_irq(dev, ret, NULL,
+> +						ad4052_irq_handler_thresh,
+> +						IRQF_ONESHOT, indio_dev->name,
+> +						indio_dev);
+> +		if (ret)
+> +			return ret;
+> +	} else if (ret == -EPROBE_DEFER) {
+> +		return ret;
+> +	}
+
+By swapping the order, we can avoid the else. Also, do we really want to
+ignore all other errors? It seems like there would just be ENODEV or ENOENT
+that means the interrupt is not there and we would want to pass on other
+errors.
+
+> +
+>  	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp1");
+>  	if (ret > 0) {
+>  		ret = devm_request_threaded_irq(dev, ret, NULL,
+
+
+...
+
+> +
+> +static int ad4052_monitor_mode_enable(struct ad4052_state *st)
+> +{
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(&st->spi->dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad4052_conversion_frequency_set(st, st->events_frequency);
+> +	if (ret)
+> +		goto out_error;
+> +
+> +	ret = ad4052_set_operation_mode(st, AD4052_MONITOR_MODE);
+> +	if (ret)
+> +		goto out_error;
+> +
+> +	return ret;
+> +out_error:
+> +	pm_runtime_mark_last_busy(&st->spi->dev);
+> +	pm_runtime_put_autosuspend(&st->spi->dev);
+> +	return ret;
+> +}
+> +
+> +static int ad4052_monitor_mode_disable(struct ad4052_state *st)
+> +{
+> +	int ret;
+> +
+> +	pm_runtime_mark_last_busy(&st->spi->dev);
+> +	pm_runtime_put_autosuspend(&st->spi->dev);
+> +
+> +	ret = ad4052_exit_command(st);
+> +	if (ret)
+> +		return ret;
+> +	return regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
+> +			    AD4052_REG_DEVICE_STATUS_MAX_FLAG |
+> +			    AD4052_REG_DEVICE_STATUS_MIN_FLAG);
+> +}
+> +
+
+It seems like we need to make sure monitor mode is disabled when the
+driver is removed. Otherwise we could end up with unbalanced calls to
+the pm_runtime stuff and leave the chip running.
+
+
+> +static int ad4052_read_event_value(struct iio_dev *indio_dev,
+> +				   const struct iio_chan_spec *chan,
+> +				   enum iio_event_type type,
+> +				   enum iio_event_direction dir,
+> +				   enum iio_event_info info, int *val,
+> +				   int *val2)
+> +{
+> +	struct ad4052_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (!iio_device_claim_direct(indio_dev))
+> +		return -EBUSY;
+> +
+> +	if (st->wait_event) {
+> +		ret = -EBUSY;
+> +		goto out_release;
+> +	}
+> +
+> +	switch (info) {
+> +	case IIO_EV_INFO_VALUE:
+> +		ret = __ad4052_read_event_info_value(st, dir, val);
+> +		break;
+> +	case IIO_EV_INFO_HYSTERESIS:
+> +		ret = __ad4052_read_event_info_hysteresis(st, dir, val);
+> +		break;
+
+These functions don't need __ prefix. There is no name clash.
+
+> +	default:
+> +		ret = -EINVAL;
+> +		break;
+> +	}
+> +
+> +out_release:
+> +	iio_device_release_direct(indio_dev);
+> +	return ret ? ret : IIO_VAL_INT;
+> +}
+> +
 
