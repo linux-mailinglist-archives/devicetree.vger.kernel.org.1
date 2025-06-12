@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44452AD6E7C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 339D2AD6E81
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4605B188E2F4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:01:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04DC9188EB4F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8F0216E23;
-	Thu, 12 Jun 2025 11:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9252E22E3E3;
+	Thu, 12 Jun 2025 11:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Id4uAOxC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JGNvwFWF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D9017A2EA;
-	Thu, 12 Jun 2025 11:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61DCB17A2EA;
+	Thu, 12 Jun 2025 11:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749726070; cv=none; b=YQ0StWzuSmLKwavNKrjs/84OvOGPfqVBtqCSdQXJPgGT9G9JDx7E0o7hoClishjoTwBGSiOell4jjFOFcFVYnwvvTquzHEuzW6p3nBpx+7f4eSwFhJfjzrv8UktfC+eX5C1p3gFwBFCeswYZBCoRArjGltTJFyuOWOtJOrBhASU=
+	t=1749726152; cv=none; b=L7aF5zxMnMlcUtpuRETdSJTFdNOaqOIlIN2Vlh5qgl+DQux3Ekucw7Q0J1cTKA/NyEzfzWJXDc10Z3ed5Szq58T/YJPsxtpZewjhZJahvNLSkrXBb6mwLhV5WJAw19656b3aGE1sfKRFDibxgTY2Ara9HpLOnhlHFjgMfKaHaA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749726070; c=relaxed/simple;
-	bh=q+XQyDezCQkDlRP4sWbeQSN9mB+s4/CJAn9VL/4nIOE=;
+	s=arc-20240116; t=1749726152; c=relaxed/simple;
+	bh=2229ea5WbGCr+bkdJYi3fVs4L9fTm+iTKUI3f075qNA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BgoiH2++IxmuS4EDn171jsOzjIC9EMERIwqnT+eMBlWMxAV+jM3auuBmlSiaxb1vPh7wq92Fp3zrehufcVTWD25KUSDDEE0HFz5iZU8DpeZkRtgFbUcw7f1C1iEyEVs8Ma2TbjfudLD63HM3zqPZoAwmpMhCnRXb+nbTpoCXBoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Id4uAOxC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 562D9C4CEEA;
-	Thu, 12 Jun 2025 11:01:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uT2e9SNYGcxPIq+WsQkccPhaCbtteu2O2kmOZtWVSApNj+qu6oyUV0SftC4B1GUw81CqyJCC+E1SKPnBTvnOo1qB4qdJXfibKtR3d8V0pS3qKryiG6rIzZWryJ62orWQemCg/RJH6/F4K3sOkJRfn76z00Q/4NnSvug942lOGts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGNvwFWF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A330C4CEED;
+	Thu, 12 Jun 2025 11:02:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749726070;
-	bh=q+XQyDezCQkDlRP4sWbeQSN9mB+s4/CJAn9VL/4nIOE=;
+	s=k20201202; t=1749726151;
+	bh=2229ea5WbGCr+bkdJYi3fVs4L9fTm+iTKUI3f075qNA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Id4uAOxCUT+TsLKlFyVzGwLD/JUBKwUj6ACt+He1C31y6kbG7XQL4m4LWcrUVBHvJ
-	 BQZXUyOQm9VQM+JZfTEVl2iIEvkQ+lGZp+P3xpAIZvRWKZKI7EkTLt4f0z2JCudRCP
-	 bgjRo3XNsLdB9I/DwJNiLl5PdJ7P0D5OJQDPQPuvI8pmuFCpD0mfNVq1JVzc4zEKx3
-	 WH4pavhZX077ONchooutsWPT7Jp5mhww2k4GrcPEZ8hW35MU5trXoNFlT/3Ta21pGc
-	 wdjIh2bJN7AsFCuPvO9QZ9FDsKKv+Y1k0C6813SjTo2RvhU6Y9aaQKLC+u7xgeTpy8
-	 QwfG7nl6/DD4A==
-Message-ID: <578ea477-c68c-4427-8013-550bf4f9c05b@kernel.org>
-Date: Thu, 12 Jun 2025 13:01:06 +0200
+	b=JGNvwFWFpyuZ2dFUcfyrZdVtdNCJeEI6SKb4KV9ArATjDYdVehtv1XdRWh3zMaJsF
+	 tO1sxZK8L41DJ9kk/whBUyxaJzOqPuaVkD/58QTSTKvskeQ5/n+WzKjzkfMdLH1ery
+	 nOoqT0G51w2R1BczftZcuSL5l1AWKuEE17LeORFnIkiyicG5Ka7FIQ8rXSGf4LPbaC
+	 n8/7qX+jmnUS2/nrDhhTHj7kGmvLDCGYSnOokoln2/7uR5/g+MHRdTuyDZ7cVMpO4o
+	 FGQuIDP6SN/9NNSUutB3LoPV7VTQ8dKJ0cdRFQoqMYhxV6EazG40EU5lMtB7M946Ow
+	 ABqk6XbG2ak5g==
+Message-ID: <d424481b-cb06-4bee-8d36-5e31ca2838a2@kernel.org>
+Date: Thu, 12 Jun 2025 13:02:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: imx8mp: Add Ultratronik
- Ultra-MACH SBC
-To: Goran Radenovic <goran.radni@gmail.com>
-Cc: boerge.struempfel@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250611113039.304742-1-goran.radni@gmail.com>
- <20250611113039.304742-3-goran.radni@gmail.com>
- <20250612-snobbish-outrageous-nyala-dca804@kuoka>
- <26194c8d-c16f-4293-8c0f-5c674e09a1ba@gmail.com>
+Subject: Re: [PATCH 08/10] dt-bindings: media: qcom: Add Qualcomm MIPI
+ C-/D-PHY schema for CSIPHY IPs
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-9-vladimir.zapolskiy@linaro.org>
+ <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
+ <e02cead0-665d-443a-a884-c3a307409c66@kernel.org>
+ <9e38a09b-1521-4196-b179-d29c62e143bc@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,42 +112,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <26194c8d-c16f-4293-8c0f-5c674e09a1ba@gmail.com>
+In-Reply-To: <9e38a09b-1521-4196-b179-d29c62e143bc@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/06/2025 12:09, Goran Radenovic wrote:
-> Hi Krzysztof,
+On 12/06/2025 09:57, Vladimir Zapolskiy wrote:
+> On 6/12/25 10:39, Krzysztof Kozlowski wrote:
+>> On 12/06/2025 09:38, Krzysztof Kozlowski wrote:
+>>> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
+>>>> Add dt-binding schema for Qualcomm CAMSS CSIPHY IP, which provides
+>>>> MIPI C-PHY/D-PHY interfaces on Qualcomm SoCs.
+>>>>
+>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>>> ---
+>>>> RFC verion of the change:
+>>>> * https://lore.kernel.org/all/20250513143918.2572689-1-vladimir.zapolskiy@linaro.org/
+>>>>
+>>>> Changes from RFC to v1:
+>>>> * moved from phy/qcom,csiphy.yaml to media/qcom,csiphy.yaml,
+>>>> * added 'clock-names' property,
+>>>> * removed SM8250 CSIPHY specifics, a generic binding is good enough for now,
+>>
+>>
+>> Now I noticed this... weird change and clearly a no-go.
+>>
+>> Device binding cannot be generic, so it is not good enough for now.
+>> Please write specific bindings for specific hardware.
+>>
 > 
-> Thanks for the feedback, and you're absolutely right — I made a mistake 
-> here.
+> Can I add platform specific changes on top of the displayed generic one
+> like in Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+> etc?
 > 
-> That said, I’m still a bit confused by your earlier comment:
+> The generic compatible is sufficienlty good for adding the enhanced
+> CSIPHY support to any currently present in the upstream platform CAMSS.
 > 
->      "That's just part of the standard/first enum."
-> 
-> I’m introducing a new board from a new manufacturer, so I expected to 
-> add a new enum block — similar to how it's done for other vendor entries 
+> Obviously I can rename it to something SoC-specific, but then a question
+> arises, if a selected platform has to be a totally new one in the upstream,
+> or it could be among any of platforms with a ready CAMSS, and a backward
+> compatibility is preserved by these series and the new CSIPHY dt bindings.
 
-No, you are expected to add to existing enum.
-
-> in the same file. I ran dt_binding_check, and it passed without errors 
-> for this structure.
-
-Not possible. The syntax is clearly wrong, so there is no way it passed
-any tests. And Rob's report is a proof of that.
-
-> 
-> Could you clarify which “standard/first enum” you were referring to? 
-> Should all i.MX8MP-based boards share a single enum block, regardless of 
-> vendor?
-
-Don't they? Look around in this file.
-
-> 
-> Thanks again for your guidance.
-
-Don't top post but reply inline.
+Just use a specific compatible for the actual hardware this is being
+added for. I don't understand why this is different than all other work
+upstream.
 
 Best regards,
 Krzysztof
