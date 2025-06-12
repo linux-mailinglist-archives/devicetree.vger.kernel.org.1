@@ -1,235 +1,104 @@
-Return-Path: <devicetree+bounces-185097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494C4AD67D7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 08:17:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A983FAD681A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 08:37:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5E0B7A6A2E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 06:16:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71D857AE2FD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 06:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6941DF75A;
-	Thu, 12 Jun 2025 06:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0C71F3BA4;
+	Thu, 12 Jun 2025 06:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hFLtT5Lr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I0ZbN2CS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A6214A8B;
-	Thu, 12 Jun 2025 06:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE921F1313
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 06:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749709056; cv=none; b=gxBPTMzFEYvoSCi4K8H5T2l7yjxxa2VwlE9rYIDGYSTPuxvl9W31BV0o162j1ukhMcz61giNsI66ITxL021Hrx9/oCUkN3E7weo0rKuTdesBL4JMMmIB8JeOIgOJ5EzrivLc7mFGd5VghUDR6YgQ2wKBikGiryJaqpTablB0+Tw=
+	t=1749710240; cv=none; b=OMaPg6uU/bZFtA8KrCcZGND9TflvlF+CqXnJ9JH3ZLGAMbUnK8cLGQDXm8XdHYtgxCgx/Bg4I9cffrFz8Ub8uCXNY+ewcQyuCDLh231gfY+Uq0xHi/ViBdKJ8Uo4jKcm3BwJA2YxRknvRZ3BOBHDk2X86IBD/EtIOQ6ttgLWpPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749709056; c=relaxed/simple;
-	bh=CPf/T5G9xmhfOPA7I4FYNybIe2U380iGEg9S5rVqMdQ=;
-	h=Content-Type:Date:Message-Id:From:To:Subject:References:
-	 In-Reply-To; b=HL8XT3gwGu7XcndyID+SDhq6yW2gzx1FNiDwz54KSo0hrlGDJ2o0SB0U8WDCRbt2Noc8MnzScTYY4oh8Icle0ZfXMGDUgekmAYeMQhIxUMWi4ZgD+k5mJSM7dqgJBfL+LiNXGlN9qz9tnmbs+JyV0IP8bJjDCMCiwBtlDM2D0FQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hFLtT5Lr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10C63C4CEEA;
-	Thu, 12 Jun 2025 06:17:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749709055;
-	bh=CPf/T5G9xmhfOPA7I4FYNybIe2U380iGEg9S5rVqMdQ=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=hFLtT5LrjC2B2B6y5y9+BWaT/J+LcXSqEIIUkEf5DkTf5xtSWX7yhkF89C/pv+DUE
-	 15xWYHUQeYxqcEQ4T+m1v7EuahV7Q2OfZXMCeuY9q2ZkTNYDllCfL050Zjlmzkmu7Q
-	 fZx/Ly5qTLwJpgBSmdcYRDcRaswLsd4MAykBXxV+kK4ZaCX4nCChl0oOkW9j8w9mEf
-	 zu4hDRz7YOjCN51poYRE06pK/FS9wBx8f6Oo1xTIWOe+v4LNjpLYCepqfOHv5nS1j2
-	 yowDWu/nNB+Z3Uh4OETm+bzUhrw5rTe7JuBOM+tof0D0dSYp4i5w6w5WT+5rf9LVxG
-	 0AbFUI85LHGQg==
-Content-Type: multipart/signed;
- boundary=0bf826eaf559227e2f90d99249b46fe0d787dc52be8eeb98c992ad854154;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Thu, 12 Jun 2025 08:17:31 +0200
-Message-Id: <DAKC3DIYRP6K.1G9HTSVXDJOLB@kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: <Manikandan.M@microchip.com>, <tudor.ambarus@linaro.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
- <claudiu.beznea@tuxon.dev>, <pratyush@kernel.org>,
- <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
-Subject: Re: [PATCH v3 3/3] ARM: dts: microchip: sama5d27_wlsom1: Add
- nvmem-layout in QSPI for EUI48 MAC Address
-X-Mailer: aerc 0.16.0
-References: <20250521070336.402202-1-manikandan.m@microchip.com>
- <20250521070336.402202-4-manikandan.m@microchip.com>
- <a15fd377-1828-4cb5-8c7b-7d26ea2a7733@linaro.org>
- <759e4a1e-6af4-4bf9-9a95-01a7f6faaf46@microchip.com>
- <DAJJ1UHCLV0M.2GGHO5PDRWMYH@kernel.org>
- <7c373149-53b9-4488-a8d0-e5560cdee7e0@microchip.com>
-In-Reply-To: <7c373149-53b9-4488-a8d0-e5560cdee7e0@microchip.com>
+	s=arc-20240116; t=1749710240; c=relaxed/simple;
+	bh=bDAvwbJ1VObs0AVjG1exWDNdb1A1cE2Q7nFhIZYqscY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cN+VSfa55vAnXR3tkb3PQqoRm8ZPPPXwORMGZdNMmtirWCA5ZJUXX+ShbbM+x9AGyLLKVTh/ORLl/6ccKLUCppspf4fyXXlUGen2eGv59DzNw3OvxwkOIRpPan8JAgmHX6ck56g76JjsqQjns/EN2Dlkr4ZrJRLadfv2e+NBE2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I0ZbN2CS; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-23649faf69fso5731195ad.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 23:37:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749710237; x=1750315037; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bDAvwbJ1VObs0AVjG1exWDNdb1A1cE2Q7nFhIZYqscY=;
+        b=I0ZbN2CS3asXMdIlYPXxFRfIazs2bDOn0//ijsuQ2rNbCLjxqDxJCjYHc4icErEbYd
+         Beu//3CYq0/qRvL6zj+EovT5tFxmFCqmxnq5rGxkaXhWFJEulJjTBy3ba/XlY00K4zVv
+         KlyW0zcyk+zxapiMOgXd/5o0wPxonEPIAai4yTwslZiPZxdPi0kF1WmTANQPVI8/P7dK
+         5PK+K/VLrYLdp3IO60TKnGi9G2EEkXC0XImuvAAbPITxl59t4qovgWaMAlHsx4ydqa67
+         +AGHeX92j3E8M1d6aMZfhk9UMge4FtuDrQnuzcmhGw8Kbogp23rPdnODU+jzKsTD3rAG
+         eT8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749710237; x=1750315037;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bDAvwbJ1VObs0AVjG1exWDNdb1A1cE2Q7nFhIZYqscY=;
+        b=O/I9BufCIXVS7D7pA/tiRl9uhS+Wol3jag7nY5ipg/w69mAxzKHriyHnkJLyLdNExo
+         v/n3A952AKl/7QCk9GLQq6yIYFui9gj1owvAdglmqr2LB8BsgEU+G+er7vE0Nyn0YJUj
+         aIcFe4fXokI70zDFbmDEeIUFd/75vURvojWQ/+1V+BN0OR6Rdx0UTZTW4uoVXY2v1/3q
+         8uXRyvjeGDFwoTIqSxOES6vwuU8ODcpyzPe69kZ2KHvQtM5bGk3OkIqkaSzXyrdimcdQ
+         Kjf3nap6zToafViZKxxB+T/56Xkjq35LBrxYi8XMgV1u7ybOgMAy0Ait0zGXf/gDyFMJ
+         ezRg==
+X-Gm-Message-State: AOJu0YxCj2xkW1EnT1zH0bBiMWWnVIGQFRHpFOhUt9bgvKyq9QW3zbb0
+	RKF2SeVfom7fdxe3WND4X17+WwWo/BAaxV8JiGyEEZxTdebNCMN9Lzh2nqxIQC41
+X-Gm-Gg: ASbGncv96+Tp3uzOdaArifryG9PrrB5iGwUVKJ+IGzBN53og7iSUeplk0yLadBum/V9
+	HFkuVKFwEWlWcZS4RXwOe7Yu8eNMtyLMg+zeZA+EVl1Bj28R3jd4YVLeexulM9YQx95pr7Ohc77
+	aA/m/IYe988O2aOILKVEwOk85CLG6w9y3UrMUDYGhPDp8xSfdhOn20VAibauQe5DVB+gO9AY65Y
+	F1zZltArvtiHl/x6pwNb31ekyTZDLyX8Nghd1Z2QyGhHHCSBkv/XnJtFuSWRXe6z9T7WOOwGmin
+	ZWExUqrhGAAsiZJe5PH5q+3Gu8k68QqoTwEYPzy2mOhs9RgBLDQCp4u8mstyz9L8yPJ+JrOh44o
+	Ec23Y4g==
+X-Google-Smtp-Source: AGHT+IFAgSaIZIurO74kM7fCZzx3Nr+2ymuq3GKroE4zD+9rtj2lGJwDvqBvtp5AJ7Yap+vV7pHP4w==
+X-Received: by 2002:a17:902:dacb:b0:235:f143:9b07 with SMTP id d9443c01a7336-2364d62d461mr29150925ad.5.1749710236745;
+        Wed, 11 Jun 2025 23:37:16 -0700 (PDT)
+Received: from shankari-IdeaPad.. ([2409:4080:d3b:b88c:ada6:2fb9:4645:ee3c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2364e61b608sm6530795ad.19.2025.06.11.23.37.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 23:37:16 -0700 (PDT)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthew.gerlach@altera.com
+Cc: Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH v4 0/1] dt-bindings: arm: Convert Altera SDRAM EDAC .txt to YAML
+Date: Thu, 12 Jun 2025 12:06:59 +0530
+Message-Id: <20250612063700.874830-1-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---0bf826eaf559227e2f90d99249b46fe0d787dc52be8eeb98c992ad854154
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Apologies for the earlier versions sent in quick succession, and for not following the proper patch submission workflow.
 
-Hi,
+In this version, I have carefully reviewed and addressed all prior feedback. The following checks have been run locally and now pass without errors or warnings:
 
-> >>>> Add nvmem-layout in QSPI to read the EUI48 Mac address by the
-> >>>> net drivers using the nvmem property.The offset is set to 0x0
-> >>>> since the factory programmed address is available in the
-> >>>> resource managed space and the size determine if the requested
-> >>>> address is of EUI48 (0x6) or EUI-64 (0x8) type.
-> >>>> This is useful for cases where U-Boot is skipped and the Ethernet
-> >>>> MAC address is needed to be configured by the kernel
-> >>>>
-> >>>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> >>>> ---
-> >>>>    .../boot/dts/microchip/at91-sama5d27_wlsom1.dtsi    | 13 ++++++++=
-+++++
-> >>>>    1 file changed, 13 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b=
-/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> >>>> index b34c5072425a..be06df1b7d66 100644
-> >>>> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> >>>> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-> >>>> @@ -210,6 +210,9 @@ &macb0 {
-> >>>>         #size-cells =3D <0>;
-> >>>>         phy-mode =3D "rmii";
-> >>>>
-> >>>> +     nvmem-cells =3D <&mac_address_eui48>;
-> >>>> +     nvmem-cell-names =3D "mac-address";
-> >>>> +
-> >>>>         ethernet-phy@0 {
-> >>>>                 reg =3D <0x0>;
-> >>>>                 interrupt-parent =3D <&pioA>;
-> >>>> @@ -238,6 +241,16 @@ qspi1_flash: flash@0 {
-> >>>>                 m25p,fast-read;
-> >>>>                 status =3D "disabled";
-> >>>>
-> >>>> +             nvmem-layout {
-> >=20
-> > IMHO this should be "sfdp {".
-> >=20
-> >>>> +                     compatible =3D "fixed-layout";
-> >=20
-> > Please read my feedback on the first version again..
-> >=20
-> > For the DT maintainers. The SFDP is a small table based content that
-> > provide basic information about the flash. There are standard tables
-> > which are specified by the JEDEC standard and there are vendor
-> > tables, most of the time without proper documentation (or none at
-> > all).
-> >=20
-> > Somehow we need to specify at what table we want to look at. I'd
-> > like to see a binding which can potentially expose anything inside
-> > the SFDP.
-> >=20
-> > So I've suggested to use "compatible =3D jedec,sfdp-vendor-table-NNNN"
-> > where NNNN is the table parameter id. Additionally, the standard ids
-> > could have names like "jedec,sfdp-bfpt" (basic flash parameter table).
-> >=20
-> > So in your case that would be:
-> >=20
-> > flash {
-> > 	sfdp {
-> > 		mac_address: table-1 {
-> > 			compatible =3D "jedec,sfdp-idNNNN";
-> > 		};
-> > 	};
->
-> Should the nvmem-layout be included as a child node under sfdp {}, or=20
-> should it be implemented as a separate vendor-specific driver to handle=
-=20
-> the changes introduced in patch 1/3 ?
+- make dt_binding_check
+- make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/memory-controllers/socfpga-sdram-edac.yaml
+- yamllint
 
-There is no nvmem-layout involved here.
+Thank you for your patience and feedback.
 
-But another possibility is to make it one. Then you have to
- (1) expose the *entire* sfpd as a nvmem device
- (2a) write an nvmem-layouts driver (in drivers/nvmem/layouts/)
- (2b) come up with a DT binding that is generic enough to expose
-      various parameters of the SFDP, not just a one-off for the
-      MAC address use case.
-
-Maybe that is even a better fit.
-
-> > };
-> >=20
-> > I don't know what NNNN is. Could you please provide a dump of the
-> > sfdp of your flash.
->
-> Please find the entire SFDP data of SST26VF064BEUI flash in Table 11.1=20
-> of 11.0 APPENDIX
-
-Please dump it according to [1], so we have it in a machine readable
-format.
-
--michael
-
-[1] https://docs.kernel.org/driver-api/mtd/spi-nor.html
-
-
-> > On Mon Jun 9, 2025 at 11:27 AM CEST, Manikandan.M wrote:
-
->
-> https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/ProductDoc=
-uments/DataSheets/SST26VF064BEUI-Data-Sheet-DS20006138.pdf
->
->
-> The vendor parameter ID is 'BF' if I am not wrong.
-> >=20
-> > -michael
-> >=20
-> >>>> +                     #address-cells =3D <1>;
-> >>>> +                     #size-cells =3D <1>;
-> >>>> +
-> >>>> +                     mac_address_eui48: mac-address@0 {
-> >>>> +                             reg =3D <0x0 0x6>;
-> >>>> +                     };
-> >>>
-> >>> How would this work if in the future the mchp vendor table adds some
-> >>> other info that needs to be referenced as nvmem? How do you distingui=
-sh
-> >>> the info from the table?
-> >>> Would it be possible to have some kind of address and size to referen=
-ce
-> >>> the SFDP?
-> >>
-> >> I was previously advised not to hardcode the offset in the Device Tree
-> >> [1]. In the current implementation (patch 1/3), the read callback for
-> >> the MCHP vendor table distinguishes between EUI-48 and EUI-64 MAC
-> >> addresses based on the nvmem size, which corresponds to the size of th=
-e
-> >> respective MAC address.
-> >>
-> >> [1] --> https://lore.kernel.org/lkml/D889HZF97H8U.1UUX54BAVLAC3@kernel=
-.org/
-> >>
-> >>>
-> >>>> +             };
-> >>>> +
-> >>>>                 partitions {
-> >>>>                         compatible =3D "fixed-partitions";
-> >>>>                         #address-cells =3D <1>;
-> >>>
-> >=20
-
-
---0bf826eaf559227e2f90d99249b46fe0d787dc52be8eeb98c992ad854154
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaEpw+xIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/h0NQGA4XhD74s0TEAR5mAjGQVv1YpzAkmTpXqh
-JlEcY4mNvpEnYeGqbMJkTZi2NzOp5M1kAX9ioaikhRFTDEXTgFRWz8gNfwxw4DS5
-MkAgqH+OeD3bAg01mCejFVo3cEVWc3ICWlg=
-=3i6E
------END PGP SIGNATURE-----
-
---0bf826eaf559227e2f90d99249b46fe0d787dc52be8eeb98c992ad854154--
+Kind regards,
+Shankari Anand
 
