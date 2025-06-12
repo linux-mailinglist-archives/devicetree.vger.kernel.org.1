@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-185060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F67AD6500
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:16:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9609FAD6504
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A3472C0586
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:16:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47C5C7AD0EF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73FA014A62B;
-	Thu, 12 Jun 2025 01:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975AF151991;
+	Thu, 12 Jun 2025 01:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tV76yzRj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WubHWjMc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D911547CC
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FDE515573A
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749690952; cv=none; b=R1gyYYG976yqnGzpThioeNcwJFPu3WfWpot1gWrTkQmty6TR1Ep+VGDoqkVfCpmpzwr6QmF8tUkEA42exrZyMmcK6FtKDVcsLHnVd9+5DY6j1qpI7y+5UMtboFvC0ZAqVvIQRVw/NuHQ+E2k6Uaxcvg3GMgMQbjlRRLpDro8yy8=
+	t=1749690954; cv=none; b=JvkGDu3Vr9v2lZeTrl724D5azVSDIczuWOF5btIvZDdo+q+UFYRvAoyOeGoyACyZoNrXgrmMObFXCPObByuW07dP8QCf4cvmmx1052MzBENNgEHVnXK2p3kn0CjQnuNyL0NMkVV6AsAzJwxLloMb4b8u7+xEyBPv/xYMHYSh0Yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749690952; c=relaxed/simple;
-	bh=Br2+sPECo0mbbnRGjEs+gcJ7Da6KTtHQtd0Iun2iP4g=;
+	s=arc-20240116; t=1749690954; c=relaxed/simple;
+	bh=LqRPAqNQlNO3zu9aKoKgeHnMk4rQEK/l7ENgXrCUZAI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h+LDXk2IiqXqUXRXyBCjwWCR6x7eHhc0ryXgcBqLjLGlrI2Synaq4/ukXtyPgE1IKNCBOskYpmOJVtOyb/07drsVLATZ5b9pCypbwwvGhc9Z17ziptUSN8cKn++nyuNsTuC/2PjKDkPaDWW85i/YNwd1zJKqblcLffooP7E66Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tV76yzRj; arc=none smtp.client-ip=209.85.208.177
+	 MIME-Version; b=IX6pFikU5xhyIq+hhPe56YAsfZ865a6HV63BZNhLImbacIXapsKEciBzQj+8z+6U4jCRM16G3o/4mIHi1DccIjJarVn6tfZE51fR5wcpoDLfMJugfQzM1sAOa3a9MIpu1WSPg6UQL8X2AgtYdlWOw7BogAlhTxzIN45SpZQ0kGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WubHWjMc; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-32ae0e2e4daso372891fa.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:15:50 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-32a6c7d66d6so577881fa.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:15:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749690948; x=1750295748; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1749690951; x=1750295751; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mBPHq117dWQljJbOWkWsV8bZPt4ezjyADVBAza4ih8A=;
-        b=tV76yzRjD0AcIgQ7aCrkcn8omiQifxA7P9fjX9C4rrRaFik8IXARUiOxgVoOFEVu5O
-         wUEPSN3Io9oIWJKqiWMPWeaJLcWtulHZJy80aS5TkDGob7zDdc6OwQiHC1hrdpHwvLFU
-         amHPNHzeaWAU0UUKcoLnVnfh5fi2a882nZdNhe/7Da/rtM9xhY1UAGjF90MPBmm1GU9B
-         THJhUh7qyJcWiHu/Dx/TguFGUgHSh4TkDAgNQVangT7k5aY5hPJ5sJ2s0Ha9S3qVS4BP
-         CTHAxSiAaFYBh/KVJhgkDwPcFBkml4niFaoLqSUWz/8HqGhjS/Wb6o6QJJJL9PCPqJWS
-         nLDA==
+        bh=TGXO7XE6Zd1Vk08ChbQh+PqLJC+OLbKRi30oxb1Svek=;
+        b=WubHWjMcdRXHWWKVCKOkjUI9SRv/lW6N1KGO85u30YHbhzoODvdJH7BFlrEYzbvB4U
+         G7YGEQZp+azNp6ZXMNtdj4tvXmKNYCeT6cDgNPbv0VmmYn71/tusVC2r2X3lwbebRMQr
+         J2w75gqIquc0E/ktDaOxSliwqYU3V+8OP8+5/7EaZ/7vvaWI9NS252GaHkJpcaJMzGG1
+         Az8jSBXRttrLgkWd/yfSsTCI6YeOoyBOvkiyJ7GGQND9ZdwvsJ0vXfhN5ejtuWzbti2X
+         QfoF730eWa9M/4GdndiSw9zHd/UDD/E0kVJQSOc6QDoXLl9F7URI/fqYqKapOC6wdS9O
+         D2Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749690948; x=1750295748;
+        d=1e100.net; s=20230601; t=1749690951; x=1750295751;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mBPHq117dWQljJbOWkWsV8bZPt4ezjyADVBAza4ih8A=;
-        b=cIGdfZKdVbeUTPxpsxJNJEVjAgosK+r3pBUYEUbG8EFJado2ikiZsB3GLIt8GlLDvp
-         WPDqcr28DHL+7Ry4UoDXsKdHP7vqpWS+1oKp5UWoaGiIfyxTGbhZv+P9ToS1TGIpi47Q
-         ipkXPC/lpH6T7iYQwTx9Sr3+pkkS9P5SZwOl2YhRAKmD3XoZ0y41zkv75c/K8ZdLChMP
-         3fR43Q8BcSd8q7ND7E35ynipaeztszixuhgC2i1N7VgFOrnDXsNweHMXoMAcdGXbzSsc
-         5qNgSj2ZYcPjS98JpZX1j24HN3HSv2aqPtWOlONVuLIjpJZ1KlQzQ3/aq+DnnjjiHHbz
-         rkmg==
-X-Forwarded-Encrypted: i=1; AJvYcCXtYJ8Mv5uxD7xwbSENNcSH7fUSHOmNISrYtV1bn+rDbSuAsJgVthqTNLWPeOi6SuAWXImCWuKZLntA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4pEhgYzuT1zfovaVSbHuxtCYLHB2FsXMJUAi/CaS9hI7IasxP
-	GupYlcbccssPTR7b9SrbdYjV1+FDTWCvNj/bAXwEOFDeCbQ92G81pGEkiuUT/zs4m04=
-X-Gm-Gg: ASbGncstYgJdcgZkL0MZKWZ5b8kj3uu09YdaYksiCKV78s6lT9AMHvhmZMnUHYSKBjz
-	7yVWJg1k1eTjf8OBSs/PoxGmm4XSv8FWQ/NEE8r7U0aU4GjZZwx1B1KUzg5h/H5aLfqquwG6hF+
-	8QSrQ9YCjV9ERAzaBlTUiNP57VmAv/uxZ+WU2dwIIfDpRA3yNWGII/vDqrSnQyKBhM+AK7moGeW
-	aHof6VXjqzHwp2tHHey9ZFteR3iMr7gOuvBdscaG0Af8Ym3biRVN0wwSol5I/9zus0LIjqCR5i8
-	fSs0fZE46088yP2OTGGKQrl9ueAXyvArXSYyXaYIZR5JsMQJ072dPvWDlVmcTGTxLnzvj5eNCd6
-	932ZmYlhDUet6v/xeG7XZPwL8epvUhRytFRhIMS/eytt+b/obRqY=
-X-Google-Smtp-Source: AGHT+IGjvJjUSGUrBTNd9Gheaxu65cY98U3D2htsFy57efkcRMWJJtiq8QTKRbMHsaxIiIbQ4v6Wfw==
-X-Received: by 2002:a05:6512:23a4:b0:553:a78d:2c44 with SMTP id 2adb3069b0e04-553a78d381bmr36548e87.7.1749690948390;
-        Wed, 11 Jun 2025 18:15:48 -0700 (PDT)
+        bh=TGXO7XE6Zd1Vk08ChbQh+PqLJC+OLbKRi30oxb1Svek=;
+        b=TmqXQL/j88/TeQwI2aaFGVK/qrWvSvxiLZT+XHWvfjXB+RrtcOB3klphGoUM837tjp
+         vTBYka8FyvmQUBBbifkPtKyxkH1bthVqZ9Ud7cVUDOZzu+6a8gSKKeA1zhCdqCjvnQZC
+         T7Bj+BeMx40oOOBvOEf80QuJbpyVFlVwRKdh8W8Fi2xQ0rkv/qKDsBPYbpc4Uh6Lf6bR
+         1EYkkAPV1EAP+HglBmti7s5nt4PGFJUdf+q4kzh5wuOt9zkicTi9cmgDTXpsDvFen5VZ
+         dtS9wMlaj5W+Rm1mn4D8GCDUwvRUm9PRQ50G+kKEBk+olxr0WiSr0EzWqNJ4aM1UgZi9
+         Fvgg==
+X-Forwarded-Encrypted: i=1; AJvYcCVgqnj6eC5LCqo250q940nqvlB1HKpN64kMYMGk8GiJ7GZPnwvKy+oiefvz7J3aMGy5wiO1u3Uf6Q3m@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFAKUHauGrWhZm/4DN+PDXGNG0QtMynqpdKCk3HqAF+KiePFPA
+	zSujQ1b5iotFqXgOOZpQYBf3jBHmiHLXE1Xc7NMTm5HEilrg9COAoxQm5dGrgjxeprA=
+X-Gm-Gg: ASbGncva2o5H7mqrlQBj2iBdZOMJJLw6A8Lwg5BJdBSwrObhlb8KgR3o4bGZFIJpsBE
+	718EAwilorL1SDyyS3DUodMBpNKr2UXJLPf36tolgXdZXBCPSSBFsn1LP32xqJhLcO9JZ3mnAXP
+	HpKSoFxfSLaq5T6DzaKqlG0GXajA5loB51Ke1hGKXnnDZKDDE+ZAAYJ5Dq1R4NCJeVNM7twk7C1
+	gd5B1dwY2Msfg/WYw254WMjweXm4f5tGwMu5UWiCgd/Yo6+4acU4EzjJgfOEaBzQ0q0jh4jB6+T
+	8Exj8H01S4w5FWBG07K+uko7nyCX63y0UT3KIK1vsB1KEXZuJgLsW2w+z54ecgqh/9/uJp6OkJB
+	eXc7UU6j+kdbbSxdqM5RFO1G0Wvs4h523KLS82Zwof+NiGsW+T1w=
+X-Google-Smtp-Source: AGHT+IF6li0/wsba5vOcpZ+7hE86fPFgQ1nbQpeMNRGYiv+YLYSCoO8kXCjs4MSZkmCv4t6gWdR79A==
+X-Received: by 2002:a05:6512:acf:b0:553:34fc:3bd5 with SMTP id 2adb3069b0e04-5539c2004a5mr587329e87.8.1749690950543;
+        Wed, 11 Jun 2025 18:15:50 -0700 (PDT)
 Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553a7018069sm62808e87.157.2025.06.11.18.15.45
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553a7018069sm62808e87.157.2025.06.11.18.15.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jun 2025 18:15:46 -0700 (PDT)
+        Wed, 11 Jun 2025 18:15:50 -0700 (PDT)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -88,9 +88,9 @@ Cc: Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
 	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 05/10] media: qcom: camss: unwrap platform driver registration
-Date: Thu, 12 Jun 2025 04:15:26 +0300
-Message-ID: <20250612011531.2923701-6-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH 06/10] media: qcom: camss: export camss_parse_endpoint_node() to csiphy
+Date: Thu, 12 Jun 2025 04:15:27 +0300
+Message-ID: <20250612011531.2923701-7-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
 References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
@@ -102,37 +102,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-To be able to register new CSIPHY device drivers unfold
-module_platform_driver() into module_init()/module_exit().
+Export the function to reuse the remote endpoint node helper function
+from a CSIPHY driver.
 
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- drivers/media/platform/qcom/camss/camss.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ drivers/media/platform/qcom/camss/camss.c | 6 +++---
+ drivers/media/platform/qcom/camss/camss.h | 4 ++++
+ 2 files changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index 71a37447e17a..e03308d7a366 100644
+index e03308d7a366..40bb20bbe8b4 100644
 --- a/drivers/media/platform/qcom/camss/camss.c
 +++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -3953,7 +3953,17 @@ static struct platform_driver qcom_camss_driver = {
- 	},
+@@ -2981,9 +2981,9 @@ static const struct parent_dev_ops vfe_parent_dev_ops = {
+  *
+  * Return 0 on success or a negative error code on failure
+  */
+-static int camss_parse_endpoint_node(struct device *dev,
+-				     struct fwnode_handle *ep,
+-				     struct camss_async_subdev *csd)
++int camss_parse_endpoint_node(struct device *dev,
++			      struct fwnode_handle *ep,
++			      struct camss_async_subdev *csd)
+ {
+ 	struct csiphy_lanes_cfg *lncfg = &csd->interface.csi2.lane_cfg;
+ 	struct v4l2_mbus_config_mipi_csi2 *mipi_csi2;
+diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+index 99831846ebb5..c3eedeb87ddc 100644
+--- a/drivers/media/platform/qcom/camss/camss.h
++++ b/drivers/media/platform/qcom/camss/camss.h
+@@ -14,6 +14,7 @@
+ #include <linux/types.h>
+ #include <media/v4l2-async.h>
+ #include <media/v4l2-device.h>
++#include <media/v4l2-fwnode.h>
+ #include <media/v4l2-subdev.h>
+ #include <media/media-device.h>
+ #include <media/media-entity.h>
+@@ -150,6 +151,9 @@ struct parent_dev_ops {
+ 	void __iomem *(*get_base_address)(struct camss *camss, int id);
  };
  
--module_platform_driver(qcom_camss_driver);
-+static int __init qcom_camss_init(void)
-+{
-+	return platform_driver_register(&qcom_camss_driver);
-+}
-+module_init(qcom_camss_init);
-+
-+static void __exit qcom_camss_exit(void)
-+{
-+	platform_driver_unregister(&qcom_camss_driver);
-+}
-+module_exit(qcom_camss_exit);
- 
- MODULE_ALIAS("platform:qcom-camss");
- MODULE_DESCRIPTION("Qualcomm Camera Subsystem driver");
++int camss_parse_endpoint_node(struct device *dev,
++			      struct fwnode_handle *ep,
++			      struct camss_async_subdev *csd);
+ void camss_add_clock_margin(u64 *rate);
+ int camss_enable_clocks(int nclocks, struct camss_clock *clock,
+ 			struct device *dev);
 -- 
 2.49.0
 
