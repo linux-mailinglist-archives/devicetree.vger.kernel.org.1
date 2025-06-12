@@ -1,449 +1,400 @@
-Return-Path: <devicetree+bounces-185452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CFDAD7C1B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:13:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF4DAD7C4A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:20:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A75F43A6AB0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:13:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21302188ED14
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 733682DFA28;
-	Thu, 12 Jun 2025 20:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A112D5421;
+	Thu, 12 Jun 2025 20:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aIBaiMNv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tm8bH2fA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465402D6611;
-	Thu, 12 Jun 2025 20:12:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E8C101DE
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 20:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749759152; cv=none; b=Sc1CfKOFoSuj8vL6hxlyIGFn5LkWZFpI7K/+ZYCLd+Yud9eX44dN43UYZuFl1Qo5HDDsiWTBeyb2+j+i0oAVPrNsxPmeKfSSG5ocheVa9+7xjodynOwYYEGKQqop7Jdvu4KMMvFThsbt8QN3P2boqyWliyjDFe6se4Ww8a8hq4M=
+	t=1749759644; cv=none; b=umNvEzK2mhNqUVbGSRsu7npvESsRqvNHzH/qmrJbPCnuLabUsSd7MN5H8f2rLjuyhxH1QL1Mg9TXTBtF7F3MF2M7/ClEO71Pw1JrCvaBEWUIMmGfMX30pWgzADb/gpmqKxQ/HMA8+Qak7FTI5THfDZ+lPtoiAvYAL2Ip7fwInpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749759152; c=relaxed/simple;
-	bh=1O7Ue6frZuMIBaMC+7aWGYRRORlBTtaTEwEfb2WxX5k=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=n0lVcNFhqpMuiMFUPRukinDcy4YDH8x0Oq01Q+O5IFK/k3/04YJNTuzyOeKf+zePXN8sNjOT9ExnMhEUiBXMJYWrowmUNqh1uRUjTJylphWb9yOS4K677SiLm/6oRvvp7oN2u55Ppa2PdmTGhn8ABuz+lyREoGE+XnmrP9T7tzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aIBaiMNv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82978C4CEF1;
-	Thu, 12 Jun 2025 20:12:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749759151;
-	bh=1O7Ue6frZuMIBaMC+7aWGYRRORlBTtaTEwEfb2WxX5k=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=aIBaiMNvmnACTgDUfjI290k3vk9DyR+8K2M7WnTcDgn91lTHbzbp3Qsm/pnMMjrfW
-	 6jULxS4EDHSF4+rLBnBDcIdLCorxnQKzJrcbzgPxviPO5+1yEDX4S3ahHC9Ng4WKlm
-	 BOUBkTOWRgCW7PX7nXYrQZvh5jgPCNwjopfNaMGVYtmEeF15tYyqSC8kKxYUD1ZhGN
-	 T8j9ulUcosbh1QPIl/e3JZNtk0U35LSAyIyjTJm5JvF/7GYs9KUgU8KA7PvOef/BZg
-	 ggnn7Zx2Y2Zt0pJzCBUtO5lNb/I0eY3jibYnYsmXp5nc8SQaRdRmIw5B73JwOefgp3
-	 4DTo7kAWkSU7g==
-Date: Thu, 12 Jun 2025 15:12:30 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1749759644; c=relaxed/simple;
+	bh=6Q/PGBvknyPShMaTySM+cqmOkNrRnIyJJHTUlyaDcRg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fjNiG5ZdKISK0Sf/rLtnVhXdbYNvX2tkYet+IgPyzQoFxCqUekHXVmxvUNvPgH/FH/I1GHfcUSyHmxEMxgDcZt7Ck/t/BJ62yE1B1s1YT9Nox2rpCqdOZr9wb9SoYxzO011Xb9VAf3c7+fCbhVV5YhqFi8pwEInFsgKVpRc+BeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tm8bH2fA; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-72c47631b4cso875283a34.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 13:20:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749759641; x=1750364441; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LnqQFNNg7S/LY+02Og7P0coplg2HCqvVrychShtmb0Y=;
+        b=tm8bH2fAiv5IUInWReklncngSn1Jtoe0JCWTc00pJMs5xwwkSYX9PKVj+XJt51LOyl
+         Al51SfNuaOJTrqkCoUJBDRt/6+X449+aRIxNyxOg72EAvu5LfnTwxLuXN3fvs+K/TtLf
+         6H+Gok/BevwEBq2bdB1UD5MdXKk9u+Sop/4Y9p1GvPdPQJXyyNo45xYB0UxgExaZHN2L
+         JB5qfh5DFb6Y8I/DNYl85HY1DGCd5NuC0zzaoAXLB7B1/Z/RzhGJ5l/B9Yw18wtbulhy
+         WmzJzRO6Ro8V/gyvmL00UwITZBUQUZqyxsptVsx7FId5Hf99khtNJY7qq5U4lSvhQsTe
+         m6qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749759641; x=1750364441;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LnqQFNNg7S/LY+02Og7P0coplg2HCqvVrychShtmb0Y=;
+        b=mAlwIBEVjn2iJJD+e4Xbk+l8XbzmoWWXWqmINSW2NwXKDYYhPmLYPtY6lElmu8rsLv
+         7az8R/BLC5oKMzOdatOgHD6L0kBt1uj0xOsSiiCOMzfoz9czvK/x5iUK5u8QXTZXoSMJ
+         Pdr/JTwjUsJODdNeSv49ZTjKcjLsy6npxylSUysuC22fulGGUe5uY3KmARYUSs3yAgWK
+         tPkO6bQD3Df2YYg3HfuKsEkAakO/pCZUKMRt0s5tDqExhfCOF582796HuSa738rVAxlu
+         fSrTXB5m3cu/yrYxIXtvU6ERYkxp3G/a5KLvDthoqaoD7gtIub8MtbJt1RX6sSReczZX
+         6dAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVT9Yut4AORig4E7GFNwmXrxf5ZNWSGn21O9gHOD6I2MO42VijoRC0JAZVoxE0YXQnHM4kUFHU5S5Sw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPMSlnh3Ulhz6+lH7Sw4WB+tyttOubQGpIKz7UnOzHDLkfa2zg
+	Tm8LNG2EPD3V2G82fl1sXAY56LbA54WIFovYxjtu9p+dvJRexngleTsIvg64ICzp5Ts=
+X-Gm-Gg: ASbGncu7QIN0dVf9vSXR5sh0IhniFU8pUM6vOM2k1vlqbtrZ/iFzQVhaTf4XK/F70ha
+	UnvM1JTCzisbnmVwkL1ayVibHuCTnMXAM5QSgr/ka6lhbJyFbfpin8H8ITyPgrWruwAg3I52rO0
+	h4WCTmlISCQY0MGE8BI873XMJ02T5iAriNW6ct3mF+hpUOTaWYf1onyWfkNvVqj9UNTsyJJe//Z
+	pZm1BPousoN7qQpEfaRYz/vGVt9EnAVyfZLyT66KNs7QHf2VoQOrObcWNGaST2zEPA6B/MqcNKo
+	TBaX35rsgWwUUa5DXMB7Bk5Y7UtFphWuPVTu+EV5vrEShFldknPeuMEbxqJ6E5Bymh1lzeR3VBf
+	MdB1maCDde5iA+4Vy5LG89ejq3uodwcYwgJ+6
+X-Google-Smtp-Source: AGHT+IGvy63gbdgYzhxx915nytzJrnbOCs/GabFdn8/B1Ozt4U4/eT429+1bpQ6NvozpwiaByThNIA==
+X-Received: by 2002:a05:6830:8009:b0:72a:47ec:12c6 with SMTP id 46e09a7af769-73a2708d702mr121676a34.2.1749759641342;
+        Thu, 12 Jun 2025 13:20:41 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:f808:847:b3ae:ff1a? ([2600:8803:e7e4:1d00:f808:847:b3ae:ff1a])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73a16a57ec5sm392377a34.18.2025.06.12.13.20.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 13:20:40 -0700 (PDT)
+Message-ID: <5130be5d-b769-41aa-af2f-b1e16a91e569@baylibre.com>
+Date: Thu, 12 Jun 2025 15:20:40 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
- Imran Shaik <quic_imrashai@quicinc.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com>
-References: <20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com>
-Message-Id: <174975872019.2916672.8383328937068699043.robh@kernel.org>
-Subject: Re: [PATCH v3 0/2] Add support for clock controllers and CPU
- scaling for QCS615
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/8] dt-bindings: iio: adc: Add adi,ad4052
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+ Jorge Marques <jorge.marques@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
+ <20250610-iio-driver-ad4052-v3-2-cf1e44c516d4@analog.com>
+ <20250611181818.14d147c7@jic23-huawei>
+ <xqkr3rq6ikuiz5wcbxmto4gp7wnccmmogklf2ux2edauotufim@pcuhddxdzjxi>
+ <ef0d4038-b665-4ef0-9e7b-7ad2ce154c50@baylibre.com>
+ <zd4fvyjbfurgsp3rpslo2ubpxzxn7bh5b2vh5j4j7outxdrcd7@firxlr6bfkic>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <zd4fvyjbfurgsp3rpslo2ubpxzxn7bh5b2vh5j4j7outxdrcd7@firxlr6bfkic>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 12 Jun 2025 15:47:19 +0530, Taniya Das wrote:
-> Add the video, camera, display and gpu clock controller nodes and the
-> cpufreq-hw node to support cpu scaling.
+On 6/12/25 2:42 PM, Jorge Marques wrote:
+> Hi David,
 > 
-> Clock Dependency:
-> https://lore.kernel.org/all/20250119-qcs615-mm-v4-clockcontroller-v4-0-5d1bdb5a140c@quicinc.com/
+> thank you for chiming in
 > 
-> Changes in v3:
-> - Move the cpufreq-hw node under /soc {}
-> - Add the RB-tag on (v2) from [Konrad]
+> On Thu, Jun 12, 2025 at 10:03:37AM -0500, David Lechner wrote:
+>> On 6/12/25 5:11 AM, Jorge Marques wrote:
+>>> On Wed, Jun 11, 2025 at 06:18:18PM +0100, Jonathan Cameron wrote:
+>>>> On Tue, 10 Jun 2025 09:34:35 +0200
+>>>> Jorge Marques <jorge.marques@analog.com> wrote:
+>>>>
+>>
+>> ...
+>>
+>>>>> +  trigger-sources:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 2
+>>>>> +    description:
+>>>>> +      Describes the output pin and event associated.
+>>
+>> trigger-sources would be an input pin connected to an external trigger.
+>> For example, the CNV pin could be connected to a trigger-source
+>> provider to trigger a conversion. But there aren't any other digital
+>> inputs, so I don't know what the 2nd source would be here.
+>>
+>> As an example, see [1]. We could potentially use the same gpio
+>> trigger-source for the conversion pin here. There is already
+>> a similar binding for pwm triggers, so we could drop the separate
+>> pwms binding as well an just have a single trigger-sources
+>> property for the CNV pin that works for both gpio and pwm.
+>>
+>> [1]: https://lore.kernel.org/linux-iio/cover.1749569957.git.Jonathan.Santos@analog.com/
+>>
 > 
-> Changes in v2:
-> - pad address field to 8 digits [Dmitry]
-> - Replace cpu/CPU in commit [Dmitry]
-> - Update the binding to use SC7180 compatible, as QCS615 uses the same
->   hardware version.
-> - Link to v1: https://lore.kernel.org/r/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com
+> Quick summary to familiarize myself with this part and driver.
 > 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
-> Taniya Das (2):
->       arm64: dts: qcom: qcs615: Add clock nodes for multimedia clock
->       arm64: dts: qcom: qcs615: Add CPU scaling clock node
+> On ad7768-1:
+> ad7768-1.SYNC_OUT is a digital output, ad7768-1.SYNC_IN input, and
+> ad7768-1.GPIO3 (START) configured as input. ad7768-1.GPIO[0..3] are
+> configurable GPIO, GPIO3 as START, or in PIN control mode, the input
+> GPIO[3:0] sets the power mode and modulator freq (MODEx).
 > 
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 80 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> ---
-> base-commit: 19a60293b9925080d97f22f122aca3fc46dadaf9
-> change-id: 20250611-qcs615-mm-cpu-dt-v3-fbee7e84ccb0
-> prerequisite-message-id: <20250612-qcs615-mm-v9-clock-controllers-v9-0-b34dc78d6e1b@quicinc.com>
-> prerequisite-patch-id: 90315d53ce2ec33b6503433068dd9a3ecdba8e8c
-> prerequisite-patch-id: 6414e91724ba90fe820c3d2bb5caa720c99cf3be
-> prerequisite-patch-id: b9e3a2663e27dc60be0eff97baf3739db8516eeb
-> prerequisite-patch-id: 23062409b23977940c958bf22a215ae5dc45e93a
-> prerequisite-patch-id: faf0d569634dad432f67acd073343e47add0ee68
-> prerequisite-patch-id: 9a0caaaa8d25634dd0db5edffbc939eb7e734c6c
-> prerequisite-patch-id: 1a1dbf7144745dfbc60c0f2efcad188d1fc26779
-> prerequisite-patch-id: 2327271def3656283d53dadb2ce9f8cd561249d1
-> prerequisite-patch-id: b12e39a6a0763b8ec23c99c82f3ac6acdca26f85
-> prerequisite-patch-id: 71f0eb0fb98c3177dcbe6736c120cba4efef0c33
+> On that thread:
+> https://lore.kernel.org/linux-iio/8abca580f43cb31d7088d07a7414b5f7efe91ead.1749569957.git.Jonathan.Santos@analog.com/
+> exposes GPIO[0..3] through gpio_chip if gpio-controller in dt.
 > 
-> Best regards,
-> --
-> Taniya Das <quic_tdas@quicinc.com>
+> https://lore.kernel.org/linux-iio/713fd786010c75858700efaec8bb285274e7057e.1749569957.git.Jonathan.Santos@analog.com/
+> trigger-sources-cells: the cell define the type of signal but *not* its
+> origin, because {DRDY, SYNC_OUT, GPIO3(START)} are dedicated pins, *so
+> there is no need to do so*.
 > 
+>>>>> +
+>>>>> +  "#trigger-source-cells":
+>>>>> +    const: 2
+>>>>> +    description: |
+>>>>> +      Output pins used as trigger source.
+>>>>> +
+>>>>> +      Cell 0 defines the event:
+>>>>> +      * 0 = Data ready
+>>>>> +      * 1 = Min threshold
+>>>>> +      * 2 = Max threshold
+>>>>> +      * 3 = Either threshold
+>>>>> +      * 4 = CHOP control
+>>>>> +      * 5 = Device enable
+>>>>> +      * 6 = Device ready (only GP1)
+>>>>
+>>>> Hmm. I'm a bit dubious on why 'what the offload trigger is'
+>>>> is a DT thing?  Is that because the IP needs to comprehend
+>>>> this?  I guess only data ready is actually supported in
+>>>> practice? 
+>>>
+>>> A trigger can be connected to trigger something other than a spi
+>>> offload, it is in the DT because it describes how the device is
+>>> connected. When using spi offload, the trigger-source at the spi handle
+>>> describes which gpio and event is routed to the offload trigger input.
+>>> At the ADC node, trigger-source-cells describe the source gpio and event
+>>> for the device driver.
+>>>
+>>> In practice, in this series, one gpio is Data ready, triggering offload
+>>> when buffer enabled, and raw reads, when disabled. And the other is
+>>> Either threshold, propagated as an IIO event. Fancy logic can be added
+>>> to the driver in future patches to allow other combinations.
+>>>
+>>> It is also worth to mention that the trigger-source is duplicated for
+>>> each node that uses it, as seen in the second dts example:
+>>>
+>>>    &adc AD4052_TRIGGER_EVENT_DATA_READY AD4052_TRIGGER_PIN_GP1
+>>>
+>>> Is repeated on both adc and spi node.
+>>
+>> That sounds wrong. This would only make sense if an output of the
+>> ADC was wired back to itself. 
+>>
 > 
+> The issue is the lack of way of describing to the driver the function of
+> each gpio, when configurable. Perhaps it is better to use
+> trigger-source-cells to only describe the topology at that node
+> receiving the trigger, e.g.
 > 
+>   trigger-sources = <&adc AD4052_TRIGGER_PIN_GP0>;
+> 
+> Below I continue the discussion.
+>>>
+>>> One last thing, on the driver, for v3, I should handle -ENOENT:
+>>>
+>>>   ret = of_parse_phandle_with_args(np, "trigger-sources",
+>>>   				   "#trigger-source-cells", i,
+>>>   				   &trigger_sources);
+>>>   if (ret)
+>>>   	return ret == -ENOENT ? 0 : ret;
+>>>
+>>> To assert only when present, since the nodes are not required.
+>>> Or, in the driver,
+>>> require AD4052_TRIGGER_PIN_GP0 if irq_get_byname finds gp0, and
+>>> require AD4052_TRIGGER_PIN_GP1 if irq_get_byname finds gp1?
+>>> (I would go with the first option).
+>>>>
+>>
+>> ,,,
+>>
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>> +    #include <dt-bindings/iio/adc/adi,ad4052.h>
+>>>>> +
+>>>>> +    spi {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        adc@0 {
+>>>>> +            compatible = "adi,ad4052";
+>>>>> +            reg = <0>;
+>>>>> +            vdd-supply = <&vdd>;
+>>>>> +            vio-supply = <&vio>;
+>>>>> +            ref-supply = <&ref>;
+>>>>> +            spi-max-frequency = <83333333>;
+>>>>> +
+>>>>> +            #trigger-source-cells = <2>;
+>>>>> +            trigger-sources = <&adc AD4052_TRIGGER_EVENT_EITHER_THRESH
+>>>>> +                                    AD4052_TRIGGER_PIN_GP0
+>>>>> +                               &adc AD4052_TRIGGER_EVENT_DATA_READY
+>>>>> +                                    AD4052_TRIGGER_PIN_GP1>;
+>>
+>> This doesn't make sense for the reason given above. These outputs
+>> aren't wired back to inputs on the ADC. They are wired to interrupts
+>> on the MCU, which is already described below.
+>>
+> Below.
+>>>>> +            interrupt-parent = <&gpio>;
+>>>>> +            interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
+>>>>> +                         <0 1 IRQ_TYPE_EDGE_FALLING>;
+>>>>> +            interrupt-names = "gp0", "gp1";
+>>>>> +            cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+>>>>> +        };
+>>>>> +    };
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>> +    #include <dt-bindings/iio/adc/adi,ad4052.h>
+>>>>> +
+>>>>> +    rx_dma {
+>>>>> +            #dma-cells = <1>;
+>>>>> +    };
+>>>>> +
+>>>>> +    spi {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        dmas = <&rx_dma 0>;
+>>>>> +        dma-names = "offload0-rx";
+>>
+>> The dmas aren't related to the ADC, so can be left out of the example.
+>>
+> Ack.
+>>>>> +        trigger-sources = <&adc AD4052_TRIGGER_EVENT_DATA_READY
+>>>>> +                                AD4052_TRIGGER_PIN_GP1>;
+>>>>> +
+>>>>> +        adc@0 {
+>>>>> +            compatible = "adi,ad4052";
+>>>>> +            reg = <0>;
+>>>>> +            vdd-supply = <&vdd>;
+>>>>> +            vio-supply = <&vio>;
+>>>>> +            spi-max-frequency = <83333333>;
+>>>>> +            pwms = <&adc_trigger 0 10000 0>;
+>>>>> +
+>>>>> +            #trigger-source-cells = <2>;
+>>>>> +            trigger-sources = <&adc AD4052_TRIGGER_EVENT_EITHER_THRESH
+>>>>> +                                    AD4052_TRIGGER_PIN_GP0
+>>>>> +                               &adc AD4052_TRIGGER_EVENT_DATA_READY
+>>>>> +                                    AD4052_TRIGGER_PIN_GP1>;
+>>
+>> Same as above - the GP pins aren't wired back to the ADC itself.
+>>
+>>>>> +            interrupt-parent = <&gpio>;
+>>>>> +            interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
+>>>>> +                         <0 1 IRQ_TYPE_EDGE_FALLING>;
+>>>>> +            interrupt-names = "gp0", "gp1";
+>>>>> +            cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+>>>>> +        };
+>>>>> +    };
+> 
+> Considering the discussion above. As is, in this series GP0 is event
+> Either threshold and GP1 Data ready. A future series would aim to make
+> it truly configurable.
+> 
+> For this series then, do we then drop the second cell of trigger cell
+> and do not provide a way of describing the function of each gpio? e.g.
+
+The bindings can't be changed later, so no, don't drop the 2nd cell
+if we are going to add it back later.
+
+But considering Jonathan's feedback, I am now questioning if we need
+the 2nd cell at all. The way trigger-source consumers work currently
+is that they request a trigger of a certain generic type, like "data
+ready". So this information could be used to determine what function
+needs to be assigned to the pin without having to define that in the
+devicetree.
+
+> 
+>   - |
+>     #include <dt-bindings/gpio/gpio.h>
+>     #include <dt-bindings/interrupt-controller/irq.h>
+>     #include <dt-bindings/iio/adc/adi,ad4052.h>
+>   
+>     rx_dma {
+>             #dma-cells = <1>;
+>     };
+>   
+>     spi {
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+>   
+>         trigger-sources = <&adc AD4052_TRIGGER_PIN_GP0>;
+>   
+>         adc@0 {
+>             compatible = "adi,ad4052";
+>             reg = <0>;
+>             vdd-supply = <&vdd>;
+>             vio-supply = <&vio>;
+>             spi-max-frequency = <83333333>;
+>             pwms = <&adc_trigger 0 10000 0>;
+>   
+>             // --- Other thought ------
+>             //adi,gpio-role = <AD4052_TRIGGER_EVENT_EITHER_THRESH
+>             //                 AD4052_TRIGGER_EVENT_DATA_READY>;
+>             // ------------------------
+>             interrupt-parent =  <&gpio>;
+>             interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
+>                          <0 1 IRQ_TYPE_EDGE_FALLING>;
+>             interrupt-names = "gp0", "gp1";
+>             cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+>         };
+>     };
+> 
+> Other thought is to add an "adi,gpio-role" property to define gpio
+> function (as commented in the example above, matched with index of
+> interrupts-names). If no interrupt-name.gp0 but trigger-source.GP0,
+> assume role Data ready (no irq for raw read, only buffer offload).
+> 
+> What is your opinion on this?
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Usually, we just have the devicetree describe how things are wired up.
+Then the driver looks at how things are wired up and decides how to
+best make use of the available resources. I.e. in the driver add some
+variables in the driver state struct that keeps track of the function
+assigned to each GP pin and use that to make decisions.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+In the driver, we would want to make sure to handle triggers first
+since those are less flexible (so set up SPI offload first). This
+would cause one of the GP pins to be assigned to the /RDY function.
+It doesn't matter which one.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Then later, parse the interrupts property. If we see that one of
+the GP pins is already assigned to /RDY, then we know we have to
+use that pin for the /RDY interrupt as well. If both pins are still
+available, then an arbitrary one can be assigned for /RDY.
 
-  pip3 install dtschema --upgrade
+Then if there is still an unused GP pin left that is actually
+wired up to an interrupt, that can be used for the events interrupt.
 
+Or we could even consider to have everything on one pin since the
+/RDY signal would never be needed at the same time as events as long
+as the events are only ever used in monitor mode.
 
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 19a60293b9925080d97f22f122aca3fc46dadaf9
- Deps: looking for dependencies matching 10 patch-ids
- Deps: Applying prerequisite patch: [PATCH v9 01/10] clk: qcom: clk-alpha-pll: Add support for dynamic update for slewing PLLs
- Deps: Applying prerequisite patch: [PATCH v9 02/10] dt-bindings: clock: Add Qualcomm QCS615 Camera clock controller
- Deps: Applying prerequisite patch: [PATCH v9 03/10] clk: qcom: camcc-qcs615: Add QCS615 camera clock controller driver
- Deps: Applying prerequisite patch: [PATCH v9 04/10] dt-bindings: clock: Add Qualcomm QCS615 Display clock controller
- Deps: Applying prerequisite patch: [PATCH v9 05/10] clk: qcom: dispcc-qcs615: Add QCS615 display clock controller driver
- Deps: Applying prerequisite patch: [PATCH v9 06/10] dt-bindings: clock: Add Qualcomm QCS615 Graphics clock controller
- Deps: Applying prerequisite patch: [PATCH v9 07/10] clk: qcom: gpucc-qcs615: Add QCS615 graphics clock controller driver
- Deps: Applying prerequisite patch: [PATCH v9 08/10] dt-bindings: clock: Add Qualcomm QCS615 Video clock controller
- Deps: Applying prerequisite patch: [PATCH v9 09/10] clk: qcom: videocc-qcs615: Add QCS615 video clock controller driver
- Deps: Applying prerequisite patch: [PATCH v9 10/10] arm64: defconfig: Enable QCS615 clock controllers
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com:
-
-Error: arch/arm64/boot/dts/qcom/qcs615.dtsi:3764.43-44 syntax error
-FATAL ERROR: Unable to parse input tree
-make[3]: *** [scripts/Makefile.dtbs:131: arch/arm64/boot/dts/qcom/qcs615-ride.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:554: arch/arm64/boot/dts/qcom] Error 2
-make[2]: Target 'arch/arm64/boot/dts/qcom/qcs615-ride.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1472: qcom/qcs615-ride.dtb] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-make: Target 'qcom/apq8096-ifc6640.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-j3ltetw.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-fxtec-pro1.dtb' not remade because of errors.
-make: Target 'qcom/sm7325-nothing-spacewar.dtb' not remade because of errors.
-make: Target 'qcom/sm7125-xiaomi-curtana.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-dell-xps13-9345.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-mtp.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-a5u-eur.dtb' not remade because of errors.
-make: Target 'qcom/sc8280xp-lenovo-thinkpad-x13s.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r3-lte.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-crd-pro.dtb' not remade because of errors.
-make: Target 'qcom/sm6115p-lenovo-j606f.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-sony-xperia-yoshino-maple.dtb' not remade because of errors.
-make: Target 'qcom/ipq9574-rdp454.dtb' not remade because of errors.
-make: Target 'qcom/qcs6490-rb3gen2.dtb' not remade because of errors.
-make: Target 'qcom/msm8992-xiaomi-libra.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-r4.dtb' not remade because of errors.
-make: Target 'qcom/sdm450-motorola-ali.dtb' not remade because of errors.
-make: Target 'qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-quackingstick-r0.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pazquel360-wifi.dtb' not remade because of errors.
-make: Target 'qcom/sdm630-sony-xperia-ganges-kirin.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-coachz-r1-lte.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-lg-judyp.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-cheza-r3.dtb' not remade because of errors.
-make: Target 'qcom/msm8939-wingtech-wt82918.dtb' not remade because of errors.
-make: Target 'qcom/qrb2210-rb1.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-mtp.dtb' not remade because of errors.
-make: Target 'qcom/sm8750-mtp.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-zombie.dtb' not remade because of errors.
-make: Target 'qcom/msm8992-lg-bullhead-rev-10.dtb' not remade because of errors.
-make: Target 'qcom/qrb5165-rb5.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-lenovo-yoga-slim7x.dtb' not remade because of errors.
-make: Target 'qcom/sm8550-qrd.dtb' not remade because of errors.
-make: Target 'qcom/sdm630-sony-xperia-nile-discovery.dtb' not remade because of errors.
-make: Target 'qcom/sm8550-sony-xperia-yodo-pdx234.dtb' not remade because of errors.
-make: Target 'qcom/msm8939-huawei-kiwi.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-wormdingler-rev1-inx.dtb' not remade because of errors.
-make: Target 'qcom/sc8280xp-microsoft-arcata.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-oneplus-fajita.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dtb' not remade because of errors.
-make: Target 'qcom/sdm660-xiaomi-lavender.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-coachz-r1.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r10.dtb' not remade because of errors.
-make: Target 'qcom/msm8939-wingtech-wt82918hd.dtb' not remade because of errors.
-make: Target 'qcom/ipq6018-cp01-c1.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-motorola-surnia.dtb' not remade because of errors.
-make: Target 'qcom/sm8350-microsoft-surface-duo2.dtb' not remade because of errors.
-make: Target 'qcom/qcm6490-idp.dtb' not remade because of errors.
-make: Target 'qcom/sm8550-mtp.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-a3u-eur.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-sony-xperia-tama-akari.dtb' not remade because of errors.
-make: Target 'qcom/x1p42100-crd.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-mtp.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-xiaomi-elish-csot.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-wingtech-wt88047.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-thwc-ufi001c.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-xiaomi-sagit.dtb' not remade because of errors.
-make: Target 'qcom/qcs8550-aim300-aiot.dtb' not remade because of errors.
-make: Target 'qcom/sdm450-lenovo-tbx605f.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-xiaomi-elish-boe.dtb' not remade because of errors.
-make: Target 'qcom/qcs404-evb-4000.dtb' not remade because of errors.
-make: Target 'qcom/qcs9100-ride.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-sony-xperia-tone-kagura.dtb' not remade because of errors.
-make: Target 'qcom/sm8150-sony-xperia-kumano-griffin.dtb' not remade because of errors.
-make: Target 'qcom/sdm670-google-sargo.dtb' not remade because of errors.
-make: Target 'qcom/x1e001de-devkit.dtb' not remade because of errors.
-make: Target 'qcom/sa8775p-ride.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-crd.dtb' not remade because of errors.
-make: Target 'qcom/ipq5424-rdp466.dtb' not remade because of errors.
-make: Target 'qcom/sc8180x-lenovo-flex-5g.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-lg-judyln.dtb' not remade because of errors.
-make: Target 'qcom/sm6125-xiaomi-ginkgo.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r3-kb.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-motorola-osprey.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-xiaomi-pipa.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-oneplus-enchilada.dtb' not remade because of errors.
-make: Target 'qcom/msm8956-sony-xperia-loire-suzu.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-idp.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-evoker-lte.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-homestar-r4.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-rossa.dtb' not remade because of errors.
-make: Target 'qcom/apq8039-t2.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-motorola-harpia.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-e5.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-idp2.dtb' not remade because of errors.
-make: Target 'qcom/apq8016-sbc-d3-camera-mezzanine.dtb' not remade because of errors.
-make: Target 'qcom/msm8939-sony-xperia-kanuti-tulip.dtb' not remade because of errors.
-make: Target 'qcom/ipq8074-hk01.dtb' not remade because of errors.
-make: Target 'qcom/sm8150-mtp.dtb' not remade because of errors.
-make: Target 'qcom/ipq9574-rdp433.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-sony-xperia-tama-apollo.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-lenovo-miix-630.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-sony-xperia-kitakami-karin.dtb' not remade because of errors.
-make: Target 'qcom/sdm630-sony-xperia-nile-pioneer.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-grandmax.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-alcatel-idol347.dtb' not remade because of errors.
-make: Target 'qcom/ipq9574-rdp453.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-acer-aspire1.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-r1.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-e7.dtb' not remade because of errors.
-make: Target 'qcom/ipq5018-rdp432-c2.dtb' not remade because of errors.
-make: Target 'qcom/apq8016-schneider-hmibsc.dtb' not remade because of errors.
-make: Target 'qcom/qrb4210-rb2.dtb' not remade because of errors.
-make: Target 'qcom/ipq5018-tplink-archer-ax55-v1.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-evoker.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-kingoftown.dtb' not remade because of errors.
-make: Target 'qcom/sm4450-qrd.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-j5.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-asus-novago-tp370ql.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pompom-r2-lte.dtb' not remade because of errors.
-make: Target 'qcom/msm8992-lg-h815.dtb' not remade because of errors.
-make: Target 'qcom/sdx75-idp.dtb' not remade because of errors.
-make: Target 'qcom/sm8350-sony-xperia-sagami-pdx215.dtb' not remade because of errors.
-make: Target 'qcom/apq8096-db820c.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-sony-xperia-tone-keyaki.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-longcheer-l8150.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-sony-xperia-kitakami-suzuran.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-mtp.dtb' not remade because of errors.
-make: Target 'qcom/sm6375-sony-xperia-murray-pdx225.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-yiming-uz801v3.dtb' not remade because of errors.
-make: Target 'qcom/qcs9100-ride-r3.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-hp-omnibook-x14.dtb' not remade because of errors.
-make: Target 'qcom/msm8953-xiaomi-vince.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-cheza-r2.dtb' not remade because of errors.
-make: Target 'qcom/ipq5332-rdp441.dtb' not remade because of errors.
-make: Target 'qcom/msm8992-lg-bullhead-rev-101.dtb' not remade because of errors.
-make: Target 'qcom/msm8917-xiaomi-riva.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-xiaomi-gemini.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-r9.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-sony-xperia-yoshino-lilac.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-gprimeltecan.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pazquel360-lte.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-shift-axolotl.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-oneplus3t.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-zombie-lte.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r3.dtb' not remade because of errors.
-make: Target 'qcom/sar2130p-qar2130p.dtb' not remade because of errors.
-make: Target 'qcom/sm8650-hdk.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-herobrine-r1.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-longcheer-l8910.dtb' not remade because of errors.
-make: Target 'qcom/sdm630-sony-xperia-nile-voyager.dtb' not remade because of errors.
-make: Target 'qcom/sm8450-hdk.dtb' not remade because of errors.
-make: Target 'qcom/msm8929-wingtech-wt82918hd.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-sony-xperia-edo-pdx203.dtb' not remade because of errors.
-make: Target 'qcom/sm8350-hdk.dtb' not remade because of errors.
-make: Target 'qcom/ipq8074-hk10-c1.dtb' not remade because of errors.
-make: Target 'qcom/sm8450-qrd.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-lg-c50.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-sony-xperia-edo-pdx206.dtb' not remade because of errors.
-make: Target 'qcom/sm7225-fairphone-fp4.dtb' not remade because of errors.
-make: Target 'qcom/sa8155p-adp.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-qcp.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r1-kb.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-grandprimelte.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-zombie-nvme-lte.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-homestar-r3.dtb' not remade because of errors.
-make: Target 'qcom/ipq5332-rdp474.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-asus-vivobook-s15.dtb' not remade because of errors.
-make: Target 'qcom/sm8150-microsoft-surface-duo.dtb' not remade because of errors.
-make: Target 'qcom/msm8996pro-xiaomi-scorpio.dtb' not remade because of errors.
-make: Target 'qcom/x1e78100-lenovo-thinkpad-t14s.dtb' not remade because of errors.
-make: Target 'qcom/sm8150-hdk.dtb' not remade because of errors.
-make: Target 'qcom/sc8180x-primus.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r10-lte.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-j5x.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-idp.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-mtp.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-hp-elitebook-ultra-g1q.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-r10.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-zombie-nvme.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-microsoft-romulus15.dtb' not remade because of errors.
-make: Target 'qcom/qru1000-idp.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-hp-envy-x2.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pazquel-parade.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r9-kb.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-wormdingler-rev1-boe.dtb' not remade because of errors.
-make: Target 'qcom/qcs615-ride.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-coachz-r3-lte.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-crd-r3.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-gt58.dtb' not remade because of errors.
-make: Target 'qcom/sa8775p-ride-r3.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-villager-r1.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pazquel-ti.dtb' not remade because of errors.
-make: Target 'qcom/qcm6490-shift-otter.dtb' not remade because of errors.
-make: Target 'qcom/qcs8300-ride.dtb' not remade because of errors.
-make: Target 'qcom/apq8016-sbc.dtb' not remade because of errors.
-make: Target 'qcom/msm8996pro-xiaomi-natrium.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-samsung-starqltechn.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pompom-r1-lte.dtb' not remade because of errors.
-make: Target 'qcom/msm8953-xiaomi-tissot.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r9.dtb' not remade because of errors.
-make: Target 'qcom/sm6125-xiaomi-laurel-sprout.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-sony-xperia-kitakami-sumire.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-serranove.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-coachz-r3.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-sony-xperia-tama-akatsuki.dtb' not remade because of errors.
-make: Target 'qcom/ipq9574-rdp449.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-r1-lte.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-lg-m216.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-crd.dtb' not remade because of errors.
-make: Target 'qcom/apq8094-sony-xperia-kitakami-karin_windy.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r9-lte.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pazquel-lte-ti.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-sony-xperia-tone-dora.dtb' not remade because of errors.
-make: Target 'qcom/sa8295p-adp.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-sony-xperia-kitakami-ivy.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-xiaomi-beryllium-ebbg.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pompom-r3.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-oneplus-dumpling.dtb' not remade because of errors.
-make: Target 'qcom/sm8650-mtp.dtb' not remade because of errors.
-make: Target 'qcom/msm8996-oneplus3.dtb' not remade because of errors.
-make: Target 'qcom/sm8550-hdk.dtb' not remade because of errors.
-make: Target 'qcom/x1e80100-microsoft-romulus13.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r1-lte.dtb' not remade because of errors.
-make: Target 'qcom/msm8939-samsung-a7.dtb' not remade because of errors.
-make: Target 'qcom/qcm6490-fairphone-fp5.dtb' not remade because of errors.
-make: Target 'qcom/sc8280xp-huawei-gaokun3.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb' not remade because of errors.
-make: Target 'qcom/msm8953-xiaomi-mido.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-asus-z00l.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pompom-r2.dtb' not remade because of errors.
-make: Target 'qcom/sm6350-sony-xperia-lena-pdx213.dtb' not remade because of errors.
-make: Target 'qcom/sdm632-fairphone-fp3.dtb' not remade because of errors.
-make: Target 'qcom/msm8953-motorola-potter.dtb' not remade because of errors.
-make: Target 'qcom/sda660-inforce-ifc6560.dtb' not remade because of errors.
-make: Target 'qcom/sm8150-sony-xperia-kumano-bahamut.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pazquel-lte-parade.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-homestar-r2.dtb' not remade because of errors.
-make: Target 'qcom/sm8250-hdk.dtb' not remade because of errors.
-make: Target 'qcom/sm8650-qrd.dtb' not remade because of errors.
-make: Target 'qcom/sc8280xp-microsoft-blackrock.dtb' not remade because of errors.
-make: Target 'qcom/ipq8074-hk10-c2.dtb' not remade because of errors.
-make: Target 'qcom/msm8953-xiaomi-daisy.dtb' not remade because of errors.
-make: Target 'qcom/sc8280xp-crd.dtb' not remade because of errors.
-make: Target 'qcom/sdm850-samsung-w737.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-samsung-gt510.dtb' not remade because of errors.
-make: Target 'qcom/sdm850-lenovo-yoga-c630.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-thwc-uf896.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r10-kb.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-sony-xperia-kitakami-satsuki.dtb' not remade because of errors.
-make: Target 'qcom/sdm632-motorola-ocean.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-villager-r1-lte.dtb' not remade because of errors.
-make: Target 'qcom/sm6115-fxtec-pro1x.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pompom-r3-lte.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-sony-xperia-yoshino-poplar.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-huawei-g7.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-wingtech-wt86518.dtb' not remade because of errors.
-make: Target 'qcom/sm8350-sony-xperia-sagami-pdx214.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-wingtech-wt86528.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-db845c.dtb' not remade because of errors.
-make: Target 'qcom/sa8540p-ride.dtb' not remade because of errors.
-make: Target 'qcom/msm8939-longcheer-l9100.dtb' not remade because of errors.
-make: Target 'qcom/qdu1000-idp.dtb' not remade because of errors.
-make: Target 'qcom/sm8550-samsung-q5q.dtb' not remade because of errors.
-make: Target 'qcom/msm8992-msft-lumia-octagon-talkman.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-gplus-fl8005a.dtb' not remade because of errors.
-make: Target 'qcom/sm8350-mtp.dtb' not remade because of errors.
-make: Target 'qcom/msm8956-sony-xperia-loire-kugo.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-r1.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-pompom-r1.dtb' not remade because of errors.
-make: Target 'qcom/msm8998-oneplus-cheeseburger.dtb' not remade because of errors.
-make: Target 'qcom/sc7280-herobrine-villager-r0.dtb' not remade because of errors.
-make: Target 'qcom/sm8750-qrd.dtb' not remade because of errors.
-make: Target 'qcom/sm4250-oneplus-billie2.dtb' not remade because of errors.
-make: Target 'qcom/sdm636-sony-xperia-ganges-mermaid.dtb' not remade because of errors.
-make: Target 'qcom/qcs404-evb-1000.dtb' not remade because of errors.
-make: Target 'qcom/ipq5332-rdp442.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-cheza-r1.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-msft-lumia-octagon-cityman.dtb' not remade because of errors.
-make: Target 'qcom/msm8916-acer-a1-724.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-xiaomi-beryllium-tianma.dtb' not remade because of errors.
-make: Target 'qcom/sm6125-sony-xperia-seine-pdx201.dtb' not remade because of errors.
-make: Target 'qcom/sdm845-xiaomi-polaris.dtb' not remade because of errors.
-make: Target 'qcom/ipq9574-rdp418.dtb' not remade because of errors.
-make: Target 'qcom/msm8216-samsung-fortuna3g.dtb' not remade because of errors.
-make: Target 'qcom/sm8450-sony-xperia-nagara-pdx223.dtb' not remade because of errors.
-make: Target 'qcom/sm8450-sony-xperia-nagara-pdx224.dtb' not remade because of errors.
-make: Target 'qcom/sm7125-xiaomi-joyeuse.dtb' not remade because of errors.
-make: Target 'qcom/msm8994-huawei-angler-rev-101.dtb' not remade because of errors.
-make: Target 'qcom/ipq5332-rdp468.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-lazor-limozeen-nots-r10.dtb' not remade because of errors.
-make: Target 'qcom/sc7180-trogdor-quackingstick-r0-lte.dtb' not remade because of errors.
-
-
-
-
-
+If we find that there is some case though where the driver really
+can't figure out what to do with the available information, then
+we could probably justify adding a property like you suggested.
+It seems like we could possibly do without it at this point though.
 
