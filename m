@@ -1,80 +1,56 @@
-Return-Path: <devicetree+bounces-185453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF4DAD7C4A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:20:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC25AAD7C89
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:37:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21302188ED14
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:21:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A32F3A495B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A112D5421;
-	Thu, 12 Jun 2025 20:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBED42D6605;
+	Thu, 12 Jun 2025 20:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tm8bH2fA"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="LxkrIfVV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.smtpout.orange.fr (smtp-74.smtpout.orange.fr [80.12.242.74])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E8C101DE
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 20:20:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B072D6616;
+	Thu, 12 Jun 2025 20:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.74
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749759644; cv=none; b=umNvEzK2mhNqUVbGSRsu7npvESsRqvNHzH/qmrJbPCnuLabUsSd7MN5H8f2rLjuyhxH1QL1Mg9TXTBtF7F3MF2M7/ClEO71Pw1JrCvaBEWUIMmGfMX30pWgzADb/gpmqKxQ/HMA8+Qak7FTI5THfDZ+lPtoiAvYAL2Ip7fwInpA=
+	t=1749760620; cv=none; b=iSd5LgHkRzkC1lJ2LhK/bLkhNTJtZoAPG2aIdviPBxpeHAc/6M4VUWG2Ir9geCZUfM0EQmhI1RSWZqmtg3OPOoUlReHK+d+v8yQeuglCK6zaj5mpCeEjcDnwZi3YTkCoGl+PcnCK67H+t4PRoHhVge4E96yYPgl4pXfx/Nhm+CQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749759644; c=relaxed/simple;
-	bh=6Q/PGBvknyPShMaTySM+cqmOkNrRnIyJJHTUlyaDcRg=;
+	s=arc-20240116; t=1749760620; c=relaxed/simple;
+	bh=H8u1w/YwStaUJxudyE2L3/g/KCe1Lq6vTTC/Fx7X2wI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjNiG5ZdKISK0Sf/rLtnVhXdbYNvX2tkYet+IgPyzQoFxCqUekHXVmxvUNvPgH/FH/I1GHfcUSyHmxEMxgDcZt7Ck/t/BJ62yE1B1s1YT9Nox2rpCqdOZr9wb9SoYxzO011Xb9VAf3c7+fCbhVV5YhqFi8pwEInFsgKVpRc+BeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tm8bH2fA; arc=none smtp.client-ip=209.85.210.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-72c47631b4cso875283a34.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 13:20:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749759641; x=1750364441; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LnqQFNNg7S/LY+02Og7P0coplg2HCqvVrychShtmb0Y=;
-        b=tm8bH2fAiv5IUInWReklncngSn1Jtoe0JCWTc00pJMs5xwwkSYX9PKVj+XJt51LOyl
-         Al51SfNuaOJTrqkCoUJBDRt/6+X449+aRIxNyxOg72EAvu5LfnTwxLuXN3fvs+K/TtLf
-         6H+Gok/BevwEBq2bdB1UD5MdXKk9u+Sop/4Y9p1GvPdPQJXyyNo45xYB0UxgExaZHN2L
-         JB5qfh5DFb6Y8I/DNYl85HY1DGCd5NuC0zzaoAXLB7B1/Z/RzhGJ5l/B9Yw18wtbulhy
-         WmzJzRO6Ro8V/gyvmL00UwITZBUQUZqyxsptVsx7FId5Hf99khtNJY7qq5U4lSvhQsTe
-         m6qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749759641; x=1750364441;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LnqQFNNg7S/LY+02Og7P0coplg2HCqvVrychShtmb0Y=;
-        b=mAlwIBEVjn2iJJD+e4Xbk+l8XbzmoWWXWqmINSW2NwXKDYYhPmLYPtY6lElmu8rsLv
-         7az8R/BLC5oKMzOdatOgHD6L0kBt1uj0xOsSiiCOMzfoz9czvK/x5iUK5u8QXTZXoSMJ
-         Pdr/JTwjUsJODdNeSv49ZTjKcjLsy6npxylSUysuC22fulGGUe5uY3KmARYUSs3yAgWK
-         tPkO6bQD3Df2YYg3HfuKsEkAakO/pCZUKMRt0s5tDqExhfCOF582796HuSa738rVAxlu
-         fSrTXB5m3cu/yrYxIXtvU6ERYkxp3G/a5KLvDthoqaoD7gtIub8MtbJt1RX6sSReczZX
-         6dAg==
-X-Forwarded-Encrypted: i=1; AJvYcCVT9Yut4AORig4E7GFNwmXrxf5ZNWSGn21O9gHOD6I2MO42VijoRC0JAZVoxE0YXQnHM4kUFHU5S5Sw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPMSlnh3Ulhz6+lH7Sw4WB+tyttOubQGpIKz7UnOzHDLkfa2zg
-	Tm8LNG2EPD3V2G82fl1sXAY56LbA54WIFovYxjtu9p+dvJRexngleTsIvg64ICzp5Ts=
-X-Gm-Gg: ASbGncu7QIN0dVf9vSXR5sh0IhniFU8pUM6vOM2k1vlqbtrZ/iFzQVhaTf4XK/F70ha
-	UnvM1JTCzisbnmVwkL1ayVibHuCTnMXAM5QSgr/ka6lhbJyFbfpin8H8ITyPgrWruwAg3I52rO0
-	h4WCTmlISCQY0MGE8BI873XMJ02T5iAriNW6ct3mF+hpUOTaWYf1onyWfkNvVqj9UNTsyJJe//Z
-	pZm1BPousoN7qQpEfaRYz/vGVt9EnAVyfZLyT66KNs7QHf2VoQOrObcWNGaST2zEPA6B/MqcNKo
-	TBaX35rsgWwUUa5DXMB7Bk5Y7UtFphWuPVTu+EV5vrEShFldknPeuMEbxqJ6E5Bymh1lzeR3VBf
-	MdB1maCDde5iA+4Vy5LG89ejq3uodwcYwgJ+6
-X-Google-Smtp-Source: AGHT+IGvy63gbdgYzhxx915nytzJrnbOCs/GabFdn8/B1Ozt4U4/eT429+1bpQ6NvozpwiaByThNIA==
-X-Received: by 2002:a05:6830:8009:b0:72a:47ec:12c6 with SMTP id 46e09a7af769-73a2708d702mr121676a34.2.1749759641342;
-        Thu, 12 Jun 2025 13:20:41 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:f808:847:b3ae:ff1a? ([2600:8803:e7e4:1d00:f808:847:b3ae:ff1a])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73a16a57ec5sm392377a34.18.2025.06.12.13.20.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jun 2025 13:20:40 -0700 (PDT)
-Message-ID: <5130be5d-b769-41aa-af2f-b1e16a91e569@baylibre.com>
-Date: Thu, 12 Jun 2025 15:20:40 -0500
+	 In-Reply-To:Content-Type; b=Srqx2mipeCBcHhKlKNlnTMlu1dRY/uqfz2rcqGyjRr5uV5cyS+rG1EiQy1tCEFr1IXMBsWM3iv87XuYLuTWE0kKoSP1tis6PDkGsQFNSsGrN8j0xvcKbasLR5TsB50dx4RPSzRnhbQ7yVTCVffcw41UJOzZPbSAzspzX5k1/M0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=LxkrIfVV; arc=none smtp.client-ip=80.12.242.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id PoWIuYWF3h2MlPoWJutI1a; Thu, 12 Jun 2025 22:27:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1749760052;
+	bh=30F9MeODJaJtiCyPTKPIaDBgYSsnYVpZ0EqQQiVnKc4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=LxkrIfVVst3GNiCIT4KgzwDqBS7GHuyxt1F86CTNcjmtrqWPq33ea8kN0AFZ79R1J
+	 OrSf46HuFOMk24s6lePYsB7lz+Nd2k8lLOHWUj/tG/uBUBjQX9P8r9FPX268lSo+VH
+	 NeNSbLfs4Hk+UYZn9E0s3zR/R98L2WllTR2hieQPjAJ+nyKdk/CmL6oKx/60MtMg7m
+	 sna5jFMu7AO5g/194HqUqmj8Tx16xrjoFZmcQR0dogrwNzQ5UPt6zKArBLmeUeq4cc
+	 0NLouo5u4hMqCHaXj8/6nnCLcrq86m+ZsQv/Kj7yubTx7rQRQsUYRsUpaDSd6+8Dtm
+	 xM5bAJeS6ZrIQ==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Thu, 12 Jun 2025 22:27:32 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <5e131f07-9753-4d2f-a043-35751c278a63@wanadoo.fr>
+Date: Thu, 12 Jun 2025 22:27:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,319 +58,164 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] dt-bindings: iio: adc: Add adi,ad4052
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
- Jorge Marques <jorge.marques@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
- <20250610-iio-driver-ad4052-v3-2-cf1e44c516d4@analog.com>
- <20250611181818.14d147c7@jic23-huawei>
- <xqkr3rq6ikuiz5wcbxmto4gp7wnccmmogklf2ux2edauotufim@pcuhddxdzjxi>
- <ef0d4038-b665-4ef0-9e7b-7ad2ce154c50@baylibre.com>
- <zd4fvyjbfurgsp3rpslo2ubpxzxn7bh5b2vh5j4j7outxdrcd7@firxlr6bfkic>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <zd4fvyjbfurgsp3rpslo2ubpxzxn7bh5b2vh5j4j7outxdrcd7@firxlr6bfkic>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v6 2/2] leds: as3668: Driver for the ams Osram 4-channel
+ i2c LED driver
+To: Lukas Timmermann <linux@timmermann.space>, lee@kernel.org,
+ pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250611083151.22150-1-linux@timmermann.space>
+ <20250611083151.22150-3-linux@timmermann.space>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250611083151.22150-3-linux@timmermann.space>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 6/12/25 2:42 PM, Jorge Marques wrote:
-> Hi David,
+Le 11/06/2025 à 10:31, Lukas Timmermann a écrit :
+> Since there were no existing drivers for the AS3668 or related devices,
+> a new driver was introduced in a separate file. Similar devices were
+> reviewed, but none shared enough characteristics to justify code reuse.
+> As a result, this driver is written specifically for the AS3668.
 > 
-> thank you for chiming in
-> 
-> On Thu, Jun 12, 2025 at 10:03:37AM -0500, David Lechner wrote:
->> On 6/12/25 5:11 AM, Jorge Marques wrote:
->>> On Wed, Jun 11, 2025 at 06:18:18PM +0100, Jonathan Cameron wrote:
->>>> On Tue, 10 Jun 2025 09:34:35 +0200
->>>> Jorge Marques <jorge.marques@analog.com> wrote:
->>>>
->>
->> ...
->>
->>>>> +  trigger-sources:
->>>>> +    minItems: 1
->>>>> +    maxItems: 2
->>>>> +    description:
->>>>> +      Describes the output pin and event associated.
->>
->> trigger-sources would be an input pin connected to an external trigger.
->> For example, the CNV pin could be connected to a trigger-source
->> provider to trigger a conversion. But there aren't any other digital
->> inputs, so I don't know what the 2nd source would be here.
->>
->> As an example, see [1]. We could potentially use the same gpio
->> trigger-source for the conversion pin here. There is already
->> a similar binding for pwm triggers, so we could drop the separate
->> pwms binding as well an just have a single trigger-sources
->> property for the CNV pin that works for both gpio and pwm.
->>
->> [1]: https://lore.kernel.org/linux-iio/cover.1749569957.git.Jonathan.Santos@analog.com/
->>
-> 
-> Quick summary to familiarize myself with this part and driver.
-> 
-> On ad7768-1:
-> ad7768-1.SYNC_OUT is a digital output, ad7768-1.SYNC_IN input, and
-> ad7768-1.GPIO3 (START) configured as input. ad7768-1.GPIO[0..3] are
-> configurable GPIO, GPIO3 as START, or in PIN control mode, the input
-> GPIO[3:0] sets the power mode and modulator freq (MODEx).
-> 
-> On that thread:
-> https://lore.kernel.org/linux-iio/8abca580f43cb31d7088d07a7414b5f7efe91ead.1749569957.git.Jonathan.Santos@analog.com/
-> exposes GPIO[0..3] through gpio_chip if gpio-controller in dt.
-> 
-> https://lore.kernel.org/linux-iio/713fd786010c75858700efaec8bb285274e7057e.1749569957.git.Jonathan.Santos@analog.com/
-> trigger-sources-cells: the cell define the type of signal but *not* its
-> origin, because {DRDY, SYNC_OUT, GPIO3(START)} are dedicated pins, *so
-> there is no need to do so*.
-> 
->>>>> +
->>>>> +  "#trigger-source-cells":
->>>>> +    const: 2
->>>>> +    description: |
->>>>> +      Output pins used as trigger source.
->>>>> +
->>>>> +      Cell 0 defines the event:
->>>>> +      * 0 = Data ready
->>>>> +      * 1 = Min threshold
->>>>> +      * 2 = Max threshold
->>>>> +      * 3 = Either threshold
->>>>> +      * 4 = CHOP control
->>>>> +      * 5 = Device enable
->>>>> +      * 6 = Device ready (only GP1)
->>>>
->>>> Hmm. I'm a bit dubious on why 'what the offload trigger is'
->>>> is a DT thing?  Is that because the IP needs to comprehend
->>>> this?  I guess only data ready is actually supported in
->>>> practice? 
->>>
->>> A trigger can be connected to trigger something other than a spi
->>> offload, it is in the DT because it describes how the device is
->>> connected. When using spi offload, the trigger-source at the spi handle
->>> describes which gpio and event is routed to the offload trigger input.
->>> At the ADC node, trigger-source-cells describe the source gpio and event
->>> for the device driver.
->>>
->>> In practice, in this series, one gpio is Data ready, triggering offload
->>> when buffer enabled, and raw reads, when disabled. And the other is
->>> Either threshold, propagated as an IIO event. Fancy logic can be added
->>> to the driver in future patches to allow other combinations.
->>>
->>> It is also worth to mention that the trigger-source is duplicated for
->>> each node that uses it, as seen in the second dts example:
->>>
->>>    &adc AD4052_TRIGGER_EVENT_DATA_READY AD4052_TRIGGER_PIN_GP1
->>>
->>> Is repeated on both adc and spi node.
->>
->> That sounds wrong. This would only make sense if an output of the
->> ADC was wired back to itself. 
->>
-> 
-> The issue is the lack of way of describing to the driver the function of
-> each gpio, when configurable. Perhaps it is better to use
-> trigger-source-cells to only describe the topology at that node
-> receiving the trigger, e.g.
-> 
->   trigger-sources = <&adc AD4052_TRIGGER_PIN_GP0>;
-> 
-> Below I continue the discussion.
->>>
->>> One last thing, on the driver, for v3, I should handle -ENOENT:
->>>
->>>   ret = of_parse_phandle_with_args(np, "trigger-sources",
->>>   				   "#trigger-source-cells", i,
->>>   				   &trigger_sources);
->>>   if (ret)
->>>   	return ret == -ENOENT ? 0 : ret;
->>>
->>> To assert only when present, since the nodes are not required.
->>> Or, in the driver,
->>> require AD4052_TRIGGER_PIN_GP0 if irq_get_byname finds gp0, and
->>> require AD4052_TRIGGER_PIN_GP1 if irq_get_byname finds gp1?
->>> (I would go with the first option).
->>>>
->>
->> ,,,
->>
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/gpio/gpio.h>
->>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>>> +    #include <dt-bindings/iio/adc/adi,ad4052.h>
->>>>> +
->>>>> +    spi {
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <0>;
->>>>> +
->>>>> +        adc@0 {
->>>>> +            compatible = "adi,ad4052";
->>>>> +            reg = <0>;
->>>>> +            vdd-supply = <&vdd>;
->>>>> +            vio-supply = <&vio>;
->>>>> +            ref-supply = <&ref>;
->>>>> +            spi-max-frequency = <83333333>;
->>>>> +
->>>>> +            #trigger-source-cells = <2>;
->>>>> +            trigger-sources = <&adc AD4052_TRIGGER_EVENT_EITHER_THRESH
->>>>> +                                    AD4052_TRIGGER_PIN_GP0
->>>>> +                               &adc AD4052_TRIGGER_EVENT_DATA_READY
->>>>> +                                    AD4052_TRIGGER_PIN_GP1>;
->>
->> This doesn't make sense for the reason given above. These outputs
->> aren't wired back to inputs on the ADC. They are wired to interrupts
->> on the MCU, which is already described below.
->>
-> Below.
->>>>> +            interrupt-parent = <&gpio>;
->>>>> +            interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
->>>>> +                         <0 1 IRQ_TYPE_EDGE_FALLING>;
->>>>> +            interrupt-names = "gp0", "gp1";
->>>>> +            cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
->>>>> +        };
->>>>> +    };
->>>>> +  - |
->>>>> +    #include <dt-bindings/gpio/gpio.h>
->>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>>> +    #include <dt-bindings/iio/adc/adi,ad4052.h>
->>>>> +
->>>>> +    rx_dma {
->>>>> +            #dma-cells = <1>;
->>>>> +    };
->>>>> +
->>>>> +    spi {
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <0>;
->>>>> +
->>>>> +        dmas = <&rx_dma 0>;
->>>>> +        dma-names = "offload0-rx";
->>
->> The dmas aren't related to the ADC, so can be left out of the example.
->>
-> Ack.
->>>>> +        trigger-sources = <&adc AD4052_TRIGGER_EVENT_DATA_READY
->>>>> +                                AD4052_TRIGGER_PIN_GP1>;
->>>>> +
->>>>> +        adc@0 {
->>>>> +            compatible = "adi,ad4052";
->>>>> +            reg = <0>;
->>>>> +            vdd-supply = <&vdd>;
->>>>> +            vio-supply = <&vio>;
->>>>> +            spi-max-frequency = <83333333>;
->>>>> +            pwms = <&adc_trigger 0 10000 0>;
->>>>> +
->>>>> +            #trigger-source-cells = <2>;
->>>>> +            trigger-sources = <&adc AD4052_TRIGGER_EVENT_EITHER_THRESH
->>>>> +                                    AD4052_TRIGGER_PIN_GP0
->>>>> +                               &adc AD4052_TRIGGER_EVENT_DATA_READY
->>>>> +                                    AD4052_TRIGGER_PIN_GP1>;
->>
->> Same as above - the GP pins aren't wired back to the ADC itself.
->>
->>>>> +            interrupt-parent = <&gpio>;
->>>>> +            interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
->>>>> +                         <0 1 IRQ_TYPE_EDGE_FALLING>;
->>>>> +            interrupt-names = "gp0", "gp1";
->>>>> +            cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
->>>>> +        };
->>>>> +    };
-> 
-> Considering the discussion above. As is, in this series GP0 is event
-> Either threshold and GP1 Data ready. A future series would aim to make
-> it truly configurable.
-> 
-> For this series then, do we then drop the second cell of trigger cell
-> and do not provide a way of describing the function of each gpio? e.g.
+> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
 
-The bindings can't be changed later, so no, don't drop the 2nd cell
-if we are going to add it back later.
+Hi,
 
-But considering Jonathan's feedback, I am now questioning if we need
-the 2nd cell at all. The way trigger-source consumers work currently
-is that they request a trigger of a certain generic type, like "data
-ready". So this information could be used to determine what function
-needs to be assigned to the pin without having to define that in the
-devicetree.
+first, I should that you should wait longer before sending each new 
+version, so that you can collect more feedback.
 
-> 
->   - |
->     #include <dt-bindings/gpio/gpio.h>
->     #include <dt-bindings/interrupt-controller/irq.h>
->     #include <dt-bindings/iio/adc/adi,ad4052.h>
->   
->     rx_dma {
->             #dma-cells = <1>;
->     };
->   
->     spi {
->         #address-cells = <1>;
->         #size-cells = <0>;
->   
->         trigger-sources = <&adc AD4052_TRIGGER_PIN_GP0>;
->   
->         adc@0 {
->             compatible = "adi,ad4052";
->             reg = <0>;
->             vdd-supply = <&vdd>;
->             vio-supply = <&vio>;
->             spi-max-frequency = <83333333>;
->             pwms = <&adc_trigger 0 10000 0>;
->   
->             // --- Other thought ------
->             //adi,gpio-role = <AD4052_TRIGGER_EVENT_EITHER_THRESH
->             //                 AD4052_TRIGGER_EVENT_DATA_READY>;
->             // ------------------------
->             interrupt-parent =  <&gpio>;
->             interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
->                          <0 1 IRQ_TYPE_EDGE_FALLING>;
->             interrupt-names = "gp0", "gp1";
->             cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
->         };
->     };
-> 
-> Other thought is to add an "adi,gpio-role" property to define gpio
-> function (as commented in the example above, matched with index of
-> interrupts-names). If no interrupt-name.gp0 but trigger-source.GP0,
-> assume role Data ready (no irq for raw read, only buffer offload).
-> 
-> What is your opinion on this?
+> ---
+>   MAINTAINERS                |   1 +
+>   drivers/leds/Kconfig       |  13 +++
+>   drivers/leds/Makefile      |   1 +
+>   drivers/leds/leds-as3668.c | 204 +++++++++++++++++++++++++++++++++++++
+>   4 files changed, 219 insertions(+)
+>   create mode 100644 drivers/leds/leds-as3668.c
 
+...
 
-Usually, we just have the devicetree describe how things are wired up.
-Then the driver looks at how things are wired up and decides how to
-best make use of the available resources. I.e. in the driver add some
-variables in the driver state struct that keeps track of the function
-assigned to each GP pin and use that to make decisions.
+> +static int as3668_dt_init(struct as3668 *as3668)
+> +{
+> +	struct device *dev = &as3668->client->dev;
+> +	struct as3668_led *led;
+> +	struct led_init_data init_data = {};
+> +	int err;
+> +	u32 reg;
+> +
+> +	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
+> +		err = of_property_read_u32(child, "reg", &reg);
+> +		if (err) {
+> +			dev_err(dev, "unable to read device tree led reg, err %d\n", err);
 
-In the driver, we would want to make sure to handle triggers first
-since those are less flexible (so set up SPI offload first). This
-would cause one of the GP pins to be assigned to the /RDY function.
-It doesn't matter which one.
+as3668_dt_init() is only called from the probe. Sometimes maintainers 
+prefer using "return dev_err_probe()" in such a case, to have less 
+verbose code.
+(I don't know if it is the case for the leds subsystem)
 
-Then later, parse the interrupts property. If we see that one of
-the GP pins is already assigned to /RDY, then we know we have to
-use that pin for the /RDY interrupt as well. If both pins are still
-available, then an arbitrary one can be assigned for /RDY.
+> +			return err;
+> +		}
+> +
+> +		if (reg < 0 || reg > AS3668_MAX_LEDS) {
+> +			dev_err(dev, "unsupported led reg %d\n", reg);
+> +			return -EOPNOTSUPP;
 
-Then if there is still an unused GP pin left that is actually
-wired up to an interrupt, that can be used for the events interrupt.
+Same.
 
-Or we could even consider to have everything on one pin since the
-/RDY signal would never be needed at the same time as events as long
-as the events are only ever used in monitor mode.
+> +		}
+> +
+> +		led = &as3668->leds[reg];
+> +		led->fwnode = of_fwnode_handle(child);
+> +
+> +		led->num = reg;
+> +		led->chip = as3668;
+> +
+> +		led->cdev.max_brightness = U8_MAX;
+> +		led->cdev.brightness_get = as3668_brightness_get;
+> +		led->cdev.brightness_set = as3668_brightness_set;
+> +
+> +		init_data.fwnode = led->fwnode;
+> +		init_data.default_label = ":";
+> +
+> +		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
+> +		if (err) {
+> +			dev_err(dev, "failed to register %d LED\n", reg);
+> +			return err;
 
-If we find that there is some case though where the driver really
-can't figure out what to do with the available information, then
-we could probably justify adding a property like you suggested.
-It seems like we could possibly do without it at this point though.
+Same.
+
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int as3668_probe(struct i2c_client *client)
+> +{
+> +	u8 chip_id1, chip_id2, chip_serial, chip_rev;
+> +	struct as3668 *as3668;
+> +
+> +	/* Check for sensible i2c address */
+> +	if (client->addr != 0x42)
+> +		return dev_err_probe(&client->dev, -EFAULT,
+> +				     "unexpected address for as3668 device\n");
+> +
+> +	/* Read identifier from chip */
+> +	chip_id1 = as3668_read_value(client, AS3668_CHIP_ID1);
+> +
+> +	if (chip_id1 != AS3668_CHIP_IDENT)
+> +		return dev_err_probe(&client->dev, -ENODEV,
+> +				"chip reported wrong id: 0x%02x\n", chip_id1);
+> +
+> +	/* Check the revision */
+> +	chip_id2 = as3668_read_value(client, AS3668_CHIP_ID2);
+> +	chip_serial = FIELD_GET(AS3668_CHIP_ID2_SERIAL_MASK, chip_id2);
+> +	chip_rev = FIELD_GET(AS3668_CHIP_ID2_REV_MASK, chip_id2);
+> +
+> +	if (chip_rev != AS3668_CHIP_REV1)
+> +		dev_warn(&client->dev, "unexpected chip revision\n");
+> +
+> +	/* Print out information about the chip */
+> +	dev_dbg(&client->dev,
+> +		"chip_id: 0x%02x | chip_id2: 0x%02x | chip_serial: 0x%02x | chip_rev: 0x%02x\n",
+> +		chip_id1, chip_id2, chip_serial, chip_rev);
+> +
+> +	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
+> +
+
+Unneeded new line.
+
+> +	if (!as3668)
+> +		return -ENOMEM;
+> +
+> +	as3668->client = client;
+> +	int err = as3668_dt_init(as3668);
+
+Would be better, IMHO, if err was declared at the top of the function.
+
+> +
+
+Unneeded new line.
+
+> +	if (err) {
+> +		dev_err(&client->dev, "failed to initialize device, err %d\n", err);
+
+return dev_err_probe() to be consistent with the code above.
+
+> +		return err;
+> +	}
+> +
+> +	/* Initialize the chip */
+> +	as3668_write_value(client, AS3668_CURRX_CONTROL, 0x55);
+> +	as3668_write_value(client, AS3668_CURR1, 0x00);
+> +	as3668_write_value(client, AS3668_CURR2, 0x00);
+> +	as3668_write_value(client, AS3668_CURR3, 0x00);
+> +	as3668_write_value(client, AS3668_CURR4, 0x00);
+> +
+> +	return 0;
+> +}
+
+...
+
+CJ
 
