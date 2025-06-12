@@ -1,154 +1,227 @@
-Return-Path: <devicetree+bounces-185189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E7CAAD6CAB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:56:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0295DAD6CFA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93CD93AEF12
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:55:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABE491613BC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65E422DA02;
-	Thu, 12 Jun 2025 09:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06DD226D00;
+	Thu, 12 Jun 2025 10:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oh36tfcg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ye+9+WED"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1DB822D7B0
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 09:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD6A211497;
+	Thu, 12 Jun 2025 10:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749722170; cv=none; b=RSpODkAaSykGINVmatDeIVuBMDGdC+uLWxCNXx2TcF6uxELkdzJkMAi2RI5dIpzQabbvcocrrZDrqhHdoPGVYm2qANksFvEIUAf5ZLPE+5/OQBHYnHZHlp+sS1UKzc8QB6CSDctcPT3InNgfDVysSBPt6mTC4uTmxu5lCG6FAQk=
+	t=1749722547; cv=none; b=UgdNMMvo0TCm0bDLJ5zpXGew09nnx3FCy+ttB+zsJX2yp9XMF0iy5o2NhSwfggc2PI6RPEnCxabulEG1FC/R5C1j/sQRKZNJBQqpTqP5483Ra7VaQMNgMu6cXIPpJr9hln0M1acGFTMbqzbzq1XtR7Qk3RZPRkz6sNZ6W367rR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749722170; c=relaxed/simple;
-	bh=TO01a4XfI3theHM74fPZdR2rlN2cv6ZWCZ/5/LAF5wA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PaJXOCvD/2rYKS8C+ki2QiAOxAoDZQ+bTaU0WGq6TB+l5WilGJHNbu5iTNpoIuzBLlW8oEbq24XZnB3AAorBj6bRo2jQt3g/yUMAYaWdMtu3sOad7y3q149mIj+tvU/yjC5mSGHU1zkPXUWLNDs8K88XYV8nu2jGNTNOBtzBDi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oh36tfcg; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4530e6f4db4so251285e9.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 02:56:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749722167; x=1750326967; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VGWS+hFBWdcB3VYxnV3ZAvnCxB0FbDboNRXSuMWKNAE=;
-        b=oh36tfcga42MUSo3rugjuB/IDGojUziE2Xaa3vQ64zzFKuR9N5yIhUwKHBljedrdnL
-         fFPhGCkQ9Pg5rSFCi4ltMT7ijgHLessV+C51gyELeBigNuhQu8zMJICwMUK61yb8gw3/
-         cvC54pgoDAhJt7XlOb0JUxC8QEUIFMucHafPc5Ad+HFIgWLzB9zPkuOsI7M0z8yL9F1l
-         N9j8crzxFpLTBBlLOgNV8takdSpA1wVUvSlpO64+2U++LtC5dNCgngTRdBkc5sL+pWAP
-         J3GFTuLRbVuuOJLDZvjBMWNOTl3n3tZwpW4f651HLD1QBHiCsvUjcYQC15a3AaiL8Jbe
-         TwsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749722167; x=1750326967;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VGWS+hFBWdcB3VYxnV3ZAvnCxB0FbDboNRXSuMWKNAE=;
-        b=eSJRXYiyEv7POFni+GczB5Od5n7eqblG/99gqIBx0g9LBVvqVmCkG1oYCfWoMA3/CO
-         Nxl+Clk3e9ubR0GxK6kSUd3Ln9xwFhXQQiWxbbdpZFI93Nl6ETbCy1lddYfFTzvjb/nW
-         U5f8kng69KtA2hknSpQxFFcXnfAClM5M3hvmQbBjKqoRyL9q9Mj7rr4A7FbcOSFIhNZi
-         ALbBuaKbCpL0wfpjBw9UpLxZXRaawXwy80JSSHoe7XxdioFY7BxVEDEsHzcVWBZpeNsw
-         VZh/5qSE2/7yR5H6ZNOSi4dzYNt+8QM1j+S70ZQ5VBzGQ8tWCU3Xsu41aKmitYth7KiF
-         wt2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVT2BF8fnG97lCTt4J59jJ726esR1mvJHB5ZO+WKjXTmdbLFd+VKpHXcupnr04ZcxKLxK3cC51FNlQk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0/cdQC94zZ/C4jiKfIDnLfKbD6FmZl6s6zoCsZ0r1KswCRM68
-	RpXlLrbXBCPGBYk5C73KXie4zxM1s0OIkzqvyFv4ON89xQ7t6VH0AmSaqQWM/xIxgPs=
-X-Gm-Gg: ASbGncu4cOoFe070YemvQwB3LKA4k9xJCIsUjBGNzDM3I2+fek76zQC7fK4JoK3g9n5
-	8hdGaUeQ8vNKmBz1pvBr2NjSQPJouEFKPmvDMEdtg/guG8Z9cjZs4xP83Ca6T5zMaQsK81VEWyU
-	PfzFl9Cz71u1Ejkj8q0ETJ19paPWAVkwdLS1OiEmAPE5uVgmtv144hIJB+Yy4YzhVqlKJuZh5rv
-	Uky176Q6cJy5DOWtAwD4vmU6O07RNtG02l2I1aX7uURgRMniXM6jz0UmUnlV0v3wP74k3Zy4sft
-	FdVSyCYLbEQjO0cDvwuwBKaYYApof5vHGL4j9STjo1c8+OqpEnrug996QvjFaVammx/7637hLg=
-	=
-X-Google-Smtp-Source: AGHT+IEunL0h4aObpNd5+z2QDBp6DgiOMvQCjH0pMkcARf474VM+a0aBXZwTAGaoL6LJV3WfcEN4Sw==
-X-Received: by 2002:a05:6000:2507:b0:3a5:1306:3c30 with SMTP id ffacd0b85a97d-3a55864fb5amr1969533f8f.0.1749722167198;
-        Thu, 12 Jun 2025 02:56:07 -0700 (PDT)
-Received: from kuoka.. ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5618d6f4fsm1521857f8f.0.2025.06.12.02.56.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jun 2025 02:56:06 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH 3/3] arm64: dts: exynos5433: Align i2c-gpio node names with dtschema
-Date: Thu, 12 Jun 2025 11:55:50 +0200
-Message-ID: <20250612095549.77954-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250612094807.62532-3-krzysztof.kozlowski@linaro.org>
-References: 
+	s=arc-20240116; t=1749722547; c=relaxed/simple;
+	bh=yV8In7fxVh590Gtw6uPwY0I6Runv4d8IVFTZyOkV014=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k+6xL0Cep56qFOAkcXGuHhDTu1O3e3QR35a3jmmhX1N35AAJ7etDEvn3FWZXgL4L4Lf/1an8YvlSczadoHsH8ifQF6FVuWFzeV1rWegN3WP2HS0P7XvfZmI4w/ecOIw5hj/FKNoDjzHf3e8j35WDz81nirhgZ0M0jcB5b24/z0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ye+9+WED; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1063C4CEEA;
+	Thu, 12 Jun 2025 10:02:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749722547;
+	bh=yV8In7fxVh590Gtw6uPwY0I6Runv4d8IVFTZyOkV014=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ye+9+WEDz1d44huhvrS5TYoEHkEfJVxsyDojYLNKSApRITfifNEfNa0uLXEAAiyVG
+	 Qk4IpT+LYjzoykvOViq416UiYkyQLHDFp2yzpdtMHBRc3bYVr/42r7gD6rHoFF6PJR
+	 OGV6TOy2trO6EajDGhB/VDNweo7crKxIex/rGWJL0Fq8k/3JxWj39dG2cUOhsdXXbA
+	 luYMpuBBd0odmdcOvVU+XjKiKZmiv0ZWJYeiuagw+f9seXL6t0kWXgqjQinLznVfDU
+	 VRPtd7mBHjJHLGgL8MKFTwgLdsv7oGJpgdh/XSSY2BwVM/+WqFJIZ4W+ac5JFAWroF
+	 I07s8PJ747q/w==
+Message-ID: <61e77351-f82c-4450-88f1-cd074423a840@kernel.org>
+Date: Thu, 12 Jun 2025 12:02:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1582; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=TO01a4XfI3theHM74fPZdR2rlN2cv6ZWCZ/5/LAF5wA=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoSqQlqR9SVbtLeGVNgV/bocU+ztoJ0ochVHCGW
- 0ZZTgt49FaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaEqkJQAKCRDBN2bmhouD
- 13yhD/9L0JG01crZn1btgo03LUraAB8RlG7s1bFXIjs7mpanEp9LFfwL3QVNQkC8Z3TBuWsX04l
- tv8RKOraPDIGnMsH3anmIMP1TZzC7gob36faKQenGQHgq7+30QpSCtXLUwYerdQm8KuGzErOiDn
- EZrzoLLfqZFD7xNAId3XJwVAm1KWFeaA5UYaVXFtIPIJ+JKegECLfavtcka9J+pjLp9jU2MUNJB
- qnLO8peY9Qzc3amwjesEABOGVRXvmUOktIqSoaZo7OYyTBkmg7nlFZi5C7FFzGaBFkjd96ZR+CF
- DizXzKK5gcLNnGnJwRdmp+X5NxHUuSWhhjAyudivR90yzQbEgbQcfpZQY8eleILOn7RANTBpaSi
- sn6++5jvP9gqLsH/wutPpNaQf48/CyqPiMK9NMqD8BefVZNeVD/bg2hsq9rJXAJiAjqUTdUxaT0
- /YQkXqAKrNCEevLQDjn1N6aZFq6pLaTKIwCYTWB2ysaeJOXiRrJ16iu933ZDdYE2s0+HeLqJ2/w
- gZsvM5pI6Y3Ja2GHXZzTGxlBNQ5GjHKvkD5kaKoh2IjD13FE5M1kHS552oyp8jnnDSXZcsFiQVV
- 5WcNhPBJRPeTO+I3+lZ8UTZ/1mSZyDZGFrbis9J3q2sn4ZeGDLUW7J+E+tAgpAk+e3L0Xt+MoCx Ymk1dDEnlah+vGw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] arm64: dts: msm: Add eMMC support for qcs8300
+To: Sayali Lokhande <quic_sayalil@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc-owner@vger.kernel.org
+References: <20250612092146.5170-1-quic_sayalil@quicinc.com>
+ <20250612092146.5170-2-quic_sayalil@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250612092146.5170-2-quic_sayalil@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-New dtschema v2025.6 enforces different naming on I2C nodes thus new
-dtbs_check warnings appeared for I2C GPIO nodes:
+On 12/06/2025 11:21, Sayali Lokhande wrote:
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
 
-  exynos5433-tm2.dtb: i2c-gpio-0 (i2c-gpio):
-    $nodename:0: 'i2c-gpio-0' does not match '^i2c(@.+|-[a-z0-9]+)?$'
-  exynos5433-tm2.dtb: i2c-gpio-0 (i2c-gpio):
-    Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'amplifier@31' were unexpected)
 
-Rename the nodes to a generic i2c-[0-9]+ style with numbers continuing
-the SoC I2C controller indexing (3 controllers) for simplicity and
-obviousness, even if the SoC I2C controller is not enabled on given
-board.  The names anyway would not conflict with SoC ones because of
-unit addresses.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Verified with comparing two fdt (after fdtdump).
+It is NEVER msm. Also missing soc/board prefix.
 
-Reported-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Closes: https://lore.kernel.org/all/aCtD7BH5N_uPGkq7@shikoro/
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> index 7ada029c32c1..5dee0b913b88 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> @@ -3837,6 +3837,62 @@
+>  			clock-names = "apb_pclk";
+>  		};
+>  
+> +		sdhc_1: mmc@87C4000 {
+> +			compatible = "qcom,sdhci-msm-v5";
+> +			status = "disabled";
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-index 8f02de8480b6..a1fb354dea9f 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-@@ -85,7 +85,7 @@ homepage-key {
- 		};
- 	};
- 
--	i2c_max98504: i2c-gpio-0 {
-+	i2c_max98504: i2c-13 {
- 		compatible = "i2c-gpio";
- 		sda-gpios = <&gpd0 1 GPIO_ACTIVE_HIGH>;
- 		scl-gpios = <&gpd0 0 GPIO_ACTIVE_HIGH>;
--- 
-2.45.2
+That's not correct place. Please follow DTS coding style.
 
+> +
+> +			reg = <0x0 0x87C4000 0x0 0x1000>,
+> +				<0x0 0x87C5000 0x0 0x1000>;
+
+Look at the rest of the file: lower or upper hex is used?
+
+> +			reg-names = "hc", "cqhci";
+> +
+> +			interrupts = <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+> +					<&gcc GCC_SDCC1_APPS_CLK>,
+> +					<&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "iface", "core", "xo";
+> +			interconnects = <&aggre1_noc MASTER_SDC 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDC1 0>;
+> +			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> +
+> +			operating-points-v2 = <&sdhc1_opp_table>;
+> +			bus-width = <8>;
+> +			supports-cqe;
+> +			dma-coherent;
+> +
+> +			qcom,dll-config = <0x000F64EE>;
+> +			qcom,ddr-config = <0x80040868>;
+> +
+> +			mmc-ddr-1_8v;
+> +			mmc-hs200-1_8v;
+> +			mmc-hs400-1_8v;
+> +			mmc-hs400-enhanced-strobe;
+
+All these do not look like SoC-level properties.
+
+> +
+> +			iommus = <&apps_smmu 0x0 0x0>;
+> +
+> +			resets = <&gcc GCC_SDCC1_BCR>;
+> +
+> +			sdhc1_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <1800000 400000>;
+> +					opp-avg-kBps = <100000 0>;
+> +				};
+> +
+> +				opp-384000000 {
+> +					opp-hz = /bits/ 64 <384000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <5400000 1600000>;
+> +					opp-avg-kBps = <390000 0>;
+> +				};
+> +			};
+> +		};
+> +
+>  		usb_1_hsphy: phy@8904000 {
+>  			compatible = "qcom,qcs8300-usb-hs-phy",
+>  				     "qcom,usb-snps-hs-7nm-phy";
+> @@ -5042,6 +5098,47 @@
+>  				pins = "gpio13";
+>  				function = "qup2_se0";
+>  			};
+> +
+> +			sdc1_clk: sdc1-clk-state {
+> +				pins = "sdc1_clk";
+> +
+
+Stray blank line
+
+> +			};
+> +
+> +			sdc1_cmd: sdc1-cmd-state {
+> +				pins = "sdc1_cmd";
+> +			};
+> +
+> +			sdc1_data: sdc1-data-state {
+> +				pins = "sdc1_data";
+> +			};
+> +
+> +			sdc1_rclk: sdc1-rclk-state {
+> +				pins = "sdc1_rclk";
+> +			};
+
+Anyway, what is the point of all above pin nodes without config or muxing?
+
+
+Best regards,
+Krzysztof
 
