@@ -1,97 +1,95 @@
-Return-Path: <devicetree+bounces-185380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F865AD76AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:43:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D86AD76FA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:52:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6493116D733
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:40:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E2503A562F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4B18299A82;
-	Thu, 12 Jun 2025 15:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90199298997;
+	Thu, 12 Jun 2025 15:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yt01YW6k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5RsZj6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22661298CD2;
-	Thu, 12 Jun 2025 15:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6270A222575;
+	Thu, 12 Jun 2025 15:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749742607; cv=none; b=rumciY7DCPIX0dahXfuoPtvKYMGfogb7XSh8TRYI3rBo1rwchZGyhwtmfTPVQOxWzGMIFxg2r/BelYiRCfDsfcdZsUCU2vqYLwO4CLDTLQX0gBPfxfxcYqAatUvwMNSCT5mJHkYQKh8lJfZfevpWoJ+ysJSvt+LeXZDieWE2dYQ=
+	t=1749743202; cv=none; b=kOxpcBn3EeDpALvz1QO4QacmGUOM5rfPKy9mJOyfhQczNxSti92dDCoCOP2XLh9X7ahugdHtFn/xXnuCwiCm05bjSJMWeT4gi2iE6lDcuiFRyd4RuqvldNSbZhFSz6C1ZdEmnJPhp+kSwcgOntABLnVo8N4yN+agSZgJ+3up2GI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749742607; c=relaxed/simple;
-	bh=YkGQb8u2LFs6Ny5AZDZ8dQLB2Mj5Hwh5mCAoXi9JxhY=;
+	s=arc-20240116; t=1749743202; c=relaxed/simple;
+	bh=nN7tgNs/ZFcOM7vnqnGPxg3lpLHHcc83AoFtsLi0eQo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SWsmdJEJDWJB9sT2RHhue+xtyo5IfsChUcKb8jystETJ3Pn5vzMeUtcLchenVD1Iw1o2TIg/qMR5Ijirc19fNOJxw8dU3pqVQzSwp/eqSEEw3XNHenYDvJtaqVHG9y+gLI4owvaYv2OEyqbY8/eIc9QvIxhnieNxWbi540fldxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yt01YW6k; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QrJhlPmIGFpkmPRtfeqRYsI2Ia1MBPkjaqSOSbGZiSs=; b=yt01YW6k4t6UAt7H4xX6DshAhI
-	i0quv3ifop6RM7RcEvjAwOADbe58RlzVgrd6fn8Sv3QwWQO+qf3bAdvAVrA1vgvJDqbaDo+n7zzlj
-	4X13J99n1oGhBOwg9McPGr3hByePOxmfvQpMmNNSHgyB7xzX8WyS0yxdev82S46khAn4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uPjyn-00FYqi-JH; Thu, 12 Jun 2025 17:36:37 +0200
-Date: Thu, 12 Jun 2025 17:36:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=nyQhtIm1Kltj3qHEuIKkREhwAHVXY+ODfT0Nz8Gg0tubgaM1SHLFJ72gimdalCiwFjV1OZ4SdK2FElB2Vj9fyMmcSCftHsd7H0tNCJkesRCzux4/gkjMS6HHWkInsyUhSsZibOkvurNBYZq7J/JQTiZcri7phJFJsbQU2xmCR+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5RsZj6E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A4BFC4CEEB;
+	Thu, 12 Jun 2025 15:46:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749743201;
+	bh=nN7tgNs/ZFcOM7vnqnGPxg3lpLHHcc83AoFtsLi0eQo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G5RsZj6E3hWrBgSQaBbUpfwiWHbjT+XCDDuSwogMQ63iYc4shmexLMBE/Wr76Drko
+	 UzgpemkSIogOdoLz/VzwR5WCJi+AEGLJVPB+6EmKPj7ah8gI2jmwbBEddVGmMVDhzE
+	 1FUU0N0ALL1dixaD0vqO7F/JWGTr1x7XrZ2+vQuSc+l5QV6n3W0iXIPsChjFBTY72H
+	 Df47tRCAMHu17KzRcMil6SpctRy+08J1IXJtCiqBnknDyw3j2fjf59FTxv8Q5PXz5k
+	 FIV24SU3DZ078EoLZ6jJvrN11IS7EYgCYdIbTpblT5ky/9gWn1BSnkpBwZpyt6AgQg
+	 eRWqucdUJK02A==
+Date: Thu, 12 Jun 2025 16:46:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: webgeek1234@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v5 3/5] net: phy: qcom: at803x: Add Qualcomm
- IPQ5018 Internal PHY support
-Message-ID: <096eacfe-ff24-4ed8-b223-04a6fe590496@lunn.ch>
-References: <20250612-ipq5018-ge-phy-v5-0-b5baf36705b0@outlook.com>
- <DS7PR19MB88833EF18DC634F4D7F037439D74A@DS7PR19MB8883.namprd19.prod.outlook.com>
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: samsung,mipi-video-phy: document
+ exynos7870 MIPI phy
+Message-ID: <20250612-unrushed-endurance-a9a0933fb8be@spud>
+References: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
+ <20250611-p3452-v2-1-fd2679706c63@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="h5shkSpl2/e0c3YV"
+Content-Disposition: inline
+In-Reply-To: <20250611-p3452-v2-1-fd2679706c63@gmail.com>
+
+
+--h5shkSpl2/e0c3YV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DS7PR19MB88833EF18DC634F4D7F037439D74A@DS7PR19MB8883.namprd19.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 12, 2025 at 05:11:07PM +0400, George Moussalem wrote:
-> The IPQ5018 SoC contains a single internal Gigabit Ethernet PHY which
-> provides an MDI interface directly to an RJ45 connector or an external
-> switch over a PHY to PHY link.
-> 
-> The PHY supports 10BASE-T/100BASE-TX/1000BASE-T link modes in SGMII
-> interface mode, CDT, auto-negotiation and 802.3az EEE.
-> 
-> Let's add support for this PHY in the at803x driver as it falls within
-> the Qualcomm Atheros OUI.
-> 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+On Wed, Jun 11, 2025 at 01:53:37PM -0500, Aaron Kling via B4 Relay wrote:
+> From: Aaron Kling <webgeek1234@gmail.com>
+>=20
+> Add compatibles for the Tegra210 Jetson Nano Developer Kits
+>=20
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-    Andrew
+--h5shkSpl2/e0c3YV
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEr2XQAKCRB4tDGHoIJi
+0n+0AQDB10mgfSWItI9oBHwCaew2X9fAIPcr23SmYH2qihEvEAD+OWkUm3h9K0hQ
+QD47+O9BP+3shMzJuAPoGh2VVN4vbAY=
+=TzIn
+-----END PGP SIGNATURE-----
+
+--h5shkSpl2/e0c3YV--
 
