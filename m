@@ -1,118 +1,221 @@
-Return-Path: <devicetree+bounces-185266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DB0AD7132
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:09:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D36AAD714D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:12:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC2043B2710
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:08:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03E031888109
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D6A23C8AA;
-	Thu, 12 Jun 2025 13:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3331C23C510;
+	Thu, 12 Jun 2025 13:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Thc8VYLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AEF23C516;
-	Thu, 12 Jun 2025 13:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B1D230BDF;
+	Thu, 12 Jun 2025 13:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749733685; cv=none; b=eXT7K9XnQ7ya9LNd8N/Re017FuZwExWOvPHcCoJddqXv9s0DHvVNUWNX4c5g/VM4Iff5w00qkKWW1rgEI0Gbq3jbq6264qRuSXx2cJ7DJmu79GQ7/uA6ZimUVFA5BdOx9XkVFZE6VP0K02NZZ1BOg3g96V/KzYh3YO0zd0zovK8=
+	t=1749733763; cv=none; b=FCmX/McJCkuQZo6hTTBSLd+HTDkllS7vJR+NIvQHMrU8/7Y+1yq0vKJIq0eDQ30U8xViz6eryM61I6juBBz2zKxw7GILWfqcseuQSupg2zCMk10Dx8VAe+E5q0WKuPIdCZt+TOflUJfTPEQu0aRPtZP8AgPnxgua4meBSdb3cys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749733685; c=relaxed/simple;
-	bh=9STn3KcGPOvcphwJor/I1WvyoiZCxQW4BrgNhpLbDp4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U6sWJxFV00zGCBpl3H9w78FbZowM/jStxi0D6oSD69W68m+7Ra7sWznhg5fgQs6r9i1xh5XvrqyjIwzT88e1CskDFIHcCbkaHFtRwIO/E/fbsOcsYQqizYds6eFmR6zNC5uLD4M2Nf9ZUW1GvrdyPc2zbDpyPkag+s/jJ+PmXvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7481600130eso1221033b3a.3;
-        Thu, 12 Jun 2025 06:08:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749733681; x=1750338481;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W/e7arGuOg8NY0D2BR+KewQFrcVqyCE57DA6/D9eCI8=;
-        b=EeaSTnCRkEm3I/sW6Ne8HPYTVDjsg8ZxXEA98a3MECxOmDHyHJRaYBPGReEQRR+Rg3
-         W1x1KtZjer7P5JmUOAHDteog4zRZ5CXOmreuf/m8/LBONvgTgZ+zc/HQHC2iWb6eGJwT
-         oxju6WzNTE+U0hVib5gxLpC80IWJKKDKPOz/XihzvHqZcIQvahv+I82afyZ0YEa8lyaT
-         AhRFS7SFlmf98dI+S0NQ2fdtHKkqKqHgwvmLhMuqk+lGEYO3Afw3ifQIGx+QoVD1RuEZ
-         UlCjiO7vGWyaalAKzpHfyyWF9K6i6/RGcvsxT7TG7BGwpRPuvpVjngzsCcxeUaSZE5kR
-         Byig==
-X-Forwarded-Encrypted: i=1; AJvYcCU7ZXTvH/+I/qlGA2doyMdfTug6EQqFOtWlCgG37PJNZzAvACtNAuWT7234XdQAztW+WOPIIfPsNB1trstC@vger.kernel.org, AJvYcCUn/e8xmXeCLK/akhoaA2Rgkswx1uIpHs1uvqQPADHOcULRPCHPY1aVeX1BVSavfqfFUcq901JaWKEymXiY61eTBlY=@vger.kernel.org, AJvYcCWDDBrA/YkOti+vdxIlJnZd9mKTDjKyEYIX2QCZNIwukCU/Um6N3vmjyGrkH3v0QFmML8ikyNogfl3+P3E=@vger.kernel.org, AJvYcCX7Jfg/MV4efKhr4nIhUaIevuONJ/NpLLPgS1e1rp+rlj5bBRsgdTjbQMks+IVKUX4vVrPzYH3VxTqw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrHuNbfVNxl4ZJz/L+zosm463M/L/8zSHMrTZuqAQNH5DP7w1s
-	Y1RuVz2YnIU5ouV1Twm/7um+tdWgUwyxTWQxUxgz/UdsGtAbB8rCIpHpBK9NBwxb
-X-Gm-Gg: ASbGnctQ9CAk8s8up2XaMrEx8DxuQCV2pqbWOMPaGcYcT/JCpIYshVY44zVVMvsxsmJ
-	gFE1r+4mYa+QYiPo0jo4O+lz3J9ygs1UUEujf04SY/PQSqyyiUAo4TftbbkZregkQz0ZSV2jd85
-	xiD+Kp1tpm/TmSa7QOPm6p8TAdAiBLKs3h9g2N2zCW8mmQ8e0OBhWsSX37mJmrTxL4T0mYPksbI
-	AeJQVB33NDzvIJcYP9M9Y9ehK65Ty79h3UMWIbiL28Dla9jhd2GcwK6XQkbZ1KtgMPTt2A6TrwT
-	CtllY87gH+9YexpNfzcMeoKa9NexzAxvOi6Ez5TNXvgJpPcf9l57jXIFdUz3383S8pvuitTEG54
-	LNR95htftLOy3nsCC9Qa1PRVHyiBQ
-X-Google-Smtp-Source: AGHT+IHmYM8jB1y4m83r3QKnpBCKDtj9GkYsSxwyRTnyPivkhTxGRa9/Nr+ExqzVUO1nmBV0GjWqTQ==
-X-Received: by 2002:a05:6a21:681:b0:21f:53a9:b73a with SMTP id adf61e73a8af0-21f978c44cbmr4672948637.39.1749733681379;
-        Thu, 12 Jun 2025 06:08:01 -0700 (PDT)
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com. [209.85.210.176])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fd637f8ebsm1273475a12.72.2025.06.12.06.08.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jun 2025 06:08:01 -0700 (PDT)
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7399a2dc13fso1224897b3a.2;
-        Thu, 12 Jun 2025 06:08:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU9UxznVOOZNI3kHSYC2ER4GCqALkYMImFJCoTpPf/MDMgusYnFmcbjYD1ml9q5eK2RfGP3KmfYkO7H5d9LbE3yCyE=@vger.kernel.org, AJvYcCVJJZ6soZhVxd/LqZAc2Pae2HMOY8nUuKmwkHEvDQr46MvE7DeUa8H2gP6hEKpB645HiTtm6UUis3xuviIW@vger.kernel.org, AJvYcCVODcnrdMOaKZnWgMqtmJ+gJ+H9EsvMhCY5tJ+KMYilmsSoJ4USvbF7jzhELegK8IBxb0C+p/ZBC+44@vger.kernel.org, AJvYcCVQJSzDpXdfcL1hC5LS23uSXSpE7S+I+GyLg5U2nSLjmsxEAPxIh0MGQQXRVTU38Q/SFPFXdNrGRkkl2Bc=@vger.kernel.org
-X-Received: by 2002:a05:620a:4156:b0:7ce:d356:b8ab with SMTP id
- af79cd13be357-7d3b29d4a4emr461854985a.12.1749733670031; Thu, 12 Jun 2025
- 06:07:50 -0700 (PDT)
+	s=arc-20240116; t=1749733763; c=relaxed/simple;
+	bh=xwsOfIoKqY/0O3MBZxVMtaDtILPbFj+QdkHtUyoJUFc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O3N9T1du7PKJDeqdRwy/oudf14mxvsNNZtiSpOPg0rqQI5eyiCIPaMNghst46u4fdTyod+QoTfU/HSO7Q6PvrwWSJNLATsooIK+Qxwlvo42IFT6wQnAy9rzS33vGcgAy8Z+38Uw5jkEfOLaz9k9SBieBXCqeTFFZOW8XWcK6TBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Thc8VYLw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82141C4CEEA;
+	Thu, 12 Jun 2025 13:09:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749733762;
+	bh=xwsOfIoKqY/0O3MBZxVMtaDtILPbFj+QdkHtUyoJUFc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Thc8VYLwV9ycxoh6OCPv6fb9TKFrsN6OZNL+HE9u2OrJFW59kisCalpmjitcG4QVB
+	 PQo5djcB9rN92SYOuv27MzHOgNemSuEt+ys6MPN1t+u+hPdKuo0vQGMn8Sn0NO9jB2
+	 ATJBKl8eNIfHFcwqmchOq/ornWTwyntwhXNRvaLg1m86ZcTUkLKDt1bKEmHBMLBwzx
+	 PHoVNBjD3ISKNxqKWICQ1MmJmgzS4VhSVPIsBGe1Od+MhYzNXmjzfLWyAGwG9/ffWP
+	 1viIeJYrlof2gLAvAp6VCKqulTHO8NcT4WY+h2we0Z7n3gDT8fFpzAUOkC2rIUu91R
+	 pcPuwWWWaYnLQ==
+Message-ID: <30f8e319-4103-44ba-8f98-c01e7b0ba76c@kernel.org>
+Date: Thu, 12 Jun 2025 15:09:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250530154148.374663-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250530154148.374663-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250530154148.374663-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Jun 2025 15:07:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUvp2R3TFhgqtPXrTrc-pNEE1vntqP-LHLSY6+QWhwRWA@mail.gmail.com>
-X-Gm-Features: AX0GCFs9NsVMmogEUSCsAPQcQ2P2Y6DkMq37mJLt_eTto9IB35oxNwUGDLsssOw
-Message-ID: <CAMuHMdUvp2R3TFhgqtPXrTrc-pNEE1vntqP-LHLSY6+QWhwRWA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] media: dt-bindings: media: renesas,vsp1: Document
- RZ/V2N SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-media@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp13
+To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
+ <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
+ <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
+ <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
+ <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
+ <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
+ <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
+ <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
+ <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
+ <2865ab3a-1c20-4951-8132-4be98d73d70e@foss.st.com>
+ <f1a63830-0533-4f1c-9116-32e8c1e61a8b@kernel.org>
+ <26a4f12a-2295-402e-8e31-45733aa6582d@foss.st.com>
+ <4f31f016-d250-41ea-b613-b074b8ea00d1@kernel.org>
+ <782763e2-99d6-4533-b0db-79b618577586@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <782763e2-99d6-4533-b0db-79b618577586@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 30 May 2025 at 17:41, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The VSPD block on the RZ/V2N SoC is identical to the one found on the
-> RZ/G2L SoC.
->
-> No driver changes are required, as `renesas,r9a07g044-vsp2` will be used
-> as a fallback compatible string on the RZ/V2N SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 12/06/2025 15:02, Clement LE GOFFIC wrote:
+> On 6/12/25 13:05, Krzysztof Kozlowski wrote:
+>> On 12/06/2025 11:31, Clement LE GOFFIC wrote:
+>>> On 6/11/25 17:48, Krzysztof Kozlowski wrote:
+>>>> On 11/06/2025 16:08, Clement LE GOFFIC wrote:
+>>>>> On 6/11/25 08:35, Krzysztof Kozlowski wrote:
+>>>>>> On 10/06/2025 15:33, Clement LE GOFFIC wrote:
+>>>>>>> On 6/10/25 14:38, Krzysztof Kozlowski wrote:
+>>>>>>>> On 10/06/2025 14:02, Clement LE GOFFIC wrote:
+>>>>>>>>> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
+>>>>>>>>>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
+>>>>>>>>>>>>
+>>>>>>>>>>>>> +		};
+>>>>>>>>>>>>> +
+>>>>>>>>>>>>> +		hdp: pinctrl@5002a000 {
+>>>>>>>>>>>>> +			compatible = "st,stm32mp131-hdp";
+>>>>>>>>>>>>> +			reg = <0x5002a000 0x400>;
+>>>>>>>>>>>>> +			clocks = <&rcc HDP>;
+>>>>>>>>>>>>>        			status = "disabled";
+>>>>>>>>>>>>
+>>>>>>>>>>>> Why are you disabling it? What is missing?
+>>>>>>>>>>>
+>>>>>>>>>>> Nothing is missing just disabled by default.
+>>>>>>>>>>> The node is then enabled when needed in board's dts file.
+>>>>>>>>>> Nodes should not be disabled by default if they are complete. That's why
+>>>>>>>>>> I asked what is missing. Drop.
+>>>>>>>>>
+>>>>>>>>> Hi Krzysztof, OK I better understand now.
+>>>>>>>>> So yes the 'pinctrl-*' properties which are board dependent are lacking.
+>>>>>>>>
+>>>>>>>> These are not properties of this node.
+>>>>>>>
+>>>>>>> Does this mean I should add 'pinctrl-*' properties in bindings yaml file ?
+>>>>>>> I don't get it..
+>>>>>>
+>>>>>> These properties have no meaning here, so the hardware description is
+>>>>>> complete. You claim that you miss them thus device is incomplete is just
+>>>>>> not correct: these properties do not belong here! They belong to the
+>>>>>> board but even there they are totally optional. Why would they be a
+>>>>>> required resource?
+>>>>>>
+>>>>>> To remind: we talk here ONLY about required resources.
+>>>>>
+>>>>> Yes, 'pinctrl-*' properties belongs to the board and are not required.
+>>>>> So nothing is missing.
+>>>>>
+>>>>> This hdp node in the SoC dtsi file can be enabled by default.
+>>>>> But the hdp driver will probe and do nothing because without the
+>>>>> 'pinctrl-*' properties from the board files it would not be able to
+>>>>> access to any pin.
+>>>>
+>>>>
+>>>> Pinctrl has other features in general, including interfaces to userspace
+>>>> (as pretty often combined with gpio, although not sure if relevant here).
+>>>
+>>> You're right. Also HDP pinctrl has a GPO feature accessible from userspace.
+>>> But by default the HDP is not connected to any pad; it needs the board
+>>
+>> OK, then that was the answer to my first question - what is missing.
+>> However aren't these pads connected internally also to other parts of
+>> the SoC (like in most other vendors)?
+> 
+> No, HDP "output pads" are only connected to SoC pinctrl to route outside 
+> the internal SoC signals for debug purpose.
+> 
+>>> 'pinctrl-*' properties to configure the SoC pinctrl and expose HDP on
+>>> the SoC pads.
+>>>
+>>> That's why for me the enabling of the driver should be in the board file
+>>> together with the SoC pinctrl configuration.
+>>
+>> And what are the default pad settings configured by HPD driver in
+>> bootloader (and by bootloader I mean one of few bootloaders this is
+>> going to be used on like U-Boot)
+> 
+> The default is to use the GPIO of the SoC pinctrl. The HDP is not routed 
+> outside.
+>   >>
+>>> The userland cannot change the pinctrl alternate function mux, this is
+>>> statically defined by the devicetree.
+>>
+>> If you expose GPIO then userland needs this regardless of alternate mux.
+>> IOW, board level could not configure mux because it should be always
+>> configured to safe GPIO input.
+> 
+> For userland sight view, SoC GPIO are preferred instead of HDP.
+> HDP is only GPO not GPIO. 'pinctrl-*' properties configure at the same 
+> time the SoC pinctrl mux to HDP and the HDP pinctrl mux to one of the 
+> HDP functions (e.g. GPO).
+Thanks, that's explains, fine to keep it disabled. Unless it is obvious
+for everyone, it would be nice to put it in commit msg.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
