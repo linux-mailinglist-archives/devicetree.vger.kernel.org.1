@@ -1,150 +1,110 @@
-Return-Path: <devicetree+bounces-185043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 802E2AD641C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 02:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 309ADAD644E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 02:06:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C33A3A0036
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 00:01:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32DB3A0407
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 00:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E064690;
-	Thu, 12 Jun 2025 00:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="B89YEpc1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC87E2905;
+	Thu, 12 Jun 2025 00:04:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2DDA48;
-	Thu, 12 Jun 2025 00:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749686506; cv=pass; b=NSIhTaLUKUaieSjegL/s1h2ZEFmtyi0o7V+1G6bbdVw4eusm4S36MdyHN6W2WeN7WJ1F/Q49nfkVsTdFEDUl3UOJeZ3IcMNLQx48JFsV3KGXBiObu3XC2nAl1LUos90JvDHH/kdPLvhPZ8LyDdh46JyGNgJ7xC4mxF2bl5MEcJA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749686506; c=relaxed/simple;
-	bh=f2HADJN1HqnVLqXEX2gn0EBHpS9KEi/mJMzRBKyEVi0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E5MnDvnF4ELFvA71I6XVGRcwV4Ty4/fT6DHSlkrOy4SSCGWFHqsdBT82yKAv5mSD4bXrgsHbX1+y0hOL/R1xfCVIWp3zuMQ3zPiDESrE6WhhafYctm1V935aFNe5V9a0b4JU40GzvbQkNbUpLsNro6jJu1N5DfOpPUJev8W7htk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=B89YEpc1; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1749686457; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=RfUJLgL3uiMWBMZumyBvXpsPE2UMpPd3FQWhCEKj5YlW8CpCzh8drQyfbMrEH8EI96d+2L11XOX5VD8utD7ZQvI72LE3wD2WqVRCfseYEcpBtT89TeHnQkNROZlE4l4T30nS1s5igLVgQ6v8kOUqwsQ1WQi9yn43D3hkqHIXd4M=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749686457; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=vGmPNxgIyEoEQtADc8X3nicC6jEVHqGcMDg8y3I/t3o=; 
-	b=B+8YjO+uqewQPSBMsMZO6HJPPCQm9iq5yZbYGgyvPx9snSvvqPnZ8jtAq+qoggS+EzUENfcIHw3z5Y1WcmVQeji7a1RpZvILe0SwcMk83npw/qm0ZAUqQ0XP0wIKnQV1QNN6DPKM+YkqsHtxkwVDzB9EXxBmX0V3TC9R0hZvKIw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749686457;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=vGmPNxgIyEoEQtADc8X3nicC6jEVHqGcMDg8y3I/t3o=;
-	b=B89YEpc18TsrakKZypLJ7xGiQ6kWyg6E59pyj89kKZmDWb8r5NGmKQEPYBR0D3Fx
-	NOmEBD89GluYxB12j6rZV/ZLix7X6ZnTqRW+Xn5Cg0Q5qqzsIW6u1ft1kCPfBt/+hqq
-	pup6vSnHDcfX3ZuwlZ+C2RdyjA7nJpHzR9/gtB8U=
-Received: by mx.zohomail.com with SMTPS id 1749686454865928.7893063021048;
-	Wed, 11 Jun 2025 17:00:54 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject:
- Re: [PATCH 3/3] arm64: dts: rockchip: Add HDMI PHY PLL clock source to VOP2
- on rk3576
-Date: Wed, 11 Jun 2025 20:00:52 -0400
-Message-ID: <6011857.DvuYhMxLoT@trenzalore>
-In-Reply-To: <20250612-rk3576-hdmitx-fix-v1-3-4b11007d8675@collabora.com>
-References:
- <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
- <20250612-rk3576-hdmitx-fix-v1-3-4b11007d8675@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C0B79D2;
+	Thu, 12 Jun 2025 00:03:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749686641; cv=none; b=kgD2ALpjtKBT7gXZ09e3iEaPqGR4gJzdxbhrm1K7BOeVieRV9/dTGmkXvRoPOxm03kxFnmGuTP224bOLPU8Kfxr6lFVthePIEeC+XyH3zQpPTKOhpNpCxaVG3pjfiJpFHJNZVkpmcddAhGiZmLQyMt0+WZoxN0AGAQI4NKIkf4w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749686641; c=relaxed/simple;
+	bh=h7yWjbfCQMl8h9k980xlB+2nvO4sI+S7hDa8rNNI6+I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eOeM8+roDl/iqeD9pgjFmooDIv6Ftswp/Did/EjV9TujJXr/ATwv3DAN/N/melEqFkioYvygVDs8So0BsP1ZaraQ3HZyuDCvwB+6b0LqcVB/mER++8epIP/Kn5hbdXCtWaYl+JKVbbPV8uXxtd7xCqT3I54Rx0ea3harSvhsQkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.147.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 09DF7340B10;
+	Thu, 12 Jun 2025 00:03:58 +0000 (UTC)
+Date: Thu, 12 Jun 2025 00:03:54 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Guodong Xu <guodong@riscstar.com>, vkoul@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, drew@pdp7.com,
+	emil.renner.berthing@canonical.com, inochiama@gmail.com,
+	geert+renesas@glider.be, tglx@linutronix.de,
+	hal.feng@starfivetech.com, joel@jms.id.au, duje.mihanovic@skole.hr,
+	elder@riscstar.com, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT PDMA
+ compatibility
+Message-ID: <20250612000354-GYA127864@gentoo>
+References: <20250611125723.181711-1-guodong@riscstar.com>
+ <20250611125723.181711-2-guodong@riscstar.com>
+ <20250611-kabob-unmindful-3b1e9728e77d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250611-kabob-unmindful-3b1e9728e77d@spud>
 
-Hi Cristian,
-
-On Wednesday, 11 June 2025 17:47:49 EDT Cristian Ciocaltea wrote:
-> Since commit c871a311edf0 ("phy: rockchip: samsung-hdptx: Setup TMDS
-> char rate via phy_configure_opts_hdmi"), the workaround of passing the
-> rate from DW HDMI QP bridge driver via phy_set_bus_width() became
-> partially broken, as it cannot reliably handle mode switches anymore.
+On 17:27 Wed 11 Jun     , Conor Dooley wrote:
+> On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
+> > Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
+> > controller in the Marvell MMP DMA device tree bindings. This enables:
+> > 
+> > - Support for SpacemiT PDMA controller configuration
+> > - New optional properties for platform-specific integration:
+> >   * clocks: Clock controller for the DMA
+> >   * resets: Reset controller for the DMA
+> > 
+> > Also, add explicit #dma-cells property definition to avoid
+> > "make dtbs_check W=3" warnings about unevaluated properties.
+> > 
+> > The #dma-cells property is defined as 2 cells to maintain compatibility
+> > with existing ARM device trees. The first cell specifies the DMA request
+> > line number, while the second cell is currently unused by the driver but
+> > required for backward compatibility with PXA device tree files.
+> > 
+> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > ---
+> >  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > index d447d5207be0..e117a81414bd 100644
+> > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >        - marvell,pdma-1.0
+> >        - marvell,adma-1.0
+> >        - marvell,pxa910-squ
+> > +      - spacemit,pdma-1.0
 > 
-> Attempting to fix this up at PHY level would not only introduce
-> additional hacks, but it would also fail to adequately resolve the
-> display issues that are a consequence of the system CRU limitations.
+> You need a soc-specific compatible here.
 > 
-> Instead, proceed with the solution already implemented for RK3588: make
-> use of the HDMI PHY PLL as a better suited DCLK source for VOP2. This
-> will not only address the aforementioned problem, but it should also
-> facilitate the proper operation of display modes up to 4K@60Hz.
-> 
-> It's worth noting that anything above 4K@30Hz still requires high TMDS
-> clock ratio and scrambling support, which hasn't been mainlined yet.
-> 
-> Fixes: d74b842cab08 ("arm64: dts: rockchip: Add vop for rk3576")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3576.dtsi index
-> 6a13fe0c3513fb2ff7cd535aa70e3386c37696e4..b1ac23035dd789f0478bf10c78c74ef16
-> 7d94904 100644 --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> @@ -1155,12 +1155,14 @@ vop: vop@27d00000 {
->  				 <&cru HCLK_VOP>,
->  				 <&cru DCLK_VP0>,
->  				 <&cru DCLK_VP1>,
-> -				 <&cru DCLK_VP2>;
-> +				 <&cru DCLK_VP2>,
-> +				 <&hdptxphy>;
->  			clock-names = "aclk",
->  				      "hclk",
->  				      "dclk_vp0",
->  				      "dclk_vp1",
-> -				      "dclk_vp2";
-> +				      "dclk_vp2",
-> +				      "pll_hdmiphy0";
->  			iommus = <&vop_mmu>;
->  			power-domains = <&power RK3576_PD_VOP>;
->  			rockchip,grf = <&sys_grf>;
+is the version number (1.0 here) actually documented anywhere?
 
-I tested this on the ROCK 4D and can confirm that:
- - New modes like 2K are now working
- - Mode changes is now correctly supported
+otherwise I'd suggest using "spacemit,k1-pdma" which follow the convention
+which already done for spacemit in other components..
 
-So,
-Tested-By: Detlev Casanova <detlev.casanova@collabora.com>
-
-Regards,
-
-Detlev.
-
-
+-- 
+Yixun Lan (dlan)
 
