@@ -1,115 +1,197 @@
-Return-Path: <devicetree+bounces-185255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5C09AD70B7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:46:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18182AD70BA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:48:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9331F3A1638
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:46:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEB511BC1FE7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00C21D61A3;
-	Thu, 12 Jun 2025 12:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94323229B12;
+	Thu, 12 Jun 2025 12:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g+CNHlCq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29E6A55;
-	Thu, 12 Jun 2025 12:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16132F432C;
+	Thu, 12 Jun 2025 12:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749732401; cv=none; b=IZSwGtDnd3KJsL3d2vXR+pNJx21+vX0EMOR4TPf5t2qb22eMaQ6ryY+bpDOuxSHqpHMnOXOty/QYQ1O69WHVQVOMv0xSYqrbb3X1g+RGpjXvZ9vU+M2A5XtLDCeMEHZAD9IYtdJ6YxgZGyNgjD7edct15Er0aexfGjrJSDJ4GeE=
+	t=1749732492; cv=none; b=GSEUbLuRTUgM3zV3odB2ObSPDwXiOVDv+aM4Dm8sFyGS+IyTk1lY2wXBv0NFpxbPKGXT+R7AJgYFv77D5PptVmneVrlnLDdC2+p5qQp4rHHPbw7DONsT7qcDqdcHg4pGpG338jb6FD7Uthl967fURJegYb8JtStqlkVAYeQw3dQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749732401; c=relaxed/simple;
-	bh=UEHGNT8OkyV40JRRhSs1RS3iCq1KdL1KzjJCQb2gnEU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dmFfRguUgeHcNn5/Zs3KM7KaUZePXJlAcIRh81Z810uQhCzrd14kQa7SCUQ0TJ+jlum79Pw+r5h/aKFKfqOGlV8ZqJ+Ds56bDBW4OA+a4pJk2vK0YzbgAZJExNe+ruKOz9c9sN4yUaCaNkGpK+Vs9RNQW6WVfaaJ9IQr/l7UAVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4e79dde8511so221495137.0;
-        Thu, 12 Jun 2025 05:46:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749732398; x=1750337198;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8vSAoUstgikUUqDKzXknlBDKU/sYkHZcvI32J0wZveY=;
-        b=uL9+BhKrb7Pjq1gwja1AP+Rkr/iE8ZmbrnZDnOO9srM3cGGgPaJliCw4L22Ddhq+4I
-         FDleCRVWoa8M2NJTktfPRGvKlO73Q50lz9Iwq/fv1qn5PYkrTkeLSnHEtwHb7lh8iuv/
-         PwFJahVCN6uFdVx2w8JT7xRfjh4vv+84A9lrAZfDEPNyJAnXaE/X5ZVe0TchnaWITl7E
-         FhGjmalyem8WYtezoPMlD0xRxf6fCjWmco7wl0BiQVkHrb/b4GBe2wUefdC5ioEtFMew
-         Eq/dz+u9GTs5MpBJ3yUh7uDrfeycadBTUutK3wrqkpHLFhBEhwNuTqsyOBn4NsID/KTF
-         oOZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUltaUdmULy3tE2rjDDSCHBPwFqngTqZhFw/KOjRnK1VsDbaATmCFnBJttEg7LLr3Wys5/6xvWmhLPodSy@vger.kernel.org, AJvYcCVxoUtd5WuS1PHLkbDGa/DR7VvVD65sC0cOODcCOs0knJ6EXp40i5oSuBZta9J9N1tUeAkNHp4lhSYo@vger.kernel.org, AJvYcCW7abg7JZeof7dRJEZXT4S0gU9LjKs6244WxRzHt6Hmukt0rPcbQYLQ1asVfRn+owGe6iipXSDvO4NDARoYmQUqBYI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpT3plPgrCa3aqmKJKtPykMeJD2KWu3EjVOozTuPQ0SnCBO9Q1
-	AXRgz2oH3bit1NJ1sbWh2TxXg6RbuF3nrJce+WWrnm97X7EjU2ipTYxMDNjJyvMU
-X-Gm-Gg: ASbGnctSLV+OzQkvYyddkWacaM3R4rU1g70qefDQChvjtmVpfOxo3so68Jn+90m3p+W
-	P4jbGCk4iEVRsMooyst84y7DZXRwlf6mnqk8s+eIGotRJf8RLHo5ssCYPrXFUtzhIFv2GCdBEPF
-	eKu9QRQmwGRZkK+TgCIEcHzw6fPpIeZZb97tfXAP33jmCfcLqI5tBg8+h9ob4ukDNyugdsf2/m3
-	vKr+UXlF0wSx1H/ohucW2rGAQvecl/9GBVp09TUFnyl8byVYbP+iNxw5gZaqqjGVpgE7zUQu+tj
-	RkySjcE0bwuvirc5sQa6B84wQcwTzEJI7AsMBI4ZaZ1lOzbT957kuae5Wzat9yLqVOcPGUFqEGx
-	AwFgSHraxp8fvNB/TLUunChJZ
-X-Google-Smtp-Source: AGHT+IExtcISPJB/Z1NN8upup1Nmo+XdMxTbnI7RpcquENYOUiQ9fcXAXS5sB20FuvJTq+okYxfq7g==
-X-Received: by 2002:a05:6102:c52:b0:4e5:a83a:3cee with SMTP id ada2fe7eead31-4e7ce96d112mr1956877137.14.1749732397875;
-        Thu, 12 Jun 2025 05:46:37 -0700 (PDT)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e7d0907f4dsm221602137.14.2025.06.12.05.46.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jun 2025 05:46:37 -0700 (PDT)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-86f9c719d63so212969241.1;
-        Thu, 12 Jun 2025 05:46:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUONZRMuXsMqi3iiLnjeP7ZlByABW5Hde0f0wT1Ti28Yw1z6JNWbf0WIjOBD642pndjpmJ38eVvUNMeowUl@vger.kernel.org, AJvYcCWDEk3ckl+n+hkgNQmh/2uM481QyjXay5TsvKnkWrNRf13/E2tIeoUvRIRV+SEAKwSgaZ+A43guzrGNPVROiCLTZqo=@vger.kernel.org, AJvYcCWTZ6UScguQQjBux+9wo7wDVRurijx7Jp7e+pjN38HmqwNKNB/wscNc+ZzlUijT8LIUJqDxhPty+4iY@vger.kernel.org
-X-Received: by 2002:a05:6102:441e:b0:4da:fc9d:f00 with SMTP id
- ada2fe7eead31-4e7ce96d107mr2142848137.13.1749732397116; Thu, 12 Jun 2025
- 05:46:37 -0700 (PDT)
+	s=arc-20240116; t=1749732492; c=relaxed/simple;
+	bh=Fjp9hcmXAIrCkfYCQtqV83QQT9g0u4DPzSNaZbioKKM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IqGtM9QxaefmLEnFXhZ822opaN2I5OF/7y3PFO3unZwgivOQHtCli/h/6SL0E5P4yRD1kWyjQDXHCz4A0tOzhW1TmvIKHyewHZiWLAuMGZlhtfsDibe+zioyksf5pQ05YUaw6hvwQOWysXvFuPK2He5KNCce0g6bo8DN16CtjIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g+CNHlCq; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1749732491; x=1781268491;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Fjp9hcmXAIrCkfYCQtqV83QQT9g0u4DPzSNaZbioKKM=;
+  b=g+CNHlCq0InXuXmU9CDXOTcmPMg0gXlRI27eFCwOY08aSf6ISFbTQhq6
+   RagmoBGcqK1ipgyFAL8rkB5nKV0yHNUpN64lrwz0qdMT1nIcXpc5G/fmS
+   3mw/o3WbulpKOsaa6CnyFIn87NiAuCalWfdP3u9gkppkfU5Z/hQTJKwT5
+   Ygu3YE27THdDWa6aEHePAmFeM+u9kaFsB/0Uea2EsupoqN4OLeokrJQT+
+   x/8b4WxWeAGqGOpNjcG2B55wKzALTljD0PV+L0Jk/P10h1UL9egx/3bvo
+   Fg2umBaRjklkb2TgYrXzYvQE1k1ahDAri6ViajAUeDx0MUaXLXOw3KkLL
+   w==;
+X-CSE-ConnectionGUID: eJlamKFvQlyD9WdNgHJ7WA==
+X-CSE-MsgGUID: 2/7kVuruTVuLt8uhzk3t1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="55582807"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; 
+   d="scan'208";a="55582807"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2025 05:48:10 -0700
+X-CSE-ConnectionGUID: 6hrNdlaVQpmn9K1K+Vr+jA==
+X-CSE-MsgGUID: X9pY8ZHGQNiXuIxi6mZ8ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; 
+   d="scan'208";a="178414898"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2025 05:48:06 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uPhLe-00000005x4y-2rhE;
+	Thu, 12 Jun 2025 15:48:02 +0300
+Date: Thu, 12 Jun 2025 15:48:02 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl
+Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <aErMgh6AKVStF4rQ@smile.fi.intel.com>
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
+ <aEifWXPV1nsIyWbT@smile.fi.intel.com>
+ <aEnvcaP2ZNPLhzXi@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250528140453.181851-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250528140453.181851-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250528140453.181851-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Jun 2025 14:46:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWeXc1zqOgwRPjJ8RLL_oVFUtEAz5Ka_XssBBatXtEtmw@mail.gmail.com>
-X-Gm-Features: AX0GCFs-ouPmndvanqwNIxMC9hDtu7_aRuCPeAypWbiKcZT-yN-JH5KflfL3yXM
-Message-ID: <CAMuHMdWeXc1zqOgwRPjJ8RLL_oVFUtEAz5Ka_XssBBatXtEtmw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g056: Add USB2.0 support
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aEnvcaP2ZNPLhzXi@debian-BULLSEYE-live-builder-AMD64>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, 28 May 2025 at 16:05, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The Renesas RZ/V2N (R9A09G056) SoC features a single-channel USB2.0
-> interface with host and peripheral (function) support.
->
-> Add the ECHI, OHCI, USB2.0 PHY and reset control nodes for USB2.0
-> channel in R9A09G056 SoC DTSI.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Jun 11, 2025 at 06:04:49PM -0300, Marcelo Schmitt wrote:
+> On 06/11, Andy Shevchenko wrote:
+> > On Tue, Jun 10, 2025 at 05:31:25PM -0300, Marcelo Schmitt wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.17.
+...
 
-Gr{oetje,eeting}s,
+> > > +	return spi_write(st->spi, st->tx_buf, size + 2);
+> > 
+> > ... + sizeof(reg) ?
+> 
+> The size of the specific ADC register is stored in the size variable.
+> The result of sizeof(reg) can be different on different machines and will
+> probably not be equal to the size of the register in the ADC chip.
 
-                        Geert
+Hmm... But shouldn't we have a variable type that respects the sizeof() of the
+register in HW to keep it there? 2 is magic.
+
+...
+
+> > > +static bool ad4170_setup_eq(struct ad4170_setup *a, struct ad4170_setup *b)
+> > > +{
+> > > +	/*
+> > > +	 * The use of static_assert() here is to make sure that, if
+> > > +	 * struct ad4170_setup is ever changed (e.g. a field is added to the
+> > > +	 * struct's declaration), the comparison below is adapted to keep
+> > > +	 * comparing each of struct ad4170_setup fields.
+> > > +	 */
+> > 
+> > Okay. But this also will trigger the case when the field just changes the type.
+> > So, it also brings false positives. I really think this is wrong place to put
+> > static_assert(). To me it looks like a solving rare problem, if any.
+> 
+> I think it is unlikely that struct ad4170_setup declaration will ever change.
+> The fields match the registers that are associated with a channel setup and
+> the their types match the size of the respective registers. So, I do agree
+> that triggering this assert would be something rare.
+
+Yep, which thinks to me as an unneeded noise in the code, making it harder to
+read and maintain (in _this_ case).
+
+> > But I leave this to the IIO maintainers.
+> > 
+> > In my opinion static_assert() makes only sense when memcmp() is being used.
+> > Otherwise it has prons and cons.
+> 
+> I think the most relevant reason to have this static_assert would be to keep
+> some consistency with ad4130, ad7124, and ad7173, but no strong opinion about it.
+
+I would argue that those needs to be revisited for the same reasons as above.
+
+> Actually, I don't get why static_assert() would only matter if memcmp() was
+> being used. Would it be better to not bother if the fields change type?
+> 
+> Anyway, I'll go with whatever be IIO maintainer's preference.
+
+> > > +	static_assert(sizeof(*a) ==
+> > > +		      sizeof(struct {
+> > > +				     u16 misc;
+> > > +				     u16 afe;
+> > > +				     u16 filter;
+> > > +				     u16 filter_fs;
+> > > +				     u32 offset;
+> > > +				     u32 gain;
+> > > +			     }));
+> > > +
+> > > +	if (a->misc != b->misc ||
+> > > +	    a->afe != b->afe ||
+> > > +	    a->filter != b->filter ||
+> > > +	    a->filter_fs != b->filter_fs ||
+> > > +	    a->offset != b->offset ||
+> > > +	    a->gain != b->gain)
+> > > +		return false;
+> > > +
+> > > +	return true;
+> > > +}
+
+...
+
+> > > +	/* Assume AVSS at GND (0V) if not provided */
+> > > +	st->vrefs_uv[AD4170_AVSS_SUP] = ret == -ENODEV ? 0 : -ret;
+> > 
+> > -ret ?!?!
+> 
+> That's because AVSS is never above system ground level (i.e. AVSS is either GND
+> or a negative voltage). But we currently don't have support for reading negative
+> voltages with the regulator framework. So, the current AD4170 support reads
+> a positive value from the regulator, then inverts signal to make it negative :)
+
+This needs a good comment and ideally a TODO item in the regulator framework.
+(It might be easy to implement by adding a flag without changing the type of
+ the field, if it's unsigned.)
+
+> > Even if you know that *now* it can't have any other error code, it's quite
+> > fragile.
+> 
+> Yeah, I guess ADCs that can take bipolar power supplies are not that common.
+> I couldn't think of any better way to have that, though.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With Best Regards,
+Andy Shevchenko
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
