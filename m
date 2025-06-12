@@ -1,151 +1,148 @@
-Return-Path: <devicetree+bounces-185237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE75AD6E78
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:59:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44452AD6E7C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D97A3188FD19
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:59:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4605B188E2F4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229F423A9AC;
-	Thu, 12 Jun 2025 10:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8F0216E23;
+	Thu, 12 Jun 2025 11:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r6nN+AaH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Id4uAOxC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4654E21B9F5
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 10:59:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D9017A2EA;
+	Thu, 12 Jun 2025 11:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749725961; cv=none; b=Q8tWUl6Iz8eDSnueQAkyL0Z4Mp370HDk+yYJI4xc4sqIo3vA3KOYOlieU5XgrEW6tzFt7ALF38ab6U/TSMJQXIT7dL6KA8sFLtK0n9Je81BnRHwNFYVbkRlpW/C+PX+nBeG8Z0NJUQCYr+y3gJwtSHKWlJlPEXihf8sH3JJKwYo=
+	t=1749726070; cv=none; b=YQ0StWzuSmLKwavNKrjs/84OvOGPfqVBtqCSdQXJPgGT9G9JDx7E0o7hoClishjoTwBGSiOell4jjFOFcFVYnwvvTquzHEuzW6p3nBpx+7f4eSwFhJfjzrv8UktfC+eX5C1p3gFwBFCeswYZBCoRArjGltTJFyuOWOtJOrBhASU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749725961; c=relaxed/simple;
-	bh=WWPYYggyKVUIqcpZRwtY3ch16mcUxM6fvmZKKpyOsWg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qNDXYPWOiVWoBXHmIPMOX2N/JtyajbZrfvZlkLmgcCSFtHXW1RvzjRzr1ktBCQVlwe6wzd97xr6sSiT2gf7M7WsD1NQawXJk8siZrxsXlMklhqvpDgPf7r1eBPpFtQnsCki+258HjEOWe7ObBqO01MjElgM29kW7moow/P2wj+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r6nN+AaH; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a54700a46eso691464f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 03:59:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749725957; x=1750330757; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=OxVFpXC9gE/NnptI7yasZSeAwdsDwjZxI1xtlSOfvvA=;
-        b=r6nN+AaH1FFt9eiD/oBB6xuxgOlHpttnmzJhBx3WCbi/KaDm+x7tLBZyac03mSdqFT
-         n75/2p6JKdJjfULVxmhhVzlSK1CoWfbvx5ZN94xlE/oCvExe7Mpg/3DrCfHFBg38SpHw
-         AZbxEyi81sDmbs6yXTlIWc7Hcf82sdtAv/myAQnpqMUwIZOHCL9FCLTX/CZYOXeeTojw
-         ckQjb0s/Su47ljH+lKQ7oMYRtYI17ATM1q1zIqJjW2rNLvK6w0QCOxZ6WTYaUmTyURZo
-         6P96e6qJ076z6uZXdapfKqBNGdoQxxjyN9Uwfwu3kSwDbprln1I3fE14n8rVDFcPp6iL
-         4A6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749725957; x=1750330757;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OxVFpXC9gE/NnptI7yasZSeAwdsDwjZxI1xtlSOfvvA=;
-        b=IT431G5oGPD7ZGiDZydXAyNn++raszZWlBOl0cJKd6rK93JEZi/seJrUKS7+jhzsDZ
-         gdujnvZOptObwj0q1vuDw9dDZeJ3rkh7m1HgP75gX1GQr8heSsR7bkP7EsiKdu1VacYA
-         titWxxZGNfiCxBBKiwbAbwybrLjGnC0/KFEGxssCP4RjjWWs6bb+meVXlhfRoy61a3YW
-         uUMO/lfxxOsPleNhWzVWOQPhplVh9cJ5hz1R5DQt8VmFAXcnfZjWIXzG9pbL8IhwVwyS
-         HmubmKkVKpKZrIcsw4NIDdPLPk8LQ9e/hNAyd9EzFQ7jPoqeMa/ECXJ1gXzHrVG52sCG
-         ASWA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzZRG+bY9epd2nDe8ptaWJADeZl+SslGcf7QegivWCgL6Aju9ND0JGZ9jRPU+bYKl1axUP+ZeEIiaT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvvYE4ILjwCdXJMAucrH+dufKlXTv6ycFSEfrC6nGJN4BtYU6h
-	VDhVibidpcbdA5sTUbzSWbnoC5dNfLbyXKmZ2z71c9qEIH7iwTLX+e3B9fCCqwPoWy4=
-X-Gm-Gg: ASbGnctsYef4Xsipc/zqrAILwNCXeavR6lWlVGm1JC3K4UCJqXBgujncC8L2DJBPrTi
-	sUBzNJZHFzd4qG8Bsz/UC0hj4lRwer+TbXoxJpFtxdHgdonHkv1pTlzMVI9Ft+8zlAl1WrbKB8i
-	XgTpalTR9/BOJVbsiJMOTHfFmln+eHN/FBanxcz5BD1eT1HJ7+dL5Wjjz9YGB6/UMD+zRfSvzij
-	uFrqB2l4xpt9vXWfco43HOygk8N1+HU1F4y1fr6c45hyy8vl3NexmbLpRQhlanVY0u8oZoTbJYs
-	qLpmzEpiI3KO8HVz0V5z3OQQ9UeW3o+yZ2Tn3JmegQalWSufj8EBImqXjJi2ZshxxA==
-X-Google-Smtp-Source: AGHT+IHqd8/I6PcH/SsGO4ZHasePxLhvFKcF2xtJG5ImKC1vi9knPoEYRyrNOkQXYTNCKl3KYXGlKw==
-X-Received: by 2002:a05:6000:4028:b0:3a5:1f2:68f3 with SMTP id ffacd0b85a97d-3a5586e9764mr5499812f8f.46.1749725956635;
-        Thu, 12 Jun 2025 03:59:16 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a561976a20sm1681124f8f.19.2025.06.12.03.59.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jun 2025 03:59:16 -0700 (PDT)
-Message-ID: <b090594cb2e61160a830b4cd73d7d8a529872130.camel@linaro.org>
-Subject: Re: [PATCH v2 02/17] regulator: dt-bindings: add s2mpg10-pmic
- regulators
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Peter Griffin	
- <peter.griffin@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Thu, 12 Jun 2025 11:59:14 +0100
-In-Reply-To: <f5fcaac5-fa8e-41da-b1d2-e84197992e3c@sirena.org.uk>
-References: <20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org>
-	 <20250606-s2mpg1x-regulators-v2-2-b03feffd2621@linaro.org>
-	 <20250611-statuesque-dolphin-of-felicity-6fbf54@kuoka>
-	 <f5fcaac5-fa8e-41da-b1d2-e84197992e3c@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1749726070; c=relaxed/simple;
+	bh=q+XQyDezCQkDlRP4sWbeQSN9mB+s4/CJAn9VL/4nIOE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BgoiH2++IxmuS4EDn171jsOzjIC9EMERIwqnT+eMBlWMxAV+jM3auuBmlSiaxb1vPh7wq92Fp3zrehufcVTWD25KUSDDEE0HFz5iZU8DpeZkRtgFbUcw7f1C1iEyEVs8Ma2TbjfudLD63HM3zqPZoAwmpMhCnRXb+nbTpoCXBoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Id4uAOxC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 562D9C4CEEA;
+	Thu, 12 Jun 2025 11:01:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749726070;
+	bh=q+XQyDezCQkDlRP4sWbeQSN9mB+s4/CJAn9VL/4nIOE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Id4uAOxCUT+TsLKlFyVzGwLD/JUBKwUj6ACt+He1C31y6kbG7XQL4m4LWcrUVBHvJ
+	 BQZXUyOQm9VQM+JZfTEVl2iIEvkQ+lGZp+P3xpAIZvRWKZKI7EkTLt4f0z2JCudRCP
+	 bgjRo3XNsLdB9I/DwJNiLl5PdJ7P0D5OJQDPQPuvI8pmuFCpD0mfNVq1JVzc4zEKx3
+	 WH4pavhZX077ONchooutsWPT7Jp5mhww2k4GrcPEZ8hW35MU5trXoNFlT/3Ta21pGc
+	 wdjIh2bJN7AsFCuPvO9QZ9FDsKKv+Y1k0C6813SjTo2RvhU6Y9aaQKLC+u7xgeTpy8
+	 QwfG7nl6/DD4A==
+Message-ID: <578ea477-c68c-4427-8013-550bf4f9c05b@kernel.org>
+Date: Thu, 12 Jun 2025 13:01:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: imx8mp: Add Ultratronik
+ Ultra-MACH SBC
+To: Goran Radenovic <goran.radni@gmail.com>
+Cc: boerge.struempfel@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250611113039.304742-1-goran.radni@gmail.com>
+ <20250611113039.304742-3-goran.radni@gmail.com>
+ <20250612-snobbish-outrageous-nyala-dca804@kuoka>
+ <26194c8d-c16f-4293-8c0f-5c674e09a1ba@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <26194c8d-c16f-4293-8c0f-5c674e09a1ba@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Mark,
+On 12/06/2025 12:09, Goran Radenovic wrote:
+> Hi Krzysztof,
+> 
+> Thanks for the feedback, and you're absolutely right — I made a mistake 
+> here.
+> 
+> That said, I’m still a bit confused by your earlier comment:
+> 
+>      "That's just part of the standard/first enum."
+> 
+> I’m introducing a new board from a new manufacturer, so I expected to 
+> add a new enum block — similar to how it's done for other vendor entries 
 
-On Wed, 2025-06-11 at 14:53 +0100, Mark Brown wrote:
-> On Wed, Jun 11, 2025 at 10:55:44AM +0200, Krzysztof Kozlowski wrote:
-> > On Fri, Jun 06, 2025 at 04:02:58PM GMT, Andr=C3=A9 Draszik wrote:
->=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 For S2MPG10 l=
-do20m, the following values are valid
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- 0 # S2MPG10_PCTRLSEL_LDO20M_ON - always on
->=20
-> > No, use standard regulator properties - regulator-always-on
->=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- 1 # S2MPG10_PCTRLSEL_LDO20M_EN_SFR - VLDO20M_EN & LDO20M_SFR
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- 2 # S2MPG10_PCTRLSEL_LDO20M_EN - VLDO20M_EN pin
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- 3 # S2MPG10_PCTRLSEL_LDO20M_SFR - LDO20M_SFR in LDO_CTRL1 register
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- 4 # S2MPG10_PCTRLSEL_LDO20M_OFF - disable
->=20
-> > I don't think we allowed such property in the past. I don't get what is
-> > here the actual signal - you described registers in multiple places, no=
-t
-> > signals. Few of these duplicate standard properties, so this looks like
-> > exact copy of downstream which was doing exactly that way and that was
-> > exactly never upstreamed.
->=20
-> It looks like we can infer the configuration needed here from the
-> existing properties,
+No, you are expected to add to existing enum.
 
-For this ldo20, yes, and I'll update binding+driver to do so.
+> in the same file. I ran dt_binding_check, and it passed without errors 
+> for this structure.
 
->  if a GPIO is provided then use value 2 otherwise
-> use value 3.
+Not possible. The syntax is clearly wrong, so there is no way it passed
+any tests. And Rob's report is a proof of that.
 
-Close :-) There is another register to say if this pctrlsel should be
-respected in the first place. Therefore if a GPIO is provided, then use
-value 2 for pctrlsel, otherwise the value doesn't matter, as pctrlsel
-will be ignored anyway. But doesn't really matter in the context of this
-discussion here, just for future reference :-)
+> 
+> Could you clarify which “standard/first enum” you were referring to? 
+> Should all i.MX8MP-based boards share a single enum block, regardless of 
+> vendor?
 
-Thanks for your review!
+Don't they? Look around in this file.
 
-Thanks!
-Andre'
+> 
+> Thanks again for your guidance.
+
+Don't top post but reply inline.
+
+Best regards,
+Krzysztof
 
