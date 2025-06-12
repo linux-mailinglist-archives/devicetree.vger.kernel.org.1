@@ -1,423 +1,218 @@
-Return-Path: <devicetree+bounces-185316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C2FAD7473
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:48:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23BF2AD746C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52B2D1898987
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:43:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1B8A7A3B32
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431DD24DCE7;
-	Thu, 12 Jun 2025 14:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C750324BD1F;
+	Thu, 12 Jun 2025 14:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="edkOeEzI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CkdTmTKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C381F248897;
-	Thu, 12 Jun 2025 14:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7812AD0F;
+	Thu, 12 Jun 2025 14:40:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749739221; cv=none; b=sIEWapZW96MHY14ug8+ZPIYqhZUM3bsmr4eWicU3BxNS2uQt9TgfD2nzwZTxr17dHMkBUUcnPd+W2eSNmhweH/XsIpMMWXEv0pFCQRxHhX+mqAHP4CtWaRfOOIrI+gB6q5IuBzCtUxM3zxqnDC1pzIgPGG8j1tqgWc3/1niNF3s=
+	t=1749739209; cv=none; b=SLlV1doeaVHknI/34edVl0uoEvX9ekNlKQD8wEb1Odu6zaf7PGNGzaKo9njJ2MVGyDN9im2Vy6uMu/fIGjXS8vpjkpF6boEC5u2A77NfC1pWLz6qxb2S7nTlgc9lO7/a+QXUj6AYSxcHn7o4j4ean4IJh+qzI/Rw9PFkFLZ9x6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749739221; c=relaxed/simple;
-	bh=MJ3uVb3an03MS7bw3AzCf6P2btLX3fhHO8bsNkjbdjk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WMUMst51Ptzk3qcTVOgK4ymXJIyXag2Rz/qnnEo329fQMezMP/rxBwqRrC3YghNsqQ9FXvq0j5WrTiZkzhGOvfNCOQq6z3BOccr5z5hZWGzT73THcAAQXEunPb4YaelzYQQJGWKGBoZ7LOAvMmZxkx0dX3p/sf+yLFD09xIDGFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=edkOeEzI; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id E817E25EE0;
-	Thu, 12 Jun 2025 16:40:16 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id ccIj6Uxqgg5e; Thu, 12 Jun 2025 16:40:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1749739214; bh=MJ3uVb3an03MS7bw3AzCf6P2btLX3fhHO8bsNkjbdjk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=edkOeEzIce2Y82nIAnkgTHVRdDt9FbwV1HE7Pxn8LNxJHPg0x6GyfHEAjuo973LTC
-	 42ffZwclkvsC5tWblS90cebqAqAFlP8WV9QPsIZJ1AVtXxO6h/m2NYnGnvdjev0WiA
-	 ZYqtrjAjjaJuqGejR4+z9MaaGjwvofHtAYqLLr70eVlSgwtjkumHormSEFzOEb0rS6
-	 QkIPOB/NmqBvtoc48psj/AUYaNdfAzTHicsrPA6QYLJepCbxH3ElyaLPMaHZF1H2oy
-	 oCD7RI3cfbTcnCQjmZnpoq+O2ZhIeB/C2H9rCXRkmfXAxghJVhFbyQyItGQGuAucrv
-	 A+67ronWpzYag==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Thu, 12 Jun 2025 20:09:41 +0530
-Subject: [PATCH 2/2] drm: panel: add support for Synaptics TDDI series DSI
- panels
+	s=arc-20240116; t=1749739209; c=relaxed/simple;
+	bh=Y5WcRbSXxyMxHfUoci3SJStu8xIXVE3qYzIP9J0er6c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JMuEVqJSTkBM+3RVN1Q0DmjUPp3lY/JgoUPIoWxbJ4IVIsCqIjGEGbXZViLCSivMbtljcWehGeYSZ/tLN6PrOUsKECs6cdZvLzquUO7937Br3BtuimLzN60pwwNO/IVSRlxeB+/IDXUTIoNpRqsmzK5+9tRcKtNZM1aXLtBQYiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CkdTmTKW; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4530921461aso9358525e9.0;
+        Thu, 12 Jun 2025 07:40:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749739206; x=1750344006; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XO5xW6STrJbOovaRRRVEdzdrcsGsRAbrSNjEp7XD5iI=;
+        b=CkdTmTKWXasNutNLpLg7Codhwd+ZbImW/iJajL0gIA0X55aQLCFq3bKoCCfKl/VAAD
+         iiACFKt89EGyDTNWnCYaa5ogGMTslOML6QqQO8dQTdJACdLnZOAtaIGVUWJv1SIr2heq
+         aqJL9zQDbVP3uZPldOZg1xVBVlTvhBEUnThgNVOJKX48mBxrylhTmDFVsVrffmj2HV3d
+         +doI9baDGCSzAYua0ne+dgtc3d+6XcDNmZylzIRmXwsUUyXX0miocXNHZew1Nq3ByBXm
+         D/RQ/W2uuk0MENnboiFu+p5MpNXZQq4734pXnoiuYWpT9hMVeocEXwzcp1dagUQ6w1UO
+         Sc/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749739206; x=1750344006;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XO5xW6STrJbOovaRRRVEdzdrcsGsRAbrSNjEp7XD5iI=;
+        b=kDHWUcEs2PfmbxwOSwiiZAROguYf2hjO40cI4dxI/3X8uZyqKp3lPJdg1KKMeTRSAV
+         jpzOlRFfGisksVcqmKdaNSHrE4fOHrcdGnatGYjg1z2jnjWUYpHjtHo+PFSzYtOAB2lP
+         3oyNx9B/m+XNueOzU4d86P6PVi/daYbtRYmt0hyA4RtfMdv/YnpnZ78dXiueMjZ24tFH
+         vikpET7DJ7thHNxAf9VM4PrQpGaxPZe8oj5xpWDpkd0qv/hFsC1V0laqefyQri1xvrNh
+         DPigEEoGCjW2XWWPM5XuD+mIdpx+/+KzJdDtK+sDcmw+WRotkDYK/2Q2yGfs0ixAbEeW
+         W0LA==
+X-Forwarded-Encrypted: i=1; AJvYcCVF026NlRXFowMqNTokFqerpUz4vZP2ZgbHQOkWkK7SwaVdtpVJAOgXNJXidFguPTdkGDwjmrJqGmASh6E=@vger.kernel.org, AJvYcCWPofUKq5mJIsOq7LFI6jf+wSBnjx4m2/2EJFL34JSLUgy7tAUyu//2P0KpBji0O+8Y+sKC6Oxa0BB9@vger.kernel.org, AJvYcCWUnrUmpKGw6QG8wsQYVeWoyWIHwSwHpJ6EiO725zTp35t6GHv/rkkT1Ie1CYWWUEh59mQnoRs549jJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwL63mJFJAdgp4cRM4bDW2eD+//GJwOswFvdVKhURIHujViogRP
+	juvHTxtG4omLIBQ8LiwQabB8ADOEva+nQxIko3WdfjvXE8aZvsfpXmb9
+X-Gm-Gg: ASbGnct7DEPKLEcHxiGBxw846hOrt3EBcoU4Z3IMYteTqBOZrbCBEv48FCNJHY/Pp5Z
+	cvTCewe72lsSi6mkON1v7d1Dc0TpKgUotgXsCs7ro7tvdPNmbP8dSGQ8CQnwRnWDWioNf7YGlt6
+	mXtbIOV2UHH7WmQMQPSGQcGCFmDZ+GLOz+27Rsf55yRvDMRXCnM2a8LmvyGL6kKYk2M76S5/Wvf
+	HX6h3eqA+NMri03G0aSq4pPlQra+rpNqj0xOjgmiNv2HRGSsKCOSuKTMq9qjFkf/DsaU/56cGLa
+	3v8BZTJ7La7VbC/CbROpnterpFtkxZfw2nNpCIA/gTqnNP56TjirFI4/hxKtBwyYtXf3FQ==
+X-Google-Smtp-Source: AGHT+IEgJVa7T9a/v6a+QdCQd7PLGm4gVqm4zt6VpmQF3J4pe3zCCTagGbfhHOAbgCS0XpfwKgiFSw==
+X-Received: by 2002:a05:600c:198a:b0:450:d00d:cc with SMTP id 5b1f17b1804b1-45326e9018amr64987205e9.2.1749739205818;
+        Thu, 12 Jun 2025 07:40:05 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e25302dsm21987815e9.26.2025.06.12.07.40.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 07:40:05 -0700 (PDT)
+Message-ID: <4736b759609a9939b3a99a5c87df0fd5518a6af0.camel@gmail.com>
+Subject: Re: [PATCH v4 03/20] mfd: adp5585: enable oscilator during probe
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Lee Jones <lee@kernel.org>, nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
+ <ukleinek@kernel.org>,  Linus Walleij <linus.walleij@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov	 <dmitry.torokhov@gmail.com>,
+ Laurent Pinchart	 <laurent.pinchart@ideasonboard.com>, Liu Ying
+ <victor.liu@nxp.com>
+Date: Thu, 12 Jun 2025 15:40:12 +0100
+In-Reply-To: <20250612142001.GH381401@google.com>
+References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
+	 <20250521-dev-adp5589-fw-v4-3-f2c988d7a7a0@analog.com>
+	 <20250612142001.GH381401@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250612-panel-synaptics-tddi-v1-2-dfb8a425f76c@disroot.org>
-References: <20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org>
-In-Reply-To: <20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749739197; l=10787;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=MJ3uVb3an03MS7bw3AzCf6P2btLX3fhHO8bsNkjbdjk=;
- b=mn44vS3P+3Gi2fOGM2JqvjKoYxkvFjuWbrsu+Cnctf0018cWVBcv3u+5HYJ0bM4X7Tv0gQMJ4
- ekasLtkY7uRBoGQNT1sZcBpWrP9+8m2WTAQqaPbV/oYz/NKtDgOn8GW
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-Synaptics TDDI (Touch/Display Integration) panels utilize a single chip
-for display and touch controllers. Implement a simple device driver for
-such panels, along with its built-in LED backlight controller, and add
-support for TD4101 and TD4300 panels in the driver.
+On Thu, 2025-06-12 at 15:20 +0100, Lee Jones wrote:
+> On Wed, 21 May 2025, Nuno S=C3=A1 via B4 Relay wrote:
+>=20
+> > From: Nuno S=C3=A1 <nuno.sa@analog.com>
+> >=20
+> > Make sure to enable the oscillator in the top device. This will allow t=
+o
+> > not control this in the child PWM device as that would not work with
+> > future support for keyboard matrix where the oscillator needs to be
+> > always enabled (and so cannot be disabled by disabling PWM).
+> >=20
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > ---
+> > =C2=A0drivers/mfd/adp5585.c=C2=A0=C2=A0=C2=A0=C2=A0 | 23 ++++++++++++++=
++++++++++
+> > =C2=A0drivers/pwm/pwm-adp5585.c |=C2=A0 5 -----
+> > =C2=A02 files changed, 23 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> > index
+> > 806867c56d6fb4ef1f461af26a424a3a05f46575..f3b74f7d6040413d066eb6dbaecfa=
+3d5e6
+> > ee06bd 100644
+> > --- a/drivers/mfd/adp5585.c
+> > +++ b/drivers/mfd/adp5585.c
+> > @@ -147,6 +147,13 @@ static int adp5585_add_devices(struct device *dev)
+> > =C2=A0	return ret;
+> > =C2=A0}
+> > =C2=A0
+> > +static void adp5585_osc_disable(void *data)
+> > +{
+> > +	const struct adp5585_dev *adp5585 =3D data;
+> > +
+> > +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
+> > +}
+> > +
+> > =C2=A0static int adp5585_i2c_probe(struct i2c_client *i2c)
+> > =C2=A0{
+> > =C2=A0	const struct regmap_config *regmap_config;
+> > @@ -175,6 +182,22 @@ static int adp5585_i2c_probe(struct i2c_client *i2=
+c)
+> > =C2=A0		return dev_err_probe(&i2c->dev, -ENODEV,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid device ID 0x%02x\n", id);
+> > =C2=A0
+> > +	/*
+> > +	 * Enable the internal oscillator, as it's shared between multiple
+> > +	 * functions.
+> > +	 *
+> > +	 * As a future improvement, power consumption could possibly be
+> > +	 * decreased in some use cases by enabling and disabling the
+> > oscillator
+> > +	 * dynamically based on the needs of the child drivers.
+>=20
+> This is normal.=C2=A0 What's stopping us from doing this from the offset?
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- drivers/gpu/drm/panel/Kconfig                |  11 ++
- drivers/gpu/drm/panel/Makefile               |   1 +
- drivers/gpu/drm/panel/panel-synaptics-tddi.c | 284 +++++++++++++++++++++++++++
- 3 files changed, 296 insertions(+)
+This is always needed when we have the input device registered. From my tes=
+ting,
+we also need it for GPIOs configured as input. So basically the only reason=
+ this
+is not being done now is that it would not be trivial or really straightfor=
+ward
+and honestly the series is already big enough :)
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index d5aa1c95c6a45b2fea9b1d7a9e8a39fe617b860c..ad906d96ac5cbbbd6846d6c6a9043033660daf54 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -1011,6 +1011,17 @@ config DRM_PANEL_SYNAPTICS_R63353
- 	  Say Y if you want to enable support for panels based on the
- 	  Synaptics R63353 controller.
- 
-+config DRM_PANEL_SYNAPTICS_TDDI
-+	tristate "Synaptics TDDI display panels"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y if you want to enable support for the Synaptics TDDI display
-+	  panels. There are multiple MIPI DSI panels manufactured under the TDDI
-+	  namesake, with varying resolutions and data lanes. They also have a
-+	  built-in LED backlight and a touch controller.
-+
- config DRM_PANEL_TDO_TL070WSH30
- 	tristate "TDO TL070WSH30 DSI panel"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 73a39bc726045f3ce52fdeef8c0ec762a4a378c7..3cde8f27e7e6c1d12b08fd2f9e6252dd121a6b38 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -97,6 +97,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
- obj-$(CONFIG_DRM_PANEL_SUMMIT) += panel-summit.o
- obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) += panel-synaptics-r63353.o
-+obj-$(CONFIG_DRM_PANEL_SYNAPTICS_TDDI) += panel-synaptics-tddi.o
- obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
- obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
- obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
-diff --git a/drivers/gpu/drm/panel/panel-synaptics-tddi.c b/drivers/gpu/drm/panel/panel-synaptics-tddi.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..c081380c087a927634d1452c151dfa350149add5
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-synaptics-tddi.c
-@@ -0,0 +1,284 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Synaptics TDDI display panel driver.
-+ *
-+ * Copyright (C) 2025 Kaustabh Chakraborty <kauschluss@disroot.org>
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct tddi_panel_data {
-+	u8 lanes;
-+	/* wait timings for panel enable */
-+	u8 delay_ms_sleep_exit;
-+	u8 delay_ms_display_on;
-+	/* wait timings for panel disable */
-+	u8 delay_ms_display_off;
-+	u8 delay_ms_sleep_enter;
-+};
-+
-+struct tddi_ctx {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct drm_display_mode mode;
-+	struct backlight_device *backlight;
-+	const struct tddi_panel_data *data;
-+	struct regulator_bulk_data supplies[3];
-+	struct gpio_desc *reset_gpio;
-+	struct gpio_desc *backlight_gpio;
-+	u32 bus_flags;
-+	u32 width;
-+	u32 height;
-+};
-+
-+static inline struct tddi_ctx *to_tddi_ctx(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct tddi_ctx, panel);
-+}
-+
-+static int tddi_update_brightness(struct backlight_device *backlight)
-+{
-+	struct mipi_dsi_multi_context dsi = { .dsi = bl_get_data(backlight) };
-+	u8 brightness = backlight->props.brightness;
-+
-+	mipi_dsi_dcs_set_display_brightness_multi(&dsi, brightness);
-+
-+	return dsi.accum_err;
-+}
-+
-+static int tddi_prepare(struct drm_panel *panel)
-+{
-+	struct tddi_ctx *ctx = to_tddi_ctx(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+
-+	gpiod_set_value_cansleep(ctx->backlight_gpio, 0);
-+	usleep_range(5000, 6000);
-+
-+	return 0;
-+}
-+
-+static int tddi_unprepare(struct drm_panel *panel)
-+{
-+	struct tddi_ctx *ctx = to_tddi_ctx(panel);
-+
-+	gpiod_set_value_cansleep(ctx->backlight_gpio, 1);
-+	usleep_range(5000, 6000);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(5000, 6000);
-+
-+	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+
-+	return 0;
-+}
-+
-+static int tddi_enable(struct drm_panel *panel)
-+{
-+	struct tddi_ctx *ctx = to_tddi_ctx(panel);
-+	struct mipi_dsi_multi_context dsi = { .dsi = ctx->dsi };
-+	u8 brightness = ctx->backlight->props.brightness;
-+
-+	mipi_dsi_dcs_write_seq_multi(&dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x0c);
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi);
-+	mipi_dsi_msleep(&dsi, ctx->data->delay_ms_sleep_exit);
-+
-+	/* sync the panel with the backlight's brightness level */
-+	mipi_dsi_dcs_set_display_brightness_multi(&dsi, brightness);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&dsi);
-+	mipi_dsi_msleep(&dsi, ctx->data->delay_ms_display_on);
-+
-+	return dsi.accum_err;
-+};
-+
-+static int tddi_disable(struct drm_panel *panel)
-+{
-+	struct tddi_ctx *ctx = to_tddi_ctx(panel);
-+	struct mipi_dsi_multi_context dsi = { .dsi = ctx->dsi };
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi);
-+	mipi_dsi_msleep(&dsi, ctx->data->delay_ms_display_off);
-+
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi);
-+	mipi_dsi_msleep(&dsi, ctx->data->delay_ms_sleep_enter);
-+
-+	return dsi.accum_err;
-+}
-+
-+static int tddi_get_modes(struct drm_panel *panel,
-+			  struct drm_connector *connector)
-+{
-+	struct tddi_ctx *ctx = to_tddi_ctx(panel);
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &ctx->mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	mode->type |= DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	drm_mode_probed_add(connector, mode);
-+	drm_mode_set_name(mode);
-+
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	connector->display_info.bus_flags = ctx->bus_flags;
-+
-+	return 1;
-+}
-+
-+static const struct backlight_ops tddi_bl_ops = {
-+	.update_status = tddi_update_brightness,
-+};
-+
-+static const struct drm_panel_funcs tddi_drm_panel_funcs = {
-+	.prepare = tddi_prepare,
-+	.unprepare = tddi_unprepare,
-+	.enable = tddi_enable,
-+	.disable = tddi_disable,
-+	.get_modes = tddi_get_modes,
-+};
-+
-+static int tddi_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct tddi_ctx *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->data = of_device_get_match_data(dev);
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	ctx->supplies[0].supply = "vio";
-+	ctx->supplies[1].supply = "vsn";
-+	ctx->supplies[2].supply = "vsp";
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
-+				      ctx->supplies);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to get regulators\n");
-+
-+	ctx->backlight_gpio = devm_gpiod_get_optional(dev, "backlight", GPIOD_ASIS);
-+	if (IS_ERR(ctx->backlight_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->backlight_gpio),
-+				     "Failed to get backlight-gpios\n");
-+
-+	ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_ASIS);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ret = of_get_drm_panel_display_mode(dev->of_node, &ctx->mode,
-+					    &ctx->bus_flags);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to get panel timings\n");
-+
-+	ctx->backlight = devm_backlight_device_register(dev, dev_name(dev), dev,
-+							dsi, &tddi_bl_ops, NULL);
-+	if (IS_ERR(ctx->backlight))
-+		return dev_err_probe(dev, PTR_ERR(ctx->backlight),
-+				     "Failed to register backlight device");
-+
-+	ctx->backlight->props.type = BACKLIGHT_PLATFORM;
-+	ctx->backlight->props.brightness = 255;
-+	ctx->backlight->props.max_brightness = 255;
-+
-+	dsi->lanes = ctx->data->lanes;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_MODE_VIDEO_NO_HFP;
-+
-+	drm_panel_init(&ctx->panel, dev, &tddi_drm_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	ctx->panel.prepare_prev_first = true;
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = devm_mipi_dsi_attach(dev, dsi);
-+	if (ret < 0) {
-+		drm_panel_remove(&ctx->panel);
-+		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static void tddi_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct tddi_ctx *ctx = mipi_dsi_get_drvdata(dsi);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct tddi_panel_data td4101_panel_data = {
-+	.lanes = 2,
-+	/* wait timings for panel enable */
-+	.delay_ms_sleep_exit = 100,
-+	.delay_ms_display_on = 0,
-+	/* wait timings for panel disable */
-+	.delay_ms_display_off = 20,
-+	.delay_ms_sleep_enter = 90,
-+};
-+
-+static const struct tddi_panel_data td4300_panel_data = {
-+	.lanes = 4,
-+	/* wait timings for panel enable */
-+	.delay_ms_sleep_exit = 100,
-+	.delay_ms_display_on = 0,
-+	/* wait timings for panel disable */
-+	.delay_ms_display_off = 0,
-+	.delay_ms_sleep_enter = 0,
-+};
-+
-+static const struct of_device_id tddi_of_device_id[] = {
-+	{
-+		.compatible = "syna,td4101-panel",
-+		.data = &td4101_panel_data,
-+	}, {
-+		.compatible = "syna,td4300-panel",
-+		.data = &td4300_panel_data,
-+	}, { }
-+};
-+MODULE_DEVICE_TABLE(of, tddi_of_device_id);
-+
-+static struct mipi_dsi_driver tddi_dsi_driver = {
-+	.probe = tddi_probe,
-+	.remove = tddi_remove,
-+	.driver = {
-+		.name = "panel-synaptics-tddi",
-+		.of_match_table = tddi_of_device_id,
-+	},
-+};
-+module_mipi_dsi_driver(tddi_dsi_driver);
-+
-+MODULE_AUTHOR("Kaustabh Chakraborty <kauschluss@disroot.org>");
-+MODULE_DESCRIPTION("Synaptics TDDI Display Panel Driver");
-+MODULE_LICENSE("GPL");
+Laurent also agreed with this not being mandatory now so hopefully it's als=
+o
+fine with you.
 
--- 
-2.49.0
-
+- Nuno S=C3=A1
+>=20
+> > +	 */
+> > +	ret =3D regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
+> > ADP5585_OSC_EN);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret =3D devm_add_action_or_reset(&i2c->dev, adp5585_osc_disable,
+> > adp5585);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > =C2=A0	return adp5585_add_devices(&i2c->dev);
+> > =C2=A0}
+> > =C2=A0
+> > diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
+> > index
+> > 40472ac5db6410a33e4f790fe8e6c23b517502be..c8821035b7c1412a55a642e6e8a46=
+b66e6
+> > 93a5af 100644
+> > --- a/drivers/pwm/pwm-adp5585.c
+> > +++ b/drivers/pwm/pwm-adp5585.c
+> > @@ -62,7 +62,6 @@ static int pwm_adp5585_apply(struct pwm_chip *chip,
+> > =C2=A0	int ret;
+> > =C2=A0
+> > =C2=A0	if (!state->enabled) {
+> > -		regmap_clear_bits(regmap, ADP5585_GENERAL_CFG,
+> > ADP5585_OSC_EN);
+> > =C2=A0		regmap_clear_bits(regmap, ADP5585_PWM_CFG, ADP5585_PWM_EN);
+> > =C2=A0		return 0;
+> > =C2=A0	}
+> > @@ -100,10 +99,6 @@ static int pwm_adp5585_apply(struct pwm_chip *chip,
+> > =C2=A0	if (ret)
+> > =C2=A0		return ret;
+> > =C2=A0
+> > -	ret =3D regmap_set_bits(regmap, ADP5585_GENERAL_CFG, ADP5585_OSC_EN);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > =C2=A0	return regmap_set_bits(regmap, ADP5585_PWM_CFG, ADP5585_PWM_EN);
+> > =C2=A0}
+> > =C2=A0
+> >=20
+> > --=20
+> > 2.49.0
+> >=20
+> >=20
 
