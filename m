@@ -1,151 +1,184 @@
-Return-Path: <devicetree+bounces-185226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C585CAD6D74
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:20:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B29EAD6D87
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:23:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8893E1691F8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D376A3B05B0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:22:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE9E229B2E;
-	Thu, 12 Jun 2025 10:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFADB1F8753;
+	Thu, 12 Jun 2025 10:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kvKQkxBU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="driuHXsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7ED223DDA;
-	Thu, 12 Jun 2025 10:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 155BE230269;
+	Thu, 12 Jun 2025 10:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749723616; cv=none; b=gZXbs61ESYv0g9B7sSDo/pYJjLTZIhaQjKx+3CuQzPt1jE8uhXndbbnk7YaIgtxGVdaYtSrTj/NC2HLX6UjJbWVIiVTpRXmvKJzZZsvIl+/v1/5AcYsfFyy/4DzT300MwKy1PPXp5CLd/HPmw3jdLb7MfkD1C9xLscaCKeg/brQ=
+	t=1749723756; cv=none; b=PnrWvqUaLz5Cgj2N2fKwUCRlYecaaJpSc7IuzyQwCNsHOcuk89FclbejzbX4xCWpYq6svAhMeiJ+XezaPg9Nhy1kydAzWvoP0eIAWErAYf9EUXv2btnO+hlbcjfTr5tsOjO+IsaNM9la4dOEyuN2i1+A8/cMc8lUTupsazl4t10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749723616; c=relaxed/simple;
-	bh=Yhd51y2BToO+EORWMdmoesfgplnRX9zyXUOsExCwkLI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=FKDTsoHREIjillDt/QF7ObospUWqe3qTGSGWDmp5IFHtm2f5psomgItwmsv9oPfAvBtWIER4aKXMdWS27+wYVpCkVBDxkOda7upgrbehQ13EsSf52RYUT4kcYIpeFJg5k+F/Qk2UCL4OaeU43dW8qRgQyot0XXg2EygwXt9fZmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kvKQkxBU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48D46C4CEF2;
-	Thu, 12 Jun 2025 10:20:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749723615;
-	bh=Yhd51y2BToO+EORWMdmoesfgplnRX9zyXUOsExCwkLI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=kvKQkxBUKnFZxiGaeU9WfTuDrfatbON3icHVza+D/Ln3Y34hSoL8wFsxj9dovP4W7
-	 JMSS85arZBXmE7d89NVpHzvIYFx6R4JckvNdiMbnpyUxoM8Z4njYAPLg8KXA0MTiX+
-	 Sz9Julpv2SaC8C/WzfFJjcH/gihCAEnqnRJSNAZra90q8sdDgG4vfTLjTSblKcjcbB
-	 uX3NYFngwUOY6xYBbeAr4xQKtkmzy2oh+UolVm09KUKNSR16+G+HQBJrTyEhxm4pjk
-	 94ZOuyoEQMJaxEAX5XvjOgia0L8Do4DSiGgNkTe48RKSdJv/XvVQX3ps9M6ibKktPH
-	 eoUoH1oDgBSdw==
-Message-ID: <f635caf3-a93f-4a31-9957-4f455f4eafc9@kernel.org>
-Date: Thu, 12 Jun 2025 12:20:07 +0200
+	s=arc-20240116; t=1749723756; c=relaxed/simple;
+	bh=++jzvtIbTVbmGBVd5TasUy8Q3dAZIh9hHsXzYyG13Tc=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=VsiSexsVAyNxu8lGWqu9FPdQeuSgZd/XqOycHjLb9vgSw979c1ZWxyzdf5sASNze+Bu4/hSZIGAMFSM7eAbtmr3Ky6WAn5zmxuTpct2j5pQeBVHMric98KP4+qLVx1RNDXE4BZoUBbxHNniZYZi54ir2qcWt9iEZKWpu+Qno+6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=driuHXsn; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-607b59b447bso1416151a12.1;
+        Thu, 12 Jun 2025 03:22:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749723753; x=1750328553; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ELcPuvNKLZu6Ryw5rajS8NLZ+N5vs8CjzH8DFZ2k5qY=;
+        b=driuHXsnY7oTHq8yHSX92nBSQCDNEYyjvabmki0VV3YiZ+JVJpsr0C9uGvrGV5es6C
+         j5LshjzpAhkEbx8HKiYjBwxMgVWgL4W3V/4wSF6UpYN0Fmudt8kBz2WX6KYkyCodwySq
+         UER93NxiUiM7RWKjsOo4w8al3/ON55XKGJ6gdQvOC7n9xEqfGq7q1YgzaDRcpszPLfDo
+         hJEG4uT+F0BvJzajqtOr10sU7uhV4M8Y1CF/xfQcEXv5oIJHVyyxBrgW+/osjtn/Xbtx
+         TbiwAEJtiBOavkThhvPcVEyQvb67xseiW3h7/yTYoXDOYUwceYvJL/se//mJgk5dIMv+
+         4zrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749723753; x=1750328553;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ELcPuvNKLZu6Ryw5rajS8NLZ+N5vs8CjzH8DFZ2k5qY=;
+        b=VO7KpP/epV853lT6hHL3D3Ct49yYP93CGgilVBeLyZp9Rq7Adv0tJS+mNkgn4fIF7k
+         w0d6JRy3yLOeVTs9x5TYKqjJi4cYjPj97vJK1mIBFlTiPKk9lLHUp02C4gvRDHSbgk+g
+         8IoZh/VU8LZ8IJ+six7KTLeoPity0IDHMIeUtPtOtxm18pClkoRfVl42S8e6AxLdiIwn
+         tAvBOpLkeGji7svowZhJQUyFl9wy/hdYjIVZSKK+ZPq9VS9Y9y5SqL24+DRGAUwksm9h
+         cpEWhltf8GdfNZKQDDq+cR5zLTmLmYnccLDfZH6SGCxKh19KPvaC/N406vKhPz/zf91d
+         tkPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUN9qyDCwceBvT0x9kiBWgXPEKDz/QCC7Gsqd/DT7rywMfG/zlwY1XY+N4e8Oj0YUTFCzfhlCDhcdSxON5e@vger.kernel.org, AJvYcCW+ep5UAjr7zgk1HaXl77UnPIS25aH9Y0tImMfxyO1HisBqP7soPG4hzz5CpsyLlRbJ7bDQJNAAHHBu@vger.kernel.org, AJvYcCXrjWUA0tPPAIMtF63OCDsKvjGk5w89HVIZCpyC2rXUq2Zy/2MTeF5x+52AmRYN4D3rWlX+JIc4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSuPu9WR9BJXUeY4VMBedUEE7imzqCZ3jM26b8pWeBMX917lau
+	7jOOqSJsj2lhW5zyU3+U/BEpRydBiCSt8MVyF7QpESBtj8I6veQwvIIE
+X-Gm-Gg: ASbGncsKCh4YQmLUWJxZMbqfYzKY2Gd9vEys8k9xf9pEnOTycayMGMKpeImB6lLYszd
+	ys6QyOATUip7HH13ED3KQn6h1KgPIFgxxlrWPDxn5b0n1PcXOPrCNi3zl3auPXICBTRG5IIemUz
+	3/CgPMD1IeFNZYEWdg1nSLaTjXga5woBMIxjLJYEwroqmVBaPOYEuwARYtqJgwawJah6TmYOt8B
+	bxXnTr2LDC2bJvBNxOGRUaOK+vZEoh/GieZqqG5YZeZ2Tebsxu6mKrRxknY3uHUQAwuOfJnvHAX
+	g1LXd2yo+z89Rc4RU0PzMMXCkkq/hrIMYElCbQmCu8TXBAkTwP6byjC37Dtx8ROkv1rGlYBLtQS
+	aFt1QFXWtrg==
+X-Google-Smtp-Source: AGHT+IE0/bTYEFCNhrQjD7YEJLFi+GzwBTgnJRxUstfNcaX5VD81i0FvmEvIypNuTLGINT6BjMUjbg==
+X-Received: by 2002:a05:6402:40c5:b0:607:f431:33f4 with SMTP id 4fb4d7f45d1cf-6086b2a46c4mr1919282a12.16.1749723753038;
+        Thu, 12 Jun 2025 03:22:33 -0700 (PDT)
+Received: from smtpclient.apple ([89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6086a551a2esm939584a12.1.2025.06.12.03.22.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 12 Jun 2025 03:22:32 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 3/5] arm64: dts: aspeed: Add initial AST2700 SoC device
- tree
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>,
- Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
- nfraprado@collabora.com, Taniya Das <quic_tdas@quicinc.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Eric Biggers <ebiggers@google.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, soc@lists.linux.dev,
- Mo Elbadry <elbadrym@google.com>, Rom Lemarchand <romlem@google.com>,
- William Kennington <wak@google.com>, Yuxiao Zhang <yuxiaozhang@google.com>,
- wthai@nvidia.com, leohu@nvidia.com, dkodihalli@nvidia.com,
- spuranik@nvidia.com
-References: <20250612100933.3007673-1-ryan_chen@aspeedtech.com>
- <20250612100933.3007673-4-ryan_chen@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250612100933.3007673-4-ryan_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 12/06/2025 12:09, Ryan Chen wrote:
-> +
-> +	soc0: soc@10000000 {
-> +		compatible = "simple-bus";
-> +		reg = <0x0 0x10000000 0x10000000>;
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		syscon0: syscon@12c02000 {
-> +			compatible = "aspeed,ast2700-scu0", "syscon", "simple-mfd";
-
-This makes no sense - no children here.
-
-> +			reg = <0x0 0x12c02000 0x1000>;
-> +			ranges = <0x0 0x0 0 0x12c02000 0x1000>;
-
-Neither this.
-
-> +			#address-cells = <2>;
-> +			#size-cells = <1>;
-
-Nor this.
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add HDMI PHY PLL clock source
+ to VOP2 on rk3576
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20250612-rk3576-hdmitx-fix-v1-3-4b11007d8675@collabora.com>
+Date: Thu, 12 Jun 2025 12:22:19 +0200
+Cc: Sandy Huang <hjc@rock-chips.com>,
+ =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ kernel@collabora.com,
+ Andy Yan <andyshrk@163.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <01D5D2D8-392B-4926-884E-1A4FB87C03CF@gmail.com>
+References: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
+ <20250612-rk3576-hdmitx-fix-v1-3-4b11007d8675@collabora.com>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
 
 
-Best regards,
-Krzysztof
+
+> Wiadomo=C5=9B=C4=87 napisana przez Cristian Ciocaltea =
+<cristian.ciocaltea@collabora.com> w dniu 11 cze 2025, o godz. 23:47:
+>=20
+> Since commit c871a311edf0 ("phy: rockchip: samsung-hdptx: Setup TMDS
+> char rate via phy_configure_opts_hdmi"), the workaround of passing the
+> rate from DW HDMI QP bridge driver via phy_set_bus_width() became
+> partially broken, as it cannot reliably handle mode switches anymore.
+>=20
+> Attempting to fix this up at PHY level would not only introduce
+> additional hacks, but it would also fail to adequately resolve the
+> display issues that are a consequence of the system CRU limitations.
+>=20
+> Instead, proceed with the solution already implemented for RK3588: =
+make
+> use of the HDMI PHY PLL as a better suited DCLK source for VOP2. This
+> will not only address the aforementioned problem, but it should also
+> facilitate the proper operation of display modes up to 4K@60Hz.
+>=20
+> It's worth noting that anything above 4K@30Hz still requires high TMDS
+> clock ratio and scrambling support, which hasn't been mainlined yet.
+>=20
+> Fixes: d74b842cab08 ("arm64: dts: rockchip: Add vop for rk3576")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+> arch/arm64/boot/dts/rockchip/rk3576.dtsi | 6 ++++--
+> 1 file changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi =
+b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> index =
+6a13fe0c3513fb2ff7cd535aa70e3386c37696e4..b1ac23035dd789f0478bf10c78c74ef1=
+67d94904 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -1155,12 +1155,14 @@ vop: vop@27d00000 {
+> <&cru HCLK_VOP>,
+> <&cru DCLK_VP0>,
+> <&cru DCLK_VP1>,
+> - <&cru DCLK_VP2>;
+> + <&cru DCLK_VP2>,
+> + <&hdptxphy>;
+> clock-names =3D "aclk",
+>      "hclk",
+>      "dclk_vp0",
+>      "dclk_vp1",
+> -      "dclk_vp2";
+> +      "dclk_vp2",
+> +      "pll_hdmiphy0";
+> iommus =3D <&vop_mmu>;
+> power-domains =3D <&power RK3576_PD_VOP>;
+> rockchip,grf =3D <&sys_grf>;
+>=20
+> --=20
+> 2.49.0
+>=20
+>=20
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+
+Cristian,
+It fixes fractional hd modes for me on rk3576.
+Thx for this fix!
+ =20
 
