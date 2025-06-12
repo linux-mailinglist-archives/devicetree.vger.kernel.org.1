@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-185245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7061AD6EE9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:22:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E46AD6EFC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFBC2174DDD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:22:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E0B416FAE8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8625E23A99F;
-	Thu, 12 Jun 2025 11:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002B423BF91;
+	Thu, 12 Jun 2025 11:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItpMEVj9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WdCn39G2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EEC229B38;
-	Thu, 12 Jun 2025 11:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E6622B5B8
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 11:27:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749727329; cv=none; b=XQwdMHQ29UQN7KBNowHyoZx+gQvbhCmF0ULbIgOgGIqH2blbH8QW9F+DICBH1Vu1+2gS0Jge2eCf8RHY0ST7GTPvcggXN9bMcWQsvdvMMTobzuif18GaMuD6xxODFKHmChG5tg6ZPuzH2bOAnY1w7jFSYXlGQIW72Fvdj67pacI=
+	t=1749727672; cv=none; b=rpYdhO3nG/oVQBSSB3D6vjkWDT2mmLAfZHhZULmrKxH6i15mk0jfufebOX3x34Fhn37HQyS+7ehtn1cwa4sItM7yX6X5wZuErld022EGxFHDQwCC2v/orNc12qOFBZM/vq4+TSuQa3tnOLsCW0NXB9yRPRwsju5lIteM1XbYECo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749727329; c=relaxed/simple;
-	bh=ZrR2KM4gwZRxXaEmhqgPIVUwOUQUXvfbHNIbxlOunlM=;
+	s=arc-20240116; t=1749727672; c=relaxed/simple;
+	bh=baOh6JNrNs+y+44obXR/Ufj9U6PUWPAjBVng4c8Z9hM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PV+q1nWmABn6YCB92/FF7B9bPuMCtk72t/Fy7lrgZkSAfmN4rXq2IFD1NustAKqfjkpmXOTVr+l+JlCrJbxBA2BqI/s7RjdvCBUWM58aEgRkZ4O4PGqASrTzg5KgMAFTPfcEe6GQerFbSdQ/SfFVIxtMEI8c838jt9hqO9AlSes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItpMEVj9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E596C4CEEA;
-	Thu, 12 Jun 2025 11:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749727328;
-	bh=ZrR2KM4gwZRxXaEmhqgPIVUwOUQUXvfbHNIbxlOunlM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ItpMEVj9ZO16lsggp41FCAlqAJiY68krw0sMbN59JeUxjVv6j0Ic95HbvDd/fOOsq
-	 6X6dAtgboIVeGp6D8XV5M9xSuoZOIx/fUrpx+SjD8TC/3Qs+E4Bq0bXihiBu+4Zh6j
-	 fmBmWtuwCUmYcYAO0WpnhRuakhyU53ILx8L9O1P1HU4TYh8IAlLjKltNeBt0dwUFtr
-	 vOaWsy+baqWWfeBoEhTVERmy6apkxphZHHxKcaD07aTVaE2OrDKpupgRu2n0UvcFNT
-	 Ep7rgAdnJ9OrmX8GMx5dxJWNvEhY0s6sMlk+JEYWEXsBY7QYW0318s3duI3k55H9rv
-	 C7KARXPvxSR6w==
-Message-ID: <e2ffca36-d2ed-4253-86a6-a990e7931ba0@kernel.org>
-Date: Thu, 12 Jun 2025 13:22:04 +0200
+	 In-Reply-To:Content-Type; b=US9lvv4Z/DwtTa34TSMkdxSyqU7KbcBl2Zq7zFYkLoPMp2STRgB7YoJkiY6o7okUleM+3QUsWshlFvesk6JGs0ue0BCL5ubt5eJYUzSAKn9n05dGLwS2pX7SAQ8X5n1mXNuL/qrE0VrLFKP8mJ28Ts872sscpoTErSIaPoi+d+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WdCn39G2; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32b2d68f0dcso1172211fa.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 04:27:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749727668; x=1750332468; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UMJIO+9hxF2T1hW8fxlUtSq3+LhB5vVChGg7nGiwpMk=;
+        b=WdCn39G2E6CPs7UXaqW5eAx6v5HgjxmSyrVlYtyLsQdM2ITwC1kp2CUndzUoHt+FOA
+         EWeix5toMcAZ3uDE8TwSyL5+b6F2aNyZVQpwT4hmBLOvNqvFPHd8AElsa5Ttp3YkyTHV
+         llYqxZRCy582KbrH0NaWtru6HJqx5MM2sBtT/0mHwGA76lFcyA4jxn7IDZEF4GplP+/2
+         JXdl/yFRm3Y/AfmZxuLs43t4go5nBwtPY7I+OujwlCkJQ/8zUtvoPo+WAOM8wNuibtml
+         dKQg4AOOFiMCayfZMMUQIf3/j/Yeb6MabczG1MnO869I1mRZXEELzTU/UfAlXwx8v7Ku
+         5YoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749727668; x=1750332468;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UMJIO+9hxF2T1hW8fxlUtSq3+LhB5vVChGg7nGiwpMk=;
+        b=proSSERw9eANBY2wU4NsswOX+1KFbDJ/W5v9Ntpvm6NBH3evrk8Su0RK68TQsZMrfr
+         xAf2686MwAYlVis7fh7eiZGUVapIe6bB9AcT00gMEtF5z+CffvOWbgbUpIdoyaLc35/g
+         WFJc2MDg8LAU3zdeIHwrWgOc6DP7bG5BPOsKXjuiR/ges+IBz7KgiHiLcVT1nPV31noJ
+         x/qQeHGWh/PqRPOZ1qlMWWCKFViY4NKJDiAHMOCdfMRX9ALkMf6ZCXz2DBCUoyOS2gzi
+         kcv+sknxMqOor3g5qelhyB9mZurtBsxm5EbpFlgl0ZHIdmfuG8CecA2XPZxdIwnVJxES
+         tKdg==
+X-Forwarded-Encrypted: i=1; AJvYcCXXUvTcpjOHMzsCky4i2FIjf01Ry+i9oKNhQuVZ7sWOC1qDAgrnZjG68kyr2dhPdTwxOWM7Df2wEAqy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkEIJWOlPG6b125+cACVSBuqWzDOVsP4aO0dFZ+4SSCKKiWyzr
+	NeNlo9wQWTXxkzycDtDmDc1itEVfEMxPM5b2XHIXHqcJ7K8KYF/HKoOFKTSGUNfXBQY=
+X-Gm-Gg: ASbGnctQhHEZ9QTgrCe7d+iJNoFzLOblBElAxUFiMpmY/mOMFOogA3Jt4TUDMUIIWz+
+	DxrJBvBtEpvX9YXxTJag766vV9Jr/XWREuLucaJXbaI9+2KiS1Oprqrwlv44VO8cFSCPZUTsLj7
+	t0+9CU+IxwwW9tmOPinyvf9Wj4JNwB58PwWUOkEEzgNHRK+mg4AIez4yzFsbgB1fEfuqY7ZsiJw
+	2M4FSEnj5RmVgF9tugHnuKvndSfx1ufZk70NlxBTjU4pPiTjqvAH7jQXV1D2h9ZTX93odsSytzx
+	Doh060DL66QLGck0uIUDxqo1hlOznLlCmXrEQx8Fyo+K7mJkmlBWkkch9H1HZyh6bZTWKkklV/3
+	8fFTIdTu1yZPHZjLvK1LWo6wX69Pqi6AbUomiubKN5XS2cNwoc1c=
+X-Google-Smtp-Source: AGHT+IHim72L19yadAXZGJXEuLrBbBbuXPX7tGYPhPYpnsQljqwHSSz7SjlCn5GLRjBPKu2TFNsZbw==
+X-Received: by 2002:a05:651c:1a0a:b0:32a:6236:7094 with SMTP id 38308e7fff4ca-32b21d8c15fmr7846241fa.9.1749727667784;
+        Thu, 12 Jun 2025 04:27:47 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b3321f973sm1821551fa.112.2025.06.12.04.27.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 04:27:47 -0700 (PDT)
+Message-ID: <51a91c84-c83f-4b22-9861-88929b222432@linaro.org>
+Date: Thu, 12 Jun 2025 14:27:46 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,93 +82,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
- property for MT7688
-To: Ezra Buehler <ezra@easyb.ch>, linux-mips@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Harvey Hunt <harveyhuntnexus@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Reto Schneider <reto.schneider@husqvarnagroup.com>,
- Rob Herring <robh@kernel.org>,
- Sergio Paracuellos <sergio.paracuellos@gmail.com>, Stefan Roese
- <sr@denx.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- devicetree@vger.kernel.org, Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-References: <20250611194716.302126-1-ezra@easyb.ch>
- <20250611194716.302126-2-ezra@easyb.ch>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250611194716.302126-2-ezra@easyb.ch>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 08/10] dt-bindings: media: qcom: Add Qualcomm MIPI
+ C-/D-PHY schema for CSIPHY IPs
+Content-Language: ru-RU
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-9-vladimir.zapolskiy@linaro.org>
+ <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
+ <e02cead0-665d-443a-a884-c3a307409c66@kernel.org>
+ <9e38a09b-1521-4196-b179-d29c62e143bc@linaro.org>
+ <d424481b-cb06-4bee-8d36-5e31ca2838a2@kernel.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <d424481b-cb06-4bee-8d36-5e31ca2838a2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/06/2025 21:47, Ezra Buehler wrote:
-> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+On 6/12/25 14:02, Krzysztof Kozlowski wrote:
+> On 12/06/2025 09:57, Vladimir Zapolskiy wrote:
+>> On 6/12/25 10:39, Krzysztof Kozlowski wrote:
+>>> On 12/06/2025 09:38, Krzysztof Kozlowski wrote:
+>>>> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
+>>>>> Add dt-binding schema for Qualcomm CAMSS CSIPHY IP, which provides
+>>>>> MIPI C-PHY/D-PHY interfaces on Qualcomm SoCs.
+>>>>>
+>>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>>>> ---
+>>>>> RFC verion of the change:
+>>>>> * https://lore.kernel.org/all/20250513143918.2572689-1-vladimir.zapolskiy@linaro.org/
+>>>>>
+>>>>> Changes from RFC to v1:
+>>>>> * moved from phy/qcom,csiphy.yaml to media/qcom,csiphy.yaml,
+>>>>> * added 'clock-names' property,
+>>>>> * removed SM8250 CSIPHY specifics, a generic binding is good enough for now,
+>>>
+>>>
+>>> Now I noticed this... weird change and clearly a no-go.
+>>>
+>>> Device binding cannot be generic, so it is not good enough for now.
+>>> Please write specific bindings for specific hardware.
+>>>
+>>
+>> Can I add platform specific changes on top of the displayed generic one
+>> like in Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+>> etc?
+>>
+>> The generic compatible is sufficienlty good for adding the enhanced
+>> CSIPHY support to any currently present in the upstream platform CAMSS.
+>>
+>> Obviously I can rename it to something SoC-specific, but then a question
+>> arises, if a selected platform has to be a totally new one in the upstream,
+>> or it could be among any of platforms with a ready CAMSS, and a backward
+>> compatibility is preserved by these series and the new CSIPHY dt bindings.
 > 
-> Otherwise, the MT7688-based GARDENA smart Gateway will fail to boot
-> printing "Kernel panic - not syncing: unable to get CPU clock, err=-2".
-> 
-> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-> ---
->  arch/mips/boot/dts/ralink/mt7628a.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-> index 0212700c4fb4..10221a41f02a 100644
-> --- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
-> +++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-> @@ -33,7 +33,7 @@ palmbus@10000000 {
->  		#size-cells = <1>;
->  
->  		sysc: syscon@0 {
-> -			compatible = "ralink,mt7628-sysc", "syscon";
-> +			compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
-This is in contradiction to bindings, so you need to fix bindings first
-- with proper justification. If this happened in separate patchset, then
-the DTS thread MUST provide lore link to that.
+> Just use a specific compatible for the actual hardware this is being
+> added for. I don't understand why this is different than all other work
+> upstream.
 
-Best regards,
-Krzysztof
+There are very close examples in upstream, for instance that's a generic
+value from Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml:
+
+properties:
+   compatible:
+     enum:
+       - qcom,dsi-phy-10nm
+       - qcom,dsi-phy-10nm-8998
+
+To save time reviewing the next version of the same change, will you
+accept a list of acceptable compatible properties like this one?
+
+properties:
+   compatible:
+     enum:
+       - qcom,csiphy
+       - qcom,sm8250-csiphy
+
+--
+Best wishes,
+Vladimir
 
