@@ -1,194 +1,234 @@
-Return-Path: <devicetree+bounces-185409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759F4AD78BA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 19:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D3AAD78D5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 19:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3700F161A4D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:13:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52C563A0ED1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845C929B783;
-	Thu, 12 Jun 2025 17:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C9B202981;
+	Thu, 12 Jun 2025 17:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b3zu8YcO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r3cj0ZP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F0D29B77B
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 17:13:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855E72F431F;
+	Thu, 12 Jun 2025 17:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749748429; cv=none; b=LaScayG7otLhNElgJRrBI5xlr/+d8KAjcr/0Uan+AUmjSnWPHwH2rtZUkm4zHgCpkcENefGNoWZ1S5SyvfHnbgtCFm4WoQyOzZ0q8cKRXhYOlYq+39gv5F+7zFME+l1S1AZO/f5xS2+nQ1mqjewXfOrY9Vd4AHci/tbrPyfpH2c=
+	t=1749748777; cv=none; b=tZQA+r8GcqDJU0T1+Q1Hb9req5RMsdpb9o9tbkvoYt6Vz73fG2KEs4UKJafteKVET5pqtgCE7YU2AlQRe1f+3/pv6VV49Y/IQYPWrODjunni5SQKkDmpGWpu7ep4VOkca4H27CjRrrFX1wsTjsDMAe2gNSw8Q3fo1NzM62Bi3ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749748429; c=relaxed/simple;
-	bh=cj8Jh9DqsJ5fqw/H1m8bixhL9/G9a1WDO8UzNyUCzRk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PqdJFlAFTWb4trfVlDFfBvyPeapP2gfN3++JIuw9pF/8Natb2tINK/dp9MqemoHv3mLxWS9RtTfYAvQunqal7YsEQdrZPYRtTa8z+CZPA8yfNKgnZkJ42NSeUZ775hq3vSyMSEBJnPxFegpVf8wD6WIg2vL0GdJ+uLaftIDCy6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b3zu8YcO; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-553645133f0so57796e87.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 10:13:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749748425; x=1750353225; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=miLQfxMr/GSEoS4YeSmomgD6V8a4V0XPRVLmZRphmCc=;
-        b=b3zu8YcOX1pATQGEan53bXPr7FqingaIheb6XZpjDXqqVb1E+H/P3SKU3KNJTayRfp
-         ddahX+zG9fMwpdyKZfWWE8pWbm4qJ/HRBSVQd8tu6dQAouUU/F5AQvaBoVcFZubT5FlK
-         3CiU6T15AWgDYUsdYZo6Z/jE9FW6+MgtXejgWiCjB6+tEAq150qLH0lkWKh/NEFpyPo+
-         QxT5f20uQNIUXghezBigdJ54hVaRZaPPTei2YGkwr75lIt5DV3pXKLOnrHp0v4YcD4lB
-         fo4jf3oZ1gxpdZdfQwkTsSbypQrKbl5egKVFIaABmgb2VH/T8qVjCikMYPEULfqzTTH1
-         +sfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749748425; x=1750353225;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=miLQfxMr/GSEoS4YeSmomgD6V8a4V0XPRVLmZRphmCc=;
-        b=T2WfHbcod4ANFFFCM/wAa5bpxwDXEBjl3mc/yffsLnPsI7sLlTVicByqaWOTSuhiOO
-         +fi3n5d0FeZioSr7zYc/mCgWQ86x48qpTbLeHPpYUIsXogptdI3vVbJBzVfQLsvxk+/T
-         BLPypyUXJICjls1yuBfnTBycE/hN6cpm9xqSiwszG6r3PzV8iIjazIkb30r5BltBqaOB
-         rYyzUyZYO+F58v4cvAZQBoLqkduozncxb7YyqCDKJQE+R6WpP9tOXzlynPBKYFN44173
-         mlYeOgqTSnpndqxcfrc0HC/gXLcwjkcvDgZyzpOJb42rAMMePkFUhudqd90ET2Yn5Hqx
-         lbEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNGlJYnjKk+/33KQU10UxTcaGTdNreLtJCiLsk9LpwjCjmJXEPcrPrnVZxIZTfQ9OR5YNNY6zZj46z@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNLvl3aVNE0nxYhdgMCFTx2GJsCt5F5oyTXew/1Aa9FwT9pvxd
-	JoIvXxtrMEycTxbW4VDtSjbQJfylYohCCAR3pHap8m08OPjdQf5z0+AMsafYw6rt8N8=
-X-Gm-Gg: ASbGncubG+zMIKOGOpf+1m7tuHCvTvUW6x9kiZPz1Qxf57ZiASRO8elhwbY0ucM+J+2
-	Rh4EQXzUgS0rbZ1tQnR5JySyG/CM2bRIEIONYInqxeVbEFblLPejJwgiL4oSYgxRGGctQoQO4uG
-	Po3Zi1oQHsFX9/DCRG/MofQM07dlsKoUpTJwYlnz7i/4LYjJH2mfLr8Iwo6GOajsbmB4gc4sOpm
-	PnuFZO4tPC5iugVLKpyNy0M3y+Ce9K8LaCykFGS9WZTXgtQ4x8MucKXj9VNYBv3p7AbsgqKDRyO
-	WtTLka9WQm9nUxN5yncjES9oSV2OxjfbGC4+mJr/TUW0GzVz9IvWn3q0K41wehgdd3Ux9fTQD6t
-	Le4fTruEWdd7ZfhYNMOgO+JWuegJSJKOH+b361rCQ3gydL9xG6ok=
-X-Google-Smtp-Source: AGHT+IHaNuD9NsHG1tZmuJd4mwG3PJ8P6NuLLrOdaveasm0jgsZFK6boCKQqEsoa6Ja0AXmOOZRjaw==
-X-Received: by 2002:ac2:485b:0:b0:553:ad1b:374d with SMTP id 2adb3069b0e04-553ad1b3963mr171377e87.5.1749748425510;
-        Thu, 12 Jun 2025 10:13:45 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553ac1c1d1csm167821e87.160.2025.06.12.10.13.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jun 2025 10:13:45 -0700 (PDT)
-Message-ID: <e9afdd0f-7842-4780-9044-d5afa6a09d7f@linaro.org>
-Date: Thu, 12 Jun 2025 20:13:44 +0300
+	s=arc-20240116; t=1749748777; c=relaxed/simple;
+	bh=KAMMKqVzdsVuZnPOPaGfiqiMehOKnAmXFo814aZimys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WBq1VhZUWm6Bo8e88JyYSaWEjrAu/nQ4fn8GOaOkYBg6O8HqJKDJQBEaRap8ucUTaGRZY2ZT84hKvyohXt8JzszkpMComrL82yiDUK7jR/tKTeEYmTA9IkBDPq/C3NyDRFEUjwDqCEl9h72tbn+e2FgeyDdHoTz0g6pssvHWlpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r3cj0ZP3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1693AC4CEEA;
+	Thu, 12 Jun 2025 17:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749748774;
+	bh=KAMMKqVzdsVuZnPOPaGfiqiMehOKnAmXFo814aZimys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r3cj0ZP3QdZuDv5oZ43tHa4gOcrJFLLmFd1jglvQZtbp6q9AhBXLZbDz98A5oNpd8
+	 9J1zryk3EmAXlb04ta1Gio1chgeG5g9qC00y/16DgfEng7+PI/nJPhpyT+N7y4e9oT
+	 J1zuESkffa0raNlfO4zVr8sKEpQvZUsomcE/LT1oe6AC1jSdaWg8e+a/H4ksDpghkM
+	 GA1d7R30+fL0zw+rtB1Bxr1FUyAfVfcsRJJ7vg1LdDL4D7jH3UdQGO3a5scUV0h6ib
+	 Zk5bnWbzAdZOF3m+sGr6qAvAa6ViAw4dQ7B3B0S1FzgQWnwvQ6BF35t/xosVV/nOoD
+	 wplhGqANytO2A==
+Date: Thu, 12 Jun 2025 22:49:25 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Sai Krishna Musham <sai.krishna.musham@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	cassel@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, michal.simek@amd.com, bharat.kumar.gogada@amd.com, 
+	thippeswamy.havalige@amd.com
+Subject: Re: [RESEND PATCH v7 2/2] PCI: xilinx-cpm: Add support for PCIe RP
+ PERST# signal
+Message-ID: <mwv2twlpknjecqf2ck2t3vcainvcitikblvylpd73mtzlhklfq@odmoplmctgy5>
+References: <20250414032304.862779-1-sai.krishna.musham@amd.com>
+ <20250414032304.862779-3-sai.krishna.musham@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/10] dt-bindings: media: qcom: Add Qualcomm MIPI
- C-/D-PHY schema for CSIPHY IPs
-Content-Language: ru-RU
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
- <20250612011531.2923701-9-vladimir.zapolskiy@linaro.org>
- <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250414032304.862779-3-sai.krishna.musham@amd.com>
 
-On 6/12/25 10:38, Krzysztof Kozlowski wrote:
-> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
->> Add dt-binding schema for Qualcomm CAMSS CSIPHY IP, which provides
->> MIPI C-PHY/D-PHY interfaces on Qualcomm SoCs.
->>
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
-
-<snip>
-
->> +
->> +  clocks:
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    items:
->> +      - const: csiphy
->> +      - const: csiphy_timer
+On Mon, Apr 14, 2025 at 08:53:04AM +0530, Sai Krishna Musham wrote:
+> Add support for handling the PCIe Root Port (RP) PERST# signal using
+> the GPIO framework, along with the PCIe IP reset. This reset is
+> managed by the driver and occurs after the Initial Power Up sequence
+> (PCIe CEM r6.0, 2.2.1) is handled in hardware before the driver's probe
+> function is called.
 > 
-> Drop csiphy from both, redundant. And this points to the first clock
-> name not having any useful name. Name equal to device name is not useful.
+> This reset mechanism is particularly useful in warm reset scenarios,
+> where the power rails remain stable and only PERST# signal is toggled
+> through the driver. Applying both the PCIe IP reset and the PERST#
+> improves the reliability of the reset process by ensuring that both
+> the Root Port controller and the Endpoint are reset synchronously
+> and avoid lane errors.
 > 
-
-I got the rationale, but I have no idea how to correct it, since it's
-literally the case, the first clock name on the list in 'csiphy'.
-
-What could be an alternative name then?..
-
->> +
->> +    patternProperties:
->> +      "^endpoint@[0-1]$":
->> +        $ref: /schemas/media/video-interfaces.yaml#
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          data-lanes:
->> +            minItems: 1
->> +            maxItems: 4
->> +
->> +          bus-type:
->> +            enum:
->> +              - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
->> +              - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
->> +
->> +        required:
->> +          - data-lanes
->> +
->> +    oneOf:
->> +      - required:
->> +          - endpoint
+> Adapt the implementation to use the GPIO framework for reset signal
+> handling and make this reset handling optional, along with the
+> `cpm_crx` property, to maintain backward compatibility with existing
+> device tree binaries (DTBs).
 > 
-> Your schema does not allow this.
+> Additionally, clear Firewall after the link reset for CPM5NC to allow
+> further PCIe transactions.
 > 
-
-That's the catched defect, thank you.
-
->> +      - required:
->> +          - endpoint@0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - interrupts
->> +  - "#phy-cells"
+> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> ---
+> Changes for v7:
+> - Use platform_get_resource_byname() to make cpm_crx and cpm5nc_fw_attr
+>   optional
+> - Use 100us delay T_PERST as per PCIe spec before PERST# deassert.
 > 
-> port is not required? I expect it to be - how this can work without
-> wiring to the sensor?
-
-'port' is required here, you catched the defect.
-
-> You also miss to update the schema using it as a child - camss or
-> whatever is there.
+> Changes for v6:
+> - Correct version check condition of CPM5NC_HOST.
 > 
+> Changes for v5:
+> - Handle probe defer for reset_gpio.
+> - Resolve ABI break.
+> 
+> Changes for v4:
+> - Add PCIe PERST# support for CPM5NC.
+> - Add PCIe IP reset along with PERST# to avoid Link Training Errors.
+> - Remove PCIE_T_PVPERL_MS define and PCIE_T_RRS_READY_MS after
+>   PERST# deassert.
+> - Move PCIe PERST# assert and deassert logic to
+>   xilinx_cpm_pcie_init_port() before cpm_pcie_link_up(), since
+>   Interrupts enable and PCIe RP bridge enable should be done after
+>   Link up.
+> - Update commit message.
+> 
+> Changes for v3:
+> - Use PCIE_T_PVPERL_MS define.
+> 
+> Changes for v2:
+> - Make the request GPIO optional.
+> - Correct the reset sequence as per PERST#
+> - Update commit message
+> ---
+>  drivers/pci/controller/pcie-xilinx-cpm.c | 97 +++++++++++++++++++++++-
+>  1 file changed, 94 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
+> index 13ca493d22bd..c46642417d52 100644
+> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
+> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
+> @@ -6,6 +6,8 @@
+>   */
+>  
+>  #include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/irq.h>
+>  #include <linux/irqchip.h>
+> @@ -21,6 +23,13 @@
+>  #include "pcie-xilinx-common.h"
+>  
+>  /* Register definitions */
+> +#define XILINX_CPM_PCIE0_RST		0x00000308
+> +#define XILINX_CPM5_PCIE0_RST		0x00000318
+> +#define XILINX_CPM5_PCIE1_RST		0x0000031C
+> +#define XILINX_CPM5NC_PCIE0_RST		0x00000324
+> +
+> +#define XILINX_CPM5NC_PCIE0_FRWALL	0x00000140
+> +
+>  #define XILINX_CPM_PCIE_REG_IDR		0x00000E10
+>  #define XILINX_CPM_PCIE_REG_IMR		0x00000E14
+>  #define XILINX_CPM_PCIE_REG_PSCR	0x00000E1C
+> @@ -93,12 +102,16 @@ enum xilinx_cpm_version {
+>   * @ir_status: Offset for the error interrupt status register
+>   * @ir_enable: Offset for the CPM5 local error interrupt enable register
+>   * @ir_misc_value: A bitmask for the miscellaneous interrupt status
+> + * @cpm_pcie_rst: Offset for the PCIe IP reset
+> + * @cpm5nc_fw_rst: Offset for the CPM5NC Firewall
+>   */
+>  struct xilinx_cpm_variant {
+>  	enum xilinx_cpm_version version;
+>  	u32 ir_status;
+>  	u32 ir_enable;
+>  	u32 ir_misc_value;
+> +	u32 cpm_pcie_rst;
+> +	u32 cpm5nc_fw_rst;
+>  };
+>  
+>  /**
+> @@ -106,6 +119,8 @@ struct xilinx_cpm_variant {
+>   * @dev: Device pointer
+>   * @reg_base: Bridge Register Base
+>   * @cpm_base: CPM System Level Control and Status Register(SLCR) Base
+> + * @crx_base: CPM Clock and Reset Control Registers Base
+> + * @cpm5nc_fw_base: CPM5NC Firewall Attribute Base
+>   * @intx_domain: Legacy IRQ domain pointer
+>   * @cpm_domain: CPM IRQ domain pointer
+>   * @cfg: Holds mappings of config space window
+> @@ -118,6 +133,8 @@ struct xilinx_cpm_pcie {
+>  	struct device			*dev;
+>  	void __iomem			*reg_base;
+>  	void __iomem			*cpm_base;
+> +	void __iomem			*crx_base;
+> +	void __iomem			*cpm5nc_fw_base;
+>  	struct irq_domain		*intx_domain;
+>  	struct irq_domain		*cpm_domain;
+>  	struct pci_config_window	*cfg;
+> @@ -475,12 +492,57 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pcie *port)
+>   * xilinx_cpm_pcie_init_port - Initialize hardware
+>   * @port: PCIe port information
+>   */
+> -static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
+> +static int xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
+>  {
+>  	const struct xilinx_cpm_variant *variant = port->variant;
+> +	struct device *dev = port->dev;
+> +	struct gpio_desc *reset_gpio;
+> +	bool do_reset = false;
+> +
+> +	if (port->crx_base && (variant->version < CPM5NC_HOST ||
+> +			       (variant->version == CPM5NC_HOST &&
+> +				port->cpm5nc_fw_base))) {
+> +		/* Request the GPIO for PCIe reset signal and assert */
+> +		reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +		if (IS_ERR(reset_gpio))
+> +			return dev_err_probe(dev, PTR_ERR(reset_gpio),
+> +					     "Failed to request reset GPIO\n");
+> +		if (reset_gpio)
+> +			do_reset = true;
+> +	}
+> +
+> +	if (do_reset) {
+> +		/* Assert the PCIe IP reset */
+> +		writel_relaxed(0x1, port->crx_base + variant->cpm_pcie_rst);
+> +
+> +		/*
+> +		 * "PERST# active time", as per Table 2-10: Power Sequencing
+> +		 * and Reset Signal Timings of the PCIe Electromechanical
+> +		 * Specification, Revision 6.0, symbol "T_PERST".
+> +		 */
+> +		udelay(100);
+> +
 
-Agreed, some or even any currently present in the upstream CAMSS
-schemas should be updated to account a new possible child device
-node.
+Are you sure that you need T_PERST here and not T_PVPERL? T_PERST is only valid
+while resuming from D3Cold i.e., after power up, while T_PVPERL is valid during
+the power up, which is usually the case when a controller driver probes. Is your
+driver relying on power being enabled by the bootloader and the driver just
+toggling PERST# to perform conventional reset of the endpoint?
 
-The pointed by you problem of MMIO/non-MMIO mix of children on CAMSS
-side is still outstanding, apparently the usage of 'ports' or 'phys'
-should be mutually exclusive.
+- Mani
 
-Thank you so much for review!
-
---
-Best wishes,
-Vladimir
+-- 
+மணிவண்ணன் சதாசிவம்
 
