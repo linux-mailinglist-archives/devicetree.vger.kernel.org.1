@@ -1,132 +1,121 @@
-Return-Path: <devicetree+bounces-185152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4205AD698D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:52:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82429AD699A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:53:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F9AD1BC3377
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:52:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 619D53AC11D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D1C21B18B;
-	Thu, 12 Jun 2025 07:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907F121CA1F;
+	Thu, 12 Jun 2025 07:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L65AzWga"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="RLCBQkHZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306091F3D56;
-	Thu, 12 Jun 2025 07:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A2820FA86
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 07:52:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749714692; cv=none; b=sr0lTMSJ4hm3CabDooft+k7lkddiApvXsdA23T5rWWCwdR6UVrFsKM9TSQ3tptF7HyN08wzwICWD+gegtZS+37WfZVV5ymvVpxo/alBr88tooGHnX2cWgyF2z8MQKPkm6O/DmsOlupdAQBQY0Yi5lfhMMjFxyYE/Ucxk+EhAuA0=
+	t=1749714773; cv=none; b=KS+qrWkyLErEHt87WFup2Po5fYs9ZzdiVFnRspaCiERoRFuiXk0pajw2Zzg1NIAsgrPXuzx3Nsr9j8VKIDq459htr9QOV5SS26oO0wu+32WKxtnepbig7fhfTZ6D9zf4Mb+HkeRknsNwNq3MiDaYcudrPQ3oZEhZKRdM9O9WUSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749714692; c=relaxed/simple;
-	bh=V0+ki51DVrkVbXtl6/gYN/Gkb9exxrbXA3cRDGVVahQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=r77u1iTtFLilndgapVCZyh20+2Uv58nzvyGT9C998/nzF/lpezSsMDS7si7zmCMNOxnHLkspU7Q02MQ4LkjKs+sdaL6AsdtGhnfS7to2KGWVsfQxlAV417ZPt1GgnhPlxzpXMaKf01u4L/nFXVE+M716lqa11LxgPs02Hmh6/iU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L65AzWga; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-311d27eb8bdso539150a91.0;
-        Thu, 12 Jun 2025 00:51:30 -0700 (PDT)
+	s=arc-20240116; t=1749714773; c=relaxed/simple;
+	bh=yvHjrzaORTg7HRp2cirzIboSTrREVTHWqhVe9uNJ0K8=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=FP+LA2GHVogDJvlpFpqPzYMcEvWkoa2prdZjBTwvkjbzdS0FxAzI2QLaEM3h+jHe6PpToyiEHs2xKSjCkiliYoltdmlNTxd7NnPNjyabGyM2lQ/Zy+BKOYbMifHQvcvEhq15Ofw8E4027Q9ByP9j7lWhf0naZ/36c9PFXpzrBmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=RLCBQkHZ; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23649faf69fso6268915ad.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 00:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749714690; x=1750319490; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=swocyyVkC1m0yK3KFc05VY0vapacmuONNBylQbQbwQM=;
-        b=L65AzWgabpjTV+100djmIvN13tgB5pugl6qzet2H+/bk1W9ZppXXD6LOhRdh7zI8KF
-         ULDrEkzEModcLODstZJ2aGlHVXSciqgANeogj+ltRiVed0c/WInU1FBCG1Bx6yitFupm
-         HnBZAy5N6YyCkTR65BZERZQZq6ZyiPEaGGFZLoPntGlT/f6Zy0Mg06chN4gmk2qzo86k
-         zOtYh/WVUSYoJNFTtEZxE2EVSKxs2JxWsTfVj9ot3zQak0yZOUkAU9dLvVNYvYk+vzf9
-         cMsf4XtOn6h+B9VxB1llE8EPihrTUGP40aFGXB52XXGo+i61E9YJ2AEhnTCZwZleyl2Y
-         HE2g==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1749714771; x=1750319571; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language:subject
+         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pazdt4UO8fSmAZ8X2Dzo6ZIiUJV5NstAi6JvpdaZT9Y=;
+        b=RLCBQkHZ8jP6HvGGhegFGnGD6by24ZM1+EnYt0SuYuHMCkZI3EuB1sMwcNgdaot22V
+         Hbz5sqFg44fuByeyE92k8gzzVa72IUP91Jr00FCK9B4Oi024nkPtvDeMuqRY5cH3P60E
+         q5eNouixjCDEvRUwGOIEvPy5dHPi8NpUM5ZTn3OEOXYb3INJeDyxOFx++LBWijhazTQ0
+         eo9lXLzU8bFfTEwgu4EDXTEex7/US3L2dk/Yc1JD4F9Zq9Z5XcKPG1ycSWpEkDR4RWx6
+         awFXekjauMl6Trhe3TGNEwOY7nDS9BtM0NNw8tnOayuQk1L2nd38CFcpS6zsk4iBFr7D
+         7y/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749714690; x=1750319490;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=swocyyVkC1m0yK3KFc05VY0vapacmuONNBylQbQbwQM=;
-        b=WCd3kEC93RhaXiRhviMcZ0dFR2VOeT5+7cb3uB4y1eo9nvWySkaWf5oNQGavhbStpL
-         tOV7BCwvCDHgnE45Gz5DWoglJzeSAKyeT3sD+PwWZFeTbsBcOVqp6Xbz93ZP6NKXbaSB
-         a9M7zd0CCd5MGmrmX2uDuFI8fnyPA5BPhOXPclivluqwIIVUZOEesos7Ncl+vyeB1GRc
-         ciy5wDIwwDNMScJYnKFv3+3Wq7W38CDK4pmj1sdkqzqbFRnvaeGnETSwNULva14e897E
-         0U3w5aPK92n1gtCT3VOLquoS63BQDbNn7X1rPeDDsVjeRNzfTpGf0XcepEDz3P7bwj6y
-         /DFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWEkAq348D9UzD9tE8Jy1TbXlDl/XLVzthTvWTi9vE8L3bA0kqe4oqb2dBXA3dcyjyMF7giBdRELdXwt4E=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyvx4TUYBrXBPGzabeRu9XOjGXSTKiL0rP9VZkzani7GxDvK6Nw
-	cok1L5T0AfjWbNw5Ybzpat/ZjVBUYYu6Vtl2TQ0uIJg33kigbWW9N9zZTu227MB4/F0=
-X-Gm-Gg: ASbGncvNjC+0Z74VfvXBgac77GomCcvkPkqRla8Pt8+CCqhTSu31NCCXpYAwJMBl/o3
-	jhcdQ4W7ot6TrSDDMfU1SYuK1QMHzBIDFgAt6jYfBhSDkubIfWm7dfEhHkHqfqr67yU+fXK2zHI
-	z/d5fyzflAbrH1IrIYHLabtGILFXPY9BxwYxuLe87EBaRkEUTFS6p7C1tfHs+/ZlrQC9V3P6N43
-	ENzZ3L0jcreC/fOTMlEemtEgR1nTOcuQE/W28UpmI5U06trxD8PcbFgQ2riuCST3x9sHe0S1ejQ
-	q8oJzT6dgG3e8/jYqsIXfhEK1MPy1cfE+/KWc553h92ubit7JaZZUxI8BbcDOtZEeEzHQdwLwHV
-	i4k1gcxO3h1leZZy+ITWpmBY=
-X-Google-Smtp-Source: AGHT+IGjalZHIM8I5uIyPD4PFNJrTr3b+7NZ2QJSRfZ+xrOON4O5ngplWUEXGHHBCAbhjmak68v2CA==
-X-Received: by 2002:a17:90b:4986:b0:312:e618:bd53 with SMTP id 98e67ed59e1d1-313af1e44a0mr7908723a91.26.1749714690389;
-        Thu, 12 Jun 2025 00:51:30 -0700 (PDT)
-Received: from ankitchauhan-Legion-5-15ITH6.. ([2405:201:4042:d128:1895:113a:65dd:3ae0])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-313c1c4e3b9sm915761a91.29.2025.06.12.00.51.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jun 2025 00:51:30 -0700 (PDT)
-From: Ankit Chauhan <ankitchauhan2065@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joel@jms.id.au,
-	andrew@codeconstruct.com.au
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	Ankit Chauhan <ankitchauhan2065@gmail.com>
-Subject: [PATCH v2] ARM: dts: aspeed: lanyang: Fix 'lable' typo in LED nodes
-Date: Thu, 12 Jun 2025 13:20:57 +0530
-Message-Id: <20250612075057.80433-1-ankitchauhan2065@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1749714771; x=1750319571;
+        h=content-transfer-encoding:in-reply-to:from:content-language:subject
+         :references:cc:to:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pazdt4UO8fSmAZ8X2Dzo6ZIiUJV5NstAi6JvpdaZT9Y=;
+        b=S9GGsdkLwyORm669YiT+CXJvfGFYvwIgnaTWzxxZfAR0IqYejNlJmK/YjmBz2TOV6F
+         udV8b48st2YgqyRf3Bp24JCJ7QaM/EhHuiIHq8imybjwrE8/FQbvycG6y7xHWEdM20Lx
+         7b5oqdTXyuY+moxbLbpNTEzKcFRdxQ4ASHmhIcgmLFvmogchFdqfG9Hp+aGOVEHj5wZ3
+         G9WYjU27BV4bQ1QROTjeEtOOBWs/FN3zteptnO7vLmaQqq7dICgBPOzhEzNgJhIgwCjN
+         6MT6ctdBNYNNG4hlbYDuTpY98tJFzF5kA0hWcMZ4PbewQp9y/InLC/prCXWrhfPEyrU3
+         oAxg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKNfi2qj3z8Q0zH4WjnPrAzJR/6IK3h3kEgHxocgs2QHefLpAwGsLGmdAfo/l9m+eBBU04Uo6iQ3e0@vger.kernel.org
+X-Gm-Message-State: AOJu0YztYo3rFCxSNW2YE13LpSzXTSTfIDEsvFZeFjuBvRtrR7r/C/c2
+	y4/7z2aRC147eUOkQVT84tgNccIUjg0K+dTGUMLLRfQ8uJvLtklhejA3HB4GpXMVHw==
+X-Gm-Gg: ASbGnctricTng7K6Io7bwgnexeFAPvnYvE4IcrXJ4uHFszPOqcW091Nm8kQzgJ/+Ime
+	kVv10HmuzFmJW8sKpns/8DKGSF1H8tZyYnHaKnZ7pXAMx1Yf21fefr8yFq5hIkNIeNV4+fGy5ot
+	zldtavxUobKS8jYWE0iMP9PDJbA3DK0bcNB50YcegJex9ZRF69s0wQsdLiwGPCgJehHfDHcUKhG
+	hwHRjFhyqHSSWWtnecktifYpjnevl7MnqhWfHWBeDqzouVSFkDLxaAUXVElGaeHZdIcXNlFMcxz
+	/UFVIWgXiBma1fFE9k9kKt4SNjN/UTNtfkTnxafmOe/ToXi1pfdcYN3klooHA06WrS2bO36oK97
+	YmOD6rfrfmhJDEVzLQRJcvcBFQW3N8QK/TRTv
+X-Google-Smtp-Source: AGHT+IH+iM21neRDkS3iLHmw85CSGogpx1dZt1CBDEgP7B9uVu0yQx7SMX5oOR3fyeuigU6VN7u09A==
+X-Received: by 2002:a17:902:d552:b0:234:b41e:37a4 with SMTP id d9443c01a7336-2364d62da2emr25581555ad.6.1749714771066;
+        Thu, 12 Jun 2025 00:52:51 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c80:1e2f:fba8:7ac:6a76:1eca? ([2401:4900:1c80:1e2f:fba8:7ac:6a76:1eca])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2364e719958sm7780205ad.226.2025.06.12.00.52.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 00:52:50 -0700 (PDT)
+Message-ID: <525877c8-6c64-45b3-b4aa-a52768e59b86@beagleboard.org>
+Date: Thu, 12 Jun 2025 13:22:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: herve.codina@bootlin.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ luca.ceresoli@bootlin.com, robh@kernel.org, thomas.petazzoni@bootlin.com,
+ wsa+renesas@sang-engineering.com
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+Subject: Re: [RFC PATCH 0/3] i2c: Introduce i2c bus extensions
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <20250205173918.600037-1-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Fix an obvious spelling error in the DTS file for the Lanyang BMC
-("lable" → "label"). This was reported by bugzilla a few years ago
-but never got fixed.
+I have tested this patch series for use with pocketbeagle 2 connector 
+driver [0]. To get a better idea how it looks in real devicetree, see 
+the base tree [1] and the overlay [2]. Since it also used gpio and pwm 
+nexus nodes, along with providing pinmux for pins, it can provide a 
+better picture of how the different pieces (export-symbols, nexus nodes, 
+etc) look when combined.
 
-Reported-by: Jens Schleusener <Jens.Schleusener@fossies.org>
-Closes: https://bugzilla.kernel.org/show_bug.cgi?id=205891
-Signed-off-by: Ankit Chauhan <ankitchauhan2065@gmail.com>
----
-V1 -> V2: Changed the subject prefix and addressed review comments from Andrew Jeffery
- arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
-index 370738572a55..8b9d382241ff 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
-@@ -52,12 +52,12 @@ hdd_fault {
- 			gpios = <&gpio ASPEED_GPIO(B, 3) GPIO_ACTIVE_HIGH>;
- 		};
- 		bmc_err {
--			lable = "BMC_fault";
-+			label = "BMC_fault";
- 			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_HIGH>;
- 		};
- 
- 		sys_err {
--			lable = "Sys_fault";
-+			label = "Sys_fault";
- 			gpios = <&gpio ASPEED_GPIO(H, 7) GPIO_ACTIVE_HIGH>;
- 		};
- 	};
--- 
-2.34.1
+I also have a question for Herve. Do you already have any working 
+patches for similar extension for SPI and UART in some private tree?
+
+
+[0]: https://github.com/Ayush1325/linux/tree/beagle-cape-v1
+
+[1]: 
+https://github.com/Ayush1325/BeagleBoard-DeviceTrees/commit/bf9d981ebf5f1a5704df1e7deba2188c70eb5d6f
+
+[2]: 
+https://github.com/Ayush1325/linux/commit/4ebc8467c98b5df3c30935e1d3736f9a64c1b08d
+
+
+Tested-by: Ayush Singh <ayush@beagleboard.org>
 
 
