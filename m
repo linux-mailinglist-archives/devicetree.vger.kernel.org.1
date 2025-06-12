@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991C2AD6EB0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:12:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7061AD6EE9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BEEA3A347E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:12:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFBC2174DDD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1176C239E99;
-	Thu, 12 Jun 2025 11:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8625E23A99F;
+	Thu, 12 Jun 2025 11:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sfl/OKEK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItpMEVj9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BF4238C09;
-	Thu, 12 Jun 2025 11:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EEC229B38;
+	Thu, 12 Jun 2025 11:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749726746; cv=none; b=ptaRijWE82GW3R0donyTYHzpv0clpbyN5KejegQ/0/B4TGwXCzwQHls1cG7jpKPIErogo8Komyehye2E+0wKaQ87QtgkgvPLDxQiJCn9x9sr6e9vQ58z5nT5T1MXrRcG6yc6LO8348eC78uPq8LdESZy/2wT0/unC2o589EUqxE=
+	t=1749727329; cv=none; b=XQwdMHQ29UQN7KBNowHyoZx+gQvbhCmF0ULbIgOgGIqH2blbH8QW9F+DICBH1Vu1+2gS0Jge2eCf8RHY0ST7GTPvcggXN9bMcWQsvdvMMTobzuif18GaMuD6xxODFKHmChG5tg6ZPuzH2bOAnY1w7jFSYXlGQIW72Fvdj67pacI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749726746; c=relaxed/simple;
-	bh=maYvKYeEHIz96Kc4cKa/zbCx3Wu7VTI5c9HNXVJ1yus=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BHjYh076fPrvq0oBdboalCDY+yf/yvbgKMduRdnc5v5UnKaejzglaF0TM4vrjIkkuKqIDl3GBCDSGMhb0YebutUjEIVUlAjRvt7jRuUBN+CN3DaFUA2FImQFvBB9FCjAE8vz6rU4RtnjECwX9r0ptIF5XXCUMyGMEMMiFUSU08E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sfl/OKEK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA8AEC4CEEA;
-	Thu, 12 Jun 2025 11:12:21 +0000 (UTC)
+	s=arc-20240116; t=1749727329; c=relaxed/simple;
+	bh=ZrR2KM4gwZRxXaEmhqgPIVUwOUQUXvfbHNIbxlOunlM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PV+q1nWmABn6YCB92/FF7B9bPuMCtk72t/Fy7lrgZkSAfmN4rXq2IFD1NustAKqfjkpmXOTVr+l+JlCrJbxBA2BqI/s7RjdvCBUWM58aEgRkZ4O4PGqASrTzg5KgMAFTPfcEe6GQerFbSdQ/SfFVIxtMEI8c838jt9hqO9AlSes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItpMEVj9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E596C4CEEA;
+	Thu, 12 Jun 2025 11:22:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749726745;
-	bh=maYvKYeEHIz96Kc4cKa/zbCx3Wu7VTI5c9HNXVJ1yus=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=sfl/OKEKZKQ7xeIUy1EWZkcw7wbPbkLMWlw15Q5Hkb1bFZZqCbvSD3+UgxfFUNO1D
-	 OpQLdaP6DL5VpMiTi96yVsEP4OPjKihhAjmq1qkERV7CCrhRqtMlSJq++mQAOB1M5T
-	 AMMpymbXosrh0+6wwpscA2RDH3j/SQbhYUOfd0RAqgyKhHJlxcpRxy77ZaT2kwC+Jc
-	 6tO6802VpCOfnNZs7RPw7qzV7MaSaLkXjrw1d71TPpZTGvtHSqXFUv7qTloIQxQYBp
-	 lbOwdTEucnSV6g1xuxDoOBwzML/HA4rs0e9UljmeQ/3pzBcOka6a2qqDExSzY0H+gN
-	 az3iVb+P49z0Q==
-Message-ID: <94d9a2ac-e4cb-4126-b4a5-7f634606d787@kernel.org>
-Date: Thu, 12 Jun 2025 13:12:20 +0200
+	s=k20201202; t=1749727328;
+	bh=ZrR2KM4gwZRxXaEmhqgPIVUwOUQUXvfbHNIbxlOunlM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ItpMEVj9ZO16lsggp41FCAlqAJiY68krw0sMbN59JeUxjVv6j0Ic95HbvDd/fOOsq
+	 6X6dAtgboIVeGp6D8XV5M9xSuoZOIx/fUrpx+SjD8TC/3Qs+E4Bq0bXihiBu+4Zh6j
+	 fmBmWtuwCUmYcYAO0WpnhRuakhyU53ILx8L9O1P1HU4TYh8IAlLjKltNeBt0dwUFtr
+	 vOaWsy+baqWWfeBoEhTVERmy6apkxphZHHxKcaD07aTVaE2OrDKpupgRu2n0UvcFNT
+	 Ep7rgAdnJ9OrmX8GMx5dxJWNvEhY0s6sMlk+JEYWEXsBY7QYW0318s3duI3k55H9rv
+	 C7KARXPvxSR6w==
+Message-ID: <e2ffca36-d2ed-4253-86a6-a990e7931ba0@kernel.org>
+Date: Thu, 12 Jun 2025 13:22:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Add support for camss
+Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
+ property for MT7688
+To: Ezra Buehler <ezra@easyb.ch>, linux-mips@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Harvey Hunt <harveyhuntnexus@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Reto Schneider <reto.schneider@husqvarnagroup.com>,
+ Rob Herring <robh@kernel.org>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>, Stefan Roese
+ <sr@denx.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ devicetree@vger.kernel.org, Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+References: <20250611194716.302126-1-ezra@easyb.ch>
+ <20250611194716.302126-2-ezra@easyb.ch>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wenmeng Liu <quic_wenmliu@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, todor.too@gmail.com, rfoss@kernel.org,
- bryan.odonoghue@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- Depeng Shao <quic_depengs@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20250612-sm8550-camss-v2-1-ed370124075e@quicinc.com>
- <a86a0d45-8da1-475f-aeb8-37faa58b9849@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -109,31 +108,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a86a0d45-8da1-475f-aeb8-37faa58b9849@kernel.org>
+In-Reply-To: <20250611194716.302126-2-ezra@easyb.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2025 13:11, Krzysztof Kozlowski wrote:
-> On 12/06/2025 10:01, Wenmeng Liu wrote:
->> Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
->> includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
->>
->> SM8550 provides
->> - 3 x VFE, 3 RDI per VFE
->> - 2 x VFE Lite, 4 RDI per VFE
->> - 3 x CSID
->> - 2 x CSID Lite
->> - 8 x CSI PHY
->>
->> Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
->> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On 11/06/2025 21:47, Ezra Buehler wrote:
+> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 > 
+> Otherwise, the MT7688-based GARDENA smart Gateway will fail to boot
+> printing "Kernel panic - not syncing: unable to get CPU clock, err=-2".
 > 
-> Where did this happen? Please point specific email.
+> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+> ---
+>  arch/mips/boot/dts/ralink/mt7628a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+> index 0212700c4fb4..10221a41f02a 100644
+> --- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
+> +++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+> @@ -33,7 +33,7 @@ palmbus@10000000 {
+>  		#size-cells = <1>;
+>  
+>  		sysc: syscon@0 {
+> -			compatible = "ralink,mt7628-sysc", "syscon";
+> +			compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+This is in contradiction to bindings, so you need to fix bindings first
+- with proper justification. If this happened in separate patchset, then
+the DTS thread MUST provide lore link to that.
 
-OK, I found, never mind.
 Best regards,
 Krzysztof
 
