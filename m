@@ -1,133 +1,126 @@
-Return-Path: <devicetree+bounces-185139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC700AD6966
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:46:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A3CAD696A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:47:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC0FE1BC28DF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:46:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F3DD3AD11D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3722144C7;
-	Thu, 12 Jun 2025 07:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D16786342;
+	Thu, 12 Jun 2025 07:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZmtrP2M"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="Lw4dcSxy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04061F3D56;
-	Thu, 12 Jun 2025 07:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901CB1F3D56
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 07:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749714385; cv=none; b=blEO4Z3dOlsnlMmNG5xIAvw+LPQRMsK+/O6CB6uk+L/l62z3FLhwWmywqgIzDL0pqh4P5qKZzjdnyeR01ZH+k93Hjwbsv3bdkIwGfVsH4wZj2Ql4zaOclxdWsjoVJ/g8hC9fHw9H2Fg/GqT6fvGPV+m0KKZJdN2+xoq6tdP4UV0=
+	t=1749714465; cv=none; b=QHlGp6v2B93sEXcJiNMUHaTr3L3OZtyvXf4QF5jPr/FvaO+4snZHfT4BB9F275aBRlfGQkd8zORBNti01ALJ7l9Ztm3Y8cIlrbbCaH3Ojr0K5LUcbSIkYIVlIxIl5tc9u+KenRiKAjMJ81ItGEiB7L7xx/L8k4646bKL21328HI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749714385; c=relaxed/simple;
-	bh=BnVLqkIfog7TQQpAK8OVRX7AJZSEduyE8mbMO5FCsWQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oC4wKo9lx0Vy0MI5JRIjf0eUKhaqxnY7icEDpjqzvr/o4y98c64cYShhxVy2XILCxdcIRoj5FE6Zi6G3gftPICCf6FWdMDINlzEOcCVLZHR3QpLFz9Q91TmQKlXeG9AO5WctccmcWyNKYgezfYIukivlu/ZV1pda58VraJivRGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZmtrP2M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BEB1C4CEEA;
-	Thu, 12 Jun 2025 07:46:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749714385;
-	bh=BnVLqkIfog7TQQpAK8OVRX7AJZSEduyE8mbMO5FCsWQ=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=AZmtrP2MnExiQ8UkzL+NUIfF0x3NNzeFfRC9b7Ixyaw03zNq/rnUmmMo+RbEsyTUe
-	 cgLRkO9Vymem5qOj0R5wPg+ieu5S+olxZBxFSH0yqkvL+6bn9US6rAjXHddyFS7lzC
-	 BYbUOvemRsXRmiUUdQzYEUs8/qKzUAUWk0Za/h/agGb/BxdRQW4M4nPnQpjbDq6Fsz
-	 9XwArDhyeq/l6nTKKe8pt5pZlxoUear4SET57CB5soN830hHWkQqVQJEiwHBN73SwC
-	 h1SS2wBJnZ6F8R7u9tlNJxqKCWPmn7jOVE4eBxheIIuN4N4gDnaDuyXpthPuBrV3qb
-	 XE0GuwRugE60g==
-Message-ID: <1cea4f55-752f-4581-a003-1c9d31a36039@kernel.org>
-Date: Thu, 12 Jun 2025 09:46:21 +0200
+	s=arc-20240116; t=1749714465; c=relaxed/simple;
+	bh=W3+/U//G8tiQdgfJJq3a8S+yesKCygwE6LmqbqOTAp8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jQ1T0EWYtOHy6ejVEQWFLc+AHfeMXVkicdHPdkcuxxdUWBLoAO9ACtFAE53fStOGAl1ns1XDLFPj75WxzG+KZ5nYJLIId7edIvsaPxZBkaKlN3Jp6eHZmT+JPeVUNIrVZXtFThXqt0eTzHGOFKB3Q7JkLQOtWuCdGbwWLhhRFCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=Lw4dcSxy; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45300c82c1cso1701485e9.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 00:47:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1749714460; x=1750319260; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jJKRD4IePTu10KXLvHxej7LhzJE2E9K7kjr6QynOkYY=;
+        b=Lw4dcSxyoaUGaWsL1/IDx57PezPs0YbSB1+vspEQNS4hlhi2COHLaS8La6O5LqleUB
+         fCwdOluMHx47rjZHGzh/iVJRwE1RK94GclHXxurtWjrNb/+KKbPQd+h5k6s8+ae/DOFx
+         V26v3PYfvNoU7H08UY/LyizIxu2mobBZPNfBvG2N8q57RAcy5Wscesscf1NqLEkRRC0r
+         +cyGBt62TbTJEHDt0X7MolrQm8b2SOudwkziSmUq4xyYYqV2vvvwK90/RuZRyCGOZP5N
+         KVZHNmEsF4/OjX6bf8991ww8ss8H8fi/WaM/tcDAyCjaBju9zkvAJ0DY13EwYUKvgSKH
+         2eew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749714460; x=1750319260;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jJKRD4IePTu10KXLvHxej7LhzJE2E9K7kjr6QynOkYY=;
+        b=Q/AC5QF5CHFQxfAr6wkkTx2ONCpCZPANvNhwkS1ybSw3h3ytebQF15DSgA2Uw/hGS1
+         As0ouIP+cpCcqzR3W333uos1mt/MgVYE5a6wfHLixUxMDxVj1WZnG1085cleVyS9Hcau
+         L2JiJTJgfImkMnq6bf8JugAMX+O4MtUtf5quM3bwKDJ7pS8aXc/xW5aKTXR4Yt4t9+e0
+         75ZulfjmkWbDlX7t1CBR3gu8+BOFkbp8ov07jSXWgzyqXeYZcSbbPvi2Wf6Gl1vwTOly
+         3UDsspNaXVxxUlv+aU8zOasBDRCuuKhbGCwCp+HpH7M2BcmF2ngRt+fDQT3M4qgvlXMH
+         lmog==
+X-Forwarded-Encrypted: i=1; AJvYcCUOj2ABbPlJX8nJydbMijFpuO2dKNdl7zIczcOle7l6HPbNAxqrTs4XlzxWZcDFDEcMYyycVU5U/jEa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfFb5FfrDnANY3c7/NdfthEbGWK21DjRi04qY8ytR3iztHrLwb
+	5IeH4B7TCBPbVEUrX8FGQCuelVFbEEWvL3Nzy3cEukm+k+lQ2z99fhIjQAkyKg5brlY=
+X-Gm-Gg: ASbGnct/QywYDDCRXRDJ2EAcn7pkFxp0ALPJ/VZbX0GUrMMJ0ICaQVE64jCnm91XhpS
+	BdwXptuzz9Z07+ZKnhiYYybR2x4vThD92vBZalL36z24/VNb1a2S9o4Ztu9zGQ8a0/nz3uohz6W
+	dl154+J+bmBOl/FT7++rP8icTaCT0iflGBy+oeUMHRukQIaNWJKhgcJ0pNaf4GUonzUwGiq+BZB
+	Yop+XP9dWWt7KDPttDOKAJPG3fgers0jlKPclbEgSNhLg/Slg7OkwKsmWvpKEkgisqe4dmMFZ6R
+	uaPs35RKe5yaTO6n3ty4/CZKMegvcsW5Yn/YveDCzULqyJqcaJUGWtONRPFtS8rhxm94lX0oN+k
+	mKud2OgP1
+X-Google-Smtp-Source: AGHT+IFSkj6qmkZNg+QbLrL9/7Aw6gNVIRZ8TKO8D+Q27noN8R5iYt+bQxJDG5xAEMj4b4uQzbUCaw==
+X-Received: by 2002:a05:600c:1c08:b0:450:d01e:78ee with SMTP id 5b1f17b1804b1-4532d10857emr18770605e9.24.1749714460176;
+        Thu, 12 Jun 2025 00:47:40 -0700 (PDT)
+Received: from fraxinus.testlab.hub.hqv.ch ([85.195.220.82])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532de8c229sm12398025e9.6.2025.06.12.00.47.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 00:47:39 -0700 (PDT)
+From: Ezra Buehler <ezra@easyb.ch>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Reto Schneider <reto.schneider@husqvarnagroup.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+Subject: [PATCH] ARM: dts: microchip: gardena-smart-gateway: Fix power LED
+Date: Thu, 12 Jun 2025 09:47:37 +0200
+Message-ID: <20250612074737.311346-1-ezra@easyb.ch>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] arm64: dts: exynos: use proper node names for GPIO
- based I2C busses
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
-References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
- <20250519121512.5657-2-wsa+renesas@sang-engineering.com>
- <006ee7d6-1289-4f4a-819d-9a5e5120db99@kernel.org> <aCtD7BH5N_uPGkq7@shikoro>
- <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org> <aCtK1-Yn6u8-n8mU@shikoro>
- <e5a3ce2b-4ebe-44c9-9bf5-9f460d5e7fe8@kernel.org> <aCtbg0_vD07g394k@shikoro>
- <aCt9e-rrOOR0C5HI@shikoro>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aCt9e-rrOOR0C5HI@shikoro>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/05/2025 20:50, Wolfram Sang wrote:
-> On Mon, May 19, 2025 at 06:25:39PM +0200, Wolfram Sang wrote:
->>
->>> I think either we use i2c-X or commit 57138f5b8c92 ("schemas: i2c: Avoid
->>> extra characters in i2c nodename pattern") from Herve was not correct
->>> and needs to be fixed.
->>
->> I will look if I can fix dt-schema instead. Thanks for the pointer!
-> 
-> Found it! Patch sent.
-> 
+From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 
-Where? I cannot find anything in my inbox and also no pull requests on
-Github.
+When starting up, the GARDENA smart Gateway's power LED should be
+flashing green. It is unclear why this has not been done earlier.
 
-Best regards,
-Krzysztof
+The LED frequency cannot be configured in the devicetree. Luckily, the
+default is 1 Hz, which is what we want.
+
+Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+---
+ .../boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts b/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
+index e0c1e8df81b1..947c011c1b00 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
++++ b/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
+@@ -46,7 +46,7 @@ led-power-blue {
+ 		led-power-green {
+ 			label = "smartgw:power:green";
+ 			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
++			linux,default-trigger = "timer";
+ 		};
+ 
+ 		led-power-red {
+-- 
+2.43.0
+
 
