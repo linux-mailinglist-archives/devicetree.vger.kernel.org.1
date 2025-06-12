@@ -1,234 +1,142 @@
-Return-Path: <devicetree+bounces-185410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7D3AAD78D5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 19:19:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C60FAD78F3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 19:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52C563A0ED1
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:19:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B83091893815
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C9B202981;
-	Thu, 12 Jun 2025 17:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657D529C34B;
+	Thu, 12 Jun 2025 17:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r3cj0ZP3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RGhmqAoz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855E72F431F;
-	Thu, 12 Jun 2025 17:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B827429C339;
+	Thu, 12 Jun 2025 17:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749748777; cv=none; b=tZQA+r8GcqDJU0T1+Q1Hb9req5RMsdpb9o9tbkvoYt6Vz73fG2KEs4UKJafteKVET5pqtgCE7YU2AlQRe1f+3/pv6VV49Y/IQYPWrODjunni5SQKkDmpGWpu7ep4VOkca4H27CjRrrFX1wsTjsDMAe2gNSw8Q3fo1NzM62Bi3ec=
+	t=1749749315; cv=none; b=NWj6aB3WUQS4pHQhuada4ZgqhFrwmchtl9wddKE5fdtIAUWySJw/kRu4E54LfkpmXJiBUsndfp7sQruTnz+rblpmc9irb2+knVQkDsO6vEWPg/k4teyLMo9medzxq+8sarHMxXCQz/3qfr8S3pdvXrTY2kFVdXE/8RQ5NNn1Kg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749748777; c=relaxed/simple;
-	bh=KAMMKqVzdsVuZnPOPaGfiqiMehOKnAmXFo814aZimys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WBq1VhZUWm6Bo8e88JyYSaWEjrAu/nQ4fn8GOaOkYBg6O8HqJKDJQBEaRap8ucUTaGRZY2ZT84hKvyohXt8JzszkpMComrL82yiDUK7jR/tKTeEYmTA9IkBDPq/C3NyDRFEUjwDqCEl9h72tbn+e2FgeyDdHoTz0g6pssvHWlpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r3cj0ZP3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1693AC4CEEA;
-	Thu, 12 Jun 2025 17:19:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749748774;
-	bh=KAMMKqVzdsVuZnPOPaGfiqiMehOKnAmXFo814aZimys=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r3cj0ZP3QdZuDv5oZ43tHa4gOcrJFLLmFd1jglvQZtbp6q9AhBXLZbDz98A5oNpd8
-	 9J1zryk3EmAXlb04ta1Gio1chgeG5g9qC00y/16DgfEng7+PI/nJPhpyT+N7y4e9oT
-	 J1zuESkffa0raNlfO4zVr8sKEpQvZUsomcE/LT1oe6AC1jSdaWg8e+a/H4ksDpghkM
-	 GA1d7R30+fL0zw+rtB1Bxr1FUyAfVfcsRJJ7vg1LdDL4D7jH3UdQGO3a5scUV0h6ib
-	 Zk5bnWbzAdZOF3m+sGr6qAvAa6ViAw4dQ7B3B0S1FzgQWnwvQ6BF35t/xosVV/nOoD
-	 wplhGqANytO2A==
-Date: Thu, 12 Jun 2025 22:49:25 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	cassel@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, michal.simek@amd.com, bharat.kumar.gogada@amd.com, 
-	thippeswamy.havalige@amd.com
-Subject: Re: [RESEND PATCH v7 2/2] PCI: xilinx-cpm: Add support for PCIe RP
- PERST# signal
-Message-ID: <mwv2twlpknjecqf2ck2t3vcainvcitikblvylpd73mtzlhklfq@odmoplmctgy5>
-References: <20250414032304.862779-1-sai.krishna.musham@amd.com>
- <20250414032304.862779-3-sai.krishna.musham@amd.com>
+	s=arc-20240116; t=1749749315; c=relaxed/simple;
+	bh=PH8QKM2zIfjbs2XiWW6oY3idX+GiqDPjFhwl34h04vU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=juyhDxrr9qs3DYlwp5YXl4r0QYDF5ESbSgnnMyXWS429bqgSChrkAxDRaljQflNjtH0Qs6UgOnGv1Jr51KoJjPPLJdmdS6ZpGF2nc/8sYip9MPLOU+M/qBPP6j7nkFeAv5Zuo5O0+r/bNi/zjOhaILDpySCtV4rd0veoAPHFaEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RGhmqAoz; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2349f096605so16311285ad.3;
+        Thu, 12 Jun 2025 10:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749749313; x=1750354113; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Z1CAnDtsn56h094ipnFC5TjpsgKkprOu65PkgheDX4=;
+        b=RGhmqAozMiW1opD0dGXVtV4JWy6r0KxsewBFkiiWNWeNTUOgqgYazOoOCGi7JtFEgK
+         uULTg3NnfDBLn2+x1lPTpbjgiLFybH/gZL4pgd6BMim56FDn5kCHpbZslXaOgclSbRRR
+         +czxw0Cwun+K7UZygmydUqQ9PbGnN2qHjjmpQxStkRLt4+OA9SBYJ1BP4L/w3e9oJupG
+         PZvnA8PI/yJGfjy/ai0vyiz9nKwRqaNXUDIe37LPDJDYVAm0lMnXQa4FeXJt1GxVMYjY
+         82hDTRZkB3kwE6TXn9rTakZEnJUrUIFMfcWvtB6ReFnTOiSwAHfY2V/W2k+KZGiRVUtc
+         owAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749749313; x=1750354113;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4Z1CAnDtsn56h094ipnFC5TjpsgKkprOu65PkgheDX4=;
+        b=JD11mBrQwpc4GKSQf0od/qdUFDxHCyFZr/MiTF2rQZFLcOaV5PFZ+Rht+h4TEDfxNL
+         jq3ftcAN+rzUhosuvL9a/Ym54uBD7bAHjQQpDcNhFCj1DevVe6FGO6S7kkYs68F9kUEK
+         2mr9GuGRq/xeZhmynqSOHJLqDPHDvq6Kz7zkuJS0qQtyZCO97KAujWMV3LYbhHWOMS+g
+         K/ybh6ocaj3WXS/BtbOkQQIaFvVXnKsMpRWCf0kL3RyX+mtHqDRK76WEQ4rbIba7zDAu
+         TEvskNEtFfR9tDWnxJH2vgDqfVGEleHWKH/FjuJ1y1taOt1ZpP2u8X+OxfRAHRQtktZV
+         gWGA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQZFbpIumPAk+QqGjdBuJ4OupQGmHVFq6e5cRw4nO05tRytzmWq8cq3jdTcdQRBt5F3Rgs+hKn37K5Rkad@vger.kernel.org, AJvYcCXye6UtevbqAnRAi3TK7CDoeWh2kHDO+BpW21YB7NIuv+YO5Tti+VONaZwkfv5BAG/aX6BtOhIdb8yJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyujPraqScwX5v4bFH3nj8CE6hJ7hbY0pGk950gJwdBHSAPAMiy
+	MVNhRX6LLRbf0olLSOF7ngzf4me2AQ6zqKSVB9dMXnm1k72600VG/Hdv
+X-Gm-Gg: ASbGncvDclw0k3KxpDpeIfhcmnd13vQ11wc6Evq8BScPXJi9NCMwE2V5+V1fb2hd1ik
+	8r5h+PR0ghsUL54yZvQDyDyMWi4nOlR2SSZGrAiVmuTL9BFmh0m3YS/UbnXBlgjUFcrrnO2HS2j
+	sU0Nl90ReHyMvYJv/5eQNfjOT8p+yYchCbFV7QidJjrdxdnRln1gw/chIbWXaJE+efRvDhDWLST
+	bMt5FljBQoXSPKVvEDsgWGm1jQfrdlO/VezGj8Ac6ugGp6MhlLKjtcBZfWtIYAF43m4FoZglNmf
+	7ZFgKKe2iiryWyKI46pAxsN2gv+y9bln+lYbjMBhrxLtKVM+Hcf7M6fJL/zUqZwRZc3ciQb1uFg
+	LZQ+SU6lQ13EpNJKpGJQO
+X-Google-Smtp-Source: AGHT+IFIVXOyOM5DFIT9gmbEUNOHuQMUX2pMymqDTVsNqy3aJEAFqXUop0eA4qDVx2/oR9mypI1WqA==
+X-Received: by 2002:a17:902:d485:b0:234:e655:a632 with SMTP id d9443c01a7336-2365c576d27mr4057365ad.51.1749749313056;
+        Thu, 12 Jun 2025 10:28:33 -0700 (PDT)
+Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fd6362e28sm1665891a12.66.2025.06.12.10.28.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 10:28:32 -0700 (PDT)
+From: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
+Subject: [PATCH v3 0/3] hwmon: (amc6821) Add cooling device support
+Date: Thu, 12 Jun 2025 14:28:07 -0300
+Message-Id: <20250612-b4-amc6821-cooling-device-support-v3-0-360681a7652c@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250414032304.862779-3-sai.krishna.musham@amd.com>
+X-B4-Tracking: v=1; b=H4sIACgOS2gC/42Nyw6CMBBFf4V07Zja8mhd+R+GRZlWmERo0yLBE
+ P7dSuLe5bnJPWdjyUVyiV2LjUW3UCI/ZZCnguFgpt4B2cxMcFHxmgvoSjAj1kpcAL1/0tSDzT9
+ 0kF4h+DgDctlxo7SWVcOyJ0T3oPVo3NvMA6XZx/eRXMR3/dnlH/ZFAIem1KVEpbQR9pZlxrr1j
+ H5k7b7vH2wpd3nUAAAA
+X-Change-ID: 20250602-b4-amc6821-cooling-device-support-c03b0a899357
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Farouk Bouabid <farouk.bouabid@cherry.de>, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
+X-Mailer: b4 0.14.2
 
-On Mon, Apr 14, 2025 at 08:53:04AM +0530, Sai Krishna Musham wrote:
-> Add support for handling the PCIe Root Port (RP) PERST# signal using
-> the GPIO framework, along with the PCIe IP reset. This reset is
-> managed by the driver and occurs after the Initial Power Up sequence
-> (PCIe CEM r6.0, 2.2.1) is handled in hardware before the driver's probe
-> function is called.
-> 
-> This reset mechanism is particularly useful in warm reset scenarios,
-> where the power rails remain stable and only PERST# signal is toggled
-> through the driver. Applying both the PCIe IP reset and the PERST#
-> improves the reliability of the reset process by ensuring that both
-> the Root Port controller and the Endpoint are reset synchronously
-> and avoid lane errors.
-> 
-> Adapt the implementation to use the GPIO framework for reset signal
-> handling and make this reset handling optional, along with the
-> `cpm_crx` property, to maintain backward compatibility with existing
-> device tree binaries (DTBs).
-> 
-> Additionally, clear Firewall after the link reset for CPM5NC to allow
-> further PCIe transactions.
-> 
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
-> ---
-> Changes for v7:
-> - Use platform_get_resource_byname() to make cpm_crx and cpm5nc_fw_attr
->   optional
-> - Use 100us delay T_PERST as per PCIe spec before PERST# deassert.
-> 
-> Changes for v6:
-> - Correct version check condition of CPM5NC_HOST.
-> 
-> Changes for v5:
-> - Handle probe defer for reset_gpio.
-> - Resolve ABI break.
-> 
-> Changes for v4:
-> - Add PCIe PERST# support for CPM5NC.
-> - Add PCIe IP reset along with PERST# to avoid Link Training Errors.
-> - Remove PCIE_T_PVPERL_MS define and PCIE_T_RRS_READY_MS after
->   PERST# deassert.
-> - Move PCIe PERST# assert and deassert logic to
->   xilinx_cpm_pcie_init_port() before cpm_pcie_link_up(), since
->   Interrupts enable and PCIe RP bridge enable should be done after
->   Link up.
-> - Update commit message.
-> 
-> Changes for v3:
-> - Use PCIE_T_PVPERL_MS define.
-> 
-> Changes for v2:
-> - Make the request GPIO optional.
-> - Correct the reset sequence as per PERST#
-> - Update commit message
-> ---
->  drivers/pci/controller/pcie-xilinx-cpm.c | 97 +++++++++++++++++++++++-
->  1 file changed, 94 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
-> index 13ca493d22bd..c46642417d52 100644
-> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
-> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
-> @@ -6,6 +6,8 @@
->   */
->  
->  #include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/interrupt.h>
->  #include <linux/irq.h>
->  #include <linux/irqchip.h>
-> @@ -21,6 +23,13 @@
->  #include "pcie-xilinx-common.h"
->  
->  /* Register definitions */
-> +#define XILINX_CPM_PCIE0_RST		0x00000308
-> +#define XILINX_CPM5_PCIE0_RST		0x00000318
-> +#define XILINX_CPM5_PCIE1_RST		0x0000031C
-> +#define XILINX_CPM5NC_PCIE0_RST		0x00000324
-> +
-> +#define XILINX_CPM5NC_PCIE0_FRWALL	0x00000140
-> +
->  #define XILINX_CPM_PCIE_REG_IDR		0x00000E10
->  #define XILINX_CPM_PCIE_REG_IMR		0x00000E14
->  #define XILINX_CPM_PCIE_REG_PSCR	0x00000E1C
-> @@ -93,12 +102,16 @@ enum xilinx_cpm_version {
->   * @ir_status: Offset for the error interrupt status register
->   * @ir_enable: Offset for the CPM5 local error interrupt enable register
->   * @ir_misc_value: A bitmask for the miscellaneous interrupt status
-> + * @cpm_pcie_rst: Offset for the PCIe IP reset
-> + * @cpm5nc_fw_rst: Offset for the CPM5NC Firewall
->   */
->  struct xilinx_cpm_variant {
->  	enum xilinx_cpm_version version;
->  	u32 ir_status;
->  	u32 ir_enable;
->  	u32 ir_misc_value;
-> +	u32 cpm_pcie_rst;
-> +	u32 cpm5nc_fw_rst;
->  };
->  
->  /**
-> @@ -106,6 +119,8 @@ struct xilinx_cpm_variant {
->   * @dev: Device pointer
->   * @reg_base: Bridge Register Base
->   * @cpm_base: CPM System Level Control and Status Register(SLCR) Base
-> + * @crx_base: CPM Clock and Reset Control Registers Base
-> + * @cpm5nc_fw_base: CPM5NC Firewall Attribute Base
->   * @intx_domain: Legacy IRQ domain pointer
->   * @cpm_domain: CPM IRQ domain pointer
->   * @cfg: Holds mappings of config space window
-> @@ -118,6 +133,8 @@ struct xilinx_cpm_pcie {
->  	struct device			*dev;
->  	void __iomem			*reg_base;
->  	void __iomem			*cpm_base;
-> +	void __iomem			*crx_base;
-> +	void __iomem			*cpm5nc_fw_base;
->  	struct irq_domain		*intx_domain;
->  	struct irq_domain		*cpm_domain;
->  	struct pci_config_window	*cfg;
-> @@ -475,12 +492,57 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pcie *port)
->   * xilinx_cpm_pcie_init_port - Initialize hardware
->   * @port: PCIe port information
->   */
-> -static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
-> +static int xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
->  {
->  	const struct xilinx_cpm_variant *variant = port->variant;
-> +	struct device *dev = port->dev;
-> +	struct gpio_desc *reset_gpio;
-> +	bool do_reset = false;
-> +
-> +	if (port->crx_base && (variant->version < CPM5NC_HOST ||
-> +			       (variant->version == CPM5NC_HOST &&
-> +				port->cpm5nc_fw_base))) {
-> +		/* Request the GPIO for PCIe reset signal and assert */
-> +		reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +		if (IS_ERR(reset_gpio))
-> +			return dev_err_probe(dev, PTR_ERR(reset_gpio),
-> +					     "Failed to request reset GPIO\n");
-> +		if (reset_gpio)
-> +			do_reset = true;
-> +	}
-> +
-> +	if (do_reset) {
-> +		/* Assert the PCIe IP reset */
-> +		writel_relaxed(0x1, port->crx_base + variant->cpm_pcie_rst);
-> +
-> +		/*
-> +		 * "PERST# active time", as per Table 2-10: Power Sequencing
-> +		 * and Reset Signal Timings of the PCIe Electromechanical
-> +		 * Specification, Revision 6.0, symbol "T_PERST".
-> +		 */
-> +		udelay(100);
-> +
+Add support for using the AMC6821 as a cooling device. The AMC6821
+registers with the thermal framework only if the `cooling-levels`
+property is present in the fan device tree child node. If this property
+is present, the driver assumes the fan will operate in open-loop, and
+the kernel will control it directly. In this case, the driver will
+change the AMC6821 mode to manual (software DCY) and set the initial PWM
+duty cycle to the maximum fan cooling state level as defined in the DT.
+It is worth mentioning that the cooling device is registered on the
+child fan node, not on the fan controller node. Existing behavior is
+unchanged, so the AMC6821 can still be used without the thermal
+framework (hwmon only).
 
-Are you sure that you need T_PERST here and not T_PVPERL? T_PERST is only valid
-while resuming from D3Cold i.e., after power up, while T_PVPERL is valid during
-the power up, which is usually the case when a controller driver probes. Is your
-driver relying on power being enabled by the bootloader and the driver just
-toggling PERST# to perform conventional reset of the endpoint?
+Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+---
+v3:
+- Fix using fan node after of_node_put() with scope based free
+- Add setting the pwm duty cycle to max fan cooling state level on
+  initialization
+v2: https://lore.kernel.org/lkml/20250603-b4-amc6821-cooling-device-support-v2-0-74943c889a2d@toradex.com/
+- Remove devm_action on release and call of_node_put() manually
+- Change of_pwm_polarity to store resulting pwm polarity on driver
+  private data
+v1: https://lore.kernel.org/lkml/20250530-b4-v1-amc6821-cooling-device-support-b4-v1-0-7bb98496c969@toradex.com/
 
-- Mani
+---
+João Paulo Gonçalves (3):
+      dt-bindings: hwmon: amc6821: Add cooling levels
+      hwmon: (amc6821) Move reading fan data from OF to a function
+      hwmon: (amc6821) Add cooling device support
 
+ .../devicetree/bindings/hwmon/ti,amc6821.yaml      |   6 +
+ drivers/hwmon/amc6821.c                            | 130 +++++++++++++++++++--
+ 2 files changed, 127 insertions(+), 9 deletions(-)
+---
+base-commit: b43674a549ed17319cb08ede9e0909ff6198ea70
+change-id: 20250602-b4-amc6821-cooling-device-support-c03b0a899357
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+João Paulo Gonçalves <joao.goncalves@toradex.com>
+
 
