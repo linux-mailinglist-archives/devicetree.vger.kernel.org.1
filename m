@@ -1,75 +1,131 @@
-Return-Path: <devicetree+bounces-185349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702FAAD7584
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A09BAD75DE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:25:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52F591883F2B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:18:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 403C418882C5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 824682989B5;
-	Thu, 12 Jun 2025 15:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FB92989A5;
+	Thu, 12 Jun 2025 15:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gJ3mGo/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65CD92989A7;
-	Thu, 12 Jun 2025 15:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9A2298998;
+	Thu, 12 Jun 2025 15:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749741464; cv=none; b=sNVtGKAF1LlojlX9RmzILSdXHgFvwv0AaxUw9ha3UXK+ueHGHAftAis7+prkRKQx3+faw8tsPVJbGEg3zTujOa/4qB0tUaaCjvJxLINIz177Mo5wX2zdwWTCb2RrYJe/U/9TaH24TVWx8XwuL8g6n/6ZHkeWHQ1NJNdS/JE/Ykc=
+	t=1749741513; cv=none; b=MkNWIuWkA6E+mGBqsTirIWMUJUuowI9TnvXOFG/zVHRurYaR/twzfMn0kpphBDvr9zHPA6pVCL5FpYBMCzmWV0bE5+KnSZ9ZoBq5dWXpOwm1A05PNV1nKi0vKOlTTMoJCcIpC09pRxGoiIen4BvkuYH0gk9dI5+z2OysLKZQyRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749741464; c=relaxed/simple;
-	bh=OwoiUrbUj24GA0EAHgpIdS9FlUr+CArNxy/uydoUu60=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RwiLx0wTAvT2uf91vYSoBIGL0RcyMZBCLbEohGuO/Be2+OJHgl9QJ0cM2B64hlW+MvEnlj70pFfgYZkLTh/FXlaeW8Sn9IzRVxGFJ5ShB+HXdxeQQaVAjIgGz9bwPnog2kRJZCJy5Ay2rSjmBii/AOoWYijqkofIrTl7oyoF/tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3225AC4CEEA;
-	Thu, 12 Jun 2025 15:17:42 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: soc: renesas: Document RZ/T2H Evaluation Board part number
-Date: Thu, 12 Jun 2025 17:17:35 +0200
-Message-ID: <0703ecbc355164e35b90a9fe088438c821f13cd3.1749741263.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1749741513; c=relaxed/simple;
+	bh=bNelyn9B2iPBX/xAeabKNOJ/SJ1fiqXUANtY4YCvtYU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HGXha5q8BBn0hk5eTSoMcY58PRR3X/y2onWL4MmR2RyY5zOh0YX8Aa4U8inlxAoLpwTTfGP2qC0LjV5BHRZLXe9qAIARIR3BJ+MK7rs78qLYl5g7WlnRVsMPK1n31rraMpvIR2pLHvPDjViEvdncVBzD9DLrNb94Iq/jDIjNThw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gJ3mGo/k; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 65C2523069;
+	Thu, 12 Jun 2025 17:18:30 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id rzGFH5v5AW84; Thu, 12 Jun 2025 17:18:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1749741509; bh=bNelyn9B2iPBX/xAeabKNOJ/SJ1fiqXUANtY4YCvtYU=;
+	h=From:Subject:Date:To:Cc;
+	b=gJ3mGo/knt129fwJhT7FvJnW7pL9kFut0rfePWssCSW3xRlsqZ8Kx3L7C072KKnKw
+	 NhireUBkSezKH9Ak1s/934vY79k0EY6Ym6iQKx1HQLAHhOr3VjvXWz/KyQHxjFcV5S
+	 671nK5LP98DKb5LsnBeUEMGB8Vx3429AOtwmvHyft7QNuKJACZBVgq/ywbKXzHSPMe
+	 tiu+wsudXihicsDjIL0D2c5l70aXGfpJuUyOkFstsaKP39yJpB5X0TkdbjN9MlU1pN
+	 klcfwPKV/vTQw2FiqwuKgkH/ovYv4JKllwRon0gl4Vgx4JfuRi1ovzliidJ0/cZzem
+	 HPOt4uAicGnUg==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 00/12] Support for Exynos7870 DSIM bridge
+Date: Thu, 12 Jun 2025 20:48:04 +0530
+Message-Id: <20250612-exynos7870-dsim-v1-0-1a330bca89df@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKzvSmgC/x3MQQqAIBBA0avErBNswqyuEi0kx5pFGg5EEd09a
+ fkW/z8glJkExuqBTCcLp1jQ1BUsm4srKfbFgBqNNtgquu6YxPZWKy+8q4CD78iFxRmEUh2ZAl/
+ /cZrf9wPSE1h9YQAAAA==
+X-Change-ID: 20250523-exynos7870-dsim-f29d6eafca52
+To: Inki Dae <inki.dae@samsung.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749741499; l=1998;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=bNelyn9B2iPBX/xAeabKNOJ/SJ1fiqXUANtY4YCvtYU=;
+ b=7YAvpcOOIIkM5ooW+kuxBu//qdWk0BjK6t32Rhv9PQ4kmvlYPZBWr96Nl3TYXg0HBfMF0GQ96
+ GYG/S1yQ12QCyobP8Cgo3Tjcc6aRElD3TsokY+ksfNMF1FKQ+8hxmUk
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This patch series introduces a lot of changes to the existing DSIM
+bridge driver, by introdcing new registers and making register offsets
+configurable for different SoCs. These preliminary changes are followed
+by the introduction of support for Exynos7870's DSIM IP block.
+
+Work is heavily inspired and only possible due to Samsung's vendor
+kernel sources. Testing has been done with Samsung Galaxy J7 Prime
+(samsung-on7xelte), Samsung Galaxy A2 Core (samsung-a2corelte), and
+Samsung Galaxy J6 (samsung-j6lte), all with DSI video mode panels.
+
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 ---
-To be queued in renesas-devel for v6.17.
+Kaustabh Chakraborty (12):
+      drm/bridge: samsung-dsim: separate LINK and DPHY status registers
+      drm/bridge: samsung-dsim: add SFRCTRL register
+      drm/bridge: samsung-dsim: add flag to control header FIFO wait
+      drm/bridge: samsung-dsim: allow configuring bits and offsets of CLKCTRL register
+      drm/bridge: samsung-dsim: allow configuring the MAIN_VSA offset
+      drm/bridge: samsung-dsim: allow configuring the VIDEO_MODE bit
+      drm/bridge: samsung-dsim: allow configuring PLL_M and PLL_S offsets
+      drm/bridge: samsung-dsim: allow configuring the PLL_STABLE bit
+      drm/bridge: samsung-dsim: increase timeout value for PLL_STABLE
+      dt-bindings: samsung,mipi-dsim: document exynos7870 DSIM compatible
+      drm/bridge: samsung-dsim: add driver support for exynos7870 DSIM bridge
+      drm/exynos: dsi: add support for exynos7870
 
- Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/display/bridge/samsung,mipi-dsim.yaml |  26 +++
+ drivers/gpu/drm/bridge/samsung-dsim.c              | 250 +++++++++++++++++----
+ drivers/gpu/drm/exynos/exynos_drm_dsi.c            |   9 +
+ include/drm/bridge/samsung-dsim.h                  |  13 ++
+ 4 files changed, 254 insertions(+), 44 deletions(-)
+---
+base-commit: 0bb71d301869446810a0b13d3da290bd455d7c78
+change-id: 20250523-exynos7870-dsim-f29d6eafca52
 
-diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-index aac7af605de24f99..c25f12642061b6eb 100644
---- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-+++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-@@ -595,7 +595,7 @@ properties:
-       - description: RZ/T2H (R9A09G077)
-         items:
-           - enum:
--              - renesas,rzt2h-evk # RZ/T2H Evaluation Board
-+              - renesas,rzt2h-evk # RZ/T2H Evaluation Board (RTK9RZT2H0S00000BJ)
-           - enum:
-               - renesas,r9a09g077m04 # RZ/T2H with Single Cortex-A55 + Dual Cortex-R52 - no security
-               - renesas,r9a09g077m24 # RZ/T2H with Dual Cortex-A55 + Dual Cortex-R52 - no security
+Best regards,
 -- 
-2.43.0
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
