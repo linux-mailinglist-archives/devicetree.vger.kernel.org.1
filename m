@@ -1,111 +1,97 @@
-Return-Path: <devicetree+bounces-185379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C61FDAD76AE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:43:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F865AD76AB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9292718855AD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:40:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6493116D733
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6082C031B;
-	Thu, 12 Jun 2025 15:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4B18299A82;
+	Thu, 12 Jun 2025 15:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="auLrsJ/6"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yt01YW6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D67221DA8;
-	Thu, 12 Jun 2025 15:35:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22661298CD2;
+	Thu, 12 Jun 2025 15:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749742548; cv=none; b=AevXEY8JI6tILE/DyaGmoG2m0N9dFYLjMZ2a3wKW/zMe54E4ICytpoiTWUk6UvI6RLdpRaIQC1ZYKATqBjtqhDvHHbWLM8YDeF7lg1XrORZyQGUlebyw4MktAxONSHjjlOlxcC9wb79qX1McpXaRJafYODGg/8SfvGrA6B5ZGYY=
+	t=1749742607; cv=none; b=rumciY7DCPIX0dahXfuoPtvKYMGfogb7XSh8TRYI3rBo1rwchZGyhwtmfTPVQOxWzGMIFxg2r/BelYiRCfDsfcdZsUCU2vqYLwO4CLDTLQX0gBPfxfxcYqAatUvwMNSCT5mJHkYQKh8lJfZfevpWoJ+ysJSvt+LeXZDieWE2dYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749742548; c=relaxed/simple;
-	bh=Ss4ahYRx/y3pjwhd7QqlDK8uOFCu1jOBr4RPH/Ks9bo=;
+	s=arc-20240116; t=1749742607; c=relaxed/simple;
+	bh=YkGQb8u2LFs6Ny5AZDZ8dQLB2Mj5Hwh5mCAoXi9JxhY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GVQbd8KR6zjzaOqcXrVgfGMHe+Q9I3FD3sDLyDYuUuTeZxeh55NKK4Tjj8Va2a0ndmBjw//Oj0jcSDdyd9n9EOy2r1C+KHn1R8uJffEGz+SdBQObRxTR0ApCcwVGuUF+HqY8DHJRIEeQFj2lySn9442NcZtQqDmQKsrHYGJ9nXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=auLrsJ/6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2588EC4CEEA;
-	Thu, 12 Jun 2025 15:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749742547;
-	bh=Ss4ahYRx/y3pjwhd7QqlDK8uOFCu1jOBr4RPH/Ks9bo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=auLrsJ/6G8/Nk8NFr4MskwcvM4uw4NObh3me2bKXsGlCE/GgINLIKEF00tdXKPUVB
-	 pRQiVQFnzPl1vUEnTcGP2+vnUDPGIs8+YdOduzrw6hjkiy+R9/p5Ne8jDIXxbggupA
-	 a7Rh6ZfP9wsYptqrYGlAzeYshwm4qkEM+NgAbI+Hybe6HrG/jmYqQalFfJaTI6urnZ
-	 jqkff3rGnxDBUmgcYqvl7JyPZscCfAIPrQZ9B71mwDY7S0/bdNdSn94FmRkXrivB4e
-	 S5F4eDy2/qSR/o0GPYpkq7JU4c0MwhUTVhiPh8Db9fb310HtxM24ewwB7CQCCISp+A
-	 V2uBjTwq0HlKg==
-Date: Thu, 12 Jun 2025 16:35:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=SWsmdJEJDWJB9sT2RHhue+xtyo5IfsChUcKb8jystETJ3Pn5vzMeUtcLchenVD1Iw1o2TIg/qMR5Ijirc19fNOJxw8dU3pqVQzSwp/eqSEEw3XNHenYDvJtaqVHG9y+gLI4owvaYv2OEyqbY8/eIc9QvIxhnieNxWbi540fldxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yt01YW6k; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=QrJhlPmIGFpkmPRtfeqRYsI2Ia1MBPkjaqSOSbGZiSs=; b=yt01YW6k4t6UAt7H4xX6DshAhI
+	i0quv3ifop6RM7RcEvjAwOADbe58RlzVgrd6fn8Sv3QwWQO+qf3bAdvAVrA1vgvJDqbaDo+n7zzlj
+	4X13J99n1oGhBOwg9McPGr3hByePOxmfvQpMmNNSHgyB7xzX8WyS0yxdev82S46khAn4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uPjyn-00FYqi-JH; Thu, 12 Jun 2025 17:36:37 +0200
+Date: Thu, 12 Jun 2025 17:36:37 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Anup Patel <anup@brainfault.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Ryo Takakura <takakura@valinux.co.jp>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH v3 3/7] dt-bindings: interrupt-controller: add MIPS P8700
- aclint-sswi
-Message-ID: <20250612-wildfire-ambiance-b4acbe3fff31@spud>
-References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
- <20250612143911.3224046-1-vladimir.kondratiev@mobileye.com>
- <20250612143911.3224046-4-vladimir.kondratiev@mobileye.com>
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v5 3/5] net: phy: qcom: at803x: Add Qualcomm
+ IPQ5018 Internal PHY support
+Message-ID: <096eacfe-ff24-4ed8-b223-04a6fe590496@lunn.ch>
+References: <20250612-ipq5018-ge-phy-v5-0-b5baf36705b0@outlook.com>
+ <DS7PR19MB88833EF18DC634F4D7F037439D74A@DS7PR19MB8883.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="68if0ZfXqCRI0GCb"
-Content-Disposition: inline
-In-Reply-To: <20250612143911.3224046-4-vladimir.kondratiev@mobileye.com>
-
-
---68if0ZfXqCRI0GCb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <DS7PR19MB88833EF18DC634F4D7F037439D74A@DS7PR19MB8883.namprd19.prod.outlook.com>
 
-On Thu, Jun 12, 2025 at 05:39:07PM +0300, Vladimir Kondratiev wrote:
-> Add ACLINT-SSWI variant for the MIPS P8700. This CPU has
-> SSWI device compliant with the RISC-V draft spec (see [1])
-> CPU indexes on this platform are not contiguous, instead
-> it uses bit-fields to encode hart,core,cluster numbers, thus
-> property "riscv,hart-indexes" is mandatory
->=20
-> Link: https://github.com/riscvarchive/riscv-aclint [1]
->=20
-^ this blank line shouldn't be here fwiw.
+On Thu, Jun 12, 2025 at 05:11:07PM +0400, George Moussalem wrote:
+> The IPQ5018 SoC contains a single internal Gigabit Ethernet PHY which
+> provides an MDI interface directly to an RJ45 connector or an external
+> switch over a PHY to PHY link.
+> 
+> The PHY supports 10BASE-T/100BASE-TX/1000BASE-T link modes in SGMII
+> interface mode, CDT, auto-negotiation and 802.3az EEE.
+> 
+> Let's add support for this PHY in the at803x driver as it falls within
+> the Qualcomm Atheros OUI.
+> 
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 
-> Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+    Andrew
 
---68if0ZfXqCRI0GCb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaErzzgAKCRB4tDGHoIJi
-0qQtAP96mQXSweUBXZh9o3rMkqZLrg/kAmO+xkB2lY/aAdpU9QD9E5LQRDJdi1Jq
-Grs4zFK0xB6PMdtGGbxpWhfpr/KbfA4=
-=We6+
------END PGP SIGNATURE-----
-
---68if0ZfXqCRI0GCb--
 
