@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-185066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E74AD653A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:44:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D694CAD6542
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF7107AA27D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:43:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 879A9179696
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFE715624B;
-	Thu, 12 Jun 2025 01:44:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E509191F8C;
+	Thu, 12 Jun 2025 01:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UaJ1SaFp"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="BhMijZCI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC0F153BF0
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A4E2155A4D
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749692681; cv=none; b=kGqzhttEbYPzxpjLwYblpT8ru94o0gC3oYtaa6EZkhKVBSadbFLq1ltlYu5fVYpfCuAVVHbj0Njnnr17mkpCKGWFF2zO5ev0r4JfN6Rl/I7pU102g0tsk300SR802ZRPjaD0EYj5paR0cRMdiJ3ZWlOxg8yim/qBXaYjIhkN0yc=
+	t=1749692953; cv=none; b=Vd8KZHSOF91fRtcVfzpAPCISyEu5DxRYUx8MoZlvCI4Rezdg/WBEgoxnAYSoyXCKCAPkp3SY1s9OYZBpmP4aEAybG62xNhQ3V/kiVjFt8gBBRWlvaS5mGD0KNCn9qjzqlmdMpUPAxWYk+1l2AyPxnd0YpBEMerzQwQE0t0cDQb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749692681; c=relaxed/simple;
-	bh=FwB48C92tnVCEdIyHZlamtIixxVon3uYizSE7TbXBRU=;
+	s=arc-20240116; t=1749692953; c=relaxed/simple;
+	bh=5kLQjd6AzdXVJDSfbwMG/b2U5PBjG3cD+vDIQsbcSVY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rcdG/Y+eD8yMMrqR6BrqJwWA+mIp8Ycb95jRwWUTiYhSgyY0OEJo+XlenqHa+xmvWXoHWkfrtayIKGbzpH1t/H6l7AVuaWPwRXOuhEpWi3htycS0OodK0xa3sF6vGj5c13O8e8OVBLHorRj1NwbwxxpyW68I0rAjIA5Lct0D0R0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UaJ1SaFp; arc=none smtp.client-ip=209.85.218.44
+	 To:Cc:Content-Type; b=UQ4rqq4VXlUGrdbTP/z/qoebE3I7AsndYDD5y62yZNPuN8+fDDkm7KgYcO4U8qQoU9jAVC4JUcrA6CkI8mxr6PuafMtZlFRnnwp/qa/z3poFgMMtkMEI9FB8n/zqYh8KnkxKi2vaEwNTy/Zo822FdS94S5aXo2LLcXMhpviUpbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=BhMijZCI; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ad8a6c202ffso76794366b.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:44:39 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-606ddbda275so1031799a12.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749692678; x=1750297478; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749692949; x=1750297749; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fWcAfXUk5P+0YJPyZ9SkX3gkuCc87P45hLw4l1DcQZA=;
-        b=UaJ1SaFp/vwlrqIMqaZYWeHnvhJmdzCuHTgu+R9vPuH54gj6TtYWBvOZgRWZW+Ju4G
-         4RUi0UQk1WUhDLgQEOM1kzgSyT/C98Achso9c3YnIS2FrTKklEJLm2oSr5UTGQIxhLQG
-         Ymous/9w8SQoivlyHZnA49qvrj+hWrUWsXx0WtTyfia8CtNNjA4o8qobuArElEuzzQCe
-         ZVM+lgfvpxGFcyDiwH4ZhIM4/2pZm8H6vXm6q/7B8bOKMaKWWiimIkEpXvO5TAeYrwI9
-         QNcJcj+Mc9SLeMmsoZOlPDQNDjyu0iMGn5yk9YQVC1Fb1uKz0zlJKctzJbNbSAXpFFH2
-         fFXg==
+        bh=zeRmmiJk7dyHe2xsIaa6eDpe9k71PqYl6SPvF++88pc=;
+        b=BhMijZCIFsjYlP2XfI9qeRSoH2IRv9YsOO5d/GWi+T5JivdH1k63GlbB7MVlJwRMwE
+         /lvjLqYnL7FuGKhq5D4XtvANXd19ZunmqLq25AjcT4gysaF20MDkzQyEJmgqySCLYzAj
+         iMiwSQR+YclDCAix6rW2d0W43Gze2KG0Cjg3/nbI+Fxq8tbS/VQRiDNYwfDWpGZMAJC1
+         FUCQtnwnJ7DdPKhw4CMIT6NOpVyzE83/QZLuyE93zrwATvu7NGWXNC1yKqHY+9uzMt6I
+         NtMWE5j5lu+UkPtudTvm6JBwPTEdaBimg3Khun3dLhdzFquHZOIcQGvyZGI5ICg6o9kC
+         nphw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749692678; x=1750297478;
+        d=1e100.net; s=20230601; t=1749692949; x=1750297749;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fWcAfXUk5P+0YJPyZ9SkX3gkuCc87P45hLw4l1DcQZA=;
-        b=ghz74WLpyQkwK1NRRoyq3aooVr7CAQ20jY2Vbdl8CyxlJtaoyULD45qqIF55u+3gKC
-         xCqvCQDE8PrWIxiEdhsGHNmEECX73ByP54JBoJRCQycZNm7neurdvu/+Hn3IC5kWXnK7
-         DSgfMdKN6ZOjxkw1efXBZ9VwCtvGACm67hx16hV0u1WfsdmjJqrVdaOtaSlDcDWyNxRG
-         MCzML/O7/vO2oKew7cIW12HkzH6oCr/+IggT8lOFz9mPrwA4YS6sT4jZhSeU/19hQSE9
-         t4pL7upjmH2Ee6dl6v6QmgO7Ga/TmMI4GNTnBo6mgkcuiTJmDvFB7gFufdVrE3R2aPB6
-         q3RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX/emh2OiiTS6FydcjJOPTQxdC0SuI9HzMAicvGT8qDBPKs1AL+McjgUfv3Xpgcp6VgDvfpcc7HXFhv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUwjyBONQR8/UL7pyBf5S1V4ydstXYeKorcDiEqEOqA4rmw9XF
-	Tqzun2Zfzc1ANuXjEqrGptu2bpwNoaGiiDMqcjgG9g//3joPz31nqzk9ZIRwn/x3SM79HdVtqth
-	sAepctqC0xSQMtFCJgCtis4LRQ44MFczZUtikvdIZcg==
-X-Gm-Gg: ASbGncumcPaguOzbEr9W1QtZxEeG043vL2L425m3qp48B/xX09lcD4/R4kPD9SwDTZ3
-	ytxsKe3Xgbhj+YHBZRviIG4VUT+Ph2VstK2z5vqrxUuTl/xPkAV7EFEksdM0uD5dCVHPWMBF/uu
-	rZse5v5p2aw/BCHioMsXs3vKZxxMS+YQnbwwmqZPtcjCYLYNNTFS7HOZU=
-X-Google-Smtp-Source: AGHT+IF6ozO6AyxwG4za9A7i83BSzRL3SEEnwk5MfwoXwPW6m7AZDLNJEhC2j3KTRCG2+36HHH9N7IUrHjCnjqIf3Hs=
-X-Received: by 2002:a17:907:7fa9:b0:ade:3a7a:26cb with SMTP id
- a640c23a62f3a-adea9a5a8f2mr111569866b.58.1749692677584; Wed, 11 Jun 2025
- 18:44:37 -0700 (PDT)
+        bh=zeRmmiJk7dyHe2xsIaa6eDpe9k71PqYl6SPvF++88pc=;
+        b=EpY0cm8TeaN5zpQ5R6EY+gnhP5MgNUlc9323sISj9eXkfJUdVMT9M/z6rhQ7AEX1LX
+         paQLxO6jbRPh7yhbCpOYgU3uAeC1hpyD2YWM/RrCtM2FJBuONkCAXlHnU/BXbT+1hYYw
+         A0UWnpidaHBMYql9MKroHI+RsUbE00UQzgcsHtOvyJ7UHNu+u4eJDrXkT+D92yNX4SQA
+         +mzkT3c9BqvqN3s2eSANxANkyfXkSuhfV+RTArFGLfxFuqLSAtfNWRpb/1JrjWRXveBi
+         5UJOzdpI+NVhcDHkhpWvfX3ca31V5DuLhImfTiVtpkFtkJvtG7JHyd9U7fgZIjQtvpuK
+         Wszg==
+X-Forwarded-Encrypted: i=1; AJvYcCW1abAYIWM/X8qcZi4CpdbT0fjC0Azw28/r4LScOS4E6EB7PUVsyqA1eWKFZnbkbfjVcvFXUoWCP5lM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWf+4mEBU5xhX9b+vWnnVCfnFeL70mg5tyRsPiHZVMDj5r7QH/
+	w2ueO+T1CWDYwzdGqo30NYVTZ5RnFIS49vum5rKZSNVeh0XDTrMCVZMw6GVp9F7z65TE7homqS3
+	pHQ+0U0g3GMCIpDhiZxAz+GQYwjcvc73mcuYc16P6Lw==
+X-Gm-Gg: ASbGncuviaNofsbGaLQiWCGuMSNqEP0HsaGsHc6U1xGRzmiwV+Z4w5mn+O85xaBAZox
+	334T3luIqo+Z+O7HlkP32YE+hf1miXKGP7rYRtVsTxGMA2ojU3ugGnMZsvRbisHYbfOEg71rH5m
+	ObLyu3YXsILzM+B7HPn6YjIzAhjfLGoTq7moApgll2mliydK/XgmRKAvI=
+X-Google-Smtp-Source: AGHT+IFqEcHJsmVoMqXHHPFn7yHeR1oDGdJeaYWXWqBT/PegqYwsZ5z0ffozW4eWFgBnqvaTPT/vq7D0XhuX7E2hMC8=
+X-Received: by 2002:a17:907:1c19:b0:ade:2c48:1ba7 with SMTP id
+ a640c23a62f3a-adea9a57710mr122939966b.55.1749692949426; Wed, 11 Jun 2025
+ 18:49:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,143 +75,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20250611125723.181711-1-guodong@riscstar.com> <20250611125723.181711-2-guodong@riscstar.com>
- <20250611-kabob-unmindful-3b1e9728e77d@spud>
-In-Reply-To: <20250611-kabob-unmindful-3b1e9728e77d@spud>
+ <20250611-kabob-unmindful-3b1e9728e77d@spud> <20250612000354-GYA127864@gentoo>
+In-Reply-To: <20250612000354-GYA127864@gentoo>
 From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 12 Jun 2025 09:44:25 +0800
-X-Gm-Features: AX0GCFsy-sakH0jotNRCx536oNAS4R_g03uEq1Dp3TLhuOr7_lBJgrQdKtIkepA
-Message-ID: <CAH1PCMYBPOerGKhMGUi_4AD-abF9wce2PgFMSfzi056FJvRJgQ@mail.gmail.com>
+Date: Thu, 12 Jun 2025 09:48:55 +0800
+X-Gm-Features: AX0GCFvb3rY5RbOdj--6bI5I0CRQw5-xjkK6pB9t5n94l_np5ZJaDhu5M4gwDF4
+Message-ID: <CAH1PCMbZRhrrKy0TV7D9_nOKkPNuX7gXyyxtzhf_q7vcfhBB_Q@mail.gmail.com>
 Subject: Re: [PATCH 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT PDMA compatibility
-To: Conor Dooley <conor@kernel.org>, duje.mihanovic@skole.hr
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Conor Dooley <conor@kernel.org>, vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
 	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com, 
 	emil.renner.berthing@canonical.com, inochiama@gmail.com, 
 	geert+renesas@glider.be, tglx@linutronix.de, hal.feng@starfivetech.com, 
-	joel@jms.id.au, elder@riscstar.com, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+	joel@jms.id.au, duje.mihanovic@skole.hr, elder@riscstar.com, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 12, 2025 at 12:27=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
+On Thu, Jun 12, 2025 at 8:03=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
 >
-> On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
-> > Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
-> > controller in the Marvell MMP DMA device tree bindings. This enables:
+> On 17:27 Wed 11 Jun     , Conor Dooley wrote:
+> > On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
+> > > Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
+> > > controller in the Marvell MMP DMA device tree bindings. This enables:
+> > >
+> > > - Support for SpacemiT PDMA controller configuration
+> > > - New optional properties for platform-specific integration:
+> > >   * clocks: Clock controller for the DMA
+> > >   * resets: Reset controller for the DMA
+> > >
+> > > Also, add explicit #dma-cells property definition to avoid
+> > > "make dtbs_check W=3D3" warnings about unevaluated properties.
+> > >
+> > > The #dma-cells property is defined as 2 cells to maintain compatibili=
+ty
+> > > with existing ARM device trees. The first cell specifies the DMA requ=
+est
+> > > line number, while the second cell is currently unused by the driver =
+but
+> > > required for backward compatibility with PXA device tree files.
+> > >
+> > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > > ---
+> > >  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++=
+++
+> > >  1 file changed, 17 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.ya=
+ml b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > > index d447d5207be0..e117a81414bd 100644
+> > > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> > > @@ -18,6 +18,7 @@ properties:
+> > >        - marvell,pdma-1.0
+> > >        - marvell,adma-1.0
+> > >        - marvell,pxa910-squ
+> > > +      - spacemit,pdma-1.0
 > >
-> > - Support for SpacemiT PDMA controller configuration
-> > - New optional properties for platform-specific integration:
-> >   * clocks: Clock controller for the DMA
-> >   * resets: Reset controller for the DMA
+> > You need a soc-specific compatible here.
 > >
-> > Also, add explicit #dma-cells property definition to avoid
-> > "make dtbs_check W=3D3" warnings about unevaluated properties.
-> >
-> > The #dma-cells property is defined as 2 cells to maintain compatibility
-> > with existing ARM device trees. The first cell specifies the DMA reques=
-t
-> > line number, while the second cell is currently unused by the driver bu=
-t
-> > required for backward compatibility with PXA device tree files.
-> >
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> >  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml=
- b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > index d447d5207be0..e117a81414bd 100644
-> > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >        - marvell,pdma-1.0
-> >        - marvell,adma-1.0
-> >        - marvell,pxa910-squ
-> > +      - spacemit,pdma-1.0
+> is the version number (1.0 here) actually documented anywhere?
 >
-> You need a soc-specific compatible here.
->
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -32,6 +33,21 @@ properties:
-> >        A phandle to the SRAM pool
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> >
-> > +  clocks:
-> > +    description: Clock for the controller
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    description: Reset controller for the DMA controller
-> > +    maxItems: 1
-> > +
-> > +  '#dma-cells':
-> > +    const: 2
-> > +    description:
-> > +      The first cell contains the DMA request number for the periphera=
-l
-> > +      device. The second cell is currently unused but must be present =
-for
-> > +      backward compatibility.
->
-> These properties are only valid for your new device, right?
-> If so, please restrict them to only the spacemit platform.
+> otherwise I'd suggest using "spacemit,k1-pdma" which follow the conventio=
+n
+> which already done for spacemit in other components..
 >
 
-For clocks and resets, yes that's correct, only for spacemit k1. I'll add
-conditional constraints to restrict them to the spacemit platform.
-
-Regarding #dma-cells, it's used by other platforms too. You are right that
-it requires clarification. I should have been more careful in my initial
-analysis.
-
-After reviewing the in-tree device trees and driver code, here's what I fou=
-nd:
-
-For PDMA controllers:
-Both "marvell,pdma-1.0" and the spacemit pdma use #dma-cells =3D <2>;
-Handled by drivers/dma/mmp_pdma.c with _xlate() callback
-
-For ADMA/audio controllers:
-"marvell,adma-1.0" uses #dma-cells =3D <1>
-
-"marvell,pxa910-squ" is not found in any in-tree device trees, but based
-on the original TXT binding [1], both adma and pxa910-squ are "Marvell
-Two Channel DMA Controller used specifically for audio", and the shared
-driver code (drivers/dma/mmp_tdma.c) also shows it should use
-#dma-cells =3D <1>.
-
-So, I'll add conditional constraints in the allOf section.
-For "marvell,pdma-1.0" and spacemit pdma, #dma-cells must be 2;
-For "marvell,adma-1.0" and "marvell,pxa910-squ", #dma-cells must be 1.
-Also, as said, I will restrict clocks and resets to spacemit only.
-
-Thank you again for catching this. Let me know what you think.
-
-Link: https://lore.kernel.org/all/20240131-pxa-dma-yaml-v2-2-9611d0af0edc@s=
-kole.hr/
-[1]
+Thanks Conor and Yixun. I will take this compatible string
+"spacemit,k1-pdma".
 
 -Guodong
 
-
-> > +
-> >    '#dma-channels':
-> >      deprecated: true
-> >
-> > @@ -52,6 +68,7 @@ allOf:
-> >            contains:
-> >              enum:
-> >                - marvell,pdma-1.0
-> > +              - spacemit,pdma-1.0
-> >      then:
-> >        properties:
-> >          asram: false
-> > --
-> > 2.43.0
-> >
+> --
+> Yixun Lan (dlan)
 
