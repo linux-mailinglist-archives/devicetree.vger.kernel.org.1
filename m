@@ -1,129 +1,235 @@
-Return-Path: <devicetree+bounces-185253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A1CAD7072
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:31:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F34AD70A7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:42:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AC111884C8D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:31:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D5711662EE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EB319D8BC;
-	Thu, 12 Jun 2025 12:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Pdr3jsG8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC69221710;
+	Thu, 12 Jun 2025 12:42:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5687B46B8;
-	Thu, 12 Jun 2025 12:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18DBB2AE8D
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 12:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749731441; cv=none; b=SpsbHFIUyaU/x6nNCJXUPI6EOC1NzNZRgEevN4UmmoBTqD062cVsdnfoEcsD0qag1EGwVMdnoYAvm52+2uuaLXJIfnhTDJkAYdxoYIaSfk60AOeEqvF6LENVuTGQ7K+jSi/3wNYzg74nCEyxKZoVdOfxSuEbe0YAIBQ3Ubomr00=
+	t=1749732160; cv=none; b=uSBhFR+R4qZXLC6qKeQsPHAqzggdA3hYAeC8pX77DOUbKVYR1St2EnzeIaE9Yp4qpJ6fofuHQ/c0kuCVTQWvO+x1/IwIXfjbKMRKk0NfxwGFSBddqNO+pOlziFKeinoNc1HgLg9pCYp9nXYFSSghoOLMcEDOt+EgNaM54K3vU08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749731441; c=relaxed/simple;
-	bh=xMj0PeXUpejsICB72qzZq/FU9wUca+EJE4sWUqWhTeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y7VMaqWD4eU68EnxbP99yz5RrT+JDjUYMq4rZaWMCH4L73bwsuaP1Z+4SCovQ5+dyF91JBvRLPPRz7QV6mE6EmgrLPPYg6ZufvUDLwgiV/DyLrTSe5QlC1iRE7KA2HLrt+AAr/nYZGY1JYvnHOsC4NL/WN+zA+/Krrz5qV1fL4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Pdr3jsG8; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1749731436;
-	bh=xMj0PeXUpejsICB72qzZq/FU9wUca+EJE4sWUqWhTeA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Pdr3jsG8LEBbrTq48ZzhTF8vjLwU0K+gNO+X2iv7Gdtf7LmKBdaFEIz5QMWdeccwD
-	 GLCxrTWkvx74UkGx64K3aPq/B4r5m2wWanFUdRsvxE/zkUcEWjvmC0tdmaSl7DthRD
-	 5BeuUwEdjAOZP363EEtatAdEPq2wvbL19UMWfJpDqLJEWqCebJY82sVUPdY5Cah+Bp
-	 d6wLrrwIXhisc4G9pCT8qm9/8yoDg9PO+QNBA6isGJKMkProKjiDrtP+vHW8of9oIv
-	 T0bBlbb2VBZy8YlsWjQe1n9JNo/CshEopiXzxi9osJgM+NETN7+2eF9RvK13lDKGw6
-	 5cndkuogjgGWQ==
-Received: from [192.168.1.90] (unknown [212.93.144.165])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 48C9D17E06BF;
-	Thu, 12 Jun 2025 14:30:35 +0200 (CEST)
-Message-ID: <85cb44fd-f597-443e-81b4-e259513aec9f@collabora.com>
-Date: Thu, 12 Jun 2025 15:30:23 +0300
+	s=arc-20240116; t=1749732160; c=relaxed/simple;
+	bh=697PY5Nbn19ygEdhBM6ksoSsaGIhpIVkom3/BoDU+O8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ShnFnFKpG3NX6KuyK3jYQp3VkHIceacObHb5eX5crHae52FPWo9JPFN8bBTVX6b4WvIursCy7UgkNeuXC/zhoOKL5bKxncTgEDKxDev2hkPWuVdYxnMJPf0kzuWMHMmRwsRU2vJzarIFSp3tfouAg/GSNRk/NenZhTyHvMoOLp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mtr@pengutronix.de>)
+	id 1uPhG0-00029s-Mk; Thu, 12 Jun 2025 14:42:12 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mtr@pengutronix.de>)
+	id 1uPhFz-0037mO-05;
+	Thu, 12 Jun 2025 14:42:11 +0200
+Received: from mtr by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mtr@pengutronix.de>)
+	id 1uPhFy-008uO9-2t;
+	Thu, 12 Jun 2025 14:42:10 +0200
+Date: Thu, 12 Jun 2025 14:42:10 +0200
+From: Michael Tretter <m.tretter@pengutronix.de>
+To: yassine.ouaissa@allegrodvt.com
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Dufresne <nicolas@ndufresne.ca>,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: media: allegro-dvt: add decoder
+ dt-bindings for Gen3 IP
+Message-ID: <aErLIriSYa1meukJ@pengutronix.de>
+Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
+	yassine.ouaissa@allegrodvt.com,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Dufresne <nicolas@ndufresne.ca>,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20250605-allegro_dvt_al300_dec_driver-v2-0-1ef4839f5f06@allegrodvt.com>
+ <20250605-allegro_dvt_al300_dec_driver-v2-2-1ef4839f5f06@allegrodvt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Fix HDMI output on RK3576
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org
-Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
- <3011644.e9J7NaK4W3@workhorse>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <3011644.e9J7NaK4W3@workhorse>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250605-allegro_dvt_al300_dec_driver-v2-2-1ef4839f5f06@allegrodvt.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Nicolas,
+On Thu, 05 Jun 2025 12:26:57 +0000, Yassine Ouaissa via B4 Relay wrote:
+> From: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+> 
+> Add compatible for video decoder on allegrodvt Gen 3 IP.
+> 
+> v2:
+> - Change the YAML file name, use the existing vendor-prefix.
+> - Improuve the dt-bindings description.
+> - Change the device compatible identifier, from "allegrodvt, al300-vdec",
+>   to "allegro, al300-vdec"
+> - Simplify the register property specification,
+>   by using the simple min/max items constraint (Krzysztof Kozlowski)
+> - Remove the clock-names property. And remove it from the required
+>   properties list (Krzysztof Kozlowski) (Conor Dooley)
+> - Use the simple maxItems constraint for the memory-region property.
+>   Also for the firmware-name (Krzysztof Kozlowski)
+> - Example changes:
+>   - Use header provides definitions for the interrupts (Conor Dooley)
+>   - Improuve Interrupt specification using GIC constants (Conor Dooley)
+>   - Use generic node name "video-decoder" (Krzysztof Kozlowski) (Conor Dooley)
+>   - Remove unused label (Krzysztof Kozlowski)
+>   - Change clock reference from <&mcu_clock_dec> to <&mcu_core_clk>
+>   - Use hex format for reg property (Krzysztof Kozlowski) (Conor Dooley)
+>   - Reduce memory region size (Krzysztof Kozlowski) (Conor Dooley)
+> 
+>   - Link v1: https://patchwork.linuxtv.org/project/linux-media/patch/20250511144752.504162-4-yassine.ouaissa@allegrodvt.com/
+> 
+> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+> ---
+>  .../bindings/media/allegro,al300-vdec.yaml         | 75 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  2 +
+>  2 files changed, 77 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml b/Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..26f9ac39682431b1d4828aed5d1ed43ef099e204
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/allegro,al300-vdec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allegro DVT Video IP Decoder Gen 3
+> +
+> +maintainers:
+> +  - Yassine OUAISSA <yassine.ouaissa@allegrodvt.com>
+> +
+> +description: The al300-vdec represents the gen 3 of Allegro DVT IP video
+> +  decoding technology, offering significant advancements over its
+> +  predecessors. This new decoder features enhanced processing capabilities
+> +  with improved throughput and reduced latency.
+> +
+> +  Communication between the host driver software and the MCU is implemented
+> +  through a specialized mailbox interface mechanism. This mailbox system
+> +  provides a structured channel for exchanging commands, parameters, and
+> +  status information between the host CPU and the MCU controlling the codec
+> +  engines.
+> +
+> +properties:
+> +  compatible:
+> +    const: allegro,al300-vdec
+> +
+> +  reg:
+> +    maxItems: 2
+> +    minItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: apb
 
-On 6/12/25 3:13 PM, Nicolas Frattaroli wrote:
-> On Wednesday, 11 June 2025 23:47:46 Central European Summer Time Cristian Ciocaltea wrote:
->> Since commit c871a311edf0 ("phy: rockchip: samsung-hdptx: Setup TMDS
->> char rate via phy_configure_opts_hdmi"), the workaround of passing the
->> PHY rate from DW HDMI QP bridge driver via phy_set_bus_width() became
->> partially broken, unless the rate adjustment is done as with RK3588,
->> i.e. by CCF from VOP2.
->>
->> Attempting to fix this up at PHY level would not only introduce
->> additional hacks, but it would also fail to adequately resolve the
->> display issues that are a consequence of the system CRU limitations.
->>
->> Therefore, let's proceed with the solution already implemented for
->> RK3588, that is to make use of the HDMI PHY PLL as a more accurate DCLK
->> source in VOP2.
->>
->> It's worth noting a follow-up patch is going to drop the hack from the
->> bridge driver altogether, while switching to HDMI PHY configuration API
->> for setting up the TMDS character rate.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->> Cristian Ciocaltea (3):
->>       dt-bindings: display: vop2: Add optional PLL clock property for rk3576
->>       arm64: dts: rockchip: Enable HDMI PHY clk provider on rk3576
->>       arm64: dts: rockchip: Add HDMI PHY PLL clock source to VOP2 on rk3576
->>
->>  .../bindings/display/rockchip/rockchip-vop2.yaml   | 56 +++++++++++++++++-----
->>  arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  7 ++-
->>  2 files changed, 49 insertions(+), 14 deletions(-)
->> ---
->> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
->> change-id: 20250611-rk3576-hdmitx-fix-e030fbdb0d17
->>
-> 
-> For the whole series:
-> 
-> Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> 
-> This fixes HDMI output for 4K resolutions on my RK3576 ArmSoM Sige5.
-> The DTB checks and bindings checks pass as well.
-Many thanks for the additional testing!
+If I understand correctly, "regs" are the registers to control the MCU
+and "apb" are the registers of the actual codec engines, which is
+controlled by the MCU. The driver never accesses the apb registers, but
+uses the apb address only to configure the firmware and tell it, where
+the registers of the codec engines are found.
 
-Regards,
-Cristian
+Maybe a separate node for the actual codec that is referred via a
+phandle could be a better description of the hardware?
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: MCU core clock
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - clocks
+> +
+> +additionalProperties: False
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    axi {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        video-decoder@a0120000 {
+> +            compatible = "allegro,al300-vdec";
+> +            reg = <0x00 0xa0120000 0x00 0x10000>,
+> +                  <0x01 0x80000000 0x00 0x8000>;
+> +            reg-names = "regs", "apb";
+> +            interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&mcu_core_clk>;
+> +            firmware-name = "al300_vdec.fw";
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index abc6ba61048771303bc219102f2db602266b7c30..1ff78b9a76cb8cdf32263fcd9b4579b4a2bb6b2a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -816,7 +816,9 @@ M:	Michael Tretter <m.tretter@pengutronix.de>
+>  R:	Pengutronix Kernel Team <kernel@pengutronix.de>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml
+>  F:	Documentation/devicetree/bindings/media/allegro,al5e.yaml
+> +F:	drivers/media/platform/allegro-dvt/al300
+>  F:	drivers/media/platform/allegro-dvt/zynqmp
+>  
+>  ALLIED VISION ALVIUM CAMERA DRIVER
+> 
+> -- 
+> 2.30.2
+> 
+> 
+> 
 
