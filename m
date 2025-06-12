@@ -1,154 +1,174 @@
-Return-Path: <devicetree+bounces-185067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D694CAD6542
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:49:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF951AD6555
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 03:57:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 879A9179696
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:49:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E6663ACE86
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 01:57:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E509191F8C;
-	Thu, 12 Jun 2025 01:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C321C19342F;
+	Thu, 12 Jun 2025 01:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="BhMijZCI"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b="I3aYeJZa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.kapsi.fi (mail-auth.kapsi.fi [91.232.154.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A4E2155A4D
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 01:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5051B770FE;
+	Thu, 12 Jun 2025 01:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.232.154.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749692953; cv=none; b=Vd8KZHSOF91fRtcVfzpAPCISyEu5DxRYUx8MoZlvCI4Rezdg/WBEgoxnAYSoyXCKCAPkp3SY1s9OYZBpmP4aEAybG62xNhQ3V/kiVjFt8gBBRWlvaS5mGD0KNCn9qjzqlmdMpUPAxWYk+1l2AyPxnd0YpBEMerzQwQE0t0cDQb4=
+	t=1749693473; cv=none; b=WLa6UPdcpVBmQ8GgAY4xNk3Ei18WWDum3HcFRcDV7yQdWoQ+iXkyb641fOnmDaWws2kHSHlnzchcMR6akYgXKHlFMTE5M40fZhbT9Exorta5SC9M6Z54LWbfYJ8/IOr5Bztdss97Bq7t/GXCdpscFSbNdCVGdvCfPw+ItziaoYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749692953; c=relaxed/simple;
-	bh=5kLQjd6AzdXVJDSfbwMG/b2U5PBjG3cD+vDIQsbcSVY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UQ4rqq4VXlUGrdbTP/z/qoebE3I7AsndYDD5y62yZNPuN8+fDDkm7KgYcO4U8qQoU9jAVC4JUcrA6CkI8mxr6PuafMtZlFRnnwp/qa/z3poFgMMtkMEI9FB8n/zqYh8KnkxKi2vaEwNTy/Zo822FdS94S5aXo2LLcXMhpviUpbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=BhMijZCI; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-606ddbda275so1031799a12.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Jun 2025 18:49:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749692949; x=1750297749; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zeRmmiJk7dyHe2xsIaa6eDpe9k71PqYl6SPvF++88pc=;
-        b=BhMijZCIFsjYlP2XfI9qeRSoH2IRv9YsOO5d/GWi+T5JivdH1k63GlbB7MVlJwRMwE
-         /lvjLqYnL7FuGKhq5D4XtvANXd19ZunmqLq25AjcT4gysaF20MDkzQyEJmgqySCLYzAj
-         iMiwSQR+YclDCAix6rW2d0W43Gze2KG0Cjg3/nbI+Fxq8tbS/VQRiDNYwfDWpGZMAJC1
-         FUCQtnwnJ7DdPKhw4CMIT6NOpVyzE83/QZLuyE93zrwATvu7NGWXNC1yKqHY+9uzMt6I
-         NtMWE5j5lu+UkPtudTvm6JBwPTEdaBimg3Khun3dLhdzFquHZOIcQGvyZGI5ICg6o9kC
-         nphw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749692949; x=1750297749;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zeRmmiJk7dyHe2xsIaa6eDpe9k71PqYl6SPvF++88pc=;
-        b=EpY0cm8TeaN5zpQ5R6EY+gnhP5MgNUlc9323sISj9eXkfJUdVMT9M/z6rhQ7AEX1LX
-         paQLxO6jbRPh7yhbCpOYgU3uAeC1hpyD2YWM/RrCtM2FJBuONkCAXlHnU/BXbT+1hYYw
-         A0UWnpidaHBMYql9MKroHI+RsUbE00UQzgcsHtOvyJ7UHNu+u4eJDrXkT+D92yNX4SQA
-         +mzkT3c9BqvqN3s2eSANxANkyfXkSuhfV+RTArFGLfxFuqLSAtfNWRpb/1JrjWRXveBi
-         5UJOzdpI+NVhcDHkhpWvfX3ca31V5DuLhImfTiVtpkFtkJvtG7JHyd9U7fgZIjQtvpuK
-         Wszg==
-X-Forwarded-Encrypted: i=1; AJvYcCW1abAYIWM/X8qcZi4CpdbT0fjC0Azw28/r4LScOS4E6EB7PUVsyqA1eWKFZnbkbfjVcvFXUoWCP5lM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWf+4mEBU5xhX9b+vWnnVCfnFeL70mg5tyRsPiHZVMDj5r7QH/
-	w2ueO+T1CWDYwzdGqo30NYVTZ5RnFIS49vum5rKZSNVeh0XDTrMCVZMw6GVp9F7z65TE7homqS3
-	pHQ+0U0g3GMCIpDhiZxAz+GQYwjcvc73mcuYc16P6Lw==
-X-Gm-Gg: ASbGncuviaNofsbGaLQiWCGuMSNqEP0HsaGsHc6U1xGRzmiwV+Z4w5mn+O85xaBAZox
-	334T3luIqo+Z+O7HlkP32YE+hf1miXKGP7rYRtVsTxGMA2ojU3ugGnMZsvRbisHYbfOEg71rH5m
-	ObLyu3YXsILzM+B7HPn6YjIzAhjfLGoTq7moApgll2mliydK/XgmRKAvI=
-X-Google-Smtp-Source: AGHT+IFqEcHJsmVoMqXHHPFn7yHeR1oDGdJeaYWXWqBT/PegqYwsZ5z0ffozW4eWFgBnqvaTPT/vq7D0XhuX7E2hMC8=
-X-Received: by 2002:a17:907:1c19:b0:ade:2c48:1ba7 with SMTP id
- a640c23a62f3a-adea9a57710mr122939966b.55.1749692949426; Wed, 11 Jun 2025
- 18:49:09 -0700 (PDT)
+	s=arc-20240116; t=1749693473; c=relaxed/simple;
+	bh=A9TkELkIlKIZrcNNPESM/UHkept+MT+PNaOa2I+ZqYU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mgug0BlQHG2vDOvWMk5YLGnM5xKjtT4fiEM0JwOtBFN/pjnmmfkpDkaaGJcWyeZjobtEXqkWDbChKKFRcmxDFVWd19uA6PH2iUZ+jg8Ca8Kg1Slsyu/x5OfbahMxK3oVRhOvVz3bFR9OnnCTHTkvYuQ2/zcqvTJrLtf7uLkfaP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi; spf=pass smtp.mailfrom=kapsi.fi; dkim=pass (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b=I3aYeJZa; arc=none smtp.client-ip=91.232.154.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kapsi.fi
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+	s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=My7ku61t0R/YRh9ePPMG3Cu/uUDaAwNFOLS11kIAzO8=; b=I3aYeJZa2lk55Pl6fTG+8F/o4w
+	ZcPCbMt7wb6UunSsp0/KS+Esydn0Hy2OmdTwZVIQos5OGtqLa4uutdi2A+eV1+0jFGwaSD+A/ABBP
+	yn6vH0UiUOwwu7MKejqcEa99scRqe/INEt3AfNkpV0d3F7pntla3AESfGF8nm2siLVEK8dyrZlLOz
+	h6goBYqPXg9AJMQYrx9cgrT65Megs03wDemCGJ/jeKC74iNrWjSY8cgcno0HXOqULibwbY3A+N+f1
+	RzG+eN3+9H6Ro00j6ndzcpCR6DYiaoEINqb+iR29j0C0WTpA4qs1kCWg4AQBe1LK3y4YwQWUYpWFj
+	h1/+Fhew==;
+Received: from [2404:7a80:b960:1a00:5eaa:b33c:a197:a90f]
+	by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <cyndis@kapsi.fi>)
+	id 1uPXBH-000k9l-2B;
+	Thu, 12 Jun 2025 04:56:39 +0300
+Message-ID: <3293ae49-90c6-454c-b2f4-98ea84302c11@kapsi.fi>
+Date: Thu, 12 Jun 2025 10:55:20 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611125723.181711-1-guodong@riscstar.com> <20250611125723.181711-2-guodong@riscstar.com>
- <20250611-kabob-unmindful-3b1e9728e77d@spud> <20250612000354-GYA127864@gentoo>
-In-Reply-To: <20250612000354-GYA127864@gentoo>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 12 Jun 2025 09:48:55 +0800
-X-Gm-Features: AX0GCFvb3rY5RbOdj--6bI5I0CRQw5-xjkK6pB9t5n94l_np5ZJaDhu5M4gwDF4
-Message-ID: <CAH1PCMbZRhrrKy0TV7D9_nOKkPNuX7gXyyxtzhf_q7vcfhBB_Q@mail.gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT PDMA compatibility
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Conor Dooley <conor@kernel.org>, vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com, 
-	emil.renner.berthing@canonical.com, inochiama@gmail.com, 
-	geert+renesas@glider.be, tglx@linutronix.de, hal.feng@starfivetech.com, 
-	joel@jms.id.au, duje.mihanovic@skole.hr, elder@riscstar.com, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] NVIDIA Tegra210 NVJPG support
+To: Thierry Reding <thierry.reding@gmail.com>,
+ Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc: Mikko Perttunen <mperttunen@nvidia.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
+ <mz5sytol6aw7ouwiimmrd7lqhtvq6nj7pqpxq4ie6em6nwvvkh@2cux3no33gre>
+ <621a9459-f2dd-4b19-a083-0e62f1a42f50@kapsi.fi>
+ <96b721cd-7223-4b28-a3fd-a4d92c9d5142@tecnico.ulisboa.pt>
+ <4cibh66elviiatataa45lsfcyeovkqyxe4fjvfh7uqddhsbe6z@svt2dgeafrdh>
+Content-Language: en-US
+From: Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <4cibh66elviiatataa45lsfcyeovkqyxe4fjvfh7uqddhsbe6z@svt2dgeafrdh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2404:7a80:b960:1a00:5eaa:b33c:a197:a90f
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 
-On Thu, Jun 12, 2025 at 8:03=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
->
-> On 17:27 Wed 11 Jun     , Conor Dooley wrote:
-> > On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
-> > > Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
-> > > controller in the Marvell MMP DMA device tree bindings. This enables:
-> > >
-> > > - Support for SpacemiT PDMA controller configuration
-> > > - New optional properties for platform-specific integration:
-> > >   * clocks: Clock controller for the DMA
-> > >   * resets: Reset controller for the DMA
-> > >
-> > > Also, add explicit #dma-cells property definition to avoid
-> > > "make dtbs_check W=3D3" warnings about unevaluated properties.
-> > >
-> > > The #dma-cells property is defined as 2 cells to maintain compatibili=
-ty
-> > > with existing ARM device trees. The first cell specifies the DMA requ=
-est
-> > > line number, while the second cell is currently unused by the driver =
-but
-> > > required for backward compatibility with PXA device tree files.
-> > >
-> > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > > ---
-> > >  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++=
-++
-> > >  1 file changed, 17 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.ya=
-ml b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > > index d447d5207be0..e117a81414bd 100644
-> > > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > > @@ -18,6 +18,7 @@ properties:
-> > >        - marvell,pdma-1.0
-> > >        - marvell,adma-1.0
-> > >        - marvell,pxa910-squ
-> > > +      - spacemit,pdma-1.0
-> >
-> > You need a soc-specific compatible here.
-> >
-> is the version number (1.0 here) actually documented anywhere?
->
-> otherwise I'd suggest using "spacemit,k1-pdma" which follow the conventio=
-n
-> which already done for spacemit in other components..
->
+On 6/12/25 12:06 AM, Thierry Reding wrote:
+> On Wed, Jun 11, 2025 at 01:05:40PM +0100, Diogo Ivo wrote:
+>>
+>>
+>> On 6/10/25 10:52 AM, Mikko Perttunen wrote:
+>>> On 6/10/25 6:05 PM, Thierry Reding wrote:
+>>>> On Fri, Jun 06, 2025 at 11:45:33AM +0100, Diogo Ivo wrote:
+>>>>> Hello,
+>>>>>
+>>>>> This series adds support for the NVJPG hardware accelerator found in the
+>>>>> Tegra210 SoC.
+>>>>>
+>>>>> The kernel driver is essentially a copy of the NVDEC driver as both
+>>>>> engines are Falcon-based.
+>>>>>
+>>>>> For the userspace part I have written a Mesa Gallium backend [1] that,
+>>>>> while still very much experimental, works in decoding images
+>>>>> with VA- API.
+>>>>>
+>>>>> I have been using ffmpeg to call VA-API with the following command:
+>>>>>
+>>>>> ffmpeg -v verbose -hwaccel vaapi -hwaccel_device
+>>>>> /dev/dri/renderD129 -i <input.jpg> -pix_fmt bgra -f fbdev
+>>>>> /dev/fb0
+>>>>>
+>>>>> which decodes <input.jpg> and shows the result in the framebuffer.
+>>>>>
+>>>>> The firmware for the engine can be obtained from a Linux for Tegra
+>>>>> distribution.
+>>>>
+>>>> By the way, have you tried running this on anything newer than Tegra210?
+>>>> Given your progress on this, we can probably start thinking about
+>>>> submitting the binaries to linux-firmware.
+>>>
+>>> FWIW, the impression I have is that NVJPG is basically unchanged all the
+>>> way to Tegra234. So if we add stream ID support and the firmwares, it'll
+>>> probably just work. Tegra234 has the quirk that it has two instances of
+>>> NVJPG -- these have to be distinguished by their different class IDs.
+>>> But we should go ahead with the T210 support first.
+>>
+>> I have a question here, what exactly are the stream IDs? While working
+>> on the driver this came up and I didn't manage to figure it out.
+> 
+> Stream IDs are a way to identify memory transactions as belonging to a
+> certain device. This comes into play when working with the IOMMU (which
+> is a Tegra SMMU on Tegra210 and earlier, and an ARM SMMU on Tegra) and
+> is used to isolate DMA capable devices. Basically for every stream ID
+> you get a separate I/O address space. NVJPG will have its own address
+> space, and so will VIC. Each device can only access whatever has been
+> mapped to it's I/O address space. That means NVJPG can't interfere with
+> VIC and vice-versa. And neither can any of these engines read from or
+> write to random system memory if badly programmed.
+> 
+> For Tegra SMMU there's no such thing as programmable stream IDs, so the
+> stream ID is fixed for the given device.
+> 
+> On newer chips (Tegra186 and later, or maybe it wasn't until Tegra194),
 
-Thanks Conor and Yixun. I will take this compatible string
-"spacemit,k1-pdma".
+Tegra186 and newer -- all chips with the ARM SMMU. To add a little bit, 
+each engine can address two stream IDs, one for firmware and one for 
+data. All user specified buffers are mapped into the data IOMMU domain, 
+and these are switched between jobs / applications.
 
--Guodong
+As an aside, currently each engine has its own firmware stream ID, but 
+that's a bit wasteful, since the kernel allocates a separate IOMMU 
+domain for each. The firmwares are all read-only so they could be in a 
+shared one. We've had to consolidate these on some platforms that ran 
+out of IOMMU domains otherwise. Not really a concern with upstream 
+platforms, though.
 
-> --
-> Yixun Lan (dlan)
+> certain IP blocks have special registers that can be used to override
+> the stream ID. There's also a way to set the stream ID via command
+> streams, which means that you can have different I/O address spaces (I
+> think we call them memory context) per engine, which means that you can
+> isolate different processes using the same engine from each other.
+> 
+> Again, for Tegra210 that's nothing we need to worry about. For newer
+> chips it's probably just a matter of adding .get_streamid_offset() and
+> .can_use_memory_ctx() implementations.
+
+Also need to program the THI_STREAMID / TRANSCFG registers during boot.
+
+Cheers,
+Mikko
+
+> 
+> Thierry
+
 
