@@ -1,117 +1,138 @@
-Return-Path: <devicetree+bounces-185394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E867BAD779A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 18:09:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6D4AD77F5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 18:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CECC7B03E6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:07:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4082B178635
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B4429A307;
-	Thu, 12 Jun 2025 16:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1FD29AB16;
+	Thu, 12 Jun 2025 16:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yu1eX2+y"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="NJEQMW0m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FFD299A9C;
-	Thu, 12 Jun 2025 16:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749744523; cv=none; b=DJ6lr3xxZeFMfrELEjtETS7Uedw73Af6GPQF1huEpBwZnoTkCEl2vF7u8EpppSW35PxYTjp88DBjDlwpiUUw2fmdBb+n4aW/ww+lrrvzqPpoSexGTXLDPCLlwnYFlw1up9K2PutMDMKZ2vqti1gLe4CwsszihzJu+Qnggm2iVo8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749744523; c=relaxed/simple;
-	bh=7+b3JmMUKKzZHXO8vtquG03ptonMmn+AG6H+hfCo32c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f5xFf9FUnxZXfQcm5M/EIq6WId+1i0d6Jz8k/Fzf05MxbIA/m2anwVsURt7vF4LExxXxzNwcH30vv1pQfhDRsdUQUsHH0mzWAB8ihKgfhPZMyEG5S9p7kt+R7YNr8mj0zmr/DWLpZoYH9LIl+xTwgr67xzx1t9P9V45WrWzzFf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yu1eX2+y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B62BAC4CEEB;
-	Thu, 12 Jun 2025 16:08:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749744523;
-	bh=7+b3JmMUKKzZHXO8vtquG03ptonMmn+AG6H+hfCo32c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yu1eX2+yaTkbsl/d4yM4lfN2qNWWfjohdrJaOUTEURh2W67frVLVNJ9rRCgFxQrZf
-	 ndFlg8mMHcvOcqS4PhqSjZpEbYibip25n9/WMXx9yOX9Qth3pi9r1Ayvek6EEAdSHv
-	 dpNwxRCRDKpCbTYgUBrbAGwJ94lvMUwnRRjqgU+jxCip+i+JE/KLG2QPyM/zn8B4rJ
-	 Q8E6oTzwL6dbMpRzg3e6H8iuHtrL7hK+9Sl08Ggg407bIOdcfokMKeKs+14qTtTgx8
-	 HyWxtWvtY4MFq9igWIknEFRf4dzrpbgGHF6GMIobafqVsAe1ZXwkLzRnaepfDdulDX
-	 7aP4hDoAddGvQ==
-Date: Thu, 12 Jun 2025 21:38:32 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Richard Zhu <hongxing.zhu@nxp.com>, 
-	Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v11 10/11] PCI: dwc: Print warning message when
- cpu_addr_fixup() exists
-Message-ID: <az74rxjpfahjwmz7fg5agn47org7arpblariuauujhovkaieha@d6r2yp23vqan>
-References: <20250313-pci_fixup_addr-v11-0-01d2313502ab@nxp.com>
- <20250313-pci_fixup_addr-v11-10-01d2313502ab@nxp.com>
- <v77jy5tldwuasjzqirlwx45zigt6bpnaiz67e4w7r2lxqrdsek@5qzzobothf5r>
- <aEr3nGCqRuyIwA37@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EA129AB09;
+	Thu, 12 Jun 2025 16:12:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749744736; cv=pass; b=EjiAoc/JaGyaxOfGiUqZOQ69H18PXghBD1J0O5wZlKxflaJ4/1ffXKQPNgzrQFwlImyBxi0ishQK36z5sQonDqV5FLEA6RpPilMdX+nqHSWN7ekHrhdFmUHkuHvQ3oIB2C/V6yOg+bGbtyaOaMW+V+rBjs83vIQVd5uFzJ/Fc6M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749744736; c=relaxed/simple;
+	bh=XPNH0zAjZMtcy8SGc/xpsdQgVSTCk0Ndsxo7h4JpeKM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=m9UWkDBrsqoyTrrmaXxkM3JhNkaKobQN+AToJoQxNKwozbPMbXBRrfmmNi/NOUqTrmFDcaD7MWFtUT1+96/UbDq+GLrCDZcjL5yUVo47e0zhpMSLYcwZkJTQsU40OfllUWmCr1P6laYFvvZ8UGO8Yn7vzi0QHgiphVaHrAhi2+w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=NJEQMW0m; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1749744714; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jYPHD2l/zJ3su6lP130DojZirFBDkFLTji72xBSpawIGXXSV0wFpaMNKWRMDmmR8Wmo50DQ7Tk5Gq6RpqVOLlxat9lVr+zgjRSDHVxnvqCFGVhbMZQ9Ra4BEICpgJ5PG7EDxcnlXoZKo9xdGM7K3ziH+DN9papVdBjCRluyMJmA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1749744714; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=XPNH0zAjZMtcy8SGc/xpsdQgVSTCk0Ndsxo7h4JpeKM=; 
+	b=OSh2Z/sDsqOZAp7xuCJ+573tzsP+7lPgY4NPwO8XnPar3qp/eBU2VsvUU8zxI/PoCSsC88hvL9dX4f3G7XmDw86eRhXCvqr1p2kXrxDVTX326+Jz+YJAV9+zghnB8zRd0dUasP7ioQnf8B19WjWZaxQpfGtRbzHOiwoxJynsmxg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749744714;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=XPNH0zAjZMtcy8SGc/xpsdQgVSTCk0Ndsxo7h4JpeKM=;
+	b=NJEQMW0mjJ12hH2ZMehzEujJty2xY1lQrqfDkqNkHU2U8AefwxzhYV+k7eVTNNtj
+	2isSFGEPiKmWmIIM7wCNir4iLLdCJDE4o4V3tD3prgRY0emHCaHB/TY1X693Q/hQ2Br
+	R7I3nUCO462tINGcxM+GLG20jVI8057Wrm6eiwybw3OwQhtYCtApfLwB9q/LuDOx6or
+	9oQj16gey48His7rPPPj0nT7JbIhFA0Wfb//uNyalcmmb1VwEf++h9Eshg17FDd9m/v
+	YefU75tH9NqS4Ih71G5MAUmxxE24POffc8efJsKtdJieERz1EPF+y7qksMIYNbOupc5
+	v1ea2+ouYg==
+Received: by mx.zohomail.com with SMTPS id 1749744711397806.3789973608574;
+	Thu, 12 Jun 2025 09:11:51 -0700 (PDT)
+Message-ID: <8a1312fbafe65b3fbd2ed7a1fb9f618654fc5d59.camel@icenowy.me>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: mediatek: add mt8173-hana rev2
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, 
+ =?gb2312?Q?Rafa=810=920_Mi=810=920ecki?= <rafal@milecki.pl>, Chen-Yu Tsai
+ <wenst@chromium.org>, Sean Wang <sean.wang@mediatek.com>,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-mediatek@lists.infradead.org
+Date: Fri, 13 Jun 2025 00:11:44 +0800
+In-Reply-To: <20250612-scholar-crown-517f28582edf@spud>
+References: <20250612135559.2601139-1-uwu@icenowy.me>
+	 <20250612-scholar-crown-517f28582edf@spud>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aEr3nGCqRuyIwA37@lizhi-Precision-Tower-5810>
+X-ZohoMailClient: External
+X-ZohoMail-Owner: <8a1312fbafe65b3fbd2ed7a1fb9f618654fc5d59.camel@icenowy.me>+zmo_0_
 
-On Thu, Jun 12, 2025 at 11:51:56AM -0400, Frank Li wrote:
-> On Thu, Jun 12, 2025 at 08:16:03PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Mar 13, 2025 at 11:38:46AM -0400, Frank Li wrote:
-> > > If the parent 'ranges' property in DT correctly describes the address
-> > > translation, the cpu_addr_fixup() callback is not needed. Print a warning
-> > > message to inform users to correct their DTB files and prepare to remove
-> > > cpu_addr_fixup().
-> > >
-> >
-> > This patch seem to have dropped, but I do see a value in printing the warning to
-> > encourage developers/users to fix the DTB in some way. Since we fixed the driver
-> > to parse the DT 'ranges' properly, the presence of cpu_addr_fixup() callback
-> > indicates that the translation is not properly described in DT. So DT has to be
-> > fixed.
-> 
-> This patch already in mainline with Bjorn's fine tuned at when merge.
-> 
-> 	fixup = pci->ops ? pci->ops->cpu_addr_fixup : NULL;
->         if (fixup) {
->                 fixup_addr = fixup(pci, cpu_phys_addr);
->                 if (reg_addr == fixup_addr) {
->                         dev_info(dev, "%s reg[%d] %#010llx == %#010llx == fixup(cpu %#010llx); %ps is redundant with this devicetree\n",
->                                  reg_name, index, reg_addr, fixup_addr,
->                                  (unsigned long long) cpu_phys_addr, fixup);
->                 } else {
->                         dev_warn(dev, "%s reg[%d] %#010llx != %#010llx == fixup(cpu %#010llx); devicetree is broken\n",
->                                  reg_name, index, reg_addr, fixup_addr,
->                                  (unsigned long long) cpu_phys_addr);
->                         reg_addr = fixup_addr;
->                 }
-> 
->                 return cpu_phys_addr - reg_addr;
->         }
-> 
-> I have not seen this "dev_warn(pci->dev, "cpu_addr_fixup() usage detected. Please fix your DTB!\n");"
-> 
+=E5=9C=A8 2025-06-12=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 16:34 +0100=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Thu, Jun 12, 2025 at 09:55:58PM +0800, Icenowy Zheng wrote:
+> > My Lenovo Flex 11 Chromebook contains a board with revision ID 2.
+> >=20
+> > Add rev2 to the compatible list of base hana DTB to allow
+> > depthcharge to
+> > match the DTB.
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > ---
+> > =C2=A0Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+> > =C2=A01 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > index 108ae5e0185d9..7d13547ff57ba 100644
+> > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > @@ -132,6 +132,7 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: g=
+oogle,hana-rev5
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: g=
+oogle,hana-rev4
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: g=
+oogle,hana-rev3
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: google=
+,hana-rev2
+>=20
+> Ordinarily I would complain about inserting a compatible like this
+> being a problem, but these chromebooks are all cocked up so w/e
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-This patch is supposed to add this warning and nothing else.
+Yes, the DepthCharge bootloader seems to have some different
+understanding of root node's compatible -- it just generates
+"google,${device}{-rev${rev},}{-sku${sku},}" and match them in the DT's
+to get the most compatible DT.
 
-- Mani
+BTW I checked the Chromium OS hana DT, it lists down to rev0, but what
+I get is just rev2, so I just added rev2.
 
--- 
-மணிவண்ணன் சதாசிவம்
+>=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: g=
+oogle,hana
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: m=
+ediatek,mt8173
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Google Hana rev7 (P=
+oin2 Chromebook 11C)
+> > --=20
+> > 2.49.0
+> >=20
+
 
