@@ -1,121 +1,154 @@
-Return-Path: <devicetree+bounces-185153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82429AD699A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:53:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4838AAD69A2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 619D53AC11D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:52:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F90A189C589
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907F121CA1F;
-	Thu, 12 Jun 2025 07:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A1F21D3EC;
+	Thu, 12 Jun 2025 07:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="RLCBQkHZ"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="OrgM7fk2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A2820FA86
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 07:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EA72745C;
+	Thu, 12 Jun 2025 07:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749714773; cv=none; b=KS+qrWkyLErEHt87WFup2Po5fYs9ZzdiVFnRspaCiERoRFuiXk0pajw2Zzg1NIAsgrPXuzx3Nsr9j8VKIDq459htr9QOV5SS26oO0wu+32WKxtnepbig7fhfTZ6D9zf4Mb+HkeRknsNwNq3MiDaYcudrPQ3oZEhZKRdM9O9WUSI=
+	t=1749714972; cv=none; b=HyN3NXLJ3lZ6s6xQ6r9o5JOvViYK3A/ZC6lWg2LRsLsYl2g+pRBi5sKDPzFFht7U06WFV+ONF8g/c/UHownCP5OsAuQWvFdVpwlBca/Rk7VqUw3ViHWVX2GNyqVIcM++mkhQUGP098QnW3HNTfOdszezTxsbMG2pmOnie2586O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749714773; c=relaxed/simple;
-	bh=yvHjrzaORTg7HRp2cirzIboSTrREVTHWqhVe9uNJ0K8=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=FP+LA2GHVogDJvlpFpqPzYMcEvWkoa2prdZjBTwvkjbzdS0FxAzI2QLaEM3h+jHe6PpToyiEHs2xKSjCkiliYoltdmlNTxd7NnPNjyabGyM2lQ/Zy+BKOYbMifHQvcvEhq15Ofw8E4027Q9ByP9j7lWhf0naZ/36c9PFXpzrBmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=RLCBQkHZ; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23649faf69fso6268915ad.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 00:52:51 -0700 (PDT)
+	s=arc-20240116; t=1749714972; c=relaxed/simple;
+	bh=SBa50iPVOuWP8XqFkMzDlTFFxDKtuzUJhnHSoJPWS0M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ehXGf+6xpm3chluUICjxu1/8+hwnPFlGR5nPWQ26FIgVDFOJ9YHviTV5HUq+yuvaaaPkr3ttjMOIXfS9Uuw9O0FyUtrHmWNtBuC5iG+I8kckQkiCOvOeUqQkEMKtB80kA+vDIm5gZXSTGOIK6PQwBKB1jEqObDW6bcHbK8qAc4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=OrgM7fk2; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1749714771; x=1750319571; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language:subject
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pazdt4UO8fSmAZ8X2Dzo6ZIiUJV5NstAi6JvpdaZT9Y=;
-        b=RLCBQkHZ8jP6HvGGhegFGnGD6by24ZM1+EnYt0SuYuHMCkZI3EuB1sMwcNgdaot22V
-         Hbz5sqFg44fuByeyE92k8gzzVa72IUP91Jr00FCK9B4Oi024nkPtvDeMuqRY5cH3P60E
-         q5eNouixjCDEvRUwGOIEvPy5dHPi8NpUM5ZTn3OEOXYb3INJeDyxOFx++LBWijhazTQ0
-         eo9lXLzU8bFfTEwgu4EDXTEex7/US3L2dk/Yc1JD4F9Zq9Z5XcKPG1ycSWpEkDR4RWx6
-         awFXekjauMl6Trhe3TGNEwOY7nDS9BtM0NNw8tnOayuQk1L2nd38CFcpS6zsk4iBFr7D
-         7y/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749714771; x=1750319571;
-        h=content-transfer-encoding:in-reply-to:from:content-language:subject
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pazdt4UO8fSmAZ8X2Dzo6ZIiUJV5NstAi6JvpdaZT9Y=;
-        b=S9GGsdkLwyORm669YiT+CXJvfGFYvwIgnaTWzxxZfAR0IqYejNlJmK/YjmBz2TOV6F
-         udV8b48st2YgqyRf3Bp24JCJ7QaM/EhHuiIHq8imybjwrE8/FQbvycG6y7xHWEdM20Lx
-         7b5oqdTXyuY+moxbLbpNTEzKcFRdxQ4ASHmhIcgmLFvmogchFdqfG9Hp+aGOVEHj5wZ3
-         G9WYjU27BV4bQ1QROTjeEtOOBWs/FN3zteptnO7vLmaQqq7dICgBPOzhEzNgJhIgwCjN
-         6MT6ctdBNYNNG4hlbYDuTpY98tJFzF5kA0hWcMZ4PbewQp9y/InLC/prCXWrhfPEyrU3
-         oAxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWKNfi2qj3z8Q0zH4WjnPrAzJR/6IK3h3kEgHxocgs2QHefLpAwGsLGmdAfo/l9m+eBBU04Uo6iQ3e0@vger.kernel.org
-X-Gm-Message-State: AOJu0YztYo3rFCxSNW2YE13LpSzXTSTfIDEsvFZeFjuBvRtrR7r/C/c2
-	y4/7z2aRC147eUOkQVT84tgNccIUjg0K+dTGUMLLRfQ8uJvLtklhejA3HB4GpXMVHw==
-X-Gm-Gg: ASbGnctricTng7K6Io7bwgnexeFAPvnYvE4IcrXJ4uHFszPOqcW091Nm8kQzgJ/+Ime
-	kVv10HmuzFmJW8sKpns/8DKGSF1H8tZyYnHaKnZ7pXAMx1Yf21fefr8yFq5hIkNIeNV4+fGy5ot
-	zldtavxUobKS8jYWE0iMP9PDJbA3DK0bcNB50YcegJex9ZRF69s0wQsdLiwGPCgJehHfDHcUKhG
-	hwHRjFhyqHSSWWtnecktifYpjnevl7MnqhWfHWBeDqzouVSFkDLxaAUXVElGaeHZdIcXNlFMcxz
-	/UFVIWgXiBma1fFE9k9kKt4SNjN/UTNtfkTnxafmOe/ToXi1pfdcYN3klooHA06WrS2bO36oK97
-	YmOD6rfrfmhJDEVzLQRJcvcBFQW3N8QK/TRTv
-X-Google-Smtp-Source: AGHT+IH+iM21neRDkS3iLHmw85CSGogpx1dZt1CBDEgP7B9uVu0yQx7SMX5oOR3fyeuigU6VN7u09A==
-X-Received: by 2002:a17:902:d552:b0:234:b41e:37a4 with SMTP id d9443c01a7336-2364d62da2emr25581555ad.6.1749714771066;
-        Thu, 12 Jun 2025 00:52:51 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c80:1e2f:fba8:7ac:6a76:1eca? ([2401:4900:1c80:1e2f:fba8:7ac:6a76:1eca])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2364e719958sm7780205ad.226.2025.06.12.00.52.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jun 2025 00:52:50 -0700 (PDT)
-Message-ID: <525877c8-6c64-45b3-b4aa-a52768e59b86@beagleboard.org>
-Date: Thu, 12 Jun 2025 13:22:45 +0530
+	d=codeconstruct.com.au; s=2022a; t=1749714968;
+	bh=wEfLjsMWOcY/1xx1MExuBedf8lJgAMiB/kQuvYjhW5Y=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=OrgM7fk2giHneU0ZGmbu6sAUqh0o40hFWABuR8jC1UoQ6AMuK23qacFbdtW1PKj96
+	 J0bXtMXgXsKDTVzDwKYXcEhpLrP50g+ShbQsfkkMxa8o0+MRQA30dyAUdwx5bV5urY
+	 IEf9R48l50xXY7Sq8MyhKVgJFvd+e9IX2URjPXiU2FW5dMGPcsyhi1gppru8foPSMR
+	 cs/Lw/ZYLYUKVpgXJzzimXU+faACgixnOiAMf3b7c3eCIs4mUssVDrJARPgkLRM5H8
+	 biL1kpIltutmH3L2Qlyg4zbS7rHVSEFfcQ2dPEqyRAWfNJ8dI9lzlc3lU4jQ4xLde/
+	 K8HF2RX7ivetQ==
+Received: from [IPv6:2405:6e00:2427:47f7:b08d:7091:d46e:c806] (unknown [120.20.31.221])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id EC56B65F91;
+	Thu, 12 Jun 2025 15:56:04 +0800 (AWST)
+Message-ID: <67c89ca729669f55e2659ad8070a154c59ef83db.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v4 1/1] ARM: dts: aspeed: Add device tree for Nvidia's
+ GB200 UT3.0b platform BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Donald Shannon <donalds@nvidia.com>, robh@kernel.org,
+ krzk+dt@kernel.org,  conor+dt@kernel.org
+Cc: joel@jms.id.au, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, etanous@nvidia.com
+Date: Thu, 12 Jun 2025 17:26:03 +0930
+In-Reply-To: <20250611013025.2898412-2-donalds@nvidia.com>
+References: <20250611013025.2898412-1-donalds@nvidia.com>
+	 <20250611013025.2898412-2-donalds@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: herve.codina@bootlin.com
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- luca.ceresoli@bootlin.com, robh@kernel.org, thomas.petazzoni@bootlin.com,
- wsa+renesas@sang-engineering.com
-References: <20250205173918.600037-1-herve.codina@bootlin.com>
-Subject: Re: [RFC PATCH 0/3] i2c: Introduce i2c bus extensions
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250205173918.600037-1-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-I have tested this patch series for use with pocketbeagle 2 connector 
-driver [0]. To get a better idea how it looks in real devicetree, see 
-the base tree [1] and the overlay [2]. Since it also used gpio and pwm 
-nexus nodes, along with providing pinmux for pins, it can provide a 
-better picture of how the different pieces (export-symbols, nexus nodes, 
-etc) look when combined.
+Hi Donald,
+
+In addition to addressing Krzysztof's comments regarding checkpatch:
+
+On Tue, 2025-06-10 at 18:30 -0700, Donald Shannon wrote:
+> The GB200NVL UT3.0b BMC is an Aspeed Ast2600 based BMC
+> for Nvidia Blackwell GB200NVL platform.
+
+Can you add some words contrasting this platform to the one submitted
+by Willie?
+
+https://lore.kernel.org/all/20250401153955.314860-3-wthai@nvidia.com/
 
 
-I also have a question for Herve. Do you already have any working 
-patches for similar extension for SPI and UART in some private tree?
+> Reference to Ast2600 SOC [1].
+> Reference to Blackwell GB200NVL Platform [2].
+>=20
+> Link: https://www.aspeedtech.com/server_ast2600/=C2=A0[1]
+> Link:
+> https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703=C2=A0[2]
+>=20
 
+Please omit the blank line here so the Link: tags are part of the
+trailer.
 
-[0]: https://github.com/Ayush1325/linux/tree/beagle-cape-v1
+> Signed-off-by: Donald Shannon <donalds@nvidia.com>
+> ---
+> Changes v1 -> v2:
+> =C2=A0 - Changed phy-mode to rgmii-id [Lunn]
+> =C2=A0 - Removed redundant max-speed for mac0 [Lunn]
+> =C2=A0 - Fixed typo from gb200nvl to gb200 in Makefile
+> Changes v2 -> v3:
+> =C2=A0 - Fixed whitespace issues [Krzysztof]
+> =C2=A0 - Fixed schema validation issues from my end ( there are still
+> issues with the aspeed dtsi file that are not related to this new
+> dts) [Herring]
+> =C2=A0 - Reordered to follow style guide [Krzysztof]
+> =C2=A0 - Removed redundant status okays
+> =C2=A0 - Changed vcc to vdd for the power gating on the gpio expanders
+> Changes v3 -> v4:
+> =C2=A0 - Added changelog [Krzysztof]
+> =C2=A0 - Added nvidia,gb200-ut30b board binding [Krzysztof]
+> =C2=A0 - Removed unused imports
+> =C2=A0 - Reordered a couple other style guide violations
+> =C2=A0 - Added back in a couple needed "status okay"s
+> ---
+> =C2=A0.../bindings/arm/aspeed/aspeed.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> =C2=A0.../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts=C2=A0 | 1154
+> +++++++++++++++++
+> =C2=A03 files changed, 1156 insertions(+)
+> =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200=
+-
+> ut30b.dts
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index a3736f134130..420fabf05b24 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -98,6 +98,7 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - inventec,starscream-bmc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - inventec,transformer-bmc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - jabil,rbp-bmc
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - nvidia,gb200-ut30b
 
-[1]: 
-https://github.com/Ayush1325/BeagleBoard-DeviceTrees/commit/bf9d981ebf5f1a5704df1e7deba2188c70eb5d6f
+For what it's worth, checkpatch reports at least the following:
 
-[2]: 
-https://github.com/Ayush1325/linux/commit/4ebc8467c98b5df3c30935e1d3736f9a64c1b08d
+   167: WARNING: DT binding docs and includes should be a separate patch. S=
+ee: Documentation/devicetree/bindings/submitting-patches.rst
+   180: WARNING: added, moved or deleted file(s), does MAINTAINERS need upd=
+ating?
+   193: WARNING: DT compatible string "nvidia,gb200-ut30b" appears un-docum=
+ented -- check ./Documentation/devicetree/bindings/
 
+Thanks,
 
-Tested-by: Ayush Singh <ayush@beagleboard.org>
-
+Andrew
 
