@@ -1,445 +1,175 @@
-Return-Path: <devicetree+bounces-185472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACCF2AD7EF7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 01:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74FBAAD7E3D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 00:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 499463B6B58
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 23:38:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E878C3B4C27
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC9C2E0B5A;
-	Thu, 12 Jun 2025 23:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838242DECBC;
+	Thu, 12 Jun 2025 22:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ML6p2otG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PoyRQ5sV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC182C327B;
-	Thu, 12 Jun 2025 23:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFC82DECAE;
+	Thu, 12 Jun 2025 22:10:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749771516; cv=none; b=dlUpx+15QcpIaTdoZAhw4qaCxAGq1lBZY1zwR2T/Zdc63w1lMBHBQPWeLe/cwhNheLZT3SRBBP3l7HFfYQFwedlsXgQcE3rPJStwy9eBMkGQa5UpP6gj3J3SOiJ3rGrNmNVJRqyhT73d2fvvgaSkQvBjdqCwhXhPqsIpHVeMWuI=
+	t=1749766258; cv=none; b=tVBNoqUyw5bjNisVvyJY4DS4o9chEosPbCcUNfaDEQv9bS8gjMp2XaxxXSMWAEX6w5+txB0Fx9mvqgkj4Vrw4w6gBX4RS9ZKi1kRpSd9oAhQNFMgTrLP9OCPnJTi3hHl3LDNYCgpXU/02gq3u4q/4kC8EdoPSVTKkvCOlluUvmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749771516; c=relaxed/simple;
-	bh=Txfc6eVUxr+gcW8cR0idAM2ani1JCfhCTktuUeJuBK8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UJmQRJIKizqQyPSPSiVRBc9UTU1+SpNDBJr+1285+GWf6jSH3bQNrWKacux43dKM1pWFvVDth6xRFqaUM2ubgYf/HV1DUgqW7GnTBAiHXm9vlLFh06m1QW2ATCpNLR22CrNwMe7cTC3rGmmtXgt4MS3MD6G4X1x4zU1LOfm8npI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ML6p2otG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55CHCpb9029276;
-	Thu, 12 Jun 2025 23:38:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=2Sh6Hj5ylgT
-	MyC2r7YjnQqEGSAYwbxecU622ua/TC+k=; b=ML6p2otGPnEdGHdObAIxTNvumz4
-	JReCDcX8kyBGOBSqva5kP5PdisnrKECQ6P8u5QyBzD/0XKGTv737ZaGIwODjVTcw
-	dHTOwPyzjcnN+IqrK/8xsfJB/9JwBYYncJE4qKCnEqrE+aDNKysBP9VT3TiM7HLm
-	P0pEgvx+mLz/84wLIqYjbJQC+4t85HDumoaZpxO/+0OrFJBcTxj0CFkCsdNYW/ow
-	fl0bUpxaRow9aTZ7TaWns/0q5aO4cJiG34UYHD+OM0hvuKv8w+eStSyYvA5DFpPM
-	c4UFEV3p6tVVH5Ik810WBnABMJFd2B4DyWHTSPSPU72ZLSGoo3vyTy74Gug==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dn6j56d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 23:38:30 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55CNcQPJ017018;
-	Thu, 12 Jun 2025 23:38:26 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 474egnstc5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 23:38:26 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55CNcPi7016970;
-	Thu, 12 Jun 2025 23:38:25 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-wasimn-hyd.qualcomm.com [10.147.246.180])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 55CNcPoQ016959
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 23:38:25 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3944840)
-	id BAB485B3; Thu, 12 Jun 2025 21:24:53 +0530 (+0530)
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@quicinc.com,
-        kernel@oss.qualcomm.com, Wasim Nazir <quic_wasimn@quicinc.com>,
-        Rakesh Kota <quic_kotarake@quicinc.com>,
-        Sayali Lokhande <quic_sayalil@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v10 3/3] arm64: dts: qcom: Add support for qcs9075 IQ-9075-EVK
-Date: Thu, 12 Jun 2025 21:24:34 +0530
-Message-ID: <20250612155437.146925-4-quic_wasimn@quicinc.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250612155437.146925-1-quic_wasimn@quicinc.com>
-References: <20250612155437.146925-1-quic_wasimn@quicinc.com>
+	s=arc-20240116; t=1749766258; c=relaxed/simple;
+	bh=X4UYrbhCkqofW05LY1qWOtvrFlFxZeee9uJgB4Rayds=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qusNS2dVwAWTJ5J7mqZvL4AkwBEdF5ClvatYCIc200FekrGYwtWtzMObauBXfFyrMHBvYpKq1fKzGvSVDTiEgyAePMdYTo8DMRmDRaRk31nCbK/w1wmlBY/7YUDGPSq39M94htdPQ6pl1h+KzaLgoMS8ZTnd+hPfTI/WLg0PZvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PoyRQ5sV; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-234f17910d8so15842025ad.3;
+        Thu, 12 Jun 2025 15:10:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749766256; x=1750371056; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KriEKHEYlCTi88JAOccOhUjD8CzVygMM4sUtYzcDb5g=;
+        b=PoyRQ5sVmrGNsX40y3KgBCM0VTbhFJ6YVoMdRh8/zwOUK5NCec3Nh6aXy8MpBJ/ek9
+         10p/AoAA46TOkxKUfK0WFwpnL63Trv1yB4gzbZosqa7KJ76CzQ+sGWmHRXpu630LQpQx
+         GnO5lRdMlaSbAFN9/S9kq9DLEte+YPPZlItacqZpCYHr2ZUNCyQttsIZC41QAxui/Gic
+         GqLGmxhTEGu8WvrjadjbDYuER/szk1xGjka/srSoO8ve8A9QtPkc4CJEcsCC2DLKdbBW
+         kjGpL/ofOu47W/6nOSFXEN81dXMnkHFq2NFb+AF0oW61HUVtpzOZv6xzpGJuq9ou9ZVE
+         qQuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749766256; x=1750371056;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KriEKHEYlCTi88JAOccOhUjD8CzVygMM4sUtYzcDb5g=;
+        b=c/lDtSfjYkkUzpdCPasvGEN9gGtPcxj78kICkYEXwZIX7YJhmtVolt4Zs80BRpZF7U
+         bCquktTY4pbzWUFnIHmLZjZYk8otN5y2fjaV51FFSHudD3t/ayKnBpvUux/5NBDt/4f5
+         9cI8k9SYQOGc0RxFDH0YXz2/pUtIURI88MCbiqBSpbrFevCsAB9zr3XxpILS8omy33iy
+         Y4GmEZ8KiNURsKuLv6In8KMgMPPoH/tF8Ys+buQ/6P/JsNgnXFzmAsKwgg2tAtrpbZ83
+         k4X4p3vfesAQI9elcDg0IWFpc8kctFKYdOM95AtnIpuDCBLMw63ESV3niKHJ+iO38I29
+         TODw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+caKx6V/9RhYiJOE63GX6sbe7G96Jst6e33BP3CuVcb6puepRSebhBzU2Jpmx8R0+9IoU+PpMV28FAZ90@vger.kernel.org, AJvYcCUsbZM250mO4HOXrdI9iMgXr4PcOcIXIdlLA8sNo+PGCRmEdvlm/9UI2nbSJCUTFLJezQOgZ8tPVwmx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDf6Fgalz/LI766b2tEn6TwWAe0hxDjFyL/1YC2j5OBGG3vwbs
+	WfeUHTxHRAQm9qG+v+C6rWGcKC4NmbfJLQngUZSBMdnf+zn2eSde2qZO
+X-Gm-Gg: ASbGncuPvl1n/Ya+GFf5ZcuEEMdXTc8WbmtqXD2I5eHfK34KkHKZDRxE61e5QOD7NPW
+	683DUB58RMuHKK1oy1AXfMOTWYxPHGtMn36I62sPo+NdYQtXOAMOV/W1NZVeeJlDiMA9jo8SfxX
+	imlTpxgJP4vv2dpll7PBxJB85rxLqvVBt8MPabg4iXzPmxdJ1FabCfhMGRDw0Rpja8Ef7PPryeW
+	ybXDa9Ei94Qw+7U6WFsK/+me9rLc7LY9l8uclqpOhyugql+EawKGsSym7nWvJ5wFnh8HjPOpB6w
+	VBUCszxAzhUdp1XaRlH/ER4gkcDqlGMCAvG+/g==
+X-Google-Smtp-Source: AGHT+IF3VWf9CLIOpaSuBO7CmtrEXj75DaYp06Yzj+Kv4Xtv5ablupO9zYlfs0wiUHGpvDYApyEsXg==
+X-Received: by 2002:a17:903:98b:b0:234:d7c5:a0f6 with SMTP id d9443c01a7336-2365da06f72mr9323335ad.31.1749766256233;
+        Thu, 12 Jun 2025 15:10:56 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365decc11fsm2092655ad.222.2025.06.12.15.10.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 15:10:55 -0700 (PDT)
+Date: Fri, 13 Jun 2025 06:09:47 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	Yu Yuan <yu.yuan@sjtu.edu.cn>, Yixun Lan <dlan@gentoo.org>, Ze Huang <huangze@whut.edu.cn>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: soc: sophgo: add TOP syscon for
+ CV18XX/SG200X series SoC
+Message-ID: <y6dkhbc4x5qvd3z2yyh3ba7zkq7gphcnrc5757fxlmpz3zh2nb@tk65ldng6oyl>
+References: <20250611082452.1218817-1-inochiama@gmail.com>
+ <20250611082452.1218817-2-inochiama@gmail.com>
+ <20250612-culpable-roman-295df1360198@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDE4MSBTYWx0ZWRfX8sHUeX+MJJm1
- +rkMjBT2cq5/nrbBXbdgrj1KNZCaigMwc2ciK9OylTwu1eJcvLjkg2bHLv4dLkVMmOPQjvQrhzF
- FvPzVIZPt1zsIDY8Av5WnnywAPkc2XG5U2lT/oxFsIwo9wibMlj4gQGnzOj+IRhWQlzb9hYZtuL
- wDHmB7EOwCPJUDy46lWCZwB2RLojRtzDEERXqMpTjuwUKs2cEUJAQl5fWsvquyPtDctSS4o5XTR
- rPHnSrhX4oMIAn3fjpQT4vVT1FbPtnZ3ClYC1JJBpcsmK9cYwSeTWFzkXytSruvUWdR5+MZV/K6
- 4KgiEDRdeBjq1Y2W66QcJdP1cI5pG6U2K6J85QglPZ1+mj7BIgqarqJP8RHxUCnczHqHJHL/8RL
- /+BbqtMRrZvuxPyxo2xoBg1+KRFtdW9SQGl/eeHFWigDGSWEBBQBYmc8mNz/MswimxYBlvkp
-X-Proofpoint-GUID: I-SY-yPiPacD-tfx1tXQ9Y3U_CsOLnE5
-X-Authority-Analysis: v=2.4 cv=FaQ3xI+6 c=1 sm=1 tr=0 ts=684b64f6 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=cGvm-S34xVoSblkgu4kA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: I-SY-yPiPacD-tfx1tXQ9Y3U_CsOLnE5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-12_10,2025-06-12_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
- mlxlogscore=999 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506120181
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250612-culpable-roman-295df1360198@spud>
 
-Add initial device tree support for IQ-9075-EVK board,
-based on Qualcomm's QCS9075 SOC.
+On Thu, Jun 12, 2025 at 05:04:46PM +0100, Conor Dooley wrote:
+> On Wed, Jun 11, 2025 at 04:24:49PM +0800, Inochi Amaoto wrote:
+> > The Sophgo CV1800/SG2000 SoC top misc system controller provides register
+> > access to configure related modules. It includes a usb2 phy and a dma
+> > multiplexer.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
+> > new file mode 100644
+> > index 000000000000..e8093a558c4e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-syscon.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sophgo CV18XX/SG200X SoC top system controller
+> > +
+> > +maintainers:
+> > +  - Inochi Amaoto <inochiama@outlook.com>
+> > +
+> > +description:
+> > +  The Sophgo CV18XX/SG200X SoC top misc system controller provides
+> > +  register access to configure related modules.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - const: sophgo,cv1800b-top-syscon
+> > +          - const: syscon
+> > +          - const: simple-mfd
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +patternProperties:
+> > +  "dma-router@[0-9a-f]+$":
+> > +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
+> 
+> I think you're supposed to add "unevaluatedProperties: false" to each of
+> these nodes.
+> 
 
-Implement basic features like uart/ufs to enable boot to shell.
+This is is OK for me.
 
-Co-developed-by: Rakesh Kota <quic_kotarake@quicinc.com>
-Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
-Co-developed-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 290 ++++++++++++++++++
- 2 files changed, 291 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+> > +
+> > +  "phy@[0-9a-f]+$":
+> > +    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
+> 
+> Why are these permitting random addresses? Are they not at fixed
+> addreses given that you only support one platform (modulo the rebrand)?
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 669b888b27a1..77501a13d91e 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -124,6 +124,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-iq-9075-evk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-new file mode 100644
-index 000000000000..ab161180d1d5
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-@@ -0,0 +1,290 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "qcs9075.dtsi"
-+#include "sa8775p-pmics.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. IQ 9075 EVK";
-+	compatible = "qcom,qcs9075-iq-9075-evk", "qcom,qcs9075", "qcom,sa8775p";
-+
-+	aliases {
-+		serial0 = &uart10;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_s4a: smps4 {
-+			regulator-name = "vreg_s4a";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1816000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5a: smps5 {
-+			regulator-name = "vreg_s5a";
-+			regulator-min-microvolt = <1850000>;
-+			regulator-max-microvolt = <1996000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s9a: smps9 {
-+			regulator-name = "vreg_s9a";
-+			regulator-min-microvolt = <535000>;
-+			regulator-max-microvolt = <1120000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4a: ldo4 {
-+			regulator-name = "vreg_l4a";
-+			regulator-min-microvolt = <788000>;
-+			regulator-max-microvolt = <1050000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5a: ldo5 {
-+			regulator-name = "vreg_l5a";
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6a: ldo6 {
-+			regulator-name = "vreg_l6a";
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <970000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a: ldo7 {
-+			regulator-name = "vreg_l7a";
-+			regulator-min-microvolt = <720000>;
-+			regulator-max-microvolt = <950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a: ldo8 {
-+			regulator-name = "vreg_l8a";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9a: ldo9 {
-+			regulator-name = "vreg_l9a";
-+			regulator-min-microvolt = <2970000>;
-+			regulator-max-microvolt = <3544000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_l1c: ldo1 {
-+			regulator-name = "vreg_l1c";
-+			regulator-min-microvolt = <1140000>;
-+			regulator-max-microvolt = <1260000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c: ldo2 {
-+			regulator-name = "vreg_l2c";
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <1100000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c: ldo3 {
-+			regulator-name = "vreg_l3c";
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4c: ldo4 {
-+			regulator-name = "vreg_l4c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5c: ldo5 {
-+			regulator-name = "vreg_l5c";
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6c: ldo6 {
-+			regulator-name = "vreg_l6c";
-+			regulator-min-microvolt = <1620000>;
-+			regulator-max-microvolt = <1980000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7c: ldo7 {
-+			regulator-name = "vreg_l7c";
-+			regulator-min-microvolt = <1620000>;
-+			regulator-max-microvolt = <2000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8c: ldo8 {
-+			regulator-name = "vreg_l8c";
-+			regulator-min-microvolt = <2400000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c: ldo9 {
-+			regulator-name = "vreg_l9c";
-+			regulator-min-microvolt = <1650000>;
-+			regulator-max-microvolt = <2700000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pmm8654au-rpmh-regulators";
-+		qcom,pmic-id = "e";
-+
-+		vreg_s4e: smps4 {
-+			regulator-name = "vreg_s4e";
-+			regulator-min-microvolt = <970000>;
-+			regulator-max-microvolt = <1520000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s7e: smps7 {
-+			regulator-name = "vreg_s7e";
-+			regulator-min-microvolt = <1010000>;
-+			regulator-max-microvolt = <1170000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s9e: smps9 {
-+			regulator-name = "vreg_s9e";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <570000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6e: ldo6 {
-+			regulator-name = "vreg_l6e";
-+			regulator-min-microvolt = <1280000>;
-+			regulator-max-microvolt = <1450000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8e: ldo8 {
-+			regulator-name = "vreg_l8e";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32768>;
-+};
-+
-+&uart10 {
-+	compatible = "qcom,geni-debug-uart";
-+	pinctrl-0 = <&qup_uart10_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l8a>;
-+	vcc-max-microamp = <1100000>;
-+	vccq-supply = <&vreg_l4c>;
-+	vccq-max-microamp = <1200000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l4a>;
-+	vdda-pll-supply = <&vreg_l1c>;
-+
-+	status = "okay";
-+};
-+
-+&xo_board_clk {
-+	clock-frequency = <38400000>;
-+};
---
-2.49.0
+IIRC, they are fixed address. I use random addresses as I see many one
+in binding do the same. Should I switch to the fixed one?
 
+Regards,
+Inochi
 
