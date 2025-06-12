@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EB9AD695A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:43:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC700AD6966
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C8BF3AF323
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:42:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC0FE1BC28DF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91FB3214225;
-	Thu, 12 Jun 2025 07:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3722144C7;
+	Thu, 12 Jun 2025 07:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNQjhIMz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZmtrP2M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649C11F3B98;
-	Thu, 12 Jun 2025 07:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04061F3D56;
+	Thu, 12 Jun 2025 07:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749714197; cv=none; b=Onv/mq3VNavRTXzjkNEUXM4LY/rEqGoWYoAodBfqhXy/fUEtcg1fRcBmMSNR9wtvxwy+ivMll9CrKEWB1WwQJsxB7kL/+BIfQjITU23BjUTY5mfogicAEqA4yKAt9W3ZSxpCyig6p7b+QSsL7KRCVD1tXXfkXDIpEzlW7IkJLwI=
+	t=1749714385; cv=none; b=blEO4Z3dOlsnlMmNG5xIAvw+LPQRMsK+/O6CB6uk+L/l62z3FLhwWmywqgIzDL0pqh4P5qKZzjdnyeR01ZH+k93Hjwbsv3bdkIwGfVsH4wZj2Ql4zaOclxdWsjoVJ/g8hC9fHw9H2Fg/GqT6fvGPV+m0KKZJdN2+xoq6tdP4UV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749714197; c=relaxed/simple;
-	bh=6GbSg0WeN73XOt7cKDQRXCS1pkiadGcQBz3qd1ydclE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gQqlDP7m1cXTDpEa2shj36LMo7emmxWvhiZ7akuaS+tz/55BxgfbmP1XegQuOS4YWzeuYrA9EkB/wFW2yM/EjhN16uYjNXnKG9R8QhNNhPSHft7A8jt5g4l5eMwJ/hvBoiHgA3iqLJyLi+naH5Q6rh+kv+Aa12Wa2kYVKDZh5Ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNQjhIMz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B817C4CEEA;
-	Thu, 12 Jun 2025 07:43:13 +0000 (UTC)
+	s=arc-20240116; t=1749714385; c=relaxed/simple;
+	bh=BnVLqkIfog7TQQpAK8OVRX7AJZSEduyE8mbMO5FCsWQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=oC4wKo9lx0Vy0MI5JRIjf0eUKhaqxnY7icEDpjqzvr/o4y98c64cYShhxVy2XILCxdcIRoj5FE6Zi6G3gftPICCf6FWdMDINlzEOcCVLZHR3QpLFz9Q91TmQKlXeG9AO5WctccmcWyNKYgezfYIukivlu/ZV1pda58VraJivRGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZmtrP2M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BEB1C4CEEA;
+	Thu, 12 Jun 2025 07:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749714196;
-	bh=6GbSg0WeN73XOt7cKDQRXCS1pkiadGcQBz3qd1ydclE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YNQjhIMzwto59zIbAU1V2lWMPeaoJs+l26odcV7FuCzNoZmdqSlFyqSZAfg9GRbmT
-	 JUStG1A6WRkqIL9diA6eCRjfIan0qm+bEbA6s+LbwH6S94+Go+v5c5Z+yZBOKdBii/
-	 7PYs6aYD4aqXEFVkJ2EhFDcvOxmrWTdhgk/KvuVnu+Wg5BSeLcscWwJma0hMFHQUhL
-	 XuKBxhDVwkz90SDox30577BLmphn8yTFNsvoeS7WaIJWioOb+KbKjVc9R0WY9D+u50
-	 Wd4W5CkuADLYzdymZdqqVVs9Bxjbl/vRhkOWxLX2JfNKIuveIbqxfwtq/MVgbO9kGB
-	 Up9KQIlty4Hpg==
-Message-ID: <dd6fd001-6209-4bd9-807a-4e9b5fc4cd5a@kernel.org>
-Date: Thu, 12 Jun 2025 09:43:11 +0200
+	s=k20201202; t=1749714385;
+	bh=BnVLqkIfog7TQQpAK8OVRX7AJZSEduyE8mbMO5FCsWQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=AZmtrP2MnExiQ8UkzL+NUIfF0x3NNzeFfRC9b7Ixyaw03zNq/rnUmmMo+RbEsyTUe
+	 cgLRkO9Vymem5qOj0R5wPg+ieu5S+olxZBxFSH0yqkvL+6bn9US6rAjXHddyFS7lzC
+	 BYbUOvemRsXRmiUUdQzYEUs8/qKzUAUWk0Za/h/agGb/BxdRQW4M4nPnQpjbDq6Fsz
+	 9XwArDhyeq/l6nTKKe8pt5pZlxoUear4SET57CB5soN830hHWkQqVQJEiwHBN73SwC
+	 h1SS2wBJnZ6F8R7u9tlNJxqKCWPmn7jOVE4eBxheIIuN4N4gDnaDuyXpthPuBrV3qb
+	 XE0GuwRugE60g==
+Message-ID: <1cea4f55-752f-4581-a003-1c9d31a36039@kernel.org>
+Date: Thu, 12 Jun 2025 09:46:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/10] [RFT] arm64: dts: qcom: sm8250: extend CAMSS with
- new CSIPHY subdevices
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
- <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH 1/7] arm64: dts: exynos: use proper node names for GPIO
+ based I2C busses
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
+ <20250519121512.5657-2-wsa+renesas@sang-engineering.com>
+ <006ee7d6-1289-4f4a-819d-9a5e5120db99@kernel.org> <aCtD7BH5N_uPGkq7@shikoro>
+ <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org> <aCtK1-Yn6u8-n8mU@shikoro>
+ <e5a3ce2b-4ebe-44c9-9bf5-9f460d5e7fe8@kernel.org> <aCtbg0_vD07g394k@shikoro>
+ <aCt9e-rrOOR0C5HI@shikoro>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,72 +109,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <aCt9e-rrOOR0C5HI@shikoro>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
-> Following the new device tree bindings for CAMSS IPs introduce csiphy2
-> device tree node under SM8250 CAMSS, which allows to perform camera
-> tests of the model on an RB5 board with an attached vision mezzanine.
-
-How the binding allows to perform camera tests? So camera was not
-working here at all? Then this is a fix, no?
-
-
+On 19/05/2025 20:50, Wolfram Sang wrote:
+> On Mon, May 19, 2025 at 06:25:39PM +0200, Wolfram Sang wrote:
+>>
+>>> I think either we use i2c-X or commit 57138f5b8c92 ("schemas: i2c: Avoid
+>>> extra characters in i2c nodename pattern") from Herve was not correct
+>>> and needs to be fixed.
+>>
+>> I will look if I can fix dt-schema instead. Thanks for the pointer!
 > 
-> Note that the optional 'phys' property is deliberately not added.
-
-Why? Your commit msg must explain that.
-
+> Found it! Patch sent.
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
-> For testing only, do not merge.
-> 
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index f0d18fd37aaf..401a32679580 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -4613,6 +4613,10 @@ camss: camss@ac6a000 {
->  					     "cam_sf_0_mnoc",
->  					     "cam_sf_icp_mnoc";
->  
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
->  			ports {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
-> @@ -4641,6 +4645,16 @@ port@5 {
->  					reg = <5>;
->  				};
->  			};
-> +
-> +			csiphy2: phy@ac6e000 {
 
-This will fail checks. You can run them, regardless of "RFT" status.
-
-> +				compatible = "qcom,csiphy";
-> +				reg = <0 0x0ac6e000 0 0x1000>;
-> +				clocks = <&camcc CAM_CC_CSIPHY2_CLK>,
-> +					 <&camcc CAM_CC_CSI2PHYTIMER_CLK>;
-> +				clock-names = "csiphy", "csiphy_timer";
-> +				interrupts = <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>;
-> +				#phy-cells = <0>;
-
-This is also duplicating existing ports thus you have a mixed MMIO and
-non-MMIO children which is also issue to fix.
-
-> +			};
->  		};
->  
->  		camcc: clock-controller@ad00000 {
-
+Where? I cannot find anything in my inbox and also no pull requests on
+Github.
 
 Best regards,
 Krzysztof
