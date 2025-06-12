@@ -1,144 +1,141 @@
-Return-Path: <devicetree+bounces-185278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69FC1AD71BC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:25:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 102AAAD7231
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:36:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD1F51786CF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:25:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 096481C261AC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE370248F66;
-	Thu, 12 Jun 2025 13:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD32247DEA;
+	Thu, 12 Jun 2025 13:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MYnMjsV0"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sPGRr+z2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA31C242D63;
-	Thu, 12 Jun 2025 13:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4219246BAC
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 13:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749734707; cv=none; b=jJpnLuseY3YSi7e1X0VjCgk680Udt5nAODZthsp5LYgDD3D5gRbSNilcmoPpfuo0K55K+NdWY5Ew6++CBYDwMxuQnBIIkyzUCN+vy3jCQ7R5B0WUPoLwqjOac6EblNdHWJZ0KmZVe2oRrOi+s3xtUCiKYJEZROByUKz68ZwjCZc=
+	t=1749734835; cv=none; b=KMo2Ns7zFYZ68xSojpk7n5qXeEucM7YVdAv29ElJ0l7bTLQv4159pj2W3JALsTuDnn/I8n73ePLIPZdginARy9yh2i1LGQ3/5oybVYtZnnf4dhjkErmhqLsjxFESXwtmmkmC2uVwKsy3ZbkSdcypiFuBXR3J2kvRHA//5SboZpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749734707; c=relaxed/simple;
-	bh=IqqMPWUk2v+uBcqO5EM/Ty1qGKfeCbv7fRGmGpsEBz8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bdkG1RN6I1G1DfAkIj/jG0FnKZoob1GY88Cp+D1GA17p6faMz5aroEzByfVSbjGFUYoLlbp9lAtHrC9tUJWusGS8HpW1r21v6jM+AlFf0qhBS2RfQdl7oMfRshD4Trd8GK26+A6L8AqLe7IioIVju5FRnlN+JYqsQZkFu8tXwNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MYnMjsV0; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45310223677so7979515e9.0;
-        Thu, 12 Jun 2025 06:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749734704; x=1750339504; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BZMLBIoT9gJSSjfo3bjWT2EO/rqNo4VRFJWQeolqXMA=;
-        b=MYnMjsV0qKnRjk9/VCnD8eDK0E/q2b0JSo46N1zOBLELR1dt0fzgULEv+H8w6D1ZSl
-         fq4+IeofIasVEXLdXSsrSja3PCwes8qN/Qt7PSpp8OFS14lvVF8yifQ0pl5NFCa9Ld8g
-         HBFXkQBsdppT5NKgvr/hZnjKLl5voIBMH6wCSbz0cpKoFAl8ZTnJ5LbGDu/1XILaDQJD
-         fBnaSrTiGWVFDdC3ICcwem3D/LhS4NLDq7CbX1KCMvr5C51xp/bPx4QEQ5lJXNeR/SdP
-         n3y+LsD9uXLHvrOb2bgKi5SZSyWJOb6sNCf7bKIr6v2KSS5X6j2pKGvtl+/6FGOKHvy5
-         Et/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749734704; x=1750339504;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BZMLBIoT9gJSSjfo3bjWT2EO/rqNo4VRFJWQeolqXMA=;
-        b=VYN4nvCREMKY2TKtwdVdvbLQBYFu4voWy0O1bLBHc3VCKdhYtttlUW+OFGkDPU2/77
-         FOaYV5U7A41jNBAPjuGh0vpitkyQgDgBIp3CBEceVWXHxJep+o8bUjeh4SLsd/6uQn2v
-         n9r+QprQEIc6MvlOMPHRZBouWT19MAn92fL+blA2vpGJGwCuqba4X6uzbwiwvtGdyT4e
-         lwd9DbAMY+M9qq7q6XJ4hXY/ogpsDsoO2fmsOjZvIOFrJ8LyCVcHJ7i8X/iPbDSHBwoe
-         Az8/qnQNaW6cxVTbmwmKVRXIqdE1KYeG17DC3of/Md2WkvWYCKDDA3tsNutcpXnTx2pW
-         CLZw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/Tz9y3nFdVsR+OUnCvelTbpFYnqY4sonADRR5KhrMrNuLh7mQlc0ng3PvJuzmTfhoi86qenMpB0JVbuQf@vger.kernel.org, AJvYcCX4g/JeEgpVtNetxA0YqaKOlHF5Tju81VjvFwF7zVmVaWU/MCK4Z2XMX+/eItB6bG5c3TG1nnCu80wd@vger.kernel.org, AJvYcCXMHjzFT3kDBT23W+dM5MDXvX0GH8DsTfqkfsy+2AyF5uPwydEyOB1hLw0OQv1igqQ60zNpeM850kkVDzmcwtLFJw0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMSdHsWwhfNDgMiKKWAJ1xzBV4LwP4Gu8hLA13230lVHEGxlJ/
-	Gy5ESpKc3kSUitqDqIQw+mfW5QlALPyhznM2VV05I8/YLtkPzer7mrMNxPt9gqlL/dL+vtxMtZy
-	gTDCS5pVNhbbS6TVQJTbqLtpKk4TALF8=
-X-Gm-Gg: ASbGncsd/S/thsrtoiPfTJIqawvz5DZbp94ZloFhBghcf3XKVd0uQ34hb4WuUu1veWX
-	A1h2Hge2c8d5Kv+Mc3YHORiUTPnDpz4Z7BrwjlT9p7QjDqrE5EVA9hVBB3KWnbXTY+gDDcgP0zq
-	0r0BBfJ34xBjwLS6EDwfD4wmwc603jlwNwLpJN10/7m3iqYw==
-X-Google-Smtp-Source: AGHT+IGojv7wi+EXgUrJ1iAcaQXcq2yh/a6c2FWgiCP1FdZTWn9scfT0ormpQqL7u63zFto7esDU9JQ3yZ95W1IoapU=
-X-Received: by 2002:a05:6000:420e:b0:3a4:fcc3:4a14 with SMTP id
- ffacd0b85a97d-3a5612dc4edmr2358774f8f.34.1749734703859; Thu, 12 Jun 2025
- 06:25:03 -0700 (PDT)
+	s=arc-20240116; t=1749734835; c=relaxed/simple;
+	bh=4LHEwxEc3hBPrlnpoz7wEtk78FB0iBFJ2kl/SiFP2GU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=jZyc1v3J4YOGoqrHRAApsLVrHbiHhDDLtC+A7HF0lD+du2FYOWGuumCzqkOUBeGzGWaZSWur3FgHsH1ccIJEXIa+dFhlGQFj+mnnkiRjkbIcW93K8U6slnSCvULACoqUxDLKy0u+5YggFPCj8REDgB0e3DvB9gTgMc0klMkIYLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=sPGRr+z2; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250612132711euoutp01a88041b5dd05e4844886db958c7d0e7a~ITo8kTK6F2364923649euoutp01g
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 13:27:11 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250612132711euoutp01a88041b5dd05e4844886db958c7d0e7a~ITo8kTK6F2364923649euoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749734831;
+	bh=PULRw5otkpn6GT9WVK7m+LoEccaSTbNn1hjyoEzOiIs=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=sPGRr+z2ur+bCTBoTcTgQVxnXmb7gi6E81zBmw7KTB7claBBvZP2yiSQNZjGqkhN6
+	 rRi3iBqaHAjgiI+sRYUF4djYyIpDo5K5JdGsUjiIuDsd/zyvKWajf5HspToXVJkZ82
+	 S3IUbBLGfDCQTqTwgtap9+CxgZr6aPdbd2qMQANY=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250612132711eucas1p1db84d1c02a89f07e7346dec9dc6c48e8~ITo75vBrM2197421974eucas1p1Q;
+	Thu, 12 Jun 2025 13:27:11 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250612132709eusmtip2f714daf4dd428c2679068f9872962dc7~ITo6trRkm1234712347eusmtip23;
+	Thu, 12 Jun 2025 13:27:09 +0000 (GMT)
+Message-ID: <b3252042-e7fd-4ac9-a4ad-0226d21fd477@samsung.com>
+Date: Thu, 12 Jun 2025 15:27:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250528140453.181851-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250528140453.181851-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVa4axB+aKhH18KxK4DVafeix6wn407PEhMxV_6xfpraA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVa4axB+aKhH18KxK4DVafeix6wn407PEhMxV_6xfpraA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 12 Jun 2025 14:24:37 +0100
-X-Gm-Features: AX0GCFtWM9emtIyXyU7iiWJWdsMZ7qy_zlJ1u6yeICmsB6pfXTrDdlaHSfP6HUA
-Message-ID: <CA+V-a8stpis6RuFZ8X+g=nnQhQQNJN8X8kpma6kf2Hmi+3hf4w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Enable
- USB2.0 support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/7] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Drew Fustini
+	<drew@pdp7.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
+	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
+	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <t26bhukukjzy7e4d2omtvjchxxzlnfyx54ku7xbytcnxkuk7xk@6tap2t3z2oaq>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250612132711eucas1p1db84d1c02a89f07e7346dec9dc6c48e8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+X-EPHeader: CA
+X-CMS-RootMailID: 20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9
+References: <CGME20250610125330eucas1p2a573627ca8f124fe11e725c2d75bdcc9@eucas1p2.samsung.com>
+	<20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com>
+	<aEifXZnLxKd2wa0w@x1> <6ca6016e-3b17-48a0-ad8d-bb05317aa100@samsung.com>
+	<aEoWtviFl0vYATXe@x1>
+	<t26bhukukjzy7e4d2omtvjchxxzlnfyx54ku7xbytcnxkuk7xk@6tap2t3z2oaq>
 
-Hi Geert,
 
-Thank you for the review.
 
-On Thu, Jun 12, 2025 at 1:49=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, 28 May 2025 at 16:05, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Enable USB2.0 support on the RZ/V2N EVK board, CN2 connector on the EVK
-> > supports host/function operation.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-> > +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-> > @@ -302,6 +317,16 @@ sd1-dat-cmd {
-> >                         slew-rate =3D <0>;
-> >                 };
-> >         };
-> > +
-> > +       usb20_pins: usb20 {
-> > +               ovc {
-> > +                       pinmux =3D  <RZV2N_PORT_PINMUX(9, 6, 14)>; /* O=
-VC */
->
-> Any specific reason why OVC needs "bias-pull-up" on RZ/V2H EVK, but
-> not on RZ/V2N EVK?
->
-On the RZ/V2N EVK for the USB20_OVRCUR pin we have R13110K0603 pullup
-resistor, this was missing on the earlier version of the RZ/V2H EVK
-due to which we saw false OC condition (as seen below). Said that the
-actual EVKs for RZ/V2H for which support is being added do have this
-pullup resistor. After testing I will post a patch to drop the
-`bias-pull-up` property from the RZ/V2H DTS (thanks for reminding me
-:-)).
+On 6/12/25 07:01, Uwe Kleine-König wrote:
+> Hello Drew,
+> 
+> On Wed, Jun 11, 2025 at 04:52:22PM -0700, Drew Fustini wrote:
+>> I also enabled the pwm fan driver. However, there is a probe failure:
+>>
+>> [    1.250921] pwm-fan pwm-fan: Failed to configure PWM: -524
+>> [    1.256546] pwm-fan pwm-fan: probe with driver pwm-fan failed with error -524
+> 
+> 524 = ENOTSUPP, so it seems the request had duty_offset > 0. Does your
+> fan use PWM_POLARITY_INVERTED? If so, try without that flag. If your fan
+> really needs an inverted PWM this of course makes fan control buggy.
+> With the next revision it should work fine (as a duty_offset > 0 should
+> get rounded down to 0).
 
-[    2.672424] usb usb3-port1: over-current condition
-[    2.792424] usb usb4-port1: over-current condition
+Since we're running the same DT, the polarity shouldn't be inverted. I
+see you have CONFIG_PWM_DEBUG=y enabled, which is most likely the reason
+the probe fails.
 
-Cheers,
-Prabhakar
+With that option, the following check is performed in __pwm_apply:
+
+if (IS_ENABLED(CONFIG_PWM_DEBUG)) {
+	struct pwm_waveform wf_rounded;
+
+		err = __pwm_round_waveform_fromhw(chip, pwm, &wfhw, &wf_rounded);
+		if (err)
+			return err;
+
+In this revision of the driver, I have not implemented the read-waveform
+callbacks, so the Rust PWM abstractions correctly return -ENOTSUPP.
+
+Uwe, this poses a problem, as reading from the duty and period registers
+on the TH1520 SoC's PWM controller appears to be broken.
+
+
+> 
+> Best regards
+> Uwe
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
