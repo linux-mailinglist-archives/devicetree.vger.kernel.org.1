@@ -1,326 +1,134 @@
-Return-Path: <devicetree+bounces-185100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A9B5AD6828
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 08:46:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DEEAD687B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:07:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A7EE17BA74
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 06:46:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9514A189C6BC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC701F5858;
-	Thu, 12 Jun 2025 06:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37151F5858;
+	Thu, 12 Jun 2025 07:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rzwN99A7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kow2OY1i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890001E378C;
-	Thu, 12 Jun 2025 06:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 413D5142E73;
+	Thu, 12 Jun 2025 07:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749710810; cv=none; b=MmzMRam2GgGMtgOa45bQQw8vnx4VTYEXtcTTENI1UzXbitcCPWkk1tfi4ZFYhnNTPLAChcIDilUd3EcSt8IfNCY9yVJ/338C/HGY63b+2dOHrigivF6YJexSxqEGDzkOMDyEB0U8NuAIgE/4+X8O/OI2tVnvJgjmcfMKFNXE8Hw=
+	t=1749712077; cv=none; b=N9rNBlIJiRHZk++skbApflIuwRrld0Pt8lEzFEwrwjeLQNxrtvojsMmEoQ6m68mv4RyFr1mjnsVgT5Ve5qreGlMKQgOoXByJwl3mXDqo7zJ2QAc78VHa6a5xljnHH/3OCOeiveXr4QEUdPW5eMoX47COJMQc9lc1zqXFEP9JF2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749710810; c=relaxed/simple;
-	bh=8tdgdYgfMaFIYKxuLPz3G1JT90EuYmnj28QnPFEq9YU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BXyxi48RT7TeauibGpY4IFAARa6opSc4gezQHXk1cZTONAmrqPeWuxtTQefBpQr6tRLcuKnhjJazVEKS5O815JGN79k/u/NON6+vl1W5u9nClI1qwb5aaWW+I3od7KUYu3jlIWAZ7c7P+sTEtMd/nHp9odP83fSH1TL0i9hwC0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rzwN99A7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 22A02C4CEF0;
-	Thu, 12 Jun 2025 06:46:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749710810;
-	bh=8tdgdYgfMaFIYKxuLPz3G1JT90EuYmnj28QnPFEq9YU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=rzwN99A7FaWXA8SCybauJwdq6kGfD4lJLaVAqDz4RuqWYTqt3AV60JT7jYrlyJgad
-	 KVedWqihxkQX/mfpFe7nawjsca8JsclFiTbSmPaPQFg8a40zrIdofXSsgTtNbAMZVk
-	 QAIbx0IQx1/YQzXZggaPYRc49XeeYQ6VAjHFQLN2PUf2JTyulLiMiCO8uhSO6BVOGD
-	 76au7k0ul6nt+2N5mm+KCYqQrVdfCRbCzDsPmrULH8GOZWkx8zPXuQ+b0O49avNMQa
-	 xQuDmDxCAA9XZz0GNrvq2rtSyMcPWZgnO2h/kcFYrpF/bDg43+xpDnHLUKJFL5x92d
-	 jk5TEzPtNrGGg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E58FC71136;
-	Thu, 12 Jun 2025 06:46:50 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Thu, 12 Jun 2025 10:46:14 +0400
-Subject: [PATCH v13 2/2] arm64: dts: qcom: ipq5018: Add tsens node
+	s=arc-20240116; t=1749712077; c=relaxed/simple;
+	bh=fcbcUsdmGSWC6B+UaH4cDfyK1n0S4FLllNdjhTXZzr4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vdx5c7+ttOOdE0ox88mpGglcHswhU7XpjICl07ZOryC9iLngkRWELi9+Fkq8btn1OdaarNuzSprnY6LVcJleJX06FC8e2/st2PPw/uCIzqJ6dFBDiIU5g1PmXp6tVYhS8LbI5JQn2OOW8c8BnlJxM4+TaXIzr1naSliLUG/Xj94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kow2OY1i; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-313bb9b2f5bso935875a91.3;
+        Thu, 12 Jun 2025 00:07:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749712075; x=1750316875; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dAOjJxhCfv8VWKL7BVvY9ZNzsKcaY5YiZqclR7H4/vs=;
+        b=Kow2OY1iF0KD34H77JO1Y/hgIV2UH6IA2mx8lcd5ccw+l+c5ABmaipVzaiklpSzLVe
+         6q93GMpBqrPTGUKAZ6rpNoVRQv1bV56rUC/2uei+oz2sER+trBH+6xuMhhGJWYhQEaE8
+         btR5cEU1EGkZhWXwrDL2E3p4XPTo7AJOqXZQibMzW8mnIi63LPjwaqBMscVvL0BEswr1
+         JBf2R4XFV9GNIY7piJ1Fwg2Y8tRyvg4QcSdpcRgC7EhloHOhadzKFv8uwC+A+x1diCgd
+         G7IF/pzkSG1iGT7xhfeJp+W1MkHGYaE4moAjQii06O8KUMPiLcXGQxHgGcrrbS8WM9nQ
+         PWvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749712075; x=1750316875;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dAOjJxhCfv8VWKL7BVvY9ZNzsKcaY5YiZqclR7H4/vs=;
+        b=VtIAjFV2zXPPXok7tYq2u9yr4u6HeqhuNf6BquJjWDbnS/dTfY8P/3TBwi0jSxuAcB
+         OWu97rGgsAfs8cPuoCsIBgbepiBSmh0H94m0MGb7FX3gBrCHUDvZMtW5VFR0lNNAyYyB
+         yOFAJelprb2S2l1rNP3/AZrc9fu9GSTvp8O9NLvCI4p0kP4SwP/oSbWSdrWgMQwBIKez
+         hybLNSzfERpn0cGx70FKwbXO3aIjmI5lM8tt7DgMA0eyTepqr9l8JHhaFIGQLNKqH97E
+         gZLCYW6r+DFpyL8ktQ9Nwg2i3eHhYT2vp8sFUHRcmMfUz4XV7+7+ufil27S8mcMopn+B
+         M1JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUnc0Dy8jKmC3rByxNhhGeDRUT7RV4aN1j0Y65102epnY7Y2R0WTCcynKZS3sUt3LLCFoHVqa1iUTWN@vger.kernel.org, AJvYcCWwn1BS+2PW2SMdZZybcrWQd+SLviq5VvWf9/LQIh0UxMM6+JuPltPBNoFBVlpC40W6dxyehawTdXMYp2US@vger.kernel.org
+X-Gm-Message-State: AOJu0YzazXTpkPhCe54Fc1TdLdAP5fYZLoPAGJn3SxBvLD7EMuHW3OWt
+	knwJxjWJhMVxhYYVJhd8ZjYLcwx+1a6E46t5iX/O+VwBLcdlCk0SJVUYqmNp+8tZGQA=
+X-Gm-Gg: ASbGncsHzNAFiTLJe44cgltdiTdmSWvcM20a/W7DUzpxB5FptaxcG1WkaCVm/+QvtNu
+	BjEsKrHwnXLVbAfwx4IpHSD9FS3vQFWrKI6p9vFxqLtnHRjMrqPhoKoobS1q0wvu5lYQ7Bt+DvI
+	Qj/fv0t45xhLNnb7vhbVc5FnkIEBZcoebAMeY2snO4s3Espf4uKzwlAEuZJXqbcgPuaVJ26cAtD
+	Rl8Jc/wZgTehthGis5olQks9JfrhszNLn3CCxiCMT3MC2CY46r7Np0hczRgzAgtbYz4bwnkQlwb
+	WOFi4rxBiZxwLU6qRi2zt31/hbLfwx8ilPT8vgZIm6bI4DwX/ytWM7HbZJ5RqKXDXYZqFvwP3NA
+	qIND8pLvePyRgHuJ1fqKInXQkZ48xQVs=
+X-Google-Smtp-Source: AGHT+IGfi33QMmP2NxREt3lPErfPBTHFxGftgC5xTDBsF/Wzhv8TdBvW48FWIe805inRamkcxDRnzw==
+X-Received: by 2002:a05:6a20:729c:b0:1ee:efa5:6573 with SMTP id adf61e73a8af0-21f86600846mr9497042637.8.1749712064431;
+        Thu, 12 Jun 2025 00:07:44 -0700 (PDT)
+Received: from ankitchauhan-Legion-5-15ITH6 ([2405:201:4042:d128:1895:113a:65dd:3ae0])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74880a06b64sm738064b3a.143.2025.06.12.00.07.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 00:07:43 -0700 (PDT)
+Date: Thu, 12 Jun 2025 12:36:56 +0530
+From: Ankit Chauhan <ankitchauhan2065@gmail.com>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: lanyang: fix lable->label typo for lanyang dts
+Message-ID: <20250612070656.bir2ywkwu27gxs7d@ankitchauhan-Legion-5-15ITH6>
+References: <20250529-lanyang-lable-fix-v1-1-8a2dcb48bda4@gmail.com>
+ <3fe9885cc54a328932915a63816ac1b7952689a2.camel@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250612-ipq5018-tsens-v13-2-a210f3683240@outlook.com>
-References: <20250612-ipq5018-tsens-v13-0-a210f3683240@outlook.com>
-In-Reply-To: <20250612-ipq5018-tsens-v13-0-a210f3683240@outlook.com>
-To: Amit Kucheria <amitk@kernel.org>, 
- Thara Gopinath <thara.gopinath@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Sricharan Ramabadhran <quic_srichara@quicinc.com>, 
- George Moussalem <george.moussalem@outlook.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <lumag@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749710807; l=5419;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=MsKWr8/oQjZxIGUe4c9vPMrH2HVq4c/DwY1iNr6WoVs=;
- b=B4oK/7A/MVXqMX7hGZTLTshh4CBlGG/3Z6xMK3hA7jSC7r8rTa0V2+GsDZt3fB/PcfAvO9A87
- x3wEfZoJtEICoQDS1EH4STHKXnbHtPgSY7f9lnMK0Qc2LUyZrB8v/W/
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3fe9885cc54a328932915a63816ac1b7952689a2.camel@codeconstruct.com.au>
 
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On Thu, Jun 12, 2025 at 03:01:58PM +0930, Andrew Jeffery wrote:
+> Hi Ankit, thanks for the fix.
+> 
+> Regarding the subject, can you please use the prefix 'ARM: dts:
+> aspeed:'? From there, I'd prefer something like:
+> 
+>    ARM: dts: aspeed: lanyang: Fix 'lable' typo in LED nodes
+> 
+> On Thu, 2025-05-29 at 17:09 +0530, Ankit Chauhan wrote:
+> > Fix an obvious spelling error in the dts file for Lanyang BMC.
+> > This was reported by bugzilla a few years ago but never got fixed.
+> > 
+> > Reported by: Jens Schleusener <Jens.Schleusener@fossies.org>
+> 
+> Please make sure these tags reflect convention:
+> 
+> https://docs.kernel.org/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+> 
+> Rather than spaces, they use `-` to separate words, so:
+> 
+> Reported-by: ...
+> 
+> > Closes: https://bugzilla.kernel.org/show_bug.cgi?id=205891
+> > 
+> > Signed-off-by: Ankit Chauhan <ankitchauhan2065@gmail.com>
+> 
+> Finally, all the tags should go together in the 'trailer' (final
+> paragraph). There should not be an empty line between the `Closes:` tag
+> and your `Signed-off-by:` tag above.
+>
 
-IPQ5018 has tsens V1.0 IP with 5 sensors, though 4 are in use.
-There is no RPM, so tsens has to be manually enabled. Adding the tsens
-and nvmem nodes and adding 4 thermal sensors (zones). The critical trip
-temperature is set to 120'C with an action to reboot.
+Hi Andrew,
 
-In addition, adding a cooling device to the CPU thermal zone which uses
-CPU frequency scaling.
+Thanks for the feedback. I will make all the necessary changes and send
+a v2 PATCH.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 178 ++++++++++++++++++++++++++++++++++
- 1 file changed, 178 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 130360014c5e14c778e348d37e601f60325b0b14..1b33ccf1a1b1af721b9690ae2c35eb82985205f5 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
- #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&intc>;
-@@ -39,6 +40,7 @@ cpu0: cpu@0 {
- 			next-level-cache = <&l2_0>;
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -49,6 +51,7 @@ cpu1: cpu@1 {
- 			next-level-cache = <&l2_0>;
- 			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
- 			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		l2_0: l2-cache {
-@@ -182,6 +185,117 @@ pcie0_phy: phy@86000 {
- 			status = "disabled";
- 		};
- 
-+		qfprom: qfprom@a0000 {
-+			compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
-+			reg = <0x000a0000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			tsens_mode: mode@249 {
-+				reg = <0x249 0x1>;
-+				bits = <0 3>;
-+			};
-+
-+			tsens_base1: base1@249 {
-+				reg = <0x249 0x2>;
-+				bits = <3 8>;
-+			};
-+
-+			tsens_base2: base2@24a {
-+				reg = <0x24a 0x2>;
-+				bits = <3 8>;
-+			};
-+
-+			tsens_s0_p1: s0-p1@24b {
-+				reg = <0x24b 0x2>;
-+				bits = <2 6>;
-+			};
-+
-+			tsens_s0_p2: s0-p2@24c {
-+				reg = <0x24c 0x1>;
-+				bits = <1 6>;
-+			};
-+
-+			tsens_s1_p1: s1-p1@24c {
-+				reg = <0x24c 0x2>;
-+				bits = <7 6>;
-+			};
-+
-+			tsens_s1_p2: s1-p2@24d {
-+				reg = <0x24d 0x2>;
-+				bits = <5 6>;
-+			};
-+
-+			tsens_s2_p1: s2-p1@24e {
-+				reg = <0x24e 0x2>;
-+				bits = <3 6>;
-+			};
-+
-+			tsens_s2_p2: s2-p2@24f {
-+				reg = <0x24f 0x1>;
-+				bits = <1 6>;
-+			};
-+
-+			tsens_s3_p1: s3-p1@24f {
-+				reg = <0x24f 0x2>;
-+				bits = <7 6>;
-+			};
-+
-+			tsens_s3_p2: s3-p2@250 {
-+				reg = <0x250 0x2>;
-+				bits = <5 6>;
-+			};
-+
-+			tsens_s4_p1: s4-p1@251 {
-+				reg = <0x251 0x2>;
-+				bits = <3 6>;
-+			};
-+
-+			tsens_s4_p2: s4-p2@254 {
-+				reg = <0x254 0x1>;
-+				bits = <0 6>;
-+			};
-+		};
-+
-+		tsens: thermal-sensor@4a9000 {
-+			compatible = "qcom,ipq5018-tsens";
-+			reg = <0x004a9000 0x1000>,
-+			      <0x004a8000 0x1000>;
-+
-+			nvmem-cells = <&tsens_mode>,
-+				      <&tsens_base1>,
-+				      <&tsens_base2>,
-+				      <&tsens_s0_p1>,
-+				      <&tsens_s0_p2>,
-+				      <&tsens_s1_p1>,
-+				      <&tsens_s1_p2>,
-+				      <&tsens_s2_p1>,
-+				      <&tsens_s2_p2>,
-+				      <&tsens_s3_p1>,
-+				      <&tsens_s3_p2>,
-+				      <&tsens_s4_p1>,
-+				      <&tsens_s4_p2>;
-+
-+			nvmem-cell-names = "mode",
-+					   "base1",
-+					   "base2",
-+					   "s0_p1",
-+					   "s0_p2",
-+					   "s1_p1",
-+					   "s1_p2",
-+					   "s2_p1",
-+					   "s2_p2",
-+					   "s3_p1",
-+					   "s3_p2",
-+					   "s4_p1",
-+					   "s4_p2";
-+
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "uplow";
-+			#qcom,sensors = <5>;
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,ipq5018-tlmm";
- 			reg = <0x01000000 0x300000>;
-@@ -631,6 +745,70 @@ pcie@0 {
- 		};
- 	};
- 
-+	thermal-zones {
-+		cpu-thermal {
-+			thermal-sensors = <&tsens 2>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+
-+				cpu_alert: cpu-passive {
-+					temperature = <100000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		gephy-thermal {
-+			thermal-sensors = <&tsens 4>;
-+
-+			trips {
-+				gephy-critical {
-+					temperature = <120000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		top-glue-thermal {
-+			thermal-sensors = <&tsens 3>;
-+
-+			trips {
-+				top-glue-critical {
-+					temperature = <120000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ubi32-thermal {
-+			thermal-sensors = <&tsens 1>;
-+
-+			trips {
-+				ubi32-critical {
-+					temperature = <120000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-
--- 
-2.49.0
-
-
+Kind regards,
+Ankit Chauhan
 
