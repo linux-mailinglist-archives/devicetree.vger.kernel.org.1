@@ -1,146 +1,239 @@
-Return-Path: <devicetree+bounces-185456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA5CAD7C80
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:36:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BFB9AD7C97
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:41:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 094907AC7BD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:35:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D657F3B2CEB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A41D2D3A85;
-	Thu, 12 Jun 2025 20:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038352D8762;
+	Thu, 12 Jun 2025 20:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0S2M7k7"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Wxt1EWOx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4123D170A26;
-	Thu, 12 Jun 2025 20:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D48170A26
+	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 20:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749760589; cv=none; b=ZR538M6sVj2E52Ry6+8qipqwob3NCTpFS6Gm5hiMlaarQcsINcksrgqqtV12pXYXrMv5sxpm0XavneWPJzTa0+JjqEYVpHQ91OyhyZf+RdF74MTB91VlI3W6UTRHXLtYNfu8y0L3t63fnm2lHNEYNi9Zs8gRGJYO48goHhvFOtQ=
+	t=1749760866; cv=none; b=o0SEapFHgNUiBCLW5CK9G76z6F0zNAMyLQubbe5sQCnFunw+DYKCnQdMNYfuCmdXDjg9Mkb6B8kfqZPPrhKZJtIczMljld0sjhJDZMP2jDJuG3Opkx6ZafFBxJB8aROtNFYuSoZDrP6nw53xTdv4VfRh/EIG8n9iVI/Edd8q19I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749760589; c=relaxed/simple;
-	bh=X6ZFmCqv+rVQiA6r4vfqa/BBIukFpY3bI33k6qaoFMQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RO7l9rdox8xuHsaAgDta5kKFf+d3/7vUdwgfr7pzFG66Twu1XJYDyHWo3S1suh0lMeuHqtwxppCiUfhcX/n6OijfejQz+nSncokUNkdDmF4te4xUp3tOr76GKOxJ8NBChF3L1TGCazp/PpKRPBmuOoieqfFk7/LPm0IFAHH9ehE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0S2M7k7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D087C4CEEA;
-	Thu, 12 Jun 2025 20:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749760588;
-	bh=X6ZFmCqv+rVQiA6r4vfqa/BBIukFpY3bI33k6qaoFMQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i0S2M7k7+SGKzMwSIMzZZEk5sL16d2Rz/FLrH5H6V05cfgV2rfDn9SNLK/jxRW7rO
-	 /rDPqMCHc8CpiB0/icznBRUOQj5wcOGy8TVaWLyESU19XBnPcUVOJIAlDRgNRGVsaX
-	 g/RGKFXImxrbR92yDWJ/gf7hnH7oRhJon9+YYETDW8FmgaV6KdsleDippxdoFRMQ7m
-	 prEEf3bxSA+1gRObi5g80zpz0ZRa3j+asn6UOwy27WAGZud4eqrqdTkhw12dBwmpcv
-	 esj6IuleWtNd7rkPZFhwf5Naojmoo0lXKfBbESHB+Du9+kRt5l7Hdwd0JC8wqEF7Vt
-	 4YLz04gqNL4bA==
-Date: Thu, 12 Jun 2025 22:36:22 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] pwm: Add Rust driver for T-HEAD TH1520 SoC
-Message-ID: <5aam5ff3m24yzsqdh7w2zplccuwmmr2no7jhgmdnxggmhpo4hl@r6iawlw7f42m>
-References: <20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com>
- <CGME20250610125333eucas1p16126b64a0f447a5e9a5ad553d9d7d79d@eucas1p1.samsung.com>
- <20250610-rust-next-pwm-working-fan-for-sending-v2-2-753e2955f110@samsung.com>
- <jbm3qvowi5vskhnjyqlp3xek36gzzqjt35m66eayxi6lmi525t@iefevopxjl53>
- <d1523586-82ca-4863-964f-331718bb1f0e@samsung.com>
+	s=arc-20240116; t=1749760866; c=relaxed/simple;
+	bh=G5DyLuJHt4bZaLRqp0tmFt/JNkYOa83DJCmI+5DPo/s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PAU/Nm/dhhFe+OZMz704neXL3S0z8FsTYSd/O/0xEDQGsBeKHlLnyzG5oNh/fW8RWQe1srG0Ouc1SIsm3C3Lmt/0A1F2ZCrF9dJipdddo40GngUPLCQ1x23+dXzGFhRwt17JK4oabsDT7VPDQooMXCu5/2mKWjc73XN8IpsXsG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Wxt1EWOx; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <70958a2e-abc8-4894-b99a-f2981db9981f@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749760852;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uBNMGO8nDA1ADslhYbI04Kw2PsQlf/n6XnJYKfeh030=;
+	b=Wxt1EWOxEli7WNKhbYzvPVqy30Q8Pisn064aOtltY06Ca07eB0QAQbqM+BVOe9Q+RtKpXt
+	++3mP5Ao5t0Jxttnf2a56SnNvZwVYDInTsb7KWimn/g5q0+JMnvWlyq6GMQP43bsfY1XvN
+	b4mNZfkYjf+3/E7zCIXeF5sI4n6XIw4=
+Date: Thu, 12 Jun 2025 16:40:48 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5np625sv2e7hqcqz"
-Content-Disposition: inline
-In-Reply-To: <d1523586-82ca-4863-964f-331718bb1f0e@samsung.com>
+Subject: Re: [PATCH] driver core: Prevent deferred probe loops
+To: Saravana Kannan <saravanak@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich
+ <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
+ Grant Likely <grant.likely@linaro.org>
+References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
+ <20250610183459.3395328-1-sean.anderson@linux.dev>
+ <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
+ <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
+ <2025061147-squishier-oversleep-80cd@gregkh>
+ <7d6d8789-e10b-4b06-aa99-5c1a1bdd3b4c@linux.dev>
+ <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+On 6/12/25 13:56, Saravana Kannan wrote:
+> On Thu, Jun 12, 2025 at 8:53 AM Sean Anderson <sean.anderson@linux.dev> wrote:
+>>
+>> On 6/11/25 08:23, Greg Kroah-Hartman wrote:
+>> > On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
+>> >> On 6/10/25 19:32, Saravana Kannan wrote:
+>> >> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
+>> >> >>
+>> >> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
+>> >> >> registering a bus with children:
+>> >> >
+>> >> > This is a broken driver. A parent device shouldn't register child
+>> >> > devices unless it is fully read itself. It's not logical to say the
+>> >> > child devices are available, if the parent itself isn't fully ready.
+>> >> > So, adding child devices/the bus should be the last thing done in the
+>> >> > parent's probe function.
+>> >> >
+>> >> > I know there are odd exceptions where the parent depends on the child,
+>> >> > so they might add the child a bit earlier in the probe
+>> >>
+>> >> This is exactly the case here. So the bus probing cannot happen any
+>> >> later than it already does.
+>> >
+>> > Please fix the driver not to do this.
+>>
+>> How? The driver needs the PCS to work. And the PCS can live on the MDIO
+>> bus.
+> 
+> Obviously I don't know the full details, but you could implement it as
+> MFD. So the bus part would not get removed even if the PCS fails to
+> probe. Then the PCS can probe when whatever it needs ends up probing.
 
---5np625sv2e7hqcqz
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 2/7] pwm: Add Rust driver for T-HEAD TH1520 SoC
-MIME-Version: 1.0
+I was thinking about making the MDIO bus a separate device. But I think
+it will be tricky to get suspend/resume working correctly. And this
+makes conversions more difficult because you cannot just add some
+pcs_get/pcs_put calls, you have to split out the MDIO bus too (which is
+invariably created as a child of the MAC).
 
-Hello Michael,
+And what happens if a developer doesn't realize they have to split off
+the MDIO bus before converting? Everything works fine, except if there
+is some problem loading the PCS driver, which they may not test. Is this
+prohibition against failing after creating a bus documented anywhere? I
+don't recall seeing it...
 
-On Thu, Jun 12, 2025 at 10:14:13AM +0200, Michal Wilczynski wrote:
-> On 6/11/25 08:58, Uwe Kleine-K=F6nig wrote:
-> > Huh, if you do the newstyle stuff, .get_state() is wrong. It's either
-> > .round_waveform_tohw() + .round_waveform_fromhw() + .read_waveform() +
-> > .write_waveform() or .apply() + .get_state(), but don't mix these.
->=20
-> In the process of implementing the full "newstyle" waveform API as you
-> suggested, I discovered a hardware limitation. After writing new values
-> to the period and duty cycle registers, reading them back does not
-> return the programmed values, which makes it impossible to reliably
-> report the current hardware state.
->=20
-> This appears to be a known quirk of the hardware, as the reference C
-> driver from T-HEAD [1] also omits the .get_state callback, likely for
-> the same reason.
+>>
+>> >> > but in those cases, the parent's probe should still do all the checks
+>> >> > ahead of time.
+>> >>
+>> >> Such as what? How is the parent going to know the resource is missing
+>> >> without checking for it?
+>> >>
+>> >> > Can you be more specific about the actual failure you are seeing?
+>> >>
+>> >> MAC is looking for a PCS that's on its internal MDIO bus, but that PCS's
+>> >> driver isn't loaded. The PCS has to be loaded at probe time because
+>> >> phylink_create needs it, and phylink is necessary to register the
+>> >> netdev. The latter situation is not ideal, but it would be quite a bit
+>> >> of work to untangle.
+> 
+> I meant, point to a specific device in a DT and the driver. Provide
+> logs of the failure if possible, etc. Tell me which device is failing
+> and why, etc. That way, I can take a closer look or give you other
+> suggestions.
 
-Do you read complete non-sense or e.g. the old configuration until
-the current period ends?
+See [1]. Devicetree is not upstream yet (working on it...) but it looks
+like
 
-I guess would be that .get_state wasn't implemented because this is an
-oldoldstyle driver and it works also without that function.
+&gem0 {
+	pcs-handle = <&pcs0>;
+	post-init-providers = <&pcs0>;
+	sfp = <&sfp0>;
+	managed = "in-band-status";
+	phy-mode = "1000base-x";
+	nvmem-cells = <&eth_address 0>;
+	nvmem-cell-names = "mac-address";
+	/delete-property/ phy-handle;
 
-> Given this, would it be acceptable to provide a write-only driver? My
-> proposed solution would be to omit the .read_waveform() and
-> .round_waveform_fromhw() implementations from my PwmOps trait. This
+	mdio {
+		pcs0: ethernet-pcs@0 {
+			#clock-cells = <0>;
+			compatible = "xlnx,pcs-16.2", "xlnx,pcs";
+			reg = <0>;
+			clocks = <&si570>;
+			clock-names = "refclk";
+			interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "an";
+			reset-gpios = <&axi_gpio_2 0 GPIO_ACTIVE_HIGH>;
+			done-gpios = <&axi_gpio_3 0 GPIO_ACTIVE_HIGH>;
+			xlnx,pcs-modes = "sgmii", "1000base-x";
+		};
+	};
+};
 
-Please don't skip .round_waveform_fromhw(), that one is needed for
-pwm_round_waveform_might_sleep().
+or in another instance
 
-I don't like it, but given that the hardware doesn't play along there is
-no alternative.
+&eth_0_eth_buf {
+	clocks = <&zynqmp_clk PL0_REF>;
+	clock-names = "s_axi_lite_clk";
+	pcs-handle = <&pcs4>;
+	managed = "in-band-status";
+	phy-handle = <&phy5>;
+	phy-mode = "sgmii";
+	post-init-providers = <&pcs4>, <&phy5>;
+	nvmem-cells = <&eth_address 4>;
+	nvmem-cell-names = "mac-address";
+	iommus = <&smmu 0x200>, <&smmu 0x240>, <&smmu 0x248>;
+	/delete-property/ local-mac-address;
+	/delete-property/ xlnx,phy-type;
 
-> would mean the driver can correctly set the PWM state, but attempting to
-> read it back via sysfs would fail (e.g., with -EOPNOTSUPP), reflecting
-> the hardware's capability.
+	mdio {
+		reset-gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
+		reset-delay-us = <10000>;
+		reset-post-delay-us = <50000>;
 
-I think there might be another patch opportunity then to make PWM_DEBUG
-work with that.
+		pcs4: ethernet-pcs@1 {
+			#reset-cells = <1>;
+			compatible = "xlnx,pcs-16.2", "xlnx,pcs";
+			reg = <1>;
+			clocks = <&vc5 4>;
+			clock-names = "refclk";
+			assigned-clocks = <&vc5 4>;
+			assigned-clock-rates = <125000000>;
+			reset-gpios = <&axi_gpio_2 4 GPIO_ACTIVE_HIGH>;
+			xlnx,pcs-modes = "sgmii";
+		};
 
-Best regards
-Uwe
+		phy2: ethernet-phy@2 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <2>;
+			interrupts-extended = <&gpio 118 IRQ_TYPE_LEVEL_LOW>;
+		};
 
---5np625sv2e7hqcqz
-Content-Type: application/pgp-signature; name="signature.asc"
+		phy4: ethernet-phy@4 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <4>;
+			interrupts-extended = <&gpio 119 IRQ_TYPE_LEVEL_LOW>;
+		};
 
------BEGIN PGP SIGNATURE-----
+		phy5: ethernet-phy@5 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <5>;
+			interrupts-extended = <&gpio 117 IRQ_TYPE_LEVEL_LOW>;
+		};
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhLOkMACgkQj4D7WH0S
-/k4ucQgAuqXHTYO1I3RV2AzSFsFd2LK5PaRAhfs5MWWKlBDbPjW95mxdlioBxzyq
-+fee+3TYWq4FMe9u7ogpJKQvFn7yDZcR5Iy9SH78CnHEAugQG8L0GZ3OkRUQEc5P
-OsuxPI6MY19uVPT/phoGVYdRb1X6/X9lvsVg/rItyJTNcChYmqm5cc9QHgv6wY+D
-AKFTu2CUaSGuJUQR8WYz8+Z/Mtn/Zy8jgKkoMHosAfELqSZDK5sijuGrTnh03a52
-J5FC1Pc5JaqXDJIDXwt3+HqkWi9vnms23HE4Kk4B8oFmJhHuCHP/Sbg6ocx8y5Om
-sfhozLUhiIsfiZp/dXwaRpbOdkmJjA==
-=jmz9
------END PGP SIGNATURE-----
+		phy6: ethernet-phy@6 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <6>;
+			interrupts-extended = <&gpio 120 IRQ_TYPE_LEVEL_LOW>;
+		};
+	};
+};
 
---5np625sv2e7hqcqz--
+In the second case, the phy also has the same relationship, but it is
+not an issue since the phy is looked up in ndo_open instead of
+phylink_create.
+
+The ZCU102/106 supports this, but the in-tree devicetree only has hard
+IP as opposed to things done in the FPGA. However, the "default"
+configuration for xilinx_axienet assumes that the PCS is on the MAC's
+MDIO bus [2].
+
+--Sean
+
+[1] https://lore.kernel.org/netdev/20250610233134.3588011-1-sean.anderson@linux.dev/
+[2] https://github.com/Xilinx/device-tree-xlnx/blob/ac65e0142e52331244ea5799880650fb1e726ab7/axi_ethernet/data/axi_ethernet.tcl#L280
 
