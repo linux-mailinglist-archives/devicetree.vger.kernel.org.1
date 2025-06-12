@@ -1,136 +1,112 @@
-Return-Path: <devicetree+bounces-185262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A89AD710C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5173AAD7120
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCC7B3A5797
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:03:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5ECCF3B299C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791CA23A563;
-	Thu, 12 Jun 2025 13:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="HKzm1HBR";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="GlCjmsnp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96B41E7C24;
+	Thu, 12 Jun 2025 13:05:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E118C3C47B;
-	Thu, 12 Jun 2025 13:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FB723E331;
+	Thu, 12 Jun 2025 13:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749733438; cv=none; b=irV/FSy+6WcJ7EgnCX8dpO9KGaVsX+2ZlPTPFxIFbi/e3cZxot5sQWd57jtVXT7yzLgXTUazoDdoQnFQjTaBArUMxMRvfZtExSsBNDk+lr1GYf+zyY0ptSSUu5MV0rE+Wd+fdsI0D2ofH86vgx7E/RcfCgYJUFIc8g+1l9TLyzI=
+	t=1749733551; cv=none; b=GP/B7IRbEIXR5y55FI+auL/7MYopfNp/KRGQu2J/AATKL7snQyEf1nnIBpG4UiNHvqRoh+mzRxsvJC570mbdxPW1gnRpIYBCVjAw63EJawBANKrL/NSbvcv4nEdGSQslruohw4I/jC6nBAnrY6kcspYcxRDwJoNeX342sifda6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749733438; c=relaxed/simple;
-	bh=Z0grezPSoGr5pXzkUAsQ8shemjlZEwpuaPFyJwa6sWE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=lPBB3HbgmccX8KHhidmelngIyqhX7wiAbVClrB2Ke5TZF8MtBrV3K6IDipQAVqZqPwUgniH+Y3e1hxdnpQvB6R1MlGdNGUj5fKvSvV5MF+pTPl78kB3zGgFO5obymUzOCmKAH09ST6T6NUVgwxABrTD1ARWhHjbl1ZyZUYFdeQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=HKzm1HBR; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=GlCjmsnp; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1749733434;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HZNcAOEiL3XjwzVrB/UHurIxwW0UwH/mpeP/ua8JcaY=;
-	b=HKzm1HBRKnHelVN43bRcu96NW1WHIrHMsq5hv097N9N7jLbjaiJsGWojti9nurVuuBL4r0
-	PKwl74gj+VIH8KePn4AdEb7sddKufpCu+eIzuG1LPQPZG5P0ARKx7XltTvhMoSCxsPe3fU
-	Z27WWPqiRZBFfBCMhyXDrC0/qgWjy68oI1ixDs4Wn205lSKZU+pAEWQPjgDeb0/KjWtQl/
-	CQ8P9/X44uNsYJY1wPjrkYR0Eg4ZrnY20CAmi33MRlBH277vdBirDlI5tGGYRtMOZOmS/T
-	ezvYYf6pZR8oeiX5aKiAbCI+71TCZ/yc5lR/NBRt9XkTgJUfxGHXrjJ9MlQ5+Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1749733434;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HZNcAOEiL3XjwzVrB/UHurIxwW0UwH/mpeP/ua8JcaY=;
-	b=GlCjmsnpmUVkNWwToYaFt5t5n4hO8nGY3LbhYhRMlVodb9+ZoBG/85IAyOn+C1HOieKWFX
-	mUOQXYPfmZDmdEAg==
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, Chen Wang
- <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, Sunil V L
- <sunilvl@ventanamicro.com>, "Rafael J . Wysocki"
- <rafael.j.wysocki@intel.com>, Ryo Takakura <takakura@valinux.co.jp>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, Vladimir
- Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: Re: [PATCH v2 4/7] irqchip: MIPS P800 variant of aclint-sswi
-In-Reply-To: <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
-References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
- <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
- <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
-Date: Thu, 12 Jun 2025 15:03:54 +0200
-Message-ID: <87ecvpru11.ffs@tglx>
+	s=arc-20240116; t=1749733551; c=relaxed/simple;
+	bh=PSp6rDDi51y5VMJ4lgQdvBlJX7l+uOQ8O8x+eoYnpa0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XFKGKX7A5pA+BnmDOn0OxBoffNzmpwZkGTK2esDiUlxd8psZlf9zsalRnbDm48MDBrzOVkLSqqllg+U/HVkW+OdoUWxMDSKvit8XJUus+srO+QI4F1UggR0L1ylWyt3bkZI4ckL6T2aWCqHaUbSKLhRnBLUZkyXvYaGN8lVNWKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6fac1c60e19so22652346d6.1;
+        Thu, 12 Jun 2025 06:05:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749733548; x=1750338348;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a5xyg4b9loNlKxHV/oZK0SPOTJLxOylLQs6P4m/8+0M=;
+        b=tsqvqbPQMyuj+idMPgrILcWys4VQbbQa9rMYACZVZrsB5Do0jTrdcXt5pE4Zemt9Oe
+         +HpHZnLLsKltGORb4+Yocyy18OTk1+L7B0k2Csc0pMrrdgiciR3Sk9I6FTKz+uYjEa2d
+         AGbFDtALJX+DkjVj7b/iCf7Rrx2i1ylMS+yaWCRlwSL2n1bdgri/IdFYjH1Z8I9poO/Y
+         8jPeU8FPwSYY10vUJg8dEjhbIncsD49sH0PGuGmDI6fBk7z6nRtrIqCHGMOGVTN0dwSR
+         jvmJxO2UT+CcT3+h/P/8tPHpCfzgsrmBZFkBpM8jbb/iH3EDKw3eE32VPTi3u/Re+NP7
+         uMaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlzG6aYXm8ktZ0VPFw+LDAFFkUbAiaXkHaVcyQ4EhVzGuTlVT7g96F5VH67CqYwYuyofH2rS/c8gSK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpwCmHDTa5ykC+gBT9xZ0LoWbW3r5dJgItZo3Va/YXUB1UWteF
+	XGsCBqZ/iCtkqYGvVBGbw6fbDn/kK5n6Bb1dNwo8NmOvr3xe+/PPzXTEywUXhIwI
+X-Gm-Gg: ASbGncv8071QJobi5c3LwLzQ8TMhEPDeywvwk7UwUB+/jNBoDLAND51AteyQst3CcMa
+	AgVC2DbaKLT8V+vheLLGeCdrUq0Zh2FYpITFxFwZB2kD7SjJ3Pld5SOjHv66WoLg19mv+EXYi+E
+	AM6Ch67XWTm7Rvhz1v5zUZ99VBfnWGqL+9/r3fBpP77ROK1o/a3owQuyb9bYHzAMl6wiy3sgi+L
+	vUbUrCILEWAVFsErSfSa5lIq3SVoHQmj6bNLTfqbZJNZ+Y3voWln+iCeAWw7lXqasGPRkSYW4sd
+	FF1nMg7sYAJoh8QnhMio7GSzPbeqBU3sPYgIRbR1ZeUN42/cvbLCB4odDuhCrsOI+nIJIhLEzo1
+	mQ4JtYH7IQRRjRy4XdXU5eaWjdRmeGSZedcQUpcQ=
+X-Google-Smtp-Source: AGHT+IFYexvVtAE9HiIeZFQVWKfX5RWQbEFKsnvCpX2clFUzuO91Jc8cBKsBvEE6e8pVeFvZvSPZqQ==
+X-Received: by 2002:a05:6214:20cb:b0:6fa:a625:be55 with SMTP id 6a1803df08f44-6fb3480470dmr50791816d6.15.1749733548099;
+        Thu, 12 Jun 2025 06:05:48 -0700 (PDT)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com. [209.85.222.171])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fb35b3036csm9855566d6.34.2025.06.12.06.05.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jun 2025 06:05:47 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7d094ef02e5so221643585a.1;
+        Thu, 12 Jun 2025 06:05:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUG0LSGByzqj55s3tvtGhy1UUdsOo+RO60cPdB+9dMkxZdDXsIMbbffidb2tNUBJxvHqU39UqLwh0Or@vger.kernel.org
+X-Received: by 2002:a05:620a:a215:b0:7d2:18f2:e8c3 with SMTP id
+ af79cd13be357-7d3b2c6d45bmr470099485a.2.1749733546802; Thu, 12 Jun 2025
+ 06:05:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20250604084211.28090-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250604084211.28090-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Jun 2025 15:05:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXQ5HH1BDtwYNEN3k7sBu8SO-bhy0vshzuebL1bA95vRg@mail.gmail.com>
+X-Gm-Features: AX0GCFuIsu4WDBAZIbRmYoHlXdOZ7pMHsV_J8jqNkvrcZa6KYmWsiA4841_4NjQ
+Message-ID: <CAMuHMdXQ5HH1BDtwYNEN3k7sBu8SO-bhy0vshzuebL1bA95vRg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: renesas: r9a06g032: add second clock input to RTC
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jun 10 2025 at 13:05, Vladimir Kondratiev wrote:
-> +config ACLINT_SSWI
-> +	bool
-> +
-> +config MIPS_P8700_ACLINT_SSWI
-> +	bool "MIPS P8700 ACLINT S-mode IPI Interrupt Controller"
-> +	depends on RISCV
-> +	depends on SMP
-> +	select IRQ_DOMAIN_HIERARCHY
-> +	select GENERIC_IRQ_IPI_MUX
-> +	select ACLINT_SSWI
-> +	help
-> +	  This enables support for MIPS P8700 specific ACLINT SSWI device
-> +
-> +	  If you don't know what to do here, say Y.
-> +
->  config THEAD_C900_ACLINT_SSWI
->  	bool "THEAD C9XX ACLINT S-mode IPI Interrupt Controller"
->  	depends on RISCV
->  	depends on SMP
->  	select IRQ_DOMAIN_HIERARCHY
->  	select GENERIC_IRQ_IPI_MUX
-> +	select ACLINT_SSWI
->  	help
->  	  This enables support for T-HEAD specific ACLINT SSWI device
->  	  support.
+On Wed, 4 Jun 2025 at 10:42, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> The external rtc clock is populated on the RZ/N1D module, so describe it
+> and add a reference to the RTC node.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>
+> The dependencies are now in -next, so we can update the DT, too.
+> Discussion leading to this result is here:
 
-That's just exactly the same thing twice for no value. Just rename it to
-ACLINT_SSWI and have a list of supported chips in the help text.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17.
 
-The only issue with the rename is, that oldconfig will drop the then
-non-existing THEAD_C900_ACLINT_SSWI entry in the previous config. That's
-not the end of the world and if really desired this can be solved by
-having:
+Gr{oetje,eeting}s,
 
-config ACLINT_SSWI
-	bool "RISCV ACLINT ...."
-	depends on RISCV
-	depends on SMP
-	select IRQ_DOMAIN_HIERARCHY
-	select GENERIC_IRQ_IPI_MUX
-	select ACLINT_SSWI
-	help
-	  This enables support for ACLINT SSWI device on THEAD C9XX and
-	  MIPS P8700 devices.
+                        Geert
 
-# Backwards compatibility so oldconfig does not drop it.
-config THEAD_C900_ACLINT_SSWI
-	select ACLINT_SSWI
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Or something like that.
-
-Thanks,
-
-        tglx
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
