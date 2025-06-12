@@ -1,145 +1,127 @@
-Return-Path: <devicetree+bounces-185364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA2CAD7636
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:33:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6AAAD762F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F9617B0EBB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:28:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9A067AFEAD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2943429DB86;
-	Thu, 12 Jun 2025 15:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC6182C376B;
+	Thu, 12 Jun 2025 15:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hxhzogt2"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="JoPZTG1K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC91329DB68;
-	Thu, 12 Jun 2025 15:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE382BF3DF;
+	Thu, 12 Jun 2025 15:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749741637; cv=none; b=ExTRwlcR7m4xUNcmAFWl1gmnovJCxrbq26F6myKU0wYb9XPggREXMqrEZ5qlzbrV7Myx49X8pRvZhYTaBU/hjU9gj8M8b4yGTaf3Am/6ZXfH9g9IrmHoCs8jxWum4GJ3q7IlPQVjI9UKm2paJyFGMu1bXIcpG7ptvKQj4xHtz1U=
+	t=1749741843; cv=none; b=hp3beWmtYx7PyowoywzIMizYHtYNi9ptEF57w7uRCnu3SwN2uzc1NsNSWJrz6ltOIClB2FgqvASo2wdw7h/CTx1euG+CLmBgS5vp+jtcyv+ICevG9bPam0Xelz7f1HIA8BjqFuM0LEUNsZcRf5RYezVcAJ09T++32nSvFRb8hOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749741637; c=relaxed/simple;
-	bh=Dw+5SN04E/qbU62qNOsbR5TmNjRSAAmGNq1xSE5F7yQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rr5dR8fW+Ku3bK2stHNaZJSrvDkkB8vTxq2e1lzKjsQu7uH13Fp/rEjU+dNNuOcUyOaBep22ES/7NA/oV1cpS/T4r9ggLSJYnd69KVP6l6/YjIIWgh9tG6zsZyAHbvSuyT/5YxkdSTBfRfYOo+lqMbnxWRo6foDPi+/o2ngr0IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hxhzogt2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA9EC4CEEA;
-	Thu, 12 Jun 2025 15:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749741634;
-	bh=Dw+5SN04E/qbU62qNOsbR5TmNjRSAAmGNq1xSE5F7yQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hxhzogt2FI//5nXAAX2AKe3dNMqKxSC31GT2aDwGQvHAJQ+FAMGtxcOTh46U1/HlT
-	 9MujscHMq67EXUAsISCmudzgzlqAR2pMwhpLBH/1R/7pCzoIq0o7swwG+7YC0oGN5e
-	 +FSwB2ss+cT+yaw71LdAHYrxTJ8wGLbBlXrMbUUd+MGH3COkjGXPkRYTP/f9TrNgcx
-	 9AUNJnyE7ye+qKmqCv89Yyn8DbIm0ZGMyHaAT/w5TswX0NErgAKC7A2GOd0/PiAxjp
-	 rljncSksprYfxZoE93bDgms2NtXE/ui2RaXHy75zvouAKDv05imNZdogBjEIjojJxW
-	 Rwcs/eZFfxkJQ==
-Date: Thu, 12 Jun 2025 16:20:29 +0100
-From: Lee Jones <lee@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v4 03/20] mfd: adp5585: enable oscilator during probe
-Message-ID: <20250612152029.GO381401@google.com>
-References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
- <20250521-dev-adp5589-fw-v4-3-f2c988d7a7a0@analog.com>
- <20250612142001.GH381401@google.com>
- <4736b759609a9939b3a99a5c87df0fd5518a6af0.camel@gmail.com>
+	s=arc-20240116; t=1749741843; c=relaxed/simple;
+	bh=e2L+AV00TtnXw1GDXliijhYZY+VMGmWnxJeetHc99Lw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=b9qdb1qrOssI45sDrwDy7xQEIsIMKei6So8LaiyZBGbRRMCjAp5bVbujvweAg0KQKdQrkjmPFPc81Ch++EJfs+h0P92syPSQKOxe39tJFNvmSYA+38Pb7A0LmFN0WmebF/yzvnAkO6UXsiu4V6pNKNOThSLrI+Bxe2UwhHdUyzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=JoPZTG1K; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id D0EDA25C00;
+	Thu, 12 Jun 2025 17:24:00 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id rzejOIWm-WrY; Thu, 12 Jun 2025 17:23:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1749741839; bh=e2L+AV00TtnXw1GDXliijhYZY+VMGmWnxJeetHc99Lw=;
+	h=From:Subject:Date:To:Cc;
+	b=JoPZTG1K6VC45U7XtfBY06ap5s93Rik5lgGujH2W+JLf3pxrnEtJV/eH/p1ys7uG/
+	 VyX6XBI4ef8t6H7fKaKACPhJpSXegVdZhYvqq+Rj1c1025y4n7efdT+oOpJjvgllun
+	 uVyl3u911sKoWhpI7iRr8ShukuAUXK7BsU8jpZEqSY/2Z128kV4+REgD/9fpL4Ainw
+	 WeicsoCcSLJ7MlTC3lIjhmBzHJklyBO9j70uPL8W0fso5rxLJPwv+dl/xkln3rot8c
+	 ULI2Y5Hc/O1lPIl+MXuvPrvkDH0Rw+/AMGAJkEJaaIIlRuESLAiubQG2gCLPtn/1Dw
+	 jNMGBjgTqUXlQ==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 0/5] Support for Exynos7870's display stack (DECON,
+ MIPIPHY, DSIM, etc.)
+Date: Thu, 12 Jun 2025 20:53:36 +0530
+Message-Id: <20250612-exynos7870-drm-dts-v1-0-88c0779af6cb@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4736b759609a9939b3a99a5c87df0fd5518a6af0.camel@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPjwSmgC/x3MTQ5AMBBA4avIrE1SFSmuIhb9GcxCSUeEiLtrL
+ L/Few8IJSaBvngg0cnCW8yoygL8YuNMyCEbtNKNanSNdN1xE9MahSGtGA7B1nhvnakrZzvI4Z5
+ o4uufDuP7fl9vAzZkAAAA
+X-Change-ID: 20250523-exynos7870-drm-dts-87ccab731ba9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749741830; l=2522;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=e2L+AV00TtnXw1GDXliijhYZY+VMGmWnxJeetHc99Lw=;
+ b=IvYVO6KFyABl3lbASbgkJhmTWfjQJX6zHF9WbeGzXKnrcA7VcRJxNE9s4peKlOdsfTDZmTNUH
+ c36YxJ2VAD9Dnup2Mr4nBiKF+6E+kPQClh8o/Z42pDKgHfSiBS9zGVd
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-On Thu, 12 Jun 2025, Nuno Sá wrote:
+Exynos7870 has a IP subsystem in its architecture dedicated to display
+management. Notably, this block includes the Display Enhancement
+Controller (DECON), and the DSI Master (DSIM).
 
-> On Thu, 2025-06-12 at 15:20 +0100, Lee Jones wrote:
-> > On Wed, 21 May 2025, Nuno Sá via B4 Relay wrote:
-> > 
-> > > From: Nuno Sá <nuno.sa@analog.com>
-> > > 
-> > > Make sure to enable the oscillator in the top device. This will allow to
-> > > not control this in the child PWM device as that would not work with
-> > > future support for keyboard matrix where the oscillator needs to be
-> > > always enabled (and so cannot be disabled by disabling PWM).
-> > > 
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/mfd/adp5585.c     | 23 +++++++++++++++++++++++
-> > >  drivers/pwm/pwm-adp5585.c |  5 -----
-> > >  2 files changed, 23 insertions(+), 5 deletions(-)
-> > > 
-> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > index
-> > > 806867c56d6fb4ef1f461af26a424a3a05f46575..f3b74f7d6040413d066eb6dbaecfa3d5e6
-> > > ee06bd 100644
-> > > --- a/drivers/mfd/adp5585.c
-> > > +++ b/drivers/mfd/adp5585.c
-> > > @@ -147,6 +147,13 @@ static int adp5585_add_devices(struct device *dev)
-> > >  	return ret;
-> > >  }
-> > >  
-> > > +static void adp5585_osc_disable(void *data)
-> > > +{
-> > > +	const struct adp5585_dev *adp5585 = data;
-> > > +
-> > > +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
-> > > +}
-> > > +
-> > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  {
-> > >  	const struct regmap_config *regmap_config;
-> > > @@ -175,6 +182,22 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  		return dev_err_probe(&i2c->dev, -ENODEV,
-> > >  				     "Invalid device ID 0x%02x\n", id);
-> > >  
-> > > +	/*
-> > > +	 * Enable the internal oscillator, as it's shared between multiple
-> > > +	 * functions.
-> > > +	 *
-> > > +	 * As a future improvement, power consumption could possibly be
-> > > +	 * decreased in some use cases by enabling and disabling the
-> > > oscillator
-> > > +	 * dynamically based on the needs of the child drivers.
-> > 
-> > This is normal.  What's stopping us from doing this from the offset?
-> 
-> This is always needed when we have the input device registered. From my testing,
-> we also need it for GPIOs configured as input. So basically the only reason this
-> is not being done now is that it would not be trivial or really straightforward
-> and honestly the series is already big enough :)
+The following series and its sub-series implement all components for a
+functioning display pipeline. All vital information which helped shaping
+up the patches have been retrieved from Exynos7870 vendor kernel sources
+as provided by Samsung.
 
-Agreed!
+Testing has been done on all three devices available upstream, i.e.
+Samsung Galaxy J7 Prime (samsung-on7xelte), Samsung Galaxy A2 Core
+(samsung-a2corelte), and Samsung Galaxy J6 (samsung-j6lte). Regrettably,
+I've only been able to test the functionality on video mode, as none of
+the devices have panels working in command mode.
 
-> Laurent also agreed with this not being mandatory now so hopefully it's also
-> fine with you.
+This series implements changes in the SoC subsystem, which includes
+devicetree additions. It depends on all sub-series listed below:
+(Legend: [R]eviewed, [A]ccepted)
 
-If there is no explicit plan to do this in the future, you may as well
-remove the comment.  TODOs have a tendency to rot after code is
-accepted.
+exynosdrm-decon            - https://lore.kernel.org/r/20250612-exynosdrm-decon-v2-0-d6c1d21c8057@disroot.org
+exynos7870-mipi-phy        - https://lore.kernel.org/r/20250612-exynos7870-mipi-phy-v1-0-3fff0b62d9d3@disroot.org
+exynos7870-dsim            - https://lore.kernel.org/r/20250612-exynos7870-dsim-v1-0-1a330bca89df@disroot.org
+panel-samsung-s6e8aa5x01   - https://lore.kernel.org/r/20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org
+panel-synaptics-tddi       - https://lore.kernel.org/r/20250612-panel-samsung-s6e8aa5x01-v1-0-06dcba071ea6@disroot.org
 
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Kaustabh Chakraborty (5):
+      dt-bindings: samsung: exynos-sysreg: add exynos7870 sysregs
+      arch: arm64: dts: exynos7870: add DSI support
+      arch: arm64: dts: exynos7870-on7xelte: enable display panel support
+      arch: arm64: dts: exynos7870-a2corelte: enable display panel support
+      arch: arm64: dts: exynos7870-j6lte: enable display panel support
+
+ .../soc/samsung/samsung,exynos-sysreg.yaml         |  6 ++
+ .../arm64/boot/dts/exynos/exynos7870-a2corelte.dts | 41 ++++++++++
+ arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    | 38 +++++++++
+ arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts | 40 +++++++++
+ arch/arm64/boot/dts/exynos/exynos7870.dtsi         | 94 ++++++++++++++++++++++
+ 5 files changed, 219 insertions(+)
+---
+base-commit: 0bb71d301869446810a0b13d3da290bd455d7c78
+change-id: 20250523-exynos7870-drm-dts-87ccab731ba9
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Kaustabh Chakraborty <kauschluss@disroot.org>
+
 
