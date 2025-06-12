@@ -1,134 +1,218 @@
-Return-Path: <devicetree+bounces-185326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E1EAD74CD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:57:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C851AD7515
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 17:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F9633B94DF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:54:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6851188BCDB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688C6273D6B;
-	Thu, 12 Jun 2025 14:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437FC26FDA6;
+	Thu, 12 Jun 2025 14:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fnPhl1wc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C9326FDA9;
-	Thu, 12 Jun 2025 14:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D36526D4F8;
+	Thu, 12 Jun 2025 14:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749740009; cv=none; b=K7K2gmGqa3ejaAIcM4TBYekUzVq2afN028R6ODwpMwU3OcY0uirwqm/MdT4yVwu+2qssxAJFZ4TAAQYkcn+Z94ea73cxo+2q+eqw8YCFZ6oyZqLiH98VTuIGHqhKIJdT2gMy08So+98DGWYGX8TuZenJpeLcuJ2dMDYXMv6OKjE=
+	t=1749740361; cv=none; b=QV0nDa3NlbtHS6PYUKX4Zsz/plSAgIPLq658wn+IuXEx7VYrkTS8e7dP2g39j2X2+FibKbK3toa0/t9pvXCsOytdG8QGPG/Uq69CA8kAUeW69XmdzXTI27aWpXk/Rvy8dF7C6XuAuOKJuwToWgfvIi2xGshh/bZTucObhtr/G5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749740009; c=relaxed/simple;
-	bh=Z46/+1bEbzFmd4IlLZVdFclzKMNgK/pNVt4Y2XAb92I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tr01n6uOM9xxohqqIWkeZi0nQ5o68Wt9NcRD7Ap5EHUAwwBCu2GmV9X5ACC+h6U+52tfslDFgtvg/pb7FmtZpZrzQtH4HNT7oUxpbPSIlvRBEtxA4inVX9SslqIndy0na/K1tAzFYp+USWG+nsJB5Im501v1/grtwa0I/FiwvG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4e770bb7b45so294234137.0;
-        Thu, 12 Jun 2025 07:53:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749740005; x=1750344805;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7x1d1vTJCh0XRTGcbKT1jF2AwaSX3xRvHIeZZnEYTPA=;
-        b=aeMG4SnLTMNsDdQXgvn0yiWyZVhhwz+uw9kMgNv1FsvN8DTLQLbpDm+VPoUtmZClQE
-         rgD7JNsmWST84ObVcIvB7fnH8AJlDf7dkqf81Cphj+SftTicU+t04QUOwPa0V4EmVSSK
-         soJMwwxs8P+xSSQJHXotDBPhYo+8pbrpF6+P132JwSWaQLmqFa+AYky3FrJmHaaagPvg
-         DcU5X64SmZk99wBPZvryvW3esGngrsCj+Lg5iX0XC+euGiR/gOJiS2l0F8m+XVr7v2uR
-         lFYtiGUpkPpQAfNvyK+0UmmyQNUv1CfL4EeV0oXI03sLFp3c+feQwstuYA0LvVQyc7nc
-         im6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV4F/6kBGkej55avODavwCYGLcA1/Y50I8o973WULOYeyVdLZTs2d+oW2JwBXyFYUmwhR0T+dClH5zK@vger.kernel.org, AJvYcCVgK1BzzD/msE3rtkkiWyEFK+V7zQp8qrnG7JGtLtLZ7RZramT26G8k4YnDrvCSy0oFRQhwy6IUqJZLmwOb@vger.kernel.org, AJvYcCVlN9a050deTHhxjAfELqTQXwoF91kCt+a6tp5oBIPfYR2WldlRgNf/If01ZNSzmVQhOjIXRwM7uSG1Mjn2H/B0+7E=@vger.kernel.org, AJvYcCVz3Hc2zkwAhuL2ELxBYNz2pupa7byUaziqspUUTvNXLmHFZ/6ArI532KYtG6GMBvk8QNUKZA1wp7B9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4pMmGVd+W/NnztnN3W1TWy7lkH9QHJSbdV4F8OqJaLXez6mKZ
-	qOpLuuHZHOj8dLL0jK6sPj8gx4u+CuAM+H4nO45TVTAfKzYpzRmoUocctHqGOoDo
-X-Gm-Gg: ASbGncvMlQv/aSc9MxE3jcld8bdExMkCcGHKGPxTiM3qYLjiEYosD/Z07eDmtQMNaFp
-	33cehI/8YOy66a3hhpFsYdkngrw5w6fSrgLemZEi9MzHZWSH/rHCVixDvPrPwT/KQ97sqbiecKp
-	bUMzbdHTOHgokh2EmAPozZyWYE246rvAMQIboDVUIOAstk1jYnZizpadDfzJp4mZmpT/98re8xg
-	rnXi8Tyl3V6+MlurXchNx+vbMIfINvcim3X4oszvdzgSSj1OFsEnLO2mJ2UqAWjHxxMLj/FRO3q
-	wn45yKi2Z0ClzfhEI3ySeifW3s2ENN5fgEfx8rJSNfxgQql9zgpepa942NP417ZprbFWJXNkY/F
-	aP/S6ey5pQRJVL4Zwe3WiKxIn
-X-Google-Smtp-Source: AGHT+IHNTEaD5MAYAS1XrNXevImlvWWqfgcOUd/i+I88jXPZE13e9nNIBOhdvn+4/Zk5cBzty9BsdA==
-X-Received: by 2002:a05:6102:41a0:b0:4ba:971a:41fd with SMTP id ada2fe7eead31-4e7ccd8a30bmr4525569137.19.1749740005004;
-        Thu, 12 Jun 2025 07:53:25 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e7d07d5642sm257908137.8.2025.06.12.07.53.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jun 2025 07:53:24 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4e7b397cc2aso280563137.2;
-        Thu, 12 Jun 2025 07:53:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUgCBVjETYr783K4eEaqbsOnauVPF1M+LvQ0Jk+I9Oz/CcQaYKqw7WzJFDFrj+sPP2Ke4mB+VQfx7vT@vger.kernel.org, AJvYcCUx8aNtcwXM0bhU5EJf7pHF8eP2tM0+eFAcXUwkIu9Tq/Qds+sQsMviOe35mp9uP63VrYDgQ3roKFxNkFSW@vger.kernel.org, AJvYcCWq8OLCkZ8pU4pcabnGDRAnsV1MSaS0Mnrb3gDjfeLs1QMynM3Z1EfBv+sBsymV/F/ejpNYzXhcLjauXeB9e8pfbd0=@vger.kernel.org, AJvYcCXfRxXcxIQiKu2EF8JlErngYdb1THpBsH9vx5Sr7JrjmSFxpi5yEhaRJnddtu6txfm+gcr5dJBfjBfT@vger.kernel.org
-X-Received: by 2002:a05:6102:5808:b0:4e7:b338:5352 with SMTP id
- ada2fe7eead31-4e7ccbf01fdmr4242757137.10.1749740004083; Thu, 12 Jun 2025
- 07:53:24 -0700 (PDT)
+	s=arc-20240116; t=1749740361; c=relaxed/simple;
+	bh=WgLzrP/HBmAzSTOgYFRrJG+fDleiBjNr3X0mdLMrFkU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lal/XrptywDcPCnnIlpO2UONxmNIMd2lHZy3S64CHA6yMoNfC56xm3tLeALy5HlH07HbFgpcTJ9OBFnVOGFciZ7n7YRL49EE9pTtl/di/QCv/Mf5f3wddK+epOaupomBZohio56hiIYeJ/COlEgBmQVgfG5oKkQC7avGo+yK/Qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fnPhl1wc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8FDDAC4CEEA;
+	Thu, 12 Jun 2025 14:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749740360;
+	bh=WgLzrP/HBmAzSTOgYFRrJG+fDleiBjNr3X0mdLMrFkU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fnPhl1wcVmtG4VUDVtxgMeAP0nQ3Ut0iaLA+4krpgjeLvknik17F5hyLU99PtPchj
+	 uC7+2MuTGM1gvcDcQs6p4Doq/xRQlwJ1y3Mn1lr3EbT3TShWxp7fbz0IITB6ZvDRz6
+	 zC+mc2n3NNrWofBcXigLz6ZRwtV2OG5Z6QaZkF3QJo39uAOSnHDA0JeFUDlCdtUMpj
+	 QOiiqL6EC9bfmwDREHt9jt971yq70SoMoWqHbi1SojDT6/YmdQIIw2MgeYCde0AI8T
+	 YbhXbnKuxVsfKhJ0BT4jkH8Jvb4I9WhXaguagyZ2HL51yx1sGgZwaZucvy+lfoVXcy
+	 P34q2HqQ/3xeQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CD0CC7113E;
+	Thu, 12 Jun 2025 14:59:20 +0000 (UTC)
+From: Samuel Kayode via B4 Relay <devnull+samuel.kayode.savoirfairelinux.com@kernel.org>
+Subject: [PATCH v7 0/6] add support for pf1550 PMIC MFD-based drivers
+Date: Thu, 12 Jun 2025 10:55:42 -0400
+Message-Id: <20250612-pf1550-v7-0-0e393b0f45d7@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250609203656.333138-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250609203656.333138-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250609203656.333138-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Jun 2025 16:53:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXbo7vytuCX0RW9w0PjPs9tWaNzuOAWCUrO7gF8xKC8Sw@mail.gmail.com>
-X-Gm-Features: AX0GCFvi9455CjPDjLvZYIZKJZiEyx6KQ3aIhyUXcJMYE57S6zBSPXwrVsAtHMg
-Message-ID: <CAMuHMdXbo7vytuCX0RW9w0PjPs9tWaNzuOAWCUrO7gF8xKC8Sw@mail.gmail.com>
-Subject: Re: [PATCH 8/8] arm64: dts: renesas: Add initial support for RZ/N2H EVK
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG7qSmgC/33OQWrDMBAF0KsYraswsjRynVXvUbqQpVEz0Nip5
+ IiU4LtXdcANhWb5h8/7cxWZElMW++YqEhXOPI01dE+N8Ac3vpPkULNooUXAtpOnqBBBBgMqQoB
+ ueAZRy6dEkS8r9Pp2y4k+z9Wbb0cxuEzST8cjz/um2J1C8VM8cJ6n9LU+UPTa/LtVtARpMNreo
+ PYB1Ut2ZeIUHSf64PF82VV31Yr5FSzoTTBVGGKIqIiw9/6BgHeCgk3AKlCA0JN2zvnugWDvBbU
+ JtgraxDaESGCQ/hGWZfkGx7dU65YBAAA=
+X-Change-ID: 20250527-pf1550-d401f0d07b80
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>
+Cc: imx@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, 
+ Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, 
+ Robin Gong <yibin.gong@nxp.com>, 
+ Enric Balletbo i Serra <eballetbo@gmail.com>, 
+ Samuel Kayode <samuel.kayode@savoirfairelinux.com>, 
+ Abel Vesa <abelvesa@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749740359; l=6030;
+ i=samuel.kayode@savoirfairelinux.com; s=20250527;
+ h=from:subject:message-id;
+ bh=WgLzrP/HBmAzSTOgYFRrJG+fDleiBjNr3X0mdLMrFkU=;
+ b=EcTg2V21GNOWe6urm2jw0J1zEol/rtMZdXRDsBgYrpAPd9tS5duSgH7+t7Db9VAQlRZgWnEPl
+ TZXBk2NUAwoCewXVV5+HftEQpbeI5BUtjK3NpOVLbHpUpQMPdSCnl1o
+X-Developer-Key: i=samuel.kayode@savoirfairelinux.com; a=ed25519;
+ pk=TPSQGQ5kywnnPyGs0EQqLajLFbdDu17ahXz8/gxMfio=
+X-Endpoint-Received: by B4 Relay for
+ samuel.kayode@savoirfairelinux.com/20250527 with auth_id=412
+X-Original-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+Reply-To: samuel.kayode@savoirfairelinux.com
 
-Hi Prabhakar,
+This series adds support for pf1550 PMIC. It provides the core mfd driver and a
+set of three sub-drivers for the regulator, power supply and input subsystems.
 
-On Mon, 9 Jun 2025 at 22:37, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Paul Barker <paul.barker.ct@bp.renesas.com>
->
-> Add an initial devicetree file for the Renesas RZ/N2H Evaluation Board
-> (EVK).
->
-> Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Patch 1 adds the DT binding document for the PMIC. Patches 2-5 adds the
+pertinent drivers. Last patch adds a MAINTAINERS entry for the drivers.
 
-Thanks for your patch!
+The patches 3-5 depend on the mfd driver provided in patch 2.
 
+Changes since v1:
+   - DT bindings for all devices included
+   - Add onkey driver
+   - Add driver for the regulators
+   - Ensure charger is activated as some variants have it off by default
+   - Update mfd and charger driver per feedback from eballetbo@gmail.com
+   - Add myself as maintainer for these drivers
+   - Link to v1: https://lore.kernel.org/1523974819-8711-1-git-send-email-abel.vesa@nxp.com/
 
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -166,6 +166,7 @@ dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
->  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
->
->  dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
+Changes since v2:
+   - Rebase on recent mainline kernel v6.15
+   - Single yaml file containing dt bindings for all pf1550 devices
+   - irq mapping done in MFD driver as suggested by Dmitry Torokhov
+   - Drop unnecessary includes in drivers
+   - Replace dev_err with dev_err_probe in probe method of drivers
+   - Drop compatible string from drivers of the sub-devices
+   - Remove dependency on OF from drivers of the sub-devices
+   - onkey: move driver from input/keyboard into input/misc
+   - onkey: remove dependency on OF
+   - onkey: use onkey virqs instead of central irq
+   - onkey: fix integer overflow for regmap_write when unmasking
+     interrupts during pf1550_onkey_resume
+   - charger: add support for monitored-battery which is used in setting
+     a constant voltage for the charger.
+   - Address other feedback from Dmitry Torokhov and Krzysztof Kozlowski
+   - Link to v2: https://lore.kernel.org/cover.1747409892.git.samuel.kayode@savoirfairelinux.com/
 
-Please insert a blank line here, so group DTBs for the same SoC.
+Changes since v3:
+   - Update manufacturer from Freescale to NXP in compatible,
+     dt-binding and Kconfigs
+   - Use C++ style comments for SPDX license in .c code
+   - Add portions copyright to source code
+   - irqs are defined as struct resource in mfd cell such that
+     platform_get_irq is used in the sub-devices
+   - Make struct pf1550_dev of type const in sub-device driver
+   - irq variable dropped from sub-device driver struct
+   - EXPORT_SYMBOL of global pf1550_read_otp function for use in
+     regulator driver
+   - Drop unneeded info in driver_data when defining device table id
+   - regulator: validate ramp_delay
+   - regulator: report overcurrent and over temperature events
+   - onkey: drop unnecessary keycode variable
+   - onkey: change wakeup variable to type bool
+   - onkey: replace (error < 0) with error in if statement when possible
+   - onkey: use pm_sleep_ptr when defining driver.pm
+   - charger: finish handling of some interrupts in threaded irq handler
+   - Link to v3: https://lore.kernel.org/20250527-pf1550-v3-0-45f69453cd51@savoirfairelinux.com/
 
-> +dtb-$(CONFIG_ARCH_R9A09G087) += r9a09g087m44-rzn2h-evk.dtb
->
->  dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
->  dtb-$(CONFIG_ARCH_RCAR_GEN3) += salvator-panel-aa104xd12.dtbo
+Changes since v4:
+   - Use top level interrupt to minimize number of registers checked on
+     each interrupt
+   - Fix bad offset for temperature interrupts of regulator irq chip
+   - Address Krzysztof's comments for dt-binding
+   - regulator: add comments to clarify difference in its interrupts
+   - regulator: issue warn event for _LS interrupt and error event for
+     _HS interrupt
+   - regulator: validate maximum and minimum ramp_delay
+   - charger: drop lock in battery and charger delayed_work
+   - charger: more conservative locking for vbus delayed_work
+   - charger: apply lock when setting power_supply type during register
+     intialization
+   - Link to v4: https://lore.kernel.org/r/20250603-pf1550-v4-0-bfdf51ee59cc@savoirfairelinux.com
 
-The rest LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-with the above fixed.
+Changes since v5:
+   - Ensure lowercase when assigning hex values
+   - Add imx@lists.linux.dev to relevant mailing list in MAINTAINERS file
+   - Use GENMASK macro
+   - Drop unused chips variable
+   - Read the OTP in the mfd driver probe for new dvs_enb variable
+   - Hardcode IRQ flags in pf1550_add_child function
+   - charger: drop the mutex entirely
+   - charger: reverse christmas tree style local variable definition in
+     probe
+   - Link to v5: https://lore.kernel.org/r/20250610-pf1550-v5-0-ed0d9e3aaac7@savoirfairelinux.com
 
-Gr{oetje,eeting}s,
+Changes since v6:
+   - Use reverse christmas tree order
+   - Drop 0 in table id's driver data
+   - charger: store virq to avoid reinvoking platform_get_irq in ISR
+   - Link to v6: https://lore.kernel.org/r/20250611-pf1550-v6-0-34f2ddfe045e@savoirfairelinux.com
 
-                        Geert
+Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+---
+Samuel Kayode (6):
+      dt-bindings: mfd: add pf1550
+      mfd: pf1550: add core mfd driver
+      regulator: pf1550: add support for regulator
+      input: pf1550: add onkey support
+      power: supply: pf1550: add battery charger support
+      MAINTAINERS: add an entry for pf1550 mfd driver
 
+ .../devicetree/bindings/mfd/nxp,pf1550.yaml        | 137 +++++
+ MAINTAINERS                                        |  11 +
+ drivers/input/misc/Kconfig                         |  11 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/pf1550-onkey.c                  | 183 ++++++
+ drivers/mfd/Kconfig                                |  14 +
+ drivers/mfd/Makefile                               |   2 +
+ drivers/mfd/pf1550.c                               | 339 +++++++++++
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/pf1550-charger.c              | 632 +++++++++++++++++++++
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/pf1550-regulator.c               | 362 ++++++++++++
+ include/linux/mfd/pf1550.h                         | 254 +++++++++
+ 15 files changed, 1968 insertions(+)
+---
+base-commit: 0a4b866d08c6adaea2f4592d31edac6deeb4dcbd
+change-id: 20250527-pf1550-d401f0d07b80
+
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Samuel Kayode <samuel.kayode@savoirfairelinux.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
