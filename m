@@ -1,114 +1,151 @@
-Return-Path: <devicetree+bounces-185293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D69EBAD72C2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:57:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933FFAD72DF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:01:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EF1F17F007
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:57:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB0293B2D1E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28853248888;
-	Thu, 12 Jun 2025 13:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF1323C397;
+	Thu, 12 Jun 2025 14:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="n8+WYuf9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UTS+CL3G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCA51A8405;
-	Thu, 12 Jun 2025 13:56:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749736612; cv=pass; b=CMB/jl028r4tdAo+pjYTvDf0gy34fbgQ9TQWpcB1XpEtzyydvhGJnfCXQPA01thtiN4h1WIgf1XKeswfZJ/10b4cW1v4frCclbPuawRSswbbYJ8EvqbSs5yaCLSNtoUS2Thr+Tb+LzNr+z9faD7abjfk6cilelvQYtyZ+soZoDg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749736612; c=relaxed/simple;
-	bh=9z9L2t/idxIPWqHtl6feJ5+98mUHvEmO1D71s0ZzRy8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=APt5njTGGXxrDnIXQ48NhGzNAuMtR0jbVKgFpN8gT2bk013tsthWPiMhxY5p7nsDo4wC3R0cf2hdc6arHlzA1h0OhlpSTBUgQtsuFI/PnlZOEt5zUpGxDhAJ7T001YG3uHOjrR0osd0tamQoMVpWPPA4X+uLhxBk07CmlxYeBy8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=n8+WYuf9; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1749736586; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=lvR1fq3NchjreiyUiIeLyfUSl3q2G2RoAlsQESjIc53+9OOmdW49NG0QOCklpaAxkpzOf+O3J5TOvuWFybfEplwcaG6SlWktPmVS4TBXLl1CE+CNBIWgpw+JPMzHAHvrgK3MAmVcgjWwsLQjgM1OiYYRK5Yzn18WQBKTwVWeYRY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749736586; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Xe+/CWthc6ot+OCxKsW3fGV6MDdG1CZZweZmpwlQwl8=; 
-	b=UDb8x8KAEskyKoSz1q1Mjj674Y9Rt4VlIoYO9Btoo4sS28yUQqBfQK7bS5IbuU518aeieAFSnj+TDZqkC9cgxYZZSvCSmghmOHXVmgKQJMWTPv+DDBO/oEGe4QqVIqZePNHuSv8DtRWGH0koTxGY2nAaixJwK5J2UjvLaqR9j/4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749736586;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=Xe+/CWthc6ot+OCxKsW3fGV6MDdG1CZZweZmpwlQwl8=;
-	b=n8+WYuf92DJ5Lm1peHwH0i8dXZkNIOPgt6STqoXZn6bE31CoXzRJ7aDTt1IPiUfh
-	XEjSZx+S0IZMuy5sEy/SA0Ayo2YBiyF/OSXxBVCrX+L6rMKOiyXcJF0k+rFEmYjLIvn
-	5gyhXvQ81zaLxlmvGB/DqrM1LDnuGFFfTwq9TvyjZn32JvK1bv1xeaoMuwh2dnchIPO
-	tzuQGpMYbgc2ttKjYPZsz5dvWbyK1lvofXwv/tFR5IOhFwwxJv1lqD+FwFJDt27KfX0
-	GYrwEKtAQvYBc4LsXL0BBDQZ4y5dpMAJYjJmW46HmjVRr/t43nrfjeHjWv9lVTvViGF
-	1pKHyolYxQ==
-Received: by mx.zohomail.com with SMTPS id 1749736583346329.0335267878131;
-	Thu, 12 Jun 2025 06:56:23 -0700 (PDT)
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4BC1514E4;
+	Thu, 12 Jun 2025 14:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749736880; cv=none; b=JPNMhsRmpYd9q9BW8V97ub58le1XTPV1Ub9lupd1AHLTKTxX9zoymSD+zdDuFfvHVUzbgLyS9ncqBrz8qF1wV8P2GT07jEtQ5wMJFaUT8kleF0jX+150UWvY2Y2B7xz94/YwiCfyYw9oRCLt+kMPb/i7/xC/2pZTW5XkcQIyNSU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749736880; c=relaxed/simple;
+	bh=YPxMTxw3oYrovaTdA0xeKAG6x+IDWmVWaIS2Zqn0zaQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cx9LJkWM+UVT61CyIMy3SYz5nDTv64S8jZS5EBQKuDjdWrlmoQz1TD789xFb9aYbtJGs5Oaedj7pl2o3R0Pq7Iwqonw+uhghX/C+2YOj54ks/WcUzwUxr7Alm9fVUJnTO3qMg9PHt45J6cOwnEzvVnoR1qTLAr+dROl/fkV7BS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UTS+CL3G; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-235f9ea8d08so10241075ad.1;
+        Thu, 12 Jun 2025 07:01:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749736878; x=1750341678; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WrUaDDGPJzFKUiQFGAoTVMOx8+jgdrUvU/jOz6JWMNw=;
+        b=UTS+CL3Gjh838bYLJBzKh2eeK/oG0HizVwk/p8sl8Xj8Om1xYTb5tAS5BDCHHc/I4j
+         fq/zUMGvOOGtBnJImBw+l60aqJTU0ydmxOY2xXip7N685CBdw3LWOTor0Nuybi3uaJNV
+         wqtrXNMdbjNpimT3syBfML+uFwT1TAypwB9hS7T1Mo2m4Z9va6XEakrtum6cCIf43RNv
+         9iWte9czJvvijbWnuQiyumZV9ETVWTg/WvHj/0fCuc0+53419GjMlltJJRtkMpBTyaM3
+         OjRrDoJNmVg3MgmA/yvuAmaE5CByotXHhY7ZFJyPT/v0bQ2OHqANcRG29lTGTzHvDVc7
+         SJYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749736878; x=1750341678;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WrUaDDGPJzFKUiQFGAoTVMOx8+jgdrUvU/jOz6JWMNw=;
+        b=CPFG6qyDZZBGwSO96tgyXHVRZIY79vXVMOaYY6pMJgmbzAjFm8v4DFY5QymTkPfK56
+         +sw2TC9RrzuwoTq1dRY7uUJPOuOiCd58nLhu+45TNuYu/Zv+c5oXPFbDz3iFC1zPLsKW
+         QzHyjW7vKX4MB4fIJdaK4kAT2v6wnWurdgTmH2Abk96odrmqOYQ4K4SIisLOOBbyaeql
+         QQ7mGY5tUV1up5VwvHa7k6Hn3M+8Z8ihTHqq+mUa/zk0BCqLNgq459XGVlj3Uek/veUW
+         nMtoZGvIlIk3YyRi1a6E9ZxP6/Gpm6/CpA1RiYQIwl2IG79BULBaoyZtVMgKybqdPEcr
+         ZxnA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjZ2AifQbPnpI026JI1EINjKXBSLMWzH4XoK7P87qL4cMnIEUGLklmK6P1/1zTSxMgo+oxOByLu6TZ@vger.kernel.org, AJvYcCUpmz/M8J/A6xTTMIr59rmtdOxzm++3ZHuZL2x5PlAyQqjSn/3Slbn5IRN94n985wIA69A1UiSoSJAwnQ==@vger.kernel.org, AJvYcCVGJcYa+RqR8XlLbsciFb3kL1Evj6c6/GsqGJLtRPWxzIR6bju8PqTgZH18VRmA4xH6XKEiGGvPZKwHBxXc@vger.kernel.org, AJvYcCW+6Cjdsp8I94WzlMZQzAvwWt8DNg1GLzVtfKib7xKEqOuY6cU27BLqSdV3bURxmpkCbXaQW2QnvBzk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUMtDMRjHTqsVepc6KsR5bnDiVZgNYBJbYjozlUyQOI7v5Bw4R
+	cJ7cbd/vT3OxbLAVyK/ltDmdRj1s+w0bBh2emPWvJOA+o8ybygtZTeeG
+X-Gm-Gg: ASbGncuavj2E90z1j9L4f/6rLtkghpyH2UCTN3EtSMThFHE4wmgVQiDEijgC5ibrtOl
+	t9KqA3XrnXc6TNSQ7bXWe1QPgyHMvNLTM97DIVp/12NboXFLKsh5lahTGfmeE4c4A5NVNyH+Gcn
+	Q6YJT327578ovzpAPndWHo3SCHGNAyDXl2wo6zdU1ley9HHfKzPRWlezk3mtcD7EPU6SA7A6WMy
+	PmcfQR0f2kSnmd5YeN7KfhT9bMNBXUBNQo8kF8prj7TdGiDxz/MI9d810Zs+GzF7Sd6M5+LC2q6
+	hwJUDAcqOjv58uTC20qH2d2V/FtQqiw1J+O4b9ITGOlX/nY94EP2fBGkxLMYxEptX3eU/RGIHt2
+	CgdpuwA==
+X-Google-Smtp-Source: AGHT+IG8MPbeD44xaQLw4mhm0dmlhPEtylSTie6+7pb/0KZ3veLVzkzsT+ldEJIwVLhZFtndrz6dYQ==
+X-Received: by 2002:a17:902:e74e:b0:234:8ec1:4af6 with SMTP id d9443c01a7336-23641b3291amr103085065ad.45.1749736877677;
+        Thu, 12 Jun 2025 07:01:17 -0700 (PDT)
+Received: from localhost ([2804:30c:4000:5900:b4c4:6073:1a92:4077])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2364e6d9c65sm14079355ad.111.2025.06.12.07.01.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 07:01:16 -0700 (PDT)
+Date: Thu, 12 Jun 2025 11:03:01 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8173: add hana revision 2
-Date: Thu, 12 Jun 2025 21:55:59 +0800
-Message-ID: <20250612135559.2601139-2-uwu@icenowy.me>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250612135559.2601139-1-uwu@icenowy.me>
-References: <20250612135559.2601139-1-uwu@icenowy.me>
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl
+Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <aEreFQUZXsdsgBSm@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
+ <aEifWXPV1nsIyWbT@smile.fi.intel.com>
+ <aEnvcaP2ZNPLhzXi@debian-BULLSEYE-live-builder-AMD64>
+ <aErMgh6AKVStF4rQ@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-ZohoMail-Owner: <20250612135559.2601139-2-uwu@icenowy.me>+zmo_0_
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aErMgh6AKVStF4rQ@smile.fi.intel.com>
 
-The current mt8173-elm-hana.dts file only contains compatible strings
-for revision 3~6, makes boards with revision 0~2 to fail to match a
-revision-specific DTS and may fall back to the rev7 one (which lacks
-some gpio-keys).
+On 06/12, Andy Shevchenko wrote:
+> On Wed, Jun 11, 2025 at 06:04:49PM -0300, Marcelo Schmitt wrote:
+> > On 06/11, Andy Shevchenko wrote:
+> > > On Tue, Jun 10, 2025 at 05:31:25PM -0300, Marcelo Schmitt wrote:
+> 
+> ...
+> 
+> > > > +	return spi_write(st->spi, st->tx_buf, size + 2);
+> > > 
+> > > ... + sizeof(reg) ?
+> > 
+> > The size of the specific ADC register is stored in the size variable.
+> > The result of sizeof(reg) can be different on different machines and will
+> > probably not be equal to the size of the register in the ADC chip.
+> 
+> Hmm... But shouldn't we have a variable type that respects the sizeof() of the
+> register in HW to keep it there? 2 is magic.
+> 
+I'll add a define for that constant.
+For clarification, there is a 2 byte instruction phase during which the driver
+sends the R/W flag and register address. After that, it sends the data to be
+written to the register. There are 1 byte, 2 byte, and 3 byte long registers.
+So, the total transfer length is 2 + reg size.
 
-As I've got a Lenovo Flex 11 Chromebook with board revision 2, add it to
-the base hana DTB file.
+...
+> 
+> > > > +	/* Assume AVSS at GND (0V) if not provided */
+> > > > +	st->vrefs_uv[AD4170_AVSS_SUP] = ret == -ENODEV ? 0 : -ret;
+> > > 
+> > > -ret ?!?!
+> > 
+> > That's because AVSS is never above system ground level (i.e. AVSS is either GND
+> > or a negative voltage). But we currently don't have support for reading negative
+> > voltages with the regulator framework. So, the current AD4170 support reads
+> > a positive value from the regulator, then inverts signal to make it negative :)
+> 
+> This needs a good comment and ideally a TODO item in the regulator framework.
+> (It might be easy to implement by adding a flag without changing the type of
+>  the field, if it's unsigned.)
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
----
- arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'll add a TODO mark and expand the comment in the driver.
+Not sure about sending a patch only adding a TODO to the regulator framework.
+Aren't developers expected to propose things?
+I'm anticipating 'talk is cheap, show me the code' coming.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
-index fcf0cb76a87c3..84638a07587f3 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
-@@ -11,5 +11,5 @@ / {
- 	chassis-type = "laptop";
- 	compatible = "google,hana-rev6", "google,hana-rev5",
- 		     "google,hana-rev4", "google,hana-rev3",
--		     "google,hana", "mediatek,mt8173";
-+		     "google,hana-rev2", "google,hana", "mediatek,mt8173";
- };
--- 
-2.49.0
 
+Thanks,
+Marcelo
 
