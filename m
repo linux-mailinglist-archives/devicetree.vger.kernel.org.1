@@ -1,110 +1,117 @@
-Return-Path: <devicetree+bounces-185393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18484AD77B6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 18:13:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E867BAD779A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 18:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A96EA3A2C34
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:08:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CECC7B03E6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1372299A9C;
-	Thu, 12 Jun 2025 16:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B4429A307;
+	Thu, 12 Jun 2025 16:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcZaMQWY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yu1eX2+y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E6A529992E;
-	Thu, 12 Jun 2025 16:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FFD299A9C;
+	Thu, 12 Jun 2025 16:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749744514; cv=none; b=LOpc/LtTn1H7zaUNeVQwp8k4DZ2Sc2lAlwtVYTQNx3I/Xoy7incamkJPZDWjdKFYhWGWrXPiD/43SMQuBJ0o9RYCpzQE5FA/Bz3RJWymNyn0o1X6FwpSDJ19T3sLJL8RlLRrB1RcJD8HJNUF1VuHV36vgmg1jJSDP7jWNCT/fa4=
+	t=1749744523; cv=none; b=DJ6lr3xxZeFMfrELEjtETS7Uedw73Af6GPQF1huEpBwZnoTkCEl2vF7u8EpppSW35PxYTjp88DBjDlwpiUUw2fmdBb+n4aW/ww+lrrvzqPpoSexGTXLDPCLlwnYFlw1up9K2PutMDMKZ2vqti1gLe4CwsszihzJu+Qnggm2iVo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749744514; c=relaxed/simple;
-	bh=B03z8gxJK+nx661YS+WD6BW1buv5G9KGZfmtmKssNPc=;
+	s=arc-20240116; t=1749744523; c=relaxed/simple;
+	bh=7+b3JmMUKKzZHXO8vtquG03ptonMmn+AG6H+hfCo32c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f1LaLTmniKIsqsU+0/jTmKHFpA6vAoluFY9BO8jA+WW0Lxll2F31dBlic+7Osxp8/D7GLbndZwxgALK5MPAZLd9OwSrQOA504tO/58kgEv/JNuwghySKCN5cxvWH9IOT4ANCvyPndbHH9qGUfiMfS460JwcTqU1J5RWxkpRREC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcZaMQWY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6EB2C4CEEA;
-	Thu, 12 Jun 2025 16:08:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f5xFf9FUnxZXfQcm5M/EIq6WId+1i0d6Jz8k/Fzf05MxbIA/m2anwVsURt7vF4LExxXxzNwcH30vv1pQfhDRsdUQUsHH0mzWAB8ihKgfhPZMyEG5S9p7kt+R7YNr8mj0zmr/DWLpZoYH9LIl+xTwgr67xzx1t9P9V45WrWzzFf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yu1eX2+y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B62BAC4CEEB;
+	Thu, 12 Jun 2025 16:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749744514;
-	bh=B03z8gxJK+nx661YS+WD6BW1buv5G9KGZfmtmKssNPc=;
+	s=k20201202; t=1749744523;
+	bh=7+b3JmMUKKzZHXO8vtquG03ptonMmn+AG6H+hfCo32c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AcZaMQWYYfcHZvJtoDAV5b9/0sFDY52tAweeM6mjMw3BnjKC6EQvBGMhvxRO5s7T+
-	 ydFT6HVpInq0VQTLJQ3I7CnhHZwRYtAN9RStGLb0lmmrloAyYdU6WSCRmmEtV3L13F
-	 gRRlW5dixUdTTMze1ujaTXh6TRGaLE0bXoesygVCne0TUXajO8aYJvuCIJlTif0uwa
-	 nwOems3Jcsfa0XUfRSuUDYVqKUeYLehRdq7Y+arH+y+6ORaHG7Pzzr2jfU25Yka2HL
-	 MXdfVoMwt7FBL5/wEFOS4B+nwXyhcfYR9RycsPhcpRgemPFfI7zlaomLXp3LETADE7
-	 iWRI7dK/Bh+Ag==
-Date: Thu, 12 Jun 2025 17:08:27 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Ze Huang <huangze@whut.edu.cn>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next RFC 1/3] dt-bindings: net: Add support for
- Sophgo CV1800 dwmac
-Message-ID: <20250612-maturely-pony-a6fb8f9cb163@spud>
-References: <20250611080709.1182183-1-inochiama@gmail.com>
- <20250611080709.1182183-2-inochiama@gmail.com>
+	b=Yu1eX2+yaTkbsl/d4yM4lfN2qNWWfjohdrJaOUTEURh2W67frVLVNJ9rRCgFxQrZf
+	 ndFlg8mMHcvOcqS4PhqSjZpEbYibip25n9/WMXx9yOX9Qth3pi9r1Ayvek6EEAdSHv
+	 dpNwxRCRDKpCbTYgUBrbAGwJ94lvMUwnRRjqgU+jxCip+i+JE/KLG2QPyM/zn8B4rJ
+	 Q8E6oTzwL6dbMpRzg3e6H8iuHtrL7hK+9Sl08Ggg407bIOdcfokMKeKs+14qTtTgx8
+	 HyWxtWvtY4MFq9igWIknEFRf4dzrpbgGHF6GMIobafqVsAe1ZXwkLzRnaepfDdulDX
+	 7aP4hDoAddGvQ==
+Date: Thu, 12 Jun 2025 21:38:32 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Richard Zhu <hongxing.zhu@nxp.com>, 
+	Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v11 10/11] PCI: dwc: Print warning message when
+ cpu_addr_fixup() exists
+Message-ID: <az74rxjpfahjwmz7fg5agn47org7arpblariuauujhovkaieha@d6r2yp23vqan>
+References: <20250313-pci_fixup_addr-v11-0-01d2313502ab@nxp.com>
+ <20250313-pci_fixup_addr-v11-10-01d2313502ab@nxp.com>
+ <v77jy5tldwuasjzqirlwx45zigt6bpnaiz67e4w7r2lxqrdsek@5qzzobothf5r>
+ <aEr3nGCqRuyIwA37@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zSWjS4FDrlJ7AUsz"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250611080709.1182183-2-inochiama@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aEr3nGCqRuyIwA37@lizhi-Precision-Tower-5810>
 
+On Thu, Jun 12, 2025 at 11:51:56AM -0400, Frank Li wrote:
+> On Thu, Jun 12, 2025 at 08:16:03PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, Mar 13, 2025 at 11:38:46AM -0400, Frank Li wrote:
+> > > If the parent 'ranges' property in DT correctly describes the address
+> > > translation, the cpu_addr_fixup() callback is not needed. Print a warning
+> > > message to inform users to correct their DTB files and prepare to remove
+> > > cpu_addr_fixup().
+> > >
+> >
+> > This patch seem to have dropped, but I do see a value in printing the warning to
+> > encourage developers/users to fix the DTB in some way. Since we fixed the driver
+> > to parse the DT 'ranges' properly, the presence of cpu_addr_fixup() callback
+> > indicates that the translation is not properly described in DT. So DT has to be
+> > fixed.
+> 
+> This patch already in mainline with Bjorn's fine tuned at when merge.
+> 
+> 	fixup = pci->ops ? pci->ops->cpu_addr_fixup : NULL;
+>         if (fixup) {
+>                 fixup_addr = fixup(pci, cpu_phys_addr);
+>                 if (reg_addr == fixup_addr) {
+>                         dev_info(dev, "%s reg[%d] %#010llx == %#010llx == fixup(cpu %#010llx); %ps is redundant with this devicetree\n",
+>                                  reg_name, index, reg_addr, fixup_addr,
+>                                  (unsigned long long) cpu_phys_addr, fixup);
+>                 } else {
+>                         dev_warn(dev, "%s reg[%d] %#010llx != %#010llx == fixup(cpu %#010llx); devicetree is broken\n",
+>                                  reg_name, index, reg_addr, fixup_addr,
+>                                  (unsigned long long) cpu_phys_addr);
+>                         reg_addr = fixup_addr;
+>                 }
+> 
+>                 return cpu_phys_addr - reg_addr;
+>         }
+> 
+> I have not seen this "dev_warn(pci->dev, "cpu_addr_fixup() usage detected. Please fix your DTB!\n");"
+> 
 
---zSWjS4FDrlJ7AUsz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch is supposed to add this warning and nothing else.
 
-On Wed, Jun 11, 2025 at 04:07:06PM +0800, Inochi Amaoto wrote:
-> The GMAC IP on CV1800 series SoC is a standard Synopsys
-> DesignWare MAC (version 3.70a).
->=20
-> Add necessary compatible string for this device.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+- Mani
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---zSWjS4FDrlJ7AUsz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEr7ewAKCRB4tDGHoIJi
-0geVAQDLc3KgdxScF0+JMYwJ7R+YQeW94eK+OREQoU5WmclyjgEArisbfSvY76Q6
-pihw3ebbOH5q91hjm5goo6nl6L6UhwI=
-=1G8F
------END PGP SIGNATURE-----
-
---zSWjS4FDrlJ7AUsz--
+-- 
+மணிவண்ணன் சதாசிவம்
 
