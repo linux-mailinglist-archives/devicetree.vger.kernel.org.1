@@ -1,107 +1,134 @@
-Return-Path: <devicetree+bounces-185165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4DEAD6B76
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:56:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE70CAD6B91
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:02:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BD5916BCAD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 08:56:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2F581BC2242
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3048B21CC6D;
-	Thu, 12 Jun 2025 08:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0599221268;
+	Thu, 12 Jun 2025 09:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKTGJlXb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGmPx6Tc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EDB20B7EA;
-	Thu, 12 Jun 2025 08:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A441C3039;
+	Thu, 12 Jun 2025 09:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749718555; cv=none; b=Tkyrg1hwLReD+R/SZkpmJTmGXQOg+oNdjokGi8h99nJ8Ny0kuN9B0B9GC6P1d+GP2jU7AfUH5NXn93nVZK/xLP8i8OKSw3z78/dC+oPzY27siWo30AA24l6ldT07aGxMF9tC9J61tT2PpPynIahrRXUUnnTrNdaTggYi1l/1r78=
+	t=1749718951; cv=none; b=nzqqM13IIfcZuja+2r0hCZhHK/begvVorJA4FPY3AEWyTpogoZ+htQt9ga3m8Sx82hkYw6fUGH7PLtWU+ArQObaHls2LvwYU9AssgOKGREB1bkMHdZMFEx7Xt0VdMIWt+rhuHHlxBAmNuh2GVCKI1EUzRmnTheXqzL1IEtgyUX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749718555; c=relaxed/simple;
-	bh=RQYBtssOY7+oGdh2lG5OPgacAKGthN9dqgrlCVHiJRE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=auX61MDr/N274qTa8QSd5H9ZAsdmVO4G12EnWONelVTQ41tJxYxFfVmKW0/Ywn0dVk6wmsbihuDy+BeMZz23HuHkguP4RerKhyOBW60i+Srn+/1rJsBy4JwItV0tAm2V6wjHMRHUa212KpqlCS9Xmc+2gB/ZEI7x8LYBQ292rE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKTGJlXb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77A6AC4CEEE;
-	Thu, 12 Jun 2025 08:55:54 +0000 (UTC)
+	s=arc-20240116; t=1749718951; c=relaxed/simple;
+	bh=JJB3wv5EeQ5kTY4vroj7FtxJJFDOSz34+Izx9PHqIJM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=WBEh+0yjjrTNpwlKl4J/50t+X6rSbvgP4AkKAYL3xq5A5zSLbTSDITqvB2jmrYKqQ7LONPZ0ipz1dDfmxyKJ72/mZpbVIHj0nQZ9W6twbd/gTtvZQkRfJjL70589PSpw8kgam70iRGgUDMW4nZUAz4GCIxavWVlRELW0+77TDx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGmPx6Tc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F9BC4CEEA;
+	Thu, 12 Jun 2025 09:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749718554;
-	bh=RQYBtssOY7+oGdh2lG5OPgacAKGthN9dqgrlCVHiJRE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=tKTGJlXb7NbO6b72bfefP6nbDKNQIB3EPfZ0fRG9zHBuxX+fFJBmM8JWl9A4wNp/v
-	 AkNRhDzu+4ySC7dtwTvZSNlgxGB+7ewfbaWK5dmxhClE0JsHuHf7sbDpq0hxqcbbt5
-	 dzHrHEa5uGzGQBn+ULgzXGLd/USBX3zERlwZUx8W7rVnapqLQmcjFlBGWuw+6N8er3
-	 mQEUsjf45FweghnyY8tFh/T7yXa9qiYDwxeZr/QYcItPdEvIM6IWKfWJPYzllmt7+c
-	 IxBj3LPrx4TF5DVcjZLSarj3g1d8bQl2avHfL44BVhst20ce2laoO6mq9aP7rjp/cj
-	 URlXZ3zyVZ2hA==
-Date: Thu, 12 Jun 2025 03:55:53 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1749718951;
+	bh=JJB3wv5EeQ5kTY4vroj7FtxJJFDOSz34+Izx9PHqIJM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=rGmPx6TcLfji4RqfhoJigSNBylm16liOVcadCI5Dq0bo2WquXzadFO1ll3iR1l3x/
+	 uL6blp+K2OAXe9V0tpSZ2gCrQtgUHVtIfIrQ93Dks0nx0mdv9QhfkxCkjsFqGXqEZQ
+	 32bv3fe6GhHyuiUwsF/P0e3sxZNLbnOb+bjVfr1a7R2t5QAYU9fGSo/CemphWc+vg6
+	 545qrojsTDNw/3q/yq93oSwSZu1pOaObGsFwQghhySucis1PKufyStxJiwWzbRXZc2
+	 Kx+9HBq2p2dQ076J9X8IV4n981APbp20LRq5Ft+6B/ouH+ROVgvELGn3oJQGppPVok
+	 SXeID8fxlk75w==
+Message-ID: <75f38c3d-cdfd-498e-b0f3-748139ce880e@kernel.org>
+Date: Thu, 12 Jun 2025 11:02:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: u-kumar1@ti.com, linux-arm-kernel@lists.infradead.org, 
- Nishanth Menon <nm@ti.com>, Vinod Koul <vkoul@kernel.org>, 
- Peter Ujfalusi <peter.ujfalusi@gmail.com>, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- a-chavda@ti.com, p-mantena@ti.com, vigneshr@ti.com, 
- Santosh Shilimkar <ssantosh@kernel.org>, praneeth@ti.com, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-To: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-In-Reply-To: <20250612071521.3116831-14-s-adivi@ti.com>
-References: <20250612071521.3116831-1-s-adivi@ti.com>
- <20250612071521.3116831-14-s-adivi@ti.com>
-Message-Id: <174971855245.3983211.889546911604873358.robh@kernel.org>
-Subject: Re: [PATCH v2 13/17] dt-bindings: dma: ti: Add document for K3
- PKTDMA V2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] arm64: dts: exynos: use proper node names for GPIO
+ based I2C busses
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
+ <20250519121512.5657-2-wsa+renesas@sang-engineering.com>
+ <006ee7d6-1289-4f4a-819d-9a5e5120db99@kernel.org> <aCtD7BH5N_uPGkq7@shikoro>
+ <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org> <aCtK1-Yn6u8-n8mU@shikoro>
+ <e5a3ce2b-4ebe-44c9-9bf5-9f460d5e7fe8@kernel.org> <aCtbg0_vD07g394k@shikoro>
+ <aCt9e-rrOOR0C5HI@shikoro> <1cea4f55-752f-4581-a003-1c9d31a36039@kernel.org>
+ <aEqGtjc7F8vvY4ph@shikoro>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aEqGtjc7F8vvY4ph@shikoro>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 12 Jun 2025 12:45:17 +0530, Sai Sree Kartheek Adivi wrote:
-> New binding document for
-> Texas Instruments K3 Packet DMA (PKTDMA) V2.
+On 12/06/2025 09:50, Wolfram Sang wrote:
 > 
-> PKTDMA V2 is introduced as part of AM62L.
+>> Where? I cannot find anything in my inbox and also no pull requests on
+>> Github.
 > 
-> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-> ---
->  .../bindings/dma/ti/k3-pktdma-v2.yaml         | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-pktdma-v2.yaml
+> https://lore.kernel.org/r/20250519184530.21845-1-wsa+renesas@sang-engineering.com
+
+Thanks
+
 > 
+> You prefer to be explicitly CCed on such mails?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+If you ask me for review, then yes, but if you do not then no problem. I
+just could not find it since it was not cc to dt list.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/dma/ti/k3-pktdma-v2.example.dtb: /example-0/cbass_main/dma-controller@485c0000: failed to match any schema with compatible: ['ti,dmss-pktdma-v2']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250612071521.3116831-14-s-adivi@ti.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
