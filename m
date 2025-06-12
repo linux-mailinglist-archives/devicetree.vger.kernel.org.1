@@ -1,120 +1,115 @@
-Return-Path: <devicetree+bounces-185313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF34AD746E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:47:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14550AD74A8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 16:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19FD8189711A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:42:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15B4A18830D3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 14:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC69525E456;
-	Thu, 12 Jun 2025 14:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D171C1F12;
+	Thu, 12 Jun 2025 14:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="kgzSfWck"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="VXQ0RaMO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa2.hc555-34.eu.iphmx.com (esa2.hc555-34.eu.iphmx.com [23.90.104.147])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0683725C6F3;
-	Thu, 12 Jun 2025 14:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.90.104.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F428DF49;
+	Thu, 12 Jun 2025 14:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749739174; cv=none; b=RwrX4hsDzCKJXfrna9cFC7uusm9gOgRBdPJhwP1FjNZNh0NVe0N8EHwUFXX6Ne618/jD7/a2vU5zQF7XTHUal7w1k+pOjidNTBPdMT8m7vmoIY9dx3r4Mp991GpdwRBUI43gIz/+VA2MVt9vIpAPHXupyqyGyIlGH35T/xBNb/M=
+	t=1749739727; cv=none; b=MJY5qGjcrXkQtckFq4tR0itH5kov/L827uTXpS7U2PnXtelpg9fCmChvFJRGvxkdxpMgdmh/5ilYIXkFQK55/oSr163To4tBJRujet9nJnICRlMTWGPbhmyvmP4pEM0+DTrLI7c1TedEBHXOxJpHF5XK/hYClQO0y7Zr/Q74QYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749739174; c=relaxed/simple;
-	bh=qHQZtgOUSppdb/h/ZBO+JNEWe7/fBqOyl/vdXLNJOYQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TSVpKymn1VPkIU60q5eMqJmicmFs11Vb6+9SvpPoO0tQzU6Lo65yYmeUUhYBKsa54QXJjheKmR/eY21i/WsgNCrhMMS+UGSfEmGWYOdqsfa0EAow931WaH3CJEm/s+shIBTbQJZX2cibw7mGGpAovULk9gfnuN3FFuwLP4KDeOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=fail (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=kgzSfWck reason="key not found in DNS"; arc=none smtp.client-ip=23.90.104.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1749739172; x=1781275172;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qHQZtgOUSppdb/h/ZBO+JNEWe7/fBqOyl/vdXLNJOYQ=;
-  b=kgzSfWckRi4vY3UEu1Nl1Hs0j5UGGjyJYqzhmn8MsnwG5ds24v3yrv7X
-   n/v/gFB3mr44se1FYlO+G0RUA2xdNlZLVnbe64RAjVs86JwNd5LVKmjJ/
-   goDiuUMo+LxLMbqL9SbhIRv7N/FU9IFg0D9KLNfqHXbITA+BlBCLxB6XQ
-   nLQPezNce/hdQATjfRVHQZ6CXVNoQkK90+XG0drCg2loFNCEvfGWQq7St
-   tk1s62BtAdaEWzgORmrbj4Lm0hEzzc90V2n12CxAEVdWphYzmikEIDvNn
-   Gyt30dZiF7Iy/Q0CrJ1yhrofNIhIoy9fuuKEY4bWAwO4f+2tjwWLrNZpq
-   Q==;
-X-CSE-ConnectionGUID: TDDXB1duQWqC8XJ4q7vXag==
-X-CSE-MsgGUID: cRubhSHCS3KghFXFcfDXag==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
-  by esa2.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2025 17:39:22 +0300
-X-CSE-ConnectionGUID: 7KsuaaKlTxqTEHgxHTSWtg==
-X-CSE-MsgGUID: pZwLk6cwTG2vxbWmD9CagA==
-Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.1])
-  by ces02_data.me-corp.lan with SMTP; 12 Jun 2025 17:39:21 +0300
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Thu, 12 Jun 2025 17:39:21 +0300
-From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Anup Patel <anup@brainfault.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Ryo Takakura <takakura@valinux.co.jp>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: [PATCH v3 7/7] irqchip/aclint-sswi: remove extra includes
-Date: Thu, 12 Jun 2025 17:39:11 +0300
-Message-ID: <20250612143911.3224046-8-vladimir.kondratiev@mobileye.com>
-In-Reply-To: <20250612143911.3224046-1-vladimir.kondratiev@mobileye.com>
-References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
- <20250612143911.3224046-1-vladimir.kondratiev@mobileye.com>
+	s=arc-20240116; t=1749739727; c=relaxed/simple;
+	bh=kgCWCtFdri3esltkaVO3k5udDgP7TdzXf8myfDMfKO0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VcC77nN0AoLz45fq2EH4Y+7oAPxQg7vYBxU2TYisqqktZ9/wtBApfCgHCMOj2MUZwFFZqEhOREssrX85a7Z57N38eydvqen+rQUuJl/wjQ8LabDj3BietZYcABb5cnCvRZsjfax4xq18lH5T6EFxuZ6zj6WvbC01nCRGeDwXUmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=VXQ0RaMO; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id D5BFF25FD8;
+	Thu, 12 Jun 2025 16:40:03 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id D0I0sQscU69L; Thu, 12 Jun 2025 16:40:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1749739203; bh=kgCWCtFdri3esltkaVO3k5udDgP7TdzXf8myfDMfKO0=;
+	h=From:Subject:Date:To:Cc;
+	b=VXQ0RaMOVgPSkTnZsqrBGEwGYdnCNeYJ57cZWusWn+VCedxGRB+eOe4M7hEZgyVZb
+	 io72nq5m+2V3Nr4Ab3qzIud9z5EaccXAAKJ/Mja8+rGopprEL3zTX8FtCPGHTVp0zJ
+	 J5Vq19EdfzNG1ZQf1azMqeVjtJoeqP9HmC/IzdroG1SPnOfi03L6cPHyPXeWlMZM7G
+	 XcwLdAq9gKsmzgNSM+KEsSDaCZrZaFhW9RyHHKHOkjBGJMKBdhZc95pqTbUaLbr13M
+	 AAstUmBWLk+LWbOnCdUZMryr9ypb9H14OXvziRio3jdJkMibe8tmlV3M+ZrXiMXLpm
+	 sHtGGvqJ3XVTQ==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 0/2] Support for Synaptics TDDI series panels
+Date: Thu, 12 Jun 2025 20:09:39 +0530
+Message-Id: <20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKvmSmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDUyNj3YLEvNQc3eLKvMSCkszkYt2SlJRMXYMkgyTjNAPzNAtDEyWg1oK
+ i1LTMCrCx0bG1tQAmEp4yZgAAAA==
+X-Change-ID: 20250523-panel-synaptics-tddi-0b0b3f07f814
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749739197; l=1328;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=kgCWCtFdri3esltkaVO3k5udDgP7TdzXf8myfDMfKO0=;
+ b=NvDmcVt9Cyid6fOiJp/Xqyeew53Mwq032aYZSHo1xiCWCdMGd5GC5QrHIogK4r2eBjNyQzObI
+ FjMEdXSNz38AqeizorhTnDgYMIdvDQFE0AqbxIkqzfGe7/th0xFZSVx
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
+employs a single chip for both touchscreen and display capabilities.
+Such designs reportedly help reducing costs and power consumption.
+
+Although the touchscreens, which are powered by Synaptics'
+Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
+driver support in the kernel, the MIPI DSI display panels don't.
+
+This series introduces a rudimentary driver for controlling said display
+panels, which supports TD4101 and TD4300 panels.
+
+[1] https://www.synaptics.com/technology/display-integration
+
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 ---
- drivers/irqchip/irq-aclint-sswi.c | 6 ------
- 1 file changed, 6 deletions(-)
+Kaustabh Chakraborty (2):
+      dt-bindings: display: panel: document Synaptics TDDI panel driver
+      drm: panel: add support for Synaptics TDDI series DSI panels
 
-diff --git a/drivers/irqchip/irq-aclint-sswi.c b/drivers/irqchip/irq-aclint-sswi.c
-index a604c7e1e416..51ecb509a984 100644
---- a/drivers/irqchip/irq-aclint-sswi.c
-+++ b/drivers/irqchip/irq-aclint-sswi.c
-@@ -7,15 +7,9 @@
- 
- #include <linux/cpu.h>
- #include <linux/interrupt.h>
--#include <linux/io.h>
--#include <linux/irq.h>
- #include <linux/irqchip.h>
- #include <linux/irqchip/chained_irq.h>
--#include <linux/module.h>
--#include <linux/of.h>
- #include <linux/of_address.h>
--#include <linux/of_irq.h>
--#include <linux/pci.h>
- #include <linux/spinlock.h>
- #include <linux/smp.h>
- #include <linux/string_choices.h>
+ .../bindings/display/panel/synaptics,tddi.yaml     |  92 +++++++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-synaptics-tddi.c       | 284 +++++++++++++++++++++
+ 4 files changed, 388 insertions(+)
+---
+base-commit: 0bb71d301869446810a0b13d3da290bd455d7c78
+change-id: 20250523-panel-synaptics-tddi-0b0b3f07f814
+
+Best regards,
 -- 
-2.43.0
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
