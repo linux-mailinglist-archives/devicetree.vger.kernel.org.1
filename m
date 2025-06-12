@@ -1,149 +1,103 @@
-Return-Path: <devicetree+bounces-185240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2332AD6E88
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:04:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E43AD6E96
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:06:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B3163AD465
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:04:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 978273B0184
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27AFF239E62;
-	Thu, 12 Jun 2025 11:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACD2239E92;
+	Thu, 12 Jun 2025 11:05:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="crVdHEJH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fxJDxrI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DD517A2EA;
-	Thu, 12 Jun 2025 11:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C157A238C3B;
+	Thu, 12 Jun 2025 11:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749726280; cv=none; b=BoJ1xhMKZugwWmn9oJdssF+Q34Cwp0vC0bduPh4Cc6zk4qXRqSWdZC7RJo20yIbqV3Phs7AcRL7lspHQywDwe3XAKsxfpVd7x3LisRNPEFm17qS5oRmC492w+xGl5uYTmX0Gjr9APX902/zEI3cMcZoO7CDjhEUVr9iE9kB6LiY=
+	t=1749726354; cv=none; b=VCb5kAJu/XCYsob01HrLwbgRqg14HiEIEuAaLxzHaHPtQYL4doREP/rAlHff5lDMaCqgKMV3iowV5GwlzTISCvy4Qek1P0lhqpFDckXIqCdRvQoqbeUh9P36shuvsqhitQrTdHJWMzgC6YwpzKb3VFqO4BTxuu1Sx9YzCCkrlbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749726280; c=relaxed/simple;
-	bh=+Ccw5JM2ysrP6p18gVlHfA/xuzZsyf6EShm65BKIUU4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TVijJfjkxyB4d7ZBfG6amZk+1H2LqJZA1bDkn/tYO7/r+CgFlZtmMZtNItD5Q2oXRikA37990A5AJHcPzoSmf9dZuQCCibRPkSYOIVMZGeScLqfW/kbbsP4DIo3JJXvmXT1zfBX/8znYB0gTaoN7eI1CyI9sj5ogDrdpA1nmHOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=crVdHEJH; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1749726275;
-	bh=+Ccw5JM2ysrP6p18gVlHfA/xuzZsyf6EShm65BKIUU4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=crVdHEJHZ49tKIM6cQp/sxc/UxQS0Md/A9mrs7WZOkhjq8cTDVp3bXd251kYyZ9ES
-	 tIru8QtPCoM+ymTaCYPFVysC2oVFi+IWaKpPZfvhinNeiK5m/MPEGeljYEtCZktkcy
-	 KU/RZjdrlRcTyhYOfuZNW+BAyPF1ZiTWe6B4ypKVOqwE9ROhDjFRYIpllSyfFapLc5
-	 PMpW7jgXnYZwdrN5Ju3TXOQLHo4Saa6z6zyWdwl9RBrZd9JPyLu0lF5pMa1py3aSEU
-	 dHQqmCoTgonMIG6DgcPYqqpehYKSSSwQBV09hbO0Vc6wdyXdncNZKGfflK2gF50f3d
-	 QtXM5Fq6DOJJg==
-Received: from [192.168.1.90] (unknown [212.93.144.165])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2B0D417E088C;
-	Thu, 12 Jun 2025 13:04:35 +0200 (CEST)
-Message-ID: <535a4e1c-33d3-4941-8315-df20d4dec799@collabora.com>
-Date: Thu, 12 Jun 2025 14:04:09 +0300
+	s=arc-20240116; t=1749726354; c=relaxed/simple;
+	bh=RDVb19xxFHSj+C5sinLQCxAAgDhQxroXOYkiUH+Qd4g=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bQ5L6u++aG/BeKk4aLWL2ha3HGDrd+49oxrFmXgfzx/0UDks3edXu55znofBf4J4giM5HyCz1Hz2XkVyjWnRZDVO/PMk0IuCkxf8gTFbEqSMDYoHsn/UYfVCZVt0FY4hPi9wot0ntk+QxDIMuIvC+TPoZVKJh+7PgJN8ZvPMaKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fxJDxrI9; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55CB5hd92898988;
+	Thu, 12 Jun 2025 06:05:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1749726343;
+	bh=O+6Lsaau/SvLorn3/KuyZs0zfk4cChLknIsmfvwpl2A=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=fxJDxrI9Fq+6OuWJw5UeXo1W6YnR+zWvsvi+svR9gf9goaxzkk6AuSVsFeoWPrZYe
+	 84rOkvasz7vdXxDxllCtpok7rIJCitKHngVWxn6qgqIW9EradsEp3pCjDKLQjiYeLZ
+	 V4Xf0WfT2XU3fk2JqI12mBG/iW2PBoC+vxh2ZZuU=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55CB5hUj2534115
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 12 Jun 2025 06:05:43 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 12
+ Jun 2025 06:05:43 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 12 Jun 2025 06:05:43 -0500
+Received: from localhost (dhcp-172-24-227-169.dhcp.ti.com [172.24.227.169])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55CB5gsw1886634;
+	Thu, 12 Jun 2025 06:05:42 -0500
+Date: Thu, 12 Jun 2025 16:35:42 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+CC: Peter Ujfalusi <peter.ujfalusi@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh
+ Shilimkar <ssantosh@kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <praneeth@ti.com>,
+        <vigneshr@ti.com>, <u-kumar1@ti.com>, <a-chavda@ti.com>,
+        <p-mantena@ti.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2 03/17] dmaengine: ti: k3-udma: move static inline
+ helper functions to header file
+Message-ID: <acc1217d-50ce-4851-829d-38294b0a4d81@ti.com>
+References: <20250612071521.3116831-1-s-adivi@ti.com>
+ <20250612071521.3116831-4-s-adivi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add HDMI PHY PLL clock source
- to VOP2 on rk3576
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com,
- Andy Yan <andyshrk@163.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20250612-rk3576-hdmitx-fix-v1-0-4b11007d8675@collabora.com>
- <20250612-rk3576-hdmitx-fix-v1-3-4b11007d8675@collabora.com>
- <01D5D2D8-392B-4926-884E-1A4FB87C03CF@gmail.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <01D5D2D8-392B-4926-884E-1A4FB87C03CF@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250612071521.3116831-4-s-adivi@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 6/12/25 1:22 PM, Piotr Oniszczuk wrote:
+On Thu, Jun 12, 2025 at 12:45:07PM +0530, Sai Sree Kartheek Adivi wrote:
+> Move static inline helper functions in k3-udma.c to k3-udma.h header
+> file for better separation and re-use.
 > 
-> 
->> Wiadomość napisana przez Cristian Ciocaltea <cristian.ciocaltea@collabora.com> w dniu 11 cze 2025, o godz. 23:47:
->>
->> Since commit c871a311edf0 ("phy: rockchip: samsung-hdptx: Setup TMDS
->> char rate via phy_configure_opts_hdmi"), the workaround of passing the
->> rate from DW HDMI QP bridge driver via phy_set_bus_width() became
->> partially broken, as it cannot reliably handle mode switches anymore.
->>
->> Attempting to fix this up at PHY level would not only introduce
->> additional hacks, but it would also fail to adequately resolve the
->> display issues that are a consequence of the system CRU limitations.
->>
->> Instead, proceed with the solution already implemented for RK3588: make
->> use of the HDMI PHY PLL as a better suited DCLK source for VOP2. This
->> will not only address the aforementioned problem, but it should also
->> facilitate the proper operation of display modes up to 4K@60Hz.
->>
->> It's worth noting that anything above 4K@30Hz still requires high TMDS
->> clock ratio and scrambling support, which hasn't been mainlined yet.
->>
->> Fixes: d74b842cab08 ("arm64: dts: rockchip: Add vop for rk3576")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->> arch/arm64/boot/dts/rockchip/rk3576.dtsi | 6 ++++--
->> 1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> index 6a13fe0c3513fb2ff7cd535aa70e3386c37696e4..b1ac23035dd789f0478bf10c78c74ef167d94904 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> @@ -1155,12 +1155,14 @@ vop: vop@27d00000 {
->> <&cru HCLK_VOP>,
->> <&cru DCLK_VP0>,
->> <&cru DCLK_VP1>,
->> - <&cru DCLK_VP2>;
->> + <&cru DCLK_VP2>,
->> + <&hdptxphy>;
->> clock-names = "aclk",
->>      "hclk",
->>      "dclk_vp0",
->>      "dclk_vp1",
->> -      "dclk_vp2";
->> +      "dclk_vp2",
->> +      "pll_hdmiphy0";
->> iommus = <&vop_mmu>;
->> power-domains = <&power RK3576_PD_VOP>;
->> rockchip,grf = <&sys_grf>;
->>
->> -- 
->> 2.49.0
->>
->>
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
-> Cristian,
-> It fixes fractional hd modes for me on rk3576.
-> Thx for this fix!
+> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+> ---
+>  drivers/dma/ti/k3-udma.c | 108 --------------------------------------
+>  drivers/dma/ti/k3-udma.h | 109 +++++++++++++++++++++++++++++++++++++++
 
-Thanks for testing! :)
+Since this patch and the previous two patches seem to have the same
+objective of moving contents from "k3-udma.c" to "k3-udma.h" for the
+purpose of re-use, could they be squashed?
+
+Regards,
+Siddharth.
 
