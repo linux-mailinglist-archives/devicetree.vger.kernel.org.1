@@ -1,403 +1,143 @@
-Return-Path: <devicetree+bounces-185216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944D1AD6D3D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7389AD6D44
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09F2F18940F6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:12:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD1731896DF5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894C622FF2D;
-	Thu, 12 Jun 2025 10:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E070A22FF37;
+	Thu, 12 Jun 2025 10:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O07r+H0j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ilZDYkBd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06BB22DA0A;
-	Thu, 12 Jun 2025 10:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A642122423F;
+	Thu, 12 Jun 2025 10:14:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749723117; cv=none; b=b0gFe6SZZjOWcfDxd4iZVDHB5SR18Rsko0aQO1SK0jzm+KAn0CxGsXXw4HO/DNCxd9V67Y0fSZVjbSTkg+evSuggXrBH6dWawfDbCqIkKBWORB20PdB2xaGf2JVQebITGIuWOIltr+hu4BBGhWvHb1pQyyRDOLwphBdy6TiI3U4=
+	t=1749723253; cv=none; b=NLjlAqoJeFj+DVHoVBWCxJPNZ0w229cNC9hXFEwsednZN0GsDTatK5RJxUWx3ZnxN3VHthd8HW0y4M/81WVTPFcF17LKZ+7Nqb4qi20umzq479lNXw5d2Zb4FZuQjbyXDS4wqSsnMo0aGFUAGTuPnCD3n1KNiF414AKBh6hsMpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749723117; c=relaxed/simple;
-	bh=kj9FfFdmVqffZwcuU+9zHjczBYVwY6pNvH0oJ0fttd4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vvky0L6HEuvwD/l4AAS6kCCdDbDhpg6TpSfNdt2uM9Eo9vzoigd9E3+mqsEwugf7LR79lFHwHruHdRLPAYngIYE7ZaslvtLWWIQlqmvDIC8LKROwTShHrJQC4daxEhETRngB95IfLcDoeSwwgaL9OPsPusAHvzyhMUqucsM0J+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O07r+H0j; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-742c46611b6so968397b3a.1;
-        Thu, 12 Jun 2025 03:11:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749723115; x=1750327915; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dV1WkFt8//wQcRbuu/MoLupyoxfpDCIHcenSXkrPrs=;
-        b=O07r+H0jZYCSem8fmNWql4rY4zjrrIUpQj6Xiai76MHLSlaTdZxS4WGnZEPlW7fjKP
-         evzUO8eTLTGqsM6bfnS5KFBJfCBQtmyohmOhLAkbymC8DD8Iyp7bs7YvYKGgPjqxiXuI
-         FPfMYWzSmjfE6Bj7td2LBR+2nwY7yjzcW7yj+Eef+iDEobYpRtaUMQv0Y/zFnnT5JZXm
-         QvZ/w0zI68LC+klyymuwD+Tq6LrtgQmUNWAuDYcoHO1yq+r3mb9t/VP2XraA9coOkqra
-         S6i1G1vnwg/QvbyqoU3t1Cm0FB/fDQojhkL20q7cox0Y9jvRwdkR9nhZ5Niop6z5B3QB
-         4QJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749723115; x=1750327915;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1dV1WkFt8//wQcRbuu/MoLupyoxfpDCIHcenSXkrPrs=;
-        b=baJtqIlXyF0KzBJq8YzPMhGUo6zn1puP2jYBNP5W8ffTpAs2bUZuts9Q5Kw1yAgcNe
-         PxgBdY0rsbuLGW2EOfoMfXiuRh6tg8ZwdGwVaZ9xnm2aLr9l84q9rG41YyMN/VaM6x1N
-         eswl31+Yhie+XgQxVNNsM9EKDGByP9R9xkR03ASmGSFJVp0WvtB+5CRvHgJ1REmeL6CU
-         2TbUt3bdGFKNiv4Qqy1nYxWha0ToeZxNO6DLmiiHW6aeWDmMIdJyE/5vF5l71UeOW6Mx
-         xBKKA0xdyuabfFHbbOXO3WapI4UPu76jUgDMLRBVHG32gGo2zT8Nh+MUBpMkt8BcptjH
-         oaWg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIQRmgN8rtgBkemZMfXlcg/B6Jk1mihH9ymhnX8VNqz1hL69JGq6/kyoq7os9mr+R8CNII959SGfVf@vger.kernel.org, AJvYcCULAofj4er0RbNL7kgkj9UEo2rQm4kIlDshtVyAbCHdkphuwke0NE8qCkVRTwQ9TqqZFpUKLDKJWMMu@vger.kernel.org, AJvYcCVVGEufJ5zuJMy8dO6GkHWBZvs6NKQJlVCHq88etBGHV7JNwePO+Xn/5mkzFXzNF1+wxa5RIJ3mQRR9@vger.kernel.org, AJvYcCWv3+278wXIWcrcDC9cPNpDY58GXOoCJd4IbheKDKwUAASQ7GB/dv6Kc9R/osGOKrFcItoWXwfHo4VC@vger.kernel.org, AJvYcCXWqtzT9AKyQ5RhTdeyGiFM7WdryZLCn4rhEmnKQsA4HjxZqdJrFFjG9EdMJe82qlblLAHZXNDN44wNtf1/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yye3mXiHEpcyXevC5/I+40THQsTsPD+pUdepMjSJtzTD6JMLYsX
-	Xw9JO4sdHBSEeod/nIF2B/5KWHic98Zh7x0rMGM2/xFNFwUYDRbazkLD
-X-Gm-Gg: ASbGncsVB5wohk6D8pJa+J733iNop7aYtS6jT11onSMxheIoPiDqqCCnlX/mHJxAuL2
-	Vx+0neAplm+856wByD2IXpBXJM614NdfHTEaAW8RDEBrTwOV3VmVEAo5lqh7HlkVxPdlpX3QLhA
-	Q1QEmN9mTpKe4c8V4xA+j7Hljj92AKPa3GgRd8TjKINi6ukSdF+UYCXoHtlp6X4FPgJmLJ91Ped
-	ieyp0iuUdbtXNlS+1buJh+kpDwgYnnupFGq8ytMk2Q/JB5wpaTruy1VFLpaWYkWYd2acfeRlJSz
-	2BrXTjtKot4MIQ+Hz/DAbFaGrxJqlXu2Hiv4hYCKYOTfzVnhZrr3BmWutp4TucrQAzpEymtpJG0
-	EN/UIoQ==
-X-Google-Smtp-Source: AGHT+IHmSaieR8BqpFsfXfxghNOUxzQUeq4pW392aZGXLAFQ7UuANU5To4YQRORsLo7bRL6zZ3DDUg==
-X-Received: by 2002:a05:6a20:3d8a:b0:1f5:9330:29fe with SMTP id adf61e73a8af0-21f977a489fmr4924476637.17.1749723114721;
-        Thu, 12 Jun 2025 03:11:54 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7488087e634sm1065629b3a.33.2025.06.12.03.11.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jun 2025 03:11:54 -0700 (PDT)
-Date: Thu, 12 Jun 2025 12:11:41 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 2/8] dt-bindings: iio: adc: Add adi,ad4052
-Message-ID: <xqkr3rq6ikuiz5wcbxmto4gp7wnccmmogklf2ux2edauotufim@pcuhddxdzjxi>
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
- <20250610-iio-driver-ad4052-v3-2-cf1e44c516d4@analog.com>
- <20250611181818.14d147c7@jic23-huawei>
+	s=arc-20240116; t=1749723253; c=relaxed/simple;
+	bh=GlwJT56CuE3DrE9U/6MGegpQYrYWCyocuP3+ulwLTRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=gq96r0tyNhjQe4yreT6xaKnreTPIm91F9Np4BvQHYxhDt+uhDYSIt1JZqYrHXOMDRagFL4iWtciwDlQ9p6URPd/VUEcShjTxBztVe2+WtESQgkzg9tPctQhIdGZOJpQ2064S8Q+YZMuWYQtUu+Ns61xLd/Wcyc1nQ3nbrQ0QM/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ilZDYkBd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2410C4CEEA;
+	Thu, 12 Jun 2025 10:14:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749723253;
+	bh=GlwJT56CuE3DrE9U/6MGegpQYrYWCyocuP3+ulwLTRQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ilZDYkBdI3GBvYmaHrX8W8rReWkv4w3jXneJ6NFEb6o32F0+ftO5oGTSRHhyjBVrI
+	 9+NmykFf63/1Fa2P05ziOzF11o05F52e3ftmigNdvrrRrrYWuPKxz5SrgXWsX/I+OP
+	 He+eiNHgFRHV2ZsoHWi9sncHMOa8AgR8saThDctY+3HM+rB5moZlJ3mbkb0Ne/LibX
+	 P/X3OjJKpaY9+ud1ueS3zUhvgdyQbyD5uPpuUsLCVvlW12KUs+xoOt2ibu8P1dKGkO
+	 3cOlWxUcq49tMt8G3UL6vIN3DIJk6u6qiO4rUIkeDrws7auIH4JPXAy/7cYlLFwD1H
+	 87EZf83pvmrjg==
+Message-ID: <7d4d4c53-d18b-421b-8279-6325771a1cb9@kernel.org>
+Date: Thu, 12 Jun 2025 12:14:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250611181818.14d147c7@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v0 4/5] arm64: dts: aspeed: Add AST2700 EVB device tree
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
+ nfraprado@collabora.com, Taniya Das <quic_tdas@quicinc.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Eric Biggers <ebiggers@google.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, soc@lists.linux.dev,
+ Mo Elbadry <elbadrym@google.com>, Rom Lemarchand <romlem@google.com>,
+ William Kennington <wak@google.com>, Yuxiao Zhang <yuxiaozhang@google.com>,
+ wthai@nvidia.com, leohu@nvidia.com, dkodihalli@nvidia.com,
+ spuranik@nvidia.com
+References: <20250612100933.3007673-1-ryan_chen@aspeedtech.com>
+ <20250612100933.3007673-5-ryan_chen@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250612100933.3007673-5-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 11, 2025 at 06:18:18PM +0100, Jonathan Cameron wrote:
-> On Tue, 10 Jun 2025 09:34:35 +0200
-> Jorge Marques <jorge.marques@analog.com> wrote:
+On 12/06/2025 12:09, Ryan Chen wrote:
+> - Add ast2700-evb.dts for the ASPEED AST2700 Evaluation Board.
+> - Set board model and compatible strings: "aspeed,ast2700-evb",
+> "aspeed,ast2700".
+> - Reference the common AST2700 SoC device tree aspeed-g7.dtsi.
+> - Define memory layout and reserved-memory regions for
+> MCU firmware, ATF, and OP-TEE.
+> - Add OP-TEE firmware node with SMC method.
+> - Set up serial12 as the default console.
 > 
-> > Add dt-bindings for AD4052 family, devices AD4050/AD4052/AD4056/AD4058,
-> > low-power with monitor capabilities SAR ADCs. Each variant of the family
-> > differs in speed and resolution, resulting in different scan types and
-> > spi word sizes, that are matched by the compatible with the chip_info.
-> 
-> The bit about what the drive does with this doesn't really belong in a DT
-> binding patch description. Stick to just something like.
-> 
-> Each variant of the family differs in speed and resolution, reflected
-> in word size for SPI messages.
-> 
-> > The device contains one input (cnv) and two outputs (gp0, gp1).
-> > The outputs can be configured for range of options, such as threshold
-> > and data ready.
-> > The spi-max-frequency refers to the configuration mode maximum access
-> > speed. The ADC mode speed depends on the vio input voltage.
-> > 
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/adi,ad4052.yaml    | 167 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   6 +
-> >  include/dt-bindings/iio/adc/adi,ad4052.h           |  17 +++
-> >  3 files changed, 190 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..2cf197e2d872d9a3d4f7210121a1e38f784f92dc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
-> > @@ -0,0 +1,167 @@
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Signal coming from the GP0 pin.
-> Description would be better in interrupt-names than here.
-> > +      - description: Signal coming from the GP1 pin.
-> 
-> Also minItems should be specified to allow for just one of these
-> being wired I think.
-> 
-Ack, then maxItems is also required, or dt_binding_check complains
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 
-  > "interrupts: [[...], [...]] is too long"
+How this can be patch 0?
 
-since I don't have the items to infer length, that means, the updated
-yaml is:
+You need to start using standard tools: git and b4 (see submitting
+patches and other process docs).
 
-  interrupts:
-    minItems: 1
-    maxItems: 2
-
-  interrupt-names:
-    items:
-      - const: gp0
-        description: Signal coming from the GP0 pin.
-      - const: gp1
-        description: Signal coming from the GP1 pin.
-
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: gp0
-> > +      - const: gp1
-> > +
-> > +  cnv-gpios:
-> > +    description: The Convert Input (CNV). If omitted, CNV is tied to SPI CS.
-> > +    maxItems: 1
-> > +
-> > +  pwms:
-> > +    maxItems: 1
-> > +    description: PWM connected to the CNV pin.
-> > +
-> > +  trigger-sources:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description:
-> > +      Describes the output pin and event associated.
-> > +
-> > +  "#trigger-source-cells":
-> > +    const: 2
-> > +    description: |
-> > +      Output pins used as trigger source.
-> > +
-> > +      Cell 0 defines the event:
-> > +      * 0 = Data ready
-> > +      * 1 = Min threshold
-> > +      * 2 = Max threshold
-> > +      * 3 = Either threshold
-> > +      * 4 = CHOP control
-> > +      * 5 = Device enable
-> > +      * 6 = Device ready (only GP1)
-> 
-> Hmm. I'm a bit dubious on why 'what the offload trigger is'
-> is a DT thing?  Is that because the IP needs to comprehend
-> this?  I guess only data ready is actually supported in
-> practice? 
-
-A trigger can be connected to trigger something other than a spi
-offload, it is in the DT because it describes how the device is
-connected. When using spi offload, the trigger-source at the spi handle
-describes which gpio and event is routed to the offload trigger input.
-At the ADC node, trigger-source-cells describe the source gpio and event
-for the device driver.
-
-In practice, in this series, one gpio is Data ready, triggering offload
-when buffer enabled, and raw reads, when disabled. And the other is
-Either threshold, propagated as an IIO event. Fancy logic can be added
-to the driver in future patches to allow other combinations.
-
-It is also worth to mention that the trigger-source is duplicated for
-each node that uses it, as seen in the second dts example:
-
-   &adc AD4052_TRIGGER_EVENT_DATA_READY AD4052_TRIGGER_PIN_GP1
-
-Is repeated on both adc and spi node.
-
-One last thing, on the driver, for v3, I should handle -ENOENT:
-
-  ret = of_parse_phandle_with_args(np, "trigger-sources",
-  				   "#trigger-source-cells", i,
-  				   &trigger_sources);
-  if (ret)
-  	return ret == -ENOENT ? 0 : ret;
-
-To assert only when present, since the nodes are not required.
-Or, in the driver,
-require AD4052_TRIGGER_PIN_GP0 if irq_get_byname finds gp0, and
-require AD4052_TRIGGER_PIN_GP1 if irq_get_byname finds gp1?
-(I would go with the first option).
-> 
-> What would the use of Device enable or device ready or chop
-> control actually be?
-> 
-Device enable is the default register value, it could signal the
-conclusion of the reset or exit of low power mode. The CHOP signal is
-used to synchronize an auto-zero amplifier's chopping and the adc's
-sampling and is an example of when the trigger is connected to something
-other than spi. In that particular topology, the user would then set at
-the devicetree to use the gpio for that, at the hypothetical chop
-consumer node. Still, in the driver of this series, only the Data ready
-and Either threshold is supported.
 
 Best regards,
-Jorge
-
-> The thresholds are unusual but those I can sort of understand.
-> 
-> Jonathan
-> 
-> > +
-> > +      Cell 1 defines which pin:
-> > +      * 0 = GP0
-> > +      * 1 = GP1
-> > +
-> > +      For convenience, macros for these values are available in
-> > +      dt-bindings/iio/adc/adi,ad4052.h.
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 83333333
-> > +
-> > +  vdd-supply:
-> > +    description: Analog power supply.
-> > +
-> > +  vio-supply:
-> > +    description: Digital interface logic power supply.
-> > +
-> > +  ref-supply:
-> > +    description: |
-> 
-> Don't need the | as no need to preserve anything about formatting of
-> a single paragraph like this.
-> 
-Ack.
-> 
-> > +      Reference voltage to set the ADC full-scale range. If not present,
-> > +      vdd-supply is used as the reference voltage.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vdd-supply
-> > +  - vio-supply
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/iio/adc/adi,ad4052.h>
-> > +
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        adc@0 {
-> > +            compatible = "adi,ad4052";
-> > +            reg = <0>;
-> > +            vdd-supply = <&vdd>;
-> > +            vio-supply = <&vio>;
-> > +            ref-supply = <&ref>;
-> > +            spi-max-frequency = <83333333>;
-> > +
-> > +            #trigger-source-cells = <2>;
-> > +            trigger-sources = <&adc AD4052_TRIGGER_EVENT_EITHER_THRESH
-> > +                                    AD4052_TRIGGER_PIN_GP0
-> > +                               &adc AD4052_TRIGGER_EVENT_DATA_READY
-> > +                                    AD4052_TRIGGER_PIN_GP1>;
-> > +            interrupt-parent = <&gpio>;
-> > +            interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
-> > +                         <0 1 IRQ_TYPE_EDGE_FALLING>;
-> > +            interrupt-names = "gp0", "gp1";
-> > +            cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
-> > +        };
-> > +    };
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/iio/adc/adi,ad4052.h>
-> > +
-> > +    rx_dma {
-> > +            #dma-cells = <1>;
-> > +    };
-> > +
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        dmas = <&rx_dma 0>;
-> > +        dma-names = "offload0-rx";
-> > +        trigger-sources = <&adc AD4052_TRIGGER_EVENT_DATA_READY
-> > +                                AD4052_TRIGGER_PIN_GP1>;
-> > +
-> > +        adc@0 {
-> > +            compatible = "adi,ad4052";
-> > +            reg = <0>;
-> > +            vdd-supply = <&vdd>;
-> > +            vio-supply = <&vio>;
-> > +            spi-max-frequency = <83333333>;
-> > +            pwms = <&adc_trigger 0 10000 0>;
-> > +
-> > +            #trigger-source-cells = <2>;
-> > +            trigger-sources = <&adc AD4052_TRIGGER_EVENT_EITHER_THRESH
-> > +                                    AD4052_TRIGGER_PIN_GP0
-> > +                               &adc AD4052_TRIGGER_EVENT_DATA_READY
-> > +                                    AD4052_TRIGGER_PIN_GP1>;
-> > +            interrupt-parent = <&gpio>;
-> > +            interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
-> > +                         <0 1 IRQ_TYPE_EDGE_FALLING>;
-> > +            interrupt-names = "gp0", "gp1";
-> > +            cnv-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
-> > +        };
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c02d83560058f7ea75e24509b4d87ef293df6773..d000c7de7ff9eba390f87593bc2b1847f966f48b 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -1337,6 +1337,12 @@ F:	Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> >  F:	Documentation/iio/ad4030.rst
-> >  F:	drivers/iio/adc/ad4030.c
-> >  
-> > +ANALOG DEVICES INC AD4052 DRIVER
-> > +M:	Jorge Marques <jorge.marques@analog.com>
-> > +S:	Supported
-> > +W:	https://ez.analog.com/linux-software-drivers
-> > +F:	Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
-> > +
-> >  ANALOG DEVICES INC AD4080 DRIVER
-> >  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
-> >  L:	linux-iio@vger.kernel.org
-> > diff --git a/include/dt-bindings/iio/adc/adi,ad4052.h b/include/dt-bindings/iio/adc/adi,ad4052.h
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..37db5d9d10e788d5e7fb715c4ba9077e555131d5
-> > --- /dev/null
-> > +++ b/include/dt-bindings/iio/adc/adi,ad4052.h
-> > @@ -0,0 +1,17 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +
-> > +#ifndef _DT_BINDINGS_ADI_AD4052_H
-> > +#define _DT_BINDINGS_ADI_AD4052_H
-> > +
-> > +#define AD4052_TRIGGER_EVENT_DATA_READY		0
-> > +#define AD4052_TRIGGER_EVENT_MIN_THRESH		1
-> > +#define AD4052_TRIGGER_EVENT_MAX_THRESH		2
-> > +#define AD4052_TRIGGER_EVENT_EITHER_THRESH	3
-> > +#define AD4052_TRIGGER_EVENT_CHOP		4
-> > +#define AD4052_TRIGGER_EVENT_DEV_ENABLED	5
-> > +#define AD4052_TRIGGER_EVENT_DEV_READY		6
-> > +
-> > +#define AD4052_TRIGGER_PIN_GP0		0
-> > +#define AD4052_TRIGGER_PIN_GP1		1
-> > +
-> > +#endif /* _DT_BINDINGS_ADI_AD4052_H */
-> > 
-> 
+Krzysztof
 
