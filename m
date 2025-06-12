@@ -1,110 +1,112 @@
-Return-Path: <devicetree+bounces-185044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309ADAD644E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 02:06:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C291AD6457
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 02:07:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32DB3A0407
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 00:06:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AA693ABAD9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 00:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC87E2905;
-	Thu, 12 Jun 2025 00:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8B1182;
+	Thu, 12 Jun 2025 00:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5tJviB8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C0B79D2;
-	Thu, 12 Jun 2025 00:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37493EEB3;
+	Thu, 12 Jun 2025 00:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749686641; cv=none; b=kgD2ALpjtKBT7gXZ09e3iEaPqGR4gJzdxbhrm1K7BOeVieRV9/dTGmkXvRoPOxm03kxFnmGuTP224bOLPU8Kfxr6lFVthePIEeC+XyH3zQpPTKOhpNpCxaVG3pjfiJpFHJNZVkpmcddAhGiZmLQyMt0+WZoxN0AGAQI4NKIkf4w=
+	t=1749686831; cv=none; b=ek4XSrTd+eD+hmPlBNuVxp3fUu+NqYm1e1QqwSq3QhIIDz4KaMHRuvtt4pGaFyzdTWaVcGuNjJnOq+RWI5AJvjjGjct3iYCKpSQuFion6f2BqpMxEagx1mLjEnET/UOPwUPFlWMvwG5XP4YxKIu2O3stkFNhfvbJWYhdy7W3mMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749686641; c=relaxed/simple;
-	bh=h7yWjbfCQMl8h9k980xlB+2nvO4sI+S7hDa8rNNI6+I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eOeM8+roDl/iqeD9pgjFmooDIv6Ftswp/Did/EjV9TujJXr/ATwv3DAN/N/melEqFkioYvygVDs8So0BsP1ZaraQ3HZyuDCvwB+6b0LqcVB/mER++8epIP/Kn5hbdXCtWaYl+JKVbbPV8uXxtd7xCqT3I54Rx0ea3harSvhsQkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.147.71])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 09DF7340B10;
-	Thu, 12 Jun 2025 00:03:58 +0000 (UTC)
-Date: Thu, 12 Jun 2025 00:03:54 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Guodong Xu <guodong@riscstar.com>, vkoul@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	p.zabel@pengutronix.de, drew@pdp7.com,
-	emil.renner.berthing@canonical.com, inochiama@gmail.com,
-	geert+renesas@glider.be, tglx@linutronix.de,
-	hal.feng@starfivetech.com, joel@jms.id.au, duje.mihanovic@skole.hr,
-	elder@riscstar.com, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 1/8] dt-bindings: dma: marvell,mmp-dma: Add SpacemiT PDMA
- compatibility
-Message-ID: <20250612000354-GYA127864@gentoo>
-References: <20250611125723.181711-1-guodong@riscstar.com>
- <20250611125723.181711-2-guodong@riscstar.com>
- <20250611-kabob-unmindful-3b1e9728e77d@spud>
+	s=arc-20240116; t=1749686831; c=relaxed/simple;
+	bh=yRYgNOrFzerntUpYZUAnFZjaYQw5HPRxPmYpNq0gGLM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=bfrRbEBM9tpwy6V8GrsNhmSV33kSGAlo0wFXuBtRpOcMHbTXPZeHkh8BKynO6JAfNdaAeTiSukjhIUSYMcfaCC+owM11+Cl5yNUfna7COiXXgfvcOtxALNe+jkPyKfNfhh0ovORruAlSuvL0DmKdyZMHF3BE82nvZIVUsfRTQyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5tJviB8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 882A0C4CEE3;
+	Thu, 12 Jun 2025 00:07:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749686830;
+	bh=yRYgNOrFzerntUpYZUAnFZjaYQw5HPRxPmYpNq0gGLM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=j5tJviB8EasXTx8SQtB+WZlImJ+injl+BY+LghLAzTRK6EV0mf+X8Fy/6vydxaHPm
+	 8/Wi5p6xaCh8IPj5K+BtAwbgDTXXKg9OajBzJ9lBSVPkHtUFUo5xxvgyO1na297Z2p
+	 u7OmoBnscetyYh0y2UPHHl7IpINwavShRVsZWaACaW4IcjVOy3a7mwYAizYhvYnyqi
+	 ZHbueN4c5Me7dhvgycz3CB8ky2NPmzAOa4FZnNXHQpPrKzxPYcgqVrXmYBmHt7bMfw
+	 DXAyuljwnDNesr08zxQjynfGMJCO+j4PJJgdnCzabyNMy7o65gGzKoQJVT3LDvCYKJ
+	 OWK8r3ZWcdLjQ==
+Date: Wed, 11 Jun 2025 19:07:09 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250611-kabob-unmindful-3b1e9728e77d@spud>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ boerge.struempfel@gmail.com, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To: =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
+In-Reply-To: <20250611113039.304742-3-goran.radni@gmail.com>
+References: <20250611113039.304742-1-goran.radni@gmail.com>
+ <20250611113039.304742-3-goran.radni@gmail.com>
+Message-Id: <174968682958.1745530.8791331337713653562.robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: imx8mp: Add Ultratronik
+ Ultra-MACH SBC
 
-On 17:27 Wed 11 Jun     , Conor Dooley wrote:
-> On Wed, Jun 11, 2025 at 08:57:16PM +0800, Guodong Xu wrote:
-> > Add "spacemit,pdma-1.0" compatible string to support SpacemiT PDMA
-> > controller in the Marvell MMP DMA device tree bindings. This enables:
-> > 
-> > - Support for SpacemiT PDMA controller configuration
-> > - New optional properties for platform-specific integration:
-> >   * clocks: Clock controller for the DMA
-> >   * resets: Reset controller for the DMA
-> > 
-> > Also, add explicit #dma-cells property definition to avoid
-> > "make dtbs_check W=3" warnings about unevaluated properties.
-> > 
-> > The #dma-cells property is defined as 2 cells to maintain compatibility
-> > with existing ARM device trees. The first cell specifies the DMA request
-> > line number, while the second cell is currently unused by the driver but
-> > required for backward compatibility with PXA device tree files.
-> > 
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> >  .../bindings/dma/marvell,mmp-dma.yaml           | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > index d447d5207be0..e117a81414bd 100644
-> > --- a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >        - marvell,pdma-1.0
-> >        - marvell,adma-1.0
-> >        - marvell,pxa910-squ
-> > +      - spacemit,pdma-1.0
+
+On Wed, 11 Jun 2025 13:30:37 +0200, Goran Rađenović wrote:
+> Document the Ultratronik Ultra-MACH SBC, based on the NXP i.MX8MP SoC.
 > 
-> You need a soc-specific compatible here.
+> This board is manufactured by Ultratronik GmbH and uses the compatible
+> string "ux,imx8mp-ultra-mach-sbc".
 > 
-is the version number (1.0 here) actually documented anywhere?
+> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-otherwise I'd suggest using "spacemit,k1-pdma" which follow the convention
-which already done for spacemit in other components..
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-Yixun Lan (dlan)
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/fsl.yaml: properties:compatible:oneOf:130:items:0:enum: 'oneOf' conditional failed, one must be fixed:
+	{'const': 'ultratronik,imx8mp-ultra-mach-sbc'} is not of type 'integer'
+	{'const': 'ultratronik,imx8mp-ultra-mach-sbc'} is not of type 'string'
+	{'const': 'fsl,imx8mp'} is not of type 'integer'
+	{'const': 'fsl,imx8mp'} is not of type 'string'
+	hint: "enum" must be an array of either integers or strings
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/fsl.yaml: properties:compatible:oneOf:130:items:0:enum:0: {'const': 'ultratronik,imx8mp-ultra-mach-sbc'} is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/fsl.yaml: properties:compatible:oneOf:130:items:0:enum:1: {'const': 'fsl,imx8mp'} is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250611113039.304742-3-goran.radni@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
