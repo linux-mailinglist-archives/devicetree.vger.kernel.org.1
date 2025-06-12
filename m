@@ -1,203 +1,136 @@
-Return-Path: <devicetree+bounces-185263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0B6AD7117
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:05:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A89AD710C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 15:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A740717A00C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:04:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCC7B3A5797
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 13:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE8FB23C384;
-	Thu, 12 Jun 2025 13:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791CA23A563;
+	Thu, 12 Jun 2025 13:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dAr2YaZ1"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="HKzm1HBR";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="GlCjmsnp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0790E23A58B;
-	Thu, 12 Jun 2025 13:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E118C3C47B;
+	Thu, 12 Jun 2025 13:03:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749733484; cv=none; b=L3FgSVC66/hD158eihCxurO3Eolkmb4UgrHKCqjOT3BDLcZfxFK4k/oeAreKqFAUQMf1onbbMVvICQX1yx2KBIo4mGffNW/gHgqV88ofKMpFnc7X/YK6vFnbHNuVM3Guo+5Zq5hXrk68clasGvMrJEYOAujMoYFnSb2svl7vs8Y=
+	t=1749733438; cv=none; b=irV/FSy+6WcJ7EgnCX8dpO9KGaVsX+2ZlPTPFxIFbi/e3cZxot5sQWd57jtVXT7yzLgXTUazoDdoQnFQjTaBArUMxMRvfZtExSsBNDk+lr1GYf+zyY0ptSSUu5MV0rE+Wd+fdsI0D2ofH86vgx7E/RcfCgYJUFIc8g+1l9TLyzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749733484; c=relaxed/simple;
-	bh=4UFDFeoe7EB6tQy/EkC230pjAKgF8cr6eInUsXKP8T8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rdsLeXAZ528+Ubj3VKdAwVxbEHpWKXnCNK62A/zKzLAc7j/OO0xYVkLD6MZqnrqx356sep/2zkbQ1Ji21glphInO24N7FY++Xi2Sem4gu0xOa6Dr14pGPViHIo9cC0nB0/faX0DLjMHAZssnvm2syrWdFhs8JUbjI/nbjbuxEIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dAr2YaZ1; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55CCNNFN024136;
-	Thu, 12 Jun 2025 15:04:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	xgUlRHqrOgjoIr0Ken2L714FlmdoDE0xA4Gj6ELLtuY=; b=dAr2YaZ1sX7fLlr4
-	qIJtWMwLwt0MLr5MHKrK4dGxNw2ETtYSi2iYYwSjgJZZoe7pu6Z+FpxLYIBC65q3
-	L1k3ToqJl2w+O1gIIrkuVi019NXuGoI9O3N4usFcC5H0VJ04v+YKi0Wt+KSLFvcE
-	CfY+NKdw6gDnJBQzWSJbgR/k9OXf8x8yDRURcNI3AjzX+IKF8+ckI186VtX0KcMf
-	PvdvxvbE3AMPswfPQnoAkr7+IEo2KufhY2qBSXbAcEloo32YVEjy1rkV91/uTPzZ
-	E26qrJcRhDoyF2IyPgTlg1+/WiPEo0e5aGdOhElP4bIZyobA+ELz89Y42Fm/Uumd
-	c2a2nA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 474cs30j8c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 15:04:27 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 903E240071;
-	Thu, 12 Jun 2025 15:03:06 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 80866AFB28F;
-	Thu, 12 Jun 2025 15:02:16 +0200 (CEST)
-Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 12 Jun
- 2025 15:02:15 +0200
-Message-ID: <782763e2-99d6-4533-b0db-79b618577586@foss.st.com>
-Date: Thu, 12 Jun 2025 15:02:13 +0200
+	s=arc-20240116; t=1749733438; c=relaxed/simple;
+	bh=Z0grezPSoGr5pXzkUAsQ8shemjlZEwpuaPFyJwa6sWE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=lPBB3HbgmccX8KHhidmelngIyqhX7wiAbVClrB2Ke5TZF8MtBrV3K6IDipQAVqZqPwUgniH+Y3e1hxdnpQvB6R1MlGdNGUj5fKvSvV5MF+pTPl78kB3zGgFO5obymUzOCmKAH09ST6T6NUVgwxABrTD1ARWhHjbl1ZyZUYFdeQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=HKzm1HBR; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=GlCjmsnp; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1749733434;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HZNcAOEiL3XjwzVrB/UHurIxwW0UwH/mpeP/ua8JcaY=;
+	b=HKzm1HBRKnHelVN43bRcu96NW1WHIrHMsq5hv097N9N7jLbjaiJsGWojti9nurVuuBL4r0
+	PKwl74gj+VIH8KePn4AdEb7sddKufpCu+eIzuG1LPQPZG5P0ARKx7XltTvhMoSCxsPe3fU
+	Z27WWPqiRZBFfBCMhyXDrC0/qgWjy68oI1ixDs4Wn205lSKZU+pAEWQPjgDeb0/KjWtQl/
+	CQ8P9/X44uNsYJY1wPjrkYR0Eg4ZrnY20CAmi33MRlBH277vdBirDlI5tGGYRtMOZOmS/T
+	ezvYYf6pZR8oeiX5aKiAbCI+71TCZ/yc5lR/NBRt9XkTgJUfxGHXrjJ9MlQ5+Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1749733434;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HZNcAOEiL3XjwzVrB/UHurIxwW0UwH/mpeP/ua8JcaY=;
+	b=GlCjmsnpmUVkNWwToYaFt5t5n4hO8nGY3LbhYhRMlVodb9+ZoBG/85IAyOn+C1HOieKWFX
+	mUOQXYPfmZDmdEAg==
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+ Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>, Chen Wang
+ <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, Sunil V L
+ <sunilvl@ventanamicro.com>, "Rafael J . Wysocki"
+ <rafael.j.wysocki@intel.com>, Ryo Takakura <takakura@valinux.co.jp>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, Vladimir
+ Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: Re: [PATCH v2 4/7] irqchip: MIPS P800 variant of aclint-sswi
+In-Reply-To: <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
+References: <20250609134749.1453835-1-vladimir.kondratiev@mobileye.com>
+ <20250610100540.2834044-1-vladimir.kondratiev@mobileye.com>
+ <20250610100540.2834044-5-vladimir.kondratiev@mobileye.com>
+Date: Thu, 12 Jun 2025 15:03:54 +0200
+Message-ID: <87ecvpru11.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp13
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
- <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
- <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
- <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
- <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
- <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
- <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
- <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
- <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
- <2865ab3a-1c20-4951-8132-4be98d73d70e@foss.st.com>
- <f1a63830-0533-4f1c-9116-32e8c1e61a8b@kernel.org>
- <26a4f12a-2295-402e-8e31-45733aa6582d@foss.st.com>
- <4f31f016-d250-41ea-b613-b074b8ea00d1@kernel.org>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <4f31f016-d250-41ea-b613-b074b8ea00d1@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-12_08,2025-06-10_01,2025-03-28_01
+Content-Type: text/plain
 
-On 6/12/25 13:05, Krzysztof Kozlowski wrote:
-> On 12/06/2025 11:31, Clement LE GOFFIC wrote:
->> On 6/11/25 17:48, Krzysztof Kozlowski wrote:
->>> On 11/06/2025 16:08, Clement LE GOFFIC wrote:
->>>> On 6/11/25 08:35, Krzysztof Kozlowski wrote:
->>>>> On 10/06/2025 15:33, Clement LE GOFFIC wrote:
->>>>>> On 6/10/25 14:38, Krzysztof Kozlowski wrote:
->>>>>>> On 10/06/2025 14:02, Clement LE GOFFIC wrote:
->>>>>>>> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
->>>>>>>>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
->>>>>>>>>>>
->>>>>>>>>>>> +		};
->>>>>>>>>>>> +
->>>>>>>>>>>> +		hdp: pinctrl@5002a000 {
->>>>>>>>>>>> +			compatible = "st,stm32mp131-hdp";
->>>>>>>>>>>> +			reg = <0x5002a000 0x400>;
->>>>>>>>>>>> +			clocks = <&rcc HDP>;
->>>>>>>>>>>>        			status = "disabled";
->>>>>>>>>>>
->>>>>>>>>>> Why are you disabling it? What is missing?
->>>>>>>>>>
->>>>>>>>>> Nothing is missing just disabled by default.
->>>>>>>>>> The node is then enabled when needed in board's dts file.
->>>>>>>>> Nodes should not be disabled by default if they are complete. That's why
->>>>>>>>> I asked what is missing. Drop.
->>>>>>>>
->>>>>>>> Hi Krzysztof, OK I better understand now.
->>>>>>>> So yes the 'pinctrl-*' properties which are board dependent are lacking.
->>>>>>>
->>>>>>> These are not properties of this node.
->>>>>>
->>>>>> Does this mean I should add 'pinctrl-*' properties in bindings yaml file ?
->>>>>> I don't get it..
->>>>>
->>>>> These properties have no meaning here, so the hardware description is
->>>>> complete. You claim that you miss them thus device is incomplete is just
->>>>> not correct: these properties do not belong here! They belong to the
->>>>> board but even there they are totally optional. Why would they be a
->>>>> required resource?
->>>>>
->>>>> To remind: we talk here ONLY about required resources.
->>>>
->>>> Yes, 'pinctrl-*' properties belongs to the board and are not required.
->>>> So nothing is missing.
->>>>
->>>> This hdp node in the SoC dtsi file can be enabled by default.
->>>> But the hdp driver will probe and do nothing because without the
->>>> 'pinctrl-*' properties from the board files it would not be able to
->>>> access to any pin.
->>>
->>>
->>> Pinctrl has other features in general, including interfaces to userspace
->>> (as pretty often combined with gpio, although not sure if relevant here).
->>
->> You're right. Also HDP pinctrl has a GPO feature accessible from userspace.
->> But by default the HDP is not connected to any pad; it needs the board
-> 
-> OK, then that was the answer to my first question - what is missing.
-> However aren't these pads connected internally also to other parts of
-> the SoC (like in most other vendors)?
+On Tue, Jun 10 2025 at 13:05, Vladimir Kondratiev wrote:
+> +config ACLINT_SSWI
+> +	bool
+> +
+> +config MIPS_P8700_ACLINT_SSWI
+> +	bool "MIPS P8700 ACLINT S-mode IPI Interrupt Controller"
+> +	depends on RISCV
+> +	depends on SMP
+> +	select IRQ_DOMAIN_HIERARCHY
+> +	select GENERIC_IRQ_IPI_MUX
+> +	select ACLINT_SSWI
+> +	help
+> +	  This enables support for MIPS P8700 specific ACLINT SSWI device
+> +
+> +	  If you don't know what to do here, say Y.
+> +
+>  config THEAD_C900_ACLINT_SSWI
+>  	bool "THEAD C9XX ACLINT S-mode IPI Interrupt Controller"
+>  	depends on RISCV
+>  	depends on SMP
+>  	select IRQ_DOMAIN_HIERARCHY
+>  	select GENERIC_IRQ_IPI_MUX
+> +	select ACLINT_SSWI
+>  	help
+>  	  This enables support for T-HEAD specific ACLINT SSWI device
+>  	  support.
 
-No, HDP "output pads" are only connected to SoC pinctrl to route outside 
-the internal SoC signals for debug purpose.
+That's just exactly the same thing twice for no value. Just rename it to
+ACLINT_SSWI and have a list of supported chips in the help text.
 
->> 'pinctrl-*' properties to configure the SoC pinctrl and expose HDP on
->> the SoC pads.
->>
->> That's why for me the enabling of the driver should be in the board file
->> together with the SoC pinctrl configuration.
-> 
-> And what are the default pad settings configured by HPD driver in
-> bootloader (and by bootloader I mean one of few bootloaders this is
-> going to be used on like U-Boot)
+The only issue with the rename is, that oldconfig will drop the then
+non-existing THEAD_C900_ACLINT_SSWI entry in the previous config. That's
+not the end of the world and if really desired this can be solved by
+having:
 
-The default is to use the GPIO of the SoC pinctrl. The HDP is not routed 
-outside.
-  >>
->> The userland cannot change the pinctrl alternate function mux, this is
->> statically defined by the devicetree.
-> 
-> If you expose GPIO then userland needs this regardless of alternate mux.
-> IOW, board level could not configure mux because it should be always
-> configured to safe GPIO input.
+config ACLINT_SSWI
+	bool "RISCV ACLINT ...."
+	depends on RISCV
+	depends on SMP
+	select IRQ_DOMAIN_HIERARCHY
+	select GENERIC_IRQ_IPI_MUX
+	select ACLINT_SSWI
+	help
+	  This enables support for ACLINT SSWI device on THEAD C9XX and
+	  MIPS P8700 devices.
 
-For userland sight view, SoC GPIO are preferred instead of HDP.
-HDP is only GPO not GPIO. 'pinctrl-*' properties configure at the same 
-time the SoC pinctrl mux to HDP and the HDP pinctrl mux to one of the 
-HDP functions (e.g. GPO).
+# Backwards compatibility so oldconfig does not drop it.
+config THEAD_C900_ACLINT_SSWI
+	select ACLINT_SSWI
 
-Best regards,
-Clément
+Or something like that.
+
+Thanks,
+
+        tglx
 
