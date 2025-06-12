@@ -1,125 +1,132 @@
-Return-Path: <devicetree+bounces-185151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41871AD698B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:51:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4205AD698D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD3157AF0A4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:50:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F9AD1BC3377
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 07:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B4122154A;
-	Thu, 12 Jun 2025 07:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D1C21B18B;
+	Thu, 12 Jun 2025 07:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="eUS2Fwvj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L65AzWga"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B3721FF2C
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 07:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306091F3D56;
+	Thu, 12 Jun 2025 07:51:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749714623; cv=none; b=VhuXv0POHMCAnm89VbngrE7H0qMOa8U/XmjdPxW1OS8VcdB6KzedLJ0FWx+vlshHGIcsjmn1EY32uS1NEoMLHS23p7yaPAX4NkOMoffGQdrkDdOFMIowqnLTR461seh4VcN+XCNa5zvXezXGClrvf+LVMlcciT101bzKQgh3rJ8=
+	t=1749714692; cv=none; b=sr0lTMSJ4hm3CabDooft+k7lkddiApvXsdA23T5rWWCwdR6UVrFsKM9TSQ3tptF7HyN08wzwICWD+gegtZS+37WfZVV5ymvVpxo/alBr88tooGHnX2cWgyF2z8MQKPkm6O/DmsOlupdAQBQY0Yi5lfhMMjFxyYE/Ucxk+EhAuA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749714623; c=relaxed/simple;
-	bh=asGUIZZs6HKRiLaci91mPEgp868GgHNmV+kuUJBygRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r3wlkWQv6MGrkVvHPqcUZg9pv2fMkSXOPCtQo4rYcLtkE7KBuXaupXeD4y/9KilWmG3NjIbJMOBgkzwhwviX62PxBjNnDgSfEgj9SmLpOqr+w9CkIx1/SqYZwokLmGCiV/JD2ZIBFPUTcNoLKBiJfgiYDajgHPv7orPVONuyRBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=eUS2Fwvj; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=asGU
-	IZZs6HKRiLaci91mPEgp868GgHNmV+kuUJBygRQ=; b=eUS2FwvjW12aOCRfywim
-	nGBVsPe6A1HIiOhLwJy1aTG68BL5I0LDA5IdmisK8NhYdXtdecUqPUivVIZ0fFFP
-	z83/p0lStL23tR9bTI5igWdbGfyPjh43dFzDPIrqaj1P0uYqAPBtJlQfS1qWQ5Nr
-	oNFTOAX4UQ7jxrWSwPIa/nQKv7PjzxETFLWFZT86jkpx+/SzBcb9Nai2h2qovJf4
-	0YW7x9NVuP2IQuqEHvTc7uKeNb24Jpvkn5JU+0+MCb1HqTYZm3nl/EaPnf1aek+o
-	bNi9fx3ovUignYVP2nL950MF1syW5soXElGKLE5Oy1LICIbG1/DVLw6QzUPAVMFR
-	dw==
-Received: (qmail 3537286 invoked from network); 12 Jun 2025 09:50:14 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Jun 2025 09:50:14 +0200
-X-UD-Smtp-Session: l3s3148p1@60QMLls3uuYgAwDPXy2/ACpZfVCNKldR
-Date: Thu, 12 Jun 2025 09:50:14 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1749714692; c=relaxed/simple;
+	bh=V0+ki51DVrkVbXtl6/gYN/Gkb9exxrbXA3cRDGVVahQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=r77u1iTtFLilndgapVCZyh20+2Uv58nzvyGT9C998/nzF/lpezSsMDS7si7zmCMNOxnHLkspU7Q02MQ4LkjKs+sdaL6AsdtGhnfS7to2KGWVsfQxlAV417ZPt1GgnhPlxzpXMaKf01u4L/nFXVE+M716lqa11LxgPs02Hmh6/iU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L65AzWga; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-311d27eb8bdso539150a91.0;
+        Thu, 12 Jun 2025 00:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749714690; x=1750319490; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=swocyyVkC1m0yK3KFc05VY0vapacmuONNBylQbQbwQM=;
+        b=L65AzWgabpjTV+100djmIvN13tgB5pugl6qzet2H+/bk1W9ZppXXD6LOhRdh7zI8KF
+         ULDrEkzEModcLODstZJ2aGlHVXSciqgANeogj+ltRiVed0c/WInU1FBCG1Bx6yitFupm
+         HnBZAy5N6YyCkTR65BZERZQZq6ZyiPEaGGFZLoPntGlT/f6Zy0Mg06chN4gmk2qzo86k
+         zOtYh/WVUSYoJNFTtEZxE2EVSKxs2JxWsTfVj9ot3zQak0yZOUkAU9dLvVNYvYk+vzf9
+         cMsf4XtOn6h+B9VxB1llE8EPihrTUGP40aFGXB52XXGo+i61E9YJ2AEhnTCZwZleyl2Y
+         HE2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749714690; x=1750319490;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=swocyyVkC1m0yK3KFc05VY0vapacmuONNBylQbQbwQM=;
+        b=WCd3kEC93RhaXiRhviMcZ0dFR2VOeT5+7cb3uB4y1eo9nvWySkaWf5oNQGavhbStpL
+         tOV7BCwvCDHgnE45Gz5DWoglJzeSAKyeT3sD+PwWZFeTbsBcOVqp6Xbz93ZP6NKXbaSB
+         a9M7zd0CCd5MGmrmX2uDuFI8fnyPA5BPhOXPclivluqwIIVUZOEesos7Ncl+vyeB1GRc
+         ciy5wDIwwDNMScJYnKFv3+3Wq7W38CDK4pmj1sdkqzqbFRnvaeGnETSwNULva14e897E
+         0U3w5aPK92n1gtCT3VOLquoS63BQDbNn7X1rPeDDsVjeRNzfTpGf0XcepEDz3P7bwj6y
+         /DFg==
+X-Forwarded-Encrypted: i=1; AJvYcCWEkAq348D9UzD9tE8Jy1TbXlDl/XLVzthTvWTi9vE8L3bA0kqe4oqb2dBXA3dcyjyMF7giBdRELdXwt4E=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyvx4TUYBrXBPGzabeRu9XOjGXSTKiL0rP9VZkzani7GxDvK6Nw
+	cok1L5T0AfjWbNw5Ybzpat/ZjVBUYYu6Vtl2TQ0uIJg33kigbWW9N9zZTu227MB4/F0=
+X-Gm-Gg: ASbGncvNjC+0Z74VfvXBgac77GomCcvkPkqRla8Pt8+CCqhTSu31NCCXpYAwJMBl/o3
+	jhcdQ4W7ot6TrSDDMfU1SYuK1QMHzBIDFgAt6jYfBhSDkubIfWm7dfEhHkHqfqr67yU+fXK2zHI
+	z/d5fyzflAbrH1IrIYHLabtGILFXPY9BxwYxuLe87EBaRkEUTFS6p7C1tfHs+/ZlrQC9V3P6N43
+	ENzZ3L0jcreC/fOTMlEemtEgR1nTOcuQE/W28UpmI5U06trxD8PcbFgQ2riuCST3x9sHe0S1ejQ
+	q8oJzT6dgG3e8/jYqsIXfhEK1MPy1cfE+/KWc553h92ubit7JaZZUxI8BbcDOtZEeEzHQdwLwHV
+	i4k1gcxO3h1leZZy+ITWpmBY=
+X-Google-Smtp-Source: AGHT+IGjalZHIM8I5uIyPD4PFNJrTr3b+7NZ2QJSRfZ+xrOON4O5ngplWUEXGHHBCAbhjmak68v2CA==
+X-Received: by 2002:a17:90b:4986:b0:312:e618:bd53 with SMTP id 98e67ed59e1d1-313af1e44a0mr7908723a91.26.1749714690389;
+        Thu, 12 Jun 2025 00:51:30 -0700 (PDT)
+Received: from ankitchauhan-Legion-5-15ITH6.. ([2405:201:4042:d128:1895:113a:65dd:3ae0])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-313c1c4e3b9sm915761a91.29.2025.06.12.00.51.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jun 2025 00:51:30 -0700 (PDT)
+From: Ankit Chauhan <ankitchauhan2065@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	joel@jms.id.au,
+	andrew@codeconstruct.com.au
+Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH 1/7] arm64: dts: exynos: use proper node names for GPIO
- based I2C busses
-Message-ID: <aEqGtjc7F8vvY4ph@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>
-References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
- <20250519121512.5657-2-wsa+renesas@sang-engineering.com>
- <006ee7d6-1289-4f4a-819d-9a5e5120db99@kernel.org>
- <aCtD7BH5N_uPGkq7@shikoro>
- <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org>
- <aCtK1-Yn6u8-n8mU@shikoro>
- <e5a3ce2b-4ebe-44c9-9bf5-9f460d5e7fe8@kernel.org>
- <aCtbg0_vD07g394k@shikoro>
- <aCt9e-rrOOR0C5HI@shikoro>
- <1cea4f55-752f-4581-a003-1c9d31a36039@kernel.org>
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	Ankit Chauhan <ankitchauhan2065@gmail.com>
+Subject: [PATCH v2] ARM: dts: aspeed: lanyang: Fix 'lable' typo in LED nodes
+Date: Thu, 12 Jun 2025 13:20:57 +0530
+Message-Id: <20250612075057.80433-1-ankitchauhan2065@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DcIQ3DvmppdGZo1d"
-Content-Disposition: inline
-In-Reply-To: <1cea4f55-752f-4581-a003-1c9d31a36039@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Fix an obvious spelling error in the DTS file for the Lanyang BMC
+("lable" → "label"). This was reported by bugzilla a few years ago
+but never got fixed.
 
---DcIQ3DvmppdGZo1d
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reported-by: Jens Schleusener <Jens.Schleusener@fossies.org>
+Closes: https://bugzilla.kernel.org/show_bug.cgi?id=205891
+Signed-off-by: Ankit Chauhan <ankitchauhan2065@gmail.com>
+---
+V1 -> V2: Changed the subject prefix and addressed review comments from Andrew Jeffery
+ arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
+index 370738572a55..8b9d382241ff 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
+@@ -52,12 +52,12 @@ hdd_fault {
+ 			gpios = <&gpio ASPEED_GPIO(B, 3) GPIO_ACTIVE_HIGH>;
+ 		};
+ 		bmc_err {
+-			lable = "BMC_fault";
++			label = "BMC_fault";
+ 			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_HIGH>;
+ 		};
+ 
+ 		sys_err {
+-			lable = "Sys_fault";
++			label = "Sys_fault";
+ 			gpios = <&gpio ASPEED_GPIO(H, 7) GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
+-- 
+2.34.1
 
-> Where? I cannot find anything in my inbox and also no pull requests on
-> Github.
-
-https://lore.kernel.org/r/20250519184530.21845-1-wsa+renesas@sang-engineering.com
-
-You prefer to be explicitly CCed on such mails?
-
-
---DcIQ3DvmppdGZo1d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmhKhrIACgkQFA3kzBSg
-KbYUSQ//SbP21jd8zqSNAKM50DjZ2UD0RkAZr6n17Bf4u6jCm1qnIWFJLPIPPLCH
-EsyycQAgW1jJx2yJBcaA/uvQtdhKQbjfzOeHhtXxYpzm8QCggLRdSsEHuB+C3Wis
-MMTAs0OtD0HyZjVHoo1X9o7rFilWxaTcNiFXeTv3Ctme3le3cK3Jf5lMK2kbP76s
-+/6MEYTtpoJlVJyCiST8zRvW/79OzZpmIUsW+uad5mLRIJXs9JdUD2zAqcBE0hcf
-46tl8cW3A6wOxM97mq8j0OxtO+joMhHnl/VO+QItXJaViMVNONUJu5D0bK71Po7f
-wTCxes2W7UL8Kty294H//SAhgx/gGs09TfZCZQ+PDks3tFIi86+oQ2i1sKW2N5tB
-hdkHxRGdI0K8U/7ZrKpVipxokCKVT6hV/tWa6Azls7Ci3U6vFMsT1eNJVTfTMME4
-q0zx1zyOJABJ/lWXfxHS1R55BIryms2i4Q+EjBd5gYb0RfBOKrVWG/k3Ir5XWLNA
-oNvR9ljQuXJEJKrE1u8h4blLVio2Wk8LIpuUyPIWWVJCZ4V/U9KyjH/5ZBQu/FY+
-y5VkRa3hIeWU88fQF1FIhayoYAmOAJpVgNNLQY0BLP/Nc31edsNCCxpFnjvYfgiO
-hbPEeBV7axh+fllilzfsPF50AvVLfyA9DrKZuBDagDOheed2LS0=
-=0ZZ3
------END PGP SIGNATURE-----
-
---DcIQ3DvmppdGZo1d--
 
