@@ -1,239 +1,106 @@
-Return-Path: <devicetree+bounces-185458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BFB9AD7C97
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:41:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 139E6AD7CC3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 22:58:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D657F3B2CEB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:40:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 954503A2A72
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 20:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038352D8762;
-	Thu, 12 Jun 2025 20:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C921F2D877C;
+	Thu, 12 Jun 2025 20:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Wxt1EWOx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wa2QZpLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D48170A26
-	for <devicetree@vger.kernel.org>; Thu, 12 Jun 2025 20:41:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99EBA29C328;
+	Thu, 12 Jun 2025 20:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749760866; cv=none; b=o0SEapFHgNUiBCLW5CK9G76z6F0zNAMyLQubbe5sQCnFunw+DYKCnQdMNYfuCmdXDjg9Mkb6B8kfqZPPrhKZJtIczMljld0sjhJDZMP2jDJuG3Opkx6ZafFBxJB8aROtNFYuSoZDrP6nw53xTdv4VfRh/EIG8n9iVI/Edd8q19I=
+	t=1749761906; cv=none; b=boa3ZdjOrg/L3jVgZsBsL+RDLB8jo//ytaxNPiSfQFZI4Dl9zzIN4dzlGaw8Kwg5w/0jNPpQQj/p2Dr2OI0dCy0Eu6oOB6zYPeTLTpR7m0EEfrF6KKImPhq8zhRtqE+4yNqy+Ps+OO611Zy5GXebL9Yl7PS6r2iV4XhInubUujE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749760866; c=relaxed/simple;
-	bh=G5DyLuJHt4bZaLRqp0tmFt/JNkYOa83DJCmI+5DPo/s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PAU/Nm/dhhFe+OZMz704neXL3S0z8FsTYSd/O/0xEDQGsBeKHlLnyzG5oNh/fW8RWQe1srG0Ouc1SIsm3C3Lmt/0A1F2ZCrF9dJipdddo40GngUPLCQ1x23+dXzGFhRwt17JK4oabsDT7VPDQooMXCu5/2mKWjc73XN8IpsXsG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Wxt1EWOx; arc=none smtp.client-ip=91.218.175.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <70958a2e-abc8-4894-b99a-f2981db9981f@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749760852;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uBNMGO8nDA1ADslhYbI04Kw2PsQlf/n6XnJYKfeh030=;
-	b=Wxt1EWOxEli7WNKhbYzvPVqy30Q8Pisn064aOtltY06Ca07eB0QAQbqM+BVOe9Q+RtKpXt
-	++3mP5Ao5t0Jxttnf2a56SnNvZwVYDInTsb7KWimn/g5q0+JMnvWlyq6GMQP43bsfY1XvN
-	b4mNZfkYjf+3/E7zCIXeF5sI4n6XIw4=
-Date: Thu, 12 Jun 2025 16:40:48 -0400
+	s=arc-20240116; t=1749761906; c=relaxed/simple;
+	bh=MZoul/BOKLGMPmycxDhGMksYXJLZdxQvX3NMIeiDbNY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=d1gKyw4Y/AhwLAPAYGsUBsfD5OLEpJBcFE9+IoROcGm7ha5/QwGDbiFH1AisIRH5YaN+8Y0fbCy21XOZSiOZF8ODJJZRlxIDRgwgPZZaP98q1rt3STXpZLxPkJjdAKWRfvaZv1SfUec1PR5k9J/9/SkHrWiEAD7qmqNISmmZyGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wa2QZpLy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0C78C4CEEA;
+	Thu, 12 Jun 2025 20:58:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749761906;
+	bh=MZoul/BOKLGMPmycxDhGMksYXJLZdxQvX3NMIeiDbNY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Wa2QZpLyBe5y+lOS6Moov/2PbX3f7PgYUsRrV7b0b8ufPcJbBnjLHgqWSpGJcRee1
+	 NT7Uf8V485w2JwGFeWhSTtNYPKmYkCL8mYIRNnwS5VpwJFqzB0JymSFxN7Cn1ypg2Y
+	 Cttdb50lDKQry5PZHsdIn+8yai+pmBvJ54XOlL4NtDK5dnOf/F20uvWMyw/YSEGgAC
+	 mGh1RVsMHwTQ3k4DRoZ2p0sGSTM3fdXwDWDultdY8qt5Hj0OwZp33mCROpECKzXZ8o
+	 3FdxFxrDgPUaW872Jq1FS3anB0BCFMLd7LfaFOa+dfX8LHH6fWu+PzevpNvoAMVLI/
+	 JYXxZLzN5UrYw==
+Date: Thu, 12 Jun 2025 15:58:25 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] driver core: Prevent deferred probe loops
-To: Saravana Kannan <saravanak@google.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich
- <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
- Grant Likely <grant.likely@linaro.org>
-References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
- <20250610183459.3395328-1-sean.anderson@linux.dev>
- <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
- <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
- <2025061147-squishier-oversleep-80cd@gregkh>
- <7d6d8789-e10b-4b06-aa99-5c1a1bdd3b4c@linux.dev>
- <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-input@vger.kernel.org, 
+ Henrik Rydberg <rydberg@bitmath.org>, linux-kernel@vger.kernel.org, 
+ Sangwon Jee <jeesw@melfas.com>, Conor Dooley <conor+dt@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+In-Reply-To: <20250613-mip4-touchkey-v2-2-9bbbe14c016d@disroot.org>
+References: <20250613-mip4-touchkey-v2-0-9bbbe14c016d@disroot.org>
+ <20250613-mip4-touchkey-v2-2-9bbbe14c016d@disroot.org>
+Message-Id: <174976190508.3252221.13937156031699353821.robh@kernel.org>
+Subject: Re: [PATCH RFC v2 2/5] dt-bindings: input: melfas-mip4: document
+ linux,keycodes property
 
-On 6/12/25 13:56, Saravana Kannan wrote:
-> On Thu, Jun 12, 2025 at 8:53 AM Sean Anderson <sean.anderson@linux.dev> wrote:
->>
->> On 6/11/25 08:23, Greg Kroah-Hartman wrote:
->> > On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
->> >> On 6/10/25 19:32, Saravana Kannan wrote:
->> >> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
->> >> >>
->> >> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
->> >> >> registering a bus with children:
->> >> >
->> >> > This is a broken driver. A parent device shouldn't register child
->> >> > devices unless it is fully read itself. It's not logical to say the
->> >> > child devices are available, if the parent itself isn't fully ready.
->> >> > So, adding child devices/the bus should be the last thing done in the
->> >> > parent's probe function.
->> >> >
->> >> > I know there are odd exceptions where the parent depends on the child,
->> >> > so they might add the child a bit earlier in the probe
->> >>
->> >> This is exactly the case here. So the bus probing cannot happen any
->> >> later than it already does.
->> >
->> > Please fix the driver not to do this.
->>
->> How? The driver needs the PCS to work. And the PCS can live on the MDIO
->> bus.
+
+On Fri, 13 Jun 2025 01:11:34 +0530, Kaustabh Chakraborty wrote:
+> Document the linux,keycodes property. The property values are key codes
+> which are used in input key events generated by the touchkey device.
 > 
-> Obviously I don't know the full details, but you could implement it as
-> MFD. So the bus part would not get removed even if the PCS fails to
-> probe. Then the PCS can probe when whatever it needs ends up probing.
-
-I was thinking about making the MDIO bus a separate device. But I think
-it will be tricky to get suspend/resume working correctly. And this
-makes conversions more difficult because you cannot just add some
-pcs_get/pcs_put calls, you have to split out the MDIO bus too (which is
-invariably created as a child of the MAC).
-
-And what happens if a developer doesn't realize they have to split off
-the MDIO bus before converting? Everything works fine, except if there
-is some problem loading the PCS driver, which they may not test. Is this
-prohibition against failing after creating a bus documented anywhere? I
-don't recall seeing it...
-
->>
->> >> > but in those cases, the parent's probe should still do all the checks
->> >> > ahead of time.
->> >>
->> >> Such as what? How is the parent going to know the resource is missing
->> >> without checking for it?
->> >>
->> >> > Can you be more specific about the actual failure you are seeing?
->> >>
->> >> MAC is looking for a PCS that's on its internal MDIO bus, but that PCS's
->> >> driver isn't loaded. The PCS has to be loaded at probe time because
->> >> phylink_create needs it, and phylink is necessary to register the
->> >> netdev. The latter situation is not ideal, but it would be quite a bit
->> >> of work to untangle.
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  .../devicetree/bindings/input/touchscreen/melfas,mip4_ts.yaml       | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> I meant, point to a specific device in a DT and the driver. Provide
-> logs of the failure if possible, etc. Tell me which device is failing
-> and why, etc. That way, I can take a closer look or give you other
-> suggestions.
 
-See [1]. Devicetree is not upstream yet (working on it...) but it looks
-like
+My bot found errors running 'make dt_binding_check' on your patch:
 
-&gem0 {
-	pcs-handle = <&pcs0>;
-	post-init-providers = <&pcs0>;
-	sfp = <&sfp0>;
-	managed = "in-band-status";
-	phy-mode = "1000base-x";
-	nvmem-cells = <&eth_address 0>;
-	nvmem-cell-names = "mac-address";
-	/delete-property/ phy-handle;
+yamllint warnings/errors:
 
-	mdio {
-		pcs0: ethernet-pcs@0 {
-			#clock-cells = <0>;
-			compatible = "xlnx,pcs-16.2", "xlnx,pcs";
-			reg = <0>;
-			clocks = <&si570>;
-			clock-names = "refclk";
-			interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-			interrupt-names = "an";
-			reset-gpios = <&axi_gpio_2 0 GPIO_ACTIVE_HIGH>;
-			done-gpios = <&axi_gpio_3 0 GPIO_ACTIVE_HIGH>;
-			xlnx,pcs-modes = "sgmii", "1000base-x";
-		};
-	};
-};
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/input/touchscreen/melfas,mip4_ts.example.dts:35.31-32 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/input/touchscreen/melfas,mip4_ts.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1519: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-or in another instance
+doc reference errors (make refcheckdocs):
 
-&eth_0_eth_buf {
-	clocks = <&zynqmp_clk PL0_REF>;
-	clock-names = "s_axi_lite_clk";
-	pcs-handle = <&pcs4>;
-	managed = "in-band-status";
-	phy-handle = <&phy5>;
-	phy-mode = "sgmii";
-	post-init-providers = <&pcs4>, <&phy5>;
-	nvmem-cells = <&eth_address 4>;
-	nvmem-cell-names = "mac-address";
-	iommus = <&smmu 0x200>, <&smmu 0x240>, <&smmu 0x248>;
-	/delete-property/ local-mac-address;
-	/delete-property/ xlnx,phy-type;
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250613-mip4-touchkey-v2-2-9bbbe14c016d@disroot.org
 
-	mdio {
-		reset-gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
-		reset-delay-us = <10000>;
-		reset-post-delay-us = <50000>;
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-		pcs4: ethernet-pcs@1 {
-			#reset-cells = <1>;
-			compatible = "xlnx,pcs-16.2", "xlnx,pcs";
-			reg = <1>;
-			clocks = <&vc5 4>;
-			clock-names = "refclk";
-			assigned-clocks = <&vc5 4>;
-			assigned-clock-rates = <125000000>;
-			reset-gpios = <&axi_gpio_2 4 GPIO_ACTIVE_HIGH>;
-			xlnx,pcs-modes = "sgmii";
-		};
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-		phy2: ethernet-phy@2 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <2>;
-			interrupts-extended = <&gpio 118 IRQ_TYPE_LEVEL_LOW>;
-		};
+pip3 install dtschema --upgrade
 
-		phy4: ethernet-phy@4 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <4>;
-			interrupts-extended = <&gpio 119 IRQ_TYPE_LEVEL_LOW>;
-		};
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-		phy5: ethernet-phy@5 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <5>;
-			interrupts-extended = <&gpio 117 IRQ_TYPE_LEVEL_LOW>;
-		};
-
-		phy6: ethernet-phy@6 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <6>;
-			interrupts-extended = <&gpio 120 IRQ_TYPE_LEVEL_LOW>;
-		};
-	};
-};
-
-In the second case, the phy also has the same relationship, but it is
-not an issue since the phy is looked up in ndo_open instead of
-phylink_create.
-
-The ZCU102/106 supports this, but the in-tree devicetree only has hard
-IP as opposed to things done in the FPGA. However, the "default"
-configuration for xilinx_axienet assumes that the PCS is on the MAC's
-MDIO bus [2].
-
---Sean
-
-[1] https://lore.kernel.org/netdev/20250610233134.3588011-1-sean.anderson@linux.dev/
-[2] https://github.com/Xilinx/device-tree-xlnx/blob/ac65e0142e52331244ea5799880650fb1e726ab7/axi_ethernet/data/axi_ethernet.tcl#L280
 
