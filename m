@@ -1,260 +1,151 @@
-Return-Path: <devicetree+bounces-185229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E8E0AD6DB0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:28:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB8D7AD6E12
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 12:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D48C1BC57EC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:27:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EFAB7A76C0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 10:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F52235368;
-	Thu, 12 Jun 2025 10:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1972367AD;
+	Thu, 12 Jun 2025 10:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bcmHlKN1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="njXntUFo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977F013C8E8;
-	Thu, 12 Jun 2025 10:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3035E231A32;
+	Thu, 12 Jun 2025 10:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749724003; cv=none; b=hU6JNBWwehprPJy/4nmsvQEduBzvNe1M2PzW9YU2k6mHNQ4/n7D6CS9z/26T6wI9kd9FCgOW9ZrOlZv3t1sdLl2Zk0kgDnNHnA8GjxK4I0hSH89wUu/vnsizkzEv8xiaQ3Q9DnqRZsAPGNBLcn2b1RW8vjoJ1CBU6NL58shXmZU=
+	t=1749724975; cv=none; b=ORux5l4R7F8MfySaatF6quPmPsPP2VXIKUjsjy+HkwqUaUyjExq35PLr8LRaAv2FuFnPBcj4Kvuk2bzFrg3BwPtT2DqOT4mrpq5MdTMFrA9aPfinqP1PI4Oh1sGgwqEpRdR5yB6L21Qk/VlxbsuKArHaR2+lHf/BDxCQk5jnaRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749724003; c=relaxed/simple;
-	bh=tAJKRWzg1rS1UnSrbY96N/b3j0qzmKDhJ4rD85IR0L0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lIYZMYiVnTFmGCJxcD9z/zP0bldZkoFiYy9ZUZF4z8Mc4JkL9wsTyc1PulpKZmX/8BJvSoBor6+Iu2fUahJTyVRz2UV+aa9R7MSpLBgiTM40tlhH0m3NZQ6enPhfd0AuGD1SwAtNIuH6rYH57ou4XCJYIdZNxWFM9T6/Ja8OIbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bcmHlKN1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7FEEC4CEEA;
-	Thu, 12 Jun 2025 10:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749724003;
-	bh=tAJKRWzg1rS1UnSrbY96N/b3j0qzmKDhJ4rD85IR0L0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bcmHlKN1sWdp5SOzi3khF2Z6QvhFoAeVZA+h/UX6TLSmoT1h2tDPqMFuQxBscZKib
-	 arY6EXTTKqFRlDBaSg82lQGGUvyLMzcVwej8KyKEq5hZ760NMKCirkfp4ITSufl35m
-	 p/CpJCd5eBTsrRznHaNNO9mkRps+Gn8K5II+4QRuyrQerOX+3vl2IEfd+Cm19FkTvx
-	 KFVXODM/u2qjy6rvZj1062ktJQWxWT7w+fyqCqAVHSZnsfxKnaEcID+1Aeon8rbOs/
-	 EfwLxnGFFhhDt2Qza/kdcbEJfxgUFVGWJjsc6P/3onw3DudxGlieAWU7m30fHfE2e6
-	 Ri2uvuvYHHbiw==
-Date: Thu, 12 Jun 2025 11:26:37 +0100
-From: Lee Jones <lee@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, netdev@vger.kernel.org,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-Message-ID: <20250612102637.GB381401@google.com>
-References: <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
- <aBt1N6TcSckYj23A@smile.fi.intel.com>
- <20250507152609.GK3865826@google.com>
- <b095ffb9-c274-4520-a45e-96861268500b@redhat.com>
- <20250513094126.GF2936510@google.com>
- <6f693bb5-da3c-4363-895f-58a267e52a18@redhat.com>
- <20250522073902.GC8794@google.com>
- <7421647b-ae85-4f34-843c-02f1fb21d7f3@redhat.com>
- <20250522104551.GD1199143@google.com>
- <73eb151c-93cd-4617-b0e4-f7dccb20c4cb@redhat.com>
+	s=arc-20240116; t=1749724975; c=relaxed/simple;
+	bh=lRvJOiOoQxNwg1/S0z3v+01XL+nggaA0QMHlFm6CCss=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=i1ahfGlUUYxDszhpj/O3mB0AkjaJPdU6HUg0dVEHsU5JphR133Iv0fX/CekQ5xd3UPO8DMvoaek1Ek/3IpoeR0nMMWmEZcqldMHw27tnFJaZMnL4PbyXSbF+4XiCacPv2oa8Y6xbhkFtD4r3DK05u7GNEt3LPxw0zAjFA952JVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=njXntUFo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55C8L6qM011530;
+	Thu, 12 Jun 2025 10:42:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	h4034OsWfnzqWI7rpRXbrvhnUsIe7YHju91pqkD8gVk=; b=njXntUFoQo1PyQt4
+	lD4i/pyOMkJ9KrmGQozlUQvyMIz5CDJUbAyJQz3mUnB8g/eOOVyAOi6U0jJxmN59
+	JjZKdfm1cx3zb3Jq2kGqPw+vJRZFZaR7OSOus6wuuuiq6tOm3K4Mtek/UeOv1wVS
+	XaUoTp4b3MkkK77UfYPsXS9eY6DYp81+3hMZFyKlDNK4KKl2Gq4dgaJGNJejlbv/
+	FhUB1H0re1Iwkn1rDsNLtk7u4it1SBzLlEBeyScr6JcN6bySpExwFWg8cGYmXXw5
+	daljSgENRyJikx98eID/uiBfb3ekFFfpz3RqGaPvpK/nEmSjA9Ey0cbAsaKabNVN
+	zpuGkw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474ekpyvnn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Jun 2025 10:42:50 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55CAgobO001890
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Jun 2025 10:42:50 GMT
+Received: from [10.218.12.164] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Jun
+ 2025 03:42:45 -0700
+Message-ID: <85594b9d-b4fe-4cfd-ae3a-07901b9e27df@quicinc.com>
+Date: Thu, 12 Jun 2025 16:12:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <73eb151c-93cd-4617-b0e4-f7dccb20c4cb@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615: Enable TSENS support for
+ QCS615 SoC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>
+CC: <amitk@kernel.org>, <daniel.lezcano@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_manafm@quicinc.com>
+References: <cover.1744955863.git.gkohli@qti.qualcomm.com>
+ <1758b5c2d839d40a9cb1dd17c734f36c279ac81c.1744955863.git.gkohli@qti.qualcomm.com>
+ <74b017c2-7144-4446-969c-8502fb2cb74b@oss.qualcomm.com>
+ <x2avlatyjo7sgcjubefexsfk6gerdbhx5dcug2kszk2hukcusm@srs5dwuc2m22>
+ <4a8df547-e625-4dbf-9c6e-44a3f793e602@oss.qualcomm.com>
+Content-Language: en-US
+From: Gaurav Kohli <quic_gkohli@quicinc.com>
+In-Reply-To: <4a8df547-e625-4dbf-9c6e-44a3f793e602@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=JcO8rVKV c=1 sm=1 tr=0 ts=684aaf2a cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
+ a=07oZwJDR7OJQ1aN1LC4A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDA4MSBTYWx0ZWRfX7pwmCrcYR40U
+ fdQq8X1+w0C1dsCnR462/nZ/W9XQEOL9Th790pgqvRbJD58W3PbrBL5fOMF0YcjH0bmdjB93uzU
+ HyerLjhMPyoNpMHuHCDdR2+MCUHdLl57d+N5XwKQ/ufWDGpGMAM6UkcuSbW6evjUsAHixvsvV7W
+ bZzice92BBf3bS+eN9PzpJKaZgSPNbsO1oOASwoe6BR6FgVmtk8BRg5cLB5rDNmfpozrWosTykK
+ bf6nAc6RUKvu0o1CDAaop+27zOijwzeyE2+V3TgDTa+06aTuXLqorw407zxGkMnSyLIVhqImNT6
+ DS7jBvp/Fz5P955kIoY0rt0f/7Ywu9VXJeYeYy4m9xbtvKUhb1PsuPn09S7KdGwf11yGo5ArkyI
+ kpDGrjeXudsA8wQjzOQ2KhE2/gdCQeFc6Le2nAfxDCddylXyOvSs7fcygdBidAD2se01z/j9
+X-Proofpoint-GUID: DWzGg613QCuoJZ3IrlGm5yhEOASbYPOa
+X-Proofpoint-ORIG-GUID: DWzGg613QCuoJZ3IrlGm5yhEOASbYPOa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-12_07,2025-06-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=661 bulkscore=0 spamscore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015 malwarescore=0
+ suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506120081
 
-On Thu, 22 May 2025, Ivan Vecera wrote:
 
-> On 22. 05. 25 12:45 odp., Lee Jones wrote:
-> > On Thu, 22 May 2025, Ivan Vecera wrote:
-> > 
-> > > 
-> > > 
-> > > On 22. 05. 25 9:39 dop., Lee Jones wrote:
-> > > > On Tue, 13 May 2025, Ivan Vecera wrote:
-> > > > 
-> > > > > On 13. 05. 25 11:41 dop., Lee Jones wrote:
-> > > > > > On Mon, 12 May 2025, Ivan Vecera wrote:
-> > > > > > 
-> > > > > > > On 07. 05. 25 5:26 odp., Lee Jones wrote:
-> > > > > > > > On Wed, 07 May 2025, Andy Shevchenko wrote:
-> > > > > > > > 
-> > > > > > > > > On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
-> > > > > > > > > > On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
-> > > > > > > > > > > On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
-> > > > > > > > > 
-> > > > > > > > > ...
-> > > > > > > > > 
-> > > > > > > > > > > > +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
-> > > > > > > > > > > > +       { .channel = 0, },
-> > > > > > > > > > > > +       { .channel = 1, },
-> > > > > > > > > > > > +       { .channel = 2, },
-> > > > > > > > > > > > +       { .channel = 3, },
-> > > > > > > > > > > > +       { .channel = 4, },
-> > > > > > > > > > > > +};
-> > > > > > > > > > > 
-> > > > > > > > > > > > +static const struct mfd_cell zl3073x_devs[] = {
-> > > > > > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 0),
-> > > > > > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 1),
-> > > > > > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 2),
-> > > > > > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 3),
-> > > > > > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 4),
-> > > > > > > > > > > > +};
-> > > > > > > > > > > 
-> > > > > > > > > > > > +#define ZL3073X_MAX_CHANNELS   5
-> > > > > > > > > > > 
-> > > > > > > > > > > Btw, wouldn't be better to keep the above lists synchronised like
-> > > > > > > > > > > 
-> > > > > > > > > > > 1. Make ZL3073X_CELL() to use indexed variant
-> > > > > > > > > > > 
-> > > > > > > > > > > [idx] = ...
-> > > > > > > > > > > 
-> > > > > > > > > > > 2. Define the channel numbers
-> > > > > > > > > > > 
-> > > > > > > > > > > and use them in both data structures.
-> > > > > > > > > > > 
-> > > > > > > > > > > ...
-> > > > > > > > > > 
-> > > > > > > > > > WDYM?
-> > > > > > > > > > 
-> > > > > > > > > > > OTOH, I'm not sure why we even need this. If this is going to be
-> > > > > > > > > > > sequential, can't we make a core to decide which cell will be given
-> > > > > > > > > > > which id?
-> > > > > > > > > > 
-> > > > > > > > > > Just a note that after introduction of PHC sub-driver the array will look
-> > > > > > > > > > like:
-> > > > > > > > > > static const struct mfd_cell zl3073x_devs[] = {
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-dpll", 1),  // ...
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-phc", 1),
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-dpll", 2),
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-phc", 2),
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-dpll", 3),
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-phc", 3),
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-dpll", 4),
-> > > > > > > > > >            ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
-> > > > > > > > > > };
-> > > > > > > > > 
-> > > > > > > > > Ah, this is very important piece. Then I mean only this kind of change
-> > > > > > > > > 
-> > > > > > > > > enum {
-> > > > > > > > > 	// this or whatever meaningful names
-> > > > > > > > > 	..._CH_0	0
-> > > > > > > > > 	..._CH_1	1
-> > > > > > > > > 	...
-> > > > > > > > > };
-> > > > > > > > > 
-> > > > > > > > > static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
-> > > > > > > > >            { .channel = ..._CH_0, },
-> > > > > > > > >            ...
-> > > > > > > > > };
-> > > > > > > > > 
-> > > > > > > > > static const struct mfd_cell zl3073x_devs[] = {
-> > > > > > > > >            ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
-> > > > > > > > >            ZL3073X_CELL("zl3073x-phc", ..._CH_0),
-> > > > > > > > >            ...
-> > > > > > > > > };
-> > > > > > > > 
-> > > > > > > > This is getting hectic.  All for a sequential enumeration.  Seeing as
-> > > > > > > > there are no other differentiations, why not use IDA in the child
-> > > > > > > > instead?
-> > > > > > > 
-> > > > > > > For that, there have to be two IDAs, one for DPLLs and one for PHCs...
-> > > > > > 
-> > > > > > Sorry, can you explain a bit more.  Why is this a problem?
-> > > > > > 
-> > > > > > The IDA API is very simple.
-> > > > > > 
-> > > > > > Much better than building your own bespoke MACROs.
-> > > > > 
-> > > > > I will try to explain this in more detail... This MFD driver handles
-> > > > > chip family ZL3073x where the x == number of DPLL channels and can
-> > > > > be from <1, 5>.
-> > > > > 
-> > > > > The driver creates 'x' DPLL sub-devices during probe and has to pass
-> > > > > channel number that should this sub-device use. Here can be used IDA
-> > > > > in DPLL sub-driver:
-> > > > > e.g. ida_alloc_max(zldev->channels, zldev->max_channels, GFP_KERNEL);
-> > > > > 
-> > > > > This way the DPLL sub-device get its own unique channel ID to use.
-> > > > > 
-> > > > > The situation is getting more complicated with PHC sub-devices because
-> > > > > the chip can provide UP TO 'x' PHC sub-devices depending on HW
-> > > > > configuration. To handle this the MFD driver has to check this HW config
-> > > > > for particular channel if it is capable to provide PHC functionality.
-> > > > > 
-> > > > > E.g. ZL30735 chip has 5 channels, in this case the MFD driver should
-> > > > > create 5 DPLL sub-devices. And then lets say channel 0, 2 and 4 are
-> > > > > PHC capable. Then the MFD driver should create 3 PHC sub-devices and
-> > > > > pass 0, 2 resp. 4 for them.
-> > > > 
-> > > > Where is the code that determines which channels are PHC capable?
-> > > 
-> > > It is not included in this series and will be added once the PTP driver
-> > > will be added. But the code looks like:
-> > > 
-> > > for (i = 0; i < ZL3073X_MAX_CHANNELS; i++) {
-> > > 	if (channel_is_in_nco_mode(..., i)) {
-> > > 		struct mfd_cell phc_dev = ZL3073X_CELL("zl3073x-phc", i);
-> > > 		rc = devm_mfd_add_devices(zldev->dev,
-> > > 					  PLATFORM_DEVID_AUTO, &phc_dev,
-> > > 					  1, NULL, 0, NULL);
-> > > 		...
-> > > 	}
-> > > }
-> > 
-> > It's the channel_is_in_nco_mode() code I wanted to see.
-> 
-> The function is like this:
-> 
-> static bool zl3073x_chan_in_nco_mode(struct zl3073x_dev *zldev, u8 ch)
-> {
-> 	u8 mode, mode_refsel;
-> 	int rc;
-> 
-> 	rc = zl3073x_read_u8(zlptp->mfd,
-> 			     ZL_REG_DPLL_MODE_REFSEL(ch), &mode_refsel);
-> 	if (rc)
-> 		return false;
-> 
-> 	mode = FIELD_GET(ZL_DPLL_MODE_REFSEL_MODE, mode_refsel);
-> 
-> 	return (mode == ZL_DPLL_MODE_REFSEL_MODE_NCO);
-> }
-> 
-> > What if you register all PHC devices, then bomb out if
-> > !channel_is_in_nco_mode()?  Presumably this can / should also live in
-> > the PHC driver as well?
-> 
-> Yes, we can register PHC sub-dev for all channels disregard to channel
-> mode. The PHC driver checks for the mode and return -ENODEV when it is
-> different from NCO. But in this case the user will see PHC platform
-> devices under /sys/bus/platform/device and some of them won't have
-> driver bound (they will look like some kind of phantom devices).
-> I'm not sure if this is OK and not confusing.
 
-There will be plenty of devices which do not successfully probe for one
-reason or another.  This is all that these 'phantom devices' will
-indicate.
+On 6/11/2025 8:17 PM, Konrad Dybcio wrote:
+> On 6/11/25 4:19 PM, Dmitry Baryshkov wrote:
+>> On Wed, Jun 11, 2025 at 04:08:57PM +0200, Konrad Dybcio wrote:
+>>> On 6/11/25 8:37 AM, Gaurav Kohli wrote:
+>>>> Add TSENS and thermal devicetree node for QCS615 SoC.
+>>>>
+>>>> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+>>>> ---
+>>>
+>>> [...]
+>>>
+>>>> +	thermal-zones {
+>>>> +		aoss-thermal {
+>>>> +			thermal-sensors = <&tsens0 0>;
+>>>> +
+>>>> +			trips {
+>>>> +				trip-point0 {
+>>>> +					temperature = <110000>;
+>>>> +					hysteresis = <5000>;
+>>>> +					type = "passive";
+>>>
+>>> All of the passive trip points you added that aren't bound to any
+>>> cooling devices should be critical instead (otherwise they're not
+>>> doing anything)
+>>>
+>>> otherwise, looks good
+>>
+thanks for the review & comment, let me send 3rd patch with critical for 
+all trips.
+>> Don't we need cooling-maps for CPU thermal zones?
+> 
+> no, we have lmh
+> 
+> Konrad
 
--- 
-Lee Jones [李琼斯]
 
