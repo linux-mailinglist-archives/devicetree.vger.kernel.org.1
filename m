@@ -1,271 +1,197 @@
-Return-Path: <devicetree+bounces-185179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A023CAD6C0F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:22:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B382DAD6C53
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 11:34:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 276443AF4A8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:22:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6381E17E6B4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 09:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D26622B5B8;
-	Thu, 12 Jun 2025 09:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7727A22CBEC;
+	Thu, 12 Jun 2025 09:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hU28X8hg"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qO5rOYU0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82E21DDC1B;
-	Thu, 12 Jun 2025 09:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861171F583D;
+	Thu, 12 Jun 2025 09:34:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749720141; cv=none; b=o5x/SpzFEod4X/JSrrGob17trh0vuBBk+l9KkrunyfyLl7yJ1Ff/HXjQMqkuEDYyJPpKQtxmtPvQTgrKzUgyReH26jm6S69dp3GER9lonDwUCHxBMe3eeVEva7/sfLAE+OOz6JThJL9ctpCDZ+MzMeuVZpOQhyYQsVGwZ+IRqqI=
+	t=1749720860; cv=none; b=db2vdSqrfgrMtXXSZQzd14spIX64T+NJH/nDOtKXfelh0oFygtTz4B7P3luF0gBfmJiZC+OOUMWnlydhjDxI318MVY2sgR2yCUeH7WTTzh7noxnz7eTaDx57VHf0VRjYNvRwYRAxJFrqIXbIz/iRU11fOG3LgLsbs9Oh+813q0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749720141; c=relaxed/simple;
-	bh=7XNS1aUJRbfoWDN0coF9pdHz0tVuNeMUvOe6Q83QQpQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WRH+MRJlZm+6ay545YQx1GGviADmqiAivZ7wKTUQk/CWX0GRIC9pXcTnGWZYAJClAh0e4luDwZmG7hxaxXX4Jpn776ILbP/4EQoL8LPqtSm2w2s1nWV1FWlB5BuobEWyd2v/CGNnTMKSBlHe4ohwThDEYXxY/wACcZ0+7OyIKVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hU28X8hg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55C8DWjp002500;
-	Thu, 12 Jun 2025 09:22:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=c7KhTzx2OvQ3vzPsYNmpMR+r
-	FbrDC1nhaTUKZXLXpJ4=; b=hU28X8hgNLDzQ9uIaKzN01n2SfiDctT3SKnVWDHC
-	sPabzlidyZtK6a0aJOACEooBELYukWu6DktUrW7wYjGtlxtzHaruQStH974w4JyW
-	TgCfaSdWri07PeKsDtn4GFnoX2y3E2lkkTH2SAq4k1serVEe5UOtZhnw3gSUzww0
-	P11NiF7hdNr27RyMIh91O+voiRmQWmV7Gd+wpgB+h8MXAWEoFAz82Si6MwR0E0JR
-	zhRnvekN4/0/NJc6ov+NKye92n9SD4O8aRU2Tt+gGDDC+hwRE5V0xMpkV2gbC9aL
-	nJGJbCNBpwfLF8ttUD4DnMeSCXKF1+a8IutdEblcqqoxTg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 474dgy07gr-1
+	s=arc-20240116; t=1749720860; c=relaxed/simple;
+	bh=tvKi11/Xkd3O2SZPfJvGSMJ9ZSemya87PNDiJLRQewM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tE0IGkf7BCCO++WyzA7KcOO3DvuTMBXjV74FeLAJASEb+tJfZvTdDCqGkfu6+ZqvI/ebVugkpIsmmLKJxTgOW3n7BxHd/lCGxcA5EO1NxH+6sNbXkJQBLQDzcLDCGGZz2jtvNU9DKo43wl3owAb/px5KqkC2S0JVLHD048ukqcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=qO5rOYU0; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55C8k9nE016328;
+	Thu, 12 Jun 2025 11:33:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	H8jaND8JdJUfBA787uQMniXNfew6S91UWnfQYEWlZ9U=; b=qO5rOYU0QE+X8XW7
+	zu/24y84QT2IzGy37w3R3VQpSZ+z9t7ptH7JgINU5lgqbgQP1sP0zWp7JBVgsIBI
+	GHWxK5kV5nkDgGuMHA/AbE59Z6P0hQhx1b2+uGPinJcT7IYN7LZgpjz49Tf05Hjd
+	cSzfQiiTh/MpTFvSUByZ2Bpn4iTqaS6ymx/U1wIRYFCVrAVj/0ZZMGCx9Gtf3HCp
+	jj3CSEA59A28uRrxZqdJKK9hbAnJmJQXA20279c+8JTE39ycgm2dzHtP9pGSk0Gn
+	ZVytPF4MM0R9EPLovMnKtsqeqNASTWYJDjEXGmSBwf6NTCCUIKzrC9uM+dksf7M3
+	5IsOUQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 474cs2yf4s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 09:22:14 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55C9MD23004696
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Jun 2025 09:22:13 GMT
-Received: from hu-sayalil-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 12 Jun 2025 02:22:09 -0700
-From: Sayali Lokhande <quic_sayalil@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc-owner@vger.kernel.org>
-Subject: [PATCH 1/1] arm64: dts: msm: Add eMMC support for qcs8300
-Date: Thu, 12 Jun 2025 14:51:46 +0530
-Message-ID: <20250612092146.5170-2-quic_sayalil@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250612092146.5170-1-quic_sayalil@quicinc.com>
-References: <20250612092146.5170-1-quic_sayalil@quicinc.com>
+	Thu, 12 Jun 2025 11:33:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 787264005D;
+	Thu, 12 Jun 2025 11:32:49 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 01E0C6CF9BF;
+	Thu, 12 Jun 2025 11:31:55 +0200 (CEST)
+Received: from [10.48.86.185] (10.48.86.185) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 12 Jun
+ 2025 11:31:54 +0200
+Message-ID: <26a4f12a-2295-402e-8e31-45733aa6582d@foss.st.com>
+Date: Thu, 12 Jun 2025 11:31:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y54kBDnqBbsdVGxPtqTYif4I0csf8zhd
-X-Authority-Analysis: v=2.4 cv=HMbDFptv c=1 sm=1 tr=0 ts=684a9c46 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=mS0N-vkzNUTjQwVmwkwA:9
- a=dK27cBEjEv8H6vpz:21 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Y54kBDnqBbsdVGxPtqTYif4I0csf8zhd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEyMDA3MSBTYWx0ZWRfX/h8qeNc3am9r
- NuoqXp2fb8qjirRdOgmEyWklGURhg1QnU/brTHlpCsK3q2nBMRsHOYXdxBR39F1pj2MmOy0qxeO
- TDkZ/conbUE0ST+RW8Mm5RYjMDhmBwDu4YazCobnUB2klMHNJzXFRX7rungv2Uu9vmpmPdesZv8
- h27PooXPLx9OtdVUnr9aLR6Cz+8rNsrBNUy3JrFFXxDR0TaLsH9T3yXldU85zXgA//2mut1NvHo
- xYTxoQYgPXmsDbJcYeNMG2DtfAHjha84GCHaNa9JCY7pzkWaGvNUcQ1ozloqO5qSkF+9bd36S0/
- WpYi2tkVXgfNLRHWovqOiRiLyucyhGVxTvV1x0cBkNKw3Xoxt/lUWVMUgtsVKc1bZE90EwFTE/y
- q7+2oFcfwbivBQ10zC4ZOTKC6wGl5v/pAtoFVqrhLXQk1B/oXoA6YLeMxxGf7AdWVT2K9HOK
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp13
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
+ <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
+ <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
+ <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
+ <3ba588ed-1614-4877-b6fc-b5aa853b8c2e@kernel.org>
+ <714ad17d-53f1-4703-8e13-61c290a8da89@foss.st.com>
+ <7000f63e-5e68-465d-9d7f-1a6ca0524222@kernel.org>
+ <a49d0af2-07b7-4f51-941b-fa25b2879720@foss.st.com>
+ <42a0b7ab-d85d-4d52-a263-4a4648c7ff05@kernel.org>
+ <2865ab3a-1c20-4951-8132-4be98d73d70e@foss.st.com>
+ <f1a63830-0533-4f1c-9116-32e8c1e61a8b@kernel.org>
+Content-Language: en-US
+From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
+In-Reply-To: <f1a63830-0533-4f1c-9116-32e8c1e61a8b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-12_07,2025-06-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 mlxlogscore=691 priorityscore=1501 impostorscore=0
- suspectscore=0 malwarescore=0 phishscore=0 spamscore=0 lowpriorityscore=0
- adultscore=0 mlxscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506120071
 
-Add eMMC support for qcs8300 board.
+On 6/11/25 17:48, Krzysztof Kozlowski wrote:
+> On 11/06/2025 16:08, Clement LE GOFFIC wrote:
+>> On 6/11/25 08:35, Krzysztof Kozlowski wrote:
+>>> On 10/06/2025 15:33, Clement LE GOFFIC wrote:
+>>>> On 6/10/25 14:38, Krzysztof Kozlowski wrote:
+>>>>> On 10/06/2025 14:02, Clement LE GOFFIC wrote:
+>>>>>> On 5/29/25 11:01, Krzysztof Kozlowski wrote:
+>>>>>>> On 28/05/2025 14:14, Clement LE GOFFIC wrote:
+>>>>>>>>>
+>>>>>>>>>> +		};
+>>>>>>>>>> +
+>>>>>>>>>> +		hdp: pinctrl@5002a000 {
+>>>>>>>>>> +			compatible = "st,stm32mp131-hdp";
+>>>>>>>>>> +			reg = <0x5002a000 0x400>;
+>>>>>>>>>> +			clocks = <&rcc HDP>;
+>>>>>>>>>>       			status = "disabled";
+>>>>>>>>>
+>>>>>>>>> Why are you disabling it? What is missing?
+>>>>>>>>
+>>>>>>>> Nothing is missing just disabled by default.
+>>>>>>>> The node is then enabled when needed in board's dts file.
+>>>>>>> Nodes should not be disabled by default if they are complete. That's why
+>>>>>>> I asked what is missing. Drop.
+>>>>>>
+>>>>>> Hi Krzysztof, OK I better understand now.
+>>>>>> So yes the 'pinctrl-*' properties which are board dependent are lacking.
+>>>>>
+>>>>> These are not properties of this node.
+>>>>
+>>>> Does this mean I should add 'pinctrl-*' properties in bindings yaml file ?
+>>>> I don't get it..
+>>>
+>>> These properties have no meaning here, so the hardware description is
+>>> complete. You claim that you miss them thus device is incomplete is just
+>>> not correct: these properties do not belong here! They belong to the
+>>> board but even there they are totally optional. Why would they be a
+>>> required resource?
+>>>
+>>> To remind: we talk here ONLY about required resources.
+>>
+>> Yes, 'pinctrl-*' properties belongs to the board and are not required.
+>> So nothing is missing.
+>>
+>> This hdp node in the SoC dtsi file can be enabled by default.
+>> But the hdp driver will probe and do nothing because without the
+>> 'pinctrl-*' properties from the board files it would not be able to
+>> access to any pin.
+> 
+> 
+> Pinctrl has other features in general, including interfaces to userspace
+> (as pretty often combined with gpio, although not sure if relevant here).
 
-Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 33 ++++++++
- arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 97 +++++++++++++++++++++++
- 2 files changed, 130 insertions(+)
+You're right. Also HDP pinctrl has a GPO feature accessible from userspace.
+But by default the HDP is not connected to any pad; it needs the board 
+'pinctrl-*' properties to configure the SoC pinctrl and expose HDP on 
+the SoC pads.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 8c166ead912c..73aabed0f4f9 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -407,3 +407,36 @@
- &usb_2_dwc3 {
- 	dr_mode = "host";
- };
-+
-+&sdc1_clk {
-+	bias-disable;
-+	drive-strength = <16>;
-+};
-+
-+&sdc1_cmd {
-+	bias-pull-up;
-+	drive-strength = <10>;
-+};
-+
-+&sdc1_data {
-+	bias-pull-up;
-+	drive-strength = <10>;
-+};
-+
-+&sdc1_rclk {
-+	bias-pull-down;
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&vreg_l8a>;
-+	vqmmc-supply = <&vreg_s4a>;
-+
-+	no-sd;
-+	no-sdio;
-+	non-removable;
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc1_clk>, <&sdc1_cmd>, <&sdc1_data>;
-+	pinctrl-1 = <&sdc1_clk_sleep>, <&sdc1_cmd_sleep>, <&sdc1_data_sleep>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 7ada029c32c1..5dee0b913b88 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -3837,6 +3837,62 @@
- 			clock-names = "apb_pclk";
- 		};
- 
-+		sdhc_1: mmc@87C4000 {
-+			compatible = "qcom,sdhci-msm-v5";
-+			status = "disabled";
-+
-+			reg = <0x0 0x87C4000 0x0 0x1000>,
-+				<0x0 0x87C5000 0x0 0x1000>;
-+			reg-names = "hc", "cqhci";
-+
-+			interrupts = <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hc_irq", "pwr_irq";
-+
-+			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-+					<&gcc GCC_SDCC1_APPS_CLK>,
-+					<&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "iface", "core", "xo";
-+			interconnects = <&aggre1_noc MASTER_SDC 0 &mc_virt SLAVE_EBI1 0>,
-+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDC1 0>;
-+			interconnect-names = "sdhc-ddr","cpu-sdhc";
-+
-+			operating-points-v2 = <&sdhc1_opp_table>;
-+			bus-width = <8>;
-+			supports-cqe;
-+			dma-coherent;
-+
-+			qcom,dll-config = <0x000F64EE>;
-+			qcom,ddr-config = <0x80040868>;
-+
-+			mmc-ddr-1_8v;
-+			mmc-hs200-1_8v;
-+			mmc-hs400-1_8v;
-+			mmc-hs400-enhanced-strobe;
-+
-+			iommus = <&apps_smmu 0x0 0x0>;
-+
-+			resets = <&gcc GCC_SDCC1_BCR>;
-+
-+			sdhc1_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-100000000 {
-+					opp-hz = /bits/ 64 <100000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <1800000 400000>;
-+					opp-avg-kBps = <100000 0>;
-+				};
-+
-+				opp-384000000 {
-+					opp-hz = /bits/ 64 <384000000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+					opp-peak-kBps = <5400000 1600000>;
-+					opp-avg-kBps = <390000 0>;
-+				};
-+			};
-+		};
-+
- 		usb_1_hsphy: phy@8904000 {
- 			compatible = "qcom,qcs8300-usb-hs-phy",
- 				     "qcom,usb-snps-hs-7nm-phy";
-@@ -5042,6 +5098,47 @@
- 				pins = "gpio13";
- 				function = "qup2_se0";
- 			};
-+
-+			sdc1_clk: sdc1-clk-state {
-+				pins = "sdc1_clk";
-+
-+			};
-+
-+			sdc1_cmd: sdc1-cmd-state {
-+				pins = "sdc1_cmd";
-+			};
-+
-+			sdc1_data: sdc1-data-state {
-+				pins = "sdc1_data";
-+			};
-+
-+			sdc1_rclk: sdc1-rclk-state {
-+				pins = "sdc1_rclk";
-+			};
-+
-+			sdc1_clk_sleep: sdc1-clk-sleep-state {
-+				pins = "sdc1_clk";
-+				drive-strength = <2>;
-+				bias-bus-hold;
-+			};
-+
-+			sdc1_cmd_sleep: sdc1-cmd-sleep-state {
-+				pins = "sdc1_cmd";
-+				drive-strength = <2>;
-+				bias-bus-hold;
-+			};
-+
-+			sdc1_data_sleep: sdc1-data-sleep-state {
-+				pins = "sdc1_data";
-+				drive-strength = <2>;
-+				bias-bus-hold;
-+			};
-+
-+			sdc1_rclk_sleep: sdc1-rclk-sleep-state {
-+				pins = "sdc1_rclk";
-+				drive-strength = <2>;
-+				bias-bus-hold;
-+			};
- 		};
- 
- 		sram: sram@146d8000 {
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+That's why for me the enabling of the driver should be in the board file 
+together with the SoC pinctrl configuration.
+
+The userland cannot change the pinctrl alternate function mux, this is 
+statically defined by the devicetree.
+
+> 
+>> I consider enabling this driver by default in SoC dtsi file as just
+>> increasing the boot time on "every" board.
+>> It's the board dts that requires the hdp and provides the 'pinctrl-*'
+>> properties to connect the hdp to some SoC pin and then to some signal on
+>> the board. For me it's natural to have the status okay only in the board
+>> dts file.
+> 
+> The DTS is not the way to optimize boot processes. It is OS-independent
+> hardware description. My BSD system for example uses smart driver which
+> avoids probing, but also my user-space needs this device to talk over
+> exposed interface, so why choice of Linux probing should affect others?
+
+As I wrote above the HDP will not offer any functionality without the 
+'pinctrl-*' properties in the board file.
+If you insist, I can enable it in the SoC file but I really don't see 
+any reason for that.
+
+Best regards, Clément
+
+> 
+> Best regards,
+> Krzysztof
 
 
