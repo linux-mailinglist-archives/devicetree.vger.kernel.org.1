@@ -1,112 +1,117 @@
-Return-Path: <devicetree+bounces-185045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C291AD6457
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 02:07:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2ECBAD6488
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 02:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AA693ABAD9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 00:07:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 941353AC471
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jun 2025 00:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8B1182;
-	Thu, 12 Jun 2025 00:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F82118B0F;
+	Thu, 12 Jun 2025 00:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5tJviB8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YBW6FK/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37493EEB3;
-	Thu, 12 Jun 2025 00:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59DE182BC;
+	Thu, 12 Jun 2025 00:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749686831; cv=none; b=ek4XSrTd+eD+hmPlBNuVxp3fUu+NqYm1e1QqwSq3QhIIDz4KaMHRuvtt4pGaFyzdTWaVcGuNjJnOq+RWI5AJvjjGjct3iYCKpSQuFion6f2BqpMxEagx1mLjEnET/UOPwUPFlWMvwG5XP4YxKIu2O3stkFNhfvbJWYhdy7W3mMc=
+	t=1749688289; cv=none; b=LK6ZMRdHSUOyWo8o73N5bftTj10ADV4Iuu24wR/CCbxneI/0e6+dXD4ppVKZgXtlfHOJJed1HdzP9XdVZ83WKCq21t/RZFXl7loYCOnTTw4C4+NLmps99b/fSY06yESSOCccAXbM8KgOZMzFQ0R3d4oHToSymk6GYyDmWVWwP5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749686831; c=relaxed/simple;
-	bh=yRYgNOrFzerntUpYZUAnFZjaYQw5HPRxPmYpNq0gGLM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bfrRbEBM9tpwy6V8GrsNhmSV33kSGAlo0wFXuBtRpOcMHbTXPZeHkh8BKynO6JAfNdaAeTiSukjhIUSYMcfaCC+owM11+Cl5yNUfna7COiXXgfvcOtxALNe+jkPyKfNfhh0ovORruAlSuvL0DmKdyZMHF3BE82nvZIVUsfRTQyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5tJviB8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 882A0C4CEE3;
-	Thu, 12 Jun 2025 00:07:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749686830;
-	bh=yRYgNOrFzerntUpYZUAnFZjaYQw5HPRxPmYpNq0gGLM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=j5tJviB8EasXTx8SQtB+WZlImJ+injl+BY+LghLAzTRK6EV0mf+X8Fy/6vydxaHPm
-	 8/Wi5p6xaCh8IPj5K+BtAwbgDTXXKg9OajBzJ9lBSVPkHtUFUo5xxvgyO1na297Z2p
-	 u7OmoBnscetyYh0y2UPHHl7IpINwavShRVsZWaACaW4IcjVOy3a7mwYAizYhvYnyqi
-	 ZHbueN4c5Me7dhvgycz3CB8ky2NPmzAOa4FZnNXHQpPrKzxPYcgqVrXmYBmHt7bMfw
-	 DXAyuljwnDNesr08zxQjynfGMJCO+j4PJJgdnCzabyNMy7o65gGzKoQJVT3LDvCYKJ
-	 OWK8r3ZWcdLjQ==
-Date: Wed, 11 Jun 2025 19:07:09 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1749688289; c=relaxed/simple;
+	bh=ijocbW+3U9u4OfQLY/KnmpWW4kqwZpzaQZLNGMhL3Sw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZRiEJgmWe07B7DNTAq8D7ZvMP1epQzcOQ3LZu3KDRn6wP89LsAHJ1kN40io40tM6KvQkFbBvQvdYSCGBpscy1/4W2RykhAT2yTVdsScAl9FTrbWvjTNMv39KVhNZT/e8OezQX+4aEZkkP7uITWrxR0gz14PuNzMMWhVva5pnSLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YBW6FK/0; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7d094ef02e5so166063185a.1;
+        Wed, 11 Jun 2025 17:31:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749688287; x=1750293087; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MDViv2kd0c1R0HWjXGJScGRZeTmMy+6a3qoFcXqkWrI=;
+        b=YBW6FK/0+1F+a2XMWVud2XTbkJyXx6v1KKytQubiYQMmAHhUf2uOwH8fJzKVm58bnp
+         DylUyQc6ZcWWmN0CKBymnIs8RKrGjJGeqiXMWTFn7lGA5sgx63aKW8UInoQx3Ts4mETQ
+         phylvZqf955e8UC7feTCt74bFnk/LROyHWnrQPrlYuRkIhG8BEdkSF9UeevHqq2vGrMq
+         P/Sn71Iq2p492XzaaRhIaXR14R1fzwqrUyxR6llPTcluZdbKakv1Tdq6PiuJ15NdlzsG
+         vO3ueNSUm83cUYyIeKwkiQk6s17m3CSU/Px8PfKsMZMV/jScyGDV4/c65mkmwDQqmxrd
+         qiVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749688287; x=1750293087;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MDViv2kd0c1R0HWjXGJScGRZeTmMy+6a3qoFcXqkWrI=;
+        b=ain2t1FkcfJSwJ4iLtfXeNrS6CWPTrrmDMJ25Ji9DFtQnSD8GXoVJ5JRay78oq9hRJ
+         L5vHnb0A39jaLXnCZipdZ9Cq0hrVQpman4tGyZWaAu0KVF2n3tAvjGTaPtokZgygmRHY
+         ACL2/6arD1hyM9fRAe+t40HrfcOdoaAwGz+vVM1XIJhakCVBe3lre7XrTdzEppHsgk3p
+         7Kx7t7NIcxABFo8aUacri2BSa8v2Wj7UwF90EkKwaSpVndLUfdAqmfCXmYdNmv8T0WOv
+         adFWO+jNlx9IliMAvSTMC/nQH0zuq5ee0wDzorovu0N5a/gNoGwf1tffeg1IVriPXhPX
+         Rx0A==
+X-Forwarded-Encrypted: i=1; AJvYcCWV130bYZV5UW8s4E3nyvDhwTW/oInxTS0zNHSQ+Py2f44rP+Es8htmjVBCxjjEWzTTwJZf2NMZ2/Yg@vger.kernel.org, AJvYcCXDfJ3WLrPTK1AsKYrC0jPpSbSuPZLEVp0sc+lmReUwEm4LFYgBYn+nOqZLS8vrpCBGNpSgLjV73bSAjq9P@vger.kernel.org
+X-Gm-Message-State: AOJu0YwR9GR9FSKhl5Ph8Xwn6ZzduSz4j3BCkrE6fq7BVfCbcyHf1Dk/
+	TcosJ6rU0cjKglGjhEuaV3FF55Xi0rge7QC3cEjZhToOXdf1m+X+EZEV
+X-Gm-Gg: ASbGncs27S9P9L06te2+47NFIuikI1gXlJn5XcxlhdiTUZfZEW8zWsQ/wCqq14iq4PG
+	lxB8BhF0QGvdY8uyMUmxqEypxLQaePmKJ9V4sxDbM1HkjGgs6+wnUgNl5eN+oKsjeVnpwO6WaY5
+	D94z+/1vXl6TMFe0fy1jGu6/7r1eNY4drXsR7PuEC7H7o74WUtBX9Dxi0mWufHSQ2DQiy3Ykjb8
+	N0e2chhmmBdsQZMkR/kiig2F7+Ha0bGPztS0JE2yx3jnVnipwpuQvH0KvobzPGUWjmbRTveTMx4
+	kxvWoVuQL+GIK4WmQCxcpV5szIL1zLh1KtG6R2KwpHkvC9ND
+X-Google-Smtp-Source: AGHT+IF0my+KIilfiiQsa8f6QCZhL+Zpc88QOn7BlJUczLXOYa1+uUrywXOxrbxyAJNrFRe8whKRkA==
+X-Received: by 2002:a05:620a:2711:b0:7d0:99f5:9bab with SMTP id af79cd13be357-7d3b2d16800mr226968485a.14.1749688286679;
+        Wed, 11 Jun 2025 17:31:26 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6fb35c55ff4sm2510886d6.92.2025.06.11.17.31.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 17:31:26 -0700 (PDT)
+Date: Thu, 12 Jun 2025 08:30:17 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	Yu Yuan <yu.yuan@sjtu.edu.cn>, Yixun Lan <dlan@gentoo.org>, Ze Huang <huangze@whut.edu.cn>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH RFC 0/3] riscv: sophgo: add top syscon device for cv18xx
+Message-ID: <t26cj5xhmkqro5wgf3vqycvgwqhtwv3x6mo25hde3zretbl5uu@xy5igj6vqejx>
+References: <20250611082452.1218817-1-inochiama@gmail.com>
+ <20250611-doodle-storage-f1f23230adee@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- boerge.struempfel@gmail.com, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
-In-Reply-To: <20250611113039.304742-3-goran.radni@gmail.com>
-References: <20250611113039.304742-1-goran.radni@gmail.com>
- <20250611113039.304742-3-goran.radni@gmail.com>
-Message-Id: <174968682958.1745530.8791331337713653562.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: imx8mp: Add Ultratronik
- Ultra-MACH SBC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250611-doodle-storage-f1f23230adee@spud>
 
-
-On Wed, 11 Jun 2025 13:30:37 +0200, Goran Rađenović wrote:
-> Document the Ultratronik Ultra-MACH SBC, based on the NXP i.MX8MP SoC.
+On Wed, Jun 11, 2025 at 05:14:59PM +0100, Conor Dooley wrote:
+> On Wed, Jun 11, 2025 at 04:24:48PM +0800, Inochi Amaoto wrote:
+> > Add top syscon device bindings related DTS change for CV1800.
+> > 
+> > The patch required the following 3 patch series.
+> > 1. https://lore.kernel.org/all/20250611075321.1160973-1-inochiama@gmail.com
+> > 2. https://lore.kernel.org/all/20250611081804.1196397-1-inochiama@gmail.com
+> > 3. https://lore.kernel.org/all/20250611081000.1187374-1-inochiama@gmail.com
 > 
-> This board is manufactured by Ultratronik GmbH and uses the compatible
-> string "ux,imx8mp-ultra-mach-sbc".
-> 
-> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+> What is RFC about this?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I use RFC to ignore the patch check, as the dependency are not merged.
+This series itself require the binding from link 2 3, which provdes
+binding of the USB2 phy and DMA multiplexer.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/fsl.yaml: properties:compatible:oneOf:130:items:0:enum: 'oneOf' conditional failed, one must be fixed:
-	{'const': 'ultratronik,imx8mp-ultra-mach-sbc'} is not of type 'integer'
-	{'const': 'ultratronik,imx8mp-ultra-mach-sbc'} is not of type 'string'
-	{'const': 'fsl,imx8mp'} is not of type 'integer'
-	{'const': 'fsl,imx8mp'} is not of type 'string'
-	hint: "enum" must be an array of either integers or strings
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/fsl.yaml: properties:compatible:oneOf:130:items:0:enum:0: {'const': 'ultratronik,imx8mp-ultra-mach-sbc'} is not of type 'string'
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/fsl.yaml: properties:compatible:oneOf:130:items:0:enum:1: {'const': 'fsl,imx8mp'} is not of type 'string'
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250611113039.304742-3-goran.radni@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Regards,
+Inochi
 
