@@ -1,109 +1,191 @@
-Return-Path: <devicetree+bounces-185688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEFCAD8CA2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F76CAD8CB0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:02:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 926ED1E25C2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:57:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45BAC166A67
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26028200A3;
-	Fri, 13 Jun 2025 12:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238CE85C5E;
+	Fri, 13 Jun 2025 13:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="G7EMkuUj"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="S2gvxlbh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7959286A1
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 12:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D093F4FA;
+	Fri, 13 Jun 2025 13:02:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749819419; cv=none; b=q4P2NDjrWiknMeYGwuJtZU+0ZbsLrQ5jXn5OnpD1SwfW6+egPN7zeNeEuQmAI9SXngKLdOl5S+58eiDLh1/xc9SvwElKiXe/PzG4E5gyqn/eEJSLu7754yxxcRWxTNadwhhN3Rmfv5sHZiICJezceVwY0XzZDYYtk++62lIb8R4=
+	t=1749819767; cv=none; b=NhZGvM6wafCkcvIEkcwzlj1bbTz05+JO+EApLvZQ+beUPThVFUHE5azfes1wfN5dqGQ6jNNvyLMCg0D7j5LWCtiz49QMLnIAz55IwpR84snZJmDx3BdzwwQwV1HIbOqWduy09nxxRcki45SuF9+97eood2Yba59OWMY6ZTgR0Ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749819419; c=relaxed/simple;
-	bh=aE22SOQvZ4NboRw+vhfJKx6DgFaydjXtrHMM6GlB71A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ndciC9Y7yyItnKIsicibgBa7F8PEU1B0Fz7AM4NMY4SizSpsvGeP+HPCF73t7c83J0bLTP9XBNwHriav2Awtax1l0YdjI3LnCzDq79RZUlXoGc/FZHbRPo3VZ+A3musbtoAfG/thyx67QaVSIMPe2QfVAdmv3BJ+aG0WWQ/X2qY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=G7EMkuUj; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-70f862dbeaeso20966387b3.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 05:56:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1749819415; x=1750424215; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aE22SOQvZ4NboRw+vhfJKx6DgFaydjXtrHMM6GlB71A=;
-        b=G7EMkuUjg83aQqNVAMTRIX8+gssFDXPDydUJjjGRBcYHPpul6nFNmWi0zekcMZDr5Q
-         XWSphwPFhx/LIXTul8MnttqQ15XTsLJ2OoHUM3SPx4psJg8W2SaL5YJIsOqhBa7Eh1yF
-         p+0UeEbrXTtFCuw7TcjAEx/6tNQQcsQ9GG+JYDfCm0ryNjp9veLXpjp5zpYmAYBGKFIx
-         LpwbBgZfUHbVwEG33j3K2RnAkHpeIDT5ieBGrN59G77JJwWY4rNaO5ChSwH0q6LKDIVy
-         M9IVC3quztfvL/8hqixvDUGDrMIzVzrlPxgZpWslCSxI92DcSQuewHFpfksqqLysA1hW
-         /rXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749819415; x=1750424215;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aE22SOQvZ4NboRw+vhfJKx6DgFaydjXtrHMM6GlB71A=;
-        b=L4z8orjBTpBazQWB0QIese9jef9k7+00YbteI3Ps04LhKAfweaBMEqhclN9WQZv793
-         1e/sfvgMJ1vXxKYvY80krvfzsNL4n/DKkIoowJuDNYuqOrgVi5dNX0NOh3+70xtxIsqY
-         ZkMbsGnvmcnuQ6dHufkZBIY0fNGKbb7zU8Z6jjO9YZqanDiL/+CQ0d2vuuxnIZ+DMdlJ
-         1d+WOIC1wzFzUo5Cn9wWsXYFK8vyVI61fCfo5Kyf6euzvbWbq8DoNSttTSKGePlq9T0E
-         9HgipNY5MDr5Yrhk2wlsL83mdYMUnHWASwFK+lDeVHke2DwIjgx22S5KrpCI6JOZaadL
-         rJ9g==
-X-Forwarded-Encrypted: i=1; AJvYcCW8MuPUMfnFBUvUncE3+VR+bLMKLf7m6PI2GTjmxJZmhinnWfy0Lyuj/Ygf3zC6sACPphoqF8AQTvDx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5McouLre06opkZaTV6eg3JgFJW2xrVunsaH0jxbEj6VbPSsFh
-	+CtBzYN8iCV8oSlYmuy3OtTFJQwIVFv10Nzpkiw2Mspecr8PkhtuRc3nwMWz8RcJbak48LEgV48
-	ahmWXl3aw8X4J/t5JGzOBo8Rb4UZnZEN7iIktnaqSNhOFIWvuDkGzYOU=
-X-Gm-Gg: ASbGncumyFAjf+H4jLNS66qo8PKzzmpBDSS3MC74inq4g8f/ogL0fyrTlrhtTxIfMFP
-	XNninYoqWEAOAD9qj+8R/HtpHhStHYnRC1UipXjHfwxqaq6UbRdT6WMDX6Q+Pz9SzlQ86lRKI+f
-	Jq1ANLedMFObKyRsnxk0vX37Ax9/BFlT0E+41djL0vVMjIaQhjCm0VCX+Pnq/zPq/Yyw13/rRL
-X-Google-Smtp-Source: AGHT+IFYgeldfZwYp3BHb1tpuFBy5VB45y2nB1s8q+rJkQPG+XygN84yNhBbrR/75HnxNyXPI4/9cR1MA7nbO+1HRlI=
-X-Received: by 2002:a05:690c:46ca:b0:710:e4c4:a938 with SMTP id
- 00721157ae682-711638009d6mr43312777b3.38.1749819415623; Fri, 13 Jun 2025
- 05:56:55 -0700 (PDT)
+	s=arc-20240116; t=1749819767; c=relaxed/simple;
+	bh=Pv3r8fNxSf7s0LT8i/zRgJXPLo+r28eiR/jm2cETKaY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HeuwWyBaXIfV6Hf4JNDhp7ogm2Y2ABBAuCH5wv4xkAx8CeqP/WYmVsrD3CFgqm3mZvg9jYupEkcfhczOGGax7BgkEyzcJomJUsOuAgzDXPQ0HFv2e1EX+1rj8YTNJDYdnqbtLv1OEXQnK00aa0zLzSXKnX/93ijhhj1hSzA2ZtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=S2gvxlbh; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1749819766; x=1781355766;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Pv3r8fNxSf7s0LT8i/zRgJXPLo+r28eiR/jm2cETKaY=;
+  b=S2gvxlbhPyTFQJiaY8tWgq6R5wzPANk/vAwQKc2qwqSszR7uOZTI/eqN
+   51UOtQWMlIlcNOtjIX2Pl4cGQ2eY2pTVueMvApDVD56IqQ7GhxzMsvAI/
+   O/miA8WuPzXY3aZ54W4L+3k7OzBtUZktTTyF0pDsgkB2aiACApqsFyMlJ
+   Qth5wRFNr7O53T7lt9cPWrKf7bUSngOXcHLGbxknE4Df40Gdl+vfrOAAY
+   a5xMxzArHm/x5Q0KyJr+wxvxq+nz0o3SelkgllH5f3kGVxOQFvTYafzMD
+   q8o+Lod1SvpPYC9wtYqAV3dfDlYtltOLPlYnc9TJMd1x+6wyxm9pVXEZI
+   A==;
+X-CSE-ConnectionGUID: Q/C0oHGPR/isfC6vMelafQ==
+X-CSE-MsgGUID: 8Z1q9i9vTl2vjc/fSEsedg==
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; 
+   d="scan'208";a="274154974"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Jun 2025 06:02:45 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Fri, 13 Jun 2025 06:02:24 -0700
+Received: from vduicu-Virtual-Machine.mshome.net (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Fri, 13 Jun 2025 06:02:21 -0700
+From: <victor.duicu@microchip.com>
+To: <jic23@kernel.org>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
+	<andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <marius.cristea@microchip.com>, <victor.duicu@microchip.com>,
+	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/2] add support for MCP998X
+Date: Fri, 13 Jun 2025 16:02:05 +0300
+Message-ID: <20250613130207.8560-1-victor.duicu@microchip.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611194716.302126-1-ezra@easyb.ch> <20250611194716.302126-2-ezra@easyb.ch>
- <e2ffca36-d2ed-4253-86a6-a990e7931ba0@kernel.org> <CAM1KZSkcc8wh7yuJ-26ASKSehjWfD_QGs0JrKOWm+WMfXiY+DA@mail.gmail.com>
- <9a23e0e5-f48c-41a9-8e15-69cdfbc7eca2@kernel.org> <CAM1KZSkKUYcsx_gpvtEaz7hoT-KfJmQ0xHeFYEGMSZ7FEBDyjA@mail.gmail.com>
- <2ca2da8f-92b9-475f-aa41-bd54a95bfc69@kernel.org>
-In-Reply-To: <2ca2da8f-92b9-475f-aa41-bd54a95bfc69@kernel.org>
-From: Ezra Buehler <ezra@easyb.ch>
-Date: Fri, 13 Jun 2025 14:56:19 +0200
-X-Gm-Features: AX0GCFs0wH48KYSiwteC0kCsIqGsw_UEw1jb3xtZM9hqtvaV-ZBcyYvNeV2wYxE
-Message-ID: <CAM1KZSmLwLopU8rVrPS+wFqAGZn-7LdsikEg6p2f93EiK9_2_Q@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
- property for MT7688
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, linux-mips@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Harvey Hunt <harveyhuntnexus@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Reto Schneider <reto.schneider@husqvarnagroup.com>, 
-	Rob Herring <robh@kernel.org>, Stefan Roese <sr@denx.de>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, devicetree@vger.kernel.org, 
-	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Jun 13, 2025 at 2:41=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
-> That's not a binding, but driver, so obviously it is fine since you are
-> not removing it from bindings.
+From: Victor Duicu <victor.duicu@microchip.com>
 
-And, if we also remove all occurrences of "ralink,mt7688-sysc" from the
-code, as it is not needed from a technical standpoint, can we remove it
-from mediatek,mtmips-sysc.yaml or is there no going back?
+Add support for Microchip MCP998X/33 and MCP998XD/33D
+Multichannel Automotive Temperature Monitor Family.
 
-Cheers,
-Ezra.
+The chips in the family have different numbers of external
+channels, ranging from 1 (MCP9982) to 4 channels (MCP9985).
+Reading diodes in anti-parallel connection is supported
+by MCP9984/85/33 and MCP9984D/85D/33D.
+Dedicated hardware shutdown circuitry is present only
+in MCP998XD and MCP9933D.
+
+Current version of driver does not support interrupts, events and data
+buffering.
+
+Differences related to previous patch:
+v3:
+- move beta parameters to devicetree.
+- change the name of the interrupts and add
+  check to match them to the device in yaml.
+- remove label for device and remove "0x" from
+  channel registers in example in yaml.
+- edit comments in yaml and driver.
+- add minItems to interrupts in yaml.
+- rename microchip,recd12 and microchip,recd34 to
+  microchip,resistance-comp-ch1-2-enable
+  and microchip,resistance-comp-ch3-4-enable.
+- rename microchip,apdd-state to microchip,enable-anti-parallel.
+- add static to mcp9982_3db_values_map_tbl to fix
+  kernel test robot warning.
+- in mcp9982_init() add check to ensure that hardware
+  shutdown feature can't be overridden.
+- replace div_u64_rem with do_div and add
+  asm/div64.h to includes.
+- remove unused includes.
+- add iio_chan_spec in the macro definition of MCP9982_CHAN.
+- remove MCP9982_EXT_BETA_ENBL.
+- in mcp9982_init() replace regmap_assign_bits
+  with regmap_write when setting beta compensation.
+- remove custom attribute enable_extended_temp_range and
+  map it to IIO_CHAN_INFO_OFFSET.
+- add unsigned to int variables that allow it.
+- reorder parameters in mcp9982_priv, change some
+  from int to bool, add const to labels and add dev_name.
+- add check for chips with "D" in the name to not
+  allow sampling frequencies lower than 1 to
+  prevent overriding of hardware shutdown.
+- remove mcp9982_attributes.
+- move mcp9982_calc_all_3db_values() to before
+  mcp9982_init().
+- use MICRO instead of number constant.
+- in mcp9982_write_raw replace ">=" with "==".
+- rename index2 to idx in mcp9982_read_raw().
+- remove i2c_set_clientdata() in mcp9982_probe().
+- since there are no more custom ABI attributes
+  the testing file was removed.
+
+v2:
+- move hysteresis, extended temperature range and beta parameters
+  from devicetree into user space.
+- edit comments in yaml and driver.
+- remove "|" in descpriptions, remove "+" from PatternProperties in yaml.
+- add default to microchip,ideality-factor, delete blank lines and wrap to
+  80 chars in yaml.
+- remove variables with upper case.
+- add check for microchip,apdd-state and microchip,recd34 in yaml.
+- improve coding style in driver code.
+- add includes for all functions used.
+- rename MCP9982_INT_HIGH_BYTE_ADDR to MCP9982_INT_VALUE_ADDR and
+  MCP9982_INT_LOW_BYTE_ADDR to MCP9982_FRAC_VALUE_ADDR.
+- remove custom attribute running_average_window and
+  running_average_window_available and map them to a low pass filter.
+- update sysfs-bus-iio-temperature-mcp9982 to reflect current
+  driver attributes and point to next kernel version (6.17).
+- use compound literal to define driver channels.
+- replace device_property_read_string() with i2c_get_match_data() to read
+  chip name from devicetree.
+- remove MCP9982_DEV_ATTR and mcp9982_prep_custom_attributes().
+- remove client, chip_name, iio_info from mcp9982_priv.
+- replace sprintf() with sysfs_emit().
+- remove error messages which are triggered by keyboard input.
+- replace devm_kzalloc() with devm_kcalloc(), array mcp9982_chip_config[] with
+  individual structures, device_property_present() with device_property_read_bool().
+- reordered parameters in mcp9982_features and mcp9982_priv to optimize memory
+  allocation.
+- remove .endianness from channel properties.
+- change name of some parameters in mcp9982_priv.
+- add check for reg value 0 from devicetree (channel 0 is for internal temperature
+  and can't be disabled).
+
+v1:
+- inital version.
+
+Victor Duicu (2):
+  dt-bindings: iio: temperature: add support for MCP998X
+  iio: temperature: add support for MCP998X
+
+ .../iio/temperature/microchip,mcp9982.yaml    | 211 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/temperature/Kconfig               |  10 +
+ drivers/iio/temperature/Makefile              |   1 +
+ drivers/iio/temperature/mcp9982.c             | 778 ++++++++++++++++++
+ 5 files changed, 1007 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
+ create mode 100644 drivers/iio/temperature/mcp9982.c
+
+
+base-commit: 0c86e33819785fe50616b6ee3fb35c1e4be406d5
+-- 
+2.48.1
+
 
