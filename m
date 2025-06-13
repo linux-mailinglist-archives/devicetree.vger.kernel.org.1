@@ -1,526 +1,461 @@
-Return-Path: <devicetree+bounces-185863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B41AD9865
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 00:58:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD831AD986F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 01:07:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C0C1894D3F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 22:59:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19C873B896C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 23:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF3D28D8D1;
-	Fri, 13 Jun 2025 22:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9592E28D8ED;
+	Fri, 13 Jun 2025 23:07:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="w5v2gWlS"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="oaImb+BO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2085.outbound.protection.outlook.com [40.107.244.85])
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2F02E11D4;
-	Fri, 13 Jun 2025 22:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.85
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749855533; cv=fail; b=CGQIcgtQFk1WlN6Y0F/hF79N2LBaVoK1lrpuRqrod4q0Eom0yO/vJERoig5CENDxnZRATSwrRFkVP6+FhiIz/B+H9ejvEMvzYdJmeBMHjwyejXFlC8EQ5mIMOoCC38XmnfwxOKC/mUklsfNexpJjICOS/XC2qp3A1KoO+cSgzUs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749855533; c=relaxed/simple;
-	bh=EgkLc3JJRA9TNz8yEXFR/eaveX3M7bmYSFxKjFhQiw8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=rltO4OYtdMTbVq9aWSc3Ztzs9V9Jz6eVmY5VFcl0FQQNZNfrsbO0c9o3J07l2GcFGlqogFNW3xORXhddryfy7WjGqXgSBD0OrFbIMVRifxv68ocpRxCfTvkeV8PXxEeUM6/8FIGPIjNkneuTvZvJYYb/kjpf9qP8/6JLwLVw2lM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=w5v2gWlS; arc=fail smtp.client-ip=40.107.244.85
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GElzcAS4iNaHm/tgxh8mOH5RW+I7WK/mKSx/chUD2CDgXjaFqOtH8of5JoT/GpEmk8g5Nas0u+scn3q6rhye5vilXEaouTCHgQ+XCOTU5V6N3gOW3iiy3uwTE9/gww6AlMxuMUbgaxcrsUm87dHwVP+eP1acxiNgHaz9hAmBDSn/LhPiYNGIOr7gEzfg/DoD3WRWrV/hsmheKy9s152iUwPuwHJaEOLtVEY78RvrOiHSE+9YLmmJCiMOTD7KvmaQQ76ChytZAPXPtMrcig/E1S3HrmGW0tWVYa8Bh4FTrYLv4MTMQSRE75sG8U55hozCjrimDTwZdm0Ld5cGK0P/SA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LGnjEMJKqJ6w6CtV+7n15G+BPlwsZPuLBFNf4R+fmZ0=;
- b=QsKL0bg0Pz8Zav06582vJBXaGC41tadld3UrT271EfmEXMVm9iPFvefTJvUbO8NTuTywH6f1y3NxWKqmInjQ7dC+FiXxXicYMuR+sjvjGNaRl0TiTip9QmtMUUSPVpGPmmKBfBqWV3ebQmHFK82+kAcOeI3/XGPW4kbqtiUNWpHB8kmBGQAv6LtXey3aSM4qD7pFbpkyn2YHslTGvn/jqZuhbdMrPIuIrp26NT7kLWIFbS/eOjl8D8udbEuY4K1I1I8G+cQXu+M8aec3UyM8euYOo6Pp3dGvQ4RpgO8/GQdmNuS6iRVpn8Duw8NMHBS1bEAXH4QOjD4sYangRlJh5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LGnjEMJKqJ6w6CtV+7n15G+BPlwsZPuLBFNf4R+fmZ0=;
- b=w5v2gWlS/CDOdVuslaZh7KU0YkQByl6n6d91NNSpXufwMaWpT6B9QMeSXdDQTKJ7zAlLzoTZIcIzlZVeYd5LCB0aQPuO838st78ysQfhAUgrvgl6T/KlaFShs9zFh15Qh3mkAas2bmsgMEG3MB9JIWdNJtv8lN6jxo26SEuJqzO+kMC4hC76zlFjoPq+/rOn/f+RgKS/oOSFIyN5+iQhKDGvTn/L+93DxupmBTAj//5o2UfjDgvtHp0osoYP6AKJQI/dYXKtbOdnKZ0+cBe+6uYAzkMt6jYKdNfC3zZWmvQ2yoIIiCQCqUWCGYAg8+5nq6b6bR+UGDbUXhPWmq6dYw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
- by DM4PR03MB6976.namprd03.prod.outlook.com (2603:10b6:8:43::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8835.26; Fri, 13 Jun 2025 22:58:48 +0000
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c%5]) with mapi id 15.20.8835.018; Fri, 13 Jun 2025
- 22:58:47 +0000
-From: Matthew Gerlach <matthew.gerlach@altera.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	maxime.chevallier@bootlin.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	richardcochran@gmail.com,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>,
-	Mun Yew Tham <mun.yew.tham@altera.com>
-Subject: [PATCH v6] dt-bindings: net: Convert socfpga-dwmac bindings to yaml
-Date: Fri, 13 Jun 2025 15:58:44 -0700
-Message-Id: <20250613225844.43148-1-matthew.gerlach@altera.com>
-X-Mailer: git-send-email 2.35.3
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY1P220CA0004.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:59d::15) To BYAPR03MB3461.namprd03.prod.outlook.com
- (2603:10b6:a02:b4::23)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26CD22A4E9
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 23:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749856060; cv=none; b=PgGOBNJYxesgWQWowFl0iKDiuBMZcSQ5U62EKj3c4nO+9c9uQhQ05H31czXJyt8FGE++XtP9g6qO0OZQ5izaN0b0hJsOKtEGGC12AEam6aPfAx/yqbtWdOBhoa/NoCVvNeUmHAb4/5KOwTMlcFxVqy8mBfbJ5vhC/deRdOov45c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749856060; c=relaxed/simple;
+	bh=4ODlo4NCGapsyQT3x6q33ftK/BJIybrpczdYBg4zG+Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oNAYQS8CjcQuy+AJMATa96GZVVcXdMu4tlAWxm56lPlYsRz0Hsua+0rosGxkNl7H6DxZ7SClKl5GCaeUdLiGFSCYOIwpiq10wN5tAQr+0wuEtL7fkHYZKVSXHf5ZYIzlXrU76WCDOVnkum4AhvmuutrQV1nBLhObQ6Rp2ENqdC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=oaImb+BO; arc=none smtp.client-ip=91.218.175.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <0f968b01-b607-46a7-b712-dba4a1b63290@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749856044;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Qzh0q3kPhCowjX0P+3Cs7CCHVbnsaoKh1I97INlJ1oA=;
+	b=oaImb+BOoyPj+TKewR04u7RSfMiPNudSQ+eYJR3N1hcJaFLm2ixS2ZsJVkTgytubIxs/Ao
+	m+pXM5/By2yCbPsz7rnFYbS9ar6V1Fw2KTbvPc/qnn/b1wCVeSbVsg657C+uzi6wqjOjJU
+	DNo9c2yvdYMuax/GwQBomIqznl5CEEw=
+Date: Fri, 13 Jun 2025 16:07:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|DM4PR03MB6976:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3511af49-cd25-4428-7f4d-08ddaacdda84
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|921020|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?3N34t0jzDk//PiYGCo9pccqvyQKXvonnoX4qt8ERfda64OTBAtTnhKNKdHWX?=
- =?us-ascii?Q?KO8Mcvu9pAhCZGhHzO4vHbOfbP77xROz5J9SSRysuXZ111pTPBPIxGNXlmM7?=
- =?us-ascii?Q?gFPjHwewLkF8YGsXnFtfYTJAN3NYNCnmgzje5Bx9FTtWJjxD1RaJ8nRzSU9o?=
- =?us-ascii?Q?zOd8fixBRSEyctzwftpOc0e4CFmT9Lf/VLqZGJbtalD/FOkp6hYzg4c7Oa9s?=
- =?us-ascii?Q?9aKVr2N4mjRQklhrAcBcwL2ANCcCRlZKFkhTzbg3ez3NteGBkE8EFBfaPYcF?=
- =?us-ascii?Q?XuVweb2D3cDKP5z4N6a173Aaw7/RKRVeWxwcpkGn2r0crrdYagNyCpSqZbTF?=
- =?us-ascii?Q?+zWdKVqD2dF4n1+FJLl0vG57++5DgjTUZevaKwgvBmeVLiIHTrEMfZz2s/Fv?=
- =?us-ascii?Q?ytakPdJeYEUDP/DyQ0Aiy8CaWC3W8Bc0qtp2tSxW7nrfmQIZC7NoBOrnvk9P?=
- =?us-ascii?Q?2rmoADJW140lqejzMNoU6NCJqXDIZqyACz0NnUxMgFxiOCPpSIHRwvk+8acz?=
- =?us-ascii?Q?bCKq/VoW5gFQtJ0z9qH/BFA/DEpP59hhnhRdWmTxtGgpgZ5OIEiroH2lKHum?=
- =?us-ascii?Q?3ZJ18xMlSnQKOM3yn2k+rJ2D4pm7CSPCobNOzyxAvlG6ILYqMVm79BanD7dN?=
- =?us-ascii?Q?XLkRFVxg2t0yjbhjpr67/aH229FDcvYcQ0HG0kN/IVDx9EaJbVeG5CfQ9/6S?=
- =?us-ascii?Q?89gAIvHvrilMcfSQNB794BYuzQHH2V5KlPijSRy+rI9sMQMCFeM5bRejPaY3?=
- =?us-ascii?Q?2Nngh+fQ/Hh9kEqMJrs+RqycRYVBfRI41bkwbIgZi3/8X6ijJUahBjpuPOXx?=
- =?us-ascii?Q?SmwD4g1F0roZUP+f5XwLOs/pmtNmLLeUhLPg4lBcmNbJoP0PCMe3R8VLQYBZ?=
- =?us-ascii?Q?8wuN/PZwO4PoOUuLvM9cqsvehMta+YVKgPh6g4sJ3FOmc1+n/ZL1YgnxNKtG?=
- =?us-ascii?Q?yz9gD3vxknH5WG3zyOjQpJjy5D2JOZUXVqjyzFhYg92Vt56gHoVku692HjMO?=
- =?us-ascii?Q?Z6QK64Z/ifLubowo2/qSWnO5GGqVQ6NMmrCakX+vtI//iOKHA3Z2Kn7EuM1A?=
- =?us-ascii?Q?ZhALO7d7WFQ/XVH5+K5CMjZ+lSyO+YksERLOZzfXtl6kEZXeS2gEBggpI55q?=
- =?us-ascii?Q?Q2heu6u4q4jtq0K+EmVIHWKCFrVj1nj/Q2CAnztDG5HeMORO+OgWZMPYeVp5?=
- =?us-ascii?Q?5JGjQA6VrBwdgQ3XExnsYBvq7IqbyJgIcyD6bmuOD66x7qFF6NAf4rH5BXQO?=
- =?us-ascii?Q?AJ7o+h13YEatgdaPyCSxU0afF1UZHG4/Pm+G7GPziDS8Fu03qQCYgHwzU7sC?=
- =?us-ascii?Q?vxXNgb5+gIhZ5Qhhj11n/Q25Xe3mcT7iWG0wiRlsAcdD0JJpJr78Acf1sWzS?=
- =?us-ascii?Q?KlVkBmwL8YxS8c6qyJrd90+ztEEyLXFlbEUioqOGPkkbzvmsDw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(921020)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?+awCzfuH68NEYj5Ad+EteLpR+gkhRooLHCn4Vz9mY1EMB5PfsncBjLHPMsTP?=
- =?us-ascii?Q?9YoKoWwA1y6S5QG2CXfWa6etb5aOysKhRsL7rgJ8Tdn/C10jxNy6E3ZphPHo?=
- =?us-ascii?Q?84fYs4JHqvWBtl+dX7Vh6AA6yv8Fx69KinFz1d1z49evlwBVBXP6g25S6Zor?=
- =?us-ascii?Q?4wM07Awmg3GOiBaYPsCUt+vTSfoa9aq0xhNOH9mq7XrNYhMGXv3Jqa+Cbjmm?=
- =?us-ascii?Q?FEvPUQpOfM4qx4PnbJsVg4nJyinxvC+ufRtBrwxk71seQYWtNqAOdwwEvkxY?=
- =?us-ascii?Q?aLN3bH/z2Bw+P5YDm3L0L0F5a7/8uPiAFSq+ABFMbWxe+62S9HJzR95L1K3Y?=
- =?us-ascii?Q?2Z1SAZzK5+uL8pvdHuVut4u0V3Gc64JJWKThAVyZfRtqLHt0+hiXcTfck5KY?=
- =?us-ascii?Q?hNEwPZsSsKixWP2zsd9cBqRtbne2hKx7wh3wzgyJtC0XVUeFz7WcSLWz3/j7?=
- =?us-ascii?Q?u+k5X06ZTGV9esCDM6ctsLhilueC1qk90QZRJmIHyjDYkWtsjLPb33OqyRDT?=
- =?us-ascii?Q?LzQ+AsAMOm2N0UMU8bp+kgkLbWjDtloG8sHl6PCbbX3EmOagKo/vjC2GqwZe?=
- =?us-ascii?Q?i16YogSC9LRRVAbVP1IWF7xsXdo/qnww41OjxL0o2kCbUWvJwaB5knXYzYpY?=
- =?us-ascii?Q?Pe6q3d1t/JchnSo+7556WaMqJQv047ugSGk9bzGkxj/rJOBTzPs5+dUhpO/P?=
- =?us-ascii?Q?HsORqoqRsdMxxv/7iJPZ1vf89tST5h7yCFGC6fQHO6li/MPgYLMr92m+rLJG?=
- =?us-ascii?Q?4QSWCaxGsOoud0GAvSto+X2UESKVy+RgGMP7kZhjU1j/xN+KAVU175vt1Ngq?=
- =?us-ascii?Q?c9CPUemSpxIma6Wycln7s6r/hNX2LemUntqaYKyG2X+Pv38dK+Su9Fsd5qkM?=
- =?us-ascii?Q?X4t1XV6SpgNC7f/T32mcObIAWTzTDGS5zTPByvoLTcCQIJU8NsvAlmp2uUz0?=
- =?us-ascii?Q?xZUi6Giy+G2rJeyK4aIfUVwIMN+15xFtHa2sQL5QTvPnxj5t0LonwXKzTDni?=
- =?us-ascii?Q?vThNFVyCq7ypdkZwdGc8jANtXthWxQ5lP0I9zG4uk638xQJjBlLi4/xD0Y1y?=
- =?us-ascii?Q?MNM7Y5acVYG1fzudzRc2M8Dn+O9SQ6Y+5OYYWfoPNLjNiIwlIc8xZdxmrv7S?=
- =?us-ascii?Q?a0nYHi1z9iYN7eOAoCc+GblVkJy6ygL/gd1Lv+j/hxI3ZQWw9aq2u3K0kSsw?=
- =?us-ascii?Q?AYQG80KZQVbxNMERZJMY2TQny9EPS3CJP8PGH+lKX5TzBbGAszKdfy7dIdXd?=
- =?us-ascii?Q?TRUaJ4I0BT/RBMshUetpLSpqfkwAVjkWBFuw2x04EyM2bOtv0BcqX8nPfNNK?=
- =?us-ascii?Q?uNRuv+UXuCLI4wa+Z0lNPqIHNizkPOIhrSnr/0JbZE6l7l8Wp2rDPieRTJIb?=
- =?us-ascii?Q?72Nm92wIV0aW1qN7PGQpHxuBtHB4XAQW9aqhunstPboJl3iFy1v6ISjMO+CL?=
- =?us-ascii?Q?ZsCTxw/iiFRKlS4hClxlCR2scWLVZwLJv+1cmUjpJXctHFXOXd+ZifioWV0k?=
- =?us-ascii?Q?DTnhrPiY5BFI6J6A3F5e83iRo8UT0IW0FWHy2slRkKT3M+ZcgCvESLx3ubll?=
- =?us-ascii?Q?z24dSmYOWJltEXHT9OsO81Ye3y9oGqvrGww2g7bk04GlTRLu+fRX2Ww57mDZ?=
- =?us-ascii?Q?Pw=3D=3D?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3511af49-cd25-4428-7f4d-08ddaacdda84
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 22:58:47.1473
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AfcejGI0Firr1NsXKoMooeuqe5jrb17QjXuDE3uHnDsV53vslOLkGDEHe/URNtWBJUS7n3f0A4dUdNYht0pj0icOLuvzQQHTUM5WL21Csak=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR03MB6976
+Subject: Re: [PATCH v5 12/23] irqchip: Add driver for the RPMI system MSI
+ service group
+To: Anup Patel <apatel@ventanamicro.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Len Brown <lenb@kernel.org>,
+ Sunil V L <sunilvl@ventanamicro.com>, Rahul Pathak
+ <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+ Andrew Jones <ajones@ventanamicro.com>,
+ Samuel Holland <samuel.holland@sifive.com>, Anup Patel
+ <anup@brainfault.org>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250611062238.636753-1-apatel@ventanamicro.com>
+ <20250611062238.636753-13-apatel@ventanamicro.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Atish Patra <atish.patra@linux.dev>
+In-Reply-To: <20250611062238.636753-13-apatel@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Convert the bindings for socfpga-dwmac to yaml. Since the original
-text contained descriptions for two separate nodes, two separate
-yaml files were created.
 
-Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
-Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-v6:
- - Fix reference to altr,gmii-to-sgmii-2.0.yaml in MAINTAINERS.
- - Add Reviewed-by:
+On 6/10/25 11:22 PM, Anup Patel wrote:
+> The RPMI specification defines a system MSI service group which
+> allows application processors to receive MSIs upon system events
+> such as graceful shutdown/reboot request, CPU hotplug event, memory
+> hotplug event, etc.
+>
+> Add an irqchip driver for the RISC-V RPMI system MSI service group
+> to directly receive system MSIs in Linux kernel.
+>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>   drivers/irqchip/Kconfig                    |   7 +
+>   drivers/irqchip/Makefile                   |   1 +
+>   drivers/irqchip/irq-riscv-rpmi-sysmsi.c    | 285 +++++++++++++++++++++
+>   include/linux/mailbox/riscv-rpmi-message.h |  13 +
+>   4 files changed, 306 insertions(+)
+>   create mode 100644 drivers/irqchip/irq-riscv-rpmi-sysmsi.c
+>
+> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> index 0d196e447142..96bf6aa55681 100644
+> --- a/drivers/irqchip/Kconfig
+> +++ b/drivers/irqchip/Kconfig
+> @@ -617,6 +617,13 @@ config RISCV_IMSIC
+>   	select GENERIC_MSI_IRQ
+>   	select IRQ_MSI_LIB
+>   
+> +config RISCV_RPMI_SYSMSI
+> +	bool
+> +	depends on MAILBOX
+> +	select IRQ_DOMAIN_HIERARCHY
+> +	select GENERIC_MSI_IRQ
+> +	default RISCV
+> +
+>   config SIFIVE_PLIC
+>   	bool
+>   	depends on RISCV
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 23ca4959e6ce..4fd966aa78ab 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -103,6 +103,7 @@ obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
+>   obj-$(CONFIG_RISCV_APLIC)		+= irq-riscv-aplic-main.o irq-riscv-aplic-direct.o
+>   obj-$(CONFIG_RISCV_APLIC_MSI)		+= irq-riscv-aplic-msi.o
+>   obj-$(CONFIG_RISCV_IMSIC)		+= irq-riscv-imsic-state.o irq-riscv-imsic-early.o irq-riscv-imsic-platform.o
+> +obj-$(CONFIG_RISCV_RPMI_SYSMSI)		+= irq-riscv-rpmi-sysmsi.o
+>   obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
+>   obj-$(CONFIG_STARFIVE_JH8100_INTC)	+= irq-starfive-jh8100-intc.o
+>   obj-$(CONFIG_THEAD_C900_ACLINT_SSWI)	+= irq-thead-c900-aclint-sswi.o
+> diff --git a/drivers/irqchip/irq-riscv-rpmi-sysmsi.c b/drivers/irqchip/irq-riscv-rpmi-sysmsi.c
+> new file mode 100644
+> index 000000000000..06f64936802a
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-riscv-rpmi-sysmsi.c
+> @@ -0,0 +1,285 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (C) 2025 Ventana Micro Systems Inc. */
+> +
+> +#include <linux/bits.h>
+> +#include <linux/bug.h>
+> +#include <linux/device.h>
+> +#include <linux/device/devres.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/errno.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/mailbox_client.h>
+> +#include <linux/mailbox/riscv-rpmi-message.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/types.h>
+> +
+> +struct rpmi_sysmsi_get_attrs_rx {
+> +	__le32 status;
+> +	__le32 sys_num_msi;
+> +	__le32 flag0;
+> +	__le32 flag1;
+> +};
+> +
+> +#define RPMI_SYSMSI_MSI_ATTRIBUTES_FLAG0_PREF_PRIV	BIT(0)
+> +
+> +struct rpmi_sysmsi_set_msi_state_tx {
+> +	__le32 sys_msi_index;
+> +	__le32 sys_msi_state;
+> +};
+> +
+> +struct rpmi_sysmsi_set_msi_state_rx {
+> +	__le32 status;
+> +};
+> +
+> +#define RPMI_SYSMSI_MSI_STATE_ENABLE			BIT(0)
+> +#define RPMI_SYSMSI_MSI_STATE_PENDING			BIT(1)
+> +
+> +struct rpmi_sysmsi_set_msi_target_tx {
+> +	__le32 sys_msi_index;
+> +	__le32 sys_msi_address_low;
+> +	__le32 sys_msi_address_high;
+> +	__le32 sys_msi_data;
+> +};
+> +
+> +struct rpmi_sysmsi_set_msi_target_rx {
+> +	__le32 status;
+> +};
+> +
+> +struct rpmi_sysmsi_priv {
+> +	struct device		*dev;
+> +	struct mbox_client	client;
+> +	struct mbox_chan	*chan;
+> +	u32			nr_irqs;
+> +	u32			gsi_base;
+> +};
+> +
+> +static int rpmi_sysmsi_get_num_msi(struct rpmi_sysmsi_priv *priv)
+> +{
+> +	struct rpmi_sysmsi_get_attrs_rx rx;
+> +	struct rpmi_mbox_message msg;
+> +	int ret;
+> +
+> +	rpmi_mbox_init_send_with_response(&msg, RPMI_SYSMSI_SRV_GET_ATTRIBUTES,
+> +					  NULL, 0, &rx, sizeof(rx));
+> +	ret = rpmi_mbox_send_message(priv->chan, &msg);
+> +	if (ret)
+> +		return ret;
+> +	if (rx.status)
+> +		return rpmi_to_linux_error(le32_to_cpu(rx.status));
+> +
+> +	return le32_to_cpu(rx.sys_num_msi);
+> +}
+> +
+> +static int rpmi_sysmsi_set_msi_state(struct rpmi_sysmsi_priv *priv,
+> +				     u32 sys_msi_index, u32 sys_msi_state)
+> +{
+> +	struct rpmi_sysmsi_set_msi_state_tx tx;
+> +	struct rpmi_sysmsi_set_msi_state_rx rx;
+> +	struct rpmi_mbox_message msg;
+> +	int ret;
+> +
+> +	tx.sys_msi_index = cpu_to_le32(sys_msi_index);
+> +	tx.sys_msi_state = cpu_to_le32(sys_msi_state);
+> +	rpmi_mbox_init_send_with_response(&msg, RPMI_SYSMSI_SRV_SET_MSI_STATE,
+> +					  &tx, sizeof(tx), &rx, sizeof(rx));
+> +	ret = rpmi_mbox_send_message(priv->chan, &msg);
+> +	if (ret)
+> +		return ret;
+> +	if (rx.status)
+> +		return rpmi_to_linux_error(le32_to_cpu(rx.status));
+> +
+> +	return 0;
+> +}
+> +
+> +static int rpmi_sysmsi_set_msi_target(struct rpmi_sysmsi_priv *priv,
+> +				      u32 sys_msi_index, struct msi_msg *m)
+> +{
+> +	struct rpmi_sysmsi_set_msi_target_tx tx;
+> +	struct rpmi_sysmsi_set_msi_target_rx rx;
+> +	struct rpmi_mbox_message msg;
+> +	int ret;
+> +
+> +	tx.sys_msi_index = cpu_to_le32(sys_msi_index);
+> +	tx.sys_msi_address_low = cpu_to_le32(m->address_lo);
+> +	tx.sys_msi_address_high = cpu_to_le32(m->address_hi);
+> +	tx.sys_msi_data = cpu_to_le32(m->data);
+> +	rpmi_mbox_init_send_with_response(&msg, RPMI_SYSMSI_SRV_SET_MSI_TARGET,
+> +					  &tx, sizeof(tx), &rx, sizeof(rx));
+> +	ret = rpmi_mbox_send_message(priv->chan, &msg);
+> +	if (ret)
+> +		return ret;
+> +	if (rx.status)
+> +		return rpmi_to_linux_error(le32_to_cpu(rx.status));
+> +
+> +	return 0;
+> +}
+> +
+> +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
+> +{
+> +	struct rpmi_sysmsi_priv *priv = irq_data_get_irq_chip_data(d);
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+> +	int ret;
+> +
+> +	ret = rpmi_sysmsi_set_msi_state(priv, hwirq, 0);
+> +	if (ret)
+> +		dev_warn(priv->dev, "Failed to mask hwirq %lu (error %d)\n", hwirq, ret);
+> +	irq_chip_mask_parent(d);
+> +}
+> +
+> +static void rpmi_sysmsi_irq_unmask(struct irq_data *d)
+> +{
+> +	struct rpmi_sysmsi_priv *priv = irq_data_get_irq_chip_data(d);
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+> +	int ret;
+> +
+> +	irq_chip_unmask_parent(d);
+> +	ret = rpmi_sysmsi_set_msi_state(priv, hwirq, RPMI_SYSMSI_MSI_STATE_ENABLE);
+> +	if (ret)
+> +		dev_warn(priv->dev, "Failed to unmask hwirq %lu (error %d)\n", hwirq, ret);
+> +}
+> +
+> +static void rpmi_sysmsi_write_msg(struct irq_data *d, struct msi_msg *msg)
+> +{
+> +	struct rpmi_sysmsi_priv *priv = irq_data_get_irq_chip_data(d);
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+> +	int ret;
+> +
+> +	/* For zeroed MSI, do nothing as of now */
+> +	if (!msg->address_hi && !msg->address_lo && !msg->data)
+> +		return;
+> +
+> +	ret = rpmi_sysmsi_set_msi_target(priv, hwirq, msg);
+> +	if (ret) {
+> +		dev_warn(priv->dev, "Failed to set target for hwirq %lu (error %d)\n",
+> +			 hwirq, ret);
+> +	}
+> +}
+> +
+> +static void rpmi_sysmsi_set_desc(msi_alloc_info_t *arg, struct msi_desc *desc)
+> +{
+> +	arg->desc = desc;
+> +	arg->hwirq = desc->data.icookie.value;
+> +}
+> +
+> +static int rpmi_sysmsi_translate(struct irq_domain *d, struct irq_fwspec *fwspec,
+> +				 unsigned long *hwirq, unsigned int *type)
+> +{
+> +	struct msi_domain_info *info = d->host_data;
+> +	struct rpmi_sysmsi_priv *priv = info->data;
+> +
+> +	if (WARN_ON(fwspec->param_count < 1))
+> +		return -EINVAL;
+> +
+> +	/* For DT, gsi_base is always zero. */
+> +	*hwirq = fwspec->param[0] - priv->gsi_base;
+> +	*type = IRQ_TYPE_NONE;
 
-v5:
- - Fix dt_binding_check error: comptabile.
- - Rename altr,gmii-to-sgmii.yaml to altr,gmii-to-sgmii-2.0.yaml
+Why do we set the type to IRQ_TYPE_NONE ?
+Either we shouldn't care about the type here  or edge type as it is only 
+MSI driver.
+We also throw a warning for user if the any other irq type is passed in 
+msi_translate call back.
 
-v4:
- - Change filename from socfpga,dwmac.yaml to altr,socfpga-stmmac.yaml.
- - Updated compatible in select properties and main properties.
- - Fixed clocks so stmmaceth clock is required.
- - Added binding for altr,gmii-to-sgmii.
- - Update MAINTAINERS.
-
-v3:
- - Add missing supported phy-modes.
-
-v2:
- - Add compatible to required.
- - Add descriptions for clocks.
- - Add clock-names.
- - Clean up items: in altr,sysmgr-syscon.
- - Change "additionalProperties: true" to "unevaluatedProperties: false".
- - Add properties needed for "unevaluatedProperties: false".
- - Fix indentation in examples.
- - Drop gmac0: label in examples.
- - Exclude support for Arria10 that is not validating.
----
- .../bindings/net/altr,gmii-to-sgmii-2.0.yaml  |  49 ++++++
- .../bindings/net/altr,socfpga-stmmac.yaml     | 162 ++++++++++++++++++
- .../devicetree/bindings/net/socfpga-dwmac.txt |  57 ------
- MAINTAINERS                                   |   7 +-
- 4 files changed, 217 insertions(+), 58 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
- create mode 100644 Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-
-diff --git a/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml b/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
-new file mode 100644
-index 000000000000..aafb6447b6c2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+# Copyright (C) 2025 Altera Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,gmii-to-sgmii-2.0.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera GMII to SGMII Converter
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@altera.com>
-+
-+description:
-+  This binding describes the Altera GMII to SGMII converter.
-+
-+properties:
-+  compatible:
-+    const: altr,gmii-to-sgmii-2.0
-+
-+  reg:
-+    items:
-+      - description: Registers for the emac splitter IP
-+      - description: Registers for the GMII to SGMII converter.
-+      - description: Registers for TSE control.
-+
-+  reg-names:
-+    items:
-+      - const: hps_emac_interface_splitter_avalon_slave
-+      - const: gmii_to_sgmii_adapter_avalon_slave
-+      - const: eth_tse_control_port
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    phy@ff000240 {
-+        compatible = "altr,gmii-to-sgmii-2.0";
-+        reg = <0xff000240 0x00000008>,
-+              <0xff000200 0x00000040>,
-+              <0xff000250 0x00000008>;
-+        reg-names = "hps_emac_interface_splitter_avalon_slave",
-+                    "gmii_to_sgmii_adapter_avalon_slave",
-+                    "eth_tse_control_port";
-+    };
-diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-new file mode 100644
-index 000000000000..ccbbdb870755
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-@@ -0,0 +1,162 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,socfpga-stmmac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera SOCFPGA SoC DWMAC controller
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@altera.com>
-+
-+description:
-+  This binding describes the Altera SOCFPGA SoC implementation of the
-+  Synopsys DWMAC for the Cyclone5, Arria5, Stratix10, and Agilex7 families
-+  of chips.
-+  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
-+  # does not validate against net/snps,dwmac.yaml.
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - altr,socfpga-stmmac
-+          - altr,socfpga-stmmac-a10-s10
-+
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: altr,socfpga-stmmac
-+          - const: snps,dwmac-3.70a
-+          - const: snps,dwmac
-+      - items:
-+          - const: altr,socfpga-stmmac-a10-s10
-+          - const: snps,dwmac-3.74a
-+          - const: snps,dwmac
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: GMAC main clock
-+      - description:
-+          PTP reference clock. This clock is used for programming the
-+          Timestamp Addend Register. If not passed then the system
-+          clock will be used and this is fine on some platforms.
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: stmmaceth
-+      - const: ptp_ref
-+
-+  iommus:
-+    maxItems: 1
-+
-+  phy-mode:
-+    enum:
-+      - gmii
-+      - mii
-+      - rgmii
-+      - rgmii-id
-+      - rgmii-rxid
-+      - rgmii-txid
-+      - sgmii
-+      - 1000base-x
-+
-+  rxc-skew-ps:
-+    description: Skew control of RXC pad
-+
-+  rxd0-skew-ps:
-+    description: Skew control of RX data 0 pad
-+
-+  rxd1-skew-ps:
-+    description: Skew control of RX data 1 pad
-+
-+  rxd2-skew-ps:
-+    description: Skew control of RX data 2 pad
-+
-+  rxd3-skew-ps:
-+    description: Skew control of RX data 3 pad
-+
-+  rxdv-skew-ps:
-+    description: Skew control of RX CTL pad
-+
-+  txc-skew-ps:
-+    description: Skew control of TXC pad
-+
-+  txen-skew-ps:
-+    description: Skew control of TXC pad
-+
-+  altr,emac-splitter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the emac splitter soft IP node if DWMAC
-+      controller is connected an emac splitter.
-+
-+  altr,f2h_ptp_ref_clk:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to Precision Time Protocol reference clock. This clock is
-+      common to gmac instances and defaults to osc1.
-+
-+  altr,gmii-to-sgmii-converter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the gmii to sgmii converter soft IP.
-+
-+  altr,sysmgr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Should be the phandle to the system manager node that encompass
-+      the glue register, the register offset, and the register shift.
-+      On Cyclone5/Arria5, the register shift represents the PHY mode
-+      bits, while on the Arria10/Stratix10/Agilex platforms, the
-+      register shift represents bit for each emac to enable/disable
-+      signals from the FPGA fabric to the EMAC modules.
-+    items:
-+      - items:
-+          - description: phandle to the system manager node
-+          - description: offset of the control register
-+          - description: shift within the control register
-+
-+patternProperties:
-+  "^mdio[0-9]$":
-+    type: object
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - altr,sysmgr-syscon
-+
-+allOf:
-+  - $ref: snps,dwmac.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ethernet@ff700000 {
-+            compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a",
-+            "snps,dwmac";
-+            altr,sysmgr-syscon = <&sysmgr 0x60 0>;
-+            reg = <0xff700000 0x2000>;
-+            interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "macirq";
-+            mac-address = [00 00 00 00 00 00]; /* Filled in by U-Boot */
-+            clocks = <&emac_0_clk>;
-+            clock-names = "stmmaceth";
-+            phy-mode = "sgmii";
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-deleted file mode 100644
-index 612a8e8abc88..000000000000
---- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Altera SOCFPGA SoC DWMAC controller
--
--This is a variant of the dwmac/stmmac driver an inherits all descriptions
--present in Documentation/devicetree/bindings/net/stmmac.txt.
--
--The device node has additional properties:
--
--Required properties:
-- - compatible	: For Cyclone5/Arria5 SoCs it should contain
--		  "altr,socfpga-stmmac". For Arria10/Agilex/Stratix10 SoCs
--		  "altr,socfpga-stmmac-a10-s10".
--		  Along with "snps,dwmac" and any applicable more detailed
--		  designware version numbers documented in stmmac.txt
-- - altr,sysmgr-syscon : Should be the phandle to the system manager node that
--   encompasses the glue register, the register offset, and the register shift.
--   On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
--   on the Arria10/Stratix10/Agilex platforms, the register shift represents
--   bit for each emac to enable/disable signals from the FPGA fabric to the
--   EMAC modules.
-- - altr,f2h_ptp_ref_clk use f2h_ptp_ref_clk instead of default eosc1 clock
--   for ptp ref clk. This affects all emacs as the clock is common.
--
--Optional properties:
--altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
--		DWMAC controller is connected emac splitter.
--phy-mode: The phy mode the ethernet operates in
--altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
--
--This device node has additional phandle dependency, the sgmii converter:
--
--Required properties:
-- - compatible	: Should be altr,gmii-to-sgmii-2.0
-- - reg-names	: Should be "eth_tse_control_port"
--
--Example:
--
--gmii_to_sgmii_converter: phy@100000240 {
--	compatible = "altr,gmii-to-sgmii-2.0";
--	reg = <0x00000001 0x00000240 0x00000008>,
--		<0x00000001 0x00000200 0x00000040>;
--	reg-names = "eth_tse_control_port";
--	clocks = <&sgmii_1_clk_0 &emac1 1 &sgmii_clk_125 &sgmii_clk_125>;
--	clock-names = "tse_pcs_ref_clk_clock_connection", "tse_rx_cdr_refclk";
--};
--
--gmac0: ethernet@ff700000 {
--	compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
--	altr,sysmgr-syscon = <&sysmgr 0x60 0>;
--	reg = <0xff700000 0x2000>;
--	interrupts = <0 115 4>;
--	interrupt-names = "macirq";
--	mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
--	clocks = <&emac_0_clk>;
--	clock-names = "stmmaceth";
--	phy-mode = "sgmii";
--	altr,gmii-to-sgmii-converter = <&gmii_to_sgmii_converter>;
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c2b570ed5f2f..d308789d9877 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3262,10 +3262,15 @@ M:	Dinh Nguyen <dinguyen@kernel.org>
- S:	Maintained
- F:	drivers/clk/socfpga/
- 
-+ARM/SOCFPGA DWMAC GLUE LAYER BINDINGS
-+M:	Matthew Gerlach <matthew.gerlach@altera.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/altr,gmii-to-sgmii-2.0.yaml
-+F:	Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-+
- ARM/SOCFPGA DWMAC GLUE LAYER
- M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/net/socfpga-dwmac.txt
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
- 
- ARM/SOCFPGA EDAC BINDINGS
--- 
-2.35.3
-
+> +	return 0;
+> +}
+> +
+> +static const struct msi_domain_template rpmi_sysmsi_template = {
+> +	.chip = {
+> +		.name			= "RPMI-SYSMSI",
+> +		.irq_mask		= rpmi_sysmsi_irq_mask,
+> +		.irq_unmask		= rpmi_sysmsi_irq_unmask,
+> +#ifdef CONFIG_SMP
+> +		.irq_set_affinity	= irq_chip_set_affinity_parent,
+> +#endif
+> +		.irq_write_msi_msg	= rpmi_sysmsi_write_msg,
+> +		.flags			= IRQCHIP_SET_TYPE_MASKED |
+> +					  IRQCHIP_SKIP_SET_WAKE |
+> +					  IRQCHIP_MASK_ON_SUSPEND,
+> +	},
+> +
+> +	.ops = {
+> +		.set_desc		= rpmi_sysmsi_set_desc,
+> +		.msi_translate		= rpmi_sysmsi_translate,
+> +	},
+> +
+> +	.info = {
+> +		.bus_token		= DOMAIN_BUS_WIRED_TO_MSI,
+> +		.flags			= MSI_FLAG_USE_DEV_FWNODE,
+> +		.handler		= handle_simple_irq,
+> +		.handler_name		= "simple",
+> +	},
+> +};
+> +
+> +static int rpmi_sysmsi_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rpmi_sysmsi_priv *priv;
+> +	int rc;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +	priv->dev = dev;
+> +
+> +	/* Setup mailbox client */
+> +	priv->client.dev		= priv->dev;
+> +	priv->client.rx_callback	= NULL;
+> +	priv->client.tx_block		= false;
+> +	priv->client.knows_txdone	= true;
+> +	priv->client.tx_tout		= 0;
+> +
+> +	/* Request mailbox channel */
+> +	priv->chan = mbox_request_channel(&priv->client, 0);
+> +	if (IS_ERR(priv->chan))
+> +		return PTR_ERR(priv->chan);
+> +
+> +	/* Get number of system MSIs */
+> +	rc = rpmi_sysmsi_get_num_msi(priv);
+> +	if (rc < 1) {
+> +		mbox_free_channel(priv->chan);
+> +		if (rc)
+> +			return dev_err_probe(dev, rc, "Failed to get number of system MSIs\n");
+> +		else
+> +			return dev_err_probe(dev, -ENODEV, "No system MSIs found\n");
+> +	}
+> +	priv->nr_irqs = rc;
+> +
+> +	/* Set the device MSI domain if not available */
+> +	if (!dev_get_msi_domain(dev)) {
+> +		/*
+> +		 * The device MSI domain for OF devices is only set at the
+> +		 * time of populating/creating OF device. If the device MSI
+> +		 * domain is discovered later after the OF device is created
+> +		 * then we need to set it explicitly before using any platform
+> +		 * MSI functions.
+> +		 */
+> +		if (dev_of_node(dev))
+> +			of_msi_configure(dev, dev_of_node(dev));
+> +
+> +		if (!dev_get_msi_domain(dev)) {
+> +			mbox_free_channel(priv->chan);
+> +			return -EPROBE_DEFER;
+> +		}
+> +	}
+> +
+> +	if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN,
+> +					  &rpmi_sysmsi_template,
+> +					  priv->nr_irqs, priv, priv)) {
+> +		mbox_free_channel(priv->chan);
+> +		return dev_err_probe(dev, -ENOMEM, "failed to create MSI irq domain\n");
+> +	}
+> +
+> +	dev_info(dev, "%u system MSIs registered\n", priv->nr_irqs);
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id rpmi_sysmsi_match[] = {
+> +	{ .compatible = "riscv,rpmi-system-msi" },
+> +	{}
+> +};
+> +
+> +static struct platform_driver rpmi_sysmsi_driver = {
+> +	.driver = {
+> +		.name		= "rpmi-sysmsi",
+> +		.of_match_table	= rpmi_sysmsi_match,
+> +	},
+> +	.probe = rpmi_sysmsi_probe,
+> +};
+> +builtin_platform_driver(rpmi_sysmsi_driver);
+> diff --git a/include/linux/mailbox/riscv-rpmi-message.h b/include/linux/mailbox/riscv-rpmi-message.h
+> index 476a2d64d972..06d2f8b38969 100644
+> --- a/include/linux/mailbox/riscv-rpmi-message.h
+> +++ b/include/linux/mailbox/riscv-rpmi-message.h
+> @@ -91,6 +91,7 @@ static inline int rpmi_to_linux_error(int rpmi_error)
+>   }
+>   
+>   /* RPMI service group IDs */
+> +#define RPMI_SRVGRP_SYSTEM_MSI		0x00002
+>   #define RPMI_SRVGRP_CLOCK		0x00008
+>   
+>   /* RPMI clock service IDs */
+> @@ -106,6 +107,18 @@ enum rpmi_clock_service_id {
+>   	RPMI_CLK_SRV_ID_MAX_COUNT
+>   };
+>   
+> +/* RPMI system MSI service IDs */
+> +enum rpmi_sysmsi_service_id {
+> +	RPMI_SYSMSI_SRV_ENABLE_NOTIFICATION = 0x01,
+> +	RPMI_SYSMSI_SRV_GET_ATTRIBUTES = 0x02,
+> +	RPMI_SYSMSI_SRV_GET_MSI_ATTRIBUTES = 0x03,
+> +	RPMI_SYSMSI_SRV_SET_MSI_STATE = 0x04,
+> +	RPMI_SYSMSI_SRV_GET_MSI_STATE = 0x05,
+> +	RPMI_SYSMSI_SRV_SET_MSI_TARGET = 0x06,
+> +	RPMI_SYSMSI_SRV_GET_MSI_TARGET = 0x07,
+> +	RPMI_SYSMSI_SRV_ID_MAX_COUNT
+> +};
+> +
+>   /* RPMI Linux mailbox attribute IDs */
+>   enum rpmi_mbox_attribute_id {
+>   	RPMI_MBOX_ATTR_SPEC_VERSION,
 
