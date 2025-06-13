@@ -1,58 +1,89 @@
-Return-Path: <devicetree+bounces-185812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AB0AD930E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:45:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 673A0AD933C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:54:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C25E172C9B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:45:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 525787A51DB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDE7231835;
-	Fri, 13 Jun 2025 16:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82EA221F20;
+	Fri, 13 Jun 2025 16:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Tu4RR7QZ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="S/JfUFvS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348E415A87C
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 16:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BF4219A72
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 16:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749833082; cv=none; b=azc6wxv/qlgmzqEdeL9O8YiyvdzCVaXqtuAwDWy9GtNTIXuNv0SgujbuRNATvKG//D/i9W62sU5AcqIsuCBaMtVU9lXTh9uK651PgJqxU+JpnviZx2fQRzzcDzW2l20HzgwfJ5VfvVdzcbaNKWaO+hYvAnCdVNjzdVOS0aZM+Yo=
+	t=1749833629; cv=none; b=reD8AnRSTwnRkddMJMS66rjjfcsmMCD8lS6cf6ax/zbXgSgnEDQSoAzrPV+nFhUDb9uaUWWooIHE83Q40jSK7uDLKVAlut8RO0corfqqYENiVPoKdLa8V9fQrduE5+ONgqib02kh8xoAfq7xhDWUV5GA+yQUveGpQozNaghzBug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749833082; c=relaxed/simple;
-	bh=05IZXmoVmLoXcrYN1kEWjWudkPned5mpHlpfTjIEKnE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Kf9jB6VRmWNKNLsN69+1SeLhvAiys99sZ0c40c9ucITgucSBOzIjb5E7fdSkuw592k6KxOBIW/XkohOCQred45l/xNy+TgAnVrNVMRUP1tbPz43NBKWlAmgrQ+4Q328y6a9kdA3A4FN3GmAu43xjLeu32yLaJV4h0EEZB/5iSAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Tu4RR7QZ; arc=none smtp.client-ip=91.218.175.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <1a8c923f-0905-4cc0-9fbd-949d29a2f39b@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749833067;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iboh6yi5km8cRmbBCKiUMFzSRZx5KSFjqs6i7VXB3cs=;
-	b=Tu4RR7QZYjmHgsNZLEA8PTqicUNYUQlyqspr+qbc/DmWfZ6mhTM8Yd5J0xW9xkV3UwZVpa
-	o/+TF5a1i6LjxqOJ6mZ8hHLze98geIuDCkLUTPc9njWjDU+5AqCYZH4Sm2mQ6cePdNojvW
-	nDb7MWQuHGBRnQoMpEYYrTrRcHJfm+A=
-Date: Fri, 13 Jun 2025 12:44:20 -0400
+	s=arc-20240116; t=1749833629; c=relaxed/simple;
+	bh=1owdQvqX/nM+Hc1z5I/jHc4qO/c4moH58u1NtGIWGiQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RhmadJWo3p4BuIgCz3B9xnqevkDGM8s/b4m3ng6cKGFuPpOjxr/LMIW0Zn+4EWC0/0cSXntLuZu+1C33UhPMe2r1s4tHcoI1FUra52VC0S/X9QYnZTrj+5tJ8GpBgks1uMwn+nmC/N+mlvqmBWPL56QZldQZCEbzvd/aT456V7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=S/JfUFvS; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-735ac221670so1243096a34.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 09:53:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749833627; x=1750438427; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LsMpqaCRhjE+dhyYns+fNIO//Rr1iAnsBUp1qLn9v74=;
+        b=S/JfUFvS0aInyK4GCvOsgfGoTd5Bznt2rOBG6xZvmltEq4xVtjHH9YM0zJuAxt5FQI
+         L3nXssJIDFh50YHECqbezEOGDNF6WFG+8k8QD7iQ8MnCpnG9vqeqso+0ij4th0GHasIw
+         0N2fnBVCVTMIobQHMjonMJUzmBTrhTatHnKNEL4Dw+7u5t+2sdJsuLnr3pkRgLzleBQ5
+         VlCDTJFjSB/OAN7qYaAvYBmxj/ekWsqXeWPzzXOqD+9EA1H8c4Cbsa42s9DIfHYBKIpQ
+         o0dt4gStTWqKVTMUgd1FITKfoN4rhGBTOAdMPOLTbvVg6zf4Cz8KvonVnfBORYj0xRRJ
+         fVng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749833627; x=1750438427;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LsMpqaCRhjE+dhyYns+fNIO//Rr1iAnsBUp1qLn9v74=;
+        b=sFD+ZPIGYGnW4408alD1mZKKn+CjHgRJSUIPK9N/mRwPZw4vJQhijbDkbrrIyBGu+f
+         ThNpd61zcU3qRk0M8Tn3psmfQSQCxZsXZ8hM5VzQX9CV+jatvBEsFVrDzvofhhFaK0y/
+         1iDHEfO39g5VxrfXssMZqpkHJy0vLBv7dUSxweCtM0qY7iWhRY5pdwagC2GeV2TtP3vs
+         oX1LmThHDVXpBIfkJ5tCDqg7nADLIY4kSRoWKfzzXAGc8Ql4+q2wFSg5GhkQTtI4e0Jb
+         t3DLUVV9M7OG5DqVZ1ccgF9y/DD1xk5N9H8VrAhMDJlUdjHSMP7Tz0F/ZPt3IWsQqLnC
+         u7Mw==
+X-Forwarded-Encrypted: i=1; AJvYcCVklr7/lTkbtE0QqeC3hfjp0uwNPSyIfE+4+q3e5SZhx5xbnv9sXSjZ7ddMA21EbqRHc7mkcEeU2dkX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyd1Ksz8fPLykG0QlnpYhXD3KB72Og5NeRSu0gxvqcqG3H4UZWC
+	ZlJEV0ft7sLYtluXMggi5C1Rmcx4d/G2vxVHpH2VOKrvw1FVKsWtj3WfUMwok1EVTwU=
+X-Gm-Gg: ASbGncsn8TNko0aV2eurO3X2FHEswotUFLOAeTmztXua3ShtQqZQG1xsD9PlXFKiPkZ
+	7ikKPAym2L/mbFqNoVcVVf/zSCY8pJvGq7xn7n+6aeEYOUhhhZ6wdJUNsXhzhlfU3LaWFJ97+sz
+	PFOgDOyuK8+33MgTY+0t9f/QwreEdWLFxNrerQpV6+0Q126SIV+yN9EDVmzyYUpSxH5KpwsXMLu
+	EdS5JP8O/hepo3Kpz5NYiFM0raK2GjNRBvi8J5lZDbo8/R2Yw++AWT30CAwx0CwQx5wc5zfvOVW
+	9BarAK+Z4I/up2QsA2Wmz73h8fhh3i9Ui2HobpkOz15M36vtKqA+EVtncE0KJjpdSi1GX54EYHL
+	9swbPm1xpVMG3J9/5Fmm/2y+59lHARJULfReG
+X-Google-Smtp-Source: AGHT+IGm+JBqqiEmyl18/kEEXB/ADyzMADcbl2xBx0ulsbC0s8fZGx5yePDIuJfHwHi4w+HBVRh2OQ==
+X-Received: by 2002:a05:6830:3c04:b0:72a:1222:9e8a with SMTP id 46e09a7af769-73a3634980emr354864a34.14.1749833626674;
+        Fri, 13 Jun 2025 09:53:46 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:4647:c57:a73c:39d8? ([2600:8803:e7e4:1d00:4647:c57:a73c:39d8])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73a283dbf9asm266939a34.12.2025.06.13.09.53.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jun 2025 09:53:46 -0700 (PDT)
+Message-ID: <40762c1b-91a9-4aaa-9d98-e4f22cde8f20@baylibre.com>
+Date: Fri, 13 Jun 2025 11:53:45 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/7] dt-bindings: spi: zynqmp-qspi: Split the bus
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
+To: Sean Anderson <sean.anderson@linux.dev>, Mark Brown <broonie@kernel.org>,
  Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org
 Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
  linux-arm-kernel@lists.infradead.org,
@@ -73,19 +104,19 @@ References: <20250116232118.2694169-1-sean.anderson@linux.dev>
  <4923f49f-273f-4166-94bc-afe39618672c@baylibre.com>
  <f3160819-f6f4-4079-9562-802caa2fef20@linux.dev>
 Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
 In-Reply-To: <f3160819-f6f4-4079-9562-802caa2fef20@linux.dev>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
 
-On 6/13/25 11:57, Sean Anderson wrote:
+On 6/13/25 10:57 AM, Sean Anderson wrote:
 > On 6/13/25 10:20, David Lechner wrote:
 >> On 6/12/25 6:44 PM, Sean Anderson wrote:
 >>> Hi David,
->>> 
+>>>
 >>> I am (finally!) getting around to doing v2 of this series, and I ran
 >>> into a small problem with your proposed solution.
->>> 
+>>>
 >>> On 1/23/25 16:59, David Lechner wrote:
 >>>> ---
 >>>> From: David Lechner <dlechner@baylibre.com>
@@ -139,34 +170,27 @@ On 6/13/25 11:57, Sean Anderson wrote:
 >>>> +	if (rc == -EINVAL) {
 >>>> +		/* Default when property is omitted. */
 >>>> +		spi->buses = BIT(0);
->>> 
+>>>
 >>> For backwards compatibility, the default bus for CS 1 on gqspi must be 1
 >>> and not 0. Ideally there would be some hook for the master to fix things
 >>> up when the slaves are probed, but that doesn't seem to exist. I was
 >>> thinking about doing this with OF changesets. Do you have any better
 >>> ideas?
->>> 
->> 
+>>>
+>>
 >> Does this work? 
->> 
+>>
 >> 		spi->buses = BIT(cs[0]);
->> 
+>>
 >> (would have to move all the new code after cs[0] is assigned of course)
 > 
 > Yeah, but do we really want to make this the default for all drivers?
 > This is really a quirk of the existing gqspi binding and I don't think
 > it makes sense in general.
+> 
 
-I think I will add a flag like
+Can we just leave spi->buses unset then and leave it up to the controller
+driver to interpret that as "default" and handle it appropriately?
 
-		/* Default when property is omitted. */
-		if (ctlr->flags & SPI_CONTROLLER_DEFAULT_BUS_IS_CS)
-			spi->buses = BIT(cs[0]);
-		else
-			spi->buses = BIT(0);
-
-which should keep the defaults sane for everyone else.
-
---Sean
-
+OF changessets seems overkill to me.
 
