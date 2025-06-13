@@ -1,95 +1,81 @@
-Return-Path: <devicetree+bounces-185655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C41CAD8ACB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:42:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11B1AD8AEF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7EFC189EBD6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:42:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39250173090
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34CF2DECBE;
-	Fri, 13 Jun 2025 11:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD59126B761;
+	Fri, 13 Jun 2025 11:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fGRcHaVg";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NWneG4sG";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fGRcHaVg";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NWneG4sG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dPKPmXui"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD142DFA33
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 11:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB322D8769
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 11:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749814858; cv=none; b=jyorygrvGNgRDewPL6unYcCVc3MxSlTb1cSP72EgT8h76FRB0X5J2N4dy/4j6uoh6ADLjSuOoIiRsDQXmKJBxFkd4Z4s/oNmHI8dPpv8TWuipWjzJ/HMC4Sxqng6nipa443TtHYlPtS3G0gc259gMDSZXlhr1y2BxGbE0kqzl+c=
+	t=1749814959; cv=none; b=mhu6TllRXKp4Zm0+DOm1ND27ZZbfhM7lhncaWC0+e49HAWbJaD/7mJHza0o0Lyr0FX23xlZ9PguL/7l+MJgIU/tKjkWHISwwm0VKvWh3eOtykpcdZ25SKjNVA9O19JTNwyJZucKIQbdnq67qlik9Ybfy2yj00mM2cShFa5Y9uDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749814858; c=relaxed/simple;
-	bh=3uw5VUh/DqhrYkitcO3Ub7yKF46Sf6kT9VPpjmbdVok=;
+	s=arc-20240116; t=1749814959; c=relaxed/simple;
+	bh=j+WpPPNJFVv5cc8th/z2eLNPWQbQU7n97BO8H4n+ffk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P8Onzfis6vix49uy/5XLyJK8VJP7DvY5DoB2NYzlHDFfb35OWlxdyDDtOelbHxOJK1ecv59z7rX3tfum49j7os14oUDm75xxsTU5HdHO+qi0GWfEnL1ASzjVHzbTbZPIowpyTatfHt0inbMxaCSEwYZ0GmoPq1OrogALzfoJHAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=fGRcHaVg; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=NWneG4sG; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=fGRcHaVg; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=NWneG4sG; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 2DE2321749;
-	Fri, 13 Jun 2025 11:40:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1749814855; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Ui+2NR8PHPMbz98Hu9Hxy1TPwrhV0ozwjHMRatemvYY=;
-	b=fGRcHaVgvbrdC12QLl5Tu3zycV9x8IvnsIYiepRSZ0eD+YtLWAx6tiqzhne+TSEOWwECLs
-	ScbGUFNNwFvMuqlhcwA5Md7l8f4G1mh0QVvYrM+wMCq445n8arXDPsyK2mKyx5lg948dW3
-	5F+nvKCMfV3BWGsnlRIi/HZL6878hPk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1749814855;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Ui+2NR8PHPMbz98Hu9Hxy1TPwrhV0ozwjHMRatemvYY=;
-	b=NWneG4sGCSXJqDTn15f24iNneFd4DMcDjL2Xq9tb7igXbSxP/g6EzcZmuoyrPStFpbqcuj
-	TwfC9DWon/94OlBw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1749814855; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Ui+2NR8PHPMbz98Hu9Hxy1TPwrhV0ozwjHMRatemvYY=;
-	b=fGRcHaVgvbrdC12QLl5Tu3zycV9x8IvnsIYiepRSZ0eD+YtLWAx6tiqzhne+TSEOWwECLs
-	ScbGUFNNwFvMuqlhcwA5Md7l8f4G1mh0QVvYrM+wMCq445n8arXDPsyK2mKyx5lg948dW3
-	5F+nvKCMfV3BWGsnlRIi/HZL6878hPk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1749814855;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Ui+2NR8PHPMbz98Hu9Hxy1TPwrhV0ozwjHMRatemvYY=;
-	b=NWneG4sGCSXJqDTn15f24iNneFd4DMcDjL2Xq9tb7igXbSxP/g6EzcZmuoyrPStFpbqcuj
-	TwfC9DWon/94OlBw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BF791137FE;
-	Fri, 13 Jun 2025 11:40:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id kOGQLUYOTGh2YgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Fri, 13 Jun 2025 11:40:54 +0000
-Message-ID: <51d92681-188e-40d8-bda0-f4ff95eeccd7@suse.de>
-Date: Fri, 13 Jun 2025 13:40:54 +0200
+	 In-Reply-To:Content-Type; b=mCdaisrn24hb6wTNmIlJLEbLwesEJLy8+zDLpDVkP6uFHqIAHsa4Mnb3H7Bs3LCkHrjWDCHTG354dIJGIEuFS2Zfj+tezAzAL3cvU5UBM2xJrq/BElE8Z5103vBT6oXrkD2xiC7WVa7YasmsvUVSUJe56qz4KmNONi0psLSucTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dPKPmXui; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a36748920cso1958428f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 04:42:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749814955; x=1750419755; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MvwEhGPx6wb8xbrbsUHrrq52O4YNiUINr5fVID9eklE=;
+        b=dPKPmXuiGOVeHOs5gcat0XHSdBSmIQ3XEmr8rDTHAei2Y0eGSxxTSflxbWbZ0WwSVN
+         1UiOxhrzK2BRPt1HIik2FDNA9nuC616I5eZKlBxFlvLmkT3jDlYFGL0GDit3KRvk9O8Z
+         s5Mar8l8bsKH9BfJlD7kWunPaa+w5W3D5J0ohgH13yE3ZXQqSK1kIXhTD3ou/Z+yjz/i
+         qv0x5ExnLJtZU05htDP4VsFjVf2sGlmUiMPduGR+jDogBMAYFcmWTlInyk22X0m9P0xG
+         0vEZaUwx5aj2oU+4t+s0B8ir0JwUxdleRs+v1cV+wcDW4Xi90Gm/iokgu3RFBgdXRn7U
+         PZYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749814955; x=1750419755;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MvwEhGPx6wb8xbrbsUHrrq52O4YNiUINr5fVID9eklE=;
+        b=hJtvQC0d4fSBjczEs1NstMaUiseBY+4qW3JlYBlv6x/M+5PEcgd3n1e44OW25ka5v7
+         vlZES4KSyOSq0iG9V0BEh0UOi6+8dpRbgGP860RDtpCZxKapOxt5TJwmiAx4GRpuAwfD
+         77ZpSm8Gua1LEoCfqd0tOzk9QxscZJJ/7jLD1Jpr8dVdC9sPTuIFRpnHGnoJjnMOb5e2
+         NtcmGykNesf89afimAG48+F1xBf79l7LLVsks1grz9wTynfU4mP6H6YM85iOtmtS5XeN
+         N02LRsUulUN25cKhAMIQZsUGf4y/pcyHvy7ziQ8dRrpHHHZA9PFGeZ+oMf+1STWRblTN
+         jBCw==
+X-Forwarded-Encrypted: i=1; AJvYcCWlMKDAsoxBQ6fD3YZ3tefHXcOy4Hp8zYJtD7pGHoFoVm1dMGWKkBnyiRAU2Xr0pSSXhqE3AxVdjqii@vger.kernel.org
+X-Gm-Message-State: AOJu0Yys1FXEyBpYLv+wubOIskJZDJlUJb8RNPQD5oH8crvJN6CnzpYh
+	UeymQBSmKzDDi+/TAzrA9e8NL/4dFbNh0JjBMLAo2yDdQ+eEsVMwbYMUJ2/VEjukCCSygyEkenP
+	zswnCDFU=
+X-Gm-Gg: ASbGnctPB5kiC1IFAQ1C4TwC1b0rxKp7jNd0qgqDi9b01u6Hb/4P1h2scNx9xN11n9x
+	+2E8okwV/yTXy7UbUbbOFbWsQjIdOB77Eyx7Karps8eqqnBWMsW4K6imD9KOK/QtuOo6RnVmYEu
+	swSy6SoFWyO7T5OJ6N/YzMLvHOGPGfvKwEU3Qxjw6G0CGE4+dqwnhHjY+nn585XVdlZyJuWqkCu
+	xa7sVezdT2IBub5h/wZRpzLfgrHZoy1vrSGYREQoeXcSOZfZzh93m7VY73dsjfSNQCf0vAlCO3X
+	GglLY0TsX3IKHx800zYsz/YmlsE09fhJYgrKX+ShlcPK2q1vOvZvNwAeKX61YBK3+2MbePNJFBW
+	J4Qbp90wg7BiJ+XHTQrdxiE3XhhI=
+X-Google-Smtp-Source: AGHT+IFHSX81XGRTonZWsTCONugCLIzvlTJnwuwWqkN66G3W6Veq1ddBm9U4o0xZRHNlrQelgSceTw==
+X-Received: by 2002:a05:6000:4205:b0:3a5:3e64:1ac4 with SMTP id ffacd0b85a97d-3a5687665e0mr2632048f8f.33.1749814955260;
+        Fri, 13 Jun 2025 04:42:35 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b08e21sm2136681f8f.52.2025.06.13.04.42.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jun 2025 04:42:34 -0700 (PDT)
+Message-ID: <59944b49-67dd-43a8-b6a4-a1ad0b9baa59@linaro.org>
+Date: Fri, 13 Jun 2025 12:42:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,222 +83,299 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm: panel: add support for Samsung S6E8AA5X01 panel
- controller
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
+To: vincent.knecht@mailoo.org, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250612-panel-samsung-s6e8aa5x01-v1-0-06dcba071ea6@disroot.org>
- <20250612-panel-samsung-s6e8aa5x01-v1-2-06dcba071ea6@disroot.org>
- <84ee6388-92af-49c8-988b-b79ed1453d5e@suse.de>
- <84663a88789b993a1cab8c55af4e03a7@disroot.org>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
+ <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <84663a88789b993a1cab8c55af4e03a7@disroot.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_TLS_ALL(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	ARC_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,quicinc.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,disroot.org:email,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
+Content-Transfer-Encoding: 7bit
 
-Hi
-
-Am 13.06.25 um 13:03 schrieb Kaustabh Chakraborty:
-> On 2025-06-13 09:39, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 12.06.25 um 16:52 schrieb Kaustabh Chakraborty:
->>> Samsung S6E8AA5X01 is an AMOLED MIPI DSI panel controller. Implement
->>> a basic panel driver for such panels.
->>>
->>> The driver also initializes a backlight device, which works by changing
->>> the panel's gamma values and aid brightness levels appropriately, with
->>> the help of look-up tables acquired from downstream kernel sources.
->>>
->>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> [...]
->
->>> +
->>> +static void s6e8aa5x01_mcs_protect(struct mipi_dsi_multi_context *dsi,
->>> +				   struct s6e8aa5x01_ctx *ctx, bool protect)
->> I found this interface confusing. Rather split it up into .  It also does two different things AFAICT.
->>
->> - The mcs_mutex protects against concurrent access from update_status and enable
-> mcs_mutex is meant to prevent any early access protection of the MCS commands.
-> Suppose there are two functions, A and B, accessing MCS.
->
-> ENTRY: A()
-> (access protection disabled)
-> ...
->
-> ENTRY: B()
-> (access protection disabled)
-> ...
-> (access protection enabled)
-> EXIT: B()
->
-> [!] cannot access MCS commands here anymore
-> (access protection enabled)
-> EXIT: A()
->
-> And to avoid such errors a mutex is provided.
-
-This mutex protects a lot more than just the access flags. It prevents 
-backlight and enable code to concurrently set gamma on the device. Even 
-if you move the MCS_ACCESSPROT to enable/disable helpers, you'll likely 
-need the mutex around the gamma updates.
-
-But there's maybe an easy fix. See that the panel code already calls the 
-backlight helpers in its enable/disable [1][2] functions. They will 
-invoke ->update_status with the proper locking. [3] This means that you 
-shouldn't program gamma in the ->enable callback. Leave everything in 
-->update_status and let your panel helpers deal with it. No need for 
-mcs_mutex at all.
-
-[1] 
-https://elixir.bootlin.com/linux/v6.15.1/source/drivers/gpu/drm/drm_panel.c#L235
-[2] 
-https://elixir.bootlin.com/linux/v6.15.1/source/drivers/gpu/drm/drm_panel.c#L275
-[3] 
-https://elixir.bootlin.com/linux/v6.15.1/source/include/linux/backlight.h#L318
-
->
->> - MSC_ACCESSPROT enable access to hardware state.
->>
->> Maybe try this:
->>
->> - Move msc_mutex into the callers, so that ->update_status and ->enable acquire and release the lock.
->>
->> - Move MCS_ACCESSPROT into ->enable and ->disable and leave it accessible, if the hardware allows that.
-> Yeah this is a good idea, I'll try it.
->
->>> +{
->>> +	if (protect) {
->>> +		mipi_dsi_dcs_write_seq_multi(dsi, MCS_ACCESSPROT, 0xa5, 0xa5);
->>> +		mutex_unlock(&ctx->mcs_mutex);
->>> +	} else {
->>> +		mutex_lock(&ctx->mcs_mutex);
->>> +		mipi_dsi_dcs_write_seq_multi(dsi, MCS_ACCESSPROT, 0x5a, 0x5a);
->>> +	}
->>> +}
->>> +
->>> +static int s6e8aa5x01_update_brightness(struct backlight_device *backlight)#
->> Maybe call this function s6e8aa5x01_update_status() to match the callback.
->>
->>> +{
->>> +	struct mipi_dsi_multi_context dsi = { .dsi = bl_get_data(backlight) };
->>> +	struct s6e8aa5x01_ctx *ctx = mipi_dsi_get_drvdata(dsi.dsi);
->>> +	u16 lvl = backlight->props.brightness;
->> backlight_get_brightness() here ?
->>
->>
->> I think you should also check panel->enabled and return if false. AFAIU there will be no gamma changes on disabled hardware anyway.
->>
-> The enable function is never executed when the panel is disabled. This is
-> because flag checking is done by drm_panel anyway. See drm_panel_enable()
-> in drivers/gpu/drm/drm_panel.c [1]
-
-What I mean is: the drm_panel.enabled flag is set at [4] and cleared at 
-[5]. It tells you that the panel is running. If someone tries to update 
-the backlight brightness while the panel is not enabled, you likely what 
-to return here without touching hardware.
-
-[4] 
-https://elixir.bootlin.com/linux/v6.15.1/source/drivers/gpu/drm/drm_panel.c#L285
-[5] 
-https://elixir.bootlin.com/linux/v6.15.1/source/drivers/gpu/drm/drm_panel.c#L233
-
->
->>> +
->>> +static int s6e8aa5x01_probe(struct mipi_dsi_device *dsi)
->>> +{
->>> +	struct device *dev = &dsi->dev;
->>> +	struct s6e8aa5x01_ctx *ctx;
->>> +	int ret;
->>> +
->>> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->> You're possibly using the instance after the hardware device has been removed. Alloc with drmm_kzalloc() or you might end up with UAF errors.
-> Hmm, none of the panel drivers are using drmm_kzalloc(), or even any
-> drmm_*(). Are you sure I must use it?
-
-Then leave it as it is. Maybe one of the panel maintainers can confirm.
-
-I still don't trust it to not possibly blow up. devm_ is released when 
-the hardware device goes away.
-
-Best regards
-Thomas
-
->
->>> +	ret = devm_mutex_init(dev, &ctx->mcs_mutex);
->> You're taking this mutex in DRM code, so rather use drmm_mutex_init() here.
-> (The comment by me above applies here too)
->
->> Best regards
->> Thomas
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/gpu/drm/drm_panel.c#n209
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+On 13/06/2025 10:33, Vincent Knecht via B4 Relay wrote:
+> From: Vincent Knecht <vincent.knecht@mailoo.org>
+> 
+> Add bindings for qcom,msm8939-camss in order to support the camera
+> subsystem for MSM8939.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+>   .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+>   1 file changed, 254 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9fbb4b204ac8728b822864ad8336aa9d826d6b5b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
+> @@ -0,0 +1,254 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,msm8939-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm MSM8939 Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Vincent Knecht <vincent.knecht@mailoo.org>
+> +
+> +description:
+> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,msm8939-camss
+> +
+> +  reg:
+> +    maxItems: 11
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csi_clk_mux
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csiphy0
+> +      - const: csiphy0_clk_mux
+> +      - const: csiphy1
+> +      - const: csiphy1_clk_mux
+> +      - const: ispif
+> +      - const: vfe0
+> +      - const: vfe0_vbif
+> +
+> +  clocks:
+> +    maxItems: 24
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ahb
+> +      - const: csi0
+> +      - const: csi0_ahb
+> +      - const: csi0_phy
+> +      - const: csi0_pix
+> +      - const: csi0_rdi
+> +      - const: csi1
+> +      - const: csi1_ahb
+> +      - const: csi1_phy
+> +      - const: csi1_pix
+> +      - const: csi1_rdi
+> +      - const: csi2
+> +      - const: csi2_ahb
+> +      - const: csi2_phy
+> +      - const: csi2_pix
+> +      - const: csi2_rdi
+> +      - const: csi_vfe0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1_timer
+> +      - const: ispif_ahb
+> +      - const: top_ahb
+> +      - const: vfe0
+> +      - const: vfe_ahb
+> +      - const: vfe_axi
+> +
+> +  interrupts:
+> +    maxItems: 7
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: ispif
+> +      - const: vfe0
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    items:
+> +      - description: VFE GDSC - Video Front End, Global Distributed Switch
+> +          Controller.
+> +
+> +  vdda-supply:
+> +    description:
+> +      Definition of the regulator used as 1.2V analog power supply.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    description:
+> +      CSI input ports.
+> +
+> +    patternProperties:
+> +      "^port@[0-1]$":
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +
+> +        description:
+> +          Input port for receiving CSI data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +              bus-type:
+> +                enum:
+> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - iommus
+> +  - power-domains
+> +  - vdda-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,gcc-msm8939.h>
+> +
+> +    isp@1b00020 {
+> +        compatible = "qcom,msm8939-camss";
+> +
+> +        reg = <0x01b00020 0x10>,
+> +              <0x01b08000 0x100>,
+> +              <0x01b08400 0x100>,
+> +              <0x01b08800 0x100>,
+> +              <0x01b0ac00 0x200>,
+> +              <0x01b00030 0x4>,
+> +              <0x01b0b000 0x200>,
+> +              <0x01b00038 0x4>,
+> +              <0x01b0a000 0x500>,
+> +              <0x01b10000 0x1000>,
+> +              <0x01b40000 0x200>;
+> +
+> +        reg-names = "csi_clk_mux",
+> +                    "csid0",
+> +                    "csid1",
+> +                    "csid2",
+> +                    "csiphy0",
+> +                    "csiphy0_clk_mux",
+> +                    "csiphy1",
+> +                    "csiphy1_clk_mux",
+> +                    "ispif",
+> +                    "vfe0",
+> +                    "vfe0_vbif";
+> +
+> +        clocks = <&gcc GCC_CAMSS_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0PHY_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0PIX_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0RDI_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1PHY_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1PIX_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1RDI_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2PHY_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2PIX_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI2RDI_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI_VFE0_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI0PHYTIMER_CLK>,
+> +                 <&gcc GCC_CAMSS_CSI1PHYTIMER_CLK>,
+> +                 <&gcc GCC_CAMSS_ISPIF_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_TOP_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_VFE0_CLK>,
+> +                 <&gcc GCC_CAMSS_VFE_AHB_CLK>,
+> +                 <&gcc GCC_CAMSS_VFE_AXI_CLK>;
+> +
+> +        clock-names = "ahb",
+> +                      "csi0",
+> +                      "csi0_ahb",
+> +                      "csi0_phy",
+> +                      "csi0_pix",
+> +                      "csi0_rdi",
+> +                      "csi1",
+> +                      "csi1_ahb",
+> +                      "csi1_phy",
+> +                      "csi1_pix",
+> +                      "csi1_rdi",
+> +                      "csi2",
+> +                      "csi2_ahb",
+> +                      "csi2_phy",
+> +                      "csi2_pix",
+> +                      "csi2_rdi",
+> +                      "csi_vfe0",
+> +                      "csiphy0_timer",
+> +                      "csiphy1_timer",
+> +                      "ispif_ahb",
+> +                      "top_ahb",
+> +                      "vfe0",
+> +                      "vfe_ahb",
+> +                      "vfe_axi";
+> +
+> +        interrupts = <GIC_SPI 51 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 55 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
+> +
+> +        interrupt-names = "csid0",
+> +                          "csid1",
+> +                          "csid2",
+> +                          "csiphy0",
+> +                          "csiphy1",
+> +                          "ispif",
+> +                          "vfe0";
+> +
+> +        iommus = <&apps_iommu 3>;
+> +
+> +        power-domains = <&gcc VFE_GDSC>;
+> +
+> +        vdda-supply = <&reg_1v2>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +
+> +                csiphy1_ep: endpoint {
+> +                    data-lanes = <0 2>;
+> +                    remote-endpoint = <&sensor_ep>;
+> +                };
+> +            };
+> +        };
+> +    };
+> 
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
