@@ -1,91 +1,108 @@
-Return-Path: <devicetree+bounces-185746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B4DAAD8EC6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:10:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 644FBAD8ED8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:11:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F4763B7BA9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:06:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DEEA3BB4C6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549D9279DBB;
-	Fri, 13 Jun 2025 14:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC7417A316;
+	Fri, 13 Jun 2025 14:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lk/XcyRn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ur3kkzed"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2768914BF89;
-	Fri, 13 Jun 2025 14:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CC32E11DF;
+	Fri, 13 Jun 2025 14:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749823232; cv=none; b=tOOQU/8cvIxEgrfR4AgsPjBuqqqA2fOGdOVTftegmnhnGX+VR41v/cNR0A0aT80CVa9XevBBAB/pAzFVNMwGHLks5a/n+R4iANgSg/wwoSxK8ua986YebnMlYIZh7kjCLaMfKVyN8PNMvrOCcuQrSlmQydTRKh079JfjwP15pUw=
+	t=1749823337; cv=none; b=MG5YcbrDDOtz+URuIRACr2qW4/oHN2tjS2XhHPIBTfkZQEpe1+S5fHmvTKiLgzyuSxoUeTqsMyn7IVelZGoTlI5Y/tn+DCvUrtQE6lh3KyqmBg+VEsmHoLAp1x2YKKUKvJPSiCXii8kIVz+7a++aQhaUBYXVJApaLlTQonquie0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749823232; c=relaxed/simple;
-	bh=H76P9O5vnRjLnOJ2KGvl9BaRxTqr0YGtquLAPQfhvcs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=I+XVCFD0G3TraM6sXHIT5UvC016T+ndf/UGySkn02oHDOdBZFHjSI1aW1PS4NLkmaDMBPrUmzrYY+R0GkhtLUE2SPReilUZyPBnRJKPWaZcwet6RuFPbURf0XO7XMW9t61VcZgEkgYvMK6KoFOF3BNKj2P1sL7XsqWYABI2xQ2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lk/XcyRn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A332C4CEF0;
-	Fri, 13 Jun 2025 14:00:28 +0000 (UTC)
+	s=arc-20240116; t=1749823337; c=relaxed/simple;
+	bh=CQucgb1bg0xXPls5H7qr6pbanXMG619gYuEhe3r6jdw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ADCG3Z8ceuUqjyEWEitgZ4G0w8NBSNznAVOHVa/6b1yCg3Cb5X+LL0D9bRMrPzbvQe2bzrehC3jwogd6R+mzl1UiizpL+c/txrDHMTdKGDiJSKYOOexgphGHS3qlP3cuF/FJjDuMPeJgdTqUsTMVe71FXASqZYrGpw6KCkWHc+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ur3kkzed; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92389C4CEEF;
+	Fri, 13 Jun 2025 14:02:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749823232;
-	bh=H76P9O5vnRjLnOJ2KGvl9BaRxTqr0YGtquLAPQfhvcs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lk/XcyRn69dyFz8G1KM5qJqbly0C63sDuWgT8i9cyKCb7oGGWrZ1nnh3gG6KZEAZ5
-	 1bKNJ3Sud8bbaDR6DilpTK3FHwIDjHt0aPVCn/pJCMc4vQpKpxDlg0RpgbL/QdWwmZ
-	 8eF1k6QfsWrlznmBkkltBklJJ2QdIHePGWg5iofNKlrG8tUekyaeCydawVB8vcZupG
-	 HEA47qG2YWSrrT0jxtiHrdX9Y1x99C5HG3qW49Rew8SqjcitsuxIMX3saCLkCQ4zpH
-	 r2gJ3hY/VqK5z3zY02DJKYR5oRV5D/nctY4p2xi2cuwMm98Ipi9gAZCF28beJY5/ZW
-	 BGSKR01P1ZPow==
+	s=k20201202; t=1749823337;
+	bh=CQucgb1bg0xXPls5H7qr6pbanXMG619gYuEhe3r6jdw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ur3kkzedQWntfr0lGNXGpqQBM2QdnEihDlqla44a5n6yOytZZEuWdRGcNq6Y91SZ5
+	 54CjUgweeYK6CndciVGUbjwh4UK5+u9Lu9WSD4RDbChIgCn1kXkse0BUGrt8eUxOhF
+	 t5uuj0X3cKmjV5Kf9AplE1T4SNDVUMT1JujcSNwdOHLXt+WZxlICwYL+B2eWdJutUq
+	 BYYC/VSwUEst5VJO5gER5ynfRq3Kn6zWZy8kqx+VV9mQ01nbeuzR0XuHyooCDGfGih
+	 tV/9MB3R8rmuY+fEUMl5k2lSGvcBtChKwa4nLgCY8CLxyJH5S/2++EPWyG2ad7RcQe
+	 gkEm2Y3e8QrjA==
+Date: Fri, 13 Jun 2025 15:02:11 +0100
 From: Lee Jones <lee@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Lee Jones <lee@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Vladimir Zapolskiy <vz@mleia.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20250602143612.943516-1-Frank.Li@nxp.com>
-References: <20250602143612.943516-1-Frank.Li@nxp.com>
-Subject: Re: (subset) [PATCH 1/1] dt-bindings: mfd: convert
- lpc1850-creg-clk.txt pc1850-dmamux.txt phy-lpc18xx-usb-otg.txt to yaml
- format
-Message-Id: <174982322878.923450.10813100067215475436.b4-ty@kernel.org>
-Date: Fri, 13 Jun 2025 15:00:28 +0100
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
+	Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH 2/4] mfd: rk8xx-core: allow to customize RK806 reset
+ method
+Message-ID: <20250613140211.GC897353@google.com>
+References: <20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de>
+ <20250526-rk8xx-rst-fun-v1-2-ea894d9474e0@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-459a0
+In-Reply-To: <20250526-rk8xx-rst-fun-v1-2-ea894d9474e0@cherry.de>
 
-On Mon, 02 Jun 2025 10:36:10 -0400, Frank Li wrote:
-> Combine lpc1850-creg-clk.txt pc1850-dmamux.txt and phy-lpc18xx-usb-otg.txt
-> to one mfd yaml file.
+On Mon, 26 May 2025, Quentin Schulz wrote:
+
+> From: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> Additional changes:
-> - remove label in example.
-> - remove dmamux consumer in example.
-> - remove clock consumer in example.
+> The RK806 PMIC (and RK809, RK817; but those aren't handled here) has a
+> bitfield for configuring the restart/reset behavior (which I assume
+> Rockchip calls "function") whenever the PMIC is reset (at least by
+> software; c.f. DEV_RST in the datasheet).
 > 
-> [...]
+> For RK806, the following values are possible for RST_FUN:
+> 
+> 0b00 means "restart PMU"
+> 0b01 means "Reset all the power off reset registers, forcing
+> 	the state to switch to ACTIVE mode"
+> 0b10 means "Reset all the power off reset registers, forcing
+> 	the state to switch to ACTIVE mode, and simultaneously
+> 	pull down the RESETB PIN for 5mS before releasing"
+> 0b11 means the same as for 0b10 just above.
+> 
+> This adds the appropriate logic in the driver to parse the new
+> rockchip,rst-fun DT property to pass this information.
+> 
+> If it is missing, the register is left untouched and relies either on
+> the silicon default or on whatever was set earlier in the boot stages
+> (e.g. the bootloader).
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  drivers/mfd/rk8xx-core.c  | 15 +++++++++++++++
+>  include/linux/mfd/rk808.h |  2 ++
+>  2 files changed, 17 insertions(+)
 
-Applied, thanks!
+The test robots seem unhappy with this.  Please fix and resubmit.
 
-[1/1] dt-bindings: mfd: convert lpc1850-creg-clk.txt pc1850-dmamux.txt phy-lpc18xx-usb-otg.txt to yaml format
-      commit: 8a22d9e79cf039512d56bddeae038a249c26f977
-
---
+-- 
 Lee Jones [李琼斯]
-
 
