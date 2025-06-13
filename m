@@ -1,165 +1,306 @@
-Return-Path: <devicetree+bounces-185558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B599AD85BD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:36:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BCA2AD85D1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CB3F3B29CA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:35:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5E6417EFCD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5547C26B774;
-	Fri, 13 Jun 2025 08:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6530B279DA7;
+	Fri, 13 Jun 2025 08:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="NL8pToJc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDybV0bE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE642DA75C;
-	Fri, 13 Jun 2025 08:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C109A2DA75C
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 08:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749803772; cv=none; b=gfJQG41gg+PGaveEd+bEnpchyBwfiQk1Y/CJ8Zkv9NVZgy7YThmLgiehzLtPD49egR6wRcuhPRYtiZMcP3BMWppaMh1MoSXxV9VaL44LFSe6NrVO5b7fK3hAmMOSTX8MIiP8JbrxD2C4NO6JW8XFvVo3sGy4ix5rtxLimBbtnxI=
+	t=1749804073; cv=none; b=UazakXQl/28Rc6xX57AX9bV6ZXXuHjxVb/SVmb1omTCEbcLmxx+ep8a2xiFPiSW2AZbX3FEUSiMoOQwpHQPIfJWVimFMkzWDtqQDCoR2B3blzwMieD8AsXD2FHnRioycwdXZ6ARSBN3cpJy9zzRIEuN2NU7F6f55RFtgiE244GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749803772; c=relaxed/simple;
-	bh=vuUa5kcHm0jnXDz+1HgJdsjs5l21I1CdnITtFPnTziQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KGPWMyVck3Pj6hkscXhGCJ++krrjxguLn3uNleeeI/ps1praWy0OTaVlD3xrOCe3PvZvPGb1lTQE+jWxL2iQE1KxsLZqpRfvXCScnZridTM2DTh8byyzW/ysalt1ZrG2lmOV0u9C4CWf41oo8JYCO3WkejJiO9ji/clJaS8u5j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=NL8pToJc; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=SYHRlRiBv6lwu5E+iu4c2GkKdYvA5tlAOMCjBwwNqMY=; b=NL8pToJcx7VtKpZq9RceeeEjZi
-	0wq67Ld6C0ug5UkBAnNmBHlT8B2hBCXDYcnBhthyb18SeOWnsAB1HuBt+BhG6nHLaDOgdqcmLat4M
-	hLuCZoFBq2YEERvuxWl5L4Lu+ihZT65lFEtfAX8ShD4wAoIHSp9TvjOZfBuElNWt4a4Utk5NrrTLh
-	pPqtJ4iBpviKA6sReoWHgDMs8w2ZeeQb7L+GGghyKCPNQqRe5ZZ7ADqyWCXwAYzoaCcUiXrdvMrgN
-	FzeRWFWrjVkLAXQG9XLFPtPcZpn4ReKdQKKTScVrrbWUs8hJoQyDEmIu2hVx+S1aMW4uP6/llSiSz
-	pywON9Og==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34862)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uPztB-0000ZL-2o;
-	Fri, 13 Jun 2025 09:35:54 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uPzt6-0001ed-2O;
-	Fri, 13 Jun 2025 09:35:48 +0100
-Date: Fri, 13 Jun 2025 09:35:48 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-Message-ID: <aEvi5DTBj-cltE5w@shell.armlinux.org.uk>
-References: <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
- <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
- <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
- <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
- <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
- <9ebe16a8d33e00c39c142748a1ea6fff96b9565a.camel@icenowy.me>
- <aElArNHIwm1--GUn@shell.armlinux.org.uk>
- <fc7ad44b922ec931e935adb96dcc33b89e9293b0.camel@icenowy.me>
- <f82a86d3-6e06-4f24-beb5-68231383e635@lunn.ch>
- <40fc8f3fec4da0ed2b59e8d2612345fb42b1fdd3.camel@icenowy.me>
+	s=arc-20240116; t=1749804073; c=relaxed/simple;
+	bh=PRF0WPB48azTVcbpCqrMZlxzywNxUQHe0qjWkkS75Z0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=G3FmuuV95b4TabFHJnn4zI2DiMEANE3dW/gljWSMMHxFZtRR9GtqmkCQj/jA81dxLocAF23/dhAaFUFO2mLKea7esdsgXTIQOCzgJh/T769qKKgsOZw9z9EvXtmGaFiMaBxF3UJ5v2u5bD28cMO8EtNyUetmAbzRr254g6WPjxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDybV0bE; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45024721cbdso15283475e9.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 01:41:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749804069; x=1750408869; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A+OEC+0k11JE65oE5hBoC7JjuOEidFYFLd4EKPcTV2A=;
+        b=HDybV0bEYW7A88qQnzMQ0A85JRnh6PNZmJF7Vvsit6UqnKT4TnlsvWVNDt1qjC3RbH
+         K6CJQs5WsyXHzawVz6jvhuiCw8g+5luyhGr/Zv8ycjuj5/KeqwKP6Q+vcV3NhKs6mdke
+         Sl5XcZIiUXyTW0mC45uqcoC5Cr8i/QocCL03/M321eCQcgxY4IcaEOrJbZ0bxBtQPyzo
+         8dfNPc3hhqD88UgsaYWfMMQLaGgc8ZyLyjMG4U4WCtpozch9+B6L9WTcH8WuncXT5N93
+         QbLYRRJfOXNIGvGi+pC1dhwrP1NsFOcBn6eCqtnSvvQJRz+3k5JPzrL+QsToUD0+E7Gp
+         q/lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749804069; x=1750408869;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A+OEC+0k11JE65oE5hBoC7JjuOEidFYFLd4EKPcTV2A=;
+        b=NE7Gh/+EXJFJdVlwkzpC7+/ZAAWIT+8UaPTQX2VUbH5Qx57WCHoMh6/PKQeRuBnCcQ
+         Us+4sBHFYNusbhLL/E3/2zTO2SklcFyysUWtSSHVn4uINmsscbErMFb3yUHwPC3vXykN
+         /wv2VxZNMh/+VG8QpPglwufRFWlXTz4lpuLHO/m+92OYV4hG1c5e9dR/wnKER2Wb0z1i
+         KV+D8ap0PltvcNF0DulGzZLbZcBQUe6pbPw2W02WHxiJvzGWdoyXeIMAYFtREPHCjktf
+         lbDlm6wpBmmcM0EF5WS3I9RTYm9qkvh1SDZTLcAfMbmAZyq3hvmbOFKlLFXBegzHOUMz
+         ocRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWjUkhADL71JwPDvHE4rUlluGbT1wWMhiSBDP6cKtAiKfg4KO1S4mbqItj3me8yvc8BGiaLBuLldeJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9u1TIIkBot9XSbExCevq2b9Ll4hCmiiuOBOgUYvagtGwNNJze
+	RFCirIVDZAsQCKrkt/4m5yfYgThf0hp69x6dFZ02lf4OeiEljA+tl9JCTNe6s2pj/Fg=
+X-Gm-Gg: ASbGnct2PlqpnHJaKXlwFeQiNnGw57JyxZzn61mvl+Rh9zpfStDrJxpGJWPOhdODmxB
+	vy+8GctZgxazBc782ChwOMbF845v0TTf8tgsquzQFYaRoFdkRUWFwWWQvMBe5HWAQ2kDzMEyl6J
+	9MVt6ucqw2JkPUyoa5byp3R4tb0ehD5hSBEL9Kwiib3MVsC7IXac0XHPLk09X6lUwSHkOiYFuRe
+	zceXcuXz480rJRqpN/XgeBJ+YDSYTOMZXklHCarrcq0F0fEkgsGs0s9u/ZPEERjl6krvXP9f+oX
+	dufAmpun+kjwBZEipQHlKqXgwjL47WYsV3Zzmq7RI0sKvWLafwqmsMIQtO+NA0qK6xq2+cNuM77
+	GU9B+D9o=
+X-Google-Smtp-Source: AGHT+IEpZwXvIoVR51/YieuIFzd7vauBScoTRoCDpk3T9fQBL6SBtZwDgxeoFK+WHWWOa4LzTKTe2Q==
+X-Received: by 2002:a05:6000:4312:b0:3a4:d898:3e2d with SMTP id ffacd0b85a97d-3a5686cf98fmr1626077f8f.24.1749804069066;
+        Fri, 13 Jun 2025 01:41:09 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4531ff595b7sm65237475e9.2.2025.06.13.01.41.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jun 2025 01:41:08 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Fri, 13 Jun 2025 10:41:06 +0200
+Subject: [PATCH v4] arm64: dts: qcom: sm8650: add iris DT node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <40fc8f3fec4da0ed2b59e8d2612345fb42b1fdd3.camel@icenowy.me>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250613-topic-sm8x50-upstream-iris-8650-dt-v4-1-35ea7952f2d2@linaro.org>
+X-B4-Tracking: v=1; b=H4sIACHkS2gC/5XNQQ7CIBCF4asY1o4ZEOrUlfcwLrCATqKlgdrUm
+ N5ddKPGjS7/t/jeTWSf2Gexnt1E8gNnjm0JPZ+J5mjbgwd2pYVCZVBLgj523EA+02gQLl3uk7d
+ n4MQZqCqT68GpptLW1AZNEAXqkg88Pk+2u9JHzn1M1+fnIB/rX/wgQQKhraw3uA8SNydubYqLm
+ A7i4Q/qzVT6J1MV07laIu2DoVX4Mpcv02D9k7ksZqhIK4+WFNKHOU3THaQ6LfR9AQAA
+X-Change-ID: 20250418-topic-sm8x50-upstream-iris-8650-dt-d2c64a59505f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5558;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=PRF0WPB48azTVcbpCqrMZlxzywNxUQHe0qjWkkS75Z0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoS+QjhOuZLoeUo3dRQ/rid/cnmelNTHfzYJbP2/BT
+ acxaq3WJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaEvkIwAKCRB33NvayMhJ0eGUD/
+ sFMnsmxD0Z0KEnBG2nE4HvURYLLPKeoVR/ALvcAXXY5yq/OdTD2h//PqLyWejoy9o0oAOO4EWcS8+R
+ TiDTbzKjtfngC5+EWwsQwK7o6drb5mdG9L1WnBMOAHadazvTOdIfPxHuIBT+797srgFWpYL7Pb4jQe
+ OVc1un7LvB8xc7HibPwcYkP2t+AMZHPVfNifXd66SDg9n2PdXgN9lrYM9doSk+NPyWcjjoJuM/zPhE
+ n20a3NoklvUGceHnHEaUNnJambbp3QvC48EbaEG2M02a1pgOC4RfQn0FwUby76Ezegh//vVxTX3nT3
+ cayU9RfX5P33f51LeI9bPX3g8b+qzBJ9C969xbk0NlQzsxZ1Uhiwovrqa6DN7H70Q9FsK7hC35Ikle
+ rbI5WkTsCiGsTvbFlribrqntzsbdFsNC/eICbO9OdbI8r3qKwboRRQZGHFOJBuTdNQUCmMqMd82iAB
+ l/AwGuyumFf5W641izvyTxtF+GsRsB62b48SoSrF3dlD43DyQg4NK1SX06wdzD5v/SI3fe1CmmcgXf
+ mlL3fFErZBv2T+H3OHnO3/KHbbU5z1+oPiyX/QjaidBNH7AHIits+pb0xzu1D2P0jB98EG4TycEuuT
+ sB+nTRvWVG941D/V5ulI9I7hJSKLZQzdrDObN9zhYZsaOW9411oXurPs5b9A==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Fri, Jun 13, 2025 at 04:01:37PM +0800, Icenowy Zheng wrote:
-> 在 2025-06-11星期三的 17:28 +0200，Andrew Lunn写道：
-> > > Well in fact I have an additional question: when the MAC has any
-> > > extra
-> > > [tr]x-internal-delay-ps property, what's the threshold of MAC
-> > > triggering patching phy mode? (The property might be only used for
-> > > a
-> > > slight a few hundred ps delay for tweak instead of the full 2ns
-> > > one)
-> > 
-> > Maybe you should read the text.
-> > 
-> > The text says:
-> > 
-> >   In the MAC node, the Device Tree properties 'rx-internal-delay-ps'
-> >   and 'tx-internal-delay-ps' should be used to indicate fine tuning
-> >   performed by the MAC. The values expected here are small. A value
-> > of
-> >   2000ps, i.e 2ns, and a phy-mode of 'rgmii' will not be accepted by
-> >   Reviewers.
-> > 
-> > So a few hundred ps delay is fine. The MAC is not providing the 2ns
-> > delay, the PHY needs to do that, so you don't mask the value.
-> 
-> Thus if the MAC delay is set to 1xxx ps (e.g. 1800ps), should the MAC
-> do the masking?
-> 
-> What should be the threshold? 1ns?
+Add DT entries for the sm8650 iris decoder.
 
-Why should there be a "threshold" ? It's really a case by case issue
-where the capabilities of the hardware need to be provided and
-considered before a decision can be made.
+Since the firmware is required to be signed, only enable
+on Qualcomm development boards where the firmware is
+available.
 
-In order to first understand this, one needs to understand the
-requirements of RGMII. RGMII v1.3 states:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v4:
+- Rebase on v6.16-rc1
+- Collect R-b tags
+- Link to v3: https://lore.kernel.org/r/20250509-topic-sm8x50-upstream-iris-8650-dt-v3-1-f6842e0a8208@linaro.org
 
-Symbol	Parameter		Min	Typ	Max	Units
-TskewT	Data to Clock output	-500	0	500	ps
-	skew at clock tx
-TskewR	Data to Clock input	1		2.6	ns
-	skew at clock rx
+Changes in v3:
+- Removed useless comment
+- Fixed opp required-opps
+- Link to v2: https://lore.kernel.org/r/20250424-topic-sm8x50-upstream-iris-8650-dt-v2-1-dd9108bf587f@linaro.org
 
-The RGMII specification is written based upon the clock transmitter
-and receiver having no built-in delays, and the delay is achieved
-purely by trace routing. So, where delays are provided by the
-transmitter or receiver (whether that's the MAC or the PHY depends
-on whether TXC or RXC is being examined) these figures need to be
-thought about.
+Changes in v2:
+- removed useless firmware-name
+- Link to v1: https://lore.kernel.org/r/20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org
+---
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts |  4 ++
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  4 ++
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  4 ++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi    | 93 +++++++++++++++++++++++++++++++++
+ 4 files changed, 105 insertions(+)
 
-However, the range for the delay at the receiver is -1ns to +0.6ns.
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+index d0912735b54e5090f9f213c2c9341e03effbbbff..259649d7dcd768ecf93c9473adc1738e7d715b6c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+@@ -894,6 +894,10 @@ &ipa {
+ 	status = "okay";
+ };
+ 
++&iris {
++	status = "okay";
++};
++
+ &gpu {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+index 76ef43c10f77d8329ccf0a05c9d590a46372315f..8a957adbfb383411153506e46d4c9acfb02e3114 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+@@ -585,6 +585,10 @@ vreg_l7n_3p3: ldo7 {
+ 	};
+ };
+ 
++&iris {
++	status = "okay";
++};
++
+ &lpass_tlmm {
+ 	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
+ 		pins = "gpio21";
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+index 71033fba21b56bc63620dca3e453c14191739675..7552d5d3fb4020e61d47242b447c9ecbec5f8d55 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+@@ -824,6 +824,10 @@ &ipa {
+ 	status = "okay";
+ };
+ 
++&iris {
++	status = "okay";
++};
++
+ &gpu {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index d856ee7a5d0528aa204431a1528d8742cab3d5a8..3f09917b4fc74ca54be28f25b64f4ede2648c884 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -4962,6 +4962,99 @@ opp-202000000 {
+ 			};
+ 		};
+ 
++		iris: video-codec@aa00000 {
++			compatible = "qcom,sm8650-iris";
++			reg = <0 0x0aa00000 0 0xf0000>;
++
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>;
++
++			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
++					<&videocc VIDEO_CC_MVS0_GDSC>,
++					<&rpmhpd RPMHPD_MXC>,
++					<&rpmhpd RPMHPD_MMCX>;
++			power-domain-names = "venus",
++					     "vcodec0",
++					     "mxc",
++					     "mmcx";
++
++			operating-points-v2 = <&iris_opp_table>;
++
++			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
++				 <&videocc VIDEO_CC_MVS0C_CLK>,
++				 <&videocc VIDEO_CC_MVS0_CLK>;
++			clock-names = "iface",
++				      "core",
++				      "vcodec0_core";
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
++					<&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "cpu-cfg",
++					     "video-mem";
++
++			memory-region = <&video_mem>;
++
++			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
++				 <&videocc VIDEO_CC_XO_CLK_ARES>,
++				 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
++			reset-names = "bus",
++				      "xo",
++				      "core";
++
++			iommus = <&apps_smmu 0x1940 0>,
++				 <&apps_smmu 0x1947 0>;
++
++			dma-coherent;
++
++			/*
++			 * IRIS firmware is signed by vendors, only
++			 * enable in boards where the proper signed firmware
++			 * is available.
++			 */
++			status = "disabled";
++
++			iris_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-196000000 {
++					opp-hz = /bits/ 64 <196000000>;
++					required-opps = <&rpmhpd_opp_low_svs_d1>,
++							<&rpmhpd_opp_low_svs_d1>;
++				};
++
++				opp-300000000 {
++					opp-hz = /bits/ 64 <300000000>;
++					required-opps = <&rpmhpd_opp_low_svs>,
++							<&rpmhpd_opp_low_svs>;
++				};
++
++				opp-380000000 {
++					opp-hz = /bits/ 64 <380000000>;
++					required-opps = <&rpmhpd_opp_svs>,
++							<&rpmhpd_opp_svs>;
++				};
++
++				opp-435000000 {
++					opp-hz = /bits/ 64 <435000000>;
++					required-opps = <&rpmhpd_opp_svs_l1>,
++							<&rpmhpd_opp_svs_l1>;
++				};
++
++				opp-480000000 {
++					opp-hz = /bits/ 64 <480000000>;
++					required-opps = <&rpmhpd_opp_nom>,
++							<&rpmhpd_opp_nom>;
++				};
++
++				opp-533333334 {
++					opp-hz = /bits/ 64 <533333334>;
++					required-opps = <&rpmhpd_opp_turbo>,
++							<&rpmhpd_opp_turbo>;
++				};
++			};
++		};
++
+ 		videocc: clock-controller@aaf0000 {
+ 			compatible = "qcom,sm8650-videocc";
+ 			reg = <0 0x0aaf0000 0 0x10000>;
 
-In your example, you're talking about needing a 1800ps delay. I
-would suggest that, *assuming the PCB tracks introduce a 200ps skew
-between the data and clock*, then using the PHY's built-in 2ns delay
-is perfectly within the requirements of the RGMII specification.
+---
+base-commit: ecf638079f3a590596fe93b108a3986ba5960e81
+change-id: 20250418-topic-sm8x50-upstream-iris-8650-dt-d2c64a59505f
 
-That bit "assuming" is where the discussion needs to happen, and why
-it would be case by case. If the skew due to trace routing were
-800ps, then enabling the PHY's built-in 2ns delay would take the
-delay out of spec.
-
-Thrown into this would also be temperature effects, so trying to get
-to as near as the 2ns delay as possible is probably a good idea.
-
-Lastly, there's the question whether the software engineer even
-knows what the skew provided by the hardware actually is.
-
+Best regards,
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
