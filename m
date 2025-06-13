@@ -1,101 +1,150 @@
-Return-Path: <devicetree+bounces-185672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2522AD8B9F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:07:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90A56AD8BCD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:11:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D7291892E3E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:08:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 255453B7852
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4449D2D5C7C;
-	Fri, 13 Jun 2025 12:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21131275AF7;
+	Fri, 13 Jun 2025 12:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oR0qDPoR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XFdBB2zF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BD922DA0C;
-	Fri, 13 Jun 2025 12:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9453275AE2;
+	Fri, 13 Jun 2025 12:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749816463; cv=none; b=Z/9DdReZLZqKZtYGEqOvxWcCqKjkb7JVmEw5m8NSDLProL83DS/8IdN5v+BwpkSKAalpvTxJ5R8/kCB/A5SgpE1e3UDaB6rqmsYfGEe5ZPJS+rrjgpFnLSLE7aRp0PZwiVsvExvGHYWATim9W0/bFaNerURCt2Nu67h4BxiklLE=
+	t=1749816682; cv=none; b=JxJX/daylz6ATHVS4Yi3nLVZsE+G5qgpudz+oAksHJ/QaOiY4Bpwcc6FahgSoa2JX2ojY0njGIglXY6VthL/Dk6M898pYTkv7gbURqLWAQ79qqjKdhaWYw8GNIB6BAjjRe8W3JrLzkLodVaWIR3cTgbHb0H/OY5VdQ6Eh3QwHsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749816463; c=relaxed/simple;
-	bh=zmixJqT+qnhq9tOVUyzq9GN1CmEoe3UJnls0UqSmEEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DUwByuiHebSngxnoIPioPXog0zv/C2F6f/F82hNDwOAoQrIVIwDYo/rKp/fAclnrxBDkW5HPBC+gkWep6oNVWGNcaqLtwK9QL3H+8BNYk9JcznNxSgDQYp0r1kQqXXp2kv3V0Tl0LrE2/syKI+seIgld7vkF9Rv69JCUs0JsBMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oR0qDPoR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D764C4CEE3;
-	Fri, 13 Jun 2025 12:07:40 +0000 (UTC)
+	s=arc-20240116; t=1749816682; c=relaxed/simple;
+	bh=jnOSG6+N0jQ3+pXfsCwZpFXSz6MLyhC+dg4TIZoHhQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s3+tu+rk1KVEoXawROoEctUXEaovACVGuWKceET4Bn2uFUdszpZaYa/yCRarbpLfLlH/Jxj8GolLYTvvJdD42jSDF5hjhg71BmslIaNxalJeHcvD/ZdciwtEnSTCPZUZ016UfxloaFLIm3BPpilFbahdHaHG3n1sO4LDr5jhVqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XFdBB2zF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA164C4CEE3;
+	Fri, 13 Jun 2025 12:11:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749816462;
-	bh=zmixJqT+qnhq9tOVUyzq9GN1CmEoe3UJnls0UqSmEEU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oR0qDPoRWfpDHBJQO6hyV7QEIZbpkE4nst8WWHkhc3FIkWfPOLb9CmVLUbf2KCafM
-	 c1MJxCVgNRz8Kaug2d1LTaOiG59sgNiPTV4uyOMTXQMoOgpsfRDdrOVb3ccfucqSUI
-	 BzrUwo7+9xfz3j15iszoU/XkIsU9N9oK5a7NiSiwa2K1f0k1BBN2UDSH8995lmfGSg
-	 OIe8PINoMX9385fJC8nwiablTqjODVDGMWoPxfSvM+4AzDJQBGJxCcSbS0VuZ8o8gJ
-	 HRbAcyI+7TUAOyf0+x6n2cKy0+LBqoyzQFanLh4XErVFuZPkSeifyCMftAdX6rL6F/
-	 /+zjfs15GX7sg==
-Date: Fri, 13 Jun 2025 13:07:37 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Julien Panis <jpanis@baylibre.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 7/7] regulator: tps6594-regulator: Add TI TPS652G1
- PMIC regulators
-Message-ID: <735fc700-9cfe-474a-8c9a-8469e95bfb72@sirena.org.uk>
-References: <20250613114518.1772109-1-mwalle@kernel.org>
- <20250613114518.1772109-8-mwalle@kernel.org>
+	s=k20201202; t=1749816681;
+	bh=jnOSG6+N0jQ3+pXfsCwZpFXSz6MLyhC+dg4TIZoHhQA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XFdBB2zF0zRxyY8wCMsMrXyyfc83ESUO1lfXUSdqyWjqHt+kWRXVyJt3VS6w4VhhS
+	 KNqzEBUuphxi9nijHQaOO6XmQuldnJLz+XThnUGzTOOWnIjjKQwrA0myMgMTQoU86P
+	 9K5WaxbNR7M/+2uQ41BEAThYwPKjRa0PUuucbbLe0ELbdcBgS7UtT1S2JutabWwkww
+	 j8RZplsfX1G+Vi6fkQiZMPOHpbw9Rypjkqy8/o2Ll25DJ9ikc2YqqNlmR9g/E9QRNt
+	 osD4welzPEsOPk1lVoojttCxYvuVFVeM2ZL67xE+G+K6r66FtNV6ac3yYiaTuySi8j
+	 KpAUGQwZjFKKg==
+Message-ID: <9a23e0e5-f48c-41a9-8e15-69cdfbc7eca2@kernel.org>
+Date: Fri, 13 Jun 2025 14:11:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8PGlkFG+A9i0O2ul"
-Content-Disposition: inline
-In-Reply-To: <20250613114518.1772109-8-mwalle@kernel.org>
-X-Cookie: Use extra care when cleaning on stairs.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
+ property for MT7688
+To: Ezra Buehler <ezra@easyb.ch>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc: linux-mips@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Harvey Hunt <harveyhuntnexus@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Reto Schneider <reto.schneider@husqvarnagroup.com>,
+ Rob Herring <robh@kernel.org>, Stefan Roese <sr@denx.de>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, devicetree@vger.kernel.org,
+ Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+References: <20250611194716.302126-1-ezra@easyb.ch>
+ <20250611194716.302126-2-ezra@easyb.ch>
+ <e2ffca36-d2ed-4253-86a6-a990e7931ba0@kernel.org>
+ <CAM1KZSkcc8wh7yuJ-26ASKSehjWfD_QGs0JrKOWm+WMfXiY+DA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAM1KZSkcc8wh7yuJ-26ASKSehjWfD_QGs0JrKOWm+WMfXiY+DA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 13/06/2025 13:50, Ezra Buehler wrote:
+>>> diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+>>> index 0212700c4fb4..10221a41f02a 100644
+>>> --- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
+>>> +++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+>>> @@ -33,7 +33,7 @@ palmbus@10000000 {
+>>>               #size-cells = <1>;
+>>>
+>>>               sysc: syscon@0 {
+>>> -                     compatible = "ralink,mt7628-sysc", "syscon";
+>>> +                     compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+>> This is in contradiction to bindings, so you need to fix bindings first
+>> - with proper justification. If this happened in separate patchset, then
+>> the DTS thread MUST provide lore link to that.
+> 
+> As the MT7628 and MT7688 are identical in most respects, mt7628a.dtsi is
+> used for both SoCs. Therefore, I'd rather suggest adapting the driver to
+> return "ralink,mt7628-sysc" in both cases and remove "ralink,mt7688-sysc"
+> from the DT bindings.
 
 
---8PGlkFG+A9i0O2ul
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Not sure what you propose here, but just in case: devices need specific
+compatibles.
 
-On Fri, Jun 13, 2025 at 01:45:18PM +0200, Michael Walle wrote:
-> The TI TPS652G1 is a stripped down version of the TPS65224 PMIC. It
-> doesn't feature the multiphase buck converter nor any voltage
-> monitoring. Due to the latter there are no interrupts serviced. In case
-> of the TPS652G1 any interrupt related setup is just skipped.
+> 
+> I'd love to hear Sergio's (or any other) opinion on this matter.
+> 
+> Cheers,
+> Ezra
 
-Acked-by: Mark Brown <broonie@kernel.org>
 
---8PGlkFG+A9i0O2ul
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhMFIgACgkQJNaLcl1U
-h9DDEQf/eMQAHNhzuQ6xi46PDQvyLcZ9nFF42j1GjBneMlZ0FTdvARSKnbCasrq8
-ouQNDIW4yGET8wK5e+rUTXPK5U5uvTe/jPzecw8lD4FzXlI7vJDO6N7VxkKkP5sg
-VKwqup2HXonwFeDV8BI8QRwp2m5n+S1AVEx4Yu/IBFZF89boZPHoiiRStxafOLRw
-By14D68K9zkA4EAffiTmpMkM6HcDx/nbQcEqzG03rr5r0Ahza7W5tV/QsS5dYBMO
-Q+QsHcB8UeqnxuEr5uAAvPlCR2xclnrBzRfOShdXPA15nksF4B6Akve50Qq6VafB
-/+T/UoPPjIWVjbEJi8qMgmPiONLl3A==
-=DTgi
------END PGP SIGNATURE-----
-
---8PGlkFG+A9i0O2ul--
+Best regards,
+Krzysztof
 
