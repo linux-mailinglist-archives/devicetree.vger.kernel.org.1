@@ -1,90 +1,112 @@
-Return-Path: <devicetree+bounces-185563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC0EAD85F8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:50:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB46DAD85FB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:50:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F5CE3B73E5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:49:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F01A16DE0D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E692F2727F3;
-	Fri, 13 Jun 2025 08:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6E62727F9;
+	Fri, 13 Jun 2025 08:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZIBCLUxD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C482DA77F;
-	Fri, 13 Jun 2025 08:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 721022727EF;
+	Fri, 13 Jun 2025 08:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749804609; cv=none; b=Gz74PG4gmvCdU9ugFyph4lYHEsNMve/vkROMiDEtdV5l1J7MLeUUp2W5AE/pMs+ZmTvVTUBaVm5yCGfTP4y/FBexxKRrGzt+ntmkJmlm2bYG/MvoE0civsaqPWl4R1bKMsIsXKtJHdTqcaXGso6modaz6tbPk7tJHZAAvtYJEzg=
+	t=1749804620; cv=none; b=Bq2HspuM8EzZesJuTo3JIiLLiMyHVx+fBP7SpfSlNH8ixwRczagX2Se2GkjurE0z/bIR864tVoVYSvdCzW8zo2lljb08V4bB8rLGT7ngr9EVfh2M+Hg6s3e/KVCKEfE4bO5YZ9ZRrbLBsZ28I9eEDR9bYLdAGVsDNpmvQnEGPd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749804609; c=relaxed/simple;
-	bh=WbzY6vHw+HALJcAi9aUX+7UiRoYDYDHxVku4XzU7emg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m9XtyJ7DSeLkQLco4lfLVVM6hK81jdvEnj6oIxDPgct/ib+H3MhR+DCsNxoPkuDdUax/lPaKwESF6MdNlBtGiIOcwDr155c6GZ5KyfxA+nPvLkhVhXnf3e/yilKVwEV+9HLTL1CSBtGQIxjS27y9/YUdHUH5nLECmeIY1m+W9S4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BF95C4CEE3;
-	Fri, 13 Jun 2025 08:50:06 +0000 (UTC)
-Message-ID: <54e8c99c-a1bd-4431-8eb5-844b15c61465@nxsw.ie>
-Date: Fri, 13 Jun 2025 09:50:04 +0100
+	s=arc-20240116; t=1749804620; c=relaxed/simple;
+	bh=eCo/L6P/lgVu+jHfJMyorLu6Y9nvXk/E/NCtlMoCn2k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZiktWQe1B2eEUTd7F8/WfUiDDA7umY6sgc3p0FsWRJDTrrtJg6khvk4XO7f79n/wHqkhq1gVa6y917INfhc3WD6LYMIkfblXRJRy0z0GMnwfl++Z1dt+6tEhP9M7Kltb7pUsSRRcGCUdlPp2N6A1pudihJsFKcWT2NBn0C4haZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZIBCLUxD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D34D3C4CEE3;
+	Fri, 13 Jun 2025 08:50:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749804620;
+	bh=eCo/L6P/lgVu+jHfJMyorLu6Y9nvXk/E/NCtlMoCn2k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZIBCLUxDuDg0GoH2XX9bzbW0PoVGYuEIZz8QDuTtS28tmTHIkGbIWFn5SrtbelRQT
+	 1LPwLu4iq4Gdz3KT8FtEhAfAWORb/MZAPSwyKUk9oRzhPdH/E+Gw48+wtVAja0fjjS
+	 HjVEq2xut2/oBRpOddOoDLn17mnM4h3xbGUvfTS2cAa2camZu98bveQnqWVi4+zwof
+	 xOtrQ7mxDHXFViyNJlO4Ix5z9JiU6EQl2LX1nwEUJHnE7DeJEZZz52OH0UPDkU+/+Z
+	 eRv7Tk+j7WxrzJjfFfwEnzSMl2ES2liUMs3SxCay7QlS3jkNVkUkQOQskOrbMfMIAD
+	 KMBKfGlS99roA==
+Date: Fri, 13 Jun 2025 10:50:14 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v8 0/9] More Rust bindings for device property reads
+Message-ID: <aEvmRmQwX7Vb8Y_3@pollux>
+References: <20250611102908.212514-1-remo@buenzli.dev>
+ <aEtjONTgqDikCoB6@cassiopeiae>
+ <DAL8LI3LMET9.3LW0J9JED1EZG@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: media: qcom,x1e80100-camss: Fix isp unit
- address
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250610083318.2773727-1-vladimir.zapolskiy@linaro.org>
- <RWBE_UIknv_CsgGZeJ9uULll0tI3X_fNQyZyOYvtTCz_3bLbycYGAl8kIG6A-FD5KzpFLJQ0D0xKib0KJAnjpg==@protonmail.internalid>
- <20250610083318.2773727-2-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bod.linux@nxsw.ie>
-In-Reply-To: <20250610083318.2773727-2-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DAL8LI3LMET9.3LW0J9JED1EZG@buenzli.dev>
 
-On 10/06/2025 09:33, Vladimir Zapolskiy wrote:
-> According to the devicetree specification a unit address shall match
-> the first address value of the reg property.
+On Fri, Jun 13, 2025 at 09:45:47AM +0200, Remo Senekowitsch wrote:
+> On Fri Jun 13, 2025 at 1:31 AM CEST, Danilo Krummrich wrote:
+> > On Wed, Jun 11, 2025 at 12:28:59PM +0200, Remo Senekowitsch wrote:
+> >> Remo Senekowitsch (9):
+> >>   rust: device: Create FwNode abstraction for accessing device
+> >>     properties
+> >>   rust: device: Enable accessing the FwNode of a Device
+> >>   rust: device: Move property_present() to FwNode
+> >>   rust: device: Enable printing fwnode name and path
+> >>   rust: device: Introduce PropertyGuard
+> >>   rust: device: Implement accessors for firmware properties
+> >>   samples: rust: platform: Add property read examples
+> >
+> > Applied to driver-core-testing, thanks!
+> >
+> > Once the patches passed 0-day testing they will be merged into driver-core-next.
+> >
+> >>   rust: device: Add child accessor and iterator
+> >>   rust: device: Add property_get_reference_args
+> >
+> > I did drop those two patches for now, because:
+> >
+> >   (1) They're basically dead code.
+> >
+> >   (2) It seems that FwNode::property_get_reference_args() leaks a struct
+> >       fwnode_handle reference. property_get_reference_args() explicitly says
+> >       that the caller is responsible "for calling fwnode_handle_put() on the
+> >       returned @args->fwnode pointer", which doesn't seem to happen.
+> >
+> > Can you please fix the leak and resend those two patches with an additional one
+> > that adds a sample usage of the introduced methods to the platform sample
+> > driver?
 > 
-> Fixes: 2ab7f87a7f4b ("dt-bindings: media: Add qcom,x1e80100-camss")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
-> Another fix on top of https://lore.kernel.org/all/20250502204142.2064496-1-vladimir.zapolskiy@linaro.org/
-> 
->   .../devicetree/bindings/media/qcom,x1e80100-camss.yaml          | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> index 7d4e6ef57bf8..959cff1a31a8 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> @@ -190,7 +190,7 @@ examples:
->           #address-cells = <2>;
->           #size-cells = <2>;
-> 
-> -        camss: isp@acb6000 {
-> +        camss: isp@acb7000 {
->               compatible = "qcom,x1e80100-camss";
-> 
->               reg = <0 0x0acb7000 0 0x2000>,
-> --
-> 2.49.0
-> 
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Alright, thanks. I suppose that should be a new patch series, with a new
+> title and starting at v1 ..?
+
+Yes, that's fine. Please make sure to mention that it's a follow-up of this
+series (ideally with a link).
 
