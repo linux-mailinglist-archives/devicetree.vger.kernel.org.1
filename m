@@ -1,206 +1,109 @@
-Return-Path: <devicetree+bounces-185687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF7DAD8C9A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:54:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEEFCAD8CA2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:57:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9E113BB7B4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:54:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 926ED1E25C2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:57:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3671D540;
-	Fri, 13 Jun 2025 12:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26028200A3;
+	Fri, 13 Jun 2025 12:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="es8djR6v"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="G7EMkuUj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E7328691;
-	Fri, 13 Jun 2025 12:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7959286A1
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 12:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749819259; cv=none; b=hwE7ApmuRcn1bqBHNLR3EOCQlsYj3D3gyFQ0SjoNdfeT3QbFw5Rd/omC32mY56vccrNX1/ID/zSFltrxOVgFzw8sJmOwz12y8q8xH0r2iLyD15C9jR0beQvKX+P4gzlJfIORW+oSI90xgkzScQAbaFlI5TTtO5bKpv3RqJ/YCIY=
+	t=1749819419; cv=none; b=q4P2NDjrWiknMeYGwuJtZU+0ZbsLrQ5jXn5OnpD1SwfW6+egPN7zeNeEuQmAI9SXngKLdOl5S+58eiDLh1/xc9SvwElKiXe/PzG4E5gyqn/eEJSLu7754yxxcRWxTNadwhhN3Rmfv5sHZiICJezceVwY0XzZDYYtk++62lIb8R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749819259; c=relaxed/simple;
-	bh=rTFIi2usA4Iknjpjancsasj407AUD6ipJNUXYjs3KBQ=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=ljD1HOZLx3OjiTJNmfBt9o4OqjdEkdotfOTxGcAHsESBf7FZO2RwBLzfnXugC5ps9V01X8LmoCXPH2yH2VFEn7gTEE1iWzu5Ma3vvNuap5FiviDZBD4MQbZlnYtHzGRpuz/m/O2WCqZ6Xj0ZCojI+xkBchxY80EhlFj2yF5HyLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=es8djR6v; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=twkhsV1zF0hL+QCGl5QNOY+ykroDooxraR5ZCGY5fWM=; b=es8djR6vmm6TqtJIf58kZsllKp
-	TzJmAZ2/GXq/4luB7VASVqpOdTNjmUPkZPjYIo/46HunuURSwxzibLkvBHzA2N04pV4VoNgxw7tEz
-	OI4eiivibzdE0CYnkl7EDz57A2S9ANJUUPUf0+fAvvlfdIdqNVR5c9jVzwpzZqAQW+By7viRsMlaN
-	JlH4U6dDN0c9ppdK0lZWJjHlkUu4GhkKE/3U3K0J7xDUtvjetOUG03C0QYigVF+yznKZPGVpNcUh7
-	Ov4XQ+082tULqHZDQBDRXrGp/uiXZwj2YV0xBKWhlKyWNNhXjKmOY8WyNiQTocNk1DBm1k6RTAAIv
-	sJCo7lHw==;
-Received: from [122.175.9.182] (port=23246 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uQ3uu-0000000DXDE-3J6J;
-	Fri, 13 Jun 2025 08:53:57 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 079A91781C8F;
-	Fri, 13 Jun 2025 18:23:43 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id DB65117882B2;
-	Fri, 13 Jun 2025 18:23:42 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id tfKVzeSMqLXe; Fri, 13 Jun 2025 18:23:42 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 8286E1781C8F;
-	Fri, 13 Jun 2025 18:23:42 +0530 (IST)
-Date: Fri, 13 Jun 2025 18:23:42 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
-	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
-	saikrishnag@marvell.com, m-malladi <m-malladi@ti.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <909024001.1496409.1749819222224.JavaMail.zimbra@couthit.local>
-In-Reply-To: <cdcd54ff-ff67-4ad8-8aa7-baa711928242@linux.dev>
-References: <20250610105721.3063503-1-parvathi@couthit.com> <20250610123245.3063659-7-parvathi@couthit.com> <cdcd54ff-ff67-4ad8-8aa7-baa711928242@linux.dev>
-Subject: Re: [PATCH net-next v8 06/11] net: ti: prueth: Adds HW timestamping
- support for PTP using PRU-ICSS IEP module
+	s=arc-20240116; t=1749819419; c=relaxed/simple;
+	bh=aE22SOQvZ4NboRw+vhfJKx6DgFaydjXtrHMM6GlB71A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ndciC9Y7yyItnKIsicibgBa7F8PEU1B0Fz7AM4NMY4SizSpsvGeP+HPCF73t7c83J0bLTP9XBNwHriav2Awtax1l0YdjI3LnCzDq79RZUlXoGc/FZHbRPo3VZ+A3musbtoAfG/thyx67QaVSIMPe2QfVAdmv3BJ+aG0WWQ/X2qY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=G7EMkuUj; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-70f862dbeaeso20966387b3.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 05:56:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1749819415; x=1750424215; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aE22SOQvZ4NboRw+vhfJKx6DgFaydjXtrHMM6GlB71A=;
+        b=G7EMkuUjg83aQqNVAMTRIX8+gssFDXPDydUJjjGRBcYHPpul6nFNmWi0zekcMZDr5Q
+         XWSphwPFhx/LIXTul8MnttqQ15XTsLJ2OoHUM3SPx4psJg8W2SaL5YJIsOqhBa7Eh1yF
+         p+0UeEbrXTtFCuw7TcjAEx/6tNQQcsQ9GG+JYDfCm0ryNjp9veLXpjp5zpYmAYBGKFIx
+         LpwbBgZfUHbVwEG33j3K2RnAkHpeIDT5ieBGrN59G77JJwWY4rNaO5ChSwH0q6LKDIVy
+         M9IVC3quztfvL/8hqixvDUGDrMIzVzrlPxgZpWslCSxI92DcSQuewHFpfksqqLysA1hW
+         /rXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749819415; x=1750424215;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aE22SOQvZ4NboRw+vhfJKx6DgFaydjXtrHMM6GlB71A=;
+        b=L4z8orjBTpBazQWB0QIese9jef9k7+00YbteI3Ps04LhKAfweaBMEqhclN9WQZv793
+         1e/sfvgMJ1vXxKYvY80krvfzsNL4n/DKkIoowJuDNYuqOrgVi5dNX0NOh3+70xtxIsqY
+         ZkMbsGnvmcnuQ6dHufkZBIY0fNGKbb7zU8Z6jjO9YZqanDiL/+CQ0d2vuuxnIZ+DMdlJ
+         1d+WOIC1wzFzUo5Cn9wWsXYFK8vyVI61fCfo5Kyf6euzvbWbq8DoNSttTSKGePlq9T0E
+         9HgipNY5MDr5Yrhk2wlsL83mdYMUnHWASwFK+lDeVHke2DwIjgx22S5KrpCI6JOZaadL
+         rJ9g==
+X-Forwarded-Encrypted: i=1; AJvYcCW8MuPUMfnFBUvUncE3+VR+bLMKLf7m6PI2GTjmxJZmhinnWfy0Lyuj/Ygf3zC6sACPphoqF8AQTvDx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5McouLre06opkZaTV6eg3JgFJW2xrVunsaH0jxbEj6VbPSsFh
+	+CtBzYN8iCV8oSlYmuy3OtTFJQwIVFv10Nzpkiw2Mspecr8PkhtuRc3nwMWz8RcJbak48LEgV48
+	ahmWXl3aw8X4J/t5JGzOBo8Rb4UZnZEN7iIktnaqSNhOFIWvuDkGzYOU=
+X-Gm-Gg: ASbGncumyFAjf+H4jLNS66qo8PKzzmpBDSS3MC74inq4g8f/ogL0fyrTlrhtTxIfMFP
+	XNninYoqWEAOAD9qj+8R/HtpHhStHYnRC1UipXjHfwxqaq6UbRdT6WMDX6Q+Pz9SzlQ86lRKI+f
+	Jq1ANLedMFObKyRsnxk0vX37Ax9/BFlT0E+41djL0vVMjIaQhjCm0VCX+Pnq/zPq/Yyw13/rRL
+X-Google-Smtp-Source: AGHT+IFYgeldfZwYp3BHb1tpuFBy5VB45y2nB1s8q+rJkQPG+XygN84yNhBbrR/75HnxNyXPI4/9cR1MA7nbO+1HRlI=
+X-Received: by 2002:a05:690c:46ca:b0:710:e4c4:a938 with SMTP id
+ 00721157ae682-711638009d6mr43312777b3.38.1749819415623; Fri, 13 Jun 2025
+ 05:56:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds HW timestamping support for PTP using PRU-ICSS IEP module
-Thread-Index: 8LzCZ2vNfRRRUg8kt8zc1YlyHE5Drg==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20250611194716.302126-1-ezra@easyb.ch> <20250611194716.302126-2-ezra@easyb.ch>
+ <e2ffca36-d2ed-4253-86a6-a990e7931ba0@kernel.org> <CAM1KZSkcc8wh7yuJ-26ASKSehjWfD_QGs0JrKOWm+WMfXiY+DA@mail.gmail.com>
+ <9a23e0e5-f48c-41a9-8e15-69cdfbc7eca2@kernel.org> <CAM1KZSkKUYcsx_gpvtEaz7hoT-KfJmQ0xHeFYEGMSZ7FEBDyjA@mail.gmail.com>
+ <2ca2da8f-92b9-475f-aa41-bd54a95bfc69@kernel.org>
+In-Reply-To: <2ca2da8f-92b9-475f-aa41-bd54a95bfc69@kernel.org>
+From: Ezra Buehler <ezra@easyb.ch>
+Date: Fri, 13 Jun 2025 14:56:19 +0200
+X-Gm-Features: AX0GCFs0wH48KYSiwteC0kCsIqGsw_UEw1jb3xtZM9hqtvaV-ZBcyYvNeV2wYxE
+Message-ID: <CAM1KZSmLwLopU8rVrPS+wFqAGZn-7LdsikEg6p2f93EiK9_2_Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
+ property for MT7688
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, linux-mips@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Harvey Hunt <harveyhuntnexus@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Reto Schneider <reto.schneider@husqvarnagroup.com>, 
+	Rob Herring <robh@kernel.org>, Stefan Roese <sr@denx.de>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, devicetree@vger.kernel.org, 
+	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Fri, Jun 13, 2025 at 2:41=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+> That's not a binding, but driver, so obviously it is fine since you are
+> not removing it from bindings.
 
-> On 10/06/2025 13:32, Parvathi Pudi wrote:
->> From: Roger Quadros <rogerq@ti.com>
->> 
->> PRU-ICSS IEP module, which is capable of timestamping RX and
->> TX packets at HW level, is used for time synchronization by PTP4L.
->> 
->> This change includes interaction between firmware and user space
->> application (ptp4l) with required packet timestamps. The driver
->> initializes the PRU firmware with appropriate mode and configuration
->> flags. Firmware updates local registers with the flags set by driver
->> and uses for further operation. RX SOF timestamp comes along with
->> packet and firmware will rise interrupt with TX SOF timestamp after
->> pushing the packet on to the wire.
->> 
->> IEP driver is available in upstream and we are reusing for hardware
->> configuration for ICSSM as well. On top of that we have extended it
->> with the changes for AM57xx SoC.
->> 
->> Extended ethtool for reading HW timestamping capability of the PRU
->> interfaces.
->> 
->> Currently ordinary clock (OC) configuration has been validated with
->> Linux ptp4l.
->> 
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->> ---
->>   drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
->>   drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  23 +
->>   drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 443 +++++++++++++++++-
->>   drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
->>   .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
->>   5 files changed, 602 insertions(+), 2 deletions(-)
->>   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
-> 
-> [...]
-> 
->> @@ -732,9 +949,22 @@ int icssm_emac_rx_packet(struct prueth_emac *emac, u16
->> *bd_rd_ptr,
->>   		src_addr += actual_pkt_len;
->>   	}
->>   
->> +	if (pkt_info->timestamp) {
->> +		src_addr = (void *)PTR_ALIGN((uintptr_t)src_addr,
->> +					   ICSS_BLOCK_SIZE);
->> +		dst_addr = &ts;
->> +		memcpy(dst_addr, src_addr, sizeof(ts));
->> +	}
->> +
->>   	if (!pkt_info->sv_frame) {
->>   		skb_put(skb, actual_pkt_len);
->>   
->> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
->> +		    pkt_info->timestamp) {
->> +			ssh = skb_hwtstamps(skb);
->> +			memset(ssh, 0, sizeof(*ssh));
->> +			ssh->hwtstamp = ns_to_ktime(ts);
->> +		}
->>   		/* send packet up the stack */
->>   		skb->protocol = eth_type_trans(skb, ndev);
->>   		netif_receive_skb(skb);
-> 
-> Could you please explain why do you need to copy timestamp to a
-> temporary variable if you won't use it in some cases? I believe these
-> 2 blocks should be placed under the last if condition and simplified a
-> bit, like
-> 
-> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
-> +		    pkt_info->timestamp) {
-> +			src_addr = (void*)PTR_ALIGN((uintptr_t)src_addr,
-> +					   ICSS_BLOCK_SIZE);
-> +			memcpy(&ts, src_addr, sizeof(ts));
-> +			ssh = skb_hwtstamps(skb);
-> +			ssh->hwtstamp = ns_to_ktime(ts);
-> +		}
-> 
-> This will avoid useless copy when the packet will be dropped anyway, WDYT?
+And, if we also remove all occurrences of "ralink,mt7688-sysc" from the
+code, as it is not needed from a technical standpoint, can we remove it
+from mediatek,mtmips-sysc.yaml or is there no going back?
 
-Yes, we can merge both the if conditions to make it simple.
-
-We will address this in the next version.
-
-Thanks and Regards,
-Parvathi.
+Cheers,
+Ezra.
 
