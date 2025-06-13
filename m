@@ -1,180 +1,358 @@
-Return-Path: <devicetree+bounces-185605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDBC7AD88A2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:01:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C90CAD88AE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:03:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 451143A3710
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:00:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5D3217A254
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB7F826B76F;
-	Fri, 13 Jun 2025 10:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3ED291C23;
+	Fri, 13 Jun 2025 10:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M+i+dFit"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZVVV2n1O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01102DA748;
-	Fri, 13 Jun 2025 10:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC5C29B78C;
+	Fri, 13 Jun 2025 10:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749808869; cv=none; b=MTsb4cuRfjGkEH3AxxGLgKd2HPknRK5CIi+2wR9ze4k6+DR4G0/ZsybPqq/AGxciNHRB2fp7YXFUKK5nqd7Hgz8QjT5Olj9OqUPW+iw2CzoCd3tes1mvadrnNdxYocYCxR1dpJeJ2iUucwUkpkUThZxaLmf/BC8SljE0HR7z0y0=
+	t=1749808979; cv=none; b=kzS/HbZGc4GpxIJUbpl9OG02ZAVj9/oWwZy/PmlzkRT0fBZl0oCkL8FxTmMR2pV3PWdMSRZVt3AmENyAxWJwj5X5P1U4p18Z3RCFbA+L+WCEl6IGDtr2NSSj4LL6yCuhBsGnM0bIW84kjg+3DIjf1prXrJHyxbk4WvpvobuJ8iE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749808869; c=relaxed/simple;
-	bh=hzo5YZ2+59Ww2/Xt37jey9O/1XB9IVr5gQKh1UXWMqc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IgOeYCkDaw7z4V/BtSQdlfxOcJZG3r2Yy/Vih/qBRrL96u3GDVRu8zTlw7jPIHTlFgBIMiqSoIpA/uW0+WltJm5kQiTgK6WTQ88LSKkhcyAS19JPnYYhSpwx9EUCHqEuZxJWYwkmJKcnp3dLuD1mUCdNTa3vK3LfvNOoEci463Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M+i+dFit; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BAECC4CEE3;
-	Fri, 13 Jun 2025 10:01:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749808869;
-	bh=hzo5YZ2+59Ww2/Xt37jey9O/1XB9IVr5gQKh1UXWMqc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M+i+dFitZ4SLhojmIk98p1eQBooTkkZ4ORHVZUgdju+63U/4treIGbCB+w9b+gBr6
-	 KgPy/3SmcIarW62bG5KANSgtrxA04yCZnFj62lDRpE4sWfvxmVXDv4ISqOy31dlaGl
-	 xP0rjMSKP3spCwrfyfWyiQOdAFPOuPNNoW99lLR4SJhbOSU9WffmaT012Y6QzR7v4o
-	 b27FrepMbwZuSX6kwyeIm8PwOh4LLWzoSBfpPgEAQ6/fmsaKxgnVI1hzYH5TxzUkue
-	 ia4LhORcCZ61v8GHJFbHImjGzcuiNLkvYeHopa+Kkf4vx/b+SKDOgv0oNlASYR9WcM
-	 4/P6KjWS2kGWw==
-Message-ID: <44fdaa5c-0fa4-457e-b193-e83cd06c1aed@kernel.org>
-Date: Fri, 13 Jun 2025 12:01:01 +0200
+	s=arc-20240116; t=1749808979; c=relaxed/simple;
+	bh=1He0Fo9SkN9xUrKQXHkWW4Ed7cJbqP+af9I+R0FVlak=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SrO3pKueX9OwGPsU15+7yzk+3kgHr/amLS6wFEEbStpnvsuFeHOadEhwrJeqkZKsEQEWZJgL8iXISK8YwC2dkm4IZEjSEPBjgHwsRaOJR0HBhPAchR6BGM9mg21tHqg3n5XcxwQMzrIQlFdpYV/d4+eRoIBiXRFtFTg4W1Tdke0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZVVV2n1O; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b2c2c762a89so1581795a12.0;
+        Fri, 13 Jun 2025 03:02:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749808977; x=1750413777; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4CEJv3p+Vm6KRlJSHF8Wp9jYCnWqhDCGE2YwWaeevg=;
+        b=ZVVV2n1ODqOJyhlP4Nj/Tc+n7kfGjBonrXmfl9AgnoWqkhjT/MeyMUeM1VcZvHu9Kg
+         Z5zY+EY5Lefaqne4rF7V2Dn/UR0PaULY9EX+lQ+NfzSgwV6DdZuRBByiH1id34G3bExk
+         i3dRIjCQwtwdOpezNX6Wy9NwRCLqMlc1D0m0sR1naVUFUbImeWHs+nsDinhrnj8gFevD
+         GkfqDcVLNqymWxnaVxSPDIhua+b7NQdxucj27meXu/DAqa6AA2ujuFKrzB4K9xD3rHCi
+         HrT+5vdJksuQsktFsnobf4uKNt0G29E2PK66kfaOMr+D/E/AjD0oFVPz97FjhdBKQfZS
+         wQ2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749808977; x=1750413777;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E4CEJv3p+Vm6KRlJSHF8Wp9jYCnWqhDCGE2YwWaeevg=;
+        b=SXJ26BW3aPNsfIsinlWHW/FlDbJrGvPtepkc7giSMSHQ4TAr0p8or5imElckVdsLGd
+         6RonjXm318A0gnVmmYMI81jRh3aHXIOwwZolCcuAY/Emf+QjMgiq8FvBe8wWxWVIACrC
+         2iXMthBa4BdKgjJSVdEDelzRB+rCQiIccA/VAI2azomVIw6JBfPASPkXBUi8W7xfmdId
+         /Ltb+sRf5zhKboWBskofAPtm/xRIx5s0c6U8dbK4N5F3XKY8cL3QdRWlVr+G/UtqZF3p
+         scBNiCB1QwS4SKL1rYEtBaUJvZzpUaSPd2Zdhq3YkjriAP5VHRq0kbZZCi5/r5pQb0cM
+         ly8g==
+X-Forwarded-Encrypted: i=1; AJvYcCUncoVHui+KvnG0FUkZ1E92QZ54KPeLaJ/QoNECBSG6AsrmFJfxIgr4HcSfQsIpWuQpW+q2G8y3sq6xY46G@vger.kernel.org, AJvYcCVm8k6hehX7J6t/pft80B+2uunEs/ECP6SU+LusW/cax9xEIZhQTbJ0XMvDzkdEhnkN7tEtCYbt+OB8@vger.kernel.org, AJvYcCWhvBb2rTuiz7znACcZvkuq0w3bE7+FNQps/AgSGT3WsgpVvdMmmNYIR9R/eXQj5d62Zuq3ekZC+yH1@vger.kernel.org, AJvYcCX3fVb1awHOO0YyxyWfID5tRVAetacbbMicHEvPzHmsb4448Nm9XuJT9+sIsyJGQu818s3mLhQbPsRu@vger.kernel.org, AJvYcCXJwee0aDvNI/7xGPJmICE7YmawEe+X/GCqQpLw8VrcOOYv8xUjKc+yBNjAIa9f+Z7BkxQxm1aVfArG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxz0x4q5dyYM8pU83ju/MIROS+qNOYnoGUOlVwCpzdjo+Urg2Fx
+	KsXe7+KSephRKyIoMC7wtzF6zn3pylMsZMdVv7yNNW59PbuJCslk4R77
+X-Gm-Gg: ASbGnct8Cqe68dibHEmP5hdXWC+nrjTecF9NQUmLG/YPup8QFLT/DUsxCEnztZQHtqH
+	9N/YU5LVbqDJw5UxedigLy2j6puCRmS8f5Di7BMukqebHGr0tuA/nmrAKk42nvsJ5pfW3Ri+mMN
+	7VlZ0ngi1a4MqbI30L+d/2x+EJL5DmCQUPf9gIsZ+8kknZ6re7SrfxoRDTBK9dou5HdS5MrZKp8
+	HQFVA9OzclwkG6XaEb3HZLtz/EYZ/73ZGGGnHu9Vi4bJljmWBMSyrSTCUbyMB/I/yylXpLLUDEc
+	/PYGVob7Rvm6vjmKoHBF0w/T8euzevNcjXU5KWQR4by1kb2NwII+f6UToqGhEA9Ik9QTTfrt4VC
+	WXcdrHA==
+X-Google-Smtp-Source: AGHT+IGJo4W5iYXGs2QfKCKVDEJUDaqqQ2ynkAzqBUZEjFuAAF34IIwPQJbwD717UGFYpSeooR1i1Q==
+X-Received: by 2002:a05:6a20:2445:b0:1f5:6878:1a43 with SMTP id adf61e73a8af0-21facbca8dbmr3732040637.14.1749808977229;
+        Fri, 13 Jun 2025 03:02:57 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fe1680c6asm1098952a12.42.2025.06.13.03.02.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jun 2025 03:02:56 -0700 (PDT)
+Date: Fri, 13 Jun 2025 12:02:44 +0200
+From: Jorge Marques <gastmaier@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 8/8] iio: adc: Add events support to ad4052
+Message-ID: <gvigk6helnl3yeouy636dgvay7tqux7lnxns3256fivzz4l3er@7ts7fz7vitff>
+References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
+ <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
+ <afc85a4b-1535-406d-ad14-143049267b98@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power
- management
-To: Michal Wilczynski <m.wilczynski@samsung.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Matt Coster <matt.coster@imgtec.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Frank Binns <frank.binns@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
- <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
- <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
- <20250603-whispering-jaybird-of-thunder-f87867@kuoka>
- <d42a8c49-7ad2-49ef-bd9c-1e3d9981b58e@samsung.com>
- <e5a0bee2-ff74-47cf-ad2c-0c78b57ae6cf@kernel.org>
- <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
- <cc4dbf7c-e023-403c-88be-4691f97a0ff0@kernel.org>
- <c7774790-07c3-469d-a994-9e84108ad21d@samsung.com>
- <CAMRc=Mexq9ThfG6jZUbs3wYDA9UZN-+pHnX_Y-7WO4ubXvEuCw@mail.gmail.com>
- <ad6981eb-f53a-4a7b-90bd-2e2705bd0297@samsung.com>
- <59cc6827-1602-402a-9279-96ad6285cff4@kernel.org>
- <e5d3d3b3-7ada-476f-9558-328d3d316088@samsung.com>
- <44090712-0635-47bf-b73d-d9b16ec446a4@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <44090712-0635-47bf-b73d-d9b16ec446a4@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <afc85a4b-1535-406d-ad14-143049267b98@baylibre.com>
 
-On 13/06/2025 11:49, Michal Wilczynski wrote:
+Hi David,
+On Thu, Jun 12, 2025 at 02:38:45PM -0500, David Lechner wrote:
+> On 6/10/25 2:34 AM, Jorge Marques wrote:
+> > The AD4052 family supports autonomous monitoring readings for threshold
+> > crossings. Add support for catching the GPIO interrupt and expose as an IIO
+> > event. The device allows to set either, rising and falling directions. Only
+> > either threshold crossing is implemented.
+> > 
+> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> > ---
+> 
+> ...
+> 
+> > +
+> > +static ssize_t ad4052_events_frequency_store(struct device *dev,
+> > +					     struct device_attribute *attr,
+> > +					     const char *buf,
+> > +					     size_t len)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +	if (st->wait_event) {
+> > +		ret = -EBUSY;
+> > +		goto out_release;
+> > +	}
+> 
+> I'm wondering if we should instead have some kind of iio_device_claim_monitor_mode()
+> so that we don't have to implement this manually everywhere. If monitor mode was
+> claimed, then iio_device_claim_direct() and iio_device_claim_buffer_mode() would
+> both return -EBUSY. If buffer mode was claimed, iio_device_claim_monitor_mode()
+> would fail. If direct mode was claimed, iio_device_claim_monitor_mode() would wait.
+> 
+I don't think this would scale with other vendors and devices, it is a
+limitation of ADI:ADC:SPI requiring to enter configuration mode to read
+registers. A deep dive into the other drivers that use IIO Events is
+needed.
+> > +
+> > +	ret = __sysfs_match_string(AD4052_FS(st->chip->grade),
+> > +				   AD4052_FS_LEN(st->chip->grade), buf);
+> > +	if (ret < 0)
+> > +		goto out_release;
+> > +
+> > +	st->events_frequency = ret;
+> > +
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret ? ret : len;
+> > +}
+> > +
+> > +static IIO_DEVICE_ATTR(sampling_frequency, 0644,
+> > +		       ad4052_events_frequency_show,
+> > +		       ad4052_events_frequency_store, 0);
+> > +
+> > +static ssize_t sampling_frequency_available_show(struct device *dev,
+> > +						 struct device_attribute *attr,
+> > +						 char *buf)
+> > +{
+> > +	struct ad4052_state *st = iio_priv(dev_to_iio_dev(dev));
+> > +	int ret = 0;
+> > +
+> > +	for (u8 i = AD4052_FS_OFFSET(st->chip->grade);
+> > +	     i < AD4052_FS_LEN(st->chip->grade); i++)
+> > +		ret += sysfs_emit_at(buf, ret, "%s ", ad4052_conversion_freqs[i]);
+> > +
+> > +	ret += sysfs_emit_at(buf, ret, "\n");
+> > +	return ret;
+> > +}
+> > +
+> > +static IIO_DEVICE_ATTR_RO(sampling_frequency_available, 0);
+> > +
+> > +static struct attribute *ad4052_event_attributes[] = {
+> > +	&iio_dev_attr_sampling_frequency.dev_attr.attr,
+> > +	&iio_dev_attr_sampling_frequency_available.dev_attr.attr,
+> > +	NULL
+> > +};
+> > +
+> > +static const struct attribute_group ad4052_event_attribute_group = {
+> > +	.attrs = ad4052_event_attributes,
+> > +};
+> > +
+> >  static int ad4052_update_xfer_raw(struct iio_dev *indio_dev,
+> >  				   struct iio_chan_spec const *chan)
+> >  {
+> > @@ -602,6 +699,19 @@ static int ad4052_setup(struct iio_dev *indio_dev, struct iio_chan_spec const *c
+> >  				  val);
+> >  }
+> >  
+> > +static irqreturn_t ad4052_irq_handler_thresh(int irq, void *private)
+> > +{
+> > +	struct iio_dev *indio_dev = private;
+> > +
+> 
+> Can we not read the status register here to find out what the exact
+> event was? I guess that would require taking it out of monitor mode.
+> 
+It requires entering configuration mode and results in a monitoring
+downtime. Earlier versions of this driver would do that, but the
+conclusion was that it was better to have the user disabling events and
+reading registers, so he is explicitly aware of the monitoring downtime.
+> > +	iio_push_event(indio_dev,
+> > +		       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
+> > +					    IIO_EV_TYPE_THRESH,
+> > +					    IIO_EV_DIR_EITHER),
+> > +		       iio_get_time_ns(indio_dev));
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> >  static irqreturn_t ad4052_irq_handler_drdy(int irq, void *private)
+> >  {
+> >  	struct ad4052_state *st = private;
+> > @@ -616,6 +726,18 @@ static int ad4052_request_irq(struct iio_dev *indio_dev)
+> >  	struct device *dev = &st->spi->dev;
+> >  	int ret;
+> >  
+> > +	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp0");
+> > +	if (ret > 0) {
+> > +		ret = devm_request_threaded_irq(dev, ret, NULL,
+> > +						ad4052_irq_handler_thresh,
+> > +						IRQF_ONESHOT, indio_dev->name,
+> > +						indio_dev);
+> > +		if (ret)
+> > +			return ret;
+> > +	} else if (ret == -EPROBE_DEFER) {
+> > +		return ret;
+> > +	}
+> 
+> By swapping the order, we can avoid the else. Also, do we really want to
+> ignore all other errors? It seems like there would just be ENODEV or ENOENT
+> that means the interrupt is not there and we would want to pass on other
+> errors.
+> 
+Ack on the swap order.
+
+If not set on the devicetree, including improper devicetree cases, it
+should continue without. If the driver that manages the irq is not
+probed, defer probe.
+
+I tested different devicetrees and got:
+
+* any property is missing: -EINVAL
+* wrong interrupt-names: -ENODATA
+* inconsistent array length between properties: -EOVERFLOW
+
+EPROTO and ENXIO errors are also expected according the method comment,
+the latter seems to be when the system doesn't support dts at all? And
+EPROTO just another user-set dts issue.
+I'm okay with ignoring them silently, or logging if gp0/1 found or not,
+but not micromanage every error.
+
+> > +
+> >  	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp1");
+> >  	if (ret > 0) {
+> >  		ret = devm_request_threaded_irq(dev, ret, NULL,
 > 
 > 
-> On 6/13/25 10:25, Michal Wilczynski wrote:
->>
->>
->> On 6/13/25 08:44, Krzysztof Kozlowski wrote:
->>> On 11/06/2025 14:01, Michal Wilczynski wrote:
->>>>
->>>> However, this leads me back to a fundamental issue with the
->>>> consumer side implementation in the generic pvr_device.c driver. The
->>>> current fallback code is:
->>>>
->>>> /*
->>>>  * If the error is -EPROBE_DEFER, it's because the
->>>>  * optional sequencer provider is not present
->>>>  * and it's safe to fall back on manual power-up.
->>>>  */
->>>> if (pwrseq_err == -EPROBE_DEFER)
->>>>         pvr_dev->pwrseq = NULL;
->>>>
->>>> As Krzysztof noted, simply ignoring -EPROBE_DEFER is not ideal. But if I
->>>> change this to a standard deferred probe, the pvr_device.c driver will
->>>
->>> Why? You have specific compatible for executing such quirks only for
->>> given platform.
+> ...
 > 
-> I realized now that you may have meant the "thead,th1520-gpu" compatible,
-> not the "thead,th1520" SoC compatible.
+> > +
+> > +static int ad4052_monitor_mode_enable(struct ad4052_state *st)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = pm_runtime_resume_and_get(&st->spi->dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = ad4052_conversion_frequency_set(st, st->events_frequency);
+> > +	if (ret)
+> > +		goto out_error;
+> > +
+> > +	ret = ad4052_set_operation_mode(st, AD4052_MONITOR_MODE);
+> > +	if (ret)
+> > +		goto out_error;
+> > +
+> > +	return ret;
+> > +out_error:
+> > +	pm_runtime_mark_last_busy(&st->spi->dev);
+> > +	pm_runtime_put_autosuspend(&st->spi->dev);
+> > +	return ret;
+> > +}
+> > +
+> > +static int ad4052_monitor_mode_disable(struct ad4052_state *st)
+> > +{
+> > +	int ret;
+> > +
+> > +	pm_runtime_mark_last_busy(&st->spi->dev);
+> > +	pm_runtime_put_autosuspend(&st->spi->dev);
+> > +
+> > +	ret = ad4052_exit_command(st);
+> > +	if (ret)
+> > +		return ret;
+> > +	return regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
+> > +			    AD4052_REG_DEVICE_STATUS_MAX_FLAG |
+> > +			    AD4052_REG_DEVICE_STATUS_MIN_FLAG);
+> > +}
+> > +
 > 
-> In any case, the whole reason for using the pwrseq framework is to avoid
-> polluting the generic driver with SoC specific logic and instead offload
-> that responsibility to a pwrseq provider. Therefore, I can't simply add
-> a check like if (compatible == "thead,th1520-gpu") to the generic driver
-> to decide whether to get a power sequencer. This entire matching
-> responsibility was intended to be offloaded to the pwrseq framework.
+> It seems like we need to make sure monitor mode is disabled when the
+> driver is removed. Otherwise we could end up with unbalanced calls to
+> the pm_runtime stuff and leave the chip running.
+> 
+> 
+When monitor mode is enabled, pm is already disabled (won't enter low
+power). I expect the pm to handle the clean-up properly since devm is
+used.
+The .remove() I suggest is reg access to:
 
-No, just do how all drivers are doing - driver match data, describing
-that there is some component, e.g. quirks/flags, number of clocks and
-their names typically. In your case - name or presence of pwrseq.
+* Put in configuration mode, if not.
+* Put on low power mode, if not.
 
-
+> > +static int ad4052_read_event_value(struct iio_dev *indio_dev,
+> > +				   const struct iio_chan_spec *chan,
+> > +				   enum iio_event_type type,
+> > +				   enum iio_event_direction dir,
+> > +				   enum iio_event_info info, int *val,
+> > +				   int *val2)
+> > +{
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +
+> > +	if (st->wait_event) {
+> > +		ret = -EBUSY;
+> > +		goto out_release;
+> > +	}
+> > +
+> > +	switch (info) {
+> > +	case IIO_EV_INFO_VALUE:
+> > +		ret = __ad4052_read_event_info_value(st, dir, val);
+> > +		break;
+> > +	case IIO_EV_INFO_HYSTERESIS:
+> > +		ret = __ad4052_read_event_info_hysteresis(st, dir, val);
+> > +		break;
+> 
+> These functions don't need __ prefix. There is no name clash.
+> 
+Ack.
 
 Best regards,
-Krzysztof
+Jorge
+> > +	default:
+> > +		ret = -EINVAL;
+> > +		break;
+> > +	}
+> > +
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret ? ret : IIO_VAL_INT;
+> > +}
+> > +
 
