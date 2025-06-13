@@ -1,59 +1,70 @@
-Return-Path: <devicetree+bounces-185776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078C1AD8FC2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:40:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7CDAD8FE7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:44:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B128D1731F1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:40:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AEAB3A89EB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D9F1AA1D5;
-	Fri, 13 Jun 2025 14:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C960619D08F;
+	Fri, 13 Jun 2025 14:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5Ov7966"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gU3VhMCv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0E1198E8C;
-	Fri, 13 Jun 2025 14:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B2119C558;
+	Fri, 13 Jun 2025 14:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749825626; cv=none; b=QrHZE3MKcL/IyX6R5kYR+QFLke7Q+fdchC3Ic2ISm8aqp25U8HlFWS7F8RwMeHizVU++EKMP4+6IOjZ39ydZOuT4DSWPYn1MB+LhGNVJODq1DAF18nKkRqZJymHnyRqUqur880MlGKcyEshSuPoQOfxsorQBPDQMkgjLvVCctu8=
+	t=1749825807; cv=none; b=fxMW2gkdzmUTGe2JK+MCpDLl3YzqW7O9MmETx/lesFITIB8XjMiitBGZZcu2L2sTFk56eQrmVpdfyjkC3d5NwPTOPro+IpyvU7+W2tCyYoqmVTQKFM0ZAz6cad3ZvefH+uKxEn02hNBC3HdVCQLIReOuNGrhoAMrl6iq8ekQoOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749825626; c=relaxed/simple;
-	bh=G8rFJk861KqPrLLERWkejR/HukON16JAfyXw01ERfwA=;
+	s=arc-20240116; t=1749825807; c=relaxed/simple;
+	bh=FhXXXGmaRCUAiRGRLmZdTk6rfR0K44mNdX06Z2gh+Dg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gvoyncSRnre+dcxWdTlY/og4ihZMBowYlHyyVueL/xnH6duezZbQq/wHxpv/JfNWazYhO9qdnqyS9lt5IWWZHmPdwfVuyG5hllb5DoUhkgxPWwrTmTCzetF2OycYC3AdiFjDkszbKQjFIXo2NldSsrQI3Wr/JSDDdEXfwGvMwfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5Ov7966; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3544DC4CEED;
-	Fri, 13 Jun 2025 14:40:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gKibdeTfSvs/+uvh82jgdreqLcoImVry47q/xrjUOVDoI6eDGHbfCTkEWrqhGzAI1abWeMj6aSSfndjgYon5XrKxpGADcP4ra7ISsvrWbxrcKj+i6PJThvLmv5WoWbbyOFE9L9wJ2D4r+avItw2JjmHmK+bG5ZIXwbUGZyR8Pt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gU3VhMCv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07C1EC4CEE3;
+	Fri, 13 Jun 2025 14:43:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749825625;
-	bh=G8rFJk861KqPrLLERWkejR/HukON16JAfyXw01ERfwA=;
+	s=k20201202; t=1749825807;
+	bh=FhXXXGmaRCUAiRGRLmZdTk6rfR0K44mNdX06Z2gh+Dg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H5Ov7966R6z4xv/MxB6xeP3MSov3C71Yy6dhRWaVmXU0CRIwm2F81FTy7nWn6BYJR
-	 PfcTjxfe871A+TruQy+g0g2INu3sNALpOSlL/PwzCHV6R9sNVkE24mhpocsxDv29vc
-	 4Ldtjm6RPjOVCOOLk7aEwygkcynzRn7flyEIyMCj85N/YCf0LP+V+XwwvuPbZTJojC
-	 KwEZrmSztugFFB025xw/Tcv36xaFYzz0NWFLFdUzTnUEK9sL6AI/luKlMaecR4Z0YO
-	 qHHqiGFJTAqxfXMn+rJp4CNUdPbyGiwN7Kl4k2TTmoXY4si2zgy+q0nqoMZ/cfad8k
-	 n1QmfXxfSl5tg==
-Date: Fri, 13 Jun 2025 15:40:21 +0100
+	b=gU3VhMCvbEUpkeYtCm1sdiEbZCDtGB0/CaVg498QB4KCpsaQjBatRuDSK6B3/TBq5
+	 LSrgWYiWAwWHVtD6pvP6Py13HIq+0odrKGJrw82l7KmXE9n+C2oLTOepY6ratFP9ep
+	 YPat9WUK1PGkA83Y+YmS9m5Lt2c/OqN1Q8NqiZh3GWRnM/JEpWRgnN2jQN/u+5I77z
+	 FH4YUNHjEfcJNrRFfsYO1VRmfGO+eEayCERolh84NFhe5IMYVAm7yZwe703o7UiFp5
+	 lqAuKH45uxbeysx065G8tS23ws7+G3LN5HbQoPDXKhmOwRoCkQzOzcXgFrwWklKnvM
+	 uZ63XxBS2i8/Q==
+Date: Fri, 13 Jun 2025 15:43:20 +0100
 From: Conor Dooley <conor@kernel.org>
-To: victor.duicu@microchip.com
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marius.cristea@microchip.com,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: temperature: add support for
- MCP998X
-Message-ID: <20250613-undergo-reviving-a97dca8f3b69@spud>
-References: <20250613130207.8560-1-victor.duicu@microchip.com>
- <20250613130207.8560-2-victor.duicu@microchip.com>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>, Vivian Wang <uwu@dram.page>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: Add support for SpacemiT
+ K1
+Message-ID: <20250613-charbroil-backlands-7cf485ac7f59@spud>
+References: <20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn>
+ <20250613-net-k1-emac-v1-1-cc6f9e510667@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,184 +72,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GiFAnyVgEONdrGXM"
+	protocol="application/pgp-signature"; boundary="DrcNRgrkpAYQRveH"
 Content-Disposition: inline
-In-Reply-To: <20250613130207.8560-2-victor.duicu@microchip.com>
+In-Reply-To: <20250613-net-k1-emac-v1-1-cc6f9e510667@iscas.ac.cn>
 
 
---GiFAnyVgEONdrGXM
+--DrcNRgrkpAYQRveH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 13, 2025 at 04:02:06PM +0300, victor.duicu@microchip.com wrote:
-> From: Victor Duicu <victor.duicu@microchip.com>
+On Fri, Jun 13, 2025 at 10:15:07AM +0800, Vivian Wang wrote:
+> The Ethernet MACs on SpacemiT K1 appears to be a custom design. SpacemiT
+> refers to them as "EMAC", so let's just call them "spacemit,k1-emac".
 >=20
-> This is the devicetree schema for Microchip MCP998X/33 and
-> MCP998XD/33D Automotive Temperature Monitor Family.
->=20
-> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
-> ---
->  .../iio/temperature/microchip,mcp9982.yaml    | 211 ++++++++++++++++++
->  1 file changed, 211 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/mic=
-rochip,mcp9982.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,=
-mcp9982.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,=
-mcp9982.yaml
-> new file mode 100644
-> index 000000000000..ec939d463612
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982=
-=2Eyaml
-> @@ -0,0 +1,211 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9982.yam=
-l#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MCP998X/33 and MCP998XD/33D Multichannel Automotive
-> +       Temperature Monitor Family
-> +
-> +maintainers:
-> +  - Victor Duicu <victor.duicu@microchip.com>
-> +
-> +description: |
-> +  The MCP998X/33 and MCP998XD/33D family is a high-accuracy 2-wire multi=
-channel
-> +  automotive temperature monitor.
-> +  The datasheet can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/Prod=
-uctDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,mcp9933
-> +      - microchip,mcp9933d
-> +      - microchip,mcp9982
-> +      - microchip,mcp9982d
-> +      - microchip,mcp9983
-> +      - microchip,mcp9983d
-> +      - microchip,mcp9984
-> +      - microchip,mcp9984d
-> +      - microchip,mcp9985
-> +      - microchip,mcp9985d
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    description:
-> +      -alert-therm is used to handle a HIGH or LOW limit.
-> +      -therm-addr is used to handle a THERM limit on chips
-> +      without "D" in the name.
-> +      -sys-shutdown is used to handle a THERM limit on chips
-> +      with "D" in the name.
-> +    items:
-> +      - const: alert-therm
-> +      - const: therm-addr
-> +      - const: sys-shutdown
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  microchip,enable-anti-parallel:
-> +    description:
-> +      Enable anti-parallel diode mode operation.
-> +      MCP9984/84D/85/85D and MCP9933/33D support reading two external di=
-odes
-> +      in anti-parallel connection on the same set of pins.
-> +    type: boolean
-> +
-> +  microchip,beta1:
-> +    description:
-> +      Set beta compensation value for external channel 1.
-> +      <0> 0.050
-> +      <1> 0.066
-> +      <2> 0.087
-> +      <3> 0.114
-> +      <4> 0.150
-> +      <5> 0.197
-> +      <6> 0.260
-> +      <7> 0.342
-> +      <8> 0.449
-> +      <9> 0.591
-> +      <10> 0.778
-> +      <11> 1.024
-> +      <12> 1.348
-> +      <13> 1.773
-> +      <14> 2.333
-> +      <15> Diode_Mode
-> +      <16> Auto
-> +      - Diode_Mode is used when measuring a discrete thermal diode
-> +      or a CPU diode that functions like a discrete thermal diode.
-> +      - Auto enables beta auto-detection. The chip monitors
-> +      external diode/transistor and determines the optimum
-> +      setting.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 16
+> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
 
-Missing max/min constraints on the property.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +
-> +  microchip,beta2:
-> +    description:
-> +      Set beta compensation value for external channel 2.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 16
-> +
-> +  microchip,resistance-comp-ch1-2-enable:
-> +    description:
-> +      Enable resistance error correction(REC) for external channels 1 an=
-d 2.
-> +      The chip internal hardware counterbalances the parasitic resistanc=
-e in
-> +      series with the external diodes. The compensation can be activated=
- or
-> +      disabled in hardware for both channels 1 and 2 at the same time.
-> +    type: boolean
-
-On the previous version I objected to this wording for the property,
-where it is being used as an enable, and instead said that it should
-indicate the presence of the parasitic resistance. Did I miss some sort
-of new justification for it still talking about being an enable?
-
-
-> +  microchip,resistance-comp-ch3-4-enable:
-> +    description:
-> +      Enable resistance error correction(REC) for external channels 3 an=
-d 4.
-> +      The chip internal hardware counterbalances the parasitic resistanc=
-e in
-> +      series with the external diodes. The compensation can be activated=
- or
-> +      disabled in hardware for both channels 3 and 4 at the same time.
-> +    type: boolean
-
-Cheers,
-Conor.
-
---GiFAnyVgEONdrGXM
+--DrcNRgrkpAYQRveH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEw4VAAKCRB4tDGHoIJi
-0mwmAQDew5SpZ30kpLSUmEH21jXuflCEUQxJr1shipMAysEfxQD/VU4aDW13CHd/
-NSLDi+a1WL4+sorUxL4dtXWJmVWKdQs=
-=e2Hw
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEw5CAAKCRB4tDGHoIJi
+0mUZAQDOqutaHQTNkzdtMom2o9B3nbuwKSuSLIduFjJKalvmiwD/YsHTvrRH0WFf
+qgTLhLoSPa5oUwkptRwAi4wYwCtGHA8=
+=4VR+
 -----END PGP SIGNATURE-----
 
---GiFAnyVgEONdrGXM--
+--DrcNRgrkpAYQRveH--
 
