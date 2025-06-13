@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50049AD89F9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:07:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFB1AD8A1F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:13:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48016189795A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:08:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EF171E2F52
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BF52D3205;
-	Fri, 13 Jun 2025 11:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BEBC2E1748;
+	Fri, 13 Jun 2025 11:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0xF8S9d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Th+Apk85"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A19C22068B;
-	Fri, 13 Jun 2025 11:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EDC92E173E;
+	Fri, 13 Jun 2025 11:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749812869; cv=none; b=Qc81Bus65lX3MTetOxqZ5Fb2bYlLEUXudxKIpQlRI0JJxBv7bA39t2m1r5fl5iMnex8yccOlEgEV2B7YcBeaHfkqqRUJi7MEzZs6rQ8v8q7U6jnVJtQbvF0bv9YMOaFIrOpdjWs26nltHq8Vrilqfws2SVmk4kjpihQY2hxFbxU=
+	t=1749813159; cv=none; b=UllD7wnhT+WFy4EHwGQOWlwireUCOh8HdoSd8uuruYQ/Xt89imoaKAsfJDiz7IXjinTa7PAsEbCQCBuWfZQ9DNCFlRYvjQLVJ0nLZ/hew4C4fT+muasA+jW9iyQ7hrDCT1bXkZgeBD8IZwnvzddsb07lhe0vS2sD0bSYmJ4yn/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749812869; c=relaxed/simple;
-	bh=yp9sbCbl7MbubwJbO1yJwsl5U12/4EmLw/erbx5e7Po=;
+	s=arc-20240116; t=1749813159; c=relaxed/simple;
+	bh=lINW/JumqnU+vIYuBVbHCXjNyewMrI2zh8LHp2LA4wA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qflKov/Kagn7KwZyP9eJtDzBSDrEndH5RWrWV9lhtV3+KXaapUDyoXpXlNmclYE+N1QvWjw4ag3MdrCV/JsntzcB+gpAtxVhu2S22O9+x3GIJrrDKVkmFxL7KJwO0xcKmQCuIDyN0l/uZc3yejOZZgAcJDmes94lg3Tsk2uRcTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0xF8S9d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38C32C4CEE3;
-	Fri, 13 Jun 2025 11:07:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tjKSIXR+rLzBoUPY7XSR/bN+U2neJa3/GA5LG0i0QmSthni8garHyY0gp+usHMiPj/k9yd9ilA42i22P3XI9oi0f251cY5QlqlJo7ar/53kLJjPUbjhwmhISe65vlYAhHZr8ugg+m9K4ivU7W8Fg0LqUuVBIVSv4/Bwe3fBCVm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Th+Apk85; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780E6C4CEE3;
+	Fri, 13 Jun 2025 11:12:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749812868;
-	bh=yp9sbCbl7MbubwJbO1yJwsl5U12/4EmLw/erbx5e7Po=;
+	s=k20201202; t=1749813158;
+	bh=lINW/JumqnU+vIYuBVbHCXjNyewMrI2zh8LHp2LA4wA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y0xF8S9dprgIwjWWQiwL7aCI0FmWcGZPE87ZgHrl/1Zs8oSXq7JOCcVUXJde7u0bC
-	 Up0hj/JoNTvTL2gRlFNt+5GdQfy28Crz1QK2gkoJgCCxGWoDk53VnCewe7NlS3CWcn
-	 YPqixTfJOPTujSHxju23V5IRW/FsNskaOk8qcJhQOmXwzRE6+lyRPrW7R+QLWWaJZv
-	 TJ0SKIcmE3ebTJEAryUacymgFboYmIgCCXK9o+Z0eAtdm3ZNgnYA5JUubUsSg7suzE
-	 zlf0pH2OZfUdZgQQgVp+D/X9mLqSCw7bOeedY0BueiiiYWhMGXPq1f2GsjWTNbFqay
-	 gSKjS8CHRlpFg==
-Message-ID: <2fb10aee-6610-43f4-9d12-88a97e0f66e5@kernel.org>
-Date: Fri, 13 Jun 2025 13:07:43 +0200
+	b=Th+Apk85+JFNyelftbyxolN/isZikcWwGf/D+BwCz5n+mQWFXDZ2kl+5Y/ftKyXbv
+	 sFpCc+qSlPRNrhHfVdZKAdDmdU9JTvr6S3kLjEeO69uoAg6PiJovfWnW0+5warRxH2
+	 /QyFi38r8ifFWuOUu06oeEnQvz1LG8lMR2Er19tbK7QlhEMN77w4QHBS3RliVF/VsU
+	 NgncTuPBmWuXCZZL0ePPNfT7ecB/d7BFiXnaX6PkNMaKfpuKeqPCcdVwoWg18v82g1
+	 qA/tGakgVRhbcEQWDJNGLK2qseHphnKJUY0AKx/mWpv5i3rkN50Y75sFS72HobAkfL
+	 o92k/UzpJvvGw==
+Message-ID: <896e09a1-6376-4516-901d-354993ac4afc@kernel.org>
+Date: Fri, 13 Jun 2025 13:12:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: gpio-xilinx: Mark clocks as
- required property
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
- Srinivas Neeli <srinivas.neeli@amd.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/ZYNQ ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-References: <8407ef56b11632c1a7abfce8a4534ed8a8ed56cc.1749809570.git.michal.simek@amd.com>
- <cbde9b9e2b0f9d12fdd1ba24fddb1543159357aa.1749809570.git.michal.simek@amd.com>
+Subject: Re: [PATCH] dt-bindings: usb: microchip,usb5744: Add support for
+ configurable board reset delays
+To: Michal Simek <michal.simek@amd.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
+References: <1749148171-1729610-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <f1b83b96-7cac-4014-b791-e073d2299c01@kernel.org>
+ <2e03b43e-5917-4581-9aed-780dec9e3ea9@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,38 +106,73 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cbde9b9e2b0f9d12fdd1ba24fddb1543159357aa.1749809570.git.michal.simek@amd.com>
+In-Reply-To: <2e03b43e-5917-4581-9aed-780dec9e3ea9@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2025 12:12, Michal Simek wrote:
-> On Microblaze platforms there is no need to handle clocks because the
-> system is starting with clocks enabled (can be described via fixed clock
-> node or clock-frequency property or not described at all).
-> With using soft IPs with SOC platforms there is mandatory to handle clocks
-> as is explained in commit 60dbdc6e08d6 ("dt-bindings: net: emaclite: Add
-> clock support").
-> That's why make clock as required in dt binding because it is present in
-> both configurations and should be described even there is no way how to
-> handle it on Microblaze systems.
+On 13/06/2025 11:13, Michal Simek wrote:
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
 > 
-> Changes in v2:
-> - Add fpga region patch to fix issue which was introduces by this change
-> 
-> Based on discussion at
-> https://lore.kernel.org/lkml/20241002-revivable-crummy-f780adec538c@spud/
-> 
-> Actually this shouldn't be only targetting GPIO but also for example
-> xlnx,xps-timebase-wdt-1.00.a but I would like to check it first on gpio
-> before starting to check other bindings.
+> On 6/13/25 10:47, Krzysztof Kozlowski wrote:
+>> On 05/06/2025 20:29, Radhey Shyam Pandey wrote:
+>>> Introduce 'reset-delay-us' and 'power-on-delay-us' properties. Default
+>>> delays in datasheet are not good enough for Xilinx Kria KR260 Robotics
+>>> Starter Kit (and others) so there is a need to program board specific
+>>> reset and power on delay via DT.
+>>>
+>>> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>>> ---
+>>> Taken reference from mdio.yaml[1]
+>>> [1]: Documentation/devicetree/bindings/net/mdio.yaml
+>>> ---
+>>>   .../devicetree/bindings/usb/microchip,usb5744.yaml   | 12 ++++++++++++
+>>>   1 file changed, 12 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+>>> index c68c04da3399..94a2bebd32da 100644
+>>> --- a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+>>> @@ -52,6 +52,16 @@ properties:
+>>>       description:
+>>>         phandle of an usb hub connected via i2c bus.
+>>>   
+>>> +  reset-delay-us:
+>>> +    description:
+>>> +      RESET pulse width in microseconds.
+>>
+>> I don't understand - there is no user for this in USB. Why do we need an
+>> ABI if no one ever uses it (and commit msg should clearly explain that)?
 
-IIUC, patch #1 is a prerequisite, so you need to squash them. Otherwise
-dt_binding_check is not bisectable and we want it to be bisectable.
+This still needs solving.
 
-(dtbs_check does not have to be, as long as linux-next is concerned)
+>>
+>>> +
+>>> +  power-on-delay-us:
+>>
+>> No user here, either. Plus I just wonder if you are mixing here RC
+>> delays or regulator ramp delays, because datasheet does not mention any
+>> delay.
+>>
+>> Can you point me to datasheet page explaining these delays?
+> 
+> Here is datasheet.
+> 
+> https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/USB5744-Data-Sheet-DS00001855.pdf
+> 
+> 10.6.3 chapter
+> 
+> minimum assert time is 5us this corresponds to reset-delay-us and then there is 
+> requirement for minimum 1ms for configuration strap.
+> On Kria platforms 5us and 1ms is used in U-Boot usb onboard driver but that 
+> times needs to be extended to be able to configure hub over i2c.
+
+
+And why minimums don't work? Because of some RC circuitry? If so, we
+have bindings for GPIO delays as well.
+
+Or regulator-ramp-delay... but I already said about these two.
+
+
 
 Best regards,
 Krzysztof
