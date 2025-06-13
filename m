@@ -1,370 +1,166 @@
-Return-Path: <devicetree+bounces-185693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB91AD8CD1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:09:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A028AD8CD4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:10:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 291983A9423
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:09:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 744DF188E563
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC7A7263F;
-	Fri, 13 Jun 2025 13:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6813585C5E;
+	Fri, 13 Jun 2025 13:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="iZXbgTQ2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FZtOAtCT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CDEA29;
-	Fri, 13 Jun 2025 13:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749820164; cv=pass; b=ksOS9Ve+Br2aQfp5esNTAOBPxVneqLhDqx52SIlOOl7Ks1m43n7SdHX43eyvOW33HQkuN/jT2fGwxb/G/tNqDrAIuZJPk33XI6OmDFeL7rXuNJIEr75tjVeL45SxDgdyKWjHvvtpYjTxDjKS9HvWnimu8WPczTkWlj8zbDpicbc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749820164; c=relaxed/simple;
-	bh=JNzwSv5wmEqpfiUCPmLTakXGP2hmjFRUHoTgtkcCEQE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uh+z5B+rKWpMNWvs5MClLNnlvQ81I1jHAEqN33Z7CEdulsRak+qAVAxPYO5Cnsp4FzF+SsGtx4AOqvGBhkfqJI0urlI3iB9rz6iW2AqhkBDK+/JZF5rQJ7T013ZuhM7vHsfztWYcH9nDtnMS4axdI3sxDCBwi/Fp4U0VaaIeUPM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=iZXbgTQ2; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1749820130; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=l9dzbF3zQflwc7yb+7biovokPvXD3AOtCCBg+iBkNSjS8gaSXgLiDdw5aTKKELaTBtikDAvAteFfaU0J33nI3UuwR3v4zPE3cvsBFG3tvDXDRW0sxSUedBhAPIBnwCK5b8inskFpcp3OqYQ+WThMdHz1mKN2Mw8fBAGsDxSAt04=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749820130; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=K9bhrRW+s12WtdaVP6Yi4iBFDQwpPFW/VNIJ084o8RM=; 
-	b=GIwKskccuJOMSPJp2xnn4AGCPMy0TtPoMh1U+LiqS0Y4YLdTR5QOaqHM23gPKWj47lmLoYOMOfa3NZ9FA7hMsrrSRanfDnWzFZQhaYkF0Klvwi/pzdvHLn0hognmYq+vZ6pPJFcGvOvlRWUtJ3xlCdxkSxHK7C0CxTGVOHF+BPc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749820130;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=K9bhrRW+s12WtdaVP6Yi4iBFDQwpPFW/VNIJ084o8RM=;
-	b=iZXbgTQ2EqQYhrsx8UX0Fx4Hrd0EnH8jyDWxuF8nV2kQdKs/GLSYQfDMqRAusWN3
-	zX5C2pP0Ivu0dqnJAwy4lACa2W/IStoAv/iOrxs8sbZAz3SK0rWAYIoInmJ1aqZ7nQU
-	9Zpvf21oRAM7FQwp6kARfJarCm0yZXd3zhDtc7Bs=
-Received: by mx.zohomail.com with SMTPS id 1749820128052943.1985221609309;
-	Fri, 13 Jun 2025 06:08:48 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Alexey Charkov <alchark@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v4 1/4] phy: rockchip: inno-usb2: add soft vbusvalid control
-Date: Fri, 13 Jun 2025 15:08:42 +0200
-Message-ID: <3284807.VLH7GnMWUR@workhorse>
-In-Reply-To: <5c531d53-3573-4c25-a32b-79dfd5abd4cd@linaro.org>
-References:
- <20250610-rk3576-sige5-usb-v4-0-7e7f779619c1@collabora.com>
- <20250610-rk3576-sige5-usb-v4-1-7e7f779619c1@collabora.com>
- <5c531d53-3573-4c25-a32b-79dfd5abd4cd@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62ABA29
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 13:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749820241; cv=none; b=Rujxz39XvbY+VzannqwDg1HfW7uvwAVhkGqjeRdpsYt8Eu690zkgLo9cYG9+1dPfoSme/Je+hQYDCE7EXaSiiVQxDSP06PokkQnuU4Wa6D8UrTK5LpipgU6/ZI+2IVg3M18icw6fI+O0VzJKnG4O1gYT/kX5LdZsOPoNwESPX8g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749820241; c=relaxed/simple;
+	bh=0ZB4tBA7VPI4q2+c0Iur9EkWxAnjfflthKsJ5EfCyNk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uBzLjjmgg+aDHTkjR8s94/jNtkBfb+F1w7+Q1Be52Gp4Ocq+Yf5nPJEKhPxTaMxoIVwtZ6gCi9B0K7XinzFpGxI2IOgWhm7uQ0i/EjjbQVWoezhFZ0jjtpkCATUOVNB6lD402Ze0bfXbasUXK1ohH/BkugmL2pm6msClOj73snk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FZtOAtCT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55D99vU3013766
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 13:10:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=311F7krfIodtR5drIHKaH5kh
+	X/9H/NonlAsY598nqSA=; b=FZtOAtCTdEghKcZAGH7tmzlOnJ+QW+EJbZ4a2iKl
+	t2KhWrnRDLdrAlHY+QHXOtOtX4jVsrkiFWyVL4gHnyKM2U9KS2gqBy7FvzdjhKHv
+	06+rwmBVGmq2HlCv7L3e5fKh9qD63JTFc1yZfs7OSJKRGwZlTzQa4VPtJreLCFRl
+	9gBq8lp1iLl104flOuAILllRUNq3+X13vYOyZSEBpkL3urbsUYC+QZVD6XAR5bg+
+	zBB6l4F4rkGn/r0YjjQ1aeLxBWC5yl/uIjV2PsFkZ97XJG+iin9fWXCmtYO17FTu
+	XQiBIlEK20iNZt3BZePZvcdxqC5FjY91ePv2xUNboDy1zA==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 476fmnk6fs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 13:10:38 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d22790afd2so355692585a.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 06:10:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749820237; x=1750425037;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=311F7krfIodtR5drIHKaH5khX/9H/NonlAsY598nqSA=;
+        b=M5W14/rc4jI772cvwzNxfwdG4ZrzPq0okVgOCJ+KoaUmpHq9I0K0pBLrX3ppf38YzS
+         V+98IBADGPm7s+hj3lHaFSE/brUz4Lji8gALjHeDRQI2KJq+AXhRe5WfGqXgzIUjb/C0
+         0+JwYMWAa5s76D/wJ29T66ANVndCKYOiMBRmzRcBhGWtX8OS57z/KV5tYt+jzSKKRUEf
+         StBFW+iC3zxN1TZV1WFGecIdwmC25XMSGBJQhfkE3rPRVf+XdH/kIc9bt0gWQiYvzbsJ
+         Qft2gB7GRGAuAft7L5i27BMFfoSNr11zaPQyW+dBTz4E18fuQF8F5+XMDJRexiVLSOQe
+         LNmg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHsP7phlsP8qnlM0vjR6hpRMpnSB54Yq7e+C0lgdKQ1VR4BRPF3/dTqdKejxhkn/UjsFOwcsA4SNsq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUvJOt0WI1se4JNEUOXnMahYYU90wZqLcOnujEbGT6vptR9F2s
+	pE1vYF6qsaUC1fdHL2diufhqE2uU1ZzkQtWDJhqPWm4C+5cqFDf8nGnzX/lNKD6bWsXzW3h436I
+	CGWHoSVkJw1Wh5UuulgMW+TfSExRmxo9Sh0a3AmIJXgTXG4JtxjgxylOb6ngwjn+2
+X-Gm-Gg: ASbGncty7TFZcuy11rwPxc0iP/2opLtO0bFoB32jlvk35T2atB39Fkyds/8b7skS2Ra
+	k4BmqY2z0nrizuGrExpG//adMVWx4SH/YinPIMStT0EFwf6hL4NiEaiTvPgZKXkkbfuuRCic9JV
+	r+gmghTj1sdR+L8wkoWYPqRBwuGGoRdPyiw1sDeQxooZsLQ4GRKGbNVurHBs1US4sgi832xms/a
+	04QMogkVfrL6896XCslf1KbK6s/CXZjXeJysvRaZ+84meA0NQFoKjNSlzrMxu++fiaTJwGu/hnB
+	qf7yw1ph+zKcIy0GYQe3b8Ij/sarKbpPNgL7llBnb2u1i0G2C+Ar8Mg1+Q09S4fr7ZCCu3uT6Xk
+	dnm6X5QI2xDemX7xUn52SioIOxSLFkLlgLBA=
+X-Received: by 2002:a05:620a:24d2:b0:7d2:271d:d395 with SMTP id af79cd13be357-7d3bc4b5acamr527507785a.37.1749820237463;
+        Fri, 13 Jun 2025 06:10:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF7prG3XcpQX6Swj4+2/RLuYYqGBZcoo3RwqH7z0osM9u+iPSEeNwNKJ7Z5Tg9Glvb5yCkC8Q==
+X-Received: by 2002:a05:620a:24d2:b0:7d2:271d:d395 with SMTP id af79cd13be357-7d3bc4b5acamr527502985a.37.1749820236999;
+        Fri, 13 Jun 2025 06:10:36 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b33069a9asm5648641fa.27.2025.06.13.06.10.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jun 2025 06:10:35 -0700 (PDT)
+Date: Fri, 13 Jun 2025 16:10:33 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615: Add CPU scaling clock
+ node
+Message-ID: <ezlboeao2mqdbyxw6orzcqla3xthbo5ppuuhugwyxs5t4njvsd@qyy5r2ksmrj2>
+References: <20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com>
+ <20250612-qcs615-mm-cpu-dt-v3-v3-2-721d5db70342@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250612-qcs615-mm-cpu-dt-v3-v3-2-721d5db70342@quicinc.com>
+X-Proofpoint-ORIG-GUID: cFu6InWgwuzN_ysX-qO1P_JK80ELvLnd
+X-Proofpoint-GUID: cFu6InWgwuzN_ysX-qO1P_JK80ELvLnd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjEzMDA5NiBTYWx0ZWRfX1QL+dMcFe4P0
+ 8GIw/wEDDmGCucW8Ae1NYYYLRWwFBipefxgrtsVjUnXh9UNTrQNdC6ZDWqZnvA7kB6ReSjWd5bo
+ Li7IrzQrLqxqMpvuRyhN4OXqWP/dY34xuSTfUF3a9olpK5sLuyAzyE7DOeUbRLJk9JXJ+s2/xaN
+ fZfL9FAw3zob6lSugswKnhK8T+azVGc5ZayHhVud08r06hMFJBoW5XaGIPAGsW36OM6ZI6eh1tC
+ bxVB3oTgXfBSU4lZIsdxPw+zRGbD3HtryGZu9FPIF1vNYQkWjrEDBLtMdegNfIBXx1YmK+5BH7f
+ PNcD8xX1EmMqmBJXzJoaqfN7zZ6237wMyiVHjKwH7HdKKhtEI8RuTDTCzP8rb7BF3V51ys0YlHu
+ 6LiW4XfrWYCtaQQj+hVNaKa7LdxkipPPuRJHzxNgKogGEbVIxlrO3j7DqFYfwWNrxK2nFpRa
+X-Authority-Analysis: v=2.4 cv=K8wiHzWI c=1 sm=1 tr=0 ts=684c234e cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=A1pg4z-Cax2pQkPbWCoA:9 a=CjuIK1q_8ugA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-13_01,2025-06-12_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 mlxscore=0 mlxlogscore=962 phishscore=0 lowpriorityscore=0
+ malwarescore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506130096
 
-Hi Neil,
-
-thank you for the review! Responses are inline.
-
-On Friday, 13 June 2025 11:02:40 Central European Summer Time neil.armstrong@linaro.org wrote:
-> On 10/06/2025 16:07, Nicolas Frattaroli wrote:
-> > With USB type C connectors, the vbus detect pin of the OTG controller
-> > attached to it is pulled high by a USB Type C controller chip such as
-> > the fusb302. This means USB enumeration on Type-C ports never works, as
-> > the vbus is always seen as high.
-> > 
-> > Rockchip added some GRF register flags to deal with this situation. The
-> > RK3576 TRM calls these "soft_vbusvalid_bvalid" (con0 bit index 15) and
-> > "soft_vbusvalid_bvalid_sel" (con0 bit index 14).
-> > 
-> > Downstream introduces a new vendor property which tells the USB 2 PHY
-> > that it's connected to a type C port, but we can do better. Since in
-> > such an arrangement, we'll have an OF graph connection from the USB
-> > controller to the USB connector anyway, we can walk said OF graph and
-> > check the connector's compatible to determine this without adding any
-> > further vendor properties.
-> > 
-> > Do keep in mind that the usbdp PHY driver seemingly fiddles with these
-> > register fields as well, but what it does doesn't appear to be enough
-> > for us to get working USB enumeration, presumably because the whole
-> > vbus_attach logic needs to be adjusted as well either way.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >   drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 113 +++++++++++++++++++++++++-
-> >   1 file changed, 109 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > index b0f23690ec3002202c0f33a6988f5509622fa10e..4f89bd6568cd3a7a1d2c10e9cddda9f3bd997ed0 100644
-> > --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > @@ -17,6 +17,7 @@
-> >   #include <linux/module.h>
-> >   #include <linux/mutex.h>
-> >   #include <linux/of.h>
-> > +#include <linux/of_graph.h>
-> >   #include <linux/of_irq.h>
-> >   #include <linux/phy/phy.h>
-> >   #include <linux/platform_device.h>
-> > @@ -114,6 +115,8 @@ struct rockchip_chg_det_reg {
-> >   /**
-> >    * struct rockchip_usb2phy_port_cfg - usb-phy port configuration.
-> >    * @phy_sus: phy suspend register.
-> > + * @svbus_en: soft vbus bvalid enable register.
-> > + * @svbus_sel: soft vbus bvalid selection register.
-> >    * @bvalid_det_en: vbus valid rise detection enable register.
-> >    * @bvalid_det_st: vbus valid rise detection status register.
-> >    * @bvalid_det_clr: vbus valid rise detection clear register.
-> > @@ -140,6 +143,8 @@ struct rockchip_chg_det_reg {
-> >    */
-> >   struct rockchip_usb2phy_port_cfg {
-> >   	struct usb2phy_reg	phy_sus;
-> > +	struct usb2phy_reg	svbus_en;
-> > +	struct usb2phy_reg	svbus_sel;
-> >   	struct usb2phy_reg	bvalid_det_en;
-> >   	struct usb2phy_reg	bvalid_det_st;
-> >   	struct usb2phy_reg	bvalid_det_clr;
-> > @@ -203,6 +208,7 @@ struct rockchip_usb2phy_cfg {
-> >    * @event_nb: hold event notification callback.
-> >    * @state: define OTG enumeration states before device reset.
-> >    * @mode: the dr_mode of the controller.
-> > + * @typec_vbus_det: whether to apply Type C logic to OTG vbus detection.
-> >    */
-> >   struct rockchip_usb2phy_port {
-> >   	struct phy	*phy;
-> > @@ -222,6 +228,7 @@ struct rockchip_usb2phy_port {
-> >   	struct notifier_block	event_nb;
-> >   	enum usb_otg_state	state;
-> >   	enum usb_dr_mode	mode;
-> > +	bool typec_vbus_det;
-> >   };
-> >   
-> >   /**
-> > @@ -495,6 +502,13 @@ static int rockchip_usb2phy_init(struct phy *phy)
-> >   	mutex_lock(&rport->mutex);
-> >   
-> >   	if (rport->port_id == USB2PHY_PORT_OTG) {
-> > +		if (rport->typec_vbus_det) {
-> > +			if (rport->port_cfg->svbus_en.enable &&
-> > +					rport->port_cfg->svbus_sel.enable) {
-> > +				property_enable(rphy->grf, &rport->port_cfg->svbus_en, true);
-> > +				property_enable(rphy->grf, &rport->port_cfg->svbus_sel, true);
-> > +			}
-> > +		}
-> >   		if (rport->mode != USB_DR_MODE_HOST &&
-> >   		    rport->mode != USB_DR_MODE_UNKNOWN) {
-> >   			/* clear bvalid status and enable bvalid detect irq */
-> > @@ -535,8 +549,7 @@ static int rockchip_usb2phy_init(struct phy *phy)
-> >   			if (ret)
-> >   				goto out;
-> >   
-> > -			schedule_delayed_work(&rport->otg_sm_work,
-> > -					      OTG_SCHEDULE_DELAY * 3);
-> > +			schedule_delayed_work(&rport->otg_sm_work, 0);
-> >   		} else {
-> >   			/* If OTG works in host only mode, do nothing. */
-> >   			dev_dbg(&rport->phy->dev, "mode %d\n", rport->mode);
-> > @@ -666,8 +679,17 @@ static void rockchip_usb2phy_otg_sm_work(struct work_struct *work)
-> >   	unsigned long delay;
-> >   	bool vbus_attach, sch_work, notify_charger;
-> >   
-> > -	vbus_attach = property_enabled(rphy->grf,
-> > -				       &rport->port_cfg->utmi_bvalid);
-> > +	if (rport->port_cfg->svbus_en.enable && rport->typec_vbus_det) {
-> > +		if (property_enabled(rphy->grf, &rport->port_cfg->svbus_en) &&
-> > +		    property_enabled(rphy->grf, &rport->port_cfg->svbus_sel)) {
+On Thu, Jun 12, 2025 at 03:47:21PM +0530, Taniya Das wrote:
+> Add cpufreq-hw node to support CPU frequency scaling.
 > 
-> Why do you check the registers since you always enable those bits on those conditions:
-> 	rport->port_id == USB2PHY_PORT_OTG
-> 	rport->typec_vbus_det
-> 	rport->port_cfg->svbus_en.enable
-> 	rport->typec_vbus_det
-> Can't you us them instead ?
-
-That is an excellent question. I think I was imitating downstream code
-here without thinking too much. This whole construct seems a little fishy,
-as these GRF registers are then never cleared again if it's not in OTG
-mode anymore. I'll look into it further, including cross-checking what
-those bits actually do based on the TRMs of various SoCs that use this
-hardware.
-
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 > 
-> Neil
+> +
+> +		cpufreq_hw: cpufreq@18323000 {
+> +			compatible = "qcom,sc7180-cpufreq-hw", qcom,cpufreq-hw";
+
+This wasn't build-tested (or was edited after being compile-tested).
+
+> +			reg = <0 0x18323000 0 0x1400>, <0 0x18325800 0 0x1400>;
+> +			reg-names = "freq-domain0", "freq-domain1";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+> +			clock-names = "xo", "alternate";
+> +
+> +			#freq-domain-cells = <1>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+>  	};
+>  
+>  	arch_timer: timer {
 > 
-> > +			vbus_attach = true;
-> > +		} else {
-> > +			vbus_attach = false;
-> > +		}
-> > +	} else {
-> > +		vbus_attach = property_enabled(rphy->grf,
-> > +					       &rport->port_cfg->utmi_bvalid);
-> > +	}
-> >   
-> >   	sch_work = false;
-> >   	notify_charger = false;
-> > @@ -1276,6 +1298,83 @@ static int rockchip_otg_event(struct notifier_block *nb,
-> >   	return NOTIFY_DONE;
-> >   }
-> >   
-> > +static const char *const rockchip_usb2phy_typec_cons[] = {
-> > +	"usb-c-connector",
-> > +	NULL,
-> > +};
-> > +
-> > +static struct device_node *rockchip_usb2phy_to_controller(struct rockchip_usb2phy *rphy)
-> > +{
-> > +	struct device_node *np;
-> > +	struct device_node *parent;
-> > +
-> > +	for_each_node_with_property(np, "phys") {
-> > +		struct of_phandle_iterator it;
-> > +		int ret;
-> > +
-> > +		of_for_each_phandle(&it, ret, np, "phys", NULL, 0) {
-> > +			parent = of_get_parent(it.node);
-> > +			if (it.node != rphy->dev->of_node && rphy->dev->of_node != parent) {
-> > +				if (parent)
-> > +					of_node_put(parent);
-> > +				continue;
-> > +			}
-> > +
-> > +			/*
-> > +			 * Either the PHY phandle we're iterating or its parent
-> > +			 * matched, we don't care about which out of the two in
-> > +			 * particular as we just need to know it's the right
-> > +			 * USB controller for this PHY.
-> > +			 */
-> > +			of_node_put(it.node);
-> > +			of_node_put(parent);
-> > +			return np;
-> > +		}
-> > +	}
-> > +
-> > +	return NULL;
-> > +}
-> > +
-> > +static bool rockchip_usb2phy_otg_is_type_c(struct rockchip_usb2phy *rphy)
-> > +{
-> > +	struct device_node *controller = rockchip_usb2phy_to_controller(rphy);
-> > +	struct device_node *ports;
-> > +	struct device_node *ep = NULL;
-> > +	struct device_node *parent;
-> > +
-> > +	if (!controller)
-> > +		return false;
-> > +
-> > +	ports = of_get_child_by_name(controller, "ports");
-> > +	if (ports) {
-> > +		of_node_put(controller);
-> > +		controller = ports;
-> > +	}
-> > +
-> > +	for_each_of_graph_port(controller, port) {
-> > +		ep = of_get_child_by_name(port, "endpoint");
-> > +		if (!ep)
-> > +			continue;
-> > +
-> > +		parent = of_graph_get_remote_port_parent(ep);
-> > +		of_node_put(ep);
-> > +		if (!parent)
-> > +			continue;
-> > +
-> > +		if (of_device_compatible_match(parent, rockchip_usb2phy_typec_cons)) {
-> > +			of_node_put(parent);
-> > +			of_node_put(controller);
-> > +			return true;
-> > +		}
-> > +
-> > +		of_node_put(parent);
-> > +	}
-> > +
-> > +	of_node_put(controller);
-> > +
-> > +	return false;
-> > +}
-> 
-> This DT parsing is quite complex, but seems it's the only way to detect such features
-> without bindings change, not sure it's really beneficial.
-
-Yeah, v1 abused the existing connector binding by having the HS graph
-port point to the PHY instead, and Rob wasn't happy with that. He
-suggested this can actually be done just by walking the graph.
-
-FWIW, even if the PHY knew its controller, that would still only get rid
-of rockchip_usb2phy_to_controller, and leave the graph walking to get to
-the connector in place.
-
-So a bindings change would only be of measurable benefit if it added a
-phandle property in USB PHYs to the connector or something, and I'm not
-sure if that's the right solution either. It'd once again shift the
-burden of remembering to let PHYs know about their connectors onto board
-DTs, which forget such things all the time.
-
-The benefit of this solution is that board DTs don't need to think about
-this at all, and the search is unambiguous, as we really don't lack any
-information, we just lack a direct view of that information in the node
-our driver receives.
-
-> 
-> > +
-> >   static int rockchip_usb2phy_otg_port_init(struct rockchip_usb2phy *rphy,
-> >   					  struct rockchip_usb2phy_port *rport,
-> >   					  struct device_node *child_np)
-> > @@ -1297,6 +1396,8 @@ static int rockchip_usb2phy_otg_port_init(struct rockchip_usb2phy *rphy,
-> >   
-> >   	mutex_init(&rport->mutex);
-> >   
-> > +	rport->typec_vbus_det = rockchip_usb2phy_otg_is_type_c(rphy);
-> > +
-> >   	rport->mode = of_usb_get_dr_mode_by_phy(child_np, -1);
-> >   	if (rport->mode == USB_DR_MODE_HOST ||
-> >   	    rport->mode == USB_DR_MODE_UNKNOWN) {
-> > @@ -2050,6 +2151,8 @@ static const struct rockchip_usb2phy_cfg rk3576_phy_cfgs[] = {
-> >   		.port_cfgs	= {
-> >   			[USB2PHY_PORT_OTG] = {
-> >   				.phy_sus	= { 0x0000, 8, 0, 0, 0x1d1 },
-> > +				.svbus_en	= { 0x0000, 15, 15, 0, 1 },
-> > +				.svbus_sel	= { 0x0000, 14, 14, 0, 1 },
-> >   				.bvalid_det_en	= { 0x00c0, 1, 1, 0, 1 },
-> >   				.bvalid_det_st	= { 0x00c4, 1, 1, 0, 1 },
-> >   				.bvalid_det_clr = { 0x00c8, 1, 1, 0, 1 },
-> > @@ -2087,6 +2190,8 @@ static const struct rockchip_usb2phy_cfg rk3576_phy_cfgs[] = {
-> >   		.port_cfgs	= {
-> >   			[USB2PHY_PORT_OTG] = {
-> >   				.phy_sus	= { 0x2000, 8, 0, 0, 0x1d1 },
-> > +				.svbus_en	= { 0x2000, 15, 15, 0, 1 },
-> > +				.svbus_sel	= { 0x2000, 14, 14, 0, 1 },
-> >   				.bvalid_det_en	= { 0x20c0, 1, 1, 0, 1 },
-> >   				.bvalid_det_st	= { 0x20c4, 1, 1, 0, 1 },
-> >   				.bvalid_det_clr = { 0x20c8, 1, 1, 0, 1 },
-> > 
-> 
-> Thanks,
-> Neil
+> -- 
+> 2.34.1
 > 
 
-Kind regards,
-Nicolas Frattaroli
-
-
-
+-- 
+With best wishes
+Dmitry
 
