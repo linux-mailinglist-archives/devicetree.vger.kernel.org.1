@@ -1,41 +1,64 @@
-Return-Path: <devicetree+bounces-185501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DA6AD80E7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 04:20:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7C7AD80F7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 04:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D4D53AC02A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 02:19:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27FAA3B821A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 02:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22551F5430;
-	Fri, 13 Jun 2025 02:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A41221DAE;
+	Fri, 13 Jun 2025 02:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hTN6C+Kh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CAC1EF391;
-	Fri, 13 Jun 2025 02:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D51E610C;
+	Fri, 13 Jun 2025 02:26:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749781206; cv=none; b=Z/kfgUAcnOPhRFYU9f61cVbNfPSrvz1S6js23NHZShrStkbCObCv5gBD3kejRvklkr1nIZXHWJ73VVzZ2Em/HCwHVZYwsH1BuiK574YKuyNiaMTKGWQX4nwv49CKLrB5R6VOOybwdqo64oO5x010XAsIqMVsmP4vu1AoRPNK5uk=
+	t=1749781587; cv=none; b=gKR0910dwuS5BSf0jD2UBxkQScX/hGc5MJBbodHAQD1OCgmRggZUYqeIqTQ/D5d4uSIOqbKkhzdrJndM1GUec0pW59CXWVt4pAtosrlRrBsvKfXB3zSbj/HVmjyoJt70I7y3fEdNGL38fMM2CZs9lHpL5MkLYIEzAVe6U+kMYGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749781206; c=relaxed/simple;
-	bh=9H77K1wXIVMrkUEhdLbj9zONFcFfIqerrrUftTrchLI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qtLw8UGlnXLd3UoJYxT1L6mzMbOdFiOHiobEr7yuCilqhIaQNncYPqqbeVmJgHbmsecgAX6UHna0WSYjC2Fqn/qMqsFbmRNsFOcgxzZyqtCUP4DvuTjOsSmA5FkDl38BcV5e88onuakEUoDclrjAq/VAhyvHwJ/egol5IpS5VhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [127.0.0.2] (unknown [210.73.43.2])
-	by APP-01 (Coremail) with SMTP id qwCowABXB9aviktoIvMtBg--.44541S6;
-	Fri, 13 Jun 2025 10:19:28 +0800 (CST)
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-Date: Fri, 13 Jun 2025 10:15:10 +0800
-Subject: [PATCH net-next 4/4] riscv: dts: spacemit: Add Ethernet support
- for BPI-F3
+	s=arc-20240116; t=1749781587; c=relaxed/simple;
+	bh=hZSppjegY7/oN6b4E+4u7yQ6gjRmHCewO4Clf+Xo/Ac=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fw875s6az6/PZRW9Ml8McgCaqRECaulfB2qCi2dkLZ2TnTeymHyX5l3iY2eRbHbN1CIfkvattFxquLUSCclCbSKYQiR/JC9I+XUVIBfZO8ywsDE3QsR7fpaT/7taHcFqiCR+ApWQq74rfnIQ1jdjMncyiIAPNjc1GIELUuUP4c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hTN6C+Kh; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1749781583;
+	bh=xLHonorKTCKXs1ikp7cWn5/J1/dRh42gn9VA3Kq5MxM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=hTN6C+KhQtfWhCMjyBx6tHWd7BiD4ype3lldLXmgo5ieDZAGry0Hr7CRlSfD14/4n
+	 Ll6JbaJk4Tce7g52FXEnu4d1MaGTATbCwDvrB7Cw+N6A+UJErG4+eI1fBrf8OkO03i
+	 PZYr4axD8buJcpM+JGvHcG7qht3P3Omn10nBnr6wmAfmoGomJEpnueDm3aYGuTDiVJ
+	 yVZizSGjbNrbAROq3sBLCPtMgduDOGWRnRwPgjuRu4us7D9oRJDIt2hym+oVmWSd0C
+	 uv5AMq3qn8E2ttX0R+HaejI99xAVCciUvKRfjmAgVxQT0P1hnJ7XMyvlGE6XGHvwDO
+	 SU8ELB71SRKAg==
+Received: from [127.0.1.1] (unknown [180.150.112.166])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 689F36445B;
+	Fri, 13 Jun 2025 10:26:21 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Avi Fishman <avifishman70@gmail.com>, 
+ Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>, 
+ Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>, 
+ Benjamin Fair <benjaminfair@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250609203721.2852879-1-robh@kernel.org>
+References: <20250609203721.2852879-1-robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: nuvoton: npcm8xx: Drop the GIC
+ "ppi-partitions" node
+Message-Id: <174978158113.301145.12233806769903779055.b4-ty@codeconstruct.com.au>
+Date: Fri, 13 Jun 2025 11:56:21 +0930
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,108 +67,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250613-net-k1-emac-v1-4-cc6f9e510667@iscas.ac.cn>
-References: <20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn>
-In-Reply-To: <20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Richard Cochran <richardcochran@gmail.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Russell King <linux@armlinux.org.uk>, Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Vivian Wang <uwu@dram.page>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-CM-TRANSID:qwCowABXB9aviktoIvMtBg--.44541S6
-X-Coremail-Antispam: 1UD129KBjvJXoW7Ary5JF47JFyxWw1UGrW7Arb_yoW8Wr1Dpr
-	WYkFs3urWDGr1Syw43Zryq9r4fGan5XrZ5G343uF1rJ3yqvF90vw15Kwn7tr1DWrW5X345
-	Wr4xtFWUur1qkw7anT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUH214x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4U
-	JVW0owAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4
-	CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvj
-	eVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I
-	1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK67AK6r4U
-	MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr
-	0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0E
-	wIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr
-	0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI
-	42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7sREMmh5UUUU
-	U==
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Banana Pi BPI-F3 uses an RGMII PHY for each port and uses GPIO for PHY
-reset.
+On Mon, 09 Jun 2025 15:37:20 -0500, Rob Herring (Arm) wrote:
+> The Arm GIC "ppi-partitions" node is only relevant to GICv3 and makes no
+> sense for GICv2 implementations which the GIC-400 is. PPIs in GICv2 have
+> no CPU affinity.
+> 
+> 
 
-Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 46 +++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 816ef1bc358ec490aff184d5915d680dbd9f00cb..6b841dacb61ec6592339f174267f4936c0579597 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -35,3 +35,49 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
+Thanks, I've applied this to be picked up through the BMC tree.
 
 -- 
-2.49.0
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
