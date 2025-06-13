@@ -1,175 +1,101 @@
-Return-Path: <devicetree+bounces-185542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F753AD83CA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:11:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB057AD82FE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2A043B937D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 07:11:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 962E27AA98B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 06:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E228277029;
-	Fri, 13 Jun 2025 07:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F54256C81;
+	Fri, 13 Jun 2025 06:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rhBMUS7T"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Qg6CdPM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3580C277016
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 07:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0AB256C73;
+	Fri, 13 Jun 2025 06:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749798636; cv=none; b=GxHv5ZWtVBgIHTUX32oadja4qAWxoddiWFqW5DTFzzvYe1CvFESXe5KLkyYb0Zw4LsvZSH1smIc7rV6BCBZ2+GVJrbE35/qYFaj6v7yvMnJhijlf1dnO/rMht/IP2MdLoHWe69yHHPv8Te8ZFtN9MToMLccHaDRmrd0n7q4HPDI=
+	t=1749795286; cv=none; b=aOW8j6GsK1ynthqMWzExPLhlb4dfrumQSS/ZkUFU4CXJCdxRjGHJxAXe18OengyzcGV35lfJ044sTRkPMK/f2SnCVZgw61ylRsqyg6AGlEqXi/5agkvi/Wye5Zs0UYOyMxt+xVCN1JVGzMPGy/OEudWuLFYUmKtCOmN5ddowTek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749798636; c=relaxed/simple;
-	bh=tiTiLTY0Syyq2PWeOBk2iLStidZl3GLGhGgef/z4krI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=PVTlHVH7c2Nc2xZekoQgUBFbHzQlPk0i41FWw42yfMvdZzxG5F8YV/uJR4tw6jXckPK+PGeJi3S5i4srdwlrYQ5xt1+TrmhI1dzL+V1l4RfENCebuPZSuNp0VZoOsIGm5ybgmhFFjj5QACS8CqyH16FM6Eaa9+JZMhAfK4/dgWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rhBMUS7T; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250613071033epoutp018213cdd6e9bcf3a9809027dee8928291~IiJYa0rUu3099130991epoutp01Q
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 07:10:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250613071033epoutp018213cdd6e9bcf3a9809027dee8928291~IiJYa0rUu3099130991epoutp01Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1749798633;
-	bh=56CmjDTZOy7fMDoysfMwIbGOoI0GR5WIPAdKVtxGwgs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rhBMUS7Tk7AFV1hwhSJhpaIIqwcMmxX1sx7dOUS2YM03d1JL7zkS0byUj90b+jFJg
-	 r4Z2TxjZFIo4mwWaLto4PEtsPTS7hce4a7K1ciKwa3PM5QJ/6anhyxCahxF/Wyyydr
-	 tjU+NfJtVgF3YONTjms899rLcrS6/jH4/6tADqww=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250613071032epcas5p30844d0ba455b69abf17e9f8c4d1f9e5a~IiJX2QbuO0170401704epcas5p3k;
-	Fri, 13 Jun 2025 07:10:32 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.182]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4bJVsf62PLz6B9mP; Fri, 13 Jun
-	2025 07:10:30 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca~IhEAfFzbP2347523475epcas5p4Z;
-	Fri, 13 Jun 2025 05:51:06 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250613055103epsmtip1a1807f547f3c97abd09c8aaa059502d5~IhD9wSso20439404394epsmtip12;
-	Fri, 13 Jun 2025 05:51:03 +0000 (GMT)
-From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
-	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org,
-	ivo.ivanov.ivanov1@gmail.com, m.szyprowski@samsung.com,
-	s.nawrocki@samsung.com, pritam.sutar@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
-	dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
-	selvarasu.g@samsung.com
-Subject: [PATCH v3 9/9] arm64: dts: exynos: ExynosAutov920: add USB and USB
- SS combo phy nodes
-Date: Fri, 13 Jun 2025 11:26:13 +0530
-Message-Id: <20250613055613.866909-10-pritam.sutar@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250613055613.866909-1-pritam.sutar@samsung.com>
+	s=arc-20240116; t=1749795286; c=relaxed/simple;
+	bh=BpTx1JlaU8t2NnSVcT1U5Hw1DGdpTHC0qys6/y6tlak=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lhisJQud37qNVAkFqZ8iPQIef2D+FkEc4VQsDzrzRYFu+90PoANvWQymKLXfcrxccCvr2Q1xXlc/Cy1eAO0nllb7Q9Cp7uuRh12GaixDhOkuoLQIeKk4+oVDZQ7jX4pIqYNYt1goDSG42h5bS1n4hnjIWdEY8R8BMu4ma8zSXvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Qg6CdPM/; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 45C08442B2;
+	Fri, 13 Jun 2025 06:14:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749795282;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=whxBYE463gQ4dvnKL9epaVnqgXjwtqwBi/Pgw4zDGAo=;
+	b=Qg6CdPM/9/G53Ye6rnkUDr/xFI5pnFi0Qc2CNo1k5EJ9FV6eeqEo9HcGkBncQNINKnTK98
+	fFM2dOiZpmv915v6xjq0WEIz6AmeUYd9byqGSpg+Lz4n8SxLd86euyc46UGqdsULU+N1Tc
+	7WrZMQVzSXLDZtvOaX6ufHwhVYG9UmE+/DwyiMg8vIuR7BiHJXLYgnbL+78gmDh/qqAFrP
+	+qgd+urf+ygVbQn5z2gtF0L0ClUhuNkizcnLVIm99OlxY+N7yXptSwfSPx3ETcyV1dyNrQ
+	Pa/ziU7E+M9dWpsuV40eIYOf1Rr85jOcyrkOxOYbTrve/Ll7IorDwei5XjJdTA==
+Date: Fri, 13 Jun 2025 08:14:39 +0200
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, richardcochran@gmail.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, Mun Yew Tham
+ <mun.yew.tham@altera.com>
+Subject: Re: [PATCH v5] dt-bindings: net: Convert socfpga-dwmac bindings to
+ yaml
+Message-ID: <20250613081439.2ad972ef@fedora.home>
+In-Reply-To: <20250612221630.45198-1-matthew.gerlach@altera.com>
+References: <20250612221630.45198-1-matthew.gerlach@altera.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca
-References: <20250613055613.866909-1-pritam.sutar@samsung.com>
-	<CGME20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca@epcas5p4.samsung.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddujedvtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthejredtredtvdenucfhrhhomhepofgrgihimhgvucevhhgvvhgrlhhlihgvrhcuoehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegveeltddvveeuhefhvefhlefhkeevfedtgfeiudefffeiledttdfgfeeuhfeukeenucfkphepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedukedprhgtphhtthhopehmrghtthhhvgifrdhgvghrlhgrtghhsegrlhhtvghrrgdrtghomhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlo
+ hhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Update the USB 3.1 DRD controller and USB31DRD phy nodes to support
-SS combo phy for this soc.
+Hello Matthew,
 
-The USB 3.1 DRD controller has the following features:
-* DWC3 compatible
-* compliant with both USB device 3.1 and USB device 2.0 standards
-* compliant with USB host 3.1 and USB host 2.0 standards
-* supports USB device 3.1 and USB device 2.0 interfaces
-* supports USB host 3.1 and USB host 2.0 interfaces
-* full-speed (12 Mbps) and high-speed (480 Mbps) modes with USB device
-  2.0 interface
-* super-speed (5 Gbps) mode with USB device 3.1 Gen1 interface
-* super-speed plus (10 Gbps) mode with USB device 3.1 Gen2 interface
-* single USB port which can be used for USB 3.1 or USB 2.0
-* on-chip USB PHY transceiver
-* supports up to 16 bi-directional endpoints
-* compliant with xHCI 1.1 specification
+On Thu, 12 Jun 2025 15:16:30 -0700
+Matthew Gerlach <matthew.gerlach@altera.com> wrote:
 
-USB3.1 SSP+(10Gbps) is supported in this commit and SS phy in combo
-phy only supports PIPE3 interface and it is added in index 0 of SS phy.
-UTMI+ and PIPE3 PHY interfaces are specified in "phys" property,
-UTMI+ (index 0 HS phy) and PIPE3 (index 0 SS phy).
+> Convert the bindings for socfpga-dwmac to yaml. Since the original
+> text contained descriptions for two separate nodes, two separate
+> yaml files were created.
+> 
+> Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
 
-Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
----
- .../arm64/boot/dts/exynos/exynosautov920-sadk.dts |  4 ++++
- arch/arm64/boot/dts/exynos/exynosautov920.dtsi    | 15 +++++++++++++--
- 2 files changed, 17 insertions(+), 2 deletions(-)
+Sorry I've been spending some time away from netdev@ lately... This
+looks very good, again thanks !
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-index a21386bd9af3..40588f7c9998 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-@@ -88,6 +88,10 @@ &xtcxo {
- };
+Unless there's some more comments from the DT bindings maintainers, you
+can add my :
  
- /* usb */
-+&usbdrd31_ssphy {
-+	status = "okay";
-+};
-+
- &usbdrd31_hsphy {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 4efc005cae80..5ee7fad346b9 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -1048,6 +1048,17 @@ pinctrl_hsi1: pinctrl@16450000 {
- 			interrupts = <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		usbdrd31_ssphy: phy@16480000 {
-+			compatible = "samsung,exynosautov920-usb31drd-ssphy";
-+			reg = <0x16480000 0x0200>;
-+			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
-+				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
-+			clock-names = "phy", "ref";
-+			#phy-cells = <1>;
-+			samsung,pmu-syscon = <&pmu_system_controller>;
-+			status = "disabled";
-+		};
-+
- 		usbdrd31_hsphy: phy@16490000 {
- 			compatible = "samsung,exynosautov920-usbdrd-hsphy";
- 			reg = <0x16490000 0x0200>;
-@@ -1109,8 +1120,8 @@ usbdrd31_dwc3: usb@0 {
- 					 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
- 				clock-names = "ref", "susp_clk";
- 				interrupts = <GIC_SPI 491 IRQ_TYPE_LEVEL_HIGH>;
--				phys = <&usbdrd31_hsphy 0>;
--				phy-names = "usb2-phy";
-+				phys = <&usbdrd31_hsphy 0>, <&usbdrd31_ssphy 0>;
-+				phy-names = "usb2-phy", "usb3-phy";
- 				snps,has-lpm-erratum;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_u3_susphy_quirk;
--- 
-2.34.1
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
+Maxime
 
