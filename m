@@ -1,129 +1,206 @@
-Return-Path: <devicetree+bounces-185686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C636FAD8C8D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:53:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF7DAD8C9A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:54:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED804189CA2D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:53:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9E113BB7B4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:54:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BF41A29A;
-	Fri, 13 Jun 2025 12:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3671D540;
+	Fri, 13 Jun 2025 12:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQDKRhhD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="es8djR6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89E617993;
-	Fri, 13 Jun 2025 12:53:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E7328691;
+	Fri, 13 Jun 2025 12:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749819206; cv=none; b=ffGxazt2HLr/99ObGq1jN+V7CuqiNHmkXBwrvQ7eoLMy1xWh774qiduLV4BmjI2ixr5FyrZf7WVfT79MA7Cct1iHGDvEpXwjIkxsFqf+DePpCllkVS03kNSoRO7nvOG2AxNEcaZyHSyQ7ks0pRzw0g5U+5t9kT/boqDAOTw+yM0=
+	t=1749819259; cv=none; b=hwE7ApmuRcn1bqBHNLR3EOCQlsYj3D3gyFQ0SjoNdfeT3QbFw5Rd/omC32mY56vccrNX1/ID/zSFltrxOVgFzw8sJmOwz12y8q8xH0r2iLyD15C9jR0beQvKX+P4gzlJfIORW+oSI90xgkzScQAbaFlI5TTtO5bKpv3RqJ/YCIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749819206; c=relaxed/simple;
-	bh=9bKZsFj11JsEIuU5G0syifnAlEs0CyADlHgSACdxKsw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mpDOpzxfacsfrYbM2Wa7aCbxZFRt0ftZeYVWlvHyINI0fAsLtEqv9E+eq6JqeYSiFsCgqyKbt9Qq8xbe8/xSiB6AA3WZ7CODLf+AeWoTD4jmha1gNfTJ+6DcXqXyUeXgim1fcZbG5t0ZjLQzVxj5fzTTT6MY2ck9Ql4DoG12asA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQDKRhhD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF9FC4CEE3;
-	Fri, 13 Jun 2025 12:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749819205;
-	bh=9bKZsFj11JsEIuU5G0syifnAlEs0CyADlHgSACdxKsw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sQDKRhhDfCKqOsDfp8tpdaS7yaLs3Bs5QzNVbP2K47LuyiDX3T0Qq3xLT/NJ+pJAr
-	 UGLyXBDcQrIJyQICNf61RICiTzC5cupiLKV7PPgNpLu8YVYasioF+5G1wCYIYtuLu4
-	 OZFhzRF+qB8r7qEymmOBBvUT68RIWsmqQokk1aW/DFhM9ee64C8fahYDbIPgBKsSNp
-	 NnGM+c3SpoeWeh+P6q5vcLelKdDjmMcu3zHUgbznlCdp5S08BO8FWNlTlIxm5mM+XF
-	 bTVTvP/obal7otAUwOf5UZcPM9EM6FmV10QIW8orANXtRpYjEW3DPBTwstlFVF66vF
-	 54Xvd9sN/DYEQ==
-Message-ID: <f7ed19b4-4b4c-482b-81c7-3429f21d1def@kernel.org>
-Date: Fri, 13 Jun 2025 14:53:20 +0200
+	s=arc-20240116; t=1749819259; c=relaxed/simple;
+	bh=rTFIi2usA4Iknjpjancsasj407AUD6ipJNUXYjs3KBQ=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=ljD1HOZLx3OjiTJNmfBt9o4OqjdEkdotfOTxGcAHsESBf7FZO2RwBLzfnXugC5ps9V01X8LmoCXPH2yH2VFEn7gTEE1iWzu5Ma3vvNuap5FiviDZBD4MQbZlnYtHzGRpuz/m/O2WCqZ6Xj0ZCojI+xkBchxY80EhlFj2yF5HyLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=es8djR6v; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=twkhsV1zF0hL+QCGl5QNOY+ykroDooxraR5ZCGY5fWM=; b=es8djR6vmm6TqtJIf58kZsllKp
+	TzJmAZ2/GXq/4luB7VASVqpOdTNjmUPkZPjYIo/46HunuURSwxzibLkvBHzA2N04pV4VoNgxw7tEz
+	OI4eiivibzdE0CYnkl7EDz57A2S9ANJUUPUf0+fAvvlfdIdqNVR5c9jVzwpzZqAQW+By7viRsMlaN
+	JlH4U6dDN0c9ppdK0lZWJjHlkUu4GhkKE/3U3K0J7xDUtvjetOUG03C0QYigVF+yznKZPGVpNcUh7
+	Ov4XQ+082tULqHZDQBDRXrGp/uiXZwj2YV0xBKWhlKyWNNhXjKmOY8WyNiQTocNk1DBm1k6RTAAIv
+	sJCo7lHw==;
+Received: from [122.175.9.182] (port=23246 helo=zimbra.couthit.local)
+	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1uQ3uu-0000000DXDE-3J6J;
+	Fri, 13 Jun 2025 08:53:57 -0400
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 079A91781C8F;
+	Fri, 13 Jun 2025 18:23:43 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id DB65117882B2;
+	Fri, 13 Jun 2025 18:23:42 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id tfKVzeSMqLXe; Fri, 13 Jun 2025 18:23:42 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 8286E1781C8F;
+	Fri, 13 Jun 2025 18:23:42 +0530 (IST)
+Date: Fri, 13 Jun 2025 18:23:42 +0530 (IST)
+From: Parvathi Pudi <parvathi@couthit.com>
+To: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
+	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
+	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
+	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
+	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
+	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
+	richardcochran <richardcochran@gmail.com>, 
+	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
+	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
+	saikrishnag@marvell.com, m-malladi <m-malladi@ti.com>, 
+	jacob e keller <jacob.e.keller@intel.com>, 
+	diogo ivo <diogo.ivo@siemens.com>, 
+	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
+	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
+	basharath <basharath@couthit.com>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
+	netdev <netdev@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
+	mohan <mohan@couthit.com>
+Message-ID: <909024001.1496409.1749819222224.JavaMail.zimbra@couthit.local>
+In-Reply-To: <cdcd54ff-ff67-4ad8-8aa7-baa711928242@linux.dev>
+References: <20250610105721.3063503-1-parvathi@couthit.com> <20250610123245.3063659-7-parvathi@couthit.com> <cdcd54ff-ff67-4ad8-8aa7-baa711928242@linux.dev>
+Subject: Re: [PATCH net-next v8 06/11] net: ti: prueth: Adds HW timestamping
+ support for PTP using PRU-ICSS IEP module
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/9] dt-bindings: pinctrl: stm32: Introduce HDP
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250613-hdp-upstream-v5-0-6fd6f0dc527c@foss.st.com>
- <20250613-hdp-upstream-v5-2-6fd6f0dc527c@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250613-hdp-upstream-v5-2-6fd6f0dc527c@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
+Thread-Topic: prueth: Adds HW timestamping support for PTP using PRU-ICSS IEP module
+Thread-Index: 8LzCZ2vNfRRRUg8kt8zc1YlyHE5Drg==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 13/06/2025 12:14, Clément Le Goffic wrote:
-> 'HDP' stands for Hardware Debug Port, it is an hardware block in
-> STMicrolectronics' MPUs that let the user decide which internal SoC's
-> signal to observe.
-> It provides 8 ports and for each port there is up to 16 different
-> signals that can be output.
-> Signals are different for each MPU.
+Hi,
+
+> On 10/06/2025 13:32, Parvathi Pudi wrote:
+>> From: Roger Quadros <rogerq@ti.com>
+>> 
+>> PRU-ICSS IEP module, which is capable of timestamping RX and
+>> TX packets at HW level, is used for time synchronization by PTP4L.
+>> 
+>> This change includes interaction between firmware and user space
+>> application (ptp4l) with required packet timestamps. The driver
+>> initializes the PRU firmware with appropriate mode and configuration
+>> flags. Firmware updates local registers with the flags set by driver
+>> and uses for further operation. RX SOF timestamp comes along with
+>> packet and firmware will rise interrupt with TX SOF timestamp after
+>> pushing the packet on to the wire.
+>> 
+>> IEP driver is available in upstream and we are reusing for hardware
+>> configuration for ICSSM as well. On top of that we have extended it
+>> with the changes for AM57xx SoC.
+>> 
+>> Extended ethtool for reading HW timestamping capability of the PRU
+>> interfaces.
+>> 
+>> Currently ordinary clock (OC) configuration has been validated with
+>> Linux ptp4l.
+>> 
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+>> ---
+>>   drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
+>>   drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  23 +
+>>   drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 443 +++++++++++++++++-
+>>   drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
+>>   .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
+>>   5 files changed, 602 insertions(+), 2 deletions(-)
+>>   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
 > 
-> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
-> ---
+> [...]
+> 
+>> @@ -732,9 +949,22 @@ int icssm_emac_rx_packet(struct prueth_emac *emac, u16
+>> *bd_rd_ptr,
+>>   		src_addr += actual_pkt_len;
+>>   	}
+>>   
+>> +	if (pkt_info->timestamp) {
+>> +		src_addr = (void *)PTR_ALIGN((uintptr_t)src_addr,
+>> +					   ICSS_BLOCK_SIZE);
+>> +		dst_addr = &ts;
+>> +		memcpy(dst_addr, src_addr, sizeof(ts));
+>> +	}
+>> +
+>>   	if (!pkt_info->sv_frame) {
+>>   		skb_put(skb, actual_pkt_len);
+>>   
+>> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
+>> +		    pkt_info->timestamp) {
+>> +			ssh = skb_hwtstamps(skb);
+>> +			memset(ssh, 0, sizeof(*ssh));
+>> +			ssh->hwtstamp = ns_to_ktime(ts);
+>> +		}
+>>   		/* send packet up the stack */
+>>   		skb->protocol = eth_type_trans(skb, ndev);
+>>   		netif_receive_skb(skb);
+> 
+> Could you please explain why do you need to copy timestamp to a
+> temporary variable if you won't use it in some cases? I believe these
+> 2 blocks should be placed under the last if condition and simplified a
+> bit, like
+> 
+> +		if (icssm_prueth_ptp_rx_ts_is_enabled(emac) &&
+> +		    pkt_info->timestamp) {
+> +			src_addr = (void*)PTR_ALIGN((uintptr_t)src_addr,
+> +					   ICSS_BLOCK_SIZE);
+> +			memcpy(&ts, src_addr, sizeof(ts));
+> +			ssh = skb_hwtstamps(skb);
+> +			ssh->hwtstamp = ns_to_ktime(ts);
+> +		}
+> 
+> This will avoid useless copy when the packet will be dropped anyway, WDYT?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, we can merge both the if conditions to make it simple.
 
-Best regards,
-Krzysztof
+We will address this in the next version.
+
+Thanks and Regards,
+Parvathi.
 
