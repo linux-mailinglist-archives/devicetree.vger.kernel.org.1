@@ -1,182 +1,336 @@
-Return-Path: <devicetree+bounces-185825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9831FAD94E9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 20:59:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 421B0AD9507
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:14:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAFA0189D581
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:59:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4392C3A970F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 19:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0FB233D91;
-	Fri, 13 Jun 2025 18:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2677623C4F8;
+	Fri, 13 Jun 2025 19:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BdQUdt/v"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="v2xDjngk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F20B231837;
-	Fri, 13 Jun 2025 18:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB00A239581
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 19:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749841152; cv=none; b=Uk1olx3W5IiiRa1lGTwq8TQWhuCih5X6Q4TFXh8/8/w8T0i8J9N50HthCPknFKvdqR3H9WkntlkesBy9J1kFyP3VDMuG9h3/MhW1f4JDa+9l9yYgvqDyxd/y2Cts+rn5W7wPqxJg8pkjfnEtR5pGFm8dvreiByhAhNSXzKfCgRA=
+	t=1749842046; cv=none; b=ReKoWLbrZhJZgo9dGiw3rEmffk5VZ0ziOAfMUVbRa1Llh/2NA1BJLtCZk8MstHIieLxOwWekzeVJNCfc3+2x1AGNqZtVV4nvc+uU3HTRDvQKJO2JE8m6pWsmWGATePWpnkxaL76VrkHne1MeRM6XtC8kShum5Bubht/kvBim/Jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749841152; c=relaxed/simple;
-	bh=bfi/XXY37D6EzOO2Od8sT5Dtm/chbynwgKX5STjjpn0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mhg2F3HKXCeRHPTZucaXa430VrmYR6HrDRyERZBo8yeIufBm4X6s1c5DVBPNUh2B9PcudF8EGAuq3NZoec22SyP29capgrxrUwouMCQoohan8mNtfjop0YiTO67L9LZ/srMon9VKfSfq8z7cik4sxsbS2jnTZTmPHKmEgO4/kgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BdQUdt/v; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a4e742dc97so2383939f8f.0;
-        Fri, 13 Jun 2025 11:59:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749841149; x=1750445949; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1/YIWQiUS3RgGsA89qeDcl9n+fbbe3YP1rWF9uN/SOc=;
-        b=BdQUdt/vCRSJjW0FSV+gO2rp6q07n0kU5fIrRfy3LoezVTmD9hr9dhf0RDRBfOOfWa
-         LCMrNYgo2rAfyBDBWSJvlwJ/jCSq6cDJjXPasjuZcpFwEJzZaUqG/hBLECf2mFZu9v5v
-         e+jvGemQCCnYo71Q+Xfkevs8o0Nwbne1ZNz5Yurk3RIoDbYSqpVQQxhclm4PVo3bMD7g
-         ir7iTP1a/pOkmurfiF06ltgfhCi5Ogi3wN3kr2F9vP5DUYGCrNmMcI/gCL5gvjVQPQEs
-         Us/io94bMwsasxh2sH21EX13vIxtcOliaPEf8MnBCDauG8WTTxhkgHbr92NosHMj5u2k
-         +BSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749841149; x=1750445949;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1/YIWQiUS3RgGsA89qeDcl9n+fbbe3YP1rWF9uN/SOc=;
-        b=PX8P/nKYm2tjpPSh1j8Fcw/Mtz18v+RC7RwD5xZu8x6DaCXBXt5eGDhKsbeh/KvNzH
-         f78+8wL0S6ITncY9iF/P8RklCdc6J5kBo8wVEaNVChOqbfszT/UnNDdSrcIBEbvUIXo3
-         wEHDh1cISzZD60UYlGkHK+VW8eOxGdcNpjD/j+NXstxTzc0it+tQG4OjkoIr3XbR7LeA
-         RHjKtB/Li1JNeWGnqq7MFRsKMzlhhfkC8jsd4zKIRFkTeNXjSM1PLc1Y9mXk+be+1kC9
-         MCoAtCg0wI7Ga+nXumf/SSbbTAb6SpGJHggKQUtSNsJJCCSTK/rVXIiq8Ce6uiSRbk3O
-         H+OA==
-X-Forwarded-Encrypted: i=1; AJvYcCV7ekGoh+q/0JFFuaLdqZwTffWesMRkgDb9mAo4PsXhK08fw4MXj4ckLTKMVCEvSKR0UwQILP5K2Nj7zOa3@vger.kernel.org, AJvYcCVrpF0qhXOhMNDZzAE/ZrWL6eHQCucl1P/0bn1m0lv7K7E18Md4l4l8lD21W6CZBITFvVefdzV+D0ht@vger.kernel.org, AJvYcCWukulkOV+25xm3AgBmPZYj6R+T0aGG7tq2fCMyeAHWLqyxgH9bJeHYXfoVFledaR9SDDo388Mh5S0gtEb/M3xf6pM=@vger.kernel.org, AJvYcCXwnM7riu/BLSeWQdrih2DKWiUkCiD5hq0O+/yklEO0ZhOXIQjK28jmdzqsw+o6sd6sObBhzUyiYIaP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUYiCZmaSmS5ZfAG9fTIAv97VsUUdZw+KsIJGHLGvgu8xiRiYT
-	TLA8O+CZLeQY8lZKEUlx6OqMurLbMdvEed0QixXagxiULfa0hWReQiaiF3x7xk4kWzStcO8vBkR
-	myv2iXFzBWqGlZ8hoy49ao5xhZx7MR42hrh+wqRL6RQ==
-X-Gm-Gg: ASbGncsN5ksrNHOOx3TPcYH1wJ/SPviOFGDz97/5Z+CGRbGI5TRXX+nshTRcre27lG9
-	2oFTdcn9dmJxYrh9UHzEH53ho1ndSrdqVkUfgJjVwDncDEkl7v+9Sk0cvLnER+UHDOhha6xS/0E
-	ycJnQwf1LsWikbBYdXQG5blnDJWtarYCYxn6do6tavLkY=
-X-Google-Smtp-Source: AGHT+IH6gVOrqupXkFxkZ8jHnjuBHoHp7WV2inzbQO5tSHCWOyZg7SSesd/x6TXCOy40KyIsVZAvAGsZEk2TYXgix+U=
-X-Received: by 2002:a05:6000:1884:b0:3a4:eb7a:2ccb with SMTP id
- ffacd0b85a97d-3a56d821e4dmr2085068f8f.16.1749841148379; Fri, 13 Jun 2025
- 11:59:08 -0700 (PDT)
+	s=arc-20240116; t=1749842046; c=relaxed/simple;
+	bh=kA4jhqp4xBUNaxg/pjNO8NYIx+j2PDUAkyr5hujtTvE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jwWe7wayGoFxXh44nV8idl8AmU65H9/ivAqdVBaHj+mvSfO/jQFZyDJI4gIYqaoocxBK6PXckMoVPD5oD/WwxjXBZTutkYg/MTQhU6rr/EJO/yEZEOFFZjRSkZf9WHylCR3k8co6zfb/7buDrP0o6UizcKZdVlwv91nqxn96nRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=v2xDjngk; arc=none smtp.client-ip=91.218.175.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <c3400787-7279-4a50-a61a-92a100b3b4b9@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749842030;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nMLY4DUZwczzWxX+mHe4l4o0st/9I1jgbNlgxZD7LaY=;
+	b=v2xDjngkqnMOazJSUlqgaQsgSXXpA93WGGhUq8DjjLk1zCK+nhxQkqb5YR6ZToXdoSQfyC
+	+YaL9O+WQKi+9bQcKwRunZ1e3zFsfqjWZQe8F+93kheOLwjPxVUWs/HEtc3YMcm9QFJoy/
+	9QhIY4dMRPpt6B0hx4/bmrYTPA7tGCI=
+Date: Fri, 13 Jun 2025 20:13:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250609232253.514220-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWoWqrMKgNSYN_NDOtROD-SAq7ProhREPJTEBTOPCeH=A@mail.gmail.com> <CA+V-a8sBhF-FwV0BXCxpHkuhdAg5YcwDsWPFRPSV_BdmNpLWYA@mail.gmail.com>
-In-Reply-To: <CA+V-a8sBhF-FwV0BXCxpHkuhdAg5YcwDsWPFRPSV_BdmNpLWYA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 13 Jun 2025 19:58:42 +0100
-X-Gm-Features: AX0GCFvWiPn4aKbGTJejOZagRntrlAdbPUi0Zn3dwUU2W9SE1HnlVmKNOPFDH-w
-Message-ID: <CA+V-a8t6WNQS-1AkFUeSioxNyF9vSbaxUDkQsYDk-=m1tysu+w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document RZ/T2H and
- RZ/N2H support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH net-next v9 06/14] dpll: zl3073x: Fetch invariants during
+ probe
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250612200145.774195-1-ivecera@redhat.com>
+ <20250612200145.774195-7-ivecera@redhat.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20250612200145.774195-7-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi Geert,
+On 12/06/2025 21:01, Ivan Vecera wrote:
+> Several configuration parameters will remain constant at runtime,
+> so we can load them during probe to avoid excessive reads from
+> the hardware.
+> 
+> Read the following parameters from the device during probe and store
+> them for later use:
+> 
+> * enablement status and frequencies of the synthesizers and their
+>    associated DPLL channels
+> * enablement status and type (single-ended or differential) of input pins
+> * associated synthesizers, signal format, and enablement status of
+>    outputs
+> 
+> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> ---
+>   drivers/dpll/zl3073x/core.c | 248 +++++++++++++++++++++++++++++++
+>   drivers/dpll/zl3073x/core.h | 286 ++++++++++++++++++++++++++++++++++++
+>   drivers/dpll/zl3073x/regs.h |  65 ++++++++
+>   3 files changed, 599 insertions(+)
+> 
+> diff --git a/drivers/dpll/zl3073x/core.c b/drivers/dpll/zl3073x/core.c
+> index 60344761545d8..3a57c85f902c4 100644
+> --- a/drivers/dpll/zl3073x/core.c
+> +++ b/drivers/dpll/zl3073x/core.c
+> @@ -6,6 +6,7 @@
+>   #include <linux/dev_printk.h>
+>   #include <linux/device.h>
+>   #include <linux/export.h>
+> +#include <linux/math64.h>
+>   #include <linux/module.h>
+>   #include <linux/netlink.h>
+>   #include <linux/regmap.h>
+> @@ -376,6 +377,25 @@ int zl3073x_poll_zero_u8(struct zl3073x_dev *zldev, unsigned int reg, u8 mask)
+>   					ZL_POLL_SLEEP_US, ZL_POLL_TIMEOUT_US);
+>   }
+>   
+> +int zl3073x_mb_op(struct zl3073x_dev *zldev, unsigned int op_reg, u8 op_val,
+> +		  unsigned int mask_reg, u16 mask_val)
+> +{
+> +	int rc;
+> +
+> +	/* Set mask for the operation */
+> +	rc = zl3073x_write_u16(zldev, mask_reg, mask_val);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Trigger the operation */
+> +	rc = zl3073x_write_u8(zldev, op_reg, op_val);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Wait for the operation to actually finish */
+> +	return zl3073x_poll_zero_u8(zldev, op_reg, op_val);
+> +}
+> +
+>   /**
+>    * zl3073x_devlink_info_get - Devlink device info callback
+>    * @devlink: devlink structure pointer
+> @@ -484,6 +504,229 @@ struct zl3073x_dev *zl3073x_devm_alloc(struct device *dev)
+>   }
+>   EXPORT_SYMBOL_NS_GPL(zl3073x_devm_alloc, "ZL3073X");
+>   
+> +/**
+> + * zl3073x_ref_state_fetch - get input reference state
+> + * @zldev: pointer to zl3073x_dev structure
+> + * @index: input reference index to fetch state for
+> + *
+> + * Function fetches information for the given input reference that are
+> + * invariant and stores them for later use.
+> + *
+> + * Return: 0 on success, <0 on error
+> + */
+> +static int
+> +zl3073x_ref_state_fetch(struct zl3073x_dev *zldev, u8 index)
+> +{
+> +	struct zl3073x_ref *input = &zldev->ref[index];
+> +	u8 ref_config;
+> +	int rc;
+> +
+> +	/* If the input is differential then the configuration for N-pin
+> +	 * reference is ignored and P-pin config is used for both.
+> +	 */
+> +	if (zl3073x_is_n_pin(index) &&
+> +	    zl3073x_ref_is_diff(zldev, index - 1)) {
+> +		input->enabled = zl3073x_ref_is_enabled(zldev, index - 1);
+> +		input->diff = true;
+> +
+> +		return 0;
+> +	}
+> +
+> +	guard(mutex)(&zldev->multiop_lock);
+> +
+> +	/* Read reference configuration */
+> +	rc = zl3073x_mb_op(zldev, ZL_REG_REF_MB_SEM, ZL_REF_MB_SEM_RD,
+> +			   ZL_REG_REF_MB_MASK, BIT(index));
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Read ref_config register */
+> +	rc = zl3073x_read_u8(zldev, ZL_REG_REF_CONFIG, &ref_config);
+> +	if (rc)
+> +		return rc;
+> +
+> +	input->enabled = FIELD_GET(ZL_REF_CONFIG_ENABLE, ref_config);
+> +	input->diff = FIELD_GET(ZL_REF_CONFIG_DIFF_EN, ref_config);
+> +
+> +	dev_dbg(zldev->dev, "REF%u is %s and configured as %s\n", index,
+> +		input->enabled ? "enabled" : "disabled",
+> +		input->diff ? "differential" : "single-ended");
+> +
+> +	return rc;
+> +}
+> +
+> +/**
+> + * zl3073x_out_state_fetch - get output state
+> + * @zldev: pointer to zl3073x_dev structure
+> + * @index: output index to fetch state for
+> + *
+> + * Function fetches information for the given output (not output pin)
+> + * that are invariant and stores them for later use.
+> + *
+> + * Return: 0 on success, <0 on error
+> + */
+> +static int
+> +zl3073x_out_state_fetch(struct zl3073x_dev *zldev, u8 index)
+> +{
+> +	struct zl3073x_out *out = &zldev->out[index];
+> +	u8 output_ctrl, output_mode;
+> +	int rc;
+> +
+> +	/* Read output configuration */
+> +	rc = zl3073x_read_u8(zldev, ZL_REG_OUTPUT_CTRL(index), &output_ctrl);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Store info about output enablement and synthesizer the output
+> +	 * is connected to.
+> +	 */
+> +	out->enabled = FIELD_GET(ZL_OUTPUT_CTRL_EN, output_ctrl);
+> +	out->synth = FIELD_GET(ZL_OUTPUT_CTRL_SYNTH_SEL, output_ctrl);
+> +
+> +	dev_dbg(zldev->dev, "OUT%u is %s and connected to SYNTH%u\n", index,
+> +		out->enabled ? "enabled" : "disabled", out->synth);
+> +
+> +	guard(mutex)(&zldev->multiop_lock);
+> +
+> +	/* Read output configuration */
+> +	rc = zl3073x_mb_op(zldev, ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_RD,
+> +			   ZL_REG_OUTPUT_MB_MASK, BIT(index));
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Read output_mode */
+> +	rc = zl3073x_read_u8(zldev, ZL_REG_OUTPUT_MODE, &output_mode);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Extract and store output signal format */
+> +	out->signal_format = FIELD_GET(ZL_OUTPUT_MODE_SIGNAL_FORMAT,
+> +				       output_mode);
+> +
+> +	dev_dbg(zldev->dev, "OUT%u has signal format 0x%02x\n", index,
+> +		out->signal_format);
+> +
+> +	return rc;
+> +}
+> +
+> +/**
+> + * zl3073x_synth_state_fetch - get synth state
+> + * @zldev: pointer to zl3073x_dev structure
+> + * @index: synth index to fetch state for
+> + *
+> + * Function fetches information for the given synthesizer that are
+> + * invariant and stores them for later use.
+> + *
+> + * Return: 0 on success, <0 on error
+> + */
+> +static int
+> +zl3073x_synth_state_fetch(struct zl3073x_dev *zldev, u8 index)
+> +{
+> +	struct zl3073x_synth *synth = &zldev->synth[index];
+> +	u16 base, m, n;
+> +	u8 synth_ctrl;
+> +	u32 mult;
+> +	int rc;
+> +
+> +	/* Read synth control register */
+> +	rc = zl3073x_read_u8(zldev, ZL_REG_SYNTH_CTRL(index), &synth_ctrl);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Store info about synth enablement and DPLL channel the synth is
+> +	 * driven by.
+> +	 */
+> +	synth->enabled = FIELD_GET(ZL_SYNTH_CTRL_EN, synth_ctrl);
+> +	synth->dpll = FIELD_GET(ZL_SYNTH_CTRL_DPLL_SEL, synth_ctrl);
+> +
+> +	dev_dbg(zldev->dev, "SYNTH%u is %s and driven by DPLL%u\n", index,
+> +		synth->enabled ? "enabled" : "disabled", synth->dpll);
+> +
+> +	guard(mutex)(&zldev->multiop_lock);
 
-On Fri, Jun 13, 2025 at 4:37=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Geert,
->
-> Thank you for the review.
->
-> On Thu, Jun 12, 2025 at 4:47=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > On Tue, 10 Jun 2025 at 01:23, Prabhakar <prabhakar.csengg@gmail.com> wr=
-ote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add SDHI bindings for the Renesas RZ/T2H (a.k.a R9A09G077) and RZ/N2H
-> > > (a.k.a R9A09G087) SoCs. Use `renesas,sdhi-r9a09g057` as a fallback si=
-nce
-> > > the SD/MMC block on these SoCs is identical to the one on RZ/V2H(P),
-> > > allowing reuse of the existing driver without modifications.
-> > >
-> > > Update the binding schema to reflect differences: unlike RZ/V2H(P),
-> > > RZ/T2H and RZ/N2H do not require the `resets` property and use only a
-> > > single clock instead of four.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > > @@ -129,59 +131,75 @@ allOf:
-> > >          compatible:
-> > >            contains:
-> > >              enum:
-> > > -              - renesas,sdhi-r9a09g057
-> > > -              - renesas,rzg2l-sdhi
-> > > +              - renesas,sdhi-r9a09g077
-> > > +              - renesas,sdhi-r9a09g087
-> > >      then:
-> > >        properties:
-> > > +        resets: false
-> > >          clocks:
-> > > -          items:
-> > > -            - description: IMCLK, SDHI channel main clock1.
-> > > -            - description: CLK_HS, SDHI channel High speed clock whi=
-ch operates
-> > > -                           4 times that of SDHI channel main clock1.
-> > > -            - description: IMCLK2, SDHI channel main clock2. When th=
-is clock is
-> > > -                           turned off, external SD card detection ca=
-nnot be
-> > > -                           detected.
-> > > -            - description: ACLK, SDHI channel bus clock.
-> > > +          description: ACLK, SDHI channel bus clock.
-> >
-> > According to the documentation, this is the SDHI high speed clock...
-> >
-Actually re-reading the doc there are two clocks (I had missed the
-second clock earlier),
-1] ACLK, IMCLK from the PCLKAM which is 200MHz
-2] SDHI_clkhs from PLL2 which is 800MHz
-Note, on RZ/V2H too the ACLK/IMCLK is 200MHz and clk_hs is 800MHz
+Not a strong suggestion, but it would be good to follow netdev style
+(same for some previous functions):
 
-So, I'll represent them as below:
-        clocks:
-          items:
-            - description: ACLK, IMCLK, SDHI channel bus and main clocks.
-            - description: CLK_HS, SDHI channel High speed clock.
-        clock-names:
-          items:
-            - const: aclk
-            - const: clkh
+https://docs.kernel.org/process/maintainer-netdev.html#using-device-managed-and-cleanup-h-constructs
 
-And for the ACLK, IMCLK which comes from peripheral module clock
-(PCLKAM) this will be a module clock and CLK_HS will have to be
-modelled as a CORE clock.
+"Use of guard() is discouraged within any function longer than 20 lines,
+scoped_guard() is considered more readable. Using normal lock/unlock is 
+still (weakly) preferred."
 
-Cheers,
-Prabhakar
+> +
+> +	/* Read synth configuration */
+> +	rc = zl3073x_mb_op(zldev, ZL_REG_SYNTH_MB_SEM, ZL_SYNTH_MB_SEM_RD,
+> +			   ZL_REG_SYNTH_MB_MASK, BIT(index));
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* The output frequency is determined by the following formula:
+> +	 * base * multiplier * numerator / denominator
+> +	 *
+> +	 * Read registers with these values
+> +	 */
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_BASE, &base);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = zl3073x_read_u32(zldev, ZL_REG_SYNTH_FREQ_MULT, &mult);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_M, &m);
+> +	if (rc)
+> +		return rc;
+> +
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_N, &n);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Check denominator for zero to avoid div by 0 */
+> +	if (!n) {
+> +		dev_err(zldev->dev,
+> +			"Zero divisor for SYNTH%u retrieved from device\n",
+> +			index);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Compute and store synth frequency */
+> +	zldev->synth[index].freq = div_u64(mul_u32_u32(base * m, mult), n);
+> +
+> +	dev_dbg(zldev->dev, "SYNTH%u frequency: %u Hz\n", index,
+> +		zldev->synth[index].freq);
+> +
+> +	return rc;
+> +}
+> +
+[...]
+
 
