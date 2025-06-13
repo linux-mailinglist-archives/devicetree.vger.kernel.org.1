@@ -1,63 +1,52 @@
-Return-Path: <devicetree+bounces-185702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5029AD8D36
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:37:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF374AD8D44
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:39:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15B313BA029
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:37:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5200116F41F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942E518A6DF;
-	Fri, 13 Jun 2025 13:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204A018F2DF;
+	Fri, 13 Jun 2025 13:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M2exNd+l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TUGVwajn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F48111BF;
-	Fri, 13 Jun 2025 13:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0C8187554;
+	Fri, 13 Jun 2025 13:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749821837; cv=none; b=sxaJEm5cZVe7tc54OodJcx7L24BU6iUZE/95B/5Y3kA0HCS+xe0brpFwCpIYR3p0UU4xrQAjtfkq3EVcNr5ChX+Z+cXVYoTsqZ6Pyw5yrs7++fMKDNFaE3nTTzyQ06x0qgJzZI4mKaVv3+vaSx9uX9awGfLW7bh+7gX6FPdt0cI=
+	t=1749821958; cv=none; b=a6smJASIsp5qHBs6Kmyjs2ZGX9RIb0lQcH/zIfS/cjfjhjZQq6aVeh2qNMtK7YcBwLhqcKS6UKiRLMXh13hOI7rQAQUzuq+FrpmiM2y0eac/ZcKp7BfL2wLAZ0oxp44EEf7odRPyhka5wz1lY4F8qHXLBj5+ianyGkTPpDVpDtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749821837; c=relaxed/simple;
-	bh=bU0hBkzZ4K3yFPGajYRk7UGPNkADcS8vp0MAzxdBeCA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Awb11vh3u5zpNtSoe95TNgLdotjUmyHcKqid/1Jy6Y87/l9aqqtUFvMGDzSsO4HU1gSM88QYpF3J6qxxcBTqIvOxR5UVal9y+av7zOEXTmt2o7faBG7TpuupwCfCKzSaLfVsNGqSDeMSXJS80Hqsb4k7nWQDkrtRtBiHFTEv3qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2exNd+l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51176C4CEEF;
-	Fri, 13 Jun 2025 13:37:14 +0000 (UTC)
+	s=arc-20240116; t=1749821958; c=relaxed/simple;
+	bh=1u10lZ+utTwxzfHAXk4guA8HgqMHAOiC6CKTXRm79YQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sxDP3/oVGHMYaAKoF4Ug8XGNLoqJhcDwWUyhLXAoaVPKvICyD3fI6BA5dZjjIJw93ZuslzZiToyrLzdH0hUipZFjdr+q+PUd65uFDsl2qQhtnasEfsyaogNajhuddlgUfR6lSypQ6JLVhK+Lbmq9WcGiah5HAuUaBmjUCzuqTc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TUGVwajn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 75DD5C4CEE3;
+	Fri, 13 Jun 2025 13:39:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749821837;
-	bh=bU0hBkzZ4K3yFPGajYRk7UGPNkADcS8vp0MAzxdBeCA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=M2exNd+lb3hDYp4bZQdJ2V/WXIxIlh8wvYQBrOJsSMR824P11BqGx6fHNBA3cISIg
-	 cFw6h+G/h5nji/MNVyRqmj8+OUdZkR7nZ40QOxLNaeVtE7rDvqfyes4D2FIBO5Kyj0
-	 Qn2RPIwf2SpQrF5Gw+upe2OXCMa+ZhTV3GBU4zCGcYbCC11JDioEzdbf4hH5HnhlsG
-	 iRTQCbzm5fRkOqXyvQJmebiNjEqFDAtNaNMpXkLv2BlvlMUfI2wv0sX0gHsPBb25zC
-	 kMtyqVfiUOgNl/pbkbTQmvcVcEJUtq7OPa0jiR0Wr56+PqV2zPa6GWweaOEXNyalmB
-	 xECQvg0xvl8xA==
-From: Lee Jones <lee@kernel.org>
-To: linux-kernel@vger.kernel.org, 
- Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: michael@amarulasolutions.com, linux-amarula@amarulasolutions.com, 
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250528121306.1464830-2-dario.binacchi@amarulasolutions.com>
-References: <20250528121306.1464830-1-dario.binacchi@amarulasolutions.com>
- <20250528121306.1464830-2-dario.binacchi@amarulasolutions.com>
-Subject: Re: (subset) [PATCH v2 1/4] dt-bindings: mfd: convert mxs-lradc
- bindings to json-schema
-Message-Id: <174982183407.898403.11770383898342698811.b4-ty@kernel.org>
-Date: Fri, 13 Jun 2025 14:37:14 +0100
+	s=k20201202; t=1749821957;
+	bh=1u10lZ+utTwxzfHAXk4guA8HgqMHAOiC6CKTXRm79YQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=TUGVwajnOOjiDLmdqEmnaNAwAvTZ9sFNr4jWG+i+AQV12yr9SCPBDFOze2o9jJAVT
+	 X9gCO/KvfcAuslpctCMpcVp7W+/5PUxGEB8/VlvLLmNMOCbZBNyRaJcQOPjzqm7F99
+	 1cPee0ziLQzPgTImlv94CGzf2EPtEMNWMAnsIHrSA9hzDDUiLb+xresJmPdVLaM8gM
+	 KAzJc6sxKDJ+vP1pBS0kLaTyiCI6a6U5vtkI5YV9vUuPx0c6QNcB7gAVbVGOkau+o4
+	 UfZi3f6k0+9FMNUSgEQxV0UW2NYU7TsYiXpvzd1NISx9Wzb0mMqfViQHJTmFMOjeYj
+	 rkX2MZ2wFwAFw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 634D2C71148;
+	Fri, 13 Jun 2025 13:39:17 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v3 0/2] arm64: Device Tree for Ugoos AM3 board
+Date: Fri, 13 Jun 2025 15:39:12 +0200
+Message-Id: <20250613-ugoos-am3-v3-0-f8a43e6bbfdb@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +55,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-459a0
+X-B4-Tracking: v=1; b=H4sIAAAqTGgC/1WMwQ6CMBAFf4X0bM122wJy8j+Mh1IX6EFKWmw0h
+ H+34AWP8/JmFhYpOIqsKRYWKLno/JhBngpmBzP2xN0jM0NADYjIX733kZun5F1ZKSHrEpRULP+
+ nQJ17763bPfPg4uzDZ08nsa2/ioTLoZIEBy5ra1ptVIW6vU4+zuTPI81syyQ8qEIdVcyqQhSgW
+ rBk9Z+6rusXqA2RL94AAAA=
+X-Change-ID: 20250222-ugoos-am3-f67413860434
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749821956; l=1175;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=1u10lZ+utTwxzfHAXk4guA8HgqMHAOiC6CKTXRm79YQ=;
+ b=SxYO8wSB80jUzrAAMi6t4PKUg8Vs2RmSY7vfkjEHbcD44oPU0WnDbBoKTy9Nia6EIglQApBsU
+ RAzhx+UYwTsD9W7Tugw9rDB9KnqbqJ+S/TrTRIK6dUcsT0TB8qIFm9B
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-On Wed, 28 May 2025 14:11:38 +0200, Dario Binacchi wrote:
-> Convert the Freescale MXS Low-Resoulution ADC (LRADC) device tree
-> binding documentation to json-schema.
-> 
-> The clocks and #io-channel-cells properties have also been added; They
-> are present in the respective SoC DTSI files but were missing from the
-> old mxs-lradc.txt file.
-> 
-> [...]
+This patchset adds a device tree for Ugoos AM3, an Android TV box from
+2018. Most hardware functionality has been tested, as noted in patch 2/2.
 
-Applied, thanks!
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+Changes in v3:
+- Rebase on v6.16-rc1
+- Add a few Reviewed-by tags
+- Link to v2: https://lore.kernel.org/r/20250314-ugoos-am3-v2-0-422104b0cec5@posteo.net
 
-[1/4] dt-bindings: mfd: convert mxs-lradc bindings to json-schema
-      commit: 799f007fbb961b4bb19ea63eacaf20d6deb56f2f
+Changes in v2:
+- fix vendor name in patch subjects
+- fix mistake that made wifi not work
+- apply Krzysztof's ACK to patch 1/2
+- Link to v1: https://lore.kernel.org/r/20250309-ugoos-am3-v1-0-38cab5a4725b@posteo.net
 
---
-Lee Jones [李琼斯]
+---
+J. Neuschäfer (2):
+      dt-bindings: arm: amlogic: Add Ugoos AM3
+      arm64: dts: amlogic: Add Ugoos AM3
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |  1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  2 +-
+ .../arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts | 91 ++++++++++++++++++++++
+ 4 files changed, 94 insertions(+), 1 deletion(-)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250222-ugoos-am3-f67413860434
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
