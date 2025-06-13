@@ -1,172 +1,146 @@
-Return-Path: <devicetree+bounces-185789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECAEAD9194
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 17:38:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E82C3AD91E1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 17:50:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26C7B3A5699
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:38:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E34CC189249F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675091F1932;
-	Fri, 13 Jun 2025 15:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC461F78E0;
+	Fri, 13 Jun 2025 15:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HP+PCI1p"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UCS0Yhp0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D501EEA47;
-	Fri, 13 Jun 2025 15:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6004F18DB29;
+	Fri, 13 Jun 2025 15:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749829104; cv=none; b=l55P2Oeq38l0qFR+Nl4BFkSgtZbO2GVKiA8zJtYv6YUt1UGLnLwC6Y5yggbyYCP/OcwxaHtQ69f7cSSII2wIVKvx6GK/9u3dCLbrrzVh6nRbzmIp/Ms1IGmRhWXGc9eHP6ojp8FEpOsOtLv9mG5S0I/2dsi76E0tdlIUgY51snM=
+	t=1749829797; cv=none; b=mxOU4OkdbewztjPDuTA/muP56VFaACOhCEqX+BbXjYmQX6GauvR4i9MyRo5IYE3Vk7RH8KShhLNdCKk4J9jHs2pSn7IgEt3p8cyeofkBnt9H/998vWEGWJ/jatAB6L2+AGp64hlcQ6zhuatptqYNgBcvNwLI0aG+pzDvvQonrBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749829104; c=relaxed/simple;
-	bh=HQhTZfTnw4diVZnHhB7ZoGRrWk9EQDmPViI90O1QwPg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r+tM1otCyOo9rcYN+AEDpoXDwdqV5HHolGO13VhDEqO2e0q4eeDudSwEVRQyqr3q7U4FFnTP/VuU6r/p/dhvXjHRhcHpA+l7XzkrcOmoIRZmLAEi16eDpn4Za+830pwB6sN4oaHAntuFKipSc3HuE4VWDK0HsP/WuKaBSDzWYX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HP+PCI1p; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a375e72473so1410695f8f.0;
-        Fri, 13 Jun 2025 08:38:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749829101; x=1750433901; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wci3OULWlGFVwJ58oYx/jmZbLNoBsgngvOoZDnSz/1o=;
-        b=HP+PCI1p2WndYBorGxD0G72q7j3QdzuvcFRtKgRln+9DJsUJMW/XpODPJ2ADnKryMw
-         /fmh0c9U0aIc8r7taRf3Yu3hkYkYxiIAX5GEXz8coBaTSoWmK6iLMnhJ1qcI2emkaXTn
-         CjUxgruPMQBVPAO5tBjYYPvb5dMcpLX11DHPCAlVoz01owY7itpbY7VMSCs1ulO7QjAO
-         WG8DyHDvF8eEa40mH5wu4egRk9gWK4eNBAMq2UFt/C8EBNQyl1vaXJ3GlV3yvv6j8+6l
-         COmC0HWTFIQMpyXxeSpHuJdoQPdH1+qqAFzAn+LgD+yDS0K8SySKQHx9sHFk11P8gUb1
-         Y0dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749829101; x=1750433901;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wci3OULWlGFVwJ58oYx/jmZbLNoBsgngvOoZDnSz/1o=;
-        b=DViOGAcnPVEYvQ31/U6IXxI3NUS6j3n/1RJ8QsvfM9UA6p31ld8SMvftPqs6x2/Mha
-         vCNWSTPy24ABMryH92E0RqNiGUX3UnUjkdJd74+eFPyUViojNrB6cVQpLb/q2IQ54yaX
-         cSinGFKKf7FbGl7HFjgtmUQT6tDgNRGwPhuB1udT4hzo48ODUQP5K++FJQY9quOoUQIs
-         uIJdUvszCvB/IkUa7uFQ6PZZZpVVE0LvZ3yio7XSJvMPbd3rpGEy9+AQ43/mSF0LvzvR
-         Ie0f+Zm7HHoqWVyejTjW1hHU1xkRyJdF9aDfN510Yl4UBm6ese6Nwf4dNbUqByWgAp7/
-         wd0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUNIVbZ//jtnLBVpd3QEWlt1UoIABjvcS4DQmfp81Pc0lsYD63cJ7jIy0i3QWiHBXDRuJzOxeX7mdli@vger.kernel.org, AJvYcCVFWLrUCz9j3TXAD4TlCggzyFwQEu3h+J8net6hcpGNcuwBg3AvHtm2Oifv0Q60ldcgroD6sJq33hCvnTf1@vger.kernel.org, AJvYcCVhjly38mA8nCQ1f3FeVMnQXOg4hVOnPFdilGSixJ6RR/hD5YKtHoccGdqmv0YYnAlm+KSBh8sQqOEym0yIEs68wKo=@vger.kernel.org, AJvYcCWMmll+UlWzQs5rVG+xJuiKlRaTHFsPidpI8Nf97uEzlWLtU0NPNMNkFj7Rp1+Z9S3HpNMP4jwCcibW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgF+D8fOUCoyPUITcdWrEky5De3DOgaaRmCpWT6m1X90lpJwU4
-	i9mN3P72OqrIsuQd0okUrQ+8hA0TRqVxYIe/9SjcTzyJNfxoHKVyof5Pwmjf83FIJkWMHIFI9yx
-	JaNCiawnIAKMQBFeDLBsc+io9tuXEc0o=
-X-Gm-Gg: ASbGncsmIujHSql7BtgCkfQD5NjSOhX6AX37cRx31+Etsc+vY44cBO9hEME3faqmc6h
-	XBhTTgNgHNxCzeo9M/RDEl/1Ob0ibt8K6aEV1lebaiqQCJplKHQcVCNNtpj11ItVYkqxUgl4Q3I
-	ksgpx4VAdNdTyP5QT4bH1JFNOlE9Dkj0sYyCQE7K79Ye8=
-X-Google-Smtp-Source: AGHT+IEMrjsiK9P909xoQb43iNVR6qh9Ty1yLTa5JLGU6Mssh8oQxVdmG4OaKVUa4OkcVm1Om/tDr6y6PKQ/juNx3+8=
-X-Received: by 2002:a05:6000:2c0f:b0:3a4:ef2c:2e03 with SMTP id
- ffacd0b85a97d-3a5723a2c47mr224793f8f.33.1749829100900; Fri, 13 Jun 2025
- 08:38:20 -0700 (PDT)
+	s=arc-20240116; t=1749829797; c=relaxed/simple;
+	bh=kQEepNrhTMoeLkMWuKHbX1FQWB7KfGk67Nh0dUtM66U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=izsUmehcMS5Bp4cAovF/w1oL594/RUn9p0XWOfGAOhPa/B9uMDA5D8vCnl/HzyiGKRa0O88jUj5HstTMICrKxDfskcOGievwzxWzphnwE/XE3hvoE3jBujvFVhCXxIdhTvF3cTYVTg7FVB7lTlq7S5wQX3N54rsEYiWFNrsj6Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UCS0Yhp0; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A0F7F4441C;
+	Fri, 13 Jun 2025 15:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749829788;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=OOVi85YqZgwGXGhiKBANfYwAT8bk0/6cs0m4L0QZ5ww=;
+	b=UCS0Yhp0BmMKUNuUyOR1T25Kcr7nlJYjEgZK7Ufhbcj4FHb/qXJeRN4v5mPpJFrUUd2oem
+	fTzexFYkAKc3Kmfz2P1OQvLBE+rxYG/C49/ZWpML3/gowta2wgXwaugkZO9UfkCjyYXWDx
+	RB6/pbV8Lk9OHGzj0x6TCeGHiOuWwOw/GqRXABCIgt30idmf0uSS81p/0VYG7O3uIIXuci
+	oyU8nkw5n3EEIwKUqyshs1iZB8Srz5x5aWPAzF2rECrBLWduAsy0u7nADm+hGQEekGTeZN
+	nOKckX4BRAxjjOjp2rEOrb5hE9vJqwJBHUL1+pi98FGvNMufLUkIapIRvlBCPw==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH v3 0/7] Add support for BeagleBone Green Eco board
+Date: Fri, 13 Jun 2025 17:49:43 +0200
+Message-Id: <20250613-bbg-v3-0-514cdc768448@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250609232253.514220-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWoWqrMKgNSYN_NDOtROD-SAq7ProhREPJTEBTOPCeH=A@mail.gmail.com>
-In-Reply-To: <CAMuHMdWoWqrMKgNSYN_NDOtROD-SAq7ProhREPJTEBTOPCeH=A@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 13 Jun 2025 16:37:55 +0100
-X-Gm-Features: AX0GCFvZCGvYpOP-G07AbNUHUOwIj4rYaSPCHj8y71th97TvgAtpMZZM4unZwDg
-Message-ID: <CA+V-a8sBhF-FwV0BXCxpHkuhdAg5YcwDsWPFRPSV_BdmNpLWYA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document RZ/T2H and
- RZ/N2H support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJdITGgC/1WMQQ6CMBBFr0JmbU070Ja68h7GBYUBmig1LWk0h
+ LtbcGGY3Zv89xaIFBxFuBQLBEouOj9lKE8FtGMzDcRclxmQo+QSS2btwLQyXNSd6LHRkJevQL1
+ 775XbPfPo4uzDZ48msX2PfhKMM+qrxpDUlO9qvZ8fbjq3/glbIeHfUtz8LMyWRF1zVFZXpj5a6
+ 7p+Acr49H7OAAAA
+To: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+ Roger Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Paul Barker <paul.barker@sancloud.com>, 
+ Marc Murphy <marc.murphy@sancloud.com>
+Cc: Jason Kridner <jkridner@gmail.com>, Andrew Davis <afd@ti.com>, 
+ Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.15-dev-8cb71
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddukeefhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffufffkgggtgffvvefosehtkeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepudfhveduteffgfekvdfhveehgeehtdelgefhffduiefffedvheefgeeiiedvkeetnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgduleemkeehkeejmeejuddttdemfedttgefmeektgehsgemfhdtkegumeegfeegsgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekheekjeemjedutddtmeeftdgtfeemkegthegsmehftdekugemgeefgegspdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvrghss
+ ehkvghmnhgruggvrdhinhhfohdprhgtphhtthhopehmrghrtgdrmhhurhhphhihsehsrghntghlohhuugdrtghomhdprhgtphhtthhopehlihhnuhigqdhomhgrphesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehjkhhrihgunhgvrhesghhmrghilhdrtghomhdprhgtphhtthhopehtohhnhiesrghtohhmihguvgdrtghomhdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hi Geert,
+SeeedStudio BeagleBone Green Eco (BBGE) is a clone of the BeagleBone Green
+(BBG). It has minor differences from the BBG, such as a different PMIC,
+a different Ethernet PHY, and a larger eMMC.
 
-Thank you for the review.
+Also update the omap.yaml binding to include missing compatible strings
+that were previously undocumented.
 
-On Thu, Jun 12, 2025 at 4:47=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, 10 Jun 2025 at 01:23, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add SDHI bindings for the Renesas RZ/T2H (a.k.a R9A09G077) and RZ/N2H
-> > (a.k.a R9A09G087) SoCs. Use `renesas,sdhi-r9a09g057` as a fallback sinc=
-e
-> > the SD/MMC block on these SoCs is identical to the one on RZ/V2H(P),
-> > allowing reuse of the existing driver without modifications.
-> >
-> > Update the binding schema to reflect differences: unlike RZ/V2H(P),
-> > RZ/T2H and RZ/N2H do not require the `resets` property and use only a
-> > single clock instead of four.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> > @@ -129,59 +131,75 @@ allOf:
-> >          compatible:
-> >            contains:
-> >              enum:
-> > -              - renesas,sdhi-r9a09g057
-> > -              - renesas,rzg2l-sdhi
-> > +              - renesas,sdhi-r9a09g077
-> > +              - renesas,sdhi-r9a09g087
-> >      then:
-> >        properties:
-> > +        resets: false
-> >          clocks:
-> > -          items:
-> > -            - description: IMCLK, SDHI channel main clock1.
-> > -            - description: CLK_HS, SDHI channel High speed clock which=
- operates
-> > -                           4 times that of SDHI channel main clock1.
-> > -            - description: IMCLK2, SDHI channel main clock2. When this=
- clock is
-> > -                           turned off, external SD card detection cann=
-ot be
-> > -                           detected.
-> > -            - description: ACLK, SDHI channel bus clock.
-> > +          description: ACLK, SDHI channel bus clock.
->
-> According to the documentation, this is the SDHI high speed clock...
->
-Agreed, I will update it to `CLKHS, SDHI channel High speed clock.`
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Changes in v3:
+- Update multi_v7_defconfig with TPS65219 config.
+- Remove extraneous compatible strings.
+- Replace BeagleBone compatible board name vendor to use "beagle" instead
+  of "ti".
+- Link to v2: https://lore.kernel.org/r/20250609-bbg-v2-0-5278026b7498@bootlin.com
 
-> > +          maxItems: 1
-> >          clock-names:
-> > -          items:
-> > -            - const: core
-> > -            - const: clkh
-> > -            - const: cd
-> > -            - const: aclk
-> > -      required:
-> > -        - clock-names
-> > -        - resets
-> > +          const: aclk
->
-> ... i.e. clkhs.
-s/clkhs/clkh
+Changes in v2:
+- Add patch 1 to 3 to fix binding and devicetree inconsistencies.
+- Rename tps node name to generic pmic node name in am335x-bone-common.
+- Link to v1: https://lore.kernel.org/r/20250523-bbg-v1-0-ef4a9e57eeee@bootlin.com
 
-Cheers,
-Prabhakar
+---
+Kory Maincent (7):
+      dt-bindings: omap: Add missing AM33xx compatible strings
+      ARM: dts: omap: Remove incorrect compatible strings from device trees
+      arm: dts: omap: am335x-bone-common: Rename tps to generic pmic node
+      dt-bindings: omap: Add Seeed BeagleBone Green Eco
+      arm: dts: omap: Add support for BeagleBone Green Eco board
+      arm: omap2plus_defconfig: Enable TPS65219 regulator
+      arm: multi_v7_defconfig: Enable TPS65219 regulator
+
+ Documentation/devicetree/bindings/arm/ti/omap.yaml |  23 ++-
+ arch/arm/boot/dts/ti/omap/Makefile                 |   1 +
+ arch/arm/boot/dts/ti/omap/am335x-base0033.dts      |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi  |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-bone.dts          |   4 +-
+ .../boot/dts/ti/omap/am335x-boneblack-wireless.dts |   4 +-
+ arch/arm/boot/dts/ti/omap/am335x-boneblack.dts     |   4 +-
+ arch/arm/boot/dts/ti/omap/am335x-boneblue.dts      |   4 +-
+ arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts | 169 +++++++++++++++++++++
+ .../boot/dts/ti/omap/am335x-bonegreen-wireless.dts |   4 +-
+ arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts     |   4 +-
+ arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts    |   3 +-
+ arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts  |   2 +-
+ .../arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts  |   4 +-
+ .../ti/omap/am335x-sancloud-bbe-extended-wifi.dts  |   5 +-
+ .../boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts  |   5 +-
+ arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts  |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-shc.dts           |   2 +-
+ arch/arm/configs/multi_v7_defconfig                |   3 +
+ arch/arm/configs/omap2plus_defconfig               |   3 +
+ 21 files changed, 221 insertions(+), 31 deletions(-)
+---
+base-commit: e22b9ddaf3afd031abc350c303c7c07a51c569d8
+change-id: 20250523-bbg-769018d1f2a7
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
