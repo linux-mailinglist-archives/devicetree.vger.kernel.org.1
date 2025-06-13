@@ -1,216 +1,143 @@
-Return-Path: <devicetree+bounces-185576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B73D3AD8759
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:12:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90972AD8771
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:14:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3CA0189A167
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:12:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACE0A169AD4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C94279DCF;
-	Fri, 13 Jun 2025 09:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0E8291C04;
+	Fri, 13 Jun 2025 09:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V8tlO3Sw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctnowZ7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8315279DBC
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 09:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0719B2727EC;
+	Fri, 13 Jun 2025 09:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749805951; cv=none; b=t4KcPRwjYLXcIm2jfBCj4qRpvVRrORAjjyhcuBpooR36rGLszolmlQZbQafCdNEI7yuD87LJIoD8ByrDNrD/OblqKamQSjHcOCwBosGXDCuXH50RTr+0+3/bwf0vdZ5H0Kk25VBhBPNFrGViMQfoSRFZrLN7+qOvOTP0Zy+NjOY=
+	t=1749806029; cv=none; b=FqqREwZCEqX6y1DrEly6wR3l/lk21Jsnl7DULTekb/7s5KwBhPjnTJcAgYuGa/hChvG6mNdGPuW0B4+CWpLqfHhdH/BgxLz/1Vbhf3C4mJpSpd3u1s9v5kHd01IA9j4DpZT5/Fr2Y1+RvhA01ezTHlOad0/2hK/kCicbF0vQYXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749805951; c=relaxed/simple;
-	bh=rhBgtIz5rbF4vZpFi/4hzu5iAms/cKtPyMWFvJqcEMU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=eGLyZcO4ZhXX4T4L2A0Suce7htV5EXFQAenhcJ4eYZ3pvWlaGz8XGrzkrCQM2Hla06Mgp5LGYVKxaDTSscXQCk2aalDGYvlHuOLW8RZqWx7JpZMJS7U/KKvPGS9BHraR4RT1Kv7+8IuxUuzw/aHifxaJSFgOd/xByWpbUUXOkVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V8tlO3Sw; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-450ccda1a6eso16689015e9.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 02:12:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749805948; x=1750410748; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yaEX4dDgKDNxKZX0+vcnih4XjDWoAZY8oCSw4SAHFH8=;
-        b=V8tlO3SwRlknI3jgXnyOSk6WaUnBTGw00l5DTX5LpBcwuZJHrn0w+R/AEUY2FKjh7i
-         0F7zqd0bRK00EWKdkW678WFj8m+bhB+nqKQUrYeyNb1roJVvsApTqAYm+w2E4nLKp5tF
-         E/qmK+Ml4eFPPnXI+jYs4W3DL3OotV8+0/ZC45gjTGNvv89XXh+CmgS6eiCLNYmclK2r
-         GegUi3G5qvpCIa2o518lst7FTjLkFX/RHL2bmuTdUtSD0aU2yGSE6VfKU9pch+Lckclc
-         fTvGuD/8ccZCAK/ikSC7zaxC/xL7iAfIwCOBYEzRrw2BLsrUIb8G+RXr3BVP1K0MHb16
-         8cVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749805948; x=1750410748;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yaEX4dDgKDNxKZX0+vcnih4XjDWoAZY8oCSw4SAHFH8=;
-        b=boQ/Onv47hWvLAXGS6bWwxDlU4beIstomMcPImTBkUPDYQGZY70CM+LxURAUR2SCcT
-         vUmgpXMU3azUj5RNyaeA/g5Mu4FiT+sxBFyUhP5zW9tjocG6ap83QOP7teWM1bVUV23g
-         GNcfjDeoXFE6UcwJGhjmA+KJ85f928X1qWI+iit6uTBC5VBJaxqZNwDIFtqi03vo9Oj1
-         0rz9Eu34e7BSWyJq4YIZSREM2N2L9zzWoCCouySbfPG5GmVkAwytu/+S6HGWIF3FcMHZ
-         qfjD7MGX6VUr11QAiu9Z9MgQe89rF0BhS88Z8sLhqv2z5J59YYKTQzTgccYqy9t9n32I
-         ALcg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPTdN++VaZH9ycZUC5NaaZYsXKW6talsuY8ddOaJyAsDbFULu7GWkPR2TMjtdZLuG+rs0awE00Yuxl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoQCc95bP6XdFfzxIRJurgCiOjIif7L4s0+4cVD78EA0Sb5uLw
-	/M3iCJdq3Y4vhXfyySfyV4pWWsKJogwF5xxGNQUc1SuXFg10yP+VbNop6aemtnO8JgA=
-X-Gm-Gg: ASbGncunoRShjQKt7q4PPizKKft/KvEwIroKmRCgC7T31Za3b6kJqOtDWae/hA8P/aj
-	wnDX7aNXJJElhcGu/glIRTAvxWe9bJCNN6bYwg40EXxFqMqbahtrYTtn45FfSgOHjeXDR16JWfF
-	QPlXtSBHyEEYc6e0WU1UbYbRwNcuYwjxXRUsRgAAoLSt3QEnS4L87HZ10seLY65qT/Q3VaC3E4H
-	ze1feZupIY0o6SjQ59eRR4vtvudgJ+GkXVn5ZdmtJ5nT8m7YpwqlbqbG6g62e8JQ8LzJJdZBxz6
-	DpFeuG0B/JUpjJ+wNITAk12Ge05MZJnAfcJN9M5fofVgGq5KOwtrfV9oah2wZNtMf21o/pb8mPY
-	Kzh/SVQxU6G8cJlZmR7tMC6+TiJQErx1W1Iqbd9u+uIJFJ1Ivkw==
-X-Google-Smtp-Source: AGHT+IGfNqq5N/dXfqPTy6lk5lwkJCrvfc3vLmcZOn5YDfPCKU4e2XDDXROymQQp9fqDHIQhZiR3NQ==
-X-Received: by 2002:a05:600c:34c7:b0:442:f8e7:25ef with SMTP id 5b1f17b1804b1-45334ad3f41mr21047235e9.11.1749805948257;
-        Fri, 13 Jun 2025 02:12:28 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:4144:6a84:fe1d:3aae? ([2a01:e0a:3d9:2080:4144:6a84:fe1d:3aae])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e2446b0sm45162715e9.21.2025.06.13.02.12.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jun 2025 02:12:27 -0700 (PDT)
-Message-ID: <9455a4e1-6352-4832-ac9f-2816f889c3a4@linaro.org>
-Date: Fri, 13 Jun 2025 11:12:26 +0200
+	s=arc-20240116; t=1749806029; c=relaxed/simple;
+	bh=A4rei9vr0g663YBmbvMyS3DhGYGv66yWEgowRVk+S8U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e7MIic14rFVDaK8u+CHCymh/DXBYq8fY4hq42j9kd89ZKOx/fpvWdYOeI+vxSzvl0F+0bCmOoBdzGrX2HDBQy9a00AHkiPAzMp99PT3bc1W/bSweh6rJD2fsW+Tmon8ADxm2ecsKw67ahOe7VkCG2caJ/kA41ZGYmtpNzNM7Yp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ctnowZ7+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80E6DC4CEEB;
+	Fri, 13 Jun 2025 09:13:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749806028;
+	bh=A4rei9vr0g663YBmbvMyS3DhGYGv66yWEgowRVk+S8U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ctnowZ7+xat8+n++ruzyMKi4rSUPpy7C6PxmsBAeCvG5vn8DIQTiIKSgyC6HWQgfs
+	 wSi/QTkKH5EnMf+yNB8TIgyR6zN+8nYqDBW7yKv8iifN4UgitR+XFZOm4A/MilI277
+	 k5Srscym/w0I5LVd1MRyg8/ol4HinEhXjtJS8N6d0A0k0M7Nra8igd9Q5vFXjl47Ph
+	 4fHaaRnPlhyREBzFc4VsYYGor4i7co+akWQ/0BTIxZqJ+PGVbs1p8u5BfVpmYdnk4u
+	 5eU4+8HHXaQbkrkZGucVDkYVjVUD72mGqKlzYxFZdzt/0sc/kW5WOLz5aEejBQsqEP
+	 jLadRYSNVZRZQ==
+Date: Fri, 13 Jun 2025 14:43:38 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>, 
+	krishna.chundru@oss.qualcomm.com
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Qiang Yu <quic_qianyu@quicinc.com>, 
+	Ziyue Zhang <quic_ziyuzhan@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 1/4] dt-bindings: PCI: qcom,pcie-sc8180x: Drop unrelated
+ clocks from PCIe hosts
+Message-ID: <qri7dxwqoltam2yanxicgejjq3xprd6cunvpgukasmtt7c5lmh@ikdl24royen6>
+References: <20250521-topic-8150_pcie_drop_clocks-v1-0-3d42e84f6453@oss.qualcomm.com>
+ <20250521-topic-8150_pcie_drop_clocks-v1-1-3d42e84f6453@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 9/9] arm64: dts: exynos: ExynosAutov920: add USB and
- USB SS combo phy nodes
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, andre.draszik@linaro.org, peter.griffin@linaro.org,
- kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com,
- m.szyprowski@samsung.com, s.nawrocki@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
- dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
- selvarasu.g@samsung.com
-References: <20250613055613.866909-1-pritam.sutar@samsung.com>
- <CGME20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca@epcas5p4.samsung.com>
- <20250613055613.866909-10-pritam.sutar@samsung.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250613055613.866909-10-pritam.sutar@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250521-topic-8150_pcie_drop_clocks-v1-1-3d42e84f6453@oss.qualcomm.com>
 
-On 13/06/2025 07:56, Pritam Manohar Sutar wrote:
-> Update the USB 3.1 DRD controller and USB31DRD phy nodes to support
-> SS combo phy for this soc.
++ Krishna
+
+On Wed, May 21, 2025 at 03:38:10PM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> The USB 3.1 DRD controller has the following features:
-> * DWC3 compatible
-> * compliant with both USB device 3.1 and USB device 2.0 standards
-> * compliant with USB host 3.1 and USB host 2.0 standards
-> * supports USB device 3.1 and USB device 2.0 interfaces
-> * supports USB host 3.1 and USB host 2.0 interfaces
-> * full-speed (12 Mbps) and high-speed (480 Mbps) modes with USB device
->    2.0 interface
-> * super-speed (5 Gbps) mode with USB device 3.1 Gen1 interface
-> * super-speed plus (10 Gbps) mode with USB device 3.1 Gen2 interface
-> * single USB port which can be used for USB 3.1 or USB 2.0
-> * on-chip USB PHY transceiver
-> * supports up to 16 bi-directional endpoints
-> * compliant with xHCI 1.1 specification
+> The TBU clock belongs to the Translation Buffer Unit, part of the SMMU.
+> The ref clock is already being driven upstream through some of the
+> branches.
 > 
-> USB3.1 SSP+(10Gbps) is supported in this commit and SS phy in combo
-> phy only supports PIPE3 interface and it is added in index 0 of SS phy.
-> UTMI+ and PIPE3 PHY interfaces are specified in "phys" property,
-> UTMI+ (index 0 HS phy) and PIPE3 (index 0 SS phy).
-> 
-> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+
+Can you please cross check with the hardware programming guide (I don't have
+access to atm) that the 'ref' clock is no longer voted by the driver?
+
+- Mani
+
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->   .../arm64/boot/dts/exynos/exynosautov920-sadk.dts |  4 ++++
->   arch/arm64/boot/dts/exynos/exynosautov920.dtsi    | 15 +++++++++++++--
->   2 files changed, 17 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/pci/qcom,pcie-sc8180x.yaml         | 14 ++++----------
+>  1 file changed, 4 insertions(+), 10 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> index a21386bd9af3..40588f7c9998 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> @@ -88,6 +88,10 @@ &xtcxo {
->   };
->   
->   /* usb */
-> +&usbdrd31_ssphy {
-> +	status = "okay";
-> +};
-> +
->   &usbdrd31_hsphy {
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> index 4efc005cae80..5ee7fad346b9 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> @@ -1048,6 +1048,17 @@ pinctrl_hsi1: pinctrl@16450000 {
->   			interrupts = <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
-> +		usbdrd31_ssphy: phy@16480000 {
-> +			compatible = "samsung,exynosautov920-usb31drd-ssphy";
-> +			reg = <0x16480000 0x0200>;
-> +			clocks = <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
-> +				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
-> +			clock-names = "phy", "ref";
-> +			#phy-cells = <1>;
-> +			samsung,pmu-syscon = <&pmu_system_controller>;
-> +			status = "disabled";
-> +		};
-> +
->   		usbdrd31_hsphy: phy@16490000 {
->   			compatible = "samsung,exynosautov920-usbdrd-hsphy";
->   			reg = <0x16490000 0x0200>;
-> @@ -1109,8 +1120,8 @@ usbdrd31_dwc3: usb@0 {
->   					 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
->   				clock-names = "ref", "susp_clk";
->   				interrupts = <GIC_SPI 491 IRQ_TYPE_LEVEL_HIGH>;
-> -				phys = <&usbdrd31_hsphy 0>;
-> -				phy-names = "usb2-phy";
-> +				phys = <&usbdrd31_hsphy 0>, <&usbdrd31_ssphy 0>;
-> +				phy-names = "usb2-phy", "usb3-phy";
->   				snps,has-lpm-erratum;
->   				snps,dis_u2_susphy_quirk;
->   				snps,dis_u3_susphy_quirk;
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sc8180x.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sc8180x.yaml
+> index 331fc25d7a17d657d4db3863f0c538d0e44dc840..34a4d7b2c8459aeb615736f54c1971014adb205f 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sc8180x.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sc8180x.yaml
+> @@ -33,8 +33,8 @@ properties:
+>        - const: mhi # MHI registers
+>  
+>    clocks:
+> -    minItems: 8
+> -    maxItems: 8
+> +    minItems: 6
+> +    maxItems: 6
+>  
+>    clock-names:
+>      items:
+> @@ -44,8 +44,6 @@ properties:
+>        - const: bus_master # Master AXI clock
+>        - const: bus_slave # Slave AXI clock
+>        - const: slave_q2a # Slave Q2A clock
+> -      - const: ref # REFERENCE clock
+> -      - const: tbu # PCIe TBU clock
+>  
+>    interrupts:
+>      minItems: 8
+> @@ -117,17 +115,13 @@ examples:
+>                       <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+>                       <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+>                       <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> -                     <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
+> -                     <&gcc GCC_PCIE_0_CLKREF_CLK>,
+> -                     <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
+> +                     <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
+>              clock-names = "pipe",
+>                            "aux",
+>                            "cfg",
+>                            "bus_master",
+>                            "bus_slave",
+> -                          "slave_q2a",
+> -                          "ref",
+> -                          "tbu";
+> +                          "slave_q2a";
+>  
+>              dma-coherent;
+>  
+> 
+> -- 
+> 2.49.0
+> 
 
-I think at least patch 6 & 9 should be squashed.
-
-Neil
+-- 
+மணிவண்ணன் சதாசிவம்
 
