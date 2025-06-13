@@ -1,118 +1,181 @@
-Return-Path: <devicetree+bounces-185767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0BF7AD8F79
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:26:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71518AD8F7F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D2251889206
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:23:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 650DE3AEE3C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0A115689A;
-	Fri, 13 Jun 2025 14:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD79E1537DA;
+	Fri, 13 Jun 2025 14:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1eaC9Sk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="juHLjt3n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B05D19F120;
-	Fri, 13 Jun 2025 14:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B446B2E11BD;
+	Fri, 13 Jun 2025 14:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749824560; cv=none; b=QTfnkGHLJmoMY+xbs4T6f1kFjcYZfEzlWMHZX5R4i3rWiPMhG8shHSg0Y/iYB4x0a/hQ9QQ7LLPa0pNy91iy3vJgmUpvOwcTNXdwjFA6lRkLlimoCS0HILbu0QJ04edx1u0bTGuJmpvBKIFtzDhmM9QzMlHwZAFJjNaDO/mUGrU=
+	t=1749824612; cv=none; b=NwF/nBtsrVrCz2JdypnK3kqGWpyxD72nW97hFzxTQ9SiHPvlN4ZLjbSacQexHH/6DF1cTBsrfzRY2T6PxxR18l1ldULyBjyOw9Rvw7c58tRhRRMqhlGTFN0GMOR57E/+qc7HwjOS6AflLIQ9iajkCiHloAwHMrekueupFtDivAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749824560; c=relaxed/simple;
-	bh=oMg+kCCQTmB5ZzySDND4ghksqjUJeDVjXxmeeKJnxoo=;
+	s=arc-20240116; t=1749824612; c=relaxed/simple;
+	bh=vxVIQ13yTdvjtGU/5yGrhhgARcgPO6VY5Sff0Jaw0AA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PgcnMNPfFqmJ7mh56i0S/x3D2cLgX9ZY/rLkXLo8Zzfap4nUzxZ9GhQl2BcRJJLcxRvx/+wcXYi2/rpTYACO+nst/8Y74dbpf/cb5dVjpC6EjU20dtQ8FQR5Ms1pkbRe4QBOk1Nad9LVPLuW/1J8+kb2qGeCofSuK5ONAgimMbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1eaC9Sk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AE42C4CEE3;
-	Fri, 13 Jun 2025 14:22:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JXjnicKKe3hXjvtrXqz/Q1gmwDxcgD5TKOjRtlU9pbbliQlKMHfyYe2Ro3u56MI7qNUIje2ojtbjvAiyn5yV8gy2EWrsAVYRTTEKZjzgvOW8toy27161Gz6ehQoLIEOqKdhTlxBoDoHxmurXcAl68mbv5dMcmZcNL6Ne6HgqRoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=juHLjt3n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC32FC4CEE3;
+	Fri, 13 Jun 2025 14:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749824560;
-	bh=oMg+kCCQTmB5ZzySDND4ghksqjUJeDVjXxmeeKJnxoo=;
+	s=k20201202; t=1749824612;
+	bh=vxVIQ13yTdvjtGU/5yGrhhgARcgPO6VY5Sff0Jaw0AA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C1eaC9SkKYz2XzYwfeOxv9fxtZOckbC9Kwxys7+R94VpG+38E6rEVjj0Yty2yh4Dp
-	 n+mPSuHBjKU18+2auN61ryNWcSiQtd+ijdhD5HAIzaW9yR4KxfkfSiZnWor/oR8s3F
-	 N8/3Y6FW45HSME2oB1hjhJMKlRHHFxRGqeVUXz7aZhDS0DaVJ9485dtGl43YX8pcez
-	 /hJZJSmi+kNXDK4+iNgM50lL0zXEXdNdcPjvGE54VL5cv+/bUPHmzSfYpbekdm/BYZ
-	 Gh3w0lIZJl3mNzR3NRjSlGu0s3D9b1DZy8UvePfSSrC/O7FJUFc5OX3fM4w0db/pCh
-	 PTowGNIuXM9iA==
-Date: Fri, 13 Jun 2025 15:22:34 +0100
-From: Lee Jones <lee@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+	b=juHLjt3nRr8oondGj4pY5/C2UefEp94SEciT/Co+IndchJyEsxYd8pnyrrhc8Q8qz
+	 0D/8YgFOdoG848c81CppPAXVZQ06Vkv6CMhj1fhwQDmqyhdBj76+ij+V8w8qS2RoSH
+	 TjV4DlRnlbWKjLnAQqygDrAjbkqpVhzr3pQfwiiuASq/n8Xz1M3Zw7Zu/RQgQJlHve
+	 65fyrM8OSUvjR/AC3SfiQPWEYqmff6AEK5lcUdCgF660Fn0Ljf/QIkwec+3j5rzMeY
+	 vFRxEcSZZhTI27tX5N7e32pxrL4ccHMBq7Uj1rPUULDoE9BeYpRTLy/0Qzw//mxFeQ
+	 m00VhbMb81E1g==
+Date: Fri, 13 Jun 2025 15:23:26 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 08/17] mfd: sec: Add support for S2MPG11 PMIC via ACPM
-Message-ID: <20250613142234.GJ897353@google.com>
-References: <20250604-s2mpg1x-regulators-v1-0-6038740f49ae@linaro.org>
- <20250604-s2mpg1x-regulators-v1-8-6038740f49ae@linaro.org>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Yu Yuan <yu.yuan@sjtu.edu.cn>, Yixun Lan <dlan@gentoo.org>,
+	Ze Huang <huangze@whut.edu.cn>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: soc: sophgo: add TOP syscon for
+ CV18XX/SG200X series SoC
+Message-ID: <20250613-paving-reimburse-fa5ed8c40c7f@spud>
+References: <20250611082452.1218817-1-inochiama@gmail.com>
+ <20250611082452.1218817-2-inochiama@gmail.com>
+ <20250612-culpable-roman-295df1360198@spud>
+ <y6dkhbc4x5qvd3z2yyh3ba7zkq7gphcnrc5757fxlmpz3zh2nb@tk65ldng6oyl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1vrTP4wZOtNtnkC0"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250604-s2mpg1x-regulators-v1-8-6038740f49ae@linaro.org>
+In-Reply-To: <y6dkhbc4x5qvd3z2yyh3ba7zkq7gphcnrc5757fxlmpz3zh2nb@tk65ldng6oyl>
 
-On Wed, 04 Jun 2025, André Draszik wrote:
 
-> Add support for Samsung's S2MPG11 PMIC, which is a Power Management IC
-> for mobile applications with buck converters, various LDOs, and power
-> meters. It typically complements an S2MPG10 PMIC in a main/sub
-> configuration as the sub-PMIC.
-> 
-> Like S2MPG10, communication is not via I2C, but via the Samsung ACPM
-> firmware.
-> 
-> Note: The firmware uses the ACPM channel ID and the Speedy channel ID
-> to select the PMIC address. Since these are firmware properties, they
-> can not be retrieved from DT, but instead are deducted from the
-> compatible for now.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> 
-> ---
-> Note: checkpatch suggests to update MAINTAINERS, but the new file is
-> covered already due to using a wildcard.
-> ---
->  drivers/mfd/sec-acpm.c              | 213 +++++++++++++++++-
->  drivers/mfd/sec-common.c            |  18 +-
->  drivers/mfd/sec-irq.c               |  67 +++++-
->  include/linux/mfd/samsung/core.h    |   1 +
->  include/linux/mfd/samsung/irq.h     |  99 +++++++++
->  include/linux/mfd/samsung/s2mpg11.h | 420 ++++++++++++++++++++++++++++++++++++
->  6 files changed, 807 insertions(+), 11 deletions(-)
+--1vrTP4wZOtNtnkC0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Nice patch.
+On Fri, Jun 13, 2025 at 06:09:47AM +0800, Inochi Amaoto wrote:
+> On Thu, Jun 12, 2025 at 05:04:46PM +0100, Conor Dooley wrote:
+> > On Wed, Jun 11, 2025 at 04:24:49PM +0800, Inochi Amaoto wrote:
+> > > The Sophgo CV1800/SG2000 SoC top misc system controller provides regi=
+ster
+> > > access to configure related modules. It includes a usb2 phy and a dma
+> > > multiplexer.
+> > >=20
+> > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > ---
+> > >  .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 57 +++++++++++++++++=
+++
+> > >  1 file changed, 57 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/soph=
+go,cv1800b-top-syscon.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv18=
+00b-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,c=
+v1800b-top-syscon.yaml
+> > > new file mode 100644
+> > > index 000000000000..e8093a558c4e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top=
+-syscon.yaml
+> > > @@ -0,0 +1,57 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-sys=
+con.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sophgo CV18XX/SG200X SoC top system controller
+> > > +
+> > > +maintainers:
+> > > +  - Inochi Amaoto <inochiama@outlook.com>
+> > > +
+> > > +description:
+> > > +  The Sophgo CV18XX/SG200X SoC top misc system controller provides
+> > > +  register access to configure related modules.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: sophgo,cv1800b-top-syscon
+> > > +          - const: syscon
+> > > +          - const: simple-mfd
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 1
+> > > +
+> > > +patternProperties:
+> > > +  "dma-router@[0-9a-f]+$":
+> > > +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
+> >=20
+> > I think you're supposed to add "unevaluatedProperties: false" to each of
+> > these nodes.
+> >=20
+>=20
+> This is is OK for me.
+>=20
+> > > +
+> > > +  "phy@[0-9a-f]+$":
+> > > +    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
+> >=20
+> > Why are these permitting random addresses? Are they not at fixed
+> > addreses given that you only support one platform (modulo the rebrand)?
+> >=20
+>=20
+> IIRC, they are fixed address. I use random addresses as I see many one
+> in binding do the same. Should I switch to the fixed one?
 
-[...]
+If things are actually possible to have at variable addresses, then sure
+use pattern properties and a regex. It may be like that if a new device
+is released that reuses the dmamux or phy but locates it differently or
+on a platform with multiple phys etc. If not, then then just restrict the
+address to the only permitted one.
 
-> +static const struct mfd_cell s2mpg11_devs[] = {
-> +	MFD_CELL_NAME("s2mpg11-meter"),
-> +	MFD_CELL_BASIC("s2mpg11-regulator", NULL, NULL, 0, S2MPG10_REGULATOR_CELL_ID_BUCKS),
-> +	MFD_CELL_BASIC("s2mpg11-regulator", NULL, NULL, 0, S2MPG10_REGULATOR_CELL_ID_LDOS),
+--1vrTP4wZOtNtnkC0
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I still don't understand this.  Let's talk on the previous patch.
+-----BEGIN PGP SIGNATURE-----
 
-> +	MFD_CELL_OF("s2mpg11-gpio", NULL, NULL, 0, 0, "samsung,s2mpg11-gpio"),
-> +};
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEw0XgAKCRB4tDGHoIJi
+0mHVAP422bpYToyFRvNyvsMl7fHIbXsrtZOXXtSEguWI7y2XFwD+PpGmlMC+kvE5
+QMlHPcjkFIyMBbeYtx/lKcoXkBMK5As=
+=EHFn
+-----END PGP SIGNATURE-----
 
--- 
-Lee Jones [李琼斯]
+--1vrTP4wZOtNtnkC0--
 
