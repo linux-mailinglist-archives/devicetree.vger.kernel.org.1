@@ -1,154 +1,130 @@
-Return-Path: <devicetree+bounces-185847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369CFAD9731
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 23:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22255AD973B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 23:17:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BA6D3A8428
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:14:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A8513AF8DD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4772270EBC;
-	Fri, 13 Jun 2025 21:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463FE28D83C;
+	Fri, 13 Jun 2025 21:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="33EgCjj9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u7ehtF6U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC2A263F27
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 21:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B7E2853E0;
+	Fri, 13 Jun 2025 21:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749849270; cv=none; b=EPsEfWPUWI5nduTfY0lHKQgFwFV9D2B5bnLCEfMYv8E6HffIoIwkTsoLPdWj4IsVIlNrN5h/dMjIPNE/XqmtexXk1gkONkYCTKfoKaJ1LMFNTREUQ2tt7AEzN8dmsq47hQPuOGXMPMfFz4dobwSCuiu54/PhM/1e/LbR+JItJNA=
+	t=1749849433; cv=none; b=TmoKz5embopPfXPKlKpHimsM3DIoW5ygrhuHPtA97IMRf3k8QjzIfGJJZ+yBYb464IVZiCromZ2nAQchJ3hVMTCde3WyfnPXr9e7r4gQkZSlU/VnnvtB0NH/ZXeRFaMXCJoUTuBA3gJO/ba9rd5UYUvsK7qYSqTb/LieAxlNwXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749849270; c=relaxed/simple;
-	bh=3gW54xxqi5YfP3g8A7gpJXnky5JvqRK+AOvpeic5Yok=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UBnq24+36AQN1eC6hwJltiz1AogMJQZuZPZ77DS0FoHU/vWWKlb8QNMNf9EJCu2TLkShdcbs3YpoASJxnSTR7VUf7bCd+rw638DGI9S+G+nkd6UHIrPNFsB6zo8R2XomCkGM+RQ7QN+Br6kjT5AkXDKwwneorYIn9Tr7XRtcnDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=33EgCjj9; arc=none smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4e7f4adaedaso138362137.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 14:14:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1749849267; x=1750454067; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9bCHCGcohcJ2Z8gKyh3s4OeACkb8tG/8ddHOZfIjF3E=;
-        b=33EgCjj9+K2cUB9uYjRDboj9VbWu+wAo6PDo9Q8YakZZ8LGv5dwdxji5VGqVkiwHfQ
-         oJp/NhdxR7+fr8mgN+cvl0irpXZDv+2ppEjcXZy9JuMrNJMM4T/wZn6EJfdWRPDeNeuR
-         o+/JQ/iFxM4MsHwqrKFh/PL6MeYPjh8n92E7L3Db3t5JkMSyzX/qJAjBIZMswh8ZkV5m
-         DFdy1tmYB4I/xkmoS/UVFA35hOW8xsxG2z3l/4hag1kOyk6s0CYCKl7daBRSuLPFyPD3
-         BBLk5D8Csb86HZvKpWejhlmvIpwWNPVixHzq0DKfq+v/jJJnQ7Vht64mEOaYTSIk1gKr
-         7Q0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749849267; x=1750454067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9bCHCGcohcJ2Z8gKyh3s4OeACkb8tG/8ddHOZfIjF3E=;
-        b=qpnMhai8jY7zq0JfVNZ9NtwQWryCfsMg6n04KeVHZNfIQCalLlWF3S8QNwaFJdgIjL
-         FTPEZfJ/vk+5euTLHyWeYjXzd7DWpkUYTvjNa13VfeLnISBsLF/SXRT4n3GmlYGHnXWm
-         EWBbJuPQZ6nP+9f0526qthuRrpASbghAVOAY+5XDWSVI9XKiUQzH8qHPA4cq5kGF4TOA
-         0mYr3gQHdXseGvC/7KNarsyK5PfhjnWGKvp2PNbIC/kk1UQS/qyWF5LfyTX+rwE2K+l5
-         wuRv3TuYK5pYwEQP2R8qZdpyF8SOQs+lpETBMmOTKMJrssR+sG7H1cQMMrzr3EE83n82
-         DmRA==
-X-Forwarded-Encrypted: i=1; AJvYcCVmUMwTgw2RoM5BUXK4TPtaNEpt6wNjX/lM4IqD78neSi5guta9uXeY93k2RlcNBsrwCqDtSK9mH6VE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwE6D2/PF3+j8A0HdB5OKet2tJ0tjxAYcpkkKLtV9B5xUrIVoy
-	Yv+AL8Dgk/udT+JfaemVDkQyAfj5nrrqL9RkznQYCLzF1nEzjKJ1OQxEW+GCyFVcAInGDX4TPRq
-	JJAoEj/OjK7iHzxCgW5VI+KUL+2NKdQexDGBa+IoG
-X-Gm-Gg: ASbGncv1l4e/fUkwiGoLfa2qiZzto/9vkAKPODqTAdeLYGzUmsEbpe3PtqEDjCOn3GS
-	jE9XocNfSxZE5GFaJCcvqI12S0kfsCQIzk2o30diumARjr7/HVDLoovUYM3khs4qYc9Ul0vfZ4n
-	lTo1zzaxOqibMuLf898q/DGA2sORbnuKLPv8QnR9saiA==
-X-Google-Smtp-Source: AGHT+IFDKOFSYaUuF6G7K6OfIsfpObQ96cqfG2SkXcaTm8DQdC0kgY8LOqBWYZw9a+dWxydmoDEXMMYsxWer9ReGFRQ=
-X-Received: by 2002:a05:6102:26c2:b0:4c5:1c2e:79f5 with SMTP id
- ada2fe7eead31-4e7f61c6ecfmr1328879137.16.1749849267109; Fri, 13 Jun 2025
- 14:14:27 -0700 (PDT)
+	s=arc-20240116; t=1749849433; c=relaxed/simple;
+	bh=NJadowudszLSgzKfdukMH5RpQ02v2soiEg2ACYH3B8o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=amYzXcAbZfUoXTPBv/L3+yb2SC1UjN17Cg8ifK4i7174zRXccF3IQqIJKJsNEeoqCH6H1nf8b/o8ilALyzZ3VoRYYHKsQoqVhT7VsRXiHITbZl6VPuC4DAqlFpotrEvV42KGNuHjM/uWXZ9b906dKxsO01w3r5/kFpiUIi+tqMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u7ehtF6U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A1A36C4CEE3;
+	Fri, 13 Jun 2025 21:17:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749849432;
+	bh=NJadowudszLSgzKfdukMH5RpQ02v2soiEg2ACYH3B8o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=u7ehtF6UflhpbqPHmPNwFeoIx0Sy8IkEerJmt9xeYP+1KlCvYnS1gieekTG6CZ0ow
+	 FLkK2N+KXosNJfuNbH8kRKWNBRxzwoEHDPixBIrGGsimftUTbKSOAOEF4bQZHAECUM
+	 k8RaXcpkVugHXC/POHmcCl3nn2R/frNoqU+dSgq54+XeYu/KizakCx6IPFf8M1ulxo
+	 AjgZljaKZ2CfRPcUL0pOdAEQgeSaCT1qndGYMSQ790IP405ADEcl6/n1s7frZtjCwF
+	 Yx59s3J35jlnD9F/u3Mepg5uPL+CBh3e/sCVzNf4jwoeo5zn3A2GoKDMALaa/rmwr9
+	 SpEYC4F3FLHPQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C5B6C71135;
+	Fri, 13 Jun 2025 21:17:12 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v2 0/2] Bindings and DTS for Apple SoC GPUs
+Date: Fri, 13 Jun 2025 23:17:06 +0200
+Message-Id: <20250613-sgx-dt-v2-0-fb2b7d1c3ff7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613134817.681832-1-herve.codina@bootlin.com> <20250613134817.681832-7-herve.codina@bootlin.com>
-In-Reply-To: <20250613134817.681832-7-herve.codina@bootlin.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Fri, 13 Jun 2025 14:13:49 -0700
-X-Gm-Features: AX0GCFvxcUcb0pxRJ6zcIBbIU8xYBQJLfYNKarcjHKuyfWeI8fRbEayRS0Ht4OY
-Message-ID: <CAGETcx9u-7TJ6_J5HdmDT=7A6Z08P-rUC0n+qnBoBi+ejRc2SQ@mail.gmail.com>
-Subject: Re: [PATCH v3 06/28] driver core: fw_devlink: Introduce fw_devlink_set_device()
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Davidlohr Bueso <dave@stgolabs.net>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFKVTGgC/z3MQQrDIBCF4auEWdfiaE1DV71HycIYNQNNLBokJ
+ Xj32hQKs/mHx7dDspFsgluzQ7SZEoWlhjg1YCa9eMtorA2CC8WVRJb8xsaVXTQO9eQguIM6fkX
+ raDugR197orSG+D7cjN/vj2jxT2RknF01opNdp0zL737W9DybMENfSvkANEBUnpwAAAA=
+X-Change-ID: 20250531-sgx-dt-4a1ba1b3b20f
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749849431; l=1962;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=NJadowudszLSgzKfdukMH5RpQ02v2soiEg2ACYH3B8o=;
+ b=BTZDJF7eeNf0BzPM75xJma9mqlxWyaQQsSwlvF5Tt36Spv4LD2sOPeAllFWYZf8xYScndDcBE
+ caKq7WcNHF+A9ESpuSB2Y9SlDEKmOUROX+iiiUMs9JXGiKyZjMPQ/Os
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-On Fri, Jun 13, 2025 at 6:49=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
-com> wrote:
->
-> Setting fwnode->dev is specific to fw_devlink.
->
-> In order to avoid having a direct 'fwnode->dev =3D dev;' in several
-> place in the kernel, introduce fw_devlink_set_device() helper to perform
-> this operation.
->
+Hi.
 
-This should not be set anywhere outside the driver core files. I'll
-get to reviewing the series, but until then, NACK to this.
+This patch series adds the DT bindings and tree entries for the GPU
+present in Apple M-series SoCs. The driver itself is in Rust and
+upstream is currently missing several prerequisite bindings, so will
+be sent later.
 
-Is there a specific patch that explain why we need to set this outside
-driver core?
+The kernel and m1n1 (bootloader) that are using those bindings are
+available at the following branches:
+Kernel: https://github.com/WhatAmISupposedToPutHere/linux/tree/starlight
+m1n1: https://github.com/WhatAmISupposedToPutHere/m1n1/tree/bootloader-cal-blobs
 
--Saravana
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Changes in v2:
+- s/firmware-compat/firmware-abi/
+- drop the agx-g13x compatible
+- rework reserved regions
+- Improved memory region and register descriptions
+- Link to v1: https://lore.kernel.org/r/20250611-sgx-dt-v1-0-7a11f3885c60@gmail.com
 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  include/linux/fwnode.h | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-> index a921ca2fe940..a1345e274125 100644
-> --- a/include/linux/fwnode.h
-> +++ b/include/linux/fwnode.h
-> @@ -231,4 +231,10 @@ void fw_devlink_purge_absent_suppliers(struct fwnode=
-_handle *fwnode);
->  void fw_devlink_refresh_fwnode(struct fwnode_handle *fwnode);
->  bool fw_devlink_is_strict(void);
->
-> +static inline void fw_devlink_set_device(struct fwnode_handle *fwnode,
-> +                                        struct device *dev)
-> +{
-> +       fwnode->dev =3D dev;
-> +}
-> +
->  #endif
-> --
-> 2.49.0
->
+---
+Sasha Finkelstein (2):
+      dt-bindings: gpu: Add Apple SoC GPU
+      arm64: dts: Add Apple SoC GPU
+
+ Documentation/devicetree/bindings/gpu/apple,agx.yaml | 94 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ MAINTAINERS                                          |  1 +
+ arch/arm64/boot/dts/apple/t6000.dtsi                 |  4 ++++
+ arch/arm64/boot/dts/apple/t6001.dtsi                 |  4 ++++
+ arch/arm64/boot/dts/apple/t6002.dtsi                 |  4 ++++
+ arch/arm64/boot/dts/apple/t600x-common.dtsi          | 34 ++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi            | 28 ++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103.dtsi                 | 62 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi                 | 62 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 293 insertions(+)
+---
+base-commit: aef17cb3d3c43854002956f24c24ec8e1a0e3546
+change-id: 20250531-sgx-dt-4a1ba1b3b20f
+
+Best regards,
+-- 
+Sasha Finkelstein <fnkl.kernel@gmail.com>
+
+
 
