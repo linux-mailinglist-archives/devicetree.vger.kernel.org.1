@@ -1,120 +1,172 @@
-Return-Path: <devicetree+bounces-185811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48B4AD92F0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:38:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88AB0AD930E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:45:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9B731E3638
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:38:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C25E172C9B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF1B20E330;
-	Fri, 13 Jun 2025 16:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDE7231835;
+	Fri, 13 Jun 2025 16:44:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UrXvI2eT"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Tu4RR7QZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7203B20297D
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 16:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348E415A87C
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 16:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749832732; cv=none; b=CJIXKHk3tgIpOlwr2421w866RltBbWCqsna6oziBm1LFW/ffFfT0EzM47hFwsUfgDUwK2gAH9GCGfWqBre3G8beAqn8NUXGVYOVFT8rkZmlz+OoyrbxkybhrFZG69VJOs0gyw2MyovZ4AQZfbjOzshJ+SMkmpxgMTPqobYz7YCw=
+	t=1749833082; cv=none; b=azc6wxv/qlgmzqEdeL9O8YiyvdzCVaXqtuAwDWy9GtNTIXuNv0SgujbuRNATvKG//D/i9W62sU5AcqIsuCBaMtVU9lXTh9uK651PgJqxU+JpnviZx2fQRzzcDzW2l20HzgwfJ5VfvVdzcbaNKWaO+hYvAnCdVNjzdVOS0aZM+Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749832732; c=relaxed/simple;
-	bh=z+N8jqjN/nASPdQ0iP1STfKAC3rAtGf71WFeCKFFe4g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H4MkTHxx3ZLajzY0e4di3GSV/j6up5NQUENRdkbs7Dpi5mSu56RiWizJ/zJW18wn5Spq6HOIqyA8Ezk6lc/GDUxDOpXAg8JrxEfC2Y/vWqlqfg3Avx++/cq5GuV7vFyFwQs/JtY0iufHIzMi1oxxYM/enHy0gsPcH8IVVpasezk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UrXvI2eT; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-553237a1931so195452e87.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 09:38:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749832728; x=1750437528; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cYUtT+6UfKx7Gs9aWpbJRe4xmbx/ClKSljdS1pnK8R4=;
-        b=UrXvI2eTdCBGACPLTStoFa8xEcUAVUfn08PBuPpbkf1o2OudeK+zyn4d7/uwR1kpr7
-         xY05abDosFePjvXdkjq3Z1G9R7cDDO1/abE1MGoIVo2Kynbdwyx9/pzTsXu+6ooDg4Mr
-         Yg+OCI+kQyTIK40or6RBfD73KsUYzD8O1Ly5AOG1WDienuUVAS1IrHjr5HztulybFshF
-         pSlyU7aFEnuL9ijCTk+5A5sbZ2FCCT1AT3/2XPa1tfqSse98akdr1To7MHDu2qMWjGuu
-         WmB/2TxoU74ABPrDg2gMovvypgfejojxyhoY8tHiKbrueSL9dinJMD1dFZMSNF2N0r/e
-         cTAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749832728; x=1750437528;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cYUtT+6UfKx7Gs9aWpbJRe4xmbx/ClKSljdS1pnK8R4=;
-        b=c0+QMu4RUA+5rPElngt9Ex6nnGhTYgBEsz+iTTCPb6UH3tOYD4dDwhmP0qa0UOmzOT
-         fpcdabFb+A8/t2mSbhTW9UAH70F2k168o/n3beYD1dri7A4mq2wMxTtGyU5N1lg3BXg6
-         89rfCxadL7fMrCjqccelUp0KiPqVAarEPgwiCfe/Mg4KAEEJuJ9GtNOpN+ygCkWEPVT2
-         z2eMZqM4i0+sMqh6vPEl9FuzmOeL8ACUIXwBWg5wZ2zuA3goSV3zGWg28iuxSU00UYOz
-         UraiYhO0xyOwkTV3XUGvjvIuzGuqU1h4jNhWqTcjMMWUIfwDy+iun0LTNAI24bdmpbXF
-         fVcg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0rlIdWt4y4ZfJINqklKFFggWtbhDIlvt4/g7kerApXRoNp0fVeQhcrVQAs0wv8eq7QYFyPKMkmky1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzB/27T3V5RYspyZB380IyIDFSTBlQdUxdLhtHFi/DPGJlQSF6O
-	vWaaQm20a/y1tsTgL/xIU57oGR9EyX3jyfr40qYHIVb4TYsZevJEzahcoAiQkvEFGCU=
-X-Gm-Gg: ASbGnct5JOs5KDjuwxZ9YfLMBN88zDE2/+UE+BhUwQzpMIdu3H7rdDYRU2gH5RYTWRd
-	KwH5dlDb7wi1J1vjfMLovBRjaJOc4nA7glmeo6Jfg+7L5TmJLr5z3Qk9kci3CLGNBwd0IAFqw5C
-	iWZVTcmh95qqtAPcOZehYJAymjwpljnv34GMiDdZZW9rWT87K7pe7+8EpdKafF2sAK8XNqyoO6m
-	jwkLJWrVgh666nSV86l8O+AC79gEt3OJZkKHbVi4cExdQpUrjwMjrbRByeaAMy72UJcvMxUxH3z
-	5npoDs1D4lvijBEj56dScfW6759CtgU4JIJSaJYEawJoVPJsKdQqUz6hOJ5xGxM4Ul4YglSzgEJ
-	nVgrqmxUUwQuzjWR6AsxQwabdBC4MO53tzHJHppfOuYaOm+zF32I=
-X-Google-Smtp-Source: AGHT+IHj662g3SbQNpP4iPqUmNkvYX9U4szpKPW9FX5yhoIuara4ioYwpzJZkOyb7Ebp5gFoz9go2g==
-X-Received: by 2002:a05:6512:acf:b0:553:2421:f5e5 with SMTP id 2adb3069b0e04-553af991409mr356267e87.9.1749832728513;
-        Fri, 13 Jun 2025 09:38:48 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553ac1fd7aesm494781e87.258.2025.06.13.09.38.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jun 2025 09:38:48 -0700 (PDT)
-Message-ID: <0b94f65a-ec4c-44a1-8021-cbafe6beab31@linaro.org>
-Date: Fri, 13 Jun 2025 19:38:47 +0300
+	s=arc-20240116; t=1749833082; c=relaxed/simple;
+	bh=05IZXmoVmLoXcrYN1kEWjWudkPned5mpHlpfTjIEKnE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Kf9jB6VRmWNKNLsN69+1SeLhvAiys99sZ0c40c9ucITgucSBOzIjb5E7fdSkuw592k6KxOBIW/XkohOCQred45l/xNy+TgAnVrNVMRUP1tbPz43NBKWlAmgrQ+4Q328y6a9kdA3A4FN3GmAu43xjLeu32yLaJV4h0EEZB/5iSAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Tu4RR7QZ; arc=none smtp.client-ip=91.218.175.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <1a8c923f-0905-4cc0-9fbd-949d29a2f39b@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749833067;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iboh6yi5km8cRmbBCKiUMFzSRZx5KSFjqs6i7VXB3cs=;
+	b=Tu4RR7QZYjmHgsNZLEA8PTqicUNYUQlyqspr+qbc/DmWfZ6mhTM8Yd5J0xW9xkV3UwZVpa
+	o/+TF5a1i6LjxqOJ6mZ8hHLze98geIuDCkLUTPc9njWjDU+5AqCYZH4Sm2mQ6cePdNojvW
+	nDb7MWQuHGBRnQoMpEYYrTrRcHJfm+A=
+Date: Fri, 13 Jun 2025 12:44:20 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
-Content-Language: ru-RU
-To: vincent.knecht@mailoo.org, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
- <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 1/7] dt-bindings: spi: zynqmp-qspi: Split the bus
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>
+References: <20250116232118.2694169-1-sean.anderson@linux.dev>
+ <20250116232118.2694169-2-sean.anderson@linux.dev>
+ <9f40295b-484a-48e8-b053-ff8550e589d7@baylibre.com>
+ <46a7eba6-a705-4543-b967-e83ccc89e7d4@linux.dev>
+ <6afc379a-2f9f-4462-ae30-ef6945a83236@baylibre.com>
+ <dbe26b36-a10c-4afb-88ad-a6f7f9bff440@linux.dev>
+ <4923f49f-273f-4166-94bc-afe39618672c@baylibre.com>
+ <f3160819-f6f4-4079-9562-802caa2fef20@linux.dev>
+Content-Language: en-US
+In-Reply-To: <f3160819-f6f4-4079-9562-802caa2fef20@linux.dev>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 6/13/25 12:33, Vincent Knecht via B4 Relay wrote:
-> From: Vincent Knecht <vincent.knecht@mailoo.org>
+On 6/13/25 11:57, Sean Anderson wrote:
+> On 6/13/25 10:20, David Lechner wrote:
+>> On 6/12/25 6:44 PM, Sean Anderson wrote:
+>>> Hi David,
+>>> 
+>>> I am (finally!) getting around to doing v2 of this series, and I ran
+>>> into a small problem with your proposed solution.
+>>> 
+>>> On 1/23/25 16:59, David Lechner wrote:
+>>>> ---
+>>>> From: David Lechner <dlechner@baylibre.com>
+>>>> Date: Thu, 23 Jan 2025 15:35:19 -0600
+>>>> Subject: [PATCH 2/2] spi: add support for multi-bus controllers
+>>>>
+>>>> Add support for SPI controllers with multiple physical SPI buses.
+>>>>
+>>>> This is common in the type of controller that can be used with parallel
+>>>> flash memories, but can be used for general purpose SPI as well.
+>>>>
+>>>> To indicate support, a controller just needs to set ctlr->num_buses to
+>>>> something greater than 1. Peripherals indicate which bus they are
+>>>> connected to via device tree (ACPI support can be added if needed).
+>>>>
+>>>> In the future, this can be extended to support peripherals that also
+>>>> have multiple SPI buses to use those buses at the same time by adding
+>>>> a similar bus flags field to struct spi_transfer.
+>>>>
+>>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
+>>>> ---
+>>>>  drivers/spi/spi.c       | 26 +++++++++++++++++++++++++-
+>>>>  include/linux/spi/spi.h | 13 +++++++++++++
+>>>>  2 files changed, 38 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+>>>> index 10c365e9100a..f7722e5e906d 100644
+>>>> --- a/drivers/spi/spi.c
+>>>> +++ b/drivers/spi/spi.c
+>>>> @@ -2364,7 +2364,7 @@ static void of_spi_parse_dt_cs_delay(struct device_node *nc,
+>>>>  static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
+>>>>  			   struct device_node *nc)
+>>>>  {
+>>>> -	u32 value, cs[SPI_CS_CNT_MAX];
+>>>> +	u32 value, buses[8], cs[SPI_CS_CNT_MAX];
+>>>>  	int rc, idx;
+>>>>  
+>>>>  	/* Mode (clock phase/polarity/etc.) */
+>>>> @@ -2379,6 +2379,29 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
+>>>>  	if (of_property_read_bool(nc, "spi-cs-high"))
+>>>>  		spi->mode |= SPI_CS_HIGH;
+>>>>  
+>>>> +	rc = of_property_read_variable_u32_array(nc, "spi-buses", buses, 1,
+>>>> +						 ARRAY_SIZE(buses));
+>>>> +	if (rc < 0 && rc != -EINVAL) {
+>>>> +		dev_err(&ctlr->dev, "%pOF has invalid 'spi-buses' property (%d)\n",
+>>>> +			nc, rc);
+>>>> +		return rc;
+>>>> +	}
+>>>> +
+>>>> +	if (rc == -EINVAL) {
+>>>> +		/* Default when property is omitted. */
+>>>> +		spi->buses = BIT(0);
+>>> 
+>>> For backwards compatibility, the default bus for CS 1 on gqspi must be 1
+>>> and not 0. Ideally there would be some hook for the master to fix things
+>>> up when the slaves are probed, but that doesn't seem to exist. I was
+>>> thinking about doing this with OF changesets. Do you have any better
+>>> ideas?
+>>> 
+>> 
+>> Does this work? 
+>> 
+>> 		spi->buses = BIT(cs[0]);
+>> 
+>> (would have to move all the new code after cs[0] is assigned of course)
 > 
-> Add bindings for qcom,msm8939-camss in order to support the camera
-> subsystem for MSM8939.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> Yeah, but do we really want to make this the default for all drivers?
+> This is really a quirk of the existing gqspi binding and I don't think
+> it makes sense in general.
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+I think I will add a flag like
 
---
-Best wishes,
-Vladimir
+		/* Default when property is omitted. */
+		if (ctlr->flags & SPI_CONTROLLER_DEFAULT_BUS_IS_CS)
+			spi->buses = BIT(cs[0]);
+		else
+			spi->buses = BIT(0);
+
+which should keep the defaults sane for everyone else.
+
+--Sean
+
 
