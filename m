@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D75AD8886
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:54:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBC7AD88A2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AC61167515
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:54:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 451143A3710
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28AB62C158B;
-	Fri, 13 Jun 2025 09:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB7F826B76F;
+	Fri, 13 Jun 2025 10:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IgwWZzCd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M+i+dFit"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0724291C3F;
-	Fri, 13 Jun 2025 09:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01102DA748;
+	Fri, 13 Jun 2025 10:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749808483; cv=none; b=JhXr3crPJ0eVKipYGzIymLSF7uTD4wNnZPknqHG6WN+5oKpB4YyYEhFHy+81xEHOdNbcL/rXvolyza3ph9uNnvQ/VEcpHnlmTdrC8Ohcl4eGWGIMntYlTXwuZpaTgSYYoQlHY8cO92IklafQMPSwFjuSbPKiFrQxrkYW+QUab04=
+	t=1749808869; cv=none; b=MTsb4cuRfjGkEH3AxxGLgKd2HPknRK5CIi+2wR9ze4k6+DR4G0/ZsybPqq/AGxciNHRB2fp7YXFUKK5nqd7Hgz8QjT5Olj9OqUPW+iw2CzoCd3tes1mvadrnNdxYocYCxR1dpJeJ2iUucwUkpkUThZxaLmf/BC8SljE0HR7z0y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749808483; c=relaxed/simple;
-	bh=7S40Zuc2TNAecTyadpX90VMiKscvd9zWpUm96dO61pk=;
+	s=arc-20240116; t=1749808869; c=relaxed/simple;
+	bh=hzo5YZ2+59Ww2/Xt37jey9O/1XB9IVr5gQKh1UXWMqc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fn8wuoYWVQClAHs3prM8igRin71Rqtc+hrUX4PaT8YR2n2weC/tYxC4SefHUJfsM+OuaSXYsCouIHLYLIC4t04e3NnnZQvg8OSybuZ81xscOYSEOxIS50WyiVZOgW1TVl0FjyhB8r+sDKQTqicv4FJJVSFEVUL/tBzNp4oxJy3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IgwWZzCd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14343C4CEE3;
-	Fri, 13 Jun 2025 09:54:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IgOeYCkDaw7z4V/BtSQdlfxOcJZG3r2Yy/Vih/qBRrL96u3GDVRu8zTlw7jPIHTlFgBIMiqSoIpA/uW0+WltJm5kQiTgK6WTQ88LSKkhcyAS19JPnYYhSpwx9EUCHqEuZxJWYwkmJKcnp3dLuD1mUCdNTa3vK3LfvNOoEci463Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M+i+dFit; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BAECC4CEE3;
+	Fri, 13 Jun 2025 10:01:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749808482;
-	bh=7S40Zuc2TNAecTyadpX90VMiKscvd9zWpUm96dO61pk=;
+	s=k20201202; t=1749808869;
+	bh=hzo5YZ2+59Ww2/Xt37jey9O/1XB9IVr5gQKh1UXWMqc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IgwWZzCduhTWWVz0Ik0YoXpB8DwGFZHsTowAQDDHQVYhQv9QRP34IURI4Hl9yCc29
-	 4FlZxQ2xGoW39/quqB0hicrkzjFGe/Iim73kY7UdEr5popAOvhGPe+hej2bdOUGzzz
-	 NCFidSOWEI6m1Yy8pRAA5+KJ5oPRZ26qrLNWEhxBte0vywQJIcqitbBfmPICZeWUtf
-	 DBbBwNtxjtxEmoJ3kTn+WjaFCpezmZplSZdZK//Zrcetp8lu6MfuITyXXmwUJ/zkIe
-	 O1VLGw+kvQJANu1osi+nLeWlr0UQZ9okqtAaCaipvC9FcpoC8G9iFHKlozVAC5vzQK
-	 AZv9VAeaeADpg==
-Message-ID: <576ca6bb-291c-458e-9703-46e7d2f43bbe@kernel.org>
-Date: Fri, 13 Jun 2025 11:54:35 +0200
+	b=M+i+dFitZ4SLhojmIk98p1eQBooTkkZ4ORHVZUgdju+63U/4treIGbCB+w9b+gBr6
+	 KgPy/3SmcIarW62bG5KANSgtrxA04yCZnFj62lDRpE4sWfvxmVXDv4ISqOy31dlaGl
+	 xP0rjMSKP3spCwrfyfWyiQOdAFPOuPNNoW99lLR4SJhbOSU9WffmaT012Y6QzR7v4o
+	 b27FrepMbwZuSX6kwyeIm8PwOh4LLWzoSBfpPgEAQ6/fmsaKxgnVI1hzYH5TxzUkue
+	 ia4LhORcCZ61v8GHJFbHImjGzcuiNLkvYeHopa+Kkf4vx/b+SKDOgv0oNlASYR9WcM
+	 4/P6KjWS2kGWw==
+Message-ID: <44fdaa5c-0fa4-457e-b193-e83cd06c1aed@kernel.org>
+Date: Fri, 13 Jun 2025 12:01:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] pci: aspeed: Add ASPEED PCIe host controller driver
-To: Jacky Chou <jacky_chou@aspeedtech.com>, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, vkoul@kernel.org, kishon@kernel.org,
- linus.walleij@linaro.org, p.zabel@pengutronix.de,
- linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org
-Cc: elbadrym@google.com, romlem@google.com, anhphan@google.com,
- wak@google.com, yuxiaozhang@google.com, BMC-SW@aspeedtech.com
-References: <20250613033001.3153637-1-jacky_chou@aspeedtech.com>
- <20250613033001.3153637-8-jacky_chou@aspeedtech.com>
+Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+To: Michal Wilczynski <m.wilczynski@samsung.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Matt Coster <matt.coster@imgtec.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Frank Binns <frank.binns@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
+ <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
+ <20250603-whispering-jaybird-of-thunder-f87867@kuoka>
+ <d42a8c49-7ad2-49ef-bd9c-1e3d9981b58e@samsung.com>
+ <e5a0bee2-ff74-47cf-ad2c-0c78b57ae6cf@kernel.org>
+ <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
+ <cc4dbf7c-e023-403c-88be-4691f97a0ff0@kernel.org>
+ <c7774790-07c3-469d-a994-9e84108ad21d@samsung.com>
+ <CAMRc=Mexq9ThfG6jZUbs3wYDA9UZN-+pHnX_Y-7WO4ubXvEuCw@mail.gmail.com>
+ <ad6981eb-f53a-4a7b-90bd-2e2705bd0297@samsung.com>
+ <59cc6827-1602-402a-9279-96ad6285cff4@kernel.org>
+ <e5d3d3b3-7ada-476f-9558-328d3d316088@samsung.com>
+ <44090712-0635-47bf-b73d-d9b16ec446a4@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,274 +128,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250613033001.3153637-8-jacky_chou@aspeedtech.com>
+In-Reply-To: <44090712-0635-47bf-b73d-d9b16ec446a4@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2025 05:30, Jacky Chou wrote:
-> Introduce PCIe Root Complex driver for ASPEED SoCs. Support RC
-> initialization, reset, clock, IRQ domain, and MSI domain setup.
-> Implement platform-specific setup and register configuration for
-> ASPEED. And provide PCI config space read/write and INTx/MSI
-> interrupt handling.
+On 13/06/2025 11:49, Michal Wilczynski wrote:
 > 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
-> ---
->  drivers/pci/controller/Kconfig       |   13 +
->  drivers/pci/controller/Makefile      |    1 +
->  drivers/pci/controller/pcie-aspeed.c | 1039 ++++++++++++++++++++++++++
->  3 files changed, 1053 insertions(+)
->  create mode 100644 drivers/pci/controller/pcie-aspeed.c
 > 
-> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-> index 886f6f43a895..f6b5eea3b570 100644
-> --- a/drivers/pci/controller/Kconfig
-> +++ b/drivers/pci/controller/Kconfig
-> @@ -216,6 +216,19 @@ config PCIE_MT7621
->  	help
->  	  This selects a driver for the MediaTek MT7621 PCIe Controller.
->  
-> +config PCIE_ASPEED
-> +	bool "ASPEED PCIe controller"
-> +	depends on PCI
+> On 6/13/25 10:25, Michal Wilczynski wrote:
+>>
+>>
+>> On 6/13/25 08:44, Krzysztof Kozlowski wrote:
+>>> On 11/06/2025 14:01, Michal Wilczynski wrote:
+>>>>
+>>>> However, this leads me back to a fundamental issue with the
+>>>> consumer side implementation in the generic pvr_device.c driver. The
+>>>> current fallback code is:
+>>>>
+>>>> /*
+>>>>  * If the error is -EPROBE_DEFER, it's because the
+>>>>  * optional sequencer provider is not present
+>>>>  * and it's safe to fall back on manual power-up.
+>>>>  */
+>>>> if (pwrseq_err == -EPROBE_DEFER)
+>>>>         pvr_dev->pwrseq = NULL;
+>>>>
+>>>> As Krzysztof noted, simply ignoring -EPROBE_DEFER is not ideal. But if I
+>>>> change this to a standard deferred probe, the pvr_device.c driver will
+>>>
+>>> Why? You have specific compatible for executing such quirks only for
+>>> given platform.
+> 
+> I realized now that you may have meant the "thead,th1520-gpu" compatible,
+> not the "thead,th1520" SoC compatible.
+> 
+> In any case, the whole reason for using the pwrseq framework is to avoid
+> polluting the generic driver with SoC specific logic and instead offload
+> that responsibility to a pwrseq provider. Therefore, I can't simply add
+> a check like if (compatible == "thead,th1520-gpu") to the generic driver
+> to decide whether to get a power sequencer. This entire matching
+> responsibility was intended to be offloaded to the pwrseq framework.
 
-depends ARCH_ASPEED || COMPILE_TEST
+No, just do how all drivers are doing - driver match data, describing
+that there is some component, e.g. quirks/flags, number of clocks and
+their names typically. In your case - name or presence of pwrseq.
 
-> +	depends on OF || COMPILE_TEST
-> +	select PCI_MSI_ARCH_FALLBACKS
-> +	help
-> +	  Enable this option to add support for the PCIe controller
-> +	  found on ASPEED SoCs.
-> +	  This driver provides initialization and management for PCIe
-> +	  Root Complex functionality, including interrupt and MSI support.
-> +	  Select Y if your platform uses an ASPEED SoC and requires PCIe
-> +	  connectivity.
-> +
->  config PCI_HYPERV_INTERFACE
->  	tristate "Microsoft Hyper-V PCI Interface"
->  	depends on ((X86 && X86_64) || ARM64) && HYPERV && PCI_MSI
-> diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
-> index 038ccbd9e3ba..1339f88e153d 100644
-> --- a/drivers/pci/controller/Makefile
-> +++ b/drivers/pci/controller/Makefile
-> @@ -39,6 +39,7 @@ obj-$(CONFIG_PCI_LOONGSON) += pci-loongson.o
->  obj-$(CONFIG_PCIE_HISI_ERR) += pcie-hisi-error.o
->  obj-$(CONFIG_PCIE_APPLE) += pcie-apple.o
->  obj-$(CONFIG_PCIE_MT7621) += pcie-mt7621.o
-> +obj-$(CONFIG_PCIE_ASPEED) += pcie-aspeed.o
->  
->  # pcie-hisi.o quirks are needed even without CONFIG_PCIE_DW
->  obj-y				+= dwc/
-> diff --git a/drivers/pci/controller/pcie-aspeed.c b/drivers/pci/controller/pcie-aspeed.c
-> new file mode 100644
-> index 000000000000..c745684a7f9b
-> --- /dev/null
-> +++ b/drivers/pci/controller/pcie-aspeed.c
-> @@ -0,0 +1,1039 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2025 Aspeed Technology Inc.
-> + */
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/kernel.h>
-> +#include <linux/msi.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of_platform.h>
-
-Where do you use it?
-
-> +#include <linux/of_address.h>
-
-Where do you use it?
-
-
-> +#include <linux/of_irq.h>
-
-Where do you use it?
-
-
-> +#include <linux/of_pci.h>
-
-Where do you use it?
-
-> +#include <linux/pci.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <linux/irq.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/workqueue.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +
-
-
-
-...
-
-> +
-> +static int aspeed_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pci_host_bridge *host;
-> +	struct aspeed_pcie *pcie;
-> +	struct device_node *node = dev->of_node;
-> +	const void *md = of_device_get_match_data(dev);
-
-Not void, but specific type. This is not Javascript, we have here types.
-
-> +	int irq, ret;
-> +
-> +	if (!md)
-> +		return -ENODEV;
-> +
-> +	host = devm_pci_alloc_host_bridge(dev, sizeof(*pcie));
-> +	if (!host)
-> +		return -ENOMEM;
-> +
-> +	pcie = pci_host_bridge_priv(host);
-> +	pcie->dev = dev;
-> +	pcie->tx_tag = 0;
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pcie->platform = md;
-> +	pcie->host = host;
-> +
-> +	pcie->reg = devm_platform_ioremap_resource(pdev, 0);
-> +
-> +	of_property_read_u32(node, "msi_address", &pcie->msi_address);
-> +	of_property_read_u32(node, "linux,pci-domain", &pcie->domain);
-> +
-> +	pcie->cfg = syscon_regmap_lookup_by_phandle(dev->of_node, "aspeed,pciecfg");
-> +	if (IS_ERR(pcie->cfg))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->cfg), "Failed to map pciecfg base\n");
-> +
-> +	pcie->pciephy = syscon_regmap_lookup_by_phandle(node, "aspeed,pciephy");
-> +	if (IS_ERR(pcie->pciephy))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->pciephy), "Failed to map pciephy base\n");
-> +
-> +	pcie->h2xrst = devm_reset_control_get_exclusive(dev, "h2x");
-> +	if (IS_ERR(pcie->h2xrst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->h2xrst), "Failed to get h2x reset\n");
-> +
-> +	pcie->perst = devm_reset_control_get_exclusive(dev, "perst");
-> +	if (IS_ERR(pcie->perst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->perst), "Failed to get perst reset\n");
-> +
-> +	ret = pcie->platform->setup(pdev);
-> +	if (ret)
-> +		goto err_setup;
-> +
-> +	host->sysdata = pcie;
-> +
-> +	ret = aspeed_pcie_init_irq_domain(pcie);
-> +	if (ret)
-> +		goto err_irq_init;
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		goto err_irq;
-> +
-> +	ret = devm_request_irq(dev, irq, aspeed_pcie_intr_handler, IRQF_SHARED, dev_name(dev),
-> +			       pcie);
-> +	if (ret)
-> +		goto err_irq;
-> +
-> +	pcie->clock = clk_get(dev, NULL);
-
-Huh...
-
-> +	if (IS_ERR(pcie->clock))
-> +		goto err_clk;
-> +	ret = clk_prepare_enable(pcie->clock);
-
-devm_clk_get_enabled.
-
-> +	if (ret)
-> +		goto err_clk_enable;
-> +
-> +	ret = pci_host_probe(host);
-> +	if (ret)
-> +		goto err_clk_enable;
-> +
-> +	return 0;
-> +
-> +err_clk_enable:
-> +	clk_put(pcie->clock);
-> +err_clk:
-> +err_irq:
-> +	aspeed_pcie_irq_domain_free(pcie);
-> +err_irq_init:
-> +err_setup:
-> +	return dev_err_probe(dev, ret, "Failed to setup PCIe RC\n");
-> +}
-> +
-> +static void aspeed_pcie_remove(struct platform_device *pdev)
-> +{
-> +	struct aspeed_pcie *pcie = platform_get_drvdata(pdev);
-> +
-> +	if (pcie->clock) {
-> +		clk_disable_unprepare(pcie->clock);
-> +		clk_put(pcie->clock);
-> +	}
-> +
-> +	pci_stop_root_bus(pcie->host->bus);
-> +	pci_remove_root_bus(pcie->host->bus);
-> +	aspeed_pcie_irq_domain_free(pcie);
-> +}
-> +
-> +static struct aspeed_pcie_rc_platform pcie_rc_ast2600 = {
-
-This should be const. Why it cannot?
-
-> +	.setup = aspeed_ast2600_setup,
-> +	.reg_intx_en = 0x04,
-> +	.reg_intx_sts = 0x08,
-> +	.reg_msi_en = 0x20,
-> +	.reg_msi_sts = 0x28,
-> +};
-> +
-> +static struct aspeed_pcie_rc_platform pcie_rc_ast2700 = {
-
-This should be const. Why it cannot?
-
-> +	.setup = aspeed_ast2700_setup,
-> +	.reg_intx_en = 0x40,
-> +	.reg_intx_sts = 0x48,
-> +	.reg_msi_en = 0x50,
-> +	.reg_msi_sts = 0x58,
-> +};
-> +
-> +static const struct of_device_id aspeed_pcie_of_match[] = {
-> +	{ .compatible = "aspeed,ast2600-pcie", .data = &pcie_rc_ast2600 },
-> +	{ .compatible = "aspeed,ast2700-pcie", .data = &pcie_rc_ast2700 },
-> +	{}
-> +};
-> +
-> +static struct platform_driver aspeed_pcie_driver = {
-> +	.driver = {
-> +		.name = "aspeed-pcie",
-> +		.suppress_bind_attrs = true,
-
-Why?
-
-> +		.of_match_table = aspeed_pcie_of_match,
-> +	},
-> +	.probe = aspeed_pcie_probe,
-> +	.remove = aspeed_pcie_remove,
-
-So how exactly remove can be triggered?
-
-> +};
-> +
-> +module_platform_driver(aspeed_pcie_driver);
-> +
-> +MODULE_AUTHOR("Jacky Chou <jacky_chou@aspeedtech.com>");
-> +MODULE_DESCRIPTION("ASPEED PCIe Root Complex");
-> +MODULE_LICENSE("GPL");
 
 
 Best regards,
