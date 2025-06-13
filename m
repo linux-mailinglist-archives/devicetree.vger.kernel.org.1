@@ -1,297 +1,397 @@
-Return-Path: <devicetree+bounces-185838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B921AD95F1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 22:10:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C024AAD9671
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 22:35:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3467174FB8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 20:10:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8DAB189FED4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 20:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B4123D28A;
-	Fri, 13 Jun 2025 20:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAC3254B03;
+	Fri, 13 Jun 2025 20:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ICiyLEPf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lzbgB4Mx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2086.outbound.protection.outlook.com [40.107.94.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E50F72608;
-	Fri, 13 Jun 2025 20:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749845448; cv=fail; b=nyaoKaktMoyph17YspSyz+64n9JrNekmmTGvBq83GB8SOGfLTqZE1itCozL0s3NDnQkukE3IHuthpylS7MW8l7NZTIQmZhq/ipjY7IdFdy0MdCLlmrxQGurXs4A3eG4CDbnFvCJCV2ArTmf9kmH7FRu3RJwbGYMCm5Vj4sUoZKw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749845448; c=relaxed/simple;
-	bh=7Za2T1SV+WgznoTFphFzikdxSqC/8xhNPjXeov9f0XU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Hcvs2nSqKKLP3LdpzO2XvlcHKnI44RDP+acq1EWRfSrIXz1lsSbMH1UfiUCo6JFvmpkg/Ubxp7LBfvs4vpGopqnX947FpFDP9RQdhIf114SQBigxZcg9xVTGlZMQoDsKlzP7iEjNnHIVh5+LitgIrU+77ixlKRQq8JNdgOYhxus=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=ICiyLEPf; arc=fail smtp.client-ip=40.107.94.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l/dBptB7g/qIEEnEOA1el/DDBlpNQaBmE7HHmTl1yfyECCtn3sPlkbMf1UnMCcjDGW90w6B9YRHx1Rjb0DXsptOkg4fFK6ikLdo87oHYCfyLMVayer5arp5dYgDvD6YPSa46Tl/ZoPfaZ8dHcw0fvQfnrmvU9FgyK0RW94Tkw4zIhVMW9t+E2Oh4cfeBBiNpj/lo6jzWzvCr3tLgLuLMuNeRA+H6KMwGB//1hpodKzjYlAhP58diOzjNjjjcADN2uCscUUFcEn+DATB/OiH8nShIqJ0nO4RcMY2YCEuL/Slyhy/hl6pLn7CXUBSFQSjeEvFHFpOMbQ+LgYGO3CB5pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+G4ETwy8NmomOgQflad0FMk3DhrQYsxB2j2kJAJaSyk=;
- b=BKNldtdWs8yM5mHthJF863elZeJTv2Z5wLQnuz8kxoQtt0QEDQffVEWnX0+XL7CF9lEukLr2X46Y+eRUeg3agHiH3W3znpwl9puGULSKlT7764LqyUp096FVEspwC0Hnns37moR6d72UkEGszL2AGu/u1h7RPwZo0S1jrfh/q1XSDGMOyKaM/F57e2bsH/vTS000Bm5aRfssg8sqhUqWtL/9WS62L600K4juudjGzC7BMe05WJTFAJsIKyq7rLIbC/SVE2Y5hnVEbe3qju4awRts0lFCPT7SxLwkKib514tPDkhX75WHQ5NCR2Zzxm62y8RYTCAPKf75XMGE4pgkNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+G4ETwy8NmomOgQflad0FMk3DhrQYsxB2j2kJAJaSyk=;
- b=ICiyLEPfPM1Zi+qyCNOfCLtpb3NbbWHHuQD+ra9qXogQVRW4v0fPY9Fpc1AgPCOgscPX8zTw0aHjfbd62Zlpt38cQedQd2UMnQZjFAFpCHi9lFNTrcd2vFdWt437NOAiEOutwYCAZ8XgHaZTESznUusbsIIsmkg7Fkd18zJcqMY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6373.namprd12.prod.outlook.com (2603:10b6:8:a4::7) by
- IA4PR12MB9835.namprd12.prod.outlook.com (2603:10b6:208:54f::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8835.23; Fri, 13 Jun 2025 20:10:42 +0000
-Received: from DM4PR12MB6373.namprd12.prod.outlook.com
- ([fe80::12f7:eff:380b:589f]) by DM4PR12MB6373.namprd12.prod.outlook.com
- ([fe80::12f7:eff:380b:589f%7]) with mapi id 15.20.8792.038; Fri, 13 Jun 2025
- 20:10:42 +0000
-Date: Fri, 13 Jun 2025 16:10:34 -0400
-From: Yazen Ghannam <yazen.ghannam@amd.com>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-edac@vger.kernel.org, git@amd.com,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>
-Subject: Re: [PATCH v7 2/5] cdx: Export Symbols for MCDI RPC and
- Initialization
-Message-ID: <20250613201034.GC171759@yaz-khff2.amd.com>
-References: <20250529070017.7288-1-shubhrajyoti.datta@amd.com>
- <20250529070017.7288-3-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250529070017.7288-3-shubhrajyoti.datta@amd.com>
-X-ClientProxiedBy: SA1PR02CA0007.namprd02.prod.outlook.com
- (2603:10b6:806:2cf::18) To DM4PR12MB6373.namprd12.prod.outlook.com
- (2603:10b6:8:a4::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6CA1EEA47;
+	Fri, 13 Jun 2025 20:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749846844; cv=none; b=U8Z4J6znRndRqPYDik7aheWfu7qojD8p2yaeBvGLWfblOYAHvCTTIKj6OyTQtWF+P7suNa2+4PSazWfJpVczx8/WiuENeZw+17umfz2U1MpU3ttJx6kfjNXkWuEZHKMb8HLqDVX3+1u4/kJMMoFmTFtOOCB1QGjl26vEI7JcEbk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749846844; c=relaxed/simple;
+	bh=GjmeWGozjU5PBF3nnlHdsu1xTqGagkXhadEOEtnYZcQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kG7wskdVBK/f+/0JWegN8LJeA7/FZOgnyuB5w5gqPUQV23mxdt7Pfy1GiGeLwfbF3koTgU0JfnpMN5M8ok+BMdgs0R5Md5YDS78OPJB1tTD/ZgvXAC0qvDn5APxLbjgJDYO3bVuTfpStLzfcKjKn9P61dorXInuzONYGpIYN2Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lzbgB4Mx; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-2e95f0b6cb7so657958fac.3;
+        Fri, 13 Jun 2025 13:34:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749846841; x=1750451641; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lopa9dsU00PWCWa6IyKFnmzc4njXABC4sgMfKLOvRko=;
+        b=lzbgB4MxAWSA0JA1qHN/tr4s0BAGqr4AC+/mZnqNanVHv8EoR4IN/Pid2nYMUw+rQ3
+         8SvWO0aru0W+ucwrOCNnvgsWZLBmTtFsIC+8apoeXxotA+JYNzu5Ge/hRTDKHHJD/j9s
+         9hMQKZrMdiTdF90OzmMSn7hphBa2laCOs5m/5DZ3HOogW6TWhWzpo8u3toz9gnZvNXpt
+         xGoRCvgdmgi9a71eHEE4gslZ/9ZEh3gRB0Tb+XyRdyu12/g2NmqLBY8TMBMJqI8rmRMj
+         +Jf83EAgavdpX20q4FvIEuKdv/vJn3mp8ACFeTsENzR9GJKP7h2gRtSh7u+Ah0WwhXWp
+         iJnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749846841; x=1750451641;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lopa9dsU00PWCWa6IyKFnmzc4njXABC4sgMfKLOvRko=;
+        b=pbK54U4fUfDFxc7aTVk+y41lnUPd/MJvaVwbwdX0UtNL+QmBw3J5pwktoFkXB+XhUp
+         pTR1tCh2B+3m+VTEr70QISUWMfLXQvPYoT2OYXn8Nd+oqbCveSo5CtwmraYECo67R7P4
+         wNbMZAJIxWC/VOuiA4IC6/mwkKr4ibFJXav+aja277fvXUCelhjN1ul2/hksrgUxEf0k
+         TpLrJJb63bYFbo0MXvQiCR0k7v+N8JlrDuQBUOSlgLdHuuxwDkefl7HzZmixeHRVxvMU
+         SwbJXzQHywuO/9vCG3PFzMqyJag5TcEIZHQTBJdTCdsI0U/EbsvhFvOFAclR+5jr2kag
+         xRFg==
+X-Forwarded-Encrypted: i=1; AJvYcCVQHo1u/JBs8anMEwwMJRFcqFFfJAf3BU34AcWoHgk5EtVnba8VVT8lvhSOGNk1TbMO6eHEKOLAOXidTA==@vger.kernel.org, AJvYcCW2zjAKHKzZJYWL4rbw/eQQhIouOKrj2rAGtfLG+zmuDaGn0dfS6cfAnIJ8V1xSfBktmOevo3pa22AR8vmO@vger.kernel.org, AJvYcCWaRFY3P90g0bDimV/vA+rE8x2NIJz8bBZhvoNuvjTGX2sPnXh0pt4GkzyZDFeZUEs4iIrxZibKsCL7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHbCR6CtxcuPs2TCNFtNtYjA0rVnRDethqbOi1k1nEnXplpYuD
+	k0oumfGUVmVrWkp6ys96o/gdQ4LjsYXTH5XN/VWwrExbdhl+PxAwz/tn5c8UPM/RRE33rk9SkCp
+	sz3gDroVqoY6vkM8wov2MArRETDk/OTIgCZ2hvRE=
+X-Gm-Gg: ASbGncvGcY7stFt+r5dTilw1afBGeY8vho2nLaaZDwXDRrj/geHVQYeVWdBFxUp2sK6
+	/L+DwSyjqZe05OJ6X1mMmucCHq0v4CPS5Rg9NWW78O+rJRELaQdXB6f3/O3jmNB8fvqOZzG/+4J
+	jwtyNiGJSty7bQsfS+kmGG4Rlpl7ABHMPFMaww1T707XyEqv0KmE86XBND+NiW4s60DANd2PGDP
+	sLe
+X-Google-Smtp-Source: AGHT+IHzsOYqNWBAmSJpeza6535H9+LjTdLCISm3FP5IepVgKDbx1c4zlFhkhrUOQVgDuoMTlLRtGOvFXzQwa+xbuIg=
+X-Received: by 2002:a05:6870:ed8e:b0:2d5:a360:7df9 with SMTP id
+ 586e51a60fabf-2eaf0836064mr754389fac.5.1749846841154; Fri, 13 Jun 2025
+ 13:34:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6373:EE_|IA4PR12MB9835:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa0bdfeb-f7c5-4481-cf2b-08ddaab65fca
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?8Qyc0Fre0hnqoZUWwKwMsFhZeaXd6x8FFd61b9FLsDPmhZu+jhoZbc5E+8L9?=
- =?us-ascii?Q?1aYO7nJyyeT+OxNHmlHe3M4jkQxIMRFKe46km0uMYjpIYI/znEorUFUDhKqu?=
- =?us-ascii?Q?iSlCWdy7jxHAf1w/i/xGWvyufRMn9SaEPJYcelvVuKFLVsSW5CZlsYtNFGGH?=
- =?us-ascii?Q?V7MJNcFx25vdyZfvLMzNe//5P0O396xuqm5y0a1DF9ZBybkhE18RG4wZFYDV?=
- =?us-ascii?Q?wUPbRKutqkO5z0TwcE8X53iEpgIEEcY9mA1fSt/ZxnCd0nckDDkT5Maem6Ie?=
- =?us-ascii?Q?sDs0+SEnvVHUGTD3R6+vfFOZmOLrz1zBPHDLS44TkhvhdgytjvMu/lUfbgeW?=
- =?us-ascii?Q?D/3ze+g5uecT9X+ghgmAdaABJ8IVBMGluT3RH9e1x8+YLplBTxtAJXsGFz1A?=
- =?us-ascii?Q?9UwVko3lsslLesmhQrqMS/a51hYt7Q1db0/tv+MPkmv6lICg51+lZJTDzWBg?=
- =?us-ascii?Q?8homShSn2AiGP8FYDcWslQAQQ2mbeIW8NGiAzYNeSyBYAdqzGPPQkHCdzwwX?=
- =?us-ascii?Q?ki2evujPEH+o6N8vVe/DaAj9TErDLMKixVMEbW84bMGhweoIMN3wy8oG8xft?=
- =?us-ascii?Q?7I9OYyJEqVk2eJLYVRTAR0cFFFAoZf3k/Nvp1HW8Uaz6xKRrzLoa0jkDz147?=
- =?us-ascii?Q?XhNqX8SR77j9l7+nJMSSepz/kfamoTEli5P5Cy1Po6Bz+BbsOrLuVUA4FzUC?=
- =?us-ascii?Q?S+HIMbyp5IVGT/HURrdHCuOBSewGZpt6ihj5gsskePN5g2+rgX6qWSlM91+K?=
- =?us-ascii?Q?Nah7OzUIBCn13g285rsKXcsd48hGVwsfqALupYJz/axRpvl4+CVeiX0B2hg6?=
- =?us-ascii?Q?wj+tUPUNx4mYXEky4pb8Z1QfmuRem4EAZDMCK/+c7WwKScq1MCQum8a/HGav?=
- =?us-ascii?Q?1u1Q7bw7agUlzNd83c5fX9lgAz8L8SyXW7+3RrcfX+RJM4a2s2tR2CzEnQou?=
- =?us-ascii?Q?/hIEP/Ncgbzgl37xaxCNch0VejucoIzda98elBU2ta93SYlW+XDTOVxXosBa?=
- =?us-ascii?Q?cJPcbADdvW6NwGCiGD/Kea1hyPRxyOJn99A4DJ0zdtgKKr0tLRqA9xayHpwq?=
- =?us-ascii?Q?JEZz48mczdu1QfSARJ9VaAzRd2enVz3Ar2v0/givewP/2fSZKafLTz6rMfEX?=
- =?us-ascii?Q?KsGUEKxigR/lAej+vH7khMKtWhYAQ6EHsBpcW3qaya+1ASxXdmNcUyqrPa1h?=
- =?us-ascii?Q?1iqVyLi5JIEk9FewbhUgU9CchWe/QpMTSUX1tLdZBxxALjv0hhI9ODMGC8Oc?=
- =?us-ascii?Q?9iREGqD6qjPe1/7B0XY85dw7QQ4cy7Rem+LNpgmADd645bZqAb8pfcBmP/Z4?=
- =?us-ascii?Q?SSx3k3t0fuGbOnWmvJPBjMjMvb/g9LOqeDO2sDLzacpInhP211A1LYigYRFy?=
- =?us-ascii?Q?XPQLMx23BPPzVZye0vWRNbIf85OOMrMToaJG6hWhudmHaCPlMxil0QykFTDQ?=
- =?us-ascii?Q?RQNyPW4udko=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6373.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?KzuJb7YI7/CfSpskMhzP+NiONsCFvpD6moPxBWlfTUbg9GQz0MQaFhjq6ybo?=
- =?us-ascii?Q?j07NxJWygQTqfnCegv3sPpdoDW4VCfd2JvYo1Zs87zfnPapxshKmEMrvV6u/?=
- =?us-ascii?Q?wPX1noT2oHDUaOhpwniKSv4KkfeiSu/2o638mr5cYAwlI1eLnLOAQo9UNLKe?=
- =?us-ascii?Q?x9/WDMmtB3V9AHychXSgdmsKOUWG0r7pY4R/sxhjgfKTBx8ydolBe3rh40Xi?=
- =?us-ascii?Q?j+VqgQnk3le8Emy0aJt2yOMG8gdzT/FQuEx8Qf5plsrVs5b36EOHInO5/nWT?=
- =?us-ascii?Q?ncL9iOYD2DYKQ5wHX3c2BkynXEdQgfIpxhXo1s7R5jDqEJO2so+SNZ8CBQAc?=
- =?us-ascii?Q?vowuxtmpZIzF++yhNyXYjbqQB8vkN4LvWGXLJTQzqE7GhK7gNtt6VjSI86fJ?=
- =?us-ascii?Q?W5pwHUfWcDDzS9cP6P0MylTTic2WOzCqUzjlF+hq5XQkrIU5mS2wDLBk/Xef?=
- =?us-ascii?Q?d+O8sPliTXYg9d+9CejLRfRW3WNziesQ7Qe84Xwu18m4RxjmjReJP/Ts1XKX?=
- =?us-ascii?Q?sQY4crRdWnEmdkcRlV0n1J+2a3z3mPtcKOWhPEA+pc3QnrfVMsRJEuaTHvRX?=
- =?us-ascii?Q?843uyaShmndwBuRUQUlnbxY21JqgtG2xB/FSeWQqHThIUvR/qKfnz9ja4wYA?=
- =?us-ascii?Q?bL9UphSd4pAC3V1xIAVe674Jk+JI7kq/Q7d+iUGaJd938zk8qnHgC5jFGvO7?=
- =?us-ascii?Q?LyjLWQ7VQslu+MxFwxlxY0vjYwTVRVDsdqPvJn7zPHXykpUzpJ4YCCx/ALGM?=
- =?us-ascii?Q?4RSFvVco4W46xpfp7AfAsWqtpJPDl8DahBsxKZFTRZX0f6EB7B+X86upyrTl?=
- =?us-ascii?Q?HpMOj2cw0L7qRiYcUoGhOj2oPqM8yuSiUgYnHk5/RxOb1D8F1NCME5/BltBh?=
- =?us-ascii?Q?Ofu0a4htRuyMmW2kimmC/krO9ltQhvJo9BiOhf+3EYX7/3PMzlpQXv1tsH6c?=
- =?us-ascii?Q?B/Njwp0lcNKu0H7+/7l8tW/kKNXoIPeT74jSNklTup68zY50PeySCcUzQNba?=
- =?us-ascii?Q?UnvpZLMmR9XXlbU2wznKcQQa1eHCYwoKierEk8htY6O6jI0Xv+ctkkUDkE83?=
- =?us-ascii?Q?4rP9ji4ELYpbPo675Mn/o9xJMTjy6+EJNznKmqTuhRZBo4V+/sWYLTVn1DqN?=
- =?us-ascii?Q?MlmoH1RH1hV5GqKhY0cFfGomfOfIgKqgkiFmZKe5AXlGEo2uuZ9gEMtmLdg+?=
- =?us-ascii?Q?MoIh+TBV/zosbyQRYMt+gL0s3wmqw7njXG27/S8jQSAvNbY2R/W0ndsP37d4?=
- =?us-ascii?Q?kNxxzWs8LS0MnM5jFr/298OuwWuqNWFcq4aztyyfmOJ4nb5y10mu5CgC5oPm?=
- =?us-ascii?Q?teKDPEf+dm90tHSiVdVHPrltuLDLaWQo+LPSbLypc7Rw7d7sB3iYUZFI806n?=
- =?us-ascii?Q?KvqOl2iu0bzxJKwhyb4bL2a6xiruLcz0TFv4Y7zO8fpVt38VumasmXNa49xe?=
- =?us-ascii?Q?EsQ2nnujC2qZM/ygmwsmGUgNxC9945oCvmND1Su52u1oJ+fBnMktpjBCDYNE?=
- =?us-ascii?Q?RVd4/Jv4APUAx6n6S8W1et4lFjOPDebdrojWxkkd9ww4H8Yf/imNTRoDtwXE?=
- =?us-ascii?Q?khz6ebjnlbqql7Zgx3CPIV0WXSOtX+lUagjjZDeW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa0bdfeb-f7c5-4481-cf2b-08ddaab65fca
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6373.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 20:10:42.7673
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /63UdLHbMnLJeAQo0HBuvNxx6j9BISZ60KphQp2S/EwYUxeMSAu3sdHQGDjP11E4z1XCGiEEFQqJMeSoqHx4YQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB9835
+References: <20250613-bbg-v3-0-514cdc768448@bootlin.com> <20250613-bbg-v3-2-514cdc768448@bootlin.com>
+In-Reply-To: <20250613-bbg-v3-2-514cdc768448@bootlin.com>
+From: Jason Kridner <jkridner@gmail.com>
+Date: Fri, 13 Jun 2025 15:33:50 -0500
+X-Gm-Features: AX0GCFth-gZNYPrnl9VNVFIFYlCNPCH1OPJqknA_Pge_SpOnzoBQeeMxwvLcRMQ
+Message-ID: <CA+T6QP=yHO-FoGkVxZJzT8OyO7i8K5G5uazqk6qHQ5QzWSicGA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] ARM: dts: omap: Remove incorrect compatible
+ strings from device trees
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
+	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Paul Barker <paul.barker@sancloud.com>, 
+	Marc Murphy <marc.murphy@sancloud.com>, Andrew Davis <afd@ti.com>, 
+	Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 29, 2025 at 12:30:14PM +0530, Shubhrajyoti Datta wrote:
-> The cdx_mcdi_init, cdx_mcdi_process_cmd, and cdx_mcdi_rpc functions are
-> needed by VersalNET EDAC modules that interact with the MCDI (Management
-> Controller Direct Interface) framework. These functions facilitate
-> communication between different hardware components by enabling command
-> execution and status management.
-> 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+On Fri, Jun 13, 2025 at 10:49=E2=80=AFAM Kory Maincent
+<kory.maincent@bootlin.com> wrote:
+>
+> Several device trees incorrectly included extraneous compatible strings
+> in their compatible property lists. The policy is to only describe the
+> specific board name and SoC name to avoid confusion.
+>
+> Remove these incorrect compatible strings to fix the inconsistency.
+>
+> Also fix board vendor prefixes for BeagleBoard variants that were
+> incorrectly using "ti" instead of "beagle" or "seeed".
+>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 > ---
-> 
-> Changes in v7:
-> - Add the kernel doc description
-> - Add the prototype from first patch to here
-> 
-> Changes in v6:
-> - Update commit description
-> 
+>
+> Changes in v3:
+> - Remove extraneous compatible strings.
+> - Replace BeagleBone board name vendor.
+>
 > Changes in v2:
-> - Export the symbols for module compilation
-> 
->  drivers/cdx/controller/mcdi.c | 29 +++++++++++++++++++++++++++++
->  include/linux/cdx/mcdi.h      |  6 ++++++
+> - New patch
+> ---
+>  arch/arm/boot/dts/ti/omap/am335x-base0033.dts                   | 2 +-
+>  arch/arm/boot/dts/ti/omap/am335x-bone.dts                       | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-boneblack-wireless.dts         | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-boneblack.dts                  | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-boneblue.dts                   | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts         | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts                  | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts                 | 3 +--
+>  arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts               | 2 +-
+>  arch/arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts             | 2 +-
+>  arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts               | 4 ++--
+>  arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-extended-wifi.dts | 5 +---=
+-
+>  arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts          | 5 +---=
+-
+>  arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts               | 2 +-
+>  arch/arm/boot/dts/ti/omap/am335x-shc.dts                        | 2 +-
+>  15 files changed, 22 insertions(+), 29 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-base0033.dts b/arch/arm/boo=
+t/dts/ti/omap/am335x-base0033.dts
+> index 46078af4b7a3..176de29de2a6 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-base0033.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-base0033.dts
+> @@ -9,7 +9,7 @@
+>
+>  / {
+>         model =3D "IGEP COM AM335x on AQUILA Expansion";
+> -       compatible =3D "isee,am335x-base0033", "isee,am335x-igep0033", "t=
+i,am33xx";
+> +       compatible =3D "isee,am335x-base0033", "ti,am33xx";
+>
+>         hdmi {
+>                 compatible =3D "ti,tilcdc,slave";
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone.dts b/arch/arm/boot/dt=
+s/ti/omap/am335x-bone.dts
+> index b5d85ef51a02..2790c0c5a473 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-bone.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-bone.dts
+> @@ -8,8 +8,8 @@
+>  #include "am335x-bone-common.dtsi"
+>
+>  / {
+> -       model =3D "TI AM335x BeagleBone";
+> -       compatible =3D "ti,am335x-bone", "ti,am33xx";
+> +       model =3D "AM335x BeagleBone";
 
-You've added the function prototypes to this new global header.
+We have software that looks at these in running systems, so I=E2=80=99d be =
+ok
+not to change. If changing, why not =E2=80=9CBeagleBoard.org BeagleBone=E2=
+=80=9D? Not
+sure of the convention to mention the SoC, but AM335x is not part of
+the product name.
 
-But you didn't remove them from the local header.
-  drivers/cdx/controller/mcdi.h
-
-Also, you haven't included the new global header in the cdx/controller
-code.
-
-Even though this does compile, it doesn't seem proper.
-
-I expect you would want to do the following:
-
-1) Add the common code to the global header.
-2) Remove the common code from the local header.
-3) Include the global header everywhere the common code is needed.
-
-Keeping the diff below for reference.
-
-Thanks,
-Yazen
-
->  2 files changed, 35 insertions(+)
-> 
-> diff --git a/drivers/cdx/controller/mcdi.c b/drivers/cdx/controller/mcdi.c
-> index e760f8d347cc..f3cca4c884ff 100644
-> --- a/drivers/cdx/controller/mcdi.c
-> +++ b/drivers/cdx/controller/mcdi.c
-> @@ -99,6 +99,19 @@ static unsigned long cdx_mcdi_rpc_timeout(struct cdx_mcdi *cdx, unsigned int cmd
->  		return cdx->mcdi_ops->mcdi_rpc_timeout(cdx, cmd);
->  }
->  
-> +/**
-> + * cdx_mcdi_init - Initialize MCDI (Management Controller Driver Interface) state
-> + * @cdx: NIC through which to issue the command
-> + *
-> + * This function allocates and initializes internal MCDI structures and resources
-> + * for the CDX device, including the workqueue, locking primitives, and command
-> + * tracking mechanisms. It sets the initial operating mode and prepares the device
-> + * for MCDI operations.
-> + *
-> + * Return:
-> + * * 0        - on success
-> + * * -ENOMEM  - if memory allocation or workqueue creation fails
-> + */
->  int cdx_mcdi_init(struct cdx_mcdi *cdx)
->  {
->  	struct cdx_mcdi_iface *mcdi;
-> @@ -128,6 +141,7 @@ int cdx_mcdi_init(struct cdx_mcdi *cdx)
->  fail:
->  	return rc;
->  }
-> +EXPORT_SYMBOL_GPL(cdx_mcdi_init);
->  
->  void cdx_mcdi_finish(struct cdx_mcdi *cdx)
->  {
-> @@ -553,6 +567,19 @@ static void cdx_mcdi_start_or_queue(struct cdx_mcdi_iface *mcdi,
->  			cdx_mcdi_cmd_start_or_queue(mcdi, cmd);
->  }
->  
-> +/**
-> + * cdx_mcdi_process_cmd - Process an incoming MCDI response
-> + * @cdx: NIC through which to issue the command
-> + * @outbuf:  Pointer to the response buffer received from the management controller
-> + * @len:     Length of the response buffer in bytes
-> + *
-> + * This function handles a response from the management controller. It locates the
-> + * corresponding command using the sequence number embedded in the header,
-> + * completes the command if it is still pending, and initiates any necessary cleanup.
-> + *
-> + * The function assumes that the response buffer is well-formed and at least one
-> + * dword in size.
-> + */
->  void cdx_mcdi_process_cmd(struct cdx_mcdi *cdx, struct cdx_dword *outbuf, int len)
->  {
->  	struct cdx_mcdi_iface *mcdi;
-> @@ -590,6 +617,7 @@ void cdx_mcdi_process_cmd(struct cdx_mcdi *cdx, struct cdx_dword *outbuf, int le
->  
->  	cdx_mcdi_process_cleanup_list(mcdi->cdx, &cleanup_list);
->  }
-> +EXPORT_SYMBOL_GPL(cdx_mcdi_process_cmd);
->  
->  static void cdx_mcdi_cmd_work(struct work_struct *context)
->  {
-> @@ -757,6 +785,7 @@ int cdx_mcdi_rpc(struct cdx_mcdi *cdx, unsigned int cmd,
->  	return cdx_mcdi_rpc_sync(cdx, cmd, inbuf, inlen, outbuf, outlen,
->  				 outlen_actual, false);
->  }
-> +EXPORT_SYMBOL_GPL(cdx_mcdi_rpc);
->  
->  /**
->   * cdx_mcdi_rpc_async - Schedule an MCDI command to run asynchronously
-> diff --git a/include/linux/cdx/mcdi.h b/include/linux/cdx/mcdi.h
-> index 46e3f63b062a..1344119e9a2c 100644
-> --- a/include/linux/cdx/mcdi.h
-> +++ b/include/linux/cdx/mcdi.h
-> @@ -169,6 +169,12 @@ struct cdx_mcdi_data {
->  	u32 fn_flags;
+> +       compatible =3D "beagle,am335x-bone", "ti,am33xx";
 >  };
->  
-> +int cdx_mcdi_init(struct cdx_mcdi *cdx);
-> +void cdx_mcdi_process_cmd(struct cdx_mcdi *cdx, struct cdx_dword *outbuf, int len);
-> +int cdx_mcdi_rpc(struct cdx_mcdi *cdx, unsigned int cmd,
-> +		 const struct cdx_dword *inbuf, size_t inlen,
-> +		 struct cdx_dword *outbuf, size_t outlen, size_t *outlen_actual);
-> +
->  /*
->   * We expect that 16- and 32-bit fields in MCDI requests and responses
->   * are appropriately aligned, but 64-bit fields are only
-> -- 
-> 2.34.1
-> 
+>
+>  &ldo3_reg {
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-boneblack-wireless.dts b/ar=
+ch/arm/boot/dts/ti/omap/am335x-boneblack-wireless.dts
+> index b4b4b80df08c..d78b6427b8f2 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-boneblack-wireless.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-boneblack-wireless.dts
+> @@ -11,8 +11,8 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>
+>  / {
+> -       model =3D "TI AM335x BeagleBone Black Wireless";
+> -       compatible =3D "ti,am335x-bone-black-wireless", "ti,am335x-bone-b=
+lack", "ti,am335x-bone", "ti,am33xx";
+> +       model =3D "AM335x BeagleBone Black Wireless";
+> +       compatible =3D "beagle,am335x-bone-black-wireless", "ti,am33xx";
+>
+>         wlan_en_reg: fixedregulator@2 {
+>                 compatible =3D "regulator-fixed";
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-boneblack.dts b/arch/arm/bo=
+ot/dts/ti/omap/am335x-boneblack.dts
+> index 16b567e3cb47..70c26d090ecb 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-boneblack.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-boneblack.dts
+> @@ -10,8 +10,8 @@
+>  #include "am335x-boneblack-hdmi.dtsi"
+>
+>  / {
+> -       model =3D "TI AM335x BeagleBone Black";
+> -       compatible =3D "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33=
+xx";
+> +       model =3D "AM335x BeagleBone Black";
+> +       compatible =3D "beagle,am335x-bone-black", "ti,am33xx";
+>  };
+>
+>  &cpu0_opp_table {
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts b/arch/arm/boo=
+t/dts/ti/omap/am335x-boneblue.dts
+> index f579df4c2c54..779e74218b57 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
+> @@ -9,8 +9,8 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>
+>  / {
+> -       model =3D "TI AM335x BeagleBone Blue";
+> -       compatible =3D "ti,am335x-bone-blue", "ti,am33xx";
+> +       model =3D "AM335x BeagleBone Blue";
+> +       compatible =3D "beagle,am335x-bone-blue", "ti,am33xx";
+>
+>         chosen {
+>                 stdout-path =3D &uart0;
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts b/ar=
+ch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts
+> index a4f5b5262645..ee92abf43175 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-wireless.dts
+> @@ -10,8 +10,8 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>
+>  / {
+> -       model =3D "TI AM335x BeagleBone Green Wireless";
+> -       compatible =3D "ti,am335x-bone-green-wireless", "ti,am335x-bone-g=
+reen", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+> +       model =3D "Seeed AM335x BeagleBone Green Wireless";
+> +       compatible =3D "seeed,am335x-bone-green-wireless", "ti,am33xx";
+>
+>         wlan_en_reg: fixedregulator@2 {
+>                 compatible =3D "regulator-fixed";
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts b/arch/arm/bo=
+ot/dts/ti/omap/am335x-bonegreen.dts
+> index 18cc0f49e999..3d771721dcb8 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts
+> @@ -9,6 +9,6 @@
+>  #include "am335x-bonegreen-common.dtsi"
+>
+>  / {
+> -       model =3D "TI AM335x BeagleBone Green";
+> -       compatible =3D "ti,am335x-bone-green", "ti,am335x-bone-black", "t=
+i,am335x-bone", "ti,am33xx";
+> +       model =3D "Seeed AM335x BeagleBone Green";
+> +       compatible =3D "seeed,am335x-bone-green", "ti,am33xx";
+>  };
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts b/arch/arm/b=
+oot/dts/ti/omap/am335x-chiliboard.dts
+> index 648e97fe1dfd..224095304ef3 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts
+> @@ -8,8 +8,7 @@
+>
+>  / {
+>         model =3D "AM335x Chiliboard";
+> -       compatible =3D "grinn,am335x-chiliboard", "grinn,am335x-chilisom"=
+,
+> -                    "ti,am33xx";
+> +       compatible =3D "grinn,am335x-chiliboard", "ti,am33xx";
+>
+>         chosen {
+>                 stdout-path =3D &uart0;
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts b/arch/arm=
+/boot/dts/ti/omap/am335x-myirtech-myd.dts
+> index fd91a3c01a63..55a454f51148 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts
+> @@ -12,7 +12,7 @@
+>
+>  / {
+>         model =3D "MYIR MYD-AM335X";
+> -       compatible =3D "myir,myd-am335x", "myir,myc-am335x", "ti,am33xx";
+> +       compatible =3D "myir,myd-am335x", "ti,am33xx";
+>
+>         chosen {
+>                 stdout-path =3D &uart0;
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts b/arch/a=
+rm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts
+> index d28d39728847..d87ac31a16a9 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts
+> @@ -16,7 +16,7 @@
+>
+>  / {
+>         model =3D "Octavo Systems OSD3358-SM-RED";
+> -       compatible =3D "oct,osd3358-sm-refdesign", "ti,am335x-bone-black"=
+, "ti,am335x-bone", "ti,am33xx";
+> +       compatible =3D "oct,osd3358-sm-refdesign", "ti,am33xx";
+>  };
+>
+>  &ldo3_reg {
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts b/arch/arm=
+/boot/dts/ti/omap/am335x-pocketbeagle.dts
+> index 78ce860e59b3..c2f26687790c 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts
+> @@ -11,8 +11,8 @@
+>  #include <dt-bindings/leds/common.h>
+>
+>  / {
+> -       model =3D "TI AM335x PocketBeagle";
+> -       compatible =3D "ti,am335x-pocketbeagle", "ti,am335x-bone", "ti,am=
+33xx";
+> +       model =3D "AM335x PocketBeagle";
+> +       compatible =3D "beagle,am335x-pocketbeagle", "ti,am33xx";
+>
+>         chosen {
+>                 stdout-path =3D &uart0;
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-extended-wifi.=
+dts b/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-extended-wifi.dts
+> index 7c9f65126c63..61210f975542 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-extended-wifi.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-extended-wifi.dts
+> @@ -13,10 +13,7 @@
+>
+>  / {
+>         model =3D "SanCloud BeagleBone Enhanced Extended WiFi";
+> -       compatible =3D "sancloud,am335x-boneenhanced",
+> -                    "ti,am335x-bone-black",
+> -                    "ti,am335x-bone",
+> -                    "ti,am33xx";
+> +       compatible =3D "sancloud,am335x-boneenhanced", "ti,am33xx";
+>
+>         wlan_en_reg: fixedregulator@2 {
+>                 compatible =3D "regulator-fixed";
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts b/arc=
+h/arm/boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts
+> index c6c96f6182a8..10488b55689c 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts
+> @@ -12,10 +12,7 @@
+>
+>  / {
+>         model =3D "SanCloud BeagleBone Enhanced Lite";
+> -       compatible =3D "sancloud,am335x-boneenhanced",
+> -                    "ti,am335x-bone-black",
+> -                    "ti,am335x-bone",
+> -                    "ti,am33xx";
+> +       compatible =3D "sancloud,am335x-boneenhanced", "ti,am33xx";
+>  };
+>
+>  &am33xx_pinmux {
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts b/arch/arm=
+/boot/dts/ti/omap/am335x-sancloud-bbe.dts
+> index 32669346cefe..f1bdbf053fb2 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts
+> @@ -13,7 +13,7 @@
+>
+>  / {
+>         model =3D "SanCloud BeagleBone Enhanced";
+> -       compatible =3D "sancloud,am335x-boneenhanced", "ti,am335x-bone-bl=
+ack", "ti,am335x-bone", "ti,am33xx";
+> +       compatible =3D "sancloud,am335x-boneenhanced", "ti,am33xx";
+>  };
+>
+>  &am33xx_pinmux {
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-shc.dts b/arch/arm/boot/dts=
+/ti/omap/am335x-shc.dts
+> index 597482822608..f2393ff3f4d7 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-shc.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-shc.dts
+> @@ -12,7 +12,7 @@
+>
+>  / {
+>         model =3D "Bosch SHC";
+> -       compatible =3D "ti,am335x-shc", "ti,am335x-bone", "ti,am33xx";
+> +       compatible =3D "ti,am335x-shc", "ti,am33xx";
+>
+>         aliases {
+>                 mmcblk0 =3D &mmc1;
+>
+> --
+> 2.43.0
+>
+
+
+--=20
+Learn about me and setup a meeting at
+https://beagleboard.org/about/jkridner - a 501c3 non-profit educating
+around open hardware computing
 
