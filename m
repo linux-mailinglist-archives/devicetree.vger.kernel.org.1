@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-185553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF42CAD85A4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:30:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6796CAD85A2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA50D3B96B6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:29:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D35E166E8B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3C126B76D;
-	Fri, 13 Jun 2025 08:29:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2196F272811;
+	Fri, 13 Jun 2025 08:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nv5VzOI8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K/RR1W6w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9158124DCE8
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 08:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A054A2727E8
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 08:29:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749803357; cv=none; b=FBxnNztDsmlQqd+dCeJ2hmVtO0fGOl6XEEFyP546plHUJHBLrdZtA/8hN8DOrmpdHHy8UoID//zwhnQ4UGQpAS/0g7azte8f7HgqcfdgOYrXSA+x/CYfP0gakgrM810T/HK3kfHSnzcU5ma8NzM7nnPj07sYdtgOLwo/A2kz2io=
+	t=1749803394; cv=none; b=sRMwiFrsEU8zIVyfZraJan4Ilh9g1vR26bUWM78sz7r00jrmXlyJKDNTaXWjVpw+ll3MZxUqxwUpq208/j+Ag+IpHhB3kucB3UwjEzjf0ynXWlHuEZ/AxlQSmzGrbbI4Qohq2Lm9T18YGGeDWqzpHrm7Pz4cy646k6T+4bm6efk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749803357; c=relaxed/simple;
-	bh=Vi0J4BWVo4/yZAh4O85rz7hQS/0Ru9uo6RUM0lQSxIQ=;
+	s=arc-20240116; t=1749803394; c=relaxed/simple;
+	bh=Ndaw6E/1DT8mCCAKumeuIusQOrCN2MR3mwrjjMC25I0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JzKT1b7VSM6nG3euQxOv/X/yr62jDwAzugSbI/3fy/MWzr8za/iyHs5K95O6DNwV8cMzQ6RyCSXAc15zggivcTOM7xKDGIkAPzikyv/w1Ga7E3+tter061qSyZAaF39ZOE7pl/fabQf8Cbl+2AJTnqiQQOl86mik8PkD9YCk5rE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nv5VzOI8; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=HX4Q5IW+M454VIGO0j5EGF8OvehxsTZyz8tgxefGt+WZnf5vCeZHj55zF4AhKCIkUvDiVmGwBPJh8JvGOEGvcjojhPw2BnQMs30fRUDdopyXQBwog/9r07n4Oe28TsHAS+QyRDT3uh/9rvH53+scErbVQHWS4T2p7SerB+lKGe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K/RR1W6w; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-450cfb79177so10984455e9.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 01:29:14 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a510432236so1614697f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 01:29:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749803353; x=1750408153; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1749803390; x=1750408190; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=E7k/xsir1wVQr9r0KZkIIKRxBUWWN+0FYHXZ4USuT9E=;
-        b=Nv5VzOI86ADdr/sMIMD0HY9zRipv6CgwPIVINKOolwPtc+WqB7liDtUvKcuX5+ofFQ
-         AHXa4GG7DpdEv1smNtA44kKAl3m1DhpNLHg2nlWRrrSzlrxoqAvC3fHN1H+wa5ntiHsb
-         +VsqYPcZsF7Fnhb/mAlk8EJkt3GcTHaUWu44YcgBhD4THAZ8ZQz+Tbldn+J82w0RD80m
-         LsFyXs81Udo/Pfq/E8MuIqNLK6fXxKmLxK+My0ZYy4urMI0VJdMhLlccpB3YxGKkROqH
-         ZTlXb4anmMs1/LEaKT7s1DXceVp78tx8OtTV4gh2WyHU6whzu0aphpwJXmAChxJ7Io/H
-         qNHA==
+        bh=2vw2wbUJHDF5FJbkrTPFuUAQyWojwex3GcPQ3V01XJY=;
+        b=K/RR1W6wc7ua4gF1hPXz1JMJNx1efcS69FStc5UtEmq5PYKLMvaPybNxeNUuGj6C/Q
+         u+h1Fm547CaIS7uU6uwFG6NSJDr+HA7YHCcs3kWuWKsNWrHiw3B7HijYCSennnQ6uGx2
+         nKlSMNU9BuS+n1N/YdLZC80YENNsNKqQjVLJ412cL6B/whMSaaCL2yJj1ZmL3e1YOKPg
+         VcqP+r4UXOqCNJf3qg3OU7ShlCrxmkhdOVN8vPrCK7gNASJlS69OLrOeUNGWn+gaB/e4
+         zsH28MD7RbpBa87BcjO0NfjeYA6TTxrCWzAZzXjI32w//heweHrZT9zS4lc0fBNYkO2l
+         cxeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749803353; x=1750408153;
+        d=1e100.net; s=20230601; t=1749803390; x=1750408190;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E7k/xsir1wVQr9r0KZkIIKRxBUWWN+0FYHXZ4USuT9E=;
-        b=Z4Q78rRrdJ7Nuu9q2ALQR/a7HsWJtK1aTA3aESpaM6ruWsc3zsEpy3KbR9Q4JsdS/Q
-         x381EMmyU+Hf67JvMQDHySWapS862S0OCd1Ep8aoPMSw6o3OQbwKg9mRUbjCDRbwc7Lk
-         QvJFF1TStmTNA0+Stu7Oj0t83EcijQnzntjJ9yrGB2dcFhYKZBOYfPIWmrsYyolMha33
-         Snd+6d14Lto+u7fwoKrZB5nO0JyVxW9EHBAcIkcm2aluw3UmErodfGH1XoXEtDzgyUEL
-         kSHrJs4/6JK8vRRSMz+JpHf6EpQ//rEpQNvpQZxPVS9FS3AomT4eRg+r9gWazA6j3H4z
-         uKOg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeMbxkNZneOuNu6d9B71UUCOlFcJ3sZ0Sp/8Jf8zIk0t2fu+YnZ/M4iFdVP1zSPEKwKyVo0iSlh6ba@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyOyAnwYFFbmyWFXQ9zutXUxtheFcUPViUzvYYpbVwcz098EKY
-	xGcEzKYTmNNpEOjde9Q0VM5CIbBcO7QMcSZqMrL1K4bz/UsbTr6XksLouXOD2P3ZCVSE27vjhfk
-	L0SUL9cA=
-X-Gm-Gg: ASbGnctNAcH/C8kCNTyIGmHL7g0nCxVTJ4Rv6Mvt3SLc/Q3fjqNsC+wohJw9CPzSDjK
-	9TKtOhj8lXSDa2febSCIvLIGAvLyTdvlabZuoLEkcszcwVS4thgeh7AxOvWMIu6A0sHWaYcfkHv
-	tZkHytoiKIJgW/usicCfzrnmsbN4AJcZ6d7ph6TxOTfeSNXK7JUf3AxlT0NJVnXffM9XIOYwWQg
-	oZ3UQMWhMLBx6/YDulQE6NjUMbBBfjCb5z3GljSdE851WrkTN3iQP0M2Y93peI1/Mm9VtakVNxI
-	0BixISnvuDFaI2IsdjdQFHaUXTq6zzFJ/xR5iEjzpWC6nWVKR9MCS9zuIEHpwtFVN11TCoqkbdo
-	0kxeptvTmtNaJ/vH+T3zz0xFrsJg=
-X-Google-Smtp-Source: AGHT+IEZOXL3CgHF0n7GTP+G3NCxxNOm9fw0HqRF5HC4682dzPgI/R7gazsLuY96P9WAU0XN4HhRTg==
-X-Received: by 2002:a05:600c:4fd6:b0:450:d367:c385 with SMTP id 5b1f17b1804b1-45334ae6432mr21678585e9.16.1749803352868;
-        Fri, 13 Jun 2025 01:29:12 -0700 (PDT)
+        bh=2vw2wbUJHDF5FJbkrTPFuUAQyWojwex3GcPQ3V01XJY=;
+        b=EG1m2NdDza68PHw8pOw+M8TBMRRyklpkXTNcigW5OfuCJggSou42MLQ7Am5ACJWdLu
+         a1ssIriV9g2W5ZnkCcL39Xv5xJpuHH16IO7xBicmxTXXs0AMWTHFBjqqw7R2Cl8LalZv
+         PW6g0bU0P5GdMo8IyUtXHx0ASrOYJV0jQIkSWO/06alyyEwTz3bybq2lZkarOIv5UXwq
+         DyZ4agO8BVjPGH0RGHDjpQJvWqhoqS2Z1WOBmqS473C16pdrmF8pdR6PBASQGQDWYaou
+         SStg5ZomV2g0QSoU3ysc2NYnuIqAbDCpC+r7A/dlJ6c5AmwOsiihul9sAv+w+AMuNrM7
+         LsRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVJgR7UlHBLu5KG3P6HtYu+v6Gl8LQ9Iiwnf4onmFj6OdJ2nJ9MfPTDPYElfCy/FyswM6jXKh6sB/s@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHq4j3YTDWlKyEweNYJHQ3hbjpzfzCKyDPkHRse/Y8Em/TeSaq
+	iUtB7qBpnKwz9dCTLOO2xuI7EhuXHB/dpXD+aL7OcB3R2n3Ga95mrbuPM9iu+dVON3c=
+X-Gm-Gg: ASbGncty/kJ2T5E/74OKMmLe45ED08avb+d7kxQUfC1OvXToFpogzR56q52nRf5UkQn
+	N0yPDNPkCcnhfzQfBXHUJUoxc8Y1Gr/4bCshwrLib6Xc4hrXC3++i64oqGwugf/R0DEQt3lgllS
+	zXJ9bKRvYFVu1Mx8QexV0iMU0S4bJ0W6m9lA00N4bcXKNGCzP3ryXh+a1rIJwUlh4T8LlAfuA7I
+	k7ZUmGtub7EKI7fU2003BCoAqJUvcFnxv2dvQ8ruZSv/Wijc8ZMdo2GIMPRmyZczzHLKvIi/nxj
+	ZLXpUx7mmlWza8tYbDceKcrqFlpYg8pOD13xiLpr/S4NgX5btK3qp8sthlaKx8GWl7rSbx3Hqxl
+	5WEnNm9XVnTnguNKxjgDvjz07zeg=
+X-Google-Smtp-Source: AGHT+IHi6SlBwjFJOsMDJVRnIHSeQtix9HOeS66GL6NI2gk448DXiXM8fUugtFC2s4okglYnJjCwFQ==
+X-Received: by 2002:a05:6000:178b:b0:3a4:f72a:b18a with SMTP id ffacd0b85a97d-3a5686da23dmr2067256f8f.26.1749803390030;
+        Fri, 13 Jun 2025 01:29:50 -0700 (PDT)
 Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532f2ca228sm42833945e9.13.2025.06.13.01.29.11
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e244392sm44568325e9.22.2025.06.13.01.29.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jun 2025 01:29:12 -0700 (PDT)
-Message-ID: <ed1cb7f2-493d-471e-9fab-ba10462b8977@linaro.org>
-Date: Fri, 13 Jun 2025 09:29:10 +0100
+        Fri, 13 Jun 2025 01:29:49 -0700 (PDT)
+Message-ID: <7f76c2df-24bb-486f-b68c-6ca61e7acc8b@linaro.org>
+Date: Fri, 13 Jun 2025 09:29:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,245 +82,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: Describe Qualcomm SM8650 CAMSS
- IP
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+Subject: Re: [PATCH v4 2/4] media: qcom: camss: Add support for MSM8939
+To: Vincent Knecht <vincent.knecht@mailoo.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
  Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250423221954.1926453-1-vladimir.zapolskiy@linaro.org>
- <Gg_cB8nN6ZFBd8h0pO-uksSnWqFk5ICQdbub8-lPxKxNBGc8puChvSwKU4psL0V1NTjZokEnT5uWM1iK3vfVmw==@protonmail.internalid>
- <20250423221954.1926453-2-vladimir.zapolskiy@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20250602-camss-8x39-vbif-v4-0-32c277d8f9bf@mailoo.org>
+ <20250602-camss-8x39-vbif-v4-2-32c277d8f9bf@mailoo.org>
+ <877a72fa-cdae-4a66-9991-5ea86ef76aac@linaro.org>
+ <e73d676ba1901437d471a2a633e94a07b19a3e05.camel@mailoo.org>
+ <03f54bb4-ddbb-4be8-9f9b-8328fdb98443@linaro.org>
+ <67022a6de185740fa482183f29d574298048d54f.camel@mailoo.org>
 Content-Language: en-US
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250423221954.1926453-2-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <67022a6de185740fa482183f29d574298048d54f.camel@mailoo.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/04/2025 23:19, Vladimir Zapolskiy wrote:
-> Add device tree bindings for Qualcomm SM8650 camera subsystem.
+On 13/06/2025 09:28, Vincent Knecht wrote:
+> Le vendredi 13 juin 2025 à 09:06 +0100, Bryan O'Donoghue a écrit :
+>> On 07/06/2025 22:43, Vincent Knecht wrote:
+>>> Le vendredi 06 juin 2025 à 13:59 +0300, Vladimir Zapolskiy a écrit :
+>>>> Hello Vincent.
+>>>>
+>>>> On 6/2/25 20:27, Vincent Knecht via B4 Relay wrote:
+>>>>> From: Vincent Knecht <vincent.knecht@mailoo.org>
+>>>>>
+>>>>> The camera subsystem for the MSM8939 is the same as MSM8916 except with
+>>>>> 3 CSID instead of 2, and some higher clock rates.
+>>>>>
+>>>>> As a quirk, this SoC needs writing values to 2 VFE VBIF registers
+>>>>> (see downstream msm8939-camera.dtsi vbif-{regs,settings} properties).
+>>>>> This fixes black stripes across sensor and garbage in CSID TPG outputs.
+>>>>>
+>>>>> Add support for the MSM8939 camera subsystem.
+>>>>>
+>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>>>> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+>>>>
+>>>> There was a preceding and partially reviewed changeset published on
+>>>> linux-media [1] before v1 of the MSM8939 platform support in CAMSS,
+>>>> due to a merge conflict this platform changeset should be rebased IMHO.
+>>>>
+>>>> [1] https://lore.kernel.org/all/20250513142353.2572563-4-vladimir.zapolskiy@linaro.org/
+>>>>
+>>>> --
+>>>> Best wishes,
+>>>> Vladimir
+>>>
+>>> Thank you, I'll look into it
+>>>
+>>>
+>>
+>> I think I will take 8939, plus any of the other now 3 SoCs waiting to be
+>> merged with RBs.
+>>
+>> Bindings consistent with the last 10 years can go ahead. Its not
+>> reasonable or in the interests of the community and developers to gate
+>> any further.
+>>
+>> ---
+>> bod
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->   .../bindings/media/qcom,sm8650-camss.yaml     | 394 ++++++++++++++++++
->   1 file changed, 394 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8650-camss.yaml
+> Hi Bryan,
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8650-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8650-camss.yaml
-> new file mode 100644
-> index 000000000000..2a7c243993c4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8650-camss.yaml
-> @@ -0,0 +1,394 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,sm8650-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SM8650 Camera Subsystem (CAMSS)
-> +
-> +maintainers:
-> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> +
-> +description:
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm8650-camss
-> +
-> +  reg:
-> +    maxItems: 17
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csid_lite0
-> +      - const: csid_lite1
-> +      - const: csid_wrapper
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csiphy2
-> +      - const: csiphy3
-> +      - const: csiphy4
-> +      - const: csiphy5
-> +      - const: vfe0
-> +      - const: vfe1
-> +      - const: vfe2
-> +      - const: vfe_lite0
-> +      - const: vfe_lite1
-> +
-> +  clocks:
-> +    maxItems: 36
-> +
-> +  clock-names:
-> +    items:
-> +      - const: camnoc_axi_nrt
-> +      - const: camnoc_axi_rt
-> +      - const: cpas_ahb
-> +      - const: cpas_fast_ahb
-> +      - const: cpas_vfe0
-> +      - const: cpas_vfe1
-> +      - const: cpas_vfe2
-> +      - const: cpas_vfe_lite
-> +      - const: csid
-> +      - const: csiphy0
-> +      - const: csiphy0_timer
-> +      - const: csiphy1
-> +      - const: csiphy1_timer
-> +      - const: csiphy2
-> +      - const: csiphy2_timer
-> +      - const: csiphy3
-> +      - const: csiphy3_timer
-> +      - const: csiphy4
-> +      - const: csiphy4_timer
-> +      - const: csiphy5
-> +      - const: csiphy5_timer
-> +      - const: csiphy_rx
-> +      - const: gcc_ahb_clk
-> +      - const: gcc_axi_hf
-> +      - const: gcc_axi_sf
-> +      - const: qdss_debug_xo
-> +      - const: vfe0
-> +      - const: vfe0_fast_ahb
-> +      - const: vfe1
-> +      - const: vfe1_fast_ahb
-> +      - const: vfe2
-> +      - const: vfe2_fast_ahb
-> +      - const: vfe_lite
-> +      - const: vfe_lite_ahb
-> +      - const: vfe_lite_cphy_rx
-> +      - const: vfe_lite_csid
-> +
-> +  interrupts:
-> +    maxItems: 16
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csid_lite0
-> +      - const: csid_lite1
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csiphy2
-> +      - const: csiphy3
-> +      - const: csiphy4
-> +      - const: csiphy5
-> +      - const: vfe0
-> +      - const: vfe1
-> +      - const: vfe2
-> +      - const: vfe_lite0
-> +      - const: vfe_lite1
-> +
-> +  iommus:
-> +    maxItems: 3
-> +
-> +  interconnects:
-> +    maxItems: 2
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: ahb
-> +      - const: hf_0_mnoc
-> +
-> +  power-domains:
-> +    items:
-> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: IFE2 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: ife0
-> +      - const: ife1
-> +      - const: ife2
-> +      - const: top
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports.
-> +
-> +    patternProperties:
-> +      "^port@[0-5]$":
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +
-> +        description:
-> +          Input port for receiving CSI data from a CSIPHY.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              bus-type:
-> +                enum:
-> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
-> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +  vdda-csi01-0p9-supply:
-> +    description:
-> +      Phandle to a 0.9V regulator supply to CSIPHY0 and CSIPHY1 IP blocks.
-> +
-> +  vdda-csi24-0p9-supply:
-> +    description:
-> +      Phandle to a 0.9V regulator supply to CSIPHY2 and CSIPHY4 IP blocks.
-> +
-> +  vdda-csi35-0p9-supply:
-> +    description:
-> +      Phandle to a 0.9V regulator supply to CSIPHY3 and CSIPHY5 IP blocks.
-> +
-> +  vdda-csi01-1p2-supply:
-> +    description:
-> +      Phandle to a 1.2V regulator supply to CSIPHY0 and CSIPHY1 IP blocks.
-> +
-> +  vdda-csi24-1p2-supply:
-> +    description:
-> +      Phandle to a 1.2V regulator supply to CSIPHY2 and CSIPHY4 IP blocks.
-> +
-> +  vdda-csi35-1p2-supply:
-> +    description:
-> +      Phandle to a 1.2V regulator supply to CSIPHY3 and CSIPHY5 IP blocks.
-I think we should just do this
+> I've locally made the requested changes for bindings
+> (ordering, vdda voltage, style, clock-lanes removal),
+> just not gotten around to rebase on Vladimir series.
+> 
+> So I can still send a new version with just these changes today.
+> 
+> 
+> 
 
-+  vdd-csiphy-0p8-supply:
-+    description:
-+      Phandle to a 0.8V regulator supply to a PHY.
-+
-+  vdd-csiphy-1p2-supply:
-+    description:
-+      Phandle to 1.8V regulator supply to a PHY.
-
-and loop back to add multiple rails later.
-
-Please consider doing a V3 of this along these lines so we can unblock 
-this submission.
+That sounds fine.
 
 ---
 bod
