@@ -1,164 +1,370 @@
-Return-Path: <devicetree+bounces-185692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEA1FAD8CCC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:08:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB91AD8CD1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:09:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A98017194F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:08:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 291983A9423
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7312F157E6B;
-	Fri, 13 Jun 2025 13:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC7A7263F;
+	Fri, 13 Jun 2025 13:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnNIZcbA"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="iZXbgTQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E213595A;
-	Fri, 13 Jun 2025 13:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749820083; cv=none; b=eLmVIR4ZkkMel0xCATha1ErWdUOBMc74lOhaGfMrv/NMx4AY4p+cimEHffIXX44kfdAn2do6vSEy/dMj0o1LcgRgYZz+Rlz0byVydAJE7RGm7rmK8lDI3cRbu1WcHj315/fhR48Wzoc9Agot5khpwobqG9jKc4WwFtMedmS3gck=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749820083; c=relaxed/simple;
-	bh=DihGhdCE4zO5qqe2os0aYgPJEWq4j16e0Qs1aql7xj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gtTBMoFLjyti7EaBqw5etTjjBoNeJor3aT5BFWPcmnlMiDORw+qpNhyImsB8wOT/Op77O6crmd6+pM3lry2HKHRZu7f96GaxMiUY6AbBU5Ww+C3Obfj6OsoCl2BxPPnHzUzeszB+28+k45I9tn9dsBGe/MGIvsn+vfjPYHHkkJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnNIZcbA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3126C4CEF2;
-	Fri, 13 Jun 2025 13:07:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749820082;
-	bh=DihGhdCE4zO5qqe2os0aYgPJEWq4j16e0Qs1aql7xj4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FnNIZcbAhoaT8mPciMVlAPTKsSwO6tdKBW1I6PWOSQAX3Z5Y7avHkXrBPpO2SUzJq
-	 QnTS47br4O2H9FatyP5aQHQ2yfGRx3xfiStGNZyf3g4f0Pfg0mYxliZxSpxSZ9DyFV
-	 tMJtJ37BoVTXOuM80PjiH3FesrZXTtNfwaNbn5vFa0HHluO04Vzp5VLMhjaYr7GMKq
-	 yv7ZHqesLUW/N2fqADDP9JLDGFZMDWEnAGSMVD36kMbayEDYzQzIETMEy3v/7hN8L4
-	 ZaALA71at6ahDxAHAH2QjhkgdMcXvu9DD5KiZzZ6GssvpFMlWFUiAQvo7YqN5Fq99r
-	 qjiyYNznE2Bxg==
-Date: Fri, 13 Jun 2025 14:07:57 +0100
-From: Lee Jones <lee@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v4 13/20] mfd: adp5585: support reset and unlock events
-Message-ID: <20250613130757.GQ381401@google.com>
-References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
- <20250521-dev-adp5589-fw-v4-13-f2c988d7a7a0@analog.com>
- <20250612145542.GK381401@google.com>
- <1fafdee7c86efdb4aebe3b1c4391f48807aa0aef.camel@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CDEA29;
+	Fri, 13 Jun 2025 13:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749820164; cv=pass; b=ksOS9Ve+Br2aQfp5esNTAOBPxVneqLhDqx52SIlOOl7Ks1m43n7SdHX43eyvOW33HQkuN/jT2fGwxb/G/tNqDrAIuZJPk33XI6OmDFeL7rXuNJIEr75tjVeL45SxDgdyKWjHvvtpYjTxDjKS9HvWnimu8WPczTkWlj8zbDpicbc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749820164; c=relaxed/simple;
+	bh=JNzwSv5wmEqpfiUCPmLTakXGP2hmjFRUHoTgtkcCEQE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uh+z5B+rKWpMNWvs5MClLNnlvQ81I1jHAEqN33Z7CEdulsRak+qAVAxPYO5Cnsp4FzF+SsGtx4AOqvGBhkfqJI0urlI3iB9rz6iW2AqhkBDK+/JZF5rQJ7T013ZuhM7vHsfztWYcH9nDtnMS4axdI3sxDCBwi/Fp4U0VaaIeUPM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=iZXbgTQ2; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1749820130; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=l9dzbF3zQflwc7yb+7biovokPvXD3AOtCCBg+iBkNSjS8gaSXgLiDdw5aTKKELaTBtikDAvAteFfaU0J33nI3UuwR3v4zPE3cvsBFG3tvDXDRW0sxSUedBhAPIBnwCK5b8inskFpcp3OqYQ+WThMdHz1mKN2Mw8fBAGsDxSAt04=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1749820130; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=K9bhrRW+s12WtdaVP6Yi4iBFDQwpPFW/VNIJ084o8RM=; 
+	b=GIwKskccuJOMSPJp2xnn4AGCPMy0TtPoMh1U+LiqS0Y4YLdTR5QOaqHM23gPKWj47lmLoYOMOfa3NZ9FA7hMsrrSRanfDnWzFZQhaYkF0Klvwi/pzdvHLn0hognmYq+vZ6pPJFcGvOvlRWUtJ3xlCdxkSxHK7C0CxTGVOHF+BPc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749820130;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=K9bhrRW+s12WtdaVP6Yi4iBFDQwpPFW/VNIJ084o8RM=;
+	b=iZXbgTQ2EqQYhrsx8UX0Fx4Hrd0EnH8jyDWxuF8nV2kQdKs/GLSYQfDMqRAusWN3
+	zX5C2pP0Ivu0dqnJAwy4lACa2W/IStoAv/iOrxs8sbZAz3SK0rWAYIoInmJ1aqZ7nQU
+	9Zpvf21oRAM7FQwp6kARfJarCm0yZXd3zhDtc7Bs=
+Received: by mx.zohomail.com with SMTPS id 1749820128052943.1985221609309;
+	Fri, 13 Jun 2025 06:08:48 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Alexey Charkov <alchark@gmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v4 1/4] phy: rockchip: inno-usb2: add soft vbusvalid control
+Date: Fri, 13 Jun 2025 15:08:42 +0200
+Message-ID: <3284807.VLH7GnMWUR@workhorse>
+In-Reply-To: <5c531d53-3573-4c25-a32b-79dfd5abd4cd@linaro.org>
+References:
+ <20250610-rk3576-sige5-usb-v4-0-7e7f779619c1@collabora.com>
+ <20250610-rk3576-sige5-usb-v4-1-7e7f779619c1@collabora.com>
+ <5c531d53-3573-4c25-a32b-79dfd5abd4cd@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1fafdee7c86efdb4aebe3b1c4391f48807aa0aef.camel@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, 13 Jun 2025, Nuno Sá wrote:
+Hi Neil,
 
-> On Thu, 2025-06-12 at 15:55 +0100, Lee Jones wrote:
-> > On Wed, 21 May 2025, Nuno Sá via B4 Relay wrote:
+thank you for the review! Responses are inline.
+
+On Friday, 13 June 2025 11:02:40 Central European Summer Time neil.armstrong@linaro.org wrote:
+> On 10/06/2025 16:07, Nicolas Frattaroli wrote:
+> > With USB type C connectors, the vbus detect pin of the OTG controller
+> > attached to it is pulled high by a USB Type C controller chip such as
+> > the fusb302. This means USB enumeration on Type-C ports never works, as
+> > the vbus is always seen as high.
 > > 
-> > > From: Nuno Sá <nuno.sa@analog.com>
-> > > 
-> > > The ADP558x family of devices can be programmed to respond to some
-> > > especial events, In case of the unlock events, one can lock the keypad
-> > > and use KEYS or GPIs events to unlock it. For the reset events, one can
-> > > again use a combinations of GPIs/KEYs in order to generate an event that
-> > > will trigger the device to generate an output reset pulse.
-> > > 
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/mfd/adp5585.c       | 270
-> > > +++++++++++++++++++++++++++++++++++++++++++-
-> > >  include/linux/mfd/adp5585.h |  39 +++++++
-> > >  2 files changed, 308 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > index
-> > > dcc09c898dd7990b39e21cb2324fa66ae171a802..6737d622a7ed9f280c439399f3709ca816
-> > > 2dee01 100644
-> > > --- a/drivers/mfd/adp5585.c
-> > > +++ b/drivers/mfd/adp5585.c
-> > > @@ -170,6 +170,9 @@ static const struct adp5585_regs adp5585_regs = {
-> > >  	.int_en = ADP5585_INT_EN,
-> > >  	.gen_cfg = ADP5585_GENERAL_CFG,
-> > >  	.poll_ptime_cfg = ADP5585_POLL_PTIME_CFG,
-> > > +	.reset_cfg = ADP5585_RESET_CFG,
-> > > +	.reset1_event_a = ADP5585_RESET1_EVENT_A,
-> > > +	.reset2_event_a = ADP5585_RESET2_EVENT_A,
-> > >  };
-> > >  
-> > >  static const struct adp5585_regs adp5589_regs = {
-> > > @@ -177,8 +180,50 @@ static const struct adp5585_regs adp5589_regs = {
-> > >  	.int_en = ADP5589_INT_EN,
-> > >  	.gen_cfg = ADP5589_GENERAL_CFG,
-> > >  	.poll_ptime_cfg = ADP5589_POLL_PTIME_CFG,
-> > > +	.reset_cfg = ADP5589_RESET_CFG,
-> > > +	.reset1_event_a = ADP5589_RESET1_EVENT_A,
-> > > +	.reset2_event_a = ADP5589_RESET2_EVENT_A,
-> > >  };
-> > >  
-> > > +static int adp5585_validate_event(const struct adp5585_dev *adp5585,
-> > > unsigned int ev)
-> > > +{
-> > > +	if (adp5585->has_pin6) {
-> > > +		if (ev >= ADP5585_ROW5_KEY_EVENT_START && ev <=
-> > > ADP5585_ROW5_KEY_EVENT_END)
-> > > +			return 0;
-> > > +		if (ev >= ADP5585_GPI_EVENT_START && ev <=
-> > > ADP5585_GPI_EVENT_END)
-> > > +			return 0;
-> > > +
-> > > +		return dev_err_probe(adp5585->dev, -EINVAL,
-> > > +				     "Invalid unlock/reset event(%u) for
-> > > this device\n", ev);
-> > > +	}
-> > > +
-> > > +	if (ev >= ADP5585_KEY_EVENT_START && ev <= ADP5585_KEY_EVENT_END)
-> > > +		return 0;
-> > > +	if (ev >= ADP5585_GPI_EVENT_START && ev <= ADP5585_GPI_EVENT_END) {
-> > > +		/* if it's GPI6 */
+> > Rockchip added some GRF register flags to deal with this situation. The
+> > RK3576 TRM calls these "soft_vbusvalid_bvalid" (con0 bit index 15) and
+> > "soft_vbusvalid_bvalid_sel" (con0 bit index 14).
 > > 
-> > You have to tell us why this is a problem.
+> > Downstream introduces a new vendor property which tells the USB 2 PHY
+> > that it's connected to a type C port, but we can do better. Since in
+> > such an arrangement, we'll have an OF graph connection from the USB
+> > controller to the USB connector anyway, we can walk said OF graph and
+> > check the connector's compatible to determine this without adding any
+> > further vendor properties.
 > > 
-> > Nit: Comments should start with an upper case char.
+> > Do keep in mind that the usbdp PHY driver seemingly fiddles with these
+> > register fields as well, but what it does doesn't appear to be enough
+> > for us to get working USB enumeration, presumably because the whole
+> > vbus_attach logic needs to be adjusted as well either way.
+> > 
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > ---
+> >   drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 113 +++++++++++++++++++++++++-
+> >   1 file changed, 109 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> > index b0f23690ec3002202c0f33a6988f5509622fa10e..4f89bd6568cd3a7a1d2c10e9cddda9f3bd997ed0 100644
+> > --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> > +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> > @@ -17,6 +17,7 @@
+> >   #include <linux/module.h>
+> >   #include <linux/mutex.h>
+> >   #include <linux/of.h>
+> > +#include <linux/of_graph.h>
+> >   #include <linux/of_irq.h>
+> >   #include <linux/phy/phy.h>
+> >   #include <linux/platform_device.h>
+> > @@ -114,6 +115,8 @@ struct rockchip_chg_det_reg {
+> >   /**
+> >    * struct rockchip_usb2phy_port_cfg - usb-phy port configuration.
+> >    * @phy_sus: phy suspend register.
+> > + * @svbus_en: soft vbus bvalid enable register.
+> > + * @svbus_sel: soft vbus bvalid selection register.
+> >    * @bvalid_det_en: vbus valid rise detection enable register.
+> >    * @bvalid_det_st: vbus valid rise detection status register.
+> >    * @bvalid_det_clr: vbus valid rise detection clear register.
+> > @@ -140,6 +143,8 @@ struct rockchip_chg_det_reg {
+> >    */
+> >   struct rockchip_usb2phy_port_cfg {
+> >   	struct usb2phy_reg	phy_sus;
+> > +	struct usb2phy_reg	svbus_en;
+> > +	struct usb2phy_reg	svbus_sel;
+> >   	struct usb2phy_reg	bvalid_det_en;
+> >   	struct usb2phy_reg	bvalid_det_st;
+> >   	struct usb2phy_reg	bvalid_det_clr;
+> > @@ -203,6 +208,7 @@ struct rockchip_usb2phy_cfg {
+> >    * @event_nb: hold event notification callback.
+> >    * @state: define OTG enumeration states before device reset.
+> >    * @mode: the dr_mode of the controller.
+> > + * @typec_vbus_det: whether to apply Type C logic to OTG vbus detection.
+> >    */
+> >   struct rockchip_usb2phy_port {
+> >   	struct phy	*phy;
+> > @@ -222,6 +228,7 @@ struct rockchip_usb2phy_port {
+> >   	struct notifier_block	event_nb;
+> >   	enum usb_otg_state	state;
+> >   	enum usb_dr_mode	mode;
+> > +	bool typec_vbus_det;
+> >   };
+> >   
+> >   /**
+> > @@ -495,6 +502,13 @@ static int rockchip_usb2phy_init(struct phy *phy)
+> >   	mutex_lock(&rport->mutex);
+> >   
+> >   	if (rport->port_id == USB2PHY_PORT_OTG) {
+> > +		if (rport->typec_vbus_det) {
+> > +			if (rport->port_cfg->svbus_en.enable &&
+> > +					rport->port_cfg->svbus_sel.enable) {
+> > +				property_enable(rphy->grf, &rport->port_cfg->svbus_en, true);
+> > +				property_enable(rphy->grf, &rport->port_cfg->svbus_sel, true);
+> > +			}
+> > +		}
+> >   		if (rport->mode != USB_DR_MODE_HOST &&
+> >   		    rport->mode != USB_DR_MODE_UNKNOWN) {
+> >   			/* clear bvalid status and enable bvalid detect irq */
+> > @@ -535,8 +549,7 @@ static int rockchip_usb2phy_init(struct phy *phy)
+> >   			if (ret)
+> >   				goto out;
+> >   
+> > -			schedule_delayed_work(&rport->otg_sm_work,
+> > -					      OTG_SCHEDULE_DELAY * 3);
+> > +			schedule_delayed_work(&rport->otg_sm_work, 0);
+> >   		} else {
+> >   			/* If OTG works in host only mode, do nothing. */
+> >   			dev_dbg(&rport->phy->dev, "mode %d\n", rport->mode);
+> > @@ -666,8 +679,17 @@ static void rockchip_usb2phy_otg_sm_work(struct work_struct *work)
+> >   	unsigned long delay;
+> >   	bool vbus_attach, sch_work, notify_charger;
+> >   
+> > -	vbus_attach = property_enabled(rphy->grf,
+> > -				       &rport->port_cfg->utmi_bvalid);
+> > +	if (rport->port_cfg->svbus_en.enable && rport->typec_vbus_det) {
+> > +		if (property_enabled(rphy->grf, &rport->port_cfg->svbus_en) &&
+> > +		    property_enabled(rphy->grf, &rport->port_cfg->svbus_sel)) {
 > 
-> The error message kind of states the problem :). But I'll put it in the comment.
+> Why do you check the registers since you always enable those bits on those conditions:
+> 	rport->port_id == USB2PHY_PORT_OTG
+> 	rport->typec_vbus_det
+> 	rport->port_cfg->svbus_en.enable
+> 	rport->typec_vbus_det
+> Can't you us them instead ?
 
-I don't think it does.  Remember, people reading this do not know the
-H/W as well as you do.  How is GPI6 even related to R5?
+That is an excellent question. I think I was imitating downstream code
+here without thinking too much. This whole construct seems a little fishy,
+as these GRF registers are then never cleared again if it's not in OTG
+mode anymore. I'll look into it further, including cross-checking what
+those bits actually do based on the TRMs of various SoCs that use this
+hardware.
 
-> - Nuno Sá
+> 
+> Neil
+> 
+> > +			vbus_attach = true;
+> > +		} else {
+> > +			vbus_attach = false;
+> > +		}
+> > +	} else {
+> > +		vbus_attach = property_enabled(rphy->grf,
+> > +					       &rport->port_cfg->utmi_bvalid);
+> > +	}
+> >   
+> >   	sch_work = false;
+> >   	notify_charger = false;
+> > @@ -1276,6 +1298,83 @@ static int rockchip_otg_event(struct notifier_block *nb,
+> >   	return NOTIFY_DONE;
+> >   }
+> >   
+> > +static const char *const rockchip_usb2phy_typec_cons[] = {
+> > +	"usb-c-connector",
+> > +	NULL,
+> > +};
+> > +
+> > +static struct device_node *rockchip_usb2phy_to_controller(struct rockchip_usb2phy *rphy)
+> > +{
+> > +	struct device_node *np;
+> > +	struct device_node *parent;
+> > +
+> > +	for_each_node_with_property(np, "phys") {
+> > +		struct of_phandle_iterator it;
+> > +		int ret;
+> > +
+> > +		of_for_each_phandle(&it, ret, np, "phys", NULL, 0) {
+> > +			parent = of_get_parent(it.node);
+> > +			if (it.node != rphy->dev->of_node && rphy->dev->of_node != parent) {
+> > +				if (parent)
+> > +					of_node_put(parent);
+> > +				continue;
+> > +			}
+> > +
+> > +			/*
+> > +			 * Either the PHY phandle we're iterating or its parent
+> > +			 * matched, we don't care about which out of the two in
+> > +			 * particular as we just need to know it's the right
+> > +			 * USB controller for this PHY.
+> > +			 */
+> > +			of_node_put(it.node);
+> > +			of_node_put(parent);
+> > +			return np;
+> > +		}
+> > +	}
+> > +
+> > +	return NULL;
+> > +}
+> > +
+> > +static bool rockchip_usb2phy_otg_is_type_c(struct rockchip_usb2phy *rphy)
+> > +{
+> > +	struct device_node *controller = rockchip_usb2phy_to_controller(rphy);
+> > +	struct device_node *ports;
+> > +	struct device_node *ep = NULL;
+> > +	struct device_node *parent;
+> > +
+> > +	if (!controller)
+> > +		return false;
+> > +
+> > +	ports = of_get_child_by_name(controller, "ports");
+> > +	if (ports) {
+> > +		of_node_put(controller);
+> > +		controller = ports;
+> > +	}
+> > +
+> > +	for_each_of_graph_port(controller, port) {
+> > +		ep = of_get_child_by_name(port, "endpoint");
+> > +		if (!ep)
+> > +			continue;
+> > +
+> > +		parent = of_graph_get_remote_port_parent(ep);
+> > +		of_node_put(ep);
+> > +		if (!parent)
+> > +			continue;
+> > +
+> > +		if (of_device_compatible_match(parent, rockchip_usb2phy_typec_cons)) {
+> > +			of_node_put(parent);
+> > +			of_node_put(controller);
+> > +			return true;
+> > +		}
+> > +
+> > +		of_node_put(parent);
+> > +	}
+> > +
+> > +	of_node_put(controller);
+> > +
+> > +	return false;
+> > +}
+> 
+> This DT parsing is quite complex, but seems it's the only way to detect such features
+> without bindings change, not sure it's really beneficial.
+
+Yeah, v1 abused the existing connector binding by having the HS graph
+port point to the PHY instead, and Rob wasn't happy with that. He
+suggested this can actually be done just by walking the graph.
+
+FWIW, even if the PHY knew its controller, that would still only get rid
+of rockchip_usb2phy_to_controller, and leave the graph walking to get to
+the connector in place.
+
+So a bindings change would only be of measurable benefit if it added a
+phandle property in USB PHYs to the connector or something, and I'm not
+sure if that's the right solution either. It'd once again shift the
+burden of remembering to let PHYs know about their connectors onto board
+DTs, which forget such things all the time.
+
+The benefit of this solution is that board DTs don't need to think about
+this at all, and the search is unambiguous, as we really don't lack any
+information, we just lack a direct view of that information in the node
+our driver receives.
+
+> 
+> > +
+> >   static int rockchip_usb2phy_otg_port_init(struct rockchip_usb2phy *rphy,
+> >   					  struct rockchip_usb2phy_port *rport,
+> >   					  struct device_node *child_np)
+> > @@ -1297,6 +1396,8 @@ static int rockchip_usb2phy_otg_port_init(struct rockchip_usb2phy *rphy,
+> >   
+> >   	mutex_init(&rport->mutex);
+> >   
+> > +	rport->typec_vbus_det = rockchip_usb2phy_otg_is_type_c(rphy);
+> > +
+> >   	rport->mode = of_usb_get_dr_mode_by_phy(child_np, -1);
+> >   	if (rport->mode == USB_DR_MODE_HOST ||
+> >   	    rport->mode == USB_DR_MODE_UNKNOWN) {
+> > @@ -2050,6 +2151,8 @@ static const struct rockchip_usb2phy_cfg rk3576_phy_cfgs[] = {
+> >   		.port_cfgs	= {
+> >   			[USB2PHY_PORT_OTG] = {
+> >   				.phy_sus	= { 0x0000, 8, 0, 0, 0x1d1 },
+> > +				.svbus_en	= { 0x0000, 15, 15, 0, 1 },
+> > +				.svbus_sel	= { 0x0000, 14, 14, 0, 1 },
+> >   				.bvalid_det_en	= { 0x00c0, 1, 1, 0, 1 },
+> >   				.bvalid_det_st	= { 0x00c4, 1, 1, 0, 1 },
+> >   				.bvalid_det_clr = { 0x00c8, 1, 1, 0, 1 },
+> > @@ -2087,6 +2190,8 @@ static const struct rockchip_usb2phy_cfg rk3576_phy_cfgs[] = {
+> >   		.port_cfgs	= {
+> >   			[USB2PHY_PORT_OTG] = {
+> >   				.phy_sus	= { 0x2000, 8, 0, 0, 0x1d1 },
+> > +				.svbus_en	= { 0x2000, 15, 15, 0, 1 },
+> > +				.svbus_sel	= { 0x2000, 14, 14, 0, 1 },
+> >   				.bvalid_det_en	= { 0x20c0, 1, 1, 0, 1 },
+> >   				.bvalid_det_st	= { 0x20c4, 1, 1, 0, 1 },
+> >   				.bvalid_det_clr = { 0x20c8, 1, 1, 0, 1 },
 > > 
-> > > +		if (ev == (ADP5585_GPI_EVENT_START + 5))
-> > > +			return dev_err_probe(adp5585->dev, -EINVAL,
-> > > +					     "Invalid unlock/reset
-> > > event(%u). R5 not available\n",
-> > > +					     ev);
-> > > +		return 0;
-> > > +	}
+> 
+> Thanks,
+> Neil
+> 
 
-[...]
+Kind regards,
+Nicolas Frattaroli
 
--- 
-Lee Jones [李琼斯]
+
+
 
