@@ -1,128 +1,209 @@
-Return-Path: <devicetree+bounces-185798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1557DAD921C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 17:57:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1644AD9246
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:00:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C61AD188CE6F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:55:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 922003AF767
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78D91FFC5E;
-	Fri, 13 Jun 2025 15:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gFPoa516"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9231F875A;
+	Fri, 13 Jun 2025 15:56:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714991FF1C4;
-	Fri, 13 Jun 2025 15:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D631F78E0;
+	Fri, 13 Jun 2025 15:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749830100; cv=none; b=A2VCQPICeoj9kH0MtLNy0UZpPNeE4plJU3WbtVtjZF6fPcHpGE4czzhcBQNCLr0slvuodpAhM91JPa3SYEAGnkW3oiYnmkwNh1Ytu2p0WvJlG56fx+psSNcayX/bEJfSlRFnXjTiw+BVIkgQc5r1kAhbZ8xRRarP5yxtymNXMKQ=
+	t=1749830217; cv=none; b=XANvaiE35KOUFH74fsw9ANlaFwUKoDyw7tKUijaLIBz1bGIszlgAOy/GwcbYHi0grsFea/2jJqTa8tKYJEV37BMxPA1GFsEoxzKvlGR1fRRRLNx4c/PCnCNmq91Zqs9gby2cs/kC3OBRY5XfxS1HoVRHT97pmQodaSXVYEheEwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749830100; c=relaxed/simple;
-	bh=txoIyDrG2vubdoOdTiTdmcJQb8y7qy5caM50Zd8G8to=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=civ7wAVSSRrQNNQIKVpUL+/GP7hbtxYZ2WfH8rTPjH2gO2Fs1pitLNRMCNsmm4HEsjM0eeN/aOXaatVlD7GfE7touHrF0cidM7uNM1VMeXA6QvaSx8m7znWkRyyQQtxGmIzD5vD3x+chyzoV8zdpIRYJ7oXE1hYDFK+Ev1Ucwko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gFPoa516; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42EBC4CEED;
-	Fri, 13 Jun 2025 15:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749830099;
-	bh=txoIyDrG2vubdoOdTiTdmcJQb8y7qy5caM50Zd8G8to=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=gFPoa516Ela1DPXpH0f6/CS5GkNUbZK3nAYpFk07eqEgd3MKAhYJpF0s0lR7On5mh
-	 mTRs3hEkjNSmkoYXNNxat0V6bY1VSuL9RUaPNvJuo+3M4NxXHk18J9uIsBuF7BfZSP
-	 LT2mpCyuW/nNNqy98L7h2qv/SXJaaEYTKmk9KlAx8hO5gtnc+f8HFC2H9FWk4DGBfW
-	 6JdxNAw5ZVa4sVUYSYyFngUyMNeio0PIqep0t3E5XJuUwayNZIlc1Um9AsPD8fsgtD
-	 LX9RVvGngHT5S7OMOIWzgnwkmg0oDRjT3tctQgL7cXq2tYr8yGsydjYdO2oCDGOE4x
-	 7e6vKtWFkarMA==
-Date: Fri, 13 Jun 2025 10:54:58 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	vkoul@kernel.org, kishon@kernel.org, linus.walleij@linaro.org,
-	p.zabel@pengutronix.de, linux-aspeed@lists.ozlabs.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org, elbadrym@google.com, romlem@google.com,
-	anhphan@google.com, wak@google.com, yuxiaozhang@google.com,
-	BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 5/7] ARM: dts: aspeed-g6: Add PCIe RC node
-Message-ID: <20250613155458.GA962010@bhelgaas>
+	s=arc-20240116; t=1749830217; c=relaxed/simple;
+	bh=Ff/dPe0/zvWzrk9xeulZmVftgbLko5KAXoPZKXcRMS0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fLAnH54NDXVwomZCAzSWrWXYgi6KjW2QOZ2b57zivxzFrWsxnAN6P3rgL5kKcOJqeTUs1GmGl4NFJTKKCfCUZCLjToY3jSjU8h7CUL68ox84bgMEHmAdYmtXDVH7SJjFRrkQ38mW7z57k1v8OphErZ2VzUjfhCLB4X7DKOQXhFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4e7eff460b8so132422137.2;
+        Fri, 13 Jun 2025 08:56:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749830213; x=1750435013;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4XlXJ073zlgCJSvkXiWwOYU53vXHVFN5keh8mZoohvM=;
+        b=BOOANyrSmu0Zu7hytGysQOZynrEidR2HWFB1hsWOv/AWHmrMa1Db4nMOo6IyeX9m5Z
+         VgkQw6MxHiU1EssDtv71mUb4E61qykoEpap6cIIITTDWjkILRkd6jnadBY9Lhifx4mWu
+         fWm7FfGzMGm41rA8zSap7XZxd7PvW/Atl/q4TNsVoGtvNPpu5R33NX5KOZ0q3fpNWCNY
+         GNj8k5GbrYoViAc53cGNWMYpaEh3Ef1Jl0/+X3vBPBV2dqps87aoZMp5ZkECfd1SXEDK
+         5C1f0FeDzuD+Y+7+hlBTGgM3tGdwfEgPDM7I4YhPuROE+eCLY1HBtWh0Z8HBYjDvb/OB
+         B5WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAk6EPrFjt8IQJYsl8FB/o7myVVOEpX7Zhl8Q2cnGj1Y+YFLCaWxEcdCJV5+CVqexZNITWs6gj6Pqaa7n3@vger.kernel.org, AJvYcCVGYlXlB2tZUnJRhajIEiCbID8eP/RDhJmkvs8ScC2o2RC+xllkFB6EzVPuWkaRCZZOSUBpba0JFdBd@vger.kernel.org, AJvYcCVvSn29lhyP8EfZIriYVWqAkdV+YtaKRiK9Pxn/0QSgj2mSSiBtYtw5j4OBYmiUsdHMfQBIKWoPGJdn@vger.kernel.org, AJvYcCW6XQd4two94zy8NNDMY1kspyX+KimdCW0Czkg3lB4rNsdfxoBcBm7H0/uNHLevTyXkhM228xuG1eBDohzwNO+57R0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqlbFqk27v+MEyrkTvll8rdLLmrWXUYv0piU8LgDvUXUiZO9/j
+	5EDG/jVQn9iLs78WgN6/STMjykk0Ho8cAh4vxmNOfCsUzZ66SENWNezQ6R6VyN9n
+X-Gm-Gg: ASbGncutuzPfZm4HXVERW6WVDHrcZ6vxrt57djmPCUDwq2WTFVj8U7qWyJu5lKvvKwK
+	SyWOQbJ/nolyF7wDa34KTsVFhLBf/0TJ3et8HxhNo9C91C4Nzp+L2SzBf7FYnehsVBRRND9eGoS
+	I9+YRRvAuOkvnt1mlTFO2UGqepB/i4CRR3DPq+/BDjjgLpyFJIXgHDb3IZrZ6e8+9oba9x8DOBy
+	GbomMnG4/RoyV3aNYhxjWODwDbPhIis11Ea959Aao7jK+StNX9DNas504VaS1Jk6i/AMu1bSSJz
+	0PnIS/kmBl00vjnPyaxbbgxGKAHRn+kyuqZvukqGzBVeYEamj9zlGmQdeilOjG4Hx/mwgEIyIzh
+	PvnJIhclGEgvgcVBtHBfRPBxt
+X-Google-Smtp-Source: AGHT+IEbRlT0EZTld8vtI2CUwfirFSZUSDQJUBfCyE6HL76dTp2pgSj2eXvcdp4J27Oyu2Vowr5k+A==
+X-Received: by 2002:a05:6102:54a3:b0:4e7:cdaa:ed60 with SMTP id ada2fe7eead31-4e7f610dc44mr189647137.6.1749830212778;
+        Fri, 13 Jun 2025 08:56:52 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87f0fa11ab8sm271506241.13.2025.06.13.08.56.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jun 2025 08:56:52 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4e7f38440fcso78545137.1;
+        Fri, 13 Jun 2025 08:56:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW2NGiGlJvE7Dpz99EatmkpGYxs6QUyi2mbonFfyPtna24WeydtjapfV5Bo2xv6pUdS5uJ6XZjrbfVu@vger.kernel.org, AJvYcCWujii3I2+UZxdX7fxzaCjGRUgqJznHmHSd1/or8PAUOTOe59182GA7iNSXi5LUyNGumYJApnf7sz35YdEABNkF1Ts=@vger.kernel.org, AJvYcCWwdOky0uXot5tTJbjIR2uhDIkW8A800qxW4Jt71sTwnFQOCQFi4rL4bHgXusEw6UKB/iOAMMGRkW/qIvRo@vger.kernel.org, AJvYcCXLcei/ezZM+s2FAedOcldJe9BjRmV3jCy6wlhWIy/EPp6TnGIgfqLMpXD/6PN3h/JN4aFBWSCIlIb/@vger.kernel.org
+X-Received: by 2002:a05:6102:d93:b0:4e1:52fa:748d with SMTP id
+ ada2fe7eead31-4e7f61dd543mr147284137.15.1749830211882; Fri, 13 Jun 2025
+ 08:56:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250613033001.3153637-6-jacky_chou@aspeedtech.com>
+References: <20250609232253.514220-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWoWqrMKgNSYN_NDOtROD-SAq7ProhREPJTEBTOPCeH=A@mail.gmail.com> <CA+V-a8sBhF-FwV0BXCxpHkuhdAg5YcwDsWPFRPSV_BdmNpLWYA@mail.gmail.com>
+In-Reply-To: <CA+V-a8sBhF-FwV0BXCxpHkuhdAg5YcwDsWPFRPSV_BdmNpLWYA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 13 Jun 2025 17:56:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUBVuHf91r_O6w9Ez0ixF_DE+h8_xHYSkiGeNyBPCkTyg@mail.gmail.com>
+X-Gm-Features: AX0GCFvpcxNhFEcSLddXXsBx8E4K3kmXoVbDymGrFdqESl4Zx-GJ_1Z3U5ra0WE
+Message-ID: <CAMuHMdUBVuHf91r_O6w9Ez0ixF_DE+h8_xHYSkiGeNyBPCkTyg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document RZ/T2H and
+ RZ/N2H support
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 13, 2025 at 11:29:59AM +0800, Jacky Chou wrote:
-> The AST2600 has one PCIe RC, and add the relative configure regmap.
+Hi Prabhakar,
 
-> +			pcie0: pcie@1e7700c0 {
-> +				compatible = "aspeed,ast2600-pcie";
-> +				device_type = "pci";
-> +				reg = <0x1e7700c0 0x40>;
-> +				linux,pci-domain = <0>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
-> +				bus-range = <0x80 0xff>;
-> +
-> +				ranges = <0x01000000 0x0 0x00018000 0x00018000 0x0 0x00008000
-> +					  0x02000000 0x0 0x70000000 0x70000000 0x0 0x10000000>;
-> +
-> +				status = "disabled";
-> +
-> +				resets = <&syscon ASPEED_RESET_H2X>,
-> +					 <&syscon ASPEED_RESET_PCIE_RC_O>;
-> +				reset-names = "h2x", "perst";
+On Fri, 13 Jun 2025 at 17:38, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+>
+> Hi Geert,
+>
+> Thank you for the review.
+>
+> On Thu, Jun 12, 2025 at 4:47=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> >
+> > Hi Prabhakar,
+> >
+> > On Tue, 10 Jun 2025 at 01:23, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add SDHI bindings for the Renesas RZ/T2H (a.k.a R9A09G077) and RZ/N2H
+> > > (a.k.a R9A09G087) SoCs. Use `renesas,sdhi-r9a09g057` as a fallback si=
+nce
+> > > the SD/MMC block on these SoCs is identical to the one on RZ/V2H(P),
+> > > allowing reuse of the existing driver without modifications.
+> > >
+> > > Update the binding schema to reflect differences: unlike RZ/V2H(P),
+> > > RZ/T2H and RZ/N2H do not require the `resets` property and use only a
+> > > single clock instead of four.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > @@ -129,59 +131,75 @@ allOf:
+> > >          compatible:
+> > >            contains:
+> > >              enum:
+> > > -              - renesas,sdhi-r9a09g057
+> > > -              - renesas,rzg2l-sdhi
+> > > +              - renesas,sdhi-r9a09g077
+> > > +              - renesas,sdhi-r9a09g087
+> > >      then:
+> > >        properties:
+> > > +        resets: false
+> > >          clocks:
+> > > -          items:
+> > > -            - description: IMCLK, SDHI channel main clock1.
+> > > -            - description: CLK_HS, SDHI channel High speed clock whi=
+ch operates
+> > > -                           4 times that of SDHI channel main clock1.
+> > > -            - description: IMCLK2, SDHI channel main clock2. When th=
+is clock is
+> > > -                           turned off, external SD card detection ca=
+nnot be
+> > > -                           detected.
+> > > -            - description: ACLK, SDHI channel bus clock.
+> > > +          description: ACLK, SDHI channel bus clock.
+> >
+> > According to the documentation, this is the SDHI high speed clock...
+> >
+> Agreed, I will update it to `CLKHS, SDHI channel High speed clock.`
+>
+> > > +          maxItems: 1
+> > >          clock-names:
+> > > -          items:
+> > > -            - const: core
+> > > -            - const: clkh
+> > > -            - const: cd
+> > > -            - const: aclk
+> > > -      required:
+> > > -        - clock-names
+> > > -        - resets
+> > > +          const: aclk
+> >
+> > ... i.e. clkhs.
+> s/clkhs/clkh
 
-PERST# is clearly a per-Root Port item since it's a signal on the PCIe
-connector.  Can you separate this and any other per-Root Port things
-into a Root Port stanza to leave open the possibility of future
-hardware that supports multiple Root Ports in the RC?
+The documentation calls it "clkhs".
+In addition, calling it "clkh" may confuse the driver if it turns out to be
+identical to the main (first, unnamed) clock:
 
-> +				clocks = <&syscon ASPEED_CLK_GATE_BCLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&pinctrl_pcierc1_default>;
-> +
-> +				#interrupt-cells = <1>;
-> +				msi-parent = <&pcie0>;
-> +				msi-controller;
-> +				msi_address = <0x1e77005c>;
-> +
-> +				aspeed,ahbc = <&ahbc>;
-> +				aspeed,pciecfg = <&pcie_cfg>;
-> +				aspeed,pciephy = <&pcie_phy1>;
-> +
-> +				interrupt-map-mask = <0 0 0 7>;
-> +				interrupt-map = <0 0 0 1 &pcie_intc0 0>,
-> +						<0 0 0 2 &pcie_intc0 1>,
-> +						<0 0 0 3 &pcie_intc0 2>,
-> +						<0 0 0 4 &pcie_intc0 3>;
-> +				pcie_intc0: interrupt-controller {
-> +					interrupt-controller;
-> +					#address-cells = <0>;
-> +					#interrupt-cells = <1>;
-> +				};
-> +			};
-> +
->  			gfx: display@1e6e6000 {
->  				compatible = "aspeed,ast2600-gfx", "syscon";
->  				reg = <0x1e6e6000 0x1000>;
-> -- 
-> 2.43.0
-> 
+    priv->clk =3D devm_clk_get(&pdev->dev, NULL);
+    if (IS_ERR(priv->clk))
+            return dev_err_probe(&pdev->dev, PTR_ERR(priv->clk),
+"cannot get clock");
+
+    priv->clkh =3D devm_clk_get_optional(&pdev->dev, "clkh");
+    if (IS_ERR(priv->clkh))
+            return dev_err_probe(&pdev->dev, PTR_ERR(priv->clkh),
+"cannot get clkh");
+
+    ...
+
+    if (priv->clkh) {
+            /* HS400 with 4TAP needs different clock settings */
+            ...
+    }
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
