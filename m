@@ -1,63 +1,70 @@
-Return-Path: <devicetree+bounces-185480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B244AD7FC7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 02:52:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8F8AD7FE1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 02:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01CC73B69F5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 00:52:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C26E1E1F24
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 00:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFC01A3161;
-	Fri, 13 Jun 2025 00:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAA51C7005;
+	Fri, 13 Jun 2025 00:57:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="aCJsRkh1"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="GCUIthgL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5CA145323;
-	Fri, 13 Jun 2025 00:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B701C4A17;
+	Fri, 13 Jun 2025 00:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749775946; cv=none; b=UMMyldtZVD2jrGBAXidrDnc2A9rsgDt5+oDFm6S2ayOn2llIgsLAZSHqTgZHB/zgr6B6C0gisiUE7UJkJPgvf499Q9i4EldwHeoeYxTQYqdd4LxiFWdGLarXtri562IZCpiKH5Dpb4R+FWPwwrlsv7FBtnfGcYstCbJcA1faG1s=
+	t=1749776231; cv=none; b=k1/5Z15I5YjoMoGtMj45xO1/9Qh3HhutMcVOdztWZTj1jVMhlakvntZVwAIhrsC/O+TwLvMQPX1T0M0DdNjHD4v90ntN7+cRHc8Cz1ysLCgM+AZqrXtWLjuz29eKs63FHem+mVQhsZvmK37HC9QYESOYC+p5fSrxG062jdp0TMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749775946; c=relaxed/simple;
-	bh=EsRJTlab3QCXz7ZpM9mVcFTl4rwFsKjGezndHiqVAmw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nHFgJzoPJO/3R219wfjlVG16ye6rVCRYP7hstWLCBcHEQqCrmMTc2CcyV1QCKrmuXS4irK5hAGvlgejYKtCMku0nGbXl4SM+jJ4hKAQhdX8zX0pQy42kn94DVV5oDkLAJJaVRBNMCIyOTK/BI8YCYU48GkmcZNO6LM4aK0neZuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=aCJsRkh1; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1749776231; c=relaxed/simple;
+	bh=rva0RzQIkUYUcYPpIJdvS6jyS8ngpfdISZUwpw5dy60=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YF9UvrAp4tP6qYsX1R72fTsxaiYQxg3F2EeV2awBe3bmrJSVgyzDPYlePjE8JfXSRPP+5yemyfAbYqiksjd1gPDRC9pyvWC+wHsHQbfKn4jnjDKuGxUAnnIOqGmCfablFFKaq/edq8J4jlqqq9iWjH2cjQ2oVWLeQUW09l1W1o8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=GCUIthgL; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1749775942;
-	bh=EsRJTlab3QCXz7ZpM9mVcFTl4rwFsKjGezndHiqVAmw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=aCJsRkh1nxpMaD3O/wx9w4RKEqg/Ztqmt7W38ro3nCePkl8nZK2zLygRTCCetBKVG
-	 AMBK5X0onSXKizQt/qt2EhAnWsL5Hywo04xCMGIrPCOsEPHbH5iYY7mU7ouKBJktCr
-	 hmEmXU5ZGmRBqpHfum0iFGZo1d4G3wC1OqyVR7lFgs+K4W206PhgfGjTuH/X8hY9eo
-	 0eTIu5KFYuc05vCl5kAdm5M24YvFXYorep22Zg5fKX7Myf7noJujpV8Cb505FxceEG
-	 J54veGIP/HCugIQHN0DOyGC9vV0MC8p5Cr8CR8lu2TTqCFim+eaPqlb2h04nTtLi+p
-	 JW4WK0sr4f/qA==
+	d=codeconstruct.com.au; s=2022a; t=1749776227;
+	bh=rva0RzQIkUYUcYPpIJdvS6jyS8ngpfdISZUwpw5dy60=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=GCUIthgLYeq7D5761tx1yj+y8VqQXqv6qRWZ0/43kAIIjK7O84Ey9LDhbekpp4ryg
+	 mq/1+2pumYSwArM5LUUK/8XkBEE3/1JDey9ckJup2qjEs/PAhHXvNgdPAMSnhZQkhi
+	 go0PlroEhiksYOsUZS9wcnS1BHW93tfTIUAGnFdzZC8mtN9NVLCVq2VF9SUOdKacl/
+	 LDPk1Zbmzsx2D1CqAurEfi6VtBpyh+2DPJ4EDgyRc38kDjdqcTGbgk21Zarttvr3td
+	 j7WWOvId8CmjOJDonUn3+LMXWlK4xCUHtTfSXxkhI8lOXO3vFz1F1SVR4QOsbaar4s
+	 WAbbR4ijK4j1A==
 Received: from [192.168.68.112] (unknown [180.150.112.166])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A3B926445B;
-	Fri, 13 Jun 2025 08:52:20 +0800 (AWST)
-Message-ID: <d79fe0b5db34b14e64eee3bc8a187cb25e3d67b1.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v8 2/2] ARM: dts: aspeed: ventura: add Meta Ventura BMC
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D9D746445B;
+	Fri, 13 Jun 2025 08:57:06 +0800 (AWST)
+Message-ID: <831a5bf06f6e7cd7dccce77d11209b5cc0f1387c.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 2/2] mailbox: aspeed: add mailbox driver for AST27XX
+ series SoC
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Jason Hsu <jasonhell19@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, joel@jms.id.au, patrick@stwcx.xyz,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Cc: yang.chen@quantatw.com, jerry.lin@quantatw.com
-Date: Fri, 13 Jun 2025 10:22:19 +0930
-In-Reply-To: <20250611112650.595554-3-jasonhell19@gmail.com>
-References: <20250611112650.595554-1-jasonhell19@gmail.com>
-	 <20250611112650.595554-3-jasonhell19@gmail.com>
+To: Jammy Huang <jammy_huang@aspeedtech.com>, "jassisinghbrar@gmail.com"
+ <jassisinghbrar@gmail.com>, "robh@kernel.org" <robh@kernel.org>, 
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>,  "joel@jms.id.au" <joel@jms.id.au>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Fri, 13 Jun 2025 10:27:06 +0930
+In-Reply-To: <TYZPR06MB6568BA93BCEEBEE3B9DE15EBF177A@TYZPR06MB6568.apcprd06.prod.outlook.com>
+References: <20250610091026.49724-1-jammy_huang@aspeedtech.com>
+	 <20250610091026.49724-3-jammy_huang@aspeedtech.com>
+	 <13b88c1e404a9abe5cfae6673cb93e0b020e3524.camel@codeconstruct.com.au>
+	 <TYZPR06MB6568BA93BCEEBEE3B9DE15EBF177A@TYZPR06MB6568.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,87 +73,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-SGkgSmFzb24sCgpPbiBXZWQsIDIwMjUtMDYtMTEgYXQgMTk6MjYgKzA4MDAsIEphc29uIEhzdSB3
-cm90ZToKPiBBZGQgTGludXggZGV2aWNlIHRyZWUgcmVsYXRlZCB0byBNZXRhKEZhY2Vib29rKSBW
-ZW50dXJhIHNwZWNpZmljCgpXZSdyZSB3cml0aW5nIHByb3NlLCBub3QgYSBDIGZ1bmN0aW9uIGlu
-dm9jYXRpb24uIENhbiB5b3UgcGxlYXNlIGFkZCBhCnNwYWNlIGFmdGVyICdNZXRhJzoKCiAgIE1l
-dGEgKEZhY2Vib29rKQoKPiBkZXZpY2VzIGNvbm5lY3RlZCB0byBCTUMoQVNUMjYwMCkgU29DLgoK
-Q2FuIHlvdSBwcm92aWRlIGEgYml0IG9mIGEgZGVzY3JpcHRpb24gb2YgdGhlIHBsYXRmb3JtIGRl
-c2lnbj8gVGhpcwp3aWxsIGhlbHAgcmV2aWV3IHRoZSBkZXZpY2V0cmVlIGNvbnRlbnQuCgo+IAo+
-IFNpZ25lZC1vZmYtYnk6IEphc29uIEhzdSA8amFzb25oZWxsMTlAZ21haWwuY29tPgo+IC0tLQo+
-IMKgYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL01ha2VmaWxlwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoMKgwqAgMSArCj4gwqAuLi4vYXNwZWVkL2FzcGVlZC1ibWMtZmFjZWJvb2stdmVudHVy
-YS5kdHPCoMKgwqAgfCAxNDgxICsrKysrKysrKysrKysrKysrCj4gwqAyIGZpbGVzIGNoYW5nZWQs
-IDE0ODIgaW5zZXJ0aW9ucygrKQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3Qv
-ZHRzL2FzcGVlZC9hc3BlZWQtYm1jLWZhY2Vib29rLXZlbnR1cmEuZHRzCj4gCj4gZGlmZiAtLWdp
-dCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9NYWtlZmlsZSBiL2FyY2gvYXJtL2Jvb3QvZHRz
-L2FzcGVlZC9NYWtlZmlsZQo+IGluZGV4IDJlNWY0ODMzYTA3My4uZTA3NjY2ZDkwMmZiIDEwMDY0
-NAo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9NYWtlZmlsZQo+ICsrKyBiL2FyY2gv
-YXJtL2Jvb3QvZHRzL2FzcGVlZC9NYWtlZmlsZQo+IEBAIC0yOCw2ICsyOCw3IEBAIGR0Yi0kKENP
-TkZJR19BUkNIX0FTUEVFRCkgKz0gXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1jLWZhY2Vi
-b29rLW1pbmVydmEuZHRiIFwKPiDCoMKgwqDCoMKgwqDCoMKgYXNwZWVkLWJtYy1mYWNlYm9vay1t
-aW5pcGFjay5kdGIgXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1jLWZhY2Vib29rLXRpb2dh
-cGFzcy5kdGIgXAo+ICvCoMKgwqDCoMKgwqDCoGFzcGVlZC1ibWMtZmFjZWJvb2stdmVudHVyYS5k
-dGIgXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1jLWZhY2Vib29rLXdlZGdlNDAuZHRiIFwK
-PiDCoMKgwqDCoMKgwqDCoMKgYXNwZWVkLWJtYy1mYWNlYm9vay13ZWRnZTEwMC5kdGIgXAo+IMKg
-wqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1jLWZhY2Vib29rLXdlZGdlNDAwLmR0YiBcCj4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9hc3BlZWQtYm1jLWZhY2Vib29rLXZlbnR1
-cmEuZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFjZWJvb2stdmVu
-dHVyYS5kdHMKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMC4uMzRh
-M2VmM2EwZWZlCj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVl
-ZC9hc3BlZWQtYm1jLWZhY2Vib29rLXZlbnR1cmEuZHRzCj4gQEAgLTAsMCArMSwxNDgxIEBACj4g
-Ky8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKwo+ICsvLyBDb3B5cmlnaHQgKGMp
-IDIwMjMgRmFjZWJvb2sgSW5jLgo+ICsvZHRzLXYxLzsKPiArCj4gKyNpbmNsdWRlICJhc3BlZWQt
-ZzYuZHRzaSIKPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2kyYy9pMmMuaD4KPiArI2luY2x1ZGUg
-PGR0LWJpbmRpbmdzL2dwaW8vYXNwZWVkLWdwaW8uaD4KPiArCj4gKwoKLi4uCgo+ICsmaTJjNSB7
-Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICsKPiArwqDCoMKgwqDCoMKgwqAv
-LyBSTUMgRlJVCj4gK8KgwqDCoMKgwqDCoMKgZWVwcm9tQDU0IHsKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJhdG1lbCwyNGMxMjgiOwo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHg1ND47Cj4gK8KgwqDCoMKgwqDCoMKgfTsKPiAr
-wqDCoMKgwqDCoMKgwqAvLyBWUiBURU1QIFUzOTkKPiArwqDCoMKgwqDCoMKgwqB0ZW1wZXJhdHVy
-ZS1zZW5zb3JANGMgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxl
-ID0gInRpLHRtcDc1IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0gPDB4
-NGM+Owo+ICvCoMKgwqDCoMKgwqDCoH07CgpDYW4geW91IHBsZWFzZSBtYWtlIHN1cmUgdGhlIG5v
-ZGUgb3JkZXJpbmcgYWRoZXJlcyB0byB0aGUgZG9jdW1lbnRhdGlvbgpoZXJlOgoKaHR0cHM6Ly9k
-b2NzLmtlcm5lbC5vcmcvZGV2aWNldHJlZS9iaW5kaW5ncy9kdHMtY29kaW5nLXN0eWxlLmh0bWwj
-b3JkZXItb2Ytbm9kZXMKClBsZWFzZSBjaGVjayB0aGUgcmVzdCBvZiB0aGUgZGV2aWNldHJlZS4K
-Cj4gK8KgwqDCoMKgwqDCoMKgLy8gVlIgVEVNUCBVMzk3Cj4gK8KgwqDCoMKgwqDCoMKgdGVtcGVy
-YXR1cmUtc2Vuc29yQDRkIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0
-aWJsZSA9ICJ0aSx0bXA3NSI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9
-IDwweDRkPjsKPiArwqDCoMKgwqDCoMKgwqB9Owo+ICvCoMKgwqDCoMKgwqDCoC8vIEJSSUNLIFRF
-TVAgVTM5OAo+ICvCoMKgwqDCoMKgwqDCoHRlbXBlcmF0dXJlLXNlbnNvckA0ZSB7Cj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAidGksdG1wNzUiOwo+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHg0ZT47Cj4gK8KgwqDCoMKgwqDCoMKg
-fTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgdGVtcGVyYXR1cmUtc2Vuc29yQDRmIHsKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJ0aSx0bXA3NSI7Cj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDRmPjsKPiArwqDCoMKgwqDCoMKgwqB9
-Owo+ICt9Owo+ICsKPiArJmkyYzYgewo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsK
-PiArCj4gK8KgwqDCoMKgwqDCoMKgZ3Bpb0AyMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGNvbXBhdGlibGUgPSAibnhwLHBjYTk1NTUiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqByZWcgPSA8MHgyMD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGdwaW8tY29udHJvbGxlcjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2dwaW8t
-Y2VsbHMgPSA8Mj47Cj4gK8KgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgZ3Bp
-b0AyMSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibnhw
-LHBjYTk1NTUiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHgyMT47
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdwaW8tY29udHJvbGxlcjsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2dwaW8tY2VsbHMgPSA8Mj47Cj4gK8KgwqDCoMKg
-wqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgZ3Bpb0AyMiB7Cj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibnhwLHBjYTk1NTUiOwo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHgyMj47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGdwaW8tY29udHJvbGxlcjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgI2dwaW8tY2VsbHMgPSA8Mj47Cj4gK8KgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKg
-wqDCoMKgcnRjQDUxIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJs
-ZSA9ICJueHAscGNmODU2MyI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9
-IDwweDUxPjsKPiArwqDCoMKgwqDCoMKgwqB9Owo+ICt9Owo+ICsKPiArJmkyYzcgewo+ICvCoMKg
-wqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiArwqDCoMKgwqDCoMKgwqBidXMtZnJlcXVlbmN5
-ID0gPDEwMDAwMD47Cj4gK8KgwqDCoMKgwqDCoMKgbXVsdGktbWFzdGVyOwo+ICvCoMKgwqDCoMKg
-wqDCoGFzcGVlZCxody10aW1lb3V0LW1zID0gPDEwMDA+OwoKRGlkIHlvdSB0ZXN0IHRoaXMgd2l0
-aCBgbWFrZSBkdGJzX2NoZWNrYD8gSSBleHBlY3Qgbm90LCBhcyBpdCBjYXVzZXMgYQp3YXJuaW5n
-IGlkZW50aWZpZWQgYnkgUm9iJ3MgYm90OgoKYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVl
-ZC1ibWMtZmFjZWJvb2stdmVudHVyYS5kdGI6IGkyY0A0MDAgKGFzcGVlZCxhc3QyNjAwLWkyYy1i
-dXMpOiBVbmV2YWx1YXRlZCBwcm9wZXJ0aWVzIGFyZSBub3QgYWxsb3dlZCAoJ2FzcGVlZCxody10
-aW1lb3V0LW1zJyB3YXMgdW5leHBlY3RlZCkKCWZyb20gc2NoZW1hICRpZDogaHR0cDovL2Rldmlj
-ZXRyZWUub3JnL3NjaGVtYXMvaTJjL2FzcGVlZCxpMmMueWFtbCMKCkNhbiB5b3UgcGxlYXNlIGZp
-eCB0aGF0PwoKQW5kcmV3Cg==
+On Fri, 2025-06-13 at 00:51 +0000, Jammy Huang wrote:
+> Hello Andrew,
+>=20
+> You can find it in chapter of ast2700 datasheet below.
+> =C2=A0 III Function Registers -> 12 Inter Processors Communication (IPC)
 
+Great, thanks. The description in the memory space allocation table
+doesn't match the chapter heading, which is what tripped me up
+("InterProcessor Controller" vs "Inter Processors Communication").
+
+Andrew
 
