@@ -1,137 +1,120 @@
-Return-Path: <devicetree+bounces-185810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF22AD92E7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:35:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E48B4AD92F0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BADE61BC0E02
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:35:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9B731E3638
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A2320F063;
-	Fri, 13 Jun 2025 16:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF1B20E330;
+	Fri, 13 Jun 2025 16:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Olh/xIyA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UrXvI2eT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A94E20297D;
-	Fri, 13 Jun 2025 16:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7203B20297D
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 16:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749832523; cv=none; b=VbTqvFH4NMIatDju5FsYRZec8cXPTslnPxN44O7nvmePV7F3pEAINaoPPBbyKy4M6eNFnLhmWNnOSFM4KMLGxQh2oOSmIKXPCFoUJIY1iIHSltBHGLG3mBTg+idR2bJUttZ0nEDrwc6M+nSKwm0frgnmV5gYwopZPVv9oDSdSdQ=
+	t=1749832732; cv=none; b=CJIXKHk3tgIpOlwr2421w866RltBbWCqsna6oziBm1LFW/ffFfT0EzM47hFwsUfgDUwK2gAH9GCGfWqBre3G8beAqn8NUXGVYOVFT8rkZmlz+OoyrbxkybhrFZG69VJOs0gyw2MyovZ4AQZfbjOzshJ+SMkmpxgMTPqobYz7YCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749832523; c=relaxed/simple;
-	bh=QXE8CKFwmIeb+JPAQUReJotkuCcr6O5N8pxWfDgAg1c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pnlCh7YldDXPsYgfZOBhCsBAlnZQd4avyRmOYVt8fbPHUDTLE2UBNkOhhtYhHatRdkg9+3aWKWPLKMwuoUEv9zCm3CiP5lBSgISNDaEFMQX16yRtNu9yhZ0jkpkokZpCvRnWnjbNwcx1tfWcsCKJDoeag5hiPKFKt7WeeQMx8/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Olh/xIyA; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-312116d75a6so2114124a91.3;
-        Fri, 13 Jun 2025 09:35:21 -0700 (PDT)
+	s=arc-20240116; t=1749832732; c=relaxed/simple;
+	bh=z+N8jqjN/nASPdQ0iP1STfKAC3rAtGf71WFeCKFFe4g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H4MkTHxx3ZLajzY0e4di3GSV/j6up5NQUENRdkbs7Dpi5mSu56RiWizJ/zJW18wn5Spq6HOIqyA8Ezk6lc/GDUxDOpXAg8JrxEfC2Y/vWqlqfg3Avx++/cq5GuV7vFyFwQs/JtY0iufHIzMi1oxxYM/enHy0gsPcH8IVVpasezk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UrXvI2eT; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-553237a1931so195452e87.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 09:38:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749832521; x=1750437321; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FHPrpo9d42nRJm72Dq1MnICc6IUuyfQPRBp7KXTIMQ4=;
-        b=Olh/xIyAOI1IXUkpB0UgFWAOtNYq+AcIofwCd9Opc0LBO4IX6esV39SnyQ9fksa11Z
-         2cDtKZeSG1QGLshmmWqOij2R5ehI75+okNuqaQXEQnXEAYyISUefsSYObmEkXRq0jg4o
-         hoJ7KwscBSW3qs1VZNDmKkCXLPy0GfJxsSVHJc/+I6CblortqkrkfrZjvlUT0MleKegt
-         NqlycJiqtdnB5ngMY/0kacEYUnjgL+bDcU6GU4qowuJ6Bm/fHfyX5utWEYWzj8RUnCn7
-         ohpzKfc3BJDNiS3SIgSBPKCGUgSSV3LthLEE+U/Rq34HCH2y0+uQI7QD09EgsOMeZ/GI
-         j2dQ==
+        d=linaro.org; s=google; t=1749832728; x=1750437528; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cYUtT+6UfKx7Gs9aWpbJRe4xmbx/ClKSljdS1pnK8R4=;
+        b=UrXvI2eTdCBGACPLTStoFa8xEcUAVUfn08PBuPpbkf1o2OudeK+zyn4d7/uwR1kpr7
+         xY05abDosFePjvXdkjq3Z1G9R7cDDO1/abE1MGoIVo2Kynbdwyx9/pzTsXu+6ooDg4Mr
+         Yg+OCI+kQyTIK40or6RBfD73KsUYzD8O1Ly5AOG1WDienuUVAS1IrHjr5HztulybFshF
+         pSlyU7aFEnuL9ijCTk+5A5sbZ2FCCT1AT3/2XPa1tfqSse98akdr1To7MHDu2qMWjGuu
+         WmB/2TxoU74ABPrDg2gMovvypgfejojxyhoY8tHiKbrueSL9dinJMD1dFZMSNF2N0r/e
+         cTAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749832521; x=1750437321;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FHPrpo9d42nRJm72Dq1MnICc6IUuyfQPRBp7KXTIMQ4=;
-        b=apAAWp1J1tflonUXU7d+5r5BKEemHi8SyC1ErpAZb0gnN7HORo3vUrfNXOuqTJT76g
-         3XTsbeKv3O3QjtLH1bOO3onYCFlqZew89AMT+YTzHdH6WLZRuCo8F4mLgQ6skfq3Fg+S
-         iK5hnxDnLwr5So+8G6VQyATW3CNIl0Qz3zVhRVlVkgthCG1OTA1xpUs4Kh8reGfG8/Rr
-         IeJy6ouGM4uoTG//FiJC3Yb+bc9QToQuCw5twpHUvG22sPIcNOg23CSAq/qN8y+ZWF24
-         IPiIxa+GxW9F5OO1FrpdTk6HMB0H9ggsr3Sw/vTvC8mgKJXpaGANj+c8Zzfezs5348jE
-         s7RA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9/s8xlSyQe0w86nGmosU8mLpEgYbnPwnVbMpl9SGYF3lq6V5Oa0y6EXv4laFsWtqWsRMUwIL+cHJzoSw=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxpft0Tt2oChOFd5kAmzkJ6dJLMzBEgswAKF3ye84IzpEcJOs8a
-	RHjeF79hEd2y8XFqNwVgxA06h8phFenmf6FWpAKQpPegbynD/WCcKYWJ
-X-Gm-Gg: ASbGnct9FMFrmmAbSXwIwlW4D3n0CqeQGVgF/xNrlmY8dX5fILdiT5t7kfJm7B/gs2B
-	gpVTURGRWa3G/Bw5ZwNYY5c4gjPvof5AvoUDgfB95VR69XuqQsZtF+7qgPhd40k9J8I7yBXMZ06
-	ekDXTs8nxJ8iqMZJIfXinG/xEQgwXWgTTXPFxBPA7x821/3qbtPYPZtikAprO36loWL8/TJ7qAH
-	BX9PqpYsNIy/KfDeHsp0HtJ1Bt0PjTGKpLJPU4U1OvQaOMm5SFWcAZvNgdATT67H7YoSqRWMqeO
-	vLdjPgnwszxp+tMNK+q6FBBIr09A8r7IZr5muxKKZmKuhysUat+yujJge+Il9AB1A3HmJOJD7PM
-	NWTluj5TxJl3UvdJ9Wn7l
-X-Google-Smtp-Source: AGHT+IGIuAqQa292qV7dqgToWK54149pBTrBaPodmpn2s350eBZtY87Pv6smrPbvL/pWn7OY37TTsA==
-X-Received: by 2002:a17:90b:1c04:b0:30a:4874:5397 with SMTP id 98e67ed59e1d1-313f1ca7f9cmr519630a91.9.1749832521202;
-        Fri, 13 Jun 2025 09:35:21 -0700 (PDT)
-Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-313c1b5a85dsm3568672a91.38.2025.06.13.09.35.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jun 2025 09:35:20 -0700 (PDT)
-From: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-Date: Fri, 13 Jun 2025 13:35:04 -0300
-Subject: [PATCH] arm64: dts: freescale: imx8mp-toradex-smarc: add fan
- cooling levels
+        d=1e100.net; s=20230601; t=1749832728; x=1750437528;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cYUtT+6UfKx7Gs9aWpbJRe4xmbx/ClKSljdS1pnK8R4=;
+        b=c0+QMu4RUA+5rPElngt9Ex6nnGhTYgBEsz+iTTCPb6UH3tOYD4dDwhmP0qa0UOmzOT
+         fpcdabFb+A8/t2mSbhTW9UAH70F2k168o/n3beYD1dri7A4mq2wMxTtGyU5N1lg3BXg6
+         89rfCxadL7fMrCjqccelUp0KiPqVAarEPgwiCfe/Mg4KAEEJuJ9GtNOpN+ygCkWEPVT2
+         z2eMZqM4i0+sMqh6vPEl9FuzmOeL8ACUIXwBWg5wZ2zuA3goSV3zGWg28iuxSU00UYOz
+         UraiYhO0xyOwkTV3XUGvjvIuzGuqU1h4jNhWqTcjMMWUIfwDy+iun0LTNAI24bdmpbXF
+         fVcg==
+X-Forwarded-Encrypted: i=1; AJvYcCW0rlIdWt4y4ZfJINqklKFFggWtbhDIlvt4/g7kerApXRoNp0fVeQhcrVQAs0wv8eq7QYFyPKMkmky1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB/27T3V5RYspyZB380IyIDFSTBlQdUxdLhtHFi/DPGJlQSF6O
+	vWaaQm20a/y1tsTgL/xIU57oGR9EyX3jyfr40qYHIVb4TYsZevJEzahcoAiQkvEFGCU=
+X-Gm-Gg: ASbGnct5JOs5KDjuwxZ9YfLMBN88zDE2/+UE+BhUwQzpMIdu3H7rdDYRU2gH5RYTWRd
+	KwH5dlDb7wi1J1vjfMLovBRjaJOc4nA7glmeo6Jfg+7L5TmJLr5z3Qk9kci3CLGNBwd0IAFqw5C
+	iWZVTcmh95qqtAPcOZehYJAymjwpljnv34GMiDdZZW9rWT87K7pe7+8EpdKafF2sAK8XNqyoO6m
+	jwkLJWrVgh666nSV86l8O+AC79gEt3OJZkKHbVi4cExdQpUrjwMjrbRByeaAMy72UJcvMxUxH3z
+	5npoDs1D4lvijBEj56dScfW6759CtgU4JIJSaJYEawJoVPJsKdQqUz6hOJ5xGxM4Ul4YglSzgEJ
+	nVgrqmxUUwQuzjWR6AsxQwabdBC4MO53tzHJHppfOuYaOm+zF32I=
+X-Google-Smtp-Source: AGHT+IHj662g3SbQNpP4iPqUmNkvYX9U4szpKPW9FX5yhoIuara4ioYwpzJZkOyb7Ebp5gFoz9go2g==
+X-Received: by 2002:a05:6512:acf:b0:553:2421:f5e5 with SMTP id 2adb3069b0e04-553af991409mr356267e87.9.1749832728513;
+        Fri, 13 Jun 2025 09:38:48 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553ac1fd7aesm494781e87.258.2025.06.13.09.38.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jun 2025 09:38:48 -0700 (PDT)
+Message-ID: <0b94f65a-ec4c-44a1-8021-cbafe6beab31@linaro.org>
+Date: Fri, 13 Jun 2025 19:38:47 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250613-tdx-smarc-imx8mp-fan-cooling-level-v1-1-59aae8fee2db@toradex.com>
-X-B4-Tracking: v=1; b=H4sIADdTTGgC/x3NTQqDMBBA4avIrB3Q1KTqVUoXMRntQH4kKRIQ7
- 25w+W3eOyFTYsowNyckOjhzDBV924D56bARsq0G0QnZqf6Ff1swe50Msi+j33HVAU2MjsOGjg5
- yuKi3UFKTMMMENbQnWrk8k8/3um7Lrur0dAAAAA==
-X-Change-ID: 20250613-tdx-smarc-imx8mp-fan-cooling-level-b67265ae2c49
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] media: dt-bindings: Add qcom,msm8939-camss
+Content-Language: ru-RU
+To: vincent.knecht@mailoo.org, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
+ <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250613-camss-8x39-vbif-v5-3-a002301a7730@mailoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On 6/13/25 12:33, Vincent Knecht via B4 Relay wrote:
+> From: Vincent Knecht <vincent.knecht@mailoo.org>
+> 
+> Add bindings for qcom,msm8939-camss in order to support the camera
+> subsystem for MSM8939.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 
-The fan controller on this board cannot work in automatic mode, and
-requires software control, the reason is that it has no temperature
-sensor connected.
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-Given that this board is a development kit and does not have any
-specific fan, add a default single cooling level that would enable the
-fan to spin with a 100% duty cycle, enabling a safe default.
-
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
-index 55b8c5c14fb4f3e7407243760ac01b0aca0dacf5..5f233304cea747d3f04a748265f96696668c9d6b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
-@@ -213,6 +213,7 @@ fan_controller: fan@18 {
- 		#pwm-cells = <2>;
- 
- 		fan {
-+			cooling-levels = <255>;
- 			pwms = <&fan_controller 40000 PWM_POLARITY_INVERTED>;
- 		};
- 	};
-
----
-base-commit: 1a2ad59da68dd294f994efbf68c5d671f6b42fad
-change-id: 20250613-tdx-smarc-imx8mp-fan-cooling-level-b67265ae2c49
-
-Best regards,
--- 
-João Paulo Gonçalves <joao.goncalves@toradex.com>
-
+--
+Best wishes,
+Vladimir
 
