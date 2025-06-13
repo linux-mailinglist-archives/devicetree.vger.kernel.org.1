@@ -1,532 +1,192 @@
-Return-Path: <devicetree+bounces-185820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C11AD9432
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 20:09:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3ABAD943B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 20:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABC8B7A4426
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:07:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A2901BC175A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 18:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34011211A3D;
-	Fri, 13 Jun 2025 18:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32D322A4E9;
+	Fri, 13 Jun 2025 18:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="JceNp00k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rc/SufIb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from olivedrab.birch.relay.mailchannels.net (olivedrab.birch.relay.mailchannels.net [23.83.209.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9BB2E11AE;
-	Fri, 13 Jun 2025 18:08:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.209.135
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749838134; cv=pass; b=OgaDWy0yr/YkSqak4RUawI/tZLf3asamY0tjeJG/5eMHd4YLlQrQGCOlVN7Iiau+vL1OTqk+NE1wfMQMEqQLrWTwjCXOW48dZmYJpx4c46DpyF3oZs90FEM7i7F53FxDcbA9ZCX0rJ0RDGeeC8kVPpDPs6HkUR4EyHw3Jnh+kqo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749838134; c=relaxed/simple;
-	bh=J8kKyaakj1aYx0rm37/TO+tMsW2zUNsq8DTgJmYfnVE=;
-	h=From:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc:Date; b=lKR9BhMkoiBJo72yR01c7uCKgmAJ2v20+KxxyGLKg8bwkMLMoOz6tGe3z03vot1rx2VwazrKioWC4DUrm2Nh0lg9jvJ8DN1nfbnQB1D8ohmxTKZ4MuIMQ2tcbiqSDCiMAlAjiVQzuWrmNmFgmEj43xw5YiqWzWy6bS2rYjqVjNY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=JceNp00k; arc=pass smtp.client-ip=23.83.209.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 054222C5C53;
-	Fri, 13 Jun 2025 17:51:19 +0000 (UTC)
-Received: from fr-int-smtpout9.hostinger.io (trex-green-2.trex.outbound.svc.cluster.local [100.96.75.158])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 021AA2C4FC5;
-	Fri, 13 Jun 2025 17:51:13 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1749837076; a=rsa-sha256;
-	cv=none;
-	b=DCtDkgRNYob1nmrIuTuDxwgJO62lmyI0VXLhpyteLj04M7DyrSY1Jncmym66JzZh9IalMS
-	Jv36CrabE9drhhLe5/BQT1dKClcDsAgFGiAUekWR8JgAWMZdQdhSRUmCi/PVQ98EqKUuPj
-	liM2K1zKyNmyIVIxx9N9BnZVAJYwN4ONMXk3Uzzg8Thk8NLUi2R68j9rz42tmufzayAX1d
-	W+ZDKx3cMoz6m+6G1U92Iy2upNexdowOgcmfO6xq+oahjK7L55FjtMB4bqRw4W2FSVyWyS
-	PEqHqE/tyTJhUIxyPiDGKEwgCJ+3qX/kw93g9vcgOqZfxjMxNcMDNEM8+rfD4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1749837076;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=ywr5D5/TX6NEUGOjUEwyjTA/Ckv+ZE65Ks4KW4iIrX8=;
-	b=tmMwonuFNdub6knG8QJqaMHxk2NUaX6Ico/v3aQ11nDFX8JINlI26h12wSymvsO/pxOiY6
-	7GHzFh1nZYNu9uBfqhVC/PvcR+laBXYBPc7zAwW/foZhbubTx2SXckDgRX9VkpEwhvhwUM
-	bzPAJseEKzmmKpfCkVrp6yKMPuJAsg2gL7V3gJmYlzx0m4zBl2sN5Ivo0j2kPiL3l9kDIW
-	2HkXsiCCUh9yaL+uK3rxdpLJB/im8I8e+wK1daB4FvcbXqAvcfYhS1JYAMPiAgvI33OIGH
-	Tg7T4JboqECgmeIK49DZKEAPHW2ClTSsgtOV6bfV6NwPhpw6Q/Msfr+4iuEpew==
-ARC-Authentication-Results: i=1;
-	rspamd-5859dfb5d9-lnjzv;
-	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Battle-Descriptive: 0e5a00b20322edec_1749837078694_2226515485
-X-MC-Loop-Signature: 1749837078694:2937717600
-X-MC-Ingress-Time: 1749837078694
-Received: from fr-int-smtpout9.hostinger.io (fr-int-smtpout9.hostinger.io
- [89.116.146.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.96.75.158 (trex/7.0.3);
-	Fri, 13 Jun 2025 17:51:18 +0000
-Received: from [172.17.0.2] (unknown [36.79.97.133])
-	(Authenticated sender: linux@smankusors.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4bJn4n3LjnzH9gKX;
-	Fri, 13 Jun 2025 17:51:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
-	s=hostingermail-a; t=1749837068;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ywr5D5/TX6NEUGOjUEwyjTA/Ckv+ZE65Ks4KW4iIrX8=;
-	b=JceNp00kgbv3+mzs3RPmS0Mu9vhDfJWkAUf+jnWew9OBrwqyJqGPjRKT3wOCaKk1btDT1c
-	zbTKaRHwonIlRdLAw2rqgkdJ3qUVgoTOOV/vIUdkIwkMrA0sZfj/naO7xaVlFm8gkzEpNh
-	kpQyn5zAdyvc197kg/Y5qjBEeT0cJe/qm++uqZDPQZgH+Uwuswk0J4OtsmGzSk57OaNDfm
-	EVPWE7tZs1GMUZN5/RtuQysnWY07ahPletNRceIpc8eMCHrKbR37lS/YB8p4LTixMkCYEJ
-	mYnXx0O95h+l9o0XDgSMzLmYIzlDJd/AwFB0CvbWnAzad9xhU+N8PoQDxUmo+g==
-From: Antony Kurniawan Soemardi <linux@smankusors.com>
-Subject: [PATCH 5/5] ARM: dts: qcom: add device tree for Sony Xperia SP
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DD42E11AE;
+	Fri, 13 Jun 2025 18:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749838496; cv=none; b=hZpy1UqtiNA9PbJnsQ5GbbY+nlDxcFGq+GkZpB64snhGt0JTaRoHTEzv+aZvcswDf7LDdzdYP+5WYZy8i35V3hLYrAnavNhb2jlIpQ8r37wakvT43V5O11/iOce/A8jVZlTEJ5+t/lqQylB3ASDhe0FqzVxPVY9NtO1zbR1tK48=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749838496; c=relaxed/simple;
+	bh=KjYY4bsTZUm05TpfR2l4YdrK8TqDiMRSIg8azQwn+r8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r+0tKsyQuv/00ta0/2TInysyq5G2CgcwIj3etfFSF+IczCuuZ1H++h1oA9SWGTY9mrRu888y50JAomGCPGbJw3/VjGL7YVvLgAhhgU69guF1kJLLdQIH5ekqea8cORi3QjO4B/JFDLBgm0gMI5QUJed/zJu+x0n7hZjihbc39Jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rc/SufIb; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-235a6b89dfaso3343005ad.3;
+        Fri, 13 Jun 2025 11:14:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749838494; x=1750443294; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wF4gp/2m+krKdbuHM8VFo8aUcpegmRfbsaqd6bWd3zs=;
+        b=Rc/SufIbtuMmpD6Mno48+Skl8X3xzck1mg4EWxe6804WHz7pH+EKgPkswvbcEreSu5
+         55oqAjn/WPxKlODXvgqYjSkFBCqL1PKYy600xyIsvMHPH1REnw8Ojtr/BDShRpubjeJN
+         ChUiAy3pCMUuKVUJof1Md+byZ9whV3SJxm7JwR/1509jvdE1gjBNJHIdSLnFdoRJ9/LO
+         9gEr1lBKgiqaa9Jp+3R/RP+TjyjPzLG6jSJXMRfcZPUlO3V3d3vCyyDb5fRGHECh5BQj
+         8ItRs+1gNF+br83shz+NqLHQiRChLMODrK1bmne9LMXgfjFawxW454wsP6mutWOOOI86
+         XPpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749838494; x=1750443294;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wF4gp/2m+krKdbuHM8VFo8aUcpegmRfbsaqd6bWd3zs=;
+        b=a1nh24khltTWa4mq05V0VzYI57drDu/r8guM0wAOrPkxvvSoLE69Rj4ChrKjmLdVyR
+         //hLa/Efx2F1Qmr1HIwOBV/5RxTD8bA7dHmGLiNs6D+Xld3gMC3iLkd0keR0f5wTchVP
+         damEV7SwcZhLOQPWvvq14wZyF4AolRuSx7nhOdElbEabZBs7yPGxJziNsa6Gwlng1Rzl
+         qBvTOkWOZFgZiuSQhgi1zpmvALOrXafvyxQME7CBzNNAY25Wrd9zRSNk7LpWDnxBOxxH
+         2gyTDSZ7GUpOXTib6lJfR7ScPsF1MOJM7Lkc5g/X5vzERBI5QkFO4UzV69GW+QYN/xgv
+         IldA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3LN9yfgUSWIJHmnl8PNaFAmvjXZk3bcW457RiAKzEBiQ68wmU5SzrBjQA73MBBbv4xgrlVXaSZMGe@vger.kernel.org, AJvYcCUHdPdao90MhiLwLKsAwfVqHpmXqGlgVTMFtmSNd+eL93lbVdR24OLce0dymDr3LqcjwNYcVLgO@vger.kernel.org, AJvYcCUPaoZiGpnoKO4M72G3wLUM28MVs/1Fnrbfduv+rnqymyOhIXeO5It7dUOHpWAp1D3jH68pxI16SfK5wZQ=@vger.kernel.org, AJvYcCUzM1y4jq8dbckYTzfQgVanNb98jKiF7T4PB9AAHhmpfalKuY6gsjeWD+a4RHXyplrZ7IW/yv2kW7MixE4S@vger.kernel.org, AJvYcCVhXaiv16f12Fl5+p9ZAuu/cBk/u2Ndk90zp6hmkclL09yM5xwTUwgKQVKQtsb/Cc7WXm/Jmh1cD6LPVEDJiSY=@vger.kernel.org, AJvYcCW/6sPwSn0aJXdOaSH9OOT5wp3BYbITyCZgVDn/VB3qQMOfe+STW3AyL99n2SraDQBNQeDok7v5rUl9Tjh0@vger.kernel.org, AJvYcCWb2K0JENWU1RB1FxUR/0SMZ9RfuULepOHJUw5IimNlklWCiR2eTZiAm3tjMQfgXnWtaShyimVgwshb@vger.kernel.org, AJvYcCXZhCj3LEzW4HlFMEEA3xlCJmf1p5VezLoZGJuwb6hZ5nInK7KF0MMlKoQ8NktyIO1jcC43gIUgSrHGLb67BwKv@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywqd+YBtiMxx7BsSJ/M5sHvCtilN4OrfwatALPNxn3Ygy5Efjz4
+	qIHmkoLMatb55QfBME9BxxU/x66CVXSxxPVYAQiqldGEq8ZAxZyZm1kWZeYhbT92R+NgFnKqG5q
+	aadVQaRdXX52b3AlwbnXma/9VwLbUJUY=
+X-Gm-Gg: ASbGnctTTRR7XYh0Ygs0sWzTsWBS55j+naRltlgMTgeBbp7l20bOQ972SXXRs15/tUv
+	Ib9FkNxMiUp+eOsk9vjFK8dZ7mLKHtVoaspcQyXqnzljU3tcovx7+DN9qSopHuRxK7BiSMGBP3T
+	5RTBQZwqOTHOs/LKZrSQcoOWQ6LcONv6QLdo8km5vUGxQ=
+X-Google-Smtp-Source: AGHT+IFYalb1OTW7qnfDKSlOci9VWDAXekpMbN5b2vtf3GW8ZUpuOTwRiHQFxL1wuWQtjgsw7eVkO7CajlLxN6YkM2A=
+X-Received: by 2002:a17:902:d48d:b0:234:d14c:50ff with SMTP id
+ d9443c01a7336-2366b00ba59mr2634725ad.6.1749838494222; Fri, 13 Jun 2025
+ 11:14:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250614-msm8960-sdcard-v1-5-ccce629428b6@smankusors.com>
-References: <20250614-msm8960-sdcard-v1-0-ccce629428b6@smankusors.com>
-In-Reply-To: <20250614-msm8960-sdcard-v1-0-ccce629428b6@smankusors.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Antony Kurniawan Soemardi <linux@smankusors.com>, 
- Max Shevchenko <wctrl@proton.me>, Rudraksha Gupta <guptarud@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749837006; l=9928;
- i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
- bh=J8kKyaakj1aYx0rm37/TO+tMsW2zUNsq8DTgJmYfnVE=;
- b=QJpr4VybUGg/Ex9xMz6khaGn3HDqeMI69niccYMhcnCOEqQbbZeA1ldju2DTb4zwqFuwcpHkH
- 4mt4AvJdxGeBNV/kEPm440/PdWk00/vTrCtieM4OnXds/MNHEd7J+/A
-X-Developer-Key: i=linux@smankusors.com; a=ed25519;
- pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
-Date: Fri, 13 Jun 2025 17:51:05 +0000 (UTC)
-X-CM-Envelope: MS4xfG5a+boJu2i93CZIsVZh3X6/H/Fb5bihLyJ8U+xsoCbM8+HcAoN4/S0f0Bl+lbqt+oENd7cN5gsl855fSHkJ5T9CgaibSNRjk+ENGU7PCGOxA3SHJVtX a7HIWe8NgaRbeY0G52TVb1AD5EdlViE84fjeTYWwfo4575OipChVkoAclUtDKap6ebB5G/c7kTg2yC7MrBUV9iojLHpRN28WylvviSTuQeP+XiNEJ5WxFiJo 5Mi4lzpFkAn2u/6l24sBez6ukIYKtWLHeKMI9FbL3v0ahvs58+lDBN7d6l/bXNSKYliOPLFXI9zb5+9qNDtIWrTQTJQq0QslIeABJrVeQtZMEN1I6+Mrd31t jSBRVA3XhK0PoQBZUFq8mR6mgKV7u43BESkBS1bD2bfIPsO7KBpriYDrV41umaFgcgkhikccAk33b9yomB2Fs89u3rwLIsZnUS6X/rstiu+eSo15o260e4i3 kpaBs4l/MZKnl5W9jBPgucQZIW4nySkvTAa0PIIeFrzSpgt754tiyS2hflY=
-X-CM-Analysis: v=2.4 cv=Vv1xAP2n c=1 sm=1 tr=0 ts=684c650c a=/sUT9SOQbq9tkq2xjVjq6Q==:117 a=/sUT9SOQbq9tkq2xjVjq6Q==:17 a=IkcTkHD0fZMA:10 a=wxLWbCv9AAAA:8 a=SKXNq62mckHbbuXN77oA:9 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
-X-AuthUser: linux@smankusors.com
+References: <20250611-ptr-as-ptr-v11-0-ce5b41c6e9c6@gmail.com>
+In-Reply-To: <20250611-ptr-as-ptr-v11-0-ce5b41c6e9c6@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Fri, 13 Jun 2025 20:14:41 +0200
+X-Gm-Features: AX0GCFtsUq0DPj-o5G6erQ-PfWcX7A0QtacSDQOlDe1Lx8EsxSkeObOaFNw6_Co
+Message-ID: <CANiq72m1ZWxPgCda1C-8X5XOvEq9Z9JfJZqhU4ZUzZ64=N+2fQ@mail.gmail.com>
+Subject: Re: [PATCH v11 0/6] rust: reduce `as` casts, enable related lints
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+	Benno Lossin <lossin@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add initial device tree support for the Sony Xperia SP (codename:
-sony-huashan), a smartphone based on the Qualcomm MSM8960T SoC.
+On Wed, Jun 11, 2025 at 12:23=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
+> wrote:
+>
+> This series depends on "rust: retain pointer mut-ness in
+> `container_of!`"[1].
 
-There are two variants of the Xperia SP, one without LTE and one with
-LTE. This device tree should work for both variants, though it has only
-been tested on the non-LTE variant.
+Not anymore! :)
 
-The following are currently supported:
-- Serial console support via gsbi8
-- GPIO keys for volume up/down buttons
-- PM8921 keypad with camera focus/capture keys
-- eMMC (sdcc1) and micro SD card (sdcc3) support
-- USB OTG support
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-Other hardware features are not yet implemented.
+Thanks for rebasing, Tamir, I appreciate it.
 
-Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
----
- arch/arm/boot/dts/qcom/Makefile                    |   1 +
- .../boot/dts/qcom/qcom-msm8960-sony-huashan.dts    | 361 +++++++++++++++++++++
- 2 files changed, 362 insertions(+)
+This has a bunch of hits in configfs, cpufreq and Nova [1]. I guess
+you built without those enabled.
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index 0c1d116f6e84f76994aa8c8286350bdcd1657a42..220ee204c8569e7039edae090bf1d0db379ba54e 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-msm8926-samsung-matisselte.dtb \
- 	qcom-msm8960-cdp.dtb \
- 	qcom-msm8960-samsung-expressatt.dtb \
-+	qcom-msm8960-sony-huashan.dtb \
- 	qcom-msm8974-lge-nexus5-hammerhead.dtb \
- 	qcom-msm8974-samsung-hlte.dtb \
- 	qcom-msm8974-sony-xperia-rhine-amami.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-sony-huashan.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-sony-huashan.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..f2f59fc8b9b61e18b0ec4ed1fc2d813585a75f15
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960-sony-huashan.dts
-@@ -0,0 +1,361 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025, Antony Kurniawan Soemardi <linux@smankusors.com>
-+ */
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/reset/qcom,gcc-msm8960.h>
-+
-+#include "qcom-msm8960.dtsi"
-+#include "pm8921.dtsi"
-+
-+/ {
-+	model = "Sony Xperia SP";
-+	compatible = "sony,huashan", "qcom,msm8960t", "qcom,msm8960";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		serial0 = &gsbi8_serial;
-+		mmc0 = &sdcc1; /* SDCC1 eMMC slot */
-+		mmc1 = &sdcc3; /* SDCC3 SD card slot */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&pm8921_gpio 21 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <10>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+
-+		key-volume-down {
-+			label = "Volume Down";
-+			gpios = <&pm8921_gpio 20 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <10>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+		};
-+	};
-+};
-+
-+&gsbi8 {
-+	qcom,mode = <GSBI_PROT_I2C_UART>;
-+	status = "okay";
-+};
-+
-+&gsbi8_serial {
-+	status = "okay";
-+};
-+
-+&pm8921 {
-+	interrupts-extended = <&msmgpio 104 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&pm8921_gpio {
-+	keypad_default_state: keypad-default-state {
-+		keypad-sense-pins {
-+			pins = "gpio1", "gpio2", "gpio3", "gpio4", "gpio5";
-+			function = PMIC_GPIO_FUNC_NORMAL;
-+			bias-pull-up;
-+			input-enable;
-+			power-source = <PM8921_GPIO_S4>;
-+			qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-+			qcom,pull-up-strength = <PMIC_GPIO_PULL_UP_31P5>;
-+		};
-+
-+		keypad-drive-pins {
-+			pins = "gpio9", "gpio10";
-+			function = PMIC_GPIO_FUNC_FUNC1;
-+			bias-disable;
-+			drive-open-drain;
-+			output-low;
-+			power-source = <PM8921_GPIO_S4>;
-+			qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-+		};
-+	};
-+};
-+
-+&pm8921_keypad {
-+	linux,keymap = <
-+		MATRIX_KEY(1, 0, KEY_CAMERA_FOCUS)
-+		MATRIX_KEY(1, 1, KEY_CAMERA)
-+	>;
-+	keypad,num-rows = <2>;
-+	keypad,num-columns = <5>;
-+
-+	pinctrl-0 = <&keypad_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&rpm {
-+	regulators {
-+		compatible = "qcom,rpm-pm8921-regulators";
-+		vin_lvs1_3_6-supply = <&pm8921_s4>;
-+		vin_lvs2-supply = <&pm8921_s4>;
-+		vin_lvs4_5_7-supply = <&pm8921_s4>;
-+		vdd_ncp-supply = <&pm8921_l6>;
-+		vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
-+		vdd_l21_l23_l29-supply = <&pm8921_s8>;
-+		vdd_l24-supply = <&pm8921_s1>;
-+		vdd_l25-supply = <&pm8921_s1>;
-+		vdd_l26-supply = <&pm8921_s7>;
-+		vdd_l27-supply = <&pm8921_s7>;
-+		vdd_l28-supply = <&pm8921_s7>;
-+		vdd_l29-supply = <&pm8921_s8>;
-+
-+		/* Buck SMPS */
-+		pm8921_s1: s1 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+			qcom,switch-mode-frequency = <3200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s2: s2 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s3: s3 {
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1150000>;
-+			qcom,switch-mode-frequency = <4800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s4: s4 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+			qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
-+		};
-+
-+		pm8921_s7: s7 {
-+			regulator-min-microvolt = <1150000>;
-+			regulator-max-microvolt = <1150000>;
-+			qcom,switch-mode-frequency = <3200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s8: s8 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+		};
-+
-+		/* PMOS LDO */
-+		pm8921_l1: l1 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1050000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l3: l3 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l4: l4 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l5: l5 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l6: l6 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l7: l7 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1850000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l8: l8 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l9: l9 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l10: l10 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l11: l11 {
-+			regulator-min-microvolt = <2600000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l12: l12 {
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l16: l16 {
-+			regulator-min-microvolt = <2600000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l17: l17 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l18: l18 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l21: l21 {
-+			regulator-min-microvolt = <1900000>;
-+			regulator-max-microvolt = <1900000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l22: l22 {
-+			regulator-min-microvolt = <2750000>;
-+			regulator-max-microvolt = <2750000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l23: l23 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l24: l24 {
-+			regulator-min-microvolt = <750000>;
-+			regulator-max-microvolt = <1150000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l25: l25 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+			bias-pull-down;
-+		};
-+
-+		/* Low Voltage Switch */
-+		pm8921_lvs1: lvs1 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs2: lvs2 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs3: lvs3 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs4: lvs4 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs5: lvs5 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs6: lvs6 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs7: lvs7 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_ncp: ncp {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+		};
-+	};
-+};
-+
-+&sdcc1 {
-+	vmmc-supply = <&pm8921_l5>;
-+	status = "okay";
-+};
-+
-+&sdcc3 {
-+	vmmc-supply = <&pm8921_l6>;
-+	vqmmc-supply = <&pm8921_l7>;
-+
-+	pinctrl-0 = <&sdcc3_default_state>;
-+	pinctrl-1 = <&sdcc3_sleep_state>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&usb_hs1_phy {
-+	v3p3-supply = <&pm8921_l3>;
-+	v1p8-supply = <&pm8921_l4>;
-+};
-+
-+&usb1 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
+Could you please fix those? Since this affects other maintainers that
+we need to ask the Acked-by to, let's try to at least give them the
+final state.
 
--- 
-2.34.1
+Thanks!
 
+Cheers,
+Miguel
+
+[1]
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:429:9
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:467:9
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:479:9
+
+warning: `as` casting between raw pointers without changing their constness
+   --> rust/kernel/configfs.rs:564:48
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:721:39
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:764:35
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:783:35
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:764:35
+
+warning: reference as raw pointer
+   --> rust/kernel/configfs.rs:783:35
+
+warning: using `as _` conversion
+   --> rust/kernel/cpufreq.rs:650:45
+
+warning: `as` casting between raw pointers without changing their constness
+   --> rust/kernel/cpufreq.rs:650:45
+
+warning: using `as _` conversion
+  --> drivers/gpu/nova-core/driver.rs:22:64
+
+warning: casts from `u8` to `u32` can be expressed infallibly using `From`
+   --> drivers/gpu/nova-core/regs/macros.rs:267:26
+
+warning: casts from `u8` to `u32` can be expressed infallibly using `From`
+   --> drivers/gpu/nova-core/regs/macros.rs:267:26
+
+warning: casts from `u8` to `u32` can be expressed infallibly using `From`
+   --> drivers/gpu/nova-core/regs/macros.rs:267:26
+
+warning: casts from `u8` to `u32` can be expressed infallibly using `From`
+   --> drivers/gpu/nova-core/regs/macros.rs:267:26
+
+warning: casts from `u8` to `u32` can be expressed infallibly using `From`
+   --> drivers/gpu/nova-core/regs/macros.rs:267:26
+
+warning: casts from `u8` to `u32` can be expressed infallibly using `From`
+  --> drivers/gpu/nova-core/regs.rs:35:65
 
