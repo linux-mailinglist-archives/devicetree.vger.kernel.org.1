@@ -1,313 +1,583 @@
-Return-Path: <devicetree+bounces-185856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DCCAD977F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 23:47:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 914D7AD97AB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 23:51:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E3293BE79D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:47:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 009597B04F5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35535265626;
-	Fri, 13 Jun 2025 21:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0B828DB71;
+	Fri, 13 Jun 2025 21:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MAGSc2QE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PlWus/VD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8491A3168;
-	Fri, 13 Jun 2025 21:47:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A493028D8CB;
+	Fri, 13 Jun 2025 21:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749851252; cv=none; b=qG1Zo0rx6CFzsIv7IrKy0zoBCqUU6EBs3kicW+qT4a5MYjXUmxbkLmblDmCBst6nHWI2q+R/NzlsT4fUaAx6Dl1misH/Bysd9N5y8vWTdG30dDVLKDhb1EYbsfE5CTtBKUwjBcJGZdY36ztz9eWOf2dHRpCikEs5jAdpBAULzZI=
+	t=1749851449; cv=none; b=BU+PcEEE8NFa3xFbW5QlGNAg9X6SjuXwDTitF1ZBA2oTo5y5/2Ou6PJ1yO0fX+O+dM32PuimabsZ6lyoSCr4zhz1MAbEGmQZdeX/4H7G60vzDxom6PbcO4+b9w0rnWcUbt8fT1uFVENL9nSV0IuNRQZDlOKNRsSGketATD+LTRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749851252; c=relaxed/simple;
-	bh=UFBnmAmV5GfUyOf6hdq8Wup9xKMJWhcUGzPNLBHK/MU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YArBzj7v8WmrfkqG4816Z84GLHQQiaS11AjFU98kuIxcRKRBwwafYVe5l0iiTkmzFu7GpggmchkLERnXv2tSdYQr+3o5DJ6fVJLaYxgdRxKoeGF0dbXB9/RJnbheV9GcF9Df5BzZEyP5CuH/nLeZ5PabTzuKXqoMUQ1QoOEGSNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MAGSc2QE; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749851250; x=1781387250;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UFBnmAmV5GfUyOf6hdq8Wup9xKMJWhcUGzPNLBHK/MU=;
-  b=MAGSc2QEiSfKzeAojs7l+6+Cvs4lnngrmE/56QDFN98oGLR6kEXg/p6j
-   SoogtHpNv/OAABgh+SMnJ24x4BD75YDo6E2vebZs7gtpurLkBXwKnzT/I
-   LieyTXEr4ugzafOm3Qk9qFR/NnpBxLibkrmOkBDlovbtHOjrRvxzO6p9F
-   4kQgZbH+Qkky0w+lA7LB1OYFOAh9koaJ4MNI278B+47K2nIWTiNd9pe3s
-   e5dVE0T6b0fYT7JVHYO/fWD6S7MZOxFoS+xz+bD/cUqAar8YNPlM8pBii
-   QDguLhySR8EkbSebkYAdTbxkhlr153HDase8g80PAxQRNahP6Sl1OJFma
-   Q==;
-X-CSE-ConnectionGUID: 1rHZE+SQTjiNVoVFML2LVg==
-X-CSE-MsgGUID: Ag5yegggRH+Fycfuf0/lVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="63429300"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; 
-   d="scan'208";a="63429300"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2025 14:47:27 -0700
-X-CSE-ConnectionGUID: Ne47g+8qQlWTLEFFvFGPSg==
-X-CSE-MsgGUID: g1lRJdUiSHaVHxPkS/C/3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; 
-   d="scan'208";a="148472745"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 13 Jun 2025 14:47:21 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uQCF4-000D1W-2p;
-	Fri, 13 Jun 2025 21:47:18 +0000
-Date: Sat, 14 Jun 2025 05:46:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Shannon Nelson <shannon.nelson@amd.com>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
-	Petr Oros <poros@redhat.com>
-Subject: Re: [PATCH net-next v9 06/14] dpll: zl3073x: Fetch invariants during
- probe
-Message-ID: <202506140541.KcP4ErN5-lkp@intel.com>
-References: <20250612200145.774195-7-ivecera@redhat.com>
+	s=arc-20240116; t=1749851449; c=relaxed/simple;
+	bh=K9mWd8/q0ggZXcfzgfYXQVxI41zMW5x2lyNUhnOWHtU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ft1A7c4lJps8ovsSJUFjwFYIgokPQoG3VDP/H9edLVIA0S9x2kjaI1CHO/52hFCZ40pUAqDBhkHBhayhEV0e1UVPMDiA09TyoPNxOn0vpgtDid7ATjQmEm9drv31aa7avIRslk5vah6IpQKr2PtYqd3CbqwWHh9bz5kFBXNSKTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PlWus/VD; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ad56cbc7b07so377060066b.0;
+        Fri, 13 Jun 2025 14:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749851446; x=1750456246; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uOSL9TLbxc7EnOxObPg+BQQrO/iL+ytpD3IpW1ikCIg=;
+        b=PlWus/VDCqz2RB5QIeTR3gGTbDWCExQj1gnl/TUyjaYOCSObjfDvI8K+47+3os5hDr
+         tAwRDca1JmIb8Cj8W4S/lU5YRgwnCCB5NCVcLTTuE+PNuMC9gUPuSL9mcnl4b+bhgbdt
+         J35CYbyCDoUg1/AO/ZO8GtQWgtGWruBprdXQ3+VPb2KsEFr3MVkd5HpVkBPHDgWh20oc
+         wy9PFIll8kYl/KPGxapmZprtthP120ecIQ6ltN7r6JfeVb9WowUs+rqDzLl/gIStGr/E
+         IDQe5LffeAAdySS8YjAtRUqoA2vBdbbHOoflamE+SFre8bficzoRIYn02wtuagjqiRE9
+         E+Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749851446; x=1750456246;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uOSL9TLbxc7EnOxObPg+BQQrO/iL+ytpD3IpW1ikCIg=;
+        b=XQ6LjNfAf3BunkvWAjoyuohisa3ILEQOzYEJ3us1ZGU64kdkDdhziMujnZquv0Yrh0
+         2hseAE1cYFttSlOa6FYaik+sYe3uuqyuq3AENOv4Er2aDW+yaM9KmlgcWAEszcgDoPDz
+         hc/1B2rtrkC9b/ttdAJG4cSBm8aRalD/dNbC+P+72gaar2CrLldoFAQ88WDpRzTP0He3
+         HzEPWCT+iv8hh8D9KHuY9F5F7PB4XiWoVjSYLob/vmUNGFCB1WpJ0Z0QL16cL0sgo9bq
+         u/cfC9eG19EcNwUijiEVowB4TgMGFDloEIU84LsYhmvzllj5STK31tZROUoG4j+lwQiw
+         s9Fg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVmuG4J9PfYLRyCEtykTBcsoud+/ua5cgaS0jyBvZsON0gsapSqb9v4aHKstvA191S1ynXoR7syg/5@vger.kernel.org, AJvYcCV9lrT2EIM3LxH513z9ADfPvMaJg0nvxGFHFzAqvMYMGJ0IEb6/zNrO0ct4pULcvMQ5lZokaQS7mACIjwqn@vger.kernel.org, AJvYcCXZ0LejhpNG/g8opVj4PXiVsrtGI1djYVGCcnNad+LLe2Ir4Oua4zkKfxfVKVjgzVNYuX3C9/zAHmSa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJc66NanWRBa1uqvmA/t09tPfiSiTWXQZ69kApwRjIrMmpaFiw
+	HfOQnbrf29C+UMBrquENxcKQVwbjDMtITxNPii7H9eBJuy9Toz5OabXAr4O+zYkeEZ4oYps4tAN
+	eEFCckPcJMVtwUux2lZSAknY7KHo70cI=
+X-Gm-Gg: ASbGncsbXI3SXVg/erwrRd4+FQwlGQgHE2eT3hXvq1ugTL4Ylh9+qZtE65FgQDSppUc
+	mgY7qRfBF2PwkJBU/TLfRM3SJDhLa2j5SVzoCcO5ANcnjAyW608Bv6TnqpWEnTar1IarDMR99B0
+	aXUgPCJ/+CV1qUVC/Bn9zTBF4qjpdL70H4Jno6RtsVFPM=
+X-Google-Smtp-Source: AGHT+IFdoc2pwliRbBEiGkei6cQkFWYSPoWqPcfSOBVwxbPul4hRpbFt6QjgmYfX2Kkqg4TW3/UKTgvZPY6sL22GT+g=
+X-Received: by 2002:a17:907:3d86:b0:ad8:9909:20a8 with SMTP id
+ a640c23a62f3a-adfad51471dmr60352266b.49.1749851445563; Fri, 13 Jun 2025
+ 14:50:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250612200145.774195-7-ivecera@redhat.com>
+References: <20250613130207.8560-1-victor.duicu@microchip.com> <20250613130207.8560-3-victor.duicu@microchip.com>
+In-Reply-To: <20250613130207.8560-3-victor.duicu@microchip.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 14 Jun 2025 00:50:08 +0300
+X-Gm-Features: AX0GCFuLwW4X6YfWz2eu-sth4SQ0jbD_vy-u6lw2TMKhvnViVAOrJ7yzJFL5Gi8
+Message-ID: <CAHp75VdRisP+trez2Ysgrhan_zXMWsmawB3XeW+_ePsbNC4RzQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: temperature: add support for MCP998X
+To: victor.duicu@microchip.com
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	marius.cristea@microchip.com, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ivan,
+On Fri, Jun 13, 2025 at 4:02=E2=80=AFPM <victor.duicu@microchip.com> wrote:
+>
+> From: Victor Duicu <victor.duicu@microchip.com>
+>
+> This is the driver for Microchip MCP998X/33 and MCP998XD/33D
+> Multichannel Automotive Temperature Monitor Family.
 
-kernel test robot noticed the following build warnings:
+...
 
-[auto build test WARNING on net-next/main]
+> +MICROCHIP MCP9982 TEMPERATURE DRIVER
+> +M:     Victor Duicu <victor.duicu@microchip.com>
+> +L:     linux-iio@vger.kernel.org
+> +S:     Supported
+> +F:     Documentation/devicetree/bindings/iio/temperature/microchip,mcp99=
+82.yaml
+> +F:     drivers/iio/temperature/mcp9982.c
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ivan-Vecera/dt-bindings-dpll-Add-DPLL-device-and-pin/20250613-041005
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250612200145.774195-7-ivecera%40redhat.com
-patch subject: [PATCH net-next v9 06/14] dpll: zl3073x: Fetch invariants during probe
-config: alpha-randconfig-r061-20250614 (https://download.01.org/0day-ci/archive/20250614/202506140541.KcP4ErN5-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 10.5.0
+So, with the first patch only the dangling file will be present
+without record in MAINTAINERS. Please, make sure that your DT schema
+file is in MAINTAINERS.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506140541.KcP4ErN5-lkp@intel.com/
 
-cocci warnings: (new ones prefixed by >>)
->> drivers/dpll/zl3073x/core.c:552:2-16: opportunity for str_enabled_disabled(input -> enabled)
->> drivers/dpll/zl3073x/core.c:587:2-14: opportunity for str_enabled_disabled(out -> enabled)
->> drivers/dpll/zl3073x/core.c:643:2-16: opportunity for str_enabled_disabled(synth -> enabled)
+> +config MCP9982
+> +       tristate "Microchip Technology MCP9982 driver"
+> +       depends on I2C
 
-vim +552 drivers/dpll/zl3073x/core.c
+...
 
-   506	
-   507	/**
-   508	 * zl3073x_ref_state_fetch - get input reference state
-   509	 * @zldev: pointer to zl3073x_dev structure
-   510	 * @index: input reference index to fetch state for
-   511	 *
-   512	 * Function fetches information for the given input reference that are
-   513	 * invariant and stores them for later use.
-   514	 *
-   515	 * Return: 0 on success, <0 on error
-   516	 */
-   517	static int
-   518	zl3073x_ref_state_fetch(struct zl3073x_dev *zldev, u8 index)
-   519	{
-   520		struct zl3073x_ref *input = &zldev->ref[index];
-   521		u8 ref_config;
-   522		int rc;
-   523	
-   524		/* If the input is differential then the configuration for N-pin
-   525		 * reference is ignored and P-pin config is used for both.
-   526		 */
-   527		if (zl3073x_is_n_pin(index) &&
-   528		    zl3073x_ref_is_diff(zldev, index - 1)) {
-   529			input->enabled = zl3073x_ref_is_enabled(zldev, index - 1);
-   530			input->diff = true;
-   531	
-   532			return 0;
-   533		}
-   534	
-   535		guard(mutex)(&zldev->multiop_lock);
-   536	
-   537		/* Read reference configuration */
-   538		rc = zl3073x_mb_op(zldev, ZL_REG_REF_MB_SEM, ZL_REF_MB_SEM_RD,
-   539				   ZL_REG_REF_MB_MASK, BIT(index));
-   540		if (rc)
-   541			return rc;
-   542	
-   543		/* Read ref_config register */
-   544		rc = zl3073x_read_u8(zldev, ZL_REG_REF_CONFIG, &ref_config);
-   545		if (rc)
-   546			return rc;
-   547	
-   548		input->enabled = FIELD_GET(ZL_REF_CONFIG_ENABLE, ref_config);
-   549		input->diff = FIELD_GET(ZL_REF_CONFIG_DIFF_EN, ref_config);
-   550	
-   551		dev_dbg(zldev->dev, "REF%u is %s and configured as %s\n", index,
- > 552			input->enabled ? "enabled" : "disabled",
-   553			input->diff ? "differential" : "single-ended");
-   554	
-   555		return rc;
-   556	}
-   557	
-   558	/**
-   559	 * zl3073x_out_state_fetch - get output state
-   560	 * @zldev: pointer to zl3073x_dev structure
-   561	 * @index: output index to fetch state for
-   562	 *
-   563	 * Function fetches information for the given output (not output pin)
-   564	 * that are invariant and stores them for later use.
-   565	 *
-   566	 * Return: 0 on success, <0 on error
-   567	 */
-   568	static int
-   569	zl3073x_out_state_fetch(struct zl3073x_dev *zldev, u8 index)
-   570	{
-   571		struct zl3073x_out *out = &zldev->out[index];
-   572		u8 output_ctrl, output_mode;
-   573		int rc;
-   574	
-   575		/* Read output configuration */
-   576		rc = zl3073x_read_u8(zldev, ZL_REG_OUTPUT_CTRL(index), &output_ctrl);
-   577		if (rc)
-   578			return rc;
-   579	
-   580		/* Store info about output enablement and synthesizer the output
-   581		 * is connected to.
-   582		 */
-   583		out->enabled = FIELD_GET(ZL_OUTPUT_CTRL_EN, output_ctrl);
-   584		out->synth = FIELD_GET(ZL_OUTPUT_CTRL_SYNTH_SEL, output_ctrl);
-   585	
-   586		dev_dbg(zldev->dev, "OUT%u is %s and connected to SYNTH%u\n", index,
- > 587			out->enabled ? "enabled" : "disabled", out->synth);
-   588	
-   589		guard(mutex)(&zldev->multiop_lock);
-   590	
-   591		/* Read output configuration */
-   592		rc = zl3073x_mb_op(zldev, ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_RD,
-   593				   ZL_REG_OUTPUT_MB_MASK, BIT(index));
-   594		if (rc)
-   595			return rc;
-   596	
-   597		/* Read output_mode */
-   598		rc = zl3073x_read_u8(zldev, ZL_REG_OUTPUT_MODE, &output_mode);
-   599		if (rc)
-   600			return rc;
-   601	
-   602		/* Extract and store output signal format */
-   603		out->signal_format = FIELD_GET(ZL_OUTPUT_MODE_SIGNAL_FORMAT,
-   604					       output_mode);
-   605	
-   606		dev_dbg(zldev->dev, "OUT%u has signal format 0x%02x\n", index,
-   607			out->signal_format);
-   608	
-   609		return rc;
-   610	}
-   611	
-   612	/**
-   613	 * zl3073x_synth_state_fetch - get synth state
-   614	 * @zldev: pointer to zl3073x_dev structure
-   615	 * @index: synth index to fetch state for
-   616	 *
-   617	 * Function fetches information for the given synthesizer that are
-   618	 * invariant and stores them for later use.
-   619	 *
-   620	 * Return: 0 on success, <0 on error
-   621	 */
-   622	static int
-   623	zl3073x_synth_state_fetch(struct zl3073x_dev *zldev, u8 index)
-   624	{
-   625		struct zl3073x_synth *synth = &zldev->synth[index];
-   626		u16 base, m, n;
-   627		u8 synth_ctrl;
-   628		u32 mult;
-   629		int rc;
-   630	
-   631		/* Read synth control register */
-   632		rc = zl3073x_read_u8(zldev, ZL_REG_SYNTH_CTRL(index), &synth_ctrl);
-   633		if (rc)
-   634			return rc;
-   635	
-   636		/* Store info about synth enablement and DPLL channel the synth is
-   637		 * driven by.
-   638		 */
-   639		synth->enabled = FIELD_GET(ZL_SYNTH_CTRL_EN, synth_ctrl);
-   640		synth->dpll = FIELD_GET(ZL_SYNTH_CTRL_DPLL_SEL, synth_ctrl);
-   641	
-   642		dev_dbg(zldev->dev, "SYNTH%u is %s and driven by DPLL%u\n", index,
- > 643			synth->enabled ? "enabled" : "disabled", synth->dpll);
-   644	
-   645		guard(mutex)(&zldev->multiop_lock);
-   646	
-   647		/* Read synth configuration */
-   648		rc = zl3073x_mb_op(zldev, ZL_REG_SYNTH_MB_SEM, ZL_SYNTH_MB_SEM_RD,
-   649				   ZL_REG_SYNTH_MB_MASK, BIT(index));
-   650		if (rc)
-   651			return rc;
-   652	
-   653		/* The output frequency is determined by the following formula:
-   654		 * base * multiplier * numerator / denominator
-   655		 *
-   656		 * Read registers with these values
-   657		 */
-   658		rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_BASE, &base);
-   659		if (rc)
-   660			return rc;
-   661	
-   662		rc = zl3073x_read_u32(zldev, ZL_REG_SYNTH_FREQ_MULT, &mult);
-   663		if (rc)
-   664			return rc;
-   665	
-   666		rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_M, &m);
-   667		if (rc)
-   668			return rc;
-   669	
-   670		rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_N, &n);
-   671		if (rc)
-   672			return rc;
-   673	
-   674		/* Check denominator for zero to avoid div by 0 */
-   675		if (!n) {
-   676			dev_err(zldev->dev,
-   677				"Zero divisor for SYNTH%u retrieved from device\n",
-   678				index);
-   679			return -EINVAL;
-   680		}
-   681	
-   682		/* Compute and store synth frequency */
-   683		zldev->synth[index].freq = div_u64(mul_u32_u32(base * m, mult), n);
-   684	
-   685		dev_dbg(zldev->dev, "SYNTH%u frequency: %u Hz\n", index,
-   686			zldev->synth[index].freq);
-   687	
-   688		return rc;
-   689	}
-   690	
+> +#include <asm/div64.h>
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+This needs to be linux/math64.h instead. The rule of thumb: prefer
+linux/foo over asm/foo (with some exceptions, that are not the case
+here).
+
+...
+
+> +#define MCP9982_INT_VALUE_ADDR(index)          (2 * (index))
+
+Maybe also ' + 0'? But I'm fine with this as well.
+
+> +#define MCP9982_FRAC_VALUE_ADDR(index)         (2 * (index) + 1)
+
+...
+
+> +#define MCP9982_EXT_IDEAL_ADDR(index)          ((index) + 54)
+
+What does 54 mean? What is the magic behind?
+
+...
+
+> +#define MCP9982_CHAN(index, si, __address) ({                           =
+               \
+> +       struct iio_chan_spec __chan =3D {                                =
+                 \
+
+Why not compound literal?
+
+> +               .type =3D IIO_TEMP,                                      =
+                 \
+> +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),          =
+                 \
+> +               .info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_=
+SAMP_FREQ) |     \
+> +               BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) |       =
+               \
+> +               BIT(IIO_CHAN_INFO_OFFSET),                               =
+               \
+> +               .info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FREQ)=
+ |               \
+> +               BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) |       =
+               \
+> +               BIT(IIO_CHAN_INFO_HYSTERESIS) |                          =
+               \
+> +               BIT(IIO_CHAN_INFO_OFFSET),                               =
+               \
+> +               .channel =3D index,                                      =
+                 \
+> +               .address =3D __address,                                  =
+                 \
+> +               .scan_index =3D si,                                      =
+                 \
+> +               .scan_type =3D {                                         =
+                 \
+> +                       .sign =3D 'u',                                   =
+                 \
+> +                       .realbits =3D 8,                                 =
+                 \
+> +                       .storagebits =3D 8,                              =
+                 \
+> +               },                                                       =
+               \
+> +               .indexed =3D 1,                                          =
+                 \
+> +       };                                                               =
+               \
+> +       __chan;                                                          =
+               \
+> +})
+
+...
+
+> +static const unsigned int mcp9982_window_size[3] =3D {1, 4, 8};
+
+Add surrounding spaces inside {}.
+
+...
+
+> +/*
+> + * (Sampling_Frequency * 1000000) / (Window_Size * 2)
+
+This comment needs more elaboration, i.e. units in use for frequency
+and perhaps window size.
+
+> + */
+> +static unsigned int mcp9982_calc_all_3db_values(void)
+> +{
+> +       u32 denominator, remainder;
+> +       unsigned int i, j;
+> +       u64 numerator;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(mcp9982_window_size); i++)
+> +               for (j =3D 0; j <  ARRAY_SIZE(mcp9982_sampl_fr); j++) {
+
+Have you considered making mcp9982_sampl_fr to be struct u64_fract?
+Also using here on stack something like
+
+  struct u64_fract tmp;
+
+> +                       numerator =3D MICRO * mcp9982_sampl_fr[j][0];
+> +                       denominator =3D 2 * mcp9982_window_size[i] * mcp9=
+982_sampl_fr[j][1];
+> +                       remainder =3D do_div(numerator, denominator);
+> +                       remainder =3D do_div(numerator, MICRO);
+> +                       mcp9982_3db_values_map_tbl[j][i][0] =3D numerator=
+;
+> +                       mcp9982_3db_values_map_tbl[j][i][1] =3D remainder=
+;
+
+The proposed changes will clarify the meaning of [0] and [1] in such a tabl=
+e.
+
+> +               }
+> +       return 0;
+> +}
+
+...
+
+> +struct mcp9982_priv {
+> +       struct regmap *regmap;
+> +       u8 num_channels;
+> +       bool extended_temp_range;
+> +       bool recd34_enable;
+> +       bool recd12_enable;
+> +       unsigned int beta_values[2];
+> +       /*
+> +        * Synchronize access to private members, and ensure
+> +        * atomicity of consecutive regmap operations.
+> +        */
+> +       struct mutex lock;
+> +       struct iio_chan_spec *iio_chan;
+> +       const char *labels[MCP9982_MAX_NUM_CHANNELS];
+> +       unsigned int ideality_value[4];
+> +       unsigned int sampl_idx;
+> +       const char *dev_name;
+
+> +       bool apdd_enable;
+
+Wouldn't it be slightly better to group all booleans (and move u8 here)?
+
+> +};
+
+...
+
+> +               if (strchr(priv->dev_name, 'd')) {
+> +                       *vals =3D mcp9982_conv_rate[4];
+> +                       *length =3D (ARRAY_SIZE(mcp9982_conv_rate) - 4) *=
+ 2;
+> +               } else {
+> +                       *vals =3D mcp9982_conv_rate[0];
+> +                       *length =3D ARRAY_SIZE(mcp9982_conv_rate) * 2;
+> +               }
+
+So, the length can be multiplied only once here...
+
+...
+
+> +       case IIO_CHAN_INFO_SAMP_FREQ:
+> +               *val =3D mcp9982_conv_rate[priv->sampl_idx][0];
+> +               *val2 =3D mcp9982_conv_rate[priv->sampl_idx][1];
+> +               return IIO_VAL_INT_PLUS_MICRO;
+> +       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+
+> +
+
+Why this blank line?
+
+> +               ret =3D regmap_read(priv->regmap, MCP9982_RUNNING_AVG_ADD=
+R, &tmp_reg);
+> +               if (ret)
+> +                       return ret;
+> +               /*
+> +                * In Filter Selection Register values 1 and 2
+> +                * are mapped to the same setting.
+> +                */
+> +               switch (tmp_reg) {
+> +               case 0:
+> +                       idx =3D 0;
+> +                       break;
+> +               case 1:
+> +               case 2:
+> +                       idx =3D 1;
+> +                       break;
+
+Instead of comment this can be regrouped like
+
+case 0:
+case 1:
+  idx =3D tmp_reg;
+  break;
+case 2:
+  idx =3D 1;
+  break;
+default:
+  ...
+
+> +               default:
+> +                       idx =3D 2;
+> +                       break;
+> +               }
+> +
+> +               *val =3D mcp9982_3db_values_map_tbl[priv->sampl_idx][idx]=
+[0];
+> +               *val2 =3D mcp9982_3db_values_map_tbl[priv->sampl_idx][idx=
+][1];
+> +               return IIO_VAL_INT_PLUS_MICRO;
+
+...
+
+> +static int mcp9982_write_raw(struct iio_dev *indio_dev, struct iio_chan_=
+spec const *chan,
+> +                            int val, int val2, long mask)
+> +{
+> +       struct mcp9982_priv *priv =3D iio_priv(indio_dev);
+> +       int ret;
+> +       unsigned int i;
+> +       unsigned int start =3D 0;
+> +
+> +       guard(mutex)(&priv->lock);
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_SAMP_FREQ:
+> +               /*
+> +                * For MCP998XD and MCP9933D sampling frequency can't
+> +                * be set lower than 1.
+> +                */
+
+> +               if (strchr(priv->dev_name, 'd'))
+
+Why not simply have this in an additional field of chip_info structure?
+
+> +                       start =3D 4;
+> +               for (i =3D start; i < ARRAY_SIZE(mcp9982_conv_rate); i++)
+> +                       if (val =3D=3D mcp9982_conv_rate[i][0] && val2 =
+=3D=3D mcp9982_conv_rate[i][1])
+> +                               break;
+> +
+> +               if (i =3D=3D ARRAY_SIZE(mcp9982_conv_rate))
+> +                       return -EINVAL;
+> +
+> +               ret =3D regmap_write(priv->regmap, MCP9982_CONV_ADDR, i);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               priv->sampl_idx =3D i;
+> +               return 0;
+> +       case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+> +               for (i =3D 0; i < ARRAY_SIZE(mcp9982_3db_values_map_tbl[p=
+riv->sampl_idx]); i++)
+> +                       if (val =3D=3D mcp9982_3db_values_map_tbl[priv->s=
+ampl_idx][i][0] &&
+> +                           val2 =3D=3D mcp9982_3db_values_map_tbl[priv->=
+sampl_idx][i][1])
+> +                               break;
+> +
+> +               if (i =3D=3D ARRAY_SIZE(mcp9982_3db_values_map_tbl[priv->=
+sampl_idx]))
+> +                       return -EINVAL;
+> +
+> +               /*
+> +                * In mcp9982_3db_values_map_tbl the second index maps:
+> +                * 0 for filter off
+> +                * 1 for filter at level 1
+> +                * 2 for filter at level 2
+> +                */
+> +               if (i =3D=3D 2)
+> +                       i =3D 3;
+
+> +               ret =3D regmap_write(priv->regmap, MCP9982_RUNNING_AVG_AD=
+DR, i);
+> +
+> +               return ret;
+
+Why not
+
+  return regmap_write(...);
+
+?
+
+> +       case IIO_CHAN_INFO_HYSTERESIS:
+> +               if (val < 0 || val > 255)
+> +                       return -EINVAL;
+> +
+> +               ret =3D regmap_write(priv->regmap, MCP9982_HYS_ADDR, val)=
+;
+> +               return ret;
+
+Ditto.
+
+> +       case IIO_CHAN_INFO_OFFSET:
+> +               if (val !=3D 0 && val !=3D -64)
+> +                       return -EINVAL;
+> +               priv->extended_temp_range =3D !(val =3D=3D 0);
+
+> +               ret =3D regmap_assign_bits(priv->regmap, MCP9982_CFG_ADDR=
+, MCP9982_CFG_RANGE,
+> +                                        priv->extended_temp_range);
+> +               return ret;
+
+Ditto.
+
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+
+...
+
+> +static int mcp9982_init(struct mcp9982_priv *priv)
+> +{
+> +       int ret;
+> +       unsigned int i;
+> +       u8 val;
+> +
+> +       /*
+> +        * For chips with "D" in the name
+> +        * set the below parameters to default to
+> +        * ensure that hardware shutdown feature
+> +        * can't be overridden.
+> +        */
+> +       if (strchr(priv->dev_name, 'd')) {
+> +               priv->recd12_enable =3D true;
+> +               priv->recd34_enable =3D true;
+
+> +               for (i =3D 0; i < 2; i++)
+> +                       priv->beta_values[i] =3D 16;
+
+memset32() ?
+
+> +               for (i =3D 0; i < 4; i++)
+> +                       priv->ideality_value[i] =3D 18;
+
+Ditto.
+
+> +       }
+> +
+> +       /*
+> +        * Set default values in registers.
+> +        * APDD, RECD12 and RECD34 are active on 0.
+> +        */
+> +       val =3D FIELD_PREP(MCP9982_CFG_MSKAL, 1) | FIELD_PREP(MCP9982_CFG=
+_RS, 1) |
+> +             FIELD_PREP(MCP9982_CFG_ATTHM, 1) |
+> +             FIELD_PREP(MCP9982_CFG_RECD12, !priv->recd12_enable) |
+> +             FIELD_PREP(MCP9982_CFG_RECD34, !priv->recd34_enable) |
+> +             FIELD_PREP(MCP9982_CFG_RANGE, 0) | FIELD_PREP(MCP9982_CFG_D=
+A_ENA, 0) |
+> +             FIELD_PREP(MCP9982_CFG_APDD, !priv->apdd_enable);
+> +
+> +       ret =3D regmap_write(priv->regmap, MCP9982_CFG_ADDR, val);
+> +       if (ret)
+> +               return ret;
+> +       priv->extended_temp_range =3D false;
+> +
+> +       ret =3D regmap_write(priv->regmap, MCP9982_CONV_ADDR, 6);
+> +       if (ret)
+> +               return ret;
+> +       priv->sampl_idx =3D 6;
+> +
+> +       ret =3D regmap_write(priv->regmap, MCP9982_HYS_ADDR, 10);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D regmap_write(priv->regmap, MCP9982_CONSEC_ALRT_ADDR, 112)=
+;
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D regmap_write(priv->regmap, MCP9982_RUNNING_AVG_ADDR, 0);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D regmap_write(priv->regmap, MCP9982_HOTTEST_CFG_ADDR, 0);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* Set beta compensation for channels 1 and 2 */
+> +       for (i =3D 0; i < 2; i++) {
+
+ARRAY_SIZE()
+
+> +               ret =3D regmap_write(priv->regmap, MCP9982_EXT_BETA_CFG_A=
+DDR(i),
+> +                                  priv->beta_values[i]);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +       /* Set ideality factor for all external channels */
+> +       for (i =3D 0; i < 4; i++) {
+
+Ditto.
+
+> +               ret =3D regmap_write(priv->regmap, MCP9982_EXT_IDEAL_ADDR=
+(i),
+> +                                  priv->ideality_value[i]);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+
+...
+
+> +       priv->beta_values[0] =3D 16;
+> +       priv->beta_values[1] =3D 16;
+
+memset32() ?
+
+> +       device_property_read_u32(dev, "microchip,beta1", &priv->beta_valu=
+es[0]);
+> +       device_property_read_u32(dev, "microchip,beta2", &priv->beta_valu=
+es[1]);
+> +       if (priv->beta_values[0] > 16 || priv->beta_values[1] > 16)
+> +               return -EINVAL;
+
+...
+
+> +       if (priv->num_channels > device_nr_channels)
+> +               return dev_err_probe(dev, -EINVAL, "More channels than th=
+e chip supports\n");
+
+Hmm... Perhaps -E2BIG?
+
+...
+
+> +       priv->labels[0] =3D "internal diode";
+> +       iio_idx++;
+> +       device_for_each_child_node_scoped(dev, child) {
+> +               fwnode_property_read_u32(child, "reg", &reg_nr);
+> +               if (!reg_nr || reg_nr >=3D device_nr_channels)
+> +                       return dev_err_probe(dev, -EINVAL,
+> +                                    "The index of the channels does not =
+match the chip\n");
+> +
+> +               priv->ideality_value[reg_nr - 1] =3D 18;
+> +               if (fwnode_property_present(child, "microchip,ideality-fa=
+ctor")) {
+> +                       fwnode_property_read_u32(child, "microchip,ideali=
+ty-factor",
+> +                                                &priv->ideality_value[re=
+g_nr - 1]);
+> +                       if (priv->ideality_value[reg_nr - 1] > 63)
+> +                               return dev_err_probe(dev, -EINVAL,
+
+-EOVERFLOW?
+
+> +                                    "The ideality value is higher than m=
+aximum\n");
+> +               }
+> +
+> +               fwnode_property_read_string(child, "label",
+> +                                           &priv->labels[reg_nr]);
+> +
+> +               priv->iio_chan[iio_idx++] =3D MCP9982_CHAN(reg_nr, reg_nr=
+,
+> +                                                        MCP9982_INT_VALU=
+E_ADDR(reg_nr));
+> +       }
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
