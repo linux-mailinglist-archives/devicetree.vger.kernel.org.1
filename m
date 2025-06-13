@@ -1,358 +1,590 @@
-Return-Path: <devicetree+bounces-185606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C90CAD88AE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:03:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BBFAD897F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5D3217A254
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:03:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 565133A63C3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 10:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3ED291C23;
-	Fri, 13 Jun 2025 10:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8EA2D239B;
+	Fri, 13 Jun 2025 10:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZVVV2n1O"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GKhlpo3J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC5C29B78C;
-	Fri, 13 Jun 2025 10:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BFE2D1F5F
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 10:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749808979; cv=none; b=kzS/HbZGc4GpxIJUbpl9OG02ZAVj9/oWwZy/PmlzkRT0fBZl0oCkL8FxTmMR2pV3PWdMSRZVt3AmENyAxWJwj5X5P1U4p18Z3RCFbA+L+WCEl6IGDtr2NSSj4LL6yCuhBsGnM0bIW84kjg+3DIjf1prXrJHyxbk4WvpvobuJ8iE=
+	t=1749810496; cv=none; b=pKSWMOp9+3Npqdt4TukCZUYPFndbZbriW9Z5+wylkyEgDhgkdjN31gQxviLXzFEiM/4Ai1TTcVeNSM177F0gYA8kxK8VGvDRDwsjOIvUEIuHaW9C5uG4i7ftJJRNqEVX0AL6G2e6WoYlUcbioth5QVykNtb5wdTj0B9946wqrF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749808979; c=relaxed/simple;
-	bh=1He0Fo9SkN9xUrKQXHkWW4Ed7cJbqP+af9I+R0FVlak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SrO3pKueX9OwGPsU15+7yzk+3kgHr/amLS6wFEEbStpnvsuFeHOadEhwrJeqkZKsEQEWZJgL8iXISK8YwC2dkm4IZEjSEPBjgHwsRaOJR0HBhPAchR6BGM9mg21tHqg3n5XcxwQMzrIQlFdpYV/d4+eRoIBiXRFtFTg4W1Tdke0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZVVV2n1O; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b2c2c762a89so1581795a12.0;
-        Fri, 13 Jun 2025 03:02:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749808977; x=1750413777; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=E4CEJv3p+Vm6KRlJSHF8Wp9jYCnWqhDCGE2YwWaeevg=;
-        b=ZVVV2n1ODqOJyhlP4Nj/Tc+n7kfGjBonrXmfl9AgnoWqkhjT/MeyMUeM1VcZvHu9Kg
-         Z5zY+EY5Lefaqne4rF7V2Dn/UR0PaULY9EX+lQ+NfzSgwV6DdZuRBByiH1id34G3bExk
-         i3dRIjCQwtwdOpezNX6Wy9NwRCLqMlc1D0m0sR1naVUFUbImeWHs+nsDinhrnj8gFevD
-         GkfqDcVLNqymWxnaVxSPDIhua+b7NQdxucj27meXu/DAqa6AA2ujuFKrzB4K9xD3rHCi
-         HrT+5vdJksuQsktFsnobf4uKNt0G29E2PK66kfaOMr+D/E/AjD0oFVPz97FjhdBKQfZS
-         wQ2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749808977; x=1750413777;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E4CEJv3p+Vm6KRlJSHF8Wp9jYCnWqhDCGE2YwWaeevg=;
-        b=SXJ26BW3aPNsfIsinlWHW/FlDbJrGvPtepkc7giSMSHQ4TAr0p8or5imElckVdsLGd
-         6RonjXm318A0gnVmmYMI81jRh3aHXIOwwZolCcuAY/Emf+QjMgiq8FvBe8wWxWVIACrC
-         2iXMthBa4BdKgjJSVdEDelzRB+rCQiIccA/VAI2azomVIw6JBfPASPkXBUi8W7xfmdId
-         /Ltb+sRf5zhKboWBskofAPtm/xRIx5s0c6U8dbK4N5F3XKY8cL3QdRWlVr+G/UtqZF3p
-         scBNiCB1QwS4SKL1rYEtBaUJvZzpUaSPd2Zdhq3YkjriAP5VHRq0kbZZCi5/r5pQb0cM
-         ly8g==
-X-Forwarded-Encrypted: i=1; AJvYcCUncoVHui+KvnG0FUkZ1E92QZ54KPeLaJ/QoNECBSG6AsrmFJfxIgr4HcSfQsIpWuQpW+q2G8y3sq6xY46G@vger.kernel.org, AJvYcCVm8k6hehX7J6t/pft80B+2uunEs/ECP6SU+LusW/cax9xEIZhQTbJ0XMvDzkdEhnkN7tEtCYbt+OB8@vger.kernel.org, AJvYcCWhvBb2rTuiz7znACcZvkuq0w3bE7+FNQps/AgSGT3WsgpVvdMmmNYIR9R/eXQj5d62Zuq3ekZC+yH1@vger.kernel.org, AJvYcCX3fVb1awHOO0YyxyWfID5tRVAetacbbMicHEvPzHmsb4448Nm9XuJT9+sIsyJGQu818s3mLhQbPsRu@vger.kernel.org, AJvYcCXJwee0aDvNI/7xGPJmICE7YmawEe+X/GCqQpLw8VrcOOYv8xUjKc+yBNjAIa9f+Z7BkxQxm1aVfArG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz0x4q5dyYM8pU83ju/MIROS+qNOYnoGUOlVwCpzdjo+Urg2Fx
-	KsXe7+KSephRKyIoMC7wtzF6zn3pylMsZMdVv7yNNW59PbuJCslk4R77
-X-Gm-Gg: ASbGnct8Cqe68dibHEmP5hdXWC+nrjTecF9NQUmLG/YPup8QFLT/DUsxCEnztZQHtqH
-	9N/YU5LVbqDJw5UxedigLy2j6puCRmS8f5Di7BMukqebHGr0tuA/nmrAKk42nvsJ5pfW3Ri+mMN
-	7VlZ0ngi1a4MqbI30L+d/2x+EJL5DmCQUPf9gIsZ+8kknZ6re7SrfxoRDTBK9dou5HdS5MrZKp8
-	HQFVA9OzclwkG6XaEb3HZLtz/EYZ/73ZGGGnHu9Vi4bJljmWBMSyrSTCUbyMB/I/yylXpLLUDEc
-	/PYGVob7Rvm6vjmKoHBF0w/T8euzevNcjXU5KWQR4by1kb2NwII+f6UToqGhEA9Ik9QTTfrt4VC
-	WXcdrHA==
-X-Google-Smtp-Source: AGHT+IGJo4W5iYXGs2QfKCKVDEJUDaqqQ2ynkAzqBUZEjFuAAF34IIwPQJbwD717UGFYpSeooR1i1Q==
-X-Received: by 2002:a05:6a20:2445:b0:1f5:6878:1a43 with SMTP id adf61e73a8af0-21facbca8dbmr3732040637.14.1749808977229;
-        Fri, 13 Jun 2025 03:02:57 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fe1680c6asm1098952a12.42.2025.06.13.03.02.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jun 2025 03:02:56 -0700 (PDT)
-Date: Fri, 13 Jun 2025 12:02:44 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] iio: adc: Add events support to ad4052
-Message-ID: <gvigk6helnl3yeouy636dgvay7tqux7lnxns3256fivzz4l3er@7ts7fz7vitff>
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
- <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
- <afc85a4b-1535-406d-ad14-143049267b98@baylibre.com>
+	s=arc-20240116; t=1749810496; c=relaxed/simple;
+	bh=L+l/CUlXYKHdo2S1Xm/T8wWqJa0P+WxdUHX1bwBJKuY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=Dnya+awUv+pgqMazu3MUofWgAx1xo0Hkb8YCFaNazl4c+arRnLgqvQ86U3wVKGHnyDg+1+eXZfYOiQ1Fcajj0kSgRfvC8bZXbCOU8GC2/B4O2Bw+SxCwf7nUFMKKnuAb3P9KdBaZefxTFCUlLDOK4JSEG3YgYArAvWvhUmNorPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GKhlpo3J; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250613102812epoutp049aace80c3c9193a63796613a9ee96ff6~Ik18qfBvh2318923189epoutp04D
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 10:28:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250613102812epoutp049aace80c3c9193a63796613a9ee96ff6~Ik18qfBvh2318923189epoutp04D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749810492;
+	bh=XFjtB0pW6tGVJfA0KceLKHbGvXE3/ySSaiXjJcdn7X0=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=GKhlpo3JF/Gfze8g4zn4XDeLlB6++UT0qrnmQdFQ8B6pve00GPesxDmOKQVxpo0p9
+	 wPTY5Kgast5k0rpB8gEeUubIb7D3vEiHJyi5HlEJZsxS3vDSb8V4YOHfwIyaUxsZFl
+	 97zIWQvvWn/xQzXFZmm7hwNvl0+FWfmXScmqlI9s=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250613102811epcas5p496f8f78e5d2fca45eebaea6ee8d5b006~Ik18AeflD1496114961epcas5p40;
+	Fri, 13 Jun 2025 10:28:11 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.182]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4bJbFj4xkxz6B9mK; Fri, 13 Jun
+	2025 10:28:09 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250613061230epcas5p12c0a029edba39133fc0be22cb0aa1e09~IhWsp7ag10704107041epcas5p1B;
+	Fri, 13 Jun 2025 06:12:30 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250613061229epsmtip195b14527b12542d3a7f95eb5ed59db5f~IhWrYd2qn1749817498epsmtip1i;
+	Fri, 13 Jun 2025 06:12:29 +0000 (GMT)
+From: Faraz Ata <faraz.ata@samsung.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	alim.akhtar@samsung.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	rosa.pila@samsung.com, Faraz Ata <faraz.ata@samsung.com>
+Subject: [PATCH v1] arm64: dts: exynos: Add DT node for all SPI ports
+Date: Fri, 13 Jun 2025 11:52:08 +0530
+Message-Id: <20250613062208.978641-1-faraz.ata@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <afc85a4b-1535-406d-ad14-143049267b98@baylibre.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250613061230epcas5p12c0a029edba39133fc0be22cb0aa1e09
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250613061230epcas5p12c0a029edba39133fc0be22cb0aa1e09
+References: <CGME20250613061230epcas5p12c0a029edba39133fc0be22cb0aa1e09@epcas5p1.samsung.com>
 
-Hi David,
-On Thu, Jun 12, 2025 at 02:38:45PM -0500, David Lechner wrote:
-> On 6/10/25 2:34 AM, Jorge Marques wrote:
-> > The AD4052 family supports autonomous monitoring readings for threshold
-> > crossings. Add support for catching the GPIO interrupt and expose as an IIO
-> > event. The device allows to set either, rising and falling directions. Only
-> > either threshold crossing is implemented.
-> > 
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> > ---
-> 
-> ...
-> 
-> > +
-> > +static ssize_t ad4052_events_frequency_store(struct device *dev,
-> > +					     struct device_attribute *attr,
-> > +					     const char *buf,
-> > +					     size_t len)
-> > +{
-> > +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +	if (st->wait_event) {
-> > +		ret = -EBUSY;
-> > +		goto out_release;
-> > +	}
-> 
-> I'm wondering if we should instead have some kind of iio_device_claim_monitor_mode()
-> so that we don't have to implement this manually everywhere. If monitor mode was
-> claimed, then iio_device_claim_direct() and iio_device_claim_buffer_mode() would
-> both return -EBUSY. If buffer mode was claimed, iio_device_claim_monitor_mode()
-> would fail. If direct mode was claimed, iio_device_claim_monitor_mode() would wait.
-> 
-I don't think this would scale with other vendors and devices, it is a
-limitation of ADI:ADC:SPI requiring to enter configuration mode to read
-registers. A deep dive into the other drivers that use IIO Events is
-needed.
-> > +
-> > +	ret = __sysfs_match_string(AD4052_FS(st->chip->grade),
-> > +				   AD4052_FS_LEN(st->chip->grade), buf);
-> > +	if (ret < 0)
-> > +		goto out_release;
-> > +
-> > +	st->events_frequency = ret;
-> > +
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret ? ret : len;
-> > +}
-> > +
-> > +static IIO_DEVICE_ATTR(sampling_frequency, 0644,
-> > +		       ad4052_events_frequency_show,
-> > +		       ad4052_events_frequency_store, 0);
-> > +
-> > +static ssize_t sampling_frequency_available_show(struct device *dev,
-> > +						 struct device_attribute *attr,
-> > +						 char *buf)
-> > +{
-> > +	struct ad4052_state *st = iio_priv(dev_to_iio_dev(dev));
-> > +	int ret = 0;
-> > +
-> > +	for (u8 i = AD4052_FS_OFFSET(st->chip->grade);
-> > +	     i < AD4052_FS_LEN(st->chip->grade); i++)
-> > +		ret += sysfs_emit_at(buf, ret, "%s ", ad4052_conversion_freqs[i]);
-> > +
-> > +	ret += sysfs_emit_at(buf, ret, "\n");
-> > +	return ret;
-> > +}
-> > +
-> > +static IIO_DEVICE_ATTR_RO(sampling_frequency_available, 0);
-> > +
-> > +static struct attribute *ad4052_event_attributes[] = {
-> > +	&iio_dev_attr_sampling_frequency.dev_attr.attr,
-> > +	&iio_dev_attr_sampling_frequency_available.dev_attr.attr,
-> > +	NULL
-> > +};
-> > +
-> > +static const struct attribute_group ad4052_event_attribute_group = {
-> > +	.attrs = ad4052_event_attributes,
-> > +};
-> > +
-> >  static int ad4052_update_xfer_raw(struct iio_dev *indio_dev,
-> >  				   struct iio_chan_spec const *chan)
-> >  {
-> > @@ -602,6 +699,19 @@ static int ad4052_setup(struct iio_dev *indio_dev, struct iio_chan_spec const *c
-> >  				  val);
-> >  }
-> >  
-> > +static irqreturn_t ad4052_irq_handler_thresh(int irq, void *private)
-> > +{
-> > +	struct iio_dev *indio_dev = private;
-> > +
-> 
-> Can we not read the status register here to find out what the exact
-> event was? I guess that would require taking it out of monitor mode.
-> 
-It requires entering configuration mode and results in a monitoring
-downtime. Earlier versions of this driver would do that, but the
-conclusion was that it was better to have the user disabling events and
-reading registers, so he is explicitly aware of the monitoring downtime.
-> > +	iio_push_event(indio_dev,
-> > +		       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
-> > +					    IIO_EV_TYPE_THRESH,
-> > +					    IIO_EV_DIR_EITHER),
-> > +		       iio_get_time_ns(indio_dev));
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> >  static irqreturn_t ad4052_irq_handler_drdy(int irq, void *private)
-> >  {
-> >  	struct ad4052_state *st = private;
-> > @@ -616,6 +726,18 @@ static int ad4052_request_irq(struct iio_dev *indio_dev)
-> >  	struct device *dev = &st->spi->dev;
-> >  	int ret;
-> >  
-> > +	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp0");
-> > +	if (ret > 0) {
-> > +		ret = devm_request_threaded_irq(dev, ret, NULL,
-> > +						ad4052_irq_handler_thresh,
-> > +						IRQF_ONESHOT, indio_dev->name,
-> > +						indio_dev);
-> > +		if (ret)
-> > +			return ret;
-> > +	} else if (ret == -EPROBE_DEFER) {
-> > +		return ret;
-> > +	}
-> 
-> By swapping the order, we can avoid the else. Also, do we really want to
-> ignore all other errors? It seems like there would just be ENODEV or ENOENT
-> that means the interrupt is not there and we would want to pass on other
-> errors.
-> 
-Ack on the swap order.
+Universal Serial Interface (USI) supports three serial protocol
+like uart, i2c and spi. ExynosAutov920 has 18 instances of USI.
+Add spi nodes for all the instances.
 
-If not set on the devicetree, including improper devicetree cases, it
-should continue without. If the driver that manages the irq is not
-probed, defer probe.
+Signed-off-by: Faraz Ata <faraz.ata@samsung.com>
+---
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 361 ++++++++++++++++++
+ 1 file changed, 361 insertions(+)
 
-I tested different devicetrees and got:
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+index 2cb8041c8a9f..aa4798b1363c 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+@@ -455,6 +455,26 @@ serial_0: serial@10880000 {
+ 				samsung,uart-fifosize = <256>;
+ 				status = "disabled";
+ 			};
++
++			spi_0: spi@10880000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10880000 0x30>;
++				interrupts = <GIC_SPI 764 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi0_bus &spi0_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI00_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 1>, <&pdma0 0>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <256>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_1: usi@108a00c0 {
+@@ -484,6 +504,26 @@ serial_1: serial@108a0000 {
+ 				samsung,uart-fifosize = <256>;
+ 				status = "disabled";
+ 			};
++
++			spi_1: spi@108a0000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x108a0000 0x30>;
++				interrupts = <GIC_SPI 766 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi1_bus &spi1_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI01_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 3>, <&pdma0 2>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <256>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_2: usi@108c00c0 {
+@@ -513,6 +553,26 @@ serial_2: serial@108c0000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_2: spi@108c0000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x108c0000 0x30>;
++				interrupts = <GIC_SPI 768 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi2_bus &spi2_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI02_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 5>, <&pdma0 4>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_3: usi@108e00c0 {
+@@ -542,6 +602,26 @@ serial_3: serial@108e0000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_3: spi@108e0000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x108e0000 0x30>;
++				interrupts = <GIC_SPI 770 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi3_bus &spi3_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI03_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 7>, <&pdma0 6>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_4: usi@109000c0 {
+@@ -571,6 +651,26 @@ serial_4: serial@10900000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_4: spi@10900000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10900000 0x30>;
++				interrupts = <GIC_SPI 772 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi4_bus &spi4_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI04_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 9>, <&pdma0 8>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_5: usi@109200c0 {
+@@ -600,6 +700,26 @@ serial_5: serial@10920000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_5: spi@10920000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10920000 0x30>;
++				interrupts = <GIC_SPI 774 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi5_bus &spi5_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI05_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 11>, <&pdma0 10>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_6: usi@109400c0 {
+@@ -629,6 +749,26 @@ serial_6: serial@10940000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_6: spi@10940000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10940000 0x30>;
++				interrupts = <GIC_SPI 776 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi6_bus &spi6_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI06_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 13>, <&pdma0 12>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_7: usi@109600c0 {
+@@ -658,6 +798,26 @@ serial_7: serial@10960000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_7: spi@10960000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10960000 0x30>;
++				interrupts = <GIC_SPI 778 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi7_bus &spi7_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI07_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 15>, <&pdma0 14>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_8: usi@109800c0 {
+@@ -687,6 +847,27 @@ serial_8: serial@10980000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_8: spi@10980000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10980000 0x30>;
++				interrupts = <GIC_SPI 780 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi8_bus &spi8_cs_func>;
++				clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
++					 <&cmu_peric0 CLK_DOUT_PERIC0_USI08_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma0 17>, <&pdma0 16>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
++
+ 		};
+ 
+ 		pwm: pwm@109b0000 {
+@@ -752,6 +933,26 @@ serial_9: serial@10c8000 {
+ 				samsung,uart-fifosize = <256>;
+ 				status = "disabled";
+ 			};
++
++			spi_9: spi@10c80000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10c80000 0x30>;
++				interrupts = <GIC_SPI 787 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi9_bus &spi9_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI09_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 1>, <&pdma1 0>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <256>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_10: usi@10ca00c0 {
+@@ -781,6 +982,26 @@ serial_10: serial@10ca0000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_10: spi@10ca0000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10ca0000 0x30>;
++				interrupts = <GIC_SPI 789 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi10_bus &spi10_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI10_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 3>, <&pdma1 2>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_11: usi@10cc00c0 {
+@@ -810,6 +1031,26 @@ serial_11: serial@10cc0000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_11: spi@10cc0000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10cc0000 0x30>;
++				interrupts = <GIC_SPI 791 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi11_bus &spi11_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI11_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 5>, <&pdma1 4>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_12: usi@10ce00c0 {
+@@ -839,6 +1080,26 @@ serial_12: serial@10ce0000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_12: spi@10ce0000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10ce0000 0x30>;
++				interrupts = <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi12_bus &spi12_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI12_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 7>, <&pdma1 6>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_13: usi@10d000c0 {
+@@ -868,6 +1129,26 @@ serial_13: serial@10d00000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_13: spi@10d00000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10d00000 0x30>;
++				interrupts = <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi13_bus &spi13_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI13_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 9>, <&pdma1 8>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_14: usi@10d200c0 {
+@@ -897,6 +1178,26 @@ serial_14: serial@10d20000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_14: spi@10d20000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10d20000 0x30>;
++				interrupts = <GIC_SPI 797 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi14_bus &spi14_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI14_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 11>, <&pdma1 10>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_15: usi@10d400c0 {
+@@ -926,6 +1227,26 @@ serial_15: serial@10d40000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_15: spi@10d40000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10d40000 0x30>;
++				interrupts = <GIC_SPI 799 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi15_bus &spi15_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI15_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 13>, <&pdma1 12>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_16: usi@10d600c0 {
+@@ -955,6 +1276,26 @@ serial_16: serial@10d60000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_16: spi@10d60000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10d60000 0x30>;
++				interrupts = <GIC_SPI 801 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi16_bus &spi16_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI16_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 15>, <&pdma1 14>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usi_17: usi@10d800c0 {
+@@ -984,6 +1325,26 @@ serial_17: serial@10d80000 {
+ 				samsung,uart-fifosize = <64>;
+ 				status = "disabled";
+ 			};
++
++			spi_17: spi@10d80000 {
++				compatible = "samsung,exynosautov920-spi",
++					     "samsung,exynos850-spi";
++				reg = <0x10d80000 0x30>;
++				interrupts = <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&spi17_bus &spi17_cs_func>;
++				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
++					 <&cmu_peric1 CLK_DOUT_PERIC1_USI17_USI>;
++				clock-names = "spi", "spi_busclk0";
++				samsung,spi-src-clk = <0>;
++				dmas = <&pdma1 17>, <&pdma1 16>;
++				dma-names = "tx", "rx";
++				num-cs = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				fifo-depth = <64>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		cmu_top: clock-controller@11000000 {
+-- 
+2.34.1
 
-* any property is missing: -EINVAL
-* wrong interrupt-names: -ENODATA
-* inconsistent array length between properties: -EOVERFLOW
-
-EPROTO and ENXIO errors are also expected according the method comment,
-the latter seems to be when the system doesn't support dts at all? And
-EPROTO just another user-set dts issue.
-I'm okay with ignoring them silently, or logging if gp0/1 found or not,
-but not micromanage every error.
-
-> > +
-> >  	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp1");
-> >  	if (ret > 0) {
-> >  		ret = devm_request_threaded_irq(dev, ret, NULL,
-> 
-> 
-> ...
-> 
-> > +
-> > +static int ad4052_monitor_mode_enable(struct ad4052_state *st)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = pm_runtime_resume_and_get(&st->spi->dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = ad4052_conversion_frequency_set(st, st->events_frequency);
-> > +	if (ret)
-> > +		goto out_error;
-> > +
-> > +	ret = ad4052_set_operation_mode(st, AD4052_MONITOR_MODE);
-> > +	if (ret)
-> > +		goto out_error;
-> > +
-> > +	return ret;
-> > +out_error:
-> > +	pm_runtime_mark_last_busy(&st->spi->dev);
-> > +	pm_runtime_put_autosuspend(&st->spi->dev);
-> > +	return ret;
-> > +}
-> > +
-> > +static int ad4052_monitor_mode_disable(struct ad4052_state *st)
-> > +{
-> > +	int ret;
-> > +
-> > +	pm_runtime_mark_last_busy(&st->spi->dev);
-> > +	pm_runtime_put_autosuspend(&st->spi->dev);
-> > +
-> > +	ret = ad4052_exit_command(st);
-> > +	if (ret)
-> > +		return ret;
-> > +	return regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
-> > +			    AD4052_REG_DEVICE_STATUS_MAX_FLAG |
-> > +			    AD4052_REG_DEVICE_STATUS_MIN_FLAG);
-> > +}
-> > +
-> 
-> It seems like we need to make sure monitor mode is disabled when the
-> driver is removed. Otherwise we could end up with unbalanced calls to
-> the pm_runtime stuff and leave the chip running.
-> 
-> 
-When monitor mode is enabled, pm is already disabled (won't enter low
-power). I expect the pm to handle the clean-up properly since devm is
-used.
-The .remove() I suggest is reg access to:
-
-* Put in configuration mode, if not.
-* Put on low power mode, if not.
-
-> > +static int ad4052_read_event_value(struct iio_dev *indio_dev,
-> > +				   const struct iio_chan_spec *chan,
-> > +				   enum iio_event_type type,
-> > +				   enum iio_event_direction dir,
-> > +				   enum iio_event_info info, int *val,
-> > +				   int *val2)
-> > +{
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +
-> > +	if (st->wait_event) {
-> > +		ret = -EBUSY;
-> > +		goto out_release;
-> > +	}
-> > +
-> > +	switch (info) {
-> > +	case IIO_EV_INFO_VALUE:
-> > +		ret = __ad4052_read_event_info_value(st, dir, val);
-> > +		break;
-> > +	case IIO_EV_INFO_HYSTERESIS:
-> > +		ret = __ad4052_read_event_info_hysteresis(st, dir, val);
-> > +		break;
-> 
-> These functions don't need __ prefix. There is no name clash.
-> 
-Ack.
-
-Best regards,
-Jorge
-> > +	default:
-> > +		ret = -EINVAL;
-> > +		break;
-> > +	}
-> > +
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret ? ret : IIO_VAL_INT;
-> > +}
-> > +
 
