@@ -1,98 +1,81 @@
-Return-Path: <devicetree+bounces-185494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ECA9AD807E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 03:50:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 100D4AD8092
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 03:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE9177AE9E4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 01:48:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4B491E094C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 01:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660821DF728;
-	Fri, 13 Jun 2025 01:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5101DED57;
+	Fri, 13 Jun 2025 01:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L1rhK76u"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="XjzXugX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F68C1C4A10;
-	Fri, 13 Jun 2025 01:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDC92F4317;
+	Fri, 13 Jun 2025 01:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749779400; cv=none; b=QQEX0Bs3/JprkgvIoDll6PC7iI04F1W1Htxvz7u/VPNJ8eqju71Yjvv+x1w7FgTbTN6GD2D9ewCuvqZGTY232wohGbeNIhEMIK4MSqm1WMsPsrolkQlUdDqNf50Yhevq/IFVeVyrdPe1EUvitng0Cj2D0uCS7sJIuAoaXstjsD0=
+	t=1749779634; cv=none; b=sH0Rkj87lVSNYVCclh66Z0HNVoYsY3C9d1WqMHikuyfTG2/4WKUiIFnvHFv63WFTGbcloWtwKF9YtIhmMomSNvCK3wMq8/ukRQMNN0gBhdg+x/MyuGzCXIimVMt0+L1XZaQVnUlZqTGTEYR2dmjGciFMi8k6tRIFK+I8vAcEWPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749779400; c=relaxed/simple;
-	bh=KvQpbekyf0KFJWKFpC0va1oh7HK6XoLcGPLoyuPICOE=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=b6JiKJKeKkoAMDyIdRzcJ91TGuQRgILZ4Y6FhIR0AtAPjti8FNUFpBUq0DkpQATAvwRiUojHYCPVCygFP3uHfLgjvftw/X1tdY4WMCv0vXx/+r2GKDdoouRhxvlHf1iJz++wAQ1XVQwIVCJstCuN/5tPhqT4tVZAwQE+uL0u+ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L1rhK76u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC018C4CEEA;
-	Fri, 13 Jun 2025 01:49:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749779399;
-	bh=KvQpbekyf0KFJWKFpC0va1oh7HK6XoLcGPLoyuPICOE=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=L1rhK76uFw5pFA95AqKZdJlBYNQr8MNwGTpKknRpIxCd4BCXGmw3COgzUe6dDDIa+
-	 7q6TO7wwYsXkSE3PrJYCRJY/cerKIv8a7gFh3QCfIpIX47Nlv3Iw5dHQxlgE7b4LkE
-	 rk5dIhapWMz01Mx3G820wVdjNl7ZgEKWBj6mqr4Fm9sJqQ4SoHXe8juk015s5fYlR/
-	 rhrHiIlsBvPy8yNy0zclSthAXMJEP4QBHkVoTwpcUjqTjhT/WN1I+NorAl6CWmHVy1
-	 6aDQ47dn3DuL+7wuAhhxcasj6K7x/ZyE1YJTeHygpja4tQywyipa9uuwOwYHZscghP
-	 bYDp0g38BvR5Q==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADC5039EFFCF;
-	Fri, 13 Jun 2025 01:50:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1749779634; c=relaxed/simple;
+	bh=5um7OlRXyxNfArLU1AL8h3ux8D8haG7NSWSfxT0SEGE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B6f7AP5Oo9QQTWAERpL6TiHMLnNeojJNwlXaWjgym3q3J802fckrPRCpuU0DwjsXW2zDxtBBjl/jbm17Cv+8ZBn4pgWRpoYIi97wJATfVXTVkR1Zf7GWS+ovghmKed/6rw9hqO+fcnDU2XFt8eO+OeKhGtaHPfjkYyXgUh/QaLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=XjzXugX+; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=yNSQ64cT373OaCtnIDdjjowAPRVl8grFK8GwPySFH44=;
+	b=XjzXugX+Y0L5kDUQGGjBHSbYml6ugiTpJjEekPdIPyky4WzCp7f+UKXTMsm1Sa
+	Bd4SxbYcN6a2Iax1T3Fp+GnzoJaHo3Hy7fS9uVAL13rtZEvSUQq4U/4AiJUzKbdp
+	AtWsWRfVrsNJfW+u00De/02wxsQCow1Q8oz0/p78dbOkA=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3l3xyhEtoHGyLAA--.13454S3;
+	Fri, 13 Jun 2025 09:52:52 +0800 (CST)
+Date: Fri, 13 Jun 2025 09:52:50 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux@ew.tq-group.com, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: freescale: imx93-tqma9352: Limit BUCK2
+ to 600mV
+Message-ID: <aEuEcqW/Na69wfsM@dragon>
+References: <20250514094130.621087-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: renesas-gbeth: Add support for
- RZ/G3E (R9A09G047) SoC
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <174977942950.184018.422586356896918128.git-patchwork-notify@kernel.org>
-Date: Fri, 13 Jun 2025 01:50:29 +0000
-References: <20250611061204.15393-1-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250611061204.15393-1-john.madieu.xa@bp.renesas.com>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: andrew+netdev@lunn.ch, conor+dt@kernel.org, davem@davemloft.net,
- edumazet@google.com, geert+renesas@glider.be, krzk+dt@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
- robh@kernel.org, biju.das.jz@bp.renesas.com, devicetree@vger.kernel.org,
- john.madieu@gmail.com, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, magnus.damm@gmail.com,
- netdev@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250514094130.621087-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:Mc8vCgD3l3xyhEtoHGyLAA--.13454S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUnHq2DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBdrZWhLgIcJPAABsN
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Wed, 11 Jun 2025 08:12:04 +0200 you wrote:
-> Document support for the GBETH IP found on the Renesas RZ/G3E (R9A09G047) SoC.
-> The GBETH block on RZ/G3E is equivalent in functionality to the GBETH found on
-> RZ/V2H(P) (R9A09G057).
+On Wed, May 14, 2025 at 11:41:27AM +0200, Alexander Stein wrote:
+> TQMa9352 is only using LPDDR4X, so the BUCK2 regulator should be fixed
+> at 600MV.
 > 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviwed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> 
-> [...]
+> Fixes: d2858e6bd36c ("arm64: dts: freescale: imx93-tqma9352: Add PMIC node")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: renesas-gbeth: Add support for RZ/G3E (R9A09G047) SoC
-    https://git.kernel.org/netdev/net-next/c/31b928210df1
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Applied both, thanks!
 
 
