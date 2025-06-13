@@ -1,336 +1,151 @@
-Return-Path: <devicetree+bounces-185826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 421B0AD9507
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:14:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0FCAD9575
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 21:24:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4392C3A970F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 19:13:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EAF8189A1D8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 19:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2677623C4F8;
-	Fri, 13 Jun 2025 19:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197B9248F49;
+	Fri, 13 Jun 2025 19:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="v2xDjngk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N8odkKdl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB00A239581
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 19:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A4823E356;
+	Fri, 13 Jun 2025 19:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749842046; cv=none; b=ReKoWLbrZhJZgo9dGiw3rEmffk5VZ0ziOAfMUVbRa1Llh/2NA1BJLtCZk8MstHIieLxOwWekzeVJNCfc3+2x1AGNqZtVV4nvc+uU3HTRDvQKJO2JE8m6pWsmWGATePWpnkxaL76VrkHne1MeRM6XtC8kShum5Bubht/kvBim/Jw=
+	t=1749842486; cv=none; b=DOIS+sFSebNRdV/fb/+mZd22sbalQ4HoyelZAjQj57ncaY85Y94/o4UanXW9S3YOJ+ohiKIyTBmVIFZYtqbjChMwFJi2svD2U4Gmxkjs+itysUUedLyOoNks8QrMVjSmj2V8lBmPsY61d07TlETpzh/uQF4qckfer/ws3eaiLlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749842046; c=relaxed/simple;
-	bh=kA4jhqp4xBUNaxg/pjNO8NYIx+j2PDUAkyr5hujtTvE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jwWe7wayGoFxXh44nV8idl8AmU65H9/ivAqdVBaHj+mvSfO/jQFZyDJI4gIYqaoocxBK6PXckMoVPD5oD/WwxjXBZTutkYg/MTQhU6rr/EJO/yEZEOFFZjRSkZf9WHylCR3k8co6zfb/7buDrP0o6UizcKZdVlwv91nqxn96nRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=v2xDjngk; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <c3400787-7279-4a50-a61a-92a100b3b4b9@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749842030;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nMLY4DUZwczzWxX+mHe4l4o0st/9I1jgbNlgxZD7LaY=;
-	b=v2xDjngkqnMOazJSUlqgaQsgSXXpA93WGGhUq8DjjLk1zCK+nhxQkqb5YR6ZToXdoSQfyC
-	+YaL9O+WQKi+9bQcKwRunZ1e3zFsfqjWZQe8F+93kheOLwjPxVUWs/HEtc3YMcm9QFJoy/
-	9QhIY4dMRPpt6B0hx4/bmrYTPA7tGCI=
-Date: Fri, 13 Jun 2025 20:13:47 +0100
+	s=arc-20240116; t=1749842486; c=relaxed/simple;
+	bh=Gpe+Xbaqg839eoHxEGGg3ncn8LwqWk899z282q/Ecfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=tGfTav46C6nX2CLajcnWsL9bvW1Gsl8XtdhU6daQ6+Nz9wT8ZY4mml06eUfQJg3yoHQCNp/xmkqsTZgKnb/MhV2iTQ+K4aWBjtNKaBU+50P69yJFs3AHSdPbc3ycYSd4k1Ava3drWm5jmpZgzlOGZ66qml44yjJN3uPhAiAtrXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N8odkKdl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4399DC4CEE3;
+	Fri, 13 Jun 2025 19:21:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749842485;
+	bh=Gpe+Xbaqg839eoHxEGGg3ncn8LwqWk899z282q/Ecfo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=N8odkKdlYSl4cN22e5vZqUj6R+UMjpqE4NdHCBDHaho4VaSwQS3lsfEEa0T4SVBU0
+	 Tce66UH+sQiDvZl+zfL+yBF2suQIHwWyLdbMJNcC41VgUCX87JLDfdQtKUHiAdOIk9
+	 RMHHkCyyC1umn/UwNNz7Yl7IpKjKC4rwSpNZd1tQtPp6ToCfFOJYxG4/zKSUSUTYqq
+	 FRWyEE/NjOn50qCbIasBn4C54bpT51DEm8mESUQxvJk7LIQJbdmb6GSowMaIMlAgxc
+	 OmtTku36FPRwM/67sNu1tH/K+Y9zA0JzY644gDJmF7pZq58vjUonybnlCGVRMTaLdd
+	 dtF/6Csw2b8rg==
+Date: Fri, 13 Jun 2025 14:21:24 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+	kishon@kernel.org, dmitry.baryshkov@linaro.org,
+	manivannan.sadhasivam@linaro.org, neil.armstrong@linaro.org,
+	abel.vesa@linaro.org, kw@linux.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+	qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v2 1/2] PCI: qcom: Add equalization settings for 8.0 GT/s
+Message-ID: <20250613192124.GA970861@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v9 06/14] dpll: zl3073x: Fetch invariants during
- probe
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
- Dave Jiang <dave.jiang@intel.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-References: <20250612200145.774195-1-ivecera@redhat.com>
- <20250612200145.774195-7-ivecera@redhat.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20250612200145.774195-7-ivecera@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250611100319.464803-2-quic_ziyuzhan@quicinc.com>
 
-On 12/06/2025 21:01, Ivan Vecera wrote:
-> Several configuration parameters will remain constant at runtime,
-> so we can load them during probe to avoid excessive reads from
-> the hardware.
-> 
-> Read the following parameters from the device during probe and store
-> them for later use:
-> 
-> * enablement status and frequencies of the synthesizers and their
->    associated DPLL channels
-> * enablement status and type (single-ended or differential) of input pins
-> * associated synthesizers, signal format, and enablement status of
->    outputs
-> 
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> ---
->   drivers/dpll/zl3073x/core.c | 248 +++++++++++++++++++++++++++++++
->   drivers/dpll/zl3073x/core.h | 286 ++++++++++++++++++++++++++++++++++++
->   drivers/dpll/zl3073x/regs.h |  65 ++++++++
->   3 files changed, 599 insertions(+)
-> 
-> diff --git a/drivers/dpll/zl3073x/core.c b/drivers/dpll/zl3073x/core.c
-> index 60344761545d8..3a57c85f902c4 100644
-> --- a/drivers/dpll/zl3073x/core.c
-> +++ b/drivers/dpll/zl3073x/core.c
-> @@ -6,6 +6,7 @@
->   #include <linux/dev_printk.h>
->   #include <linux/device.h>
->   #include <linux/export.h>
-> +#include <linux/math64.h>
->   #include <linux/module.h>
->   #include <linux/netlink.h>
->   #include <linux/regmap.h>
-> @@ -376,6 +377,25 @@ int zl3073x_poll_zero_u8(struct zl3073x_dev *zldev, unsigned int reg, u8 mask)
->   					ZL_POLL_SLEEP_US, ZL_POLL_TIMEOUT_US);
->   }
->   
-> +int zl3073x_mb_op(struct zl3073x_dev *zldev, unsigned int op_reg, u8 op_val,
-> +		  unsigned int mask_reg, u16 mask_val)
-> +{
-> +	int rc;
-> +
-> +	/* Set mask for the operation */
-> +	rc = zl3073x_write_u16(zldev, mask_reg, mask_val);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Trigger the operation */
-> +	rc = zl3073x_write_u8(zldev, op_reg, op_val);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Wait for the operation to actually finish */
-> +	return zl3073x_poll_zero_u8(zldev, op_reg, op_val);
-> +}
-> +
->   /**
->    * zl3073x_devlink_info_get - Devlink device info callback
->    * @devlink: devlink structure pointer
-> @@ -484,6 +504,229 @@ struct zl3073x_dev *zl3073x_devm_alloc(struct device *dev)
->   }
->   EXPORT_SYMBOL_NS_GPL(zl3073x_devm_alloc, "ZL3073X");
->   
-> +/**
-> + * zl3073x_ref_state_fetch - get input reference state
-> + * @zldev: pointer to zl3073x_dev structure
-> + * @index: input reference index to fetch state for
-> + *
-> + * Function fetches information for the given input reference that are
-> + * invariant and stores them for later use.
-> + *
-> + * Return: 0 on success, <0 on error
-> + */
-> +static int
-> +zl3073x_ref_state_fetch(struct zl3073x_dev *zldev, u8 index)
-> +{
-> +	struct zl3073x_ref *input = &zldev->ref[index];
-> +	u8 ref_config;
-> +	int rc;
-> +
-> +	/* If the input is differential then the configuration for N-pin
-> +	 * reference is ignored and P-pin config is used for both.
-> +	 */
-> +	if (zl3073x_is_n_pin(index) &&
-> +	    zl3073x_ref_is_diff(zldev, index - 1)) {
-> +		input->enabled = zl3073x_ref_is_enabled(zldev, index - 1);
-> +		input->diff = true;
-> +
-> +		return 0;
-> +	}
-> +
-> +	guard(mutex)(&zldev->multiop_lock);
-> +
-> +	/* Read reference configuration */
-> +	rc = zl3073x_mb_op(zldev, ZL_REG_REF_MB_SEM, ZL_REF_MB_SEM_RD,
-> +			   ZL_REG_REF_MB_MASK, BIT(index));
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Read ref_config register */
-> +	rc = zl3073x_read_u8(zldev, ZL_REG_REF_CONFIG, &ref_config);
-> +	if (rc)
-> +		return rc;
-> +
-> +	input->enabled = FIELD_GET(ZL_REF_CONFIG_ENABLE, ref_config);
-> +	input->diff = FIELD_GET(ZL_REF_CONFIG_DIFF_EN, ref_config);
-> +
-> +	dev_dbg(zldev->dev, "REF%u is %s and configured as %s\n", index,
-> +		input->enabled ? "enabled" : "disabled",
-> +		input->diff ? "differential" : "single-ended");
-> +
-> +	return rc;
-> +}
-> +
-> +/**
-> + * zl3073x_out_state_fetch - get output state
-> + * @zldev: pointer to zl3073x_dev structure
-> + * @index: output index to fetch state for
-> + *
-> + * Function fetches information for the given output (not output pin)
-> + * that are invariant and stores them for later use.
-> + *
-> + * Return: 0 on success, <0 on error
-> + */
-> +static int
-> +zl3073x_out_state_fetch(struct zl3073x_dev *zldev, u8 index)
-> +{
-> +	struct zl3073x_out *out = &zldev->out[index];
-> +	u8 output_ctrl, output_mode;
-> +	int rc;
-> +
-> +	/* Read output configuration */
-> +	rc = zl3073x_read_u8(zldev, ZL_REG_OUTPUT_CTRL(index), &output_ctrl);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Store info about output enablement and synthesizer the output
-> +	 * is connected to.
-> +	 */
-> +	out->enabled = FIELD_GET(ZL_OUTPUT_CTRL_EN, output_ctrl);
-> +	out->synth = FIELD_GET(ZL_OUTPUT_CTRL_SYNTH_SEL, output_ctrl);
-> +
-> +	dev_dbg(zldev->dev, "OUT%u is %s and connected to SYNTH%u\n", index,
-> +		out->enabled ? "enabled" : "disabled", out->synth);
-> +
-> +	guard(mutex)(&zldev->multiop_lock);
-> +
-> +	/* Read output configuration */
-> +	rc = zl3073x_mb_op(zldev, ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_RD,
-> +			   ZL_REG_OUTPUT_MB_MASK, BIT(index));
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Read output_mode */
-> +	rc = zl3073x_read_u8(zldev, ZL_REG_OUTPUT_MODE, &output_mode);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Extract and store output signal format */
-> +	out->signal_format = FIELD_GET(ZL_OUTPUT_MODE_SIGNAL_FORMAT,
-> +				       output_mode);
-> +
-> +	dev_dbg(zldev->dev, "OUT%u has signal format 0x%02x\n", index,
-> +		out->signal_format);
-> +
-> +	return rc;
-> +}
-> +
-> +/**
-> + * zl3073x_synth_state_fetch - get synth state
-> + * @zldev: pointer to zl3073x_dev structure
-> + * @index: synth index to fetch state for
-> + *
-> + * Function fetches information for the given synthesizer that are
-> + * invariant and stores them for later use.
-> + *
-> + * Return: 0 on success, <0 on error
-> + */
-> +static int
-> +zl3073x_synth_state_fetch(struct zl3073x_dev *zldev, u8 index)
-> +{
-> +	struct zl3073x_synth *synth = &zldev->synth[index];
-> +	u16 base, m, n;
-> +	u8 synth_ctrl;
-> +	u32 mult;
-> +	int rc;
-> +
-> +	/* Read synth control register */
-> +	rc = zl3073x_read_u8(zldev, ZL_REG_SYNTH_CTRL(index), &synth_ctrl);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Store info about synth enablement and DPLL channel the synth is
-> +	 * driven by.
-> +	 */
-> +	synth->enabled = FIELD_GET(ZL_SYNTH_CTRL_EN, synth_ctrl);
-> +	synth->dpll = FIELD_GET(ZL_SYNTH_CTRL_DPLL_SEL, synth_ctrl);
-> +
-> +	dev_dbg(zldev->dev, "SYNTH%u is %s and driven by DPLL%u\n", index,
-> +		synth->enabled ? "enabled" : "disabled", synth->dpll);
-> +
-> +	guard(mutex)(&zldev->multiop_lock);
+On Wed, Jun 11, 2025 at 06:03:18PM +0800, Ziyue Zhang wrote:
+> Adding lane equalization setting for 8.0 GT/s to enhance link stability
+> and fix AER correctable errors reported on some platforms (eg. SA8775P).
 
-Not a strong suggestion, but it would be good to follow netdev style
-(same for some previous functions):
+s/Adding/Add/
 
-https://docs.kernel.org/process/maintainer-netdev.html#using-device-managed-and-cleanup-h-constructs
+s/fix AER correctable errors/avoid AER Correctable Errors/
+so we know that (a) this avoids the errors (it's not some kind of
+recovery), and (b) readers know that "Correctable Error" is something
+that can be looked up in a spec.
 
-"Use of guard() is discouraged within any function longer than 20 lines,
-scoped_guard() is considered more readable. Using normal lock/unlock is 
-still (weakly) preferred."
+> 8.0 GT/s and 16.0GT/s require the same equalization setting. This setting
+> is programmed into a group of shadow registers, which can be switched to
+> configure equalization for different GEN speeds by writing 00b, 01b
+> to `RATE_SHADOW_SEL`.
 
-> +
-> +	/* Read synth configuration */
-> +	rc = zl3073x_mb_op(zldev, ZL_REG_SYNTH_MB_SEM, ZL_SYNTH_MB_SEM_RD,
-> +			   ZL_REG_SYNTH_MB_MASK, BIT(index));
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* The output frequency is determined by the following formula:
-> +	 * base * multiplier * numerator / denominator
+s|16.0GT/s|16.0 GT/s| to match "8.0 GT/s"
+
+s/different GEN speeds/different speeds/ (PCIe spec rev ("GEN") is not
+a one-to-one mapping to speeds)
+
+> @@ -18,33 +20,43 @@ void qcom_pcie_common_set_16gt_equalization(struct dw_pcie *pci)
+>  	 * GEN3_EQ_*. The RATE_SHADOW_SEL bit field of GEN3_RELATED_OFF
+>  	 * determines the data rate for which these equalization settings are
+>  	 * applied.
 > +	 *
-> +	 * Read registers with these values
-> +	 */
-> +	rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_BASE, &base);
-> +	if (rc)
-> +		return rc;
-> +
-> +	rc = zl3073x_read_u32(zldev, ZL_REG_SYNTH_FREQ_MULT, &mult);
-> +	if (rc)
-> +		return rc;
-> +
-> +	rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_M, &m);
-> +	if (rc)
-> +		return rc;
-> +
-> +	rc = zl3073x_read_u16(zldev, ZL_REG_SYNTH_FREQ_N, &n);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Check denominator for zero to avoid div by 0 */
-> +	if (!n) {
-> +		dev_err(zldev->dev,
-> +			"Zero divisor for SYNTH%u retrieved from device\n",
-> +			index);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Compute and store synth frequency */
-> +	zldev->synth[index].freq = div_u64(mul_u32_u32(base * m, mult), n);
-> +
-> +	dev_dbg(zldev->dev, "SYNTH%u frequency: %u Hz\n", index,
-> +		zldev->synth[index].freq);
-> +
-> +	return rc;
-> +}
-> +
-[...]
+> +	 * TODO:
+> +	 * EQ settings need to be added for 32.0 T/s in future
 
+Drop this comment since it's not an indication of a problem in this
+patch.  The list of possible future work is infinite, and you can keep
+track of a TODO list internally.
+
+>  	 */
+> -	reg = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
+> -	reg &= ~GEN3_RELATED_OFF_GEN3_ZRXDC_NONCOMPL;
+> -	reg &= ~GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK;
+> -	reg |= FIELD_PREP(GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK,
+> -			  GEN3_RELATED_OFF_RATE_SHADOW_SEL_16_0GT);
+> -	dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, reg);
+> +	if (pcie_link_speed[pci->max_link_speed] < PCIE_SPEED_32_0GT)
+> +		max_speed = pcie_link_speed[pci->max_link_speed];
+> +	else
+> +		dev_warn(dev, "The target supports 32.0 GT/s, but the EQ setting for 32.0 GT/s is not configured.\n");
+
+Drop period at end of message.
+
+> -	reg = dw_pcie_readl_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF);
+> -	reg &= ~(GEN3_EQ_FMDC_T_MIN_PHASE23 |
+> -		GEN3_EQ_FMDC_N_EVALS |
+> -		GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA |
+> -		GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA);
+> -	reg |= FIELD_PREP(GEN3_EQ_FMDC_T_MIN_PHASE23, 0x1) |
+> -		FIELD_PREP(GEN3_EQ_FMDC_N_EVALS, 0xd) |
+> -		FIELD_PREP(GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA, 0x5) |
+> -		FIELD_PREP(GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA, 0x5);
+> -	dw_pcie_writel_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF, reg);
+> +	for (speed = PCIE_SPEED_8_0GT; speed <= max_speed; ++speed) {
+> +		reg = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
+> +		reg &= ~GEN3_RELATED_OFF_GEN3_ZRXDC_NONCOMPL;
+> +		reg &= ~GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK;
+> +		reg |= FIELD_PREP(GEN3_RELATED_OFF_RATE_SHADOW_SEL_MASK,
+> +			  speed - PCIE_SPEED_8_0GT);
+> +		dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, reg);
+>  
+> -	reg = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
+> -	reg &= ~(GEN3_EQ_CONTROL_OFF_FB_MODE |
+> -		GEN3_EQ_CONTROL_OFF_PHASE23_EXIT_MODE |
+> -		GEN3_EQ_CONTROL_OFF_FOM_INC_INITIAL_EVAL |
+> -		GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
+> -	dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, reg);
+> +		reg = dw_pcie_readl_dbi(pci, GEN3_EQ_FB_MODE_DIR_CHANGE_OFF);
+> +		reg &= ~(GEN3_EQ_FMDC_T_MIN_PHASE23 |
+> +			GEN3_EQ_FMDC_N_EVALS |
+> +			GEN3_EQ_FMDC_MAX_PRE_CUSROR_DELTA |
+> +			GEN3_EQ_FMDC_MAX_POST_CUSROR_DELTA);
+
+Is "CUSROR" a typo for "CURSOR", or is "CUSROR" a real thing?  (Either
+way, it's not something you added, so not a problem with this patch.)
+
+Bjorn
 
