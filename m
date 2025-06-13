@@ -1,134 +1,193 @@
-Return-Path: <devicetree+bounces-185681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EEDAD8C58
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:42:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F00C6AD8C5D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:44:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3388189AD7A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A55551E175D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 12:44:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4834C6E;
-	Fri, 13 Jun 2025 12:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F1B746E;
+	Fri, 13 Jun 2025 12:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCP7b80H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N91ii9A3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960F5440C;
-	Fri, 13 Jun 2025 12:42:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2884C97;
+	Fri, 13 Jun 2025 12:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749818574; cv=none; b=nuVnsuS8QzwtZyAUya1XeYAlSVG6CaGWwTAJujE0NcsTH9WulRh41fFh5dgEXQoX8UBoL2X4IRf7Tv7nicHSZyf9YQ09iZvv1LRhbE4jdjn+nF7sIZR9yXJvtIQxim0e3dZdHp58Bml4kWenefOSyrEpdoY1WE5iGGWRfqZTrbY=
+	t=1749818638; cv=none; b=UACYAQS2ml0eWEbs7n7yfBMWhlsp47vRM/tDK1/WxDgNS76aOWtxpX6jXeTov5wr8Zv4D6OdUFqt0kHmCkB2vfVc6aLauX2BQp5IpWleApArZyw4tzAS86cDbjc9RzHMGzXF6w6eAFFaIwpodi18z8FKFJG8Ad85SpDBRxwLAdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749818574; c=relaxed/simple;
-	bh=HD/TeuaPsOqL/hp4k4GHw+v1zhECxmKSoRypWs55VRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pqHYoIOOh8p6lGP8lcOjJj0i7OLyOSTs55eBQwejvBBHdZ4PYMwwSG137NS5/exHwJpFseWd2YNWYv363oy922AAdRLrtIJvFfyum2L+DaXyMXABRNdRCMByxoOYRh+8Xb3AUUiKQZEsGYYHkSleCjqMp6daIEBF9G7ar+pgEB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCP7b80H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80CC2C4CEE3;
-	Fri, 13 Jun 2025 12:42:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749818574;
-	bh=HD/TeuaPsOqL/hp4k4GHw+v1zhECxmKSoRypWs55VRg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YCP7b80HrgocaU7RagXGUtFoUDYilTycQc9pPbhSsDmBRX1KN8GxrbMkPonZFDgwE
-	 4D5wHQO6QOvZQewlGe0gNUSV+FquGEwoysQkKGUO0dQWfHEfR/yGAlYPa0eh7+uDhS
-	 ovsbAFvBNqoBcupasjvd3a03iBv15DbAIE+oBf6Zo6SwKJFVUmdkEW/+cucossJvEw
-	 ACOrfWii/cZIf56bw/idmUkoMv3laT5iVESYx37CjsXK/bq+fSx2A+07SBBsZCpgNQ
-	 joXZMGuG2e/K9y9D1DKHSabK6McII4U7wYsAaHDv50R6aDkhE/PUvqK5b66BxGsLg9
-	 LtL6iied2ujPA==
-Message-ID: <a1077f88-b17c-48b7-b87a-06331b0bfaa7@kernel.org>
-Date: Fri, 13 Jun 2025 14:42:49 +0200
+	s=arc-20240116; t=1749818638; c=relaxed/simple;
+	bh=zpDVdjYhK2I8xsbQtHeIQ7//k3NZkgd5iBenS9Sm588=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FzAJDzVxd7sk1eCqPt+ajGNEHsIWizwdvGmgXPRsdqt8/nqwz9SlHQhZdVpMJvgfsY48P8vanwBJgoUff3eslONS/Rq2WSECwTlEc9czctEjXFUXBMVeEbsoOi5T6hnLhxQIHSyRNokCIWjrmlVaNKk/zCX4TKg+8XPjD/IEXLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N91ii9A3; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-450cf214200so17927525e9.1;
+        Fri, 13 Jun 2025 05:43:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749818635; x=1750423435; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QSzXWhN/raBWTiTPkiF0KQOC1xc4h5AJxVQUi0l6KqY=;
+        b=N91ii9A3BimgrjxCR8lpTaXs1KELczJFTHFSf0XYrlq5ckKYawkhSAO81pAvQ2vKW1
+         QkT9n8TLtI/zPQkoJCf0s/MOPOVGICD8PEvvdb06rBrWdA8DLLH8uUOANeia0QFIO72a
+         6AnRKzSwRPZZl2zjme96EZwhqYTKfBKgIjuWl1ipiWwFKDWzX5nQH7m18+ZcxTDQAc/u
+         FxzkLGzR/qDSq8EV0/9+++4PkS4jmR5iOyiZ0byDrGfS2h3aXtnDOnbay5n7264L8+Tm
+         40JB3mJPwr8Ujk7wNQR4aN4xcrmzrjpsYR0uDHcje4mOB1Km1jJ9v5cInBNAUXzxFMq9
+         lJUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749818635; x=1750423435;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QSzXWhN/raBWTiTPkiF0KQOC1xc4h5AJxVQUi0l6KqY=;
+        b=Ks0jgiMyHGBtrD+mEKtbEqRYjRlJlJAJ2c8VtCOh0vEtV7wM1D+56Wk+Qb5dLOZojv
+         kR5SVFdIMQexLOQeUwqhKCJHGNnGNZCaQf/IcljNwqpiCIPa5X/y+7e/Mvh/V/RDTnwH
+         ureDsmdXFVd2p7opJvX/eOwe1hdS5+jBpdNlMcnCNgGLN68ysifJHVF6E5B+//VD83DF
+         qqREizB3dFIYfv0bPcp3mjJEeH0GsqG2KTRnuGEsTwDvTIzPnUvwIAeMwfg/EGGJdOY7
+         qoUtP+l68nW7T8//0qV9BWs00IOUrHVzvpXrdCAZMDwLpAtkbfaxAYVulhgqfK0eJU3l
+         rtAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaGdo3Adi8MNOw+lzfwgk1NiHiO/hZsUsrCTeTQ9stv+ZYR/2bjtuNkDGf7yXAKbTsT41rTtYAirwLw/MH@vger.kernel.org, AJvYcCVB+m/WeAFM0jXqxbHG8swW7bwjec2z3mffWTUbZWbgcTcnVcaoxMGzYWKYlLSVkOXt7eu/h/n16Od+@vger.kernel.org, AJvYcCVX2AsD9dzTpzdCdhDs57EXh2VvSXRrgZBL7Ex2Kvek1TKaGrwEcuFiiSi3YH8n4VSUf7IWjEJIUGvw@vger.kernel.org, AJvYcCWHSW1sesKKv0gKAxLIrInr96QsmYFwRpGsP9JFAKavtnzY4KzHXHMsSQI7y86fxqwPmFj1GwJo0Mk/JXwSjoLmxYQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1jl01fGtkSjC9JBxpz3wrZGjmV1EgeXp/fDmOF6ygSqsue8Vv
+	SxWBqksF1664KeO7l41ycU/v/70quwvQB7S5vMRqUSsbqQ3YhvBOZJvnB3/XJuCWOtJ9+KE09qf
+	QGUZGzwppgAn9g1aoWlPTuJxpC/x5NjI=
+X-Gm-Gg: ASbGnct87D6jaTH6g3CYNvdQ+/OJgVn3ruGf3iBV7VZT6kD8ArXwtry02P0NaJwlKJR
+	VCERyoK/zs43KxQ3qGppwwdJuyMrnTOokmFChuM5Pl5tfdDyE5bYQBsD4oJprnXdEzbGFFxCLX/
+	30oi1c9dVmh1vqDJSarppeWtFn1Ob8e/qqsCNcJ3dwB7y74TnalFAGa8cDJZsCiLfyKGvmVF1oY
+	Gtwv1o47VAM9Q==
+X-Google-Smtp-Source: AGHT+IEgP77ApvkePGUXbDz5b2URG0Tqka6fWKxmrlHoPPjLt6eXfMRuQsc3BlD+NOvRaghPFy/NaAhZ9nDY7Waa6rE=
+X-Received: by 2002:a05:600c:c162:b0:439:9424:1b70 with SMTP id
+ 5b1f17b1804b1-45339a3b38cmr16993865e9.30.1749818634634; Fri, 13 Jun 2025
+ 05:43:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615: Enable TSENS support for
- QCS615 SoC
-To: Gaurav Kohli <quic_gkohli@quicinc.com>, amitk@kernel.org,
- daniel.lezcano@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org
-Cc: devicetree@vger.kernel.org, =linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_manafm@quicinc.com
-References: <20250613112402.2203617-1-quic_gkohli@quicinc.com>
- <20250613112402.2203617-3-quic_gkohli@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250613112402.2203617-3-quic_gkohli@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250609203656.333138-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250609203656.333138-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUyce8qxwStb-adR=ywJRdPynOSdZn9DV106VRptaa67w@mail.gmail.com>
+In-Reply-To: <CAMuHMdUyce8qxwStb-adR=ywJRdPynOSdZn9DV106VRptaa67w@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 13 Jun 2025 13:43:27 +0100
+X-Gm-Features: AX0GCFsk-_bL3wETvaMr4BaAQMx3wbt70A6JfaYg8NsgwG6lufDuRSiVfN-lk_k
+Message-ID: <CA+V-a8s_9WeKJPvyi5-eAVAR2t-z03iC2niFUP-OJgkc-yhD-A@mail.gmail.com>
+Subject: Re: [PATCH 5/8] arm64: dts: renesas: Add initial SoC DTSI for RZ/N2H SoC
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 13/06/2025 13:24, Gaurav Kohli wrote:
-> Add TSENS and thermal devicetree node for QCS615 SoC.
-> 
-> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index bb8b6c3ebd03..fda8b8638718 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -3692,6 +3692,17 @@ usb_2_dwc3: usb@a800000 {
->  				maximum-speed = "high-speed";
->  			};
->  		};
-> +
-> +		tsens0: tsens@c222000 {
+Hi Geert,
 
-Don't send us downstream. Node names should be generic. See also an
-explanation and list of examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Thank you for the review.
 
+On Thu, Jun 12, 2025 at 3:59=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, 9 Jun 2025 at 22:37, Prabhakar <prabhakar.csengg@gmail.com> wrote=
+:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add initial SoC DTSI for Renesas RZ/N2H ("R9A09G087") SoC, below are
+> > the list of blocks added:
+> > - EXT CLKs
+> > - 4X CA55
+> > - SCIF
+> > - CPG
+> > - GIC
+> > - ARMv8 Timer
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+> > @@ -0,0 +1,135 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +/*
+> > + * Device Tree Source for the RZ/N2H SoC
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +
+> > +#define RZN2H_PINS_PER_PORT    8
+> > +
+> > +/*
+> > + * Create the pin index from its bank and position numbers and store i=
+n
+> > + * the upper 16 bits the alternate function identifier
+> > + */
+> > +#define RZN2H_PORT_PINMUX(b, p, f)     ((b) * RZN2H_PINS_PER_PORT + (p=
+) | ((f) << 16))
+> > +
+> > +/* Convert a port and pin label to its global pin index */
+> > +#define RZN2H_GPIO(port, pin)  ((port) * RZN2H_PINS_PER_PORT + (pin))
+>
+> These 3 defines belong in the (future) patch that adds the pinctrl node.
+>
+Ok, I'll make it to the later patch.
 
-Best regards,
-Krzysztof
+> > +       timer {
+> > +               compatible =3D "arm,armv8-timer";
+> > +               interrupts-extended =3D <&gic GIC_PPI 13 IRQ_TYPE_LEVEL=
+_LOW>,
+> > +                                     <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_L=
+OW>,
+> > +                                     <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_L=
+OW>,
+> > +                                     <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_L=
+OW>,
+> > +                                     <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_L=
+OW>;
+> > +               interrupt-names =3D "sec-phys", "phys", "virt", "hyp-ph=
+ys", "hyp-virt";
+>
+> Thanks, this brought to my attention that the node in the posted RZ/T2H
+> patch is wrong ;-)
+>
+I have some fixup patches for T2H which apply on v10, maybe I'll post them.
+
+Cheers,
+Prabhakar
+
+> > +       };
+> > +};
+>
+> The rest LGTM, so with the above fixed:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
+>
 
