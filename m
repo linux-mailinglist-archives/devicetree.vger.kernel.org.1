@@ -1,239 +1,190 @@
-Return-Path: <devicetree+bounces-185589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E9BAD87E2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:31:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D94AD87EF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F8A13ADB6F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:30:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57EEB1E0979
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B2A279DA4;
-	Fri, 13 Jun 2025 09:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29616291C2F;
+	Fri, 13 Jun 2025 09:33:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Po2FjRUB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L+6teXS1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A56D279DA1;
-	Fri, 13 Jun 2025 09:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7BDC1ACEAF;
+	Fri, 13 Jun 2025 09:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749807004; cv=none; b=IJvoL7WiwklFtv9CemS4QBhupejntMB0HQ1EDiINlOx1N+ID5GP8Kx8uhGltfm0Mz6hKtD/BoEaN7rMX6WL8LSD5eSt09efxhqnaGZCBg/2ugngay76sh+BW8dkBjx6Q1fAMMbNCk6N91qqSLQ28kw0yrcJoVuMH+GSmABR0DG0=
+	t=1749807218; cv=none; b=EBp6J11fJ2p7+T8gDC+jx2bkkMbL53l9lKNYXYobAHX5qC1SB2ptEPXUYXrsZOCbJ62l1eUC/vMNWEpGSNwZzosJW9dICC9HGUMs7T7NCrBjtr/ezsmtsR7bEn5gqANZefrgGpqap1mdV9lFpUg5QoYiHL+Rc9CugQRCrFOpcAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749807004; c=relaxed/simple;
-	bh=jb+kljA3XGy8Fy36FVMmKKUspEeqQQdHLJELzixxi38=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qpPogIGYu8Aax7pkdSS8ebvHUqDuScNqpHiUditMfKt13JIUbKPogP5yPeqOiMMUxTwcZQSODVFyRNoBbgpF32i9qcUqbT5OzKg1Q2mkZqHItlgELusVNXyyxLnS4ZnwRKXt9xcm+vFRxa9GSOHcBMGbPYp7cSs/IJyekOPEEe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Po2FjRUB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DE1DC4CEE3;
-	Fri, 13 Jun 2025 09:29:58 +0000 (UTC)
+	s=arc-20240116; t=1749807218; c=relaxed/simple;
+	bh=i5Pf6Oznv55GrsWogxX5kmhEiTAMxh9TsID82AiML3Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o1H7p88zyq/EJLGDbSEekAMHAjNBoxHnv0XVprfYtWs7qpWb9dbXzEcY1SSnVAaUvNSozrrNo1Ehg+vS4zH5nFBh2gCpkBwGaZtZV8rDsIs6a+5dP9NISedDJADD0Q/nUAr4JzHNpAZ81KJhGuz7p43Zsp7vx3rjgeswxK8M8SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L+6teXS1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5F4ACC4CEE3;
+	Fri, 13 Jun 2025 09:33:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749807003;
-	bh=jb+kljA3XGy8Fy36FVMmKKUspEeqQQdHLJELzixxi38=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Po2FjRUBdL1BvA7Ty9pQhn/QwoqIl1psVIDf+4HGcX25rl/oL1Q50ee/0iF4vj8cL
-	 KebCFVCLYqLgkDn61NWO1hvEyF5Wc20POPebpgGzJFfdHPRhWjRmhPNIXb6GZdFtJF
-	 ff7iqEuXt7sBDP42YlSv8XOYMecSKv91J3K+lCp3JUUGCT30R5ur/cJB2xLPNgDqE9
-	 LfVrhh+gz6Z5w3g9zda/V/wH+Y3yeR459Ma2eMnprStd9n40KdiLljTwqELUGGtv/i
-	 FpFFLSShbH69p5iODxjfj0vwVV0Xp0D0BFKCXw8Ck7XvRDwU7GcZ9sHSUKE5Vros1A
-	 Q1T6n3LzOQSeg==
-Date: Fri, 13 Jun 2025 14:59:53 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mayank Rana <mayank.rana@oss.qualcomm.com>
-Cc: linux-pci@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com, 
-	robh@kernel.org, bhelgaas@google.com, andersson@kernel.org, 
-	manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com, 
-	quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com, quic_nitegupt@quicinc.com
-Subject: Re: [PATCH v4 0/4] Add Qualcomm SA8255p based firmware managed PCIe
- root complex
-Message-ID: <4yscxqds72lsrdld7tadnlcuk7q6hir3t6mwliu35aljn34veb@hme5q4dpind7>
-References: <20250522001425.1506240-1-mayank.rana@oss.qualcomm.com>
- <584d217a-e8df-4dbe-ad70-2c69597a0545@oss.qualcomm.com>
- <683bc42f-2810-4d8f-8712-80f933c4b8ad@oss.qualcomm.com>
+	s=k20201202; t=1749807217;
+	bh=i5Pf6Oznv55GrsWogxX5kmhEiTAMxh9TsID82AiML3Q=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=L+6teXS1T5Unxh1aMNXnLi+T3Pf2YrRV3HC62I4vL0zzyMYohQQ8bS2d0dWaJiKGM
+	 FXSUJUaRb9y8JO232i40qyll6HPwRq7eL0x6Hx8NkrUXi2S9DZJ4EUQkmnfk5wVjT/
+	 KMnVS4HrpsFoDo7T7pe0sr5ggrt9p9EY302a+2RVPywsz6lUSEJIOmdTtr/RufaEtB
+	 eM1hc79qDUtBYvARqGZYbqs3Crc+Dyqr5UsN0upgNVPkVls2wEBKURHktRR4KWZeoL
+	 5Fd51UJJN7r/be4jIgC1r+746iuaBrrRP2gqWodtRaF5cRAaYNVvz9l9CP5t47FP3d
+	 eu+WfquKRA9IA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A7E9C71136;
+	Fri, 13 Jun 2025 09:33:37 +0000 (UTC)
+From: Vincent Knecht via B4 Relay <devnull+vincent.knecht.mailoo.org@kernel.org>
+Subject: [PATCH v5 0/4] CAMSS support for MSM8939
+Date: Fri, 13 Jun 2025 11:33:26 +0200
+Message-Id: <20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <683bc42f-2810-4d8f-8712-80f933c4b8ad@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGbwS2gC/23OwY4CIQyA4VcxnMVAmTKDJ99jswcGqJKoGNgQN
+ 2beXTQmumGPf5N+7Y2VkGMobLu6sRxqLDGdW+B6xdzBnveBR9+agQAUKEfu7KkUPl2V4XWOxM2
+ IRDhJI83E2tYlB4rXp/j13foQy0/Kv88DVT6mLwtEZ1XJBbcSnNdCaEtmd7LxmNIm5T17YBU+A
+ ewBaID2yqNDSwPqDlAfgPrnA9UAckZ6ifOMvgeGN6AF9MDQAAUOxtFPZGb6AyzLcgenXWBgcgE
+ AAA==
+X-Change-ID: 20250517-camss-8x39-vbif-975ff5819198
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Vincent Knecht <vincent.knecht@mailoo.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749807215; l=4058;
+ i=vincent.knecht@mailoo.org; s=20250414; h=from:subject:message-id;
+ bh=i5Pf6Oznv55GrsWogxX5kmhEiTAMxh9TsID82AiML3Q=;
+ b=2pRtnf6EQ/OQ0rv2g+LD7BCVUlddoVZtLWAlJgAXmQi/uvheBpGb5hAsvhNvE4i03Fsfcx0HD
+ H8/70EE2cIwAphRYXLu2fxtY96H0MxJveM8HjAycouveQS2GilaJeV3
+X-Developer-Key: i=vincent.knecht@mailoo.org; a=ed25519;
+ pk=MFCVQkhL3+d3NHDzNPWpyZ4isxJvT+QTqValj5gSkm4=
+X-Endpoint-Received: by B4 Relay for vincent.knecht@mailoo.org/20250414
+ with auth_id=377
+X-Original-From: Vincent Knecht <vincent.knecht@mailoo.org>
+Reply-To: vincent.knecht@mailoo.org
 
-On Thu, Jun 12, 2025 at 02:24:04PM -0700, Mayank Rana wrote:
-> Hi Mani
-> 
-> Gentle reminder for review.
-> 
+This series adds CAMSS support for MSM8939.
+It's mostly identical to MSM8916, except for some clocks
+and an additional CSI.
 
-These patches are not applying on top of v6.16-rc1. Please post the rebased
-version.
+To fix black stripes across sensor output, and garbage in
+CSID TPG output, 2 VFE VBIF register settings are needed.
+So the 1st patch adds helper functions to do just that.
 
-- Mani
+Patch 1: adds helper for VFE VBIF settings
+Patch 2: adds CAMSS_8x39 version in CAMSS driver
+Patch 3: documents qcom,msm8939-camss DT bindings
+Patch 4: adds camss and cci in msm8939.dtsi
 
-> Regards
-> Mayank
-> 
-> On 6/4/2025 10:38 AM, Mayank Rana wrote:
-> > Hi Mani
-> > 
-> > As we discussed previously, I resumed working on this functionality.
-> > Please help with reviewing this patchset.
-> > 
-> > Regards,
-> > Mayank
-> > On 5/21/2025 5:14 PM, Mayank Rana wrote:
-> > > Based on received feedback, this patch series adds support with existing
-> > > Linux qcom-pcie.c driver to get PCIe host root complex functionality on
-> > > Qualcomm SA8255P auto platform.
-> > > 
-> > > 1. Interface to allow requesting firmware to manage system resources and
-> > > performing PCIe Link up (devicetree binding in terms of power domain and
-> > > runtime PM APIs is used in driver)
-> > > 
-> > > 2. SA8255P is using Synopsys Designware PCIe controller which
-> > > supports MSI
-> > > controller. Using existing MSI controller based functionality by
-> > > exporting
-> > > important pcie dwc core driver based MSI APIs, and using those from
-> > > pcie-qcom.c driver.
-> > > 
-> > > Below architecture is used on Qualcomm SA8255P auto platform to get ECAM
-> > > compliant PCIe controller based functionality. Here firmware VM
-> > > based PCIe
-> > > driver takes care of resource management and performing PCIe link related
-> > > handling (D0 and D3cold). Linux pcie-qcom.c driver uses power domain to
-> > > request firmware VM to perform these operations using SCMI interface.
-> > > --------------------
-> > > 
-> > > 
-> > >                                     ┌────────────────────────┐
-> > >                                     │                        │
-> > >    ┌──────────────────────┐         │     SHARED MEMORY
-> > > │            ┌──────────────────────────┐
-> > >    │     Firmware VM      │         │
-> > > │            │         Linux VM         │
-> > >    │ ┌─────────┐          │         │
-> > > │            │    ┌────────────────┐    │
-> > >    │ │ Drivers │ ┌──────┐ │         │
-> > > │            │    │   PCIE Qcom    │    │
-> > >    │ │ PCIE PHY◄─┤      │ │         │   ┌────────────────┐
-> > > │            │    │    driver      │    │
-> > >    │ │         │ │ SCMI │ │         │   │                │
-> > > │            │    │                │    │
-> > >    │ │PCIE CTL │ │      │ ├─────────┼───►    PCIE
-> > > ◄───┼─────┐      │    └──┬──────────▲──┘    │
-> > >    │ │         ├─►Server│ │         │   │    SHMEM       │   │
-> > > │      │       │          │       │
-> > >    │ │Clk, Vreg│ │      │ │         │   │                │   │
-> > > │      │    ┌──▼──────────┴──┐    │
-> > >    │ │GPIO,GDSC│ └─▲──┬─┘ │         │   └────────────────┘   │
-> > > └──────┼────┤PCIE SCMI Inst  │    │
-> > >    │ └─────────┘   │  │   │         │
-> > > │            │    └──▲──────────┬──┘    │
-> > >    │               │  │   │         │
-> > > │            │       │          │       │
-> > >    └───────────────┼──┼───┘         │
-> > > │            └───────┼──────────┼───────┘
-> > >                    │  │             │
-> > > │                    │          │
-> > >                    │  │
-> > > └────────────────────────┘                    │          │
-> > >                    │
-> > > │                                                          
-> > > │          │
-> > >                    │
-> > > │                                                          
-> > > │          │
-> > >                    │
-> > > │                                                          
-> > > │          │
-> > >                    │
-> > > │                                                           │IRQ
-> > > │HVC
-> > >                IRQ │
-> > > │HVC                                                       
-> > > │          │
-> > >                    │
-> > > │                                                          
-> > > │          │
-> > >                    │
-> > > │                                                          
-> > > │          │
-> > >                    │
-> > > │                                                          
-> > > │          │
-> > > ┌─────────────────┴──▼───────────────────────────────────────────────────────────┴──────────▼──────────────┐
-> > > │                                                                                                          │
-> > > │                                                                                                          │
-> > > │
-> > > HYPERVISOR                                                         
-> > > │
-> > > │                                                                                                          │
-> > > │                                                                                                          │
-> > > │                                                                                                          │
-> > > └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-> > >    ┌─────────────┐    ┌─────────────┐  ┌──────────┐   ┌───────────┐
-> > > ┌─────────────┐  ┌────────────┐
-> > >    │             │    │             │  │          │   │           │
-> > > │  PCIE       │  │   PCIE     │
-> > >    │   CLOCK     │    │   REGULATOR │  │   GPIO   │   │   GDSC    │
-> > > │  PHY        │  │ controller │
-> > >    └─────────────┘    └─────────────┘  └──────────┘   └───────────┘
-> > > └─────────────┘  └────────────┘
-> > > -----------------
-> > > Changes in v4:
-> > > - Addressed provided review comments from reviewers
-> > > Link to v3: https://lore.kernel.org/lkml/20241106221341.2218416-1-
-> > > quic_mrana@quicinc.com/
-> > > 
-> > > Changes in v3:
-> > > - Drop usage of PCIE host generic driver usage, and splitting of MSI
-> > > functionality
-> > > - Modified existing pcie-qcom.c driver to add support for getting
-> > > ECAM compliant and firmware managed
-> > > PCIe root complex functionality
-> > > Link to v2: https://lore.kernel.org/linux-arm-
-> > > kernel/925d1eca-975f-4eec-bdf8-ca07a892361a@quicinc.com/T/
-> > > 
-> > > Changes in v2:
-> > > - Drop new PCIe Qcom ECAM driver, and use existing PCIe designware
-> > > based MSI functionality
-> > > - Add power domain based functionality within existing ECAM driver
-> > > Link to v1: https://lore.kernel.org/all/d10199df-5fb3-407b-b404-
-> > > a0a4d067341f@quicinc.com/T/
-> > > 
-> > > Tested:
-> > > - Validated NVME functionality with PCIe1 on SA8255P-RIDE platform
-> > > 
-> > > Mayank Rana (4):
-> > >    PCI: dwc: Export dwc MSI controller related APIs
-> > >    PCI: host-generic: Rename and export gen_pci_init() API to allow ECAM
-> > >      creation
-> > >    dt-bindings: PCI: qcom,pcie-sa8255p: Document ECAM compliant PCIe root
-> > >      complex
-> > >    PCI: qcom: Add Qualcomm SA8255p based PCIe root complex functionality
-> > > 
-> > >   .../bindings/pci/qcom,pcie-sa8255p.yaml       | 103 ++++++++++++++++
-> > >   drivers/pci/controller/dwc/Kconfig            |   1 +
-> > >   .../pci/controller/dwc/pcie-designware-host.c |  38 +++---
-> > >   drivers/pci/controller/dwc/pcie-designware.h  |  14 +++
-> > >   drivers/pci/controller/dwc/pcie-qcom.c        | 114 ++++++++++++++++--
-> > >   drivers/pci/controller/pci-host-common.c      |   5 +-
-> > >   include/linux/pci-ecam.h                      |   2 +
-> > >   7 files changed, 248 insertions(+), 29 deletions(-)
-> > >   create mode 100644
-> > > Documentation/devicetree/bindings/pci/qcom,pcie- sa8255p.yaml
-> > > 
-> > 
-> 
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+Changes in v5:
+- Patch 1: no change
+- Patch 2: no change
+- Patch 3: (bindings)
+  - Fix alphanumerical ordering wrt. underscore (Vladimir)
+  - Add 1.2V mention to vdda-supply description (Vladimir)
+  - Correct vdda-supply regulator name for 1.2V in example
+  - Add empty line between properties and child node (Vladimir)
+  - Remove clock-lanes property in example (Vladimir)
+- Patch 4: (dtsi)
+  - Apply ordering and isp node unit address changes from patch 3.
+- Link to v4: https://lore.kernel.org/r/20250602-camss-8x39-vbif-v4-0-32c277d8f9bf@mailoo.org
 
+Changes in v4:
+- Picked up tags
+- Patch 1:
+  - Fix alignment to match opening parenthesis (Bryan)
+- Patch 2: no change
+- Patch 3:
+  - Wrap line at 80 chars (Krzysztof)
+- Patch 4: no change
+- Link to v3: https://lore.kernel.org/r/20250530-camss-8x39-vbif-v3-0-fc91d15bb5d6@mailoo.org
+
+Changes in v3:
+- Patch 1:
+  - Use braces around multiline (Bryan)
+  - Rename vfe_vbif_reg_write to vfe_vbif_write_reg (Bryan)
+  - Get rid of switch block on CAMSS version (Bryan)
+- Patch 2:
+  - Get rid of switch block on CAMSS version (Bryan)
+- Patch 3: no change
+- Patch 4: no change
+  - Tried to get rid of CCI camss_ahb but this resulted in device
+    freeze+reboot (Konrad)
+- Link to v2: https://lore.kernel.org/r/20250525-camss-8x39-vbif-v2-0-6d3d5c5af456@mailoo.org
+
+Changes in v2:
+- Patch 1:
+  - Fix devm_platform_ioremap_resource_byname line to not end with
+    opening parenthesis (media-ci/1-checkpatch)
+  - Move camss-vfe-4-1.c handling of VBIF previously in patch 2 here
+    (Dmitry)
+- Patch 2:
+  - Declare regulators in PHY entries, not CSID ones (Bryan)
+- Patch 3: (bindings)
+  - Fix bindings checks for new errors (Rob)
+  - Fix properties ordering, code-style and example (Krzysztof)
+  - Sort reg-names, clock-names and interrupt-names alphanumerically (Bryan)
+- Patch 4: (dtsi)
+  - Move #address/#size cells before status (Konrad)
+  - Aligned CCI with msm8916, thus removing ispif_ahb mention (Konrad)
+    If "camss_ahb should be unnecessary", it's still required by qcom,i2c-cci.yaml
+- Link to v1: https://lore.kernel.org/r/20250520-camss-8x39-vbif-v1-0-a12cd6006af9@mailoo.org
+
+---
+Vincent Knecht (4):
+      media: qcom: camss: vfe: Add VBIF setting support
+      media: qcom: camss: Add support for MSM8939
+      media: dt-bindings: Add qcom,msm8939-camss
+      arm64: dts: qcom: msm8939: Add camss and cci
+
+ .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
+ drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  12 +
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  31 +++
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
+ drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
+ drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 13 files changed, 645 insertions(+), 2 deletions(-)
+---
+base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
+change-id: 20250517-camss-8x39-vbif-975ff5819198
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Vincent Knecht <vincent.knecht@mailoo.org>
+
+
 
