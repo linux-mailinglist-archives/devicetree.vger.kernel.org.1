@@ -1,127 +1,128 @@
-Return-Path: <devicetree+bounces-185794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17586AD91ED
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 17:50:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1557DAD921C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 17:57:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF65D189EF0E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:50:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C61AD188CE6F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A8020CCF3;
-	Fri, 13 Jun 2025 15:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78D91FFC5E;
+	Fri, 13 Jun 2025 15:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dxL7MVHd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gFPoa516"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE151E3DCF;
-	Fri, 13 Jun 2025 15:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714991FF1C4;
+	Fri, 13 Jun 2025 15:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749829799; cv=none; b=WTu8fu8mN6SCjryjW3Iko4KonknHpOBFNbSj5Q1EldnsCPjmksj20p2pekI+ROTqeLvyX4SNNAD8TccWyl57TrxN957Jr0CV0e82DEciHuUZhWIu04rIfssSx5z6vxw1/tMpX4+yWM5J6WAhA/ZDJDhAF9YbKqcRCAjz4bE5CLw=
+	t=1749830100; cv=none; b=A2VCQPICeoj9kH0MtLNy0UZpPNeE4plJU3WbtVtjZF6fPcHpGE4czzhcBQNCLr0slvuodpAhM91JPa3SYEAGnkW3oiYnmkwNh1Ytu2p0WvJlG56fx+psSNcayX/bEJfSlRFnXjTiw+BVIkgQc5r1kAhbZ8xRRarP5yxtymNXMKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749829799; c=relaxed/simple;
-	bh=N2UYITogtfecT3kXHmGjJKBWnKKAGejg+NybZgL/OX4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sZPBvj/xPkHFq19Bs8CS1/A4lPhifLtaFVp1ciIBAPFDdTdkABz/A5L7OKysseRsnjuO7rLefL0pEuKL7rCrWQmP8xSHpPtT8PnA43paaW+7T5F5m6AQd8ZVuU0N/yvLrr4JrWgP7DCEDhlVZKmgRi0BacnGounWtYmgUT5KSdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dxL7MVHd; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0365E4444D;
-	Fri, 13 Jun 2025 15:49:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1749829796;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YLidNV2GFKH/2JeWLKry+LSYqYYCzq3L8dBLPFyZJ/4=;
-	b=dxL7MVHdZNHIwWXIQRb95+ubU7TDxRKIiAsPh8EtlqpFPN0MQlZZltCAMK0VZgl6XKLMj1
-	OKsgyAmjfB04or5CTEjRlp68NGFkPW7Z7o6zEtNxI/tmOmQ2UM9qXjC52c2QsaNyQz2oz4
-	1uOhm5OKoWiPcVyHBtNQSzB3KRZzm/8naL7cOh3D/dUDuJc96jSlwETwPn+0lxZmDjYk3/
-	A8MZAFzjKILr7PfdRTtbvQOJR/H1De4moclzfUX2xQyTUpH9vYRR1qSfuO9UPUj1G4e0iJ
-	4Rrd5Q6cZFtEt73qabcvefXUNOep2kdA8ERirTK/RoV6sz++JAVFrQ891cpOKg==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Fri, 13 Jun 2025 17:49:50 +0200
-Subject: [PATCH v3 7/7] arm: multi_v7_defconfig: Enable TPS65219 regulator
+	s=arc-20240116; t=1749830100; c=relaxed/simple;
+	bh=txoIyDrG2vubdoOdTiTdmcJQb8y7qy5caM50Zd8G8to=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=civ7wAVSSRrQNNQIKVpUL+/GP7hbtxYZ2WfH8rTPjH2gO2Fs1pitLNRMCNsmm4HEsjM0eeN/aOXaatVlD7GfE7touHrF0cidM7uNM1VMeXA6QvaSx8m7znWkRyyQQtxGmIzD5vD3x+chyzoV8zdpIRYJ7oXE1hYDFK+Ev1Ucwko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gFPoa516; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42EBC4CEED;
+	Fri, 13 Jun 2025 15:54:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749830099;
+	bh=txoIyDrG2vubdoOdTiTdmcJQb8y7qy5caM50Zd8G8to=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=gFPoa516Ela1DPXpH0f6/CS5GkNUbZK3nAYpFk07eqEgd3MKAhYJpF0s0lR7On5mh
+	 mTRs3hEkjNSmkoYXNNxat0V6bY1VSuL9RUaPNvJuo+3M4NxXHk18J9uIsBuF7BfZSP
+	 LT2mpCyuW/nNNqy98L7h2qv/SXJaaEYTKmk9KlAx8hO5gtnc+f8HFC2H9FWk4DGBfW
+	 6JdxNAw5ZVa4sVUYSYyFngUyMNeio0PIqep0t3E5XJuUwayNZIlc1Um9AsPD8fsgtD
+	 LX9RVvGngHT5S7OMOIWzgnwkmg0oDRjT3tctQgL7cXq2tYr8yGsydjYdO2oCDGOE4x
+	 7e6vKtWFkarMA==
+Date: Fri, 13 Jun 2025 10:54:58 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	vkoul@kernel.org, kishon@kernel.org, linus.walleij@linaro.org,
+	p.zabel@pengutronix.de, linux-aspeed@lists.ozlabs.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, openbmc@lists.ozlabs.org,
+	linux-gpio@vger.kernel.org, elbadrym@google.com, romlem@google.com,
+	anhphan@google.com, wak@google.com, yuxiaozhang@google.com,
+	BMC-SW@aspeedtech.com
+Subject: Re: [PATCH 5/7] ARM: dts: aspeed-g6: Add PCIe RC node
+Message-ID: <20250613155458.GA962010@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250613-bbg-v3-7-514cdc768448@bootlin.com>
-References: <20250613-bbg-v3-0-514cdc768448@bootlin.com>
-In-Reply-To: <20250613-bbg-v3-0-514cdc768448@bootlin.com>
-To: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Paul Barker <paul.barker@sancloud.com>, 
- Marc Murphy <marc.murphy@sancloud.com>
-Cc: Jason Kridner <jkridner@gmail.com>, Andrew Davis <afd@ti.com>, 
- Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.15-dev-8cb71
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddukeefhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvefgvdfgkeetgfefgfegkedugffghfdtffeftdeuteehjedtvdelvddvleehtdevnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmeeftdgtfeemkegthegsmehftdekugemgeefgegsnecuvehluhhsthgvrhfuihiivgepgeenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemfedttgefmeektgehsgemfhdtkegumeegfeegsgdphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddvpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvggrsheskhgvmhhnrgguvgdrihhnfhhopdhrtghpthhtohepmhgrrhgtrdhmuhhrp
- hhhhiesshgrnhgtlhhouhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqohhmrghpsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhkrhhiughnvghrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhonhihsegrthhomhhiuggvrdgtohhmpdhrtghpthhtohepkhhhihhlmhgrnhessggrhihlihgsrhgvrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250613033001.3153637-6-jacky_chou@aspeedtech.com>
 
-Enable the TPS65219 regulator in the defconfig, as the TPS65214
-variant is used by the newly introduced BeagleBoard Green Eco board.
+On Fri, Jun 13, 2025 at 11:29:59AM +0800, Jacky Chou wrote:
+> The AST2600 has one PCIe RC, and add the relative configure regmap.
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
+> +			pcie0: pcie@1e7700c0 {
+> +				compatible = "aspeed,ast2600-pcie";
+> +				device_type = "pci";
+> +				reg = <0x1e7700c0 0x40>;
+> +				linux,pci-domain = <0>;
+> +				#address-cells = <3>;
+> +				#size-cells = <2>;
+> +				interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
+> +				bus-range = <0x80 0xff>;
+> +
+> +				ranges = <0x01000000 0x0 0x00018000 0x00018000 0x0 0x00008000
+> +					  0x02000000 0x0 0x70000000 0x70000000 0x0 0x10000000>;
+> +
+> +				status = "disabled";
+> +
+> +				resets = <&syscon ASPEED_RESET_H2X>,
+> +					 <&syscon ASPEED_RESET_PCIE_RC_O>;
+> +				reset-names = "h2x", "perst";
 
-Change in v3:
-- New patch.
----
- arch/arm/configs/multi_v7_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+PERST# is clearly a per-Root Port item since it's a signal on the PCIe
+connector.  Can you separate this and any other per-Root Port things
+into a Root Port stanza to leave open the possibility of future
+hardware that supports multiple Root Ports in the RC?
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 50c170b4619f..76f74103c1f0 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -344,6 +344,7 @@ CONFIG_INPUT_MAX77693_HAPTIC=m
- CONFIG_INPUT_MAX8997_HAPTIC=m
- CONFIG_INPUT_GPIO_DECODER=m
- CONFIG_INPUT_CPCAP_PWRBUTTON=m
-+CONFIG_INPUT_TPS65219_PWRBUTTON=m
- CONFIG_INPUT_AXP20X_PEK=m
- CONFIG_INPUT_DA9063_ONKEY=m
- CONFIG_INPUT_ADXL34X=m
-@@ -618,6 +619,7 @@ CONFIG_MFD_PALMAS=y
- CONFIG_MFD_TPS65090=y
- CONFIG_MFD_TPS65217=y
- CONFIG_MFD_TPS65218=y
-+CONFIG_MFD_TPS65219=y
- CONFIG_MFD_TPS6586X=y
- CONFIG_MFD_TPS65910=y
- CONFIG_MFD_STM32_LPTIMER=m
-@@ -667,6 +669,7 @@ CONFIG_REGULATOR_TPS62360=y
- CONFIG_REGULATOR_TPS65090=y
- CONFIG_REGULATOR_TPS65217=y
- CONFIG_REGULATOR_TPS65218=y
-+CONFIG_REGULATOR_TPS65219=y
- CONFIG_REGULATOR_TPS6586X=y
- CONFIG_REGULATOR_TPS65910=y
- CONFIG_REGULATOR_TWL4030=y
-
--- 
-2.43.0
-
+> +				clocks = <&syscon ASPEED_CLK_GATE_BCLK>;
+> +				pinctrl-names = "default";
+> +				pinctrl-0 = <&pinctrl_pcierc1_default>;
+> +
+> +				#interrupt-cells = <1>;
+> +				msi-parent = <&pcie0>;
+> +				msi-controller;
+> +				msi_address = <0x1e77005c>;
+> +
+> +				aspeed,ahbc = <&ahbc>;
+> +				aspeed,pciecfg = <&pcie_cfg>;
+> +				aspeed,pciephy = <&pcie_phy1>;
+> +
+> +				interrupt-map-mask = <0 0 0 7>;
+> +				interrupt-map = <0 0 0 1 &pcie_intc0 0>,
+> +						<0 0 0 2 &pcie_intc0 1>,
+> +						<0 0 0 3 &pcie_intc0 2>,
+> +						<0 0 0 4 &pcie_intc0 3>;
+> +				pcie_intc0: interrupt-controller {
+> +					interrupt-controller;
+> +					#address-cells = <0>;
+> +					#interrupt-cells = <1>;
+> +				};
+> +			};
+> +
+>  			gfx: display@1e6e6000 {
+>  				compatible = "aspeed,ast2600-gfx", "syscon";
+>  				reg = <0x1e6e6000 0x1000>;
+> -- 
+> 2.43.0
+> 
 
