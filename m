@@ -1,70 +1,64 @@
-Return-Path: <devicetree+bounces-185777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A7CDAD8FE7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:44:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D6AAD8FF3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AEAB3A89EB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:43:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C00041695E3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C960619D08F;
-	Fri, 13 Jun 2025 14:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137FE155C97;
+	Fri, 13 Jun 2025 14:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gU3VhMCv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dOCpuMA9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B2119C558;
-	Fri, 13 Jun 2025 14:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D628F10F9;
+	Fri, 13 Jun 2025 14:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749825807; cv=none; b=fxMW2gkdzmUTGe2JK+MCpDLl3YzqW7O9MmETx/lesFITIB8XjMiitBGZZcu2L2sTFk56eQrmVpdfyjkC3d5NwPTOPro+IpyvU7+W2tCyYoqmVTQKFM0ZAz6cad3ZvefH+uKxEn02hNBC3HdVCQLIReOuNGrhoAMrl6iq8ekQoOE=
+	t=1749826049; cv=none; b=R2Vk1QLjjNF3NLTJZRqQMn6UgTBQsaFLY6XMlO+8qexLXV4Fokofr2vMnz/dYGqEFojFLL8y2okFog+JCJZRV7tTe6AaKJuBXPC99fFafxBRGVXsjww04DFkaaw5b33oPETDhl4LXFZ8mg8v52u63s/Aic4D3xm0JHkisHtddEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749825807; c=relaxed/simple;
-	bh=FhXXXGmaRCUAiRGRLmZdTk6rfR0K44mNdX06Z2gh+Dg=;
+	s=arc-20240116; t=1749826049; c=relaxed/simple;
+	bh=Vck2Z3Pn+YuFhuarhlC9R7s/5ZP8BvkQdzh7LJHwePE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gKibdeTfSvs/+uvh82jgdreqLcoImVry47q/xrjUOVDoI6eDGHbfCTkEWrqhGzAI1abWeMj6aSSfndjgYon5XrKxpGADcP4ra7ISsvrWbxrcKj+i6PJThvLmv5WoWbbyOFE9L9wJ2D4r+avItw2JjmHmK+bG5ZIXwbUGZyR8Pt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gU3VhMCv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07C1EC4CEE3;
-	Fri, 13 Jun 2025 14:43:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sHMArMafbW1qJuy9FfWnbHvSpNsL1AWe9FDd+pVAhHrJmKRJMsG2VfdknYPexMavLRV+YccPxhWm7Ocvy3y3Jv5ewEnX6stlYWQpk8+/OmEWZUHvQL+XJC3dOnF1+xj4lSvOWGgWsxMfZ/lZOL3ycPqseFvcLnYuvp4P4cP/BOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dOCpuMA9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7429EC4CEE3;
+	Fri, 13 Jun 2025 14:47:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749825807;
-	bh=FhXXXGmaRCUAiRGRLmZdTk6rfR0K44mNdX06Z2gh+Dg=;
+	s=k20201202; t=1749826048;
+	bh=Vck2Z3Pn+YuFhuarhlC9R7s/5ZP8BvkQdzh7LJHwePE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gU3VhMCvbEUpkeYtCm1sdiEbZCDtGB0/CaVg498QB4KCpsaQjBatRuDSK6B3/TBq5
-	 LSrgWYiWAwWHVtD6pvP6Py13HIq+0odrKGJrw82l7KmXE9n+C2oLTOepY6ratFP9ep
-	 YPat9WUK1PGkA83Y+YmS9m5Lt2c/OqN1Q8NqiZh3GWRnM/JEpWRgnN2jQN/u+5I77z
-	 FH4YUNHjEfcJNrRFfsYO1VRmfGO+eEayCERolh84NFhe5IMYVAm7yZwe703o7UiFp5
-	 lqAuKH45uxbeysx065G8tS23ws7+G3LN5HbQoPDXKhmOwRoCkQzOzcXgFrwWklKnvM
-	 uZ63XxBS2i8/Q==
-Date: Fri, 13 Jun 2025 15:43:20 +0100
+	b=dOCpuMA9hqXLFa9KJ4I8LAiuqIqbK9S4cdhLImmLbzbfKzK8jRS8CV1UyQopxGbiN
+	 yVyxhdY+/hP/4EO25XmBvKRIuh/Eh/h6YD0ES3F4Nj7eL1AExBJoWeMKDPrtuBWCgY
+	 WWjMRT/gCVZ+V5py9J3LYhZDBcYLdXxFk5ds3i3g7FdNkcgmpZhLPsa8bun1qvRTTj
+	 06zocGTvj6/uVH9i8DuviVVvAfoPr2rddauLoXAdU1CoGOMX/8UT6oNglLwdHtQsVd
+	 OhU7RgX8iv5aiQ0MzVVX5Yj01npyM8A1Bdyk3FNruwn6OuDEzdellbktWbaH4TXl9g
+	 4Gv2EvDdo8qZw==
+Date: Fri, 13 Jun 2025 15:47:23 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+To: Ghennadi Procopciuc <dan.carpenter@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>, Vivian Wang <uwu@dram.page>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: Add support for SpacemiT
- K1
-Message-ID: <20250613-charbroil-backlands-7cf485ac7f59@spud>
-References: <20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn>
- <20250613-net-k1-emac-v1-1-cc6f9e510667@iscas.ac.cn>
+	Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, s32@nxp.com, linaro-s32@linaro.org,
+	Larisa Grigore <larisa.grigore@nxp.com>,
+	Ionut Vicovan <Ionut.Vicovan@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH 1/3 v2] dt-bindings: usb: Add compatible strings for
+ s32g2/s32g3
+Message-ID: <20250613-alongside-remark-819b10305ca7@spud>
+References: <cover.1749747898.git.dan.carpenter@linaro.org>
+ <cb3970d93f2df0d350f3f3de27d9f0cdb41d0d3b.1749747898.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,34 +66,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DrcNRgrkpAYQRveH"
+	protocol="application/pgp-signature"; boundary="GK+9otxDYzRic2k2"
 Content-Disposition: inline
-In-Reply-To: <20250613-net-k1-emac-v1-1-cc6f9e510667@iscas.ac.cn>
+In-Reply-To: <cb3970d93f2df0d350f3f3de27d9f0cdb41d0d3b.1749747898.git.dan.carpenter@linaro.org>
 
 
---DrcNRgrkpAYQRveH
+--GK+9otxDYzRic2k2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 13, 2025 at 10:15:07AM +0800, Vivian Wang wrote:
-> The Ethernet MACs on SpacemiT K1 appears to be a custom design. SpacemiT
-> refers to them as "EMAC", so let's just call them "spacemit,k1-emac".
+On Thu, Jun 12, 2025 at 09:50:51PM +0300, Ghennadi Procopciuc wrote:
+> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
 >=20
-> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+> Add the compatible strings for the NXP s32g2 and s32g3.  These chips
+> are mostly compatible.  The one difference is that the s32g2-usbmisc
+> device has an errata ERR050474 which requires a special flag to be set
+> for handling packages that aren't 4 byte aligned.
+>=20
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+This signoff chain is absolutely wrong, what were the contributions of
+Larisa, Ionut or Dan to this patch? If they were co-authors (surely not
+4 people for a trivial 4 line diff) they need co-developed-by tags.
+You sent it, so your name should be last.=20
+> ---
+> Changes since v1:
+> 1: Alphabetize
+> 2: Update the commit message a bit.
+>=20
+>  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 2 ++
+>  Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml  | 2 ++
+>  2 files changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Do=
+cumentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> index cc5787a8cfa3..f6372b76ed5a 100644
+> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> @@ -23,6 +23,8 @@ properties:
+>            - nvidia,tegra30-udc
+>            - nvidia,tegra114-udc
+>            - nvidia,tegra124-udc
+> +          - nxp,s32g2-usb
+> +          - nxp,s32g3-usb
+>            - qcom,ci-hdrc
+>        - items:
+>            - enum:
+> diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Doc=
+umentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+> index 019435540df0..ca677d1a8274 100644
+> --- a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+> +++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+> @@ -21,6 +21,8 @@ properties:
+>            - fsl,imx53-usbmisc
+>            - fsl,imx6q-usbmisc
+>            - fsl,vf610-usbmisc
+> +          - nxp,s32g2-usbmisc
+> +          - nxp,s32g3-usbmisc
+>        - items:
+>            - enum:
+>                - fsl,imx6ul-usbmisc
+> --=20
+> 2.47.2
+>=20
 
---DrcNRgrkpAYQRveH
+--GK+9otxDYzRic2k2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEw5CAAKCRB4tDGHoIJi
-0mUZAQDOqutaHQTNkzdtMom2o9B3nbuwKSuSLIduFjJKalvmiwD/YsHTvrRH0WFf
-qgTLhLoSPa5oUwkptRwAi4wYwCtGHA8=
-=4VR+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaEw5+wAKCRB4tDGHoIJi
+0jfHAQCkXsavnoWfTZY4GsGpIgS9OIp2XucKbJDZfr4z7ZRpHAD6A6tUb10kViaP
+x6MhqceZjJ2qIXckKfk7V3lgR3mCjQg=
+=V3nJ
 -----END PGP SIGNATURE-----
 
---DrcNRgrkpAYQRveH--
+--GK+9otxDYzRic2k2--
 
