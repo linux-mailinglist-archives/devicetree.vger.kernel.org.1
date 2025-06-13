@@ -1,165 +1,546 @@
-Return-Path: <devicetree+bounces-185783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E32EAD9035
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 16:54:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337EDAD90B6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 17:05:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 485EE7A2A78
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 14:52:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47453188DD45
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 15:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9071DF271;
-	Fri, 13 Jun 2025 14:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7161A5BBD;
+	Fri, 13 Jun 2025 15:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j0dzixTX"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="AaM9rxBt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C9C1C84A1
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 14:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2666B9444
+	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 15:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749826374; cv=none; b=Lqs2IWI/oeSY+lF/+q+82gveKh0XGzPnunzfEqXXmBz7y3m9WAMiay9u6TejpCCX4GZKJMfUmOBk3VMYjwLKDXfvpgun1FhUDL2ah03Q8vzDNkmyatTEtBrZk+xr63L4CfB+wpxmY19BprWY1sVVW7oTtCAWrLODZrYg48zWt2c=
+	t=1749827071; cv=none; b=PKeYeiVKFAJDdliMhXXQd5m41T4El/PXN/0otbzgxBw0oKB+94NaeIlKul6mC+lXKIbqX76kkyZToEkOlmOMiprTvy0CqW2JPe4Va4EHqcOijPO7Lly9hD7knHQja1Yy2r9t8Tb9cHKeEliRZPXbNdyg+rfwnaGMdgQD0bR1Ri0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749826374; c=relaxed/simple;
-	bh=uzggHLNmauKyLZnZNxfkll09fUrU/RimXTpX7sjHfFM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=n/NJdy2B4c9lxKQkPX52aUKRovDAauy2ql87tWnKIdUUT8S2FJ0TxzRjp1o0ZK6KqtqtUAWQ7ADWHX+T+s/ofmyMDotN/UaspK0AmgoQbDe1P/kYfsX06JDya84oYjokxysDuqNFbZWotZARaqZdxsHQsgxWyOE+P9WDex82kFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j0dzixTX; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a51d552de4so1391388f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 07:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749826371; x=1750431171; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=uzggHLNmauKyLZnZNxfkll09fUrU/RimXTpX7sjHfFM=;
-        b=j0dzixTXQjLZuCnkXsUKNjYlOy8bAUFIYvhWs7g3ncYFoM5h8UbZDC2qLfqKPL0Z21
-         QKB+7HJjdyzqfHiNEMIq+A0uVwwtuj75oDaSdsQYOVERwBhvoLLhkVaPAmqq+kF0vU3o
-         s55EFWDwcAyDnc1i4n1ZOvSaLBjUEqNYlUKnrUOjDGJZ+XntSBwI2yrhx9ZV0xvWtMoU
-         oCukR0eBpcAp5BI974S9XMIia3i4FWKzVP6NgCvfc/aOXTuzn/eBJpnBjEmcqb4x4u8D
-         bnFVf5bx5iuwajJXcUYj9uVXxxs2v6OTPXk2QiUN4LsnwCj5XT5R8ipyfy3jvTQ0BGCF
-         qeyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749826371; x=1750431171;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uzggHLNmauKyLZnZNxfkll09fUrU/RimXTpX7sjHfFM=;
-        b=Pz8v7nNvoNQi3DJLFYyHhl/hjK7QwdGsHF5KjblNr0pGlf8RssqJ3FHkGV0wa+HWpQ
-         /KPWCnuFSWJ7jYprCxTauyjPHdsYYlF5S09aP+AFXbGqFD3zSHnUGNjKDKsGRR30aNfl
-         g9ScFuQD+xLttIwjJjaAhfEesbduZDnRisV47Xmf8bIHmXki+P8HI9g4YJxbgeBgroj5
-         cxS9a2bCqqy806bQx7ginf8ftPguRFkkK1lU/bonhomHUQavoss0w9FdRH/0SFjsLDZ7
-         clh5ElRlFu2QKwKzoPTkxdfd7FDvejcGYOMwfoCx8FWNoJHdVZQJp6bF/wrHXjacq0pK
-         pCDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXUmCqf1IoEqI4GWRm84+pXxXWe/s5MpAWIxVHz/wkXM5HdOcA34D6L3VVgDGDnsmo5bUGjbOIYWwFr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3h+12y+Uwno2TN7XlBdRO7YSSof0BAiT0jNbcU4YgntaqWi99
-	olIzDqCY4KTXYTYbNTXtctBVdExPgvJGsM3Z6IRvcSPXXv1pSbo5gU6xpzSQgLYohW4=
-X-Gm-Gg: ASbGncsGr7YUhTH+H27tx3BEQZvP8kkU7wm8ldW4GQV0hBSPZ/u5GvYJ5xi9IvJehb7
-	V8OS4DpI46SkeY+Tsilk/IAsXp2/8YrUfcN5+J5Dbk7WS+27LMHEIiCypnFnN2kHgW1yKLWC3r4
-	g5WsNDQ2wYJJLPgXMTHKHxzZKv9j4Q76+sbDvQTjXYa+Jht3/7X3vl82zdF/ut/dohbTp6gwNoL
-	vbDfO/Hd1BMivMTlBykLG/+ZMqgp18riDj+FAFDFNUemq2lf4vzu82dY2Tqp5l7KOrygk3cEvP0
-	UPLLmggL3xlB9lkS7zFf+ZsQT2gDwu/xizAvw59qirMsnpF1gXK/RhoOiJnxsr8vOQ==
-X-Google-Smtp-Source: AGHT+IG2os3T69uU8xe8GheoIqFNES/C1cIVspYlMQzrl2qRtOCi+gxQL8uj3nxW1PiifYDCebD1JQ==
-X-Received: by 2002:a05:6000:4a03:b0:3a4:fc0a:33ca with SMTP id ffacd0b85a97d-3a572397d6amr13520f8f.4.1749826370906;
-        Fri, 13 Jun 2025 07:52:50 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e25e89fsm53198455e9.33.2025.06.13.07.52.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jun 2025 07:52:50 -0700 (PDT)
-Message-ID: <17434d4ceae1e65a5151bb1308b8e49dbbdaf021.camel@linaro.org>
-Subject: Re: [PATCH 07/17] mfd: sec-common: Instantiate s2mpg10 bucks and
- ldos separately
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski	
- <brgl@bgdev.pl>, Peter Griffin <peter.griffin@linaro.org>, Will McVicker	
- <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Date: Fri, 13 Jun 2025 15:52:49 +0100
-In-Reply-To: <05b9862c9a8f11bf7d7c8afdf60ecff30716a196.camel@linaro.org>
-References: <20250604-s2mpg1x-regulators-v1-0-6038740f49ae@linaro.org>
-		 <20250604-s2mpg1x-regulators-v1-7-6038740f49ae@linaro.org>
-		 <20250613141902.GI897353@google.com>
-	 <05b9862c9a8f11bf7d7c8afdf60ecff30716a196.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1749827071; c=relaxed/simple;
+	bh=emPt7KVQco9+jsiiDbiVTaJPf6cGPplminFGPTzr5DI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ByR8DHETReweMZdf38bO5dm1VBQ0iMts9WD92xuWsc2s/YGY5Og5cCCx8Xt/Sta0ygPUes33FnYYgF4jn+5Qlxv+Iu2kIQ5eXaWaBpfIlWVu9NZVrwOEyyW1vhp0Qv12lvTcff1WCdM1FJK/U6Ij3/L3avn5CmZxYL8letT7CPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=AaM9rxBt; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <d59be8aa-a288-4db5-9f93-1716ed1dd64e@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749827055;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IG+OxXsu7kERE/GwIe4zOanlV/094OyCDQjHMWVkmNQ=;
+	b=AaM9rxBtu+HXwYZecQVSVweu/MkF8RykOPy0Q6Y/bPFnMh1MgnwpHo7OPXvn50P6GimC/N
+	l5rWB5fWOeD8cA8Jue6rElXn/Algd5cpradoIKTeONWjvv1xTXy0YjB0LbTudQSZEOsOJE
+	VppqJO9IdVGc02Uocj12fKCDFH/5YFI=
+Date: Fri, 13 Jun 2025 16:04:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH net-next 2/4] net: spacemit: Add K1 Ethernet MAC
+To: Vivian Wang <wangruikang@iscas.ac.cn>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Richard Cochran <richardcochran@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Russell King <linux@armlinux.org.uk>
+Cc: Vivian Wang <uwu@dram.page>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn>
+ <20250613-net-k1-emac-v1-2-cc6f9e510667@iscas.ac.cn>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20250613-net-k1-emac-v1-2-cc6f9e510667@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, 2025-06-13 at 15:49 +0100, Andr=C3=A9 Draszik wrote:
-> Hi Lee,
->=20
-> Thanks for your review!
->=20
-> On Fri, 2025-06-13 at 15:19 +0100, Lee Jones wrote:
-> > On Wed, 04 Jun 2025, Andr=C3=A9 Draszik wrote:
-> >=20
-> > > Bucks can conceivably be used as supplies for LDOs, which means we ne=
-ed
-> > > to instantiate them separately from each other so that the supply-
-> > > consumer links can be resolved successfully at probe time.
-> > >=20
-> > > By doing so, the kernel will defer and retry instantiating the LDOs
-> > > once BUCKs have been created while without this change, it can be
-> > > impossible to mark BUCKs as LDO supplies. This becomes particularly
-> > > an issue with the upcoming support for the S2MPG11 PMIC, where
-> > > typically certain S2MP10/11 buck rails supply certain S2MP11/10 LDO
-> > > rails.
-> > >=20
-> > > The platform_device's ::id field is used to inform the regulator driv=
-er
-> > > which type of regulators (buck or ldo) to instantiate.
-> >=20
-> > I'm confused.
-> >=20
-> > There is nothing that differentiates the two, so why do you need to?
->=20
-> On gs101, we have two PMICs, s2mpg10 and s2mpg11. Several s2mpg10 LDOs
-> are consumers of various s2mpg10 bucks & s2mpg10 bucks, and several
+On 13/06/2025 03:15, Vivian Wang wrote:
+> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
+> that only superficially resembles some other embedded MACs. SpacemiT
+> refers to them as "EMAC", so let's just call the driver "k1_emac".
+> 
+> This driver is based on "k1x-emac" in the same directory in the vendor's
+> tree [1]. Some debugging tunables have been fixed to vendor-recommended
+> defaults, and PTP support is not included yet.
+> 
+> [1]: https://github.com/spacemit-com/linux-k1x
+> 
+> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+> ---
+>   drivers/net/ethernet/Kconfig            |    1 +
+>   drivers/net/ethernet/Makefile           |    1 +
+>   drivers/net/ethernet/spacemit/Kconfig   |   29 +
+>   drivers/net/ethernet/spacemit/Makefile  |    6 +
+>   drivers/net/ethernet/spacemit/k1_emac.c | 2059 +++++++++++++++++++++++++++++++
+>   drivers/net/ethernet/spacemit/k1_emac.h |  416 +++++++
+>   6 files changed, 2512 insertions(+)
 
-Small typo, should read:
+[...]
 
-... Several s2mpg10 LDOs are consumers of various s2mpg10 bucks & s2mpg11
-bucks...
+> +
+> +static int emac_init_hw(struct emac_priv *priv)
+> +{
+> +	u32 val = 0;
+> +
+> +	regmap_set_bits(priv->regmap_apmu,
+> +			priv->regmap_apmu_offset + APMU_EMAC_CTRL_REG,
+> +			AXI_SINGLE_ID);
+> +
+> +	/* Disable transmit and receive units */
+> +	emac_wr(priv, MAC_RECEIVE_CONTROL, 0x0);
+> +	emac_wr(priv, MAC_TRANSMIT_CONTROL, 0x0);
+> +
+> +	/* Enable mac address 1 filtering */
+> +	emac_wr(priv, MAC_ADDRESS_CONTROL, MREGBIT_MAC_ADDRESS1_ENABLE);
+> +
+> +	/* Zero initialize the multicast hash table */
+> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE1, 0x0);
+> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE2, 0x0);
+> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE3, 0x0);
+> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE4, 0x0);
+> +
+> +	/* Configure Thresholds */
+> +	emac_wr(priv, MAC_TRANSMIT_FIFO_ALMOST_FULL, DEFAULT_TX_ALMOST_FULL);
+> +	emac_wr(priv, MAC_TRANSMIT_PACKET_START_THRESHOLD, DEFAULT_TX_THRESHOLD);
+> +	emac_wr(priv, MAC_RECEIVE_PACKET_START_THRESHOLD, DEFAULT_RX_THRESHOLD);
+> +
+> +	/* RX IRQ mitigation */
+> +	val = EMAC_RX_FRAMES & MREGBIT_RECEIVE_IRQ_FRAME_COUNTER_MASK;
+> +	val |= (EMAC_RX_COAL_TIMEOUT
+> +		<< MREGBIT_RECEIVE_IRQ_TIMEOUT_COUNTER_SHIFT) &
+> +	       MREGBIT_RECEIVE_IRQ_TIMEOUT_COUNTER_MASK;
+> +
+> +	val |= MREGBIT_RECEIVE_IRQ_MITIGATION_ENABLE;
+> +	emac_wr(priv, DMA_RECEIVE_IRQ_MITIGATION_CTRL, val);
+> +
+> +	/* Disable and reset DMA */
+> +	emac_wr(priv, DMA_CONTROL, 0x0);
+> +
+> +	emac_wr(priv, DMA_CONFIGURATION, MREGBIT_SOFTWARE_RESET);
+> +	usleep_range(9000, 10000);
+> +	emac_wr(priv, DMA_CONFIGURATION, 0x0);
+> +	usleep_range(9000, 10000);
+> +
+> +	val |= MREGBIT_STRICT_BURST;
+> +	val |= MREGBIT_DMA_64BIT_MODE;
+> +	val |= DEFAULT_DMA_BURST;
 
-> s2mpg11 LDOs are also supplied by various s2mpg10 bucks & s2mpg11 bucks.
->=20
-> So we have a circular dependency here. LDOs of one PMIC depend on bucks
-> of the other.
->=20
-> If all s2mpg10 rails are handled by the same instance of the s2mpg10
-> regulator driver, probe will defer (and ultimately fail), because the
-> supplies to the LDOs can not be resolved during probe.
->=20
-> The same goes for s2mpg11.
->=20
-> The result is that neither driver can probe successfully (unless you're
-> _extremely_ lucky due to parallel probing, but we can not rely on that,
-> of course).
->=20
-> By splitting LDO and buck rails into separate instances, this circular
-> dependency is gone, the buck-instance of each respective driver can probe=
-,
-> which then allows the LDO instance of the other driver to probe.
->=20
-> Does that answer the question, or did I misunderstand it?
->=20
->=20
-> Cheers,
-> Andre'
+        val here will have bits of MREGBIT_RECEIVE_IRQ_FRAME_COUNTER_MASK
+        and MREGBIT_RECEIVE_IRQ_TIMEOUT_COUNTER_MASK set. Not sure if
+        it's intended
+
+> +
+> +	emac_wr(priv, DMA_CONFIGURATION, val);
+> +
+> +	return 0;
+> +}
+> +
+> +static void emac_set_mac_addr(struct emac_priv *priv, const unsigned char *addr)
+> +{
+> +	emac_wr(priv, MAC_ADDRESS1_HIGH, ((addr[1] << 8) | addr[0]));
+> +	emac_wr(priv, MAC_ADDRESS1_MED, ((addr[3] << 8) | addr[2]));
+> +	emac_wr(priv, MAC_ADDRESS1_LOW, ((addr[5] << 8) | addr[4]));
+> +}
+> +
+> +static void emac_dma_start_transmit(struct emac_priv *priv)
+> +{
+> +	emac_wr(priv, DMA_TRANSMIT_POLL_DEMAND, 0xFF);
+> +}
+> +
+> +static void emac_enable_interrupt(struct emac_priv *priv)
+> +{
+> +	u32 val;
+> +
+> +	val = emac_rd(priv, DMA_INTERRUPT_ENABLE);
+> +	val |= MREGBIT_TRANSMIT_TRANSFER_DONE_INTR_ENABLE;
+> +	val |= MREGBIT_RECEIVE_TRANSFER_DONE_INTR_ENABLE;
+> +	emac_wr(priv, DMA_INTERRUPT_ENABLE, val);
+> +}
+> +
+> +static void emac_disable_interrupt(struct emac_priv *priv)
+> +{
+> +	u32 val;
+> +
+> +	val = emac_rd(priv, DMA_INTERRUPT_ENABLE);
+> +	val &= ~MREGBIT_TRANSMIT_TRANSFER_DONE_INTR_ENABLE;
+> +	val &= ~MREGBIT_RECEIVE_TRANSFER_DONE_INTR_ENABLE;
+> +	emac_wr(priv, DMA_INTERRUPT_ENABLE, val);
+> +}
+> +
+> +static inline u32 emac_tx_avail(struct emac_priv *priv)
+
+please, avoid "static inline" in .c files, let the compiler to choose
+what to inline.
+
+> +{
+> +	struct emac_desc_ring *tx_ring = &priv->tx_ring;
+> +	u32 avail;
+> +
+> +	if (tx_ring->tail > tx_ring->head)
+> +		avail = tx_ring->tail - tx_ring->head - 1;
+> +	else
+> +		avail = tx_ring->total_cnt - tx_ring->head + tx_ring->tail - 1;
+> +
+> +	return avail;
+> +}
+> +
+> +static void emac_tx_coal_timer_resched(struct emac_priv *priv)
+> +{
+> +	mod_timer(&priv->txtimer,
+> +		  jiffies + usecs_to_jiffies(priv->tx_coal_timeout));
+> +}
+> +
+> +static void emac_tx_coal_timer(struct timer_list *t)
+> +{
+> +	struct emac_priv *priv = timer_container_of(priv, t, txtimer);
+> +
+> +	napi_schedule(&priv->napi);
+> +}
+> +
+> +static bool emac_tx_coal_should_interrupt(struct emac_priv *priv, u32 pkt_num)
+> +{
+> +	bool should_interrupt;
+> +
+> +	/* Manage TX mitigation */
+> +	priv->tx_count_frames += pkt_num;
+> +	if (likely(priv->tx_coal_frames > priv->tx_count_frames)) {
+> +		emac_tx_coal_timer_resched(priv);
+> +		should_interrupt = false;
+> +	} else {
+> +		priv->tx_count_frames = 0;
+> +		should_interrupt = true;
+> +	}
+> +
+> +	return should_interrupt;
+> +}
+> +
+> +static void emac_sw_init(struct emac_priv *priv)
+> +{
+> +	priv->dma_buf_sz = EMAC_DEFAULT_BUFSIZE;
+> +
+> +	priv->tx_ring.total_cnt = DEFAULT_TX_RING_NUM;
+> +	priv->rx_ring.total_cnt = DEFAULT_RX_RING_NUM;
+> +
+> +	spin_lock_init(&priv->stats_lock);
+> +
+> +	INIT_WORK(&priv->tx_timeout_task, emac_tx_timeout_task);
+> +
+> +	priv->tx_coal_frames = EMAC_TX_FRAMES;
+> +	priv->tx_coal_timeout = EMAC_TX_COAL_TIMEOUT;
+> +
+> +	timer_setup(&priv->txtimer, emac_tx_coal_timer, 0);
+> +}
+> +
+> +static int emac_ioctl(struct net_device *ndev, struct ifreq *rq, int cmd)
+> +{
+> +	int ret = -EOPNOTSUPP;
+> +
+> +	if (!netif_running(ndev))
+> +		return -EINVAL;
+> +
+> +	switch (cmd) {
+> +	case SIOCGMIIPHY:
+> +	case SIOCGMIIREG:
+> +	case SIOCSMIIREG:
+> +		if (!ndev->phydev)
+> +			return -EINVAL;
+> +		ret = phy_mii_ioctl(ndev->phydev, rq, cmd);
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static irqreturn_t emac_interrupt_handler(int irq, void *dev_id)
+> +{
+> +	struct net_device *ndev = (struct net_device *)dev_id;
+> +	struct emac_priv *priv = netdev_priv(ndev);
+> +	bool should_schedule = false;
+> +	u32 status;
+> +	u32 clr = 0;
+> +
+> +	if (test_bit(EMAC_DOWN, &priv->state))
+> +		return IRQ_HANDLED;
+> +
+> +	status = emac_rd(priv, DMA_STATUS_IRQ);
+> +
+> +	if (status & MREGBIT_TRANSMIT_TRANSFER_DONE_IRQ) {
+> +		clr |= MREGBIT_TRANSMIT_TRANSFER_DONE_IRQ;
+> +		should_schedule = true;
+> +	}
+> +
+> +	if (status & MREGBIT_TRANSMIT_DES_UNAVAILABLE_IRQ)
+> +		clr |= MREGBIT_TRANSMIT_DES_UNAVAILABLE_IRQ;
+> +
+> +	if (status & MREGBIT_TRANSMIT_DMA_STOPPED_IRQ)
+> +		clr |= MREGBIT_TRANSMIT_DMA_STOPPED_IRQ;
+> +
+> +	if (status & MREGBIT_RECEIVE_TRANSFER_DONE_IRQ) {
+> +		clr |= MREGBIT_RECEIVE_TRANSFER_DONE_IRQ;
+> +		should_schedule = true;
+> +	}
+> +
+> +	if (status & MREGBIT_RECEIVE_DES_UNAVAILABLE_IRQ)
+> +		clr |= MREGBIT_RECEIVE_DES_UNAVAILABLE_IRQ;
+> +
+> +	if (status & MREGBIT_RECEIVE_DMA_STOPPED_IRQ)
+> +		clr |= MREGBIT_RECEIVE_DMA_STOPPED_IRQ;
+> +
+> +	if (status & MREGBIT_RECEIVE_MISSED_FRAME_IRQ)
+> +		clr |= MREGBIT_RECEIVE_MISSED_FRAME_IRQ;
+> +
+> +	if (should_schedule) {
+> +		if (napi_schedule_prep(&priv->napi)) {
+> +			emac_disable_interrupt(priv);
+> +			__napi_schedule_irqoff(&priv->napi);
+> +		}
+> +	}
+> +
+> +	emac_wr(priv, DMA_STATUS_IRQ, clr);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void emac_configure_tx(struct emac_priv *priv)
+> +{
+> +	u32 val;
+> +
+> +	/* Set base address */
+> +	val = (u32)(priv->tx_ring.desc_dma_addr);
+> +
+> +	emac_wr(priv, DMA_TRANSMIT_BASE_ADDRESS, val);
+> +
+> +	/* TX Inter-frame gap value, enable transmit */
+> +	val = emac_rd(priv, MAC_TRANSMIT_CONTROL);
+> +	val &= ~MREGBIT_IFG_LEN;
+> +	val |= MREGBIT_TRANSMIT_ENABLE;
+> +	val |= MREGBIT_TRANSMIT_AUTO_RETRY;
+> +	emac_wr(priv, MAC_TRANSMIT_CONTROL, val);
+> +
+> +	emac_wr(priv, DMA_TRANSMIT_AUTO_POLL_COUNTER, 0x0);
+> +
+> +	/* Start TX DMA */
+> +	val = emac_rd(priv, DMA_CONTROL);
+> +	val |= MREGBIT_START_STOP_TRANSMIT_DMA;
+> +	emac_wr(priv, DMA_CONTROL, val);
+> +}
+> +
+> +static void emac_configure_rx(struct emac_priv *priv)
+> +{
+> +	u32 val;
+> +
+> +	/* Set base address */
+> +	val = (u32)(priv->rx_ring.desc_dma_addr);
+> +	emac_wr(priv, DMA_RECEIVE_BASE_ADDRESS, val);
+> +
+> +	/* Enable receive */
+> +	val = emac_rd(priv, MAC_RECEIVE_CONTROL);
+> +	val |= MREGBIT_RECEIVE_ENABLE;
+> +	val |= MREGBIT_STORE_FORWARD;
+> +	emac_wr(priv, MAC_RECEIVE_CONTROL, val);
+> +
+> +	/* Start RX DMA */
+> +	val = emac_rd(priv, DMA_CONTROL);
+> +	val |= MREGBIT_START_STOP_RECEIVE_DMA;
+> +	emac_wr(priv, DMA_CONTROL, val);
+> +}
+> +
+> +static void emac_free_tx_buf(struct emac_priv *priv, int i)
+> +{
+> +	struct emac_tx_desc_buffer *tx_buf;
+> +	struct emac_desc_ring *tx_ring;
+> +	struct desc_buf *buf;
+> +	int j;
+> +
+> +	tx_ring = &priv->tx_ring;
+> +	tx_buf = &tx_ring->tx_desc_buf[i];
+> +
+> +	for (j = 0; j < 2; j++) {
+> +		buf = &tx_buf->buf[j];
+> +		if (buf->dma_addr) {
+> +			if (buf->map_as_page)
+> +				dma_unmap_page(&priv->pdev->dev, buf->dma_addr,
+> +					       buf->dma_len, DMA_TO_DEVICE);
+> +			else
+> +				dma_unmap_single(&priv->pdev->dev,
+> +						 buf->dma_addr, buf->dma_len,
+> +						 DMA_TO_DEVICE);
+> +
+> +			buf->dma_addr = 0;
+> +			buf->map_as_page = false;
+> +			buf->buff_addr = NULL;
+> +		}
+> +	}
+> +
+> +	if (tx_buf->skb) {
+> +		dev_kfree_skb_any(tx_buf->skb);
+> +		tx_buf->skb = NULL;
+> +	}
+> +}
+> +
+> +static void emac_clean_tx_desc_ring(struct emac_priv *priv)
+> +{
+> +	struct emac_desc_ring *tx_ring = &priv->tx_ring;
+> +	u32 i;
+> +
+> +	/* Free all the TX ring skbs */
+> +	for (i = 0; i < tx_ring->total_cnt; i++)
+> +		emac_free_tx_buf(priv, i);
+> +
+> +	tx_ring->head = 0;
+> +	tx_ring->tail = 0;
+> +}
+> +
+> +static void emac_clean_rx_desc_ring(struct emac_priv *priv)
+> +{
+> +	struct emac_rx_desc_buffer *rx_buf;
+> +	struct emac_desc_ring *rx_ring;
+> +	u32 i;
+> +
+> +	rx_ring = &priv->rx_ring;
+> +
+> +	/* Free all the RX ring skbs */
+> +	for (i = 0; i < rx_ring->total_cnt; i++) {
+> +		rx_buf = &rx_ring->rx_desc_buf[i];
+> +		if (rx_buf->skb) {
+> +			dma_unmap_single(&priv->pdev->dev, rx_buf->dma_addr,
+> +					 rx_buf->dma_len, DMA_FROM_DEVICE);
+> +
+> +			dev_kfree_skb(rx_buf->skb);
+> +			rx_buf->skb = NULL;
+> +		}
+> +	}
+> +
+> +	rx_ring->tail = 0;
+> +	rx_ring->head = 0;
+> +}
+> +
+> +static int emac_up(struct emac_priv *priv)
+> +{
+> +	struct platform_device *pdev = priv->pdev;
+> +	struct net_device *ndev = priv->ndev;
+> +	int ret;
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +	pm_runtime_get_sync(&pdev->dev);
+> +#endif
+
+Not sure why do you depend on CONFIG_PM_SLEEP, but 
+pm_runtime_get_sync/pm_runtime_put_sync are available with and without 
+CONFIG_PM, no need
+for ifdef
+
+> +
+> +	ret = emac_phy_connect(ndev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "emac_phy_connect failed\n");
+> +		goto err;
+> +	}
+> +
+> +	emac_init_hw(priv);
+> +
+> +	emac_set_mac_addr(priv, ndev->dev_addr);
+> +	emac_configure_tx(priv);
+> +	emac_configure_rx(priv);
+> +
+> +	emac_alloc_rx_desc_buffers(priv);
+> +
+> +	if (ndev->phydev)
+> +		phy_start(ndev->phydev);
+> +
+> +	ret = request_irq(priv->irq, emac_interrupt_handler, IRQF_SHARED,
+> +			  ndev->name, ndev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "request_irq failed\n");
+> +		goto request_irq_failed;
+> +	}
+> +
+> +	/* Don't enable MAC interrupts */
+> +	emac_wr(priv, MAC_INTERRUPT_ENABLE, 0x0);
+> +
+> +	/* Enable DMA interrupts */
+> +	emac_wr(priv, DMA_INTERRUPT_ENABLE,
+> +		MREGBIT_TRANSMIT_TRANSFER_DONE_INTR_ENABLE |
+> +			MREGBIT_TRANSMIT_DMA_STOPPED_INTR_ENABLE |
+> +			MREGBIT_RECEIVE_TRANSFER_DONE_INTR_ENABLE |
+> +			MREGBIT_RECEIVE_DMA_STOPPED_INTR_ENABLE |
+> +			MREGBIT_RECEIVE_MISSED_FRAME_INTR_ENABLE);
+> +
+> +	napi_enable(&priv->napi);
+> +
+> +	netif_start_queue(ndev);
+> +	return 0;
+> +
+> +request_irq_failed:
+> +	emac_reset_hw(priv);
+> +	if (ndev->phydev) {
+> +		phy_stop(ndev->phydev);
+> +		phy_disconnect(ndev->phydev);
+> +	}
+> +err:
+> +#ifdef CONFIG_PM_SLEEP
+> +	pm_runtime_put_sync(&pdev->dev);
+> +#endif
+> +	return ret;
+> +}
+> +
+> +static int emac_down(struct emac_priv *priv)
+> +{
+> +	struct platform_device *pdev = priv->pdev;
+> +	struct net_device *ndev = priv->ndev;
+> +
+> +	netif_stop_queue(ndev);
+> +
+> +	if (ndev->phydev) {
+> +		phy_stop(ndev->phydev);
+> +		phy_disconnect(ndev->phydev);
+> +	}
+> +
+> +	priv->link = false;
+> +	priv->duplex = DUPLEX_UNKNOWN;
+> +	priv->speed = SPEED_UNKNOWN;
+> +
+> +	emac_wr(priv, MAC_INTERRUPT_ENABLE, 0x0);
+> +	emac_wr(priv, DMA_INTERRUPT_ENABLE, 0x0);
+> +
+> +	free_irq(priv->irq, ndev);
+> +
+> +	napi_disable(&priv->napi);
+> +
+> +	emac_reset_hw(priv);
+> +	netif_carrier_off(ndev);
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +	pm_runtime_put_sync(&pdev->dev);
+> +#endif
+
+ditto
+
+> +	return 0;
+> +}
+> +
+
+[...]
+
 
