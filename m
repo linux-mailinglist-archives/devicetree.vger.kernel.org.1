@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-185529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592A5AD8339
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:28:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94D9DAD8358
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:44:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14F75177798
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 06:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D543B8C82
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 06:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40464256C9E;
-	Fri, 13 Jun 2025 06:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DF725A624;
+	Fri, 13 Jun 2025 06:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LFMOselE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K5kAsWHr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105AF248F6F;
-	Fri, 13 Jun 2025 06:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091352580E2;
+	Fri, 13 Jun 2025 06:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749796121; cv=none; b=eB2hmMB+qofmBPDCojUEAH/7ZppMzQ7euMwypE2mimw9pG2f30xDD0HihruCHG3yMcHKy8tOP93Q6eEhbw8fVfxshOtR5f8H2CvUcvrMajAku0pNUrEIg4JceDOfkQwagqCDlvhaGmCVXWk4nQX8m8WbleEUwC3kXKV+/9jck3s=
+	t=1749797075; cv=none; b=VECYOQr2oJbhioPg7xRUxUgpYaIsN7YyO5B9B40tOnWGjzL0MNPgLd6qKVMJYFO/C9vansy/TJ1RQEUFbJKtujfVBy8CuavIjlMahS3pEsC419AV7DzNUS1HbBlMN1pzRxGjA3o+D4bG7An2MF18VdioW5rR0neM+WXbozNn6KM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749796121; c=relaxed/simple;
-	bh=sTw2wEL6VKmpegEJNASmlk28/U2SuxO/zeQ8hpyBuC8=;
+	s=arc-20240116; t=1749797075; c=relaxed/simple;
+	bh=qJorleZhof4nnwUieFm++u0Tgr6BrJO4E3srH66xuVs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S+lVe+kmOMywuyfQKp7PJMlEXo8aIGpQoIrXLskkrySv9GsF+97WzeXyMsvCg3vAL9VTUjE/Tz37qi0DSw8FYa7kSV5GC+KHOZ0lu8M5QFnylPzDwFtH+7+5S7yNTuDFJvHvRSlM/ecigfKY6+9VljcoYIkfs+KRyTOiG37Ltr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LFMOselE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00BAFC4CEE3;
-	Fri, 13 Jun 2025 06:28:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IAAGT2cjw+rQX5qkECoPVPuIuONlclRBeu0QhYnvoCfgeZywbwq/Ub1RsMVmVbn9s+zurU1UckqxXM2lFqUtEdu8/kBQhKwhxTSPH3vDDF+LDRMBbLeoaugjUHc4HGSe4eu6cDuzaeL53uRt9IkscD8jWlISv82M1HapPbUT8J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K5kAsWHr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4195AC4CEE3;
+	Fri, 13 Jun 2025 06:44:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749796120;
-	bh=sTw2wEL6VKmpegEJNASmlk28/U2SuxO/zeQ8hpyBuC8=;
+	s=k20201202; t=1749797074;
+	bh=qJorleZhof4nnwUieFm++u0Tgr6BrJO4E3srH66xuVs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LFMOselELQrdqlCWhXCplIrz88jVVHWHVxKeVMXnnQzut036gWuwa7jpMEVmymzKO
-	 Lvy2hC7yfg0gUxKdxYMvI46R4XhoLCkb8pAp7JZ7fmdJ6ph3/pDe+AimzmJWz3POHy
-	 gXCVLPjR6NEtg3Hm4jiIFY8b7b0qptd2OfsZUPchKmPlTUVBQELiXOoGMSc9VQ2tCE
-	 4ZOvpOPIWn9VgI/jjuBdzXBXaGR42gH6pUIglhJaji0bumOT2AMBmkX6qBjMjoJ4P1
-	 GhHVL2sTYoZqgqkG4xBvnbjn+CFEFtGQrtgfvy+iJ3CE3gptXpJ2TJGBqfnw76oOqf
-	 xXGA9Q+WzmWbg==
-Message-ID: <b96f9cca-cdd4-4456-8ced-f4a8fd810ff1@kernel.org>
-Date: Fri, 13 Jun 2025 08:28:35 +0200
+	b=K5kAsWHrboBeCrtgKqyBpkQXiAgCi1cIRoqbODI18/T9g98VoWIKtnG6QEE3BaXxk
+	 uGgobhmFbM7ezlUrEFPbdW4sV9pwjmgVbwHS2Sb1kfj2MUKTWHaxLQzLwuOdKo3E/s
+	 9TMMat+9nNqAJcrniDvgQ3lxmkYcngPb0x9aPtdJXVbxwsfPOOMvdiIuJVbkz7UhPS
+	 x20fbyeJIYN2DKC4Z7Td3mWgTnhmkKfQzxtPy/Xtwi8EeG4N87teJQ22JitoG5ZNo0
+	 nU7z9fCVRzsbX6dzcmIhI2gYg14+aKKQvV1X5Ind6ZJH58zbUr6QLW3dD4GDOMHC1t
+	 HayhmZaYIIHqA==
+Message-ID: <59cc6827-1602-402a-9279-96ad6285cff4@kernel.org>
+Date: Fri, 13 Jun 2025 08:44:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/10] dt-bindings: media: qcom: Add Qualcomm MIPI
- C-/D-PHY schema for CSIPHY IPs
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
- <20250612011531.2923701-9-vladimir.zapolskiy@linaro.org>
- <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
- <e9afdd0f-7842-4780-9044-d5afa6a09d7f@linaro.org>
+Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+To: Michal Wilczynski <m.wilczynski@samsung.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Matt Coster <matt.coster@imgtec.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Frank Binns <frank.binns@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
+ <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
+ <20250603-whispering-jaybird-of-thunder-f87867@kuoka>
+ <d42a8c49-7ad2-49ef-bd9c-1e3d9981b58e@samsung.com>
+ <e5a0bee2-ff74-47cf-ad2c-0c78b57ae6cf@kernel.org>
+ <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
+ <cc4dbf7c-e023-403c-88be-4691f97a0ff0@kernel.org>
+ <c7774790-07c3-469d-a994-9e84108ad21d@samsung.com>
+ <CAMRc=Mexq9ThfG6jZUbs3wYDA9UZN-+pHnX_Y-7WO4ubXvEuCw@mail.gmail.com>
+ <ad6981eb-f53a-4a7b-90bd-2e2705bd0297@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,44 +125,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e9afdd0f-7842-4780-9044-d5afa6a09d7f@linaro.org>
+In-Reply-To: <ad6981eb-f53a-4a7b-90bd-2e2705bd0297@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2025 19:13, Vladimir Zapolskiy wrote:
-> On 6/12/25 10:38, Krzysztof Kozlowski wrote:
->> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
->>> Add dt-binding schema for Qualcomm CAMSS CSIPHY IP, which provides
->>> MIPI C-PHY/D-PHY interfaces on Qualcomm SoCs.
->>>
->>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->>> ---
+On 11/06/2025 14:01, Michal Wilczynski wrote:
 > 
-> <snip>
+> However, this leads me back to a fundamental issue with the
+> consumer side implementation in the generic pvr_device.c driver. The
+> current fallback code is:
 > 
->>> +
->>> +  clocks:
->>> +    maxItems: 2
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: csiphy
->>> +      - const: csiphy_timer
->>
->> Drop csiphy from both, redundant. And this points to the first clock
->> name not having any useful name. Name equal to device name is not useful.
->>
+> /*
+>  * If the error is -EPROBE_DEFER, it's because the
+>  * optional sequencer provider is not present
+>  * and it's safe to fall back on manual power-up.
+>  */
+> if (pwrseq_err == -EPROBE_DEFER)
+>         pvr_dev->pwrseq = NULL;
 > 
-> I got the rationale, but I have no idea how to correct it, since it's
-> literally the case, the first clock name on the list in 'csiphy'.
+> As Krzysztof noted, simply ignoring -EPROBE_DEFER is not ideal. But if I
+> change this to a standard deferred probe, the pvr_device.c driver will
 
-What do you mean by "list"? You can point me also to internal
-documentation if that helps.
+Why? You have specific compatible for executing such quirks only for
+given platform.
 
+> break on all other supported SoCs. It would wait indefinitely for a
+> pwrseq-thead-gpu provider that will never appear on those platforms.
 > 
-> What could be an alternative name then?..
 
-The real clock input name, signal name. You can also drop the names.
+
 
 Best regards,
 Krzysztof
