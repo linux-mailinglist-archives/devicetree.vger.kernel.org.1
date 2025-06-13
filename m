@@ -1,184 +1,149 @@
-Return-Path: <devicetree+bounces-185639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1C4AD89F1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:03:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50049AD89F9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 13:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 406DF1E13FD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:03:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48016189795A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 11:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E0292D5405;
-	Fri, 13 Jun 2025 11:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BF52D3205;
+	Fri, 13 Jun 2025 11:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="W74bGSVu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0xF8S9d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2935D2D5408;
-	Fri, 13 Jun 2025 11:03:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A19C22068B;
+	Fri, 13 Jun 2025 11:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749812602; cv=none; b=j1OtCSqZCq6A0MJ02tR9tkoNA2HsEQ0zjAEdUqYzvOD/ryav393UMfnH/rNUXjA5DO540c10hagw7JO0naUQ9x4UX7dJ4SIA3MZE8QUDxRbRjfOcg7Zlg33qY3Uix52PIZRzqD5Mq293fjPlcf92JvqllUl+vmHchfPaYy14WnM=
+	t=1749812869; cv=none; b=Qc81Bus65lX3MTetOxqZ5Fb2bYlLEUXudxKIpQlRI0JJxBv7bA39t2m1r5fl5iMnex8yccOlEgEV2B7YcBeaHfkqqRUJi7MEzZs6rQ8v8q7U6jnVJtQbvF0bv9YMOaFIrOpdjWs26nltHq8Vrilqfws2SVmk4kjpihQY2hxFbxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749812602; c=relaxed/simple;
-	bh=xSacqbNIg/9oGP/awU7ktqaXCqSMSf5bNRHv9Vu8nMU=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=s0ZQfL6Relm506/TF2Y0xoN633jGOHXVATeQPbXMygYBXXV9+1YLh3Ds7ETrxCHXR0iTOiseqbsF/m2mBoXGJdVtQFw7fxBYysIg/R1x1n8slw1/6HSbNszNexq5bFM+P43ghpHFrRTulbFhW2f8MMpaThB+cP2ehgy4zQ6dkjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=W74bGSVu; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 0CB3B25F8B;
-	Fri, 13 Jun 2025 13:03:18 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id vCIuwyLbpHdc; Fri, 13 Jun 2025 13:03:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1749812582; bh=xSacqbNIg/9oGP/awU7ktqaXCqSMSf5bNRHv9Vu8nMU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=W74bGSVu8Tkpq7tIWHOgrW5bDW+opJlr9W6rbqBkSHFmg1nBgI1YXJ3qYYlPHqkHc
-	 5XRB08DesTbYTA2e600cDbpii29hkzuDYpEj1arI8OmQ2fNroCbMoWsVyIKpvdHY9L
-	 dvFT2OqNJKZWZJhMm+l6KYlG+I0NdDgE73rEmo7MeFGe7IQQxVd7cML6QGj28V6Mg4
-	 8OHWi77df+UfFnNnHne80ZmAgOJC66QxL3tiZJ10dAIg4Ac+D10tgwTjaybRjZzVz0
-	 wUrOaLpZCMyL3t9ygNw/9PgziZxlrHLT2wHqtrvuEhMZKOr2p6FgHOkXIIRvfIxGIt
-	 F/u/xfLvxfdsw==
+	s=arc-20240116; t=1749812869; c=relaxed/simple;
+	bh=yp9sbCbl7MbubwJbO1yJwsl5U12/4EmLw/erbx5e7Po=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qflKov/Kagn7KwZyP9eJtDzBSDrEndH5RWrWV9lhtV3+KXaapUDyoXpXlNmclYE+N1QvWjw4ag3MdrCV/JsntzcB+gpAtxVhu2S22O9+x3GIJrrDKVkmFxL7KJwO0xcKmQCuIDyN0l/uZc3yejOZZgAcJDmes94lg3Tsk2uRcTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0xF8S9d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38C32C4CEE3;
+	Fri, 13 Jun 2025 11:07:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749812868;
+	bh=yp9sbCbl7MbubwJbO1yJwsl5U12/4EmLw/erbx5e7Po=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y0xF8S9dprgIwjWWQiwL7aCI0FmWcGZPE87ZgHrl/1Zs8oSXq7JOCcVUXJde7u0bC
+	 Up0hj/JoNTvTL2gRlFNt+5GdQfy28Crz1QK2gkoJgCCxGWoDk53VnCewe7NlS3CWcn
+	 YPqixTfJOPTujSHxju23V5IRW/FsNskaOk8qcJhQOmXwzRE6+lyRPrW7R+QLWWaJZv
+	 TJ0SKIcmE3ebTJEAryUacymgFboYmIgCCXK9o+Z0eAtdm3ZNgnYA5JUubUsSg7suzE
+	 zlf0pH2OZfUdZgQQgVp+D/X9mLqSCw7bOeedY0BueiiiYWhMGXPq1f2GsjWTNbFqay
+	 gSKjS8CHRlpFg==
+Message-ID: <2fb10aee-6610-43f4-9d12-88a97e0f66e5@kernel.org>
+Date: Fri, 13 Jun 2025 13:07:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 13 Jun 2025 11:03:01 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jessica
- Zhang <jessica.zhang@oss.qualcomm.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] drm: panel: add support for Samsung S6E8AA5X01 panel
- controller
-In-Reply-To: <84ee6388-92af-49c8-988b-b79ed1453d5e@suse.de>
-References: <20250612-panel-samsung-s6e8aa5x01-v1-0-06dcba071ea6@disroot.org>
- <20250612-panel-samsung-s6e8aa5x01-v1-2-06dcba071ea6@disroot.org>
- <84ee6388-92af-49c8-988b-b79ed1453d5e@suse.de>
-Message-ID: <84663a88789b993a1cab8c55af4e03a7@disroot.org>
-X-Sender: kauschluss@disroot.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: gpio-xilinx: Mark clocks as
+ required property
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+ Srinivas Neeli <srinivas.neeli@amd.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/ZYNQ ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+References: <8407ef56b11632c1a7abfce8a4534ed8a8ed56cc.1749809570.git.michal.simek@amd.com>
+ <cbde9b9e2b0f9d12fdd1ba24fddb1543159357aa.1749809570.git.michal.simek@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <cbde9b9e2b0f9d12fdd1ba24fddb1543159357aa.1749809570.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 2025-06-13 09:39, Thomas Zimmermann wrote:
-> Hi
+On 13/06/2025 12:12, Michal Simek wrote:
+> On Microblaze platforms there is no need to handle clocks because the
+> system is starting with clocks enabled (can be described via fixed clock
+> node or clock-frequency property or not described at all).
+> With using soft IPs with SOC platforms there is mandatory to handle clocks
+> as is explained in commit 60dbdc6e08d6 ("dt-bindings: net: emaclite: Add
+> clock support").
+> That's why make clock as required in dt binding because it is present in
+> both configurations and should be described even there is no way how to
+> handle it on Microblaze systems.
 > 
-> Am 12.06.25 um 16:52 schrieb Kaustabh Chakraborty:
->> Samsung S6E8AA5X01 is an AMOLED MIPI DSI panel controller. Implement
->> a basic panel driver for such panels.
->>
->> The driver also initializes a backlight device, which works by changing
->> the panel's gamma values and aid brightness levels appropriately, with
->> the help of look-up tables acquired from downstream kernel sources.
->>
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-
-[...]
-
->> +
->> +static void s6e8aa5x01_mcs_protect(struct mipi_dsi_multi_context *dsi,
->> +				   struct s6e8aa5x01_ctx *ctx, bool protect)
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
 > 
-> I found this interface confusing. Rather split it up into .  It also does two different things AFAICT.
+> Changes in v2:
+> - Add fpga region patch to fix issue which was introduces by this change
 > 
-> - The mcs_mutex protects against concurrent access from update_status and enable
-
-mcs_mutex is meant to prevent any early access protection of the MCS commands.
-Suppose there are two functions, A and B, accessing MCS.
-
-ENTRY: A()
-(access protection disabled)
-...
-
-ENTRY: B()
-(access protection disabled)
-...
-(access protection enabled)
-EXIT: B()
-
-[!] cannot access MCS commands here anymore
-(access protection enabled)
-EXIT: A()
-
-And to avoid such errors a mutex is provided.
-
+> Based on discussion at
+> https://lore.kernel.org/lkml/20241002-revivable-crummy-f780adec538c@spud/
 > 
-> - MSC_ACCESSPROT enable access to hardware state.
-> 
-> Maybe try this:
-> 
-> - Move msc_mutex into the callers, so that ->update_status and ->enable acquire and release the lock.
-> 
-> - Move MCS_ACCESSPROT into ->enable and ->disable and leave it accessible, if the hardware allows that.
+> Actually this shouldn't be only targetting GPIO but also for example
+> xlnx,xps-timebase-wdt-1.00.a but I would like to check it first on gpio
+> before starting to check other bindings.
 
-Yeah this is a good idea, I'll try it.
+IIUC, patch #1 is a prerequisite, so you need to squash them. Otherwise
+dt_binding_check is not bisectable and we want it to be bisectable.
 
->> +{
->> +	if (protect) {
->> +		mipi_dsi_dcs_write_seq_multi(dsi, MCS_ACCESSPROT, 0xa5, 0xa5);
->> +		mutex_unlock(&ctx->mcs_mutex);
->> +	} else {
->> +		mutex_lock(&ctx->mcs_mutex);
->> +		mipi_dsi_dcs_write_seq_multi(dsi, MCS_ACCESSPROT, 0x5a, 0x5a);
->> +	}
->> +}
->> +
->> +static int s6e8aa5x01_update_brightness(struct backlight_device *backlight)#
-> 
-> Maybe call this function s6e8aa5x01_update_status() to match the callback.
-> 
->> +{
->> +	struct mipi_dsi_multi_context dsi = { .dsi = bl_get_data(backlight) };
->> +	struct s6e8aa5x01_ctx *ctx = mipi_dsi_get_drvdata(dsi.dsi);
->> +	u16 lvl = backlight->props.brightness;
-> 
-> backlight_get_brightness() here ?
-> 
-> 
-> I think you should also check panel->enabled and return if false. AFAIU there will be no gamma changes on disabled hardware anyway.
->
+(dtbs_check does not have to be, as long as linux-next is concerned)
 
-The enable function is never executed when the panel is disabled. This is
-because flag checking is done by drm_panel anyway. See drm_panel_enable()
-in drivers/gpu/drm/drm_panel.c [1]
-
->> +
->> +static int s6e8aa5x01_probe(struct mipi_dsi_device *dsi)
->> +{
->> +	struct device *dev = &dsi->dev;
->> +	struct s6e8aa5x01_ctx *ctx;
->> +	int ret;
->> +
->> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> 
-> You're possibly using the instance after the hardware device has been removed. Alloc with drmm_kzalloc() or you might end up with UAF errors.
-
-Hmm, none of the panel drivers are using drmm_kzalloc(), or even any
-drmm_*(). Are you sure I must use it?
-
->> +	ret = devm_mutex_init(dev, &ctx->mcs_mutex);
-> 
-> You're taking this mutex in DRM code, so rather use drmm_mutex_init() here.
-
-(The comment by me above applies here too)
-
-> 
-> Best regards
-> Thomas
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/gpu/drm/drm_panel.c#n209
+Best regards,
+Krzysztof
 
