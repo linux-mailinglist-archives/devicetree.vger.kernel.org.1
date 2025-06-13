@@ -1,80 +1,155 @@
-Return-Path: <devicetree+bounces-185528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D66AD8331
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:23:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 592A5AD8339
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 08:28:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAF893B406E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 06:22:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14F75177798
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 06:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1769256C73;
-	Fri, 13 Jun 2025 06:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40464256C9E;
+	Fri, 13 Jun 2025 06:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="B40P4cfS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LFMOselE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE7D248F6F;
-	Fri, 13 Jun 2025 06:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105AF248F6F;
+	Fri, 13 Jun 2025 06:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749795764; cv=none; b=oq91l9Fq3acpQ7vPIiHwVsqNa/9KEFwZbMZt61jSIZW3jFHt5YGVbaBmBOA5gl/F2HYUQ8iMhvwmBD1phf1/1aE1dD6+C1icDp27WncjJQMuHi6JmLUhsIAXHgu+I/Wn5a6urxlpGwUlQji/eV5X2zw9E+xj74rpKxxYwTJ1DOo=
+	t=1749796121; cv=none; b=eB2hmMB+qofmBPDCojUEAH/7ZppMzQ7euMwypE2mimw9pG2f30xDD0HihruCHG3yMcHKy8tOP93Q6eEhbw8fVfxshOtR5f8H2CvUcvrMajAku0pNUrEIg4JceDOfkQwagqCDlvhaGmCVXWk4nQX8m8WbleEUwC3kXKV+/9jck3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749795764; c=relaxed/simple;
-	bh=CqOl17e7Ivjdg620kfbggEADnVLIrP+tN+mDP2fqmf0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=eAbRW5/Ux0Dy9pbl1nMULL7Cz/HwALpHhB9Xb18eLXTbO6Rnt5jKu/wvYDEC2aKpHsimAQzKb4kaC1r6v5qGq2snzWtyny8M5G6Q9M9LX3s/nSitQTpfLeLJnGQZ5whDPlI6wOFaTg0QUhpxWKLLaD9kRLPVkJUj4WpGmQ866r0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=B40P4cfS; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1749795761;
-	bh=uN1gPb2PJM1vKZa2B8fQ33X5LS8Zuqa+quq/5JZM2BA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=B40P4cfSWEj4Q/LwKoGxYvT4RLjXhogL2r3AVuZNFrSQ292nwIkZyyIfsr6TMQwAS
-	 CGgpA0sNwE0nIfTa2ujfVAzpvNpLtYq/idY1aK5rrPMFwgOUD8PC1SkqvA3YR65cKr
-	 yloqW9w8OQ1lIixBEdWjeJiImDFbd5arK9CATd1Ev3FbqZJcf2SvDFLX3Vf6fNxxlV
-	 Sms1eChY2DZW5N395hSbJbPe4nLNGEleb1u1LuAtJUWCLuGIoQ/LC/M5xeLLFwd1Ea
-	 h43xtY7ffyR6GKo4TQK95/ceTkELC9GH5HKYOaKbO/roMChk2eF9TqZDGj7oX+iiM6
-	 gZYh+bW+Xguzw==
-Received: from [127.0.1.1] (unknown [180.150.112.166])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 616D5680F3;
-	Fri, 13 Jun 2025 14:22:40 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- joel@jms.id.au, Ankit Chauhan <ankitchauhan2065@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250612075057.80433-1-ankitchauhan2065@gmail.com>
-References: <20250612075057.80433-1-ankitchauhan2065@gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: aspeed: lanyang: Fix 'lable' typo in LED
- nodes
-Message-Id: <174979576026.385457.16320702443597106607.b4-ty@codeconstruct.com.au>
-Date: Fri, 13 Jun 2025 15:52:40 +0930
+	s=arc-20240116; t=1749796121; c=relaxed/simple;
+	bh=sTw2wEL6VKmpegEJNASmlk28/U2SuxO/zeQ8hpyBuC8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S+lVe+kmOMywuyfQKp7PJMlEXo8aIGpQoIrXLskkrySv9GsF+97WzeXyMsvCg3vAL9VTUjE/Tz37qi0DSw8FYa7kSV5GC+KHOZ0lu8M5QFnylPzDwFtH+7+5S7yNTuDFJvHvRSlM/ecigfKY6+9VljcoYIkfs+KRyTOiG37Ltr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LFMOselE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00BAFC4CEE3;
+	Fri, 13 Jun 2025 06:28:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749796120;
+	bh=sTw2wEL6VKmpegEJNASmlk28/U2SuxO/zeQ8hpyBuC8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LFMOselELQrdqlCWhXCplIrz88jVVHWHVxKeVMXnnQzut036gWuwa7jpMEVmymzKO
+	 Lvy2hC7yfg0gUxKdxYMvI46R4XhoLCkb8pAp7JZ7fmdJ6ph3/pDe+AimzmJWz3POHy
+	 gXCVLPjR6NEtg3Hm4jiIFY8b7b0qptd2OfsZUPchKmPlTUVBQELiXOoGMSc9VQ2tCE
+	 4ZOvpOPIWn9VgI/jjuBdzXBXaGR42gH6pUIglhJaji0bumOT2AMBmkX6qBjMjoJ4P1
+	 GhHVL2sTYoZqgqkG4xBvnbjn+CFEFtGQrtgfvy+iJ3CE3gptXpJ2TJGBqfnw76oOqf
+	 xXGA9Q+WzmWbg==
+Message-ID: <b96f9cca-cdd4-4456-8ced-f4a8fd810ff1@kernel.org>
+Date: Fri, 13 Jun 2025 08:28:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/10] dt-bindings: media: qcom: Add Qualcomm MIPI
+ C-/D-PHY schema for CSIPHY IPs
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-9-vladimir.zapolskiy@linaro.org>
+ <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
+ <e9afdd0f-7842-4780-9044-d5afa6a09d7f@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e9afdd0f-7842-4780-9044-d5afa6a09d7f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 12 Jun 2025 13:20:57 +0530, Ankit Chauhan wrote:
-> Fix an obvious spelling error in the DTS file for the Lanyang BMC
-> ("lable" → "label"). This was reported by bugzilla a few years ago
-> but never got fixed.
+On 12/06/2025 19:13, Vladimir Zapolskiy wrote:
+> On 6/12/25 10:38, Krzysztof Kozlowski wrote:
+>> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
+>>> Add dt-binding schema for Qualcomm CAMSS CSIPHY IP, which provides
+>>> MIPI C-PHY/D-PHY interfaces on Qualcomm SoCs.
+>>>
+>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>> ---
 > 
+> <snip>
 > 
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: csiphy
+>>> +      - const: csiphy_timer
+>>
+>> Drop csiphy from both, redundant. And this points to the first clock
+>> name not having any useful name. Name equal to device name is not useful.
+>>
+> 
+> I got the rationale, but I have no idea how to correct it, since it's
+> literally the case, the first clock name on the list in 'csiphy'.
 
-Thanks, I've applied this to be picked up through the BMC tree.
+What do you mean by "list"? You can point me also to internal
+documentation if that helps.
 
--- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
+> 
+> What could be an alternative name then?..
 
+The real clock input name, signal name. You can also drop the names.
+
+Best regards,
+Krzysztof
 
