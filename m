@@ -1,83 +1,104 @@
-Return-Path: <devicetree+bounces-185533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8F6AD83AF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:09:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34828AD8404
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 09:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0C9D17E170
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 07:09:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F8B93B47A1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 07:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49325274677;
-	Fri, 13 Jun 2025 07:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF31254854;
+	Fri, 13 Jun 2025 07:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IZwQHguT"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AoIaen+J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A10727466E;
-	Fri, 13 Jun 2025 07:09:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283B91EA7E1;
+	Fri, 13 Jun 2025 07:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749798561; cv=none; b=aEqK7BbV6VkYZPnPp8xSUG1U204pOyZmYoEZlTxOak6N9IviAQkj1UPXx8wfaRnzlU1KIG/0UkQD0OlHx7VM9FSP0clwnlHPv4pdct+cNmt2mcHSVGla/c49PbMPFAdp2yHH2pK1CRoFLdo9DcJUewa+qLp6Fa6OO9tKSHCBHsw=
+	t=1749799824; cv=none; b=Kh37x93sY51sdGBPbLafokUE3Bgm5W0VtEKtMyawvQM8M2c0KNfk+uOm95qNsBVgcOlgKWEoWYMlaNXwV5TGTLeiZdIkfG06ZXvJv9ak5uciG22GddtIAQfdiApMzuPJfwa7gQoUd+LBwVxy2ZI26Eu5YyEg6OBM8PmpA0GF3R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749798561; c=relaxed/simple;
-	bh=Mb1jyZOQPN9JATWBbLyCYwDfAwrKONx5/T3Sp8j0edM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NBmJvkLH1e8HLDtEW2GG3nOHxKvNOSjhb2Bb60Gt7RB7Z/wLLPyyKJTbdb7jcQ+r2WpqyrOHcxSkesp0SNrhMFkyzJg69x2/8KNbUOaomyc/+sd59VW2TXQz1Qn9gmwYTGLD4DMNg8n5nAKXsyMbT5pBwfPSHVSqqpd3VGXx4Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IZwQHguT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B5FBC4CEE3;
-	Fri, 13 Jun 2025 07:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749798560;
-	bh=Mb1jyZOQPN9JATWBbLyCYwDfAwrKONx5/T3Sp8j0edM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IZwQHguTjI+NHlRsb7p7gV+3FKXQu+3OLuSJEcdfaIGSV2gdb7kqoFAuVmO8RtoGy
-	 YSexCJqBy9HH7z6rdB4ncYzn0sQJRQ2tIiiLI5ZXtXrafaSwzkhpuKJwwGzteOqeat
-	 rx3apaWgVPrAvilPBQz6dzvdLUAKHsKAsozM3OeLx7/tavaDMgbS7P+DWMLygIShXu
-	 nul2JIp5r1GNuDRSlJY7y47EjVAvEn+Vs3TAZqL21edg5qr7OOx7oHmbVUrnEeGsQF
-	 aHAae6TGanDR7WGD/rRzPzvCTYS4ReA4IrmXNdwwuuF5LsOxycNtOQjalBmowu8hg8
-	 SAgXKROHdhbWQ==
-Date: Fri, 13 Jun 2025 09:09:18 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Sangwon Jee <jeesw@melfas.com>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/5] dt-bindings: input: melfas-mip4: convert to
- dtschema
-Message-ID: <20250613-big-firefly-of-aptitude-a88cbe@kuoka>
-References: <20250613-mip4-touchkey-v2-0-9bbbe14c016d@disroot.org>
- <20250613-mip4-touchkey-v2-1-9bbbe14c016d@disroot.org>
+	s=arc-20240116; t=1749799824; c=relaxed/simple;
+	bh=JaMvdmEB/xNxDbDBv2rfaj0AEG3Hnsd5q0m4mD/t37I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Kj6TSFUlbLFALlgzYtuUzmQA3wLrNEmipeTat0VVpqKBzz/ZU8/b06kIcIVCVoSmi3K3EeQcpgALkoaWJqKdgqU3NASoM5gCzCvHK2fkkxl+2q+PmLNuUJ8/bYytvSMNlk1ZAh8DHcejEr12GBAXA40ovbXkkv1Feinkx1M7vM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AoIaen+J; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C8D56443E0;
+	Fri, 13 Jun 2025 07:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749799818;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=49gLt15vu4mXbCU+te8YR47e4SuHu/CNyG4+R0GFtfQ=;
+	b=AoIaen+JdHaQhT0muniYwYMTBLi5m28ommnG27txBGyXsFiV8yYOp66M7LgdeTx0JFqx60
+	JHt/BALBmHTrKhpR6dlvnlrSL8dQr4RBrJcbCCkC8RQiJAEhaUk+iYIRMQ2usSQnJ5NoQz
+	gAaFsOtk11Nc1jA+IJdFlmiGj/KDjtdUJahMxlwW7SezkEQd8HnOTdFmFi8yMcHtWhbKZM
+	bEPd0NC9QpqAzqMhCdNzBLZdY7D/iEELhFF5XV1vJO+LrMJXp6yVEjsZDcgqql9c/bDOYx
+	9IsEf4zUcBT+CtcMnk1cADsr4DwFQ8qi1jlMPhjUraOf4ZGNDA4UWD1aBRNlug==
+Date: Fri, 13 Jun 2025 09:30:16 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ luca.ceresoli@bootlin.com, robh@kernel.org, thomas.petazzoni@bootlin.com,
+ wsa+renesas@sang-engineering.com
+Subject: Re: [RFC PATCH 0/3] i2c: Introduce i2c bus extensions
+Message-ID: <20250613093016.43230e3b@bootlin.com>
+In-Reply-To: <525877c8-6c64-45b3-b4aa-a52768e59b86@beagleboard.org>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+	<525877c8-6c64-45b3-b4aa-a52768e59b86@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250613-mip4-touchkey-v2-1-9bbbe14c016d@disroot.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddujeefhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddtpdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtp
+ hhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Fri, Jun 13, 2025 at 01:11:33AM GMT, Kaustabh Chakraborty wrote:
-> Port the documentation file melfas_mip4.txt over to melfas,mip4_ts.yaml.
+Hi Ayush,
+
+On Thu, 12 Jun 2025 13:22:45 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
+
+> I have tested this patch series for use with pocketbeagle 2 connector 
+> driver [0]. To get a better idea how it looks in real devicetree, see 
+> the base tree [1] and the overlay [2]. Since it also used gpio and pwm 
+> nexus nodes, along with providing pinmux for pins, it can provide a 
+> better picture of how the different pieces (export-symbols, nexus nodes, 
+> etc) look when combined.
+
+Nice. Happy to see that I am no more alone with a system using these
+features.
+
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../bindings/input/touchscreen/melfas,mip4_ts.yaml | 55 ++++++++++++++++++++++
->  .../bindings/input/touchscreen/melfas_mip4.txt     | 20 --------
->  2 files changed, 55 insertions(+), 20 deletions(-)
+> 
+> I also have a question for Herve. Do you already have any working 
+> patches for similar extension for SPI and UART in some private tree?
 
-You need to fix MAINTAINERS as well. With that:
+No, I didn't do anything related to SPI nor UART.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On my system, no SPI nor UART are wired to my connector and so, I haven't
+got any needs to implement extension busses for SPI an UART (serial dev bus)
+nor any support for nexus nodes for other kind of components.
 
 Best regards,
-Krzysztof
-
+Hervé
 
