@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-185881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694AEAD9BAE
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 11:15:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3DD0AD9BB1
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 11:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11A9D17C3CD
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 09:15:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61F6417C581
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 09:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C90329CB48;
-	Sat, 14 Jun 2025 09:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9002BCF5D;
+	Sat, 14 Jun 2025 09:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oByO2OvY"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="m0kfqJ80"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4EF29B216
-	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 09:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C988629C34C
+	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 09:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749892522; cv=none; b=sIn/sTpJC7dr7yLMV9aVmLyCvi0fw0xcsHiS7LTF+fw/IZLgZC5B+1w1Fz7iLz53l3n3mKf4Qp8BCZqP1OuUgqeV2GoRAsm8hRQmgtyD4olgE8u7SexjMLQyYwSMibuIkhw3q9YiPSXgVSr7z5Z+dGZe5MyrcF/Gg6UU4vtYjR0=
+	t=1749892524; cv=none; b=iKWTx0IQ8wrwzUDTLGlkiYPdQa4nMg5XUiV2RC/+g3rPq3quAQZpzt5WiWnEdT33T6lBzhhlfFrS5zf/1p4HIQEXtx28G/1A2JMlb60baajyrZwPu+Qz3xUDCt9RBa5/uiR0jY2qbRA3aC6ZfIVKpEkFiqFt6CcD7hpgwIe+DgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749892522; c=relaxed/simple;
-	bh=SkKJiZJp2DM+9aH9ZqZNdByprM9DwlhGCimKeBh/YJM=;
+	s=arc-20240116; t=1749892524; c=relaxed/simple;
+	bh=N4PxgLq1UklLd2+7SOZmDIsLnd1oB+1AiA0Eie3Ykko=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=i3dA5EvwWPD5rHmKS6Xvp2rMLaJS/3vIi4QjbYP9Sy/WXgqdO7dPQEnbEHV1swU2+vO4PF1TX5lbM8rIGDhoknftWyjEd1p6bKzSGMHC/Hrp2hYO4TtOaysBPr0ajZ9/tsxVPGIg9mm/1JgklKa0zRgE+VDM3Cj3Y90k97K2ktQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oByO2OvY; arc=none smtp.client-ip=209.85.210.180
+	 MIME-Version; b=BThgTsdM0UXaEH38C9nMfUnAjv06rNnetScFxCRCu1wOe1JOaW4HO0l1Zz/jA0gb5kRVf/VEuTLlHunfhhXZP0G3OG7VDXyUvVfYNjb39QIAfRKxOIP+gAQe8xOhpECZlLwbyRmHrDvTsNpId6eV1EF0Bml9bkQLWAN1L6qy47Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=m0kfqJ80; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-748582445cfso1881087b3a.2
-        for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 02:15:21 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7481600130eso3298551b3a.3
+        for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 02:15:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749892521; x=1750497321; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749892522; x=1750497322; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RXZGIEfZDDccmiTeVzsKZm7Nu0ZNmUD8yr1NHt0MQH4=;
-        b=oByO2OvYa0mQyvtIfDrkuaFP/GkFr2iefnm5MoY76gAXGQ+HHevC/BANPF6FGF5zPL
-         nRVcozIhDqSRX2cdI+Yb1XaQyEyX+Y+zq2Rn7FWWt4lN0YeplrmRs7w22bmbx2/WlJFb
-         irZjomUubA/H890QiwK4qTfhfLLhtJCsBeYPkE5bwhnHkOp0spKERhTcGKdUL5US3q/V
-         11xqJsF1/4r65LuaFqUOAQgqFmERTOQpfcM4KUKLiERduaO0By2Ls6SIQfxAU8KGpAxd
-         odifHaqNwP5gMg67+Xte5ewIXeuzwjpL1t5ICB4l+MrmpYGu4DrKw2MX3EsT/6itaro6
-         5nOA==
+        bh=3HScxk4eBpHQPzOs90Ehfo4I0XVUQ6OClHqZVBAZwOo=;
+        b=m0kfqJ80dtk8QVKM3onukw3dWMrfaRr/H9T5wnIF7JIorm8UJjK3ijweznNiKr0UXF
+         bZG8UCKqcKkZ3R5Y2LN/T8jmc1AYu41JfL1tJEEJtzRShcN7w/UVZX/tZ04qInal/CpD
+         nSKofhg6lJ5t48T8w4w5hn5avDrCHZ3Z6z/gvTfSTl0QrClUY5povLglHHq8rFGVBnwV
+         E8uoQd0jT5+Wrj7bpQjmsFWY/gGjMcpptzW2zqm8gKzgbu6g+WgbV/N7kCvTYhn+WN+Y
+         cQZF3jP/tLmPQ4ZWm4IJdY3CDTo5xxFhi1bbmKq70LWNOQAeBlEDZ0FT+kMWYFJ3lwr8
+         5hdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749892521; x=1750497321;
+        d=1e100.net; s=20230601; t=1749892522; x=1750497322;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RXZGIEfZDDccmiTeVzsKZm7Nu0ZNmUD8yr1NHt0MQH4=;
-        b=q47C1VfOr9+zRXOC3Hxr3+8y9MzGmOZ2V3W03b6G59hAJblD2qnMcxJyNKemevh97G
-         2ZyPZrJW9md9FVPWzw4AjAjIj2qTEZ3ykjaT2j4EtN1nvhRM14fUPDw2WrQNBupVuCr3
-         7cuP+h+7GvgKtVWPLDmtzSDB5bpV8dv2T1WUdO5+2MGRFNcbcMwuPTUeXfGR7dqv9h12
-         THz7Xaj12QowUpRZqfDcHNta5e7DTHlA8Lkx7koQlzKl+UBk3cbNF7NMzg11vMT1vBXF
-         4NE6wqF6rCd1PYZoYgX93wqEDSJkr8KIVCzPvNoaBehlvVRWS5t+5ro2J/4TdWzXNc9a
-         VkvA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSEqtFhmHT1soSB/Y90bObOJHY88t7GUF7/M5nCOkoFfoQ2KkIEnyQetqHdUYvtmTr9tQklKWyggA+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd8FbNm2UPnUvJlBGLld6LGgwads0tOZUKkO+Jgs2tPCR92WbW
-	xFA68tMkjU9tDg7X8UWo0Ep+kphZ+zAL/MQw+UC2i9Ndea8oUuxtFIlWIucdGuakWTc=
-X-Gm-Gg: ASbGncttqFHrNzGtgSiTxERC+MFm0chjH9127iOnXv3TAAplG6B7RJ9PLPAkI6E8Qyb
-	73Gc6HtKh+iQuVQO1BwKeFIN7e0PSij8Gqau91KmKdFggBsr+6ViE8k8Q13meUiL7fFvrh6n6Ev
-	3sIqwde2e0p3IkRLUxxmIpue7CzqEVJBMNP4luHGDKzwWelcvXwkNUh5ccSY2zIjcs8jiaeF95R
-	4lolQMrbAQe5ZL9w+g7EAgMZ57grWe2+o7IJomik0iMUKDdD5wd9Zy2HAOVj7vkZU8Dwm1PoWye
-	Y1KiIB0EQsZChQhINLEv0tuHUJEtb+hh2FssvP38exMmmHGH7sz9kMuziBibW5IbuSF9THU2tqC
-	WHFBB+bQYdyRLjtEIxB6EfRay
-X-Google-Smtp-Source: AGHT+IFQviDBIfPu42RTiVXXTb+Ho8Tlb2wzrPdUami1CUBjU0n+pKda8Y6gdCAu9tv+g7jIA/1dSA==
-X-Received: by 2002:a05:6a00:4b0f:b0:748:1bac:ad5f with SMTP id d2e1a72fcca58-7489cfbb64dmr3449698b3a.12.1749892520692;
-        Sat, 14 Jun 2025 02:15:20 -0700 (PDT)
+        bh=3HScxk4eBpHQPzOs90Ehfo4I0XVUQ6OClHqZVBAZwOo=;
+        b=TrgxNKvH5JYYncAcNC2V2ShlKafbJGTtGWm/dppk8GAW4PPaVbiVJpBlVW461Fk0Qe
+         N1TCMZ8X2LjQq5NGSY/LPVYTk02xsPOz3jeeJ9TtPy0znL57Vf7KlDr+4LLUKCiH74jr
+         UXM8/F12FXwQBSla5GGjviipVaeFMGZb4e/uYidczm/4sO4uF5FCXIgIyZwPpEIjOLp5
+         5bgA5Vm5Ile6JHzotCNbEYny4BcqdVrH2lue76AeG2DTq8Lh1tPDTkToWMi00wufsM2X
+         wJxMRL2/v4XMQoe+cGr+H2coeR4aM3Pn0NG1jEtOphb8CfAM8XQgnMsPRZC1+PZu9GAf
+         +HPw==
+X-Forwarded-Encrypted: i=1; AJvYcCWLNjvXnF5Jt00gxTdO9tVLgjLQ6vFon+KtGDY9zNIxmLeCfHK4rGl0GqtqEkCW3HZAv8oXzssxcdFu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvhrNGGxa7BvPGCmGqNvInwepXgCO3EnJl/mHB6frjSJcwIv5x
+	TcW3P4A3+k685KRWoEDiGnuhwjKyzaFixhl0NbKyTyTzds4VTeA5aYXRsYbqno6BIKw=
+X-Gm-Gg: ASbGncuDn+t2z7HIPxLfhS26z38Xwp/XMQ9S3zudgR6jcLhdAu6NwZ2Q0cvLK+f+Mk+
+	1XjUSRZPXVXU9CUgaHInnA9TIK34XXP9Qk9AdQsPs+EEYs4dRGPBsVmd7fJtzVePy6Aubtm50oJ
+	UnSGtNyfWty89+wSan7aC492N579UseoV89xjkc/wQb+iDnPioV4bmgVQqPPJYmYLZA/KZrTNVg
+	xLLc1AjlI/gpt39HDKIqk96w7Gk42U9P8UsICat4qLEDi9b8Pm4JePmKLsxZ/4tNZPBlParFBJ2
+	t8vOhW8Rmz0tw3p+kQcoQaFocHFpSbi9hqcWyqWG+VEs14nFjFHZt8Gu4VuA2zF5G5YeA01Gp2z
+	0rJ3N9qZS/XqQBWYv4JnVqabD
+X-Google-Smtp-Source: AGHT+IEm6lgpZHziSIdJ4n5wNGcJaqJw7y5etk9WL4ieNyaXhP0N/zAXYxeAOOLogkH7017UfuUs7A==
+X-Received: by 2002:a05:6a00:2186:b0:748:33f3:8da8 with SMTP id d2e1a72fcca58-7489cfc2976mr2558157b3a.5.1749892522235;
+        Sat, 14 Jun 2025 02:15:22 -0700 (PDT)
 Received: from dev-linux.. (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7488ffeca93sm2969630b3a.20.2025.06.14.02.15.19
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7488ffeca93sm2969630b3a.20.2025.06.14.02.15.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Jun 2025 02:15:20 -0700 (PDT)
+        Sat, 14 Jun 2025 02:15:21 -0700 (PDT)
 From: Sukrut Bellary <sbellary@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	David Lechner <dlechner@baylibre.com>,
@@ -88,9 +88,9 @@ Cc: Sukrut Bellary <sbellary@baylibre.com>,
 	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/5] iio: adc: ti-adc128s052: cleanup changes
-Date: Sat, 14 Jun 2025 02:15:02 -0700
-Message-Id: <20250614091504.575685-4-sbellary@baylibre.com>
+Subject: [PATCH v4 4/5] iio: adc: ti-adc128s052: Add lower resolution devices support
+Date: Sat, 14 Jun 2025 02:15:03 -0700
+Message-Id: <20250614091504.575685-5-sbellary@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250614091504.575685-1-sbellary@baylibre.com>
 References: <20250614091504.575685-1-sbellary@baylibre.com>
@@ -102,90 +102,124 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Arrange device IDs in alphabetical and numerical order. new device ID addition
-can follow the same convention. Also, arrange the structures in order.
-This is a cosmetic change only, and the functionality remains unchanged.
+The adcxx communicates with a host processor via an SPI/Microwire Bus
+interface. The device family responds with 12-bit data, of which the LSB bits
+are transmitted by the lower resolution devices as 0.
+The unavailable bits are 0 in LSB.
+Shift is calculated per resolution and used in scaling and raw data read.
+
+Lets reuse the driver to support the family of devices with name
+ADC<bb><c>S<sss>, where
+* bb is the resolution in number of bits (8, 10, 12)
+* c is the number of channels (1, 2, 4, 8)
+* sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS
+and 101 for 1 MSPS)
+
+Complete datasheets are available at TI's website here:
+https://www.ti.com/lit/ds/symlink/adc<bb><c>s<sss>.pdf
+
+Tested only with ti-adc102s051 on BegalePlay SBC.
+https://www.beagleboard.org/boards/beagleplay
 
 Co-developed-by: Nishanth Menon <nm@ti.com>
 Signed-off-by: Nishanth Menon <nm@ti.com>
 Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
 ---
- drivers/iio/adc/ti-adc128s052.c | 26 +++++++++++++-------------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+ drivers/iio/adc/ti-adc128s052.c | 51 +++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
 diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
-index 2b206745e53d..fbf15c83c127 100644
+index fbf15c83c127..b515ed0bb1d5 100644
 --- a/drivers/iio/adc/ti-adc128s052.c
 +++ b/drivers/iio/adc/ti-adc128s052.c
-@@ -112,27 +112,27 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
+@@ -7,6 +7,21 @@
+  * https://www.ti.com/lit/ds/symlink/adc128s052.pdf
+  * https://www.ti.com/lit/ds/symlink/adc122s021.pdf
+  * https://www.ti.com/lit/ds/symlink/adc124s021.pdf
++ *
++ * The adcxx4s communicates with a host processor via an SPI/Microwire Bus
++ * interface. This driver supports the whole family of devices with a name
++ * ADC<bb><c>S<sss>, where
++ * bb is the resolution in number of bits (8, 10, 12)
++ * c is the number of channels (1, 2, 4, 8)
++ * sss is the maximum conversion speed (021 for 200 kSPS, 051 for 500 kSPS and
++ * 101 for 1 MSPS)
++ *
++ * Complete datasheets are available at TI's website here:
++ * https://www.ti.com/lit/ds/symlink/adc<bb><c>s<sss>.pdf
++ *
++ * 8, 10, and 12 bits converters send 12-bit data with unavailable bits set to
++ * 0 in LSB.
++ * Shift is calculated per resolution and used in scaling and raw data read.
+  */
  
+ #include <linux/cleanup.h>
+@@ -110,8 +125,20 @@ static int adc128_read_raw(struct iio_dev *indio_dev,
+ 		},							\
+ 	}
+ 
++#define ADC082_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 8)
++#define ADC102_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 10)
  #define ADC128_VOLTAGE_CHANNEL(num) _ADC128_VOLTAGE_CHANNEL(num, 12)
  
--static const struct iio_chan_spec adc128s052_channels[] = {
-+static const struct iio_chan_spec adc122s021_channels[] = {
++static const struct iio_chan_spec adc082s021_channels[] = {
++	ADC082_VOLTAGE_CHANNEL(0),
++	ADC082_VOLTAGE_CHANNEL(1),
++};
++
++static const struct iio_chan_spec adc102s021_channels[] = {
++	ADC102_VOLTAGE_CHANNEL(0),
++	ADC102_VOLTAGE_CHANNEL(1),
++};
++
+ static const struct iio_chan_spec adc122s021_channels[] = {
  	ADC128_VOLTAGE_CHANNEL(0),
  	ADC128_VOLTAGE_CHANNEL(1),
--	ADC128_VOLTAGE_CHANNEL(2),
--	ADC128_VOLTAGE_CHANNEL(3),
--	ADC128_VOLTAGE_CHANNEL(4),
--	ADC128_VOLTAGE_CHANNEL(5),
--	ADC128_VOLTAGE_CHANNEL(6),
--	ADC128_VOLTAGE_CHANNEL(7),
- };
- 
--static const struct iio_chan_spec adc122s021_channels[] = {
-+static const struct iio_chan_spec adc124s021_channels[] = {
- 	ADC128_VOLTAGE_CHANNEL(0),
- 	ADC128_VOLTAGE_CHANNEL(1),
-+	ADC128_VOLTAGE_CHANNEL(2),
-+	ADC128_VOLTAGE_CHANNEL(3),
- };
- 
--static const struct iio_chan_spec adc124s021_channels[] = {
-+static const struct iio_chan_spec adc128s052_channels[] = {
- 	ADC128_VOLTAGE_CHANNEL(0),
- 	ADC128_VOLTAGE_CHANNEL(1),
- 	ADC128_VOLTAGE_CHANNEL(2),
- 	ADC128_VOLTAGE_CHANNEL(3),
-+	ADC128_VOLTAGE_CHANNEL(4),
-+	ADC128_VOLTAGE_CHANNEL(5),
-+	ADC128_VOLTAGE_CHANNEL(6),
-+	ADC128_VOLTAGE_CHANNEL(7),
- };
+@@ -137,6 +164,18 @@ static const struct iio_chan_spec adc128s052_channels[] = {
  
  static const char * const bd79104_regulators[] = { "iovdd" };
-@@ -216,27 +216,27 @@ static int adc128_probe(struct spi_device *spi)
- }
+ 
++static const struct adc128_configuration adc082s021_config = {
++	.channels = adc082s021_channels,
++	.num_channels = ARRAY_SIZE(adc082s021_channels),
++	.refname = "vref",
++};
++
++static const struct adc128_configuration adc102s021_config = {
++	.channels = adc102s021_channels,
++	.num_channels = ARRAY_SIZE(adc102s021_channels),
++	.refname = "vref",
++};
++
+ static const struct adc128_configuration adc122s021_config = {
+ 	.channels = adc122s021_channels,
+ 	.num_channels = ARRAY_SIZE(adc122s021_channels),
+@@ -217,6 +256,12 @@ static int adc128_probe(struct spi_device *spi)
  
  static const struct of_device_id adc128_of_match[] = {
--	{ .compatible = "ti,adc128s052", .data = &adc128s052_config },
-+	{ .compatible = "rohm,bd79104",  .data = &bd79104_config    },
+ 	{ .compatible = "rohm,bd79104",  .data = &bd79104_config    },
++	{ .compatible = "ti,adc082s021", .data = &adc082s021_config },
++	{ .compatible = "ti,adc082s051", .data = &adc082s021_config },
++	{ .compatible = "ti,adc082s101", .data = &adc082s021_config },
++	{ .compatible = "ti,adc102s021", .data = &adc102s021_config },
++	{ .compatible = "ti,adc102s051", .data = &adc102s021_config },
++	{ .compatible = "ti,adc102s101", .data = &adc102s021_config },
  	{ .compatible = "ti,adc122s021", .data = &adc122s021_config },
  	{ .compatible = "ti,adc122s051", .data = &adc122s021_config },
  	{ .compatible = "ti,adc122s101", .data = &adc122s021_config },
- 	{ .compatible = "ti,adc124s021", .data = &adc124s021_config },
- 	{ .compatible = "ti,adc124s051", .data = &adc124s021_config },
- 	{ .compatible = "ti,adc124s101", .data = &adc124s021_config },
--	{ .compatible = "rohm,bd79104",  .data = &bd79104_config },
-+	{ .compatible = "ti,adc128s052", .data = &adc128s052_config },
- 	{ }
- };
+@@ -229,6 +274,12 @@ static const struct of_device_id adc128_of_match[] = {
  MODULE_DEVICE_TABLE(of, adc128_of_match);
  
  static const struct spi_device_id adc128_id[] = {
--	{ "adc128s052", (kernel_ulong_t)&adc128s052_config },
++	{ "adc082s021", (kernel_ulong_t)&adc082s021_config },
++	{ "adc082s051", (kernel_ulong_t)&adc082s021_config },
++	{ "adc082s101", (kernel_ulong_t)&adc082s021_config },
++	{ "adc102s021", (kernel_ulong_t)&adc102s021_config },
++	{ "adc102s051", (kernel_ulong_t)&adc102s021_config },
++	{ "adc102s101", (kernel_ulong_t)&adc102s021_config },
  	{ "adc122s021",	(kernel_ulong_t)&adc122s021_config },
  	{ "adc122s051",	(kernel_ulong_t)&adc122s021_config },
  	{ "adc122s101",	(kernel_ulong_t)&adc122s021_config },
- 	{ "adc124s021", (kernel_ulong_t)&adc124s021_config },
- 	{ "adc124s051", (kernel_ulong_t)&adc124s021_config },
- 	{ "adc124s101", (kernel_ulong_t)&adc124s021_config },
--	{ "bd79104",	(kernel_ulong_t)&bd79104_config },
-+	{ "adc128s052", (kernel_ulong_t)&adc128s052_config },
-+	{ "bd79104",	(kernel_ulong_t)&bd79104_config	   },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, adc128_id);
 -- 
 2.34.1
 
