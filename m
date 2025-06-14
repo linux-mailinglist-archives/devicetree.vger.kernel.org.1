@@ -1,251 +1,233 @@
-Return-Path: <devicetree+bounces-185868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E9BAD9993
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 04:09:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4034BAD99D6
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 04:54:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50E9F171B2A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 02:09:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C3C8189F5FD
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 02:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AE772607;
-	Sat, 14 Jun 2025 02:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5A1146D6A;
+	Sat, 14 Jun 2025 02:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P5DVYZcv"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UV8JJNum"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309FA43AB7;
-	Sat, 14 Jun 2025 02:09:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D0254670
+	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 02:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749866945; cv=none; b=Ql76lo/HxuPWRKcxPkTFC8EBKc33Q9LfErkHJ7xFhvODYCdCjMeM9ktprq0MRh1hC4uoHCe1pREUsSn/rpUXi5B3CzNhuJufWJ5dzOR53csQCp6FRC0oi5O1fKF0HpH4R6+wmcg3DzViobZ7zt3QnsEhM9qh1VUjuSfZIGl2PoU=
+	t=1749869644; cv=none; b=iLSi1gODAmVIMf7SGaptjuzdpyWXbDdJS7OeZmSrFdP54ZSzkeNmSVVb6DpcAEW03TXKgy0kn/vLJBmt43DwoAqAR1aJo/An7y9N4dtB9ynGlLxBqjGMs1y/Rl0I+/KWOzUL5HmudPUWmCKi4vzPbOnGx2df28ajUL//GuVRbJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749866945; c=relaxed/simple;
-	bh=T7F5BTPkmIJqijZcvCaJDzeehyOgLhWobs1d8ZTzUB8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=swObgkl92d3F4gMRGB9mFaX3TY5lj+WIiRDNNyS3BrsIWleXfViVnwyzkYG2Vr4OfoFEevxmJm3/QGg4Iigee/qZ8YIhchwHd6UMEPt3x0rBQrg2+0hqTnRy+YizX3hIpGSBniI7UgiNEjOJ5iY83pTuh/nS2ofSvvjsPWTTHgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=P5DVYZcv; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749866943; x=1781402943;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=T7F5BTPkmIJqijZcvCaJDzeehyOgLhWobs1d8ZTzUB8=;
-  b=P5DVYZcv7WqOIzebe93guUWFeRU0LO/Rym1G8Bk62tW1Cb4DltyEKZgt
-   ahSiN/LoaSqf2dknKfbcAK+LxKpPDg9mEUtL7E5RzmhVPhxnSiZr41wjs
-   S41JntK4tKECagL06WLe+f9J6zC0iFElzH+q59Quay0ND22NvyS3uoPee
-   9/ZWZlDUHEht8r8KL1t1ujjiUa2ILkouaOhrQmb5M7O1q28QQinc5Z49l
-   fhKcK/5y66LKHFzYMdDUitf7OMyjn+842HgrSq2K8WZE2NSyKIb8gnTgv
-   rrouZ+RphuV8wwCzMZYp7F9aLnyE75zRxk1pHZ0qsBhP+hQabalJVv4Jd
-   A==;
-X-CSE-ConnectionGUID: oe7szM/dSBGJp5B99AHL8Q==
-X-CSE-MsgGUID: QO+3P+K0QfWcPCdvTypHrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="69668257"
-X-IronPort-AV: E=Sophos;i="6.16,235,1744095600"; 
-   d="scan'208";a="69668257"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2025 19:09:02 -0700
-X-CSE-ConnectionGUID: dYhVJh5yTR6s0T8b+3tZig==
-X-CSE-MsgGUID: NmfKjhUOQ6mo1Nvl5ddlFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,235,1744095600"; 
-   d="scan'208";a="148347803"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 13 Jun 2025 19:08:53 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uQGJz-000DAM-2X;
-	Sat, 14 Jun 2025 02:08:39 +0000
-Date: Sat, 14 Jun 2025 10:07:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, vkoul@kernel.org,
-	kishon@kernel.org, linus.walleij@linaro.org, p.zabel@pengutronix.de,
-	linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	elbadrym@google.com, romlem@google.com, anhphan@google.com,
-	wak@google.com, yuxiaozhang@google.com, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 7/7] pci: aspeed: Add ASPEED PCIe host controller driver
-Message-ID: <202506140931.MWdyPxX1-lkp@intel.com>
-References: <20250613033001.3153637-8-jacky_chou@aspeedtech.com>
+	s=arc-20240116; t=1749869644; c=relaxed/simple;
+	bh=w4scoFNKuQowY9iouTExwAiGSnUFMmeHza5XmTbM8DE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cZqW/oWgLqzChCLbirTKBkhxdGSnph75wuVZ0pIGsCe/IGrTut1zFe6k+hLtMZnViFaYD+39y1UAbdJBI6RCcAThVNZSLJK2fc3e1ONnd5bkzgV2ZgIXrgHeAXGmBrtBttWCQw9ccKsQGaWQUksdajXAfEqxWa3yEqTo9qifeR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UV8JJNum; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-70e77831d68so26628297b3.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 19:54:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749869641; x=1750474441; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=31krmauOoYJOnjYbVjbtfjUBqSgAaFlcEYULl0apEAg=;
+        b=UV8JJNumZRYANlCrL2X0QCxDQh0HefgsP1kGT/SZOcWBhzUA1A9j0MwB1/0DNMh6J2
+         OJNCGOxXnRmFzE4j79SR565KSTS0O3mQvd9APcFjahVJxNxQ0KdhcVr88YRBsHs88J3F
+         fbMRTNrEVfTLBmYGT59DKt7wSyGtDEk6j5IO7ZugzpQI+QAMR2NfKweUaL/QRH9Bwcoa
+         KEoVl1KpV2JjDLAQTDjpwq5UswTQmcuiaq43K2GkdNU8BkWkggddh5KFOfSiKn3nUC8q
+         WR2jRLL0Z/brnJHqlMegiRnD3ZfYE79t9TJDnmJE9YV6BHFYaM8t4Q7ks+7lubdyAxn6
+         0GIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749869641; x=1750474441;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=31krmauOoYJOnjYbVjbtfjUBqSgAaFlcEYULl0apEAg=;
+        b=bC22TMgCnOWzPc09A9qcPLw1p1pQUPnhbR7kl8Q+X1MVBimKpmJAi4jO2AkTl6Qm2R
+         yCLCNbQU3lLqNtbhH35Ris16E6U90uE3JEabCHuHrfypzxZSkaW/VdE75ldm1n1elB7G
+         W+ZCAXgWSH5SyqYZ1F2SEnDu9avj5lBAzQ1hjBUm3tYOPDhe0LiqirbE/MAFvuFQWB3j
+         A/1efscGalx+5v22motua1l0c5JdBsZiR7P56f911O14H2GtiAIJ60+M2/nGdqKpm9mn
+         RvFSP6VdK4ZHDLzeJ5S77vQh8XtoqhaTVZ9Z95C3+qRfau0GdAI10+/PV4fYqFBukqIb
+         BT1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXwirMnK+cVCKnF/B+FzDUvFTmsxUl4XFZ37zv3Jm4i1lURfF+O2neXU9+l2RLvOQ5hbh+hGk3gptTN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyUBEV+/UPol3FvNE+UXunisP82YI7x0t0ITHAno+zkY+Kwn86
+	3x6Bdnx8X/2hYW+6i75O1cJv7fgRLZPPioAno37SFanyIBRufThzP5Q6vDGWV76v978MJaAaLsm
+	rwWAlQ2aU6bixaWit0kgpvNgx0rELd3tfWzZYmY65Kg==
+X-Gm-Gg: ASbGncuRzoolxWAlbZYILD1uT9K3UNANC2IY2pKzExnG2ENBQ6cnx5WHtESRdhhEL8L
+	PveOHdK0Wr/iAch1BMR3y7BUTP2sLgUzrH0HTVxp4ks+HkdWdTVD/cAqTSJO9PREtKamjpzFBZj
+	/641244EBB34PZ5/dDnsx1b2XqKPgya7VIpgGT6r7OtE+3
+X-Google-Smtp-Source: AGHT+IHcwod9d585wIy9espWy9CTasZig0QiZOdlUQMf/BDe2eeDnXq8w+5El8L8W1GrR0B+DqxTxKI2/p3Xm8YnRRM=
+X-Received: by 2002:a05:690c:7448:b0:70d:ff2a:d686 with SMTP id
+ 00721157ae682-71175440983mr25217457b3.28.1749869640812; Fri, 13 Jun 2025
+ 19:54:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250613033001.3153637-8-jacky_chou@aspeedtech.com>
+References: <20250611125723.181711-1-guodong@riscstar.com> <20250611125723.181711-6-guodong@riscstar.com>
+ <2b17769e-2620-4f22-9ea5-f15d4adcb27b@dram.page>
+In-Reply-To: <2b17769e-2620-4f22-9ea5-f15d4adcb27b@dram.page>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Sat, 14 Jun 2025 10:53:48 +0800
+X-Gm-Features: AX0GCFt1J7cK2ONSBYRJxYGgLZ03DM7CsbEBM2NtLfq6P5d7b2_ITgbQ_ARUd5g
+Message-ID: <CAH1PCMaC+imcMZCFYtRdmH6ge=dPgnANn_GqVfsGRS=+YhyJCw@mail.gmail.com>
+Subject: Re: [PATCH 5/8] riscv: dts: spacemit: Add dma bus and PDMA node for
+ K1 SoC
+To: Vivian Wang <uwu@dram.page>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com, 
+	emil.renner.berthing@canonical.com, inochiama@gmail.com, 
+	geert+renesas@glider.be, tglx@linutronix.de, hal.feng@starfivetech.com, 
+	joel@jms.id.au, duje.mihanovic@skole.hr, Ze Huang <huangze@whut.edu.cn>, 
+	elder@riscstar.com, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jacky,
+On Fri, Jun 13, 2025 at 11:07=E2=80=AFAM Vivian Wang <uwu@dram.page> wrote:
+>
+> Hi Guodong,
+>
+> On 6/11/25 20:57, Guodong Xu wrote:
+> > <snip>
+> >
+> > -                     status =3D "disabled";
+> > +             dma_bus: bus@4 {
+> > +                     compatible =3D "simple-bus";
+> > +                     #address-cells =3D <2>;
+> > +                     #size-cells =3D <2>;
+> > +                     dma-ranges =3D <0x0 0x00000000 0x0 0x00000000 0x0=
+ 0x80000000>,
+> > +                                  <0x1 0x00000000 0x1 0x80000000 0x3 0=
+x00000000>;
+> > +                     ranges;
+> >               };
+>
+> Can the addition of dma_bus and movement of nodes under it be extracted
+> into a separate patch, and ideally, taken up by Yixun Lan without going
+> through dmaengine? Not specifically "dram_range4", but all of these
+> translations affects many devices on the SoC, including ethernet and
 
-kernel test robot noticed the following build warnings:
+It was not my intention to add all the separate memory mapping buses into
+one patch. I'd prefer to add them when there is at least one user.
+The k1.dtsi at this moment, as I checked, has no real user beside the
+so-called "dram_range4" in downstream vendor kernel (ie. dma_bus in this
+patch). And that is what I did: grouping devices which share the same
+dma address mapping as pdma0 into one single separated bus.
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus robh/for-next linusw-pinctrl/devel linusw-pinctrl/for-next linus/master v6.16-rc1 next-20250613]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The other buses, even if I add them, would be empty.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Chou/dt-bindings-phy-Add-document-for-ASPEED-PCIe-PHY/20250613-113331
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20250613033001.3153637-8-jacky_chou%40aspeedtech.com
-patch subject: [PATCH 7/7] pci: aspeed: Add ASPEED PCIe host controller driver
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250614/202506140931.MWdyPxX1-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250614/202506140931.MWdyPxX1-lkp@intel.com/reproduce)
+What the SpacemiT team agreed upon so far, is the naming of these separated
+buses. I listed them here for future reference purposes.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506140931.MWdyPxX1-lkp@intel.com/
+If needed, I can send that in a RFC patchset, of course; or as a normal
+PATCH, if Yixun is ok with that. However, please note, that would mean more
+merging dependencies: PDMA dts, ethernet dts, usb dts, will have to depend
+on this base 'buses' PATCH.
 
-All warnings (new ones prefixed by >>):
+Again, I prefer we add our own 'bus' when there is a need.
 
->> drivers/pci/controller/pcie-aspeed.c:481:6: warning: variable 'status' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-     481 |         if (bus->number == 0) {
-         |             ^~~~~~~~~~~~~~~~
-   drivers/pci/controller/pcie-aspeed.c:541:9: note: uninitialized use occurs here
-     541 |         writel(status, pcie->reg + H2X_CFGE_INT_STS);
-         |                ^~~~~~
-   drivers/pci/controller/pcie-aspeed.c:481:2: note: remove the 'if' if its condition is always false
-     481 |         if (bus->number == 0) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~~
-     482 |                 /* Internal access to bridge */
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     483 |                 writel(TLP_BYTE_EN(0xf) << 16 | (where & ~3), pcie->reg + H2X_CFGI_TLP);
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     484 |                 writel(CFGI_TLP_FIRE, pcie->reg + H2X_CFGI_CTRL);
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     485 |                 *val = readl(pcie->reg + H2X_CFGI_RET_DATA);
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     486 |         } else {
-         |         ~~~~~~
-   drivers/pci/controller/pcie-aspeed.c:474:24: note: initialize the variable 'status' to silence this warning
-     474 |         u32 bdf_offset, status;
-         |                               ^
-         |                                = 0
-   drivers/pci/controller/pcie-aspeed.c:573:6: warning: variable 'status' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-     573 |         if (bus->number == 0) {
-         |             ^~~~~~~~~~~~~~~~
-   drivers/pci/controller/pcie-aspeed.c:622:9: note: uninitialized use occurs here
-     622 |         writel(status, pcie->reg + H2X_CFGE_INT_STS);
-         |                ^~~~~~
-   drivers/pci/controller/pcie-aspeed.c:573:2: note: remove the 'if' if its condition is always false
-     573 |         if (bus->number == 0) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~~
-     574 |                 /* Internal access to bridge */
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     575 |                 writel(CFGI_WRITE | TLP_BYTE_EN(byte_en) << 16 | (where & ~3),
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     576 |                        pcie->reg + H2X_CFGI_TLP);
-         |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
-     577 |                 writel(val, pcie->reg + H2X_CFGI_WR_DATA);
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     578 |                 writel(CFGI_TLP_FIRE, pcie->reg + H2X_CFGI_CTRL);
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     579 |         } else {
-         |         ~~~~~~
-   drivers/pci/controller/pcie-aspeed.c:552:24: note: initialize the variable 'status' to silence this warning
-     552 |         u32 bdf_offset, status, type;
-         |                               ^
-         |                                = 0
-   2 warnings generated.
++       soc {
++               storage_bus: bus@0 {
++                       /* USB, SDH storage controllers */
++                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
+0x0 0x80000000>;
++               };
++
++               multimedia_bus: bus@1 {
++                       /* VPU, GPU, DPU */
++                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
+0x0 0x80000000>,
++                                    <0x0 0x80000000 0x1 0x00000000
+0x3 0x80000000>;
++               };
++
++               pcie_bus: bus@2 {
++                       /* PCIe controllers */
++                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
+0x0 0x80000000>,
++                                    <0x0 0xb8000000 0x1 0x38000000
+0x3 0x48000000>;
++               };
++
++               camera_bus: bus@3 {
++                       /* ISP, CSI, imaging devices */
++                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
+0x0 0x80000000>,
++                                    <0x0 0x80000000 0x1 0x00000000
+0x1 0x80000000>;
++               };
++
++               dma_bus: bus@4 {
++                       /* DMA controller, and users */
++                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
+0x0 0x80000000>,
++                                    <0x1 0x00000000 0x1 0x80000000
+0x3 0x00000000>;
++               };
++
++               network_bus: bus@5 {
++                       /* Ethernet, Crypto, JPU */
++                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
+0x0 0x80000000>,
++                                    <0x0 0x80000000 0x1 0x00000000
+0x0 0x80000000>;
++               };
++
++       }; /* soc */
 
+> USB3. See:
+>
+> https://lore.kernel.org/all/20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@whut=
+.edu.cn/
+> https://lore.kernel.org/all/20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.=
+ac.cn/
+>
+> (I haven't put eth{0,1} under dma_bus5 because in 6.16-rc1 there is
+> none, but ideally we should fix this.)
 
-vim +481 drivers/pci/controller/pcie-aspeed.c
+So, as you are submitting the first node(s) under network_bus: bus@5, you
+should have this added into your patchset, instead of sending out with none=
+.
 
-   469	
-   470	static int aspeed_ast2700_rd_conf(struct pci_bus *bus, unsigned int devfn,
-   471					  int where, int size, u32 *val)
-   472	{
-   473		struct aspeed_pcie *pcie = bus->sysdata;
-   474		u32 bdf_offset, status;
-   475		u8 type;
-   476		int ret;
-   477	
-   478		if ((bus->number == 0 && devfn != 0))
-   479			return PCIBIOS_DEVICE_NOT_FOUND;
-   480	
- > 481		if (bus->number == 0) {
-   482			/* Internal access to bridge */
-   483			writel(TLP_BYTE_EN(0xf) << 16 | (where & ~3), pcie->reg + H2X_CFGI_TLP);
-   484			writel(CFGI_TLP_FIRE, pcie->reg + H2X_CFGI_CTRL);
-   485			*val = readl(pcie->reg + H2X_CFGI_RET_DATA);
-   486		} else {
-   487			if (!aspeed_ast2700_get_link(pcie))
-   488				return PCIBIOS_DEVICE_NOT_FOUND;
-   489	
-   490			bdf_offset = aspeed_pcie_get_bdf_offset(bus, devfn, where);
-   491	
-   492			type = (bus->number == 1) ? PCI_HEADER_TYPE_NORMAL : PCI_HEADER_TYPE_BRIDGE;
-   493	
-   494			writel(CRG_READ_FMTTYPE(type) | CRG_PAYLOAD_SIZE, pcie->reg + H2X_CFGE_TLP_1ST);
-   495			writel(AST2700_TX_DESC1_VALUE | (pcie->tx_tag << 8) | TLP_BYTE_EN(0xf),
-   496			       pcie->reg + H2X_CFGE_TLP_NEXT);
-   497			writel(bdf_offset, pcie->reg + H2X_CFGE_TLP_NEXT);
-   498			writel(CFGE_TX_IDLE | CFGE_RX_BUSY, pcie->reg + H2X_CFGE_INT_STS);
-   499			writel(CFGE_TLP_FIRE, pcie->reg + H2X_CFGE_CTRL);
-   500	
-   501			ret = readl_poll_timeout(pcie->reg + H2X_CFGE_INT_STS, status,
-   502						 (status & CFGE_TX_IDLE), 0, 50);
-   503			if (ret) {
-   504				dev_err(pcie->dev,
-   505					"[%X:%02X:%02X.%02X]CR tx timeout sts: 0x%08x\n",
-   506					pcie->domain, bus->number, PCI_SLOT(devfn),
-   507					PCI_FUNC(devfn), status);
-   508				ret = PCIBIOS_SET_FAILED;
-   509				*val = ~0;
-   510				goto out;
-   511			}
-   512	
-   513			ret = readl_poll_timeout(pcie->reg + H2X_CFGE_INT_STS, status,
-   514						 (status & CFGE_RX_BUSY), 0, 50000);
-   515			if (ret) {
-   516				dev_err(pcie->dev,
-   517					"[%X:%02X:%02X.%02X]CR rx timeoutsts: 0x%08x\n",
-   518					pcie->domain, bus->number, PCI_SLOT(devfn),
-   519					PCI_FUNC(devfn), status);
-   520				ret = PCIBIOS_SET_FAILED;
-   521				*val = ~0;
-   522				goto out;
-   523			}
-   524			*val = readl(pcie->reg + H2X_CFGE_RET_DATA);
-   525		}
-   526	
-   527		switch (size) {
-   528		case 1:
-   529			*val = (*val >> ((where & 3) * 8)) & 0xff;
-   530			break;
-   531		case 2:
-   532			*val = (*val >> ((where & 2) * 8)) & 0xffff;
-   533			break;
-   534		case 4:
-   535		default:
-   536			break;
-   537		}
-   538	
-   539		ret = PCIBIOS_SUCCESSFUL;
-   540	out:
-   541		writel(status, pcie->reg + H2X_CFGE_INT_STS);
-   542		pcie->tx_tag = (pcie->tx_tag + 1) % 0xF;
-   543		return ret;
-   544	}
-   545	
+The same logic goes to USB too, Ze Huang was in the same offline call, and
+I would prefer that we move in a coordinated way.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> DMA address translation does not depend on PDMA. It would be best if we
+> get all the possible dma-ranges buses handled in one place, instead of
+> everyone moving nodes around.
+
+No, you should do it in your patchset, when you add the eth0 and eth1 nodes=
+,
+they will be the first in, as I said, "network_bus". I don't expect
+any 'moving nodes around'.
+
+>
+> @Ze Huang: This affects your "MBUS" changes as well. Please take a look,
+> thanks.
+>
+> >
+> >               gpio: gpio@d4019000 {
+> > @@ -792,3 +693,124 @@ pwm19: pwm@d4022c00 {
+> >               };
+> >       };
+> >  };
+> > +
+> > +&dma_bus {
+> >
+> > <snip>
+>
 
