@@ -1,128 +1,98 @@
-Return-Path: <devicetree+bounces-185897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14954AD9C65
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 13:13:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75690AD9C81
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 13:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE5167A3B3C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 11:12:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F3F2189C06C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 11:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421FB25B692;
-	Sat, 14 Jun 2025 11:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75CF2C08CA;
+	Sat, 14 Jun 2025 11:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rs6RiQY6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BGraheyN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A03255F26;
-	Sat, 14 Jun 2025 11:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83CA21F0E58;
+	Sat, 14 Jun 2025 11:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749899571; cv=none; b=XwkjS5zyv1kGAWXpYvuWITDgF5pZ+fvNoRbaEDV77P60K8PqPVw0oOztuho4WD8CQZXvn381wkzxWN9ty6EsQI7RwCPzo9Hs71mW3T2ce1iHXWmd6tJG92VKensufT3dBWsxlvGRXnheGDcZOx6ebPh9ZlXUsM7d1fyRIBL3Ev0=
+	t=1749901100; cv=none; b=nEPbyEGoBiVWarH3TIpbcDSAQy6bX5u7GwjSnMqjsmXe1hv4mmCT8tdV5ZiIzc94CmcCDou1iNo5eKFpcub24vUNmcc97qQtmTj5/DeG6U+Rzi3+dqQSf3G9q0qL98c4G5iO0cCzzgzj6P9M8RjJmW3ELqqUH/lduARZ4Zc99Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749899571; c=relaxed/simple;
-	bh=OdzKUOIlXTtgOB9zGHEAGif31oCm18V+9nmnRbwAMsY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=diDhyYynsR5Bo/tP8Wjs588yyIfsuGMsSv8pvvzDaZT3HFmYu2PoBn3t51N9Rj/PY3viuQ5x3dJVgKrSZ4XKFV+TDBydK2zmTwzODX0vJcuqGwGDBnw1f/WZHEZkLQNB/j71EqsJc7AsN+ZFYBV/lci9CLVrhdk71n7IKTtxGHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rs6RiQY6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0AEEC4CEEF;
-	Sat, 14 Jun 2025 11:12:47 +0000 (UTC)
+	s=arc-20240116; t=1749901100; c=relaxed/simple;
+	bh=fpbBffDgjhog3qXMyHUoM68Q8rOI2jUHMB121Vi9XHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Dto1NfXu2KypZXBo5NT4c62V9Ef64oGwYOI1ncF3rtn09EOdzR8qOqvuTJeSnafKv78V9xaRMfFJJ3J7zdkOmwPVidwbIqwZgs3QsbcByB8nYt44ec1CKn+s0yQ12VfG4Ytuqoh5YWqoaFbVPDL3lIGxr6/sjF/8OuWoGhnEfUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BGraheyN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16486C4CEEB;
+	Sat, 14 Jun 2025 11:38:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749899570;
-	bh=OdzKUOIlXTtgOB9zGHEAGif31oCm18V+9nmnRbwAMsY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Rs6RiQY6mEScN2g9gvNZct944PNYuvJUfb5TcpPPq7M4NQW4WlkVR1HQAzx1vpcWd
-	 AqI+P1159wLvojUyF9ZpKr3YbgpFNGJ6gEhixikqzGqviu4bvAhh2ca9/qym9zj3fB
-	 AZPvCk3cuKMF1oYIypnIG6Q69NsYjqzGmaY1sslAaDNS7tod1LRUrtAcmrKxqIBfOE
-	 WPUDvbCI5DvAns9YZ9zXv0H8/EXtkTERYVjxk939LdkMksuMIu59F4RKuWcie5sx/L
-	 nm+KyCVzbBiDYpdViI3p4zHLR7QAWOrgstLqkXyKfsppdUPWHQJPL0YEKRSY/agBfx
-	 97JRlvT2J3DGQ==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>
-Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jiaxin Yu <jiaxin.yu@mediatek.com>, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250612074901.4023253-1-wenst@chromium.org>
-References: <20250612074901.4023253-1-wenst@chromium.org>
-Subject: Re: [PATCH v3 0/9] ASoC: mediatek: use reserved memory or enable
- buffer pre-allocation
-Message-Id: <174989956764.19870.14409381824476741020.b4-ty@kernel.org>
-Date: Sat, 14 Jun 2025 12:12:47 +0100
+	s=k20201202; t=1749901100;
+	bh=fpbBffDgjhog3qXMyHUoM68Q8rOI2jUHMB121Vi9XHs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BGraheyNjgq7rmP2OW6sETnjy1RJVbvX2IrD5bOtFvQE6EagmFOVc244Lm1+7CWOf
+	 BakLQuTykgIh8aaF3eFpPlVXIuQva6lg601038oVgP2YmqkiLgTKoQWwsCg/6v1NjY
+	 Gz0ei/isYqshh4xPqbH1mZNbE+kLaFeaVfVFx+h90/CRcxzN7vSPEcLXxohUeRoa6q
+	 u7IVUWpHorwViXLKdG+jCm3Euoy5Z62HdrnH1oMXpo2WyDtydi/izEMrz/z2wkswpq
+	 JIeHqWnS3PSmnhoRVaW3IVg+9Yxrrh0omYuRtJ9Eq2gz8VcWcIC/Qp0wsaZzTsYoNp
+	 +ZTTPEem4qAZw==
+Date: Sat, 14 Jun 2025 12:38:07 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com
+Subject: Re: [PATCH v11 00/11] iio: adc: ad7768-1: Add features,
+ improvements, and fixes
+Message-ID: <20250614123807.3ded6764@jic23-huawei>
+In-Reply-To: <aEweNqhLsL_Hg_gl@smile.fi.intel.com>
+References: <cover.1749569957.git.Jonathan.Santos@analog.com>
+	<aEweNqhLsL_Hg_gl@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
 
-On Thu, 12 Jun 2025 15:48:51 +0800, Chen-Yu Tsai wrote:
-> This is v3 of what was just a single patch "ASoC: mediatek: re-enable
-> buffer pre-allocation on some platforms". Links to previous versions:
+On Fri, 13 Jun 2025 15:48:54 +0300
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+
+> On Wed, Jun 11, 2025 at 08:49:34AM -0300, Jonathan Santos wrote:
+> > 
+> > This patch series introduces some new features, improvements,
+> > and fixes for the AD7768-1 ADC driver.
+> > 
+> > The goal is to support all key functionalities listed in the device
+> > datasheet, including filter mode selection, common mode voltage output
+> > configuration and GPIO support. Additionally, this includes fixes
+> > for SPI communication and for IIO interface, and also code improvements
+> > to enhance maintainability and readability.  
 > 
->   - v2: https://lore.kernel.org/all/20250424102509.1083185-1-wenst@chromium.org/
->   - v1: https://lore.kernel.org/all/20250401085659.1222008-1-wenst@chromium.org/
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> (for all except DT patches)
 > 
-> v3 is simply a rebase onto next-20250612 to resolve conflicts against
-> Mark's tree. I believe the main conflict is from my other series
-> "mt8183-afe-pcm: Shorten source code" that Mark had merged earlier.
-> Also, Angelo picked up the DT changes, so they are no longer included.
+> The nit-picks can be addressed either in next version (if needed) or whilst
+> applying. Up to maintainers and you.
 > 
-> [...]
 
-Applied to
+Applied patches 1-10 (with 10 tweaked as suggested).
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/9] ASoC: dt-bindings: Convert MT8173 AFE binding to dt-schema
-      commit: bb90e0c91d375ec5db8a4f8cd2555900aea0725f
-[2/9] ASoC: dt-bindings: mt8173-afe-pcm: Add power domain
-      commit: 2fd902152c15a8cacab91e4a660413d189411561
-[3/9] ASoC: dt-bindings: mt8173-afe-pcm: Allow specifying reserved memory region
-      commit: 473ee884263f2127ea4e46a74ba15d07446ceabb
-[4/9] ASoC: dt-bindings: mt8186-afe-pcm: Allow specifying reserved memory region
-      commit: 81c73294a4eb2df31e974db2fc4397f5e0ecae09
-[5/9] ASoC: dt-bindings: mt8192-afe-pcm: Allow specifying reserved memory region
-      commit: cd12d3a5ed10e3e3b323f2b2c652de1c8e17a750
-[6/9] ASoC: mediatek: use reserved memory or enable buffer pre-allocation
-      commit: ec4a10ca4a68ec97f12f4d17d7abb74db34987db
-[7/9] ASoC: mediatek: mt8183-afe-pcm: Support >32 bit DMA addresses
-      commit: 9e7bc5cb8d089d9799e17a9ac99c5da9b13b02e3
-[8/9] ASoC: mediatek: mt8173-afe-pcm: use local `dev` pointer in driver callbacks
-      commit: b2c090c9f6aa9d19f4c966233d7fcb872255f83b
-[9/9] ASoC: mediatek: mt8183-afe-pcm: use local `dev` pointer in driver callbacks
-      commit: bb8d8ba4715cb8f997d63d90ba935f6073595df5
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+For 11 I'll wait on answers to questions.
 
 Thanks,
-Mark
 
+Jonathan
 
