@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-185874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86BAAD9A45
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 07:47:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFCCAD9A80
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 08:44:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87A14175C8B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 05:47:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F346C7A57EE
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 06:42:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893581BD9C1;
-	Sat, 14 Jun 2025 05:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246C41C84CD;
+	Sat, 14 Jun 2025 06:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="neVctJNt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QeGMx98B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B249D145323
-	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 05:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC4424B26;
+	Sat, 14 Jun 2025 06:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749880058; cv=none; b=f28n8H1ooy1jCskrJp2JIqGrid+qGnvThO4wWv28dt1l0HUbuC/FO0BpAXs9itzT/sgUgOIOeUQp8YjXJ3GHW2s8a5k2dazKzrtHpucXOEKdJkRfYsf/gDPMbmIc/HJfAr0/vA8XSfDBLjoJ/QuTZq7OcR8jB+lf9fWz1NVOVQM=
+	t=1749883448; cv=none; b=az5sXLAynrpOQF0/PrnDFeGU7dyMlJ3NxNA8aw/Pkgi/TgvkwEdS8VT8Z90gzi+N6jHZgfLbfjZ+ZWE2sVXR4TiNyhC0MsQOco4MBKa3A9N3imvnucZu5WK05udbVOlfLFbFeiAaRILfB/7s9moQCgwzpGcwvmUkSgJvVD00rSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749880058; c=relaxed/simple;
-	bh=twjCULnPvQktgkULV3W0goFjMuAZQGsgGQpq9q8v3VI=;
+	s=arc-20240116; t=1749883448; c=relaxed/simple;
+	bh=uFeEf04w0FItbYLGv7+ZkbLcd6rT7x/V327qJ7Ye52I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uF8Pt4R3WOl1jZlG9DM4nXaTe3TEoCcByhy5Djq3UwwucxjaQAK/jRE13UiW9BfR0TFg1wG4QKqWv4KQyFAuI/gLxgxdRAtTC9ApaHZBa5qGpabGgjHSNT8RkTV5R1rALoDht9Ykmc7FoHEJ6OUqGRSluq3/2wzneSgkwGRIPHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=neVctJNt; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e733e25bfc7so2449902276.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 22:47:36 -0700 (PDT)
+	 To:Cc:Content-Type; b=bdiG14WZRST2CDTLeEfs8wEoyvDGOVn5b4klOwUxYhI98ZlYg0dAJOWDvqTgGX1Q71WldEkGkNTNuc1feM3TK+lTkfWYCgjzP7rY0SGOsaxJUucos9DSrKs5Mdm9QzjM2WvzkylJKGyK7zP/ayDFGWEnIO96W2gjz+B2+U+Uubg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QeGMx98B; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-3138b2f0249so2660966a91.2;
+        Fri, 13 Jun 2025 23:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1749880055; x=1750484855; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1749883446; x=1750488246; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5TA4UKVMC4ezArEziyUXtjtORC3a3PiIS1vEVR8IM9k=;
-        b=neVctJNtWovVy717yY57dB9BZQpZLCxEGdyd5gVqTf09FsU3+f8oSWWG4ayaiAjHSr
-         BjUPrc/V5NKnAFfIxL5aZecE+il9LgcbFOM7YvR2xNaVmSI1ayVa42uJWIEdd3xahZup
-         yDkWgnHtbTFstRH0oiEZ20aXiZm2zbILKaw10mlBHc2hgHLE7KFMQquPk1kXEhkerZv+
-         k0dQJRyCimN7HRye4ez0Ndj30W++H2kgBpPWBeKCgyAgC8olQRIJIWdnxQym7CLM+Wo4
-         GujbgBKlWWn4PtUzM+qu30coi1dnTcNbnjs0cUAQsA4VATkB+Q8hXQoDd5WDiL1JM/Pm
-         8l/g==
+        bh=XcRCL1SokYaqLL5dVtRUxjV22mE+NnBNl5+hV7T5zY8=;
+        b=QeGMx98Bm4Z3cgjrXKmLZOqf+9wXyht1dVuTI2XQA0MMPu1boQdX/9i1Oxnm0/NoDe
+         eqDg9TfmKMZTneB0l8srzf59Fi/6bcnR9TQ03oYbAPPbQrJFVINVL9ZdzRJvhwkdNowf
+         UYyvv3+qjF0LykxixMzmSpNFG8gD3s9iu9MC9V2YDQfgjEiLF7VjnNEQTk9ZGHSFDus/
+         vDZAl44WUiM1saviwJdOygN6G0N3smRwiiiA0tBlhu4hgAxZkccwT288YMz8SUZC7suS
+         12cNNisbalKsdNhEYQL/aNdg6AA5vKu1TBcDyfSwKNt5Ub4mpN2LIroU7R7lb6R+XWcl
+         NzkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749880055; x=1750484855;
+        d=1e100.net; s=20230601; t=1749883446; x=1750488246;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5TA4UKVMC4ezArEziyUXtjtORC3a3PiIS1vEVR8IM9k=;
-        b=nNTE7/ufVXkF58Y1mRxzBF49rhlL7LmAlqoL/Uhonq3FDwhznJITZqsiNCUDGaGN3C
-         EV47mRYCE7lnyZC412F9LkoxsaleBfPiH3jDz3b8pgMn1cE3WjmhIjDVujyGbhkbQn/R
-         3a6xq+CCAGdnnkVAU5D7SV6fNDF1GB9pguCQSzEm22TICA/+7szSlZgC670oC4TDnBsV
-         Q27AOR+SbRHcVwNvV+Zu5PsI6Ev1Q12TSfylshVn9X2oa1BRrok16R7npdUxTFLVfCYd
-         6CJzbtaLB5qoRu70bVftq+u1DPj/VobLPkLKzXJHt3jkKgQgSd5c84OsmnCFoAK0vZV4
-         1SdA==
-X-Forwarded-Encrypted: i=1; AJvYcCVtxpw1dM3MIhgCBOqXDrHWj0OpPPjuWk6GFQCTVBHWfXpt5EMWWKfC6AZEkqI7WqKbAWJ9aaVFK32I@vger.kernel.org
-X-Gm-Message-State: AOJu0YywOkfWObf3QPKPAG+v0CO1Mk2C79exoXhuYWY5eVI6SKzpTAjF
-	J4ckVdQZNoSprjlSXG+xiolz8hElb8GsOwZU3OzcVrVwSwUrxRFyvZv+TuQs9K/pD4BbL9E7jPr
-	hWUDrtN8Ciq8ngtiu3yYotdhqb77oYJPBQs5VaaApaw==
-X-Gm-Gg: ASbGncvBMqlbZLzYbaE2svZDL90cie09jH1XMBMuQpb2O0yfkdDjPo42ji+pSqB7XQM
-	vstpb487c9CQbqZaz3qh2rEe/rHPjgXnWPKBxahFfODxOcxe/HhakwmKpCYxPav2yZKOz05v1Vs
-	EuwuUFieMH82cCGu79xFU0CJ+lASW5q83FEc6iprj7VKpuOlqgbOsjqDdkWY6D1/ybA1IohguY
-X-Google-Smtp-Source: AGHT+IHYodyjiM1Rq5dBubcbh//Kx4bZI+F7RlU40sn6k0qbQp16p7c2uNfn8MQb7bq0VYmrJCTS+K2IUg/14hV1R9A=
-X-Received: by 2002:a05:6902:18d5:b0:e81:de2b:97c8 with SMTP id
- 3f1490d57ef6-e822acc6a28mr3354610276.13.1749880055265; Fri, 13 Jun 2025
- 22:47:35 -0700 (PDT)
+        bh=XcRCL1SokYaqLL5dVtRUxjV22mE+NnBNl5+hV7T5zY8=;
+        b=jM3o2DYJuwLxqr4K07Nj0ivACX3b0rvgBlw7c/DiOXZyydiuQ2fQbBnwvnSwLRSBXU
+         I4/8GM+lDkSyweKVFZSIXhh3y51HMc0144L/64TmKqO/0hCjNBqHeX0YzkV1qV3faWwn
+         fRFqG9sfMSeAZjdol7d/uLyDPzDUCQMQLXGKL0cCq/jPLOvQ1WUv8TGdUA3zkjOVTggq
+         QfRqD8aaGmwsf9TobBEIDQDK8sesUQ2ZlIE/sa/X7O6bRLGJifov9H4j9hkmYx5tCO5f
+         Va4ttc7Gr8qdERTUXq1TtpERxFhxPB6xmh8hqXPFnzO9iGyYl3QHllb2oInl19CZ+tT4
+         Kb3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVOi/L1CxYIRpkQfjBLXG/ekLbhoDkq/74GYizXPFRWYHLuQPwzHv6yzq+oKz4m1vLy2wGpBzjndQlQWA==@vger.kernel.org, AJvYcCWoZRNI4hFfcCquoTUvYAd6QD1nkD9LO1llaEaaQAt+z18HSDGzo/Mvr+qzDiBMKxJJU1H8duKSegzL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJ+qBg4Pyj7U+FdurpMbBpv/p2nRuWEWO3Pgsg1kVwTjYakVdd
+	MuB3qkc5B6Rc7F/lRGomzv/zOApPCSHqmb1rFY1FozhvVwDgITCrT1lh+vAWsKOlQvJTFgvKoiR
+	40ezwGckvXMTlLsoMMdMED0A5IfyOVy8=
+X-Gm-Gg: ASbGncuv+QUDQF8gjnT2aN8YSaH1mI4V+KTjkxZ/Dz88F4di1M2gjJ/vSJCsoiBWwBX
+	6QkUUv4ohuFHzHM3kGgWVucQrnO0+gj9JzfRjt+f8odNiqwqk5WVlATM1+1VYOEt4dj2mLTobCy
+	oYdDPVObZJIoQkFZnsUOHJUcSSh4dvOc5agdm+ZmgA
+X-Google-Smtp-Source: AGHT+IFhHSRTUmK1ZpGtdL9mQzEytJxUfzkCmxFy38uMm/0KW86o6Q0gsTIAGuLmF0aTDLs2Fqhd/51xRW+GxDMll0w=
+X-Received: by 2002:a17:90b:4a92:b0:2fe:e9c6:689e with SMTP id
+ 98e67ed59e1d1-313f1ca8cf7mr3067835a91.8.1749883445726; Fri, 13 Jun 2025
+ 23:44:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,15 +79,15 @@ References: <20250611194716.302126-1-ezra@easyb.ch> <20250611194716.302126-2-ezr
  <9a23e0e5-f48c-41a9-8e15-69cdfbc7eca2@kernel.org> <CAM1KZSkKUYcsx_gpvtEaz7hoT-KfJmQ0xHeFYEGMSZ7FEBDyjA@mail.gmail.com>
  <2ca2da8f-92b9-475f-aa41-bd54a95bfc69@kernel.org> <CAM1KZSmLwLopU8rVrPS+wFqAGZn-7LdsikEg6p2f93EiK9_2_Q@mail.gmail.com>
  <864cd33e-94d4-4ceb-a8dd-1b525f7bbf26@kernel.org> <CAM1KZSnAKee2UvGbNwaAq7cevpRcnFiCYixHHneafbDRH9+uyw@mail.gmail.com>
- <CAMhs-H9zna3TV5SvQw9SGvfvdGRJiwkhGa-s3OKvMqtXp9OEcQ@mail.gmail.com>
-In-Reply-To: <CAMhs-H9zna3TV5SvQw9SGvfvdGRJiwkhGa-s3OKvMqtXp9OEcQ@mail.gmail.com>
-From: Ezra Buehler <ezra@easyb.ch>
-Date: Sat, 14 Jun 2025 07:46:58 +0200
-X-Gm-Features: AX0GCFtERy2lj0NVnIJXRdF-x14drqB5Na3f9P2MNi6AvT8QWsUmhu68SBvLRnk
-Message-ID: <CAM1KZSkwBf42YEJOrEv1dErt_8dj=njBWvU2Dd5jaGfUwz5=RA@mail.gmail.com>
+ <CAMhs-H9zna3TV5SvQw9SGvfvdGRJiwkhGa-s3OKvMqtXp9OEcQ@mail.gmail.com> <CAM1KZSkwBf42YEJOrEv1dErt_8dj=njBWvU2Dd5jaGfUwz5=RA@mail.gmail.com>
+In-Reply-To: <CAM1KZSkwBf42YEJOrEv1dErt_8dj=njBWvU2Dd5jaGfUwz5=RA@mail.gmail.com>
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date: Sat, 14 Jun 2025 08:43:54 +0200
+X-Gm-Features: AX0GCFudkEuVvqXvGiDXfFbkvTvg8llDh0y-Vt4GvYQBVNrOizO8UAg6YVispyA
+Message-ID: <CAMhs-H-XJme6u-XjDqA2vYubT1KZ3zkc+V6t2WTD9g=V+aKxRA@mail.gmail.com>
 Subject: Re: [PATCH v1 1/3] MIPS: dts: ralink: mt7628a: Fix sysc's compatible
  property for MT7688
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: Ezra Buehler <ezra@easyb.ch>
 Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org, 
 	Conor Dooley <conor+dt@kernel.org>, Harvey Hunt <harveyhuntnexus@gmail.com>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Reto Schneider <reto.schneider@husqvarnagroup.com>, 
@@ -97,77 +97,88 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 14, 2025 at 7:01=E2=80=AFAM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
+On Sat, Jun 14, 2025 at 7:47=E2=80=AFAM Ezra Buehler <ezra@easyb.ch> wrote:
 >
-> Hi Ezra,
->
-> On Fri, Jun 13, 2025 at 7:40=E2=80=AFPM Ezra Buehler <ezra@easyb.ch> wrot=
-e:
+> On Sat, Jun 14, 2025 at 7:01=E2=80=AFAM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
 > >
-> > On Fri, Jun 13, 2025 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> > > On 13/06/2025 14:56, Ezra Buehler wrote:
-> > > > On Fri, Jun 13, 2025 at 2:41=E2=80=AFPM Krzysztof Kozlowski <krzk@k=
-ernel.org> wrote:
-> > > >> That's not a binding, but driver, so obviously it is fine since yo=
-u are
-> > > >> not removing it from bindings.
-> > > >
-> > > > And, if we also remove all occurrences of "ralink,mt7688-sysc" from=
- the
-> > > > code, as it is not needed from a technical standpoint, can we remov=
-e it
-> > > > from mediatek,mtmips-sysc.yaml or is there no going back?
-> > > But it is needed. MT7688 needs it to fulfill the DT bindings requirem=
-ent
-> > > (see writing bindings): specific compatible.
+> > Hi Ezra,
 > >
-> > I see. In that case, it seems to me that the only reasonable solution i=
-s
-> > to adapt the bindings (mediatek,mtmips-sysc.yaml) and go forward with
-> > the initial patch.
+> > On Fri, Jun 13, 2025 at 7:40=E2=80=AFPM Ezra Buehler <ezra@easyb.ch> wr=
+ote:
+> > >
+> > > On Fri, Jun 13, 2025 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@ker=
+nel.org> wrote:
+> > > > On 13/06/2025 14:56, Ezra Buehler wrote:
+> > > > > On Fri, Jun 13, 2025 at 2:41=E2=80=AFPM Krzysztof Kozlowski <krzk=
+@kernel.org> wrote:
+> > > > >> That's not a binding, but driver, so obviously it is fine since =
+you are
+> > > > >> not removing it from bindings.
+> > > > >
+> > > > > And, if we also remove all occurrences of "ralink,mt7688-sysc" fr=
+om the
+> > > > > code, as it is not needed from a technical standpoint, can we rem=
+ove it
+> > > > > from mediatek,mtmips-sysc.yaml or is there no going back?
+> > > > But it is needed. MT7688 needs it to fulfill the DT bindings requir=
+ement
+> > > > (see writing bindings): specific compatible.
+> > >
+> > > I see. In that case, it seems to me that the only reasonable solution=
+ is
+> > > to adapt the bindings (mediatek,mtmips-sysc.yaml) and go forward with
+> > > the initial patch.
+> >
+> > Compatibles in ralink are a bit messy historically since there are
+> > platforms that are pretty similar and were developed before having
+> > proper bindings mainlined, For example, as you said, mt7628 and mt7688
+> > are pretty similar but having wildcard mt76x8 was not an option since
+> > specific compatibles are mandatory, so I ended introducing also the
+> > mt7688-sysc in bindings to match MT762X_SOC_MT7688 type [0].
+> >
+> > I have checked also openWRT tree and I think just modifying clk.c [1]
+> > returning the expected sysc would be a valid and functional approach:
+> >
+> >  diff --git a/arch/mips/ralink/clk.c b/arch/mips/ralink/clk.c
+> >  index 9db73fcac522..7ce9acec3a01 100644
+> >  --- a/arch/mips/ralink/clk.c
+> >  +++ b/arch/mips/ralink/clk.c
+> >  @@ -48,11 +48,9 @@ static const char *clk_cpu(int *idx)
+> >                  *idx =3D 2;
+> >                   return "ralink,mt7620-sysc";
+> >           case MT762X_SOC_MT7628AN:
+> >                   *idx =3D 1;
+> >                   return "ralink,mt7628-sysc";
+> >          case MT762X_SOC_MT7688:
+> >                  *idx =3D 1;
+> >  -               return "ralink,mt7688-sysc";
+> >  +               return "ralink,mt7628-sysc";
+> >          default:
+> >                  *idx =3D -1;
+> >                  return "invalid";
+> >
+> > Since you are not touching bindings at all but driver code, it should b=
+e ok.
+> >
 >
-> Compatibles in ralink are a bit messy historically since there are
-> platforms that are pretty similar and were developed before having
-> proper bindings mainlined, For example, as you said, mt7628 and mt7688
-> are pretty similar but having wildcard mt76x8 was not an option since
-> specific compatibles are mandatory, so I ended introducing also the
-> mt7688-sysc in bindings to match MT762X_SOC_MT7688 type [0].
+> The issue I see here is that if someone decides to put
 >
-> I have checked also openWRT tree and I think just modifying clk.c [1]
-> returning the expected sysc would be a valid and functional approach:
+> compatible =3D "ralink,mt7688-sysc", "syscon";
 >
->  diff --git a/arch/mips/ralink/clk.c b/arch/mips/ralink/clk.c
->  index 9db73fcac522..7ce9acec3a01 100644
->  --- a/arch/mips/ralink/clk.c
->  +++ b/arch/mips/ralink/clk.c
->  @@ -48,11 +48,9 @@ static const char *clk_cpu(int *idx)
->                  *idx =3D 2;
->                   return "ralink,mt7620-sysc";
->           case MT762X_SOC_MT7628AN:
->                   *idx =3D 1;
->                   return "ralink,mt7628-sysc";
->          case MT762X_SOC_MT7688:
->                  *idx =3D 1;
->  -               return "ralink,mt7688-sysc";
->  +               return "ralink,mt7628-sysc";
->          default:
->                  *idx =3D -1;
->                  return "invalid";
->
-> Since you are not touching bindings at all but driver code, it should be =
-ok.
->
+> into their DT, which seems very reasonable, the system will not boot.
+> Therefore, I would not go with that change unless one removes support
+> for ralink,mt7688-sysc all together.
 
-The issue I see here is that if someone decides to put
+Yes, you are right. Properly fixing it would be the correct thing to
+do. I was talking only about the already available platforms in the
+openWRT tree which seems to not be using that compatible at all.
 
-compatible =3D "ralink,mt7688-sysc", "syscon";
+I'll wait for your patches, then :-).
 
-into their DT, which seems very reasonable, the system will not boot.
-Therefore, I would not go with that change unless one removes support
-for ralink,mt7688-sysc all together.
-
-Cheers,
-Ezra.
+Thanks,
+    Sergio Paracuellos
+>
+> Cheers,
+> Ezra.
 
