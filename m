@@ -1,88 +1,57 @@
-Return-Path: <devicetree+bounces-185952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43260AD9F26
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 20:50:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E820AD9F2A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 20:54:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F5C31894679
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 18:51:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33C85176075
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 18:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90D328ECDE;
-	Sat, 14 Jun 2025 18:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11341E5213;
+	Sat, 14 Jun 2025 18:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UDKuxPYn"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="SFuAS0JT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44EA41DED5D
-	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 18:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6EF91EBFE0;
+	Sat, 14 Jun 2025 18:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749927047; cv=none; b=BJwkjsoUvELQH+wcPNrpIX/hwyCo4lGoUJesBb+C7wNIfgwVD9teI9j1ZKAfi4I/a4KVL4ZfljcsAhup2ftMVMoP3Q4EcuP6fbA5HBdy0qIEDe4ARE6Fb8Em5VI7t0p+G+k0cV2mwFD5F6HCYTGFNSS0D1aJuod8MXoB0yi/at4=
+	t=1749927248; cv=none; b=TIHRXR3C5a7bLesoI2Hj6ZPI/C/vSqZ4RED3Q3oD2MRHjlR+IVGS460JzlMjBN5CXQwPJaz//vn/ToZmelBg0B1tMrEHHV0dVs43hXKwqeJ8bd6F7G3GOpyq+N33GirDnSMsilBIz1sjYDLGEPn37zoNF2H5BPYi7PKUc89H+y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749927047; c=relaxed/simple;
-	bh=zAo8PQ1kIpBM1SD/j60V6KNaG3hiL9Q7UDeeuB5Xfpk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UvWNQvuKbtdmantGYq1zSgpwqPAcEbMbKmSgrOWdLucE1eh8j3ZSp/4GnPhbxcEZq68LJxoSwE3/10xQhSEmAxo5/maSqNrzFsqSEqUsOOXMBJcF8HXWlifUgMsQBUezLHVdP+rnG44mHVeKIp2zReXcZk1ZdSlKrA2Bf1HqZBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UDKuxPYn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55EGLvJ4025059
-	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 18:50:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eoG6O0K3f8gZX/KII4B/go1MHyLMfczPeBlrtLSsYrM=; b=UDKuxPYnC4bK/zSP
-	qjZzLRQmMiLyjHi7cOmLs3MXUjrYKquJxPrs1f9I6+I0hl5/PETBkSTnYf2iI0jF
-	EMtozgAt/iqpMHItsXUFVjrtRt7p65SVdI/tfdQrlS/AOxyBXGxsH7GlJW+u1Sia
-	asYaodCQQCUX0TH5XsfLRozMdD6Qr9eYHOl5jUR1THq8/bD7irP7aNO8z9S7Nx3b
-	RnzVqlGiMZuMqiCXKcwEFQjE2EcTeY/F2NZFiDncMBDTxmOwGP1ACK7hGlgMNfUd
-	5dyWxRO4pE5FmLc+FB7UgReIg4t6pVw/v5os8IVPgqXnskbS3zqB4tAI+JdCFXbk
-	tYAX6w==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791hc8wqt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 18:50:44 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4a5a9791fa9so7033071cf.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 11:50:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749927043; x=1750531843;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eoG6O0K3f8gZX/KII4B/go1MHyLMfczPeBlrtLSsYrM=;
-        b=k1mwOvXabeEeI7X2tLUlcGhFmcGxbx5rA91QSo7FnTfCFOELy+sinFIzQw6bb78yfg
-         n5Xz/NdUBfxz8PK/FdB/tCTFGi9uEseMwKWRgcIDYX0Bpt14goblkRkRqPmRE9ZZs7FL
-         hMp5s4mEc5QvaP2Hc51i/cHfhROUrfC2mAVnWgy1H2rWokcKjx5dYaGv7Pa8kTo+eWvG
-         TJgcv9kl+3ojKpokLNHNsR59dzm6lhnlNcJdx00yLD49LfegRfYG0Np6KVE7y/kalqYb
-         7O+op0g2OhcTFKyS6INUa+pK+W+jlQ8JAFnnwnmrGRkY+cjulmvseQ0uNI8QcmVx/Z7H
-         xOvw==
-X-Forwarded-Encrypted: i=1; AJvYcCV0nvyKM1dIIiYA2vh5EIVJ1f9L1TwyWffAKomjrLPecfHEueZL2IZ0TZB2qBmXQYsf0G+BUsx8rxaa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxt7UYqYHkYoz92Eeiqoo3NWT9zDxBjEbTeBSzwkMaI1uKIEhlL
-	VG184LCpfxCFiTm90SfO9eQLfcmlrv0kxM5UZdYKs4xsAff1yBsAdcx627Uj3ASovxQ9pGC2EPy
-	RLHqX4ppMwVY78YRYQbc+UOE2Dv9BAi4pGuGvSU/8MEZ9nDNXjnb8cugSON9IeM3b
-X-Gm-Gg: ASbGncuL5q7Vh/Ohz12NIejl/4/UsXH0sNZTL5/cAtGjY2ZG9sYys2hP2+1EAk1dOXT
-	Z9uWAkgrc0YIpbKVtxMCRfdEE4MmiLzkyrg1+9ugLYTJwVyRmV+xvF3t2t3y/4irakN9Gd33JC5
-	6juBZzdOzOzgM1gaD9aVnITHVSainGjtbGnbHFwU7X8Gbqa5J8GLUbVkqugcdOhwJOgl64NeHYK
-	j2nQliEsbdUp5Ce2hdaS1ur2HOP86EhJ007W100xKADiedkoH4utQfbS3/Pfj59sCjVOsp5X4tc
-	fHpojjdNUxe4LD5gj+wVU6oEOXbWfinjc7LJsYGCL28Le7L024UUg1+/LivPIQTdAcLZ3lTA6UN
-	mU/c=
-X-Received: by 2002:a05:622a:60e:b0:494:b869:ac06 with SMTP id d75a77b69052e-4a73c4f0986mr22004441cf.6.1749927042627;
-        Sat, 14 Jun 2025 11:50:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEx8dYFput+x1zrfRR/vwybI6ORi4SG7FUVUMwmj0jEta6iK89coF3n7ZV/SrKjJMpi0fdbrQ==
-X-Received: by 2002:a05:622a:60e:b0:494:b869:ac06 with SMTP id d75a77b69052e-4a73c4f0986mr22004301cf.6.1749927042208;
-        Sat, 14 Jun 2025 11:50:42 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adfade680d4sm186158466b.10.2025.06.14.11.50.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Jun 2025 11:50:41 -0700 (PDT)
-Message-ID: <f0483597-45b9-49f8-b316-a9cde7b98d81@oss.qualcomm.com>
-Date: Sat, 14 Jun 2025 20:50:39 +0200
+	s=arc-20240116; t=1749927248; c=relaxed/simple;
+	bh=7ZXzApUk5l2qS86Q3m8IfXmZ+4gYsRPxq+nMQeFcvNk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=gXzjdiazsZ3pyZEoaM/cD0+l4aOrGk6q2RZPa9g/QHMbEgSiZwn7FJy6eefmG4VpttDUI41CL7ojP4El6v1LG62hgGofeMgRH+EF++RGmoNOWYDuPFyDLsvpXlGXnXttdyFQJmQ/Rqk7G+jJaLuDGZocLDFJriRewGRSn2mzCV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=SFuAS0JT; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250614185402euoutp01e5e6f59d2241bc2cbe37305571877d54~I-Y5G6nHA1202912029euoutp01d;
+	Sat, 14 Jun 2025 18:54:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250614185402euoutp01e5e6f59d2241bc2cbe37305571877d54~I-Y5G6nHA1202912029euoutp01d
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1749927242;
+	bh=7KEfhRp6tc3/RqpqL6VW1k9rbi+XK5sl46BXBJoQ56U=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=SFuAS0JTlb+Uc+syWfLpDwqf4YdSFq/Av//E/FZ3W6jbeV6pwQhHBmgirah5wjjCE
+	 RBthWoGosiknr24lAvtDaSp5MDSzpy0g64g1D/P6WEEhNRLidydlQpKY1AJdtL9Hf+
+	 /LsVGpD94bFNpqLMeScHlZ+RHg0338sVELJxAs/0=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250614185401eucas1p2ee3104b2054057c27a757b99f6b1a748~I-Y3uT4wk1692616926eucas1p2K;
+	Sat, 14 Jun 2025 18:54:01 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250614185359eusmtip1bfe9e9bceb8b79c3627bd748ad193068~I-Y2gwiqt2547525475eusmtip1R;
+	Sat, 14 Jun 2025 18:53:59 +0000 (GMT)
+Message-ID: <c7df0d84-93a6-4a9c-b911-515d0816d899@samsung.com>
+Date: Sat, 14 Jun 2025 20:53:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,132 +59,207 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 01/10] clk: qcom: clk-alpha-pll: Add support for
- dynamic update for slewing PLLs
-To: Taniya Das <quic_tdas@quicinc.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250612-qcs615-mm-v9-clock-controllers-v9-0-b34dc78d6e1b@quicinc.com>
- <20250612-qcs615-mm-v9-clock-controllers-v9-1-b34dc78d6e1b@quicinc.com>
+Subject: Re: [PATCH v5 0/9] drm/verisilicon : support DC8200 and inno hdmi
+To: Maud Spierings <maud_spierings@hotmail.com>, keith zhao
+	<keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, william.qiu@starfivetech.com,
+	xingyu.wu@starfivetech.com, "paul.walmsley@sifive.com"
+	<paul.walmsley@sifive.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+	changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+	william.qiu@starfivetech.com, xingyu.wu@starfivetech.com, kernel@esmil.dk,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com,
+	jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250612-qcs615-mm-v9-clock-controllers-v9-1-b34dc78d6e1b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <AM7P189MB10092D0348FC9E0A70C911E2E3D12@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE0MDE1OCBTYWx0ZWRfXzdQeFNBnoU63
- 07Il1BDk3yUjSrv6vCl/UiGmjfr577pMBzdCP5C0RCMrx/WJ4dqqouperGnxf05n4MHgjyiEcfA
- YLZsB8dWOzAQvtFdSon3InCnzJVor9WN3kGUpYsjz8r/iBiUgtRSK9Zx21AAtR0h50h1/dsWquO
- ZDv2jyLRq90M12q6TJe6Jw/gt0jg9Z8PnjGWXPj3BDAvfOFRxC1JEsFQiixk61bJMPtrARFrf8g
- x14Rfti4vt2nJooHXqO94NeGf6UwZb44lO5DpykE8UTgIPyNoqPv+In7bXVpVIYchnmZX7awTZB
- fVgP2xAK1fC/CXTMW1p3Olk212Vi0s2cu+FxlQVFlJu1PKek5vO0uF3lFCxH6/oX4xkMUHCe/9N
- ZNEJX49f8US9ICgdMTHcnD6r56f3vAq+hyYTIjlin9yCQG7TMpBzVaZpioJTsGZX3OaXAHfc
-X-Authority-Analysis: v=2.4 cv=CqK/cm4D c=1 sm=1 tr=0 ts=684dc484 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=b3DFIE2h8Nkn-kLj-EYA:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: hgDGU2SRw_Cs8Ol_QRcrA6nblgzD6IvM
-X-Proofpoint-GUID: hgDGU2SRw_Cs8Ol_QRcrA6nblgzD6IvM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-14_07,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0 mlxlogscore=999 priorityscore=1501
- lowpriorityscore=0 spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0
- mlxscore=0 impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506140158
+X-CMS-MailID: 20250614185401eucas1p2ee3104b2054057c27a757b99f6b1a748
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250614185401eucas1p2ee3104b2054057c27a757b99f6b1a748
+X-EPHeader: CA
+X-CMS-RootMailID: 20250614185401eucas1p2ee3104b2054057c27a757b99f6b1a748
+References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
+	<AM7P189MB10092D0348FC9E0A70C911E2E3D12@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+	<CGME20250614185401eucas1p2ee3104b2054057c27a757b99f6b1a748@eucas1p2.samsung.com>
 
-On 6/12/25 11:55 AM, Taniya Das wrote:
-> The alpha PLLs which slew to a new frequency at runtime would require
-> the PLL to calibrate at the mid point of the VCO. Add the new PLL ops
-> which can support the slewing of the PLL to a new frequency.
+
+
+On 3/11/25 08:42, Maud Spierings wrote:
+> On 11/20/24 07:18, keith zhao wrote:
+>> Verisilicon/DC8200 display controller IP has 2 display pipes and each
+>> pipe support a primary plane and a cursor plane .
+>> In addition, there are 4 overlay planes as 2 display pipes common resources.
+>>
+>> The first display pipe is bound to the inno HDMI encoder.
+>> The second display pipe is bound to Internal custom encoder,
+>> which is used to find dsi bridge by dts node.
+>>
+>> This patchset should be applied on next branch.
+>>
+>> V1:
+>> Changes since v1:
+>> - Further standardize the yaml file.
+>> - Dts naming convention improved.
+>> - Fix the problem of compiling and loading ko files.
+>> - Use drm new api to automatically manage resources.
+>> - Drop vs_crtc_funcs&vs_plane_funcs, subdivide the plane's help interface.
+>> - Reduce the modifiers unused.
+>> - Optimize the hdmi driver code
+>>
+>> V2:
+>> Changes since v2:
+>> - fix the error about checking the yaml file.
+>> - match drm driver GEM DMA API.
+>> - Delete the custom crtc property .
+>> - hdmi use drmm_ new api to automatically manage resources.
+>> - update the modifiers comments.
+>> - enabling KASAN, fix the error during removing module
+>>
+>> V3:
+>> Changes since v3:
+>> - Delete the custom plane property.
+>> - Delete the custom fourcc modifiers.
+>> - Adjust the calculation mode of hdmi pixclock.
+>> - Add match data for dc8200 driver.
+>> - Adjust some magic values.
+>> - Add a simple encoder for dsi output.
+>>
+>> V4:
+>> Changes since v4:
+>> - Delete the display subsystem module as all crtcs and planes are a driver.
+>> - Delete the custom struct, directly use the drm struct data.
+>> - Tidy up the inno hdmi public interface.
+>> - Add a simple encoder for dsi output.
+>>
+>> V5:
+>> Changes since v5:
+>> - Refine the Innosilicon HDMI by quoting bridge abstracting.
+>> - Delete the encoder driver, which is created directly by internal functions.
+>> - Adapt to the changes in kernel upgrade APIs, such as drm_client_setup.
+>>
+>> keith zhao (9):
+>>    dt-bindings: display: bindings for starfive,JH7110 display pipeline
+>>    riscv: dts: Add display property
+>>    drm: bridge: inno-hdmi: add inno bridge driver.
+>>    drm/vs: Add Hardware Functions for VS DC8200
+>>    drm/vs: Add Base API for VS Mode Configuration
+>>    drm/vs: Add CRTC Functions
+>>    drm/vs: Add VS Plane API
+>>    drm/vs: Add Innosilicon HDMI Support
+>>    drm/vs: Add VS DRM Master Driver for JH7110 SoC
+>>
+>>   .../display/bridge/innosilicon,inno-hdmi.yaml |   45 +
+>>   .../display/rockchip/rockchip,inno-hdmi.yaml  |   27 +-
+>>   .../starfive/starfive,jh7110-dc8200.yaml      |  176 +++
+>>   .../starfive/starfive,jh7110-inno-hdmi.yaml   |   91 ++
+>>   .../soc/starfive/starfive,jh7110-syscon.yaml  |    1 +
+>>   MAINTAINERS                                   |   11 +
+>>   .../boot/dts/starfive/jh7110-common.dtsi      |  125 ++
+>>   arch/riscv/boot/dts/starfive/jh7110.dtsi      |   41 +
+>>   drivers/gpu/drm/Kconfig                       |    2 +
+>>   drivers/gpu/drm/Makefile                      |    1 +
+>>   drivers/gpu/drm/bridge/Kconfig                |    2 +
+>>   drivers/gpu/drm/bridge/Makefile               |    1 +
+>>   drivers/gpu/drm/bridge/innosilicon/Kconfig    |    6 +
+>>   drivers/gpu/drm/bridge/innosilicon/Makefile   |    2 +
+>>   .../gpu/drm/bridge/innosilicon/inno-hdmi.c    |  376 ++++++
+>>   .../gpu/drm/bridge/innosilicon/inno-hdmi.h    |   34 +
+>>   drivers/gpu/drm/rockchip/Kconfig              |    1 +
+>>   drivers/gpu/drm/rockchip/Makefile             |    2 +-
+>>   drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c |  690 +++++++++++
+>>   .../{inno_hdmi.h => inno_hdmi-rockchip.h}     |    0
+>>   drivers/gpu/drm/rockchip/inno_hdmi.c          | 1025 ---------------
+>>   drivers/gpu/drm/verisilicon/Kconfig           |   32 +
+>>   drivers/gpu/drm/verisilicon/Makefile          |   10 +
+>>   .../gpu/drm/verisilicon/inno_hdmi-starfive.c  |  553 +++++++++
+>>   .../gpu/drm/verisilicon/inno_hdmi-starfive.h  |  194 +++
+>>   drivers/gpu/drm/verisilicon/vs_crtc.c         |  241 ++++
+>>   drivers/gpu/drm/verisilicon/vs_crtc.h         |   42 +
+>>   drivers/gpu/drm/verisilicon/vs_dc_hw.c        | 1104 +++++++++++++++++
+>>   drivers/gpu/drm/verisilicon/vs_dc_hw.h        |  492 ++++++++
+>>   drivers/gpu/drm/verisilicon/vs_drv.c          |  777 ++++++++++++
+>>   drivers/gpu/drm/verisilicon/vs_drv.h          |   41 +
+>>   drivers/gpu/drm/verisilicon/vs_modeset.c      |   31 +
+>>   drivers/gpu/drm/verisilicon/vs_modeset.h      |   10 +
+>>   drivers/gpu/drm/verisilicon/vs_plane.c        |  358 ++++++
+>>   drivers/gpu/drm/verisilicon/vs_plane.h        |   27 +
+>>   drivers/gpu/drm/verisilicon/vs_type.h         |   54 +
+>>   include/drm/bridge/inno_hdmi.h                |   56 +
+>>   37 files changed, 5630 insertions(+), 1051 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
+>>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/Kconfig
+>>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/Makefile
+>>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
+>>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.h
+>>   create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+>>   rename drivers/gpu/drm/rockchip/{inno_hdmi.h => inno_hdmi-rockchip.h} (100%)
+>>   delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+>>   create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+>>   create mode 100644 drivers/gpu/drm/verisilicon/inno_hdmi-starfive.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/inno_hdmi-starfive.h
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+>>   create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
+>>   create mode 100644 include/drm/bridge/inno_hdmi.h
+>>
 > 
-> Reviewed-by: Imran Shaik <quic_imrashai@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 170 +++++++++++++++++++++++++++++++++++++++
->  drivers/clk/qcom/clk-alpha-pll.h |   1 +
->  2 files changed, 171 insertions(+)
+> Is this patch series still being worked on? If not I would like to give it a try to fix it up and get it merged.
 > 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index cec0afea8e446010f0d4140d4ef63121706dde47..5e4a755b849970281e7742ef83219b7eeaa406c3 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -2960,3 +2960,173 @@ const struct clk_ops clk_alpha_pll_regera_ops = {
->  	.set_rate = clk_zonda_pll_set_rate,
->  };
->  EXPORT_SYMBOL_GPL(clk_alpha_pll_regera_ops);
-> +
-> +static int clk_alpha_pll_slew_update(struct clk_alpha_pll *pll)
-> +{
-> +	int ret;
-> +	u32 val;
-> +
-> +	regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_UPDATE, PLL_UPDATE);
+> Would like to get it working on my deepcomputing fml13v01 board, there is also a gpu driver for the thead th1520 being worked on by Michal Wilczynski that depends on this. Would be nice if that could get merged when it is ready.
 
-There's an ever sweeter sugar-syntax for this case - regmap_set_bits()
+Hi Maud,
 
-> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
-> +
-> +	ret = wait_for_pll_update(pll);
-> +	if (ret)
-> +		return ret;
-> +	/*
-> +	 * Hardware programming mandates a wait of at least 570ns before polling the LOCK
-> +	 * detect bit. Have a delay of 1us just to be safe.
-> +	 */
-> +	mb();
+Thanks for your interest in this patch series. I'm also keen to see it
+merged, as the GPU support on the TH1520 Soc depends on it. I just sent
+v4 of my series [1] with the last missing pieces to enable the GPU
+driver to probe correctly.
 
-Since you read the value of PLL_MODE back, the barrier is unnecessary
+I'm not aware of any recent progress on this particular set from Keith.
+I would be happy to collaborate with you or take over the work of
+getting it ready for merging.
 
-[...]
+I also have a StarFive Vision Five 2 board, and my plan was to get the
+driver working for the JH7110 first. The only thing different for the
+TH1520 SoC is the HDMI driver, which could be added later.
 
-> +
-> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), lower_32_bits(a));
-> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), upper_32_bits(a));
-> +
-> +	/* Ensure that the write above goes before slewing the PLL */
-> +	mb();
+However, the main blocker is the lack of public documentation for the
+Verisilicon DC8200 controller. The official StarFive documentation
+portal [2] mentions two essential documents: "DC8200 Dual Display
+Controller DPU IP Exposed Accessible Registers" and "DC8200 Dual Display
+Controller IP Hardware Features."
 
-Here however, the write may not arrive at the clock controller before you
-proceed to slew_update()
+Pinging the StarFive developers on this thread: would it be possible to
+make these documents available? Access to them is critical for us to
+successfully move this driver forward.
 
-> +
-> +	if (clk_hw_is_enabled(hw))
-> +		return clk_alpha_pll_slew_update(pll);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Slewing plls should be bought up at frequency which is in the middle of the
-> + * desired VCO range. So after bringing up the pll at calibration freq, set it
-> + * back to desired frequency(that was set by previous clk_set_rate).
-> + */
-> +static int clk_alpha_pll_calibrate(struct clk_hw *hw)
-> +{
-> +	unsigned long calibration_freq, freq_hz;
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct clk_hw *parent;
-> +	const struct pll_vco *vco;
-> +	u32 l;
-> +	int rc;
-> +	u64 a;
+[1] - https://lore.kernel.org/all/20250614-apr_14_for_sending-v4-0-8e3945c819cd@samsung.com/
+[2] - https://doc-en.rvspace.org/JH7110/TRM/JH7110_TRM/detail_info_display.html
 
-A reverse-Christmas-tree sorting would be nice 
+> 
+> Kind regards,
+> Maud
+> 
 
-Konrad
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
