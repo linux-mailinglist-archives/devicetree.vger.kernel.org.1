@@ -1,114 +1,106 @@
-Return-Path: <devicetree+bounces-185865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E15B6AD9880
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 01:09:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC46AD9935
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 02:45:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53FF74A2ABF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jun 2025 23:09:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16D617ADF59
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 00:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526AF2798EF;
-	Fri, 13 Jun 2025 23:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B77F2179A7;
+	Sat, 14 Jun 2025 00:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="aQ1pcHAc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KpAC0tsR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB1628EA7C
-	for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 23:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8396518EAB;
+	Sat, 14 Jun 2025 00:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749856147; cv=none; b=k3pgvBWcH7uzBJbtqUNzidnnUr2S776mfvG1lkldFzKz6gvIFxG7HI6pDuK/lS7uZMidSRfSp9KxJ5Awaw5HVR3R/zUlspR9yRwOfZeLdktKQ625dizp6G67M/RqCyHFaUYizpOWH8UP9KL01dM9ZRkoiRGOW2FzVmuN4DZZet0=
+	t=1749861893; cv=none; b=irqwV26QX+Q9/pfCDOqFxKciZP+G1doL8S/l3NGw8MSjaTRKEaQxlbiGtwDPDz7HyoNuUoQo2DQHjDffq6zQCeGy4U+wRetWG9cZT4f3GnkC+XPWq8IiRAGFDF1bGKACdnEc8S8SqizqhoCvigRL/yQ1Y7P7difLAe+g9F/Y22s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749856147; c=relaxed/simple;
-	bh=r27H9F1hEUtupyvfgSfrvSGbuCAXF2LgasX0jrzicYc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rQ0f/67TuMJf3RQygIf7BLW0krRA/nmPSr848J2VKj4YXZhhvttLVsNKAUd+RXe9BneZCGMHV6zBrrIkOsDGSYtutiAQIXf/gecT0xgHdu200oUO2Wna7rPH8qjEdimNuFJ1VKgRWTRuG1tqhXjmcQe9YrdYK/elzTDSx+ZMyYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=aQ1pcHAc; arc=none smtp.client-ip=95.215.58.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <d81310a9-13e8-47b4-8ad7-0f831b5aa9e8@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1749856132;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hJbziJaWkSfc7eJvEsy2hlaI0p2HI21DTada3PKoxUM=;
-	b=aQ1pcHAcIgb+M7oyofZrcUYV81nmfElqYYBX1DAhtW9V54Yr88+Yhs7YcUiry1UklyWuqQ
-	+taC5FOziFa5Nx4TfwAw/I3w2tfc4PTs/ZSHAv1Z99DqUH/W1Pr+uCbTjuMl9okwVnfz8V
-	AP9OFxZRVrSK850RcsZtk0peexbIXTE=
-Date: Fri, 13 Jun 2025 16:08:32 -0700
+	s=arc-20240116; t=1749861893; c=relaxed/simple;
+	bh=mobwSB6amj+rTcEdWirjricXAGuRR+bEQKMFiG+ydEk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=bzDmwzdNPSuwRWb/egD0jlk8mzf1OlcFyse7iZ8wpbJ0kVFs4IHlfnfz/w7XmBZHKk/DfLzdD4gLe1l5XyZUqTJGYrrVeoPnKmM9nHpY/JWZPZIcd9TRbHnnVFcDiPW4LJA37VR/7i6fWAE6RW8shq1SIvVVmT5ygCnI5Ozpxeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KpAC0tsR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1832C4CEE3;
+	Sat, 14 Jun 2025 00:44:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749861893;
+	bh=mobwSB6amj+rTcEdWirjricXAGuRR+bEQKMFiG+ydEk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=KpAC0tsRTngOsaS8c0TNZ3MUAK9k1z19EpTh4N2YmgUPYubYRQDjUHjRQgsHSMTCD
+	 s8VdjoRwe6dApPsSK736OVofiQ9ZLYw6EVy8Vpd+xIvg2px/XEv4WmenhuF7miKmlQ
+	 hDqQvq1XYXzzkJ7woJnOUNGSu6+RuMlCOGAL9Omd49u7Noa+DTdQ76AGDhqqyZ52HD
+	 BcHZhahq2Pen/4/DBHRqG52yHB0RcgRtcw2OWlqhpoovtm+Jlct++rzbQvdU2enIPC
+	 ObmypXUcMBwZP35RKBKNy//EzFfQX5MBN8QcxtGwTQNei4+RX//I8p+PC0UX72RP3C
+	 XmKOq+fCmumkw==
+Date: Fri, 13 Jun 2025 19:44:51 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v5 15/23] ACPI: scan: Update honor list for RPMI System
- MSI
-To: Anup Patel <apatel@ventanamicro.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>, "Rafael J . Wysocki"
- <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Len Brown <lenb@kernel.org>,
- Sunil V L <sunilvl@ventanamicro.com>, Rahul Pathak
- <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
- Andrew Jones <ajones@ventanamicro.com>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250611062238.636753-1-apatel@ventanamicro.com>
- <20250611062238.636753-16-apatel@ventanamicro.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Atish Patra <atish.patra@linux.dev>
-In-Reply-To: <20250611062238.636753-16-apatel@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: arm-scmi@vger.kernel.org, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+In-Reply-To: <20250613-pmdomain-hierarchy-onecell-v3-1-5c770676fce7@baylibre.com>
+References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
+ <20250613-pmdomain-hierarchy-onecell-v3-1-5c770676fce7@baylibre.com>
+Message-Id: <174986189194.368040.11959133664895822373.robh@kernel.org>
+Subject: Re: [PATCH RFC v3 1/2] dt-bindings: power: add nexus map for
+ power-domains
 
 
-On 6/10/25 11:22 PM, Anup Patel wrote:
-> From: Sunil V L <sunilvl@ventanamicro.com>
->
-> The RPMI System MSI interrupt controller (just like PLIC and APLIC)
-> needs to probed prior to devices like GED which use interrupts provided
-> by it. Also, it has dependency on the SBI MPXY mailbox device.
->
-> Add HIDs of RPMI System MSI and SBI MPXY mailbox devices to the honor
-> list so that those dependencies are handled.
->
-> Signed-off-by: Sunil V L <sunilvl@ventanamicro.com>
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+On Fri, 13 Jun 2025 15:39:27 -0700, Kevin Hilman wrote:
+> Add support for nexus map `power-domain-map` to be able to support
+> hierarchical power domains for providers with #power-domain-cells > 0.
+> 
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 > ---
->   drivers/acpi/scan.c | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-> index fb1fe9f3b1a3..54181b03b345 100644
-> --- a/drivers/acpi/scan.c
-> +++ b/drivers/acpi/scan.c
-> @@ -858,6 +858,8 @@ static const char * const acpi_honor_dep_ids[] = {
->   	"INTC10CF", /* IVSC (MTL) driver must be loaded to allow i2c access to camera sensors */
->   	"RSCV0001", /* RISC-V PLIC */
->   	"RSCV0002", /* RISC-V APLIC */
-> +	"RSCV0005", /* RISC-V SBI MPXY MBOX */
-> +	"RSCV0006", /* RISC-V RPMI SYSMSI */
->   	"PNP0C0F",  /* PCI Link Device */
->   	NULL
->   };
-Reviewed-by: Atish Patra <atishp@rivosinc.com>
+>  Documentation/devicetree/bindings/power/power-domain.yaml | 35 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/power/power-domain.example.dts:136.18-19 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/power/power-domain.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1519: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250613-pmdomain-hierarchy-onecell-v3-1-5c770676fce7@baylibre.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
