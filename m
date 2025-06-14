@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-185869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-185870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4034BAD99D6
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 04:54:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDBACAD99F1
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 05:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C3C8189F5FD
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 02:54:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36FF53B5F90
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jun 2025 03:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5A1146D6A;
-	Sat, 14 Jun 2025 02:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C1097E0E8;
+	Sat, 14 Jun 2025 03:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UV8JJNum"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Nh2WYqgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D0254670
-	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 02:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EE54C85
+	for <devicetree@vger.kernel.org>; Sat, 14 Jun 2025 03:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749869644; cv=none; b=iLSi1gODAmVIMf7SGaptjuzdpyWXbDdJS7OeZmSrFdP54ZSzkeNmSVVb6DpcAEW03TXKgy0kn/vLJBmt43DwoAqAR1aJo/An7y9N4dtB9ynGlLxBqjGMs1y/Rl0I+/KWOzUL5HmudPUWmCKi4vzPbOnGx2df28ajUL//GuVRbJI=
+	t=1749872002; cv=none; b=buHLXJ+j70G4+bBN6YSHI1ZgoWdxFveGFEoV631YUBUNAp3ICnx1ub2sv7Qrp9LtolAKfmKW5sFULnacKnb3i7EVpl6DJgX2nczKqxb+3I5aJowWqDlr2mG7QzUSQHYs1gEnHEt9Pnaf74IqfX24GKadhmaMhEVk9UjH2j5Cuhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749869644; c=relaxed/simple;
-	bh=w4scoFNKuQowY9iouTExwAiGSnUFMmeHza5XmTbM8DE=;
+	s=arc-20240116; t=1749872002; c=relaxed/simple;
+	bh=5zj1CCPqCqbanv6cOh5uOvtbh/D95b0Hh1gqZskXSVE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cZqW/oWgLqzChCLbirTKBkhxdGSnph75wuVZ0pIGsCe/IGrTut1zFe6k+hLtMZnViFaYD+39y1UAbdJBI6RCcAThVNZSLJK2fc3e1ONnd5bkzgV2ZgIXrgHeAXGmBrtBttWCQw9ccKsQGaWQUksdajXAfEqxWa3yEqTo9qifeR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UV8JJNum; arc=none smtp.client-ip=209.85.128.171
+	 To:Cc:Content-Type; b=PMYWcus8LonSlXxF9KgOQzd2tTAL58OoOQWDGdOUFNCc6m1cMbWyQRD6UUchQ46+/u3BRj3EGoi2fmO/8xHYMUNaelGm5JrL2Ri8a/OfI7i96Vq0Eu2CT3dWA48shn9F8HqkM4OYVihJpsdOb5oBezTfsYXRyVBLNDLEr7e9BDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Nh2WYqgO; arc=none smtp.client-ip=209.85.128.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-70e77831d68so26628297b3.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 19:54:01 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ff4faf858cso19278367b3.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jun 2025 20:33:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749869641; x=1750474441; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1749872000; x=1750476800; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=31krmauOoYJOnjYbVjbtfjUBqSgAaFlcEYULl0apEAg=;
-        b=UV8JJNumZRYANlCrL2X0QCxDQh0HefgsP1kGT/SZOcWBhzUA1A9j0MwB1/0DNMh6J2
-         OJNCGOxXnRmFzE4j79SR565KSTS0O3mQvd9APcFjahVJxNxQ0KdhcVr88YRBsHs88J3F
-         fbMRTNrEVfTLBmYGT59DKt7wSyGtDEk6j5IO7ZugzpQI+QAMR2NfKweUaL/QRH9Bwcoa
-         KEoVl1KpV2JjDLAQTDjpwq5UswTQmcuiaq43K2GkdNU8BkWkggddh5KFOfSiKn3nUC8q
-         WR2jRLL0Z/brnJHqlMegiRnD3ZfYE79t9TJDnmJE9YV6BHFYaM8t4Q7ks+7lubdyAxn6
-         0GIw==
+        bh=jJcrqi5pwJ9wED2HFmauPlfgqPYzc6rbhv7dX2NmqNc=;
+        b=Nh2WYqgOGd+zdvSTbYg/MDff3AMkawkNu4B+RdlTQCy2QZmxd+T/WLujMmiPuOuoJN
+         3w++h5wdnrNOUOwBiOjG3mi8XJW0ZtJx3F38YUIkWvS1SLjmpBfdgzlv2ns6jbEnOw9G
+         J2CjT5YunT5AbZaWhRIq+LtD7DZ2BYmWcGV8ClTxuxfLl2I9D98C/LRB0fnfOV+ETSoN
+         dTiE4TPxCNSYV4uSewfyhkrJKY1Lw8dSiYQtQw5ALRHQAe8AkZZ9gxkzjgbp/msN+Tyn
+         IQFYjFgg/E6am66PHeLX5VAEY6GOAUhE6v/J0b1fOfvNzfU+jXGPUiPDnITkX02qy1XB
+         cCfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749869641; x=1750474441;
+        d=1e100.net; s=20230601; t=1749872000; x=1750476800;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=31krmauOoYJOnjYbVjbtfjUBqSgAaFlcEYULl0apEAg=;
-        b=bC22TMgCnOWzPc09A9qcPLw1p1pQUPnhbR7kl8Q+X1MVBimKpmJAi4jO2AkTl6Qm2R
-         yCLCNbQU3lLqNtbhH35Ris16E6U90uE3JEabCHuHrfypzxZSkaW/VdE75ldm1n1elB7G
-         W+ZCAXgWSH5SyqYZ1F2SEnDu9avj5lBAzQ1hjBUm3tYOPDhe0LiqirbE/MAFvuFQWB3j
-         A/1efscGalx+5v22motua1l0c5JdBsZiR7P56f911O14H2GtiAIJ60+M2/nGdqKpm9mn
-         RvFSP6VdK4ZHDLzeJ5S77vQh8XtoqhaTVZ9Z95C3+qRfau0GdAI10+/PV4fYqFBukqIb
-         BT1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXwirMnK+cVCKnF/B+FzDUvFTmsxUl4XFZ37zv3Jm4i1lURfF+O2neXU9+l2RLvOQ5hbh+hGk3gptTN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyUBEV+/UPol3FvNE+UXunisP82YI7x0t0ITHAno+zkY+Kwn86
-	3x6Bdnx8X/2hYW+6i75O1cJv7fgRLZPPioAno37SFanyIBRufThzP5Q6vDGWV76v978MJaAaLsm
-	rwWAlQ2aU6bixaWit0kgpvNgx0rELd3tfWzZYmY65Kg==
-X-Gm-Gg: ASbGncuRzoolxWAlbZYILD1uT9K3UNANC2IY2pKzExnG2ENBQ6cnx5WHtESRdhhEL8L
-	PveOHdK0Wr/iAch1BMR3y7BUTP2sLgUzrH0HTVxp4ks+HkdWdTVD/cAqTSJO9PREtKamjpzFBZj
-	/641244EBB34PZ5/dDnsx1b2XqKPgya7VIpgGT6r7OtE+3
-X-Google-Smtp-Source: AGHT+IHcwod9d585wIy9espWy9CTasZig0QiZOdlUQMf/BDe2eeDnXq8w+5El8L8W1GrR0B+DqxTxKI2/p3Xm8YnRRM=
-X-Received: by 2002:a05:690c:7448:b0:70d:ff2a:d686 with SMTP id
- 00721157ae682-71175440983mr25217457b3.28.1749869640812; Fri, 13 Jun 2025
- 19:54:00 -0700 (PDT)
+        bh=jJcrqi5pwJ9wED2HFmauPlfgqPYzc6rbhv7dX2NmqNc=;
+        b=Q+Pil/PqqGSBchCkui+dXGscBfrms3GFgcKX/rnzP1olGKh7svQmrcpsWsYah4fBX/
+         aFWMbCkc0QU1JDDvSj048K8e8y8CpgIvnIh+8kB2kNf29VrxzX2HJ7ZkxAGnItjH7r3k
+         kVrTEbMRl9Qxg9/JLOQmn6jUd+bhWt+TMaLjtKNJoL70Bzxg7BWRmgIu6BLBvky7dGcK
+         SiFEc7mgGoyi/yeeWEiQuVfVTjaVgs8QyFW9LH2eWQ45ldGjHSBQlKoqMiVp1tiGbM+t
+         ogVZrlfFoznqbb98TTNaiFczQkvYH/KYhkIkPPoqrw/ZDHJB5FZqDBs5WXe3+wZeT26Y
+         UfoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVljCfU9YUucl8S6uN7nxMraMRE9PcA8VXy1M1rmCQZIB5O4HdjuK4VbZGe7HCSgFS1ZW3Xdgt89hP5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0dqZse4DBqvUi3ojt3yGyPDBfG65u3x0SW0t1b+carHw6b6CQ
+	hH0WfFMrtIKtv76HCWAxK3KZ5uwUXJ7K7vcxCIlSIkgyp3NLNnicgmoQanxYfkr9tfA8cdhto7y
+	tn//egsDV3RiRh9OfiHzZvMJzmGdk3SfhqSl+BwKEPw==
+X-Gm-Gg: ASbGncupcUaa7dxq2UqjaZZc+r3o5fDziPFDn/YCbx914eaI1f6X0BErajWkobtbzqD
+	j8pdA3f5LDP0AHw679OsqHfR2w7gVQ08tbXc3mqN3W3adxyv4vKTwq5aEIUsCXUTEJoUeJlVtb4
+	gnl/zzu5/lvZ4qQ32C5my4wAaGy3Or8L5uHrGpLPBEuze8
+X-Google-Smtp-Source: AGHT+IH1Y42tC9WOhyorVoIVUzg4d8lEv7srElHPGs2Vyxp0TjD0IOF4Ys3G9cHs3FqdWdAWUdm5wif9bNpbqowU6iM=
+X-Received: by 2002:a05:690c:892:b0:70f:6ec6:62b5 with SMTP id
+ 00721157ae682-7117547d163mr25767887b3.38.1749871999806; Fri, 13 Jun 2025
+ 20:33:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +75,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20250611125723.181711-1-guodong@riscstar.com> <20250611125723.181711-6-guodong@riscstar.com>
- <2b17769e-2620-4f22-9ea5-f15d4adcb27b@dram.page>
-In-Reply-To: <2b17769e-2620-4f22-9ea5-f15d4adcb27b@dram.page>
+ <2b17769e-2620-4f22-9ea5-f15d4adcb27b@dram.page> <20250613132227-GYB135173@gentoo>
+In-Reply-To: <20250613132227-GYB135173@gentoo>
 From: Guodong Xu <guodong@riscstar.com>
-Date: Sat, 14 Jun 2025 10:53:48 +0800
-X-Gm-Features: AX0GCFt1J7cK2ONSBYRJxYGgLZ03DM7CsbEBM2NtLfq6P5d7b2_ITgbQ_ARUd5g
-Message-ID: <CAH1PCMaC+imcMZCFYtRdmH6ge=dPgnANn_GqVfsGRS=+YhyJCw@mail.gmail.com>
+Date: Sat, 14 Jun 2025 11:33:08 +0800
+X-Gm-Features: AX0GCFvaqH-7lH0Zx6WGwcqUhaG1iGpayA9xWNyPAE7sjxcXfPy8V2aaJ994Vr0
+Message-ID: <CAH1PCMa8DukTxxRoWBUV22zTFnSa-4pLkZjffXO2Z9s8dtpiMg@mail.gmail.com>
 Subject: Re: [PATCH 5/8] riscv: dts: spacemit: Add dma bus and PDMA node for
  K1 SoC
-To: Vivian Wang <uwu@dram.page>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Vivian Wang <uwu@dram.page>, vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
 	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com, 
 	emil.renner.berthing@canonical.com, inochiama@gmail.com, 
 	geert+renesas@glider.be, tglx@linutronix.de, hal.feng@starfivetech.com, 
@@ -96,138 +96,85 @@ Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 13, 2025 at 11:07=E2=80=AFAM Vivian Wang <uwu@dram.page> wrote:
+Hi, Yixun
+
+On Fri, Jun 13, 2025 at 9:22=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
 >
-> Hi Guodong,
+> Hi Vivian, Guodong,
 >
-> On 6/11/25 20:57, Guodong Xu wrote:
-> > <snip>
+> On 11:06 Fri 13 Jun     , Vivian Wang wrote:
+> > Hi Guodong,
 > >
-> > -                     status =3D "disabled";
-> > +             dma_bus: bus@4 {
-> > +                     compatible =3D "simple-bus";
-> > +                     #address-cells =3D <2>;
-> > +                     #size-cells =3D <2>;
-> > +                     dma-ranges =3D <0x0 0x00000000 0x0 0x00000000 0x0=
+> > On 6/11/25 20:57, Guodong Xu wrote:
+> > > <snip>
+> > >
+> > > -                   status =3D "disabled";
+> > > +           dma_bus: bus@4 {
+> > > +                   compatible =3D "simple-bus";
+> > > +                   #address-cells =3D <2>;
+> > > +                   #size-cells =3D <2>;
+> > > +                   dma-ranges =3D <0x0 0x00000000 0x0 0x00000000 0x0=
  0x80000000>,
-> > +                                  <0x1 0x00000000 0x1 0x80000000 0x3 0=
+> > > +                                <0x1 0x00000000 0x1 0x80000000 0x3 0=
 x00000000>;
-> > +                     ranges;
-> >               };
+> > > +                   ranges;
+> > >             };
+> >
+> > Can the addition of dma_bus and movement of nodes under it be extracted
+> > into a separate patch, and ideally, taken up by Yixun Lan without going
+> > through dmaengine? Not specifically "dram_range4", but all of these
+> > translations affects many devices on the SoC, including ethernet and
+> > USB3. See:
+> Right, we've had an offline discussion, and agreed on this - have *bus
+> patches separated and let other patches depend on it.
 >
-> Can the addition of dma_bus and movement of nodes under it be extracted
-> into a separate patch, and ideally, taken up by Yixun Lan without going
-> through dmaengine? Not specifically "dram_range4", but all of these
-> translations affects many devices on the SoC, including ethernet and
+> But seems Guodong failed to do this or just sent out an old version
+> of the PDMA patch?
 
-It was not my intention to add all the separate memory mapping buses into
-one patch. I'd prefer to add them when there is at least one user.
-The k1.dtsi at this moment, as I checked, has no real user beside the
-so-called "dram_range4" in downstream vendor kernel (ie. dma_bus in this
-patch). And that is what I did: grouping devices which share the same
-dma address mapping as pdma0 into one single separated bus.
+Hi, Yixun
 
-The other buses, even if I add them, would be empty.
+I realized that there is some sort of discrepancy between our understanding
+from the offline discussion. With the information I put in the other email
+earlier today, do you still think we should submit one patch which
+covers all 6 seperated memory mapping buses for k1.dtsi?
 
-What the SpacemiT team agreed upon so far, is the naming of these separated
-buses. I listed them here for future reference purposes.
+Let me know what do you think. Thank you.
 
-If needed, I can send that in a RFC patchset, of course; or as a normal
-PATCH, if Yixun is ok with that. However, please note, that would mean more
-merging dependencies: PDMA dts, ethernet dts, usb dts, will have to depend
-on this base 'buses' PATCH.
-
-Again, I prefer we add our own 'bus' when there is a need.
-
-+       soc {
-+               storage_bus: bus@0 {
-+                       /* USB, SDH storage controllers */
-+                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
-0x0 0x80000000>;
-+               };
-+
-+               multimedia_bus: bus@1 {
-+                       /* VPU, GPU, DPU */
-+                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
-0x0 0x80000000>,
-+                                    <0x0 0x80000000 0x1 0x00000000
-0x3 0x80000000>;
-+               };
-+
-+               pcie_bus: bus@2 {
-+                       /* PCIe controllers */
-+                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
-0x0 0x80000000>,
-+                                    <0x0 0xb8000000 0x1 0x38000000
-0x3 0x48000000>;
-+               };
-+
-+               camera_bus: bus@3 {
-+                       /* ISP, CSI, imaging devices */
-+                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
-0x0 0x80000000>,
-+                                    <0x0 0x80000000 0x1 0x00000000
-0x1 0x80000000>;
-+               };
-+
-+               dma_bus: bus@4 {
-+                       /* DMA controller, and users */
-+                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
-0x0 0x80000000>,
-+                                    <0x1 0x00000000 0x1 0x80000000
-0x3 0x00000000>;
-+               };
-+
-+               network_bus: bus@5 {
-+                       /* Ethernet, Crypto, JPU */
-+                       dma-ranges =3D <0x0 0x00000000 0x0 0x00000000
-0x0 0x80000000>,
-+                                    <0x0 0x80000000 0x1 0x00000000
-0x0 0x80000000>;
-+               };
-+
-+       }; /* soc */
-
-> USB3. See:
->
-> https://lore.kernel.org/all/20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@whut=
-.edu.cn/
-> https://lore.kernel.org/all/20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.=
-ac.cn/
->
-> (I haven't put eth{0,1} under dma_bus5 because in 6.16-rc1 there is
-> none, but ideally we should fix this.)
-
-So, as you are submitting the first node(s) under network_bus: bus@5, you
-should have this added into your patchset, instead of sending out with none=
-.
-
-The same logic goes to USB too, Ze Huang was in the same offline call, and
-I would prefer that we move in a coordinated way.
+BR,
+Guodong
 
 >
-> DMA address translation does not depend on PDMA. It would be best if we
-> get all the possible dma-ranges buses handled in one place, instead of
-> everyone moving nodes around.
-
-No, you should do it in your patchset, when you add the eth0 and eth1 nodes=
+> >
+> > https://lore.kernel.org/all/20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@wh=
+ut.edu.cn/
+> > https://lore.kernel.org/all/20250613-net-k1-emac-v1-0-cc6f9e510667@isca=
+s.ac.cn/
+> >
+> > (I haven't put eth{0,1} under dma_bus5 because in 6.16-rc1 there is
+> > none, but ideally we should fix this.)
+> >
+> > DMA address translation does not depend on PDMA. It would be best if we
+> > get all the possible dma-ranges buses handled in one place, instead of
+> > everyone moving nodes around.
+> >
+> I agree
+>
+> > @Ze Huang: This affects your "MBUS" changes as well. Please take a look=
 ,
-they will be the first in, as I said, "network_bus". I don't expect
-any 'moving nodes around'.
-
->
-> @Ze Huang: This affects your "MBUS" changes as well. Please take a look,
-> thanks.
->
+> > thanks.
 > >
-> >               gpio: gpio@d4019000 {
-> > @@ -792,3 +693,124 @@ pwm19: pwm@d4022c00 {
-> >               };
-> >       };
-> >  };
-> > +
-> > +&dma_bus {
+> > >
+> > >             gpio: gpio@d4019000 {
+> > > @@ -792,3 +693,124 @@ pwm19: pwm@d4022c00 {
+> > >             };
+> > >     };
+> > >  };
+> > > +
+> > > +&dma_bus {
+> > >
+> > > <snip>
 > >
-> > <snip>
 >
+> --
+> Yixun Lan (dlan)
 
