@@ -1,618 +1,208 @@
-Return-Path: <devicetree+bounces-186049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8B9ADA395
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 22:36:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8506AADA3A7
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 22:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FCCE16DB26
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 20:36:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3303E3A64A8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 20:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4CF280023;
-	Sun, 15 Jun 2025 20:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0462727BF7E;
+	Sun, 15 Jun 2025 20:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bnr0C+40"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gOH9mKX7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF7627A461;
-	Sun, 15 Jun 2025 20:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A63C1DE8B3;
+	Sun, 15 Jun 2025 20:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750019750; cv=none; b=cRyjkllJGmOBBTHYb6G8TYS/c44P6QVdNWPkk+CLpe5XC39KfXe9buZMhyu8hSIlI41WMH5F830Xcymbng2SMVQ8V/g48J2YKxZWZJAXoWMxS4H3oKQNhIXUXybwaiTQ2CYAvXcVi+IOMKFoH3v5FFruygMGD7/ZMEl5ivjKEks=
+	t=1750020117; cv=none; b=iDx0KEixg4Q4tesCNK4tezhOlYzFViVtNFlHf5DYsYtBT7/u/XJAJl6BauCZafyLGAC1lZqKKQf7pwitWLygKhNVP0rBlU71FTkhQGCyZXatjtGwJ0GqmEVboB66ogPkdKZARETz1wVlso2vH/39V7EEpir8hQs8kJ1PW9s0QKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750019750; c=relaxed/simple;
-	bh=P+A/SuIxPwCnnVoeh+YgWGoVAE9UZmdn8/REv7Bipj4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=puKHbJTzyJQ7SiWsCfoZjLE5D535byFfW/RfoZLoyHU2hZpPkeTiTc/jFkqn6ioBODSCBY0TSnIxke3fBBKuPr4ItrM2jzCS/+7+kH3YQulIPtIwmZaY/JoyC64kaLXUkzuO3jftV65op2Niqj4utYwV7ur5ZwRI1c6Cif3Wgoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bnr0C+40; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EE4EBC4CEF1;
-	Sun, 15 Jun 2025 20:35:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750019750;
-	bh=P+A/SuIxPwCnnVoeh+YgWGoVAE9UZmdn8/REv7Bipj4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Bnr0C+40YOh7gX33NlCE48ljls0CDM8rjCd/wN9AAYbV1mHwv+2lPIwvgaanjG45G
-	 FjzB4pwjMm1kQ5EH5puLrr7k60+dEUCyI+Y60ZenTtxf/EAE3j2aMEkHxqVw4D8fHH
-	 bLC94VS4335Vg8FRm/KvzMnO7LENRso0nFSCxitrsIrehGPTalcW3BGsnyvqYXytRS
-	 bUbYdt+eykRxyq37fQjjB1IuidIYTbjrEhUd+pzujYuqQi7p5Qy+/tF8bgfmtNTRxQ
-	 bU6cp+Qn8TBwQ6HZrK8pGLCOrCWmBqnjnoSgUNiy/H3fxYcE5naYgSfMKxvQ7FCfWA
-	 Q7wdjquUwtxfQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD118C7115A;
-	Sun, 15 Jun 2025 20:35:49 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Sun, 15 Jun 2025 22:35:06 +0200
-Subject: [PATCH v2 4/4] arm64: dts: qcom: msm8976-longcheer-l9360: Add
- initial device tree
+	s=arc-20240116; t=1750020117; c=relaxed/simple;
+	bh=a4gyRtdEznwSU6cfA3mXkQrTb8MEPimItIe4DbY/b/s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Bf/Q/KWXUCGENMO4mT3wFlNjtzIePebsh+CTSLEjOLEmSXt2xJblee7V5bbIZXspbhlL7W6sLZN1TSqel9q9AruJTcEgKy9wKn5To8+ro/1oIn7tAT7YDkCuoTB6rX+fTL2JtomhN68AeP5JSSpviO3WnFVY/4/8U6mFtbHxC9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gOH9mKX7; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-32ac42bb4e4so34195381fa.0;
+        Sun, 15 Jun 2025 13:41:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750020114; x=1750624914; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m8tUEHrU+aAiCA1wzd/2v+KwHHK/16tsTm7dd1xb+Qw=;
+        b=gOH9mKX7RycUlzhO7U+MdAkiUFx58GZOpJTAPsXvRl2+hb2L+qgXqkApg4/aTnO6bi
+         FLx6hBm3wDSi2vGVpPeTPo5Gu0hzLjxAGWnP3TOVzB/BKiD6ldyYb/DgPddGTZrEy8RQ
+         5Gbo2ChmUCzSs6XDPv3wxS+ETp2KU7Dzkvac2o/i8t8Khcv7ZlfPKdiSug4uA+MdXI0A
+         06vm9ynKfZGUqArnQOxgMx0rzrJUEikSENafDTPm8UP5u3Xvh4hFBv14nuJFEZHxfHw5
+         pCC0OBHRo/m+kEw+aPoX8Q+eiCsR0YUlig0roHTFkn8q85TIEipnT2WsNx3pfJPCWOcH
+         abbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750020114; x=1750624914;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m8tUEHrU+aAiCA1wzd/2v+KwHHK/16tsTm7dd1xb+Qw=;
+        b=Srao99apaGx55OAHPMCVx22STgxqBp7F7nStobWZOZGAnsf6qL/gClz3a/4LnCMuIO
+         CXbThHKvHRPATwoTsPozZBrj5rlQ3eqm2g/uyfiLpg+4jvo73/sLFpF5Vv3O+qSQTwM0
+         UTcv6yZ7D31+YXuOt5hOv/LiDWY0oFzgp/SAzQNghyhJIzf7m5TUloDKYqhZMh1mlcfc
+         eeHChFR1NmtpSfnKhvm+qSDXpKlS3vcgnMy0j/TGtxbfkDB9SKhoBmDpWsZxMTQG7kgk
+         tK3PCaNY5X0Y1d2uWFafcbOXd8INZ0803G/xvUowUgS+9S5unjtyKmcZ9VVHvHnl0YAN
+         P/Kw==
+X-Forwarded-Encrypted: i=1; AJvYcCUGzcyhSK4VaUjx/VqJ+OjDPOEf0bpHRZZ/WnQRdLdC7RkmfH+Z+7Yy+t5fR3TIW4QvfoFRzMLvi+gWMlBp@vger.kernel.org, AJvYcCVCFey7PtXPa33QEDTQZfGbM+YE/Q7d21xk3Dy3dKkv2cN1lfAMtDiSI73Hg/Xiizetgrt5cuW/fV22@vger.kernel.org, AJvYcCW4K787SXjJlZ1crxnyDmDXijPRVm6QmtZBHYVvEt9VpSkxQNnOVSVH6a8BgmVRrwafOYae1PO2dP7f@vger.kernel.org, AJvYcCW8zjFdV8dodHghcEMde/5aGoKsEIUigB5WaURFgKOlEp2j8o6gUbtj5U2mdBZ4azTnNQ1lr+NB@vger.kernel.org, AJvYcCWu6dxmMWxLrJZek2hlxjmyHAxJzGFSCXMT9jRblNJn9puAs54E4YBZc2fbllhXh/VUzNVRVz13r52riFmp@vger.kernel.org, AJvYcCXRj0D2ceSyj0aaqgeCCYRpfVQiKaWWSj42/8xf03DL5ORhSqo016F/lklgDlb6u3xN44iKUJ3aKre1ZqM=@vger.kernel.org, AJvYcCXvcWRGPESO98hPKmWc1BCjwny9VohD9sTPKPiS3HtrTSVNz3CEZKY/8Uu1CBobmvaSCeteq97J3Pf1fwJzp0EK@vger.kernel.org, AJvYcCXxpqgfl0myLRXY1WGqeWHVm0tkBh0hTfI2V2tGa6d37ZxOZ6MLdBgPyupzT/VWUhnsBRIHG7QHN9swDRwHsZk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPC24ZMGdId1eMXAe6Xjnznr14A6BRW9lDT+OCYUlzG9TVoPPa
+	4MqWoO4FtLPr4j9uhr3VuYzWHBIYWlzK9FSDFM29oQM+cD/ONlTLo5jv+YlAY4VqYiXaE7s498l
+	QTEYpHxLB4hq52NlWkE8X8ayuiKvBAcU=
+X-Gm-Gg: ASbGnctJT+ocTEKoM242H3DSen76/sHTd2slTCBzDotWBE+l6smcSHcBSqlrSuvpLw+
+	HfYXErO9vpk5QY+sMYXtKvKVgR7bL3kl1T2nVZgyNNMH9n1nqzgJLJpq/hIGnfoYr5+qAGECB9B
+	EgXyiH3eU/fhyEmfSW+E92A7a1t7tnWsDDhtYCrHf77l0RoqHusB4K8AxNQBZOYJbaY8HIAB10O
+	cfMLg==
+X-Google-Smtp-Source: AGHT+IF17qm+FSbVV14Pg7FJ215dDeNSyp0hu+3UB0vAUnPJ/I/b7hzjcOF97wvz/4vYu6TXyZ0HeK2zzMOU3xxjgxE=
+X-Received: by 2002:a05:651c:507:b0:32b:3cf5:2ff3 with SMTP id
+ 38308e7fff4ca-32b4a5a5c9cmr14597681fa.22.1750020113944; Sun, 15 Jun 2025
+ 13:41:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250615-bqx5plus-v2-4-72b45c84237d@apitzsch.eu>
-References: <20250615-bqx5plus-v2-0-72b45c84237d@apitzsch.eu>
-In-Reply-To: <20250615-bqx5plus-v2-0-72b45c84237d@apitzsch.eu>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750019747; l=12211;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=iCvZ4oUsF248e81pz4vKFgOXWY73sktF13U1grP1f1I=;
- b=EHm8qteZDocE9aDNBZvwiN9ZgeTUmPIWqtSW376RASNszZvJA6zGsk7Q/GeY7/JDDMcHTAvLo
- VLSeEgP42LnA2t7irXe+GxQynBYI+JzSrTPxfwuNqy1avryN9tsUuxi
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
+References: <20250611-ptr-as-ptr-v11-0-ce5b41c6e9c6@gmail.com> <CANiq72m1ZWxPgCda1C-8X5XOvEq9Z9JfJZqhU4ZUzZ64=N+2fQ@mail.gmail.com>
+In-Reply-To: <CANiq72m1ZWxPgCda1C-8X5XOvEq9Z9JfJZqhU4ZUzZ64=N+2fQ@mail.gmail.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Sun, 15 Jun 2025 16:41:17 -0400
+X-Gm-Features: AX0GCFsBQDbpDdusKYtZ8m3QzN_wjkIx6XFjpQUGjjmQDdCD-7AoaM2XitZK-IE
+Message-ID: <CAJ-ks9=eWA-CCJn32cVQZhBnz=dgjPTt6av0Uw2m+_nfRXYcbA@mail.gmail.com>
+Subject: Re: [PATCH v11 0/6] rust: reduce `as` casts, enable related lints
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+	Benno Lossin <lossin@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: André Apitzsch <git@apitzsch.eu>
+On Fri, Jun 13, 2025 at 2:14=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
+>
+> On Wed, Jun 11, 2025 at 12:23=E2=80=AFPM Tamir Duberstein <tamird@gmail.c=
+om> wrote:
+> >
+> > This series depends on "rust: retain pointer mut-ness in
+> > `container_of!`"[1].
+>
+> Not anymore! :)
+>
+> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+>
+> Thanks for rebasing, Tamir, I appreciate it.
+>
+> This has a bunch of hits in configfs, cpufreq and Nova [1]. I guess
+> you built without those enabled.
+>
+> Could you please fix those? Since this affects other maintainers that
+> we need to ask the Acked-by to, let's try to at least give them the
+> final state.
 
-This dts adds support for BQ Aquaris X5 Plus (Longcheer L9360) released
-in 2016.
+Oops, I missed this email! I will send v12 shortly with these fixed.
+Is there an easy way to enable all the relevant rust configs?
 
-Add a device tree with initial support for:
-
-- GPIO keys
-- NFC
-- SDHCI
-- Status LED
-- Touchscreen
-
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../boot/dts/qcom/msm8976-longcheer-l9360.dts      | 490 +++++++++++++++++++++
- 2 files changed, 491 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 669b888b27a1daa93ac15f47e8b9a302bb0922c2..80fd9a910af478558bb840f7ce5aa52948912be0 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-tissot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-vince.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8956-sony-xperia-loire-kugo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8956-sony-xperia-loire-suzu.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8976-longcheer-l9360.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-10.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-h815.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts b/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..e524d58cf0a4b7693741036e3988700559a507f0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts
-@@ -0,0 +1,490 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, André Apitzsch <git@apitzsch.eu>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+
-+#include "msm8976.dtsi"
-+#include "pm8004.dtsi"
-+#include "pm8950.dtsi"
-+
-+/ {
-+	model = "BQ Aquaris X5 Plus (Longcheer L9360)";
-+	compatible = "longcheer,l9360", "qcom,msm8976";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
-+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer0: framebuffer@83200000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x83200000 0x0 (1080 * 1920 * 3)>;
-+			width = <1080>;
-+			height = <1920>;
-+			stride = <(1080 * 3)>;
-+			format = "r8g8b8";
-+
-+			power-domains = <&gcc MDSS_GDSC>;
-+
-+			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_MDSS_AXI_CLK>,
-+				 <&gcc GCC_MDSS_VSYNC_CLK>,
-+				 <&gcc GCC_MDSS_MDP_CLK>,
-+				 <&gcc GCC_MDSS_BYTE0_CLK>,
-+				 <&gcc GCC_MDSS_PCLK0_CLK>,
-+				 <&gcc GCC_MDSS_ESC0_CLK>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&hall_sensor_default>, <&volume_up_default>;
-+		pinctrl-names = "default";
-+
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_HIGH>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 113 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&tlmm 101 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_WHITE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+
-+			pinctrl-0 = <&button_backlight_default>;
-+			pinctrl-names = "default";
-+		};
-+	};
-+
-+	reg_ts_vdd: regulator-vdd-ts {
-+		compatible = "regulator-fixed";
-+		regulator-name = "regulator-vdd-ts";
-+
-+		gpio = <&tlmm 33 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reserved-memory {
-+		framebuffer@83000000 {
-+			reg = <0x0 0x83000000 0x0 0x2800000>;
-+			no-map;
-+		};
-+	};
-+
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&blsp1_i2c2 {
-+	status = "okay";
-+
-+	led-controller@30 {
-+		compatible = "kinetic,ktd2026";
-+		reg = <0x30>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		multi-led {
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_STATUS;
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
-+		};
-+	};
-+};
-+
-+&blsp1_i2c4 {
-+	status = "okay";
-+
-+	nfc@28 {
-+		compatible = "nxp,pn547", "nxp,nxp-nci-i2c";
-+		reg = <0x28>;
-+
-+		interrupts-extended = <&tlmm 140 IRQ_TYPE_EDGE_RISING>;
-+
-+		enable-gpios = <&tlmm 122 GPIO_ACTIVE_HIGH>;
-+		firmware-gpios = <&tlmm 109 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&nfc_default>;
-+		pinctrl-1 = <&nfc_sleep>;
-+		pinctrl-names = "default", "sleep";
-+	};
-+};
-+
-+&blsp2_i2c2 {
-+	status = "okay";
-+
-+	touchscreen@20 {
-+		reg = <0x20>;
-+		compatible = "syna,rmi4-i2c";
-+
-+		interrupts-extended = <&tlmm 65 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&ts_int_default>, <&ts_reset_default>;
-+		pinctrl-1 = <&ts_int_sleep>, <&ts_reset_sleep>;
-+		pinctrl-names = "default", "sleep";
-+
-+		vdd-supply = <&pm8950_l6>;
-+		vio-supply = <&reg_ts_vdd>;
-+
-+		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+
-+		syna,reset-delay-ms = <200>;
-+		syna,startup-delay-ms = <200>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x1>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f12@12 {
-+			reg = <0x12>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
-+
-+&blsp2_uart2 {
-+	status = "okay";
-+};
-+
-+&gcc {
-+	vdd_gfx-supply = <&pm8004_s5>;
-+};
-+
-+&pm8004_spmi_regulators {
-+	vdd_s2-supply = <&vph_pwr>;
-+	vdd_s5-supply = <&vph_pwr>;
-+
-+	/* Cluster 1 supply */
-+	pm8004_s2: s2 {
-+		/* regulator-min-microvolt = <500000>; */
-+		/* Set .95V to prevent unstabilities until CPR for this SoC is done */
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <1165000>;
-+		regulator-name = "vdd_apc1";
-+		/* Set always on until the CPU PLL is done */
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	pm8004_s5: s5 {
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <1165000>;
-+		regulator-enable-ramp-delay = <500>;
-+		regulator-name = "vdd_gfx";
-+		/* Hack this on until the gpu driver is ready for it */
-+		regulator-always-on;
-+	};
-+};
-+
-+&pm8950_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8950_spmi_regulators {
-+	vdd_s5-supply = <&vph_pwr>;
-+
-+	/* Cluster 0 supply */
-+	pm8950_spmi_s5: s5 {
-+		/* Set .95V to prevent unstabilities until CPR for this SoC is done */
-+		/* regulator-min-microvolt = <500000>; */
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <1165000>;
-+		regulator-name = "vdd_apc0";
-+		/* Set always on until the CPU PLL is done */
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&rpm_requests {
-+	pm8950_regulators: regulators {
-+		compatible = "qcom,rpm-pm8950-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+		vdd_l1_l19-supply = <&pm8950_s3>;
-+		vdd_l2_l23-supply = <&pm8950_s3>;
-+		vdd_l3-supply = <&pm8950_s3>;
-+		vdd_l5_l6_l7_l16-supply = <&pm8950_s4>;
-+		vdd_l8_l11_l12_l17_l22-supply = <&vph_pwr>;
-+
-+		pm8950_s1: s1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1162500>;
-+		};
-+
-+		pm8950_s3: s3 {
-+			regulator-min-microvolt = <1325000>;
-+			regulator-max-microvolt = <1325000>;
-+		};
-+
-+		pm8950_s4: s4 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8950_l1: l1 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8950_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8950_l3: l3 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1100000>;
-+		};
-+
-+		pm8950_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8950_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8950_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8950_l8: l8 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8950_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8950_l10: l10 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8950_l11: l11 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8950_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8950_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		pm8950_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8950_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8950_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8950_l17: l17 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8950_l19: l19 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8950_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8950_l23: l23 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	bus-width = <8>;
-+	non-removable;
-+	vmmc-supply = <&pm8950_l8>;
-+	vqmmc-supply = <&pm8950_l5>;
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	bus-width = <4>;
-+	cd-gpios = <&tlmm 100 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&pm8950_l11>;
-+	vqmmc-supply = <&pm8950_l12>;
-+
-+	pinctrl-0 = <&sdc2_default>, <&sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep>, <&sdc2_cd_sleep>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>;
-+
-+	button_backlight_default: button-backlight-default-state {
-+		pins = "gpio101";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	hall_sensor_default: hall-sensor-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_default: nfc-default-state {
-+		pins = "gpio122", "gpio140";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_sleep: nfc-sleep-state {
-+		int-pins {
-+			pins = "gpio140";
-+			function = "gpio";
-+			drive-strength = <6>;
-+			bias-pull-up;
-+		};
-+		ven-pins {
-+			pins = "gpio122";
-+			function = "gpio";
-+			drive-strength = <6>;
-+			bias-disable;
-+		};
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio100";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	sdc2_cd_sleep: sdc2-cd-sleep-state {
-+		pins = "gpio100";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_int_default: ts-int-state {
-+		pins = "gpio65";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_int_sleep: ts-int-state {
-+		pins = "gpio65";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	ts_reset_default: ts-reset-state {
-+		pins = "gpio64";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	ts_reset_sleep: ts-sleep-state {
-+		pins = "gpio64";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	volume_up_default: volume-up-default-state {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&xo_board {
-+	clock-frequency = <19200000>;
-+};
-
--- 
-2.49.0
-
-
+>
+> Thanks!
+>
+> Cheers,
+> Miguel
+>
+> [1]
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:429:9
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:467:9
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:479:9
+>
+> warning: `as` casting between raw pointers without changing their constne=
+ss
+>    --> rust/kernel/configfs.rs:564:48
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:721:39
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:764:35
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:783:35
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:764:35
+>
+> warning: reference as raw pointer
+>    --> rust/kernel/configfs.rs:783:35
+>
+> warning: using `as _` conversion
+>    --> rust/kernel/cpufreq.rs:650:45
+>
+> warning: `as` casting between raw pointers without changing their constne=
+ss
+>    --> rust/kernel/cpufreq.rs:650:45
+>
+> warning: using `as _` conversion
+>   --> drivers/gpu/nova-core/driver.rs:22:64
+>
+> warning: casts from `u8` to `u32` can be expressed infallibly using `From=
+`
+>    --> drivers/gpu/nova-core/regs/macros.rs:267:26
+>
+> warning: casts from `u8` to `u32` can be expressed infallibly using `From=
+`
+>    --> drivers/gpu/nova-core/regs/macros.rs:267:26
+>
+> warning: casts from `u8` to `u32` can be expressed infallibly using `From=
+`
+>    --> drivers/gpu/nova-core/regs/macros.rs:267:26
+>
+> warning: casts from `u8` to `u32` can be expressed infallibly using `From=
+`
+>    --> drivers/gpu/nova-core/regs/macros.rs:267:26
+>
+> warning: casts from `u8` to `u32` can be expressed infallibly using `From=
+`
+>    --> drivers/gpu/nova-core/regs/macros.rs:267:26
+>
+> warning: casts from `u8` to `u32` can be expressed infallibly using `From=
+`
+>   --> drivers/gpu/nova-core/regs.rs:35:65
 
