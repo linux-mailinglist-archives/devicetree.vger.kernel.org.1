@@ -1,185 +1,146 @@
-Return-Path: <devicetree+bounces-186014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05305ADA22C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 16:54:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 461E3ADA260
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 17:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEB907A4D63
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 14:52:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73D4318850DA
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 15:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA0B186E2E;
-	Sun, 15 Jun 2025 14:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1116B27A448;
+	Sun, 15 Jun 2025 15:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LJmbuP2d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iNI/8w06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8557F136358;
-	Sun, 15 Jun 2025 14:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE8F2CA9;
+	Sun, 15 Jun 2025 15:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749999244; cv=none; b=X5DiMdZYSMUFmOGpT0YKm4lN9Ed+SkVZ4aJOojD4FEO+qyMQsaY1QN/x+xdOdYuq44eWaw5RijHDhB5LuQK6gj2PrZdDKXU0PEQqldu0scqXhg8FNyqBLBP7Y6qblvc10vwf4HpsDrkRz294ZYSodCZLnFzxQXXru1QHjWOmAbQ=
+	t=1750001924; cv=none; b=Dm8lPbNS+bt76qGlHk0dNp6DknLQBLl198sTaCBKDHx2KLJip35/KnvblQZkdeLddHTFabSN4zYMMjlXR/8ofUHpJEQc3t8cOIq0P1+TJCWIxF4YYPNKnIVXQcMTWZfuZjv1Sn31JBWde93t4kIBJDEkNjeWXIZ3uR5L5XoWxqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749999244; c=relaxed/simple;
-	bh=aZxVuFPB2LMtjNZFrwRoZePqmSmiGoTuVNpBiuhqRjI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gkPtFQkPEfUubA1eM/umSBObQsIsdm2SIxNOd7bb5ktlYBAo6h9huq2b7f83+TL56F7GQV0PkWhxHJEdGTIrIbj5pKXnORKe/R0y1ibqWfQBLHUMIJ94dkjGKb5ATZn3m+uGOHm5jkZ2Ln6m4NgW/7iDe4d/GSwXd1uJC6imkj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LJmbuP2d; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Kt4hHsFV36RpuWHyTnG4rPaSt9Cjr/5M4+STk580b1Q=; b=LJmbuP2dsPCX3BntYuenOEi+F2
-	fO/EYVjq5NGyGgC8NEjJ6YhNYvo3jjWGMWDqGdiI23a313rtjNIRWwgYk/aGA9gZ4GGbsa5R42z5A
-	saX7dG+ksnucnrSAxCCcWwG0Qzlwn/Ut05uDSCG0OjmEKZdtHKcX5ORFL9BpLdQoKQJ8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uQok4-00FxY8-Lq; Sun, 15 Jun 2025 16:53:52 +0200
-Date: Sun, 15 Jun 2025 16:53:52 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Jakob Unterwurzacher <jakobunt@gmail.com>, foss+kernel@0leil.net,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
-	jakob.unterwurzacher@cherry.de, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, robh@kernel.org,
-	Kever Yang <kever.yang@rock-chips.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: support Ethernet Switch adapter
- for RK3588 Jaguar
-Message-ID: <bb3486c6-93df-4453-acc6-deba3c8f7f0e@lunn.ch>
-References: <20250523-jaguar-mezz-eth-switch-v2-1-aced8bf6612d@cherry.de>
- <20250527131142.1100673-1-jakob.unterwurzacher@cherry.de>
- <35e0a925-4cba-41de-8fe4-4dd10e8816f1@lunn.ch>
- <380ba32b-bb9a-411e-8006-127461cac08a@cherry.de>
- <3303d8d4-ec5a-4cdc-8391-ab6e35d76b33@lunn.ch>
- <96d32ce8-394b-4454-8910-a66be2813588@cherry.de>
+	s=arc-20240116; t=1750001924; c=relaxed/simple;
+	bh=Pfeuuw3IsnDBW2D5UO9BFg1ySfLGBBquA323G6W4mEI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lpWx9qnVXU1/5OFTizl7PeyFga85IQKJKYlJhQeAKZZQDEGHbD0iT7DvPy24VGO8aDo0cyeY4G9k2Mt0XAhuRuXvBYK17akJ0nN1xkNs9OjrJUkCnxDJVlEqTC5r/mSpxBGjeohWffuvP6phriEUhRhVZjRs2UYRp4O7GInEY5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iNI/8w06; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so44496275e9.1;
+        Sun, 15 Jun 2025 08:38:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750001920; x=1750606720; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4w6ojSVvxCZBkFChAR2nLk88h1Twoyfnt00LPkC7ZcE=;
+        b=iNI/8w06amzgQCINYvxw2WG276Ckuj0bArYMdvzgi5nJsoiMPV+fSd6vGfSMPggF2O
+         f6FIEOiR2HEvgmwsU2is0SN7IFw3IFqGZJ5JNF4C8z36B4iP/gXwED1ieP08OgxgI2J8
+         YTy3AuFwTqGh9nlecvu1PAZsuRM/MhG1JL/R/vtjwET5OYKo8pBpsK49y7HyILF2iBVG
+         J1Wi1xQzNOJvcm3QTNjbDgrUhgvcKZtzK6RPKE9UtIgDhAHegm3HyDCFkwmlDn69lLHy
+         eAbN1sDm8UVj6BQgh7CVzeo1I5bUUFvJ4d8dC9ZcjDxqGViN8Cgto2T4LD1EgME8EQ6O
+         s/ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750001920; x=1750606720;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4w6ojSVvxCZBkFChAR2nLk88h1Twoyfnt00LPkC7ZcE=;
+        b=buSBDOmXcvZCmvax1fKA4aPHqRRZWoB1p+cvc58bOAPn5ayRNboEa02A52ozMmOuDs
+         r4M2dPvpCh9tY9ORuDB2B+w/spcYZjprDvFDZcNUgJhhtt0IYhMiLe9Q8RVykaBbCG7Y
+         1aXGNwxpc94YJKxB+MrfNQB952fNhA1JLu+sfruT8tMvgZdCviUt0AGwUGmRllXraJVC
+         0Wl9coMc+aNbjL703EeJa0ibcx6Z0driE0foM87RQ78mDzOXn6Aelz7JE5/HU2Xytq6+
+         a6cX1H+N+OUhO2pVMRaSEG0RqP2CYfJYpthfJxuZABuJe8z29r/JCUHLtkPRxcTsdHtC
+         9tGg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxzRIycq1eWlhMn3o3j5suMf+LKS48hy3HY1wMnoAds5F4y+yg9jJB0kLIUgo0c2TVT8owfQkI4Axo5UA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP3O84rfnqgFpnhCwKDmkrs9MYig6t0597WtDwFiz/Z3sfR/q+
+	EN593sp1V/kg+twzUMcYSvGORvjC5d1bxc9IZJ/dfxU56xWvR0LYsg5v
+X-Gm-Gg: ASbGncu1nbTfkCTLRp2DyXtGrWRwB022b6jpACI/6psiBpMbg4853M2IoGXLHHEwCZT
+	r/Bv953MT7gTbze4B2nv9PNdYYIC6KgCtd2S1UgIrQ88fRJXyf34jhzzU0WqjwGOjOVpdEtwSy0
+	hB6SxLmJricQeEJDyu09BAjWWKcemunDBwYYJRaAaR/BfYVJJi8gbJCIw5djqsHekJRnUuEIBYD
+	xpoR9SckR9eZOB7WvVgB7zG/71NN1KXYeJJTmWbvzNivqoq3P3DZ3UkTTzQpE2+YdutIS78pLnl
+	fT5xCAMOLExy1sd+zpL3VlnKN9GegALq0cY/AkDfy5ncn73ulpQBJFqHt64dvQ6erA5J/45yR2n
+	x4LkJew==
+X-Google-Smtp-Source: AGHT+IGoVcAhO+1NBubftFooLD3lc7sYs3mbVA5mxnraWLvf7WIREXdSgu30kDJRwmw5ULOGEm+IRA==
+X-Received: by 2002:a05:600c:3584:b0:451:df07:f437 with SMTP id 5b1f17b1804b1-4533cac908fmr58103055e9.30.1750001920409;
+        Sun, 15 Jun 2025 08:38:40 -0700 (PDT)
+Received: from giga-mm-7.home ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532de8c4b1sm114934925e9.2.2025.06.15.08.38.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Jun 2025 08:38:39 -0700 (PDT)
+Message-ID: <5478c3df766079f4139ba1dfffa2f938ab4a9259.camel@gmail.com>
+Subject: Re: [PATCH RFC 3/3] riscv: dts: sophgo: Add USB support for cv18xx
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang	 <unicorn_wang@outlook.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Yu Yuan
+ <yu.yuan@sjtu.edu.cn>, Yixun Lan <dlan@gentoo.org>, Ze Huang
+ <huangze@whut.edu.cn>,  Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Longbin Li
+	 <looong.bin@gmail.com>
+Date: Sun, 15 Jun 2025 17:38:52 +0200
+In-Reply-To: <20250611082452.1218817-4-inochiama@gmail.com>
+References: <20250611082452.1218817-1-inochiama@gmail.com>
+	 <20250611082452.1218817-4-inochiama@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <96d32ce8-394b-4454-8910-a66be2813588@cherry.de>
 
-On Fri, Jun 13, 2025 at 04:27:54PM +0200, Quentin Schulz wrote:
-> Hi Andrew,
-> 
-> On 5/28/25 3:09 PM, Andrew Lunn wrote:
-> > On Wed, May 28, 2025 at 09:56:51AM +0200, Quentin Schulz wrote:
-> > > Hi Andrew,
-> > > 
-> > > On 5/27/25 6:18 PM, Andrew Lunn wrote:
-> > > > On Tue, May 27, 2025 at 03:11:42PM +0200, Jakob Unterwurzacher wrote:
-> > > > > > @Jakob, is this something you could check? devmem2 0xfd58c31c w 0x3c0000
-> > > > > > should do the trick to disable the circuitry according to the TRM?
-> > > > > 
-> > > > > I measured TXCLK vs TXD3 on an oscilloscope on gmac1:
-> > > > > 
-> > > > > 	Setting	Decimal	Actual TXCLK delay (ps)
-> > > > > 	00	0	47
-> > > > > 	0a	10	283
-> > > > > 	10	16	440
-> > > > > 	20	32	893
-> > > > > 	30	48	1385
-> > > > > 	40	64	1913
-> > > > > 	50	80	2514
-> > > > > 	60	96	3077
-> > > > > 	70	112	3565
-> > > > > 	7f	127	4009
-> > > > > 
-> > > > > 	off	x	-315
-> > > > > 
-> > > > > Setting = tx_delay (hex)
-> > > > > Decimal = tx_delay (dec)
-> > > > > Actual TXCLK delay (ps) = Measurement from oscilloscope
-> > > > > 
-> > > > > Plotting this we can deduce that one tx_delay unit is about 31ps.
-> > > > 
-> > > > Nice to see somebody actually do the measurements. Based on this, it
-> > > > would be good to implement:
-> > > > 
-> > > >           tx-internal-delay-ps:
-> > > >             description:
-> > > >               RGMII Transmit Clock Delay defined in pico seconds. This is used for
-> > > >               controllers that have configurable TX internal delays. If this
-> > > >               property is present then the MAC applies the TX delay.
-> > > > 
-> > > > For the moment, please limit it to just the device you measured it on.
-> > > > 
-> > > 
-> > > What exactly do you mean with "limit it to just the device you measured it
-> > > on"?
-> > 
-> > Nobody seems to know if rx_delay & tx_delay operate the same across
-> > the whole range of SoCs. I don't particularly care if these properties
-> > are difference between SoC, they are vendor properties, with
-> > undocumented magic values. However 'tx-internal-delay-ps' is
-> > standardised, and has a very clear meaning. I don't want it used
-> > unless somebody has performed a measurement and we know that 2000
-> > produces a 2ns delay.
-> > 
-> > > I'll need to implement reading the delay from the stmmac driver to use this
-> > > property, do I need to restrict reading this property to the SoC we tested
-> > > (RK3588)?
-> > 
-> > Yes, please only allow it to be used on RK3588, and any other SoC you
-> > can test and verify its behaviour.
-> 
-> Coming back to this topic, I'm unfortunately the bearer of some bad news.
-> 
-> I implemented the suggested logic (see at the end of this mail) and then
-> went to validate it with Jakob's help. Unfortunately, it seems that the
-> delay value really isn't stable or reliable.
-> 
-> We tested the same adapter with two different main boards (the same product,
-> just two different units). With a value of 0x40 for tx_delay (which should
-> be ~2000ps if we have a 31ps per tx_delay unit as empirically decided), we
-> have one board with 1778ps and one with 1391ps. Following a hunch, we
-> started to stress (or cool) the device (with stress-ng/a fan) and it did
-> slightly change the result too. Changing the CPU operating points (and by
-> extension at least CPU clocks) didn't impact the result though.
+Thanks for the patch, Inochi!
 
-Thanks for taking such a scientific approach to this. Most developers
-try values until it works, and call it done. It is nice to see
-somebody doing some real study.
+On Wed, 2025-06-11 at 16:24 +0800, Inochi Amaoto wrote:
+> Add USB controller node for cv18xx and enable it for Huashan Pi.
+>=20
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 
-Russell quoted the standard, which says the delay needs to be between
-1ns and 2.6ns, which is quite a wide range. So for a tx_delay value of
-0x40, nominally 2000ps, your two values are within that range, and so
-conform to the standard.
+Successfully tested in host mode on Milk-V Duo Module 01 EVB:
 
-> While this could be observed with tx_delay property too, this property
-> doesn't claim to provide a value in picoseconds that tx-internal-delay-ps
-> would (but at the same time this didn't stop it to be implemented for the
-> DSA switch we have which claims "more than 1.5ns" and nothing more, so maybe
-> that would be acceptable?).
-> 
-> I feel uncomfortable contributing this considering the wildly different
-> results across our very small test sample pool of two units and slightly
-> different operating temperature.
+Tested-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 
-I can understand that. But there is another way to look at this. I am
-making a big jump from just two boards, but it seems to me, tx_delay
-and rx_delay are pointless, if they produce such a wide range of
-values from what should be identical boards. They cannot be used for
-fine tuning because the same value has a 387ps difference, which is
-huge compared to the 31ps step.
+> ---
+> =C2=A0arch/riscv/boot/dts/sophgo/cv180x.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 14 ++++++++++++++
+> =C2=A0arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts |=C2=A0 4 ++++
+> =C2=A02 files changed, 18 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts=
+/sophgo/cv180x.dtsi
+> index 65eceaa5d2f8..3ea3a1af103f 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> @@ -428,5 +428,19 @@ dmac: dma-controller@4330000 {
+> =C2=A0			snps,data-width =3D <2>;
+> =C2=A0			status =3D "disabled";
+> =C2=A0		};
+> +
+> +		usb: usb@4340000 {
+> +			compatible =3D "sophgo,cv1800-usb";
+> +			reg =3D <0x04340000 0x10000>;
+> +			clocks =3D <&clk CLK_AXI4_USB>, <&clk CLK_APB_USB>;
+> +			clock-names =3D "otg", "utmi";
+> +			g-np-tx-fifo-size =3D <32>;
+> +			g-rx-fifo-size =3D <536>;
+> +			g-tx-fifo-size =3D <768 512 512 384 128 128>;
+> +			interrupts =3D <SOC_PERIPHERAL_IRQ(14) IRQ_TYPE_LEVEL_HIGH>;
+> +			phys =3D <&usbphy>;
+> +			phy-names =3D "usb2-phy";
+> +			status =3D "disabled";
+> +		};
 
-It seems to me, rx_delay and tx_delay should be deprecated, set to 0,
-and let the PHY do they delays. If i remember correctly, that is what
-you ended up with for you board?
-
-	Andrew
-
-
-
+--=20
+Alexander Sverdlin.
 
