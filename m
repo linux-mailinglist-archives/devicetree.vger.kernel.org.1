@@ -1,171 +1,175 @@
-Return-Path: <devicetree+bounces-186031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 595E7ADA2F8
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 20:29:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9063ADA347
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 22:12:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EB0F7A55B0
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 18:27:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A5B160854
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 20:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270E2260596;
-	Sun, 15 Jun 2025 18:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB97826656D;
+	Sun, 15 Jun 2025 20:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YIh+KBm8"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Li4/sqEA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5223B25776;
-	Sun, 15 Jun 2025 18:29:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A88325F96C
+	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 20:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750012154; cv=none; b=WeGQd4WeHD/fLxGkv82s05tRfK/pjRppSSr4f/FlJGcJxRImD9+70Su6kMVFWaoSAlmc0TgoHYV8qniZ/WPyIt7YSYZHzKku++fFP1qWgeDa96lU2VAz5BGe/KQSHxO00H0QpAR169cTIxvK36y3BJ/Hpg4XgsjLZ4E8NRWce2o=
+	t=1750018363; cv=none; b=Ug+qdm98JqlZ/oIP3FikxkeO5kzIjDIPLsopBLTN/f7Of6FnjJsZ8XQgWlMEwIQKMTz6EqLbfdirXsJdwW2w+Met2SmwsM3XIyARSYe+roejiTia+N1U0v1p/Sr6k01qoXiDAUBQPjac6KNdohQedyVaJM3aMYG9zpVwuBh9EuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750012154; c=relaxed/simple;
-	bh=C3lOkzqrABff39iJT4/2npmJrwhUW+QYorbNRbYTHBw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AJQLikW5AeAowzj35YURo++B1cHoDNh56xayrD6v0lYbZVNr0uxPO+gPKS82m9dxBadGZZepySAr9Xvrr980MSUj1Q1R7vx91PyRNO1/zoQXeX4H5IHrVjs46aCtKBeERYsEEFdAxAk5igoGkYLorQLTTc531LnZ3A8QKIdR1D4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YIh+KBm8; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a507e88b0aso3728053f8f.1;
-        Sun, 15 Jun 2025 11:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750012150; x=1750616950; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=foMShdEYfYc8JBQ1H9qjE5Pp7YV/FWiy7YlvAva/c1Q=;
-        b=YIh+KBm8z9zZMjlOKcE2DjKyeIM2AFIWGQWD0E2NSd15lca6GyXvkvVKriNzpJBQuR
-         AvMkystGQMHuVkNZwBuJj/VltNCKmLpiDzw9AmiZqAVSICjK14OMAHpxlD4MahklfWyX
-         u/Bp70DpnjMGw0DOX1HTGe/5tcq89BlipZ1BTmjj0JGxDdjZLPc+qrY8Y7zFQdZ3RGGM
-         ZYh0CtFqxt/8VTlINktdcM9PwhQXim3i/kgnA6Rv+tdXCXxV8voLEbZPX7omAFjGt5uU
-         5/qjTtOrqz0e6xAAK5CVU3Fw3Pr/IzRkvcMn7eeOhejRoJJY9wIsDqK5OLsXwqe3kIxk
-         4VtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750012150; x=1750616950;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=foMShdEYfYc8JBQ1H9qjE5Pp7YV/FWiy7YlvAva/c1Q=;
-        b=niXRbSA+Ba/xorTsOEEJFD9Sm8eAWozfDOK063YIr9v8V+gb6lRZG3y4VL5WO7MHbU
-         574F+43BMhRrpR2CRHC/ezNNxR/RpVP1KtyEbMMfrbzjlUft/5gzhGDRA6Z4NdxFu4tK
-         yMs/Nn4VkHBew+crv70+FR/avWG4HFGpLx8DkdpFLqzqYhUGy0/A7NErUnBtQBoTSo2K
-         AavFPcGueKdzU4QzV3mgNDDBzVbLKn3UiwCn6XUylqVBOOmkgIx5VzbmaOGlcP0U8bnZ
-         D0FVTPkQOwfo/oqLaVbtb9gcpLnjjH2rEsoCVW/wzDoL5YleVvefiymw4NQ6uhLBKY5v
-         4aVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUucov2lmIjGLwCXkWy2lf39hzLj7+tYXuzscYpb/SqGcVA9DwErsiRszhATg+MgoBozYo23gMWr7gaUmxZ8A==@vger.kernel.org, AJvYcCVoeWwE3R3eCizDJdjcytZmTpjuAPssoxoWcUBN1QdhfvB9UyXQ/xxL+5r1gpB1h+64AR1yzm8CHtrZ@vger.kernel.org, AJvYcCWQuppP6QFfT8jCHQ/59cEUPgXt4YA5CgVbMFuOXhK9BliyMFvu6EgEniFjR5SHC7UrJICgQQEQNPn9He2T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8yBKrKCfjU10pjb71OR7iEvmGVIDXoUIf4KMGlJ84OhFfcmNh
-	dCQAnn2BhM0k8oEdwtUJjwPTC0np9pZEoVyKGPTmvq+KmHmEqEDnMpI=
-X-Gm-Gg: ASbGncsq3twla81MxjCf2EI9XyfeBJ3+O+D3uhbvUnzQ5HwIx6vEzT+GIW1K2fv9P27
-	BnWpuP53MGNQjfwg6eMZ61z7tsHhwHNfcuUV1+9TfJBs8J+nqaOk19xODoxGVSzfeNCAKX/jtEA
-	Z7EiHB2Q3rSJRk6tYD/Dqmr8Ns324XCLTLVB3V4YJVKsLMNRFY3PasxVxH0ptUQannsmRtxz8Ky
-	FE8h2dUjwv5iByj28Od5PD5nwKnV3jZsrUiRq0cquvXOTM6hEWG66KBP4OncEfGoYwQSEjaDy7x
-	yQKI9S1rIvcJe1rkxdxe3AnNRusJbIMgrwSLpgxTgj5SVDQxOKIdnWQ0Hw1L6/dwIlrdkMv9qSA
-	=
-X-Google-Smtp-Source: AGHT+IHzcr/OQUl46bEd3VZNisBnnNoyG1XYdc0O5SgHL7n17Rwe1f1L0hLWYYhUTLp21maBk1d3UQ==
-X-Received: by 2002:a5d:64ee:0:b0:3a4:e75f:53f5 with SMTP id ffacd0b85a97d-3a5723a26f8mr5623912f8f.35.1750012149242;
-        Sun, 15 Jun 2025 11:29:09 -0700 (PDT)
-Received: from [192.168.20.104] ([84.226.118.249])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568a6389esm8351124f8f.27.2025.06.15.11.29.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jun 2025 11:29:08 -0700 (PDT)
-Message-ID: <d2eabc30-f1d2-47d8-82f9-86f6f7a705bb@gmail.com>
-Date: Sun, 15 Jun 2025 20:29:07 +0200
+	s=arc-20240116; t=1750018363; c=relaxed/simple;
+	bh=tWExRFroJUbV1gBcwbH+1djsdx6lJrpRJB9dBe6L6NE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NNBHUVO8ZcX5JI8Kbck3NF5fmLbjDlbmaWNygYIq/hwffiO1glp+c00i0ff5Rtet1aKWLX6s3NGaUzFQTrPAf3FS7O8pBE5WARRHTRe+IQ1jrlJ8TCTokL/vVDX2DTx8RMcGzrR1xa2abMGjtgaH6OTi9fJO4LF8vyQDE0DuaGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Li4/sqEA; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1750018361;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Xr+gpFXzM4wh3Cz5mie7JbHQetEfhOzTIahUWOoCnLw=;
+	b=Li4/sqEA2AraAev+uoedPqbu1u2vF50I34Xb606dLwsEibP5HznbX3R87XwMo0DUOY/pQr
+	TBRcqsKeKMn1mVOKvTwm0nNmRU6uWJidhn00pnbTCX/9MU/PIG5OuPlOdivrtaulRw5SkM
+	EuvS8Itw6nYOQFac3L06TZHpDXXHhpY=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-533-JpH55DfhMBKfn9-qvYA-3Q-1; Sun,
+ 15 Jun 2025 16:12:38 -0400
+X-MC-Unique: JpH55DfhMBKfn9-qvYA-3Q-1
+X-Mimecast-MFC-AGG-ID: JpH55DfhMBKfn9-qvYA-3Q_1750018355
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 75BC619560AA;
+	Sun, 15 Jun 2025 20:12:34 +0000 (UTC)
+Received: from p16v.luc.cera.cz (unknown [10.45.224.53])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id DF07B180045B;
+	Sun, 15 Jun 2025 20:12:24 +0000 (UTC)
+From: Ivan Vecera <ivecera@redhat.com>
+To: netdev@vger.kernel.org
+Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Shannon Nelson <shannon.nelson@amd.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Michal Schmidt <mschmidt@redhat.com>,
+	Petr Oros <poros@redhat.com>
+Subject: [PATCH net-next v10 00/14] Add Microchip ZL3073x support (part 1)
+Date: Sun, 15 Jun 2025 22:12:09 +0200
+Message-ID: <20250615201223.1209235-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-dell-xps13-9345: Disable
- PM8010
-To: Bjorn Andersson <andersson@kernel.org>,
- Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: bjorn.andersson@oss.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, laurentiu.tudor1@dell.com
-References: <20250318-xps13-no-pm8010-v1-1-c46236d96428@oss.qualcomm.com>
- <Z9qXFLmnae86_GT9@linaro.org>
- <a7zyhmv5lqxl2l5rdg2x5g55wokm6ztwvzwrfkyeignwdromjr@afpe7zwsmkt2>
-Content-Language: en-US
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-In-Reply-To: <a7zyhmv5lqxl2l5rdg2x5g55wokm6ztwvzwrfkyeignwdromjr@afpe7zwsmkt2>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
+Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+provides DPLL and PTP functionality. This series bring first part
+that adds the core functionality and basic DPLL support.
 
-On 3/19/25 15:00, Bjorn Andersson wrote:
-> On Wed, Mar 19, 2025 at 11:06:12AM +0100, Stephan Gerhold wrote:
->> On Tue, Mar 18, 2025 at 10:17:02PM -0500, Bjorn Andersson via B4 Relay wrote:
->>> From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
->>>
->>> The Qualcomm X Elite reference design uses the PM8010 PMIC for camera
->>> use cases, but the Dell XPS13 doesn't. Disable this PMIC to avoid the
->>> error in the kernel log caused by an attempt to access it during boot.
->>>
->>> Fixes: f5b788d0e8cd ("arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345")
->>> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
->> Usually we do the opposite: disable nodes by default that may or may not
->> be there and enable them where needed. E.g. for the 4 SMB2360 instances
->> in x1e80100-pmics.dtsi.
->>
->> I think the same approach would also be preferable here. You shouldn't
->> get an error in the log just because you didn't go through all of your
->> DT includes and checked if you really have all of the components listed
->> there. I think it's okay to enable PMICs that are more or less
->> guaranteed to be there, but clearly this is not the case for PM8010.
->>
-> That's reasonable. Have there been reports of this error from anyone
-> else, or should I go ahead and enable &pm8010 on all !xps13 devices?
+The next part of the series will bring additional DPLL functionality
+like eSync support, phase offset and frequency offset reporting and
+phase adjustments.
 
+Testing was done by myself and by Prathosh Satish on Microchip EDS2
+development board with ZL30732 DPLL chip connected over I2C bus.
 
-Hi all,
+---
+Changelog:
+v10:
+Usage of str_enabled_disabled() where possible.
+v9:
+After discussion with Jakub Kicinski we agreed that it would be better
+to implement whole functionality in a single driver without touching
+MFD sub-system. Besides touching multiple sub-systems by single device
+there are also some technical issues that are easier resolvable
+in a single driver. Additionally the firmware flashing functionality
+would bring more than 1000 lines of code with previous approach to
+the MFD driver - it is not something the MFD maintainers would like
+to see.
 
+Ivan Vecera (14):
+  dt-bindings: dpll: Add DPLL device and pin
+  dt-bindings: dpll: Add support for Microchip Azurite chip family
+  dpll: Add basic Microchip ZL3073x support
+  dpll: zl3073x: Add support for devlink device info
+  dpll: zl3073x: Protect operations requiring multiple register accesses
+  dpll: zl3073x: Fetch invariants during probe
+  dpll: zl3073x: Add clock_id field
+  dpll: zl3073x: Read DPLL types and pin properties from system firmware
+  dpll: zl3073x: Register DPLL devices and pins
+  dpll: zl3073x: Implement input pin selection in manual mode
+  dpll: zl3073x: Add support to get/set priority on input pins
+  dpll: zl3073x: Implement input pin state setting in automatic mode
+  dpll: zl3073x: Add support to get/set frequency on input pins
+  dpll: zl3073x: Add support to get/set frequency on output pins
 
-Revisiting this change in context of Dell XPS 9345 and now Lenovo 
-ThinkBook 16 [1] (and upcoming Lenovo Ideapad 5) as these do not have 
-pm8010.
+ .../devicetree/bindings/dpll/dpll-device.yaml |   76 +
+ .../devicetree/bindings/dpll/dpll-pin.yaml    |   45 +
+ .../bindings/dpll/microchip,zl30731.yaml      |  115 ++
+ Documentation/networking/devlink/index.rst    |    1 +
+ Documentation/networking/devlink/zl3073x.rst  |   37 +
+ MAINTAINERS                                   |   10 +
+ drivers/Kconfig                               |    4 +-
+ drivers/dpll/Kconfig                          |    6 +
+ drivers/dpll/Makefile                         |    2 +
+ drivers/dpll/zl3073x/Kconfig                  |   36 +
+ drivers/dpll/zl3073x/Makefile                 |   10 +
+ drivers/dpll/zl3073x/core.c                   |  967 +++++++++++
+ drivers/dpll/zl3073x/core.h                   |  371 ++++
+ drivers/dpll/zl3073x/dpll.c                   | 1494 +++++++++++++++++
+ drivers/dpll/zl3073x/dpll.h                   |   42 +
+ drivers/dpll/zl3073x/i2c.c                    |   95 ++
+ drivers/dpll/zl3073x/prop.c                   |  358 ++++
+ drivers/dpll/zl3073x/prop.h                   |   34 +
+ drivers/dpll/zl3073x/regs.h                   |  206 +++
+ drivers/dpll/zl3073x/spi.c                    |   95 ++
+ 20 files changed, 4002 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+ create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
+ create mode 100644 Documentation/networking/devlink/zl3073x.rst
+ create mode 100644 drivers/dpll/zl3073x/Kconfig
+ create mode 100644 drivers/dpll/zl3073x/Makefile
+ create mode 100644 drivers/dpll/zl3073x/core.c
+ create mode 100644 drivers/dpll/zl3073x/core.h
+ create mode 100644 drivers/dpll/zl3073x/dpll.c
+ create mode 100644 drivers/dpll/zl3073x/dpll.h
+ create mode 100644 drivers/dpll/zl3073x/i2c.c
+ create mode 100644 drivers/dpll/zl3073x/prop.c
+ create mode 100644 drivers/dpll/zl3073x/prop.h
+ create mode 100644 drivers/dpll/zl3073x/regs.h
+ create mode 100644 drivers/dpll/zl3073x/spi.c
 
+-- 
+2.49.0
 
-Perhaps safest and easiest is to simply disable pm8010 in 
-`x1e80100-pmics.dtsi` as proposed and _not_ enable it on any devices, 
-since its known to not be used anywhere _yet_? As its a camera PMIC, the 
-only submitted upstream (did not land yet) change that utilizes pm8010 
-on X1/X1E is Bryan's CAMSS series that enables camera on CRD [2]. There 
-are a few other laptops that have patches to enable the camera (my 
-Zenbook, Bryan's branch on Gitlab for few more laptops) but those were 
-not submitted yet, so can be easily changed to explicitly enable pm8010 
-before submission. This way we could simplify this change and not have 
-to figure out which of the upstream devices do in fact have pm8010 onboard.
-
-
-On XPS 9345 specifically failure to probe pm8010 leads to power button's 
-short press not working for shutdown/suspend (only long press kill 
-laptop power), which is a minor but not irrelevant detail, hence 
-bringing this up.
-
-
-Thanks,
-
-Alex
-
-
-[1] 
-https://lore.kernel.org/all/20250607-tb16-dt-v6-4-61a31914ee72@oldschoolsolutions.biz/
-
-[2] 
-https://lore.kernel.org/all/20250417-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-5-3fd4124cf35a@linaro.org/
-
->
-> Regards,
-> Bjorn
->
 
