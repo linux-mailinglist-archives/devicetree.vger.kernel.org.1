@@ -1,99 +1,99 @@
-Return-Path: <devicetree+bounces-186010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B2ECADA1B0
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 13:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D378FADA1BC
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 14:29:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F8AD3B10F1
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 11:38:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA0393A72A9
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 12:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D0C264F89;
-	Sun, 15 Jun 2025 11:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F50265CDE;
+	Sun, 15 Jun 2025 12:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nIxCng89"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fMOBG+HU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700F620A5D6
-	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 11:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9364A265286
+	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 12:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749987543; cv=none; b=R/92YsTbhSui2Q6x7BKZ35pDffRBM8174LoXHTFBnDv+9AzHHDTSI8Q/cg+siKkzSudMQRcyZDDwUcPY5ELV11kD0KI5fVER7AmKQKQTjv8cKaoLZxwVS2pwjT2x1hBD2B2aS8wT/sGlDjpdDgF6KRxXuI9gPfSp4DcdDsZI388=
+	t=1749990538; cv=none; b=CzBDmtSTQCVE8RNt1a6zqNcTB1MmnvVsqSoHgI7xLcWMdQSRVY3ca3lUj3877NLma0FrCWS/WSLEtY09iMoPlV7JDAoiBGG1T2viDg6b2YAw+tuiQfLw1wNXv4QhtsCSplouRqefThD0RAb3O7x1BBf2bX1nX19M7TkOxWPLBds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749987543; c=relaxed/simple;
-	bh=1NEF4CuZl6XkHdOPgpRvdy/DJwiozgv/UKWN5RSkn7I=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ayjqglMZM5naEW9K5L+DT79OEQU3rB92dYMeVSfMkVPFpDZ+vEaJ5Q6LCzVyGkilXvRnLGJSibKgoTVhuBppHGmeGTIBaZxh1sz768+LGjzT7oQdOwFmTc3LL7N1F6+e/OppKEToiU4lo8pLysryrEvPLV7PgIOi0cD7V4sExxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nIxCng89; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1749990538; c=relaxed/simple;
+	bh=M45SIzuVU69TSU8N0h5Dos5aeC4gCWkcC+H5KqagCHw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p1rTrduQ61l3Vg/GTSeYKUKa9Q6jo+SKy9uyQCQcnvfKW2Xuepsepzzu9PeCXI6x1oFSdX6YCU/oVnf4S4pz66Q533yKYSHEJ+RQyD0KlJjV63TRuGwGsbMwGGakXeUtqB6R6bMpLeLuHRqBkcyghY7NfUJc3W3KUr+W9rIdeH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fMOBG+HU; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55FAiHxp006422
-	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 11:39:01 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55FCGTGV024963
+	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 12:28:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=UBoqX+3Hym0qFKqFeJ3z8WDW
-	1r38LQFsqZKGNgNTNII=; b=nIxCng89HHNUp82AHFrMfHUofZpSIEatGzJIRGXg
-	nFO/+HPocd/chbvjqDnUcYlen2HvDVF9FLU6q7fhhIajEDut4OI7jzAVN3MP5fjW
-	aP6IHiEa9jjAP8ZRlqGKrPvqL4klvk0mUiAJzSyeiurs8Up02cMn5lSrjYOtO5R0
-	41QWK7mCzL5vFyV3eaVDyMbxTqTeFv7+OO5OultjDw7U2dkFfFYYbYMRH71Y4Ahl
-	uE9v9gYuJZ5SJdncJ9aHWOqTjDLOdfvFmmHgawZS5cwSZ/29NdUTe7XJ0xdeeCkB
-	rOqNKa5KWeiCX058AXotW1Tlxne5NAdIWr5XmwI8UHc47g==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 479qp5gcgq-1
+	:references:subject:to; s=qcppdkim1; bh=SYFjLzTPjEjy1T3L3ljYt4I9
+	xb4e1sH2nbCAumXDDS0=; b=fMOBG+HUBqyJFEz2bxEbvI4cEQuhqdd125SlzlYk
+	eBXaHMm37lN/9LIEq1SiZPxwossOho7HyeNa5cSN9tXnWz1ZKIYKDqWyXiHSH79W
+	wq1Yvia0lKqiQHx1iDNCmx0n1HpdOarfz8wZ/4rCD+dSaQVKbbuLkektO8X6lSru
+	0X9R7dIprCQj2EajA/TVS+VMGtPjzS++JFZ6OgYE9B3RARy7khadD6uLTRLiWZBB
+	lxihEnRAR/qqZdJOSWEsPa5ryATYk3oi7GcaidnnWh2B3t8CrkrFvZALcf2Z0Df1
+	hQ7ysB2elqk3/zv+5Og8p1B5UBxh/ocLdPVCixty/vIt1Q==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791ug9ttf-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 11:39:01 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fb3654112fso64576366d6.3
-        for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 04:39:01 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 12:28:55 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d3cbf784acso315094285a.0
+        for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 05:28:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749987540; x=1750592340;
+        d=1e100.net; s=20230601; t=1749990534; x=1750595334;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UBoqX+3Hym0qFKqFeJ3z8WDW1r38LQFsqZKGNgNTNII=;
-        b=BCKyo4kxZt0Bxj5v3hlHKlYjkQrnphgYxU5+xYbCPFIWgocFpMLFyLlkQLnEQymn+2
-         7FkEdRwQ78E0whFj6OOZSztCnAR6KhJPWeBrE2NyMwc1kgV/rBB+yb+BhStsCp6plxPF
-         rydSisQXC3wuS0IDu5ImpfF7Zi+Z91SvS/dSyOulGWuFOoFmQtr8nTlK+nQkCL0aaOv6
-         qauYCISMF/5/6xcSVcixkQFOfI+5IMagOSaC9S9BOn33/ErCUTHkweyG/f5J5PMk1lng
-         TvyjBJl1P0fLQt19dUU1JLHRkglvof6uXOVGGOgak5gpLpCjBuj2Gs6ugaQiavwpgWYP
-         hyWw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8S1YQ1Uurm3zHolYlEFYhuxWg3V9AOIjvgqhM8MrHIMqu1I/PRf4Uvbs+gjwUURpsZ1aXx28eoxbr@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywzafcq7KqNYBIkitz0UJqgzDgBzHHfrHy4SKjfGZ7TxDGr7/qk
-	wkZO9e3rVDmTtXgE32HRJkudf34HeRJ4/VjMwvJ6W7GWbDNyepdB0yAOXx3LrHAwkZJg3UzUl+J
-	4DElgu+M1FaLxqJDhCAAQSQzTDRSdhDbwOUQKsfgdHbUgUVy+1/Rk+wy6e95m7m9s
-X-Gm-Gg: ASbGncsIUV6cXPluUkYS2BH9W26QA5yT9jLtrNyBi4RKFzWVGdmhSVDcCJMFNWrslTt
-	GiwHr1EGAUZzWQXOz+Q22XNxAvFkGDKVX5CnrBN9DkIn0E8tCUzhoaOU9H6ULjPGVGBub4+4JjE
-	hkxyRmtpXHRlCr5W/+L+z5eJIml02vGXGz/AIcDKY8zmkBuz1LOqanx9Farbn6A8RslauRGkSh1
-	50DSWt9d2zggwUuuBG/EFSbIwAc2mEtz4+Rmg1gk6NncGUJ4AwWgJf2gBYB4RRKD4Ktmcv+HC9s
-	7kinC2uYlrI1PU2TlSpZiwKBcj5R1PzD0iJSUQ7/h8Ymmf5yvmSVL9KOZg==
-X-Received: by 2002:a05:6214:5887:b0:6fb:25f:ac8c with SMTP id 6a1803df08f44-6fb47776ff0mr105472366d6.31.1749987540197;
-        Sun, 15 Jun 2025 04:39:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFnDnD2gFuBvFJWw1NO2xhhVjbSbBgo0uadoGraxhCPWnt0fyCvH3k9hDcI8uklWLjMXFdeTA==
-X-Received: by 2002:a05:6214:5887:b0:6fb:25f:ac8c with SMTP id 6a1803df08f44-6fb47776ff0mr105472026d6.31.1749987539808;
-        Sun, 15 Jun 2025 04:38:59 -0700 (PDT)
-Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b4c969sm7401734f8f.85.2025.06.15.04.38.58
+        bh=SYFjLzTPjEjy1T3L3ljYt4I9xb4e1sH2nbCAumXDDS0=;
+        b=vO1ITY9NhbPs0t2cDfPHoNCpqGeIWBVRK4FhngYBIAivknFE3OwsuJp7F9/YtQ2ktu
+         FJrtQkK+RxxJRr+BBjQMLQikiHiN0NWf/YacsD8w1y+leocq3AbD8vtXfoP/aTEYLKvk
+         Sh2Qop44mzVgHXBwTeZGA2BpKPkeWWSrtMg7qfKftt1inzAT3lKGMKREACia6AxnvbOF
+         wxc6tFCv6V0feXOpQncU2/uXqH4auTp4QujdZKosV67K1b5UHuLWJwSrnI3bjzxKTiFz
+         l9C0sTaiFpPwqaB2Jnji9GHcERhXIZmKMl6wWWv7onCiwNg6GH/ZXZvxBWuIcBbaqO1c
+         tsaw==
+X-Forwarded-Encrypted: i=1; AJvYcCVf2CMB6bZy9uHZd3RKOm19Yhm5l0z9jv3mv9BOP1IMCWp28DVdL/siGqYz81qdaIGhtvKakv0J+RGV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWs22kdvuhcYHZ1//GC9I6rWnDvQKEcNiju8NtOzR/QIVc9zi6
+	huqJOWClslums4akPsymy6BTXaZxx02iiXDL4HkHVPTrYfEtMtTLlD6K1xflHEiPIuTPhA+XUFG
+	kUFe2F130+r/AYo6HJNKHJfRZQQ/Kq204yIHk8LDwaIVdazpDuPnM2SJQlk8Bbf3WYaFc4GMQz0
+	o=
+X-Gm-Gg: ASbGncvEDfjTgddBRxiqRsrqAfAKctrUdU+XdDWmSJWlhjXzvfniiiloqW11HG079re
+	60s0esqmHGM67pvllbr+JQ9q4dbNRqYDlV17TzLnaq6JQ5B/qzhYjkgjKp4DFIbaokLP5T9E5a5
+	V2hRcwKi5G+FxtIY8iBZ5zgzRR6i+xmFWARekEMsXVOe9nrYHkxSJO9aqIq/tvv773hF+JWZJRS
+	zCRq5oblv8BJhw/HUjnTouQ/5iGDLEM3DeVNBPGr5UBsi4luJsV/JjFYxmQYOnnkvPNGeaCJp00
+	3xpRgrrMmVYuM+yYj6ZMww9B4Ip6/VZQ9NMADRYiwOA+j45IfWazxf9sj/iR7YLJIUJcoEYtSpU
+	jcnuK2iSxDxICuv+/9nBWqK3SVHbWgv9UlE0=
+X-Received: by 2002:a05:6214:f2d:b0:6fa:b03f:8a39 with SMTP id 6a1803df08f44-6fb477eccc2mr95349556d6.35.1749990533624;
+        Sun, 15 Jun 2025 05:28:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFecrMlgiZHiVgQc0xoFYv6AZL3hQTMwvIvIFgGgIayhcp13yX0wnWr5kkUSjDSPZBYNKxgyA==
+X-Received: by 2002:a05:6214:f2d:b0:6fa:b03f:8a39 with SMTP id 6a1803df08f44-6fb477eccc2mr95349196d6.35.1749990533090;
+        Sun, 15 Jun 2025 05:28:53 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b3304f19esm12034551fa.10.2025.06.15.05.28.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jun 2025 04:38:59 -0700 (PDT)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Sun, 15 Jun 2025 13:38:57 +0200
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-        quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
-        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, stanimir.varbanov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
-Message-ID: <aE6w0Ws9aoBYD5BB@trex>
-References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
- <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
- <98cee94a-c9c5-46c1-b6eb-f5141dfceaab@linaro.org>
+        Sun, 15 Jun 2025 05:28:51 -0700 (PDT)
+Date: Sun, 15 Jun 2025 15:28:49 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Nikita Travkin <nikita@trvn.ru>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, maud_spierings@hotmail.com
+Subject: Re: [PATCH v7 0/4] X1E Asus Zenbook A14 support
+Message-ID: <dy6luu7uy4d7czpsd4fx3stcxmpbl3yykafreciqbpo6dvaqzc@dy7wvmrzevoq>
+References: <20250614205718.93166-1-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,45 +102,149 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <98cee94a-c9c5-46c1-b6eb-f5141dfceaab@linaro.org>
-X-Proofpoint-GUID: zEkagwDdZbUHcXqrGN16bKgs4r2OuKN_
-X-Proofpoint-ORIG-GUID: zEkagwDdZbUHcXqrGN16bKgs4r2OuKN_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE1MDA4NiBTYWx0ZWRfX70GtIiUuJ0JS
- 9N04UemcN/Gb9GsozYDL0IoryFjvRbE9q3b14f2B4AEvsAD5yqQpFh0Eh2GceUn2kHZoAYB/aAg
- bI5iiMwWUDLMgplUL2CzvsQgfuspMZeV68EAYv0n76yCsU/jVZPTz9ICyLqYJaeZ1Jv1WDn+opf
- TG5mUh813lOn1FBkWM3oLIaZ281ElYs4+0lwSdg5uWcXtl66dWzfWnZGYZRcnEcsWE0TroqWZv7
- GnFm9DSHX+IcAbjVLsEAYLbrovgD2HigEtA2JnaVUaG2pm51R6yptnakBg7ghSAE1XjDQ/TQmmB
- GB6jKwm0FCw1IWzK1QKx/IJhYsWK4aLmZz4gtUVs2j+sPfC3gsmFbh7rhbWNM6CS7lMiDWq9IfY
- oog+enK5uZ+vX/kdoYcWOI6qTx1FLb2D9jt3pHG0c8MOzBvcl1GdtCh/gggUzLnKThpP1Q5j
-X-Authority-Analysis: v=2.4 cv=fMc53Yae c=1 sm=1 tr=0 ts=684eb0d5 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
- a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=Pi3DeBJX6SzEokaTFKoA:9
- a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+In-Reply-To: <20250614205718.93166-1-alex.vinarskis@gmail.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE1MDA5MyBTYWx0ZWRfX003vXQ/KZ0En
+ xmNC342XwWQiNaBXAORYOcXNFBDKfjG7ILgr1Kl0bP4lIbubMNbcKM1147VUPxGB3B2RCAX6xOY
+ LujwwbiGvLBuwYGE2KgDDWaoht1jLnJtAlwJg0DGPBmnNzWcbltsH+xkJDdvvUdWbsFnQFm6ePc
+ LQTgVrXlQofT7/CZsEwAtMfMTgwrZ8URM/1z0LwLCRzwOZobO39SNo3L6olWCXYNi/SWLXuO8nh
+ nTbSvb0FDftjcvkw0peaNkuhVjsXM0tiL5O61PcSYSATRVaD1s0B0JzTyuuN7uhYLaMEpmUCFkd
+ 36tJ8dQkb5wZjaArwozZLZxtom9+hgbAlHBpi/A3vb0hO5BUyo8Uj/VnvSs+ZpJStwOxJqcHdEv
+ hRaFSWPvWe78rnsluWl7m9912i08X30eFD9fLz36V5Qsknb5W1YPmnwNVaXxJPr/CAhdpmLc
+X-Proofpoint-GUID: Wjo39rBzRNhV3NeEUG3MgJcZZiyogImI
+X-Authority-Analysis: v=2.4 cv=NtnRc9dJ c=1 sm=1 tr=0 ts=684ebc87 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=NEAV23lmAAAA:8 a=KKAkSRfTAAAA:8 a=gxl3bz0cAAAA:8 a=pGLkceISAAAA:8
+ a=-kjG0GmE0fcV5XMtYfwA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=kiRiLd-pWN9FGgpmzFdl:22
+X-Proofpoint-ORIG-GUID: Wjo39rBzRNhV3NeEUG3MgJcZZiyogImI
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-15_06,2025-06-13_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- mlxlogscore=827 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506150086
+ priorityscore=1501 suspectscore=0 adultscore=0 clxscore=1015 malwarescore=0
+ impostorscore=0 phishscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=999 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506150093
 
-On 13/06/25 15:20:57, Bryan O'Donoghue wrote:
-> On 13/06/2025 15:03, Jorge Ramirez-Ortiz wrote:
-> > +        video-decoder {
-> > +            compatible = "venus-decoder";
-> > +        };
-> > +
-> > +        video-encoder {
-> > +            compatible = "venus-encoder";
-> > +        };
+On Sat, Jun 14, 2025 at 10:53:48PM +0200, Aleksandrs Vinarskis wrote:
+> As requested, 1/4 was merged to linux-next by USB maintainers.
+> Resending 4/4 rebased on top of latest linux-next. 2/4, 3/4 already
+> landed.
 > 
-> Not necessary, drop.
+> 
+> With this in mind, and taking into account that this patch was
+> already reviewed some time ago, any possibility to still add 4/4 to
+> 6.16?
 
-ok
+No, 6.16 is in the -rc stage, which means no new material going in.
 
 > 
 > ---
-> bod
+> 
+> Introduce support for the mentioned laptop.
+> 
+> Particular device exists in two model numbers:
+> * UX3407QA: X1P-42-100 or X1-26-100 (as tested)
+> * UX3407RA: X1E-78-100
+> 
+> Mostly similar to other X1-based laptops. Notable differences are:
+> * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
+>   and Qualcomm FastConnect 7800 on UX3407RA
+> * USB Type-C retimers are Parade PS8833, appear to behave identical
+>   to Parade PS8830
+> * gpio90 is TZ protected
+> 
+> When comparing device firmware between UX3407QA, UX3407RA, it seems
+> that only ADSP firmware is different, CDSP and GPU firmware appears to
+> be the same. (At least assuming the GPU firmware name in both cases is
+> `qcdxkmsuc8380.mbn`). Since at least some blobs are different betweeen
+> X1E and X1/X1P, define new firmware directory for `qcom/x1p42100`. This
+> also makes it easier for distros to automatically extract firmware from
+> Windows and place all blobs for the model under the same path. If/When
+> firmware blobs make it to linux-firmware, same blobs can be easily
+> symlinked between `qcom/x1e80100` and `qcom/x1p42100`.
+> 
+> NVMe SSD depends on [1]. USB Type-A over USB MP controller  depends on
+> [2], or equivalent proposed solution.
+> 
+> Qualcomm FastConnect 6900 on UX3407QA did not work out of the box, and
+> additionally required both newer firmware and patches to `board-2.bin`.
+> I added a short how-to [3], as it is not exactly trivial.
+> 
+> ACPI dumps can be found on aarch64-laptops' github [4]. HWids on
+> dtbloader's github [5].
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20250319094544.3980357-1-quic_wenbyao@quicinc.com/
+> [2] https://lore.kernel.org/all/20250318-xps13-fingerprint-v1-1-fbb02d5a34a7@oss.qualcomm.com/
+> [3] https://github.com/alexVinarskis/linux-x1e80100-zenbook-a14?tab=readme-ov-file#wcn688x-wifi
+> [4] https://github.com/aarch64-laptops/build/pull/134/files
+> [5] https://github.com/TravMurav/dtbloader/pull/4/files
+> [6] https://lore.kernel.org/all/20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org/
+> [7] https://lore.kernel.org/all/20250524-tb16-dt-v4-5-2c1e6018d3f0@oldschoolsolutions.biz/
+> 
+> Changes to v6:
+> * _Only sending 4/4 as other patches are already applied_
+> * Rebase 4/4 on `next-20250612`
+> * Fixed zap_shader to &gpu_zap_shader
+> Link to v6: https://lore.kernel.org/all/20250607200229.30538-1-alex.vinarskis@gmail.com/
+> 
+> Changes to v5:
+> * _Only sending 4/4 as other patches are already applied_
+> * Rebase 4/4 on `next-20250606`
+> * Moved gpu enable from dtsi to respective dts as per discussion in [7]
+> Link to v5: https://lore.kernel.org/all/20250523131605.6624-1-alex.vinarskis@gmail.com/
+> 
+> Changes to v4:
+> * _Only sending 4/4 as other patches are already applied_
+> * Rebase 4/4 on `for-next` of qcom tree, adjust makefile to generate el2 dtbs
+> * Picked Konrad's R-by for 4/4
+> * Droped 'qcom,x1e80100-dp' as per [6]
+> Link to v4: https://lore.kernel.org/all/20250426130203.37659-1-alex.vinarskis@gmail.com/
+> 
+> Changes to v3:
+> * Drop redundant comments
+> * Drop incomplete wcn7850 as it is causing dt errors
+> * Picked a-by
+> Link to v3: https://lore.kernel.org/all/20250416232345.5240-1-alex.vinarskis@gmail.com/
+> 
+> Changes to v2:
+> * Fix/re-add PS8833 as fallback
+> * Add EC's i2c address
+> * Add pwrseq for wcn6855, placeholder for wcn7850 until its tested
+> * Rename x1-zenbook.dtsi to x1-asus-zenbook.dtsi
+> Link to v2: https://lore.kernel.org/all/20250402084646.10098-1-alex.vinarskis@gmail.com/
+> 
+> Changes to v1:
+> * Drop PS8833 variant, fallback to PS8830 as they behave the same
+> * Drop wrong pcie6a_phy compatible revert
+> * Drop redundant comments, fix order of properties in the device-tree
+> * Fix device name bindings, express in model names instead of the soc
+> * Fix GPU firmware name for UX3407QA
+> * Fix model string, enclose variant in parenthesis
+> * Added missing new lines before 'status = "okay";'
+> * Updated cover letter to reflect some of the above changes
+> * Left SPI10 disabled as it is unknown how/what for to use it as of now
+> Link to v1: https://lore.kernel.org/all/20250331215720.19692-1-alex.vinarskis@gmail.com/
+> 
+> Aleksandrs Vinarskis (1):
+>   arm64: dts: qcom: Add support for X1-based Asus Zenbook A14
+> 
+>  arch/arm64/boot/dts/qcom/Makefile             |    4 +
+>  .../boot/dts/qcom/x1-asus-zenbook-a14.dtsi    | 1302 +++++++++++++++++
+>  .../dts/qcom/x1e80100-asus-zenbook-a14.dts    |   37 +
+>  .../dts/qcom/x1p42100-asus-zenbook-a14.dts    |  141 ++
+>  4 files changed, 1484 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dts
+> 
+> -- 
+> 2.45.2
+> 
+
+-- 
+With best wishes
+Dmitry
 
