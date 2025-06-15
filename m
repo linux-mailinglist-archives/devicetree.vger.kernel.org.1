@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-185999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7AD0ADA09D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 04:26:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C81ADA0A3
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 04:39:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E45F518947FB
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 02:26:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 461B83B59DB
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 02:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3001D21B195;
-	Sun, 15 Jun 2025 02:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223F82CCDB;
+	Sun, 15 Jun 2025 02:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kRFEje/2"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="ElUTZLEW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6923B17548;
-	Sun, 15 Jun 2025 02:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DA73A8C1;
+	Sun, 15 Jun 2025 02:39:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749954366; cv=none; b=IkSFKqp/uKDMCXyKgern+NbaE+nChr8YYr6Rp0xNXa+vav7qrG1fevUuUlFHCrO8aAdXNcqjWXd3HvbDaxKLKV419R+hBtygTSEdoqwMtfKKCyp7nQb0Dmf3swtkdz+3m1+a525SnohaIdP+IW9kN2N22CJPJg0PuXMZsGMsHZo=
+	t=1749955168; cv=none; b=hC4Z2MjTorxbaJIDd8Q0q3Fd2+YdDQfhBV1jYYdOztWgcXvk5gAWEv8M9c2Yf/3/OcHtwaS4IzkMrjVmZ7pw3QaqLQO6Vtqo23CvGjV7iAEcnfPx9uJ8lS5g8EBwvpefI1rARo6MsLiZVPm+8g5vuEmW7rzmLEBVamDayc4RMMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749954366; c=relaxed/simple;
-	bh=iB4cIatf5tEhkaxazedaZKJ8PlFwYKX8Qrc7cvws45k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AEoYjPG3bhKQvjUXQ57ef2l9Boi7DiMLFz2EnyJ89DL3i42h8bP+NFU206APvxLknUl+XRLdsp79U7uUHDqzkpVE63PkayIHLMadld/tXQJAvWw/rwp13MC9lFeIWqw3+z01LsthUZEwW2ixuCfHdgkV3kHH49tH1K6mrnl5UkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kRFEje/2; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749954364; x=1781490364;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iB4cIatf5tEhkaxazedaZKJ8PlFwYKX8Qrc7cvws45k=;
-  b=kRFEje/2GVAxsXWrBpmDjuUN2iIVhA5KdHGAkdLc8v47EStNAlfOxY66
-   c4FJp/LYUp3AuIeohA3+ZwXl9eXYMLktlq1wF7/H/MHiBwV5LHoOUuUX/
-   YEBlqpW9DRsRptkuMzt2D3eYQzHyUofQ9fl/ub6hlpGLm0T4QvWZnEc23
-   CKJ/qLE34ZMw2JOr4MfZAIy0s6gLsLfZT0DVv0OV+KaqQpHLbxKw7xOpp
-   cebrhUYq3j0jqE9NeNVD666aDpvuNDNZ/Tbj71ZuxVF/6c6B5IUaV+obA
-   wbGbkYSNpKr+bWAwYURPc5AwBL5ubdjV0UMGdLFfmhCS99kZpX0LbF0+Z
-   g==;
-X-CSE-ConnectionGUID: 8bkK/YYrSy2H8569FjMBXw==
-X-CSE-MsgGUID: 9fAMr8q/QAitrNVpqm9R/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11464"; a="69706488"
-X-IronPort-AV: E=Sophos;i="6.16,238,1744095600"; 
-   d="scan'208";a="69706488"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2025 19:26:04 -0700
-X-CSE-ConnectionGUID: zSZDeOGPREKgcK3eXK8pQA==
-X-CSE-MsgGUID: jbqnQ90ZRt+wXFI4LRD4jA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,238,1744095600"; 
-   d="scan'208";a="153045407"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 14 Jun 2025 19:26:01 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uQd4I-000E3Y-2T;
-	Sun, 15 Jun 2025 02:25:58 +0000
-Date: Sun, 15 Jun 2025 10:25:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Harshit Shah <hshah@axiado.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org, soc@lists.linux.dev,
-	Harshit Shah <hshah@axiado.com>
-Subject: Re: [PATCH 6/6] MAINTAINERS: Add entry for AXIADO
-Message-ID: <202506151027.IduXJqR2-lkp@intel.com>
-References: <20250614-axiado-ax3000-soc-and-evaluation-board-support-v1-6-327ab344c16d@axiado.com>
+	s=arc-20240116; t=1749955168; c=relaxed/simple;
+	bh=VgmEizyo9nIl3y5Yg1RMk6zIul1aWHAEp7saVWA5yWc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Onxb2XGD4pWIvIw8WlA/KjO0ht/c5lTbiUpNICtzGizgpVwT2HKdL5h2x+S8ItvMszOSUinuGmICsDIgxZXrPMLkMr8LSfIuyLCYC8raWLup9cnjCeBuuRbUlQyW3dc3tZp3gzEYQyaeLf44bgYQ17V82bLo4dO7XZ5tozxmgfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=ElUTZLEW; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55EMt0xL004380;
+	Sun, 15 Jun 2025 02:39:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=xn5Pf2
+	G64BIovUmwEZqU8z1Mh1VF8g3gqO5F7kS5mTA=; b=ElUTZLEWtpKCWZKF00caqo
+	nn/NsXGu8ml3nUjyBICo1bDC5sCYac6XdQcNpVnznHDRiVKa94tjKrEAvjJBE6vr
+	U9NPEr6ymcHieGkojBgiocHoD0tx+Kr5a3JCWIqZ43nWaZ/t9qdBOxxdFPv0QBK9
+	4U/F6cHJ2FLkIEpmYB6WtMQHCVVXb/pgVNH2+mJmP4ZnD/7puwFIA4wb/zPAnEMM
+	YpuUFtn6GCD6nRdGv2Q60Vvzbdi/7GMbmczH3Y2i+so1lzIJq+xs/g7dJZddMZPE
+	mPkAtE8Z1wcpdLp3YAqzvgZW6jsgMTEhpA4da/kxGz2Eb3srvEgcuqJ8wB6Qe1Yw
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4790kt3mgc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 15 Jun 2025 02:39:02 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 55F2ZMbd026652;
+	Sun, 15 Jun 2025 02:39:02 GMT
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4790kt3mga-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 15 Jun 2025 02:39:02 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 55F0Xm8C003347;
+	Sun, 15 Jun 2025 02:39:01 GMT
+Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4751ym8vd7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 15 Jun 2025 02:39:01 +0000
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
+	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 55F2cxE728508832
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sun, 15 Jun 2025 02:38:59 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 918A220043;
+	Sun, 15 Jun 2025 02:38:59 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 05B3F20040;
+	Sun, 15 Jun 2025 02:38:54 +0000 (GMT)
+Received: from li-c439904c-24ed-11b2-a85c-b284a6847472.ibm.com.com (unknown [9.43.64.23])
+	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Sun, 15 Jun 2025 02:38:53 +0000 (GMT)
+From: Madhavan Srinivasan <maddy@linux.ibm.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Naveen N Rao <naveen@kernel.org>,
+        =?UTF-8?q?J=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>
+Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] powerpc: dts: mpc8315erdb: Add GPIO controller node
+Date: Sun, 15 Jun 2025 08:08:51 +0530
+Message-ID: <174995502359.107804.1137450582974510913.b4-ty@linux.ibm.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250611-mpc-gpio-v1-1-02d1f75336e2@posteo.net>
+References: <20250611-mpc-gpio-v1-1-02d1f75336e2@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250614-axiado-ax3000-soc-and-evaluation-board-support-v1-6-327ab344c16d@axiado.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: Cniiiqhj4mwFnyLsrpGowyFQM-tEpHrQ
+X-Proofpoint-ORIG-GUID: ZQUdp5UmXJMz3okRr7OK_96hiUO6MrLF
+X-Authority-Analysis: v=2.4 cv=KaDSsRYD c=1 sm=1 tr=0 ts=684e3246 cx=c_pps a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=TY4axy8dlGjP7ovxBMwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE1MDAxNiBTYWx0ZWRfX8KorUkWSmOu/ DScb/NiktPshZtzW5RuFnM9tMtjSLyxuhu8EtQKNMbwEzxhYqcrYyyFCT7M0ky4rvr93P9C/Xln S0dKrjKzYtBzNKmGhcJLm2K1YJoyE2zUB0aCjyxWkY/QGEXAH+i6HST7q1DW9JO00+WtBT33Mhi
+ ZRW/Ql4b4+fvPcEnZLg6nl7SQ5QFGOEQ1/43u1BcCztxfkKL8kTIW1a1Z7FeYu0YCZ4AqiHrTQj 2LDQVkjXkyIYw4DTBGjvJIdrgGuNYhxyaXifRFdBGP0QIwvay5HBkKpjZJOMFVWo39S9a+EmSM/ 76IVDECQiW9eMNGyFHaUKW9P4QHvAzvILbaN/dogA55epbjmlQO+o4iCngMRgZbKHVEQE7UokJm
+ DR0jWF33bx1VWmA1NtFqD5Ab5LajS3UqCZ6TB1uMHLf389/vqEDaNfzQaHuxyH2l4MRpK/ls
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-15_01,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ spamscore=0 clxscore=1011 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ impostorscore=0 mlxlogscore=698 adultscore=0 phishscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506150016
 
-Hi Harshit,
+On Wed, 11 Jun 2025 21:01:01 +0200, J. Neuschäfer wrote:
+> The MPC8315E SoC and variants have a GPIO controller at IMMR + 0xc00.
+> This node was previously missing from the device tree.
+> 
+> 
 
-kernel test robot noticed the following build warnings:
+Applied to powerpc/fixes.
 
-[auto build test WARNING on 8c6bc74c7f8910ed4c969ccec52e98716f98700a]
+[1/1] powerpc: dts: mpc8315erdb: Add GPIO controller node
+      https://git.kernel.org/powerpc/c/e75cb6010838f61b9d63e921d1763a8ab177e38e
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Harshit-Shah/dt-bindings-vendor-prefixes-Add-Axiado-Corporation/20250615-091516
-base:   8c6bc74c7f8910ed4c969ccec52e98716f98700a
-patch link:    https://lore.kernel.org/r/20250614-axiado-ax3000-soc-and-evaluation-board-support-v1-6-327ab344c16d%40axiado.com
-patch subject: [PATCH 6/6] MAINTAINERS: Add entry for AXIADO
-reproduce: (https://download.01.org/0day-ci/archive/20250615/202506151027.IduXJqR2-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506151027.IduXJqR2-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   Warning: Documentation/translations/zh_CN/how-to.rst references a file that doesn't exist: Documentation/xxx/xxx.rst
-   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
-   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/axiado/
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/firmware/intel,stratix10-svc.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/ti,tps6131x.yaml
-   Warning: arch/riscv/kernel/kexec_image.c references a file that doesn't exist: Documentation/riscv/boot-image-header.rst
-   Warning: drivers/clocksource/timer-armada-370-xp.c references a file that doesn't exist: Documentation/devicetree/bindings/timer/marvell,armada-370-xp-timer.txt
-   Using alabaster theme
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks
 
