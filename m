@@ -1,101 +1,65 @@
-Return-Path: <devicetree+bounces-186013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D52CADA1C4
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 14:36:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05305ADA22C
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 16:54:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEF293B03AB
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 12:35:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEB907A4D63
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jun 2025 14:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89BA4264A90;
-	Sun, 15 Jun 2025 12:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA0B186E2E;
+	Sun, 15 Jun 2025 14:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hTguGqyT"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LJmbuP2d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD1A1FA15E
-	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 12:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8557F136358;
+	Sun, 15 Jun 2025 14:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749990951; cv=none; b=OJTrecinAcuftOcyzcNTbGKVbKTd2iPYSJuM0hRL0ryM9RdWw8HQwtJWwSLMPGc1L6IxPthCKBpYXZCHjzzUAtoTKVNBczfW3YvOsj0Nh2w8WTArDT/IBZY7HxhnGWtrOvQt+Uy4xhYgc6MaCHzRxroChxrSkexCwCysTHHJ7zM=
+	t=1749999244; cv=none; b=X5DiMdZYSMUFmOGpT0YKm4lN9Ed+SkVZ4aJOojD4FEO+qyMQsaY1QN/x+xdOdYuq44eWaw5RijHDhB5LuQK6gj2PrZdDKXU0PEQqldu0scqXhg8FNyqBLBP7Y6qblvc10vwf4HpsDrkRz294ZYSodCZLnFzxQXXru1QHjWOmAbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749990951; c=relaxed/simple;
-	bh=jre29RieOGiKnxB1hzqpEVWv7aWZU1gTYROS16zXRgU=;
+	s=arc-20240116; t=1749999244; c=relaxed/simple;
+	bh=aZxVuFPB2LMtjNZFrwRoZePqmSmiGoTuVNpBiuhqRjI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zcu1LVd8wzS3d/ICY+f5Evx8l+ICxAnL86C+U7VBujuJPiC8/b6EjZ6d8DeMpBw841sIFNOEyovgBNulmfL9c9oo22xMVnoFRjNqsDEvmQVc0u5I1oLT0YDlzdueDd7RkhUTIqm4CR4j+vMPAKz7zw2h7yHvM0OXC9+enCK9K/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hTguGqyT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55FAjXXT025332
-	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 12:35:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ngPoiqFNBhOmnljSwVUHe/iK
-	PJFoP0E3OrHUnWrd2iM=; b=hTguGqyTyAx6dE0/l4yeHhbLYb1CYhvTAw/RyXDk
-	B7z0cEhvi2UqH1xUAohNyJl5v+DRB7m6RcPoB1Q/AOCoA/+/9VsX7AxM5brpQzRh
-	xDxopyMxMrz/5vLNel9/TsfB9qZZLriEz/G359/pdGLOlsuT+aJ75ks9kkbPCP/U
-	ANKnd5BsmVWCayHrz8/DVZEhJ+KhYxd0Kitu4wZmDHreTxUtkZFX/30lzr04nhrz
-	wJxKv+IQebfiG1p7EmoDHaeEEugr6g52863lDIq2qkym6N0loX1LTIm7f87bXbuZ
-	7PPJXIwwpa/XzKvu1hGbXt0cjxGHwtxthrxiJHozEN7WVw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h91vjk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 12:35:47 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6facd1cc1f8so67551756d6.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 05:35:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749990947; x=1750595747;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ngPoiqFNBhOmnljSwVUHe/iKPJFoP0E3OrHUnWrd2iM=;
-        b=bMWhBzQpoWtkx6gs1kcYBvqlynml9RaQowCx9KC6pk0i8eQ7u6yc59F2fuYcoDGriZ
-         Hn9+wpANXx1i2103xM0OIf/5kcwmfmIntuthF616YcZ6jLoDGVwVo5bCocZqr+9bhUsi
-         8KFw4V66DFluncMtNpy6D4c4faPnDrsaUySFx9YjLQwm47xZXJWNMZrtnzk66tF8SR1+
-         83Dx8pYBsXO083xc0NkcTGi7XgdYadpiWs/AHewfgVe2IR6ZiI6SIGUm4iywq2YKevMW
-         /WQLbzAX23AdnBfi3soCK/JtFe1eYZJwjh7kAyiYpl8KoHLBSq2vYrF+NHT7u1yCizQG
-         A5uQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrV2vRSV2OWDK0cETA/qj/7DChdMLYjkRbjkI//VMT3814RadXp90R/pRhVUV6bxgvfdyD4bUfp04W@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/LfMsCJTL1+GIKhhW6UvZGAs/NgTHf8BLLw+wSQJkJadEn+d7
-	j+VD0x5fnoTTAQTkXGRwnbkFGUPPPzaYHXbqqhNikJ7G1Cyezr17MzqlU/DPIsmrtqKVg+g9wIH
-	79ZplILwLGJWxrtgemnbPyyJNHUqk73JjSmWW3J/O47z4n1ARYw60GIGq1c4c787Y
-X-Gm-Gg: ASbGncsW0HMPiXVLSeTtbZeVR19x1xyfWu3FNGhoFTfLoZkgRdPoKwY8h8Jj4re9i9A
-	iBmYI0pwwKQglW9lkg311V3z9STK+GsgThryZzZSthw7hckGOwpPniJoFtnRMMIOrmDqXT3nmGZ
-	b+n/dMfc+iVvIi5TssUgpk5k3dvyNqxPo/zPVZH64oji6LKjeXj3LlqBpw+nqex7F36X3vZw1Dz
-	PzwapjabYD42F1b97tXtZC6xNdfDPq+22Hpz593wQxBaXOBw21E5/HbKlI4VYSF+XWhWzKu42ag
-	l6ik8f3tqo9VGSm31K6NK1v5F/dVcrstA3HGXzwjXZek46ddKKuqbj8w76Q48QO/RcHrg9Yjuid
-	lG+GgwAi8EegpicOBbJoqiLHnErqh9zzjs3I=
-X-Received: by 2002:a05:6214:e61:b0:6fa:edb8:b343 with SMTP id 6a1803df08f44-6fb45afe68emr106694716d6.2.1749990947022;
-        Sun, 15 Jun 2025 05:35:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+dFuLe0AEC/qFl0Kj65L3FnfTMfCqJDXN5a8e8jZlbIPlEOwKnEf/PfQA/JRH11iM7RDzDA==
-X-Received: by 2002:a05:6214:e61:b0:6fa:edb8:b343 with SMTP id 6a1803df08f44-6fb45afe68emr106694396d6.2.1749990946645;
-        Sun, 15 Jun 2025 05:35:46 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b3b769f9esm10599661fa.30.2025.06.15.05.35.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jun 2025 05:35:45 -0700 (PDT)
-Date: Sun, 15 Jun 2025 15:35:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Antony Kurniawan Soemardi <linux@smankusors.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Max Shevchenko <wctrl@proton.me>, Rudraksha Gupta <guptarud@gmail.com>
-Subject: Re: [PATCH 5/5] ARM: dts: qcom: add device tree for Sony Xperia SP
-Message-ID: <rcazqdcr747ujkba6z2j2oci27ajkqfi4hydgc2kiavm73y37x@g63jga2fcwmo>
-References: <20250614-msm8960-sdcard-v1-0-ccce629428b6@smankusors.com>
- <20250614-msm8960-sdcard-v1-5-ccce629428b6@smankusors.com>
- <f1284637-7650-498a-b850-b5140c47e4e0@oss.qualcomm.com>
- <39a7153e-1a4f-4dfc-a190-3b3370646d47@smankusors.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gkPtFQkPEfUubA1eM/umSBObQsIsdm2SIxNOd7bb5ktlYBAo6h9huq2b7f83+TL56F7GQV0PkWhxHJEdGTIrIbj5pKXnORKe/R0y1ibqWfQBLHUMIJ94dkjGKb5ATZn3m+uGOHm5jkZ2Ln6m4NgW/7iDe4d/GSwXd1uJC6imkj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LJmbuP2d; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Kt4hHsFV36RpuWHyTnG4rPaSt9Cjr/5M4+STk580b1Q=; b=LJmbuP2dsPCX3BntYuenOEi+F2
+	fO/EYVjq5NGyGgC8NEjJ6YhNYvo3jjWGMWDqGdiI23a313rtjNIRWwgYk/aGA9gZ4GGbsa5R42z5A
+	saX7dG+ksnucnrSAxCCcWwG0Qzlwn/Ut05uDSCG0OjmEKZdtHKcX5ORFL9BpLdQoKQJ8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uQok4-00FxY8-Lq; Sun, 15 Jun 2025 16:53:52 +0200
+Date: Sun, 15 Jun 2025 16:53:52 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Jakob Unterwurzacher <jakobunt@gmail.com>, foss+kernel@0leil.net,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+	jakob.unterwurzacher@cherry.de, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, robh@kernel.org,
+	Kever Yang <kever.yang@rock-chips.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: support Ethernet Switch adapter
+ for RK3588 Jaguar
+Message-ID: <bb3486c6-93df-4453-acc6-deba3c8f7f0e@lunn.ch>
+References: <20250523-jaguar-mezz-eth-switch-v2-1-aced8bf6612d@cherry.de>
+ <20250527131142.1100673-1-jakob.unterwurzacher@cherry.de>
+ <35e0a925-4cba-41de-8fe4-4dd10e8816f1@lunn.ch>
+ <380ba32b-bb9a-411e-8006-127461cac08a@cherry.de>
+ <3303d8d4-ec5a-4cdc-8391-ab6e35d76b33@lunn.ch>
+ <96d32ce8-394b-4454-8910-a66be2813588@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,61 +68,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <39a7153e-1a4f-4dfc-a190-3b3370646d47@smankusors.com>
-X-Proofpoint-ORIG-GUID: QaFjoCNk6ULc9TG87PAnmWTxy-I6BLaC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE1MDA5NCBTYWx0ZWRfXwIbBsj1IglDJ
- oY/d0TTZTan7uJ8TCnc0sPjaBZY3RyKJiYNZrELNwVjbL741vU5M72FxlO8ZGpE4KnQVKlSfv3a
- unNMh73MnD1Nyz5O8HTqm6Dviyc4C3TIJ6F773RK9f7r8YWjnFq9Aw+T6Pe7Fv62tAwAXxWf7FN
- K7TDzpvFl0jmU3M/6Wc+uFDHZTddyjTy8zTEK7pEC0ym9RplWfF6DwTTXjBzL1WSiCM65iEUThD
- IfzAUxmfTE6DfSUnFVfsUdjEZvImY4NGmUbykNNnsLsFQNwpYSfFayzWQ35Aepj2tt0rvIqIngt
- JQmVDjIIArcVYpDbvw6zxDb8mHlQS+/v9rMAb1slEUoiExz6p0HF3r9V10eZHgGDFQIhRPtN7VQ
- HWVsGb7+mnEowC2tOgLhz6OgHW4luT25PEr/aA+jk2qOJzxLTu+n+czxpwmi6Is9E7PSKv/F
-X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=684ebe23 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=Gbw9aFdXAAAA:8 a=u5m3PQENcPi3WFj47B0A:9 a=CjuIK1q_8ugA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=9vIz8raoGPyDa4jBFAYH:22
-X-Proofpoint-GUID: QaFjoCNk6ULc9TG87PAnmWTxy-I6BLaC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-15_06,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=972
- malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506150094
+In-Reply-To: <96d32ce8-394b-4454-8910-a66be2813588@cherry.de>
 
-On Sat, Jun 14, 2025 at 08:46:41PM +0000, Antony Kurniawan Soemardi wrote:
-> On 6/15/2025 1:36 AM, Konrad Dybcio wrote:
-> > IIUC (and that's a 10yo range memory), SP had some eyebrow-rising boot
-> > flow (some partitions were non-standard?) - could you please add a
-> > paragraph about it in the commit message if that's the case, and maybe
-> > include a short how-to on booting the thing?
-> Is it acceptable to provide the pmOS wiki link in the commit message
-> instead?
-> https://wiki.postmarketos.org/wiki/Sony_Xperia_SP_(sony-huashan)
+On Fri, Jun 13, 2025 at 04:27:54PM +0200, Quentin Schulz wrote:
+> Hi Andrew,
 > 
-> Or should I include a paragraph explaining it? It might be lengthy since
-> I'd need to add download links for the mkelf and the RPM blob.
-> 
-> But in a nutshell, concatenate the kernel with the DTB, create a SonyELF
-> boot image, and then boot it.
-> 
-> > As for the code.. I don't really have comments other than please
-> > keep a \n before 'status', other things seem rather in order.. If
-> > the dt checker doesn't complain, I don't see any logical wrongs
+> On 5/28/25 3:09 PM, Andrew Lunn wrote:
+> > On Wed, May 28, 2025 at 09:56:51AM +0200, Quentin Schulz wrote:
+> > > Hi Andrew,
+> > > 
+> > > On 5/27/25 6:18 PM, Andrew Lunn wrote:
+> > > > On Tue, May 27, 2025 at 03:11:42PM +0200, Jakob Unterwurzacher wrote:
+> > > > > > @Jakob, is this something you could check? devmem2 0xfd58c31c w 0x3c0000
+> > > > > > should do the trick to disable the circuitry according to the TRM?
+> > > > > 
+> > > > > I measured TXCLK vs TXD3 on an oscilloscope on gmac1:
+> > > > > 
+> > > > > 	Setting	Decimal	Actual TXCLK delay (ps)
+> > > > > 	00	0	47
+> > > > > 	0a	10	283
+> > > > > 	10	16	440
+> > > > > 	20	32	893
+> > > > > 	30	48	1385
+> > > > > 	40	64	1913
+> > > > > 	50	80	2514
+> > > > > 	60	96	3077
+> > > > > 	70	112	3565
+> > > > > 	7f	127	4009
+> > > > > 
+> > > > > 	off	x	-315
+> > > > > 
+> > > > > Setting = tx_delay (hex)
+> > > > > Decimal = tx_delay (dec)
+> > > > > Actual TXCLK delay (ps) = Measurement from oscilloscope
+> > > > > 
+> > > > > Plotting this we can deduce that one tx_delay unit is about 31ps.
+> > > > 
+> > > > Nice to see somebody actually do the measurements. Based on this, it
+> > > > would be good to implement:
+> > > > 
+> > > >           tx-internal-delay-ps:
+> > > >             description:
+> > > >               RGMII Transmit Clock Delay defined in pico seconds. This is used for
+> > > >               controllers that have configurable TX internal delays. If this
+> > > >               property is present then the MAC applies the TX delay.
+> > > > 
+> > > > For the moment, please limit it to just the device you measured it on.
+> > > > 
+> > > 
+> > > What exactly do you mean with "limit it to just the device you measured it
+> > > on"?
 > > 
-> > Konrad
-> Thanks for the review. Going to sent the second version later.
+> > Nobody seems to know if rx_delay & tx_delay operate the same across
+> > the whole range of SoCs. I don't particularly care if these properties
+> > are difference between SoC, they are vendor properties, with
+> > undocumented magic values. However 'tx-internal-delay-ps' is
+> > standardised, and has a very clear meaning. I don't want it used
+> > unless somebody has performed a measurement and we know that 2000
+> > produces a 2ns delay.
+> > 
+> > > I'll need to implement reading the delay from the stmmac driver to use this
+> > > property, do I need to restrict reading this property to the SoC we tested
+> > > (RK3588)?
+> > 
+> > Yes, please only allow it to be used on RK3588, and any other SoC you
+> > can test and verify its behaviour.
 > 
-> As for the other things... well in my opinion it's not kinda in order,
-> especially the nodes ordering at qcom-msm8960.dtsi. Welp that might be
-> a separate patch I think...
+> Coming back to this topic, I'm unfortunately the bearer of some bad news.
+> 
+> I implemented the suggested logic (see at the end of this mail) and then
+> went to validate it with Jakob's help. Unfortunately, it seems that the
+> delay value really isn't stable or reliable.
+> 
+> We tested the same adapter with two different main boards (the same product,
+> just two different units). With a value of 0x40 for tx_delay (which should
+> be ~2000ps if we have a 31ps per tx_delay unit as empirically decided), we
+> have one board with 1778ps and one with 1391ps. Following a hunch, we
+> started to stress (or cool) the device (with stress-ng/a fan) and it did
+> slightly change the result too. Changing the CPU operating points (and by
+> extension at least CPU clocks) didn't impact the result though.
 
-Yes, those old platforms might enjoy some tender, love and care. Please
-send separate patches, imroving node order, etc.
+Thanks for taking such a scientific approach to this. Most developers
+try values until it works, and call it done. It is nice to see
+somebody doing some real study.
 
--- 
-With best wishes
-Dmitry
+Russell quoted the standard, which says the delay needs to be between
+1ns and 2.6ns, which is quite a wide range. So for a tx_delay value of
+0x40, nominally 2000ps, your two values are within that range, and so
+conform to the standard.
+
+> While this could be observed with tx_delay property too, this property
+> doesn't claim to provide a value in picoseconds that tx-internal-delay-ps
+> would (but at the same time this didn't stop it to be implemented for the
+> DSA switch we have which claims "more than 1.5ns" and nothing more, so maybe
+> that would be acceptable?).
+> 
+> I feel uncomfortable contributing this considering the wildly different
+> results across our very small test sample pool of two units and slightly
+> different operating temperature.
+
+I can understand that. But there is another way to look at this. I am
+making a big jump from just two boards, but it seems to me, tx_delay
+and rx_delay are pointless, if they produce such a wide range of
+values from what should be identical boards. They cannot be used for
+fine tuning because the same value has a 387ps difference, which is
+huge compared to the 31ps step.
+
+It seems to me, rx_delay and tx_delay should be deprecated, set to 0,
+and let the PHY do they delays. If i remember correctly, that is what
+you ended up with for you board?
+
+	Andrew
+
+
+
 
