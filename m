@@ -1,238 +1,130 @@
-Return-Path: <devicetree+bounces-186333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0D3ADB47D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A547ADB484
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25A593A1E89
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:54:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 703F83A7230
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2702A20B218;
-	Mon, 16 Jun 2025 14:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F72A20C00D;
+	Mon, 16 Jun 2025 14:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Jln1o/IM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BxVRxFhV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6D31B4247
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 14:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5F88488;
+	Mon, 16 Jun 2025 14:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750085699; cv=none; b=e0MW1HPyps4G9tdAm7fv3kyFlMLbtAEVzp53sPwPk/p0XOlcLZ4th+KBzQEr4i4AyzFNT2jZkHcRCt3xnMGuo48oFcW+/wI6KIiWZYvhjdCwhvGBQUFwJn+fLIJYMz0aYziUTDjQ82PVDW3TBbN2Bx4fnugZRJtDybpwyuHhSaA=
+	t=1750085783; cv=none; b=iKQvsKV+q8wefBm3GA1mZVCAbt03rBIrgXT6dBbpBpuLFPz5xVwCoddy/AHWUvQnq5IrOpPd9ur5LYOXRtQMox+fg9+5mL606mrhmrEqNVCCgjb11RmQLjKiO3yC7frUwjvdwA+ZSoel5rb0sMqT47eyKrZgz8XxnhULJ3GNRc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750085699; c=relaxed/simple;
-	bh=5Nm9CImpLsi7qFyQR0yZH/U+R7I2IFhkj7QErWfdJPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pWSUhVS4IevQ3Lt8RNhDnAdEPKpz6Jkq2IM5DzFX24Vq/OVYW20tXxuXrcfjGk9LpB8AODkPyv6HAeqK1x5LCj0SnBrRjNDWzcm6AYBLEkxlNw6jOExDNIC81ILvow9a9aMZ3pjhNmksl5rxfDSbVoiu7W4O/PTASAQFaqRPdGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Jln1o/IM; arc=none smtp.client-ip=209.85.161.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-60be58376c9so580211eaf.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750085696; x=1750690496; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IbjUWaweNAfTcsTb0I52VudEVmpioqIEWXQ0+qpwB9M=;
-        b=Jln1o/IM8EYQe6Q/oeLM+Yd1u2bSCN7beyDqfSc0HuMJX549XViJLi06lrYzFzzxNM
-         s5IbJ5FPnlpB+p70CGAoAs+Xz+uRBCmc+44XoZCgtaf4Ib4ZS/uSdAgAoRetWVIyaukM
-         Ngu7HbkCEGlA6lS9EqggoujD2Rmlt0oAUlWSPnP4CVnKKmA3T5B+uV/FkF4l34QgBeVQ
-         KC8EqMFC3beZda1atraoGlvVcp9bn7G+WE25aMdEGSp3kDsG0cXdtlMX+4XGGiBzIgk7
-         1ETrtjvsoFLmKpo5pAM9hyNoO59zrbVMHCNKyP+CgnRkbkU6WQCngO1KKogjFdB3Pr+r
-         UxaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750085696; x=1750690496;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IbjUWaweNAfTcsTb0I52VudEVmpioqIEWXQ0+qpwB9M=;
-        b=s5iI5T8bktAZEePskIPWxfy0etheCHT+6TTke1DwvBU9nuZUIWz3li8oiXlkMOWXS2
-         zjMhgvCTLdShg2B6iWOaGDVCEwgHRgmdGuP9SekgsegtUyrab4mYYg9TA78Dg9D3SmE4
-         DNeWQ6rivgm7grS7eRbZjOETDFbET4DyiYsNnmfRSpqM/KBY2ZReYunVWbdNWExgOlht
-         OOgqxCw3Lwa8Vza3YWnd69isAoMReiW37Evv33SSEkbT2ZSyvDTlnbftpe4mmXWpjgOo
-         mil/f0wMHozYcBuw+Oe6W68rrfabI3oCTAENHdfDewX38FGA0UraszH2w2Jo6B/RzTip
-         3DCA==
-X-Forwarded-Encrypted: i=1; AJvYcCU26/B1KGmCerxWjJyuROMKjrfz164pavD1+o0VCU/D2JGaRA5Nj2N+69MoiSypWNoOSU+2DATEuiXQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDdYRVc1AGRFhBXyJJ8ZRANEh5tEyTeextbS8tMm6QfIsFfT+A
-	pP8zZlKNpf3GEFcr7NaaxcwuQHrOpPnmXnS93fyk19LmvPyopyg3TwUT2INDzLzSf+A=
-X-Gm-Gg: ASbGncuYaW5vX3t2Xauh/9gi57yIcD/Prpyxr0nejn85NsN+wA2sJ2zJF8A9+0dB4kD
-	ZCA+oJYPVc2e9P7GsjKTs3pRIV8tZLpY9QP/bcG3DVSTHwPBGYBVKajfVIbLJTHbfHyzXhOC8yH
-	mrcWcxUF8Vj446xjCkoJ3Zpr82n1s0S5DMxlyoYrfp0vkJkN3ft2uE6Awnl3eCb+lqZRsMlo2b3
-	bcMJimeRs/T6froPSpQLGQKznDzy4K35EDcMj4/ZrbcYh032JNhfpa2zmV0aPHDvgnn7zIx/O5t
-	QO1zY2J/eIjsgs9xQ23+Ji4rqHdXxumrb5zQYojMYBoEVzsWOevms00wb5SVFKqcQCQ1y33Gup6
-	KBl53gJhYU0hjLOZoFdWnj0FmgQg2gJYAT1DCRXE=
-X-Google-Smtp-Source: AGHT+IG/zyPyHx6md2qlWK0JseESq5/UwM8f1EqlrlgEOHuHiIJkuH+hr0ysstl4fbKuuVmWS7NVVw==
-X-Received: by 2002:a05:6820:627:b0:610:fa7d:9a14 with SMTP id 006d021491bc7-61110e6582emr5134060eaf.2.1750085695706;
-        Mon, 16 Jun 2025 07:54:55 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:9583:1e37:58ed:10ae? ([2600:8803:e7e4:1d00:9583:1e37:58ed:10ae])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61108ebd14fsm905901eaf.22.2025.06.16.07.54.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jun 2025 07:54:54 -0700 (PDT)
-Message-ID: <c89f4b2f-0892-4f63-b9b4-5ae55b477c01@baylibre.com>
-Date: Mon, 16 Jun 2025 09:54:52 -0500
+	s=arc-20240116; t=1750085783; c=relaxed/simple;
+	bh=IPS5pyYgHpxPgbxv/IHzWa6tUPv1UYhANfe/623koZ8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Pb40Z8bLi80azv1C0ixGZKfmwE3p/FKtEE33JFRMEP0urCTcM4mNd9OSGVB11B0x36AdhrFvVcXOV5RZq3Gpf8S7TbkwM7wVcYnPgfUS7Brq9ryBNDPvw5vae3nGVKyWTpIZKBbN1UNOwyO8Aeqjj+ZJF6PNVdfAYj9mN3MZMxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BxVRxFhV; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750085773;
+	bh=IPS5pyYgHpxPgbxv/IHzWa6tUPv1UYhANfe/623koZ8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BxVRxFhVDcNmrDeC1P7uctqpOqyITQjUmL2LbGMF+iJg8NMWcE3x08UyLK1IYq8Xz
+	 9dcQrJltVxmVug43XszNFWEAHtwAm+hhX44hB0teZVItmBmKhG58IJ/K2yPCSB0PBs
+	 jt9KA4RjtPoUcF/w3CAWGVGW5uv49wFMF+YzpC3xQQP8CQgVD+KokYwALEAHpZN4Us
+	 mRWFOv6TQxj7Vw+KgWfHtxP48Xh2kMN7modxcVvNbYXQSpCVMwtyOHhLybmEsqN8nY
+	 PQHep9xrChhiclR2SMiAN1LHp5GDgCu7SdZv0hTY2ZwuCbFWHQpzGlBPAZGWSM14XP
+	 UefVISx0bXPnw==
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:4811:e81c:4b33:730c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: benjamin.gaignard)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BE19517E088C;
+	Mon, 16 Jun 2025 16:56:12 +0200 (CEST)
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: joro@8bytes.org,
+	will@kernel.org,
+	robin.murphy@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	nicolas.dufresne@collabora.com,
+	p.zabel@pengutronix.de,
+	mchehab@kernel.org
+Cc: iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-media@vger.kernel.org,
+	kernel@collabora.com,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH 0/5] Add support for Verisilicon IOMMU used by media codec blocks
+Date: Mon, 16 Jun 2025 16:55:48 +0200
+Message-ID: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] iio: adc: Add support for ad4052
-To: Jonathan Cameron <jic23@kernel.org>,
- Jorge Marques <jorge.marques@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
- <20250610-iio-driver-ad4052-v3-4-cf1e44c516d4@analog.com>
- <20250614110812.39af2c41@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250614110812.39af2c41@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 
-On 6/14/25 5:08 AM, Jonathan Cameron wrote:
-> On Tue, 10 Jun 2025 09:34:37 +0200
-> Jorge Marques <jorge.marques@analog.com> wrote:
-> 
->> The AD4052/AD4058/AD4050/AD4056 are versatile, 16-bit/12-bit, successive
->> approximation register (SAR) analog-to-digital converter (ADC) that
->> enables low-power, high-density data acquisition solutions without
->> sacrificing precision. This ADC offers a unique balance of performance
->> and power efficiency, plus innovative features for seamlessly switching
->> between high-resolution and low-power modes tailored to the immediate
->> needs of the system. The AD4052/AD4058/AD4050/AD4056 are ideal for
->> battery-powered, compact data acquisition and edge sensing applications.
->>
+Hi all,
 
-...
+This patch series adds support for the Verisilicon IOMMU, which is found in front
+of hardware encoder and decoder blocks in several SoCs using Verisilicon IP. 
+A first implementation of this IOMMU is available on the Rockchip RK3588 SoC.
 
->> +static int ad4052_update_xfer_raw(struct iio_dev *indio_dev,
->> +				   struct iio_chan_spec const *chan)
->> +{
->> +	struct ad4052_state *st = iio_priv(indio_dev);
->> +	const struct iio_scan_type *scan_type;
->> +	struct spi_transfer *xfer = &st->xfer;
->> +
->> +	scan_type = iio_get_current_scan_type(indio_dev, chan);
->> +	if (IS_ERR(scan_type))
->> +		return PTR_ERR(scan_type);
->> +
->> +	xfer->rx_buf = st->raw;
->> +	xfer->bits_per_word = scan_type->realbits;
->> +	xfer->len = scan_type->realbits == 24 ? 4 : 2;
-> 
-> This is a little odd. I'm not sure what happens with len not dividing
-> into a whole number of bits per word chunks.
-> Maybe a comment?
+Rockchip provides a driver for this hardware in their 6.1 kernel branch:
+https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
 
-Even better, there is now spi_bpw_to_bytes() for this.
+This series includes:
+- a new binding for the Verisilicon IOMMU
+- a basic driver implementation
+- DT updates for RK3588
+- integration with the Verisilicon VPU driver.
 
-> 
->> +	xfer->speed_hz = AD4052_SPI_MAX_ADC_XFER_SPEED(st->vio_uv);
->> +
->> +	return 0;
->> +}
-> 
-> 
+The driver was forward-ported from Rockchip’s 6.1 implementation, 
+the prefix was renamed to vsi for generality, and several fixes were applied.
 
-...
+AV1 decoding was tested using the stateless VPU driver and Fluster.
+The test results show a score of 205/239, which confirms that no regressions
+were introduced by this series.
 
-> 
->> +static int __ad4052_read_chan_raw(struct ad4052_state *st, int *val)
->> +{
->> +	struct spi_device *spi = st->spi;
->> +	struct spi_transfer t_cnv = {};
->> +	int ret;
->> +
->> +	reinit_completion(&st->completion);
->> +
->> +	if (st->cnv_gp) {
->> +		gpiod_set_value_cansleep(st->cnv_gp, 1);
->> +		gpiod_set_value_cansleep(st->cnv_gp, 0);
->> +	} else {
->> +		ret = spi_sync_transfer(spi, &t_cnv, 1);
-> 
-> Add a comment for this.   I can't immediately spot documentation on what
-> a content free transfer actually does.  I assume pulses the chip select?
-> is that true for all SPI controllers?
+Feedback and testing welcome.
 
-Should be. Setting .delay in the xfer would also make it more
-clear that this is doing.
+Thanks,
+Benjamin
 
-> 
->> +		if (ret)
->> +			return ret;
->> +	}
->> +	/*
->> +	 * Single sample read should be used only for oversampling and
->> +	 * sampling frequency pairs that take less than 1 sec.
->> +	 */
->> +	if (st->gp1_irq) {
->> +		ret = wait_for_completion_timeout(&st->completion,
->> +						  msecs_to_jiffies(1000));
->> +		if (!ret)
->> +			return -ETIMEDOUT;
->> +	}
->> +
->> +	ret = spi_sync_transfer(spi, &st->xfer, 1);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (st->xfer.len == 2)
->> +		*val = sign_extend32(*(u16 *)(st->raw), 15);
->> +	else
->> +		*val = sign_extend32(*(u32 *)(st->raw), 23);
->> +
->> +	return ret;
->> +}
-> 
+Benjamin Gaignard (5):
+  dt-bindings: vendor-prefixes: Add Verisilicon
+  dt-bindings: iommu: verisilicon: Add binding for VSI IOMMU
+  iommu: Add verisilicon IOMMU driver
+  arm64: dts: rockchip: Add verisilicon IOMMU node on RK3588
+  media: verisilicon: Flush IOMMU before decoding a frame
 
-...
+ .../bindings/iommu/verisilicon,iommu.yaml     |  71 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  11 +
+ drivers/iommu/Kconfig                         |   8 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/vsi-iommu.c                     | 900 ++++++++++++++++++
+ .../media/platform/verisilicon/hantro_drv.c   |  11 +
+ 7 files changed, 1004 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+ create mode 100644 drivers/iommu/vsi-iommu.c
 
->> +
->> +static int ad4052_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg,
->> +				     unsigned int writeval, unsigned int *readval)
->> +{
->> +	struct ad4052_state *st = iio_priv(indio_dev);
->> +	int ret;
->> +
->> +	if (!iio_device_claim_direct(indio_dev))
-> 
-> For these guards in the debugfs callback, please add a comment on why they
-> are needed.   We've had a lot of questions about these recently and I'd
-> like it to be clear to people when they should cut and paste these and when
-> not.
+-- 
+2.43.0
 
-The reason I started doing this is that running the iio_info command attemps
-to read register 0x00 via the debug attribute of every single iio device. So
-if you run iio_info during a buffered read, and 0x00 is a valid register, it
-would break things without this check.
-
-Ideally, general purpose commands wouldn't be poking debug registers, but
-that isn't the case. But I suppose we could "fix" iio_info instead.
-
-> 
->> +		return -EBUSY;
->> +
->> +	if (readval)
->> +		ret = regmap_read(st->regmap, reg, readval);
->> +	else
->> +		ret = regmap_write(st->regmap, reg, writeval);
->> +	iio_device_release_direct(indio_dev);
->> +	return ret;
->> +}
-> 
 
