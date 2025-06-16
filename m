@@ -1,192 +1,120 @@
-Return-Path: <devicetree+bounces-186376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55CACADB772
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:59:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F788ADB784
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 19:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD993A80A7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A555D188D636
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456ED288529;
-	Mon, 16 Jun 2025 16:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DBE62874F2;
+	Mon, 16 Jun 2025 17:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bkMqISkQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SeqJNobp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52441925AF
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009434A0C
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 17:02:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750093148; cv=none; b=PwKoUXQysqkfIwI+vEzvS28y7vzCqGE+KaWgc0/gWNX//oDPu05Fc5OjGmna76k3dhtRFOr/yaWewjCuzNR3wJYX+xYLvkbQek0TEB+ADQM75FRgvc77l5+bpOS9vog5ZGoLVRSsspWHV6CO46hmwdhy25tZio/7jfo8PQCEy2Y=
+	t=1750093378; cv=none; b=StxNpJLHBVmwHjdORpOyjToY13Awy68ZHAQg7269OYXpg/6GCDP/jCrrnFNKrYv1/rTY5jgk0ReM+XdJ8ly9n5hgQcZiorfUA50HQmZSV45dQy4rNBpDJAgC3kARx/fFAVfKT4bifIzHywcPfa5ceNMVn+mFHe3bzBcXsuMItjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750093148; c=relaxed/simple;
-	bh=MIOBf3dEjXwXgUhVNb7gUlmJhcwXvYUtCQF6Yhi/5k0=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NZnyOcEew5L5NCMjqOtSQwrgd77hhzFJF5OyAKdFH3ngg8By1ZP5p1qmGoqsGLmgso6FrNSevwEvIYdaz9QvIr4C4ZRonRgamrb/dg4f+10PHChKa8bC8kuoR2c3O8uwmVBmR7uwF7ccXzoI72k1G7SjK6kuv6D39y4QxK/1aO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bkMqISkQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GGdDGV010074
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:59:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=FJdkMaQ1ReNpm3CpJp7RD0NH
-	vTLNJiLODdXF3EvzYqk=; b=bkMqISkQHPs6Qy2/EoBlx/hNdGSps472kLNnzYL2
-	Jbrhzvk0jefTxbNq/R1CFeUMXeqIJwAdn/Kpo/wqTOtjvW7tW1jIJDH/RpvFe1gt
-	GkUNBT6mMUEksFy07eN8vzrl1PxJ3+3/Hynr9U1jRpl3blv45/Cqyp5f4253IsIq
-	Tqd1vZ6lBilYRSe6yMI7If/Aw2Bbyra4Z91nQm/UP7/PdSXNjl3HiY1HUtYS/9Ee
-	hDvfe9916LeIIH4EGA6/eno/ytTnh2s0zEHBSkUqt+MAOiU0HmD4mLjzmkAaHyaU
-	vft6OhHvNZyD9BeWNIMw64IHdvTmZXeGnd7gHjTz39W2oQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791hfdccb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:59:05 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6fab979413fso92318026d6.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 09:59:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750093144; x=1750697944;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FJdkMaQ1ReNpm3CpJp7RD0NHvTLNJiLODdXF3EvzYqk=;
-        b=Etfv+QcLkeZsOMv/waeCtkPNBRWBVSpUSAIY5qQWLJvKJNMOs0A3QFeZ7pQC2cempx
-         krWryG0+y1gI47WP2tihKhSKB30Y2hF7MRyqGE5WgEnVlfoVML11Ab65CgY6xBcTCzbS
-         6EAr1k1Hwl4CoHtR4QA+DDopdBKlZK47TqebYkFH0x4zduDEsoyA+p75SH0EFeinl8yj
-         /CTDXXSJTLkuWI46ZZvddqMzAYDX/pbnq5GwjSfFNr5Oxo1A0MqOH3PSUZJKbHvVCh/x
-         x6lSoaMw+gmNiUwLjhojTpHQU1oJ9xxAvkCiwLaqioxuN6BuBVGurIP8GtT5UQUDtbTl
-         kOIw==
-X-Forwarded-Encrypted: i=1; AJvYcCXNxIAMa2i0zsaaStxv37aVLaEEHr1pAlztDVkw8TlWKqOTIK4jhaLNiRyM7uNgOlv+l8LhZxhZLj1c@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC227fmSndYm7GczIa+IWw8YLAMyerqmGrMxiv3IQpl9IeOo30
-	YvEJjcl+66VwEZvvzK4uo12F1sxkjimIdkQlxsffjyKsqUE76UHtQ0zjn5C8I1druZMkkzvUVXi
-	Xgi8zE/ff6lUPQbOjGkgLnRVCdqSWOnU76tfnUe34P+rScgRM8aQFhBYyKxU0lgbJ
-X-Gm-Gg: ASbGncsK/HIojFbfFEM2XTzcFOkegUt7g7PcMco+6eCkhFhZwMnxFDSM9+iuj06UIi6
-	whsB8tUXnyKeE3rQHl6GR76aTnBv9pNPRoIy2lnoQIOgumOXGlYzm0l0NR7xHNxh653qv9/I33x
-	KlRHU8b2nGPm6cYrj/VKXqlb24vxRSKKmMumoZOjw6MdMLmwK4AzCBFTwU6E5vNBnsjQVcnkmLe
-	l+I1017MsuG00FvswIfmmnVVSgXhZHzT/iMEXJPIONULOUonAHCZ9mEy0tG9O1Zz8nWKFZVKf0A
-	DOab8Rf0Zy13GB7H5FY8ZsBj313EjGMTazK701pkwxXouV69KjRAsqXirw==
-X-Received: by 2002:a05:6214:27c5:b0:6fa:c6c0:47da with SMTP id 6a1803df08f44-6fb477a727bmr178575966d6.42.1750093144375;
-        Mon, 16 Jun 2025 09:59:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF8U5C8QhpEC4KdiGlgGaaVVFIxxyTSoWxHWPCgyJSirN8Hl1LiLepE8Okozp2BZa+B3WqlBg==
-X-Received: by 2002:a05:6214:27c5:b0:6fa:c6c0:47da with SMTP id 6a1803df08f44-6fb477a727bmr178575296d6.42.1750093143917;
-        Mon, 16 Jun 2025 09:59:03 -0700 (PDT)
-Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e2324c6sm147831535e9.12.2025.06.16.09.59.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jun 2025 09:59:03 -0700 (PDT)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Mon, 16 Jun 2025 18:59:02 +0200
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>, quic_vgarodia@quicinc.com,
-        quic_dikshita@quicinc.com, bryan.odonoghue@linaro.org,
-        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, stanimir.varbanov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
-Message-ID: <aFBNVjl4n7I+OkO5@trex>
-References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
- <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
- <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org>
- <aFATp3zoSgkrj3YX@trex>
- <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org>
- <aFBDzWLkKC9MWGoC@trex>
- <48e6cc62-ffb0-4ca7-80c8-9e510db505db@kernel.org>
+	s=arc-20240116; t=1750093378; c=relaxed/simple;
+	bh=zU/FGykCk0aFsknvFEQ5AKZBqRu+zQyLb4C3Hxhp3pY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cY7De49y118m3qK2vjBu6nXAnoInd1ZCbdaT05syq7iUNatwepjrhgflw2uVGJ20wt8jjhPeQv+e1qOmE8ncG59TRbJygBOpwlQWzrhy3Mc/jQ7EhqJ5eLzYXkE9NvKIEdrT6O+FoTN8Xiz0seczvLqgnBpgOYcwII9Spel1RsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SeqJNobp; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750093377; x=1781629377;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=zU/FGykCk0aFsknvFEQ5AKZBqRu+zQyLb4C3Hxhp3pY=;
+  b=SeqJNobpl6U/E/1wCEYBzJwF5regTJBzd6fSQ/BSKkX50n34cZk7OoOd
+   SiiBwkPSUo5bIdyQfgX8Mxu4+ALuap4FDwZNWbsGaip3VPxCe2pYjsNWN
+   LpkRRK9er+v53qVwmSUFKTWiDzIM4Z2YSYs1gB1ePCXSQXBMzz3KBInoP
+   k9BjLzgB6Ml+1dZiE9eJQihV4Dgdsyrja2yAGLo2V2mTVKJTfzZpeaJB0
+   e588//3hXeAqE0+JklQMDSVwSDVK5Ytolhtv25jJlDSe9kBfa3K2oMsrf
+   7wHdowpj3fd8E+I19rPfrBbhJafWgfqjBu4Oi3VZsEld2G1yHwrIjhJuO
+   w==;
+X-CSE-ConnectionGUID: blruUUuFSBGVT9TfqM3Dqg==
+X-CSE-MsgGUID: kSMA6QfOSdSbwnzy8qrLvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52337752"
+X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; 
+   d="scan'208";a="52337752"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2025 10:02:56 -0700
+X-CSE-ConnectionGUID: rM76+oIfR5mxeb4BCLTvKQ==
+X-CSE-MsgGUID: rIGqZgXZRKGCVk2lbMqImg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; 
+   d="scan'208";a="153280510"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2025 10:02:55 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uRDES-00000007A1R-0DE5;
+	Mon, 16 Jun 2025 20:02:52 +0300
+Date: Mon, 16 Jun 2025 20:02:51 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jean-Francois Lessard <jefflessard3@gmail.com>
+Cc: devicetree@vger.kernel.org, andy@kernel.org, geert@linux-m68k.org
+Subject: Re: [RFC][DT] Guidance on device tree property prefix for
+ TM16XX-class LED display controllers
+Message-ID: <aFBOO1LtLRagMGMz@smile.fi.intel.com>
+References: <CADsqogD=zfC--XHhSXZ=cDHZ3TMNpcU2WUS0stY2HhuRNdzPXg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <48e6cc62-ffb0-4ca7-80c8-9e510db505db@kernel.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDExMSBTYWx0ZWRfX02aetPicbILJ
- ty15j3opjt5/Zn2WD+m66+fcfpUkmmpFknzXEs0oXgRT5BsUV+XPOb17dsJ39GNtcQTE5ScBII0
- nLc2sL4Xx5uKLFRiORfygGdES90cByHlZM1ZtzPSoVOu9dFC0AJTeim4H9+9LWUNQ7vM9DfmdDm
- tCShdpOObbzkmvutItXG1ZmGrAWCgjAav8zkNtWqWzb783To9PUUM2WDNAaxkzvmT1tY/iCYEkk
- vh0FGX3y0KIj/nPVzY8oqhtt9W1mMsW+0SLfEVB2pJlhcuCsTPjKrBuJVQdtDqYfG4yd3FF51Ll
- jRTAcAbZoRPW4XJzsC5JmxlSFjYYIDyQJ7uuUFDivKNDFCmMFk3ILbZ3Yp0w6fQmNVjtc+qlGlh
- uaP2ym4lA248FTRnSLpW6VYCLHLpu+EIZMhFm1PzEY7T2FTDFCh1elvOMpnJMhlziIMS9xoR
-X-Authority-Analysis: v=2.4 cv=VvEjA/2n c=1 sm=1 tr=0 ts=68504d59 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
- a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=3XfI71V93UcfWaPxk40A:9
- a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-GUID: 4HiQ9VOkpD2aR5b4k4XKmJiV5JxutfzZ
-X-Proofpoint-ORIG-GUID: 4HiQ9VOkpD2aR5b4k4XKmJiV5JxutfzZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_08,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=999
- malwarescore=0 impostorscore=0 clxscore=1015 bulkscore=0 suspectscore=0
- priorityscore=1501 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506160111
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADsqogD=zfC--XHhSXZ=cDHZ3TMNpcU2WUS0stY2HhuRNdzPXg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 16/06/25 18:23:18, Krzysztof Kozlowski wrote:
-> On 16/06/2025 18:18, Jorge Ramirez wrote:
-> > On 16/06/25 16:41:44, Krzysztof Kozlowski wrote:
-> >> On 16/06/2025 14:52, Jorge Ramirez wrote:
-> >>>>
-> >>>>> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
-> >>>>> +  on Qualcomm platforms
-> >>>>> +
-> >>>>> +allOf:
-> >>>>> +  - $ref: qcom,venus-common.yaml#
-> >>>>> +
-> >>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    const: qcom,qcm2290-venus
-> >>>>> +
-> >>>>> +  power-domains:
-> >>>>> +    minItems: 2
-> >>>>> +    maxItems: 3
-> >>>>> +
-> >>>>> +  power-domain-names:
-> >>>>> +    minItems: 2
-> >>>>
-> >>>> Why is this flexible? Either you have two or three. Not mixed.
-> >>>
-> >>> please check 5b380f242f360256c96e96adabeb7ce9ec784306
-> >>
-> >> This does not explain why this is optional HERE. You cannot use for a
-> >> new platform an argument that some existing platform was changed in
-> >> ABI-preserving way.
-> > 
-> > thanks for quick the follow up.
-> > 
-> > but bear with me please because I dont follow - why can the same logic
-> > be used - it being applicable - and therefore result in a definition
-> > similar to those other platforms?
+On Mon, Jun 16, 2025 at 12:05:11PM -0400, Jean-Francois Lessard wrote:
+> Hi all,
 > 
-> Because this platform either has 2 or 3, not both. Unless that's not
-> true, but then please share some arguments.
+> I’m working on preparing a new driver and device tree binding for auxiliary
+> LED display controllers of the TM16XX class, and I’d like to request
+> guidance on property naming conventions before submitting a formal patch
+> series.
 
-as with every other venus schema with more than 1 power domain, the
-argument is the same one that I have shared with you a couple of
-messages back (DVFS).
-
-verbatim:
-    Venus needs to vote for the performance state of a power domain (cx)
-    to be able to support DVFS. This 'cx' power domain is controlled by
-    rpm and is a common power domain (scalable) not specific to
-    venus alone. This is optional in the sense that, leaving this power
-    domain out does not really impact the functionality but just makes
-    the platform a little less power efficient.
-
-Seeing all these venus schemas follow the same pattern, it seems to me
-that this is the correct way of implementing the above.
-
-You seem to disagree. please could you explain?
-
+> The driver (tentatively named tm16xx) supports LED controller chips that
+> share a common hardware design and programming model, produced by multiple
+> vendors, including:
 > 
-> Best regards,
-> Krzysztof
+> Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
+> 
+> FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
+> 
+> Princeton Technology Corp: PT6964
+> 
+> HBS: HBS658
+> 
+> tm16xx,digits = /bits/ 8 <0 1 2 3>;
+> tm16xx,segment-mapping = /bits/ 8 <0 1 2 3 4 5 6>;
+> tm16xx,transposed;
+
+I'm not sure I got what the controller is. Is it for 7-segment like display or
+is it something else?
+
+Because it might be that LED subsystem is not the best for it to begin with.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
