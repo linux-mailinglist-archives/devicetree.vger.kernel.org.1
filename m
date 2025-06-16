@@ -1,202 +1,221 @@
-Return-Path: <devicetree+bounces-186318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ECC7ADB27A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:49:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 999F5ADB29F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:56:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE42188306E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:49:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDE40169764
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1242877DF;
-	Mon, 16 Jun 2025 13:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B66B2877D3;
+	Mon, 16 Jun 2025 13:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HC9caf5t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gb0u3a0g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B519222097
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 13:48:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699A7285C96;
+	Mon, 16 Jun 2025 13:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750081728; cv=none; b=KyswixDD3mmY7PPTDJ6JE2UFM/JI9rM1x7MXoQMHx1crfW8c10HMa5ps3n/+dgZM3TXILFggQJEDTB9R2Ah6q3e/Gmx1GKyZ3lboF1HSri7fzGKagMXcHKnSEMwNOgBFS4CabaUevJznia4+TO/woHRBZEOvmpou9boVBeP7UdI=
+	t=1750082104; cv=none; b=hHkbTnAjNhEaBDgZkS+1Pa7XzF0nML7zaDi4ej3hEFHnoMAdjLmC4CHvUql1AMyfJH91Hk5sKqYSB7dAXPhui1GP+bjlCYKLXv/kg3KJnNGfUodbWaN0CnM4fnuJwZar+1Lr0PSbXz/UYAJq3jFa5//ruuyW6h6VTdB7R8iYg4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750081728; c=relaxed/simple;
-	bh=hORHC5srxkLYSdtcercNBIJfYGZMJfr+bVXBwlntJR8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K/b0exasPGYgnIoo0I//raXfRrBuP9QCR2u24VfQsgwyWML2igDE9FFLhgevrf8T0md7DUnBgoEoGhPYqlZrbD4DfWQesZDewGXxgGsSpuqOpUgZVVvFRAg/FZ8+xb6/2kCynt/+mKWHACyEsirChzziiXuLVyn7HpbyVD8va7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HC9caf5t; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e7b4ba530feso3834829276.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 06:48:45 -0700 (PDT)
+	s=arc-20240116; t=1750082104; c=relaxed/simple;
+	bh=kDrFiJZeByCxQ9YK3OGGhguZw0QHkU2Ev1SlVF6XmxE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WiPIepFyQsXw+v2VcO9tZHTJjD3PEFA9y3hurKUnwdHtv6GFbHrr5bYP6lqLZlwGlcO09NxXlsNQREPF/lJLJTWUp2BDpuCBHhlslu3INGESbodlkApOxZOuagP11Mji+be9c1UIHW5zuAR03CCKAXYYzVXj8lxudo7c8Xe3A0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gb0u3a0g; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-451e2f0d9c2so39300515e9.1;
+        Mon, 16 Jun 2025 06:55:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750081725; x=1750686525; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uDEsIjpQxmad8FZLMr2zVoXrSneTIt+2z4fP3XcIK5Y=;
-        b=HC9caf5t7Z3YV34hMVfY2iOyc8ceDK41ddWnZGKqTuEfRCkaUY3raiG3FlkrCFIjfD
-         tPyRf2CTFWTmNqn1/fqrqeiU9uJtuN0/o6S2lRpPIvGheNVfGEWlXe0gKBMgT93uCWaV
-         howKJOdXYFL5VBUyk2ABJnWG4of5g8jT5EQF3lfnh7+BPQPGs47ip1FBWZ/yH45SY+nE
-         ITmfq9OEFvRdyraYRy2/XeNzHkPruJLRo4LNcIanLnMF1+j2wUFJAl4/IBSZ8nBmL7y3
-         hnmmFLXuSOCnEaOhKiBMjLbpfE4uyCGHw7eLjaR81qvd/V7H6hVfgYy2IZI1q74yo9eT
-         +LMw==
+        d=gmail.com; s=20230601; t=1750082101; x=1750686901; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WuF0uH/IFJVKhc9AHQruIp9YqexDw2XvYvqThHWKXxs=;
+        b=gb0u3a0gXMlCSMfjKTYmAKAI86tnaxedJMxXU/FUk66ip//dne8+ibMScLPJs+Gikz
+         XjDIl4yiWH/5ETU+6k2iPyoxtBTGydDzVCXC883D/Go4TCg34+Whyng1BYbiNaJk+zVY
+         lmKW1SE9XSJ934g1Hm1YdVo6w0Uhsigh1MIoyOH/NbW/ck5LFbzcLtgEInrTO9dFCCZW
+         uT+fH5N8yRHv7BCOvzRhL94XiJPpZRTaGaxHemmQ8jkZuo+5n8UYuZZOP/eVQok6N3z8
+         zd3f2TX8+akvDikcBcAwm4tl64/r3e3XagUZr3m7GHBYswMy9dkXZ8DjzFHAuvyCLNgX
+         D2Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750081725; x=1750686525;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uDEsIjpQxmad8FZLMr2zVoXrSneTIt+2z4fP3XcIK5Y=;
-        b=jUVMrialwBCAxv2d4VUj356pvCVRz+x2pkJWJgqhxJFGlnTNwZ6hXr/kkzpNJxMhKY
-         Avf/GCwyzckMcsROLzP2Jbh0fyEvm3AQ4NvDguRr3CoG71qjMBMEKkr7Ddi7Ds4EN5ot
-         i/skymrUFIUfRtJhs/TB+O+yJ4J49illqaUcAjI808mQlpgobA+pMC3c5SP+MoO4K/Az
-         aGdlMHSULUJaYPxv6MAtyHAnWvNTMFK6Ul+LVWYuh1b93tXxFhSqEGX5hNvUF4ltHK3v
-         CUZwQaO7vXM5DXkBL5DA0vt1o2h2+/RPqwvY0W+jV3UG+23WiBYlt4cPWdaULyMlkms3
-         eZUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZ4fNG4xsa2R+RHGzgqft8/YuJjtHcJfBVEfT7SsAWq1KmD1hdc+vKuXoC+mi/177Ph04s4SEe+f8+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxm+8F5Ai9GgufjzPVA+TPC9w1CVFRUfmYZbrEwHiLQqDDP+nDx
-	wiADaBG+zhX3uGS6NfWsGAqHVt8DwBrF1/V2/zw1dRC1yTy81A1zOvWBwoNMV+sk2ecGdOPYT+z
-	FfyxTDpy6BSdH/+g0ATTnTQCdDL/oDC280jF1d27Kuy5YZPSiLlS3YlY=
-X-Gm-Gg: ASbGncvOAPoiwJhjKF4rvir9IUu0czSpjbT/gOv4nM1/3ZC1B3Xx2tVjDC2XVuQx6bJ
-	ecgajJWvAmBk5VCMCvw1Nw+VO8yHWZYMJiVx7UmKRsI8DdO8ww7DKZFt7+RY8Kw29dCBV0RMlk7
-	LsJl+vb9Mu40ugK3JJcrYQiYWVf2y+EwKCb9i/Q1smFSbi
-X-Google-Smtp-Source: AGHT+IHNxadKla4VrvH6YQyXKvJ7gWCdWq9mPlNx20rADiF787HEQItMLkqVHGwgE74xslQFsHpPtk0p6m7ForJ9ORA=
-X-Received: by 2002:a05:6902:220e:b0:e81:9581:4caa with SMTP id
- 3f1490d57ef6-e822ad8bc0fmr12562057276.34.1750081724654; Mon, 16 Jun 2025
- 06:48:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750082101; x=1750686901;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WuF0uH/IFJVKhc9AHQruIp9YqexDw2XvYvqThHWKXxs=;
+        b=HjMuFdef2KgRK/YfNkrrdKdfMHzNEVasv+QNQzwXVoNVmTp3PVHdV9hyu3Wzt37n0l
+         an+D7OVbHmPh5vKuvw7szR+KSGrGp91mX69CuDWNrBwA3xy6S6MVABx+qjhge4sqC9Md
+         ui3KNcoiqqQXk44J8CFeDc716az7GvdnFyaua6ColZYlUr1NuGA6VAQZQera01tXN34L
+         oj1G92Dq3DWYcLcIYxRl40iqNrTW2gF+7EgeWd0X5nHCerThCugFHM/CpSDDaECyzMt0
+         ChOJUXicYsbKOfu1DgDAbyFbM56aGzBReguQBdfYSybgVogj3lWDqpuepJSnaJMBZfZ4
+         1EJA==
+X-Forwarded-Encrypted: i=1; AJvYcCVKoqdBHfeQBP+bqra075ioWvl0rp6HMI0bsh5o1a83/zrX7rBYanyN8gV8nhVFz0qDfpJaaBo5ZpN+@vger.kernel.org, AJvYcCVwqW5K/6RBg/3RZT8zH9GxWSftWMf62pzd928i/uNiTRgAaVr2wkjsm12QroaYDqPPwqjCAmaH++3p@vger.kernel.org, AJvYcCXad+EyGFU0NJOfA8Zz7T5OXpP9IyasGd+/0pXnh4IjzG49wuPEXWLGQKaG5WOrQhEVWn0C8cPMuaFyNJ/k@vger.kernel.org, AJvYcCXrSDLF2iAlbT+LV7DM9h7zbyVYZplPxNQX9MrPPM58fQOHjRF/042z6HXKghbNvS9CaLcfdpQ2gcJB@vger.kernel.org, AJvYcCXwtCVFVC/Hf4eMBBMCR/ltXM6EEkKTlvGF65t4UYUyAvYkKkOYcwhnE/Su7TeowOBXJgwjAvXHN7ak@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNPrT3wcNWEWC2PTPTzTCoOt4OI2KhEOfSntqasLApRvYEL6V9
+	qIY9UEbLJ67ag/8AZCRi68w/x0hBTpxeV+LqNCvOMLJsmQ40ivfJ183a
+X-Gm-Gg: ASbGncsRudPxphNq/fFglL+ZUbMkDxDJuAoY69alFdsgXq5lowI+SRIWQaZ2He3QiWd
+	ztqinO1j+RRjf1bzTYAk3r9mEWXsDhkQvlK4w3l7QNgjAN51Xohl4kETC040+sMSozdZ1kJIgtf
+	jepqR7E8tWWUPd9DE5NCtCgTtGY4Pmf9RexkUAOvDzqYWoCOxzsHw4w2U7c0LdNh4IffCl0/ygC
+	BXYIkJKSUqwYB8jtZomO7p241PBNVi3UaEVZo1gJIetKRWxn6ntqMsVmDGReELtx3PXcXkf0TYu
+	NYfJRoAaq8mcN4SqTOL+h8ofd8s0aJsksZlG5MPcDqM0vQnOsFpoukGK9C14gQIqqhKhkzj5K2n
+	2yfnZD4o=
+X-Google-Smtp-Source: AGHT+IEgHOUFMFCgr3FayDvhUXf1wP2ej3MU+MRC9MTMlQ0HxZa9/T+TtlTt+0/ujY4/jQfzKhe7aA==
+X-Received: by 2002:a05:600c:4691:b0:453:aca:4d08 with SMTP id 5b1f17b1804b1-4533cc5cfd1mr84280755e9.1.1750082100305;
+        Mon, 16 Jun 2025 06:55:00 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e25ec9fsm142381335e9.34.2025.06.16.06.54.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 06:54:59 -0700 (PDT)
+Date: Mon, 16 Jun 2025 15:54:56 +0200
+From: Jorge Marques <gastmaier@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 8/8] iio: adc: Add events support to ad4052
+Message-ID: <2uknsmgz57wie4cv2tll3ttfyiw7lyjyaryc74nd3o5fteoazk@vbgdt5ofkn5r>
+References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
+ <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
+ <20250614113616.4663269f@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
- <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
-In-Reply-To: <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 16 Jun 2025 15:48:08 +0200
-X-Gm-Features: AX0GCFvKDYfrBoGxWHbzdQisHdQSvIWu47gSqcVmiJT8KMDILVyrcsYNa9sTBzs
-Message-ID: <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
- using power-domain-map
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250614113616.4663269f@jic23-huawei>
 
-On Sat, 14 Jun 2025 at 00:39, Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Currently, PM domains can only support hierarchy for simple
-> providers (e.g. ones with #power-domain-cells = 0).
->
-> Add more generic support for hierarchy by using nexus node
-> maps (c.f. section 2.5.1 of the DT spec.)
->
-> For example, we could describe SCMI PM domains with multiple parents
-> domains (MAIN_PD and WKUP_PD) like this:
->
->     scmi_pds: protocol@11 {
->         reg = <0x11>;
->         #power-domain-cells = <1>;
->
->         power-domain-map = <15 &MAIN_PD>,
->                            <19 &WKUP_PD>;
->     };
->
-> which should mean that <&scmi_pds 15> is a subdomain of MAIN_PD and
-> <&scmi_pds 19> is a subdomain of WKUP_PD.
->
-> IOW, given an SCMI device which uses SCMI PM domains:
->
->    main_timer0: timer@2400000 {
->       power-domains = <&scmi_pds 15>;
->    };
->
-> it already implies that main_timer0 is PM domain <&scmi_pds 15>
->
-> With the new map, this *also* now implies <&scmi_pds 15> is a
-> subdomain of MAIN_PD.
->
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-> ---
->  drivers/pmdomain/core.c | 24 ++++++++++++++++++++++--
->  1 file changed, 22 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-> index d6c1ddb807b2..adf022b45d95 100644
-> --- a/drivers/pmdomain/core.c
-> +++ b/drivers/pmdomain/core.c
-> @@ -2998,8 +2998,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->                                  unsigned int index, unsigned int num_domains,
->                                  bool power_on)
->  {
-> -       struct of_phandle_args pd_args;
-> -       struct generic_pm_domain *pd;
-> +       struct of_phandle_args pd_args, parent_args;
-> +       struct generic_pm_domain *pd, *parent_pd = NULL;
->         int ret;
->
->         ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
-> @@ -3039,6 +3039,22 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->                         goto err;
->         }
->
-> +       /*
-> +        * Check for power-domain-map, which implies the primary
-> +        * power-doamin is a subdomain of the parent found in the map.
-> +        */
-> +       ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
-> +                                            "power-domain", index, &parent_args);
-> +       if (!ret && (pd_args.np != parent_args.np)) {
-> +               parent_pd = genpd_get_from_provider(&parent_args);
-> +               of_node_put(parent_args.np);
-> +
-> +               ret = pm_genpd_add_subdomain(parent_pd, pd);
-> +               if (!ret)
-> +                       dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
-> +                               pd->name, parent_pd->name);
-> +       }
+On Sat, Jun 14, 2025 at 11:36:16AM +0100, Jonathan Cameron wrote:
+> On Tue, 10 Jun 2025 09:34:41 +0200
+> Jorge Marques <jorge.marques@analog.com> wrote:
+> 
+> > The AD4052 family supports autonomous monitoring readings for threshold
+> > crossings. Add support for catching the GPIO interrupt and expose as an IIO
+> > event. The device allows to set either, rising and falling directions. Only
+> > either threshold crossing is implemented.
+> > 
+> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+Hi Jonathan,
+> Hi Jorge,
+> 
+> A few comments inline.
+> 
+> Jonathan
+> 
+> >
+> > +
+> > +static int ad4052_write_event_config(struct iio_dev *indio_dev,
+> > +				     const struct iio_chan_spec *chan,
+> > +				     enum iio_event_type type,
+> > +				     enum iio_event_direction dir,
+> > +				     bool state)
+> > +{
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +	if (st->wait_event == state) {
+> > +		ret = 0;
+> 
+> Feels like a case where init ret at declaration would be reasonable.
+> 
+Ack.
+> > +		goto out_release;
+> > +	}
+> > +
+> > +	if (state)
+> > +		ret = ad4052_monitor_mode_enable(st);
+> > +	else
+> > +		ret = ad4052_monitor_mode_disable(st);
+> > +
+> > +	if (!ret)
+> > +		st->wait_event = state;
+> > +
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret;
+> > +}
+> 
+> > +
+> > +static int ad4052_read_event_value(struct iio_dev *indio_dev,
+> > +				   const struct iio_chan_spec *chan,
+> > +				   enum iio_event_type type,
+> > +				   enum iio_event_direction dir,
+> > +				   enum iio_event_info info, int *val,
+> > +				   int *val2)
+> > +{
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +
+> > +	if (st->wait_event) {
+> > +		ret = -EBUSY;
+> > +		goto out_release;
+> 
 
-Please move the above new code to a separate shared genpd helper
-function, that genpd providers can call build the topology. This, to
-be consistent with the current way for how we usually add
-parent/child-domains in genpd (see of_genpd_add_subdomain).
+Below are two distinct options with different implications.
+> Not being able to read event parameters whilst monitoring them seems
+> very restrictive.  Can't we cache the values?  Either play games to ensure
+> we get them from the regmap cache or just cache these few values in st.
+> 
+> Checking what you are monitoring for feels like the sort of thing
+> userspace might well do.
 
-Moreover, we also need a corresponding "cleanup" helper function to
-remove the child-domain (subdomain) correctly, similar to
-of_genpd_remove_subdomain().
+(1)
+I agree, I can investigate regcache_cache_only and the other cache
+options to achieve this. If I come to the conclusion it is not possible,
+storing into st will achieve the same.
 
-> +
->         ret = genpd_set_required_opp(dev, index);
->         if (ret)
->                 goto err;
-> @@ -3056,6 +3072,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->                         dev_gpd_data(dev)->default_pstate = 0;
->                 }
->
-> +               if (parent_pd)
-> +                       pm_genpd_remove_subdomain(parent_pd, pd);
->                 genpd_remove_device(pd, dev);
->                 return -EPROBE_DEFER;
->         }
-> @@ -3063,6 +3081,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->         return 1;
->
->  err:
-> +       if (parent_pd)
-> +               pm_genpd_remove_subdomain(parent_pd, pd);
->         genpd_remove_device(pd, dev);
->         return ret;
->  }
->
-> --
-> 2.49.0
->
+> 
+> Even blocking changing the monitoring parameters is unusually strict.
+> Why not just drop out of monitor mode, update them and go back in?
+> 
+(2)
+The core point of the blocking behaviour is to not have hidden downtimes
+in the monitoring for the user. An early driver used to do what you
+describe and it was a design decision.
 
-Kind regards
-Uffe
+Since a custom regmap_bus was necessary to restrict the regmap access
+speed (ADC access is faster), bringing back this by behavior embedding
+it in the custom regmap now seems plausible, with proper explanation in
+the rst page. This should fully dismiss the st->wait_event -> -EBUSY.
+
+Considering (1) and (2), what is the preferred approach?
+
+Regards,
+Jorge
+> > +	}
+> > +
+> > +	switch (info) {
+> > +	case IIO_EV_INFO_VALUE:
+> > +		ret = __ad4052_read_event_info_value(st, dir, val);
+> > +		break;
+> > +	case IIO_EV_INFO_HYSTERESIS:
+> > +		ret = __ad4052_read_event_info_hysteresis(st, dir, val);
+> > +		break;
+> > +	default:
+> > +		ret = -EINVAL;
+> > +		break;
+> > +	}
+> > +
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret ? ret : IIO_VAL_INT;
+> > +}
 
