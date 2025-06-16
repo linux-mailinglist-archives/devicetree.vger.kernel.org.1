@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32768ADA8F1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:07:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7645ADA8FC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5622E189200D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:07:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F41BA7A2879
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C121E3787;
-	Mon, 16 Jun 2025 07:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4AD1F1311;
+	Mon, 16 Jun 2025 07:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BCrnaO3n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="foXC+KSo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15681DDC28;
-	Mon, 16 Jun 2025 07:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4131F0E53;
+	Mon, 16 Jun 2025 07:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750057631; cv=none; b=jlqxx9OUIckpb/Ui8kehS8/vO240/nuyIP0Nt6qz2naRXB3PrIDDizDC/V1SWHaMkkV2VzRWYg+26XQquzd77KkmQIOVXlq/IzSegLOoPhMB3FA+xwkxMn9aplVK2m1PJWVaTdYaz2IL8vntyWSO5xmVWXjZQGZEwwFFLtV99LA=
+	t=1750057812; cv=none; b=X3ingyMg8ic+nv99YHRGMVRP5NBAkX6mE/8mf7Er+SnKKE11nixr06fA2VBZAvIkI9yOvKg0X5Wjj4jVf+/yvdsZb5km+lp/JPnzpMlC8A2ojirytc+41SIQ0Yo6tlQS/V8GhEiIX9p7GojiuKt0fqoVMNwo/xflOJugwEhuuZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750057631; c=relaxed/simple;
-	bh=9+LWl9AzQ9yQ/TE1e5hn9Ex0bHyVkCirESj62LCSnmg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Cg1Vg8ZTVWugMnX/KjInD6ZYqY07+7TRANh4qATYMk0MoBOyvQJGBgAp3QIwduzePmKlqZ3DElUNprtRcbVMFb8sBvtWvxBbRSunSg40+oQwRWdv0wDXleV0Ygg7sfXS13CclYyW4RUse1+Oahlv8kF25CZtqHxJi0WjVO5W7Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BCrnaO3n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC8EAC4CEEA;
-	Mon, 16 Jun 2025 07:07:03 +0000 (UTC)
+	s=arc-20240116; t=1750057812; c=relaxed/simple;
+	bh=XLfzSkivHjRYA+mVosJ9ujkJjlJ+tk4TCl4EphFithc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=urJj7pwBIKhtqHWdzyAeEtbj0fSoRmPNFEFQpRCqyhVg+mXkFEJxY1UofE2hKn55dKg9ylKxT8rc1g/qva/29NqpxOX1Xdu5SnDsYMOPMlz/8Co87h1KIYxzUAMdQF7yzjjcg8cqcfc/icPyg7TJqVDKZB1kGdVUyMCXx1FVj+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=foXC+KSo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB96EC4CEEE;
+	Mon, 16 Jun 2025 07:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750057630;
-	bh=9+LWl9AzQ9yQ/TE1e5hn9Ex0bHyVkCirESj62LCSnmg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=BCrnaO3nhy9ADY+D1o0PZ4cQ4dj+1mpugBn1SDnDHQX0V7+jkzRQjH/wsJs+KSQOk
-	 Uk3q2ot7ziREnqdSu0HNTCCKUC/juVq0BzrmgAWPONrkcxRxd+JmdH8OYfUu9tsgZ/
-	 XL4QLlstwVL9UGYqOdTAxuYzHUkj5rxMzdAautgo8xn5IX37BG5j17obR7xQAyZwOh
-	 rH9CM6aHyvA4n1QDz2wXMmjW0JkPuSMGSOL0+63BR2daDTKOdbIId4wCTCkHxcMKAg
-	 RM9hc5knd0/nV+tDNc0JJT11pqX/8uLSOelEwwhz65wpMNXYTuP3rQizN92SWGSuIg
-	 jm+7ABw/aRFyg==
-Message-ID: <e623aad6-726b-405e-be94-25f188749349@kernel.org>
-Date: Mon, 16 Jun 2025 09:07:02 +0200
+	s=k20201202; t=1750057812;
+	bh=XLfzSkivHjRYA+mVosJ9ujkJjlJ+tk4TCl4EphFithc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=foXC+KSod9+DgFu+/3KEOsmITi7kbFKIRC3fU9FcDCTZs90PjWq3D2P/dKdgn3MRb
+	 Yp/TcrbDB5Vi/C0HBodTPrepW1y1ZIM4eBVi5q3KyLLItLk2b/Iiv8ADXLxCOfjdSC
+	 fTk/6tzpxt9ILfiW6K1t68wvWwHDhxnsWgJ4ulftY6AhWFNg1tdJGEnpRmZMFQYOMx
+	 nLteZ+I0hfktEZZ+WW1a9QelZmzyufhmE5naebZH2I0f7411TCatEKlybspVvQuRYw
+	 zN7MOXRFLlT5q6uqGA38B1chLye9gVk7rGKbH4JzUf16fSyzXCC+i5nsai6MG9Pl9A
+	 uGWumGmMW2OmQ==
+Message-ID: <1dfb2bbc-4ad5-454c-b046-b721500fbb91@kernel.org>
+Date: Mon, 16 Jun 2025 09:10:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,42 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 3/5] arm64: dts: aspeed: Add initial AST2700 SoC device
- tree
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>,
- Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- Taniya Das <quic_tdas@quicinc.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Eric Biggers <ebiggers@google.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
+Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: gpio-xilinx: Mark clocks as
+ required property
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+ Srinivas Neeli <srinivas.neeli@amd.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/ZYNQ ARCHITECTURE"
  <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "soc@lists.linux.dev" <soc@lists.linux.dev>, Mo Elbadry
- <elbadrym@google.com>, Rom Lemarchand <romlem@google.com>,
- William Kennington <wak@google.com>, Yuxiao Zhang <yuxiaozhang@google.com>,
- "wthai@nvidia.com" <wthai@nvidia.com>, "leohu@nvidia.com"
- <leohu@nvidia.com>, "dkodihalli@nvidia.com" <dkodihalli@nvidia.com>,
- "spuranik@nvidia.com" <spuranik@nvidia.com>
-References: <20250612100933.3007673-1-ryan_chen@aspeedtech.com>
- <20250612100933.3007673-4-ryan_chen@aspeedtech.com>
- <485749d4-b3c4-4965-9714-ad534d37e8c9@kernel.org>
- <OS8PR06MB7541A100B918AAA84D1ABDCAF277A@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <749c581e-cc00-428f-8eb9-222f9d574486@kernel.org>
- <OS8PR06MB7541FFCA9E28E5767791D869F270A@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <e39b5259-db92-4269-84c9-d51e8e4f327e@kernel.org>
- <OS8PR06MB7541645F6A0638FC250B1272F270A@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <a2ca2f58-f648-43f9-8d23-4111e4eb1f1d@kernel.org>
- <OS8PR06MB75412D391E7D10958E70C100F270A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+References: <8407ef56b11632c1a7abfce8a4534ed8a8ed56cc.1749809570.git.michal.simek@amd.com>
+ <cbde9b9e2b0f9d12fdd1ba24fddb1543159357aa.1749809570.git.michal.simek@amd.com>
+ <2fb10aee-6610-43f4-9d12-88a97e0f66e5@kernel.org>
+ <9dc04095-e397-4a51-a75c-8a5577be197e@amd.com>
+ <1fced39f-1077-4af7-9294-affb99860984@kernel.org>
+ <765a606b-3b87-4a08-8630-69a3c52ed138@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -131,64 +115,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <OS8PR06MB75412D391E7D10958E70C100F270A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+In-Reply-To: <765a606b-3b87-4a08-8630-69a3c52ed138@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/06/2025 08:54, Ryan Chen wrote:
->> Subject: Re: [PATCH v0 3/5] arm64: dts: aspeed: Add initial AST2700 SoC device
->> tree
->>
->> On 16/06/2025 08:32, Ryan Chen wrote:
+On 16/06/2025 08:51, Michal Simek wrote:
+> Hi,
+> 
+> On 6/16/25 08:41, Krzysztof Kozlowski wrote:
+>> On 13/06/2025 13:26, Michal Simek wrote:
+>>>>> Based on discussion at
+>>>>> https://lore.kernel.org/lkml/20241002-revivable-crummy-f780adec538c@spud/
 >>>>>
->>>>> But I don't know your previous "NAK, never tested" mean.
->>>>> I did make CHECK_DTBS=y arch/arm64/boot/dts/aspeed/ don't see the
->>>>> fail with
->>>>> intc0: interrupt-controller@12100000 {
->>>>> 	compatible = "simple-mfd";
->>>>>
->>>>> So, could you point me more test instruction for this?
->>>> See syscon.yaml. And writing bindings or talks on conferences:
->>>> simple-mfd cannot be alone.
+>>>>> Actually this shouldn't be only targetting GPIO but also for example
+>>>>> xlnx,xps-timebase-wdt-1.00.a but I would like to check it first on gpio
+>>>>> before starting to check other bindings.
 >>>>
+>>>> IIUC, patch #1 is a prerequisite, so you need to squash them. Otherwise
+>>>> dt_binding_check is not bisectable and we want it to be bisectable.
 >>>
->>>         intc0: interrupt-controller@12100000 { Sorry, do you mean add
->>> by following?
->>> 				 compatible = "aspeed,intc-controller", "simple-mfd";
->>>  					.....
->>>                  intc0_11: interrupt-controller@1b00 {
->>> 					compatible = "aspeed,ast2700-intc-ic";
->>>  					......
->>>                  };
->>>          };
+>>> No issue with squash if necessary. I sent it as series to be applied together
+>>> which won't break bisectability of tree and no new error is going to be reported.
 >>
->> Maybe, but you said this is base address, so how can it be some separate
->> device?
->>
->> I mean really, don't add fake nodes just to satisfy some device instantiation.
->> Describe what this really is. That is the job of DTS. Not some fake nodes.
+>> You did not say anything about dependencies and merging strategy, to
+>> this would go via different trees. Sending something in one patchset
+>> does not mean that there is a dependency.
 > 
-> 
-> Understood. Let me explain more about the hardware layout.
-> The interrupt controller space is decoded starting from 0x12100000, 
-> which includes both a set of global configuration registers and
-> individual interrupt controller instances.
-> 
-> The region at 0x12100000 contains global interrupt control registers
-> (e.g., protect config, interrupt routing etc.).
+> No offense but I don't think I can agree with this. The main purpose of patchset 
+> is to show sequence how things should go one after each other and series should 
+> go via single tree.
 
-This does not explain me why global controller registers are a BUS or
-MFD as you claimed here.
+Go through all patchsets on DT list touching different subsystems. You
+will find only 1% of patchsets having above expectation implied (when
+not explicitly stated).
 
-> 
-> The actual interrupt controller logic starts at 0x12101b00, where each sub-controller instance
-> (e.g., intc0_11, intc0_12, etc.) has its own set of registers.
+Really. 99% of patchsets on DT list targeting different subsytems, have
+opposite, so implied rule they go INDEPENDENTLY to separate subsystems.
 
-I don't know what is a "global controller register" and "own set of
-registers". If you have device spanning over multiple memory blocks,
-device takes multiple 'reg' entries for example. There are many other
-configurations, depending on real hardware and relationships. Just look
-at other DTS.
+And above (so implied rule of splitting things) is even documented in DT
+submitting patches.
 
 Best regards,
 Krzysztof
