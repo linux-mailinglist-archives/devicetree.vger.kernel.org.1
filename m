@@ -1,306 +1,268 @@
-Return-Path: <devicetree+bounces-186389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26560ADB91D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:53:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 839C3ADB951
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 21:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317131888633
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:53:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23D9D16AE50
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 19:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280E728983A;
-	Mon, 16 Jun 2025 18:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A7420012B;
+	Mon, 16 Jun 2025 19:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QtyKoM+4"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aD+ZuquO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013045.outbound.protection.outlook.com [40.107.159.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38203286884
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750100003; cv=none; b=V0iDVGA9lfr6hUapVnsG1/VcP64h/4tb2SHOMjB4414I2VUfxA28mLZJGSAhNU3ZgBD8Wnmo72itPMXj42XInYaS2NsdojZWKbrK7gnJb6twyZ7t7s/Fki1ph6Te6u/Z0HQ97+hAvaV00EdKvMqPtb0TRv6gQWU+e+//tcqSfa4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750100003; c=relaxed/simple;
-	bh=wPUzTydNxr8Bne1mftnFfwNbN2QFUqUlnk1+McjJqZY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kZuMrgbN3odsS/UmHFbatK4Aq1IWiuzLNYZovB5P3pOX17Ua3O967v03heTdtdVI3isxd/elp5yn4n9XLvZ3g1uVHvYU/nSpKmfAht4Mo/vJORZ6JdwagMR7fuuKtPjeU9+SNw1yk832F8OL4/s/BK7qOIjLXU6UD1kIMxwXa9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QtyKoM+4; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-442fda876a6so43428085e9.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750100000; x=1750704800; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PSAHs0D4DZvGhRjRk5eyEpbY9QCRDT/qtuz8dJZf7TA=;
-        b=QtyKoM+4RSR73zqxL6whQ3NIHi1t6v0ytaruQzzcMK+WhZautDAR+FEZ+ABEacl1mS
-         TVHBjyxKSNvgkISpWyvWL8leKOwEbgnhGz24p+f3GayJr0yxQXVwG6aJb+tzk24ZOxbe
-         j0eNcK+o1EJ/b26p6tHlGRxUDvDQ54he0Dxn8D+GovyHLb6qSRS6HdBLL5TeRRhqndAt
-         /o5Ieh8NofcR9rfNdxHzIibwrTi0N26nMzEx3byo+rsMMf90dsqAQDYdipnf6b6QfyHV
-         dbNZGB66WpwtUWc0uRNzSIp6gQ9TDxDHaZ33hFZXSoD8zMPmVC3ukNkD5FILRquA0sKp
-         /RQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750100000; x=1750704800;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PSAHs0D4DZvGhRjRk5eyEpbY9QCRDT/qtuz8dJZf7TA=;
-        b=Uq9OzrR1sz4qLAhg50HDMMj2DVjf1MP/St1c3BuL57duOuWf3Gw0TjUIOCdkc8psd6
-         /OkrA4y33XmTyWputJcD6joWkQaFQv0tBZp9aNjABjCzR/zsDJObnofQikp9xH3wenMU
-         E+AeWX75Ugks4c/EW/D8Yy8qgAwVw3/GmRNg0XKvVuX34arQ51hr/1obDXdevjL2sD9o
-         KZ5CvRqLhjfB9kuFL5K5fQ8kR6qP4xCBiPcn6gd4SkyVWEDOayyLCROy8ZlNW/nGP1ji
-         20HcPDQ11plGyNAZ7zJpX+vzSykyDz5+y2IqJlExeWcv4hvTlP9h2MQv29D5FvCT94Ef
-         A5Fg==
-X-Forwarded-Encrypted: i=1; AJvYcCUm4ckUlLzdVh3YQcQY4Nmk0uTIFOX8Rz69Sjpn2qlNSEDcov26LvxK01lrf5JtBa/S6kKmcQh+xeA/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxI4n8jNWZx4DZYyeX16R8dej6eoBUZwxgGjCFB/CC0QRCwhGfj
-	ygtDPlqCmRlFkSCb36L6mzfBpp14fP5h9lEml+7qH17jkSLwlK+5flDVa4qD5kCNzXc=
-X-Gm-Gg: ASbGncu9uo7o04Mi5w0t5Dnjo2Q1JpkGMahkGu/rP6Omh+uiHEQUSFsI8V+AIBdA/YW
-	J9iiQ3X744Tfxj2WyfPsZJtgAmlx75ups6Mzn+kKJ3xFuMrBc+8lsr85mpmcwjd5AKxHn7tqBTm
-	CAAjiJX3F8J4mcK3IdBUoQtm5igrGMckvKipdaFevQN8dzAIfnE4gyiTfFLZ8zw1+DqfuJhlQkn
-	fF7CRGHVwobOqoBbpRMwHjDCzY7mJBI81wAJh3IGr9Ui7icl2jlmjrLKt5bz6j4LPW7l318fbTS
-	IZf6w/vQijmufOVJKhlIMqJ/nx8rhG+3sp/M0rhZOPTXhyaFUQfsnBJRXFhfstqtKuNRFRIKpO1
-	vJ01M4GPIxkXeF4T+q1eSAvGzSuM=
-X-Google-Smtp-Source: AGHT+IFn0SbC3L/Gh4Y2s0CsidlVrBqISko0TH0zpbHX6Ka08lsavjOIKbCtPTUiRNsMm0TcYXt/4A==
-X-Received: by 2002:a05:600c:674a:b0:453:dda:a52e with SMTP id 5b1f17b1804b1-4533cad28b6mr89612035e9.33.1750099999511;
-        Mon, 16 Jun 2025 11:53:19 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e254396sm156200275e9.28.2025.06.16.11.53.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jun 2025 11:53:19 -0700 (PDT)
-Message-ID: <2eea0b19-1a82-428a-8c04-74ee465e7516@linaro.org>
-Date: Mon, 16 Jun 2025 19:53:17 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80D23C2F;
+	Mon, 16 Jun 2025 19:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750100694; cv=fail; b=l7GCVv5PTA+93EomDdWjWF/mBqOss1PN+agck5OqCTWklt2iXxxMaxRrivWSFOKk4rmswNj6v9/ZpSQ6zQ6yl4b2GkD/RxjhKAT0Cc/XpPM3Zu8yF1hqVqP71MtVDxY1Uqu0/SdxDOfSsrEj1UsKZjDcY5vxZKS1Z4Q7I72GvNU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750100694; c=relaxed/simple;
+	bh=vbZiEZ90OVggMzJIuTOERYo5X31caIN1je3ygwrPidM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=IrZWAww9vr3wwLsBaj7WKtS5ZTFG6bXJJyjbcCRUiCS+aS2PFnbGEsMM18mGcHuIcAbRCNh6qW0SeUIGoZMQT+XhRSHHoBxxsUsl66J5Zi8kU+Od8ok/vYahG/xUz71hXx944HNVtKx/0S6QUsA+VzYaEKhcPNT/w73loY7d8+k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aD+ZuquO; arc=fail smtp.client-ip=40.107.159.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H/BIqQRw3xlkQKzD9tluPsDYj57kEa/G9r+znsBzc69QT6j2d7paiknh2lDmtE+AxU70hlcWTFTc6uribGgcik9EQElgska0jbhVZcxQDZwNe9RwZ1NZB8/jGfFiYmijGpXbvqmMQlqgy9jv/nTR/DdMgoJFYhX4S5kZGFk06FD/PQBWwhu/uCbAYOi2LSQefYOnFnl3CD9ncVnp3ofGmZ00s1KjUlFiGHcvXWCJ/5xwG4wuk0Z86gVg0liawfRyUB782InOZQhnvNaRMbZzVDPVjxKN62u4WOXKRuGsY2Gzxa8pjWY3d9d8cl9dVWsQTeHa2eh+a8A/L29uypQfbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E0LWOogMVvlAzKvLnr0XCD/tSJOXzfykFIG3lpGBG7A=;
+ b=yJROZ76Ua2lJ7Teg8y0mdTeJslZDYeZfTG9N9qawNU01PyJxvR+7rHjeOE9NdIajIaGTK7x8kkPoWWnlDbNubC3wQ0QMrD4jnLi6abhJzYw+0WFFPszLUTKSCwZUey4BaIJUhgVgy6vvQnVkUiyWkFXFQRe7J4mu7KOQgDYRni+9cjm1EDzsfMbjBsGwJRyvcAqJcUTQmkoDg26rPx/sPjyEXIM9JOs9LRg17Nc8pl5M/EjVkC8kaqJ6Q4c+NF/3QRLcM5YbhkB/EQvNJzYFit2Xu3mSo84nXcczLjuLe1nXRdEv6aieXwMqFX82ZjjHuaU171lm0SxTIweecyhPMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E0LWOogMVvlAzKvLnr0XCD/tSJOXzfykFIG3lpGBG7A=;
+ b=aD+ZuquOL4sMouw6OxxV4VDWiJhm5fb0GM84Z3yutCkvkEh0XmACrNcici+FZi1P0pJd/HOWEBU/6fGJTlWxdXi7UFUj7t9sl2HL1bOYQ0OE4ZNNBqa+wnrHqDc35ZDqoWMtPO3DgRhGorIANv3uuKwbaNHvrDRjD3raucFBQFQdrwoMa/ZYx2DtUDRQDXzcqJRTLxUOkobQXc7QmHLxIUnew95DiDUUMgtckxm+CULQq/qKEYobhLpiamM4Hdwp3c6guBWZA/sqn1gus3CaOlbmT72JfRI6LnRTdM7jDEEO6+h5LZbNfyIrRuaV7usUtUQWPylK7I1OS2YITizQbQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8955.eurprd04.prod.outlook.com (2603:10a6:20b:40a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.30; Mon, 16 Jun
+ 2025 19:04:47 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8835.026; Mon, 16 Jun 2025
+ 19:04:47 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pwm@vger.kernel.org (open list:PWM SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: pwm: convert lpc1850-sct-pwm.txt to yaml format
+Date: Mon, 16 Jun 2025 15:04:34 -0400
+Message-Id: <20250616190435.1998078-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH7PR13CA0005.namprd13.prod.outlook.com
+ (2603:10b6:510:174::8) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/8] soc: qcom: geni-se: Enable QUPs on SA8255p
- Qualcomm platforms
-To: Praveen Talari <quic_ptalari@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
- quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
- quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <SlCtr38wFck_Zdxg3nfChaMwe2uSvlQdfRCutdXc-Z2BTqoUOPd9Z9QY0cdREgcdxl40k41wXpszBkVTBB2T7A==@protonmail.internalid>
- <20250606172114.6618-4-quic_ptalari@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250606172114.6618-4-quic_ptalari@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8955:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27da4aa6-aebe-456a-7d92-08ddad08a992
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?0ntRnvNLnIMGRoJtzdh71oUX6nq2s9UtfdW6aTkRNciwiSWgPVXaC6XSF42S?=
+ =?us-ascii?Q?ICJRxea9YRelqvf460FGI5UQbO+RD0XLuUjpLelOzPGci7h3w5N5CZLdyjNB?=
+ =?us-ascii?Q?XASg+JgjLl7cSFqEoFruOyCbg4mw+WEkflSp8fQc0kXxwt4LOIWwPQLnIuc8?=
+ =?us-ascii?Q?1ZRz+soPFqsM1UnroyXzfHL8tTIxqsQqHxsZEb5OKxrw/TNq7VPsHgoXEKXm?=
+ =?us-ascii?Q?54330BBFODGGpjoHs/42iF1AufyrGkzxtMYfDHSy2omhKt2Q8v4fpOgi2uGM?=
+ =?us-ascii?Q?mus0gqqqzyKuNrdChKIAN8FMiytpsMIbfgAqhGrg8jI7/cMd/tkyJFd+iERk?=
+ =?us-ascii?Q?Nej5XPXMhXTZNy3JRAppu6RKSeesDZBDb+nlVIskASz2mb8ioTnM4i/gEFCL?=
+ =?us-ascii?Q?URrXSeiHuRGihxG78sX2ihQEOJoK7ejJKX7cZvLyLMmFajjMT6Tk0MSE9tO+?=
+ =?us-ascii?Q?pJ9hdKszQJ7dzYf5goQWffP0TT3+OTUtYcCZj8Nx8kbj13W6c85t6XKQbiyP?=
+ =?us-ascii?Q?PLBVtBonkAp8P/jSGCY1nzHrLhuH1sCjNNu1cx+yoJj9AQ2pYoCo6c9tvRoY?=
+ =?us-ascii?Q?QSB1I2UEW5Ux4LjGRU7QBaciND4thPSPPmT75JiZauamx+/PhW1mN4nFIR2t?=
+ =?us-ascii?Q?3YNgOAusKxJXSt2u4kx9XXXZx+7ww5NYB3C78RU05p2Iv5nA8+9Si46qHWYj?=
+ =?us-ascii?Q?+fthyjHIxV4VR3wCUw5bIaQpiC+L1CLVm2O2+z0QysUaGDavuQe2Dm9ib9ee?=
+ =?us-ascii?Q?QhqfwSOhVaaCiqUfsMG2KTvxI93MZD4gdHM9fYC4kcvWjoiWtijhhOgrpdOB?=
+ =?us-ascii?Q?lktN162oSuYgEBpB7qMTtY09T1o1z9PksyqjclTpzJBtyRJXNY5b/PbKsN9g?=
+ =?us-ascii?Q?Uj8mp4lf9dhUpmFetoJpa3YH3DXD25/HmWMl5zLlFffqZrl4YDE9YmF+n5eF?=
+ =?us-ascii?Q?YbZW7D4BNvGurNVDMAvEPTuFws6vmcE3rPe/A4rM8DiZNtQeHmPwFBXLnG5A?=
+ =?us-ascii?Q?rpMe1iJQrhrUsms3NGy6XPTFNUO85CpEGb9jbuYkcpqGXSsNoP7pS8s/Rim5?=
+ =?us-ascii?Q?wUJHxwaaIYUk7pt1zo99QrampK+sZ+mM84DTuXbJJFfxmTAZOSpJLJdy1vvy?=
+ =?us-ascii?Q?BcR/4/B/EcSc4+OjEKP9OyvSIL0xgE17WxtIjYIsr7Wp15dI/im6ID2ZQQdg?=
+ =?us-ascii?Q?c6RnAKdhFJMwFsximSON+P7KbpqktiY2s5PGtw7s8AYol3AIFQRSDbu+/lE3?=
+ =?us-ascii?Q?N2pgl5YbnzSM8LowK4AqFbmlzA40GptwuXI4L3PIFrSS3eU8fal4kkb4Pa6J?=
+ =?us-ascii?Q?8rUGGgojdcxjiGwo3MwWvoJJOmqgSUQuXvLu/kstUQ91uIxbXbPjDsjP9Ijw?=
+ =?us-ascii?Q?ESlOz17AiiLggcXYbWkUuQYfHQtAi146T7oiATbM4Mg1aHP4eR0HMYGzu1gp?=
+ =?us-ascii?Q?BmvEkPko+wyYspYYGyFYFTNLQrKK3fk7?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?x+h2HP6H7f3KnETSVISap+lWWIIPJvfL18ndCRMEgeAMhvGShW6hIALAhWXx?=
+ =?us-ascii?Q?ywMknUlVpfHBmtpO2ub4N5vzwIfuTXp7ESySuytQt/+pm8WVYhPm19oeThkJ?=
+ =?us-ascii?Q?gMeJNwGM+CyhkfXCt2dHNiEcr/AyHCJawOr0WTA+OIByJQzrJ5TOWsLBo7yk?=
+ =?us-ascii?Q?VsPa7joz4yum6U+AVii/RY6E0P9c1eXoFVzlZlGNy5GKeauKTYmpAsEXxjG3?=
+ =?us-ascii?Q?n4hrsEFYn1E3UmN9N5dakCpgtHfBKcsWXbRXqZ9Msc9N/CprI7FutYVVV1Oo?=
+ =?us-ascii?Q?nq6rXsKTaTQs06HZv5jRbvLzCj+seNB0KeSO3L6J2DNHG/pGorLAr8eLP2xU?=
+ =?us-ascii?Q?v/+Ddj2tA8EFWhz7hGc5cY6LUB70d9InzwbTOk+yBVa1bK+RXan1yFQStujV?=
+ =?us-ascii?Q?xC+Q6YMPOOi4JlzEDHuX0HW9kNF660wZSLXFDizizVnCOabc4LVkpgPM+5C9?=
+ =?us-ascii?Q?Sqeu8cKDE2LosYIU4/hU7npH94xhyGEVywu7qAitxFdT1JXLBprn/nQkYRc1?=
+ =?us-ascii?Q?RhDaxt64Szfp6qPzNb2bLR1rolVyPyv0u31s2dfVYKqDtGVXEUU6iUn0guz9?=
+ =?us-ascii?Q?DQ0ptxa1rxKoabRA+MA8bxEnYoBNsir6ZqYMEOzbQq1UoGW640wUdi3x4SfG?=
+ =?us-ascii?Q?XpGTxXWbwxHUwXNa6KiTOnkrD6pGDl5VyuH9I6aeHm9EgmZUdMrZ1rjTFukL?=
+ =?us-ascii?Q?HplSZj018ZxOAgFex6oHRj5a6qy/KlqdnB3eZjwk5Pn282PYysc3LoP9PsqP?=
+ =?us-ascii?Q?7CsMlwqqaQwwLIq1Npy6rgbl3RNHZgbSNfRiGr5n7fTWW5ZIdDsVDPQqAM+c?=
+ =?us-ascii?Q?aEVY89W4xk2S7qEYQeekq6yrzFSbPnCyeCjUbPLSTIUSIYaTgz46jzzfaMZo?=
+ =?us-ascii?Q?OKs6BI08bDAy9oOQZoG/R0UveEKebbyATnQiEgjkXQq1iPyBe/QVMVmZ2G1L?=
+ =?us-ascii?Q?si5hoEGozZHnVOsKvU/JzLfHmMoiuWdd3mGfLTTJ3iMfPmN6PUVGYWjEs5rv?=
+ =?us-ascii?Q?Y+VCsn0YD0LhnE/vLvgWqh0pbrXQP7+70b+E954DYMuocNppBLetWmF+LMmP?=
+ =?us-ascii?Q?A36rfN1jxfDfCEJm4mjm/pEVqNq+YFEAkmOlN1iezN04qWZ+wW7A7b3rPba3?=
+ =?us-ascii?Q?07N8OCBDCHO1D1TBQyrijx3cCp+UHTL2szsRJerHPha9jCkPrqyWwIVxKONP?=
+ =?us-ascii?Q?wo4YGjZBPjVgE8A0Op4fju+osJaSNrxjF46ekfZPnDXt5PDokiV7WEB8VBfi?=
+ =?us-ascii?Q?KfYJl3Kf4ClfPqpXVpCPh296+WK0/lBfntFScnEt8xKpAJ53pktHGJKTGyfu?=
+ =?us-ascii?Q?ht7pGttz2dCvKiZQlz+VCYh73ulOuB7z4qI5rzkrPQxHb6kIkB3I13ZIJQrN?=
+ =?us-ascii?Q?6JvTN3p7QdL0rqZFsvZd807qhjj31G9s2fhjqAq1vqE5SIhIALpP5tvFt2SZ?=
+ =?us-ascii?Q?j24tZh/NlVuoleOR33eSDCJ50m9aWDY8p5vTBQvW/iBmsju1C4pfvTf+Y7sG?=
+ =?us-ascii?Q?EZ0YrcnGTsBcUJmVvXpW8z2KQhaM7Iyu/GS46w9TTe9Q5tIoceL+dgh342Lh?=
+ =?us-ascii?Q?9pbrnq4ysp3oGfj9oIeYu1jROeR59NUVm6IAcoWB?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27da4aa6-aebe-456a-7d92-08ddad08a992
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 19:04:47.4787
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SsDjq+80zE6vSG6SbtYA+Bgx3N4vHx1zteHUXLdinu6qTCtwBK3qkxlvX2Hj8mye1+rEkv2OCplKnXULUOHFNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8955
 
-On 06/06/2025 18:21, Praveen Talari wrote:
-> On the sa8255p platform, resources such as clocks,interconnects
-> and TLMM (GPIO) configurations are managed by firmware.
-> 
-> Introduce a platform data function callback to distinguish whether
-> resource control is performed by firmware or directly by the driver
-> in linux.
-> 
-> The refactor ensures clear differentiation of resource
-> management mechanisms, improving maintainability and flexibility
-> in handling platform-specific configurations.
-> 
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> ---
-> v5 -> v6
-> - replaced dev_err with dev_err_probe
+Convert lpc1850-sct-pwm.txt to yaml format.
 
-You've missed two opportunities for dev_err_probe() in this submission.
+Additional changes:
+- add ref pwm.yaml.
+- add resets property to match existed dts.
 
-> - added a check for desc->num_clks with MAX_CLKS, an error if
->    the specified num_clks in descriptor exceeds defined MAX_CLKS.
-> - removed min_t which is not necessary.
-> - renamed callback function names to resources_init.
-> - resolved kernel bot warning error by documenting function
->    pointer in geni_se_desc structure.
-> 
-> v3 -> v4
-> - declared an empty struct for sa8255p and added check as num clks.
-> - Added version log after ---
-> 
-> v1 -> v2
-> - changed datatype of i from int to unsigned int as per comment.
-> ---
->   drivers/soc/qcom/qcom-geni-se.c | 77 +++++++++++++++++++++------------
->   1 file changed, 49 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
-> index 4cb959106efa..5c727b9a17e9 100644
-> --- a/drivers/soc/qcom/qcom-geni-se.c
-> +++ b/drivers/soc/qcom/qcom-geni-se.c
-> @@ -101,10 +101,13 @@ struct geni_wrapper {
->    * struct geni_se_desc - Data structure to represent the QUP Wrapper resources
->    * @clks:		Name of the primary & optional secondary AHB clocks
->    * @num_clks:		Count of clock names
-> + * @resources_init:	Function pointer for initializing QUP Wrapper resources
->    */
->   struct geni_se_desc {
->   	unsigned int num_clks;
->   	const char * const *clks;
-> +	int (*resources_init)(struct geni_wrapper *wrapper,
-> +			      const struct geni_se_desc *desc);
->   };
-> 
->   static const char * const icc_path_names[] = {"qup-core", "qup-config",
-> @@ -891,10 +894,47 @@ int geni_icc_disable(struct geni_se *se)
->   }
->   EXPORT_SYMBOL_GPL(geni_icc_disable);
-> 
-> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
-> +				 const struct geni_se_desc *desc)
-> +{
-> +	struct device *dev = wrapper->dev;
-> +	int ret;
-> +	unsigned int i;
-> +
-> +	if (desc->num_clks > MAX_CLKS)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Too many clocks specified in descriptor:%u (max allowed: %u)\n",
-> +				     desc->num_clks, MAX_CLKS);
-
-I think this is an extraneous add, we should trust the array indexes 
-inside our own driver that we control.
-
-Actually why do we have a MAX_CLKS ? We specify a list of clk names with 
-aggregate-initialisation and ARRAY_SIZE() of the aggregate.
-
-Like so:
-
-static const char * const qup_clks[] = {
-         "m-ahb",
-         "s-ahb",
-};
-
-static const struct geni_se_desc qup_desc = {
-         .clks = qup_clks,
-         .num_clks = ARRAY_SIZE(qup_clks),
-
-> +
-> +	wrapper->num_clks = desc->num_clks;
-> +
-> +	for (i = 0; i < wrapper->num_clks; ++i)
-> +		wrapper->clks[i].id = desc->clks[i];
-> +
-> +	ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "invalid clocks property at %pOF\n", dev->of_node);
-> +
-> +	if (ret < wrapper->num_clks) {
-> +		dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
-> +			dev->of_node, wrapper->num_clks);
-> +		return -EINVAL;
-> +	}
-
-This code OTOH makes way more sense as we are validating our internal 
-num_clks variable which we have enumerated ourselves against a DT input 
-which we are consuming.
-
-> +
-> +	ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
-> +	if (ret) {
-> +		dev_err(dev, "Err getting clks %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->   static int geni_se_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct geni_wrapper *wrapper;
-> +	const struct geni_se_desc *desc;
->   	int ret;
-> 
->   	wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
-> @@ -906,36 +946,12 @@ static int geni_se_probe(struct platform_device *pdev)
->   	if (IS_ERR(wrapper->base))
->   		return PTR_ERR(wrapper->base);
-> 
-> -	if (!has_acpi_companion(&pdev->dev)) {
-> -		const struct geni_se_desc *desc;
-> -		int i;
-> -
-> -		desc = device_get_match_data(&pdev->dev);
-> -		if (!desc)
-> -			return -EINVAL;
-> -
-> -		wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
-> -
-> -		for (i = 0; i < wrapper->num_clks; ++i)
-> -			wrapper->clks[i].id = desc->clks[i];
-> -
-> -		ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
-> -		if (ret < 0) {
-> -			dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
-> -			return ret;
-> -		}
-> +	desc = device_get_match_data(&pdev->dev);
-> 
-> -		if (ret < wrapper->num_clks) {
-> -			dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
-> -				dev->of_node, wrapper->num_clks);
-> +	if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
-> +		ret = desc->resources_init(wrapper, desc);
-> +		if (ret)
->   			return -EINVAL;
-> -		}
-> -
-> -		ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
-> -		if (ret) {
-> -			dev_err(dev, "Err getting clks %d\n", ret);
-> -			return ret;
-> -		}
->   	}
-> 
->   	dev_set_drvdata(dev, wrapper);
-> @@ -951,8 +967,11 @@ static const char * const qup_clks[] = {
->   static const struct geni_se_desc qup_desc = {
->   	.clks = qup_clks,
->   	.num_clks = ARRAY_SIZE(qup_clks),
-> +	.resources_init = geni_se_resource_init,
->   };
-> 
-> +static const struct geni_se_desc sa8255p_qup_desc;
-> +
->   static const char * const i2c_master_hub_clks[] = {
->   	"s-ahb",
->   };
-> @@ -960,11 +979,13 @@ static const char * const i2c_master_hub_clks[] = {
->   static const struct geni_se_desc i2c_master_hub_desc = {
->   	.clks = i2c_master_hub_clks,
->   	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
-> +	.resources_init = geni_se_resource_init,
->   };
-> 
->   static const struct of_device_id geni_se_dt_match[] = {
->   	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
->   	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
-> +	{ .compatible = "qcom,sa8255p-geni-se-qup", .data = &sa8255p_qup_desc },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
-> --
-> 2.17.1
-> 
-> 
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
-bod
+change in v2
+- add rob review tag
+- add pwm-cells: 3
+- add Vladimir Zapolskiy review tag
+---
+ .../bindings/pwm/lpc1850-sct-pwm.txt          | 20 -------
+ .../bindings/pwm/nxp,lpc1850-sct-pwm.yaml     | 54 +++++++++++++++++++
+ 2 files changed, 54 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/lpc1850-sct-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/nxp,lpc1850-sct-pwm.yaml
+
+diff --git a/Documentation/devicetree/bindings/pwm/lpc1850-sct-pwm.txt b/Documentation/devicetree/bindings/pwm/lpc1850-sct-pwm.txt
+deleted file mode 100644
+index 43d9f4f08a2e2..0000000000000
+--- a/Documentation/devicetree/bindings/pwm/lpc1850-sct-pwm.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* NXP LPC18xx State Configurable Timer - Pulse Width Modulator driver
+-
+-Required properties:
+-  - compatible: Should be "nxp,lpc1850-sct-pwm"
+-  - reg: Should contain physical base address and length of pwm registers.
+-  - clocks: Must contain an entry for each entry in clock-names.
+-    See ../clock/clock-bindings.txt for details.
+-  - clock-names: Must include the following entries.
+-    - pwm: PWM operating clock.
+-  - #pwm-cells: Should be 3. See pwm.yaml in this directory for the description
+-    of the cells format.
+-
+-Example:
+-  pwm: pwm@40000000 {
+-    compatible = "nxp,lpc1850-sct-pwm";
+-    reg = <0x40000000 0x1000>;
+-    clocks =<&ccu1 CLK_CPU_SCT>;
+-    clock-names = "pwm";
+-    #pwm-cells = <3>;
+-  };
+diff --git a/Documentation/devicetree/bindings/pwm/nxp,lpc1850-sct-pwm.yaml b/Documentation/devicetree/bindings/pwm/nxp,lpc1850-sct-pwm.yaml
+new file mode 100644
+index 0000000000000..ffda0123878ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/nxp,lpc1850-sct-pwm.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/nxp,lpc1850-sct-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP LPC18xx State Configurable Timer
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    const: nxp,lpc1850-sct-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: pwm
++
++  '#pwm-cells':
++    const: 3
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#pwm-cells'
++
++allOf:
++  - $ref: pwm.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/lpc18xx-ccu.h>
++
++    pwm@40000000 {
++        compatible = "nxp,lpc1850-sct-pwm";
++        reg = <0x40000000 0x1000>;
++        clocks =<&ccu1 CLK_CPU_SCT>;
++        clock-names = "pwm";
++        #pwm-cells = <3>;
++    };
+-- 
+2.34.1
+
 
