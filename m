@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-186434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B56CADBC84
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 00:01:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC4C9ADBC96
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 00:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FD741892600
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 22:01:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2EC23B922A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 22:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EAC2264C4;
-	Mon, 16 Jun 2025 22:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77DD222576C;
+	Mon, 16 Jun 2025 22:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="F91ClS5f"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="EqtSoBDA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com [95.215.58.176])
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBDBA2192E4
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 22:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B757221F11
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 22:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750111277; cv=none; b=BHDqn6mBIQyncxjvv5j5sCBXxY+DGWWLuEwAfgnqYi10gifSeMpd3L8cp7cZZ49qiz3cMIU9vcxtXBVpecUoWDFk0o2MRbTTWP9rkoy923NDKUGRG/9rHJFW4L2DICxtC2cUdy9bSzWilcXy0WkFPIxj6KlDN/wqksyRiBwQFgA=
+	t=1750111290; cv=none; b=qQ1M5Mb5ZcjW156swMepQgcvoYfFK6XpaUXetbt9jPI/Bcm4OrP8NCX5IU9ShkyCxHnTflg2xN5nHY4zp7eazkt4Xn3r35gocAHaRgg4VPLsffERM22bR6QzvPo+hQgW1Fkcwnp29uYVeRPAZstb398Df5qL/TJ/E88bY0CpqNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750111277; c=relaxed/simple;
-	bh=Vhfy//Tt2j7qdqBp2swhp7LRoCz7fTH1cTzQHky6pzE=;
+	s=arc-20240116; t=1750111290; c=relaxed/simple;
+	bh=St4IBqo9GKAYO2mEkfVIKVeAl+IZzHIvMD4FgFkoR4o=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EPAWgnpaWoQATFcFtxz8/itZcdtUJrvrzXEPWufPapxgKfVEx2AZGrVH43lwGpclOaljSopWCpvcHyyLKt8L5Dk3G7TGdGHo61m/vRM+QRhuLf/3xnSEBUWr5UZL213kXCCFCT5wrT7jaiYlqi5++9qYTQc1Y7bXnzPZ98RVfbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=F91ClS5f; arc=none smtp.client-ip=95.215.58.176
+	 MIME-Version; b=bTbpE7zPU8TH8QcwKxqqNPa+ydJZHHJmldthZXMy8g6OqjSC/A3e3dNM6ElK155BhAGqd8IPfwIWWUtpgjn/2PSZQoG/nE0M+fVUloZGNg8gHFrb18micD8vYiln2fuAurgev/LrGP8Z8d+ewXn18027qYJAdaT06DpGPSMzeb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=EqtSoBDA; arc=none smtp.client-ip=95.215.58.187
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1750111273;
+	t=1750111286;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=DYNxKYy9tzRuJkdjCisZbvAuwLPriCoPPBBF8f3Xfak=;
-	b=F91ClS5fDbY1agTH3+ZLkRlkBQZ4vz/bewBbT8pDW2tFKLX+Y9kaJNWbl5+/LuIdyC1lUV
-	lIk4woGYrtDdmMW0/XhZ4A4XlBJ+fXUd/N2Gw7nB+NjzKOqa2n4U36ldOOO1ZA3587NDOl
-	lk32sZWaPPtxaE824aC68ydUaZkfA9M=
+	bh=baIhgE/N38Lr9mmVCwKX0SXbBt/r7eLwevkwAfS0a18=;
+	b=EqtSoBDAhVsc11UmSbE01aj/EmNvOXXZu5gS7VXEGDDNz4D+TobMSEaQ6RA10sZeDGgKYZ
+	MHjLl4dQaiKRo6DjwxEIUpfEIuoZp5+PIkToBDNsZM+GrF/q8HmAhmBiU6LPOiZnjggmKc
+	ycVP8hhm8oqBGMXYMLJzYeYOInrwe+4=
 From: Sean Anderson <sean.anderson@linux.dev>
 To: Mark Brown <broonie@kernel.org>,
 	Michal Simek <michal.simek@amd.com>,
@@ -57,9 +57,9 @@ Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2 2/9] dt-bindings: spi: zynqmp-qspi: Add example dual upper/lower bus
-Date: Mon, 16 Jun 2025 18:00:47 -0400
-Message-Id: <20250616220054.3968946-3-sean.anderson@linux.dev>
+Subject: [PATCH v2 9/9] ARM64: xilinx: zynqmp: Add spi-buses property
+Date: Mon, 16 Jun 2025 18:00:54 -0400
+Message-Id: <20250616220054.3968946-10-sean.anderson@linux.dev>
 In-Reply-To: <20250616220054.3968946-1-sean.anderson@linux.dev>
 References: <20250616220054.3968946-1-sean.anderson@linux.dev>
 Precedence: bulk
@@ -71,57 +71,146 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-Add an example of the spi-buses property showcasing how to have devices
-on both the upper and lower buses.
+Add the spi-buses property to the ZynqMP devicetrees. This is pretty
+simple, since all boards use the lower bus.
 
 Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
 ---
 
-Changes in v2:
-- New
+(no changes since v1)
 
- .../bindings/spi/spi-zynqmp-qspi.yaml         | 22 ++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts      | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts     | 1 +
+ 10 files changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-index 02cf1314367b..c6a57fbb9dcf 100644
---- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-@@ -69,7 +69,7 @@ examples:
-       #address-cells = <2>;
-       #size-cells = <2>;
- 
--      qspi: spi@ff0f0000 {
-+      qspi: spi-controller@ff0f0000 {
-         compatible = "xlnx,zynqmp-qspi-1.0";
-         clocks = <&zynqmp_clk 53>, <&zynqmp_clk 82>;
-         clock-names = "ref_clk", "pclk";
-@@ -77,5 +77,25 @@ examples:
-         interrupt-parent = <&gic>;
-         reg = <0x0 0xff0f0000 0x0 0x1000>,
-               <0x0 0xc0000000 0x0 0x8000000>;
-+        num-cs = <3>;
-+        cs-gpios = <0>, <0>, <&gpio 5>;
-+
-+        flash@0 {
-+          reg = <0>;
-+          spi-buses = <0>;
-+          compatible = "jedec,spi-nor";
-+        };
-+
-+        flash@1 {
-+          reg = <1>;
-+          spi-buses = <1>;
-+          compatible = "jedec,spi-nor";
-+        };
-+
-+        flash@2 {
-+          reg = <2>;
-+          spi-buses = <0>;
-+          compatible = "jedec,spi-nor";
-+        };
-       };
-     };
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+index bfa7ea6b9224..3d3cb656f38c 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+@@ -132,6 +132,7 @@ &qspi { /* MIO 0-5 - U143 */
+ 	spi_flash: flash@0 { /* MT25QU512A */
+ 		compatible = "jedec,spi-nor"; /* 64MB */
+ 		reg = <0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-max-frequency = <40000000>; /* 40MHz */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+index 3dec57cf18be..f550ccea58cd 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+@@ -45,6 +45,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>; /* FIXME also DUAL configuration possible */
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+index 6aff22d43361..4ad5efdd40cd 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+@@ -359,6 +359,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+index 6ec1d9813973..26c33685b320 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+@@ -177,6 +177,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>; /* also DUAL configuration possible */
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index 7e26489a1539..aa4ed3a082fa 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -958,6 +958,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>; /* FIXME also DUAL configuration possible */
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index eb2090673ec1..acbe0758a31b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -444,6 +444,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index 4694d0a841f1..9b0324acbeec 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -456,6 +456,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 7beedd730f94..fd983f4c416d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -964,6 +964,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>; /* FIXME also DUAL configuration possible */
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index b67ff7ecf3c3..af225413a274 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -794,6 +794,7 @@ flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>; /* FIXME also DUAL configuration possible */
+ 		spi-max-frequency = <108000000>; /* Based on DC1 spec */
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
+index a38c2baeba6c..65790e341c15 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
+@@ -47,6 +47,7 @@ &qspi {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor";
+ 		reg = <0x0>;
++		spi-buses = <0>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-max-frequency = <108000000>;
 -- 
 2.35.1.1320.gc452695387.dirty
 
