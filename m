@@ -1,120 +1,202 @@
-Return-Path: <devicetree+bounces-186317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2DFADB24D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:42:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ECC7ADB27A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:49:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AE5316D000
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:41:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE42188306E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BD9292B3C;
-	Mon, 16 Jun 2025 13:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1242877DF;
+	Mon, 16 Jun 2025 13:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IplYXVmP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HC9caf5t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2521D2BF01A;
-	Mon, 16 Jun 2025 13:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B519222097
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 13:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750081254; cv=none; b=P2YG912tQqPjRFNfbSf7eoH8UZpeqSaYHke/r+fT7wqUUQv3Njxi8afzZM0twciLDpnleuwmxJqnpk5sqPX2+achEj18582OMD6Oda1NoF0FVTIEvo8/8S52qQMBUHInGt0YRdLQ4Rz9Pa5gKqLOIRKdlJwI0V4IWTJ0aAqznvA=
+	t=1750081728; cv=none; b=KyswixDD3mmY7PPTDJ6JE2UFM/JI9rM1x7MXoQMHx1crfW8c10HMa5ps3n/+dgZM3TXILFggQJEDTB9R2Ah6q3e/Gmx1GKyZ3lboF1HSri7fzGKagMXcHKnSEMwNOgBFS4CabaUevJznia4+TO/woHRBZEOvmpou9boVBeP7UdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750081254; c=relaxed/simple;
-	bh=rdv9kLnOvyNV5TOzVtFB/uj865WbpER5B4I4p9ckmR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CHwJ5yfrAF+lp+EqCcFxvfcJrz5tsz/gEfVOKFqFFSlZycYXTCcnmwRXv2s2SFnt+vjYx+Y5iRjIxqgg05oUsaDPcz1CGkI+tg3DDbVmE5NU+eFYF4BQJtGnCxP5Bp7AFIlfE8wONznogHyGIdezoaUPALBX3leWginIYOtQ8tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IplYXVmP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25630C4CEED;
-	Mon, 16 Jun 2025 13:40:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750081253;
-	bh=rdv9kLnOvyNV5TOzVtFB/uj865WbpER5B4I4p9ckmR4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IplYXVmP7vw4qSpQym/7rxQLwKuwNI2e8pBTRu/r17RN5mvo97RENr4I4q50uDB9z
-	 t3IXRMwwFu4tpBq8wDxHCNQm7EZ8D6+rfHfsnlpRzc3J6ADCRb00Jaff2WjFtcKnov
-	 Ocd658g+eaqFfCzrHNDXIpYgGX8gnfr6atwHt7Lp1hBUnuGUF2wMz+0oiU9Q5sqpfP
-	 +0rOAC7mhbC1gemvOOXRfCcnGmH3ybxlgV5UBHOSVjEVmeUEY7KNwEb4apo63ukbHQ
-	 Was0gsB6EAsSNE4ZrvIhqwcNjf9GVHDesnO3JMC9xwp36co9VscAofw7gb60Sc2QvV
-	 6lpTJgl42aimw==
-Date: Mon, 16 Jun 2025 15:40:50 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: pwm: convert lpc1850-sct-pwm.txt to
- yaml format
-Message-ID: <hzcpjqvc7jygzt2xj25y7467b55gjv5w6bhgqq7plvzsom44wr@hzfzf6gth2we>
-References: <20250602140722.941002-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1750081728; c=relaxed/simple;
+	bh=hORHC5srxkLYSdtcercNBIJfYGZMJfr+bVXBwlntJR8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=K/b0exasPGYgnIoo0I//raXfRrBuP9QCR2u24VfQsgwyWML2igDE9FFLhgevrf8T0md7DUnBgoEoGhPYqlZrbD4DfWQesZDewGXxgGsSpuqOpUgZVVvFRAg/FZ8+xb6/2kCynt/+mKWHACyEsirChzziiXuLVyn7HpbyVD8va7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HC9caf5t; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e7b4ba530feso3834829276.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 06:48:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750081725; x=1750686525; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uDEsIjpQxmad8FZLMr2zVoXrSneTIt+2z4fP3XcIK5Y=;
+        b=HC9caf5t7Z3YV34hMVfY2iOyc8ceDK41ddWnZGKqTuEfRCkaUY3raiG3FlkrCFIjfD
+         tPyRf2CTFWTmNqn1/fqrqeiU9uJtuN0/o6S2lRpPIvGheNVfGEWlXe0gKBMgT93uCWaV
+         howKJOdXYFL5VBUyk2ABJnWG4of5g8jT5EQF3lfnh7+BPQPGs47ip1FBWZ/yH45SY+nE
+         ITmfq9OEFvRdyraYRy2/XeNzHkPruJLRo4LNcIanLnMF1+j2wUFJAl4/IBSZ8nBmL7y3
+         hnmmFLXuSOCnEaOhKiBMjLbpfE4uyCGHw7eLjaR81qvd/V7H6hVfgYy2IZI1q74yo9eT
+         +LMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750081725; x=1750686525;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uDEsIjpQxmad8FZLMr2zVoXrSneTIt+2z4fP3XcIK5Y=;
+        b=jUVMrialwBCAxv2d4VUj356pvCVRz+x2pkJWJgqhxJFGlnTNwZ6hXr/kkzpNJxMhKY
+         Avf/GCwyzckMcsROLzP2Jbh0fyEvm3AQ4NvDguRr3CoG71qjMBMEKkr7Ddi7Ds4EN5ot
+         i/skymrUFIUfRtJhs/TB+O+yJ4J49illqaUcAjI808mQlpgobA+pMC3c5SP+MoO4K/Az
+         aGdlMHSULUJaYPxv6MAtyHAnWvNTMFK6Ul+LVWYuh1b93tXxFhSqEGX5hNvUF4ltHK3v
+         CUZwQaO7vXM5DXkBL5DA0vt1o2h2+/RPqwvY0W+jV3UG+23WiBYlt4cPWdaULyMlkms3
+         eZUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ4fNG4xsa2R+RHGzgqft8/YuJjtHcJfBVEfT7SsAWq1KmD1hdc+vKuXoC+mi/177Ph04s4SEe+f8+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm+8F5Ai9GgufjzPVA+TPC9w1CVFRUfmYZbrEwHiLQqDDP+nDx
+	wiADaBG+zhX3uGS6NfWsGAqHVt8DwBrF1/V2/zw1dRC1yTy81A1zOvWBwoNMV+sk2ecGdOPYT+z
+	FfyxTDpy6BSdH/+g0ATTnTQCdDL/oDC280jF1d27Kuy5YZPSiLlS3YlY=
+X-Gm-Gg: ASbGncvOAPoiwJhjKF4rvir9IUu0czSpjbT/gOv4nM1/3ZC1B3Xx2tVjDC2XVuQx6bJ
+	ecgajJWvAmBk5VCMCvw1Nw+VO8yHWZYMJiVx7UmKRsI8DdO8ww7DKZFt7+RY8Kw29dCBV0RMlk7
+	LsJl+vb9Mu40ugK3JJcrYQiYWVf2y+EwKCb9i/Q1smFSbi
+X-Google-Smtp-Source: AGHT+IHNxadKla4VrvH6YQyXKvJ7gWCdWq9mPlNx20rADiF787HEQItMLkqVHGwgE74xslQFsHpPtk0p6m7ForJ9ORA=
+X-Received: by 2002:a05:6902:220e:b0:e81:9581:4caa with SMTP id
+ 3f1490d57ef6-e822ad8bc0fmr12562057276.34.1750081724654; Mon, 16 Jun 2025
+ 06:48:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ren6ciqm735ki2cb"
-Content-Disposition: inline
-In-Reply-To: <20250602140722.941002-1-Frank.Li@nxp.com>
+References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
+ <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
+In-Reply-To: <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 16 Jun 2025 15:48:08 +0200
+X-Gm-Features: AX0GCFvKDYfrBoGxWHbzdQisHdQSvIWu47gSqcVmiJT8KMDILVyrcsYNa9sTBzs
+Message-ID: <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
+Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
+ using power-domain-map
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-
---ren6ciqm735ki2cb
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH 1/1] dt-bindings: pwm: convert lpc1850-sct-pwm.txt to
- yaml format
-MIME-Version: 1.0
-
-Hello Frank,
-
-On Mon, Jun 02, 2025 at 10:07:21AM -0400, Frank Li wrote:
-> +properties:
-> +  compatible:
-> +    const: nxp,lpc1850-sct-pwm
+On Sat, 14 Jun 2025 at 00:39, Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Currently, PM domains can only support hierarchy for simple
+> providers (e.g. ones with #power-domain-cells = 0).
+>
+> Add more generic support for hierarchy by using nexus node
+> maps (c.f. section 2.5.1 of the DT spec.)
+>
+> For example, we could describe SCMI PM domains with multiple parents
+> domains (MAIN_PD and WKUP_PD) like this:
+>
+>     scmi_pds: protocol@11 {
+>         reg = <0x11>;
+>         #power-domain-cells = <1>;
+>
+>         power-domain-map = <15 &MAIN_PD>,
+>                            <19 &WKUP_PD>;
+>     };
+>
+> which should mean that <&scmi_pds 15> is a subdomain of MAIN_PD and
+> <&scmi_pds 19> is a subdomain of WKUP_PD.
+>
+> IOW, given an SCMI device which uses SCMI PM domains:
+>
+>    main_timer0: timer@2400000 {
+>       power-domains = <&scmi_pds 15>;
+>    };
+>
+> it already implies that main_timer0 is PM domain <&scmi_pds 15>
+>
+> With the new map, this *also* now implies <&scmi_pds 15> is a
+> subdomain of MAIN_PD.
+>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+>  drivers/pmdomain/core.c | 24 ++++++++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+> index d6c1ddb807b2..adf022b45d95 100644
+> --- a/drivers/pmdomain/core.c
+> +++ b/drivers/pmdomain/core.c
+> @@ -2998,8 +2998,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>                                  unsigned int index, unsigned int num_domains,
+>                                  bool power_on)
+>  {
+> -       struct of_phandle_args pd_args;
+> -       struct generic_pm_domain *pd;
+> +       struct of_phandle_args pd_args, parent_args;
+> +       struct generic_pm_domain *pd, *parent_pd = NULL;
+>         int ret;
+>
+>         ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
+> @@ -3039,6 +3039,22 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>                         goto err;
+>         }
+>
+> +       /*
+> +        * Check for power-domain-map, which implies the primary
+> +        * power-doamin is a subdomain of the parent found in the map.
+> +        */
+> +       ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
+> +                                            "power-domain", index, &parent_args);
+> +       if (!ret && (pd_args.np != parent_args.np)) {
+> +               parent_pd = genpd_get_from_provider(&parent_args);
+> +               of_node_put(parent_args.np);
 > +
-> +  reg:
-> +    maxItems: 1
+> +               ret = pm_genpd_add_subdomain(parent_pd, pd);
+> +               if (!ret)
+> +                       dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
+> +                               pd->name, parent_pd->name);
+> +       }
+
+Please move the above new code to a separate shared genpd helper
+function, that genpd providers can call build the topology. This, to
+be consistent with the current way for how we usually add
+parent/child-domains in genpd (see of_genpd_add_subdomain).
+
+Moreover, we also need a corresponding "cleanup" helper function to
+remove the child-domain (subdomain) correctly, similar to
+of_genpd_remove_subdomain().
+
 > +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pwm
-> +
-> +  resets:
-> +    maxItems: 1
+>         ret = genpd_set_required_opp(dev, index);
+>         if (ret)
+>                 goto err;
+> @@ -3056,6 +3072,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>                         dev_gpd_data(dev)->default_pstate = 0;
+>                 }
+>
+> +               if (parent_pd)
+> +                       pm_genpd_remove_subdomain(parent_pd, pd);
+>                 genpd_remove_device(pd, dev);
+>                 return -EPROBE_DEFER;
+>         }
+> @@ -3063,6 +3081,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>         return 1;
+>
+>  err:
+> +       if (parent_pd)
+> +               pm_genpd_remove_subdomain(parent_pd, pd);
+>         genpd_remove_device(pd, dev);
+>         return ret;
+>  }
+>
+> --
+> 2.49.0
+>
 
-Please add:
-
-  '#pwm-cells':
-    const: 3
-
-Otherwise looks fine.
-
-Best regards
-Uwe
-
---ren6ciqm735ki2cb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhQHt4ACgkQj4D7WH0S
-/k6RoAf/U5Cx+rqRYS2ZdCPFHIdMoeLmobyj02rswAVnjmxl0ABjsH4OfMakH6tj
-76A4BaXMJG0cV8rtj546BuslYkMXGo9ekZ8XwGBSx4mv2i7/12jhXJLqYraJNZ5D
-Z1Kq7/KfOi4VN9A5iYOQwbIbYTnbX8DqvaoYg3jODYKRjSBrvox+JJ9+WHGhSmpm
-rXTp1Q3O7dCP9JVxFS5BBfSKDmkuUH/P7mX7abfnw2E93W7foFlKOJtBvrhxWPN3
-LPqrY6tkXKtjJ9QC9J28WFM7+f5HvEDA/V3QZm99fRQbkw2T6A863sgbTG4iA/qU
-V/V5ST9owWyF5szHnkzCikG7CROvhQ==
-=tzl7
------END PGP SIGNATURE-----
-
---ren6ciqm735ki2cb--
+Kind regards
+Uffe
 
