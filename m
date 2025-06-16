@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-186360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8E68ADB617
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:04:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9315ADB625
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:06:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF8C516FD79
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:04:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D6C216FEBF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F3428641E;
-	Mon, 16 Jun 2025 16:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1499E2857FA;
+	Mon, 16 Jun 2025 16:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XeAJNb4b"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="Cxej/lQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED3E283CBD;
-	Mon, 16 Jun 2025 16:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750089883; cv=none; b=uBnMH4wKgEgKqSB9jePzheAvJHJwynf4PG0W426povkLxkcJmFCZ1UNtYb9VL1JSFJMLOlE5UOE3Dv5p1X/odjvsq1HHXZiR6DPk4Gc1uQscU+CwzPfEk+Q/XWOBYNpz/CTv8p6vCGHFA2KCTb6qW9a9JVG+tZuMCo0HURGv/4A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750089883; c=relaxed/simple;
-	bh=4i0m/14BXCehb1bURjYgdNwmL0nuOwpk+bAUh2HlVfs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Plt8ZMW3t7sIyVMrp6e8HOTVQImmxtlGA37bWTIECST76en+s6PBS/AYMS0b9DEbLwvdecer4NG7XfUTJqz8b/Jm6dVj0CN4sEMIAvhBjjL0l4kDmlII2RgUYvVZQMqTDbK/6SU0dhy8LlnLfuJjdzQHlZUMRGGUVmOFvaPN2uI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XeAJNb4b; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55G8dDql019473;
-	Mon, 16 Jun 2025 16:04:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PalnoA7Aqj4g1TN3NQrWj4j5JVW/HWc+WnQeOaO9HKg=; b=XeAJNb4b674MuJoj
-	hhX90aTbtPKz/4m62i/Lrykai6sWrTlea1L/Sae74ZycHI383yAnQQNOVdhLVie6
-	PEEpEioJ1SHOJY2DdQk4KV17Y8DlL39qmu3zAgkjMJOPGqJx59dQqa0PGi2xLcR5
-	SHbsDgHIKa5Oear+RTWMXQC3Fc2FRZOUYXM/hCDNmvEHYa+r5Su+rwcBmtmJYOpq
-	wBX5Asw/NgDeJdmmK8yZ1tNup8qBcZ15jiClcXu+bF9hXnpqWVHV73Qxq5WktMRs
-	dIJth3lC/5VJ3GjIYIrFz32g3Z/0CuCpNFr1kmoRha5KR0qtUPpM9vbI0uuq3Olo
-	fek/Ug==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h954qs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 16:04:36 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55GG4ZmV020198
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 16:04:35 GMT
-Received: from [10.216.4.100] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Jun
- 2025 09:04:29 -0700
-Message-ID: <509c94bb-cf31-43bb-a92d-db006efd43aa@quicinc.com>
-Date: Mon, 16 Jun 2025 21:34:27 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF8586340;
+	Mon, 16 Jun 2025 16:06:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750089998; cv=pass; b=Uhxot0FKfp8X5AHs33kCP5Jo4x5Uu2kCaeea3Xa/19vQq270NwG/bgfVhwvHzKMdLfsD79kzOnPHmaILoCy3duaznro1+OGtdWJWiHA1ESYNdoi48SmwJh+PkkQRRghqesSI0tn8mHJGyqj3h2YljsXiW3HUy7PB/3359YLKbmA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750089998; c=relaxed/simple;
+	bh=ASFFuuxt+NkRcr85V9Pfr5TSV45ijN++k4YYQyXOBPw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FyslqY2BM0rkBV7Ns71zdTaLdiYX2TFu/S9pa8SBVYPQBU9ej6y4iQ6N8rSBxAHLxh1sQEv8Gi4gExlbj5pBHd46uO1WkpefhHivnTh4Qqn0bsHf47a8wcv3JxRC9ykPnVThc16pH1Claw7jlQrUT0LVcZC6r64YnScThDebtSc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=Cxej/lQU; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750089974; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=e3GNWk/WbTMBevIRzVxs0X0CrdY0pRAyPGz6jfHOmRORUsjwLA1tl83Tcg69Gdmjm6LtbNDMWkmzWPXstgPN13BL4cUCzalmADCecyqghzLvTPu7xIp5Zte6CJ7oUCnJXZEHBgK41h40PJKyFeuACrxbSi+mpnczIfdnz4rfot8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750089974; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=R2NIJYlZXUCPFvz62oOBC7RgnkUtxPH/uiLdx+Eefzw=; 
+	b=LPTH8d3DUcfCDo7jV04mDGb73PcRIZcqmB6HWL3b3Fwmaro5ZWuxr+RCxr3Gh3EofXC1PFLsCGqgykkco3tglMzjHesUsHPyai1hut15i1TFpPYezmbnoImx6TieTKuB6c2a9oBwESWEKNux8OyIhLTWlIF7v0/BhzqbDVUirqs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750089973;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=R2NIJYlZXUCPFvz62oOBC7RgnkUtxPH/uiLdx+Eefzw=;
+	b=Cxej/lQUz2GTaTy62PcnOSfRvxKBanXxW0lGKW0AFWDQ7U+qDpLJSKzl0sFtrdA7
+	IlPkQnAXxZZRvNLvs2aFKNCn7ht/En6XoDdo+4KiSUwcNsn0YeE3BwU1TiJVG+uovHv
+	FdY7IkjAhFOlAV0AndUjZn8f5RMcY2IxVzacAGQM=
+Received: by mx.zohomail.com with SMTPS id 1750089971949421.80620542117106;
+	Mon, 16 Jun 2025 09:06:11 -0700 (PDT)
+Message-ID: <163a05ac-b0de-4345-8489-dbf858326908@collabora.com>
+Date: Mon, 16 Jun 2025 18:06:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,180 +60,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/8] serial: qcom-geni: move clock-rate logic to
- separate function
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>
-CC: <psodagud@quicinc.com>, <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
-        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
-        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-7-quic_ptalari@quicinc.com>
+Subject: Re: [PATCH 2/5] dt-bindings: iommu: verisilicon: Add binding for VSI
+ IOMMU
+To: Conor Dooley <conor@kernel.org>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+ kernel@collabora.com
+References: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
+ <20250616145607.116639-3-benjamin.gaignard@collabora.com>
+ <20250616-winter-strict-db98f85db22d@spud>
+ <5c971c09-c398-40a3-9ed5-ec38b6645e1d@collabora.com>
+ <20250616-contempt-remix-5af2b7281cbd@spud>
+ <2d251d7c-7906-4a66-9791-7f71e7a4b54d@collabora.com>
+ <20250616-capped-rehab-6e7fd24d23ae@spud>
 Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <20250606172114.6618-7-quic_ptalari@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dfjNEMNrv_M2QXivt2QwV8_rdesJ9iGN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDEwNCBTYWx0ZWRfX5JjzziloWYIy
- BWsPLWMJkYOBmzqxyaYugMrQYSCBQA12HJDtRyv36NQja2gX1QgihVK3niY1UycG48T5V2IR8Ke
- jYoDMu45gDVzBnfOiUycU2FFIakMW8DCKwZvThCSt+4RFyzqG12VZrFKXBVppLIM7ayQCPrsrJg
- 3GOEmiMbasjqQOskqz+/roQxpBtG4yCoWFwwoivKnVywiGFSKcoKDBtijAWaayZBDCJnhl/4WWo
- RX7OZyZb2TS9OR3/EEwED0uzKZfWcoarMnCpOld5RxUPeu+zwexmpFvqIUy80zUIcVvRzJ2UoHO
- MoVdfYCV5a4PkrKOR3s5DXipSKkpXsO+u2/2vcbCr9WNf3/l3ZhzvlCOBUC29ORyRMcs9BogKj+
- UfP7YjcMUHyKK6J2abEEXYhMst7/yfP1CSOrT6z6SBa54RkowaGP7+TjoPJJqEhPFO6vAbFO
-X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=68504094 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=E4x2KR17IadLq3rmprIA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: dfjNEMNrv_M2QXivt2QwV8_rdesJ9iGN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_08,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=999
- malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506160104
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <20250616-capped-rehab-6e7fd24d23ae@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Bryan,
 
-Gentle reminder!!
+Le 16/06/2025 à 17:58, Conor Dooley a écrit :
+> On Mon, Jun 16, 2025 at 05:50:50PM +0200, Benjamin Gaignard wrote:
+>> Le 16/06/2025 à 17:42, Conor Dooley a écrit :
+>>> On Mon, Jun 16, 2025 at 05:30:44PM +0200, Benjamin Gaignard wrote:
+>>>> Le 16/06/2025 à 17:14, Conor Dooley a écrit :
+>>>>> On Mon, Jun 16, 2025 at 04:55:50PM +0200, Benjamin Gaignard wrote:
+>>>>>> Add a device tree binding for the Verisilicon (VSI) IOMMU. This IOMMU sits
+>>>>>> in front of hardware encoder and decoder blocks on SoCs using Verisilicon IP,
+>>>>>> such as the Rockchip RK3588.
+>>>>>>
+>>>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>>>> ---
+>>>>>>     .../bindings/iommu/verisilicon,iommu.yaml     | 71 +++++++++++++++++++
+>>>>>>     1 file changed, 71 insertions(+)
+>>>>>>     create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..acef855fc61d
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+>>>>>> @@ -0,0 +1,71 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/iommu/verisilicon,iommu.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Verisilicon IOMMU
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>>>> +
+>>>>>> +description: |+
+>>>>>> +  A Versilicon iommu translates io virtual addresses to physical addresses for
+>>>>>> +  its associated video decoder.
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    oneOf:
+>>>>>> +      - items:
+>>>>>> +          - const: verisilicon,iommu
+>>>>> You're missing a soc-specific compatible at the very least here, but is
+>>>>> there really no versioning on the IP at all? I'd be surprised if
+>>>>> verisilicon only produced exactly one version of an iommu IP.
+>>>> I only aware this version of the iommu for the moment.
+>>> "for the moment", yeah. Is there any information that could be used to
+>>> version this available?
+>> The hardware block isn't documented in the TRM so I don't know if there is a version
+>> field or something like that.
+>>
+>>>> Does adding verisilicon,rk3588-iommu sound good for you ?
+>>> It'd be "rockchip,rk3588-iommu", but sure.
+>> "rockchip,rk3588-iommu" is already use for other MMUs in rk3588.
+> "rockchip,rk3588-video-iommu" then? Instances of an IP in an SoC get a
+> specific compatible with the SoC vendor's prefix, so having verisilicon
+> there isn't suitable unless they made the SoC.
 
-Thanks,
-Praveen Talari
+Other hardware video codecs have a different IOMMU so I will suggest
+"rockchip,rk3588-av1-iommu" which is specific to this video hardware block.
 
-On 6/6/2025 10:51 PM, Praveen Talari wrote:
-> Facilitates future modifications within the new function,
-> leading to better readability and maintainability of the code.
-> 
-> Move the code that handles the actual logic of clock-rate
-> calculations to a separate function geni_serial_set_rate()
-> which enhances code readability.
-> 
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> ---
-> v5 -> v6
-> - used "unsigned int" instead of "unsigned long" in newly
->    added API function params to avoid the format specifier
->    warnings.
-> 
-> v3 -> v4
-> - added version log after ---
-> 
-> v1 -> v2
-> - resolved build warnings for datatype format specifiers
-> - removed double spaces in log
-> ---
->   drivers/tty/serial/qcom_geni_serial.c | 56 +++++++++++++++++----------
->   1 file changed, 36 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-> index 715db35bab2f..b6fa7dc9b1fb 100644
-> --- a/drivers/tty/serial/qcom_geni_serial.c
-> +++ b/drivers/tty/serial/qcom_geni_serial.c
-> @@ -1283,27 +1283,14 @@ static unsigned long get_clk_div_rate(struct clk *clk, unsigned int baud,
->   	return ser_clk;
->   }
->   
-> -static void qcom_geni_serial_set_termios(struct uart_port *uport,
-> -					 struct ktermios *termios,
-> -					 const struct ktermios *old)
-> +static int geni_serial_set_rate(struct uart_port *uport, unsigned int baud)
->   {
-> -	unsigned int baud;
-> -	u32 bits_per_char;
-> -	u32 tx_trans_cfg;
-> -	u32 tx_parity_cfg;
-> -	u32 rx_trans_cfg;
-> -	u32 rx_parity_cfg;
-> -	u32 stop_bit_len;
-> -	unsigned int clk_div;
-> -	u32 ser_clk_cfg;
->   	struct qcom_geni_serial_port *port = to_dev_port(uport);
->   	unsigned long clk_rate;
-> -	u32 ver, sampling_rate;
->   	unsigned int avg_bw_core;
-> -	unsigned long timeout;
-> -
-> -	/* baud rate */
-> -	baud = uart_get_baud_rate(uport, termios, old, 300, 4000000);
-> +	unsigned int clk_div;
-> +	u32 ver, sampling_rate;
-> +	u32 ser_clk_cfg;
->   
->   	sampling_rate = UART_OVERSAMPLING;
->   	/* Sampling rate is halved for IP versions >= 2.5 */
-> @@ -1317,7 +1304,7 @@ static void qcom_geni_serial_set_termios(struct uart_port *uport,
->   		dev_err(port->se.dev,
->   			"Couldn't find suitable clock rate for %u\n",
->   			baud * sampling_rate);
-> -		return;
-> +		return -EINVAL;
->   	}
->   
->   	dev_dbg(port->se.dev, "desired_rate = %u, clk_rate = %lu, clk_div = %u\n",
-> @@ -1339,6 +1326,37 @@ static void qcom_geni_serial_set_termios(struct uart_port *uport,
->   	port->se.icc_paths[CPU_TO_GENI].avg_bw = Bps_to_icc(baud);
->   	geni_icc_set_bw(&port->se);
->   
-> +	writel(ser_clk_cfg, uport->membase + GENI_SER_M_CLK_CFG);
-> +	writel(ser_clk_cfg, uport->membase + GENI_SER_S_CLK_CFG);
-> +	return 0;
-> +}
-> +
-> +static void qcom_geni_serial_set_termios(struct uart_port *uport,
-> +					 struct ktermios *termios,
-> +					 const struct ktermios *old)
-> +{
-> +	struct qcom_geni_serial_port *port = to_dev_port(uport);
-> +	unsigned int baud;
-> +	unsigned long timeout;
-> +	u32 bits_per_char;
-> +	u32 tx_trans_cfg;
-> +	u32 tx_parity_cfg;
-> +	u32 rx_trans_cfg;
-> +	u32 rx_parity_cfg;
-> +	u32 stop_bit_len;
-> +	int ret = 0;
-> +
-> +	/* baud rate */
-> +	baud = uart_get_baud_rate(uport, termios, old, 300, 4000000);
-> +
-> +	ret = geni_serial_set_rate(uport, baud);
-> +	if (ret) {
-> +		dev_err(port->se.dev,
-> +			"%s: Failed to set baud:%u ret:%d\n",
-> +			__func__, baud, ret);
-> +		return;
-> +	}
-> +
->   	/* parity */
->   	tx_trans_cfg = readl(uport->membase + SE_UART_TX_TRANS_CFG);
->   	tx_parity_cfg = readl(uport->membase + SE_UART_TX_PARITY_CFG);
-> @@ -1406,8 +1424,6 @@ static void qcom_geni_serial_set_termios(struct uart_port *uport,
->   	writel(bits_per_char, uport->membase + SE_UART_TX_WORD_LEN);
->   	writel(bits_per_char, uport->membase + SE_UART_RX_WORD_LEN);
->   	writel(stop_bit_len, uport->membase + SE_UART_TX_STOP_BIT_LEN);
-> -	writel(ser_clk_cfg, uport->membase + GENI_SER_M_CLK_CFG);
-> -	writel(ser_clk_cfg, uport->membase + GENI_SER_S_CLK_CFG);
->   }
->   
->   #ifdef CONFIG_SERIAL_QCOM_GENI_CONSOLE
 
