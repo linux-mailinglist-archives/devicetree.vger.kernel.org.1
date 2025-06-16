@@ -1,231 +1,127 @@
-Return-Path: <devicetree+bounces-186254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F7AADAD83
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2005ADAD9A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:42:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7FAD3ABFAC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:35:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC9423A20CE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFEA2820B6;
-	Mon, 16 Jun 2025 10:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10CCB295520;
+	Mon, 16 Jun 2025 10:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WmX+S81I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aSKCP//v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99A727CB02;
-	Mon, 16 Jun 2025 10:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F25A2882D1;
+	Mon, 16 Jun 2025 10:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750070124; cv=none; b=GuslIG9EIbudF7loVX9E5LL9V6ys5hmNTLv3IrN0nQdPFwxucBICkD+Zmmnjhy30ytiikOdLyEqXSvvONFt/51+k4mCoL3vvDhObGeFg4AQ4S7KS/zbtf0lr8/2H59nc3H9pcDlIa9DG7nGT8TedckYV05OSNYqCo9wCIFuafh4=
+	t=1750070552; cv=none; b=ltMUobAUSbKp+oea08+qGUxGeW/BBOTnFgmvBewxPiZc7zLhPLzqQuqox4Gih29opJxBpYcKnyMBhnPEwJPAPtGpW7Ir0ycM+6x7LdlecI3Q6CieBB7926JcZqU8Pr0Vovg8Z7iAkGR2yUktPe6PFJpVOJBFoMJ9S+5tF9uE/f4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750070124; c=relaxed/simple;
-	bh=tCl2CCqSLeN+qCH95sifJaz4OfHJ2wMdp+GPdk1+BwY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VF3zT49U7bk0KHMBKa4axOeGVMlV6zooAfCDLtFg6kbAIvaNUag+DfORqn5GZDQ1iRGQJhyeS8HKPA6q7i2T8vF8iP1ToTKnFlyZAppRbI+MxmLuh8GIoh+vLVZWjjKUyhCha52+FA4fM06LdcK5T8nz+x4LAtccGd0cVjir8NY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WmX+S81I; arc=none smtp.client-ip=209.85.215.181
+	s=arc-20240116; t=1750070552; c=relaxed/simple;
+	bh=Fhsd6q/hRQwGHerpb6eGxJc9LhHttkXql2QisPijFJE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bRYZlj0H+O7RKkkwlPqhzbBt1KKgFF/2vStgWKnis8m30bQGpnWi7FLZJ7GxnPuvMlcZ2TrF/tOmWoc+J+aZgSL82jYsgcW9SGmp3zxUR65LXw2xdIiElcASL2MJMLj51d5aX/COW4AMhr7AVP2nLeaYIBWZn2/WNQOQGQwiBy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aSKCP//v; arc=none smtp.client-ip=209.85.216.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b0db0b6a677so3954399a12.2;
-        Mon, 16 Jun 2025 03:35:22 -0700 (PDT)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-313154270bbso4761166a91.2;
+        Mon, 16 Jun 2025 03:42:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750070122; x=1750674922; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZmJJ47Yl2sCB6HxmNoBfzW8fAWTLqNnW7h4ybZSA7aU=;
-        b=WmX+S81Ie2VQCIzMMzeCfcuc8dJ7UiR9qH6rmgFM4wX4BArsXHCC6iFa7EHFcuS5PW
-         NAaxgFvPGx5fYzT6td9KMpQt/Vy/xcE8vErcwlslW7qd8uzdP93f0ZqoAX/41HdOgAGT
-         UTaWSd0zvLoRbkZSprVhHpoXQveParT6gBbvL4dkNqw4LqpQSeDeZoMie7+Uhp3SX/vd
-         Cfl6VDj9ziGj6k8jirz4LKqPApFATGdqPzrQXAGRrbw+xg8RKJgLCDyeM0d0D3EFrf8J
-         RbuwG+jM5GL5PEfqQx051RQreh/xTBD1V5/zhI9PyLPOYEVOQEamNkMr7DflGdrIM2lX
-         ZSXA==
+        d=gmail.com; s=20230601; t=1750070551; x=1750675351; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WTabLOpgCLwYv8rCyGl7CwHdWBc3RbnKBwJmaj/inH4=;
+        b=aSKCP//vWWy0YD8hp+qyF6BLWe/Q/GrrXqTGhG+m/P5rd4rbuxQcT5UxkPPydnlhoI
+         /Dt6bJVGOq1wsZ2YjKke80N92Jl5Ng3rLB4R3IrC8X6YVT6NGOJeYcMWSnPaUKolFeKj
+         dhg+ey2f5s/6317NO668N2HSgujmHfICAqmSXfTa0+oyCn8TrNK3Solwmcnazjp0rrsa
+         1lGh5kM/GncY8AHhueB/joyLaaK5BRvpkqxG27uCCJaYxs7L2Y/MvP6RlxL+4tDpC8fi
+         ThR/crcV2QAWtk0msCpmuxEsTaRa5/xoAxLEBMJ0HA1ONJMkIfz6owMzyyd72/AvljCp
+         LIGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750070122; x=1750674922;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZmJJ47Yl2sCB6HxmNoBfzW8fAWTLqNnW7h4ybZSA7aU=;
-        b=GHF8AvJeLvsVUndpNRCJcbuahOSkeu5r5vUt0DlCSe3/TP9Vh5TM5DZKl1GyL2JpEY
-         F2mBmsgZaOcElfMIb0wnUTSFGbOlCMvEblC6LstrhlcaQ5+O61CW8lpUm0ctb47sZnh+
-         xTE2XDVes/gLHKuZBaxzqV4LCBwv7+E6sdVLDhDlzP0pE9iKWIjM+7e/ciPwsuxdhmPz
-         /6wjg69e26lwUNyd6Q6y7/oY2fusrCdGLD/Uzdqoa1bOYMe3zpkygRCCjqKES7GW/7mw
-         Y7bJknKK89zXo88vW5i8kIjIN0qNAGfaTU2SRyV7k84hDDZ7Yk++PHzQaxCJGIHQPTT9
-         PJiw==
-X-Forwarded-Encrypted: i=1; AJvYcCUv8bsJZEM87iYwLY+6V/mQTpl3iTU2+GQzQ26ff4suJk5WrPdGqsVkxrTMIztZYjH5BSyA1pdSFKEwK+U2@vger.kernel.org, AJvYcCWWLdQj8sjSzbkjf3v+zN5oHATQY5ld1A9iqlzJGQyTJD/vw+ANxVLjYc0p98HEosG+BfwY3zDqnssJ@vger.kernel.org, AJvYcCXQ48joc2FTVddKPKbvLzefkZCmjfBCJz0TfAkccZynG42dZKiVaN0tKtsTEnwYQn6fM/sa/oDxrscuji/A7KD8DQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvOfczpemydvkwogn8CsUCfEYtiUc6Ulp6Sz+eaxAzOXDEKJur
-	gjZAd9qn61DcHv63fy6W4NZCMMqMLmsLisJhEuz2PE75knkA1cfTQa5Z
-X-Gm-Gg: ASbGncubP+dsOYes+/L0TpmvoYyCOSeFOlgbIqc0oNUsAiKou89HYLjG33+BPuJZnpx
-	UTP5C46syu89Eps65FqDNbjc9Hs1+9DA8NTrPLn9961aYWVVpfyF1pPFrYLuV96wZiwZvOr6pKD
-	8BPApVgaDUsjBtsttEKe25tc9TTPR68Ycx8BjDIRATMEOtFhLLKg4d3+pnG6DAPBoXyk3GzbN1b
-	YchbDiTDKFhPfXpcBKtc1D+ThPp9Yjm1rIi/YmouazgUVlKENWz/dy68igLYvggDkgFZKvZX8sb
-	WkjEGa2HjJJeobATaYL1jFHOwF0HF6aiVaP0lHBZ5iKepi5uhI8w1M08u0b/ZPriw6De3SaNk0I
-	LEx+LHSaAzYlK0Ks=
-X-Google-Smtp-Source: AGHT+IEEAuoXtSS/8Y8cVnpfenEz5Q4fubnneoioJ3zpvJgndsWQBvsGH4ZDCuve092zaFDawuwG1g==
-X-Received: by 2002:a05:6a20:734d:b0:1ee:efa5:6573 with SMTP id adf61e73a8af0-21fbd475bc7mr14187903637.8.1750070122101;
-        Mon, 16 Jun 2025 03:35:22 -0700 (PDT)
-Received: from [192.168.0.118] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fe1639e4bsm5525498a12.7.2025.06.16.03.35.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jun 2025 03:35:21 -0700 (PDT)
-Message-ID: <efa79e01-fb73-4808-8506-677ba45e43a1@gmail.com>
-Date: Mon, 16 Jun 2025 18:35:16 +0800
+        d=1e100.net; s=20230601; t=1750070551; x=1750675351;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WTabLOpgCLwYv8rCyGl7CwHdWBc3RbnKBwJmaj/inH4=;
+        b=PmNoVLXXWsmaP3U6PS6bDCLxLJon/sI2aNtq9FCmCvSwLXN8KwgY9rpMESS3pmCVsY
+         gbXPg1pCibdiFfdrDKNzrD+T/R9N9RjMo3hr/XkP5Kr3QDvmbYdkfLZ9HgSnHXNj04GV
+         JB/OGRNPt5sWULIxDDAO66ho/UytixcH3Y4ehSXWgUjMCM2/reuBUe8rhOS5yXgH0FIJ
+         jBOhAKjhNkg977hoendaTyc0F57phXswBg0PUUhUV7u/yaY024hLGy8KQMkvMlED1w3u
+         ZnDb+2YxDIHgHVH+uTyEK82EebT9u1/AzJDLIg1ZMOZ5dPm6Y1lCvi0x1ANy3gmlofR6
+         to4A==
+X-Forwarded-Encrypted: i=1; AJvYcCUCHiROmXg4Wbj+lEayKrSNj3Rr+XvTwaed1Nff9exmEklWJgVf/qHtw/b4ifP/Qp4GCBcw0Rt6MIPvmiGW@vger.kernel.org, AJvYcCVrW9vCDF4gF0KwheaWqe1SvdPFvyUVveVEFZofQubNVqzPYbfNJ95+1b9gk4OY3YVbn8ewMmzszrs=@vger.kernel.org, AJvYcCW/+LVksse1U09VZvjRzKSfZVCwNdYYfg+ZNGq2xXRovymcUz3xJVlc8vgSNkcwZgb24U+6XmuL44Nh@vger.kernel.org, AJvYcCXoseujehnXre7adIKylkcqdgvYDKlJXrt9L731y+JkcyZhv/iDJlpRUxnGCpsxy52WfDZXewIR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzknPGGYKnsoD38FY6RKwXNIEJzv94LiJaTBFQLn88IGDMTTHs
+	Ny4jZYS0DcGQNEkifRlSljW128D4Y49v0MiEQ8IH4lMOl1bm5CQGbOA+W1fucWmZLZ+Cil8rhlC
+	bZM1XrDQIMoiWRamFZ/GfwSyEDphjZY0=
+X-Gm-Gg: ASbGncu61VsoK3flVucSS8ycECdvfuELtR4z95tlVlzjMbXUox3YbnXNNzwezzcLMbl
+	aYKvvODmVjybdjYnfEZQ4dSFgU/HZOdPegAKanJnQ2oWJD0Fs6LF78LKvN99tl9VsmRSUDj/g/b
+	Gh+OLIE3mJ8/xSsDf/vxORiJABoLMtTJJTz6NNEf0n
+X-Google-Smtp-Source: AGHT+IGdvq4Jz7wCl7O5nLF8AdUqsnNZK/jUgiSEfeGbfX1YCA4ekJ6+LuyEXZu02NW4N5RvWGmagNrrauMC8JexM5M=
+X-Received: by 2002:a17:90b:274d:b0:311:9e59:7aba with SMTP id
+ 98e67ed59e1d1-313f1be899bmr14937709a91.2.1750070550782; Mon, 16 Jun 2025
+ 03:42:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple A7-A11,
- T2 SoC support
-To: Ian Rogers <irogers@google.com>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Janne Grunau <j@jannau.net>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
- Sven Peter <sven@kernel.org>, Marc Zyngier <maz@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
- devicetree@vger.kernel.org, asahi@lists.linux.dev,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
- <CAP-5=fXSwgxMc+uh=PBAFh4Zm96tL5RDyKPOJ8Q40O4s=EaArA@mail.gmail.com>
-Content-Language: en-US
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <CAP-5=fXSwgxMc+uh=PBAFh4Zm96tL5RDyKPOJ8Q40O4s=EaArA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250613100255.2131800-1-joy.zou@nxp.com> <20250613100255.2131800-5-joy.zou@nxp.com>
+In-Reply-To: <20250613100255.2131800-5-joy.zou@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 16 Jun 2025 13:44:31 +0300
+X-Gm-Features: AX0GCFu6L7Akim9BySCPjWCa7aS9JinLbW1qVZSuSXFVwqMzcBMNsyM6unHsnmE
+Message-ID: <CAEnQRZAp8TX84AygSjWGx-cNiLyZXZwUx5C-DLDuyB6hO3gXMw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/9] arm64: dts: imx93: move i.MX93 specific part from
+ imx91_93_common.dtsi to imx93.dtsi
+To: Joy Zou <joy.zou@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, catalin.marinas@arm.com, 
+	will@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
+	ulf.hansson@linaro.org, richardcochran@gmail.com, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-pm@vger.kernel.org, frank.li@nxp.com, ye.li@nxp.com, ping.bai@nxp.com, 
+	peng.fan@nxp.com, aisheng.dong@nxp.com, xiaoning.wang@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-Ian Rogers 於 2025/6/16 下晝5:36 寫道:
-> On Sun, Jun 15, 2025 at 6:32 PM Nick Chan <towinchenmi@gmail.com> wrote:
->> This series adds support for the CPU PMU in the older Apple A7-A11, T2
->> SoCs. These PMUs may have a different event layout, less counters, or
->> deliver their interrupts via IRQ instead of a FIQ. Since some of those
->> older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
->> be enabled by the driver where applicable.
->>
->> Patch 1 adds the DT bindings.
->> Patch 2-7 prepares the driver to allow adding support for those
->> older SoCs.
->> Patch 8-12 adds support for the older SoCs.
->> Patch 13-21 are the DT changes.
->>
->> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> Hi Nick,
+On Fri, Jun 13, 2025 at 1:08=E2=80=AFPM Joy Zou <joy.zou@nxp.com> wrote:
 >
-> This is substantial work and it looks good to me. Do you know why
-> there's been little progress on landing these patches? Buggy Apple ARM
-> PMU support in the kernel has led to reworking the perf tool. It seems
-> best that we can have the best drivers possible.
-
-I have no idea why the patches are taking so long. As for the buggy part I think only notable bug
-has been M2's performance counter length increase from 48 to 64 (which for linux's purposes
-is from 47 to 63) being overlooked[1], and I don't think there have been regressions.
-
-It is not so much bugs, but rather lack of features. For the longest time we knew almost nothing
-about the PMU events, and it is not until someone managed to extract the event names from
-macOS and Apple's Apple Silicon CPU Optimization Guide[2] that we know quite a bit more
-about the PMU. The event names are then added when it was determined that it is okay from
-a copyright perspective[3] (it's the same as being allowed to use registers names from proprietary
-ARM ARM). As for the  description the guide does have descriptions, but descriptions are more
-doubtful than names from a copyright perspective so I do not know if they could be ever be added
-to the userspace perf tool.
-
-[1]: https://lore.kernel.org/all/20230528080205.288446-1-maz@kernel.org/
-[2]: https://github.com/cyyself/m1-pmu-gen
-[3]: https://lore.kernel.org/all/tencent_C5DA658E64B8D13125210C8D707CD8823F08@qq.com/
-
-
-Best regards,
-Nick Chan
-
+> Move i.MX93 specific part from imx91_93_common.dtsi to imx93.dtsi.
 >
-> Thanks,
-> Ian
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+>  .../boot/dts/freescale/imx91_93_common.dtsi   | 140 +---------------
+>  arch/arm64/boot/dts/freescale/imx93.dtsi      | 155 ++++++++++++++++++
+>  2 files changed, 157 insertions(+), 138 deletions(-)
 >
->> ---
->> Changes in v7:
->> - Fix a W=1 compile warning in apple_pmu_get_event_idx() as appearently using GENMASK()
->> in a function prototype causes a warning in GCC.
->> - Link to v6: https://lore.kernel.org/r/20250407-apple-cpmu-v6-0-ae8c2f225c1f@gmail.com
->>
->> Changes in v6:
->> - Rebased on top of v6.15-rc1 (Conflict with FEAT_PMUv3 support for KVM on Apple Hardware)
->> - Add patch to skip initialization of PMUv3 remap in EL1 even though not strictly needed
->> - Include DT patches
->> - Link to v5: https://lore.kernel.org/r/20250228-apple-cpmu-v5-0-9e124cd28ed4@gmail.com
->>
->> Changes in v5:
->> - Slightly change "drivers/perf: apple_m1: Add Apple A11 Support", to keep things in
->> chronological order.
->> - Link to v4: https://lore.kernel.org/r/20250214-apple-cpmu-v4-0-ffca0e45147e@gmail.com
->>
->> Changes in v4:
->> - Support per-implementation event attr group
->> - Fix Apple A7 event attr groups
->> - Link to v3: https://lore.kernel.org/r/20250213-apple-cpmu-v3-0-be7f8aded81f@gmail.com
->>
->> Changes in v3:
->> - Configure PMC8 and PMC9 for 32-bit EL0
->> - Remove redundant _common suffix from shared functions
->> - Link to v2: https://lore.kernel.org/r/20250213-apple-cpmu-v2-0-87b361932e88@gmail.com
->>
->> Changes in v2:
->> - Remove unused flags parameter from apple_pmu_init_common()
->> - Link to v1: https://lore.kernel.org/r/20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com
->>
->> ---
->> Nick Chan (21):
->>       dt-bindings: arm: pmu: Add Apple A7-A11 SoC CPU PMU compatibles
->>       drivers/perf: apple_m1: Only init PMUv3 remap when EL2 is available
->>       drivers/perf: apple_m1: Support per-implementation event tables
->>       drivers/perf: apple_m1: Support a per-implementation number of counters
->>       drivers/perf: apple_m1: Support configuring counters for 32-bit EL0
->>       drivers/perf: apple_m1: Support per-implementation PMU startup
->>       drivers/perf: apple_m1: Support per-implementation event attr group
->>       drivers/perf: apple_m1: Add Apple A7 support
->>       drivers/perf: apple_m1: Add Apple A8/A8X support
->>       drivers/perf: apple_m1: Add A9/A9X support
->>       drivers/perf: apple_m1: Add Apple A10/A10X/T2 Support
->>       drivers/perf: apple_m1: Add Apple A11 Support
->>       arm64: dts: apple: s5l8960x: Add CPU PMU nodes
->>       arm64: dts: apple: t7000: Add CPU PMU nodes
->>       arm64: dts: apple: t7001: Add CPU PMU nodes
->>       arm64: dts: apple: s800-0-3: Add CPU PMU nodes
->>       arm64: dts: apple: s8001: Add CPU PMU nodes
->>       arm64: dts: apple: t8010: Add CPU PMU nodes
->>       arm64: dts: apple: t8011: Add CPU PMU nodes
->>       arm64: dts: apple: t8012: Add CPU PMU nodes
->>       arm64: dts: apple: t8015: Add CPU PMU nodes
->>
->>  Documentation/devicetree/bindings/arm/pmu.yaml |   6 +
->>  arch/arm64/boot/dts/apple/s5l8960x.dtsi        |   8 +
->>  arch/arm64/boot/dts/apple/s800-0-3.dtsi        |   8 +
->>  arch/arm64/boot/dts/apple/s8001.dtsi           |   8 +
->>  arch/arm64/boot/dts/apple/t7000.dtsi           |   8 +
->>  arch/arm64/boot/dts/apple/t7001.dtsi           |   9 +
->>  arch/arm64/boot/dts/apple/t8010.dtsi           |   8 +
->>  arch/arm64/boot/dts/apple/t8011.dtsi           |   9 +
->>  arch/arm64/boot/dts/apple/t8012.dtsi           |   8 +
->>  arch/arm64/boot/dts/apple/t8015.dtsi           |  24 +
->>  arch/arm64/include/asm/apple_m1_pmu.h          |   3 +
->>  drivers/perf/apple_m1_cpu_pmu.c                | 807 +++++++++++++++++++++++--
->>  12 files changed, 871 insertions(+), 35 deletions(-)
->> ---
->> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
->> change-id: 20250211-apple-cpmu-5a5a3da39483
->>
->> Best regards,
->> --
->> Nick Chan <towinchenmi@gmail.com>
->>
->>
+> diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/ar=
+m64/boot/dts/freescale/imx91_93_common.dtsi
+> index 64cd0776b43d..da4c1c0699b3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>  /*
+> - * Copyright 2022 NXP
+> + * Copyright 2025 NXP
+
+This should  be Copyright 2022,2025 NXP,  as per NXP internal guidelines.
+
+Am I missing something?
+
+thanks,
+Daniel.
 
