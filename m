@@ -1,193 +1,106 @@
-Return-Path: <devicetree+bounces-186109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C040BADA693
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 04:58:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D285AADA69F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 05:03:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5CE618905B8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 02:58:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7FCE7A2B73
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 03:02:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926F529DB96;
-	Mon, 16 Jun 2025 02:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="mlOkSmuH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC242882D6;
+	Mon, 16 Jun 2025 03:03:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D5429C35A;
-	Mon, 16 Jun 2025 02:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895232E11D0;
+	Mon, 16 Jun 2025 03:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750042617; cv=none; b=K2pdEkJqEtkS5BuFlpR2giUemeP22bPaOyXMyhW1x6oLcxKp0uOrD806U+GEyjahgZou54Z9xvYuE6BkIgWkzL0+b5o62yBGZOzI4AkCaFD0ZHKO0o9vE9TzjVJSvEpEX3yHeph3qIl7jOkiUZwX1dHAPA+w0aiHoKDEG6nQ9js=
+	t=1750043031; cv=none; b=ABywhgHXmH64MnEF5k4lmUIUOTXuhrYfVmhLCxK4akrmjLe7VPbZo6zQ6Mfn0FtzfeHea2DNf0UThtxmBksAu8fTFBAcBgmzXvBuwsmF/70QhC7BkB9R1bWatfuyPKRn0Ufj4XvcuFbA5YWH6RKMIwAtbOHuA2S+q1yHz5FpXz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750042617; c=relaxed/simple;
-	bh=mW41p3KakDMRoVE0rvPGMA/OhcrOHUP9oobaDy6sCqY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EaYb9h+oTLbYz+kKniE1hrxuHowcA2gJJ5i8N8hL974EM+V/ale0ktKW+IJv1dS63kBJB49C1g46aZUKjCUvkuZbtG39t+/JShh/sbG/OOGfR1LMQ/HsTSA/7huQw21XZZ4gDcmZP7C9zJzCOVVIhbUjZA1mWIeN5E9X7X87Trs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=mlOkSmuH; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 8c8d45de4a5d11f0b910cdf5d4d8066a-20250616
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=xLriN2KjCA0IFbfsQGb7OkB87uKmU7ASl8EB4pFyKGc=;
-	b=mlOkSmuHemCwuWY2vTG+OekAg/8Ev7CLLpkl2BwLuRBsZ9oBxWO8WIuJH2PV+9QQd8ZlPvhDwkKifASYXfXmMlzT05LRq5mdSL5ZE/kmIwMNO11uUd4rL6kv1PhoW0ydN9mKmMDC71ehEYXs6YPkDvM1BgvRh90+oqtQJhDsrUE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.3,REQID:f8f28128-d7f6-47c1-96d3-248863f97b4c,IP:0,UR
-	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-25
-X-CID-META: VersionHash:09905cf,CLOUDID:4409b758-abad-4ac2-9923-3af0a8a9a079,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 8c8d45de4a5d11f0b910cdf5d4d8066a-20250616
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <xueqi.zhang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 33681473; Mon, 16 Jun 2025 10:56:49 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 16 Jun 2025 10:56:48 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 16 Jun 2025 10:56:47 +0800
-From: Xueqi Zhang <xueqi.zhang@mediatek.com>
-To: Yong Wu <yong.wu@mediatek.com>, Will Deacon <will@kernel.org>, "Robin
- Murphy" <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: <Project_Global_Chrome_Upstream_Group@mediatek.com>, Ning li
-	<ning.li@mediatek.com>, <linux-mediatek@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <iommu@lists.linux.dev>, Xueqi Zhang
-	<xueqi.zhang@mediatek.com>
-Subject: [RFC PATCH 8/8] iommu/arm-smmu-v3: mediatek: Implement rpm get/put function
-Date: Mon, 16 Jun 2025 10:56:14 +0800
-Message-ID: <20250616025628.25454-9-xueqi.zhang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250616025628.25454-1-xueqi.zhang@mediatek.com>
-References: <20250616025628.25454-1-xueqi.zhang@mediatek.com>
+	s=arc-20240116; t=1750043031; c=relaxed/simple;
+	bh=LzbmZRvacFMv8PDr8GimXkHhV8Z6uNx5Es43zLvN5rw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Wy/sH+igN+imTobsALFamq3g57ykd50xO+2BKaS6vVfQGECYwbFtU1sMP4xS7fWMBJWWImnUqOr5IQdioZer54Ji0Bf6x+E+CPIfJoi0rOJW4/K5DubhAJOVVkFHaXmBrY72afOpa5zlPddeOHspnRMa8ATHP65H6lHQBX3wAn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.33.113] (unknown [210.73.43.2])
+	by APP-01 (Coremail) with SMTP id qwCowAB37dtliU9oEkrWBg--.22555S2;
+	Mon, 16 Jun 2025 11:03:02 +0800 (CST)
+Message-ID: <680be7d5-9cb4-4c8f-814e-7f22d9304d06@iscas.ac.cn>
+Date: Mon, 16 Jun 2025 11:02:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: Re: [PATCH net-next 2/4] net: spacemit: Add K1 Ethernet MAC
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Richard Cochran <richardcochran@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Russell King
+ <linux@armlinux.org.uk>, Vivian Wang <uwu@dram.page>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn>
+ <20250613-net-k1-emac-v1-2-cc6f9e510667@iscas.ac.cn>
+ <20250613063145.62871999@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250613063145.62871999@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:qwCowAB37dtliU9oEkrWBg--.22555S2
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYL7k0a2IF6F4UM7kC6x804xWl14x267AK
+	xVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWUuVWrJwAFIxvE14AKwVWUJVWUGw
+	A2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj
+	6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26F
+	4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvE
+	ncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I
+	8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIE
+	c7CjxVA2Y2ka0xkIwI1lc2xSY4AK67AK6r48MxAIw28IcxkI7VAKI48JMxAqzxv26xkF7I
+	0En4kS14v26r4a6rW5MxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_
+	Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwI
+	xGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWx
+	JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcV
+	C2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8AhL5UUUUU==
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-In some projects, we also have EL2 driver, so we put the pm operation
-in TFA(EL3), then all the kernel and EL2 could control the pm.
-Implement rpm get/put function which send smc call to ATF to get/put
-SMMU power.
+Hi Jakub,
 
-Signed-off-by: Xueqi Zhang <xueqi.zhang@mediatek.com>
----
- .../arm/arm-smmu-v3/arm-smmu-v3-mediatek.c    | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
+Thanks for your review.
 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-mediatek.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-mediatek.c
-index 448166c1ca64..38c995e90469 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-mediatek.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-mediatek.c
-@@ -397,9 +397,87 @@ static int mtk_smmu_v3_smmuwp_irq_handler(int irq, struct arm_smmu_device *smmu)
- 	return 0;
- }
- 
-+/*
-+ * SMMU TF-A SMC cmd format:
-+ * sec[11:11] + smmu_type[10:8] + cmd_id[7:0]
-+ */
-+#define SMMU_ATF_SET_CMD(smmu_type, sec, cmd_id) \
-+	((cmd_id) | ((smmu_type) << 8) | ((sec) << 11))
-+
-+enum smmu_atf_cmd {
-+	SMMU_SECURE_PM_GET,
-+	SMMU_SECURE_PM_PUT,
-+	SMMU_CMD_NUM
-+};
-+
-+/*
-+ * a0/in0 = MTK_IOMMU_SECURE_CONTROL(IOMMU SMC ID)
-+ * a1/in1 = SMMU TF-A SMC cmd (sec + smmu_type + cmd_id)
-+ * a2/in2 ~ a7/in7: user defined
-+ */
-+static int mtk_smmu_atf_call(u32 smmu_type, unsigned long cmd,
-+			     unsigned long in2, unsigned long in3, unsigned long in4,
-+			     unsigned long in5, unsigned long in6, unsigned long in7)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_smc(MTK_SIP_KERNEL_IOMMU_CONTROL, cmd, in2, in3, in4, in5, in6, in7, &res);
-+
-+	return res.a0;
-+}
-+
-+static int mtk_smmu_atf_call_common(u32 smmu_type, unsigned long cmd_id)
-+{
-+	unsigned long cmd = SMMU_ATF_SET_CMD(smmu_type, 1, cmd_id);
-+
-+	return mtk_smmu_atf_call(smmu_type, cmd, 0, 0, 0, 0, 0, 0);
-+}
-+
-+static int mtk_smmu_pm_get(struct device *dev, uint32_t smmu_type)
-+{
-+	int ret;
-+
-+	ret = mtk_smmu_atf_call_common(smmu_type, SMMU_SECURE_PM_GET);
-+	if (ret) {
-+		dev_dbg(dev, "%s, smc call fail. ret:%d, type:%u\n", __func__, ret, smmu_type);
-+		return -ENODEV;
-+	}
-+	return 0;
-+}
-+
-+static int mtk_smmu_pm_put(struct device *dev, uint32_t smmu_type)
-+{
-+	int ret;
-+
-+	ret = mtk_smmu_atf_call_common(smmu_type, SMMU_SECURE_PM_PUT);
-+	if (ret) {
-+		dev_dbg(dev, "%s, smc call fail:%d, type:%u\n", __func__, ret, smmu_type);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static int mtk_smmu_power_get(struct arm_smmu_device *smmu)
-+{
-+	struct mtk_smmu_v3 *mtk_smmuv3 = to_mtk_smmu_v3(smmu);
-+	const struct mtk_smmu_v3_plat *plat_data = mtk_smmuv3->plat_data;
-+
-+	return mtk_smmu_pm_get(smmu->dev, plat_data->smmu_type);
-+}
-+
-+static int mtk_smmu_power_put(struct arm_smmu_device *smmu)
-+{
-+	struct mtk_smmu_v3 *mtk_smmuv3 = to_mtk_smmu_v3(smmu);
-+	const struct mtk_smmu_v3_plat *plat_data = mtk_smmuv3->plat_data;
-+
-+	return mtk_smmu_pm_put(smmu->dev, plat_data->smmu_type);
-+}
-+
- static const struct arm_smmu_v3_impl mtk_smmu_v3_impl = {
- 	.combined_irq_handle = mtk_smmu_v3_smmuwp_irq_handler,
- 	.smmu_evt_handler = mtk_smmu_evt_handler,
-+	.smmu_power_get = mtk_smmu_power_get,
-+	.smmu_power_put = mtk_smmu_power_put,
- };
- 
- struct arm_smmu_device *arm_smmu_v3_impl_mtk_init(struct arm_smmu_device *smmu)
--- 
-2.46.0
+On 6/13/25 21:31, Jakub Kicinski wrote:
+> On Fri, 13 Jun 2025 10:15:08 +0800 Vivian Wang wrote:
+>> +	rx_ring->desc_addr = dma_alloc_coherent(&pdev->dev, rx_ring->total_size,
+>> +						&rx_ring->desc_dma_addr,
+>> +						GFP_KERNEL);
+>> +	if (!rx_ring->desc_addr) {
+>> +		kfree(rx_ring->rx_desc_buf);
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	memset(rx_ring->desc_addr, 0, rx_ring->total_size);
+> dma_alloc_coherent() already clears memory.
+
+Thanks, I will remove memset in next version.
+
+Regards,
+Vivian "dramforever" Wang
 
 
