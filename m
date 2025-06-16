@@ -1,127 +1,143 @@
-Return-Path: <devicetree+bounces-186116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0185ADA714
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 06:15:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C1CADA70F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 06:14:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7060916C973
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 04:15:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BBC73A756E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 04:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EDE01BE238;
-	Mon, 16 Jun 2025 04:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC71B1A5B8A;
+	Mon, 16 Jun 2025 04:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D4IQXzua"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J3Fxlm0E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EB17262B;
-	Mon, 16 Jun 2025 04:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D21872607;
+	Mon, 16 Jun 2025 04:13:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750047310; cv=none; b=sHwIm9AvI24NhBo8REydowH57T44cZw7l2ImP42sl3lK1k+jf6kpUw6v5TCbunUXS7Yw8Px1q+i6HtqM8dp+lkl2NOcu2tHm/h24Z0PErp/7A9D1ZT2e+M4Au0RWUk6gPro/gwEfw15cLkKpNVfaBokydWhI9P6J4jg25by/UY8=
+	t=1750047237; cv=none; b=Ip8N8ScoezQTjNWHDzEVunvzrfPQykGJ37QZToBy8tpGzFDIzeywbJzh0PKDeeIi+baZAqvXtPCIQeuO4hMhWlgWgdrsXKVtis36CODv++23jr6x6TkyVvFp7h5maDCAUPZVKLfRzepu5wNhUU+yho/9/sVPtv7blofVvT1cXfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750047310; c=relaxed/simple;
-	bh=WzDEvnQGvdgtdYz/0ru2tNuMxEP5YJDnyny/hKocKAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cYzk9ywH6MYoAqu2XD3rGtHsJVAZCPIXN8OFJtIG8pHtS3qciDWNF+zJ4/5XU8D0Wk2LafH9XDYrFfxhM4o0zG4qjRlDY9ml2onpsFwHpZdiiVWGbtrCLO9D+snl7rQfc9UFxBZgQKb451cE91ZgVr4KPBKcYPi7L8vOZ8A84Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D4IQXzua; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750047308; x=1781583308;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WzDEvnQGvdgtdYz/0ru2tNuMxEP5YJDnyny/hKocKAE=;
-  b=D4IQXzuaj3TGX7Mm3uY8yTbML/0jgm0MtufWfM2x/uudV2zGjx2wFZ6W
-   tu83u1X9GPLnWHAvh+4uzQ+TCWqenqCIwq9zWb71ueHUKxeIYVx2CGqG7
-   r01sihVouzraV1jUt0bv3XbZVtV1r7Dd3HoDi2Bii2KkUrJQhIO/dfM+a
-   nMCYn+AXKpEH9BcXUjjLhtSIies5LNlb0SmYd3xpxQHnmNG1sAMM5SY+C
-   isJWvEFRgKIN/ljDwTb4VM9Yk5SS4K1uJOlj2kNogLgWYEIS2QGMukTTp
-   S/5C4FfutAhtr4CY44REUlm2WDbfQ+WLh6BRsG4dKlyCIyh95rQceSrWY
-   g==;
-X-CSE-ConnectionGUID: l1wT6HaoQJe9+QNkjlCg6Q==
-X-CSE-MsgGUID: IcVo+z1kQKSSRk8uU77OJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="63213811"
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; 
-   d="scan'208";a="63213811"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2025 21:15:07 -0700
-X-CSE-ConnectionGUID: S8Nxdwc0RoGeD5CmbsCYHA==
-X-CSE-MsgGUID: Wb1PpUIdT0O6iG26yvCcJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,240,1744095600"; 
-   d="scan'208";a="171569944"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa002.fm.intel.com with ESMTP; 15 Jun 2025 21:15:04 -0700
-Date: Mon, 16 Jun 2025 12:07:54 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Moritz Fischer <mdf@kernel.org>, Rob Herring <robh@kernel.org>,
-	Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: fpga: Also describe clock for gpio
-Message-ID: <aE+YmvQGvpB3kx48@yilunxu-OptiPlex-7050>
-References: <8407ef56b11632c1a7abfce8a4534ed8a8ed56cc.1749809570.git.michal.simek@amd.com>
- <aEwA/pFuvbP+acSY@yilunxu-OptiPlex-7050>
- <712b690d-2fcf-486e-87a1-17e2354d371f@amd.com>
+	s=arc-20240116; t=1750047237; c=relaxed/simple;
+	bh=+q0guN9PwSiS5EAbareskBIti2BmPJU9JVXqOz/iUbk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vuyp6S2u3v3H5/PU2GDg6UFgZ5vZV/CfJxDIRodOq6tczErvWOj3MBOOZE+r/igLibwD4GuVZWcxMdRsLaYGJNMCQYT34P2rWa5fhxW4ChkS75RfSj5eDGLPtieeWul+pNzHut4cxna8a531wlmR+UyjJUSSWd79vvkZatDjqmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J3Fxlm0E; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-742c7a52e97so3316202b3a.3;
+        Sun, 15 Jun 2025 21:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750047235; x=1750652035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P80b7O3kBzCHZeyPaqEFw3rG2WMhfBLYf+jpLfD2cC0=;
+        b=J3Fxlm0EKALYEBLHNAI6MTCGq9uYYKTCI0hHyVU9MtknUDeOLc9FDj4qAirVKclS5V
+         yok0r5bw4tGiPRNnI/4w1B84m6lQ+SEnRN6VeoVrowHm0J5ALmD6LPeIf+STvkEwcqSs
+         Xw1lQAWoC8mKa/ci0KY6SLazGXBnRgYu5k4+3yX8SJPFmAi0L6CNs3G8ILl6lK6DYU4e
+         pE7O4lIBUCsX29whQqZJbp8jWtts6SihIRcrXATOHK75rKWSSMHYMrnbcTQepTVOvIGC
+         RrwlLUwu7UD8e/q2i0b8Wr/7BqCX/USrRnnMLF1dt4NDNK+pkRcObF9VI0doaS5BHByJ
+         VbXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750047235; x=1750652035;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P80b7O3kBzCHZeyPaqEFw3rG2WMhfBLYf+jpLfD2cC0=;
+        b=dfSU6RyV8zlkJT7fzQz1OJR7p8AUF1Rqg++y/78PpB344wIf7gF5Nn/FOz2WAKEnWM
+         DCq9zhvWp1bUI6Zd1PR/h9ZvDOoXA2M97sZwVY1RnVXyEPWYQdHXCToiUu4Idj+/AJ/Z
+         Lvg7pnxFm8ChuizHtc6H+PAml61UDxUtKiA4Z6DJ4JckgeB2VXMLS0n5NqTkDHfuS+17
+         xs1tJauFnF/5C791EiL8Uw/6FFSrjlXpDu6ecOudLhvUfAf6BMMpIUfANDW7UKJBruFo
+         mjlrAOhRN8oruDmC+V992/IWLK4uv1Ikg0Y5vTkRQh/TWIa0p6WDI/sN/yCX1Ni/rmRA
+         lOWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVK/jxl4Vc5dvzIStz2WZCrgg0iI1lWg/YTICMbn3F/QZuUWkMK0vs3GlOMeUgXReo6buvBWSIIjNAWeA==@vger.kernel.org, AJvYcCW9/vP5SQ1jfTnkLdTMwSqw3QMWlm1zFL6n+cvdWYmauKY/Fu960T+UBGKWNRtVmVZg6PqZkqyF2UM=@vger.kernel.org, AJvYcCXi/AhJLqfJQl8jiW/JACqP/AJdVX866wYq6JFjx4V6b3I5FRyzUn5s0dnPCoOAB2B7GItWeuKSOZI3oPWT@vger.kernel.org, AJvYcCXpTx0NlOuTCnDqHjZPMLUgVdttNVCZi3gnCNW3/+GWuYkq8dzOdVR4dR5d9GcxAicdsS3hJISR1wo4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOLHY3i9JzxsL1MrhSbOvgFTo1RBh/3LiHiGSYN8bB6k3i2oVh
+	4V4bd7GcoWKDSYQAtqMdSiQmtqUz5Px8AA7FGPTCvMm07/+9gEJYklgU
+X-Gm-Gg: ASbGncvwhPeWVbT2+rcfspyb1s1K7kP0zKeUeM1uiAlm8cOJ//UxqCTjUMWlxcyaPPc
+	PLY6rhfHXgqFbjlY+MhceofbhpCX3N/Qdu4/mcIKBgUtSNa9NpzNI2v31GkrNTBkYJB14nXPKZx
+	zMf25JZ5twZ6j/SFMAQSpHyKydKHCR635aRP7ncLuqTtSYNftGO29IFQXbJm6iggszqb8WtBdIa
+	cV06nDx+gnXxnOU+9POmH6rvUIj3nZtVEB3IGhgp/tkXhQHqs2eIM7K6FHYgUeSpkoxnH0KVnEP
+	aqk+a7GEKvr4FVhZIUOelgnGwLFk2j93MaucFCMYyEoswaBPVQck/K0ixZWEhGjK+SXV+KUg0wj
+	R7rwu3rXb
+X-Google-Smtp-Source: AGHT+IGj8afwiQBWMnNFiO8CZX12Uzqm0farJp4iABQXPdiIhq7hSOMuLQDUrIeTYhq1s+E7XXHTwA==
+X-Received: by 2002:a05:6a00:21c1:b0:748:323f:ba21 with SMTP id d2e1a72fcca58-7489cf5c8c2mr11015493b3a.1.1750047235481;
+        Sun, 15 Jun 2025 21:13:55 -0700 (PDT)
+Received: from [10.89.152.134] (wf121-134.ust.hk. [175.159.121.134])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74890006059sm5937252b3a.55.2025.06.15.21.13.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Jun 2025 21:13:55 -0700 (PDT)
+Message-ID: <7297d4b1-84a2-4bb1-8a33-29c827247df7@gmail.com>
+Date: Mon, 16 Jun 2025 12:13:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <712b690d-2fcf-486e-87a1-17e2354d371f@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 07/10] power: reset: macsmc-reboot: Add driver for
+ rebooting via Apple SMC
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
+ Hector Martin <marcan@marcan.st>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Lee Jones <lee@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20250610-smc-6-15-v7-0-556cafd771d3@kernel.org>
+ <20250610-smc-6-15-v7-7-556cafd771d3@kernel.org>
+Content-Language: en-MW
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <20250610-smc-6-15-v7-7-556cafd771d3@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 13, 2025 at 12:52:46PM +0200, Michal Simek wrote:
-> 
-> 
-> On 6/13/25 12:44, Xu Yilun wrote:
-> > On Fri, Jun 13, 2025 at 12:12:52PM +0200, Michal Simek wrote:
-> > > Axi gpio is going to have clocks as required property that's why it should
-> > > be also described in bindings which are using axi gpio node.
-> > > 
-> > > Signed-off-by: Michal Simek <michal.simek@amd.com>
-> > > ---
-> > > 
-> > > Changes in v2:
-> > > - New patch to fix reported as issue by the second patch
-> > > - https://lore.kernel.org/r/174954437576.4177094.15371626866789542129.robh@kernel.org
-> > > 
-> > >   Documentation/devicetree/bindings/fpga/fpga-region.yaml | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.yaml b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
-> > > index 77554885a6c4..7d2d3b7aa4b7 100644
-> > > --- a/Documentation/devicetree/bindings/fpga/fpga-region.yaml
-> > > +++ b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
-> > > @@ -316,6 +316,7 @@ examples:
-> > >           reg = <0x40000000 0x10000>;
-> > >           gpio-controller;
-> > >           #gpio-cells = <2>;
-> > > +        clocks = <&clk>;
-> > 
-> > This file is mainly for fpga-region bindings. So I don't think we have
-> > to strictly align with the example IP block binding every time it has
-> > an update.
-> 
-> But Rob's script are reporting issue if they are not. Please take a look at
-> link above.
 
-I see, then from FPGA side
 
-Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+On 10/6/2025 23:29, Sven Peter wrote:
+> From: Hector Martin <marcan@marcan.st>
 > 
-> M
+> This driver implements the reboot/shutdown support exposed by the SMC
+> on Apple Silicon machines, such as Apple M1 Macs.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Sven Peter <sven@kernel.org>
+> ---
+>  MAINTAINERS                         |   1 +
+>  drivers/power/reset/Kconfig         |   9 ++
+>  drivers/power/reset/Makefile        |   1 +
+>  drivers/power/reset/macsmc-reboot.c | 290 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 301 insertions(+)
+[...]
+
+It seems that the reboot driver still probes even without the smc_reboot node in the smc node:
+
+[    0.994942] macsmc 236000100.smc: RTKit: Initializing (protocol version 12)
+[    1.002862] macsmc-gpio macsmc-gpio: First GPIO key: gP01 (0x67503031)
+[    1.013156] macsmc-reboot: Failed to locate of_node [id: -1]
+[    1.048188] macsmc-reboot macsmc-reboot: Missing NVMEM cell shutdown_flag (-2)
+[    1.055359] macsmc-reboot macsmc-reboot: Missing NVMEM cell boot_stage (-2)
+[    1.062332] macsmc-reboot macsmc-reboot: Missing NVMEM cell boot_error_count (-2)
+[    1.069799] macsmc-reboot macsmc-reboot: Missing NVMEM cell panic_count (-2)
+[    1.076902] macsmc-reboot macsmc-reboot: Handling reboot and poweroff requests via SMC
+
+Best regards,
+Nick Chan
+
+
 
