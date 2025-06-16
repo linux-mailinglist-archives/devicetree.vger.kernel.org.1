@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42402ADA816
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 08:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 818CAADA821
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 08:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 812381890CF3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 06:18:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA72718911B6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 06:21:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8280573451;
-	Mon, 16 Jun 2025 06:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801781CF5C6;
+	Mon, 16 Jun 2025 06:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENs52J4R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENOBMc/d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FDE1863E;
-	Mon, 16 Jun 2025 06:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 546C719DF8D;
+	Mon, 16 Jun 2025 06:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750054719; cv=none; b=Sn3QvGNZqw5vY3PFydmBuPBveE9OVO3oHAjlaXs96EdNp15n0HGAa1Vx8ID+tdtUiqavlAbyDMymyEMegqetgCV621806G6AVao5S1Cp7Cp5BW7Tla1BIAgXNYD+Y1ifpffjbQHOjklDt7OVxg2tfc9Rc3psVxPe+4kZR5n4u/U=
+	t=1750054864; cv=none; b=Myf6Va6UIPEmgCCeqiMll8P2qMZJnuOrE5kg/ayhe+R19dm/pEZp+lxGCKX1DbHYuQpGVoYE/N3gwimiznVo/7dDJpc0G9HQifhGvhZvprav44Sm7R1W6FMR7gEg7v5Rs6G66EMokNClmPGbVvxZCd2g+qK0oUvYya5ozt201K0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750054719; c=relaxed/simple;
-	bh=qb7rnu3mAT/UAW89XtcAFLwipk9zjWSk5xPD6OvutUE=;
+	s=arc-20240116; t=1750054864; c=relaxed/simple;
+	bh=jQP/VVFrbSlaThOTIbCx/+TZc3Bnhiy9wJwypkdvUOk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hl8iQTgoEu7FkPziTpUFBrID7IhAV1RpqqHtreQGLjL5cSYgs25IOLnOZh/cal0LqliZJTHahUW/Gu9Inkbsyc54LSJFM0JWk4EdRD+g2opBmGk5f3GkxEUmkLtcyARRyAku3gqK2yz0QY3nb4qU0Hhx6Lcdk6Iojjm1TV2+5KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENs52J4R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A4E4C4CEEA;
-	Mon, 16 Jun 2025 06:18:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OzGIs8l4vE5H9zcb4wbo/I235tXLrKi1wbqwX9HU64rmQVqzAzoc9yhlJ8QXVTZO3bf5NgF3DTKj84jNjFf1AoKjzzaDkzshWMwkLUZU1QBdokDDd1n28dfIxiWmCEi2xw7z0mul5BvTHv6HUsyKZcjLt9h0sp6rNqd0OIoMgr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENOBMc/d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88777C4CEEA;
+	Mon, 16 Jun 2025 06:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750054717;
-	bh=qb7rnu3mAT/UAW89XtcAFLwipk9zjWSk5xPD6OvutUE=;
+	s=k20201202; t=1750054863;
+	bh=jQP/VVFrbSlaThOTIbCx/+TZc3Bnhiy9wJwypkdvUOk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ENs52J4Rl4UNxjm0cqP8J7lk3LkxzALwbtiA+k+od22Y+yESoYOgBTo1pHGWfCrT5
-	 fBk0DUt8pozbFQA1c/y//DCGFQ6Vq2PcyLn+KSAN9yL/Dw5WrJv2Lhxmv1Z4z33BG4
-	 VPkBPcn1LWCCA+HS7jdBJvraab002couIczzbc5Nx4iROVJVcN7ZdWkZY+yeQVGwUq
-	 vXJCeFuo4IApY3iFl3xi/A/5XQ1Etb83aMQWxGyzFU+J7+dWy5tYBFbxQcCytlaVxG
-	 krwuZjCbE2dw6ny1on+oTA4B27gvnnH9wKKdW7RNq8+DVc5QPHtjBnasA/BdsdQivi
-	 TXcglSi/kjJdQ==
-Message-ID: <fc053f87-8d15-4f5c-8707-565920a68074@kernel.org>
-Date: Mon, 16 Jun 2025 08:18:34 +0200
+	b=ENOBMc/dw+e8iF82G1p/SYXDNqeQz7rkCzeAEte3/MVood5I0CtEHbHmjYk4nGs+7
+	 Y1sbE/m76hDIGwjjKbys3lOxkwfW4/BEEzU59e/qYbdaRDA1j32/l8FP9GUDRtXg3o
+	 OpquBLjLTIsZl6DudcczMVV7U0Tjs1bLhKgomn5Yp/dyvQTxpbDe2MRIu8WVYkBoAX
+	 ZTHqz3+aCwUPa3GFK5Z3LsEkHFc1N9PuZmRaSAgQyl1XtXFwJXh6vU5VAn7y59TZ5P
+	 fjEVaP10Eymjwm4+KpHNtTprHh2QDz1dA1Aw5zh8YS1o9TC7P1cTpmJ5wznzFnPHDp
+	 8MCfpcW1682zA==
+Message-ID: <92c723c3-81ab-422c-ae5f-7c2d64c117f9@kernel.org>
+Date: Mon, 16 Jun 2025 08:20:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: arm: qcom: document r0q board binding
-To: =?UTF-8?Q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>,
- linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org, konradybcio@kernel.org, robh@kernel.org
-References: <20250615205608.1133129-1-ghatto404@gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: add description for solidrun imx8mp
+ hummingboard variants
+To: Josua Mayer <josua@solid-run.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>,
+ Mikhail Anikin <mikhail.anikin@solid-run.com>,
+ Jon Nettleton <jon@solid-run.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20250614-imx8mp-sr-som-v1-0-3ca3269883c4@solid-run.com>
+ <20250614-imx8mp-sr-som-v1-3-3ca3269883c4@solid-run.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,35 +110,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250615205608.1133129-1-ghatto404@gmail.com>
+In-Reply-To: <20250614-imx8mp-sr-som-v1-3-3ca3269883c4@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 15/06/2025 22:56, Eric Gonçalves wrote:
-> Adds compatible for the Samsung Galaxy S22 (SM-S901E) (r0q), based on the Snapdragon 8 Gen 1 SoC.
+On 14/06/2025 16:20, Josua Mayer wrote:
+> +
+> +/* mikrobus spi */
+> +&ecspi2 {
+> +	num-cs = <1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mikro_spi_pins>;
+> +	status = "okay";
+> +
+> +	spi@0 {
+> +		reg = <0>;
+> +		compatible = "rohm,dh2228fv";
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+NAK, such device DOES NOT EXIST. It is impossible to obtain dh2228fv, so
+your engineers were able to find it from Rohm?
 
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index b14206d11f8b..7ed1da6e42ed 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -1092,6 +1092,7 @@ properties:
->                - qcom,sm8450-qrd
->                - sony,pdx223
->                - sony,pdx224
-> +              - samsung,r0q
+Drop entire node.
 
-Keep alphabetical order.
 
+> +		spi-max-frequency = <500000>;
+> +	};
+> +};
+> +
 
 
 Best regards,
