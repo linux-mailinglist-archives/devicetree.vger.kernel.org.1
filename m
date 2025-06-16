@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-186190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99F9ADAA3E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:07:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2404ADAA4C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:09:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0990618906BC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 08:08:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18BC23AD74A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 08:08:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0EC2063F3;
-	Mon, 16 Jun 2025 08:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C77920F085;
+	Mon, 16 Jun 2025 08:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iZNJaXv/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zXmhxWFT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105B01DF759;
-	Mon, 16 Jun 2025 08:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1364207A3A
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 08:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750061264; cv=none; b=uGhzPz5HWkVqV9kvYw44Dh6QW18Ke8x5SwIIrVSLUxdGroOMD3Z78bHTgZOulFmTkqszGQmLDzD6gd+TgBsxK5D/DdRMKD/LhjH5jfmnAZ2BQtx5svBqZPvSgdubLK9pY1bqNkXlVhUVmvAJnWQSXxPbBhwTuOQLmr75XZAl2tI=
+	t=1750061354; cv=none; b=hHzpwKKviuxl+bn5o4jiHtVTzX2Bmb/r2/OVkskT30CzpCpSuyiqUw86lW75bzJ7rhHkOuMUcHgZZxwazpQxXySeNOI/fqEl1WLgaEbDSRO2DpVG+pD+UYWSFCwiBFX2ddSq6dW0YuL0FWAFC1S2ZYPYk7D4I7A0Dlxt8pCOvYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750061264; c=relaxed/simple;
-	bh=TSsNADkDpkgz40HJTk8QPhRJ7cMeoAcVN2GUyJjB80U=;
+	s=arc-20240116; t=1750061354; c=relaxed/simple;
+	bh=USkW9A8Y6Pc8W+vSjgDy1nhlge2z+SqxZaMzVGJgcwo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KkJoBkqV6309MORuNFPXL6xM/cd4cQbbTxNVhGIo9Op0d8ogc92byAFZ2fyW/SEgtKL0d8W91owtMZm0cz8zzhncMKr0ao9TbKWUJIOQujuMf7infYVpZgtbXyqsnLuAVPxX0SvtJTYBmyei6EgweGMAN6F0hhkZ28Q4Jw8kZAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iZNJaXv/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BDA5C4CEEE;
-	Mon, 16 Jun 2025 08:07:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750061263;
-	bh=TSsNADkDpkgz40HJTk8QPhRJ7cMeoAcVN2GUyJjB80U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iZNJaXv/ZMif7/Gm8k72eSukzHgYo7X3yFrmLLb5J4WF7iS4ej5feBfBezjdww4Pu
-	 nS92XxL+gGkthtfeJievUSrRC2w+zj8HlhMgVC/k9u07NiO4m0zFVs9OfjPPvCq8IQ
-	 HQ5O3se7Ir1O9J5zQEzzk3Jl689onhGSb5KSUK4+U7CZa02MtczaZpGA6eFoDEWx3Z
-	 waabFDZH39b0ILDLEiFLqmjnu89780jHAhiXXEsHohMciIRO6+m+9WU2AdLW5RXD4Y
-	 U0LjhMBi3G04xafT9XSkAuQ2ipEQhW7AlgDmfGztiSN3MHIxcK3L1oDBdfF9wFaxLO
-	 o5zksxeNB8QPw==
-Message-ID: <b9457391-9c09-4055-9daa-ee40c3648679@kernel.org>
-Date: Mon, 16 Jun 2025 10:07:37 +0200
+	 In-Reply-To:Content-Type; b=RsNrrkEaQgs/vT2TnvjMXd09YUapTlfPvAcVAmjOeDqbc7q60bjTUFHpziohmbEfwfZQpdhxpYtqN9Ol8QoVjiAkBzvZzuRi+QCTXhW14DpYplTP0ToKasZ9dn9007O+vp/toWoIGQlwUtuV91MVIWQHpeBqQSOEyGehJUwOcsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zXmhxWFT; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-441ab63a415so48846055e9.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 01:09:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750061351; x=1750666151; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xkb40S5vLWjTYywYDHqKY1pbcd7/hgHih9SM8FtY0Q0=;
+        b=zXmhxWFTtAv+E3q4kxp4BQOi3fqTepixTR2mQu70FpituiUN1HTrmyHzbkYuM3ZtNl
+         eOtDrTZkvU19W5AwHDL59AUUB/fhGLxLyfzRcBE5wBrdXoT3MsI2aaRZ2KRLOu2dQonM
+         43T827GJRA/qo7VQaQJIMnSzIALd9t4ZBiwjje5irGfgs9o6LDZPXPelapoG9xvTx89m
+         cLMDA/fORyvEIhmNFkBhJNq/DmAtQHxjjkgs8YBMwSVoxDII/axLcURfyn5TCemEagno
+         EsXv7irVBoBhHzuavL+EUzHbBuiESL0dlx2FsaAW24IVZ0VGT0c9/q2sn8Q/mTV+ivlN
+         t0HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750061351; x=1750666151;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xkb40S5vLWjTYywYDHqKY1pbcd7/hgHih9SM8FtY0Q0=;
+        b=i/apjR3ptTu35iijVof06nkCJpyoLAJEhdNbJWoCrNUSHbwitrXGs7LAb535Z2WLHD
+         ZBD4OPmdm+d5eRmkUZiDhayCLynre/xxnSXVpG8RnMMPwxNGDWhcU7bL61ZPPOfzdIdM
+         s+UT511+AqmsPw01/km0jdZ8zfaaaauaSoqnybpPSOGzGYD6FzGDcdJTvVYkE2FXqPhV
+         9VDyoEVjNeNiMkhvhuPPlQb/4Jye7gI/2QATRBaxr6V2Cz3HWZ19hmLscQ9e0V/b5Vns
+         6t3JyRc9U8WC/vP2E7PMo9lCOoWN3GAGFGoZ3+jKvybf5c9PRPCvH2ewjBmYAq51vI1O
+         Iwqw==
+X-Forwarded-Encrypted: i=1; AJvYcCVa+GxmxGP5ko3gy1d0m4+oROMeY6ffsJPqeImMqwo/i9SnBENRxRnghuMK/VqMK18uRZAONPlVse01@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGZ/t100iDnBPo0UReK5SCAwkIqZd27rUAZFLpKZ5W8KHaWPXu
+	bVL4uR+RzjGyYbG5n8rJLILOZH7NUSH2xG6knyPkvmbTIYQQq5eZ1r3OgJsBCxBPXd0=
+X-Gm-Gg: ASbGncvpNHy2nwVded3Rb4hPyfjHJtFRk52ggYR/2lMulH63s8cwkXUq2SkHpm2DHb8
+	XxnYu040IqBZJ0yfoRNn8qE/fICKUW9xLNbLkOa9AORN63RQwpUdTdJwbth7lC6Mz4DjvqUthwe
+	QUug2mrXlcFJ3wGzkwANkaygaPO4Oj59VGTWDqrgZ2jZenmi1AkI1VAweIRj8NDBouzkZ0oJ7T3
+	BnIPfvieVzRoaBWZSQO0HvPqJsvr/503MljId/XwHawTBG9ySKrAypfvDPfLXTrAgb0Zt9whlQk
+	O+idYdKDJrNwYl+0UV4OaTeYr6NYjNGqTF6iUsUwct/l8momtQCZgrXuTHoDlw14wxTvUMmmDJ+
+	q4MYsDCpXGYgOK+zkQMH2NMYGXOk=
+X-Google-Smtp-Source: AGHT+IGWcoFnYQiSRgGmqI7cH2i+fqFJCVEDio/UJeVZr62hdUsC4q6QvZkCencW6E8/jOVV2KeCYg==
+X-Received: by 2002:a05:600c:8710:b0:43d:300f:fa1d with SMTP id 5b1f17b1804b1-4533cacb574mr90452095e9.31.1750061351057;
+        Mon, 16 Jun 2025 01:09:11 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e195768sm137550265e9.0.2025.06.16.01.09.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jun 2025 01:09:10 -0700 (PDT)
+Message-ID: <7c850205-0c42-4e6d-bf5f-f1255367d53a@linaro.org>
+Date: Mon, 16 Jun 2025 09:09:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,94 +82,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: gpio: gpio-xilinx: Mark clocks as
- required property
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Xu Yilun <yilun.xu@intel.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Moritz Fischer <mdf@kernel.org>, Rob Herring <robh@kernel.org>,
- Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
- Srinivas Neeli <srinivas.neeli@amd.com>, Tom Rix <trix@redhat.com>,
- Wu Hao <hao.wu@intel.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/ZYNQ ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-References: <94151cfbcff5e4ae05894981c7e398b605d4b00a.1750059796.git.michal.simek@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-dell-xps13-9345: Disable
+ PM8010
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: bjorn.andersson@oss.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, laurentiu.tudor1@dell.com
+References: <20250318-xps13-no-pm8010-v1-1-c46236d96428@oss.qualcomm.com>
+ <Z9qXFLmnae86_GT9@linaro.org>
+ <a7zyhmv5lqxl2l5rdg2x5g55wokm6ztwvzwrfkyeignwdromjr@afpe7zwsmkt2>
+ <d2eabc30-f1d2-47d8-82f9-86f6f7a705bb@gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <94151cfbcff5e4ae05894981c7e398b605d4b00a.1750059796.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <d2eabc30-f1d2-47d8-82f9-86f6f7a705bb@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 16/06/2025 09:43, Michal Simek wrote:
-> On Microblaze platforms there is no need to handle clocks because the
-> system is starting with clocks enabled (can be described via fixed clock
-> node or clock-frequency property or not described at all).
-> With using soft IPs with SOC platforms there is mandatory to handle clocks
-> as is explained in commit 60dbdc6e08d6 ("dt-bindings: net: emaclite: Add
-> clock support").
-> That's why make clock as required in dt binding because it is present in
-> both configurations and should be described even there is no way how to
-> handle it on Microblaze systems.
+On 15/06/2025 19:29, Aleksandrs Vinarskis wrote:
+> Hi all,
 > 
-> There is also need to describe missing axi gpio clock in fpga-region.yaml
-> not to introduce new error when make dt_binding_check runs.
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> Reviewed-by: Xu Yilun <yilun.xu@intel.com> # fpga
-> ---
+> Revisiting this change in context of Dell XPS 9345 and now Lenovo 
+> ThinkBook 16 [1] (and upcoming Lenovo Ideapad 5) as these do not have 
+> pm8010.
 > 
+> 
+> Perhaps safest and easiest is to simply disable pm8010 in `x1e80100- 
+> pmics.dtsi` as proposed and _not_ enable it on any devices, since its 
+> known to not be used anywhere _yet_? As its a camera PMIC, the only 
+> submitted upstream (did not land yet) change that utilizes pm8010 on X1/ 
+> X1E is Bryan's CAMSS series that enables camera on CRD [2]. There are a 
+> few other laptops that have patches to enable the camera (my Zenbook, 
+> Bryan's branch on Gitlab for few more laptops) but those were not 
+> submitted yet, so can be easily changed to explicitly enable pm8010 
+> before submission. This way we could simplify this change and not have 
+> to figure out which of the upstream devices do in fact have pm8010 onboard.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+As a general principle, unless its used it should be disabled.
 
-Best regards,
-Krzysztof
+pm8010 is a camera specific PMIC and Dell has its own way of powering 
+the camera sensors on XPS, Inspiron and I'd guess other models too, 
+presumably as a result of reusing the x86 design with Qcom with minimal 
+changes.
+
+Disable by default. +1
+
+---
+bod
 
