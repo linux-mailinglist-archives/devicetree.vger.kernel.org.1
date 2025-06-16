@@ -1,147 +1,313 @@
-Return-Path: <devicetree+bounces-186378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FDDEADB84A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 19:57:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3896ADB885
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A76571892B1D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:57:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9E563B3A91
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA08288C3F;
-	Mon, 16 Jun 2025 17:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A843728980A;
+	Mon, 16 Jun 2025 18:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z8Oz4CNc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GFCYGbzo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB251581F0;
-	Mon, 16 Jun 2025 17:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E58286D69
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750096588; cv=none; b=kpyVWQwNtuJMBBIpQChL8BCMLJ1bvrA5zGtJwoeuNywNXIgGeC4Oaqe+sKrEdoaaLCwygaSSXsLTABt2/7bK6j+0n2vR2wQV8COkHEt3Pg7zZ6ooZl9wiI2ysHiMq8rNRrCh5mv8n14c+fs6k01g2HDxhcvLRdg2OBiGpkEbEQg=
+	t=1750097291; cv=none; b=jqLCbFuA5URju6QXG0w6AHuuvoAC6P0wp18VFDJbSP/CjfQ+VGLPNR6U8VzpNdgV7DCUzjd8AJLZIZFqGexYlhtyJw1+pghwoLeMMi7elDBmWJqkaoVUPI82ehYEMZphC4QW75zTmY9tyOvoZpO5pt0CglsOD0PNxU/aP/u4WvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750096588; c=relaxed/simple;
-	bh=JPNMiFMc4QqzmFlTXtt8gX9899PW6Tou+z2XL9IAKaI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SHQr1HMCx4EUntgk+jOJk8VgLZG91eG16B4jfSAFLrfxakaNPeEVgSwfpC6yD4aoVdXuCt2YhkGTDyNg5EBNiVeWKnKBIiHczbppr27Su0j8MDrdlet0PXwMzQYI+NOXURRLbYao9YDfsH7wh4JthKeksxztRzfYdCyF3vrmrz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z8Oz4CNc; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b2f1032e1c4so5340667a12.3;
-        Mon, 16 Jun 2025 10:56:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750096586; x=1750701386; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=afOWJh3aFPVPv4E1oohhmDl122IjFo4haUaVn/RE93c=;
-        b=Z8Oz4CNcfHKvM/wXU5HPXbLVTwjukBwTnIxDVLD1M6q+2+HuTUFXSec7/HYb9pmKPw
-         IAn3rR/uPdE5QidoAYNK2NB7NfXuXl5Davke0OjS03pd4G5h+hUbwXACldgD/xTZPDL/
-         jHiIS3xA9V6Ju1zdOzWvA+1WYL3oInr18m++q6qJdAGXXKd+ULQ5tea6AbdBn/3zw0YW
-         PypMODn0e7Ikx5FMfLGOKvPn5khvlkGFZwKdQTEUX2VlrvoXsukz+Xw1NuFXNOD6L5YN
-         U1DdhFe4/sb7rzvk/zIxbszwc43esMTfW0lzVLgwBVOnk7b/IYk3ZyKtQ7FYJCNspXhb
-         ciHg==
+	s=arc-20240116; t=1750097291; c=relaxed/simple;
+	bh=40Pdi6ft+usWK3MhK+AiH73KsRq0ZaqgfM+1c54RgBE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lfw6hK5XSm37DpvfjgpaL12DMoJJRhOXDRoTDugUVaKiD/Q/Ah1K5zlwUn2o7P7HO0QBlTMam21BXKOw28FyYUG/LaKmcjx1ejtsaEXdyRxr8CAGcno1pCyidlcNUlORZITlkA8sHKoJCCRuNAPiVpJRqSLK2Hy9Wq+pE5oR0yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GFCYGbzo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GH3FKw020826
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:08:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5P3OJPWWK/eACSXhWhO+72qcM502Hj+4pvlf7UjgIcs=; b=GFCYGbzoLDDU8zEz
+	zEi9lYNQ1WanyeXzFb+LLpCrOhj9EceuuRoGr5FkxyLnp70J/Ucedxp6YSDoW9go
+	r2OSHZRoN5ZYX/Dzxf+aYZfSQhKCrWRL9YhPRGckqgUHI+1UhTUQRx6mKynOoio2
+	RHn1741qG9846QDkqUjp2u11rJvsAus6fYzeidApFQigeNbB0mHiM8q+xCFqtmdP
+	gY2fSvlug4jtXxF9SFs5FzGuLwxOovyh0XKdxE+GYPHtd8DxMRKORHvv0HxpGl4E
+	NThAbusKOjUPQOXTDZ66XUxisZNEPKESjkVjD8XWBHmOHWyWZn2SYLwdx+fdbMzR
+	Lih9Aw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h95g64-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:08:08 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-311f4f2e6baso4736900a91.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:08:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750096586; x=1750701386;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=afOWJh3aFPVPv4E1oohhmDl122IjFo4haUaVn/RE93c=;
-        b=lQN6na5dAjL32wpk9p+C+xgZqVhkzuN5+jvPoFoXnMghTzo7CsBPq7I1CuBkLZlezu
-         hA9b6wZNJp0fWwl2txL/tjXWvql2BamsQ1K2SCNS4FRz5rYKxBVU4yWTi6T3RcKCwrQH
-         YBSrLZicKM/FI+1BzJUJpe4a8CIa0dllsGk+8PkWfs4KGqJZTYHCClCRMSkp607n4Zky
-         8vG+Qm+UKX2QnnW89ZGwb2Grl0Tau7gLU9mjMhC7gBKGSr0i+g12Gj+8rF1D5+4wBpLS
-         ESvbrJho6Q98FlZ2KKksTlmVAV6PcLjp9j4oub//Jx92xUsLtMHdkdOAUO1VNojQYZpZ
-         lk+A==
-X-Forwarded-Encrypted: i=1; AJvYcCU3B0RRzpb9Bx2jOmGILtD9X7Yu3yMgk5kknaiiqWS5SQZMSCGifvASLYpNQ5h1jlq2h05Fu2HFE7DsCA==@vger.kernel.org, AJvYcCVh2zYqnQFwBzZ9dqr8PMJVEpPpGgB+rUp1xPLvBoQEtiTLuItt7StaogGKBe0DXFlaAp1sxqFSb3/Z@vger.kernel.org, AJvYcCVoNIrmbwyzuYWXqkAulbp1v/nHqLBD2nsAEfcWH9C6ykZDWY6XTrZKJMEye7H6wykjpsLS3+dz/86zR2QH@vger.kernel.org, AJvYcCXguQaAH5Rf1l/AEZ4dzZYNiLkHLiQWhHS2PxdAUzFJdTMHe9Qd1wu46YXR5bj+gBRnvG8tStukHDt+@vger.kernel.org
-X-Gm-Message-State: AOJu0YybpNIH7+dI+ZWwOa7ZqA4k75+JmYeITcNWpANwXKG4jNBH5Era
-	01MtBsvFs3mRdlcueYM9RKagBRXAyxvgMO2SttK657djBnXixzyBvXyE
-X-Gm-Gg: ASbGncsvverHfYoMTqtPZ8ifo0IPebm1UsMLK98HGhJbt8R9qvSzIcdrW+U4Y7KNrlC
-	lIuJNNtcmRtGMDSCtVbUNYotxNcJhxtn4UqtkCuJfGPWGWROZ5uX85Ih1hMzRKL05veJgpkgeqn
-	KmMNcIcpg45x49B3b6F8+8NgrCJpOBQV2Nt94y5djecjhwMNXZooUFgTdRuiA5hXJqPca43uB5Z
-	ow4UDDNzQk1sF7pk550wGBIS1O5dNuhflxFEbEuTp6cWsmcUgSbXMVsy0pudZAdjgRw48ZOAkvG
-	LB+XzxOjGJpQD11/KrzC3sxQ6f7fcxXM7y07Rx2JzQJJSH8NXcKddpinKg9js5ofwYHiges=
-X-Google-Smtp-Source: AGHT+IEOt7ZHJIadPo23AzTPWtHvU8mk9GOWEhQ9gC8eTaJo2rRa/5tPX6XD0fdqF/elVsnGisr+bw==
-X-Received: by 2002:a05:6a21:4983:b0:21f:bdd5:d71b with SMTP id adf61e73a8af0-21fbdd5d743mr15116120637.2.1750096586118;
-        Mon, 16 Jun 2025 10:56:26 -0700 (PDT)
-Received: from localhost ([2804:30c:4000:5900:b4c4:6073:1a92:4077])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-748900d255fsm7375942b3a.172.2025.06.16.10.56.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jun 2025 10:56:24 -0700 (PDT)
-Date: Mon, 16 Jun 2025 14:58:12 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
-	brgl@bgdev.pl
-Subject: Re: [PATCH v5 01/11] dt-bindings: iio: adc: Add AD4170
-Message-ID: <aFBbNEWZo-7PoI3_@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1749582679.git.marcelo.schmitt@analog.com>
- <4df9d4d0de83090300b6870afc8ae7b22279cd22.1749582679.git.marcelo.schmitt@analog.com>
- <20250616-neurology-explicit-ec2a829bd718@spud>
+        d=1e100.net; s=20230601; t=1750097287; x=1750702087;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5P3OJPWWK/eACSXhWhO+72qcM502Hj+4pvlf7UjgIcs=;
+        b=NveO0apoa/mL/kAKV30LQOgHayJ6x52kZ21RF01BwkYE5OgbtgFaYtd2kZVM9PcKA9
+         YLf1wjZK5pR7Rl8i9caG2Ir5SMwlmMU6gHVLq3+l+D4RCzr8DVMG8qaWNjCAdTKFCeIV
+         T6I8ajVLMQF952fWU4ezaivp88OLCYx2XB1Q+y0dyY8CNN8LmorV82NeY9knccKfvfK+
+         9GtApNxN4mEn88qVws2dsrpdY5g7+1SbXPZNrILW+LUUUkeyHXhafkmxFEmaZN8PM5XH
+         n0FK7XrbbAhWz1ridp+fOBU7LHELoa7vdXaVWiK0vjFLB8wOKEvQYgunsIfhYAD5x+NX
+         IQ+A==
+X-Forwarded-Encrypted: i=1; AJvYcCVpkbjOn6HCrFoiboKQ+bua3pUeLLm2qE5Ql+7FpVwnPlVBSrSlQBSlgTh282BNUEZb1qWqFebQydzE@vger.kernel.org
+X-Gm-Message-State: AOJu0YytXDVHkSdagTrCiI0WtmaXQBizjMF3LND5iTFLhGobHqCa003w
+	zkxZXjxHsdPkzRyWZZHoz+XB7Kr9H1ekvViG+7cqtI4+70nSuoz1ZBmUpx5RyAOybzr+bcd4D9z
+	ggF7/vH2WwWdaiVR19FUvhDwbpxzNR4uEWKMIDXhZupg/N2UEp77GIiKaRBCwkt64
+X-Gm-Gg: ASbGncs5o6Ru4xDmpHDM7bWMFSkYuSYzOqPzirzPPW4zjbcZCnc32BXeaTEzlIugP+z
+	8X/c7i8CSJOgAtUUs5EPay85doB3Lq4pK2sZfEkTiIRZM1Kx5BSrSrfB+UOgpHoA2xY7rxqTquW
+	0J+yS+wzB7kWiubCSPA1w8L3ptk5gV9hGaKl2NPI8TNsCQP6bjwVar8sluhzk7QQUnHfAqI12JW
+	NI4ItWB87XfGClm6vi5zl9zzCi/PjxVfCx4OtOHI8vPpRHtj6ZU67SQIOCGqZX/2DMkbIPcu5A5
+	rMr5/++EsNqx0LPrzTjii+74VSPMnSCSQOYn7B1u+uKxPartM/gbb733u+MUMl0S
+X-Received: by 2002:a17:90b:528f:b0:312:2bb:aa89 with SMTP id 98e67ed59e1d1-313f1d50e08mr14807666a91.20.1750097287068;
+        Mon, 16 Jun 2025 11:08:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH5xe+5gKXULEPyAiTbu6WxhTiAVcnqfginomJSMt1/TlYTo89ZZKCN390FUIak6t4p8BnjBg==
+X-Received: by 2002:a17:90b:528f:b0:312:2bb:aa89 with SMTP id 98e67ed59e1d1-313f1d50e08mr14807622a91.20.1750097286565;
+        Mon, 16 Jun 2025 11:08:06 -0700 (PDT)
+Received: from [10.73.112.69] (pat_11.qualcomm.com. [192.35.156.11])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365deb23e9sm64211205ad.187.2025.06.16.11.08.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jun 2025 11:08:05 -0700 (PDT)
+Message-ID: <20a4c01e-d2be-4846-abc6-b2d477975249@oss.qualcomm.com>
+Date: Mon, 16 Jun 2025 11:08:04 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250616-neurology-explicit-ec2a829bd718@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] Add Qualcomm SA8255p based firmware managed PCIe
+ root complex
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-pci@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        robh@kernel.org, bhelgaas@google.com, andersson@kernel.org,
+        manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
+        quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
+        quic_nitegupt@quicinc.com
+References: <20250522001425.1506240-1-mayank.rana@oss.qualcomm.com>
+ <584d217a-e8df-4dbe-ad70-2c69597a0545@oss.qualcomm.com>
+ <683bc42f-2810-4d8f-8712-80f933c4b8ad@oss.qualcomm.com>
+ <4yscxqds72lsrdld7tadnlcuk7q6hir3t6mwliu35aljn34veb@hme5q4dpind7>
+Content-Language: en-US
+From: Mayank Rana <mayank.rana@oss.qualcomm.com>
+In-Reply-To: <4yscxqds72lsrdld7tadnlcuk7q6hir3t6mwliu35aljn34veb@hme5q4dpind7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: -7BMN5iJbEch8yik1VsNA_BOIDN95BPv
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDEyMSBTYWx0ZWRfX+9nNZoCm9NFy
+ IG3S995PzlSrHcN1Wv7A0zz6qol8k7JsQnumWyRRXe7MCkyE2LQwwZFxMr5kPjmEwmxVTgPDgop
+ xYexGfsvbIVyuUwDU95QImgG4yUATLEg96MCiBrRiJddf85jkxoRy4khgcvP2LOQELF3ZnA0Lge
+ zJFPG2K47+rNTQz89qbmMa8lgs1+UmvlIuIt9zLlcPCb0ls331PV3Zi+jyANeWrwc3PNkJd2Ybu
+ X/vBaAZwWSZXFUrdeyokTo94aBLeDoKJFbHRtLT/KIYdy0Uzo7QNR7MNOo+SuWWkz47HYsIeyEK
+ Iap6Ho3lb7aKoYtSp77nV1TH0bBOcGwhxUuBsVlT7OxHM6UXd3n8/SlsYng7eJF6u/L6e3y2AD6
+ IETbA71myxM30WW1NZ5/7NeTsoatrAf2UAt+UAkcr5utsmSjtORGGEsnlKTN+OUnKXwFaCWq
+X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=68505d88 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZdW6uxA9NKXbfdqeeS2OGA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=p2hmFKtYKpLvcVhyiQAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: -7BMN5iJbEch8yik1VsNA_BOIDN95BPv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-16_09,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506160121
 
-On 06/16, Conor Dooley wrote:
-> On Tue, Jun 10, 2025 at 05:31:04PM -0300, Marcelo Schmitt wrote:
-> > Add device tree documentation for AD4170 and similar sigma-delta ADCs.
-> > The AD4170 is a 24-bit, multichannel, sigma-delta ADC.
-> > 
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-...
-> > +
-> > +$defs:
-> > +  reference-buffer:
-> > +    description: |
-> > +      Enable precharge buffer, full buffer, or skip reference buffering of
-> > +      the positive/negative voltage reference. Because the output impedance
-> > +      of the source driving the voltage reference inputs may be dynamic,
-> > +      resistive/capacitive combinations of those inputs can cause DC gain
-> > +      errors if the reference inputs go unbuffered into the ADC. Enable
-> > +      reference buffering if the provided reference source has dynamic high
-> > +      impedance output. Note the absolute voltage allowed on REFINn+ and REFINn-
-> > +      inputs is from AVSS - 50 mV to AVDD + 50 mV when the reference buffers are
-> > +      disabled but narrows to AVSS to AVDD when reference buffering is enabled
-> > +      or in precharge mode. The valid options for this property are:
-> > +      0: Reference precharge buffer.
-> > +      1: Full reference buffering.
-> > +      2: Bypass reference buffers (buffering disabled).
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1, 2]
-> > +    default: 1
+Hi Mani
+
+On 6/13/2025 2:29 AM, Manivannan Sadhasivam wrote:
+> On Thu, Jun 12, 2025 at 02:24:04PM -0700, Mayank Rana wrote:
+>> Hi Mani
+>>
+>> Gentle reminder for review.
+>>
 > 
-> Why make this property a uint32, rather than a string where you can use
-> something like "precharge", "full" and "bypass" (or "disabled")? The
-> next similar device could use something slightly different then the
-> binding becomes pretty clunky.
+> These patches are not applying on top of v6.16-rc1. Please post the rebased
+> version.
+ok. will rebase changes and resend it.
 
-Oh, good point. Will make it string type (if going to keep the property).
+Thanks.
 
-> Can you explain why this is a dt property rather than something
-> adjustable at runtime?
+Regards,
+Mayank
 
-The reference buffer configuration affects the allowed absolute maximum input
-ratings of voltage reference supplies. Some bindings (adi,ad7192, adi,ad4130,
-adi,ad7124) have dt properties for buffering of analog inputs and adi,max11410
-has a prop for reference buffering. It looked like adi,ad4170 having a dt prop
-for reference buf would make it more consistent with other bindings. Though, I'm
-fine with dropping ad4170 reference buffer props if that would be better.
+> - Mani
+> 
+>> Regards
+>> Mayank
+>>
+>> On 6/4/2025 10:38 AM, Mayank Rana wrote:
+>>> Hi Mani
+>>>
+>>> As we discussed previously, I resumed working on this functionality.
+>>> Please help with reviewing this patchset.
+>>>
+>>> Regards,
+>>> Mayank
+>>> On 5/21/2025 5:14 PM, Mayank Rana wrote:
+>>>> Based on received feedback, this patch series adds support with existing
+>>>> Linux qcom-pcie.c driver to get PCIe host root complex functionality on
+>>>> Qualcomm SA8255P auto platform.
+>>>>
+>>>> 1. Interface to allow requesting firmware to manage system resources and
+>>>> performing PCIe Link up (devicetree binding in terms of power domain and
+>>>> runtime PM APIs is used in driver)
+>>>>
+>>>> 2. SA8255P is using Synopsys Designware PCIe controller which
+>>>> supports MSI
+>>>> controller. Using existing MSI controller based functionality by
+>>>> exporting
+>>>> important pcie dwc core driver based MSI APIs, and using those from
+>>>> pcie-qcom.c driver.
+>>>>
+>>>> Below architecture is used on Qualcomm SA8255P auto platform to get ECAM
+>>>> compliant PCIe controller based functionality. Here firmware VM
+>>>> based PCIe
+>>>> driver takes care of resource management and performing PCIe link related
+>>>> handling (D0 and D3cold). Linux pcie-qcom.c driver uses power domain to
+>>>> request firmware VM to perform these operations using SCMI interface.
+>>>> --------------------
+>>>>
+>>>>
+>>>>                                      ┌────────────────────────┐
+>>>>                                      │                        │
+>>>>     ┌──────────────────────┐         │     SHARED MEMORY
+>>>> │            ┌──────────────────────────┐
+>>>>     │     Firmware VM      │         │
+>>>> │            │         Linux VM         │
+>>>>     │ ┌─────────┐          │         │
+>>>> │            │    ┌────────────────┐    │
+>>>>     │ │ Drivers │ ┌──────┐ │         │
+>>>> │            │    │   PCIE Qcom    │    │
+>>>>     │ │ PCIE PHY◄─┤      │ │         │   ┌────────────────┐
+>>>> │            │    │    driver      │    │
+>>>>     │ │         │ │ SCMI │ │         │   │                │
+>>>> │            │    │                │    │
+>>>>     │ │PCIE CTL │ │      │ ├─────────┼───►    PCIE
+>>>> ◄───┼─────┐      │    └──┬──────────▲──┘    │
+>>>>     │ │         ├─►Server│ │         │   │    SHMEM       │   │
+>>>> │      │       │          │       │
+>>>>     │ │Clk, Vreg│ │      │ │         │   │                │   │
+>>>> │      │    ┌──▼──────────┴──┐    │
+>>>>     │ │GPIO,GDSC│ └─▲──┬─┘ │         │   └────────────────┘   │
+>>>> └──────┼────┤PCIE SCMI Inst  │    │
+>>>>     │ └─────────┘   │  │   │         │
+>>>> │            │    └──▲──────────┬──┘    │
+>>>>     │               │  │   │         │
+>>>> │            │       │          │       │
+>>>>     └───────────────┼──┼───┘         │
+>>>> │            └───────┼──────────┼───────┘
+>>>>                     │  │             │
+>>>> │                    │          │
+>>>>                     │  │
+>>>> └────────────────────────┘                    │          │
+>>>>                     │
+>>>> │
+>>>> │          │
+>>>>                     │
+>>>> │
+>>>> │          │
+>>>>                     │
+>>>> │
+>>>> │          │
+>>>>                     │
+>>>> │                                                           │IRQ
+>>>> │HVC
+>>>>                 IRQ │
+>>>> │HVC
+>>>> │          │
+>>>>                     │
+>>>> │
+>>>> │          │
+>>>>                     │
+>>>> │
+>>>> │          │
+>>>>                     │
+>>>> │
+>>>> │          │
+>>>> ┌─────────────────┴──▼───────────────────────────────────────────────────────────┴──────────▼──────────────┐
+>>>> │                                                                                                          │
+>>>> │                                                                                                          │
+>>>> │
+>>>> HYPERVISOR
+>>>> │
+>>>> │                                                                                                          │
+>>>> │                                                                                                          │
+>>>> │                                                                                                          │
+>>>> └──────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+>>>>     ┌─────────────┐    ┌─────────────┐  ┌──────────┐   ┌───────────┐
+>>>> ┌─────────────┐  ┌────────────┐
+>>>>     │             │    │             │  │          │   │           │
+>>>> │  PCIE       │  │   PCIE     │
+>>>>     │   CLOCK     │    │   REGULATOR │  │   GPIO   │   │   GDSC    │
+>>>> │  PHY        │  │ controller │
+>>>>     └─────────────┘    └─────────────┘  └──────────┘   └───────────┘
+>>>> └─────────────┘  └────────────┘
+>>>> -----------------
+>>>> Changes in v4:
+>>>> - Addressed provided review comments from reviewers
+>>>> Link to v3: https://lore.kernel.org/lkml/20241106221341.2218416-1-
+>>>> quic_mrana@quicinc.com/
+>>>>
+>>>> Changes in v3:
+>>>> - Drop usage of PCIE host generic driver usage, and splitting of MSI
+>>>> functionality
+>>>> - Modified existing pcie-qcom.c driver to add support for getting
+>>>> ECAM compliant and firmware managed
+>>>> PCIe root complex functionality
+>>>> Link to v2: https://lore.kernel.org/linux-arm-
+>>>> kernel/925d1eca-975f-4eec-bdf8-ca07a892361a@quicinc.com/T/
+>>>>
+>>>> Changes in v2:
+>>>> - Drop new PCIe Qcom ECAM driver, and use existing PCIe designware
+>>>> based MSI functionality
+>>>> - Add power domain based functionality within existing ECAM driver
+>>>> Link to v1: https://lore.kernel.org/all/d10199df-5fb3-407b-b404-
+>>>> a0a4d067341f@quicinc.com/T/
+>>>>
+>>>> Tested:
+>>>> - Validated NVME functionality with PCIe1 on SA8255P-RIDE platform
+>>>>
+>>>> Mayank Rana (4):
+>>>>     PCI: dwc: Export dwc MSI controller related APIs
+>>>>     PCI: host-generic: Rename and export gen_pci_init() API to allow ECAM
+>>>>       creation
+>>>>     dt-bindings: PCI: qcom,pcie-sa8255p: Document ECAM compliant PCIe root
+>>>>       complex
+>>>>     PCI: qcom: Add Qualcomm SA8255p based PCIe root complex functionality
+>>>>
+>>>>    .../bindings/pci/qcom,pcie-sa8255p.yaml       | 103 ++++++++++++++++
+>>>>    drivers/pci/controller/dwc/Kconfig            |   1 +
+>>>>    .../pci/controller/dwc/pcie-designware-host.c |  38 +++---
+>>>>    drivers/pci/controller/dwc/pcie-designware.h  |  14 +++
+>>>>    drivers/pci/controller/dwc/pcie-qcom.c        | 114 ++++++++++++++++--
+>>>>    drivers/pci/controller/pci-host-common.c      |   5 +-
+>>>>    include/linux/pci-ecam.h                      |   2 +
+>>>>    7 files changed, 248 insertions(+), 29 deletions(-)
+>>>>    create mode 100644
+>>>> Documentation/devicetree/bindings/pci/qcom,pcie- sa8255p.yaml
+>>>>
+>>>
+>>
+> 
 
-Thanks,
-Marcelo
 
