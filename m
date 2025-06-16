@@ -1,144 +1,121 @@
-Return-Path: <devicetree+bounces-186433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9870EADBC3C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 23:48:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A232EADBC8A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 00:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21D733B17EF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 21:47:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56724172156
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 22:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8962356C3;
-	Mon, 16 Jun 2025 21:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B716F2356C0;
+	Mon, 16 Jun 2025 22:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oPIPpn0H"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="iL+3CM+D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BB8225A40;
-	Mon, 16 Jun 2025 21:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294CE2206A6
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 22:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750110419; cv=none; b=qZ+o18Sr4iLjqXTYw1ctDr6rHw2l5y+dtosIHRE1bWfrUPhEnfRdjPhB34ddrAZiASDOTOpp1oqUWFwopEXIarBQ8zzKw3wmdhvcPR09lh3IoTy2lL2PtpG27CZg9HXiBMgvTt94MSii3w0AhgdDHk5yv2keOZt+Ww7DOzTZ0k4=
+	t=1750111283; cv=none; b=Cf3zpJymPZUV/7AyPxdfok90v84Go3mElpvMIO9O9iNW6qryRoP4cItJtB5l4qpbOptZ4fr8GteI/5ljeX1g6B9egV3/oKPCs1ZdWCk7pWn/jbsbusX4Mz20pH9WF7bJjjaaC0IyW2qr/6oAichN/rnkwa7Gtn/4gx+xFzQMoAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750110419; c=relaxed/simple;
-	bh=A36aYuwtURoz40aiNwrEmviY+Zb8/EdLr3ClzFqkUdA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=r+k8ZxcmnHT0rFSbl1tufn65HWS7ifh9l6ZlS7p5k5KAG7aETELMOR0FXwVFzLB2LxzjBvHSj2aga1ATbikATmtUiD9Ik7Tbgd0PbopSAJ7jq3qXPWTfIDi4PdmhzPlU/41/aOTfkEAMUWSYn88LxNoLzpcNIR92j5bClSsc01w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oPIPpn0H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43C9EC4CEEF;
-	Mon, 16 Jun 2025 21:46:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750110418;
-	bh=A36aYuwtURoz40aiNwrEmviY+Zb8/EdLr3ClzFqkUdA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=oPIPpn0HPAZX2WYOYfblJ91P4xoMIpp4CA9H7IdDnH1nfJ3aeC5Afn1cMXZFXXZRB
-	 3a/47WrMOkRa0OG7OnNZWiniBgYMUmt0XnVSzr8nc9YZno6UsGOyIqBxcAxL79XwhO
-	 2orr7DtCCtKEvC1518QcqGRd7r+G+4do224nAZ9axY3eNYog4EhXz0euC1EH/ivgto
-	 yRxA1KTLq6bqy33XPpSeOQPsV2KLjRUX/6nmf3tGwUkWvWDMhBZR9DqeSCXZ2TWR1M
-	 BgzfAJCDx5h8QdVIFOv6yirQ2hFw8Nyg6NalWrFfzamid+zu5X5SiJrREJPf0t1xDy
-	 qIRFgB61clBPw==
-Date: Mon, 16 Jun 2025 16:46:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750111283; c=relaxed/simple;
+	bh=q7tD4d0yNr2pbj8cYfhujZP3byO/0ot0K8Igx0jNNuE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AMwvWXxzAQgFIm5ZRzeRCfEinXFzI0EKa6pQzGntfk/29ZhKTZWhmHTH/hTpekTD/g+LXszDUh6MVbWwyUmk+BywAlvZ2BPNPZRM160OyCOAslXKzfInyG6Ryc96g0oB2XM/g2Fx1QY1ao0hPU1sGMWooejeijxM/JsnFuWgVQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=iL+3CM+D; arc=none smtp.client-ip=95.215.58.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1750111270;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=4s03yPEhF45+lWh5hyBpMppSw2oqj+GdWmyYq1pWC3U=;
+	b=iL+3CM+DtVo4+gmEcNyja3IwWUGWPIvvvUP9mUdkZpBaCIC8Z8NAxdgHcEBFZgeO8YSfJa
+	oNioV1esuk2dUqqUWhTtNaQH8m1XvDXAl6NtTGNZf1TOwE849tKso4U0wbTTOG6SBRnFox
+	+qb/om8Jl/33MlLXRAD+sz9iVuLAUT0=
+From: Sean Anderson <sean.anderson@linux.dev>
+To: Mark Brown <broonie@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	David Lechner <dlechner@baylibre.com>,
+	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/9] spi: zynqmp-gqspi: Support multiple buses and add GPIO support
+Date: Mon, 16 Jun 2025 18:00:45 -0400
+Message-Id: <20250616220054.3968946-1-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ion Agorria <ion@agorria.com>, David Heidelberg <david@ixit.cz>, 
- Thierry Reding <thierry.reding@gmail.com>, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Maxim Schwalm <maxim.schwalm@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
- devicetree@vger.kernel.org
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-In-Reply-To: <20250616073947.13675-1-clamor95@gmail.com>
-References: <20250616073947.13675-1-clamor95@gmail.com>
-Message-Id: <175011006248.2433980.10650629747156591552.robh@kernel.org>
-Subject: Re: [PATCH v1 0/2] ARM: tegra: Add device-tree for Asus Portable
- AiO P1801-T
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+This device really has two SPI buses but they are currently determined
+by the slave's CS. Decouple bus selection from CS, and add support for
+GPIO chipselects. This allows adding arbitrary devices on either bus.
 
-On Mon, 16 Jun 2025 10:39:45 +0300, Svyatoslav Ryhel wrote:
-> Add a device-tree for the Asus Portable AiO P1801-T, which is a NVIDIA
-> Tegra30-based 2-in-1 detachable tablet, originally running Android.
-> 
-> Device tree contains "mstar,tsumu88adt3-lf-1" compatible, a simple bridge
-> which was submitted a while ago here [1] but was not applied yet.
-> 
-> [1] https://lore.kernel.org/lkml/CAPVz0n1udjVZY3400hYMY07DjNKfOt4bwpW6He6A4qo_3pXtqQ@mail.gmail.com/T/#mb50632e269d89275d97c485037da8893239b5410
-> 
-> Maxim Schwalm (1):
->   dt-bindings: arm: tegra: Add Asus Portable AiO P1801-T
-> 
-> Svyatoslav Ryhel (1):
->   ARM: tegra: Add device-tree for Asus Portable AiO P1801-T
-> 
->  .../devicetree/bindings/arm/tegra.yaml        |    4 +
->  arch/arm/boot/dts/nvidia/Makefile             |    1 +
->  .../boot/dts/nvidia/tegra30-asus-p1801-t.dts  | 2087 +++++++++++++++++
->  3 files changed, 2092 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dts
-> 
-> --
-> 2.48.1
-> 
-> 
-> 
+This version does the bus selction using a spi-buses property in
+slaves's node, as opposed to having separate nodes for the upper and
+lower buses. This should be backwards compatible with existing bindings,
+and could allow supporting "parallel" memories in the future (identical
+flashes on both buses controlled in lockstep).
 
+Changes in v2:
+- Add spi-buses property
+- Update spi-zynqmp-qspi.yaml with new binding style
+- Support multi-bus controllers
+- Add flag to determine default bus
+- Support multiple buses with spi-buses instead of explicit
+  upper/lower/merged buses
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+David Lechner (2):
+  dt-bindings: spi: Add spi-buses property
+  spi: Support multi-bus controllers
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Sean Anderson (7):
+  dt-bindings: spi: zynqmp-qspi: Add example dual upper/lower bus
+  spi: Add flag to determine default bus
+  spi: zynqmp-gqspi: Support multiple buses
+  spi: zynqmp-gqspi: Pass speed directly to config_op
+  spi: zynqmp-gqspi: Configure SPI mode dynamically
+  spi: zynqmp-gqspi: Support GPIO chip selects
+  ARM64: xilinx: zynqmp: Add spi-buses property
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+ .../bindings/spi/spi-peripheral-props.yaml    |  10 ++
+ .../bindings/spi/spi-zynqmp-qspi.yaml         |  22 ++-
+ .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zc1254-revA.dts    |   1 +
+ .../dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    |   1 +
+ .../dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    |   1 +
+ .../boot/dts/xilinx/zynqmp-zcu1275-revA.dts   |   1 +
+ drivers/spi/spi-zynqmp-gqspi.c                | 155 ++++++++++++++----
+ drivers/spi/spi.c                             |  31 +++-
+ include/linux/spi/spi.h                       |  15 ++
+ 15 files changed, 208 insertions(+), 35 deletions(-)
 
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250616 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nvidia/' for 20250616073947.13675-1-clamor95@gmail.com:
-
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /pcie@3000: failed to match any schema with compatible: ['nvidia,tegra30-pcie']
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: hdmi@54280000 (nvidia,tegra30-hdmi): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-hdmi.yaml#
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: hdmi@54280000 (nvidia,tegra30-hdmi): 'nvidia,ddc-i2c-bus' is a required property
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-hdmi.yaml#
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: hdmi@54280000 (nvidia,tegra30-hdmi): 'nvidia,hpd-gpio' is a required property
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-hdmi.yaml#
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /gmi@70009000: failed to match any schema with compatible: ['nvidia,tegra30-gmi']
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: audio-codec@1c (realtek,rt5640): 'oneOf' conditional failed, one must be fixed:
-	'interrupts' is a required property
-	'interrupts-extended' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/realtek,rt5640.yaml#
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: audio-codec@1c (realtek,rt5640): Unevaluated properties are not allowed ('clock-names', 'clocks', 'realtek,ldo1-en-gpios' were unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/realtek,rt5640.yaml#
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /i2c@7000d000/pmic@2d: failed to match any schema with compatible: ['ti,tps65911']
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: core-regulator@60 (ti,tps62361): Unevaluated properties are not allowed ('nvidia,tegra-core-regulator' was unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/ti,tps62360.yaml#
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /kbc@7000e200: failed to match any schema with compatible: ['nvidia,tegra30-kbc', 'nvidia,tegra20-kbc']
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /kbc@7000e200: failed to match any schema with compatible: ['nvidia,tegra30-kbc', 'nvidia,tegra20-kbc']
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /ahub@70080000: failed to match any schema with compatible: ['nvidia,tegra30-ahub']
-arch/arm/boot/dts/nvidia/tegra30-asus-p1801-t.dtb: /bridge: failed to match any schema with compatible: ['mstar,tsumu88adt3-lf-1']
-
-
-
-
+-- 
+2.35.1.1320.gc452695387.dirty
 
 
