@@ -1,213 +1,309 @@
-Return-Path: <devicetree+bounces-186165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74F4ADA968
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C11ADA97B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:31:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BE3A189681C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:26:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBA201894B6F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2C91F4176;
-	Mon, 16 Jun 2025 07:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2912C1FA272;
+	Mon, 16 Jun 2025 07:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KEeBvaFx"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="DC1i+2um"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30322CA6;
-	Mon, 16 Jun 2025 07:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E312B1F4CB2
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750058763; cv=none; b=Q4qr0eIcSc5lVRUv6p5Gd5iJE30Oi7epIEl5HxGz5RXYx5/vj7ujyXZKaPnKxCiP6Tl5xs/izoVOJzbPTtzIOqJLMbz7p/2yrD8FrOrRMpw48ArGgG07ccVe/dNJYxzxEICo92wLfNSAEN7EKQsKrCG4+g7x1qG39BeRv9ZTdCc=
+	t=1750059106; cv=none; b=FHL+jbAmyfjkL2WfxJ/+aCIU1oMfqZv/NxIs4tV9XhCyrylH3jf2KaFW9CreBwtdvK6lHHEBdfF+Pc5c9iwsTTksHgAPVXGC4oFG+JrTlrCW8USj9YthysgCPtB0dRyc4W+VlQCKY25K3ljn9VfwQty4b80l2FAJJmVgv4YVWRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750058763; c=relaxed/simple;
-	bh=XP9PvxbbFwpO9eJAx75niUIURXU9zqEWph+Lc77aPAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=k8aKLKxaDoUqRDWCgWomC/vTyFXidT/XERGpLHppTx9s1QuPGhpWottqvss7E8Qv0PqG1BQh2MivrKYCNsoKycsUESJ4kGSid4wwGapQ0ApCMIYW2bZdHcJNM7Nok4CFJM4/qfkKtpu2nfu44o22Nj6u+vNzWPC+esmlbhsORck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KEeBvaFx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55FNqAWg025415;
-	Mon, 16 Jun 2025 07:25:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XcAily78zL3qaqYDxn/xmpaLjAqqMN5K0g0hvjaD8L4=; b=KEeBvaFxHO77fjN/
-	FeHD3Q0WqQJpOUjk1oRLS1za33xmvfGQ6nvVU9lW3XF3NcsU2SerVFqyjCaTyDmB
-	nsRMZVIzaobiESI/Qp9z7EP6tU8S6cTxkhlGJ6hZfG6TBIqitlAokgxqyguslflK
-	0abLCOm+t0H9pc9r5wfBl9+6LmBnx3rGsIy04xfofhTMS4oGchCg+lIJCXYsLDW+
-	DbJ0oUkZRBEMyDdMMQgwnG/SS2E1/ABIGctG3H3eJjX5dpF/Gp/ZfbXdbVMoXx1Y
-	7zcvMG2c8VBiVNq0mSO8yL3m/Pbo47/Sf3MzJ75MHOWs8CpJZ47b8OWPb06CEgss
-	VfgGag==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 479qp5j2jd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 07:25:57 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55G7Puis009950
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 07:25:56 GMT
-Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Jun
- 2025 00:25:50 -0700
-Message-ID: <0d9846f8-da23-4f2a-a593-35350c026b44@quicinc.com>
-Date: Mon, 16 Jun 2025 12:55:47 +0530
+	s=arc-20240116; t=1750059106; c=relaxed/simple;
+	bh=ee5HiIoIsa3WDFCUyUGDDZltzjB7Oew/byuJhXXlAlI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nSfrxKtpBdsBKChkNVn40UrCAYC+m3lHZ5hMcqnwEU3rSC0UqkxVoCxLZsh96esZSlMH4mY4ip5GoR9d3h4dgicDyJphJwSHFB4L1h/xSUAqWDpVJXQ+gRb0LXqlqZTBJZz5ytryhMVNlI0sU/G6Qg9Js20wTqqPpTeV+wi+MgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=DC1i+2um; arc=none smtp.client-ip=209.85.166.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3ddff24fdc4so47573425ab.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 00:31:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1750059103; x=1750663903; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EQxXH/0dmAKUHVoHoL5MncVmJUg8FbHf/SfAogCBA2o=;
+        b=DC1i+2umUVfKRl3dV5GPu22ngrs1sm0QAx+hY6GxzRuTxJz2aEVXBVY21zCsxxxAb3
+         xQ7OnZYKqww37y7xbgOG9IasDUprZUWYFUg0EZ4MElZo6BmPrlMHfFMz5ewViqQiXtWr
+         /+kx131zxEmT0q/ZfGhXZmZzXXUWLkGa88xBOnl1w1EhoTa9j0IhgDRIKQKB+e2cHZaE
+         +dJ//AYrH56dqdU2azxMFshlEHAKGit9qUbhCcCEVP/Tbj5P5zE1/M4AtQ7TENXxPDBt
+         Wsj+Oref7Aunzg2G6havYh6dekCCPT/Diu8Z8ZalOmwWyhPA2KJHD+yvV/aEF/B2yHpy
+         yAcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750059103; x=1750663903;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EQxXH/0dmAKUHVoHoL5MncVmJUg8FbHf/SfAogCBA2o=;
+        b=Hbi9t/1mHsM5sZZejrKHTlJMg5vsxeJpCPM5KN9bwomRkRvrf/lhZ7DVZ0fjviR8YS
+         5aR5X6vJUAb5D4WBUQqiZBVSa1iMbk44CiMygDi1yZeTC3YP/paAsVVbtqFLIhuj0NW8
+         KoGbLNONegCBcDzwhIuQtZinkTsjvNOkXb/fuGmC17MeJkJnsWQPogS+1Ws6lKXxDLH3
+         A63tBBK2zjJjEbvtyTfwxqXR6dI3vD84IkJl5aqP0dEi+SeqHnap+ZaBCvNU0oU9G0d3
+         e2adu8q8+ZzBkrf6fYr3OZ9a/tMKjg3OvU2Yc5WlnEEnKRVmlnZccnEME1YIQ8EsQRew
+         Enaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXHkjcLcaeAIcNt6ZhlsuBR1V/6R0pPaxYuAlMho2tbsH5zStWXz9qK0TdlDsRLTFK/A3x1rcv57Fkj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTF0vH827cmTjSB9hnY/jBWf/RacrEcoV8hQzF4Q4eTpPp7OYH
+	svsEpu/V7JC+sQq2XkiJk/Y6sV0l4htTqGecAOJH5XXbdhi7eGtaV56hxv0GIkEGd4mrhZfdef7
+	1zu8rf3DZ9wBpovAVkLX8rqqN7ZnK99qAdyPeJTiskw==
+X-Gm-Gg: ASbGncuu8Wyaj37CpjImcH+762Ww2sDMmu0Pn4kwqV/NwQUoc3VxvtLtiCFsua+lCTf
+	JVPxPZsAEfbXTbTXHu9QQaPYG1/eoa7yBfyZcdOgUWgq0cUEUk2awReECl0/ABmpAjVz1F/+B1B
+	xJ6OWX+jiG455mn3o71ud+nfe0bc24sQcn4ybiihkFeZGvxw==
+X-Google-Smtp-Source: AGHT+IEjHI16GxKyLasfzKkpzXfv5K8fdxEJHSmO2c+vsZ5EW3jLub+wreQ1LSFrfqb50SzP3xXNNY/tkYcEG9qkkXQ=
+X-Received: by 2002:a05:6e02:1445:b0:3dc:87c7:a5b5 with SMTP id
+ e9e14a558f8ab-3de07c2710fmr92538565ab.3.1750059102855; Mon, 16 Jun 2025
+ 00:31:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v5 00/18] clk: qcom: Add support to attach
- multiple power domains in cc probe
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya
- Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-References: <20250530-videocc-pll-multi-pd-voting-v5-0-02303b3a582d@quicinc.com>
- <174970084192.547582.612305407582982706.b4-ty@kernel.org>
- <65828662-5352-449b-a892-7c09d488a1f4@quicinc.com>
- <91c11e62-b0d4-40e9-91a1-20da9973e415@linaro.org>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <91c11e62-b0d4-40e9-91a1-20da9973e415@linaro.org>
+References: <20250604-v5_user_cfi_series-v17-0-4565c2cf869f@rivosinc.com> <20250604-v5_user_cfi_series-v17-15-4565c2cf869f@rivosinc.com>
+In-Reply-To: <20250604-v5_user_cfi_series-v17-15-4565c2cf869f@rivosinc.com>
+From: Zong Li <zong.li@sifive.com>
+Date: Mon, 16 Jun 2025 15:31:31 +0800
+X-Gm-Features: AX0GCFv07zIy78CxiGqhmmuXUJ1bc3WRbaeMC8WS8lGUU29aYh3F-BEq_8IQZZA
+Message-ID: <CANXhq0pRXX_OMW2g2ui-k7Z_ZT+5a8Sra8oE28nBh5B9K2L5bQ@mail.gmail.com>
+Subject: Re: [PATCH v17 15/27] riscv/traps: Introduce software check exception
+ and uprobe handling
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com, 
+	rust-for-linux@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uIkot9sHibWn9vjlb_aH7r3PxNan9Lg7
-X-Proofpoint-ORIG-GUID: uIkot9sHibWn9vjlb_aH7r3PxNan9Lg7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDA0OCBTYWx0ZWRfX5Z/C+ZXYek0t
- Q3OLc16zslcmrB0Hz0nVi8H/55dGfx8M8lnH3TdJnsKnO/6beNzsKkYtD9GB4bvuVIq2XWyGkfN
- j2Vz4391McwGr3HnvNsfL7BUa9aCBxZmBSaLTs2fFM3IRKUbV29/+9GvS9MCNnq4HJR2hk9oNSQ
- 0GuIGAlGSOHQlWj3hpQcICtWH6vYvP0/0XSBNTKybKjcomBacOFoLVCal27pbtL9ClpliGpEgqw
- 6LtE/nPcoR0pA+J+4N+NiV/wbpE/8wD6Njp0hYcBBKi3z6k1EysVmxKL+u/KMRTS/O5HQf0BCau
- RipXrcBjpsAsbmjfXLW50QM68+x4wAQwVidw/bTgraQc0T+kYutnAOqHvhJvPj+9qRKOy6X5KDa
- EOp2zdwB+7gzd1yXcpZJHt/0d7K9wpcv6kNBQDS0DTbSAVl0S032RDWrkbrjC/1wN7wfOZYY
-X-Authority-Analysis: v=2.4 cv=fMc53Yae c=1 sm=1 tr=0 ts=684fc705 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
- a=4vALZuFKeRXYYujc2Y0A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_03,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- mlxlogscore=999 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506160048
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jun 5, 2025 at 1:17=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> wr=
+ote:
+>
+> zicfiss / zicfilp introduces a new exception to priv isa `software check
+> exception` with cause code =3D 18. This patch implements software check
+> exception.
+>
+> Additionally it implements a cfi violation handler which checks for code
+> in xtval. If xtval=3D2, it means that sw check exception happened because=
+ of
+> an indirect branch not landing on 4 byte aligned PC or not landing on
+> `lpad` instruction or label value embedded in `lpad` not matching label
+> value setup in `x7`. If xtval=3D3, it means that sw check exception happe=
+ned
+> because of mismatch between link register (x1 or x5) and top of shadow
+> stack (on execution of `sspopchk`).
+>
+> In case of cfi violation, SIGSEGV is raised with code=3DSEGV_CPERR.
+> SEGV_CPERR was introduced by x86 shadow stack patches.
+>
+> To keep uprobes working, handle the uprobe event first before reporting
+> the CFI violation in software-check exception handler. Because when the
+> landing pad is activated, if the uprobe point is set at the lpad
+> instruction at the beginning of a function, the system triggers a softwar=
+e
+> -check exception instead of an ebreak exception due to the exception
+> priority, then uprobe can't work successfully.
+>
+> Co-developed-by: Zong Li <zong.li@sifive.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
+> Signed-off-by: Zong Li <zong.li@sifive.com>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/asm-prototypes.h |  1 +
+>  arch/riscv/include/asm/entry-common.h   |  2 ++
+>  arch/riscv/kernel/entry.S               |  3 ++
+>  arch/riscv/kernel/traps.c               | 51 +++++++++++++++++++++++++++=
+++++++
+>  4 files changed, 57 insertions(+)
+>
+> diff --git a/arch/riscv/include/asm/asm-prototypes.h b/arch/riscv/include=
+/asm/asm-prototypes.h
+> index cd627ec289f1..5a27cefd7805 100644
+> --- a/arch/riscv/include/asm/asm-prototypes.h
+> +++ b/arch/riscv/include/asm/asm-prototypes.h
+> @@ -51,6 +51,7 @@ DECLARE_DO_ERROR_INFO(do_trap_ecall_u);
+>  DECLARE_DO_ERROR_INFO(do_trap_ecall_s);
+>  DECLARE_DO_ERROR_INFO(do_trap_ecall_m);
+>  DECLARE_DO_ERROR_INFO(do_trap_break);
+> +DECLARE_DO_ERROR_INFO(do_trap_software_check);
+>
+>  asmlinkage void handle_bad_stack(struct pt_regs *regs);
+>  asmlinkage void do_page_fault(struct pt_regs *regs);
+> diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/include/a=
+sm/entry-common.h
+> index b28ccc6cdeea..34ed149af5d1 100644
+> --- a/arch/riscv/include/asm/entry-common.h
+> +++ b/arch/riscv/include/asm/entry-common.h
+> @@ -40,4 +40,6 @@ static inline int handle_misaligned_store(struct pt_reg=
+s *regs)
+>  }
+>  #endif
+>
+> +bool handle_user_cfi_violation(struct pt_regs *regs);
+> +
+>  #endif /* _ASM_RISCV_ENTRY_COMMON_H */
+> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> index 978115567bca..8d25837a9384 100644
+> --- a/arch/riscv/kernel/entry.S
+> +++ b/arch/riscv/kernel/entry.S
+> @@ -474,6 +474,9 @@ SYM_DATA_START_LOCAL(excp_vect_table)
+>         RISCV_PTR do_page_fault   /* load page fault */
+>         RISCV_PTR do_trap_unknown
+>         RISCV_PTR do_page_fault   /* store page fault */
+> +       RISCV_PTR do_trap_unknown /* cause=3D16 */
+> +       RISCV_PTR do_trap_unknown /* cause=3D17 */
+> +       RISCV_PTR do_trap_software_check /* cause=3D18 is sw check except=
+ion */
+>  SYM_DATA_END_LABEL(excp_vect_table, SYM_L_LOCAL, excp_vect_table_end)
+>
+>  #ifndef CONFIG_MMU
+> diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
+> index 8ff8e8b36524..64388370e1ad 100644
+> --- a/arch/riscv/kernel/traps.c
+> +++ b/arch/riscv/kernel/traps.c
+> @@ -354,6 +354,57 @@ void do_trap_ecall_u(struct pt_regs *regs)
+>
+>  }
+>
+> +#define CFI_TVAL_FCFI_CODE     2
+> +#define CFI_TVAL_BCFI_CODE     3
+> +/* handle cfi violations */
+> +bool handle_user_cfi_violation(struct pt_regs *regs)
+> +{
+> +       unsigned long tval =3D csr_read(CSR_TVAL);
+> +       bool is_fcfi =3D (tval =3D=3D CFI_TVAL_FCFI_CODE && cpu_supports_=
+indirect_br_lp_instr());
+> +       bool is_bcfi =3D (tval =3D=3D CFI_TVAL_BCFI_CODE && cpu_supports_=
+shadow_stack());
+> +
+> +       /*
+> +        * Handle uprobe event first. The probe point can be a valid targ=
+et
+> +        * of indirect jumps or calls, in this case, forward cfi violatio=
+n
+> +        * will be triggered instead of breakpoint exception.
+> +        */
+> +       if (is_fcfi && probe_breakpoint_handler(regs))
+> +               return true;
+
+Hi  Deepak,
+Sorry for missing something earlier. I think we would like to clear
+sstatus.SPELP in the uprobe handling case. For example:
+
+diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
+index c2ea999c1167..e8492bb57e09 100644
+--- a/arch/riscv/kernel/traps.c
++++ b/arch/riscv/kernel/traps.c
+@@ -349,8 +349,10 @@ bool handle_user_cfi_violation(struct pt_regs *regs)
+        bool is_fcfi =3D (tval =3D=3D CFI_TVAL_FCFI_CODE &&
+cpu_supports_indirect_br_lp_instr());
+        bool is_bcfi =3D (tval =3D=3D CFI_TVAL_BCFI_CODE &&
+cpu_supports_shadow_stack());
+
+-       if (is_fcfi && probe_breakpoint_handler(regs))
++       if (is_fcfi && probe_breakpoint_handler(regs)) {
++               regs->status =3D regs->status & ~SR_ELP;
+                return true;
++       }
+
+        if (is_fcfi || is_bcfi) {
+                do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
 
 
+When a user mode CFI violation occurs, the ELP state should be 1, and
+the system traps into supervisor mode. During this trap, sstatus.SPELP
+is set to 1, and the ELP state is reset to 0. If we don=E2=80=99t clear
+sstatus.SPELP, the ELP state will become 1 again after executing the
+sret instruction. As a result, the system might trigger another
+forward CFI violation upon executing the next instruction in the user
+program, unless it happens to be a lpad instruction.
 
-On 6/12/2025 4:22 PM, Krzysztof Kozlowski wrote:
-> On 12/06/2025 12:03, Jagadeesh Kona wrote:
->>
->>
->> On 6/12/2025 9:30 AM, Bjorn Andersson wrote:
->>>
->>> On Fri, 30 May 2025 18:50:45 +0530, Jagadeesh Kona wrote:
->>>> In recent QCOM chipsets, PLLs require more than one power domain to be
->>>> kept ON to configure the PLL. But the current code doesn't enable all
->>>> the required power domains while configuring the PLLs, this leads to
->>>> functional issues due to suboptimal settings of PLLs.
->>>>
->>>> To address this, add support for handling runtime power management,
->>>> configuring plls and enabling critical clocks from qcom_cc_really_probe.
->>>> The clock controller can specify PLLs, critical clocks, and runtime PM
->>>> requirements using the descriptor data. The code in qcom_cc_really_probe()
->>>> ensures all necessary power domains are enabled before configuring PLLs
->>>> or critical clocks.
->>>>
->>>> [...]
->>>
->>> Applied, thanks!
->>>
->>> [01/18] dt-bindings: clock: qcom,sm8450-videocc: Add MXC power domain
->>>         commit: 1a42f4d4bb92ea961c58599bac837fb8b377a296
->>> [02/18] dt-bindings: clock: qcom,sm8450-camcc: Allow to specify two power domains
->>>         commit: a02a8f8cb7f6f54b077a6f9eb74ccd840b472416
->>> [03/18] dt-bindings: clock: qcom,sm8450-camcc: Move sc8280xp camcc to sa8775p camcc
->>>         commit: 842fa748291553d2f56410034991d0eb36b70900
->>> [04/18] clk: qcom: clk-alpha-pll: Add support for common PLL configuration function
->>>         commit: 0f698c16358ef300ed28a608368b89a4f6a8623a
->>> [05/18] clk: qcom: common: Handle runtime power management in qcom_cc_really_probe
->>>         commit: c0b6627369bcfec151ccbd091f9ff1cadb1d40c1
->>> [06/18] clk: qcom: common: Add support to configure clk regs in qcom_cc_really_probe
->>>         commit: 452ae64997dd1db1fe9bec2e7bd65b33338e7a6b
->>> [07/18] clk: qcom: videocc-sm8450: Move PLL & clk configuration to really probe
->>>         commit: 512af5bf312efe09698de0870e99c0cec4d13e21
->>> [08/18] clk: qcom: videocc-sm8550: Move PLL & clk configuration to really probe
->>>         commit: a9dc2cc7279a1967f37192a2f954e7111bfa61b7
->>> [09/18] clk: qcom: camcc-sm8450: Move PLL & clk configuration to really probe
->>>         commit: eb65d754eb5eaeab7db87ce7e64dab27b7d156d8
->>> [10/18] clk: qcom: camcc-sm8550: Move PLL & clk configuration to really probe
->>>         commit: adb50c762f3a513a363d91722dbd8d1b4afc5f10
->>> [11/18] clk: qcom: camcc-sm8650: Move PLL & clk configuration to really probe
->>>         commit: 3f8dd231e60b706fc9395edbf0186b7a0756f45d
->>> [12/18] clk: qcom: camcc-x1e80100: Move PLL & clk configuration to really probe
->>>         commit: d7eddaf0ed07e79ffdfd20acb2f6f2ca53e7851b
->>>
->>> Best regards,
->>
->>
->> Hi Bjorn,
->>
->> Thanks for picking these patches. However, the dt-bindings patches are closely linked with
->> the DT patches in this series and needs to be picked together. The dt-bindings changes adds
-> 
-> DT bindings are the DT patches. What do you mean by DT? DTS? If so, then
-> you introduce regressions without explaining this at all in cover letter
-> or patches.
-> 
->> multiple power domains support for clock controllers, and without the corresponding DT
->> patches, dtbs_check will give warnings.
->>
->> Can you please help to pick DT patches as well?
-> 
-> Please read soc maintainer profile explaining how DTS is being organized.
-> 
+The previous patch was tested on QEMU, but QEMU does not set the
+sstatus.SPELP bit to 1 when a forward CFI violation occurs. Therefore,
+I suspect that QEMU might also require some fixes.
 
-I apologize for not mentioning this details in cover letter. Here the dt-bindings documentation
-changes(patches 1-3) are only applied and the corresponding DTS changes(patches 13-18) are not
-yet applied via DTS tree, leading to dtbs_check warnings.
+Thanks
 
-Thanks,
-Jagadeesh
-
-> 
-> Best regards,
-> Krzysztof
+> +
+> +       if (is_fcfi || is_bcfi) {
+> +               do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
+> +                             "Oops - control flow violation");
+> +               return true;
+> +       }
+> +
+> +       return false;
+> +}
+> +
+> +/*
+> + * software check exception is defined with risc-v cfi spec. Software ch=
+eck
+> + * exception is raised when:-
+> + * a) An indirect branch doesn't land on 4 byte aligned PC or `lpad`
+> + *    instruction or `label` value programmed in `lpad` instr doesn't
+> + *    match with value setup in `x7`. reported code in `xtval` is 2.
+> + * b) `sspopchk` instruction finds a mismatch between top of shadow stac=
+k (ssp)
+> + *    and x1/x5. reported code in `xtval` is 3.
+> + */
+> +asmlinkage __visible __trap_section void do_trap_software_check(struct p=
+t_regs *regs)
+> +{
+> +       if (user_mode(regs)) {
+> +               irqentry_enter_from_user_mode(regs);
+> +
+> +               /* not a cfi violation, then merge into flow of unknown t=
+rap handler */
+> +               if (!handle_user_cfi_violation(regs))
+> +                       do_trap_unknown(regs);
+> +
+> +               irqentry_exit_to_user_mode(regs);
+> +       } else {
+> +               /* sw check exception coming from kernel is a bug in kern=
+el */
+> +               die(regs, "Kernel BUG");
+> +       }
+> +}
+> +
+>  #ifdef CONFIG_MMU
+>  asmlinkage __visible noinstr void do_page_fault(struct pt_regs *regs)
+>  {
+>
+> --
+> 2.43.0
+>
 
