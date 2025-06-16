@@ -1,115 +1,125 @@
-Return-Path: <devicetree+bounces-186321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C108ADB3DE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:32:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B73F2ADB3ED
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:34:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7A5F3AB8F7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:27:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65BCE162368
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A6C1DE2BF;
-	Mon, 16 Jun 2025 14:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0702BF00D;
+	Mon, 16 Jun 2025 14:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m3rR1IJ5"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Soi7IpU6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A0214F98;
-	Mon, 16 Jun 2025 14:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82431D5AD4
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 14:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750084044; cv=none; b=CESF8mw/j3f0psaYNvgR2GLWyzX/qxCflOsyht0Aak2uKpOERUjW7GT5zuGhmWoyz89Ac69wiyJhtAwUU92TPwabffOBozBUXmDRVWnuoIff1zxsZtVhO3TOxSDsiEN0xG/xiUP9PlL+aw+2xAh9Q016ZZNDDoiUReWHRGTGJ8Q=
+	t=1750084439; cv=none; b=UALtxM97uY1wygZShpeioTe/bJRA9T/wyB9RIV6IOJo7+nhcDtukNrxqzC2duRLgaVOv9wQJ5dorgNJxHDzjWP+jZkVirYRXHft2oTE4QDN423pV/48H6iC94rD+zlapMrSTpWRL/YE62T2tKl3FV/6pGutEUrtpywTQIT/nr78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750084044; c=relaxed/simple;
-	bh=uVv7MVHl65v5TQ5atsNpH/OqOcoy86TyB38oIyuB9Gs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s0YFZDm17srCUptvQOJuPFde77adp9nqG2JgJsVUszy7sLtTd7um3LFLDG8wlwTo2R3GFm3kLuFH9xhXARzI82t5m3IDTyA5piLwBfJuijTRTQ83k4n9WBiZJ8tx7MDXw6yxMHzoj6bOWCExzcgjDxvmGdNqCmeZgqvdPBMJPkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m3rR1IJ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A18EC4CEEA;
-	Mon, 16 Jun 2025 14:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750084044;
-	bh=uVv7MVHl65v5TQ5atsNpH/OqOcoy86TyB38oIyuB9Gs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m3rR1IJ5Z5MLV/cpapI9lGaiRVfRkzWtMkjIeTAvF839NaO/kONUVEoSEargbvt0g
-	 ijZRzVoyBwgcbpuJEgSdEcDfdBX5IQl73mEoVRlKeablQoA5rxJhmZM689Zb5T8ToB
-	 fdCwx3t8geYkoZrjO9ZGRZuG0cLuHVjdJuB9QRkFvypSEOY+zubQ6nX4XYLYsTpeC6
-	 Xr+75TddJ5YYQv+Ql9NHQi03Snbt6rUPNCXf3p60MBOMoY7rB/kZOPb5VPUG+imr/r
-	 GOHB1ZdDvzKneYlYz/jRpDmTL/0w0uwl8FwTKCST4fbcLlz1vwVz4OFsjw8VznQl2C
-	 c5IFXgTwtfqZw==
-Date: Mon, 16 Jun 2025 09:27:23 -0500
-From: Rob Herring <robh@kernel.org>
-To: Xueqi Zhang <xueqi.zhang@mediatek.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+	s=arc-20240116; t=1750084439; c=relaxed/simple;
+	bh=4xNh2lhTG0rhBmyIj3i75Ktf9mjebgJlLZdNho8P3uE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qM2684Tm/DMGflX3QHTwlGcy9Wye+uAg9tAKvBEyrfJnHeBUYUEICWiwiY/gXQVjbmnq4H+Xxt7AMKmjui03FX1Dhk/FHXgpJ4uCjwEsU5NqjNm5j4OzmXB0+IOYQZOlq6j1nmdAY6q/fjUqK7G2wNH2rYT1bxKL7wjjfdQKpxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Soi7IpU6; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-451e2f0d9c2so39771335e9.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:33:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750084436; x=1750689236; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bjYWwMAn574NDA8zKjETWNZDW1d4gxcRMlquZ/twLmI=;
+        b=Soi7IpU6wPZnUR6vS8qRQfzVUEZGKCgFZNiF47mYK7DM8ocSdijI6VHF4Inct1dmUL
+         THX1XIkRHTBGuhjTdxGXg+R+EWkpVTwQuC5v34A5B5wioQjFN9zkqm9TwUun/GK9+lqD
+         1BZ/BYUxEQnuWgTxpAtQAfvkFb06hyBMigEa20TIwfTPDb86PmNGS100TTUdsgIkHhJA
+         W8E2vxoQFVC0Yb7uJ/3Da9feLpUYjL6CflSS28+p2mC6a9jAx3q7sZKbmjLvlFA0/xGQ
+         gZOOg+nF0b8g/yiOE4pH22eB1WGGhum9mgFBSs/LOsxvv6nn9MKEp57CkQ2O8qNRnW4d
+         QXAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750084436; x=1750689236;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bjYWwMAn574NDA8zKjETWNZDW1d4gxcRMlquZ/twLmI=;
+        b=dTm2Nf9O11eOgiAQ6LQYNJ/7M3YmYXg8TUcV8qKDyJYQT4PKa8dPvSCjDlUjFTprMS
+         ZhIeaTazxKAUSPtHI8Ztg0Vf/isz+4leK7T5tUIv4BCaFA38vc+xSkbm8xrSC10zweOm
+         GuV+elXgZjdmcOdHswznruRBDBGxV7YovpgHDxQKM0LhVq3BSggGBzax3XKbeX/NuCWR
+         Zw9mtoddmI7tYpoPhzANoWh1U+KqZYKIQUhgKauDm3Co1wFAY2/PLT91UocNpO8BpS/K
+         QdlM9VdXcCEuYoQWeslevD39A4809X/u0nJ+nIvkvjAc2edkLD3AyJUQmAQ+BLG/GA+t
+         KRsw==
+X-Forwarded-Encrypted: i=1; AJvYcCX1XestzWkzLolYPuzuAMFYQWbwbkXHZSWJxlqvYcfVLVqdJCBHkHWcD/GEmCAVXns52qm4N88pgkGC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsRLyoAe73NG+6kP7Ar7HNfJbKC+p4MArf4uxBn22Mgtr6lV1f
+	ZGuQ/K0WAG1ruSt+m20yEI6xIzbd4lquLrgKTnQET45mJA2b042eSVCrvRoXVDHs4dg=
+X-Gm-Gg: ASbGncuyuTfKLkTkN5EAqljfH2nAKIQehw5Rc1wWsAGowY3MWSKsMBQha2rsRHeH2Xh
+	vPA1e4Ni++184pQOjseFdondxp3Y1o2vn08vFF5v2is5O7X424EFZy+EaMexEPqb22SFQgLRJ7W
+	IZMSAFOXVC7YykfuzPUqP0iceXxlid3jWJOyv1qpPclWP5hXZJ3xNzFC/vRubFtrIhF1N9jVg2S
+	Kg3YLTCIk5yMqbNCs/LqaaKmEfj/EeLAyDUZNmZGvZm279gYzz8UyI23nvoWMfR5JbUKlsEv7+b
+	KQ9/Ic6GHXLod5xVi1g/RYeYDzLeqNlPWjZulPoShT5yrlVhOZX92CAZUanEPQ==
+X-Google-Smtp-Source: AGHT+IEkKlsjTJOZ7xD1hvpkJ6pL/BYV7+Qy4hoDku5ob31YSgbW7jPZbexdLG5gWcjm4pcq4o+6/g==
+X-Received: by 2002:a05:600c:5013:b0:453:10c1:cb21 with SMTP id 5b1f17b1804b1-4533c8fe4b1mr97134035e9.8.1750084436289;
+        Mon, 16 Jun 2025 07:33:56 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:4238:f8a4:c034:8590])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4533fc6578csm77862345e9.19.2025.06.16.07.33.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 07:33:55 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	Ning li <ning.li@mediatek.com>, linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [RFC PATCH 1/8] dt-bindings: iommu: mediatek: Add mt8196 support
-Message-ID: <20250616142723.GA515421-robh@kernel.org>
-References: <20250616025628.25454-1-xueqi.zhang@mediatek.com>
- <20250616025628.25454-2-xueqi.zhang@mediatek.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: add debug UART pins to reserved GPIO ranges on RB2
+Date: Mon, 16 Jun 2025 16:33:41 +0200
+Message-ID: <20250616143341.51944-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250616025628.25454-2-xueqi.zhang@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 16, 2025 at 10:56:07AM +0800, Xueqi Zhang wrote:
-> 1. Mediatek has its own implementation for wrapper interrupts and
-> power management. Add the SoC specific compatible for MT8196
-> implementing arm,smmu-v3.
-> 2. APU SMMU need wait until its power is ready, thus add a phandle
-> smmu-mediatek-parents to its power node.
-> 
-> Signed-off-by: Xueqi Zhang <xueqi.zhang@mediatek.com>
-> ---
->  .../bindings/iommu/arm,smmu-v3.yaml           | 24 ++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> index 75fcf4cb52d9..c9a99e54de69 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> @@ -20,7 +20,12 @@ properties:
->    $nodename:
->      pattern: "^iommu@[0-9a-f]*"
->    compatible:
-> -    const: arm,smmu-v3
-> +    - description: MediaTek SoCs implementing "arm,smmu-v3"
-> +      items:
-> +        - enum:
-> +            - mediatek,mt8196-apu-smmu
-> +            - mediatek,mt8196-mm-smmu
-> +        - const: arm,smmu-v3
->  
->    reg:
->      maxItems: 1
-> @@ -69,11 +74,28 @@ properties:
->        register access with page 0 offsets. Set for Cavium ThunderX2 silicon that
->        doesn't support SMMU page1 register space.
->  
-> +  mediatek,smmu-parents:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the SMMU's power node. The SMMU should wait until its power
-> +      is ready
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-What's wrong with the power-domains binding? Don't add vendor specific 
-properties to a common IP block.
+GPIO12 and GPIO13 are used for the debug UART and must not be available
+to drivers or user-space. Add them to the gpio-reserved-ranges.
 
-Rob
+Fixes: 8d58a8c0d930c ("arm64: dts: qcom: Add base qrb4210-rb2 board dts")
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+index a37860175d273..384427e98dfbd 100644
+--- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
++++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+@@ -606,9 +606,8 @@ &sleep_clk {
+ };
+ 
+ &tlmm {
+-	gpio-reserved-ranges = <43 2>, <49 1>, <54 1>,
+-			       <56 3>, <61 2>, <64 1>,
+-			       <68 1>, <72 8>, <96 1>;
++	gpio-reserved-ranges = <12 2>, <43 2>, <49 1>, <54 1>, <56 3>,
++			       <61 2>, <64 1>, <68 1>, <72 8>, <96 1>;
+ 
+ 	uart3_default: uart3-default-state {
+ 		cts-pins {
+-- 
+2.48.1
+
 
