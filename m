@@ -1,127 +1,123 @@
-Return-Path: <devicetree+bounces-186415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B65B5ADBBD5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 23:19:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1BEADBBDF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 23:22:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABC777A751C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 21:18:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FA477A4714
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 21:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C733620F085;
-	Mon, 16 Jun 2025 21:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0712213E9C;
+	Mon, 16 Jun 2025 21:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Cd/oy/zH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JNAhD7Qh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBFC22BEFED;
-	Mon, 16 Jun 2025 21:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A27021ABA2;
+	Mon, 16 Jun 2025 21:22:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750108790; cv=none; b=W0Ppt94u6Cg2iRAb8fXjuQdVQUFaiv3vUpX4v8hMbgltEFwodxCFAUL/U+uTBvywG7Cc7P5lVN993L4ZVsnQfWVvW2LvWm+1xneGKohS9nIaa+NzD5haL0ZF3YcTH1djYfXNXajknIthF5NtAivbQ3XEcbCGhYgI8qYgQSsuIYc=
+	t=1750108943; cv=none; b=KOEkXJ0qGfLXwPiDmV2/mXInIL6uGrglRsY7d/vSVx1u0i5aJedvCK0Zkn0jCQNf+6aRwzFZ6W94d9RzUzeQT4oG3z/ZmLD36GB+RdPI3JvKDIr7o21MrKxaI+IjzLrhyCMtp2WaAppR4YV83gkZki3rEAy9FCUcmg6NAjA/kaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750108790; c=relaxed/simple;
-	bh=x6V7Wz89+nnBrUFm3+BWloa5RRG+umEIveqscFLOfGk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=irxSrHLRO44tohEepolIHyVE536klJiGZwJdGXz66fS+0oJIwMfZaZGUbTjS2sKR80CKqy6alnQkcvLXHFADsw//Qs3/1fbJdBxez0JN+Dk39rmxwT+N1ct4/wHgU1qdclH6BjWejAuSornAFMS9CLhTOyzyxYV0eF/BC+2gm0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Cd/oy/zH; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750108786;
-	bh=x6V7Wz89+nnBrUFm3+BWloa5RRG+umEIveqscFLOfGk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Cd/oy/zHDRHNvu4kbHm3+77GQ8CLRXM4oupw8B+XFZOWSWmxAGPOGypbArJo/aQMU
-	 xr/krkk9kJ/8nYgUUe9LLup/Ur3Xv8w4EuVHYooykr/s7t8FFQNE0oysYLXH7Nn7IP
-	 MWbgxShf21PhfPGQfj5IWgv1Od1iQqhNBA9lz2gFHIvpH41KO9QF6FRNQQNvWmTtTW
-	 eluK223Ew1Zh1aAsKE5bCNIVDqSbY+xY7aSu24Z6JCGGqKQiglE03zCAf+a41dQ958
-	 cC5o9a1DB5uwnwVJa8NXv++mYHX9XEJiWAjCWisFwObvQWQsmHsAAVbprXwAIWXOMN
-	 LsmbfIb87zZVg==
-Received: from [IPv6:2606:6d00:17:b699::c41] (unknown [IPv6:2606:6d00:17:b699::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C8C8A17E0CE3;
-	Mon, 16 Jun 2025 23:19:44 +0200 (CEST)
-Message-ID: <699cd8c660c255ab3cbec8760292ee76b8d3660f.camel@collabora.com>
-Subject: Re: [PATCH 2/5] dt-bindings: iommu: verisilicon: Add binding for
- VSI IOMMU
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Conor Dooley <conor@kernel.org>, Benjamin Gaignard
-	 <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- 	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- p.zabel@pengutronix.de, 	mchehab@kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-rockchip@lists.infradead.org,
- linux-media@vger.kernel.org, 	kernel@collabora.com
-Date: Mon, 16 Jun 2025 17:19:42 -0400
-In-Reply-To: <20250616-winter-strict-db98f85db22d@spud>
-References: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
-	 <20250616145607.116639-3-benjamin.gaignard@collabora.com>
-	 <20250616-winter-strict-db98f85db22d@spud>
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
-	boundary="=-1X+bHapYc8YntJ+olzdY"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1750108943; c=relaxed/simple;
+	bh=a2Zp4b78rGMBJSjIOifJJ51hx+TLzbnCibIgu8JxHwM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=j4GFZeNlufcBkg8TYPt1n27ALgDaXFlGU2KnM/eJqQzA2BDsqPeLKUQJtwG7OFVNG9J/l+XIn16gNaDhpK0RtO8kQBC3WlKDlRUiGN1BtmT/7NQA5/Hm8dNaXYowS4Vov0cl80xs2MHzPvcaaMQR2n3tcjlkiVAzHrRrN7vpd+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JNAhD7Qh; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-70e5d953c0bso52310457b3.1;
+        Mon, 16 Jun 2025 14:22:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750108940; x=1750713740; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ESidNUnPun/hd2HxPwnnanB3kSNyrGFR0AtYUeuLpCU=;
+        b=JNAhD7QhVsbQNzc83Iq4s7HYTsEXYhUDoiag4bxR8/omnxsloyYe/ONreF/smo7JKr
+         MVdD9lFStp7O4PN1ySp4fnygTF+B2DPMQNn4E1nWbIANvjgclDCiUC0zFSQPzRP1nNll
+         0u7U68RJvFbb54HgwC6e3eoS7dEv1FDdLEJj8zGHTpKFtlHLPGtO0HH+6ZJaLhLe9G8i
+         hXkU6s1UOFReYI134gLbDOdbmO7GV6aGoJtYweZ3i6rnuPOy6G2DNUHu5LvNZsmAJBmH
+         DB/3wIY0p9owvMCJuupQJpJkYQFN7b623stdSjZ2i7gQ5IWoyaG7DNUN7FXi1Vo/yIv3
+         0+1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750108940; x=1750713740;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ESidNUnPun/hd2HxPwnnanB3kSNyrGFR0AtYUeuLpCU=;
+        b=IxZfgUSfP+tfBV14ltH9UVCaA/woOjc35twfdqu36m0vX/cEoFC1A+wPCFOybb3s/I
+         FqJnJ2r3RKtxIOdmNDWkFCWyNGN445cn6xKUgrEd2PFLUzrC0VkbspahyJaqrefXEVUB
+         QJ070YjfzZ1eDT+0Z29fvC/DT1TTOv5AanVY1QUHcx3kTvfkqEWINbrcREdyoJsq6vNE
+         iZoZtJpNAuu4jFQMEZCHtupWFKtTeVWWcydC4j49aYc4zB0jT2gQ4uxO7ACHoBoXVJlp
+         6Xm7TayWOuZAAbt+qwIcnH5mLwfu7B/jzLpDeqLqA8NyXzZcpoJV5RVcnPzvJbJZiVZs
+         AAUA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0WKn4UV6sR7E32naVyOsn6TlQ/qFgkClf52AD2Jwjr279J0BH9sRf1b94P+CDXQcmQHVIFgeJz8iwk/a+@vger.kernel.org, AJvYcCXWcXWihjybAkNLvC59skuEefbE4qZEK0X1TnZN1FmiVeWmM5wDEMiquoTkC590cwyiJI4RupA2C86h@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdbVPGQ/VeCIURbgdV35Ux1NN7fPxpDqKvDJL2Y9aurvhKFjFQ
+	41K6/BrDnSATDFCcVmCgaXWFy7vtOBeUzJOU1mLd24EeRjAv9HaqFbFr
+X-Gm-Gg: ASbGncujWKZrvx+/4gKLAJFLuLdtOZw3aShHwQq5Vd4nAgoAtiutRbNIcBSkcZQzI11
+	dnQiqWfk0ZV3u7bmYLI0iDWKvzPIgMTptmcvDO4ULUIU0+svrU0MA8HfO99tLor3YSmgiPMZzFK
+	eamvOitE0aDvZKukL9dTa7Ln56xpZlLks/6Jww5qGQJrXPtFsqbLuqV7PnqCq+sRn4mTeOLNmgE
+	H2tlWOpF6V2NkhtD6D80XPb1nTT+RGw+wCq7sgggWLKs4hK/vM25cTiJs6Ldah6OZO/cg6nqgYJ
+	ze1vkRM7HldrzzTNAMdZyjrRXoSqsFtmChBRJ5Xtla45/bCm2Mh7aAxtn0KxNyvQYqibC2k=
+X-Google-Smtp-Source: AGHT+IFTpaVK314wZKQhYhkRdFu1fTZs9zVmbqcOWMBnqY8mNxCxaKhIMQ8jPwrYsXsHzyL8/a4zxg==
+X-Received: by 2002:a05:690c:17:b0:70e:1d14:2b76 with SMTP id 00721157ae682-711754df796mr137346247b3.23.1750108940011;
+        Mon, 16 Jun 2025 14:22:20 -0700 (PDT)
+Received: from localhost.localdomain ([192.34.165.40])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-7117bc177d3sm10418837b3.44.2025.06.16.14.22.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 14:22:19 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	John Clark <inindev@gmail.com>
+Subject: [PATCH v1 0/2] Add FriendlyElec NanoPi M5 support for Rockchip RK3576
+Date: Mon, 16 Jun 2025 17:22:12 -0400
+Message-Id: <20250616212214.139585-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
+This series adds device tree support for the FriendlyElec NanoPi M5 board,
+powered by the Rockchip RK3576 SoC (4x Cortex-A72, 4x Cortex-A53, Mali-G52
+MC3 GPU, 6 TOPS NPU). The patches enable basic booting and connectivity,
+including dual 1Gbps Ethernet, USB 3.2, microSD, M.2 PCIe NVMe, and HDMI.
 
---=-1X+bHapYc8YntJ+olzdY
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Patch 1 updates the DT bindings in rockchip.yaml.
+Patch 2 adds the NanoPi M5 device tree and Makefile entry.
 
-Hi,
+No MAINTAINERS update is needed, as the new file is covered by the existing
+ARM/Rockchip SoC entry.
 
-Le lundi 16 juin 2025 =C3=A0 16:14 +0100, Conor Dooley a =C3=A9crit=C2=A0:
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 oneOf:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisi=
-licon,iommu
->=20
-> You're missing a soc-specific compatible at the very least here, but is
-> there really no versioning on the IP at all? I'd be surprised if
-> verisilicon only produced exactly one version of an iommu IP.
+Tested on NanoPi M5 with successful boot and feature validation.
 
-I've dumped the HW ID (base + 6*4), and it reports this IP as an "MM 1.2.0"
-(0x4d4d1200).
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+John Clark (2):
+  dt-bindings: arm: rockchip: add FriendlyElec NanoPi M5 board
+  arm64: dts: rockchip: Add FriendlyElec NanoPi M5 support
 
-Note, all VSI IP for which rockchip did not rewrite the register
-interface expose a HW ID register, but the from and location can vary.
-This one is following the old school H1/G1/G2 style, using ascii to
-idenity the core type. Interesting fact too, the register layout seem
-to be the same as the Vivante MMU (which is hidden inside the etnaviv
-driver).
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3576-nanopi-m5.dts    | 969 ++++++++++++++++++
+ 3 files changed, 976 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
 
-I'm fine with having a soc specific compatible, just documenting
-some fact I could dump.
+-- 
+2.39.5
 
-cheers,
-Nicolas
-
---=-1X+bHapYc8YntJ+olzdY
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCaFCKbgAKCRBxUwItrAao
-HOblAKDSSNkF59KB4kGZlOAZFD3NxiROYQCfe1Bhzq/TIVO3L0sddpC9+dFBmPo=
-=HgDp
------END PGP SIGNATURE-----
-
---=-1X+bHapYc8YntJ+olzdY--
 
