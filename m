@@ -1,115 +1,166 @@
-Return-Path: <devicetree+bounces-186125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C09ADA739
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 06:40:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA91FADA762
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:08:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 028403B062B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 04:40:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A8433A3FB0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 05:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04DE1A2C25;
-	Mon, 16 Jun 2025 04:40:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B191D1AC88A;
+	Mon, 16 Jun 2025 05:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KeNuXSA6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NsrY6JIM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F7B7262B;
-	Mon, 16 Jun 2025 04:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3021863E;
+	Mon, 16 Jun 2025 05:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750048843; cv=none; b=a/F1bBzzuVRTAjB5LuV/A/CiSqp09RqDbIqVl+3UBkmaiRKvsi41NLkJkvucx6v+w0Nd3a1IjcIcUyIkuXcrX5lp1f6eQG6YVnu3pxGG3/dQtyzAkb3AMeCFP1ShySbme2ExPZt5Wr9BhfRceawi2R6eNUFOvjKf33hjU23pxdg=
+	t=1750050476; cv=none; b=Yz6PYj9t0169bV44mZOkrpAoZuvpbHY80KYMMuOPrFrk/xPEZdlhwDVzoC23Gnfb/GVphgYcMiJJwcpVDxIJwRe5u/hf99bLKqxiBnLTQadb7zxCeoOjglclmWa9CF39gySgFpV3tl+Wjgu33c8d4xoLZuYfNJtNwhOPZpvlnjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750048843; c=relaxed/simple;
-	bh=TGHN5IjJzRSodYVswQbkuM8G3fZj/gxhvozJyWYCAMw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=CTmTKD9K/SDxbVHqsmnwFVCZykw9dtRMgyZ+wipeCZ9TKYoZAHmg2PPN9oHkwdXYTwX+rm2DnsOVrAfMQT0V/gCQlfxqG4yNq1K7gpcXRHankIUShxE2AU8N2yc1UpAzqjqXfVC2nNx650T2ad1EOKuJF0rSKhUDof/1nk1C9xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KeNuXSA6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C9C1C4CEEA;
-	Mon, 16 Jun 2025 04:40:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750048843;
-	bh=TGHN5IjJzRSodYVswQbkuM8G3fZj/gxhvozJyWYCAMw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=KeNuXSA6uKkfHRPo9/0yzTwWwVbqXmUIEmb+pj3q9uPRXbbw7346x1/GG3vvNKl/l
-	 aq8jkTvyH+g7m3oEgl71QVRighbGsfy78v8wJiaFq6HZVC5evfEYXuX0mFWGahOaYU
-	 e/mAfnVayKsomZFWjzpTbP9BfTeNzdXBpnynhFTGRl3Iz11mFocQbS4rsJvY48+owE
-	 IEg+VI1VKPtDdJovr9XyOihFQI0/ofEoipkgqjiA2N7ZeJReLu8JfvfFLytY8vEEwJ
-	 eoRlxtj3uG/Lw6MoTKFojv46sC69BjIhFBsNC85llDRCvb2kJBbI4M+S/xbkc4VaCA
-	 GfNJVfqGWtOhg==
-Date: Sun, 15 Jun 2025 23:40:42 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750050476; c=relaxed/simple;
+	bh=7d4ARgVTOI6j5fUCeEFue/yQN5ISC2xiuED/XNFOYZc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KNU3LCT7ewiWzCvT9GmrHABzOcAD0tMA4wpPorY1si9B6eIVonp00+db8840qv9vZ1OfVjislRHmmR8Kg/auCMJywcB9Z55ESu+LOX8cc8ciY9KlUCGhKb6oa/Xhu6Xpaupb9W2PQj07UKZwvsIypFooM1v/dZ33Ojbzn6O8BAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NsrY6JIM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55FNH7lU003033;
+	Mon, 16 Jun 2025 05:07:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LG1DruV5us004oEXjXeEWd09Q+FV9MdQYIAAnTRm6ao=; b=NsrY6JIMbu523Umh
+	ZfT7NUFJ5xZtJRD4p2pw3WYI/YqptavI+g0VEdarYY3Q9Ahiyx6+H4mf3V5R5PFK
+	//pVxDbkeuBeAvsTeKWnqotFjDN5K5iogcqHyKHFfDWDIv2TVYy2cU9c0XY2KXYm
+	hfQZI5fzHOXzVAZu+1dr4EO8wgaX99H1v6M/bcub24oF/oSndBYuZWMEUpfC/5ra
+	TJdZyGQJUZVQgsa6KDMY8+Sakr8fHWNvRHBGzaEoaCYSClWKsvJvq5YGACBQlyth
+	Ena5lhgbpDJGtq63YntEoK5JcDCOI7rSQYAY+B2q5SWirARArhNRM9SrnZ77NWWT
+	kaZecA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791crk2qy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Jun 2025 05:07:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55G57KGj003709
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Jun 2025 05:07:20 GMT
+Received: from [10.216.9.13] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 15 Jun
+ 2025 22:07:13 -0700
+Message-ID: <4143e209-7701-44d2-b9f0-dbe646542376@quicinc.com>
+Date: Mon, 16 Jun 2025 10:37:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Yong Wu <yong.wu@mediatek.com>, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Will Deacon <will@kernel.org>, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, iommu@lists.linux.dev, 
- devicetree@vger.kernel.org, Ning li <ning.li@mediatek.com>
-To: Xueqi Zhang <xueqi.zhang@mediatek.com>
-In-Reply-To: <20250616025628.25454-2-xueqi.zhang@mediatek.com>
-References: <20250616025628.25454-1-xueqi.zhang@mediatek.com>
- <20250616025628.25454-2-xueqi.zhang@mediatek.com>
-Message-Id: <175004884234.2151629.17180852934991161132.robh@kernel.org>
-Subject: Re: [RFC PATCH 1/8] dt-bindings: iommu: mediatek: Add mt8196
- support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Support for Adreno X1-45 GPU
+To: <rob.clark@oss.qualcomm.com>, Akhil P Oommen <akhilpo@oss.qualcomm.com>
+CC: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        "Dmitry
+ Baryshkov" <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+References: <20250607-x1p-adreno-v1-0-a8ea80f3b18b@oss.qualcomm.com>
+ <CACSVV01A8aqyoM4KYuUYVXTHnM1egn5-4UxqPrQVVjuvxxbC6g@mail.gmail.com>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <CACSVV01A8aqyoM4KYuUYVXTHnM1egn5-4UxqPrQVVjuvxxbC6g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: p20DTFGx5sjMNBbGJteEwPmMiXWb8CjM
+X-Authority-Analysis: v=2.4 cv=BoedwZX5 c=1 sm=1 tr=0 ts=684fa689 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=e5mUnYsNAAAA:8
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=aVaGKPbtQoTzMs4lowsA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-GUID: p20DTFGx5sjMNBbGJteEwPmMiXWb8CjM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDAzMiBTYWx0ZWRfX8Bh76SsUtogs
+ mfGW/AwkRHGK+2P8cfAgzoD0TMtKJfz2AlGZO7oeySnyM+ymbhQFWQWpDoMUJG5c0VNBj4dF4FJ
+ qYkmh4znPXd/uIuKNYv117/4oLVnmxoemloFlNas/Sbv/B5yT20dD8SMTxmoSw+VW96IVwewU4l
+ ofGuWwK2gXGdzwo8rGq80VX8qYMMRlp99R2PW4/o41QYOyTV3Tqxr4hOAypKJjlpId8vrVW71ue
+ yJ7wUgX3ThYXMGrxP4Gp7bkmvEtQUI5ITYT0tH9+2ES+WcN0nyuuaDoxtFEVMyYHZGj0QVOT0HT
+ GW6Htbhvy/0MwZWaEm3GM1I11DuDHEbCpb1HekTpOCQdTNgUJ8WNMi9IQ+UapzTRX8sJfz2a0Ys
+ h5qqfhAk1T9ln0ZTfg4G69JrUTmURnqu4JU0Enw2hO9Snkkgp4ovVyCJmYUsXAqBqxvVEQst
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-16_02,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=949 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506160032
 
-
-On Mon, 16 Jun 2025 10:56:07 +0800, Xueqi Zhang wrote:
-> 1. Mediatek has its own implementation for wrapper interrupts and
-> power management. Add the SoC specific compatible for MT8196
-> implementing arm,smmu-v3.
-> 2. APU SMMU need wait until its power is ready, thus add a phandle
-> smmu-mediatek-parents to its power node.
+On 6/8/2025 8:51 PM, Rob Clark wrote:
+> On Sat, Jun 7, 2025 at 7:15 AM Akhil P Oommen <akhilpo@oss.qualcomm.com> wrote:
+>>
+>> Add support for X1-45 GPU found in X1P41200 chipset (8 cpu core
+>> version). X1-45 is a smaller version of X1-85 with lower core count and
+>> smaller memories. From UMD perspective, this is similar to "FD735"
+>> present in Mesa.
+>>
+>> Tested Glmark & Vkmark on Debian Gnome desktop.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 > 
-> Signed-off-by: Xueqi Zhang <xueqi.zhang@mediatek.com>
-> ---
->  .../bindings/iommu/arm,smmu-v3.yaml           | 24 ++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
+> fyi, mesa part: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/35404
+
+fyi, gpu firmwares: https://lore.kernel.org/linux-firmware/e036373e-0356-4fa1-b39b-78eaf02179d6@oss.qualcomm.com/T/#u
+
+-Akhil
+
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml: properties:compatible: [{'description': 'MediaTek SoCs implementing "arm,smmu-v3"', 'items': [{'enum': ['mediatek,mt8196-apu-smmu', 'mediatek,mt8196-mm-smmu']}, {'const': 'arm,smmu-v3'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml: properties:compatible: [{'description': 'MediaTek SoCs implementing "arm,smmu-v3"', 'items': [{'enum': ['mediatek,mt8196-apu-smmu', 'mediatek,mt8196-mm-smmu']}, {'const': 'arm,smmu-v3'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-Documentation/devicetree/bindings/iommu/arm,smmu-v3.example.dtb: /example-0/iommu@2b400000: failed to match any schema with compatible: ['arm,smmu-v3']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250616025628.25454-2-xueqi.zhang@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> BR,
+> -R
+> 
+>> ---
+>> Akhil P Oommen (3):
+>>       arm64: defconfig: Enable X1P42100_GPUCC driver
+>>       drm/msm/adreno: Add Adreno X1-45 support
+>>       arm64: dts: qcom: Add GPU support to X1P42100 SoC
+>>
+>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi    |   7 ++
+>>  arch/arm64/boot/dts/qcom/x1p42100-crd.dts |   4 +
+>>  arch/arm64/boot/dts/qcom/x1p42100.dtsi    | 121 +++++++++++++++++++++++++++++-
+>>  arch/arm64/configs/defconfig              |   1 +
+>>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c |  38 ++++++++++
+>>  5 files changed, 170 insertions(+), 1 deletion(-)
+>> ---
+>> base-commit: b3bded85d838336326ce78e394e7818445e11f20
+>> change-id: 20250603-x1p-adreno-219da2fd4ca4
+>>
+>> Best regards,
+>> --
+>> Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>
 
 
