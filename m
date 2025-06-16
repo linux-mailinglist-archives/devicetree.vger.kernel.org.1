@@ -1,150 +1,256 @@
-Return-Path: <devicetree+bounces-186291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B3CADAF0C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:49:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D25ADAF13
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B2C7163202
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:49:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E02CA188A700
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E0129CB53;
-	Mon, 16 Jun 2025 11:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C0C2E6D24;
+	Mon, 16 Jun 2025 11:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YifN1pJ6"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="oo/LIOIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858262D9EE1
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA662DA755
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:50:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750074537; cv=none; b=kHPF+fikX9hEpQYktVLe2bKa7nleaADCCKcH+3DQ/vm45ziKeLjn+RXfunCOmCHjAJgpMck49zs9yfTUKVWUntm2o5/g4Y43Nr+u5wyYTpmp3ty/ghWccz6WFVHKa6srCQz1vEUp3AdUIfgDM7pfelSjWkAJsLKLdWpiwMkC02U=
+	t=1750074644; cv=none; b=b+SjtbStEULGrLw9uFueBaRYXc6U4OicBuZ81jy0U6S+oCwtbX2XNr3kOdrnXg4QwwBVi7o8OL1PdO/BfYfof9KtcZ4k8j4pE7RumBVs1OxU5avTaGMlMCxjKCjyF6kvSCDa+y/wg7mcL5/wpFYds/C5clV3XrW+TTpZA6Mx0ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750074537; c=relaxed/simple;
-	bh=BkLu9G69YJ6aTmB+TBQoxLmyA6zp2jPwmkmcQrVRwso=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t8L5oCyYEq5DdADodKL8pgep5+tsByrM7LQ1Rqp6y8NnmxE3oNvTBPDZylBr6iNrg/w6jLGj9BJp9xG3phDipjx4NaO7/InmmyOoD3Ywds4Dt/Wap9/bREwh56ihU+vJxJlZOmtsDJQDOUZKHfGoarSS0vQh15q1WxGM9svyl1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YifN1pJ6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55G8TiQv012463
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:48:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d6/D06xxCqY75P4dZWCXGqoyMfaO+umun8VIYzdcz4w=; b=YifN1pJ6HD1J/n9j
-	AaPRvdBiQOFAboHrW3b2mXp8s+caPu5judd8SqIzBymH93AlvCMaoJIzRgC2frpV
-	L/ZxD5crLjFJ8pMZ4XRxQgFZMoGaEDx0OqYgnx+1DdKmG7NebernRiW/ZPWjYqdQ
-	e7QgUsyGEZdTsp5RYWQnnRmoCYMSBDv0GJlthscd/rLBwM88GgWR3jvIXOY9N9FJ
-	86fIDKxLE3l8zI6exRPLdOY0psXLqHJ+zso00j1Kg2N2do3SZRroSeFVtf3IDYHN
-	JnZvCYWjEf7dNXduNRcPmwbRws96LLi+HCnkv1YvAxYDT9NWEubNMfmGlTuPkbv2
-	Ia8ppw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791hfcd20-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:48:55 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d09a3b806aso97333985a.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 04:48:55 -0700 (PDT)
+	s=arc-20240116; t=1750074644; c=relaxed/simple;
+	bh=2TXIdS0DrtcJ/aN3kEEgXsku4ahxNSy7vjY6kQ9nPJg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=RQsts6l2yqIJJzEJnu7lTpSdNHDUalwKsdXp5Jn7QU5CGff+q6nK5mQEbGzSnXGzQd7HJVib0ferzAKESBwBr9mWlCgbylSilbHIekhZjEparBoFsvQgacycfLrSj5L1iTSMck82t1iqfs26iGhWh/b9Rbfw8cH2kbbOpTqpur0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=oo/LIOIc; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ade326e366dso799781066b.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 04:50:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1750074641; x=1750679441; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xuSf6RLaP8+rHWDi/+Q9MWXI6iUycqZnVn3e8MQYPzQ=;
+        b=oo/LIOIc2AQwaEDw6APuTipI/APVrhhgtlAsZ3ROG3hWKiqdKtvrC7/4wnuu6ST/gl
+         4RUBfH7JWJ9IJDei/bjaou8yfr9IFsoIH/7C2BVWQOLFk8tfhay/OPF5NCpHn7HBN9i1
+         obNRXcs04fi/1yLNYVMBcFqPcS/Y4RvLI/Df/4pcaqpjlgru9XizUAr94iitKLxW5IDL
+         9oeXy/3A2yQq/oXUoPzPirRXVQb93Uq17BHJo0VHpvRWtxY8Txy3VToxSyQPp22tIKiQ
+         IuZiDfQk7W5nKh0WOkH+oq+f7bFjXjvxfO2EJwtjtb18xV9ccIR5/cNr1vdpYyHjnYdh
+         BmnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750074534; x=1750679334;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d6/D06xxCqY75P4dZWCXGqoyMfaO+umun8VIYzdcz4w=;
-        b=BQ8PFFnF1qVifOlQg0TS3B5ElsNfjWYZpBszfqOTT9gLk9K9HwRe4rKPP6pnSAceFV
-         +kP/gq6JFkfs/wu07VVWkM0GmMz0639lC+MG5xdJgeiR87fAbGYu4unMpkzXKcnfG9f0
-         G2wIem/8MVAloQEXZjrhi9RlM6yYAiK82he6oFK57+Ia9Eqzw6jsq8dApFPiZqaKFAxT
-         dBXXzbKHnbgAEou+UWIO1OX4m6Wf5aybdotuW0Aix38ectYhLVqB3xkFaYoFBzFYUTF8
-         QdbfDC/8B2GhrniLc/vgP0o5zqGvY5KrYmG13ytPRnXfKxeQz84Xu5dmZuLH/Mn0t/Kb
-         PFaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgi8xdtvPMETBdM4s0eUWyoBWyybQn1aQMSKlohmWYA5xZ2f9uhWla4YXqEdf1sxLC5sge1Lv0QISJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzF7bpu5zbi2RYUh+2qJk/5qu0Uo+wZxjvG7tM3dZppLOcCoVa6
-	tWq+E/ApC1wBegKX94GTs6rncEPZ72xp4EgypZwsbXYkaU81CT/KfO7ux6XcE8wnqwecq++uklT
-	0CufAkk+62f0a+3VbV1T7CF2NvFXovChNb6v4dICzKwUNRmVbxlAXq2uwqnAgDwif
-X-Gm-Gg: ASbGnct4+GNDK7A18X8geYkDLdxOd23uOqlOkczmpv64UI61F6VWrmL+re2PaKpLke8
-	ZvOiExKw69xbSYv9bGZ5k+2grtUe33CN+Q76ne66/odPZKeGT69P3w/aQBMjEJfV+brTdbWwKmD
-	3OKkF9R6A6oCPXqG4zMimGqaf5MlMBgGArZc3zzpEPlapI4RPKw4BYi1XuKnUt5Wjqy6TkbKgQh
-	zQQnVgibtMjsKxhoYtjU7QuY3SySUhUDbAWTvsb7i7lt1mDuGyCP2f5XUUJQiR0vFZrMvccAgu6
-	c8W/nxRHfzhWAkYLFLNiprLWwcPgD4iOo/KNdUM+KhFm5icreElYX8pfMQAZTvE9ukIJWzHPFoF
-	I3kY=
-X-Received: by 2002:a0c:f40b:0:b0:6fa:b8a1:abaa with SMTP id 6a1803df08f44-6fb473e4444mr59374996d6.0.1750074534178;
-        Mon, 16 Jun 2025 04:48:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH3/rMsOcLm7IFjSZLurpNjrZv8j9ZV89uGTTRbl2ahszQMIMiFTtrHi7mWnIkZP1XB0Jf3+w==
-X-Received: by 2002:a0c:f40b:0:b0:6fa:b8a1:abaa with SMTP id 6a1803df08f44-6fb473e4444mr59374776d6.0.1750074533757;
-        Mon, 16 Jun 2025 04:48:53 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adec81c5c3bsm651750366b.61.2025.06.16.04.48.51
+        d=1e100.net; s=20230601; t=1750074641; x=1750679441;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xuSf6RLaP8+rHWDi/+Q9MWXI6iUycqZnVn3e8MQYPzQ=;
+        b=CFbaDpkmqLV/SuyRRBFwo3PBqqYiFsG+PRTf5mi5QQfElxcqtasFe/fAKjMrzn4omF
+         ZwPVaIM1n6TSDYAS8wF+DMpI3uR6PZh6C/8pJKLiKG9MDqdCrOkXZGK9pKxljnCp8QQU
+         CSnonHqYm4PrzfuQdki0X7yWEL5KvKgz9ZHe5Oh/Ye55+H6RCfcRY0l3uk379ggsjGnw
+         W2KgPO/vN2BlZqradgvcqOFApA3Qq3sNezO/tq35kg1ZNanz6djWbPhufXXh0lVqqE+s
+         jP/hge2WMCLAqMYCh7MmdE3FcKHD1084M8Rq92m2/5XqgmRJq5GYEBA9wOEmWwRluqhk
+         tYFw==
+X-Forwarded-Encrypted: i=1; AJvYcCUijm18660p9l7ybwn1DPrnSdPS6OU3V0uiiXQXrX1hcARbjxXvT4QGeCGlKog/j6PAsCcmVNOGLmIu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4Il/66chesHQcm2gjnfK+qlzqK9F5iwCPz1/o7t5nd85nhhZz
+	wC00v4zk3/n7SOJa4DW6ptz3g4yhowDWzIi6Xv4lLrHBAZwDO/6SUVi+8JTaEMWLRoI=
+X-Gm-Gg: ASbGnct+Q6llS+PgCBnsh+bSrC03GO59HFAK+ZgXjiIUTHaXtjObX5ygICwfjf5iavY
+	mQUuHy942whCT9orAGyJID2Tfcy4a1B+SQnPf/o/7dSKxnGFY8S3dOQ/0ZJrLVrDvdieJVXIqgE
+	mPmkJDFov5d/Pe0dIkwlI3BrAPShOkc4iCrevM20AvEti7FzIrMAUnreo5n8oxjKkMpQauiwEVC
+	kWME5LnXq/AtzdTx0PVzDmkcFFWbS1IF4XE9BEqAbDcr8/huOWruAWyAv7++gatRffX30F6WyiT
+	pVnGqQfBugtMF4P9x7HBnmzo/H3GvSLMiRFzQquEw+qoSWQPNQv1Y4qc7tiYrUrnd2lWQujIcQE
+	bsZTzbGWz80cx7ZuQQ9xAD8RLGBGmSNM=
+X-Google-Smtp-Source: AGHT+IEw/IbSDxrPrp5P71189l+YICG0EEl5mwsAYurOHLofD+R6bizDKSfCRwi4sa9axsT85oX+fQ==
+X-Received: by 2002:a17:907:6d0d:b0:adb:2bb2:ee2 with SMTP id a640c23a62f3a-adfad451438mr946727766b.41.1750074640652;
+        Mon, 16 Jun 2025 04:50:40 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adec88ff5d3sm657753466b.101.2025.06.16.04.50.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jun 2025 04:48:53 -0700 (PDT)
-Message-ID: <7335dead-da35-43ce-8338-8383db948768@oss.qualcomm.com>
-Date: Mon, 16 Jun 2025 13:48:51 +0200
+        Mon, 16 Jun 2025 04:50:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ARM: dts: qcom: add device tree for Sony Xperia SP
-To: Antony Kurniawan Soemardi <linux@smankusors.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Max Shevchenko <wctrl@proton.me>,
-        Rudraksha Gupta <guptarud@gmail.com>
-References: <20250614-msm8960-sdcard-v1-0-ccce629428b6@smankusors.com>
- <20250614-msm8960-sdcard-v1-5-ccce629428b6@smankusors.com>
- <f1284637-7650-498a-b850-b5140c47e4e0@oss.qualcomm.com>
- <39a7153e-1a4f-4dfc-a190-3b3370646d47@smankusors.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <39a7153e-1a4f-4dfc-a190-3b3370646d47@smankusors.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDA3MiBTYWx0ZWRfX0YmzoH5Mq9N3
- WI04qEOxWcdZBtUbEYB8eGPjNX2l3gxvb4hJOx1h0ignXJ/ZiDEFPBlYoQfkZXOroA/ooYCzdRh
- hwlCVFKhW84J90u1tdQI6vDexYlLQ9IFZRKqR33rSgrvXDo2hxcAcET3XGOSlkx6tQ7awh01/z+
- +KQN9Iv0Tvi+ri81IMHBubpZRrEbKfTJEzkHwSWrVVSbFHtsVmxwJ+cVb6t23FxDEHMP517y1PG
- zwbseqm5VuuQvLPikgZuWtsVnTAaNKFSlFkiUI/gUnAoUEQKDIV+mpdftm6iPiO4gc8HiazASyE
- sdTU2Gb2t+A1/7V4rM6RmXRgMRglNLd6uAWtndBWvhsYge7cC7oKiq61xpA3QXo19iWY00PBn55
- YpyLuXnd/fa2yuqMfOHtg4Ge/fDzd4lpVRVcSP0rtdwFdfFsQKThiym46nNnwBVGr6PTX2kJ
-X-Authority-Analysis: v=2.4 cv=VvEjA/2n c=1 sm=1 tr=0 ts=685004a7 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=Gbw9aFdXAAAA:8 a=2t8RrQqO_CiJknku0qEA:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=9vIz8raoGPyDa4jBFAYH:22
-X-Proofpoint-GUID: 7KX-kJ3kgeudEl1k9jNk8UUQDhYI9yZn
-X-Proofpoint-ORIG-GUID: 7KX-kJ3kgeudEl1k9jNk8UUQDhYI9yZn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_05,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=987
- malwarescore=0 impostorscore=0 clxscore=1015 bulkscore=0 suspectscore=0
- priorityscore=1501 phishscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506160072
+Date: Mon, 16 Jun 2025 13:50:39 +0200
+Message-Id: <DANXOMLSCTUE.149W1NJZ0U8M0@fairphone.com>
+Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Abel Vesa"
+ <abel.vesa@linaro.org>, "Konrad Dybcio" <konradybcio@kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] phy: qualcomm: phy-qcom-eusb2-repeater: Don't
+ zero-out registers
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250616-eusb2-repeater-tuning-v1-0-9457ff0fbf75@fairphone.com>
+ <20250616-eusb2-repeater-tuning-v1-2-9457ff0fbf75@fairphone.com>
+ <qmcoh5lysln46mg7tbmeelmnzc7s6o7bssir3a7r3n3x5lnboq@cizzodjel4ut>
+In-Reply-To: <qmcoh5lysln46mg7tbmeelmnzc7s6o7bssir3a7r3n3x5lnboq@cizzodjel4ut>
 
-On 6/14/25 10:46 PM, Antony Kurniawan Soemardi wrote:
-> On 6/15/2025 1:36 AM, Konrad Dybcio wrote:
->> IIUC (and that's a 10yo range memory), SP had some eyebrow-rising boot
->> flow (some partitions were non-standard?) - could you please add a
->> paragraph about it in the commit message if that's the case, and maybe
->> include a short how-to on booting the thing?
-> Is it acceptable to provide the pmOS wiki link in the commit message instead?
-> https://wiki.postmarketos.org/wiki/Sony_Xperia_SP_(sony-huashan)
-> 
-> Or should I include a paragraph explaining it? It might be lengthy since
-> I'd need to add download links for the mkelf and the RPM blob.
+On Mon Jun 16, 2025 at 1:40 PM CEST, Dmitry Baryshkov wrote:
+> On Mon, Jun 16, 2025 at 11:45:12AM +0200, Luca Weiss wrote:
+>> Zeroing out registers does not happen in the downstream kernel, and will
+>> "tune" the repeater in surely unexpected ways since most registers don't
+>> have a reset value of 0x0.
+>>=20
+>> Stop doing that and instead just set the registers that are in the init
+>> sequence (though long term I don't think there's actually PMIC-specific
+>> init sequences, there's board specific tuning, but that's a story for
+>> another day).
+>>=20
+>> Fixes: 99a517a582fc ("phy: qualcomm: phy-qcom-eusb2-repeater: Zero out u=
+ntouched tuning regs")
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>> ---
+>>  drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c | 63 +++++++++++++------=
+-------
+>>  1 file changed, 32 insertions(+), 31 deletions(-)
+>>=20
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c b/drivers/ph=
+y/qualcomm/phy-qcom-eusb2-repeater.c
+>> index 6bd1b3c75c779d2db2744703262e132cc439f76e..a246c897fedb2edfd376ac5f=
+dc0423607f8c562b 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
+>> @@ -61,8 +61,13 @@ enum eusb2_reg_layout {
+>>  	LAYOUT_SIZE,
+>>  };
+>> =20
+>> +struct eusb2_repeater_init_tbl_reg {
+>> +	u8 reg;
+>> +	u8 value;
+>> +};
+>> +
+>>  struct eusb2_repeater_cfg {
+>> -	const u32 *init_tbl;
+>> +	const struct eusb2_repeater_init_tbl_reg *init_tbl;
+>>  	int init_tbl_num;
+>>  	const char * const *vreg_list;
+>>  	int num_vregs;
+>> @@ -82,16 +87,16 @@ static const char * const pm8550b_vreg_l[] =3D {
+>>  	"vdd18", "vdd3",
+>>  };
+>> =20
+>> -static const u32 pm8550b_init_tbl[NUM_TUNE_FIELDS] =3D {
+>> -	[TUNE_IUSB2] =3D 0x8,
+>> -	[TUNE_SQUELCH_U] =3D 0x3,
+>> -	[TUNE_USB2_PREEM] =3D 0x5,
+>> +static const struct eusb2_repeater_init_tbl_reg pm8550b_init_tbl[] =3D =
+{
+>> +	{ TUNE_IUSB2, 0x8 },
+>> +	{ TUNE_SQUELCH_U, 0x3 },
+>> +	{ TUNE_USB2_PREEM, 0x5 },
+>>  };
+>> =20
+>> -static const u32 smb2360_init_tbl[NUM_TUNE_FIELDS] =3D {
+>> -	[TUNE_IUSB2] =3D 0x5,
+>> -	[TUNE_SQUELCH_U] =3D 0x3,
+>> -	[TUNE_USB2_PREEM] =3D 0x2,
+>> +static const struct eusb2_repeater_init_tbl_reg smb2360_init_tbl[] =3D =
+{
+>> +	{ TUNE_IUSB2, 0x5 },
+>> +	{ TUNE_SQUELCH_U, 0x3 },
+>> +	{ TUNE_USB2_PREEM, 0x2 },
+>>  };
+>> =20
+>>  static const struct eusb2_repeater_cfg pm8550b_eusb2_cfg =3D {
+>> @@ -129,17 +134,10 @@ static int eusb2_repeater_init(struct phy *phy)
+>>  	struct eusb2_repeater *rptr =3D phy_get_drvdata(phy);
+>>  	struct device_node *np =3D rptr->dev->of_node;
+>>  	struct regmap *regmap =3D rptr->regmap;
+>> -	const u32 *init_tbl =3D rptr->cfg->init_tbl;
+>> -	u8 tune_usb2_preem =3D init_tbl[TUNE_USB2_PREEM];
+>> -	u8 tune_hsdisc =3D init_tbl[TUNE_HSDISC];
+>> -	u8 tune_iusb2 =3D init_tbl[TUNE_IUSB2];
+>>  	u32 base =3D rptr->base;
+>> -	u32 val;
+>> +	u32 poll_val;
+>>  	int ret;
+>> -
+>> -	of_property_read_u8(np, "qcom,tune-usb2-amplitude", &tune_iusb2);
+>> -	of_property_read_u8(np, "qcom,tune-usb2-disc-thres", &tune_hsdisc);
+>> -	of_property_read_u8(np, "qcom,tune-usb2-preem", &tune_usb2_preem);
+>> +	u8 val;
+>> =20
+>>  	ret =3D regulator_bulk_enable(rptr->cfg->num_vregs, rptr->vregs);
+>>  	if (ret)
+>> @@ -147,21 +145,24 @@ static int eusb2_repeater_init(struct phy *phy)
+>> =20
+>>  	regmap_write(regmap, base + EUSB2_EN_CTL1, EUSB2_RPTR_EN);
+>> =20
+>> -	regmap_write(regmap, base + EUSB2_TUNE_EUSB_HS_COMP_CUR, init_tbl[TUNE=
+_EUSB_HS_COMP_CUR]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_EUSB_EQU, init_tbl[TUNE_EUSB_EQ=
+U]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_EUSB_SLEW, init_tbl[TUNE_EUSB_S=
+LEW]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_USB2_HS_COMP_CUR, init_tbl[TUNE=
+_USB2_HS_COMP_CUR]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_USB2_EQU, init_tbl[TUNE_USB2_EQ=
+U]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_USB2_SLEW, init_tbl[TUNE_USB2_S=
+LEW]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_SQUELCH_U, init_tbl[TUNE_SQUELC=
+H_U]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_RES_FSDIF, init_tbl[TUNE_RES_FS=
+DIF]);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_USB2_CROSSOVER, init_tbl[TUNE_U=
+SB2_CROSSOVER]);
+>> +	/* Write registers from init table */
+>> +	for (int i =3D 0; i < rptr->cfg->init_tbl_num; i++)
+>> +		regmap_write(regmap, base + rptr->cfg->init_tbl[i].reg,
+>
+> Init tables have TUNE_foo values in the .reg field instead of
+> EUSB2_TUNE_foo, which means that writes go to a random location.
 
-A link is okay in this case - pmOS wiki has been with us for a while and
-I don't expect it to go down anytime soon.
+Right, stupid mistake. Thanks for spotting!
 
-Konrad
+I will fix the init tables to use EUSB2_TUNE_*, and probably drop this
+"enum eusb2_reg_layout" completely.
+
+Regards
+Luca
+
+>
+>> +			     rptr->cfg->init_tbl[i].value);
+>> =20
+>> -	regmap_write(regmap, base + EUSB2_TUNE_USB2_PREEM, tune_usb2_preem);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_HSDISC, tune_hsdisc);
+>> -	regmap_write(regmap, base + EUSB2_TUNE_IUSB2, tune_iusb2);
+>> +	/* Override registers from devicetree values */
+>> +	if (!of_property_read_u8(np, "qcom,tune-usb2-amplitude", &val))
+>> +		regmap_write(regmap, base + EUSB2_TUNE_USB2_PREEM, val);
+>> =20
+>> -	ret =3D regmap_read_poll_timeout(regmap, base + EUSB2_RPTR_STATUS, val=
+, val & RPTR_OK, 10, 5);
+>> +	if (!of_property_read_u8(np, "qcom,tune-usb2-disc-thres", &val))
+>> +		regmap_write(regmap, base + EUSB2_TUNE_HSDISC, val);
+>> +
+>> +	if (!of_property_read_u8(np, "qcom,tune-usb2-preem", &val))
+>> +		regmap_write(regmap, base + EUSB2_TUNE_IUSB2, val);
+>> +
+>> +	/* Wait for status OK */
+>> +	ret =3D regmap_read_poll_timeout(regmap, base + EUSB2_RPTR_STATUS, pol=
+l_val,
+>> +				       poll_val & RPTR_OK, 10, 5);
+>>  	if (ret)
+>>  		dev_err(rptr->dev, "initialization timed-out\n");
+>> =20
+>>=20
+>> --=20
+>> 2.49.0
+>>=20
+
 
