@@ -1,139 +1,169 @@
-Return-Path: <devicetree+bounces-186244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BDD1ADAD04
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:07:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0CBADAD39
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34A3E188FB63
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:06:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82FD97A2366
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30CB62980A1;
-	Mon, 16 Jun 2025 10:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C506279355;
+	Mon, 16 Jun 2025 10:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="Y6qj1fNl"
+	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="aOSvFiSz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD0F230BEF;
-	Mon, 16 Jun 2025 10:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3231EFFB8;
+	Mon, 16 Jun 2025 10:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750068269; cv=none; b=TN4iQ+Zp30M99J2XQr4Mj0IBzh2uLcC+3Q5kluj1MwUOArHV//tOWEiJf7aS+3uOlHf1w6NbnO0o/qIW3pp3AxNsB5FBkYtJrp2QX4GxQuvIsxPKFZdD5aw31pLnSG125nNcfSMX3qntXGEgN5swj+jHQ8/o8qVjpnlJ4Ee/uS4=
+	t=1750069316; cv=none; b=L4iHuuZkaUCZ+ZTsbeE4lDgpKL1iIeP2ypppa6L0A+D7nS4d68YVFcFMtKIJnUZuKwxrrmPxhFSn0TjyStQJgEYBSbqU4FJhS9TamDaNnDJmwUifOEk4FeqM0aNh5NSmWLr7FOAQVwGBbY8Abr7Fg730VnLPF1SYz9WxbS2641k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750068269; c=relaxed/simple;
-	bh=IqHdIMP8oq682ly7gmcYGkhV+ItjF28rc0DFQ8K6BDA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kTYwxjCYyPHg4C30zuRhV1vI9UvaZHdxjGSKAtUmJk9S+5/GiS5H4xbCiArnKHcXrGbzEhCs2rW7li05DLwDN21nCZJ+SfRpWyiTbJY56SZ8T0b66u3GsEBwzauY9sTXHvDGklHqw3YuTGjc0ow105fpU6A0oHvCh7C4MzP6fCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=Y6qj1fNl; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Gebr3x5cFjIyCpTF84QP5T9DzSmcTlWVArnM0v5gIds=; b=Y6qj1fNlPUCcGLc2S2OKITAYfD
-	t8Vq9th3zdfOzL0wLypb1BZLPdnCf98+I0dEfsr0Gg321OLl15OxRBjiAHKl08oDh6wupQwlUXmBb
-	jtAuTtuci6wK/o3NrcxNunay6KfgKF61x0YUa9ddxGzMFHqoxbdKbtsP60wc+jmvF/SpFQjophpmB
-	lPf9nHz3TxunhONX8dsrSjl4jsVJiweY9gunoo2Yva7vFNVdjhwtXfEv7B+CUK1821LD8YopzFFTr
-	mk7oCd1CLBqjiollkRyrd/FM7Jm8NDI+Xcf5TzfmXVCWn1yioMccMvQxgfdWauq6Q6j1inSzj0WjG
-	nA4OYb0g==;
-Date: Mon, 16 Jun 2025 12:03:51 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Andrew Davis <afd@ti.com>
-Cc: Kory Maincent <kory.maincent@bootlin.com>, Tony Lindgren
- <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen
- <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
- <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, Bajjuri Praneeth
- <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/5] binding: omap: Add lots of missing omap AM33
- compatibles
-Message-ID: <20250616120351.3479442f@akair>
-In-Reply-To: <53b48816-37e6-49e8-a5cf-adcca04c57a7@ti.com>
-References: <20250609-bbg-v2-0-5278026b7498@bootlin.com>
-	<20250609-bbg-v2-2-5278026b7498@bootlin.com>
-	<53b48816-37e6-49e8-a5cf-adcca04c57a7@ti.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1750069316; c=relaxed/simple;
+	bh=txzLScPRis5TZgP7A74iVXEx143n98D6lMsGYHpdwUo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Jsnc5dRzW2uO8I7lvRgjyFbY3XMS0ryTDDhnS2kk9CL6SmjCMNTKZ0zz1noWB4D5Nf/+9XDQSkUX8CYmNXYCGZQ3gpsgymy5/yyGvhjLJ/t0+MmVpomA6P0DT36hOSG4Lw6xzOS4I7HrgJONqpf2FgIXhop+LQUXxUtdtfGxUbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=aOSvFiSz; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 28DB76000250;
+	Mon, 16 Jun 2025 11:21:45 +0100 (WEST)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with UTF8LMTP id J8uCpNmvOxAW; Mon, 16 Jun 2025 11:21:42 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id BFAD6600084C;
+	Mon, 16 Jun 2025 11:21:41 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail; t=1750069302;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xajc7GE1nfpzbrDK9Eb3NyKjCQlbeehO08PpGsW/Imo=;
+	b=aOSvFiSzocsxfUX4y9NZBCFW5jcFBvnoY9SEIH+oBTJZ+1rAzftFyBZPzANESnna/wtiSZ
+	E++QYbLUbS1b6tp8QM9AxShLy0uSGDaCGvFSBXylGltPfITRVV+bF8iTUdz+pnS05gLYVk
+	/0KDgLjXGyu6qH5tb9P/qqYFgY0Fh/I=
+Received: from [10.158.133.22] (dial-b1-161-46.telepac.pt [194.65.161.46])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 67AA136006F;
+	Mon, 16 Jun 2025 11:21:40 +0100 (WEST)
+Message-ID: <78cc8814-c89f-4a5f-9a70-08ed69580c3f@tecnico.ulisboa.pt>
+Date: Mon, 16 Jun 2025 11:21:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] NVIDIA Tegra210 NVJPG support
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Mikko Perttunen <cyndis@kapsi.fi>, Mikko Perttunen
+ <mperttunen@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
+ <mz5sytol6aw7ouwiimmrd7lqhtvq6nj7pqpxq4ie6em6nwvvkh@2cux3no33gre>
+ <621a9459-f2dd-4b19-a083-0e62f1a42f50@kapsi.fi>
+ <96b721cd-7223-4b28-a3fd-a4d92c9d5142@tecnico.ulisboa.pt>
+ <4cibh66elviiatataa45lsfcyeovkqyxe4fjvfh7uqddhsbe6z@svt2dgeafrdh>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <4cibh66elviiatataa45lsfcyeovkqyxe4fjvfh7uqddhsbe6z@svt2dgeafrdh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Am Mon, 9 Jun 2025 18:34:10 -0500
-schrieb Andrew Davis <afd@ti.com>:
 
-> On 6/9/25 10:43 AM, Kory Maincent wrote:
-> > Add several compatible strings that were missing from the binding
-> > documentation. Add description for Bone, BoneBlack and BoneGreen
-> > variants.
-> > 
-> > Add several compatible that were missing from the binding.
-> > 
-> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> > ---
-> > 
-> > Change in v2:
-> > - New patch
-> > ---
-> >   Documentation/devicetree/bindings/arm/ti/omap.yaml | 38 ++++++++++++++++++++++
-> >   1 file changed, 38 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > index 3603edd7361d..c43fa4f4af81 100644
-> > --- a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > @@ -104,12 +104,50 @@ properties:
-> >         - description: TI AM33 based platform
-> >           items:
-> >             - enum:
-> > +              - bosch,am335x-guardian
-> >                 - compulab,cm-t335
-> > +              - grinn,am335x-chilisom
-> > +              - gumstix,am335x-pepper
-> > +              - moxa,uc-2101
-> >                 - moxa,uc-8100-me-t
-> > +              - myir,myc-am335x
-> > +              - myir,myd-am335x
-> >                 - novatech,am335x-lxm
-> > +              - oct,osd3358-sm-refdesign
-> > +              - tcl,am335x-sl50
-> >                 - ti,am335x-bone
-> >                 - ti,am335x-evm
-> > +              - ti,am335x-evmsk
-> > +              - ti,am335x-pocketbeagle
-> > +              - ti,am335x-shc
-> >                 - ti,am3359-icev2
-> > +              - vscom,onrisc
-> > +          - const: ti,am33xx
-> > +
-> > +      - description: TI bone variants based on TI AM335  
+
+On 6/11/25 4:06 PM, Thierry Reding wrote:
+> On Wed, Jun 11, 2025 at 01:05:40PM +0100, Diogo Ivo wrote:
+>>
+>>
+>> On 6/10/25 10:52 AM, Mikko Perttunen wrote:
+>>> On 6/10/25 6:05 PM, Thierry Reding wrote:
+>>>> On Fri, Jun 06, 2025 at 11:45:33AM +0100, Diogo Ivo wrote:
+>>>>> Hello,
+>>>>>
+>>>>> This series adds support for the NVJPG hardware accelerator found in the
+>>>>> Tegra210 SoC.
+>>>>>
+>>>>> The kernel driver is essentially a copy of the NVDEC driver as both
+>>>>> engines are Falcon-based.
+>>>>>
+>>>>> For the userspace part I have written a Mesa Gallium backend [1] that,
+>>>>> while still very much experimental, works in decoding images
+>>>>> with VA- API.
+>>>>>
+>>>>> I have been using ffmpeg to call VA-API with the following command:
+>>>>>
+>>>>> ffmpeg -v verbose -hwaccel vaapi -hwaccel_device
+>>>>> /dev/dri/renderD129 -i <input.jpg> -pix_fmt bgra -f fbdev
+>>>>> /dev/fb0
+>>>>>
+>>>>> which decodes <input.jpg> and shows the result in the framebuffer.
+>>>>>
+>>>>> The firmware for the engine can be obtained from a Linux for Tegra
+>>>>> distribution.
+>>>>
+>>>> By the way, have you tried running this on anything newer than Tegra210?
+>>>> Given your progress on this, we can probably start thinking about
+>>>> submitting the binaries to linux-firmware.
+>>>
+>>> FWIW, the impression I have is that NVJPG is basically unchanged all the
+>>> way to Tegra234. So if we add stream ID support and the firmwares, it'll
+>>> probably just work. Tegra234 has the quirk that it has two instances of
+>>> NVJPG -- these have to be distinguished by their different class IDs.
+>>> But we should go ahead with the T210 support first.
+>>
+>> I have a question here, what exactly are the stream IDs? While working
+>> on the driver this came up and I didn't manage to figure it out.
 > 
-> Do we really need these "bone variants" split out from the above
-> list of TI AM33 based boards? We don't do that for any of the other
-> boards, you get a SoC and a Board compatible, every classification
-> in-between is just unneeded.
+> Stream IDs are a way to identify memory transactions as belonging to a
+> certain device. This comes into play when working with the IOMMU (which
+> is a Tegra SMMU on Tegra210 and earlier, and an ARM SMMU on Tegra) and
+> is used to isolate DMA capable devices. Basically for every stream ID
+> you get a separate I/O address space. NVJPG will have its own address
+> space, and so will VIC. Each device can only access whatever has been
+> mapped to it's I/O address space. That means NVJPG can't interfere with
+> VIC and vice-versa. And neither can any of these engines read from or
+> write to random system memory if badly programmed.
+
+So if I understand this correctly a Stream ID corresponds to an IOMMU
+domain right?
+
+> For Tegra SMMU there's no such thing as programmable stream IDs, so the
+> stream ID is fixed for the given device.
 > 
+> On newer chips (Tegra186 and later, or maybe it wasn't until Tegra194),
+> certain IP blocks have special registers that can be used to override
+> the stream ID. There's also a way to set the stream ID via command
+> streams, which means that you can have different I/O address spaces (I
+> think we call them memory context) per engine, which means that you can
+> isolate different processes using the same engine from each other.
+> 
+> Again, for Tegra210 that's nothing we need to worry about. For newer
+> chips it's probably just a matter of adding .get_streamid_offset() and
+> .can_use_memory_ctx() implementations.
 
-We have something like this for the Pandaboards models. But
-e.g. the i.MX Udoo Neo stuff which just differs in what is populated
-does not have this. So I do not see a clear pattern. It could be useful
-for userspace to store some board-specific configurations which might be
-the same for a family of boards. So if people shout out loud that these
-are needs, lets kep them.
+Ok, then in that case I'll keep the driver in its current state without
+these implementations if that's ok. Connected with this I wanted to know
+your thoughts on the best way to upstream this, is it better to wait for
+testing on different platforms first and then if things work merge a
+driver that works for all of them or go with Tegra210 first and then add
+more platforms later on?
 
-Regards,
-Andreas
-
-
+Thanks,
+Diogo
 
