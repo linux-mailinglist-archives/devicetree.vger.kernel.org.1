@@ -1,221 +1,259 @@
-Return-Path: <devicetree+bounces-186319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999F5ADB29F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:56:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04EECADB2CF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:01:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDE40169764
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:56:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7ECFB7AD681
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B66B2877D3;
-	Mon, 16 Jun 2025 13:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26572877DA;
+	Mon, 16 Jun 2025 13:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gb0u3a0g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8ULzQPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699A7285C96;
-	Mon, 16 Jun 2025 13:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D9D2877C3;
+	Mon, 16 Jun 2025 13:57:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750082104; cv=none; b=hHkbTnAjNhEaBDgZkS+1Pa7XzF0nML7zaDi4ej3hEFHnoMAdjLmC4CHvUql1AMyfJH91Hk5sKqYSB7dAXPhui1GP+bjlCYKLXv/kg3KJnNGfUodbWaN0CnM4fnuJwZar+1Lr0PSbXz/UYAJq3jFa5//ruuyW6h6VTdB7R8iYg4g=
+	t=1750082260; cv=none; b=F1v1Cll742yvFFip+XH5C0iGMHCit0Ritlozu9y8MA8mBB/e3utJuFjsVXuDDL5Ph80PFb0vL81JIesVtApONqlgUru8L8Tmb0rIzb3xnLbxAXVcI3WfGbFBDqmykk5zJw8AVI0t/JyRx393IxMnTA2RCemeGZX3gvguPURhv70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750082104; c=relaxed/simple;
-	bh=kDrFiJZeByCxQ9YK3OGGhguZw0QHkU2Ev1SlVF6XmxE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WiPIepFyQsXw+v2VcO9tZHTJjD3PEFA9y3hurKUnwdHtv6GFbHrr5bYP6lqLZlwGlcO09NxXlsNQREPF/lJLJTWUp2BDpuCBHhlslu3INGESbodlkApOxZOuagP11Mji+be9c1UIHW5zuAR03CCKAXYYzVXj8lxudo7c8Xe3A0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gb0u3a0g; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-451e2f0d9c2so39300515e9.1;
-        Mon, 16 Jun 2025 06:55:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750082101; x=1750686901; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WuF0uH/IFJVKhc9AHQruIp9YqexDw2XvYvqThHWKXxs=;
-        b=gb0u3a0gXMlCSMfjKTYmAKAI86tnaxedJMxXU/FUk66ip//dne8+ibMScLPJs+Gikz
-         XjDIl4yiWH/5ETU+6k2iPyoxtBTGydDzVCXC883D/Go4TCg34+Whyng1BYbiNaJk+zVY
-         lmKW1SE9XSJ934g1Hm1YdVo6w0Uhsigh1MIoyOH/NbW/ck5LFbzcLtgEInrTO9dFCCZW
-         uT+fH5N8yRHv7BCOvzRhL94XiJPpZRTaGaxHemmQ8jkZuo+5n8UYuZZOP/eVQok6N3z8
-         zd3f2TX8+akvDikcBcAwm4tl64/r3e3XagUZr3m7GHBYswMy9dkXZ8DjzFHAuvyCLNgX
-         D2Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750082101; x=1750686901;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WuF0uH/IFJVKhc9AHQruIp9YqexDw2XvYvqThHWKXxs=;
-        b=HjMuFdef2KgRK/YfNkrrdKdfMHzNEVasv+QNQzwXVoNVmTp3PVHdV9hyu3Wzt37n0l
-         an+D7OVbHmPh5vKuvw7szR+KSGrGp91mX69CuDWNrBwA3xy6S6MVABx+qjhge4sqC9Md
-         ui3KNcoiqqQXk44J8CFeDc716az7GvdnFyaua6ColZYlUr1NuGA6VAQZQera01tXN34L
-         oj1G92Dq3DWYcLcIYxRl40iqNrTW2gF+7EgeWd0X5nHCerThCugFHM/CpSDDaECyzMt0
-         ChOJUXicYsbKOfu1DgDAbyFbM56aGzBReguQBdfYSybgVogj3lWDqpuepJSnaJMBZfZ4
-         1EJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVKoqdBHfeQBP+bqra075ioWvl0rp6HMI0bsh5o1a83/zrX7rBYanyN8gV8nhVFz0qDfpJaaBo5ZpN+@vger.kernel.org, AJvYcCVwqW5K/6RBg/3RZT8zH9GxWSftWMf62pzd928i/uNiTRgAaVr2wkjsm12QroaYDqPPwqjCAmaH++3p@vger.kernel.org, AJvYcCXad+EyGFU0NJOfA8Zz7T5OXpP9IyasGd+/0pXnh4IjzG49wuPEXWLGQKaG5WOrQhEVWn0C8cPMuaFyNJ/k@vger.kernel.org, AJvYcCXrSDLF2iAlbT+LV7DM9h7zbyVYZplPxNQX9MrPPM58fQOHjRF/042z6HXKghbNvS9CaLcfdpQ2gcJB@vger.kernel.org, AJvYcCXwtCVFVC/Hf4eMBBMCR/ltXM6EEkKTlvGF65t4UYUyAvYkKkOYcwhnE/Su7TeowOBXJgwjAvXHN7ak@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNPrT3wcNWEWC2PTPTzTCoOt4OI2KhEOfSntqasLApRvYEL6V9
-	qIY9UEbLJ67ag/8AZCRi68w/x0hBTpxeV+LqNCvOMLJsmQ40ivfJ183a
-X-Gm-Gg: ASbGncsRudPxphNq/fFglL+ZUbMkDxDJuAoY69alFdsgXq5lowI+SRIWQaZ2He3QiWd
-	ztqinO1j+RRjf1bzTYAk3r9mEWXsDhkQvlK4w3l7QNgjAN51Xohl4kETC040+sMSozdZ1kJIgtf
-	jepqR7E8tWWUPd9DE5NCtCgTtGY4Pmf9RexkUAOvDzqYWoCOxzsHw4w2U7c0LdNh4IffCl0/ygC
-	BXYIkJKSUqwYB8jtZomO7p241PBNVi3UaEVZo1gJIetKRWxn6ntqMsVmDGReELtx3PXcXkf0TYu
-	NYfJRoAaq8mcN4SqTOL+h8ofd8s0aJsksZlG5MPcDqM0vQnOsFpoukGK9C14gQIqqhKhkzj5K2n
-	2yfnZD4o=
-X-Google-Smtp-Source: AGHT+IEgHOUFMFCgr3FayDvhUXf1wP2ej3MU+MRC9MTMlQ0HxZa9/T+TtlTt+0/ujY4/jQfzKhe7aA==
-X-Received: by 2002:a05:600c:4691:b0:453:aca:4d08 with SMTP id 5b1f17b1804b1-4533cc5cfd1mr84280755e9.1.1750082100305;
-        Mon, 16 Jun 2025 06:55:00 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e25ec9fsm142381335e9.34.2025.06.16.06.54.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jun 2025 06:54:59 -0700 (PDT)
-Date: Mon, 16 Jun 2025 15:54:56 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] iio: adc: Add events support to ad4052
-Message-ID: <2uknsmgz57wie4cv2tll3ttfyiw7lyjyaryc74nd3o5fteoazk@vbgdt5ofkn5r>
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
- <20250610-iio-driver-ad4052-v3-8-cf1e44c516d4@analog.com>
- <20250614113616.4663269f@jic23-huawei>
+	s=arc-20240116; t=1750082260; c=relaxed/simple;
+	bh=NyizBTDfDWXK6sw8uHD082UVWglR8ES2/VkYsuwaR4w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Sm4rxNXAhttsOerwuPaZ8lu5cwfImgC5dxr6MpwHpMbHeI1EOaOeVqKeLCSlMoNcRv/sjLoo9YJcYxyVK+1qkn0Stp9xIUipPdS0y78P5ghlcgHAt17pkQXUMo+7JtEb75R9JhOvN+BoKGU8D6C5Tsqq37+7RTgRnZGZTnfF6vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8ULzQPh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30632C4CEF5;
+	Mon, 16 Jun 2025 13:57:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750082260;
+	bh=NyizBTDfDWXK6sw8uHD082UVWglR8ES2/VkYsuwaR4w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=H8ULzQPh/xdtTiMfI3eihUsGI91soNyJ6AwSVhjKDO4IOJN3V4MbJf8Fy4Hjq/oPp
+	 2Nz2B/U4yIFMJwmnbkUKrRHPQlmnGxkQzpjpiCeObGnKgdgWNzsVdGM/wnAIfKzp77
+	 OsClgdjfqK9hC7ntKJziHbTNlOcBTkzZtkxBTl+MoNrw4Prth4u5dv8z+GPcY3x8+Z
+	 U2k1ZLAOc0Hf27lZEchtd7fnehD5vtVw0ubzu82UT3OAUYvJ2sHBVW6ZPHM2SMa5/b
+	 3BkA+Ysg02RQ/8M/W2p7dGMiij+LRkAAw0f9T5daEgcrGL2oTSRbJk3qI+xDTglt9P
+	 Rxa8e8y8zLkiw==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ad89ee255easo836057666b.3;
+        Mon, 16 Jun 2025 06:57:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVSMzq7zjG0+pq767/j8rNRPoNC3p3dbsKCBBq5/iwKc36CQCJ4NftP82wnfaR5bzqXkHJA9VB5I4pr@vger.kernel.org, AJvYcCVuOgM4yom8JPJYbOg2SN3VRtAXK9gFJuZn7zUZr7nuPDf2DRJy9PoGNw6fHc92by+RUmWSYZeGi1QePTbn@vger.kernel.org, AJvYcCVwanjuhQLiqdYS85HR6yv3NYS26HDXK4/fieeR/FNdiF86OkhijwETWnHHizckFkgne70tT6udkF3EqA==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzkxk/QZJsXJZRYXUDt1a4D99+DaGSxK6kva1x80WqFvt/st52U
+	C8HlnQW2PJrUsnKqmJEiW+NSDabqMuZQwR5qPN3zdB5S0gEjCWgElbYkkIj3nCmqPKSqVfVyYi7
+	85EWE2tbmZjl3nSfIl8Ds4zc5p7oMSQ==
+X-Google-Smtp-Source: AGHT+IHpdF6x/V/pazyqhO2sJpaXwkib8ZBd2w1M4Ij3Nkk6Wn/WfgezoqePwqWHQsTrHmBU64Y1n8FFZazVHIrz33o=
+X-Received: by 2002:a17:907:7241:b0:ad2:3f9a:649f with SMTP id
+ a640c23a62f3a-adfad60d405mr821849566b.42.1750082258737; Mon, 16 Jun 2025
+ 06:57:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250614113616.4663269f@jic23-huawei>
+References: <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-0-341502d38618@axiado.com>
+ <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-4-341502d38618@axiado.com>
+In-Reply-To: <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-4-341502d38618@axiado.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 16 Jun 2025 08:57:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJpb7wFw3DqX504LyS2PGbQxQfbBKh9VfCY8j7G9YKXiw@mail.gmail.com>
+X-Gm-Features: AX0GCFuQPys5Thxu-nqBA43dpX9szemYIEtdKd5xHzL7MleeMvIzogZHZdn5g7w
+Message-ID: <CAL_JsqJpb7wFw3DqX504LyS2PGbQxQfbBKh9VfCY8j7G9YKXiw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] arm64: dts: axiado: Add initial support for AX3000
+ SoC and eval board
+To: Harshit Shah <hshah@axiado.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, soc@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 14, 2025 at 11:36:16AM +0100, Jonathan Cameron wrote:
-> On Tue, 10 Jun 2025 09:34:41 +0200
-> Jorge Marques <jorge.marques@analog.com> wrote:
-> 
-> > The AD4052 family supports autonomous monitoring readings for threshold
-> > crossings. Add support for catching the GPIO interrupt and expose as an IIO
-> > event. The device allows to set either, rising and falling directions. Only
-> > either threshold crossing is implemented.
-> > 
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-Hi Jonathan,
-> Hi Jorge,
-> 
-> A few comments inline.
-> 
-> Jonathan
-> 
-> >
-> > +
-> > +static int ad4052_write_event_config(struct iio_dev *indio_dev,
-> > +				     const struct iio_chan_spec *chan,
-> > +				     enum iio_event_type type,
-> > +				     enum iio_event_direction dir,
-> > +				     bool state)
-> > +{
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +	if (st->wait_event == state) {
-> > +		ret = 0;
-> 
-> Feels like a case where init ret at declaration would be reasonable.
-> 
-Ack.
-> > +		goto out_release;
-> > +	}
-> > +
-> > +	if (state)
-> > +		ret = ad4052_monitor_mode_enable(st);
-> > +	else
-> > +		ret = ad4052_monitor_mode_disable(st);
-> > +
-> > +	if (!ret)
-> > +		st->wait_event = state;
-> > +
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret;
-> > +}
-> 
-> > +
-> > +static int ad4052_read_event_value(struct iio_dev *indio_dev,
-> > +				   const struct iio_chan_spec *chan,
-> > +				   enum iio_event_type type,
-> > +				   enum iio_event_direction dir,
-> > +				   enum iio_event_info info, int *val,
-> > +				   int *val2)
-> > +{
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +
-> > +	if (st->wait_event) {
-> > +		ret = -EBUSY;
-> > +		goto out_release;
-> 
+On Sun, Jun 15, 2025 at 11:32=E2=80=AFPM Harshit Shah <hshah@axiado.com> wr=
+ote:
+>
+> Add initial device tree support for the AX3000 SoC and its evaluation
+> platform. The AX3000 is a multi-core SoC featuring 4 Cortex-A53 cores,
+> Secure Vault, AI Engine and Firewall.
+>
+> This commit adds support for Cortex-A53 CPUs, timer, UARTs, and I3C
+> controllers on the AX3000 evaluation board.
+>
+> Signed-off-by: Harshit Shah <hshah@axiado.com>
+> ---
+>  arch/arm64/boot/dts/Makefile              |   1 +
+>  arch/arm64/boot/dts/axiado/Makefile       |   2 +
+>  arch/arm64/boot/dts/axiado/ax3000.dtsi    | 584 ++++++++++++++++++++++++=
+++++++
+>  arch/arm64/boot/dts/axiado/ax3000_evk.dts |  72 ++++
+>  4 files changed, 659 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 79b73a21ddc22b17308554e502f8207392935b45..47dd8a1a7960d179ee28969a1=
+d6750bfa0d73da1 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -9,6 +9,7 @@ subdir-y +=3D amlogic
+>  subdir-y +=3D apm
+>  subdir-y +=3D apple
+>  subdir-y +=3D arm
+> +subdir-y +=3D axiado
+>  subdir-y +=3D bitmain
+>  subdir-y +=3D blaize
+>  subdir-y +=3D broadcom
+> diff --git a/arch/arm64/boot/dts/axiado/Makefile b/arch/arm64/boot/dts/ax=
+iado/Makefile
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..eb5e08ba0f39c32cdbfd586d9=
+82849a80da30160
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/axiado/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_AXIADO) +=3D ax3000_evk.dtb
+> diff --git a/arch/arm64/boot/dts/axiado/ax3000.dtsi b/arch/arm64/boot/dts=
+/axiado/ax3000.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d5d84986d18efe9dfbb446cee=
+e42fc4e4dbf95d0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/axiado/ax3000.dtsi
+> @@ -0,0 +1,584 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2021-25 Axiado Corporation (or its affiliates). All rig=
+hts reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/memreserve/ 0x3c0013a0 0x00000008;    /* cpu-release-addr */
+> +/ {
+> +       compatible =3D "axiado,ax3000";
 
-Below are two distinct options with different implications.
-> Not being able to read event parameters whilst monitoring them seems
-> very restrictive.  Can't we cache the values?  Either play games to ensure
-> we get them from the regmap cache or just cache these few values in st.
-> 
-> Checking what you are monitoring for feels like the sort of thing
-> userspace might well do.
+Drop. As this is not valid and overridden anyways.
 
-(1)
-I agree, I can investigate regcache_cache_only and the other cache
-options to achieve this. If I come to the conclusion it is not possible,
-storing into st will achieve the same.
+> +       interrupt-parent =3D <&gic500>;
+> +
+> +       aliases {
+> +               i3c0 =3D &i3c0;
+> +               i3c1 =3D &i3c1;
+> +               i3c2 =3D &i3c2;
+> +               i3c3 =3D &i3c3;
+> +               i3c4 =3D &i3c4;
+> +               i3c5 =3D &i3c5;
+> +               i3c6 =3D &i3c6;
+> +               i3c7 =3D &i3c7;
+> +               i3c8 =3D &i3c8;
+> +               i3c9 =3D &i3c9;
+> +               i3c10 =3D &i3c10;
+> +               i3c11 =3D &i3c11;
+> +               i3c12 =3D &i3c12;
+> +               i3c13 =3D &i3c13;
+> +               i3c14 =3D &i3c14;
+> +               i3c15 =3D &i3c15;
+> +               i3c16 =3D &i3c16;
+> +               serial0 =3D &uart0;
+> +               serial1 =3D &uart1;
+> +               serial2 =3D &uart2;
+> +               serial3 =3D &uart3;
+> +       };
+> +
+> +       cpus {
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <0>;
+> +
+> +               cpu0: cpu@0 {
+> +                       device_type =3D "cpu";
+> +                       compatible =3D "arm,cortex-a53";
+> +                       reg =3D <0x0 0x0>;
+> +                       enable-method =3D "spin-table";
+> +                       cpu-release-addr =3D <0x0 0x3c0013a0>;
+> +                       d-cache-size =3D <0x8000>;
+> +                       d-cache-line-size =3D <64>;
+> +                       d-cache-sets =3D <128>;
+> +                       i-cache-size =3D <0x8000>;
+> +                       i-cache-line-size =3D <64>;
+> +                       i-cache-sets =3D <256>;
+> +                       next-level-cache =3D <&l2>;
+> +               };
+> +
+> +               cpu1: cpu@1 {
+> +                       device_type =3D "cpu";
+> +                       compatible =3D "arm,cortex-a53";
+> +                       reg =3D <0x0 0x1>;
+> +                       enable-method =3D "spin-table";
+> +                       cpu-release-addr =3D <0x0 0x3c0013a0>;
+> +                       d-cache-size =3D <0x8000>;
+> +                       d-cache-line-size =3D <64>;
+> +                       d-cache-sets =3D <128>;
+> +                       i-cache-size =3D <0x8000>;
+> +                       i-cache-line-size =3D <64>;
+> +                       i-cache-sets =3D <256>;
+> +                       next-level-cache =3D <&l2>;
+> +               };
+> +
+> +               cpu2: cpu@2 {
+> +                       device_type =3D "cpu";
+> +                       compatible =3D "arm,cortex-a53";
+> +                       reg =3D <0x0 0x2>;
+> +                       enable-method =3D "spin-table";
+> +                       cpu-release-addr =3D <0x0 0x3c0013a0>;
+> +                       d-cache-size =3D <0x8000>;
+> +                       d-cache-line-size =3D <64>;
+> +                       d-cache-sets =3D <128>;
+> +                       i-cache-size =3D <0x8000>;
+> +                       i-cache-line-size =3D <64>;
+> +                       i-cache-sets =3D <256>;
+> +                       next-level-cache =3D <&l2>;
+> +               };
+> +
+> +               cpu3: cpu@3 {
+> +                       device_type =3D "cpu";
+> +                       compatible =3D "arm,cortex-a53";
+> +                       reg =3D <0x0 0x3>;
+> +                       enable-method =3D "spin-table";
+> +                       cpu-release-addr =3D <0x0 0x3c0013a0>;
+> +                       d-cache-size =3D <0x8000>;
+> +                       d-cache-line-size =3D <64>;
+> +                       d-cache-sets =3D <128>;
+> +                       i-cache-size =3D <0x8000>;
+> +                       i-cache-line-size =3D <64>;
+> +                       i-cache-sets =3D <256>;
+> +                       next-level-cache =3D <&l2>;
+> +               };
+> +
+> +               l2: l2-cache0 {
+> +                       compatible =3D "cache";
+> +                       cache-size =3D <0x100000>;
+> +                       cache-unified;
+> +                       cache-line-size =3D <64>;
+> +                       cache-sets =3D <1024>;
+> +                       cache-level =3D <2>;
+> +               };
+> +       };
+> +
+> +       timer:timer {
+> +               compatible =3D "arm,armv8-timer";
+> +               interrupt-parent =3D <&gic500>;
+> +               interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +                          <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +                          <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +                          <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +               arm,cpu-registers-not-fw-configured;
 
-> 
-> Even blocking changing the monitoring parameters is unusually strict.
-> Why not just drop out of monitor mode, update them and go back in?
-> 
-(2)
-The core point of the blocking behaviour is to not have hidden downtimes
-in the monitoring for the user. An early driver used to do what you
-describe and it was a design decision.
+Drop. Not valid for arm64. And new platforms should fix the firmware anyway=
+s.
 
-Since a custom regmap_bus was necessary to restrict the regmap access
-speed (ADC access is faster), bringing back this by behavior embedding
-it in the custom regmap now seems plausible, with proper explanation in
-the rst page. This should fully dismiss the st->wait_event -> -EBUSY.
-
-Considering (1) and (2), what is the preferred approach?
-
-Regards,
-Jorge
-> > +	}
-> > +
-> > +	switch (info) {
-> > +	case IIO_EV_INFO_VALUE:
-> > +		ret = __ad4052_read_event_info_value(st, dir, val);
-> > +		break;
-> > +	case IIO_EV_INFO_HYSTERESIS:
-> > +		ret = __ad4052_read_event_info_hysteresis(st, dir, val);
-> > +		break;
-> > +	default:
-> > +		ret = -EINVAL;
-> > +		break;
-> > +	}
-> > +
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret ? ret : IIO_VAL_INT;
-> > +}
+Rob
 
