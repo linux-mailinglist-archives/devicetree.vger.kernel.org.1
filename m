@@ -1,355 +1,205 @@
-Return-Path: <devicetree+bounces-186442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1646FADBD15
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 00:43:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2E2ADBD60
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 01:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A21E1892343
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 22:43:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04709169A48
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 23:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F712264B6;
-	Mon, 16 Jun 2025 22:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976F5223DF6;
+	Mon, 16 Jun 2025 23:07:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UZb+aD9/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JB7QoIWt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BDE225A20
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 22:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F4922616C
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 23:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750113794; cv=none; b=L468V5oO+x+i7RDJ2zJaD4dnqVyaxYNPdBkfV2RaZG+hovXXryenFdr9bcHV8xbxZbQF3hM/XTcvDSFDRuWm+2fywAngPeJMFfWJZh8t8xaMaeBZ8/aWoCPclhKXeehn27syJLcdkyjj+9gw1RBg6zK3iN2vHI+Qk1Y2na9xBLE=
+	t=1750115271; cv=none; b=kSpoMJOdaeE+WCbFOOw49Ta14WEn1c+z49SGJQYlCB6Kr7fFZkk9ZHWciA2scqjIKWg4b3YoahmWvCIrAPG7ubuDdqF4Kmc60TJfCyWzBy0AgxuetSQTR68RddYM6ZIG4m6ytpcPgmXBspCOEWkj+3CClFiN+n2danVMxWUHzqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750113794; c=relaxed/simple;
-	bh=IVJlWT67NFwATC1aEaSSOc0rJVa9EvYX/VHrE9HgMiI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ddEXM22L0BkNURWfGjo2Qnoh16weAV8wuseFtYtMXC0ep5KHA6A/wTM6HJia5xIYImMdWT4XU0DK5fpgS7u3q0Py8Eoi8Q/F2OEm47+E5hBtosfiUGTOtLU3+VtnxpX2qVitgcD4sxIopAY/kgl1oPilGzKaFW1mDwh33I06by8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UZb+aD9/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GHkNvg027326
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 22:43:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=qUeqc8OEENG
-	/vdcvWcALgf+8+R5rytQKKW7bjizdq0M=; b=UZb+aD9/1+/tpYg5qjrxnum+yfI
-	CvsZGJVorPdraqhljtgWd24DLHOluTGa29RnZ1zwMDnblvDrCBrYwtioOga3+4oA
-	l1LH/JeJWehwKa2oYj8s4AbndMBiY+tcpSeFUs70oG8BWORooidH1LZdbSM+6rsx
-	l8XdtHL14U4MaLeICNsN/SVJ+cUVHjGjxIGhUhvXc9/e2x8XjHA/2zV21Lls2x3c
-	hZGRX3cGTM3LoV+Grfe7U88CWxt0WsQUZYrx05X4F1xAJiBu1HNHVBY1UoKx4eUl
-	gi9NFKcLkDHU1UvVjPP28hdzyisWRFJ8sMtDWliWlBneHkLhaMf7lVorauw==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791crp0v7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 22:43:11 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-742c03c0272so6074892b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 15:43:10 -0700 (PDT)
+	s=arc-20240116; t=1750115271; c=relaxed/simple;
+	bh=S2KjDfuvJk7RAVqaBIIafu+yLF/UClohLtXe7bra3Ys=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KC8IqHUZbLMZwh10nWhVu3CXefQXEkCgl4KPGzpviRQc7Z28SOko1Vd2AvgX91q2ZGHWB7606S5pxapynYxJx/SygJAN8k3DMwr5eWcX4ydgq6WIe8SY52H1w6LaPREZz7B/qgNF9ardJDuHLXdqco+PyikKYt0PoF4YwYfAyWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JB7QoIWt; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ade48b24c97so792821766b.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:07:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750115268; x=1750720068; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5R4pSmLptT/Kb44nIyS+WzGZxck97g8OPoP+XOYYK8A=;
+        b=JB7QoIWtaUhmnQlYINPZPhLKRa7OuBb1f4ccl/YzI+oT3FawqZhXm4lxFdIxtu3XI+
+         ITxTkVXMCXdrKG3pWghpHeZXeCeQDR7G9y7DYGcs7HFqeRk0t5l7qEU6p2TUG8lwU7hY
+         rXVEuYO0D/69x0wyYv2k+JSJ8qSsk1IQpgjgee2e0mmJmAgJjUx5OhECmcUHIcgPeVFX
+         V6w4YaAfh+KwJ4zAb3HqzZKJ5hxzJLMmT15kzguWYMj1gcbCXBNczFJD3PpIuRHtOXs5
+         l9ExaFZoHXnkv1aXJ4Fxi+NAPN91CRtVSndtSggMNH20zZZ0pow8VuZ9Pf/HXDGcKO1W
+         Azxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750113790; x=1750718590;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1750115268; x=1750720068;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qUeqc8OEENG/vdcvWcALgf+8+R5rytQKKW7bjizdq0M=;
-        b=MR7LxE7laShNZNWu9YNi1NGpGt4j70EMKjyjv3mpQkNk50LoiYpRJVjh2fAH26MHc0
-         hoxK4U5zUQ+/wIPFdKtSfDnxZOHmcm0bNuoMvN6y6SJnBAMcovNQch4PkYoEoYarkiRu
-         4G0cVVMyZi5pwSFlzcEGAGxb3Pa6hlK1WhHh3c9cKe7pTfXjC+o5dvJLRW0xIePz1HSX
-         3MmKd3kVZGTYlDZLvGFDOf7OBlMZWJP99yEd26pgrzPkMA5LK/q4kex9L/O6md9q5Jso
-         sJ4albys0Z+N7CZDZ5tJgGsNiSPy8vLLSi93n5hSdwwbtdXGhlM5sqNe1nZH0IeVEvn1
-         0aVg==
-X-Forwarded-Encrypted: i=1; AJvYcCV3OJN2bZ0Dq7Mwsqf58kCGqJ/e1o1jjeYvmPmpdN/6qQsFSAX2KIO/rc5CDtri/2snWN/0MWeyx+1R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVw3hC7Hh4KdBZwb4n/pF1Ts81MbuoMMxnEaNiyf7utW6hkTxt
-	3yu7zetq4OYeUSYZUAtfPuHK9JTlkVfrISdo3/3kMd5QdhJqcwB3dW4Ek41hCw9uBOZBXxZaONS
-	XN4nGrhJgd7Mc5w8rMgpLtM6ied59wiUlaj3BE936vpjJVsD6zPFejXQt5lpMhfss
-X-Gm-Gg: ASbGncsQzUGWjf6KTeK9Qjnm7SbF5bZBNmqDiGMO52BxaleiNVTl4zAT77KwUOZSo/c
-	PvWx6DkfcgwhzstR3GDPcIacLvIQ0FZyQR3HMSghpmCJzMzFnpPc9LknhH2qy/mf9w7GnzJ2g+c
-	pG+PyEMKrFIJGmdd4Re4VbCZIJuoqUAW9RGJ1YU3YwsCtQc/zzSTlOedVLMrKPWpV/4XfSalcJ3
-	i5ukFv0DR0189tTqma4lJcsZCN9QWzV+IKGQMz9ROHMVwmZJaS/vhb/tmdsOwisllAhGiEZCr4M
-	G8jCegEWhL2b7Qd/y3jqv54gU3rm5hH9A1EdwN9gzwc5XEEzuJ0xNNuM/6JgfW7ZNcqt+93F
-X-Received: by 2002:a05:6a00:b4b:b0:742:a91d:b2f5 with SMTP id d2e1a72fcca58-7489cffc1d9mr14008183b3a.13.1750113789727;
-        Mon, 16 Jun 2025 15:43:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF2aXV8oJypsRpDZPxj/05U7LtypB1Xusvh4lhxZelcO73oGUX5Ap4PiwGb7EjTXdxp3P6rGA==
-X-Received: by 2002:a05:6a00:b4b:b0:742:a91d:b2f5 with SMTP id d2e1a72fcca58-7489cffc1d9mr14008153b3a.13.1750113789276;
-        Mon, 16 Jun 2025 15:43:09 -0700 (PDT)
-Received: from hu-mrana-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74890083029sm7405077b3a.81.2025.06.16.15.43.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jun 2025 15:43:08 -0700 (PDT)
-From: Mayank Rana <mayank.rana@oss.qualcomm.com>
-To: linux-pci@vger.kernel.org, will@kernel.org, lpieralisi@kernel.org,
-        kw@linux.com, robh@kernel.org, bhelgaas@google.com,
-        andersson@kernel.org, mani@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
-        quic_shazhuss@quicinc.com, quic_msarkar@quicinc.com,
-        quic_nitegupt@quicinc.com, Mayank Rana <mayank.rana@oss.qualcomm.com>
-Subject: [PATCH v5 4/4] PCI: qcom: Add support for Qualcomm SA8255p based PCIe root complex
-Date: Mon, 16 Jun 2025 15:42:59 -0700
-Message-Id: <20250616224259.3549811-5-mayank.rana@oss.qualcomm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250616224259.3549811-1-mayank.rana@oss.qualcomm.com>
-References: <20250616224259.3549811-1-mayank.rana@oss.qualcomm.com>
+        bh=5R4pSmLptT/Kb44nIyS+WzGZxck97g8OPoP+XOYYK8A=;
+        b=KAeuga33lmL+gXFwiVstsOxt5JpAx0elE4MtevCb874vvYJdScFhhL0EO9kTQzUgrY
+         +879YbReBWM7bmlXbvnLHGloKOo6FjBHT882EmHqd/lWKAyU8xTb3VKmCR84Ci0ocFi8
+         6q/i2oMR7Cu6ZNoQSEahNUVchk5Kw1hxwyRtC0ZlLBtRvBlr/xDnYkIhD8QZvdMMxCSK
+         yMrFghZ1OPEABwBy5I4K+KNnLwQd9O3Oq4ndg+OpGUuazp+XghSUtgiQeqBjvt7fVBaf
+         /XrDMJLw8jd0BgA6HHUUm/bDVSXDgzXk7Cv5MAn+QZDWPu5o8vGjaN1ZML4JQDNxnKjK
+         aSHQ==
+X-Gm-Message-State: AOJu0Yx0MC74eeAoO2baTlKGpd2mUaSWcNabngQ/Z2qAzYQwUBf7eNlF
+	bdLKd1nNrlT4c1eOOgA+LybEFwqsK6Sk3ipvi33o2lpQ4KD29GJu3ivwIx+qwQY5w56GgvrKOP9
+	V6JIC7seKOjsi7vWHv155shVNB/IPtnCqZW4kjo4=
+X-Gm-Gg: ASbGncvhAXonvd69AF2A01R46AjPGf4dv6yaB2fFuDEr1lVx3NnV1o0wqN6yN6AkWOs
+	ZoCLZ4ISz50MEIzAVslzMdP97d3OfZt6OrNH3WKWfnAIGu/hlld2kntJ7rsbOdrI0NAwJE9R4d/
+	g8V0hbke/uHvkl50K2Q8ub//sdx944K1YUqQjWKH9Yd4a3G8Hns8d4BxE=
+X-Google-Smtp-Source: AGHT+IHm6auPEJtMnkU94uLPjc6NIM7ZkOvToQZS7Dmz7GpMYkKHVnKMxU6jbo9nW8qJiTLnohgynL5ysjAO1JOMd44=
+X-Received: by 2002:a17:907:7e89:b0:adb:e08:5e77 with SMTP id
+ a640c23a62f3a-adfad30ee96mr1099198166b.20.1750115267557; Mon, 16 Jun 2025
+ 16:07:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: vC4XheEuxVRNaQZkiS0hbP2iddzO0vUL
-X-Authority-Analysis: v=2.4 cv=BoedwZX5 c=1 sm=1 tr=0 ts=68509dff cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=2qsEFDsomqtw1e5O1FYA:9
- a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: vC4XheEuxVRNaQZkiS0hbP2iddzO0vUL
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDE2MiBTYWx0ZWRfX/5pD2+bOiKO3
- CqdjROAsYCietreNpwOEcfYFZ7IMSFOWmKxyVeVJTK4GsK50+x8dmj6AUgt+6kVTGL+w7w0cm4C
- YUKTy86kv/jyN7Zyr8ebZOVt8/fVOUBzchJddssyDMsNUQAkQxvfGKy0D0oyF/JmVSv7TeMz/3q
- fdJv4r7qleEV8HwW5LSwYLkhT1RtOJ6lieESXw52pO3BtR84tplOooN8swv0P4imkyYzhTeCA5Z
- N7njXq6MP9Xg96Y2v+PZORhsFna2HDPjDuDEg/wLfQfRog0P68ydsnbHeBP3H9B1iES7RAxRkbD
- /xM8JJW+ttbCj4OrPI6Zr7HMd2IgjsAjZJffCKpzgu50FlY8a6dEO+rAw1t5a4bq1/1Mhx4/yHl
- gGTKPXsPFLd4HoVFizna2FYnWkwIrtICB7fk1yE+pZyojn4S/y5rbW0Uw495zmZGxEARTClv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_11,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506160162
+References: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
+ <CAHp75Veq5Tms2X2j=hNuBt84mYrfKgYcbZpOVn49+7PhmeN+zw@mail.gmail.com>
+In-Reply-To: <CAHp75Veq5Tms2X2j=hNuBt84mYrfKgYcbZpOVn49+7PhmeN+zw@mail.gmail.com>
+From: Jean-Francois Lessard <jefflessard3@gmail.com>
+Date: Mon, 16 Jun 2025 19:07:36 -0400
+X-Gm-Features: AX0GCFsIc-MGILg8KeZNgfYod9hn49wkk-E6KO7NXpnEVVPqFoFQ8Tetxz9y1jc
+Message-ID: <CADsqogBYK1B1bO8RBYpUWWq6sX7kcBspZbtOVpOVFT+jMqDmRA@mail.gmail.com>
+Subject: Re: [RFC][DT] Guidance on device tree property prefix for
+ TM16XX-class LED display controllers
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: devicetree@vger.kernel.org, andy@kernel.org, geert@linux-m68k.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add functionality to enable resource management through firmware and
-enumerate ECAM compliant root complex on SA8255p ride platform, where
-PCIe root complex is firmware managed and configured into ECAM
-compliant mode.
+> So, have you looked at auxdisplay subsystem? It's mostly for 7-segment
+> displays and has some common libraries (and interfaces) for that.
 
-Signed-off-by: Mayank Rana <mayank.rana@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/Kconfig     |   1 +
- drivers/pci/controller/dwc/pcie-qcom.c | 116 +++++++++++++++++++++++--
- 2 files changed, 108 insertions(+), 9 deletions(-)
+Yes, I=E2=80=99ve looked at the auxdisplay subsystem; that=E2=80=99s what I=
+=E2=80=99m
+targeting. While these chips are LED controllers, in practice they=E2=80=99=
+re
+used by device manufacturers as auxiliary displays. I=E2=80=99ve implemente=
+d
+7-segment mapping using map_to_7segment.h as recommended, including
+exposing map_seg7 via DEVICE_ATTR.
 
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index d9f0386396ed..ce04ee6fbd99 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -296,6 +296,7 @@ config PCIE_QCOM
- 	select PCIE_DW_HOST
- 	select CRC8
- 	select PCIE_QCOM_COMMON
-+	select PCI_HOST_COMMON
- 	help
- 	  Say Y here to enable PCIe controller support on Qualcomm SoCs. The
- 	  PCIe controller uses the DesignWare core plus Qualcomm-specific
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index c789e3f85655..0c20e9e78e4d 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -21,7 +21,9 @@
- #include <linux/limits.h>
- #include <linux/init.h>
- #include <linux/of.h>
-+#include <linux/of_pci.h>
- #include <linux/pci.h>
-+#include <linux/pci-ecam.h>
- #include <linux/pm_opp.h>
- #include <linux/pm_runtime.h>
- #include <linux/platform_device.h>
-@@ -34,6 +36,7 @@
- #include <linux/units.h>
- 
- #include "../../pci.h"
-+#include "../pci-host-common.h"
- #include "pcie-designware.h"
- #include "pcie-qcom-common.h"
- 
-@@ -255,10 +258,12 @@ struct qcom_pcie_ops {
-   * @ops: qcom PCIe ops structure
-   * @override_no_snoop: Override NO_SNOOP attribute in TLP to enable cache
-   * snooping
-+  * @firmware_managed: Set if ecam compliant PCIe root complex is firmware managed
-   */
- struct qcom_pcie_cfg {
- 	const struct qcom_pcie_ops *ops;
- 	bool override_no_snoop;
-+	bool firmware_managed;
- 	bool no_l0s;
- };
- 
-@@ -1426,6 +1431,10 @@ static const struct qcom_pcie_cfg cfg_sc8280xp = {
- 	.no_l0s = true,
- };
- 
-+static const struct qcom_pcie_cfg cfg_fw_managed = {
-+	.firmware_managed = true,
-+};
-+
- static const struct dw_pcie_ops dw_pcie_ops = {
- 	.link_up = qcom_pcie_link_up,
- 	.start_link = qcom_pcie_start_link,
-@@ -1579,6 +1588,50 @@ static irqreturn_t qcom_pcie_global_irq_thread(int irq, void *data)
- 	return IRQ_HANDLED;
- }
- 
-+static void qcom_pci_free_msi(void *ptr)
-+{
-+	struct dw_pcie_rp *pp = (struct dw_pcie_rp *)ptr;
-+
-+	if (pp && pp->has_msi_ctrl)
-+		dw_pcie_free_msi(pp);
-+}
-+
-+static int qcom_pcie_ecam_host_init(struct pci_config_window *cfg)
-+{
-+	struct device *dev = cfg->parent;
-+	struct dw_pcie_rp *pp;
-+	struct dw_pcie *pci;
-+	int ret;
-+
-+	pci = devm_kzalloc(dev, sizeof(*pci), GFP_KERNEL);
-+	if (!pci)
-+		return -ENOMEM;
-+
-+	pci->dev = dev;
-+	pp = &pci->pp;
-+	pci->dbi_base = cfg->win;
-+	pp->num_vectors = MSI_DEF_NUM_VECTORS;
-+
-+	ret = dw_pcie_msi_host_init(pp);
-+	if (ret)
-+		return ret;
-+
-+	pp->has_msi_ctrl = true;
-+	dw_pcie_msi_init(pp);
-+
-+	return devm_add_action_or_reset(dev, qcom_pci_free_msi, pp);
-+}
-+
-+/* ECAM ops */
-+static const struct pci_ecam_ops pci_qcom_ecam_ops = {
-+	.init		= qcom_pcie_ecam_host_init,
-+	.pci_ops	= {
-+		.map_bus	= pci_ecam_map_bus,
-+		.read		= pci_generic_config_read,
-+		.write		= pci_generic_config_write,
-+	}
-+};
-+
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	const struct qcom_pcie_cfg *pcie_cfg;
-@@ -1593,11 +1646,52 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 	char *name;
- 
- 	pcie_cfg = of_device_get_match_data(dev);
--	if (!pcie_cfg || !pcie_cfg->ops) {
--		dev_err(dev, "Invalid platform data\n");
-+	if (!pcie_cfg) {
-+		dev_err(dev, "No platform data\n");
-+		return -EINVAL;
-+	}
-+
-+	if (!pcie_cfg->firmware_managed && !pcie_cfg->ops) {
-+		dev_err(dev, "No platform ops\n");
- 		return -EINVAL;
- 	}
- 
-+	pm_runtime_enable(dev);
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0)
-+		goto err_pm_runtime_put;
-+
-+	if (pcie_cfg->firmware_managed) {
-+		struct pci_host_bridge *bridge;
-+		struct pci_config_window *cfg;
-+
-+		bridge = devm_pci_alloc_host_bridge(dev, 0);
-+		if (!bridge) {
-+			ret = -ENOMEM;
-+			goto err_pm_runtime_put;
-+		}
-+
-+		/* Parse and map our configuration space windows */
-+		cfg = pci_host_common_ecam_create(dev, bridge,
-+				&pci_qcom_ecam_ops);
-+		if (IS_ERR(cfg)) {
-+			ret = PTR_ERR(cfg);
-+			goto err_pm_runtime_put;
-+		}
-+
-+		bridge->sysdata = cfg;
-+		bridge->ops = (struct pci_ops *)&pci_qcom_ecam_ops.pci_ops;
-+		bridge->msi_domain = true;
-+
-+		ret = pci_host_probe(bridge);
-+		if (ret) {
-+			dev_err(dev, "pci_host_probe() failed:%d\n", ret);
-+			goto err_pm_runtime_put;
-+		}
-+
-+		return ret;
-+	}
-+
- 	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
- 	if (!pcie)
- 		return -ENOMEM;
-@@ -1606,11 +1700,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 	if (!pci)
- 		return -ENOMEM;
- 
--	pm_runtime_enable(dev);
--	ret = pm_runtime_get_sync(dev);
--	if (ret < 0)
--		goto err_pm_runtime_put;
--
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
- 	pp = &pci->pp;
-@@ -1756,9 +1845,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 
- static int qcom_pcie_suspend_noirq(struct device *dev)
- {
--	struct qcom_pcie *pcie = dev_get_drvdata(dev);
-+	struct qcom_pcie *pcie;
- 	int ret = 0;
- 
-+	pcie = dev_get_drvdata(dev);
-+	if (!pcie)
-+		return 0;
-+
- 	/*
- 	 * Set minimum bandwidth required to keep data path functional during
- 	 * suspend.
-@@ -1812,9 +1905,13 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
- 
- static int qcom_pcie_resume_noirq(struct device *dev)
- {
--	struct qcom_pcie *pcie = dev_get_drvdata(dev);
-+	struct qcom_pcie *pcie;
- 	int ret;
- 
-+	pcie = dev_get_drvdata(dev);
-+	if (!pcie)
-+		return 0;
-+
- 	if (pm_suspend_target_state != PM_SUSPEND_MEM) {
- 		ret = icc_enable(pcie->icc_cpu);
- 		if (ret) {
-@@ -1849,6 +1946,7 @@ static const struct of_device_id qcom_pcie_match[] = {
- 	{ .compatible = "qcom,pcie-ipq9574", .data = &cfg_2_9_0 },
- 	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
- 	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
-+	{ .compatible = "qcom,pcie-sa8255p", .data = &cfg_fw_managed },
- 	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_sc8280xp },
- 	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_34_0},
- 	{ .compatible = "qcom,pcie-sc7280", .data = &cfg_1_9_0 },
--- 
-2.25.1
+> Naming for the vendor or for the properties? With applying it to
+> auxdisplay, some of the properties will be available without vendor
+> prefix.
 
+Regarding the property prefix: I meant the prefix for the properties.
+I didn=E2=80=99t find any existing auxdisplay properties that apply directl=
+y.
+The closest is segment-gpios, which doesn=E2=80=99t match this hardware. My
+understanding was that only generic properties (e.g., segment-gpios)
+go without a prefix, and that hardware-specific ones should have a
+vendor or class prefix. Is the preference within auxdisplay to drop
+prefixes even for properties that describe specific hardware
+characteristics (like digit grid or segment indices)?
+
+> The rest we can discuss when we see patches, I think.
+
+Any guidance on this before I prepare patches would be very helpful.
+
+FYI you can find the current draft of the driver and binding at:
+https://github.com/jefflessard/tm16xx-display
+(README.md, tm16xx.c, and
+Documentation/devicetree/bindings/auxdisplay/tm16xx.yaml)
+I=E2=80=99ll be happy to send proper patches once I know the direction for =
+the
+property naming.
+
+Thanks again for your time.
+
+Le lun. 16 juin 2025, 16 h 27, Andy Shevchenko
+<andy.shevchenko@gmail.com> a =C3=A9crit :
+>
+> On Mon, Jun 16, 2025 at 11:06=E2=80=AFPM Jean-Francois Lessard
+> <jefflessard3@gmail.com> wrote:
+> >
+> > Hi all,
+> >
+> > I=E2=80=99m working on preparing a new driver and device tree binding f=
+or
+> > auxiliary LED display controllers of the TM16XX class, and I=E2=80=99d =
+like to
+> > request guidance on property naming conventions before submitting a
+> > formal patch series.
+> >
+> > The driver (tentatively named tm16xx) supports LED controller chips
+> > that share a common hardware design and programming model, produced by
+> > multiple vendors, including:
+> > - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
+> > - FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
+> > - Princeton Technology Corp: PT6964
+> > - HBS: HBS658
+> >
+> > These devices are functionally compatible and appear in various
+> > consumer and embedded hardware (e.g., Android TV boxes) to control
+> > both 7-segment displays and custom icons that may look like this:
+> >
+> >           ---    ---       ---    ---
+> >  [WIFI]  |   |  |   |  -  |   |  |   |  [USB]  [PLAY]
+> >           ---    ---       ---    ---
+> >  [LAN]   |   |  |   |  -  |   |  |   |  [BT]   [PAUSE]
+> >           ---    ---       ---    ---
+>
+> So, have you looked at auxdisplay subsystem? It's mostly for 7-segment
+> displays and has some common libraries (and interfaces) for that.
+>
+> > My current binding defines properties describing hardware layout, for e=
+xample:
+> >
+> >     tm16xx,digits =3D /bits/ 8 <0 1 2 3>;
+> >     tm16xx,segment-mapping =3D /bits/ 8 <0 1 2 3 4 5 6>;
+> >     tm16xx,transposed;
+> >
+> > These describe hardware characteristics (grid/digit arrangement,
+> > segment mapping, transposed display output) that apply to this class
+> > of compatible hardware, regardless of vendor.
+> >
+> > My question: Given that these properties describe a common hardware
+> > class (rather than a specific vendor design or generic LED display
+> > behavior), what is the preferred naming convention?
+>
+> Naming for the vendor or for the properties? With applying it to
+> auxdisplay, some of the properties will be available without vendor
+> prefix.
+>
+> > 1. Should I retain a prefix like tm16xx, to represent this hardware
+> > class (as it is the most recognized functional family name)?
+> >
+> > 2. Should I instead pick an original vendor=E2=80=99s prefix (e.g., tit=
+anmec,)
+> > even though other vendors produce compatible chips?
+> >
+> > 3. Is there another convention recommended for hardware classes
+> > produced by multiple vendors with compatible designs?
+> >
+> > I want to ensure that the binding follows the preferred conventions
+> > for upstream acceptance and clean DT design.
+> >
+> > Any guidance or suggestions would be greatly appreciated!
+>
+> The rest we can discuss when we see patches, I think.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
 
