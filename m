@@ -1,177 +1,141 @@
-Return-Path: <devicetree+bounces-186294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523BBADAFCD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:06:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BCD0ADAFDE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ADFF3B8E3A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:03:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 511137A6924
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74215285C9C;
-	Mon, 16 Jun 2025 12:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571542E425B;
+	Mon, 16 Jun 2025 12:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EEyg/Hp6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5204285C84;
-	Mon, 16 Jun 2025 12:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDF02E4241;
+	Mon, 16 Jun 2025 12:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750075372; cv=none; b=luO96/XbZ2v7L9+gcbZVuVkT0v7APMxmFr7aQL2mEGY9VV9QBBTifywXN98GUIRaMI+6rgHMFeNDk3HEp635gq11w55i/3vOuT3/ZmqfzhoiRZRbc3u1GVaq/kimKy6rpvEw7VphjDrhs7aX1Tg2KxDu+/j6KNHSdKNQ/R+0tUg=
+	t=1750075821; cv=none; b=ROis3f7MOIlJhmAtkFNAayEsqZKs+eXD0gNBjWjrqNzt3nRltssFo9SIjX6iSTtQ1AkfrRIl+CSsXyNajW2grot9EFf2NKzcCbJwxyON6OTkbYQg3z92t8GzkTZWSC0SQPZp4Y9NOX9kP7K/yBOr4GfT8fUWOaI/GCY7lTXd1iI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750075372; c=relaxed/simple;
-	bh=vXBu7uwkxPOsvKdqrgHswhlxEEE0Wgvz5jbfmhZinlE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V5rHDoT0DKLlKiN9ZPLbBL30XsDHuYZDeiMQk1Hp85B322pgzRyU5yxkalvr238mx8CHKRjvGVE50iRCY2I62BMvF0D97qN0a63mK+qDGeHKDJhxoXthicXHwLI+FofsAEJoqNIfZsI3ZUj94D/Bwj9k9g2e7gC9GHgy6Gh+Wqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6face1d58dcso71264276d6.2;
-        Mon, 16 Jun 2025 05:02:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750075368; x=1750680168;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ploSucNH29V90v2689/j3svshD2BMkR3XA3gPmC2bbo=;
-        b=riUuZmO9ufJc4MSveocOo8GmGmLfU0uuiUQ1uwnSpfCZTKAXFPx/baansQRtTdb2rJ
-         A64CulxiJULe89sdLZwf3W0aN4DW4YrqhK2/MyNZQpDPLEmqWQ7KTZ3b5QJs1F7rir25
-         Aokr996IoDzNe0GkciujQyt7SnrbO7wkaDKYJKQcJVndKJcO3SlHDvF+qt2JKT/haR5h
-         uj/fIdHaXJdWPBHmjljLhrzPr0no1H2uzzjbpAVErpGNCU9K1HCWU16qRJyOTRLOP2ro
-         AdD/AeF/WYQiAmmmvXMP8xriIQ4O0vcGso0PoMdTq+M5TuEcSM1KG+he4ipRb0GrcYu7
-         DwiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUyiAxzoGGz9lAwOPoTvNt5lTW4Gzq9XPREOYbGniAKPPhTn4KolffL9bz+tqeIVH3UzHHNtz1cg5Gvs2Mp@vger.kernel.org, AJvYcCVqU/ylK5WXAKWQ8gQOK42dJJCuXlXSTBtVvX2L/SoMrMcl6zSu7I8DJFGaU1n8nZUtj07+BoheEk/6hJVtkbHFKyc=@vger.kernel.org, AJvYcCXHIaKAuHbNkMqfrbwLkw2o5MPDrfGMG21Jj62dQd+nBBkS1MqmmThjXM0hXEJLvVl6BG8yXdsqbWaS@vger.kernel.org, AJvYcCXLfLmWT2F7VM06HJY78LFWb7HDOXu3lYuW7zBzQCZJjdShzkCkvlYdfVWmZS8Gb/pt4lgTuVQG/MVO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzgiud/7pIXtnzAb1TpltoFnGZtEOUWnv8pG4gD/b8zdjZAvKQh
-	kQxqEdZeBuJXI82R3zpNIfV3ihiR/lCac3bNBdRDbOee4JOTGpJ/jSFepsoWB2bK
-X-Gm-Gg: ASbGncsFmQSeMiGpa4j0dJ3ttoS6gRyQiSKSBBiqQFFc1Ay0iOfSkDTv9oliVbkBnAW
-	rNZ86kumxvKhbg51M3Zj92NrhRPCZG5ng92tccZH8i0eOLIEq8T2yETZMPTqRZxfpwod4bdRbnM
-	0c+IA/t9fimcJa+4YQyEOoygCDF5JXlzgo/KtXvFFw9Jcsm5Y+rZI2f8JR4U9hwAcZIqXKLRuHl
-	GkHQ42y+wLBM+Z92OXSvHpubDPEZNefoNoMyudw97BF6qhoKGuYamZ/iDcxdbjEbTyMkqwrfhZT
-	WvwxB4PzqYvaJxt/3oUz7tTncwbPZvw1bEYHdi/4zfPcxzVgQTZKDk8voRK3oHpOsB3OeORoqjV
-	T45GiHYykd8aTDguhhMIRGqrlMvGR
-X-Google-Smtp-Source: AGHT+IGaSL4wf+lxi6xehLxilhn3urHlQbpFxBdgSiB38NiFFpsSt7fAX/o6XZC56+FVfkSeFjm/UQ==
-X-Received: by 2002:a05:6214:2b9b:b0:6fa:fe27:a249 with SMTP id 6a1803df08f44-6fb478103b0mr102407926d6.43.1750075367839;
-        Mon, 16 Jun 2025 05:02:47 -0700 (PDT)
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com. [209.85.222.181])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fb569796e2sm8847296d6.80.2025.06.16.05.02.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jun 2025 05:02:47 -0700 (PDT)
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7d2107eb668so716716785a.1;
-        Mon, 16 Jun 2025 05:02:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVc4QZxFF/bIDhVOXu8rIrL8/cuZ0hwVmmA61TcFErKUP+CVoyfe020UMUk8wfhuu8lq8OjEVDsd8SLOGC+cOdcj/8=@vger.kernel.org, AJvYcCVygQWqJ6baCDpylKTIKNhz+gImxkXn6d6ykjSwNSKa7vK+KjMVYSsq2KL3Z2ZnOdKdcLyAUTgmOP2F@vger.kernel.org, AJvYcCW5HoseMoeOuraGAg0V2WN5WddH/Na1pCNUgzbjNOz52JmJnR58v8yA+fhugWgdOdamoUdldlKqJ/f6@vger.kernel.org, AJvYcCWvpzKz3fJwnwGGUQNZ2dKw++FhHh4QpCJNWi3cpq5EgJQUE9bzXhaRG1rTCbuURL0gYrjcBW+B+/cZC9If@vger.kernel.org
-X-Received: by 2002:a05:620a:2a03:b0:7d3:8df8:cc04 with SMTP id
- af79cd13be357-7d3c6cc98efmr1411274185a.35.1750075366742; Mon, 16 Jun 2025
- 05:02:46 -0700 (PDT)
+	s=arc-20240116; t=1750075821; c=relaxed/simple;
+	bh=ojwhMmVeMqnjZosqlXZruxACtgqBN03bmbQ1B9/E6UI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q8C9cYtqz5m9yAOQCPvXID20ipzJPAQfzxxLLK5b1kuY+IHswAwlRE9o82d2tqkyduimfDEANlwQtIEHoYKYws9EauiDjqj3L/r1Hs49+L5C5w0YEg5QhONnQtScjaGBMRxQhbdlhXsZSWxCoushX1W8DO3D5cVq3cetzcH+e8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EEyg/Hp6; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0D9D0205B1;
+	Mon, 16 Jun 2025 12:10:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750075816;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QAo/rJoPJaVKk6/wqH24mlqd1olNxReIFJb4vfD2uts=;
+	b=EEyg/Hp645fFSuxaOy1mGDBN/y7qfmX8LqB/i8dgo50hV3oMUizGP9yaXCwt8Uje6kL6mF
+	gaqkgdO7z48gIBDUevCzrzPtYR8MDj1kx7EswQ3jQ2H5ktr1DQc7sgpQeewIdsM7hUlgfp
+	7ID3oNq3HthGCYZouA303VyDmFOulN4ytAbGKe81xPFZUl8fj1Ra5xsWoLvZcQTbQxz8c+
+	SHJzrT/vPkt/jhCpfo9i8UJg10Gen0Xm3T/fJs0DVnjQXKlyhWNjwsNQYKZw7/UJIkfzDz
+	H3e6tKQv5vN3ibI7n13bmW79ZKg/AuleT1HH36zfa7J8HOsWdIdgug9RLxL8Cw==
+Date: Mon, 16 Jun 2025 14:10:12 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
+ <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
+ <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
+ <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
+ Brown <broonie@kernel.org>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
+ Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v13 02/13] net: pse-pd: Add support for
+ reporting events
+Message-ID: <20250616141012.31305f81@kmaincent-XPS-13-7390>
+In-Reply-To: <20250616135722.2645177e@kmaincent-XPS-13-7390>
+References: <20250610-feature_poe_port_prio-v13-0-c5edc16b9ee2@bootlin.com>
+	<20250610-feature_poe_port_prio-v13-2-c5edc16b9ee2@bootlin.com>
+	<20250614121843.427cfc42@kernel.org>
+	<20250616135722.2645177e@kmaincent-XPS-13-7390>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMuHMdW_89naftFMo881zp=7QGJDznFzzqLQ-kLEuyJ=KJWQnA@mail.gmail.com>
- <20250613220104.GA986309@bhelgaas>
-In-Reply-To: <20250613220104.GA986309@bhelgaas>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 16 Jun 2025 14:02:34 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU=+Hxz09DJeVOhZ1N5yS=UJgMsr5R40KBeu=ftoq4zrw@mail.gmail.com>
-X-Gm-Features: AX0GCFvGpF0UKvY33FJrsFmSliyEKvidiVPDSH8oJwCDkQnKl_S7otDQDQqSNxs
-Message-ID: <CAMuHMdU=+Hxz09DJeVOhZ1N5yS=UJgMsr5R40KBeu=ftoq4zrw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] PCI/pwrctrl: Add optional slot clock to pwrctrl
- driver for PCI slots
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	linux-arm-kernel@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Anand Moon <linux.amoon@gmail.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddvieehgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvjedprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiiv
+ ghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hi Bjorn,
+Le Mon, 16 Jun 2025 13:57:22 +0200,
+Kory Maincent <kory.maincent@bootlin.com> a =C3=A9crit :
 
-On Sat, 14 Jun 2025 at 00:01, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> On Thu, Jun 12, 2025 at 03:16:45PM +0200, Geert Uytterhoeven wrote:
-> > On Sat, 7 Jun 2025 at 21:46, Marek Vasut
-> > <marek.vasut+renesas@mailbox.org> wrote:
-> > > Add the ability to enable optional slot clock into the pwrctrl driver.
-> > > This is used to enable slot clock in split-clock topologies, where the
-> > > PCIe host/controller supply and PCIe slot supply are not provided by
-> > > the same clock. The PCIe host/controller clock should be described in
-> > > the controller node as the controller clock, while the slot clock should
-> > > be described in controller bridge/slot subnode.
-> > >
-> > > Example DT snippet:
-> > > &pcicontroller {
-> > >     clocks = <&clk_dif 0>;             /* PCIe controller clock */
-> > >
-> > >     pci@0,0 {
-> > >         #address-cells = <3>;
-> > >         #size-cells = <2>;
-> > >         reg = <0x0 0x0 0x0 0x0 0x0>;
-> > >         compatible = "pciclass,0604";
-> > >         device_type = "pci";
-> > >         clocks = <&clk_dif 1>;         /* PCIe slot clock */
-> > >         vpcie3v3-supply = <&reg_3p3v>;
-> > >         ranges;
-> > >     };
-> > > };
-> > >
-> > > Example clock topology:
-> > >  ____________                    ____________
-> > > |  PCIe host |                  | PCIe slot  |
-> > > |            |                  |            |
-> > > |    PCIe RX<|==================|>PCIe TX    |
-> > > |    PCIe TX<|==================|>PCIe RX    |
-> > > |            |                  |            |
-> > > |   PCIe CLK<|======..  ..======|>PCIe CLK   |
-> > > '------------'      ||  ||      '------------'
-> > >                     ||  ||
-> > >  ____________       ||  ||
-> > > |  9FGV0441  |      ||  ||
-> > > |            |      ||  ||
-> > > |   CLK DIF0<|======''  ||
-> > > |   CLK DIF1<|==========''
-> > > |   CLK DIF2<|
-> > > |   CLK DIF3<|
-> > > '------------'
-> > >
-> > > Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > Reviewed-by: Anand Moon <linux.amoon@gmail.com>
-> > > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > Bartosz: Any chance you can apply this patch to an immutable branch,
-> > so I can merge that before taking the other two patches?
-> > The alternative is to postpone the DTS patches for one cycle.
->
-> I applied this patch only to pci/pwrctrl for v6.17 and made a note
-> that the commit should be immutable:
->
->   66db1d3cbdb0 ("PCI/pwrctrl: Add optional slot clock for PCI slots")
->
-> We will likely add other pwrctrl patches to this branch during this
-> cycle; I assume that will be OK as long as 66db1d3cbdb0 remains
-> untouched, right?
+> Le Sat, 14 Jun 2025 12:18:43 -0700,
+> Jakub Kicinski <kuba@kernel.org> a =C3=A9crit :
+>=20
+> > On Tue, 10 Jun 2025 10:11:36 +0200 Kory Maincent wrote: =20
+> > > +static struct net_device *
+> > > +pse_control_find_net_by_id(struct pse_controller_dev *pcdev, int id,
+> > > +			   netdevice_tracker *tracker)
+> > > +{
+> > > +	struct pse_control *psec, *next;
+> > > +
+> > > +	mutex_lock(&pse_list_mutex);
+> > > +	list_for_each_entry_safe(psec, next, &pcdev->pse_control_head,
+> > > list) {   =20
+> >=20
+> > nit: _safe is not necessary here, the body of the if always exits after
+> > dropping the lock =20
+>=20
+> Indeed, I will drop it.
+>=20
+> > Do you plan to add more callers for this function?
+> > Maybe it's better if it returns the psec pointer with the refcount
+> > elevated. Because it would be pretty neat if we could move the=20
+> > ethnl_pse_send_ntf(netdev, notifs, &extack); that  pse_isr() does
+> > right after calling this function under the rtnl_lock.
+> > I don't think calling ethnl_pse_send_ntf() may crash the kernel as is,
+> > but it feels like a little bit of a trap to have ethtool code called
+> > outside of any networking lock. =20
+>=20
+> Ok. My aim was to put the less amount of code inside the rtnl lock but if=
+ you
+> prefer I will call ethnl_pse_send_ntf() with the lock acquired.
 
-Great, I will merge that branch, and will apply the DTS patches on top.
-Thanks!
+psec pointer is private to pse so we will have something like the following.
+Is it ok for you ?
 
-Gr{oetje,eeting}s,
+psec =3D pse_control_find_by_id(pcdev, i, &tracker);
+rtnl_lock();
+if (psec && psec->attached_phydev &&
+    psec->attached_phydev->attached_dev)
+	ethnl_pse_send_ntf(psec->attached_phydev->attached_dev, notifs,
+			   &extack);
+rtnl_unlock();
+pse_control_put(psec);
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
