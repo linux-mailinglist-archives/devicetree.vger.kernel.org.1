@@ -1,194 +1,113 @@
-Return-Path: <devicetree+bounces-186233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50DCDADACC0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:00:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1133ADACF1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50B3B16FA02
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:00:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92CA1188CF63
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB00277807;
-	Mon, 16 Jun 2025 09:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAAB42EB5BC;
+	Mon, 16 Jun 2025 09:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="eGf3s0Dn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PvsnX9U4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1948A2750E5;
-	Mon, 16 Jun 2025 09:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9CD2E7F1B;
+	Mon, 16 Jun 2025 09:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750067929; cv=none; b=UXrUGx0Vzhjpyn8/pH7dSnQKL4Ylic84JOPZDD6FWqzbhLz7fVyUnMHBHHQ+WHkZvgrZT+S4tXj1Ni7PgXFXnP1ZNR1ACNk2Iau7KZrxnCYLo7AH3gYzG5PFJg4+k6rHuoHyQBg02tzpfcD2ycSHcEM3gvXfgfjZjAYgc1PDIX0=
+	t=1750067991; cv=none; b=LVxYW4PiOjaM3QeU/iLdFI1LU8rsKQgcO3fg7wC5y2sCduFZCIZl9fY5fi1bJuiuetw90dWoTMxtCk2aJ+sw6rm87cK5KfubIowoIOq2KU75MODaMNIpMBdgR+lVsgdvMFrVK8ck5x+KR2CqGfVuqJwsiKQIFXKb4hQ6Q6btY7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750067929; c=relaxed/simple;
-	bh=owery2Y9xho1bAvAYoxF0F6uDfB7KsKdTzyV/Nr07xM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tB5W14J7Qf9aoOjhLZ9Cqw4v3yORDf4VWwOKm3yoWnXYb5kuaXHE1bweaHo5/7BL9Ral4HMRvp5vKmd8ZGRmDok4dErmNewzNn4zISLEOpFJ5iMxlOs3ds0MJznrwaoeNFt9ml/GyOHFVZpjbM8oACXlqLwXIq6Zpk9Chdvz9qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=eGf3s0Dn; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout1.routing.net (Postfix) with ESMTP id 0FF9A41AAA;
-	Mon, 16 Jun 2025 09:58:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1750067925;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mw75z6h4HeFha6AF7YI1R1VXg23z1dS7Y1C1o8vw7rQ=;
-	b=eGf3s0DnOxdkyJ/bqKhPYLUNNu8lm1EH/gFkuSpNKsWX+3qZuQNyRwASfKEMGEm2fQoDTf
-	O69zsIH/WgY96o7CRTYc7NKZH53QlTbgh+Pp3GprVlMs6sxL/68rBMojwDKx2iY0f4yRFQ
-	HmWWR8lAQTkKU8pFEi1ptWI5CmAJiQ4=
-Received: from frank-u24.. (fttx-pool-194.15.87.210.bambit.de [194.15.87.210])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id A7FE4122704;
-	Mon, 16 Jun 2025 09:58:44 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Jia-Wei Chang <jia-wei.chang@mediatek.com>,
-	Johnson Wang <johnson.wang@mediatek.com>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 13/13] arm64: dts: mediatek: mt7988a-bpi-r4: configure switch phys and leds
-Date: Mon, 16 Jun 2025 11:58:23 +0200
-Message-ID: <20250616095828.160900-14-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250616095828.160900-1-linux@fw-web.de>
-References: <20250616095828.160900-1-linux@fw-web.de>
+	s=arc-20240116; t=1750067991; c=relaxed/simple;
+	bh=DHwnW5tWKwgmW1+X3cVu0d99P45MmBzMs9DpMm2Wt5Y=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=CUcJN/vjzRAxMqinn1D1iWm17hPFSoVeHMLRQV+e48L2nMi0yz0SGEuUouxMkCV6VznVs3qL4gfGOE6s+fbsa0XE4bNDW/X5RdmTQCJhnGPakdpykVrOfqd2ZyB6vANkwCBKiXCzgxa6Rh78zIgABH4Gg7bcnAivnrVKwzRoZak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PvsnX9U4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97CDFC4CEEA;
+	Mon, 16 Jun 2025 09:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750067991;
+	bh=DHwnW5tWKwgmW1+X3cVu0d99P45MmBzMs9DpMm2Wt5Y=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=PvsnX9U4GYzvBesH8XXm2KHkmR6LqFo5OwzydWbMpSu7JzEo/j5nJWoFE3yEG30VB
+	 2dgoe7ShIAy9R+5Pa/nTfrXVJZnSFVCmzUGD1DFAEgi4Ez17x7SUTQRoC0eI/kztZJ
+	 m0tY9mHwAkgOLVfXdJHCBE268C5f7LuicaH0U3bUieXWHSsuU5RlBn5/BpUvTHNwQN
+	 Ki/2SXWXGxT61dlH1foEjDnTcK4d8wFwWxOYPAKv6nqXG1pFBEUAW/dhL/vTJ1bHqf
+	 LJhRyBGU1adsQDT+XBlhgfkypwZvacBlQtKEDzYoS+9uYWUAfpEZoOF0yXLIBC+LZ7
+	 GYaVo3SH2PwJA==
+Date: Mon, 16 Jun 2025 04:59:49 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>, kernel@axis.com, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Pavel Machek <pavel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Johan Adolfsson <johan.adolfsson@axis.com>
+In-Reply-To: <20250616-led-fix-v5-2-f59c740831ab@axis.com>
+References: <20250616-led-fix-v5-0-f59c740831ab@axis.com>
+ <20250616-led-fix-v5-2-f59c740831ab@axis.com>
+Message-Id: <175006798950.3330655.3341024776863428708.robh@kernel.org>
+Subject: Re: [PATCH v5 2/2] dt-bindings: leds: lp50xx: Document child reg,
+ fix example
 
-From: Frank Wunderlich <frank-w@public-files.de>
 
-Assign pinctrl to switch phys and leds.
+On Mon, 16 Jun 2025 09:57:09 +0200, Johan Adolfsson wrote:
+> The led child reg node is the index within the bank, document that
+> and update the example accordingly.
+> 
+> Signed-off-by: Johan Adolfsson <johan.adolfsson@axis.com>
+> ---
+>  .../devicetree/bindings/leds/leds-lp50xx.yaml        | 20 ++++++++++++++------
+>  1 file changed, 14 insertions(+), 6 deletions(-)
+> 
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-v4:
-- reorder switch phy(-led) properties
-v2:
-- add labels and led-function and include after dropping from soc dtsi
----
- .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-index 4d709ee527df..7c9df606f60d 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-@@ -4,6 +4,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
-+#include <dt-bindings/leds/common.h>
- 
- #include "mt7988a.dtsi"
- 
-@@ -152,6 +153,66 @@ &gmac2 {
- 	sfp = <&sfp1>;
- };
- 
-+&gsw_phy0 {
-+	pinctrl-0 = <&gbe0_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy0_led0 {
-+	function = LED_FUNCTION_WAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port0 {
-+	label = "wan";
-+};
-+
-+&gsw_phy1 {
-+	pinctrl-0 = <&gbe1_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy1_led0 {
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port1 {
-+	label = "lan1";
-+};
-+
-+&gsw_phy2 {
-+	pinctrl-0 = <&gbe2_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy2_led0 {
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port2 {
-+	label = "lan2";
-+};
-+
-+&gsw_phy3 {
-+	pinctrl-0 = <&gbe3_led0_pins>;
-+	pinctrl-names = "gbe-led";
-+};
-+
-+&gsw_phy3_led0 {
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+	status = "okay";
-+};
-+
-+&gsw_port3 {
-+	label = "lan3";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
--- 
-2.43.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml: patternProperties:^multi-led@[0-9a-f]$:patternProperties:^led@[0-9a-f]+$:properties:reg: {'maxItems': 1, 'items': [{'minimum': 0, 'maximum': 2}], 'description': 'This property denotes the index within the LED bank. The value will act as the index in the multi_index file to give consistent result independent of devicetree processing order.'} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml: patternProperties:^multi-led@[0-9a-f]$:patternProperties:^led@[0-9a-f]+$:properties:reg: 'anyOf' conditional failed, one must be fixed:
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	1 is less than the minimum of 2
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250616-led-fix-v5-2-f59c740831ab@axis.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
