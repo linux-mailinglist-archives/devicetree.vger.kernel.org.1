@@ -1,111 +1,99 @@
-Return-Path: <devicetree+bounces-186351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BCDADB5BA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:44:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82BFDADB5C6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:46:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D08653B171F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:44:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D98B188F62E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:45:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0AE270ED9;
-	Mon, 16 Jun 2025 15:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pNxQ978V"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C31220F5B;
+	Mon, 16 Jun 2025 15:45:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFBB269CF0;
-	Mon, 16 Jun 2025 15:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FD145C0B;
+	Mon, 16 Jun 2025 15:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750088664; cv=none; b=qwIByfyWx5j7qix6Jj2V8eF+rwmNeVuaw1HL4k07hae82+FN8xcZcbjpff3PgtDWwj20NaMYie9wgnFBHZ1TzxU7Ari3+HOUgAbpWyQ0+Kq5C9/kqwA38n6zO4N1YsdkPiUfSNnsT/FP7P5vPnyP1gp6g7qbYSwdrlq+D0CtDpM=
+	t=1750088724; cv=none; b=L+iuLNjrE4W3lMaw+Jn/q3o6vSOwMymCVZksDOZx0VZVcg3xv8mOsz+dRxKTUFlMOzhvsarOUU7Pfe/kTA0C6Mto0MMFM7muk4vV0tBLbhO303OGMU5NO04vh54ACcbkNvJT3WXwJuKyE+oR+gYiX3R1RbYwke7GGKmf6QGLisM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750088664; c=relaxed/simple;
-	bh=zMy+y5c/8mfi8FAA89LQATnBS6oZZIjVu32K5ipEiDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c0LxtxADlvLQWD4jpYpYVjHILSAD5zCqd6myAzozoSXduSJCHEwbv+iGyIFcbllGaIzd9LZ2eUsdCWOP6PHTbtOEZqfLoLq/z/uHKHZonH7/oQgyc0AlSNbXXU9s/kG/R7Yq0L260IT8Ka3KiuJu0XYA6v61dDZmTIXT15viQ/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pNxQ978V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1237C4CEEA;
-	Mon, 16 Jun 2025 15:44:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750088663;
-	bh=zMy+y5c/8mfi8FAA89LQATnBS6oZZIjVu32K5ipEiDQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pNxQ978VmTyHAQQ9sM1UZUhVQbkOiaADT141E3DfFXEwOcwu4qEMxMTh1IVstEQGt
-	 3PAOJqTKVY8HfvN8cTN+fK2oxDoJ5AkhIlaCRGObXvujSzMrFcaJcYwLfG+Trvg6w4
-	 j921Hfcu+9Nad7s08+IUQFyT3vv1PWMl9FhwEnuqJUBBkMYATf9ppHtqBITbPsM6GW
-	 GeYE5rVpfhm4iainanvkEnHIJwvNF5wE41xpDPrJNfogRb8E6LNirFmNMK9YjpYFnn
-	 p4RkLzn4dxmNQis5Lpyt2r5WaU8IX0y2FEu0CFHx0mShhxY9FLCXOesN5eMnYGP5KQ
-	 EpOZ60DvuS6BQ==
-Date: Mon, 16 Jun 2025 17:44:20 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: lee@kernel.org, alexandre.torgue@foss.st.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, wbg@kernel.org, jic23@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	olivier.moysan@foss.st.com
-Subject: Re: [PATCH v3 4/8] pwm: stm32: add support for stm32mp25
-Message-ID: <hsmkc6ydsyjgyq7dkhvcytqrn6uu7ezngknetshkf4kj4mjt3i@3hgg42aq3sd5>
-References: <20250110091922.980627-1-fabrice.gasnier@foss.st.com>
- <20250110091922.980627-5-fabrice.gasnier@foss.st.com>
+	s=arc-20240116; t=1750088724; c=relaxed/simple;
+	bh=OmdmJGziaB0kKJKLg50TcUb1C6yOxIqtgjogQETwV2k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=djvnLYId6WoTypTcKWZjgGIfJamIdz3QuuQoP5WEPb7hQgU4dkp4dkuIy3u6VTR4Pc2rVR25KWsKBIl0hjU22MtI8r5aDcsoLsjtH+L8YwOTleowCWbFZy9P1ogNivZ0bS7ZWAi1RQsffHxt6HcmltWHboZlm98D+BH2f9I4jKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bLZ8G49LMz9ssn;
+	Mon, 16 Jun 2025 17:45:18 +0200 (CEST)
+From: Remo Senekowitsch <remo@buenzli.dev>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Mark Brown <broonie@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Remo Senekowitsch <remo@buenzli.dev>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org
+Subject: [PATCH v1 0/3] Add Rust bindings for device property child nodes and reference args
+Date: Mon, 16 Jun 2025 17:45:08 +0200
+Message-ID: <20250616154511.1862909-1-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ezyzxvlev7k4prvr"
-Content-Disposition: inline
-In-Reply-To: <20250110091922.980627-5-fabrice.gasnier@foss.st.com>
+Content-Transfer-Encoding: 8bit
 
+This patch series was split-off from an earlier one. [1]
 
---ezyzxvlev7k4prvr
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 4/8] pwm: stm32: add support for stm32mp25
-MIME-Version: 1.0
+changes in v1 (compared to previous patch series):
+* Fix resource leak of `FwNodeReferenceArgs`.
+* Improve documentation of the type invariants of `FwNodeReferenceArgs`
+  and how they are upheld at crate-internal use-sites.
+* Remove derived implementation of `Clone` of `FwNodeReferenceArgs`.
+  It would be unsafe according to the new type invariants.
+* Add `Debug` implementation for `FwNodeReferenceArgs`.
+* Add examples.
 
-Hello Fabrice,
+Best regards,
+Remo
 
-On Fri, Jan 10, 2025 at 10:19:18AM +0100, Fabrice Gasnier wrote:
-> Add support for STM32MP25 SoC. Use newly introduced compatible to handle
-> new features along with registers and bits diversity.
-> The MFD part of the driver fills in ipidr, so it is used to check the
-> hardware configuration register, when available to gather the number
-> of PWM channels and complementary outputs.
->=20
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+[1] https://lore.kernel.org/lkml/20250611102908.212514-1-remo@buenzli.dev/
 
-Applied to
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
-next
-=2E
+Remo Senekowitsch (3):
+  rust: device: Add child accessor and iterator
+  rust: device: Add property_get_reference_args
+  samples: rust: platform: Add property child and reference args
+    examples
 
-Thanks for your patience
-Uwe
+ drivers/of/unittest-data/tests-platform.dtsi |   7 +
+ rust/kernel/device/property.rs               | 158 +++++++++++++++++++
+ samples/rust/rust_driver_platform.rs         |  13 +-
+ 3 files changed, 177 insertions(+), 1 deletion(-)
 
---ezyzxvlev7k4prvr
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.49.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhQO9IACgkQj4D7WH0S
-/k5Gygf9Gy+dDmATpLY1NSgEaVsqseEX8U1OK8Qr0hXVS6DWdx1yiKu/usPB/Ns8
-KlFNa+c0Yd/lDEYjkvaLr0FmmGazj3yReZB7iuTBjo42rR4ZMg70Ch92UmhZL4JQ
-jWYv+ZLzvdDvyEN1mtPizoYrwazqtK+9ajkbSgIWORogLWD2ieG12tfwpE0FjPjB
-IkdnMX9NbFB777pXHx8JZTux0YzwmZ9Y6grswoV2Rdlor2xxm/atUWqAE0g8qRzM
-QFCOVen4t50xS6ptchwAsDwMRIrDfmVaiMg3T8tC55Fpix5GOkkzFfunE33BqDhi
-kt5RKeBIclzLIGFvx72daCwUDZqidg==
-=4Cak
------END PGP SIGNATURE-----
-
---ezyzxvlev7k4prvr--
 
