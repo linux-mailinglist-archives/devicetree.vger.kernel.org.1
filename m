@@ -1,132 +1,195 @@
-Return-Path: <devicetree+bounces-186099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E658ADA61B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 03:48:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C832FADA62F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 04:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F55716D276
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 01:48:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBE49188D074
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 02:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0947F19DF6A;
-	Mon, 16 Jun 2025 01:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1BC288502;
+	Mon, 16 Jun 2025 02:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="PHMLFk1S"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="oWlLOnMR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2099.outbound.protection.outlook.com [40.107.92.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F46D3C465
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 01:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750038503; cv=none; b=mZYNrd/DtXZEWr3LaQaDTNmR2Pp5Ra2ZWHHaz1NSoj5ACSzZABkb/a4s4GVZDo64/ZBei0GUaqv4h9YutsM0yOwuW3c8W3shsJJX8jqKGA7P0802SUnnjrMo7AvxRzKRRjODu0HdT0yDSIR1ylMFQ6Uo8Y14hOshMBg1eN1WFvk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750038503; c=relaxed/simple;
-	bh=EOzSlHGrohqg16jZUYXWufW0vuZiNjJeJ11ROGdnH0s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tL1lFReiK10Yq6ZY0kyYa5XJlx553d1wh9eEi7KD+EnbogZ/+hT2Uv0P85jNP8wiBIPP3mb8m1YZWk/+7GYFuFAgakNCH/L37gb2vv5W5eSqjFspnmqktoNMfsb/yiOauqUXd3lujYsKRehYkQGyTJFAXqYvHOEx6VjNFB6u2TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=PHMLFk1S; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e81cf6103a6so3302795276.3
-        for <devicetree@vger.kernel.org>; Sun, 15 Jun 2025 18:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1750038501; x=1750643301; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EOzSlHGrohqg16jZUYXWufW0vuZiNjJeJ11ROGdnH0s=;
-        b=PHMLFk1SFrlSDc+FW7PJvqlR1uqPj/vXiOwU6cmdrNVntcHkBakTg1kTbN3JI31xJW
-         p8wdASgjeL6IkJwyRYh9/1PMDano2pbkQWbgZD783fbNCQQv9P9Bs2xWTH8zi98Og9FZ
-         vy/lalsJLZ5XjgG8LvFiuKUEHzCAUDJH6nBtiYyZiPiHlMq1zw1bMeLUDtbfvApUmiU3
-         CoMGo5o1YhYj/J34rIdDgHfuYZEN8gATZ2QNphvbDGpo2fEm+AwK2vndXNjCN0jhClqB
-         4++p7McpYhL7LGLt+U5B2KZfMy2qP2EzepawP4ElyqD1aWIhw5mttF/ldM4DsUgceXHc
-         uHmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750038501; x=1750643301;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EOzSlHGrohqg16jZUYXWufW0vuZiNjJeJ11ROGdnH0s=;
-        b=CidNPPyhusiKpiUzQDDFE0Pmyg1BqGmgeHnJlda0lenQMQ8nytVuOa5YYp3ifDj2mm
-         j7vF2aFhPqmL29oh1nMSyaUhf55KhuL7uPurEyKLlDuSPaw86s9ieoNxh8KS9J6VBLvy
-         +e2sk3nXgBkGXGavk7uHD/dC4nyGVSHZhg1MDDpFLjIo4MXQIWKVOsZQaB84U/uHcvT9
-         f0ykB2Ub+t48J/cX0IBamefqgphPKbzChsWH83ZqRnsa8Bf9u+hvfGaW2TJ/pTZGluWu
-         Chip7kyrl6tZy29Ik8OX5+KN2F2S7e3U/AYbOj9zWR11ix1HIwgWds5C59ctNY7QDFRQ
-         UQ3g==
-X-Forwarded-Encrypted: i=1; AJvYcCWNlSo5V1harBWv/+dKcHSut7XFoaB01VjPTd9iMZzP5oizEjhDhvLDx1R2OHEz0oARQY1ami7JusSX@vger.kernel.org
-X-Gm-Message-State: AOJu0YysHBZTZGAHcnmFwLnlUzQJPDsEaIlgWr5KoJ00dzk0sOV4zPNp
-	UgbwvKOIGlou0HWhMiW+vKHl/9dCWPV8csAfFZOIgjb87VJHPQoJS4FagNllXATivMMm3vl4tGJ
-	DP+NnRc8CkcSz/RUVv16TYJsTqLisA/iytGOYUXVKgA==
-X-Gm-Gg: ASbGncs5VzpykC6+EiJL+YquiopxtgbFDwtqLs/aE6Dx+C2MshaJs25OGfNtNtHU/fp
-	pBh2//KxPSWiIjQymU0Rzh8b8ye59tIdUdxoWg3EC2gEc7bOTQEfTJTxhToj68VsP2Vct+/13oU
-	thxYMiJSOPb5vw2b6NCZ7lqsUkkA3u+Iywdeb+JtdEP1hreA==
-X-Google-Smtp-Source: AGHT+IFalCf8ZLoxrhpSKn9vCQOzYoFcnEfNXOj4LlRmMvOTsepmvXs4hWpCrqsUwKhOi0aW6UpNob7XRbuxVWD8Dgs=
-X-Received: by 2002:a05:6902:98e:b0:e7d:b107:d829 with SMTP id
- 3f1490d57ef6-e822acac597mr10474564276.34.1750038501428; Sun, 15 Jun 2025
- 18:48:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC013594C;
+	Mon, 16 Jun 2025 02:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.99
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750039788; cv=fail; b=u4xm+m6NUEun63OQ2pwDewB7TJNleS/c0WEdwWUS+gSVPprtiErB79qQqE+P1LCxaODDHN7ZUTHkGmXbbArfRm2l4qcdMd4TxUlZRId/ncLUgB/UW29hTy312ZoYmCONfrKBjA5WntEwYqkmqzE/QneoyJ3cI2LFT8+8xuvvcCU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750039788; c=relaxed/simple;
+	bh=tuqkjYRAPSl5a9pVl1yDCU01If5YSe4237FHtHfNPW4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=WhLg74pZkeTE2K3wZe37J/rwNCK16t1RcelsAHSk8NlJADZs6xPIH4ucDpiK580lyDxJpUo3iaflQ4AXIqRjJaNZsYubV5Cqf/ionePa9VIQmBnr65BCwy3nyZvSmAaqrWcbFM1lW93dbGC+R4BvbCeURTqXIg3LLyW9P0cxH1Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=oWlLOnMR; arc=fail smtp.client-ip=40.107.92.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iinXnb6ewJ5KVTiY4dEObtlhCEPfBBk10F0hZF+IxwhqfLDjfVIgcOeS0C4mcS52lBn5z6g6CgbAdf79qjXO2fq5rNF6a6MfHF1Lwz5mwNT0RFayCdB4vJHb+ZS4BiHmdmmB9fp+iMIvEU0rfRWf55Fw9gdLYY1fBGX9pFMsH6E1PtbCUSS8qm29Iqchx9pmxxLEbN6v24+RKXhqE3RXPR/SSiBlaOh5Mj2Mcs4ZxR54LYQNG7/SMwtmpoeqYWieB8mwdzL3tF8xsEcepkhS52kb38s5YSyEBG6o56Zuvd95MSM6NVmkuSgS0G7EwWsUnuqLZ7uY6oOEDueb0UkOvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tuqkjYRAPSl5a9pVl1yDCU01If5YSe4237FHtHfNPW4=;
+ b=qre2Dpx8CGQbO4mFPu1MbzpI1Y9dqnQqSxuBT+4ytFBJGH2keVj1cRygy8ytMyrK6jQup83SStJJgR7F8ewq8UapziSMHHFtI2wyFLcFWGt3IYKWK/NQO9j2JT0Wt0jMKA+CRa1XY3y7mbcWXTPnO1JQqjgYq0tsLZaxLg4sxT+ABJKlKW8bDu4WaR4GRXZI2+JGO2D7KXi4r1/iowtbVgH4Lb3mGx/Z6RIl+x51ZdlYLDvKm6ZShO+tnDJRAVvXcHqLJ02ZIfO+zGadDDy8Wb7+3fzpYK28jFbFVPd5b2P7gGz9/lfmUy89oEqYiQ41H0ZHkzVPhZReGlrybF6f5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
+ dkim=pass header.d=axiado.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tuqkjYRAPSl5a9pVl1yDCU01If5YSe4237FHtHfNPW4=;
+ b=oWlLOnMRTRy7kvUK813n05zPI/dzgf3v8POZXSYM2pdO60UXMxiK8z14BmUs+q9G4xxEhoaYheuz6Mddy5FBAw+LtJuzp+p1XF3+PKGCtRVUD0qKTGtqKsrW0aCVnh3C+n83ChXbqDe5AzpaFibgszuhlEAz58XhKeM8J23q7kHfO1dPJsNHzy2pZYG6x7+ht+s+Lr+2zKuiktwwNXVtq1tkIphhw5kM8Pf2Tpka1B4xdbWV/gjn2kXmB7SNIUNqtvu90n7pC9WlWxmuQQnqv3MrBYbGdTPCEfbxGA7zYPLx/09OE8WEa9LTaLOdE9xm5OMMZWtFsDwE99zCbXrDzg==
+Received: from IA0PPFBEC4B1F8E.namprd18.prod.outlook.com
+ (2603:10b6:20f:fc04::c3d) by CH4PR18MB6140.namprd18.prod.outlook.com
+ (2603:10b6:610:228::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.23; Mon, 16 Jun
+ 2025 02:09:43 +0000
+Received: from IA0PPFBEC4B1F8E.namprd18.prod.outlook.com
+ ([fe80::ca34:e235:13d9:3f5d]) by IA0PPFBEC4B1F8E.namprd18.prod.outlook.com
+ ([fe80::ca34:e235:13d9:3f5d%5]) with mapi id 15.20.8769.031; Mon, 16 Jun 2025
+ 02:09:42 +0000
+From: Harshit Shah <hshah@axiado.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, "soc@lists.linux.dev" <soc@lists.linux.dev>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Bartosz Golaszewski
+	<brgl@bgdev.pl>, "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 3/6] dt-bindings: gpio: gpio-cdns: convert to YAML
+Thread-Topic: [PATCH 3/6] dt-bindings: gpio: gpio-cdns: convert to YAML
+Thread-Index: AQHb3ZKw8W+lAWOWJUGyIStI3BwOqLQDhqWAgAGFfGg=
+Date: Mon, 16 Jun 2025 02:09:42 +0000
+Message-ID:
+ <IA0PPFBEC4B1F8E15CB49F4696E860FCC97D570A@IA0PPFBEC4B1F8E.namprd18.prod.outlook.com>
+References:
+ <20250614-axiado-ax3000-soc-and-evaluation-board-support-v1-0-327ab344c16d@axiado.com>
+ <20250614-axiado-ax3000-soc-and-evaluation-board-support-v1-3-327ab344c16d@axiado.com>
+ <174995610418.3364372.5364960681855010915.robh@kernel.org>
+In-Reply-To: <174995610418.3364372.5364960681855010915.robh@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PPFBEC4B1F8E:EE_|CH4PR18MB6140:EE_
+x-ms-office365-filtering-correlation-id: ed0d838b-3a83-4d38-a15f-08ddac7adbbc
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|10070799003|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?TdWbj6S6f+H1ksYvumZ0tBcH6v3pLxmeX9N47DVCqmywWZmlAlZIgahv6q?=
+ =?iso-8859-1?Q?GPmmlO3VtzB6REaUxptde9pontql6ypmAPGeDyDBtm7QHP97r0vnSP4DJf?=
+ =?iso-8859-1?Q?2NyVyTKIBBrHqvYXeKwmCp9p3hH4YmKZaIfUrBgZBV/4WhaSfdG81yDHWl?=
+ =?iso-8859-1?Q?+FR3sYxT3kZA2AMoNYwiK0ZseRFLxQVNzMQFTC2NTmCAdCfn8gKwO3+1u4?=
+ =?iso-8859-1?Q?G48iMr7bptwC7IYKZMGJftTa4/dbbT3iFnyA7Uh4Pgfl1dpqsCi/3DHDX5?=
+ =?iso-8859-1?Q?y4Xh279mTzADK4pQICa414U8eiUM3mC7Gg5k1X4p9OkJmpqCiD+ZlMlwmP?=
+ =?iso-8859-1?Q?RVJhw7xuwCs1ajcPqOy+ysxEa/Mmu+9o4RmXmX3jcIW9UyLb6nYj0tNl64?=
+ =?iso-8859-1?Q?kopze5npcCNpAnKDABEHnadFAGC8VztSDnOP5o5tv5JmIRvmXH8f96noKg?=
+ =?iso-8859-1?Q?KHvrcynErJwvyZ8vQuMp4aB27EhVURI3eKo5BipYxLGkxsio2X2hnE+qtS?=
+ =?iso-8859-1?Q?tv7w6Ojck0DqTTpDSF96l+b8QRaGsqkASIrsLqKbwfgGmbdYI2a87iERWy?=
+ =?iso-8859-1?Q?d+Q5+bi3B7gduVCm6Q56nfHhimNMizZnoR8+8DyEfgqF4RrZqBhFsvek+y?=
+ =?iso-8859-1?Q?H0LK8LKJ0JFG8q2byaOuG1hBAvwMaM/UiCrV31K64h9fAO3fGfQ2w59yPH?=
+ =?iso-8859-1?Q?ImY2cYKxOqNwx/Q/XN8k2Nukt3fiLoLOdBNJqVwRPOVt8+lUlGGWh4bWzb?=
+ =?iso-8859-1?Q?snaV82lxhlpTpgK9NBTdfSSpHkgMp8mcuC2tFJlaMVV3UnQWoyeZUcjKFy?=
+ =?iso-8859-1?Q?7xOo+WO8fY1TuG+3ht3Qc1NJDEZIPcsJDmX+hJMFnS70u462HXGChN0w2k?=
+ =?iso-8859-1?Q?d81IGToWJwBqQ9SAZhaW54PVSomg/Ia/qbf+wCLerVqvnK09xgJDoHhO1m?=
+ =?iso-8859-1?Q?gUm1L9bkavN7omuRfgZUwFZzeEOjW4f4avSbkS8zg/vpdd7LP1AwYMEVJd?=
+ =?iso-8859-1?Q?2sVFibdkPryCICqippcSagnmedttbVO1rs3PDl5Yu2q9ZckESnqAuA6g8U?=
+ =?iso-8859-1?Q?p/b8r7VC3ibX4mCOKrgHpZvTRRJxBnKUguIa1MTWlWrNTM1A7eQMSyIeY+?=
+ =?iso-8859-1?Q?kmW+LN3ebOHAra/9F5D3Gf0Qalc87f5syUk3AbWf3nkyvfY9p561B6JU8T?=
+ =?iso-8859-1?Q?7kcBmWutjhU5cvkoh9uSN2bwGYlTcXmzEiVQRDjrizygY+mqBd+2CZ/25c?=
+ =?iso-8859-1?Q?cuosn4uuP5XSSpMD7IgXj+TIGM4cvBaOXDNgrZS0pF3/yRpfNDQrXK8GQz?=
+ =?iso-8859-1?Q?o20CruP5Y+ADBJ5CnBBA8OjEMHZLRP2cmX6YjuGIcmT+4RkPZIdrTA3pb0?=
+ =?iso-8859-1?Q?l2la4gqWZLXqD2uPVQVhtjhrZiRLwwsLEOJb51c4zq55LUSHPYB9ciwIbB?=
+ =?iso-8859-1?Q?tU1SCdXcRZKqr8aDRGv4/kWQ5h+HFVmnVYZ72aeeCNbKGfdn8QHPTEuxRY?=
+ =?iso-8859-1?Q?JeSkusWOiRcaOEJTSTNor3zui3t4B6R6MUXemPCsrACg=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PPFBEC4B1F8E.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(10070799003)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?ccERSNWthzZSTWufNFoqqgUwQuf6KlvRZMJriiIYW3sBBpkeycK4oyW/6b?=
+ =?iso-8859-1?Q?z1h6uoXXPd/higOvJ2pSUSKV4vFHf0XGJgRzV2HE/IqhzouW9C7qjAu0Wi?=
+ =?iso-8859-1?Q?mgBudHSBSX1rwQLcwX2TQIw00uRF6/fiiTTAvmr8d4HhmuQmnL8VOXpAzS?=
+ =?iso-8859-1?Q?gUWy6qMExqIYxULuk8JFYFbFM53XUl1+KyfvMcvX3KVr7jKDjg3bJeltY9?=
+ =?iso-8859-1?Q?0PU2OJ9LyG0PepM2e+g/JEi6vFVXJeRXyLyDSxFaJcCj/r76EJcZn8gJwV?=
+ =?iso-8859-1?Q?7ljxTPI7aCsxJVn914ENP1dBoSQquTFscPXJxINYBItsKgktyJPxAeFwW6?=
+ =?iso-8859-1?Q?BWS5ntPAozwHVGG/msWuGXjPyfUekm7wb564xF9E2aBQZvkCpmIm3lrmq9?=
+ =?iso-8859-1?Q?32gUFCP6/AcWPVTsFX9HTwOqgsOV47DyyhuXrKeFvzHDgzwb/nep01p7ah?=
+ =?iso-8859-1?Q?HVgmREaDWb0dqlgn9Dv2H6rWTwwGEZkiiwHSBdXO4HW+DC1l1oal/BX0cm?=
+ =?iso-8859-1?Q?/5WFCbO1BFx+qpzYHeV9pIPhiF9zoDqBiKcmuCdkGwV+7+ytdiXmAAg8Lw?=
+ =?iso-8859-1?Q?mm+JKTPgK9gsXpN0QM4aXbkIePcvVyPqPCaxW6O9r75J8rk2qllKPIH3jX?=
+ =?iso-8859-1?Q?CwyLd7A9L6B1FO7tRiXB5DjucKTozbysqDrUaH2paJhu8h4yQ0zOtbDRRb?=
+ =?iso-8859-1?Q?990HWjeAyV3Y6oraZk7tq6+j7eCaiTq/6cdII8ZKrDWWWMJTpIkm3CbfxD?=
+ =?iso-8859-1?Q?p43Qo34t5vMf1GB1CAUvEbY/+DFU49bwBLhSoq5dyNFqzb9kSSagB8uSY4?=
+ =?iso-8859-1?Q?NxV4CyND0Ozl7QDYpVCjmoXEeKKUax8mJd9onKot6DZMiWe7IaXBsnzA43?=
+ =?iso-8859-1?Q?msPKS3d9apoN8H9Qv/+eErIMkcvGTsrIn5LFzxIQFfr4e7qg71qci0eUHc?=
+ =?iso-8859-1?Q?gFyyyFVDGn9mlgTrb7s+fETz3kr6os5pWK4DuF9EbCv/vF6+XA48dCGQrM?=
+ =?iso-8859-1?Q?abUwpaHVDGTtVolkbKDGcwb70gXnDYLvf8en4R1PP9INa4uBbAlTEDXC97?=
+ =?iso-8859-1?Q?fiO2iGryIwQOn4zhuvuzx2EmOoancPJWZp3VKyyYKxaiIBCmUgSQGTshJy?=
+ =?iso-8859-1?Q?7Hp7XxtCLE+crvkkUMezuXczg/Qd+ZaiE6EsZKSsatwJnvgDij+VDOdEyX?=
+ =?iso-8859-1?Q?LPnmYPa+Hqpc3/qxbuETL9bBQua/hZJQXdPnoS87u464AwMPoZyxE9/JjU?=
+ =?iso-8859-1?Q?UrY+9Puhqa0B2YbBntdgzb1OyaL7Ca2sFddobIhvoqp44P+S+V2zdFe44q?=
+ =?iso-8859-1?Q?sWAxLuYKYKAeUc2tS6cbvTqBP6YHu5SHoCQ6KqF7A8AoJe49Qgi3ZHq9zq?=
+ =?iso-8859-1?Q?IjG+sWtRA3+n8c6BXjzVJeGJIXs4h3nqO6t+nPLXjnuM63YG3wLpwcppCN?=
+ =?iso-8859-1?Q?BFpWYzRzcn+UM0LwEAEJYAJevZSITdlTJfzszcDelEfd0soBk/FIeftNb9?=
+ =?iso-8859-1?Q?rFV9EPI/J5BifxiumTx64X8gBHA/6xEvC0UG0ij9Q56gY2R0WMSyBUMu7e?=
+ =?iso-8859-1?Q?yGxa6lbnAJwTMfU9GTFB8JI1u0U5s60rITxc9VIL0KFa7LAmi5fW79cR93?=
+ =?iso-8859-1?Q?92xuzwzf8Go2O3rwJHeOjSfCKtl1qj+CzO6v3V6hYB9DcOdC4J+12R1+XC?=
+ =?iso-8859-1?Q?K89IZxQxXdvgLaqMLbg=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611031023.28769-1-nick.hu@sifive.com> <20250611031023.28769-2-nick.hu@sifive.com>
- <9c429671-8409-4911-8559-73a069d66964@kernel.org> <CAKddAkAyvRdAz9X_rCGgfdxD0Z_Q7sAt8e5nuJe7=s7G-Y3+AQ@mail.gmail.com>
- <19dd3d16-aadd-469c-a090-238baba14d4e@kernel.org>
-In-Reply-To: <19dd3d16-aadd-469c-a090-238baba14d4e@kernel.org>
-From: Nick Hu <nick.hu@sifive.com>
-Date: Mon, 16 Jun 2025 09:48:10 +0800
-X-Gm-Features: AX0GCFuk6UQINAiWg9qRWYn3jgDichbt9fCZYVL_UNVZi-NYRKmQpcuss8-kLqU
-Message-ID: <CAKddAkB=yeLCh3oVFeot45nTr3d0tZjfiV+YmWR-DWFb8w+=jg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: power: Add SiFive Domain Management controllers
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, Cyan Yang <cyan.yang@sifive.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PPFBEC4B1F8E.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed0d838b-3a83-4d38-a15f-08ddac7adbbc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2025 02:09:42.8502
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DfullSC4y27ITSLaEqxKX8EEB0iA6iOQUu+5JKzAonjO6I7JqGgiNWdo85VOK6moKt4xTEbveOIUQIfz2/KaCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH4PR18MB6140
 
-On Wed, Jun 11, 2025 at 3:20=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 11/06/2025 09:15, Nick Hu wrote:
-> > On Wed, Jun 11, 2025 at 2:57=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 11/06/2025 05:10, Nick Hu wrote:
-> >>> SiFive Domain Management controller includes the following components
-> >>> - SiFive Tile Management Controller
-> >>> - SiFive Cluster Management Controller
-> >>> - SiFive Core Complex Management Controller
-> >>>
-> >>> These controllers control the clock and power domain of the
-> >>> corresponding domain.
-> >>>
-> >>> However, Since we don't have a SoC specific compatible string yet, so
-> >>> add '- {}' for the first entry [1][2].
-> >>
-> >>
-> >> But you must have Soc specific compatible strings. See previous discus=
-sion.
-> >>
-> > Maybe I'm missing something, but since we don't have a SoC-specific com=
-patible
-> > string yet, I thought we agreed to include a `- {}` as the first
-> > entry, along with an
-> > explanation in both the commit message and comments [1].
-> But your commit msg does not explain. You need to explain why you do not
-> have SoC specific compatibles. Saying "I do not have a SoC specific
-> compatible" is not an argument explaining why you do not have SoC
-> specific compatible.
->
-You're right. How about updating the commit msg to "When the SoCs are
-ready, we will add the SoC compatible string at that time" ?
-
-Best regards,
-Nick
+=0A=
+=0A=
+> My bot found errors running 'make dt_binding_check' on your patch:=0A=
+=0A=
+Hi Rob,=0A=
+=0A=
+Thank you for the review.=0A=
+=0A=
+I have verified that the dt_binding_check is passing without errors. Howeve=
+r, check_patch.pl is giving warning about the DT binding docs and includes.=
+=0A=
+=0A=
+checkpatch.pl: dev/null:10: WARNING: DT binding docs and includes should be=
+ a separate patch. See: Documentation/devicetree/bindings/submitting-patche=
+s.rst=0A=
+checkpatch.pl: Documentation/devicetree/bindings/gpio/gpio-cdns.yaml:-1: WA=
+RNING: DT binding docs and includes should be a separate patch. See: Docume=
+ntation/devicetree/bindings/submitting-patches.rst=0A=
+=0A=
+I am unsure about how to split files as suggested, could you please advise?=
+ =0A=
 
