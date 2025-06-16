@@ -1,126 +1,167 @@
-Return-Path: <devicetree+bounces-186218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D21ADABDB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:25:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1102ADABB2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:22:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74FB17AA58D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:23:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DACC1890FDF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23D92749DE;
-	Mon, 16 Jun 2025 09:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE98273805;
+	Mon, 16 Jun 2025 09:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5ZCpChom"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="i6fPRhjn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A5A2741DF;
-	Mon, 16 Jun 2025 09:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8A426F467
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 09:22:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750065838; cv=none; b=rSTkvExBuOFyAwi7T/ke1JcDzFneWapaXZbNitCob5Gf6B5J8bcnvuxN0EAqrdPm4dfg33trhvdgKvenLpyn0rpYICvOHmuztyIyKyk3W1A8MESbZeVxbOusitIfvvcx/6yh5sahptPJAx9ytTYJyBo+aW66NZu7TIQdPumKZaU=
+	t=1750065767; cv=none; b=e/So3iIssxD30Gjj9n6cD5/iIlcZEagVuHT/JpXQ4wGz7hKCnEH5dsRE27i+56tzRZJnCMGH+uK5n66d2EnsTfTPT9lDSy32XL5HdWeqyoXaJWHN277P0lgaqRdG6URgcnDiFIGmEOTCTukXfVzMxDyv9z9LDGMGtcmNOfmzre0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750065838; c=relaxed/simple;
-	bh=/NuocV6DaBQUjlKq/ncv6IUkpl7Y4xbpuZPctAEcTI8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=nSGbik5Rpb5h8q4OsHm1MD8TC8kiIc+OeTkFN9VUXqWA8oa3NnKYkGJzQYkwGtLxGefYgdm6hXQ6MnpKvdX1v8v7jFMzpeW+fyeLKDo8pfYGaXsx80gVdEUIaihpiILyfMqkMdxAyP8HqyoY4UvHZadw1pYwBgQiU14dh2XppPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5ZCpChom; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55G8ZTHg015551;
-	Mon, 16 Jun 2025 11:23:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	D7+OvSwoVVqlTBMuJc+wtSrz4tCpMidCNQSt7hN5EuU=; b=5ZCpChomjD8v6Dpd
-	BSAnGf7q4nAfcJfY0pqThRSytnvP2fFHENUwg0vr3dxsvaVgbeNxpOAaUuImM9BY
-	qSWd3CqntARsHX30eJ3Ane5ZfwcUVL3HYKX1NIaVEZNpka9fWSEDjKT78jN0LTTp
-	uQI+B3+uej8gnHaAEeNuUs9S4E6VnZSbHPOB21jt7VlaTvJy5xlIVBWl77UobqCv
-	s+R+jwlJrszondh2KF7jTv4/6Dym+dtjvWtuNGqXyp41HhCPgbvtFV8gSe+eDixl
-	7Cmft5m2p4g2E3RAemd847tDRuVFcJu4nVLHtC0W5PQQJ2Ixav6ImSrj/Yj8lwjb
-	+RbWaQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 47afw1g9hw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 11:23:43 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5BAD04004F;
-	Mon, 16 Jun 2025 11:22:28 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2068AA7D8DB;
-	Mon, 16 Jun 2025 11:21:12 +0200 (CEST)
-Received: from localhost (10.252.14.42) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 16 Jun
- 2025 11:21:11 +0200
-From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Date: Mon, 16 Jun 2025 11:21:07 +0200
-Subject: [PATCH 6/6] dt-bindings: spi: stm32: deprecate `st,spi-midi-ns`
- property
+	s=arc-20240116; t=1750065767; c=relaxed/simple;
+	bh=boaYqs6W2Ch9MV7MIDV7tFHWVXlXvSTuE+SZQidgsAU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rtro8roM/CAnm7SHlRvGlmsixPhkT4MuFkpXGFpXYXXC7hE8Ft32r5LHWs3/tWFOcUoL/iPw/ktmn76pm1GHX3yRGuwiUoEF1Lg7YkkVUtI794WSh9Q9LfxXBaHZJtc1e4f5Yz/Dv1aAy4Oq4HEydg2NtYhqWL+wLu2T46D+3sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=i6fPRhjn; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-553b544e7b4so2798572e87.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 02:22:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750065764; x=1750670564; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L4clW0hfNM59uFuEpnawSRjVBJDyxSvonnhwsOilymQ=;
+        b=i6fPRhjnQZjdK8HXqHfTZaEscbWr/UIPbqEg7J++f3Hq1vFi70kq0wIxLaECCi8xXp
+         itBZMq26Hs4HGhrOOJvdVaT/CQPAS07WrfQeD6LAYLF/qU0WSoaujeeYFW0j2tUCXcSt
+         4pMptEtGAzaHx0T7CVq7Iv552TK7/d04NcR/1YfUSqCJwnsSP/rtW7NftW5ROs/p8yFO
+         LTMgI+j+2FJf39hQpYgpR6GFIvw158JH20qFvMg0l93hgXNf+ZXU1BEvoitePGvkcdhJ
+         AsBzBYPQPLNr0OVbPeOHiS0+dIoW78P1Ot20qFvhG9tRGQ4eifcxQgcevJyXeH45C4pv
+         xidw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750065764; x=1750670564;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L4clW0hfNM59uFuEpnawSRjVBJDyxSvonnhwsOilymQ=;
+        b=vIB9+llQ8EVtVuoPNiTZQwSBb2V758FNtYnbba0pY1tXgEDI/lYwxtpRBbvKzOZndw
+         EvLyYl1GW262X09LWOZKsmVzgrnDkp7P4fx76ct84GYCTmMysR1oRJDl5k/Ttl0jK72G
+         3zP839YFVMzJtyruN1BeQ/dJyh5rSo9/Qf6qj2ZF33tBUXx6mz1XS6S/bdJV9iYrULcx
+         sLGJWPMs6gYbU3ML3KBQQpAD5IDWeb6ZeSjmjziiHoVyTFij9iyhQaBybn4P9WjgHQbC
+         O/nDJo1ojZtLZKgVJqDfKOw17zmLu+SxBR8AgiCq7C0czGHJxKgiF7pivLcVxztKCDzd
+         MP1w==
+X-Forwarded-Encrypted: i=1; AJvYcCV5sZwL1Lhfu6ByMhjcEleGTSMqgV5NfTHpnMa0IwzzwVMNlh0r4Ttz/ZVVELu2K8gGaeCa3XrKiLDI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhhPKryjQPPnzL73b9Pu8YkEVDpoyfrKv6bvN3sIDFWNCn66wL
+	me7zk0tmn8PyeOs+vb0piHslfcmS2QEsMVjcZjOc18xwMAmHX8Ard46+1CdcTaBdE9WWMcJnN8o
+	xjEuxIVEMYA9S2NkV6JMM9h5sHy2zbv5XML7aGpb1Lg==
+X-Gm-Gg: ASbGncsYhaXnFCQv3H1v876QSetS2RxaBCGQZ5twlYcZMo00cLu5xcA7rJZmzfzwt0t
+	3bvjHN0u3/+otIGRPZDELzsiURvmNlptMkfog05dwtCamEUj6DnmC79W+PruFVQeOrdpgONnQgL
+	hUPTOe+jGnCL7LtpJi7HbrYzsGdcBfT4USHmBeBTXJkju7lGsroWWgFOWHyNr+Ss/ms783E91wR
+	Lc=
+X-Google-Smtp-Source: AGHT+IEsBvyH0Zky97WuBrKbbjvEScgzySvzxn3rYYtDfdyw86suCq566xBi9HBUjAShIE2Mm9O+XZUWm2PEcQ1RjmQ=
+X-Received: by 2002:a05:6512:12ca:b0:553:2ed2:15b4 with SMTP id
+ 2adb3069b0e04-553b6f4d916mr2068254e87.57.1750065764330; Mon, 16 Jun 2025
+ 02:22:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20250616-spi-upstream-v1-6-7e8593f3f75d@foss.st.com>
-References: <20250616-spi-upstream-v1-0-7e8593f3f75d@foss.st.com>
-In-Reply-To: <20250616-spi-upstream-v1-0-7e8593f3f75d@foss.st.com>
-To: Alain Volmat <alain.volmat@foss.st.com>, Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Erwan Leray <erwan.leray@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Sumit Semwal
-	<sumit.semwal@linaro.org>,
-        =?utf-8?q?Christian_K=C3=B6nig?=
-	<christian.koenig@amd.com>
-CC: <linux-spi@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <linaro-mm-sig@lists.linaro.org>,
-        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-X-Mailer: b4 0.15-dev-c25d1
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_04,2025-06-13_01,2025-03-28_01
+References: <20250614-apr_14_for_sending-v4-8-8e3945c819cd@samsung.com>
+ <CGME20250615105256eucas1p21dba29a1450757d9201b2a9c7f0e34e8@eucas1p2.samsung.com>
+ <202506151839.IKkZs0Z0-lkp@intel.com> <9765c970-55cc-4413-9fd0-5e0cdfa900fa@samsung.com>
+In-Reply-To: <9765c970-55cc-4413-9fd0-5e0cdfa900fa@samsung.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 16 Jun 2025 11:22:32 +0200
+X-Gm-Features: AX0GCFvGdfEg2CPyKVWjNTkacG-9vOyaV6LbrgzY6YJIQBzVINyrlmiwiBnsQKI
+Message-ID: <CAMRc=MeG40TxMj3ezeC0iUBBo8w99RXQWOQBsfG4ZAJdbA+dYg@mail.gmail.com>
+Subject: Re: [PATCH v4 8/8] drm/imagination: Enable PowerVR driver for RISC-V
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: kernel test robot <lkp@intel.com>, Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Paul Gazzillo <paul@pgazz.com>, Necip Fazil Yildiran <fazilyildiran@gmail.com>, oe-kbuild-all@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The vendor `st,spi-midi-ns` property is no longer needed and
-has been deprecated in favor of a generic solution.
+On Mon, Jun 16, 2025 at 11:09=E2=80=AFAM Michal Wilczynski
+<m.wilczynski@samsung.com> wrote:
+>
+>
+>
+> On 6/15/25 12:51, kernel test robot wrote:
+> > Hi Michal,
+> >
+> > kernel test robot noticed the following build warnings:
+> >
+> > [auto build test WARNING on 4774cfe3543abb8ee98089f535e28ebfd45b975a]
+> >
+> > url:    https://protect2.fireeye.com/v1/url?k=3D6c3bc994-0cd954c9-6c3a4=
+2db-000babd9f1ba-30c2378fa012fc4a&q=3D1&e=3Dc39c960c-4d5f-44d7-aed7-0097394=
+dfc81&u=3Dhttps%3A%2F%2Fgithub.com%2Fintel-lab-lkp%2Flinux%2Fcommits%2FMich=
+al-Wilczynski%2Fpower-sequencing-Add-T-HEAD-TH1520-GPU-power-sequencer-driv=
+er%2F20250615-021142
+> > base:   4774cfe3543abb8ee98089f535e28ebfd45b975a
+> > patch link:    https://lore.kernel.org/r/20250614-apr_14_for_sending-v4=
+-8-8e3945c819cd%40samsung.com
+> > patch subject: [PATCH v4 8/8] drm/imagination: Enable PowerVR driver fo=
+r RISC-V
+> > config: riscv-kismet-CONFIG_DRM_GEM_SHMEM_HELPER-CONFIG_DRM_POWERVR-0-0=
+ (https://download.01.org/0day-ci/archive/20250615/202506151839.IKkZs0Z0-lk=
+p@intel.com/config)
+> > reproduce: (https://download.01.org/0day-ci/archive/20250615/2025061518=
+39.IKkZs0Z0-lkp@intel.com/reproduce)
+> >
+> > If you fix the issue in a separate patch/commit (i.e. not just a new ve=
+rsion of
+> > the same patch/commit), kindly add following tags
+> > | Reported-by: kernel test robot <lkp@intel.com>
+> > | Closes: https://lore.kernel.org/oe-kbuild-all/202506151839.IKkZs0Z0-l=
+kp@intel.com/
+> >
+> > kismet warnings: (new ones prefixed by >>)
+> >>> kismet: WARNING: unmet direct dependencies detected for DRM_GEM_SHMEM=
+_HELPER when selected by DRM_POWERVR
+> >    WARNING: unmet direct dependencies detected for DRM_GEM_SHMEM_HELPER
+> >      Depends on [n]: HAS_IOMEM [=3Dy] && DRM [=3Dy] && MMU [=3Dn]
+>
+> I believe this is triggered because RISC-V can be compiled without MMU
+> support, while MMU support is mandatory for ARM64.
+>
+> Would an acceptable fix be to require an explicit dependency on the MMU,
+> like so?
+>
+> depends on (ARM64 || RISCV) && MMU
+>
 
-Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
----
- Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml | 1 +
- 1 file changed, 1 insertion(+)
+I'd put them on separate lines. While at it: how about enabling build
+with COMPILE_TEST to extend build coverage too?
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-index 8fc17e16efb2..8b6e8fc009db 100644
---- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-@@ -115,6 +115,7 @@ properties:
-     maxItems: 4
- 
-   st,spi-midi-ns:
-+    deprecated: true
-     description: |
-       Only for STM32H7, (Master Inter-Data Idleness) minimum time
-       delay in nanoseconds inserted between two consecutive data frames.
+Bart
 
--- 
-2.43.0
-
+> >      Selected by [y]:
+> >      - DRM_POWERVR [=3Dy] && HAS_IOMEM [=3Dy] && (ARM64 || RISCV [=3Dy]=
+) && DRM [=3Dy] && PM [=3Dy]
+> >
+>
+> Best regards,
+> --
+> Michal Wilczynski <m.wilczynski@samsung.com>
 
