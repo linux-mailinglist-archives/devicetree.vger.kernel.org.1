@@ -1,135 +1,120 @@
-Return-Path: <devicetree+bounces-186316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6705ADB1F4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:31:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2DFADB24D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F6F417176C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:30:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AE5316D000
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A562877FF;
-	Mon, 16 Jun 2025 13:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BD9292B3C;
+	Mon, 16 Jun 2025 13:40:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nd38/hnG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IplYXVmP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28AB2877F1;
-	Mon, 16 Jun 2025 13:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2521D2BF01A;
+	Mon, 16 Jun 2025 13:40:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750080628; cv=none; b=tV0sAw9MFKoCyiBWhHI3nG10pJKcJIz7MapgCAt+tXM9z16NouP2ZohwKoQ5inZsh0QozCE141NlTt36rYxanCeqWdA7JeNS3Slu1EnIQX9ksVkQrIWVkB178xVVW/kvXhiXkQTGFpsajGfiNDkS/HmAPLETk4SkaCrXhIDu6G4=
+	t=1750081254; cv=none; b=P2YG912tQqPjRFNfbSf7eoH8UZpeqSaYHke/r+fT7wqUUQv3Njxi8afzZM0twciLDpnleuwmxJqnpk5sqPX2+achEj18582OMD6Oda1NoF0FVTIEvo8/8S52qQMBUHInGt0YRdLQ4Rz9Pa5gKqLOIRKdlJwI0V4IWTJ0aAqznvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750080628; c=relaxed/simple;
-	bh=eSGM/kHiThLG0+4KJzd+4iN5W6WU/gNP8I5Ybs3fFmU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gWSKBFxoPvT01+cKXUNZ2Zt7Fm8fAaPqcAlycJcRISJUsPDLQJy86gxdoTBM0UR2Fvl24an8BFEJlOJ5y3PP/o93OYBCsRHjuNMDrkp9fbFyJJ/5HYMuTCKuAXi2+44BD88FTwJaBYz0rUg0vV6oqoh3XS6HW94EJeoy2JI+WU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nd38/hnG; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2351227b098so36000105ad.2;
-        Mon, 16 Jun 2025 06:30:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750080626; x=1750685426; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c0hEZwGp1ZWclkFU1+i1qSi3AaZ5vIDWkPqR7hw0AQY=;
-        b=nd38/hnGbIgXuAnBMzEMtgM3u11yP9WGa1QlDSlfz4Cw0cuewS+eliFIag06GjKWsT
-         dWHMxr3LtmnVWSUAD0nzWLeWNLIsYp2aLxeaUJVaLeXbjXMCTnsJAeMQ9Tah8zZgeQAU
-         6GFXl9Y4uLhch/+4aVyVoLz1lmNDmmKDqL5UPJJNW4L170V+xWeIsBVt9F5lemAa8Hf7
-         eQZDLylC6DRQcVXLbG7Xk7G8QGxR6CHzgcCfZqynh6CQJZjo/ffLCx8W1cbIfKldT6JH
-         hddbLdMsN1yO1DClZoXo7INTiHDOpwZuvoa579vlanYvxgXL8BnFwcpQVug6nAQMptqk
-         xQAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750080626; x=1750685426;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c0hEZwGp1ZWclkFU1+i1qSi3AaZ5vIDWkPqR7hw0AQY=;
-        b=WvVHgSeqXzlI5vTO+vUVC7TANnazP8k/oF1Z2zpp99w6uVD0hN2M7lR9KZnwyjxque
-         OIcxsJJ2F79lLm7qkxoN8OHjdl9u1v6m6t77jguezvHpvy9zkcyPOdNhuT6RFtUoUG70
-         GBOJ3KZFJNkhAnDoxNSBw4UMmeojBS3pDFSGDDkI0PBKu8Ia9QY8GXuLKGc+6wszxIZE
-         3+GUyrzDvmtEiWS64vmKtvDjurEImCbxTSY0RXo1EiG1Mj5bw8TTh8tHKFWjbG9Cp/Ho
-         2j8GLfb6u5HSsihYWgdmFU/jS2R4H0yZAxgL4RavNTMN6TNcLl10GKoWbPmre+gLhFap
-         syDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhCesORbqLDcGrJIP2pzUyvXuDtz9ySD4I0SZyyoS8fQQsumel7udaQBDZPUPzRJWRYMiJztSEw52R@vger.kernel.org, AJvYcCVq9z/LPEUvGrOL/NPCNQtxNoaOE5+KMAYBbPOjs31SaLYRE16e+xTKqHxKy3rHSGF3Q1W8CTLHc9EkAOVh@vger.kernel.org, AJvYcCXSiTXBEKr89ymkBI5y7kUuY6jPmmTl9uvAdc9fUbp0CwD0m6eRwIID9F+T47jpBK5vAr+no4wvVOY9YWBxZvaNvw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzs+Ks53YpL3QdBXZXLLKU3QN1vHChVQtIGWrhDv5LlmDxR5Fh7
-	vQSvBdsmC+oreNsM5SMinxKpcJIRZUYmHBbk7qqQJ2lR5HIgDjZSrMU6pKwTVBI3s2Im/vxT8CY
-	78G98i+JF7lSLt6LuMH+U+ZriXrN993Y=
-X-Gm-Gg: ASbGncvXjtPksqEqtDo4aSq1aJRbQnQJ9ayserr9Dr+I5TwYbET5UojCJ7grFI0DSeY
-	cQuJrhF3R63/P5P89jKjWRPYglCmlQHooMXJTKD64lsUW7eQn0kBeIT0KtZ5027/UPPRIgihpzL
-	KyowTGI06hAUxsSICiitQs1nMX/V/IHB1tqZkOH53E
-X-Google-Smtp-Source: AGHT+IHrnOe9BgEaf7IB6cKO8/zukFqN2HZ5IAYeo7rZcnUwyz06zgXtx6or4FKsocwZQxMzpq7RhmfRl7nR3WTEeSU=
-X-Received: by 2002:a17:903:228a:b0:235:1962:1bf4 with SMTP id
- d9443c01a7336-2366b32ce3amr144470995ad.14.1750080625607; Mon, 16 Jun 2025
- 06:30:25 -0700 (PDT)
+	s=arc-20240116; t=1750081254; c=relaxed/simple;
+	bh=rdv9kLnOvyNV5TOzVtFB/uj865WbpER5B4I4p9ckmR4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CHwJ5yfrAF+lp+EqCcFxvfcJrz5tsz/gEfVOKFqFFSlZycYXTCcnmwRXv2s2SFnt+vjYx+Y5iRjIxqgg05oUsaDPcz1CGkI+tg3DDbVmE5NU+eFYF4BQJtGnCxP5Bp7AFIlfE8wONznogHyGIdezoaUPALBX3leWginIYOtQ8tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IplYXVmP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25630C4CEED;
+	Mon, 16 Jun 2025 13:40:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750081253;
+	bh=rdv9kLnOvyNV5TOzVtFB/uj865WbpER5B4I4p9ckmR4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IplYXVmP7vw4qSpQym/7rxQLwKuwNI2e8pBTRu/r17RN5mvo97RENr4I4q50uDB9z
+	 t3IXRMwwFu4tpBq8wDxHCNQm7EZ8D6+rfHfsnlpRzc3J6ADCRb00Jaff2WjFtcKnov
+	 Ocd658g+eaqFfCzrHNDXIpYgGX8gnfr6atwHt7Lp1hBUnuGUF2wMz+0oiU9Q5sqpfP
+	 +0rOAC7mhbC1gemvOOXRfCcnGmH3ybxlgV5UBHOSVjEVmeUEY7KNwEb4apo63ukbHQ
+	 Was0gsB6EAsSNE4ZrvIhqwcNjf9GVHDesnO3JMC9xwp36co9VscAofw7gb60Sc2QvV
+	 6lpTJgl42aimw==
+Date: Mon, 16 Jun 2025 15:40:50 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: pwm: convert lpc1850-sct-pwm.txt to
+ yaml format
+Message-ID: <hzcpjqvc7jygzt2xj25y7467b55gjv5w6bhgqq7plvzsom44wr@hzfzf6gth2we>
+References: <20250602140722.941002-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250606-imx95-rproc-1-v2-0-a2bd64438be9@nxp.com> <20250606-imx95-rproc-1-v2-2-a2bd64438be9@nxp.com>
-In-Reply-To: <20250606-imx95-rproc-1-v2-2-a2bd64438be9@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 16 Jun 2025 16:32:27 +0300
-X-Gm-Features: AX0GCFsogmtArdg5rIwFR58rkkFYwbGckSH0KHSur5wUDe92Y-KCqAhSavVUQsU
-Message-ID: <CAEnQRZCq45wzoDLd=_vPn8cNkiVrbYrg5LJwbZUSdRndRn_U_g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] remoteproc: imx_rproc: Add support for System
- Manager API
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Iuliana Prodan <iuliana.prodan@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ren6ciqm735ki2cb"
+Content-Disposition: inline
+In-Reply-To: <20250602140722.941002-1-Frank.Li@nxp.com>
 
-On Fri, Jun 6, 2025 at 4:57=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.com=
-> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
-> one Cortex-M7 core. The System Control Management Interface(SCMI)
-> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
-> Manager(SM) includes vendor extension protocols, Logical Machine
-> Management(LMM) protocol and CPU protocol and etc.
->
-> There are three cases for M7:
->  (1) M7 in a separate Logical Machine(LM) that Linux can't control it.
->  (2) M7 in a separate Logical Machine that Linux can control it using
->      LMM protocol
->  (3) M7 runs in same Logical Machine as A55, so Linux can control it
->      using CPU protocol
->
-> So extend the driver to using LMM and CPU protocol to manage the M7 core.
->  - Add IMX_RPROC_SM to indicate the remote core runs on a SoC that
->    has System Manager.
->  - Compare linux LM ID(got using scmi_imx_lmm_info) and M7 LM ID(got
->    from DTB), if same, use CPU protocol to start/stop. Otherwise, use
->    LMM protocol to start/stop.
->    Whether using CPU or LMM protocol to start/stop, the M7 status
->    detection could use CPU protocol to detect started or not. So
->    in imx_rproc_detect_mode, use scmi_imx_cpu_started to check the
->    status of M7.
->  - For above case 1 and 2, Use SCMI_IMX_LMM_POWER_ON to detect whether
->    the M7 LM is under control of A55 LM.
->
-> Current setup relies on pre-Linux software(U-Boot) to do
-> M7 TCM ECC initialization. In future, we could add the support in Linux
-> to decouple U-Boot and Linux.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+--ren6ciqm735ki2cb
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH 1/1] dt-bindings: pwm: convert lpc1850-sct-pwm.txt to
+ yaml format
+MIME-Version: 1.0
+
+Hello Frank,
+
+On Mon, Jun 02, 2025 at 10:07:21AM -0400, Frank Li wrote:
+> +properties:
+> +  compatible:
+> +    const: nxp,lpc1850-sct-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pwm
+> +
+> +  resets:
+> +    maxItems: 1
+
+Please add:
+
+  '#pwm-cells':
+    const: 3
+
+Otherwise looks fine.
+
+Best regards
+Uwe
+
+--ren6ciqm735ki2cb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhQHt4ACgkQj4D7WH0S
+/k6RoAf/U5Cx+rqRYS2ZdCPFHIdMoeLmobyj02rswAVnjmxl0ABjsH4OfMakH6tj
+76A4BaXMJG0cV8rtj546BuslYkMXGo9ekZ8XwGBSx4mv2i7/12jhXJLqYraJNZ5D
+Z1Kq7/KfOi4VN9A5iYOQwbIbYTnbX8DqvaoYg3jODYKRjSBrvox+JJ9+WHGhSmpm
+rXTp1Q3O7dCP9JVxFS5BBfSKDmkuUH/P7mX7abfnw2E93W7foFlKOJtBvrhxWPN3
+LPqrY6tkXKtjJ9QC9J28WFM7+f5HvEDA/V3QZm99fRQbkw2T6A863sgbTG4iA/qU
+V/V5ST9owWyF5szHnkzCikG7CROvhQ==
+=tzl7
+-----END PGP SIGNATURE-----
+
+--ren6ciqm735ki2cb--
 
