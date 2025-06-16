@@ -1,186 +1,138 @@
-Return-Path: <devicetree+bounces-186307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05ADDADB109
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4681EADB12A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:08:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21DDA1886F3C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:05:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA38518819DB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6EF1285CB8;
-	Mon, 16 Jun 2025 13:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AC2F292B4F;
+	Mon, 16 Jun 2025 13:08:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WOVoHjGu"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NYjVVVoN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8152E427E;
-	Mon, 16 Jun 2025 13:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65485285CBC
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 13:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750079105; cv=none; b=sqviGhnSVziTg8GJEkA0sMYVzIqqZi7WvklB3zAz5m0mAzHvAzUiV/PyZ6gfLBcBI7hfUGyQFldQ6haXvoWdCUWaGvYvXuFkhT+VK/R7p5RcQyb0jteSh6q7ROA4emr8I9fJmiOQ/HieOvjzRYUko5fhcnzB2FqrETZNm2Pxvkc=
+	t=1750079327; cv=none; b=kjKPN2jxSYMADf1sq0guYWqsvw22nANu7OMTh1ZgYZ38PJmBsrYUec/L4GMdDo7in8plEvFYD0vmBFKXOIHGlkAn/NQGeJ+BLV9Qfv7VgGE2aag1++nOEq2NSvpdS0K1M1bJ3F9MbPemnvgu/okbg/SEx0pp5yqkzypNn2NZyYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750079105; c=relaxed/simple;
-	bh=siv3Ien97FCkgAjG2Q1suDpHQa4tobCL+W3T5TCoEj8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AHdpWQOIGO8O8AU+Vh9IDZ4QfPfoMiPY0cvR06/Rrh3ED7jvQwL3zzWbaumdsOK2tfnbuwkI3fO6kl4/cocOa3ugImcPKH08o3stp5LIdTvteYF+VSRi09BZYmi4yzq+COzG0OK25w3uzYFgW73jlus64yTA6IsGXN7egYgCFqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WOVoHjGu; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-23602481460so40202995ad.0;
-        Mon, 16 Jun 2025 06:05:03 -0700 (PDT)
+	s=arc-20240116; t=1750079327; c=relaxed/simple;
+	bh=ah5rJLZ6Ag5bCpEGVmMK40ONVUS/hIUB8mOhOGYJuYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zur8+VqUOMFUGlzORKW6JZ9a5e4mSvXReBb+k4dynsTYVUp0UkaHbUVGlse4qrGVBozYTMWPI9rhF3g9EevlojNfMeq0QJilRkWwK08hHS8q+6hLRi4NyVzVv+bIzNHnMo/EZkl+DBYCpOEOOLhMw+nkx9e0Zja5jw1+8vDNq2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NYjVVVoN; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a536ecbf6fso3015314f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 06:08:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750079103; x=1750683903; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GUTXDzJTms5RZMMJbgvvc42mrXG+pZ1XuTEHVE/rMMo=;
-        b=WOVoHjGu8O8duegrNKas8XFo8SpB9kFi1Yp4O5T7e1jGuMWKoS8SKOvIMFB7gDqV8i
-         l45khUvkjVDKp4OsHETIgNqzD5Bb0RCKuFRoTaC3aMtrPZ+q1f9xPBnOp4TVG384I+Vt
-         R4+Phd39IqtL3s9KK2164crpaqtRsXbPS4hAIhbX4zWLfH3Win/nNpvgqDCg1SIzLQbn
-         /I/9oHVXHAfJGPLFOFWPdGHCgm4MlxOfg5ZvaPfDN4p3FjhL01UzuIu7ovtI/xnEFCdc
-         GGZWdSNIf3WHUj6DYG0sDRKDSP5PPQ3NFtftnkeQ0xhkCEBbv+q+FHfJ3H/5ksaoCeWy
-         Geog==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750079324; x=1750684124; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ah5rJLZ6Ag5bCpEGVmMK40ONVUS/hIUB8mOhOGYJuYw=;
+        b=NYjVVVoNdHkwu2PC368UJbulp3NULBtBfS8pOrfLgPPVNDB3BcHkGt2XN9MUzKt4Ei
+         XawkIEMCciJaEgaqDweI2jwILrTI0yR9gop7Kmf3idGJoRb46gSeZEM+XXWLa3YB/0rL
+         XSkucm3M9UKgxybgjqH581gHRLAC/8R9x8Hvw4tu1nxVQukrrz5bq9FW8dPSe9wfk6pA
+         wBuB9BGoctfZTTkJMGoWfNxxZaq1VNeNtrBxWjyJ8KYejfmDdvuAHqdhof9irCwl45mj
+         lLftbTw6c88mDs7NxzENC8nmQx51pK/WHJhB3QSxmu0G34aJUBVOfhY2iVwJZRuFeUhn
+         WCcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750079103; x=1750683903;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GUTXDzJTms5RZMMJbgvvc42mrXG+pZ1XuTEHVE/rMMo=;
-        b=gQ+ZMRPq+R0jWwA26KNMUx1+m6WGsPhQ+Xk5ULQo6Puyu9Rg5fLtm+z+Ny0/l9YrrT
-         Uq7KHqpVJPe7gPCDBnrw3ZwfKLRccF30DK0XTjfgVqlStg9lRiI6WGGA6PH3mYVDF08i
-         +IN8/dVST93cM7ZvWmsgbayrKKz0VeLivnzRBe3U2Egt7a5ax0Dhrp6fyBBGmA+hDLo2
-         utI0RzqK7QAjZZx1PN4otfC9rXSwiudZRP0IVWsYrnOdCRfsfYqT/JI/21oRnp3VsGqB
-         TNeiKvpNc/7zgVAf29xORSpJFt3sORtGO7y4Xa39cYwJ8Ccg1jpELh6UZa01y6RfKN/6
-         jxog==
-X-Forwarded-Encrypted: i=1; AJvYcCURz2yv3AyIfaS2iqgB5OAg5v7Z1/20aID48BFlG2z4p004rmLSkHTmufwHKltkvgIkSQ9BQqerW+ac@vger.kernel.org, AJvYcCXHnLopgPiM7UJpy+RQ6DYB5U/re922TDn3UZC8IfxxNqFp5fd9MYbg/jg8kEsB+llPGlh5T48dqFIV324gp53+Og==@vger.kernel.org, AJvYcCXONbM1x68MoYntZyKoxctqbEqZSANooLuSbSiLCPuxsqRpPYnd1oSr8U9qxY5uQ2RYjUVPmn6+aPK2O2KS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOCu/hYwXjRex9eF92gfsEY1xkKA1bYo0UAP930RJ4h5z6GGvB
-	XdQ1i9AjIcWUusQyhjDNqnvIYCd9ZW2vACxHGZ9uHV1kD9qN9jpt/hM3kadAEZbm7X2YWUMfHO5
-	Whinu1RAnMWG9W9WLfRgP9qLSgDT18fw=
-X-Gm-Gg: ASbGnctGLQ2jkfljyZtJZzvs3ATY3qq4zNgV1z9LXypjoZ0jShU53sUSuntzEA9cWpq
-	d9mpVjO5QjZsMpu3yAz647qpjRQxfVCQKtXM5IbOr6eBTvV/rXglIRvEdADNP6T3BD45srKBhKy
-	nJFAof6bE3mXfbjolaY6zksixTxtVvdiLNhrNrqP13
-X-Google-Smtp-Source: AGHT+IGIA/B2yzj9kVtPTV819XunUr+pzfOmCuEtfwePf361QYYolQtgx4s3tdeFt0KKKXYZVrT1BQRfBwQae0le85A=
-X-Received: by 2002:a17:902:ce91:b0:224:76f:9e4a with SMTP id
- d9443c01a7336-2366afe7bfdmr139261545ad.14.1750079103282; Mon, 16 Jun 2025
- 06:05:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750079324; x=1750684124;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ah5rJLZ6Ag5bCpEGVmMK40ONVUS/hIUB8mOhOGYJuYw=;
+        b=GG1r/y7D4zNpIPpltREZgjafIpntb+czcYHLWc2IVSPtHSWvIS+edUHpSI+zFvdopS
+         YnZqfoh6aRkPir3gSCpOY5WquGVu0AvWe3YL/9TSirvGna1yH37q/WjJ21rO/m0b629B
+         rE0+H4BBYYapdw1ReQS75Svd8gTADFQZ1HdLnCW4QYHefZk3tPXlMe51UvnNz67Ts9ag
+         18/MT5i8jmXVwJySohfbcYpS+9Q3CyczWVIH+8mGTUa51nxKo0SZbz05LJ2X1da+cVI9
+         DID7ZjdO7Wh6nOLWI7p6JZBa4eL2e3da0LJcO5tAIYWKv15+ItTVPr/DJjPe4V2bKL3u
+         ietQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW46AyuzJcZLZSHMKZarGn0rAqBugGLIy7LlqL0GBakBgWkYwzNy7bY72SqLWRtE6dA1vrBLkjGsZh0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH7QIsY3AWIKNSzxmFEnCXW3cER8bez6eZt3n509VGa8xiCj9B
+	mQaGeaM810xUVy3BARXo0f4v+b6F4Rm78EuzE/aNUVV5p8Thzwivz7p1i4rdUmOSMnU=
+X-Gm-Gg: ASbGncvX0HNzJCrh1ZYHCE4txChy8wupbR8wLWJ0YGM4wPdtHFbvdZA/Iofb92HeWaz
+	aAQjOipYPqEFp7tZbqXU9QyFA//qPg4wpQmNxpBu+qAbNjVNAbeDJFLMrYbkDEd2jv5QE9LJ/eg
+	cGbte9JrE1HHEaBtVE4ZJ3R7VuhDxoKYogIGoIq0NBgA8tiyDKAOi5307CWilZHPuxTlXUCbJ5g
+	nohUwpBs2xlVIydfLTolFzs93RM6fepXAUr+cKK71i20MOVGsSYusDDXXxS/qWb7odwBRkcBw/b
+	ax9UaGS0v+exkebP5C68dc5dDaNe4LlPJPYXNIv3kWGdHoP7pAGWiXTTS1E/zGR/JGEEhrNYrgj
+	fg0w0/Vl68CXJUQx0BnP4JromKjU1
+X-Google-Smtp-Source: AGHT+IFNPYRALxn7pyrwOurNwG2b2zOxZ8DWDp/HD4Av4lUT1jBW6B1aDoGMobxjeaaXuhPwxcq0HQ==
+X-Received: by 2002:a05:6000:2284:b0:3a4:dd8e:e16b with SMTP id ffacd0b85a97d-3a572371cdcmr9144801f8f.20.1750079323743;
+        Mon, 16 Jun 2025 06:08:43 -0700 (PDT)
+Received: from localhost (p200300f65f13c80400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f13:c804::1b9])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a568b089a7sm10888086f8f.49.2025.06.16.06.08.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 06:08:43 -0700 (PDT)
+Date: Mon, 16 Jun 2025 15:08:41 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: renesas,rz-mtu3: Use #pwm-cells = <3>
+Message-ID: <fmn3mrcbih3oq6hgl45jipdofko46ur2sux5p4lf3nzlpahklr@3tm5molhdfdx>
+References: <20250527205823.377785-2-u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250606-imx95-rproc-1-v2-0-a2bd64438be9@nxp.com> <20250606-imx95-rproc-1-v2-1-a2bd64438be9@nxp.com>
-In-Reply-To: <20250606-imx95-rproc-1-v2-1-a2bd64438be9@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 16 Jun 2025 16:07:02 +0300
-X-Gm-Features: AX0GCFsHX-yp69BTpUbkYuCgM8eD072u2RLLllJxgon-4nc2mIU3mnAX1gZC5_Q
-Message-ID: <CAEnQRZCQj5b9GSb=i2cTn4YKtAsQPTwJ6DkiqaZjmrmboim-8A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: remoteproc: fsl,imx-rproc: Add
- support for i.MX95
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Iuliana Prodan <iuliana.prodan@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iilopq2yqcjx7szu"
+Content-Disposition: inline
+In-Reply-To: <20250527205823.377785-2-u.kleine-koenig@baylibre.com>
+
+
+--iilopq2yqcjx7szu
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dt-bindings: timer: renesas,rz-mtu3: Use #pwm-cells = <3>
+MIME-Version: 1.0
 
-On Fri, Jun 6, 2025 at 4:57=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.com=
-> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> i.MX95 has a System Manager(SM) core runs the System Control Management
-> Interface(SCMI) firmware. Vendor extenions are implemented in the
-> firmware, Logical Machine Management(LMM) protocol to manage
-> Logical Machines and CPU protocol to manage cores. The documentation
-> could be found in file drivers/firmware/arm_scmi/vendors/imx/imx95.rst.
->
-> Add below to support i.MX95
->  - compatible string for i.MX95 M7
->  - fsl,lmm-id to indicate the LMM ID of M7 LM
->  - fsl,cpu-id to indicate the CPU ID of M7
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml         | 27 ++++++++++++++++=
-++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.y=
-aml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index 57d75acb0b5e52ca49d1361176fdebc18a0bf7a2..a3ffab60df52be6f1d7cf4846=
-ca5ba1c40f03bde 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -28,6 +28,7 @@ properties:
->        - fsl,imx8qxp-cm4
->        - fsl,imx8ulp-cm33
->        - fsl,imx93-cm33
-> +      - fsl,imx95-cm7
->
->    clocks:
->      maxItems: 1
-> @@ -68,6 +69,12 @@ properties:
->        Indicate whether need to load the default firmware and start the r=
-emote
->        processor automatically.
->
-> +  fsl,cpu-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      This property is to specify the CPU ID of the remote processor
-> +      in SoC which supports System Manager
-> +
->    fsl,entry-address:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> @@ -78,6 +85,12 @@ properties:
->      description:
->        Phandle to IOMUXC GPR block which provide access to CM7 CPUWAIT bi=
-t.
->
-> +  fsl,lmm-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      This property is to specify the Logical Machine ID of the remote p=
-rocessor
-> +      in SoC which supports System Manager
-> +
->    fsl,resource-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> @@ -114,6 +127,20 @@ allOf:
->        properties:
->          power-domains: false
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx95-cm7
-> +    then:
-> +      required:
-> +        - fsl,lmm-id
-> +        - fsl,cpu-id
-> +    else:
-> +      properties:
-> +        fsl,lmm-id: false
-> +        fsl,cpu-id: false
+Hello Daniel,
 
-Hi Peng,
+On Tue, May 27, 2025 at 10:58:22PM +0200, Uwe Kleine-K=F6nig wrote:
+> With the goal to unify all PWM bindings to use #pwm-cells =3D <3> update
+> the renesas,rz-mtu3 binding accordingly. Keep <2> documented as a
+> deprecated value at least until the in-tree device trees are fixed
+> accordingly.
+>=20
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
 
-Can you remind me why do we need the else branch here?
+I would expect that with the positive feedback by Biju Das and Rob
+Herring it's on you to pick up this patch. Or would you prefer that I
+take it via PWM?
 
-I mean if the compatible is not fsl,imx95-cm7 then the properties
-fsl,lmm-id and fsl,cpu-id are not required and I think that's fine.
+Best regards
+Uwe
+
+--iilopq2yqcjx7szu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhQF1cACgkQj4D7WH0S
+/k73Rgf/c74I8St/PS/sSA0sdengOBRQFwBTHGS4TSdeSMCM6NOyPPRbdOldZt5W
+q1zo6ebUQPfsmw0PNrLy8+1VM0mo7VODoKzbpzlJbU78nNY6dClrEh1NQhO8l1x/
+AGNrp70au94sZPzQ+Wl5kDjekdgZWRNhTqnvDB6Zr6N0yZQYJTTG8szaHAdn2MBA
+w79oUyr9u4CHCNKeSrmsng+LutRYTWa19H+euEWY6pfNoUevc6KcSLFQjuJFTa8G
+Bcl+0K2D9ds2udo5OX0fC2paLmzIdrNJOXLQdb15x5gtiPNeYUJpRwj/W6wLSGvr
+0kluQjZBdst9MdruqyCa0RRRSxFFRw==
+=CsNM
+-----END PGP SIGNATURE-----
+
+--iilopq2yqcjx7szu--
 
