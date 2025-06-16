@@ -1,198 +1,418 @@
-Return-Path: <devicetree+bounces-186385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D1E7ADB901
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:44:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B15ADB90D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:48:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3793C188F0EC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:44:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7932B1737B8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3451D289830;
-	Mon, 16 Jun 2025 18:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D638528934C;
+	Mon, 16 Jun 2025 18:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jnf7jhGx"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="G6BrQBQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010065.outbound.protection.outlook.com [52.101.84.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6152BF01B;
-	Mon, 16 Jun 2025 18:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750099446; cv=none; b=POnXP7OGZ22tubcrxGQgy812iJ9J9rDTw0UrSxCPm2+YXWU6dr73aWt/TCPn6fuYuzP/uksqtLOxl2o0XsvUQAejVoligpAon5M7Gfu7ycpYh6UTCavhbETVOsIAtR/EHWf/J0hkEL2hXBmr3prV1Gi8G49zIn/+LL4GFRgrDJE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750099446; c=relaxed/simple;
-	bh=xM6WWL2pzvKQP2PEnbEczQCMK6+DBkSc5PH3+MmaPOk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j/pwmstzRLM1dsOttn7/NGP0QzEgvc1pP/UEx0385YI8WFuBMjCajBrSSOs203FCXnN32PTwTBccioZPOOHnX9sACE4OZ+5+XtHFncRULz7Xh4Gqf1fbe1t8iFoogQ/Gl6Mv9Jit/vmzBj9boQrSBFUFgs+9oJG/9Gjsf8iHjgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jnf7jhGx; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5532a30ac45so32743e87.0;
-        Mon, 16 Jun 2025 11:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750099442; x=1750704242; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=c1qLN7T4HJJ+Y5LI/oNrcpp9DbSjlU6S/RVNFX71VBg=;
-        b=Jnf7jhGxfnSLc6VRiwNsU3iDJTlIqYDCutnPWUuDRC8//z0l9ObRQIyxnnymtCOmyk
-         75V9WXzqjGxxLJG+OwqM7yhaRnmxxNRF4OWmbBWHjsQVUjPOK67XEJ2kMdwbdNl5Ed7M
-         wBbPLkjQKBAXgCph20I1/Bw88+k1UsWnEK9WVBDRNpJ4eHPhBT3HAufEUXZBpk00JSQq
-         pXfDMkimjuyJVXi4dFGqy6k3t45nKwO0pXGvwub7VJYFXWKDXE2OKka75bagKfrEaIin
-         9gbn4S9wHiuebLCqcNc/kwUzjOwOJFD60NL0egNpZgz7XYfjWoIzxNvPeEWa8/dgDUTd
-         D3hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750099442; x=1750704242;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c1qLN7T4HJJ+Y5LI/oNrcpp9DbSjlU6S/RVNFX71VBg=;
-        b=uliJh+PS4+HUvCMUirq/edNQqWf+L5frg319V9GPrEbopQU4J5vlVa4U25d7Y3WHJd
-         qjXFSwNcJA3/vmNbaGOXsMEx5SMpiOSVFTvjyh7k//DJzdEZ1+wliUlFk6SOkvgswZJT
-         S/64d1pHnpPpp0blmwvHPyunpO25v6LVEV4tvDB7zWR6awyzPeNXJMi6S6tjUovNFMRX
-         Tcv7tpU+2eGfLEgSZ5ySprjtKS91eolHAIesU4JrqFgJWgBVBbatDyQSg/5QtKzdrkj+
-         k0Hl0KT1ewN2C+z6E49uvPLLG3/r6Z7nnjqYBVjbOLvO94VaeOM8enmIV24+pbBMC8yy
-         iM8A==
-X-Forwarded-Encrypted: i=1; AJvYcCXPVvmzWMMLj/8GxwslBOx6WmWVSb7/zsq9dF8IFLaPWa3TmV4ZeVioC/KSy3EQZGQwOrXUR6ZoG3Rg876c@vger.kernel.org, AJvYcCXSxtOVu/GCrMvbT73gqTvHCDKu/nC8smZqIDNqRAPufx/mD7MTLwCHKJrqq8W3RFRnw08TRAvp//0j@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMQlCQ8juyaDs77RwXJC7MGO+bMHYtjQDsIIAeTWrwXfpgKwyh
-	MKmpAoBNBFJCNBmplmYgm2f+n9lQBf3URH+lcPv+lcTLY4TijDKpFucp
-X-Gm-Gg: ASbGncsBDUqzgSXBhQ1JpXXhPWB26GurZAP6lmEn1FnlNrWQVRwDJDFnGOu4mDAqrEW
-	d63zw0/HamI0s5sqEHxFB+tPerOyWsRjzrnHZSC1J3NJiYUH7LPL544oA8vzGEoOeHCykcjp24X
-	dGJ2bDrLcIlFENSq/9in2UpzBtgd3CwWdfRWtTUqNx2mvGSK9yx5xV87I+oA+7Eaun1Ec4SNJoR
-	NiMw/1bZSL6VfSstsI3kduSKDJpdAAjsD7utrZZ9V8OcQXSpo8oDR2bUZtHy7/Giy4kgOVcJpEf
-	NUu3lLIZV8xIYZvUht5PfhbhaK/9WQ6E0nYL2bF+RYdN6FsZg61P8vyHnvwtEYvD7X1v4+8a1NG
-	KDQ==
-X-Google-Smtp-Source: AGHT+IFym3ZWTKD87/DdAM+usukWodq2LIzMiT0j5EKO0t5vLXxpbSACWoxnRHmuff9KOJlv5S/f3Q==
-X-Received: by 2002:a05:6512:3196:b0:553:9d73:cb15 with SMTP id 2adb3069b0e04-553b54d984amr3390818e87.15.1750099441993;
-        Mon, 16 Jun 2025 11:44:01 -0700 (PDT)
-Received: from localhost (soda.int.kasm.eu. [2001:678:a5c:1202:4fb5:f16a:579c:6dcb])
-        by smtp.gmail.com with UTF8SMTPSA id 2adb3069b0e04-553ac1367e9sm1632899e87.79.2025.06.16.11.44.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jun 2025 11:44:01 -0700 (PDT)
-Date: Mon, 16 Jun 2025 20:44:01 +0200
-From: Klara Modin <klarasmodin@gmail.com>
-To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	conor.dooley@microchip.com, conor+dt@kernel.org, jassisinghbrar@gmail.com, robh@kernel.org, 
-	krzk+dt@kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/4] Add Microchip IPC mailbox
-Message-ID: <gcn3ot6angrjpmk5nu7gwcuqqrdecuxgisysmgkp4mof3egzot@dvruxuw6w5kp>
-References: <20241217113134.3508333-1-valentina.fernandezalanis@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55FAE20DD42;
+	Mon, 16 Jun 2025 18:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750099719; cv=fail; b=Q/UBBGLyn3gSQOfRba2ut0JQsThLzkmiejejpaQ143CHCYGJaVbSrQMz/4n+pzdKqVMCpZiAllTsFk3BP7qpCMA5W+J0TK3Nlmay17pIi+LqYFFyDj5JLzxfHKQU8YxzdTTFcSer/OL8+K3r+8RnKJez9woWUzHRC26Zt3LTRcs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750099719; c=relaxed/simple;
+	bh=XeU20Giu/O3e54MERZtnmG6tE+1fa6vImZbAUFqwW3o=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=XndyZ1asRyEq56wm+edqpKmdehhCzQegZR9lkqLWHwgVy2YlCnfHU4+kgh0Tq+yijrLy3BBnBSbLyT3G40+W0b/VdzEJWA9D93jhqXJQwsrlmPN0lLQFG6dCGXL3xjN1iQjQXKy6tQUavX4Dzyxl963cnFiRchoV7IdKnIZrChE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=G6BrQBQL; arc=fail smtp.client-ip=52.101.84.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l5U0uDQr2D1yNBAee6vsxufGe6J8Vi422JJhVwqKfj3f/e5tgc3db5LDJGC+0Z+2V0kkk4VooBHkdunhA9DSj3J9fAJweRcXB3ym5hO2xHh0bH1E2tDrHb3WQBlb4RW5CsvuOKXAzIeLQ+YmdlhcCuHC2uVf1AQj+qxQ7cw/hwKtALHx4CFh873pV4wfmguh6Z9qRI402dmzx5LhWp/lXub//nEPEDLsb4jtpsaRIXV54Q16ScUci6a/IYzbxuuPpNKkGXm9zql//cvEV3mV7QV4KUPT6SRU3tSXO899tAQXDb1LEwbcP9myzPwL+C6L9z6jXIZaoktWufSv1LitwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p7ZVtdQw9+8b8O2YKQZzdcDWKqWtBlcqWEtif3eSS7w=;
+ b=X7Zn2TOKGS3PaWgdcZMrgtwXIJqj8ZTkPIZt/Yb8PGy4E51CKhNpJgI9vXUAXx0fGaV8aJFlu8ukO1oKFluFTvZBl6xu9rypL2D5Vkl8xUHI8KEIi+rky3RWTlKJQTW8NugCvrg0f3tttnFDET9nmDP+TJVZlQYvOq818K6e+t3LuucvMP6xckKrK1Xk7OiCV8SHpwnf58x8jJB7t+JffkjpF/OOE/8P9FEH5yBiwehH4wAkqWszRNlDX83lBwJ8Y1qH+q5dHXHxb5aeg/v8mQwaePV7wly0utJ/OF2Zau5dRRyqCW2lnRbSu+t24bwrQ58tsT5Om20R1WtDFV0+OQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p7ZVtdQw9+8b8O2YKQZzdcDWKqWtBlcqWEtif3eSS7w=;
+ b=G6BrQBQLtUirI+AaLtca69BKErtWFnOJEUb2s9492+gDWR0miNQHFtDgowug2pRM6bN9b40tk+N2HWXs7FMw07BCWQWTTivSapqgoh1fVbTxlgK8AxxyzH8UTZyJiZo7Uj6j0B9GZu0HSjakwzR5TQtlYWNgpJcRwhVjydSrA39bIS1D472bfct8gVER4XK3M86BzRZHzA4SiO2KwfbJiNJ9cQCTe7aHy3/0ibleBr7wDZZOb2J0miIsQbXbPPvnpJUQZdpTBPrvZnW4mjZhBqLTx7Knn/oPz4sXsbsgSAKjHXs2z5bBAG1qlkwjJnDAMcJNgU082rp/bncs/+Nopg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBAPR04MB7429.eurprd04.prod.outlook.com (2603:10a6:10:1a2::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Mon, 16 Jun
+ 2025 18:48:34 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8835.026; Mon, 16 Jun 2025
+ 18:48:34 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v4 1/1] dt-bindings: net: convert qca,qca7000.txt yaml format
+Date: Mon, 16 Jun 2025 14:48:19 -0400
+Message-Id: <20250616184820.1997098-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AS4P195CA0003.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5e2::9) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241217113134.3508333-1-valentina.fernandezalanis@microchip.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBAPR04MB7429:EE_
+X-MS-Office365-Filtering-Correlation-Id: ffe626b1-c819-4f16-fa10-08ddad066552
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|52116014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ilEGJ7GEsV/D/of8a7cBUgxuX/Vl7w1qtOJ9dX2++wSEXEbxvSYiQpDaSw8q?=
+ =?us-ascii?Q?hMoPzzbuewMTwAIJyxiuejjIeZS+fP3fSYrK+vtSn1pI59JMHObOXowoo6AP?=
+ =?us-ascii?Q?eZe2WfIaYFO5ttdnuN89ll4PpMRD74C3NNMz3xQps1pr+i6sP0R8k2gBOFYh?=
+ =?us-ascii?Q?3bED9Hf6ZDGk/QsYyMZjsLdfE5IWJp3hGI5ZM6sBjFUFBoqvB7CjfzaZZgb0?=
+ =?us-ascii?Q?1FcZ3Bpt4XxcEqeebWqaiofQ+/IDkBw9JGLCl1YIiiefSfa6xnq/m08Vd2sO?=
+ =?us-ascii?Q?j6WW0I87eaO+FHs59Qqkb3Q5EL9yDZtt6U66xHDXZPycmWmrnPdvQtXoZ3FH?=
+ =?us-ascii?Q?zDac+NzK20VFkbKhK5AymCN38p8G5m1Sa04NpjSCmaW5heGgvbTJO/vLPuQm?=
+ =?us-ascii?Q?5tKQWeSszE96fFC+5fMB9WUEimmM1mkM2SfzW3aivsE5j9KLjHwyC3RGqVXw?=
+ =?us-ascii?Q?KPTCXE4SJnmmCuhV3YkWV10Nb7PH+6OFpqA3h0KtuM+Ohl6h/wRn6mW2v35s?=
+ =?us-ascii?Q?Bjm36mQS88fJkl2NwLLjpYGh5RWzZ8ZtSy/d2JqW0OPa0m9bChMf4W/JBfy2?=
+ =?us-ascii?Q?GxympuHACxRMO1GbsseOfW6WCMn/9EIY071Q0UXONQVYAy3EigzUPv1LhzCp?=
+ =?us-ascii?Q?fHVcu4BhSq/iQL5PTg89tRHrVb1Paw0JYa4F7jlPfP3Yt5UFiQXcDI3cXMWx?=
+ =?us-ascii?Q?1pPAENTzGZ43VfD3d+kZBDmraNNwgt05Iu3VHwJv4429dk6yBrls3b8k/3iQ?=
+ =?us-ascii?Q?f84FM3GvWKH1hazjpxf307PAB6n04DpaP+BTeKNOVM5aXPhrOihYAOBL6Ct0?=
+ =?us-ascii?Q?DiwTg1UKrGBwTDYBDDuDXTOSYwHOlTT90IqFo5nFrb+zLawXoXX5M3UegcoW?=
+ =?us-ascii?Q?xkWtzv9KTbYN290+lMp8k6rJ7a6AyNzr++IuteAI30X4yuyUYrdoAQxtiByL?=
+ =?us-ascii?Q?YU31kzwfDW/OoUBqa+Jr062KFeo+1LLcpTq0G6wKSn4TZWTH8cIT0UseqRse?=
+ =?us-ascii?Q?fsaJnJmmktKy49l4COUH+4pHaHwSh/C8W6+lzZOMfIz2iAtu6EbvsBpCr/WX?=
+ =?us-ascii?Q?L8H6HDaTinp6m9Etgicf5rQbUwcMcWCb43qJRVSSCkZKOsx8b82BC0lbuyB/?=
+ =?us-ascii?Q?aoragNWTjR7lnqx52WowonwKYzH7IAJqORoIz1gAtqh/tz8SvNMNxeoZQxSE?=
+ =?us-ascii?Q?Cfm6u5GEmsA4s3+K3CcC2SZJbbkbXnuJ3WURc+4m/+oNEaN0dchdLwkRdm43?=
+ =?us-ascii?Q?wwf5ORIee/XihS33RU2IKCGWVh6zJGU82cGrMhn5xIS+UYWsxwSLrgPFtPGM?=
+ =?us-ascii?Q?IF5HwfSye3Uqwel9wzjmdKrN1HlxsYeoRdBByK/zUDRym11HSxUReOht1FyC?=
+ =?us-ascii?Q?JUJV4gvnwxxoh/CNqJ2CMr+It+51m6skS1rN+6SASGRHzvrEw/4Fiz3XxTcQ?=
+ =?us-ascii?Q?fC7aCQjeOboFftSLmItfQnbGFBovxjr/?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(52116014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+HsYGtmie81Ibc2ZmsJrbE9zCQfrYn4YBFBQTcpZNMcK0D8R6m+exBwi14Pj?=
+ =?us-ascii?Q?6YJWIAygyQ3AFnq5NrwuX0DkYfdTBQ3FIzejLKCU3J0yHlwcRSowWFT1y1nt?=
+ =?us-ascii?Q?rqo5Mhkztm6wRki2rYoYb4c3Wgu7TJVsepXVFx3yGlG3yR0HTAL06J4QYanJ?=
+ =?us-ascii?Q?ByOrJQt9SYy/avGAT9V01FW5iBJerfZwFemQ9Ck5LRZFcppIsNu/s5jUkqns?=
+ =?us-ascii?Q?uxiOn4fbYdYtJNF/EON+SF4EJCPcJuVoxDhCOYt1j8nN0HXH6xxIeKO7zVlf?=
+ =?us-ascii?Q?E+y2QBh56FRpzUOI/bGqVAcXMBe/4NPUh6OdKiuNQAu8ZsV8A0+ldfzBVFTw?=
+ =?us-ascii?Q?wZSFQeM5DUG3a/dZEbaBt07KJ+7lGPCVw+7jjTpJ8sOdPJlTWV5A9F7D44tj?=
+ =?us-ascii?Q?qUbhe1d3py3N+ZpnPYIkPR9V6mZCj3GhKXFmKRbAjLZgkz0MMkubfvejb6nB?=
+ =?us-ascii?Q?YJ6MbI7wvxVgr5MK30p7fKcZn2wIUT4iEy2vc4aI5iNySt13PnQaMyMFCo7U?=
+ =?us-ascii?Q?qp1CRN/R/6uRszX/NKBOW5E6pqtKT8BXgFVelnJfzLoc6oXoBcExlA3IBYP8?=
+ =?us-ascii?Q?TxjOa9SzAgDQNQVNlniDzkfmCxLjHlj0IuKXzp/H0yBAgZ7lS4VkhCU9eo2k?=
+ =?us-ascii?Q?RGZ3FQTVL6gBNNNx+AYN4ugtPzGsweoZi6bISDuhpj22UUKikezAUbhcEuz4?=
+ =?us-ascii?Q?jLGiTEuun20PEfkm19M5bsV+MKUZvCG33a+I26Z16iLvVFEpars5t+PLozcz?=
+ =?us-ascii?Q?tbLhgMCFqxrhxnr5v73UZJ2VDrkaBeXM6z47Hc2uDcFq3Q1KaKzTFTQQzKcd?=
+ =?us-ascii?Q?grfYHeHNv0FTY1Q1L6Mbw367VmOELvXotuBhW/wFWVHIjRDBG42tUfCtxmr1?=
+ =?us-ascii?Q?DcDWFkWTVw9uobf1aReTK4UXpivtA4AKfYL+0zc5qz4hJ3mOHSSDoPiuij9w?=
+ =?us-ascii?Q?Ywh/4/3Ayk7LLVvWH/xwFoTxJXqOXlHtmId+vCrrAmAokcNp2pRddSRGMoDv?=
+ =?us-ascii?Q?dt9ExDPdJlK5jbb3P4x7jEuFBEGjyc7sh56Wj652a2BRNdL1+zPwESQoIfN8?=
+ =?us-ascii?Q?0x+s1Ezvay49FDRD/ImRbX0YDJ4Y6mT8uN6u0Lr89NYfCAYjAsmH7bpgQFKz?=
+ =?us-ascii?Q?dXsAs/oELPmI8Pi20h0UyOEkNNUMGmP/XPlSYg/GDraFSQRQtcVHe16+QLyP?=
+ =?us-ascii?Q?ygUzjVqSJrFrHAfodJbtecLMlC9nSGmN5oCdt5pEcnUz1vAqeecPnHxABM5W?=
+ =?us-ascii?Q?YLptumP+CGZmJoq4pWX+4Ajan1fcBiUdCZugUiNseGW28/LsPnzHI7PnNiOl?=
+ =?us-ascii?Q?bMVtsqHlavq1oeOAqvJAxlyubXSmWdvkD6GQZyri0eTS/ULQIbH7h1hwoAir?=
+ =?us-ascii?Q?XS7PRw1yNz1mo9F7ix14j7tw4jazijf5MfVK9ly6eWxI3c5yODETRTt9gZYd?=
+ =?us-ascii?Q?ChC0udbbpJDNF+LBLu8GOTBp7I4DaxqvM3zvDAwlx/0wIZJaUgwewjPtH0HS?=
+ =?us-ascii?Q?6pK9G85ql+KMmMKB+zwXNnDQCEeTHg6rthKuKdc7UbDbcyEQWfkZI2+W8PUZ?=
+ =?us-ascii?Q?3XGq2qufbWlZn8PynrY=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffe626b1-c819-4f16-fa10-08ddad066552
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 18:48:34.1114
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6Qwn3lkZP1XJ0iT9uiBhrvXM06ZphZcH4f8Y3anlZDinCpKrGN+I8/RcXZqhSVjrQ0Zce4InDQiklmYpHHRggQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7429
 
-Hi,
+Convert qca,qca7000.txt yaml format.
 
-On 2024-12-17 11:31:30 +0000, Valentina Fernandez wrote:
-> Hello all,
-> 
-> This series adds support for the Microchip Inter-Processor Communication
-> (IPC) mailbox driver.
-> 
-> Microchip's family of RISC-V SoCs typically has one or more clusters
-> that can be configured to run in Asymmetric Multi-Processing (AMP) mode.
-> 
-> The Microchip IPC is used to send messages between processors using
-> an interrupt signaling mechanism. The driver uses the RISC-V Supervisor
-> Binary Interface (SBI) to communicate with software running in machine
-> mode (M-mode) to access the IPC hardware block.
-> 
-> Additional details on the Microchip vendor extension and the IPC
-> function IDs described in the driver can be found in the following
-> documentation:
-> 
-> https://github.com/linux4microchip/microchip-sbi-ecall-extension
-> 
-> The PIC64GX MPU has a Mi-V IHC block, this will be added to the PIC64GX
-> dts after the initial upstreaming [1].
-> 
-> [1] https://patchwork.kernel.org/project/linux-riscv/patch/20240725121609.13101-18-pierre-henry.moussay@microchip.com/
-> 
-> Changes in v6:
-> - update bindings to explain why 'reg' is not needed with microchip,sbi-ipc compatible
-> 
-> Changes in v5:
-> - change interrup-names property to use a list instead of pattern
-> - move assitionalProperties after allOf : block
-> - update reg property in dt binding example to use lowercase hex
-> 
-> Changes in v4:
-> - specify that microchip,miv-ihc-rtl-v2 is intended for use with MIV IHC Soft IP
-> - drop items array and use const value for compatible strings
-> - add a contraint to microchip,ihc-chan-disabled-mask property
-> - minor improvements to "'#mbox-cells' description
-> 
-> Changes in v3:
-> - Fix incorrent formatting around '=' in dt binding examples
-> - Add per compatible descriptions in dt binding
-> - Add '>' in certain dt binding descriptions to keep paragraphs maintained
-> - export __cpuid_to_hartid_map to compile mailbox driver as module
-> - Drop unused enum ipc_irq_type
-> - rename struct mchp_ipc_probe to mchp_ipc_mbox_info
-> - rename struct ipc_chan_info to mchp_ipc_sbi_chan
-> - rename struct microchip_ipc to mchp_ipc_sbi_mbox
-> - use phys_addr_t for __pa()
-> - drop mchp_ipc_get_chan_id function
-> - use num_chans in mbox_controller
-> - Fix buf_base_tx and buf_base_rx sizes using max and kmalloc
-> 
-> Changes in v2:
-> - use kmalloc and __pa() instead of DMA API
-> - fix size of buf_base to avoid potential buffer overflow
-> - add kernel doc for exported functions (mchp_ipc_get_chan_id)
-> - use EXPORT_SYMBOL_GPL instead of EXPORT_SYMBOL
-> - drop unnecessary blank line and fix alignment issues
-> - drop of_match_ptr
-> - move MODULE_DEVICE_TABLE next to the definition
-> - reword subject from riscv: asm: vendorid_list to riscv: sbi: vendorid_list
-> - remove the word "driver" from dt-binding commit subject
-> - make interrupt-names a required property for all cases
-> - add dependency on COMPILE_TEST and ARCH_MICROCHIP
-> 
-> Regards,
-> Valentina
-> 
-> Valentina Fernandez (4):
->   riscv: sbi: vendorid_list: Add Microchip Technology to the vendor list
->   riscv: export __cpuid_to_hartid_map
->   dt-bindings: mailbox: add binding for Microchip IPC mailbox controller
->   mailbox: add Microchip IPC support
-> 
->  .../bindings/mailbox/microchip,sbi-ipc.yaml   | 123 +++++
->  arch/riscv/include/asm/vendorid_list.h        |   1 +
->  arch/riscv/kernel/smp.c                       |   1 +
->  drivers/mailbox/Kconfig                       |  13 +
->  drivers/mailbox/Makefile                      |   2 +
->  drivers/mailbox/mailbox-mchp-ipc-sbi.c        | 504 ++++++++++++++++++
->  include/linux/mailbox/mchp-ipc.h              |  33 ++
->  7 files changed, 677 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
->  create mode 100644 drivers/mailbox/mailbox-mchp-ipc-sbi.c
->  create mode 100644 include/linux/mailbox/mchp-ipc.h
-> 
-> -- 
-> 2.34.1
-> 
+Additional changes:
+- add refs: spi-peripheral-props.yaml, serial-peripheral-props.yaml and
+  ethernet-controller.yaml.
+- simple spi and uart node name.
+- use low case for mac address in examples.
+- add check reg choose spi-peripheral-props.yaml or
+  spi-peripheral-props.yaml.
 
-Building this driver as a module with SMP=n fails becuase the non-SMP
-cpuid_to_hartid_map() depends on the non-exported boot_cpu_hartid
-(discovered via randconfig).
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+change in v4
+- move if into allOf
+  move qca,legacy-mode to top and use qca,legacy-mode: false to disallow it
+  for uart
 
-From the description of the driver it doesn't seem to be very useful
-with SMP=n, would it make sense to have it depend on SMP rather than
-exporting boot_cpu_hartid?
+change in v3
+- move ethernet-controller.yaml# out of if branch
 
-Regards,
-Klara Modin
+change in v2
+- add Ethernet over UART" description here back
+- add add check reg choose spi-peripheral-props.yaml
+- move spi related properties in if-then branch
+- move uart related properies in if-else branch
+---
+ .../devicetree/bindings/net/qca,qca7000.txt   |  87 --------------
+ .../devicetree/bindings/net/qca,qca7000.yaml  | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 108 insertions(+), 88 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/qca,qca7000.txt
+ create mode 100644 Documentation/devicetree/bindings/net/qca,qca7000.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/qca,qca7000.txt b/Documentation/devicetree/bindings/net/qca,qca7000.txt
+deleted file mode 100644
+index 8f5ae0b84eec2..0000000000000
+--- a/Documentation/devicetree/bindings/net/qca,qca7000.txt
++++ /dev/null
+@@ -1,87 +0,0 @@
+-* Qualcomm QCA7000
+-
+-The QCA7000 is a serial-to-powerline bridge with a host interface which could
+-be configured either as SPI or UART slave. This configuration is done by
+-the QCA7000 firmware.
+-
+-(a) Ethernet over SPI
+-
+-In order to use the QCA7000 as SPI device it must be defined as a child of a
+-SPI master in the device tree.
+-
+-Required properties:
+-- compatible	    : Should be "qca,qca7000"
+-- reg		    : Should specify the SPI chip select
+-- interrupts	    : The first cell should specify the index of the source
+-		      interrupt and the second cell should specify the trigger
+-		      type as rising edge
+-- spi-cpha	    : Must be set
+-- spi-cpol	    : Must be set
+-
+-Optional properties:
+-- spi-max-frequency : Maximum frequency of the SPI bus the chip can operate at.
+-		      Numbers smaller than 1000000 or greater than 16000000
+-		      are invalid. Missing the property will set the SPI
+-		      frequency to 8000000 Hertz.
+-- qca,legacy-mode   : Set the SPI data transfer of the QCA7000 to legacy mode.
+-		      In this mode the SPI master must toggle the chip select
+-		      between each data word. In burst mode these gaps aren't
+-		      necessary, which is faster. This setting depends on how
+-		      the QCA7000 is setup via GPIO pin strapping. If the
+-		      property is missing the driver defaults to burst mode.
+-
+-The MAC address will be determined using the optional properties
+-defined in ethernet.txt.
+-
+-SPI Example:
+-
+-/* Freescale i.MX28 SPI master*/
+-ssp2: spi@80014000 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	compatible = "fsl,imx28-spi";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&spi2_pins_a>;
+-
+-	qca7000: ethernet@0 {
+-		compatible = "qca,qca7000";
+-		reg = <0x0>;
+-		interrupt-parent = <&gpio3>;      /* GPIO Bank 3 */
+-		interrupts = <25 0x1>;            /* Index: 25, rising edge */
+-		spi-cpha;                         /* SPI mode: CPHA=1 */
+-		spi-cpol;                         /* SPI mode: CPOL=1 */
+-		spi-max-frequency = <8000000>;    /* freq: 8 MHz */
+-		local-mac-address = [ A0 B0 C0 D0 E0 F0 ];
+-	};
+-};
+-
+-(b) Ethernet over UART
+-
+-In order to use the QCA7000 as UART slave it must be defined as a child of a
+-UART master in the device tree. It is possible to preconfigure the UART
+-settings of the QCA7000 firmware, but it's not possible to change them during
+-runtime.
+-
+-Required properties:
+-- compatible        : Should be "qca,qca7000"
+-
+-Optional properties:
+-- local-mac-address : see ./ethernet.txt
+-- current-speed     : current baud rate of QCA7000 which defaults to 115200
+-		      if absent, see also ../serial/serial.yaml
+-
+-UART Example:
+-
+-/* Freescale i.MX28 UART */
+-auart0: serial@8006a000 {
+-	compatible = "fsl,imx28-auart", "fsl,imx23-auart";
+-	reg = <0x8006a000 0x2000>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&auart0_2pins_a>;
+-
+-	qca7000: ethernet {
+-		compatible = "qca,qca7000";
+-		local-mac-address = [ A0 B0 C0 D0 E0 F0 ];
+-		current-speed = <38400>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/net/qca,qca7000.yaml b/Documentation/devicetree/bindings/net/qca,qca7000.yaml
+new file mode 100644
+index 0000000000000..f786f0ab38bcf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/qca,qca7000.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/qca,qca7000.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm QCA7000
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description: |
++  The QCA7000 is a serial-to-powerline bridge with a host interface which could
++  be configured either as SPI or UART slave. This configuration is done by
++  the QCA7000 firmware.
++
++  (a) Ethernet over SPI
++
++  In order to use the QCA7000 as SPI device it must be defined as a child of a
++  SPI master in the device tree.
++
++  (b) Ethernet over UART
++
++  In order to use the QCA7000 as UART slave it must be defined as a child of a
++  UART master in the device tree. It is possible to preconfigure the UART
++  settings of the QCA7000 firmware, but it's not possible to change them during
++  runtime
++
++properties:
++  compatible:
++    const: qca,qca7000
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  qca,legacy-mode:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Set the SPI data transfer of the QCA7000 to legacy mode.
++      In this mode the SPI master must toggle the chip select
++      between each data word. In burst mode these gaps aren't
++      necessary, which is faster. This setting depends on how
++      the QCA7000 is setup via GPIO pin strapping. If the
++      property is missing the driver defaults to burst mode.
++
++allOf:
++  - $ref: ethernet-controller.yaml#
++
++  - if:
++      required:
++        - reg
++
++    then:
++      properties:
++        spi-cpha: true
++
++        spi-cpol: true
++
++        spi-max-frequency:
++          default: 8000000
++          maximum: 16000000
++          minimum: 1000000
++
++      allOf:
++        - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++    else:
++      properties:
++        current-speed:
++          default: 115200
++
++        qca,legacy-mode: false
++
++      allOf:
++        - $ref: /schemas/serial/serial-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ethernet@0 {
++            compatible = "qca,qca7000";
++            reg = <0x0>;
++            interrupt-parent = <&gpio3>;      /* GPIO Bank 3 */
++            interrupts = <25 0x1>;            /* Index: 25, rising edge */
++            spi-cpha;                         /* SPI mode: CPHA=1 */
++            spi-cpol;                         /* SPI mode: CPOL=1 */
++            spi-max-frequency = <8000000>;    /* freq: 8 MHz */
++            local-mac-address = [ a0 b0 c0 d0 e0 f0 ];
++        };
++    };
++
++  - |
++    serial {
++        ethernet {
++            compatible = "qca,qca7000";
++            local-mac-address = [ a0 b0 c0 d0 e0 f0 ];
++            current-speed = <38400>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2c74753e2df41..ffc80ec9b3d6d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20383,7 +20383,7 @@ QUALCOMM ATHEROS QCA7K ETHERNET DRIVER
+ M:	Stefan Wahren <wahrenst@gmx.net>
+ L:	netdev@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/net/qca,qca7000.txt
++F:	Documentation/devicetree/bindings/net/qca,qca7000.yaml
+ F:	drivers/net/ethernet/qualcomm/qca*
+ 
+ QUALCOMM BAM-DMUX WWAN NETWORK DRIVER
+-- 
+2.34.1
+
 
