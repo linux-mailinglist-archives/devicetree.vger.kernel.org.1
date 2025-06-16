@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-186341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316BDADB4B9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:01:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CB4ADB4E4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D22C63B8E53
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:59:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 484217A2AA4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15AEA21ABC8;
-	Mon, 16 Jun 2025 14:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BC721C183;
+	Mon, 16 Jun 2025 15:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MiZE7a6+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dZ0NC/kF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45011D90DD;
-	Mon, 16 Jun 2025 14:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B785B202F87;
+	Mon, 16 Jun 2025 15:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750085919; cv=none; b=oCls0aTg7O4z9PNOFmfCN2HnJviXLFmzT9cdpUnl1uKRsVzLLNbgp66iXlgBz7YPGmWWrsxbwKTb7bJajEAh49XgGtDDH1exrJema0RCXaAtOyrFdNxViwfjkjf7MsrYiwTUnLwVPN4ZfIOVr6rkfymXBD9hKhIEEeeIhCh1INE=
+	t=1750086189; cv=none; b=EoybEH1Xn0ExNzMGTzq6kfSjoYB5FQkko5f04rEwHsomQO847H9NfRqDEThohvCIuUcOF8AbUtfqGbhmDVncQutcpgTkKIHZ4Ode+oPYsH7zz6pdG2AMqrzOrEwfehPr0Rvdk2sxoS5yrH1ydr+ucATkbTxR6qd1yiPo5vDcDwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750085919; c=relaxed/simple;
-	bh=46VI5kI7DARz6nHBYySD64FMtN5SGMQUkOWuVytVrXk=;
+	s=arc-20240116; t=1750086189; c=relaxed/simple;
+	bh=SIrqC6AzkZF8lFmesrPLyw+dA3BwFQ1jQV+GgwGaIk4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=urbuH6WkQU8I63AYAlNj95qyIC+iVhZGM/wzfByrwzdrWOBW1oOL0pxkNDzatKBmozcJ7w+HAcfBZ7ybfKg9iJjcW6VPtDRoWsJPFLwAeX2nYx8hoVrsLDEKNqG5r8Y7wyfBo00362V+6fJYntZrwk53Ju5lNQ6jf7pNySaXbgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MiZE7a6+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC04BC4CEEA;
-	Mon, 16 Jun 2025 14:58:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gZ87k1L1EWrthoTER6SY4jNZYTuc4wDs+wPvIkeBxqlQRIWJInrguSnpoIxGegGhBqYSntcUOjdlnibVZU32CqW8AhqR7FZxvItBWBTyog0UU7ahLc8KLKKW9NG9Ghq1nF7MDnYZ1bswfWcwVeaTgNGvBYZrTDrgFWWlEhQPZ1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dZ0NC/kF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BADEC4CEEA;
+	Mon, 16 Jun 2025 15:03:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750085919;
-	bh=46VI5kI7DARz6nHBYySD64FMtN5SGMQUkOWuVytVrXk=;
+	s=k20201202; t=1750086189;
+	bh=SIrqC6AzkZF8lFmesrPLyw+dA3BwFQ1jQV+GgwGaIk4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MiZE7a6+q/GsIslhl70mP/J8IrMeR55PETwqoVObqI42VN9ygAKPpurXpMyg7ltMi
-	 NSp5vThbbmRt23amO1B4nR/h9wT5OfJbYJTwfQBrzy8ReX7s3sD51LeWfQK86gndm8
-	 jmSmscaqmNm+o+jZGKCGpxAshtTC4OtparBXGjZAJlzP+Xv1WRI/6GhjrTpdehub31
-	 9QCXaEsIynLHSBMLTc6A15NycKv5ZpZxI3uEG2HnovSHQ1vG3Y/wm7B2nnfQGKobOC
-	 ABHMIFcyAEZILSjwuq6LU+MHfrjo9HwVbXw5wPzYdhOF9OfC23Ioq3YoKVH5N0PE2W
-	 0jBc3poySiyBQ==
-Date: Mon, 16 Jun 2025 15:58:34 +0100
+	b=dZ0NC/kFfaKpX5BpyjbfSJoehXzzC+i4H+qNug1L/P1bcT1Ju06gWnBuO54bh80kC
+	 OZX8wbFzagzIOE8b+aKCar9MdA/wooEeCGxIK5r1z8v8/68KHTUTTOevCpbpdGGtLl
+	 z2cVOLQeSfHysv4VRzAw/sj9RlJ3Wy+24WuSSowPkCGh5AxBEmxiywdujE9ga4O8Eu
+	 EWynAzPJY9uWVyL1r7Fl+kD0iHC5lmy6MXLWIHBWtYoy6Sani2301AfOc7g4AMzWZP
+	 RoBKBHQGeCZcLaOVRaqjc7Ny/fQmuhXw3TjN9B+4e13xvH/3oGwPJukj/r8DJBm8Tt
+	 KXz8TRh8CPT5A==
+Date: Mon, 16 Jun 2025 16:03:04 +0100
 From: Conor Dooley <conor@kernel.org>
-To: yassine.ouaissa@allegrodvt.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+To: Johan Adolfsson <johan.adolfsson@axis.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Dufresne <nicolas@ndufresne.ca>,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: vendor-prefixes: Update the
- description of allegro prefix
-Message-ID: <20250616-dragging-lego-ff264b3edcb6@spud>
-References: <20250616-allegro_dvt_al300_dec_driver-v3-0-7d746cb9e5f9@allegrodvt.com>
- <20250616-allegro_dvt_al300_dec_driver-v3-3-7d746cb9e5f9@allegrodvt.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@axis.com
+Subject: Re: [PATCH v6 2/2] dt-bindings: leds: lp50xx: Document child reg,
+ fix example
+Message-ID: <20250616-zealous-scariness-48b47a0818a5@spud>
+References: <20250616-led-fix-v6-0-b9df5b63505d@axis.com>
+ <20250616-led-fix-v6-2-b9df5b63505d@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,38 +63,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="92GXpTHi+dETNUEw"
+	protocol="application/pgp-signature"; boundary="4/6/wVc4KLozcveW"
 Content-Disposition: inline
-In-Reply-To: <20250616-allegro_dvt_al300_dec_driver-v3-3-7d746cb9e5f9@allegrodvt.com>
+In-Reply-To: <20250616-led-fix-v6-2-b9df5b63505d@axis.com>
 
 
---92GXpTHi+dETNUEw
-Content-Type: text/plain; charset=iso-8859-1
+--4/6/wVc4KLozcveW
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 16, 2025 at 01:12:14PM +0000, Yassine Ouaissa via B4 Relay wrot=
-e:
-> From: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+On Mon, Jun 16, 2025 at 01:25:35PM +0200, Johan Adolfsson wrote:
+> The led child reg node is the index within the bank, document that
+> and update the example accordingly.
 >=20
-> Add SAS (Soci=E9t=E9 par actions simplifi=E9e) to the allegro of vendor
-> prefixe description to include French simplified joint-stock company
-> legal structure.
+> Signed-off-by: Johan Adolfsson <johan.adolfsson@axis.com>
+> ---
+>  .../devicetree/bindings/leds/leds-lp50xx.yaml       | 21 ++++++++++++++-=
+------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
 >=20
-> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Do=
+cumentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> index 402c25424525..cb450aed718c 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> @@ -81,7 +81,14 @@ patternProperties:
+> =20
+>          properties:
+>            reg:
+> -            maxItems: 1
+> +            items:
+> +              - minimum: 0
+> +                maximum: 2
+> +
+> +            description:
+> +              This property denotes the index within the LED bank.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> +              The value will act as the index in the multi_index file to=
+ give
+> +              consistent result independent of devicetree processing ord=
+er.
 
---92GXpTHi+dETNUEw
+This looks like commentary on the particulars of the driver
+implementation in linux, which shouldn't be in a binding.
+
+> =20
+>          required:
+>            - reg
+> @@ -138,18 +145,18 @@ examples:
+>                  color =3D <LED_COLOR_ID_RGB>;
+>                  function =3D LED_FUNCTION_STANDBY;
+> =20
+> -                led@3 {
+> -                    reg =3D <0x3>;
+> +                led@0 {
+> +                    reg =3D <0x0>;
+
+Do you have any explanation for why these numbers, outside the range you
+said is valid, were in the binding's example?
+Additionally, can you mention in the commit message what the source was
+for the 0-2 range?
+
+Cheers,
+Conor.
+
+>                      color =3D <LED_COLOR_ID_RED>;
+>                  };
+> =20
+> -                led@4 {
+> -                    reg =3D <0x4>;
+> +                led@1 {
+> +                    reg =3D <0x1>;
+>                      color =3D <LED_COLOR_ID_GREEN>;
+>                  };
+> =20
+> -                led@5 {
+> -                    reg =3D <0x5>;
+> +                led@2 {
+> +                    reg =3D <0x2>;
+>                      color =3D <LED_COLOR_ID_BLUE>;
+>                  };
+>              };
+>=20
+> --=20
+> 2.30.2
+>=20
+
+--4/6/wVc4KLozcveW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFAxGgAKCRB4tDGHoIJi
-0pe7AQCCAy/NM7p1ATskCojxMrDBWbbWKo9pJJCx6Dx5ekBNpQD+NfWNjp1D+GEx
-Wsn4ri9kcmt6thxJqpWmk/7juUafGwQ=
-=gDpX
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFAyKAAKCRB4tDGHoIJi
+0q/PAP9gatx3SgO62Of1KYNl6uc3Rfq9AOBv7EwLyKx0phLFbgD9HSWb0upXrKOB
+Q3H7ztxnvcdarwbtFSxKCE7nRhJsoA0=
+=slMW
 -----END PGP SIGNATURE-----
 
---92GXpTHi+dETNUEw--
+--4/6/wVc4KLozcveW--
 
