@@ -1,152 +1,184 @@
-Return-Path: <devicetree+bounces-186299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DF3ADB089
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:48:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1A3ADB0A8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:53:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9E60164626
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:48:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0BE918852F4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18014285C94;
-	Mon, 16 Jun 2025 12:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3BD1285CB3;
+	Mon, 16 Jun 2025 12:53:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="P1mehgoW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dLAFIxgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381C11ABEC5;
-	Mon, 16 Jun 2025 12:48:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750078125; cv=pass; b=JBAyQqwYXkhW7RGBGoBkOxUYUe0dsMzIHQW95+1E3L8XIUR76XbayHaQJMNRJvtaSI1opzdDj4C3HLHaxlKgy2XU7wz+Omlt7bnU5yIIi1c3Upyo+kfY0+6zvifXxvTtzwi8LkVaI0UGbP07h0FCopIDzFvVbYYvqmF8HcJE9I4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750078125; c=relaxed/simple;
-	bh=9Ad3Gd5JRZICvEqWYMhGmDPtMzVLCGq3AbWFxmNBCDs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZSdVgEiyUhxbtaftsQlbrfK8BEu+kWL94HNPRDFtSzmyqdFNPWJE6NZECsUMxkcpMJjdYkTdtSvZ/DHIYuBA/Oe3AmV1rkW7Z9kUOM5nL7FUp+JRMxVz/5Aax2AEZi/ruObNRA0zrQWcz+0/o7MS5Ht3jBdU+RuJmnWLdiZsZ74=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=P1mehgoW; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750078090; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Noj837lL1QUwu7QwkZOvSNZyMANKK4hvJRpnt3BeaQkZfvjrMDtbEVB7pyeP9H3rGsZIwZjbnZto6Dw6xvLqZDOgRi0WdWOHnSFq+w8ocLkp4KRC8FISqOMAtulZN/hErS2wNCwChKeF5ct2yxovVMu8osk6129ALt5XeIbbGE8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750078090; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=HKjeTdmJPh/8z/0sRDDRVkWKLbnDMCBBoa4t9bucIe4=; 
-	b=J0sXDy+hxuy+880JvsArY9kGS8zGenjEO6mtuM1TOAokRZZalldQcJTXzjB87BSnUK6KeIH4nSGPZ8PD4AwN1QWTloUKOwgzynnz9mo1FBuo1lLVlGdnCxYa97ZUR4qSILEKXjbZHmJHh3gYNZ0i+7ZfRwpGvwZpIJ6uyludl2U=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750078090;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=HKjeTdmJPh/8z/0sRDDRVkWKLbnDMCBBoa4t9bucIe4=;
-	b=P1mehgoW9dxsq8haTmNMgTw+EKa3hxVmX6x429UQxc+r06naOkrbhD2WzXCJrfa1
-	4ZB4MIsrQMxJYC4u6ku4JNUBduBRPV1NutWRlCdXt7NExjrrvwAE07Gd4tjJBz6dP3Y
-	VH7KKk2bIoArvK9W559I77SqtxhjQxUezTlYzC4k=
-Received: by mx.zohomail.com with SMTPS id 1750078087706132.33901078776455;
-	Mon, 16 Jun 2025 05:48:07 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Alexey Charkov <alchark@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v4 1/4] phy: rockchip: inno-usb2: add soft vbusvalid control
-Date: Mon, 16 Jun 2025 14:48:01 +0200
-Message-ID: <7815489.EvYhyI6sBW@workhorse>
-In-Reply-To: <5c531d53-3573-4c25-a32b-79dfd5abd4cd@linaro.org>
-References:
- <20250610-rk3576-sige5-usb-v4-0-7e7f779619c1@collabora.com>
- <20250610-rk3576-sige5-usb-v4-1-7e7f779619c1@collabora.com>
- <5c531d53-3573-4c25-a32b-79dfd5abd4cd@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E388285C91
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 12:53:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750078381; cv=none; b=NzcKS+GX77qL7NTYeFEXyhzYGz8wAKSdozY6iyhIrcNyeVmEp9AVOZlDjeeFIOTB47386w36K8fGbIeifHL9l/L2FA5522W0fQX6Y1xKvHsKSIDCiCyc7x2Ydq7wwWnq19wHfTzwaSfSGLaosZhk4137lFlAKXt99dLwH4bmxRU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750078381; c=relaxed/simple;
+	bh=xDo/CFd9O80cjbXr3irb8h8miFyh3mpLQ44oVF5ZXVw=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XFu0Zf0ffHf1TeXq7TNqJsPyScYjsJvrS5fvMs8raPCdVsfbKQIJhzd95CxfGpU0u/X6g9vfIDKcUO2a3pPVexJ5qcSzupyRlpqwYHLBnrk8WB56HyVy51UNuoEzYSI2Iqe/Re9g62G3Af4ne98JL0Ywrq/Ryed0/8c1dpPCf5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dLAFIxgM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55G8bqYr021721
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 12:52:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=3KaQaSQSjoPXPxix0wFVI/K7
+	2pUStJJyIYhcrvQzs8U=; b=dLAFIxgMECezCzCS9OY0D5uNzeiMkztyFQR/SAeb
+	7IPY6AJG5N7oUpmMDS9TmSnnUIYXDUxBE2/hpkoHDMlSHyDoOHErAcJFOSUXi417
+	JZ2eLoo+eYyI7i9ffDBB9Y17arBk3aQVT0WkHZ5BQFiD+UU0TLmILfErROT5dabJ
+	rbFudxOTUNy2IgNFcHDAcLCS95YtImAjwRiQrvdCUbU820lULhOpWRSePM43FBnZ
+	8+g/JlGxu6zEPd9Vpf/yxjlqLxd/7hNzDDUWALnegko5g5Q21dWZKsbKg4bF2mzn
+	zSYmQgm8xx7iz4FH3xkqgggTNQiJnbD0Vd/ge7dcO8njvw==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4792c9vg5c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 12:52:59 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6fabd295d12so73657106d6.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 05:52:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750078378; x=1750683178;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3KaQaSQSjoPXPxix0wFVI/K72pUStJJyIYhcrvQzs8U=;
+        b=GG6NA9yn2fY6hORD1cuA/0VCijv5gP/X9tOn5Zc4Vlj69pcJQzl9nei+DZRE9t6M6w
+         h0icVrasUJVsj0J3yBkOmIj7BY380JsjMWKpqPgP//BFB/P+jEAzvRCq6VvHImN/peL7
+         1YN/UEHgHRD44pGlmfeMNUQ37RIAx08ZnG/1PpKIfQlfsZ82sL1qBytVe5JP+WK38bFm
+         aV97ACK7dSz/QxuwiEYCX1WzW/AnsiE/MrV16KbsmEQhxsLyyHve5Yhtpqq8mTkeMGa+
+         LlRTqN2cQrGgsXXY1rzKjZoYNfve3eWAmgnVvyElxjUb96o/CIZxzZmWazltHYwSe+K2
+         an9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVtSp6G9zyzQVUu3vWfE4WhtIiQ8uG2sksGDWMDxlkNPsO8d2LY91SZq+ISiOwT3+BEKGkJw5PCcwrN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0Yvui2BDxWWTR1s8XhthQ9at23ezVCHDbevq3nos04JF7m+on
+	kgUGTgDcvBjX2S8Fc4UAr14WI7n2RdiBqDGdrlQ8XSmbldfgkQ+z+v6ZoJ3fZbBqTWNzR3PPrK8
+	GGZ9VlK+wCUAVgiHSKGB8VZ88J0FFYmEfHFJogJIJ1ULxqn1Hoe7R6TcCx+x/CSt/
+X-Gm-Gg: ASbGnctw3ikb5KXxMSr6ImBmXkOrF55l+xgRslzPb8IrLkP/QPj0lLklx58B1lHt4Lp
+	tTQ7/R1l+VOEzhUorWN30KnyI6hijY0c7KippIL9e/aDuGEe+WlgtbGHBQeyPNWOXpjsAvMtEOo
+	Atpp6AO+D59hNAHDvNgXWGRonu5fsS3IRGDn8VaSCB4+FCTNmko+fYHtxwmKxJR7bTOjHTkuHy2
+	HdNbMuyPuhIyquuiFnhflJpq7MTC7oXdgDRc3F0ZSVBt8/hnhpRr/VzZgkViP3sfOmVdBvaCgZz
+	Lad3FPuUg9jHIP4wTCM9ifTTiuBBng34Y7er60L1zdGdvuTzQvaonlzkJQ==
+X-Received: by 2002:ad4:5e87:0:b0:6e8:97f6:3229 with SMTP id 6a1803df08f44-6fb4772a019mr128592186d6.16.1750078377862;
+        Mon, 16 Jun 2025 05:52:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF+OFLF4t7/ZWk0HbQ5uqeqFokxTATjRvaApyd+ckaiuS8GwJZ2WNkfZTT+6OXd0WtcCQEi5w==
+X-Received: by 2002:ad4:5e87:0:b0:6e8:97f6:3229 with SMTP id 6a1803df08f44-6fb4772a019mr128591716d6.16.1750078377401;
+        Mon, 16 Jun 2025 05:52:57 -0700 (PDT)
+Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532f2ca228sm145532895e9.13.2025.06.16.05.52.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 05:52:56 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Mon, 16 Jun 2025 14:52:55 +0200
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
+        quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
+        bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, stanimir.varbanov@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
+Message-ID: <aFATp3zoSgkrj3YX@trex>
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+ <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
+ <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org>
+X-Proofpoint-GUID: JvJGIjUOSX38cYAnGvRtRg1arXGUeF3W
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDA4MCBTYWx0ZWRfX9Hdb2X5qr5jZ
+ PcucLE9zPh1UuoJdHgW8jSMmTsPOdY5y6coGxIao96h6ihVXGQx1bOWrl5dz4eScRz9c7bexTZ0
+ 8kbOLjm6uq4TimhAu3fqLH/ZYmaRrOasa4BM3vvzpbkL/YmmR14NiGoCIrtCUO2oOkuqz6KRpNV
+ /gYaBLcOuIjpKUZ5s7gLOEaW8b7yIMSI7f09VOSl9bmIU0o7S+YzBFJy8iejQI8Y/HCzWi0dPwP
+ FTnwLpsfhr/eNxluMkvqN9VQXfweoH1Y+WJcLcV9hAJ3IBt32gnFDeBz/ZSoGyEs/WnngSbFakU
+ 0bqciVPYDre8FXoQ3z8XVzCsBLZ2nvZKAhPCKoUvg7p51tisz/k94xbpklVxJFE+B8sQ6+xFFLU
+ RKRq8UoMlx2Kb1EeCEo6cjd9EvdF33RxTvQehww8lMELOd2aoOFLgSqa2ai2G26/6o5T2am8
+X-Proofpoint-ORIG-GUID: JvJGIjUOSX38cYAnGvRtRg1arXGUeF3W
+X-Authority-Analysis: v=2.4 cv=etffzppX c=1 sm=1 tr=0 ts=685013ab cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
+ a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=KKAkSRfTAAAA:8 a=DAQgPmeqjGmo1aN9fEMA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-16_05,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 adultscore=0 spamscore=0 malwarescore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506160080
 
-On Friday, 13 June 2025 11:02:40 Central European Summer Time neil.armstrong@linaro.org wrote:
-> On 10/06/2025 16:07, Nicolas Frattaroli wrote:
-> > With USB type C connectors, the vbus detect pin of the OTG controller
-> > attached to it is pulled high by a USB Type C controller chip such as
-> > the fusb302. This means USB enumeration on Type-C ports never works, as
-> > the vbus is always seen as high.
+On 16/06/25 10:20:57, Krzysztof Kozlowski wrote:
+> On 13/06/2025 16:03, Jorge Ramirez-Ortiz wrote:
+> > Add a schema for the venus video encoder/decoder on the qcm2290.
 > > 
-> > Rockchip added some GRF register flags to deal with this situation. The
-> > RK3576 TRM calls these "soft_vbusvalid_bvalid" (con0 bit index 15) and
-> > "soft_vbusvalid_bvalid_sel" (con0 bit index 14).
-> > 
-> > Downstream introduces a new vendor property which tells the USB 2 PHY
-> > that it's connected to a type C port, but we can do better. Since in
-> > such an arrangement, we'll have an OF graph connection from the USB
-> > controller to the USB connector anyway, we can walk said OF graph and
-> > check the connector's compatible to determine this without adding any
-> > further vendor properties.
-> > 
-> > Do keep in mind that the usbdp PHY driver seemingly fiddles with these
-> > register fields as well, but what it does doesn't appear to be enough
-> > for us to get working USB enumeration, presumably because the whole
-> > vbus_attach logic needs to be adjusted as well either way.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
 > > ---
-> >   drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 113 +++++++++++++++++++++++++-
-> >   1 file changed, 109 insertions(+), 4 deletions(-)
+> >  .../bindings/media/qcom,qcm2290-venus.yaml    | 153 ++++++++++++++++++
+> >  1 file changed, 153 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
 > > 
-> > diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > index b0f23690ec3002202c0f33a6988f5509622fa10e..4f89bd6568cd3a7a1d2c10e9cddda9f3bd997ed0 100644
-> > --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > [...]
-> > @@ -666,8 +679,17 @@ static void rockchip_usb2phy_otg_sm_work(struct work_struct *work)
-> >   	unsigned long delay;
-> >   	bool vbus_attach, sch_work, notify_charger;
-> >   
-> > -	vbus_attach = property_enabled(rphy->grf,
-> > -				       &rport->port_cfg->utmi_bvalid);
-> > +	if (rport->port_cfg->svbus_en.enable && rport->typec_vbus_det) {
-> > +		if (property_enabled(rphy->grf, &rport->port_cfg->svbus_en) &&
-> > +		    property_enabled(rphy->grf, &rport->port_cfg->svbus_sel)) {
+> > diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> > new file mode 100644
+> > index 000000000000..ffa72f1e27f3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> > @@ -0,0 +1,153 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/qcom,qcm2290-venus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm QCM2290 Venus video encode and decode accelerators
+> > +
+> > +maintainers:
+> > +  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> > +
+> > +description: |
 > 
-> Why do you check the registers since you always enable those bits on those conditions:
-> 	rport->port_id == USB2PHY_PORT_OTG
-> 	rport->typec_vbus_det
-> 	rport->port_cfg->svbus_en.enable
-> 	rport->typec_vbus_det
-> Can't you us them instead ?
+> Do not need '|' unless you need to preserve formatting.
 
-I did some more looking into this, and agree that I can drop the
-property_enabled lines here. The other concern I had immediately (that
-the bits never get turned off, which seemed fishy) isn't a concern after
-all, because after sleeping on it some more, I realised that it's probably
-not very likely that a USB-C connector is ever going to morph into anything
-else spontaneously.
-
-Thank you for spotting this!
+ack
 
 > 
-> Neil
+> > +  The Venus AR50_LITE IP is a video encode and decode accelerator present
+> > +  on Qualcomm platforms
+> > +
+> > +allOf:
+> > +  - $ref: qcom,venus-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,qcm2290-venus
+> > +
+> > +  power-domains:
+> > +    minItems: 2
+> > +    maxItems: 3
+> > +
+> > +  power-domain-names:
+> > +    minItems: 2
 > 
-> [...]
+> Why is this flexible? Either you have two or three. Not mixed.
 
-Kind regards,
-Nicolas Frattaroli
-
-
+please check 5b380f242f360256c96e96adabeb7ce9ec784306
 
