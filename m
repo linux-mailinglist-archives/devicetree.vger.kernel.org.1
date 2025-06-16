@@ -1,401 +1,160 @@
-Return-Path: <devicetree+bounces-186406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368BFADBAE4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 22:19:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D555ADBB1E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 22:27:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DC4A3B8E3E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:18:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13EBB1752E0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAEDC28C030;
-	Mon, 16 Jun 2025 20:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C7C1FBE9B;
+	Mon, 16 Jun 2025 20:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cQLV+hiw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z6BsHUo9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08242290BA5
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 20:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797001F099C
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 20:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750104960; cv=none; b=ASY0c/ZxYwNPWOUEOKs88nk5/ocClTMUBFOAi51DkUiGJuKPdE7qu2ua2R1LBahVEBjRVHaX3sHAo0icA9PTJZRWzqDlqVMc+uQRXfjHu4JYNzVqefSiKhxoyVXLwah+b01RzEgS7NJGXpn3DxxyZwxlkwYUtA3hD0tJMNuw4c8=
+	t=1750105645; cv=none; b=NX+EX9QMkvp07ZiZurKJyN4E3kOajWA+bsDX8vmJ4RYr9RiXv7BF+rJXJkglLIBlIX5+ELZR0/u6bJHwsN8XkfKpQUJvXl+sKdfyl7dXpqkAEKxPsFLJnIbqjeA7dXvu7p7pzUvkA5ZCgKwE6npuGP43dCQKlVkX/vmpPEQ9vdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750104960; c=relaxed/simple;
-	bh=oT2X5a9db3fvX4h+pfQea3+mOSJ3D/971Mhcdm02WP8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sEtAZnz+2/JFrc+FldewO9N7OwZKWNAbXExE+/IAZVluhx3EMdUEp7CFBIGL6c1g7v2rX00aSDp/MydonIl3in1DLnqz4Iul4OkUhqKkhtfq9PHpoaMjwapDz0QCBn/SBgGR5iYTfnpJ1tV0WtIK/eutdwSF5XuRPqA/1lxiJUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=cQLV+hiw; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1750104958;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5e7j5Lsxu01XP+JZK7FayPbs2oiwzPSDVUbmSjN7Gns=;
-	b=cQLV+hiwTJCALG9sPs1JCbgPKzpPpdqkbmqdzW14ctroVbyEC18UxKZa2k77OLFMgy4MqU
-	O33sL1X533HJ1X0tQV/8Hc+ersBVoIlEbW0UBrd5Xy9A1pnxzav59+TMb3EP9ulAq1YoNn
-	C3/2OxhSiHsW6rsx+zk2xJpXQq2A+gI=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-655-VxfjwL0JPCeatWu2opHOYw-1; Mon,
- 16 Jun 2025 16:15:56 -0400
-X-MC-Unique: VxfjwL0JPCeatWu2opHOYw-1
-X-Mimecast-MFC-AGG-ID: VxfjwL0JPCeatWu2opHOYw_1750104954
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 3C33E1956095;
-	Mon, 16 Jun 2025 20:15:54 +0000 (UTC)
-Received: from p16v.luc.cera.cz (unknown [10.45.224.53])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id D886F30001B1;
-	Mon, 16 Jun 2025 20:15:47 +0000 (UTC)
-From: Ivan Vecera <ivecera@redhat.com>
-To: netdev@vger.kernel.org
-Cc: Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Shannon Nelson <shannon.nelson@amd.com>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Michal Schmidt <mschmidt@redhat.com>,
-	Petr Oros <poros@redhat.com>
-Subject: [PATCH net-next v11 14/14] dpll: zl3073x: Add support to get/set frequency on output pins
-Date: Mon, 16 Jun 2025 22:14:04 +0200
-Message-ID: <20250616201404.1412341-15-ivecera@redhat.com>
-In-Reply-To: <20250616201404.1412341-1-ivecera@redhat.com>
-References: <20250616201404.1412341-1-ivecera@redhat.com>
+	s=arc-20240116; t=1750105645; c=relaxed/simple;
+	bh=Pl8uAL9imnIlMlVX+Jwp4Ai8ciJxgauG7/WL7PCtbTA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bji0Rhvz70SGgSXJR6090kFXHHBBStjla2E79aG6wgj7cwNPLSTdfe2ss6Tu6vPZqmGB/2FFfdIXgoH81P2eHt6tp2QKJ8d+vsq+3+0UVwina5y/YigYw8fbSLEP7j0EZ/+QGMt2rrxu7IJcaLpNjUL+HcoTjuT6rmrKYNLbfkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z6BsHUo9; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-60727e46168so8492066a12.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 13:27:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750105642; x=1750710442; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6SEpQ9/rGAradDo0hFnq//uVXTz1nKpEiDqt68IMLuE=;
+        b=Z6BsHUo9pMTxFC5aMYv6H6djVcZZi3MAxpc/djTj+9gBBGJZtTiiBfYR3U5RrAuoje
+         kDvlmKev/BE6vGQev3VVs3QqGQgSmueStqW5wTr1zUE9LkmJkObU1PIuexgtwFKoEcMP
+         GkTxocPt70PhnOjx0xhtyfz6rRoQwUDY0D3Lh0LfSSkn3v15A4oZ4gDdYMrDpp2Sbsye
+         RxBMLUTanGF1WF5HxaizbTgUw7NrlXB+X+fO8ifx++UrMe3GCQ6p1v+rEcm0A8GMZPjL
+         9VQXmXLm6F9dALnHBffQicFkA2YBF3LBzfR5ZbXhsnSwQJoWP1Y5CI6Fk0HYhHNOokxn
+         1OaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750105642; x=1750710442;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6SEpQ9/rGAradDo0hFnq//uVXTz1nKpEiDqt68IMLuE=;
+        b=bmzPvYvYGHHAEUbaHTrZGguoMlCIh8aCRtx2wKzSBiHQZ1oUhfrutafOFq4YbOGHlN
+         ve6d/5+6nsSDgNAPIUAbNzSKzJZ/wlXWuWvVKlJ9LQxkSGG4qcTxK/ame9jCzgTy1gTS
+         zDVbtEX0+xJwutTUZU8wW09hTo5Hw/9Jti6ZVs+uC4LnejZ3sUIyBDqXR+YK9yqNV0jz
+         Ao4DhauOaQrI5eeFyFzGtT3pFXYa22D5XKciML2KcAP3FoOCtremNVHm2ljgXQBPqeD1
+         Fsqwoiey1EAqz+RebKNS48UvQDzuwkqH2Sio7Gdi1UdVOKllMhAYHtotrFwhzx6V2CP1
+         ++tQ==
+X-Gm-Message-State: AOJu0Ywni3EagV5iWRQUZdG6mByc5u99uAoOlqnmbdljYn+s/SswKZzK
+	khpQUqWt1JVF+1DdzGtr30ItZ2QAceo2mfp49sKERzzY8rhQ8K2nk8BUu+HcZZPYxU2f/K5ENnl
+	gtE6QlB8KVXIsHA0FBsim0uhyllk6zGv2TXDX
+X-Gm-Gg: ASbGncuPAGP6RpCbLwFbZKgTntVOKnxbuO5T0bAuU+SZxrlG6NVZpr3m10sZ/rz2rjx
+	G0k7hUPRT699Seb/QGHGBjXWQpkDZcDKGS6a9TZTVxwIWo6utDEUHrVOVVLPz/YoF0NhSyVj4Rk
+	CcUjYIZlIhtB53bPFhJmHToVtaxy4iJETOjh8HkE68LPyAvw==
+X-Google-Smtp-Source: AGHT+IE/Ko78foFCrT3WOmNDdzsm0byfRXBmu6cytt7HJus0AtpukXN18jbCVcl9cqS5opYlD5ZNN1XiGAnC4bVbIVg=
+X-Received: by 2002:a17:907:1c10:b0:adb:469d:2221 with SMTP id
+ a640c23a62f3a-adfad4f5325mr1097369566b.45.1750105641528; Mon, 16 Jun 2025
+ 13:27:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+References: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
+In-Reply-To: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 16 Jun 2025 23:26:43 +0300
+X-Gm-Features: AX0GCFsXIllp11iym0Tgik5EfuY1oIl71wj2D31WHFxw2eSFsPKtDTiITHzoxOE
+Message-ID: <CAHp75Veq5Tms2X2j=hNuBt84mYrfKgYcbZpOVn49+7PhmeN+zw@mail.gmail.com>
+Subject: Re: [RFC][DT] Guidance on device tree property prefix for
+ TM16XX-class LED display controllers
+To: Jean-Francois Lessard <jefflessard3@gmail.com>
+Cc: devicetree@vger.kernel.org, andy@kernel.org, geert@linux-m68k.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support to get/set frequencies on output pins. The frequency for
-output pin is determined by the frequency of synthesizer the output
-pin is connected to and divisor of the output to which is the given pin
-belongs. The resulting frequency of the P-pin and the N-pin from this
-output pair depends on the signal format of this output pair.
+On Mon, Jun 16, 2025 at 11:06=E2=80=AFPM Jean-Francois Lessard
+<jefflessard3@gmail.com> wrote:
+>
+> Hi all,
+>
+> I=E2=80=99m working on preparing a new driver and device tree binding for
+> auxiliary LED display controllers of the TM16XX class, and I=E2=80=99d li=
+ke to
+> request guidance on property naming conventions before submitting a
+> formal patch series.
+>
+> The driver (tentatively named tm16xx) supports LED controller chips
+> that share a common hardware design and programming model, produced by
+> multiple vendors, including:
+> - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
+> - FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
+> - Princeton Technology Corp: PT6964
+> - HBS: HBS658
+>
+> These devices are functionally compatible and appear in various
+> consumer and embedded hardware (e.g., Android TV boxes) to control
+> both 7-segment displays and custom icons that may look like this:
+>
+>           ---    ---       ---    ---
+>  [WIFI]  |   |  |   |  -  |   |  |   |  [USB]  [PLAY]
+>           ---    ---       ---    ---
+>  [LAN]   |   |  |   |  -  |   |  |   |  [BT]   [PAUSE]
+>           ---    ---       ---    ---
 
-The device supports so-called N-divided signal formats where for the
-N-pin there is an additional divisor. The frequencies for both pins from
-such output pair are computed:
+So, have you looked at auxdisplay subsystem? It's mostly for 7-segment
+displays and has some common libraries (and interfaces) for that.
 
- P-pin-freq = synth_freq / output_div
- N-pin-freq = synth_freq / output_div / n_div
+> My current binding defines properties describing hardware layout, for exa=
+mple:
+>
+>     tm16xx,digits =3D /bits/ 8 <0 1 2 3>;
+>     tm16xx,segment-mapping =3D /bits/ 8 <0 1 2 3 4 5 6>;
+>     tm16xx,transposed;
+>
+> These describe hardware characteristics (grid/digit arrangement,
+> segment mapping, transposed display output) that apply to this class
+> of compatible hardware, regardless of vendor.
+>
+> My question: Given that these properties describe a common hardware
+> class (rather than a specific vendor design or generic LED display
+> behavior), what is the preferred naming convention?
 
-For other signal-format types both P and N pin have the same frequency
-based only synth frequency and output divisor.
+Naming for the vendor or for the properties? With applying it to
+auxdisplay, some of the properties will be available without vendor
+prefix.
 
-Implement output pin callbacks to get and set frequency. The frequency
-setting for the output non-N-divided signal format is simple as we have
-to compute just new output divisor. For N-divided formats it is more
-complex because by changing of output divisor we change frequency for
-both P and N pins. In this case if we are changing frequency for P-pin
-we have to compute also new N-divisor for N-pin to keep its current
-frequency. From this and the above it follows that the frequency of
-the N-pin cannot be higher than the frequency of the P-pin and the
-callback must take this limitation into account.
+> 1. Should I retain a prefix like tm16xx, to represent this hardware
+> class (as it is the most recognized functional family name)?
+>
+> 2. Should I instead pick an original vendor=E2=80=99s prefix (e.g., titan=
+mec,)
+> even though other vendors produce compatible chips?
+>
+> 3. Is there another convention recommended for hardware classes
+> produced by multiple vendors with compatible designs?
+>
+> I want to ensure that the binding follows the preferred conventions
+> for upstream acceptance and clean DT design.
+>
+> Any guidance or suggestions would be greatly appreciated!
 
-Co-developed-by: Prathosh Satish <Prathosh.Satish@microchip.com>
-Signed-off-by: Prathosh Satish <Prathosh.Satish@microchip.com>
-Signed-off-by: Ivan Vecera <ivecera@redhat.com>
----
- drivers/dpll/zl3073x/dpll.c | 234 ++++++++++++++++++++++++++++++++++++
- drivers/dpll/zl3073x/regs.h |   5 +
- 2 files changed, 239 insertions(+)
+The rest we can discuss when we see patches, I think.
 
-diff --git a/drivers/dpll/zl3073x/dpll.c b/drivers/dpll/zl3073x/dpll.c
-index a110109a738c3..bd4b4af2223d3 100644
---- a/drivers/dpll/zl3073x/dpll.c
-+++ b/drivers/dpll/zl3073x/dpll.c
-@@ -640,6 +640,238 @@ zl3073x_dpll_input_pin_prio_set(const struct dpll_pin *dpll_pin, void *pin_priv,
- 	return 0;
- }
- 
-+static int
-+zl3073x_dpll_output_pin_frequency_get(const struct dpll_pin *dpll_pin,
-+				      void *pin_priv,
-+				      const struct dpll_device *dpll,
-+				      void *dpll_priv, u64 *frequency,
-+				      struct netlink_ext_ack *extack)
-+{
-+	struct zl3073x_dpll *zldpll = dpll_priv;
-+	struct zl3073x_dev *zldev = zldpll->dev;
-+	struct zl3073x_dpll_pin *pin = pin_priv;
-+	struct device *dev = zldev->dev;
-+	u8 out, signal_format, synth;
-+	u32 output_div, synth_freq;
-+	int rc;
-+
-+	out = zl3073x_output_pin_out_get(pin->id);
-+	synth = zl3073x_out_synth_get(zldev, out);
-+	synth_freq = zl3073x_synth_freq_get(zldev, synth);
-+
-+	guard(mutex)(&zldev->multiop_lock);
-+
-+	/* Read output configuration into mailbox */
-+	rc = zl3073x_mb_op(zldev, ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_RD,
-+			   ZL_REG_OUTPUT_MB_MASK, BIT(out));
-+	if (rc)
-+		return rc;
-+
-+	rc = zl3073x_read_u32(zldev, ZL_REG_OUTPUT_DIV, &output_div);
-+	if (rc)
-+		return rc;
-+
-+	/* Check output divisor for zero */
-+	if (!output_div) {
-+		dev_err(dev, "Zero divisor for output %u got from device\n",
-+			out);
-+		return -EINVAL;
-+	}
-+
-+	/* Read used signal format for the given output */
-+	signal_format = zl3073x_out_signal_format_get(zldev, out);
-+
-+	switch (signal_format) {
-+	case ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV:
-+	case ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV_INV:
-+		/* In case of divided format we have to distiguish between
-+		 * given output pin type.
-+		 */
-+		if (zl3073x_dpll_is_p_pin(pin)) {
-+			/* For P-pin the resulting frequency is computed as
-+			 * simple division of synth frequency and output
-+			 * divisor.
-+			 */
-+			*frequency = synth_freq / output_div;
-+		} else {
-+			/* For N-pin we have to divide additionally by
-+			 * divisor stored in esync_period output mailbox
-+			 * register that is used as N-pin divisor for these
-+			 * modes.
-+			 */
-+			u32 ndiv;
-+
-+			rc = zl3073x_read_u32(zldev, ZL_REG_OUTPUT_ESYNC_PERIOD,
-+					      &ndiv);
-+			if (rc)
-+				return rc;
-+
-+			/* Check N-pin divisor for zero */
-+			if (!ndiv) {
-+				dev_err(dev,
-+					"Zero N-pin divisor for output %u got from device\n",
-+					out);
-+				return -EINVAL;
-+			}
-+
-+			/* Compute final divisor for N-pin */
-+			*frequency = synth_freq / output_div / ndiv;
-+		}
-+		break;
-+	default:
-+		/* In other modes the resulting frequency is computed as
-+		 * division of synth frequency and output divisor.
-+		 */
-+		*frequency = synth_freq / output_div;
-+		break;
-+	}
-+
-+	return rc;
-+}
-+
-+static int
-+zl3073x_dpll_output_pin_frequency_set(const struct dpll_pin *dpll_pin,
-+				      void *pin_priv,
-+				      const struct dpll_device *dpll,
-+				      void *dpll_priv, u64 frequency,
-+				      struct netlink_ext_ack *extack)
-+{
-+	struct zl3073x_dpll *zldpll = dpll_priv;
-+	struct zl3073x_dev *zldev = zldpll->dev;
-+	struct zl3073x_dpll_pin *pin = pin_priv;
-+	struct device *dev = zldev->dev;
-+	u32 output_n_freq, output_p_freq;
-+	u8 out, signal_format, synth;
-+	u32 cur_div, new_div, ndiv;
-+	u32 synth_freq;
-+	int rc;
-+
-+	out = zl3073x_output_pin_out_get(pin->id);
-+	synth = zl3073x_out_synth_get(zldev, out);
-+	synth_freq = zl3073x_synth_freq_get(zldev, synth);
-+
-+	/* Check the requested frequency divides synth frequency without
-+	 * remainder.
-+	 */
-+	if (synth_freq % (u32)frequency) {
-+		dev_err(dev, "The requested frequency must divide %u Hz\n",
-+			synth_freq);
-+		return -EINVAL;
-+	}
-+	new_div = synth_freq / (u32)frequency;
-+
-+	/* Get used signal format for the given output */
-+	signal_format = zl3073x_out_signal_format_get(zldev, out);
-+
-+	guard(mutex)(&zldev->multiop_lock);
-+
-+	/* Load output configuration */
-+	rc = zl3073x_mb_op(zldev, ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_RD,
-+			   ZL_REG_OUTPUT_MB_MASK, BIT(out));
-+	if (rc)
-+		return rc;
-+
-+	/* Check signal format */
-+	if (signal_format != ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV &&
-+	    signal_format != ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV_INV) {
-+		/* For non N-divided signal formats the frequency is computed
-+		 * as division of synth frequency and output divisor.
-+		 */
-+		rc = zl3073x_write_u32(zldev, ZL_REG_OUTPUT_DIV, new_div);
-+		if (rc)
-+			return rc;
-+
-+		/* For 50/50 duty cycle the divisor is equal to width */
-+		rc = zl3073x_write_u32(zldev, ZL_REG_OUTPUT_WIDTH, new_div);
-+		if (rc)
-+			return rc;
-+
-+		/* Commit output configuration */
-+		return zl3073x_mb_op(zldev,
-+				     ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_WR,
-+				     ZL_REG_OUTPUT_MB_MASK, BIT(out));
-+	}
-+
-+	/* For N-divided signal format get current divisor */
-+	rc = zl3073x_read_u32(zldev, ZL_REG_OUTPUT_DIV, &cur_div);
-+	if (rc)
-+		return rc;
-+
-+	/* Check output divisor for zero */
-+	if (!cur_div) {
-+		dev_err(dev, "Zero divisor for output %u got from device\n",
-+			out);
-+		return -EINVAL;
-+	}
-+
-+	/* Get N-pin divisor (shares the same register with esync */
-+	rc = zl3073x_read_u32(zldev, ZL_REG_OUTPUT_ESYNC_PERIOD, &ndiv);
-+	if (rc)
-+		return rc;
-+
-+	/* Check N-pin divisor for zero */
-+	if (!ndiv) {
-+		dev_err(dev,
-+			"Zero N-pin divisor for output %u got from device\n",
-+			out);
-+		return -EINVAL;
-+	}
-+
-+	/* Compute current output frequency for P-pin */
-+	output_p_freq = synth_freq / cur_div;
-+
-+	/* Compute current N-pin frequency */
-+	output_n_freq = output_p_freq / ndiv;
-+
-+	if (zl3073x_dpll_is_p_pin(pin)) {
-+		/* We are going to change output frequency for P-pin but
-+		 * if the requested frequency is less than current N-pin
-+		 * frequency then indicate a failure as we are not able
-+		 * to compute N-pin divisor to keep its frequency unchanged.
-+		 */
-+		if (frequency <= output_n_freq)
-+			return -EINVAL;
-+
-+		/* Update the output divisor */
-+		rc = zl3073x_write_u32(zldev, ZL_REG_OUTPUT_DIV, new_div);
-+		if (rc)
-+			return rc;
-+
-+		/* For 50/50 duty cycle the divisor is equal to width */
-+		rc = zl3073x_write_u32(zldev, ZL_REG_OUTPUT_WIDTH, new_div);
-+		if (rc)
-+			return rc;
-+
-+		/* Compute new divisor for N-pin */
-+		ndiv = (u32)frequency / output_n_freq;
-+	} else {
-+		/* We are going to change frequency of N-pin but if
-+		 * the requested freq is greater or equal than freq of P-pin
-+		 * in the output pair we cannot compute divisor for the N-pin.
-+		 * In this case indicate a failure.
-+		 */
-+		if (output_p_freq <= frequency)
-+			return -EINVAL;
-+
-+		/* Compute new divisor for N-pin */
-+		ndiv = output_p_freq / (u32)frequency;
-+	}
-+
-+	/* Update divisor for the N-pin */
-+	rc = zl3073x_write_u32(zldev, ZL_REG_OUTPUT_ESYNC_PERIOD, ndiv);
-+	if (rc)
-+		return rc;
-+
-+	/* For 50/50 duty cycle the divisor is equal to width */
-+	rc = zl3073x_write_u32(zldev, ZL_REG_OUTPUT_ESYNC_WIDTH, ndiv);
-+	if (rc)
-+		return rc;
-+
-+	/* Commit output configuration */
-+	return zl3073x_mb_op(zldev, ZL_REG_OUTPUT_MB_SEM, ZL_OUTPUT_MB_SEM_WR,
-+			     ZL_REG_OUTPUT_MB_MASK, BIT(out));
-+}
-+
- static int
- zl3073x_dpll_output_pin_state_on_dpll_get(const struct dpll_pin *dpll_pin,
- 					  void *pin_priv,
-@@ -724,6 +956,8 @@ static const struct dpll_pin_ops zl3073x_dpll_input_pin_ops = {
- 
- static const struct dpll_pin_ops zl3073x_dpll_output_pin_ops = {
- 	.direction_get = zl3073x_dpll_pin_direction_get,
-+	.frequency_get = zl3073x_dpll_output_pin_frequency_get,
-+	.frequency_set = zl3073x_dpll_output_pin_frequency_set,
- 	.state_on_dpll_get = zl3073x_dpll_output_pin_state_on_dpll_get,
- };
- 
-diff --git a/drivers/dpll/zl3073x/regs.h b/drivers/dpll/zl3073x/regs.h
-index 09dd314663dff..9c62906de095d 100644
---- a/drivers/dpll/zl3073x/regs.h
-+++ b/drivers/dpll/zl3073x/regs.h
-@@ -198,4 +198,9 @@
- #define ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV	12
- #define ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV_INV	15
- 
-+#define ZL_REG_OUTPUT_DIV			ZL_REG(14, 0x0c, 4)
-+#define ZL_REG_OUTPUT_WIDTH			ZL_REG(14, 0x10, 4)
-+#define ZL_REG_OUTPUT_ESYNC_PERIOD		ZL_REG(14, 0x14, 4)
-+#define ZL_REG_OUTPUT_ESYNC_WIDTH		ZL_REG(14, 0x18, 4)
-+
- #endif /* _ZL3073X_REGS_H */
--- 
-2.49.0
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
