@@ -1,298 +1,121 @@
-Return-Path: <devicetree+bounces-186208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21F2ADAB64
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:03:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 470A2ADAB84
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E81AB188313C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:03:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FED47A888E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BB22356DB;
-	Mon, 16 Jun 2025 09:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB91526FDB7;
+	Mon, 16 Jun 2025 09:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="LamL1+dS"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="xSBkN1Af"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30DC1F03D5
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 09:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4745D202C50;
+	Mon, 16 Jun 2025 09:10:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750064607; cv=none; b=fFDZ1303WsUS5IVc//Hd0MCBLyAC+A/fAX/tBQaKPdKHRKnwUVlYBNwwk8QWjvPBMOSzZEARiiJ6F+soDsogd69X+bgZAPJ0KY8eaUm65ioEFoU3HCJ0qSIZ5dE17KyA81FGdks3eoaZE8GSK+hcYUtGd3UASOQmRP3Obglcu7U=
+	t=1750065022; cv=none; b=gF5RtiDU1IiXYB7XsU8Y9dIqvB6Rl4BNcXASvE7R5PJ1Mln/f+fWQtzvbFu+HYYt4YZMex64XvZ+fqWCX+uTTyeGbJCd9LxrM7oqt+i92hpoO68L6xDFnWJXwEWz0VE+9Kim/51qTnOkKffNhKD4+oUMBQ0t+YBYrUjV4WmJtlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750064607; c=relaxed/simple;
-	bh=WXKcyuXCN2cwE7iRsVEwDrGQgNYgwqFo1s+MFOFID8Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G8rFdb2ryKd9kKBEsyFL8znYoystR0rCevoXStraXgBrfzjVhw+d6VeGEUkIUHz2yDWklwGxJaciEy5TEIROYuWFk09h8t+sxXOEGy0pkVNxVEBTB0EMZsguTKidQfQfLkDI0sboEOWVpLflGosdVtHVePQlFhTSZUNewy2vhAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=LamL1+dS; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-553b165c80cso2939447e87.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 02:03:25 -0700 (PDT)
+	s=arc-20240116; t=1750065022; c=relaxed/simple;
+	bh=Ab/azGHZAN5imCLvzke6FrRFhZsJl1QU6kgQsGu6z18=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WNL0qhPFiuXmE3vd40uLorv+xVNHuehkHSPxJ+7CElHawwpQo8iRhsbCuBQHezW27rtr+xrHAL4egADBj6vPqfs4rQYN48vTOzqLMV8Dd/9OIzV9K8yD4PqS6z/M+pvuJ7e0Rr0ZE/Wvqrn7VW696OrgBC9IN/SoukbQAWcqeqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=xSBkN1Af; arc=none smtp.client-ip=212.227.126.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750064604; x=1750669404; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xx5rVpEUVwdAi8eec86Ny6xGsJCU5pwmhEcygOll494=;
-        b=LamL1+dSIlV0jlkkiQEZDB3qk10SqbwL0YA+L2nwKGonzQz+I2TDvhOu3qkMGLinqr
-         sbRb4HFroOCAa19kXltdXPqoPG5SzwQSiBvk0ytbGrQVBw7+awHNOZ2DDqEMB57q/1+c
-         ZvpOlISqecPZ0tCJY7BzevDXOmJ8aAx/hq5N5MvzgGJ6ShU1felcaIM9uo4A65F6Quhq
-         8ek4hW8mAbnx0c40t9g/Ehtd8nFqeZPir3dXAZuG9qnkc2IxA90amC/BdAregGYuSqN/
-         PMM55kUbUTf4q4Dgs6g8otPMj5IUpM3e7SU7tZuQgTN6KooTQruFvk3DwW8wd3QXOy1l
-         sABw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750064604; x=1750669404;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xx5rVpEUVwdAi8eec86Ny6xGsJCU5pwmhEcygOll494=;
-        b=SKqmll8RKvEBEOjmJDaS6dXmdZiB/2RhGdttt1docvFdMwyeo4Wmk2w2oISvm8QHII
-         73GjXdH2qpS7Yh5eZ/eTJKDuJH3O1lgOB0ACAMc12tTlpq1PkzyHhC1ZXMQczDckwGDJ
-         Uf7akj58M3XvFxmUwe8CqBpqLRAArzgWcJ1fLQ8agQkF+zQIH2CgALbevpvpivgmPkE4
-         XlNY6Jq4hu5WeiOiT8NN4P9Mas6OyIn9IQNMdpjdZVJ2ll9cgfdyL0vVnV5uRqhrp7Vb
-         aYfS3SvxpebSM77DD+BZcU5cQsq6d+wxXpqyWntlcot+WA45mBgl3Q/2WqQHREx5uLVL
-         idJg==
-X-Forwarded-Encrypted: i=1; AJvYcCU16ri0PH5UCxXEg+Q9u0lKo5uRsA8O0Oz8XRvWYdY3SO9d7Mg7wyiTWfg4flb71k5BavylcIB1AaHh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXCl0gJRDjsRKxLYAEuu8eMlO26NHLw3vU0HAZy/Vpv6E+qPkH
-	DmPwv17DeRLrhntFRHOBS4PQZA3tKlR9N3ogTfvubuwnRIpDibbpZOxIV5gnd2E/rGasbbJsPrz
-	tAtCUABp39mfwQ801+eEq4vOxaCn54Xx6aGQv01ZOiw==
-X-Gm-Gg: ASbGncvPXgHYXuuybRygdnBwaRTctgTiofIyiQpLyjgRxAx4cnpX3vZjMs3gMyGcZAb
-	LB2uh9g2L13EkpS22OLzFKnCDSvHcMwievHJsEWm7ZTkIuPmXRpI4rEViMH/xZKJEkynEMT3CJz
-	Roo0CuS2+mKAE+JF1Lw44DZlWMavxK+Bq0kj/aQ7BeDOP4RlpWR8M4k/RRuh8aGa1RYuRHs0vpo
-	rE=
-X-Google-Smtp-Source: AGHT+IEKz5GxiDZMedl4kRLQfhIpEe3pc+hqYuybDKDGhnHB2suO2b1GXYRiL9ZWIMd+ge7AE5Y+GZC5B+6d2sASF50=
-X-Received: by 2002:a05:6512:2399:b0:545:225d:6463 with SMTP id
- 2adb3069b0e04-553b6f2a050mr1884364e87.42.1750064603788; Mon, 16 Jun 2025
- 02:03:23 -0700 (PDT)
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1750065018; x=1750669818;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=Ab/azGHZAN5imCLvzke6FrRFhZsJl1QU6kgQsGu6z18=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=xSBkN1AfEEtMEcgvvZ/bUfDrElxWGO4lHiVJfduxQyBf4lRe2XkT/+j90unZ1PTG
+	 V4FKNFIrNgG6RaFveuHeinzSDX5G1CtoRoky0dKhY5NLPRrC70dU82vZJ//mbDOqY
+	 JvK9WnkG0RTOr+F56qZtflomu1frtMf677lOD8GN/Mbgc6mrFufgj34qLGD6zxZyL
+	 SIYPRflsbyBJvdSG5SdR4b5gojDrfnNnmIJ3nbNA1VOBW72zD2v1+gjG6qdE9C117
+	 Lke+F58Q64Wwe6MaDDI2ln+2kS9zds0G4StGKAnwNwJCojcD6WzCTgtvmqAvS3kiA
+	 9oe/9gle4d1LYNZ7Ag==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.107] ([62.226.41.128]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1N336L-1unjU43iov-00wUjJ; Mon, 16 Jun 2025 11:04:57 +0200
+Message-ID: <3d449803-1880-46df-aacb-b42e757f90ab@oldschoolsolutions.biz>
+Date: Mon, 16 Jun 2025 11:04:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250614180907eucas1p13d341c30e495fb36598b1d7c10ec7070@eucas1p1.samsung.com>
- <20250614-apr_14_for_sending-v4-0-8e3945c819cd@samsung.com> <20250614-apr_14_for_sending-v4-1-8e3945c819cd@samsung.com>
-In-Reply-To: <20250614-apr_14_for_sending-v4-1-8e3945c819cd@samsung.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 16 Jun 2025 11:03:12 +0200
-X-Gm-Features: AX0GCFtxlVZvyr37sX45inrPf7cyH3UqDZKKYjLQfE3pYlPIT0pT-qcpNasDxBM
-Message-ID: <CAMRc=Mdf9ZYXyzYttzJtnBXPANxn2UYvvdDZqdNaYZwiKZrTjw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/8] power: sequencing: Add T-HEAD TH1520 GPU power
- sequencer driver
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
-	Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt: arm64: qcom: sc8280xp-x13s: amend usb0-sbu-mux
+ enable gpio
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Johan Hovold <johan+linaro@kernel.org>
+References: <20250610-x13s-usb0-mux-v2-1-598454e6ad64@oldschoolsolutions.biz>
+ <aEffYQND8eUgJbua@hovoldconsulting.com>
+ <64d963bd-b38c-4f14-bb1d-f7e89dad999a@oldschoolsolutions.biz>
+ <aE_cejDMmmU48jMp@hovoldconsulting.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <aE_cejDMmmU48jMp@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:9n3JJbsirUUTnyIWevxVAiWuOHNYigcxz+SL06SugMshZXOjIiV
+ 453xsIWJL6OFGFydTArw3j7+8lS7o5zlQej4L/HIrYlhSI4UGbBDK613IcVCOh0oYQFSsTm
+ gOCv4dgAUGnpfeYTPaAtqxFPWN1Lk+NmZ/qCUpqqvmgTN8rU7tU55tsqwce6TeRCp/Hj22n
+ zzIyv5Jt2o0fSq62YCI/Q==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:cuZjWuahtNg=;xzMFAAhf5qPzgZEqeXX/sUeuZFB
+ UwIH1oC4TX3N0ucQW1rpI4M0tGbh6L1u7pvPz5iz4ui5iY7peuwMGkR4Moy9Kg/BXJUxkkWCA
+ IBZnwjCqgmLE3ApwcBE5q8oDZUERhR6eJNAhxoS6el9tpn220DuO73Z+RAOcHeqMwJspQPhyu
+ Unz2raRiRVW4OQvsE3hs6vHTTp9Uf377eMbsM6IJV1gDEn+t555tv2irHkJMRfz+saTXxgKqZ
+ s9Y8CTeawhvFqCjVajIojbh0qirJHDXELjt4d1FxexwoooCgY0Cs6udLdbjdwou2zNv81ZQjm
+ Td2V8nlyXTMsDpLyz8khFWMHpBcbFOOETAHossNfCB+keYS8+XthSFScy9iauNQyo4G/LJwYe
+ UJDrJ3C0OiHNcjsXwTnxTg/Q7Hok5fVPMZzkHwp7E8vWS7txR7YeFXJ46ObKiCVcZIuajmrnm
+ wExo89uVkTNgDRndnuYsjLUL+pTS+DM6rs8en7Eua5gwLn3QCtAsPNIqXfNNBm5h2clPVszyb
+ HHLNfmTpI5L6YkZ0iItSdLUkPK15B2IRMvdXvWbalmon5j0LSTZuYUnx5QnrRb118rX5mQYJv
+ w/TD+tiw/NZLOmOWwNN2sQ+XA2vCxlqZCvUmDN3Hx3h4nY+017ttCmq7t41voPcpmC/RJResE
+ 916LAkg+nyXl2VF0tY/hksfb7H5UFWeei97xFfqt18b16EILeo7XryCamIlX1ymZgJTolYFdL
+ biD21MBx7UkYmmKSD14EfHXZZ7umC0AM18nhun/P5KDGYAY7QRkLQM/HA0hund5ecRn9K6YZs
+ kbXMtPMuT+1t5HETB6TR0pwObUlF8yzSuEUEy4cmtDhq1AQzi/o+Ps9WHnvfEg2OqEFvg+Cql
+ DUt3mj0UrD+dHjonkwMRYqct9DAq15MbiFPi4jOjRIzyh7kYs6tTQQic+HcPHKzJf99aKynFX
+ 0oZ8Mx0vEihhrw+pxbWoQlBsE3jlKG06+zkMSaTTsGI45/YAMasqsHOCzuqBZCwj8kQ7vgQFJ
+ 1Vbls3MvqIF7GtmPMXcQOupqjK7jd3k33+Hj04dfXjJz8e5CtttgIGm/I/Eyc1tmZE8CccTJC
+ +wPijOc2RxL7xtvSV70+KPPtLFpU6/0YJINnJtDjyGIgHy/yHrsiGITzFudDxeh0zLUVJAVXS
+ VT24TjZmaDTxGvc9O0nOz/2jo0boVYtG2InALThxDVlJAq0sdFb5AVqdTlTI6UINHCOB1K623
+ R3H3QEcuOvyDzAIQWhxq+hdqkY6Zxmawj4QpwR+RKpe3UNmKtH+qjVOCz7IDp3wbWXtAAYscN
+ zOLLORCPCijwmd9KIG4gK0g+0W/Ep3u/MIqXlvE1lGGiGH/VuNKztZFufpUZBUQ/z/CLEIqVr
+ r//BldTiemqSuDJWrsrLzBJV0LcMfATyOHqCtiAOcRAbpAaZIFlnD/SniP
 
-On Sat, Jun 14, 2025 at 8:09=E2=80=AFPM Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
+On 16.06.25 10:57, Johan Hovold wrote:
+> No, this patch should not be picked up now.
 >
-> Introduce the pwrseq-thead-gpu driver, a power sequencer provider for
-> the Imagination BXM-4-64 GPU on the T-HEAD TH1520 SoC. This driver is
-> an auxiliary driver instantiated by the AON power domain driver.
-
-Just a technicality: this driver controls an auxiliary *device*
-instantiated by the AON power domain driver.
-
+> But you may want to revisit the other related patches for other boards
+> that you sent in case they too are based on some misunderstanding.
 >
-> The TH1520 GPU requires a specific sequence to correctly initialize and
-> power down its resources:
->  - Enable GPU clocks (core and sys).
->  - De-assert the GPU clock generator reset (clkgen_reset).
->  - Introduce a short hardware-required delay.
->  - De-assert the GPU core reset. The power-down sequence performs these
->    steps in reverse.
->
-> Implement this sequence via the pwrseq_power_on and pwrseq_power_off
-> callbacks.
->
-> Crucially, the driver's match function is called when a consumer (the
-> Imagination GPU driver) requests the "gpu-power" target. During this
-> match, the sequencer uses devm_clk_bulk_get() and
-> devm_reset_control_get_exclusive() on the consumer's device to obtain
-> handles to the GPU's "core" and "sys" clocks, and the GPU core reset.
-> These, along with clkgen_reset obtained from parent aon node, allow it
-> to perform the complete sequence.
->
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
+> Johan
 
-[snip]
+That, I did. No changes except for this one.
 
-> +
-> +static int pwrseq_thead_gpu_power_on(struct pwrseq_device *pwrseq)
+with best regards
 
-Please follow the naming convention of the callbacks: this should be
-pwrseq_thead_gpu_enable().
+Jens
 
-[snip]
-
-> +
-> +static int pwrseq_thead_gpu_power_off(struct pwrseq_device *pwrseq)
-
-Same here.
-
-[snip]
-
-> +static int pwrseq_thead_gpu_match(struct pwrseq_device *pwrseq,
-> +                                 struct device *dev)
-> +{
-> +       struct pwrseq_thead_gpu_ctx *ctx =3D pwrseq_device_get_drvdata(pw=
-rseq);
-> +       static const char *const clk_names[] =3D { "core", "sys" };
-> +       struct of_phandle_args pwr_spec;
-> +       int i, ret;
-> +
-> +       /* We only match the specific T-HEAD TH1520 GPU compatible */
-> +       if (!of_device_is_compatible(dev->of_node, "thead,th1520-gpu"))
-> +               return 0;
-> +
-> +       ret =3D of_parse_phandle_with_args(dev->of_node, "power-domains",
-> +                                        "#power-domain-cells", 0, &pwr_s=
-pec);
-> +       if (ret)
-> +               return 0;
-> +
-> +       /* Additionally verify consumer device has AON as power-domain */
-> +       if (pwr_spec.np !=3D ctx->aon_node || pwr_spec.args[0] !=3D TH152=
-0_GPU_PD) {
-> +               of_node_put(pwr_spec.np);
-> +               return 0;
-> +       }
-> +
-> +       of_node_put(pwr_spec.np);
-> +
-> +       /* Prevent multiple consumers from attaching */
-> +       if (ctx->gpu_reset || ctx->clks)
-> +               return -EBUSY;
-
-Isn't it the whole point of pwrseq - to allow multiple consumers to
-seamlessly attach to the provider and control the underlying resources
-in a safe way? I think you should just not request the relevant
-resources for the second time (really only applies to the exclusive
-reset and even then it's not clear why it needs to be exclusive) but
-still return 1 for a valid consumer and let pwrseq handle the
-refcount? Also: can this even happen at all?
-
-> +
-> +       ctx->num_clks =3D ARRAY_SIZE(clk_names);
-> +       ctx->clks =3D devm_kcalloc(dev, ctx->num_clks, sizeof(*ctx->clks)=
-,
-> +                                GFP_KERNEL);
-> +       if (!ctx->clks)
-> +               return -ENOMEM;
-> +
-> +       for (i =3D 0; i < ctx->num_clks; i++)
-> +               ctx->clks[i].id =3D clk_names[i];
-> +
-> +       ret =3D devm_clk_bulk_get(dev, ctx->num_clks, ctx->clks);
-
-This is interesting. I admit I had not considered the pwrseq provider
-being able to acquire the resources from the consumer node at the time
-of writing the subsystem. As the pwrseq framework aims at being as
-flexible as possible, this is definitely something that we should
-allow but the usage of devres here is problematic on at least two
-levels. First: you're acquiring the resources from the struct device
-of the consumer and so the devres entries are added to its devres
-list. They will get released when the consumer device is detached and
-the pwrseq provider may end up accessing them afterwards. Second: if
-.match() fails or even returns 0, the resource is still acquired. Call
-.match() enough times and you have the devres list needlessly
-clobbered with unused resources.
-
-You should stick to non-devres variants and make sure they are all
-cleaned-up unless returning 1. (Note to self: these shouldn't be magic
-values really). You can then release them in this driver's remove
-callback.
-
-> +       if (ret)
-> +               return ret;
-> +
-> +       ctx->gpu_reset =3D devm_reset_control_get_exclusive(dev, NULL);
-> +       if (IS_ERR(ctx->gpu_reset))
-> +               return PTR_ERR(ctx->gpu_reset);
-> +
-> +       return 1;
-> +}
-> +
-> +static int pwrseq_thead_gpu_probe(struct auxiliary_device *adev,
-> +                                 const struct auxiliary_device_id *id)
-> +{
-> +       struct device *dev =3D &adev->dev;
-> +       struct device *parent_dev =3D dev->parent;
-> +       struct pwrseq_thead_gpu_ctx *ctx;
-> +       struct pwrseq_config config =3D {};
-> +
-> +       ctx =3D devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> +       if (!ctx)
-> +               return -ENOMEM;
-> +
-> +       ctx->aon_node =3D parent_dev->of_node;
-> +
-> +       ctx->clkgen_reset =3D
-> +               devm_reset_control_get_exclusive(parent_dev, "gpu-clkgen"=
-);
-> +       if (IS_ERR(ctx->clkgen_reset))
-> +               return dev_err_probe(
-> +                       dev, PTR_ERR(ctx->clkgen_reset),
-> +                       "Failed to get GPU clkgen reset from parent\n");
-> +
-> +       config.parent =3D dev;
-> +       config.owner =3D THIS_MODULE;
-> +       config.drvdata =3D ctx;
-> +       config.match =3D pwrseq_thead_gpu_match;
-> +       config.targets =3D pwrseq_thead_gpu_targets;
-> +
-> +       ctx->pwrseq =3D devm_pwrseq_device_register(dev, &config);
-> +       if (IS_ERR(ctx->pwrseq))
-> +               return dev_err_probe(dev, PTR_ERR(ctx->pwrseq),
-> +                                    "Failed to register power sequencer\=
-n");
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct auxiliary_device_id pwrseq_thead_gpu_id_table[] =3D =
-{
-> +       { .name =3D "th1520_pm_domains.pwrseq-gpu" },
-> +       {},
-> +};
-> +MODULE_DEVICE_TABLE(auxiliary, pwrseq_thead_gpu_id_table);
-> +
-> +static struct auxiliary_driver pwrseq_thead_gpu_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "pwrseq-thead-gpu",
-> +       },
-> +       .probe =3D pwrseq_thead_gpu_probe,
-> +       .id_table =3D pwrseq_thead_gpu_id_table,
-> +};
-> +module_auxiliary_driver(pwrseq_thead_gpu_driver);
-> +
-> +MODULE_AUTHOR("Michal Wilczynski <m.wilczynski@samsung.com>");
-> +MODULE_DESCRIPTION("T-HEAD TH1520 GPU power sequencer driver");
-> +MODULE_LICENSE("GPL");
->
-> --
-> 2.34.1
->
-
-Thanks!
-Bartosz
 
