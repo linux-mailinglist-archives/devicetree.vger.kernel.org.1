@@ -1,57 +1,80 @@
-Return-Path: <devicetree+bounces-186388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6AB8ADB917
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:50:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26560ADB91D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 20:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D810F3A592A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:50:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317131888633
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64882289838;
-	Mon, 16 Jun 2025 18:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280E728983A;
+	Mon, 16 Jun 2025 18:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="HXgtuKYU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QtyKoM+4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FF1D28934C
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:50:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38203286884
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750099849; cv=none; b=rQMQjkAblvXA6PwoovENGdfkk/unYZcjGNLetSG9VQ9FQAZz0PNcePz6HMwF/kWqSoKhcz3bAn00XqG1uPdSBOE3tz/O+qeoKRaIaUI2ySAdK4aGi8ISw84E/k5cPsESgNU7IAn/VUF+V2L4kD0qUXUvyrutSt4TlDPYVDtEaJI=
+	t=1750100003; cv=none; b=V0iDVGA9lfr6hUapVnsG1/VcP64h/4tb2SHOMjB4414I2VUfxA28mLZJGSAhNU3ZgBD8Wnmo72itPMXj42XInYaS2NsdojZWKbrK7gnJb6twyZ7t7s/Fki1ph6Te6u/Z0HQ97+hAvaV00EdKvMqPtb0TRv6gQWU+e+//tcqSfa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750099849; c=relaxed/simple;
-	bh=0j/zmiRTNVg7EOV9uK1BI3IIyRKsfZk1bKAGOLuyWQQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=f17PEDpz9iitUcElP1nX5F0e2rthyB0XtwY/1BkEBFH7vzOrCjXW1gs+CVwX9pAMaBc3FSaMEHaJvIGxJQzlWi8QRg8Cs+6iiQFs1Z2ythBF1lYSnhD/Eo9mmgcYR/Vo9LXUsWvwS7qV5H2aP9PlHq21ZnlBI3cLS9vgfsifcd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=HXgtuKYU; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250616185045euoutp02b1fb886bc7964999759fd5f7f959867c~Jmolz3viq0450104501euoutp02C
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 18:50:45 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250616185045euoutp02b1fb886bc7964999759fd5f7f959867c~Jmolz3viq0450104501euoutp02C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1750099845;
-	bh=RpP2wDPoANn6hbq6/IU7H6R4ymwfkUd1lBtxRssgpxg=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=HXgtuKYUh8YOQyQo91vA+qT4El3cb+jVPyP21y2ZTw42FifSSk8p2Duc4xvwAuyE+
-	 K1bHEQ+MjXyRTuM+mUFJt5q7AUR5lq1rzfclPDjZlNux/bNkGGmkf0bBXIsOKd0Wnv
-	 pvUpmbMiiOYc9Khw/cK57CgCrGso0q81WWVlcCVE=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250616185043eucas1p19d2115087823eac1a2fa36fdb6c7cfca~Jmokc0_PY2023320233eucas1p1A;
-	Mon, 16 Jun 2025 18:50:43 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250616185042eusmtip251ec7824b4cba255d6ebe61eb60deb26~JmojYMGUT3160031600eusmtip2J;
-	Mon, 16 Jun 2025 18:50:42 +0000 (GMT)
-Message-ID: <6176cae6-012e-4dc7-9445-058478bfe758@samsung.com>
-Date: Mon, 16 Jun 2025 20:50:42 +0200
+	s=arc-20240116; t=1750100003; c=relaxed/simple;
+	bh=wPUzTydNxr8Bne1mftnFfwNbN2QFUqUlnk1+McjJqZY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kZuMrgbN3odsS/UmHFbatK4Aq1IWiuzLNYZovB5P3pOX17Ua3O967v03heTdtdVI3isxd/elp5yn4n9XLvZ3g1uVHvYU/nSpKmfAht4Mo/vJORZ6JdwagMR7fuuKtPjeU9+SNw1yk832F8OL4/s/BK7qOIjLXU6UD1kIMxwXa9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QtyKoM+4; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-442fda876a6so43428085e9.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:53:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750100000; x=1750704800; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PSAHs0D4DZvGhRjRk5eyEpbY9QCRDT/qtuz8dJZf7TA=;
+        b=QtyKoM+4RSR73zqxL6whQ3NIHi1t6v0ytaruQzzcMK+WhZautDAR+FEZ+ABEacl1mS
+         TVHBjyxKSNvgkISpWyvWL8leKOwEbgnhGz24p+f3GayJr0yxQXVwG6aJb+tzk24ZOxbe
+         j0eNcK+o1EJ/b26p6tHlGRxUDvDQ54he0Dxn8D+GovyHLb6qSRS6HdBLL5TeRRhqndAt
+         /o5Ieh8NofcR9rfNdxHzIibwrTi0N26nMzEx3byo+rsMMf90dsqAQDYdipnf6b6QfyHV
+         dbNZGB66WpwtUWc0uRNzSIp6gQ9TDxDHaZ33hFZXSoD8zMPmVC3ukNkD5FILRquA0sKp
+         /RQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750100000; x=1750704800;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PSAHs0D4DZvGhRjRk5eyEpbY9QCRDT/qtuz8dJZf7TA=;
+        b=Uq9OzrR1sz4qLAhg50HDMMj2DVjf1MP/St1c3BuL57duOuWf3Gw0TjUIOCdkc8psd6
+         /OkrA4y33XmTyWputJcD6joWkQaFQv0tBZp9aNjABjCzR/zsDJObnofQikp9xH3wenMU
+         E+AeWX75Ugks4c/EW/D8Yy8qgAwVw3/GmRNg0XKvVuX34arQ51hr/1obDXdevjL2sD9o
+         KZ5CvRqLhjfB9kuFL5K5fQ8kR6qP4xCBiPcn6gd4SkyVWEDOayyLCROy8ZlNW/nGP1ji
+         20HcPDQ11plGyNAZ7zJpX+vzSykyDz5+y2IqJlExeWcv4hvTlP9h2MQv29D5FvCT94Ef
+         A5Fg==
+X-Forwarded-Encrypted: i=1; AJvYcCUm4ckUlLzdVh3YQcQY4Nmk0uTIFOX8Rz69Sjpn2qlNSEDcov26LvxK01lrf5JtBa/S6kKmcQh+xeA/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI4n8jNWZx4DZYyeX16R8dej6eoBUZwxgGjCFB/CC0QRCwhGfj
+	ygtDPlqCmRlFkSCb36L6mzfBpp14fP5h9lEml+7qH17jkSLwlK+5flDVa4qD5kCNzXc=
+X-Gm-Gg: ASbGncu9uo7o04Mi5w0t5Dnjo2Q1JpkGMahkGu/rP6Omh+uiHEQUSFsI8V+AIBdA/YW
+	J9iiQ3X744Tfxj2WyfPsZJtgAmlx75ups6Mzn+kKJ3xFuMrBc+8lsr85mpmcwjd5AKxHn7tqBTm
+	CAAjiJX3F8J4mcK3IdBUoQtm5igrGMckvKipdaFevQN8dzAIfnE4gyiTfFLZ8zw1+DqfuJhlQkn
+	fF7CRGHVwobOqoBbpRMwHjDCzY7mJBI81wAJh3IGr9Ui7icl2jlmjrLKt5bz6j4LPW7l318fbTS
+	IZf6w/vQijmufOVJKhlIMqJ/nx8rhG+3sp/M0rhZOPTXhyaFUQfsnBJRXFhfstqtKuNRFRIKpO1
+	vJ01M4GPIxkXeF4T+q1eSAvGzSuM=
+X-Google-Smtp-Source: AGHT+IFn0SbC3L/Gh4Y2s0CsidlVrBqISko0TH0zpbHX6Ka08lsavjOIKbCtPTUiRNsMm0TcYXt/4A==
+X-Received: by 2002:a05:600c:674a:b0:453:dda:a52e with SMTP id 5b1f17b1804b1-4533cad28b6mr89612035e9.33.1750099999511;
+        Mon, 16 Jun 2025 11:53:19 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e254396sm156200275e9.28.2025.06.16.11.53.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jun 2025 11:53:19 -0700 (PDT)
+Message-ID: <2eea0b19-1a82-428a-8c04-74ee465e7516@linaro.org>
+Date: Mon, 16 Jun 2025 19:53:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,155 +82,225 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/8] drm/imagination: Use pwrseq for TH1520 GPU power
- management
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Matt Coster
-	<matt.coster@imgtec.com>, Frank Binns <frank.binns@imgtec.com>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, Matt Coster
-	<matt.coster@imgtec.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, Marek
-	Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v6 3/8] soc: qcom: geni-se: Enable QUPs on SA8255p
+ Qualcomm platforms
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
+References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
+ <SlCtr38wFck_Zdxg3nfChaMwe2uSvlQdfRCutdXc-Z2BTqoUOPd9Z9QY0cdREgcdxl40k41wXpszBkVTBB2T7A==@protonmail.internalid>
+ <20250606172114.6618-4-quic_ptalari@quicinc.com>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <CAMRc=MfdBd6HBwM4F1TcjDvwbOJ03kxgRk4hJQ8HFK7Wz2XBAg@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250616185043eucas1p19d2115087823eac1a2fa36fdb6c7cfca
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250614180911eucas1p16c9fb4a8160253c253f623bec2529f70
-X-EPHeader: CA
-X-CMS-RootMailID: 20250614180911eucas1p16c9fb4a8160253c253f623bec2529f70
-References: <CGME20250614180911eucas1p16c9fb4a8160253c253f623bec2529f70@eucas1p1.samsung.com>
-	<20250614-apr_14_for_sending-v4-0-8e3945c819cd@samsung.com>
-	<20250614-apr_14_for_sending-v4-4-8e3945c819cd@samsung.com>
-	<CAMRc=MfdBd6HBwM4F1TcjDvwbOJ03kxgRk4hJQ8HFK7Wz2XBAg@mail.gmail.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250606172114.6618-4-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 6/16/25 11:40, Bartosz Golaszewski wrote:
-> On Sat, Jun 14, 2025 at 8:09 PM Michal Wilczynski
-> <m.wilczynski@samsung.com> wrote:
->>
->> Update the Imagination PVR DRM driver to leverage the pwrseq framework
->> for managing the power sequence of the GPU on the T-HEAD TH1520 SoC.
->>
->> To cleanly handle the TH1520's specific power requirements in the
->> generic driver, this patch implements the "driver match data" pattern. A
->> has_pwrseq flag in a new pvr_soc_data struct is now associated with
->> thead,th1520-gpu compatible string in the of_device_id table.
->>
->> At probe time, the driver checks this flag. If true, it calls
->> devm_pwrseq_get("gpu-power"), requiring a valid sequencer and deferring
->> probe on failure. In this mode, all power and reset control is delegated
->> to the pwrseq provider. If the flag is false, the driver skips this
->> logic and falls back to its standard manual power management. Clock
->> handles are still acquired directly by this driver in both cases for
->> other purposes like devfreq.
->>
->> The runtime PM callbacks, pvr_power_device_resume() and
->> pvr_power_device_suspend(), are modified to call pwrseq_power_on() and
->> pwrseq_power_off() respectively when the sequencer is present.  A helper
->> function, pvr_power_off_sequence_manual(), is introduced to encapsulate
->> the manual power-down logic.
->>
->> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
+On 06/06/2025 18:21, Praveen Talari wrote:
+> On the sa8255p platform, resources such as clocks,interconnects
+> and TLMM (GPIO) configurations are managed by firmware.
 > 
-> [snip]
+> Introduce a platform data function callback to distinguish whether
+> resource control is performed by firmware or directly by the driver
+> in linux.
 > 
->>
->> +static int pvr_power_off_sequence_manual(struct pvr_device *pvr_dev)
->> +{
->> +       int err;
->> +
->> +       err = reset_control_assert(pvr_dev->reset);
->> +
->> +       clk_disable_unprepare(pvr_dev->mem_clk);
->> +       clk_disable_unprepare(pvr_dev->sys_clk);
->> +       clk_disable_unprepare(pvr_dev->core_clk);
->> +
->> +       return err;
->> +}
->> +
->>  int
->>  pvr_power_device_suspend(struct device *dev)
->>  {
->> @@ -252,11 +266,10 @@ pvr_power_device_suspend(struct device *dev)
->>                         goto err_drm_dev_exit;
->>         }
->>
->> -       clk_disable_unprepare(pvr_dev->mem_clk);
->> -       clk_disable_unprepare(pvr_dev->sys_clk);
->> -       clk_disable_unprepare(pvr_dev->core_clk);
->> -
->> -       err = reset_control_assert(pvr_dev->reset);
->> +       if (pvr_dev->pwrseq)
->> +               err = pwrseq_power_off(pvr_dev->pwrseq);
->> +       else
->> +               err = pvr_power_off_sequence_manual(pvr_dev);
->>
->>  err_drm_dev_exit:
->>         drm_dev_exit(idx);
->> @@ -276,44 +289,55 @@ pvr_power_device_resume(struct device *dev)
->>         if (!drm_dev_enter(drm_dev, &idx))
->>                 return -EIO;
->>
->> -       err = clk_prepare_enable(pvr_dev->core_clk);
->> -       if (err)
->> -               goto err_drm_dev_exit;
->> +       if (pvr_dev->pwrseq) {
->> +               err = pwrseq_power_on(pvr_dev->pwrseq);
->> +               if (err)
->> +                       goto err_drm_dev_exit;
->> +       } else {
->> +               err = clk_prepare_enable(pvr_dev->core_clk);
->> +               if (err)
->> +                       goto err_drm_dev_exit;
->>
->> -       err = clk_prepare_enable(pvr_dev->sys_clk);
->> -       if (err)
->> -               goto err_core_clk_disable;
->> +               err = clk_prepare_enable(pvr_dev->sys_clk);
->> +               if (err)
->> +                       goto err_core_clk_disable;
->>
->> -       err = clk_prepare_enable(pvr_dev->mem_clk);
->> -       if (err)
->> -               goto err_sys_clk_disable;
->> +               err = clk_prepare_enable(pvr_dev->mem_clk);
->> +               if (err)
->> +                       goto err_sys_clk_disable;
->>
+> The refactor ensures clear differentiation of resource
+> management mechanisms, improving maintainability and flexibility
+> in handling platform-specific configurations.
 > 
-> In order to decrease the number of if-elses, would it make sense to
-> put the "manual" and "pwrseq" operations into their own separate
-> functions and then store addresses of these functions in the device
-> match data struct as function pointers (instead of the has_pwrseq
-> flag)? This way we'd just call them directly.
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> ---
+> v5 -> v6
+> - replaced dev_err with dev_err_probe
 
-Hi Bartosz,
+You've missed two opportunities for dev_err_probe() in this submission.
 
-Thanks for the suggestion. That sounds good. I can rework the patch to
-use function pointers instead of the flag. 
-
-Matt, as the maintainer of this code, do you have a preference on this?
-Let me know what you think.
-
+> - added a check for desc->num_clks with MAX_CLKS, an error if
+>    the specified num_clks in descriptor exceeds defined MAX_CLKS.
+> - removed min_t which is not necessary.
+> - renamed callback function names to resources_init.
+> - resolved kernel bot warning error by documenting function
+>    pointer in geni_se_desc structure.
 > 
-> Bart
+> v3 -> v4
+> - declared an empty struct for sa8255p and added check as num clks.
+> - Added version log after ---
+> 
+> v1 -> v2
+> - changed datatype of i from int to unsigned int as per comment.
+> ---
+>   drivers/soc/qcom/qcom-geni-se.c | 77 +++++++++++++++++++++------------
+>   1 file changed, 49 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index 4cb959106efa..5c727b9a17e9 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -101,10 +101,13 @@ struct geni_wrapper {
+>    * struct geni_se_desc - Data structure to represent the QUP Wrapper resources
+>    * @clks:		Name of the primary & optional secondary AHB clocks
+>    * @num_clks:		Count of clock names
+> + * @resources_init:	Function pointer for initializing QUP Wrapper resources
+>    */
+>   struct geni_se_desc {
+>   	unsigned int num_clks;
+>   	const char * const *clks;
+> +	int (*resources_init)(struct geni_wrapper *wrapper,
+> +			      const struct geni_se_desc *desc);
+>   };
+> 
+>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
+> @@ -891,10 +894,47 @@ int geni_icc_disable(struct geni_se *se)
+>   }
+>   EXPORT_SYMBOL_GPL(geni_icc_disable);
+> 
+> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
+> +				 const struct geni_se_desc *desc)
+> +{
+> +	struct device *dev = wrapper->dev;
+> +	int ret;
+> +	unsigned int i;
+> +
+> +	if (desc->num_clks > MAX_CLKS)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Too many clocks specified in descriptor:%u (max allowed: %u)\n",
+> +				     desc->num_clks, MAX_CLKS);
+
+I think this is an extraneous add, we should trust the array indexes 
+inside our own driver that we control.
+
+Actually why do we have a MAX_CLKS ? We specify a list of clk names with 
+aggregate-initialisation and ARRAY_SIZE() of the aggregate.
+
+Like so:
+
+static const char * const qup_clks[] = {
+         "m-ahb",
+         "s-ahb",
+};
+
+static const struct geni_se_desc qup_desc = {
+         .clks = qup_clks,
+         .num_clks = ARRAY_SIZE(qup_clks),
+
+> +
+> +	wrapper->num_clks = desc->num_clks;
+> +
+> +	for (i = 0; i < wrapper->num_clks; ++i)
+> +		wrapper->clks[i].id = desc->clks[i];
+> +
+> +	ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "invalid clocks property at %pOF\n", dev->of_node);
+> +
+> +	if (ret < wrapper->num_clks) {
+> +		dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
+> +			dev->of_node, wrapper->num_clks);
+> +		return -EINVAL;
+> +	}
+
+This code OTOH makes way more sense as we are validating our internal 
+num_clks variable which we have enumerated ourselves against a DT input 
+which we are consuming.
+
+> +
+> +	ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+> +	if (ret) {
+> +		dev_err(dev, "Err getting clks %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>   static int geni_se_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct geni_wrapper *wrapper;
+> +	const struct geni_se_desc *desc;
+>   	int ret;
+> 
+>   	wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
+> @@ -906,36 +946,12 @@ static int geni_se_probe(struct platform_device *pdev)
+>   	if (IS_ERR(wrapper->base))
+>   		return PTR_ERR(wrapper->base);
+> 
+> -	if (!has_acpi_companion(&pdev->dev)) {
+> -		const struct geni_se_desc *desc;
+> -		int i;
+> -
+> -		desc = device_get_match_data(&pdev->dev);
+> -		if (!desc)
+> -			return -EINVAL;
+> -
+> -		wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
+> -
+> -		for (i = 0; i < wrapper->num_clks; ++i)
+> -			wrapper->clks[i].id = desc->clks[i];
+> -
+> -		ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
+> -		if (ret < 0) {
+> -			dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
+> -			return ret;
+> -		}
+> +	desc = device_get_match_data(&pdev->dev);
+> 
+> -		if (ret < wrapper->num_clks) {
+> -			dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
+> -				dev->of_node, wrapper->num_clks);
+> +	if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
+> +		ret = desc->resources_init(wrapper, desc);
+> +		if (ret)
+>   			return -EINVAL;
+> -		}
+> -
+> -		ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+> -		if (ret) {
+> -			dev_err(dev, "Err getting clks %d\n", ret);
+> -			return ret;
+> -		}
+>   	}
+> 
+>   	dev_set_drvdata(dev, wrapper);
+> @@ -951,8 +967,11 @@ static const char * const qup_clks[] = {
+>   static const struct geni_se_desc qup_desc = {
+>   	.clks = qup_clks,
+>   	.num_clks = ARRAY_SIZE(qup_clks),
+> +	.resources_init = geni_se_resource_init,
+>   };
+> 
+> +static const struct geni_se_desc sa8255p_qup_desc;
+> +
+>   static const char * const i2c_master_hub_clks[] = {
+>   	"s-ahb",
+>   };
+> @@ -960,11 +979,13 @@ static const char * const i2c_master_hub_clks[] = {
+>   static const struct geni_se_desc i2c_master_hub_desc = {
+>   	.clks = i2c_master_hub_clks,
+>   	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
+> +	.resources_init = geni_se_resource_init,
+>   };
+> 
+>   static const struct of_device_id geni_se_dt_match[] = {
+>   	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
+>   	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
+> +	{ .compatible = "qcom,sa8255p-geni-se-qup", .data = &sa8255p_qup_desc },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
+> --
+> 2.17.1
+> 
 > 
 
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+---
+bod
 
