@@ -1,105 +1,238 @@
-Return-Path: <devicetree+bounces-186332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732B6ADB480
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:55:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A0D3ADB47D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBA057A7D8B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:51:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25A593A1E89
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E492202F87;
-	Mon, 16 Jun 2025 14:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2702A20B218;
+	Mon, 16 Jun 2025 14:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AviViFz8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Jln1o/IM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712881FDE31;
-	Mon, 16 Jun 2025 14:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6D31B4247
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 14:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750085547; cv=none; b=ELyQPh7rf9jhjAwBWAPOocFeyacBDGjcWN4P2YOtW+90cvH4jmDy1hH6j3FUEKIU6rqfYsKc7PRcMICY8KHVen87dkTfMCHmyo8vDQgMVDQgUHTs+ft9MIYhmLCAhm82aznfbjpA/JEzKKSswYNKWiFkBIfCP9l1cVOx5UzpdxI=
+	t=1750085699; cv=none; b=e0MW1HPyps4G9tdAm7fv3kyFlMLbtAEVzp53sPwPk/p0XOlcLZ4th+KBzQEr4i4AyzFNT2jZkHcRCt3xnMGuo48oFcW+/wI6KIiWZYvhjdCwhvGBQUFwJn+fLIJYMz0aYziUTDjQ82PVDW3TBbN2Bx4fnugZRJtDybpwyuHhSaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750085547; c=relaxed/simple;
-	bh=bPuvx70ZOohoMirTtBhIdmAQVlAZJUxM/oDnk3mWn5M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NZD3VQuQ1PtFq6rDQjJeQivSApq6HtshFe6wuz8Rr7ekx9YlE0yo7nvePDLOqOeYJUh6j3AzWvr4gLbbVhD1oaWE4csIflI5btlCB9uJJRbgagZ+1+6owQ9yzJw6zj/4bdYKGRKSq7afx5l7WOtESJGyqewBqW6NZLUiWJOLg64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AviViFz8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A616C4CEEA;
-	Mon, 16 Jun 2025 14:52:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750085547;
-	bh=bPuvx70ZOohoMirTtBhIdmAQVlAZJUxM/oDnk3mWn5M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AviViFz8EDSu4pci4/s35SA1EqiENbj+hMVxRmOPRm70Az5musdKvmu9A76JmREBN
-	 lqQVDakjXqlhAIkWJp9ABAW4/s5Led2bkjbdMB4FEDiYrdTH/U6abDbfSI6xaLtwhz
-	 V762DmpOqOrEs9gpSu8bLgLPnCqRXf67JzcKF7EwByyiSrBE2Ixn6TZ0zkVRmiPzlu
-	 cBTXzeuatxpRD+D/ljoBdyEmczJe0grP7mkQHUkRIw+5Tjs5XpNjpmmgh2T+5P79Y1
-	 x6UZbY/qPahUUjKXdMSQv/lP2nTTHYIAjTulak70ZXln6pW/68GWC1HxrAy4PmCMBd
-	 98szxgsNLrYUQ==
-Date: Mon, 16 Jun 2025 15:52:20 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Paul Barker <paul.barker@sancloud.com>,
-	Marc Murphy <marc.murphy@sancloud.com>,
-	Jason Kridner <jkridner@gmail.com>, Andrew Davis <afd@ti.com>,
-	Bajjuri Praneeth <praneeth@ti.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 4/7] dt-bindings: omap: Add Seeed BeagleBone Green Eco
-Message-ID: <20250616-scientist-displease-7fba3321aa8f@spud>
-References: <20250613-bbg-v3-0-514cdc768448@bootlin.com>
- <20250613-bbg-v3-4-514cdc768448@bootlin.com>
+	s=arc-20240116; t=1750085699; c=relaxed/simple;
+	bh=5Nm9CImpLsi7qFyQR0yZH/U+R7I2IFhkj7QErWfdJPI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pWSUhVS4IevQ3Lt8RNhDnAdEPKpz6Jkq2IM5DzFX24Vq/OVYW20tXxuXrcfjGk9LpB8AODkPyv6HAeqK1x5LCj0SnBrRjNDWzcm6AYBLEkxlNw6jOExDNIC81ILvow9a9aMZ3pjhNmksl5rxfDSbVoiu7W4O/PTASAQFaqRPdGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Jln1o/IM; arc=none smtp.client-ip=209.85.161.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-60be58376c9so580211eaf.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:54:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750085696; x=1750690496; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IbjUWaweNAfTcsTb0I52VudEVmpioqIEWXQ0+qpwB9M=;
+        b=Jln1o/IM8EYQe6Q/oeLM+Yd1u2bSCN7beyDqfSc0HuMJX549XViJLi06lrYzFzzxNM
+         s5IbJ5FPnlpB+p70CGAoAs+Xz+uRBCmc+44XoZCgtaf4Ib4ZS/uSdAgAoRetWVIyaukM
+         Ngu7HbkCEGlA6lS9EqggoujD2Rmlt0oAUlWSPnP4CVnKKmA3T5B+uV/FkF4l34QgBeVQ
+         KC8EqMFC3beZda1atraoGlvVcp9bn7G+WE25aMdEGSp3kDsG0cXdtlMX+4XGGiBzIgk7
+         1ETrtjvsoFLmKpo5pAM9hyNoO59zrbVMHCNKyP+CgnRkbkU6WQCngO1KKogjFdB3Pr+r
+         UxaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750085696; x=1750690496;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IbjUWaweNAfTcsTb0I52VudEVmpioqIEWXQ0+qpwB9M=;
+        b=s5iI5T8bktAZEePskIPWxfy0etheCHT+6TTke1DwvBU9nuZUIWz3li8oiXlkMOWXS2
+         zjMhgvCTLdShg2B6iWOaGDVCEwgHRgmdGuP9SekgsegtUyrab4mYYg9TA78Dg9D3SmE4
+         DNeWQ6rivgm7grS7eRbZjOETDFbET4DyiYsNnmfRSpqM/KBY2ZReYunVWbdNWExgOlht
+         OOgqxCw3Lwa8Vza3YWnd69isAoMReiW37Evv33SSEkbT2ZSyvDTlnbftpe4mmXWpjgOo
+         mil/f0wMHozYcBuw+Oe6W68rrfabI3oCTAENHdfDewX38FGA0UraszH2w2Jo6B/RzTip
+         3DCA==
+X-Forwarded-Encrypted: i=1; AJvYcCU26/B1KGmCerxWjJyuROMKjrfz164pavD1+o0VCU/D2JGaRA5Nj2N+69MoiSypWNoOSU+2DATEuiXQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDdYRVc1AGRFhBXyJJ8ZRANEh5tEyTeextbS8tMm6QfIsFfT+A
+	pP8zZlKNpf3GEFcr7NaaxcwuQHrOpPnmXnS93fyk19LmvPyopyg3TwUT2INDzLzSf+A=
+X-Gm-Gg: ASbGncuYaW5vX3t2Xauh/9gi57yIcD/Prpyxr0nejn85NsN+wA2sJ2zJF8A9+0dB4kD
+	ZCA+oJYPVc2e9P7GsjKTs3pRIV8tZLpY9QP/bcG3DVSTHwPBGYBVKajfVIbLJTHbfHyzXhOC8yH
+	mrcWcxUF8Vj446xjCkoJ3Zpr82n1s0S5DMxlyoYrfp0vkJkN3ft2uE6Awnl3eCb+lqZRsMlo2b3
+	bcMJimeRs/T6froPSpQLGQKznDzy4K35EDcMj4/ZrbcYh032JNhfpa2zmV0aPHDvgnn7zIx/O5t
+	QO1zY2J/eIjsgs9xQ23+Ji4rqHdXxumrb5zQYojMYBoEVzsWOevms00wb5SVFKqcQCQ1y33Gup6
+	KBl53gJhYU0hjLOZoFdWnj0FmgQg2gJYAT1DCRXE=
+X-Google-Smtp-Source: AGHT+IG/zyPyHx6md2qlWK0JseESq5/UwM8f1EqlrlgEOHuHiIJkuH+hr0ysstl4fbKuuVmWS7NVVw==
+X-Received: by 2002:a05:6820:627:b0:610:fa7d:9a14 with SMTP id 006d021491bc7-61110e6582emr5134060eaf.2.1750085695706;
+        Mon, 16 Jun 2025 07:54:55 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:9583:1e37:58ed:10ae? ([2600:8803:e7e4:1d00:9583:1e37:58ed:10ae])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61108ebd14fsm905901eaf.22.2025.06.16.07.54.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jun 2025 07:54:54 -0700 (PDT)
+Message-ID: <c89f4b2f-0892-4f63-b9b4-5ae55b477c01@baylibre.com>
+Date: Mon, 16 Jun 2025 09:54:52 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NffML9ZiH2lsh2fO"
-Content-Disposition: inline
-In-Reply-To: <20250613-bbg-v3-4-514cdc768448@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] iio: adc: Add support for ad4052
+To: Jonathan Cameron <jic23@kernel.org>,
+ Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
+ <20250610-iio-driver-ad4052-v3-4-cf1e44c516d4@analog.com>
+ <20250614110812.39af2c41@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250614110812.39af2c41@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 6/14/25 5:08 AM, Jonathan Cameron wrote:
+> On Tue, 10 Jun 2025 09:34:37 +0200
+> Jorge Marques <jorge.marques@analog.com> wrote:
+> 
+>> The AD4052/AD4058/AD4050/AD4056 are versatile, 16-bit/12-bit, successive
+>> approximation register (SAR) analog-to-digital converter (ADC) that
+>> enables low-power, high-density data acquisition solutions without
+>> sacrificing precision. This ADC offers a unique balance of performance
+>> and power efficiency, plus innovative features for seamlessly switching
+>> between high-resolution and low-power modes tailored to the immediate
+>> needs of the system. The AD4052/AD4058/AD4050/AD4056 are ideal for
+>> battery-powered, compact data acquisition and edge sensing applications.
+>>
 
---NffML9ZiH2lsh2fO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Fri, Jun 13, 2025 at 05:49:47PM +0200, Kory Maincent wrote:
-> Document the seed,am335x-bone-green-eco compatible string in the
-> appropriate place within the omap family binding file.
->=20
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+>> +static int ad4052_update_xfer_raw(struct iio_dev *indio_dev,
+>> +				   struct iio_chan_spec const *chan)
+>> +{
+>> +	struct ad4052_state *st = iio_priv(indio_dev);
+>> +	const struct iio_scan_type *scan_type;
+>> +	struct spi_transfer *xfer = &st->xfer;
+>> +
+>> +	scan_type = iio_get_current_scan_type(indio_dev, chan);
+>> +	if (IS_ERR(scan_type))
+>> +		return PTR_ERR(scan_type);
+>> +
+>> +	xfer->rx_buf = st->raw;
+>> +	xfer->bits_per_word = scan_type->realbits;
+>> +	xfer->len = scan_type->realbits == 24 ? 4 : 2;
+> 
+> This is a little odd. I'm not sure what happens with len not dividing
+> into a whole number of bits per word chunks.
+> Maybe a comment?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Even better, there is now spi_bpw_to_bytes() for this.
 
---NffML9ZiH2lsh2fO
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>> +	xfer->speed_hz = AD4052_SPI_MAX_ADC_XFER_SPEED(st->vio_uv);
+>> +
+>> +	return 0;
+>> +}
+> 
+> 
 
------BEGIN PGP SIGNATURE-----
+...
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFAvpAAKCRB4tDGHoIJi
-0nSjAP0QTnkfbkMNtybseo1N8W/Zu0dXYmt/Zvr8lhBp4dvehAD7BpcL4CUzvHX9
-ruQ7cqsF7o2eAFOxPej8RZ+ayyl54gU=
-=zZQH
------END PGP SIGNATURE-----
+> 
+>> +static int __ad4052_read_chan_raw(struct ad4052_state *st, int *val)
+>> +{
+>> +	struct spi_device *spi = st->spi;
+>> +	struct spi_transfer t_cnv = {};
+>> +	int ret;
+>> +
+>> +	reinit_completion(&st->completion);
+>> +
+>> +	if (st->cnv_gp) {
+>> +		gpiod_set_value_cansleep(st->cnv_gp, 1);
+>> +		gpiod_set_value_cansleep(st->cnv_gp, 0);
+>> +	} else {
+>> +		ret = spi_sync_transfer(spi, &t_cnv, 1);
+> 
+> Add a comment for this.   I can't immediately spot documentation on what
+> a content free transfer actually does.  I assume pulses the chip select?
+> is that true for all SPI controllers?
 
---NffML9ZiH2lsh2fO--
+Should be. Setting .delay in the xfer would also make it more
+clear that this is doing.
+
+> 
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +	/*
+>> +	 * Single sample read should be used only for oversampling and
+>> +	 * sampling frequency pairs that take less than 1 sec.
+>> +	 */
+>> +	if (st->gp1_irq) {
+>> +		ret = wait_for_completion_timeout(&st->completion,
+>> +						  msecs_to_jiffies(1000));
+>> +		if (!ret)
+>> +			return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	ret = spi_sync_transfer(spi, &st->xfer, 1);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (st->xfer.len == 2)
+>> +		*val = sign_extend32(*(u16 *)(st->raw), 15);
+>> +	else
+>> +		*val = sign_extend32(*(u32 *)(st->raw), 23);
+>> +
+>> +	return ret;
+>> +}
+> 
+
+...
+
+>> +
+>> +static int ad4052_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg,
+>> +				     unsigned int writeval, unsigned int *readval)
+>> +{
+>> +	struct ad4052_state *st = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	if (!iio_device_claim_direct(indio_dev))
+> 
+> For these guards in the debugfs callback, please add a comment on why they
+> are needed.   We've had a lot of questions about these recently and I'd
+> like it to be clear to people when they should cut and paste these and when
+> not.
+
+The reason I started doing this is that running the iio_info command attemps
+to read register 0x00 via the debug attribute of every single iio device. So
+if you run iio_info during a buffered read, and 0x00 is a valid register, it
+would break things without this check.
+
+Ideally, general purpose commands wouldn't be poking debug registers, but
+that isn't the case. But I suppose we could "fix" iio_info instead.
+
+> 
+>> +		return -EBUSY;
+>> +
+>> +	if (readval)
+>> +		ret = regmap_read(st->regmap, reg, readval);
+>> +	else
+>> +		ret = regmap_write(st->regmap, reg, writeval);
+>> +	iio_device_release_direct(indio_dev);
+>> +	return ret;
+>> +}
+> 
 
