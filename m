@@ -1,128 +1,139 @@
-Return-Path: <devicetree+bounces-186243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF386ADACEF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:05:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BDD1ADAD04
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:07:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E77443B15FC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:05:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34A3E188FB63
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 10:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FF627E07E;
-	Mon, 16 Jun 2025 10:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30CB62980A1;
+	Mon, 16 Jun 2025 10:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="Y6qj1fNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38B02E7644
-	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 10:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD0F230BEF;
+	Mon, 16 Jun 2025 10:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750068189; cv=none; b=qsXYH9EtjLAzrVpplCNnU7xn6Ld5VsHCt40Bgt+rlq2oVTYkgaj8R7oLIRceToBdBzxPS3Tju2y1j8zZkuiLx8XhxPssFYt3Wbiq1BEOuLkmSSi4lc7MZFcvbDDTZcshCJoRaUR9dKY9Htv9IFm2RZj2RIsKxL6hiqVsy1J9Vf8=
+	t=1750068269; cv=none; b=TN4iQ+Zp30M99J2XQr4Mj0IBzh2uLcC+3Q5kluj1MwUOArHV//tOWEiJf7aS+3uOlHf1w6NbnO0o/qIW3pp3AxNsB5FBkYtJrp2QX4GxQuvIsxPKFZdD5aw31pLnSG125nNcfSMX3qntXGEgN5swj+jHQ8/o8qVjpnlJ4Ee/uS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750068189; c=relaxed/simple;
-	bh=lLM6PNG7dKx15HVc5tCO8LXy6xfPDli0bR1Pop3fY/M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mPWgYJbrtreT7rvtvGLiTe6fDdu46dtRSIj8EESX6KXdhGKX7WAR3BC/0O6q12SUMwAPSHBSUyu+oxDb3h4I1jSw2eAo8rMKDjyPCpx28fHH3mNquCtMIhCV/MgrPqLqrIiF0qxDktn4RQWCWoe4IVEAWNn/Z4JSJi9N2m+9fQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uR6g5-0002xJ-5k; Mon, 16 Jun 2025 12:02:57 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uR6g4-003mkZ-1v;
-	Mon, 16 Jun 2025 12:02:56 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uR6g4-00H0zN-1X;
-	Mon, 16 Jun 2025 12:02:56 +0200
-Date: Mon, 16 Jun 2025 12:02:56 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH v4 2/3] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <aE_r0MB9rVdJeYkG@pengutronix.de>
-References: <20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de>
- <20250430-clk-cdce6214-v4-2-9f15e7126ac6@pengutronix.de>
- <3ba53493700561923c4ea9ab53a1a272@kernel.org>
- <aBsUObKHmJkBFN04@pengutronix.de>
- <1f072e2e02bb6a66d10c50177e5c69a6@kernel.org>
- <aBxbr8CyKmdZQobS@pengutronix.de>
+	s=arc-20240116; t=1750068269; c=relaxed/simple;
+	bh=IqHdIMP8oq682ly7gmcYGkhV+ItjF28rc0DFQ8K6BDA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kTYwxjCYyPHg4C30zuRhV1vI9UvaZHdxjGSKAtUmJk9S+5/GiS5H4xbCiArnKHcXrGbzEhCs2rW7li05DLwDN21nCZJ+SfRpWyiTbJY56SZ8T0b66u3GsEBwzauY9sTXHvDGklHqw3YuTGjc0ow105fpU6A0oHvCh7C4MzP6fCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=Y6qj1fNl; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Gebr3x5cFjIyCpTF84QP5T9DzSmcTlWVArnM0v5gIds=; b=Y6qj1fNlPUCcGLc2S2OKITAYfD
+	t8Vq9th3zdfOzL0wLypb1BZLPdnCf98+I0dEfsr0Gg321OLl15OxRBjiAHKl08oDh6wupQwlUXmBb
+	jtAuTtuci6wK/o3NrcxNunay6KfgKF61x0YUa9ddxGzMFHqoxbdKbtsP60wc+jmvF/SpFQjophpmB
+	lPf9nHz3TxunhONX8dsrSjl4jsVJiweY9gunoo2Yva7vFNVdjhwtXfEv7B+CUK1821LD8YopzFFTr
+	mk7oCd1CLBqjiollkRyrd/FM7Jm8NDI+Xcf5TzfmXVCWn1yioMccMvQxgfdWauq6Q6j1inSzj0WjG
+	nA4OYb0g==;
+Date: Mon, 16 Jun 2025 12:03:51 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Andrew Davis <afd@ti.com>
+Cc: Kory Maincent <kory.maincent@bootlin.com>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen
+ <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
+ <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, Bajjuri Praneeth
+ <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/5] binding: omap: Add lots of missing omap AM33
+ compatibles
+Message-ID: <20250616120351.3479442f@akair>
+In-Reply-To: <53b48816-37e6-49e8-a5cf-adcca04c57a7@ti.com>
+References: <20250609-bbg-v2-0-5278026b7498@bootlin.com>
+	<20250609-bbg-v2-2-5278026b7498@bootlin.com>
+	<53b48816-37e6-49e8-a5cf-adcca04c57a7@ti.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aBxbr8CyKmdZQobS@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 08, 2025 at 09:22:23AM +0200, Sascha Hauer wrote:
-> On Wed, May 07, 2025 at 01:11:31PM -0700, Stephen Boyd wrote:
-> > Quoting Sascha Hauer (2025-05-07 01:05:13)
-> > > On Mon, May 05, 2025 at 10:50:49AM -0700, Stephen Boyd wrote:
-> > > > Quoting Sascha Hauer (2025-04-30 02:01:35)
-> > > > > diff --git a/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
-> > > > > new file mode 100644
-> > > > > index 0000000000000..d4a3a3df9ceb9
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
-> > > > > @@ -0,0 +1,155 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +
-> > > > > +patternProperties:
-> > > > > +  '^clk@[0-1]$':
-> > > > > +    type: object
-> > > > > +    description:
-> > > > > +      optional child node that can be used to specify input pin parameters. The reg
-> > > > > +      properties match the CDCE6214_CLK_* defines.
-> > > > 
-> > > > Presumably the EEPROM is typically used to configure all this stuff? Do
-> > > > you actually need to program this from the kernel, or are you
-> > > > implementing all this for development purposes?
-> > > 
-> > > The EEPROM could be used to configure this. I don't know if the final
-> > > product will have the EEPROM programmed, but even if it is, should we
-> > > make this mandatory?
+Am Mon, 9 Jun 2025 18:34:10 -0500
+schrieb Andrew Davis <afd@ti.com>:
+
+> On 6/9/25 10:43 AM, Kory Maincent wrote:
+> > Add several compatible strings that were missing from the binding
+> > documentation. Add description for Bone, BoneBlack and BoneGreen
+> > variants.
 > > 
-> > No I'm not asking about making the property/node required. I'm wondering
-> > if you're actually using these bindings. If they're not used then I
-> > worry we're putting a bunch of configuration in here that we'll never
-> > use.
+> > Add several compatible that were missing from the binding.
+> > 
+> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > ---
+> > 
+> > Change in v2:
+> > - New patch
+> > ---
+> >   Documentation/devicetree/bindings/arm/ti/omap.yaml | 38 ++++++++++++++++++++++
+> >   1 file changed, 38 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml b/Documentation/devicetree/bindings/arm/ti/omap.yaml
+> > index 3603edd7361d..c43fa4f4af81 100644
+> > --- a/Documentation/devicetree/bindings/arm/ti/omap.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/ti/omap.yaml
+> > @@ -104,12 +104,50 @@ properties:
+> >         - description: TI AM33 based platform
+> >           items:
+> >             - enum:
+> > +              - bosch,am335x-guardian
+> >                 - compulab,cm-t335
+> > +              - grinn,am335x-chilisom
+> > +              - gumstix,am335x-pepper
+> > +              - moxa,uc-2101
+> >                 - moxa,uc-8100-me-t
+> > +              - myir,myc-am335x
+> > +              - myir,myd-am335x
+> >                 - novatech,am335x-lxm
+> > +              - oct,osd3358-sm-refdesign
+> > +              - tcl,am335x-sl50
+> >                 - ti,am335x-bone
+> >                 - ti,am335x-evm
+> > +              - ti,am335x-evmsk
+> > +              - ti,am335x-pocketbeagle
+> > +              - ti,am335x-shc
+> >                 - ti,am3359-icev2
+> > +              - vscom,onrisc
+> > +          - const: ti,am33xx
+> > +
+> > +      - description: TI bone variants based on TI AM335  
 > 
-> At the moment we are using the device tree binding. I asked our customer if
-> they plan to use it in production as well.
+> Do we really need these "bone variants" split out from the above
+> list of TI AM33 based boards? We don't do that for any of the other
+> boards, you get a SoC and a Board compatible, every classification
+> in-between is just unneeded.
+> 
 
-Answer from customer: We have no plans using the EEPROM
+We have something like this for the Pandaboards models. But
+e.g. the i.MX Udoo Neo stuff which just differs in what is populated
+does not have this. So I do not see a clear pattern. It could be useful
+for userspace to store some board-specific configurations which might be
+the same for a family of boards. So if people shout out loud that these
+are needs, lets kep them.
 
-Sascha
+Regards,
+Andreas
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
 
