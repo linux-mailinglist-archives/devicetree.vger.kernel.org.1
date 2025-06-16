@@ -1,149 +1,144 @@
-Return-Path: <devicetree+bounces-186278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B75ADAE90
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:32:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8699ADAE9C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DF423B4C00
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:32:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47706188E78D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 11:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21DF2D1914;
-	Mon, 16 Jun 2025 11:32:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3A82D1914;
+	Mon, 16 Jun 2025 11:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HhL/aw41"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DgZmK78e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD85A29C35C;
-	Mon, 16 Jun 2025 11:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75D52C1588
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 11:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750073558; cv=none; b=oi0Q/0itA1IScvQZ3G8DqkwLNb47KclUaqRXBjLT+DjmFYsNw2eqDdGL6PiueAlUtbt1hGemb4pVz0s43y6S8AJOI+8Khp7bCsxwnxTGdUyHkt7yEuJtXoHPZRdU8O3kJ/MC5jT693MJsT0HkBE8saCP+7HEFhy6wG2ngIHkZBQ=
+	t=1750073606; cv=none; b=CInEK164MfxGi2WyCWHN209lRlGF9PlLXH2vu9+uVo/H79/7xch/OqtfJXqeua5It8S3I9hPq4Tr2Tf7w9kzrSBoq3UNwI52A/uGekRdok0jQ2XECOr4ZHBzn+9FN8S4f33gbQBWmTIKWjHeHrX9yqK2dr4Uh9iMjKlJ5ztebX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750073558; c=relaxed/simple;
-	bh=K9KWXjUK6ETi9gIw9hOQRn1dglxLURauDPg1WLVBpa8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZgU6F0lh3SCIn3VWNtp6g7cvq/NQKyQIJqoNJskDWtw9RgRs4VkWhhl8o/nfL7Gu1M+nZKTgWm2hk5BOCSHwGOw9XNqsty8SCgK4hlFq5Ug1Ayz7BqH+xvmyDI00GbBdJYBztWk0ujqxk0rpa5w861FGSsrxBH6bZVwp0Ojir84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HhL/aw41; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750073557; x=1781609557;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=K9KWXjUK6ETi9gIw9hOQRn1dglxLURauDPg1WLVBpa8=;
-  b=HhL/aw413zoAJjXdVpxZ0DjIY3QCT+TJvVGCzpc2yo0kWsIh/Nt69OuK
-   30A0PbetITLld2Kixncl+WryQSKGmotiXMyvEb1GKs3HnmgHTjc60Mnng
-   o5+0CWZnzZ95ncUSW6OlDVckoYMUBRpFOuZdqqzgvTWog2Uw0srgxn1EI
-   ps5FIrLSPSWIGYPYhQqS+foVrQ+9OzDen+ad2LXq8Q1UEjgiVljhxKSDK
-   +27AGjxTTLy0LQKwH102GGEJxc+peYZ0PUvlZKjQND2fDG+WyQ3upSz6K
-   eVhNxmkxRsrokxm5i2Thd+ptUK1l2sEvMkg0cJWe+C64SH7q79N3OX9HX
-   g==;
-X-CSE-ConnectionGUID: ZSYUzmwbR9O17H0BOLMs2Q==
-X-CSE-MsgGUID: duvoV5RMSBGuHNCZO0pzew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="69657581"
-X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; 
-   d="scan'208";a="69657581"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2025 04:32:36 -0700
-X-CSE-ConnectionGUID: QDgnZjIbTNK2iCkDaWZJzA==
-X-CSE-MsgGUID: eGPeF19JQ0WYvqZkT3eomA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,241,1744095600"; 
-   d="scan'208";a="152281049"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2025 04:32:25 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uR84a-000000073ib-42pq;
-	Mon, 16 Jun 2025 14:32:20 +0300
-Date: Mon, 16 Jun 2025 14:32:20 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 06/28] driver core: fw_devlink: Introduce
- fw_devlink_set_device()
-Message-ID: <aFAAxKKmwagLcg9B@smile.fi.intel.com>
-References: <20250613134817.681832-1-herve.codina@bootlin.com>
- <20250613134817.681832-7-herve.codina@bootlin.com>
- <CAGETcx9u-7TJ6_J5HdmDT=7A6Z08P-rUC0n+qnBoBi+ejRc2SQ@mail.gmail.com>
+	s=arc-20240116; t=1750073606; c=relaxed/simple;
+	bh=sUJtxVCgOPUC9izlgo4CNw2jnzc7+5K3qEajbBawjgg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=njumh7042IrrQAqV51ZUMGxc6YBIblwv6e+u0wSzRUX0l22/uoQ49Gy/exeNCbCV82yW31daE7rxWag+uwV8WisjxmJWx8NnCiYucOybjUA0+ccdNTFMGQJhe6Ptw/WHN2CPhrjO/zQLxGSQkX/IbBeNMapTOz045Ooo4SoIO28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DgZmK78e; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a528243636so2509920f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 04:33:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750073603; x=1750678403; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sUJtxVCgOPUC9izlgo4CNw2jnzc7+5K3qEajbBawjgg=;
+        b=DgZmK78eRIvsGmJEJg3/5LzJP6Jt1UIMX+KReOFN2e6WY7772YzjvQKG8Ob4NQke1v
+         7JbWE6tg3XFdbI+PdFQE4NdFat6syGXC1yBSpd2AKEkCAEB/TOkNC5LWbBVrtIN2fFwW
+         dfVUJMWM51xdFBjkXK0tsbaesFESXrfM2cPsMQnN7c/zCHt5F3ihxluYnxjXwNvPHr4X
+         WH4XD/YzpzMoh7+sYVRwPfl08wD5okkeGBSqKth6UWxZUQ9ywxHZHl+OR1Hxso+uU7W0
+         h7Mv3B+G3vIw6t7wgM4HEP8U1j3boV+J8pi7MEW8549I8qGh4c3BNqwRKe+ZFrKy07Q5
+         C7Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750073603; x=1750678403;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sUJtxVCgOPUC9izlgo4CNw2jnzc7+5K3qEajbBawjgg=;
+        b=SCQ7iWnANcdluRpL586+Dqw1ql4X6aMuyCZoAONFtnL/c3wYlEyi46o+dYbFrA6YAS
+         G6VBGGiFZRQrlZdV/zKdbTIkiI+zr4W1i364EsM9SM764BuacvdIwMia05Hi+goNlnlO
+         ekd/Zg484DD+nW5IDyBtCaEPPYRmBCqyO75Fz/+NY40D9JWFX5Dh9DxnB09hEWeTqOxt
+         LGlgoRv2aTqdJpz8pSH6e5Ysa/2ryY0KRapvfVxxqD5KenEAOcR6l02k4hnadivJBMuW
+         8EaHiV0TJ5BxJlcsHPyVQDzL8AfnsBnvdXZiwT0FY+JDpXYIFYRuJkypvP49KpUh4ZWR
+         mRSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3aoKExqwOYL2P+D4SDOZaKNkycBPoH8vXMRT/H2YYMqN1ZdKAobuaQVFmJ9RxHDjC79tj4aqv+snM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXnOlHL64uTvAF3Blv94qjrwk4CVkXHm1mgskC4pykWTcCbnRr
+	D1wDzOWAKEoS+EZknETt5yWv720svzufRf1TzDI7eOlbKX/7/zXGv8A+bU/8Z4YHe68=
+X-Gm-Gg: ASbGncuRnVx9ItEosb0do5jm9DH3Y/jy79tDHnbf69wNGDTu16y6+XjWtwKJTj3oyQv
+	KyiCpziIVT8VWEiOgBcc3NoMXy9BwMcjF7vQbMCfOvZdLT8/sCDIevVMy5l6v0wgsYnCPyKL4V+
+	e0f+DXOGHNNgKD2ucbE3yTfRga27SpNjRr29CWGB3B3lBqYHET+F967hGHVHp3d3Ks0wM45PTE1
+	iKLfKlsZTvngU+Wq+dG9TJs3zJdn8BwffbwAwxUoQeqq9Hxpo/aqzDzOx03fahNayxo0eHcRLo8
+	qgysYguJau4X0/5pzhxzFYS8RzuPlbnqa2ntLXYLnHvtOkTerc8MZvf2vOj+BDYKjyoD+pfhUKB
+	1sw==
+X-Google-Smtp-Source: AGHT+IHENEkwxduA7K0Vjfe2dGuq+xptRSYw34g+0tog7rCYhbhJGOxjnsq/iY/dAhPOFFaN1g90tg==
+X-Received: by 2002:a05:6000:2501:b0:3a4:d700:f773 with SMTP id ffacd0b85a97d-3a5723977camr6533466f8f.11.1750073603145;
+        Mon, 16 Jun 2025 04:33:23 -0700 (PDT)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532063ebf6sm111747185e9.3.2025.06.16.04.33.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 04:33:22 -0700 (PDT)
+Message-ID: <b193e94f042cf6134d2bed92152c23ee5bba6a26.camel@linaro.org>
+Subject: Re: [PATCH v4 00/32] Samsung S2MPG10 PMIC MFD-based drivers
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
+ <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King	
+ <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon	 <will@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, Tudor
+ Ambarus	 <tudor.ambarus@linaro.org>, Will McVicker
+ <willmcvicker@google.com>, 	kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-rtc@vger.kernel.org, Lee Jones
+ <lee@kernel.org>
+Date: Mon, 16 Jun 2025 12:33:21 +0100
+In-Reply-To: <905e6cab9932c814a578826329f5e3f944418ef9.camel@linaro.org>
+References: <20250409-s2mpg10-v4-0-d66d5f39b6bf@linaro.org>
+			 <20250415160212.GA372032@google.com> <2025041715425693974c6d@mail.local>
+		 <24314441936d97a1892474eacdbbd690612de265.camel@linaro.org>
+	 <905e6cab9932c814a578826329f5e3f944418ef9.camel@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGETcx9u-7TJ6_J5HdmDT=7A6Z08P-rUC0n+qnBoBi+ejRc2SQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Fri, Jun 13, 2025 at 02:13:49PM -0700, Saravana Kannan wrote:
-> On Fri, Jun 13, 2025 at 6:49 AM Herve Codina <herve.codina@bootlin.com> wrote:
-
-> > Setting fwnode->dev is specific to fw_devlink.
-> >
-> > In order to avoid having a direct 'fwnode->dev = dev;' in several
-> > place in the kernel, introduce fw_devlink_set_device() helper to perform
-> > this operation.
-> 
-> This should not be set anywhere outside the driver core files. I'll
-> get to reviewing the series
-
-Strictly speaking I agree with you, but this is not a some driver case,
-it's very special and also we have some (ab)users of it.
-I can relax the requirement to not set outside of a core functionality,
-(like driver core, PCI core) which are tightly related to driver core
-one.
-
-Just my 2c.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+SGkgQWxleGFuZHJlLAoKT24gTW9uLCAyMDI1LTA1LTE5IGF0IDE1OjQxICswMTAwLCBBbmRyw6kg
+RHJhc3ppayB3cm90ZToKPiBIaSBBbGV4YW5kcmUsCj4gCj4gT24gTW9uLCAyMDI1LTA0LTI4IGF0
+IDE5OjE3ICswMTAwLCBBbmRyw6kgRHJhc3ppayB3cm90ZToKPiA+IEhpIEFsZXhhbmRyZSwKPiA+
+IAo+ID4gT24gVGh1LCAyMDI1LTA0LTE3IGF0IDE3OjQyICswMjAwLCBBbGV4YW5kcmUgQmVsbG9u
+aSB3cm90ZToKPiA+ID4gT24gMTUvMDQvMjAyNSAxNzowMjoxMiswMTAwLCBMZWUgSm9uZXMgd3Jv
+dGU6Cj4gPiA+ID4gPiDCoGRyaXZlcnMvbWZkL0tjb25maWfCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMzUgKy0KPiA+ID4g
+PiA+IMKgZHJpdmVycy9tZmQvTWFrZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgNSArLQo+ID4gPiA+ID4gwqBkcml2
+ZXJzL21mZC9zZWMtYWNwbS5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgfCA0NDIgKysrKysrKysrKysrKysrKysrKwo+ID4gPiA+ID4gwqBk
+cml2ZXJzL21mZC9zZWMtY29tbW9uLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHwgMzAxICsrKysrKysrKysrKysKPiA+ID4gPiA+IMKgZHJpdmVy
+cy9tZmQvc2VjLWNvcmUuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIHwgNDgxIC0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ID4gPiA+ID4gwqBk
+cml2ZXJzL21mZC9zZWMtY29yZS5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIzICsKPiA+ID4gPiA+IMKgZHJpdmVycy9tZmQvc2Vj
+LWkyYy5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCB8IDIzOSArKysrKysrKysrCj4gPiA+ID4gPiDCoGRyaXZlcnMvbWZkL3NlYy1pcnEu
+Y8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgfCA0NjAgKysrKysrKy0tLS0tLS0tLS0tLS0KPiA+ID4gPiAKPiA+ID4gPiA+IMKgZHJpdmVy
+cy9ydGMvcnRjLXM1bS5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCB8IDE5NyArKysrKystLS0KPiA+ID4gPiAKPiA+ID4gPiBNRkQgcGFy
+dHMgbG9vayBva2F5IHRvIG1lIG5vdy4KPiA+ID4gPiAKPiA+ID4gPiBXaXRoIEFja3MgZnJvbSB0
+aGUgQ2xrIGFuZCBSVEMgbWFpbnRhaW5lcnMsIEkgY2FuIG1lcmdlIGFsbCBvZiB0aGUKPiA+ID4g
+PiBkcml2ZXIgc3R1ZmYgdG9nZXRoZXIgYW5kIHN1Ym1pdCBhIFBSIGZvciBvdGhlcnMgdG8gcHVs
+bCBmcm9tLgo+ID4gPiA+IAo+ID4gPiAKPiA+ID4gSSBkb24ndCB0aGluayB0aGUgUlRDIHBhcnQg
+ZGVwZW5kcyBvbiB0aGUgTUZEIG9uZSBzbyBJIHdhcyBnb2luZyB0bwo+ID4gPiBhcHBseSB0aGUg
+cGF0Y2hlcyBpbiBteSB0cmVlIGlmIHRoaXMgaXMgZmluZSBmb3IgZXZlcnlvbmUuCj4gPiAKPiA+
+IFJUQyBwYXRjaCAyNyBkb2VzIGRlcGVuZCBvbiB0aGUgczJtcGcxMCBtZmQgY29yZSBkcml2ZXIg
+KGR1ZSB0bwo+ID4gdXNpbmcgZW51bXMgYW5kIG1hY3JvcyBpbnRyb2R1Y2VkIHRoZXJlKS4KPiAK
+PiBMZWUgaGFzIGtpbmRseSBtZXJnZWQgYWxsIHRoZSBjb3JlIGRyaXZlciBwYXRjaGVzLgo+IAo+
+IEFueSBjaGFuY2UgdGhlIHJ0YyBjaGFuZ2VzIHdpbGwgbWFrZSBpdCBpbnRvIHRoZSBzYW1lIGtl
+cm5lbCByZWxlYXNlPwoKRnJpZW5kbHkgcGluZy4KCgpDaGVlcnMsCkFuZHJlJwo=
 
 
