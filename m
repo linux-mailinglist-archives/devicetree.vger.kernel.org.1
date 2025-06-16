@@ -1,150 +1,111 @@
-Return-Path: <devicetree+bounces-186350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC76CADB5B1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:42:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2BCDADB5BA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 17:44:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58F0B163EEF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:42:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D08653B171F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F117260587;
-	Mon, 16 Jun 2025 15:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0AE270ED9;
+	Mon, 16 Jun 2025 15:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5Ka/c3P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pNxQ978V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B72E25291B;
-	Mon, 16 Jun 2025 15:42:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFBB269CF0;
+	Mon, 16 Jun 2025 15:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750088567; cv=none; b=pdw8aTacMItpHTYdPOAVPXNeXbeQqdxApATqFxUdJH3Ai4zvZvpHfkQdHYbFLuZxNg2Ga+FWLspWff0JT87maP303jWF6C7cdj5yktAdofpdckNw7xynK+yNfQm6EreRdWV3htLmC1MueWusy391MvqZp/o3+wivYqiB8qI6K8U=
+	t=1750088664; cv=none; b=qwIByfyWx5j7qix6Jj2V8eF+rwmNeVuaw1HL4k07hae82+FN8xcZcbjpff3PgtDWwj20NaMYie9wgnFBHZ1TzxU7Ari3+HOUgAbpWyQ0+Kq5C9/kqwA38n6zO4N1YsdkPiUfSNnsT/FP7P5vPnyP1gp6g7qbYSwdrlq+D0CtDpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750088567; c=relaxed/simple;
-	bh=EL96VpQZzhoPtchVrd8NRiz8LeFclfDJXhz0xUwdWEg=;
+	s=arc-20240116; t=1750088664; c=relaxed/simple;
+	bh=zMy+y5c/8mfi8FAA89LQATnBS6oZZIjVu32K5ipEiDQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FAqwHzuGe9ICFzizMBlF1EvvFAxgM/xMAbGTNHaFh0e2/wtRJsslnOAuVc199SgIEujR1MGJRJBa/7ED6NcO1OYtkzHIFS4F3Vov26yiRlI8aFVnVtHRqHIJNfQNKxy9Ug4qFyh+C6z0u9nJzIPxusi89sY0S+qRF+bZnOABreM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5Ka/c3P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 831C7C4CEF0;
-	Mon, 16 Jun 2025 15:42:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=c0LxtxADlvLQWD4jpYpYVjHILSAD5zCqd6myAzozoSXduSJCHEwbv+iGyIFcbllGaIzd9LZ2eUsdCWOP6PHTbtOEZqfLoLq/z/uHKHZonH7/oQgyc0AlSNbXXU9s/kG/R7Yq0L260IT8Ka3KiuJu0XYA6v61dDZmTIXT15viQ/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pNxQ978V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1237C4CEEA;
+	Mon, 16 Jun 2025 15:44:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750088566;
-	bh=EL96VpQZzhoPtchVrd8NRiz8LeFclfDJXhz0xUwdWEg=;
+	s=k20201202; t=1750088663;
+	bh=zMy+y5c/8mfi8FAA89LQATnBS6oZZIjVu32K5ipEiDQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M5Ka/c3Pxo+O35mhlGpQYbsO72F4TNYunYxC9sAiN0UEZIa60ATRi78eLQwlw6bgB
-	 raQRDb4JhgkjOV9Kd45dAKE7FK72iXYWxdfRy6mU5bbXypwMbRt+FYr6wtiovTqWBm
-	 Vu4A21c35saGJ9Z5JbcT88hX6baMyaLHvGwaXMhVmNEmzWYBAk2ach3q9DRvZ2Ipsk
-	 Rnk+vVVByYuFwlCBHF++frBXTaZ2UZla0C7b0GBjD7rQ78CCtpTLdNH7dnJQwuckV7
-	 9TM8VTo/DTm9qcr1yC3+gpJKSzqCAGG/3ZABybuPDdfteDDxOygw6B+lJwdmr3iPDa
-	 Y3UKalyDBFfvw==
-Date: Mon, 16 Jun 2025 16:42:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, p.zabel@pengutronix.de,
-	mchehab@kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH 2/5] dt-bindings: iommu: verisilicon: Add binding for VSI
- IOMMU
-Message-ID: <20250616-contempt-remix-5af2b7281cbd@spud>
-References: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
- <20250616145607.116639-3-benjamin.gaignard@collabora.com>
- <20250616-winter-strict-db98f85db22d@spud>
- <5c971c09-c398-40a3-9ed5-ec38b6645e1d@collabora.com>
+	b=pNxQ978VmTyHAQQ9sM1UZUhVQbkOiaADT141E3DfFXEwOcwu4qEMxMTh1IVstEQGt
+	 3PAOJqTKVY8HfvN8cTN+fK2oxDoJ5AkhIlaCRGObXvujSzMrFcaJcYwLfG+Trvg6w4
+	 j921Hfcu+9Nad7s08+IUQFyT3vv1PWMl9FhwEnuqJUBBkMYATf9ppHtqBITbPsM6GW
+	 GeYE5rVpfhm4iainanvkEnHIJwvNF5wE41xpDPrJNfogRb8E6LNirFmNMK9YjpYFnn
+	 p4RkLzn4dxmNQis5Lpyt2r5WaU8IX0y2FEu0CFHx0mShhxY9FLCXOesN5eMnYGP5KQ
+	 EpOZ60DvuS6BQ==
+Date: Mon, 16 Jun 2025 17:44:20 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: lee@kernel.org, alexandre.torgue@foss.st.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, wbg@kernel.org, jic23@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	olivier.moysan@foss.st.com
+Subject: Re: [PATCH v3 4/8] pwm: stm32: add support for stm32mp25
+Message-ID: <hsmkc6ydsyjgyq7dkhvcytqrn6uu7ezngknetshkf4kj4mjt3i@3hgg42aq3sd5>
+References: <20250110091922.980627-1-fabrice.gasnier@foss.st.com>
+ <20250110091922.980627-5-fabrice.gasnier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3uegz8X9AMqKgIIC"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ezyzxvlev7k4prvr"
 Content-Disposition: inline
-In-Reply-To: <5c971c09-c398-40a3-9ed5-ec38b6645e1d@collabora.com>
+In-Reply-To: <20250110091922.980627-5-fabrice.gasnier@foss.st.com>
 
 
---3uegz8X9AMqKgIIC
-Content-Type: text/plain; charset=iso-8859-1
+--ezyzxvlev7k4prvr
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 4/8] pwm: stm32: add support for stm32mp25
+MIME-Version: 1.0
 
-On Mon, Jun 16, 2025 at 05:30:44PM +0200, Benjamin Gaignard wrote:
+Hello Fabrice,
+
+On Fri, Jan 10, 2025 at 10:19:18AM +0100, Fabrice Gasnier wrote:
+> Add support for STM32MP25 SoC. Use newly introduced compatible to handle
+> new features along with registers and bits diversity.
+> The MFD part of the driver fills in ipidr, so it is used to check the
+> hardware configuration register, when available to gather the number
+> of PWM channels and complementary outputs.
 >=20
-> Le 16/06/2025 =E0 17:14, Conor Dooley a =E9crit=A0:
-> > On Mon, Jun 16, 2025 at 04:55:50PM +0200, Benjamin Gaignard wrote:
-> > > Add a device tree binding for the Verisilicon (VSI) IOMMU. This IOMMU=
- sits
-> > > in front of hardware encoder and decoder blocks on SoCs using Verisil=
-icon IP,
-> > > such as the Rockchip RK3588.
-> > >=20
-> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > > ---
-> > >   .../bindings/iommu/verisilicon,iommu.yaml     | 71 ++++++++++++++++=
-+++
-> > >   1 file changed, 71 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/iommu/verisili=
-con,iommu.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/iommu/verisilicon,iomm=
-u.yaml b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
-> > > new file mode 100644
-> > > index 000000000000..acef855fc61d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
-> > > @@ -0,0 +1,71 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iommu/verisilicon,iommu.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Verisilicon IOMMU
-> > > +
-> > > +maintainers:
-> > > +  - Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > > +
-> > > +description: |+
-> > > +  A Versilicon iommu translates io virtual addresses to physical add=
-resses for
-> > > +  its associated video decoder.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: verisilicon,iommu
-> > You're missing a soc-specific compatible at the very least here, but is
-> > there really no versioning on the IP at all? I'd be surprised if
-> > verisilicon only produced exactly one version of an iommu IP.
->=20
-> I only aware this version of the iommu for the moment.
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-"for the moment", yeah. Is there any information that could be used to
-version this available?
+Applied to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+=2E
 
-> Does adding verisilicon,rk3588-iommu sound good for you ?
+Thanks for your patience
+Uwe
 
-It'd be "rockchip,rk3588-iommu", but sure.
-
---3uegz8X9AMqKgIIC
+--ezyzxvlev7k4prvr
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFA7cQAKCRB4tDGHoIJi
-0iCzAP9YCsHKGIYiBpnknc4NXqsdt+3vAksXP7lkL3rhV72dnAD/V+ZJlq0CxEGR
-YIn/c1CTX5YI8+iwECvQSNErsd1qHAo=
-=gnvG
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhQO9IACgkQj4D7WH0S
+/k5Gygf9Gy+dDmATpLY1NSgEaVsqseEX8U1OK8Qr0hXVS6DWdx1yiKu/usPB/Ns8
+KlFNa+c0Yd/lDEYjkvaLr0FmmGazj3yReZB7iuTBjo42rR4ZMg70Ch92UmhZL4JQ
+jWYv+ZLzvdDvyEN1mtPizoYrwazqtK+9ajkbSgIWORogLWD2ieG12tfwpE0FjPjB
+IkdnMX9NbFB777pXHx8JZTux0YzwmZ9Y6grswoV2Rdlor2xxm/atUWqAE0g8qRzM
+QFCOVen4t50xS6ptchwAsDwMRIrDfmVaiMg3T8tC55Fpix5GOkkzFfunE33BqDhi
+kt5RKeBIclzLIGFvx72daCwUDZqidg==
+=4Cak
 -----END PGP SIGNATURE-----
 
---3uegz8X9AMqKgIIC--
+--ezyzxvlev7k4prvr--
 
