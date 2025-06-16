@@ -1,195 +1,167 @@
-Return-Path: <devicetree+bounces-186305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62ABCADB0C7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 14:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E55AADB0FA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 15:02:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85B5B18889AE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 12:59:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45945188A280
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 13:02:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF81292B3D;
-	Mon, 16 Jun 2025 12:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D2E270EAB;
+	Mon, 16 Jun 2025 13:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kcw7brqQ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Nnc3/6d3";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="kjZ68fhU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A3A285C94;
-	Mon, 16 Jun 2025 12:59:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0608035957;
+	Mon, 16 Jun 2025 13:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750078756; cv=none; b=s0NVr48yclGLnGIXY+8PtpMlsmPiOCDF49DgncLQwAAPA7Un+NHqNVdHMfVD4miBCexg9wCZDkfj+PNYc3Dxdkn7VZUBdRfpFz5acfEUk+/QOEkY1AX2KvgdVOeBStltqbFmp3iPETwJS0ufYphoLwQPjLfVajCq0yhmb1PLeG0=
+	t=1750078884; cv=none; b=VEyXdCdrfJhSGH90+jzxOudcN05ZihMvMe5CJ+3wHDNyat4KGqYHcl+tkWhsiP8wNd9h78pabwL8ZndE9IqkWEW+Tt+pS4+5eWGX4yPIcc6gladnYXax6RIssAca57Q9kx23+ANuluwF0bJ7y+RI3Soh4JQR69AEKQ5PvFiftNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750078756; c=relaxed/simple;
-	bh=WcH0OWmlU4ZQV2HljG68tARoAJOidNdIodFF+fV67wE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DtiyPTip6blxgkFbPvXEkOqmTsgWm8mkGePuS/o4WKPFMmlGvyH3ygPSWkpBTVV4QnTx59cZuGu99lFmIKAM67wf8V5TS/iqkqB3dEUy2jj3WpTvhq/kLv5w9AEuH/F0F3+8PNkGToaLI5v37jUVFsH6mB04CiUBDoAbtrJZ4zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kcw7brqQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55G8fgK0025415;
-	Mon, 16 Jun 2025 12:58:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9FOuy9xi6e8CVz3Z7cBJ1M6xKJrOzvKMVGlmvrYdEeU=; b=Kcw7brqQYLn2DjuK
-	O8Edny2PTUAkQRPKKNONA1AgQIwhkcqu00LDrEmd9pYrBY6eiT3MtisKtzgnY+R0
-	uo3SiYq2JEJUwZ3jek127PW6gIIoK+RCJq8PN4GBhJ3Yk73O+6Y8moyOFEqIuOKq
-	Ts/cCIC4to+2bF+UcMcrTGtuWQGCeAYdnY8BeTRgpZLMTgLrDeYIrI3fr6wUT8FZ
-	2cX8mS33X52domoS23ESqN9foZ1ZauF3s10EZn0viu1+rg9TXs5RVQRhs2XdyZyY
-	rY2z7VW72qJcToTjGDMoGM9RDQsm+Y3je0Vdkv/X4PYY6oqzGrmS87kJSZLmOARh
-	wf4axQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 479qp5k4kq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 12:58:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55GCwlTp012312
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Jun 2025 12:58:47 GMT
-Received: from [10.206.104.82] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Jun
- 2025 05:58:39 -0700
-Message-ID: <a01c10b7-859e-4eab-be8c-e486a97e6ad5@quicinc.com>
-Date: Mon, 16 Jun 2025 18:28:36 +0530
+	s=arc-20240116; t=1750078884; c=relaxed/simple;
+	bh=ONuIo+AnCcXSkSvmvKqIeq1jW2aLTmVOMuS2CQ5WgbA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UZw3Y758FZF//gOZY7SlOo4HiByNDnfgA5NxAhr+iX+D63LoiPg9PPiT70VE7ibNystzB+9lXU/joMy7/O31eEep/oNXOvrX6kIVMa/pnSiyshIVPKwCRtPGPv4NbOhrgW7FTvEjqxP0kkcNMv+zwFY6VSX7cVEFMzL/9Ml1pN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Nnc3/6d3; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=kjZ68fhU reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1750078880; x=1781614880;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yxALRRYScDYKnexuf1UxNeEFBeVRTJqf7bEilvpn8nY=;
+  b=Nnc3/6d34MKWXyMWnXESxLwSGtqgqqr4gdEvzPaaFBuWqpXqDk0vkIPB
+   ARUSy3JSb71LDoe9ll4UJlf9SlP2mo164j8nMeEhGaQTnryzpyLRTXc8t
+   BmuMeSYXftv+5ut9rM8LXVYr7KdHr5/lnB4k9UQXFNBKHx0KROJ8GhJok
+   qZoD7AsPQlxeoB9a/xCFx73q//S9lb71CWP3QuK3LKU0XyItmtz9H8abB
+   OZH3kDFhK8vlgrgJES2BkYpnGZt1hecd2AVuaSu56EEfza5kAd55j6IZl
+   Sm2sFaYZ+fu+gnabUFIO0O5xzBUFlYoyVqU3URYxSPOv9kMjs0A/GLPM3
+   w==;
+X-CSE-ConnectionGUID: ykC0lJx2QwyDuee7QurJag==
+X-CSE-MsgGUID: nCf91h3nQ7y4VxRRpe5wIw==
+X-IronPort-AV: E=Sophos;i="6.16,241,1744063200"; 
+   d="scan'208";a="44660120"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 16 Jun 2025 15:01:12 +0200
+X-CheckPoint: {68501597-32-28ACC837-DD1065DB}
+X-MAIL-CPID: 0D78A9916BC46A124D0B2A24D9C3DCEA_2
+X-Control-Analysis: str=0001.0A006378.685015AD.0055,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 07815169520;
+	Mon, 16 Jun 2025 15:01:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1750078867;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yxALRRYScDYKnexuf1UxNeEFBeVRTJqf7bEilvpn8nY=;
+	b=kjZ68fhUvFFeJkU6SrbOnINd8NZvl1oPW17GzZaKqV8t57ObVZqmWjlbhy5Z8fxOBaFHt2
+	3rLF+RdsJkvr3IlFTV2uuhX4DFVS/ComS89kCpMSCwjnEE9Ey5NEOQgypbD68oqQk54VQs
+	DM+h8ILls0CNse9+f3FJWp74gY0qtnppLVdo8zy8mJDHZws0sUdu9fkLAgGE6YsQXpr1jv
+	Kp3NowvMt3shYe5hRzm16klR8pgp4KtYuvv5+iw5QDsMrl5wZFfGYVQUceysgxroT2dfWS
+	169P/nFSXo/SwqYAW9ROBkPvwzUnMoyVfAd2tMZE8qsH4U2gJZHimViXvKsWzA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux@ew.tq-group.com
+Subject:
+ Re: [PATCH 1/1] arm64: dts: tqma8mpql-mba8mpxl-lvds: Rename overlay to
+ include display name
+Date: Mon, 16 Jun 2025 15:01:06 +0200
+Message-ID: <2788842.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250408140856.1143290-1-alexander.stein@ew.tq-group.com>
+References: <20250408140856.1143290-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] Support for Adreno X1-45 GPU
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Akhil P Oommen
-	<akhilpo@oss.qualcomm.com>,
-        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Rob Clark" <robin.clark@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>, "Konrad Dybcio" <konradybcio@kernel.org>,
-        Dmitry Baryshkov
-	<lumag@kernel.org>,
-        "Abhinav Kumar" <abhinav.kumar@linux.dev>,
-        Jessica Zhang
-	<jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Bjorn Andersson <andersson@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Nishanth
- Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>
-References: <20250611-x1p-adreno-v2-0-5074907bebbd@oss.qualcomm.com>
- <0e6fd97d-9a56-426b-8b98-dc8aa50d02d2@oldschoolsolutions.biz>
- <036e739c-54e4-4252-b6f0-c8eed5557d15@oss.qualcomm.com>
- <29f1de05-0e55-42b2-9bf3-894bf4f07808@oss.qualcomm.com>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <29f1de05-0e55-42b2-9bf3-894bf4f07808@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: d9KelrM7jgy1ewN4E7QXp4Oj9uuatklg
-X-Proofpoint-ORIG-GUID: d9KelrM7jgy1ewN4E7QXp4Oj9uuatklg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDA4MSBTYWx0ZWRfX5r2R4coKec99
- /S6CLLkdBtDTkpNgGa94gtgjBI1VUHgQ/FSKgy9BeC79Yqmpny1xpuL9LS9Zw+m4YhKqCrgJYh6
- pGe9JRioXp0JfbjI0WEtcCnvX/EXhCB4zUZHqUtfSYcoyQSiZKwj2DIIwo9od9m8rwWFgt5HKGo
- p3BlJOsdFyxXfCskXdpTHmsy/8IbA/ronz1PUzmAEVcCtTka6f1Jqp3tqOHjcwWdjSfp9F9+Khf
- 3Hy0/VTHvF03VL2yxbhCp23bNiXKYD4dp5aqrsHTVu44fmxCY5y/v4bMMZTyj3yhYjE11vevGc3
- FOCUGmc2KkiMZPkbijd5OaFfb3uyk6GGA5NKNBpi7BNVPmd2x0uZZOjo55Qwjieyko+pcy6iiz2
- kHjo/GDsqD2uswGp5FxEVhnKLrIpw7rQ+xZ5NM77SiU9M8GBjdY21Rwe0sOftkxen/8dWaCh
-X-Authority-Analysis: v=2.4 cv=fMc53Yae c=1 sm=1 tr=0 ts=68501508 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
- a=8rcTDYuEkznLuHMLCrUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-16_05,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 clxscore=1011 malwarescore=0
- mlxlogscore=999 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506160081
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 6/15/2025 12:12 AM, Konrad Dybcio wrote:
-> On 6/12/25 11:19 PM, Akhil P Oommen wrote:
->> On 6/12/2025 5:32 PM, Jens Glathe wrote:
->>> On 6/11/25 13:15, Akhil P Oommen wrote:
->>>
->>>> Add support for X1-45 GPU found in X1P41200 chipset (8 cpu core
->>>> version). X1-45 is a smaller version of X1-85 with lower core count and
->>>> smaller memories. From UMD perspective, this is similar to "FD735"
->>>> present in Mesa.
->>>>
->>> Hi Akhil,
->>>
->>> when loading the driver (still without firmware files) I'm getting a
->>> speedbin warning:
->>>
->>> [    3.318341] adreno 3d00000.gpu: [drm:a6xx_gpu_init [msm]] *ERROR*
->>> missing support for speed-bin: 233. Some OPPs may not be supported by
->>> hardware
->>>
->>> I've seen that there is a table for speed bins, this one is not there.
->>> Tested on a Lenovo ThinkBook 16 G7 QOY.
->>
->> Hi Jens,
->>
->> Could you please try the below patch?
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> index 2db748ce7df5..7748f92919b8 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> @@ -1510,7 +1510,8 @@ static const struct adreno_info a7xx_gpus[] = {
->>                         { 0,   0 },
->>                         { 294, 1 },
->>                         { 263, 2 },
->> -                       { 141, 3 },
->> +                       { 233, 3 },
->> +                       { 141, 4 },
->>                 ),
->>         }
->>  };
->>
->> With this, you should see 1107Mhz as the GPU Fmax.
-> 
-> I see your dt entry takes care of bins 0..=4.. this oversight worries
-> me a bit - are these values above (post change) all in sync with what
-> you entered into DT?
+Hi,
 
-Yes. DT is accurate. And with this additional change both the driver and
-DT will be consistent.
+Am Dienstag, 8. April 2025, 16:08:55 CEST schrieb Alexander Stein:
+> This platform supports several displays, so rename the overlay to reflect
+> the actual display being used. This also aligns the name to the other
+> TQMa8M* modules.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile                        | 4 ++--
+>  ...s.dtso =3D> imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso} | 0
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>  rename arch/arm64/boot/dts/freescale/{imx8mp-tqma8mpql-mba8mpxl-lvds.dts=
+o =3D> imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso} (100%)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts=
+/freescale/Makefile
+> index 93cbd8d5081b3..38ce3d1c41c10 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -263,7 +263,7 @@ imx8mp-tqma8mpql-mba8mpxl-imx327-isp1-dtbs +=3D imx8m=
+p-tqma8mpql-mba8mpxl.dtb imx8
+>  imx8mp-tqma8mpql-mba8mpxl-imx327-isp2-dtbs +=3D imx8mp-tqma8mpql-mba8mpx=
+l.dtb imx8mp-isp2.dtbo imx8mp-tqma8mpql-mba8mpxl-imx327.dtbo
+>  imx8mp-tqma8mpql-mba8mpxl-imx327-isi1-dtbs +=3D imx8mp-tqma8mpql-mba8mpx=
+l.dtb imx8mp-isi1.dtbo imx8mp-tqma8mpql-mba8mpxl-imx327.dtbo
+>  imx8mp-tqma8mpql-mba8mpxl-imx415-isp1-dtbs +=3D imx8mp-tqma8mpql-mba8mpx=
+l.dtb imx8mp-isp1.dtbo imx8mp-tqma8mpql-mba8mpxl-imx415.dtbo
+> -imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs +=3D imx8mp-tqma8mpql-mba8mpxl.dtb i=
+mx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
+> +imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33-dtbs +=3D imx8mp-tqma8mpql-mb=
+a8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtbo
+>  imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01-dtbs +=3D imx8mp-tqma8mpql-mba8=
+mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtbo
+>  imx8mp-tqma8mpql-mba8mpxl-lvds-lb070wv8-dtbs +=3D imx8mp-tqma8mpql-mba8m=
+pxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-lb070wv8.dtbo
+>  imx8mp-tqma8mpql-mba8mpxl-ov9281-isi1-dtbs +=3D imx8mp-tqma8mpql-mba8mpx=
+l.dtb  imx8mp-isi1.dtbo imx8mp-tqma8mpql-mba8mpxl-ov9281.dtbo
+> @@ -277,7 +277,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl=
+=2Dimx327-isp1.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-imx327-isp2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-imx327-isi1.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-imx415-isp1.dtb
+> -dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-lvds.dtb
+> +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.d=
+tb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-lvds-lb070wv8.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl-ov9281-isi1.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds=
+=2Edtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-tm07=
+0jvhg33.dtso
+> similarity index 100%
+> rename from arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.=
+dtso
+> rename to arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-tm=
+070jvhg33.dtso
+>=20
 
--Akhil.
+any other feedback on this patch?
 
-> 
-> I'm not saying they necessarily aren't, but I want to avoid
-> inconsistencies
-> 
-> Konrad
-> 
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
