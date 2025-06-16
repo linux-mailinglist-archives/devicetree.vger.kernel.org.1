@@ -1,168 +1,153 @@
-Return-Path: <devicetree+bounces-186149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1100BADA8C0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:02:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB79ADA8E7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 09:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E18B3AD093
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:01:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0FB61891FC4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 07:06:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF6F1DDC33;
-	Mon, 16 Jun 2025 07:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C75B1F4C8E;
+	Mon, 16 Jun 2025 07:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y2CsJPDp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qx3HVd+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3513594C;
-	Mon, 16 Jun 2025 07:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57B31DE892
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750057335; cv=none; b=SMneTR12T2xaCJPMDA8bHLxlhw4VfMHdF+13J5nEdSfW9hPQdIofLQzLvUgLXtyr99o4rcPih66jXjyDXwVvjYQPTMD6bOSegFnVwESBq4XPJUeH10ZfPOK1A9Y5CvQzmubynNt1GZ8P6ZXMWADRk1G9tIDi6JKQtq1GhSzfUhw=
+	t=1750057499; cv=none; b=Dt5sQzYrJIlMzNq0ATYPpiRZdzrZSuUkTujKqrlbFrh3qrpv1LuqmSRx0PBP7iNfhXlnrnOoGzzduBkHNlgZcGab6DyGeQSPOs0+agDT0PT7nkkpsJK53ybJeIQs3p43+Drb6l7zSOYW1D552pn599vFBAhJzXghuMJ5WPlzVGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750057335; c=relaxed/simple;
-	bh=wtbfEeOL/Iwytwv0chNjnkbRPieHgETH8QUmwLHMVng=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mimPFBVbwIWBAXtjI7+lfHEUMHm+gWbChd8VWiFlujLUvdQA28cuXQD0+fLTzwd92xZYqK28IxUI8M9LymQ+JMvuTCTmofOkWizjrQKUhl2iV0XXPIdbHE0GhSC0Odn1/tsLE9Qkp3jzHGMGOlf82JLpenRKiFo5HuNWcYPTU/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y2CsJPDp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB574C4CEEA;
-	Mon, 16 Jun 2025 07:02:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750057334;
-	bh=wtbfEeOL/Iwytwv0chNjnkbRPieHgETH8QUmwLHMVng=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y2CsJPDp+gSv42YlP8LhIv04Xf98IL72UnwK3c6GW4L9TSITCGRyWqZNtywohxr1G
-	 I4v9lgiuj7/D5FQuHIy52u253l1XuHoCF9tJ5XfJT8Ob/h9yEsYjQqO6aRU1PCqtRe
-	 8TFK2TRg4yib7IIJ/nKloUfS8XE+FFxha1WnAkLaX2r8dcitIyuZkg+GhrhjwLXCsO
-	 vyxSR5bGQpls36JdoKXiETrvJ8wOncfcz0hYVIc28tETuRaooiIovKBxxcfup7JsZc
-	 quYKyDO2cQA9T5jtGb1tjAtGQjP78lNUeZaa2H8aMolblNrR/j3SR5N9JaOn3PxMyi
-	 gKNlKPRY70yGQ==
-Message-ID: <c2bd6a03-6f65-41ff-ad26-71287068f2f9@kernel.org>
-Date: Mon, 16 Jun 2025 09:02:08 +0200
+	s=arc-20240116; t=1750057499; c=relaxed/simple;
+	bh=DkGDjczW+RAHUbptz63iFFEXvw00+iORY5XJP5CER6Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mj9XesM5BcSCu8GkehcW1Uf6AGPc9sq4g47/zit531pylFsyTtyoXC1r9oy2SR5eXKWmfcM0osnJBJqGFMMvAKBeL6NvGehYbuoaTKrXZV1KTfXA6+l5EZftOKaZYOPVecfc49nVDzHF6I3nT/9kApjV60tQw4yUnLjWZTt5+nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qx3HVd+P; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55FMX2OW005293
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:04:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=8CSXs8YLFA90qJz0nFGCAuGj0c2/SeDodgr
+	F61jLHXY=; b=Qx3HVd+PIi1iUXhXWS1X0pQXVs4oktpQBwFEUbjfwhZI1nXN1k1
+	ygxf+9vQ6BfplAZP9qm4SA1LWblwhQUsgFFq0P4oJyV6rpqga8Y4rsa+OZx0pmtH
+	3fB/3mw4zsY2YdH9X1sKvKfq/Xr1XO5EkKb4kAhUYlqLmj3MmD8i9hzRX3TuZoIs
+	5gdtCekr63Xh7ScJUhinRA6LgxrrXLkb5yFtOwMRhEvBPn/sfOxZexSU4MmHpTOH
+	iblaMvMJbh688c4msQCZBJu3VgIlYHCODnY0RgqESphk+MJJ3s9RsCuIW/kgCn98
+	EsEv/3k/Dhc1JRVdWhfT9/uWPUT0xFK78yw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791ht3byu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 07:04:56 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2349fe994a9so29574705ad.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 00:04:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750057464; x=1750662264;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8CSXs8YLFA90qJz0nFGCAuGj0c2/SeDodgrF61jLHXY=;
+        b=FV55K9yRAVMnLoe1HgxRIwLIdDzGzRcc2Omhp61oGzoCh2eQIKcQz+TmvjfJkGs5eh
+         CCD46HMNiducfdY0e+btrDrkIglQppYBox2mAWeINnehsHlTvJNwmtrym2xyREA7c6EF
+         k2o9u0TrURnOsmf6tGHCrH2W8WFEc25nOoLo32vM0qIKSc/rfibrtLlGuWiIYohKmBUY
+         F5tmUr/d0Kgum5FF2BGT2wmPCK90z+xoA/Lybtc8tHM1u3fnq9hZaJ0G70D6meiZIglq
+         bUtb3HalidusSyNXKofePdANZMZsUZ0DHa0xpbpLDoJbe4UnbPJGDIjr9RIw6RtKAKWH
+         drsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5UF+j70yu2GlZ2uvGOhNdIY5dFF06y2q9FGCieHyVE67KQyalC8FgkvkLtLmo281XQUiXZafCRZk+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI2E9USImjAeoVJOK0dIZctHyWAXZdau/aXrpM/0NxSb49EbhZ
+	1VFOPqFvcKTrqU0TJN7bMxDS7OGQL+2OUu0yolJhCiS9gz7y5I9ZI3DMNsgcoqos19A+LODoOJf
+	ylPmC2u8duTwKXPvrrE4S9A8hMfA513DuscFwHDodkX+R7NJHHnYyEcJwNCsIPONY
+X-Gm-Gg: ASbGnctB5YWggO+97jSGARcWzDBGD/tR+LapeQ7KMH+mFZ6pfzGdHX5Ix8QFAH0c1cH
+	21z6vx/uiNZY3XbnGHis6KEwkNdtsYc+RB3lBzdApwOnS08p+1VfvkSK0X0apxXrEeccjpzOdxk
+	qyVJC5cp4yTLHeFT1q/8X1p8TKitStZG6BwLw3OZlcjZ7QZ/sHdGUpTPq8D6W7OS+Fa8wxMmzws
+	JTZb3vZmwYpp2VcJAJEoselAmRc7iP6Ki11pgcVAIHdn8uEvKkyvtyxb0ktx2Vwokd38TT+pn5R
+	EQafzYvpke2ruYq18LEHu8n4WWEiHZyumdpT7db2Y92euHWapSXK55+9OGw=
+X-Received: by 2002:a17:903:fb0:b0:235:e71e:a37b with SMTP id d9443c01a7336-2366b13c905mr111686065ad.34.1750057464454;
+        Mon, 16 Jun 2025 00:04:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHGK+vfW0KxFP2RI/6Wr6CaYhcpxAIyDnSQ9Z/QOwugNmsDFlDJ7ZFbg+QCbcqSaAEuW+soZw==
+X-Received: by 2002:a17:903:fb0:b0:235:e71e:a37b with SMTP id d9443c01a7336-2366b13c905mr111685755ad.34.1750057464012;
+        Mon, 16 Jun 2025 00:04:24 -0700 (PDT)
+Received: from hu-mohs-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365d8a19e3sm54435825ad.82.2025.06.16.00.04.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 00:04:23 -0700 (PDT)
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_pkumpatl@quicinc.com,
+        kernel@oss.qualcomm.com
+Subject: [PATCH v2 0/2] Enable audio on qcs9075-evk board.
+Date: Mon, 16 Jun 2025 12:34:03 +0530
+Message-Id: <20250616070405.4113564-1-mohammad.rafi.shaik@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] drm: bridge: add support for Triple 10-BIT
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxim Schwalm <maxim.schwalm@gmail.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250303120455.90156-1-clamor95@gmail.com>
- <CAPVz0n0XSzxzkPocRVx6QF7xwmA4otSeSEiRZgJQ3oStyUBrLA@mail.gmail.com>
- <CAPVz0n2MLmHfVNb25=o1_woE7v16hoamwFbbT3ecE+BP1Bn9aw@mail.gmail.com>
- <6df6ecc4-088a-4b27-bebf-abc4560b00ae@kernel.org>
- <CAPVz0n1S2rWW_08FoL+jsVJEOkQ0JJZBu+bB2U5K=fF-g87Y0A@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAPVz0n1S2rWW_08FoL+jsVJEOkQ0JJZBu+bB2U5K=fF-g87Y0A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDA0NSBTYWx0ZWRfXxvWsxqE0BxUs
+ AwajK/fqucZE22jX/Xg+PQM4ljpeW67RD0SP82+I1Qg+XwXrNSqtNkCQmnc2G4SxbrDHqyQefa6
+ R6xWjxDD7fszp5ktq5g8wc2TfEY2fXaK7nhvJgp+JOz+LEDGoNlUBtsTdyI+AHktCWDppnCDFE8
+ W30MP5wBPaFtRwB/Ik42NElXSS4kPALGmn2R0EF0t17sf/gvNr1d+loUhtBjeeUIIEjTtiPnlR1
+ 2cg+m9xBjRtSp2dy7h3DtvQWseu3JuocF4on5YlKCHtCz0nNnME6JUEswV/gsZAzNrUG9uvp5sK
+ c3K2Lk6aeRfx4enODEqDrLz+N92EXBJy3bOnW1cZCPoA4oIVyEu3Ph/nTkkETGfB6xt17oOkxMm
+ q+GXK8MFdHZJT8QVXMNknlI3AByD6AYAS+/nMWtDEaCU6spFR+BwLU9ZaVZwJFBxOnSXgU+e
+X-Proofpoint-GUID: coIPVpYbAtidO1HfXqv2mw8ud_q2rTu3
+X-Proofpoint-ORIG-GUID: coIPVpYbAtidO1HfXqv2mw8ud_q2rTu3
+X-Authority-Analysis: v=2.4 cv=CtK/cm4D c=1 sm=1 tr=0 ts=684fc218 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=YkB-U3mbqUf8DnNMcaUA:9 a=1OuFwYUASf3TG4hYMiVC:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-16_03,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ phishscore=0 mlxlogscore=983 adultscore=0 impostorscore=0 malwarescore=0
+ mlxscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506160045
 
-On 16/06/2025 08:54, Svyatoslav Ryhel wrote:
-> пн, 16 черв. 2025 р. о 09:50 Krzysztof Kozlowski <krzk@kernel.org> пише:
->>
->> On 16/06/2025 08:42, Svyatoslav Ryhel wrote:
->>>>>
->>>>>  .../devicetree/bindings/display/bridge/lvds-codec.yaml       | 1 +
->>>>>  .../devicetree/bindings/display/bridge/simple-bridge.yaml    | 1 +
->>>>>  drivers/gpu/drm/bridge/simple-bridge.c                       | 5 +++++
->>>>>  3 files changed, 7 insertions(+)
->>>>>
->>>>> --
->>>>> 2.43.0
->>>>>
->>>>
->>>> These patches had no activity/feedback from maintainers for a while,
->>>> so, in case they got lost in the depths of email box, this is a
->>>> friendly reminder that they are still relevant and I would like them
->>>> to move on.
->>>>
->>>> Best regards,
->>>> Svyatoslav R.
->>>
->>> These patches had no activity/feedback from maintainers for a while,
->>
->> Really? No activity/feedback?
->>
->> What is this then:
->>
->> https://lore.kernel.org/all/567addb4-169b-4fd0-aabb-78ceded22702@kernel.org/#t
->>
->> https://lore.kernel.org/all/ptyvn34i377pdu7mqital6v2bqe36oy3yprxb5c3hztni7h52j@6eo64gzxvgg3/
->>
->> You already were sending such pings claiming there is no activity while
->> we provide you the reviews.
->>
->>
-> 
-> Then why these patches were not picked for more then 2 month if
-> everyone acked and reviewed them? I am pinging every month to remind
-> that they are still relevant and were not picked!
-So acking and reviewing is an activity or not? Because if it is not an
-activity, there is no point for me to keep doing it.
+Enable audio support on qcs9075-evk board.
 
-It's not a question to me why DRM maintainers do not pick up such
-patches, but your message did not question that.
+Introduce HS (High-Speed) MI2S pin control support.
+The I2S max98357a speaker amplifier is connected via HS0 and I2S
+microphones utilize the HS2 interface.
 
-Best regards,
-Krzysztof
+DT-Binding link for sound compatible:
+https://lore.kernel.org/linux-sound/20250519083244.4070689-3-mohammad.rafi.shaik@oss.qualcomm.com/
+
+---
+This patch series depends on patch series:
+https://lore.kernel.org/all/20250521140807.3837019-1-quic_wasimn@quicinc.com/
+---
+
+Mohammad Rafi Shaik (2):
+  arm64: dts: qcom: sa8775p: Add gpr node
+  arm64: dts: qcom: qcs9075-evk: Add sound card
+
+ .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 52 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 54 +++++++++++++++++++
+ 2 files changed, 106 insertions(+)
+
+
+base-commit: bc6e0ba6c9bafa6241b05524b9829808056ac4ad
+prerequisite-patch-id: 853eaf437b81f6fa9bd6d36e6ed5350acaf73017
+prerequisite-patch-id: cf52fc82e606ab87458339f71596ca31253e91ee
+prerequisite-patch-id: 3617ce3b1790bc5b8e50dca6c3ae482759dcc684
+-- 
+2.34.1
+
 
