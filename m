@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A70AADB6CF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:27:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFA0ADB6D8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:29:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03F3C1893624
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:25:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43B031890E01
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7209B2874E2;
-	Mon, 16 Jun 2025 16:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0702874F8;
+	Mon, 16 Jun 2025 16:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cxnmz4GS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="scGwM9O1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FA4B2868BE;
-	Mon, 16 Jun 2025 16:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90776286420;
+	Mon, 16 Jun 2025 16:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750091113; cv=none; b=NWOU5/pL2XSSI/Iw10qq5S5Gvbo2a+2zMQuNWUbtViRZsRiEdbf0EfZzVU+Lto0SKulmyGkg5nh5EZqp6aypWqhC+zJ+bcYvrKmc3tWhvXX1gQJgbRCnSxb1dB61jJ7rekaR5DargSspNTXNr6JAKqKlE/RVFwrYwpS4Q7cUeR0=
+	t=1750091219; cv=none; b=sYgbv1Nkq2baSnLPP13j8s9PT0qE0oJD5JKNVrXM3BMpyQMWUn8OB9d2ajJvme9zneBnrVjnUfE5q2yEaZVl6oNwvX+0+7T5lPPr9djPKWZ3sx14qHnUs3b+gteRqeF39QMSx1YBQH0wijLcFmkj1zA4T2KepoEPPAEOR+ZK/yM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750091113; c=relaxed/simple;
-	bh=lTP9ME9lQBH2tMr1b7jvwaV3z+f6gkkpO8bZyw0hUHg=;
+	s=arc-20240116; t=1750091219; c=relaxed/simple;
+	bh=LfL5akD0juU3a/TgCe4Dc3dTCfPxOqJ7AMeYJcIw5lY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rt3lxC1t0DxpMahT4wh9QdeIR0cjMVkIdmQqyBfynVsESXMNbea6SB+XmvuaYaAeOIJL2FtaDJEhSyHR15FXtaRWaubciBuTg7yal/TZuG+RwaU4xTwObr3s6XClfdW/1K33N4OUm5VJiYN9AMlYuebEwnB2CRrT7gt8nUUxNEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cxnmz4GS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74917C4CEF0;
-	Mon, 16 Jun 2025 16:25:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mJtpzC/iz+Qjr3zCUWC5vFXDEKgrQ8fhgfILSZr88cbD+JD9mHDnv5r3JmhpvpRr3287aEdG4YQ95MUGQ2LIy9eSc6CBK1eo4nWO/OdYD6l2aakJN1uVo6UiaJupIJ8+7HWv9mILrfd6Wuw+9sr+d8ruWAp2sLP4YAoIUcE7gP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=scGwM9O1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49B0BC4CEEA;
+	Mon, 16 Jun 2025 16:26:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750091112;
-	bh=lTP9ME9lQBH2tMr1b7jvwaV3z+f6gkkpO8bZyw0hUHg=;
+	s=k20201202; t=1750091219;
+	bh=LfL5akD0juU3a/TgCe4Dc3dTCfPxOqJ7AMeYJcIw5lY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Cxnmz4GS+pymyvT6Nsa6YpHyJ0ZQXKlGzPSZMk26Sm8BEglwIE7KwxIq/BGeq5TJZ
-	 kDcBgSPB1ZotnXZ3b5/yhuLBfMK9ybfhs0xZBRDab1FViH/SPhKKaLWgRiPSKUCpvx
-	 cLr2lo8gJzOeoO0wCv0W89czytbTVQdwcoOnuLNGfNmGYbxwejklkgVll6xc5+j87F
-	 Ksxw5m5oPEKaIYQJHY9YUrbHNq7HVfvJCwSTVEwU/eGZyhdLA8Br5+LUV4qWRbuQW6
-	 FKe0Etpm/WQhtlmjqlR0ojfshsQufyO2lasKxxrRErZdp+3JSBGFyYeKUaX2rC/Ydf
-	 RFZdCQPnmSrLw==
-Message-ID: <20832f74-6df3-4c7a-b50f-1b19003a3d0e@kernel.org>
-Date: Mon, 16 Jun 2025 18:25:06 +0200
+	b=scGwM9O15IzKtEPUSKkwQYqiuDPLyK4sn8KlYI5gdUxCAWkqdgzgPAFmz7cy9ilIt
+	 5Tuqd0YX/s9AYc3oDuz2JnFPhvNRwCk9h3R/vz64BtAdhCpl30sjGidnZsBYSXEOiA
+	 V1tKqaBv/lqhlwfiSFUSRRaSkJ+wsRMFe8pTLH2ZixuKMDrJP6AlMnc0f0oaaPgnEI
+	 DqjCdT8VP+znmMHGiWwnVyQBySB+IaHJBarqEt7sox213cWQ6+JfRYi0bo5x3xF18I
+	 8bgpsV5yj+Gymsnr8wKq4H/0O3MNSpIrMVpLOsDjnBh2qu3Z4rWgNuT1GGWyzvKY3n
+	 gCwbUv9P5+04g==
+Message-ID: <e15f4d39-379d-436f-b401-36f5b3f6f010@kernel.org>
+Date: Mon, 16 Jun 2025 18:26:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/8] serial: qcom-geni: move clock-rate logic to
- separate function
-To: Praveen Talari <quic_ptalari@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
- quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
- quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-7-quic_ptalari@quicinc.com>
- <509c94bb-cf31-43bb-a92d-db006efd43aa@quicinc.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: net: bluetooth: nxp: Add support for
+ 4M baudrate
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
+ luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, sherry.sun@nxp.com,
+ manjeet.gupta@nxp.com
+References: <20250616150919.8821-1-neeraj.sanjaykale@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,16 +104,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <509c94bb-cf31-43bb-a92d-db006efd43aa@quicinc.com>
+In-Reply-To: <20250616150919.8821-1-neeraj.sanjaykale@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/06/2025 18:04, Praveen Talari wrote:
-> Hi Bryan,
+On 16/06/2025 17:09, Neeraj Sanjay Kale wrote:
+> Add support for 4000000 as secondary baudrate for downloading FW chunks and
+> after HCI initialization is done at fw-init-baudrate.
 > 
-> Gentle reminder!!
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+>  .../bindings/net/bluetooth/nxp,88w8987-bt.yaml         | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> index 3ab60c70286f..f1c7f900001c 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> @@ -34,6 +34,16 @@ properties:
+>        This property depends on the module vendor's
+>        configuration.
+>  
+> +  secondary-baudrate:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-That's neither gentle nor needed to ping multiple times, every 8 hours.
+baudrate is in some value, so use unit suffix from property-units and
+drop the ref.
+
+And then you will see that it could be actually an array, so why not
+using existing properties? Otherwise you will add soon "tertiary" etc?
+This does not scale.
 
 Best regards,
 Krzysztof
