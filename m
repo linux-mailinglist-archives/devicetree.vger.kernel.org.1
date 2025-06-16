@@ -1,140 +1,153 @@
-Return-Path: <devicetree+bounces-186366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFA0ADB6D8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:29:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD840ADB6DD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:29:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43B031890E01
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:27:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10479169ABD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0702874F8;
-	Mon, 16 Jun 2025 16:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C0F2877D6;
+	Mon, 16 Jun 2025 16:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="scGwM9O1"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="N8tKoTQx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90776286420;
-	Mon, 16 Jun 2025 16:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3316A286891
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750091219; cv=none; b=sYgbv1Nkq2baSnLPP13j8s9PT0qE0oJD5JKNVrXM3BMpyQMWUn8OB9d2ajJvme9zneBnrVjnUfE5q2yEaZVl6oNwvX+0+7T5lPPr9djPKWZ3sx14qHnUs3b+gteRqeF39QMSx1YBQH0wijLcFmkj1zA4T2KepoEPPAEOR+ZK/yM=
+	t=1750091278; cv=none; b=LzLnimYPMQGaTSVI7ZUib/c9h6vEtPS6A0Gdjt88XWWWqPVYm37FVDl00D97SYZcrTAy18AbHpfTNlpnvdvdjT0Pkn9IQdzr385IZwM3Sqni+tKvbzDCAmJPAaR1ka0SZKzNl/ffsnkJ+b9J3GsIIuF+hHmTVQHeqpUJuSKbl6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750091219; c=relaxed/simple;
-	bh=LfL5akD0juU3a/TgCe4Dc3dTCfPxOqJ7AMeYJcIw5lY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mJtpzC/iz+Qjr3zCUWC5vFXDEKgrQ8fhgfILSZr88cbD+JD9mHDnv5r3JmhpvpRr3287aEdG4YQ95MUGQ2LIy9eSc6CBK1eo4nWO/OdYD6l2aakJN1uVo6UiaJupIJ8+7HWv9mILrfd6Wuw+9sr+d8ruWAp2sLP4YAoIUcE7gP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=scGwM9O1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49B0BC4CEEA;
-	Mon, 16 Jun 2025 16:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750091219;
-	bh=LfL5akD0juU3a/TgCe4Dc3dTCfPxOqJ7AMeYJcIw5lY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=scGwM9O15IzKtEPUSKkwQYqiuDPLyK4sn8KlYI5gdUxCAWkqdgzgPAFmz7cy9ilIt
-	 5Tuqd0YX/s9AYc3oDuz2JnFPhvNRwCk9h3R/vz64BtAdhCpl30sjGidnZsBYSXEOiA
-	 V1tKqaBv/lqhlwfiSFUSRRaSkJ+wsRMFe8pTLH2ZixuKMDrJP6AlMnc0f0oaaPgnEI
-	 DqjCdT8VP+znmMHGiWwnVyQBySB+IaHJBarqEt7sox213cWQ6+JfRYi0bo5x3xF18I
-	 8bgpsV5yj+Gymsnr8wKq4H/0O3MNSpIrMVpLOsDjnBh2qu3Z4rWgNuT1GGWyzvKY3n
-	 gCwbUv9P5+04g==
-Message-ID: <e15f4d39-379d-436f-b401-36f5b3f6f010@kernel.org>
-Date: Mon, 16 Jun 2025 18:26:54 +0200
+	s=arc-20240116; t=1750091278; c=relaxed/simple;
+	bh=y+IVtu+WNfcfhdvqMMjx7mRf57PCrubK/DS0Yxo11+M=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=CjQPt990PwcVX5FyVZBbsL6Vd0wEKNWTe5GhuVi7fyCYqHIWgOVc6JwMuswNs3GLnsHIyqIItNoH42WjysfyywgMzjh0sT5uj4T0ipAu5NVZLxtEMnjLOxmMfmn4hf9lcWVmajcjPTiEVmk6LrmGoNHok0ERVQk6Vf12zJlVbDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=N8tKoTQx; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a4f379662cso4153029f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 09:27:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750091274; x=1750696074; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g//RjhSoXItXHLLuz1FPQ8PBTL6LhGzURl5mDmu1U+s=;
+        b=N8tKoTQxZRk0Op4GSzgx90r1v5+M8Wi9xiI3gB9HZg/36jS7MM3WI4WEib/BWH8B7J
+         ffiQUlvHgOcZ9t0OH3UTG+F1oU/RC/7wLcKeQl4MmUWzKJx6crv6UvzzeXg18m9d2pDg
+         QY73UTx5v/vRxicCGRGmXVtVBBWAm7YvdZ5gZ2bhSY1e3Vp6sD5jUU1clHbBuCctTzNC
+         yiw19Wo4ljjH4PzyZXDZsVxRBmip+UD/3cVVhGeSL1a+9GMfqRv5jiburkJDA6Fr03Qm
+         N2hiEBWayaW9wunAIjD7rXLN4JTDa9qAz4pfSLeHzh/cvTpotgDFchoVq88kdELdlNQ8
+         SOJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750091274; x=1750696074;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=g//RjhSoXItXHLLuz1FPQ8PBTL6LhGzURl5mDmu1U+s=;
+        b=j9ln8q0dWuVP0W9zuOQGXCzfVXApGc5UTEPFcM2LTBokzHSQrQi3pf+fCPgcJrYt6A
+         uAdnH/IrsYfddQA2O10kxSK4WAhIM5nsQNdN6UL1H97FzqVXOCDls7ks9+Rz96kRob2l
+         TBmFUsmoROuTuj/Rqp2+UePV9OhVS9mygjjYwdaSfWBs9Q2b1ed+Jse+GvHJW0SjSWkU
+         +K7AXBqt3WMxpFYiIazXq9GSk+6pV9F8/Q/1V1y47a9E5i8e+z/gWsHYHToAtDmdn1aX
+         jwibDmBOsDuW77S32irMMagrzENxfd7CQ0rc5pnqvrewmCy3s3+sh1yc9qrgw6rNhOV7
+         XLxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVNtfJhEnRmy37vdinEKJnkRKxo3U+qd5iz6ZJ7pwgW77VPXNCh20j9vlO/vC9j4g8xaKDJzds6NzMP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdahB4q9EhC298u4jzfgHjZ9Lqtq4R2Sp9OAi5iP0ReeeYnZRX
+	xt1iYAE33sflAsKW3z4NCYUznSuNlpPPrYCEUsY0bORV7mrsGOvjoF+aYAgZMTaY2+k=
+X-Gm-Gg: ASbGncvaEewCyOKjDaVGBmDUYPkCsVWpSxK5qjGOMdHl1Ly4gjooLvZ++wWrYaXaNcv
+	ZsE4xD6tGDfJZUf/a8NztzYda7+YDiEr3MZcVnbDqRV7gocIjd05lQvMItSlhcs7OVRJW6DD+zq
+	oYEcnlOeP0xOFXLKYAGL67PoJ7sVjaDl2htQwnLoh741f3vPsF3wBYrUlp/d8L+QWY40aNVicnM
+	q0AocK518Q/7EN17LPoP6DzlwS9Qpi79cmVZta2rzv/rgBDHHrAcJgLSE+cIn2/q8I7+ldFz55S
+	3zHwmCnxB7SBIZx7vxiUSAGCDYiu+EZOK94KdhjHJKZPQ21kRRKYTz8nhs9MeQ==
+X-Google-Smtp-Source: AGHT+IErBlsaj2oMz4KGG0U/n1iHZhnbyvR7L71f4kcmN+NZni2stWVZL4S2bu1UJwMFwQlCqMCesg==
+X-Received: by 2002:a05:6000:240e:b0:3a4:eec8:c9b3 with SMTP id ffacd0b85a97d-3a57237dc17mr8397766f8f.23.1750091274515;
+        Mon, 16 Jun 2025 09:27:54 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1866:9357:88b6:f1b2])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a568b089b5sm11356238f8f.48.2025.06.16.09.27.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 09:27:53 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,  Chuan Liu
+ <chuan.liu@amlogic.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  Kevin Hilman <khilman@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  Dmitry Rokosov
+ <ddrokosov@sberdevices.ru>,  robh+dt <robh+dt@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  devicetree <devicetree@vger.kernel.org>,  linux-clk
+ <linux-clk@vger.kernel.org>,  linux-amlogic
+ <linux-amlogic@lists.infradead.org>,  linux-kernel
+ <linux-kernel@vger.kernel.org>,  linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 4/6] clk: meson: t7: add support for the T7 SoC PLL
+ clock
+In-Reply-To: <4dd25114-212d-44d6-938a-63871750c292@amlogic.com> (Jian Hu's
+	message of "Thu, 12 Jun 2025 21:02:00 +0800")
+References: <20250509074825.1933254-1-jian.hu@amlogic.com>
+	<20250509074825.1933254-5-jian.hu@amlogic.com>
+	<1jtt5ny6gq.fsf@starbuckisacylon.baylibre.com>
+	<4dd25114-212d-44d6-938a-63871750c292@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Mon, 16 Jun 2025 18:27:53 +0200
+Message-ID: <1jh60fd52u.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: bluetooth: nxp: Add support for
- 4M baudrate
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
- luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, sherry.sun@nxp.com,
- manjeet.gupta@nxp.com
-References: <20250616150919.8821-1-neeraj.sanjaykale@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250616150919.8821-1-neeraj.sanjaykale@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 16/06/2025 17:09, Neeraj Sanjay Kale wrote:
-> Add support for 4000000 as secondary baudrate for downloading FW chunks and
-> after HCI initialization is done at fw-init-baudrate.
-> 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
->  .../bindings/net/bluetooth/nxp,88w8987-bt.yaml         | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> index 3ab60c70286f..f1c7f900001c 100644
-> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> @@ -34,6 +34,16 @@ properties:
->        This property depends on the module vendor's
->        configuration.
->  
-> +  secondary-baudrate:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+On Thu 12 Jun 2025 at 21:02, Jian Hu <jian.hu@amlogic.com> wrote:
 
-baudrate is in some value, so use unit suffix from property-units and
-drop the ref.
+>>> +
+>>> +static struct clk_regmap t7_pcie_pll_od =3D {
+>>> +     .data =3D &(struct clk_regmap_div_data){
+>>> +             .offset =3D ANACTRL_PCIEPLL_CTRL0,
+>>> +             .shift =3D 16,
+>>> +             .width =3D 5,
+>>> +             .flags =3D CLK_DIVIDER_ONE_BASED |
+>>> +                      CLK_DIVIDER_ALLOW_ZERO,
+>> What's the behaviour of the divider on zero then ?
+>
+>
+> If there is no CLK_DIVDER_ALLOW_ZERO, there is a warning when registering
+> t7_pcie_pll_od.
+>
+> like this:
+>
+> =C2=A0 ------------[ cut here ]------------
+> =C2=A0 WARNING: CPU: 1 PID: 1 at drivers/clk/clk-divider.c:140
+> divider_recalc_rate+0xfc/0x100
+> =C2=A0 pcie_pll_od: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set
+> =C2=A0 Modules linked in:
+> =C2=A0CPU: 1 PID: 1 Comm: swapper/0 Not tainted
+> 5.4.283-09976-ga803e94eed88-dirty #91
+> =C2=A0 Hardware name: tm2_t962e2_ab311 (DT)
+> =C2=A0Call trace:
+> =C2=A0 [ffffffc020003750+=C2=A0 64][<ffffffc0100e3e3c>] dump_backtrace+0x=
+0/0x1e4
+> =C2=A0 [ffffffc020003790+=C2=A0 32][<ffffffc0100e4044>] show_stack+0x24/0=
+x34
+> =C2=A0 [ffffffc0200037b0+=C2=A0 96][<ffffffc01130a2e8>] dump_stack+0xbc/0=
+x108
+> =C2=A0[ffffffc020003810+ 144][<ffffffc01010c484>] __warn+0xf4/0x1b8
+> =C2=A0 [ffffffc0200038a0+=C2=A0 64][<ffffffc01010c5f4>] warn_slowpath_fmt=
++0xac/0xc8
+> =C2=A0[ffffffc0200038e0+=C2=A0 64][<ffffffc01061d364>] divider_recalc_rat=
+e+0xfc/0x100
+> =C2=A0[ffffffc020003920+=C2=A0 80][<ffffffc010624e84>]
+> clk_regmap_div_recalc_rate+0x74/0x88
+> =C2=A0 [ffffffc020003970+=C2=A0 96][<ffffffc010616a54>] __clk_register+0x=
+62c/0xb78
+>
+> so add it to avoid the warning.
 
-And then you will see that it could be actually an array, so why not
-using existing properties? Otherwise you will add soon "tertiary" etc?
-This does not scale.
-
-Best regards,
-Krzysztof
+That does not really answer my question
 
