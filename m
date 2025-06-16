@@ -1,148 +1,181 @@
-Return-Path: <devicetree+bounces-186361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9315ADB625
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:06:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96788ADB679
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 18:18:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D6C216FEBF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:06:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5105D3B3384
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jun 2025 16:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1499E2857FA;
-	Mon, 16 Jun 2025 16:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FE1286439;
+	Mon, 16 Jun 2025 16:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="Cxej/lQU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YQiRguyq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF8586340;
-	Mon, 16 Jun 2025 16:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750089998; cv=pass; b=Uhxot0FKfp8X5AHs33kCP5Jo4x5Uu2kCaeea3Xa/19vQq270NwG/bgfVhwvHzKMdLfsD79kzOnPHmaILoCy3duaznro1+OGtdWJWiHA1ESYNdoi48SmwJh+PkkQRRghqesSI0tn8mHJGyqj3h2YljsXiW3HUy7PB/3359YLKbmA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750089998; c=relaxed/simple;
-	bh=ASFFuuxt+NkRcr85V9Pfr5TSV45ijN++k4YYQyXOBPw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FyslqY2BM0rkBV7Ns71zdTaLdiYX2TFu/S9pa8SBVYPQBU9ej6y4iQ6N8rSBxAHLxh1sQEv8Gi4gExlbj5pBHd46uO1WkpefhHivnTh4Qqn0bsHf47a8wcv3JxRC9ykPnVThc16pH1Claw7jlQrUT0LVcZC6r64YnScThDebtSc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=Cxej/lQU; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750089974; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=e3GNWk/WbTMBevIRzVxs0X0CrdY0pRAyPGz6jfHOmRORUsjwLA1tl83Tcg69Gdmjm6LtbNDMWkmzWPXstgPN13BL4cUCzalmADCecyqghzLvTPu7xIp5Zte6CJ7oUCnJXZEHBgK41h40PJKyFeuACrxbSi+mpnczIfdnz4rfot8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750089974; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=R2NIJYlZXUCPFvz62oOBC7RgnkUtxPH/uiLdx+Eefzw=; 
-	b=LPTH8d3DUcfCDo7jV04mDGb73PcRIZcqmB6HWL3b3Fwmaro5ZWuxr+RCxr3Gh3EofXC1PFLsCGqgykkco3tglMzjHesUsHPyai1hut15i1TFpPYezmbnoImx6TieTKuB6c2a9oBwESWEKNux8OyIhLTWlIF7v0/BhzqbDVUirqs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750089973;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=R2NIJYlZXUCPFvz62oOBC7RgnkUtxPH/uiLdx+Eefzw=;
-	b=Cxej/lQUz2GTaTy62PcnOSfRvxKBanXxW0lGKW0AFWDQ7U+qDpLJSKzl0sFtrdA7
-	IlPkQnAXxZZRvNLvs2aFKNCn7ht/En6XoDdo+4KiSUwcNsn0YeE3BwU1TiJVG+uovHv
-	FdY7IkjAhFOlAV0AndUjZn8f5RMcY2IxVzacAGQM=
-Received: by mx.zohomail.com with SMTPS id 1750089971949421.80620542117106;
-	Mon, 16 Jun 2025 09:06:11 -0700 (PDT)
-Message-ID: <163a05ac-b0de-4345-8489-dbf858326908@collabora.com>
-Date: Mon, 16 Jun 2025 18:06:08 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFBD5285CBF
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750090707; cv=none; b=au9JQmJJp4kmqRlVr3sjXrJPKyaBeRVjrk9pvJDPdKaCOtDkGjqVSKV4u/UklZy9hUDEbm1TBKN15eE4TyVemERakZKszajES0P79UULhgUk9YcgQ6sHRjsGfo8YJs9rPW84YsGbyI/qkz7AFqQK5uh0ijUCTDPPMUHDMBytoBU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750090707; c=relaxed/simple;
+	bh=5dxQ60As8s/8rmI2TuFgJPch2gZ+j1BB1ZNS7po3vgM=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Djl1jCCEF10S9cq9AkhExMRmtPd1XF5u6C+0mKXzYJqP+kjFyOhyDfLsiKNu1KgQVG7ksJBs+4r2hucwlXkMBnQNYF9E0HXYHwbAyK6Az1fvfh4zgzlJVmxSFRI8giQ4wyO7WfBg6HKC66gtVBQ6zRjRLT3rfijs0zBaqrnjpAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YQiRguyq; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55G8Tp92023298
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:18:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=lenjTOuIiqQxj1snFC9JaLJ/
+	OZ0qD8QNh76r2FAzoEI=; b=YQiRguyq5DL80RlloScVAfpw9lTcjLnppkegCMZa
+	XA3bRC9ogFQHNt0RhUOL4ceODzfvxjFD+qsYDyDR9S+0aXDgcR0xXljWFrqGLb4C
+	XXJrG/LV3wDn2zt6EEFhv0eJrpT1T9+/S7oeaJ6BIMPsmW1YfIDF8FAyjXz8mtu/
+	cOQeBKOuYMJXOYM0Z9wCaK40w2Ueu2rS4YwrMBEFstW0GQSFzU9SjqfXigg1iUK3
+	QTZw4yT9ff3MdaU7YNg5I8GUPNgCKRHtCKHOMvzkgMUpEJqt6JLRvMg27m4uOycB
+	NBZBWDuqz48C74/lMeLP2BSmHTR4cAYc+R4Jt8KR7dzDpw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h9564c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 16:18:24 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c791987cf6so1041170685a.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 09:18:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750090704; x=1750695504;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lenjTOuIiqQxj1snFC9JaLJ/OZ0qD8QNh76r2FAzoEI=;
+        b=HUj6eKvTMVPkMtDyW5wuy1pCOmD1ociORL2OPBSykBgoQC5TpKdHs5URG2S3eGEvGV
+         v0+erqBPJYNImViFLAxbnoaAwjMGYf1OosjMmcQPZXPJugxxQVRz+HfMNiAjdL/gCUzX
+         7iK1kuIQL5LVzt44CAsr/e2FVouvnvKvVV4D8WECMbkcmzatT0qwB6c4XgfPWvWJUTnt
+         C13vnERbKmiXyPv09ZaE83OX3wmMbiZuxBOw9JiU9otY46dqIyP88tYR0py102ti7tp9
+         7NyFcoiAXn9kLo81JsNZaFgS9+QF+uzwQTGg0d5zUrm0eq52YrlQ0ItA19HtinbqLrRl
+         6FwA==
+X-Forwarded-Encrypted: i=1; AJvYcCUuDXLyLQPqptwUXhetUAZ7cMojgZsgMXf2YXoktW/7B8VDZPNH6929B4iNTe75obpUFEbhK1AY3y9z@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaZAHNFNCO68lh8ATKR3CIXd8dTYHy8K8iI7g+pH/p+JqK/mFc
+	P3S12MTeLm5S4H/3IGdeVFXfYals4EItxtPql1vadEHC4foyS1bBCMFuU37xGjXEQ5pGvJDymdM
+	NzaDjGQ9u6Zz3cH4K6EMAFcl/CMNjUBKizizn2VrEBtAko2cM0ur9wLb2MS0f8vc2
+X-Gm-Gg: ASbGncsSd27j94snySjJvG8TMScrHpBhavsWc0egvuFXDYvQUMrybS4klyJZvcxheJQ
+	gqpvggXwzvOOjZ/xN+CiXVTjOPH/YZkCjRjkYuKl42RfmTX3cAMkNKIA/kg7EZgV0vus3VR8BrT
+	Ce30xwsgGDYqT8KQGQwrEOapHiZFCo4+YbQEkeous0RT6svpI8fwLxEcLNDn+g4IOLkeAOUusBb
+	w9iSH45XdyMzv6pInTA5fmdE9mbxHc+0CDRE4zV5YfTsAhI+Da6bYFRWWTnbh7LZHC2O1A92gxp
+	NonHvtUzBq4r/ROYuSLcwSC7wcn4werZbVLuZYRnLjBqWzINDR/cQS4Iyw==
+X-Received: by 2002:a05:620a:450b:b0:7d3:b9b6:f1b9 with SMTP id af79cd13be357-7d3c6cd6c86mr1518729785a.26.1750090703913;
+        Mon, 16 Jun 2025 09:18:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEYH0Bi1Qj/amsWCd72LYxFHGoIlfM8IzTVbUpM+all+BJ6C4oqXrBLJLX310yA58Ug9cHwug==
+X-Received: by 2002:a05:620a:450b:b0:7d3:b9b6:f1b9 with SMTP id af79cd13be357-7d3c6cd6c86mr1518724785a.26.1750090703338;
+        Mon, 16 Jun 2025 09:18:23 -0700 (PDT)
+Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e13d014sm149938815e9.24.2025.06.16.09.18.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 09:18:22 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Mon, 16 Jun 2025 18:18:21 +0200
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>, quic_vgarodia@quicinc.com,
+        quic_dikshita@quicinc.com, bryan.odonoghue@linaro.org,
+        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, stanimir.varbanov@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
+Message-ID: <aFBDzWLkKC9MWGoC@trex>
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+ <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
+ <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org>
+ <aFATp3zoSgkrj3YX@trex>
+ <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: iommu: verisilicon: Add binding for VSI
- IOMMU
-To: Conor Dooley <conor@kernel.org>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
- kernel@collabora.com
-References: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
- <20250616145607.116639-3-benjamin.gaignard@collabora.com>
- <20250616-winter-strict-db98f85db22d@spud>
- <5c971c09-c398-40a3-9ed5-ec38b6645e1d@collabora.com>
- <20250616-contempt-remix-5af2b7281cbd@spud>
- <2d251d7c-7906-4a66-9791-7f71e7a4b54d@collabora.com>
- <20250616-capped-rehab-6e7fd24d23ae@spud>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <20250616-capped-rehab-6e7fd24d23ae@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org>
+X-Proofpoint-ORIG-GUID: RtOkgcAB4a2AIg-Y4Hx8Gd7lk31_efdf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE2MDEwNiBTYWx0ZWRfX+805Mda38zTv
+ dMyOdcXbReXd+x6nlL9zMU1CkiZApu603eEy2FOn6ddigvChxt073rg6Un+uMligwzHzAcBpBbj
+ ZP0I2kJO17KKDmr4kFxv7GsjqCQBcWp8ZI/PsirTzSq3/svv0GFCmVP14EUTvxBvn2/6ncurf9m
+ ES8P2PodF1yDPdkcYUF+NlUM4OK5828+g2U0ZAdujUdqnKhhEW9+5aJknbaqxhAyyfAWnZRIbDv
+ xQ6euHlETjSRd0FKrky7iUR3pCQohyyKsEQ51fq3Q7g6yp8SvYlPFoGC+tLojGJpb1htB6vVgij
+ WHxYaRMSq6ZJdWsuRavetDGzLrejGNYFNH0e3LF/+PdpfEP9kSQbZZ4nv69DafqzUB2VFPGepxd
+ VgOJdpu5ADjWqPdjwe+TJYCu8207XWClcK0biaGUG2pKucjGATZymtnvMAvpFj9kONf8m2Xv
+X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=685043d0 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
+ a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=4oi7HMmTljfVUEt6n0wA:9
+ a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: RtOkgcAB4a2AIg-Y4Hx8Gd7lk31_efdf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-16_08,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506160106
 
+On 16/06/25 16:41:44, Krzysztof Kozlowski wrote:
+> On 16/06/2025 14:52, Jorge Ramirez wrote:
+> >>
+> >>> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
+> >>> +  on Qualcomm platforms
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: qcom,venus-common.yaml#
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: qcom,qcm2290-venus
+> >>> +
+> >>> +  power-domains:
+> >>> +    minItems: 2
+> >>> +    maxItems: 3
+> >>> +
+> >>> +  power-domain-names:
+> >>> +    minItems: 2
+> >>
+> >> Why is this flexible? Either you have two or three. Not mixed.
+> > 
+> > please check 5b380f242f360256c96e96adabeb7ce9ec784306
+> 
+> This does not explain why this is optional HERE. You cannot use for a
+> new platform an argument that some existing platform was changed in
+> ABI-preserving way.
 
-Le 16/06/2025 à 17:58, Conor Dooley a écrit :
-> On Mon, Jun 16, 2025 at 05:50:50PM +0200, Benjamin Gaignard wrote:
->> Le 16/06/2025 à 17:42, Conor Dooley a écrit :
->>> On Mon, Jun 16, 2025 at 05:30:44PM +0200, Benjamin Gaignard wrote:
->>>> Le 16/06/2025 à 17:14, Conor Dooley a écrit :
->>>>> On Mon, Jun 16, 2025 at 04:55:50PM +0200, Benjamin Gaignard wrote:
->>>>>> Add a device tree binding for the Verisilicon (VSI) IOMMU. This IOMMU sits
->>>>>> in front of hardware encoder and decoder blocks on SoCs using Verisilicon IP,
->>>>>> such as the Rockchip RK3588.
->>>>>>
->>>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->>>>>> ---
->>>>>>     .../bindings/iommu/verisilicon,iommu.yaml     | 71 +++++++++++++++++++
->>>>>>     1 file changed, 71 insertions(+)
->>>>>>     create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..acef855fc61d
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
->>>>>> @@ -0,0 +1,71 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/iommu/verisilicon,iommu.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Verisilicon IOMMU
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Benjamin Gaignard <benjamin.gaignard@collabora.com>
->>>>>> +
->>>>>> +description: |+
->>>>>> +  A Versilicon iommu translates io virtual addresses to physical addresses for
->>>>>> +  its associated video decoder.
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    oneOf:
->>>>>> +      - items:
->>>>>> +          - const: verisilicon,iommu
->>>>> You're missing a soc-specific compatible at the very least here, but is
->>>>> there really no versioning on the IP at all? I'd be surprised if
->>>>> verisilicon only produced exactly one version of an iommu IP.
->>>> I only aware this version of the iommu for the moment.
->>> "for the moment", yeah. Is there any information that could be used to
->>> version this available?
->> The hardware block isn't documented in the TRM so I don't know if there is a version
->> field or something like that.
->>
->>>> Does adding verisilicon,rk3588-iommu sound good for you ?
->>> It'd be "rockchip,rk3588-iommu", but sure.
->> "rockchip,rk3588-iommu" is already use for other MMUs in rk3588.
-> "rockchip,rk3588-video-iommu" then? Instances of an IP in an SoC get a
-> specific compatible with the SoC vendor's prefix, so having verisilicon
-> there isn't suitable unless they made the SoC.
+thanks for quick the follow up.
 
-Other hardware video codecs have a different IOMMU so I will suggest
-"rockchip,rk3588-av1-iommu" which is specific to this video hardware block.
+but bear with me please because I dont follow - why can the same logic
+be used - it being applicable - and therefore result in a definition
+similar to those other platforms?
 
+how would I capture such a requirement if not as done in this patch?
+
+> 
+> BTW, also subject prefixes needs fixing. For DTS: it is never "arch".
+
+right, that is for patch 2 but ok, will fix there.
+
+> For this patch: wrong order (see DT submitting patches).
+
+yep, that is addressed in the next series
+
+TIA!
+
+> 
+> Best regards,
+> Krzysztof
 
