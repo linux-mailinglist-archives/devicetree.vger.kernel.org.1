@@ -1,120 +1,159 @@
-Return-Path: <devicetree+bounces-186708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077C1ADCE20
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:49:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE5A2ADCE35
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:51:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9503163835
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:49:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92C03188F5D0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D272E6D13;
-	Tue, 17 Jun 2025 13:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62935215787;
+	Tue, 17 Jun 2025 13:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="YR1APQXH";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="EEFy69h/"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="O/Im1XKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D982E266C;
-	Tue, 17 Jun 2025 13:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750168107; cv=none; b=C72kFLkZsyrchbNZaV8sn/wogI80mXzHw+wxCA70K7z3f+TIW1EQ0A34X21vI7e1r2ag6PHTZwbk0gm4epFpn3v7X0zWp2FsGwN91qjKxgJ/ubChCiVE0qG4Bc2x3mvx+iCLB068lJcjpMOtczi0RC2fUa1dOxqvK2PGeukvmRQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750168107; c=relaxed/simple;
-	bh=wiws6Qaja8X1qNEjGaJBYuW6EgiAvsI/Llg/tKoPxRA=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BAE1865EE;
+	Tue, 17 Jun 2025 13:48:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750168135; cv=pass; b=WaQJ4ZmAF9OYWKUkXjxjJA7F3QBJ+KTyFvY4/ePnLn3Ttytoku+b4VnFSt1XSSxF2mIbYTk0brSsGZb1Z4aD1udrixaRQBetP75ZlE8Q63wWtYGsQateNEyV5afdGZkmjuRmT4phZ7KGFx32oJq+cuRsCU6isickii9JNqZyItE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750168135; c=relaxed/simple;
+	bh=6mZjLMEQAoaVTDarhDT0Iufo+0fOPewuwVT6FR/dEHY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D6BYIriRhKWoRPXjfYPcO8HJ+zemceTfRyBZrN+PdAlhq3zyjgqctmQpGhpg/kEa1nknFe+jjIcPsNi5KFDvBYNbwy4gPNIj67yuoL3KHh1/tHrAXvMnryP9kSbtxI8l+TCxsufeqe6muMsFZJr9RiVwGlzsToSCjoRUtJk+3o8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=YR1APQXH; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=EEFy69h/; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bM7Vp10B5z9sxK;
-	Tue, 17 Jun 2025 15:48:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750168098;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=28480iRiD2DiK7+l0ougqeAbzPAdy3FYtcPpLg+iQ/U=;
-	b=YR1APQXHSPoA87bVSe7176AQmJZCTx7e67nH1o1+Ki0kzO5o0L8ncV/DgrT+CTH7mDLbjq
-	cDumIEOjyIFRp7LXN+XbRTbFlZ0i8yAeOoaEbwO41I3hLgodq/VIQfYe/8dHG55q0+QsSV
-	rm+kSgijL4w6ncnxfEX1aTtnJx/Ec8hCA+cJzpebXylsEklCzeqFczE7uAsnD+vUGUKM4N
-	JUhE9i5pkEQE8Hf5CGs9dVZqjIbOCF7LchlrcxKJmrjuh5fvZuJFgNtz2WkETz5zHt4fh5
-	+rUk4ddGqxuszLPfcsNDp6wWz+ueRFgACUDi1P9g/q9RrMapkkzm9WneRWZZxQ==
-Message-ID: <2e152214-5f2d-451c-8659-941184cd8fdd@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750168095;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=28480iRiD2DiK7+l0ougqeAbzPAdy3FYtcPpLg+iQ/U=;
-	b=EEFy69h/jzJcT2LqxSCOrB8TwmP7kXnW8vH+5pyOWSPwHSrJd8lSvVuedifRv6QpFPR7xK
-	bUpfVThL6kixuqxZHz7mQfOmoSx5DasMxZZhPuu2r2pGVZzC8YYPOfVcvs2yQ7+zsdvjFd
-	MM9f98Z3RE1EXZDGWNd/nvFBwZkLi9WNuyI/kyY4jNXaVKAgsyhzdm/UraN6eYCybfypqj
-	zgSPxNA8T5QP3092xtkUyq6QAxUd39uZZ54sPngPdLgD+7btlMYYFr39TXaQi93R+FrKXK
-	Thco+PsRpgHQEg10F7EnD+REmFdOBXhjwOWWsi2DOG97u14ks9xXZDBEojDLFg==
-Date: Tue, 17 Jun 2025 15:48:13 +0200
+	 In-Reply-To:Content-Type; b=rB6h5er9nAaOp1QpWAOb8KD99vi44sCmUCNd5yvPDniYmuASDqe5I64WTr4coZcJeCfz64C6E+NcjWjLZJ9Byd4FDmbElZs/ADRtabc7IO/GsdVXAoe0EctuUUxG1kaxoMLxE22A7iSc+LB4O1dlhoBsUuCIHLzBPnRQNg6DicM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=O/Im1XKg; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750168101; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=RYsbxIlGajViXkOxtq2KEf8LaUDJCjs2cfVNQMck7jnzD0YFELOk4Xa46PPdaQdzez7xix5UJzDIKv5M4VIq9ujJICGT/zBOvItqnwiwbWLoNMhca/69lAZwnBzh4o35yTrisvCjwiUZSLVy4SVE7nSHjeDZ/MFXKZTr7z4ZQBs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750168101; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=D4vJ4WUJydWruG0dqtzkAwR+nhnVb7UMToyievYWDJ8=; 
+	b=IUmQzhrEo9hCGLNL4aD8A9gDxDumRgxrWh98mcRcJWaUN32W0PTlhuCxL2T0CeSSlVKE/0kXdq1cd3kWF7olhpFizl095mF29IPa32ApSMw6xH+7UC7mGpfD4ef1kTiLV3+ARZXvMJN9gBeWQ0OPKNAIyeOFKWZ0RvAzeA/dIHQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750168101;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=D4vJ4WUJydWruG0dqtzkAwR+nhnVb7UMToyievYWDJ8=;
+	b=O/Im1XKgABAsdhserORFX21ekFxftRdla9wGdCm60WC/2lpb522k498YpEm5afgi
+	mAFRVWgct5SGPHMqENFUj6LbKkABgB/mrCWGJGi3mRzgYfZ7dreoOlKfpdfGzlnYxCx
+	3immDWE3ee1SBTfTjqMhhmEPTZb1EDF7/c6i9lik=
+Received: by mx.zohomail.com with SMTPS id 175016809925542.787085547648644;
+	Tue, 17 Jun 2025 06:48:19 -0700 (PDT)
+Message-ID: <2596fddc-aa76-4234-b182-1159c14b7cf8@collabora.com>
+Date: Tue, 17 Jun 2025 15:48:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: pwm: argon40,fan-hat: Document
- Argon40 Fan HAT
-To: Rob Herring <robh@kernel.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-pwm@vger.kernel.org, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20250617092037.37229-1-marek.vasut+renesas@mailbox.org>
- <20250617092037.37229-2-marek.vasut+renesas@mailbox.org>
- <20250617133744.GA1888765-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] iommu: Add verisilicon IOMMU driver
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+ kernel@collabora.com
+References: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
+ <20250616145607.116639-4-benjamin.gaignard@collabora.com>
+ <DAOTVW4YEC5Q.STXG6APE0YGN@cknow.org>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250617133744.GA1888765-robh@kernel.org>
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <DAOTVW4YEC5Q.STXG6APE0YGN@cknow.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: 19ud1dzt3j9i63whngikdsipgjbabbii
-X-MBO-RS-ID: 7de417b6fb1811c835b
+Content-Transfer-Encoding: 8bit
 
-On 6/17/25 3:37 PM, Rob Herring wrote:
 
-[...]
+Le 17/06/2025 à 15:04, Diederik de Haas a écrit :
+> Hi,
+>
+> On Mon Jun 16, 2025 at 4:55 PM CEST, Benjamin Gaignard wrote:
+>> Verisilicon IOMMU hardware block can be found in combination
+> Can there be only 1 hardware block or is multiple possible?
+> If only 1, then I'd start with "The Verisilicon ...".
+> If more then one, then I'd use "blocks".
+>
+>> with hardware video codecs (encoders or decoders) on
+>> different SoCs.
+> This makes it sound like it can also be used with non-Verisilicon codecs
+> and based on the DT binding description, I get the _impression_ that
+> that is not the case?
+> But it's actually not clear to me if that's the case or not.
 
->> +++ b/Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/argon40,fan-hat.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+Only one hardware block exists on rk3588 and it can only be used
+by Verisilicon AV1 codec.
+
+>
+>> Enable it will allows to use non contiguous memory
+> "Enabling it will allow us to use non ..." or "Enable it to allow [the]
+> use of non ..." or "Enabling allows the use of non ..."
+>
+>> allocators for Verisilicon video codecs.
+> And the wrapping of the whole commit message is not following the
+> standards.
+>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> ---
+>>   drivers/iommu/Kconfig     |   8 +
+>>   drivers/iommu/Makefile    |   1 +
+>>   drivers/iommu/vsi-iommu.c | 900 ++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 909 insertions(+)
+>>   create mode 100644 drivers/iommu/vsi-iommu.c
+>>
+>> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+>> index 0a33d995d15d..4cf4504dcc25 100644
+>> --- a/drivers/iommu/Kconfig
+>> +++ b/drivers/iommu/Kconfig
+>> @@ -383,4 +383,12 @@ config SPRD_IOMMU
+>>   
+>>   	  Say Y here if you want to use the multimedia devices listed above.
+>>   
+>> +config VSI_IOMMU
+>> +	bool "Verisilicon IOMMU Support"
+>> +	depends on ARM64
+>> +	select IOMMU_API
+>> +	select ARM_DMA_USE_IOMMU
+>> +	help
+>> +	  Support for IOMMUs used by Verisilicon video decoders.
 >> +
->> +title: Argon40 Fan HAT PWM controller
+>>   endif # IOMMU_SUPPORT
+>> diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
+>> index 355294fa9033..68aeff31af8b 100644
+>> --- a/drivers/iommu/Makefile
+>> +++ b/drivers/iommu/Makefile
+>> @@ -34,3 +34,4 @@ obj-$(CONFIG_IOMMU_SVA) += iommu-sva.o
+>>   obj-$(CONFIG_IOMMU_IOPF) += io-pgfault.o
+>>   obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
+>>   obj-$(CONFIG_APPLE_DART) += apple-dart.o
+>> +obj-$(CONFIG_VSI_IOMMU) += vsi-iommu.o
+>> diff --git a/drivers/iommu/vsi-iommu.c b/drivers/iommu/vsi-iommu.c
+>> new file mode 100644
+>> index 000000000000..f2fa1197916c
+>> --- /dev/null
+>> +++ b/drivers/iommu/vsi-iommu.c
+>> @@ -0,0 +1,900 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
 >> +
->> +maintainers:
->> +  - Marek Vasut <marek.vasut+renesas@mailbox.org>
->> +
->> +description: |
-> 
-> Don't need '|'.
-
-Fixed in V4 ...
-
->> +      pwm@1a {
->> +        compatible = "argon40,fan-hat";
->> +        reg = <0x1a>;
->> +        #pwm-cells = <2>;
-... and also this one, detected by the bot, thanks.
+> No copyright statement? (or an informational header block?)
+>
+> Cheers,
+>    Diederik
+>
+>> +#include <linux/clk.h>
+>> + <snip>
 
