@@ -1,174 +1,246 @@
-Return-Path: <devicetree+bounces-186499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17CDADC2A5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:57:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6ED3ADC32F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BADB3B79B6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:57:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AEC1174C36
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729B228B513;
-	Tue, 17 Jun 2025 06:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5DB28E5F3;
+	Tue, 17 Jun 2025 07:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GD/4xO0G"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MFmHI/y+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69592BEFF3
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D5B28D85F;
+	Tue, 17 Jun 2025 07:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750143468; cv=none; b=NrZrGKt1V55c/fX88JvfS7AP0dNXXny+BoGcf2+lxfcwIZ0vQIauaAa8CbkzesPHCNNlvvdsPnQUgx/nxMwnstHsp9EnoyWGnT/JqlOf5RTyPCDKswTUOwiaM/7QpAhPDO2pGRm8voCt72LT5vziye1NUXXjf8DH5hDKDILNh1c=
+	t=1750144995; cv=none; b=RcRUtfMKTHdsMr3OemgLI0lcYTV4h1EHVD43TjQ+B4CN2qwGlegyEdP9AFCJSTt98GsZ7f8H7S6Pd4M/Xh7S8hPXutrttaR9fQJdCn387LLKbPd4PIEkXrUXcsPb+k259vYxN5GNpXC+2vPuJYspW3RCgeHzd2dbPimNqEwbMy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750143468; c=relaxed/simple;
-	bh=fB1yAe/8YPxqkjKUXr0mBOSJPer8t+LsPmMwzFsmdis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ERMJK6GFBRIeHI9eRw/fkJUZviHyB3UXswoXe7bKs7tJoWSLvTgvp8mx6rAl/LefazcMI45y+U2E7T59RRLZqEz7hob8SsZWTlCToajj2BQzbPn4NaDmNCDhhJcOnXG+EGRnN1wklsX6Yy/kbZSfFGmoRGq4D9d2Q2Z7PSK+x/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GD/4xO0G; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55H6f0BN010256
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:57:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eMIf4TRueEPEiBL2yiZsauUeNzH0pwxH/E1DOBzCHMM=; b=GD/4xO0GZRj0ZRzZ
-	kG0S6iO9KC9Rdz6PP4/aS2qBgRmuWccwd+kFE528gPKCFAcwNcTP4qu00AGvIlM+
-	X7e8ROemOsdgUihAfzMR49pszuSz4LxCrRMnOZMANIiufjYXe6BPZ0YoOveOiawy
-	H9PN81H5hANEW/w8YV5+K7nfv2u9UPcBD5kPus4hr1lHzjRpljjpawTr13rrTFI2
-	G0V3BftTMGpHMLbPSse0gv60H9Hi9KHI5NPbfMgJGu+gBqYYOadd03oGnG0OUJ04
-	zR59duhpx2snyp6OzNRYpDBTbFHpAP5EjU9MbQrGTUN+rMxVYKRC/WTEijIHeStS
-	BPex1g==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791f775db-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:57:45 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-747d143117eso4413348b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 23:57:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750143464; x=1750748264;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eMIf4TRueEPEiBL2yiZsauUeNzH0pwxH/E1DOBzCHMM=;
-        b=k5ENB/GOU6wzz6Df0e5aa9eow0yAPF+YV5v9I0H8plLgvSjmha4foIO1boy70pXBd6
-         kg4BoTq2LxLfarpASsRNG82riXVFgLvXWtMVE5w6ZjBXVgUgn2Nd/CMoFF1jX+FeqrAG
-         oKOqzKVeKDuLcRNxaCCOFjjf4itw5cU5WbD+hS4eZZLWyzpm8kKcqti8xOxzFqfzt1+q
-         hqIoglyo1RTD2h8DaV1EjRDvMyn89e2qxSsn8ogsxsLXi5Z7J1hQn1ayTh42ngHzDeDn
-         wLVdE6RoWIorXrEoWC8aowDls4JNiICJMto9GoHZY2RWXiAXiyYpexl09jap78w2NqsU
-         mciQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2LUeQVfiMtLQEkmW29KsiKbAZ2l995ORpCl9dd6MW9TBHKqttffj7wuvn2HJk7pXMeqA4b+15FI2i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/AjnXegotVIFw0wjJ8RClSW2jiFS5hSfOprSDoE4y4DwJqwh/
-	SGezXqlo57lNhQAtaCQdrdVRVDDGY6oLkCL6JT8MIHq1RuXuBclUgW8L7eOzxD+bc7n1TimUByT
-	k0SxawYn95iVKc5CQZYLv8Pf9ZHBkDHIDGXjPV/zAjFGY1LdhkolZA2r0lf3ck2sp
-X-Gm-Gg: ASbGncs2FHTBrsHpBHfhHzqgnGQAvL4yBImQYC99IVsA+q4ZLc8Ck2f3Xhr4HrYY8im
-	vcE1HOywBJxGXkF3HtTmLf7mhGKVpF4uebU0n3ysbeMrceSsbTfsfijAEhgLrbDSv98L49fY1E2
-	LihFQthZHbV42+Ep8s7j2qBdzPLxMUTQGQYjnPi1AFNsx7tiDHw+rw3z2YGfIEkrfcodkpltFW4
-	Vcf0rttHKMO0vC+v7Hb/yhaCHqpxt8/cXggHF/N2WoM9u6B3ksimT+DfRrDvf+zYg1HWwxUuKHo
-	mLcYSW7vyBn7MNtXlcme796dGY1srxT8p1sC4qNqM9BBuHPqdFg=
-X-Received: by 2002:a05:6a00:4613:b0:740:b5f8:ac15 with SMTP id d2e1a72fcca58-7489ce46ea2mr14924345b3a.10.1750143464385;
-        Mon, 16 Jun 2025 23:57:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGqHC35uDfaFevhuxUS9cNRFZiz2K0P7SW247TESFvxZsqWNF7VvcGs2WjxAz66Giamg6SqJQ==
-X-Received: by 2002:a05:6a00:4613:b0:740:b5f8:ac15 with SMTP id d2e1a72fcca58-7489ce46ea2mr14924319b3a.10.1750143463980;
-        Mon, 16 Jun 2025 23:57:43 -0700 (PDT)
-Received: from [10.217.217.109] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748900d1ceesm8007163b3a.161.2025.06.16.23.57.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jun 2025 23:57:43 -0700 (PDT)
-Message-ID: <89536376-6619-49a5-a267-b5a6b98940d8@oss.qualcomm.com>
-Date: Tue, 17 Jun 2025 12:27:37 +0530
+	s=arc-20240116; t=1750144995; c=relaxed/simple;
+	bh=f11hWl4NtA1ewNVG2EX9gYBJpVleqyEr0TOtEB8ZeF8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cum7rpjodru2YRUYpMaMeEGIgbAb7hSEhafXjL33ONEk12P94ZIO+9j1DLK4g9nKzLqHgPDQqn9WlLLnkmgPLgcO0BH1Y756tBHoPCnTO0At1xvnKdiWm+fNk7Z8GePLyx9rUsIL3uPN93OqKOPu7wCVHCG8eZJ3sMZEZzC8buI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MFmHI/y+; arc=none smtp.client-ip=217.70.178.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+	by mslow3.mail.gandi.net (Postfix) with ESMTP id 924EF58267E;
+	Tue, 17 Jun 2025 07:00:39 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DF5FC44459;
+	Tue, 17 Jun 2025 07:00:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750143631;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=c54X4q8yozguoRQqbVkcnFg4rictDWQ/ozHe3OqAcDo=;
+	b=MFmHI/y+p5sJ80eQ4s84rkWG8dTBnsg53y+lIdVMySqFH3kXrdFd96UoQAMwYWdyYhc4mN
+	sIkTqVsjSholwOLcgSFfDnEx/Vcbv7ypWPZJ/zewYOLBXN0gZRoBiGLwb5Bio64J0oJNQH
+	AeTDy7iFaOY7sJTWE7+MNTSny1Zhi0PZESIbbF2Nj/udROiyTPy1M8zAAZ0c/yFM3M0dCP
+	6J4A2sbuaokCGhdOfA9hG2SUyZ4bzwf72NNoCgi6N8XA30zPeLfglUyrI4JLVye3aYhnH+
+	vTjIUiEidjQRcb0QxA7mIgcV2E0foqZxbu4cPQ/ehKmBhAW2Q67QXYF4dKXTcg==
+Date: Tue, 17 Jun 2025 09:00:29 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: "robh+dt@kernel.org" <robh+dt@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v8 5/5] PCI: of: Create device-tree PCI host bridge node
+Message-ID: <20250617090029.03283ea6@bootlin.com>
+In-Reply-To: <3258d453-f262-4f1c-822b-5310a8346a2d@tuxon.dev>
+References: <20250224141356.36325-1-herve.codina@bootlin.com>
+	<20250224141356.36325-6-herve.codina@bootlin.com>
+	<594d284e-afce-446a-9fcb-a67b157ef6dc@tuxon.dev>
+	<20250611165617.641c7c09@bootlin.com>
+	<3258d453-f262-4f1c-822b-5310a8346a2d@tuxon.dev>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615: Add CPU scaling clock
- node
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com>
- <20250612-qcs615-mm-cpu-dt-v3-v3-2-721d5db70342@quicinc.com>
- <ezlboeao2mqdbyxw6orzcqla3xthbo5ppuuhugwyxs5t4njvsd@qyy5r2ksmrj2>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <ezlboeao2mqdbyxw6orzcqla3xthbo5ppuuhugwyxs5t4njvsd@qyy5r2ksmrj2>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDA1NiBTYWx0ZWRfX9Yu4Dkvgam+6
- Qfq46psssgqdvbBKp8f787UGMwB7jK+Vs2dkmY6pQtiKfMoQLONHPEC/8i/Mm3TOLsYWLW45y1h
- s4KGm/xwFjGvF4Q+T9p8xOx1YmjMNSxl8Ce3gG7bDCqR8FsHCQfAJjhgbqHL8nk8C2dbgrHXKO1
- 69NE4sV4cMScMrecviREnOIv2eLMhDQOLnVcX4CWwEk1qiL6iA7OGCR+6GEc+K61IXZIRqUO70h
- obErSmEHxDDEKIv5sc02PUpkCHcm/Y+buI3PI5MAXCr3nRHmt+Q2IA1L9x5D0bitBNp1hE65kPI
- o21m6kCYjqcD6fVTd1yadP2TI10WIoO4OHLpi4TRXVJo+B0dJsLK4w3+Wrd2O+md0Uyqg27kn+A
- ABZH09ogYwc2a3T72lMZTztms1Uhljw4rjC7bZCsnQJpz75EDrfZXfaptksyndU3WfSovuTh
-X-Proofpoint-GUID: EO9xczSXWtjelQqMMHW2Gxce5Ne_unY_
-X-Proofpoint-ORIG-GUID: EO9xczSXWtjelQqMMHW2Gxce5Ne_unY_
-X-Authority-Analysis: v=2.4 cv=FrIF/3rq c=1 sm=1 tr=0 ts=685111e9 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=-8NblG57_WyjLwp19yIA:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-17_02,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 suspectscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 mlxlogscore=937 bulkscore=0 impostorscore=0
- malwarescore=0 phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506170056
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddvkeejkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetheejgeetudehiedvuedvteehhfegudevvdeftdduhfejleegheevteetvdeihfenucffohhmrghinhepsghoohhtlhhinhdrtghomhdpkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvhdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhhesl
+ hhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrghrrghvrghnrghksehgohhoghhlvgdrtghomhdprhgtphhtthhopegshhgvlhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtoheplhhiiihhihdrhhhouhesrghmugdrtghomh
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Claudiu,
 
+On Fri, 13 Jun 2025 16:36:16 +0300
+Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
 
-On 6/13/2025 6:40 PM, Dmitry Baryshkov wrote:
-> On Thu, Jun 12, 2025 at 03:47:21PM +0530, Taniya Das wrote:
->> Add cpufreq-hw node to support CPU frequency scaling.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 29 +++++++++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->>
->> +
->> +		cpufreq_hw: cpufreq@18323000 {
->> +			compatible = "qcom,sc7180-cpufreq-hw", qcom,cpufreq-hw";
+...
+
+> I pointed to the wrong function. It's not of_pci_make_host_bridge_node()
+> [1] but of_pci_make_dev_node() which creates a node with a similar naming
+> and makes things not working on my side.
 > 
-> This wasn't build-tested (or was edited after being compile-tested).
+> [1] https://elixir.bootlin.com/linux/v6.15/source/drivers/pci/of.c#L694
 
-This is already tested on the QCS615.
+Ok, so your issue is not related patches applied from the "PCI: of: Create
+device-tree PCI host bridge node" series.
+  https://lore.kernel.org/all/20250224141356.36325-6-herve.codina@bootlin.com/
+
+Indeed, this series add the node creation for the host bridge with
+of_pci_make_host_bridge_node() but you pointed now of_pci_make_dev_node()
+which is the creation for PCI device node and this function was not modify by the
+series.
+
+of_pci_make_host_bridge_node() should not create anything. Can you confirm on your
+side that it doesn't create any nodes.
+
+If so, maybe the problem comes from of_irq_parse_raw() or similar.
+
+...
+
 > 
->> +			reg = <0 0x18323000 0 0x1400>, <0 0x18325800 0 0x1400>;
->> +			reg-names = "freq-domain0", "freq-domain1";
->> +
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
->> +			clock-names = "xo", "alternate";
->> +
->> +			#freq-domain-cells = <1>;
->> +			#clock-cells = <1>;
->> +		};
->> +
->>  	};
->>  
->>  	arch_timer: timer {
->>
->> -- 
->> 2.34.1
->>
+> > 
+> > On this system, I didn't observed any issues but of course, the PCIe drivers are
+> > different.
+> > Also, on my system, no node were created by of_pci_make_host_bridge_node().  
+> 
+> Sorry for the confusion, it is of_pci_make_dev_node() on my side which
+> creates the node.
+> 
+> > 
+> > To be honest, I didn't re-test recently to see if something has been broken.
+> > I can do that on my side with my system.
+
+I have re-tested and I confirm that I have no issue on my system.
+
+> > 
+> > On your side, maybe you can have look at the Armada PCIe driver and see if
+> > something could explain your behavior. I am not sure that you need to add the
+> > pci@0,0 node in your DT.  
+> 
+> I can't find a driver that uses the approach I'm trying in my patches. This
+> approach was suggested in the review process [2] by Rob who mentioned that
+> now we should be able drop legacy interrupt controller nodes. There are
+> some Apple device trees that points the interrupt-map to the port node (the
+> way I tried in my workaround) [3], but I can't find more than that.
+> 
+> The topology in my case is:
+> 
+> root@smarc-rzg3s:~# lspci -t
+> -[0000:00]---00.0-[01]----00.0
+> 
+> root@smarc-rzg3s:~# lspci
+> 00:00.0 PCI bridge: Renesas Technology Corp. Device 0033
+> 01:00.0 Non-Volatile memory controller: Micron Technology Inc 2550 NVMe SSD
+> (DRAM-less) (rev 01)
+> 
+> When not working pci@0,0 is exported as follows in rootfs:
+> 
+> root@smarc-rzg3s:~# ls /sys/firmware/devicetree/base/soc/pcie@11e40000 -l
+> -r--r--r--    1 root     root             4 Jan 12 10:28 #address-cells
+> -r--r--r--    1 root     root             4 Jan 12 10:28 #interrupt-cells
+> -r--r--r--    1 root     root             4 Jan 12 10:28 #size-cells
+> -r--r--r--    1 root     root             8 Jan 12 10:28 bus-range
+> -r--r--r--    1 root     root            13 Jan 12 10:28 clock-names
+> -r--r--r--    1 root     root            24 Jan 12 10:28 clocks
+> -r--r--r--    1 root     root            26 Jan 12 10:28 compatible
+> -r--r--r--    1 root     root             4 Jan 12 10:28 device-id
+> -r--r--r--    1 root     root             4 Jan 12 10:28 device_type
+> -r--r--r--    1 root     root            28 Jan 12 10:28 dma-ranges
+> -r--r--r--    1 root     root             0 Jan 12 10:28 interrupt-controller
+> -r--r--r--    1 root     root           144 Jan 12 10:28 interrupt-map
+> -r--r--r--    1 root     root            16 Jan 12 10:28 interrupt-map-mask
+> -r--r--r--    1 root     root           164 Jan 12 10:28 interrupt-names
+> -r--r--r--    1 root     root             4 Jan 12 10:28 interrupt-parrent
+
+Why parrent instead of parent in interrupt-parrent ?
+
+> -r--r--r--    1 root     root           192 Jan 12 10:28 interrupts
+> -r--r--r--    1 root     root             5 Jan 12 10:28 name
+> -r--r--r--    1 root     root             4 Jan 12 10:28 num-lanes
+> drwxr-xr-x    2 root     root             0 Jan 12 10:17 pci@0,0
+> -r--r--r--    1 root     root             4 Jan 12 10:28 phandle
+> -r--r--r--    1 root     root             4 Jan 12 10:28 pinctrl-0
+> -r--r--r--    1 root     root             8 Jan 12 10:28 pinctrl-names
+> -r--r--r--    1 root     root             4 Jan 12 10:28 power-domains
+> -r--r--r--    1 root     root            28 Jan 12 10:28 ranges
+> -r--r--r--    1 root     root            16 Jan 12 10:28 reg
+> -r--r--r--    1 root     root             4 Jan 12 10:28 renesas,sysc
+> -r--r--r--    1 root     root            63 Jan 12 10:28 reset-names
+> -r--r--r--    1 root     root            56 Jan 12 10:28 resets
+> -r--r--r--    1 root     root             5 Jan 12 10:28 status
+> -r--r--r--    1 root     root             4 Jan 12 10:28 vendor-id
+> root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~# ls
+> /sys/firmware/devicetree/base/soc/pcie@11e40000/pci@0,0 -l
+> -r--r--r--    1 root     root             4 Jan 12 10:17 #address-cells
+> -r--r--r--    1 root     root             4 Jan 12 10:17 #interrupt-cells
+> -r--r--r--    1 root     root             4 Jan 12 10:17 #size-cells
+> -r--r--r--    1 root     root             8 Jan 12 10:17 bus-range
+> -r--r--r--    1 root     root            41 Jan 12 10:17 compatible
+> -r--r--r--    1 root     root             4 Jan 12 10:17 device_type
+> -r--r--r--    1 root     root           144 Jan 12 10:17 interrupt-map
+> -r--r--r--    1 root     root            16 Jan 12 10:17 interrupt-map-mask
+> -r--r--r--    1 root     root            32 Jan 12 10:17 ranges
+> -r--r--r--    1 root     root            20 Jan 12 10:17 reg
+> root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~# cat
+> /sys/firmware/devicetree/base/soc/pcie@11e40000/pci@0,0/compatible
+> pci1912,33pciclass,060400pciclass,0604root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~#
+> root@smarc-rzg3s:~#
+> 
+> In case I describe a port in device tree, it works because the pci@0,0 is
+> not created anymore when device is enumerated and thus the interrupt
+> parsing is working.
+> 
+> Herve: do you have some hints?
+
+First interrupt-parrent in your /sys/firmware/devicetree/base/soc/pcie@11e40000
+files.
+
+If it is just a typo in this email, maybe the interrupt parsing itself.
+
+Can you provide an extract for the DT with nodes created at runtime.
+I mean can you run 'dtc -I dtb -O dts /proc/device-tree' and provide the output
+related to PCI nodes including the PCIe controller ?
+
+> 
+> Rob: do you know some device trees where the interrupt-map points to the
+> node itself as suggested in [2] so that I can check is something is missing
+> on my side?
+> 
+> Thank you,
+> Claudiu
+> 
+> [2] https://lore.kernel.org/all/20250509210800.GB4080349-robh@kernel.org/
+> [3]
+> https://elixir.bootlin.com/linux/v6.15/source/arch/arm64/boot/dts/apple/t8112.dtsi#L951
 > 
 
+Best regards,
+Hervé
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
