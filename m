@@ -1,142 +1,126 @@
-Return-Path: <devicetree+bounces-186716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD2FADCEAE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBAF4ADCEB9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3C3A188260E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:04:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09BE91883A93
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F373516DEB3;
-	Tue, 17 Jun 2025 14:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09221547C0;
+	Tue, 17 Jun 2025 14:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qi5frF+1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P7MdIbSg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C484502A;
-	Tue, 17 Jun 2025 14:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA5B2E7180
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 14:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750169058; cv=none; b=B5TtvhVEuJf3Wn37LxUcE1v/H+ScIu2KQAkxKGPHGrOgUt7JTJFLfmhRrJjDzmG0HVuNUqxcCRTdtxSs7cAckq+GxvEfxQOIgCjHmIPM8j+SJSZNf55wCgaMSrd4NDu/YYScXC66gOEMvvJUufD4O3gUVvIHZIcrstQqWVY9o/w=
+	t=1750169126; cv=none; b=oMZM2Q7caBlh2iZc6Jo+lBmasNutCiMXxDMR/zbMfgvMeiQ/O0UjwoZTayNVjCRhPtuveNtkI6Z4+e/yy0PkF6XjSdIyjJkfTAtRIFxsO+9qMw9OPZhXUdyPB01kCljTqpgpi4sflFWDynZVRAUJILBk2b0qjGcjC41cDI8eNzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750169058; c=relaxed/simple;
-	bh=0dWU6HXzlHK6iJEuju+cyMKuq1U2jlz4qZX3uNUjrog=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E0e9a3s1Ksh344ToZ523vq1GE6BblVaSau+FqHRYoBZuun9MMDhIwAZ5vLCiEQW4mxJ6CBBfv6eJZut6XqCHF9A3j2zylc5NWV67nho6UcBmxbXaYzNk14rQjhHT3A82xHBz/y0e6hVj68mHCcc60NHHUVgg/XpjNePds83x/s4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qi5frF+1; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1750169126; c=relaxed/simple;
+	bh=wHQ5uG8gbzWQPZP108Fp8926jbj4aE7Ekwg2bPsr1IY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PLbsDj9o1eUle1NoMBSIWLfbF2/1dJfrKWQ559djDxiplS7dnRl2SpvU9AeNI0xHl5a0oYnqZJf0Tkvs9hGMomO5TL3lZ4fVLxiSBx9gZbQFtbPITjT3ywbsG5Iy2urHTEAWoDQu4qmmMyjTx7pCT3PncVa44A48fRMZC0GIFkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P7MdIbSg; arc=none smtp.client-ip=209.85.215.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-453426170b6so17995225e9.1;
-        Tue, 17 Jun 2025 07:04:16 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b2fd091f826so4203446a12.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 07:05:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750169055; x=1750773855; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yKMl5Q4rEMPmCxIPeuqakKIQuXk9JJJz0TSzFVQwXWU=;
-        b=Qi5frF+1TS3ntDe3uE/FcTYZrR84aT3eo/G3CcRfDMt4sSlglHZdPSekWngIjjuOC7
-         tBB7pBiHCdmSECKRLLMMyeVjw2/Sni/W97hPhe1pFN80aqFkFKgFSugZmnzYzcsbvPsn
-         TPSrWJxT4qllQjKpS58hUCjmUBs74AvVt97QshcwCJeK46E9i6Kof/aAH67qdwn/Pbhx
-         80TjmjUczZFCNyvJfWLaekAh7jPBqY9Sn9wqNSXij6+Z3N9F1HP6ZrLwXqORP4swu0GZ
-         5KI+MKjJAlQZ0X2hVEx2f65q84fetdrcJBlSGQvF6Xa2TDgtp0hlsVoAjrUdj6e/NV76
-         ymzg==
+        d=gmail.com; s=20230601; t=1750169124; x=1750773924; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tk6I9EzaZ+W1EwXyeTL06fJaBXc6NaRZh1+FWMs/B84=;
+        b=P7MdIbSgdzCLUKPLCKwitOChk6t04j6WK8t+T1z4WCANoyDsm+7rTZqjXh8fdftGjH
+         hs7zhtCK7NGey3K2YZKig/qlxUkoW/3pdBqID3RUD8Yw6I3bHBGs6jUtyNme3lGCmwYG
+         YZUyzSwuaqbC9/Z18dnGKKjV609Vt0fmT9DfWZ2dzGiiJzNA2CY4wpEvTeraXqSJ9W6M
+         IwzyLkg6P+RNajPyonQ0TURrJcOC/DMX3qTBLDYvsLts4++nGGAnzwXEM/be2dl9dF+F
+         ywe9YIU6N3+Zjkqujj4dvnQfRNJNalFj2WRyaSZPyqV7JPF4LW6mRDSxEgCnPvyDd1Et
+         w5ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750169055; x=1750773855;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yKMl5Q4rEMPmCxIPeuqakKIQuXk9JJJz0TSzFVQwXWU=;
-        b=BrxYporcmEFBC5k2wvk0VhH1SfR8KKTuqSEygZPKnkguXCWyd6yYtdxUZwP0m1+BPc
-         wtrkne3SljuvtyhkQOK/7w5BgxlQAeWpyK30vzc0jZ4rCKp5D7duAtN9r68O21HZWM8i
-         qGaNlQGqJm1uHR6UfxvTFgu5VllUhDie2PmWe+Ygx9Y2sJMRfbeUd19YISUFczekdgnY
-         aAfyydk405/wouiMfD2mTaKlVw39vn1yDFN1omFL3DNDS15Dg1tikpCLabv2sBcvW+u0
-         RZ9SkIlpu1fK54o+OAQLM3/Yqd+lYlIRcyJm20hZCpoERM+61BB8P/FYs09SC7Vb/AuW
-         kvfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVEbzxRc5IzmyQ0EWHJPRQrm8H9biS7CmYE9e+djErqT3zy3PGntNjzWoFlC2EA462uPYruN6/GithJsD2G@vger.kernel.org, AJvYcCW9tcAfTGwZ47+EI8SMuu8dFVtB6chlxel2MSq99z6be3bcnehPdzFvLGABpXr6io/gG98Kh+V/q3SRWdAq@vger.kernel.org, AJvYcCWo6S7Er2+wqSWY794C8ybxqQI6FM73vJDFkr/v48uxiE41Pnb1A/rRjf0l1ZtTMUvRR0/WlWBGuoQW@vger.kernel.org, AJvYcCWoDgYn+CRTy1/aNzbdN/ZhRwIwRNqppxgoVMQ1BlbuFORt8cblj6dhchCBOWzeAiwsmGqUaFIMJ9L2gHPMKA/kMjI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfUFbcReihSmyIvpGtmGObYFoRudK1xj1vWQtquRa+qFnKI4q9
-	MRlqM4dQv/yZqwOyjluXIQLLY3ASJMGP/MLkPwvxbaimm3hZ2VlFalKtGjus8BzLe0WAUbleXVj
-	qTjzXvmCpqRGm7Prgq2ZwQOD0b3v7vdS+e9AEhNQcRg==
-X-Gm-Gg: ASbGncuMdpZUnMVQpOvA8m4APQ8gbqf8yIcZrco4x8wCmjcvG19I4UefOLHC2QzoLd+
-	wYdzBepnmZjhAjvpBDeo6U31wOyZ4jgZc1jT5CBhNneey75w6nQZhn++rtS+7s9RRz9JWugQlLf
-	blOiHxpATHQF9ea81k/oD8OQ1h/DzommiGHWeIvv8+AUHdghpv8c0w
-X-Google-Smtp-Source: AGHT+IG9Pd3zZCpCDabPNRID3/mweW9Pg6ysqzFUrlRGkOmnfcaK7N+ZJqlPWghn7sHnYXCnMj8x0pPDPqWqSZzTk/Y=
-X-Received: by 2002:a05:6000:310f:b0:3a4:e231:8632 with SMTP id
- ffacd0b85a97d-3a57239587bmr10636654f8f.12.1750169054933; Tue, 17 Jun 2025
- 07:04:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750169124; x=1750773924;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tk6I9EzaZ+W1EwXyeTL06fJaBXc6NaRZh1+FWMs/B84=;
+        b=WevV6na/yuzpv4DO6i8ZtgHsLF+cQV7UAqQxj1jHJiuqpIV4FSx3kIeyO5OpSZXEcX
+         UbjG8gBjHeLdNHYXlXko5/Dc3SwpPc1SJPbix344Ag81/zyER2zHqleFujK2mO/ZCymZ
+         GJPn94FFFDEmdmf4yB050uRQ2/HVUL6A58LM31FDWO//RrQVWqZbQylaRMImk0Uk8Jad
+         npPiXjKrRMj34iVdk6El+rXCtxO2YhPNbb/0cTW9uhBq/m4gMqaW48CIncw1o+0gyMlq
+         Ezfc52frcvtWF1l4SoJBqLFRKWWoe8bnLtoz/aKXkbIePZcSxs2EhvOgGiIdL8bDxypv
+         CHEw==
+X-Forwarded-Encrypted: i=1; AJvYcCUDbkjPSzCclwlTkkUTUhaWW7IyQpKvKxBd13m9Rcf4IiaFr34NpYCil0QhcDcfiDLvh7vR8FKJZ3qh@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdTR5dCutv3+iYjclswLv/ayf/l+VO913qw7BkUdLRCytRJzaO
+	JnvxqUD6gjCiU0s7yTtGCqH5PuK3+rX2DagvFvOGFvTIdDmGTT4Iob1G
+X-Gm-Gg: ASbGncuXMvtQbUYAQbbotoS7tbfD19KNTjKPjVUd7yATIbYQKsQAykn5x0HhN5mL9bD
+	S3jxRa9EQLalq3Gj3QIxvtylMX3+89H+Vyg+mlU7BbE8BwpGnCFhENAkssGA4Q3LfnhgZ9FJZpF
+	SCF4hvQDejvsMLEqMenCxrev5rw6iTmncilzFHZHU7Wlfta5JbWUerMaj0f4hbyU32YY3447Emc
+	RhA2x9sh5laATN9zN2PEy1A7P65YyDLICFEb6Q2jdkp6JzIUysK/W6kFIaGukppiBWZxc6yUthO
+	IKFdJOD+Fcax5zyDvg+aRJBctFyoH1yK7aj7TY4c70SauHdkGW+N98Rw1w==
+X-Google-Smtp-Source: AGHT+IHbKZPSqfh1gqigaZX04x3z6UHxXKBdLiZMKpd9JFG5J7rZIOuFOAUM8RsuNLpgmb1IEIuIWw==
+X-Received: by 2002:a05:6a21:4006:b0:21d:98c:12c9 with SMTP id adf61e73a8af0-21fbc7fb787mr20507624637.21.1750169123256;
+        Tue, 17 Jun 2025 07:05:23 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61::1000])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fe163a0e7sm8906127a12.16.2025.06.17.07.05.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 07:05:22 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: claudiu.beznea@tuxon.dev
+Cc: linux-arm-kernel@lists.infradead.org,
+	nicolas.ferre@microchip.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 1/2] ARM: dts: at91-sama5d27_wlsom1: Improve the Wifi compatible
+Date: Tue, 17 Jun 2025 11:05:01 -0300
+Message-Id: <20250617140502.1042812-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250617134504.126313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250617134504.126313-8-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWfsqYvdL16hrbWug3PhK1XrSunaWtduajRzViKBRPeCA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWfsqYvdL16hrbWug3PhK1XrSunaWtduajRzViKBRPeCA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 17 Jun 2025 15:03:47 +0100
-X-Gm-Features: AX0GCFvJJnMjoVIyb00wCS8LqVIBgjEn19qTstoiiFay-qVXscEY4QfRsMV1AmY
-Message-ID: <CA+V-a8sx9iuUjn3uvSqq3Sd=JeTj_UMyDiLzisrnj1uQw6nbGQ@mail.gmail.com>
-Subject: Re: [PATCH v12 7/7] arm64: defconfig: Enable Renesas RZ/T2H serial SCI
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Geert,
+From: Fabio Estevam <festevam@denx.de>
 
-On Tue, Jun 17, 2025 at 2:57=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, 17 Jun 2025 at 15:45, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> >
-> > Selects RZ/T2H (aka r9a09g077) SCI (serial) specific code.
-> >
-> > Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> Thanks for your patch!
->
-> > ---
-> >  arch/arm64/configs/defconfig | 1 +
-> >  1 file changed, 1 insertion(+)
->
-> I don't expect GregKH to apply this patch (or better: I expect GregKH
-> to not apply this patch ;-) so IMO there is no point in including it
-> in this series.
->
-Ok, got you.
+The at91-sama5d27_wlsom1 SoM has a WIL3000 Wifi SDIO device populated.
 
-> Thierry's original version is still in my queue, together with the
-> DTS patches, waiting for the RSCI DT bindings to be accepted...
->
-I plan to send a new version for RZ/T2H DTS/I which includes fixes
-from series [0] squashed and also mainly update the model string from
-"Renesas Development EVK based on r9a09g077m44" to "Renesas RZ/T2H EVK
-Board based on r9a09g077m44". Is that OK with you?
+Improve the description of the Wifi compatible string by passing the
+more specific "microchip,wilc3000" string. 
 
-[0] https://lore.kernel.org/all/20250613135614.154100-1-prabhakar.mahadev-l=
-ad.rj@bp.renesas.com/
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+---
+Changes since v1:
+- Collected Reviewed-by tag.
 
-Cheers,
-Prabhakar
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+index ef11606a82b3..e35dd79beb16 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
++++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+@@ -385,7 +385,7 @@ &sdmmc1 {
+ 
+ 	wilc: wifi@0 {
+ 		reg = <0>;
+-		compatible = "microchip,wilc1000";
++		compatible = "microchip,wilc3000", "microchip,wilc1000";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_wilc_default>;
+ 		clocks = <&pmc PMC_TYPE_SYSTEM 9>;
+-- 
+2.34.1
+
 
