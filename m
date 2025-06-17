@@ -1,93 +1,89 @@
-Return-Path: <devicetree+bounces-186875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F807ADDF73
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 01:14:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6491ADDF84
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 01:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD8B5167749
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 23:14:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7050C3B38D8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 23:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8033C2957CE;
-	Tue, 17 Jun 2025 23:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152E4298274;
+	Tue, 17 Jun 2025 23:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FFKswCHi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OUmhq80p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE531898E8;
-	Tue, 17 Jun 2025 23:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D28B295D85;
+	Tue, 17 Jun 2025 23:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750202064; cv=none; b=sak5dYEZpBVHOl8I95L6ZAojAsdJwIIP/Blp2eEa04WzkyPsf2YqAMLxNKD9pDAig1t/UbDKVkZ4+wimccQlctSgGKelczu06pxt9uxJ3NLCyNordHj3k8jfwfeZcSFElKLEQoDXO64ylhn20fESFQqIAjVW+TtoNtFGH1QPVAs=
+	t=1750202391; cv=none; b=Bvj+WIuOakfI9eNVlNRnyJHAwnkac4WlZbkh75xwTx3r/UC1uk+p2ll7POdh00zD++q4PLF14gSAasVlK3xiZWOsxQgHsU7bd6PHVRZulXKa4RetSu2mFyEhxi/8NBWtWYy5MEkr1oDG8SxOzbnzGvThJymNpQrlA7CZ55CBmU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750202064; c=relaxed/simple;
-	bh=Cunbq/fRkIIK20gW7uYxC8XS+0I3YTwbTImpnDIBVeQ=;
+	s=arc-20240116; t=1750202391; c=relaxed/simple;
+	bh=72RiHssNvDFQJNQq4LIcMB+q+Uc4lLwzNNUsDHHaPag=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EVZF0JXngt2Fd06tOygqWe9g+jNvXCsVmYe4Ja7phCBgCz2zsXHqLeVr3xSbjEt1CUrimRHSWcE5t7Bo5r8cUt6agJrIzPUZjgXD77sqmMqWdG6qq78Ju6+hXnk5NNo6VplMI/Mnp3bRJki6JHgQygzLwLLC1JCmahB+Y4oRLzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FFKswCHi; arc=none smtp.client-ip=209.85.215.179
+	 Content-Type:Content-Disposition:In-Reply-To; b=cESDcWhSvygWSHNC/DCYRSg4YmXynRCJ8UbHV0Ps7TuDa+8qF2VxQaJgeKFFdRs9WDV719BNA9UN7lIP7HqFc0IeJzt/1778JYJ1gTu46ovianGPFYa3shEbq10Dp+B6W/oYO3QP3H0O4Ft/fgnHXwRx7KluMV/yAT6XSfscGJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OUmhq80p; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b2c4476d381so141335a12.0;
-        Tue, 17 Jun 2025 16:14:22 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23602481460so61731955ad.0;
+        Tue, 17 Jun 2025 16:19:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750202062; x=1750806862; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1750202390; x=1750807190; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EGBYSwd2ZHfMGSOUy0pV5HM6pjaKicXfvLPu6XGQKPg=;
-        b=FFKswCHiZsexVzLRneN7TE8Rqvc4Q7Hzhpm3WyAJypXOVjChz+SKM+TAVvEhEiNsek
-         a0TJueteGjKnizccCn3a51hhh7G10/TzR4h4jfEsBJHbPDdv0FPCv1JyxX5FJIXNhfct
-         1VnK9gv2jMChQ1tHO1JGhY/SfN3dYv92uoAJO6/gYnUC2NS60L30anOrsfwe0MBlQ1tG
-         +FQtLLle+1xUUKFh94BeAW3/3ZLLXWFKhnMQ9oF58SN7Kq/XV4lvvVueHi4M12jZfsgl
-         BiWkMe64VPzHjeaRATfoPYmDgZJT+zir9B22lzR01CauKXIkARx0k7LW0uMhgNx5Zity
-         d8Qg==
+        bh=c8kqTpESSgpiUk9q9r1gwFAkl1Q36FcCmMv3qMR5ZJs=;
+        b=OUmhq80pZFqs0MbizXnBpqzixTOei6T/+6Dw2b6/SH1TKjqPCF+X0RBqs+JybuGefO
+         jAUuOE/3Oy1Rj03HdTRe06uyQ/icyKfnvzoIzecTh53z9NQ8jaJighs+j0CXdGc1zD8B
+         HuTP9MFfMWgc4wWgF0YOScTg9CLFbGswU+7gKteVdWHRRQ+tKRHofJymhsbTCsBQYV2g
+         uzRinzKzrNnAevquhcsnnuZ9/M0QzKtMMIarMzh/kNvfWIzc0crxRBI2UTw+qwsmEO07
+         DSFdnsFfIdXZZgfGglRWL78nge50de/W6b1RpNxRbfkrLzR+sNGWfTjqBo5WzT723w+r
+         SAwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750202062; x=1750806862;
+        d=1e100.net; s=20230601; t=1750202390; x=1750807190;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EGBYSwd2ZHfMGSOUy0pV5HM6pjaKicXfvLPu6XGQKPg=;
-        b=MkDdmtQdEkUfpvd9lZeM7i9W6aOJDxFlOmQQGOLPC0mUosMtkHGGXYBkAUr+O75SH/
-         5rKmLcZ3j2zLNCQYymMb2GZt+DgEa8flZ7N9bL6jFXyo5+wnWR0d0sG95W96OodCeQdc
-         DOalWHgmHdSpYjeumZe7ixPyh15xNyyuEtW3a6tiSTpSJMf2g/HcJdjYmGX52+9qUykr
-         6CuVNeHSyo8p8BcaVC6/CQtXfRQEoQbl1sPmlInZfbPCoNAyKUmnpFxkP3BN8OQFte4q
-         lno2PqJhaSi6TlNpuh6ub1LIyOyVoTkQbp72ScEPvZK9kHUiQcGRxb2FG5d5MWRLUhxW
-         4KIA==
-X-Forwarded-Encrypted: i=1; AJvYcCU07TRAR8tp71/z4euPy4LueDj14uJK5dC+HMASKaZA1kFyBCx03w65ye8xFL164taT9eCIGTAsklUTZlYG@vger.kernel.org, AJvYcCXukwK9iuMnPGtEINU0Lk3YwzP8SbC8qwfQ7HYg95CpFtvzAcd51KX1uCm+/uQNG53thN5eEkkSBkwG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXxnkWWB+en0ImjwnjdcUAGAOfKUH53aS2d0822ds0dAcpj5BF
-	WeCBKYSYPqlD9E669upctzqtJQm9dM9Cdjy0x57yDXKxSZk1PUvDezdw
-X-Gm-Gg: ASbGncu0W/3IX8Gb5JF0EBN+P+/72/9lafwgRr1C1PtUoZKjAdovuZV5xU2RvSKILvN
-	VDfyuFKZvXduAk920voCn6ewjoz3yIxX3DaLhJLjwgni5Fy89J8PuSRRgC823Zu/gjcxyW1XAvf
-	9AzuXvd4sxNry4KjDDaejIgrUdNjssX1mYYIqUoSdH1nGxaXAA+bcT/c4JbSDVyic9uBvQ2HXm3
-	qC4KDEEsQdDgMqKQoUOVUrBKcz8K7tBqCgvzG8Tc4dRxKWLwdvBwOrUkJyBFUf31TyJonB4xz3T
-	09GomlOy3VO6dMgEmlaN4teIXNoJf4hFJNO0qsMguVstEq7586tD/djrc/0Zkg==
-X-Google-Smtp-Source: AGHT+IHV7psFrMmfaxJ1IV6J338iQx2HCKSnK63uEQGDNoDbLglPoYovMqJVxLQHE0+ZHMqLW7PAuQ==
-X-Received: by 2002:a17:903:15c7:b0:235:1b50:7245 with SMTP id d9443c01a7336-237c2047aafmr5335835ad.7.1750202062010;
-        Tue, 17 Jun 2025 16:14:22 -0700 (PDT)
+        bh=c8kqTpESSgpiUk9q9r1gwFAkl1Q36FcCmMv3qMR5ZJs=;
+        b=Rw9CSdkbKzuM2GRUXMOdnzH6zho4eEi6gV/fNKNyBSTgoQBa+4/BuEc39iO8KdRuTw
+         or7SlpKvwaRu+F1qZbdS1ftVgtApcG0pekSgOavkpoMNen+6t+IJLxlp0LXf1Np50Fah
+         MnxgpgwHuEXFIYEGzMpmro5k/ilx3uVbp8H9Nqc13N0AD0UnkqgcFPZ5IoZET4yJcazK
+         HQM3U9IJ8sRlHcp9vlgIQ3/8IdjWpk1+RRWwQCAIiE1roOEQLXF91gThRDzW1ZYC+Y4h
+         5aXY03DY/W/tdOIJZi0Ir1R53nn7LTY/HSeg9dKe4AxEDMTmHrpfMFya07mRpo3S9anO
+         oVPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUMNjzHheEE3Vgh8p+bOBPcdwuS/2Kt+vZacRC4V9jsReFLKSVu5mKccluvQ4+dFEQsCEZAnCGTutHv@vger.kernel.org, AJvYcCUoZ6FCTse48JDcn7DE+gYiJ9YH17CjhCk1xfqgf7m2BhmMlN5Q2ln8KUNjCZGtZpgOfrAzVW5tsKYhIVnc@vger.kernel.org, AJvYcCVjXKBa4HPR97w3ZmO7uK9slD6j+h6W13j5UpZYQoozK4BhFmOcUHL89v0RcQaGcg4bZ8urjResBT4P@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ5ApPoUl+44P9547TzPU7Qxik/aM+a4IAZcfYn/aDWNnFFKJe
+	5JcjA9g9J0u14Pe4vrLDinbH2n1+Kn05tGwn0ZZcFiKG0H+mFnad9Alb
+X-Gm-Gg: ASbGnctRsPGcf7ufaQORvMk97PaecsxKLfyzUdrf618KE/Jf1t7kBygXhdWfLXT1TbY
+	n/RZcx2IVCUuKNAXVf1QsDZiMFkfM1UH1DQ1hDF1mgJ7jI1khd709Ne47yHG5+V45Otma5TNxY8
+	boNGhyLFtHu4PX708Q76ZM4xIt/VeQ3A5blIexpqK8kqpjPpSPvwzz6uHrBN5NV/qiZZJCPRIQz
+	Ajx6vP8GTz6YrE8T+F+++7IT80WSuxjZS+hXl1Ac6YSqOx9JeniSBZxWVXkdULbeGa5dZEmyTQz
+	j6y58Id2ncpwF4JTO9J5jRrXFBJNDD12pzacZrFu2a8ocrKtVtNQnYhOodGNjg==
+X-Google-Smtp-Source: AGHT+IHnlTzH8mh8gEyI3HuM9I4iPM9eqDaoTtYmvsv4BhKj8WV44E0nTVYmDn94/Ci0M7hmdQfhAg==
+X-Received: by 2002:a17:902:f68e:b0:234:cf24:3be8 with SMTP id d9443c01a7336-2366b12f541mr253789605ad.28.1750202389638;
+        Tue, 17 Jun 2025 16:19:49 -0700 (PDT)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365de78169sm86179965ad.123.2025.06.17.16.14.21
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365d88c239sm86423235ad.11.2025.06.17.16.19.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 16:14:21 -0700 (PDT)
-Date: Wed, 18 Jun 2025 07:13:05 +0800
+        Tue, 17 Jun 2025 16:19:49 -0700 (PDT)
+Date: Wed, 18 Jun 2025 07:18:32 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Ze Huang <huangze@whut.edu.cn>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Yixun Lan <dlan@gentoo.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Chen Wang <unicorn_wang@outlook.com>, sophgo@lists.linux.dev, 
-	Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: reset: sophgo: Add CV1800B support
-Message-ID: <jwehvuaywhkmrnmjxz4s6vv45seof5aihvb33upwbjv73bt5ak@e6yt2wdo2mzd>
-References: <20250617070144.1149926-1-inochiama@gmail.com>
- <20250617070144.1149926-2-inochiama@gmail.com>
- <175017325268.2418026.3599473248491336605.robh@kernel.org>
+To: Rob Herring <robh@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, sophgo@lists.linux.dev, Jingbao Qiu <qiujingbao.dlmu@gmail.com>, 
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Move sophgo,cv1800b-rtc to rtc directory
+Message-ID: <mig7k5zyhmata6uvjwlwlompwf22qffwvma2nhjww3cmsmxnas@y2t5ukucs76q>
+References: <20250608224252.3902421-1-robh@kernel.org>
+ <ywln42bb3i5hyzlsmfbx3xt2kjbefqmcxytcqxdcgah77gcesi@2cdw3cgxbg4c>
+ <20250617130924.GA1678432-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,38 +92,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <175017325268.2418026.3599473248491336605.robh@kernel.org>
+In-Reply-To: <20250617130924.GA1678432-robh@kernel.org>
 
-On Tue, Jun 17, 2025 at 10:14:30AM -0500, Rob Herring (Arm) wrote:
-> 
-> On Tue, 17 Jun 2025 15:01:39 +0800, Inochi Amaoto wrote:
-> > Add bindings for the reset generator on the SOPHGO CV1800B
-> > RISC-V SoC.
+On Tue, Jun 17, 2025 at 08:09:24AM -0500, Rob Herring wrote:
+> On Mon, Jun 09, 2025 at 06:49:38AM +0800, Inochi Amaoto wrote:
+> > On Sun, Jun 08, 2025 at 05:42:51PM -0500, Rob Herring (Arm) wrote:
+> > > The $id path for the sophgo,cv1800b-rtc binding was missing part of the
+> > > path 'soc'. However, the correct place for RTC bindings (even if it's
+> > > also a "syscon") is the rtc directory, so move the binding there while
+> > > fixing the $id value.
+> > > 
+> > > Fixes: 76517429dbfd ("dt-bindings: soc: sophgo: add RTC support for Sophgo CV1800 series")
+> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > > ---
+> > >  .../bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml        | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >  rename Documentation/devicetree/bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml (96%)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > similarity index 96%
+> > > rename from Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+> > > rename to Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > index 5cf186c396c9..c695d2ff9fcc 100644
+> > > --- a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
+> > > +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
+> > > @@ -1,7 +1,7 @@
+> > >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > >  %YAML 1.2
+> > >  ---
+> > > -$id: http://devicetree.org/schemas/sophgo/sophgo,cv1800b-rtc.yaml#
+> > > +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800b-rtc.yaml#
+> > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >  
+> > >  title: Real Time Clock of the Sophgo CV1800 SoC
+> > > -- 
+> > > 2.47.2
+> > > 
 > > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  .../devicetree/bindings/reset/sophgo,sg2042-reset.yaml        | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > 
+> > As the rtc syscon has a sub function for remoteproc, is it proper to
+> > move this binding into rtc subsystem?
 > 
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> 
-> Missing tags:
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Does that affect the binding (is there more to add)? Looks like an RTC 
+> from the binding.
 > 
 
-I removed this tag due to the the small change to use enum.
-It seems like that it is not necessary for such a small 
-change. I will keep the tag for the next time. Thanks for
-your explanation.
+I think at least "resets" property may be added for the this, but I am
+not sure whether there will be more.
 
 Regards,
 Inochi
-
 
