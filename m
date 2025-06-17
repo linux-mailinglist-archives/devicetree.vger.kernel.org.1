@@ -1,144 +1,223 @@
-Return-Path: <devicetree+bounces-186876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6491ADDF84
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 01:20:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D70DADE07D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:16:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7050C3B38D8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 23:19:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9A39189C3D9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 01:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152E4298274;
-	Tue, 17 Jun 2025 23:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7B813C3CD;
+	Wed, 18 Jun 2025 01:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OUmhq80p"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="l+yVhniC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D28B295D85;
-	Tue, 17 Jun 2025 23:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E967522F
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 01:16:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750202391; cv=none; b=Bvj+WIuOakfI9eNVlNRnyJHAwnkac4WlZbkh75xwTx3r/UC1uk+p2ll7POdh00zD++q4PLF14gSAasVlK3xiZWOsxQgHsU7bd6PHVRZulXKa4RetSu2mFyEhxi/8NBWtWYy5MEkr1oDG8SxOzbnzGvThJymNpQrlA7CZ55CBmU0=
+	t=1750209393; cv=none; b=Lgeqbo1k905PRx7AMHHVkoqZoIWlq8YE8vnIiokk1U6f/i5xQIm2jrI0JGkZRVqqaV4vcxFO5gOL3jM0fMZFLvaIR0z2PvUj4H6mWHMK/q7M2C3VgRWXLT//qDwLtYmAlLvDGIbAk6l+JH3FLjTnSECDtpaiEkDOOx06Si+07nQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750202391; c=relaxed/simple;
-	bh=72RiHssNvDFQJNQq4LIcMB+q+Uc4lLwzNNUsDHHaPag=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cESDcWhSvygWSHNC/DCYRSg4YmXynRCJ8UbHV0Ps7TuDa+8qF2VxQaJgeKFFdRs9WDV719BNA9UN7lIP7HqFc0IeJzt/1778JYJ1gTu46ovianGPFYa3shEbq10Dp+B6W/oYO3QP3H0O4Ft/fgnHXwRx7KluMV/yAT6XSfscGJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OUmhq80p; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23602481460so61731955ad.0;
-        Tue, 17 Jun 2025 16:19:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750202390; x=1750807190; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=c8kqTpESSgpiUk9q9r1gwFAkl1Q36FcCmMv3qMR5ZJs=;
-        b=OUmhq80pZFqs0MbizXnBpqzixTOei6T/+6Dw2b6/SH1TKjqPCF+X0RBqs+JybuGefO
-         jAUuOE/3Oy1Rj03HdTRe06uyQ/icyKfnvzoIzecTh53z9NQ8jaJighs+j0CXdGc1zD8B
-         HuTP9MFfMWgc4wWgF0YOScTg9CLFbGswU+7gKteVdWHRRQ+tKRHofJymhsbTCsBQYV2g
-         uzRinzKzrNnAevquhcsnnuZ9/M0QzKtMMIarMzh/kNvfWIzc0crxRBI2UTw+qwsmEO07
-         DSFdnsFfIdXZZgfGglRWL78nge50de/W6b1RpNxRbfkrLzR+sNGWfTjqBo5WzT723w+r
-         SAwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750202390; x=1750807190;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c8kqTpESSgpiUk9q9r1gwFAkl1Q36FcCmMv3qMR5ZJs=;
-        b=Rw9CSdkbKzuM2GRUXMOdnzH6zho4eEi6gV/fNKNyBSTgoQBa+4/BuEc39iO8KdRuTw
-         or7SlpKvwaRu+F1qZbdS1ftVgtApcG0pekSgOavkpoMNen+6t+IJLxlp0LXf1Np50Fah
-         MnxgpgwHuEXFIYEGzMpmro5k/ilx3uVbp8H9Nqc13N0AD0UnkqgcFPZ5IoZET4yJcazK
-         HQM3U9IJ8sRlHcp9vlgIQ3/8IdjWpk1+RRWwQCAIiE1roOEQLXF91gThRDzW1ZYC+Y4h
-         5aXY03DY/W/tdOIJZi0Ir1R53nn7LTY/HSeg9dKe4AxEDMTmHrpfMFya07mRpo3S9anO
-         oVPw==
-X-Forwarded-Encrypted: i=1; AJvYcCUMNjzHheEE3Vgh8p+bOBPcdwuS/2Kt+vZacRC4V9jsReFLKSVu5mKccluvQ4+dFEQsCEZAnCGTutHv@vger.kernel.org, AJvYcCUoZ6FCTse48JDcn7DE+gYiJ9YH17CjhCk1xfqgf7m2BhmMlN5Q2ln8KUNjCZGtZpgOfrAzVW5tsKYhIVnc@vger.kernel.org, AJvYcCVjXKBa4HPR97w3ZmO7uK9slD6j+h6W13j5UpZYQoozK4BhFmOcUHL89v0RcQaGcg4bZ8urjResBT4P@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ5ApPoUl+44P9547TzPU7Qxik/aM+a4IAZcfYn/aDWNnFFKJe
-	5JcjA9g9J0u14Pe4vrLDinbH2n1+Kn05tGwn0ZZcFiKG0H+mFnad9Alb
-X-Gm-Gg: ASbGnctRsPGcf7ufaQORvMk97PaecsxKLfyzUdrf618KE/Jf1t7kBygXhdWfLXT1TbY
-	n/RZcx2IVCUuKNAXVf1QsDZiMFkfM1UH1DQ1hDF1mgJ7jI1khd709Ne47yHG5+V45Otma5TNxY8
-	boNGhyLFtHu4PX708Q76ZM4xIt/VeQ3A5blIexpqK8kqpjPpSPvwzz6uHrBN5NV/qiZZJCPRIQz
-	Ajx6vP8GTz6YrE8T+F+++7IT80WSuxjZS+hXl1Ac6YSqOx9JeniSBZxWVXkdULbeGa5dZEmyTQz
-	j6y58Id2ncpwF4JTO9J5jRrXFBJNDD12pzacZrFu2a8ocrKtVtNQnYhOodGNjg==
-X-Google-Smtp-Source: AGHT+IHnlTzH8mh8gEyI3HuM9I4iPM9eqDaoTtYmvsv4BhKj8WV44E0nTVYmDn94/Ci0M7hmdQfhAg==
-X-Received: by 2002:a17:902:f68e:b0:234:cf24:3be8 with SMTP id d9443c01a7336-2366b12f541mr253789605ad.28.1750202389638;
-        Tue, 17 Jun 2025 16:19:49 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365d88c239sm86423235ad.11.2025.06.17.16.19.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 16:19:49 -0700 (PDT)
-Date: Wed, 18 Jun 2025 07:18:32 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Rob Herring <robh@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, sophgo@lists.linux.dev, Jingbao Qiu <qiujingbao.dlmu@gmail.com>, 
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Move sophgo,cv1800b-rtc to rtc directory
-Message-ID: <mig7k5zyhmata6uvjwlwlompwf22qffwvma2nhjww3cmsmxnas@y2t5ukucs76q>
-References: <20250608224252.3902421-1-robh@kernel.org>
- <ywln42bb3i5hyzlsmfbx3xt2kjbefqmcxytcqxdcgah77gcesi@2cdw3cgxbg4c>
- <20250617130924.GA1678432-robh@kernel.org>
+	s=arc-20240116; t=1750209393; c=relaxed/simple;
+	bh=7ce7jAhwqOB5zHH/zH5Kg3MgJ/DeiNlQbq24eO3eKrg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=Oo9VmzKWEFaR5o89Fqh2FYIcLMnJZmMRoblOoMdqGB7e2aF7a7gqhPDP2HQB3A4Mf3IF6Cc9adjn1tNsQC9Tn4dQKMkdt/MMCgQgtKlexfcxIKnPByCnFRghrclJ01ZNSLIP60ZxX1lcnnXAKuoxTwkJ0viUpn3P/JDPF0kh5R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=l+yVhniC; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250618011627epoutp03b99d6fbead1c018e898d7a9917bac3ec~J-io6wvpL1550915509epoutp03k
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 01:16:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250618011627epoutp03b99d6fbead1c018e898d7a9917bac3ec~J-io6wvpL1550915509epoutp03k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1750209387;
+	bh=wRMlbA7pPv12jHHuru+v6fogzQ7XIEeseEz9D/+56lE=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=l+yVhniC9cyeqVRljDADHfge3OKpyASwHOW+U7TBP0uMGdfB1nGwsEw0RqzoqA6Q5
+	 nSrtlPyQlIpZO1Io/lCVhlHfXxn14twINn5Lsjg34GcEW0964DVJpPiBBBE2S+xDM0
+	 kf15+rMvIL/djwzKJyK7Idqt4v8UPry+HFNRsQTQ=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250618011626epcas5p2ca60f5bcd17d26af9261e5b0e56a1ee6~J-ino0dRK1703617036epcas5p25;
+	Wed, 18 Jun 2025 01:16:26 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.176]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4bMQmk6Hglz3hhTH; Wed, 18 Jun
+	2025 01:16:22 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250617171023epcas5p3e6e775a8c375edeca1ef9dd0ee905a50~J46PaZeUn1047610476epcas5p3u;
+	Tue, 17 Jun 2025 17:10:23 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250617171020epsmtip23ef4349f3a07b2221f3be0969ba87e87~J46Mk13VN2161021610epsmtip2U;
+	Tue, 17 Jun 2025 17:10:19 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Neil Armstrong'" <neil.armstrong@linaro.org>, <vkoul@kernel.org>,
+	<kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>
+Cc: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
+	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <9455a4e1-6352-4832-ac9f-2816f889c3a4@linaro.org>
+Subject: RE: [PATCH v3 9/9] arm64: dts: exynos: ExynosAutov920: add USB and
+ USB SS combo phy nodes
+Date: Tue, 17 Jun 2025 22:40:18 +0530
+Message-ID: <000001dbdfaa$b605f640$2211e2c0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250617130924.GA1678432-robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQNTkACKxnsdZBPuyPiYuNftoBZF1gGRKuf5ApVTYEcCparjMbDhz82w
+Content-Language: en-in
+X-CMS-MailID: 20250617171023epcas5p3e6e775a8c375edeca1ef9dd0ee905a50
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca
+References: <20250613055613.866909-1-pritam.sutar@samsung.com>
+	<CGME20250613055106epcas5p46a2e5e2d6f0e8811644643f6282fd9ca@epcas5p4.samsung.com>
+	<20250613055613.866909-10-pritam.sutar@samsung.com>
+	<9455a4e1-6352-4832-ac9f-2816f889c3a4@linaro.org>
 
-On Tue, Jun 17, 2025 at 08:09:24AM -0500, Rob Herring wrote:
-> On Mon, Jun 09, 2025 at 06:49:38AM +0800, Inochi Amaoto wrote:
-> > On Sun, Jun 08, 2025 at 05:42:51PM -0500, Rob Herring (Arm) wrote:
-> > > The $id path for the sophgo,cv1800b-rtc binding was missing part of the
-> > > path 'soc'. However, the correct place for RTC bindings (even if it's
-> > > also a "syscon") is the rtc directory, so move the binding there while
-> > > fixing the $id value.
-> > > 
-> > > Fixes: 76517429dbfd ("dt-bindings: soc: sophgo: add RTC support for Sophgo CV1800 series")
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > > ---
-> > >  .../bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml        | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >  rename Documentation/devicetree/bindings/{soc/sophgo => rtc}/sophgo,cv1800b-rtc.yaml (96%)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
-> > > similarity index 96%
-> > > rename from Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
-> > > rename to Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
-> > > index 5cf186c396c9..c695d2ff9fcc 100644
-> > > --- a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-rtc.yaml
-> > > +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800b-rtc.yaml
-> > > @@ -1,7 +1,7 @@
-> > >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > >  %YAML 1.2
-> > >  ---
-> > > -$id: http://devicetree.org/schemas/sophgo/sophgo,cv1800b-rtc.yaml#
-> > > +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800b-rtc.yaml#
-> > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >  
-> > >  title: Real Time Clock of the Sophgo CV1800 SoC
-> > > -- 
-> > > 2.47.2
-> > > 
-> > 
-> > As the rtc syscon has a sub function for remoteproc, is it proper to
-> > move this binding into rtc subsystem?
-> 
-> Does that affect the binding (is there more to add)? Looks like an RTC 
-> from the binding.
-> 
+Hi Neil,=20
 
-I think at least "resets" property may be added for the this, but I am
-not sure whether there will be more.
+> -----Original Message-----
+> From: neil.armstrong=40linaro.org <neil.armstrong=40linaro.org>
+> Sent: 13 June 2025 02:42 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; vkoul=40kernel.org=
+;
+> kishon=40kernel.org; robh=40kernel.org; krzk+dt=40kernel.org;
+> conor+dt=40kernel.org; alim.akhtar=40samsung.com; andre.draszik=40linaro.=
+org;
+> peter.griffin=40linaro.org; kauschluss=40disroot.org;
+> ivo.ivanov.ivanov1=40gmail.com; m.szyprowski=40samsung.com;
+> s.nawrocki=40samsung.com
+> Cc: linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-
+> samsung-soc=40vger.kernel.org; rosa.pila=40samsung.com;
+> dev.tailor=40samsung.com; faraz.ata=40samsung.com;
+> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v3 9/9=5D arm64: dts: exynos: ExynosAutov920: add U=
+SB
+> and USB SS combo phy nodes
+>=20
+> On 13/06/2025 07:56, Pritam Manohar Sutar wrote:
+> > Update the USB 3.1 DRD controller and USB31DRD phy nodes to support SS
+> > combo phy for this soc.
+> >
+> > The USB 3.1 DRD controller has the following features:
+> > * DWC3 compatible
+> > * compliant with both USB device 3.1 and USB device 2.0 standards
+> > * compliant with USB host 3.1 and USB host 2.0 standards
+> > * supports USB device 3.1 and USB device 2.0 interfaces
+> > * supports USB host 3.1 and USB host 2.0 interfaces
+> > * full-speed (12 Mbps) and high-speed (480 Mbps) modes with USB device
+> >    2.0 interface
+> > * super-speed (5 Gbps) mode with USB device 3.1 Gen1 interface
+> > * super-speed plus (10 Gbps) mode with USB device 3.1 Gen2 interface
+> > * single USB port which can be used for USB 3.1 or USB 2.0
+> > * on-chip USB PHY transceiver
+> > * supports up to 16 bi-directional endpoints
+> > * compliant with xHCI 1.1 specification
+> >
+> > USB3.1 SSP+(10Gbps) is supported in this commit and SS phy in combo
+> > phy only supports PIPE3 interface and it is added in index 0 of SS phy.
+> > UTMI+ and PIPE3 PHY interfaces are specified in =22phys=22 property,
+> > UTMI+ (index 0 HS phy) and PIPE3 (index 0 SS phy).
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > ---
+> >   .../arm64/boot/dts/exynos/exynosautov920-sadk.dts =7C  4 ++++
+> >   arch/arm64/boot/dts/exynos/exynosautov920.dtsi    =7C 15
+> +++++++++++++--
+> >   2 files changed, 17 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > index a21386bd9af3..40588f7c9998 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > =40=40 -88,6 +88,10 =40=40 &xtcxo =7B
+> >   =7D;
+> >
+> >   /* usb */
+> > +&usbdrd31_ssphy =7B
+> > +	status =3D =22okay=22;
+> > +=7D;
+> > +
+> >   &usbdrd31_hsphy =7B
+> >   	status =3D =22okay=22;
+> >   =7D;
+> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > index 4efc005cae80..5ee7fad346b9 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > =40=40 -1048,6 +1048,17 =40=40 pinctrl_hsi1: pinctrl=4016450000 =7B
+> >   			interrupts =3D <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>;
+> >   		=7D;
+> >
+> > +		usbdrd31_ssphy: phy=4016480000 =7B
+> > +			compatible =3D =22samsung,exynosautov920-usb31drd-
+> ssphy=22;
+> > +			reg =3D <0x16480000 0x0200>;
+> > +			clocks =3D <&cmu_hsi1 CLK_MOUT_HSI1_NOC_USER>,
+> > +				 <&cmu_hsi1 CLK_MOUT_HSI1_USBDRD>;
+> > +			clock-names =3D =22phy=22, =22ref=22;
+> > +			=23phy-cells =3D <1>;
+> > +			samsung,pmu-syscon =3D <&pmu_system_controller>;
+> > +			status =3D =22disabled=22;
+> > +		=7D;
+> > +
+> >   		usbdrd31_hsphy: phy=4016490000 =7B
+> >   			compatible =3D =22samsung,exynosautov920-usbdrd-
+> hsphy=22;
+> >   			reg =3D <0x16490000 0x0200>;
+> > =40=40 -1109,8 +1120,8 =40=40 usbdrd31_dwc3: usb=400 =7B
+> >   					 <&cmu_hsi1
+> CLK_MOUT_HSI1_USBDRD>;
+> >   				clock-names =3D =22ref=22, =22susp_clk=22;
+> >   				interrupts =3D <GIC_SPI 491
+> IRQ_TYPE_LEVEL_HIGH>;
+> > -				phys =3D <&usbdrd31_hsphy 0>;
+> > -				phy-names =3D =22usb2-phy=22;
+> > +				phys =3D <&usbdrd31_hsphy 0>,
+> <&usbdrd31_ssphy 0>;
+> > +				phy-names =3D =22usb2-phy=22, =22usb3-phy=22;
+> >   				snps,has-lpm-erratum;
+> >   				snps,dis_u2_susphy_quirk;
+> >   				snps,dis_u3_susphy_quirk;
+>=20
+> I think at least patch 6 & 9 should be squashed.
+>=20
+
+Patch 6 and 9 are posted to add support for HS and SS phys in combo phy sep=
+arately.
+We will squash them in next version of patch-set (v4).=20
+
+> Neil
+
+Thank you.
 
 Regards,
-Inochi
+Pritam
+
 
