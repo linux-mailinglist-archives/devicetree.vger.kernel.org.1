@@ -1,163 +1,118 @@
-Return-Path: <devicetree+bounces-186456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B331DADBEFF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 04:17:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18928ADBF51
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 04:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 225A0174CC7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 02:17:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98C0F7A1684
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 02:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1EA230BEE;
-	Tue, 17 Jun 2025 02:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90031FECAB;
+	Tue, 17 Jun 2025 02:48:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lYGavRez"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXAdnN/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB4CA2116F6;
-	Tue, 17 Jun 2025 02:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BCD11624DD;
+	Tue, 17 Jun 2025 02:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750126609; cv=none; b=TBmLYBeMSjv7mTZDRPnBVBYAMH9ScxDTCqaUpTcEBgHhqBPFKX7Ba+zkL+nIB66rh90F2MPfo4VXKqH8MEy4fbVSw3GrMYVYjV4aIxANB002Hn3VlHLdEIYD1hD4rdTzay7Lv2p44RTej9ZwK+uVSkmyHpd2cdT0dGjU5gPWd9o=
+	t=1750128523; cv=none; b=sTt0rXg/W7TPHgeIKuxb5igQzmDZb76YgriUv0YzR0mAlcMNWsn8dHhrNgtMxzAGe3y+YPmBdP3IL4He8qu3pSD24ioXUAnE3imChjgPtb6Fuui981zFAV2QL7z8brxSlCW/qb5Hc3ul0ggE5eumPL9YCBSxwr2FIJOAyu4oPqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750126609; c=relaxed/simple;
-	bh=TOz77rK64wuOst6edr14gFbSvvkRGSUgwmdFWS0G5sY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Fa2wjOv644ainzjqBBLBOfaJ8ba6lk6N32pG4kjuM8OzTA4sYsTviBSueYcEvKSXkvan1TxtBGAkLWOYVnG8XI8o2i6LXRTKnEEAEJmYifeohLGchpwHgDVCiblcZ+O9AfnBSWuVinX3Fmi09abRrelG4q0VSYnRUXcdcWP+GHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lYGavRez; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GKCPif024672;
-	Tue, 17 Jun 2025 02:16:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=RZDbmWCB7vB
-	1sSjKbroaoJW/AdWelJ+QzFQ3matJB+8=; b=lYGavRez9c0TlYCUd7NgXc1VLYy
-	6HHuMwguTA3dC2i7ph0begdNuEMMzh7PbRZu4KYXEJOTSdGlgDAXFaFN7kdOoZso
-	4643BZL95jShAUBG0hJsGNn4IIRdbECDO8vAj+/FgdarW5re5VP8tm7fcx0x+iCe
-	0XG4fj5VUgDdRZ3DFQ6YAMzplNuIcXp4PquQfMukKiHXoJod9zeq4d2ZhyLa6Ijr
-	xe5+xx+jo3yxKuDlVMNpT0Srl4UURXiCnWh6Mmo0CC4MnfjNtRaVxy6LamINbbS4
-	Iw9gI4jCF6wkbJPLDeUgISvMnnauQxB79BAO6SbZmHO2q86JzbVeFN72j4A==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4792c9xfwr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 02:16:31 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55H2GTIS014424;
-	Tue, 17 Jun 2025 02:16:29 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 479jt4gb0f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 02:16:29 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55H2GSxY014406;
-	Tue, 17 Jun 2025 02:16:28 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 55H2GSgK014398
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 02:16:28 +0000
-Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id D86B2365F; Tue, 17 Jun 2025 10:16:26 +0800 (CST)
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Ziyue Zhang <quic_ziyuzhan@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sa8775p: add link_down reset for pcie
-Date: Tue, 17 Jun 2025 10:16:17 +0800
-Message-Id: <20250617021617.2793902-5-quic_ziyuzhan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250617021617.2793902-1-quic_ziyuzhan@quicinc.com>
-References: <20250617021617.2793902-1-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1750128523; c=relaxed/simple;
+	bh=DklztjJ2Mw4DZTzCJXFIusPWDE6iqwE0hRAVc+zb/5M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EZzj2HyJuKdABuGcHBi7qjqpiFbTxmYBaLXNHOBS12H5YDq67L6xCuuq0AGHFzNm3bmk8JcazDL42k9fbMCWjtWtf0/OhZbdlrbmZGkqkEqXTIKaGi2IomYAVhXOeI7L6OK78y9IeHHu3jtMY1Yj95BmfSTzKJGDRgRosZCaigI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXAdnN/V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1410FC4CEEA;
+	Tue, 17 Jun 2025 02:48:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750128523;
+	bh=DklztjJ2Mw4DZTzCJXFIusPWDE6iqwE0hRAVc+zb/5M=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RXAdnN/VH4whkEDHi0WhWsgK0TD7IDzbqiegcOr8PAe/4GJk+joOalb9pVGxfU9W8
+	 vzRlHw2yZ9Y3UzN5eZkuCRmU/GV/Uj3OvEZRx0zow+BdXW+jLfvEDF3o7r8+QEH+/X
+	 WlwW9rnX/FR09001rWLFG8GucBxi64Yc0JZanNOWuq+f/8nC4NE1nVM58O1LbIcPtr
+	 Nv6HAJCQ7SE5N99mdASgfCpoIAGvR8PghnVFgSrZLGB0ZM55r8BFCXXCfjKEbCIaSY
+	 ZmJtjLPb3sRjnj5ep7Ji4LLWzUFJK8++bzt8FnVLgxNsw/Gs7Rv6GqvZ2Ty4kYuMwm
+	 bX8YIABlGxAWw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F41F2C71155;
+	Tue, 17 Jun 2025 02:48:42 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/3] support for amlogic the new SPI IP
+Date: Tue, 17 Jun 2025 10:48:35 +0800
+Message-Id: <20250617-spisg-v2-0-51a605a84bd5@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 55xi-o5Q5aD3wGlIU2KhuoyFd0gCW1HS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDAxOSBTYWx0ZWRfX6iV6m1gPECdG
- tWaEfsT5BeTDowgTlMYUpZUGMk/onRB8RcD9jiICzv4+BFn5QFo0qusALwSxVU/h8NxtRih+Sz+
- JH2mnczdQ/07oxdXKvlcNFuQ5BEb/G/lx+gpIIWPB+QHYcU4zGD1nG+jBXCGdtShvKHbiagP6J7
- VTbjQCGpxala2mYYpjL/17P1fZwQCuNvJi5Npd48ZQhFl5McKPNsMvbZ9adEh5kxirLMPYx01/2
- X+S2BaYB4fminOae+21/2CZCU9J8r6a8uuzY0wQiP9NMUeUNf1VrSS9luDld5ge5Xv49vjTP1ms
- 1mWTtnM3SD//975bcOOYESUqd54tup7LMZGgem8FTljt3ViZCC1cF6t0PJ4l0xD6c7+3sm8aNYy
- plbLi6OQ1rCe0wGCEK8i76EATTBe8ZLHRhkqsjr4YYGBZhqDPVfWvQwI7G7TsfEccCLrhbqM
-X-Proofpoint-ORIG-GUID: 55xi-o5Q5aD3wGlIU2KhuoyFd0gCW1HS
-X-Authority-Analysis: v=2.4 cv=etffzppX c=1 sm=1 tr=0 ts=6850cfff cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=UMluCPnEzjiUAf4N7sYA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-17_01,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 adultscore=0 spamscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506170019
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIPXUGgC/zXMQQ6DIBCF4auYWZcGsFh11Xs0LhBGnKSKgYa0M
+ dy91LTL/+Xl2yFiIIzQVzsETBTJryXkqQIz69UhI1saJJeKN7xmcaPo2LWdpGhaiaM2UL5bwIl
+ eh3MfSs8Unz68DzaJ7/oXLj8hCcaZarvajtjZTtU3vTy8I3M2foEh5/wBvye3UZwAAAA=
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750128521; l=1440;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=DklztjJ2Mw4DZTzCJXFIusPWDE6iqwE0hRAVc+zb/5M=;
+ b=8h9iC9im/B3MsOYxsjoF/SsNde6GwLGzHa0m3zbNfwkanuyQJc2YiiDB/4mkEiGbxoWFHVw3a
+ mrUv4z5DSneBIlVg5e9geBhXGLt5rG9DeNZfOReOCIDhe1z5P9+zp4m
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-SA8775p supports 'link_down' reset on hardware, so add it for both pcie0
-and pcie1, which can provide a better user experience.
+Introduced support for the new SPI IP (SPISG). The SPISG is
+a communication-oriented SPI controller from Amlogic,supporting
+three operation modes: PIO, block DMA, and scatter-gather DMA.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Add the drivers and device tree bindings corresponding to the SPISG.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+Changes in v2:
+- Use regmap to operation register and drop bitfied define.
+- Use "SPISG" prefix intead of "SPICC", and declare clock div table in the spisg_device. 
+- Delete other power operation functions except for runtime_supspend and runtime_resume.
+- Fix some format corrections.
+- Link to v1: https://lore.kernel.org/r/20250604-spisg-v1-0-5893dbe9d953@amlogic.com
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index d7248014368b..c8ce3d42c894 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -7152,8 +7152,11 @@ pcie0: pcie@1c00000 {
- 		iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
- 			    <0x100 &pcie_smmu 0x0001 0x1>;
- 
--		resets = <&gcc GCC_PCIE_0_BCR>;
--		reset-names = "pci";
-+		resets = <&gcc GCC_PCIE_0_BCR>,
-+			 <&gcc GCC_PCIE_0_LINK_DOWN_BCR>;
-+		reset-names = "pci",
-+			      "link_down";
-+
- 		power-domains = <&gcc PCIE_0_GDSC>;
- 
- 		phys = <&pcie0_phy>;
-@@ -7312,8 +7315,11 @@ pcie1: pcie@1c10000 {
- 		iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
- 			    <0x100 &pcie_smmu 0x0081 0x1>;
- 
--		resets = <&gcc GCC_PCIE_1_BCR>;
--		reset-names = "pci";
-+		resets = <&gcc GCC_PCIE_1_BCR>,
-+			 <&gcc GCC_PCIE_1_LINK_DOWN_BCR>;
-+		reset-names = "pci",
-+			      "link_down";
-+
- 		power-domains = <&gcc PCIE_1_GDSC>;
- 
- 		phys = <&pcie1_phy>;
+---
+Sunny Luo (2):
+      dt-bindings: spi: Add binding document of Amlogic SPISG controller
+      spi: Add Amlogic SPISG driver
+
+Xianwei Zhao (1):
+      MAINTAINERS: Add an entry for Amlogic spi driver
+
+ .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  |  55 ++
+ MAINTAINERS                                        |   9 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-amlogic-spisg.c                    | 878 +++++++++++++++++++++
+ 5 files changed, 952 insertions(+)
+---
+base-commit: bd30b995df8fd053e13d10f78dbc7b2fa5ed1aae
+change-id: 20250603-spisg-78f21682ebac
+
+Best regards,
 -- 
-2.34.1
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
