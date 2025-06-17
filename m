@@ -1,161 +1,181 @@
-Return-Path: <devicetree+bounces-186623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB47ADC9A2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E948ADC9BC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BB6B3B6162
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:40:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9FE03B690A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:44:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725982DBF7C;
-	Tue, 17 Jun 2025 11:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF3C2DBF46;
+	Tue, 17 Jun 2025 11:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OD2tKmsJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKvv/xEL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406E22DBF62;
-	Tue, 17 Jun 2025 11:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 630ED202C5D;
+	Tue, 17 Jun 2025 11:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750160406; cv=none; b=utUkxRhX1yjF/VAaDbqwJ8vVHM17HtGAWKKU6E5AN3Shf2aocEexQrwJGNkJNO6QWvAraWDkxN5+9juuR6sx1wtZrgfFQS2rSiDkxV79Yx5AirDT7ZfPP/oIkyFK/x07vIdE5NCjoP6xq+bKMXRv/4TLfIgb6/MCN2YLcWWzS8I=
+	t=1750160689; cv=none; b=FZCDHVek768NHZxDvhN/tD0STBfR/jVKPzI9O+bvSxX3eQ3o8TCyYCSfdZ63eXynXHmGcPs7/pwo3XHimdvqDQ/ifYcdoAbE3t+5GYfysmPVHkOx2rQZHwg26RbTWLH63dJiwWoyE14c3FMX9cIfR7JtnGW2Y+veNiP8pBE9tck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750160406; c=relaxed/simple;
-	bh=pMDacMHhH7plhzx4hSeLuxVWMh8IlE+qEePTraGPSt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=on5U/HwodjQM3RzF+DnG8dfeYCs/AmZqT9SwhE+dWTpCEoYhmYBONt9a3Ga6AYuqLlvxYHrk7B7pURtU/zMcUFBWy1n0f7CP2UADfKxrBCBjXu+O5mQcClYXBOZ8sF67iVnURotCpF/BLcBJp32PFmNrBG3DgUzNal/v1JO7SEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OD2tKmsJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E7E4C4CEE3;
-	Tue, 17 Jun 2025 11:40:02 +0000 (UTC)
+	s=arc-20240116; t=1750160689; c=relaxed/simple;
+	bh=hMo47zn5Tyk4OZaFrxAF3FN5fCi7aLHrovnuT0ak3VU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WLpdsZXoLSXspOQzc3JqKNrCH9vmLGD67EosRY1E+adxr7aA6gUH+lnDVr8Z1IjWJEsp0mJ70+2DYCN5S2rk6y4SeDjLizzK/7eHPjV8/onHDWUyf/aPrPfNCcN1FoMIfwH1FdFvvFExzKCUilEvC/5g0Z+GWzdXzdf7xEbDT1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKvv/xEL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F1A9C4CEED;
+	Tue, 17 Jun 2025 11:44:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750160405;
-	bh=pMDacMHhH7plhzx4hSeLuxVWMh8IlE+qEePTraGPSt4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OD2tKmsJI5dcsvBqlpfXJT//0InoBbGHBZ2oyzPQeaH27c3BYfrpqaYvJtXdwPUq8
-	 blXp3MuPMdfmcZyRscfim2Ei/7hithRrlNl81MdM3rxVWUJYYNmDU7O5bVQhravGKm
-	 V0CtPVbB+8UZVjG4K5ReVNIfxga1XS7IiI+j91jroxIeNKQ5dEKXulQVk9I+WYwR5d
-	 g7IHVVHgaI+1RGagdTmZ+EQvJBZ/VsKOw3mF94FDwjBjrf3oL5HbEwlm/VNHrVpAFM
-	 XqE4y3pU4dCJ8S6Sqd0F0mycUsZoiCTZnmW0pQBbZZxJrNyUakq6P5Ft9DdpH++FMi
-	 iCgA+DwybxmRQ==
-Message-ID: <74402e94-6d1e-4a4c-9e50-d41fdf1080e0@kernel.org>
-Date: Tue, 17 Jun 2025 13:40:01 +0200
+	s=k20201202; t=1750160688;
+	bh=hMo47zn5Tyk4OZaFrxAF3FN5fCi7aLHrovnuT0ak3VU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fKvv/xELxMOXEcAbdfOG+LxBnyHDhPUpyHFQqScN+dIgncNYXAPqm8CEepxjEge+n
+	 XbBb85Gj/ltNEr48OONNYK8sqjoZFuXE9pYNHcMWEZU3byR0t7bedc6G4POFHJn+b+
+	 9uxZzbuYR0dGAQoLZFd4VcIpAqnOz+yv+tvaKT4Sxhkb5voB4Nb4XR3UqPo9IZmXFt
+	 WJhuBwpA5PtRhfefGWWE0I4dSpryBxXU5huJMpcpY8xRPAEUp7eYh42VZMbVWA75tE
+	 uB5OOEK4wg9IeQWKv1oKwpO2vumRyoI9RlOPJolHgJzh4qnvfUrn1rUwgqzpOHtual
+	 PUB13WjK3FPbQ==
+Date: Tue, 17 Jun 2025 12:44:43 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev, frank.li@nxp.com,
+	ye.li@nxp.com, ping.bai@nxp.com, aisheng.dong@nxp.com
+Subject: Re: [PATCH v1 2/2] regulator: pf0900: Add PMIC PF0900 support
+Message-ID: <386754b3-8c66-4d20-84ed-87a6052b979f@sirena.org.uk>
+References: <20250617102025.3455544-1-joy.zou@nxp.com>
+ <20250617102025.3455544-3-joy.zou@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: mediatek,mtmips-sysc: Adapt
- compatible for MT7688 boards
-To: Ezra Buehler <ezra@easyb.ch>, linux-mips@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Harvey Hunt <harveyhuntnexus@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Reto Schneider <reto.schneider@husqvarnagroup.com>,
- Rob Herring <robh@kernel.org>,
- Sergio Paracuellos <sergio.paracuellos@gmail.com>, Stefan Roese
- <sr@denx.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- devicetree@vger.kernel.org, Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-References: <20250617103058.1125836-1-ezra@easyb.ch>
- <20250617103058.1125836-2-ezra@easyb.ch>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250617103058.1125836-2-ezra@easyb.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 17/06/2025 12:30, Ezra Buehler wrote:
-> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-> 
-> As the MT7628 and MT7688 are identical in most respects, mt7628a.dtsi is
-> used for both SoCs. To prevent "Kernel panic - not syncing: unable to
-> get CPU clock, err=-2" and allow an MT7688-based board to boot, the
-> following must be allowed:
-> 
->     compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
-> 
-> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-> ---
->  .../bindings/clock/mediatek,mtmips-sysc.yaml  | 29 +++++++++++--------
->  1 file changed, 17 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
-> index 83c1803ffd16..550807301fc5 100644
-> --- a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
-> @@ -26,18 +26,23 @@ description: |
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - ralink,mt7620-sysc
-> -          - ralink,mt7628-sysc
-> -          - ralink,mt7688-sysc
-> -          - ralink,rt2880-sysc
-> -          - ralink,rt3050-sysc
-> -          - ralink,rt3052-sysc
-> -          - ralink,rt3352-sysc
-> -          - ralink,rt3883-sysc
-> -          - ralink,rt5350-sysc
-> -      - const: syscon
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ralink,mt7620-sysc
-> +              - ralink,mt7628-sysc
-
-It's here already, so this must be dropped.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9zsvdg93WU2jbOgA"
+Content-Disposition: inline
+In-Reply-To: <20250617102025.3455544-3-joy.zou@nxp.com>
+X-Cookie: It is your destiny.
 
 
-Best regards,
-Krzysztof
+--9zsvdg93WU2jbOgA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Jun 17, 2025 at 06:20:25PM +0800, Joy Zou wrote:
+
+> @@ -0,0 +1,1033 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025 NXP.
+> + * NXP PF0900 pmic driver
+> + */
+> +
+
+Please make the entire comment block a C++ one so things look more
+consistent.
+
+> +static int pf0900_pmic_write(struct pf0900 *pf0900, unsigned int reg,
+> +			     unsigned int val, uint8_t mask)
+> +{
+> +	unsigned int rxBuf;
+> +	uint8_t data[2];
+> +	int ret;
+> +
+> +	if (!pf0900 || !pf0900->dev)
+> +		return -EINVAL;
+> +
+> +	if (reg >= PF0900_MAX_REGISTER) {
+> +		dev_err(pf0900->dev, "Invalid register address: 0x%x\n", reg);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* If not updating entire register, perform a read-mod-write */
+> +	data[0] = val;
+
+Having a write operation that includes update_bits() functionality is a
+bit confusing.  In general there's a lot of register I/O code in the
+driver, and open coded copies of the generic regulator regmap helpers.
+You'd save a lot of code by providing a regmap that implements
+reg_read() and reg_write() operations, either stack another regmap
+inside for the physical I/O or just use I2C SMBus operations.  You'd
+also be able to use a cache then, and you'd get all the regmap
+diagnostic infrastructure.
+
+> +static int find_closest_bigger(unsigned int target, const unsigned int *table,
+> +			       unsigned int num_sel, unsigned int *sel)
+
+This should not be open coded in a specific driver.
+
+> +static irqreturn_t pf0900_irq_handler(int irq, void *data)
+> +{
+
+> +	ret = pf0900_pmic_read(pf0900, PF0900_REG_SYSTEM_INT, &system);
+> +	if (ret < 0) {
+> +		dev_err(pf0900->dev, "Failed to read SYSTEM_INT(%d)\n", ret);
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	ret = pf0900_pmic_read(pf0900, PF0900_REG_STATUS1_INT, &status1);
+
+This smells a lot like the system interrupt might tell you if there's
+any need to read the specific status interrupts?
+
+> +	ret = pf0900_pmic_write(pf0900, PF0900_REG_STATUS1_INT, status1, status1);
+> +	if (ret < 0) {
+> +		dev_err(pf0900->dev, "Failed to write STATUS1_INT(%d)\n", ret);
+> +		return IRQ_NONE;
+> +	}
+
+We're unconditionally acking any interrupt we see even if we didn't
+understand them, limiting the ability of the genirq core to manage
+unknown interrupts.
+
+> +	if (system & IRQ_EWARN)
+> +		dev_warn(pf0900->dev, "EWARN interrupt.\n");
+
+It's not clear what this is but it should probably generate a regulator
+notification?
+
+> +	if (system & IRQ_GPIO)
+> +		dev_warn(pf0900->dev, "GPIO interrupt.\n");
+
+This should be a normal interrupt, though you didn't wire up the GPIOs
+as GPIOs.
+
+> +	if (system & IRQ_OV)
+> +		dev_warn(pf0900->dev, "OV interrupt.\n");
+> +
+> +	if (system & IRQ_UV)
+> +		dev_warn(pf0900->dev, "UV interrupt.\n");
+> +
+> +	if (system & IRQ_ILIM)
+> +		dev_warn(pf0900->dev, "ILIM interrupt.\n");
+
+These should definitely be generating regulator notifications, as should
+some of the others probably (eg, the OV and thermal ones).
+
+--9zsvdg93WU2jbOgA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhRVSsACgkQJNaLcl1U
+h9Dp+gf+PaRhc4shJrQNqEou9ev/KFFgCFohnnBFdONzTcLd/wWjsoDQJ8l5SCkJ
+KJ+a+ZHCJCmrGt5zZPWEumR1GymcWj9UwiiLoHY53YvWD0K22PXqsVK02mzVpVBB
+M80saoU5X0nrsQpgo/qW2VL+OHYSa53eT5v1hof575CET9m3BWtCIZvfEOM9lpVG
+sg3p8GJxsKTh7t2FW3cT7C3PwF2QLzsk8NJjWIVSmLCvOMc7S56fwPV/F9NyGatn
+o3fQXlAiP42ZeRQ/8EWhmn/p9EHrBL87BompYpfyd6yaVkXD+yEGIWfyGhLy3uPW
+Zd2QmO/aPVsr1QlwXyDtdKlp1oTUCQ==
+=K+tC
+-----END PGP SIGNATURE-----
+
+--9zsvdg93WU2jbOgA--
 
