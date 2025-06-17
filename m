@@ -1,214 +1,155 @@
-Return-Path: <devicetree+bounces-186770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BBAADD284
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:43:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2DEAADD35E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:56:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B7283BEEFE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:42:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C041F189D216
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B052ECD3A;
-	Tue, 17 Jun 2025 15:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A7E2EA147;
+	Tue, 17 Jun 2025 15:48:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="tCiFaxQf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Un+wSOUy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFED62ECD3B;
-	Tue, 17 Jun 2025 15:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9602DFF22;
+	Tue, 17 Jun 2025 15:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750174965; cv=none; b=PDmashkq9iUrzp38cxiH5NiljgRBAoW+nkIChtSCCbsUNgrXA66na02xK0xeQhf+pIWyYq6tMeGkVCUFXAuvtm5iQYx+f35UKse2Y4Ys+d6fgNycOdLpZfgfrpyB089FTUNgMQK7vjWV3jrR1hlAht/a5JCKMdfSP3YamnexVZ0=
+	t=1750175283; cv=none; b=eAOt0bXH368OG4j+CDKfciyGV90sOJtRhH2a7dkF/1K5PJ98MIwk5DvKTYJpgl04GDNQ7lv25Cc/ZafAfOnTSJKhO67GUOTBH8UfmjWcnvg2gxm8Q61bBSAr1OGOfLt8/cnua7/yvA19pAFlYn2EORu7IW6nKJuPqlf/CDB7XhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750174965; c=relaxed/simple;
-	bh=E6kezSGdN55teYM7U2kumz8A/hhUd53+bGnkF7ImWHg=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=Og5QcnBIfPdg+HqTF80l1arz0ypb082rCOlTLR6OJhXOlRp58AsFLfqqWkER08+UNYTKres8AuvDVJpcmrJw1xlID5XOaUb7PMBnGH9KBlN6PkqbjXF2VjxLLR1HlsDK7J/hmSl6lxjJq4vloTNbJ1w4VDrT+8AkSEBNSqZZ4Yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=tCiFaxQf; arc=none smtp.client-ip=134.0.28.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout4.routing.net (Postfix) with ESMTP id C7804100949;
-	Tue, 17 Jun 2025 15:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1750174954;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4y61tvVtL+Nu9zAfwj8f/C4Um0svSaW4IhjMC/PKRbY=;
-	b=tCiFaxQfSyRl2HQrruBNDzRHlIucijlwJHs9wUz8grfg4jPl8cjBHtsE9+0MXnK2mhqW77
-	aoemFKp3k0OyAzqkBwmpD5t4WiKrDCfkiSzPM/zuYi2jiNT6tIdvtbdMchKxj6GU3vCEOF
-	sK7BDBpkB4XHraZiaJ4BgJsHZFFeO5A=
-Received: from [IPv6:::1] (unknown [IPv6:2a01:599:80e:f26f:d033:b886:5aa2:2cc2])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 1868B360564;
-	Tue, 17 Jun 2025 15:42:32 +0000 (UTC)
-Date: Tue, 17 Jun 2025 17:42:31 +0200
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>
-CC: MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Jia-Wei Chang <jia-wei.chang@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>,
- =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_01/13=5D_dt-bindings=3A_n?=
- =?US-ASCII?Q?et=3A_mediatek=2Cnet=3A_update_for_mt7988?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20250617151354.GA2392458-robh@kernel.org>
-References: <20250616095828.160900-1-linux@fw-web.de> <20250616095828.160900-2-linux@fw-web.de> <20250617151354.GA2392458-robh@kernel.org>
-Message-ID: <D1ACA985-56B7-48B6-8DFA-3B93AF893127@fw-web.de>
+	s=arc-20240116; t=1750175283; c=relaxed/simple;
+	bh=7xDjTVRfFoRIYUS7gbPNIlQEN7XfsTQ0jalm9e5Wmbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u0456Gr6j/Tk6jfNH9gncEaXo/fDUjry6KJpSnymPDRugXsk015aN13aTp44oq+DIzZcaiyCYKyTAr/A8H5KDKSf/ipjHg+mRPY/+jOb21UNxKMlhpV9ivKcTSWxjnA34uHhXk6HY6b7Tm7o6VVQ7w6cS3Saw12MrhLgRVPjsEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Un+wSOUy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AB1AC4CEE7;
+	Tue, 17 Jun 2025 15:48:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750175282;
+	bh=7xDjTVRfFoRIYUS7gbPNIlQEN7XfsTQ0jalm9e5Wmbw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Un+wSOUyk6kW9Yd+vPOAHx3aTj9Mfghr1mrU6K5pZnkrTq6UTBUi7Br8kAWyfYLfZ
+	 5XkCAKNcShHGX34psNKZ2f2tFxcqyDa4DCaEzw7CvVasb3RHWYiCdBxzDw2pN2qz0V
+	 UofTVZ1Jyg2G7AELKHFuEYEpm624Hc329n/qgha0/03WJEOtNbmTlG6Hq9QzGY+GG6
+	 uf/ODFRXLEiL7RWwn+/nq8pbmbCs1gob3UXusktMsg5XsBHWsilBKRG8IcTepcXPH+
+	 g9jfsM+V1UzsPidj3ZZfF+wAN5VFqMynyk55IwgdL6T/T0AFuZMYnFIZ4p115zElVV
+	 Ojl0Pbgt+GiCQ==
+Date: Tue, 17 Jun 2025 16:47:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: i3c: Add adi-i3c-master
+Message-ID: <20250617-pawing-octane-a983fbf7100d@spud>
+References: <20250606-adi-i3c-master-v2-0-e68b9aad2630@analog.com>
+ <20250606-adi-i3c-master-v2-1-e68b9aad2630@analog.com>
+ <20250606-sliver-freeing-d01268258c25@spud>
+ <ildi2pup2zkyv4stuknkrjysex3yzsbrrsrwbgcc4xgvdhwrdd@7qh4y6mutgy2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ccYjkAPbvZp+RJlR"
+Content-Disposition: inline
+In-Reply-To: <ildi2pup2zkyv4stuknkrjysex3yzsbrrsrwbgcc4xgvdhwrdd@7qh4y6mutgy2>
+
+
+--ccYjkAPbvZp+RJlR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: dc9dec3d-80df-4759-b36b-a6ba1f02e733
 
-Am 17=2E Juni 2025 17:13:54 MESZ schrieb Rob Herring <robh@kernel=2Eorg>:
->On Mon, Jun 16, 2025 at 11:58:11AM +0200, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> Update binding for mt7988 which has 3 gmac and 2 reg items=2E
->>=20
->> With RSS-IRQs the interrupt max-items is now 6=2E Add interrupt-names
->> to make them accessible by name=2E
->>=20
->> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->> ---
->> v4:
->> - increase max interrupts to 8 because of RSS/LRO interrupts
->
->But the schema says 6?
+On Tue, Jun 17, 2025 at 04:50:43PM +0200, Jorge Marques wrote:
+> On Fri, Jun 06, 2025 at 05:08:45PM +0100, Conor Dooley wrote:
+> > On Fri, Jun 06, 2025 at 03:21:02PM +0200, Jorge Marques wrote:
+> > > Add bindings doc for ADI I3C Controller IP core, a FPGA synthesizable=
+ IP
+> > > core that implements the MIPI I3C Basic controller specification.
+> > >=20
+> > > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> > > ---
+> > >  .../devicetree/bindings/i3c/adi,i3c-master.yaml    | 63 ++++++++++++=
+++++++++++
+> > >  MAINTAINERS                                        |  5 ++
+> > >  2 files changed, 68 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/i3c/adi,i3c-master.yam=
+l b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
+> > > new file mode 100644
+> > > index 0000000000000000000000000000000000000000..e7fae394ad8fd4143eb1f=
+ffb9591a30a2d6cc6ac
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
+> > > @@ -0,0 +1,63 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/i3c/adi,i3c-master.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices I3C Controller
+> > > +
+> > > +description: |
+> > > +  The ADI I3C controller implements a subset of the I3C-basic specif=
+ication to
+> > > +  interface I3C and I2C peripherals [1].
+> > > +
+> > > +  [1] https://analogdevicesinc.github.io/hdl/library/i3c_controller
+> > > +
+> > > +maintainers:
+> > > +  - Jorge Marques <jorge.marques@analog.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: adi,i3c-master
+> >=20
+> Hi Conor,
+> > Seeing this with no versioning info is pretty suspect.
+> > The adi spi, pwm, axi-dmac etc all have versioning info, please try to
+> > emulate that.
+> >=20
+> > Otherwise, I think this is okay.
+> >=20
+> > Cheers,
+> > Conor.
+> >=20
+> The driver checks the IP version via register access, for the other adi
+> ips, the -x.00.a suffix was never updated. For example, the axi-dmac
+> current IP version is v4.5.64 while the compatible still is 1.00.a and
+> there is a mention of v4.3.a in the binding. It is unclear whether
+> suffixing it with "-1.00.a" would be useful, or if the time comes call
+> the new "adi,i3c-master-2".
+>=20
+> Do you still think it is necessary?
 
-Yes it was an error in changelog,see mail i
- sent later to you and ML=2E 8 was previously
- because original version had 2 reserved irqs
- around rx+tx i dropped later by using
- irq-names=2E
+I do, yes. In the other cases, if a new version comes out that has some
+sort of meaningful difference a new compatible can be added. Until then,
+using the -1.00.a one is okay.
 
-See my patch introducing irq-names in mtk
-eth driver:
+--ccYjkAPbvZp+RJlR
+Content-Type: application/pgp-signature; name="signature.asc"
 
-<https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/20250616080=
-738=2E117993-2-linux@fw-web=2Ede/>
+-----BEGIN PGP SIGNATURE-----
 
-Original (downstream/sdk) was (but=20
-index-based):
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFGOLgAKCRB4tDGHoIJi
+0iMzAQDPAR4PK0PcUd5lSc02GuSVxCnkgzmctV+hB+9EvRrrWwD/TozQwUHyg8XP
+QHwTVjYIS0ELbPAh9ts0B1MhPgjw1Qw=
+=CxyJ
+-----END PGP SIGNATURE-----
 
-rsv
-rx
-tx
-rsv/misc
-rx-ring0
-=2E=2E=2E
-rx-ring3
-
-So total 8 and i don't wanted to add 2=20
-reserved irq to dts forever so i decided
-moving to irq-names now=2E
-
->> - dropped Robs RB due to this change
->> - allow interrupt names
->> - add interrupt-names without reserved IRQs on mt7988
->>   this requires mtk driver patch:
->>   https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/202506160807=
-38=2E117993-2-linux@fw-web=2Ede/
->>=20
->> v2:
->> - change reg to list of items
->> ---
->>  =2E=2E=2E/devicetree/bindings/net/mediatek,net=2Eyaml | 28 +++++++++++=
-+++++---
->>  1 file changed, 24 insertions(+), 4 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml =
-b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
->> index 9e02fd80af83=2E=2Ef8025f73b1cb 100644
->> --- a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
->> +++ b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
->> @@ -28,7 +28,10 @@ properties:
->>        - ralink,rt5350-eth
->> =20
->>    reg:
->> -    maxItems: 1
->> +    items:
->> +      - description: Register for accessing the MACs=2E
->> +      - description: SoC internal SRAM used for DMA operations=2E
->> +    minItems: 1
->> =20
->>    clocks:
->>      minItems: 2
->> @@ -40,7 +43,11 @@ properties:
->> =20
->>    interrupts:
->>      minItems: 1
->> -    maxItems: 4
->> +    maxItems: 6
->> +
->> +  interrupt-names:
->> +    minItems: 1
->> +    maxItems: 6
->> =20
->>    power-domains:
->>      maxItems: 1
->> @@ -348,7 +355,17 @@ allOf:
->>      then:
->>        properties:
->>          interrupts:
->> -          minItems: 4
->> +          minItems: 2
->> +
->> +        interrupt-names:
->> +          minItems: 2
->> +          items:
->> +            - const: tx
->> +            - const: rx
->> +            - const: rx-ring0
->> +            - const: rx-ring1
->> +            - const: rx-ring2
->> +            - const: rx-ring3
->> =20
->>          clocks:
->>            minItems: 24
->> @@ -381,8 +398,11 @@ allOf:
->>              - const: xgp2
->>              - const: xgp3
->> =20
->> +        reg:
->> +          minItems: 2
->> +
->>  patternProperties:
->> -  "^mac@[0-1]$":
->> +  "^mac@[0-2]$":
->>      type: object
->>      unevaluatedProperties: false
->>      allOf:
->> --=20
->> 2=2E43=2E0
->>=20
-
-
-regards Frank
+--ccYjkAPbvZp+RJlR--
 
