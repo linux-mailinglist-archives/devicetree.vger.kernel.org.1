@@ -1,100 +1,133 @@
-Return-Path: <devicetree+bounces-186874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B722ADDF00
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 00:32:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F807ADDF73
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 01:14:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E12F47AC031
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 22:31:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD8B5167749
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 23:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3DF298CDC;
-	Tue, 17 Jun 2025 22:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8033C2957CE;
+	Tue, 17 Jun 2025 23:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f7YEoRxa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FFKswCHi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805DE2F5328;
-	Tue, 17 Jun 2025 22:32:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE531898E8;
+	Tue, 17 Jun 2025 23:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750199534; cv=none; b=DM4fJg0BgqwpbYkV8fLjRqONwodC493OJfRuJhXsS3tnQ9NzCE0Cco0mI0z1HHNUtNKBN17jz24J1dcKb1YoEzA+ZzZyOJJuy/atv6buXGZ6+cgj/c6/KhWCR1a2+YQ2ffRneUy/fiSvL2qL6P7B23RKmpQ8lk/BO5o1SGtXzfU=
+	t=1750202064; cv=none; b=sak5dYEZpBVHOl8I95L6ZAojAsdJwIIP/Blp2eEa04WzkyPsf2YqAMLxNKD9pDAig1t/UbDKVkZ4+wimccQlctSgGKelczu06pxt9uxJ3NLCyNordHj3k8jfwfeZcSFElKLEQoDXO64ylhn20fESFQqIAjVW+TtoNtFGH1QPVAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750199534; c=relaxed/simple;
-	bh=dCX1n65xBRoezMqGO2CbhPRyi4/zYkLQkgcntqwDZio=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PfaY5kHAhVQ1Djrg3YAXgTs2mQddfT8y0niG5lg9+2uz0Xg9zL9AtPrYpY0QgteJK4sEMj/kcs2v6eDqBHGNqrAgK6/W08xGnpc2rGQfTyybkwEp9jVIqjuVwaatXPLJ+vqWkkq2lnh99nbtRGsW6t2G4j+QmwH4i3Zxnz06+YI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=f7YEoRxa; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A21D64316C;
-	Tue, 17 Jun 2025 22:32:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750199525;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=esmmfpi3kvEuTnF8NNPy+ASdlcPdHl8nczq2Wpky2kI=;
-	b=f7YEoRxabbDiuDE81Y4N7liiuep0PepQZBg4OcbRpIFGIKa4Bn/euoAyzd5uw/Dqwk32+3
-	3ZfiIWRiAz+G/U/aPg4jtSknpoUL3rw0jZIl42c21UD0ai3BnXJnWL8dO8ziKmBz53G5LP
-	ua9CNK/CX6XDyNfKjkN5B/Sfl8It4K5mbJzTAs34AikOaMRL7SldUojIGlSAG9DsCrjBly
-	B8l1OmSOyUrd/gfBQuCx8RzgXbxKj7mr2FPpzKU5PVqUsCo1GmxTS1+7fyq+Fpsf6f3qhp
-	bFxZfOaciK6wQ+0N6uXDXw4hLHh9bpeJuihmnY5qOwZH324wEJ32gLSYAWDHMw==
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-Date: Wed, 18 Jun 2025 00:32:02 +0200
-Subject: [PATCH 3/3] arm64: dts: rockchip: Remove unused property in
- PinePhone Pro MIPI panel
+	s=arc-20240116; t=1750202064; c=relaxed/simple;
+	bh=Cunbq/fRkIIK20gW7uYxC8XS+0I3YTwbTImpnDIBVeQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EVZF0JXngt2Fd06tOygqWe9g+jNvXCsVmYe4Ja7phCBgCz2zsXHqLeVr3xSbjEt1CUrimRHSWcE5t7Bo5r8cUt6agJrIzPUZjgXD77sqmMqWdG6qq78Ju6+hXnk5NNo6VplMI/Mnp3bRJki6JHgQygzLwLLC1JCmahB+Y4oRLzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FFKswCHi; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b2c4476d381so141335a12.0;
+        Tue, 17 Jun 2025 16:14:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750202062; x=1750806862; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EGBYSwd2ZHfMGSOUy0pV5HM6pjaKicXfvLPu6XGQKPg=;
+        b=FFKswCHiZsexVzLRneN7TE8Rqvc4Q7Hzhpm3WyAJypXOVjChz+SKM+TAVvEhEiNsek
+         a0TJueteGjKnizccCn3a51hhh7G10/TzR4h4jfEsBJHbPDdv0FPCv1JyxX5FJIXNhfct
+         1VnK9gv2jMChQ1tHO1JGhY/SfN3dYv92uoAJO6/gYnUC2NS60L30anOrsfwe0MBlQ1tG
+         +FQtLLle+1xUUKFh94BeAW3/3ZLLXWFKhnMQ9oF58SN7Kq/XV4lvvVueHi4M12jZfsgl
+         BiWkMe64VPzHjeaRATfoPYmDgZJT+zir9B22lzR01CauKXIkARx0k7LW0uMhgNx5Zity
+         d8Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750202062; x=1750806862;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EGBYSwd2ZHfMGSOUy0pV5HM6pjaKicXfvLPu6XGQKPg=;
+        b=MkDdmtQdEkUfpvd9lZeM7i9W6aOJDxFlOmQQGOLPC0mUosMtkHGGXYBkAUr+O75SH/
+         5rKmLcZ3j2zLNCQYymMb2GZt+DgEa8flZ7N9bL6jFXyo5+wnWR0d0sG95W96OodCeQdc
+         DOalWHgmHdSpYjeumZe7ixPyh15xNyyuEtW3a6tiSTpSJMf2g/HcJdjYmGX52+9qUykr
+         6CuVNeHSyo8p8BcaVC6/CQtXfRQEoQbl1sPmlInZfbPCoNAyKUmnpFxkP3BN8OQFte4q
+         lno2PqJhaSi6TlNpuh6ub1LIyOyVoTkQbp72ScEPvZK9kHUiQcGRxb2FG5d5MWRLUhxW
+         4KIA==
+X-Forwarded-Encrypted: i=1; AJvYcCU07TRAR8tp71/z4euPy4LueDj14uJK5dC+HMASKaZA1kFyBCx03w65ye8xFL164taT9eCIGTAsklUTZlYG@vger.kernel.org, AJvYcCXukwK9iuMnPGtEINU0Lk3YwzP8SbC8qwfQ7HYg95CpFtvzAcd51KX1uCm+/uQNG53thN5eEkkSBkwG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXxnkWWB+en0ImjwnjdcUAGAOfKUH53aS2d0822ds0dAcpj5BF
+	WeCBKYSYPqlD9E669upctzqtJQm9dM9Cdjy0x57yDXKxSZk1PUvDezdw
+X-Gm-Gg: ASbGncu0W/3IX8Gb5JF0EBN+P+/72/9lafwgRr1C1PtUoZKjAdovuZV5xU2RvSKILvN
+	VDfyuFKZvXduAk920voCn6ewjoz3yIxX3DaLhJLjwgni5Fy89J8PuSRRgC823Zu/gjcxyW1XAvf
+	9AzuXvd4sxNry4KjDDaejIgrUdNjssX1mYYIqUoSdH1nGxaXAA+bcT/c4JbSDVyic9uBvQ2HXm3
+	qC4KDEEsQdDgMqKQoUOVUrBKcz8K7tBqCgvzG8Tc4dRxKWLwdvBwOrUkJyBFUf31TyJonB4xz3T
+	09GomlOy3VO6dMgEmlaN4teIXNoJf4hFJNO0qsMguVstEq7586tD/djrc/0Zkg==
+X-Google-Smtp-Source: AGHT+IHV7psFrMmfaxJ1IV6J338iQx2HCKSnK63uEQGDNoDbLglPoYovMqJVxLQHE0+ZHMqLW7PAuQ==
+X-Received: by 2002:a17:903:15c7:b0:235:1b50:7245 with SMTP id d9443c01a7336-237c2047aafmr5335835ad.7.1750202062010;
+        Tue, 17 Jun 2025 16:14:22 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365de78169sm86179965ad.123.2025.06.17.16.14.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 16:14:21 -0700 (PDT)
+Date: Wed, 18 Jun 2025 07:13:05 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Ze Huang <huangze@whut.edu.cn>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Yixun Lan <dlan@gentoo.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Chen Wang <unicorn_wang@outlook.com>, sophgo@lists.linux.dev, 
+	Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: reset: sophgo: Add CV1800B support
+Message-ID: <jwehvuaywhkmrnmjxz4s6vv45seof5aihvb33upwbjv73bt5ak@e6yt2wdo2mzd>
+References: <20250617070144.1149926-1-inochiama@gmail.com>
+ <20250617070144.1149926-2-inochiama@gmail.com>
+ <175017325268.2418026.3599473248491336605.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250618-dtb_fixes-v1-3-e54797ad2eba@bootlin.com>
-References: <20250618-dtb_fixes-v1-0-e54797ad2eba@bootlin.com>
-In-Reply-To: <20250618-dtb_fixes-v1-0-e54797ad2eba@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Olivier Benjamin <olivier.benjamin@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgddufeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegueegiedvvdevveevvddufeejvefftdeugfffkeeileehheefieehgfelfeeileenucfkphepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeipdhhvghloheplgduledvrdduieekrddurddvtdgnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedutddprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhrt
- ghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhugidqrhhotghktghhihhpsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-GND-Sasl: olivier.benjamin@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <175017325268.2418026.3599473248491336605.robh@kernel.org>
 
-The MIPI panel definition in the PinePhone Pro DTS includes a
-"pinctrl-names" property, which is unused in the absence of pinctrl-0.
+On Tue, Jun 17, 2025 at 10:14:30AM -0500, Rob Herring (Arm) wrote:
+> 
+> On Tue, 17 Jun 2025 15:01:39 +0800, Inochi Amaoto wrote:
+> > Add bindings for the reset generator on the SOPHGO CV1800B
+> > RISC-V SoC.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  .../devicetree/bindings/reset/sophgo,sg2042-reset.yaml        | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> 
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> 
+> Missing tags:
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> 
 
-Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 1 -
- 1 file changed, 1 deletion(-)
+I removed this tag due to the the small change to use enum.
+It seems like that it is not necessary for such a small 
+change. I will keep the tag for the next time. Thanks for
+your explanation.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 5a7341fb6bcb0613af6f3ac31d99355a0f890e89..405140700208365c8631de86a2d7b6e577b7aa7f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -485,7 +485,6 @@ panel@0 {
- 		reset-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
- 		vcc-supply = <&vcc2v8_lcd>;
- 		iovcc-supply = <&vcc1v8_lcd>;
--		pinctrl-names = "default";
- 
- 		port {
- 			mipi_in_panel: endpoint {
-
--- 
-2.49.0
+Regards,
+Inochi
 
 
