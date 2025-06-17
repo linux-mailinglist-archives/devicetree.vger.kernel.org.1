@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-186510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71A5ADC2E7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:12:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFECEADC2F0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:13:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AADF33A346C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:11:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D0991710D1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF0128C5A5;
-	Tue, 17 Jun 2025 07:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A665928C5CB;
+	Tue, 17 Jun 2025 07:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RK5W/QbZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oIcGJfRH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E958728C5A3;
-	Tue, 17 Jun 2025 07:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7521318FC80;
+	Tue, 17 Jun 2025 07:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750144307; cv=none; b=RRWPCPsVe4F63fyVUYMmT5yVtaDJOsU22soo7ErDrZlVWCaxcSRSiG5m5bqs1DX8evdj/w+YygFtR1pn3t+JV0YAJB5KdUfV+1OAOCMaHffPk+mtlsy/04Lbzv4Gt2kZHtT+B4jWhdXRmwgA66wzG/vZx9x+gKggW5MCiAm+/qU=
+	t=1750144406; cv=none; b=XPJlK5KepCT3UKjwlry8CuHsT/lMHt9TuN4EpE3TsK1oNF9q1fZy9u9uV64NrOBUHDGUjX4yMAbKQYYNvisXpsMdR5SoDNRdsG1yHQn/DY19UYU0NjHPicMHPkkpN/OzEPCxguoHlshuSVKw0jUepqQMHOJdzgtV2U8KPKR0pDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750144307; c=relaxed/simple;
-	bh=16SBmkOZkrr53DEdJsjOJUewxQnLL0IKyT3zlCUJ458=;
+	s=arc-20240116; t=1750144406; c=relaxed/simple;
+	bh=YWTNeYGzyRXxhBicUfqKhEMGKeP2ckWPV4gZwF9FRbE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rYMerXLs7Jk1EImzSBL92N20m6wGYxp2fqWVCo67ypY8OQJ/LzkXDpZ21B7DEgR0KG3nrs2/Ul8pLBT4ErPZDQqS/D6TF5VU5xNCgznN0JLLxHnq3H8dt3C3jlZt4yTLs4t9/6+GPcYZ3jzwA5OhEBhtF+BU6FmH3PTprHQ+txk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RK5W/QbZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F6AFC4CEE3;
-	Tue, 17 Jun 2025 07:11:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=L/zO3MacDWYRYZ02S+w1lm1xySHFGpR/9DGmNOe1fOUdpWXFAiRZkrojqnycfyRgKpKgaKELZJrIkOSg8HWnegwlIy0XhDEHYhFzzbDsXC8+ZIAL2gO+rKXWDVxUwFROsRuZCWHlikbk5Oj49lpg8wF2fBCuo3GgoMXVdIjlU0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIcGJfRH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65595C4CEE7;
+	Tue, 17 Jun 2025 07:13:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750144306;
-	bh=16SBmkOZkrr53DEdJsjOJUewxQnLL0IKyT3zlCUJ458=;
+	s=k20201202; t=1750144406;
+	bh=YWTNeYGzyRXxhBicUfqKhEMGKeP2ckWPV4gZwF9FRbE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RK5W/QbZ6h4lSx6maUIN0qwCon6YggAY0V4zSn8QeqIH4WpR7YFyDGgX8FeqW9rxU
-	 N9yfhFy1s1X1iOMnBIBueTF051Tii8RSRhDfAO6ITR0npo9MIDF2apqqCQz4y6GlYV
-	 kdVUEfTCo+OKyPCacPLwXBpeic/lNVrEd8FUTjaLRMHkng7LLmuZyG0YNEoqRc4ufb
-	 jnE+ROiM64f8bdsNq+QAqU1qsaXdur8CRmzUevekayh/xBWWUuAPzrDCo8dO4qRgul
-	 NJO3mgqGvXXyEpOI65E8dDkcCadIBH/UsUAC1wKJ2Ra366GJjwr0bWE+w4ey1pCOIv
-	 079bm3aM7soJQ==
-Date: Tue, 17 Jun 2025 09:11:43 +0200
+	b=oIcGJfRHFkReyoUuejxmutlhq12hQP3PsXQwMt1djLpk9ZEY2iDR1kdYVk8Ztqvsu
+	 ja+dtbvk4cMnGfFC5vcNfy9+gVbeF8zAcKhFS2rBI0pu8qdAB1APqwv7j9nPlyA9fK
+	 +bd5n6UN/2hXpeVW+O4GRxyaRpsM0QrwsKRb7PWO2QFn3ygn7Jw/U8immlWqJi1R9G
+	 cax0+YZ8AYBo5/ve1NDI8EFtLZ+RzQ0hNolUYFDDMtcaTEU8iOYd0lnYpdy5S/GJ/O
+	 CKLeqo0GkokZDeOhQoSuJqz91slKuM5UnxQC3TpjovjFwwXkqYqsMdR7I3dsGwZRDj
+	 4HZg0yjKFjsCQ==
+Date: Tue, 17 Jun 2025 09:13:23 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Harsh Jain <h.jain@amd.com>
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, mounika.botcha@amd.com, 
-	sarat.chand.savitala@amd.com, mohan.dhanawade@amd.com, michal.simek@amd.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: crypto: Add node for True Random
- Number Generator
-Message-ID: <20250617-rational-benign-woodpecker-6ee31a@kuoka>
-References: <20250612052542.2591773-1-h.jain@amd.com>
- <20250612052542.2591773-2-h.jain@amd.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Chris Brandt <chris.brandt@renesas.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Andy Shevchenko <andy@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 3/6] dt-bindings: i2c: renesas,riic: Document RZ/N2H
+ support
+Message-ID: <20250617-enthusiastic-anaconda-of-tenacity-2f79e2@kuoka>
+References: <20250613113839.102994-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250613113839.102994-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,21 +66,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250612052542.2591773-2-h.jain@amd.com>
+In-Reply-To: <20250613113839.102994-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Thu, Jun 12, 2025 at 10:55:40AM GMT, Harsh Jain wrote:
-> From: Mounika Botcha <mounika.botcha@amd.com>
+On Fri, Jun 13, 2025 at 12:38:36PM GMT, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Add TRNG node compatible string and reg properities.
+> Document support for the I2C Bus Interface (RIIC) found on the Renesas
+> RZ/N2H (R9A09G087) SoC. The RIIC IP on this SoC is identical to that on
+> the RZ/T2H SoC so `renesas,riic-r9a09g077` will be used as a fallback
+> compatible.
 > 
-> Signed-off-by: Mounika Botcha <mounika.botcha@amd.com>
-> Signed-off-by: Harsh Jain <h.jain@amd.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/crypto/xlnx,versal-trng.yaml     | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
+>  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+> index 86d79e167547..6876eade431b 100644
+> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+> @@ -33,6 +33,10 @@ properties:
+>            - renesas,riic-r9a09g057   # RZ/V2H(P)
+>            - renesas,riic-r9a09g077   # RZ/T2H
+>  
+> +      - items:
+> +          - const: renesas,riic-r9a09g087  # RZ/N2H
+> +          - const: renesas,riic-r9a09g077  # RZ/T2H
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where is an entry renesas,riic-r9a09g077 alone? Please add complete
+bindings, not half-patch and then next time second half.
 
 Best regards,
 Krzysztof
