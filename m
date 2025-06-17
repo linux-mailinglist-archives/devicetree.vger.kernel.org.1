@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-186589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8A9ADC6A9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:36:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A61BADC6AD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:36:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5381418995B3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:36:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C666F170C4A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:36:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E79B289839;
-	Tue, 17 Jun 2025 09:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A280292B2D;
+	Tue, 17 Jun 2025 09:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UrdK4TNZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WX8GvGuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600F721B91F;
-	Tue, 17 Jun 2025 09:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E9B292B22
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 09:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750152959; cv=none; b=FWDPkhXIY4LjwroNJ3MH0ABT5BWHplSp8fZfR1aWDYJxNEdkf6hZfiv8LXPlA4oQORvXRH9ZsOSxIBTLW6wKdBlk/bKigcinDcYhxaKYRL2iflrvO4CSitdokw2hr4Wz3+WAsEppQF7qjg5QkYiADHyRMqOtneFVDRJ/20lLQYc=
+	t=1750153001; cv=none; b=qGkrZ0t1qVlX+oriHuddzFpjhWU7R/4G+lIHwncc+JadPN4Ipa6AJey/o0l7TY77igzs/CEW+cGZXs8LJQ5bSPo5+vHXY8MJdw152Vh0eYNnb/ob/dF8Qzbwd10IDZt1SFROtwqLFqQTMbPUsamHvB/AFy0aqHpKMi+tmtE29hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750152959; c=relaxed/simple;
-	bh=5+Hk/dvoHi+dJCSxoObqNt9FLvtu4FJvjhKLYDy0rD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vCD7nYz9bbIIUWYdUNqfZda04qHia9OVzieAI26hMhP/BxLE21adZpTqNT264XXkk7uBp8s//pkNBNg/my9LN4bLoDKFIU4AENlqcDr+E6d/78dsT3Xnk54fg2JwfmTMU+W9u5Ezs4o3cOsm9fSmmlh+P350ZuWWFr0RCJsrmT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UrdK4TNZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F0BC4CEE3;
-	Tue, 17 Jun 2025 09:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750152958;
-	bh=5+Hk/dvoHi+dJCSxoObqNt9FLvtu4FJvjhKLYDy0rD0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UrdK4TNZQwO5Nf4sfMJcuj3gpzDoZDnQU1rj9mmAnbW8syqpKIzvTT58TIPG5Nzuq
-	 dqOeeXK1RqlLY3MtS/hVlxOlh8UCuLZhZcEpTwlli+fVOTmHOaSpb06bFtYWQE01c7
-	 auv8gQNyUk8UBh8AbZKO4mgTIxCUph2fT1M66/jRtmX5tGF7mv0dEkrkGjoXcyW0Bh
-	 vyuDr87jWUgSan9Y5CXGkdNSiIJtPkVf7EisPgy5bz5B31vK0OPsXmvbkqLMeRS1mH
-	 51dhPi4VysJsa+k5QSvjy5CJbBmFIg4ycaVRqK0WdlxONwZ+WqQ5UjOYP9pDIhdztS
-	 he/U6m1DgFSyA==
-Message-ID: <2dc8ab35-4f58-49d3-8e8b-3e463fa592ae@kernel.org>
-Date: Tue, 17 Jun 2025 11:35:53 +0200
+	s=arc-20240116; t=1750153001; c=relaxed/simple;
+	bh=f2Q7Fc3WPwKLvWSKaPzzCkAM6dgtzTHH4wb7BKeAzV0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=hhgofOym9J5MpPMR/2SQ9NZZVKevwdkcpBBoSydGPZKHVNABGrzPJOy5VkArqqjkh8L7h2XxmlTxFOx/LB9lc6IPy3j3o2LDLChBON+9SNxPL/3u24J5t/tlt6iK22BSY7PSDc2GFZ38NPdgVywrYXj+Z3ghlJZqTmJDSB5XtuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WX8GvGuI; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-453398e90e9so28972135e9.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 02:36:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750152997; x=1750757797; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8nCKA2NBdzp2xLG4y6buu2qcE4WyaNmgLnyxQpYpCxU=;
+        b=WX8GvGuITtcg4CdiAgbClVTYKMfHyzZP3owcounvz/6yB5hIo4hk/Mg4Pfr+H6Lp7y
+         0DuFx2rKuaoe61KewaZnocrtx3NmwoilCLkg5I6nuJ/uk3jdelRaifTirlIZLfdrhEI5
+         e6g4TglmIvMFnQiad5jSafplyBvm8T3B5bmnZre5v11Ary94MzJDPv0hgURyWEmCz/32
+         kevEwOVRYnqmCFBsFRGc4J5qYEYJ4pSGm3YpCMJT9kjbRkziXF+fA7haY0LyqPO7sz1D
+         DUCINZi09qdI2vru4OxGeql/OhXin67u4+Lmfi5YfjtGVPvIVDYTehwmUaXagBFTCWpF
+         G+sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750152997; x=1750757797;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8nCKA2NBdzp2xLG4y6buu2qcE4WyaNmgLnyxQpYpCxU=;
+        b=g1sE1jjtGi4DOObb3sfmEHasfCZI03IBg4BxMkef1S/mqVUY1wTw942rDaalofdtKN
+         Dy6QPTMWD/1fg/pU5AnMPa+9vswRF4B0aRwEKIdAgiJkehOOv1XFkCdDahITre5xmfZw
+         wwGFfoiqt/FtcU7xPwaTJPKt2dXNrASLHmtSXjx4PIbvjTHY5AaxAYi0D6w3UQnmF5Nd
+         zjvmMKPTr60A+2ifoUZzrGlONqWvzWUUcUqv+7a+MhDlG2heAkKRZ0NyfQuTKaX89ApF
+         Wy/y3QOp9CkuxuPBsRwrdspNgSXXQPzSboNcD01In9BjXSGit7/O3oIubs/QLCdlgsZE
+         p4hQ==
+X-Gm-Message-State: AOJu0YzVJouFTsbVkJirgRYe19SCAKj7UHn7A52uRaCHAwskDeqBklmz
+	KDluOusqht3nzXThbGZHWA+Qj9p5EcjhW1nkiruyrUv2zv6oQHi/Y+AxpJubFp5+d3A=
+X-Gm-Gg: ASbGncuqPOPOpptqUlrzwjcWnCtJL0DTyuT86dT8HQYbxpeFppqoDI+PsfOsemyLutW
+	gJrR3zsa+I8QDQpE7k/jc6fkJUaXez7wpY9p0Hy1I/XusnG/SkMsXOraBX9GASQSrZC++vVRSa+
+	CWiYd83dnLLKsla+jF9tFzQXrTZN9RwRdaOJ72Grb7jENqitNCIyB2xgNfRCPGs5iWArJmIQokA
+	Z0bfLA0pMkv21Rgf/NLGzsKb374FMlYWAc0v8NGGT6YvfcrCM3zWMDy4q71AYBkMuHp2/XZ664P
+	LGMmWsID/eZxD8wVUJBlXSTnu/finrVo3WZbCCOW3h6dnaAXuHNQtv4H6iDsdP4l44peJsbolgm
+	3SMk2jUbozLdbLnNOQPnPp+ShEFMSAh0mQNp1h4c=
+X-Google-Smtp-Source: AGHT+IFPR+wvTS8UzP7Kb30Ior0wbTC/3kLZgaa4u2lkQwq07xOKfLNrmGgBLem/dzm7DJB8DUeBJQ==
+X-Received: by 2002:a05:600c:3545:b0:444:c28f:e81a with SMTP id 5b1f17b1804b1-4533cb4c99amr107660035e9.27.1750152997407;
+        Tue, 17 Jun 2025 02:36:37 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:3819:3250:4f73:db31? ([2a01:e0a:3d9:2080:3819:3250:4f73:db31])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b4c969sm13226726f8f.85.2025.06.17.02.36.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jun 2025 02:36:36 -0700 (PDT)
+Message-ID: <ac629489-5086-4cf9-80ed-f5e56b132cf4@linaro.org>
+Date: Tue, 17 Jun 2025 11:36:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,111 +83,135 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
- K1
-To: Vivian Wang <wangruikang@iscas.ac.cn>, Yixun Lan <dlan@gentoo.org>,
- Guodong Xu <guodong@riscstar.com>, Ze Huang <huangze@whut.edu.cn>,
- spacemit@lists.linux.dev
-Cc: Vivian Wang <uwu@dram.page>, Rob Herring <robh@kernel.org>,
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 4/5] phy: rockchip: phy-rockchip-inno-csidphy: add support
+ for rk3588 variant
+To: michael.riesch@collabora.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
- <74e3c488-4457-4026-9597-806b98fd4e11@kernel.org>
- <10ab212f-e06b-4214-99cd-a687659fcf71@iscas.ac.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <10ab212f-e06b-4214-99cd-a687659fcf71@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250616-rk3588-csi-dphy-v1-0-84eb3b2a736c@collabora.com>
+ <20250616-rk3588-csi-dphy-v1-4-84eb3b2a736c@collabora.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250616-rk3588-csi-dphy-v1-4-84eb3b2a736c@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 17/06/2025 10:48, Vivian Wang wrote:
-> Hi Krzysztof,
+On 17/06/2025 10:54, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@collabora.com>
 > 
-> On 6/17/25 14:21, Krzysztof Kozlowski wrote:
->> On 17/06/2025 07:21, Vivian Wang wrote:
->>> The SpacemiT K1 has various static translations of DMA accesses. Add
->>> these as simple-bus nodes. Devices actually using these translation will
->>> be added in later patches.
->>>
->>> The bus names are assigned according to consensus with SpacemiT [1].
->>
->> Read the feedback there:
->>
->> "So, as you are submitting the first node(s) under network_bus: bus@5, you
->> should have this added into your patchset, instead of sending out with
->> none."
-> As mentioned in the patch extra message, this is an RFC meant for
-> achieving consensus on what the bus nodes should look like, not an
-> actual patch meant to be taken. I was hoping I was clear on that, but I
-> guess that paragraph was buried too deep. Well...
->> Plus simple bus within MMIO node needs unit address. IOW, don't mix MMIO
->> with non-MMIO. I also suspect this does not pass checks, so the tools
->> can do our review...
+> The Rockchip RK3588 MIPI CSI-2 DPHY can be supported using the existing
+> phy-rockchip-inno-csidphy driver, the notable differences being
+>   - the control bits in the GRF
+>   - the additional reset line
+> Add support for this variant.
 > 
-> This DT passes "make dtbs_check" fine, with only unrelated warnings on
-> sec_uart1 that was already there before:
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> ---
+>   drivers/phy/rockchip/phy-rockchip-inno-csidphy.c | 23 ++++++++++++++++++++++-
+>   1 file changed, 22 insertions(+), 1 deletion(-)
 > 
->   DTC [C] arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dtb
-> .../arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dtb: serial@f0612000
-> (spacemit,k1-uart): 'clock-names' is a required property
->         from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
->   DTC [C] arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dtb
-> .../arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dtb: serial@f0612000
-> (spacemit,k1-uart): 'clock-names' is a required property
->         from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
-> 
-> To be honest, I don't understand what "within MMIO node" means here.
-> Should the buses be taken out of /soc and added as its siblings?
-These looks like children of simple-bus. If that's right: children of
-simple-bus are supposed to have unit addresses (see also simple-bus in
-the DT schema).
+> diff --git a/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c b/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c
+> index 75533d071025..0840be668bfd 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-inno-csidphy.c
+> @@ -30,6 +30,8 @@
+>   #define RK3568_GRF_VI_CON0		0x0340
+>   #define RK3568_GRF_VI_CON1		0x0344
+>   
+> +#define RK3588_CSIDPHY_GRF_CON0		0x0000
+> +
+>   /* PHY */
+>   #define CSIDPHY_CTRL_LANE_ENABLE		0x00
+>   #define CSIDPHY_CTRL_LANE_ENABLE_CK		BIT(6)
+> @@ -115,6 +117,12 @@ static const struct dphy_reg rk3568_grf_dphy_regs[] = {
+>   	[GRF_DPHY_CSIPHY_CLKLANE_EN] = PHY_REG(RK3568_GRF_VI_CON0, 1, 8),
+>   };
+>   
+> +static const struct dphy_reg rk3588_grf_dphy_regs[] = {
+> +	[GRF_DPHY_CSIPHY_FORCERXMODE] = PHY_REG(RK3588_CSIDPHY_GRF_CON0, 4, 0),
+> +	[GRF_DPHY_CSIPHY_DATALANE_EN] = PHY_REG(RK3588_CSIDPHY_GRF_CON0, 4, 4),
+> +	[GRF_DPHY_CSIPHY_CLKLANE_EN] = PHY_REG(RK3588_CSIDPHY_GRF_CON0, 1, 8),
+> +};
+> +
+>   struct hsfreq_range {
+>   	u32 range_h;
+>   	u8 cfg_bit;
+> @@ -373,6 +381,15 @@ static const struct dphy_drv_data rk3568_mipidphy_drv_data = {
+>   	.grf_regs = rk3568_grf_dphy_regs,
+>   };
+>   
+> +static const struct dphy_drv_data rk3588_mipidphy_drv_data = {
+> +	.pwrctl_offset = -1,
+> +	.ths_settle_offset = RK3568_CSIDPHY_CLK_WR_THS_SETTLE,
+> +	.calib_offset = RK3568_CSIDPHY_CLK_CALIB_EN,
+> +	.hsfreq_ranges = rk1808_mipidphy_hsfreq_ranges,
+> +	.num_hsfreq_ranges = ARRAY_SIZE(rk1808_mipidphy_hsfreq_ranges),
+> +	.grf_regs = rk3588_grf_dphy_regs,
+> +};
+> +
+>   static const struct of_device_id rockchip_inno_csidphy_match_id[] = {
+>   	{
+>   		.compatible = "rockchip,px30-csi-dphy",
+> @@ -394,6 +411,10 @@ static const struct of_device_id rockchip_inno_csidphy_match_id[] = {
+>   		.compatible = "rockchip,rk3568-csi-dphy",
+>   		.data = &rk3568_mipidphy_drv_data,
+>   	},
+> +	{
+> +		.compatible = "rockchip,rk3588-csi-dphy",
+> +		.data = &rk3588_mipidphy_drv_data,
+> +	},
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, rockchip_inno_csidphy_match_id);
+> @@ -435,7 +456,7 @@ static int rockchip_inno_csidphy_probe(struct platform_device *pdev)
+>   		return PTR_ERR(priv->pclk);
+>   	}
+>   
+> -	priv->rst = devm_reset_control_get(dev, "apb");
+> +	priv->rst = devm_reset_control_array_get(dev, RESET_CONTROL_EXCLUSIVE);
 
-Best regards,
-Krzysztof
+It would be preferable to have the names of the resets lines and use devm_reset_control_bulk_get_exclusive(),
+and probably add the reset names to dphy_drv_data
+
+Neil
+
+>   	if (IS_ERR(priv->rst)) {
+>   		dev_err(dev, "failed to get system reset control\n");
+>   		return PTR_ERR(priv->rst);
+> 
+
 
