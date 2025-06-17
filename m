@@ -1,114 +1,157 @@
-Return-Path: <devicetree+bounces-186665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4C3ADCB90
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:30:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E31ADCBAD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:34:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E0FE7A2EAD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 12:27:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C60853B2D73
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 12:32:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE9D2EA465;
-	Tue, 17 Jun 2025 12:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9192DF3CF;
+	Tue, 17 Jun 2025 12:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJZwMlxF"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BOalRmC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38182E92DE;
-	Tue, 17 Jun 2025 12:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F79A232367;
+	Tue, 17 Jun 2025 12:32:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750163183; cv=none; b=oC4WrCK+dOSHzcNLLLAkbcSZuMbc9IG3j0A0Smu8Aj4M1oST8o5x9HcpLKXKAEAkbenQlr4t/apPn4TOQSygMEm7/K0tT6ItQHBmtELDdMmeFOppH9RoFPb9Z1vy4hCHXzKXYn57QtJBD7Her9P7Rp2WqaxceNPz0cSjgbLaLb8=
+	t=1750163548; cv=none; b=D1NsDSls4xbltd6ssv92BAq2fdVtfLxAJJXBc50m71gUOV9uRsNXE6RVFVYtS1kT5BsDTKh9r/e9d/fEH5UBBza8lCkAOOtLkc5OJx6M4SzBmn6BococKsY9AxrqjpI0h1g0nMLg06b7ZWsUrU56mN3Oa2X6bhQZXj0gbblUH2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750163183; c=relaxed/simple;
-	bh=MnYggXt1DmzLw3znPdMFXwZLsZaCNbYxq0l13Lkdwdo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=DLuaWBYRVSbCnO+yzxU09vWdqb4KHe4kcaWpfpWtMvd7MUiTf0WqQijzS47AjPRbnGVIRegZ8WJ/nt9uZZ1ZfZPWJyiG+1Hk19xPU0KWXf9PDY+sNThkGRKWsKQOaTU+YobkRbp5mmKNEXcbE5b/yfQc9ilITrkDzKkg0Nd2qcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJZwMlxF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F980C4CEF1;
-	Tue, 17 Jun 2025 12:26:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750163182;
-	bh=MnYggXt1DmzLw3znPdMFXwZLsZaCNbYxq0l13Lkdwdo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rJZwMlxF15g7P/9eloPAfeyGiCDn3VVYajFxR+h/dmOcDu8bhNF/vS3tp8Bf/mRcC
-	 2dd3V+zCVThyg1mev/V5TnvnxpgFzNsLM2y5xmXVYAkppKh1MaNgGW1VbAN1JPeB6S
-	 Cix8Hv/tKS0tMNN8wfqGMdTLxBTzA4avPtmBWNZ9pD/xAqldwLMZrCEgrkznr2lyhK
-	 QNZUj92+y/UNDepMEmXBmEOQyZYc6I61DAeAvxAaBZ3ibTn0a9s4RvWmTNP5SqrV/z
-	 3EwFQ0z5CwfwqUV7DzbPbptuWC3JVe1WonJv4RY8v4K5+fwS/ZxPznLSApl9VoWWAX
-	 ZYQJr0GAmWI+Q==
-Date: Tue, 17 Jun 2025 07:26:21 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750163548; c=relaxed/simple;
+	bh=O110FrdcInpzBMuMy6Lt2c3gYwH5SZpoT2eQ/FzXveQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Fo1w/kcUzoHDUd+g4KpGRf9ooqKowsuVUzMCNG5CnxUBHZz7J5fxakHusff7MNdsbToHFMX3R3BaxMVyuvF9CwgXnLr+PWwIZpksrJWO+QDqwyXyhXlS7pL9wzkmEWdsGjT5gSqFZHOgJ+8cMRGmhweeBcIPhSuONE4CFZfGV04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BOalRmC/; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1750163546; x=1781699546;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=O110FrdcInpzBMuMy6Lt2c3gYwH5SZpoT2eQ/FzXveQ=;
+  b=BOalRmC/U303TGHapbj1CpCn2mNbNMt8gBfWkrlau/1SETqytPI8CuXc
+   oLqzSCUTQyjVgUYJ84X8sc2q3UQvgm8t+VjtIFGtG1ZEyCCGci+MX+nTH
+   lgDQmj2B+HUMuLd9/6omzbwl0uLkZxKEghQUXRp0Ur1CGRDSpNmspxMDP
+   LGfXIiCcikz1+j1Ds2gn8WcHnIy8Vq8YN0WXBqogjCYfBJDpMas8OEDQG
+   qDkNvL2XopQgQNQ7J2nzA7PgEq9oyl8+Waw3PuS9CqZp5aC0z51V80ten
+   qaOxa5fqoIxh8FCNJfT0KEhEFYP/G2AxSpN19ErDeKPcYCut6X28+t3ju
+   g==;
+X-CSE-ConnectionGUID: ko567VBqSpWsKe4i2Dg+zQ==
+X-CSE-MsgGUID: EObWo+FlRVO7IFxEzXwz2Q==
+X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; 
+   d="scan'208";a="210375829"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2025 05:32:19 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 17 Jun 2025 05:31:40 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Tue, 17 Jun 2025 05:31:38 -0700
+Message-ID: <cb110632-435f-4126-bd4b-5b914004fdc0@microchip.com>
+Date: Tue, 17 Jun 2025 14:31:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org, linux-pwm@vger.kernel.org, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250617092037.37229-2-marek.vasut+renesas@mailbox.org>
-References: <20250617092037.37229-1-marek.vasut+renesas@mailbox.org>
- <20250617092037.37229-2-marek.vasut+renesas@mailbox.org>
-Message-Id: <175016318163.1418393.10980265892327260592.robh@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: pwm: argon40,fan-hat: Document
- Argon40 Fan HAT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] ARM: dts: microchip: sama7d65: Add cache
+ configuration for cpu node
+To: Mihai Sain <mihai.sain@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250617104703.45395-1-mihai.sain@microchip.com>
+ <20250617104703.45395-2-mihai.sain@microchip.com>
+Content-Language: en-US, fr
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20250617104703.45395-2-mihai.sain@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Mihai,
 
-On Tue, 17 Jun 2025 11:19:35 +0200, Marek Vasut wrote:
-> Document trivial PWM on Argon40 Fan HAT, which is a RaspberryPi
-> blower fan hat which can be controlled over I2C.
+On 17/06/2025 at 12:47, Mihai Sain wrote:
+> Describe the cache memories according with datasheet chapter 15.2:
+> - L1 cache configuration with 32KB for both data and instruction cache.
+> - L2 cache configuration with 256KB unified cache.
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: "Uwe Kleine-König" <ukleinek@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-pwm@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: Implement dedicated binding document
-> V3: Update the description and pwm-cells
-> ---
->  .../bindings/pwm/argon40,fan-hat.yaml         | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
+> Before this patch:
+> [    0.161955] cacheinfo: Unable to detect cache hierarchy for CPU 0
 > 
+> After this patch:
+> [root@sama7d65eb ~]$ ll -h /sys/bus/cpu/devices/cpu0/of_node/l1-cache
+> -r--r--r-- 1 root root 4 Jun 17 11:39 cache-level
+> -r--r--r-- 1 root root 0 Jun 17 11:39 cache-unified
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Nope.
 
-yamllint warnings/errors:
+> -r--r--r-- 1 root root 6 Jun 17 11:39 compatible
+> -r--r--r-- 1 root root 4 Jun 17 11:39 d-cache-size
+> -r--r--r-- 1 root root 4 Jun 17 11:39 i-cache-size
+> -r--r--r-- 1 root root 9 Jun 17 11:39 name
+> -r--r--r-- 1 root root 4 Jun 17 11:39 next-level-cache
+> -r--r--r-- 1 root root 4 Jun 17 11:39 phandle
+> 
+> [root@sama7d65eb ~]$ ll -h /sys/bus/cpu/devices/cpu0/of_node/l2-cache
+> -r--r--r-- 1 root root 4 Jun 17 11:39 cache-level
+> -r--r--r-- 1 root root 4 Jun 17 11:39 cache-size
+> -r--r--r-- 1 root root 0 Jun 17 11:39 cache-unified
+> -r--r--r-- 1 root root 6 Jun 17 11:39 compatible
+> -r--r--r-- 1 root root 9 Jun 17 11:39 name
+> -r--r--r-- 1 root root 4 Jun 17 11:39 phandle
+> 
+> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+> ---
+>   arch/arm/boot/dts/microchip/sama7d65.dtsi | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+> index d08d773b1cc5..951d7af3ad1c 100644
+> --- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+> @@ -32,6 +32,23 @@ cpu0: cpu@0 {
+>   			device_type = "cpu";
+>   			clocks = <&pmc PMC_TYPE_CORE PMC_CPUPLL>;
+>   			clock-names = "cpu";
+> +			next-level-cache = <&L1>;
+> +
+> +			L1: l1-cache {
+> +				compatible = "cache";
+> +				cache-level = <1>;
+> +				d-cache-size = <32768>;
+> +				i-cache-size = <32768>;
+> +				cache-unified;
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/argon40,fan-hat.example.dtb: pwm@1a (argon40,fan-hat): #pwm-cells: 3 was expected
-	from schema $id: http://devicetree.org/schemas/pwm/argon40,fan-hat.yaml#
+I don't think unified applied to L1 cache for C-A7.
 
-doc reference errors (make refcheckdocs):
+Regards,
+   Nicolas
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250617092037.37229-2-marek.vasut+renesas@mailbox.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> +				next-level-cache = <&L2>;
+> +			};
+> +
+> +			L2: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <262144>;
+> +				cache-unified;
+> +			};
+>   		};
+>   	};
+>   
 
 
