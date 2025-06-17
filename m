@@ -1,131 +1,225 @@
-Return-Path: <devicetree+bounces-186495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F290ADC28D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:45:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 151EDADC290
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:47:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9753B885E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:45:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF63D7A16D6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113B823B617;
-	Tue, 17 Jun 2025 06:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8498723B60F;
+	Tue, 17 Jun 2025 06:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rryLLHQF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eF4S37tb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BD373451;
-	Tue, 17 Jun 2025 06:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C697E1C1F2F
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:47:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750142725; cv=none; b=oQ6Zg+j9qmQGDXw5sFzmjNZwCg7TtcBbxsvV6EArhsobQgnlZfjDepTsxlWyf7iXAL8WMXhwvTOgc573yKj2tBDJDrrzwAGMFEU96ilYMo9uCNo0R+ryxo+MfzpsaUsy3bAQdjT30gQTiJGuLpaDRycIqYQtxv8g21sZRsgCkYo=
+	t=1750142854; cv=none; b=dIL/R5MeI7zNyTzNE6fxumgMloLh6FofG6xnJGFzJ73mUaLToj31dOABNSC5hkw9oOVHt0gOsByBrUGRI5Jc83QDfI27HbA8bF+AiHDQ9vwn9QhDhm+MF0LEZG1wSb+XQG78pGI6fJxcYx3A0bq+wMnUymdBDlNQvEjc0eSuKow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750142725; c=relaxed/simple;
-	bh=g3qBx6WvAz0Girrui+SUnzRmoQ5EJ/cW7q76aF3hsIc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g7G4U++zTK6mw1/3/hqJ/zqB6WJGdedpX/Z3gYhZCD6btMimxmm0bQ7n70oMIuHD9nQDXLAH372ELNGIX0koT5UtJ6cZCBkoKJ87M+K+RWACo8JJm2zjt/vW1epQyvIU6dPmgkGcJhgZLt7CXndGhqseXb5HjJXxZ+LsKDe0Q1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rryLLHQF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A9E7C4CEE3;
-	Tue, 17 Jun 2025 06:45:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750142724;
-	bh=g3qBx6WvAz0Girrui+SUnzRmoQ5EJ/cW7q76aF3hsIc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rryLLHQFZYrV1utYwuQpjoaTRuBSk6I7t7jgv0pkAORrc8EV7HbTQss1A3PS2QyYJ
-	 cPSZeOA1NRg8uErVA2JlOXp2JTvpuRhgI6zJxbx6iKlZUnr0s6G4YizCKl0CpeIi/B
-	 GZGSY81nhiNjDXzSQm+j7gJ2FxQUsFPiPvL2s8YmCk1wBIcdcC6sYFWZiK9byIaxvu
-	 KPeY8yq5f/KNwwgOvbiqEb/Ecp9ipdSARiKoGBXgvGl6woWIiYpKEYr2m4TJpeOqhY
-	 6cH4Wo8cgUOXhDa1O5Eum7Ox7FMUOUto3v6Jee0SyXFBML0i7Tdvt2pbsWKUreGI6U
-	 9Z+ijTKWDJdEw==
-Message-ID: <49ebd6ba-5154-4ffa-9eb1-383227e1b0ca@kernel.org>
-Date: Tue, 17 Jun 2025 08:45:19 +0200
+	s=arc-20240116; t=1750142854; c=relaxed/simple;
+	bh=uU9hFzaDOTZHD5p3PSB8mgjSUPP2zTLYjpfXx6AvUC4=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VEurfl6H4m0+pVPvOEiavode9y2QcbqnHGENNiqjAfUUteu+CjAInhQ0VO5w0HQYQjvYHMZgKakTglpQyTm1oK+CYTuEko+Y1LXioViOcIa+9AYGkKu+nkzPnRGg35vUm7tpunszcrfH0TLBknJ9OiAh0LFFouEw9s1iYI/KY8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eF4S37tb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GHkNYs027326
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:47:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Jzr9HurUhduvjFSlxdJqGDlJ
+	e2HOuYisi/7N0azKI4o=; b=eF4S37tbYiuC25HjDz3vsroDP2wKXIssYQZ2HB6u
+	Sv/OaLaI5gj5aIJGbteEIVLqeUG9CCTq3OBfb4l2qOkKuYChqErEEZrSTvXzSskM
+	dmMcX/o8+h4kOKYAGJePDz5zWs6LJ7qkf0wn+SxvdW++JNAlUBCGbX/ixJLMFkjp
+	YOE36XxrbxD8GYw00wq+9qVUI8jMFi9cN79N6M+oks+dPbbCmSnErBnxXgchVlxb
+	XbyM8lMdqrNP/eU8jrdiE0aHpsf6vtAc1AYuYkdtc8Tp1UgZGyZR/W3+mFENg8VA
+	9PBCc7XDM7mW4UuHRXLmmAKukIM3AfM2kYvMgOj1wkPg1w==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791crq2ds-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:47:31 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fb3654112fso96593396d6.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 23:47:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750142851; x=1750747651;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jzr9HurUhduvjFSlxdJqGDlJe2HOuYisi/7N0azKI4o=;
+        b=hX9vT4u3TfzhGeGHrPzYP0U2xccsmZu19+c6W8Q3jg+gryeJYDXMMDVP08JWlh0Uqa
+         oN3JyrXfuvcEdWMe8AqExkHI0A3VwGzCDcHJHF/gelobL+k32nJFzrx5TrlizSy5jMiL
+         Rhz0Us3BfPyubw8feYRaYClKxpMuCseziOC2sMU4CP7tvNaR/H3Wmr9lixd90sMfXq7x
+         upgqWjxsvqZn8BxhXymOSh4ACHMQFmxQjkn4OPgv3wEu/qMcoawn06PhRB4q6OVqxWR2
+         6RvrxlWTJ4Vco+Ho0b58gFouaYlf511TpdfKa2ZfzUKirKpIki90h6lr37S87F9ByhaF
+         PkaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFnivF3Dh3jVJ8b/wxqPzqeDu4nwnCu9H0UoInrhMgDY/axU9HF8ErTwjPbis5c1UBIluHS+br8Ch3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPPrzlA1e9ruk+yW0MOGzwJWOgm+qrNyNmJYHIz3/G7wqX6PzM
+	PuPm9eJzsq41zdofcfHWIc6QZnze3LnJOf3LwbfAozEjoQrmNUiJEZtgePvmVdMfcaPvjTi9t2q
+	JXLMy3enohI8tjKT91nXAjn1iJNWKhyIQKcKxA+L+9uohcV2LYQghIlWsm/p6ruFY
+X-Gm-Gg: ASbGncvNqKHepyiAYXKTi668SkUV+2MrZHrAcFTiNMHR164/fnGKv29goR30p071gW9
+	gv0OId4n/m4uzxp9lX+4C5PtK9nbSXBSPoZH4CpK9M1pBlWh/g6Qmq5bwfO93u4P0Ni3gbSAJKE
+	gQPZn6NgH47ogcQTwSdwqprAhdhetz8lQGojGSSsDGI1Osr4y2ludCsEceWNtGCplpxDEkP1oWX
+	QRWKP8UY2+dL88EL+qIkeOubYPmc7XZK7U/5CXzuxJ/WWe5szIrVQmr+VNuVWS/5t3xfxvC3tiE
+	0n05CLhWt6X5kE9ssQcmvnT2U9hVmtiunspruOAjOq3o02O3aRO+rADShA==
+X-Received: by 2002:a05:6214:c83:b0:6f8:b4aa:2a59 with SMTP id 6a1803df08f44-6fb47758f93mr164247356d6.21.1750142850675;
+        Mon, 16 Jun 2025 23:47:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHHbGqDog8miVnZzjAR3A8q6IF/fQLMGnjyAnp1A2r896ciWBGYbRf0eCtQ5F2t5j3tp+MSYQ==
+X-Received: by 2002:a05:6214:c83:b0:6f8:b4aa:2a59 with SMTP id 6a1803df08f44-6fb47758f93mr164247136d6.21.1750142850248;
+        Mon, 16 Jun 2025 23:47:30 -0700 (PDT)
+Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e25302dsm160264035e9.26.2025.06.16.23.47.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jun 2025 23:47:29 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Tue, 17 Jun 2025 08:47:26 +0200
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>, quic_vgarodia@quicinc.com,
+        quic_dikshita@quicinc.com, bryan.odonoghue@linaro.org,
+        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, stanimir.varbanov@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
+Message-ID: <aFEPfjJLEMnIriXX@trex>
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+ <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
+ <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org>
+ <aFATp3zoSgkrj3YX@trex>
+ <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org>
+ <aFBDzWLkKC9MWGoC@trex>
+ <48e6cc62-ffb0-4ca7-80c8-9e510db505db@kernel.org>
+ <aFBNVjl4n7I+OkO5@trex>
+ <c7aef6cd-e07d-4422-a34a-ce04c37ad2e8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] dt-bindings: net: convert qca,qca7000.txt yaml
- format
-To: Frank Li <Frank.Li@nxp.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stefan Wahren <wahrenst@gmx.net>,
- "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20250616184820.1997098-1-Frank.Li@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250616184820.1997098-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c7aef6cd-e07d-4422-a34a-ce04c37ad2e8@kernel.org>
+X-Proofpoint-ORIG-GUID: jjt3dtiPDr3vkWC8nyWajfCppSOMRmH7
+X-Authority-Analysis: v=2.4 cv=BoedwZX5 c=1 sm=1 tr=0 ts=68510f83 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
+ a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=ckiIvdw4d6_qyGhr-SIA:9
+ a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-GUID: jjt3dtiPDr3vkWC8nyWajfCppSOMRmH7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDA1NCBTYWx0ZWRfX4lVKileZt4kx
+ clfGAFWUuI5oyDBnWcdVMeX+qzpZFIlVOKeP+mAcjnIFUrcTYF6L26IYwXUP3UKfrZ6Qa4/bfuu
+ yLLoMEBTC5dgCw0epKe1w4mZ6BvCdKyAivXX2qRJ3o5vpAeb0Sf1bwsKGfNaYe3avx5vTacqmgB
+ MGh3DA3xH6ddR3hulyYEJfMKok6TndTctQ5Znrw8orIknR31fzFj4pmvld0rVQ/RNeUw20n46nt
+ VOxE+8urbN1KHmcSq8sc3aGiTSysuZP1mqBoC4Dd5EknQlOvgjOdNEIhA9MCrTzbl7ia92SSKyi
+ swwtHJaPTfM+5mGVmUL5QNpzbWqvU4kAq+vVnLguSSjOKWwWMN1+8yTeoAndWossthy+0giyRO0
+ kAXAQ1egdXa4IuQz5mvDLSOSHISZBx424d7zvXrF8gzAxZPx0W2ntI6TaB5CqmjpvOyTs2yJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-17_02,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506170054
 
-On 16/06/2025 20:48, Frank Li wrote:
-> Convert qca,qca7000.txt yaml format.
+On 17/06/25 08:14:23, Krzysztof Kozlowski wrote:
+> On 16/06/2025 18:59, Jorge Ramirez wrote:
+> > On 16/06/25 18:23:18, Krzysztof Kozlowski wrote:
+> >> On 16/06/2025 18:18, Jorge Ramirez wrote:
+> >>> On 16/06/25 16:41:44, Krzysztof Kozlowski wrote:
+> >>>> On 16/06/2025 14:52, Jorge Ramirez wrote:
+> >>>>>>
+> >>>>>>> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
+> >>>>>>> +  on Qualcomm platforms
+> >>>>>>> +
+> >>>>>>> +allOf:
+> >>>>>>> +  - $ref: qcom,venus-common.yaml#
+> >>>>>>> +
+> >>>>>>> +properties:
+> >>>>>>> +  compatible:
+> >>>>>>> +    const: qcom,qcm2290-venus
+> >>>>>>> +
+> >>>>>>> +  power-domains:
+> >>>>>>> +    minItems: 2
+> >>>>>>> +    maxItems: 3
+> >>>>>>> +
+> >>>>>>> +  power-domain-names:
+> >>>>>>> +    minItems: 2
+> >>>>>>
+> >>>>>> Why is this flexible? Either you have two or three. Not mixed.
+> >>>>>
+> >>>>> please check 5b380f242f360256c96e96adabeb7ce9ec784306
+> >>>>
+> >>>> This does not explain why this is optional HERE. You cannot use for a
+> >>>> new platform an argument that some existing platform was changed in
+> >>>> ABI-preserving way.
+> >>>
+> >>> thanks for quick the follow up.
+> >>>
+> >>> but bear with me please because I dont follow - why can the same logic
+> >>> be used - it being applicable - and therefore result in a definition
+> >>> similar to those other platforms?
+> >>
+> >> Because this platform either has 2 or 3, not both. Unless that's not
+> >> true, but then please share some arguments.
+> > 
+> > as with every other venus schema with more than 1 power domain, the
+> > argument is the same one that I have shared with you a couple of
+> > messages back (DVFS).
+> > 
+> > verbatim:
+> >     Venus needs to vote for the performance state of a power domain (cx)
+> >     to be able to support DVFS. This 'cx' power domain is controlled by
+> >     rpm and is a common power domain (scalable) not specific to
+> >     venus alone. This is optional in the sense that, leaving this power
+> >     domain out does not really impact the functionality but just makes
+> >     the platform a little less power efficient.
 > 
-> Additional changes:
-> - add refs: spi-peripheral-props.yaml, serial-peripheral-props.yaml and
->   ethernet-controller.yaml.
-> - simple spi and uart node name.
-> - use low case for mac address in examples.
-> - add check reg choose spi-peripheral-props.yaml or
->   spi-peripheral-props.yaml.
+> That's not definition of optional. The domain is needed for this device,
+> the device is one way or another having its rails routed to that domain.
+> It is not optional.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > 
+> > Seeing all these venus schemas follow the same pattern, it seems to me
+> > that this is the correct way of implementing the above.
+> 
+> No for the reason I mentioned earlier.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+So just to close this story up, were these two commits wrongly
+reviewed and signed off then ? Please do notice they were also - just
+like this one - new additions and not a change in an ABI preserving way
+as you characterize them.
 
-Best regards,
-Krzysztof
+e48b839b6699c2268e545360e06962bb76ff5b8d
+8d3a1cb32124eaeb3f2efe4889de214d3b658d8d
+
+> 
+> > 
+> > You seem to disagree. please could you explain?
+> 
+> I already explained. You add new device, so argument to preserve ABI,
+> which was accepted THAT TIME, is not valid. You do not have ABI.
+
+as per the two commits above, this is not an argument to 'presereve' an ABI -
+this looks to me like an implementation.
+
+anyhow, if everyone agrees this is the only way to move this forward
+will do just fix this to three then.
+
+please let me know.
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
