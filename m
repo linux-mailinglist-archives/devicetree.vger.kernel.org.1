@@ -1,134 +1,115 @@
-Return-Path: <devicetree+bounces-186486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B344ADC24B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:22:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C7FADC251
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:24:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8F5D1896D1B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:22:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F3D8175ABC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D46288C0F;
-	Tue, 17 Jun 2025 06:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80ED1288C0F;
+	Tue, 17 Jun 2025 06:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TM7snzrJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RIeAP68m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C1223B606;
-	Tue, 17 Jun 2025 06:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E57C2D1;
+	Tue, 17 Jun 2025 06:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750141317; cv=none; b=gp0jVN5QJHCx3D6hu+Y4vf2QcSKywqAEhPVsRNAFs6bs52weNtTvUoy75omNm/90cd9/6cBqHl6I+cCZEERZaPMM09EUaQrLhn96rUA1CG8xNQ760/h4Ws9DeUzQR9Fg0mJLk19+cCGbH+BvYd1BlM95H+YBV1WjB1g88PkAyFE=
+	t=1750141485; cv=none; b=SOEwwqxFkjf7NUp7+Dlsx06Yf44Olun3aLz+lRq+4Gy7WKrPDadVx2MSo0yLQW654lAlKQEu7sOGYZ9r/b+IlwadspwE5MNvYWSLUXk2iErCMk0kplhJrC2GUbjadM4Q/j67xsYBzKiMQDOj3/rPBH+jRpN1Csn0Fav7BuC6xXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750141317; c=relaxed/simple;
-	bh=PRf1TQGc91W+MBcp+JrNM86Phml+lx1uiU82f4QGL+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j62vC42j8z691RWJPR/GyPivLhHQLrfxaxubHY7TEcfFiNToSqXUYUp2Le05XIQ8EKk4OiyK8+09znD9ook51JgHEuaAJ94BF2ty7jT7Z19ynDu1z/z7PLlniV8LeJaUOyQ4QxhfDMO3HesAFFuau4uCNo5KmarIxR9aRQRDC7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TM7snzrJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1FD2C4CEE3;
-	Tue, 17 Jun 2025 06:21:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750141317;
-	bh=PRf1TQGc91W+MBcp+JrNM86Phml+lx1uiU82f4QGL+Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TM7snzrJHgfVCbcORkMvQZwsSqpRCZqk7wEaCRWx/7RBNeCzhJIVxS3lomNDz3RKH
-	 aoahLvyMEY2EDH3Jx2tPGRGq9cp55nRllYRNvyaUucV8a47nSi+/woQVK7DCPi+cer
-	 N39QM9j5kQzOT8IT/TCje9bdPnni/vAup9jDuzDYOp5CXgcISGwN5ft8tv/toeWlVd
-	 VCw78EBMsCtgGFFbb/0p47893A1Vbbq6G+BOz5GmWbGUfGSr2IG50MhxuVhJwYjPOf
-	 VE8xE83ZLJSDKcolJcaq0cyHR7Zmb0U8QW2SXBsF29xUIBOtCbsEtPImvTJTibONS+
-	 Xc6nnheKFWyfw==
-Message-ID: <74e3c488-4457-4026-9597-806b98fd4e11@kernel.org>
-Date: Tue, 17 Jun 2025 08:21:51 +0200
+	s=arc-20240116; t=1750141485; c=relaxed/simple;
+	bh=FimawyL6R59yeyleZHcqYiYhCdOgIj10rs3P2dnnxm8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lGJH1n4IPpHWhZzdqhKVHL39lvFgmYegKHgLsnEYC/9rOwP51fRupc3olEEzZN2ZhA4QwXjRI6oqIlPnYx/gxMZG8pheC3jG+9eAGBsW/JYp/OIJGAK5y/waKZ4P/KkrC8LP4poSj9Ft3Y5WPWQoknpEniCLEiptnnNRPfwkpXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RIeAP68m; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-60768f080d8so10034950a12.1;
+        Mon, 16 Jun 2025 23:24:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750141482; x=1750746282; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zv52R5nOhn8eM/6uHkKiOhAOsj6LjD2US5K7BMLlrJQ=;
+        b=RIeAP68m7RJQTqb5LosmowMZ/m2TqwY8JyxlmZCqTEJp3SoHxjuO/FIr1nIsZ1Nbhb
+         TnMIZXE/MTchWgOYf27rnO2xNAw6dcey6hjpapjWbyycHc2FdkUAlANWZP/zXG+4Jqwb
+         mwEimBN//7Q1B9+dQcSxN0Y+4XLY0Zg2O3sTKC4TWm7W68DFKNQ98/DVs09cCANEt9VD
+         pEQJlFrl1kp7hpMGu9NxjI4Wu7uzDR8dOdtSmbTRyRVN5hkGmw2pJ5RphfjDcyRYBRJg
+         aL69ygRxzZXn0pVujRQuvF9w04PolVwCwOZ1mo2/ZcsByw+u/He6aaxDXNkMkYYHre7B
+         aKSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750141482; x=1750746282;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zv52R5nOhn8eM/6uHkKiOhAOsj6LjD2US5K7BMLlrJQ=;
+        b=cZgyFXLrq8VEz1Jd7SYuXCPEX0CVxdEVpUcrzwfhFVDNvsAel7KVQt0WDnQU7K6dOf
+         fbhaGBH6Axdj/xpy8j2zwFc3j7+Qos6JTHU4vp0dm7rTl5gI51hP6L3eoGxdxUMZXE7k
+         vH24BGmzUyk23AeYHvOpVcnYPRWVtxbdKaHZB7tIEA21lqQM2PsAyPjIQPufF1fZogtj
+         UYbRczn2U+Xp/p6wtjMeRmXxZA/fyM06eR9/ZsPklGljqfNqy36fYDRoRdgwJcB7e6N1
+         B/7VrUi8qio+HEHF4VJGBtAdohXcXvwlyIz/jlnm0zu9XFmXesMSYfuzIAdRHHELmrsh
+         EfFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVBnu7BhhGdMxyA4ajp3YhBX5KlYnW3Bp84YT57Qyw+rwgH+mX5Bd0/0R0h+6N6Zdj/M64cMpcnVmev0YL3@vger.kernel.org, AJvYcCVLRsDQa3DRnwMFFhrSlhGcYDOojdiM7/VtbI4FV4SujV4zNIr97UAXNRUgE+OWDNyzYJRbR2mnXyi9zg==@vger.kernel.org, AJvYcCWElzJ+6KjN4NKtT5pvYysSCqh5AyQMW3/Y54E5nyc/cXBSTKggCxSTwJ52h4yp4mz2+sUkUOUWLI77@vger.kernel.org, AJvYcCXweFfEmUl51Y3+L84rk4bTrEADrQ+TICzSFG9GJIgP3HyQsfjSs8A2zPHYJoXEHBE/Xa5AcbvNblKt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3ZYf7TshHCevs30LbX9sCQ8Gxl3rGadUgYzaNtNqLjs/s/aHU
+	dS2cGevdu4a4I0Frb14Mz94P+0Va9I2Vch+Alngg5fL6fgoQ7c63yRN0T1Pu9zSc/5byqlWv23h
+	rmOzzz6P2RBYPC2a4fV3c1FLKYX0CUlw=
+X-Gm-Gg: ASbGncvfB3WmDqVMwDotHA46P4ouhCk6L7SIZTfPbXcCNBfGoooyihLifiizaSUMRC2
+	hgbqavX+91UVZoELB+rXSuhhYMktuValopYNG420Hr1mC9myPJ/v0/V7KOc1cFjY5XZ1m4c6gSS
+	q3W7C/fyhNBMKBeVjbc5gJEN4k86Kmi/5jJ0KiSB55CjhY312qC8aDZGfw
+X-Google-Smtp-Source: AGHT+IHcqfTh/AvxtHJoXN0Aouf/N7BBC+fBhy8N8VL7NPaH0I2m/3Xb9qrKuj4B8tBu7moZAtR9qNi91UVwj4kUDc0=
+X-Received: by 2002:a17:906:9fcb:b0:ad8:9e5b:9217 with SMTP id
+ a640c23a62f3a-adfad60cb3bmr1179369266b.45.1750141481870; Mon, 16 Jun 2025
+ 23:24:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
- K1
-To: Vivian Wang <wangruikang@iscas.ac.cn>, Yixun Lan <dlan@gentoo.org>,
- Guodong Xu <guodong@riscstar.com>, Ze Huang <huangze@whut.edu.cn>,
- spacemit@lists.linux.dev
-Cc: Vivian Wang <uwu@dram.page>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <5ac4b2d54f426d997cbb067530ab8e9af9bdcf16.1749582679.git.marcelo.schmitt@analog.com>
+ <656c43dd-c39d-4e35-a9d8-70383c0836a0@baylibre.com>
+In-Reply-To: <656c43dd-c39d-4e35-a9d8-70383c0836a0@baylibre.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 17 Jun 2025 09:24:04 +0300
+X-Gm-Features: AX0GCFtxDmHhNdgXUIjNyDwrmnrpwdMMC-qSKW_2BduktjXGeT0kT7zLcVFr9BY
+Message-ID: <CAHp75Vcx+DY1T03RiLjqo6PEe0C97N3bzW1irvCe_1ZBpO_n6Q@mail.gmail.com>
+Subject: Re: [PATCH v5 07/11] iio: adc: ad4170: Add clock provider support
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, nuno.sa@analog.com, andy@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, brgl@bgdev.pl, marcelo.schmitt1@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 17/06/2025 07:21, Vivian Wang wrote:
-> The SpacemiT K1 has various static translations of DMA accesses. Add
-> these as simple-bus nodes. Devices actually using these translation will
-> be added in later patches.
-> 
-> The bus names are assigned according to consensus with SpacemiT [1].
+On Tue, Jun 17, 2025 at 12:11=E2=80=AFAM David Lechner <dlechner@baylibre.c=
+om> wrote:
+> On 6/10/25 3:33 PM, Marcelo Schmitt wrote:
 
+ ...
 
-Read the feedback there:
+> > +             if (!device_property_read_bool(&st->spi->dev, "#clock-cel=
+ls"))
+>
+> This isn't a flag, so device_property_present() is probably more correct.
+>
+> > +                     return 0;
 
-"So, as you are submitting the first node(s) under network_bus: bus@5, you
-should have this added into your patchset, instead of sending out with
-none."
+Good catch! +1 to this, it must not be read_bool as it's not a boolean prop=
+erty.
 
-Plus simple bus within MMIO node needs unit address. IOW, don't mix MMIO
-with non-MMIO. I also suspect this does not pass checks, so the tools
-can do our review...
-
-Best regards,
-Krzysztof
+--=20
+With Best Regards,
+Andy Shevchenko
 
