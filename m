@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AAFDADC214
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:08:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DD7ADC237
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:14:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75AE23B1995
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:08:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FBF93A3930
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D484328AB1E;
-	Tue, 17 Jun 2025 06:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15A328B3F9;
+	Tue, 17 Jun 2025 06:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MbLVaY/V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9yxKEh1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F3E202C48;
-	Tue, 17 Jun 2025 06:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31BE4430;
+	Tue, 17 Jun 2025 06:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750140517; cv=none; b=CBnMiOXlO+z9/EMYpQjV0P4j7HubHrZcJxNUf54K37M5CdfBfUi2Jhs3MM3/1mH8S3LYk4mRqZ0iMwwjylwL4oLWzQRS9Iu2Sf1Mq+bO1Y0GDVELinO/oirQRGPpvjx3TCYesfDzo9spKFv0BaLN3jYycZIp/uIqOe+TpHt40Po=
+	t=1750140868; cv=none; b=Fj/BR7hf8g/OBlY/kFM1b94klmD7a5oYyWXllCWKgF6fjE7caA1BRcbc2UM2q8T39k/eqTMzbLP/IqmtpZqXvagUQeQ3ZcFxL5zNieQo/0/VYqcbqOYfTDac85xGIGaxbHXnPnn8WDPDlS/2XaDsBxxhGamjhhh9yyfTzMQL1kU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750140517; c=relaxed/simple;
-	bh=VFgG5c3adCcLcFwMHG3HHPoRX1wEDrUuiPjHGzWQRFQ=;
+	s=arc-20240116; t=1750140868; c=relaxed/simple;
+	bh=atcA+m1RP63WSr7kzFhVShoS22kZRQhKEPWYi3FCQsU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M3lGSJMhLA3AQNiXW8j0zq2q1hF5bFL8ePi8MSc4KrlXKQvmDLEyYXzAV2O/QsbcENJDk71PxKPfPUqftCohOnqHVixfKE3/XSVyUMtkfWmZRgKJ+oYPU1Ile+9X/uEk6Sy/1LwYgQPEN5g60yXcYrI8bnFYIHHff4HyOyjnQ6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MbLVaY/V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 036CDC4CEE3;
-	Tue, 17 Jun 2025 06:08:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CDQ1GVFBDZ+6rNUkyfVje+Sc8w0A83tvQdVuqi4MjQNbSg7Y6u3a5P6M1VtXaFIWSDDRSDVlqKhwvZuQUahTH6JvfCNnMkGchSkVALkINfrSyKYgdn3fPXWvY8I5CAtPIwIEBT34353PibnmD6qWizjiQExA8LgYrVOr2fMg7ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9yxKEh1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32F9CC4CEE3;
+	Tue, 17 Jun 2025 06:14:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750140517;
-	bh=VFgG5c3adCcLcFwMHG3HHPoRX1wEDrUuiPjHGzWQRFQ=;
+	s=k20201202; t=1750140868;
+	bh=atcA+m1RP63WSr7kzFhVShoS22kZRQhKEPWYi3FCQsU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MbLVaY/VkG7/yqaRdZJ4ciDzFzYcKYR7O3yeNw5GNfJmykreKe+c7Pss06elNsxKS
-	 nOj3pEYNbM9B/NWO3+Cqa8Oz9djVOgI5vWIpwafcrV/qL6tIajVghtvwHokGpUdd8N
-	 pwtSabaozykpShj2T6IgN/h2GGofjTLDEUSJ2DUiD/O7PU4Lub+nlvgi3XjNXVIicN
-	 gu/pKzgE2avenkO22T3GzPB2lNGiPHRFPYRlcZrMm9iOe2hYLQN3tujmVnCr+9eST1
-	 w8insVfLhED/TmE/hKPztnG3tfK8pWUI0bX14kSQtOrfGTFZZIeTrQaXYSpjvbq448
-	 ETF48L9aPJfEw==
-Message-ID: <d99c2be9-1052-4c09-9707-ac8b82bc6fee@kernel.org>
-Date: Tue, 17 Jun 2025 08:08:32 +0200
+	b=N9yxKEh1Kjf62bOHmpOn1cYdpdRn1gofl+mZtpTpBPwQZ5vvawpJBCsM9W17N15FQ
+	 9VN9Gavv5SrMW9KFbY0jiP9jjpNvgFxtGtE/z3HswJiawSpfuGys4Zo4zekCvLi+/b
+	 kHETdWjx85ognmiLMpXTv86ZUfgur00+k1na1l/1Xc7nLwSl/hnuEVP5K+ClMwvgWR
+	 2YRux22WQv+jwy+DpMTp4kvHQobCS4bfk3Ijx3z6AF8ruzH/P8RooaJi0SfcAvWETX
+	 CHG++iPmEW5Sl3nv06WN8TuWcILgS8cILbXnAnVkr7Bl9spDuRZO8Crfo9iY0dIYd0
+	 L/9AfKJukd63Q==
+Message-ID: <c7aef6cd-e07d-4422-a34a-ce04c37ad2e8@kernel.org>
+Date: Tue, 17 Jun 2025 08:14:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: axiado: add AX3000 EVK
- compatible strings
-To: Harshit Shah <hshah@axiado.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Arnd Bergmann <arnd@arndb.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "soc@lists.linux.dev" <soc@lists.linux.dev>
-References: <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-0-341502d38618@axiado.com>
- <20250615-axiado-ax3000-soc-and-evaluation-board-support-v2-2-341502d38618@axiado.com>
- <f4430b9a-3275-405e-becf-ff62ae16f23c@kernel.org>
- <IA0PPFBEC4B1F8E5727945AD33204C3AB18D570A@IA0PPFBEC4B1F8E.namprd18.prod.outlook.com>
+Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
+ bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, stanimir.varbanov@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+ <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
+ <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org> <aFATp3zoSgkrj3YX@trex>
+ <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org> <aFBDzWLkKC9MWGoC@trex>
+ <48e6cc62-ffb0-4ca7-80c8-9e510db505db@kernel.org> <aFBNVjl4n7I+OkO5@trex>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,42 +107,78 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <IA0PPFBEC4B1F8E5727945AD33204C3AB18D570A@IA0PPFBEC4B1F8E.namprd18.prod.outlook.com>
+In-Reply-To: <aFBNVjl4n7I+OkO5@trex>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/06/2025 23:13, Harshit Shah wrote:
-> 
-> ________________________________________
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 15 June 2025 23:05
-> To: Harshit Shah <hshah@axiado.com>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Linus Walleij <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>; Arnd Bergmann <arnd@arndb.de>; Catalin Marinas <catalin.marinas@arm.com>; Will Deacon <will@kernel.org>
-> Cc: devicetree@vger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; linux-arm-kernel@lists.infradead.org <linux-arm-kernel@lists.infradead.org>; linux-gpio@vger.kernel.org <linux-gpio@vger.kernel.org>; soc@lists.linux.dev <soc@lists.linux.dev>
-> Subject: Re: [PATCH v2 2/6] dt-bindings: arm: axiado: add AX3000 EVK compatible strings
->  
-> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
-
-Drop all this. Not needed, not useful and not even correctly wrapped.
-
-> 
-> 
-> On 16/06/2025 06:31, Harshit Shah wrote:
->> Add device tree binding schema for Axiado platforms, specifically the
->> AX3000 SoC and its associated evaluation board. This binding will be
->> used for the board-level DTS files that support the AX3000 platforms.
+On 16/06/2025 18:59, Jorge Ramirez wrote:
+> On 16/06/25 18:23:18, Krzysztof Kozlowski wrote:
+>> On 16/06/2025 18:18, Jorge Ramirez wrote:
+>>> On 16/06/25 16:41:44, Krzysztof Kozlowski wrote:
+>>>> On 16/06/2025 14:52, Jorge Ramirez wrote:
+>>>>>>
+>>>>>>> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
+>>>>>>> +  on Qualcomm platforms
+>>>>>>> +
+>>>>>>> +allOf:
+>>>>>>> +  - $ref: qcom,venus-common.yaml#
+>>>>>>> +
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    const: qcom,qcm2290-venus
+>>>>>>> +
+>>>>>>> +  power-domains:
+>>>>>>> +    minItems: 2
+>>>>>>> +    maxItems: 3
+>>>>>>> +
+>>>>>>> +  power-domain-names:
+>>>>>>> +    minItems: 2
+>>>>>>
+>>>>>> Why is this flexible? Either you have two or three. Not mixed.
+>>>>>
+>>>>> please check 5b380f242f360256c96e96adabeb7ce9ec784306
+>>>>
+>>>> This does not explain why this is optional HERE. You cannot use for a
+>>>> new platform an argument that some existing platform was changed in
+>>>> ABI-preserving way.
+>>>
+>>> thanks for quick the follow up.
+>>>
+>>> but bear with me please because I dont follow - why can the same logic
+>>> be used - it being applicable - and therefore result in a definition
+>>> similar to those other platforms?
 >>
->> Signed-off-by: Harshit Shah <hshah@axiado.com>
->> ---
->>   .../devicetree/bindings/arm/axiado/axiado.yaml     | 23 ++++++++++++++++++++++
+>> Because this platform either has 2 or 3, not both. Unless that's not
+>> true, but then please share some arguments.
 > 
-> Just arm/axiado.yaml
+> as with every other venus schema with more than 1 power domain, the
+> argument is the same one that I have shared with you a couple of
+> messages back (DVFS).
+> 
+> verbatim:
+>     Venus needs to vote for the performance state of a power domain (cx)
+>     to be able to support DVFS. This 'cx' power domain is controlled by
+>     rpm and is a common power domain (scalable) not specific to
+>     venus alone. This is optional in the sense that, leaving this power
+>     domain out does not really impact the functionality but just makes
+>     the platform a little less power efficient.
 
-use proper quoting. Who wrote that?
+That's not definition of optional. The domain is needed for this device,
+the device is one way or another having its rails routed to that domain.
+It is not optional.
 
 > 
-> Noted. I will update the same in v3.
+> Seeing all these venus schemas follow the same pattern, it seems to me
+> that this is the correct way of implementing the above.
 
-And that?
+No for the reason I mentioned earlier.
+
+> 
+> You seem to disagree. please could you explain?
+
+I already explained. You add new device, so argument to preserve ABI,
+which was accepted THAT TIME, is not valid. You do not have ABI.
+
 
 Best regards,
 Krzysztof
