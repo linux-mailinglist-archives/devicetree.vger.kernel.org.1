@@ -1,282 +1,119 @@
-Return-Path: <devicetree+bounces-186576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31E7ADC618
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:21:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03BB9ADC633
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 327A33B9DFB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:20:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9C9116DC45
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD2F3293468;
-	Tue, 17 Jun 2025 09:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 353FC293B7E;
+	Tue, 17 Jun 2025 09:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="gihDhi5a";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="XHACR0wt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j4sK07r3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2DC28FFFB;
-	Tue, 17 Jun 2025 09:20:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2761C7017
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 09:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750152061; cv=none; b=o2geUWp0gtBKUuLZhli6hD4evXswl0gYTqFVFxqaOZAgfOC7a9AWu+KxRHevvD1ZyTV6T40ItMrHrbZOqr8UjdV+2iOzpDUGyHHH/wb/nHLNHsg5+dtJglgAne7OUF8Eemj2KOoOBdOFTzGjHsRIcRl8Ndzd5tx182qeEitiQMo=
+	t=1750152253; cv=none; b=Qin67fbb1QrdJkmg0KZwVIFFffd3rVSMEndc1qK9kufXYbZlPfwPXADcd+ZZ4hhMQRGOv+8mt3jfkvMM0NdT2pdag6W9Wq7clzkdE6G+ATScFbQaXRAabulcN4nlGIt+1ClzFoUeoyV1Z+C1U0hCzIE5EOlo/LR9w7q8BifZvc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750152061; c=relaxed/simple;
-	bh=RZ49EYiuEBe//gJA7l+urmw3mBTIE5qPYjYIiRC5WbA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RA86KDYRspwZB4PYjhMD8IWgeNCyhy/njtwcgnOYvHvDh8F7nAXpX3IPcbXbmZW1AQeP7K7SOdqUlNapCT+D8fnJCBrCq13y3T+6vBewhN6iyk1a8JWQKHpmiGd+sOl0CGwLGD/M6fvL9AxETzvj40QjGYmS6iIfGZ7MUDDtxY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=gihDhi5a; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=XHACR0wt; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4bM1ZK67PQz9sTb;
-	Tue, 17 Jun 2025 11:20:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750152057;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mw92VLyJgn+5px9AirmOrbYFjpqlQH9nBGpVDrOJeto=;
-	b=gihDhi5aV0VF6TF04zkAnbAQeKWrmWA47PbYTpBxn+5DwLq2XLPPzn1TjbZvCexyeeVk2Q
-	/Ihems18df8qThjehW0BrCzqAnvvsNT1jHeVilLA4GdXXrFMtWBBehCsgWShzUrX+zzUaB
-	zQ140IVCmRHQROqCxcHsU7mQlqYQXXmDqE6XhpCVb2D6BEdKlVNWPJ1UKMYMGfls4P64kR
-	I81qsUY3arjwFWCYN7UveV77ZpqUQg/51bdlFGpfiLET/GI2f2ZlWqomBhhb0OU/S98XpG
-	pcYRXkFAKa4zdLlLVKinPF13l8Ozi4VVj2cOndEo8IxWxcSSx+bKdh+945pTAw==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750152055;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mw92VLyJgn+5px9AirmOrbYFjpqlQH9nBGpVDrOJeto=;
-	b=XHACR0wtXy9oeAn661cIP5sRixppWVsDP8wI8nGNaCBpSuDIctacxhtuxV840m4jaVm+bm
-	PzTEEuQmGt79Unas/ZEELr6hP8IPMdQwA7E7lHuuZR+42tVLwVcI/xBuNAV5u9fHwMOzT+
-	R1yHhF7wvHdvQR6z0KqKbhu3fixMosquDuFsaDsBWa+9sZsxYmLYIKIWIlkwdBDN2i1ZMz
-	kG8eQIlRwooUz5CAGeyS6fCUKRo9/iUx1ac+oaYENk4pqpTGivnCQk3Cf27V/xVapBU0ni
-	X58Ew84Jl9QGOqwYLIDox1NxfoWAmIso7A2PBcNbCRwUEn0e56VeEMnHhCvUKw==
-To: linux-pwm@vger.kernel.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1750152253; c=relaxed/simple;
+	bh=0FVH0nf1hFWs5snO5t/bUXQFon9Yjbecd6o+YdwqYHE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l1XBydHz2MsvLldjfAWsZ+Rby1bPMSJjCYXq299SlGqT4ccj4QKheCpKZflu88oYdxS9futSxZ7GlbILtm1UEll6HIlj8Rxp7WtNVx+RGk1K6HUpb7387UgwEMWYs3wQad1eJmF6LByFcg+QNebkSdHrG55OfShIZ4Bxgl0Z+U0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j4sK07r3; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-60780d74bbaso1041965a12.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 02:24:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750152249; x=1750757049; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5qmCi5AjNmyApPkeggD1UBIutb08W79XxmIwYywNdyI=;
+        b=j4sK07r3C3B34LEq1JlcgfnUK/UE/dCLXuO4dz8YQQJGIno2LQys94N5/ZyMTCAFOh
+         MGcyy2PEMp8eBZjP0jJMMQ7Ij3t/OnoPzEWbh6/Mactd2fke2/MYh5e80Bud7d1yBJMf
+         /zpP8SbMEIEdZnfEz0+XyiSSsqLhK2f6FmOLhS0P20EY9hVBFW15w7z3gn8N+ScU0N3T
+         L0d9Tv6ZDkNjXSz6pY7nUFgRItZiDVe9Ua9MfiE9Bh2LeV9OBUjRUrebINV3KPPLNE/9
+         I+IENTwKfwK38QsrUHY+lM8foI9HuT2WUk5YufntXLPKd1TtHZxuZtc/7BbZg1wY2Uu9
+         S+Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750152249; x=1750757049;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5qmCi5AjNmyApPkeggD1UBIutb08W79XxmIwYywNdyI=;
+        b=G+wrrcWT9AyXWrwk/fCteBwhIBEOjWE83cWIgzlnbDPEylTz3OKiTfpGYZdd1k8gpU
+         9p54nQcicGUs1MEnRNvYKspalJgpD6hiDGXEYVCQ0aRnO1f1/KepgN7eeoiqm2Y3/VcU
+         VqmkBM3NcV9t3TO6arivMPLgGtP0LGoAuKmnpotmhRuzRYE7Ws88XzSxUESk+EflJomJ
+         e1p0T+MJE3xo/3JOcDNDTJbCBNOAGkNzpjDS4xbubqdoRXJUZU3R6eCaBEaAXNVZlz84
+         0Axk1eY0XtAk7hJR/yd33PiSFH7jaOx9Y+sq8H0k+fQDJFNLIo9AzZ7MJXSod6hqVOEk
+         UQwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVstNIpsZc2ck22KL40Pgp+SY4lJITV94KZxE7QcgsQTs76Z9NhpfJ+iZQw0H8smjWB/Nsw1Jo3GIFu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLZfOkNVLjLmmS/lqoqgztyVrDHB9P/gRy3yzOQxHbjsO/HMF4
+	qdA42G5FmdIWyzojuWsthU/Mkliw00nAhxpzZeOXWAUqHA5eYf3OXFcU3w7DEyuo/4H9c9GDJbZ
+	F7hV3
+X-Gm-Gg: ASbGncsj0gTQzCo7fPH0XUFSJLQx2XbQEsqXU3HuN+8C1vBOs09VsJfJYSU4ib26/aX
+	14FEUuqPeUTdsX+1rjJPJr1XHuBQajSpfBwYcnRHfZiHsMJ+NTjTgYvSaAOfEZum4uz9G5Do/0J
+	tVhYqaVIb2yIsw4zoZdouJXp1dw5TscXO/axX9Odzfr2nq3uleOOjX9WaoVrFsuKbJRgtfMRHEM
+	1E9tJtXDCw/34SWGhxhsNPmk7QUhQShU/HdFr2XcYwQayh5gi4C+kHimRoQZ2Y/UgUjHU5iUkgU
+	Uyl3LlIiGqU7HIMRMXiX9U5XD0B1gwA0/I1n9YwgZSkpZTLIc76ERmnpgZM=
+X-Google-Smtp-Source: AGHT+IEnQHxM84ovHQi50egnS9UEgVOz9GmXYcPlKnLN4jCfbnYv7EbdDH2huGe6x+oNGIph9jx7kw==
+X-Received: by 2002:a05:6402:34ce:b0:600:129:444e with SMTP id 4fb4d7f45d1cf-608ce49deb8mr11863903a12.4.1750152248723;
+        Tue, 17 Jun 2025 02:24:08 -0700 (PDT)
+Received: from linaro.org ([82.79.186.23])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-608b4a5b6a5sm7931639a12.40.2025.06.17.02.24.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 02:24:08 -0700 (PDT)
+Date: Tue, 17 Jun 2025 12:24:06 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-Date: Tue, 17 Jun 2025 11:19:36 +0200
-Message-ID: <20250617092037.37229-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250617092037.37229-1-marek.vasut+renesas@mailbox.org>
-References: <20250617092037.37229-1-marek.vasut+renesas@mailbox.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 2/2] phy: qualcomm: phy-qcom-eusb2-repeater: Don't
+ zero-out registers
+Message-ID: <aFE0Nu8CKFBlCCrd@linaro.org>
+References: <20250617-eusb2-repeater-tuning-v2-0-ed6c484f18ee@fairphone.com>
+ <20250617-eusb2-repeater-tuning-v2-2-ed6c484f18ee@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: ocg4oe9th5skxwo8ws16wbo9ngga9xo8
-X-MBO-RS-ID: 241d3e7cbe834ea492d
-X-Rspamd-Queue-Id: 4bM1ZK67PQz9sTb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250617-eusb2-repeater-tuning-v2-2-ed6c484f18ee@fairphone.com>
 
-Add trivial PWM driver for Argon40 Fan HAT, which is a RaspberryPi
-blower fan hat which can be controlled over I2C. Model this device
-as a PWM, so the pwm-fan can be attached to it and handle thermal
-zones and RPM management in a generic manner.
+On 25-06-17 10:26:36, Luca Weiss wrote:
+> Zeroing out registers does not happen in the downstream kernel, and will
+> "tune" the repeater in surely unexpected ways since most registers don't
+> have a reset value of 0x0.
+> 
+> Stop doing that and instead just set the registers that are in the init
+> sequence (though long term I don't think there's actually PMIC-specific
+> init sequences, there's board specific tuning, but that's a story for
+> another day).
+> 
+> Fixes: 99a517a582fc ("phy: qualcomm: phy-qcom-eusb2-repeater: Zero out untouched tuning regs")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: "Uwe Kleine-König" <ukleinek@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-pwm@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: - Switch to waveform ops
-    - Add shutdown hook to force the fan to maximum RPM on shutdown
-      instead of stopping it, to be on the safe side
-V3: - Find the 30 kHz fixed period PWM, use that
-    - Add comments
-    - Consolidate argon_fan_hat_write()
----
- drivers/pwm/Kconfig             |   9 +++
- drivers/pwm/Makefile            |   1 +
- drivers/pwm/pwm-argon-fan-hat.c | 122 ++++++++++++++++++++++++++++++++
- 3 files changed, 132 insertions(+)
- create mode 100644 drivers/pwm/pwm-argon-fan-hat.c
-
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 6e113f8b4baf..3ef1757502eb 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -66,6 +66,15 @@ config PWM_APPLE
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-apple.
- 
-+config PWM_ARGON_FAN_HAT
-+	tristate "Argon40 Fan HAT support"
-+	depends on I2C && OF
-+	help
-+	  Generic PWM framework driver for Argon40 Fan HAT.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-argon-fan-hat.
-+
- config PWM_ATMEL
- 	tristate "Atmel PWM support"
- 	depends on ARCH_AT91 || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 96160f4257fc..ff4f47e5fb7a 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -3,6 +3,7 @@ obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
- obj-$(CONFIG_PWM_ADP5585)	+= pwm-adp5585.o
- obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
-+obj-$(CONFIG_PWM_ARGON_FAN_HAT)	+= pwm-argon-fan-hat.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-diff --git a/drivers/pwm/pwm-argon-fan-hat.c b/drivers/pwm/pwm-argon-fan-hat.c
-new file mode 100644
-index 000000000000..58b94ad4d9bc
---- /dev/null
-+++ b/drivers/pwm/pwm-argon-fan-hat.c
-@@ -0,0 +1,122 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 Marek Vasut
-+ *
-+ * Limitations:
-+ * - no support for offset/polarity
-+ * - fixed 30 kHz period
-+ *
-+ * Argon Fan HAT https://argon40.com/products/argon-fan-hat
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/pwm.h>
-+
-+#define ARGON40_FAN_HAT_PERIOD_NS	33333	/* ~30 kHz */
-+
-+static int argon_fan_hat_round_waveform_tohw(struct pwm_chip *chip,
-+					     struct pwm_device *pwm,
-+					     const struct pwm_waveform *wf,
-+					     void *_wfhw)
-+{
-+	u8 *wfhw = _wfhw;
-+
-+	*wfhw = DIV_ROUND_CLOSEST_ULL(wf->duty_length_ns * 100, wf->period_length_ns);
-+
-+	return 0;
-+}
-+
-+static int argon_fan_hat_round_waveform_fromhw(struct pwm_chip *chip,
-+					       struct pwm_device *pwm,
-+					       const void *_wfhw,
-+					       struct pwm_waveform *wf)
-+{
-+	const u8 *wfhw = _wfhw;
-+
-+	wf->period_length_ns = ARGON40_FAN_HAT_PERIOD_NS;
-+	wf->duty_length_ns = DIV64_U64_ROUND_UP(wf->period_length_ns * *wfhw, 100);
-+	wf->duty_offset_ns = 0;
-+
-+	return 0;
-+}
-+
-+static int argon_fan_hat_write(struct i2c_client *i2c, const u8 wfhw)
-+{
-+	u8 tx[2] = { 0x80, wfhw };
-+	struct i2c_msg msg = {
-+		.addr = i2c->addr,
-+		.len = 2,
-+		.buf = tx,
-+	};
-+
-+	return (i2c_transfer(i2c->adapter, &msg, 1) == 1) ? 0 : -EINVAL;
-+}
-+
-+static int argon_fan_hat_write_waveform(struct pwm_chip *chip,
-+					struct pwm_device *pwm,
-+					const void *_wfhw)
-+{
-+	struct i2c_client *i2c = pwmchip_get_drvdata(chip);
-+	const u8 *wfhw = _wfhw;
-+
-+	return argon_fan_hat_write(i2c, *wfhw);
-+}
-+
-+static const struct pwm_ops argon_fan_hat_pwm_ops = {
-+	.sizeof_wfhw		= sizeof(u8),
-+	.round_waveform_fromhw	= argon_fan_hat_round_waveform_fromhw,
-+	.round_waveform_tohw	= argon_fan_hat_round_waveform_tohw,
-+	.write_waveform		= argon_fan_hat_write_waveform,
-+	/*
-+	 * The controller does not provide any way to read info back,
-+	 * reading from the controller stops the fan, therefore there
-+	 * is no .read_waveform here.
-+	 */
-+};
-+
-+static int argon_fan_hat_i2c_probe(struct i2c_client *i2c)
-+{
-+	struct pwm_chip *pc = devm_pwmchip_alloc(&i2c->dev, 1, 0);
-+	int ret;
-+
-+	if (IS_ERR(pc))
-+		return PTR_ERR(pc);
-+
-+	pc->ops = &argon_fan_hat_pwm_ops;
-+	pwmchip_set_drvdata(pc, i2c);
-+
-+	ret = devm_pwmchip_add(&i2c->dev, pc);
-+	if (ret)
-+		return dev_err_probe(&i2c->dev, ret, "Could not add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
-+{
-+	argon_fan_hat_write(i2c, 100);
-+}
-+
-+static const struct of_device_id argon_fan_hat_dt_ids[] = {
-+	{ .compatible = "argon40,fan-hat" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, argon_fan_hat_dt_ids);
-+
-+static struct i2c_driver argon_fan_hat_driver = {
-+	.driver = {
-+		.name = "argon-fan-hat",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = argon_fan_hat_dt_ids,
-+	},
-+	.probe = argon_fan_hat_i2c_probe,
-+	.shutdown = argon_fan_hat_i2c_shutdown,
-+};
-+
-+module_i2c_driver(argon_fan_hat_driver);
-+
-+MODULE_AUTHOR("Marek Vasut <marek.vasut+renesas@mailbox.org>");
-+MODULE_DESCRIPTION("Argon40 Fan HAT");
-+MODULE_LICENSE("GPL");
--- 
-2.47.2
-
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
