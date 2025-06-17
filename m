@@ -1,246 +1,138 @@
-Return-Path: <devicetree+bounces-186515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6ED3ADC32F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:23:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA4B0ADC2C7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:03:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AEC1174C36
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:23:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FA30188D65F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5DB28E5F3;
-	Tue, 17 Jun 2025 07:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D19028C2B3;
+	Tue, 17 Jun 2025 07:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MFmHI/y+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bBmgQguV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D5B28D85F;
-	Tue, 17 Jun 2025 07:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E8628C2C9;
+	Tue, 17 Jun 2025 07:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750144995; cv=none; b=RcRUtfMKTHdsMr3OemgLI0lcYTV4h1EHVD43TjQ+B4CN2qwGlegyEdP9AFCJSTt98GsZ7f8H7S6Pd4M/Xh7S8hPXutrttaR9fQJdCn387LLKbPd4PIEkXrUXcsPb+k259vYxN5GNpXC+2vPuJYspW3RCgeHzd2dbPimNqEwbMy8=
+	t=1750143785; cv=none; b=tnEElsb1PDVEAN4wrlW1hI5UgtkJxxyF/qHfZenkBhw+QfWn0uF7gkg1dAw63el9uSXkO+beMCkbIOiK9iMrQTBpF0GOvVwB8jRsH63Z82jpOlPGQMBYhMzc2gPpBjOLKeCeW4DITQ3RriQvH3Z4r+TcZBz+4wMIXmY5yavH9Bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750144995; c=relaxed/simple;
-	bh=f11hWl4NtA1ewNVG2EX9gYBJpVleqyEr0TOtEB8ZeF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cum7rpjodru2YRUYpMaMeEGIgbAb7hSEhafXjL33ONEk12P94ZIO+9j1DLK4g9nKzLqHgPDQqn9WlLLnkmgPLgcO0BH1Y756tBHoPCnTO0At1xvnKdiWm+fNk7Z8GePLyx9rUsIL3uPN93OqKOPu7wCVHCG8eZJ3sMZEZzC8buI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MFmHI/y+; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id 924EF58267E;
-	Tue, 17 Jun 2025 07:00:39 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DF5FC44459;
-	Tue, 17 Jun 2025 07:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750143631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=c54X4q8yozguoRQqbVkcnFg4rictDWQ/ozHe3OqAcDo=;
-	b=MFmHI/y+p5sJ80eQ4s84rkWG8dTBnsg53y+lIdVMySqFH3kXrdFd96UoQAMwYWdyYhc4mN
-	sIkTqVsjSholwOLcgSFfDnEx/Vcbv7ypWPZJ/zewYOLBXN0gZRoBiGLwb5Bio64J0oJNQH
-	AeTDy7iFaOY7sJTWE7+MNTSny1Zhi0PZESIbbF2Nj/udROiyTPy1M8zAAZ0c/yFM3M0dCP
-	6J4A2sbuaokCGhdOfA9hG2SUyZ4bzwf72NNoCgi6N8XA30zPeLfglUyrI4JLVye3aYhnH+
-	vTjIUiEidjQRcb0QxA7mIgcV2E0foqZxbu4cPQ/ehKmBhAW2Q67QXYF4dKXTcg==
-Date: Tue, 17 Jun 2025 09:00:29 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: "robh+dt@kernel.org" <robh+dt@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 5/5] PCI: of: Create device-tree PCI host bridge node
-Message-ID: <20250617090029.03283ea6@bootlin.com>
-In-Reply-To: <3258d453-f262-4f1c-822b-5310a8346a2d@tuxon.dev>
-References: <20250224141356.36325-1-herve.codina@bootlin.com>
-	<20250224141356.36325-6-herve.codina@bootlin.com>
-	<594d284e-afce-446a-9fcb-a67b157ef6dc@tuxon.dev>
-	<20250611165617.641c7c09@bootlin.com>
-	<3258d453-f262-4f1c-822b-5310a8346a2d@tuxon.dev>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1750143785; c=relaxed/simple;
+	bh=9uQYlaKrOF8qdMrm3wBT3CKVF83rj42WRbeBiwxnE0Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WOJt0Xm0vcfHnMr/k/tbGSggflOu5FTqC4vQXfz8dZv0dTwrxVsbdUhun5fOkvcRuWI9L8wxZa+8q9EyPIdRCvRTUIKfQOmhOSgPTmgXjhtNgu2cwddtISfwPO4Ru2dScYjY4ZKwWtQVods4spMxyyuZ2Rz77pfv3rzHK6KcBvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bBmgQguV; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-23633a6ac50so76348015ad.2;
+        Tue, 17 Jun 2025 00:03:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750143782; x=1750748582; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UaG/t7KG9r8h6CuNkV1Xs54wfnnVvv58385nUogNAos=;
+        b=bBmgQguVTLAOZ5ajcCrmZHalv/y1BWUNFbq87IJiRRqJIZBzKGcoM9CZFv9WPq1B7v
+         h7//vroZNKy5NySUKsIszJ958X3FcpD/SIbe08lIIsg697SMEQUK8LGDaHF43JsTwoxu
+         qt1/hiQ3t1K/TiJ0uq/oVCdbX4bYg/x5X0NsElxI3VfIAhsu7s6JufELg+tA2w9ByBJv
+         PAIomyKlxM+4gMFf3xOqMxeNd6kA33ciortSrWN44SezxFdcV60ZD4RLX44cxHCFstNH
+         noc643idcYQSZkFwyhuPLKJDiv4eDP95Q39A6DWVBAulZti0ZTfsjkarO1yc24Up0iML
+         8iYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750143782; x=1750748582;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UaG/t7KG9r8h6CuNkV1Xs54wfnnVvv58385nUogNAos=;
+        b=ZUTAuZpch5L00XqnRCLla8wqcGos/yWWD1f9Y6P4pkPFBjy1dNpRQY0lGwkb9KAfPi
+         WVjxJ3xV+om+CJR2Cc8ePUmV8HbxxWhEfL1G7HbSEKTpXMqzejwW+j501lTaWluTRoJ6
+         kHCs/67SrqfiG4hBOl2/G0BfzLLXlzNVUf/q+QkuLaFPO1oRq+O8HcIIZV5G4gLhYrwx
+         tEtfhkKZwSAyxH5xUtsmAgaT4eOTkqlDEGOOuDgeiMY+IbTdEkjH6eVKv0A83VU5Ctgy
+         EqFUndFbSGy/6dKeXlJExdO9dtOoG3laC8vIvQjr/lFxUyCtta60pXFcX7xGswtXuGJI
+         oXmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUWABwqiokyLOPqcjec9706os7/SG54p91dkpbjihYMoco2CcQbAIdj8HV85qFldKGAvP8kE3TaHKG/3lQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzd8w2hFbxDddErR/LjLf7TNQWZIK0YzZPHYGSJp6FPHnDCbLSW
+	CHhglCKziaznx/HStIHVtU+m2UAErlarupQVPo5lSNlaDDcfjWHvMgMQ
+X-Gm-Gg: ASbGncuTSGFyt7rLuu2cMhWFxbJ6jlriI3NUnC7FBFVZZ1iqyN1CR5hbVXiLkoAgG1t
+	y1NBtZ2wQBTeDvhOP7GUmREAG9ATDhFmnSwxfww6BLBsx3GqsxlekE9LCF0VbMd6rIXuGpf88jd
+	qUT8/NqDSnHCV2Phl8nlFiqG+DBrQ1BvNfRBDOkmdg10UFy28L5lB0ZGLvE5g+u2tJjoK5COUMa
+	4ArCA5FfrEJz6ZsFvsjacbECfGv5srGofXwiCceELx72Aq2mg8AY9l13VdpHcOW234M54ZI3MM5
+	yZQbol2JKyDREdhbwJxv2ksQSao7afiqh91veQQSektXy2GoR5kWAadlcdR6VA==
+X-Google-Smtp-Source: AGHT+IGqDk0ZeWL4AT26rDLpFZ8Aq+pamnX39szXBefKiFUBuwuWNS2youv83CQvs23AFpZt39mjJQ==
+X-Received: by 2002:a17:903:2f4b:b0:234:a139:1217 with SMTP id d9443c01a7336-2366b3505c4mr146544715ad.18.1750143782107;
+        Tue, 17 Jun 2025 00:03:02 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-23692e44fcesm6154635ad.169.2025.06.17.00.03.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 00:03:01 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Yixun Lan <dlan@gentoo.org>,
+	Ze Huang <huangze@whut.edu.cn>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v4 0/4] riscv: sophgo: cv18xx: Add reset generator support
+Date: Tue, 17 Jun 2025 15:01:38 +0800
+Message-ID: <20250617070144.1149926-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddvkeejkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetheejgeetudehiedvuedvteehhfegudevvdeftdduhfejleegheevteetvdeihfenucffohhmrghinhepsghoohhtlhhinhdrtghomhdpkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvhdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhhesl
- hhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrghrrghvrghnrghksehgohhoghhlvgdrtghomhdprhgtphhtthhopegshhgvlhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtoheplhhiiihhihdrhhhouhesrghmugdrtghomh
-X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Claudiu,
+Like SG2042, CV1800 Series SoCs also have simple bit reset generator.
+Add necessary code and bindings for it.
 
-On Fri, 13 Jun 2025 16:36:16 +0300
-Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+Changes from v4:
+1. patch 1: convert the compatible as entry of enum.
+1. patch 2, 3: apply Alexander's tag.
+1. patch 3: apply Junhui's tag.
 
-...
+Changes from v2:
+1. patch 3: fix wrong reset ID.
 
-> I pointed to the wrong function. It's not of_pci_make_host_bridge_node()
-> [1] but of_pci_make_dev_node() which creates a node with a similar naming
-> and makes things not working on my side.
-> 
-> [1] https://elixir.bootlin.com/linux/v6.15/source/drivers/pci/of.c#L694
+Changes from v1:
+1. rebase to v6.16-rc1
+2. patch 1: apply Rob's tag
+3. patch 3: fix wrong reset ID
 
-Ok, so your issue is not related patches applied from the "PCI: of: Create
-device-tree PCI host bridge node" series.
-  https://lore.kernel.org/all/20250224141356.36325-6-herve.codina@bootlin.com/
+Inochi Amaoto (4):
+  dt-bindings: reset: sophgo: Add CV1800B support
+  reset: simple: add support for Sophgo CV1800B
+  riscv: dts: sophgo: add reset generator for Sophgo CV1800 series SoC
+  riscv: dts: sophgo: add reset configuration for Sophgo CV1800 series
+    SoC
 
-Indeed, this series add the node creation for the host bridge with
-of_pci_make_host_bridge_node() but you pointed now of_pci_make_dev_node()
-which is the creation for PCI device node and this function was not modify by the
-series.
+ .../bindings/reset/sophgo,sg2042-reset.yaml   |  4 +-
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi        | 25 +++++
+ arch/riscv/boot/dts/sophgo/cv18xx-reset.h     | 98 +++++++++++++++++++
+ drivers/reset/reset-simple.c                  |  2 +
+ 4 files changed, 128 insertions(+), 1 deletion(-)
+ create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-reset.h
 
-of_pci_make_host_bridge_node() should not create anything. Can you confirm on your
-side that it doesn't create any nodes.
+--
+2.49.0
 
-If so, maybe the problem comes from of_irq_parse_raw() or similar.
-
-...
-
-> 
-> > 
-> > On this system, I didn't observed any issues but of course, the PCIe drivers are
-> > different.
-> > Also, on my system, no node were created by of_pci_make_host_bridge_node().  
-> 
-> Sorry for the confusion, it is of_pci_make_dev_node() on my side which
-> creates the node.
-> 
-> > 
-> > To be honest, I didn't re-test recently to see if something has been broken.
-> > I can do that on my side with my system.
-
-I have re-tested and I confirm that I have no issue on my system.
-
-> > 
-> > On your side, maybe you can have look at the Armada PCIe driver and see if
-> > something could explain your behavior. I am not sure that you need to add the
-> > pci@0,0 node in your DT.  
-> 
-> I can't find a driver that uses the approach I'm trying in my patches. This
-> approach was suggested in the review process [2] by Rob who mentioned that
-> now we should be able drop legacy interrupt controller nodes. There are
-> some Apple device trees that points the interrupt-map to the port node (the
-> way I tried in my workaround) [3], but I can't find more than that.
-> 
-> The topology in my case is:
-> 
-> root@smarc-rzg3s:~# lspci -t
-> -[0000:00]---00.0-[01]----00.0
-> 
-> root@smarc-rzg3s:~# lspci
-> 00:00.0 PCI bridge: Renesas Technology Corp. Device 0033
-> 01:00.0 Non-Volatile memory controller: Micron Technology Inc 2550 NVMe SSD
-> (DRAM-less) (rev 01)
-> 
-> When not working pci@0,0 is exported as follows in rootfs:
-> 
-> root@smarc-rzg3s:~# ls /sys/firmware/devicetree/base/soc/pcie@11e40000 -l
-> -r--r--r--    1 root     root             4 Jan 12 10:28 #address-cells
-> -r--r--r--    1 root     root             4 Jan 12 10:28 #interrupt-cells
-> -r--r--r--    1 root     root             4 Jan 12 10:28 #size-cells
-> -r--r--r--    1 root     root             8 Jan 12 10:28 bus-range
-> -r--r--r--    1 root     root            13 Jan 12 10:28 clock-names
-> -r--r--r--    1 root     root            24 Jan 12 10:28 clocks
-> -r--r--r--    1 root     root            26 Jan 12 10:28 compatible
-> -r--r--r--    1 root     root             4 Jan 12 10:28 device-id
-> -r--r--r--    1 root     root             4 Jan 12 10:28 device_type
-> -r--r--r--    1 root     root            28 Jan 12 10:28 dma-ranges
-> -r--r--r--    1 root     root             0 Jan 12 10:28 interrupt-controller
-> -r--r--r--    1 root     root           144 Jan 12 10:28 interrupt-map
-> -r--r--r--    1 root     root            16 Jan 12 10:28 interrupt-map-mask
-> -r--r--r--    1 root     root           164 Jan 12 10:28 interrupt-names
-> -r--r--r--    1 root     root             4 Jan 12 10:28 interrupt-parrent
-
-Why parrent instead of parent in interrupt-parrent ?
-
-> -r--r--r--    1 root     root           192 Jan 12 10:28 interrupts
-> -r--r--r--    1 root     root             5 Jan 12 10:28 name
-> -r--r--r--    1 root     root             4 Jan 12 10:28 num-lanes
-> drwxr-xr-x    2 root     root             0 Jan 12 10:17 pci@0,0
-> -r--r--r--    1 root     root             4 Jan 12 10:28 phandle
-> -r--r--r--    1 root     root             4 Jan 12 10:28 pinctrl-0
-> -r--r--r--    1 root     root             8 Jan 12 10:28 pinctrl-names
-> -r--r--r--    1 root     root             4 Jan 12 10:28 power-domains
-> -r--r--r--    1 root     root            28 Jan 12 10:28 ranges
-> -r--r--r--    1 root     root            16 Jan 12 10:28 reg
-> -r--r--r--    1 root     root             4 Jan 12 10:28 renesas,sysc
-> -r--r--r--    1 root     root            63 Jan 12 10:28 reset-names
-> -r--r--r--    1 root     root            56 Jan 12 10:28 resets
-> -r--r--r--    1 root     root             5 Jan 12 10:28 status
-> -r--r--r--    1 root     root             4 Jan 12 10:28 vendor-id
-> root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~# ls
-> /sys/firmware/devicetree/base/soc/pcie@11e40000/pci@0,0 -l
-> -r--r--r--    1 root     root             4 Jan 12 10:17 #address-cells
-> -r--r--r--    1 root     root             4 Jan 12 10:17 #interrupt-cells
-> -r--r--r--    1 root     root             4 Jan 12 10:17 #size-cells
-> -r--r--r--    1 root     root             8 Jan 12 10:17 bus-range
-> -r--r--r--    1 root     root            41 Jan 12 10:17 compatible
-> -r--r--r--    1 root     root             4 Jan 12 10:17 device_type
-> -r--r--r--    1 root     root           144 Jan 12 10:17 interrupt-map
-> -r--r--r--    1 root     root            16 Jan 12 10:17 interrupt-map-mask
-> -r--r--r--    1 root     root            32 Jan 12 10:17 ranges
-> -r--r--r--    1 root     root            20 Jan 12 10:17 reg
-> root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~# cat
-> /sys/firmware/devicetree/base/soc/pcie@11e40000/pci@0,0/compatible
-> pci1912,33pciclass,060400pciclass,0604root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~#
-> root@smarc-rzg3s:~#
-> 
-> In case I describe a port in device tree, it works because the pci@0,0 is
-> not created anymore when device is enumerated and thus the interrupt
-> parsing is working.
-> 
-> Herve: do you have some hints?
-
-First interrupt-parrent in your /sys/firmware/devicetree/base/soc/pcie@11e40000
-files.
-
-If it is just a typo in this email, maybe the interrupt parsing itself.
-
-Can you provide an extract for the DT with nodes created at runtime.
-I mean can you run 'dtc -I dtb -O dts /proc/device-tree' and provide the output
-related to PCI nodes including the PCIe controller ?
-
-> 
-> Rob: do you know some device trees where the interrupt-map points to the
-> node itself as suggested in [2] so that I can check is something is missing
-> on my side?
-> 
-> Thank you,
-> Claudiu
-> 
-> [2] https://lore.kernel.org/all/20250509210800.GB4080349-robh@kernel.org/
-> [3]
-> https://elixir.bootlin.com/linux/v6.15/source/arch/arm64/boot/dts/apple/t8112.dtsi#L951
-> 
-
-Best regards,
-Hervé
-
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
