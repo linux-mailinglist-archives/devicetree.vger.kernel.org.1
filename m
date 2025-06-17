@@ -1,48 +1,62 @@
-Return-Path: <devicetree+bounces-186579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BD9ADC645
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:27:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE9DBADC64D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EF8D16F70E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:27:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76A947A3884
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE60293B4F;
-	Tue, 17 Jun 2025 09:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024C9293C65;
+	Tue, 17 Jun 2025 09:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A/6pn/bf"
+	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="FFKg4QgY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE4728C5CE;
-	Tue, 17 Jun 2025 09:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA02293C63;
+	Tue, 17 Jun 2025 09:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750152410; cv=none; b=Cnh6yM35g1WDJO51Fl0VbfgJZ1q80Npcv1KcmeFCdcr569HrxbMoflvWXHOI72fAo64XP1lCO14MChJZ9PSvIxBaj0PD9hoxD2a8VQzwvTKp7yvgaNtBnbqSlYNomT39z6NQg5FPkTeG06YH/QbCEIc1S/3DQZ/H3ECr4lbvu/8=
+	t=1750152429; cv=none; b=Q8fdQLXFo1HSV4FV982mYuRjX/w5KIYNUhbGlhYnHoiZW0y+itB6nqaiFJ60l8xipfo+3dadTMaVoFyP0WAFC2sa5nJBCnkgi68osy30KpN3f2G0XbWd3IJitComItvcrdRiHiGmej1ZnU/esSTU132w8YApbmwHxK1Y3TET2dM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750152410; c=relaxed/simple;
-	bh=YY8Hzu1eEss1jbim/pEE9OWpA6ai/lOZioWyM7q3zb8=;
+	s=arc-20240116; t=1750152429; c=relaxed/simple;
+	bh=6NWPPlQjO1jAJ/PEmOb+hvVFlM5PIHsiKWIz6FWtskA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U5euhSxkZc5NfBtC9vwIEQV88AnLxdP4ddZG6jft5i6JhzGxGBVeEpk4fh03j2jidLUORYQLwKGlZ7WBnYl4dJ5J2fnkf6Bj3l+AAbu+YRRIz4Ege+ZQg1g5hFK6NOlMDy7mBLq2Az0/o+meG6AxPYvEoX8kN38gwQNgGZGNBgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A/6pn/bf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E1CAC4CEE3;
-	Tue, 17 Jun 2025 09:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750152409;
-	bh=YY8Hzu1eEss1jbim/pEE9OWpA6ai/lOZioWyM7q3zb8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=A/6pn/bfYNc+xHj/vWpOVRxyoCSkX145yr6dIh/ljfM4FNZpvCRUoTOh/wLB5i1op
-	 cSBFumSsuq8OWaa16GWj96dxSivE3EXk/wmhUqxkqRf3eaU77fAZx0e1qlf4BH31YN
-	 QSyOAvD6hyGYm4lWgUVvOyk51blzz58ATCNH9VIexV2a5hBpBHIUqYP6ZIkgSpLrGU
-	 za0WWapFrf6i3xkNG4sdx2p+zefHxB8BMrIF3keB4GbqJ1Pr2cLmWP1y6oz1mlsZtM
-	 6t76Z7fCnvhQXC/gU3GCY6qmNz4/PNKnIDefNiR8S+AyZSLSdp52e9pLD92mBADQw0
-	 Ky85OuuQvVFSA==
-Message-ID: <43ebe623-8822-4437-92cc-9d24e97295d7@kernel.org>
-Date: Tue, 17 Jun 2025 11:26:44 +0200
+	 In-Reply-To:Content-Type; b=DtI6dwjrg6sROjvQUBAfTfLCOfflmvr/Y7w/ojxvz1KtU47YOs/v5ArDxZhkWLkn9FlOHY9z6s6vqlLikmV5CKcaPfpawAIUjbVo64/N+YAKwxz41hsUS3jFv6tHzR3jvV294BMANuRzGjqPSZRKsrsu/tX/haCTmv4Z0OJA0Oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=FFKg4QgY; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id A568F600023C;
+	Tue, 17 Jun 2025 10:27:03 +0100 (WEST)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id myyMLEEWYjmo; Tue, 17 Jun 2025 10:27:01 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 0441C6000248;
+	Tue, 17 Jun 2025 10:27:00 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail; t=1750152421;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MmK/CfeD2UinWWA4TumYD2vKdr/yWCjwsN6TOvI7FK8=;
+	b=FFKg4QgYeTHlD874AcH9qvxVa6dYirY61mYj77LtWOh26aKHHLRzSIRMH8hYK9LgwkylVg
+	0KHSQfi2EWvZU8D+fe7n4G3Vt+BKx6IGyhMjPjfV2cBOnP3x0wq8MX7esdSI/3c954oyp0
+	ZZtUKBO18sKn1KfjdG9TlTCy7Z4cGbo=
+Received: from [10.158.133.22] (dial-b1-161-46.telepac.pt [194.65.161.46])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 2D7E4360089;
+	Tue, 17 Jun 2025 10:27:00 +0100 (WEST)
+Message-ID: <82bfabf0-8c55-4bbd-8c81-44dc86209b15@tecnico.ulisboa.pt>
+Date: Tue, 17 Jun 2025 10:26:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,91 +64,122 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] interconnect: qcom: Add EPSS L3 support on QCS8300
- SoC
-To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 0/3] NVIDIA Tegra210 NVJPG support
+To: Mikko Perttunen <cyndis@kapsi.fi>,
+ Thierry Reding <thierry.reding@gmail.com>
+Cc: Mikko Perttunen <mperttunen@nvidia.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Mike Tiption <mdtipton@quicinc.com>, Sibi Sankar
- <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250617090651.55-1-raviteja.laggyshetty@oss.qualcomm.com>
- <20250617090651.55-3-raviteja.laggyshetty@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
+ <mz5sytol6aw7ouwiimmrd7lqhtvq6nj7pqpxq4ie6em6nwvvkh@2cux3no33gre>
+ <621a9459-f2dd-4b19-a083-0e62f1a42f50@kapsi.fi>
+ <96b721cd-7223-4b28-a3fd-a4d92c9d5142@tecnico.ulisboa.pt>
+ <4cibh66elviiatataa45lsfcyeovkqyxe4fjvfh7uqddhsbe6z@svt2dgeafrdh>
+ <78cc8814-c89f-4a5f-9a70-08ed69580c3f@tecnico.ulisboa.pt>
+ <36898d74-d9f7-4c5a-b6f2-d9652c674b84@kapsi.fi>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250617090651.55-3-raviteja.laggyshetty@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <36898d74-d9f7-4c5a-b6f2-d9652c674b84@kapsi.fi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 17/06/2025 11:06, Raviteja Laggyshetty wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider support on
-> QCS8300 SoC.
-> 
-> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-> ---
->  drivers/interconnect/qcom/osm-l3.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-> index baecbf2533f7..d8f1e0a4617b 100644
-> --- a/drivers/interconnect/qcom/osm-l3.c
-> +++ b/drivers/interconnect/qcom/osm-l3.c
-> @@ -270,6 +270,7 @@ static const struct of_device_id osm_l3_of_match[] = {
->  	{ .compatible = "qcom,sm8150-osm-l3", .data = &osm_l3 },
->  	{ .compatible = "qcom,sc8180x-osm-l3", .data = &osm_l3 },
->  	{ .compatible = "qcom,sm8250-epss-l3", .data = &epss_l3_perf_state },
-> +	{ .compatible = "qcom,qcs8300-epss-l3", .data = &epss_l3_perf_state },
-Heh, the same as some time ago. We discussed this.
 
-No, stop adding more redundant entries. For explanation look at previous
-discussions.
 
-Best regards,
-Krzysztof
+On 6/17/25 5:40 AM, Mikko Perttunen wrote:
+> 
+> 
+> On 6/16/25 7:21 PM, Diogo Ivo wrote:
+>>
+>>
+>> On 6/11/25 4:06 PM, Thierry Reding wrote:
+>>> On Wed, Jun 11, 2025 at 01:05:40PM +0100, Diogo Ivo wrote:
+>>>>
+>>>>
+>>>> On 6/10/25 10:52 AM, Mikko Perttunen wrote:
+>>>>> On 6/10/25 6:05 PM, Thierry Reding wrote:
+>>>>>> On Fri, Jun 06, 2025 at 11:45:33AM +0100, Diogo Ivo wrote:
+>>>>>>> Hello,
+>>>>>>>
+>>>>>>> This series adds support for the NVJPG hardware accelerator found 
+>>>>>>> in the
+>>>>>>> Tegra210 SoC.
+>>>>>>>
+>>>>>>> The kernel driver is essentially a copy of the NVDEC driver as both
+>>>>>>> engines are Falcon-based.
+>>>>>>>
+>>>>>>> For the userspace part I have written a Mesa Gallium backend [1] 
+>>>>>>> that,
+>>>>>>> while still very much experimental, works in decoding images
+>>>>>>> with VA- API.
+>>>>>>>
+>>>>>>> I have been using ffmpeg to call VA-API with the following command:
+>>>>>>>
+>>>>>>> ffmpeg -v verbose -hwaccel vaapi -hwaccel_device
+>>>>>>> /dev/dri/renderD129 -i <input.jpg> -pix_fmt bgra -f fbdev
+>>>>>>> /dev/fb0
+>>>>>>>
+>>>>>>> which decodes <input.jpg> and shows the result in the framebuffer.
+>>>>>>>
+>>>>>>> The firmware for the engine can be obtained from a Linux for Tegra
+>>>>>>> distribution.
+>>>>>>
+>>>>>> By the way, have you tried running this on anything newer than 
+>>>>>> Tegra210?
+>>>>>> Given your progress on this, we can probably start thinking about
+>>>>>> submitting the binaries to linux-firmware.
+>>>>>
+>>>>> FWIW, the impression I have is that NVJPG is basically unchanged 
+>>>>> all the
+>>>>> way to Tegra234. So if we add stream ID support and the firmwares, 
+>>>>> it'll
+>>>>> probably just work. Tegra234 has the quirk that it has two 
+>>>>> instances of
+>>>>> NVJPG -- these have to be distinguished by their different class IDs.
+>>>>> But we should go ahead with the T210 support first.
+>>>>
+>>>> I have a question here, what exactly are the stream IDs? While working
+>>>> on the driver this came up and I didn't manage to figure it out.
+>>>
+>>> Stream IDs are a way to identify memory transactions as belonging to a
+>>> certain device. This comes into play when working with the IOMMU (which
+>>> is a Tegra SMMU on Tegra210 and earlier, and an ARM SMMU on Tegra) and
+>>> is used to isolate DMA capable devices. Basically for every stream ID
+>>> you get a separate I/O address space. NVJPG will have its own address
+>>> space, and so will VIC. Each device can only access whatever has been
+>>> mapped to it's I/O address space. That means NVJPG can't interfere with
+>>> VIC and vice-versa. And neither can any of these engines read from or
+>>> write to random system memory if badly programmed.
+>>
+>> So if I understand this correctly a Stream ID corresponds to an IOMMU
+>> domain right?
+> 
+> Technically not necessarily, but in practice that's the case, as the 
+> IOMMU driver creates IOMMU domains for each stream ID in the device 
+> tree. They are similar to the SWGROUPs on Tegra210.
+
+Ok that makes sense, thank you for the clarification :)
+
+>> Ok, then in that case I'll keep the driver in its current state without
+>> these implementations if that's ok. Connected with this I wanted to know
+>> your thoughts on the best way to upstream this, is it better to wait for
+>> testing on different platforms first and then if things work merge a
+>> driver that works for all of them or go with Tegra210 first and then add
+>> more platforms later on?
+> 
+> Personally, I'd say to go for Tegra210 first.
+
+In that case I believe that in the v2 I sent out of the driver I addressed
+both yours and Thierry's reviews and the driver should be in good condition
+for Tegra210. What are the next steps in order to merge it?
+
+Thanks,
+Diogo
+
+> Cheers
+> Mikko
 
