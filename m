@@ -1,136 +1,214 @@
-Return-Path: <devicetree+bounces-186769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F28ADD243
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:40:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BBAADD284
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076F717D695
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:40:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B7283BEEFE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064E52ECD36;
-	Tue, 17 Jun 2025 15:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B052ECD3A;
+	Tue, 17 Jun 2025 15:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nMenEqtd"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="tCiFaxQf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689C82DF3C9;
-	Tue, 17 Jun 2025 15:40:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFED62ECD3B;
+	Tue, 17 Jun 2025 15:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750174827; cv=none; b=qBW9bYdn7DgiREdeUbO8L7pG7wlWCAalaKyF7M8C8W4+CQQryNH+hfFQYU4TsuFurw1Wg5hiY5dDauK3ECriQEC5quRu7k/fBFrs3Gct+09sLtJ0w1Npgj/WKC8jPSd4NuZpehI849a7eidoWFswpG+CU4ypi5q71I3jRaH8m/Y=
+	t=1750174965; cv=none; b=PDmashkq9iUrzp38cxiH5NiljgRBAoW+nkIChtSCCbsUNgrXA66na02xK0xeQhf+pIWyYq6tMeGkVCUFXAuvtm5iQYx+f35UKse2Y4Ys+d6fgNycOdLpZfgfrpyB089FTUNgMQK7vjWV3jrR1hlAht/a5JCKMdfSP3YamnexVZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750174827; c=relaxed/simple;
-	bh=tC6/NDoju0ZefrxpCxrMvxxYc+0O2W6DOLxIX/mdWoE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uuDnE6/FqWXqIEsGOBtmrVWhEdUzpcH/uDud4xJc7a7INziAnbMKUsIMueynCLznrNh+6/wTGEkpyVV/nbqqFZcMajTmoEKFZqCcH2uDYungaJknC45UhRjDwyDSywbvPCDRXSCaoZGtEYKr1DtIH8lIV7fb9gt/UZL44WedYZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nMenEqtd; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-748cd3c8829so826247b3a.2;
-        Tue, 17 Jun 2025 08:40:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750174826; x=1750779626; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5k96Kr7lemrnHxQ+iFUrhM42H3DOD+3Iasxmqb+VqdI=;
-        b=nMenEqtdCAVpAVzZu64s7/U31NJVFcatRzFj8FsEO+b21/ToOZskMs4svUrt3rj/r/
-         Pvr6KfZAxtRCpt8wfNrqetsc1Blh8tWgxPTjBqloipPulphwPWZg3r9jblxJ+V0q2cA1
-         6MF737N9FRXTRoDUMFBwAFt2NejmW+mqpOSXZJI/CHPMIkCTqKo3PgM3aNR6b+cg90lR
-         PavdD2v8mIAsOpFdgZcrLeS14tfio3g4EvDyECs8RlbzWsZFH5a+OUZQJARuH+7by/Ou
-         JRm9e7E8+wy8Y6EGxrBsBGBrQZuyNCsWuejhkzN4L8N+ASWvzhrar5Zd6ZMcAufqJqCy
-         oRUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750174826; x=1750779626;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5k96Kr7lemrnHxQ+iFUrhM42H3DOD+3Iasxmqb+VqdI=;
-        b=RSNp02AqmCCtwSKTTevHf3fAGeQm7ejEW73bLHRHmWAjApMgd81oMq2HZzOIlMXMEd
-         trqXcdZ9HKaz9PiGbIa5VFpZYr6fy109VaG54igs3lRQiR/V1B7GiUUsyB2GPRBrVF3U
-         TXqA9x0w8LCLXvfx/huADL8Y7Z7y2bGrdXY+ueaNbbPBlmJzpTdl3FzZFyfKhO/QyGwO
-         fIzE8YhJp96hUJ+5fJMuPh+BdgzJOlv2W9AanT6Mul2kPIP8NyumpwU/M8+6uafaEWjw
-         Pl09dLYiixCWskT+JU2oaaVkYRJvfIcOd1J8XsDsd8yurp/Wfc/mbu4m9EEaoDQdDRsj
-         4zyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVpLrhPfvTA3skw0krayiYLksrPJS7jxJStZiikEZn0DbMxn0gTo392yawtZ2G/QKanwPlIr7WeSSAH@vger.kernel.org, AJvYcCWE9r+DSMgVxDWZnyT8uPk+cH+2K+D/3w1IjAWiEX9KAa0tBxffAr6KWeY4Fl9CbbcFlQgizes0/Fq2riVr@vger.kernel.org, AJvYcCX4wUKMMqL05hZKyiACTwFsHKuer1RZWWiHJ4Is9S0dx6aTdhNcCx6WRjPJ/8R4dqcfiAFQD38Hfcl+7Q==@vger.kernel.org, AJvYcCXHJjrvks0rhqORPnRbB3XI1gooPzk1uYiEHdFaRY57aC1KgMDf8HzimWXXNKRBtdmjlZsBsWX9JoIH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxENBirT0ZIOLsL03c9rEqWzXX+MYd/nP1aiwuRkwyBPc7dCMpj
-	iCJJSjFwl8qyqnrHg0n0kK26sYQuh0gINXBcdGNky6VeQAqkQq9U9QJGpQS0Gw==
-X-Gm-Gg: ASbGncsrbkdKTbYRXBuOesX8nbvMJJOYRMcsms8tbZXhEySObDysaT2XGRKHgX9vvoj
-	wMXQrXAUxB1FGWa0PVAHKt5pNEa42v3ZwmLJqHIJM2NkdWYqOHJIEofYOmCQmP7VmO88KpA7jST
-	79QAOOa84jeeahG28zsuguJFnaRjPcgusXMxkb+5ybJHH/Gn3AXVr5sGpVU0v2EhgcbhBYe32n+
-	bxxJEekyun01BFXO96u32i0r1nCi47ImdkskdSzKrggRMQOFpnwy65TGbogaTQU+JmeKaqaUkU1
-	GY5Vf+uMF2ah514MtsywGEpiOXBVecSbuEVtWyNsNeo0BAo0SMY5OxzTtK4NTR2N+jRHdX7j
-X-Google-Smtp-Source: AGHT+IGliwIj5Gizb7rONr5DP/wCV5syb2AP+bWojANJJJURJP5LW4iLHaV1dnuIjeSmsckBuXTlZA==
-X-Received: by 2002:a05:6a00:a8e:b0:748:2e7b:3308 with SMTP id d2e1a72fcca58-7489ce07d29mr18312704b3a.6.1750174825566;
-        Tue, 17 Jun 2025 08:40:25 -0700 (PDT)
-Received: from DESKTOP-P76LG1N.lan ([42.113.163.91])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74890006294sm8993731b3a.47.2025.06.17.08.40.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 08:40:25 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: krzk+dt@kernel.org
-Cc: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 0/4] leds: add new LED driver for TI LP5812
-Date: Tue, 17 Jun 2025 22:40:20 +0700
-Message-Id: <20250617154020.7785-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <e26093a7-2305-4d55-b836-d3bc7c503b9b@kernel.org>
-References: <e26093a7-2305-4d55-b836-d3bc7c503b9b@kernel.org>
+	s=arc-20240116; t=1750174965; c=relaxed/simple;
+	bh=E6kezSGdN55teYM7U2kumz8A/hhUd53+bGnkF7ImWHg=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=Og5QcnBIfPdg+HqTF80l1arz0ypb082rCOlTLR6OJhXOlRp58AsFLfqqWkER08+UNYTKres8AuvDVJpcmrJw1xlID5XOaUb7PMBnGH9KBlN6PkqbjXF2VjxLLR1HlsDK7J/hmSl6lxjJq4vloTNbJ1w4VDrT+8AkSEBNSqZZ4Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=tCiFaxQf; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+	by mxout4.routing.net (Postfix) with ESMTP id C7804100949;
+	Tue, 17 Jun 2025 15:42:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1750174954;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4y61tvVtL+Nu9zAfwj8f/C4Um0svSaW4IhjMC/PKRbY=;
+	b=tCiFaxQfSyRl2HQrruBNDzRHlIucijlwJHs9wUz8grfg4jPl8cjBHtsE9+0MXnK2mhqW77
+	aoemFKp3k0OyAzqkBwmpD5t4WiKrDCfkiSzPM/zuYi2jiNT6tIdvtbdMchKxj6GU3vCEOF
+	sK7BDBpkB4XHraZiaJ4BgJsHZFFeO5A=
+Received: from [IPv6:::1] (unknown [IPv6:2a01:599:80e:f26f:d033:b886:5aa2:2cc2])
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 1868B360564;
+	Tue, 17 Jun 2025 15:42:32 +0000 (UTC)
+Date: Tue, 17 Jun 2025 17:42:31 +0200
+From: Frank Wunderlich <linux@fw-web.de>
+To: Rob Herring <robh@kernel.org>
+CC: MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Jia-Wei Chang <jia-wei.chang@mediatek.com>,
+ Johnson Wang <johnson.wang@mediatek.com>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_01/13=5D_dt-bindings=3A_n?=
+ =?US-ASCII?Q?et=3A_mediatek=2Cnet=3A_update_for_mt7988?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20250617151354.GA2392458-robh@kernel.org>
+References: <20250616095828.160900-1-linux@fw-web.de> <20250616095828.160900-2-linux@fw-web.de> <20250617151354.GA2392458-robh@kernel.org>
+Message-ID: <D1ACA985-56B7-48B6-8DFA-3B93AF893127@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mail-ID: dc9dec3d-80df-4759-b36b-a6ba1f02e733
 
-On Wed, 11 Jun 2025, Krzysztof Kozlowski wrote:
+Am 17=2E Juni 2025 17:13:54 MESZ schrieb Rob Herring <robh@kernel=2Eorg>:
+>On Mon, Jun 16, 2025 at 11:58:11AM +0200, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> Update binding for mt7988 which has 3 gmac and 2 reg items=2E
+>>=20
+>> With RSS-IRQs the interrupt max-items is now 6=2E Add interrupt-names
+>> to make them accessible by name=2E
+>>=20
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>> v4:
+>> - increase max interrupts to 8 because of RSS/LRO interrupts
+>
+>But the schema says 6?
 
-> On 10/06/2025 19:43, Nam Tran wrote:
-> > This patch series adds support for the TI/National Semiconductor LP5812
-> > 4x3 matrix RGB LED driver. The driver supports features such as autonomous
-> > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
-> > 
-> > Following feedback from both the LED and auxdisplay subsystem maintainers,
-> > the driver has been moved back to the LED subsystem, under drivers/leds/rgb/.
-> > This version integrates with the existing multicolor LED APIs, avoiding custom
-> > sysfs where standard LED interfaces are sufficient.
-> > 
-> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> > ---
-> > Changes in v9:
-> > - Move driver back to drivers/leds/rgb/
-> > - Integrate with LED multicolor framework
-> > - Refactor and simplify custom sysfs handling
-> > - Extend Device Tree binding to support multi-led@ nodes using leds-class-multicolor.yaml
-> 
-> You need to provide reason why you dropped reviews.
+Yes it was an error in changelog,see mail i
+ sent later to you and ML=2E 8 was previously
+ because original version had 2 reserved irqs
+ around rx+tx i dropped later by using
+ irq-names=2E
 
-In v9, the Device Tree binding was restructured to integrate with the standard
-leds-class-multicolor.yaml schema and support multi-led@ nodes with nested led@
-subnodes. This change introduced a new patternProperties hierarchy and removed
-the previous flat led@ layout used in the earlier versions.
+See my patch introducing irq-names in mtk
+eth driver:
 
-Due to this substantial structural change — even though the intent and top-level
-properties remained similar — I decided to drop the Reviewed-by tag to avoid
-misrepresenting prior review coverage.
+<https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/20250616080=
+738=2E117993-2-linux@fw-web=2Ede/>
 
-I will include this explanation in the changelog of the next version (v10).
+Original (downstream/sdk) was (but=20
+index-based):
 
-Best regards,
-Nam Tran
+rsv
+rx
+tx
+rsv/misc
+rx-ring0
+=2E=2E=2E
+rx-ring3
+
+So total 8 and i don't wanted to add 2=20
+reserved irq to dts forever so i decided
+moving to irq-names now=2E
+
+>> - dropped Robs RB due to this change
+>> - allow interrupt names
+>> - add interrupt-names without reserved IRQs on mt7988
+>>   this requires mtk driver patch:
+>>   https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/202506160807=
+38=2E117993-2-linux@fw-web=2Ede/
+>>=20
+>> v2:
+>> - change reg to list of items
+>> ---
+>>  =2E=2E=2E/devicetree/bindings/net/mediatek,net=2Eyaml | 28 +++++++++++=
++++++---
+>>  1 file changed, 24 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml =
+b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> index 9e02fd80af83=2E=2Ef8025f73b1cb 100644
+>> --- a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> +++ b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
+>> @@ -28,7 +28,10 @@ properties:
+>>        - ralink,rt5350-eth
+>> =20
+>>    reg:
+>> -    maxItems: 1
+>> +    items:
+>> +      - description: Register for accessing the MACs=2E
+>> +      - description: SoC internal SRAM used for DMA operations=2E
+>> +    minItems: 1
+>> =20
+>>    clocks:
+>>      minItems: 2
+>> @@ -40,7 +43,11 @@ properties:
+>> =20
+>>    interrupts:
+>>      minItems: 1
+>> -    maxItems: 4
+>> +    maxItems: 6
+>> +
+>> +  interrupt-names:
+>> +    minItems: 1
+>> +    maxItems: 6
+>> =20
+>>    power-domains:
+>>      maxItems: 1
+>> @@ -348,7 +355,17 @@ allOf:
+>>      then:
+>>        properties:
+>>          interrupts:
+>> -          minItems: 4
+>> +          minItems: 2
+>> +
+>> +        interrupt-names:
+>> +          minItems: 2
+>> +          items:
+>> +            - const: tx
+>> +            - const: rx
+>> +            - const: rx-ring0
+>> +            - const: rx-ring1
+>> +            - const: rx-ring2
+>> +            - const: rx-ring3
+>> =20
+>>          clocks:
+>>            minItems: 24
+>> @@ -381,8 +398,11 @@ allOf:
+>>              - const: xgp2
+>>              - const: xgp3
+>> =20
+>> +        reg:
+>> +          minItems: 2
+>> +
+>>  patternProperties:
+>> -  "^mac@[0-1]$":
+>> +  "^mac@[0-2]$":
+>>      type: object
+>>      unevaluatedProperties: false
+>>      allOf:
+>> --=20
+>> 2=2E43=2E0
+>>=20
+
+
+regards Frank
 
