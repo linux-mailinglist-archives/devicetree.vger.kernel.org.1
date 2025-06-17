@@ -1,154 +1,154 @@
-Return-Path: <devicetree+bounces-186628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C3CADCA2F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:58:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3322CADCA35
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:59:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31EF03BA982
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:58:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D4083BA5C6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43862E06E8;
-	Tue, 17 Jun 2025 11:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D062E06D5;
+	Tue, 17 Jun 2025 11:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VBJEGoR8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vt01Nre3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay16.mail.gandi.net (relay16.mail.gandi.net [217.70.178.236])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EB52E06DA
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 11:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FFC2DF3C1;
+	Tue, 17 Jun 2025 11:59:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.236
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750161500; cv=none; b=PcTJXJnVSlGAlZBA2Gd/xwYUNSkiRjANZndQWP50STcdr54VZFUeKwdCsiWmKfOBxgcqfL3yX4N+yHYbvhdDWukuH7XhxcE4aoAH5GZLvTiqb3/lyplwcrREyh7+zqxaKpiG/+S8ZeOfzMrhYzTBovRC1mCz73hziCC3PMXPNk4=
+	t=1750161582; cv=none; b=BzLC+8E48wjRrwfrtbmKOPHA/tEnEvVFwr8kj3z8KCtT58HFFQ3xF0U2UndiRC5WQ2NQWP7ky3gZngB4ksLDWgpktZolyMpRVhQPrf+ar1AtjSj3wqyrH8F06YCede2hHxgvz0CUPXeeVTx8QSkEmrHnLchfmNcJzry5m0Kr9hE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750161500; c=relaxed/simple;
-	bh=+uyLKm9hSUfEzGUyKtnEgciW/igj3ZiBhyjPInVlGhw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YnMeZxAG3f/2nCJNywVFyCgDqySR1UTtX8bVqRjIsPWNJVEQSjWxOlEDY8ydVmuSzNBC9tSemXqzlHqHos4sCt8g98oRk4ewO5bmQbIH1fFU+ELenMvMvkes9A5dvAzlhZeLSVH/h/G3QY2Oq7MMHK4j+xrMGCiHacxlR5S/uMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VBJEGoR8; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6097de2852aso1782330a12.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 04:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750161497; x=1750766297; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=keaSv+pR2b50s5ZT4OSlONeLUOBJ7yafZmfnmaE00lo=;
-        b=VBJEGoR87l1fhlS8pGEA4sVc6aPeK9QD7v8Mm9k86Ng3k1Taw7rmki9oCzNctSYdE0
-         XAVhH/91afOoWHW1IRQIxwbYidjXeQktVJRAXyo8Wq1ElSZiFJ/VqzfABytiH/x/8Op+
-         tHX/z93nEavwQOCuwzOPDP2hHdirMeLh/SqwbGqYEhXinFABYqMSIFdQZCLIRjn8PWic
-         H/fVSSPe7xWxvHZ9VJdJM7ZUN120eYLvfL9vZuu7Lp19SmkprYi2HOHBIzdgV3k/rVTC
-         4butSLvtu3M/hoJwg8EbO/47heL5zf9MrwwA+SMR25mM64KqHXpQ12D7gzKse9UITMFC
-         /4Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750161497; x=1750766297;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=keaSv+pR2b50s5ZT4OSlONeLUOBJ7yafZmfnmaE00lo=;
-        b=NPyVVYwrtzs1yt6EYXtp/DEwHeVr05nbGC9x+YpHfoXPv4Y4/wFBM5xTTn29tcg5S7
-         B9rp2gOIgZlqxFv6U1jxI1x4B//+eEGHW1gzhn9MaeOkv1Ps+VB/VIU6psnQR3uxsNDj
-         B35gVSFCFzDjHg653cpn2ZoT/pqfU0uJWBv72Rsrv7lqb8GPBF/y99plTJ3C2KdYzK28
-         hWSLjpMOmEWPKKiGm0A2XlghSrngpSqmziQoGdvuT3+Lt/S0WM8NO41Qff0WnoHVCnr7
-         eJTsQJUZ3uYmQHnUa7g83bR23kNTjZGSjmrAWpjguAP+d1DbSo5+pO88qKwx7JQV2264
-         7ggQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoj33gdpXix0p8Sg0Z9OkSOMTH0aj3kSaHQb5nGbMLKE7ZjIfUsvspnbaBsMQYftmlE4mKvj7WIgSC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIZdyntfc4HXzte2eXw78HCDUmcLjwObgVJp4CQFE1mpVlW49M
-	F+5A94wqvdH4jigL3AEFaL5mvTqV1zIKVVWKq7MNr2KsEESHufDbFlQERnoJj6mXRAz9+1KV56K
-	qly/GulHDwlJz0cIHU6YT3lZ2QS7OmKg=
-X-Gm-Gg: ASbGncvDl7+G3r6ddx5gRTn2lorBQvKPfCmKovkiPVz6WinInfPwzw7Vj6RDXte9Ob7
-	SUJSg0+oLGeggViSz38sYoZSWIzyFfkD5H57Syh015NM15/0RW6PZpB/lA3jY1QvhGkzGC9SHVE
-	vIzi4jtw+bKwHSuyo2uFcKgwu9SJLyWd7x/iD7Cbr4Lavqow==
-X-Google-Smtp-Source: AGHT+IHPTkScUJLvVuKhNiG5y+ImEDicfyiqzKZH+OeWEhPv8WuYXvFQQIY+76XSAzEZMBjVUs1Ak9s3l2r5X4gqMMk=
-X-Received: by 2002:a17:907:1c8c:b0:ad8:87a1:4da8 with SMTP id
- a640c23a62f3a-adfad326befmr1275205466b.14.1750161496858; Tue, 17 Jun 2025
- 04:58:16 -0700 (PDT)
+	s=arc-20240116; t=1750161582; c=relaxed/simple;
+	bh=ZEZdT01ycHwNVlYTkoDA/lXI0JtNVBBiR8zRPwgoix0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lolifAtLeTcdlO/f+T/aVFYmTRwu4iDBJhTYd51Y+0NYmDUsUKOwTWgphrNpOudZ9Z/kd2mP84TZSneGH4vUDbPUV0VkNBpH/5LDYf3p7tZ7Uttd+mh7H/SYiYaf7/cc4lgu4F7Xw1QP6Ku8QfyMmTLZYoVzC3Amt3eStCBD8zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Vt01Nre3; arc=none smtp.client-ip=217.70.178.236
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 41717424BB;
+	Tue, 17 Jun 2025 11:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750161571;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=W6Pvni7Zs0uwK3wQbi9OBXyIZ+nOBBx/+O2vZSvueFw=;
+	b=Vt01Nre3N3weW1j5b6mpQKCevzIeBd8IhkGB7MqVOybqKY9vj63AhoAAM7WC57Q4KAjkmp
+	JkIrbTnwWwU7PYOKFreWuVr8CQQrYDI/ukvTPvWM9+T5LlJ10dN9SmjQqTJ8zbmLmvFqG3
+	L91iNkBE8nLA6i8YKx8UfBLl8qdVDVJ1KDST8pZdlQlB1B1QW6ZsqkMTFAymMfmt5m/whP
+	HCB4H/38TSYm9RTLYkoQq/a6zHuCo9BlIxbC/C2+4JL4/XwwJ7m1D4XA04t2BQdqK2ugXA
+	6rQKw00O6rpMAx98wmSV1Chvx9YUOwEZ6MWiAx+JNZzU4FUb+HE5K5Ne0+TxIw==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH v4 0/7] Add support for BeagleBone Green Eco board
+Date: Tue, 17 Jun 2025 13:59:23 +0200
+Message-Id: <20250617-bbg-v4-0-827cbd606db6@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
- <CAMuHMdXVEOBRU+pzcmRXq7YJXhYnhPjK72Oh31y=n33VZR2JKw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXVEOBRU+pzcmRXq7YJXhYnhPjK72Oh31y=n33VZR2JKw@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 17 Jun 2025 14:57:39 +0300
-X-Gm-Features: AX0GCFsdFLBNVzNe3x2xNIT7VOWe3cMexLSS_pxt9AfzAxnBU2UWiwrC1vW6nyw
-Message-ID: <CAHp75Vd8U-zJ1b+Atpr=8WXhPpB9sFcYJsmC0aStiRKSZWYKBg@mail.gmail.com>
-Subject: Re: [RFC][DT] Guidance on device tree property prefix for
- TM16XX-class LED display controllers
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Jean-Francois Lessard <jefflessard3@gmail.com>, devicetree@vger.kernel.org, andy@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJtYUWgC/2XNyw7CIBAF0F8xrMXAlKcr/8O4KJS2JFoMNETT9
+ N+l1cTX7O5kzp0JJRe9S2i/mVB02ScfhhLYdoNsXw+dw74pGQEBTjhU2JgOS6EJVQ1toZaoXF6
+ ja/1tbTmeSu59GkO8r6WZLttvnykm2LWs1o5LV+ZgQhjPftjZcEFLQ4a3EkQ/FRTFQSoCwkim1
+ b+qPhR9/aoWRZltrBSKsR81z/MDTtMZnwQBAAA=
+To: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+ Roger Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Paul Barker <paul.barker@sancloud.com>, 
+ Marc Murphy <marc.murphy@sancloud.com>
+Cc: Jason Kridner <jkridner@gmail.com>, Andrew Davis <afd@ti.com>, 
+ Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Kory Maincent <kory.maincent@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15-dev-8cb71
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdduvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffufffkgggtgffvvefosehtkeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdefkeekjeevjeegffdtfeekkeetueejfedvtefgveekfeeifeejvdekfeetfffgnecuffhomhgrihhnpeguvggsihgrnhdrohhrghdpkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtoheprghnughrvggrsheskhgvmhhnrgguvgdrihhnfhhopdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheptghonhhorhdrughoohhlvgihsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtoheplhhinhhug
+ idqohhmrghpsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjkhhrihgunhgvrhesghhmrghilhdrtghomhdprhgtphhtthhopehtohhnhiesrghtohhmihguvgdrtghomh
 
-On Tue, Jun 17, 2025 at 12:43=E2=80=AFPM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
-> On Mon, 16 Jun 2025 at 22:06, Jean-Francois Lessard
-> <jefflessard3@gmail.com> wrote:
+SeeedStudio BeagleBone Green Eco (BBGE) is a clone of the BeagleBone Green
+(BBG). It has minor differences from the BBG, such as a different PMIC,
+a different Ethernet PHY, and a larger eMMC.
 
-> > I=E2=80=99m working on preparing a new driver and device tree binding f=
-or
-> > auxiliary LED display controllers of the TM16XX class, and I=E2=80=99d =
-like to
-> > request guidance on property naming conventions before submitting a
-> > formal patch series.
-> >
-> > The driver (tentatively named tm16xx) supports LED controller chips
-> > that share a common hardware design and programming model, produced by
-> > multiple vendors, including:
-> > - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
-> > - FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
-> > - Princeton Technology Corp: PT6964
-> > - HBS: HBS658
-> >
-> > These devices are functionally compatible and appear in various
-> > consumer and embedded hardware (e.g., Android TV boxes) to control
-> > both 7-segment displays and custom icons that may look like this:
-> >
-> >           ---    ---       ---    ---
-> >  [WIFI]  |   |  |   |  -  |   |  |   |  [USB]  [PLAY]
-> >           ---    ---       ---    ---
-> >  [LAN]   |   |  |   |  -  |   |  |   |  [BT]   [PAUSE]
-> >           ---    ---       ---    ---
-> >
-> > My current binding defines properties describing hardware layout, for e=
-xample:
-> >
-> >     tm16xx,digits =3D /bits/ 8 <0 1 2 3>;
-> >     tm16xx,segment-mapping =3D /bits/ 8 <0 1 2 3 4 5 6>;
-> >     tm16xx,transposed;
-> >
-> > These describe hardware characteristics (grid/digit arrangement,
-> > segment mapping, transposed display output) that apply to this class
-> > of compatible hardware, regardless of vendor.
->
-> Personally, I am a bit reluctant to try to describe the segment mapping
-> in DT, as it can become rather cumbersome.
+Also update the omap.yaml binding to include missing compatible strings
+that were previously undocumented.
 
-Yes, the segment mapping is implied already by the mapping table for
-the characters and...
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Changes in v4:
+- Drop model value change to avoid conflict with script based on this
+  value like:
+  https://salsa.debian.org/installer-team/flash-kernel/-/blob/master/db/all.db?ref_type=heads
+- Rename ti,am335x-shc to bosch,am335x-shc
+- Forgot to change to "Seeed" in BeagleBone Green Eco model description.
+- Link to v3: https://lore.kernel.org/r/20250613-bbg-v3-0-514cdc768448@bootlin.com
 
-> The alternative is to use
-> a device-specific compatible value, and put the mapping in the driver,
-> like I did for the Adafruit 7 and 14 segment Featherwing displays in
-> drivers/auxdisplay/ht16k33.c.
+Changes in v3:
+- Update multi_v7_defconfig with TPS65219 config.
+- Remove extraneous compatible strings.
+- Replace BeagleBone compatible board name vendor to use "beagle" instead
+  of "ti".
+- Link to v2: https://lore.kernel.org/r/20250609-bbg-v2-0-5278026b7498@bootlin.com
 
-...as Geert said, if required, can be bound to the compatible string
-and hardcoded in the driver.
+Changes in v2:
+- Add patch 1 to 3 to fix binding and devicetree inconsistencies.
+- Rename tps node name to generic pmic node name in am335x-bone-common.
+- Link to v1: https://lore.kernel.org/r/20250523-bbg-v1-0-ef4a9e57eeee@bootlin.com
 
-The problem is, that often segment mapping is PCB level of the wiring
-and to be honest I dunno how to distinguish such a scenario easily as
-one would need to check compatible string for the component _and_ for
-the board.
+---
+Kory Maincent (7):
+      dt-bindings: omap: Add missing AM33xx compatible strings
+      arm: dts: omap: Remove incorrect compatible strings from device trees
+      arm: dts: omap: am335x-bone-common: Rename tps to generic pmic node
+      dt-bindings: omap: Add Seeed BeagleBone Green Eco
+      arm: dts: omap: Add support for BeagleBone Green Eco board
+      arm: omap2plus_defconfig: Enable TPS65219 regulator
+      arm: multi_v7_defconfig: Enable TPS65219 regulator
 
---=20
-With Best Regards,
-Andy Shevchenko
+ Documentation/devicetree/bindings/arm/ti/omap.yaml |  23 ++-
+ arch/arm/boot/dts/ti/omap/Makefile                 |   1 +
+ arch/arm/boot/dts/ti/omap/am335x-base0033.dts      |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi  |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-bone.dts          |   2 +-
+ .../boot/dts/ti/omap/am335x-boneblack-wireless.dts |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-boneblack.dts     |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-boneblue.dts      |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts | 169 +++++++++++++++++++++
+ .../boot/dts/ti/omap/am335x-bonegreen-wireless.dts |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts     |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts    |   3 +-
+ arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts  |   2 +-
+ .../arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts  |   2 +-
+ .../ti/omap/am335x-sancloud-bbe-extended-wifi.dts  |   5 +-
+ .../boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts  |   5 +-
+ arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts  |   2 +-
+ arch/arm/boot/dts/ti/omap/am335x-shc.dts           |   2 +-
+ arch/arm/configs/multi_v7_defconfig                |   3 +
+ arch/arm/configs/omap2plus_defconfig               |   3 +
+ 21 files changed, 214 insertions(+), 24 deletions(-)
+---
+base-commit: e22b9ddaf3afd031abc350c303c7c07a51c569d8
+change-id: 20250523-bbg-769018d1f2a7
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
