@@ -1,101 +1,81 @@
-Return-Path: <devicetree+bounces-186541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925BEADC4C0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:29:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E24EADC520
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:36:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CA6A3A4875
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:29:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EACA7A44AA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E586289824;
-	Tue, 17 Jun 2025 08:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF38E28F527;
+	Tue, 17 Jun 2025 08:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="C/JOA3gl";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="C/JOA3gl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YeX9ppl+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3E6CA6F;
-	Tue, 17 Jun 2025 08:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B000C1DE3DC;
+	Tue, 17 Jun 2025 08:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750148985; cv=none; b=sCb5Vl9iu1gWVpHitEhFeoxrqSpmA/H3l6uAZ/KTiPi1MwuvrSh8e8U+1rQzVqtHEAP5yVgjcoqU/YtrO+z/ErEfjkVbl32m5DQ9P/huSOwiitwoqXow/E7wmvox07+eVGNXjX+/IP9LWQ2Nm9IXQUtPERaa9U5G0jOgt98ISnE=
+	t=1750149363; cv=none; b=CWuIfmftazZ2lWw4bzOI3X/xhqb4WgIch/IET1ca0g4j/X520ujznu0UWYHIZqKf/YXK72Y6qg75GNI1dv5WjPMAT1TYIYLV9IAI06LQaWaDHx/tow5bQmfMVYgPFNimwDvrjBoVX3T+1vfE7DPoeXz7CDLvQ1QJ/PfHOeyzz8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750148985; c=relaxed/simple;
-	bh=h5DYFAuVio36yz2xdt6veVQ5MCUC5Nm4S8ZwBFwoY0Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pv/wALcU7gBKvWPySN9TQTR6UdhdRDEU/areio7mhyHneJdW6YP57r/Ab/l9mI2pTHiq59xQu+8zAO6RBcbJcw9KEnFlYQkBZw5VUVoyjPs7Jk6Aqm66eQbR7esvy+YSsywCGe/glzBNpEn5UmO8jv0l01QvWXl+mzzZ/khIwt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=C/JOA3gl; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=C/JOA3gl; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1750148981; bh=h5DYFAuVio36yz2xdt6veVQ5MCUC5Nm4S8ZwBFwoY0Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C/JOA3glTSbRXGeZeqLoLH68R1plBk58aC5zMHcoksNNV/JUU4bj9C+2R6G8aKNWF
-	 jA6ysYWnp70OXrZv6RE8gVfoA36DcMwkjrXxBI8V8tLLd0/mY/xzSrMBhIgLBsevFs
-	 WN1sYLB0i1IwBQ50L2w8lJN1jKaT2ZPH7RX2lYH7oQmy5qhYdrNkd1fWZGiSuaXXj6
-	 3ox0J3azzKkwywV2EfwuOs33LKMjfkMRxs/9ay7QF9lVbVV5fURiNaC7g50bTuzMcr
-	 HySSy8ll6mvUchFt9KygO8PtMVd78w3jB9EpBvNgQ7e59xbkA+tu7ZyO+4zLWqgl5Y
-	 xlddVDVjfAkrQ==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 54F4B3C2B97;
-	Tue, 17 Jun 2025 08:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1750148981; bh=h5DYFAuVio36yz2xdt6veVQ5MCUC5Nm4S8ZwBFwoY0Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C/JOA3glTSbRXGeZeqLoLH68R1plBk58aC5zMHcoksNNV/JUU4bj9C+2R6G8aKNWF
-	 jA6ysYWnp70OXrZv6RE8gVfoA36DcMwkjrXxBI8V8tLLd0/mY/xzSrMBhIgLBsevFs
-	 WN1sYLB0i1IwBQ50L2w8lJN1jKaT2ZPH7RX2lYH7oQmy5qhYdrNkd1fWZGiSuaXXj6
-	 3ox0J3azzKkwywV2EfwuOs33LKMjfkMRxs/9ay7QF9lVbVV5fURiNaC7g50bTuzMcr
-	 HySSy8ll6mvUchFt9KygO8PtMVd78w3jB9EpBvNgQ7e59xbkA+tu7ZyO+4zLWqgl5Y
-	 xlddVDVjfAkrQ==
-Message-ID: <804c0ad1-3ab0-48be-b58e-8c67ac92d12c@mleia.com>
-Date: Tue, 17 Jun 2025 11:29:39 +0300
+	s=arc-20240116; t=1750149363; c=relaxed/simple;
+	bh=ezz4lE7sCwKuZi/6AbszrayMOAwrhTX2escfHWD9cqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KqC/zpAzzJ39dW71OzGvMFm5mh5b3ZryhX2ZcBHfsGS8g3P/fO7EX0NlP2JuCLbqPmqOmJVN1nF8R/9/MITt4PC3bA0MeZI4FbSHDqeZPI55n7Wb58+IsF/wCSXLL/q9nToVyIEOKH2uhFMImRrCNRgNerS41HA3f5Y7jVHB6IU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YeX9ppl+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B00E1C4CEEE;
+	Tue, 17 Jun 2025 08:36:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750149363;
+	bh=ezz4lE7sCwKuZi/6AbszrayMOAwrhTX2escfHWD9cqk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YeX9ppl+usWZjhWaSTeH+L+G7OEmA3udghh5ZgbhiDYOx17Mfh+D7zqyst7zG3+lH
+	 U9juUZPjvvoBUc38NeKuAFFzIt3fDwZApWktCldOhorMPoX8q3W01O54hzBDBmi19r
+	 QgcalRNdhnqVd5ymrJn4kV6dD9UFTSWW4Tj9B7VJFsISJRbDzH5tZEjFzG3cXVGqLA
+	 WgzByTClrkdSjnzssnVLf8AJ0mxWEvlwXLRaFxWX2Pr8uRy/JwHTXjUsGKHZR/7Row
+	 ONtu7TXuCFbg40bo3zFsPs5cpNYMFkrF/PH9iv+CVGlm/dK5YDIqaabYpXpFhATQeJ
+	 80q4+Yk8AFUSA==
+Date: Tue, 17 Jun 2025 10:36:00 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: crypto: Convert ti,omap2-aes to DT schema
+Message-ID: <20250617-auspicious-wrasse-of-upgrade-cba30b@kuoka>
+References: <20250611231047.1400566-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: arm: lpc: add missed lpc43xx board
-Content-Language: ru-RU
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
- Roland Stigge <stigge@antcom.de>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/LPC32XX SOC SUPPORT"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20250606164012.1363896-1-Frank.Li@nxp.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20250606164012.1363896-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20250617_082941_376528_41F3FF3A 
-X-CRM114-Status: UNSURE (   5.72  )
-X-CRM114-Notice: Please train this message. 
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250611231047.1400566-1-robh@kernel.org>
 
-On 6/6/25 19:40, Frank Li wrote:
-> Add missed legancy lpc43xx board compatible string to fix below CHECK_DTB
-> warnings:
-> arch/arm/boot/dts/nxp/lpc/lpc4337-ciaa.dtb: /: failed to match any schema with compatible: ['ciaa,lpc4337', 'nxp,lpc4337', 'nxp,lpc4350']
+On Wed, Jun 11, 2025 at 06:10:45PM GMT, Rob Herring (Arm) wrote:
+> Convert the TI OMAP AES binding to DT schema format. It's a straight
+> forward conversion.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Make "ti,hwmods" not required as it is deprecated and only used on
+> OMAP2.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
-Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thank you for the change.
+Best regards,
+Krzysztof
 
---
-Best wishes,
-Vladimir
 
