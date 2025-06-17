@@ -1,234 +1,155 @@
-Return-Path: <devicetree+bounces-186742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31BB6ADD011
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:38:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E38ADD025
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:41:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 902C91885EF4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:34:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 050BB1621D9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1591D1FC109;
-	Tue, 17 Jun 2025 14:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEEC12EB10;
+	Tue, 17 Jun 2025 14:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="eRFjA2m2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dSTCRk8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3851F4CAE;
-	Tue, 17 Jun 2025 14:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9997B2CCDE;
+	Tue, 17 Jun 2025 14:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750170875; cv=none; b=NaeUjS/3609QUp7K88huK3nszLQhytam+5OYhC1xT/oCIZKtHIE2AHaISPxKAyW5f5G1SiMd4+exH/hGj1KVzy1HPdGPJo6nIVs7orafspk422vwiQ6NZ6D5I509B5QWJuGgqro/YhWfUL6BtJaxD0u3s1g18jp9vBTPWJ4Wquc=
+	t=1750171270; cv=none; b=d0KAOAvHaM4wIjVryUoZ6qsFaiHnMremXbdi2KGdR95OO6Z3d+/YjO8kxXIrerNNUPyHm5fYQZDDeclSH/wCKg91m1SUSMLmW5Z9xlf79nF3cBZQrJLWQrgUsfNe8p/qPzPLUTjScXcEEHJUfiqjo1VGdqRtdBgqiKwAAxU0zSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750170875; c=relaxed/simple;
-	bh=7eVSwYhRrsGw308e1gWXBm5X3J3BsCedcVcfc7DyDMo=;
+	s=arc-20240116; t=1750171270; c=relaxed/simple;
+	bh=XdJb0Fw4Rr6pT0ZoN+vrT8BJNFqp2n7RZt9bLdoicy0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VJcm2I2oXdB/bjRHadD7/eHuxVNDBNUxyjgj71bHyLBFjxomnKNJ+YUaXE3pPTqdA3maM9W/HrJjnqQopjpRcoAbIzZJGesLReXiHb/SYbxIE3un+pTV6/Iy7afSlHBjeSlNyek+GTPujyCUa05QH9uVoAtz0J4oKkQcAQ8+VJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=eRFjA2m2; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2EEB57E1;
-	Tue, 17 Jun 2025 16:34:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750170859;
-	bh=7eVSwYhRrsGw308e1gWXBm5X3J3BsCedcVcfc7DyDMo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=jcCjAhgg0L38niekZ8SEGzwmokzFOZhik6zFX4v9WIA+cQdIhBqStlANqZmvRg5Sh+RkBPVU8J3Nwe0/nWO98zHLas07iBkOq4Vj5kdK3i9pX1xie+Hs3nftcQ8IT6pH/dlLJINo3Kf25133l94S8yaO3YRq+CnammmOIrWxvJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dSTCRk8U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD93C4CEE3;
+	Tue, 17 Jun 2025 14:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750171269;
+	bh=XdJb0Fw4Rr6pT0ZoN+vrT8BJNFqp2n7RZt9bLdoicy0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eRFjA2m2TzJPaNadVlp/g6nZhQtjBw8DzZMp2uaxV4XCS8ILolO/l48V2PRSJkYG7
-	 615Ja/S+EC/SeBscdF5aji3VzhpJUeZz9rvH316vYgyFJ7rrCXG3BHCzHm8kDFKSkv
-	 bpv0l1rrXPZER84ZeLYfbQ/1c6YQqdHsDId+UYeg=
-Date: Tue, 17 Jun 2025 17:34:16 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=dSTCRk8Uwi677vKg6k6lOAWXdtA+M+meFSVzjlFArZ9bvcH54PzhYbqd7CJlg63T/
+	 xJ0+p8rTVazZ6/wO72ITTYo2jiM5Tbugln+L3yIBtD9EBCyLvlK3Uf+wo/ABwAm3Vy
+	 fPAoXHXkEsLyBw49G9HKJjcjV6mofeyhQa4lbM/8mb3sWMomcQgyA7/LvkGC8yKDG9
+	 odnD5n9ZIAUz+x2GSLx7JB/j6pW2RBIQtlbDvHkin8zrtZV/xYDMLS6fmj6g31qdWG
+	 HZkv+V2DMP0ZzeS0iAymfIqkXqCiWdwpzWqjTJXdU4eV1g/aaKOhKSpv5Kz+VAmX7Z
+	 jrf/zUgEtABtw==
+Date: Tue, 17 Jun 2025 16:41:00 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Robert Chiras <robert.chiras@nxp.com>,
-	"Guoniu.zhou" <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v5 04/13] media: nxp: imx8-isi: Use
- devm_clk_bulk_get_all() to fetch clocks
-Message-ID: <20250617143416.GA21052@pendragon.ideasonboard.com>
-References: <20250522-8qxp_camera-v5-0-d4be869fdb7e@nxp.com>
- <20250522-8qxp_camera-v5-4-d4be869fdb7e@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 3/9] rust: pwm: Add driver operations trait and
+ registration support
+Message-ID: <aFF-fNOOEzoiomFu@pollux>
+References: <20250617-rust-next-pwm-working-fan-for-sending-v3-0-1cca847c6f9f@samsung.com>
+ <CGME20250617140838eucas1p2a31af5a73297580c2421263c1c6ba700@eucas1p2.samsung.com>
+ <20250617-rust-next-pwm-working-fan-for-sending-v3-3-1cca847c6f9f@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250522-8qxp_camera-v5-4-d4be869fdb7e@nxp.com>
+In-Reply-To: <20250617-rust-next-pwm-working-fan-for-sending-v3-3-1cca847c6f9f@samsung.com>
 
-Hi Frank,
+On Tue, Jun 17, 2025 at 04:07:26PM +0200, Michal Wilczynski wrote:
+> +/// Manages the registration of a PWM chip, ensuring `pwmchip_remove` is called on drop.
+> +pub struct Registration {
+> +    chip: ManuallyDrop<ARef<Chip>>,
 
-On Thu, May 22, 2025 at 01:56:42PM -0400, Frank Li wrote:
-> Use devm_clk_bulk_get_all() helper to simplify clock handle code.
-> 
-> No functional changes intended.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Why is this ManuallyDrop when you call ManuallyDrop::drop(&mut self.chip) as
+the last thing in Registration::drop()?
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+I think you don't need ManuallyDrop here.
 
-> ---
-> change in v5
-> - none
-> ---
->  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 46 +++-------------------
->  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  3 +-
->  2 files changed, 6 insertions(+), 43 deletions(-)
-> 
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index ecfc95882f903..015350c6f2784 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -275,11 +275,6 @@ static const struct mxc_isi_set_thd mxc_imx8_isi_thd_v1 = {
->  	.panic_set_thd_v = { .mask = 0xf0000, .offset = 16, .threshold = 0x7 },
->  };
->  
-> -static const struct clk_bulk_data mxc_imx8mn_clks[] = {
-> -	{ .id = "axi" },
-> -	{ .id = "apb" },
-> -};
-> -
->  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
->  	.model			= MXC_ISI_IMX8MN,
->  	.num_ports		= 1,
-> @@ -287,8 +282,6 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
->  	.reg_offset		= 0,
->  	.ier_reg		= &mxc_imx8_isi_ier_v1,
->  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> -	.clks			= mxc_imx8mn_clks,
-> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
->  	.buf_active_reverse	= false,
->  	.gasket_ops		= &mxc_imx8_gasket_ops,
->  	.has_36bit_dma		= false,
-> @@ -301,8 +294,6 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
->  	.reg_offset		= 0x2000,
->  	.ier_reg		= &mxc_imx8_isi_ier_v2,
->  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> -	.clks			= mxc_imx8mn_clks,
-> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
->  	.buf_active_reverse	= true,
->  	.gasket_ops		= &mxc_imx8_gasket_ops,
->  	.has_36bit_dma		= true,
-> @@ -315,8 +306,6 @@ static const struct mxc_isi_plat_data mxc_imx8ulp_data = {
->  	.reg_offset		= 0x0,
->  	.ier_reg		= &mxc_imx8_isi_ier_v2,
->  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> -	.clks			= mxc_imx8mn_clks,
-> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
->  	.buf_active_reverse	= true,
->  	.has_36bit_dma		= false,
->  };
-> @@ -328,8 +317,6 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
->  	.reg_offset		= 0,
->  	.ier_reg		= &mxc_imx8_isi_ier_v2,
->  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> -	.clks			= mxc_imx8mn_clks,
-> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
->  	.buf_active_reverse	= true,
->  	.gasket_ops		= &mxc_imx93_gasket_ops,
->  	.has_36bit_dma		= false,
-> @@ -386,7 +373,7 @@ static int mxc_isi_runtime_suspend(struct device *dev)
->  {
->  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
->  
-> -	clk_bulk_disable_unprepare(isi->pdata->num_clks, isi->clks);
-> +	clk_bulk_disable_unprepare(isi->num_clks, isi->clks);
->  
->  	return 0;
->  }
-> @@ -396,7 +383,7 @@ static int mxc_isi_runtime_resume(struct device *dev)
->  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
->  	int ret;
->  
-> -	ret = clk_bulk_prepare_enable(isi->pdata->num_clks, isi->clks);
-> +	ret = clk_bulk_prepare_enable(isi->num_clks, isi->clks);
->  	if (ret) {
->  		dev_err(dev, "Failed to enable clocks (%d)\n", ret);
->  		return ret;
-> @@ -414,27 +401,6 @@ static const struct dev_pm_ops mxc_isi_pm_ops = {
->   * Probe, remove & driver
->   */
->  
-> -static int mxc_isi_clk_get(struct mxc_isi_dev *isi)
-> -{
-> -	unsigned int size = isi->pdata->num_clks
-> -			  * sizeof(*isi->clks);
-> -	int ret;
-> -
-> -	isi->clks = devm_kmemdup(isi->dev, isi->pdata->clks, size, GFP_KERNEL);
-> -	if (!isi->clks)
-> -		return -ENOMEM;
-> -
-> -	ret = devm_clk_bulk_get(isi->dev, isi->pdata->num_clks,
-> -				isi->clks);
-> -	if (ret < 0) {
-> -		dev_err(isi->dev, "Failed to acquire clocks: %d\n",
-> -			ret);
-> -		return ret;
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->  static int mxc_isi_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -457,11 +423,9 @@ static int mxc_isi_probe(struct platform_device *pdev)
->  	if (!isi->pipes)
->  		return -ENOMEM;
->  
-> -	ret = mxc_isi_clk_get(isi);
-> -	if (ret < 0) {
-> -		dev_err(dev, "Failed to get clocks\n");
-> -		return ret;
-> -	}
-> +	isi->num_clks = devm_clk_bulk_get_all(dev, &isi->clks);
-> +	if (isi->num_clks < 0)
-> +		return dev_err_probe(dev, isi->num_clks, "Failed to get clocks\n");
->  
->  	isi->regs = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(isi->regs)) {
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> index e7534a80af7b4..bd3cfe5fbe063 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> @@ -169,8 +169,6 @@ struct mxc_isi_plat_data {
->  	const struct mxc_isi_ier_reg  *ier_reg;
->  	const struct mxc_isi_set_thd *set_thd;
->  	const struct mxc_gasket_ops *gasket_ops;
-> -	const struct clk_bulk_data *clks;
-> -	unsigned int num_clks;
->  	bool buf_active_reverse;
->  	bool has_36bit_dma;
->  };
-> @@ -282,6 +280,7 @@ struct mxc_isi_dev {
->  
->  	void __iomem			*regs;
->  	struct clk_bulk_data		*clks;
-> +	int				num_clks;
->  	struct regmap			*gasket;
->  
->  	struct mxc_isi_crossbar		crossbar;
+> +}
+> +
+> +impl Registration {
+> +    /// Registers a PWM chip (obtained via `Chip::new`) with the PWM subsystem.
+> +    ///
+> +    /// Takes an [`ARef<Chip>`]. On `Drop` of the returned `Registration` object,
+> +    /// `pwmchip_remove` is called for the chip.
+> +    pub fn new(chip: ARef<Chip>, ops_vtable: &'static PwmOpsVTable) -> Result<Self> {
 
--- 
-Regards,
+For the reason mentioned in [1] this should either return Result<Devres<Self>>
+or just Result, if you use Devres::new_foreign_owned() (see also [2]).
 
-Laurent Pinchart
+In case of the latter, the Registration instance is automatically dropped once
+the parent device is unbound.
+
+If you go with the first, you can drop the Devres<Registration> (and hence the
+inner Registration) at any arbitrary point of time, but Devres will still
+gurarantee that the inner Registration is dropped once the parent device is
+unbound, i.e. it can't out-live driver unbind.
+
+This guarantees that the &Device<Bound> instance you provide in the callbacks
+below is guaranteed to be valid.
+
+[1] https://lore.kernel.org/lkml/aFF7qqlexxh540FW@pollux/
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/rust/kernel/drm/driver.rs#n134
+
+> +        // Get the raw C pointer from ARef<Chip>.
+> +        let c_chip_ptr = chip.as_raw().cast::<bindings::pwm_chip>();
+> +
+> +        // SAFETY: `c_chip_ptr` is valid (guaranteed by ARef existing).
+> +        // `ops_vtable.as_raw()` provides a valid `*const bindings::pwm_ops`.
+> +        // `bindings::__pwmchip_add` preconditions (valid pointers, ops set on chip) are met.
+> +        unsafe {
+> +            (*c_chip_ptr).ops = ops_vtable.as_raw();
+> +            to_result(bindings::__pwmchip_add(c_chip_ptr, core::ptr::null_mut()))?;
+> +        }
+
+Please split this up into separate unsafe blocks.
+
+> +        Ok(Registration {
+> +            chip: ManuallyDrop::new(chip),
+> +        })
+> +    }
+> +}
+> +
+> +impl Drop for Registration {
+> +    fn drop(&mut self) {
+> +        let chip = &**self.chip;
+> +        let chip_raw: *mut bindings::pwm_chip = chip.as_raw();
+> +
+> +        // SAFETY: `chip_raw` points to a chip that was successfully registered via `Self::new`.
+> +        // `bindings::pwmchip_remove` is the correct C function to unregister it.
+> +        unsafe {
+> +            bindings::pwmchip_remove(chip_raw);
+> +            ManuallyDrop::drop(&mut self.chip); // Drops the ARef<Chip>
+> +        }
+
+Same here, but I don't think ManuallyDrop is needed anyways.
+
+> +    }
+> +}
 
