@@ -1,226 +1,154 @@
-Return-Path: <devicetree+bounces-186840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C29ADDB8F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:41:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45FE5ADDBA9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BD523A4887
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:41:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8216619403B7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591A82EF9A2;
-	Tue, 17 Jun 2025 18:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9061F2DFF3F;
+	Tue, 17 Jun 2025 18:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VHDV1Wak"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CS7CaFXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5782EF9A0
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 18:41:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FC12EF9D4;
+	Tue, 17 Jun 2025 18:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750185683; cv=none; b=Ra14z/ofbht0TRm2Mx3RiZB+AHUOU2e/ff2t+5JqgFAbqTc2GeEuoyrLljMUXkBwndoWLihurIgRpCfnTlYYsP9h4H48ysno+Da45QhuaNkz99vbZW8nAdqgHhtzd06l8DV+sXC1pf+x0YYUvq2UEBi+aF5UO5WGtDSr/+nEHJE=
+	t=1750186341; cv=none; b=NUG9YtyZu30XAvUmunTrSzjlJ6UO0pmr38zJEF5nPN+fmOQccurxosCS5McXy8AitHUvvpOZvm0tM2A5ploVJw+/hbhFXGcPY0iKSpHb3VVDKo4LFeOYLhPlyaHtC0H7i+Q4ozdyl5PxAfNiUBuzpRq/gkUw8hv/hp0OIpp1V2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750185683; c=relaxed/simple;
-	bh=4F2+pAeVGLLKDh/8BHZGs/Pr3KU0RMbuhrCiHba9csA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bpyfk7kbBg1wom5rr0CQytS+buaOBtET/FEPKXS57BgDGFBN9Bms90Q2SZ3YhmWE4y1JLk7Y3TES9guCAxy1MU9ZXVfjckAJlePV5S6+0YZMhsVx9Akm1plbYXYGh7CbSuOx/clvOq+lEL31J2r6CETdkhfoMhWwq6Ygn9/JYBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VHDV1Wak; arc=none smtp.client-ip=209.85.218.54
+	s=arc-20240116; t=1750186341; c=relaxed/simple;
+	bh=qlusW2sr4sVU2uXJRPIMCSXV7SxcfJyTdbN5C74eRL4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cx9jIPMZpNPfG5ux5QiJe7sHd/y2xfAITBeBcYtOX6BM1Jgob5ms3zaHENkwC6K+ML+Am0X5kHYQSDB9M5rfYWaZKiG60Zhuq7ZjKAJigTvrMhEYPlI9DqFBqebQkUKWZ7CB3RenJYtOWCmWSafLwnKiEaYeWCOAVnoI08wcs/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CS7CaFXV; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ad8a8da2376so1001156266b.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 11:41:21 -0700 (PDT)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-23649faf69fso60441425ad.0;
+        Tue, 17 Jun 2025 11:52:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750185680; x=1750790480; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E75tmwHMAYTb44aFXv+MbuJROdCb8dg5pahllHi6I7w=;
-        b=VHDV1Wak5HG4TGQLyQtN2dqNWo2BN66kyO8O474y8DTxZdEpgqP8I+Ak1mstKIl980
-         a614QA5oIPZUZ5EBG1BbCl0ARS5ZWSp5uhTIZgUeEMPtsO66eqfpeNP8QiO22TFRuC7e
-         32CwTtMM2NRlX+wcicqxo4WsyBVtvQSabwzIn3XuPc2LSNrg3J9RRU8YhAVG5nI6UaQk
-         gTdstZWgYVL6c/5MpKZ6Ko0vV8GcANM7SyAVWyLj7nBs9+IThmdS/ShrXXooaSbdIWYM
-         pnthX86QJ0yr5j0wuypyeNa+pbn4nW+soW6rKnonI/ox9hzqJeAMozqXEngdi7potIM7
-         C44A==
+        d=gmail.com; s=20230601; t=1750186339; x=1750791139; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrjM2YpDGiy0ALMLMuxjn2ko9PVZeOACLyeqPzUnd5A=;
+        b=CS7CaFXVpPoowWtJiHDw3RuJ3q+zsPORiTN3ZUcMmRv7wDCg7rUyaoO5K7Abv1KCJS
+         lmz08A8uQk4hjGSKG3SedYF6+QUEjB60+htWfHJvHWMpDuM/v23Qvn8rvSoo7ieEleoN
+         vubjKw/YPqG/siV7M8FvbX229O4XIclvRZ4pH2+iGPAvcRJruwFnQshYxX19q2xDlirY
+         mDN5sFX/m5gW6p4nxvsFVhHyBoosu/EvIdOXkzjq+wHvPzamtNqNcPJFDeKC/Bo1MO8O
+         VDs9xrfxjrHlLoueLGGs+fNjNPFFUW6gzPrc7sGugJzV898YMxAXU2dI23hB8xUsKibc
+         IjRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750185680; x=1750790480;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E75tmwHMAYTb44aFXv+MbuJROdCb8dg5pahllHi6I7w=;
-        b=AC2k5HJye33FVKLgq126dvcWlQFQLIgtYWFul1+u6hDUqMKArPktJG+8B2U4A5GOv+
-         p76Qrpr9QJRxPwmlGXWmYZzagEnKdEGzfRS52YAYxbXvqKlPenXdNulqjraksU96XGs5
-         gnsfbHQfwk2Y0Plba/dz4TolIBTToGrZs02Cg1Ab4V626/4ZQG3nXXGOA9XJCHdTAkkk
-         C/0MYoWrNJiO1YaaDPDe1yWmmOgcIQJZipSw+F6eZQQ4sMwjLtn2Vi0lRq4J6ekqpoVJ
-         95vg5f6YdcoP+dAGS1rIc2BkU4dHLOuvIdZCh2DYdAWet3+fM4y8489xm/cFzw1kiDws
-         6Lgw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLieKoXKSyr7TyFLrpmbOmNkkiLPEwcSfgbYbC8O+4Y7jx42/Yui/NVVcIvNsFnNkeF7wjGKiP/Htk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVjG4Md5Gk8x0hWGQf5vIUTHfWNokbjyniZuYZsGiHG7wX5HeW
-	7SMfTt3MRIWreI54bLWS4OWNQkr+GvMHp1l99Xvb/rhY4OOoCiIy6cZ8RMI/oaA2EWNjuxmwVK4
-	zXCaxQpidvFrP0nMEvTqltVEOor0glho=
-X-Gm-Gg: ASbGncvKXz+Y31FCRTjPDRinACnbeQJyaVw+x/OjJAzi9P3YOoz30iOuI4qBBAJkeC3
-	2vDjKM3PLZ+iQLf4mMd+A6Vrl4Ul6zNv/BdPXwYjQo5Qt+D5akHznYSWyKmN+WQ2RsS42uleVtH
-	OPBln/faZubb+445aEVEANPOWOTC/LWOVIHg4835dTOiA=
-X-Google-Smtp-Source: AGHT+IG35vQW5TNIz/uRQ6oM+HRIzC+IOp+/0Jmiy71hn7DTsL8kRnUzx0SevxvokWBGsP+wyxQ/HrUQBbz+WF29Wr0=
-X-Received: by 2002:a17:907:7fab:b0:ade:31eb:66f7 with SMTP id
- a640c23a62f3a-adfad53360amr1528195266b.58.1750185679368; Tue, 17 Jun 2025
- 11:41:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750186339; x=1750791139;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rrjM2YpDGiy0ALMLMuxjn2ko9PVZeOACLyeqPzUnd5A=;
+        b=HrEQTRsvR2fgZIJ7KIdfkYpas2l628XcFBxsetlVC2RaqQ5SiaTdXMdYY6dRpsWUBb
+         J9QLr2eX9Vn2jmAtN93CZ6RP2+n21X3KfaDBTBeh9fFxFojPWvOMni+SNV1eG741vWAg
+         tcGOayiGPJSzjlaT3zhQwcCw6g/yE3RIxK5o2IlNd9KEDPaEOKmzIW0urOKm3SgKjuM7
+         MZrREhEFS/LP6AsgI4+I7BTtG6TQsioOooz2gOIAs8hXwDIjRuSsFg9iugMVSPOW5Mv9
+         RfxZn2Rn6/frKBJHmNLlj7q07gdqv9aDWhsyr1RuwlLORRf3iJ7Bq8HFd+iwWHw+CFrT
+         Fh2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUbsSMIWpZ5/Xn02UWVRQB2dJqglAMj5taBiD3uXA03tSsU/6Ey/1joSbjWdQLcji+4io1bOplTjjWJWQ==@vger.kernel.org, AJvYcCV6QQ9Ca5dBLsbP64kV7bu7rMQw/JQo03KLdyIaozNqylwJpa5aAJv19hWR0KO0Nagbzw8dliSZlGMX@vger.kernel.org, AJvYcCVOBJ0bmT25E0wZhSkVfPrq76UCPD6xKmY4JrspRNPYhj6qg1ShANoiH0Kg2rV3Mz3pjX2ytKAH+os9OIQn@vger.kernel.org, AJvYcCXml1NQ+hXKvJP33XkebY144cKHWYBMCkJk9+a8tnijOg17+rquIfCcBsyusQheMIeUsdr2kFqt8n19@vger.kernel.org
+X-Gm-Message-State: AOJu0YxocRwehglKhzCHG90riSR5LQLEikGUiBhnUB+Lk4kIyh3qpend
+	2PlpNF4Dy00KUmGxn3abfOj+MyZpg0HCyNZYexezmBz/BsVEMYbyEmSK
+X-Gm-Gg: ASbGncsgr9RJIN7hbbyNT1kT/Q18om1Ush4b9s9/TQm6tw1FuFqZRGNaSgKvYbv51VC
+	UNw9GkGKVzdGRb1zTd6ty0SCsBvpmFLuCde2IBxqAk1Em9aAE1taCcCRNOcUEWIETMTWCRX9n9e
+	DNWuisvm1Z/P327DuMQqOzpw3cqJ99e2naZ8a5ip4LG+Fp6acRIQB+3PjIbpelGKbRIFLgrl59I
+	5bQZfXUOerBiT4Dp1/QAepUEPnfEo7hPJ5LoHtmb/KR5SsE/2mue6vKXxWqdtSqRKXRurGhIBbt
+	Abxr3zd1OjwckLwgPOcK+zXRl5EXRYSFg/HQ7C0j4uoFbk2NPoH5Um4RqgQYGm2mQj7LmCR/8q4
+	f/NhOZg==
+X-Google-Smtp-Source: AGHT+IEbxeRsrV9v0cFZpm/JNC9Jn+xijTCUioEIcN6OlyBZRQCnX9DQlgMFOHdhLztTsnPvJxpk4Q==
+X-Received: by 2002:a17:902:d552:b0:234:d7b2:2ab9 with SMTP id d9443c01a7336-2366b005cd2mr247602865ad.12.1750186339109;
+        Tue, 17 Jun 2025 11:52:19 -0700 (PDT)
+Received: from localhost ([2804:30c:4000:5900:b4c4:6073:1a92:4077])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365e0d0ab2sm84238655ad.246.2025.06.17.11.52.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 11:52:17 -0700 (PDT)
+Date: Tue, 17 Jun 2025 15:54:06 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com, nuno.sa@analog.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl
+Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <aFG5zufl_znUw3xL@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1749582679.git.marcelo.schmitt@analog.com>
+ <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
+ <c29feb5b-2699-411a-87dc-249f5b9ff6c0@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
- <CAMuHMdXVEOBRU+pzcmRXq7YJXhYnhPjK72Oh31y=n33VZR2JKw@mail.gmail.com>
- <CAHp75Vd8U-zJ1b+Atpr=8WXhPpB9sFcYJsmC0aStiRKSZWYKBg@mail.gmail.com> <CADsqogCfvR7b02HowsbZ5qkhCOi92TGkJMeCn_sFwn8=KbaWGw@mail.gmail.com>
-In-Reply-To: <CADsqogCfvR7b02HowsbZ5qkhCOi92TGkJMeCn_sFwn8=KbaWGw@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 17 Jun 2025 21:40:42 +0300
-X-Gm-Features: AX0GCFuRJqVfjKcwJ4xwmewqTPMFYb46GwUBxdN0Uo-IaYJ4hFGyIes7KY1Pv7M
-Message-ID: <CAHp75VewPpAy3JeOGt-uotiir7=hfXWvA=-h4Hu5fA-8jw7mdw@mail.gmail.com>
-Subject: Re: [RFC][DT] Guidance on device tree property prefix for
- TM16XX-class LED display controllers
-To: Jean-Francois Lessard <jefflessard3@gmail.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org, andy@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c29feb5b-2699-411a-87dc-249f5b9ff6c0@baylibre.com>
 
-On Tue, Jun 17, 2025 at 4:39=E2=80=AFPM Jean-Francois Lessard
-<jefflessard3@gmail.com> wrote:
+On 06/16, David Lechner wrote:
+> On 6/10/25 3:31 PM, Marcelo Schmitt wrote:
+> > From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+> > 
+> > The AD4170 is a multichannel, low noise, 24-bit precision sigma-delta
+> > analog to digital converter. The AD4170 design offers a flexible data
+> > acquisition solution with crosspoint multiplexed analog inputs,
+> > configurable ADC voltage reference inputs, ultra-low noise integrated PGA,
+> > digital filtering, wide range of configurable output data rates, internal
+> > oscillator and temperature sensor, four GPIOs, and integrated features for
+> > interfacing with load cell weigh scales, RTD, and thermocouple sensors.
+> > 
+> > Add basic support for the AD4170 ADC with the following features:
+> > - Single-shot read.
+> > - Analog front end PGA configuration.
+> > - Differential and pseudo-differential input configuration.
+> > 
+> 
+> ...
+> 
+> > +static int ad4170_fill_scale_tbl(struct iio_dev *indio_dev,
+> > +				 struct iio_chan_spec const *chan)
+> > +{
+> > +	struct ad4170_state *st = iio_priv(indio_dev);
+> > +	struct ad4170_chan_info *chan_info = &st->chan_infos[chan->address];
+> > +	struct device *dev = &st->spi->dev;
+> > +	int bipolar = chan->scan_type.sign == 's' ? 1 : 0;
+> > +	int precision_bits = chan->scan_type.realbits;
+> > +	int pga, ainm_voltage, ret;
+> > +	unsigned long long offset;
+> > +
+> > +	ainm_voltage = 0;
+> > +	ret = ad4170_get_ain_voltage_uv(st, chan->channel2, &ainm_voltage);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret, "Failed to fill scale table\n");
+> > +
+> > +	for (pga = 0; pga < AD4170_NUM_PGA_OPTIONS; pga++) {
+> 
+> From what I read in the datasheet, it sounds like if adi,reference-buffer is
+> precharge, then the PGA is bypassed, so there would only be 1 option in that
+> case (gain = 1).
+> 
+Although not explicit in the datasheet, looks like there are two precharge
+buffers. One precharge buffer is used with the voltage reference inputs and is
+associated with the adi,positive/negative-reference-buffer dt properties. The
+configuration of that buffer is set through the REF_BUF_P/M fields of AFE
+registers. The datasheet doesn't mention the PGA on the section dedicated to
+describing reference and reference buffering features.
 
-Please, stop top-posting!
-
-> Thank you both for your feedback, it=E2=80=99s much appreciated. I=E2=80=
-=99d like to
-> clarify a few points that I hope will help explain the design choice
-> behind the proposed DT properties.
->
-> While these LED controllers are related to traditional 7-segment
-> displays, what I=E2=80=99m trying to describe in DT is somewhat distinct.=
- The
-> controllers manage a grid (matrix) of outputs, where =E2=80=9Cgrids=E2=80=
-=9D represent
-> rows and =E2=80=9Csegments=E2=80=9D represent columns. This follows the t=
-erminology
-> used in the controller datasheets. The 'segment-mapping' property is
-> not about logical digit-to-segment mappings (which the driver handles
-> through 'map_to_7segment.h' and similar helpers), but about the
-> physical wiring between the controller=E2=80=99s matrix outputs and the a=
-ctual
-> display elements on a specific board.
->
-> In other words, these properties describe board-specific hardware
-> wiring: how the controller=E2=80=99s generic matrix connects to the
-> manufacturer=E2=80=99s particular display layout. This varies significant=
-ly
-> between devices. Some boards wire grids to digits and segments to
-> segments; others wire grids or segments to icons. Some even transpose
-> the matrix so that grids drive segments and segments drive digits.
-> That=E2=80=99s why I proposed the optional 'transposed' property to switc=
-h the
-> matrix rows and columns in software to match the board=E2=80=99s wiring.
->
-> Importantly, the 'compatible' string already maps to the specific
-> controller type and its protocol, but it can=E2=80=99t capture the board-=
-level
-> wiring configuration. The same controller model is reused in many
-> different boards with different wiring. For example, across 74 display
-> configurations I=E2=80=99ve looked at, there are 39 distinct combinations=
- of
-> controller type, digit grids, segment mappings, and icon assignments.
-> There=E2=80=99s no standard wiring for a given controller chip that the d=
-river
-> could infer from 'compatible' alone.
->
-> That=E2=80=99s why I felt it was appropriate to describe this board-speci=
-fic
-> wiring in DT, keeping the driver generic and agnostic of any
-> particular board layout, while letting each board describe its wiring
-> explicitly.
->
-> I hope this clarifies the motivation. I want to make sure this
-> approach aligns with upstream expectations before preparing formal
-> patches. Please let me know if this seems like a reasonable direction
-> or if you=E2=80=99d recommend a different solution.
->
-> Thanks again for your time and guidance.
-
-You need to talk to the DT people for this. I'm not an expert, but as
-I said it feels (and you confirmed it) as PCB level of the
-description. I believe it may be part of DT, but I can't tell you how.
-
-> On Tue, Jun 17, 2025 at 7:58=E2=80=AFAM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> >
-> > On Tue, Jun 17, 2025 at 12:43=E2=80=AFPM Geert Uytterhoeven
-> > <geert@linux-m68k.org> wrote:
-> > > On Mon, 16 Jun 2025 at 22:06, Jean-Francois Lessard
-> > > <jefflessard3@gmail.com> wrote:
-> >
-> > > > I=E2=80=99m working on preparing a new driver and device tree bindi=
-ng for
-> > > > auxiliary LED display controllers of the TM16XX class, and I=E2=80=
-=99d like to
-> > > > request guidance on property naming conventions before submitting a
-> > > > formal patch series.
-> > > >
-> > > > The driver (tentatively named tm16xx) supports LED controller chips
-> > > > that share a common hardware design and programming model, produced=
- by
-> > > > multiple vendors, including:
-> > > > - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
-> > > > - FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
-> > > > - Princeton Technology Corp: PT6964
-> > > > - HBS: HBS658
-> > > >
-> > > > These devices are functionally compatible and appear in various
-> > > > consumer and embedded hardware (e.g., Android TV boxes) to control
-> > > > both 7-segment displays and custom icons that may look like this:
-> > > >
-> > > >           ---    ---       ---    ---
-> > > >  [WIFI]  |   |  |   |  -  |   |  |   |  [USB]  [PLAY]
-> > > >           ---    ---       ---    ---
-> > > >  [LAN]   |   |  |   |  -  |   |  |   |  [BT]   [PAUSE]
-> > > >           ---    ---       ---    ---
-> > > >
-> > > > My current binding defines properties describing hardware layout, f=
-or example:
-> > > >
-> > > >     tm16xx,digits =3D /bits/ 8 <0 1 2 3>;
-> > > >     tm16xx,segment-mapping =3D /bits/ 8 <0 1 2 3 4 5 6>;
-> > > >     tm16xx,transposed;
-> > > >
-> > > > These describe hardware characteristics (grid/digit arrangement,
-> > > > segment mapping, transposed display output) that apply to this clas=
-s
-> > > > of compatible hardware, regardless of vendor.
-> > >
-> > > Personally, I am a bit reluctant to try to describe the segment mappi=
-ng
-> > > in DT, as it can become rather cumbersome.
-> >
-> > Yes, the segment mapping is implied already by the mapping table for
-> > the characters and...
-> >
-> > > The alternative is to use
-> > > a device-specific compatible value, and put the mapping in the driver=
-,
-> > > like I did for the Adafruit 7 and 14 segment Featherwing displays in
-> > > drivers/auxdisplay/ht16k33.c.
-> >
-> > ...as Geert said, if required, can be bound to the compatible string
-> > and hardcoded in the driver.
-> >
-> > The problem is, that often segment mapping is PCB level of the wiring
-> > and to be honest I dunno how to distinguish such a scenario easily as
-> > one would need to check compatible string for the component _and_ for
-> > the board.
-
---=20
-With Best Regards,
-Andy Shevchenko
+The other places a precharge buffer is mentioned refer to it as 'gain = 1 precharge'.
+My understanding is that the PGA bypass precharge buffer is a different buffer
+that is only used when PGA option 9 is set in the PGA_GAIN filed of AFE reg.
+The PGA bypass precharge buffer would be used in the analog input path while
+the reference buffers would be used in the reference input path.
 
