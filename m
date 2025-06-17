@@ -1,159 +1,95 @@
-Return-Path: <devicetree+bounces-186834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B757ADDA97
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:27:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF128ADDAAF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDE80189B42C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:21:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F492169CC6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78AB2DFF2A;
-	Tue, 17 Jun 2025 17:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5065B285060;
+	Tue, 17 Jun 2025 17:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TgJ0wcQl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFyj07kM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DA428506C;
-	Tue, 17 Jun 2025 17:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC51235067;
+	Tue, 17 Jun 2025 17:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750180806; cv=none; b=KO7JmDoVpWwJ8KCxsCRT16oxI3iOqu28VXzx2h7/rIQLi2NO9+rst73mnuSrexKcs60Kk607QfZWfzzub0FYwR7IBG/A/8qawmvs34JSbPET99jnb980dLTSu2KYY38KvkQz8+mXu5GbRQo0waOgejHqJMVP0tHedNJgKdUMGoE=
+	t=1750181395; cv=none; b=pzAofXeMJs7sIjPfbYio+FleaV9g1WLozJqwlZhuCKzKmTKU6LZWvDo5NsTq6hRFujnCuasggzFKZGUe1I9mjcTJVI7k6+lvkXIUudExwPrtCLKzv7Fa5XbfJwDoyQ+m7N54I3GKsuwuc9lD/b5FSdMH0onkCf8pDbu9ps5/cHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750180806; c=relaxed/simple;
-	bh=yfl7N15nnnc6f1rOdPVpX1eP8P6OlC+zKJek+HOBI5w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UoCyDKDthJRTtVfdnXC806AYK6ZYPCwcm2eP3mDxLncQWLeP5kqNRYiFTKpiHSP4pBukvnBQBvjXAdt5FyW62iCF+L+Q/WaQqIH7uoHdcsKFsa7ZHu/FvLZ1n79jwXLknfamXbJrCIqYfQJsj+5G8Y6uIPKgll7gvl41oZkik08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TgJ0wcQl; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a510432236so4399735f8f.0;
-        Tue, 17 Jun 2025 10:20:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750180803; x=1750785603; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4v+WyWwPdPWEMSJZYSkRHKszCHhMQOWropBjebcwP8k=;
-        b=TgJ0wcQlMP+jHOxAphB+V0btFNMrcNOPeLBVVGlCy8JUbl0CguwxvpJ2dgMH4mToPg
-         YhbLcWqMxUg39j75YPsyZCt9ZQL6Ze4bJzT8po7hAyfwiYBNd7AWroPHJb9N2v+ioCEi
-         GFekNcJrDBRAB8zNac2mnnWS75sexACXl9sQfDbfWkmxMF7lqPdT4CgMW0SghgMwtLjf
-         zwNgv3YsScKFJcC238WSBZ2vdQwnfiJtxA49VL8miI222mJqHXs0xywzXshPHifk1bXk
-         6S5jqcdQ9PsjIVaxNuKdld/XkFErqGMHO1KsiBX0UuCeodRKxzzNX7J/6hsqOn3NVkTR
-         lIxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750180803; x=1750785603;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4v+WyWwPdPWEMSJZYSkRHKszCHhMQOWropBjebcwP8k=;
-        b=IggajaQU16FcQzZQpvv77OiEvPxXANRjP1XUY6Kh3MBqO3T/Osv9lxWsPi3FF0BWxD
-         EHiFxnY/sCzESWxDWwpcd9sy4E2+CRV3BuyY5dMBlKl+BOl1/iCC904Yt5oAcBNQmoj1
-         KYoaVLCIHwq5B4CkwLTn2WY12ZfiMghY5fAqVKkq0ugM9MeinugOcOb64Tzn/2THaNs+
-         oJLMkw75rs8//gz7e9iU5+FBZifB5VQR91rR1F7LVtIT79s8ElUCKXZxT+xpevkS7uLx
-         KT0+6PEcDfiwb1n+U39PPrBvFMH67PD3RxDNHnGl4z95igfNWFH2VjkTyHi7eQCmgITV
-         VtJA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8VFpSoaskliu0GTuerRQkDEgVupNX6MufBkxo2C6Yi8XcXHHTFyrRkZK3/B14hYmLXD7F1J1YKicw@vger.kernel.org, AJvYcCVdg5FULr2xUUnOpi8RMY0PX9EwN87S0QXyv360JnJopjRe6DJ59q+d4vIWIj99xA/T8vG4Q4n0UYCIWU1/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3w20S4zhEc19JGfEoeSnjN0NCpVOr4RuVxrx+pzHfZA1QmqPS
-	2As4bUcOwEtlAw5G8HxdmaiNFOofu115sAXM2WxhX5c7Z1clCcsGQY/L
-X-Gm-Gg: ASbGncsr+3ZNdDKFhEdKXDmhWcWP4FiWAoTus7Gd1LpKNxiOW9lSwCOiGgPBpzJMZnP
-	+WEDgols1qFNyIYS/9uPXOe97JMlKIUBGJyqBCklfuSCVBN2Osv/gmEG6y/gVXrnpka1rpqzk2m
-	XoNYl1+zJVVfIJvaijhpWki74eQ0pdei7LMwm/ghnPFQkrlBJQX5qd8x+GbaI2r4rjh6FkdFBm/
-	AecR5/m3yxRnOf7e/ioTjk6nND70CKL/iEnNywTBR5TOj07ObkAj0E4fvExFydSjWLBrWbACKRt
-	6/wlbHYSdvqK/ogADwSpP93GBSM0XIPsu6uv5EGdCfDAOeAhCB5z6k8q41+8OkVWDng1qM6hVVu
-	kASsh0Rq0f9c=
-X-Google-Smtp-Source: AGHT+IFkM3UnwOFRTcJ6FzNOPlvnaRDdlfcxCs0B5yMtla7zHrPB42hGzQ4V9sFaYxQ+eGzGV4hE1A==
-X-Received: by 2002:a05:6000:430c:b0:3a5:3517:de3e with SMTP id ffacd0b85a97d-3a572e6bc97mr12394380f8f.35.1750180802987;
-        Tue, 17 Jun 2025 10:20:02 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:a081:30f1:e1c7:6f28])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e25f207sm180875415e9.35.2025.06.17.10.20.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 10:20:02 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 4/4] arm64: dts: renesas: Add initial support for RZ/N2H EVK
-Date: Tue, 17 Jun 2025 18:19:57 +0100
-Message-ID: <20250617171957.162145-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250617171957.162145-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250617171957.162145-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1750181395; c=relaxed/simple;
+	bh=kP7DtPobetpD8bDkvcYCTMcEVbz+KzFg7wDQrlKUqKQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=gG3JOqUKsRqZPgIce0sE4jatazc2eCteq4IvnEL+oIajikzZvjASLTyTcYq8OFy0Zuvh3SeaP56+71P5GDWBoj82b72Ycbwlqq5RO/8wH5sZVQdzgH+XsR1Rx/1UO7TFsfHE6u/CLHkEeADFdDCW0aMzh3kIVwXYuqfJ8BbBNHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFyj07kM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE75AC4CEE3;
+	Tue, 17 Jun 2025 17:29:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750181394;
+	bh=kP7DtPobetpD8bDkvcYCTMcEVbz+KzFg7wDQrlKUqKQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=nFyj07kMSeHI22kL0ri0CoBmyqpg+75j55Xz+grZh1JBQ0M8Nw93ijsbWsLg201cm
+	 CTDpDR3MGpekcIM0ol1iK9alHd28sFBTJmLsdmNAssAbMYx2083F2kWC3EY6A65ie0
+	 QtGJHodFUApA6ak8u/529aLXDPefdcLRKpPlG28GNoBXOkDx/AJY2Fh5/ZXpdl8qcp
+	 TblkEjEulg5TKI9aC9N86NuIvYEHSjkI/pO4rxNy7EgV+v+O4cHkBrpV0HMm9YAQhg
+	 0U30SvS6CIcL1pjjdEj1rva/4ErLB5psnbCL5tfH1JqhkrHWayRQVVeZrk9azFM9ZO
+	 YS3kPy4ZB4tog==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Inochi Amaoto <inochiama@gmail.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, 
+ Longbin Li <looong.bin@gmail.com>
+In-Reply-To: <20250611081000.1187374-1-inochiama@gmail.com>
+References: <20250611081000.1187374-1-inochiama@gmail.com>
+Subject: Re: [PATCH v14 0/2] riscv: sophgo: add dmamux support for Sophgo
+ CV1800/SG2000 SoCs
+Message-Id: <175018139039.182101.4835726385229916529.b4-ty@kernel.org>
+Date: Tue, 17 Jun 2025 22:59:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
 
-Add an initial devicetree file for the Renesas RZ/N2H Evaluation Board
-(EVK).
+On Wed, 11 Jun 2025 16:09:57 +0800, Inochi Amaoto wrote:
+> As the syscon device of CV1800 have a usb phy subdevices. The
+> binding of the syscon can not be complete without the usb phy
+> is finished. As a result, the binding of syscon is removed
+> and will be evolved in its original series after the usb phy
+> binding is fully explored.
+> 
+> Changed from v13:
+> 1. rebase to v6.16-rc1
+> 
+> [...]
 
-Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v1->v2:
-- Updated model string to "Renesas RZ/N2H EVK Board based on r9a09g087m44"
-- Added reviewed-by tag from Geert
----
- arch/arm64/boot/dts/renesas/Makefile             |  2 ++
- .../boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts  | 16 ++++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 52d0488cfee3..2bd5d179f757 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -167,5 +167,7 @@ dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A09G087) += r9a09g087m44-rzn2h-evk.dtb
-+
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += salvator-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-new file mode 100644
-index 000000000000..d6ba14a26f03
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/N2H EVK board
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "r9a09g087m44.dtsi"
-+#include "rzt2h-n2h-evk-common.dtsi"
-+
-+/ {
-+	model = "Renesas RZ/N2H EVK Board based on r9a09g087m44";
-+	compatible = "renesas,rzn2h-evk", "renesas,r9a09g087m44", "renesas,r9a09g087";
-+};
+[1/2] dt-bindings: dmaengine: Add dma multiplexer for CV18XX/SG200X series SoC
+      commit: 994b5709f9f83c48f607e9a52912c912b8149421
+[2/2] dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
+      commit: db7d07b5add4d839df74adab9940cf9da488313f
+
+Best regards,
 -- 
-2.49.0
+~Vinod
+
 
 
