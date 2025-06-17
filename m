@@ -1,136 +1,181 @@
-Return-Path: <devicetree+bounces-186597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2677CADC79F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 12:11:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A63ADC7F8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 12:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC4AF167B95
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:11:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBF1B166EFD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 719C82C08BF;
-	Tue, 17 Jun 2025 10:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A6F2900B2;
+	Tue, 17 Jun 2025 10:22:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jPMIXRRb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012031.outbound.protection.outlook.com [52.101.66.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC52F2951C8;
-	Tue, 17 Jun 2025 10:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750155069; cv=none; b=WJ2tuf7DddK2apK8rPw2x04FdB0ozEwJW450dAb8NtHtukzeFS5aRb6Vt7H1QM1Vj5dGLruzV2KcLFSShWnBEWTx4l56BzCqh7dLGZdP5umu4JJ5a3dJJuFPVO9eRfZT0ChumqhL+IXlLG0Kz8pmftI5gwrQfxdaYETMs/cze7Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750155069; c=relaxed/simple;
-	bh=VhqtVe/12RyNdzwO39QyuBj46xkJKX8jJtYoD60M2rE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vGEM/q6icFlSDaGdisN4GAYDZkOlIMNIAnC2twz/0K/nVSS6EJe8m6g27q1wkSjqFMrwiK81Czr87kCT33g04rcNvNXMf9dwUlNSB8362jfZPg8oog7m+yeBJ1Or+Hmj/QnFT+ts+Eqqtpoq8srzha25O3oo+0EkYXgdirRBl9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.33.151] (unknown [210.73.43.2])
-	by APP-03 (Coremail) with SMTP id rQCowACnvFQoP1FokJcgBw--.2075S2;
-	Tue, 17 Jun 2025 18:10:50 +0800 (CST)
-Message-ID: <fd9b3bbc-3318-4845-90ca-7f245049665e@iscas.ac.cn>
-Date: Tue, 17 Jun 2025 18:10:48 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4BF28B3F9;
+	Tue, 17 Jun 2025 10:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750155776; cv=fail; b=AkLkcpTWBlIWZPjiEb89en2MKKfFIpMby4T2/109EKms9bUF3PVYE6mzFVat9x+Cv6x0rnXrA1+Yf3WwIoXv49oDLJiXhG0hmQE+9WunNWpszTlwtmO1ZBNpg5bcf/cdSDSfSJc8Sn0tO4EySsdlQYdmJejk+72www3zJtxYaFw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750155776; c=relaxed/simple;
+	bh=wtkXh487FlGhdsKGw0+7VxgWCpU3+qKWSmLRr2h2INk=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UlziOjncW/fxgp6eOC7CfQcJnDDKNVEUr6jHxX7F0I0OuzulBAPI8fV9R78lMV/WtZDKrXx+l6AvOMC9pXwi9XsixF8BtE6SXuhvXLAzS0oSmmlu8nOhXz5BhYOfE7akn8UGVS2whWaUBEhLsgm7c4o52KN/1ImUZO7iciZc+yw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jPMIXRRb; arc=fail smtp.client-ip=52.101.66.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k+OT4t3cvxGTexjS0UbxnbsdY7T5m6PnRRkjKACN9kCXY894SAMvbcZMOw5EgzR/eoSmwJQFfaq1+R1HkN9GqwXWobdWdDSecm/yWFjaYegu4TbaBRCrD/9pUVxwCo0DYUL/iBmhrRYjzVcy6RHwnJ7wd0fgc1DkUHK3qOWkolGmQftPRci8G1hqLcnekrXgFH4mYpnaGbdimIdb0J5Gj3M/Db34ADihwMBTzNzg7FhZL8CsSWNXAP1VKAgg2K0IqSMioQc3tQ/zmDpxnaehLb2jXLYN1N6fnk6hjPK4YstayZf6eYMDHz5laUCa4iWIwZkLhyDwfl8rHiABKTF61w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y/F0UiNZHfqD09w5F5qoJMEr1mA8q6TN9VZnvNPCKlk=;
+ b=EEXYj6+uQz8zYfrTkwXB1DgYdzGLnmgtNjr0G0l/5QoiV2p3zMDj2ElfyQvA1uTQB9V8J4QPQog3qB3JZZG6TWQ1KL/Uqykrb1V/eTGYacKn9ZpvyIxy8iTfQitrUHriGhJCNHPfkFvIsBIfJ16+ShZ8v+mJfN5mHK5+cabnhyoses3z5C/0HRfQYt1iBxGvnMYLMrFegiYN41JD5ePWYzvx1MNxPFZbL31xuw94gO1zy7h/WRbq36MoyrqFvdLpnKJPXdVE+E7OEfoSx3DXSlQFdL1BUA+xWfh5lA20he9EZnMbfepf3JUOv0eLNBLrA0zbBnaJTYI3VNl7ID/udQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y/F0UiNZHfqD09w5F5qoJMEr1mA8q6TN9VZnvNPCKlk=;
+ b=jPMIXRRbR81IZ2QUSMEq/ypmL7FriDfX+BtfnkJLmOe/t1nAxV6e+0M+a0WWzEpg6I0tbljVN3KUMqwjbJwwah/M/rensN/VV+ezP4jWLd0mxe838Sw55K7QN2Tspm4wO6sBA3QJVq9pnbcH51qpENeEaNSXsToS5u+P0OVXOKUq4d3iu4urMLW5Cu96bQX3xe1fTZY2DsmYFUHREHlET51YW34g4F2zgcGwxTIvhJbK7H4S76u4h6g/KfS5Bj2JuyapSJm8pH+ScaNVfNtIm2xOAIA72SJThfgFU2hvRtWzF+JsUzDcxWPz141vL17h4jYztzkh5ihFlT/8wUeL4Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
+ by VI0PR04MB10140.eurprd04.prod.outlook.com (2603:10a6:800:246::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Tue, 17 Jun
+ 2025 10:22:51 +0000
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c]) by AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c%7]) with mapi id 15.20.8835.026; Tue, 17 Jun 2025
+ 10:22:50 +0000
+From: Joy Zou <joy.zou@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	frank.li@nxp.com,
+	ye.li@nxp.com,
+	ping.bai@nxp.com,
+	aisheng.dong@nxp.com
+Subject: [PATCH v1 0/2] regulator: add new PMIC PF0900 support
+Date: Tue, 17 Jun 2025 18:20:23 +0800
+Message-Id: <20250617102025.3455544-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0103.apcprd02.prod.outlook.com
+ (2603:1096:4:92::19) To AS4PR04MB9386.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4e9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
- K1
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Vivian Wang <wangruikang@iscas.ac.cn>, Yixun Lan <dlan@gentoo.org>,
- Guodong Xu <guodong@riscstar.com>, Ze Huang <huangze@whut.edu.cn>,
- spacemit@lists.linux.dev
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
- <74e3c488-4457-4026-9597-806b98fd4e11@kernel.org>
- <10ab212f-e06b-4214-99cd-a687659fcf71@iscas.ac.cn>
- <2dc8ab35-4f58-49d3-8e8b-3e463fa592ae@kernel.org>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <2dc8ab35-4f58-49d3-8e8b-3e463fa592ae@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowACnvFQoP1FokJcgBw--.2075S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxCrWfKrWrJFyDJrW3Xw15twb_yoW5GFy7pF
-	Z3GF9akFZ2yFyxWrs2vrnrW340yws7Z3W5Jrs5GryrAFZ8WFySgrs7tw1Y934UXr4rJay7
-	ZF4UZ3s7uF45ArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvC14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IY64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY
-	04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
-	1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
-	b7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
-	vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAI
-	cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kf
-	nxnUUI43ZEXa7VUb8hL5UUUUU==
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|VI0PR04MB10140:EE_
+X-MS-Office365-Filtering-Correlation-Id: a697c735-cadb-4149-572c-08ddad88e9a5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?E9aGQLMYksxeQyFpSh3njO+nUsYsBAFyY1MORnBsD68YJB4PJ3BnbgDqQlPN?=
+ =?us-ascii?Q?xWjwVUgY/5uwkc7QeDRE55yKP5pbvfJfHOco6Dvi3v4NObz1KG9J8v643TK5?=
+ =?us-ascii?Q?x42Nt3LGZvqWxc6qbi8/Bu4zU/XvePriQy+I8gXFm7hwN9OznRVVk+AruG0w?=
+ =?us-ascii?Q?TdtRmphBg1L7V9prSx+zKmIhVB7noq+uhzDFEpOwHdFtkGMiqpyKKspgA7EX?=
+ =?us-ascii?Q?JWricMWgk69VWEjPLWjSWaPC+hPLjh4GAz10bH8TsaS/tZTqnlM8KcjBcoti?=
+ =?us-ascii?Q?wcABd5wWjrR95Wp1Y67mwufKE7Ve5NjxRtwTjCI59aHYKX/2ZCLTgYqP77NI?=
+ =?us-ascii?Q?djq5WHd4Z7eSPEyELYdMSZZP5LdYPMltvhKuMDFjcjccsdROmaRju8gg6prC?=
+ =?us-ascii?Q?sPBzm3WW19XwlTV0e7XOc+YTYgP9eAnnqnYbc3IBsrFqQSNiwXPgalaTSkDt?=
+ =?us-ascii?Q?vLULY42OL8xDWq+sTfLleY7OVdDTqtdguSzg2KMdxlUsc4UxocQ1JLQ1fa+f?=
+ =?us-ascii?Q?+Xm67XX+lisOM4K7yTxqdlP9X71Om+rUDrSkqwxWD/JKZ6PZTakYN4YI2uM8?=
+ =?us-ascii?Q?ozs8XOmrVApf4pPYVNfbUu+hG7PC3CQCNTkpdKlHp6QaAL+Fo9GuaZx8YCsc?=
+ =?us-ascii?Q?DIN0nwSD+nymX/KHFReuPSjDwVQYI+8dctw4uyJLeu/FTEbCFfr8DqVHQgda?=
+ =?us-ascii?Q?vxzAFFP3yhtyuTRUmoafVqWiKjrIumRf2sFhRHyDwNtlnMp4b6FP9Z/rH9A3?=
+ =?us-ascii?Q?dmvpYryRNsgqzI5JRiXMXUn5TuLr17nLx+tkXgfw15O0bfN//QyKEQMqQAxs?=
+ =?us-ascii?Q?S0s0evzVABUR8RekC6KLwQ6ElVbmqbDX7JumbTBbzrvktEFt0rA1DjspKsZi?=
+ =?us-ascii?Q?jlU1VM66f/TJRLQx5bMrgZYVAgxp/Xfv8Yrs6bFP528O0nyqZWrSks9UyAzk?=
+ =?us-ascii?Q?eMtWkmXeFiKgO7s3gS/AB4rgcmCEsRy+IEMYkeemhoAANUUOrgXsLa9SoVVN?=
+ =?us-ascii?Q?NlcICfX1WREUySDMi8C7f5HdTFhHcFwZP1hK152+CFr2UJ5qERrMzJo0fwqZ?=
+ =?us-ascii?Q?DItxdLnpU/6/BcbyYJ0MRFCDcVNPrD3k2X+eDjugLcVaUAJKgIXX57iDjczG?=
+ =?us-ascii?Q?Ji8uqUxwQrLYlNlwbVOakWbGibvWKcsOkSIrAfkgLk/SeXPVQgGITwYGJt1E?=
+ =?us-ascii?Q?46ZqevSyB9L0bXWkqfiMZLBdSg3q+AUd74b+X36o5zX1BQo625TT99LKyBJk?=
+ =?us-ascii?Q?tNrbx4XsB1DiBwRYn1IYtIfzgN4XlIweZS40Xqyu3sNk++RQZCDwk+xm4Q7l?=
+ =?us-ascii?Q?0R+FyDSHgxI7r/yWvdBU67k1ILCS3J2GEo9nEhIFwtuQIqj0NYS/EVlQjUqJ?=
+ =?us-ascii?Q?ybgf0UlsOrhYVwuVUcY9/+4cp+Xi7vkMVJd93HO73DCqJpl2vEPbdS2CghG3?=
+ =?us-ascii?Q?G+wDfsypSft5PlnO9Gobj+QrKDfwY4c/NpNER+jSTircMQc1xggNdQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ujWytFtMn7x/fxImYSN1ReKL13WloqTtpKS77VwGYpay2JuKLsOUmduslVJj?=
+ =?us-ascii?Q?SFkDmNW8pp/nHuvN7RejFUicyGCoYiCec6kMSdDYcLzgvhievd8cI7zR/w3m?=
+ =?us-ascii?Q?COVHl8hbS+3UIkpRFgqFMuHywNLhKvdbupZRnRSWGseFgTkKHEqOm/vgKn2G?=
+ =?us-ascii?Q?nqvAav5P2hDirCEN+5HSUyu8N3khT6xk4EH82jLsphAx7YxNVpBG9eLco9P1?=
+ =?us-ascii?Q?wzL6EEX9X2gAwB3WfNrKiNKU64EnDPiAHIvzxURujA8nXqJg86HUExYArIP9?=
+ =?us-ascii?Q?BO0Zgo+ODz2mhDWByDcVoCsLYHONmOf5E+ockRzLEcZq33ddBWVjyWO5FCrl?=
+ =?us-ascii?Q?UF/EjZllkWFAltO8YF5VBFBgOQik7TMqi9CXW4u3yDkhwj//TMjzTFtjVxxW?=
+ =?us-ascii?Q?CKA/AEVEsIUppoCnB21lEn6/U5JH10thG1SMYlnq7xo7ZuEpV3+gJKR5NYRV?=
+ =?us-ascii?Q?TaGS1YVckYzL3g3N2X9VrljQPBJtKajg8DcPEFsi4tE3mk/C7/Ox8HQGWp0z?=
+ =?us-ascii?Q?uhhbQyXesPPZM9m+vMVvvRDh5YDi+VSdO1g6cYrRcc6qgKl1eSwe94/Wum55?=
+ =?us-ascii?Q?j+MgodXbDdv1fRtDL8NhRuosovrdQkRP9cUiRi2t1WunPMGKKmFTQx1t6+9T?=
+ =?us-ascii?Q?SsI12yz1MGnZJ67H5VbTFMYf3hPB6Fpl6hZeN+IS1qOXVWHw6vGPpGbFDsPv?=
+ =?us-ascii?Q?L6nuFaMeB0UcxUOaxY9sPEzGJRu+Vtnnz5xqUxo2TZF9c8nwtbEzEnh7Wg9I?=
+ =?us-ascii?Q?Fdt8oP5yBsVpgs/4tfnMo1qmL4tttgnfNngjiC+rLQd6nKcY+ZwWDcyPVr8l?=
+ =?us-ascii?Q?elTxPqeRCTXJ6fDJwS3+JxWaCRhvwrdxY/BlPF440X0wJsnuwLjRdK87iMhv?=
+ =?us-ascii?Q?7KbcALNHwl82LYYTt6NlES7dcpfE5St7lpIMzNNLOLlVIMlQTA1jjh5W4x28?=
+ =?us-ascii?Q?892GfRlYJhvRCiP0l5eBTn9xxqOmtA4AFos2r79GZoDrhqpyIy21FbBupgF5?=
+ =?us-ascii?Q?Ako9UqWUV8fdMRcGYXcxfK3Gtt/zKrtZHZBhIk6E+MsU9Qe3TuILqaoUi+tk?=
+ =?us-ascii?Q?rAC8nLuXda3NyvsvmiMGlDJbIdxrnvS6G8hDitRBy/x8npG/QKOR/uzMstDk?=
+ =?us-ascii?Q?kkk5Xu8kDX980OkQAXHOrMp8gKDCXGXrFZ5W7wJVsyMoo1n1k70YWQlmt57v?=
+ =?us-ascii?Q?WUM0CX3vvVAMRkhE1uH/Tkupe/A9eFNL/XaKtKxuYMJzDHfXlyWCGkYFW3FZ?=
+ =?us-ascii?Q?mIqf1ac0fy6gF4/FjPk3NFb/tj2HbwOyo8Nq+HA+tm1Xvh318vv7MxlS03j5?=
+ =?us-ascii?Q?1WNXG9IdCE9I3uzmqNV4NLVOdiw46hwTg4pLiPNUrblBxL62tfbxZB+eCA5D?=
+ =?us-ascii?Q?HjFxSt5KRaGtCj4bkZTqtktJ7mHUGghbaY4Op8lbN1xrJeeBGxbe4vsVDTPb?=
+ =?us-ascii?Q?ny6MdhU2i978OhKdybbk6qFK2dz+YUWNGNwk4fMLXk3Yu54CzHoqYDIemGQ1?=
+ =?us-ascii?Q?MyJ6KLhuVXnsdByiNIZhRAMWv7F70cXe0UajZ76JP1+nyUWHnwCJVrTO9yb2?=
+ =?us-ascii?Q?MFCRVRjmVvkAsZcJVNr5HmjYBE6pcCKr8M/cTO03?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a697c735-cadb-4149-572c-08ddad88e9a5
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2025 10:22:50.7731
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5RKMsk5O/elGq3FUDseNvCS3zDvYu1VaVTmtVFD0tXrcIPtqDtEBs+RmIbFgQzDi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10140
 
-On 6/17/25 17:35, Krzysztof Kozlowski wrote:
-> On 17/06/2025 10:48, Vivian Wang wrote:
->> Hi Krzysztof,
->>
->> On 6/17/25 14:21, Krzysztof Kozlowski wrote:
->>> On 17/06/2025 07:21, Vivian Wang wrote:
->>>> The SpacemiT K1 has various static translations of DMA accesses. Add
->>>> these as simple-bus nodes. Devices actually using these translation will
->>>> be added in later patches.
->>>>
->>>> The bus names are assigned according to consensus with SpacemiT [1].
->>> Read the feedback there:
->>>
->>> "So, as you are submitting the first node(s) under network_bus: bus@5, you
->>> should have this added into your patchset, instead of sending out with
->>> none."
->> As mentioned in the patch extra message, this is an RFC meant for
->> achieving consensus on what the bus nodes should look like, not an
->> actual patch meant to be taken. I was hoping I was clear on that, but I
->> guess that paragraph was buried too deep. Well...
->>> Plus simple bus within MMIO node needs unit address. IOW, don't mix MMIO
->>> with non-MMIO. I also suspect this does not pass checks, so the tools
->>> can do our review...
->> This DT passes "make dtbs_check" fine, with only unrelated warnings on
->> sec_uart1 that was already there before:
->>
->>   DTC [C] arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dtb
->> .../arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dtb: serial@f0612000
->> (spacemit,k1-uart): 'clock-names' is a required property
->>         from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
->>   DTC [C] arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dtb
->> .../arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dtb: serial@f0612000
->> (spacemit,k1-uart): 'clock-names' is a required property
->>         from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
->>
->> To be honest, I don't understand what "within MMIO node" means here.
->> Should the buses be taken out of /soc and added as its siblings?
-> These looks like children of simple-bus. If that's right: children of
-> simple-bus are supposed to have unit addresses (see also simple-bus in
-> the DT schema).
+Add binding document and driver.
 
-The history of the simple-bus.yaml bindings file suggests that a
-simple-bus with empty ranges and no unit address as a child of a parent
-simple-bus is intentionally allowed [1]. The commit message also
-suggests that even in older versions of the same file it was not the
-intention to disallow such nested buses.
+Joy Zou (2):
+  dt-bindings: regulator: add PF0900 regulator yaml
+  regulator: pf0900: Add PMIC PF0900 support
 
-[1]: https://github.com/devicetree-org/dt-schema/commit/ed9190d20f146d13e262cc9138506326f7d4da91
+ .../regulator/nxp,pf0900-regulator.yaml       |  179 +++
+ drivers/regulator/Kconfig                     |    8 +
+ drivers/regulator/Makefile                    |    1 +
+ drivers/regulator/pf0900-regulator.c          | 1033 +++++++++++++++++
+ include/linux/regulator/pf0900.h              |  264 +++++
+ 5 files changed, 1485 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml
+ create mode 100644 drivers/regulator/pf0900-regulator.c
+ create mode 100644 include/linux/regulator/pf0900.h
 
-Regards,
-Vivian "dramforever" Wang
+-- 
+2.37.1
 
 
