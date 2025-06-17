@@ -1,58 +1,67 @@
-Return-Path: <devicetree+bounces-186823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0A9ADDA06
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:12:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04928ADD853
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:54:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E33419E278B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:53:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D65517A9FE3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193E72DFF2F;
-	Tue, 17 Jun 2025 16:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27E22DFF10;
+	Tue, 17 Jun 2025 16:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sfj9yeEq"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2azXULNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05AA2FA630;
-	Tue, 17 Jun 2025 16:50:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07172FA65E;
+	Tue, 17 Jun 2025 16:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750179056; cv=none; b=bww0aHdg07VX8yBHKE1W7dXxBebXx8GXiRGcqq7DALjFGkTwZd5XMTANXXJhiwA1XQKO826r/KUk1k2LLizfiDYkFKGdB0Xv/ESvbael/2NG4smBzTSe3O2f9jRlO0MDRJu1HnFdRCBxwCh4kg4DW2sk6UShXctYPJ3TyT5UKqU=
+	t=1750179192; cv=none; b=tUp9SBaTeumoqjHsl+pEM6bquyYlFgP2W5VMEz7oJiI/lXZTddVXe2KKyyzZO342u+ovA/BBFAlD/rqtUMMJJMFC8/tV3BMc2y7u7CC2lodaLrV/I8bvePftKNM+nHQwWa1wgbCtq+KJBsUJp7Jl7X2U114v/0Kb4L4zMYFpuHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750179056; c=relaxed/simple;
-	bh=G8asLFykMSjJ6bSeXKgxGkckfXh721m/A50zrFfuCvc=;
+	s=arc-20240116; t=1750179192; c=relaxed/simple;
+	bh=EDRaIpa6wJ70zFFE4EgCOpigV30lcRZVVqC50V/lpiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NjAy9+GfX/5dVstOdXPI8mTdNc8417Dce/1pmf39CiCSXoGogVgFY/O0j7yaxQN2qlTlgU1XbFzd56gnyHYWS4hm1pN5mXsKhp3Ea+lZ4gko0cGD3OWn8ziua8Mnzi03FXa7dpM/6zlh1bILHgyypYIDDeAv7B7W9GLhJwwCimI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sfj9yeEq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17CD9C4CEF0;
-	Tue, 17 Jun 2025 16:50:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750179055;
-	bh=G8asLFykMSjJ6bSeXKgxGkckfXh721m/A50zrFfuCvc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Sfj9yeEq9P+YpxAmAbKAVH7IF2WhEg1gPyAZRAHMZAai/ch6Qsx0d2WHEbH6XQEDU
-	 sQYlcEHIy/F9RvDvyb5RT9K/ZKU408kOQ0jT9NGCcTzfiZj97j0lZnBZGNarDs4swp
-	 TJYcyEC2WqKZNPxaTfSHYKR6PeReSifYaMHsLwQEGW1gXXabeKQTYHJ6YFMfwp0Sb7
-	 AQgsmOhqBGqFrvP55yRUXeH/7slVuUtrLDpqnskCLtl8CEZAo06QBWdwaDlaySZkLZ
-	 kdE6OSfSDPIx1rA/9T/Js+tVz/W+TgXoLbRnuRBjRVu7s7be5KOvvyHZLZkbmBtXyR
-	 0D+GROoncHVPA==
-Date: Tue, 17 Jun 2025 22:20:47 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	krzk+dt@kernel.org, manivannan.sadhasivam@linaro.org, conor+dt@kernel.org, 
-	robh@kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] PCI: of: Relax max-link-speed check to support
- PCIe Gen5/Gen6
-Message-ID: <5baxv7vnmm46ye6egf6i54letsl6c6zcsle4aoaigxnve33pfk@qn33xy5wfghv>
-References: <20250529021026.475861-1-18255117159@163.com>
- <20250529021026.475861-4-18255117159@163.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kLrg4jrYkSN16wR/TzRH44UH9qsrObQMBWLBFLctWK9Aco8nikKrCUVEKm3ucG04AyH2jxs2yrir1LLpuNg3GTrJKpme3DIcoCEwwptW+Pl7bviomKP0WbYJmuNWRES2sJsyyqmaSy3m3PoOmsaroEE5+pHlQ2wNDuMZN0M35kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2azXULNl; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=qLwy9nWk7FQ2u1fpqK0kJMRSGlwXC3AvpuB1jdFpBfY=; b=2a
+	zXULNlLbVY2lA4WHwdHGKkxblSf0mo45WNp+Gn5lID9vZ7Yf/KTBHQBvKl94A+4xcEO4X0/IkCOv1
+	0fic+BJ5OSeJ4W/fPjKVypf1HB1qvGsVbPWobIcMDIfuSi488jokKwMlWBP90yNvNeBEfMaQ8fn/m
+	DyKUfIC/3rsRfVQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uRZYQ-00GC94-PV; Tue, 17 Jun 2025 18:52:58 +0200
+Date: Tue, 17 Jun 2025 18:52:58 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v4 1/1] dt-bindings: net: convert qca,qca7000.txt yaml
+ format
+Message-ID: <c4864e76-cec3-4794-825d-cc9ccbf92e43@lunn.ch>
+References: <20250616184820.1997098-1-Frank.Li@nxp.com>
+ <CAOMZO5DwJ9bk26TBU46_fU0ydwQL__dxUoOULuKyZYWRdbJ0YQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,43 +71,31 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250529021026.475861-4-18255117159@163.com>
+In-Reply-To: <CAOMZO5DwJ9bk26TBU46_fU0ydwQL__dxUoOULuKyZYWRdbJ0YQ@mail.gmail.com>
 
-On Thu, May 29, 2025 at 10:10:26AM +0800, Hans Zhang wrote:
-> The existing code restricted `max-link-speed` to values 1~4 (Gen1~Gen4),
-> but current SOCs using Synopsys/Cadence IP may require Gen5/Gen6 support.
-> This patch updates the validation in `of_pci_get_max_link_speed` to allow
-> values up to 6, ensuring compatibility with newer PCIe generations.
+On Tue, Jun 17, 2025 at 01:09:21PM -0300, Fabio Estevam wrote:
+> On Mon, Jun 16, 2025 at 3:48 PM Frank Li <Frank.Li@nxp.com> wrote:
 > 
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-
-DT binding validation should be sufficient. But still...
-
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-
-- Mani
-
-> ---
->  drivers/pci/of.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        ethernet@0 {
+> > +            compatible = "qca,qca7000";
+> > +            reg = <0x0>;
+> > +            interrupt-parent = <&gpio3>;      /* GPIO Bank 3 */
+> > +            interrupts = <25 0x1>;            /* Index: 25, rising edge */
+> > +            spi-cpha;                         /* SPI mode: CPHA=1 */
+> > +            spi-cpol;                         /* SPI mode: CPOL=1 */
+> > +            spi-max-frequency = <8000000>;    /* freq: 8 MHz */
 > 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index ab7a8252bf41..379d90913937 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -890,7 +890,7 @@ int of_pci_get_max_link_speed(struct device_node *node)
->  	u32 max_link_speed;
->  
->  	if (of_property_read_u32(node, "max-link-speed", &max_link_speed) ||
-> -	    max_link_speed == 0 || max_link_speed > 4)
-> +	    max_link_speed == 0 || max_link_speed > 6)
->  		return -EINVAL;
->  
->  	return max_link_speed;
-> -- 
-> 2.25.1
+> All of these comments are obvious and don't bring any new information.
 > 
+> I recommend dropping all of them.
 
--- 
-மணிவண்ணன் சதாசிவம்
+I would also suggest replacing 0x1 with IRQ_TYPE_EDGE_RISING.
+
+  Andrew
 
