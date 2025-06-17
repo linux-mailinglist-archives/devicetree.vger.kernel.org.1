@@ -1,101 +1,102 @@
-Return-Path: <devicetree+bounces-186686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD5DDADCCE8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:20:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E76ADCCF1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:22:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 444051940FF6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:14:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA8A4032A5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0C82D0289;
-	Tue, 17 Jun 2025 13:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299D62E7192;
+	Tue, 17 Jun 2025 13:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="booYi7ia"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="iNa0xfO4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCED2C031D;
-	Tue, 17 Jun 2025 13:12:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7CF2E7166;
+	Tue, 17 Jun 2025 13:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750165967; cv=none; b=UOX3gzwvWXkCRLH9kcCHMYOLcJ/X6cvv2nnORtzUFIYTYrHkOHKhILRTWoUJMJ72mMji5eNYpbTnt5uu9+HPJm+Pcrqz5O8YY7EGNDRFOQcmEFDeACq4jBjF/kN5FSfYsEBu5McXjJgHwGl8ZY0uSqP6jB0D6E/r1S87y7RZh40=
+	t=1750166096; cv=none; b=A0CFZi+NkIovxPNEjyZvJQGCJJGeDIZCG6UnejjBuEJpsub6hFBleA9OpCNNLmcazcr1HL434V3Pz0IEBkjzMw6nDhPVXUXE6lHlW7hdyJLHCb3xlcLuZgQ8DZMare1EI1t1BUgBE4WVtHMcoCMR++z77ipfEOXVD8JqJG0lvAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750165967; c=relaxed/simple;
-	bh=QDtaQLsmnu/VyAKGKSXvf8sIHBRd+mWxtBwWEhfm1PU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=OfhW5lTBRwFJaifdRivKpc/ADhKwltmT/Kjhxr30QgumNGhwQL5D7F6HS2W4U+mk/HEr0UQR7AmenTXSI7augO0/QuF3WqiK+SVDdKgQkTSBufAB4p9p3z8wAMXt5vvS/Rwoyi45CLN1Dx5A5W5ozT5rf1hzSsQTK5ad6sepRCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=booYi7ia; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0265FC4CEE3;
-	Tue, 17 Jun 2025 13:12:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750165967;
-	bh=QDtaQLsmnu/VyAKGKSXvf8sIHBRd+mWxtBwWEhfm1PU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=booYi7iaE75ULoYnaOkSj+Sco2TT5VcyKnijhY3tzCTNXZE20Skxp4Du+o3EUcRbQ
-	 s2ofawWcsni39UpVClAIK07GBTqObBCg7C5koKhrRePE6NXtpCpn/RVX7Fmu3DWvHm
-	 p0L63lA5XbrBHRTthiJ7hKmpuSj8pwrAuO93EhmK1BmrppttCtzLJOcrBhE8dyFlfi
-	 k/a+oKIbST/T9zbFsQ9sAj5PTxTdOPHr+e/jfQc+82DamA5axYwEK9bcsP/6R+EK8t
-	 lWaPgCdECV0qLSxShgCLaFF822d+dSZIdB3e3MFzAIK+Ekq9tzB1ucjUJGM7VznYtI
-	 D62v0xCWFDVLg==
-Date: Tue, 17 Jun 2025 08:12:46 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750166096; c=relaxed/simple;
+	bh=jWHsSqNV6uTusVU5NnYNCN38+Xz/eWr0z5GEMNQdJ0I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m0i+1PT5iTQoKt2Gkh6iEVcWp+jO0czH5oy/KQYltoGzi0psLRZ5GKEso3VtMGCFPx1U0C1pLR2l7XW2k4uP9MiYvSxka/fXDvWc8GJ0mjGbSz139rPAeBOhQwVYnFrngnJ4czmiHpss4VgvnwqvspGtESQ6UrGiCAhhaQBWx18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iNa0xfO4; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=uFLVJFpH5AQoGq4DYrwcdK29TEFz0/SXGmStaKvh9BQ=; b=iNa0xfO4f+V3dWu6OtwziiklHV
+	0IJbfpT5pYTvjelAZi7SLIUz1B2jI+jxV2Bl7wn7Kyx2lP3m7taNuoWdw3sawN3A6NuNcMxIJiWOC
+	OWPE8t/U79D6l66Bf8vpY0PEv64H7lkmHTDjIyxDBRcb4PKKarmyZljW4ZZuy1SBNwYI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uRW90-00GAVk-BT; Tue, 17 Jun 2025 15:14:30 +0200
+Date: Tue, 17 Jun 2025 15:14:30 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v2 2/2] net: mdio: Add MDIO bus controller for
+ Airoha AN7583
+Message-ID: <065e26cf-1bfb-462c-8cbc-9b4b29f1262d@lunn.ch>
+References: <20250617091655.10832-1-ansuelsmth@gmail.com>
+ <20250617091655.10832-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: conor+dt@kernel.org, ping.bai@nxp.com, imx@lists.linux.dev, 
- broonie@kernel.org, lgirdwood@gmail.com, aisheng.dong@nxp.com, 
- ye.li@nxp.com, frank.li@nxp.com, krzk+dt@kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: Joy Zou <joy.zou@nxp.com>
-In-Reply-To: <20250617102025.3455544-2-joy.zou@nxp.com>
-References: <20250617102025.3455544-1-joy.zou@nxp.com>
- <20250617102025.3455544-2-joy.zou@nxp.com>
-Message-Id: <175016596600.1706958.16046350914927298265.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: add PF0900 regulator
- yaml
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250617091655.10832-2-ansuelsmth@gmail.com>
 
-
-On Tue, 17 Jun 2025 18:20:24 +0800, Joy Zou wrote:
-> Add device binding doc for PF0900 PMIC driver.
+On Tue, Jun 17, 2025 at 11:16:53AM +0200, Christian Marangi wrote:
+> Airoha AN7583 SoC have 2 dedicated MDIO bus controller in the SCU
+> register map. To driver register an MDIO controller based on the DT
+> reg property and access the register by accessing the parent syscon.
 > 
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> ---
->  .../regulator/nxp,pf0900-regulator.yaml       | 179 ++++++++++++++++++
->  1 file changed, 179 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml
+> The MDIO bus logic is similar to the MT7530 internal MDIO bus but
+> deviates of some setting and some HW bug.
 > 
+> On Airoha AN7583 the MDIO clock is set to 25MHz by default and needs to
+> be correctly setup to 2.5MHz to correctly work (by setting the divisor
+> to 10x).
+> 
+> There seems to be Hardware bug where AN7583_MII_RWDATA
+> is not wiped in the context of unconnected PHY and the
+> previous read value is returned.
+> 
+> Example: (only one PHY on the BUS at 0x1f)
+>  - read at 0x1f report at 0x2 0x7500
+>  - read at 0x0 report 0x7500 on every address
+> 
+> To workaround this, we reset the Mdio BUS at every read
+> to have consistent values on read operation.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml:34:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250617102025.3455544-2-joy.zou@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+    Andrew
 
