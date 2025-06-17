@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3234ADC283
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:43:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F290ADC28D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:45:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5461417363E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:43:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9753B885E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F16428C013;
-	Tue, 17 Jun 2025 06:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113B823B617;
+	Tue, 17 Jun 2025 06:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bttwGYcC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rryLLHQF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FA6288A2;
-	Tue, 17 Jun 2025 06:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BD373451;
+	Tue, 17 Jun 2025 06:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750142604; cv=none; b=HUhHzSjJv+x96DknvOG9w4MJgtTgiYwlh9aEG7odOg608jiAA8xvo1TWAexdWjcaE5LvhWtAms/pa6t1gVA1yEGWa65IdUeLhbCvQPO2sBuCTyfK+GoXv+wIqCZpEqALsxCB6MojwegyLbCS4pM4ImMwpu3kiVR42BBa4/CrxZg=
+	t=1750142725; cv=none; b=oQ6Zg+j9qmQGDXw5sFzmjNZwCg7TtcBbxsvV6EArhsobQgnlZfjDepTsxlWyf7iXAL8WMXhwvTOgc573yKj2tBDJDrrzwAGMFEU96ilYMo9uCNo0R+ryxo+MfzpsaUsy3bAQdjT30gQTiJGuLpaDRycIqYQtxv8g21sZRsgCkYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750142604; c=relaxed/simple;
-	bh=a3FADsAAQQiMcHjdpY+uzKdLXJKiqwgRdPxXOJppQ14=;
+	s=arc-20240116; t=1750142725; c=relaxed/simple;
+	bh=g3qBx6WvAz0Girrui+SUnzRmoQ5EJ/cW7q76aF3hsIc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DaLZMWmpAbHHwXjRw762jVRBhj/GqQobpPEwC4LHbUatiE5RtczBXWO7WoNKYjTtePY9B15It6kK4dJVAMrbE4tLwHXPJ3pOY64kKanGG4L3sWXmEBHx3JypzkCp0I/CIHh8TBeAncu6KpSTltQ600OXXTGFDuO3IPmHYUsmEnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bttwGYcC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB029C4CEE3;
-	Tue, 17 Jun 2025 06:43:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=g7G4U++zTK6mw1/3/hqJ/zqB6WJGdedpX/Z3gYhZCD6btMimxmm0bQ7n70oMIuHD9nQDXLAH372ELNGIX0koT5UtJ6cZCBkoKJ87M+K+RWACo8JJm2zjt/vW1epQyvIU6dPmgkGcJhgZLt7CXndGhqseXb5HjJXxZ+LsKDe0Q1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rryLLHQF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A9E7C4CEE3;
+	Tue, 17 Jun 2025 06:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750142603;
-	bh=a3FADsAAQQiMcHjdpY+uzKdLXJKiqwgRdPxXOJppQ14=;
+	s=k20201202; t=1750142724;
+	bh=g3qBx6WvAz0Girrui+SUnzRmoQ5EJ/cW7q76aF3hsIc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bttwGYcCUwO1lIEAjLILkFM9REY5rmD8jiOIgM3Wdl4RIVkrt14M1mWFdcIQbvXzA
-	 C6W62ygC/Auy5VKYL25Vc7w9GFpzphWVexV9azUXNkYcRD4EmeDRcxs6FO8BgkhoKZ
-	 vuNPc8cOokf3hBGm9S3cRTykSnoq0WZbx3JeooYDbCv5rbPZim78iLOgN55FpqNzPN
-	 vRThvNgZeSAS2rqs7ZMvVNfmGTWYOgs2D2TGGnZmQjFnhW/dCV8m9aebhlePQwd/fo
-	 9f82hVwC02ph/O9CSVNTn4iEyioRJDX1JtIKpY3QYU/eExY7oz3OGZf6Knw3Zr2uc4
-	 mHWPsXGOpOzQA==
-Message-ID: <6fe27c9d-4641-4aba-9e34-686a4d7f1fa8@kernel.org>
-Date: Tue, 17 Jun 2025 08:43:19 +0200
+	b=rryLLHQFZYrV1utYwuQpjoaTRuBSk6I7t7jgv0pkAORrc8EV7HbTQss1A3PS2QyYJ
+	 cPSZeOA1NRg8uErVA2JlOXp2JTvpuRhgI6zJxbx6iKlZUnr0s6G4YizCKl0CpeIi/B
+	 GZGSY81nhiNjDXzSQm+j7gJ2FxQUsFPiPvL2s8YmCk1wBIcdcC6sYFWZiK9byIaxvu
+	 KPeY8yq5f/KNwwgOvbiqEb/Ecp9ipdSARiKoGBXgvGl6woWIiYpKEYr2m4TJpeOqhY
+	 6cH4Wo8cgUOXhDa1O5Eum7Ox7FMUOUto3v6Jee0SyXFBML0i7Tdvt2pbsWKUreGI6U
+	 9Z+ijTKWDJdEw==
+Message-ID: <49ebd6ba-5154-4ffa-9eb1-383227e1b0ca@kernel.org>
+Date: Tue, 17 Jun 2025 08:45:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] Bluetooth: btnxpuart: Add support for 4M baudrate
-To: Sherry Sun <sherry.sun@nxp.com>,
- Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
- "marcel@holtmann.org" <marcel@holtmann.org>,
- "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Amitkumar Karwar <amitkumar.karwar@nxp.com>,
- Manjeet Gupta <manjeet.gupta@nxp.com>
-References: <20250616150919.8821-1-neeraj.sanjaykale@nxp.com>
- <20250616150919.8821-2-neeraj.sanjaykale@nxp.com>
- <DB9PR04MB8429D531C76CD31AF66864419273A@DB9PR04MB8429.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH v4 1/1] dt-bindings: net: convert qca,qca7000.txt yaml
+ format
+To: Frank Li <Frank.Li@nxp.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stefan Wahren <wahrenst@gmx.net>,
+ "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20250616184820.1997098-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,27 +107,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <DB9PR04MB8429D531C76CD31AF66864419273A@DB9PR04MB8429.eurprd04.prod.outlook.com>
+In-Reply-To: <20250616184820.1997098-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/06/2025 04:53, Sherry Sun wrote:
->> @@ -992,7 +997,7 @@ static int nxp_recv_fw_req_v1(struct hci_dev *hdev,
->> struct sk_buff *skb)
->>  			nxpdev->helper_downloaded = true;
->>  			serdev_device_wait_until_sent(nxpdev->serdev, 0);
->>  			serdev_device_set_baudrate(nxpdev->serdev,
->> -						   HCI_NXP_SEC_BAUDRATE);
->> +
->> HCI_NXP_SEC_BAUDRATE_3M);
+On 16/06/2025 20:48, Frank Li wrote:
+> Convert qca,qca7000.txt yaml format.
 > 
-> Hi Neeraj,
+> Additional changes:
+> - add refs: spi-peripheral-props.yaml, serial-peripheral-props.yaml and
+>   ethernet-controller.yaml.
+> - simple spi and uart node name.
+> - use low case for mac address in examples.
+> - add check reg choose spi-peripheral-props.yaml or
+>   spi-peripheral-props.yaml.
 > 
-> Does this mean that some legacy BT chips using nxp_recv_fw_req_v1() don't support 4Mbps?
-> If so, please add comments in the commit message.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-If that's true this is implied by compatible and entire property should
-be dropped.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
