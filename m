@@ -1,165 +1,249 @@
-Return-Path: <devicetree+bounces-186819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDF8ADD7EF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:50:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 809B5ADD9EC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:11:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACE447A5B72
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:48:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B86C9194295E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F222E8E1F;
-	Tue, 17 Jun 2025 16:47:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE91285055;
+	Tue, 17 Jun 2025 16:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZNMyLSTP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HlqgBPyZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 017CB2E8E12;
-	Tue, 17 Jun 2025 16:47:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E17237162;
+	Tue, 17 Jun 2025 16:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750178874; cv=none; b=ldHS+ay2fgZZUGs0MjZzHvKRXgT7omA2MbiGO8aRl6g0eFQjAogXaOzN/wezuSU9ikC7AtfyBfglImR2IvxGnyAVZiYdXkZIv9Adfz6ylTNePrj8y5g0hDxEzm5X4vV2xh6yQ9Dv7uGbXeyZIxlepXrXObGWXLqm2BznoIs5VQk=
+	t=1750178962; cv=none; b=FAqWXvDOZAtYLajICJPQ4ivmUD+Ene+FtEnDbBa1lA2/hJdPB9DapB1OLQgxteaShhlJIzdr7yMEaHycSCGcCeioSGNi2mqLJhI+Joeg8ef7JjpIkBhFE0LZ3T6XFM8icxzEe3WSml9jPBryzzjLLHEvgFKaBD7JOicokO6P8xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750178874; c=relaxed/simple;
-	bh=bv8Bxsp+wqUnaImph/LN5QBdG6peA6A2txdgC3zX1MM=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P6avrUgUhXN/d3q3djK5hq77W7weVjMQ4KEm3330c3OX2NQ1n9EjVGvXMvg9Tk8XAmUvH3hGzswMDs+fryPkHf3C2L9FZ+Odd8m/byHyTQFF3jtXbGec/RoLti6+8Svv8qlBNpJfQzJd3yfr+FNpK5P7bv9ZLEdRjJJz4G3zHLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZNMyLSTP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2A59C4CEF1;
-	Tue, 17 Jun 2025 16:47:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750178873;
-	bh=bv8Bxsp+wqUnaImph/LN5QBdG6peA6A2txdgC3zX1MM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZNMyLSTPok0plXtSQRVeR35mIMWYttQFoRsg7101Exfaxx1j63e8bHq3iq0fCYdA6
-	 OH7chKtVrGN5wyiqnbwzMjJ51fAUeVh0HD/d9BtnX7Tdda6qRUyLCtQnMQe3l3+WCL
-	 RdmE8gciBbPjRV3a+FqVrSNKq4SNPlPma+bcbVvKvRGlLybuQvDg8gp9sespTNU+FV
-	 P1a/thpRNVyfkRhuXXyY5SDGaduXEKPM/7zuD8QnyxuOP6RzVrJBllDZX9DS8IcGH/
-	 XnfDZGefPxk6LQcSEzhksczVblQuPZ+Is8ABsU8bgj5RWP0o+5pgpeeUbUKoRrofPD
-	 04cq6am1mjGUw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uRZTT-007eVr-5s;
-	Tue, 17 Jun 2025 17:47:51 +0100
-Date: Tue, 17 Jun 2025 17:47:50 +0100
-Message-ID: <86msa6co21.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Will Deacon <will@kernel.org>
-Cc: Ian Rogers <irogers@google.com>,
-	Nick Chan <towinchenmi@gmail.com>,
-	Mark Rutland <mark.rutland@arm.com>,
+	s=arc-20240116; t=1750178962; c=relaxed/simple;
+	bh=KRh/3IWUi8wJK9HBTanwpW1Ne/zckpysbpzJqR2v3lY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZXZtDDLJD7ZQjcnsOlbh1qUXrNCbwNbuL/9z9nTnRYN+3UijDQNsxbjwUlmfwUm1AAX5kuB9zmQyFUDDae4dLFok47DOACt4X9Eh99BhGiCAbuPMt2DyWWLHsV3xs9QZXkOuOCDNwQH5N3WLTTFXYlD/C0V/CrVPhJoNoEdSnEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HlqgBPyZ; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-453398e90e9so33077395e9.1;
+        Tue, 17 Jun 2025 09:49:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750178959; x=1750783759; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5XIMm+//qp4wqccCF+D0DH+tZhbKp+Az+d9fFWrYfco=;
+        b=HlqgBPyZSVPAhUuyfQuGYlSovg7s5bUsvHkbUsSAwyyg0ugt49eaAuJI18u4Vl2yCE
+         2+MBAjSirqpf97fvt+kVFlOf3xbcvJKkZPC/ItuAot3/NukvBokNAWH39k+QXbfT2182
+         RGfGFcoLcAc94vqbKW9oSHleXvsqXJZ9EEP4wjeYQpRN6MdSWc7nuButQxjKVHT21owO
+         ijX6tR2hxfuEUaZ/aHd5XuawcXeC+/S/qb4QperMqneeodV3ka2zYK74mVLmuHnRGCQS
+         SeFG2KhUh9bFk4l4RlTIFmcdykU+1JGlOUjW4fODFtFsKAH53jpzHIka6o/+JZW3k7QO
+         1thw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750178959; x=1750783759;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5XIMm+//qp4wqccCF+D0DH+tZhbKp+Az+d9fFWrYfco=;
+        b=k/1TmAZkiOiiSqPfKEYAbzkvBfg72LwB+TW+8Qgzkskg8zhQTsQon04v5CC958N1Do
+         K753iU2SqL6XQX8LnBQwQwHK1Eb627sytIzl/g40f6U8jyEDdthMLsCtX9zniStzb9mp
+         BKQHNCYeedXa7NlsoTR+fDk3gquqNgfVY1rikopuC31C2nncRWk9sCVOpwNTzlX/jrM7
+         4f5NcNv2zlYTVYxdgh4AT+PZsO34fXnw14n9uDxCCAFsBSfd/xiXImlGLFXX9xEHmRDv
+         Yr1HhS2R0l5fQiNVZJuXdGM7qjAxXMl8RwUK2YfJ6uiPY0s/90Iuk+zyxyWmdu49BGgB
+         fu4w==
+X-Forwarded-Encrypted: i=1; AJvYcCU2aG5rMles9viZao//HwSqU0aP7dH/qzgcFw9KEIC/hoe5ncTF/Z33OSKiUTRCBKgZfmoZSopnonaE/bur@vger.kernel.org, AJvYcCU8aY3g/960ZZYRZtvnKHOdFOzjfioHJcFiuHhjGPuYv3noSH773D3w9mpcuRHqS48sRe1zputodm/ZnzY4k0vW7L8=@vger.kernel.org, AJvYcCWCSVX3dFb4V9sq+SsqljobnulYLVIN9Dl1569ctKO5Z0OY4r6x0mT83rwZ6tDZNF73K4EAS6uB9NUp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxSvGRZ8x5aIwYHAdwfRL69z/q5BQ+nCGg5BVRi3mOLFL64BpQ
+	1IRLBbnB9HjyO8VIGh7L2PG2TQOiahYq5dyQbQ++HFdOsPEUZXLNXtsp
+X-Gm-Gg: ASbGncsCAuBaue4sSyv7hhzpyC6unrmsrJojqyL1NOaHlUPVKs7BpHfL6XvlxdQf2uJ
+	jqadNyKkKnazMX1qM1xhi2H6nH6j7jl3Xz/GQrykt5JUkE11dH9tVmx+35JKP4Ff+ats6zMMtGe
+	EhC3sIuRksAd3fdW68dHTa3mqEFXztMbgQgwjB1uUxJG38Afs8O6ZdQBPE8WF8vO7FCxsQaKS4N
+	+3HEJY/Jw+XmPzvFXRiTMUVMkK586DFTaw9EsAnBJipXbKdgdxRwrNZ7+Uag1IT/scx4f/S0bFl
+	lmLAUa6up7o548UQdegvgIn40byjLhhjcdSyolu5iCV5HkfqdSBVTVPhsvjkEHzoBLLsXaI49hQ
+	lEMQBePQIICQ=
+X-Google-Smtp-Source: AGHT+IHqPQo3No+AxPf3KB6UZMn8Svd+qINdy29DPZOX/zUQw5gwrIihVc5xl0ma5/mBOSDc0/zJTg==
+X-Received: by 2002:a05:6000:65b:b0:3a5:88cf:479c with SMTP id ffacd0b85a97d-3a588cf4cadmr2820887f8f.30.1750178958740;
+        Tue, 17 Jun 2025 09:49:18 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:a081:30f1:e1c7:6f28])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b18f96sm14597105f8f.66.2025.06.17.09.49.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 09:49:18 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Sven Peter <sven@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-mmc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	asahi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple A7-A11, T2 SoC support
-In-Reply-To: <20250617141649.GA19021@willie-the-truck>
-References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
-	<CAP-5=fXSwgxMc+uh=PBAFh4Zm96tL5RDyKPOJ8Q40O4s=EaArA@mail.gmail.com>
-	<20250616102945.GA17431@willie-the-truck>
-	<CAP-5=fVjJyV2eA1aDnk6cqAhJGc9FZVyHhP7-f=1OyWmzxjN8w@mail.gmail.com>
-	<20250617141649.GA19021@willie-the-truck>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] dt-bindings: mmc: renesas,sdhi: Document RZ/T2H and RZ/N2H support
+Date: Tue, 17 Jun 2025 17:49:14 +0100
+Message-ID: <20250617164914.158091-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: will@kernel.org, irogers@google.com, towinchenmi@gmail.com, mark.rutland@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, j@jannau.net, alyssa@rosenzweig.io, neal@gompa.dev, sven@kernel.org, linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, asahi@lists.linux.dev, linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Tue, 17 Jun 2025 15:16:50 +0100,
-Will Deacon <will@kernel.org> wrote:
->=20
-> On Mon, Jun 16, 2025 at 03:44:49AM -0700, Ian Rogers wrote:
-> > On Mon, Jun 16, 2025 at 3:29=E2=80=AFAM Will Deacon <will@kernel.org> w=
-rote:
-> > >
-> > > On Mon, Jun 16, 2025 at 02:36:18AM -0700, Ian Rogers wrote:
-> > > > On Sun, Jun 15, 2025 at 6:32=E2=80=AFPM Nick Chan <towinchenmi@gmai=
-l.com> wrote:
-> > > > >
-> > > > > This series adds support for the CPU PMU in the older Apple A7-A1=
-1, T2
-> > > > > SoCs. These PMUs may have a different event layout, less counters=
-, or
-> > > > > deliver their interrupts via IRQ instead of a FIQ. Since some of =
-those
-> > > > > older SoCs support 32-bit EL0, counting for 32-bit EL0 also need =
-to
-> > > > > be enabled by the driver where applicable.
-> > > > >
-> > > > > Patch 1 adds the DT bindings.
-> > > > > Patch 2-7 prepares the driver to allow adding support for those
-> > > > > older SoCs.
-> > > > > Patch 8-12 adds support for the older SoCs.
-> > > > > Patch 13-21 are the DT changes.
-> > > > >
-> > > > > Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> > > >
-> > > > Hi Nick,
-> > > >
-> > > > This is substantial work and it looks good to me. Do you know why
-> > > > there's been little progress on landing these patches? Buggy Apple =
-ARM
-> > > > PMU support in the kernel has led to reworking the perf tool. It se=
-ems
-> > > > best that we can have the best drivers possible.
-> > >
-> > > You reworked the perf tool to support these things? Why? These changes
-> > > are targetting chips in old iPhones afaict (as opposed to "Apple Sili=
-con").
-> > > I think that (a) most people don't particularly care about them and (=
-b)
-> > > they're not fully supported _anyway_ because of crazy stuff like [1].
-> >=20
-> > I was meaning that we reworked the perf tool to work around the Apple
-> > ARM PMU driver expecting to work as if it were an uncore rather than a
-> > core PMU driver. More context here:
-> > "[REGRESSION] Perf (userspace) broken on big.LITTLE systems since v6.5"
-> > https://lore.kernel.org/lkml/08f1f185-e259-4014-9ca4-6411d5c1bc65@marca=
-n.st/
-> > But in general it would be nice Apple ARM PMU support were well loved.
-> > I think we went 2 or 3 minor releases with the perf tool not working,
-> > threats of substantial reverts to avoid the PMU driver bug being
-> > exposed, etc.
->=20
-> It's unfortunate that you've had a torrid time with the Apple PMU driver,
-> but I think it's important to realise that it's both unmaintained (it
-> ends up with me via the catch-all for drivers/perf/) and was written
-> based off whatever reverse-engineering people could be bothered to do in
-> their spare time. It's frankly remarkable that it works as well as it
-> does.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Also, the "broken" driver actually works as expected. Ian blames the
-userspace breakage on that driver, but that's only because the way we
-deal with PMUs on ARM doesn't match his mental model. Oh well.
+Add SDHI bindings for the Renesas RZ/T2H (a.k.a R9A09G077) and RZ/N2H
+(a.k.a R9A09G087) SoCs. Use `renesas,sdhi-r9a09g057` as a fallback since
+the SD/MMC block on these SoCs is identical to the one on RZ/V2H(P),
+allowing reuse of the existing driver without modifications.
 
-	M.
+Update the binding schema to reflect differences: unlike RZ/V2H(P),
+RZ/T2H and RZ/N2H do not require the `resets` property and use only a
+two clocks instead of four.
 
---=20
-Without deviation from the norm, progress is not possible.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v1->v2:
+- Added the high speed clock to the clocks list.
+---
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml | 85 ++++++++++++-------
+ 1 file changed, 53 insertions(+), 32 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+index 7563623876fc..ba15ccbda61a 100644
+--- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
++++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+@@ -72,6 +72,8 @@ properties:
+           - enum:
+               - renesas,sdhi-r9a09g047 # RZ/G3E
+               - renesas,sdhi-r9a09g056 # RZ/V2N
++              - renesas,sdhi-r9a09g077 # RZ/T2H
++              - renesas,sdhi-r9a09g087 # RZ/N2H
+           - const: renesas,sdhi-r9a09g057 # RZ/V2H(P)
+ 
+   reg:
+@@ -129,59 +131,78 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - renesas,sdhi-r9a09g057
+-              - renesas,rzg2l-sdhi
++              - renesas,sdhi-r9a09g077
++              - renesas,sdhi-r9a09g087
+     then:
+       properties:
++        resets: false
+         clocks:
+           items:
+-            - description: IMCLK, SDHI channel main clock1.
+-            - description: CLK_HS, SDHI channel High speed clock which operates
+-                           4 times that of SDHI channel main clock1.
+-            - description: IMCLK2, SDHI channel main clock2. When this clock is
+-                           turned off, external SD card detection cannot be
+-                           detected.
+-            - description: ACLK, SDHI channel bus clock.
++            - description: ACLK, IMCLK, SDHI channel bus and main clocks.
++            - description: CLK_HS, SDHI channel High speed clock.
+         clock-names:
+           items:
+-            - const: core
+-            - const: clkh
+-            - const: cd
+             - const: aclk
+-      required:
+-        - clock-names
+-        - resets
++            - const: clkh
+     else:
+       if:
+         properties:
+           compatible:
+             contains:
+               enum:
+-                - renesas,rcar-gen2-sdhi
+-                - renesas,rcar-gen3-sdhi
+-                - renesas,rcar-gen4-sdhi
++                - renesas,sdhi-r9a09g057
++                - renesas,rzg2l-sdhi
+       then:
+         properties:
+           clocks:
+-            minItems: 1
+-            maxItems: 3
+-          clock-names:
+-            minItems: 1
+-            uniqueItems: true
+             items:
+-              - const: core
+-              - enum: [ clkh, cd ]
+-              - const: cd
+-      else:
+-        properties:
+-          clocks:
+-            minItems: 1
+-            maxItems: 2
++              - description: IMCLK, SDHI channel main clock1.
++              - description: CLK_HS, SDHI channel High speed clock which operates
++                             4 times that of SDHI channel main clock1.
++              - description: IMCLK2, SDHI channel main clock2. When this clock is
++                             turned off, external SD card detection cannot be
++                             detected.
++              - description: ACLK, SDHI channel bus clock.
+           clock-names:
+-            minItems: 1
+             items:
+               - const: core
++              - const: clkh
+               - const: cd
++              - const: aclk
++        required:
++          - clock-names
++          - resets
++      else:
++        if:
++          properties:
++            compatible:
++              contains:
++                enum:
++                  - renesas,rcar-gen2-sdhi
++                  - renesas,rcar-gen3-sdhi
++                  - renesas,rcar-gen4-sdhi
++        then:
++          properties:
++            clocks:
++              minItems: 1
++              maxItems: 3
++            clock-names:
++              minItems: 1
++              uniqueItems: true
++              items:
++                - const: core
++                - enum: [ clkh, cd ]
++                - const: cd
++        else:
++          properties:
++            clocks:
++              minItems: 1
++              maxItems: 2
++            clock-names:
++              minItems: 1
++              items:
++                - const: core
++                - const: cd
+ 
+   - if:
+       properties:
+-- 
+2.49.0
+
 
