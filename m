@@ -1,224 +1,135 @@
-Return-Path: <devicetree+bounces-186848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1379AADDC8C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 21:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F9BADDD17
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 22:18:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FE5319414ED
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:43:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B62B189D780
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:18:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 050F42E425E;
-	Tue, 17 Jun 2025 19:43:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE324A3E;
+	Tue, 17 Jun 2025 20:18:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tQn+1aMb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WM3t6xvU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB6A2E3AFD
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 19:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D112EFD8B;
+	Tue, 17 Jun 2025 20:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750189391; cv=none; b=RgTG7p1A0j/FVYaRgUszUZOGhNiuWp5kvY0kakL6kx5y4vqnrrULZr6v9nTULd9oA+TzQFHcKBxe1TJFSLeik/QYTlqJK5s/KZ/OC1L08X2dFd85eWngIzMukVzf4aGoTEooe0KOTI20wC6q+o2sEvbnFWAq/O80o25Q9LOjObE=
+	t=1750191493; cv=none; b=dMbD4CR80Sdzmonu148flBnrx5D8pKnK9F9Qa4IriD0Jhn1H/RylsLpZ9VFMX7VpR2Rhru9bRmUvj6IxHSYtZWNZZnOTDKxLoQfJ7eR4k527ikdI2qZKMxOT1s9EXqiUkmnsx5c/H95RMW0j6LRY8CYogY/Z1X2u46rtz2WWf9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750189391; c=relaxed/simple;
-	bh=l7SzB8NO+rrP5k4367W9aS0ArpEC+aDkSTC3pfTFz30=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=XDWPiLdnogVAvfOPJrjO2t1SsW7f2ENDiSSWS5GOSm0wIwGS4GfdEYuZBRBHJXZmr8W8hgFOC6orqgSQlvsdsbx/+eDsVwltN/JR/MYSHTAw+Bt8lKsE1Nta2WnIVwtgNIAcQe4oMHK5Xgywo4L78UPCiXCsjturmSzueUNBUn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tQn+1aMb; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250617194308euoutp01678d1c6719e5ae9cf52baa8497bad084~J6-nLnVG12515925159euoutp01Q
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 19:43:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250617194308euoutp01678d1c6719e5ae9cf52baa8497bad084~J6-nLnVG12515925159euoutp01Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1750189388;
-	bh=SsrrapZlggFpVYw95Drc6h8mJo8KmYhpbhG7VYywjIs=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=tQn+1aMbwyFepAeZyTjCE0hzZXQjkbcCqJBGARftZbkUFKJLWTc9EfdDMG3TezNAh
-	 DIlbOcm9eVbr72Cc5FNc0HMpIvgf9sldMIsyFi1JfXTsCWsUDcCuEV/qJQQp0PfA/q
-	 NJT7rOLr+MUFVmvLKM0BTaZbJfXq8aja9MxXgRbc=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250617194306eucas1p118ec57136b8265b7e13aeb1ea93a14b7~J6-l2QnM52077420774eucas1p1s;
-	Tue, 17 Jun 2025 19:43:06 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250617194305eusmtip14ca5682a8b9fab2b3547be7105427287~J6-kraHC01904619046eusmtip1_;
-	Tue, 17 Jun 2025 19:43:05 +0000 (GMT)
-Message-ID: <98d6b8e5-4694-44df-9ba0-33e6c00d8183@samsung.com>
-Date: Tue, 17 Jun 2025 21:43:05 +0200
+	s=arc-20240116; t=1750191493; c=relaxed/simple;
+	bh=RJIt7WG3ZOspYYOWIJrtVuyWqj0nYr2+lVhghRFpqv0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uhKzuwZsej1xyS3TB5aPUr+txxPyCsi0PgvyIAXzRpEFz2t/3MVInNMben9+Cn8OdTYaCfHqtBpnA72+hbSm2E0UYxYZcoc0z5o2993062iL850xWL9+dXoAxcIOd68fUSxe0PqC54TGoikRH3vroC/JnqSG14MqvsSDB8zovSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WM3t6xvU; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ade326e366dso1142484866b.3;
+        Tue, 17 Jun 2025 13:18:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750191490; x=1750796290; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eEc/jInWS+mlsww8d0uzb6CYVItqWJXY/C/BRjHunTg=;
+        b=WM3t6xvUfzKAoYdpuCJcfdLMAv0p/rzDC6SQxxJwK21VJvMNN0iDtMceBfCJlFm8IT
+         kIjTI9Ab1B0Tf7yHgu9PQ7KblJMHVyUCHYp5RlACgvW5FDf6io4jM65cE06Lcn7Nf2Id
+         ZO3uwIuuFXCbBHdUQJXZtw1XMHQpHgfZQSZzmWLoc9Rs6lWWwgKvcSAeQ5GsbAn/IlF8
+         cJFtThzJ/AWmCwXHAGZqHZLws6RN9tcQdZaRmedf279DiTSUlc2SkvpKnFDF4cx4STnr
+         Hlf8NCNVVEOQgyampj+Er8hjpe6rvDgPyiRcqZR117Bh7YaETkgfE1zpmXjXq3CoL9T2
+         YgaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750191490; x=1750796290;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eEc/jInWS+mlsww8d0uzb6CYVItqWJXY/C/BRjHunTg=;
+        b=wqHxqH+lPcziGTiRfcuyJENgf2VWP3mRpG+EbDwwQObY2xeP+IZvcS0zYtPS/M5rCf
+         V6i51os32cCgUvINC5h+qSnoAU0PjdP4OK3vCqcQaswxCwueoBcYOxDW597H6WWML4iC
+         5KaS8Zo4yxPGBj5O4S12lHzwLisXBVxrvRxN4bgXRvYIvFGNfsecp/7vc7ZHBHyFEMsd
+         kg/4u1CAYFMhVY9efXbH2YlXJFSEjOqowboOsjgViscYPbaw/rY6HxPMFM0pOlx5dCu8
+         mRxu1PjXWktPo0z+NoP4li9hQ91WqbWusTEdrOFFZCLlnFn9w30cDMsO6ymonxynRegn
+         tBXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUHS7E+R7hLxkXnCB+tMEkAGQJp+t/lxAgfT84jqvoL1jNNlFal8i+cF7zowfbqIlU2gC0MSTK8p/L0@vger.kernel.org, AJvYcCUfWTN7cBPYHZh/e6A+uV2u0U8PdEHCknDS8RvI3DFuE9Zr+lnz/Ky5xmFzo+C32n/LswjJv98X6fYe7dqm@vger.kernel.org, AJvYcCUnhruW7/HiyPFw61HG53qgSn6y2m+3lrfGL23YF67JzT2yweLGjFYC2u1WbGDkzC/6iIEN92oU1/UW@vger.kernel.org, AJvYcCXiQWULmldA5DkTxdTf5NoxcMxCC1bL3Cm2zlJMNMbLw3/nrd91Kru6HqREhLDqaNd9MM+1toIIa0nuYg==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1bEFJK4NmMamuE9NFzlrEkOH1iv88/jHPfZ3TLtlWEMAM9T5j
+	Wi/Yx/XPwADEXwTd4jfHedVn3Wq6rR6qYOP/Z4Lb52c0qXlvUOsThQpqVUfOH+unryOOC0fwezq
+	doBQZePju61JodWlErpbZhPS6Zg/NJn8=
+X-Gm-Gg: ASbGnct1Npzg8Y2r/NaVK0Z2UY7oHzKilHuE9rqmBTeCpx3Io8F+IKRFNOCuP9u6VSL
+	CPYfu2Ev+mYiHbQJR4QqOoToO10MkjLFs+3hTdGiatp5JGkAGx3ov2UW5SVyfEUFRWHRtzBUDrd
+	QGvXBghrAUzR069hVeDdZqEDMPSCTUrWQnAYP4MUN5HQY=
+X-Google-Smtp-Source: AGHT+IHuE9uZYXvE62BT8AzKQX2dvWzPPjvjArHXMBOp8AoBNetWawpRg+mvV3w+Xv170qTJ70H8PEeuQAdbkXf8YGE=
+X-Received: by 2002:a17:906:c154:b0:ade:2e4b:50d1 with SMTP id
+ a640c23a62f3a-adfad415a59mr1502949666b.29.1750191489371; Tue, 17 Jun 2025
+ 13:18:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/9] pwm: Add Rust driver for T-HEAD TH1520 SoC
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Drew Fustini <drew@pdp7.com>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <aFF7qqlexxh540FW@pollux>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20250617194306eucas1p118ec57136b8265b7e13aeb1ea93a14b7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250617140839eucas1p2d13775f8e6d34a516e93d3b426d5fb16
-X-EPHeader: CA
-X-CMS-RootMailID: 20250617140839eucas1p2d13775f8e6d34a516e93d3b426d5fb16
-References: <20250617-rust-next-pwm-working-fan-for-sending-v3-0-1cca847c6f9f@samsung.com>
-	<CGME20250617140839eucas1p2d13775f8e6d34a516e93d3b426d5fb16@eucas1p2.samsung.com>
-	<20250617-rust-next-pwm-working-fan-for-sending-v3-4-1cca847c6f9f@samsung.com>
-	<aFF7qqlexxh540FW@pollux>
+References: <cover.1749569957.git.Jonathan.Santos@analog.com>
+ <804d66f1858014d7278aec3344d81c223661e878.1749569957.git.Jonathan.Santos@analog.com>
+ <aEwd4cS7j0Vvypg8@smile.fi.intel.com> <aFGVAWi7CZAy0E8k@JSANTO12-L01.ad.analog.com>
+In-Reply-To: <aFGVAWi7CZAy0E8k@JSANTO12-L01.ad.analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 17 Jun 2025 23:17:32 +0300
+X-Gm-Features: AX0GCFs2EpzDynFpo556EMhMcho2_InQYRdVfK7jhsS64P9QV5UZ6zxcfifMGOU
+Message-ID: <CAHp75VdbizxgF1U-LmEp-aTdWpZ5jAqvubk_7QH+RFLMrnRotQ@mail.gmail.com>
+Subject: Re: [PATCH v11 11/11] iio: adc: ad7768-1: add low pass -3dB cutoff attribute
+To: aEwd4cS7j0Vvypg8@smile.fi.intel.com
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com, 
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	marcelo.schmitt1@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl, 
+	lgirdwood@gmail.com, broonie@kernel.org, dlechner@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jun 17, 2025 at 7:17=E2=80=AFPM Jonathan Santos <jonath4nns@gmail.c=
+om> wrote:
+> On 06/13, Andy Shevchenko wrote:
+> > On Wed, Jun 11, 2025 at 08:52:03AM -0300, Jonathan Santos wrote:
+> > > Ad7768-1 has a different -3db frequency multiplier depending on
+> > > the filter type configured. The cutoff frequency also varies accordin=
+g
+> > > to the current ODR.
+> > >
+> > > Add a readonly low pass -3dB frequency cutoff attribute to clarify to
+> > > the user which bandwidth is being allowed depending on the filter
+> > > configurations.
+> >
+> > > +/* -3dB cutoff frequency multipliers (relative to ODR) for each filt=
+er type. */
+> > > +static const int ad7768_filter_3db_odr_multiplier[] =3D {
+> > > +   [AD7768_FILTER_SINC5] =3D 204,            /* 0.204 */
+> > > +   [AD7768_FILTER_SINC3] =3D 262,            /* 0.2617 */
+> > > +   [AD7768_FILTER_SINC3_REJ60] =3D 262,      /* 0.2617 */
+> > > +   [AD7768_FILTER_WIDEBAND] =3D 433,         /* 0.433 */
+> >
+> > Just to be sure, is it 0.433 or 0.4333(3) actually? Sometimes datasheet=
+s have
+> > rounding that even may lead to problems (see TSC issues for some of the=
+ Intel
+> > CPUs in the past). That's behind my question.
+>
+> Every reference I have specifies it as 0.433, so I believe that is it.
 
+Yeah, I see now. The base is 0.10825, which is multiplied by 4 in this case=
+.
 
-On 6/17/25 16:28, Danilo Krummrich wrote:
-> On Tue, Jun 17, 2025 at 04:07:27PM +0200, Michal Wilczynski wrote:
->> +    fn write_waveform(
->> +        chip: &mut pwm::Chip,
->> +        pwm: &mut pwm::Device,
-> 
-> I think you can't hand out mutable references here. This would allow things like
-> mem::swap(), which I think are not valid on those structures.
-> 
->> +        wfhw: &Self::WfHw,
->> +        parent_dev: &Device<Bound>,
->> +    ) -> Result {
->> +        let data: &Self = chip.drvdata().ok_or(EINVAL)?;
->> +        let hwpwm = pwm.hwpwm();
->> +        let iomem_guard = data.iomem.access(parent_dev)?;
-> 
-> Technically, this isn't a guard, hence would't call it that way.
-> 
->> +        let iomap = iomem_guard.deref();
->> +        let was_enabled = pwm.state().enabled();
->> +
->> +        if !wfhw.enabled {
->> +            if was_enabled {
->> +                iomap.try_write32(wfhw.ctrl_val, th1520_pwm_ctrl(hwpwm))?;
->> +                iomap.try_write32(0, th1520_pwm_fp(hwpwm))?;
->> +                iomap.try_write32(wfhw.ctrl_val | PWM_CFG_UPDATE, th1520_pwm_ctrl(hwpwm))?;
->> +            }
->> +            return Ok(());
->> +        }
->> +
->> +        iomap.try_write32(wfhw.ctrl_val, th1520_pwm_ctrl(hwpwm))?;
->> +        iomap.try_write32(wfhw.period_cycles, th1520_pwm_per(hwpwm))?;
->> +        iomap.try_write32(wfhw.duty_cycles, th1520_pwm_fp(hwpwm))?;
->> +        iomap.try_write32(wfhw.ctrl_val | PWM_CFG_UPDATE, th1520_pwm_ctrl(hwpwm))?;
-> 
-> None of the offsets are known at compile time? :(
+> > > +};
 
-Sadly they are computed based on runtime parameter hwpwm, so Rust can't
-guarantee correctness during compilation :-(.
-
-Thank you for your other feedback, appreciate it !
-
-> 
->> +
->> +        // The `PWM_START` bit must be written in a separate, final transaction, and
->> +        // only when enabling the channel from a disabled state.
->> +        if !was_enabled {
->> +            iomap.try_write32(wfhw.ctrl_val | PWM_START, th1520_pwm_ctrl(hwpwm))?;
->> +        }
->> +
->> +        dev_dbg!(
->> +            chip.device(),
->> +            "PWM-{}: Wrote (per: {}, duty: {})",
->> +            hwpwm,
->> +            wfhw.period_cycles,
->> +            wfhw.duty_cycles,
->> +        );
->> +
->> +        Ok(())
->> +    }
->> +}
-> 
-> <snip>
-> 
->> +impl platform::Driver for Th1520PwmPlatformDriver {
->> +    type IdInfo = ();
->> +    const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> = Some(&OF_TABLE);
->> +
->> +    fn probe(
->> +        pdev: &platform::Device<Core>,
->> +        _id_info: Option<&Self::IdInfo>,
->> +    ) -> Result<Pin<KBox<Self>>> {
->> +        let dev = pdev.as_ref();
->> +        let resource = pdev.resource(0).ok_or(ENODEV)?;
->> +        let iomem = pdev.ioremap_resource_sized::<TH1520_PWM_REG_SIZE>(resource)?;
->> +        let clk = Clk::get(pdev.as_ref(), None)?;
->> +
->> +        clk.prepare_enable()?;
->> +
->> +        // TODO: Get exclusive ownership of the clock to prevent rate changes.
->> +        // The Rust equivalent of `clk_rate_exclusive_get()` is not yet available.
->> +        // This should be updated once it is implemented.
->> +        let rate_hz = clk.rate().as_hz();
->> +        if rate_hz == 0 {
->> +            dev_err!(dev, "Clock rate is zero\n");
->> +            return Err(EINVAL);
->> +        }
->> +
->> +        if rate_hz > time::NSEC_PER_SEC as usize {
->> +            dev_err!(
->> +                dev,
->> +                "Clock rate {} Hz is too high, not supported.\n",
->> +                rate_hz
->> +            );
->> +            return Err(ERANGE);
->> +        }
->> +
->> +        let chip = pwm::Chip::new(dev, MAX_PWM_NUM, 0)?;
->> +
->> +        let drvdata = KBox::new(Th1520PwmDriverData { iomem, clk }, GFP_KERNEL)?;
->> +        chip.set_drvdata(drvdata);
->> +
->> +        let registration = pwm::Registration::new(chip, &TH1520_PWM_OPS)?;
->> +
->> +        Ok(KBox::new(
->> +            Th1520PwmPlatformDriver {
->> +                _registration: registration,
->> +            },
->> +            GFP_KERNEL,
->> +        )?
->> +        .into())
-> 
-> Here you are setting up the registration for the correct lifetime, however
-> drivers could extend the lifetime of the registration arbitrarily, which would
-> break the guarantee of the &Device<Bound> we rely on in the callbacks above
-> (e.g. write_waveform()).
-> 
-> Hence, pwm::Registration's lifetime has to be controlled by Devres. I'll also
-> add a corresponding comment in your registration patch.
-> 
->> +    }
->> +}
-> 
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+--=20
+With Best Regards,
+Andy Shevchenko
 
