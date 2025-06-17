@@ -1,318 +1,119 @@
-Return-Path: <devicetree+bounces-186450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC501ADBE47
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 02:50:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A871EADBE4B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 02:52:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9081C3B31BF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 00:50:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 932A77A44CF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 00:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D21F14E2E2;
-	Tue, 17 Jun 2025 00:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878C21428E7;
+	Tue, 17 Jun 2025 00:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JJRfMCMM"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="CcZBDJeY";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xsoxXZHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BDF26281
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 00:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46EA13C8FF;
+	Tue, 17 Jun 2025 00:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750121424; cv=none; b=cxM9k2tF/cSnIpmCyEcHUL5FD1D07h0kaywLV7VJ07xzAsJ05OidyM3cg6h18sEj1TEOWFp136OYvcEFi7hv6oxEbuy+8gvel2JaR77HtrcYV7X47P/7nHUbYUg4LwoWFdRzeoQ+HpM7wlr+oxV/1asD/vVuvObxG2CIfnQQ/6o=
+	t=1750121550; cv=none; b=d25RNy3jZAOCSma1xXazRH/CRQOXt/7JIvaZQARShJX8dPj0aKhHyLx58WdGtNFkS9yWHxf+JAe5HPOpqyFmH8O8rC0sJsHuSqsjm31SmhS9ZNr9ZlE46Tik4VQ9wNm9/5gINAXzhTb5RMLp97B8Sz/eEczVJ++twDClDzM2Zw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750121424; c=relaxed/simple;
-	bh=XM/zTY4+hy2hx2K91S0s1R31CAExjH/f0Ow9Qp8GEIY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=cfRVuhXTodVm8Tr278Z7U0cp5e2StA3XHNt6BnqpbOukpCIrSaWkxG0ewdEJHh0MJDobtc6SV11nh4Z1ju5uTTg1aTQLQ874p3SXP4+WohrFxTcSDJ2eiMUXrG+kuT8wXN0jHdgw6DngR4koFVtxoxeo/+VK3yb1leahz81Du9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JJRfMCMM; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2352400344aso46637955ad.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Jun 2025 17:50:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750121420; x=1750726220; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pnJW/sOQY9aQOY/9yftC8CvVAq36qpelS7zJm8mO7Qs=;
-        b=JJRfMCMMhtKmbfInHoavMIE5ueOftQomDFSSf1tQ/XmPEn3O3pNjOLafqPSnmKAZ4t
-         LUt8NRBM/REeMd6IS72bmnfQQjM7iPOIWhC/dF0hmwoFoTsb1JQDuKse5uKZxXgOlul9
-         IwF+F6CT0oM/rh8Ivt/APLa0/Kl1WlD1AnAgMuPhidF7qGPVh0kSOelUwh+tE/6aGnRO
-         1cPmsAJvjO+oH9AWwNYeRiE0i8Wyk7zd7DsnUiNAfEg3s5Mwb8B3vVWl8xaGfSeSws54
-         hJiF/6P2b3EXzpujKd3g6ndI/JE913g81TMTJBMKf9CX+TVQgKHF4Sj9nMyORs1XPBID
-         S3Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750121420; x=1750726220;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pnJW/sOQY9aQOY/9yftC8CvVAq36qpelS7zJm8mO7Qs=;
-        b=Ca43h6unquThRzfga3dezOOyqX5RUFE8gRdYFouJAbXeIODHMgrY8m9/irVD8MNWrK
-         D4gk1YjNv5zd0Ib/cp7WaIP4A6YSBo2wqOu6letQ+lzrJllG2bchp7ZzxeIXjrw5yCnW
-         3ID9I7MOhLMPAPDcdBZqbJ5qAJGO7lClLz7R8myElJBkIf927pq76c6s9+3QeKINj8RS
-         6LDHxkC7WYsxgbmxEL0gZY3DM8uSLGKw9ZlCL2/Y/XeC3EnqBKlfFYqFcproxqwORo1T
-         tV70Ab9LF7HvtsOVnVVbVywUvfJTX5cb9Z6cS+mFlTDDkLtI9J+G6zhoZHb2ApFGrig9
-         elkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQwA2FatX2sbTky9nHBqqe8/LKDJzITs/RMzU0AkOJfh6idO0JHTAupm457d0zDtH1uzBqVWN+YN3W@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrqbAO6ESNujI5Dl60T9MH7g211j1pxd24YLcAgnnl1J89o/gz
-	tzVmjSZszU+dqikbh8lzgYJ39ib1+OZ9UceCCArHppVHdJRWnMrbRM4oOZMQxAGOWRPKVP9l3ga
-	bgsKfY1M=
-X-Gm-Gg: ASbGncvKRwecu8bqbqnmAHFgvV5iM5iXkRMlUHP7gMVvk8O9smL+35JgxKfwusGDsbq
-	++qb67ZamlMPyrMu97U6kVn/fWb7NIA7lfi6bFc97csPlq8txN+rLB3X/5JaUhaxvfkRBZxl3/N
-	BKFeNt6QG17zjsA4AvDouZ+a5OGcdmchtY5JuHFiPR1YvQKImTIcB2YyP7tfpHSwep0H2pcivSe
-	HSgguZdSDnStRSWpUNKLT9oiTfSBN36LrzeFepf1yKbKTXRaNuhM5eGk78i0GQMR6nDHAm8tjHP
-	CWAcG8vRETPemgAMQuGWTCFVzFv5BRinbFPYJgYtmzWM+r/7YMpuI7Au5UNABzhP992vkmY=
-X-Google-Smtp-Source: AGHT+IGK53DLu+F+32QwMSMZusoMyF5FfzxpNHKsB04ELuGZaLrGkgIzxJL9Nu6YdwjwU+Ly30E0TA==
-X-Received: by 2002:a17:903:943:b0:234:cc7c:d2e2 with SMTP id d9443c01a7336-2366afc485bmr167667785ad.1.1750121420437;
-        Mon, 16 Jun 2025 17:50:20 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365deaa9b8sm67698645ad.165.2025.06.16.17.50.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jun 2025 17:50:19 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
- using power-domain-map
-In-Reply-To: <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
-References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
- <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
- <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
-Date: Mon, 16 Jun 2025 17:50:19 -0700
-Message-ID: <7hsejzp4xg.fsf@baylibre.com>
+	s=arc-20240116; t=1750121550; c=relaxed/simple;
+	bh=BMeJHJZeh7nzRRAmyp5Ofwe0imxCzvXyfrCW0D2XahU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bL6mWp2No3rr+MvHyX/bxDJEZ5TuNL7F4J3oti5kXRxqS5/1ffaD8CI+WB8hnwK9Axfi5qcT4piWt2mWD1nfOvDPQY2PZmrgh+VnGD9ch1k7JLLx6JF8oROR42Wb0QyXUPXGRCMMe7uQEJ3jFKFicHGgmqHxLw66Qe5YSJFBNKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=CcZBDJeY; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xsoxXZHF; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bLpHZ6fCXz9sWq;
+	Tue, 17 Jun 2025 02:52:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750121547;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YgVYAUuQxNBGpksGSE7ef8CIrk0d79xyGwAbs8yQkls=;
+	b=CcZBDJeY4BP03GL321ItPOuI1wf2HwjCwPafZOswgrMfVFlCFr+JAj5VmRHsYlf46eF+OM
+	VMwhvmXN82IKZcyctbZRJkQ0/vKI1jsGGrcISpUo4RC+KnF8l+ARrhMM3chm6MTjGXs2o7
+	BVsdLaxzG/obx+6OX0mtUnjParPLCIFYAtXZF9Xg4VS/zsHP9j3vdGMW8CQrWfK1TstaEV
+	k+zbYZP3EjMHkC0iovy2beN1ZKxnJyBf3qysj9yRJa/Z4qw0X6rFX6PW8JEAYZPrh0x1ax
+	Fiq461mJExgfh8t0BnfYDX6/Co4Cps9o583DSON3ZMAumQaR47grqAjPI21NMQ==
+Message-ID: <4036ada7-faf8-4b23-b6ce-ade5bafbe6ba@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750121545;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YgVYAUuQxNBGpksGSE7ef8CIrk0d79xyGwAbs8yQkls=;
+	b=xsoxXZHFO40aQyD9DIJkodKMU/z+sX200Zze3DcYXB/8iPi0P+3GBNVeuRhsEImaNDuRlz
+	9CAURi80b9MmeSN9GEIBkUFIFwZ6vVGj92QqAWmsEg/htMrKVP58/hX7oq1FN0LA/chEFQ
+	kTAp4GCH4kDxQsqC4CDlM1OL/0U0egVvOnO4WLJLT+3owEhM0Tc6BoC1D16GX6sqVAPDQj
+	1kfOtzoKqwiP0/7oi5C2zxSOgcKCf/KsM+WuH6ilYde/YeR683Aq0E3X9Sg+TX7I+eZjTM
+	qBlUZYE/6J0vy/xjt1f5lmFoRE20D5mf7g7O8GEHkTXOPFx3+p0F8JBOKsrgIA==
+Date: Tue, 17 Jun 2025 02:52:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: Re: [PATCH 2/2] regulator: rpi-panel-v2: Add regulator for 7"
+ Raspberry Pi 720x1280
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+References: <20250609000748.1665219-1-marek.vasut+renesas@mailbox.org>
+ <20250609000748.1665219-2-marek.vasut+renesas@mailbox.org>
+ <fsihsojbs3pex6i6vag4njw27esv257nz3yuacl2bbflyfzfvx@6cc6k7tczdi7>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <fsihsojbs3pex6i6vag4njw27esv257nz3yuacl2bbflyfzfvx@6cc6k7tczdi7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 9a510f01bb172c81bdc
+X-MBO-RS-META: ihm8obj8xbenxckxjr1zogz6pack7gwp
 
-Ulf Hansson <ulf.hansson@linaro.org> writes:
---text follows this line--
-> On Sat, 14 Jun 2025 at 00:39, Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Currently, PM domains can only support hierarchy for simple
->> providers (e.g. ones with #power-domain-cells = 0).
->>
->> Add more generic support for hierarchy by using nexus node
->> maps (c.f. section 2.5.1 of the DT spec.)
->>
->> For example, we could describe SCMI PM domains with multiple parents
->> domains (MAIN_PD and WKUP_PD) like this:
->>
->>     scmi_pds: protocol@11 {
->>         reg = <0x11>;
->>         #power-domain-cells = <1>;
->>
->>         power-domain-map = <15 &MAIN_PD>,
->>                            <19 &WKUP_PD>;
->>     };
->>
->> which should mean that <&scmi_pds 15> is a subdomain of MAIN_PD and
->> <&scmi_pds 19> is a subdomain of WKUP_PD.
->>
->> IOW, given an SCMI device which uses SCMI PM domains:
->>
->>    main_timer0: timer@2400000 {
->>       power-domains = <&scmi_pds 15>;
->>    };
->>
->> it already implies that main_timer0 is PM domain <&scmi_pds 15>
->>
->> With the new map, this *also* now implies <&scmi_pds 15> is a
->> subdomain of MAIN_PD.
->>
->> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
->> ---
->>  drivers/pmdomain/core.c | 24 ++++++++++++++++++++++--
->>  1 file changed, 22 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
->> index d6c1ddb807b2..adf022b45d95 100644
->> --- a/drivers/pmdomain/core.c
->> +++ b/drivers/pmdomain/core.c
->> @@ -2998,8 +2998,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>                                  unsigned int index, unsigned int num_domains,
->>                                  bool power_on)
->>  {
->> -       struct of_phandle_args pd_args;
->> -       struct generic_pm_domain *pd;
->> +       struct of_phandle_args pd_args, parent_args;
->> +       struct generic_pm_domain *pd, *parent_pd = NULL;
->>         int ret;
->>
->>         ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
->> @@ -3039,6 +3039,22 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>                         goto err;
->>         }
->>
->> +       /*
->> +        * Check for power-domain-map, which implies the primary
->> +        * power-doamin is a subdomain of the parent found in the map.
->> +        */
->> +       ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
->> +                                            "power-domain", index, &parent_args);
->> +       if (!ret && (pd_args.np != parent_args.np)) {
->> +               parent_pd = genpd_get_from_provider(&parent_args);
->> +               of_node_put(parent_args.np);
+On 6/11/25 10:30 PM, Uwe Kleine-König wrote:
+> Hello Marek,
+
+Hi,
+
+> On Mon, Jun 09, 2025 at 02:06:42AM +0200, Marek Vasut wrote:
+>> +static int rpi_panel_v2_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>> +				  const struct pwm_state *state)
+>> +{
+>> +	struct regmap *regmap = pwmchip_get_drvdata(chip);
+>> +	unsigned int duty;
 >> +
->> +               ret = pm_genpd_add_subdomain(parent_pd, pd);
->> +               if (!ret)
->> +                       dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
->> +                               pd->name, parent_pd->name);
->> +       }
->
-> Please move the above new code to a separate shared genpd helper
-> function, that genpd providers can call build the topology. This, to
-> be consistent with the current way for how we usually add
-> parent/child-domains in genpd (see of_genpd_add_subdomain).
-
-Yeah, you had the same comment on v2, and I'm not ignoring you.  But I
-thought that moving this code to when devices are attatched to domains
-(instead of when providers are created) would solve that problem.  IOW,
-in this approach, `power-domain-map` is handled at the same time as a
-devices `power-domains = ` property.
-
-So, while I don't really understand the reason that every PM domain
-provider has to handle this individually, I've given that a try (see
-below.)
-
-> Moreover, we also need a corresponding "cleanup" helper function to
-> remove the child-domain (subdomain) correctly, similar to
-> of_genpd_remove_subdomain().
-
-Yes, I'll handle that better once I get through this RFC phase to make
-sure I'm on th right path.
-
-OK, so below[1] is a shot at just adding helpers to the PM domain core.  I
-will then uses these from the SCMI PM domains ->attach_dev() and
-->detatch_dev callbacks.
-
-If you think this is better, I'll send a v4 tomorrow.
-
-Kevin
-
-[1] NOTE: this is based on v6.12 because that's where I have a functioning BSP
-for this SoC.  If you're OK with this, I'll rebase to v6.15 and submit upstream.
-
-From 12a3e5669dc18f4a9fdf9f25398cba4245135a43 Mon Sep 17 00:00:00 2001
-From: Kevin Hilman <khilman@baylibre.com>
-Date: Fri, 13 Jun 2025 13:49:45 -0700
-Subject: [PATCH 2/3] pmdomain: core: add support for subdomains via
- power-domain-map
-
----
- drivers/pmdomain/core.c   | 60 +++++++++++++++++++++++++++++++++++++++
- include/linux/pm_domain.h | 11 +++++++
- 2 files changed, 71 insertions(+)
-
-diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-index 88819659df83..a0dc60d4160d 100644
---- a/drivers/pmdomain/core.c
-+++ b/drivers/pmdomain/core.c
-@@ -3100,6 +3100,66 @@ struct device *genpd_dev_pm_attach_by_name(struct device *dev, const char *name)
- 	return genpd_dev_pm_attach_by_id(dev, index);
- }
- 
-+/**
-+ * genpd_dev_pm_attach_subdomain - Associate a PM domain with its parent domain
-+ * @domain: The PM domain to lookup whether it has any parent
-+ * @dev: The device being attached to the PM domain.
-+ *
-+ * Check if @domain has a power-domain-map.  If present, use that map
-+ * to determine the parent PM domain, and attach @domain as a
-+ * subdomain to the parent PM domain.
-+ *
-+ * Intended to called from a PM domain provider's ->attach_dev()
-+ * callback, where &gpd_list_lock will already be held by the genpd
-+ * add_device() path.
-+ */
-+struct generic_pm_domain *
-+genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
-+			      struct device *dev)
-+{
-+	struct of_phandle_args parent_args;
-+	struct generic_pm_domain *parent_pd = NULL;
-+	int ret;
-+
-+	/*
-+	 * Check for power-domain-map, which implies the primary
-+	 * power-doamin is a subdomain of the parent found in the map.
-+	 */
-+	ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
-+					     "power-domain", 0, &parent_args);
-+	if (!ret && parent_args.np) {
-+		parent_pd = genpd_get_from_provider(&parent_args);
-+		of_node_put(parent_args.np);
-+
-+		ret = genpd_add_subdomain(parent_pd, domain);
-+		if (!ret) {
-+			dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
-+				domain->name, parent_pd->name);
-+			return parent_pd;
-+		}
-+	}
-+
-+	return NULL;
-+}
-+EXPORT_SYMBOL_GPL(genpd_dev_pm_attach_subdomain);
-+
-+/**
-+ * genpd_dev_pm_detach_subdomain - Detatch a PM domain from its parent domain
-+ * @domain: The PM subdomain to detach
-+ * @parent: The parent PM domain
-+ * @dev: The device being attached to the PM subdomain.
-+ *
-+ * Remove @domain from @parent.
-+ * Intended to cleanup after genpd_dev_pm_attach_subdomain()
-+ */
-+int genpd_dev_pm_detach_subdomain(struct generic_pm_domain *domain,
-+				  struct generic_pm_domain *parent,
-+				  struct device *dev)
-+{
-+	return pm_genpd_remove_subdomain(parent, domain);
-+}
-+EXPORT_SYMBOL_GPL(genpd_dev_pm_detach_subdomain);
-+
- static const struct of_device_id idle_state_match[] = {
- 	{ .compatible = "domain-idle-state", },
- 	{ }
-diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
-index cf4b11be3709..5d7eb3ae59dd 100644
---- a/include/linux/pm_domain.h
-+++ b/include/linux/pm_domain.h
-@@ -410,6 +410,11 @@ struct device *genpd_dev_pm_attach_by_id(struct device *dev,
- 					 unsigned int index);
- struct device *genpd_dev_pm_attach_by_name(struct device *dev,
- 					   const char *name);
-+struct generic_pm_domain *genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
-+							struct device *dev);
-+int genpd_dev_pm_detach_subdomain(struct generic_pm_domain *domain,
-+				  struct generic_pm_domain *parent,
-+				  struct device *dev);
- #else /* !CONFIG_PM_GENERIC_DOMAINS_OF */
- static inline int of_genpd_add_provider_simple(struct device_node *np,
- 					struct generic_pm_domain *genpd)
-@@ -466,6 +471,12 @@ static inline struct device *genpd_dev_pm_attach_by_name(struct device *dev,
- 	return NULL;
- }
- 
-+static inline
-+struct generic_pm_domain *genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
-+							struct device *dev)
-+{
-+	return NULL;
-+}
- static inline
- struct generic_pm_domain *of_genpd_remove_last(struct device_node *np)
- {
--- 
-2.49.0
-
-
+>> +	if (state->polarity != PWM_POLARITY_NORMAL)
+>> +		return -EINVAL;
+>> +
+>> +	if (!state->enabled)
+>> +		return regmap_write(regmap, REG_PWM, 0);
+> 
+> I would swap these two if blocks to ensure that disable works even if
+> the wrong polarity is passed.
+I have now sent the conversion to waveform ops patch, so I hope that 
+addresses all the topics in this feedback. Thanks!
 
