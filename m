@@ -1,112 +1,113 @@
-Return-Path: <devicetree+bounces-186521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BADADC394
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:40:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C10ADC3A9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EA503A64C6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:40:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A2C316B577
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7794728C5C9;
-	Tue, 17 Jun 2025 07:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAzayVOL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920AC28ECCD;
+	Tue, 17 Jun 2025 07:49:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47CE922AE45;
-	Tue, 17 Jun 2025 07:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E5228983D;
+	Tue, 17 Jun 2025 07:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750146037; cv=none; b=CGVyQrApDdlqe7AAfjZCgk6JadDx72zojhwuxHvAMb9xxo4Eo69AQDxXKzOhOvMXKVUcwSkx2yfAEz7eAtmkiZHtI2brKScBnXePig9x7I1ZtKu7de1l2ANfn26bjKmlqVcJgmJu2xKtZw+KUOP371s46C+rNm8VOpyPrt5Zp0Y=
+	t=1750146553; cv=none; b=H8W5B3/kI1sqmcMrLXXzKc/mg7T4rTjh5GRAfc0FtfMWhFfXbh8luKt2PPMPCxRZgQLG4Fvdnlgk7zOEWJYyNBfj1ITD0Gg+CBx9cASNnX9jUIafw4kYox8bYEFf89Qrb45CuZTvYqBDp1NSOoAFq3hBpFHdeiTHo5JI6OVQ4NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750146037; c=relaxed/simple;
-	bh=7ijB6/zreiVtuud8tr/xkH8DzzIWKxXzlILsSoCox2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hpj+PQMiB+9fdSUAuZMHdNYGPgBSbs1i5qVY4d27UCtHAqDAl/tk0uDDAZYAWovKwF9cLVysgj7rwWP1iMih03YeWO3IIHj8PzwgTLo36KdhYumbG97CnxCy0w/4virxt2Sn7ArgxsQxeKzlXouAB0Jws9M5dTINp8hWde4YsoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAzayVOL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A396C4CEED;
-	Tue, 17 Jun 2025 07:40:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750146037;
-	bh=7ijB6/zreiVtuud8tr/xkH8DzzIWKxXzlILsSoCox2c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TAzayVOL7BCp1NeXspi7GwFtYcb+IjWw+/nM6r27WgBjNKUazmDoxYJd8xMhOGwrD
-	 gy0yLyi12ow63Mdeqyms3Kk0f5rVncNj/yxUCp6PH0mKP3q/73MeAG9659gm5EmSbb
-	 yUi+V/6/m9JgK7es5C/WAhnpyVOLzq9oDFK2aquKKbV3WqEcSZCZif5HKr4QFKb1TS
-	 3qlOyLvjyiusAstbtAh/6HW5kBX16di1Ot54HR6H/t8V9jDsCwwum/UJloxQ6E7nci
-	 K2+taRkv/PReXOyr8+KXNrGEfgdidXlrbOWPv92YI/XISxpFff6yDIw1iWDX3WGOWk
-	 W/uGmiT/gULTQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uRQvq-000000000mw-1WqM;
-	Tue, 17 Jun 2025 09:40:34 +0200
-Date: Tue, 17 Jun 2025 09:40:34 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-	kw@linux.com, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-	qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v2 2/4] dt-bindings: PCI: qcom,pcie-sa8775p: document
- link_down reset
-Message-ID: <aFEb8m0snKARK90R@hovoldconsulting.com>
-References: <20250617021617.2793902-1-quic_ziyuzhan@quicinc.com>
- <20250617021617.2793902-3-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1750146553; c=relaxed/simple;
+	bh=yJjBc4ZpRECF2hf71qTiHIHrAAo2nQfZj5CEF6HuDu4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jm/eLdjvrXnPE8xBRhSzoSHT1BrK8bd+UFXrxKqohliAvI9Qw6bTgTwbLPy1sdb4INfgagkzjd0+kdcfx01E2pH+BTxn1Ayain4gkA4Ln1X681AUMrGgpS7aK6JDG1zXfNY32kM+7r/+InnD8dGkHwtR7b9dBvfcx4Qg1MgRtpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4e80ff08dd6so1574509137.1;
+        Tue, 17 Jun 2025 00:49:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750146549; x=1750751349;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KTm5y+PBdNYcyQdNoiO0mMLcIK5R2nxCJMVPA2QnTOc=;
+        b=FcpO2fPOBCZVND52E4xcBihg5SaimcI6DzZjeL01I10HXqmSUO2EO+9LSHymSXDA2T
+         ElpwvIL7lop0GF6YK/GYMULMJdVYDRvOSssBTRTyH62iAnCvPJDxiuSMCZy0MAj/AVif
+         OnFr5ebuxXhrbfmWetMoBFoanh0SbPH/lmW4XaFGuMhDvOA35SVTzBEgqEF/xitYQR9u
+         p1Krz0RjaRc+Tkp9YHrg5hiUx95LejPHr9Vw0AojhAJ0Tr8Kp2ptMM4z9b/yEEU/1rtA
+         VaFhzVupBTtNJZd58rHLhn77WnClq6SaD5JmH92P9fZuno3A5NlUAJujP3VxnDOfabcM
+         lF3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUkAQarRASAQU0wjAA8XMhjun9vOgklyznPaATVW3RYBnZltyaC0ZfC1YpL3iwq46uzEIM+G/iVVPXK@vger.kernel.org, AJvYcCWYlPt9NrCddbN6TRPwnmyblTHfi7vUC12Wmv9WlfOpGvpPzjyOTQf8nSGsWp63tx2v8nYfeoJkL+s9q6P4@vger.kernel.org, AJvYcCX9HsBmSne3crEfpGUTYxkq3TSrY4RbWyw7zCED6oWAMOsmEmtvu9VFVymoglwob6glJx58U5tvDJQCIoSbbZjjlLU=@vger.kernel.org, AJvYcCXBL/2NvwuTZ+4fVjXyJ2WHfV227MGuEJM6CHGpGw1Z+rBNivKLPevtjR1hozy3VUxh+MiKn4Q8ZK3xgoAP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf5wV3596S1sV1vLrvy03TBEN3nj6m+RtQKfB5R3oHvPIRQQh2
+	mv0Zgv1lKtPaXqNMAqxvxLKLMWu3C2ykOWXO/727aKmPZmkXYpsArjdmrCtxFZSl
+X-Gm-Gg: ASbGncsldbKvF164g0bGuhQRy0WCumaW+gs/DKdz9qrXz4z9cPkqMwKWQ/4kOxrGMMG
+	rldvRUezdOUi8J8AexDDeDlrKZWiZ0McDqtoC+VrMd4a5p/HeUdRT7o3u2VC0j/ccgm1NTLrCQD
+	3BpPCT3XmRDM1aMW3oaJu+n0gZaEgoJXDuVg5JbNYyaRmKPYCVnxxaOAP7UjV3ts4Fj2RlsfsQE
+	zNMejNOVJhCakiBbdYrQ5IomRf1jNUPsVbXQ01C7HzEXs8vL78HX7lx+4oFaR61i25SNmhyaiDR
+	YYpQswSWiZKnGqB7ph46akcsG8utxCQYOTnQANH2/23t+2LXR2/aXqH8ut/kWpnWHzIoPycAssX
+	IgBvmevtZk9qMxWYKbYRRVNZSRyXIdVcXkt4=
+X-Google-Smtp-Source: AGHT+IGSPVCxTqn0jy3AeHGja7c+hfLTS1h/HxHwaXSmd33baZpr2Ofgmm6YtXdyQ6O1S9RxRLDTSA==
+X-Received: by 2002:a05:6102:4421:b0:4dd:ab6c:7654 with SMTP id ada2fe7eead31-4e7f5e5f524mr9359031137.8.1750146549555;
+        Tue, 17 Jun 2025 00:49:09 -0700 (PDT)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e7e70c6449sm1531912137.22.2025.06.17.00.49.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jun 2025 00:49:09 -0700 (PDT)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4e80ff08dd6so1574477137.1;
+        Tue, 17 Jun 2025 00:49:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVuu4hU0mTVVLx/r6c0K3UPTLtUGxFI9LR1JcN5CfpcfXPW5eCcZu5kH0oG1dUbsXlhxppSX8tp6oVtM0pD@vger.kernel.org, AJvYcCW4zakN4hUPxpkO0rGm3rgJ8fzSZKdVFGR4V8ykW+lIwl6CJEzgnJUtf8BkCF11V1KgL1IPLjGg/QTfO/w+@vger.kernel.org, AJvYcCWL3EJt/xxH3j64TpkAOlGM+eLTnYCpm6aKSOyYhKvgwxQ4aIz2RqKnWsO/OxfvvbswFOqNAdR14gy1@vger.kernel.org, AJvYcCX7+nw/Z8LApLxzhKEmzXMczJViSk67QSaPhsCFtSQgvHceH1xIWiDUApGfBtlWYFktdqAIKPiF1ngKyPJ28TcRqKQ=@vger.kernel.org
+X-Received: by 2002:a05:6102:2d07:b0:4e7:dfc6:5cd8 with SMTP id
+ ada2fe7eead31-4e977acc263mr764329137.8.1750146548618; Tue, 17 Jun 2025
+ 00:49:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250617021617.2793902-3-quic_ziyuzhan@quicinc.com>
+References: <20250616213927.475921-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250616213927.475921-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250616213927.475921-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 17 Jun 2025 09:48:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXsipthnXC_Wcmpq2d85TD_TE0wQsL1BLR8XmSkOjnxew@mail.gmail.com>
+X-Gm-Features: AX0GCFsdIT17V50Fsikt0kwm_3QHKdq5Wz36JWJqBvpD7no44PEwh_bTd3t85As
+Message-ID: <CAMuHMdXsipthnXC_Wcmpq2d85TD_TE0wQsL1BLR8XmSkOjnxew@mail.gmail.com>
+Subject: Re: [PATCH v11 2/5] dt-bindings: serial: rsci: Update maintainer entry
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jun 17, 2025 at 10:16:15AM +0800, Ziyue Zhang wrote:
-> Each PCIe controller on sa8775p includes 'link_down'reset on hardware,
-> document it.
+On Mon, 16 Jun 2025 at 23:39, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add myself as the maintainer for the Renesas RSCI device tree binding,
+> as Thierry Bultel no longer works for Renesas.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Please say something in the commit message about what this reset is used
-for as well.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie-sa8775p.yaml  | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> index e3fa232da2ca..b7cae2e556e3 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> @@ -61,11 +61,14 @@ properties:
->        - const: global
->  
->    resets:
-> -    maxItems: 1
-> +    items:
-> +      - description: PCIe controller reset
-> +      - description: link_down reset
+Gr{oetje,eeting}s,
 
-That's not really a description, you're just repeating the "link_down"
-name here. You can probably use the description you add in the comment
-below.
+                        Geert
 
->    reset-names:
->      items:
-> -      - const: pci
-> +      - const: pci # PCIe core reset
-> +      - const: link_down # PCIe link down reset
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Johan
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
