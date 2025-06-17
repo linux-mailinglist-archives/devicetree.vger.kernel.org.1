@@ -1,834 +1,226 @@
-Return-Path: <devicetree+bounces-186839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FBB0ADDAF1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:55:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C29ADDB8F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:41:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D64B14A0FE1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:55:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BD523A4887
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE8A266EFB;
-	Tue, 17 Jun 2025 17:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591A82EF9A2;
+	Tue, 17 Jun 2025 18:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dSlLOiV0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VHDV1Wak"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C0225DCFD;
-	Tue, 17 Jun 2025 17:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5782EF9A0
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 18:41:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750182914; cv=none; b=h7U4zjMLDRBnmO/VvmO3FMKdETfbFm7qSyErTvBfHeUkVV24OnHTaPFQVaAiH2JBrYsMpqke4HYNa6fzKBVDbr+kYSOXAfwRT35oFFmbglZoCGCBtzNyF/N5GZV5EPmPfcXxeLcT/My+nutgXR5EzkmBeqmBqCs1Ll8lIgKlqFY=
+	t=1750185683; cv=none; b=Ra14z/ofbht0TRm2Mx3RiZB+AHUOU2e/ff2t+5JqgFAbqTc2GeEuoyrLljMUXkBwndoWLihurIgRpCfnTlYYsP9h4H48ysno+Da45QhuaNkz99vbZW8nAdqgHhtzd06l8DV+sXC1pf+x0YYUvq2UEBi+aF5UO5WGtDSr/+nEHJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750182914; c=relaxed/simple;
-	bh=BGKofegMg35lt1HJPMtWdG+i1q4YLkTpAJWI0BxnBnA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cSseySHWn6OPooLXo3YTIHpLFGZiwL6NZkVmXC0KbLlySQWxh43OwRYL+VNwELPfFbBIHw48OzKBd88C97GooARPT+IQveP0V/9Yo1t48b6zkgie6+hhkmfFJsfTqVMNZN2BIBy9hlmlkj4QKUZy4e1rwPswGGhG6xKZ67S1rPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dSlLOiV0; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55HFlkeJ000631;
-	Tue, 17 Jun 2025 19:54:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	bahKmGl+clBMoS60Jf7w5XzPUlZO9zfV5SEd/J9jsNk=; b=dSlLOiV0edghzHt0
-	GT7sb4jToo4JnA//m5MIQsXgYKb1PJgojogO108K95fZfOm6EKlV6vxX6L7h5WcL
-	QII2o4qg3msCf7hTel7ERzSUld/4atsq6JesxhCKwNfDKzwMid0MO0Mo0IDRH2a0
-	D4cPo21ZbQZc//WAepMxZe5LHiryLxVP/iPGJLwzOch4sC/rMoRLdaAqVpbZzavn
-	5TRAdzbBp79SHw3KAMeI/GfyOADdSe3ZJiaVnAu2eUnqJVcH9Mrci5WPFyAu/sPn
-	qOF2zNjmhlYKN+jPi96X8YnARx6b6VQAWQbLv1ryjziwXduR2fI7kPheK1yOhcW1
-	iYfs/g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 479m1p46b6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 19:54:44 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0E0EB40045;
-	Tue, 17 Jun 2025 19:53:37 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7E4A2B8B2FD;
-	Tue, 17 Jun 2025 19:52:49 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
- (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 17 Jun
- 2025 19:52:49 +0200
-Received: from [10.48.86.121] (10.48.86.121) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 17 Jun
- 2025 19:52:48 +0200
-Message-ID: <c04a7bc8-c25c-44ed-a182-343ced81ba43@foss.st.com>
-Date: Tue, 17 Jun 2025 19:52:48 +0200
+	s=arc-20240116; t=1750185683; c=relaxed/simple;
+	bh=4F2+pAeVGLLKDh/8BHZGs/Pr3KU0RMbuhrCiHba9csA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bpyfk7kbBg1wom5rr0CQytS+buaOBtET/FEPKXS57BgDGFBN9Bms90Q2SZ3YhmWE4y1JLk7Y3TES9guCAxy1MU9ZXVfjckAJlePV5S6+0YZMhsVx9Akm1plbYXYGh7CbSuOx/clvOq+lEL31J2r6CETdkhfoMhWwq6Ygn9/JYBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VHDV1Wak; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ad8a8da2376so1001156266b.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 11:41:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750185680; x=1750790480; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E75tmwHMAYTb44aFXv+MbuJROdCb8dg5pahllHi6I7w=;
+        b=VHDV1Wak5HG4TGQLyQtN2dqNWo2BN66kyO8O474y8DTxZdEpgqP8I+Ak1mstKIl980
+         a614QA5oIPZUZ5EBG1BbCl0ARS5ZWSp5uhTIZgUeEMPtsO66eqfpeNP8QiO22TFRuC7e
+         32CwTtMM2NRlX+wcicqxo4WsyBVtvQSabwzIn3XuPc2LSNrg3J9RRU8YhAVG5nI6UaQk
+         gTdstZWgYVL6c/5MpKZ6Ko0vV8GcANM7SyAVWyLj7nBs9+IThmdS/ShrXXooaSbdIWYM
+         pnthX86QJ0yr5j0wuypyeNa+pbn4nW+soW6rKnonI/ox9hzqJeAMozqXEngdi7potIM7
+         C44A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750185680; x=1750790480;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E75tmwHMAYTb44aFXv+MbuJROdCb8dg5pahllHi6I7w=;
+        b=AC2k5HJye33FVKLgq126dvcWlQFQLIgtYWFul1+u6hDUqMKArPktJG+8B2U4A5GOv+
+         p76Qrpr9QJRxPwmlGXWmYZzagEnKdEGzfRS52YAYxbXvqKlPenXdNulqjraksU96XGs5
+         gnsfbHQfwk2Y0Plba/dz4TolIBTToGrZs02Cg1Ab4V626/4ZQG3nXXGOA9XJCHdTAkkk
+         C/0MYoWrNJiO1YaaDPDe1yWmmOgcIQJZipSw+F6eZQQ4sMwjLtn2Vi0lRq4J6ekqpoVJ
+         95vg5f6YdcoP+dAGS1rIc2BkU4dHLOuvIdZCh2DYdAWet3+fM4y8489xm/cFzw1kiDws
+         6Lgw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLieKoXKSyr7TyFLrpmbOmNkkiLPEwcSfgbYbC8O+4Y7jx42/Yui/NVVcIvNsFnNkeF7wjGKiP/Htk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVjG4Md5Gk8x0hWGQf5vIUTHfWNokbjyniZuYZsGiHG7wX5HeW
+	7SMfTt3MRIWreI54bLWS4OWNQkr+GvMHp1l99Xvb/rhY4OOoCiIy6cZ8RMI/oaA2EWNjuxmwVK4
+	zXCaxQpidvFrP0nMEvTqltVEOor0glho=
+X-Gm-Gg: ASbGncvKXz+Y31FCRTjPDRinACnbeQJyaVw+x/OjJAzi9P3YOoz30iOuI4qBBAJkeC3
+	2vDjKM3PLZ+iQLf4mMd+A6Vrl4Ul6zNv/BdPXwYjQo5Qt+D5akHznYSWyKmN+WQ2RsS42uleVtH
+	OPBln/faZubb+445aEVEANPOWOTC/LWOVIHg4835dTOiA=
+X-Google-Smtp-Source: AGHT+IG35vQW5TNIz/uRQ6oM+HRIzC+IOp+/0Jmiy71hn7DTsL8kRnUzx0SevxvokWBGsP+wyxQ/HrUQBbz+WF29Wr0=
+X-Received: by 2002:a17:907:7fab:b0:ade:31eb:66f7 with SMTP id
+ a640c23a62f3a-adfad53360amr1528195266b.58.1750185679368; Tue, 17 Jun 2025
+ 11:41:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v18 2/6] remoteproc: Add TEE support
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Jens Wiklander
-	<jens.wiklander@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
-References: <20250616075530.4106090-1-arnaud.pouliquen@foss.st.com>
- <20250616075530.4106090-3-arnaud.pouliquen@foss.st.com>
- <4khzl4tak2whgjjedefc2tmcpooe4w4ajxkvpiijohxoljirol@2or5k4jpbb3x>
-Content-Language: en-US
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Organization: STMicroelectronics
-In-Reply-To: <4khzl4tak2whgjjedefc2tmcpooe4w4ajxkvpiijohxoljirol@2or5k4jpbb3x>
+References: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
+ <CAMuHMdXVEOBRU+pzcmRXq7YJXhYnhPjK72Oh31y=n33VZR2JKw@mail.gmail.com>
+ <CAHp75Vd8U-zJ1b+Atpr=8WXhPpB9sFcYJsmC0aStiRKSZWYKBg@mail.gmail.com> <CADsqogCfvR7b02HowsbZ5qkhCOi92TGkJMeCn_sFwn8=KbaWGw@mail.gmail.com>
+In-Reply-To: <CADsqogCfvR7b02HowsbZ5qkhCOi92TGkJMeCn_sFwn8=KbaWGw@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 17 Jun 2025 21:40:42 +0300
+X-Gm-Features: AX0GCFuRJqVfjKcwJ4xwmewqTPMFYb46GwUBxdN0Uo-IaYJ4hFGyIes7KY1Pv7M
+Message-ID: <CAHp75VewPpAy3JeOGt-uotiir7=hfXWvA=-h4Hu5fA-8jw7mdw@mail.gmail.com>
+Subject: Re: [RFC][DT] Guidance on device tree property prefix for
+ TM16XX-class LED display controllers
+To: Jean-Francois Lessard <jefflessard3@gmail.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, devicetree@vger.kernel.org, andy@kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-17_08,2025-06-13_01,2025-03-28_01
+Content-Transfer-Encoding: quoted-printable
 
-On 6/17/25 06:34, Bjorn Andersson wrote:
-> On Mon, Jun 16, 2025 at 09:55:26AM +0200, Arnaud Pouliquen wrote:
->> Add a remoteproc TEE (Trusted Execution Environment) driver that will be
->> probed by the TEE bus. If the associated Trusted application is supported
->> on the secure part, this driver offers a client interface to load firmware
->> by the secure part.
->> This firmware could be authenticated by the secure trusted application.
->>
->> A specificity of the implementation is that the firmware has to be
+On Tue, Jun 17, 2025 at 4:39=E2=80=AFPM Jean-Francois Lessard
+<jefflessard3@gmail.com> wrote:
 
-[...]
+Please, stop top-posting!
 
-> 
->> +	}
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_release_fw);
->> +
->> +/**
->> + * rproc_tee_load_fw - Load firmware from TEE application
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @fw: Pointer to the firmware structure containing the firmware data and size
->> + *
->> + * This function invokes the TA_RPROC_FW_CMD_LOAD_FW TEE client function to load the firmware.
->> + * It registers the fw->data as a shared memory region with the TEE, and request the TEE to load
->> + * the firmware. This function can be called twice during the remote processor boot, considering
->> + * that the TEE application ignores the command if the firmware is already loaded.
-> 
-> "can be called twice"? How does this relate to the TEE application
-> ignoring the command? How does the client know if the application
-> ignored it?
+> Thank you both for your feedback, it=E2=80=99s much appreciated. I=E2=80=
+=99d like to
+> clarify a few points that I hope will help explain the design choice
+> behind the proposed DT properties.
+>
+> While these LED controllers are related to traditional 7-segment
+> displays, what I=E2=80=99m trying to describe in DT is somewhat distinct.=
+ The
+> controllers manage a grid (matrix) of outputs, where =E2=80=9Cgrids=E2=80=
+=9D represent
+> rows and =E2=80=9Csegments=E2=80=9D represent columns. This follows the t=
+erminology
+> used in the controller datasheets. The 'segment-mapping' property is
+> not about logical digit-to-segment mappings (which the driver handles
+> through 'map_to_7segment.h' and similar helpers), but about the
+> physical wiring between the controller=E2=80=99s matrix outputs and the a=
+ctual
+> display elements on a specific board.
+>
+> In other words, these properties describe board-specific hardware
+> wiring: how the controller=E2=80=99s generic matrix connects to the
+> manufacturer=E2=80=99s particular display layout. This varies significant=
+ly
+> between devices. Some boards wire grids to digits and segments to
+> segments; others wire grids or segments to icons. Some even transpose
+> the matrix so that grids drive segments and segments drive digits.
+> That=E2=80=99s why I proposed the optional 'transposed' property to switc=
+h the
+> matrix rows and columns in software to match the board=E2=80=99s wiring.
+>
+> Importantly, the 'compatible' string already maps to the specific
+> controller type and its protocol, but it can=E2=80=99t capture the board-=
+level
+> wiring configuration. The same controller model is reused in many
+> different boards with different wiring. For example, across 74 display
+> configurations I=E2=80=99ve looked at, there are 39 distinct combinations=
+ of
+> controller type, digit grids, segment mappings, and icon assignments.
+> There=E2=80=99s no standard wiring for a given controller chip that the d=
+river
+> could infer from 'compatible' alone.
+>
+> That=E2=80=99s why I felt it was appropriate to describe this board-speci=
+fic
+> wiring in DT, keeping the driver generic and agnostic of any
+> particular board layout, while letting each board describe its wiring
+> explicitly.
+>
+> I hope this clarifies the motivation. I want to make sure this
+> approach aligns with upstream expectations before preparing formal
+> patches. Please let me know if this seems like a reasonable direction
+> or if you=E2=80=99d recommend a different solution.
+>
+> Thanks again for your time and guidance.
 
-No need that the client is aware. only needed due to the boot sequence
-that calls rproc_tee_parse_fw() then the rproc_tee_load_fw()
-I will update the comment to make it more explicit.
+You need to talk to the DT people for this. I'm not an expert, but as
+I said it feels (and you confirmed it) as PCB level of the
+description. I believe it may be part of DT, but I can't tell you how.
 
-> 
->> + *
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @fw: Pointer to the firmware structure containing the firmware data and size
-> 
-> https://docs.kernel.org/doc-guide/kernel-doc.html#function-documentation
-> says function name should have () suffix. Then arguments (here you have
-> them twice). Then the longer description (for rproc_tee_release_fw() you
-> have this before arguments).
-> 
-> Also, please keep it within 80 characters.
-> 
->> + *
->> + * Return: 0 on success, or an error code on failure
->> + */
->> +int rproc_tee_load_fw(struct rproc *rproc, const struct firmware *fw)
->> +{
->> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
->> +	struct rproc_tee *trproc = rproc_to_trproc(rproc);
->> +	struct tee_ioctl_invoke_arg arg;
->> +	struct tee_shm *fw_shm;
->> +	int ret;
->> +
->> +	if (!rproc_tee_ctx.dev)
->> +		return -ENODEV;
->> +
->> +	if (!trproc)
->> +		return -EINVAL;
->> +
->> +	fw_shm = tee_shm_register_kernel_buf(rproc_tee_ctx.tee_ctx, (void *)fw->data, fw->size);
->> +	if (IS_ERR(fw_shm))
->> +		return PTR_ERR(fw_shm);
->> +
->> +	rproc_tee_prepare_args(trproc, TA_RPROC_FW_CMD_LOAD_FW, &arg, param, 1);
->> +
->> +	/* Provide the address of the firmware image */
->> +	param[1] = (struct tee_param) {
->> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT,
->> +		.u.memref = {
->> +			.shm = fw_shm,
->> +			.size = fw->size,
->> +			.shm_offs = 0,
->> +		},
->> +	};
->> +
->> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
->> +	if (ret < 0 || arg.ret != 0) {
->> +		dev_err(rproc_tee_ctx.dev,
->> +			"TA_RPROC_FW_CMD_LOAD_FW invoke failed TEE err: %#x, ret:%d\n",
->> +			arg.ret, ret);
->> +		if (!ret)
->> +			ret = -EIO;
-> 
-> If ret == 0 and arg.ret == <some error>, then this function will print
-> an error to the log and return success (0). Same with many of the other
-> functions where you have copy pasted this.
+> On Tue, Jun 17, 2025 at 7:58=E2=80=AFAM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> >
+> > On Tue, Jun 17, 2025 at 12:43=E2=80=AFPM Geert Uytterhoeven
+> > <geert@linux-m68k.org> wrote:
+> > > On Mon, 16 Jun 2025 at 22:06, Jean-Francois Lessard
+> > > <jefflessard3@gmail.com> wrote:
+> >
+> > > > I=E2=80=99m working on preparing a new driver and device tree bindi=
+ng for
+> > > > auxiliary LED display controllers of the TM16XX class, and I=E2=80=
+=99d like to
+> > > > request guidance on property naming conventions before submitting a
+> > > > formal patch series.
+> > > >
+> > > > The driver (tentatively named tm16xx) supports LED controller chips
+> > > > that share a common hardware design and programming model, produced=
+ by
+> > > > multiple vendors, including:
+> > > > - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
+> > > > - FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
+> > > > - Princeton Technology Corp: PT6964
+> > > > - HBS: HBS658
+> > > >
+> > > > These devices are functionally compatible and appear in various
+> > > > consumer and embedded hardware (e.g., Android TV boxes) to control
+> > > > both 7-segment displays and custom icons that may look like this:
+> > > >
+> > > >           ---    ---       ---    ---
+> > > >  [WIFI]  |   |  |   |  -  |   |  |   |  [USB]  [PLAY]
+> > > >           ---    ---       ---    ---
+> > > >  [LAN]   |   |  |   |  -  |   |  |   |  [BT]   [PAUSE]
+> > > >           ---    ---       ---    ---
+> > > >
+> > > > My current binding defines properties describing hardware layout, f=
+or example:
+> > > >
+> > > >     tm16xx,digits =3D /bits/ 8 <0 1 2 3>;
+> > > >     tm16xx,segment-mapping =3D /bits/ 8 <0 1 2 3 4 5 6>;
+> > > >     tm16xx,transposed;
+> > > >
+> > > > These describe hardware characteristics (grid/digit arrangement,
+> > > > segment mapping, transposed display output) that apply to this clas=
+s
+> > > > of compatible hardware, regardless of vendor.
+> > >
+> > > Personally, I am a bit reluctant to try to describe the segment mappi=
+ng
+> > > in DT, as it can become rather cumbersome.
+> >
+> > Yes, the segment mapping is implied already by the mapping table for
+> > the characters and...
+> >
+> > > The alternative is to use
+> > > a device-specific compatible value, and put the mapping in the driver=
+,
+> > > like I did for the Adafruit 7 and 14 segment Featherwing displays in
+> > > drivers/auxdisplay/ht16k33.c.
+> >
+> > ...as Geert said, if required, can be bound to the compatible string
+> > and hardcoded in the driver.
+> >
+> > The problem is, that often segment mapping is PCB level of the wiring
+> > and to be honest I dunno how to distinguish such a scenario easily as
+> > one would need to check compatible string for the component _and_ for
+> > the board.
 
-If ret == 0 and arg.ret == <some error>, we return -EIO, or I missed something?
-
-> 
->> +	}
->> +
->> +	tee_shm_free(fw_shm);
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_load_fw);
->> +
->> +static int rproc_tee_get_loaded_rsc_table(struct rproc *rproc, phys_addr_t *rsc_pa,
->> +					  size_t *table_sz)
->> +{
->> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
->> +	struct rproc_tee *trproc = rproc_to_trproc(rproc);
->> +	struct tee_ioctl_invoke_arg arg;
->> +	int ret;
->> +
->> +	if (!rproc_tee_ctx.dev)
->> +		return -ENODEV;
->> +
->> +	if (!trproc)
->> +		return -EINVAL;
->> +
->> +	rproc_tee_prepare_args(trproc, TA_RPROC_FW_CMD_GET_RSC_TABLE, &arg, param, 2);
->> +
->> +	param[1].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
->> +	param[2].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
->> +
->> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
->> +	if (ret < 0 || arg.ret != 0) {
->> +		dev_err(rproc_tee_ctx.dev,
->> +			"TA_RPROC_FW_CMD_GET_RSC_TABLE invoke failed TEE err: %#x, ret:%d\n",
->> +			arg.ret, ret);
->> +		return -EIO;
->> +	}
->> +
->> +	*table_sz = param[2].u.value.a;
-> 
-> What happened to .b?
-
-Not really used for now, but I will add extra code to support addresses and size
-in 64-bits testing the sizeof phys_addr_t and size_t.
-
-> 
->> +
->> +	if (*table_sz)
->> +		*rsc_pa = param[1].u.value.a;
-> 
-> Ditto
-> 
->> +	else
->> +		*rsc_pa  = 0;
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * rproc_tee_parse_fw - Get the resource table from TEE application
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @fw: Pointer to the firmware structure containing the firmware data and size
->> + *
->> + * This function retrieves the loaded resource table and creates a cached_table copy. Since the
->> + * firmware image is signed and potentially encrypted, the firmware must be loaded first to
->> + * access the loaded resource table.
->> + *
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @fw: Pointer to the firmware structure containing the firmware data and size
-> 
-> Duplicated arguments list...
-> 
->> + *
->> + * Return: 0 on success, or an error code on failure
->> + */
->> +int rproc_tee_parse_fw(struct rproc *rproc, const struct firmware *fw)
->> +{
->> +	phys_addr_t rsc_table;
->> +	void __iomem *rsc_va;
->> +	size_t table_sz;
->> +	int ret;
->> +
->> +	if (!rproc)
->> +		return -EINVAL;
->> +
->> +	/* We need first to Load the firmware, to be able to get the resource table. */
->> +	ret = rproc_tee_load_fw(rproc, fw);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = rproc_tee_get_loaded_rsc_table(rproc, &rsc_table, &table_sz);
->> +	if (ret)
->> +		goto release_fw;
->> +
->> +	/*
->> +	 * We assume here that the memory mapping is the same between the TEE and Linux kernel
->> +	 * contexts. Else a new TEE remoteproc service could be needed to get a copy of the
->> +	 * resource table
->> +	 */
->> +	rsc_va = ioremap_wc(rsc_table, table_sz);
-> 
-> You're using tee_shm for transferring the image, you don't allow Linux
-> access to any part of the firmware (which is the reason why you need to
-> load the segments in rproc_parse_fw())...
-
-Right, Linux does not understand the format and could not retrieve the resource
-table in case of encryption.
-
-> 
-> So just out of curiosity, why is the resource table passed back to Linux
-> using a ioremap of some random/undefined chunk of memory?
-
-It is not a random chunck of memory but the address of the table installed in
-the remote processor memory. It is the equivalent of get_loaded_rsc_table ops.
-
-
-> 
->> +	if (!rsc_va) {
->> +		dev_err(rproc_tee_ctx.dev, "Unable to map memory region: %pa+%zx\n",
->> +			&rsc_table, table_sz);
->> +		ret = -ENOMEM;
->> +		goto release_fw;
->> +	}
->> +
->> +	/*
->> +	 * Create a copy of the resource table to have the same behavior as the ELF loader.
->> +	 * This cached table will be used by the remoteproc core after the remoteproc stops
->> +	 * to free resources and for crash recovery to reapply the settings.
->> +	 * The cached table will be freed by the remoteproc core.
->> +	 */
->> +	rproc->cached_table = kmemdup((__force void *)rsc_va, table_sz, GFP_KERNEL);
-> 
-> Is rsc_va DDR? And if so, wouldn't memremap() be a more accurate choice
-> above. If not, why isn't this kzalloc() + memcpy_fromio()?
-
-Here we explicitly want to make a local copy as done in rproc_elf_load_rsc_table().
-using  kzalloc() + memcpy_fromio() seems a better implementation
-I test your proposal, thanks
-
-> 
->> +	iounmap(rsc_va);
->> +
->> +	if (!rproc->cached_table) {
->> +		ret = -ENOMEM;
->> +		goto release_fw;
->> +	}
->> +
->> +	rproc->table_ptr = rproc->cached_table;
->> +	rproc->table_sz = table_sz;
->> +
->> +	return 0;
->> +
->> +release_fw:
->> +	rproc_tee_release_fw(rproc);
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_parse_fw);
->> +
->> +/**
->> + * rproc_tee_find_loaded_rsc_table - Find the loaded resource table loaded by the TEE application
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @fw: Pointer to the firmware structure containing the firmware data and size
->> + *
->> + * This function retrieves the physical address and size of the resource table loaded by the TEE
->> + * application.
->> + *
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @fw: Pointer to the firmware structure containing the firmware data and size
-> 
-> More argument duplication.
-> 
->> + *
->> + * Return:  pointer to the resource table if found, or NULL if not found or size is 0
->> + */
->> +struct resource_table *rproc_tee_find_loaded_rsc_table(struct rproc *rproc,
->> +						       const struct firmware *fw)
->> +{
->> +	phys_addr_t rsc_table;
->> +	size_t table_sz;
->> +	int ret;
->> +
->> +	ret = rproc_tee_get_loaded_rsc_table(rproc, &rsc_table, &table_sz);
->> +	if (ret)
->> +		return NULL;
->> +
->> +	rproc->table_sz = table_sz;
->> +	if (!table_sz)
->> +		return NULL;
->> +
->> +	/*
->> +	 * At this step the memory area that contains the resource table should have been registered
->> +	 * by the remote proc platform driver and allocated by rproc_alloc_registered_carveouts().
->> +	 */
->> +	return (struct resource_table *)rproc_pa_to_va(rproc, rsc_table, table_sz, NULL);
-> 
-> rproc_pa_to_va() return type is void *, do you really need this explicit
-> typecast?
-> 
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_find_loaded_rsc_table);
->> +
->> +/**
->> + * rproc_tee_start - Request the TEE application to start the remote processor
->> + *
->> + * This function invokes the TA_RPROC_FW_CMD_START command to start the remote processor.
->> + *
->> + * @rproc: Pointer to the struct rproc representing the remote processor
-> 
-> kernel-doc ordering...
-> 
->> + *
->> + * Return: Returns 0 on success, -EINVAL or -EIO on failure
->> + */
->> +int rproc_tee_start(struct rproc *rproc)
->> +{
->> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
->> +	struct rproc_tee *trproc = rproc_to_trproc(rproc);
->> +	struct tee_ioctl_invoke_arg arg;
->> +	int ret = 0;
-> 
-> First access of ret is an assignment, no need to zero-initialize it
-> here.
-> 
->> +
->> +	if (!trproc)
->> +		return -EINVAL;
-> 
-> There's an inconsistency in that rproc_tee_ctx.dev is used without first
-> checking that it's valid in this function...
-> 
->> +
->> +	rproc_tee_prepare_args(trproc, TA_RPROC_FW_CMD_START, &arg, param, 0);
->> +
->> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
->> +	if (ret < 0 || arg.ret != 0) {
->> +		dev_err(rproc_tee_ctx.dev,
->> +			"TA_RPROC_FW_CMD_START invoke failed TEE err: %#x, ret:%d\n", arg.ret, ret);
->> +		if (!ret)
->> +			return  -EIO;
-> 
-> Why not assigning ret and falling through, like in most other functions?
-> 
->> +	}
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_start);
->> +
->> +/**
->> + * rproc_tee_stop - Request the TEE application to start the remote processor
->> + *
->> + * This function invokes the TA_RPROC_FW_CMD_STOP command to stop the remote processor.
->> + *
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + *
->> + * Return: Returns 0 on success, -EINVAL or -EIO on failure
->> + */
->> +int rproc_tee_stop(struct rproc *rproc)
->> +{
->> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
->> +	struct rproc_tee *trproc = rproc_to_trproc(rproc);
->> +	struct tee_ioctl_invoke_arg arg;
->> +	int ret;
->> +
->> +	if (!trproc)
->> +		return -EINVAL;
->> +
->> +	rproc_tee_prepare_args(trproc, TA_RPROC_FW_CMD_STOP, &arg, param, 0);
->> +
->> +	ret = tee_client_invoke_func(rproc_tee_ctx.tee_ctx, &arg, param);
->> +	if (ret < 0 || arg.ret != 0) {
->> +		dev_err(rproc_tee_ctx.dev,
->> +			"TA_RPROC_FW_CMD_STOP invoke failed TEE err: %#x, ret:%d\n", arg.ret, ret);
->> +		if (!ret)
->> +			ret = -EIO;
->> +	}
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_stop);
->> +
->> +static const struct tee_client_device_id rproc_tee_id_table[] = {
->> +	{UUID_INIT(0x80a4c275, 0x0a47, 0x4905, 0x82, 0x85, 0x14, 0x86, 0xa9, 0x77, 0x1a, 0x08)},
->> +	{}
->> +};
->> +
->> +/**
->> + * rproc_tee_register - Register a remote processor controlled by a TEE application.
->> + *
->> + * This function registers a remote processor that will be managed by a TEE application,by opening
->> + * a session with the TEE client.
->> + *
->> + * @dev: Pointer to client rproc device
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + * @rproc_id: ID of the remote processor
->> + *
->> + * Return: Returns 0 on success, or an error code on failure
->> + */
->> +int rproc_tee_register(struct device *dev, struct rproc *rproc, unsigned int rproc_id)
->> +{
->> +	struct tee_param param[MAX_TEE_PARAM_ARRAY_MEMBER];
->> +	struct tee_ioctl_open_session_arg sess_arg;
->> +	struct tee_client_device *tee_device;
->> +	struct rproc_tee *trproc;
->> +	struct device_link *link;
->> +	int ret;
->> +
->> +	spin_lock(&ctx_lock);
-> 
-> Why is this a spin_lock?
-> 
-> To my understanding the purpose of ctx_lock is to ensure mutual
-> exclusion of access to rproc_tee_ctx, but this doesn't look like it's
-> done from a context that isn't able to tolerate a mutex.
-> 
-> In particular during boot, if you have multiple remoteprocs being
-> registred, you're going to waste precious CPU cycles just spinning here.
-> 
-> 
-> And if it is a spinlock because you might enter here from some interrupt
-> context, how do you ensure this won't deadlock?
-
-Right I need to use mutex instead and beter protect all the API from concurrent
-access to better manage bind/unbind.
-> 
->> +	/*
->> +	 * Test if the device has been probed by the TEE bus. In case of failure, we ignore the
->> +	 * reason. The bus could be not yet probed or the service not available in the secure
->> +	 * firmware.The assumption in such a case is that the TEE remoteproc is not probed.
->> +	 */
->> +	if (!rproc_tee_ctx.dev) {
->> +		ret = -EPROBE_DEFER;
->> +		goto out;
->> +	}
->> +
->> +	trproc = kzalloc(sizeof(*trproc), GFP_KERNEL);
->> +	if (!trproc) {
->> +		ret = -ENOMEM;
->> +		goto out;
->> +	}
->> +
->> +	tee_device = to_tee_client_device(rproc_tee_ctx.dev);
->> +	memset(&sess_arg, 0, sizeof(sess_arg));
->> +
->> +	memcpy(sess_arg.uuid, tee_device->id.uuid.b, TEE_IOCTL_UUID_LEN);
->> +
->> +	sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
->> +	sess_arg.num_params = 1;
->> +
->> +	param[0] = (struct tee_param) {
->> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT,
->> +		.u.value.a = rproc_id,
->> +	};
-> 
-> I'm not familiar with the details of the tee calling convention, but do
-> you really need 4 entries in the param array and if so, would it make
-> sense to zero-initialize the other elements - like you do in all other
-> functions?
-
-
-In rproc_tee_prepare_args(), we reinitialize the arguments and parameters
-because they may be reused from a previous message. This allow to set
-only non zero value.
-
-THere as sess_arg.num_params = 1 only param[0] is valid, other param
-should be ignored.
-In this context use memeset seems over protection here.
-
-
-Thanks,
-Arnaud
-> 
->> +
->> +	ret = tee_client_open_session(rproc_tee_ctx.tee_ctx, &sess_arg, param);
->> +	if (ret < 0 || sess_arg.ret != 0) {
->> +		dev_err(dev, "tee_client_open_session failed, err: %#x\n", sess_arg.ret);
->> +		ret = -EINVAL;
->> +		goto free_tproc;
->> +	}
->> +
->> +	trproc->rproc_id = rproc_id;
->> +	trproc->session_id = sess_arg.session;
->> +
->> +	trproc->rproc = rproc;
->> +
->> +	/* Create device link between the rproc device and the TEE device */
-> 
-> This comment would be more useful if it documented why the link is
-> created - the fact that a link is added between the two devices can be
-> read on the next line...
-> 
->> +	link = device_link_add(dev, rproc_tee_ctx.dev, DL_FLAG_AUTOREMOVE_CONSUMER);
->> +	if (!link) {
->> +		ret = -ENOMEM;
->> +		goto close_tee;
->> +	}
->> +	list_add_tail(&trproc->node, &rproc_tee_ctx.sessions);
->> +
->> +	goto out;
-> 
-> Please don't use goto to skip over the error handling. ret is going to
-> be 0 here, so unlock and return 0 here to make it clear that this is the
-> point of successful return.
-> 
->> +
->> +close_tee:
->> +	if (tee_client_close_session(rproc_tee_ctx.tee_ctx, trproc->session_id))
->> +		dev_err(rproc_tee_ctx.dev, "tee_client_close_session failed\n");
->> +free_tproc:
->> +	kfree(trproc);
->> +out:
->> +	spin_unlock(&ctx_lock);
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_register);
->> +
->> +/**
->> + * rproc_tee_unregister - Register a remote processor controlled by a TEE application.
->> + *
->> + * This function unregisters a remote processor previously registered by the rproc_tee_register()
->> + * function.
->> + *
->> + * @dev: Pointer to client rproc device
->> + * @rproc: Pointer to the struct rproc representing the remote processor
->> + *
->> + * Return: Returns 0 on success, or an error code on failure
->> + */
->> +int rproc_tee_unregister(struct device *dev, struct rproc *rproc)
->> +{
->> +	struct rproc_tee *trproc = rproc_to_trproc(rproc);
->> +	int ret;
->> +
->> +	if (!trproc)
->> +		return -EINVAL;
->> +
->> +	spin_lock(&ctx_lock);
-> 
-> This lock is taken after you have traversed the rproc_tee_ctx.session
-> list in a racy fashion.
-> 
->> +
->> +	ret = tee_client_close_session(rproc_tee_ctx.tee_ctx, trproc->session_id);
->> +	if (ret < 0)
->> +		dev_err(rproc_tee_ctx.dev, "tee_client_close_session failed, err: %#x\n", ret);
->> +
->> +	spin_unlock(&ctx_lock);
->> +
->> +	list_del(&trproc->node);
-> 
-> Although, I might misunderstand your locking scheme, because here you're
-> modifying the sessions list immediately after leaving the mutual
-> exclusion region?
-> 
->> +	kfree(trproc);
->> +
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(rproc_tee_unregister);
->> +
->> +static int rproc_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
->> +{
->> +	/* Today we support only the OP-TEE, could be extend to other tees */
->> +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
->> +}
->> +
->> +static int rproc_tee_probe(struct device *dev)
->> +{
->> +	struct tee_context *tee_ctx;
->> +
->> +	/* Open context with TEE driver */
->> +	tee_ctx = tee_client_open_context(NULL, rproc_tee_ctx_match, NULL, NULL);
->> +	if (IS_ERR(tee_ctx))
->> +		return PTR_ERR(tee_ctx);
->> +
->> +	spin_lock(&ctx_lock);
->> +	rproc_tee_ctx.dev = dev;
->> +	rproc_tee_ctx.tee_ctx = tee_ctx;
->> +	INIT_LIST_HEAD(&rproc_tee_ctx.sessions);
->> +	spin_unlock(&ctx_lock);
->> +
->> +	return 0;
->> +}
->> +
->> +static int rproc_tee_remove(struct device *dev)
->> +{
->> +	spin_lock(&ctx_lock);
->> +	tee_client_close_context(rproc_tee_ctx.tee_ctx);
->> +	rproc_tee_ctx.dev = NULL;
->> +	rproc_tee_ctx.tee_ctx = NULL;
->> +	spin_unlock(&ctx_lock);
->> +
->> +	return 0;
->> +}
->> +
->> +MODULE_DEVICE_TABLE(tee, rproc_tee_id_table);
->> +
->> +static struct tee_client_driver rproc_tee_fw_driver = {
->> +	.id_table	= rproc_tee_id_table,
->> +	.driver		= {
->> +		.name		= KBUILD_MODNAME,
->> +		.bus		= &tee_bus_type,
->> +		.probe		= rproc_tee_probe,
->> +		.remove		= rproc_tee_remove,
->> +	},
->> +};
->> +
->> +static int __init rproc_tee_fw_mod_init(void)
->> +{
->> +	return driver_register(&rproc_tee_fw_driver.driver);
->> +}
->> +
->> +static void __exit rproc_tee_fw_mod_exit(void)
->> +{
->> +	driver_unregister(&rproc_tee_fw_driver.driver);
->> +}
->> +
->> +module_init(rproc_tee_fw_mod_init);
->> +module_exit(rproc_tee_fw_mod_exit);
->> +
->> +MODULE_DESCRIPTION(" remote processor TEE module");
-> 
-> Why is there a space in the start of the description?
-> 
->> +MODULE_LICENSE("GPL");
->> diff --git a/include/linux/remoteproc_tee.h b/include/linux/remoteproc_tee.h
->> new file mode 100644
->> index 000000000000..659bd77a4f12
->> --- /dev/null
->> +++ b/include/linux/remoteproc_tee.h
->> @@ -0,0 +1,90 @@
->> +/* SPDX-License-Identifier: GPL-2.0-or-later */
->> +/*
->> + * Copyright(c) 2024 STMicroelectronics
-> 
-> Year?
-> 
->> + */
->> +
->> +#ifndef REMOTEPROC_TEE_H
->> +#define REMOTEPROC_TEE_H
->> +
->> +#include <linux/tee_drv.h>
->> +#include <linux/firmware.h>
->> +#include <linux/remoteproc.h>
->> +
->> +struct rproc;
->> +struct rproc_tee;
-> 
-> rproc_tee is not used in the API, so there shouldn't be a need for
-> forward declaring it.
-> 
-> struct rproc is defined in linux/remoteproc.h, so that should be fine to
-> omit as well.
-> 
->> +
->> +#if IS_ENABLED(CONFIG_REMOTEPROC_TEE)
->> +
->> +int rproc_tee_register(struct device *dev, struct rproc *rproc, unsigned int rproc_id);
->> +int rproc_tee_unregister(struct device *dev, struct rproc *rproc);
->> +int rproc_tee_parse_fw(struct rproc *rproc, const struct firmware *fw);
->> +int rproc_tee_load_fw(struct rproc *rproc, const struct firmware *fw);
->> +void rproc_tee_release_fw(struct rproc *rproc);
->> +struct resource_table *rproc_tee_find_loaded_rsc_table(struct rproc *rproc,
->> +						       const struct firmware *fw);
->> +int rproc_tee_start(struct rproc *rproc);
->> +int rproc_tee_stop(struct rproc *rproc);
->> +
->> +#else
->> +
->> +static inline int rproc_tee_register(struct device *dev, struct rproc *rproc, unsigned int rproc_id)
->> +{
->> +	return -ENODEV;
->> +}
->> +
->> +static inline int rproc_tee_parse_fw(struct rproc *rproc, const struct firmware *fw)
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +
->> +	return 0;
->> +}
->> +
->> +static inline int rproc_tee_unregister(struct device *dev, struct rproc *rproc)
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +
->> +	return 0;
->> +}
->> +
->> +static inline int rproc_tee_load_fw(struct rproc *rproc,  const struct firmware *fw)
-> 
-> Double space after the ','
-> 
-> Regards,
-> Bjorn
-> 
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +
->> +	return 0;
->> +}
->> +
->> +static inline int rproc_tee_start(struct rproc *rproc)
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +
->> +	return 0;
->> +}
->> +
->> +static inline int rproc_tee_stop(struct rproc *rproc)
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +
->> +	return 0;
->> +}
->> +
->> +static inline void rproc_tee_release_fw(struct rproc *rproc)
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +}
->> +
->> +static inline struct resource_table *
->> +rproc_tee_find_loaded_rsc_table(struct rproc *rproc, const struct firmware *fw)
->> +{
->> +	/* This shouldn't be possible */
->> +	WARN_ON(1);
->> +
->> +	return NULL;
->> +}
->> +#endif /* CONFIG_REMOTEPROC_TEE */
->> +#endif /* REMOTEPROC_TEE_H */
->> -- 
->> 2.25.1
->>
+--=20
+With Best Regards,
+Andy Shevchenko
 
