@@ -1,227 +1,129 @@
-Return-Path: <devicetree+bounces-186525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF63ADC3DC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:59:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E714FADC439
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 865527A8E2F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:58:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D5AA188C63C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB04C28ECDA;
-	Tue, 17 Jun 2025 07:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3750228FA91;
+	Tue, 17 Jun 2025 08:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oy0KoSKa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jO8swg8t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC12E28ECCD;
-	Tue, 17 Jun 2025 07:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB0628F942;
+	Tue, 17 Jun 2025 08:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750147160; cv=none; b=Af3WbLS/xzl4uG/MHa71G5rsFwe6B5pmRJqmgUmxubAzpadX0DuMzrOlbB9JgZQ41ayK4hpLhpyScw5XICF5pIWmq9rFzlrBkEukhJ2Bf3+36ILiHVINQlOTClyKRa+0i2w1JTWK8XNhJFNTaLWwKR/q/XsmCroLpIBg+loN+Tc=
+	t=1750147696; cv=none; b=uYv/BhYWh4gUSQ5R8OcuMVGMhYL2aHbQXXELlx+L4BeAR3ikXY1MJKGusGzj9rbmXK8+rNVDmX+kmTfTpUtM6UoIbPJVXcWroH/BRjW8Z9WaHHUlGZyt0yccJ9HtgOzpWJPlwhp8kKQa7fQN2uslLHHM2S6Tx8i9Ceh7zq/PCo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750147160; c=relaxed/simple;
-	bh=byesW+Se6X5SuEzLgB6KkhVKbYK7slvyxQIgO6neyBo=;
+	s=arc-20240116; t=1750147696; c=relaxed/simple;
+	bh=xSp6YzXqyFFcF2Z2Zs5t0bWps7VV8UD7jYJkKHZXM/o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P77pWY4PqR2DhlxPOtpWzPc56dgr3UoAN19o30wNTJ6ykr3eV/KaziFLz7sUTZUWlU/zjmJoXIXQldY5H+ztcd81VX5i3uzDtpp8+3PJSBYjDcaCTL5lzt0b3qwf0URpXRPOdeGMenIIj4k55EK5oXUNz28s04JnRW0vY1NRgHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oy0KoSKa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00CFEC4CEED;
-	Tue, 17 Jun 2025 07:59:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=os8xJg+GC2cXO3kHv1djRXWnB5MFfaQZq+YGNKide9ybgpOHjKz8qU9A59FK6LZ8etGwN/GZktYFrZM04eYxgEg3WYHCaNlI6bL+wvA2FHiwoM8PtwGGw3AfJW8mzbTIQvEd6sK4fryblkQYO1956fv1hlYfZ8cscEGJyDHO+TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jO8swg8t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F24C4CEE3;
+	Tue, 17 Jun 2025 08:08:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750147160;
-	bh=byesW+Se6X5SuEzLgB6KkhVKbYK7slvyxQIgO6neyBo=;
+	s=k20201202; t=1750147695;
+	bh=xSp6YzXqyFFcF2Z2Zs5t0bWps7VV8UD7jYJkKHZXM/o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oy0KoSKa9joZZM9OtdixrPl0rtq0ZxhsoPHs0pF8D4wc5JfzsOWchPi04kCSzIyDx
-	 Eos49bnoQNAIiT0cRCI2DPRDnjLy54kJdhGDzvkWF5wxOm458H7PywvNaZu9ANDmbo
-	 cWxjxq0CzUjI4H8q3BAICfwJONc+FtXA89LwrkpT+CXB+3hm+loaOP1iVTYq/ekTWw
-	 urlGpNomxAOWTGFia1+mgYPSAVNsVza6ih4rAKGFKF/sWNcvMwnp+baAiRPR697CNo
-	 TWf4wMBO8aLxTd8CRKdQEvUlZT7aNfIww3excCXrLPqEIDVJY3LRI2a2JXRCSTxJSk
-	 mkFiaS7gpWFzQ==
-Date: Tue, 17 Jun 2025 09:59:17 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-Message-ID: <47s4qjr7iujql36opgkp3cniq46oc4p72aaewzs3i3oxp4tcgn@ikrczuyxcqwb>
-References: <20250617002852.606409-1-marek.vasut+renesas@mailbox.org>
- <20250617002852.606409-3-marek.vasut+renesas@mailbox.org>
+	b=jO8swg8tV7STz2bUcJ9YCtQWUWoTKiqQrzOUzXza+nsU39hVu0EUGgliDvYKP2rLc
+	 6cGmSR3DT+tJa/rJcLN3NLYGKTdJ5ciOR1gUi/KmFmKUQ9qnkTa+M2U/n6uEOvRiki
+	 TJ9FY3IHIzksbh2K0E/JyENQQkM0irvxW4JwPveiVplqxnC7C70NHE9b9V42ilWYrL
+	 fHJei7Fs+MtBSZsyYo4ryVAWpFdvgfDT8kau8rHY9sLfuJUJzwOkQNs/NCCjgQFMn+
+	 eWm482swAZI18VzqH+AMY9SC1N5VG/wZcxuv3t/0MhEWQKatRhVCfWaM3H7yY8s5h1
+	 VNVR9j4o8uKEg==
+Date: Tue, 17 Jun 2025 10:08:12 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, Daniel Semkowicz <dse@thaumatec.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: rk806: allow to customize PMIC
+ reset mode
+Message-ID: <20250617-small-vivacious-labrador-7f0eb0@kuoka>
+References: <20250605-rk8xx-rst-fun-v2-0-143d190596dd@cherry.de>
+ <20250605-rk8xx-rst-fun-v2-1-143d190596dd@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mtj4m4lkj7ypbbbl"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250617002852.606409-3-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250605-rk8xx-rst-fun-v2-1-143d190596dd@cherry.de>
 
+On Thu, Jun 05, 2025 at 05:41:06PM GMT, Quentin Schulz wrote:
+> +  rockchip,reset-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +    description:
+> +      Mode to use when a reset of the PMIC is triggered.
+> +
+> +      The reset can be triggered either programmatically, via one of
+> +      the PWRCTRL pins (provided additional configuration) or
+> +      asserting RESETB pin low.
+> +
+> +      The following modes are supported (see also
+> +      include/dt-bindings/mfd/rockchip,rk8xx.h)
+> +
+> +      - 0 (RK806_RESTART) restart PMU,
+> +      - 1 (RK806_RESET) reset all power off reset registers and force
+> +        state to switch to ACTIVE mode,
+> +      - 2 (RK806_RESET_NOTIFY) same as RK806_RESET and also pull
+> +        RESETB pin down for 5ms,
+> +
+> +      For example, some hardware may require a full restart
+> +      (RK806_RESTART mode) in order to function properly as regulators
+> +      are shortly interrupted in this mode.
+> +
 
---mtj4m4lkj7ypbbbl
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v2 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-MIME-Version: 1.0
+This is fine, although now points to missing restart-handler schema and
+maybe this should be once made common property. But that's just
+digression, nothing needed here.
 
-Hello Marek,
-
-On Tue, Jun 17, 2025 at 02:28:02AM +0200, Marek Vasut wrote:
-> diff --git a/drivers/pwm/pwm-argon-fan-hat.c b/drivers/pwm/pwm-argon-fan-hat.c
+>    vcc1-supply:
+>      description:
+>        The input supply for dcdc-reg1.
+> diff --git a/include/dt-bindings/mfd/rockchip,rk8xx.h b/include/dt-bindings/mfd/rockchip,rk8xx.h
 > new file mode 100644
-> index 000000000000..a26b58ee7f29
+> index 0000000000000000000000000000000000000000..f058ed1ca661185f79738a358aa2d4f04539c590
 > --- /dev/null
-> +++ b/drivers/pwm/pwm-argon-fan-hat.c
-> @@ -0,0 +1,115 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/include/dt-bindings/mfd/rockchip,rk8xx.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
 > +/*
-> + * Copyright (C) 2025 Marek Vasut
+> + * Device Tree defines for Rockchip RK8xx PMICs
 > + *
-> + * Limitations:
-> + * - no support for offset/polarity
-> + * - fixed duty cycle, period changes from 0Hz..120kHz
-
-A link to the product page would be great.
-
+> + * Copyright 2025 Cherry Embedded Solutions GmbH
+> + *
+> + * Author: Quentin Schulz <quentin.schulz@cherry.de>
 > + */
 > +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/pwm.h>
+> +#ifndef _DT_BINDINGS_MFD_ROCKCHIP_RK8XX_H
+> +#define _DT_BINDINGS_MFD_ROCKCHIP_RK8XX_H
 > +
-> +static int argon_fan_hat_round_waveform_tohw(struct pwm_chip *chip,
-> +					     struct pwm_device *pwm,
-> +					     const struct pwm_waveform *wf,
-> +					     void *_wfhw)
-> +{
-> +	u8 *wfhw = _wfhw;
-> +
-> +	*wfhw = DIV_ROUND_CLOSEST_ULL(wf->duty_length_ns * 100, wf->period_length_ns);
-> +
-> +	return 0;
-> +}
-> +
-> +static int argon_fan_hat_round_waveform_fromhw(struct pwm_chip *chip,
-> +					       struct pwm_device *pwm,
-> +					       const void *_wfhw,
-> +					       struct pwm_waveform *wf)
-> +{
-> +	const u8 *wfhw = _wfhw;
-> +
-> +	/* 1 step of this hardware is cca. 1200 Hz increase in frequency */
-> +	wf->period_length_ns = DIV64_U64_ROUND_UP(NSEC_PER_SEC, *wfhw * 1200);
-> +	wf->duty_length_ns = wf->period_length_ns / 10;
-> +	wf->duty_offset_ns = 0;
+> +#define RK806_RESTART		0
+> +#define RK806_RESET		1
+> +#define RK806_RESET_NOTIFY	2
 
-How extraordinary, so the relative duty cycle is always 10%? In the
-binding patch you claimed duty cycle was constant?
+I do not see how this is a binding. Where do you use this in the driver
+(to be a binding because otherwise you just add unused ABI)?
 
-Please enable PWM_DEBUG while testing.
+Best regards,
+Krzysztof
 
-> +	return 0;
-> +}
-> +
-> +static int argon_fan_hat_write_waveform(struct pwm_chip *chip,
-> +					struct pwm_device *pwm,
-> +					const void *_wfhw)
-> +{
-> +	struct i2c_client *i2c = pwmchip_get_drvdata(chip);
-> +	const u8 *wfhw = _wfhw;
-> +	u8 tx[2] = { 0x80, *wfhw };
-> +	struct i2c_msg msg = {
-> +		.addr = i2c->addr,
-> +		.len = 2,
-> +		.buf = tx,
-> +	};
-> +
-> +	return (i2c_transfer(i2c->adapter, &msg, 1) == 1) ? 0 : -EINVAL;
-> +}
-> +
-> +static const struct pwm_ops argon_fan_hat_pwm_ops = {
-> +	.sizeof_wfhw		= sizeof(u8),
-> +	.round_waveform_fromhw	= argon_fan_hat_round_waveform_fromhw,
-> +	.round_waveform_tohw	= argon_fan_hat_round_waveform_tohw,
-> +	.write_waveform		= argon_fan_hat_write_waveform,
-
-Please add a comment about why there is no .read_waveform().
-
-> +};
-> +
-> +static int argon_fan_hat_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct pwm_chip *pc = devm_pwmchip_alloc(&i2c->dev, 1, 0);
-> +	int ret;
-> +
-> +	if (IS_ERR(pc))
-> +		return PTR_ERR(pc);
-> +
-> +	pc->ops = &argon_fan_hat_pwm_ops;
-> +	pwmchip_set_drvdata(pc, i2c);
-> +
-> +	ret = devm_pwmchip_add(&i2c->dev, pc);
-> +	if (ret)
-> +		return dev_err_probe(&i2c->dev, ret, "Could not add PWM chip\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
-> +{
-> +	u8 tx[2] = { 0x80, 0x64 };
-> +	struct i2c_msg msg = {
-> +		.addr = i2c->addr,
-> +		.len = 2,
-> +		.buf = tx,
-> +	};
-> +
-> +	i2c_transfer(i2c->adapter, &msg, 1);
-> +}
-
-This is argon_fan_hat_write_waveform(..., _wfhw=100). Looks like an
-opportunity to consolidate these functions.
-
-> +static const struct of_device_id argon_fan_hat_dt_ids[] = {
-> +	{ .compatible = "argon40,fan-hat" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, argon_fan_hat_dt_ids);
-> +
-> +static struct i2c_driver argon_fan_hat_driver = {
-> +	.driver = {
-> +		.name = "argon-fan-hat",
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +		.of_match_table = argon_fan_hat_dt_ids,
-> +	},
-> +	.probe = argon_fan_hat_i2c_probe,
-> +	.shutdown = argon_fan_hat_i2c_shutdown,
-> +};
-> +
-> +module_i2c_driver(argon_fan_hat_driver);
-> +
-> +MODULE_AUTHOR("Marek Vasut <marek.vasut+renesas@mailbox.org>");
-> +MODULE_DESCRIPTION("Argon40 Fan HAT");
-> +MODULE_LICENSE("GPL");
-
---mtj4m4lkj7ypbbbl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhRIFIACgkQj4D7WH0S
-/k4Y/Af9G681BZSzo1iw+NSUjcQ0a4NqczEYwblboku6XSfrvKklwZeMSOYHBYZs
-EyTe9VO9JROk+65IyPzOJ+jIH54+IJTmhVBRg3EbEKJ+lygOx21YH/VyoHWXE0qb
-Wz+w9ik9tcqp8/e/pDn5FVc5/3O2ws3/9w7CBSCskoY5qRkyy3iZX3BhNgOLeqS8
-vnAmb11jqmo7ChDuPKQDQ06icjcgVpXrztvK2/PfPvWEySJVaQWWxxrKoIPZYKgA
-92l6r9ml5qClITHiIVG715HtWUGKPROKQEiHuOZHWu81NK9gVfs+eqgFraAHkQNp
-cvSAIBPdENavI+ZyL4hSDp7gOxrMaQ==
-=LyfD
------END PGP SIGNATURE-----
-
---mtj4m4lkj7ypbbbl--
 
