@@ -1,54 +1,49 @@
-Return-Path: <devicetree+bounces-186661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CC8ADCAD2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:15:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED852ADCB83
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:29:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CC807A6F30
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 12:14:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 254297A94AB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 12:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221082F3622;
-	Tue, 17 Jun 2025 12:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4992E06EE;
+	Tue, 17 Jun 2025 12:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LtOAopuL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lhZ/y8oV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE972ECEBE;
-	Tue, 17 Jun 2025 12:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB7D2DE1E7;
+	Tue, 17 Jun 2025 12:25:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750162356; cv=none; b=jvBlMBfXbGfgAIPY7KWFB5yoL4nmPFHAI5vuL30NH2VHh7dZXrtwUunkSb3L/yBMXcbSmAQjhlrWqg831Z7ICrcG28KH+CzCoDvFtFrOzd3xx62fzi+Q8/bcTteJ92ke+WdGXTYzOv1fsn049tJjioU58XOoZb4Yzqo+Zvd7ATU=
+	t=1750163149; cv=none; b=o5fkYAempXQ28TBczqn6KeMf/JFYSdGx/fK1XkzsxfsuO0YVcsTQMOjOqi629gmpjNYQVV+snLW5ywyXe4HkNZmkqbnaDSo9A8N5N03gKDZc1b9cZFdTzad+qS+IGPpw3ORlJZOdWVRS8VzUUAKh9JgcLaxOVckzpfnuPnDJ410=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750162356; c=relaxed/simple;
-	bh=TYmhhQzdL/cD2JJdewLa/1qf8twd/OUcCt86/tJZJdc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=L25qndGc6oo2PopbXgtmH1AqPqRFBzxU9eXQHSrW/VkdWfVtC+nTDl7RPY9NbHsV4XZWa1r9loTBsPZxuq2BKadrp1fvB+CkpP5NGubPxSSWq/zrb88Lm9jJE0tT5gKRmFgqiqzk1jJ6AL7grKFNOb/qgYzpB/80s4300rpDQZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LtOAopuL; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5D0D9439F1;
-	Tue, 17 Jun 2025 12:12:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750162351;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ywh2RgVGTSPBCH7D9W/NIFmHWpb1iZOWNtwG6KvDLXs=;
-	b=LtOAopuL2OGpkgbSQW2YgYzjFqUV+ozuRXvq9nJ24UI8+BZJPADzQ/xs3PRsjzbjqERqaR
-	7KgfMtr4pdDFGpV1O3zwDGlZ5kveNaApxhg0CiRG5mnlQMxJkHDVrqe46JORXVkFra8aPF
-	92JSm2zPEr16OILXh2bBiEdnWGS+nkoYq+RoGLeHNbft2M6SqwFLifjcl05Un0CumsraoX
-	GHKehIZSXJuDSGWcGcgGMr98w6viIJ9DnumBzNPDbJ97rQun8n+rnezio/lCt3DJkK7v54
-	tiR9rv8abUNGU0JnMQkF8iTRWmFaWArvucIn8dOahUu3BFO26x6ixImwxn3X/w==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Tue, 17 Jun 2025 14:12:12 +0200
-Subject: [PATCH net-next v14 13/13] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
+	s=arc-20240116; t=1750163149; c=relaxed/simple;
+	bh=aoNET68UJIiLHYzCWITUHaaHkuJoHm/VQY7CwpH5NQw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EdzR1AkWnASsXRoxZrwegzDll+Oiy2ocZKb68xRWhhhZ5v0pgHo5n8Ul13RjhPUFL2ZGoCD9zi/bScbsCr9i73+HxhPyUDqg1ohGnaWHphtv3x1RdcRVMkzBfsMF4FVpGI2ltd4AMWyIQnxyUiOWvgMVsCB1CFLYHaLpUHHI6E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhZ/y8oV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87FF6C4CEE3;
+	Tue, 17 Jun 2025 12:25:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750163149;
+	bh=aoNET68UJIiLHYzCWITUHaaHkuJoHm/VQY7CwpH5NQw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=lhZ/y8oVCPQyDybARc9LQ/ZtkG8+ESnzbX40CQqwTEW8F1VrJVAs2VNyFB+LcPwTN
+	 BuVDDoVAGMnXpDtVqRFVfLW/BWMNdjV6+I8MHQA26MHUkmi6f1nxLri8kGUemQogX3
+	 ZjBlJmS4yD0k7xwww+1ihUoJlspN9UZla6vZukSPtMIc8NEKGSPk5Z5rAP1rBWsHhY
+	 kbTg1ssV4t+gkxNQxDRQOrMWhzSkFoAtDm8Jri6ckVq4RFRdQkjq7i4iTworFioluh
+	 EHR6GNGonvywjhZAstchFCGYE5WXom0gyT5KEJZoUHHk4M7tGl/OKLOnFl+tH8dewq
+	 7VpmW1naLviqA==
+From: Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v5 0/2] dma-buf: heaps: Support carved-out heaps
+Date: Tue, 17 Jun 2025 14:25:39 +0200
+Message-Id: <20250617-dma-buf-ecc-heap-v5-0-0abdc5863a4f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,97 +52,109 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250617-feature_poe_port_prio-v14-13-78a1a645e2ee@bootlin.com>
-References: <20250617-feature_poe_port_prio-v14-0-78a1a645e2ee@bootlin.com>
-In-Reply-To: <20250617-feature_poe_port_prio-v14-0-78a1a645e2ee@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
+X-B4-Tracking: v=1; b=H4sIAMNeUWgC/33N3U7DMAyG4VuZcoyR7Tgb5Yj7QDvIj7NGQDulr
+ AJNvXeySQjQKg7fT/Ljs5m0Fp3M4+Zsqs5lKuPQwt1tTOz9cFAoqbVhZEFHDtKbh3DKoDFCr/4
+ I/OAtUeLYiZp2dqyay8eVfN637sv0PtbP64eZLus/2EyA4CSGkFA6R/T0onXQ1/uxHsxFm/lbc
+ ChIKwI3AcXmhLj15PONYH8LuxXBNqHbxZTs1rvM3Y0gP4JjXBEECEJipUwhCMc/wrIsX+uH3YR
+ 3AQAA
+X-Change-ID: 20240515-dma-buf-ecc-heap-28a311d2c94e
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+ "T.J. Mercier" <tjmercier@google.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-8cb71
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvefgvdfgkeetgfefgfegkedugffghfdtffeftdeuteehjedtvdelvddvleehtdevnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdekpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdpr
- hgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqughotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehkhihlvgdrshifvghnshhonhesvghsthdrthgvtghh
-X-GND-Sasl: kory.maincent@bootlin.com
+Cc: Andrew Davis <afd@ti.com>, Jared Kangas <jkangas@redhat.com>, 
+ Mattijs Korpershoek <mkorpershoek@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ Maxime Ripard <mripard@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3003; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=aoNET68UJIiLHYzCWITUHaaHkuJoHm/VQY7CwpH5NQw=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDBmBcSf8lUxWPr39QW9m2N5G/bJYdkHZNd805rH/d7l1+
+ HTjpiuSHVNZGIQ5GWTFFFmeyISdXt6+uMrBfuUPmDmsTCBDGLg4BWAi3baMteIrVhzjql6pvG9D
+ Wsl0b+FPh9wOnFnMl7L8v6Ob/xLb+QdfzGFJmfq1ZEHM88lbPVOfqjM2rL47XbCaQ0Voe9S1sET
+ +aAezgxtjj0760TnlScgvl6kze/y4JtxcE35qsopg+rJzao9iAA==
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 
-From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+Hi,
 
-Add an interrupt property to the device tree bindings for the TI TPS23881
-PSE controller. The interrupt is primarily used to detect classification
-and disconnection events, which are essential for managing the PSE
-controller in compliance with the PoE standard.
+This series is the follow-up of the discussion that John and I had some
+time ago here:
 
-Interrupt support is essential for the proper functioning of the TPS23881
-controller. Without it, after a power-on (PWON), the controller will
-no longer perform detection and classification. This could lead to
-potential hazards, such as connecting a non-PoE device after a PoE device,
-which might result in magic smoke.
+https://lore.kernel.org/all/CANDhNCquJn6bH3KxKf65BWiTYLVqSd9892-xtFDHHqqyrroCMQ@mail.gmail.com/
 
-Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The initial problem we were discussing was that I'm currently working on
+a platform which has a memory layout with ECC enabled. However, enabling
+the ECC has a number of drawbacks on that platform: lower performance,
+increased memory usage, etc. So for things like framebuffers, the
+trade-off isn't great and thus there's a memory region with ECC disabled
+to allocate from for such use cases.
+
+After a suggestion from John, I chose to first start using heap
+allocations flags to allow for userspace to ask for a particular ECC
+setup. This is then backed by a new heap type that runs from reserved
+memory chunks flagged as such, and the existing DT properties to specify
+the ECC properties.
+
+After further discussion, it was considered that flags were not the
+right solution, and relying on the names of the heaps would be enough to
+let userspace know the kind of buffer it deals with.
+
+Thus, even though the uAPI part of it has been dropped in this second
+version, we still need a driver to create heaps out of carved-out memory
+regions. In addition to the original usecase, a similar driver can be
+found in BSPs from most vendors, so I believe it would be a useful
+addition to the kernel.
+
+Let me know what you think,
+Maxime
+
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
+Changes in v5:
+- Rebased on 6.16-rc2
+- Switch from property to dedicated binding
+- Link to v4: https://lore.kernel.org/r/20250520-dma-buf-ecc-heap-v4-1-bd2e1f1bb42c@kernel.org
 
-Change in v5:
-- Use standard interrupt flag in the example.
+Changes in v4:
+- Rebased on 6.15-rc7
+- Map buffers only when map is actually called, not at allocation time
+- Deal with restricted-dma-pool and shared-dma-pool
+- Reword Kconfig options
+- Properly report dma_map_sgtable failures
+- Link to v3: https://lore.kernel.org/r/20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org
 
-Change in v3:
-- New patch
+Changes in v3:
+- Reworked global variable patch
+- Link to v2: https://lore.kernel.org/r/20250401-dma-buf-ecc-heap-v2-0-043fd006a1af@kernel.org
+
+Changes in v2:
+- Add vmap/vunmap operations
+- Drop ECC flags uapi
+- Rebase on top of 6.14
+- Link to v1: https://lore.kernel.org/r/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org
+
 ---
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Maxime Ripard (2):
+      dt-bindings: reserved-memory: Introduce carved-out memory region binding
+      dma-buf: heaps: Introduce a new heap for reserved memory
 
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index 116c00f6f19c..d0b2515cfba6 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -20,6 +20,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   '#pse-cells':
-     const: 1
- 
-@@ -64,9 +67,12 @@ unevaluatedProperties: false
- required:
-   - compatible
-   - reg
-+  - interrupts
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -74,6 +80,8 @@ examples:
-       ethernet-pse@20 {
-         compatible = "ti,tps23881";
-         reg = <0x20>;
-+        interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gpiog>;
- 
-         channels {
-           #address-cells = <1>;
+ .../bindings/reserved-memory/carved-out.yaml       |  49 +++
+ drivers/dma-buf/heaps/Kconfig                      |   8 +
+ drivers/dma-buf/heaps/Makefile                     |   1 +
+ drivers/dma-buf/heaps/carveout_heap.c              | 362 +++++++++++++++++++++
+ 4 files changed, 420 insertions(+)
+---
+base-commit: d076bed8cb108ba2236d4d49c92303fda4036893
+change-id: 20240515-dma-buf-ecc-heap-28a311d2c94e
 
+Best regards,
 -- 
-2.43.0
+Maxime Ripard <mripard@kernel.org>
 
 
