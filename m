@@ -1,136 +1,136 @@
-Return-Path: <devicetree+bounces-186768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB59ADD1D2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:35:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F28ADD243
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:40:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B45EF3BD612
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:34:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076F717D695
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:40:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9EDC2ECD20;
-	Tue, 17 Jun 2025 15:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064E52ECD36;
+	Tue, 17 Jun 2025 15:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="d9JAvAWV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nMenEqtd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C4A221F1F
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 15:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689C82DF3C9;
+	Tue, 17 Jun 2025 15:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750174513; cv=none; b=cIBu0TMkcICH2s/dW4QpWpd+OPkiVh8VhG+qLA1KKbLIxRfgb3Be5X2Bxm1UQAp0Gwcz6ADxgp9gI+QX14ii/ctvk/4ZPCXLhFcdI0tL9UuUnLlYCs+CYnJSh7fKMj9yXFM0vNc/g6kSGFoxPFSOZxnBWxWEDpJunTxZqw9l3JQ=
+	t=1750174827; cv=none; b=qBW9bYdn7DgiREdeUbO8L7pG7wlWCAalaKyF7M8C8W4+CQQryNH+hfFQYU4TsuFurw1Wg5hiY5dDauK3ECriQEC5quRu7k/fBFrs3Gct+09sLtJ0w1Npgj/WKC8jPSd4NuZpehI849a7eidoWFswpG+CU4ypi5q71I3jRaH8m/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750174513; c=relaxed/simple;
-	bh=tZBwgMNGQe1HuvXkzjozd6+oITz9+vz04Ka8Ald9TLQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SJnTfpx6uejvvA7ZrIdaRyS4sbYfk0iSg8XvMxqCsDRpxXvK6RSK1+kbzpLNzVcmChqobuDCMMLjz3H2vC/hMSk9ZYtMLpzWQagJrtQTztvbRLc6Ec6QcMCe2zhm24QgoeIza1fFoCb3AzG4cj8n9QqXYJTLbIt+TOtaDujzISA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=d9JAvAWV; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <0ee2f641-c3f3-4a3a-87b4-e1279a862d68@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1750174508;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Oj/kkgMTMqIVrNM3QaF6B1LYz4c3ipKEcY+sL9Pu3sg=;
-	b=d9JAvAWVkzszJpLwaNP3Tm8Qn4aY+d1hz7rcqZ783tXiRmT0xMKhx4Sl4ZejXMTIBmg/uq
-	e9tfjtFGWWenSxGK64MGzcW+bPOtU+rnbXnJ+3lANWybGQB5d+CKfATO99xyZ3rltFoY+z
-	ylYV3BhEevlSv4blKy3FtqhL+FkiI+M=
-Date: Tue, 17 Jun 2025 11:35:04 -0400
+	s=arc-20240116; t=1750174827; c=relaxed/simple;
+	bh=tC6/NDoju0ZefrxpCxrMvxxYc+0O2W6DOLxIX/mdWoE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uuDnE6/FqWXqIEsGOBtmrVWhEdUzpcH/uDud4xJc7a7INziAnbMKUsIMueynCLznrNh+6/wTGEkpyVV/nbqqFZcMajTmoEKFZqCcH2uDYungaJknC45UhRjDwyDSywbvPCDRXSCaoZGtEYKr1DtIH8lIV7fb9gt/UZL44WedYZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nMenEqtd; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-748cd3c8829so826247b3a.2;
+        Tue, 17 Jun 2025 08:40:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750174826; x=1750779626; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5k96Kr7lemrnHxQ+iFUrhM42H3DOD+3Iasxmqb+VqdI=;
+        b=nMenEqtdCAVpAVzZu64s7/U31NJVFcatRzFj8FsEO+b21/ToOZskMs4svUrt3rj/r/
+         Pvr6KfZAxtRCpt8wfNrqetsc1Blh8tWgxPTjBqloipPulphwPWZg3r9jblxJ+V0q2cA1
+         6MF737N9FRXTRoDUMFBwAFt2NejmW+mqpOSXZJI/CHPMIkCTqKo3PgM3aNR6b+cg90lR
+         PavdD2v8mIAsOpFdgZcrLeS14tfio3g4EvDyECs8RlbzWsZFH5a+OUZQJARuH+7by/Ou
+         JRm9e7E8+wy8Y6EGxrBsBGBrQZuyNCsWuejhkzN4L8N+ASWvzhrar5Zd6ZMcAufqJqCy
+         oRUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750174826; x=1750779626;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5k96Kr7lemrnHxQ+iFUrhM42H3DOD+3Iasxmqb+VqdI=;
+        b=RSNp02AqmCCtwSKTTevHf3fAGeQm7ejEW73bLHRHmWAjApMgd81oMq2HZzOIlMXMEd
+         trqXcdZ9HKaz9PiGbIa5VFpZYr6fy109VaG54igs3lRQiR/V1B7GiUUsyB2GPRBrVF3U
+         TXqA9x0w8LCLXvfx/huADL8Y7Z7y2bGrdXY+ueaNbbPBlmJzpTdl3FzZFyfKhO/QyGwO
+         fIzE8YhJp96hUJ+5fJMuPh+BdgzJOlv2W9AanT6Mul2kPIP8NyumpwU/M8+6uafaEWjw
+         Pl09dLYiixCWskT+JU2oaaVkYRJvfIcOd1J8XsDsd8yurp/Wfc/mbu4m9EEaoDQdDRsj
+         4zyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVpLrhPfvTA3skw0krayiYLksrPJS7jxJStZiikEZn0DbMxn0gTo392yawtZ2G/QKanwPlIr7WeSSAH@vger.kernel.org, AJvYcCWE9r+DSMgVxDWZnyT8uPk+cH+2K+D/3w1IjAWiEX9KAa0tBxffAr6KWeY4Fl9CbbcFlQgizes0/Fq2riVr@vger.kernel.org, AJvYcCX4wUKMMqL05hZKyiACTwFsHKuer1RZWWiHJ4Is9S0dx6aTdhNcCx6WRjPJ/8R4dqcfiAFQD38Hfcl+7Q==@vger.kernel.org, AJvYcCXHJjrvks0rhqORPnRbB3XI1gooPzk1uYiEHdFaRY57aC1KgMDf8HzimWXXNKRBtdmjlZsBsWX9JoIH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxENBirT0ZIOLsL03c9rEqWzXX+MYd/nP1aiwuRkwyBPc7dCMpj
+	iCJJSjFwl8qyqnrHg0n0kK26sYQuh0gINXBcdGNky6VeQAqkQq9U9QJGpQS0Gw==
+X-Gm-Gg: ASbGncsrbkdKTbYRXBuOesX8nbvMJJOYRMcsms8tbZXhEySObDysaT2XGRKHgX9vvoj
+	wMXQrXAUxB1FGWa0PVAHKt5pNEa42v3ZwmLJqHIJM2NkdWYqOHJIEofYOmCQmP7VmO88KpA7jST
+	79QAOOa84jeeahG28zsuguJFnaRjPcgusXMxkb+5ybJHH/Gn3AXVr5sGpVU0v2EhgcbhBYe32n+
+	bxxJEekyun01BFXO96u32i0r1nCi47ImdkskdSzKrggRMQOFpnwy65TGbogaTQU+JmeKaqaUkU1
+	GY5Vf+uMF2ah514MtsywGEpiOXBVecSbuEVtWyNsNeo0BAo0SMY5OxzTtK4NTR2N+jRHdX7j
+X-Google-Smtp-Source: AGHT+IGliwIj5Gizb7rONr5DP/wCV5syb2AP+bWojANJJJURJP5LW4iLHaV1dnuIjeSmsckBuXTlZA==
+X-Received: by 2002:a05:6a00:a8e:b0:748:2e7b:3308 with SMTP id d2e1a72fcca58-7489ce07d29mr18312704b3a.6.1750174825566;
+        Tue, 17 Jun 2025 08:40:25 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([42.113.163.91])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74890006294sm8993731b3a.47.2025.06.17.08.40.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 08:40:25 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: krzk+dt@kernel.org
+Cc: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 0/4] leds: add new LED driver for TI LP5812
+Date: Tue, 17 Jun 2025 22:40:20 +0700
+Message-Id: <20250617154020.7785-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <e26093a7-2305-4d55-b836-d3bc7c503b9b@kernel.org>
+References: <e26093a7-2305-4d55-b836-d3bc7c503b9b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] driver core: Prevent deferred probe loops
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich
- <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
- Grant Likely <grant.likely@linaro.org>
-References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
- <20250610183459.3395328-1-sean.anderson@linux.dev>
- <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
- <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
- <2025061147-squishier-oversleep-80cd@gregkh>
- <7d6d8789-e10b-4b06-aa99-5c1a1bdd3b4c@linux.dev>
- <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
- <70958a2e-abc8-4894-b99a-f2981db9981f@linux.dev>
- <2025061700-unmapped-labrador-a8c9@gregkh>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <2025061700-unmapped-labrador-a8c9@gregkh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 
-On 6/17/25 04:50, Greg Kroah-Hartman wrote:
-> On Thu, Jun 12, 2025 at 04:40:48PM -0400, Sean Anderson wrote:
->> On 6/12/25 13:56, Saravana Kannan wrote:
->> > On Thu, Jun 12, 2025 at 8:53 AM Sean Anderson <sean.anderson@linux.dev> wrote:
->> >>
->> >> On 6/11/25 08:23, Greg Kroah-Hartman wrote:
->> >> > On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
->> >> >> On 6/10/25 19:32, Saravana Kannan wrote:
->> >> >> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
->> >> >> >>
->> >> >> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
->> >> >> >> registering a bus with children:
->> >> >> >
->> >> >> > This is a broken driver. A parent device shouldn't register child
->> >> >> > devices unless it is fully read itself. It's not logical to say the
->> >> >> > child devices are available, if the parent itself isn't fully ready.
->> >> >> > So, adding child devices/the bus should be the last thing done in the
->> >> >> > parent's probe function.
->> >> >> >
->> >> >> > I know there are odd exceptions where the parent depends on the child,
->> >> >> > so they might add the child a bit earlier in the probe
->> >> >>
->> >> >> This is exactly the case here. So the bus probing cannot happen any
->> >> >> later than it already does.
->> >> >
->> >> > Please fix the driver not to do this.
->> >>
->> >> How? The driver needs the PCS to work. And the PCS can live on the MDIO
->> >> bus.
->> > 
->> > Obviously I don't know the full details, but you could implement it as
->> > MFD. So the bus part would not get removed even if the PCS fails to
->> > probe. Then the PCS can probe when whatever it needs ends up probing.
->> 
->> I was thinking about making the MDIO bus a separate device. But I think
->> it will be tricky to get suspend/resume working correctly. And this
->> makes conversions more difficult because you cannot just add some
->> pcs_get/pcs_put calls, you have to split out the MDIO bus too (which is
->> invariably created as a child of the MAC).
->> 
->> And what happens if a developer doesn't realize they have to split off
->> the MDIO bus before converting? Everything works fine, except if there
->> is some problem loading the PCS driver, which they may not test. Is this
->> prohibition against failing after creating a bus documented anywhere? I
->> don't recall seeing it...
+On Wed, 11 Jun 2025, Krzysztof Kozlowski wrote:
+
+> On 10/06/2025 19:43, Nam Tran wrote:
+> > This patch series adds support for the TI/National Semiconductor LP5812
+> > 4x3 matrix RGB LED driver. The driver supports features such as autonomous
+> > animation and time-cross-multiplexing (TCM) for dynamic LED effects.
+> > 
+> > Following feedback from both the LED and auxdisplay subsystem maintainers,
+> > the driver has been moved back to the LED subsystem, under drivers/leds/rgb/.
+> > This version integrates with the existing multicolor LED APIs, avoiding custom
+> > sysfs where standard LED interfaces are sufficient.
+> > 
+> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > ---
+> > Changes in v9:
+> > - Move driver back to drivers/leds/rgb/
+> > - Integrate with LED multicolor framework
+> > - Refactor and simplify custom sysfs handling
+> > - Extend Device Tree binding to support multi-led@ nodes using leds-class-multicolor.yaml
 > 
-> What do you mean "failing after creating a bus"?  If a bus is failed to
-> be created, you fail like normal, no difference here.
+> You need to provide reason why you dropped reviews.
 
-Creating the bus is successful, but there's an EPROBE_DEFER failure after
-that. Which induces the probe loop as described in my initial email.
+In v9, the Device Tree binding was restructured to integrate with the standard
+leds-class-multicolor.yaml schema and support multi-led@ nodes with nested led@
+subnodes. This change introduced a new patternProperties hierarchy and removed
+the previous flat led@ layout used in the earlier versions.
 
-> And if MFD doesn't work, there's always the aux-bus code, perhaps that
-> should be used here instead?
+Due to this substantial structural change — even though the intent and top-level
+properties remained similar — I decided to drop the Reviewed-by tag to avoid
+misrepresenting prior review coverage.
 
-I will have a look. However, I expect both of these approaches to
-require fairly invasive conversions for existing drivers. Ideally, I
-would like to keep conversions simple.
+I will include this explanation in the changelog of the next version (v10).
 
---Sean
+Best regards,
+Nam Tran
 
