@@ -1,159 +1,154 @@
-Return-Path: <devicetree+bounces-186709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE5A2ADCE35
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:51:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9D4ADCE63
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:56:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92C03188F5D0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:50:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0D323BA71A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62935215787;
-	Tue, 17 Jun 2025 13:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCA92DE217;
+	Tue, 17 Jun 2025 13:51:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="O/Im1XKg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fg+ZSxN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BAE1865EE;
-	Tue, 17 Jun 2025 13:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750168135; cv=pass; b=WaQJ4ZmAF9OYWKUkXjxjJA7F3QBJ+KTyFvY4/ePnLn3Ttytoku+b4VnFSt1XSSxF2mIbYTk0brSsGZb1Z4aD1udrixaRQBetP75ZlE8Q63wWtYGsQateNEyV5afdGZkmjuRmT4phZ7KGFx32oJq+cuRsCU6isickii9JNqZyItE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750168135; c=relaxed/simple;
-	bh=6mZjLMEQAoaVTDarhDT0Iufo+0fOPewuwVT6FR/dEHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rB6h5er9nAaOp1QpWAOb8KD99vi44sCmUCNd5yvPDniYmuASDqe5I64WTr4coZcJeCfz64C6E+NcjWjLZJ9Byd4FDmbElZs/ADRtabc7IO/GsdVXAoe0EctuUUxG1kaxoMLxE22A7iSc+LB4O1dlhoBsUuCIHLzBPnRQNg6DicM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=O/Im1XKg; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750168101; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=RYsbxIlGajViXkOxtq2KEf8LaUDJCjs2cfVNQMck7jnzD0YFELOk4Xa46PPdaQdzez7xix5UJzDIKv5M4VIq9ujJICGT/zBOvItqnwiwbWLoNMhca/69lAZwnBzh4o35yTrisvCjwiUZSLVy4SVE7nSHjeDZ/MFXKZTr7z4ZQBs=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750168101; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=D4vJ4WUJydWruG0dqtzkAwR+nhnVb7UMToyievYWDJ8=; 
-	b=IUmQzhrEo9hCGLNL4aD8A9gDxDumRgxrWh98mcRcJWaUN32W0PTlhuCxL2T0CeSSlVKE/0kXdq1cd3kWF7olhpFizl095mF29IPa32ApSMw6xH+7UC7mGpfD4ef1kTiLV3+ARZXvMJN9gBeWQ0OPKNAIyeOFKWZ0RvAzeA/dIHQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750168101;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=D4vJ4WUJydWruG0dqtzkAwR+nhnVb7UMToyievYWDJ8=;
-	b=O/Im1XKgABAsdhserORFX21ekFxftRdla9wGdCm60WC/2lpb522k498YpEm5afgi
-	mAFRVWgct5SGPHMqENFUj6LbKkABgB/mrCWGJGi3mRzgYfZ7dreoOlKfpdfGzlnYxCx
-	3immDWE3ee1SBTfTjqMhhmEPTZb1EDF7/c6i9lik=
-Received: by mx.zohomail.com with SMTPS id 175016809925542.787085547648644;
-	Tue, 17 Jun 2025 06:48:19 -0700 (PDT)
-Message-ID: <2596fddc-aa76-4234-b182-1159c14b7cf8@collabora.com>
-Date: Tue, 17 Jun 2025 15:48:14 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175432DBF41;
+	Tue, 17 Jun 2025 13:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750168265; cv=none; b=RvKvP+c7MSf8jsR8G+nGfjWUUQqUQRg2jAeUd0nztu+kNZV1x7iDjvY8yZ8fx7XvIT3VDZpDhYf0W5JEU9kyrHr23Mvu7/E5+/0MuXN46vvXVu5XHFSN2tZ6nulI+hT3g63LmjnbQ0Co2/5dAXo2skVOvpmpMx14cfHgA4g15ws=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750168265; c=relaxed/simple;
+	bh=IGltngzbELGQw+XQq/WWyCGYqZ4fB47Qdv4Z+NL+foY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QOBgFonNhcVUm/C6cZ8g7ENuovaRCK9Rd49u2Za7OGUIFnvgsVyPrntZyGqRpBYk22ZsoaWYlgaSkVADqH+yTqztt90Xn92gTccbJVI51W5H2stM4HhxG0Ut7l8Fc7kdYN6wgzVcVR0IAY5Lcb6mSrIIzN2rNJIlWcPcURWgIL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fg+ZSxN0; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-451dbe494d6so73345435e9.1;
+        Tue, 17 Jun 2025 06:51:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750168261; x=1750773061; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wNl8wyegafLnqZVF/hrUk0udF1cnoaAfeahNhjIdcWc=;
+        b=Fg+ZSxN043FFB2xU8Cq4o4ihPy9Vd9IP8agvSgzdxjzpjdB3JZ033w9wGYf6891Nxz
+         HIcecEYQ8yBSj6QKNnbbxPUSApH0fxCgfEfQe1YmhwSvps1r19eua9LTeJZYn1/WgZED
+         33A5LnLaW5VT0wFn8+5bkabD3F2rG4daircHoJXNMQTaXmQhIJk550k8qJqXVm2Of0u0
+         JSiFZJuJp0//3hiEWUuyIWwFzlfRYbQnJpHYlkqwzjm7qpwH3yQudYYnIH+SRFHrr1sM
+         Ryb03v+/xp2y1Eh3XVE2ZpoZWHroJWLGaV0LO9S7MaRYspnDDIRq5OV+VauizIzt5fL3
+         QHgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750168261; x=1750773061;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wNl8wyegafLnqZVF/hrUk0udF1cnoaAfeahNhjIdcWc=;
+        b=NTOg8p2mpzws4WIqVLrgZsKqJLKsNOMQWmgYT9kchjKmFliC8v5R0CgbjJ7hHaUr3n
+         3ivrSIpsOkUGM4Opbl61vave+i3NyePpw9yYqKFi9Bf9f78h1Ns5pTorbNF6pkZCztEz
+         4i8GsiAzfHonHbYGPUjb0SdjeS4cqjXwQ11T6xWWLzkeTJ7NSIOLr1Ez66Xd7jvP4+oM
+         i1YYCvJHg5mXwr9JKty8fCWTFGjxkCMfAjGC8Y3+4b8kaN9KeAH77FEWNBM6/wdbDIl1
+         dFHmo6p8p5DfaPPl5ah4Suf0FrY/DifbFEedpnvkiyVxOESAm/c0Tt1HQaMdh3QQ5X/i
+         raWg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8kNv8pe9vlWWjgOPC39jkeQqT/E0mz6fq0qBssGB3piBRU6+ynbIyKhzcskJXNTL+RgrUYWVrWob3+14e@vger.kernel.org, AJvYcCVbZaA1eKMAMYXZSfTq11d2p5tYdFV2hVGsSDQ6Fqy8C2v3I/Gyw/nd2eg+FonPlvc0IiAtFhH8/tpL@vger.kernel.org, AJvYcCX05g4sc1wmLjQaUr6l0mId6NIEDoEhqkwVDnqUnbg7AcheDjqlk12kLNik04IDtqaPW9LydfRGmHWu3SuW6MTkv9s=@vger.kernel.org, AJvYcCXYn3n0ywQ+ligzA4FIQcg2KG3oLnsPFwQJjF2Kj1c7Jqe8w3Xgnz1jo2h7sjHSRTjbjVlJ5JNR8GQn@vger.kernel.org
+X-Gm-Message-State: AOJu0YygwN7I69QLmoKgRg5EKzdqKeTuPlaksN+kwnrYnbVJnnHfAwue
+	oe9tmmgRkfADizgbGB31wUnnUNEVrs2Yj9xLtZj8sxV+/c5oimqYNp5CzLXn6vnBxuN6Cqf8S/U
+	5/+QpE1d+RsqJRc+ca4zpL2nzvBGQzNU=
+X-Gm-Gg: ASbGnctUJHauluxYtjfeKLYdp1BpFz8vSncqCq3vxHTGrSzuQyRQit0fkfEZElNbtBX
+	X4TwJDN/tlzTh/NBO/uVgTPTuxAcaPKhIZ+RsjXY1zKVmjBUD2SUvI4wwdxGji4uvYof9jUd3dt
+	Jj3b6IDmX1OuKe0zI3M7E6l8hFWtBbq4ovkPZQbsLhTA==
+X-Google-Smtp-Source: AGHT+IHD06M89+R92xiEL8UI2HjrT/wU9KTtjXOhKqwmV3gg6qcks/pYMku3d5ryWfwdV85um2KzP4iV4g7S75iGXDw=
+X-Received: by 2002:a05:600c:3f09:b0:43c:f895:cb4e with SMTP id
+ 5b1f17b1804b1-4535020de49mr53384425e9.17.1750168260361; Tue, 17 Jun 2025
+ 06:51:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] iommu: Add verisilicon IOMMU driver
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
- kernel@collabora.com
-References: <20250616145607.116639-1-benjamin.gaignard@collabora.com>
- <20250616145607.116639-4-benjamin.gaignard@collabora.com>
- <DAOTVW4YEC5Q.STXG6APE0YGN@cknow.org>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <DAOTVW4YEC5Q.STXG6APE0YGN@cknow.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250613113839.102994-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250613113839.102994-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250617-enthusiastic-anaconda-of-tenacity-2f79e2@kuoka> <2fbc985b-113a-4409-9825-49bdd029e95b@kernel.org>
+In-Reply-To: <2fbc985b-113a-4409-9825-49bdd029e95b@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 17 Jun 2025 14:50:34 +0100
+X-Gm-Features: AX0GCFtvSoLqf-Eyyght_AYKGMsUbMYxK_o7uZIaKRsvzxVD-EmSBsZMTRj_ndU
+Message-ID: <CA+V-a8vvjHf+mz=A9AiD+ud6P-oGHhMt7KdOGsXW8cAjAJVoNA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] dt-bindings: i2c: renesas,riic: Document RZ/N2H support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Andy Shevchenko <andy@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Krzysztof,
 
-Le 17/06/2025 à 15:04, Diederik de Haas a écrit :
-> Hi,
->
-> On Mon Jun 16, 2025 at 4:55 PM CEST, Benjamin Gaignard wrote:
->> Verisilicon IOMMU hardware block can be found in combination
-> Can there be only 1 hardware block or is multiple possible?
-> If only 1, then I'd start with "The Verisilicon ...".
-> If more then one, then I'd use "blocks".
->
->> with hardware video codecs (encoders or decoders) on
->> different SoCs.
-> This makes it sound like it can also be used with non-Verisilicon codecs
-> and based on the DT binding description, I get the _impression_ that
-> that is not the case?
-> But it's actually not clear to me if that's the case or not.
+Thank you for the review.
 
-Only one hardware block exists on rk3588 and it can only be used
-by Verisilicon AV1 codec.
+On Tue, Jun 17, 2025 at 8:15=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 17/06/2025 09:13, Krzysztof Kozlowski wrote:
+> > On Fri, Jun 13, 2025 at 12:38:36PM GMT, Prabhakar wrote:
+> >> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>
+> >> Document support for the I2C Bus Interface (RIIC) found on the Renesas
+> >> RZ/N2H (R9A09G087) SoC. The RIIC IP on this SoC is identical to that o=
+n
+> >> the RZ/T2H SoC so `renesas,riic-r9a09g077` will be used as a fallback
+> >> compatible.
+> >>
+> >> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> >> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >> ---
+> >>  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 4 ++++
+> >>  1 file changed, 4 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml b=
+/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+> >> index 86d79e167547..6876eade431b 100644
+> >> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+> >> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+> >> @@ -33,6 +33,10 @@ properties:
+> >>            - renesas,riic-r9a09g057   # RZ/V2H(P)
+> >>            - renesas,riic-r9a09g077   # RZ/T2H
+> >>
+> >> +      - items:
+> >> +          - const: renesas,riic-r9a09g087  # RZ/N2H
+> >> +          - const: renesas,riic-r9a09g077  # RZ/T2H
+> >
+> > Where is an entry renesas,riic-r9a09g077 alone? Please add complete
+> > bindings, not half-patch and then next time second half.
+>
+>
+> Ah, sorry, I saw it in patch #2 (the tooling I use jumped straight to
+> patch #3 so that's the reason).
+>
+> Anyway, this should be squashed with #2, because it is trivial and
+> entire 4 lines of commit msg plus 3 reviews is really too much for
+> something like that. Don't inflate work for us.
+>
+Sure, I'll make a note of it and send a new version with this patch squashe=
+d.
 
->
->> Enable it will allows to use non contiguous memory
-> "Enabling it will allow us to use non ..." or "Enable it to allow [the]
-> use of non ..." or "Enabling allows the use of non ..."
->
->> allocators for Verisilicon video codecs.
-> And the wrapping of the whole commit message is not following the
-> standards.
->
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->>   drivers/iommu/Kconfig     |   8 +
->>   drivers/iommu/Makefile    |   1 +
->>   drivers/iommu/vsi-iommu.c | 900 ++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 909 insertions(+)
->>   create mode 100644 drivers/iommu/vsi-iommu.c
->>
->> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
->> index 0a33d995d15d..4cf4504dcc25 100644
->> --- a/drivers/iommu/Kconfig
->> +++ b/drivers/iommu/Kconfig
->> @@ -383,4 +383,12 @@ config SPRD_IOMMU
->>   
->>   	  Say Y here if you want to use the multimedia devices listed above.
->>   
->> +config VSI_IOMMU
->> +	bool "Verisilicon IOMMU Support"
->> +	depends on ARM64
->> +	select IOMMU_API
->> +	select ARM_DMA_USE_IOMMU
->> +	help
->> +	  Support for IOMMUs used by Verisilicon video decoders.
->> +
->>   endif # IOMMU_SUPPORT
->> diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
->> index 355294fa9033..68aeff31af8b 100644
->> --- a/drivers/iommu/Makefile
->> +++ b/drivers/iommu/Makefile
->> @@ -34,3 +34,4 @@ obj-$(CONFIG_IOMMU_SVA) += iommu-sva.o
->>   obj-$(CONFIG_IOMMU_IOPF) += io-pgfault.o
->>   obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
->>   obj-$(CONFIG_APPLE_DART) += apple-dart.o
->> +obj-$(CONFIG_VSI_IOMMU) += vsi-iommu.o
->> diff --git a/drivers/iommu/vsi-iommu.c b/drivers/iommu/vsi-iommu.c
->> new file mode 100644
->> index 000000000000..f2fa1197916c
->> --- /dev/null
->> +++ b/drivers/iommu/vsi-iommu.c
->> @@ -0,0 +1,900 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +
-> No copyright statement? (or an informational header block?)
->
-> Cheers,
->    Diederik
->
->> +#include <linux/clk.h>
->> + <snip>
+Cheers,
+Prabhakar
 
