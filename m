@@ -1,195 +1,130 @@
-Return-Path: <devicetree+bounces-186777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A16A3ADD3F6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:04:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61767ADD462
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8964405E06
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:57:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B08E51945D89
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468882EF298;
-	Tue, 17 Jun 2025 15:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7661F2F2C75;
+	Tue, 17 Jun 2025 15:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJnjQyZs"
+	dkim=pass (2048-bit key) header.d=criticallink.com header.i=@criticallink.com header.b="jxQ9Tce+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134D92EE60C;
-	Tue, 17 Jun 2025 15:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1337E2EF2BC
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 15:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750175638; cv=none; b=Wua6ofzH2ItXrnB5h5eYAxlNlOiZ7YI2o1Ssqo5SYBxJkRTo54zi2zN0rEIIFqj3yS1OQXzVyrhc/Go/sVIwNMtlcMkJELUvoFrHXLA2dg8dOrzJtzgPQKIMdwsABZKU5inn8LErA5Ox1uEQS1VNQblYoFSFGlO8RNpNEwKBsII=
+	t=1750175701; cv=none; b=YM7nAqqezmRtX1BZ8cWJyADCFuenIY9Y1cL7QjMRiB4FxN2XS5k+ghWWB45XV74Z46gYPtexZGJf8qHnqubp2um2vQBn27l5qaPaxADkOWY4uSRjm9/9QZOskL3FbS6TveLJo71l79Z7AL71pZOvccgTIHImQJbLO8M+xSEx744=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750175638; c=relaxed/simple;
-	bh=Xmi1segpA11UP+V+o5ts0ddLZv32iD3xxVOdV/BoX0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hJ9k2GMKUfdwBNqxj/AV3GCgWG4LUZ3OC0IOjTXN2qHGYzoDy0SPhySE2bZFpt61S4JGyif4S/dNgOHv3NzGu3lM2wer+C0zaeD2nHAI0HorgrlGHnr2lpOt8g+TNlB5ueNuC/prnorvxHFEehJEEsrRkJOqyfYi2cSwrgImw+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KJnjQyZs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2CCC4CEE3;
-	Tue, 17 Jun 2025 15:53:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750175637;
-	bh=Xmi1segpA11UP+V+o5ts0ddLZv32iD3xxVOdV/BoX0k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KJnjQyZs2WukgTIGrOZ4NLTHG4aQxtoWKt+MijZ79h2DNRRGnnK40lZLezVngpq9x
-	 xjXq9icUhycIdkZp9Aouq6wkzVoRcvPO6CBuNlrnYWcldqYEGoBtv1WqUnyqP3ojrD
-	 MOTD6sw+tMAjkCI2RLOE/O3G+lahwO6HJCwRZgeBZt/15w7goIiUgj1HOeauKt/atF
-	 BEYBWLp9fyPgxHajrXkAOPePV1oLXV7MgIrEnny+LSDvntDjc3ilNaOdVCsdCg8YbM
-	 UUx/PFfJuqM5x2fc/LKuum1o8V8Kz0yyoAvmrfT8jxbqVV+Ngu1N3Wkloqx48Qq8Y0
-	 HAWJHSVg12lYw==
-Date: Tue, 17 Jun 2025 10:53:54 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, psodagud@quicinc.com, 
-	djaggi@quicinc.com, quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
-	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-Message-ID: <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-8-quic_ptalari@quicinc.com>
+	s=arc-20240116; t=1750175701; c=relaxed/simple;
+	bh=DgmeVtT0WIbCRRv339k+cmX+mpoOuUhSgcVes2asjCQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WcKjqOCtjtu4lPfVSKrZsYAMswORv6tLt1B44CqU/R3oxU9G/2ZQ+6O+KqFxWHXR4i7kzjQxYWz4zCzTPPPtuZORAlpnF3wdIdZ5j+AwaCLbafr9U4yF97rR1dNaNgfIGMscu1h4Ovgl6vyK0sw4gpueXVhA0j11n4LPv+5g530=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=criticallink.com; spf=pass smtp.mailfrom=criticallink.com; dkim=pass (2048-bit key) header.d=criticallink.com header.i=@criticallink.com header.b=jxQ9Tce+; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=criticallink.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=criticallink.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5535652f42cso5885468e87.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 08:54:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google; t=1750175696; x=1750780496; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7491lPqRbW4F9hQ07LYAxQPIWHZ/u23nfZ8i+9TOWv8=;
+        b=jxQ9Tce+Jm5wydAE+OuBCHVuQVG+bAH3Sm5XzdurWqbrFXWfIsilRrCao2Lwc7dyYS
+         Ye5p2yq90E0uOqclB+pPx7qpWV+ipmC44j9d4uqjVENB7L3bAu3YOGJfQLQ3BDFW/1vb
+         gprBw6qNJM67wst981izx5UwScG4SyOmS6R2cavF/D8fe7LstSeJycmOuL7/4krSecPv
+         SStSJzkdDHfBWVijZ9y1qoQEEckvbrgc6R+HXLRUtgREqMq0+4GsV5wSb8AbXZLuvaP9
+         2uHDmROXWP43FzNivkbRLp6uwvQ3LG63XqIvr+PaaPLM34FAJkq7s2POHcUEbxXSPaL+
+         P+ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750175696; x=1750780496;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7491lPqRbW4F9hQ07LYAxQPIWHZ/u23nfZ8i+9TOWv8=;
+        b=BvcVFGZjT5KaJRGhjCvKvDrnx1M8R8Chict6DgzELGmUp30TUagcRC9XVTSYz2pRvR
+         p7RT5TflHYUT7tVMiNnGVKFLd9Sx4+9pQNSrB2cnYYjbdhq2zlVROLCHt8vWlXkiPywu
+         d3/56J7UTvWWCSJMr8qmLyTGpeI5biRH8ThNJU8kA94OkHW2dBlrUzaa0fiHe9idWx3e
+         /Xa4R5Ur1pbTD0+C/n4LmHUCoGBV46Ho5HWVU3aaza/YMzSO9rHIKNWJnTguTb/cFkPJ
+         Td8+jtOnFS9rW+MkfJFG0CUNMvNYU22nbU7HD78nivyi3ZZF+OfunuWFnHYbmkYfz011
+         ot8A==
+X-Forwarded-Encrypted: i=1; AJvYcCV3xKcYfUnsWm/DfHTM5GtB/qe5IktWGpcJvCaq+O9wHyTFbXMLfP87QAgv0915/cNvfx5j6aXpZtgX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQRzPJZdcZtDz31wkVuorlGGZmin29cza3tBLeMMFuXIU8bAno
+	wjEXVoPbTrSQJwpxAIoo6pSrT7HpqHlQ9Li20BbYiFLq5MAsdZ2b+EEu0s7F0IILBoaJ2Kb/V5U
+	T+F/36I/+u1fyS7sx39TLeOuzb2oBZvp6dBjASTqF
+X-Gm-Gg: ASbGncv9k8L9RRI5S4GYP+gbTKMBteUAku/zYlQ3FurnPnvtR2g35RnA1taNPayKmrz
+	u9U231S4mUnTz3jPFFZb0Ky82Jdbs0D2RIYrxh8iRhHTnJZGl8YkorvEBdPawvimgvAb1QsaV+h
+	Xy5VSvf8+F+XPInT6sxBNhben+Dfz350wZHUTlBNgkrti1snMDC+Oq
+X-Google-Smtp-Source: AGHT+IHb1aCFJPoJFf9UDRiwIVaRVYSfkm4626qafulBbisD0pCHZaBHpY5By1h92m6KS0F+VPFALhCVjE9/87XOTQY=
+X-Received: by 2002:a05:6512:398b:b0:553:3532:5b30 with SMTP id
+ 2adb3069b0e04-553b6f1377cmr3734810e87.27.1750175696058; Tue, 17 Jun 2025
+ 08:54:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250606172114.6618-8-quic_ptalari@quicinc.com>
+References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com>
+ <20250520-linux-stable-tps6594-pwrbutton-v1-2-0cc5c6e0415c@criticallink.com> <20250613140913.GF897353@google.com>
+In-Reply-To: <20250613140913.GF897353@google.com>
+From: Job Sava <jsava@criticallink.com>
+Date: Tue, 17 Jun 2025 11:54:42 -0400
+X-Gm-Features: Ac12FXyfNbK2pB7IPkCZD5SA804DLNcmvGU99uvVPgKiMdJy7x-SejG9WptqFuo
+Message-ID: <CAKMwjwSuPRZO2Oyy56C-_QCf-gh-jcCmW_Xc8NCQ+yioRTumNA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] mfd: tps6594-pwrbutton: Add powerbutton functionality
+To: Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Julien Panis <jpanis@baylibre.com>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	jcormier@criticallink.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
-> Add Power Management (PM) runtime support to Qualcomm GENI
-> serial driver.
-> 
+On Fri, Jun 13, 2025 at 10:09=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
+>
+> On Tue, 20 May 2025, Job Sava wrote:
+>
+> > TPS6594 defines two interrupts for the powerbutton one for push and
+> > one for release.
+> >
+> > This driver is very simple in that it maps the push interrupt to a key
+> > input and the release interrupt to a key release.
+> >
+> > Signed-off-by: Job Sava <jsava@criticallink.com>
+> > ---
+> >  drivers/input/misc/Kconfig             |  10 +++
+> >  drivers/input/misc/Makefile            |   1 +
+> >  drivers/input/misc/tps6594-pwrbutton.c | 126 +++++++++++++++++++++++++=
+++++++++
+> >  drivers/mfd/tps6594-core.c             |  25 ++++++-
+>
+> This should be a separate patch.
 
-Doesn't this have impact on the behavior outside of your
-project? Or is the transition from qcom_geni_serial_pm() to explicit
-RPM merely moving code around?
+Hello Lee,
 
-Seems like this deserves to not be hidden in a middle of a patch series.
+Thank you for the response!
 
-> Introduce necessary callbacks and updates to ensure seamless
-> transitions between power states, enhancing overall power
-> efficiency.
-> 
+Sure thing I will convert this into a separate patch.
 
-This commit message fails to state why we need runtime PM support in the
-driver.
+Best Regards,
+- Job
 
-Also, start your commit message with a problem description, per
-https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> ---
-> v5 -> v6
-> - added reviewed-by tag in commit
-> - added __maybe_unused to PM callback functions to avoid
->   warnings of defined but not used
-> ---
->  drivers/tty/serial/qcom_geni_serial.c | 33 +++++++++++++++++++++++----
->  1 file changed, 29 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-> index b6fa7dc9b1fb..3691340ce7e8 100644
-> --- a/drivers/tty/serial/qcom_geni_serial.c
-> +++ b/drivers/tty/serial/qcom_geni_serial.c
-> @@ -1686,10 +1686,10 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
->  		old_state = UART_PM_STATE_OFF;
->  
->  	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
-> -		geni_serial_resources_on(uport);
-> +		pm_runtime_resume_and_get(uport->dev);
->  	else if (new_state == UART_PM_STATE_OFF &&
->  		 old_state == UART_PM_STATE_ON)
-> -		geni_serial_resources_off(uport);
-> +		pm_runtime_put_sync(uport->dev);
->  
->  }
->  
-> @@ -1827,9 +1827,11 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	pm_runtime_enable(port->se.dev);
-
-Any reason not to use devm_pm_runtime_enable() and avoid the
-two pm_runtime_disable() below?
-
-Regards,
-Bjorn
-
-> +
->  	ret = uart_add_one_port(drv, uport);
->  	if (ret)
-> -		return ret;
-> +		goto error;
->  
->  	if (port->wakeup_irq > 0) {
->  		device_init_wakeup(&pdev->dev, true);
-> @@ -1839,11 +1841,15 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
->  			device_init_wakeup(&pdev->dev, false);
->  			ida_free(&port_ida, uport->line);
->  			uart_remove_one_port(drv, uport);
-> -			return ret;
-> +			goto error;
->  		}
->  	}
->  
->  	return 0;
-> +
-> +error:
-> +	pm_runtime_disable(port->se.dev);
-> +	return ret;
->  }
->  
->  static void qcom_geni_serial_remove(struct platform_device *pdev)
-> @@ -1855,9 +1861,26 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
->  	dev_pm_clear_wake_irq(&pdev->dev);
->  	device_init_wakeup(&pdev->dev, false);
->  	ida_free(&port_ida, uport->line);
-> +	pm_runtime_disable(port->se.dev);
->  	uart_remove_one_port(drv, &port->uport);
->  }
->  
-> +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device *dev)
-> +{
-> +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> +	struct uart_port *uport = &port->uport;
-> +
-> +	return geni_serial_resources_off(uport);
-> +}
-> +
-> +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device *dev)
-> +{
-> +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> +	struct uart_port *uport = &port->uport;
-> +
-> +	return geni_serial_resources_on(uport);
-> +}
-> +
->  static int qcom_geni_serial_suspend(struct device *dev)
->  {
->  	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-> @@ -1901,6 +1924,8 @@ static const struct qcom_geni_device_data qcom_geni_uart_data = {
->  };
->  
->  static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
-> +			   qcom_geni_serial_runtime_resume, NULL)
->  	SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
->  };
->  
-> -- 
-> 2.17.1
-> 
+>
+> >  4 files changed, 160 insertions(+), 2 deletions(-)
+>
+> [...]
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
 
