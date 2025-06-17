@@ -1,135 +1,123 @@
-Return-Path: <devicetree+bounces-186821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F76ADDA07
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:12:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1CCAADD9CD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CDD65A2E74
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:51:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 180A54A5FCC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FD62BF013;
-	Tue, 17 Jun 2025 16:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5162C2FA62C;
+	Tue, 17 Jun 2025 16:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gaFF0MHs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TbHkFOLa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC422FA65D;
-	Tue, 17 Jun 2025 16:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C883C2FA630;
+	Tue, 17 Jun 2025 16:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750178974; cv=none; b=LqO+xcpOpw881jn40oM8PaZ5mn3D/02NY6PxJfssU/V0U5gRwbIVMShOGbPI5eaYCPdkq/8EeOY7FZICytgGKkl2ne6maDTa1BKapMSLOp31kS8H8IFb6AYOn1ZUsMK/2rAjWhVLDDZ2zJOwVEtb8XYS5BdRo3+26p1AdzsT/sA=
+	t=1750179052; cv=none; b=NkXWq95piJCHbfYySTTqJ/S7tBbVtN1D06FqbHlGQhvVeAmg9JpDjvqUdGNPDyOHceeoBu8KIFwlbvMMARV02g3yFFi2zSwB3OrPild78zSo2sJ8pE2tjFpxOP48x3QqV5vcZwgWUamKez7Dkauyqv8GZv845xTU+BB7+ZrOigQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750178974; c=relaxed/simple;
-	bh=jEpQjHvEgxjUr21tptc9aTVBtZFn15TNyZmIdalww0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HB5yQMlWK9Qgl7mr+UyffdpYtI62/nrmmLqJPj485nj5V8ElFnUT3rikzcJ2XoQsBT0ZWlFyRvTFfy6r5ErPmTeJ7Qea+FaVoj97aItDWj1sWWo44aBnOVvyu+aUzUQ030j05EIMNy11P4UlTz9MFt0HqbCbtL2E/lUfZWprd9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gaFF0MHs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FEC7C4CEE3;
-	Tue, 17 Jun 2025 16:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750178973;
-	bh=jEpQjHvEgxjUr21tptc9aTVBtZFn15TNyZmIdalww0U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gaFF0MHsIlQAMMGGdeGyfqazHmIaiExIxbYl9dG/yuKZuPzP4vz8JZTPn+P5UfyJE
-	 gsaH1Icp7eGIGSOhrf5ez6dgr72NtugZZuVd73SXPuvGL7HUTucSraLfLKtjwmwFeo
-	 QSrbtRCFp0J6uQE1RVRPRk/NjYSVaggophWc3NabXIztzOP5HDZqHDxaBOdLNNqA+R
-	 jugmHjWGEVwisejQDpgyFQ2KJtdxVtbqL9pjCEUZbTqqjDST/wd/b67Ul7mfz+u1tM
-	 z2QvFqgTegUfBx0VXEJwRfgAsT2JsEdzEMJxuW99urb12avw44vArKm8UWqm+DGJhq
-	 btAkgz/2uSQYQ==
-Date: Tue, 17 Jun 2025 22:19:26 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	krzk+dt@kernel.org, manivannan.sadhasivam@linaro.org, conor+dt@kernel.org, 
-	robh@kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] Relax max-link-speed check to support PCIe
- Gen5/Gen6
-Message-ID: <d26lnkthpe66s5jg5wufew3p4n6suoldijhcgnihiir5kkjtck@ik5io2tcmx2q>
-References: <20250529021026.475861-1-18255117159@163.com>
+	s=arc-20240116; t=1750179052; c=relaxed/simple;
+	bh=kvX5YZmcGBW67g2eNbTrFZChsb+bypZuiwraRmBEuAc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sXJgFejbPwZHEZRsCGZgUxn+/tYa2vdg8LwnfFb/NO6RHJBYqa1LXBitY+QlQv1Sw+YVaIJQMlDVdAlgGt9xLJOTZL+i7CPR7etcAJZ83JY6h5H5TjEPkvQhGel3dtkOUFoccVjgB5oirYHwtnaM8C1396qA39F7UP1vVHkXM98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TbHkFOLa; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b2f62bbb5d6so4853729a12.0;
+        Tue, 17 Jun 2025 09:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750179050; x=1750783850; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MNcITrU6JuukDFgJVARWTcJMEqL8Jll48FxhL2fmWas=;
+        b=TbHkFOLaU9XxeaaXE3cpggXRZL1+WAaWaBewzU4noXhTfvmSSU+nSaGNZV4NIlU+4G
+         yg1FmCL27q9ja1LehA9Z8wmYUEOOxceNgo+a1P8MvezrluRiMSLFIk9txrR+bIV3RmdX
+         7gx/Mb185xRm8b77+HZ9IzUyb4rDrlrf74z+S29sMwUxbSTa6aXX/hys69LRI78Ky22Z
+         QT1E1ErJ2tZUjYxae9geQNX7NuSmgjNESuiC2lWKWayI7P/DvsUgOrMpIwYZ8kba/hEv
+         uaHGdl/SoRZzlqFN0w7csKoPkV2vJptnknPlzXskEP00DlrbNjtnU9wiEf5kXweocyUp
+         0XnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750179050; x=1750783850;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MNcITrU6JuukDFgJVARWTcJMEqL8Jll48FxhL2fmWas=;
+        b=t2IAhItEx8E5b3A1gemVc2qPxw2GN5iRXHzby8HlmC5h4kUi1ci8WJc8re4GfaCZCj
+         PtUkR8WrqCVTyo6pYEc/xLubvJ7KqhVyV1Zhs9LjZSYYBGuXcZ4h5cBYfEJfdjksVbfi
+         eXi3AzOth/HPK7v7KVz9etpZVgrcoHGCmm1Wb7lITIDMVokVU1g5iEUSzUWhqjFM3vkj
+         r+zwtRIQ6ZmtXuRlmx9Q5IiVIUbO5WRle4lV2fcRSDjE+Pu6Ee0dE/BMpJro895Z0AWo
+         AyH+yebfENHBmqc2LZqEhQEPQEzjjn9JjxWS+tI3K8yITx59ypfW8vOm7nJAEyq6EpLa
+         huFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUyJr/WVqqzrH4ZHH86invCJbcbWa5wNzYr6cCpa9DpOsrQXwxxHiDNpGmgmIZMhs0G6gwpnzpc1SpQUHE2@vger.kernel.org, AJvYcCV9HnG13OFSTtPDhmrVs9qV+Xmpapp3RkltYXiicmj1XVZt96IXo6eeszGlzNIiGYll3zH2kfo94Hi2@vger.kernel.org, AJvYcCVU1ucZadWE+DiFkn3Ql/zMboyPQtEuVCrIhvrQLVWQFZTanpyWKV6SDvZUeO/xIm97xlGxVj99RuKE@vger.kernel.org, AJvYcCX9Ck+Dc+5JHk3VWVk9QW72xB80x9aTUoIC4PfXVtBdrl2kkipYort5vfKNXeHQw30dY2aUYvTbhTFh9A==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4mAM77cxwI9T7uShlCEZ14jXTIFvW6/HExqAQFEaboYODrla+
+	aGgustTyBsEJeLOwXcl3keZGQURd4Jkvsx0QG5OhfKLFIm5y2EO28Lsp
+X-Gm-Gg: ASbGnctciwZNSinV0YiGEgBDOA/E2rxQbHLc4E8r4S9/BpdU31l2FwvDAdsKIeqgVEx
+	/vZSFs3fiRoLucUGIDcrU5U3zU/TjhpXM2BvE0GhSnXrLcWzaurpbrZH/zn+nOC+Axi9WB0zKC0
+	MNnL2YWuypi8N0yYLO+Qh1rIAfx83QLOfiZUeU5wIJ/QvmpASoa8D4lGSgyIGDVs6/SRTegsro1
+	ejXMtKPMTbZg/SRnrPuY/3ePLUuQLqfmz+Aq0aPfKXq11wdmyQp+reGS+ujldCDFxa8t52kImxU
+	5NzBdvUxBdFjRO0HgsTXaMVqWttOaf0a/GvqFmTQVXDcgIa4pa4/2DxOMbKW1km7B1qQyxSEAjB
+	3WhA2WnE=
+X-Google-Smtp-Source: AGHT+IFrh0CqCS+0EnmoW16xodzDguEs41RmnPUFRPeJCtO3FLwjDQLXiW4zZXZnhF4eFRlEfGg/gw==
+X-Received: by 2002:a05:6a00:6f46:b0:748:e150:ac5c with SMTP id d2e1a72fcca58-748e150ad75mr1169690b3a.23.1750179049998;
+        Tue, 17 Jun 2025 09:50:49 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([42.113.163.91])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748e3afb1cesm50488b3a.3.2025.06.17.09.50.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 09:50:49 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: rdunlap@infradead.org
+Cc: lee@kernel.org,
+	pavel@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 2/4] leds: add TI/National Semiconductor LP5812 LED Driver
+Date: Tue, 17 Jun 2025 23:50:44 +0700
+Message-Id: <20250617165044.21146-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <8a9647fc-3156-461e-8460-e3cade2c6f5d@infradead.org>
+References: <8a9647fc-3156-461e-8460-e3cade2c6f5d@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250529021026.475861-1-18255117159@163.com>
 
-On Thu, May 29, 2025 at 10:10:23AM +0800, Hans Zhang wrote:
-> This patch series extends PCIe Gen5/Gen6 support for the max-link-speed
-> property across device tree bindings and kernel validation logic.
-> 
-> With PCIe 6.0 now supported in the Linux kernel and industry IP providers
-> like Synopsys/Cadence offering PCIe 6.0-compatible IPs, existing device
-> tree bindings and checks for max-link-speed (limited to Gen1~Gen4) no
-> longer align with hardware capabilities.
-> 
-> Documentation updates:
-> 
-> Patch 1/3 extends the PCI host controller binding (pci-bus-common.yaml) to
-> explicitly include Gen5/Gen6.
-> 
-> Patch 2/3 updates the PCI endpoint binding (pci-ep.yaml) with the same
-> extension.
-> 
-> Kernel validation fix:
-> 
-> Patch 3/3 relaxes the max-link-speed check in of_pci_get_max_link_speed()
-> to accept values up to 6, ensuring compatibility with newer generations.
-> 
-> These changes ensure that device tree configurations for modern PCIe
-> controllers (e.g., Synopsys/Cadence IP-based designs) can fully utilize
-> Gen5/Gen6 speeds without DT validation errors.
-> 
-> ---
-> In my impression, they have already obtained the relevant certifications.
-> 
-> e.g.:
-> Synopsys:
-> https://www.synopsys.com/dw/ipdir.php?ds=dwc_pcie6_controller
-> 
-> Cadence:
-> https://www.cadence.com/en_US/home/tools/silicon-solutions/protocol-ip/pcie-and-compute-express-link/controller-for-pcie-and-cxl/controller-for-pcie.html
-> ---
-> 
-> ---
-> Changes for v2:
-> - The following files have been deleted:
->   Documentation/devicetree/bindings/pci/pci.txt
-> 
->   Update to this file again:
->   dtschema/schemas/pci/pci-bus-common.yaml
-> ---
-> 
-> Hans Zhang (3):
->   dt-bindings: PCI: Extend max-link-speed to support PCIe Gen5/Gen6
->   dt-bindings: PCI: pci-ep: Extend max-link-speed to PCIe Gen5/Gen6
+On Tue, 10 Jun 2025, Randy Dunlap wrote:
 
-Applied patch 2 to pci/dt-bindings, thanks!
+> > +config LEDS_LP5812
+> > +	tristate "LED support for Texas Instruments LP5812"
+> > +	depends on I2C
+> > +	help
+> > +	  If you say Y here you get support for TI LP5812 LED driver.
+> > +	  The LP5812 is a 4 × 3 matrix RGB LED driver with autonomous
+> 
+> 	The '×' character does not display well (not at all) in menuconfig
+> 	or nconfig. The graphical configs (gconfig, xconfig) can display it.
+> 	I would change it to 4x3 (letter 'x') but it's up to you.
 
-- Mani
+Thanks for pointing that out.
+I'll change it to 'x' for better compatibility with config tools.
 
->   PCI: of: Relax max-link-speed check to support PCIe Gen5/Gen6
-> 
->  dtschema/schemas/pci/pci-bus-common.yaml          | 2 +-
->  Documentation/devicetree/bindings/pci/pci.txt     | 5 +++--
->  drivers/pci/of.c                                  | 2 +-
->  3 files changed, 5 insertions(+), 4 deletions(-)
-> 
-> 
-> base-commit: fee3e843b309444f48157e2188efa6818bae85cf
-> -- 
-> 2.25.1
-> 
+Appreciate your time and feedback.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards,
+Nam Tran
 
