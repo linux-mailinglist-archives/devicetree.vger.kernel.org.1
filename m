@@ -1,106 +1,140 @@
-Return-Path: <devicetree+bounces-186469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF07ADC08E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:28:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 194DFADC09D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 226A47A1A18
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 04:27:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07F313B63E3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 04:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D066920E310;
-	Tue, 17 Jun 2025 04:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E97420C00C;
+	Tue, 17 Jun 2025 04:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JT0Zap80"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XWKvOAnn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20C115539A;
-	Tue, 17 Jun 2025 04:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64ACB19DF7A;
+	Tue, 17 Jun 2025 04:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750134506; cv=none; b=pggJzdX9N0dGp2sPBTmU9L2c3zUgB8vZrlaIFtcWk4bzbSnbW5lWbtogkDK8ydzk8gxH8zZwpdFMm5OAwRIv5POXywbJx/fJgD2QklpsLia83tFink5UsnlYb4SLpoFWN1aOOamPUBQD8HjK4sRIyA4nWJTe6NtErfJR16QRcKU=
+	t=1750134620; cv=none; b=M8lo5ifml5qkYn6bb+IAdY2ibzBpzq91WDKYzgMKrqwtUoaoEB/u4hzZGy8JORCZpQ5WOXEtB+6+DuyeTyQU29PyH+RyP/C8ix1AE4mD6rpGyH03YSL+RA78XT0roBoRkvJZ3nqcPF/L10iL2ZW/8UOPNwFBbliG9biJMtje23I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750134506; c=relaxed/simple;
-	bh=PnJko5vxDtAYo4xtfL54bpZLAmxUI5zpeQ7QYnXzKvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=djyoCCWWTExKIbv80M1rtpjo3DodiWsSKRKkGnilE8dJX0rxBNbP5GunH26wTKtafbsj/ZDE/sGVn2LrqyxNwquOaqp4UVK0MKeQhDU+j1MYw8PupkoSqEJUthSRwqDsXPJU+yJFDTpSc5tgI1pbszqJSTicjJhX9HOIqYxJtPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JT0Zap80; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A85E2C4CEE3;
-	Tue, 17 Jun 2025 04:28:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750134506;
-	bh=PnJko5vxDtAYo4xtfL54bpZLAmxUI5zpeQ7QYnXzKvQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JT0Zap801QYfqX2dK6+3BKLTq1OF46HXM2SK+yQrcSWC8I0+zNUAnAAgk3oW5qz/j
-	 bViQ4PWHNR7sp/btqryPHfVoaJaLBgME5dXhIHLrA94VDiVckwTcRtJbO06HZZt725
-	 dH11OlQhV9Gkmc+f21JopULDKqTzdurT1MHX3Ovf0jI/T0VAFNegSarfjXrg+fOzga
-	 7QmwpodhbrLN8MkjoeEVEpft84z0LxroJd+JdiXE7PUl8teApAvmMPmHyMAC6mxsh9
-	 m4HJsdClJkT8S4S/Pr/gigmN6cn6niFTyWi9dvmj2s3bw717Dms2/jXMNlK4IMUalG
-	 hZVoqhPXnyhpg==
-Date: Mon, 16 Jun 2025 21:27:55 -0700
-From: Eric Biggers <ebiggers@kernel.org>
-To: T Pratham <t-pratham@ti.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kamlesh Gurudasani <kamlesh@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Praneeth Bajjuri <praneeth@ti.com>,
-	Manorit Chawdhry <m-chawdhry@ti.com>
-Subject: Re: [PATCH v5 0/2] Add support for Texas Instruments DTHE V2 crypto
- accelerator
-Message-ID: <20250617042755.GG8289@sol>
-References: <20250603124217.957116-1-t-pratham@ti.com>
+	s=arc-20240116; t=1750134620; c=relaxed/simple;
+	bh=1q91GkQwmwkJe2N1Q451I/4ntxh/AWo/HgCV0Okp15Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aHPbxhV2vY88e1MOQ2G5ioYZKkdizpNvggbgN+Yil96trwHn4IyslT0vzQ+K5yPMh/htHohDIRyamReIIKN33LITZ5X5fGRlYiN47QeACmaCBqy2+rJZPkk5p7RZ3C/Wj98wwaJDOPYd3swXpck3CFjD1h6l/WYBj0G5g3zE5nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XWKvOAnn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GHOG8p002991;
+	Tue, 17 Jun 2025 04:30:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HDW7D7+uYyvCn2FKwUs7ZQqOu73VYzjex5OSChvIbjc=; b=XWKvOAnnZVte//nW
+	vqCfGdM4aBkQSWhfFJuKRaIonJ5nCJVU/cIGPyPRe6/fUzaPBMZeEe1CrJ8To+vJ
+	lCQhlhNCWicNrZR/kfPpfTKtWBR6XoEV6AFpCD3N0+ZHOuspXW1n2RzOIdKFfDkq
+	p1VP8IgAIpKD7+30rNG2tMcUKOpN+Ocd5uBgr2XrG5GUG0gAHX1Mn0bz4n8QxdE6
+	HlN+1hWfyE8PY9D3O5isdE/xE6uBg7QyihlF7VxPFFG18GJsQMSyQOoWNaWduTml
+	d5Um0eAuL2jbKcOwYvpRvLV4ki9GBl+rIt8IHaXnYzRpoRLTkuko3ka8veR7cmbv
+	j165EA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ag232yp9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Jun 2025 04:30:14 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55H4UDKc020798
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Jun 2025 04:30:13 GMT
+Received: from [10.217.199.111] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Jun
+ 2025 21:30:09 -0700
+Message-ID: <b6f4ccc6-5157-4076-aba1-7bd21c53ab19@quicinc.com>
+Date: Tue, 17 Jun 2025 10:00:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250603124217.957116-1-t-pratham@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615: Enable TSENS support for
+ QCS615 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>, <amitk@kernel.org>,
+        <daniel.lezcano@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>
+CC: <devicetree@vger.kernel.org>, <=linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_manafm@quicinc.com>
+References: <20250613112402.2203617-1-quic_gkohli@quicinc.com>
+ <20250613112402.2203617-3-quic_gkohli@quicinc.com>
+ <a1077f88-b17c-48b7-b87a-06331b0bfaa7@kernel.org>
+Content-Language: en-US
+From: Gaurav Kohli <quic_gkohli@quicinc.com>
+In-Reply-To: <a1077f88-b17c-48b7-b87a-06331b0bfaa7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6izcmyklNmsJRTrjXix4nCEJZ3c_Y9So
+X-Authority-Analysis: v=2.4 cv=edY9f6EH c=1 sm=1 tr=0 ts=6850ef56 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=UXIAUNObAAAA:8
+ a=COk6AnOGAAAA:8 a=pdgr3DADYXGs-4q4n7cA:9 a=QEXdDO2ut3YA:10 a=bFq2RbqkfqsA:10
+ a=a1s67YnXd6TbAZZNj1wK:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDAzNSBTYWx0ZWRfX+l5qISNJ+EBg
+ 4NQeYXwi6dmoYBHxfdOXBtGjDryhNmV+yOKS2DLeWHzjLjUqx4bRnSX6YkWgrslZ2Oe9CxinfNy
+ ja2kzSUOEeUGFyqv6H6zeLNtHIlPLONj52jNHE/u5Z70aY9UN4hC+CjvCqyEjOKF7eEohkzDQxh
+ vYmDzbejwS2fe+SLcp2MdOb6qzg3gik3QaWTnUK5PuJbk6e6NlWqHwwVganaNII+j5FR4ZsTq8I
+ Jzpas5oU9ni26T494QUS/M6UWTjEEciqXWsXHaMTdewWYKyN5VnYwIt7gZP+D6PCHpYla+0I7zk
+ fGDQXjtL8OSbEZHqXRRgsEuvgZAMrKo3yscnlwUnm2GDTMsRD1MxoqBz6Qb2l/+rto6Wxf7FgKA
+ +aR9CJhVRSn579QUt9PuEXWQq9BVr4d3SSDRjA1mVODKn86ovyI4xboS4nDy/nIiityTUc/E
+X-Proofpoint-GUID: 6izcmyklNmsJRTrjXix4nCEJZ3c_Y9So
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-17_01,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 suspectscore=0 spamscore=0 bulkscore=0
+ impostorscore=0 mlxscore=0 clxscore=1011 mlxlogscore=834 malwarescore=0
+ phishscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506170035
 
-On Tue, Jun 03, 2025 at 06:07:27PM +0530, T Pratham wrote:
-> This series adds support for TI DTHE V2 crypto accelerator. DTHE V2 is a
-> new crypto accelerator which contains multiple crypto IPs [1].
-> This series implements support for ECB and CBC modes of AES for the AES
-> Engine of the DTHE, using skcipher APIs of the kernel.
+
+
+On 6/13/2025 6:12 PM, Krzysztof Kozlowski wrote:
+> On 13/06/2025 13:24, Gaurav Kohli wrote:
+>> Add TSENS and thermal devicetree node for QCS615 SoC.
+>>
+>> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> index bb8b6c3ebd03..fda8b8638718 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> @@ -3692,6 +3692,17 @@ usb_2_dwc3: usb@a800000 {
+>>   				maximum-speed = "high-speed";
+>>   			};
+>>   		};
+>> +
+>> +		tsens0: tsens@c222000 {
 > 
-> Tested with:
-> CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
-> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+> Don't send us downstream. Node names should be generic. See also an
+> explanation and list of examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 > 
-> and tcrypt,
-> sudo modprobe tcrypt mode=500 sec=1
 > 
-> Signed-off-by: T Pratham <t-pratham@ti.com>
-> ---
-> [1]: Section 14.6.3 (DMA Control Registers -> DMASS_DTHE)
-> Link: https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
+thanks for review & comment, will fix the naming.
+> Best regards,
+> Krzysztof
+> 
 
-Numbers, please.  What is the specific, real use case in Linux where this
-patchset actually improves performance?  Going off the CPU and back again just
-to en/decrypt some data is hugely expensive.
-
-Note that the manual you linked to above explicitly states that the CPU supports
-the ARMv8 Cryptography Extensions.  That definitively makes any off-CPU offload
-obsolete.  But even without that, these sorts of off-CPU offloads have always
-been highly questionable.
-
-I think it's implausible that this patchset could actually be beneficial.
-
-In fact, it might actually be really harmful.  You set your algorithms to
-priority 30000, which makes them be prioritized over ARMv8 CE.  I've seen
-exactly that bug with other "accelerators", which actually regressed performance
-by over 50x compared to simply staying on the CPU.
-
-- Eric
 
