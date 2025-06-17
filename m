@@ -1,204 +1,227 @@
-Return-Path: <devicetree+bounces-186524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75CFADC3CA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:55:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF63ADC3DC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E05571896E48
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:55:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 865527A8E2F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 07:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8829428ECCB;
-	Tue, 17 Jun 2025 07:55:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB04C28ECDA;
+	Tue, 17 Jun 2025 07:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nLyu2AU3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oy0KoSKa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA521E008B;
-	Tue, 17 Jun 2025 07:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC12E28ECCD;
+	Tue, 17 Jun 2025 07:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750146909; cv=none; b=ewEdK2jWbiLRNWS8psIGop8u0jdhbGSObZZRBATSpi479J7sdqNv6qNw5y1Fuht4SaLEIxbxX6vm32ms6yhCyAeQeLfzG6s/wE9UmB9uzQ/WONPUzihEXmAbkldKrWE3zX28fY/Dbzj1iPdQU3ARz7GnmcxnSEEkYzVCLAQUvRI=
+	t=1750147160; cv=none; b=Af3WbLS/xzl4uG/MHa71G5rsFwe6B5pmRJqmgUmxubAzpadX0DuMzrOlbB9JgZQ41ayK4hpLhpyScw5XICF5pIWmq9rFzlrBkEukhJ2Bf3+36ILiHVINQlOTClyKRa+0i2w1JTWK8XNhJFNTaLWwKR/q/XsmCroLpIBg+loN+Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750146909; c=relaxed/simple;
-	bh=p3P9QL1Q/bB2osrnrmMdPHDXHWkXxUr+dLGsCfhdwL0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gy50JDUxsNQO0r1EBbMlUBYiBH+7Cb0IztZhLoUPplZLF8mNH3TBgv6I5pcGL1p5va6JkJnUNRRqEiORYX5xbF1HLh6FrwVZtytMSwqmdnUB5BQwalEuqx0NYsQfNWIcDnBijpTREoajlNES1vi+gMWhg8T7K2lWBGtCtqA6Br8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nLyu2AU3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E158CC4CEE3;
-	Tue, 17 Jun 2025 07:55:05 +0000 (UTC)
+	s=arc-20240116; t=1750147160; c=relaxed/simple;
+	bh=byesW+Se6X5SuEzLgB6KkhVKbYK7slvyxQIgO6neyBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P77pWY4PqR2DhlxPOtpWzPc56dgr3UoAN19o30wNTJ6ykr3eV/KaziFLz7sUTZUWlU/zjmJoXIXQldY5H+ztcd81VX5i3uzDtpp8+3PJSBYjDcaCTL5lzt0b3qwf0URpXRPOdeGMenIIj4k55EK5oXUNz28s04JnRW0vY1NRgHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oy0KoSKa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00CFEC4CEED;
+	Tue, 17 Jun 2025 07:59:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750146908;
-	bh=p3P9QL1Q/bB2osrnrmMdPHDXHWkXxUr+dLGsCfhdwL0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nLyu2AU3hnSwHwbfR+veBhM2vUFPR2CmJGofG+ayqDh9D/vpwl7jczoug55hz50BD
-	 Bs2fhuf6L80ZDGE+5W6ekio/lvu+kCOZ5GWNITFYPvcRNC/0fzIoSTFVz/GIq9eFGS
-	 Gd+5Hci3mmtO5Sj9NlsQ/e3kBfzMEQfE1OHlY+CV48Xs8A+k3UsRWv8wy7V/2AKrQM
-	 lgd7c4lGXFt1fIGFYuBvr9/aZZp3X2craHNM9UgsT3/AMqLNzxG4G1SuXcpKkn+QF9
-	 uynWsok5X3BYPbD/9Kprmy2t6grLm+g2oqeeEhICG9f+tEkuKHj6YBPjZChECo7Pjb
-	 xPkT3VqpCtC+g==
-Message-ID: <86817edd-a966-4a39-9622-7cef7f070e42@kernel.org>
-Date: Tue, 17 Jun 2025 09:55:04 +0200
+	s=k20201202; t=1750147160;
+	bh=byesW+Se6X5SuEzLgB6KkhVKbYK7slvyxQIgO6neyBo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oy0KoSKa9joZZM9OtdixrPl0rtq0ZxhsoPHs0pF8D4wc5JfzsOWchPi04kCSzIyDx
+	 Eos49bnoQNAIiT0cRCI2DPRDnjLy54kJdhGDzvkWF5wxOm458H7PywvNaZu9ANDmbo
+	 cWxjxq0CzUjI4H8q3BAICfwJONc+FtXA89LwrkpT+CXB+3hm+loaOP1iVTYq/ekTWw
+	 urlGpNomxAOWTGFia1+mgYPSAVNsVza6ih4rAKGFKF/sWNcvMwnp+baAiRPR697CNo
+	 TWf4wMBO8aLxTd8CRKdQEvUlZT7aNfIww3excCXrLPqEIDVJY3LRI2a2JXRCSTxJSk
+	 mkFiaS7gpWFzQ==
+Date: Tue, 17 Jun 2025 09:59:17 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+Message-ID: <47s4qjr7iujql36opgkp3cniq46oc4p72aaewzs3i3oxp4tcgn@ikrczuyxcqwb>
+References: <20250617002852.606409-1-marek.vasut+renesas@mailbox.org>
+ <20250617002852.606409-3-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
-To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
- bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, stanimir.varbanov@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
- <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org> <aFATp3zoSgkrj3YX@trex>
- <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org> <aFBDzWLkKC9MWGoC@trex>
- <48e6cc62-ffb0-4ca7-80c8-9e510db505db@kernel.org> <aFBNVjl4n7I+OkO5@trex>
- <c7aef6cd-e07d-4422-a34a-ce04c37ad2e8@kernel.org> <aFEPfjJLEMnIriXX@trex>
- <0d381ad0-85d4-43de-a050-3b9ed03bf5d8@kernel.org> <aFEZnrMUH7qorvnt@trex>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aFEZnrMUH7qorvnt@trex>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mtj4m4lkj7ypbbbl"
+Content-Disposition: inline
+In-Reply-To: <20250617002852.606409-3-marek.vasut+renesas@mailbox.org>
 
-On 17/06/2025 09:30, Jorge Ramirez wrote:
-> On 17/06/25 08:56:37, Krzysztof Kozlowski wrote:
->> On 17/06/2025 08:47, Jorge Ramirez wrote:
->>> On 17/06/25 08:14:23, Krzysztof Kozlowski wrote:
->>>> On 16/06/2025 18:59, Jorge Ramirez wrote:
->>>>> On 16/06/25 18:23:18, Krzysztof Kozlowski wrote:
->>>>>> On 16/06/2025 18:18, Jorge Ramirez wrote:
->>>>>>> On 16/06/25 16:41:44, Krzysztof Kozlowski wrote:
->>>>>>>> On 16/06/2025 14:52, Jorge Ramirez wrote:
->>>>>>>>>>
->>>>>>>>>>> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
->>>>>>>>>>> +  on Qualcomm platforms
->>>>>>>>>>> +
->>>>>>>>>>> +allOf:
->>>>>>>>>>> +  - $ref: qcom,venus-common.yaml#
->>>>>>>>>>> +
->>>>>>>>>>> +properties:
->>>>>>>>>>> +  compatible:
->>>>>>>>>>> +    const: qcom,qcm2290-venus
->>>>>>>>>>> +
->>>>>>>>>>> +  power-domains:
->>>>>>>>>>> +    minItems: 2
->>>>>>>>>>> +    maxItems: 3
->>>>>>>>>>> +
->>>>>>>>>>> +  power-domain-names:
->>>>>>>>>>> +    minItems: 2
->>>>>>>>>>
->>>>>>>>>> Why is this flexible? Either you have two or three. Not mixed.
->>>>>>>>>
->>>>>>>>> please check 5b380f242f360256c96e96adabeb7ce9ec784306
->>>>>>>>
->>>>>>>> This does not explain why this is optional HERE. You cannot use for a
->>>>>>>> new platform an argument that some existing platform was changed in
->>>>>>>> ABI-preserving way.
->>>>>>>
->>>>>>> thanks for quick the follow up.
->>>>>>>
->>>>>>> but bear with me please because I dont follow - why can the same logic
->>>>>>> be used - it being applicable - and therefore result in a definition
->>>>>>> similar to those other platforms?
->>>>>>
->>>>>> Because this platform either has 2 or 3, not both. Unless that's not
->>>>>> true, but then please share some arguments.
->>>>>
->>>>> as with every other venus schema with more than 1 power domain, the
->>>>> argument is the same one that I have shared with you a couple of
->>>>> messages back (DVFS).
->>>>>
->>>>> verbatim:
->>>>>     Venus needs to vote for the performance state of a power domain (cx)
->>>>>     to be able to support DVFS. This 'cx' power domain is controlled by
->>>>>     rpm and is a common power domain (scalable) not specific to
->>>>>     venus alone. This is optional in the sense that, leaving this power
->>>>>     domain out does not really impact the functionality but just makes
->>>>>     the platform a little less power efficient.
->>>>
->>>> That's not definition of optional. The domain is needed for this device,
->>>> the device is one way or another having its rails routed to that domain.
->>>> It is not optional.
->>>>
->>>>>
->>>>> Seeing all these venus schemas follow the same pattern, it seems to me
->>>>> that this is the correct way of implementing the above.
->>>>
->>>> No for the reason I mentioned earlier.
->>>
->>> So just to close this story up, were these two commits wrongly
->>> reviewed and signed off then ? Please do notice they were also - just
->>> like this one - new additions and not a change in an ABI preserving way
->>> as you characterize them.
->>>
->>> e48b839b6699c2268e545360e06962bb76ff5b8d
->>> 8d3a1cb32124eaeb3f2efe4889de214d3b658d8d
->>
->> I was waiting for this argument: there was something similar some years
->> ago (but even months ago...) and it got reviewed, so I can do the same.
 
-Waiting and hoping discussion will end earlier... but I guess I should
-anticipate your arguments and find preemptively some commits from 4
-years ago. Well, I have just 100 patches on patchwork with status "Needs
-Review", so I will not go through past commits anticipating other
-persons arguments when reviewing that person's patches.
+--mtj4m4lkj7ypbbbl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v2 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+MIME-Version: 1.0
 
-Help in reviews is always appreciated, especially if by any chance you
-are unhappy with me not having time to bring past commits into the
-review discussions.
+Hello Marek,
 
-Best regards,
-Krzysztof
+On Tue, Jun 17, 2025 at 02:28:02AM +0200, Marek Vasut wrote:
+> diff --git a/drivers/pwm/pwm-argon-fan-hat.c b/drivers/pwm/pwm-argon-fan-hat.c
+> new file mode 100644
+> index 000000000000..a26b58ee7f29
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-argon-fan-hat.c
+> @@ -0,0 +1,115 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2025 Marek Vasut
+> + *
+> + * Limitations:
+> + * - no support for offset/polarity
+> + * - fixed duty cycle, period changes from 0Hz..120kHz
+
+A link to the product page would be great.
+
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pwm.h>
+> +
+> +static int argon_fan_hat_round_waveform_tohw(struct pwm_chip *chip,
+> +					     struct pwm_device *pwm,
+> +					     const struct pwm_waveform *wf,
+> +					     void *_wfhw)
+> +{
+> +	u8 *wfhw = _wfhw;
+> +
+> +	*wfhw = DIV_ROUND_CLOSEST_ULL(wf->duty_length_ns * 100, wf->period_length_ns);
+> +
+> +	return 0;
+> +}
+> +
+> +static int argon_fan_hat_round_waveform_fromhw(struct pwm_chip *chip,
+> +					       struct pwm_device *pwm,
+> +					       const void *_wfhw,
+> +					       struct pwm_waveform *wf)
+> +{
+> +	const u8 *wfhw = _wfhw;
+> +
+> +	/* 1 step of this hardware is cca. 1200 Hz increase in frequency */
+> +	wf->period_length_ns = DIV64_U64_ROUND_UP(NSEC_PER_SEC, *wfhw * 1200);
+> +	wf->duty_length_ns = wf->period_length_ns / 10;
+> +	wf->duty_offset_ns = 0;
+
+How extraordinary, so the relative duty cycle is always 10%? In the
+binding patch you claimed duty cycle was constant?
+
+Please enable PWM_DEBUG while testing.
+
+> +	return 0;
+> +}
+> +
+> +static int argon_fan_hat_write_waveform(struct pwm_chip *chip,
+> +					struct pwm_device *pwm,
+> +					const void *_wfhw)
+> +{
+> +	struct i2c_client *i2c = pwmchip_get_drvdata(chip);
+> +	const u8 *wfhw = _wfhw;
+> +	u8 tx[2] = { 0x80, *wfhw };
+> +	struct i2c_msg msg = {
+> +		.addr = i2c->addr,
+> +		.len = 2,
+> +		.buf = tx,
+> +	};
+> +
+> +	return (i2c_transfer(i2c->adapter, &msg, 1) == 1) ? 0 : -EINVAL;
+> +}
+> +
+> +static const struct pwm_ops argon_fan_hat_pwm_ops = {
+> +	.sizeof_wfhw		= sizeof(u8),
+> +	.round_waveform_fromhw	= argon_fan_hat_round_waveform_fromhw,
+> +	.round_waveform_tohw	= argon_fan_hat_round_waveform_tohw,
+> +	.write_waveform		= argon_fan_hat_write_waveform,
+
+Please add a comment about why there is no .read_waveform().
+
+> +};
+> +
+> +static int argon_fan_hat_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	struct pwm_chip *pc = devm_pwmchip_alloc(&i2c->dev, 1, 0);
+> +	int ret;
+> +
+> +	if (IS_ERR(pc))
+> +		return PTR_ERR(pc);
+> +
+> +	pc->ops = &argon_fan_hat_pwm_ops;
+> +	pwmchip_set_drvdata(pc, i2c);
+> +
+> +	ret = devm_pwmchip_add(&i2c->dev, pc);
+> +	if (ret)
+> +		return dev_err_probe(&i2c->dev, ret, "Could not add PWM chip\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
+> +{
+> +	u8 tx[2] = { 0x80, 0x64 };
+> +	struct i2c_msg msg = {
+> +		.addr = i2c->addr,
+> +		.len = 2,
+> +		.buf = tx,
+> +	};
+> +
+> +	i2c_transfer(i2c->adapter, &msg, 1);
+> +}
+
+This is argon_fan_hat_write_waveform(..., _wfhw=100). Looks like an
+opportunity to consolidate these functions.
+
+> +static const struct of_device_id argon_fan_hat_dt_ids[] = {
+> +	{ .compatible = "argon40,fan-hat" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, argon_fan_hat_dt_ids);
+> +
+> +static struct i2c_driver argon_fan_hat_driver = {
+> +	.driver = {
+> +		.name = "argon-fan-hat",
+> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+> +		.of_match_table = argon_fan_hat_dt_ids,
+> +	},
+> +	.probe = argon_fan_hat_i2c_probe,
+> +	.shutdown = argon_fan_hat_i2c_shutdown,
+> +};
+> +
+> +module_i2c_driver(argon_fan_hat_driver);
+> +
+> +MODULE_AUTHOR("Marek Vasut <marek.vasut+renesas@mailbox.org>");
+> +MODULE_DESCRIPTION("Argon40 Fan HAT");
+> +MODULE_LICENSE("GPL");
+
+--mtj4m4lkj7ypbbbl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhRIFIACgkQj4D7WH0S
+/k4Y/Af9G681BZSzo1iw+NSUjcQ0a4NqczEYwblboku6XSfrvKklwZeMSOYHBYZs
+EyTe9VO9JROk+65IyPzOJ+jIH54+IJTmhVBRg3EbEKJ+lygOx21YH/VyoHWXE0qb
+Wz+w9ik9tcqp8/e/pDn5FVc5/3O2ws3/9w7CBSCskoY5qRkyy3iZX3BhNgOLeqS8
+vnAmb11jqmo7ChDuPKQDQ06icjcgVpXrztvK2/PfPvWEySJVaQWWxxrKoIPZYKgA
+92l6r9ml5qClITHiIVG715HtWUGKPROKQEiHuOZHWu81NK9gVfs+eqgFraAHkQNp
+cvSAIBPdENavI+ZyL4hSDp7gOxrMaQ==
+=LyfD
+-----END PGP SIGNATURE-----
+
+--mtj4m4lkj7ypbbbl--
 
