@@ -1,155 +1,126 @@
-Return-Path: <devicetree+bounces-186743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E38ADD025
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:41:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B53ADD09E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 050BB1621D9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:41:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CB5C401230
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEEC12EB10;
-	Tue, 17 Jun 2025 14:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A898B2DF3F7;
+	Tue, 17 Jun 2025 14:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dSTCRk8U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gZk0NH1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9997B2CCDE;
-	Tue, 17 Jun 2025 14:41:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4FC2DE201;
+	Tue, 17 Jun 2025 14:47:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750171270; cv=none; b=d0KAOAvHaM4wIjVryUoZ6qsFaiHnMremXbdi2KGdR95OO6Z3d+/YjO8kxXIrerNNUPyHm5fYQZDDeclSH/wCKg91m1SUSMLmW5Z9xlf79nF3cBZQrJLWQrgUsfNe8p/qPzPLUTjScXcEEHJUfiqjo1VGdqRtdBgqiKwAAxU0zSU=
+	t=1750171653; cv=none; b=GLAuqSVQCih+71VJAlwRfwTsISt3Vyu6RdbE25EyvUfrO+WH2NavKMghGqTp4oeegijT+yMdNE7dVOwT2ubNsuCroN2XBZzXISXwYhXVihDuRywX1sWbM692MjRYaK9ORlOAscaO7t/JwWfkf9BfeRe90kLz4uyu1M9ivSaoxwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750171270; c=relaxed/simple;
-	bh=XdJb0Fw4Rr6pT0ZoN+vrT8BJNFqp2n7RZt9bLdoicy0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jcCjAhgg0L38niekZ8SEGzwmokzFOZhik6zFX4v9WIA+cQdIhBqStlANqZmvRg5Sh+RkBPVU8J3Nwe0/nWO98zHLas07iBkOq4Vj5kdK3i9pX1xie+Hs3nftcQ8IT6pH/dlLJINo3Kf25133l94S8yaO3YRq+CnammmOIrWxvJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dSTCRk8U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD93C4CEE3;
-	Tue, 17 Jun 2025 14:41:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750171269;
-	bh=XdJb0Fw4Rr6pT0ZoN+vrT8BJNFqp2n7RZt9bLdoicy0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dSTCRk8Uwi677vKg6k6lOAWXdtA+M+meFSVzjlFArZ9bvcH54PzhYbqd7CJlg63T/
-	 xJ0+p8rTVazZ6/wO72ITTYo2jiM5Tbugln+L3yIBtD9EBCyLvlK3Uf+wo/ABwAm3Vy
-	 fPAoXHXkEsLyBw49G9HKJjcjV6mofeyhQa4lbM/8mb3sWMomcQgyA7/LvkGC8yKDG9
-	 odnD5n9ZIAUz+x2GSLx7JB/j6pW2RBIQtlbDvHkin8zrtZV/xYDMLS6fmj6g31qdWG
-	 HZkv+V2DMP0ZzeS0iAymfIqkXqCiWdwpzWqjTJXdU4eV1g/aaKOhKSpv5Kz+VAmX7Z
-	 jrf/zUgEtABtw==
-Date: Tue, 17 Jun 2025 16:41:00 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1750171653; c=relaxed/simple;
+	bh=IzkVodiKGqG2Hx0dNaL9Ea7qx63st4euoU75dM7/X6c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IHMSe/KsijnA3xP3OzbQamyFT7AX2KgO/dVqWXcOQz+t95kPmxar7Rz80GmlHEKRr6n96EYpnNxs4BVvM6KloFmQ/x+TWuDVTrj0jfUZpfaEsBUrtcBSkcXwMWpgItl39qNgy7h9pHlOvZbx2i8Eh8SptV9rqVOSlisCYTNXqSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZk0NH1v; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6077dea37easo11280335a12.3;
+        Tue, 17 Jun 2025 07:47:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750171650; x=1750776450; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lpygrMPmKf1mO8Jd5/JcuJM9Ew7b30x4jhAAfy50YQU=;
+        b=gZk0NH1veydBEihXWuZM0I0btFDdsdSYzw/9N1JdsJK9Ln/GM9knVsE1JmelBCd6oB
+         sPiH/YLItLISQvmuaFjFgiK9YSULbZPyPFNUUhmJLZ7crPzZ//iZtdllB39sJqnXu4nB
+         hQdfQDr/oowJdcyKcfbcULNZqREAAMVM9MV5+LSMEA64M8pMX+rs/JhoOnwN3YR6f7ck
+         AIwgS1VGiop8LCwmEaTbm6RCKMa+nfiZ967rEMso9J4+BUuywsyyaJvOjt5KpL5WZsPB
+         bSACiHMIsy4HB6g5uTsjM9HgjZHPCCUcRcxl4wNuzsrnzWWIla98o6f3Ctvwqj2q418s
+         WPUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750171650; x=1750776450;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lpygrMPmKf1mO8Jd5/JcuJM9Ew7b30x4jhAAfy50YQU=;
+        b=nvUAO6fiE2/W5a3/YwTznJBqN+10vKq67cAHMfprKgindNMrBhVOFQuafGHt6K4iMb
+         Jd+iD8Jyah8xZRIJzM6naC6+YlvZP/S1PX7JHI3IaBwRCSmFedXumAxQCZNQWXwd/DTw
+         68I5tI7kMjS/gvP3hFnlptTPLe3huCYsHuMA5Rvbfn4auCulnT2XdJyJ5lifIjNwYcWK
+         m7izrsD/NFobPRII4fr0lK7B6YQt7YcB6NlcNFG2R+WgNn2rsN52uFtdihNEzDbcbpFv
+         Ai5FDAoS+DctoIs1DBm6kfneR/274WWJxIY/I45vDLiCuBFPhDjx+W4ah5V+Vjx/yUQI
+         AOyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUrV0r9L/ThX0rlNjn6uSTIfZhVWWq9FzJQRV5tgrATitvjf75pjvUFpccIZTFvg5VWAKEqvp9bI+p1NJw=@vger.kernel.org, AJvYcCV2Ija5tiMZwbKFfBSPxmPchuX0FIotk1VY+IOIN/7kv40jBdEKIb4sWgd6aAGdt4cxf0+oD3eAtDh8byiZ@vger.kernel.org, AJvYcCXYUKieKoLYu36iTXs+5dmKq3awduX4RP+yzMP81s784W6z25GMJTbdOG51x4NZ5OWw8kH/Cygs/66h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzpp2AafP07bPOAmheuEpP9s6TRlZqxRdugUv0AHJ4KtoFDYnrl
+	D/q3pQmrVLvF7Mux9a1i1fsoO4L91IMLZ0eKB15dSeQ3tyjOBy8PhlDN
+X-Gm-Gg: ASbGncuJYZULmbS9cEvv6q441KRQFSVhq0C8/pp3Sv+eA8pMysztxN8yx+fqXIZ6fmG
+	fz3Ycxh9YOrQ1xJQaFQkCUirh40ZUlePivXRgT4KzS95u2NdPmVVCzboNrmg9ebC+uPhTdEAwcL
+	aV/RUrxrwiqJum5sL6wmQ0emLsmmpN+GWxk7LSbbcLmwKT5fFvqzuAeEE6q7Hnig3TwowMqqS+z
+	0stjjF+yMDVqKBM7lcvjsvpZN5aulwdcwmuxjse6vJDNZd421b6gdmdATH0CdjSoIZK0/HhmKZb
+	r/XF/XnKAiXhPq/i6HjuskjejhI/kpr/8klKa5N1DlIhnKQCLULaxWIcESWKLZjibOVLqaMekvz
+	ERHjFL/e1Scm6k4kg891MQ24=
+X-Google-Smtp-Source: AGHT+IF3WK+xyeui9KpM2p+MQ7Ua6+TKDxyMbvyFbkcNlgQr4Pi+4jrdhRTMADxvhfCUjXE8zzU+ug==
+X-Received: by 2002:a17:907:94cc:b0:add:fd7c:ae9 with SMTP id a640c23a62f3a-adfad4a480dmr1438507166b.45.1750171650135;
+        Tue, 17 Jun 2025 07:47:30 -0700 (PDT)
+Received: from playground.localdomain ([82.79.237.69])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-608b48dd68fsm8261210a12.22.2025.06.17.07.47.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 07:47:29 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 3/9] rust: pwm: Add driver operations trait and
- registration support
-Message-ID: <aFF-fNOOEzoiomFu@pollux>
-References: <20250617-rust-next-pwm-working-fan-for-sending-v3-0-1cca847c6f9f@samsung.com>
- <CGME20250617140838eucas1p2a31af5a73297580c2421263c1c6ba700@eucas1p2.samsung.com>
- <20250617-rust-next-pwm-working-fan-for-sending-v3-3-1cca847c6f9f@samsung.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: patches@opensource.cirrus.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: add 'port' property
+Date: Tue, 17 Jun 2025 10:46:19 -0400
+Message-Id: <20250617144619.1130857-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250617-rust-next-pwm-working-fan-for-sending-v3-3-1cca847c6f9f@samsung.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jun 17, 2025 at 04:07:26PM +0200, Michal Wilczynski wrote:
-> +/// Manages the registration of a PWM chip, ensuring `pwmchip_remove` is called on drop.
-> +pub struct Registration {
-> +    chip: ManuallyDrop<ARef<Chip>>,
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Why is this ManuallyDrop when you call ManuallyDrop::drop(&mut self.chip) as
-the last thing in Registration::drop()?
+The cs42xx8 codecs may be used with audio graph card and thus may require
+an additional property: 'port'. Add it.
 
-I think you don't need ManuallyDrop here.
+Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+---
+ Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> +}
-> +
-> +impl Registration {
-> +    /// Registers a PWM chip (obtained via `Chip::new`) with the PWM subsystem.
-> +    ///
-> +    /// Takes an [`ARef<Chip>`]. On `Drop` of the returned `Registration` object,
-> +    /// `pwmchip_remove` is called for the chip.
-> +    pub fn new(chip: ARef<Chip>, ops_vtable: &'static PwmOpsVTable) -> Result<Self> {
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
+index 725b47e82062..cd47905eb20a 100644
+--- a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
+@@ -41,6 +41,10 @@ properties:
+     description: This pin is connected to the chip's RESET pin.
+     maxItems: 1
+ 
++  port:
++    $ref: audio-graph-port.yaml#
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
+-- 
+2.34.1
 
-For the reason mentioned in [1] this should either return Result<Devres<Self>>
-or just Result, if you use Devres::new_foreign_owned() (see also [2]).
-
-In case of the latter, the Registration instance is automatically dropped once
-the parent device is unbound.
-
-If you go with the first, you can drop the Devres<Registration> (and hence the
-inner Registration) at any arbitrary point of time, but Devres will still
-gurarantee that the inner Registration is dropped once the parent device is
-unbound, i.e. it can't out-live driver unbind.
-
-This guarantees that the &Device<Bound> instance you provide in the callbacks
-below is guaranteed to be valid.
-
-[1] https://lore.kernel.org/lkml/aFF7qqlexxh540FW@pollux/
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/rust/kernel/drm/driver.rs#n134
-
-> +        // Get the raw C pointer from ARef<Chip>.
-> +        let c_chip_ptr = chip.as_raw().cast::<bindings::pwm_chip>();
-> +
-> +        // SAFETY: `c_chip_ptr` is valid (guaranteed by ARef existing).
-> +        // `ops_vtable.as_raw()` provides a valid `*const bindings::pwm_ops`.
-> +        // `bindings::__pwmchip_add` preconditions (valid pointers, ops set on chip) are met.
-> +        unsafe {
-> +            (*c_chip_ptr).ops = ops_vtable.as_raw();
-> +            to_result(bindings::__pwmchip_add(c_chip_ptr, core::ptr::null_mut()))?;
-> +        }
-
-Please split this up into separate unsafe blocks.
-
-> +        Ok(Registration {
-> +            chip: ManuallyDrop::new(chip),
-> +        })
-> +    }
-> +}
-> +
-> +impl Drop for Registration {
-> +    fn drop(&mut self) {
-> +        let chip = &**self.chip;
-> +        let chip_raw: *mut bindings::pwm_chip = chip.as_raw();
-> +
-> +        // SAFETY: `chip_raw` points to a chip that was successfully registered via `Self::new`.
-> +        // `bindings::pwmchip_remove` is the correct C function to unregister it.
-> +        unsafe {
-> +            bindings::pwmchip_remove(chip_raw);
-> +            ManuallyDrop::drop(&mut self.chip); // Drops the ARef<Chip>
-> +        }
-
-Same here, but I don't think ManuallyDrop is needed anyways.
-
-> +    }
-> +}
 
