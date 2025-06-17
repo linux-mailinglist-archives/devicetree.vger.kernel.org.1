@@ -1,154 +1,151 @@
-Return-Path: <devicetree+bounces-186841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45FE5ADDBA9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:52:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB18ADDC05
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 21:08:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8216619403B7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 18:52:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB4A81940692
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9061F2DFF3F;
-	Tue, 17 Jun 2025 18:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1F728643C;
+	Tue, 17 Jun 2025 19:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CS7CaFXV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oMF85T9L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FC12EF9D4;
-	Tue, 17 Jun 2025 18:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41423215F42;
+	Tue, 17 Jun 2025 19:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750186341; cv=none; b=NUG9YtyZu30XAvUmunTrSzjlJ6UO0pmr38zJEF5nPN+fmOQccurxosCS5McXy8AitHUvvpOZvm0tM2A5ploVJw+/hbhFXGcPY0iKSpHb3VVDKo4LFeOYLhPlyaHtC0H7i+Q4ozdyl5PxAfNiUBuzpRq/gkUw8hv/hp0OIpp1V2A=
+	t=1750187321; cv=none; b=Wm2BlWtE0aG/VilfZ5fLvE2RudL5q1bYSllYVlZd6/0VuNobgyv4rX9gWHphHAgk1vk2clrcCrOTvi12OnhJ2T/ThEQmWcuoAeEKXKJwKZ684xP72slA/Gi8KqOC+/EvJworj3jTkaKnWuamlWr6j/rsN4Q+LY2P0ljMN0wdLnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750186341; c=relaxed/simple;
-	bh=qlusW2sr4sVU2uXJRPIMCSXV7SxcfJyTdbN5C74eRL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cx9jIPMZpNPfG5ux5QiJe7sHd/y2xfAITBeBcYtOX6BM1Jgob5ms3zaHENkwC6K+ML+Am0X5kHYQSDB9M5rfYWaZKiG60Zhuq7ZjKAJigTvrMhEYPlI9DqFBqebQkUKWZ7CB3RenJYtOWCmWSafLwnKiEaYeWCOAVnoI08wcs/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CS7CaFXV; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-23649faf69fso60441425ad.0;
-        Tue, 17 Jun 2025 11:52:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750186339; x=1750791139; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rrjM2YpDGiy0ALMLMuxjn2ko9PVZeOACLyeqPzUnd5A=;
-        b=CS7CaFXVpPoowWtJiHDw3RuJ3q+zsPORiTN3ZUcMmRv7wDCg7rUyaoO5K7Abv1KCJS
-         lmz08A8uQk4hjGSKG3SedYF6+QUEjB60+htWfHJvHWMpDuM/v23Qvn8rvSoo7ieEleoN
-         vubjKw/YPqG/siV7M8FvbX229O4XIclvRZ4pH2+iGPAvcRJruwFnQshYxX19q2xDlirY
-         mDN5sFX/m5gW6p4nxvsFVhHyBoosu/EvIdOXkzjq+wHvPzamtNqNcPJFDeKC/Bo1MO8O
-         VDs9xrfxjrHlLoueLGGs+fNjNPFFUW6gzPrc7sGugJzV898YMxAXU2dI23hB8xUsKibc
-         IjRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750186339; x=1750791139;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rrjM2YpDGiy0ALMLMuxjn2ko9PVZeOACLyeqPzUnd5A=;
-        b=HrEQTRsvR2fgZIJ7KIdfkYpas2l628XcFBxsetlVC2RaqQ5SiaTdXMdYY6dRpsWUBb
-         J9QLr2eX9Vn2jmAtN93CZ6RP2+n21X3KfaDBTBeh9fFxFojPWvOMni+SNV1eG741vWAg
-         tcGOayiGPJSzjlaT3zhQwcCw6g/yE3RIxK5o2IlNd9KEDPaEOKmzIW0urOKm3SgKjuM7
-         MZrREhEFS/LP6AsgI4+I7BTtG6TQsioOooz2gOIAs8hXwDIjRuSsFg9iugMVSPOW5Mv9
-         RfxZn2Rn6/frKBJHmNLlj7q07gdqv9aDWhsyr1RuwlLORRf3iJ7Bq8HFd+iwWHw+CFrT
-         Fh2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUbsSMIWpZ5/Xn02UWVRQB2dJqglAMj5taBiD3uXA03tSsU/6Ey/1joSbjWdQLcji+4io1bOplTjjWJWQ==@vger.kernel.org, AJvYcCV6QQ9Ca5dBLsbP64kV7bu7rMQw/JQo03KLdyIaozNqylwJpa5aAJv19hWR0KO0Nagbzw8dliSZlGMX@vger.kernel.org, AJvYcCVOBJ0bmT25E0wZhSkVfPrq76UCPD6xKmY4JrspRNPYhj6qg1ShANoiH0Kg2rV3Mz3pjX2ytKAH+os9OIQn@vger.kernel.org, AJvYcCXml1NQ+hXKvJP33XkebY144cKHWYBMCkJk9+a8tnijOg17+rquIfCcBsyusQheMIeUsdr2kFqt8n19@vger.kernel.org
-X-Gm-Message-State: AOJu0YxocRwehglKhzCHG90riSR5LQLEikGUiBhnUB+Lk4kIyh3qpend
-	2PlpNF4Dy00KUmGxn3abfOj+MyZpg0HCyNZYexezmBz/BsVEMYbyEmSK
-X-Gm-Gg: ASbGncsgr9RJIN7hbbyNT1kT/Q18om1Ush4b9s9/TQm6tw1FuFqZRGNaSgKvYbv51VC
-	UNw9GkGKVzdGRb1zTd6ty0SCsBvpmFLuCde2IBxqAk1Em9aAE1taCcCRNOcUEWIETMTWCRX9n9e
-	DNWuisvm1Z/P327DuMQqOzpw3cqJ99e2naZ8a5ip4LG+Fp6acRIQB+3PjIbpelGKbRIFLgrl59I
-	5bQZfXUOerBiT4Dp1/QAepUEPnfEo7hPJ5LoHtmb/KR5SsE/2mue6vKXxWqdtSqRKXRurGhIBbt
-	Abxr3zd1OjwckLwgPOcK+zXRl5EXRYSFg/HQ7C0j4uoFbk2NPoH5Um4RqgQYGm2mQj7LmCR/8q4
-	f/NhOZg==
-X-Google-Smtp-Source: AGHT+IEbxeRsrV9v0cFZpm/JNC9Jn+xijTCUioEIcN6OlyBZRQCnX9DQlgMFOHdhLztTsnPvJxpk4Q==
-X-Received: by 2002:a17:902:d552:b0:234:d7b2:2ab9 with SMTP id d9443c01a7336-2366b005cd2mr247602865ad.12.1750186339109;
-        Tue, 17 Jun 2025 11:52:19 -0700 (PDT)
-Received: from localhost ([2804:30c:4000:5900:b4c4:6073:1a92:4077])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365e0d0ab2sm84238655ad.246.2025.06.17.11.52.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 11:52:17 -0700 (PDT)
-Date: Tue, 17 Jun 2025 15:54:06 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl
-Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
-Message-ID: <aFG5zufl_znUw3xL@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1749582679.git.marcelo.schmitt@analog.com>
- <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
- <c29feb5b-2699-411a-87dc-249f5b9ff6c0@baylibre.com>
+	s=arc-20240116; t=1750187321; c=relaxed/simple;
+	bh=8G5H1ulI6P1fdmteyrIAXKosmD3dWTthzEdV1cJ7iUc=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=S4vXbvEeBX7s+IUXRHQGX53QRNbHaHaFdAhc8rfz2R2ft127EfcH9qLnDSM3JGi4mP6/KISGDOhYk1V81VEg49ZeSVv90eTcoWo9MGrBQ3cV6pQxCfhTOVU2hI4Fq6lNptoC4VmGnXehdETpaotWBqlSNq9xNWDrc7FIgLQLjzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oMF85T9L; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55HE9Jf2023298;
+	Tue, 17 Jun 2025 19:08:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Ihlzg+9CKThIoKA6ap+J76
+	U6/uXGevA9m1hxf3Pyljg=; b=oMF85T9LATT1hrcuV23mNp0nXQufx7hiykL9+R
+	M6KBWRpXfnBIxjPPSwNhdGfFX7EMdWFKHH7In8qZszNeLt/9ghszJXEy5FLAKLDj
+	+vURnKd187Aoy06FF7ZWNL3FwmHJFc+h4KwCewSu/z9M5o7wwwdu3jAlbx1/VG6q
+	C8Eko36JaHs9vVq31omprxr/Gl3EF2qtFqiew+y/Z2h8LmoEaUBfTWW7/JnkZtNi
+	PIwKr5R1B37MEDxpmC7bLEkZbnVkZSeG0aivNEirsqLVHiw0vUa5h3gsGgmuiOhF
+	LId+aoeHRzARkNhjyboM3aKTWHPR6w9zCAuFzyoib5bp7vBg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h99f1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Jun 2025 19:08:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55HJ8Ti7027723
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Jun 2025 19:08:29 GMT
+Received: from [10.213.98.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Jun
+ 2025 12:08:24 -0700
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+Subject: [PATCH 0/2] dt-bindings: clock: qcom: Fix SM8450 videocc, camcc
+ power domains support
+Date: Wed, 18 Jun 2025 00:37:25 +0530
+Message-ID: <20250618-sm8450-videocc-camcc-bindings-single-pd-fix-v1-0-02e83aeba280@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c29feb5b-2699-411a-87dc-249f5b9ff6c0@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO28UWgC/x2NQQqDQAxFryJZG4hDtdqriItxkmqgjjIBKYh3b
+ +jmwfuL9y8wKSoGr+qCIqea7tmlqStIa8yLoLI7BAotdc0TbesfLeGpLHtKmOLmnDWz5sXQnB/
+ Bg/GtX+Rh7iiGSDwwePEo4vP/bZzu+wdlCCqMfQAAAA==
+X-Change-ID: 20250617-sm8450-videocc-camcc-bindings-single-pd-fix-d9b60a2a0d9d
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        kernel test robot <lkp@intel.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pFILMRDOU41CWBIke1X9oWMfkC9uaz-2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDE1MyBTYWx0ZWRfX4Rs7anMFVV4g
+ ch0dFNm5aFd5eUu0Ax2lI1buV2Mp8y2LxEDc7f7a1dUIdSgj0nEpj0XS69468IqQHSsQtfd2I28
+ S9qE2hyy8dXlzF26IgTozr1Z3b6IDpsNba/DLzO/km7JlKDw88VQHsiU74/Iwk4NkGvEt7vCYFO
+ Y/7IISc0s3fFGGpBN+m3/4+qMvaYj61ZofWb65YhUfXDZuZcEgLteA4MHHZB0waJuhw3iY08NLY
+ 5XGDt0HiD7J9EfAemYphK+yFXtWvuJF1Pr8jwkdb+B+MPR13sqVh5Nb1cbw3+bhHHugZUaX3Gcb
+ J+AOl1+E5DnJzCJej5mkAPzFZTn2Tzd9HmVSFP5sywcFJ3YUbShTDywQ0zAOZfJx197hBpkJdB/
+ MnXmaB3Clumlpmpm09gi7nYLvGQ46f5BxvW3yUeQJbFQ1Zw0CXw7RBLgT/mGnxcTS2amOhiH
+X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=6851bd2e cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=hLJ_XroJVS89s9UiarcA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: pFILMRDOU41CWBIke1X9oWMfkC9uaz-2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-17_08,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=754
+ malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506170153
 
-On 06/16, David Lechner wrote:
-> On 6/10/25 3:31 PM, Marcelo Schmitt wrote:
-> > From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
-> > 
-> > The AD4170 is a multichannel, low noise, 24-bit precision sigma-delta
-> > analog to digital converter. The AD4170 design offers a flexible data
-> > acquisition solution with crosspoint multiplexed analog inputs,
-> > configurable ADC voltage reference inputs, ultra-low noise integrated PGA,
-> > digital filtering, wide range of configurable output data rates, internal
-> > oscillator and temperature sensor, four GPIOs, and integrated features for
-> > interfacing with load cell weigh scales, RTD, and thermocouple sensors.
-> > 
-> > Add basic support for the AD4170 ADC with the following features:
-> > - Single-shot read.
-> > - Analog front end PGA configuration.
-> > - Differential and pseudo-differential input configuration.
-> > 
-> 
-> ...
-> 
-> > +static int ad4170_fill_scale_tbl(struct iio_dev *indio_dev,
-> > +				 struct iio_chan_spec const *chan)
-> > +{
-> > +	struct ad4170_state *st = iio_priv(indio_dev);
-> > +	struct ad4170_chan_info *chan_info = &st->chan_infos[chan->address];
-> > +	struct device *dev = &st->spi->dev;
-> > +	int bipolar = chan->scan_type.sign == 's' ? 1 : 0;
-> > +	int precision_bits = chan->scan_type.realbits;
-> > +	int pga, ainm_voltage, ret;
-> > +	unsigned long long offset;
-> > +
-> > +	ainm_voltage = 0;
-> > +	ret = ad4170_get_ain_voltage_uv(st, chan->channel2, &ainm_voltage);
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret, "Failed to fill scale table\n");
-> > +
-> > +	for (pga = 0; pga < AD4170_NUM_PGA_OPTIONS; pga++) {
-> 
-> From what I read in the datasheet, it sounds like if adi,reference-buffer is
-> precharge, then the PGA is bypassed, so there would only be 1 option in that
-> case (gain = 1).
-> 
-Although not explicit in the datasheet, looks like there are two precharge
-buffers. One precharge buffer is used with the voltage reference inputs and is
-associated with the adi,positive/negative-reference-buffer dt properties. The
-configuration of that buffer is set through the REF_BUF_P/M fields of AFE
-registers. The datasheet doesn't mention the PGA on the section dedicated to
-describing reference and reference buffering features.
+The SM8450 videocc, camcc bindings are updated to support multiple
+power domains in below series
 
-The other places a precharge buffer is mentioned refer to it as 'gain = 1 precharge'.
-My understanding is that the PGA bypass precharge buffer is a different buffer
-that is only used when PGA option 9 is set in the PGA_GAIN filed of AFE reg.
-The PGA bypass precharge buffer would be used in the analog input path while
-the reference buffers would be used in the reference input path.
+https://lore.kernel.org/all/20250530-videocc-pll-multi-pd-voting-v5-0-02303b3a582d@quicinc.com/
+
+However the bindings has to be compatible with older DTS files that
+have only single power domain, hence fix the SM8450 videocc, camcc
+bindings to support both single and multiple power domains.
+
+Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+---
+Jagadeesh Kona (2):
+      dt-bindings: clock: qcom,sm8450-videocc: Add minItems property
+      dt-bindings: clock: qcom,sm8450-camcc: Add minItems property
+
+ Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml   | 2 ++
+ Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 2 ++
+ 2 files changed, 4 insertions(+)
+---
+base-commit: 4325743c7e209ae7845293679a4de94b969f2bef
+change-id: 20250617-sm8450-videocc-camcc-bindings-single-pd-fix-d9b60a2a0d9d
+
+Best regards,
+-- 
+Jagadeesh Kona <quic_jkona@quicinc.com>
+
 
