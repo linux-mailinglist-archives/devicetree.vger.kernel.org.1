@@ -1,95 +1,267 @@
-Return-Path: <devicetree+bounces-186835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF128ADDAAF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB7EADDAA5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F492169CC6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:30:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A25E3B9073
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5065B285060;
-	Tue, 17 Jun 2025 17:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA59285076;
+	Tue, 17 Jun 2025 17:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFyj07kM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mc6fMNVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC51235067;
-	Tue, 17 Jun 2025 17:29:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A21285079;
+	Tue, 17 Jun 2025 17:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750181395; cv=none; b=pzAofXeMJs7sIjPfbYio+FleaV9g1WLozJqwlZhuCKzKmTKU6LZWvDo5NsTq6hRFujnCuasggzFKZGUe1I9mjcTJVI7k6+lvkXIUudExwPrtCLKzv7Fa5XbfJwDoyQ+m7N54I3GKsuwuc9lD/b5FSdMH0onkCf8pDbu9ps5/cHU=
+	t=1750181411; cv=none; b=M3ab12ykDaUTdXGZSl2Vvq0DYg+VzgrPtXhlBuvO7LWlfIcDzaGVSpEEr6w9I+lcQNkFi98HrCE1IxIkGQHDO3VezK5DSbc5QL6J1e5DerJL+DO32dZfoUKoDj3LVN5UTnvTLwq7sGms7cXVkTc4qaUEFpjDT5qzroWuwq+nXL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750181395; c=relaxed/simple;
-	bh=kP7DtPobetpD8bDkvcYCTMcEVbz+KzFg7wDQrlKUqKQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gG3JOqUKsRqZPgIce0sE4jatazc2eCteq4IvnEL+oIajikzZvjASLTyTcYq8OFy0Zuvh3SeaP56+71P5GDWBoj82b72Ycbwlqq5RO/8wH5sZVQdzgH+XsR1Rx/1UO7TFsfHE6u/CLHkEeADFdDCW0aMzh3kIVwXYuqfJ8BbBNHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFyj07kM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE75AC4CEE3;
-	Tue, 17 Jun 2025 17:29:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750181394;
-	bh=kP7DtPobetpD8bDkvcYCTMcEVbz+KzFg7wDQrlKUqKQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=nFyj07kMSeHI22kL0ri0CoBmyqpg+75j55Xz+grZh1JBQ0M8Nw93ijsbWsLg201cm
-	 CTDpDR3MGpekcIM0ol1iK9alHd28sFBTJmLsdmNAssAbMYx2083F2kWC3EY6A65ie0
-	 QtGJHodFUApA6ak8u/529aLXDPefdcLRKpPlG28GNoBXOkDx/AJY2Fh5/ZXpdl8qcp
-	 TblkEjEulg5TKI9aC9N86NuIvYEHSjkI/pO4rxNy7EgV+v+O4cHkBrpV0HMm9YAQhg
-	 0U30SvS6CIcL1pjjdEj1rva/4ErLB5psnbCL5tfH1JqhkrHWayRQVVeZrk9azFM9ZO
-	 YS3kPy4ZB4tog==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Inochi Amaoto <inochiama@gmail.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, 
- Longbin Li <looong.bin@gmail.com>
-In-Reply-To: <20250611081000.1187374-1-inochiama@gmail.com>
-References: <20250611081000.1187374-1-inochiama@gmail.com>
-Subject: Re: [PATCH v14 0/2] riscv: sophgo: add dmamux support for Sophgo
- CV1800/SG2000 SoCs
-Message-Id: <175018139039.182101.4835726385229916529.b4-ty@kernel.org>
-Date: Tue, 17 Jun 2025 22:59:50 +0530
+	s=arc-20240116; t=1750181411; c=relaxed/simple;
+	bh=IGsmcuwJXjEnfGubxZ1RKl4+HzWgxpXUtAwOzTFRY3k=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=UufTX3qONshQpMXGctEFZdo92xE8vseZyMQXk5tPKLCGFFedX0Q0b7wWqP0NWiAWsvfk0gPTpfE1S8jjNX5XxkxSKqiL1cd0j9e7/u12/Oj5sOCJmJp/g107yrzpzNjRsAgKhQG4/togmrm3QdBvbuUWR7ZJzpM4HQXOZrN4g9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mc6fMNVw; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b2c4476d381so5027198a12.0;
+        Tue, 17 Jun 2025 10:30:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750181409; x=1750786209; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qhk8jGOaZDAa5EqoSmpTbXR4Ag85GcTozQgz77RVrTk=;
+        b=Mc6fMNVw4psH0BJj9Dx3O2/4OH8R+ufmf8k20sZ0xKvMiIsa63nMyw4XNNA52eB3xx
+         1tIQyvRwhm88OMApEeMYAsXpZW2Og0i+qThOnkHYNsgXOpKRqEMs6UVq46wCe++71XCx
+         xhvn+u+NV9V3Ky9UQOBm4EaWIdvNlAIprS5Y2531x7Z9+I8sl0I1M9NookINyME43bpg
+         wMyc+824Lslj5YgUoufrzMWnbS2Or4UUvn7CgeCG4Jwc2tvSLBeaNCR30sO8v+T7PP+d
+         YvIfCJm6V8dgmT5t1xjsmkfpGFVaoepUO5CfRwsMFPhYycTrOG6TYgWd7RPfZi2uVr7e
+         4V3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750181409; x=1750786209;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qhk8jGOaZDAa5EqoSmpTbXR4Ag85GcTozQgz77RVrTk=;
+        b=MDZNae7wpEho9WvnCr7AF1SS/kIe5IwbKBaSuya6Eh26bKCpg9220wOM7UUBKEnOwL
+         ysplYbD3YrDu895S2059YyuJUnSoT/nI9SntjtOo+CDu6dXf19EZaY9zliZ/gvnwJjh7
+         lqZR7qxabaIMrmKNo37RdZcZBJVUdPvXn/7zCFMUcVAeg68GZwxaWeYY3Y/Aj3olbrFj
+         of0h3RDxLHJLFe1Zpi4kDg+06PkeDd97S8uHf31XENgdMXiSeZxSabS0bRtMFlqGDHmh
+         U2O75/MQlzwBinIV963u0U9/Ufa6eB2nj26kmsMIqf39Qwf036qh4d2weIbGFZ6qvJAQ
+         3HMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCEr2v5dfubSawnJtLVYgvnI8XM2YzpGA/IsVkqSpHE2vI8EKt7s0JssvaRLofcBCZN6D1KO2RW1DjmszM@vger.kernel.org, AJvYcCUMcG3dl3mR++0FTqQOdwgNVP/gosK9JrUxwuMZgu3Yj7r0qC3xt0m8tbxE87sV14IrntVyOZOFMAgQug==@vger.kernel.org, AJvYcCUVN7g7KEUARBWx6ixcy4/BII/6AqPPBjCkY2BSx6mob+pzZfzVFfWpNhBCVICawNQbaaWjca09t/Ll@vger.kernel.org, AJvYcCVcvzmAxwwr73rEuX5WEODpmj8Ca0oOcu3cYAD/bu8W1Xf55m2+45S8uogkIrrFMsF4+ecnHdTpfoOS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/Vjrw8eDp9j0923AaX/4vggxfFnys4mi9cS5U2Jjg0Pdfv0Nw
+	VhSVocyVxkRvgq0bwCXAyLwvqNZC8lXJ7cb1TajjtdiHd1O03Wx7n/cQ
+X-Gm-Gg: ASbGncvrXd4usIiurVdqt2aIuKCo2552Mq8HnHQZcweNxgunNxmbpwv4W5AMI+7KfAt
+	qFeLk+iqf/jTRTL1ZlnuZ5ro6cURxm3jTl/RI8nhYaTAhXX7Q5V5IwHXwwa84RL4gt/n9ZcSTzw
+	18h2p/4uS5F2j4UDntR4FvMF0mX5J6ED9QXJ8isacmB4AGNmIROjUxB+/8TleiNOx+wwgR0pjZ6
+	t37USgpVtKnp9c32yr6iFROs6PB101TFRAgSLyhN3SLzdhWORQohQdztKH40DdvQlMZOwhQ2xMQ
+	9tTeQW6B3Xu2L2254+9hadAiMDbJRFzUPLrwYWCPwVwqzVAagj6eZlL4hXU7YOS4l9lIEaG82OG
+	ZMwwWI4k=
+X-Google-Smtp-Source: AGHT+IFLuD8HTG8FAQ2HO+cOiu9Tara6TS9wXId7+ckrwN5AmK8tAnFnQoZlxup6NCubrca7a8vZhg==
+X-Received: by 2002:a05:6a21:6f8b:b0:21c:fa68:9da6 with SMTP id adf61e73a8af0-21fbc6c773fmr22731462637.8.1750181408701;
+        Tue, 17 Jun 2025 10:30:08 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([42.113.163.91])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748e1a26105sm440535b3a.45.2025.06.17.10.30.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 10:30:08 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: christophe.jaillet@wanadoo.fr
+Cc: lee@kernel.org,
+	pavel@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 2/4] leds: add TI/National Semiconductor LP5812 LED Driver
+Date: Wed, 18 Jun 2025 00:30:03 +0700
+Message-Id: <20250617173003.28933-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <42676fe3-8758-42ea-8e21-9c3955468c78@wanadoo.fr>
+References: <42676fe3-8758-42ea-8e21-9c3955468c78@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: 8bit
 
+On Tue, 10 Jun 2025, Christophe JAILLET wrote:
 
-On Wed, 11 Jun 2025 16:09:57 +0800, Inochi Amaoto wrote:
-> As the syscon device of CV1800 have a usb phy subdevices. The
-> binding of the syscon can not be complete without the usb phy
-> is finished. As a result, the binding of syscon is removed
-> and will be evolved in its original series after the usb phy
-> binding is fully explored.
+> > +static struct lp5812_data *lp5812_of_populate_pdata(struct device *dev,
+> > +						    struct device_node *np,
+> > +						    struct lp5812_chip *chip)
+> > +{
+> > +	struct device_node *child;
+> > +	struct lp5812_data *pdata;
+> > +	struct lp5812_led_config *cfg;
+> > +	int num_channels, i = 0, ret;
+> > +
+> > +	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+> > +	if (!pdata)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	num_channels = of_get_available_child_count(np);
+> > +	if (num_channels == 0) {
+> > +		dev_err(dev, "no LED channels\n");
+> > +		return ERR_PTR(-EINVAL);
+> > +	}
+> > +
+> > +	cfg = devm_kcalloc(dev, num_channels, sizeof(*cfg), GFP_KERNEL);
+> > +	if (!cfg)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	pdata->led_config = &cfg[0];
+> > +	pdata->num_channels = num_channels;
+> > +
+> > +	for_each_available_child_of_node(np, child) {
 > 
-> Changed from v13:
-> 1. rebase to v6.16-rc1
+> Maybe for_each_available_child_of_node_scoped() to slihtly simplify the 
+> code?
+
+Thanks, I'll switch to for_each_available_child_of_node_scoped().
+
+> > +static ssize_t lp5812_aeu_slope_time(struct device *dev,
+> > +				     struct device_attribute *attr,
+> > +				     enum slope_time_num slope_chan,
+> > +				     const char *buf, size_t len)
+> > +{
+> > +	struct lp5812_led *led;
+> > +	struct lp5812_chip *chip;
+> > +	struct lp5812_led_config *led_cfg;
+> > +	const char *name = dev->platform_data;
+> > +	int val[LED_COLOR_ID_MAX];
+> > +	u8 chan_nr = 0;
+> > +	char *sub_str, *str = (char *)buf;
+> > +	int i, ret, aeu;
+> > +	union slope_time slope_time_val;
+> > +	u16 reg;
+> > +
+> > +	if (strcmp(name, LP5812_SC_LED) == 0)
+> > +		led = dev_to_lp5812_led(dev);
+> > +	else
+> > +		led = dev_to_lp5812_led_mc(dev);
+> > +
+> > +	chan_nr = led->chan_nr;
+> > +	chip = led->chip;
+> > +	led_cfg = &chip->pdata->led_config[chan_nr];
+> > +
+> > +	sub_str = strsep(&str, ":");
+> > +	if (!sub_str)
+> > +		return -EINVAL;
+> > +	if (kstrtoint(&sub_str[3], 0, &aeu))
+> > +		return -EINVAL;
+> > +
+> > +	pr_info("AEU = %d", aeu);
+> > +
+> > +	guard(mutex)(&chip->lock);
+> > +	for (i = 0; i < led_cfg->num_colors; i++) {
+> > +		sub_str = strsep(&str, " ");
+> > +		if (!sub_str)
+> > +			return -EINVAL;
+> > +		if (kstrtoint(sub_str, 0, &val[i]))
+> > +			return -EINVAL;
+> > +		if (val[i] < 0 || val[i] > 15)
+> > +			return -EINVAL;
+> > +
+> > +		reg = LP5812_AEU_SLOPE_TIME_ADDR(led_cfg->led_id[i], aeu, slope_chan);
+> > +
+> > +		/* get original value of slope time */
+> > +		ret = lp5812_read(chip, reg, &slope_time_val.time_val);
+> > +		if (ret)
+> > +			return ret;
+> > +
+> > +		/* Update new value for slope time*/
+> > +		if (slope_chan == LP5812_SLOPE_TIME_T1 || slope_chan == LP5812_SLOPE_TIME_T3)
+> > +			slope_time_val.s_time.first = val[i];
+> > +		if (slope_chan == LP5812_SLOPE_TIME_T2 || slope_chan == LP5812_SLOPE_TIME_T4)
+> > +			slope_time_val.s_time.second = val[i];
+> > +
+> > +		/* Save updated value to hardware */
+> > +		ret = lp5812_write(chip, reg, slope_time_val.time_val);
 > 
-> [...]
+> Should we do something if ret != 0?
 
-Applied, thanks!
+Yes. I'll add a return check to handle possible write errors.
 
-[1/2] dt-bindings: dmaengine: Add dma multiplexer for CV18XX/SG200X series SoC
-      commit: 994b5709f9f83c48f607e9a52912c912b8149421
-[2/2] dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
-      commit: db7d07b5add4d839df74adab9940cf9da488313f
+> > +static struct attribute *lp5812_led_attrs[] = {
+> > +	&dev_attr_led_current.attr,
+> > +	&dev_attr_max_current.attr,
+> > +	&dev_attr_mode.attr,
+> > +	&dev_attr_activate.attr,
+> > +	&dev_attr_pwm_dimming_scale.attr,
+> > +	&dev_attr_pwm_phase_align.attr,
+> > +	&dev_attr_auto_time_pause_at_start.attr,
+> > +	&dev_attr_auto_time_pause_at_stop.attr,
+> > +	&dev_attr_auto_playback_eau_number.attr,
+> > +	&dev_attr_auto_playback_time.attr,
+> > +	&dev_attr_aeu_playback_time.attr,
+> > +	&dev_attr_aeu_pwm1.attr,
+> > +	&dev_attr_aeu_pwm2.attr,
+> > +	&dev_attr_aeu_pwm3.attr,
+> > +	&dev_attr_aeu_pwm4.attr,
+> > +	&dev_attr_aeu_pwm5.attr,
+> > +	&dev_attr_aeu_slop_time_t1.attr,
+> > +	&dev_attr_aeu_slop_time_t2.attr,
+> > +	&dev_attr_aeu_slop_time_t3.attr,
+> > +	&dev_attr_aeu_slop_time_t4.attr,
+> > +	&dev_attr_lod_lsd.attr,
+> > +	NULL,
+> 
+> Unneeded trailing comma after a terminator.
+
+I'll remove it.
+
+> > +static int lp5812_init_led(struct lp5812_led *led, struct lp5812_chip *chip, int chan)
+> > +{
+> > +	struct lp5812_data *pdata = chip->pdata;
+> > +	struct device *dev = &chip->i2c_cl->dev;
+> > +	struct mc_subled *mc_led_info;
+> > +	struct led_classdev *led_cdev;
+> > +	char name[32];
+> > +	int i, ret = 0;
+> > +
+> > +	if (pdata->led_config[chan].name) {
+> > +		led->cdev.name = pdata->led_config[chan].name;
+> > +	} else {
+> > +		snprintf(name, sizeof(name), "%s:channel%d",
+> > +			 pdata->label ? : chip->i2c_cl->name, chan);
+> > +		led->cdev.name = name;
+> 
+> Is it fine below when 'name' is defined on the stack and is used...
+> 
+> > +	}
+> > +
+> > +	if (pdata->led_config[chan].is_sc_led == 0) {
+> > +		mc_led_info = devm_kcalloc(dev,
+> > +					   pdata->led_config[chan].num_colors,
+> > +					   sizeof(*mc_led_info), GFP_KERNEL);
+> > +		if (!mc_led_info)
+> > +			return -ENOMEM;
+> > +
+> > +		led_cdev = &led->mc_cdev.led_cdev;
+> > +		led_cdev->name = led->cdev.name;
+> 
+> ...here?
+
+You're right, name was stack-allocated and unsafe to use after the function returns.
+I'll replace it with a devm_kasprintf() allocation.
+
+Appreciate your time and feedback.
 
 Best regards,
--- 
-~Vinod
-
-
+Nam Tran
 
