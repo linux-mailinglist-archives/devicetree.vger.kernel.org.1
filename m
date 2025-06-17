@@ -1,252 +1,208 @@
-Return-Path: <devicetree+bounces-186497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B41ADC298
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:54:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B901ADC2A1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B09321893330
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:54:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E448B172B99
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4BE128A700;
-	Tue, 17 Jun 2025 06:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D06F28B4EF;
+	Tue, 17 Jun 2025 06:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RIsFUe3z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rr91J+jO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F406B23A563;
-	Tue, 17 Jun 2025 06:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6750E23A563;
+	Tue, 17 Jun 2025 06:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750143269; cv=none; b=gHveYeqeMeDKQqcOim3fGee8XrNmT5gu93tlR4hgBByrwxau7xLMaoFTx1dyQVbCDAxk2J8a0SEectecYwkjN1JNHUpjHYE+34s5wRBvkJudXVA2cUXAjzrum5lF21nkT0KOMboxmXI3xAQafRrH08kFpzhvWGrpnw1IAkrLCrk=
+	t=1750143402; cv=none; b=R7gaqtE4PjgNnvJYbS+9naMt9wg7/YHeuUc5EmNVYXYwjnWa0RuacJrkWK/LHCxnYgCtzSJuEYqFUbT6tEQl4hqG2g/H1Ry49amo6hRpVmOqHykosd5CvmoL9/DXdcuaHfrKVnn258rw43yInlninfG72/Z23yGvfBVKAKnGUoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750143269; c=relaxed/simple;
-	bh=HjahR+5qTN3pIlJ+ylhnwJK5VuFttLOxzMqjt4GhiIs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kZZpkkOhtUdJMPuV91OKqjG2jLFVX5F0XWC9UWALiUl7pNbdM8q4+wpwrAIPndo5QuVazEvvLeUhO9YJ9Ris64uP6UTPY2XDAeUggDk1EuK/p85SZPP5Vb+qYFJ50KNwiF/+/JOpUpg04S07+yk2gpTKkuXyDdwbX5PaWDFJgv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RIsFUe3z; arc=none smtp.client-ip=209.85.160.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4a752944794so16677581cf.3;
-        Mon, 16 Jun 2025 23:54:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750143267; x=1750748067; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SvcPLHvTAOguPWHkmBTRclEQDHuwUCTXdi76i3qlbXo=;
-        b=RIsFUe3z19ZKw+yZsD/1z0aiMAVPfm3e5OE5JkCbtguQgbrDJlNavh3cuqrZ3y0fGY
-         o0VcwAHmqowoCZBEr28X8XxhlQWi4NEjByw60MocKXfl/rTCU3bklXnRsf0zBqnW/bD+
-         J1qNIUxJMEdT4TIhS9w59Z53CHQ2eA6fheiNjqPSsY+Yqrrr3zlKH0ns8Fb9WYQRM3zO
-         kOY6yLRwIeqhZOMpAYD8tWqoE/vLfwtXoRnP9RS7fwWh8tOvq1fltjRs4/dE5xzDVvTg
-         KpIH7ehdyird04YstArZCBtu2gMqhgmKF3isbIkkrjV7DP2G2N7AJgLApJaiFlBZNmFl
-         9y/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750143267; x=1750748067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SvcPLHvTAOguPWHkmBTRclEQDHuwUCTXdi76i3qlbXo=;
-        b=ivRC4ocY9B/bpxYAX2vzIxw0uAZOStnaW2tkL+njvi7NHwI6pHDr7zTEZANkL510gx
-         Jn50A9XQsN+NIqUSZToVvJfPi/6W6ndrfhk3FNGf1YIbsi8gVPAQ4kQuAQesst/Q//Da
-         Esy88MwiRnd7znAus8hWfZ1NloZegb1RmqCkpba2yP4uddx5xhZtnCOkUFSwpwZyxjfR
-         zmzBQHc/gA5Q69VwACwLP84iBJAOSdh+09cGmtup0IeSsLjmiEyxVlAJHZiKUc7kSpBj
-         399kdf7cuvICxUI6qx8NR9YiBMQYnZQMJvNFPRj5iIX+U4OTgBa3Z+rVPs1wAdBGNNja
-         I55g==
-X-Forwarded-Encrypted: i=1; AJvYcCU4DLa6uCNiEWfIF7wBYr/GbE65SmrIEKIdy1uz60PdW+MMvOEbRh/ZdRji6Ou036u0rjf9t/No@vger.kernel.org, AJvYcCVHEU5CkdITQSqZcwzZK6cJCCCM19ZUInzoaOCxU+HhYpeY3Zsfj2AlkPj79MqsYPUS7rkKLmhKmp1O@vger.kernel.org, AJvYcCXrCf9CbEwu5lJaVsVnBItvkxlCBpbpEOTfcoTFThWwjfeGroru8SVGbo4/fRkz3nQicZDDo3Y0gwuVGg9A@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyt4RVhohntBxD0tdRFrtHKbAj2p5bEZo1m4dk82mZIaNrvKphw
-	CRb8YoXogbpR6G2eFtQookZfOUkJSXb8wE78Q5VS2uKheg/XwbYaHrO+IXzWtEQrF45H0f75H6T
-	dViWGLQgIlRuPUtirVroQEQTbi6UsL5k=
-X-Gm-Gg: ASbGncs/+gU40urST8U7IPTEYtCKjMxxRpJumC3o+wQkvtEP1ZerIE/6QGqFv3GT11S
-	MkOvd4pB37qgX2nfb1JltvRcpyDuSNfesDfVKe+IfJ8kcWKqr2qlql6QwrZ8rULUpg3EH3l/jyv
-	2zZ5I0K9Jq4NuNHdfDDGMAfrhio9ScKNJ/rTqWFpGFsmh6/SPRf5QZb6c0fZ327bGlJ5F8hoyS5
-	xob
-X-Google-Smtp-Source: AGHT+IEY4uyjlHP9FOiSFmYJPvurc+MojB54rhkqFuWHs7MtM0Di6VF2exh4ISQVMKgesJnXEjcVknPDPnIWM5OS4pU=
-X-Received: by 2002:a05:622a:1356:b0:494:acf1:bd0f with SMTP id
- d75a77b69052e-4a73c5a524emr168864261cf.42.1750143266713; Mon, 16 Jun 2025
- 23:54:26 -0700 (PDT)
+	s=arc-20240116; t=1750143402; c=relaxed/simple;
+	bh=yBMzeo65WcDtGZkXA1weamUmsv0jkhcnY0FFp1C19NU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QsHi/MsVekzVnep/SH1P5qcmwOuvxL55jX1885KPcJ+xdGRiugwF8p0QJP8DsQL2RJvin0WE0v+jFj89Z1eJ6R2BqSyptCB56d9MeRAOhsfhD98eMljPK7YTig+XOdF/p+FJnkGPTVMbTsy3zi8xsRItfeP9cj/gq8NzNxqPOmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rr91J+jO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2251FC4CEE7;
+	Tue, 17 Jun 2025 06:56:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750143402;
+	bh=yBMzeo65WcDtGZkXA1weamUmsv0jkhcnY0FFp1C19NU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rr91J+jO1KyG5WoI8GhltoqhkBU283CHEqM3NdYcz6XRnoTqScFiKNXkhI8d36v5P
+	 eNjHPYIFR1stBboWYwlHxTz72LSkGoDA6yTs102mkBHeBjNwS+cP7BRSOjHPPLrWbt
+	 1S9En/4FjcbhzvfEVDKzSTdX9cdmtG0M2q4LG0ktxJ0bZbrLS4puYkKvOE1/cviwzM
+	 jjwzBnwFVE/PZBxN9h/EVgFxCHfu3PqsuMI+zYviwENWbLPr5bdooagSJ8JEYeK6Rv
+	 jgdllfKmN2IEsVrBIIWFylmipSVv6fZ5R06Gs4wzF0FOrF+rruDL9glV94Ouk9tyIF
+	 lN4oAGRee/3dw==
+Message-ID: <0d381ad0-85d4-43de-a050-3b9ed03bf5d8@kernel.org>
+Date: Tue, 17 Jun 2025 08:56:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250614-sige5-updates-v2-0-3bb31b02623c@gmail.com> <175011005578.2433766.276755788637993361.robh@kernel.org>
-In-Reply-To: <175011005578.2433766.276755788637993361.robh@kernel.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 17 Jun 2025 10:54:18 +0400
-X-Gm-Features: AX0GCFshodACsqaeamV1VCoCbFUaWw8rwzunXBPUulAI9_Ms6YTcbd6QpZ5J0AE
-Message-ID: <CABjd4YzjCBnc77AGAsEv_eq1+UwMFiuDBjENBrxJ8t4S-89UeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] arm64: dts: rockchip: enable further peripherals
- on ArmSoM Sige5
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-rockchip@lists.infradead.org, stable@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: media: venus: Add qcm2290 dt schema
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
+ bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, stanimir.varbanov@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+ <20250613140402.3619465-2-jorge.ramirez@oss.qualcomm.com>
+ <6f4e715f-1c73-450e-b7eb-92781b7fa050@kernel.org> <aFATp3zoSgkrj3YX@trex>
+ <a76789cf-afe1-4d91-afdf-65c3af5ad11f@kernel.org> <aFBDzWLkKC9MWGoC@trex>
+ <48e6cc62-ffb0-4ca7-80c8-9e510db505db@kernel.org> <aFBNVjl4n7I+OkO5@trex>
+ <c7aef6cd-e07d-4422-a34a-ce04c37ad2e8@kernel.org> <aFEPfjJLEMnIriXX@trex>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aFEPfjJLEMnIriXX@trex>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 17, 2025 at 1:46=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
->
-> On Sat, 14 Jun 2025 22:14:32 +0400, Alexey Charkov wrote:
-> > Link up the CPU regulators for DVFS, enable WiFi and Bluetooth.
-> >
-> > Different board versions use different incompatible WiFi/Bluetooth modu=
-les
-> > so split the version-specific bits out into an overlay. Basic WiFi
-> > functionality works even without an overlay, but OOB interrupts and
-> > all Bluetooth stuff requires one.
-> >
-> > My board is v1.2, so the overlay is only provided for it.
-> >
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Expand the commit message for the patch linking CPU regulators and ad=
-d
-> >   tags for stable (thanks Nicolas)
-> > - Fix the ordering of cpu_b* nodes vs. combphy0_ps (thanks Diederik)
-> > - Drop the USB patch, as Nicolas has already posted a more comprehensiv=
-e
-> >   series including also the Type-C stuff (thanks Nicolas)
-> > - Pick up Nicolas' tags
-> > - Split out board version specific WiFi/Bluetooth stuff into an overlay
-> > - Link to v1: https://lore.kernel.org/r/20250603-sige5-updates-v1-0-717=
-e8ce4ab77@gmail.com
-> >
-> > ---
-> > Alexey Charkov (4):
-> >       arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
-> >       arm64: dts: rockchip: add SDIO controller on RK3576
-> >       arm64: dts: rockchip: add version-independent WiFi/BT nodes on Si=
-ge5
-> >       arm64: dts: rockchip: add overlay for the WiFi/BT module on Sige5=
- v1.2
-> >
-> >  arch/arm64/boot/dts/rockchip/Makefile              |  5 ++
-> >  .../rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtso  | 49 +++++++++++++
-> >  .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 85 ++++++++++++++=
-++++++++
-> >  arch/arm64/boot/dts/rockchip/rk3576.dtsi           | 16 ++++
-> >  4 files changed, 155 insertions(+)
-> > ---
-> > base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> > change-id: 20250602-sige5-updates-a162b501a1b1
-> >
-> > Best regards,
-> > --
-> > Alexey Charkov <alchark@gmail.com>
-> >
-> >
-> >
->
->
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->
->   pip3 install dtschema --upgrade
->
->
-> This patch series was applied (using b4) to base:
->  Base: using specified base-commit 19272b37aa4f83ca52bdf9c16d5d81bdd13544=
-94
->
-> If this is not the correct base, please add 'base-commit' tag
-> (or use b4 which does this automatically)
->
-> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/rockchi=
-p/' for 20250614-sige5-updates-v2-0-3bb31b02623c@gmail.com:
->
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm0:pwm0m1-ch1:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m1-ch1:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m1-ch0:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m0-ch4:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m1-ch2:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m0-ch2:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m0-ch3:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m1-ch3:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m1-ch5:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm2:pwm2m1-ch6:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): i3c1_sda:i3c1_sdam1-pu:rockchip,pins:0:2: 14 is greater tha=
-n the maximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): pwm1:pwm1m1-ch5:rockchip,pins:0:2: 14 is greater than the m=
-aximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): i3c1:i3c1m1-xfer:rockchip,pins:0:2: 14 is greater than the =
-maximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
-> arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: pinctrl (rockchip,r=
-k3576-pinctrl): i3c1:i3c1m1-xfer:rockchip,pins:1:2: 14 is greater than the =
-maximum of 13
->         from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,p=
-inctrl.yaml#
+On 17/06/2025 08:47, Jorge Ramirez wrote:
+> On 17/06/25 08:14:23, Krzysztof Kozlowski wrote:
+>> On 16/06/2025 18:59, Jorge Ramirez wrote:
+>>> On 16/06/25 18:23:18, Krzysztof Kozlowski wrote:
+>>>> On 16/06/2025 18:18, Jorge Ramirez wrote:
+>>>>> On 16/06/25 16:41:44, Krzysztof Kozlowski wrote:
+>>>>>> On 16/06/2025 14:52, Jorge Ramirez wrote:
+>>>>>>>>
+>>>>>>>>> +  The Venus AR50_LITE IP is a video encode and decode accelerator present
+>>>>>>>>> +  on Qualcomm platforms
+>>>>>>>>> +
+>>>>>>>>> +allOf:
+>>>>>>>>> +  - $ref: qcom,venus-common.yaml#
+>>>>>>>>> +
+>>>>>>>>> +properties:
+>>>>>>>>> +  compatible:
+>>>>>>>>> +    const: qcom,qcm2290-venus
+>>>>>>>>> +
+>>>>>>>>> +  power-domains:
+>>>>>>>>> +    minItems: 2
+>>>>>>>>> +    maxItems: 3
+>>>>>>>>> +
+>>>>>>>>> +  power-domain-names:
+>>>>>>>>> +    minItems: 2
+>>>>>>>>
+>>>>>>>> Why is this flexible? Either you have two or three. Not mixed.
+>>>>>>>
+>>>>>>> please check 5b380f242f360256c96e96adabeb7ce9ec784306
+>>>>>>
+>>>>>> This does not explain why this is optional HERE. You cannot use for a
+>>>>>> new platform an argument that some existing platform was changed in
+>>>>>> ABI-preserving way.
+>>>>>
+>>>>> thanks for quick the follow up.
+>>>>>
+>>>>> but bear with me please because I dont follow - why can the same logic
+>>>>> be used - it being applicable - and therefore result in a definition
+>>>>> similar to those other platforms?
+>>>>
+>>>> Because this platform either has 2 or 3, not both. Unless that's not
+>>>> true, but then please share some arguments.
+>>>
+>>> as with every other venus schema with more than 1 power domain, the
+>>> argument is the same one that I have shared with you a couple of
+>>> messages back (DVFS).
+>>>
+>>> verbatim:
+>>>     Venus needs to vote for the performance state of a power domain (cx)
+>>>     to be able to support DVFS. This 'cx' power domain is controlled by
+>>>     rpm and is a common power domain (scalable) not specific to
+>>>     venus alone. This is optional in the sense that, leaving this power
+>>>     domain out does not really impact the functionality but just makes
+>>>     the platform a little less power efficient.
+>>
+>> That's not definition of optional. The domain is needed for this device,
+>> the device is one way or another having its rails routed to that domain.
+>> It is not optional.
+>>
+>>>
+>>> Seeing all these venus schemas follow the same pattern, it seems to me
+>>> that this is the correct way of implementing the above.
+>>
+>> No for the reason I mentioned earlier.
+> 
+> So just to close this story up, were these two commits wrongly
+> reviewed and signed off then ? Please do notice they were also - just
+> like this one - new additions and not a change in an ABI preserving way
+> as you characterize them.
+> 
+> e48b839b6699c2268e545360e06962bb76ff5b8d
+> 8d3a1cb32124eaeb3f2efe4889de214d3b658d8d
 
-N.B.: these are unrelated to my series, and fixed by Nicolas' patch at
-[1], already in -next.
+I was waiting for this argument: there was something similar some years
+ago (but even months ago...) and it got reviewed, so I can do the same.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
-mit/?id=3D86491c2b99e5adbb56d76286d6668effb36d3c90
+You can even go further back. Take commits for DT bindings from 2013 and
+use that against our new review. So many different things were accepted
+in 2013.
+
+You can take any driver code from 2013. Huh, people actually do! People
+still send .owner=THIS_MODULE. In 2013 this was reviewed and accepted,
+so I can send it, right?
+
+And then people are not happy that they patches receive too much
+detailed review or review takes too much time or whatever other
+reason... Yeah if any review you ever give will be some day used against
+you, you would think 10 times and be 10 times more picky then necessary.
+
+This is like an ultimate, super, triple combo argument against reviewers
+and maintainers to discredit their work. I will not play such games.
+
+Best regards,
+Krzysztof
 
