@@ -1,137 +1,144 @@
-Return-Path: <devicetree+bounces-186827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8E7ADDA53
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:16:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E464ADDA7B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 473051940E85
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:05:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E0373A6DE3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021AA2FA65A;
-	Tue, 17 Jun 2025 17:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983C418A6AE;
+	Tue, 17 Jun 2025 17:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MlC18b1v"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Oeo64VdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C118A2FA62D;
-	Tue, 17 Jun 2025 17:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8832FA652
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 17:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750179889; cv=none; b=R5O5QIgG8m2dW1/v+L9DpGIkh1gGEJO7bop/w/rR3rhdSEwG1Eo2bnBbbzKf9HySuu7ZCV5U8uPqsMYlcU9Rt+o6ZSK95zbZYJG/44r6eMtpdTWIkoE3NR9AY3ux2fSatbMJ2JamQae9W2NwXpTafQVywSyOL0+3jSpzDbDeobs=
+	t=1750180480; cv=none; b=Dlktp1iT1d1N0uIr8xLaOkYplwSZ8G401z9FIihf2uKJskxqo5RG5Dk7IOnJJzOnh69oD4QyaOdG60IL17oFYT/APGbFKVJvMPVoA6lJyPrbNlYQRPN/ganf8dJsk4skprPHG6451fFt+lV7pqtIqOVUpR37hZSGsIEirV2Exsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750179889; c=relaxed/simple;
-	bh=AZZ54kpbaOyDLy+/ubXOlw8lKqafcE1tTXmUjCQGWkw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=elp8Fubyv97lO9R1JJsPIYidfrzIMhVH96u5n8nCeHPzqFR6zxeL8c46tL0QmIG6iqHVa3Io11AlYrThcK2+cInJVHlXtgirUZZUvH8b9S5opldwD1E42i80ILgZQnXcMDICh+woRuH+y+/HRTf6hIWfdpO+jAY2teB65ynp/dQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MlC18b1v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98668C4CEE7;
-	Tue, 17 Jun 2025 17:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750179889;
-	bh=AZZ54kpbaOyDLy+/ubXOlw8lKqafcE1tTXmUjCQGWkw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MlC18b1vd0B4fVN9w5YHP3iWoS2zcaCPsljwmcoX3+nufojAu9ux9GD648NXkZ6Xu
-	 ykGAkZdR8/9deA/XSWZvkRsvZMHP9KSlCRFc7zhzxvC1bxom2VpbDB6SDUPtoY96rP
-	 reXO92NmQ1FCVKBDLdrlkPvGpNS9uvnANRnhC1oTjEULrVggTIxfBYqH2vfhL5uQ8e
-	 pzVR8TAqhfQYn1E6XZUb90/p15T5/SHj5DbMyDKjzRmLcX1sKORaVX5dd6DEcFuPJ6
-	 NF+3Kg1GhbDypYEuZpfgp/w9NoMbx8TQsMLeVMQneJK/QxM9q7T0G0FIqimZUm6Wx4
-	 LQSZLYLEBI/nw==
-Date: Tue, 17 Jun 2025 22:34:38 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	p.zabel@pengutronix.de, linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, john.madieu.xa@bp.renesas.com, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 3/8] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add
- documentation for the PCIe IP on Renesas RZ/G3S
-Message-ID: <cmh64utcezpq6thnfrfm7z4dxm63fxzkidirtyjj53cbuzu5ef@v73majd6kepz>
-References: <20250530111917.1495023-1-claudiu.beznea.uj@bp.renesas.com>
- <20250530111917.1495023-4-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1750180480; c=relaxed/simple;
+	bh=BHgYXGyKOcCSbeHi1oMYg3C+dbJr22QuSARLqLUfr88=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ju6canGBnvVvgD4Ln6DRKbgPjyREgo6zFEAiA9v8CWD/DltQxbxd2DnDc8SW6EOm7wDJfawE5pHXehAdwBism9OtFyAYrV41sePlwFTRlEZ2WuK62FtHFh0dFSKGwX1Sn5Sqja3W6MQ3oVGFvCHf/lMubqQcSR6BFhLIKYP3Po0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Oeo64VdS; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <24a0f3fa-2121-4de3-89fd-482b217ab98d@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1750180475;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Cd18iSxY5KC81o8ADU3jGk092QO2shXFkOWHU2sHbrE=;
+	b=Oeo64VdSjKf2omcIzn41u+HDRM0o8iQEmBLCVtRnEKcWqT1OpP+6SPLbvIYQ3XMAt857PK
+	aMc7VMU8nugy4i0/k7m/rqvOYcoZX0f8U6pfWXz7m06VUL8P6vpdtBSdCzn+uzZUoRdhBq
+	a63Tj6o2Mu0i/sGcndmv79WXlJ7Wo+I=
+Date: Tue, 17 Jun 2025 13:14:31 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Subject: Re: [PATCH] driver core: Prevent deferred probe loops
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich
+ <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
+ Grant Likely <grant.likely@linaro.org>
+References: <cb354fd2-bece-42ef-9213-de7512e80912@linux.dev>
+ <20250610183459.3395328-1-sean.anderson@linux.dev>
+ <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
+ <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
+ <2025061147-squishier-oversleep-80cd@gregkh>
+ <7d6d8789-e10b-4b06-aa99-5c1a1bdd3b4c@linux.dev>
+ <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
+ <70958a2e-abc8-4894-b99a-f2981db9981f@linux.dev>
+ <2025061700-unmapped-labrador-a8c9@gregkh>
+ <0ee2f641-c3f3-4a3a-87b4-e1279a862d68@linux.dev>
+ <2025061740-banter-acclaim-2006@gregkh>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <2025061740-banter-acclaim-2006@gregkh>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250530111917.1495023-4-claudiu.beznea.uj@bp.renesas.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, May 30, 2025 at 02:19:12PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 6/17/25 11:49, Greg Kroah-Hartman wrote:
+> On Tue, Jun 17, 2025 at 11:35:04AM -0400, Sean Anderson wrote:
+>> On 6/17/25 04:50, Greg Kroah-Hartman wrote:
+>> > On Thu, Jun 12, 2025 at 04:40:48PM -0400, Sean Anderson wrote:
+>> >> On 6/12/25 13:56, Saravana Kannan wrote:
+>> >> > On Thu, Jun 12, 2025 at 8:53 AM Sean Anderson <sean.anderson@linux.dev> wrote:
+>> >> >>
+>> >> >> On 6/11/25 08:23, Greg Kroah-Hartman wrote:
+>> >> >> > On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
+>> >> >> >> On 6/10/25 19:32, Saravana Kannan wrote:
+>> >> >> >> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
+>> >> >> >> >>
+>> >> >> >> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
+>> >> >> >> >> registering a bus with children:
+>> >> >> >> >
+>> >> >> >> > This is a broken driver. A parent device shouldn't register child
+>> >> >> >> > devices unless it is fully read itself. It's not logical to say the
+>> >> >> >> > child devices are available, if the parent itself isn't fully ready.
+>> >> >> >> > So, adding child devices/the bus should be the last thing done in the
+>> >> >> >> > parent's probe function.
+>> >> >> >> >
+>> >> >> >> > I know there are odd exceptions where the parent depends on the child,
+>> >> >> >> > so they might add the child a bit earlier in the probe
+>> >> >> >>
+>> >> >> >> This is exactly the case here. So the bus probing cannot happen any
+>> >> >> >> later than it already does.
+>> >> >> >
+>> >> >> > Please fix the driver not to do this.
+>> >> >>
+>> >> >> How? The driver needs the PCS to work. And the PCS can live on the MDIO
+>> >> >> bus.
+>> >> > 
+>> >> > Obviously I don't know the full details, but you could implement it as
+>> >> > MFD. So the bus part would not get removed even if the PCS fails to
+>> >> > probe. Then the PCS can probe when whatever it needs ends up probing.
+>> >> 
+>> >> I was thinking about making the MDIO bus a separate device. But I think
+>> >> it will be tricky to get suspend/resume working correctly. And this
+>> >> makes conversions more difficult because you cannot just add some
+>> >> pcs_get/pcs_put calls, you have to split out the MDIO bus too (which is
+>> >> invariably created as a child of the MAC).
+>> >> 
+>> >> And what happens if a developer doesn't realize they have to split off
+>> >> the MDIO bus before converting? Everything works fine, except if there
+>> >> is some problem loading the PCS driver, which they may not test. Is this
+>> >> prohibition against failing after creating a bus documented anywhere? I
+>> >> don't recall seeing it...
+>> > 
+>> > What do you mean "failing after creating a bus"?  If a bus is failed to
+>> > be created, you fail like normal, no difference here.
+>> 
+>> Creating the bus is successful, but there's an EPROBE_DEFER failure after
+>> that. Which induces the probe loop as described in my initial email.
 > 
-> The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
-> Base Specification 4.0. It is designed for root complex applications and
-> features a single-lane (x1) implementation. Add documentation for it.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
-> 
-> Changes in v2:
-> - update the interrupt names by dropping "int" and "rc" string; due
->   to this the patch description was adjusted
-> - added "interrupt-controller" and made it mandatory
-> - s/clkl1pm/pm/g
-> - dropped the legacy-interrupt-controller node; with this the gic
->   interrupt controller node was dropped as well as it is not needed
->   anymore
-> - updated interrupt-map in example and added interrupt-controller
-> - added clock-names as required property as the pm clock is not
->   handled though PM domains; this will allow the driver to have
->   the option to request the pm clock by its name when implementation
->   will be adjusted to used the pm clock
-> - adjusted the size of dma-ranges to reflect the usage on
->   SMARC module board
-> - moved "renesas,sysc" at the end of the node in example to align
->   with dts coding style
-> 
->  .../pci/renesas,r9a08g045s33-pcie.yaml        | 202 ++++++++++++++++++
->  1 file changed, 202 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml b/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> new file mode 100644
-> index 000000000000..8ba30c084d1b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> @@ -0,0 +1,202 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/renesas,r9a08g045s33-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Then don't allow a defer to happen :)
 
-[...]
+Well, I could require all PCS drivers to be built-in I guess. But I suspect
+users will want them to be modules to reduce kernel size.
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie@11e40000 {
-> +            compatible = "renesas,r9a08g045s33-pcie";
-> +            reg = <0 0x11e40000 0 0x10000>;
-> +            ranges = <0x03000000 0 0x30000000 0 0x30000000 0 0x8000000>;
+> Or better yet, just succeed and spin up a new thread for the new bus to
+> attach it's devices to.  That's what many other busses do today.
 
-This 'ranges' property looks bogus. The bitfield specifies that the memory is
-64 bit non-prefetchable, which can't be true.
+Sorry, I'm not sure I follow. How can you attach a device to a thread? Do
+you have an example for this?
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+--Sean
 
