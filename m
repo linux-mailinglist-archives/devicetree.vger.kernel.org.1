@@ -1,135 +1,122 @@
-Return-Path: <devicetree+bounces-186849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F9BADDD17
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 22:18:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5647ADDD3B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 22:30:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B62B189D780
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:18:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B9FD189FEA7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 20:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE324A3E;
-	Tue, 17 Jun 2025 20:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0905238D54;
+	Tue, 17 Jun 2025 20:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WM3t6xvU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q4KBDUrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D112EFD8B;
-	Tue, 17 Jun 2025 20:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756AA2EFD8C;
+	Tue, 17 Jun 2025 20:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750191493; cv=none; b=dMbD4CR80Sdzmonu148flBnrx5D8pKnK9F9Qa4IriD0Jhn1H/RylsLpZ9VFMX7VpR2Rhru9bRmUvj6IxHSYtZWNZZnOTDKxLoQfJ7eR4k527ikdI2qZKMxOT1s9EXqiUkmnsx5c/H95RMW0j6LRY8CYogY/Z1X2u46rtz2WWf9I=
+	t=1750192251; cv=none; b=RnV/CXnqmZoV+NVMrxMn3U4OR5dcXrCpxt3lWrGu03ox+lqIRtMeRKzOm/nAH6q+aevHwe/gLnkDLD7Y5JX0nyBnFXlmwhY72ih2K1kqUVL3cyAnVPccYYGmjmPiS9pXM2aGN6unuyTW0x5kgxRs7HuYCF2hWgd1qqYeesRWsL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750191493; c=relaxed/simple;
-	bh=RJIt7WG3ZOspYYOWIJrtVuyWqj0nYr2+lVhghRFpqv0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uhKzuwZsej1xyS3TB5aPUr+txxPyCsi0PgvyIAXzRpEFz2t/3MVInNMben9+Cn8OdTYaCfHqtBpnA72+hbSm2E0UYxYZcoc0z5o2993062iL850xWL9+dXoAxcIOd68fUSxe0PqC54TGoikRH3vroC/JnqSG14MqvsSDB8zovSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WM3t6xvU; arc=none smtp.client-ip=209.85.218.46
+	s=arc-20240116; t=1750192251; c=relaxed/simple;
+	bh=XuvEZ225XWL+w6sEVTdpw8gxml1hypJ9vxYUkSWza54=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hl0oVBhv5M6Woq/S9A1wIZOGPgJhwQAMWc+LCT1Yz3ZWcWYV3hD87syRauEV5pl8rGQC5IaPf8hNqcYk0kHRV6RDwou7x2r3AkFjFm1XqxvcE/7K6f8vEhg6iLiwXSKjcHUxlmSdyuQ7usQ/TeGtVVp6/HHW9aTTOVg29K7MVUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q4KBDUrO; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ade326e366dso1142484866b.3;
-        Tue, 17 Jun 2025 13:18:11 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2349f096605so82613315ad.3;
+        Tue, 17 Jun 2025 13:30:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750191490; x=1750796290; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eEc/jInWS+mlsww8d0uzb6CYVItqWJXY/C/BRjHunTg=;
-        b=WM3t6xvUfzKAoYdpuCJcfdLMAv0p/rzDC6SQxxJwK21VJvMNN0iDtMceBfCJlFm8IT
-         kIjTI9Ab1B0Tf7yHgu9PQ7KblJMHVyUCHYp5RlACgvW5FDf6io4jM65cE06Lcn7Nf2Id
-         ZO3uwIuuFXCbBHdUQJXZtw1XMHQpHgfZQSZzmWLoc9Rs6lWWwgKvcSAeQ5GsbAn/IlF8
-         cJFtThzJ/AWmCwXHAGZqHZLws6RN9tcQdZaRmedf279DiTSUlc2SkvpKnFDF4cx4STnr
-         Hlf8NCNVVEOQgyampj+Er8hjpe6rvDgPyiRcqZR117Bh7YaETkgfE1zpmXjXq3CoL9T2
-         YgaA==
+        d=gmail.com; s=20230601; t=1750192250; x=1750797050; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ytge0DvQREpsX3FPr8UiIpU+73HOBfPpUENAsXp5RGw=;
+        b=Q4KBDUrO+eqGRpBY5hwdniy7dL7IPJKr2T5AQRlVSMqYiZ7v6PX2CwP70A/wuNxJyB
+         sHRTomVy12uBNffwLx/cZXndZZwl17t6HARO2ODAknDGfTctpeRjbwWBlLIIOzPT4J8A
+         kKlxr4S2TsP4PERrWf4RpiMqkiMruGtYeXgAsoe8ql4TUj7KL5nqsv5FyMlI9iimNIG/
+         z75Mpp1nHjYimDHreVFqY9iLArTvj5Qu1IHXjmAzt75FPpSS+q2pKo+JfUGCPR66Y02g
+         FFQgoP/hkCV+XOwIGcFV7oOL/qDPVOjg+V+Hfz6dMHxswObCWSpA/UsqccXq1MOYH9WF
+         Ca9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750191490; x=1750796290;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eEc/jInWS+mlsww8d0uzb6CYVItqWJXY/C/BRjHunTg=;
-        b=wqHxqH+lPcziGTiRfcuyJENgf2VWP3mRpG+EbDwwQObY2xeP+IZvcS0zYtPS/M5rCf
-         V6i51os32cCgUvINC5h+qSnoAU0PjdP4OK3vCqcQaswxCwueoBcYOxDW597H6WWML4iC
-         5KaS8Zo4yxPGBj5O4S12lHzwLisXBVxrvRxN4bgXRvYIvFGNfsecp/7vc7ZHBHyFEMsd
-         kg/4u1CAYFMhVY9efXbH2YlXJFSEjOqowboOsjgViscYPbaw/rY6HxPMFM0pOlx5dCu8
-         mRxu1PjXWktPo0z+NoP4li9hQ91WqbWusTEdrOFFZCLlnFn9w30cDMsO6ymonxynRegn
-         tBXw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHS7E+R7hLxkXnCB+tMEkAGQJp+t/lxAgfT84jqvoL1jNNlFal8i+cF7zowfbqIlU2gC0MSTK8p/L0@vger.kernel.org, AJvYcCUfWTN7cBPYHZh/e6A+uV2u0U8PdEHCknDS8RvI3DFuE9Zr+lnz/Ky5xmFzo+C32n/LswjJv98X6fYe7dqm@vger.kernel.org, AJvYcCUnhruW7/HiyPFw61HG53qgSn6y2m+3lrfGL23YF67JzT2yweLGjFYC2u1WbGDkzC/6iIEN92oU1/UW@vger.kernel.org, AJvYcCXiQWULmldA5DkTxdTf5NoxcMxCC1bL3Cm2zlJMNMbLw3/nrd91Kru6HqREhLDqaNd9MM+1toIIa0nuYg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1bEFJK4NmMamuE9NFzlrEkOH1iv88/jHPfZ3TLtlWEMAM9T5j
-	Wi/Yx/XPwADEXwTd4jfHedVn3Wq6rR6qYOP/Z4Lb52c0qXlvUOsThQpqVUfOH+unryOOC0fwezq
-	doBQZePju61JodWlErpbZhPS6Zg/NJn8=
-X-Gm-Gg: ASbGnct1Npzg8Y2r/NaVK0Z2UY7oHzKilHuE9rqmBTeCpx3Io8F+IKRFNOCuP9u6VSL
-	CPYfu2Ev+mYiHbQJR4QqOoToO10MkjLFs+3hTdGiatp5JGkAGx3ov2UW5SVyfEUFRWHRtzBUDrd
-	QGvXBghrAUzR069hVeDdZqEDMPSCTUrWQnAYP4MUN5HQY=
-X-Google-Smtp-Source: AGHT+IHuE9uZYXvE62BT8AzKQX2dvWzPPjvjArHXMBOp8AoBNetWawpRg+mvV3w+Xv170qTJ70H8PEeuQAdbkXf8YGE=
-X-Received: by 2002:a17:906:c154:b0:ade:2e4b:50d1 with SMTP id
- a640c23a62f3a-adfad415a59mr1502949666b.29.1750191489371; Tue, 17 Jun 2025
- 13:18:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750192250; x=1750797050;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ytge0DvQREpsX3FPr8UiIpU+73HOBfPpUENAsXp5RGw=;
+        b=u7bX7Qb79h2cy4JIridoDPDfWfze+Ca3pJwaHYwvu3J4pWlfvA/ismufMFoLgTlzCC
+         tY1Oxeg342jkXOqpBln8vfEp4yQq84W2GSrybMR88Dt+XlCVR07sYmecM5QT7tErEjqv
+         ea3Py4W2PDd6lG+lrS//SRwu79k+XjDw22qgsjFHcZVd0ogxdLn3smHq+OV6ZEr4qYlS
+         VIWzuZZwHXr2AkotHelBgnqbJ5mBqpZNDu+i6VPvT6Fas2q9aPNUvyP+CYDhATlo9/Xz
+         6U2Apf2IBnzDTgG6Xmhi4kHK30B8aQqbbBSgKdRMNrLzYvbRQy/xI5FDMXFBMB0IsAn8
+         zjhg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCy3uj1HbnK4iO4Sdi47jV+0PwZVTmFYbvQH7YO5Deh4UehEyFVXnkbrXTSIKHVmu6SR2+Ozme6Mohrqc=@vger.kernel.org, AJvYcCWkY/sTe3Dou9mvM90LgGCVbcGuE8fho3LFqkDg9U4vBtLSq1Vdnj54YUIB0EM5RY1dUBBdqT5BbwJz@vger.kernel.org, AJvYcCX/eVySz0skjkui8M+lxY8Py7IwmpzEGSufHcsZ8FG7gZfTuEHC5mNhathwglBNEhgZzayh5iQOrM2SjFG8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx97YBz66QhqOrnHbuzGATSeCeiwX9YoALkpsksm6PlLX5EWcHr
+	QOlVFp0a9/y0r3udJ6Z010Jk7LnU1PzFmT/63iD14WEhCypkTF2hc7gH
+X-Gm-Gg: ASbGncu05f9nNxcI/F9VHZbaLJ0XsAJMCQ2WSbOTbcPfEd/tG5uYzeRtwM/sJKEpkSO
+	7mzCuUzHsZlLqfDYGeEFqJkwLaKyIqDFsrnWasL+4IRH4PnB3OngPkvqKFsStMpMYgkic4/o3U4
+	TUg7AWmEsBBl5yWVdSOSa8yG0K5S0kroJOB5M6H7UNSI9zywz8mjiIPGoyOx2y6fuLrXZUblT9H
+	b1oak0cvyiC2PnBGvdeIMubLyYKXomO1ZAyWnjwCls399h3LBkMoczvmSN4g5sfnRCx10cdBIbr
+	iByXqmzaRq7scjtmGmWxdiNwvDPX1tj7edE0JNrzzWHcZPq8Rldqugfq9dKr6N0=
+X-Google-Smtp-Source: AGHT+IEl1LF76euKDmEK2b2BXIXslDp9/iHoV2XPh1E20bcvG0JJxY9n8fjrWmH0V9E0TDySKBwOcA==
+X-Received: by 2002:a17:903:b88:b0:234:9094:3fb1 with SMTP id d9443c01a7336-2366b3c2d82mr257503495ad.35.1750192249605;
+        Tue, 17 Jun 2025 13:30:49 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:8d7d:9cdc:2836:83cb])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2fe1642e0asm9364972a12.17.2025.06.17.13.30.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 13:30:49 -0700 (PDT)
+Date: Tue, 17 Jun 2025 13:30:45 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-input@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: HID: i2c-hid: elan: Introduce Elan
+ eKTH8D18
+Message-ID: <zcdks6nwmnahlgp6vvbxmmlbfbafzluuxgb52byiisuoy7ewzu@kao7yhx2u3qt>
+References: <20250617082004.1653492-1-wenst@chromium.org>
+ <20250617082004.1653492-2-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1749569957.git.Jonathan.Santos@analog.com>
- <804d66f1858014d7278aec3344d81c223661e878.1749569957.git.Jonathan.Santos@analog.com>
- <aEwd4cS7j0Vvypg8@smile.fi.intel.com> <aFGVAWi7CZAy0E8k@JSANTO12-L01.ad.analog.com>
-In-Reply-To: <aFGVAWi7CZAy0E8k@JSANTO12-L01.ad.analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 17 Jun 2025 23:17:32 +0300
-X-Gm-Features: AX0GCFs2EpzDynFpo556EMhMcho2_InQYRdVfK7jhsS64P9QV5UZ6zxcfifMGOU
-Message-ID: <CAHp75VdbizxgF1U-LmEp-aTdWpZ5jAqvubk_7QH+RFLMrnRotQ@mail.gmail.com>
-Subject: Re: [PATCH v11 11/11] iio: adc: ad7768-1: add low pass -3dB cutoff attribute
-To: aEwd4cS7j0Vvypg8@smile.fi.intel.com
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com, 
-	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl, 
-	lgirdwood@gmail.com, broonie@kernel.org, dlechner@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250617082004.1653492-2-wenst@chromium.org>
 
-On Tue, Jun 17, 2025 at 7:17=E2=80=AFPM Jonathan Santos <jonath4nns@gmail.c=
-om> wrote:
-> On 06/13, Andy Shevchenko wrote:
-> > On Wed, Jun 11, 2025 at 08:52:03AM -0300, Jonathan Santos wrote:
-> > > Ad7768-1 has a different -3db frequency multiplier depending on
-> > > the filter type configured. The cutoff frequency also varies accordin=
-g
-> > > to the current ODR.
-> > >
-> > > Add a readonly low pass -3dB frequency cutoff attribute to clarify to
-> > > the user which bandwidth is being allowed depending on the filter
-> > > configurations.
-> >
-> > > +/* -3dB cutoff frequency multipliers (relative to ODR) for each filt=
-er type. */
-> > > +static const int ad7768_filter_3db_odr_multiplier[] =3D {
-> > > +   [AD7768_FILTER_SINC5] =3D 204,            /* 0.204 */
-> > > +   [AD7768_FILTER_SINC3] =3D 262,            /* 0.2617 */
-> > > +   [AD7768_FILTER_SINC3_REJ60] =3D 262,      /* 0.2617 */
-> > > +   [AD7768_FILTER_WIDEBAND] =3D 433,         /* 0.433 */
-> >
-> > Just to be sure, is it 0.433 or 0.4333(3) actually? Sometimes datasheet=
-s have
-> > rounding that even may lead to problems (see TSC issues for some of the=
- Intel
-> > CPUs in the past). That's behind my question.
->
-> Every reference I have specifies it as 0.433, so I believe that is it.
+On Tue, Jun 17, 2025 at 04:19:58PM +0800, Chen-Yu Tsai wrote:
+> The Elan eKTH8D18 touchscreen controller is an I2C HID device with a
+> longer boot-up time. Power sequence timing wise it is compatible with
+> the eKTH6A12NAY, with a power-on delay of at least 5ms, 20ms
+> out-of-reset for I2C ack response, and 150ms out-of-reset for I2C HID
+> enumeration, both shorter than what the eKTH6A12NAY requires.
+> Enumeration and subsequent operation follows the I2C HID standard.
+> 
+> Add a compatible string for it with the ekth6a12nay one as a fallback.
+> No enum was used as it is rare to actually add new entries. These
+> chips are commonly completely backward compatible, and unless the
+> power sequencing delays change, there is no real effort being made to
+> keep track of new parts, which come out constantly.
+> 
+> Also drop the constraints on the I2C address since it's not really
+> part of the binding.
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Yeah, I see now. The base is 0.10825, which is multiplied by 4 in this case=
-.
+Applied, thank you.
 
-> > > +};
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+Dmitry
 
