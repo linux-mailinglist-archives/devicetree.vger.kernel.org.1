@@ -1,267 +1,252 @@
-Return-Path: <devicetree+bounces-186836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB7EADDAA5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:30:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8CEADDACB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 19:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A25E3B9073
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:30:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F54C1881966
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 17:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA59285076;
-	Tue, 17 Jun 2025 17:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A542ECE84;
+	Tue, 17 Jun 2025 17:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mc6fMNVw"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IKCyTGnP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A21285079;
-	Tue, 17 Jun 2025 17:30:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014F42ECD23;
+	Tue, 17 Jun 2025 17:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750181411; cv=none; b=M3ab12ykDaUTdXGZSl2Vvq0DYg+VzgrPtXhlBuvO7LWlfIcDzaGVSpEEr6w9I+lcQNkFi98HrCE1IxIkGQHDO3VezK5DSbc5QL6J1e5DerJL+DO32dZfoUKoDj3LVN5UTnvTLwq7sGms7cXVkTc4qaUEFpjDT5qzroWuwq+nXL4=
+	t=1750182050; cv=none; b=WKrnIrgeNKosYaz8ejcm0DiOLblTviy5rVC+VmvGVpgvRVOdg0QYHekHakAAueDdRJX5UT2wOm0TnVPy9lQch47G1nXsSk29hb17m1EW7hxkNKaOcGPpbew6+9s0ZChuC4dUbqrMLQNAfrN8U1Kf48BFU5JTeWiHe0X3y6MKXww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750181411; c=relaxed/simple;
-	bh=IGsmcuwJXjEnfGubxZ1RKl4+HzWgxpXUtAwOzTFRY3k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UufTX3qONshQpMXGctEFZdo92xE8vseZyMQXk5tPKLCGFFedX0Q0b7wWqP0NWiAWsvfk0gPTpfE1S8jjNX5XxkxSKqiL1cd0j9e7/u12/Oj5sOCJmJp/g107yrzpzNjRsAgKhQG4/togmrm3QdBvbuUWR7ZJzpM4HQXOZrN4g9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mc6fMNVw; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b2c4476d381so5027198a12.0;
-        Tue, 17 Jun 2025 10:30:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750181409; x=1750786209; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qhk8jGOaZDAa5EqoSmpTbXR4Ag85GcTozQgz77RVrTk=;
-        b=Mc6fMNVw4psH0BJj9Dx3O2/4OH8R+ufmf8k20sZ0xKvMiIsa63nMyw4XNNA52eB3xx
-         1tIQyvRwhm88OMApEeMYAsXpZW2Og0i+qThOnkHYNsgXOpKRqEMs6UVq46wCe++71XCx
-         xhvn+u+NV9V3Ky9UQOBm4EaWIdvNlAIprS5Y2531x7Z9+I8sl0I1M9NookINyME43bpg
-         wMyc+824Lslj5YgUoufrzMWnbS2Or4UUvn7CgeCG4Jwc2tvSLBeaNCR30sO8v+T7PP+d
-         YvIfCJm6V8dgmT5t1xjsmkfpGFVaoepUO5CfRwsMFPhYycTrOG6TYgWd7RPfZi2uVr7e
-         4V3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750181409; x=1750786209;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qhk8jGOaZDAa5EqoSmpTbXR4Ag85GcTozQgz77RVrTk=;
-        b=MDZNae7wpEho9WvnCr7AF1SS/kIe5IwbKBaSuya6Eh26bKCpg9220wOM7UUBKEnOwL
-         ysplYbD3YrDu895S2059YyuJUnSoT/nI9SntjtOo+CDu6dXf19EZaY9zliZ/gvnwJjh7
-         lqZR7qxabaIMrmKNo37RdZcZBJVUdPvXn/7zCFMUcVAeg68GZwxaWeYY3Y/Aj3olbrFj
-         of0h3RDxLHJLFe1Zpi4kDg+06PkeDd97S8uHf31XENgdMXiSeZxSabS0bRtMFlqGDHmh
-         U2O75/MQlzwBinIV963u0U9/Ufa6eB2nj26kmsMIqf39Qwf036qh4d2weIbGFZ6qvJAQ
-         3HMg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCEr2v5dfubSawnJtLVYgvnI8XM2YzpGA/IsVkqSpHE2vI8EKt7s0JssvaRLofcBCZN6D1KO2RW1DjmszM@vger.kernel.org, AJvYcCUMcG3dl3mR++0FTqQOdwgNVP/gosK9JrUxwuMZgu3Yj7r0qC3xt0m8tbxE87sV14IrntVyOZOFMAgQug==@vger.kernel.org, AJvYcCUVN7g7KEUARBWx6ixcy4/BII/6AqPPBjCkY2BSx6mob+pzZfzVFfWpNhBCVICawNQbaaWjca09t/Ll@vger.kernel.org, AJvYcCVcvzmAxwwr73rEuX5WEODpmj8Ca0oOcu3cYAD/bu8W1Xf55m2+45S8uogkIrrFMsF4+ecnHdTpfoOS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/Vjrw8eDp9j0923AaX/4vggxfFnys4mi9cS5U2Jjg0Pdfv0Nw
-	VhSVocyVxkRvgq0bwCXAyLwvqNZC8lXJ7cb1TajjtdiHd1O03Wx7n/cQ
-X-Gm-Gg: ASbGncvrXd4usIiurVdqt2aIuKCo2552Mq8HnHQZcweNxgunNxmbpwv4W5AMI+7KfAt
-	qFeLk+iqf/jTRTL1ZlnuZ5ro6cURxm3jTl/RI8nhYaTAhXX7Q5V5IwHXwwa84RL4gt/n9ZcSTzw
-	18h2p/4uS5F2j4UDntR4FvMF0mX5J6ED9QXJ8isacmB4AGNmIROjUxB+/8TleiNOx+wwgR0pjZ6
-	t37USgpVtKnp9c32yr6iFROs6PB101TFRAgSLyhN3SLzdhWORQohQdztKH40DdvQlMZOwhQ2xMQ
-	9tTeQW6B3Xu2L2254+9hadAiMDbJRFzUPLrwYWCPwVwqzVAagj6eZlL4hXU7YOS4l9lIEaG82OG
-	ZMwwWI4k=
-X-Google-Smtp-Source: AGHT+IFLuD8HTG8FAQ2HO+cOiu9Tara6TS9wXId7+ckrwN5AmK8tAnFnQoZlxup6NCubrca7a8vZhg==
-X-Received: by 2002:a05:6a21:6f8b:b0:21c:fa68:9da6 with SMTP id adf61e73a8af0-21fbc6c773fmr22731462637.8.1750181408701;
-        Tue, 17 Jun 2025 10:30:08 -0700 (PDT)
-Received: from DESKTOP-P76LG1N.lan ([42.113.163.91])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748e1a26105sm440535b3a.45.2025.06.17.10.30.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 10:30:08 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: christophe.jaillet@wanadoo.fr
-Cc: lee@kernel.org,
-	pavel@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 2/4] leds: add TI/National Semiconductor LP5812 LED Driver
-Date: Wed, 18 Jun 2025 00:30:03 +0700
-Message-Id: <20250617173003.28933-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <42676fe3-8758-42ea-8e21-9c3955468c78@wanadoo.fr>
-References: <42676fe3-8758-42ea-8e21-9c3955468c78@wanadoo.fr>
+	s=arc-20240116; t=1750182050; c=relaxed/simple;
+	bh=K0vxcsqHQKl0mgOXeJnuKBSYZIgPQRDBokS04NUAV2Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rNtFrEUijLqFOo0obfEgMFqwzof94gerDk46wG/odpjTB9shfhoidSLsff0rrdqYOm3x9eCVrnt/vWZnvM365+E9LGh4lLW07OV/3LW0KxsRYLlwxyW5iMS3RiIWLCHnD8tNagJ6rwbNDAO6vY9Hw5SYadnmLEEIHsRkPMOXg74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=IKCyTGnP; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55HFaTiR013203;
+	Tue, 17 Jun 2025 19:40:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	BCDEKH89I2K3oqjv3tljOt2+d5QzCMjlDICRktrlLTw=; b=IKCyTGnPnox4Lq0F
+	vOPeRvGck68q98cBsI1r908q9qQaq0urFuUVIibrgqbHbAF8QnrTAh1syjaauuJI
+	Z9fbs2dQMkOJe1WcvbSnPzbQmmMNKhCEGWyV2mx7qoqnIN07dFr7JvdJlSbDV9Zq
+	TjRmnsKJc8xXpZRgal2yWz9OHRKVNjr2aYyucZPU7LyStZkEV0PfMCh5kDPsCW0I
+	yH3k3rNOtGLEqnfB17zBUwYSnS54AhP49bBzuyxg5/FObZaIvK7EKxEvvt98FKqA
+	WMGjPD39u4D2/xnXa0995jsQF7bsnjaBK0utur3Zss/fYyrf6wHQTCVLjRigP0C2
+	CqQZdQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4790e27jt9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Jun 2025 19:40:16 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D153640045;
+	Tue, 17 Jun 2025 19:39:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C2540B88169;
+	Tue, 17 Jun 2025 19:38:20 +0200 (CEST)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 17 Jun
+ 2025 19:38:20 +0200
+Received: from [10.48.86.121] (10.48.86.121) by SAFDAG1NODE1.st.com
+ (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 17 Jun
+ 2025 19:38:19 +0200
+Message-ID: <cda96440-5c53-4b7a-8b51-51506f5e7cc3@foss.st.com>
+Date: Tue, 17 Jun 2025 19:38:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v18 3/6] remoteproc: Introduce release_fw optional
+ operation
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Jens Wiklander
+	<jens.wiklander@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
+References: <20250616075530.4106090-1-arnaud.pouliquen@foss.st.com>
+ <20250616075530.4106090-4-arnaud.pouliquen@foss.st.com>
+ <6ekro2uytz7kguphtub54wivmclpnfkjobduhsom4kvxlmov2l@hgcjoposj3md>
+Content-Language: en-US
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <6ekro2uytz7kguphtub54wivmclpnfkjobduhsom4kvxlmov2l@hgcjoposj3md>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-17_08,2025-06-13_01,2025-03-28_01
 
-On Tue, 10 Jun 2025, Christophe JAILLET wrote:
+Hello Bjorn,
 
-> > +static struct lp5812_data *lp5812_of_populate_pdata(struct device *dev,
-> > +						    struct device_node *np,
-> > +						    struct lp5812_chip *chip)
-> > +{
-> > +	struct device_node *child;
-> > +	struct lp5812_data *pdata;
-> > +	struct lp5812_led_config *cfg;
-> > +	int num_channels, i = 0, ret;
-> > +
-> > +	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-> > +	if (!pdata)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	num_channels = of_get_available_child_count(np);
-> > +	if (num_channels == 0) {
-> > +		dev_err(dev, "no LED channels\n");
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	cfg = devm_kcalloc(dev, num_channels, sizeof(*cfg), GFP_KERNEL);
-> > +	if (!cfg)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	pdata->led_config = &cfg[0];
-> > +	pdata->num_channels = num_channels;
-> > +
-> > +	for_each_available_child_of_node(np, child) {
+On 6/17/25 06:44, Bjorn Andersson wrote:
+> On Mon, Jun 16, 2025 at 09:55:27AM +0200, Arnaud Pouliquen wrote:
+>> The release_fw operation is the inverse operation of the load, responsible
+>> for releasing the remote processor resources configured from the loading
+>> of the remoteproc firmware (e.g., memories).
+>>
 > 
-> Maybe for_each_available_child_of_node_scoped() to slihtly simplify the 
-> code?
+> I was under the impression that we agreed that this would unroll
+> rproc_parse_fw() not the "load" in general.
 
-Thanks, I'll switch to for_each_available_child_of_node_scoped().
+Not Krystal clear to me what you are expecting here.
+Is it just on the description or on the design?
 
-> > +static ssize_t lp5812_aeu_slope_time(struct device *dev,
-> > +				     struct device_attribute *attr,
-> > +				     enum slope_time_num slope_chan,
-> > +				     const char *buf, size_t len)
-> > +{
-> > +	struct lp5812_led *led;
-> > +	struct lp5812_chip *chip;
-> > +	struct lp5812_led_config *led_cfg;
-> > +	const char *name = dev->platform_data;
-> > +	int val[LED_COLOR_ID_MAX];
-> > +	u8 chan_nr = 0;
-> > +	char *sub_str, *str = (char *)buf;
-> > +	int i, ret, aeu;
-> > +	union slope_time slope_time_val;
-> > +	u16 reg;
-> > +
-> > +	if (strcmp(name, LP5812_SC_LED) == 0)
-> > +		led = dev_to_lp5812_led(dev);
-> > +	else
-> > +		led = dev_to_lp5812_led_mc(dev);
-> > +
-> > +	chan_nr = led->chan_nr;
-> > +	chip = led->chip;
-> > +	led_cfg = &chip->pdata->led_config[chan_nr];
-> > +
-> > +	sub_str = strsep(&str, ":");
-> > +	if (!sub_str)
-> > +		return -EINVAL;
-> > +	if (kstrtoint(&sub_str[3], 0, &aeu))
-> > +		return -EINVAL;
-> > +
-> > +	pr_info("AEU = %d", aeu);
-> > +
-> > +	guard(mutex)(&chip->lock);
-> > +	for (i = 0; i < led_cfg->num_colors; i++) {
-> > +		sub_str = strsep(&str, " ");
-> > +		if (!sub_str)
-> > +			return -EINVAL;
-> > +		if (kstrtoint(sub_str, 0, &val[i]))
-> > +			return -EINVAL;
-> > +		if (val[i] < 0 || val[i] > 15)
-> > +			return -EINVAL;
-> > +
-> > +		reg = LP5812_AEU_SLOPE_TIME_ADDR(led_cfg->led_id[i], aeu, slope_chan);
-> > +
-> > +		/* get original value of slope time */
-> > +		ret = lp5812_read(chip, reg, &slope_time_val.time_val);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		/* Update new value for slope time*/
-> > +		if (slope_chan == LP5812_SLOPE_TIME_T1 || slope_chan == LP5812_SLOPE_TIME_T3)
-> > +			slope_time_val.s_time.first = val[i];
-> > +		if (slope_chan == LP5812_SLOPE_TIME_T2 || slope_chan == LP5812_SLOPE_TIME_T4)
-> > +			slope_time_val.s_time.second = val[i];
-> > +
-> > +		/* Save updated value to hardware */
-> > +		ret = lp5812_write(chip, reg, slope_time_val.time_val);
+Unroll only the rproc_parse_fw is not sufficient. The need here is also
+to go back from a LOAD state of the TEE. So in such case the role of
+release_fw() would be to unroll the load + the parse of the resource.
+Is it your expectation?
+
 > 
-> Should we do something if ret != 0?
-
-Yes. I'll add a return check to handle possible write errors.
-
-> > +static struct attribute *lp5812_led_attrs[] = {
-> > +	&dev_attr_led_current.attr,
-> > +	&dev_attr_max_current.attr,
-> > +	&dev_attr_mode.attr,
-> > +	&dev_attr_activate.attr,
-> > +	&dev_attr_pwm_dimming_scale.attr,
-> > +	&dev_attr_pwm_phase_align.attr,
-> > +	&dev_attr_auto_time_pause_at_start.attr,
-> > +	&dev_attr_auto_time_pause_at_stop.attr,
-> > +	&dev_attr_auto_playback_eau_number.attr,
-> > +	&dev_attr_auto_playback_time.attr,
-> > +	&dev_attr_aeu_playback_time.attr,
-> > +	&dev_attr_aeu_pwm1.attr,
-> > +	&dev_attr_aeu_pwm2.attr,
-> > +	&dev_attr_aeu_pwm3.attr,
-> > +	&dev_attr_aeu_pwm4.attr,
-> > +	&dev_attr_aeu_pwm5.attr,
-> > +	&dev_attr_aeu_slop_time_t1.attr,
-> > +	&dev_attr_aeu_slop_time_t2.attr,
-> > +	&dev_attr_aeu_slop_time_t3.attr,
-> > +	&dev_attr_aeu_slop_time_t4.attr,
-> > +	&dev_attr_lod_lsd.attr,
-> > +	NULL,
+>> The operation is called in the following cases:
+>>  - An error occurs on boot of the remote processor.
+>>  - An error occurs on recovery start of the remote processor.
+>>  - After stopping the remote processor.
+>>
+>> This operation is needed for the remoteproc_tee implementation after stop
+>> and on error.
 > 
-> Unneeded trailing comma after a terminator.
+> And if it's defined to unroll rproc_parse_fw() it can be used for other
+> things where some resources was allocated to set up the resource table.
 
-I'll remove it.
+True
 
-> > +static int lp5812_init_led(struct lp5812_led *led, struct lp5812_chip *chip, int chan)
-> > +{
-> > +	struct lp5812_data *pdata = chip->pdata;
-> > +	struct device *dev = &chip->i2c_cl->dev;
-> > +	struct mc_subled *mc_led_info;
-> > +	struct led_classdev *led_cdev;
-> > +	char name[32];
-> > +	int i, ret = 0;
-> > +
-> > +	if (pdata->led_config[chan].name) {
-> > +		led->cdev.name = pdata->led_config[chan].name;
-> > +	} else {
-> > +		snprintf(name, sizeof(name), "%s:channel%d",
-> > +			 pdata->label ? : chip->i2c_cl->name, chan);
-> > +		led->cdev.name = name;
 > 
-> Is it fine below when 'name' is defined on the stack and is used...
+>> Indeed, as the remoteproc image is loaded when we parse the resource
+>> table, there are many situations where something can go wrong before
+>> the start of the remote processor(resource handling, carveout allocation,
+>> ...).
 > 
-> > +	}
-> > +
-> > +	if (pdata->led_config[chan].is_sc_led == 0) {
-> > +		mc_led_info = devm_kcalloc(dev,
-> > +					   pdata->led_config[chan].num_colors,
-> > +					   sizeof(*mc_led_info), GFP_KERNEL);
-> > +		if (!mc_led_info)
-> > +			return -ENOMEM;
-> > +
-> > +		led_cdev = &led->mc_cdev.led_cdev;
-> > +		led_cdev->name = led->cdev.name;
+> Unbalanced parenthesis? I think you can write this in less
+> conversational style.
 > 
-> ...here?
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> ---
+>>  drivers/remoteproc/remoteproc_core.c     | 6 ++++++
+>>  drivers/remoteproc/remoteproc_internal.h | 6 ++++++
+>>  include/linux/remoteproc.h               | 3 +++
+>>  3 files changed, 15 insertions(+)
+>>
+>> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+>> index d06eef1fa424..4c1a4bc9e7b7 100644
+>> --- a/drivers/remoteproc/remoteproc_core.c
+>> +++ b/drivers/remoteproc/remoteproc_core.c
+>> @@ -1857,6 +1857,8 @@ static int rproc_boot_recovery(struct rproc *rproc)
+>>  
+>>  	/* boot the remote processor up again */
+>>  	ret = rproc_start(rproc, firmware_p);
+>> +	if (ret)
+>> +		rproc_release_fw(rproc);
+>>  
+>>  	release_firmware(firmware_p);
+>>  
+>> @@ -1998,6 +2000,8 @@ int rproc_boot(struct rproc *rproc)
+>>  		}
+>>  
+>>  		ret = rproc_fw_boot(rproc, firmware_p);
+>> +		if (ret)
+>> +			rproc_release_fw(rproc);
+>>  
+>>  		release_firmware(firmware_p);
+>>  	}
+>> @@ -2067,6 +2071,8 @@ int rproc_shutdown(struct rproc *rproc)
+>>  
+>>  	rproc_disable_iommu(rproc);
+>>  
+>> +	rproc_release_fw(rproc);
+>> +
+>>  	/* Free the copy of the resource table */
+>>  	kfree(rproc->cached_table);
+>>  	rproc->cached_table = NULL;
+> 
+> These are allocated in rproc_parse_fw(), would it not make sense to
+> clean them up in your newly introduced function?
 
-You're right, name was stack-allocated and unsafe to use after the function returns.
-I'll replace it with a devm_kasprintf() allocation.
+It seems possible as proposed in v11 3/7[1], but this needs an exception
+for rproc_detach().
+[1]
+https://patchew.org/linux/20241009080108.4170320-1-arnaud.pouliquen@foss.st.com/20241009080108.4170320-4-arnaud.pouliquen@foss.st.com/
 
-Appreciate your time and feedback.
+> 
+>> diff --git a/drivers/remoteproc/remoteproc_internal.h b/drivers/remoteproc/remoteproc_internal.h
+>> index 0cd09e67ac14..c7fb908f8652 100644
+>> --- a/drivers/remoteproc/remoteproc_internal.h
+>> +++ b/drivers/remoteproc/remoteproc_internal.h
+>> @@ -221,4 +221,10 @@ bool rproc_u64_fit_in_size_t(u64 val)
+>>  	return (val <= (size_t) -1);
+>>  }
+>>  
+>> +static inline void rproc_release_fw(struct rproc *rproc)
+>> +{
+>> +	if (rproc->ops->release_fw)
+>> +		rproc->ops->release_fw(rproc);
+>> +}
+>> +
+>>  #endif /* REMOTEPROC_INTERNAL_H */
+>> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+>> index 8fd0d7f63c8e..80128461972b 100644
+>> --- a/include/linux/remoteproc.h
+>> +++ b/include/linux/remoteproc.h
+>> @@ -381,6 +381,8 @@ enum rsc_handling_status {
+>>   * @panic:	optional callback to react to system panic, core will delay
+>>   *		panic at least the returned number of milliseconds
+>>   * @coredump:	  collect firmware dump after the subsystem is shutdown
+>> + * @release_fw:	optional function to release the loaded firmware, called after
+>> + *              stopping the remote processor or in case of error
+> 
+> The struct firmware is released at the end of startup and the typical
+> carveout memory where the firmware is loaded into is released at
+> rproc_shutdown().
+> 
+> As such, this won't help anyone understand the purpose of the ops unless
+> they know your system design (and know you added it).
 
-Best regards,
-Nam Tran
+Could you detail which improvement you are expecting here?
+Name of the ops, associated comment? both?
+
+Thanks,
+Arnaud
+
+> 
+> Regards,
+> Bjorn
+> 
+>>   */
+>>  struct rproc_ops {
+>>  	int (*prepare)(struct rproc *rproc);
+>> @@ -403,6 +405,7 @@ struct rproc_ops {
+>>  	u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
+>>  	unsigned long (*panic)(struct rproc *rproc);
+>>  	void (*coredump)(struct rproc *rproc);
+>> +	void (*release_fw)(struct rproc *rproc);
+>>  };
+>>  
+>>  /**
+>> -- 
+>> 2.25.1
+>>
 
