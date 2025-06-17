@@ -1,354 +1,277 @@
-Return-Path: <devicetree+bounces-186698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6606ADCDBC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:43:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D5CADCDCE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A977D3AB361
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:41:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9787162C79
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14152DF3F7;
-	Tue, 17 Jun 2025 13:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8EA2E2669;
+	Tue, 17 Jun 2025 13:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a06enZpK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VomeLmSo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727232E718F
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 13:41:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B5E1DE4E5;
+	Tue, 17 Jun 2025 13:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750167704; cv=none; b=JOHjix9aRiAZDzLWoFsPSnh9IqbqJG3Zv3gabGRcOm3VcK/ZTlbd8ycPc8zatImQ9BtcmzC4PZnlAAX6hY+QfZ/j/O+pxZuaaPsUcuFjVTKSvjjpOII9lTC2YgdtTNSqb8hxD27RuM9Y7Gtz6VZfGSwelVPI3nFuNHhoHEoYnXM=
+	t=1750167841; cv=none; b=M30CvqPktIIByXK+vrqn6w8F0WX0M7wwdNH6gG/TVkcpfdaKRS+Qxk1bI6air/rAlzNpXGohdiStZ+aI0F+xU0Jx8YvlB5f45KSc4/00ph9w0y5LesKkG8iaIRx4MYwgN+EV+e74QoREFUTi9YiTRXtMR0L4bENBNCYCANsqmhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750167704; c=relaxed/simple;
-	bh=DIj2AAVzh6RaeVINK/st+G1b4AbHWzLgB0oXZPusTYI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DxULYmsL0Ig0Pb+Xz8IkTvtW2yxRheJcNWcj8mLLbqsevuDuySLkc7nhqhQPBJlhBsQbyFxxV4AgzNcLXM9Syj7WU+fhmUWObY2iGSgjlDZe7qz+bfMjFIXzQ5CYVCSrdxpowPhsGgvaPWWkJF4Uxl/HSE5C8ttQAaXsSDcSLyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a06enZpK; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e819ebc3144so5075841276.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 06:41:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750167700; x=1750772500; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xxcq6pPXEwCF0M4vqqWx/eKlyr9nt8+hn5/vEDrp5ZE=;
-        b=a06enZpKrOmpMf6c01IqKZmE++CpytYFteq+FrYNKJxOM4hJGH4HfK9mmacIME27Gj
-         qLV9tBaj8NReG7zBsmhhOfDRyIZFzCh3Y59l0dqEz1zL3VGdZftZxX4eeSfozJDuMGZj
-         fd1FgpppgUAX1v/Any2tQh4ipUKJRFxDBvwuBefOFmjbYwR/b1a8U9tzBiB+M/hcp8Xp
-         Lq0H4iN8GeGh7Gir1VE+PSUyrrJ0nJ478QT4EbC4VBI7eAxR/X5jVPOl4U3EE3oCFlNM
-         cfgfEua+YN6fXZ/ROvuZ9iWFimU8trHKCkgEmprY8P8VSfM9xZuI/6ymW5/bYUAMbwQI
-         6ckg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750167700; x=1750772500;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Xxcq6pPXEwCF0M4vqqWx/eKlyr9nt8+hn5/vEDrp5ZE=;
-        b=pvEL1uqbl1vBaUtc4BvFPzV71XjpSLV28S1hLX42iDtgbV4Vu93PYFBsW3NJo2T0Lz
-         3YYy0LCthDzz6ZVHhC8C1CrbDJk0zLfngIQwDMVO3D8hRiG2hKbEhpZuzC9Lm2Zipi/w
-         5gQ5tHXFBlgj0hQZ4o9JwEOIEXWbx5PSugKg7NbaPXaPC0V0XiugHDz6HcS1zmoTevvQ
-         WMtXVCtdRV6fJeA/83t+XaA8W3btTMse++sVhzCaLfW2DsFtZSc9wzDnZAqA1umbYnAX
-         yWwgAW+yTw/jtnOFeTkP31YKZ8O1uaKPoTH/BvCI/7ZV+MYHu80iYaiMB3ce82yy7zvZ
-         ytlw==
-X-Forwarded-Encrypted: i=1; AJvYcCXAJWAnwG5dpQ0YPQzwTHAGRv+KQ7cH1pkKZ31fLamH9Tdyg88NAnWlBo+qksQzbF8OQRo4NVHDGMcC@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJUpsbF3st65Y1lDL7VLDDHTYy/uPjSQMN7ExYly7ptVCmGcid
-	UmPdIuxbTm+ENqiKgoE5DCCgdcM8GL9Gegeugk03ivZVJHuRf88VamL67UW885h82yty5CICoMd
-	Uyxmnx0yyI2t4XlXJ3AdtdUkJ/hk9SimFTkctX5pDvA==
-X-Gm-Gg: ASbGncsV3krT8Qe1jEy5B6zXfk4HYjOIwac4NdYEHKKhqVY+gzBII1rwrb/61QqRh86
-	SiB+xiPClNPQ+eBeyEA7a0J1Id6FZnu+tcAyVWFbzoXB97AhBCWQjD6VOadiS6sj9PdXWwhSb7p
-	WwPXI2tSupfW4EqGRSqkMbwcEk6BXdNHe9iaPj+iCAbjdw
-X-Google-Smtp-Source: AGHT+IFXNh3dt4XqMM5937nY2BjWuw0VFS4BzyKrSjRkgDANTu7g5lS3hr0/pxLXWwKfRV56n2YHg6bm2vUH93us37E=
-X-Received: by 2002:a05:6902:2743:b0:e81:4e9d:9e79 with SMTP id
- 3f1490d57ef6-e822aceb465mr17195548276.40.1750167700195; Tue, 17 Jun 2025
- 06:41:40 -0700 (PDT)
+	s=arc-20240116; t=1750167841; c=relaxed/simple;
+	bh=sEgaAS8/P8uAA+q4Tevugwx8QH0Jyz9OE26t4H0UCyU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cyfl8pVxgawfdOuMzXGekUQMxp8JVnttKMpRA5Z6lM9Cq36zF+mYrsh4glJQ23LczS2u/veOaQCdNMCC6eTrD4tVICGbu+H9KDwummlnppNsJ+lG9DQMZnuMikthVgcDvTLIuj6wXuNHO+36gsUzwRxmcqqaIYsNEDjoD8h1K7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VomeLmSo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90D7AC4CEE3;
+	Tue, 17 Jun 2025 13:44:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750167840;
+	bh=sEgaAS8/P8uAA+q4Tevugwx8QH0Jyz9OE26t4H0UCyU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VomeLmSolsLQ3Xe0vJ5cxJzwu6goEfTFlc1mzihy+DRFo/8jfT94SqSZf5mhWXHkb
+	 SSBYR749aY9a2vVBgtmzgmZLO9+6dj1bq8Dz5qQo8QWhiike0rvkA9EfMm8B6/ZvJL
+	 q+FlEGTd7XEH9o3ab0T3kM5m6zw+7kYG9o8xs/bdHB81aBV4L6wGksPcgyObCDqbHq
+	 D1pijcCjKB5SUcmaHu7hepJWPhNbFdvcJjKnTH27+JPkPJGCfDiQASJ3u5YRlIkzCf
+	 /remcfwstu8879VqY6pAmAZS9n8+Inp03w5lgIQ+zI/E6R2b/lM9wliLFaSlpgmYQ+
+	 h6HtWgcdte/9Q==
+Date: Tue, 17 Jun 2025 08:43:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev, frank.li@nxp.com,
+	ye.li@nxp.com, ping.bai@nxp.com, aisheng.dong@nxp.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: add PF0900 regulator yaml
+Message-ID: <20250617134359.GA1895818-robh@kernel.org>
+References: <20250617102025.3455544-1-joy.zou@nxp.com>
+ <20250617102025.3455544-2-joy.zou@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
- <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
- <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com> <7hsejzp4xg.fsf@baylibre.com>
-In-Reply-To: <7hsejzp4xg.fsf@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 17 Jun 2025 15:41:04 +0200
-X-Gm-Features: AX0GCFsc4IXNTkQXClE9iVnzm8TR1gvwHeQEjnwyXUG_JQBGZNwT5Ix8opwgWIs
-Message-ID: <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
- using power-domain-map
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250617102025.3455544-2-joy.zou@nxp.com>
 
-On Tue, 17 Jun 2025 at 02:50, Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Ulf Hansson <ulf.hansson@linaro.org> writes:
-> --text follows this line--
-> > On Sat, 14 Jun 2025 at 00:39, Kevin Hilman <khilman@baylibre.com> wrote:
-> >>
-> >> Currently, PM domains can only support hierarchy for simple
-> >> providers (e.g. ones with #power-domain-cells = 0).
-> >>
-> >> Add more generic support for hierarchy by using nexus node
-> >> maps (c.f. section 2.5.1 of the DT spec.)
-> >>
-> >> For example, we could describe SCMI PM domains with multiple parents
-> >> domains (MAIN_PD and WKUP_PD) like this:
-> >>
-> >>     scmi_pds: protocol@11 {
-> >>         reg = <0x11>;
-> >>         #power-domain-cells = <1>;
-> >>
-> >>         power-domain-map = <15 &MAIN_PD>,
-> >>                            <19 &WKUP_PD>;
-> >>     };
-> >>
-> >> which should mean that <&scmi_pds 15> is a subdomain of MAIN_PD and
-> >> <&scmi_pds 19> is a subdomain of WKUP_PD.
-> >>
-> >> IOW, given an SCMI device which uses SCMI PM domains:
-> >>
-> >>    main_timer0: timer@2400000 {
-> >>       power-domains = <&scmi_pds 15>;
-> >>    };
-> >>
-> >> it already implies that main_timer0 is PM domain <&scmi_pds 15>
-> >>
-> >> With the new map, this *also* now implies <&scmi_pds 15> is a
-> >> subdomain of MAIN_PD.
-> >>
-> >> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-> >> ---
-> >>  drivers/pmdomain/core.c | 24 ++++++++++++++++++++++--
-> >>  1 file changed, 22 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-> >> index d6c1ddb807b2..adf022b45d95 100644
-> >> --- a/drivers/pmdomain/core.c
-> >> +++ b/drivers/pmdomain/core.c
-> >> @@ -2998,8 +2998,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
-> >>                                  unsigned int index, unsigned int num_domains,
-> >>                                  bool power_on)
-> >>  {
-> >> -       struct of_phandle_args pd_args;
-> >> -       struct generic_pm_domain *pd;
-> >> +       struct of_phandle_args pd_args, parent_args;
-> >> +       struct generic_pm_domain *pd, *parent_pd = NULL;
-> >>         int ret;
-> >>
-> >>         ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
-> >> @@ -3039,6 +3039,22 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
-> >>                         goto err;
-> >>         }
-> >>
-> >> +       /*
-> >> +        * Check for power-domain-map, which implies the primary
-> >> +        * power-doamin is a subdomain of the parent found in the map.
-> >> +        */
-> >> +       ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
-> >> +                                            "power-domain", index, &parent_args);
-> >> +       if (!ret && (pd_args.np != parent_args.np)) {
-> >> +               parent_pd = genpd_get_from_provider(&parent_args);
-> >> +               of_node_put(parent_args.np);
-> >> +
-> >> +               ret = pm_genpd_add_subdomain(parent_pd, pd);
-> >> +               if (!ret)
-> >> +                       dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
-> >> +                               pd->name, parent_pd->name);
-> >> +       }
-> >
-> > Please move the above new code to a separate shared genpd helper
-> > function, that genpd providers can call build the topology. This, to
-> > be consistent with the current way for how we usually add
-> > parent/child-domains in genpd (see of_genpd_add_subdomain).
->
-> Yeah, you had the same comment on v2, and I'm not ignoring you.  But I
-> thought that moving this code to when devices are attatched to domains
-> (instead of when providers are created) would solve that problem.  IOW,
-> in this approach, `power-domain-map` is handled at the same time as a
-> devices `power-domains = ` property.
-
-Even if this may work for your particular use case, in general it does not.
-
-We simply can't defer to build the topology (parent/child-domains)
-until there is a device getting attached to some part of it.
-
->
-> So, while I don't really understand the reason that every PM domain
-> provider has to handle this individually, I've given that a try (see
-> below.)
->
-
-See above.
-
-> > Moreover, we also need a corresponding "cleanup" helper function to
-> > remove the child-domain (subdomain) correctly, similar to
-> > of_genpd_remove_subdomain().
->
-> Yes, I'll handle that better once I get through this RFC phase to make
-> sure I'm on th right path.
-
-Okay.
-
->
-> OK, so below[1] is a shot at just adding helpers to the PM domain core.  I
-> will then uses these from the SCMI PM domains ->attach_dev() and
-> ->detatch_dev callbacks.
-
-No, not during ->attach|detach_dev(), but during ->probe() of the SCMI
-PM domain, immediately after the genpd OF providers has been added.
-
-See more comments below.
-
->
-> If you think this is better, I'll send a v4 tomorrow.
->
-> Kevin
->
-> [1] NOTE: this is based on v6.12 because that's where I have a functioning BSP
-> for this SoC.  If you're OK with this, I'll rebase to v6.15 and submit upstream.
->
-> From 12a3e5669dc18f4a9fdf9f25398cba4245135a43 Mon Sep 17 00:00:00 2001
-> From: Kevin Hilman <khilman@baylibre.com>
-> Date: Fri, 13 Jun 2025 13:49:45 -0700
-> Subject: [PATCH 2/3] pmdomain: core: add support for subdomains via
->  power-domain-map
->
+On Tue, Jun 17, 2025 at 06:20:24PM +0800, Joy Zou wrote:
+> Add device binding doc for PF0900 PMIC driver.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 > ---
->  drivers/pmdomain/core.c   | 60 +++++++++++++++++++++++++++++++++++++++
->  include/linux/pm_domain.h | 11 +++++++
->  2 files changed, 71 insertions(+)
->
-> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-> index 88819659df83..a0dc60d4160d 100644
-> --- a/drivers/pmdomain/core.c
-> +++ b/drivers/pmdomain/core.c
-> @@ -3100,6 +3100,66 @@ struct device *genpd_dev_pm_attach_by_name(struct device *dev, const char *name)
->         return genpd_dev_pm_attach_by_id(dev, index);
->  }
->
-> +/**
-> + * genpd_dev_pm_attach_subdomain - Associate a PM domain with its parent domain
-> + * @domain: The PM domain to lookup whether it has any parent
-> + * @dev: The device being attached to the PM domain.
-> + *
-> + * Check if @domain has a power-domain-map.  If present, use that map
-> + * to determine the parent PM domain, and attach @domain as a
-> + * subdomain to the parent PM domain.
-> + *
-> + * Intended to called from a PM domain provider's ->attach_dev()
-> + * callback, where &gpd_list_lock will already be held by the genpd
-> + * add_device() path.
-> + */
-> +struct generic_pm_domain *
-> +genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
-> +                             struct device *dev)
+>  .../regulator/nxp,pf0900-regulator.yaml       | 179 ++++++++++++++++++
 
-A couple of comments below:
+Filename matching compatible. So drop '-regulator'.
 
-*) I think the function-name should have a prefix "of_genpd_*, to be
-consistent with other names. Maye "of_genpd_add_subdomain_by_map"
-would be a better name?
-
-*) We need to decide if we want to add one child-domain (subdomain)
-per function call - or whether we should walk the entire nexus-map and
-hook up all child-domains to its parent in one go. I tend to like the
-second one better, but I'm not really sure what would work best here.
-
-No matter what, I think the in-parameters to the function should be of
-type "struct of_phandle_args * or maybe struct device_node *", similar
-to how of_genpd_add_subdomain() works.
-
-> +{
-> +       struct of_phandle_args parent_args;
-> +       struct generic_pm_domain *parent_pd = NULL;
-> +       int ret;
+>  1 file changed, 179 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml
+> new file mode 100644
+> index 000000000000..32e2ded92e2c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/nxp,pf0900-regulator.yaml
+> @@ -0,0 +1,179 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/nxp,pf0900-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       /*
-> +        * Check for power-domain-map, which implies the primary
-> +        * power-doamin is a subdomain of the parent found in the map.
-> +        */
-> +       ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
-> +                                            "power-domain", 0, &parent_args);
-> +       if (!ret && parent_args.np) {
-> +               parent_pd = genpd_get_from_provider(&parent_args);
-> +               of_node_put(parent_args.np);
+> +title: NXP PF0900 Power Management Integrated Circuit regulators
 > +
-> +               ret = genpd_add_subdomain(parent_pd, domain);
-> +               if (!ret) {
-> +                       dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
-> +                               domain->name, parent_pd->name);
-> +                       return parent_pd;
-> +               }
-> +       }
+> +maintainers:
+> +  - Joy Zou <joy.zou@nxp.com>
 > +
-> +       return NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(genpd_dev_pm_attach_subdomain);
+> +description:
+> +  The PF0900 is a power management integrated circuit (PMIC) optimized
+> +  for high performance i.MX9x based applications. It features five high
+> +  efficiency buck converters, three linear and one vaon regulators. It
+> +  provides low quiescent current in Standby and low power off Modes.
 > +
-> +/**
-> + * genpd_dev_pm_detach_subdomain - Detatch a PM domain from its parent domain
-> + * @domain: The PM subdomain to detach
-> + * @parent: The parent PM domain
-> + * @dev: The device being attached to the PM subdomain.
-> + *
-> + * Remove @domain from @parent.
-> + * Intended to cleanup after genpd_dev_pm_attach_subdomain()
-> + */
-> +int genpd_dev_pm_detach_subdomain(struct generic_pm_domain *domain,
-> +                                 struct generic_pm_domain *parent,
-> +                                 struct device *dev)
-> +{
-> +       return pm_genpd_remove_subdomain(parent, domain);
-> +}
-> +EXPORT_SYMBOL_GPL(genpd_dev_pm_detach_subdomain);
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,pf0900
 > +
->  static const struct of_device_id idle_state_match[] = {
->         { .compatible = "domain-idle-state", },
->         { }
-> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
-> index cf4b11be3709..5d7eb3ae59dd 100644
-> --- a/include/linux/pm_domain.h
-> +++ b/include/linux/pm_domain.h
-> @@ -410,6 +410,11 @@ struct device *genpd_dev_pm_attach_by_id(struct device *dev,
->                                          unsigned int index);
->  struct device *genpd_dev_pm_attach_by_name(struct device *dev,
->                                            const char *name);
-> +struct generic_pm_domain *genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
-> +                                                       struct device *dev);
-> +int genpd_dev_pm_detach_subdomain(struct generic_pm_domain *domain,
-> +                                 struct generic_pm_domain *parent,
-> +                                 struct device *dev);
->  #else /* !CONFIG_PM_GENERIC_DOMAINS_OF */
->  static inline int of_genpd_add_provider_simple(struct device_node *np,
->                                         struct generic_pm_domain *genpd)
-> @@ -466,6 +471,12 @@ static inline struct device *genpd_dev_pm_attach_by_name(struct device *dev,
->         return NULL;
->  }
->
-> +static inline
-> +struct generic_pm_domain *genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
-> +                                                       struct device *dev)
-> +{
-> +       return NULL;
-> +}
->  static inline
->  struct generic_pm_domain *of_genpd_remove_last(struct device_node *np)
->  {
-> --
-> 2.49.0
->
->
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
+> +
+> +    properties:
+> +      "VAON":
 
-Kind regards
-Uffe
+Don't need quotes.
+
+> +       type: object
+> +       $ref: regulator.yaml#
+> +
+
+Drop blank line.
+
+> +       unevaluatedProperties: false
+> +
+> +    patternProperties:
+> +      "^LDO[1-3]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        description:
+> +          Properties for single LDO regulator.
+> +
+> +        unevaluatedProperties: false
+
+Move this after the $ref.
+
+> +
+> +      "^SW[1-5]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        description:
+> +          Properties for single SW regulator.
+> +
+> +        properties:
+> +          nxp,dvs-run-microvolt:
+> +            minimum: 300000
+> +            maximum: 1350000
+> +            description:
+> +              PMIC default "RUN" state voltage in uV. SW1~5 have such
+> +              dvs(dynamic voltage scaling) property.
+> +
+> +          nxp,dvs-standby-microvolt:
+> +            minimum: 300000
+> +            maximum: 1350000
+> +            description:
+> +              PMIC default "STANDBY" state voltage in uV. SW1~5 have such
+> +              dvs(dynamic voltage scaling) property.
+> +
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+
+Same with these.
+
+> +
+> +  nxp,i2c-crc-enable:
+> +    type: boolean
+> +    description: If the PMIC OTP_I2C_CRC_EN is enable, you need to add this property.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - regulators
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@8 {
+> +            compatible = "nxp,pf0900";
+> +            reg = <0x08>;
+> +            interrupt-parent = <&pcal6524>;
+> +            interrupts = <89 IRQ_TYPE_LEVEL_LOW>;
+> +            nxp,i2c-crc-enable;
+> +
+> +            regulators {
+> +                VAON {
+> +                    regulator-name = "VAON";
+> +                    regulator-min-microvolt = <1800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                SW1 {
+> +                    regulator-name = "SW1";
+> +                    regulator-min-microvolt = <500000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1950>;
+> +                };
+> +
+> +                SW2 {
+> +                    regulator-name = "SW2";
+> +                    regulator-min-microvolt = <300000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1950>;
+> +                };
+> +
+> +                SW3 {
+> +                    regulator-name = "SW3";
+> +                    regulator-min-microvolt = <300000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1950>;
+> +                };
+> +
+> +                SW4 {
+> +                    regulator-name = "SW4";
+> +                    regulator-min-microvolt = <300000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1950>;
+> +                };
+> +
+> +                SW5 {
+> +                    regulator-name = "SW5";
+> +                    regulator-min-microvolt = <300000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1950>;
+> +                };
+> +
+> +                LDO1 {
+> +                    regulator-name = "LDO1";
+> +                    regulator-min-microvolt = <750000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                LDO2 {
+> +                    regulator-name = "LDO2";
+> +                    regulator-min-microvolt = <650000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                LDO3 {
+> +                    regulator-name = "LDO3";
+> +                    regulator-min-microvolt = <650000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +            };
+> +        };
+> +     };
+> -- 
+> 2.37.1
+> 
 
