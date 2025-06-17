@@ -1,157 +1,154 @@
-Return-Path: <devicetree+bounces-186627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE790ADCA16
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C3CADCA2F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:58:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99E993A8B61
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:55:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31EF03BA982
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14522E06C6;
-	Tue, 17 Jun 2025 11:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43862E06E8;
+	Tue, 17 Jun 2025 11:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="hk3/aRhf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VBJEGoR8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EED52DF3E8
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 11:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EB52E06DA
+	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 11:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750161367; cv=none; b=PmR9rBN/JY7DelNSO7UikcANpVKGKmlIJwb7OhHKT3kKtN5gXRLzxyzHqK8EgUZ8+de/h7p8ontPbPEAh7DkZmWlThc9qZ5lHPEeWQQ76aF+CdCVmM3MWDWuI0V43zBGeIgAEqMIYtzKn20Zko3UJGNx9J+LqcrNeBtAOJ42kp8=
+	t=1750161500; cv=none; b=PcTJXJnVSlGAlZBA2Gd/xwYUNSkiRjANZndQWP50STcdr54VZFUeKwdCsiWmKfOBxgcqfL3yX4N+yHYbvhdDWukuH7XhxcE4aoAH5GZLvTiqb3/lyplwcrREyh7+zqxaKpiG/+S8ZeOfzMrhYzTBovRC1mCz73hziCC3PMXPNk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750161367; c=relaxed/simple;
-	bh=spf/OGWq9rNYwhtnFTQUzUHQXPQ8m2LBqxJ8x0nCh68=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=ljQUajdlfmlVCNQuvj2lyjfBSWJaxC9ejmdN+Xkon/Tx9mNnqfRqpWyiJiq5BMICLd3rCLXX2vOAJSlKO3Qp3Dsvo5L5HK14KqvsJec7QH//ww4V+rSnoiQmwnwb3fIbpc5A71puDfLWKvvNhOku6a0LdcyBc1iNjH96pybB0iA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=hk3/aRhf; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250617115558euoutp02bab9521697320ecc416ae3a6977a9227~J0nuEpoxC0885908859euoutp02W
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 11:55:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250617115558euoutp02bab9521697320ecc416ae3a6977a9227~J0nuEpoxC0885908859euoutp02W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1750161358;
-	bh=oofikVxRsBxHxPSDdlnvLJyVhdL+RF7rzHi6wUMuvQs=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=hk3/aRhfplI0MimyM+0Ny2W5f3hpPbZ//3yhhymz2n67YIKDfT3D3KCZ2wiRiOJ7x
-	 iR2hztlhHdIbLNoFSk5f7oeOHipEVMXkbWJ04oYrtS/1qML0eCIb9xeIW1IVjbbN22
-	 ENbXparJC5pyBqD0Dfc75BwwVviBUUsgvb8Bcm1s=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250617115557eucas1p1fe0dc838ed601d75fe7deba27d312aa7~J0ntgrNum2233822338eucas1p1l;
-	Tue, 17 Jun 2025 11:55:57 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250617115556eusmtip1a9ce151263637f622a84b2312a20b25d~J0nsOwoz40555305553eusmtip1i;
-	Tue, 17 Jun 2025 11:55:56 +0000 (GMT)
-Message-ID: <b1c7c305-fad9-4161-b627-b5c1db9cb0ee@samsung.com>
-Date: Tue, 17 Jun 2025 13:55:55 +0200
+	s=arc-20240116; t=1750161500; c=relaxed/simple;
+	bh=+uyLKm9hSUfEzGUyKtnEgciW/igj3ZiBhyjPInVlGhw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YnMeZxAG3f/2nCJNywVFyCgDqySR1UTtX8bVqRjIsPWNJVEQSjWxOlEDY8ydVmuSzNBC9tSemXqzlHqHos4sCt8g98oRk4ewO5bmQbIH1fFU+ELenMvMvkes9A5dvAzlhZeLSVH/h/G3QY2Oq7MMHK4j+xrMGCiHacxlR5S/uMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VBJEGoR8; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6097de2852aso1782330a12.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 04:58:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750161497; x=1750766297; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=keaSv+pR2b50s5ZT4OSlONeLUOBJ7yafZmfnmaE00lo=;
+        b=VBJEGoR87l1fhlS8pGEA4sVc6aPeK9QD7v8Mm9k86Ng3k1Taw7rmki9oCzNctSYdE0
+         XAVhH/91afOoWHW1IRQIxwbYidjXeQktVJRAXyo8Wq1ElSZiFJ/VqzfABytiH/x/8Op+
+         tHX/z93nEavwQOCuwzOPDP2hHdirMeLh/SqwbGqYEhXinFABYqMSIFdQZCLIRjn8PWic
+         H/fVSSPe7xWxvHZ9VJdJM7ZUN120eYLvfL9vZuu7Lp19SmkprYi2HOHBIzdgV3k/rVTC
+         4butSLvtu3M/hoJwg8EbO/47heL5zf9MrwwA+SMR25mM64KqHXpQ12D7gzKse9UITMFC
+         /4Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750161497; x=1750766297;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=keaSv+pR2b50s5ZT4OSlONeLUOBJ7yafZmfnmaE00lo=;
+        b=NPyVVYwrtzs1yt6EYXtp/DEwHeVr05nbGC9x+YpHfoXPv4Y4/wFBM5xTTn29tcg5S7
+         B9rp2gOIgZlqxFv6U1jxI1x4B//+eEGHW1gzhn9MaeOkv1Ps+VB/VIU6psnQR3uxsNDj
+         B35gVSFCFzDjHg653cpn2ZoT/pqfU0uJWBv72Rsrv7lqb8GPBF/y99plTJ3C2KdYzK28
+         hWSLjpMOmEWPKKiGm0A2XlghSrngpSqmziQoGdvuT3+Lt/S0WM8NO41Qff0WnoHVCnr7
+         eJTsQJUZ3uYmQHnUa7g83bR23kNTjZGSjmrAWpjguAP+d1DbSo5+pO88qKwx7JQV2264
+         7ggQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUoj33gdpXix0p8Sg0Z9OkSOMTH0aj3kSaHQb5nGbMLKE7ZjIfUsvspnbaBsMQYftmlE4mKvj7WIgSC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIZdyntfc4HXzte2eXw78HCDUmcLjwObgVJp4CQFE1mpVlW49M
+	F+5A94wqvdH4jigL3AEFaL5mvTqV1zIKVVWKq7MNr2KsEESHufDbFlQERnoJj6mXRAz9+1KV56K
+	qly/GulHDwlJz0cIHU6YT3lZ2QS7OmKg=
+X-Gm-Gg: ASbGncvDl7+G3r6ddx5gRTn2lorBQvKPfCmKovkiPVz6WinInfPwzw7Vj6RDXte9Ob7
+	SUJSg0+oLGeggViSz38sYoZSWIzyFfkD5H57Syh015NM15/0RW6PZpB/lA3jY1QvhGkzGC9SHVE
+	vIzi4jtw+bKwHSuyo2uFcKgwu9SJLyWd7x/iD7Cbr4Lavqow==
+X-Google-Smtp-Source: AGHT+IHPTkScUJLvVuKhNiG5y+ImEDicfyiqzKZH+OeWEhPv8WuYXvFQQIY+76XSAzEZMBjVUs1Ak9s3l2r5X4gqMMk=
+X-Received: by 2002:a17:907:1c8c:b0:ad8:87a1:4da8 with SMTP id
+ a640c23a62f3a-adfad326befmr1275205466b.14.1750161496858; Tue, 17 Jun 2025
+ 04:58:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] pwm: Add Rust driver for T-HEAD TH1520 SoC
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <5aam5ff3m24yzsqdh7w2zplccuwmmr2no7jhgmdnxggmhpo4hl@r6iawlw7f42m>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250617115557eucas1p1fe0dc838ed601d75fe7deba27d312aa7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250610125333eucas1p16126b64a0f447a5e9a5ad553d9d7d79d
-X-EPHeader: CA
-X-CMS-RootMailID: 20250610125333eucas1p16126b64a0f447a5e9a5ad553d9d7d79d
-References: <20250610-rust-next-pwm-working-fan-for-sending-v2-0-753e2955f110@samsung.com>
-	<CGME20250610125333eucas1p16126b64a0f447a5e9a5ad553d9d7d79d@eucas1p1.samsung.com>
-	<20250610-rust-next-pwm-working-fan-for-sending-v2-2-753e2955f110@samsung.com>
-	<jbm3qvowi5vskhnjyqlp3xek36gzzqjt35m66eayxi6lmi525t@iefevopxjl53>
-	<d1523586-82ca-4863-964f-331718bb1f0e@samsung.com>
-	<5aam5ff3m24yzsqdh7w2zplccuwmmr2no7jhgmdnxggmhpo4hl@r6iawlw7f42m>
+References: <CADsqogAs1DCSJfkAkj_mwMwS--WMFPzvmWLonuiCe3XaNABVxA@mail.gmail.com>
+ <CAMuHMdXVEOBRU+pzcmRXq7YJXhYnhPjK72Oh31y=n33VZR2JKw@mail.gmail.com>
+In-Reply-To: <CAMuHMdXVEOBRU+pzcmRXq7YJXhYnhPjK72Oh31y=n33VZR2JKw@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 17 Jun 2025 14:57:39 +0300
+X-Gm-Features: AX0GCFsdFLBNVzNe3x2xNIT7VOWe3cMexLSS_pxt9AfzAxnBU2UWiwrC1vW6nyw
+Message-ID: <CAHp75Vd8U-zJ1b+Atpr=8WXhPpB9sFcYJsmC0aStiRKSZWYKBg@mail.gmail.com>
+Subject: Re: [RFC][DT] Guidance on device tree property prefix for
+ TM16XX-class LED display controllers
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Jean-Francois Lessard <jefflessard3@gmail.com>, devicetree@vger.kernel.org, andy@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jun 17, 2025 at 12:43=E2=80=AFPM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+> On Mon, 16 Jun 2025 at 22:06, Jean-Francois Lessard
+> <jefflessard3@gmail.com> wrote:
 
+> > I=E2=80=99m working on preparing a new driver and device tree binding f=
+or
+> > auxiliary LED display controllers of the TM16XX class, and I=E2=80=99d =
+like to
+> > request guidance on property naming conventions before submitting a
+> > formal patch series.
+> >
+> > The driver (tentatively named tm16xx) supports LED controller chips
+> > that share a common hardware design and programming model, produced by
+> > multiple vendors, including:
+> > - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1650
+> > - FUDA HISI Microelectronics: FD620, FD628, FD650, FD655, FD6551
+> > - Princeton Technology Corp: PT6964
+> > - HBS: HBS658
+> >
+> > These devices are functionally compatible and appear in various
+> > consumer and embedded hardware (e.g., Android TV boxes) to control
+> > both 7-segment displays and custom icons that may look like this:
+> >
+> >           ---    ---       ---    ---
+> >  [WIFI]  |   |  |   |  -  |   |  |   |  [USB]  [PLAY]
+> >           ---    ---       ---    ---
+> >  [LAN]   |   |  |   |  -  |   |  |   |  [BT]   [PAUSE]
+> >           ---    ---       ---    ---
+> >
+> > My current binding defines properties describing hardware layout, for e=
+xample:
+> >
+> >     tm16xx,digits =3D /bits/ 8 <0 1 2 3>;
+> >     tm16xx,segment-mapping =3D /bits/ 8 <0 1 2 3 4 5 6>;
+> >     tm16xx,transposed;
+> >
+> > These describe hardware characteristics (grid/digit arrangement,
+> > segment mapping, transposed display output) that apply to this class
+> > of compatible hardware, regardless of vendor.
+>
+> Personally, I am a bit reluctant to try to describe the segment mapping
+> in DT, as it can become rather cumbersome.
 
-On 6/12/25 22:36, Uwe Kleine-König wrote:
-> Hello Michael,
-> 
-> On Thu, Jun 12, 2025 at 10:14:13AM +0200, Michal Wilczynski wrote:
->> On 6/11/25 08:58, Uwe Kleine-König wrote:
->>> Huh, if you do the newstyle stuff, .get_state() is wrong. It's either
->>> .round_waveform_tohw() + .round_waveform_fromhw() + .read_waveform() +
->>> .write_waveform() or .apply() + .get_state(), but don't mix these.
->>
->> In the process of implementing the full "newstyle" waveform API as you
->> suggested, I discovered a hardware limitation. After writing new values
->> to the period and duty cycle registers, reading them back does not
->> return the programmed values, which makes it impossible to reliably
->> report the current hardware state.
->>
->> This appears to be a known quirk of the hardware, as the reference C
->> driver from T-HEAD [1] also omits the .get_state callback, likely for
->> the same reason.
-> 
-> Do you read complete non-sense or e.g. the old configuration until
-> the current period ends?
-> 
-> I guess would be that .get_state wasn't implemented because this is an
-> oldoldstyle driver and it works also without that function.
+Yes, the segment mapping is implied already by the mapping table for
+the characters and...
 
-Hi Uwe,
+> The alternative is to use
+> a device-specific compatible value, and put the mapping in the driver,
+> like I did for the Adafruit 7 and 14 segment Featherwing displays in
+> drivers/auxdisplay/ht16k33.c.
 
-My apologies for the confusion. After further testing, it appears I was
-mistaken, and the hardware reads are working correctly. I must have made
-an error when testing via sysfs.
+...as Geert said, if required, can be bound to the compatible string
+and hardcoded in the driver.
 
-I'll be submitting a v3 that implements the full round_waveform_tohw(),
-round_waveform_fromhw(), read_waveform(), and write_waveform()
-combination as you initially suggested.
+The problem is, that often segment mapping is PCB level of the wiring
+and to be honest I dunno how to distinguish such a scenario easily as
+one would need to check compatible string for the component _and_ for
+the board.
 
-> 
->> Given this, would it be acceptable to provide a write-only driver? My
->> proposed solution would be to omit the .read_waveform() and
->> .round_waveform_fromhw() implementations from my PwmOps trait. This
-> 
-> Please don't skip .round_waveform_fromhw(), that one is needed for
-> pwm_round_waveform_might_sleep().
-> 
-> I don't like it, but given that the hardware doesn't play along there is
-> no alternative.
-> 
->> would mean the driver can correctly set the PWM state, but attempting to
->> read it back via sysfs would fail (e.g., with -EOPNOTSUPP), reflecting
->> the hardware's capability.
-> 
-> I think there might be another patch opportunity then to make PWM_DEBUG
-> work with that.
-> 
-> Best regards
-> Uwe
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+--=20
+With Best Regards,
+Andy Shevchenko
 
