@@ -1,61 +1,75 @@
-Return-Path: <devicetree+bounces-186738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C59FADCFF3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:34:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D58ADCFF2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:34:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19FBE3BC4C7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:24:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E438161E34
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5042EF653;
-	Tue, 17 Jun 2025 14:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9122D2EF642;
+	Tue, 17 Jun 2025 14:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIyeNQqd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L/GWc64G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F19A2EF64C;
-	Tue, 17 Jun 2025 14:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBF02EF64C;
+	Tue, 17 Jun 2025 14:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750170301; cv=none; b=PZKEMF7J0rIPIkSP6NwsQGuE0H9JhzhMjn3tVYQx/hrJ5rH2KZLcuIWHwoazsXOEVmuhhHUuBG3tblnAHg6EG7g40qY5rxGx9mAk4bMAEIpapjJ7TIomYoBGciSS1Kg/qi0QCfmmSJauVqr3xUcbK6H1PsO+V2UFhKogHh/iOuk=
+	t=1750170547; cv=none; b=cjpRvdj861QU3/OsIKT7eT0anUe4GZ4w0JUP/qgzCQc8wiqe8UI1ERs6W+L1U0sPFqAFkrtd3JoKBKfxlhXCF3Z6RinyjCCm7eHeS27QVefFtroklZPxfuQPDESUKUfZ7ODUuJuty6cKND8I6i5s3LXEBHEu33nZQ0lMOl8cuzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750170301; c=relaxed/simple;
-	bh=RKp0dSWKgDenpsXCZCvzvHN8SLhhM9lokbjMKsoO5ck=;
+	s=arc-20240116; t=1750170547; c=relaxed/simple;
+	bh=vZuBZ/NNaKoHy+qHAglUSSdmBK5dd29+q/mxOIMvh84=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B6USRnaxWiXCzIfKLmTl7AGCWemu5sszAS7o4iEOD/l6NPDZ+xdD5HSGiGaqbixtgBC1m3LtIYmxXyjNZmIOMgpxX55URyoQsDkTAfsdWJAUSuVzJhrEsL0oqH/gu9zGAd9AzZbCcfdm7jDbaDP/cgJbkybZYL/ibu6nAYMbQEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIyeNQqd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5819C4CEE3;
-	Tue, 17 Jun 2025 14:24:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lbfiW+6lt2teaHVK3a08jiI6xGwKwksil5nJWAAdK6riJREuluq531YVQF0MDowRyXntdXJlhUepxej0Hgf4Iwh/Ch+E5zP1vMW8WcYSkfjDSDw10KTT7+VdDchq0ipAkWc2FqchpDUMtTKUsYL1QsKT9yPzrRvyKdVks8Sw7/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/GWc64G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32DEDC4CEF0;
+	Tue, 17 Jun 2025 14:29:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750170300;
-	bh=RKp0dSWKgDenpsXCZCvzvHN8SLhhM9lokbjMKsoO5ck=;
+	s=k20201202; t=1750170546;
+	bh=vZuBZ/NNaKoHy+qHAglUSSdmBK5dd29+q/mxOIMvh84=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XIyeNQqdJi42s3GLrTWVJiA9ldEF6TQB1VgOWYIkFcnZPgXIvvdOuAUjFH9ZAezBy
-	 16VsCgej3Fg8e58rWMKQAnqCSckI6RRa2/XtlrWgEjM1/mQLP9LTyGgAnoGais4edQ
-	 Q+OEM8m7lnJC4ssINvEXmcuZcaryB9Kndt8zuYdG1pOl3E53x5iF49a75hCH31HGuq
-	 sv86Fm4lvWlw5H9Uw6YcO/VzzMIOqv5hGEcqCKsq4lTOEjNEi6NQ4F5jan5VtHLKjl
-	 6KhuRhtCU25ChgQx0RJWpXYD5MtGJXd5E9MWOnOxqsqD78VLr+03ReQqYRpjnGmUN7
-	 LiJrSr+z83WBg==
-Date: Tue, 17 Jun 2025 09:24:57 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, psodagud@quicinc.com, 
-	djaggi@quicinc.com, quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
-	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v6 3/8] soc: qcom: geni-se: Enable QUPs on SA8255p
- Qualcomm platforms
-Message-ID: <52elmnb77a4kvlnmy5bhheypfyyw6x5qn4k45u22mvzybax7ti@wmpi2ww5uqsg>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-4-quic_ptalari@quicinc.com>
+	b=L/GWc64G66Vuy5MgIrXBzCYErB5Q2I4uR6gECe1Ix4gejac53fgNL0sH1c8CJT0to
+	 6sjnxKkIY+Dri1NME9ng3skoSb3aY1Dl/QO5iBKhpiu3I5ZXcEN6QCShKJ+IJiDcdg
+	 pZuMNQNboqoWmYKwXjSDQ4FBATBhR0Lf62okWNDqSM2p/sThGwKZ2wXQpjfXKL/k3M
+	 HpAyrH3KIIWMEbSNmcFPl/ySUzyQdWoWE2IE2SLpd7PAdXiY7H5/kp6eQePJG9vAJ6
+	 Q1mRvt/WLKfuGDD9hj9JgXH73VqCZG3zjS18jmr/QyYUs+co+jKbMoOJdjTlLwxW89
+	 1UHDRfg7kjKrA==
+Date: Tue, 17 Jun 2025 16:28:58 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 4/9] pwm: Add Rust driver for T-HEAD TH1520 SoC
+Message-ID: <aFF7qqlexxh540FW@pollux>
+References: <20250617-rust-next-pwm-working-fan-for-sending-v3-0-1cca847c6f9f@samsung.com>
+ <CGME20250617140839eucas1p2d13775f8e6d34a516e93d3b426d5fb16@eucas1p2.samsung.com>
+ <20250617-rust-next-pwm-working-fan-for-sending-v3-4-1cca847c6f9f@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,208 +78,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250606172114.6618-4-quic_ptalari@quicinc.com>
+In-Reply-To: <20250617-rust-next-pwm-working-fan-for-sending-v3-4-1cca847c6f9f@samsung.com>
 
-On Fri, Jun 06, 2025 at 10:51:09PM +0530, Praveen Talari wrote:
-> On the sa8255p platform, resources such as clocks,interconnects
-> and TLMM (GPIO) configurations are managed by firmware.
-> 
-> Introduce a platform data function callback to distinguish whether
-> resource control is performed by firmware or directly by the driver
-> in linux.
-> 
-> The refactor ensures clear differentiation of resource
-> management mechanisms, improving maintainability and flexibility
-> in handling platform-specific configurations.
-> 
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> ---
-> v5 -> v6
-> - replaced dev_err with dev_err_probe
-> - added a check for desc->num_clks with MAX_CLKS, an error if
->   the specified num_clks in descriptor exceeds defined MAX_CLKS.
-> - removed min_t which is not necessary.
-> - renamed callback function names to resources_init.
-> - resolved kernel bot warning error by documenting function
->   pointer in geni_se_desc structure.
-> 
-> v3 -> v4
-> - declared an empty struct for sa8255p and added check as num clks.
-> - Added version log after ---
-> 
-> v1 -> v2
-> - changed datatype of i from int to unsigned int as per comment.
-> ---
->  drivers/soc/qcom/qcom-geni-se.c | 77 +++++++++++++++++++++------------
->  1 file changed, 49 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
-> index 4cb959106efa..5c727b9a17e9 100644
-> --- a/drivers/soc/qcom/qcom-geni-se.c
-> +++ b/drivers/soc/qcom/qcom-geni-se.c
-> @@ -101,10 +101,13 @@ struct geni_wrapper {
->   * struct geni_se_desc - Data structure to represent the QUP Wrapper resources
->   * @clks:		Name of the primary & optional secondary AHB clocks
->   * @num_clks:		Count of clock names
-> + * @resources_init:	Function pointer for initializing QUP Wrapper resources
->   */
->  struct geni_se_desc {
->  	unsigned int num_clks;
->  	const char * const *clks;
-> +	int (*resources_init)(struct geni_wrapper *wrapper,
-> +			      const struct geni_se_desc *desc);
->  };
->  
->  static const char * const icc_path_names[] = {"qup-core", "qup-config",
-> @@ -891,10 +894,47 @@ int geni_icc_disable(struct geni_se *se)
->  }
->  EXPORT_SYMBOL_GPL(geni_icc_disable);
->  
-> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
-> +				 const struct geni_se_desc *desc)
-> +{
-> +	struct device *dev = wrapper->dev;
-> +	int ret;
-> +	unsigned int i;
+On Tue, Jun 17, 2025 at 04:07:27PM +0200, Michal Wilczynski wrote:
+> +    fn write_waveform(
+> +        chip: &mut pwm::Chip,
+> +        pwm: &mut pwm::Device,
+
+I think you can't hand out mutable references here. This would allow things like
+mem::swap(), which I think are not valid on those structures.
+
+> +        wfhw: &Self::WfHw,
+> +        parent_dev: &Device<Bound>,
+> +    ) -> Result {
+> +        let data: &Self = chip.drvdata().ok_or(EINVAL)?;
+> +        let hwpwm = pwm.hwpwm();
+> +        let iomem_guard = data.iomem.access(parent_dev)?;
+
+Technically, this isn't a guard, hence would't call it that way.
+
+> +        let iomap = iomem_guard.deref();
+> +        let was_enabled = pwm.state().enabled();
 > +
-> +	if (desc->num_clks > MAX_CLKS)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Too many clocks specified in descriptor:%u (max allowed: %u)\n",
-> +				     desc->num_clks, MAX_CLKS);
+> +        if !wfhw.enabled {
+> +            if was_enabled {
+> +                iomap.try_write32(wfhw.ctrl_val, th1520_pwm_ctrl(hwpwm))?;
+> +                iomap.try_write32(0, th1520_pwm_fp(hwpwm))?;
+> +                iomap.try_write32(wfhw.ctrl_val | PWM_CFG_UPDATE, th1520_pwm_ctrl(hwpwm))?;
+> +            }
+> +            return Ok(());
+> +        }
 > +
-> +	wrapper->num_clks = desc->num_clks;
+> +        iomap.try_write32(wfhw.ctrl_val, th1520_pwm_ctrl(hwpwm))?;
+> +        iomap.try_write32(wfhw.period_cycles, th1520_pwm_per(hwpwm))?;
+> +        iomap.try_write32(wfhw.duty_cycles, th1520_pwm_fp(hwpwm))?;
+> +        iomap.try_write32(wfhw.ctrl_val | PWM_CFG_UPDATE, th1520_pwm_ctrl(hwpwm))?;
+
+None of the offsets are known at compile time? :(
+
 > +
-> +	for (i = 0; i < wrapper->num_clks; ++i)
-> +		wrapper->clks[i].id = desc->clks[i];
+> +        // The `PWM_START` bit must be written in a separate, final transaction, and
+> +        // only when enabling the channel from a disabled state.
+> +        if !was_enabled {
+> +            iomap.try_write32(wfhw.ctrl_val | PWM_START, th1520_pwm_ctrl(hwpwm))?;
+> +        }
 > +
-> +	ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "invalid clocks property at %pOF\n", dev->of_node);
+> +        dev_dbg!(
+> +            chip.device(),
+> +            "PWM-{}: Wrote (per: {}, duty: {})",
+> +            hwpwm,
+> +            wfhw.period_cycles,
+> +            wfhw.duty_cycles,
+> +        );
 > +
-> +	if (ret < wrapper->num_clks) {
-> +		dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
-> +			dev->of_node, wrapper->num_clks);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
-> +	if (ret) {
-> +		dev_err(dev, "Err getting clks %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return ret;
+> +        Ok(())
+> +    }
 > +}
+
+<snip>
+
+> +impl platform::Driver for Th1520PwmPlatformDriver {
+> +    type IdInfo = ();
+> +    const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> = Some(&OF_TABLE);
 > +
->  static int geni_se_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct geni_wrapper *wrapper;
-> +	const struct geni_se_desc *desc;
->  	int ret;
->  
->  	wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
-> @@ -906,36 +946,12 @@ static int geni_se_probe(struct platform_device *pdev)
->  	if (IS_ERR(wrapper->base))
->  		return PTR_ERR(wrapper->base);
->  
-> -	if (!has_acpi_companion(&pdev->dev)) {
-> -		const struct geni_se_desc *desc;
-> -		int i;
-> -
-> -		desc = device_get_match_data(&pdev->dev);
-> -		if (!desc)
-> -			return -EINVAL;
-> -
-> -		wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
-> -
-> -		for (i = 0; i < wrapper->num_clks; ++i)
-> -			wrapper->clks[i].id = desc->clks[i];
-> -
-> -		ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
-> -		if (ret < 0) {
-> -			dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
-> -			return ret;
-> -		}
-> +	desc = device_get_match_data(&pdev->dev);
->  
-> -		if (ret < wrapper->num_clks) {
-> -			dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
-> -				dev->of_node, wrapper->num_clks);
-> +	if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
-
-Reading this again, the only functional change I can spot is the
-addition of this desc->num_clks check. (And the addition of the new
-compatible)
-
-The rest of the patch is just moving things out of this if statement
-body, introducing the flexibility of a function pointer with a single
-possible value etc.
-
-
-As I've said before, function pointers are useful to create
-abstractions, but they make it harder to follow the code (both for me
-and the CPU) so you need to provide some value in return - and I'm
-failing to see what that value is.
-
-> +		ret = desc->resources_init(wrapper, desc);
-
-In other words, you can replace this line with:
-
-	ret = geni_se_resource_init();
-
-Or, if this is all we get, then you can do nothing and just add the
-additional expression to the condition and be done with it.
-
-> +		if (ret)
->  			return -EINVAL;
-> -		}
-> -
-> -		ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
-> -		if (ret) {
-> -			dev_err(dev, "Err getting clks %d\n", ret);
-> -			return ret;
-> -		}
->  	}
->  
->  	dev_set_drvdata(dev, wrapper);
-> @@ -951,8 +967,11 @@ static const char * const qup_clks[] = {
->  static const struct geni_se_desc qup_desc = {
->  	.clks = qup_clks,
->  	.num_clks = ARRAY_SIZE(qup_clks),
-> +	.resources_init = geni_se_resource_init,
->  };
->  
-> +static const struct geni_se_desc sa8255p_qup_desc;
-
-This looks like a forward declaration, it took me a while to realize
-that this is giving you the actual all-zero geni_se_desc.
-
-Add a = {}; to make it clear that this is where you declare the
-variable.
-
-Thanks,
-Bjorn
-
+> +    fn probe(
+> +        pdev: &platform::Device<Core>,
+> +        _id_info: Option<&Self::IdInfo>,
+> +    ) -> Result<Pin<KBox<Self>>> {
+> +        let dev = pdev.as_ref();
+> +        let resource = pdev.resource(0).ok_or(ENODEV)?;
+> +        let iomem = pdev.ioremap_resource_sized::<TH1520_PWM_REG_SIZE>(resource)?;
+> +        let clk = Clk::get(pdev.as_ref(), None)?;
 > +
->  static const char * const i2c_master_hub_clks[] = {
->  	"s-ahb",
->  };
-> @@ -960,11 +979,13 @@ static const char * const i2c_master_hub_clks[] = {
->  static const struct geni_se_desc i2c_master_hub_desc = {
->  	.clks = i2c_master_hub_clks,
->  	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
-> +	.resources_init = geni_se_resource_init,
->  };
->  
->  static const struct of_device_id geni_se_dt_match[] = {
->  	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
->  	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
-> +	{ .compatible = "qcom,sa8255p-geni-se-qup", .data = &sa8255p_qup_desc },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, geni_se_dt_match);
-> -- 
-> 2.17.1
-> 
+> +        clk.prepare_enable()?;
+> +
+> +        // TODO: Get exclusive ownership of the clock to prevent rate changes.
+> +        // The Rust equivalent of `clk_rate_exclusive_get()` is not yet available.
+> +        // This should be updated once it is implemented.
+> +        let rate_hz = clk.rate().as_hz();
+> +        if rate_hz == 0 {
+> +            dev_err!(dev, "Clock rate is zero\n");
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        if rate_hz > time::NSEC_PER_SEC as usize {
+> +            dev_err!(
+> +                dev,
+> +                "Clock rate {} Hz is too high, not supported.\n",
+> +                rate_hz
+> +            );
+> +            return Err(ERANGE);
+> +        }
+> +
+> +        let chip = pwm::Chip::new(dev, MAX_PWM_NUM, 0)?;
+> +
+> +        let drvdata = KBox::new(Th1520PwmDriverData { iomem, clk }, GFP_KERNEL)?;
+> +        chip.set_drvdata(drvdata);
+> +
+> +        let registration = pwm::Registration::new(chip, &TH1520_PWM_OPS)?;
+> +
+> +        Ok(KBox::new(
+> +            Th1520PwmPlatformDriver {
+> +                _registration: registration,
+> +            },
+> +            GFP_KERNEL,
+> +        )?
+> +        .into())
+
+Here you are setting up the registration for the correct lifetime, however
+drivers could extend the lifetime of the registration arbitrarily, which would
+break the guarantee of the &Device<Bound> we rely on in the callbacks above
+(e.g. write_waveform()).
+
+Hence, pwm::Registration's lifetime has to be controlled by Devres. I'll also
+add a corresponding comment in your registration patch.
+
+> +    }
+> +}
 
