@@ -1,102 +1,108 @@
-Return-Path: <devicetree+bounces-186687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E76ADCCF1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:22:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32ADADCD50
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 15:35:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA8A4032A5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:14:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A541B3BEFE4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 13:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299D62E7192;
-	Tue, 17 Jun 2025 13:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6BA2E264F;
+	Tue, 17 Jun 2025 13:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="iNa0xfO4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HTU68KS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7CF2E7166;
-	Tue, 17 Jun 2025 13:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1CB2E7169;
+	Tue, 17 Jun 2025 13:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750166096; cv=none; b=A0CFZi+NkIovxPNEjyZvJQGCJJGeDIZCG6UnejjBuEJpsub6hFBleA9OpCNNLmcazcr1HL434V3Pz0IEBkjzMw6nDhPVXUXE6lHlW7hdyJLHCb3xlcLuZgQ8DZMare1EI1t1BUgBE4WVtHMcoCMR++z77ipfEOXVD8JqJG0lvAk=
+	t=1750166778; cv=none; b=Pb91nQ4G/+uFGsQxMbdCoYWAFEAdTpqSYW6rEqpzT0qOqbN+/ZkVz2FxtABYxgKauKSmF710zRWoqx0D9aGvNR5l+mXyUKKXQUuNigAnf3HoWJKnbLhjMaUxiPl0PJGsn2vvdQ5xEDNbnSnC9R2CVVoplaeDV01/rhi24Dj4cE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750166096; c=relaxed/simple;
-	bh=jWHsSqNV6uTusVU5NnYNCN38+Xz/eWr0z5GEMNQdJ0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m0i+1PT5iTQoKt2Gkh6iEVcWp+jO0czH5oy/KQYltoGzi0psLRZ5GKEso3VtMGCFPx1U0C1pLR2l7XW2k4uP9MiYvSxka/fXDvWc8GJ0mjGbSz139rPAeBOhQwVYnFrngnJ4czmiHpss4VgvnwqvspGtESQ6UrGiCAhhaQBWx18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iNa0xfO4; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=uFLVJFpH5AQoGq4DYrwcdK29TEFz0/SXGmStaKvh9BQ=; b=iNa0xfO4f+V3dWu6OtwziiklHV
-	0IJbfpT5pYTvjelAZi7SLIUz1B2jI+jxV2Bl7wn7Kyx2lP3m7taNuoWdw3sawN3A6NuNcMxIJiWOC
-	OWPE8t/U79D6l66Bf8vpY0PEv64H7lkmHTDjIyxDBRcb4PKKarmyZljW4ZZuy1SBNwYI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uRW90-00GAVk-BT; Tue, 17 Jun 2025 15:14:30 +0200
-Date: Tue, 17 Jun 2025 15:14:30 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1750166778; c=relaxed/simple;
+	bh=wNORk0hXvvkPqbJFbqdS9rN9/qpHWhfNvs+JPPcQAFQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FaI8x0XvEGi23peXnhR6QOvA06He7vZoJ3ZsvmA3o27SlwmkMH9S39dary8MeaHJ4WjUj0LXBD8GCE6FxVJgYD6XfMMy9kmdU3lzgEkGkqYi/fZRHwvi8Xoj9i36Lu64+ysUcnRS3IX6jaiR3UolhvwJ3X32ZXknY/nj5fAHVwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HTU68KS1; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D0D1643B16;
+	Tue, 17 Jun 2025 13:26:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750166767;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VBP1D5K0x3QxSBaXRPUliaOayaAzgYNXPqHRbr5cqYY=;
+	b=HTU68KS12LI/XmNO8zbV3KybQm3jtMesgHO14kri2Nwge8neq4UBjjtNiN3+gOtjSVY6Kl
+	Fp1fcYU18CvZeoNq4tsOO5ihacbZj4mFee355ktEhS5n+wAwg3Jfnh91JM40yzo+joUcpk
+	DcPYHUXeY/ydrrqQ0mB0Rtkvba4AnZ0bCwoLVv8TH1IsbdudwS5tkoWM+zo/t2CebPcSSB
+	hYjR5yLHtu44WBPSLhtWp6rXeed1XBQnGdUhYsTr65/O3M4wbbty8L3VsYWx9nGn3jG7py
+	8icXHQ2ngbpTmqMyEnnC5yQMQVfrdBt6nt6+NvIU2n6MYk82Jkrdzozgju3fhA==
+From: =?UTF-8?q?Beno=C3=AEt=20Monin?= <benoit.monin@bootlin.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v2 2/2] net: mdio: Add MDIO bus controller for
- Airoha AN7583
-Message-ID: <065e26cf-1bfb-462c-8cbc-9b4b29f1262d@lunn.ch>
-References: <20250617091655.10832-1-ansuelsmth@gmail.com>
- <20250617091655.10832-2-ansuelsmth@gmail.com>
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc: =?UTF-8?q?Beno=C3=AEt=20Monin?= <benoit.monin@bootlin.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	"Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/6] Add MMC support for Mobileye EyeQ5 and EyeQ6 SoCs
+Date: Tue, 17 Jun 2025 15:25:50 +0200
+Message-ID: <cover.1750156323.git.benoit.monin@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250617091655.10832-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgddvlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpeeuvghnohpfthcuofhonhhinhcuoegsvghnohhithdrmhhonhhinhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepkeeuhefhveehuefgteejheffieefhfejffdvteejueefgeegvdfhteehtdeuhfdvnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemudehfeejmehffeehmeelfeeiugemvgelvdehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeduheefjeemfhefheemleefiegumegvledvhedphhgvlhhopehfrhgrmhgvfihorhhkrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhepsggvnhhoihhtrdhmohhnihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduiedprhgtphhtthhopehulhhfrdhhrghnshhsohhnsehlihhnrghrohdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkv
+ ghrnhgvlhdrohhrghdprhgtphhtthhopehvlhgrughimhhirhdrkhhonhgurhgrthhivghvsehmohgsihhlvgihvgdrtghomhdprhgtphhtthhopehgrhgvghhorhihrdgtlhgvmhgvnhhtsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehtshgsohhgvghnugesrghlphhhrgdrfhhrrghnkhgvnhdruggv
+X-GND-Sasl: benoit.monin@bootlin.com
 
-On Tue, Jun 17, 2025 at 11:16:53AM +0200, Christian Marangi wrote:
-> Airoha AN7583 SoC have 2 dedicated MDIO bus controller in the SCU
-> register map. To driver register an MDIO controller based on the DT
-> reg property and access the register by accessing the parent syscon.
-> 
-> The MDIO bus logic is similar to the MT7530 internal MDIO bus but
-> deviates of some setting and some HW bug.
-> 
-> On Airoha AN7583 the MDIO clock is set to 25MHz by default and needs to
-> be correctly setup to 2.5MHz to correctly work (by setting the divisor
-> to 10x).
-> 
-> There seems to be Hardware bug where AN7583_MII_RWDATA
-> is not wiped in the context of unconnected PHY and the
-> previous read value is returned.
-> 
-> Example: (only one PHY on the BUS at 0x1f)
->  - read at 0x1f report at 0x2 0x7500
->  - read at 0x0 report 0x7500 on every address
-> 
-> To workaround this, we reset the Mdio BUS at every read
-> to have consistent values on read operation.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+The MMC/SDHCI controller found in Mobileye EyeQ5 and EyeQ6 SoCs is 
+based on Cadence cdns sd4hc IP. It supports up to HS400HS mode. The 
+only peculiarity of the hardware is that it needs the preset value
+quirk to configure the clock properly at speed slower than HS200.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+This patchset adds a compatible device tree binding to cdns sdhci for 
+mobileye then uses it in the sdhci-cadence driver.
 
-    Andrew
+It also adds an emmc entry in the dtsi of each SoC and the config 
+options in each defconfig to allow using an eMMC for the rootfs.
+
+Benoît Monin (6):
+  dt-bindings: mmc: cdns: add Mobileye EyeQ MMC/SDHCI controller
+  mmc: sdhci-cadence: add Mobileye eyeQ support
+  MIPS: mobileye: dts: eyeq6h: add the emmc controller
+  MIPS: eyeq6_defconfig: add cadence MMC/SDHCI driver
+  MIPS: mobileye: dts: eyeq5: add the emmc controller
+  MIPS: eyeq5_defconfig: add cadence MMC/SDHCI driver
+
+ .../devicetree/bindings/mmc/cdns,sdhci.yaml   |  1 +
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi        | 22 +++++++++++++++++++
+ arch/mips/boot/dts/mobileye/eyeq6h.dtsi       | 22 +++++++++++++++++++
+ arch/mips/configs/eyeq5_defconfig             |  2 ++
+ arch/mips/configs/eyeq6_defconfig             |  2 ++
+ drivers/mmc/host/sdhci-cadence.c              | 11 ++++++++++
+ 6 files changed, 60 insertions(+)
+
 
