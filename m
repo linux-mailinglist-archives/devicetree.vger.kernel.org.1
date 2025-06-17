@@ -1,137 +1,137 @@
-Return-Path: <devicetree+bounces-186731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 728DCADCF9D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:26:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD27ADCFD5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07EC617DA69
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:20:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEDFD1941EB5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F772EF677;
-	Tue, 17 Jun 2025 14:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25842EF64B;
+	Tue, 17 Jun 2025 14:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldedivNm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vx6BIclc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F8582EF640;
-	Tue, 17 Jun 2025 14:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89D3B2EF644;
+	Tue, 17 Jun 2025 14:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750169817; cv=none; b=PzeepYFn1P6Gt4mk7Wsy3sEjOpzPkrIqjTvdartCKdb7rUr355j9XxBBtOnZM7uvV2IsIXtsDZuDBlbvQKBXzik//IdNPItOH5qIT+yctTwUzSK27uVEeYoX+orSfStP2AAB6tBkJQUjlVPO40mH+PDJn2QDDVPFCo/h/QFT9C4=
+	t=1750170054; cv=none; b=TP74NwkFhMkVryIYl2CyYonMwQZE1X3/Rofyz9sLszHpa80YHAIB69e6p9gN6SxNsUUHCeS6HoJpzo2dkFSKAzomenUHpT6vpMYhcUHiPu5OkrPGn0SxOEHCDLsm5DMmbjL8scsUp+dggQp3vIxzFBUl8Wd4JzVenAYY8AtuuHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750169817; c=relaxed/simple;
-	bh=iEyW4AnJa17J41ytX30hyC0XYY5ykVW3PixyY/HYRVg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m4xQi+kBvfCL3oroVwUthcU5vkYyZcF3uZQGTQp5NNCoAVl3XxzgXPvhaaqwuSvaupBhdy1TdqOuYOHfr+vCPlXP1WC+rfs+QhMoPi/ioBnMQx4nvOuxkKKTZj9+K3qw04eFfAwXpnJre1M2Jh2mM82ecF/vRd8TE2/hJ/hoLvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldedivNm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6580C4CEE3;
-	Tue, 17 Jun 2025 14:16:53 +0000 (UTC)
+	s=arc-20240116; t=1750170054; c=relaxed/simple;
+	bh=2InmuhCdbeF4xAg1utUzErMQdY9Y+3NdD/RkSD3RA6Y=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=n6CE5/wF1+9MwnDHHlRGBboyfYYM+5AZ88n6bqdSpVaf4qHyJSx2Qt1hzYFbnRyFdQl4USidIVNyekOUD3IOMQhQc2oox85JHiXDDhOIYWGH49Ut/NY1n1rd5bf+m2CR5FYyj2zixyPnToZ7LYgawciJ/oNuAVKMmmE7OiDJ82Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vx6BIclc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A976CC4CEE3;
+	Tue, 17 Jun 2025 14:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750169816;
-	bh=iEyW4AnJa17J41ytX30hyC0XYY5ykVW3PixyY/HYRVg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ldedivNmC+Dx33QQGeX6YYlF02DbQyggnZlZuRrMnhpKdB7m1bLbV0x91X65tgwac
-	 DhEuntanyRA4hfLIfYdnBEIzAH2dIfyCAa4IsHU3H0GHhXU7KF/zboBQuB0soGRKoi
-	 YbvERIK3fGE6vQpsnVY9xhf7xFyliq1GygKDbTJ4tVuHWKhu1IqjAaQCw4B7q8Pmi9
-	 brbxZGzZK6k9/QuJKjZ5+0OWGqw9sNBjNWwKHWW+kiTLupotsRNj8UaXOHGMFufYCw
-	 Pqz29c87Ai6cQKfIWaQeHkfEWAa8AQQIwCAxPZPqdy9hUFq5vy27uDcWxvzMYVJTsl
-	 MRQ3Pg408arhg==
-Date: Tue, 17 Jun 2025 15:16:50 +0100
-From: Will Deacon <will@kernel.org>
-To: Ian Rogers <irogers@google.com>
-Cc: Nick Chan <towinchenmi@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>,
-	Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
-	asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v7 00/21] drivers/perf: apple_m1: Add Apple
- A7-A11, T2 SoC support
-Message-ID: <20250617141649.GA19021@willie-the-truck>
-References: <20250616-apple-cpmu-v7-0-df2778a44d5c@gmail.com>
- <CAP-5=fXSwgxMc+uh=PBAFh4Zm96tL5RDyKPOJ8Q40O4s=EaArA@mail.gmail.com>
- <20250616102945.GA17431@willie-the-truck>
- <CAP-5=fVjJyV2eA1aDnk6cqAhJGc9FZVyHhP7-f=1OyWmzxjN8w@mail.gmail.com>
+	s=k20201202; t=1750170053;
+	bh=2InmuhCdbeF4xAg1utUzErMQdY9Y+3NdD/RkSD3RA6Y=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Vx6BIclc/l3eryk97vgg5S/7dJzXIMmEm4Nt8OItskFEe+xsyWspT+K+fTJUZtZUg
+	 1/esRdpzKV7Tgh2ZbAM/vkn02AP5aeHlTC/+YyNrCvgtA8pt13PhMLa4CoCQixklNb
+	 FeNIYZQNbEEckySCKgKVLLsKgGK7XR9d44QBQazgIZyG422tQUn3zQ+9pgCyYD0TH0
+	 JjIeag5ygGr/ZFjI9ELdKsH1IqWoWsc/qcJSgMJ96pGtozAGP6Wu7ffhSApL8r/jtR
+	 A+uzQQlbSCIZrdrJBDlgy+Iv3uW04xy2NLN3G+Z1PFGT5eXC7k/KjwJhuucGPw11ab
+	 TsfP4fqo76Jpg==
+Date: Tue, 17 Jun 2025 09:20:47 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP-5=fVjJyV2eA1aDnk6cqAhJGc9FZVyHhP7-f=1OyWmzxjN8w@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
+ conor+dt@kernel.org, krzk+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+To: John Clark <inindev@gmail.com>
+In-Reply-To: <20250616212214.139585-1-inindev@gmail.com>
+References: <20250616212214.139585-1-inindev@gmail.com>
+Message-Id: <175016979599.2093448.14784445392861076419.robh@kernel.org>
+Subject: Re: [PATCH v1 0/2] Add FriendlyElec NanoPi M5 support for Rockchip
+ RK3576
 
-On Mon, Jun 16, 2025 at 03:44:49AM -0700, Ian Rogers wrote:
-> On Mon, Jun 16, 2025 at 3:29 AM Will Deacon <will@kernel.org> wrote:
-> >
-> > On Mon, Jun 16, 2025 at 02:36:18AM -0700, Ian Rogers wrote:
-> > > On Sun, Jun 15, 2025 at 6:32 PM Nick Chan <towinchenmi@gmail.com> wrote:
-> > > >
-> > > > This series adds support for the CPU PMU in the older Apple A7-A11, T2
-> > > > SoCs. These PMUs may have a different event layout, less counters, or
-> > > > deliver their interrupts via IRQ instead of a FIQ. Since some of those
-> > > > older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
-> > > > be enabled by the driver where applicable.
-> > > >
-> > > > Patch 1 adds the DT bindings.
-> > > > Patch 2-7 prepares the driver to allow adding support for those
-> > > > older SoCs.
-> > > > Patch 8-12 adds support for the older SoCs.
-> > > > Patch 13-21 are the DT changes.
-> > > >
-> > > > Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> > >
-> > > Hi Nick,
-> > >
-> > > This is substantial work and it looks good to me. Do you know why
-> > > there's been little progress on landing these patches? Buggy Apple ARM
-> > > PMU support in the kernel has led to reworking the perf tool. It seems
-> > > best that we can have the best drivers possible.
-> >
-> > You reworked the perf tool to support these things? Why? These changes
-> > are targetting chips in old iPhones afaict (as opposed to "Apple Silicon").
-> > I think that (a) most people don't particularly care about them and (b)
-> > they're not fully supported _anyway_ because of crazy stuff like [1].
+
+On Mon, 16 Jun 2025 17:22:12 -0400, John Clark wrote:
+> This series adds device tree support for the FriendlyElec NanoPi M5 board,
+> powered by the Rockchip RK3576 SoC (4x Cortex-A72, 4x Cortex-A53, Mali-G52
+> MC3 GPU, 6 TOPS NPU). The patches enable basic booting and connectivity,
+> including dual 1Gbps Ethernet, USB 3.2, microSD, M.2 PCIe NVMe, and HDMI.
 > 
-> I was meaning that we reworked the perf tool to work around the Apple
-> ARM PMU driver expecting to work as if it were an uncore rather than a
-> core PMU driver. More context here:
-> "[REGRESSION] Perf (userspace) broken on big.LITTLE systems since v6.5"
-> https://lore.kernel.org/lkml/08f1f185-e259-4014-9ca4-6411d5c1bc65@marcan.st/
-> But in general it would be nice Apple ARM PMU support were well loved.
-> I think we went 2 or 3 minor releases with the perf tool not working,
-> threats of substantial reverts to avoid the PMU driver bug being
-> exposed, etc.
+> Patch 1 updates the DT bindings in rockchip.yaml.
+> Patch 2 adds the NanoPi M5 device tree and Makefile entry.
+> 
+> No MAINTAINERS update is needed, as the new file is covered by the existing
+> ARM/Rockchip SoC entry.
+> 
+> Tested on NanoPi M5 with successful boot and feature validation.
+> 
+> Signed-off-by: John Clark <inindev@gmail.com>
+> ---
+> John Clark (2):
+>   dt-bindings: arm: rockchip: add FriendlyElec NanoPi M5 board
+>   arm64: dts: rockchip: Add FriendlyElec NanoPi M5 support
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3576-nanopi-m5.dts    | 969 ++++++++++++++++++
+>  3 files changed, 976 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
+> 
+> --
+> 2.39.5
+> 
+> 
+> 
 
-It's unfortunate that you've had a torrid time with the Apple PMU driver,
-but I think it's important to realise that it's both unmaintained (it
-ends up with me via the catch-all for drivers/perf/) and was written
-based off whatever reverse-engineering people could be bothered to do in
-their spare time. It's frankly remarkable that it works as well as it
-does.
 
-Despite all of that, I still don't think that your concerns apply to the
-patches in _this_ series, which is about adding support for older Apple
-chips.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-> As for which Apple ARM devices should have perf support, it seems the
-> more the merrier.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Easy to say when you don't have to maintain the driver!
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-Will
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.16-rc1-19-gd7ad90d22abe (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250616212214.139585-1-inindev@gmail.com:
+
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dtb: spi-nor@0 (jedec,spi-nor): $nodename:0: 'spi-nor@0' does not match '^(flash|.*sram|nand)(@.*)?$'
+	from schema $id: http://devicetree.org/schemas/mtd/jedec,spi-nor.yaml#
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dtb: pmic@23 (rockchip,rk806): Unevaluated properties are not allowed ('rk806_dvs1_null', 'rk806_dvs1_pwrdn', 'rk806_dvs1_rst', 'rk806_dvs1_slp', 'rk806_dvs2_dvs', 'rk806_dvs2_gpio', 'rk806_dvs2_null', 'rk806_dvs2_pwrdn', 'rk806_dvs2_rst', 'rk806_dvs2_slp', 'rk806_dvs3_dvs', 'rk806_dvs3_gpio', 'rk806_dvs3_null', 'rk806_dvs3_pwrdn', 'rk806_dvs3_rst', 'rk806_dvs3_slp' were unexpected)
+	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk806.yaml#
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dtb: hym8563@51 (haoyu,hym8563): $nodename:0: 'hym8563@51' does not match '^rtc(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dtb: hym8563@51 (haoyu,hym8563): Unevaluated properties are not allowed ('clock-frequency' was unexpected)
+	from schema $id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
+arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dtb: gpio-keys (gpio-keys): 'button@1' does not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
+
+
+
+
+
 
