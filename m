@@ -1,119 +1,178 @@
-Return-Path: <devicetree+bounces-186491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFDCEADC25E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:28:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C0AADC268
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:33:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A5197A1533
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:27:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D80683B8645
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:32:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E58228B3F7;
-	Tue, 17 Jun 2025 06:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEB9289349;
+	Tue, 17 Jun 2025 06:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="si0ySmFf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L25xoWlB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FB4C2D1;
-	Tue, 17 Jun 2025 06:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1ED8238174;
+	Tue, 17 Jun 2025 06:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750141702; cv=none; b=lDwcudUd9euXmblN4sR9Lzkqm4CnSZ4Hmn/QteNJfB6oJR/tzI08LjJOX7bT2K49Z/RQh7XBw0FEWif0iXxbsggUOqvS6HlqdEnf/HtWxHjDCx34K2qeN42Nh0aiIfYYIgkq5i9W8XJYxhqIxN0nhwpDMUB1pKWrvTm6O10edx8=
+	t=1750141972; cv=none; b=fdQTCRhLremKMPlOlE9e5ntKQ50++yAk3M5BmuSEGzic1If2lT0Di71MQYPSFSt04ivLS0kkQRqEiq7+W3Rz+kQjygtx5XipZf4UcRuzhrY2ihPdtni6IBPBpNSnvUvw3xpYE/UaotewNDs5CgZAPvdQJa1dnFLejYQ4y1SMrtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750141702; c=relaxed/simple;
-	bh=LF9auu4JR+Lf7VFoXANiRubeszBNmKcaT9+J6iYCMqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xzv9SfPAs9s+VVZuigNQYhs2joW+EJzL9vfOc8Xs8Av+tLkuU9Dl391vSRcdHvL5khfSt8xGn/an6dr4qtcsZ2I3MyisF9WAx0QeZo8X7J8fn53WS0mnktvFwzyott1On+LYpANGsO26eVqZ7mMiD12rJb1JGQQ1A4pBkDPTYmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=si0ySmFf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DB45C4CEE7;
-	Tue, 17 Jun 2025 06:28:20 +0000 (UTC)
+	s=arc-20240116; t=1750141972; c=relaxed/simple;
+	bh=GBAZCQF2Rv79R4nMP6/3vKH/peJmyPDSGZCIUXA1c9Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CWvXGglqrihBszywp1Em5V1B/eixVg8f5bpUa3z2HjA4YCgm1p98zsXAWcjMWD36/gDKyU5kHQz59GUl7ZCFELv5JdWolw6ZtMZSxpbUb/WtnoZ6dDMhpGUw3HHyEernAk77RrZo+bqLalN9E6frkL53J1MXbZHLBkNLIMT3tT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L25xoWlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5340C4CEE3;
+	Tue, 17 Jun 2025 06:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750141701;
-	bh=LF9auu4JR+Lf7VFoXANiRubeszBNmKcaT9+J6iYCMqQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=si0ySmFf06Kx/pNC4mfe6nBcvFNV89lyyiFLJWdWrDmhso9gixojQO98veDgzlFS2
-	 bS4eVP0/5UE4jURK+g1fRox6cuIv53sWw8Du+l6BfR1pPc0WQR4nceAvkuxGbqQw9q
-	 HfsqK6V1xxQJPg7WDS0pb1SyDq2oY+HTxzLt4PdtAfaEnySYIVD2h9q+wO2LNP5LYB
-	 SHFzQ99MFGGSFuxx9uYyrD9ZT5pD96cdUNXz/RlL96Y9hQbrjGZN3HL3XSror6hl1l
-	 gCpKHF9/DfjEtIPPPvZWYUlLuCeyvNBZrGZFyXg9voZF6JW2FP/NWHR6QBwPzE7YJu
-	 snYheb0NY7lNQ==
-Date: Tue, 17 Jun 2025 08:28:19 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xueqi Zhang <xueqi.zhang@mediatek.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	Ning li <ning.li@mediatek.com>, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [RFC PATCH 1/8] dt-bindings: iommu: mediatek: Add mt8196 support
-Message-ID: <20250617-woodoo-uakari-of-cubism-c2bedf@kuoka>
-References: <20250616025628.25454-1-xueqi.zhang@mediatek.com>
- <20250616025628.25454-2-xueqi.zhang@mediatek.com>
+	s=k20201202; t=1750141971;
+	bh=GBAZCQF2Rv79R4nMP6/3vKH/peJmyPDSGZCIUXA1c9Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=L25xoWlBrMEPGD81mKZGsmCwCnlQqdAutQK7ohYrlFbhhqBFvVNbVoCca3DzoWam+
+	 AU+quhAuIC8odIajKC4pYg2nr5/2FkmC+vIKFs19YFGsQZ9fEejaft92sE0Sjmidva
+	 YrRy+mnjtKnwZKle24fkLM31Z1Vh5hzYbSOaoz14gMxa0qAdHiXeWRPsWeqSE5hLtb
+	 84y5ed4cSr8pVEEBdeZdxafmYR5d34CrDsy2NnL4BOHQKkJ8TDiL+NGrO+WsvUf+Ja
+	 os+DBlPajbglybEGroMHFUew12w5Emagi+zyrMc94wI3X4eIvo6kdEvM/EDy0JpPL5
+	 Kx4z+7/jXLsiQ==
+Message-ID: <4f7225ee-fbb4-472e-8e14-a98f4cef9fc3@kernel.org>
+Date: Tue, 17 Jun 2025 08:32:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250616025628.25454-2-xueqi.zhang@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/10] dt-bindings: media: qcom: Add Qualcomm MIPI
+ C-/D-PHY schema for CSIPHY IPs
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-9-vladimir.zapolskiy@linaro.org>
+ <6e411e89-ce1e-4d6a-8d48-b800554f830e@kernel.org>
+ <e9afdd0f-7842-4780-9044-d5afa6a09d7f@linaro.org>
+ <b96f9cca-cdd4-4456-8ced-f4a8fd810ff1@kernel.org>
+ <9e383935-a10c-40ec-a63a-243cd028374e@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <9e383935-a10c-40ec-a63a-243cd028374e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 16, 2025 at 10:56:07AM GMT, Xueqi Zhang wrote:
-> 1. Mediatek has its own implementation for wrapper interrupts and
-> power management. Add the SoC specific compatible for MT8196
-> implementing arm,smmu-v3.
-> 2. APU SMMU need wait until its power is ready, thus add a phandle
-> smmu-mediatek-parents to its power node.
+On 14/06/2025 21:31, Konrad Dybcio wrote:
+> On 6/13/25 8:28 AM, Krzysztof Kozlowski wrote:
+>> On 12/06/2025 19:13, Vladimir Zapolskiy wrote:
+>>> On 6/12/25 10:38, Krzysztof Kozlowski wrote:
+>>>> On 12/06/2025 03:15, Vladimir Zapolskiy wrote:
+>>>>> Add dt-binding schema for Qualcomm CAMSS CSIPHY IP, which provides
+>>>>> MIPI C-PHY/D-PHY interfaces on Qualcomm SoCs.
+>>>>>
+>>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>>>> ---
+>>>
+>>> <snip>
+>>>
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 2
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: csiphy
+>>>>> +      - const: csiphy_timer
+>>>>
+>>>> Drop csiphy from both, redundant. And this points to the first clock
+>>>> name not having any useful name. Name equal to device name is not useful.
+>>>>
+>>>
+>>> I got the rationale, but I have no idea how to correct it, since it's
+>>> literally the case, the first clock name on the list in 'csiphy'.
+>>
+>> What do you mean by "list"? You can point me also to internal
+>> documentation if that helps.
 > 
-> Signed-off-by: Xueqi Zhang <xueqi.zhang@mediatek.com>
-> ---
->  .../bindings/iommu/arm,smmu-v3.yaml           | 24 ++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
+> So if you do:
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> index 75fcf4cb52d9..c9a99e54de69 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> @@ -20,7 +20,12 @@ properties:
->    $nodename:
->      pattern: "^iommu@[0-9a-f]*"
->    compatible:
-> -    const: arm,smmu-v3
-> +    - description: MediaTek SoCs implementing "arm,smmu-v3"
-> +      items:
-> +        - enum:
-> +            - mediatek,mt8196-apu-smmu
-> +            - mediatek,mt8196-mm-smmu
-> +        - const: arm,smmu-v3
+> "csiphy_timer" - "csiphy_" you're left with "timer" which makes sense
+> 
+> however, if you do:
+> 
+> "csiphy" - "csiphy_", you get "" and Vlad is wondering what to name it
 
-You just broke every existing user, so this was not tested.
+How is the signal named in HPG or diagram? It is possible it has a name
+other than "csiphy"...
 
-Limited review follows - test your patches first.
+> 
+>>
+>>>
+>>> What could be an alternative name then?..
+>>
+>> The real clock input name, signal name. You can also drop the names.
+> 
+> I don't have the docs before my eyes right now, but I would not be
+> surprised if it's also called "csiphy" in there..
 
->  
->    reg:
->      maxItems: 1
-> @@ -69,11 +74,28 @@ properties:
->        register access with page 0 offsets. Set for Cavium ThunderX2 silicon that
->        doesn't support SMMU page1 register space.
->  
-> +  mediatek,smmu-parents:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the SMMU's power node. The SMMU should wait until its power
-> +      is ready
-
-No, power domains express power relationship. Or some other existing
-properties or simply parent-child relationships.
+Let's check that first.
 
 Best regards,
 Krzysztof
-
 
