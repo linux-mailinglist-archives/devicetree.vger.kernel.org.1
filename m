@@ -1,177 +1,206 @@
-Return-Path: <devicetree+bounces-186543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0B5ADC52E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:39:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E54BBADC53A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 10:44:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F39C1188DB7E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:40:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4599718938F7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C84728FA9A;
-	Tue, 17 Jun 2025 08:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q2gTkfN9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA5928FAB9;
+	Tue, 17 Jun 2025 08:44:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805512AD0D;
-	Tue, 17 Jun 2025 08:39:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF45D28FFE1;
+	Tue, 17 Jun 2025 08:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750149586; cv=none; b=DWQB6JInp26p6UrL9EdrFesumOXWyP0UtH88DXjF8gWvMRcQcVwFFqo9i9vdmC6fqZvemjfdYtRFqERxnNIiEu4Ah69wtBaj8iIDP0uHMqno/dQ5kSmxKbLMigDHIf9aqQOyyX3vbgY3S86tvDuHVdrWX2KTOyuotfsXVnecUmU=
+	t=1750149873; cv=none; b=fm0tZXzzkqp4+9ISZ2sWXw960aEa327E6gnDjd7XXZcXpJdpvgBzU2KQmIP6pA+GVIFYCiRi9TEEvcsy0uIjSl4HdjOXail+A4eLOd6ceyZXYcWbswoaKCJTiKQ1jWJCrwP29RelJ3lxMwkpiBW4ItNiJjNDGK1cDjDPMqBGxeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750149586; c=relaxed/simple;
-	bh=XGXRMTfNlV6CCVAQgve/Ud1ZevP/AQnQGCZB83sb/5Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hsTmX+tVbO7Tv2VnWXJIjrfg1BuowIFMIj9h//oeDn3PWjziPDObxFVh3JGilCCDv1pyvCI99ui7XZ11cX/FbVLxVB3pTZX1gfvzvKCZuxxu/I1nPzeMI0tNvRFtG3GnPWZjHz51UwDSe8AbPAou3k0UByq4nvI59vXXFCljyy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q2gTkfN9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55H7UG9s008199;
-	Tue, 17 Jun 2025 08:39:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cdc/HFR6X0YbPtDwIHtjnSL/aKOIkHKOaE2DR7FutX0=; b=Q2gTkfN98r8PN/SE
-	KUM0JkKhYc8TrtaH+LBuTocV4SqSFUYnz5GJO47PGfAtMv9pTlUaN2naqKlIQnA9
-	at4/3k+611tONQDbVedcGFI29z3mHCHaJnojKwaLyHKHC0JJA4Pr2rSWMk3fCuc/
-	YuRGrw9kvgRl/Hw17MCepg+OFM3LA11jcCumxW0F5lcaV9nNGCSlOgyY0RrkRsNW
-	zAh1bauzQFSvO1154dS6vb2kozI9o3rbhvvWtGUwNtH7ZyBhT+HexEQtt/sMHa3U
-	Z4MzJaRg/LfOOw6eYAL4juJksYAaAmyceXeJ2CKPW5vj2HdP2kK5CayFLuoAXjsP
-	4zOFqQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791crqesr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 08:39:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55H8ddKM016577
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 08:39:39 GMT
-Received: from [10.217.217.109] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Jun
- 2025 01:39:35 -0700
-Message-ID: <928b8f33-b3bb-4831-b71c-756971ff7cca@quicinc.com>
-Date: Tue, 17 Jun 2025 14:09:32 +0530
+	s=arc-20240116; t=1750149873; c=relaxed/simple;
+	bh=EMaZW0W6NTuCn8tFaeSafgDTZ6GVDT5IJeOSEngyzIk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FC9RUxL2DadSO9D3rU5T8z3u/NcwKJ/h8otpigCvDMMSsNcEFQJKrJfdQVyK5hUZjcyYHMdXcQsJFLrFjF3rrbjUmJrnQ4N2vm9JGQoenxsz91eoMEkEaxNYt15bCO9gPzdrsHa3jNddC/Drxdk20Uk+dUnYjg4egFDGIq11Q7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-87f1bd2229aso547479241.0;
+        Tue, 17 Jun 2025 01:44:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750149869; x=1750754669;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fIpxA99mr6qgUAtAVkjCW/9Y2TY9goKEtR/+Z0STSCw=;
+        b=Gezgqh4h3u8vxn4bHL+2WB1tvXAPhjqxmE/Obwu29gpU+r8xsfu5b2HaXw8ysBZ/H2
+         zfcqJ/tG+WR4PhuHzChrpU5zFJTtIpk/4Jan/4EGugJsfaIvlZxyyFMXg82m5iLYBB96
+         A9qMr5ckH8oog+3/vVXML4cjlVEX46TryBGhiXkODfhoi2GdK41DgRhON/Z7WwbbZ/8F
+         jKAFuLtGVw/xNNgYWKIkZtWDhzXO2bT+t+B1xebk8kaSdFvZIA5bAL8EPDIwxkOdXVlE
+         tcmE8OYQut5TYO2Tkj23bfCAbvWl4Bu8KdvkRVAzVH6rmc7KUHS5CXLq9wwDI3rh21QN
+         7z9w==
+X-Forwarded-Encrypted: i=1; AJvYcCU7NSffZT0H4cWUPfW1SJhNslDrUhR00XzoQQqL3V3ifMid92cLPURIY7Zu5808QD9zUy8MAa2b2nwtw4JJ@vger.kernel.org, AJvYcCV1xlpxtfQc9B6s8e5OdPNIhx9BwnaX4H6p+Kbi6ODwAAp2Q7MS+VyggOwjq1Z0Nb2kgbhONvbhJ/g3BXUr@vger.kernel.org, AJvYcCVYSMvmaYjxC8dIUpa/70YcmhqJTWStFQg5vqhqaIELCv1Bar1We6JwBP9KBtSQ0hACl9YK5nhqO6RqIJzTKJ2DmgU=@vger.kernel.org, AJvYcCXa373lfYmDdrNJ4ADz0NAkA5uQIXj6VoV1IuATe8EaLC7LT7JjGVXPg/xw9eFtbwYVMqJ25itumVAr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPig2Z5PMQqK7Cga0F3h5Qfca6UIwYoWw1K/A/YBT1tIExtnFZ
+	Y6fw3Io1U1EygFdC+3Otws54FBMHcpvAii50KqdnBlhHbJCB4s14Pr+Hn0B9dPGS
+X-Gm-Gg: ASbGncuuFOwvKotT+6TzIaR7rHErz2frQ7FF3xdD6xLW5832TxEOtoFlAajGo04VEDY
+	1gwwjLL7Gu+g/s1CzwBlAol8P7ybOjf8Vsi31v5YWTDa0I0p0smXMKjkc3SV02GzYHZ4ZBuuYpU
+	M9GujpgC1QxAP2+pRcrRlTd4CKMnGmFFQ0ngl3ysRLsDyk3FxJPZc9wwUQWfI05FDNT+RKAPZQ4
+	faTgCW7WTIBnzBprRylZQCqPyoxux/zobYxgpKKJo1lCIYpkCdWvth5Q9SwTNpYtERMIjhKzPkr
+	2IKlfh/wLslv+PHldcIZmOmA16U0ZNPS4fjvuD5wfHHLITUg1XQ9ixAgHfFWtD6wlny11AYtjTN
+	O3AtRuqUvD0wcEPVaU47XWRlX
+X-Google-Smtp-Source: AGHT+IGkzaQczw5HupLSBSC9OG58i3xOsAJR2nM/rhptgXTUii39REDpddFugyuat8Ca+EXMbd2xPw==
+X-Received: by 2002:a05:6102:8359:b0:4e9:8f71:bd6e with SMTP id ada2fe7eead31-4e98f71bfe3mr41701137.0.1750149868593;
+        Tue, 17 Jun 2025 01:44:28 -0700 (PDT)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87f21ab5768sm1107859241.10.2025.06.17.01.44.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jun 2025 01:44:28 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-87f1bd2229aso547466241.0;
+        Tue, 17 Jun 2025 01:44:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVLLPpg6cY7Nvmzi1gnwmmbMtvrypuTX2RWHOAKv2HCLgfS0QDxbfebsMbkD56Oy2cPUcFyY4HTxBSv0NAd@vger.kernel.org, AJvYcCW8M+TKKDHgubmG0a9+sRSvtLeOEb2aUmT+UX74syO9S/uNoNvFcS0JztcTdJV+J1PjHepgcNBNGTEeieG3r5pOMKc=@vger.kernel.org, AJvYcCWGS1sav0xl0j0gYXgaWk6u/FmGektBKAcGYECXYNjByukMqUezGiMHYn6MQ7AN3oRudroqtWjUTTkf@vger.kernel.org, AJvYcCWvEsKjaHLQGBIlpQw1Gijr+W1BjqM/CbE0oMkwGwwXfFG6xH3H+XiDJ+lDu8HFOmNtCZe7wChy5CQi6P3s@vger.kernel.org
+X-Received: by 2002:a05:6102:26c2:b0:4e2:ecd8:a1f with SMTP id
+ ada2fe7eead31-4e7f6186014mr6831759137.1.1750149867998; Tue, 17 Jun 2025
+ 01:44:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615: Add CPU scaling clock
- node
-To: Imran Shaik <quic_imrashai@quicinc.com>,
-        Taniya Das
-	<taniya.das@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250612-qcs615-mm-cpu-dt-v3-v3-0-721d5db70342@quicinc.com>
- <20250612-qcs615-mm-cpu-dt-v3-v3-2-721d5db70342@quicinc.com>
- <ezlboeao2mqdbyxw6orzcqla3xthbo5ppuuhugwyxs5t4njvsd@qyy5r2ksmrj2>
- <89536376-6619-49a5-a267-b5a6b98940d8@oss.qualcomm.com>
- <8bceae03-33fe-4ec0-b1da-785af793dd86@quicinc.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <8bceae03-33fe-4ec0-b1da-785af793dd86@quicinc.com>
+References: <20250616213927.475921-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250616213927.475921-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250616213927.475921-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 17 Jun 2025 10:44:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUU-EyU3DgqP9KDmeT_A4i-xaE9hAUOvYFQcbYmpJc2ng@mail.gmail.com>
+X-Gm-Features: AX0GCFu96slHpR78sWUkf3MntdiwPRfZq6OEEltMiCRMN1dl7oBZu7rvTpsJ3sE
+Message-ID: <CAMuHMdUU-EyU3DgqP9KDmeT_A4i-xaE9hAUOvYFQcbYmpJc2ng@mail.gmail.com>
+Subject: Re: [PATCH v11 3/5] tty: serial: sh-sci: Use port ops callbacks
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kO-1YmlxD0y6JIcnhxu5pAkULtUazMKf
-X-Authority-Analysis: v=2.4 cv=BoedwZX5 c=1 sm=1 tr=0 ts=685129cc cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=RqnyG8YqrYQEIJefFsgA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: kO-1YmlxD0y6JIcnhxu5pAkULtUazMKf
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDA2OSBTYWx0ZWRfXzmxlIX9Kt4UD
- sz+BvvSNiq07opN6BqmouxnFgg5CfwiiEcwLmP063Fnc9NzlvECZFcYAix0vBcwQJmwFcU4j59V
- iF3WA1vSPep0QP1ssCTb4QGzbiTFdf2L1G+Dc+kchAIW+jreqJOirX+V7hLR58mCHlwfLQwBUr2
- +WlKDQoQVTYN3pujPU0MjeBZFCCxzEmg3KHSXTzjNXJzUzH6UB5FnIn8oM6vbTs97tFO2EY9Hd8
- QFsoElgsAiExn2I0hdlxqhFxV9ubLlXl2jeXJPj0w6ci4HSvL34NiiE0CH6JKs1mwI+C/4dJmJ6
- wzaWpiyrBCD6VwdqV/opErq8JuhTbDcUCRRlAIZ/l/1t8SbosZ0Upos0tbhJbTUgMwcsRY7pOav
- wq5xBYPwb68/60IB6JHFalMrLriNQT3sGGCsR3PDN0HvUwTTrAqn1YjVRiwjgJg6QBXfBxGM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-17_03,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506170069
 
+Hi Prabhakar,
 
+On Mon, 16 Jun 2025 at 23:39, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Replace direct calls to internal helpers such as sci_stop_tx(),
+> sci_start_tx(), sci_stop_rx(), sci_set_mctrl(), sci_enable_ms(), and
+> sci_request_port() with their corresponding port ops callbacks.
+>
+> This change improves consistency and abstraction across the driver and
+> prepares the codebase for adding support for the RSCI driver on the
+> Renesas RZ/T2H SoC, which heavily reuses the existing SCI driver.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 6/17/2025 12:59 PM, Imran Shaik wrote:
-> 
-> 
-> On 6/17/2025 12:27 PM, Taniya Das wrote:
->>
->>
->> On 6/13/2025 6:40 PM, Dmitry Baryshkov wrote:
->>> On Thu, Jun 12, 2025 at 03:47:21PM +0530, Taniya Das wrote:
->>>> Add cpufreq-hw node to support CPU frequency scaling.
->>>>
->>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 29 +++++++++++++++++++++++++++++
->>>>  1 file changed, 29 insertions(+)
->>>>
->>>> +
->>>> +		cpufreq_hw: cpufreq@18323000 {
->>>> +			compatible = "qcom,sc7180-cpufreq-hw", qcom,cpufreq-hw";
->>>
->>> This wasn't build-tested (or was edited after being compile-tested).
->>
->> This is already tested on the QCS615.
->>>
-> 
-> Seems there is a syntax issue, could you please check?
->  
-> - compatible = "qcom,sc7180-cpufreq-hw", qcom,cpufreq-hw";
-> + compatible = "qcom,sc7180-cpufreq-hw", "qcom,cpufreq-hw";
+Thanks for your patch!
 
-Yeah, it was edited. Thanks, will fix it in the next patch.
-> 
->>>> +			reg = <0 0x18323000 0 0x1400>, <0 0x18325800 0 0x1400>;
->>>> +			reg-names = "freq-domain0", "freq-domain1";
->>>> +
->>>> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
->>>> +			clock-names = "xo", "alternate";
->>>> +
->>>> +			#freq-domain-cells = <1>;
->>>> +			#clock-cells = <1>;
->>>> +		};
->>>> +
->>>>  	};
->>>>  
->>>>  	arch_timer: timer {
->>>>
->>>> -- 
->>>> 2.34.1
->>>>
->>>
->>
-> 
+I am a bit reluctant to increase the number of indirect calls in a
+driver that is also used on (old and slow) SH systems...
 
+> --- a/drivers/tty/serial/sh-sci.c
+> +++ b/drivers/tty/serial/sh-sci.c
+> @@ -880,7 +880,7 @@ static void sci_transmit_chars(struct uart_port *port)
+>                         sci_serial_out(port, SCSCR, ctrl);
+>                 }
+>
+> -               sci_stop_tx(port);
+> +               s->port.ops->stop_tx(port);
+
+RSCI has its own implementation of sci_port_ops.transmit_chars(), so
+I think it is better to avoid the overhead of an indirect call, and keep
+calling sci_stop_tx() directly.
+
+         }
+>  }
+>
+> @@ -1497,7 +1497,7 @@ static void sci_dma_tx_work_fn(struct work_struct *work)
+>  switch_to_pio:
+>         uart_port_lock_irqsave(port, &flags);
+>         s->chan_tx = NULL;
+> -       sci_start_tx(port);
+> +       s->port.ops->start_tx(port);
+
+This function is indeed shared by sh-sci and rsci, but still unused
+by the latter as it does not support DMA yet.
+
+>         uart_port_unlock_irqrestore(port, flags);
+>         return;
+>  }
+> @@ -2289,8 +2289,8 @@ void sci_shutdown(struct uart_port *port)
+>         mctrl_gpio_disable_ms_sync(to_sci_port(port)->gpios);
+>
+>         uart_port_lock_irqsave(port, &flags);
+> -       sci_stop_rx(port);
+> -       sci_stop_tx(port);
+> +       s->port.ops->stop_rx(port);
+> +       s->port.ops->stop_tx(port);
+
+OK.
+
+>         s->ops->shutdown_complete(port);
+>         uart_port_unlock_irqrestore(port, flags);
+>
+> @@ -2684,7 +2684,7 @@ static void sci_set_termios(struct uart_port *port, struct ktermios *termios,
+>         }
+>         if (port->flags & UPF_HARD_FLOW) {
+>                 /* Refresh (Auto) RTS */
+> -               sci_set_mctrl(port, port->mctrl);
+> +               s->port.ops->set_mctrl(port, port->mctrl);
+
+RSCI has its own implementation of uart_ops.set_termios(), so please
+keep the direct call.
+
+>         }
+>
+>         /*
+> @@ -2721,7 +2721,7 @@ static void sci_set_termios(struct uart_port *port, struct ktermios *termios,
+>         sci_port_disable(s);
+>
+>         if (UART_ENABLE_MS(port, termios->c_cflag))
+> -               sci_enable_ms(port);
+> +               s->port.ops->enable_ms(port);
+
+Likewise.
+And once RSCI fully implements uart_ops.set_termios(), I think
+it can just reuse sci_enable_ms().
+
+>  }
+>
+>  void sci_pm(struct uart_port *port, unsigned int state,
+> @@ -2827,7 +2827,7 @@ void sci_config_port(struct uart_port *port, int flags)
+>                 struct sci_port *sport = to_sci_port(port);
+>
+>                 port->type = sport->cfg->type;
+> -               sci_request_port(port);
+> +               sport->port.ops->request_port(port);
+
+Both sh-sci and rsci use sci_request_port() as their
+uart_ops.request_port() callbacks, so please use a direct call.
+
+>         }
+>  }
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
