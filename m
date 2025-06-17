@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-186470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 194DFADC09D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:30:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3DEADC0DE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07F313B63E3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 04:30:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31AAD161854
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 04:38:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E97420C00C;
-	Tue, 17 Jun 2025 04:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CEF3234994;
+	Tue, 17 Jun 2025 04:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XWKvOAnn"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b="XLwjOtPG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.kapsi.fi (mail-auth.kapsi.fi [91.232.154.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64ACB19DF7A;
-	Tue, 17 Jun 2025 04:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00F0202990;
+	Tue, 17 Jun 2025 04:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.232.154.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750134620; cv=none; b=M8lo5ifml5qkYn6bb+IAdY2ibzBpzq91WDKYzgMKrqwtUoaoEB/u4hzZGy8JORCZpQ5WOXEtB+6+DuyeTyQU29PyH+RyP/C8ix1AE4mD6rpGyH03YSL+RA78XT0roBoRkvJZ3nqcPF/L10iL2ZW/8UOPNwFBbliG9biJMtje23I=
+	t=1750134969; cv=none; b=YBU7YroFTRX6luA6OsyyEY+xLKePwgwFMgGCbtNO333Txt8lq75kgCI96fV/vxzILkYNdn6h21xlpW4DMSiU5o0eCCSvRq0F5ohbrYjk8bF7YuGYXqZw1dYaPKjORpMbU+3fanSou1fXD0VjO26zGOrvnSTgRaKrg02/waO2/30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750134620; c=relaxed/simple;
-	bh=1q91GkQwmwkJe2N1Q451I/4ntxh/AWo/HgCV0Okp15Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aHPbxhV2vY88e1MOQ2G5ioYZKkdizpNvggbgN+Yil96trwHn4IyslT0vzQ+K5yPMh/htHohDIRyamReIIKN33LITZ5X5fGRlYiN47QeACmaCBqy2+rJZPkk5p7RZ3C/Wj98wwaJDOPYd3swXpck3CFjD1h6l/WYBj0G5g3zE5nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XWKvOAnn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55GHOG8p002991;
-	Tue, 17 Jun 2025 04:30:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HDW7D7+uYyvCn2FKwUs7ZQqOu73VYzjex5OSChvIbjc=; b=XWKvOAnnZVte//nW
-	vqCfGdM4aBkQSWhfFJuKRaIonJ5nCJVU/cIGPyPRe6/fUzaPBMZeEe1CrJ8To+vJ
-	lCQhlhNCWicNrZR/kfPpfTKtWBR6XoEV6AFpCD3N0+ZHOuspXW1n2RzOIdKFfDkq
-	p1VP8IgAIpKD7+30rNG2tMcUKOpN+Ocd5uBgr2XrG5GUG0gAHX1Mn0bz4n8QxdE6
-	HlN+1hWfyE8PY9D3O5isdE/xE6uBg7QyihlF7VxPFFG18GJsQMSyQOoWNaWduTml
-	d5Um0eAuL2jbKcOwYvpRvLV4ki9GBl+rIt8IHaXnYzRpoRLTkuko3ka8veR7cmbv
-	j165EA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ag232yp9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 04:30:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55H4UDKc020798
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Jun 2025 04:30:13 GMT
-Received: from [10.217.199.111] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Jun
- 2025 21:30:09 -0700
-Message-ID: <b6f4ccc6-5157-4076-aba1-7bd21c53ab19@quicinc.com>
-Date: Tue, 17 Jun 2025 10:00:06 +0530
+	s=arc-20240116; t=1750134969; c=relaxed/simple;
+	bh=TuHcnRHjXidZTEa9t+Kyd3HWcLDXa+fOAV/5Fpqn530=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qaI1qdHgB4piix/HF7odtnQr66HRno8htMntwsA2At1BLSWqbGkM4gwyC6pvnmryPpOZEEhb+fmCqUosDYxj5Xfp9v5YFZ8m4V7exLD5b8ghgMksgEIJGycdmf+PYvlcTxEYXzZFBH0le0SEc3dVW93rBSThT1GSx0FRw7ZkQEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi; spf=pass smtp.mailfrom=kapsi.fi; dkim=pass (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b=XLwjOtPG; arc=none smtp.client-ip=91.232.154.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kapsi.fi
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+	s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=7eqDqm+SaUKSGhEadOgv0OlnZVZmYzaFnYFVSlppPDg=; b=XLwjOtPG1gBb5tLTo61BN85sct
+	79POY9WU0lTBj3TJedskAhHRPx9Waeb/lSBYb+sliP+1f1TF75PpAp9hVRTEm1SXD3zqLGFXJo8oa
+	gJzJW04ASJLwK9S2FIPzW/Ju+kw6WQh+6xswzFngVrEJZ5LVKUpmepxWZSnuEM/CFCTdVKL/uABsB
+	dv3CvlKPiuidW98G1VE4nwAubdfT77HjFlRPUSfkKCQi8et0KLqFo5sF2KK5KfhfQSPL18ZvIutQR
+	BFalSjN1LrNlgmpI72/5br7MXSd6NTnWRXANevr09ISFN7LRBDD8eyEKQqqBF8N6GmXjDjSNfdcd8
+	psrDU0mQ==;
+Received: from [2404:7a80:b960:1a00:5eaa:b33c:a197:a90f]
+	by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <cyndis@kapsi.fi>)
+	id 1uRO2s-00ARqc-2m;
+	Tue, 17 Jun 2025 07:35:39 +0300
+Message-ID: <ccf6ab71-bdf2-4e3d-a8e5-228c24bcf3bb@kapsi.fi>
+Date: Tue, 17 Jun 2025 13:34:18 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,76 +58,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs615: Enable TSENS support for
- QCS615 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>, <amitk@kernel.org>,
-        <daniel.lezcano@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>
-CC: <devicetree@vger.kernel.org>, <=linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_manafm@quicinc.com>
-References: <20250613112402.2203617-1-quic_gkohli@quicinc.com>
- <20250613112402.2203617-3-quic_gkohli@quicinc.com>
- <a1077f88-b17c-48b7-b87a-06331b0bfaa7@kernel.org>
+Subject: Re: [PATCH 0/3] NVIDIA Tegra210 NVJPG support
+To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+ Thierry Reding <thierry.reding@gmail.com>
+Cc: Mikko Perttunen <mperttunen@nvidia.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250606-diogo-nvjpg-v1-0-5f2c36feeb39@tecnico.ulisboa.pt>
+ <mz5sytol6aw7ouwiimmrd7lqhtvq6nj7pqpxq4ie6em6nwvvkh@2cux3no33gre>
+ <621a9459-f2dd-4b19-a083-0e62f1a42f50@kapsi.fi>
+ <96b721cd-7223-4b28-a3fd-a4d92c9d5142@tecnico.ulisboa.pt>
+ <4cibh66elviiatataa45lsfcyeovkqyxe4fjvfh7uqddhsbe6z@svt2dgeafrdh>
+ <3293ae49-90c6-454c-b2f4-98ea84302c11@kapsi.fi>
+ <9018994f-de55-41b3-ae45-59cccaaf8603@tecnico.ulisboa.pt>
 Content-Language: en-US
-From: Gaurav Kohli <quic_gkohli@quicinc.com>
-In-Reply-To: <a1077f88-b17c-48b7-b87a-06331b0bfaa7@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <9018994f-de55-41b3-ae45-59cccaaf8603@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6izcmyklNmsJRTrjXix4nCEJZ3c_Y9So
-X-Authority-Analysis: v=2.4 cv=edY9f6EH c=1 sm=1 tr=0 ts=6850ef56 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=UXIAUNObAAAA:8
- a=COk6AnOGAAAA:8 a=pdgr3DADYXGs-4q4n7cA:9 a=QEXdDO2ut3YA:10 a=bFq2RbqkfqsA:10
- a=a1s67YnXd6TbAZZNj1wK:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDAzNSBTYWx0ZWRfX+l5qISNJ+EBg
- 4NQeYXwi6dmoYBHxfdOXBtGjDryhNmV+yOKS2DLeWHzjLjUqx4bRnSX6YkWgrslZ2Oe9CxinfNy
- ja2kzSUOEeUGFyqv6H6zeLNtHIlPLONj52jNHE/u5Z70aY9UN4hC+CjvCqyEjOKF7eEohkzDQxh
- vYmDzbejwS2fe+SLcp2MdOb6qzg3gik3QaWTnUK5PuJbk6e6NlWqHwwVganaNII+j5FR4ZsTq8I
- Jzpas5oU9ni26T494QUS/M6UWTjEEciqXWsXHaMTdewWYKyN5VnYwIt7gZP+D6PCHpYla+0I7zk
- fGDQXjtL8OSbEZHqXRRgsEuvgZAMrKo3yscnlwUnm2GDTMsRD1MxoqBz6Qb2l/+rto6Wxf7FgKA
- +aR9CJhVRSn579QUt9PuEXWQq9BVr4d3SSDRjA1mVODKn86ovyI4xboS4nDy/nIiityTUc/E
-X-Proofpoint-GUID: 6izcmyklNmsJRTrjXix4nCEJZ3c_Y9So
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-17_01,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 spamscore=0 bulkscore=0
- impostorscore=0 mlxscore=0 clxscore=1011 mlxlogscore=834 malwarescore=0
- phishscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506170035
+X-SA-Exim-Connect-IP: 2404:7a80:b960:1a00:5eaa:b33c:a197:a90f
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 
-
-
-On 6/13/2025 6:12 PM, Krzysztof Kozlowski wrote:
-> On 13/06/2025 13:24, Gaurav Kohli wrote:
->> Add TSENS and thermal devicetree node for QCS615 SoC.
+On 6/16/25 7:23 PM, Diogo Ivo wrote:
+> 
+> 
+> On 6/12/25 2:55 AM, Mikko Perttunen wrote:
+>> On 6/12/25 12:06 AM, Thierry Reding wrote:
+>>> On Wed, Jun 11, 2025 at 01:05:40PM +0100, Diogo Ivo wrote:
+>>>> I have a question here, what exactly are the stream IDs? While working
+>>>> on the driver this came up and I didn't manage to figure it out.
+>>>
+>>> Stream IDs are a way to identify memory transactions as belonging to a
+>>> certain device. This comes into play when working with the IOMMU (which
+>>> is a Tegra SMMU on Tegra210 and earlier, and an ARM SMMU on Tegra) and
+>>> is used to isolate DMA capable devices. Basically for every stream ID
+>>> you get a separate I/O address space. NVJPG will have its own address
+>>> space, and so will VIC. Each device can only access whatever has been
+>>> mapped to it's I/O address space. That means NVJPG can't interfere with
+>>> VIC and vice-versa. And neither can any of these engines read from or
+>>> write to random system memory if badly programmed.
+>>>
+>>> For Tegra SMMU there's no such thing as programmable stream IDs, so the
+>>> stream ID is fixed for the given device.
+>>>
+>>> On newer chips (Tegra186 and later, or maybe it wasn't until Tegra194),
 >>
->> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+>> Tegra186 and newer -- all chips with the ARM SMMU. To add a little 
+>> bit, each engine can address two stream IDs, one for firmware and one 
+>> for data. All user specified buffers are mapped into the data IOMMU 
+>> domain, and these are switched between jobs / applications.
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> index bb8b6c3ebd03..fda8b8638718 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> @@ -3692,6 +3692,17 @@ usb_2_dwc3: usb@a800000 {
->>   				maximum-speed = "high-speed";
->>   			};
->>   		};
->> +
->> +		tsens0: tsens@c222000 {
+>> As an aside, currently each engine has its own firmware stream ID, but 
+>> that's a bit wasteful, since the kernel allocates a separate IOMMU 
+>> domain for each. The firmwares are all read-only so they could be in a 
+>> shared one. We've had to consolidate these on some platforms that ran 
+>> out of IOMMU domains otherwise. Not really a concern with upstream 
+>> platforms, though.
 > 
-> Don't send us downstream. Node names should be generic. See also an
-> explanation and list of examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> Does this dual Stream ID also apply to Tegra210?
+
+No, only Tegra186 and later (chips with ARM SMMU).
+
 > 
+>> Also need to program the THI_STREAMID / TRANSCFG registers during boot.
 > 
-thanks for review & comment, will fix the naming.
-> Best regards,
-> Krzysztof
+> Thanks,
+> Diogo
 > 
 
 
