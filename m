@@ -1,181 +1,143 @@
-Return-Path: <devicetree+bounces-186560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A67BADC5C2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:08:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35223ADC5D3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54871175A4B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:08:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 037CD3B97E5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898C02951C8;
-	Tue, 17 Jun 2025 09:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AED62949E5;
+	Tue, 17 Jun 2025 09:09:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ePN/lwWM"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QPw58bue";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="PN2xsj/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9342292B2D
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 09:07:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE1C293457;
+	Tue, 17 Jun 2025 09:09:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750151245; cv=none; b=ZzS+hbWYuc9LMWDG9u5AfxR6N0849RtJ2B3+DNiSR5nPQIXR52oTGCXWnvHDyx8v7snirSJulJ521HvQ0O8LicMI11QmFQD03URkkDgjljR/IXO9wpF7nL4ZvLxeRLbvoE6O/6ziBFiEJSaxXNCcupTm3ENU0W2Jb7CAz3gWnQs=
+	t=1750151345; cv=none; b=vBUR1wa8jKjBZqa/0pzJO09gJQwJAbdqIwRlPHv0YsLBfhJ+umyu0zwRR3iQt5G60RlawuqyyHj8STpgbiC3UkWyg5TrRzMix03b3fYjnyTIiiNn5lB087GFd0V4KCl15/G1rw29bP0HFS5SpgsmEswemOzIxDhApNa/dw4i74Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750151245; c=relaxed/simple;
-	bh=HpCmu2Xxf2CKasxkFlZBU3mNBTm4LYqEUU50Qj7bYcU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ri7yvvAhl9zjeArTNljPzV0flh4127NawVqnG793Ws62PBy5DtiOU4izm+ASf+yU7DDg/qLDkkXxmpK7hYUU59FfYiJ44HidROnlX5B4gdnjTEh346RV/vMlRtkQRqfikfsqUZ1fkjjzMd8kMjheU7aJwYPdtTnPDRKrstSOuf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ePN/lwWM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55H7v9U3027925
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 09:07:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=v8VxgZncMLU
-	vweLJo/cjubLjIJAD9fPEBEdpFY84mSg=; b=ePN/lwWM+0vp1Sjida6wPoRuxmP
-	HlfzCkLq4oNI37xybN080wnV5zG9jmOtYKyeKkjw8xMvPOpmx+NZP6EY11BaaU4y
-	MZyuuxHxsxlMWfyPPUKWiCUHep8MwhUtp72hGESkT/9b/RKh6AsUjM7sADh9tvnM
-	fi6TOceDMlFr49iwCyZv4qmJ3nq8/ZX2V7zrX9K1s+DJh2cIgQuuZFLthquJsyIS
-	9SfC6BtBjPvI+sTayGmIwBUKqItza0P3X/VmQrMKs61EmibszUG+VhV/x3OMGCvf
-	ZYsybNqPTLAkErosO3qsVsLDdLKw+cM6w4WYsqwChK9/bfIYlJ/MGh7Dq5Q==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791crqj0x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 09:07:22 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b31bd4c3359so205724a12.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 02:07:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750151242; x=1750756042;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v8VxgZncMLUvweLJo/cjubLjIJAD9fPEBEdpFY84mSg=;
-        b=QjSb/iD1vKzlXRNW5pN3BPc3/YDpSjQu2I7mYcr6qd3rrzD0tOu9p8YvEBubsHZLwp
-         pZNlSOipBbrQB3qUeoLAns8ya4y4tMITGhBApWyWzD+yh0txirnB2jMz1xC+az37vtEA
-         3UwtJXP8XqpAibqllMrdiaJnwMDphLBIQ/raYlMqQWndeDpFkbxBQPaCPeJQ9dhlmf39
-         ClO+hbOuDrcZRUF8jFxODLzpCkdC3T1MzhroLeOBRTCTEnNKKaewvK3/++miarRrfzmN
-         bQaVcQLnr3AC/K6UTwdkzdJjTRg9VW2Hp7GjUJy7PtHYkXMp9PuqjuZModqIuWRxoRgp
-         gVgA==
-X-Forwarded-Encrypted: i=1; AJvYcCXFmEcxTpAHUT3cYl5Mlab3gu7su5LbctJEUjbUxHHLab9Glx+x1DIHfVXzkUNJ3f4s78VD+BC2W4/C@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPRO3hSsb35lbeM4zQuIZfL8T1+fggWc4gnQ0DYV3g89z9ujNZ
-	BQbg9Xkzq+C5IXhV2mSgyw16ZzR8Xjzhp7Fiu8KnGlFlOrh8UBbU+QU91drFeF5n95uj/XIT+dW
-	xxvFGWyuMAKK/xVOG1kIDyE8h9Uoi09f8IVJYVRo6GkzWYFypoPR2PcQpmUvQpICg
-X-Gm-Gg: ASbGncvYJKWWS7Zoa/Jt6XKTmaop5WKMTcZfXsOFBwQhaI85gWpXokgmE2OAbQo9nVu
-	iyRqlZjqQUohKSN48aE/O/MbjYhX/1uCeilmrwsVY2CxZtsPDNhSXCn10VXkOb8fDPn5PfxHe1H
-	z2DjL/xWASZmrFSfbS8wiZ97HTdS+1Kxvt1ifhfBUXJXWi0OMrdO78PAscgxI+JJFLU6PPTkCR1
-	/LeDklWkOwet9H3Fu0TgGPdDTYE1uKCvbfdWSOp3wHbWtlxal3gQD7cGdKvD5nDwFBCsHM6+8sS
-	slU2Di3/6d/JKECkIqe6wxLkwe7GF+nmxKFr4m0Uezp/D6Z2FdPydKwnoI+ysg==
-X-Received: by 2002:a17:903:19cf:b0:234:d7b2:2ac4 with SMTP id d9443c01a7336-2366b00629cmr200740545ad.17.1750151241752;
-        Tue, 17 Jun 2025 02:07:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGQFcFoHfGO2OG62bjBmAIXOgg3ajRa+GMsZLmM5oo1I6OCeOlHJ67+7+KcYPcabd8OdkgVsg==
-X-Received: by 2002:a17:903:19cf:b0:234:d7b2:2ac4 with SMTP id d9443c01a7336-2366b00629cmr200739995ad.17.1750151241328;
-        Tue, 17 Jun 2025 02:07:21 -0700 (PDT)
-Received: from cb9a88ed5d41.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-313c1bdb39bsm10017370a91.20.2025.06.17.02.07.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 02:07:21 -0700 (PDT)
-From: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Mike Tiption <mdtipton@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: qcs8300: Add EPSS l3 interconnect provider node
-Date: Tue, 17 Jun 2025 09:06:51 +0000
-Message-ID: <20250617090651.55-4-raviteja.laggyshetty@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250617090651.55-1-raviteja.laggyshetty@oss.qualcomm.com>
-References: <20250617090651.55-1-raviteja.laggyshetty@oss.qualcomm.com>
+	s=arc-20240116; t=1750151345; c=relaxed/simple;
+	bh=SEBaWNsn7j7zIu4K9J7rqzur89jgUy2wbonTIcXXdSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bOCzR4e7GLSEZ5sNyheQP5A3hmG+IVxxl4NIAtWyIUPdYGpGWBVDOS6oxhp2JDwY9LVAJ+Ij8cCuu989/ZD7ZjWZVjJnZwH/99CQ6lo9MYeeiyAbjJQrmUDOwpVlvwQ28yh+RBGpQZfED+0vYMr4ojdwYNvn7tpzpbEP+Bg1qec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QPw58bue; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=PN2xsj/0; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bM1JS31Cvz9tPr;
+	Tue, 17 Jun 2025 11:08:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750151336;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=upW6BwV3K5F69Ugq8iSkj5vSJYqS1QvTVSbv3NhyNso=;
+	b=QPw58buefDBlF4Z5bQ96F0QUsKuUcApRM1M25BySRn7f1kfzuT6CeiV64vEFYVhXqqE61F
+	35L3vCXnnbHs9OyHBFO8KvzWq9PzY2npoJVcedAlw+nriYIaAPRzWAi/LwEs31/4T3vQ4x
+	T5jpmJrIypoAPyaDDci4v6jPek1KmYgBrMCHciGX9JgO6hjbEWQuJWofBZ4rJju4yYWEUn
+	KVn0J54FQw1QdliknrKzl3zsWMFB8xbvb1VzIUIgglGyY/+6edv80BTIw0H228tii1B19A
+	9uCOgzRyfxxG6o2fCNHQ6XbXGO51JbaKoFXMup0P9gtpt5x7MmuoJd2yLQbpng==
+Message-ID: <759de22c-e7b9-4938-b6e9-199e8ac9135e@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750151334;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=upW6BwV3K5F69Ugq8iSkj5vSJYqS1QvTVSbv3NhyNso=;
+	b=PN2xsj/0MdVr3E8TajrwLd8zTYH6J1m37vmIedPPTLk/7SBFtnIvuwmxCKL7Rk3b22/B1j
+	Yf8c8/iIzIPRgFosgHDVqihEpOURHPDOU+i/gcOv+j7AgT9ms98XQw0UqmkR3EgMY0U2z0
+	r3he8hrn4oe6ea8cPBXLkvh0l00mjWOFl33kjYQlMTrMvneN+Rugluh8ym6Mam0wzgQkfG
+	HFsEUer2M5/Z4G5AUGIiaBla+mQNJ5pM+v+iltIdlI8y6HRfiRX3f4KnsOjTMAxPRZPLBT
+	I9ieYvcevkoJeN93chCzU8egVhNB2a/UZLj9vkor+a+DJ2WzUwk/7BwlC9F9qQ==
+Date: Tue, 17 Jun 2025 11:08:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: pwm: argon40,fan-hat: Document
+ Argon40 Fan HAT
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250617002852.606409-1-marek.vasut+renesas@mailbox.org>
+ <20250617002852.606409-2-marek.vasut+renesas@mailbox.org>
+ <ikzvtvoigie7e4ift57zoi2uaygemwisjycs4zvgbiwf5s3mxi@mf6pjf6zujcv>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <ikzvtvoigie7e4ift57zoi2uaygemwisjycs4zvgbiwf5s3mxi@mf6pjf6zujcv>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: cqULM-d0EvfpOmNZ9QFYRxbcnksN4-bB
-X-Authority-Analysis: v=2.4 cv=BoedwZX5 c=1 sm=1 tr=0 ts=6851304b cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=pcgX-mRZKd7nGorDqcQA:9
- a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: cqULM-d0EvfpOmNZ9QFYRxbcnksN4-bB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE3MDA3MyBTYWx0ZWRfXwXE3tb4RB13M
- pImUslvzhkqsdRTOsEkTqVwP4Qeviu5+Fv8W97qr/C/+6AHxwXVFkUSUdlG/NLhyg8Ogc35NElk
- 2K6bQxiVfpgL67DrilaROxNrHZ0MqrMHs+6UXdzWiMqFN+I3UWkoYokp0T2bwY2yLDBlAObuguC
- Su50HSdDGBSKCDvoMggb7HjnGuMSHkCk/7miE4XJqYWPcpCIApEptR6oZbdmhZolacohGxxRcir
- mrhgF0XYQP4Vd57AbuzFjQuL7bCqz8CRJ0uZtNJUrkKRU0ySghRpA39X4ZNp6E55sMSqyhjVB+m
- J/JHP4F0zl5OoGyCU6QgYxY2jTpoQZ0jCQ0b2S8cy8B8HdEkAW7sD4T6HcErpwiUwNflvhIKqws
- aC2zve4ayc33zpmlIOaFDfjFOeP3AH3utTzrXyylaUgwR4RxdjM/4RD1bTMxCkAIdWJXWOkQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-17_03,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506170073
+X-MBO-RS-META: 3sqga3j67jgdxrgw1ao83xuxrfymke3r
+X-MBO-RS-ID: 744d3e6f14c78584c4c
+X-Rspamd-Queue-Id: 4bM1JS31Cvz9tPr
 
-Add Epoch Subsystem (EPSS) L3 interconnect provider node for QCS8300 SoC.
+On 6/17/25 9:49 AM, Uwe Kleine-König wrote:
+> Hello Marek,
 
-Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 7ada029c32c1..e056b3af21d5 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -12,6 +12,7 @@
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
-+#include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,qcs8300-rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-@@ -5433,6 +5434,14 @@ rpmhpd_opp_turbo_l1: opp-9 {
- 			};
- 		};
- 
-+		epss_l3_cl0: interconnect@18590000 {
-+			compatible = "qcom,qcs8300-epss-l3", "qcom,epss-l3";
-+				reg = <0x0 0x18590000 0x0 0x1000>;
-+				clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-+				clock-names = "xo", "alternate";
-+				#interconnect-cells = <1>;
-+		};
-+
- 		cpufreq_hw: cpufreq@18591000 {
- 			compatible = "qcom,qcs8300-cpufreq-epss", "qcom,cpufreq-epss";
- 			reg = <0x0 0x18591000 0x0 0x1000>,
-@@ -5455,6 +5464,14 @@ cpufreq_hw: cpufreq@18591000 {
- 			#freq-domain-cells = <1>;
- 		};
- 
-+		epss_l3_cl1: interconnect@18592000 {
-+			compatible = "qcom,qcs8300-epss-l3", "qcom,epss-l3";
-+				reg = <0x0 0x18592000 0x0 0x1000>;
-+				clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-+				clock-names = "xo", "alternate";
-+				#interconnect-cells = <1>;
-+		};
-+
- 		remoteproc_gpdsp: remoteproc@20c00000 {
- 			compatible = "qcom,qcs8300-gpdsp-pas", "qcom,sa8775p-gpdsp0-pas";
- 			reg = <0x0 0x20c00000 0x0 0x10000>;
--- 
-2.43.0
-
+> On Tue, Jun 17, 2025 at 02:28:01AM +0200, Marek Vasut wrote:
+>> Document trivial PWM on Argon40 Fan HAT, which is a RaspberryPi
+>> blower fan hat which can be controlled over I2C.
+>>
+>> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>> ---
+>> Cc: "Uwe Kleine-König" <ukleinek@kernel.org>
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-pwm@vger.kernel.org
+>> Cc: linux-renesas-soc@vger.kernel.org
+>> ---
+>> V2: Implement dedicated binding document
+>> ---
+>>   .../bindings/pwm/argon40,fan-hat.yaml         | 47 +++++++++++++++++++
+>>   1 file changed, 47 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml b/Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
+>> new file mode 100644
+>> index 000000000000..2725eee5328c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
+>> @@ -0,0 +1,47 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pwm/argon40,fan-hat.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Argon40 Fan HAT PWM controller
+>> +
+>> +maintainers:
+>> +  - Marek Vasut <marek.vasut+renesas@mailbox.org>
+>> +
+>> +description: |
+>> +  The trivial PWM on Argon40 Fan HAT, which is a RaspberryPi blower fan
+>> +  hat which can be controlled over I2C, generates a fixed duty cycle PWM
+>> +  signal with configurable period to control the fan speed.
+> 
+> Did you get that right? I would have expected a fixed period and the
+> parameter modifying the duty cycle?
+I actually found a fixed 30 kHz period PWM at the underside of the 
+device, it wasn't easy to reach. Expect a V3.
 
