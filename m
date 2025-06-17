@@ -1,81 +1,68 @@
-Return-Path: <devicetree+bounces-186741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F86EADD004
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:36:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BB6ADD011
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 16:38:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1234C16478D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:31:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 902C91885EF4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 14:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC60D2AD22;
-	Tue, 17 Jun 2025 14:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1591D1FC109;
+	Tue, 17 Jun 2025 14:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="ehLhXi/Y"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="eRFjA2m2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2182516C850;
-	Tue, 17 Jun 2025 14:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3851F4CAE;
+	Tue, 17 Jun 2025 14:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750170685; cv=none; b=a7Zffg4Cnbr31rfsBHWPxR5ncLV10XpMZYXzJAteg6mF1Ncb7NcJKubfwrlfGH71bzcnde0AmUkq/QLhy+A8uRZ+NK9yxFyYPJEkzrt0ZqS+GnV/4iiQtsaB+NA5NjZh/pRNMimVzG13rtXiGtPEoypsE2kVNkQoJAR9SQY7/D4=
+	t=1750170875; cv=none; b=NaeUjS/3609QUp7K88huK3nszLQhytam+5OYhC1xT/oCIZKtHIE2AHaISPxKAyW5f5G1SiMd4+exH/hGj1KVzy1HPdGPJo6nIVs7orafspk422vwiQ6NZ6D5I509B5QWJuGgqro/YhWfUL6BtJaxD0u3s1g18jp9vBTPWJ4Wquc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750170685; c=relaxed/simple;
-	bh=fjblYqco9O2pK2/UG66z+ix0P+/RjiRxHTHn4GLpv6k=;
-	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=Ug116Uwa9bvc64PezFD26Cv01i9TgMp++rV64/H1bOU5tnQH8y6mryY0CBwQRCr23Hk2virWX1yXpaU2MvR2HAKU3KPZdSyYizrq+eOgAHjgwHAqmKY1kCm6ojGpOHv9UftURhJ0pVQho17h3+jsDbkgm3xVLnkFyDF5w0TMyYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=ehLhXi/Y; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id DF82182856F8;
-	Tue, 17 Jun 2025 09:31:21 -0500 (CDT)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id 0--oJCWWxd3v; Tue, 17 Jun 2025 09:31:20 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 9211E8286FBD;
-	Tue, 17 Jun 2025 09:31:20 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 9211E8286FBD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1750170680; bh=aunofFWjbhf0ebvsXaS+3/oQyj1Pul1Wqor5cviReNg=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=ehLhXi/YHfQfXpXaWjPddQEuDeGS3q8spg8C8ai4iGm/jfzQn7dwU9toEg1UKEmXq
-	 MwDbyysltHWR7ZK8TrdthPgXXwx23APcc0C/c82PyJ/bTC7ToTtwQSmenMvfiVssjl
-	 80WuuK6paHuD+hNb4Ppm8NS4z+aELtNZwldo6/Bg=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id OsWGbPjsCkx3; Tue, 17 Jun 2025 09:31:20 -0500 (CDT)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 5449982856F8;
-	Tue, 17 Jun 2025 09:31:20 -0500 (CDT)
-Date: Tue, 17 Jun 2025 09:31:20 -0500 (CDT)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Shawn Anastasio <sanastasio@raptorengineering.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Rob Herring <robh@kernel.o>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	chaitanya chundru <quic_krichai@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, 
-	Jingoo Han <jingoohan1@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com, 
-	amitk@kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	jorge.ramirez@oss.qualcomm.com, Dmitry Baryshkov <lumag@kernel.org>
-Message-ID: <1581123048.1308046.1750170680177.JavaMail.zimbra@raptorengineeringinc.com>
-Subject: [PATCH v7] PCI: Add pcie_link_is_active() to determine if the PCIe
- link
+	s=arc-20240116; t=1750170875; c=relaxed/simple;
+	bh=7eVSwYhRrsGw308e1gWXBm5X3J3BsCedcVcfc7DyDMo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VJcm2I2oXdB/bjRHadD7/eHuxVNDBNUxyjgj71bHyLBFjxomnKNJ+YUaXE3pPTqdA3maM9W/HrJjnqQopjpRcoAbIzZJGesLReXiHb/SYbxIE3un+pTV6/Iy7afSlHBjeSlNyek+GTPujyCUa05QH9uVoAtz0J4oKkQcAQ8+VJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=eRFjA2m2; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2EEB57E1;
+	Tue, 17 Jun 2025 16:34:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1750170859;
+	bh=7eVSwYhRrsGw308e1gWXBm5X3J3BsCedcVcfc7DyDMo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eRFjA2m2TzJPaNadVlp/g6nZhQtjBw8DzZMp2uaxV4XCS8ILolO/l48V2PRSJkYG7
+	 615Ja/S+EC/SeBscdF5aji3VzhpJUeZz9rvH316vYgyFJ7rrCXG3BHCzHm8kDFKSkv
+	 bpv0l1rrXPZER84ZeLYfbQ/1c6YQqdHsDId+UYeg=
+Date: Tue, 17 Jun 2025 17:34:16 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v5 04/13] media: nxp: imx8-isi: Use
+ devm_clk_bulk_get_all() to fetch clocks
+Message-ID: <20250617143416.GA21052@pendragon.ideasonboard.com>
+References: <20250522-8qxp_camera-v5-0-d4be869fdb7e@nxp.com>
+ <20250522-8qxp_camera-v5-4-d4be869fdb7e@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,216 +70,165 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC137 (Linux)/8.5.0_GA_3042)
-Thread-Index: wD146B6OyvES+Feuh0TpgiI26pdz2Q==
-Thread-Topic: Add pcie_link_is_active() to determine if the PCIe link
+Content-Disposition: inline
+In-Reply-To: <20250522-8qxp_camera-v5-4-d4be869fdb7e@nxp.com>
 
-is active
+Hi Frank,
 
-Introduce a common API to check if the PCIe link is active, replacing
-duplicate code in multiple locations.
+On Thu, May 22, 2025 at 01:56:42PM -0400, Frank Li wrote:
+> Use devm_clk_bulk_get_all() helper to simplify clock handle code.
+> 
+> No functional changes intended.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
-Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
----
- arch/powerpc/kernel/eeh_driver.c  |  8 +++++++-
- drivers/pci/hotplug/pciehp.h      |  1 -
- drivers/pci/hotplug/pciehp_ctrl.c |  2 +-
- drivers/pci/hotplug/pciehp_hpc.c  | 33 +++----------------------------
- drivers/pci/pci.c                 | 31 ++++++++++++++++++++++++++---
- include/linux/pci.h               |  4 ++++
- 6 files changed, 43 insertions(+), 36 deletions(-)
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-diff --git a/arch/powerpc/kernel/eeh_driver.c b/arch/powerpc/kernel/eeh_driver.c
-index 441a3562bddd..4fdd62432f2c 100644
---- a/arch/powerpc/kernel/eeh_driver.c
-+++ b/arch/powerpc/kernel/eeh_driver.c
-@@ -1097,8 +1097,14 @@ void eeh_handle_normal_event(struct eeh_pe *pe)
- 		eeh_pe_dev_mode_mark(pe, EEH_DEV_REMOVED);
- 
- 		pci_lock_rescan_remove();
--		pci_hp_remove_devices(bus);
-+		bus = eeh_pe_bus_get(pe);
-+		if (bus)
-+			pci_hp_remove_devices(bus);
-+		else
-+			pr_err("%s: PCI bus for PHB#%x-PE#%x disappeared\n",
-+				__func__, pe->phb->global_number, pe->addr);
- 		pci_unlock_rescan_remove();
-+
- 		/* The passed PE should no longer be used */
- 		return;
- 	}
-diff --git a/drivers/pci/hotplug/pciehp.h b/drivers/pci/hotplug/pciehp.h
-index debc79b0adfb..79df49cc9946 100644
---- a/drivers/pci/hotplug/pciehp.h
-+++ b/drivers/pci/hotplug/pciehp.h
-@@ -186,7 +186,6 @@ int pciehp_query_power_fault(struct controller *ctrl);
- int pciehp_card_present(struct controller *ctrl);
- int pciehp_card_present_or_link_active(struct controller *ctrl);
- int pciehp_check_link_status(struct controller *ctrl);
--int pciehp_check_link_active(struct controller *ctrl);
- bool pciehp_device_replaced(struct controller *ctrl);
- void pciehp_release_ctrl(struct controller *ctrl);
- 
-diff --git a/drivers/pci/hotplug/pciehp_ctrl.c b/drivers/pci/hotplug/pciehp_ctrl.c
-index bcc938d4420f..6cc1b27b3b11 100644
---- a/drivers/pci/hotplug/pciehp_ctrl.c
-+++ b/drivers/pci/hotplug/pciehp_ctrl.c
-@@ -260,7 +260,7 @@ void pciehp_handle_presence_or_link_change(struct controller *ctrl, u32 events)
- 	/* Turn the slot on if it's occupied or link is up */
- 	mutex_lock(&ctrl->state_lock);
- 	present = pciehp_card_present(ctrl);
--	link_active = pciehp_check_link_active(ctrl);
-+	link_active = pcie_link_is_active(ctrl->pcie->port);
- 	if (present <= 0 && link_active <= 0) {
- 		if (ctrl->state == BLINKINGON_STATE) {
- 			ctrl->state = OFF_STATE;
-diff --git a/drivers/pci/hotplug/pciehp_hpc.c b/drivers/pci/hotplug/pciehp_hpc.c
-index ebd342bda235..d29ce3715a44 100644
---- a/drivers/pci/hotplug/pciehp_hpc.c
-+++ b/drivers/pci/hotplug/pciehp_hpc.c
-@@ -221,33 +221,6 @@ static void pcie_write_cmd_nowait(struct controller *ctrl, u16 cmd, u16 mask)
- 	pcie_do_write_cmd(ctrl, cmd, mask, false);
- }
- 
--/**
-- * pciehp_check_link_active() - Is the link active
-- * @ctrl: PCIe hotplug controller
-- *
-- * Check whether the downstream link is currently active. Note it is
-- * possible that the card is removed immediately after this so the
-- * caller may need to take it into account.
-- *
-- * If the hotplug controller itself is not available anymore returns
-- * %-ENODEV.
-- */
--int pciehp_check_link_active(struct controller *ctrl)
--{
--	struct pci_dev *pdev = ctrl_dev(ctrl);
--	u16 lnk_status;
--	int ret;
--
--	ret = pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnk_status);
--	if (ret == PCIBIOS_DEVICE_NOT_FOUND || PCI_POSSIBLE_ERROR(lnk_status))
--		return -ENODEV;
--
--	ret = !!(lnk_status & PCI_EXP_LNKSTA_DLLLA);
--	ctrl_dbg(ctrl, "%s: lnk_status = %x\n", __func__, lnk_status);
--
--	return ret;
--}
--
- static bool pci_bus_check_dev(struct pci_bus *bus, int devfn)
- {
- 	u32 l;
-@@ -467,7 +440,7 @@ int pciehp_card_present_or_link_active(struct controller *ctrl)
- 	if (ret)
- 		return ret;
- 
--	return pciehp_check_link_active(ctrl);
-+	return pcie_link_is_active(ctrl_dev(ctrl));
- }
- 
- int pciehp_query_power_fault(struct controller *ctrl)
-@@ -614,7 +587,7 @@ static void pciehp_ignore_link_change(struct controller *ctrl,
- 	 * Synthesize it to ensure that it is acted on.
- 	 */
- 	down_read_nested(&ctrl->reset_lock, ctrl->depth);
--	if (!pciehp_check_link_active(ctrl) || pciehp_device_replaced(ctrl))
-+	if (!pcie_link_is_active(ctrl_dev(ctrl)) || pciehp_device_replaced(ctrl))
- 		pciehp_request(ctrl, ignored_events);
- 	up_read(&ctrl->reset_lock);
- }
-@@ -921,7 +894,7 @@ int pciehp_slot_reset(struct pcie_device *dev)
- 	pcie_capability_write_word(dev->port, PCI_EXP_SLTSTA,
- 				   PCI_EXP_SLTSTA_DLLSC);
- 
--	if (!pciehp_check_link_active(ctrl))
-+	if (!pcie_link_is_active(ctrl_dev(ctrl)))
- 		pciehp_request(ctrl, PCI_EXP_SLTSTA_DLLSC);
- 
- 	return 0;
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index e9448d55113b..ad639e60f3bd 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -4908,7 +4908,6 @@ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type)
- 		return 0;
- 
- 	if (pcie_get_speed_cap(dev) <= PCIE_SPEED_5_0GT) {
--		u16 status;
- 
- 		pci_dbg(dev, "waiting %d ms for downstream link\n", delay);
- 		msleep(delay);
-@@ -4924,8 +4923,7 @@ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type)
- 		if (!dev->link_active_reporting)
- 			return -ENOTTY;
- 
--		pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &status);
--		if (!(status & PCI_EXP_LNKSTA_DLLLA))
-+		if (pcie_link_is_active(dev) <= 0)
- 			return -ENOTTY;
- 
- 		return pci_dev_wait(child, reset_type,
-@@ -6230,6 +6228,33 @@ void pcie_print_link_status(struct pci_dev *dev)
- }
- EXPORT_SYMBOL(pcie_print_link_status);
- 
-+/**
-+ * pcie_link_is_active() - Checks if the link is active or not
-+ * @pdev: PCI device to query
-+ *
-+ * Check whether the physical link is active or not. Note it is
-+ * possible that the card is removed immediately after this so the
-+ * caller may need to take it into account.
-+ *
-+ * If the PCI device itself is not available anymore returns
-+ * %-ENODEV.
-+ *
-+ * Return: link state, or -ENODEV if the config read failes.
-+ */
-+int pcie_link_is_active(struct pci_dev *pdev)
-+{
-+	u16 lnk_status;
-+	int ret;
-+
-+	ret = pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnk_status);
-+	if (ret == PCIBIOS_DEVICE_NOT_FOUND || PCI_POSSIBLE_ERROR(lnk_status))
-+		return -ENODEV;
-+
-+	pci_dbg(pdev, "lnk_status = %x\n", lnk_status);
-+	return !!(lnk_status & PCI_EXP_LNKSTA_DLLLA);
-+}
-+EXPORT_SYMBOL(pcie_link_is_active);
-+
- /**
-  * pci_select_bars - Make BAR mask from the type of resource
-  * @dev: the PCI device for which BAR mask is made
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 05e68f35f392..5d1c9f718ac8 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1993,6 +1993,7 @@ pci_release_mem_regions(struct pci_dev *pdev)
- 			    pci_select_bars(pdev, IORESOURCE_MEM));
- }
- 
-+int pcie_link_is_active(struct pci_dev *dev);
- #else /* CONFIG_PCI is not enabled */
- 
- static inline void pci_set_flags(int flags) { }
-@@ -2141,6 +2142,9 @@ pci_alloc_irq_vectors(struct pci_dev *dev, unsigned int min_vecs,
- {
- 	return -ENOSPC;
- }
-+
-+static inline bool pcie_link_is_active(struct pci_dev *dev)
-+{ return false; }
- #endif /* CONFIG_PCI */
- 
- /* Include architecture-dependent settings and functions */
+> ---
+> change in v5
+> - none
+> ---
+>  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 46 +++-------------------
+>  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  3 +-
+>  2 files changed, 6 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> index ecfc95882f903..015350c6f2784 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> @@ -275,11 +275,6 @@ static const struct mxc_isi_set_thd mxc_imx8_isi_thd_v1 = {
+>  	.panic_set_thd_v = { .mask = 0xf0000, .offset = 16, .threshold = 0x7 },
+>  };
+>  
+> -static const struct clk_bulk_data mxc_imx8mn_clks[] = {
+> -	{ .id = "axi" },
+> -	{ .id = "apb" },
+> -};
+> -
+>  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+>  	.model			= MXC_ISI_IMX8MN,
+>  	.num_ports		= 1,
+> @@ -287,8 +282,6 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+>  	.reg_offset		= 0,
+>  	.ier_reg		= &mxc_imx8_isi_ier_v1,
+>  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> -	.clks			= mxc_imx8mn_clks,
+> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+>  	.buf_active_reverse	= false,
+>  	.gasket_ops		= &mxc_imx8_gasket_ops,
+>  	.has_36bit_dma		= false,
+> @@ -301,8 +294,6 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
+>  	.reg_offset		= 0x2000,
+>  	.ier_reg		= &mxc_imx8_isi_ier_v2,
+>  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> -	.clks			= mxc_imx8mn_clks,
+> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+>  	.buf_active_reverse	= true,
+>  	.gasket_ops		= &mxc_imx8_gasket_ops,
+>  	.has_36bit_dma		= true,
+> @@ -315,8 +306,6 @@ static const struct mxc_isi_plat_data mxc_imx8ulp_data = {
+>  	.reg_offset		= 0x0,
+>  	.ier_reg		= &mxc_imx8_isi_ier_v2,
+>  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> -	.clks			= mxc_imx8mn_clks,
+> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+>  	.buf_active_reverse	= true,
+>  	.has_36bit_dma		= false,
+>  };
+> @@ -328,8 +317,6 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
+>  	.reg_offset		= 0,
+>  	.ier_reg		= &mxc_imx8_isi_ier_v2,
+>  	.set_thd		= &mxc_imx8_isi_thd_v1,
+> -	.clks			= mxc_imx8mn_clks,
+> -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+>  	.buf_active_reverse	= true,
+>  	.gasket_ops		= &mxc_imx93_gasket_ops,
+>  	.has_36bit_dma		= false,
+> @@ -386,7 +373,7 @@ static int mxc_isi_runtime_suspend(struct device *dev)
+>  {
+>  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
+>  
+> -	clk_bulk_disable_unprepare(isi->pdata->num_clks, isi->clks);
+> +	clk_bulk_disable_unprepare(isi->num_clks, isi->clks);
+>  
+>  	return 0;
+>  }
+> @@ -396,7 +383,7 @@ static int mxc_isi_runtime_resume(struct device *dev)
+>  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
+>  	int ret;
+>  
+> -	ret = clk_bulk_prepare_enable(isi->pdata->num_clks, isi->clks);
+> +	ret = clk_bulk_prepare_enable(isi->num_clks, isi->clks);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to enable clocks (%d)\n", ret);
+>  		return ret;
+> @@ -414,27 +401,6 @@ static const struct dev_pm_ops mxc_isi_pm_ops = {
+>   * Probe, remove & driver
+>   */
+>  
+> -static int mxc_isi_clk_get(struct mxc_isi_dev *isi)
+> -{
+> -	unsigned int size = isi->pdata->num_clks
+> -			  * sizeof(*isi->clks);
+> -	int ret;
+> -
+> -	isi->clks = devm_kmemdup(isi->dev, isi->pdata->clks, size, GFP_KERNEL);
+> -	if (!isi->clks)
+> -		return -ENOMEM;
+> -
+> -	ret = devm_clk_bulk_get(isi->dev, isi->pdata->num_clks,
+> -				isi->clks);
+> -	if (ret < 0) {
+> -		dev_err(isi->dev, "Failed to acquire clocks: %d\n",
+> -			ret);
+> -		return ret;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  static int mxc_isi_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -457,11 +423,9 @@ static int mxc_isi_probe(struct platform_device *pdev)
+>  	if (!isi->pipes)
+>  		return -ENOMEM;
+>  
+> -	ret = mxc_isi_clk_get(isi);
+> -	if (ret < 0) {
+> -		dev_err(dev, "Failed to get clocks\n");
+> -		return ret;
+> -	}
+> +	isi->num_clks = devm_clk_bulk_get_all(dev, &isi->clks);
+> +	if (isi->num_clks < 0)
+> +		return dev_err_probe(dev, isi->num_clks, "Failed to get clocks\n");
+>  
+>  	isi->regs = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(isi->regs)) {
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> index e7534a80af7b4..bd3cfe5fbe063 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> @@ -169,8 +169,6 @@ struct mxc_isi_plat_data {
+>  	const struct mxc_isi_ier_reg  *ier_reg;
+>  	const struct mxc_isi_set_thd *set_thd;
+>  	const struct mxc_gasket_ops *gasket_ops;
+> -	const struct clk_bulk_data *clks;
+> -	unsigned int num_clks;
+>  	bool buf_active_reverse;
+>  	bool has_36bit_dma;
+>  };
+> @@ -282,6 +280,7 @@ struct mxc_isi_dev {
+>  
+>  	void __iomem			*regs;
+>  	struct clk_bulk_data		*clks;
+> +	int				num_clks;
+>  	struct regmap			*gasket;
+>  
+>  	struct mxc_isi_crossbar		crossbar;
+
 -- 
-2.39.5
+Regards,
+
+Laurent Pinchart
 
