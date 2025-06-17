@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C72ADC257
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:25:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2200ADC25A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 08:27:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9944F3AC42A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:25:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96EB63A97F2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 06:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCCA9288C39;
-	Tue, 17 Jun 2025 06:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A11E28BA9D;
+	Tue, 17 Jun 2025 06:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HErOwSoE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oKHscu2X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16A2C2D1;
-	Tue, 17 Jun 2025 06:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE5A28B7C8;
+	Tue, 17 Jun 2025 06:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750141551; cv=none; b=pi2SKHOF9z8ufz7+B+zsj63MWf2bqL4bB/1HJTBgk3sbD5m6Dz0fdu/vIBwW5//JtHBOKV58lQksax94dlule5IB8J8BV//ls1/UWjGkzhxk86vgm3/ntgwt9BE4i6e7/f/1B5W3wKTCsyvF9kE0MQ+XcXbbf3e5mZ+kAVeLUUk=
+	t=1750141625; cv=none; b=QDqTbauxAGlXZ/i/DkkT6Dy3nlZrL/iq4NacWGmuJU+RExycMaxjMLR/9OIVSgWIybU4AsSxJHb4FIFQz+Q623sbVHJ4zFzYmGTJ7m3NGCopgKMwh4OVwQz2gqgDug5AHaafUM/4sMN/a+0M6QeRZmi7gLF46RI/XZ8CgbQLics=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750141551; c=relaxed/simple;
-	bh=+YrbzawyL66b1Nq5R9ub9bP37cMKcOeJVrij99oDPf8=;
+	s=arc-20240116; t=1750141625; c=relaxed/simple;
+	bh=+bc02TymjgmsM9tzQNjyi2Q+WmyiCmbfIdTCI5hk2gI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eKKGtMAGcvCtpfg8QaS/TExG/X08hNlzCVu6anY//5omIowri//Lw+nnlqYfxd+bdcrrysX13mNyyTH6GlUrMBM4yEFCtiy1l+5PEzCdU8Q1FGQnn8+T/1Xx6W+3TVn2kRmeBeBuk7YGMTZH4bktKYr/yJguaRjP0eO+kcE7kDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HErOwSoE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7EB2C4CEE3;
-	Tue, 17 Jun 2025 06:25:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=L55Q3GC81z/Uz+o+GPWAkGdV4KNZQ6Qyq1yTLcJvm881GErwVsGc16RBeWcra9jH/2pcZzCsiP9UD5esrFOlyyPCVmZtT1V0LPKzBoJVIqTWVLoqQK1r9wMwvJvPmJBu1Ph99TRs+8usx8YRvGZZkacluL62o1FUfSlOOa0mNVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oKHscu2X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA25C4CEE3;
+	Tue, 17 Jun 2025 06:27:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750141551;
-	bh=+YrbzawyL66b1Nq5R9ub9bP37cMKcOeJVrij99oDPf8=;
+	s=k20201202; t=1750141624;
+	bh=+bc02TymjgmsM9tzQNjyi2Q+WmyiCmbfIdTCI5hk2gI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HErOwSoER0YXam83czl1xc+/iI1D8F5xyqpm1aicuS77AOqJH3FIBMzaa5jgdzVGN
-	 rJ7dp8LU7NflZy+6FBX3Hxof47yHdrd32yjtRD1SC3neyZ1jgYuhuhx6IXn3jAdGKj
-	 hZDs7WV2xEsUiX1J3hNecPrCbWK33i1uHtRBOustMLrvQiCX3xJqtpRWySyp/A+Z7E
-	 FtzP5Z+6s/qHV2BEko+O0e/O8IfaOhj/4J8ui53S0wCkRptQumSlwveUcFuI127Qtv
-	 r+ybBr42sILpAH2r6QZ7Fs/KxIyTIn3CHD6ghedzSRQdOpq/ZbGuc1c5J9rw5jj6DH
-	 x0Ns4J04bJodA==
-Message-ID: <91f2935c-b0f8-4b4a-89e7-eee8c888daeb@kernel.org>
-Date: Tue, 17 Jun 2025 08:25:47 +0200
+	b=oKHscu2XKU+YHOo5MC9ElcB5xlczAajjpnf6NXmrhM6lb7A7mgoI5PTeGpTUv9iCy
+	 3ZL9MwGPcft5teF7OKZrDP6u36c+jXJrCzz/jiVT5WGyzMAaNNLIvqHQDfzB4XB/Vj
+	 wkTXLXnQCvQrSVLiuwMK4CvDpzvqLQ4z0Vpo+r0IOWtbxCe+UUa4HGjBLRjF3twpiS
+	 rYjX1TIappf1uu8urM061m/xCncbZrtaceP1oqej/6AfptB3Vra3RCA5KOqQ/jvMvq
+	 iToJoBehXYRNEh1dDZub//sV4l7ZMhDkd21+6D/uLqRADgCh4mtaKjr42wYrtDU0BN
+	 exEFc4qEpft1Q==
+Message-ID: <0379000a-7ca6-4619-ad71-0ea9f71ffb8f@kernel.org>
+Date: Tue, 17 Jun 2025 08:27:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: dma: snps,dw-axi-dmac: Add iommus
- dma-coherent and dma-addressable-bits property
+Subject: Re: [RESEND PATCH 1/2] arm64: dts: socfpga: agilex5: Add SMMU-V3-PMCG
+ nodes
 To: adrianhoyin.ng@altera.com, dinguyen@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, Eugeniy.Paltsev@synopsys.com,
- vkoul@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 Cc: Matthew Gerlach <matthew.gerlach@altrera.com>
-References: <cover.1750084527.git.adrianhoyin.ng@altera.com>
- <144d2070c7b2f69f034b6f16bc938a538afa9f15.1750084527.git.adrianhoyin.ng@altera.com>
+References: <20250616145006.1081013-1-adrianhoyin.ng@altera.com>
+ <20250616145006.1081013-2-adrianhoyin.ng@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,23 +103,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <144d2070c7b2f69f034b6f16bc938a538afa9f15.1750084527.git.adrianhoyin.ng@altera.com>
+In-Reply-To: <20250616145006.1081013-2-adrianhoyin.ng@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/06/2025 16:40, adrianhoyin.ng@altera.com wrote:
-> +
->    resets:
->      minItems: 1
->      maxItems: 2
-> @@ -101,6 +106,13 @@ properties:
->      minimum: 1
->      maximum: 256
+On 16/06/2025 16:50, adrianhoyin.ng@altera.com wrote:
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> 
+> Add SMMU-V3 PMCG nodes for Agilex5.
+> 
+> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> Reviewed-by: Matthew Gerlach <matthew.gerlach@altrera.com>
+> ---
+>  .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> index 7d9394a04302..06920de87a41 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> @@ -133,6 +133,68 @@ usbphy0: usbphy {
+>  		compatible = "usb-nop-xceiv";
+>  	};
 >  
-> +  snps,dma-addressable-bits:
-> +    description:
+> +	pmu0: pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupt-parent = <&intc>;
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmu0_tcu: pmu@16002000 {
 
-No, that's implied by SoC compatible.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+Or... if it passes still obviously mixes MMIO and non-MMIO nodes. MMIO
+nodes go into soc@0.
 
 Best regards,
 Krzysztof
