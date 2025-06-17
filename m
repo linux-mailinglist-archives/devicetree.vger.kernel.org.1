@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-186555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D1CFADC5A5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:04:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A956ADC5A9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 11:06:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BC603B3FBF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:04:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A10D1897C96
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jun 2025 09:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B0A228ECE3;
-	Tue, 17 Jun 2025 09:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4812900A4;
+	Tue, 17 Jun 2025 09:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CHplQo/B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RNKLrWUy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FAE156CA;
-	Tue, 17 Jun 2025 09:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E32156CA;
+	Tue, 17 Jun 2025 09:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750151081; cv=none; b=dFZXuU+MXpiguEedJE6Ww2oWVmcOK0QGo6odYb4USJfRi1ojHOvOCgu5bjHhL0AJIJ+Qgp2OgA+5Y+vQgFPFF+dNu0dvWoRjvusR4sfhOQ5xiG5Rid8xDkuOgCuVhfHNvwYxTaiz/l8b8BqNehh5SFKsW8ss3tsrHGEyRPRnrek=
+	t=1750151173; cv=none; b=aDx98A2Xk/DoYalCzx2qNUkO98K8Lb5MAkHu32JbKRkcw3yQ/ItStWvV1f9DZmpLGAT+olm2kkd+lF0US3Iz0kqdzhDk3RpzBCf+bzt43zGYCCexreCdI21oa3L3FFlZQIC/zBI3Lx5Jh/rbv4rBz1VhCbLcgNhwf/BXImB3wHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750151081; c=relaxed/simple;
-	bh=i77lUk5WMIXOEP9D3wHvwa2rpTFSesgsgccYKoyA4OY=;
+	s=arc-20240116; t=1750151173; c=relaxed/simple;
+	bh=jZgOoYFpNvwzgzRt3ysPnLed5AmQcMwnqp+UrepIMDQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nfWusGbVlV/oEZN9tCEJ30W8v+lYfTIs6UD5Z+mL7/+4WQUOGiOS490DLvxp3SRsdlWnO3jyczgCIFnfP9ZAk8VKtzidLS2lLw2ttJX5wuRt/96e03E8SYlZlmWwT1c25NGFVGJtQq8Og0Hk/yhJ9TIdqnT9jjaXxCWj5aa7pbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHplQo/B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12D77C4CEEE;
-	Tue, 17 Jun 2025 09:04:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=R0y1fTVUtI7C4SIKDo8lFyY1x2gYYMnUcQs3MjvFdnfpOMZjwwYcGtfQHOGtJXs6m3Y/1T+0nxOVW0J8pz0EOi3z0u2rVX80Bo3LvoqeGf13uB0hUEd4p8yw10hshVBcHatSLftJ7stwt/VO8sC5bB3KSP0L335yRoJRt3Gqiuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RNKLrWUy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FDACC4CEE3;
+	Tue, 17 Jun 2025 09:06:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750151080;
-	bh=i77lUk5WMIXOEP9D3wHvwa2rpTFSesgsgccYKoyA4OY=;
+	s=k20201202; t=1750151171;
+	bh=jZgOoYFpNvwzgzRt3ysPnLed5AmQcMwnqp+UrepIMDQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CHplQo/BMzDA9ERz8UlEj3VdXQo270fn8VnOFcLmmlcogqD3hEhL0n7JHfCqhyw5B
-	 zdNRBPHvP1ie4+ok9O+G+BoFH9FFPRsveyxwdLCliSlKaZAKINk0ERzGyTie1JX92o
-	 G3MWeRU+5kWfQ8VFLtgTfxaCSHEd94FbAmGPJnFdXMp9vr6DrCVmT4cwOaxF0xdYn5
-	 0q+K3ujyowdEx2zK/2s6Xq+r4oN5hkT9nYKRMFbBxEVh2be8M1xuCRdnoeHgHGMdyY
-	 gGvJ9g7C7tX1JN8yd7DcitlkF+0Srt37UUEuP40uqLvaFiYCnyjmeVn4f11HJQKD9B
-	 GQ7giRJyJ6OLA==
-Date: Tue, 17 Jun 2025 11:04:38 +0200
+	b=RNKLrWUy9kJXRbzPfLc9Dvk3y9Zp4eiu77yCQZarASu49VVh1oLA5pAIM0C3Aj+BG
+	 5Gq75R3i4HEWNc+imFZteVmCCOu4QlLfMxxGUXPb/brqzs68v+11ZDtE0gU5jXbfVc
+	 NBPTosA2R10QBdJ0adyzadIXTyunia8+sAO9kv8qyRDu7pkypfSMznDstgTEd5i6ut
+	 U/gSU/3E+HMs477dGBrRFCJ7GlvtgNpSD3kTpdeSpswjz+WXbx4yaVj8viuW5CL8re
+	 Aw+G7+ZkpCLeuQMtB3iB0Tm0cAQsadtVqY7Gj0e8t1lbpPNqAoWGdBTPdgxQo2LXkx
+	 veBTwXAfjYhgg==
+Date: Tue, 17 Jun 2025 11:06:08 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Waqar Hameed <waqar.hameed@axis.com>
-Cc: Rob Herring <robh@kernel.org>, 
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@axis.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add Nicera
-Message-ID: <20250617-sage-meerkat-from-ganymede-846c9c@kuoka>
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: proximity: Add Nicera D3-323-AA
+ PIR sensor
+Message-ID: <20250617-vagabond-fulmar-of-penetration-dbe048@kuoka>
 References: <cover.1749938844.git.waqar.hameed@axis.com>
- <6d6705440a3c28ed4c6746dd570c7a7d8b6d3641.1749938844.git.waqar.hameed@axis.com>
+ <e2b1b56fbee07047f3fb549f17257dc3764af395.1749938844.git.waqar.hameed@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,20 +61,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6d6705440a3c28ed4c6746dd570c7a7d8b6d3641.1749938844.git.waqar.hameed@axis.com>
+In-Reply-To: <e2b1b56fbee07047f3fb549f17257dc3764af395.1749938844.git.waqar.hameed@axis.com>
 
-On Sun, Jun 15, 2025 at 12:13:58AM GMT, Waqar Hameed wrote:
-> Nicera (Nippon Ceramic Co.) is a manufacturer of a wide range of
-> sensors. For example infrared, ultrasonic, gas sensors and much more.
+On Sun, Jun 15, 2025 at 12:14:02AM GMT, Waqar Hameed wrote:
+> +examples:
+> +  - |
+> +    proximity {
+> +        compatible = "nicera,d3323aa";
+> +        vdd-supply = <&regulator_3v3>;
+> +        vout-clk-gpios = <&gpio 78 0>;
+> +        data-gpios = <&gpio 76 0>;
+
+Same comment as before.
+
+> +    };
+> +...
+> -- 
+> 2.39.5
 > 
-> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
 
