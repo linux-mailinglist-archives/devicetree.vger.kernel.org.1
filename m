@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-187219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4820ADF18A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:40:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7AE0ADF1A6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EC321882746
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:40:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAA871890759
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:45:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0332EFDA8;
-	Wed, 18 Jun 2025 15:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BC12882D1;
+	Wed, 18 Jun 2025 15:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TdRdKtCC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNOme2Mw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0309E1DF738;
-	Wed, 18 Jun 2025 15:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2731C28E7;
+	Wed, 18 Jun 2025 15:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750261221; cv=none; b=Kn/KuLj5U4ks395cqxm5oFj10VEbfrQ2wTTPbs6St0Q20yBphJaTzJTVfvmkEH3PsVzcofJgvGwADc/F7dYiTw0BwK4N5wDvaPh81vWlnlm4Lp0Eb7B82hh4/5FxshjG0Xe35hDiQsdOajykdERcSrNGOD7nM8qnZPkvuseTIEc=
+	t=1750261527; cv=none; b=UGtuzFVaOHD5qiDYIDvowwfD3kp0/ZGnAZX4zS7WwEPx38zF1kYD7D4j++SDQK5eYSYBE7/Iqrv77j23Wg7GQXXU+KBRN8B5DU5/yIDLX0iKS+eLud5pXmYe3tS/ERGAzok23bfwlQAFxe5wVl53b2mPzJHkCtDWc09Q49bCUTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750261221; c=relaxed/simple;
-	bh=HsoAbQnBnE/foxpNITtdHMz0c3PnR0dNcIrv20ad6LI=;
+	s=arc-20240116; t=1750261527; c=relaxed/simple;
+	bh=5W7CTB6fN0Bk5b5TSH6OLzvxLTr6qVWZg8NY4tnVae8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BrLArM4DWojzIg6Utf5W9Af5o82RirUrT+jRJaHnwegFj49/0tVwFrs59CQ3F20uotUExYNp1/PFSNEOaTMoouvHmp9LMQVLlIY0H4GqiGGXhcz6Buc1hODnwjc9QoVdoIwU267lOIA4im86QsRN8z0DBGZ4uGjntU8jINAVWhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TdRdKtCC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 179F5C4CEEF;
-	Wed, 18 Jun 2025 15:40:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Oy0/DbT76+HCvp23eTREpLdYx1S4QQe7g4DDX4dsZO2YBDEqZ/BW5eOgcZuO0k/+kHogq5dFgZXZtI/HZCoPVXOCBDx+ccDGiPxoyboboCnqdCZkpBJWYKS4TcCQtGiWaHHB4rtuZdsf7Qs3efN8+gT5MGTFuGRTzfxpyOaInkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNOme2Mw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AAE9C4CEF0;
+	Wed, 18 Jun 2025 15:45:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750261220;
-	bh=HsoAbQnBnE/foxpNITtdHMz0c3PnR0dNcIrv20ad6LI=;
+	s=k20201202; t=1750261526;
+	bh=5W7CTB6fN0Bk5b5TSH6OLzvxLTr6qVWZg8NY4tnVae8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TdRdKtCCpUvEcRzN6UVw/ncdpT6sNXiKqW3TCav3FB7V2y5/lG0FkJEORT0X3UgnS
-	 BZxkfqfvM8cwqvty7aUK0wAV25tZzs5obxqCX+yUcS8awsjDUe6+FwETA6v94/rYCe
-	 tYsnosi+8ofmyjkNOxwNi5Lm48+pPJKpx1MAruTlTAxCOXnryqVr4rUQGMtUUgrUgx
-	 OXxCsXrs8ASo43uVOnWuPmdViVRgeBOmH6liEmmUr0uUk5ci92gVhoFQG3YKGkDLTq
-	 wBq6z7we2eWMuYRdxW/xUrlct1dklu7m+knE/PUWmfcqcUFmxs2KD2XGjULDd9szH5
-	 uqXQ96kzdVPbw==
-Message-ID: <00e28a4a-78d6-4452-b28f-29d2e201f6d9@kernel.org>
-Date: Wed, 18 Jun 2025 17:40:15 +0200
+	b=GNOme2Mw/woOHUVItps8VOYvmDWCcced7eB0N2ojQfs80zt5Lo3WfwSVxzgDz2gtD
+	 MUIQsU252WABQh9ha08jGfXNq6iWllajutlAFLyGZnZUTZUA7aiBuKXNxAJxno1t8Z
+	 SYzX4c5iVyvTgdAlWQU+8iX1nJyF/gFHbU3asIWcndYZGDiuLX0OF1sHIPmh/gRjTK
+	 mIxnVzpZg9jH99RfvB/ZLwWacQOKgsGhipMC946QlkQHaXLyEeGnfqosflB/ZblP9c
+	 +Setsff35tektT2VuMowGRisz1VW9qTbL6lN4IsmApXx5areReyU3rvlHCU0Lpb8TD
+	 u2YNbJKTEuABA==
+Message-ID: <9260c217-9c63-4eec-854a-a7ec020d1e65@kernel.org>
+Date: Wed, 18 Jun 2025 17:45:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: samsung: exynos-sysreg: add exynos7870
- sysregs
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250612-exynos7870-drm-dts-v1-0-88c0779af6cb@disroot.org>
- <20250612-exynos7870-drm-dts-v1-1-88c0779af6cb@disroot.org>
- <7bb375c8-1a43-40e2-891c-8815c9cc94ff@kernel.org>
- <76df5b2d6b2c8de73519e1862e105c67@disroot.org>
- <97a54a9f-8719-4bbd-a1d5-dd398f42ab0c@kernel.org>
- <cd0f942a3752053e7569040f9e508b2d@disroot.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Add adi-i3c-master
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250618-adi-i3c-master-v3-0-e66170a6cb95@analog.com>
+ <20250618-adi-i3c-master-v3-1-e66170a6cb95@analog.com>
+ <20250618-visionary-hawk-of-success-d4aab8@kuoka>
+ <ymmn2jgpa4bia2wl4d32ccipybxt4nylz4hspdf2svivk5ao7s@vv7v3soq2e65>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,65 +107,139 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cd0f942a3752053e7569040f9e508b2d@disroot.org>
+In-Reply-To: <ymmn2jgpa4bia2wl4d32ccipybxt4nylz4hspdf2svivk5ao7s@vv7v3soq2e65>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2025 16:49, Kaustabh Chakraborty wrote:
-> On 2025-06-18 14:37, Krzysztof Kozlowski wrote:
->> On 18/06/2025 16:32, Kaustabh Chakraborty wrote:
->>> On 2025-06-18 09:46, Krzysztof Kozlowski wrote:
->>>> On 12/06/2025 17:23, Kaustabh Chakraborty wrote:
->>>>> Add sysreg compatible strings for the Exynos7870 SoC. Two sysregs 
->>>>> are
->>>>> added, used for the SoC MIPI PHY's CSIS and DSIM blocks.
->>>>>
->>>>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->>>>> ---
->>>>>  .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml      
->>>>> | 6 ++++++
->>>>>  1 file changed, 6 insertions(+)
->>>>>
->>>>> diff --git 
->>>>> a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml 
->>>>> b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->>>>> index 
->>>>> d27ed6c9d61ea9db77229eca60b6b9a0abc5d305..174bdb8ee932ff965de6fc17aef004a3cedffeb3 
->>>>> 100644
->>>>> --- 
->>>>> a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->>>>> +++ 
->>>>> b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->>>>> @@ -52,6 +52,12 @@ properties:
->>>>>                - samsung,exynosautov9-sysreg
->>>>>            - const: syscon
->>>>>          deprecated: true
->>>>> +      - items:
->>>>> +          - enum:
->>>>> +              - samsung,exynos7870-cam-sysreg
->>>>> +              - samsung,exynos7870-disp-sysreg
->>>>> +          - const: samsung,exynos7870-sysreg
->>>>
->>>>
->>>> Drop. These are not really compatible or your commit msg is 
->>>> incomplete.
->>>> Don't use deprecated syntax and backwards compatible solutions for 
->>>> new
->>>> hardware.
+On 18/06/2025 14:15, Jorge Marques wrote:
 >>>
->>> Are you sure? The deprecated one is actually the item above. From what 
->>> I
+>>> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+>>> ---
+>>>  .../devicetree/bindings/i3c/adi,i3c-master.yaml    | 63 ++++++++++++++++++++++
+>>>  MAINTAINERS                                        |  5 ++
+>>>  2 files changed, 68 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..718733bbb450c34c5d4924050cc6f85d8a80fe4b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
 >>
->> Yes. Think why were they added.
+>> Filename based on the compatible, so adi,i3c-master-1.00.a.yaml
 >>
->>> understand, those are generic sysregs and don't mention their 
->>> functions.
->>
->> And what is a generic sysreg?
-> 
-> What I meant is, usually compatibles go like this (in order):
+> I agree, but I ended up following the pattern for the other adi,
+> bindings. I will move for v4. IMO the version suffix has no much use
+> since IP updates are handled in the driver.
 
-No, they don't. So you checked why they were added?
+Filename is not related to whether given ABI works with every device.
+Filename helps us to organize bindings and existing convention is that
+we want it to follow the compatible.
+
+>>> @@ -0,0 +1,63 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/i3c/adi,i3c-master.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Analog Devices I3C Controller
+>>> +
+>>> +description: |
+>>> +  FPGA-based I3C controller designed to interface with I3C and I2C peripherals,
+>>> +  implementing a subset of the I3C-basic specification.
+>>> +
+>>> +  https://analogdevicesinc.github.io/hdl/library/i3c_controller
+>>> +
+>>> +maintainers:
+>>> +  - Jorge Marques <jorge.marques@analog.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: adi,i3c-master-1.00.a
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>>
+>> Why?
+>>
+> The IP core requires a clock, and the second is optional.
+
+OK
+
+> minItems sets the minimum number of required clocks and the maxItems is
+> inferred from the number of items.
+> 
+> On the IP core itself, one clock is required (axi), and if it is the
+> only provided, it means that the same clock for the AXI bus is used
+> also for the rest of the RTL logic.
+
+Hm? What does it exactly mean - same clock? You mean one clock is routed
+to two pins? That's still two clocks. Or you mean that IP core will
+notice grounded clock input and do the routing inside?
+
+> 
+> If a second clock is provided, i3c, it means it drives the RTL logic and is
+> asynchronous to the axi clock, which then just drives the register map logic.
+> For i3c specified nominal speeds, the RTL logic should run with a speed of
+> 100MHz. Some FPGAs, such as Altera CycloneV, have a default bus clock speed of
+> 50MHz. Changing the bus speed is possible, but affects timing and it may not be
+> possible from users to double the bus speed since it will affect timing of all
+> IP cores using the bus clock.
+>>> +    items:
+>>> +      - description: The AXI interconnect clock.
+>>> +      - description: The I3C controller clock.
+> I will update the descriptions to:
+> 
+>         - description: The AXI interconnect clock, drives the register map.
+>         - description: The I3C controller clock. AXI clock drives all logic if not provided.
+> 
+>>> +
+>>> +  clock-names:
+>>
+>> Not synced with clocks.
+>>
+> I will add `minItems: 1`.
+>>> +    items:
+>>> +      - const: axi
+>>> +      - const: i3c
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - interrupts
+>>> +
+>>> +allOf:
+>>> +  - $ref: i3c.yaml#
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    i3c@44a00000 {
+>>> +        compatible = "adi,i3c-master";
+>>> +        reg = <0x44a00000 0x1000>;
+>>> +        interrupts = <0 56 4>;
+>>
+>> Use proper defines.
+>>
+> The following can added:
+> 
+>   #include <dt-bindings/interrupt-controller/irq.h>
+> 
+>   interrupts = <0 56 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> Is there any other to be replaced?
+
+Usually 0 has a meaning as well. Where is this used DTS snippet used (on
+which platform)?
 
 Best regards,
 Krzysztof
