@@ -1,423 +1,165 @@
-Return-Path: <devicetree+bounces-187272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C66ADF4F8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:53:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AE77ADF50F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:55:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08C0F7A1362
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:52:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 307C6404568
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A47302FE339;
-	Wed, 18 Jun 2025 17:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255572F94A6;
+	Wed, 18 Jun 2025 17:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XtVg23cV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M5LjZ62h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7245F2F549D
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 17:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE1C2F546B
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 17:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750268894; cv=none; b=Q5F/LV8GCF9ERulRvi4Ohk8R2MhMAvXtAPx0mz/zBMQ02my2kFn3YWH/YTHR/sRqOMVfR7YJpU2WFPIz5FOF6ekgbr+Ka2WLKRbUH7iQJgmwBZ+0UP9PZ5FF9CI7f3bi3F4L7A04qB0i/sRdSrISG3ibW1lbPBTY9EIooaiduEw=
+	t=1750268999; cv=none; b=TWTC8HQRkwniMiC/+t+ZB6BdBkm2QgPjFTn4RCt/2WQ+g7sLt8wEeJIMnpOimJup3EZeeLHZoilmiN2bas+2XELt1RrvY0qHdGGl2Wsx1L/9XG0zxTApK/hXpCIur2CjvR++M9eop2OgNmiu376buBm9Mv9pZ8+vnGx2VQzCT/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750268894; c=relaxed/simple;
-	bh=qke53PIux3r1jvNanvydCzc4TxGBVxK2sWSp7M4ghek=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=GZdAwEboBv22OUqnCxLsdIddhvqhIGoS/++ArHkpXDzrPJVCXf3sk7dSzceDKB8mr6Qsdh3YV/nPTrb9jwPeWliM+Doe+T21jEQccpIN/frzE6d8QMtTZ0QXeoevKVyoVitK8C6tOeI2GaOnZNhiJxDdkEEjb3cv4mA55t/0w8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XtVg23cV; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b26f7d2c1f1so7761123a12.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:48:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750268891; x=1750873691; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ma1DFqOXL5hx5mQJvRhg1LAJlyxCckkOphqVxa1A73o=;
-        b=XtVg23cVGsWONpuw7Z7ScLt4//Vq9B9tLfDFr+55Cz7O3Hy98z1OobQna2V2PhX8as
-         d5ujOlG9sYIrqHAgaqzzMTrbhkdA+YUVqwv23bsDcjwh/cVhFnlb0sq/2hpvk/uXekiB
-         /8DQCy6BYvKAvivVMkiBwmnNrFXR6PImJk5P3LcdIZZcwB+m75uWykSK97Qgr9kEh7WJ
-         S0nZLf0E98FRVNUDwR6mR5E1L3ioThUzTte4X/jv9Vlh2UP7KmxFbnKeCAJDkuc8BL5h
-         1yy6aHNJJwxB/dKijjl81vnWOFZnYWpg04cCJHU6Hs8nYoSVMcKNHQpX1ZsIivvQAhJE
-         Hy2Q==
+	s=arc-20240116; t=1750268999; c=relaxed/simple;
+	bh=9QXEDoI19mWFxCahL1UdCvEjFuKYp7fQOj2r6nsOxEg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=P3T9AlLFRmsoD0Bff35HnHc2+opVPGmDZ2vfnsanUkm8WPHEh5YHhugnNMgVd9w2JJt/3/EGdNgT69NQGZTKeKLcwR8FJ8zXDnQGDxE4bPWO32mZRbgGgJHi3ot3+RBJX2PZ4kba0EEGBcBIMFyC+VTp0EgpHk9PviVzJ8oIRzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M5LjZ62h; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55IHNMlJ003266
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 17:49:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=6KcFqDLk13hgOnopRV7cxf
+	ycwpTo2vObGPCFt9jCm+k=; b=M5LjZ62hOrvH3AGLMj+grgRbIuMyMFdvCFQAy8
+	ezw78V8b4sUBlJ2kWZ1l4mIB406pxpWsKKSTpDVryZr4OUU/aXC6mVa3mCa0mMXi
+	vmm7wouJsLxhQV04IByXH49tEQzgat/LecLj+hnZ4LIhckMKaqRhzgKUrxHHupT3
+	kp/TwohqnGcb/S/P/2RCj04K4BpiF8xRX7B42BAFMwVUYo/w7aqPvFyXNs3jCGem
+	S++a1JJU7bCT5wiv1weWSeXo8O88jMWmIYxQ9Gx2QOE4tGeeeUEUXjiOy1U5ShDf
+	NxcSEhZsFnigxFlX48dr+jmRYuzUoHlJu4u/7BciDX/gcYPg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 479qp5uscq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 17:49:55 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7d3901ff832so1454389085a.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:49:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750268891; x=1750873691;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ma1DFqOXL5hx5mQJvRhg1LAJlyxCckkOphqVxa1A73o=;
-        b=MyW827pnuOsu3KCboZVnYuoO693jq6AgTTfphOnFd3PY9Tk3JBd0pt1WVEgLlHr8AJ
-         f3SYKbOeLdq0KNVfu7Z8CdD64TQMAzoOeVey/VKzAtfUjgB3T251vWh2QtdDTv+WZuCr
-         c6oCG5lJvLlvFiXJ/gyVQVlm5cIi8Nqtj09GFNjXCeujwC2s9DK4IQuBTFW9ZXrWgiTG
-         wUZChD43InB3N/qIc+fnaLTHlJSAcO6isI2cNB+i4YhrMpKxt0fL8glXmJV3pOLjOC00
-         sHRjPSKXNPR9hcK01zrCiJ3tx/iBPuZuovEfWJDlRoHLuKXzijPrBb8J8MtkNRIoenBL
-         melQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXe1Z+8n5ld/I7TvFXx2pZzCotM0QDXHLvtW4EDy0tqc7a6UTPJp8JqghdBLG83CiDMgxtvSuEd6t9W@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ9YRssaT5OQ1BoP5J5zaadMXUXKnxaM3N4/cM4I2o2/HTa7Ax
-	syEz9l3foUs/B3TfDMQxdGRDqiPT1GS11NMUbJDWRa5hhWzmfeGw78d7ch9gP8Oj7A8=
-X-Gm-Gg: ASbGnctBkS/2wnDTtbW/cYj0Hwe8jpbRKwmRQ+53nGeoNjh47yyG7BUyoLPkaUmOfK6
-	q4UTT/tV+3jXWqr6Gv7D5ViDdWDtHTJ6VyxBz/0D1U7J1hgQ4IiNGboIiDm/0Bv3VlPxUrVaFkN
-	RyO7LdGDbxtr+4TtQImHZ6vfWSdeNZZ5K5jJ9W2MPPDrnU4fsfQh4uhDwNyDu9FwtvhFgU2egoC
-	kKAvGgg1ka4L5kB9zK9/hIoiKMeePykHC6RSbRmaQtgaMQFd9ZPIVD02584Ywk+yvz6/7/uOpoo
-	3THRSJKMiMjU8n2ShtOjX+Vm8vZi19wk4ffGRZvqrvEeiL+lo/reC2s5dE23eZkc/fM6wBc=
-X-Google-Smtp-Source: AGHT+IGr+yslmQQtEPbzvrjSktOlRycOtQIi03QuXPccny65/icW3k6Q8MFLfTx4kGxdf1Sa3ChN/w==
-X-Received: by 2002:a05:6a20:1586:b0:21f:4459:c032 with SMTP id adf61e73a8af0-21fbd4f0504mr26157499637.18.1750268890645;
-        Wed, 18 Jun 2025 10:48:10 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748900d252esm11346290b3a.163.2025.06.18.10.48.10
+        d=1e100.net; s=20230601; t=1750268994; x=1750873794;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6KcFqDLk13hgOnopRV7cxfycwpTo2vObGPCFt9jCm+k=;
+        b=NbR6FT75GiivXj69cQbE8sM9NaGr5ZSdu4B/qNnwADTeiPdbEcc8o1i1/xzEkyGxzf
+         XQovayPGxc2BO3zBnztnWB3MOSA/zHvskBdzvCoBoAsqGOux8GrCeil51/PBTHCrAwAg
+         415eg6Dt2EuSJHqndE3hjqzzAvvcHVTcui10nzGM3CLZnYEBicerGOznlwfmtIwH74sh
+         fu+NydJOc3DGN68FuC/3wF82Sxzt7SWKuF6pqkH4YsOL2JdVCJSeryUVEcIPXrc+E7qF
+         SZ6PvfNfXMzrkiKc1MbP40aCkaeBu8+8QvJepFMrvmD8iRw2rLv6uwMuMnHhqU8RaP+b
+         vkzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUINXBNPxqRkyLCz+Yf8t8Cm53ccJd1wdosPKq7+EmJMhWugFvEKE7icuochldTK2T7M69oGMYBwwUW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx34YnwMpAkTzTDnIGqO8zTaH5waw/IYtoSfOXXC8YaJ01GyOFr
+	pZvQ0NReSUfyNI269nG73BDv1jq8ovZmbnSeJL5hZp2+/Zpiel/hRHP4Yb7pmsGraNK9OkjE+9a
+	pyY/9zwv68gHI/JTHmjC+ZO1JmZ7z9B8c7nharyWwkqok7pvUq3wi/q6NOCxGqRN6
+X-Gm-Gg: ASbGncvtSPUbWmQJuDv8qrW3eE58lxmdkRqj3D23R/ujHZQmfWrpjWayTqSxz0waHKL
+	lPbcND7r9ncXEo9bzsvJhZ8ZJLBDsNLLRwBt69Gmg8E0QD8R0gksvcDfrOwvqsQigRb2RJ6mmO0
+	sfq0J331cjyMC/HdyLIx9ukIHdL2/ZZg9Q5n6C1MKEx1OWLgB3kN9wadD0K7E2ul1lz2ipsCeJe
+	3qvyTLDsfKdM0YacBiAN3dYxSx+20lh1iV064LcxVLTs/MgzoW1elRH2/Tpv4aKvUNp2tigIeGX
+	2E5hU4L7xJ8xI9p7LzfN7Mtbna4q49mwZNMwV87XYqOb4LadmZ0L0YLFR6NOrFmSJZoofTxIeCq
+	k37WtXVhHUoxa4Rx5l24C9CVzNu/c4uWOtwU=
+X-Received: by 2002:a05:620a:f10:b0:7c0:c046:7c6b with SMTP id af79cd13be357-7d3c6d03284mr2687714385a.53.1750268994448;
+        Wed, 18 Jun 2025 10:49:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF60X/jqz7yMGtPiVnJDZu6KGocoOhdfxhEdsn4Ftu0Gh//3WaeGd+GFWfujYMkVHyzNfeH4g==
+X-Received: by 2002:a05:620a:f10:b0:7c0:c046:7c6b with SMTP id af79cd13be357-7d3c6d03284mr2687711185a.53.1750268993986;
+        Wed, 18 Jun 2025 10:49:53 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32b7b43a98esm2911131fa.65.2025.06.18.10.49.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 10:48:10 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
- using power-domain-map
-In-Reply-To: <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
-References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
- <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
- <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
- <7hsejzp4xg.fsf@baylibre.com>
- <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
-Date: Wed, 18 Jun 2025 10:48:09 -0700
-Message-ID: <7hcyb1os9y.fsf@baylibre.com>
+        Wed, 18 Jun 2025 10:49:53 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH 0/3] arm64: dts: qcom: sar2130p: correct display controller
+ device
+Date: Wed, 18 Jun 2025 20:49:50 +0300
+Message-Id: <20250618-sar2130p-fix-mdss-v1-0-78c2fb9e9fba@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD78UmgC/x2MSQqAMAwAv1JyNtDFDb8iHqpGzUEtDYgg/t3gc
+ RhmHhDKTAKdeSDTxcLnoeAKA9MWj5WQZ2Xw1le2di1KzN4Fm3DhG/dZBKMrx7JZbF1RAO1SJnX
+ /sx/e9wPG9sdDYwAAAA==
+X-Change-ID: 20250618-sar2130p-fix-mdss-a14b47f065e3
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=757;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=9QXEDoI19mWFxCahL1UdCvEjFuKYp7fQOj2r6nsOxEg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoUvxAAgHHcqI9vhl70FRO/ughoHUAI/1rwy0OW
+ iHqdb2wGIqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaFL8QAAKCRCLPIo+Aiko
+ 1W2SCACmp9viLbwYyYfaNMpbIJPaDcO+att9+XDvgEFTXnFnXAWl9aPY58yrojqqv4NonwMI8AI
+ EBeYewKedPxKkHKw07i37NNwK58TKV1gv8VWYSpE2EOAAE1Qw307LlHF8Vyux6WTz3mVqHpoSQf
+ UzfHBnZtqhSWw6XM4EWJx26B+zTIwf198tcLSfPJa2FG+lkQezk5GGfLQV/tcK5PAKtV9Odlawq
+ Bf4rT8rY9oJkE0+C3sdz+dCNsRyOoChsHoL/pAlH+TFD6zUGFppMAe9jXGi1bOdwZW1Ph/fde4T
+ 65mKmvzJjuRc3embXCQd0Gd5T54lT4WrM9DUkJmJEThHRwEV
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-GUID: pmhBuob9oZ_bKVt07b9Wk1ic9cfKoyOF
+X-Proofpoint-ORIG-GUID: pmhBuob9oZ_bKVt07b9Wk1ic9cfKoyOF
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDE1MSBTYWx0ZWRfX3jaT67GHEo3x
+ 1OYD3gg8K4zYMv8izDUO3S/nQYCqJpST7ZnTwnxSxHKz2KWGAWNUU8RqT76u42JwxtuJhZtZ6F/
+ 1C1stu1s9QfeUJ8JjSw1q7GqjmkpoKe68FrFqrCea2k2CZHBuH5qhOhJKYztgennvwLxK4NS8UY
+ UC0H+5mmuWFdsOL3YtK4ndEZ1pI/fRmsxC8O3uCNGlPhrty72XoUnLGnKbQiQPQWmRfQhwJWdX9
+ VBqmOvyRaA0tx/kk0spK/i9kFHEYXtgBkKq+31/imjSXdeMR6ALjIlXwztiue0S4y7GresuvrkJ
+ ZzkyznshMPbAzmZfwVT2wm9t8btFuLbkPfJWMiNOo8zzN6s+474+XItcW0J/BMTrB5ThSrNJoBG
+ 7fqllOP1wIcR3L+CpHg0mrllbeJEZ855UHL4UVL0um6FARTK6HjZtlyflZ7M0I0nmjTF0pJ2
+X-Authority-Analysis: v=2.4 cv=fMc53Yae c=1 sm=1 tr=0 ts=6852fc43 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=A6ng92C9FvdBp_T1eIAA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-18_05,2025-06-18_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0
+ mlxlogscore=863 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506180151
 
-Ulf Hansson <ulf.hansson@linaro.org> writes:
+I didn't notice that Bjorn has picked up v1 of the SAR2130P display
+patchset instead of v5. Correct several mistakes that were fixed between
+those two versions.
 
-> On Tue, 17 Jun 2025 at 02:50, Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Ulf Hansson <ulf.hansson@linaro.org> writes:
->> --text follows this line--
->> > On Sat, 14 Jun 2025 at 00:39, Kevin Hilman <khilman@baylibre.com> wrote:
->> >>
->> >> Currently, PM domains can only support hierarchy for simple
->> >> providers (e.g. ones with #power-domain-cells = 0).
->> >>
->> >> Add more generic support for hierarchy by using nexus node
->> >> maps (c.f. section 2.5.1 of the DT spec.)
->> >>
->> >> For example, we could describe SCMI PM domains with multiple parents
->> >> domains (MAIN_PD and WKUP_PD) like this:
->> >>
->> >>     scmi_pds: protocol@11 {
->> >>         reg = <0x11>;
->> >>         #power-domain-cells = <1>;
->> >>
->> >>         power-domain-map = <15 &MAIN_PD>,
->> >>                            <19 &WKUP_PD>;
->> >>     };
->> >>
->> >> which should mean that <&scmi_pds 15> is a subdomain of MAIN_PD and
->> >> <&scmi_pds 19> is a subdomain of WKUP_PD.
->> >>
->> >> IOW, given an SCMI device which uses SCMI PM domains:
->> >>
->> >>    main_timer0: timer@2400000 {
->> >>       power-domains = <&scmi_pds 15>;
->> >>    };
->> >>
->> >> it already implies that main_timer0 is PM domain <&scmi_pds 15>
->> >>
->> >> With the new map, this *also* now implies <&scmi_pds 15> is a
->> >> subdomain of MAIN_PD.
->> >>
->> >> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
->> >> ---
->> >>  drivers/pmdomain/core.c | 24 ++++++++++++++++++++++--
->> >>  1 file changed, 22 insertions(+), 2 deletions(-)
->> >>
->> >> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
->> >> index d6c1ddb807b2..adf022b45d95 100644
->> >> --- a/drivers/pmdomain/core.c
->> >> +++ b/drivers/pmdomain/core.c
->> >> @@ -2998,8 +2998,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->> >>                                  unsigned int index, unsigned int num_domains,
->> >>                                  bool power_on)
->> >>  {
->> >> -       struct of_phandle_args pd_args;
->> >> -       struct generic_pm_domain *pd;
->> >> +       struct of_phandle_args pd_args, parent_args;
->> >> +       struct generic_pm_domain *pd, *parent_pd = NULL;
->> >>         int ret;
->> >>
->> >>         ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
->> >> @@ -3039,6 +3039,22 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->> >>                         goto err;
->> >>         }
->> >>
->> >> +       /*
->> >> +        * Check for power-domain-map, which implies the primary
->> >> +        * power-doamin is a subdomain of the parent found in the map.
->> >> +        */
->> >> +       ret = of_parse_phandle_with_args_map(dev->of_node, "power-domains",
->> >> +                                            "power-domain", index, &parent_args);
->> >> +       if (!ret && (pd_args.np != parent_args.np)) {
->> >> +               parent_pd = genpd_get_from_provider(&parent_args);
->> >> +               of_node_put(parent_args.np);
->> >> +
->> >> +               ret = pm_genpd_add_subdomain(parent_pd, pd);
->> >> +               if (!ret)
->> >> +                       dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
->> >> +                               pd->name, parent_pd->name);
->> >> +       }
->> >
->> > Please move the above new code to a separate shared genpd helper
->> > function, that genpd providers can call build the topology. This, to
->> > be consistent with the current way for how we usually add
->> > parent/child-domains in genpd (see of_genpd_add_subdomain).
->>
->> Yeah, you had the same comment on v2, and I'm not ignoring you.  But I
->> thought that moving this code to when devices are attatched to domains
->> (instead of when providers are created) would solve that problem.  IOW,
->> in this approach, `power-domain-map` is handled at the same time as a
->> devices `power-domains = ` property.
->
-> Even if this may work for your particular use case, in general it does not.
->
-> We simply can't defer to build the topology (parent/child-domains)
-> until there is a device getting attached to some part of it.
-
-OK, not defering building topology makes a lot of sense.  Thanks for the
-explanation.
-
->>
->> So, while I don't really understand the reason that every PM domain
->> provider has to handle this individually, I've given that a try (see
->> below.)
->>
->
-> See above.
->
->> > Moreover, we also need a corresponding "cleanup" helper function to
->> > remove the child-domain (subdomain) correctly, similar to
->> > of_genpd_remove_subdomain().
->>
->> Yes, I'll handle that better once I get through this RFC phase to make
->> sure I'm on th right path.
->
-> Okay.
->
->>
->> OK, so below[1] is a shot at just adding helpers to the PM domain core.  I
->> will then uses these from the SCMI PM domains ->attach_dev() and
->> ->detatch_dev callbacks.
->
-> No, not during ->attach|detach_dev(), but during ->probe() of the SCMI
-> PM domain, immediately after the genpd OF providers has been added.
->
-> See more comments below.
->
->>
->> If you think this is better, I'll send a v4 tomorrow.
->>
->> Kevin
->>
->> [1] NOTE: this is based on v6.12 because that's where I have a functioning BSP
->> for this SoC.  If you're OK with this, I'll rebase to v6.15 and submit upstream.
->>
->> From 12a3e5669dc18f4a9fdf9f25398cba4245135a43 Mon Sep 17 00:00:00 2001
->> From: Kevin Hilman <khilman@baylibre.com>
->> Date: Fri, 13 Jun 2025 13:49:45 -0700
->> Subject: [PATCH 2/3] pmdomain: core: add support for subdomains via
->>  power-domain-map
->>
->> ---
->>  drivers/pmdomain/core.c   | 60 +++++++++++++++++++++++++++++++++++++++
->>  include/linux/pm_domain.h | 11 +++++++
->>  2 files changed, 71 insertions(+)
->>
->> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
->> index 88819659df83..a0dc60d4160d 100644
->> --- a/drivers/pmdomain/core.c
->> +++ b/drivers/pmdomain/core.c
->> @@ -3100,6 +3100,66 @@ struct device *genpd_dev_pm_attach_by_name(struct device *dev, const char *name)
->>         return genpd_dev_pm_attach_by_id(dev, index);
->>  }
->>
->> +/**
->> + * genpd_dev_pm_attach_subdomain - Associate a PM domain with its parent domain
->> + * @domain: The PM domain to lookup whether it has any parent
->> + * @dev: The device being attached to the PM domain.
->> + *
->> + * Check if @domain has a power-domain-map.  If present, use that map
->> + * to determine the parent PM domain, and attach @domain as a
->> + * subdomain to the parent PM domain.
->> + *
->> + * Intended to called from a PM domain provider's ->attach_dev()
->> + * callback, where &gpd_list_lock will already be held by the genpd
->> + * add_device() path.
->> + */
->> +struct generic_pm_domain *
->> +genpd_dev_pm_attach_subdomain(struct generic_pm_domain *domain,
->> +                             struct device *dev)
->
-> A couple of comments below:
->
-> *) I think the function-name should have a prefix "of_genpd_*, to be
-> consistent with other names. Maye "of_genpd_add_subdomain_by_map"
-> would be a better name?
->
-> *) We need to decide if we want to add one child-domain (subdomain)
-> per function call - or whether we should walk the entire nexus-map and
-> hook up all child-domains to its parent in one go. I tend to like the
-> second one better, but I'm not really sure what would work best here.
-
-I like the first one better since most other related functions work on
-single domains, not groups.
-
-> No matter what, I think the in-parameters to the function should be of
-> type "struct of_phandle_args * or maybe struct device_node *", similar
-> to how of_genpd_add_subdomain() works.
-
-I've done an implementation with struct device_node *.  This works
-better (IMO) than struct of_phandle_args * because the caller (in my
-case scmi_pm_domain.c) already has device nodes, but not phandle args.
-
-The result will be that the pmdomain helper will call
-pm_genpd_add_subdomain() instead of of_genpd_add_subdomain().  
-
-Below[1] is the current working version, which includes adding the
-helper to the PM domain core and showing the usage by the SCMI provider.
-
-How does this look?
-
-Note that doing this at provider creation time instead of
-<genpd>->attach_dev() time will require some changes to
-of_parse_phandle_with_args_map() because that function expects to be
-called for a device that has a `power-domains = <provider>` property,
-not for the provider itself.  But I have it working with some local
-changes to make that helper work if called for the provider directly.
-If you're OK with the PM domains approach, I'll post another rev of this
-series which includes the OF changes for review by DT maintainers.
-
-Kevin
-
-[1]
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/pmdomain/arm/scmi_pm_domain.c | 12 ++++++++--
- drivers/pmdomain/core.c               | 34 +++++++++++++++++++++++++++
- include/linux/pm_domain.h             | 11 ++++++++-
- 3 files changed, 54 insertions(+), 3 deletions(-)
+Dmitry Baryshkov (3):
+      arm64: dts: qcom: sar2130p: use TAG_ALWAYS for MDSS's mdp0-mem path
+      arm64: dts: qcom: sar2130p: correct VBIF region size for MDSS
+      arm64: dts: qcom: sar2130p: use defines for DSI PHY clocks
 
-diff --git a/drivers/pmdomain/arm/scmi_pm_domain.c b/drivers/pmdomain/arm/scmi_pm_domain.c
-index a7784a8bb5db..8197447e9d17 100644
---- a/drivers/pmdomain/arm/scmi_pm_domain.c
-+++ b/drivers/pmdomain/arm/scmi_pm_domain.c
-@@ -54,7 +54,7 @@ static int scmi_pd_power_off(struct generic_pm_domain *domain)
- 
- static int scmi_pm_domain_probe(struct scmi_device *sdev)
- {
--	int num_domains, i;
-+	int num_domains, i, ret;
- 	struct device *dev = &sdev->dev;
- 	struct device_node *np = dev->of_node;
- 	struct scmi_pm_domain *scmi_pd;
-@@ -115,7 +115,15 @@ static int scmi_pm_domain_probe(struct scmi_device *sdev)
- 
- 	dev_set_drvdata(dev, scmi_pd_data);
- 
--	return of_genpd_add_provider_onecell(np, scmi_pd_data);
-+	ret = of_genpd_add_provider_onecell(np, scmi_pd_data);
-+	if (ret)
-+		return ret;
-+
-+	/* check for (optional) subdomain mapping with power-domain-map */
-+	for (i = 0; i < num_domains; i++, scmi_pd++)
-+		of_genpd_add_subdomain_map(np, domains[i], i);
-+
-+	return ret;
- }
- 
- static void scmi_pm_domain_remove(struct scmi_device *sdev)
-diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-index 88819659df83..3ede4baa4bee 100644
---- a/drivers/pmdomain/core.c
-+++ b/drivers/pmdomain/core.c
-@@ -3220,6 +3220,40 @@ int of_genpd_parse_idle_states(struct device_node *dn,
- }
- EXPORT_SYMBOL_GPL(of_genpd_parse_idle_states);
- 
-+int of_genpd_add_subdomain_map(struct device_node *np,
-+			       struct generic_pm_domain *domain,
-+			       int index)
-+{
-+	struct of_phandle_args parent_args;
-+	struct generic_pm_domain *parent_pd;
-+	struct device *dev = &domain->dev;
-+	int ret;
-+
-+	if (!domain)
-+		return -ENODEV;
-+
-+	/*
-+	 * Check for power-domain-map, which implies the primary
-+	 * power-doamin is a subdomain of the parent found in the map.
-+	 */
-+	ret = of_parse_phandle_with_args_map(np, NULL, "power-domain",
-+					     index, &parent_args);
-+	if (!ret && parent_args.np) {
-+		parent_pd = genpd_get_from_provider(&parent_args);
-+		of_node_put(parent_args.np);
-+
-+		if (IS_ERR(parent_pd))
-+			return -EINVAL;
-+
-+		ret = pm_genpd_add_subdomain(parent_pd, domain);
-+		if (!ret)
-+			dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
-+				domain->name, parent_pd->name);
-+	}
-+
-+	return ret;
-+}
-+
- static int __init genpd_bus_init(void)
- {
- 	return bus_register(&genpd_bus_type);
-diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
-index cf4b11be3709..65d459d703bb 100644
---- a/include/linux/pm_domain.h
-+++ b/include/linux/pm_domain.h
-@@ -402,9 +402,11 @@ int of_genpd_add_subdomain(const struct of_phandle_args *parent_spec,
- int of_genpd_remove_subdomain(const struct of_phandle_args *parent_spec,
- 			      const struct of_phandle_args *subdomain_spec);
- struct generic_pm_domain *of_genpd_remove_last(struct device_node *np);
-+int of_genpd_add_subdomain_map(struct device_node *np,
-+			       struct generic_pm_domain *genpd,
-+			       int index);
- int of_genpd_parse_idle_states(struct device_node *dn,
- 			       struct genpd_power_state **states, int *n);
--
- int genpd_dev_pm_attach(struct device *dev);
- struct device *genpd_dev_pm_attach_by_id(struct device *dev,
- 					 unsigned int index);
-@@ -443,6 +445,13 @@ static inline int of_genpd_remove_subdomain(const struct of_phandle_args *parent
- 	return -ENODEV;
- }
- 
-+static int of_genpd_add_subdomain_map(struct device_node *np,
-+				      struct generic_pm_domain *genpd,
-+				      int index)
-+{
-+	return -ENODEV;
-+}
-+
- static inline int of_genpd_parse_idle_states(struct device_node *dn,
- 			struct genpd_power_state **states, int *n)
- {
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
+---
+base-commit: 6e5ab6fee68df8c40b338baeae6e269fa25a7e25
+change-id: 20250618-sar2130p-fix-mdss-a14b47f065e3
+
+Best regards,
 -- 
-2.49.0
-
+With best wishes
+Dmitry
 
 
