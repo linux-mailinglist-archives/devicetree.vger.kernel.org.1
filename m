@@ -1,149 +1,132 @@
-Return-Path: <devicetree+bounces-186899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04233ADE1AD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:33:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A139ADE1B6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0B143A5F6B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:33:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1252717B28C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0CB1A5B86;
-	Wed, 18 Jun 2025 03:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358F41A238C;
+	Wed, 18 Jun 2025 03:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ljch38BI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nUJ0f/zq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787D7192D8A;
-	Wed, 18 Jun 2025 03:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D8928E7
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:38:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750217628; cv=none; b=MVjGPe6cLoRPmvflSqo18Ay/qb9iP06xZ1IRtRY6njMVGdMGCMl3qU2Ns1XiYJo96maCnF2cdk0C2fEeVGjVMkS7y4Iaohprxd1gp7B6WDwca5NDDwq61/g1VNlpGP6WDZYuHPUOZkU4tUtqX6vMNI1rfA9M/noEb9qRPeWXKDQ=
+	t=1750217910; cv=none; b=XCo4m+pnFb9MmrrLNKq6LM2Gs24trLlLtFdFbI8Mcp8QLyUfCbfIuxartz2mJLYr9M4HK2pEFXkeYWs6MrxaFvH77q/ybB4q3bI8DfOwr4wRyf+hT3o4WwbHAmXieRTuvqNJ6zEFL2s3vdaklVmAcAOYuDM4yOvsCeaqXzCnwUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750217628; c=relaxed/simple;
-	bh=3VvqmFIUqdeyjynHMuuFCh4mFv5QeHs7/Dxti4jBakM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=II48+JE1Gd8hF1sO398a3zZUqFMmAQW9sg5iE/bwLud7ymZAXtk6KSDmDBiirPPVQ6Mvnu8l0Lt6VgbzUL143tmfX+/g18aYoQhhtuP8Mgn3jlHmkHGljrSItsFByMTeLu8AgYzZCxZ/uceeFCojsEibZbstUPNcfuQhkBlfigg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ljch38BI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53B8FC4CEE7;
-	Wed, 18 Jun 2025 03:33:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750217628;
-	bh=3VvqmFIUqdeyjynHMuuFCh4mFv5QeHs7/Dxti4jBakM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ljch38BIGCwmNG61wGiFvAlskwCKR98dsG8dgjojBEopxMMpMWKn4l/ZXuvwZ+Fjw
-	 SsJnu17Li2suwRd0llS9BWYR5yvguYJsgM8DPCLwejOXuVy7gs8TDHHpCRKzlK2Yuo
-	 t6HzznIhmuKSP6wsYlAzlHChRdcghYwOhRd3qlS6aJ2Kr08TPqHfbfzIi2+rkEg7NM
-	 fSkEUED3m0pqyDCxLoDqOIyLvZu8htd45Ck4r4k3JclysCFymCYwJzijJMTAQgY3aS
-	 F1IYZ1VXCveyXZfV81jQhQaIBvvrzczZ+dpIaGzPan1sqrWdaNer45RB9Asx7zUVqr
-	 jksN+MuFJ3JQw==
-Date: Tue, 17 Jun 2025 22:33:45 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: george.moussalem@outlook.com
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Luo Jie <quic_luoj@quicinc.com>, Lee Jones <lee@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] clk: qcom: ipq5018: keep XO clock always on
-Message-ID: <wao5fe7nbupujho3ql46ctvbqhe6y2adzqrtbyxqgfja6oriwt@nekluv75lcze>
-References: <20250516-ipq5018-cmn-pll-v4-0-389a6b30e504@outlook.com>
- <20250516-ipq5018-cmn-pll-v4-1-389a6b30e504@outlook.com>
+	s=arc-20240116; t=1750217910; c=relaxed/simple;
+	bh=LAz+GaoUDVwgdCSLKZR/wFDA6hi6vkeJUGukzvmLfCo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Tk1SLFxMZ/B2TXldHQYsAdufXaooCKOrcDBecWWBk/IjDyfujxUzj5BTam+cKR0ehVFsZJrE8jBdh5g6pBM0R5SqMQCEcJleyAabZJXANBa9vymYXrF9U7YB9TwOoT0yLabgkTvZNef37CgLkqn9jok2I3BzkfoccPUFNVFN4Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nUJ0f/zq; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7399a2dc13fso6880185b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 20:38:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750217908; x=1750822708; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uonrVs/pRpGNPcjjmWWOHRenHXMMDe5KqCaZ0WZ1vWc=;
+        b=nUJ0f/zq7FcgwsWmEvU9mRU4W1rrRMP8Db9Mugevi9oGeThTC3ZlbjgdDld81d3pyK
+         q3G8vTxJh5bOyz8aygZhp8EL7hT859+GNJspKVnEDAwhoP5ecIZoZPi085WD7yuDhk+R
+         OJa5lc3alCZ9CFuhb88qmxSeJJO1urtHIY5JtimxEb400mnbyunDaS7cwbdBkMTAWPyk
+         AxvJWgMHC1DS/VJE8/VfVdXcvwsbTl28DCXV3LYidn7I1Sg5FFWpdSeNyrsdcK5/o3kn
+         RJ1s+RZ8ip3J6zxQUBbdqPnpKpJerrRAbkYZ+MDrISQcLW7fKIH5Y5DHJVCRhPOwflSX
+         hsTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750217908; x=1750822708;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uonrVs/pRpGNPcjjmWWOHRenHXMMDe5KqCaZ0WZ1vWc=;
+        b=GDVmzuCupj2J/TonGIEIEPTglY0D+rnGO8Qeh6/41PVXF5Q569bhgNkjLVFQbxbRir
+         en7sn2EletK3pf74LA9dxnMnPPlWR0sP6QPoAaJL/g1+rHQIavIrTf3Xit4tNeg3e2FS
+         mSu9zaEgnEn09eMgaEJPe3uFeenXgWP5KaVorbcc43kVkVMplOXPKzJ9End5Issx2h1A
+         6XNyZ7W+9o72Lu6svz3NbCwWUxPscjLrFPmtOYELhwQ/cWwdjOR/q9WBZyeKFuA4AnSg
+         f0OLbwt8Eod0eFI+j1TBqiToNuzHSyDZuN6K2k/bMv5eKegKgQpigSMVSbqmQj1lxFFG
+         26Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCUJbeHx4/eXcVy5t15AxZ/tUyAYsPkxr3BM9MXkuyJsk23/He5IkLNQKvRM+ZRnRYOqRvdSVNK8avTs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7tcQYvb01NWNJowkWjWx7LD9rmKuehP63ymdX3y97FCsLWQZk
+	yk7+ayjpFip5LjiI8rZ0bqcQmG0WGJlb4NNyTo/abUF1sMylz38UzKYI
+X-Gm-Gg: ASbGncvSouP5okOmoBGypzU1YYPxSG7qCwDpceamUFFjVlZBAQFD8xavRUH7+XYS6ef
+	nIQ9bcMcJyO7XoLyNII4PZ/Yr5LLmIln3MFniznlOvy6NxjDadUm1X/TGc/hoqAbl5kxFr9pv/i
+	H2K0g4NBd4i5YUTjZWyV9fkhuqBg/OGPvmzPKCkj3Zell3Kj9szrMohtsV2iNgUTPI0YwTnCfwo
+	c9kby0/ywnV+uKROvKJO9pEowGECiaBez4jKGOw+WIHRNoYZWRfzTfiK+D/0xAh6Hq6g7QZJLbr
+	lynZyZZmt2rxzw642mL4ASiEOa0jPm8VXd9m423CmuKrc8zLzghJGl7B8gB5TcUKsMSsFpSHSPh
+	rpmsAMKvPr2G7WC3esvfXGp2UKTucSgNXQTmp6atrTTsrtgwmBw==
+X-Google-Smtp-Source: AGHT+IGCpeONFeK+vCUHFAZvHE7jFSRmu9ICiUPdwHMxfwRud5mRe2MvyXaWeKME0aWnWjENgIdySQ==
+X-Received: by 2002:a05:6a20:d049:b0:1f5:8a1d:3904 with SMTP id adf61e73a8af0-21fbd459503mr26148333637.7.1750217907834;
+        Tue, 17 Jun 2025 20:38:27 -0700 (PDT)
+Received: from lcwang-Precision-3630-Tower.. (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748900822b7sm10147934b3a.101.2025.06.17.20.38.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 20:38:27 -0700 (PDT)
+From: LiangCheng Wang <zaq14760@gmail.com>
+To: cip-dev@lists.cip-project.org
+Cc: drm@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	noralf@tronnes.org,
+	robh+dt@kernel.org,
+	krzk@kernel.org,
+	zaq14760@gmail.com,
+	onlywig@gmail.com
+Subject: [PATCH 0/3] drm/tiny: Add MAYQUEEN PIXPAPER e-ink panel support
+Date: Wed, 18 Jun 2025 11:37:28 +0800
+Message-Id: <20250618033731.171812-1-zaq14760@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250516-ipq5018-cmn-pll-v4-1-389a6b30e504@outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 16, 2025 at 04:36:08PM +0400, George Moussalem via B4 Relay wrote:
-> From: George Moussalem <george.moussalem@outlook.com>
-> 
-> The XO clock must not be disabled to avoid the kernel trying to disable
-> the it. As such, keep the XO clock always on by flagging it as critical.
-> 
+This series adds support for the MAYQUEEN PIXPAPER e-ink panel
+(122x250 pixels, SPI-controlled) to the tiny drm subsystem.
 
-Is there any reason for us to model this clock in Linux, if we're not
-allowed to touch it?
+Patches (must be applied in order due to dependencies):
+Patch 1/3: Adds 'mayqueen' vendor prefix.
+Patch 2/3: Implements PIXPAPER tiny drm driver.
+Patch 3/3: Adds PIXPAPER device tree bindings.
 
-CLK_IS_CRITICAL has side effect on the runtime PM state of the clock
-controller, so would be nice if we can avoid that.
+Tested on PIXPAPER hardware with linux-5.10.y-cip,
+verifying display initialization and refresh.
+All patches pass checkpatch.pl.
 
-Regards,
-Bjorn
+Signed-off-by: Wig Cheng <onlywig@gmail.com>
+Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> ---
-> The kernel will panic when parenting it under the CMN PLL reference
-> clock and the below message will appear in the kernel logs.
-> 
-> [    0.916515] ------------[ cut here ]------------
-> [    0.918890] gcc_xo_clk_src status stuck at 'on'
-> [    0.918944] WARNING: CPU: 0 PID: 8 at drivers/clk/qcom/clk-branch.c:86 clk_branch_wait+0x114/0x124
-> [    0.927926] Modules linked in:
-> [    0.936945] CPU: 0 PID: 8 Comm: kworker/0:0 Not tainted 6.6.74 #0
-> [    0.939982] Hardware name: Linksys MX2000 (DT)
-> [    0.946151] Workqueue: pm pm_runtime_work
-> [    0.950489] pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> [    0.954566] pc : clk_branch_wait+0x114/0x124
-> [    0.961335] lr : clk_branch_wait+0x114/0x124
-> [    0.965849] sp : ffffffc08181bb50
-> [    0.970101] x29: ffffffc08181bb50 x28: 0000000000000000 x27: 61c8864680b583eb
-> [    0.973317] x26: ffffff801fec2168 x25: ffffff800000abc0 x24: 0000000000000002
-> [    0.980437] x23: ffffffc0809f6fd8 x22: 0000000000000000 x21: ffffffc08044193c
-> [    0.985276] loop: module loaded
-> [    0.987554] x20: 0000000000000000 x19: ffffffc081749278 x18: 000000000000007c
-> [    0.987573] x17: 0000000091706274 x16: 000000001985c4f7 x15: ffffffc0816bbdf0
-> [    0.987587] x14: 0000000000000174 x13: 000000000000007c x12: 00000000ffffffea
-> [    0.987601] x11: 00000000ffffefff x10: ffffffc081713df0 x9 : ffffffc0816bbd98
-> [    0.987615] x8 : 0000000000017fe8 x7 : c0000000ffffefff x6 : 0000000000057fa8
-> [    1.026268] x5 : 0000000000000fff x4 : 0000000000000000 x3 : ffffffc08181b950
-> [    1.033385] x2 : ffffffc0816bbd30 x1 : ffffffc0816bbd30 x0 : 0000000000000023
-> [    1.040507] Call trace:
-> [    1.047618]  clk_branch_wait+0x114/0x124
-> [    1.049875]  clk_branch2_disable+0x2c/0x3c
-> [    1.054043]  clk_core_disable+0x60/0xac
-> [    1.057948]  clk_core_disable+0x68/0xac
-> [    1.061681]  clk_disable+0x30/0x4c
-> [    1.065499]  pm_clk_suspend+0xd4/0xfc
-> [    1.068971]  pm_generic_runtime_suspend+0x2c/0x44
-> [    1.072705]  __rpm_callback+0x40/0x1bc
-> [    1.077392]  rpm_callback+0x6c/0x78
-> [    1.081038]  rpm_suspend+0xf0/0x5c0
-> [    1.084423]  pm_runtime_work+0xf0/0xfc
-> [    1.087895]  process_one_work+0x17c/0x2f8
-> [    1.091716]  worker_thread+0x2e8/0x4d4
-> [    1.095795]  kthread+0xdc/0xe0
-> [    1.099440]  ret_from_fork+0x10/0x20
-> [    1.102480] ---[ end trace 0000000000000000 ]---
-> ---
->  drivers/clk/qcom/gcc-ipq5018.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/gcc-ipq5018.c b/drivers/clk/qcom/gcc-ipq5018.c
-> index 70f5dcb96700f55da1fb19fc893d22350a7e63bf..24eb4c40da63462077ee2e5714e838aa30ced2e3 100644
-> --- a/drivers/clk/qcom/gcc-ipq5018.c
-> +++ b/drivers/clk/qcom/gcc-ipq5018.c
-> @@ -1371,7 +1371,7 @@ static struct clk_branch gcc_xo_clk = {
->  				&gcc_xo_clk_src.clkr.hw,
->  			},
->  			.num_parents = 1,
-> -			.flags = CLK_SET_RATE_PARENT,
-> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
->  			.ops = &clk_branch2_ops,
->  		},
->  	},
-> 
-> -- 
-> 2.49.0
-> 
-> 
+--
+
+LiangCheng Wang (2):
+  drm: tiny: Add support for PIXPAPER e-ink panel
+  dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink panel
+
+Wig Cheng (1):
+  dt-bindings: vendor-prefixes: Add Mayqueen name
+
+ .../bindings/display/mayqueen,pixpaper.yaml   |  67 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/tiny/Kconfig                  |  11 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/pixpaper.c               | 716 ++++++++++++++++++
+ 6 files changed, 803 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+ create mode 100644 drivers/gpu/drm/tiny/pixpaper.c
+
+-- 
+2.34.1
+
 
