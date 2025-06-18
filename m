@@ -1,508 +1,310 @@
-Return-Path: <devicetree+bounces-187141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D046ADED8E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:14:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE75ADEDC4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:26:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47CE13B346C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:14:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C5767A6C9E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342912E54DF;
-	Wed, 18 Jun 2025 13:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70DC92DE214;
+	Wed, 18 Jun 2025 13:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Y3NRHQz3"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="Oy6ENT3u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010014.outbound.protection.outlook.com [52.101.229.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A0E274FC2
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750252482; cv=none; b=ofKZeRIO0o7GOAXJTjDyvtoiO5yX0qVevnENfndO7VkOylNJie8qfb7Ff98sw0yVs4ckhVqcYaUj8boPIyLSQ4bBeAOBTvBvGjMIYiZ01jx0VxazwuDygkzsY1RDorMxye/ZpEQ2G5QWfwf4bBiAsIj95/HygWQHxAHSDVmiLmI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750252482; c=relaxed/simple;
-	bh=Lp72izDzamoZbzVWGiZrrQI70qZJmwJwD2+Gaf2uxwI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gxxPh6gBu3z+YhC3Kt7ntcbilLd3Fe8fVnk0GccZJBYSU06LMKsKiDu43Jo2ApsH2jKpHkWZj2EGU0RXm430t8YIAyLenswuugNH51J52cQwudQYUkTNsZUDyvbLY1aXNr0Rg2ZlaGLDlH4GSP28pigCU0+ALKM4nHsq9d+IuoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Y3NRHQz3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55I99HQu023126
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:14:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=m7pPr07uK/MO7S0+vu1FGmwy
-	IRKndt0ZmMbzbptnkmU=; b=Y3NRHQz3pgblNX/79jJHV0DLyPwEDvhQNkumtxwY
-	KSSgrY2PciBzzUGuCi2IR3497qQDR7euUk/eIB8aq5NUMMLCTKBjpvGmQCQzZ9HE
-	XvsxWthlfs2XqKvlglBIRUakhMxikwneFYaVVa+q6H4lsOsu7Rd/4g5X3h6dGvk/
-	TAP9u1rkL8er4SiFi4YYcCnYoZ5+mC0Ui9+o1poCyOwcoS/UWE6OWmik/RvklMkl
-	5qzPd3wXDInGEGnf3rk3vXPCyOSYW6BDdjQfyXLNJc5PyhjqKrOaXj3HuJpbMELH
-	3CHNMxZvK2TUB3td2wdHSqyTD8YhFB2LLPfCr/nTAdzdlA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791hd4b4a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:14:39 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7d3d3f6471cso584986185a.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:14:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750252478; x=1750857278;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m7pPr07uK/MO7S0+vu1FGmwyIRKndt0ZmMbzbptnkmU=;
-        b=rEcAgyiY63gRQdMZIwIbnk+R3SXUXwE2lXKWkxClf179lHSGNrMTZPhIlzuLX7R3zq
-         55KrMGFfEFBg8Qb2MKMR7Ix63P0sG5Q4Cq0IN2NlSeUFV4t1RwiujqsEU4nCoDENQNIw
-         w6c5xAQzLal90rYkcBEX9LIl0zJ9THXOsAFhiMpgHuczuTDzoyRnPqvaub7VGLGZo73s
-         MBeBGX8G8xLPF8FtMkrGUNRkfMV4jLTBdLz3CNgzA9BfL8tupjYGJQ8FD4nU7P2jdfyg
-         AnIFdcOG0Uvp/ED11TBgYc0EDmBtUzRK9GKx7uNIhZraQCVWlWOocdtNiDqBsCRXvbX+
-         w36w==
-X-Forwarded-Encrypted: i=1; AJvYcCWV1VK3WlAMlpbEXqh7G6LfkSjfPO7RmrOAPV6PpwiFaKfNopzgUEeSqe5TIclnW9qm87EgdgJE1sC8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOT2iuj3SIGkUR7f4rHNlRc35BYD9rQXE1I2njq0JUsipczgqs
-	yc00R9jEtJIU+zy6muK9QvU157NqApkWxT9gaL4OowdhiCdPJ4YMJLz9LyXZwrXOW0qOT3W0lLk
-	u2iZideF5Q0ioJKeCI7d49QaeOQ//C8UlfzjduuQ41Qi5gaegUoGYh9wBoJBKRXEv
-X-Gm-Gg: ASbGnct7K0oHCJfWG5z3DHTT9wobqMMxhhUvnXJw7TYjNhIL3kSNKNlh8g73x4cxEBc
-	FlUOMPa+ZKj1Br5/GPHtTPEkKBJZ8rxb3k2JobB2ZGjjGrWwBQ6Cg59nV+facA1kslO5UcCRmF+
-	2liYKpsQsIw/zo21BI0dhAO2arf4IZpPLzw0Q2wZRI34qv7RilpQXfi/u8foUmINr6payh67aZa
-	Zd5qVqjhEKUSXiQnoHHbhCRYMMj7BID3dRdclNWMjC6dVGA492F5YyT3ZkYam0ICpPxNvO6zzK8
-	o0vVOcMKQ0GCry4955nNrDBxS0et02Mb0KSVbCJnq+urG2/vp9Z6QGiR+4WKCYxqMSVaV7nRlBs
-	NT9bfq8lSZKTirkkehzdvaJ53zhYI6pzXbpE=
-X-Received: by 2002:a05:620a:440f:b0:7ca:f02a:4d2b with SMTP id af79cd13be357-7d3c6c0d3b0mr2494972785a.12.1750252477476;
-        Wed, 18 Jun 2025 06:14:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEA8A1wCa+lNoHoi9aZDSTVEUTqllBLepRhgBUA+jlwu8cJiBPuW7WORbByYRdCn80uO0XdsQ==
-X-Received: by 2002:a05:620a:440f:b0:7ca:f02a:4d2b with SMTP id af79cd13be357-7d3c6c0d3b0mr2494967485a.12.1750252476904;
-        Wed, 18 Jun 2025 06:14:36 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553d51b1d52sm138017e87.65.2025.06.18.06.14.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 06:14:36 -0700 (PDT)
-Date: Wed, 18 Jun 2025 16:14:34 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Shivendra Pratap <quic_spratap@quicinc.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Elliot Berman <elliotb317@gmail.com>,
-        quic_spratap@qucinc.com,
-        Elliot Berman <elliot.berman@oss.qualcomm.com>,
-        quic_kaushalk@qucinc.com
-Subject: Re: [PATCH v9 2/5] firmware: psci: Read and use vendor reset types
-Message-ID: <rz7tnl5gg73gtyij3kmwk6hubikfsvu3krekjkpoofpdio6cwe@innio7qvotye>
-References: <20250303-arm-psci-system_reset2-vendor-reboots-v9-0-b2cf4a20feda@oss.qualcomm.com>
- <20250303-arm-psci-system_reset2-vendor-reboots-v9-2-b2cf4a20feda@oss.qualcomm.com>
- <Z9QQw6BcE7IXzu+r@lpieralisi>
- <Z+K3uNjTNbq3pUis@hu-mojha-hyd.qualcomm.com>
- <Z/U95G+2GsoLD6Mi@lpieralisi>
- <973eaca7-0632-53d8-f892-fe4d859ebbac@quicinc.com>
- <Z/+dGLAGXpf9bX7G@lpieralisi>
- <e96e315c-69fb-bc7e-5d07-06909344ff65@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61A5249E5;
+	Wed, 18 Jun 2025 13:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750253161; cv=fail; b=OSSNnT6krMfMrw6ElR8S8vbnhNPBYgza4rkt5sGdTizjf9moyb+s4CbTJUxQGmPKSN8aW+SppQFbTejcKUOCdELJZGexEehBBoSzBbtzVeNTHq6FHmJfuYCv/PiTecNP519/1sCiQfdA6tI/gfW7lPQeiZftBlkqARt9Onludlk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750253161; c=relaxed/simple;
+	bh=fGPPmjI5VTQN9QJRbmgmrGLFzABPPABIMvbDJpWppho=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eb2qlmEGdH0QzMroDMQDHX/uHHiMTxljTmu5buQs35WSsHk4YM4loT9BTJS9OewiNmtKITlI7WCA6I2XuVYYD0dtNus7Pj0z/sm9pJyvHuYS/Ib6OxEB66zFBG2C5xaDSOLvdUjNiLDLtJh00CMAc2g3fn/itD315L4bi1Ywa2U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=Oy6ENT3u; arc=fail smtp.client-ip=52.101.229.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IW8zSClKOMS252Mwa/nAciHx1bMwtfRDyI90HQXH4z1oJInGGIS7i2MDya2WqOrc4DJV7Ia4g5+AiMItgc/MRUY7dxxr21IlaVoKDIVdT5vHOySIPpoEVtfYPX/Y6FF/wXrZ7xdiZ4uYpYZbQsZ0XVvkqu9QbJS9NqIOEQ/QZ00Y48ZK6LN36J58XWhU7HoEm9h/E69sbJ4oii95rqjC/nkoBvTcg8qv5YgQauL+Z0n9Wm+GpKIE10yj9YXO4m0oVPUZjJvIXofeG7cD3DrCRxZwrguNGfoDIy+fn0dIoIDCDYd0LE0HWgFEuQHSC847EwPb7DixTCqzlLA/IyuMig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fGPPmjI5VTQN9QJRbmgmrGLFzABPPABIMvbDJpWppho=;
+ b=AmmDTdWIhzA4q2sMy6/H0TgmjZOXdbGliSdVwNeuKzH4UdTYWvtXxGU/YPFqu80Y3FxLBUBTQ82LiTYWOHYlsxHHixblTst52RfCwzfdlGD+b5YRFevTQTnJP6BioQRte3snzPOtFuyyNKcZGZcad2C8ygwbxW8EWr8+4kloU4Txu15mA49gOwpI1iaW847MhOZ0mc3IUqYXdcllmLsSFgj5cCrnnQaS9ZQUTaerK23Bn3fC3KPRkPvii6AppOPV4l2wIrM4FRnoRxSvj2oAe7kIL+tw1fcGSziDaFr2vLzrzve/CeA/LLr/3P7cam24mw6bn2WUaBvODPn5wbI7DA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fGPPmjI5VTQN9QJRbmgmrGLFzABPPABIMvbDJpWppho=;
+ b=Oy6ENT3uhBHdcO4mBhGNugtNvU6nnvMN4aG8XLHqmlkseq+UlQH5gGKU4sUXWhunex7CwiO/Bs49KMtb+DHbDzBpyTYwcO1pT9kypWf7opIwukOvq6n6mbIVedkwy0oDSeoBZmNvH4wEGdlpJkccxcK4ssYFcWcsGztrJUCDUgg=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OS7PR01MB15130.jpnprd01.prod.outlook.com (2603:1096:604:370::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.19; Wed, 18 Jun
+ 2025 13:25:55 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8835.027; Wed, 18 Jun 2025
+ 13:25:54 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>, Andrzej Hajda
+	<andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert
+ Foss <rfoss@kernel.org>, laurent.pinchart
+	<laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Magnus
+ Damm <magnus.damm@gmail.com>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>, Fabrizio Castro
+	<fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH v6 1/4] clk: renesas: rzv2h-cpg: Add support for DSI
+ clocks
+Thread-Topic: [PATCH v6 1/4] clk: renesas: rzv2h-cpg: Add support for DSI
+ clocks
+Thread-Index: AQHb0YbvZKdKpGoLPEeGBmVqxN0ROrQAp8mggAUMkQCAA1B+sA==
+Date: Wed, 18 Jun 2025 13:25:54 +0000
+Message-ID:
+ <TY3PR01MB1134671558883AAE2C3E0A2C78672A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20250530171841.423274-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250530171841.423274-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <TY3PR01MB1134654039BA3BAB5DA8C0BB08677A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8tSMt9SaHAdeEd4vj=QmaDz5bMd4hwJUCx_mBF8-mw2kw@mail.gmail.com>
+In-Reply-To:
+ <CA+V-a8tSMt9SaHAdeEd4vj=QmaDz5bMd4hwJUCx_mBF8-mw2kw@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS7PR01MB15130:EE_
+x-ms-office365-filtering-correlation-id: 70e8a881-3e00-4c28-c16d-08ddae6ba756
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?MU5NVGQwVU01SzFkby9xL1hZMTFaV0ZUb2pMN2UyaXJuOG8zNERUMkpXYkt5?=
+ =?utf-8?B?c1RNUWRTb2JlZDZvaVNtZ0tnNGtuUXhIVFBiZ2NjNENZWnlRTnZRRkd0UWpC?=
+ =?utf-8?B?bXNkMWt3alRLc0lmdG50VVJQZHVHem1pNnpsZWMvZjRVdFpYTnJaeE1Qb0Qv?=
+ =?utf-8?B?Ty9KYVNod2VkUHFFMDYyb0ZPYTJUdC9SWEU0RWM0TUM5N0hqVVpZa2J5WnZV?=
+ =?utf-8?B?TzI1RndvaDFUdGJrWWZMLzRTb0VSN0F1YXUrM2NrM0podUpneVpFak54WVU1?=
+ =?utf-8?B?ZXFQeWVqK0hXOXpRMHN3NmE0UC9RTjlCUVVhSFExOGlYbUh1WlVQcm9YZGJG?=
+ =?utf-8?B?cThKWU5zeVVsQ0R2ZG5DNjhOREF6aU1jaTBEa01FdDY0QjYyU1QwVXhOMkN0?=
+ =?utf-8?B?c3RzdUVDUmJvSWRpRnZ5c090TVlqbk1CTlVJVzJBcW5JVjJXSjdPUURBNWdY?=
+ =?utf-8?B?VkFqWjAvK3d4RW1HUHVVWEsxWVBvQklUVVlSWlltSXY1UUtqcDlrZ3lmN0t5?=
+ =?utf-8?B?UXU5Y0J0SzhKTWpBbUFPZC9YVER5aEtJVzJGZlE2RWZRclpYdnpZYS9nZlo5?=
+ =?utf-8?B?U24zWWJHa3RSelJLMW1lZ1hKTllKSzNGWjJPVHo1ZzhkMnVZTzg3Skh0QS9n?=
+ =?utf-8?B?U2VKSEFwODlVeFJSb2NPYThVcGY5dEE3Y01ZL2hJcGhkNy9CUTVINmp3L3BN?=
+ =?utf-8?B?QkJtaXBtajBoTVovUlJCTUZwSmJSdUZVRlY4TWk0L2tjbFREQ2dtbm5keHFK?=
+ =?utf-8?B?VUZlMVByUFN2cys2NFdLSlNjQnVmZ2NXYWdhNm5jQ21tUVM2SnlseElZSno2?=
+ =?utf-8?B?eFQ5Wkk5Q3F3Qm1abUFKTVdVZWI1Vmo3UXRHdnhXSDliMndONkpIcGpwYThS?=
+ =?utf-8?B?b09lWjRObDBnOEJMaENlUUhES2ZSSVVPME4vQmdIL2M5SWx0dGZzOEZGb1ZT?=
+ =?utf-8?B?cmYvVHJmaXRuaWxVWHVqdHlrSDF3N3BsODlQY0xrWU9oa01SaFR4Sy9RMDJl?=
+ =?utf-8?B?VDFxQzVVUEs4dlk3SmhQTVdPVEFvTXhPY3IwbDRpK2pQczh0TzVlMGlQTDBZ?=
+ =?utf-8?B?OCtOZW5FWnk0NldPMTJsbm1WeDhEYnZUSmFFVzlxRCtkK1V2YTdqeURFWEM1?=
+ =?utf-8?B?cE82SStOcVpGNkpvVURZbkpyUDdMdVVja21NTHJMMVVaM2xYcStoTmxsUzd3?=
+ =?utf-8?B?WXdpTWU2SUc3TUR1YzNXaGthNGNpenFPc0kvemdnVjdoT1Nzay9Qcm8zMTdl?=
+ =?utf-8?B?aFNLcURiMGxWd3FMQUtReHpUM0k5Z2NZNk41WllvTnZ4ZzczQktrSGdRT0ZC?=
+ =?utf-8?B?RHlDcnZIK2ZwUmdJQkNBL3dTSmsyQnhDejNIekw2TEt0Y1h1d3k0M2pwVSts?=
+ =?utf-8?B?cXZlMVVvT2hOVnlHU1gxOXB5REFjWlhYRjczVEpmV2IrUUVUYnBsKzBjZjJS?=
+ =?utf-8?B?TnlUSGZoTnJ1czVraXRkTC9ZYUlraGg4MDJxZnpCMTdTZlJjTUdBT1hqcW1l?=
+ =?utf-8?B?SlBkUFVoeG9rVTVWa1pjU05UVWMxbGlqZCtmNEFyWUJHMDRFR3Rlc3ZVZnpG?=
+ =?utf-8?B?WjlWL2JYSmVqd2YzNlRpeHJxNHdPQjdyZkZQc09OaFRVc0gxOGVDMURLdkFZ?=
+ =?utf-8?B?ck5OYkRIZWhWSlJvMisvOEd6SmQ0dGZZZytlWDdEVGFnWGNrOHlGSDJJVkdZ?=
+ =?utf-8?B?K1dQWjlaUklLeFQrWklRYmxaMTFSTytVeHd5UVlNa3gwcXZEWjlSQy9wa3V6?=
+ =?utf-8?B?ckoxMUR5Q2YvWFJnSStHSm9aczZVcytPZ3FiRU83a2V4YThRaHJSb3pXNnBI?=
+ =?utf-8?B?REJWYmNXYituWDdSY2EycXJSS2daUGlrY3JPUFlwZTFmRzJjM3d4TkUwK0kr?=
+ =?utf-8?B?eXRUeTVNTkpwbnFNTlpHekF3dVFhMVRwbExkb0RIeDc5MytBZjJOMzJ1dXY3?=
+ =?utf-8?B?UlI1Nk80UUlNc1l5cE5lSzl2MUoxUHNCQ3k3UUo5WW1QOTZTMFphMG91cncw?=
+ =?utf-8?B?YStvLytFR1F3PT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?M0ZyNWxNc3hGRExyV0RNTXI3UExWS2J2WEpkYnlQaXd0M0x1U0JIWXgyd3g1?=
+ =?utf-8?B?SklZY1BPRStaaHk5clJMaDZoVjF2bXRqM2pHeFpteG54Q2I1L1diNFE5d1Nx?=
+ =?utf-8?B?V084SDNjRkRFN1l4MzRqQkgrMFZEV1huNnhpZmFTVVdWNHhJaWZGbWFGcWdO?=
+ =?utf-8?B?MjZKNmVYYmlqZXNHRnd2ZkQ0WG4zMDN1ZUU4b3hJTWgvTjhldlRVRUNOdmM5?=
+ =?utf-8?B?TDdzNUJVQzVlTC9vQjdkUHhsTUZPV0Q4a0IzQU5rYmxyUDJ3bjVLWGxlY3VT?=
+ =?utf-8?B?NDVoNmNRLzFvVldpMUI3NEVpdXZlRXlCUTdPc1J3WlJOdWdkNFpQWUozSzJS?=
+ =?utf-8?B?c05Ra2piUDJqdkp1K0ZmcEVFZkVVUk9kVW1pR3F2TE4zczdDMlY4RDFHYjZ0?=
+ =?utf-8?B?Tis0SmhQdERxNW95VktGeU9NNEUveXNaMm5xVXViNFIvZFpMZHRBQ1FYQUpw?=
+ =?utf-8?B?WWU4Q2dFaHU5RnNyd0VEVTc1a2poYSt6UTFSL1o3Yy8rWUFKWmRqa005Qnpl?=
+ =?utf-8?B?Y3pkZHVmT2djVXVOQVZybWFMakh5aVRnRldpR0RIV2NxdlAzbUZ4RE1uakdt?=
+ =?utf-8?B?b21QOUJhT2RTRURKVnhabTVTdmRPMm1CK2hGUXNFUlNMQ01NbEh2TGg4ZTBT?=
+ =?utf-8?B?czJQdXFHMURMK015RzdVM1RPQTZKZW8rQmg2ZXpTSVpoRW5QbHdvd3d4Nng3?=
+ =?utf-8?B?OXpkb3hIeFI3K2R6TjBWMW83NE0rVm85b0xlenlVWWcwUzZhU1VqMFRETzdO?=
+ =?utf-8?B?MERvQkQ1bTh0Q3BnSjZzOW5KQzl0dWpoSlRHQUxqYmRlSERNODJjcGk4cFdU?=
+ =?utf-8?B?VEcvNEt4VTBWelNaVzFOVWkxRndQdjlnaHlvSzBNazFCSHgyVWNWNTMwS3lL?=
+ =?utf-8?B?Z2xXaXZRdlRvaUlER3RCeVg1emFZYnNmc05ab0VyNjd3SEh0TW9KdjhkeEUy?=
+ =?utf-8?B?bWhERmxuY09DSmNKYlEvdU1wQ08waU41bjR5blhyUU1PMEQwRjExamxKTFox?=
+ =?utf-8?B?b24zSFBPZDN0dG9RMC8yUElUUlFydHhPcEd0UWRHNi9SYWtDRnZFcSs0NWFo?=
+ =?utf-8?B?QnZEWjA3SWhhUmtmRWVsdXhhUzJrMmdWR3NPQVQzZzhTd3htMUZVN29ldmds?=
+ =?utf-8?B?a2toRitIaTB3cDdrbzZBSnVJOUFoRUYycUsweUlzYlZ6L1E1T0N6dDhmeGpy?=
+ =?utf-8?B?M0s5L0dvQm13dG5WcWlHMnlOdW5SbnpVdVhjN0ZyUlRJTXd2ZldaRXFaQjZY?=
+ =?utf-8?B?SFJvclM1MXBXVzR0L1hGOTVZZDU4VEVsSDF2Z2NUU0lQaU52Tmk1WnZ5SHFN?=
+ =?utf-8?B?cVdFSWdFYUZPVFBWOXNBU1hXSXF4SGRrNkZrb08xYmhjQlQzZXIrVjBEalV0?=
+ =?utf-8?B?VGpXV1c5N1krUDlIZkp6MG1KWWpaYTZ2bGd2dTRnUmFVcDZSc3NONncxTXQ4?=
+ =?utf-8?B?U1l3ckdvbVQzcEVPazU3Z2ZSSEZKcU5vUVFrS1F0RE9ycldxY1paYjNxaUZ4?=
+ =?utf-8?B?aXhjUnVOMFA5c2p4dVFVemVYQkFhTDFEZnh5dGc2Nk1QcDV3cGlzV0VHNEV1?=
+ =?utf-8?B?TlJWc2RXYW4rZWpTenAvc3Mzb2dYcHB4amlPYzRqTGd2amxKeExBTVVWLzNp?=
+ =?utf-8?B?MzBiaW9jYXRmWU10NHdLRUowWnlSTCswZlVXamtPL0MrL0ZiNWFCa09GTWdN?=
+ =?utf-8?B?b1ZWMUMrTGxzQnorYlJ5Lzdaa1dRbHBBV2ZpQ21zRk9INXVWQ3h4NGhaTmx1?=
+ =?utf-8?B?dXhOellWR1VPT0NMSXA5QlgvWDZnWG4yQ3dHdGgvRW5uOGZISUNjYzFQNkpK?=
+ =?utf-8?B?bFZ0bE41SkpUQ2pXU09lTFIvTEFWb0FWcXRvYkpIaVdVTHI1MTRQREhIMmIr?=
+ =?utf-8?B?OXd3SUNVRTVVUkJ1a0RFYWZWb0F6UDdkaDRCbnRKQjdNV3JFTFpzRkZpQ1Fq?=
+ =?utf-8?B?UGpJeHNIaGhhbFcwbzd0YkpFSm1lc2ZsL29NWVlRekNEUFVMVkVYS0F5UDhW?=
+ =?utf-8?B?L1hNT1A1Mi9FaDBaTHlscXJic1VDQkd4d2RiVDl6VkRMN0ZKYnZCT3dEOUgy?=
+ =?utf-8?B?UXdFdFhmcEFIV1Y3U2NubVhjTXFOZzk4WXNicVRVbFpIV0FXajl3R0JhVStW?=
+ =?utf-8?Q?s0YX5JkPTbL4oPigtLEyTF1oQ?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e96e315c-69fb-bc7e-5d07-06909344ff65@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDExMiBTYWx0ZWRfX8NbkQsi/X9hz
- bvBBS+bJmBIeYEd7ZZqk8FbMf/5qW1T71pNBK+pQ7FU+Y/KuTJoUAXtY7kNCLWC3++JNJoF/px4
- rBLAx9rv3Qga4IpWu7fTcxghGDEpyfJm2JK/DC4tx+wFOjef3qyN4f+2WGpjyrSKhsm+pibImAm
- lQYh/u9ucafsHDsI3so2M+3s/XgStHrTMXOVW6Da5+dhXR5s+znmbVov8LtauTqVpXHeA4054zb
- 11uQhRlX7fs0Zid2keS7IkY5NUgYR7KQmxGuAhPbvIrk026HC9xWLu2mTD7MkWpEt6RQ8f07UOS
- 2XpuAaUW92YVrh/stWPaCDuoXbaKQw4SA8KpurGVaZYmJQcrVkdhfEAE5xy9a9bxf1Me67YgW8J
- N6TZcbZlZReYt++i6ERrzykhP+Kk1DgpOfUepnp/rU+lkzRNd+BUOjKsVAdonJGWSDm2QQ5j
-X-Authority-Analysis: v=2.4 cv=PtaTbxM3 c=1 sm=1 tr=0 ts=6852bbbf cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=GcyzOjIWAAAA:8 a=EUspDBNiAAAA:8 a=u11vpO89wc5r4MctJj4A:9
- a=CjuIK1q_8ugA:10 a=dtxw0mqMjrQA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
- a=hQL3dl6oAZ8NdCsdz28n:22
-X-Proofpoint-ORIG-GUID: XFPLl4C3Fn5JA_PLLyTE-CdBNTK1dDYT
-X-Proofpoint-GUID: XFPLl4C3Fn5JA_PLLyTE-CdBNTK1dDYT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-18_05,2025-06-18_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0 malwarescore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 spamscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506180112
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70e8a881-3e00-4c28-c16d-08ddae6ba756
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2025 13:25:54.8069
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: w/Qv0R7yP+61GHVDkzNfkWgUoumHGesKhPQEDXMqzqtgHyTiZ+pTaTYF9HMEwYGeCEXXUR3lk4jZADvaPDVZDTqa0yT6bGssRW6RXFr+aIc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB15130
 
-On Tue, May 06, 2025 at 11:03:55PM +0530, Shivendra Pratap wrote:
-> 
-> 
-> On 4/16/2025 5:35 PM, Lorenzo Pieralisi wrote:
-> > On Wed, Apr 09, 2025 at 11:48:24PM +0530, Shivendra Pratap wrote:
-> >>
-> >>
-> >> On 4/8/2025 8:46 PM, Lorenzo Pieralisi wrote:
-> >>> On Tue, Mar 25, 2025 at 07:33:36PM +0530, Mukesh Ojha wrote:
-> >>>> On Fri, Mar 14, 2025 at 12:19:31PM +0100, Lorenzo Pieralisi wrote:
-> >>>>> On Mon, Mar 03, 2025 at 01:08:31PM -0800, Elliot Berman wrote:
-> >>>>>> From: Elliot Berman <elliot.berman@oss.qualcomm.com>
-> >>>>>>
-> >>>>>> SoC vendors have different types of resets and are controlled through
-> >>>>>> various registers. For instance, Qualcomm chipsets can reboot to a
-> >>>>>> "download mode" that allows a RAM dump to be collected. Another example
-> >>>>>> is they also support writing a cookie that can be read by bootloader
-> >>>>>> during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
-> >>>>>> vendor reset types to be implemented without requiring drivers for every
-> >>>>>> register/cookie.
-> >>>>>>
-> >>>>>> Add support in PSCI to statically map reboot mode commands from
-> >>>>>> userspace to a vendor reset and cookie value using the device tree.
-> >>>>>
-> >>>>> I have managed to discuss a little bit this patchset over the last
-> >>>>> few days and I think we have defined a plan going forward.
-> >>>>>
-> >>>>> A point that was raised is:
-> >>>>>
-> >>>>> https://man7.org/linux/man-pages/man2/reboot.2.html
-> >>>>>
-> >>>>> LINUX_REBOOT_CMD_RESTART2 *arg command, what is it supposed to
-> >>>>> represent ?
-> >>>>>
-> >>>>> Is it the mode the system should reboot into OR it is the
-> >>>>> actual command to be issued (which is what this patchset
-> >>>>> implements) ?
-> >>>>>
-> >>>>> LINUX_REBOOT_CMD_RESTART "..a default restart..."
-> >>>>>
-> >>>>> It is unclear what "default" means. We wonder whether the
-> >>>>> reboot_mode variable was introduced to _define_ that "default".
-> >>>>>
-> >>>>> So, in short, my aim is trying to decouple reboot_mode from the
-> >>>>> LINUX_REBOOT_CMD_RESTART2 *arg command.
-> >>>>>
-> >>>>> I believe that adding a sysfs interface to reboot-mode driver
-> >>>>> infrastructure would be useful, so that the commands would
-> >>>>> be exposed to userspace and userspace can set the *arg command
-> >>>>> specifically to issue a given reset/mode.
-> >>>>>
-> >>>>> I wonder why this is not already in place for eg syscon-reboot-mode
-> >>>>> resets, how does user space issue a command in those systems if the
-> >>>>> available commands aren't exposed to userspace ?
-> >>>>>
-> >>>>> Is there a kernel entity exposing those "modes" to userspace, somehow ?
-> >>>>>
-> >>>>>> A separate initcall is needed to parse the devicetree, instead of using
-> >>>>>> psci_dt_init because mm isn't sufficiently set up to allocate memory.
-> >>>>>>
-> >>>>>> Reboot mode framework is close but doesn't quite fit with the
-> >>>>>> design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
-> >>>>>> be solved but doesn't seem reasonable in sum:
-> >>>>>>  1. reboot mode registers against the reboot_notifier_list, which is too
-> >>>>>>     early to call SYSTEM_RESET2. PSCI would need to remember the reset
-> >>>>>>     type from the reboot-mode framework callback and use it
-> >>>>>>     psci_sys_reset.
-> >>>>>>  2. reboot mode assumes only one cookie/parameter is described in the
-> >>>>>>     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
-> >>>>>>     cookie.
-> >>>>>
-> >>>>> This can be changed and I think it should, so that the reboot modes
-> >>>>> are exposed to user space and PSCI can use that.
-> >>>>>
-> >>>> In the case of a regular reboot or panic, the reboot/panic notifiers run
-> >>>> first, followed by the restart notifiers. The PSCI reset/reset2 should
-> >>>> be the last call from Linux, and ideally, this call should not fail.
-> >>>>
-> >>>> Reboot mode notifiers => restart notifiers or Panic notifiers => restart
-> >>>> notifiers
-> >>>>
-> >>>> So, if I understand correctly, you mean that we can change the reboot
-> >>>> mode framework to expose the arguments available to user space. We can
-> >>>> extend it to accept magic and cookies, save them in the reboot
-> >>>> framework, and retrieve them via a call from PSCI during a regular
-> >>>> reboot or panic based on the current arguments. Is this leading towards
-> >>>> writing an ARM-specific PSCI-reboot-mode driver, which in its reboot
-> >>>> notifier callback saves the magic and cookies, and these magic and
-> >>>> cookies will be used during psci_sys_reset2()? Or is there something
-> >>>> wrong with my understanding?
-> >>>
-> >>> No, you got it right (apologies for the delay in replying) - if the
-> >>> case for making reboot mode available to user space is accepted.
-> >>>
-> While moving this into reboot-mode framework, one more query came up.
-> The "ARM-specific PSCI-reboot-mode driver" that we are going to write needs
-> to be a Platform device driver for using reboot-mode framework.
-
-No, it doesn't. It rqeuires struct device, but there is no requirement
-for struct platform_device at any place.
-
-> As psci is not a platform device driver, a subdevice under it may not probe as a
-> platform driver. Is it ok to implement the "PSCI-reboot-mode driver" as a
-> early_initcall("psci_xyz") and then create a platform device something as
-> below or any other suggestions for this?
-
-Change struct reboot_mode_driver to pass corresponding of_node (or
-better fwnode) directly.  Corresponding device is used only in the
-reboot_mode_register() and only to access of-node or to print error
-messages.
-
-> 
-> power:reset:<psci-vendor-reset-driver>:
-> -----
-> static int __init psci_vendor_reset_init(void) {
-> ..
-> ..
-> 	np = of_find_node_by_name(NULL, "psci-vendor-reset");
-> 	if(!np)
-> 		return -ENODEV;
-> 	pdev = of_platform_device_create(np, "psci-vendor-reset", NULL);
-> ..
-> ..
-> }
-> -------
-> 
-> the sysfs we will expose from reboot-mode may show like below in above 
-> implementation:
-> 
-> ###### 
-> / # cat ./sys/devices/platform/psci-vendor-reset/available_modes
-> bootloader edl 
-> ###### 
-> 
-> thanks,
-> Shivendra
-> 
-> >>
-> >> Agree that the available modes should be exposed to usespace via sysfs interface
-> >> and we should implement it. Also #1 and #2 can be handled via some
-> >> changes in the design as mentioned in above discussion.
-> >>
-> >> I have one doubt though when we implement this via reboot-mode framework.
-> >> The current patch implements PSCI ARM PSCI SYSTEM RESET2 vendor reset types.
-> >> psci driver is initialized very early at boot but potential ARM psci reboot-mode
-> >> driver will not probe at that stage and the ARM PSCI SYSTEM RESET2 vendor reset
-> >> types functionality will not be available in psci reset path until the reboot-mode
-> >> driver probes. Will this cause any limitation on usage of ARM's PSCI vendor-reset
-> >> types for early device resets?
-> >>
-> >> One use-case may be an early device crash or a early reset where a vendor 
-> >> wants to use PSCI SYSTEM RESET2 vendor reset type to a reset the device to a 
-> >> specific state but may not be able to use this driver.
-> >> (eg: a kernel panic at early boot where a vendor wants to reset device 
-> >> to a specific state using vendor reset. Currently panic passes a NULL
-> >> (*arg command) while device reset but it may be explored for vendor specific
-> >> reset).
-> > 
-> > As you said, that would not be a PSCI only issue - *if* we wanted to
-> > plug in this use case we should find a way to do it at reboot mode
-> > driver level.
-> > 
-> > As a matter of fact, this is not a mainline issue AFAICS.
-> > 
-> > Even if we did not design this as a reboot mode driver there would be a
-> > time window where you would not be able to use vendor resets on panic.
-> > 
-> > I don't see it as a major roadblock at the moment.
-> Got it.
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> >>
-> >> - Shivendra
-> >>
-> >>>> P.S. We appreciate Elliot for his work and follow-up on this while being
-> >>>> employed at Qualcomm.
-> >>>
-> >>> Yes I sincerely do for his patience, thank you.
-> >>>
-> >>> Lorenzo
-> >>>
-> >>>>>>  3. psci cpuidle driver already registers a driver against the
-> >>>>>>     arm,psci-1.0 compatible. Refactoring would be needed to have both a
-> >>>>>>     cpuidle and reboot-mode driver.
-> >>>>>>
-> >>>>>> Signed-off-by: Elliot Berman <elliot.berman@oss.qualcomm.com>
-> >>>>>> ---
-> >>>>>>  drivers/firmware/psci/psci.c | 105 +++++++++++++++++++++++++++++++++++++++++++
-> >>>>>>  1 file changed, 105 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> >>>>>> index a1ebbe9b73b136218e9d9f9b8daa7756b3ab2fbe..6f8c47deaec0225f26704e1f3bcad52603127a85 100644
-> >>>>>> --- a/drivers/firmware/psci/psci.c
-> >>>>>> +++ b/drivers/firmware/psci/psci.c
-> >>>>>> @@ -80,6 +80,14 @@ static u32 psci_cpu_suspend_feature;
-> >>>>>>  static bool psci_system_reset2_supported;
-> >>>>>>  static bool psci_system_off2_hibernate_supported;
-> >>>>>>  
-> >>>>>> +struct psci_reset_param {
-> >>>>>> +	const char *mode;
-> >>>>>> +	u32 reset_type;
-> >>>>>> +	u32 cookie;
-> >>>>>> +};
-> >>>>>> +static struct psci_reset_param *psci_reset_params __ro_after_init;
-> >>>>>> +static size_t num_psci_reset_params __ro_after_init;
-> >>>>>> +
-> >>>>>>  static inline bool psci_has_ext_power_state(void)
-> >>>>>>  {
-> >>>>>>  	return psci_cpu_suspend_feature &
-> >>>>>> @@ -306,9 +314,39 @@ static int get_set_conduit_method(const struct device_node *np)
-> >>>>>>  	return 0;
-> >>>>>>  }
-> >>>>>>  
-> >>>>>> +static int psci_vendor_system_reset2(const char *cmd)
-> >>>>>> +{
-> >>>>>> +	unsigned long ret;
-> >>>>>> +	size_t i;
-> >>>>>> +
-> >>>>>> +	for (i = 0; i < num_psci_reset_params; i++) {
-> >>>>>> +		if (!strcmp(psci_reset_params[i].mode, cmd)) {
-> >>>>>> +			ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
-> >>>>>> +					     psci_reset_params[i].reset_type,
-> >>>>>> +					     psci_reset_params[i].cookie, 0);
-> >>>>>> +			/*
-> >>>>>> +			 * if vendor reset fails, log it and fall back to
-> >>>>>> +			 * architecture reset types
-> >>>>>
-> >>>>> That's not what the code does.
-> >>>>>
-> >>>> Ack.
-> >>>>
-> >>>> -Mukesh
-> >>>>
-> >>>>>> +			 */
-> >>>>>> +			pr_err("failed to perform reset \"%s\": %ld\n", cmd,
-> >>>>>> +			       (long)ret);
-> >>>>>> +			return 0;
-> >>>>>> +		}
-> >>>>>> +	}
-> >>>>>> +
-> >>>>>> +	return -ENOENT;
-> >>>>>> +}
-> >>>>>> +
-> >>>>>>  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
-> >>>>>>  			  void *data)
-> >>>>>>  {
-> >>>>>> +	/*
-> >>>>>> +	 * try to do the vendor system_reset2
-> >>>>>> +	 * If there wasn't a matching command, fall back to architectural resets
-> >>>>>> +	 */
-> >>>>>> +	if (data && !psci_vendor_system_reset2(data))
-> >>>>>> +		return NOTIFY_DONE;
-> >>>>>> +
-> >>>>>>  	if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
-> >>>>>>  	    psci_system_reset2_supported) {
-> >>>>>>  		/*
-> >>>>>> @@ -795,6 +833,73 @@ static const struct of_device_id psci_of_match[] __initconst = {
-> >>>>>>  	{},
-> >>>>>>  };
-> >>>>>>  
-> >>>>>> +#define REBOOT_PREFIX "mode-"
-> >>>>>> +
-> >>>>>> +static int __init psci_init_system_reset2_modes(void)
-> >>>>>> +{
-> >>>>>> +	const size_t len = strlen(REBOOT_PREFIX);
-> >>>>>> +	struct psci_reset_param *param;
-> >>>>>> +	struct device_node *psci_np __free(device_node) = NULL;
-> >>>>>> +	struct device_node *np __free(device_node) = NULL;
-> >>>>>> +	struct property *prop;
-> >>>>>> +	size_t count = 0;
-> >>>>>> +	u32 magic[2];
-> >>>>>> +	int num;
-> >>>>>> +
-> >>>>>> +	if (!psci_system_reset2_supported)
-> >>>>>> +		return 0;
-> >>>>>> +
-> >>>>>> +	psci_np = of_find_matching_node(NULL, psci_of_match);
-> >>>>>> +	if (!psci_np)
-> >>>>>> +		return 0;
-> >>>>>> +
-> >>>>>> +	np = of_find_node_by_name(psci_np, "reset-types");
-> >>>>>> +	if (!np)
-> >>>>>> +		return 0;
-> >>>>>
-> >>>>> Related to my initial question above. If LINUX_REBOOT_CMD_RESTART2 *arg command,
-> >>>>> is the actual reset to be issued, should we add a default mode "cold"
-> >>>>> and, if SYSTEM_RESET2 is supported, a "warm" reset mode too ?
-> >>>>>
-> >>>>> It all boils down to what *arg represents - adding "cold" and "warm"
-> >>>>> modes would remove the dependency on reboot_mode for resets issued
-> >>>>> through LINUX_REBOOT_CMD_RESTART2, the question is whether this
-> >>>>> is the correct thing to do.
-> >>>>>
-> >>>>> Comments very welcome.
-> >>>>>
-> >>>>> Thanks,
-> >>>>> Lorenzo
-> >>>>>
-> >>>>>> +
-> >>>>>> +	for_each_property_of_node(np, prop) {
-> >>>>>> +		if (strncmp(prop->name, REBOOT_PREFIX, len))
-> >>>>>> +			continue;
-> >>>>>> +		num = of_property_count_u32_elems(np, prop->name);
-> >>>>>> +		if (num != 1 && num != 2)
-> >>>>>> +			continue;
-> >>>>>> +
-> >>>>>> +		count++;
-> >>>>>> +	}
-> >>>>>> +
-> >>>>>> +	param = psci_reset_params =
-> >>>>>> +		kcalloc(count, sizeof(*psci_reset_params), GFP_KERNEL);
-> >>>>>> +	if (!psci_reset_params)
-> >>>>>> +		return -ENOMEM;
-> >>>>>> +
-> >>>>>> +	for_each_property_of_node(np, prop) {
-> >>>>>> +		if (strncmp(prop->name, REBOOT_PREFIX, len))
-> >>>>>> +			continue;
-> >>>>>> +
-> >>>>>> +		num = of_property_read_variable_u32_array(np, prop->name, magic,
-> >>>>>> +							  1, ARRAY_SIZE(magic));
-> >>>>>> +		if (num < 0) {
-> >>>>>> +			pr_warn("Failed to parse vendor reboot mode %s\n",
-> >>>>>> +				param->mode);
-> >>>>>> +			kfree_const(param->mode);
-> >>>>>> +			continue;
-> >>>>>> +		}
-> >>>>>> +
-> >>>>>> +		param->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
-> >>>>>> +		if (!param->mode)
-> >>>>>> +			continue;
-> >>>>>> +
-> >>>>>> +		/* Force reset type to be in vendor space */
-> >>>>>> +		param->reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | magic[0];
-> >>>>>> +		param->cookie = num > 1 ? magic[1] : 0;
-> >>>>>> +		param++;
-> >>>>>> +		num_psci_reset_params++;
-> >>>>>> +	}
-> >>>>>> +
-> >>>>>> +	return 0;
-> >>>>>> +}
-> >>>>>> +arch_initcall(psci_init_system_reset2_modes);
-> >>>>>> +
-> >>>>>>  int __init psci_dt_init(void)
-> >>>>>>  {
-> >>>>>>  	struct device_node *np;
-> >>>>>>
-> >>>>>> -- 
-> >>>>>> 2.34.1
-> >>>>>>
-
--- 
-With best wishes
-Dmitry
+SGkgUHJhYmhha2FyLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IGRy
+aS1kZXZlbCA8ZHJpLWRldmVsLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhh
+bGYgT2YgTGFkLCBQcmFiaGFrYXINCj4gU2VudDogMTYgSnVuZSAyMDI1IDExOjQ1DQo+IFN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggdjYgMS80XSBjbGs6IHJlbmVzYXM6IHJ6djJoLWNwZzogQWRkIHN1cHBv
+cnQgZm9yIERTSSBjbG9ja3MNCj4gDQo+IEhpIEJpanUsDQo+IA0KPiBUaGFuayB5b3UgZm9yIHRo
+ZSByZXZpZXcuDQo+IA0KPiBPbiBGcmksIEp1biAxMywgMjAyNSBhdCA2OjU34oCvQU0gQmlqdSBE
+YXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPiB3cm90ZToNCj4gPg0KPiA+IEhpIFByYWJo
+YWthciwNCj4gPg0KPiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206
+IFByYWJoYWthciA8cHJhYmhha2FyLmNzZW5nZ0BnbWFpbC5jb20+DQo+ID4gPiBTZW50OiAzMCBN
+YXkgMjAyNSAxODoxOQ0KPiA+IC5jYXN0cm8uanpAcmVuZXNhcy5jb20+OyBQcmFiaGFrYXIgTWFo
+YWRldiBMYWQgPHByYWJoYWthci5tYWhhZGV2LQ0KPiA+ID4gbGFkLnJqQGJwLnJlbmVzYXMuY29t
+Pg0KPiA+ID4gU3ViamVjdDogW1BBVENIIHY2IDEvNF0gY2xrOiByZW5lc2FzOiByenYyaC1jcGc6
+IEFkZCBzdXBwb3J0IGZvciBEU0kNCj4gPiA+IGNsb2Nrcw0KPiA+ID4NCj4gPiA+IEZyb206IExh
+ZCBQcmFiaGFrYXIgPHByYWJoYWthci5tYWhhZGV2LWxhZC5yakBicC5yZW5lc2FzLmNvbT4NCj4g
+PiA+DQo+ID4gPiBBZGQgc3VwcG9ydCBmb3IgUExMRFNJIGFuZCBQTExEU0kgZGl2aWRlciBjbG9j
+a3MuDQo+ID4gPg0KPiA+ID4gSW50cm9kdWNlIHRoZSBgcmVuZXNhcy1yenYyaC1kc2kuaGAgaGVh
+ZGVyIHRvIGNlbnRyYWxpemUgYW5kIHNoYXJlDQo+ID4gPiBQTExEU0ktcmVsYXRlZCBkYXRhIHN0
+cnVjdHVyZXMsIGxpbWl0cywgYW5kIGFsZ29yaXRobXMgYmV0d2VlbiB0aGUgUlovVjJIIENQRyBh
+bmQgRFNJIGRyaXZlcnMuDQo+ID4gPg0KPiA+ID4gVGhlIERTSSBQTEwgaXMgZnVuY3Rpb25hbGx5
+IHNpbWlsYXIgdG8gdGhlIENQRydzIFBMTERTSSwgYnV0IGhhcw0KPiA+ID4gc2xpZ2h0bHkgZGlm
+ZmVyZW50IHBhcmFtZXRlciBsaW1pdHMgYW5kIG9taXRzIHRoZSBwcm9ncmFtbWFibGUNCj4gPiA+
+IGRpdmlkZXIgcHJlc2VudCBpbiBDUEcuIFRvIGVuc3VyZSBwcmVjaXNlIGZyZXF1ZW5jeQ0KPiA+
+ID4gY2FsY3VsYXRpb25zLWVzcGVjaWFsbHkgZm9yIG1pbGxpSHotbGV2ZWwgYWNjdXJhY3kgbmVl
+ZGVkIGJ5IHRoZSBEU0kgZHJpdmVyLXRoZSBzaGFyZWQgYWxnb3JpdGhtDQo+IGFsbG93cyBib3Ro
+IGRyaXZlcnMgdG8gY29tcHV0ZSBQTEwgcGFyYW1ldGVycyBjb25zaXN0ZW50bHkgdXNpbmcgdGhl
+IHNhbWUgbG9naWMgYW5kIGlucHV0IGNsb2NrLg0KPiA+ID4NCj4gPiA+IENvLWRldmVsb3BlZC1i
+eTogRmFicml6aW8gQ2FzdHJvIDxmYWJyaXppby5jYXN0cm8uanpAcmVuZXNhcy5jb20+DQo+ID4g
+PiBTaWduZWQtb2ZmLWJ5OiBGYWJyaXppbyBDYXN0cm8gPGZhYnJpemlvLmNhc3Ryby5qekByZW5l
+c2FzLmNvbT4NCj4gPiA+IFNpZ25lZC1vZmYtYnk6IExhZCBQcmFiaGFrYXINCj4gPiA+IDxwcmFi
+aGFrYXIubWFoYWRldi1sYWQucmpAYnAucmVuZXNhcy5jb20+DQo+ID4gPiAtLS0NCj4gPiA+IHY1
+LT52NjoNCj4gPiA+IC0gUmVuYW1lZCBDUEdfUExMX1NUQllfU1NDR0VOX1dFTiB0byBDUEdfUExM
+X1NUQllfU1NDX0VOX1dFTg0KPiA+ID4gLSBVcGRhdGVkIENQR19QTExfQ0xLMV9ESVZfSywgQ1BH
+X1BMTF9DTEsxX0RJVl9NLCBhbmQNCj4gPiA+ICAgQ1BHX1BMTF9DTEsxX0RJVl9QIG1hY3JvcyB0
+byB1c2UgR0VOTUFTSw0KPiA+ID4gLSBVcGRhdGVkIHJlcS0+cmF0ZSBpbiByenYyaF9jcGdfcGxs
+ZHNpX2Rpdl9kZXRlcm1pbmVfcmF0ZSgpDQo+ID4gPiAtIERyb3BwZWQgdGhlIGNhc3QgaW4gcnp2
+MmhfY3BnX3BsbGRzaV9kaXZfc2V0X3JhdGUoKQ0KPiA+ID4gLSBEcm9wcGVkIHJ6djJoX2NwZ19w
+bGxkc2lfcm91bmRfcmF0ZSgpIGFuZCBpbXBsZW1lbnRlZA0KPiA+ID4gICByenYyaF9jcGdfcGxs
+ZHNpX2RldGVybWluZV9yYXRlKCkgaW5zdGVhZA0KPiA+ID4gLSBNYWRlIHVzZSBvZiBGSUVMRF9Q
+UkVQKCkNCj4gPiA+IC0gTW92ZWQgQ1BHX0NTRElWMSBtYWNybyBpbiBwYXRjaCAyLzQNCj4gPiA+
+IC0gRHJvcHBlZCB0d29fcG93X3MgaW4gcnp2MmhfZHNpX2dldF9wbGxfcGFyYW1ldGVyc192YWx1
+ZXMoKQ0KPiA+ID4gLSBVc2VkIG11bF91MzJfdTMyKCkgd2hpbGUgY2FsY3VsYXRpbmcgb3V0cHV0
+X20gYW5kIG91dHB1dF9rX3JhbmdlDQo+ID4gPiAtIFVzZWQgZGl2X3M2NCgpIGluc3RlYWQgb2Yg
+ZGl2NjRfczY0KCkgd2hpbGUgY2FsY3VsYXRpbmcNCj4gPiA+ICAgcGxsX2sNCj4gPiA+IC0gVXNl
+ZCBtdWxfdTMyX3UzMigpIHdoaWxlIGNhbGN1bGF0aW5nIGZ2Y28gYW5kIGZ2Y28gY2hlY2tzDQo+
+ID4gPiAtIFJvdW5kZWQgdGhlIGZpbmFsIG91dHB1dCB1c2luZyBESVZfVTY0X1JPVU5EX0NMT1NF
+U1QoKQ0KPiA+ID4NCj4gPiA+IHY0LT52NToNCj4gPiA+IC0gTm8gY2hhbmdlcw0KPiA+ID4NCj4g
+PiA+IHYzLT52NDoNCj4gPiA+IC0gQ29ycmVjdGVkIHBhcmFtZXRlciBuYW1lIGluIHJ6djJoX2Rz
+aV9nZXRfcGxsX3BhcmFtZXRlcnNfdmFsdWVzKCkNCj4gPiA+ICAgZGVzY3JpcHRpb24gZnJlcV9t
+aWxsaWh6DQo+ID4gPg0KPiA+ID4gdjItPnYzOg0KPiA+ID4gLSBVcGRhdGUgdGhlIGNvbW1pdCBt
+ZXNzYWdlIHRvIGNsYXJpZnkgdGhlIHB1cnBvc2Ugb2YgYHJlbmVzYXMtcnp2MmgtZHNpLmhgDQo+
+ID4gPiAgIGhlYWRlcg0KPiA+ID4gLSBVc2VkIG11bF91MzJfdTMyKCkgaW4gcnp2MmhfY3BnX3Bs
+bGRzaV9kaXZfZGV0ZXJtaW5lX3JhdGUoKQ0KPiA+ID4gLSBSZXBsYWNlZCAqX21oeiB0byAqX21p
+bGxpaHogZm9yIGNsYXJpdHkNCj4gPiA+IC0gVXBkYXRlZCB1NjQtPnUzMiBmb3IgZnZjbyBsaW1p
+dHMNCj4gPiA+IC0gSW5pdGlhbGl6ZWQgdGhlIG1lbWJlcnMgaW4gZGVjbGFyYXRpb24gb3JkZXIg
+Zm9yDQo+ID4gPiAgIFJaVjJIX0NQR19QTExfRFNJX0xJTUlUUygpIG1hY3JvDQo+ID4gPiAtIFVz
+ZWQgY2xrX2Rpdl9tYXNrKCkgaW4gcnp2MmhfY3BnX3BsbGRzaV9kaXZfcmVjYWxjX3JhdGUoKQ0K
+PiA+ID4gLSBSZXBsYWNlZCBgdW5zaWduZWQgbG9uZyBsb25nYCB3aXRoIHU2NA0KPiA+ID4gLSBE
+cm9wcGVkIHJ6djJoX2NwZ19wbGxkc2lfY2xrX3JlY2FsY19yYXRlKCkgYW5kIHJldXNlZA0KPiA+
+ID4gICByenYyaF9jcGdfcGxsX2Nsa19yZWNhbGNfcmF0ZSgpIGluc3RlYWQNCj4gPiA+IC0gSW4g
+cnp2MmhfY3BnX3BsbGRzaV9kaXZfc2V0X3JhdGUoKSBmb2xsb3dlZCB0aGUgc2FtZSBzdHlsZQ0K
+PiA+ID4gICBvZiBSTVctb3BlcmF0aW9uIGFzIGRvbmUgaW4gdGhlIG90aGVyIGZ1bmN0aW9ucw0K
+PiA+ID4gLSBSZW5hbWVkIHJ6djJoX2NwZ19wbGxkc2lfc2V0X3JhdGUoKSB0byByenYyaF9jcGdf
+cGxsX3NldF9yYXRlKCkNCj4gPiA+IC0gRHJvcHBlZCByenYyaF9jcGdfcGxsZHNpX2Nsa19yZWdp
+c3RlcigpIGFuZCByZXVzZWQNCj4gPiA+ICAgcnp2MmhfY3BnX3BsbF9jbGtfcmVnaXN0ZXIoKSBp
+bnN0ZWFkDQo+ID4gPiAtIEFkZGVkIGEgZ2F1cmQgaW4gcmVuZXNhcy1yenYyaC1kc2kuaCBoZWFk
+ZXINCj4gPiA+DQo+ID4gPiB2MS0+djI6DQo+ID4gPiAtIE5vIGNoYW5nZXMNCj4gPiA+IC0tLQ0K
+PiA+ID4gIGRyaXZlcnMvY2xrL3JlbmVzYXMvcnp2MmgtY3BnLmMgICAgICAgfCAyNzggKysrKysr
+KysrKysrKysrKysrKysrKysrKy0NCj4gPiA+ICBkcml2ZXJzL2Nsay9yZW5lc2FzL3J6djJoLWNw
+Zy5oICAgICAgIHwgIDEzICsrDQo+ID4gPiAgaW5jbHVkZS9saW51eC9jbGsvcmVuZXNhcy1yenYy
+aC1kc2kuaCB8IDIxMCArKysrKysrKysrKysrKysrKysrDQo+ID4gPiAgMyBmaWxlcyBjaGFuZ2Vk
+LCA0OTIgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkgIGNyZWF0ZSBtb2RlDQo+ID4gPiAx
+MDA2NDQgaW5jbHVkZS9saW51eC9jbGsvcmVuZXNhcy0gcnp2MmgtZHNpLmgNCj4gPiA+DQo+ID4g
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvcmVuZXNhcy9yenYyaC1jcGcuYw0KPiA+ID4gYi9k
+cml2ZXJzL2Nsay9yZW5lc2FzL3J6djJoLWNwZy5jIGluZGV4DQo+ID4gPiA3NjFkYTNiZjc3Y2Uu
+LmQ1OTBmOWY0NzM3MSAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvY2xrL3JlbmVzYXMvcnp2
+MmgtY3BnLmMNCj4gPiA+ICsrKyBiL2RyaXZlcnMvY2xrL3JlbmVzYXMvcnp2MmgtY3BnLmMNCj4g
+PiA+IEBAIC0xNCw5ICsxNCwxMyBAQA0KPiA+ID4gICNpbmNsdWRlIDxsaW51eC9iaXRmaWVsZC5o
+Pg0KPiA+ID4gICNpbmNsdWRlIDxsaW51eC9jbGsuaD4NCj4gPiA+ICAjaW5jbHVkZSA8bGludXgv
+Y2xrLXByb3ZpZGVyLmg+DQo+ID4gPiArI2luY2x1ZGUgPGxpbnV4L2Nsay9yZW5lc2FzLXJ6djJo
+LWRzaS5oPg0KPiA+ID4gICNpbmNsdWRlIDxsaW51eC9kZWxheS5oPg0KPiA+ID4gICNpbmNsdWRl
+IDxsaW51eC9pbml0Lmg+DQo+ID4gPiAgI2luY2x1ZGUgPGxpbnV4L2lvcG9sbC5oPg0KPiA+ID4g
+KyNpbmNsdWRlIDxsaW51eC9tYXRoLmg+DQo+ID4NCj4gPg0KPiA+DQo+ID4gPiArICAgICByZXEt
+PnJhdGUgPSBESVZfUk9VTkRfQ0xPU0VTVF9VTEwoZHNpX2RpdmlkZXJzLT5mcmVxX21pbGxpaHos
+DQo+ID4gPiArIE1JTExJKTsNCj4gPiA+ICsNCj4gPiA+ICsgICAgIHJldHVybiAwOw0KPiA+ID4g
+K307DQo+ID4gPiArDQo+ID4gPiArc3RhdGljIGludCByenYyaF9jcGdfcGxsZHNpX2Rpdl9zZXRf
+cmF0ZShzdHJ1Y3QgY2xrX2h3ICpodywNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgcmF0ZSwNCj4gPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgcGFyZW50X3JhdGUpIHsNCj4gPiA+
+ICsgICAgIHN0cnVjdCByenYyaF9wbGxkc2lfZGl2X2NsayAqZHNpX2RpdiA9IHRvX3BsbGRzaV9k
+aXZfY2xrKGh3KTsNCj4gPiA+ICsgICAgIHN0cnVjdCByenYyaF9jcGdfcHJpdiAqcHJpdiA9IGRz
+aV9kaXYtPnByaXY7DQo+ID4gPiArICAgICBzdHJ1Y3Qgcnp2MmhfcGxsZHNpX3BhcmFtZXRlcnMg
+KmRzaV9kaXZpZGVycyA9ICZwcml2LT5wbGxkc2lfZGl2X3BhcmFtZXRlcnM7DQo+ID4gPiArICAg
+ICBzdHJ1Y3QgZGRpdiBkZGl2ID0gZHNpX2Rpdi0+ZGRpdjsNCj4gPiA+ICsgICAgIGNvbnN0IHN0
+cnVjdCBjbGtfZGl2X3RhYmxlICpjbGt0Ow0KPiA+ID4gKyAgICAgYm9vbCBkaXZfZm91bmQgPSBm
+YWxzZTsNCj4gPiA+ICsgICAgIHUzMiB2YWwsIHNoaWZ0LCBkaXY7DQo+ID4gPiArDQo+ID4gPiAr
+ICAgICBkaXYgPSBkc2lfZGl2aWRlcnMtPmNzZGl2Ow0KPiA+ID4gKyAgICAgZm9yIChjbGt0ID0g
+ZHNpX2Rpdi0+ZHRhYmxlOyBjbGt0LT5kaXY7IGNsa3QrKykgew0KPiA+ID4gKyAgICAgICAgICAg
+ICBpZiAoY2xrdC0+ZGl2ID09IGRpdikgew0KPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgIGRp
+dl9mb3VuZCA9IHRydWU7DQo+ID4gPiArICAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQo+ID4g
+PiArICAgICAgICAgICAgIH0NCj4gPiA+ICsgICAgIH0NCj4gPiA+ICsNCj4gPiA+ICsgICAgIGlm
+ICghZGl2X2ZvdW5kKQ0KPiA+ID4gKyAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsNCj4gPg0K
+PiA+IFRoaXMgY2hlY2sgY2FuIGJlIGRvbmUgaW4gZGV0ZXJtaW5lIHJhdGUgYW5kIGNhY2hlIHRo
+ZSBkaXZpZGVyPz8NCj4gPg0KPiBPaywgSSdsbCBkcm9wIHRoaXMgY2hlY2sgYXMgdGhlIGRpdmlk
+ZXIgaXMgYWxyZWFkeSBjYWNoZWQuIFRoZSBmb3IgbG9vcCBhYm92ZSBpcyB0byBkZXRlcm1pbmUg
+dGhlIHZhbA0KPiB3aGljaCBpcyB1c2VkIGJlbG93IHRvIHByb2dyYW0gdGhlIHJlZ2lzdGVycy4N
+Cg0KSWYgeW91IGFyZSBjYWNoaW5nIGFjdHVhbCBkaXZpZGVyIHZhbHVlLCB0aGVuIHRoZSBjaGVj
+ayBpcyBub3QgcmVxdWlyZWQgaGVyZS4NCk90aGVyd2lzZSB0aGUgYWJvdmUgY29kZSBpcyBmaW5l
+Lg0KDQpBc3N1bWUgdGhlIGNzZGl2IHlvdSBmb3VuZCwgaGF2ZSBubyBjb3JyZXNwb25kaW5nIG1h
+dGNoIGluIHRoZSB0YWJsZS4NCg0KQ2hlZXJzLA0KQmlqdQ0K
 
