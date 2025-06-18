@@ -1,159 +1,253 @@
-Return-Path: <devicetree+bounces-187154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CEF9ADEE14
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:41:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D625ADEE16
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:41:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F04CE7ABBEA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:39:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D6D61BC0F91
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B5D2E9759;
-	Wed, 18 Jun 2025 13:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54BD2E9EA6;
+	Wed, 18 Jun 2025 13:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="nHEB9hOW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MfTrAJhw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21BF62E92CF
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3E027E1C3;
+	Wed, 18 Jun 2025 13:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750254064; cv=none; b=p1PJuiVf6TJZJege3R+a+mq9L8RwEWV4UaXjg5Q+2qJ8rRztsJUbTuuWslE2ticnTUkE1Myrk0S1jYM8K0j5thMF+ee+ZFqOE/BTL0NVi7Gxu6PguL76kdAZHZGoqurNqRHx/Bn2J9Rd8oBkTc13puf86LndF7K9tmYBb3VdsX0=
+	t=1750254086; cv=none; b=tU+UegyctoCQ9R4C1hTShA9kISfjooNkXEhDhEi5DdoxCa99jnb/av3rTbpoFdsaSiokM/GS5ddQz70aCVn4gz2XkQ1XQW1Ino88rqbYgkN2pcTPchrf//70qnk0yjpGlp0tjik9/soAOyVGNPzzd3UREfSmp6D+yFnhDSWr358=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750254064; c=relaxed/simple;
-	bh=mF4mVKSNr32bBZcSBmpXcngYOZ/LgBHUibToT5Tssxg=;
+	s=arc-20240116; t=1750254086; c=relaxed/simple;
+	bh=CEYh2EGDMemFu0Z0I7I3GNzll/9NI6bCffokbjIHIqY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E+jFAYvwQidXMDHjwgdRg7twKmTe2+h0zarPXH/KSRuhP3rsVBXhrnc4riOqdc2UXtB6vFyE2g67uiIZa64jWoTFYrF0ytflPhjld9ad5LOVpW5y7bThqC7MVaKINxenzlKj52W8z5G5Ylcq4yxH6k0vCjjMRfEaXzV/aZjCwcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=nHEB9hOW; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-553b9eb2299so756821e87.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:41:02 -0700 (PDT)
+	 To:Cc:Content-Type; b=g2sw//gXBvMjEkPsqCvnjTvU/Zh+UDrqnWlnKP+x/pmbFrUaU0ZrTSziLjcTBe0SBJMkuFB+EjAoNZRXAyrvPj4a66zldZsJtBj8Sqg/08AsREPXnkHCac8wKWiIShOqTupEd2FH8vqYkYPmsDnvePFL/V2TCRTATgI+RBqjqE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MfTrAJhw; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-451d41e1ad1so59329815e9.1;
+        Wed, 18 Jun 2025 06:41:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750254061; x=1750858861; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1750254083; x=1750858883; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GrPSIGFdDvH/sqDpr0dCl/uxSDMMDHtGVw2V0lw2wqI=;
-        b=nHEB9hOWURE+jc8l40SJEp6hEaoOhX2l3skJoM11cUj6/kG4XFrGh/8ei8bjjfwdrv
-         PQEEJ4nKAuaTjH1gPZ2w3Tqrg0NjeoIGZGpXY8muFXJxGpPdmXxsWuRwqSRQ9juuBeOa
-         vSc9+fvacB0U2rpK5avxeGI5oCcsNGFXjsyxpdT05bXp1/XhJsIpfMvubZYynpRDiZ49
-         APDtdaWnchWXj99KH5kKPCwL789bz5cjCOql9Th405ajbEVJb6c1CL1RtyTBJS1qT2uY
-         Qp1mS9ZCbNB7UrwMTm81ttSHL2zH5HdORbDZxW5FHtZTq7zHuYYf6jLJty8hKIYT3y9/
-         FFKQ==
+        bh=A4r/Z/co7bJzdl9G8rEsruuUdWK6DZRX5ZsowhwPAFI=;
+        b=MfTrAJhw3AKuTfXot8rBjzZAmwKnLntf6lQyFPI94K9oTC96Qtfy5KHMx5uf+gGuCh
+         ITwVR4S40Ciq6dJ+yKx40jUgssbIOGRI65YE0yEcEknafsDuiL0AvKxxWrlYLHTbQAJU
+         CoarVFEymOFooCHBRvSpDACG2mutNn+L9Sf9i49QDCrcxVRokgrVJkBGfUXVegZQZZFP
+         GkCK4ewwG6XktbIT9n96vlIOVExnwIHnq08e/RZRiY6y4TAEny327SiF+NVT43sH7o0B
+         pw9CnxT0VmbyTl5hqnb0KUSfLzXM2GAsMihZ2ZFl0ostPCokKRAMPD8t6eDbuaAyyLJC
+         WDKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750254061; x=1750858861;
+        d=1e100.net; s=20230601; t=1750254083; x=1750858883;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GrPSIGFdDvH/sqDpr0dCl/uxSDMMDHtGVw2V0lw2wqI=;
-        b=pHowy47ByMUgEDVRTllsJA2X39wx5rrHlkg/w2hGgvT2MI7u2Flw5NsW5ltchld6Gn
-         rOhxvcfs/+/enoZm+nbPPq5p5brUNGvjKYhzekoQsxj1ZRrZQNojP6VAbmVPmu+4BnxM
-         C1JFAdFYeYYX+2ekO5DrYjD2fBEYMBytiBPu3U0E3aiK+0jhwYC6QwvxAv9IoAItxNy/
-         e5/PQNrmz8LB2vQSBYNPRXbzFj6J8IE3z0aDdiN0xl49qXdRqc6rMqjR0GwodX3ZTIlX
-         MhLum5oC6RwV1KzZ4OUx4Keb40rRHeEYJ1BOhV3RHXtXEUWD+7xRiVSU6ZvN1OlW5X+Q
-         XQWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGwd+M4d5rmUtSGcVFJJq6Qw53evkL07b8LD0bd5Ci1lTE4C4XLzkbZwQg0J9UK7jNV44PP2eDIAfm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzATIOtv4isUaUGJiZENDEH0+Z/qOBL1gITsDamjnJRk/LOMGpB
-	C2NficfMxzHDmTrR7lvNGOcExmxXX+uuKXadvXbBVPdRiihcLCNZ3/G1m3YUJvawC162fq5iRXm
-	wvuITeUIVOHmQs2KT6+WpJe677+QTPoc3yTTwk14wrw==
-X-Gm-Gg: ASbGncvz0TyKrJ49hyg/3rs0PiWyoWZlHULOxCMlEVJ+vPgws9iQL/FxoQalOziiOyC
-	OBrqM5h0v0OvYB+PEoYeChw10JUqeGmbLkv8W0DGt5KLD4o80Wl7lINg599J5Bq12aziMDYgmYC
-	llB2vTldP6NCpf+sh/RYHKqFlxkm2FMDGcD57kgI+XqOH3J9FOpsjCL0NHo9rJEkKrfN3e4skvw
-	Q==
-X-Google-Smtp-Source: AGHT+IFaBv4NoyscEiYMrPy3nG50l45WGg0pb5gyw3nSvWsy9OTHWeanUensQSBBIwLRpHNCc71NZbTtG782jD+L4SY=
-X-Received: by 2002:a05:6512:150b:10b0:553:d884:7933 with SMTP id
- 2adb3069b0e04-553d8847a54mr20662e87.6.1750254061265; Wed, 18 Jun 2025
- 06:41:01 -0700 (PDT)
+        bh=A4r/Z/co7bJzdl9G8rEsruuUdWK6DZRX5ZsowhwPAFI=;
+        b=teKoCvYLJum8dPVTDbjiPES8tFPFvy3AKQTvsh0s6HJVsrnBH2sBokEH5F1+QLweCM
+         acUqAdMUE7PO9SVxlApSGrqDTUIFsEnf+lC+8bDgbpy/ODhAsLJHEWiMyGjtr95gAeSG
+         HkrWfyi8GllIQBlbqvm2KD/2pUX2hEUoWJhX6wkc40gZ+i+SdGOnGp6N5rvq1oXK4PwM
+         J+lwo8fa1SsZWL8ZYNOMssVEd2BQrO9B8zslR+xiLWFGFqm6w9cCQ8CuO8oxEI6TjdPO
+         4CALJwzRhZTfKRZ6YmLFC7ap7wOJaNN0ZJm9DTRWoVVOxZfbwBypAyTUk9j3WF/1roI2
+         8skg==
+X-Forwarded-Encrypted: i=1; AJvYcCWwha1a6SnpCZD92r557uDuH9kmpmga83t8VSJOTlRJqBaAcly29d9Tqcf6aKx0938Rx5RHmQsKMDZZumIDpQwjf6s=@vger.kernel.org, AJvYcCXD6/W+/qJfqop2R0JF7SDYAOJWATdvU04uLqRghfThcKa/Uk1jr0HIOa3luXotoe/oj9oYI9sSiQwo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC+SdrRfvqO+0BAciphXbmhiQiZ+hvCHCGXwdpsGoglsSaP4dU
+	vV7H8bYd+dOUJsNBEFVsKVSXQkbw+9Pybg0CQVPs7YAXnnzdSIQEbAKElmZ9ciYZGHEAeSt+PhD
+	Wi1XYPtfzQpYm9QrBssjO6qZynw9hJDad1nXRxTc=
+X-Gm-Gg: ASbGncs58DTdgX4POae3xvV3CyPHuFhMs55qMJ3/Pke0btMf/azOyLOdW/13oFWBtjf
+	/Dk13PLGAYBFsJ6e+zSHMinzu2qHx/QotlfdmlXQ0sErQtM2rymbIOsG9GONtUixthdtlkm+Zyu
+	ciEJOBwQ7nuciF9WO9cLPFQQzA1g3UTCxkR8+h8dXsI3i88A==
+X-Google-Smtp-Source: AGHT+IF3a1W/YcP1F7JT22xY0Nxjwf+fN0+0co+u3Vb3xcQNDP8N6L2psLCoGrOVFxMdxzVO5jsT9ArmZnF8x54gFgk=
+X-Received: by 2002:a05:600c:638d:b0:43b:ca39:6c75 with SMTP id
+ 5b1f17b1804b1-453449cb47emr138023835e9.16.1750254082891; Wed, 18 Jun 2025
+ 06:41:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250618102227eucas1p26e8968805092c3ce0ecbe84e9724a6e2@eucas1p2.samsung.com>
- <20250618-apr_14_for_sending-v5-0-27ed33ea5c6f@samsung.com> <20250618-apr_14_for_sending-v5-2-27ed33ea5c6f@samsung.com>
-In-Reply-To: <20250618-apr_14_for_sending-v5-2-27ed33ea5c6f@samsung.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 18 Jun 2025 15:40:50 +0200
-X-Gm-Features: AX0GCFv9aAVOTlnyOx9_bS0PZ0O5sUFY83rUOThbfDgpmQkEdj-PgI3MnYHtNsE
-Message-ID: <CAMRc=Mdv24kKJRKMyp2zpNtumZLV5QN=KvvENr8GXfORAC9Cpw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/8] dt-bindings: firmware: thead,th1520: Add resets
- for GPU clkgen
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
-	Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
+References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
+ <20250311113620.4312-2-biju.das.jz@bp.renesas.com> <TYCPR01MB11332F064115080582332B78986AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <CAMuHMdVy3B+i2p6unkX-n=7AYCfP5B8sW7F9GJi7URcvniGA2A@mail.gmail.com>
+ <TYCPR01MB1133206083EC0249A827261EB86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <CAMuHMdUyY8SsUQEZwxdCK-ggPuYy8L_WwnUgq3Cj7oYiTcyNTQ@mail.gmail.com>
+ <TY3PR01MB11346123B74D86590C0F8B9CD86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CAMuHMdWevyJ8Z4YWYx0rr=_TD0OTywbkPfNwRcw5k=yDV-i2Ow@mail.gmail.com>
+ <CA+V-a8t1siG17NKna-ACUzCoXFTOyVxuLonTVSRLnNq1ie3iTg@mail.gmail.com>
+ <CAMuHMdXw+mcj-P=Zm4R8WF0PxogPLfFCbALBRFN9Wn8UEo1FkQ@mail.gmail.com>
+ <CA+V-a8u4PgttE0LaH7M=-5Br400sNE1gzk_a3L_9jfXZgCLd-Q@mail.gmail.com> <CAMuHMdVQ7pK+zvZm6MHsfGRctyOSurQpDYJztSfD6P1gvuw_RA@mail.gmail.com>
+In-Reply-To: <CAMuHMdVQ7pK+zvZm6MHsfGRctyOSurQpDYJztSfD6P1gvuw_RA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 18 Jun 2025 14:40:55 +0100
+X-Gm-Features: Ac12FXynv0gn5llZkecr3UcxgUv02hhBomduSmHgKeLvJFmPxzHCX4aOfHA8464
+Message-ID: <CA+V-a8tG4_2bXJ9H=FPT-Qa8zcgsE_5vkVQRj-ONDna5n4Ptgw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Stephen Boyd <sboyd@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"biju.das.au" <biju.das.au@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 18, 2025 at 12:22=E2=80=AFPM Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
->
-> Extend the TH1520 AON to describe the GPU clkgen reset line, required
-> for proper GPU clock and reset sequencing.
->
-> The T-HEAD TH1520 GPU requires coordinated management of two clocks
-> (core and sys) and two resets (GPU core reset and GPU clkgen reset).
-> Only the clkgen reset is exposed at the AON level, to support SoC
-> specific initialization handled through a dedicated auxiliary power
-> sequencing driver. The GPU core reset remains described in the GPU
-> device node, as from the GPU driver's perspective, there is only a
-> single reset line [1].
->
-> This follows upstream maintainers' recommendations [2] to abstract SoC
-> specific details into the PM domain layer rather than exposing them to
-> drivers directly.
->
-> Link: https://lore.kernel.org/all/816db99d-7088-4c1a-af03-b9a825ac09dc@im=
-gtec.com/ - [1]
-> Link: https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@kernel=
-.org/ - [2]
->
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml | 7 +++=
-++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.=
-yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> index bbc183200400de7aadbb21fea21911f6f4227b09..3365124c7fd4736922717bd31=
-caa13272f4a4ea6 100644
-> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> @@ -32,6 +32,13 @@ properties:
->      items:
->        - const: aon
->
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: gpu-clkgen
-> +
->    "#power-domain-cells":
->      const: 1
->
->
-> --
-> 2.34.1
->
+Hi Geert,
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, Jun 18, 2025 at 1:59=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, 18 Jun 2025 at 14:06, Lad, Prabhakar <prabhakar.csengg@gmail.com>=
+ wrote:
+> > On Wed, Jun 18, 2025 at 8:03=E2=80=AFAM Geert Uytterhoeven <geert@linux=
+-m68k.org> wrote:
+> > > On Tue, 17 Jun 2025 at 23:05, Lad, Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> > > > On Mon, Mar 31, 2025 at 7:25=E2=80=AFPM Geert Uytterhoeven <geert@l=
+inux-m68k.org> wrote:
+> > > > > On Mon, 31 Mar 2025 at 17:33, Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > > > > > > On Mon, 31 Mar 2025 at 16:34, Biju Das <biju.das.jz@bp.renesa=
+s.com> wrote:
+> > > > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mon, 3=
+1 Mar 2025
+> > > > > > > > > at 15:54, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > > > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com> Document =
+support for
+> > > > > > > > > > > the Expanded Serial Peripheral Interface (xSPI) Contr=
+oller in
+> > > > > > > > > > > the Renesas RZ/G3E
+> > > > > > > > > > > (R9A09G047) SoC.
+> > > > > > > > > > >
+> > > > > > > > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > > > > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > > > > >
+> > > > > > > > > > > --- /dev/null
+> > > > > > > > > > > +++ b/Documentation/devicetree/bindings/memory-contro=
+llers/renes
+> > > > > > > > > > > +++ as,r
+> > > > > > > > > > > +++ zg3e
+> > > > > > > > > > > +++ -xspi.yaml
+> > > > > > > > >
+> > > > > > > > > > > +    spi@11030000 {
+> > > > > > > > > > > +        compatible =3D "renesas,r9a09g047-xspi";
+> > > > > > > > > > > +        reg =3D <0x11030000 0x10000>, <0x20000000 0x=
+10000000>;
+> > > > > > > > > > > +        reg-names =3D "regs", "dirmap";
+> > > > > > > > > > > +        interrupts =3D <GIC_SPI 228 IRQ_TYPE_EDGE_RI=
+SING>,
+> > > > > > > > > > > +                     <GIC_SPI 229 IRQ_TYPE_EDGE_RISI=
+NG>;
+> > > > > > > > > > > +        interrupt-names =3D "pulse", "err_pulse";
+> > > > > > > > > > > +        clocks =3D <&cpg CPG_MOD 0x9f>, <&cpg CPG_MO=
+D 0xa0>,
+> > > > > > > > > > > +                 <&cpg CPG_MOD 0xa1>, <&cpg CPG_MOD =
+0xa1>;
+> > > > > > > > > >
+> > > > > > > > > > On the next version I am going to update spix2 clk as <=
+&cpg
+> > > > > > > > > > CPG_CORE R9A09G047_SPI_CLK_SPIX2>
+> > > > >
+> > > > > According to the RZ/G3E clock system diagram, (the parent of) clk=
+_spi
+> > > > > is derived from (the parent of) clk_spix2, not the other way arou=
+nd?
+> > > > > So you can model clk_spi as a fixed divider clock with parent clk=
+_spix2
+> > >                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^^^^
+> [A]
+>
+> > > > > and factor two.  I.e. provide a new core clock R9A09G047_SPI_CLK_=
+SPI
+> > > > > instead of your proposed R9A09G047_SPI_CLK_SPIX2?
+> > > > >
+> > > > With this approach when R9A09G047_SPI_CLK_SPI is used as a core clo=
+ck
+> > > > and XSPI node is disabled the clk_summary reports the core clock is=
+ ON
+> > > > (while it's actually OFF).
+> > >
+> > > Is that a real problem, or is it purely cosmetic?
+> > Just cosmetic tbh as despite being a MOD clock we have to define it as
+> > a core clock in the DT.
+> >
+> > > > Can we maybe use a unused ON index and ON bit for example 25, 0 (ie
+> > > > 0x190) and represent this is a module clock for example for the
+> > > > spi_clk_spix2 clock and use this in the DT and let the CPG core cod=
+e
+> > > > handle such turning ON/OF the module clocks based on the enable cou=
+nt
+> > > > which will be handled internally in the driver?
+> > >
+> > > Please do not use "unused" module clock bits.  These do not describe
+> > > the hardware, and may actually exist in the hardware (try disabling
+> > > all undocumented module clocks, and observe what fails...).
+> > >
+> > Agreed, "unused" module clock bits were only used as a dummy. The
+> > read/write operations were only performed on the actual bits which are
+> > documented in the HW manual.
+> >
+> > > If spi_clk_spi really must show being disabled, you can change it
+> > > from a fixed divider clock (which does not implement .{en,dis}able())
+> > > to a custom fixed divider clock that does implement .{en,dis}able()
+> > > and keeps track internally of the fake state, or even looks at the
+> > > state of spi_clk_spix2?
+> > >
+> > Good point. Maybe instead of implementing the dummy .{en,dis}able() I
+> > will implement the is_enabled() + (clk_fixed_factor_ops). The
+> > is_enabled() will take care of reading from the MON bits and report
+> > the actual state of the clock.
+> >
+> > > However, upon second look, spi_clk_spi is not implemented as a fixed
+> > > divider clock with parent clk_spix2, as described above:
+> > >
+> > >       .smux2_xspi_clk1     0  0  0 320000000  0  0  50000  Y
+> > >          .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
+> > >             spi_clk_spix2  0  0  0 40000000   0  0  50000  N
+> > >             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
+> > >          spi_aclk          0  0  0 200000000  0  0  50000  N
+> > >          spi_hclk          0  0  0 200000000  0  0  50000  N
+> > >       .smux2_xspi_clk0     0  0  0 533333333  0  0  50000  Y
+> > >
+> > > Instead, they both use pllcm33_xspi as the parent clock.
+> > > Apparently I missed that in the review of RZ/G3E XSPI clock support.
+> > > The changelog for that patch does describe the correct topology?
+> > >
+> > The topology is correct for RZ/G3E, spi/spix2 are sourced from
+> > pllcm33_xspi divider and there is a divider (/2) for spi.
+>
+> Both spi_clk_spix2 and spi_clk_spix have .pllcm33_xspi as
+> immediate parent.
+>
+> [A] describes something different:
+>
+>     .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
+>         spi_clk_spix2  0  0  0 40000000   0  0  50000  N
+>             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
+>
+> I.e. if spi_clk_spix2() is disabled, spi_clk_spi() is disabled, too.
+>
+Okay, thanks - got it.
+
+To clarify, to implement spi_clk_spi core clock as a parent of
+spi_clk_spix2 I will need to implement some sort of mechanism which
+registers (late) core clks after core clks and module clks are
+registered as spi_clk_spix2 is a module clock.
+
+Cheers,
+Prabhakar
 
