@@ -1,83 +1,92 @@
-Return-Path: <devicetree+bounces-187285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52D2ADF567
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 20:02:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3250ADF5A2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 20:16:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8DDC17A7F0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:59:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FE721732D1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 18:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D15285CA7;
-	Wed, 18 Jun 2025 17:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CCDC3085D3;
+	Wed, 18 Jun 2025 18:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JQ/X910X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wid0jK4Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B11B3085BA;
-	Wed, 18 Jun 2025 17:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74EA528DB62
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 18:16:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750269568; cv=none; b=Pil1+dpMX0rQeyl18p3J/ZuM6LFpCft8pMd6Ban3vVmAu+uYIZGYZeHdzj8QqcCMI8PotVWTVRPeQt57RlMv8DI40l/vgBSMd5pVPkFWO/lI+GQoqxqQ1eGdaLrGFkFhD5MWsxxug9dRfvhOTuFscJVdfgwWxaXKRrQqFv6s/HU=
+	t=1750270598; cv=none; b=pVbSiQ618IEXIInPORwsumF1IBP1FMQgLz7i6XumGesX9a6mNQVroK2Gcv3irp19CjrO7DN/ZpBhuQtuw3BSViS067C8+u4DkFjViRZLaPWH/ypRc7sHDRFeznhd7dTh9i/HJmKsSY3aDXDhTnCzQV3tLOBaBjM10OJG+VH7tgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750269568; c=relaxed/simple;
-	bh=VsQ9mjiyc4dnTIlr6g4DfKjP8V0Y85rIOMAAUGcigOs=;
+	s=arc-20240116; t=1750270598; c=relaxed/simple;
+	bh=4Fd9qcUJXzQbN+9KTtCF1fqWdiXzbwzF6B966ci6XRI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XwTGFm82xCQ5prPUI4UdUCVmD6u97Sg8IArm4IHwLKexhqO+jwQ7yVArfnC58U0hg+EcWbbC1cw9DdhbnHHNEMHyOKyQf/FrpvCgM2DLmoPPz6IHa8eJl/Im429IPOF3y68Dz7CIkbJhL9WRWGFxlk3xxLkKaAyiRpKD3tD0Mww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JQ/X910X; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750269565; x=1781805565;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VsQ9mjiyc4dnTIlr6g4DfKjP8V0Y85rIOMAAUGcigOs=;
-  b=JQ/X910XcsAL1KSJ3KZQSO/u4W+jTqWZ30TXsI+zoEQZcxr6hkh+N5jy
-   7Soi5lgb494Ea5AY7jeEu+wWyXZQHLWO2ZlpKNXR88+wj1x/KCwZT60nF
-   5hndzq1pCMv50sPdr8yOdPKHPT3Ux3HDzYhKrcwG31JUzv8PcA7AOSFlb
-   9u5OwvgixAP1wv/jdVMB13cN2FiR31FwQLYFTcney4yMqWXB11i9xLQX3
-   lvY/SzdJ2jWoCs8zAj12EYbegIwisSfLdSmS/ZVoA5o7o/Nw6gJDZ3gjA
-   unPwJi7L1bSYyFJ1ovDM9eRL21tabH7BA+t3BN6kgb5G2yswbkTFyf/IC
-   w==;
-X-CSE-ConnectionGUID: nDPhsa4oRK6iKBy7txvr5g==
-X-CSE-MsgGUID: 0oQedp24QTCYeOrK8OynyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="51734706"
-X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; 
-   d="scan'208";a="51734706"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2025 10:59:25 -0700
-X-CSE-ConnectionGUID: ulQXaGOQTyCSlh6Kla1M5w==
-X-CSE-MsgGUID: 4AskfPP0Rc6Mp7Knk70Z+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,246,1744095600"; 
-   d="scan'208";a="150654595"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2025 10:59:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uRx48-00000007okJ-279d;
-	Wed, 18 Jun 2025 20:59:16 +0300
-Date: Wed, 18 Jun 2025 20:59:16 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: oe-kbuild@lists.linux.dev, Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, brgl@bgdev.pl, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
-Message-ID: <aFL-dLs5EQsde8Cq@smile.fi.intel.com>
-References: <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
- <d6ae8122-ff38-4fca-8e02-f27c7ac2ccd8@suswa.mountain>
+	 Content-Type:Content-Disposition:In-Reply-To; b=s8oUMyTPsefwUFKJHRw4bu4Ks3XU9iiVIWbUXMFMig3C1ggfGr82ONm10yPDHzvQSK+Q3gcpmoBeV1637fvKCOy3cR8RDpD1sROixvqFqrcdiiDIIOpNEFxXXaft6FFB7HknNbQexFKv8yAwduu/LymbpM9IgKXSn2jHFTymCRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wid0jK4Q; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-60f0a92391bso3643370eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 11:16:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750270595; x=1750875395; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lQ6KRNqHtUH9Gf6fw/A7PLcOlEK5Gn0mWYnHJo+61Ac=;
+        b=wid0jK4Q15Vl/kw4kZKo7qejb44EIxGfESRFu6tffrMzE2exUJ6vtd1TQjIN+a49HH
+         FPWBBAUbGVT0/6aKrHPY68p/dajy468RNMNnCnE8qhmCjdvLcF1d+IdJO+y4NnN9kwE1
+         3RO8N5hKPqhhuFbL7zyTtQ1WLKHnWE/nqIIGB4u6g5N7oVSBJSio4RUTWh4AL4rQncP+
+         FuXNB71wtpDaMWMTAUy99HRxRrToWljSkN9MpXMTfZvvfgff8Ow1RAno42NJREY84zO+
+         GCR7/L3aqB9qmH9rD+uSWHYo6xQvvjBTxwkD8EpFXrctx/nIiXv7x39wn5J64mdplqSB
+         4Hew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750270595; x=1750875395;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lQ6KRNqHtUH9Gf6fw/A7PLcOlEK5Gn0mWYnHJo+61Ac=;
+        b=bdRXPF4YARA2tJWe+/eumIX0ScgJL5088KKT8TR2i9BS1XVsQGDIwCScpaG502v+jx
+         j4NiMYvWQkRsov3cUQlM2ytV/vJqI4wl2rEr4rIt9FlFAWbvseT0lWEQcPLK9bgr0WNE
+         OLuqHOiTi/iHTtGvFyhocwbw056k9vLbkjWiXvAo5q3+wvMpWhBGQkJJLr2UfV+LfTCY
+         6eMAjMIyUb0wzv7G7Ph7kN2MFe14g6BQvOTTsjrx6h89L9bB/m21sPvzm2W26ZVI8WAs
+         I3OLytoO5Y2lWri3292jU/HboZP+Fqyh5vde2V7IPKQYNdelpeQAF5K5ENrwAXZ9JQ1/
+         rpBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDqy3ywhkdAZ24pbrKd5UpuJlCuKklODI5nbV78D2eFQAskia+qhDh0rjnlyeo4qs6BZvt2MpBqHjx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyToyIN9RAPK+3SBj0VCtMorgigg8nZK4VrS7dr+sbE7Ypu9/Em
+	zKIseBXFx3PCHd3aAyXoQo+hi+liJ9ypGnNgb8Z/3V8u+0orRq8YAatYAygEU//+Z8k=
+X-Gm-Gg: ASbGncsMWtR/I8LtJbJ6YksGkcYyg+6wM9qQ3gvT1WT36s3Z4odoUAS+GU9Lx7g1t19
+	iKbkbi5KCRPo0GjuXMsOFmSCr+Ad9SOnnoX0Wujh0RjbR66+TbpOtXsVICSyaQEHNolWhw6poJJ
+	Z+G7baxaqYU6wvtw6Ek7vzWSGN4DgkDfxaf2LK90m/Aeuo6TdkRGOLe7iSYLtNiH7A9awH8L7a6
+	jw8epCPtO4KOk0RbgacjFeNFSWvo+FDn2J063/lbktdaz+66GULGiujqySkr37T2bqaavc4Forf
+	o2X4kNnBCCbWHNXwHxzl7zFkKbH42zKXbC3SXa1s+VlrekKvvc9hSX7DNa2DEaFof/PduQ==
+X-Google-Smtp-Source: AGHT+IERtISn8EPb8IizUWIQkj9b9iJsEPiQd/pV7ijZ/mH9QjGYp3xZSAl/4Lp/uwu1uArVd8eRSg==
+X-Received: by 2002:a05:6820:1c8e:b0:611:3eb5:7272 with SMTP id 006d021491bc7-6113eb58a0amr3281471eaf.0.1750270595379;
+        Wed, 18 Jun 2025 11:16:35 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:1b3b:c162:aefa:da1b])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61108f0b2fasm1471880eaf.30.2025.06.18.11.16.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 11:16:34 -0700 (PDT)
+Date: Wed, 18 Jun 2025 21:16:32 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
+ using power-domain-map
+Message-ID: <e463a278-7e6e-4287-9093-42d0a0d365d2@suswa.mountain>
+References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
+ <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
+ <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
+ <7hsejzp4xg.fsf@baylibre.com>
+ <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
+ <7hcyb1os9y.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,78 +95,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d6ae8122-ff38-4fca-8e02-f27c7ac2ccd8@suswa.mountain>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <7hcyb1os9y.fsf@baylibre.com>
 
-On Wed, Jun 18, 2025 at 08:37:53PM +0300, Dan Carpenter wrote:
-> Hi Marcelo,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/dt-bindings-iio-adc-Add-AD4170/20250611-101842
-> base:   4c6073fec2fee4827fa0dd8a4ab4e6f7bbc05ee6
-> patch link:    https://lore.kernel.org/r/48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt%40analog.com
-> patch subject: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
-> config: powerpc-randconfig-r072-20250613 (https://download.01.org/0day-ci/archive/20250614/202506140009.GdV0BtKr-lkp@intel.com/config)
-> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> | Closes: https://lore.kernel.org/r/202506140009.GdV0BtKr-lkp@intel.com/
-> 
-> smatch warnings:
-> drivers/iio/adc/ad4170.c:1181 ad4170_parse_adc_channel_type() warn: passing zero to 'dev_err_probe'
-> 
-> vim +/dev_err_probe +1181 drivers/iio/adc/ad4170.c
-> 
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1170  static int ad4170_parse_adc_channel_type(struct device *dev,
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1171  					 struct fwnode_handle *child,
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1172  					 struct iio_chan_spec *chan)
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1173  {
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1174  	int ret, ret2;
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1175  	u32 pins[2];
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1176  
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1177  	/* Parse pseudo-differential channel configuration */
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1178  	ret = fwnode_property_read_u32(child, "single-channel", &pins[0]);
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1179  	ret2 = fwnode_property_read_u32(child, "common-mode-channel", &pins[1]);
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1180  	if (!ret && ret2)
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10 @1181  		return dev_err_probe(dev, ret,
->                                                                                           ^^^
-> ret is zero, so this returns success.  s/ret/ret2/.
-> 
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1182  			"single-ended channels must define common-mode-channel\n");
+On Wed, Jun 18, 2025 at 10:48:09AM -0700, Kevin Hilman wrote:
+> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+> index 88819659df83..3ede4baa4bee 100644
+> --- a/drivers/pmdomain/core.c
+> +++ b/drivers/pmdomain/core.c
+> @@ -3220,6 +3220,40 @@ int of_genpd_parse_idle_states(struct device_node *dn,
+>  }
+>  EXPORT_SYMBOL_GPL(of_genpd_parse_idle_states);
+>  
+> +int of_genpd_add_subdomain_map(struct device_node *np,
+> +			       struct generic_pm_domain *domain,
+> +			       int index)
+> +{
+> +	struct of_phandle_args parent_args;
+> +	struct generic_pm_domain *parent_pd;
+> +	struct device *dev = &domain->dev;
+> +	int ret;
+> +
+> +	if (!domain)
+> +		return -ENODEV;
+> +
+> +	/*
+> +	 * Check for power-domain-map, which implies the primary
+> +	 * power-doamin is a subdomain of the parent found in the map.
+> +	 */
+> +	ret = of_parse_phandle_with_args_map(np, NULL, "power-domain",
+> +					     index, &parent_args);
+> +	if (!ret && parent_args.np) {
 
-Instead of ret and ret2 this code should be refactored to use
-_preperty_present() beforehands and return an error to the caller if it's
-present but failed to be read or not optional at all.
+Sorry for the pedanticry but could we flip this around?
 
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1184  	if (!ret && !ret2) {
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1185  		chan->differential = false;
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1186  		chan->channel = pins[0];
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1187  		chan->channel2 = pins[1];
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1188  		return 0;
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1189  	}
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1190  	/* Failed to parse pseudo-diff chan props so try diff chan */
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1191  
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1192  	/* Parse differential channel configuration */
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1193  	ret = fwnode_property_read_u32_array(child, "diff-channels", pins,
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1194  					     ARRAY_SIZE(pins));
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1195  	if (!ret) {
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1196  		chan->differential = true;
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1197  		chan->channel = pins[0];
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1198  		chan->channel2 = pins[1];
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1199  		return 0;
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1200  	}
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1201  	return dev_err_probe(dev, ret,
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1202  		"Channel must define one of diff-channels or single-channel.\n");
-> dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1203  }
+	if (ret)
+		return ret;
 
--- 
-With Best Regards,
-Andy Shevchenko
+	if (!parent_args.np)
+		return 0;
 
+> +		parent_pd = genpd_get_from_provider(&parent_args);
+> +		of_node_put(parent_args.np);
+> +
+> +		if (IS_ERR(parent_pd))
+> +			return -EINVAL;
+
+		return PTR_ERR(parent_pd);
+
+> +
+> +		ret = pm_genpd_add_subdomain(parent_pd, domain);
+> +		if (!ret)
+
+	if (ret)
+		return ret;
+
+	dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
+		domain->name, parent_pd->name);
+
+	return 0;
+
+> +			dev_dbg(dev, "adding PM domain %s as subdomain of %s\n",
+> +				domain->name, parent_pd->name);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
 
 
