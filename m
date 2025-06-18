@@ -1,126 +1,229 @@
-Return-Path: <devicetree+bounces-187145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA804ADEDD9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:32:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607B8ADEDE5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:34:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EFF21BC070B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:32:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFED7178B6D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:34:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA492E92CF;
-	Wed, 18 Jun 2025 13:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596202E7F20;
+	Wed, 18 Jun 2025 13:34:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdzdcBhk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q7Sqybzz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B61627E1C3;
-	Wed, 18 Jun 2025 13:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69883284690
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750253518; cv=none; b=Dcex8OJC5kqEHnz+t87FuXI9T6fag5IGUK+ne8glaGlWZRPwc2Aam0+aLlyrir97yXycE0X6EwcxGgRGxWHwZ9T258qdwDta2SViFpjLLRINEjUp2ACHayjsGcHigb7WCiO5P/sBqtCE8XdyGWThCyT9S8ijdw0OHjTjFnLqg+4=
+	t=1750253667; cv=none; b=bmbsS5rVbtyugUAsMK29gA23it9DAo+q1/skS8uRHQp18t+iceKgGyvBForyR3I6E5D59oMU9WkcLFGSMr5oOF2efBB6Bjb+0MNYnNXI4iAuA6PzctFUnawSA2dB9oZVzPzbYfbtj9CLj6k8PUXhoxfkUo/z7Yy/9qc+4ya/sFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750253518; c=relaxed/simple;
-	bh=sfxH+ws1wOJOfMLaBxgpISqgTdDurXEqio3nOsX1S/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qBmwagOJL4ZOwOXhkQ7c/l2AF5hQF/0Vt+q9O2sfB36Jx41MdSqoDo6H3/OnAPRjRASLO+gL0FQ66utEs3yvTAgO2Cq3p0IR8kUQNZNP1+FjWHlcs/uE1dkhFUSenCg0ALwletpYM340Y1F+8fCnEM77vNpTjlF8vaRQG8bl5xY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdzdcBhk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9479CC4CEF0;
-	Wed, 18 Jun 2025 13:31:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750253518;
-	bh=sfxH+ws1wOJOfMLaBxgpISqgTdDurXEqio3nOsX1S/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pdzdcBhkCzxCjd2GTsH6uIJmKGXeZ9bSr8OoDGcT0UZpXTLgJXCiXwos2WBtrIken
-	 wxor2acD3hWrH9UtL9BatEUtrkU0qIaY2VGKKiMB3QLYEW+hVGHpvl1KLX+j5iQldc
-	 r5w/4o1KaEHkB2pKRQ/2KBnvhjZ7gTXIe/qsB4Scy4Y+yUYFu27fyuJx6sta3l5Rgm
-	 SUAo3qmqsytZ6ZbEXNp8fVnkyEwTZ6fdUbcB7MQE5ZjqgfRl+01PhIUyLUHWaON3z6
-	 ul9p1lxSDzF6s3OK7opRDl4Uiy5xeAOiRo5SreBcNZ2ZtZ4LnH1ImV/C3j8I7aMp43
-	 XJ3llqp3Bwyjw==
-Date: Wed, 18 Jun 2025 08:31:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Danilo Krummrich <dakr@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Mark Brown <broonie@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] samples: rust: platform: Add property child and
- reference args examples
-Message-ID: <20250618133155.GB1550757-robh@kernel.org>
-References: <20250616154511.1862909-1-remo@buenzli.dev>
- <20250616154511.1862909-4-remo@buenzli.dev>
- <CAL_JsqKXrsdGjTE5KDkqmVHUK5urMJnWSLWgEi8H1yM21gcOCA@mail.gmail.com>
- <aFFpmKLKR2hGs1I1@pollux>
- <DAPMND2X0QHE.1N0NF7R1F8J1G@buenzli.dev>
+	s=arc-20240116; t=1750253667; c=relaxed/simple;
+	bh=xag2MrL6xxr64Wri2TH89LpJkyUAY5P+eGl/CyChhzE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OedLtjEUKSeln6prjQqFESmoOtNwe2x6mVtwfVzpSiN9DIGzc83DF6B3wJtNimobOzgCIFHgwuctXLvmrhvqgRqdcgrP1D21UZDsSbGsHRsdiqdygGFTy5YIBUXy7WX/t1SMDhE9nKeYoZpsGddsrqhVSO9twevM4ghpWErAv40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q7Sqybzz; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ade2db1b78bso127733966b.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:34:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750253664; x=1750858464; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=6frIG43o5dRLHq9FGiAb0h3bHapLxU4GqrCx6avI2UY=;
+        b=Q7Sqybzz1Rd9VLJTD2mnwgw+zrrDtkYMpQSp4XaZ13QUDYvk8CeARKRHRWfFTjdOJY
+         VDqhfcIEq2V/XbwFpZKv4r4AEjXDKaoT4jmVMzDdc5b+3Njjy+ElUd8IiNkysU7GCAdT
+         Sz6xGAY4c7ySlyr4VoIOuWi3h/K0PqbVYmVi0XsbMikpcbTZ9KcR3lmvyCZ/WIR7bSL+
+         /4sJ1EdNQOh+lDmLqCBTC9yVX9IP/ytfTc17MlGY3t7C7Ljv2TM9B0o8TKjQnArbTH8/
+         gUP/1Yqix1Py4A6S/b5+8EBqBw8l+CWAwEKRgOtCPBChkV/dsGEaPNQOI9JjTl1n1EhF
+         4Wpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750253664; x=1750858464;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6frIG43o5dRLHq9FGiAb0h3bHapLxU4GqrCx6avI2UY=;
+        b=LY+guuSbiAi/RgUgj/LRVK2iLfVlZW0GyICbhDBLGzBFoFJZU8jaQd7TtdaeVb2gql
+         7uEBiDW98w9GC9y4crVF5SGT4pWGV5Bal3KtqgBsJQwCihvE4a3fIFn0q4h/KwvStKZ6
+         ooWqlWnJDdYQmWI9WiUfX0RgSaDfaqb1wB7Pul8oMS421A/7+6YUV59cvb4PWT3W1HFl
+         2Dl8AlFv4+V8HXVfUvC9o5OCTdRAGHSN8vALSty8a0Yc7sDVj3aVDJeGDunkZSr2NWae
+         tRU3JbCWfrkn3LFnVlEl2Gp+Qghhk9bMnmFCrEGpkbBC3I/EnTfjNesNT3Z8jmqbseVp
+         GVUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXgT6Vb3PkxegIO9ZUTcJfzT3gfUJny3FgqRYPz3uHsxn7/dF3zGdJxNf2CUZ7kqMeOAHhULJBAZnNv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjAxvUpgEqtAtOwjf3yALmqZKwlaTzLXf+qKr/pfNgpruAAdLw
+	0FolV6yL0t1o2rZUULSCmYd9E536i9XmXSSJY0pYCouuefzGshZYQjEAlKcMFIUp0Jc=
+X-Gm-Gg: ASbGnct6Z91WBVmyj+/6b0R3beYA8AD5uKTBJ3b9vrlgC5XX3IjfagaMa40KNL/CHfe
+	jmGTWLKH+z0dxDRWPehpeUGJ4CoTAF6+IgbIGvZ4kYfh2UDRi/bir21+panKP9k6uZeOPQvArzt
+	AkYABh310yE/Gdscqj0YoBaOUm8d+WW/tOlkthuxsSdt3L4ouSuIy2dMGFxRbwBNrZ7K57+1zBt
+	9YpVHWiVXWtsBRuakQjjM+JrSQ2LCf3t0G3Lieavf7KU9EnThIHeHoCMWOBFO6JQoHR8kBEhMdx
+	kizzsG3r2n0LP78puVSvG2m1yyiKIAjRV+8RfWlLlEAOHdtJ+7VscMSvVbxsU3Dd+5woqkJiRlL
+	k7t+NRCc=
+X-Google-Smtp-Source: AGHT+IFNJYcKBCCcjLnQk5biUOnlV/IWbHkYqEGCDAwJBNW1gZHzUE96e+XCpjPnovUVzQQNHmSQyQ==
+X-Received: by 2002:a17:907:70b:b0:ad8:8189:2563 with SMTP id a640c23a62f3a-adfad550105mr571897566b.12.1750253663591;
+        Wed, 18 Jun 2025 06:34:23 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.223.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0128886edsm207624966b.76.2025.06.18.06.34.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jun 2025 06:34:22 -0700 (PDT)
+Message-ID: <f2654844-091f-46bf-88c6-6f6d4edc5533@linaro.org>
+Date: Wed, 18 Jun 2025 15:34:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DAPMND2X0QHE.1N0NF7R1F8J1G@buenzli.dev>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 08/17] drm/msm/dsi/phy: Fix reading zero as PLL rates
+ when unprepared
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <lumag@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>
+References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-8-ee633e3ddbff@linaro.org>
+ <n5djafe2bm4cofoa3z4urfogchhfacybzou763nelttgfspo25@bywfd5febe6g>
+ <dbcfcb3c-0cba-45f6-aaed-b79494d96cde@linaro.org>
+ <738a889d-9bd5-40c3-a8f5-f76fcde512f4@oss.qualcomm.com>
+ <8a986ebb-5c25-46d9-8a2f-7c0ad7702c15@linaro.org>
+ <24xkss4bw6ww43x2gbjchcm4gtmqhdecncmxopnnhf7y2tblc2@iibgqhuix5rm>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <24xkss4bw6ww43x2gbjchcm4gtmqhdecncmxopnnhf7y2tblc2@iibgqhuix5rm>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 18, 2025 at 01:37:08PM +0200, Remo Senekowitsch wrote:
-> On Tue Jun 17, 2025 at 3:11 PM CEST, Danilo Krummrich wrote:
-> > On Tue, Jun 17, 2025 at 08:01:08AM -0500, Rob Herring wrote:
-> >> On Mon, Jun 16, 2025 at 10:45 AM Remo Senekowitsch <remo@buenzli.dev> wrote:
-> >> > @@ -91,6 +95,13 @@ fn properties_parse(dev: &device::Device) -> Result {
-> >> >          let prop: KVec<i16> = fwnode.property_read_array_vec(name, 4)?.required_by(dev)?;
-> >> >          dev_info!(dev, "'{name}'='{prop:?}' (KVec)\n");
-> >> >
-> >> > +        for child in fwnode.children() {
-> >> > +            let name = c_str!("test,ref-arg");
-> >> > +            let nargs = NArgs::N(2);
-> >> > +            let prop: FwNodeReferenceArgs = child.property_get_reference_args(name, nargs, 0)?;
-> >> 
-> >> Is there some reason we can just pass 2 in rather than nargs? Seems
-> >> overly verbose for my tastes.
-> >
-> > It's because you could also pass NArgs::Prop("foo-bar") to indicate the the
-> > name of the property telling the number of arguments.
-> >
-> > NArgs is defined as
-> >
-> > 	pub enum NArgs<'a> {
-> > 	    /// The name of the property of the reference indicating the number of
-> > 	    /// arguments.
-> > 	    Prop(&'a CStr),
-> > 	    /// The known number of arguments.
-> > 	    N(u32),
-> > 	}
-> >
-> > and FwNode::property_get_reference_args() can match against the corresponding
-> > enum variant to cover both cases.
+On 18/06/2025 15:07, Dmitry Baryshkov wrote:
+> On Wed, Jun 18, 2025 at 10:28:10AM +0200, Krzysztof Kozlowski wrote:
+>> On 13/06/2025 16:04, Dmitry Baryshkov wrote:
+>>> On 13/06/2025 17:02, Krzysztof Kozlowski wrote:
+>>>> On 13/06/2025 15:55, Dmitry Baryshkov wrote:
+>>>>>>   
+>>>>>> @@ -361,24 +373,47 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
+>>>>>>   
+>>>>>>   static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
+>>>>>>   {
+>>>>>> +	unsigned long flags;
+>>>>>>   	u32 data;
+>>>>>>   
+>>>>>> +	spin_lock_irqsave(&pll->pll_enable_lock, flags);
+>>>>>> +	--pll->pll_enable_cnt;
+>>>>>> +	if (pll->pll_enable_cnt < 0) {
+>>>>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+>>>>>> +		DRM_DEV_ERROR_RATELIMITED(&pll->phy->pdev->dev,
+>>>>>> +					  "bug: imbalance in disabling PLL bias\n");
+>>>>>> +		return;
+>>>>>> +	} else if (pll->pll_enable_cnt > 0) {
+>>>>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+>>>>>> +		return;
+>>>>>> +	} /* else: == 0 */
+>>>>>> +
+>>>>>>   	data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+>>>>>>   	data &= ~DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
+>>>>>>   	writel(0, pll->phy->pll_base + REG_DSI_7nm_PHY_PLL_SYSTEM_MUXES);
+>>>>>>   	writel(data, pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+>>>>>> +	spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+>>>>>>   	ndelay(250);
+>>>>>
+>>>>> What is this ndelay protecting? Is is to let the hardware to wind down
+>>>>> correctly? I'm worried about dsi_pll_disable_pll_bias() beng followed up
+>>>>> by dsi_pll_enable_pll_bias() in another thread, which would mean that
+>>>>> corresponding writes to the REG_DSI_7nm_PHY_CMN_CTRL_0 can come up
+>>>>> without any delay between them.
+>>>>>
+>>>>
+>>>> Great question, but why do you ask me? The code was there already and
+>>>> MSM DRM drivers are not something I know and could provide context about.
+>>>
+>>> Because it's you who are changing the code as you've faced the issue 
+>>> with recalc_rate.
+>>>
+>> Heh, the answer is then: I don't know. I think authors of the code could
+>> know.
 > 
-> I guess we could make the function generic if that's deemed worth it?
-> A trait and an implementation for `u32` and `&CStr` each. Similar to how
-> we made `property_read` generic.
+> The 10nm HPG documents a 250ns interval between enabling PLL bias and
+> and enabling the PLL via the CMN_PLL_CNTRL register. There is no extra
+> delay between disabling the PLL, disabling FIFO and remobing PLL bias.
+> Please adjust the code for 7nm and 10nm PHYs accordingly.
+> 
+> 
 
-There is a case where the cells property is optional and we fallback to 
-0 cells if not found. #msi-cells is an example. I imagine NArgs could 
-express that while a generic could not? In any case, I don't expect 
-drivers to have to deal with that as it would be subsystem code handling 
-it.
+I can drop this 250 ns here, if that's what you ask me. But fixing
+anything in 10nm is not relevant to this patchset. You were already
+asking me for different fixes for some different things and I find it
+not acceptable anymore. Stop blocking this patchset with every little
+existing issue.
 
-As-is is fine I think. This function isn't too widely used that it could 
-be changed later if we change our minds.
+Or merge this code without this patch if a fix for reading PLL as zero
+anyhow is questionable for you.
 
-Rob
+Best regards,
+Krzysztof
 
