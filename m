@@ -1,137 +1,141 @@
-Return-Path: <devicetree+bounces-187304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14BA0ADF74E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 21:57:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C05C3ADF75B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 22:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81B171BC2B19
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:57:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF4A317F297
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 20:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C183219E8D;
-	Wed, 18 Jun 2025 19:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3284821ABA5;
+	Wed, 18 Jun 2025 20:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q5hCWJOq"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="f+HQw1a8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8EF204F93;
-	Wed, 18 Jun 2025 19:57:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B44219E8D
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 20:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750276622; cv=none; b=KjqE6f+lyW6LqC+eA9jGbEMQTVLEXL/IsrASbdkWEA1PADK3Qt1g4SvjjQdKlYdVPR0PiziKhltlxuuqDT43fOFE3x4nnqqgtTCUXjwtHsuhOXYFS/d/7lfDnHYjhsE0auk4j2ecis7acsMHVnEfSy7hmcl5ackeCG6EIjU5QXc=
+	t=1750276815; cv=none; b=KoMywXaZbqxq+3hZGe+CCJAu0n2/7WookDffGG+Yu379PEPywHz/mfBgDXcDo2Pew80skxftqY3l1Tn1N4HciYbPuPT+Ai/B9k2cn7PDI7ycciAOWvDH+4B2uJzh2cewkJH37lI6g6NIPQoFvA1JUlxOoZcPNc7OIFBvSVBkunA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750276622; c=relaxed/simple;
-	bh=LODV13BAO/vPV1KR/ZrA48zSFSV7rhVVCDbvUO9rbCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LXDYZiEHXpDfR0RBBjXxW3J90OIX7pmqmbZr0PYlsHOt9f7pCmUBTNqj3iG6fXC+3y+w7zYbyI1uqTrzLFlFVYXf5KxltgC3SrMNBiI+M8MFehV1pj1wTuXF/RbWdCQ6lI61mw2JE1AQBc4xCVyDYnUmuK14Ri6E2DlaNpCfOXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q5hCWJOq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AEE1C4CEE7;
-	Wed, 18 Jun 2025 19:56:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750276622;
-	bh=LODV13BAO/vPV1KR/ZrA48zSFSV7rhVVCDbvUO9rbCA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q5hCWJOq4BPeCPXNeDRpGBKL2aPnSMqJBqxjXFAR2SRBa5EnDn9dkzuxqDQNbEvyn
-	 fBe9dyKKEvuzysSk8KQ23rW2e7DLfVl9W5bfq+MXDQ2Ekk2CLxIjwOSoJXi6Te+TBl
-	 7C7XaAGn751Ko9xb2RGqAgP++GyMpDvi45jTrj7Gu9DNQMrl5OeFEzN2kVcrOODzc3
-	 RgCEUVqJMI0ocsFhgdbB/HSfQ/5Axvz1EE9TR+bE74oNsRAZn/zPC0vcN8fzSP6w4r
-	 Zk7b15ng+BIjJxGmbqNZXFT54eLakscZ6nBXx0fgBDNjo9rIXEJK5DhLmHgahFpL5P
-	 2T7sA59b8j31w==
-Date: Wed, 18 Jun 2025 21:56:54 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v5 24/27] irqchip/gic-v5: Add GICv5 ITS support
-Message-ID: <aFMaBlByS8xPq6kc@lpieralisi>
-References: <20250618-gicv5-host-v5-0-d9e622ac5539@kernel.org>
- <20250618-gicv5-host-v5-24-d9e622ac5539@kernel.org>
+	s=arc-20240116; t=1750276815; c=relaxed/simple;
+	bh=Thq4Q06cdpVu9pDEN+/3JBZrpgyjUXOgoUe0gvNvhSk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=iHRhtjRGDdziMJvTVDf2DIutsaVGFqJBlNS2TDOn+ddJ62ixQ/KhZE0T218ATi5x6g+cLarPYJbzujakifXUv8ye+yLKv8lQSjdPeer65CkCxLycADt6c55Lr3XsohrOPtiIl+2v/1DoKqC72/28OX0o2hcbkyT4JpBzKnjFXxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=f+HQw1a8; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b31c978688dso66577a12.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:00:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750276812; x=1750881612; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KiOzVfjBcF1fRtJg0Y1H//g4cNADDmQDLTn0mBy9kzo=;
+        b=f+HQw1a8sMcwX9xo2U1ygWT+QWYLU0F4HBcOvrIkAhCmztVGuDaq3zoVf/NAP0kpfw
+         b//W5zthQDGjYjyaDRMyN+Vcnbe3zV5Nr6eA5NBgoD21zoiEIKj5XGz8UmEKhmkhSSjP
+         5UIZtEbw8qUOmBAgLNSxnqYCIRQKGVfkxQQ+5PAhVTqCJspZmoDvMZLberAIxHiWb9+8
+         E17c2hE79UE6tIXmsD2oGjxPt9ffdno7l/yYSpPPiVPQf6+bZWgsejQCwpSAiGcirihs
+         6odCbGg5ExPNl15Tr/DCA2ExS8YbnMOl0bMF1ygsFr+6j1t2ZuD4YEvoosB6mIduVVnD
+         +Giw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750276812; x=1750881612;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KiOzVfjBcF1fRtJg0Y1H//g4cNADDmQDLTn0mBy9kzo=;
+        b=dSj0Rco3l2zaGguXMoAEvzl7uGww5+s0yDBpunnzj1IYliy5zsr7HR10r26IMM4zKh
+         38zRvgm+A2ZJY/Mz3uXKQHi1SLM09MXYxsWRIxfAojqb/nBcAAo0wL1xQX/DwFASw4BV
+         cd62wBASoH5rPy78jeIqnftNBLXIkkKcd/SFk6oE+7ne2r9Xp6vZ2XKkYn4nafFpTvO0
+         EMUoDo9litPvlV6BYlOey3BC4U3pqb5VSJkJJKiWitOeK4GLk+dNGkCGBcdmgzIAfOE+
+         L868f5bwZt5NoUZhJsUHP78VRNpKatN0yPgLsrIClnPGik/6Pb6RaMRmF/jM3/ToNNuu
+         aUgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcN8ezW420+oFzypmtLr5VKURuOgnIgWwb4ab3ss4x4Yl1elYNuKgjpWl9veta+XKnnb125I3MlWE7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzi+teiQxa97/sk5B7yI0lZqBP2YDE3VX+0BCD/QNQPJfi5RtpL
+	tBjCAn1WGQDFUb4zO8+tbXwRpT8BSOnz46q42+2Zqt/t+3TtoHVPE0yslA45kMR94Lc=
+X-Gm-Gg: ASbGncvBHgjwV8q74UMaDQQBlbM3qh5fE2KNSt/mDdilCFIMYGTXceXZ7nN4m6eUONP
+	PWu3T8Rc0txkfrmX3j1AAB01RFCaKQc0JXnUU+2UmgQt3De+4ggZki+FOQpqY2bG+w/RUyJmopS
+	+Wt+fvl47aDq2pQ0QVP4rf+aDjI/lo5vREDYUhztSuCcqHdpKNnj6Av4Fg7Zk1YvGgNyMLsBT+R
+	d0c9xnUc01nvI4SivCICsiGeE9gsWD29bnlBAB2WDArJcqwQ8ichlHL7oPMPXGYc3OMcMtGo+qf
+	zSzSXucWXETNqBpOcj6UU5SA34U+H8/+mUNXXlU9t9k/LFiYKpROW9gi9iuy
+X-Google-Smtp-Source: AGHT+IH3xjpyQ4ebVaMo9DbY1gh/tZqYj3qhoffl3icr75QW+zCNKAPlpcq7GyNn9O1WQp4oMM2scw==
+X-Received: by 2002:a17:90b:2dd2:b0:312:f88d:25f9 with SMTP id 98e67ed59e1d1-313f1c7dacfmr29693399a91.7.1750276811912;
+        Wed, 18 Jun 2025 13:00:11 -0700 (PDT)
+Received: from localhost ([97.126.182.119])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3157a605f21sm1629583a91.0.2025.06.18.13.00.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 13:00:11 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v3 2/2] pmdomain: core: add support for subdomains
+ using power-domain-map
+In-Reply-To: <e463a278-7e6e-4287-9093-42d0a0d365d2@suswa.mountain>
+References: <20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com>
+ <20250613-pmdomain-hierarchy-onecell-v3-2-5c770676fce7@baylibre.com>
+ <CAPDyKFrO9rb0eDb2qO+EGaVjOFG=7emgca8511XACDhWY=dt5g@mail.gmail.com>
+ <7hsejzp4xg.fsf@baylibre.com>
+ <CAPDyKFo-iPBPgkM43q+5cGR2sptkLk4E6TAERCQbCu24o1RfFQ@mail.gmail.com>
+ <7hcyb1os9y.fsf@baylibre.com>
+ <e463a278-7e6e-4287-9093-42d0a0d365d2@suswa.mountain>
+Date: Wed, 18 Jun 2025 13:00:10 -0700
+Message-ID: <7h5xgsq0qd.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250618-gicv5-host-v5-24-d9e622ac5539@kernel.org>
+Content-Type: text/plain
 
-On Wed, Jun 18, 2025 at 12:17:39PM +0200, Lorenzo Pieralisi wrote:
+Hi Dan,
 
-[...]
+Dan Carpenter <dan.carpenter@linaro.org> writes:
 
-> +static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
-> +				  int nvec, msi_alloc_info_t *info)
-> +{
-> +	struct msi_domain_info *msi_info;
-> +	struct device_node *msi_node;
-> +	struct pci_dev *pdev;
-> +	phys_addr_t pa;
-> +	int ret;
-> +
-> +	if (!dev_is_pci(dev))
-> +		return -EINVAL;
-> +
-> +	pdev = to_pci_dev(dev);
-> +
-> +	msi_node = pci_msi_get_device_msi_ctlr_node(pdev);
-> +	if (!msi_node)
-> +		return -ENODEV;
-> +
-> +	ret = its_translate_frame_address(msi_node, &pa);
-> +	if (ret)
-> +		return -ENODEV;
-> +
-> +	of_node_put(msi_node);
-> +
-> +	/* ITS specific DeviceID */
-> +	info->scratchpad[0].ul = pci_msi_domain_get_msi_rid(domain->parent, pdev);
+> On Wed, Jun 18, 2025 at 10:48:09AM -0700, Kevin Hilman wrote:
+>> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+>> index 88819659df83..3ede4baa4bee 100644
+>> --- a/drivers/pmdomain/core.c
+>> +++ b/drivers/pmdomain/core.c
+>> @@ -3220,6 +3220,40 @@ int of_genpd_parse_idle_states(struct device_node *dn,
+>>  }
+>>  EXPORT_SYMBOL_GPL(of_genpd_parse_idle_states);
+>>  
+>> +int of_genpd_add_subdomain_map(struct device_node *np,
+>> +			       struct generic_pm_domain *domain,
+>> +			       int index)
+>> +{
+>> +	struct of_phandle_args parent_args;
+>> +	struct generic_pm_domain *parent_pd;
+>> +	struct device *dev = &domain->dev;
+>> +	int ret;
+>> +
+>> +	if (!domain)
+>> +		return -ENODEV;
+>> +
+>> +	/*
+>> +	 * Check for power-domain-map, which implies the primary
+>> +	 * power-doamin is a subdomain of the parent found in the map.
+>> +	 */
+>> +	ret = of_parse_phandle_with_args_map(np, NULL, "power-domain",
+>> +					     index, &parent_args);
+>> +	if (!ret && parent_args.np) {
+>
+> Sorry for the pedanticry but could we flip this around?
 
-Heads-up: it turned out I was too optimistic and reusing
+Sure.  This is early prototype code for discsussing the big-picture
+approach, but I appreciate the review.  I'll clean that up when I get
+past the RFC phase.
 
-pci_msi_domain_get_msi_rid()
+Thanks!
 
-on GICv5 does not work (or better it works incorrectly).
-
-It calls (for DT) of_msi_map_id() with the IRQ domain of_node (why, I am
-not sure but for GICv3 it works because the phandle in the msi-map and
-the IRQ domain of_node are equivalent). This does _not_ work on GICv5,
-I failed to spot it because in of_msi_map_id() if the IRQ domain of_node
-and msi-map phandle do not match a 1:1 translation is carried out, which
-ironically is what the RID<->DID translation looks like in the test
-platform. Sigh.
-
-I have already patched the code to augment:
-
-pci_msi_get_device_msi_ctlr_node()
-
-so that it grabs the msi-controller of_node pointer in msi-map AND maps the
-RID->DID (and to be honest that's what I should have done but I wanted to
-reuse pci_msi_domain_get_msi_rid(), it does not work for GICv5 unless I
-change it but I fear I could break platforms, we don't fix what it is not
-broken).
-
-Long story short: apologies, I missed this snag for the reasons above, I
-will update it for v6.
-
-Thanks,
-Lorenzo
+Kevin
 
