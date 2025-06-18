@@ -1,223 +1,92 @@
-Return-Path: <devicetree+bounces-186915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42464ADE201
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:09:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0814ADE206
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:09:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E903AF92A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 04:08:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80623178237
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 04:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216651E1E1C;
-	Wed, 18 Jun 2025 04:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FEA91EDA26;
+	Wed, 18 Jun 2025 04:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="A+RsD6GW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZfBRSPEV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A06155757
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 04:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714C51EB1AF;
+	Wed, 18 Jun 2025 04:09:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750219742; cv=none; b=ou8RBhavUHeknaQlmm0/GOspAZAACdRbyT/ALu4lC2i1pHidpODpSw9vX3LpAPvtRbrd31jteCRYc5d1/uNC1Qk4uG5y4nE1PmRs7jF7OOJmxd+fdbc+BEAWnqoKOcjwpobkHCfxzoued2i3r7Rnp9rhUIj8c4mPPkccglI7LPc=
+	t=1750219772; cv=none; b=bBtazPlkLuTrsecjjIdgmSK4ZUAbP8tS9XyaASE6sAcM/36Ql3MgkfO6anGrBqwrR2ZgcqpT/BgQkKkrkcw/+VvpGrnUH5ht83+MmuGopBOFCLQdbmYgZLltlZzwRe6cMVAhzbUlcV1dvZauVCBA6UPNtPz3mKUF3PGvP6Q3vTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750219742; c=relaxed/simple;
-	bh=Rc7QRQavRmVFyB9IhxdzFHRfSkThkI3xPrEYilcz6ao=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RLR+0U60UOz2q+BNQWyholD7nTTejr8Ppkd9IvEO7RFCeePfyKFxw8uwLHVW0KF6fkRhqrJEL0uZH1KpSatZ1E5ZLptsX8d3H8+gMMTyLEZ+Xo72GOcWGFww6S2RAzaQKoBTVkDRs6TVy2jK1WRxnKcSRdEjoXdq3raCr37/lHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=A+RsD6GW; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-553644b8f56so6638449e87.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 21:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1750219738; x=1750824538; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hV+4GdLIPduWvDvm4cyTBr7zE4Nr+cAmACWAXvYhmEQ=;
-        b=A+RsD6GWOfrrfvbu/18Nxgkut5GandJnIFIRJLjfLD43GYf4I1L539jn+Y8ouXwBKH
-         6Sfj39qmJxEIHSbqaryuvh8a8Tmm1cZkGy7WFV/lqOP17/K68i420x77fUskDXzQcWbT
-         F/JvBAbeItsVkpyv/A46m9OXuluPHYZ2cXuy+ZbDnG7sEaNMSZJbUnTijrfEjVa+Ph+L
-         fBcuMRLUYjP2YHjm/D4OfTkNBSwJ03BBOawOfDEeobrx/TH3RP1EXicMuYRY4yuqXmp5
-         zkRTDCLiMRV1HCAG7IO4FOv16t++bmaR0Hkfx0lEssIwsyAQyuoQpZVNMLAkn2IgSatz
-         d71w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750219738; x=1750824538;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hV+4GdLIPduWvDvm4cyTBr7zE4Nr+cAmACWAXvYhmEQ=;
-        b=g8aPjE/VL+b9nMvpoqt1o+tjoqbQIkLi8CwnlgxCzNtcAM9V2GO/WPrmALwpr2YGML
-         8pNkwygiySBHDkPmXTV2D63X1GZpBkLBpnAaJ2i4hfDmlRn1FFACdj5afmgn5FYxWe7E
-         RCFFJ3kgr5SzoYo8wPZBwoeAbjdMmJ2hCYCfKnNdja0fdt1hZjaZ6ERrtGK5JUaR4oQn
-         1ZdVe3K1QUub1Cb30TDfkrmLhaiENwRF+CWaObiVkn8aWBhjf3Ljl0lP7jzRfF7CrDOT
-         uoHSa/wZKjAWdRW5w0dhPwKrvI5/WUXppnl1A8PB7YJX/Szimt1cP48G2Vvswel7gCpI
-         ykjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVbBHAaEuWgxYd20iD/9UPdVXxpRURiDOi15YWbDntI90s8PbKCCUjMqpOYsutTJeQbCh0MUMD1euvm@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhS8UamNpmditXpwdwlN/8fYZ+BQeV/cYAYNZAT0H+R014laG1
-	VDIZ5l9kWM2TSoP3PQi0ltaZsVhkSzJRl/BMel1mJ4D/VDa5akM++PDE+brkTKea0KomKnNJM4u
-	+CF0co1rvX6fj6IAPQcYevWtqhEFyS0yuOTnYANowqg==
-X-Gm-Gg: ASbGncs7DaLJRO4Uszr3kglI/JOH3a5NiufiDDHVSTwTkc/GSJP/40e1cd5EqM+NHXG
-	35Q5AH25vWZdngLbM/zp5JVZlxBNtIorDo0Y2ZHdhFfIyyiFzjcXaYWJkAvreCkAey1AJeqhI/M
-	72rjKD1laAvrdlkIGe7p+7toY+f1glxR6KmzJYJXNZcw==
-X-Google-Smtp-Source: AGHT+IFnL3eHkaa0AaGa2260XzL4VnwU/UtF89FsaS0XOFT0LH12cqs0j3TtvsOBW7k3zdEpBSYUjjpFngr0GSrWEx8=
-X-Received: by 2002:a05:6512:1192:b0:553:addb:ef51 with SMTP id
- 2adb3069b0e04-553b6e8c2f5mr3946779e87.18.1750219738106; Tue, 17 Jun 2025
- 21:08:58 -0700 (PDT)
+	s=arc-20240116; t=1750219772; c=relaxed/simple;
+	bh=Pjw6Dm2zPR9KJTwrs7qZIwnMcij6/krhnEKtQLK/5Sk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tYKuKj50y2i/niblnZOoA49KRtmzC48qnCg1Hqyl3B9DbEfokRIW3RQxlzog4Fv//p7kMPdLhGjQVf0ascTDHvP5L8VPASw01HE3v24VIRLjA6JYUboUn0PjBk6Tq3iuSaGUgAWdftd5T/iXAgvW5x5us166TE/G5Ix4RxuHd4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZfBRSPEV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EEC8C4CEE7;
+	Wed, 18 Jun 2025 04:09:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750219772;
+	bh=Pjw6Dm2zPR9KJTwrs7qZIwnMcij6/krhnEKtQLK/5Sk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ZfBRSPEVDk/IdoN54Fo7vD7f5r3uOuVlOBwMryrFYAcCVeBvZWzjLxEEdk7M4Lqko
+	 sV4//Ro/GSDvLTuZCPB7eKLJ8+CXw1DoNQw8zMqAOIP2mZPwXkg68dYTFRN1RJ91rS
+	 G+mtNo/6mndrPBHYiI+FmbMxqe//7u6PJGLWhQl4N2Q5lF3wwTV7yw8u3of/ADrF9b
+	 oQTzSmhIWOGn0GQU6qMLZ8yILxcmDgnYVaZBudJsPDDa5kE+jO+uIZHytl5tNgUaIN
+	 uYa4EPVoND1C6tnl9WZUt3jG5bdE/A91PMrOqgVMcs2xQQX9uQ7dE4UDGSrRVbhp5A
+	 NJWVr8i5Bp0Yw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	laurentiu.tudor1@dell.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	johan@kernel.org
+Subject: Re: (subset) [PATCH v3 0/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add WiFi/BT pwrseq
+Date: Tue, 17 Jun 2025 23:09:16 -0500
+Message-ID: <175021976630.732077.9578676163556374821.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250331204610.526672-1-alex.vinarskis@gmail.com>
+References: <20250331204610.526672-1-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611062238.636753-1-apatel@ventanamicro.com>
- <20250611062238.636753-6-apatel@ventanamicro.com> <aEmiOFwofEJyXm4R@smile.fi.intel.com>
-In-Reply-To: <aEmiOFwofEJyXm4R@smile.fi.intel.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 18 Jun 2025 09:38:46 +0530
-X-Gm-Features: AX0GCFuSAGiDE5-KiEpx1v8HnSXue_LepxDvBagpnGvUmEgx8W2v2dqjbNj1zB0
-Message-ID: <CAK9=C2Xhkfk4WZeD2gVCoJxeRHAuYjSfwx_zUHvVBqOQPLV7Lg@mail.gmail.com>
-Subject: Re: [PATCH v5 05/23] mailbox: Allow controller specific mapping using fwnode
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 11, 2025 at 9:05=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Jun 11, 2025 at 11:52:20AM +0530, Anup Patel wrote:
-> > Introduce optional fw_node() callback which allows a mailbox controller
-> > driver to provide controller specific mapping using fwnode.
-> >
-> > The Linux OF framework already implements fwnode operations for the
-> > Linux DD framework so the fw_xlate() callback works fine with device
-> > tree as well.
->
-> ...
->
-> >  struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int ind=
-ex)
-> >  {
-> > +     struct fwnode_reference_args fwspec;
->
-> Define
->
->         struct fwnode_handle *fwnode;
->
->
-> >       struct device *dev =3D cl->dev;
->
-> This better to be just a declaration.
->
-> >       struct mbox_controller *mbox;
-> >       struct of_phandle_args spec;
-> >       struct mbox_chan *chan;
-> > +     unsigned int i;
-> >       int ret;
->
-> With the above the below will look like...
->
-> > -     if (!dev || !dev->of_node) {
-> > -             pr_debug("%s: No owner device node\n", __func__);
-> > +     if (!dev || !dev_fwnode(dev)) {
-> > +             pr_debug("No owner %s\n", dev ? "fwnode" : "device");
-> >               return ERR_PTR(-ENODEV);
-> >       }
-> >
-> > -     ret =3D of_parse_phandle_with_args(dev->of_node, "mboxes", "#mbox=
--cells",
-> > -                                      index, &spec);
-> > +     ret =3D fwnode_property_get_reference_args(dev_fwnode(dev), "mbox=
-es",
-> > +                                              "#mbox-cells", 0, index,=
- &fwspec);
-> >       if (ret) {
-> >               dev_err(dev, "%s: can't parse \"mboxes\" property\n", __f=
-unc__);
-> >               return ERR_PTR(ret);
-> >       }
->
-> ...this
->
->         dev =3D cl->dev;
->         if (!dev) {
->                 pr_debug("No owner device\n");
->                 return ERR_PTR(-ENODEV);
->         }
->
->         fwnode =3D dev_fwnode(dev);
->         if (!fwnode) {
->                 dev_dbg(dev, "No owner fwnode\n");
->                 return ERR_PTR(-ENODEV);
->         }
->
->         ret =3D fwnode_property_get_reference_args(fwnode, "mboxes",
->                                                  "#mbox-cells", 0, index,=
- &fwspec);
->         if (ret) {
->                 dev_err(dev, "%s: can't parse \"mboxes\" property\n", __f=
-unc__);
->
-> You may save a few bytes by doing it as
->
->                 dev_err(dev, "%s: can't parse \"%s\" property\n", __func_=
-_, "mboxes");
->
->                 return ERR_PTR(ret);
->         }
->
-> > +     spec.np =3D to_of_node(fwspec.fwnode);
-> > +     spec.args_count =3D fwspec.nargs;
-> > +     for (i =3D 0; i < spec.args_count; i++)
-> > +             spec.args[i] =3D fwspec.args[i];
-> > +
-> >       scoped_guard(mutex, &con_mutex) {
-> >               chan =3D ERR_PTR(-EPROBE_DEFER);
-> > -             list_for_each_entry(mbox, &mbox_cons, node)
-> > -                     if (mbox->dev->of_node =3D=3D spec.np) {
-> > +             list_for_each_entry(mbox, &mbox_cons, node) {
->
-> > +                     if (mbox->fw_xlate && dev_fwnode(mbox->dev) =3D=
-=3D fwspec.fwnode) {
->
-> We have a helper device_match_fwnode()
->
-> > +                             chan =3D mbox->fw_xlate(mbox, &fwspec);
-> > +                             if (!IS_ERR(chan))
-> > +                                     break;
-> > +                     } else if (mbox->of_xlate && mbox->dev->of_node =
-=3D=3D spec.np) {
->
-> No need to check OF node (again). Instead refactor as
->
->                         if (device_match_fwnode(...)) {
->                                 if (fw_xlate) {
->                                         ...
->                                 } else if (of_xlate) {
->                                         ...
->                                 }
->                         }
->
 
-Okay, I will update like you suggested.
+On Mon, 31 Mar 2025 21:43:43 +0100, Aleksandrs Vinarskis wrote:
+> Add bluetooth to mentioned device.
+> 
+> Changes to V2:
+> * Fixed commit message misunderstanding
+> * Picked Bryan's R-by
+> * Picked Laurentiu's T-by
+> * Link to v2: https://lore.kernel.org/all/20250331073423.3184322-1-alex.vinarskis@gmail.com/
+> 
+> [...]
 
-Regards,
-Anup
+Applied, thanks!
+
+[1/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add WiFi/BT pwrseq
+      commit: 642b55ce06c923a52cf52f94a2508c7a20b02536
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
