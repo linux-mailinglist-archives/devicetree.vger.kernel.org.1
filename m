@@ -1,143 +1,169 @@
-Return-Path: <devicetree+bounces-187121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60DBADEBF8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:25:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6C7ADEC01
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:26:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95A711BC0373
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3170B1880518
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 719DE2E7622;
-	Wed, 18 Jun 2025 12:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA472E9EAC;
+	Wed, 18 Jun 2025 12:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yQsDrIXy"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ohlgtAWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222102E54B1
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 12:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934C62E265D;
+	Wed, 18 Jun 2025 12:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750249275; cv=none; b=YfYVjhmT20gLI118YjY2vIuF4DEKnVj+XUBk7ptkfyXst/lH8SUr3F/l79r90lOzjBNjO9l8W+ltAYJxw4QkfRcKhqAynPil02vIXMQmj0sJB62hnKXYwxWyZ0cI7LNBp7E1EYvvfDLH/POKYeXXiXyGao3HnP3G+6adGHABWEw=
+	t=1750249318; cv=none; b=LXm6QiqkoGdxdAiwpyu10l9V3u8XKBVKxxlRZ3TRjaW6UQz/RBM9NtWLnV1+WaeuJalfvSlkwWpRqcZ53MSdb7W0YiPHRcftV4YQFw5NwcwUsPkRMgVYe09eTR8WqSNFiRDu436/CHWFhweL4bq9AyywO3j7RsA+lfK+lML1iVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750249275; c=relaxed/simple;
-	bh=b6LBHyIi5e1ZGbbaIWqJEeHGDHa8TD6jbCAi8i0g/oY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E4uaJLmnc3DJ8xxrBPrb9hD/ES0gJxLurg5Ek52t2Exjtrba/hHSYvP/cztF2/FdRwLKF+JmOgt3E0OdzwhjC+1hUHbXPz2HxLGPaFmdmBz4Ob7Pl0mGAa5Q/s4qinb7rxjhntD5xvelh2btajY2sEZZ5dpN5Z27bYdv7EQ6nYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yQsDrIXy; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-32ac42bb4e4so60738261fa.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 05:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750249270; x=1750854070; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n761KcazBD8NAVChuciBYR6i+PEWOHat/DvKkhEEUwg=;
-        b=yQsDrIXyB7G4LkpsrIocLZHLpqLQw2RFg4qrElRaDYVM2OkHKw5q+z9Wn96k7IVpre
-         SZMMquQhjW9CxaXDy+BwvgtpucdsKr6yE9SoQNya1ziolqNT7CjbPOmJNdEu4FkHGmH4
-         JXEhmgMzUbj9I12TPMZdsKOKy5RgnOMeQ/v4JaUjC9H4jKbeQPoiaxA2kuG6ReNFWp2G
-         zr4igDVs1KyqWS2PQRg4CPW0JW2oTYDlRknI71jn+qmy92OshaOdPcIjYHXzFOGycJcT
-         mYk2hQ3KH8lDb5b3oCqMdJ3PjJ+rVoa3/YU63EO87LwQReTkD2NUQT6Pt8mUhFCuoz2K
-         PdYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750249270; x=1750854070;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n761KcazBD8NAVChuciBYR6i+PEWOHat/DvKkhEEUwg=;
-        b=Rm2K8P9n8OD7CDhGOdjx4MeJPLHokGrz8d197cCDoCX63c68ijx8GTO09x4U8d1+Y3
-         R4Mt4WBEFo+FxA1H8yg+SVDp2/O2WfdgOILmrtu+iEe9yfXjVvdTzG563vftr9d8nf+M
-         vwertHkSPbkSRq7oTM1hN4YTGkqXz7rRO0xuKy2lH/j30HgFMpHZr+UEkUqwytj62G5H
-         EwsYKmBWwgQWw+EyHdEE3CQzwwR9mcST9ivNeBI1ZA+FXiCfRcHG7TiW/8FtrvZKLM8+
-         zRSNM+ll8UUEP76KEE3BhBpDHfyFnoTL+JmVvqUqVPvj9w+f6f5gdhlh+LM/V3mvFjHl
-         USeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWW24bt6xO5wR+NkliL3Mfn9OkJ+62xkg5s9HnQEmAnzZQwmqBu2v6LQKZJGEkT1x3wObfQSCZNHM+l@vger.kernel.org
-X-Gm-Message-State: AOJu0YycQy6Gt3V8QLHfSJN/Ki/eZNIhZ15mYNM/ODkFJDMj0nnDFuMa
-	b3HGbpNLuSFAjD6a0llNJuYrvxZMZFeXacySKXij7gFWFttSaFLOKJNSlz1z1CvY5uzy9aisA8P
-	g+dyM0s0VOryhU553HRLTMSU6N1HZP7gCaEr8KiUuQw==
-X-Gm-Gg: ASbGncsCT50MLHzs7ALWr6VjwFeOKEVCwHdJge6HKTQ2AFR3q44k59SSI7hSikROsFO
-	O7OaNw1aqt2cPSGXrNP+lvH0/CJ3Wy8xxAolD0pgYSZlcSt8vt0JVxslRhu5v7v/cTSCpBPhrLC
-	jMPHEH0DaFCGRk0gke5HZTQuljvRUws2D3l8DAn5EFnDU=
-X-Google-Smtp-Source: AGHT+IFxHCRWz//u1od0Lrwty9Yf9DHcSgaAHfAvrbBiimpXB2OEA85EDmSgQGSVRLhnSLdlgZURbr7ybwWz1kTTt2A=
-X-Received: by 2002:a2e:a546:0:b0:32a:6312:bfc1 with SMTP id
- 38308e7fff4ca-32b4a5a5c86mr42763701fa.24.1750249270277; Wed, 18 Jun 2025
- 05:21:10 -0700 (PDT)
+	s=arc-20240116; t=1750249318; c=relaxed/simple;
+	bh=Ih5zjiRGwMAvZQPX9KEr/plji2ng+jsO/q4Yt/O5IRU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pfqryyDbWKdww6oCfoz8LEn3OAnyDHmNmHbcwHIGGZIK6WeGl2/D9pywX0zN2bD832wIe8jOS0fD9TV0WGZRjqpiveZbzOtmHVb4KqcLUu8rypaK6nZDJEetfp8Hh8GUC90Sk/z7N+f74B49YV4lQgKoKtR+oStsjUcYILazg/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ohlgtAWT; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750249313;
+	bh=Ih5zjiRGwMAvZQPX9KEr/plji2ng+jsO/q4Yt/O5IRU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ohlgtAWT7yjpPcE/xEv1XBO2m6bmo3mg0DJxG6HAaeNer6gFJzTrUtR24807KK1L9
+	 RGxCKVMFvq+n8MX8gL+l/JQjRrsco0O1EuykFJ6hnvegjFKVcGzTBnucvh4p+w5Tj6
+	 LLw2EUydJU/Mu0tdsHjfRUcujDaGZk7L39eit/oeNYZDqDWkqy39t3qzuoj5Y507yL
+	 6VHI6/U44lBH0Vh5YmmqbBsBzRTbZ+8YLLXmaY6Ll7K/12zENr0WcM2yHOqP6HeE5R
+	 6Las4LiVbTzVkZzTZ3lvuB9kFCQRKppNfNcXFwKtngTRXlqAVkEMS2qUHqNSj1ftxY
+	 w9GQZiHKvbvHQ==
+Received: from [10.40.0.100] (185-251-200-162.lampert.tv [185.251.200.162])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3C17D17E0CEE;
+	Wed, 18 Jun 2025 14:21:52 +0200 (CEST)
+Message-ID: <5d3418a3-70f5-46d8-a538-72e6958d5d02@collabora.com>
+Date: Wed, 18 Jun 2025 14:21:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250613-hdp-upstream-v5-0-6fd6f0dc527c@foss.st.com> <CAMRc=MeTmwgbHv9R_=GFmjkAV4Nvc-SeSCOz1k6pnGUrF+R9Mg@mail.gmail.com>
-In-Reply-To: <CAMRc=MeTmwgbHv9R_=GFmjkAV4Nvc-SeSCOz1k6pnGUrF+R9Mg@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 18 Jun 2025 14:20:56 +0200
-X-Gm-Features: AX0GCFvzIWiUTEnf7w2o5CriFQLwK7aVK0h_a_ivR8DSarlEz7uy-y-3wDCyAbg
-Message-ID: <CACRpkdax9ojguF1SAfiN9iZi=x3VFpCea6KnhzL3JBD9EXZepw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/9] Introduce HDP support for STM32MP platforms
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 06/13] media: rockchip: add a driver for the rockchip
+ camera interface
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Mehdi Djait <mehdi.djait@bootlin.com>
+References: <20240220-rk3568-vicap-v8-0-9d9cbc4b524d@collabora.com>
+ <20240220-rk3568-vicap-v8-6-9d9cbc4b524d@collabora.com>
+ <656zxutvwytnd5i5l3nknni47r3wofmmwtxycleekjtrkbgfeo@xm7xbzirh3ce>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <656zxutvwytnd5i5l3nknni47r3wofmmwtxycleekjtrkbgfeo@xm7xbzirh3ce>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 16, 2025 at 10:05=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
-> wrote:
-> On Fri, Jun 13, 2025 at 12:16=E2=80=AFPM Cl=C3=A9ment Le Goffic
-> <clement.legoffic@foss.st.com> wrote:
-> >
-> > This patch series introduces the Hardware Debug Port (HDP) support for
-> > STM32MP platforms.
-> >
-> > It includes updates to the mmio gpio driver, the addition of device tre=
-e
-> > bindings, the HDP driver, and updates to the device tree files for
-> > STM32MP13, STM32MP15,
-> > and STM32MP25 SoCs.
-> > The series also updates the MAINTAINERS file to include myself as the
-> > maintainer for the STM32 HDP driver and adds the necessary
-> > pinmux configurations for HDP pins on STM32MP157C-DK2 as example.
-> >
-> > Signed-off-by: Cl=C3=A9ment Le Goffic <clement.legoffic@foss.st.com>
-> > ---
->
-> [snip]
->
-> > ---
-> > Cl=C3=A9ment Le Goffic (9):
-> >       gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
-> >       dt-bindings: pinctrl: stm32: Introduce HDP
-> >       pinctrl: stm32: Introduce HDP driver
-> >       MAINTAINERS: add Cl=C3=A9ment Le Goffic as STM32 HDP maintainer
-> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp13
-> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp15
-> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp25
-> >       ARM: dts: stm32: add alternate pinmux for HDP pin and add HDP pin=
-ctrl node
-> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp157c-dk2=
- board
-> >
->
-> Patches 1-4 and 5-9 can go upstream independently. I suggest taking
-> patch 1/9 through the GPIO tree and providing an immutable tag to
-> Linus to take patches 2-4 through the pinctrl tree. Linus: are you OK
-> with that?
+Hi Mehdi,
 
-Yes go ahead if you want, an immutable branch based on v6.16-rc1
-is the best for me, then I pull that in.
+On 6/13/25 14:33, Mehdi Djait wrote:
+> Hi Michael,
+> 
+> [...]
 
-I could also just apply it and hope for the best... it usually works.
+Let's cut the long story short, shall we :-)
 
-Yours,
-Linus Walleij
+>> +static void rkcif_stream_fill_format(struct rkcif_stream *stream,
+>> +				     struct v4l2_pix_format_mplane *pix)
+>> +{
+>> +	const struct rkcif_output_fmt *fmt;
+>> +	u32 height, width;
+>> +
+>> +	fmt = rkcif_stream_find_output_fmt(stream, true, pix->pixelformat);
+>> +	height = clamp_t(u32, pix->height, CIF_MIN_HEIGHT, CIF_MAX_HEIGHT);
+>> +	width = clamp_t(u32, pix->width, CIF_MIN_WIDTH, CIF_MAX_WIDTH);
+>> +	v4l2_fill_pixfmt_mp(pix, fmt->fourcc, width, height);
+> 
+> The rkcif supports the SRGGB10P: the packed version of the SRGGB10.
+> 
+> When you try to capture with SRGGB10P, the following fails in
+> v4l2_fill_pixfmt_mp()
+> 
+> 	info = v4l2_format_info(pixelformat);
+> 	if (!info)
+> 		return -EINVAL;
+> 
+> The return value is not checked in rkcif_stream_fill_format() resulting
+> in a call to queue_setup returning with sizes[0] = 0
+
+Thanks for pointing that out. I failed to realize that this helper
+function may return an error. What I can do is to implement the error
+propagation correctly. Of course this will only avoid the kernel
+warning, you still won't be able to stream.
+
+> This will cause a kernel Warning in the vb2_core_reqbufs() because
+> plane_size = 0
+> 
+> Exactly here:
+> 
+> 	for (i = 0; i < num_planes; i++)
+> 		if (WARN_ON(!plane_sizes[i])) {
+> 			ret = -EINVAL;
+> 			goto error;
+> 		}
+> 
+> I still don't have the solution here but wanted to let you know about
+> it.
+
+I only had a quick look at it, but apparently the compact formats are
+missing in the format list here:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/drivers/media/v4l2-core/v4l2-common.c#L244
+for whatever reason.
+
+Have you by chance tried adding a line like
+{
+	.format = V4L2_PIX_FMT_SRGGB10P,
+	.pixel_enc = V4L2_PIXEL_ENC_BAYER,
+	.mem_planes = 1,
+	.comp_planes = 1,
+	.bpp = { 5, 0, 0, 0 },
+	.bpp_div = { 4, 1, 1, 1 },
+	.hdiv = 1,
+	.vdiv = 1,
+}
+?
+
+
+Maybe we can fix this, but please note that this issue should not block
+merging this patch series.
+
+Best regards,
+Michael
 
