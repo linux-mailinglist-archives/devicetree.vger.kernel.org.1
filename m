@@ -1,184 +1,157 @@
-Return-Path: <devicetree+bounces-186903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B378FADE1B9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:38:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7F3ADE1C1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EBFE189ADFF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:39:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 492B13B9BE5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051CC1A5B86;
-	Wed, 18 Jun 2025 03:38:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j3R+9qcw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701B31DFE22;
+	Wed, 18 Jun 2025 03:41:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7627628E7
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C41F1D9A5D;
+	Wed, 18 Jun 2025 03:41:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750217922; cv=none; b=VbFpolpCREeB6eNOXbhf+vvQynfHuSMeqo82WUiuoaeNCJg3AKz08wnMSmLjy0j17LXziXW/MH6ZA75unmLfMe2StbUcgQ+IMw53Pm69dFuTDe9CIHrtMFDEQztV4yhyaFDb/6zhvFwVOlf13eHjwhKgy9xrNjW17m9SHDkmCUI=
+	t=1750218119; cv=none; b=Eyi86cKRFgFY2EPsTy9kCMCgQpeP6WUWE2mv70RQkw6VPEYO+1Mhbjt0tttxo1+wInralXF+l5PtaETbYuaKyfMC4OsvyNRv7voMdpf7pM2Es0Q9Qb+QUNwXQpYk8furqE3qXsbwVOrpu8j50okPlFl+dl0jIRTTFCkuH20z0yQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750217922; c=relaxed/simple;
-	bh=RaWmMLjum0fPe+iknIMW6xtMg7QAwDNpqOuyOJJKsk0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ah0fIJG1ET6qpwg6YqlJ2CdwrDf3nwOjva8yrYsDAm9B3kXcc4/2fkxPr+OOpW7sM9pPSyjgNphyM7NSm41mB9SIP8fIsODgqgCvNqjXQuYf2Mo50yov+m3OF/IFWvz8pRwtz/Dn+FHq0kpsQ5zUXXj4zS7aReyr3lOsecy7sSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j3R+9qcw; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-73c17c770a7so7172190b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 20:38:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750217921; x=1750822721; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7Crp3CEYLqrLG+apC2mAZnpDNJDCfTEyqUeeXu58j3U=;
-        b=j3R+9qcwlomQLW2QVQlbVdjPjNWDh84gNgtVqP7m+Gom6w84TOoYwkxgOBTxCA/fUP
-         HB5+fyVZwtk0vHgUovajbPpP2Q07CpZEkK63gCXlWiUK72H6EDFsbf37uONYDQIQChIu
-         APvPb389eyLyNneivmwGyVTAjJC6TXDroB9LMwMLf7AXg168LML+YU7FaF5JgR/MvFcd
-         3uk/XiLfEXYOh5mePofZwx2zbZ2Rg0Zuh+exKWpmU2wBcebF98Y3A0wOXOfSbuwnecKA
-         onq94vMcvC+9VZfeVS5LCGDdJcRDlVE+oS7OISaKeNLbUMBNhqIXZ4kltKHbC6xk0tl+
-         1lxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750217921; x=1750822721;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7Crp3CEYLqrLG+apC2mAZnpDNJDCfTEyqUeeXu58j3U=;
-        b=omhPCcJj9QdssNJmzDf6TXbZ3RvHXuOH9UJvRE4fgAEOQZqi9i8qW4OSxAIyG4fu95
-         ynUZ4f6rgPe3HghMXDb5re3mY4zswdxlit6XPQh7mbpAcq4NAt4KMEm9k3eq/KCVRtqO
-         WZ82Bwe8RMnICsDMcHeq9J9LB6ViWfsM4siOH5mZiEUELPR6ZVaJRVEzSYEsuegFjEnB
-         53DdYNEBVGg43/JBhy5dO4H1XiBNF2kGplHPFe/eJZuquW7fiIkfm+SdOx7eHpGUXpfP
-         GH9NvUMdBFpDxteKfjGO+VbuBc/xW8MfKzwLZsqcVk/7kWU6ccIAXhicEapE9fO7J+qN
-         ktog==
-X-Forwarded-Encrypted: i=1; AJvYcCXQhlAVZJS9w0uIgG8+ar3HfSbIZPk7c2X+fC5QNX6Gk/BQZPHOJKQpR/KFO7jS6SV5LaRGO2Zr59QR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/nDQF5Eg7gZLc9Xo568c/RqfqFsyeGfebcty3z7Fkym3Gp6a/
-	1nqypJpbIvR4ghFHqs0uIgSkjsEVGAH7QhgWlbtsscMjCi8DPRtMlVwe
-X-Gm-Gg: ASbGncudSc3Pi51q6fe9DLHStyzvTWi9k10cX3QsYgg41vcRYKD8ZFaIZCYQvlxMy8C
-	vR9SESCc8bSylmub4JQdIAAJwplxs2jqoaNEF1mJiRcfQVcpquAlJgiWq9ten71MQq/01nV4QR1
-	Pm6gnc42PbLWmWDqijgM3zFF6YR2Otc6A/Jn8yAnLySbGwYah7iRQ4+B1JGanEZetyVKC9wBnF0
-	hxuP6GOye5anjJS2czJyslc/xwr/NZPwKZ7ScSDFCjERwpdoKfQvjiQahrtLjoNDPpjhkDOUwuH
-	7UyYG2poGjNnE7lkVEyGG8Gci9CmJjiMJYdoLv96JefXPAKM89Az+iZPTarvp3MO5NlMhnbh0sT
-	ucq6iDA2lnbl27pLE2nHEzgFv1nAdDrLk2lFkDrM=
-X-Google-Smtp-Source: AGHT+IHbSHvGm0QbeCyiMDx7nSJ6QOKwx2BCtI7rOP0KbnpEARCZ0sIVhZ9/sbhyMcG5HjU83gpjww==
-X-Received: by 2002:a05:6a00:893:b0:748:2ac2:f8c3 with SMTP id d2e1a72fcca58-7489cffb9ddmr24650502b3a.24.1750217920668;
-        Tue, 17 Jun 2025 20:38:40 -0700 (PDT)
-Received: from lcwang-Precision-3630-Tower.. (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-748900822b7sm10147934b3a.101.2025.06.17.20.38.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 20:38:40 -0700 (PDT)
-From: LiangCheng Wang <zaq14760@gmail.com>
-To: cip-dev@lists.cip-project.org
-Cc: drm@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	noralf@tronnes.org,
-	robh+dt@kernel.org,
-	krzk@kernel.org,
-	zaq14760@gmail.com,
-	onlywig@gmail.com
-Subject: [PATCH 3/3] dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink panel
-Date: Wed, 18 Jun 2025 11:37:31 +0800
-Message-Id: <20250618033731.171812-4-zaq14760@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250618033731.171812-1-zaq14760@gmail.com>
-References: <20250618033731.171812-1-zaq14760@gmail.com>
+	s=arc-20240116; t=1750218119; c=relaxed/simple;
+	bh=mClwktUuIUKCAi9FZnjiyUaJnofqGsQT3KVF0qvMQqU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hGF1GrhMaRIzWnHZbv73Pdxznc3ocE+xYFKo3IaSPVpYG4f0bDIXO9gacBawDD3mBmYeYsHZBu91A+WCAjJOfP51QRp/cEkJZRdMMsbre+Q07FFX8W0YrOq7t/SYSb+K0Mtyhn6nABH3Rk03cilHABGqDvZJRXTyQd05HVNPhcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [127.0.0.2] (unknown [210.73.43.2])
+	by APP-01 (Coremail) with SMTP id qwCowABnFtVpNVJoV95NBw--.6548S2;
+	Wed, 18 Jun 2025 11:41:30 +0800 (CST)
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: [PATCH net-next v2 0/6] Add Ethernet MAC support for SpacemiT K1
+Date: Wed, 18 Jun 2025 11:40:45 +0800
+Message-Id: <20250618-net-k1-emac-v2-0-94f5f07227a8@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD01UmgC/1WP0W7CMAxFf6XK8xzF6RqgQoj/mHjIghnRaAp2V
+ jGh/vtCgIc9Xl37HPumhDiSqL65KaYpShxTCfatUeHo0xdB3JesrLGdccZBogzfCDT4AC3hEju
+ zJO/eVdk4Mx3itdI+1H0w0TWr3aNhuvwUfH7Wn14IwjgMMffN5DQ64IB3ykAivor7Zv3wYmsQs
+ V1ptAYXxkI54LQn3nKUINmzLqRNNR2j5JF/60MTVtWL8e/2CcFACO6wog6Nc4ttQXnRPuiQ1G6
+ e5z8eKFlJHAEAAA==
+X-Change-ID: 20250606-net-k1-emac-3e181508ea64
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Vivian Wang <wangruikang@iscas.ac.cn>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Vivian Wang <uwu@dram.page>, Lukas Bulwahn <lukas.bulwahn@redhat.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-CM-TRANSID:qwCowABnFtVpNVJoV95NBw--.6548S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxur1fZr1fXr47tFWxCrWxWFg_yoW5CF1xpa
+	y8ZrZxuwnxJr47trs7uws7urWfWa1vy3W5WF1UtryrX3sF9FWUJrnakr15Gr1UZrWrJryS
+	yr4kZw1fCFn8Ar7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9E14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWUuVWrJwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr
+	0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK67AK6r48MxAIw28IcxkI7VAKI4
+	8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
+	wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjx
+	v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20E
+	Y4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267
+	AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sR_XTm7UUUUU==
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-The binding is for the MAYQUEEN PIXPAPER e-ink display panel,
-controlled via an SPI interface.
+SpacemiT K1 has two gigabit Ethernet MACs with RGMII and RMII support.
+Add a driver for them, as well as the supporting devicetree and bindings
+updates.
 
-Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
+Tested on BananaPi BPI-F3 and Milk-V Jupiter.
+
+I would like to note that even though some bit field names superficially
+resemble that of DesignWare MAC, all other differences point to it in
+fact being a custom design.
+
+Based on SpacemiT drivers [1]. This series depends on reset controller
+support for K1 [2]. These patches can also be pulled from:
+
+https://github.com/dramforever/linux/tree/k1/ethernet/v2
+
+Note on patch 3: I am still fairly certain that such a bus with empty
+ranges is allowed under both the spirit and the letter of simple-bus
+bindings [3].  This also passes "make dtbs_check" with only unrelated
+warnings that was already there.
+
+[1]: https://github.com/spacemit-com/linux-k1x
+[2]: https://lore.kernel.org/all/20250613011139.1201702-1-elder@riscstar.com
+[3]: https://github.com/devicetree-org/dt-schema/commit/ed9190d20f146d13e262cc9138506326f7d4da91
+
 ---
- .../bindings/display/mayqueen,pixpaper.yaml   | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+Changes in v2:
+- dts: Put eth0 and eth1 nodes under a bus with dma-ranges
+- dts: Added Milk-V Jupiter
+- Fix typo in emac_init_hw() that broke the driver (Oops!)
+- Reformatted line lengths to under 80
+- Addressed other v1 review comments
+- Link to v1: https://lore.kernel.org/r/20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn
 
-diff --git a/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-new file mode 100644
-index 000000000..f7c33957e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mayqueen,pixpaper.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MAYQUEEN PIXPAPER e-ink display panel
-+
-+maintainers:
-+  - LC Wang <zaq14760@gmail.com>
-+
-+description: |
-+  The PIXPAPER is an e-ink display panel controlled via an SPI interface.
-+  The panel has a resolution of 122x250 pixels and requires GPIO pins for
-+  reset, busy, and data/command control.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: mayqueen,pixpaper
-+
-+  reg:
-+    maxItems: 1
-+    description: SPI chip select number for the device.
-+
-+  spi-max-frequency:
-+    default: 1000000
-+    description: Maximum SPI clock frequency in Hz.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO for the panel reset pin.
-+
-+  busy-gpios:
-+    maxItems: 1
-+    description: GPIO for the panel busy pin.
-+
-+  dc-gpios:
-+    maxItems: 1
-+    description: GPIO for the data/command pin.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - busy-gpios
-+  - dc-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        display@0 {
-+            compatible = "mayqueen,pixpaper";
-+            reg = <0>;
-+            spi-max-frequency = <1000000>;
-+            reset-gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-+            busy-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
-+            dc-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
+---
+Vivian Wang (6):
+      dt-bindings: net: Add support for SpacemiT K1
+      net: spacemit: Add K1 Ethernet MAC
+      riscv: dts: Add network-bus dma-ranges for SpacemiT K1
+      riscv: dts: spacemit: Add Ethernet support for K1
+      riscv: dts: spacemit: Add Ethernet support for BPI-F3
+      riscv: dts: spacemit: Add Ethernet support for Jupiter
+
+ .../devicetree/bindings/net/spacemit,k1-emac.yaml  |   81 +
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   46 +
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  |   46 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   48 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |   31 +
+ drivers/net/ethernet/Kconfig                       |    1 +
+ drivers/net/ethernet/Makefile                      |    1 +
+ drivers/net/ethernet/spacemit/Kconfig              |   29 +
+ drivers/net/ethernet/spacemit/Makefile             |    6 +
+ drivers/net/ethernet/spacemit/k1_emac.c            | 1934 ++++++++++++++++++++
+ drivers/net/ethernet/spacemit/k1_emac.h            |  416 +++++
+ 11 files changed, 2639 insertions(+)
+---
+base-commit: d9946fe286439c2aeaa7953b8c316efe5b83d515
+change-id: 20250606-net-k1-emac-3e181508ea64
+prerequisite-message-id: <20250613011139.1201702-1-elder@riscstar.com>
+prerequisite-patch-id: 2c73c63bef3640e63243ddcf3c07b108d45f6816
+prerequisite-patch-id: 0faba75db33c96a588e722c4f2b3862c4cbdaeae
+prerequisite-patch-id: 5db8688ef86188ec091145fae9e14b2211cd2b8c
+prerequisite-patch-id: e0fe84381637dc888d996a79ea717ff0e3441bd1
+prerequisite-patch-id: 2fc0ef1c2fcda92ad83400da5aadaf194fe78627
+prerequisite-patch-id: bfa54447803e5642059c386e2bd96297e691d0bf
+
+Best regards,
 -- 
-2.34.1
+Vivian "dramforever" Wang
 
 
