@@ -1,155 +1,173 @@
-Return-Path: <devicetree+bounces-187234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECDA7ADF1C8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:51:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4820ADF18A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 747367A2D34
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:50:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EC321882746
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00352F19A5;
-	Wed, 18 Jun 2025 15:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0332EFDA8;
+	Wed, 18 Jun 2025 15:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TqtK1aCE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TdRdKtCC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8F42F1982;
-	Wed, 18 Jun 2025 15:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0309E1DF738;
+	Wed, 18 Jun 2025 15:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750261850; cv=none; b=SLomo+Deqbklr/fyVj+2g6mYciUQVgnBLbjvN2ujVkeqFzoCfqPSTGGwvcWrkTXiVCKCkipJ8Nf+myHPTTmzqfmLNEG5mmuYHaVpKsl7SXhGQJULOebOCdFRlliSuwYqwtY51SO8HS38kdgjKgZgaoLOX7kpoD6HDpMFR0gapL8=
+	t=1750261221; cv=none; b=Kn/KuLj5U4ks395cqxm5oFj10VEbfrQ2wTTPbs6St0Q20yBphJaTzJTVfvmkEH3PsVzcofJgvGwADc/F7dYiTw0BwK4N5wDvaPh81vWlnlm4Lp0Eb7B82hh4/5FxshjG0Xe35hDiQsdOajykdERcSrNGOD7nM8qnZPkvuseTIEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750261850; c=relaxed/simple;
-	bh=rZujrf8cJQS+I89btYoSUMkKofWIINtOzhrn5MbArYQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EFnCdHk/6AyQOCPE1xuUjNnIGO5uXh2BoDTdGVF03uFD7UuCi0mBgn8F6aqjZxQn1Rrzbv9CPQKmY/jWTBr77g+AlzJaNgA3NtCxSQROptNwUJvO9V8x3qpOt3HcdwzkE42PyPHMC4Y+/6AthE7BLvJA8VAUGHs3l1H2f+7gzyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TqtK1aCE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0005AC4CEFC;
-	Wed, 18 Jun 2025 15:50:49 +0000 (UTC)
+	s=arc-20240116; t=1750261221; c=relaxed/simple;
+	bh=HsoAbQnBnE/foxpNITtdHMz0c3PnR0dNcIrv20ad6LI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BrLArM4DWojzIg6Utf5W9Af5o82RirUrT+jRJaHnwegFj49/0tVwFrs59CQ3F20uotUExYNp1/PFSNEOaTMoouvHmp9LMQVLlIY0H4GqiGGXhcz6Buc1hODnwjc9QoVdoIwU267lOIA4im86QsRN8z0DBGZ4uGjntU8jINAVWhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TdRdKtCC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 179F5C4CEEF;
+	Wed, 18 Jun 2025 15:40:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750261850;
-	bh=rZujrf8cJQS+I89btYoSUMkKofWIINtOzhrn5MbArYQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TqtK1aCE4tV9SmBCEd+oJZ0P0+f7cgth2F2mBswKO+Ob5zK2957jPgAKhi5G+br3c
-	 3JF/x3w1OJECjIGQVcB32GR48y3pQogPGTBMfvyfZ4qGe9rF8uxUSnm7pTRN0cQHlx
-	 vZPM3Q3ift0ruO/6e6TDit6hjpnFXlbJ0DdnksEE8ZDdGDCsbFyajiehTyv5nNEZfm
-	 XR7uHRgOaVfuM6/SMTUHq4sTGeuD58dE2AzOD6u7sJfDPfnKJQDYNLP+ZfGiFCZzJD
-	 EgxRvUA6Ap3K3CDkwnvhhnfJUdtVAcopTiPROrXokGRzpm07LcuFQrnJFJe2ikgm2p
-	 S4aeGP5XaNfRA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8435C7115A;
-	Wed, 18 Jun 2025 15:50:49 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Wed, 18 Jun 2025 17:38:08 +0200
-Subject: [PATCH v9 13/13] arm64: dts: rockchip: enable vicap dvp on
- wolfvision pf5 io expander
+	s=k20201202; t=1750261220;
+	bh=HsoAbQnBnE/foxpNITtdHMz0c3PnR0dNcIrv20ad6LI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TdRdKtCCpUvEcRzN6UVw/ncdpT6sNXiKqW3TCav3FB7V2y5/lG0FkJEORT0X3UgnS
+	 BZxkfqfvM8cwqvty7aUK0wAV25tZzs5obxqCX+yUcS8awsjDUe6+FwETA6v94/rYCe
+	 tYsnosi+8ofmyjkNOxwNi5Lm48+pPJKpx1MAruTlTAxCOXnryqVr4rUQGMtUUgrUgx
+	 OXxCsXrs8ASo43uVOnWuPmdViVRgeBOmH6liEmmUr0uUk5ci92gVhoFQG3YKGkDLTq
+	 wBq6z7we2eWMuYRdxW/xUrlct1dklu7m+knE/PUWmfcqcUFmxs2KD2XGjULDd9szH5
+	 uqXQ96kzdVPbw==
+Message-ID: <00e28a4a-78d6-4452-b28f-29d2e201f6d9@kernel.org>
+Date: Wed, 18 Jun 2025 17:40:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: samsung: exynos-sysreg: add exynos7870
+ sysregs
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250612-exynos7870-drm-dts-v1-0-88c0779af6cb@disroot.org>
+ <20250612-exynos7870-drm-dts-v1-1-88c0779af6cb@disroot.org>
+ <7bb375c8-1a43-40e2-891c-8815c9cc94ff@kernel.org>
+ <76df5b2d6b2c8de73519e1862e105c67@disroot.org>
+ <97a54a9f-8719-4bbd-a1d5-dd398f42ab0c@kernel.org>
+ <cd0f942a3752053e7569040f9e508b2d@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <cd0f942a3752053e7569040f9e508b2d@disroot.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240220-rk3568-vicap-v9-13-ace1e5cc4a82@collabora.com>
-References: <20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com>
-In-Reply-To: <20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gerald Loacker <gerald.loacker@wolfvision.net>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Markus Elfring <Markus.Elfring@web.de>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Alexander Shiyan <eagle.alexander923@gmail.com>, 
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Michael Riesch <michael.riesch@collabora.com>, 
- Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750261092; l=1661;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=tkvGHWW1RXCremqXv1+qTo26zNWU0UHQFUaztf+p/DI=;
- b=XqyCIQ3Brf1VeGWUXB+ZXIaeF0HDCkqFjyzkAVTcbxsYQT6o+KVZ7DSahoLdPWniN9fuO2SrZ
- aAma1XwO2PBBwfkRWmUvBr2IFBmfUSJ6KrDj5usbF8U0wbYcjf3xD5N
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
 
-From: Michael Riesch <michael.riesch@collabora.com>
+On 18/06/2025 16:49, Kaustabh Chakraborty wrote:
+> On 2025-06-18 14:37, Krzysztof Kozlowski wrote:
+>> On 18/06/2025 16:32, Kaustabh Chakraborty wrote:
+>>> On 2025-06-18 09:46, Krzysztof Kozlowski wrote:
+>>>> On 12/06/2025 17:23, Kaustabh Chakraborty wrote:
+>>>>> Add sysreg compatible strings for the Exynos7870 SoC. Two sysregs 
+>>>>> are
+>>>>> added, used for the SoC MIPI PHY's CSIS and DSIM blocks.
+>>>>>
+>>>>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>>>>> ---
+>>>>>  .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml      
+>>>>> | 6 ++++++
+>>>>>  1 file changed, 6 insertions(+)
+>>>>>
+>>>>> diff --git 
+>>>>> a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml 
+>>>>> b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>>>>> index 
+>>>>> d27ed6c9d61ea9db77229eca60b6b9a0abc5d305..174bdb8ee932ff965de6fc17aef004a3cedffeb3 
+>>>>> 100644
+>>>>> --- 
+>>>>> a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>>>>> +++ 
+>>>>> b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>>>>> @@ -52,6 +52,12 @@ properties:
+>>>>>                - samsung,exynosautov9-sysreg
+>>>>>            - const: syscon
+>>>>>          deprecated: true
+>>>>> +      - items:
+>>>>> +          - enum:
+>>>>> +              - samsung,exynos7870-cam-sysreg
+>>>>> +              - samsung,exynos7870-disp-sysreg
+>>>>> +          - const: samsung,exynos7870-sysreg
+>>>>
+>>>>
+>>>> Drop. These are not really compatible or your commit msg is 
+>>>> incomplete.
+>>>> Don't use deprecated syntax and backwards compatible solutions for 
+>>>> new
+>>>> hardware.
+>>>
+>>> Are you sure? The deprecated one is actually the item above. From what 
+>>> I
+>>
+>> Yes. Think why were they added.
+>>
+>>> understand, those are generic sysregs and don't mention their 
+>>> functions.
+>>
+>> And what is a generic sysreg?
+> 
+> What I meant is, usually compatibles go like this (in order):
 
-The Digital Video Port (DVP, the 16-bit variant) of the RK3568 VICAP
-is broken out to the PF5 mainboard expansion header.
-Enable it in the device tree overlay for the WolfVision PF5 IO
-Expander board.
+No, they don't. So you checked why they were added?
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-Reviewed-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-Tested-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- .../rockchip/rk3568-wolfvision-pf5-io-expander.dtso  | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-index 048933de2943..8cfce71dd318 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-@@ -11,6 +11,7 @@
- #include <dt-bindings/clock/rk3568-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/media/video-interfaces.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- 
- &{/} {
-@@ -134,3 +135,22 @@ &usb2phy0_host {
- 	phy-supply = <&usb_host_vbus>;
- 	status = "okay";
- };
-+
-+&vicap {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cif_clk &cif_dvp_clk &cif_dvp_bus16>;
-+	status = "okay";
-+};
-+
-+&vicap_dvp {
-+	vicap_dvp_input: endpoint {
-+		bus-type = <MEDIA_BUS_TYPE_BT656>;
-+		bus-width = <16>;
-+		pclk-sample = <MEDIA_PCLK_SAMPLE_DUAL_EDGE>;
-+		rockchip,dvp-clk-delay = <10>;
-+	};
-+};
-+
-+&vicap_mmu {
-+	status = "okay";
-+};
-
--- 
-2.39.5
-
-
+Best regards,
+Krzysztof
 
