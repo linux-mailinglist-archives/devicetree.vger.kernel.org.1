@@ -1,83 +1,107 @@
-Return-Path: <devicetree+bounces-186932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAF3ADE2CA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:54:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E25ADE2E3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:08:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D283C7A524D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 04:52:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 328DD1704F2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F6C1EB9E1;
-	Wed, 18 Jun 2025 04:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1E81DE2D7;
+	Wed, 18 Jun 2025 05:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MvRQD13m"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="R6IReRDK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427801E3DE8;
-	Wed, 18 Jun 2025 04:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0A613E02D
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 05:08:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750222443; cv=none; b=EIz9G2jFUC9PK1YD25fove4ai3+0fyc/peNoiw2cVqA2/CpI8bW04E1la/ygBS4z7JbTxjBTwWbUkOWQyeOmNwza5yXKsdzFjvlzE/3spN9dDKh5Zyut1iUqXQ2rCYREvsk6ylmY4fkaUjk3SKUArKal1RBy35sX8XgNI6ZnmRA=
+	t=1750223302; cv=none; b=nO1eu+sIcwAyRLIqM66hjhxp3bA+7KKpavbG8UptFyKFR/Xq9O5CCGCmwRfIt63D3Q4UffuZztmvT+LyuDIvZL+esuauVm842Rh3anvM46dexorq8hs7u7a0YLU0cw+dfR805106MMDGrvvTZRNUCwmR3PHi+SA+UChMmHB90O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750222443; c=relaxed/simple;
-	bh=DEKlm+ejo/0mzszOUsL53ctVVQ1j4m3qewxhIFLcv0M=;
+	s=arc-20240116; t=1750223302; c=relaxed/simple;
+	bh=MzlWFzxk1qDJ/5xEzQ4YhLlPSbZkMC8YmJv1GemlOe0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bLHbfGUo5xUWsK+obR0jTu9LzaVhRer8xUTjsnQPIWp8zreMJyysMT0TEERC53S5J92bZtpptOVk3bdIu2jaYfj89mMvYNSPUFVkNbj1fHuegPPi+TykYiJIQXVTFj7OgiPZ71LrmdSXCk9dkcYZuTQsiVWFxSPGzcAC/+wIW/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MvRQD13m; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750222442; x=1781758442;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DEKlm+ejo/0mzszOUsL53ctVVQ1j4m3qewxhIFLcv0M=;
-  b=MvRQD13m/2GjqaQ3PLufxQ//8XWD9ExvXLL4pOFXwZkQEcnyOK/cBiLW
-   D+Ate2EILgRIlfcGYMMsceD7+tTlsyzdCMcqQ3/sSWcChNnNTd4VQ84g0
-   ObkuG84q+EIBSINWgyR5j+Ty6pTEqcQTk77BBl17uF4jXBxkRTYQnYCYm
-   7gN0bG4Lai45SBffVMh6BLamaSp074blXFhfmyKBzj5anSsx8eSRl9T1x
-   5OOyYjLFA1bZl2ZtxmcsfH+dnaDuXnwk+gI1tkAtyn4SAa6YZZrCdH+t2
-   m8FDncTP9f8+h6aHsP64LkKnNitNMA8zcdGffWb6jbBBVxdinvbUvDWv+
-   g==;
-X-CSE-ConnectionGUID: Cth04GmDSQKLQV2SNHAO5A==
-X-CSE-MsgGUID: aIi220FPSHKxfsVA72XTjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11467"; a="63460462"
-X-IronPort-AV: E=Sophos;i="6.16,245,1744095600"; 
-   d="scan'208";a="63460462"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2025 21:54:01 -0700
-X-CSE-ConnectionGUID: IlMBVbuZTBeIdVORDtt5FA==
-X-CSE-MsgGUID: fyNBzSTZSCeodXZuqA5+kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,245,1744095600"; 
-   d="scan'208";a="149026086"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 17 Jun 2025 21:53:57 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uRko7-000JPW-1J;
-	Wed, 18 Jun 2025 04:53:55 +0000
-Date: Wed, 18 Jun 2025 12:53:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, joro@8bytes.org,
-	will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, p.zabel@pengutronix.de,
-	mchehab@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-	kernel@collabora.com,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: Re: [PATCH 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <202506181230.D53QwmdL-lkp@intel.com>
-References: <20250616145607.116639-4-benjamin.gaignard@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZBsOHncE1Tj/TI1tncPoxeJufkv17bOws0d0Ox2x9JXYEUPSYOx7Pf0hYAPCEUWAZtuSg98Wt3qq0z2ELynp1AmE8yESfMYknn9FssH/RIYM83sytBgPKzULd1F1Ag9KbcHscTYkO8iY7+XP200zPTGuFAqtHGiM4cUbCQcIBpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=R6IReRDK; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234b440afa7so65178025ad.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 22:08:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1750223300; x=1750828100; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0piupPu8V/gl6O7trlkzEQzKsY2tqiYS+DKkqKrrgIw=;
+        b=R6IReRDKPO8V6G+5cplMVZyDczIAJveJYxN5f4AYotF7R3iQKA5BNLamnM1uduQhSc
+         7gE4ru0iOQJj83ZF6X0xqeNTy3PxeQSEvPbgoTHrqr/Z7mgUj4jYvFYO4XgLNMAZN3b8
+         FrerMdvXuj2uwksGNFEIVgzBGAm0MGIowZsENt8dvb8E8iMebRH6+ioTvOhiU+avP10m
+         eDw1Sh4Hk84M8WCRg+P0tyjyPmzO6NJ7Q6LuteBfcNyelkFCVlkEQxlDu6q6K309sJl9
+         sPOuC4xzpFrCAAPUGQC9+GGkB/FXmyQGhD7cNKROJYgImlMcW7ehkm8tdyu96CFu1PmI
+         ix6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750223300; x=1750828100;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0piupPu8V/gl6O7trlkzEQzKsY2tqiYS+DKkqKrrgIw=;
+        b=Ah/dtxYC1tDVu28KmFbPMjKGmV++6SoNIj7ba4lj2LEde8WRKz5MByPyLgCEGsBi1g
+         R41lpco3JFzGkOQIjvU8dzvjV3754+pCa6txt0ITpVil5OKiTQsZDFN4SWSe8tAN+6PI
+         jvgcW5w7lcrFVHUnJxx/WNOiBCIaApC/P5P0OLfUnDuyTBv6mtLElqTl0bGkuJrryehU
+         Qkf2WsmlCpYBAK9GVcw3yTpDZlBjFSvCZDd87LPCeFWYeOQwMt8ilL0Rmm/ndmXVWzPL
+         9djFToFkS+aSl2GIH7/dWzqEGgb+95IifwhEekLCC/oqyKnT3wEoZFWSgTQ7J+CU0n2p
+         4LgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWl/ELsau/9twpe6/Mv5vPhsryiEGbg30NJvodTfffjTc3l1nbJG5jEv/99EBoJOC97TlV5li2gTneJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxc9kQve6B++Y6f+ap6+8jhRFasUxQOYiE03/aXKUaoNbFLpcgl
+	DiSZV8CgQY5Q+PRkE5E950mORjhvhBXnWqGTAXkLSauqRQjrbAQN4ls/2JUTJAmbTHg=
+X-Gm-Gg: ASbGnct8mr2ASSAqrx24qUVEZ+el1eQX8FHRaxuIo2cWO4FljUClvRUfr14GdjZx04Z
+	Dv+9i3YeCEX9ynQaI/dHFsGuu5hKkv1GS8bli5sHavmhlKg9h02+DnWLM7LtBs42x9X2kPWuqLU
+	bbEeTDMbqTw+0Tk5cP7htOdwM7svYAUyVRT2L1lpT2BWxEVg1/JgUa/vxx3b0RXYBOUKTNxZ6Sm
+	nXT6yo0syXeh6W5NFX+u+vGQ+mGUerN5UKhl7xsCkIkb+mJA+VsDCytsTrnR5BWFHlbLtdrpIcJ
+	jb6dYe8gS7H7rAZeWlW9/e4kj9jiC0EPqWlo7yhWUSCaGpqk9R3BhTp7ul+UctRCcWregw==
+X-Google-Smtp-Source: AGHT+IFQmeYov3M4TJeicSZPxmrAUyfFLdsmh1502m8UPHV9igXkcxtyc+FtIrcqYue77oYSTt8fUA==
+X-Received: by 2002:a17:903:348f:b0:235:88b:2d06 with SMTP id d9443c01a7336-2366b337f3cmr135541935ad.6.1750223299794;
+        Tue, 17 Jun 2025 22:08:19 -0700 (PDT)
+Received: from sunil-laptop ([103.97.166.196])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365deb54desm90646085ad.179.2025.06.17.22.08.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 22:08:19 -0700 (PDT)
+Date: Wed, 18 Jun 2025 10:38:05 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 21/23] irqchip/riscv-rpmi-sysmsi: Add ACPI support
+Message-ID: <aFJJternIoBDAxrz@sunil-laptop>
+References: <20250611062238.636753-1-apatel@ventanamicro.com>
+ <20250611062238.636753-22-apatel@ventanamicro.com>
+ <87frg3irgq.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,40 +110,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250616145607.116639-4-benjamin.gaignard@collabora.com>
+In-Reply-To: <87frg3irgq.ffs@tglx>
 
-Hi Benjamin,
+On Fri, Jun 13, 2025 at 05:36:21PM +0200, Thomas Gleixner wrote:
+> On Wed, Jun 11 2025 at 11:52, Anup Patel wrote:
+> > @@ -211,6 +213,9 @@ static int rpmi_sysmsi_probe(struct platform_device *pdev)
+> >  {
+> >  	struct device *dev = &pdev->dev;
+> >  	struct rpmi_sysmsi_priv *priv;
+> > +	struct irq_domain *msi_domain;
+> > +	struct fwnode_handle *fwnode;
+> > +	u32 id;
+> >  	int rc;
+> >  
+> >  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > @@ -241,6 +246,22 @@ static int rpmi_sysmsi_probe(struct platform_device *pdev)
+> >  	}
+> >  	priv->nr_irqs = rc;
+> >  
+> > +	fwnode = dev_fwnode(dev);
+> > +	if (is_acpi_node(fwnode)) {
+> > +		u32 nr_irqs;
+> > +
+> > +		rc = riscv_acpi_get_gsi_info(fwnode, &priv->gsi_base, &id,
+> > +					     &nr_irqs, NULL);
+> > +		if (rc) {
+> > +			dev_err(dev, "failed to find GSI mapping\n");
+> > +			return rc;
+> > +		}
+> > +
+> > +		/* Update with actual GSI range */
+> > +		if (nr_irqs != priv->nr_irqs)
+> > +			riscv_acpi_update_gsi_range(priv->gsi_base, priv->nr_irqs);
+> > +	}
+> > +
+> >  	/* Set the device MSI domain if not available */
+> >  	if (!dev_get_msi_domain(dev)) {
+> >  		/*
+> > @@ -250,8 +271,13 @@ static int rpmi_sysmsi_probe(struct platform_device *pdev)
+> >  		 * then we need to set it explicitly before using any platform
+> >  		 * MSI functions.
+> >  		 */
+> > -		if (dev_of_node(dev))
+> > +		if (is_of_node(fwnode)) {
+> >  			of_msi_configure(dev, dev_of_node(dev));
+> > +		} else if (is_acpi_device_node(fwnode)) {
+> > +			msi_domain = irq_find_matching_fwnode(imsic_acpi_get_fwnode(dev),
+> > +							      DOMAIN_BUS_PLATFORM_MSI);
+> 
+> msi_domain is only used here and so it should be declared in this scope
+> and not at the top of the function.
+> 
+Yes, let me change in the next revision. Thanks!
 
-kernel test robot noticed the following build warnings:
+> > +			dev_set_msi_domain(dev, msi_domain);
+> > +		}
+> 
+> Other than that:
+> 
+> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on rockchip/for-next linus/master v6.16-rc2 next-20250617]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Gaignard/dt-bindings-vendor-prefixes-Add-Verisilicon/20250616-225842
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250616145607.116639-4-benjamin.gaignard%40collabora.com
-patch subject: [PATCH 3/5] iommu: Add verisilicon IOMMU driver
-config: arm64-randconfig-r111-20250618 (https://download.01.org/0day-ci/archive/20250618/202506181230.D53QwmdL-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 15.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20250618/202506181230.D53QwmdL-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506181230.D53QwmdL-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/iommu/vsi-iommu.c:890:24: sparse: sparse: symbol 'rockchip_vsi_iommu_driver' was not declared. Should it be static?
-
-vim +/rockchip_vsi_iommu_driver +890 drivers/iommu/vsi-iommu.c
-
-   889	
- > 890	struct platform_driver rockchip_vsi_iommu_driver = {
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thank you!
+Sunil
 
