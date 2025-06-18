@@ -1,132 +1,219 @@
-Return-Path: <devicetree+bounces-187028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56943ADE81B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:10:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA45ADE82F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 361921898B38
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:10:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F0A117DDD9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:11:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FAE298CA6;
-	Wed, 18 Jun 2025 10:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 184072868B2;
+	Wed, 18 Jun 2025 10:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nc2bAauk"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VeRWDszD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33067296153;
-	Wed, 18 Jun 2025 10:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B04F286D44
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750241075; cv=none; b=LbURVuI2zJ52TKpp00nd7CfcPMNADA1eEvBQft70AIGtmPESE6mYYxQGM45H6b+x5KAwOIuXj7Gzvkf007kcv6KOYZkHwcPIiuQm/Q2tTHbmRqqrw1qYMrtvrgkFfeiVzAppcS2zt5vPvUkQcYYG9zY5wfG5uEz352h6hDLhnQw=
+	t=1750241332; cv=none; b=eA2qQgMiUdpUqk6nsrUCgkBUR1slcfxsVHWA+ZXRIig75qZtom9uQfq/FE1Czxhj2Tc72ch7hASAY2TzGNNVaPml5KN1+y1xJ1WFPvOI0MIpxx10sGXhgMf/80xEZOj8xOUnXr4Py59dtYthyPe8C86VFcnBpS8YB2WbhU4rNos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750241075; c=relaxed/simple;
-	bh=4jm0oCDOO4J5YGR53n5qNlqIq1pAtKvteKDI0zUt3aI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GRKMutWicPEhgND9Z0hwt6TH0DkwaNJAxOy57YJT/eF34GSS3/U6WP/yalnKgGeYr46y3NuBZlEiR7zclutkVZPPwWRQyi4XJnQ1dGO/0ri9Gi3DLV0SGusJSgHuehjECTttXHt7upa80PIV3rCcCrGz3z5aI9SE84/6AcsAFLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nc2bAauk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9E3C4CEE7;
-	Wed, 18 Jun 2025 10:04:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750241074;
-	bh=4jm0oCDOO4J5YGR53n5qNlqIq1pAtKvteKDI0zUt3aI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nc2bAaukKmDM0fmTG5jrMmrNO/t+sT1+RdOz8gv+N9frg3ZBqXE0NcdkiZoZySddU
-	 HIhRoDwR8uY+CapOvmJ1xG4vtfSpWg8Dx5F8mtiN2Zt+t+xeIdMcgP492Up4YeSyKU
-	 L19yP/9UVhnfLY08QVkJJQptbvDodpYuem41yusSlavrQzs5FhIau14LYUoFsiBZYp
-	 xFgqV541XFJSar5a+yCN1DiCk64m/ZTVN+cWMBw7F2H7h+lP1dPd4BL1MRANK5YYeP
-	 ecuHBhdmIsJ5ryAnD6anBH9aJkxmcYtFSf3AA36H74+FowrwI0WgG6cXBk6uzMn40H
-	 wMjJgfyEzxlaQ==
-Message-ID: <eb45924b-8d42-4b6e-8424-6400923681d2@kernel.org>
-Date: Wed, 18 Jun 2025 12:04:30 +0200
+	s=arc-20240116; t=1750241332; c=relaxed/simple;
+	bh=j3LmGpuLinBOOisNliZ1REifD1qpXjaHaC2z7QzKPbI=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PIs6kUVsuF3jrH5rDJy+Ms4bolzbLAtMt8uZxV6/lg2hdXqjqBsOW+E+OyOb4mHQ7eSCAwP3S8r7PVx2b2GQ+G7cPuT1qPsbkXs9kpv6uoLWvny/7UADTsb1Sk1HuX/MI4BSEB4KuYg+VRxvOFQjwAkKJ/Ydy72VUxphnn8tWpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VeRWDszD; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-32ac52f78c1so67492621fa.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:08:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750241328; x=1750846128; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:references
+         :mime-version:in-reply-to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uBBnBFuo97eVPKNi0/6hOTdEWfgAEZkRO54pBO14yjo=;
+        b=VeRWDszDhmPobjmRJtlV+T7ZdlPnVD5OeGDHzBvWlcHZS1AX8yFpl3xi1fTHpbQ9Ew
+         HZ1UwFhCV9E3cDo31FIibncuuoziZqHgsw202mvkxF+94sQ+c0z4klaC7olsSshZCDmT
+         und6LHcatdMGlUXl54j7wcSl5DE+omU9TLGxnCgyalIIwfipWjua7fObLPH/A+uJmnhb
+         PN2mrg3U4p558mvDYu16P3KGQ/mQd2YO4LdlMZqaqaKAYBQo2zugaLKLEga0v4Zk0Inw
+         clR3tJWh5KO82O83FqeWDXsFsY7goIG47f86SpuxRRmP1nHS5IUxwB46X51c8Dfrg/Yp
+         FBXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750241328; x=1750846128;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:references
+         :mime-version:in-reply-to:from:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=uBBnBFuo97eVPKNi0/6hOTdEWfgAEZkRO54pBO14yjo=;
+        b=QTffDI5F4QJ/0Gia5Oxsnr4xBggwdfOvLPYe7fNQwuj9VKA9Vt6oICxq8QkqmQEKyt
+         tvQl4jyGMAYOvJJm7pQ+DXBGiARMHUSpaeS1WBb3isxGwB1gTuFjpOmQlFkCh9A5em+V
+         Ph5Ls7VFbBkaPQKRKqOoL8R1Opm477rWjAoogtL7TNEepFBI3Xy1b7L9YuC5vayiYZc+
+         /xHY1M9EfhZsfPC1TAAuYFHTtfsuWmk8GkiMWCYSPcMC5V1hW5PaphI6cOd2fkgQ4wAF
+         cRNashRTcKxwbc/5RLCviBvI5ApGZzONarP1heZiQOYTPz55n0Xw47/yapPtlhu/CPza
+         XlBg==
+X-Forwarded-Encrypted: i=1; AJvYcCVaFYJtHRP0D4tiMaYLxJ7JWQpmL6rnW48LFznRjQN6MZtsbCBPn4XcHlLA36l1mLlHP4ipRYSJ/ekr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH5BTyOT7OFQzUs/6U8Zu/0TALdQOE//eYBOmHnkOjsnW2//Pe
+	8lHBWIuCB6iIGIKSFzHvCUexi7nzFmsQ1vIIkrJ0Z27g4jJXAFhbXx2vRSP70KHfkAjoH5XNSTo
+	XJw3G95hksjpC406KqHGs1LxRyet4L0B9OUYx0wGlLw==
+X-Gm-Gg: ASbGnctVYm3C4cP4s5oEt4yzUvUn8yQZH43HC2T2gWTKq7uhTH5HrNt+aXO8huj8W04
+	JWiinMAZntV/U7nKjhUSm12QkhFEPnQbpykmf/cgFU24IVkuKB06TpH1a3s1m05M5Jzy/k9BdCC
+	L+y7k5kdKdPFHeUU8SVchiO0vuGMVLa0Ho+5irtwlCdTkO2LeSuW2+765pSFjmn/RSZjBBfGiW0
+	g==
+X-Google-Smtp-Source: AGHT+IHojWs9ewmmbTXyI3d7ehaXuASwREwS94656w0ibfKkK8SMr5fKycoZ4i06qEq80ZcwPD5KAKdfsHdS/P8044w=
+X-Received: by 2002:a05:6512:3d03:b0:553:35f5:7aac with SMTP id
+ 2adb3069b0e04-553b6f4cd1amr4194333e87.48.1750241327991; Wed, 18 Jun 2025
+ 03:08:47 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 18 Jun 2025 03:08:46 -0700
+From: brgl@bgdev.pl
+In-Reply-To: <iuqppo7k6qp7v4pm4xtllqkqdtnarlkr2ey7s3fp3g2jd5dynz@oanc7zlfod7m>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] arch: arm64: dts: exynos7870: add DSI support
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250612-exynos7870-drm-dts-v1-0-88c0779af6cb@disroot.org>
- <20250612-exynos7870-drm-dts-v1-2-88c0779af6cb@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250612-exynos7870-drm-dts-v1-2-88c0779af6cb@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250616143341.51944-1-brgl@bgdev.pl> <713cd518-935f-4501-9753-d33c9ea6aef7@oss.qualcomm.com>
+ <CAMRc=MceV-HgyFFvqytXAiuY+y10PQbdPBxuvd57NCeSLVLXCg@mail.gmail.com>
+ <vyr6s4wzw5jc5gt7mywu4s4xob6aeca5aclbe5tdr4v3yng2tn@yb7rn2b2btb7>
+ <CAMRc=MccuJe144NcwapPPRXtQOZbPW8qmybuEA2O9EtfKzs7oQ@mail.gmail.com> <iuqppo7k6qp7v4pm4xtllqkqdtnarlkr2ey7s3fp3g2jd5dynz@oanc7zlfod7m>
+Date: Wed, 18 Jun 2025 03:08:46 -0700
+X-Gm-Features: AX0GCFujqBFBkEMRSldzaIW8AP2PK4RrOY49khUHZq4DSFM-4sjy8X1X0XmOx8I
+Message-ID: <CAMRc=MdTuL9K4etfqM=BEkHy+KKWpT+JKHCo4iRdCX48gs8M8Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: add debug UART pins to reserved GPIO
+ ranges on RB2
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/06/2025 17:23, Kaustabh Chakraborty wrote:
-> Add devicetree nodes for MIPI PHYs, Samsung's DECON and DSIM blocks, and
-> DECON IOMMU devicetree nodes. Enables SoC support for hardware to be
-> able to drive a MIPI DSI display.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  arch/arm64/boot/dts/exynos/exynos7870.dtsi | 94 ++++++++++++++++++++++++++++++
->  1 file changed, 94 insertions(+)
+On Wed, 18 Jun 2025 04:33:31 +0200, Bjorn Andersson <andersson@kernel.org> =
+said:
+> On Tue, Jun 17, 2025 at 01:28:41PM +0200, Bartosz Golaszewski wrote:
+>> On Tue, Jun 17, 2025 at 5:18=E2=80=AFAM Bjorn Andersson <andersson@kerne=
+l.org> wrote:
+>> >
+>> > On Mon, Jun 16, 2025 at 06:43:16PM +0200, Bartosz Golaszewski wrote:
+>> > > On Mon, Jun 16, 2025 at 6:20=E2=80=AFPM Konrad Dybcio
+>> > > <konrad.dybcio@oss.qualcomm.com> wrote:
+>> > > >
+>> > > > On 6/16/25 4:33 PM, Bartosz Golaszewski wrote:
+>> > > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> > > > >
+>> > > > > GPIO12 and GPIO13 are used for the debug UART and must not be av=
+ailable
+>> > > > > to drivers or user-space. Add them to the gpio-reserved-ranges.
+>> > > > >
+>> > > > > Fixes: 8d58a8c0d930c ("arm64: dts: qcom: Add base qrb4210-rb2 bo=
+ard dts")
+>> > > > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.o=
+rg>
+>> > > > > ---
+>> > > >
+>> > > > That also makes them unavailable to the kernel though, no?
+>> > > >
+>> > >
+>> > > Yes. They could only be used by QUP - I2C or SPI #4 - on sm6115 but
+>> > > none of these are used on RB2. I just noticed that my console froze
+>> > > when I accidentally requested GPIO12 and figured that it makes sense
+>> > > to make them unavailable. Let me know if this should be dropped.
+>> > >
+>> >
+>> > I'm guessing that this would be a problem for any pin that is used for
+>> > some other function. Should we instead prevent userspace from being ab=
+le
+>> > to request pins that are not in "gpio" pinmux state?
+>> >
+>>
+>> That's supported by the "strict" flag in struct pinmux_ops. However
+>> the two pins in question are muxed to GPIOs as far as the msm pinctrl
+>> driver is concerned so it wouldn't help.
+>
+> This doesn't sound correct, the pins needs to be muxed to the qup in
+> order for UART to work, so how can they show as "gpio" function?
+>
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+There's no pinctrl-0 property in the uart4 node. But if we do the following=
+:
 
-It is never arch.
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index c8865779173ec..8c29440e9f43c 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -672,6 +672,18 @@ qup_i2c4_default: qup-i2c4-default-state {
+                                bias-pull-up;
+                        };
 
++                       qup_uart4_default: qup-uart4-default-state {
++                               qup_uart4_tx: tx-pins {
++                                       pins =3D "gpio12";
++                                       function =3D "qup4";
++                               };
++
++                               qup_uart4_rx: rx-pins {
++                                       pins =3D "gpio13";
++                                       function =3D "qup4";
++                               };
++                       };
++
+                        qup_i2c5_default: qup-i2c5-default-state {
+                                pins =3D "gpio14", "gpio15";
+                                function =3D "qup5";
+@@ -1565,6 +1577,8 @@ uart4: serial@4a90000 {
+                                reg =3D <0x0 0x04a90000 0x0 0x4000>;
+                                clock-names =3D "se";
+                                clocks =3D <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
++                               pinctrl-names =3D "default";
++                               pinctrl-0 =3D <&qup_uart4_default>;
+                                interrupts =3D <GIC_SPI 331 IRQ_TYPE_LEVEL_=
+HIGH>;
+                                interconnects =3D <&clk_virt
+MASTER_QUP_CORE_0 RPM_ALWAYS_TAG
+                                                 &clk_virt
+SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
+diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c
+b/drivers/pinctrl/qcom/pinctrl-msm.c
+index 5c4687de1464a..e5c85d21e13c7 100644
+--- a/drivers/pinctrl/qcom/pinctrl-msm.c
++++ b/drivers/pinctrl/qcom/pinctrl-msm.c
+@@ -293,6 +293,7 @@ static const struct pinmux_ops msm_pinmux_ops =3D {
+        .get_function_groups    =3D msm_get_function_groups,
+        .gpio_request_enable    =3D msm_pinmux_request_gpio,
+        .set_mux                =3D msm_pinmux_set_mux,
++       .strict                 =3D true,
+ };
 
+ static int msm_config_reg(struct msm_pinctrl *pctrl,
 
-Best regards,
-Krzysztof
+Then the problem on RB2 goes away.
+
+>> Turning on the strict flag at
+>> the global level of the pinctrl-msm driver would be risky though as it
+>> would affect so many platforms, I'm sure it would break things. So IMO
+>> it's either this change or let's drop it and leave it as is.
+>>
+>
+> I share your concern, but the benefit sounds desirable. I think
+> protecting the UART pins would set a precedence for filling that list
+> with all kinds of pins, for all platforms, so lets give this some more
+> thought,
+>
+
+I can only test this change on so many boards. We could give it a try, it's
+early into the cycle so if we get this change into next now, we'd have some
+time to see if anything breaks. I can send patches with the above changes
+if you're alright with it.
+
+Bart
 
