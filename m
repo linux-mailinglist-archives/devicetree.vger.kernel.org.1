@@ -1,120 +1,158 @@
-Return-Path: <devicetree+bounces-187185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D4E3ADEF4D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:28:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 520FCADEF51
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:28:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D16E718865AB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:27:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1486D1BC2C78
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D6D2EF283;
-	Wed, 18 Jun 2025 14:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9A72EBBB0;
+	Wed, 18 Jun 2025 14:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="U67lLJ8g"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="RYxBhjev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249D42EE983;
-	Wed, 18 Jun 2025 14:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B0D285417;
+	Wed, 18 Jun 2025 14:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750256692; cv=none; b=eNtNuE10GEIpoHjb86t6c8N78VuXtrjspzbl0Hbt6ge4rQaBQVn4rEDn9QodYdkghVyuSxb6HZCM2fuwiMzGJ7nMgtcpFlc6prUyZYJgC9ohVh6/1B/Fc+ACsHXN+vRbSB/ddPWqZww317Y+tZUDdVhJ6Y58GWz5GdVuGzf//lM=
+	t=1750256841; cv=none; b=VKMXoKl+vfbknB6hLmOzyEKcGYY64pKKI51sBPmSZqVzLfLaCHnJuBlrCns440UCEergX9Xa7n89C6w2C1Q8eJDBsdhdVZbeno2YKDNtUNWDqMyNuxGpI8oavxgSsRVt8tZNLAlmTHHU0U7mb7AHZmfKw4B4MTjz2pPTmSMzQgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750256692; c=relaxed/simple;
-	bh=2DJvhQxFzEg6ADcIM1XmAmUVjvyMbKPZgoLzfUZ0cxM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q1fGxYanE1FjEolkmp8ElZbqfanCmdq8aRYwWmQCMqYmHp4lkh3ryvKHYZ1GsDPQgBLAK6+AND+O4FQX/dSPOwh1lTJ0ysXDhdb5e56V6WOevNY9XivWWihNjXdaxVSjS2HBPxq9NSgpW8UiQx4mxQ8XcjFsvBXlI7fSWowPywM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=U67lLJ8g; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=+pGl/jrl761RiW9nxGM87f6KLL0RhF44OQat3XVOQyI=;
-	b=U67lLJ8gK2NC55sPi4QCQlSCWlz8xjhXGxNKAuNWd8vKXnxyrYSaofFIdqJQQ1
-	t/q54Qt9VJGVxI6dCeQlGPlZIOjol5peYgxyrBUikw1Klso9I1L4sw9Wcp5Xpb2q
-	UJls5cVEbHgwfCMcIKPoL4l18krsWk9DB4NGC8Hzjuj/Y=
-Received: from [IPV6:240e:b8f:919b:3100:8440:da7c:be7e:927f] (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgBHMBgNzFJovnUQAA--.2192S2;
-	Wed, 18 Jun 2025 22:24:13 +0800 (CST)
-Message-ID: <145c8616-d595-4caf-980d-20eadc39d0bd@163.com>
-Date: Wed, 18 Jun 2025 22:24:12 +0800
+	s=arc-20240116; t=1750256841; c=relaxed/simple;
+	bh=UN4+r4XZNFrvRooGsjjEHC4utAW+tfGxUnWe7E/kEZg=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ufna0Hn9EP5US8r7dg3DZQCE34gQsBpFBxnunz75SXTdAmN2iYQ9Pti33jZbdKVXdaPkbsZmpYrBJT1hOmnLFLOsrjUQEUnBWyA8ImDC3CsGjuui1YWqOuXs9UpOPYnLz2x0II3rRawpOGQhZ6ECxaLXZNh9JPg9kdDlvmVUsZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=RYxBhjev; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id CDC8925F7A;
+	Wed, 18 Jun 2025 16:27:18 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id UXPabypd1lfz; Wed, 18 Jun 2025 16:27:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1750256837; bh=UN4+r4XZNFrvRooGsjjEHC4utAW+tfGxUnWe7E/kEZg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=RYxBhjevfThdOLUFRzhLqaoSxQrAAJJX10YFzY/7DTzTuSQuDgSDAGeL5MqVoDyop
+	 yZKq3Z+ZQoZWeKSOTFlvOindsxL74TAJWqexbnZF7H5/f23C2c9dNCU3D3i1O1ueFQ
+	 AadAn1wP5JOAYtODFq4KaqZrsI4ykYywXaAgQnT+VOJLZONOh/jfxygQ1nKb6ZL7kO
+	 XzASPMLAxr+hlektYmjrN6iy0iXhKgUlpqEvOqhiOvpnA4bNCoy59iizB5WhKomoJ4
+	 VwtwaiqCqkR2rMWNJzxXZNHsu12JRz3WNalpMi3Ny/GZO5RUYt+y3DRnKYxQ+3w4gr
+	 92vQACA6z9Eng==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] PCI: of: Relax max-link-speed check to support
- PCIe Gen5/Gen6
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- krzk+dt@kernel.org, manivannan.sadhasivam@linaro.org, conor+dt@kernel.org,
- robh@kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250529021026.475861-1-18255117159@163.com>
- <20250529021026.475861-4-18255117159@163.com>
- <5baxv7vnmm46ye6egf6i54letsl6c6zcsle4aoaigxnve33pfk@qn33xy5wfghv>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <5baxv7vnmm46ye6egf6i54letsl6c6zcsle4aoaigxnve33pfk@qn33xy5wfghv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgBHMBgNzFJovnUQAA--.2192S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7AFWUAr1kJr1DCr4xAr45Awb_yoW8JFyUpa
-	y7AryruF48XF43XF4UW3WrZa4jgas5WrZ7JryrW3WDuFnxJFsxta42vFWfuFn29FnrZr1S
-	q3W2qr47Jr45JaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UenQUUUUUU=
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiOgBwo2hSykUnrgAAsV
+Date: Wed, 18 Jun 2025 14:27:17 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Inki Dae <inki.dae@samsung.com>, Jagan Teki
+ <jagan@amarulasolutions.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 10/12] dt-bindings: samsung,mipi-dsim: document exynos7870
+ DSIM compatible
+In-Reply-To: <5672e2ee-a828-4555-bf78-9d75c58840bd@kernel.org>
+References: <20250612-exynos7870-dsim-v1-0-1a330bca89df@disroot.org>
+ <20250612-exynos7870-dsim-v1-10-1a330bca89df@disroot.org>
+ <5672e2ee-a828-4555-bf78-9d75c58840bd@kernel.org>
+Message-ID: <9e2f29d3763ea50b30e5a493551627cd@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-
-
-On 2025/6/18 00:50, Manivannan Sadhasivam wrote:
-> On Thu, May 29, 2025 at 10:10:26AM +0800, Hans Zhang wrote:
->> The existing code restricted `max-link-speed` to values 1~4 (Gen1~Gen4),
->> but current SOCs using Synopsys/Cadence IP may require Gen5/Gen6 support.
->> This patch updates the validation in `of_pci_get_max_link_speed` to allow
->> values up to 6, ensuring compatibility with newer PCIe generations.
->>
->> Signed-off-by: Hans Zhang <18255117159@163.com>
-> 
-> DT binding validation should be sufficient. But still...
-> 
-> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> 
-
-Dear Mani，
-
-Thank you very much for your review.
-
-Best regards,
-Hans
-
-
-> - Mani
-> 
+On 2025-06-18 10:00, Krzysztof Kozlowski wrote:
+> On 12/06/2025 17:18, Kaustabh Chakraborty wrote:
+>> Add compatible string for Exynos7870 DSIM bridge controller. The
+>> devicetree node requires four clock sources, named:
+>> - bus_clk
+>> - phyclk_mipidphy0_bitclkdiv8
+>> - phyclk_mipidphy0_rxclkesc0
+>> - sclk_mipi
+>> 
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 >> ---
->>   drivers/pci/of.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
->> index ab7a8252bf41..379d90913937 100644
->> --- a/drivers/pci/of.c
->> +++ b/drivers/pci/of.c
->> @@ -890,7 +890,7 @@ int of_pci_get_max_link_speed(struct device_node *node)
->>   	u32 max_link_speed;
->>   
->>   	if (of_property_read_u32(node, "max-link-speed", &max_link_speed) ||
->> -	    max_link_speed == 0 || max_link_speed > 4)
->> +	    max_link_speed == 0 || max_link_speed > 6)
->>   		return -EINVAL;
->>   
->>   	return max_link_speed;
->> -- 
->> 2.25.1
->>
+>>  .../bindings/display/bridge/samsung,mipi-dsim.yaml | 26 ++++++++++++++++++++++
+>>  1 file changed, 26 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>> index 1acad99f396527192b6853f0096cfb8ae5669e6b..887f3ba1edd24a177a766b1b523d0c197ff1123a 100644
+>> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>> @@ -24,6 +24,7 @@ properties:
+>>            - samsung,exynos5410-mipi-dsi
+>>            - samsung,exynos5422-mipi-dsi
+>>            - samsung,exynos5433-mipi-dsi
+>> +          - samsung,exynos7870-mipi-dsi
+>>            - fsl,imx8mm-mipi-dsim
+>>            - fsl,imx8mp-mipi-dsim
+>>        - items:
+>> @@ -144,6 +145,31 @@ required:
+>>  
+>>  allOf:
+>>    - $ref: ../dsi-controller.yaml#
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: samsung,exynos7870-mipi-dsi
+>> +
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 4
 > 
+> maxItems: 4
 
+Will replace. maxItems == minItems implicit if maxItems present and
+minItems absent.
+
+> 
+>> +
+>> +        clock-names:
+>> +          items:
+>> +            - const: bus_clk
+>> +            - const: phyclk_mipidphy0_bitclkdiv8
+>> +            - const: phyclk_mipidphy0_rxclkesc0
+>> +            - const: sclk_mipi
+> 
+> Does any existing driver code actually depends on the names? If not, we
+> switched in Samsung in general to names matching the input or the
+> function, not the name of provider. bus, bit (or bitdiv?), rx or esc0, sclk 
+
+Yeah, Exynos5433 uses it. Code is here [1].
+
+Though, I could get around this if you would like to. Would need to add
+a few more patches.
+
+PS: bitdiv8 should actually be byte. bit clock frequency used in data
+transmission divided by 8 covers a byte.
+
+[1] https://elixir.bootlin.com/linux/v6.16-rc2/source/drivers/gpu/drm/bridge/samsung-dsim.c#L227
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
