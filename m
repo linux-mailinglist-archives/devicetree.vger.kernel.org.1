@@ -1,242 +1,97 @@
-Return-Path: <devicetree+bounces-186948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AABF7ADE3F6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:48:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F11ADE400
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:52:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1AF4188E67A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:49:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F1913B60C1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B563F212D97;
-	Wed, 18 Jun 2025 06:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF9721576E;
+	Wed, 18 Jun 2025 06:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZOffDGQh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RsJipWcl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F412C258A;
-	Wed, 18 Jun 2025 06:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94975522F;
+	Wed, 18 Jun 2025 06:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750229325; cv=none; b=OGrL4cl561m1+BSDN5yNTgdpQ/m3WmbawJ5wB5wsub9Zl3F+15In7VQ1z5aGW7ZS0pfdegeOrYhsUlKO/Etgqa7VGL2VtR1aRzUuNVrA4sdwnSDCi7sRQKlyJmSC/L27nyakHKOCmQtnlsEM3s3byhdCgoYdZ0gF08Tj4pgnULM=
+	t=1750229566; cv=none; b=IhKvkn7f7NmlsohBUNhjGFUuv19e2BHsoB2XyLKzDup8R2X/bNGlcKGheSP2RUmfkwde5MJuizCak311Qg9cyib4Md6+z91Uu0WRCO/eTXUSl2m2TfuNTrdGvfCfbR198Ui51c0yVVgoU06LrI8wnNZqTX5+ASgRiUyP+Jy2yME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750229325; c=relaxed/simple;
-	bh=TGO80lBRkNCTJQ6qO2NW1xivbmtpOTU2RjLPvsK1/II=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=A1YAhNa3OQN9kW05W9KqKHu9DLRWmwn07mK8y9RRPD899rP21w/qOBOelhcppPZts01sKX88GppIgQzeuzrfb71p63RxU9yTevkWGhVEOQAsBMSaVcjMsUp75W7P05alGTyFnTFRhS+/zYbNNPc1UpqO01FW2Ert71ZNcPqFxZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZOffDGQh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55HNLVaj013410;
-	Wed, 18 Jun 2025 06:48:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oI++LHOgvS0sCdsKtAg7awd/y6wSTuQFNPXw43o0t7E=; b=ZOffDGQhh5YbxXO+
-	jkO+lTT40xjMJqmg0HfWBbt6xlmhqElJeJpofg6vE/tl3dTbesFBa4ZeAH9SIeyf
-	t4UBaiygT+LCIRvX2oxA1IUygaj9yIv8c3/t+CHPEmwiVNBVT0BbtDpY28o/NT4V
-	bQBqeh5MvAVAtmbJXp+t/ywoTH8mWCgqFZqZt/LG8fzhsJjv9MF2PawHvl67JkSM
-	V018qPMM1saxcBVRXl8999cmDMzSP3MtuQ/jp44PhpdQ4bY/+HgE9QJVl1Yg3fdn
-	H3tetSJL32nsyKCkzWRyXsOK63vdABSlnIAXoLHNQctV20mSSj/O2xoIYRqY+ny1
-	ncVNWg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4792ca346f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Jun 2025 06:48:33 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55I6mWFd030179
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Jun 2025 06:48:32 GMT
-Received: from [10.253.79.108] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Jun
- 2025 23:48:26 -0700
-Message-ID: <ddfd1135-33d5-483b-afa0-69370ff3e061@quicinc.com>
-Date: Wed, 18 Jun 2025 14:48:24 +0800
+	s=arc-20240116; t=1750229566; c=relaxed/simple;
+	bh=prDfa/5Zbm9GA9G4tD7ZSeyJ1W+Dn9Epp1t6A1MMNwo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=m4JcscSf7ENVZ2T0xMFd6wlUA2tD7k1ZUD6rjuFuQLSe7nQg/WwbmwVA5ENw5nfBfMdgX111kPkV5qNqgLWyw9COtmGfg6R9RbsDD2okLN5ygdidEcWbGDn9KZuBFIARb2u8FKSYssTlrniVSK74UuNYYtmGE0Ctyd7b57pEvOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RsJipWcl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D2EC4CEED;
+	Wed, 18 Jun 2025 06:52:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750229566;
+	bh=prDfa/5Zbm9GA9G4tD7ZSeyJ1W+Dn9Epp1t6A1MMNwo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=RsJipWcl/kmAXaotjhAwkqCBWa3T3L278I5zdgKs353dwP6Pw1KBECYhtGKFoGoyo
+	 kjYOjf4CO3+uh9PD6LnwOkrCHFpIa934p57BAYaoRHZmhaecX6gY4yo+QTLlUGX60S
+	 78+5Y0prt7mFWQuheeCvMFq5pzbhFGiTozTnlF0FSCNnIi4JEtVhJx2mx/ouhXc+aY
+	 ADgg1pM42jEaoixslcLQSk/627KR9slA79+QE61RUHPasGNDOqgT3BQzo/5i4wNnSh
+	 87Gvz5FMhVvl5/LKo02uiNfy9TIstoZzFlIucs59Bz5YzZFqao5Sa8JTcoN2vdii+0
+	 HDAnNtmPGyhtg==
+From: Michael Walle <mwalle@kernel.org>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan Brattlof <bb@ti.com>,
+	Dhruva Gole <d-gole@ti.com>,
+	Andrew Davis <afd@ti.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am62p-j722s: fix pinctrl-single size
+Date: Wed, 18 Jun 2025 08:52:39 +0200
+Message-Id: <20250618065239.1904953-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: qcs615: enable pcie
-To: Manivannan Sadhasivam <mani@kernel.org>
-CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>,
-        <neil.armstrong@linaro.org>, <abel.vesa@linaro.org>, <kw@linux.com>,
-        <conor+dt@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_qianyu@quicinc.com>,
-        <quic_krichai@quicinc.com>, <quic_vbadigan@quicinc.com>
-References: <20250527072036.3599076-1-quic_ziyuzhan@quicinc.com>
- <20250527072036.3599076-4-quic_ziyuzhan@quicinc.com>
- <axcfeisgtkhnpoayj4zpn4sy237xz6udk2qzm62qk4nfxcica3@behrkpyuarb2>
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-In-Reply-To: <axcfeisgtkhnpoayj4zpn4sy237xz6udk2qzm62qk4nfxcica3@behrkpyuarb2>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _-6Hup0SCjp_bbswg7FPcu3ZRl28gq3n
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDA1NyBTYWx0ZWRfX3Cfq8Wf9pSlZ
- YbWHJH2JspRaw8GcoBssuvyVYtk3kRoeRgM2te9FPALPMkn3yCLJqWndry8Hs0j1FFPzp0NQlob
- uFAdjnDDhXBOC7035atPeNmkcTFyEeH5tC2lHcok9770XgQbWV4tLl1+Y7ei6Xexo7omwLGZQNO
- x5OndYt7bmJeANYEdGoFoXAQlo0AlwlclwrRZ8TmPVENiCvIGWR2g99xZpOJKrAEPao1B/wvOil
- 1t4XcnW+yhzAxjYk/bLYneEEZAr2nNIB+Suf9m70TgrQtSa1mgwNvHHJqg5kw9+k5z0P2RdHO/H
- M38Y+HWQMf5eTyZzHhXYJA2Ig9fPZa03otQM5rUNjDCOlcBokuLxy+rzJ/P1w7TMowMc7CLhMy+
- myB9aeEBS7jFKGlU3b2Kcrwc9JyBjzFPFlBB1gIraenmv0hzOAnx7GaiVfwbOU2cvbQuq/be
-X-Proofpoint-ORIG-GUID: _-6Hup0SCjp_bbswg7FPcu3ZRl28gq3n
-X-Authority-Analysis: v=2.4 cv=etffzppX c=1 sm=1 tr=0 ts=68526141 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=Eh31Mr4urJnSeGphYuEA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-18_02,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 adultscore=0 spamscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506180057
+Content-Transfer-Encoding: 8bit
 
+Pinmux registers ends at 0x000f42ac (including). Thus, the size argument
+of the pinctrl-single node has to be 0x2b0. Fix it.
 
-On 6/18/2025 12:36 AM, Manivannan Sadhasivam wrote:
-> On Tue, May 27, 2025 at 03:20:35PM +0800, Ziyue Zhang wrote:
->> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>
->> Add configurations in devicetree for PCIe0, including registers, clocks,
->> interrupts and phy setting sequence.
->>
->> Add PCIe lane equalization preset properties for 8 GT/s.
->>
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 146 +++++++++++++++++++++++++++
->>   1 file changed, 146 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> index bb8b6c3ebd03..0af757c45eb2 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> @@ -1012,6 +1012,152 @@ mmss_noc: interconnect@1740000 {
->>   			qcom,bcm-voters = <&apps_bcm_voter>;
->>   		};
->>   
->> +		pcie: pcie@1c08000 {
->> +			device_type = "pci";
->> +			compatible = "qcom,pcie-qcs615", "qcom,pcie-sm8150";
->> +			reg = <0x0 0x01c08000 0x0 0x3000>,
->> +			      <0x0 0x40000000 0x0 0xf1d>,
->> +			      <0x0 0x40000f20 0x0 0xa8>,
->> +			      <0x0 0x40001000 0x0 0x1000>,
->> +			      <0x0 0x40100000 0x0 0x100000>,
->> +			      <0x0 0x01c0b000 0x0 0x1000>;
->> +			reg-names = "parf",
->> +				    "dbi",
->> +				    "elbi",
->> +				    "atu",
->> +				    "config",
->> +				    "mhi";
->> +			#address-cells = <3>;
->> +			#size-cells = <2>;
->> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
->> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
->> +			bus-range = <0x00 0xff>;
->> +
->> +			dma-coherent;
->> +
->> +			linux,pci-domain = <0>;
->> +			num-lanes = <1>;
->> +
->> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "msi0",
->> +					  "msi1",
->> +					  "msi2",
->> +					  "msi3",
->> +					  "msi4",
->> +					  "msi5",
->> +					  "msi6",
->> +					  "msi7",
->> +					  "global";
->> +
->> +			#interrupt-cells = <1>;
->> +			interrupt-map-mask = <0 0 0 0x7>;
->> +			interrupt-map = <0 0 0 1 &intc GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>,
->> +					<0 0 0 2 &intc GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>,
->> +					<0 0 0 3 &intc GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>,
->> +					<0 0 0 4 &intc GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
->> +				 <&gcc GCC_PCIE_0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
->> +			clock-names = "pipe",
->> +				      "aux",
->> +				      "cfg",
->> +				      "bus_master",
->> +				      "bus_slave",
->> +				      "slave_q2a";
->> +			assigned-clocks = <&gcc GCC_PCIE_0_AUX_CLK>;
->> +			assigned-clock-rates = <19200000>;
->> +
->> +			interconnects = <&aggre1_noc MASTER_PCIE QCOM_ICC_TAG_ALWAYS
->> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
->> +					 &config_noc SLAVE_PCIE_0 QCOM_ICC_TAG_ACTIVE_ONLY>;
->> +			interconnect-names = "pcie-mem", "cpu-pcie";
->> +
->> +			iommu-map = <0x0 &apps_smmu 0x400 0x1>,
->> +				    <0x100 &apps_smmu 0x401 0x1>;
->> +
->> +			resets = <&gcc GCC_PCIE_0_BCR>;
->> +			reset-names = "pci";
->> +
->> +			power-domains = <&gcc PCIE_0_GDSC>;
->> +
->> +			phys = <&pcie_phy>;
->> +			phy-names = "pciephy";
->> +
->> +			eq-presets-8gts = /bits/ 16 <0x5555 0x5555 0x5555 0x5555
->> +						     0x5555 0x5555 0x5555 0x5555>;
->> +
->> +			operating-points-v2 = <&pcie_opp_table>;
->> +
->> +			status = "disabled";
->> +
-> Please define the PCIe bridge node also.
->
-> - Mani
+This will fix the following error:
+pinctrl-single f4000.pinctrl: mux offset out of range: 0x2ac (0x2ac)
 
-Hi Mani
+Fixes: 29075cc09f43 ("arm64: dts: ti: Introduce AM62P5 family of SoCs")
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+---
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-In a previous patch, you suggested removing this node. However, it now seems
-there might be a need to add it back. Could you kindly advise on the correct
-approach?
-
-BRs
-Ziyue
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+index 17471501df24..17c0949ac1d7 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+@@ -264,7 +264,7 @@ secure_proxy_sa3: mailbox@43600000 {
+ 
+ 	main_pmx0: pinctrl@f4000 {
+ 		compatible = "pinctrl-single";
+-		reg = <0x00 0xf4000 0x00 0x2ac>;
++		reg = <0x00 0xf4000 0x00 0x2b0>;
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
+ 		pinctrl-single,function-mask = <0xffffffff>;
+-- 
+2.39.5
 
 
