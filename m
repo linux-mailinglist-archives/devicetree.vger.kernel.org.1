@@ -1,166 +1,129 @@
-Return-Path: <devicetree+bounces-187243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70152ADF31E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 18:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C7C1ADF361
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 695541883520
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:54:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA6791BC1C2E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631552FEE09;
-	Wed, 18 Jun 2025 16:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1332F1980;
+	Wed, 18 Jun 2025 17:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AJfsT/wk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AEh0qImt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571CD2FEE19;
-	Wed, 18 Jun 2025 16:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C652F003C;
+	Wed, 18 Jun 2025 17:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750265649; cv=none; b=UK45MSlfPhShLdHoz5QbaTv4YR0Ptj6I+6r6lBDkrmFSSucfr9X/iOLa6mMD5di3l7n5/q38NxAfCCPALN8B2/3vQs5etqlHIiOcbM1cS0AUwnudzFu5E90w4WsniYS13hWOroC+l5G1YLHeuEUfpTRQc2wemFUAswu6CKW7p7o=
+	t=1750266267; cv=none; b=Ux1gUt0heK6apYVbS2RKh+fD5zFMjo1PJ4bzks4PesHMvUZYvuLhxpp4Gxvz9Y1sRy7FjV2eH1CjDLWkVSA3Xp+hxGxqw1XnzDSJGQ5gef7pqHfNiXA9S/Ma5eGA0opxRznXWU0cZa5+5jw38G4e4/gXH83B7TvZhA1RYrTWJDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750265649; c=relaxed/simple;
-	bh=kBiRr8MyVCDx2IHSe1QbON+d3OAAkqPRo1XDBFOzGA4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JqN9btaDNcQxKaOjl0WglIO/xsAq7x9op1RMWV8mFEEEbyimvKkZWcwHog0VNd0sEzTvczcL2T4d5BqaxNmeS/6MsFDxX7Y38onRwrzu6fO/OUofRbWgb9iIrQ5XUfAr+IrL/Qs7RbEF7onhC0e1qdIJJfvv1sdeK1DdqRKdFoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AJfsT/wk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750265645;
-	bh=kBiRr8MyVCDx2IHSe1QbON+d3OAAkqPRo1XDBFOzGA4=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=AJfsT/wk398JAIgFfr5V6YyaDGkK8LzNxoxZts9xXcxdB8Gy2wod6/9/NvZ/LzwH+
-	 YhYF1FGUI6l/uuoiYVfR5uVLkigBmJFAnD7z1MVG0Ke0St9/ZOyxwe2TDZ0CR3cQXb
-	 2c7H1Z5zmy5LfpuVQ6sSqSRGgoJyyzcTGCwUr5axQ66KkvD7xm/88GhocP8cKQNM5b
-	 Huly3QLWcM5hsJ9Bp/6aknCsKYhf41oEn2SoSXXOkT3UnUERs+C2DdYBQ17ajjU+Se
-	 tHABZWkj+HeMuMa20MkSqiC10pNLswp5hXlA6/Q8l2EAfnGCCYWtCu+iJB+z2wcgLw
-	 FMxIs4rbA+w8Q==
-Received: from [IPv6:2606:6d00:17:b699::5ac] (unknown [IPv6:2606:6d00:17:b699::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9C48D17E06BF;
-	Wed, 18 Jun 2025 18:54:03 +0200 (CEST)
-Message-ID: <2f63c39a3b9f16c47dfe7f62338ef17839d1b286.camel@collabora.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: iommu: verisilicon: Add binding for
- VSI IOMMU
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Conor Dooley <conor@kernel.org>, Benjamin Gaignard
-	 <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- 	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, jgg@ziepe.ca, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, 	kernel@collabora.com
-Date: Wed, 18 Jun 2025 12:54:01 -0400
-In-Reply-To: <20250618-tighten-morphing-47953075b131@spud>
-References: <20250618140923.97693-1-benjamin.gaignard@collabora.com>
-	 <20250618140923.97693-3-benjamin.gaignard@collabora.com>
-	 <20250618-tighten-morphing-47953075b131@spud>
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
-	boundary="=-H4420/eJuZI3vRrv3ALH"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1750266267; c=relaxed/simple;
+	bh=bzVpmXFF+T69S76tPY21hKIVM7O6QGPZHJ4LN2Hdnks=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YsIZeffCnuSxPzbPDxQOYZmtpN4VcQDmOgRpG46tdF8v/SkWc45xJL6MHYTBsAPbRvFq2duvHCj3w157biAcBTCnoVjzMoXhcwbxtE62VSgYJdCy4hSjVatrIBBeWdWgECMsnuWAnwIj6yWYkikaIkc4FfoNndR331ojaWiA0Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AEh0qImt; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-313bcf6e565so1206660a91.0;
+        Wed, 18 Jun 2025 10:04:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750266265; x=1750871065; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bzVpmXFF+T69S76tPY21hKIVM7O6QGPZHJ4LN2Hdnks=;
+        b=AEh0qImtdpSfkESC8oA+ZCstXPfxnWHg0WoqOuhZXvyIJjmTWSiolayt+EL6hsLuUK
+         1p6USlyPCb8k/jezbDPc0dtjZDNpamE4zfDunCchnir1yFQh1XKyBfPi+hNE9KcQND88
+         bx6S34+RKWMDsxNoccd3bid9Jc0IQd9VzmcgxcmS0HL2cCkdqo8rR+7nuxqJCGl75tSx
+         CJHnGFKb08XNWV7IC64uUBlD1naHHXs25sgs6yJaCOG99oL6Sg/Ovv2qHuBsdvKlwTZG
+         yGfEq5Clr4FUT2z93MqMJFI/UNi3IvzClUbrCX7N4CBipHJfp4cCuj3x2gkh1Vz4lFuM
+         f3GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750266265; x=1750871065;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bzVpmXFF+T69S76tPY21hKIVM7O6QGPZHJ4LN2Hdnks=;
+        b=OpSP7UDeBlRYqfyajB24nO1Ik5jP13pBGhkTA2KZHRdOQPDJ+06cIuW5HAGFVQ0i3L
+         rTHk7vew/v/boUsaIKl+mKEkYvNjNcg44cB/7wxGjFmrpwGwfIK9NGGhF9ncretw1K2P
+         Hy+LsfDjpeafb2/UqRhaVF9XBa20cYuYRwg2dXrPHWjD1XQmg5hSh961LzCjlMEzuGGa
+         +ssZN6F8GcY4PRCcVWIyKHfyQquvQyzpueCp/TvLI8tizMKmVnwR4YhYNuRjiD+Erdt2
+         Zc0MbRUfrPbRufBIi1HXFaCry0VtaEYA8FmEG/dQPQ3IXIJwzKIv36xwO+YWTSrWlNpZ
+         Tcgw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3/edkqy8ierCgiOjXlir2A0NMjbefLEiZOUiapo2SVgfRsAVo6NMA8Omuj2PawbhHiMtIDVpPdHapoOFMjm0=@vger.kernel.org, AJvYcCURghL3pi+U7jQIqAFV5gDStOmv7xWfGEhK2faYblXfWWYgqOOvi4duyHmu2KZHbJezTA63YiWY@vger.kernel.org, AJvYcCVALGLI+nDIAtqfL16wyWjzxaPUnAVZRQ+btxPfUzko1ZwVdk0YVPtvbccxAhyBbz7b3KQpmSE+nZzWJeKy@vger.kernel.org, AJvYcCVXoOYu4v28HYmPgojy5P7XHxZwIUJ40tatBQo8cj8Slvs//g+1afdiYpN/v1VvmHQaL/BTaWAuKQI=@vger.kernel.org, AJvYcCVlXLd61+d2cF39opuT1cYOaLhnVytylDF9VACUdFfsqxnscCzDoDuUrOSisiXoMqtY9BMYifJHWFEyjAY=@vger.kernel.org, AJvYcCVr3bj8BOlXmQuenW0kFmz2jHuHca69uLvfxEwXbikzKMWZNQHYNhUL/LLqTypsnZdkMYQLbI5W7Kgl@vger.kernel.org, AJvYcCVrJp1ATnR4x+V3vquvCiHZWXUgogGEhc22x27vEkhnjwAJJXZZvtfMErxvyMpQyDZ/3zwggoICs8oL@vger.kernel.org, AJvYcCVu7EounMLxyTZCFbEjN66ZgURr06tWUF6fp1L1M5t/+UZBjieSKCTE2I4CP6FErZ2O2BymbhoDqOr7LWTqTfI+@vger.kernel.org, AJvYcCX0U2Yh4fVsInrUHHTNF3cgEipA0+/mWzeXNgina7gvJXxEUzON4Qmy8gfnnKTHB42A1/xDTTHFWrw3iOSb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCXBif5VwQpt/011aQ/BNFhw8ayBUqQMLkZyWimlnYJ4UFMxhy
+	PnAUoGZXpHNWEdhOG0sTEsPbyjiMQtVsPt2LHV53ijFrqFUa0qnnliaTTKumHsXY1etR9ErFn+d
+	ECEq1RrpayTN0N+cGnDhV8JE8tZ43WME=
+X-Gm-Gg: ASbGncs9yUJJa1Pejiop1kuN8/XW3cofiBxO1rdjVAfYs5pwTnTIdNd0ST44Ga7eUAL
+	zPHX/Nk/YTZ9xFnkjBx8KHgK7Wt3XLsVsiEYu99Y+Bg/W+JQklUhJwivujp/YRIWwLyzAyTTcqz
+	j3OU1ko5TEN1KAVpIW+J236pSMAzatca4uDm78vUkyjKs=
+X-Google-Smtp-Source: AGHT+IGLPSVFYPhvf1j/K9i5Ol5itQWfSDa0TfKsaOdtXXSM6IGI5PpH0AQX2y0lYKJIABjfvnv4mQ4chj2kWgpmo4Q=
+X-Received: by 2002:a17:90b:4d12:b0:310:8d79:dfe4 with SMTP id
+ 98e67ed59e1d1-31425ae54f4mr4444282a91.4.1750266265350; Wed, 18 Jun 2025
+ 10:04:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-H4420/eJuZI3vRrv3ALH
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com> <CAJ-ks9k0vAw9UHx-s9uD9u0LufvgnojtrFoG=AH40Gp9HnxEDg@mail.gmail.com>
+In-Reply-To: <CAJ-ks9k0vAw9UHx-s9uD9u0LufvgnojtrFoG=AH40Gp9HnxEDg@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 18 Jun 2025 19:04:11 +0200
+X-Gm-Features: Ac12FXzqpoYx_1GdDyAZ3UU1L_A1NGXd58Gt0NSR1KeeHmAk1xTtSvY9Na-qvaw
+Message-ID: <CANiq72n4rr-S5NtFECxpd8FzkZvE8mg++p0qWDLK7+C0ru1Tew@mail.gmail.com>
+Subject: Re: [PATCH v12 4/6] rust: enable `clippy::as_underscore` lint
+To: Tamir Duberstein <tamird@gmail.com>, Alice Ryhl <aliceryhl@google.com>, 
+	Christian Brauner <brauner@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg KH <gregkh@linuxfoundation.org>, Tejun Heo <tj@kernel.org>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+	Benno Lossin <lossin@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+	linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Le mercredi 18 juin 2025 =C3=A0 16:55 +0100, Conor Dooley a =C3=A9crit=C2=
-=A0:
-> On Wed, Jun 18, 2025 at 04:09:11PM +0200, Benjamin Gaignard wrote:
-> > Add a device tree binding for the Verisilicon (VSI) IOMMU.
-> > This IOMMU sits in front of hardware encoder and decoder
-> > blocks on SoCs using Verisilicon IP, such as the Rockchip RK3588.
-> >=20
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > ---
-> > changes in version 2:
-> > - Add a compatible "rockchip,rk3588-av1-iommu"
-> > - Fix clock-names in binding=20
-> > - Remove "vsi_mmu" label in binding example.
-> >=20
-> > =C2=A0.../bindings/iommu/verisilicon,iommu.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
- | 72 +++++++++++++++++++
-> > =C2=A01 file changed, 72 insertions(+)
-> > =C2=A0create mode 100644 Documentation/devicetree/bindings/iommu/verisi=
-licon,iommu.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iommu/verisilicon,iommu.=
-yaml
-> > b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
-> > new file mode 100644
-> > index 000000000000..9ae4a45d76f4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
-> > @@ -0,0 +1,72 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iommu/verisilicon,iommu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Verisilicon IOMMU
-> > +
-> > +maintainers:
-> > +=C2=A0 - Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > +
-> > +description: |+
-> > +=C2=A0 A Versilicon iommu translates io virtual addresses to physical =
-addresses for
-> > +=C2=A0 its associated video decoder.
-> > +
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 oneOf:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - verisilicon,i=
-ommu
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,rk35=
-88-av1-iommu
->=20
-> This isn't right. Firstly, the "oneOf: - enum" construct doesn't do
-> anything. oneOf one item is just the item. Secondly this still allows
-> verisilicon,iommu in isolation which is not okay. What you actually want
-> here is
-> items:
-> =C2=A0 - const: a
-> =C2=A0 - const: b
->=20
-> Thirdly, Nicolas mentioned that the version of this iommu is 1.2.0,
-> which I would like to see reflected in the compatible.
+On Wed, Jun 18, 2025 at 3:51=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
+ wrote:
+>
+> @Danilo Krummrich could you please have a look for nova?
 
-I believe just 1.2 will be sufficient, the last number is the build number,
-the IP is interface is unchanged.
+Alice, Christian, Danilo, Greg, Tejun: it would also be nice to get
+Acked-by's for your (other) bits.
 
-Nicolas
+Thanks!
 
-
---=-H4420/eJuZI3vRrv3ALH
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCaFLvKQAKCRBxUwItrAao
-HEIBAJ4+fNWvctsbsGY2hG9WzLfQYcW51QCg2j4bOqlf9fdEsgEh4zPtrR8oLqc=
-=SlrU
------END PGP SIGNATURE-----
-
---=-H4420/eJuZI3vRrv3ALH--
+Cheers,
+Miguel
 
