@@ -1,149 +1,115 @@
-Return-Path: <devicetree+bounces-186877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E30ADE04B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:06:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E020ADE0E3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 04:00:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E731A3BA567
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 01:05:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76134189A7C6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 02:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639AC1553A3;
-	Wed, 18 Jun 2025 01:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1994F18DB14;
+	Wed, 18 Jun 2025 02:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C07hC+Ay"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fOxIkfr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE70F9C1;
-	Wed, 18 Jun 2025 01:06:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879A018027;
+	Wed, 18 Jun 2025 02:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750208778; cv=none; b=kdbKOJzbofW7cZzS6LegqFDQ8st09SSFNGhvOoCNNjhyaV9yAqLL/sVxYLc1uWR2xpD9LKj8R4oZRtqH95u/iU3T6x111gP7SQPMyAKJiCcwQLWs2KlmP1litbG0hibv7w2H8ls3/mTmc3qS35BvSZtdo6NhCokems79RwwJIIw=
+	t=1750212011; cv=none; b=lCBdBOeM/GVP1/sIjYula+K9xcfj4+HcpZCA9KkTPukcPCcFVjsq24tfrnQK1Iq3tdEcBFuXdH9ChTVovdMrV2858WXIEAKucPjFnUiHbE3q1KqTrXbPerkYjWScbvDHflAq52NZIKwYm/9v27WB+ioRwy2Auz4nICTNgPa9nO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750208778; c=relaxed/simple;
-	bh=NZJoIl5RzB75/8/+ArVBvSfS7CZuIN+ZCDrLpG14HeY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=TReBivNfcTDZfqZvx+egazUSswhdLY1O94MOn4JV1783BZL7ye+nx9vvVAjTsuUCVxe4XFgXiCHBEXMXgPvBV/V9XO6ws4Na5yz4QdGuRAQmmsP1s+T5HFn34Dhyb/70xfHA9TKtGYg/mtUxiawcDFZ8bAsNieRsuFAQ9OIvSls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C07hC+Ay; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73E04C4CEE3;
-	Wed, 18 Jun 2025 01:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750208777;
-	bh=NZJoIl5RzB75/8/+ArVBvSfS7CZuIN+ZCDrLpG14HeY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=C07hC+AycK0p0NjbZ8fCctadijER0Byvo2iBUSTK5e5yLujQ3+2wJLReMzasZemfS
-	 1Pqztzxyq+DwauqqR+Pyjps/r22fxb0D9v7UpF1y/4IWp4rJdzdaDMgFw7fCWRpEb7
-	 nT7bvQxeugTU9a17anjbMfWtu5y3wBydNQGAcn/UPoi9XcpNFeZh64PUk6DhK7nxDt
-	 Q4DN6rtIK4WaqFcB7ea9UyWTFu8PUdyW9/4Njrfmjdcedm+fJ+nk/RFpg4E1un9Ed4
-	 rMuRta6Lr+Q2xo7cwJp3cXx7AC0s/FBDnTT8LwpRniqBIWjy44RHvCII0GRLdTjKDn
-	 VUlPO855nLHTA==
-Date: Tue, 17 Jun 2025 20:06:16 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750212011; c=relaxed/simple;
+	bh=DbIUGT7egbSIgjmzz8mJCssUS5EuZGi8Eo9qvZUKpaQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eHJml6ZUhpE+7TFkcPHxNYk0jbpjLHMlQTK0la5DkYx82r4as0Gt57uFxDHARx0Kmnc467LMoNDZ1cXS0MRSeGMYUiw3TRqYdU+MEbOv8WazbbrT/2ZteAVp0uPCkbKOPeibOtQf1kpMKI8t2AcXM0wT5wzgnmOtJ7WHwuy2lmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fOxIkfr1; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2363e973db1so2049765ad.0;
+        Tue, 17 Jun 2025 19:00:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750212009; x=1750816809; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Js16QE/l3Azxf6OhqJKpRZgtBkDfap0Xs9MrJpn0tP8=;
+        b=fOxIkfr1LEKO+kHAm7WYmzq4QDpaSgIV4yrdtukew75FxjgUokwxYKxAcqxJqivWmk
+         KX6lT0dTyityhbROGOQpDx21w4TPwm/cQZX+TGJzxrjWK1Q3V4YzbNLxA69MjNNpR0CI
+         4bikPb1FqZAAB7wm+4FyoJI1eNRd9hZEoRvTbadGJLOgmtJLTOTkV/Si6ZMGLO/4BpBw
+         zMvDkS2MBC3bGj1WkW1BEHZmBEajSKMsvrPGNpu843OKNPo68AjVPTSOQLFDOWqg6OUL
+         1yyftQ+Ls2s6JjXkv+LjSNhFcINMJAhqJauW6Vh720UiLEx9kbUWGVHcfXkYLVXDT/aO
+         7z/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750212009; x=1750816809;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Js16QE/l3Azxf6OhqJKpRZgtBkDfap0Xs9MrJpn0tP8=;
+        b=G0JtMB2e0s/t2VSJXoCkQP3I6ygM+xp2bLEPsjbUxAa4iOSu6bjvW/8n39Eg0JFJjH
+         Rb+GcUlrdV8zgVbqRXvnWX1N/xq+hWse6eR6Hcu7mhk4lux7TGX5E/phB6IB0nqMVACE
+         AGKp97//Eqzik8CIZHNH+yaoz7QaAF+r++OhpIE+tFgD2BYlIgs2H3c8HiQ2+P/asW+j
+         C7kBUNzdS1lfXo88V6bSnmsdE8opD4yAtBLXHIIb0oW2x3j58Ar6lEKOXMhMLDsKqMSt
+         zOVrMMXUkM223Cim+YT6tu8tD5iPZZryEOrKVq8pPjOVyDAgJb+svyFER4ahdnrmlgz6
+         mHsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXG1sANAU5tzui9rMxT9O4nPFhyczeh0psGQengBhsxd29gmgHfOD8Ffp7Ku9QYej8xMiCL7o26fafHwx8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YznA55lqLYEVEQg61xpXJoXuhCzCfyx1RT2ZTNndgI9aYsg+Yac
+	JI1JlUcsuGhYWVrdSUc6IdV3WdEm6EZz4wEbDKjRX/gzQccSiYQEcjSP
+X-Gm-Gg: ASbGncuvtrxn6psQ08XXb8XYY3L7U/eAdt6yZsIao3Dg0i74VQiEdcymN2bdO9ozJk8
+	gD6WYhHKjeZRBNj/BgnHaXrGyVHDjHTSrIKMuxfO1zPEMj2+3CkSyBgoQ2o9UE+dGJ41pTJKml0
+	bGvNLko9DemySAsa+kHKj2Pb0XJVUYqfqv6XxcczTbAoXwrlJxRLshX6h0RChOAWkHFvs/9ommr
+	Iikc0iy2RM1VkllzZLSHP44o8y5wwditT6GzFt6r6wOiWT1oTMmZH8L09DnlDSj9WdHsa61Bl9N
+	SXFvYjReb4KltWijeGcJlJp+H526hEGsXZw7myLP2yYmXtBDY/q4xgFxAglTPxS89PInKloE
+X-Google-Smtp-Source: AGHT+IGAOQARUloo9z0y3rQubqjj69WyqkCBQjqqpqt5975rY016nm0RO7e1sy0kgIpRtWCQISr0Aw==
+X-Received: by 2002:a17:903:228b:b0:234:11e2:f41 with SMTP id d9443c01a7336-237c2046e94mr12186545ad.6.1750212008742;
+        Tue, 17 Jun 2025 19:00:08 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-313c19d0e36sm11494388a91.15.2025.06.17.19.00.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 19:00:08 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Longbin Li <looong.bin@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH 0/2] riscv: dts: sophgo: sg2044: add PCIe device node
+Date: Wed, 18 Jun 2025 09:58:47 +0800
+Message-ID: <20250618015851.272188-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Biju Das <biju.das.jz@bp.renesas.com>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Prabhakar <prabhakar.csengg@gmail.com>
-In-Reply-To: <20250617162810.154332-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250617162810.154332-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Message-Id: <175020874488.4118122.11683882991063236818.robh@kernel.org>
-Subject: Re: [PATCH v11 0/2] Add initial support for Renesas RZ/T2H SoC and
- eval board
+Content-Transfer-Encoding: 8bit
 
+As the PCIe driver is merged, add device node of PCIe device and MSI
+device for SG2044.
 
-On Tue, 17 Jun 2025 17:28:08 +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Hi all,
-> 
-> This patch series adds initial support for the Renesas RZ/T2H SoC
-> and the RZ/T2H evaluation board.
-> 
-> Note: This patch series is split up from the original series [1] to make it
->   easier to review.
-> [1] https://lore.kernel.org/all/20250523142417.2840797-1-thierry.bultel.yh@bp.renesas.com/
-> 
-> v10 -> v11:
-> - Rebased on latest linux-next.
-> - Updated model string in the RZ/T2H eval board dts file.
-> - Dropped GIC_CPU_MASK_SIMPLE from timer node
-> - Added hypervisor timer in timer node and added the missing interrupt-names
-> - Reordered the `extal_clk` node
-> - Reordered the `l3_ca55` node and renamed it to `L3_CA55` for consistency
-> 
-> Cheers,
-> Prabhakar
-> 
-> Thierry Bultel (2):
->   arm64: dts: renesas: Add initial support for renesas RZ/T2H SoC
->   arm64: dts: renesas: Add initial support for renesas RZ/T2H eval board
-> 
->  arch/arm64/boot/dts/renesas/Makefile          |   2 +
->  arch/arm64/boot/dts/renesas/r9a09g077.dtsi    | 124 ++++++++++++++++++
->  .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    |  31 +++++
->  arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi |  13 ++
->  4 files changed, 170 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
->  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077m44.dtsi
-> 
-> --
-> 2.49.0
-> 
-> 
-> 
+Inochi Amaoto (2):
+  riscv: dts: sophgo: sg2044: add MSI device support for SG2044
+  riscv: dts: sophgo: sg2044: add PCIe device support for SG2044
 
+ .../boot/dts/sophgo/sg2044-sophgo-srd3-10.dts |  34 ++++
+ arch/riscv/boot/dts/sophgo/sg2044.dtsi        | 186 ++++++++++++++++++
+ 2 files changed, 220 insertions(+)
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250617 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 20250617162810.154332-1-prabhakar.mahadev-lad.rj@bp.renesas.com:
-
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: serial@80005000 (renesas,r9a09g077-rsci): clock-names:0: 'fck' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,rsci.yaml#
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: serial@80005000 (renesas,r9a09g077-rsci): clock-names: ['operation', 'bus'] is too long
-	from schema $id: http://devicetree.org/schemas/serial/renesas,rsci.yaml#
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: serial@80005000 (renesas,r9a09g077-rsci): clocks: [[3, 1, 8], [3, 0, 13]] is too long
-	from schema $id: http://devicetree.org/schemas/serial/renesas,rsci.yaml#
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: serial@80005000 (renesas,r9a09g077-rsci): Unevaluated properties are not allowed ('clock-names', 'clocks' were unexpected)
-	from schema $id: http://devicetree.org/schemas/serial/renesas,rsci.yaml#
-
-
-
-
+--
+2.49.0
 
 
