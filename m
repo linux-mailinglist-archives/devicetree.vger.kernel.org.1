@@ -1,808 +1,329 @@
-Return-Path: <devicetree+bounces-187216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5027DADF158
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:25:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83534ADF1B1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:50:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51D2316323F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:25:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A0AC3A3B4F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87E52EF669;
-	Wed, 18 Jun 2025 15:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A812EE60E;
+	Wed, 18 Jun 2025 15:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8mN0Sa0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rzoL/Owh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D67292EF2A7;
-	Wed, 18 Jun 2025 15:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459987080D;
+	Wed, 18 Jun 2025 15:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750260298; cv=none; b=MvE5SjcuWf497YODw7uaZZ7YCTVFWP3JUY0XfqtjPgcujYo1pAfAC1BsEQybWGxZkvzil5DnH4iIgVL1sLkOTMMXvOWNAaAwlGPAJqHomF+UrumSkV9b33KMeciAVVZ48L0ouQGBX5lqedIVBbiIiqsFfFijRjJoiDmvYyI5NmE=
+	t=1750261849; cv=none; b=MAOeZmcGxy1DWprcpqoo8MhhLv4bKsVKaxKe/bcfhyHImLPO8wNeTeX9yJdM1s9UkST1c4YRnG2jhVpmTnsoGzrQpiJiHf7jXhZfhTwi5rPogpl+oTT5qBstX4My1IAu28HO4cGfayLYX1YhV87ar6BqRi4mkIBpG6W5tnooyJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750260298; c=relaxed/simple;
-	bh=oqSrxa4bPcw9rCNbFoTZDudXoPLJ6miM+1RnjDLji3c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MxyDqM9SvIttn87/Zp5Wq6tA+RqIxPvCPGpVVbfdImbRcmpm+J/WnWfUcOR69FMEQ+FovUoJxL3OSVBYYPssLM1ew/1hBz9hkivhN4sL1/zzR5hOJW5ioP51o7a9mufsrlJkmR02BRH0CRSw8k06ZHVxxd9ml/yc7SLKWkbsLjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8mN0Sa0; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-451ebd3d149so48061525e9.2;
-        Wed, 18 Jun 2025 08:24:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750260294; x=1750865094; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z1aFUGYQqSYHGQ7/Wuy6bSzGJxwls5++o+QYK1qoSaI=;
-        b=m8mN0Sa0ulj6QeHbMBCpaIdgJz4jvsloW9t0PywHnfB6uJg2zvWzHqcc9HPtezwOct
-         tb9zSFtc+ImBu6yEkIT8bPzeyc9PiV7lDvCM7xD83KkwfHwX/CiBZQoVrYMC9KhX2xD1
-         Jrtoy1bxwtBRUyIHVnKa+8Q6tIm+UWTvXdRCCplA3U9bqraZ74BdXB9LEW+7NsY51RrU
-         zKoCT8Ss7ybfgYiNTM9lX9fNcSSXL8A6vdyXVh/1T94mKHQFMXSLMahupVU6Ih9fQEkr
-         PIhULx5VQexnHwjS76EVsUyH3pFvfipeRqRTB9paotg/lyfuIyc5n3AaKjrcMMb+Js4A
-         DIGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750260294; x=1750865094;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z1aFUGYQqSYHGQ7/Wuy6bSzGJxwls5++o+QYK1qoSaI=;
-        b=EQfUTIZQHpVD6rA2A2c0cN9nTnKwy4iqaXuQ+HCtavEEcAoHJt+2d83T7BGP0LmlF8
-         gddIn71C5wCcw9LEtFZoWR+1KBAyCC/xVQBBoMnr+h9q1+cZq0chbWzdhft/JblpYFQE
-         Y8Zu30NP2rfdx5fJs4q+3MxcxQWDxYEGrnFgrealLwb7xsEKceFpZFJULtyWGZKmXdQt
-         pRJ/JNgEoZry8nW5oiRDF4Ow8bMOF2zWk/4Q5N9FRkKkFhzd/5KRcTsYnHMRgDZXFiW9
-         NMX6p5YqduGBPswqu3O/Dqp/fcd1S9WP8KK2SazKjnFUlXo3LT1aRPv7MU5kvrILQXDO
-         djWg==
-X-Forwarded-Encrypted: i=1; AJvYcCVDuAHzsdnDwzzwycnL8w1xSPchI5gRfJ6qujQ4t7hiDCMxPp6eTO3lNe9cuv6rbbs9J6CsMY2pqm6mQvCU6Ad6YlY=@vger.kernel.org, AJvYcCXCBreBg8UiT03bInugFqUmw9BXlNwPfboj/bjgUMg1OG0qI8NI8ROUqEIWUcvnItkO0c7tA9UhW0fP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/BeT2/q8BOuBVnvWJnmuBzkJuE/kvNp488TAANBZlD7YVCxHh
-	QbbupvvV9eEVv+24PYPscBIeHKyq/HXnf6Q6pe13SQ8aiywUQ1/zVvv1RxYtSuKM4e6hQsrRIwt
-	wIfYMX0tjvsiIlrcWigZDf3HCjkWJiCc=
-X-Gm-Gg: ASbGnct4iy3l9Z/+UEtTT9jA/dxSWsQu/whqc5usFvf6L4BPQU9T8mFkp22q3o53Tio
-	oCFyxWlpDKk/XxJCSnjRi94GUvra1cfpAAzHt6oanaVJLg2w7gBy2WVRwhUuL4eK1yigOu1dD05
-	hMC6mHRvz6IsHV2+ymBALf+s6eworYkGV8AKv0ykC7621e6Q==
-X-Google-Smtp-Source: AGHT+IHTnlp0S/0a3luYMmfTgNzHY4YrQRf8QZ6bjWuHmUyxMuNpoiYsQ9bAJefAe+NiLHRE78PDEfaDSGAxUxCozIE=
-X-Received: by 2002:a05:600c:8710:b0:44a:775d:b5e8 with SMTP id
- 5b1f17b1804b1-4533cadf840mr155585545e9.1.1750260293770; Wed, 18 Jun 2025
- 08:24:53 -0700 (PDT)
+	s=arc-20240116; t=1750261849; c=relaxed/simple;
+	bh=y53kvWV7QqEcMZEoH4/QgamjctoJTGOUURowRTdr7NM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LbY+4aoo+f/QC8y0PS78/7+lGvSS4QS1xBdMjdaFDa0gWbmy/jbpluG8sy9AP7Pnz/N4urPIqu8XrtdXgsoBkQLE/9WNIbXie6q+U1n6EpG8CLr3XBSQgoeizAOUhHfJ731OFfC1CMlZ4tTl84vHA3VtzrQ4YYjfNoQSH6pnu0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rzoL/Owh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0468CC4CEE7;
+	Wed, 18 Jun 2025 15:50:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750261849;
+	bh=y53kvWV7QqEcMZEoH4/QgamjctoJTGOUURowRTdr7NM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=rzoL/OwhHNa00yBwFz2KxZJaxP4JVe2bdYPqdqEzxhhx0jITDSb7g9uAJH3bAcKC4
+	 d5BMsGypI5u/CzH2FCvF7kJ14U9t+otyb9AktFEpzpjdrTky5rrsZFawawpWQkNnjR
+	 939uRMc2aYffeX1O6nePTnDvYLm3gVJYFh8AGqIclrdPd8QDE+CM0FvN7xzCCfFvkp
+	 HbeOU+3PARJT9VSwRjv2YE1iuEMWdH0HCk1+k9e0H08/97evAgRbpXodUsfYY8n2iC
+	 VPrfG51ErwtuFQZnWS29GE5FrsXCio/R10LszB30kI24iJ+P2LO6Z8EoIlv6EgOAE5
+	 cK2Kqkh5pDSHw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EAFA7C71136;
+	Wed, 18 Jun 2025 15:50:48 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v9 00/13] media: rockchip: add a driver for the rockchip
+ camera interface
+Date: Wed, 18 Jun 2025 17:37:55 +0200
+Message-Id: <20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
- <20250311113620.4312-2-biju.das.jz@bp.renesas.com> <TYCPR01MB11332F064115080582332B78986AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdVy3B+i2p6unkX-n=7AYCfP5B8sW7F9GJi7URcvniGA2A@mail.gmail.com>
- <TYCPR01MB1133206083EC0249A827261EB86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdUyY8SsUQEZwxdCK-ggPuYy8L_WwnUgq3Cj7oYiTcyNTQ@mail.gmail.com>
- <TY3PR01MB11346123B74D86590C0F8B9CD86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdWevyJ8Z4YWYx0rr=_TD0OTywbkPfNwRcw5k=yDV-i2Ow@mail.gmail.com>
- <CA+V-a8t1siG17NKna-ACUzCoXFTOyVxuLonTVSRLnNq1ie3iTg@mail.gmail.com>
- <CAMuHMdXw+mcj-P=Zm4R8WF0PxogPLfFCbALBRFN9Wn8UEo1FkQ@mail.gmail.com>
- <CA+V-a8u4PgttE0LaH7M=-5Br400sNE1gzk_a3L_9jfXZgCLd-Q@mail.gmail.com>
- <CAMuHMdVQ7pK+zvZm6MHsfGRctyOSurQpDYJztSfD6P1gvuw_RA@mail.gmail.com>
- <CA+V-a8tG4_2bXJ9H=FPT-Qa8zcgsE_5vkVQRj-ONDna5n4Ptgw@mail.gmail.com> <CAMuHMdUOHmKM6mqQHFhGqmNp-doox1rHx0WNN9O8xntp1-TXqw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUOHmKM6mqQHFhGqmNp-doox1rHx0WNN9O8xntp1-TXqw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 18 Jun 2025 16:24:26 +0100
-X-Gm-Features: Ac12FXzTwZNLF0qqzrNT6NtR5rEaW0wcKd5eU38O4_ibPd7mepNVUVCAtDczkJI
-Message-ID: <CA+V-a8voEU7CpEarBN-0FugdE1Zny_YvkwKEw9ZChns95oXHaw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Stephen Boyd <sboyd@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFTdUmgC/33Ry07DMBAF0F+pvMbV+BmbVf8DsfCTWLRx5VQGV
+ OXfcVpBCUq7vLbm3JHmjMZQUhjR8+aMSqhpTHloQT9tkOvN8BZw8i0jCpQDpYDLOxNS4ZqcOWK
+ rLYtaUxE5R23EmjFgW8zg+nnoEHqfcCVs/juWENPnperlteU+jadcvi7Nlcyvt5IqscKnfExu2
+ VcJBkylAkOikRzs7iPv43Xr7RBOaIYr/cUIJd19jDbMEs+Vis6BZ6sY+8EEUJD3MdYwqT2JRAf
+ hOKxi/A9G9H2MNyxokBLABGbXMXHD2KPNRMNi6xNUMB6ZW8Xk8gBLQTbB0yiiDYEIQXYu7/fG5
+ mK2Lh+uQPcI6BrQCUWi19IwZtYA9QhQDdBeO+u4FZT7/8A0Td9VUbuwywIAAA==
+To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Gerald Loacker <gerald.loacker@wolfvision.net>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Markus Elfring <Markus.Elfring@web.de>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Paul Kocialkowski <paulk@sys-base.io>, 
+ Alexander Shiyan <eagle.alexander923@gmail.com>, 
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, 
+ Michael Riesch <michael.riesch@collabora.com>, 
+ Michael Riesch <michael.riesch@collabora.com>, 
+ Mehdi Djait <mehdi.djait@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750261092; l=10841;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=y53kvWV7QqEcMZEoH4/QgamjctoJTGOUURowRTdr7NM=;
+ b=8GLCLpYsjHnVwHGH4KDZqFxnHGvf88smYZX3g9RyjpJllYzz4RGy9gFgYEGS5YKvdG46G7jrd
+ aUsY45h4qhpBfTorSVKFKG0tOPXfxLvqKN0g9Wo7/RIcXfVoU2B0Qp1
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-Hi Geert,
+Habidere,
 
-On Wed, Jun 18, 2025 at 3:03=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, 18 Jun 2025 at 15:41, Lad, Prabhakar <prabhakar.csengg@gmail.com>=
- wrote:
-> > On Wed, Jun 18, 2025 at 1:59=E2=80=AFPM Geert Uytterhoeven <geert@linux=
--m68k.org> wrote:
-> > > On Wed, 18 Jun 2025 at 14:06, Lad, Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> > > > On Wed, Jun 18, 2025 at 8:03=E2=80=AFAM Geert Uytterhoeven <geert@l=
-inux-m68k.org> wrote:
-> > > > > On Tue, 17 Jun 2025 at 23:05, Lad, Prabhakar <prabhakar.csengg@gm=
-ail.com> wrote:
-> > > > > > On Mon, Mar 31, 2025 at 7:25=E2=80=AFPM Geert Uytterhoeven <gee=
-rt@linux-m68k.org> wrote:
-> > > > > > > On Mon, 31 Mar 2025 at 17:33, Biju Das <biju.das.jz@bp.renesa=
-s.com> wrote:
-> > > > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > > > > > > > On Mon, 31 Mar 2025 at 16:34, Biju Das <biju.das.jz@bp.re=
-nesas.com> wrote:
-> > > > > > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mo=
-n, 31 Mar 2025
-> > > > > > > > > > > at 15:54, Biju Das <biju.das.jz@bp.renesas.com> wrote=
-:
-> > > > > > > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com> Docum=
-ent support for
-> > > > > > > > > > > > > the Expanded Serial Peripheral Interface (xSPI) C=
-ontroller in
-> > > > > > > > > > > > > the Renesas RZ/G3E
-> > > > > > > > > > > > > (R9A09G047) SoC.
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > > > > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.c=
-om>
-> > > > > > > > > > >
-> > > > > > > > > > > > > --- /dev/null
-> > > > > > > > > > > > > +++ b/Documentation/devicetree/bindings/memory-co=
-ntrollers/renes
-> > > > > > > > > > > > > +++ as,r
-> > > > > > > > > > > > > +++ zg3e
-> > > > > > > > > > > > > +++ -xspi.yaml
-> > > > > > > > > > >
-> > > > > > > > > > > > > +    spi@11030000 {
-> > > > > > > > > > > > > +        compatible =3D "renesas,r9a09g047-xspi";
-> > > > > > > > > > > > > +        reg =3D <0x11030000 0x10000>, <0x2000000=
-0 0x10000000>;
-> > > > > > > > > > > > > +        reg-names =3D "regs", "dirmap";
-> > > > > > > > > > > > > +        interrupts =3D <GIC_SPI 228 IRQ_TYPE_EDG=
-E_RISING>,
-> > > > > > > > > > > > > +                     <GIC_SPI 229 IRQ_TYPE_EDGE_=
-RISING>;
-> > > > > > > > > > > > > +        interrupt-names =3D "pulse", "err_pulse"=
-;
-> > > > > > > > > > > > > +        clocks =3D <&cpg CPG_MOD 0x9f>, <&cpg CP=
-G_MOD 0xa0>,
-> > > > > > > > > > > > > +                 <&cpg CPG_MOD 0xa1>, <&cpg CPG_=
-MOD 0xa1>;
-> > > > > > > > > > > >
-> > > > > > > > > > > > On the next version I am going to update spix2 clk =
-as <&cpg
-> > > > > > > > > > > > CPG_CORE R9A09G047_SPI_CLK_SPIX2>
-> > > > > > >
-> > > > > > > According to the RZ/G3E clock system diagram, (the parent of)=
- clk_spi
-> > > > > > > is derived from (the parent of) clk_spix2, not the other way =
-around?
-> > > > > > > So you can model clk_spi as a fixed divider clock with parent=
- clk_spix2
-> > > > >                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
-^^^^^^^^^^
-> > > [A]
-> > >
-> > > > > > > and factor two.  I.e. provide a new core clock R9A09G047_SPI_=
-CLK_SPI
-> > > > > > > instead of your proposed R9A09G047_SPI_CLK_SPIX2?
-> > > > > > >
-> > > > > > With this approach when R9A09G047_SPI_CLK_SPI is used as a core=
- clock
-> > > > > > and XSPI node is disabled the clk_summary reports the core cloc=
-k is ON
-> > > > > > (while it's actually OFF).
-> > > > >
-> > > > > Is that a real problem, or is it purely cosmetic?
-> > > > Just cosmetic tbh as despite being a MOD clock we have to define it=
- as
-> > > > a core clock in the DT.
-> > > >
-> > > > > > Can we maybe use a unused ON index and ON bit for example 25, 0=
- (ie
-> > > > > > 0x190) and represent this is a module clock for example for the
-> > > > > > spi_clk_spix2 clock and use this in the DT and let the CPG core=
- code
-> > > > > > handle such turning ON/OF the module clocks based on the enable=
- count
-> > > > > > which will be handled internally in the driver?
-> > > > >
-> > > > > Please do not use "unused" module clock bits.  These do not descr=
-ibe
-> > > > > the hardware, and may actually exist in the hardware (try disabli=
-ng
-> > > > > all undocumented module clocks, and observe what fails...).
-> > > > >
-> > > > Agreed, "unused" module clock bits were only used as a dummy. The
-> > > > read/write operations were only performed on the actual bits which =
-are
-> > > > documented in the HW manual.
-> > > >
-> > > > > If spi_clk_spi really must show being disabled, you can change it
-> > > > > from a fixed divider clock (which does not implement .{en,dis}abl=
-e())
-> > > > > to a custom fixed divider clock that does implement .{en,dis}able=
-()
-> > > > > and keeps track internally of the fake state, or even looks at th=
-e
-> > > > > state of spi_clk_spix2?
-> > > > >
-> > > > Good point. Maybe instead of implementing the dummy .{en,dis}able()=
- I
-> > > > will implement the is_enabled() + (clk_fixed_factor_ops). The
-> > > > is_enabled() will take care of reading from the MON bits and report
-> > > > the actual state of the clock.
-> > > >
-> > > > > However, upon second look, spi_clk_spi is not implemented as a fi=
-xed
-> > > > > divider clock with parent clk_spix2, as described above:
-> > > > >
-> > > > >       .smux2_xspi_clk1     0  0  0 320000000  0  0  50000  Y
-> > > > >          .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
-> > > > >             spi_clk_spix2  0  0  0 40000000   0  0  50000  N
-> > > > >             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
-> > > > >          spi_aclk          0  0  0 200000000  0  0  50000  N
-> > > > >          spi_hclk          0  0  0 200000000  0  0  50000  N
-> > > > >       .smux2_xspi_clk0     0  0  0 533333333  0  0  50000  Y
-> > > > >
-> > > > > Instead, they both use pllcm33_xspi as the parent clock.
-> > > > > Apparently I missed that in the review of RZ/G3E XSPI clock suppo=
-rt.
-> > > > > The changelog for that patch does describe the correct topology?
-> > > > >
-> > > > The topology is correct for RZ/G3E, spi/spix2 are sourced from
-> > > > pllcm33_xspi divider and there is a divider (/2) for spi.
-> > >
-> > > Both spi_clk_spix2 and spi_clk_spix have .pllcm33_xspi as
-> > > immediate parent.
-> > >
-> > > [A] describes something different:
-> > >
-> > >     .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
-> > >         spi_clk_spix2  0  0  0 40000000   0  0  50000  N
-> > >             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
-> > >
-> > > I.e. if spi_clk_spix2() is disabled, spi_clk_spi() is disabled, too.
-> > >
-> > Okay, thanks - got it.
-> >
-> > To clarify, to implement spi_clk_spi core clock as a parent of
-> > spi_clk_spix2 I will need to implement some sort of mechanism which
-> > registers (late) core clks after core clks and module clks are
-> > registered as spi_clk_spix2 is a module clock.
->
-> Yes, I wondered about that as well, but wasn't too worried as you
-> already added the smux with e.g. "et0_rxclk" as parent, which also
-> doesn't exist at registration time ;-)
->
-Good point.
+This series introduces support for the Rockchip Camera Interface (CIF),
+which is featured in many Rockchip SoCs in different variations.
+For example, the PX30 Video Input Processor (VIP) is able to receive
+video data via the Digital Video Port (DVP, a parallel data interface)
+and transfer it into system memory using a double-buffering mechanism
+called ping-pong mode.
+The RK3568 Video Capture (VICAP) unit, on the other hand, features a
+DVP and a MIPI CSI-2 receiver that can receive video data independently
+(both using the ping-pong scheme).
+The different variants may have additional features, such as scaling
+and/or cropping.
+Finally, the RK3588 VICAP unit constitutes an essential piece of the
+camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
+units, and a data path multiplexer (to scaler units, to ISP, ...).
 
-> But indeed, the smux uses clock names to find the parents, while
-> fixed-factor clocks in zv2h_cpg_register_core_clk() expect clock IDs
-> (which are converted to names), and don't handle non-core clocks yet.
-> So either add support for late core clocks, or modify CLK_TYPE_FF
-> to use cpg_core_clock.parent_names[] in case of a non-core parent?
->
-I choose the late core registration of the clocks and with this the
-core clk_spi still reports `Y` in the summary while the parent is OFF
-(since its a FF clock).
+The v9 of the series adds a media controller centric V4L2 device driver
+for the Rockchip CIF with
+ - support for the PX30 VIP (not tested, though, due to the lack of HW)
+ - support for the RK3568 VICAP, including
+    - capturing frames from the DVP
+    - capturing frames from the MIPI CSI-2 receiver
+ - abstraction for the ping-pong scheme to allow for future extensions
+ - abstraction for the INTERFACE and CROP parts to allow for future
+   extensions
+ - initial support for different virtual channels (not tested, though,
+   due to the lack of HW)
+and a V4L2 subdevice driver for the Rockchip MIPI CSI-2 Receiver.
 
-Logs for option #1
-------------------------
-root@rzv2h-evk:~# modprobe spi_rpc_if
-[  217.783625] 3 fixed-partitions partitions found on MTD device spi0.0
-[  217.790029] Creating 3 MTD partitions on "spi0.0":
-[  217.794958] 0x000000000000-0x000000060000 : "bl2"
-[  217.800464] 0x000000060000-0x000002000000 : "fip"
-[  217.807788] 0x000002000000-0x000004000000 : "user"
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep spi
-             spi_aclk                0       1        0
-200000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-             spi_hclk                0       1        0
-200000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-          .smux2_xspi_clk0           1       1        0
-533333333   0          0     50000      Y            deviceless
-              no_connection_id
-             .smux2_xspi_clk1        1       1        0
-533333333   0          0     50000      Y               deviceless
-                 no_connection_id
-                .pllcm33_xspi        1       1        0
-266666667   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   spi_clk_spix2     2       2        0
-266666667   0          0     50000      Y
-11030000.spi                    spix2
-                      spi_clk_spi    1       1        0
-133333333   0          0     50000      Y
-11030000.spi                    spi
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# modprobe -r  spi_rpc_if
-[  225.376563] Deleting MTD partitions on "spi0.0":
-[  225.381218] Deleting bl2 MTD partition
-[  225.385504] Deleting fip MTD partition
-[  225.617827] Deleting user MTD partition
-root@rzv2h-evk:~#
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep spi
-             spi_aclk                0       0        0
-200000000   0          0     50000      N               deviceless
-                 no_connection_id
-             spi_hclk                0       0        0
-200000000   0          0     50000      N               deviceless
-                 no_connection_id
-          .smux2_xspi_clk0           0       0        0
-533333333   0          0     50000      Y            deviceless
-              no_connection_id
-             .smux2_xspi_clk1        0       0        0
-533333333   0          0     50000      Y               deviceless
-                 no_connection_id
-                .pllcm33_xspi        0       0        0
-266666667   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   spi_clk_spix2     0       0        0
-266666667   0          0     50000      N
-deviceless                      no_connection_id
-                      spi_clk_spi    0       0        0
-133333333   0          0     50000      Y
-deviceless                      no_connection_id
-root@rzv2h-evk:~#
-root@rzv2h-evk:~#
+The patches are functional and have been tested successfully on a
+custom RK3568 board including the ITE Tech. IT6801 HDMI receiver and
+the Sony IMX415 image sensor as subdevices attached to the DVP and the
+MIPI CSI-2 receiver, respectively.
+The IT6801 driver still needs some loving care but shall be submitted
+as well at some point.
+
+However, several features are not yet addressed, such as
+ - support for the RK3588 variant (-> first success achieved, patches
+   need some cleanup and shall be submitted separately)
+ - support for the MUX/SCALE/TOISP block in the RK3588 VICAP (which
+   provides the base for image processing on the RK3588)
+ - support for the scaling unit in the PX30 (-> cannot do due to the
+   lack of HW)
+ - support for the interface to the Rockchip ISP in the RK3568
+   (-> cannot do, latest information from Rockchip points out there
+   IS NO HW CONNECTION BETWEEN VICAP AND ISP ON RK3568)
+
+Looking forward to your comments!
+
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Théo Lebrun <theo.lebrun@bootlin.com>
+To: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To: Gerald Loacker <gerald.loacker@wolfvision.net>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+To: Kever Yang <kever.yang@rock-chips.com>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Collabora Kernel Team <kernel@collabora.com>
+To: Paul Kocialkowski <paulk@sys-base.io>
+To: Alexander Shiyan <eagle.alexander923@gmail.com>
+To: Val Packett <val@packett.cool>
+To: Rob Herring <robh@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+
+Changes in v9:
+- added compatible for RK3588 MIPI CSI-2 receiver, thus dropped
+  Krzysztof's R-b
+- added interrupts to rkcsi DT binding and RK356x DT
+- added variant specific callback to rkcif-capture-mipi that puts
+  together the CTRL0 register content (which varies between RK3568
+  and RK3588)
+- fixed v4l2_fill_pixfmt_mp() return value handling (Mehdi)
+- Link to v8: https://lore.kernel.org/r/20240220-rk3568-vicap-v8-0-9d9cbc4b524d@collabora.com
+
+Changes in v8:
+- rebased onto v6.16-rc1
+- fixed RKCIF_MIPI_MAX value in rkcif-common.h
+- fixed rkcsi Kconfig (kernel test robot)
+- sorted rkcsi DT bindings document properly, completed example
+  (Krzysztof)
+- squashed the defconfig patches (Krzysztof), dropped Bryan's R-b
+- Link to v7: https://lore.kernel.org/r/20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com
+
+Changes in v7:
+- moved MIPI CSI-2 receiver driver into separate directory (Laurent)
+- rkcsi: fixed return values (Bryan)
+- rkcsi: fixed v4l2_get_link_freq to use pad instead of control
+  handler (Sakari)
+- rkcsi: added data-lanes property (Mehdi)
+- rkcif: fixed formatting (Bryan)
+- fixed "int" -> "unsigned int" in all for loops (Sakari)
+- rkcif-stream: fixed minimum number of required buffers (Mehdi)
+- rkcif-stream: used guards for the spinlock (Markus and Mehdi)
+- rkcif-stream: made driver less noisy with dev_dbg (Mehdi)
+- rkcif-stream: fixed issues detected by v4l2-compliance (Mehdi)
+- rkcif-dvp-capture: fixed return value propagation in _register()
+  (Mehdi)
+- removed stray "phy-names" from required properties (Rob's bot)
+- Link to v6: https://lore.kernel.org/r/20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com
+
+Changes in v6:
+- rebased onto v6.15-rc1
+- renamed "MIPI CSI HOST" -> "MIPI CSI RECEIVER" (Laurent)
+- s/@wolfvision.net/@collabora.com where appropriate
+- renamed DVP delay property and moved it to the endpoint (Sakari)
+- implemented DT review comments (Krzysztof and Sakari)
+- implemented driver review comments (Sakari)
+- fixed issues raised by media-ci (yet again)
+- added documentation including a RK3568 topology (new patch 1)
+  (Sakari)
+- added patch that enables rkcif in the defconfig (new patch 9)
+- Link to v5: https://lore.kernel.org/r/20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net
+
+Changes in v5:
+- fixed issues raised by media-ci
+- fixed dt bindings (comments by Rob and Sakari)
+- fixed probe on systems with no DVP in DT (comment by Alexander)
+- fixed error path in register offset calculation
+- split off MIPI CSI host driver into separate module (comment
+  by Mehdi)
+- added MODULE_DEVICE_TABLE() for both drivers (comment by Mehdi)
+- Link to v4: https://lore.kernel.org/r/20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net
+
+Changes in v4:
+- added support for the MIPI CSI-2 receiver (new patches 4, 6, 7, 10)
+- fixed asserts on stream stop
+- fixed register address lookup
+- fixed link validiation callback
+- fixed issues raised by Rob's bot, kernel test robot, and media-ci
+- Link to v3: https://lore.kernel.org/r/20250206-v6-8-topic-rk3568-vicap-v3-0-69d1f19e5c40@wolfvision.net
+
+Changes in v3:
+- renamed the driver "cif" -> "rkcif"
+- rebased onto v6.14-rc1
+- abstracted the generic INTERFACE+CROP part
+- addressed comments by Rob and Sakari
+- added V4L2 MPLANE formats to DVP
+- added patch that enables the RK3568 VICAP DVP on PF5 IO Expander
+- fixed formatting issues raised by media-ci bot
+- Link to v2: https://lore.kernel.org/r/20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net
+
+Changes in v2:
+- merged with Mehdi's v13
+- refactored the complete driver towards a media controller centric driver
+- abstracted the generic ping-pong stream (can be used for DVP as well as for CSI-2)
+- switched to MPLANE API
+- added support for notifications
+- Link to v1: https://lore.kernel.org/r/20240220-v6-8-topic-rk3568-vicap-v1-0-2680a1fa640b@wolfvision.net
+
+---
+Mehdi Djait (2):
+      media: dt-bindings: add rockchip px30 vip
+      arm64: dts: rockchip: add the vip node to px30
+
+Michael Riesch (11):
+      Documentation: admin-guide: media: add rockchip camera interface
+      media: dt-bindings: video-interfaces: add defines for sampling modes
+      media: dt-bindings: add rockchip rk3568 vicap
+      media: dt-bindings: add rockchip rk3568 mipi csi-2 receiver
+      media: rockchip: add a driver for the rockchip camera interface
+      media: rockchip: add driver for mipi csi-2 receiver
+      media: rockchip: rkcif: add support for mipi csi-2 capture
+      arm64: defconfig: enable rockchip camera interface and mipi csi-2 receiver
+      arm64: dts: rockchip: add vicap node to rk356x
+      arm64: dts: rockchip: add mipi csi-2 receiver node to rk356x
+      arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+
+ .../admin-guide/media/rkcif-rk3568-vicap.dot       |  21 +
+ Documentation/admin-guide/media/rkcif.rst          |  83 ++
+ Documentation/admin-guide/media/v4l-drivers.rst    |   1 +
+ .../bindings/media/rockchip,px30-vip.yaml          | 122 +++
+ .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 144 ++++
+ .../bindings/media/rockchip,rk3568-vicap.yaml      | 170 ++++
+ MAINTAINERS                                        |  17 +
+ arch/arm64/boot/dts/rockchip/px30.dtsi             |  12 +
+ .../rk3568-wolfvision-pf5-io-expander.dtso         |  20 +
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |  78 ++
+ arch/arm64/configs/defconfig                       |   2 +
+ drivers/media/platform/rockchip/Kconfig            |   2 +
+ drivers/media/platform/rockchip/Makefile           |   2 +
+ drivers/media/platform/rockchip/rkcif/Kconfig      |  18 +
+ drivers/media/platform/rockchip/rkcif/Makefile     |   7 +
+ .../platform/rockchip/rkcif/rkcif-capture-dvp.c    | 864 +++++++++++++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-dvp.h    |  24 +
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.c   | 770 ++++++++++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |  22 +
+ .../media/platform/rockchip/rkcif/rkcif-common.h   | 249 ++++++
+ drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 302 +++++++
+ .../platform/rockchip/rkcif/rkcif-interface.c      | 425 ++++++++++
+ .../platform/rockchip/rkcif/rkcif-interface.h      |  30 +
+ drivers/media/platform/rockchip/rkcif/rkcif-regs.h | 154 ++++
+ .../media/platform/rockchip/rkcif/rkcif-stream.c   | 637 +++++++++++++++
+ .../media/platform/rockchip/rkcif/rkcif-stream.h   |  31 +
+ drivers/media/platform/rockchip/rkcsi/Kconfig      |  16 +
+ drivers/media/platform/rockchip/rkcsi/Makefile     |   3 +
+ drivers/media/platform/rockchip/rkcsi/rkcsi.c      | 735 ++++++++++++++++++
+ include/dt-bindings/media/video-interfaces.h       |   4 +
+ 30 files changed, 4965 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20240220-rk3568-vicap-b9b3f9925f44
+
+Best regards,
+-- 
+Michael Riesch <michael.riesch@collabora.com>
 
 
-
-
-Code implementation for option#1
-------------------------------------------------
-diff --git a/drivers/clk/renesas/r9a09g057-cpg.c
-b/drivers/clk/renesas/r9a09g057-cpg.c
-index 9952474bcf48..ab9e9a3e8cd1 100644
---- a/drivers/clk/renesas/r9a09g057-cpg.c
-+++ b/drivers/clk/renesas/r9a09g057-cpg.c
-@@ -231,7 +231,10 @@ static const struct cpg_core_clk
-r9a09g057_core_clks[] __initconst =3D {
-           CLK_PLLETH_DIV_125_FIX, 1, 1),
-     DEF_FIXED("gbeth_1_clk_ptp_ref_i", R9A09G057_GBETH_1_CLK_PTP_REF_I,
-           CLK_PLLETH_DIV_125_FIX, 1, 1),
--    DEF_FIXED("spi_clk_spi", R9A09G057_SPI_CLK_SPI, CLK_PLLCM33_XSPI, 1, 2=
-),
-+};
-+
-+static const struct cpg_core_clk r9a09g057_late_core_clks[] __initconst =
-=3D {
-+    DEF_FIXED("spi_clk_spi", R9A09G057_SPI_CLK_SPI, 0xa1, 1, 2),
- };
-
- static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst =3D {
-@@ -502,6 +505,8 @@ const struct rzv2h_cpg_info r9a09g057_cpg_info
-__initconst =3D {
-     /* Core Clocks */
-     .core_clks =3D r9a09g057_core_clks,
-     .num_core_clks =3D ARRAY_SIZE(r9a09g057_core_clks),
-+    .late_core_clks =3D r9a09g057_late_core_clks,
-+    .num_late_core_clks =3D ARRAY_SIZE(r9a09g057_late_core_clks),
-     .last_dt_core_clk =3D LAST_DT_CORE_CLK,
-     .num_total_core_clks =3D MOD_CLK_BASE,
-
-diff --git a/drivers/clk/renesas/rzv2h-cpg.c b/drivers/clk/renesas/rzv2h-cp=
-g.c
-index 97bcd252fcbf..0fdac1578f8b 100644
---- a/drivers/clk/renesas/rzv2h-cpg.c
-+++ b/drivers/clk/renesas/rzv2h-cpg.c
-@@ -710,7 +710,7 @@ static struct clk
-
- static void __init
- rzv2h_cpg_register_core_clk(const struct cpg_core_clk *core,
--                struct rzv2h_cpg_priv *priv)
-+                struct rzv2h_cpg_priv *priv, bool late)
- {
-     struct clk *clk =3D ERR_PTR(-EOPNOTSUPP), *parent;
-     unsigned int id =3D core->id, div =3D core->div;
-@@ -727,8 +727,12 @@ rzv2h_cpg_register_core_clk(const struct
-cpg_core_clk *core,
-         break;
-     case CLK_TYPE_FF:
-         WARN_DEBUG(core->parent >=3D priv->num_core_clks);
--        parent =3D priv->clks[core->parent];
-+        if (late)
-+            parent =3D priv->clks[priv->num_core_clks + core->parent];
-+        else
-+            parent =3D priv->clks[core->parent];
-         if (IS_ERR(parent)) {
-+            pr_err("parent clk is NULL for %s parent:%d\n",
-core->name, core->parent);
-             clk =3D parent;
-             goto fail;
-         }
-@@ -1298,11 +1302,14 @@ static int __init rzv2h_cpg_probe(struct
-platform_device *pdev)
-         clks[i] =3D ERR_PTR(-ENOENT);
-
-     for (i =3D 0; i < info->num_core_clks; i++)
--        rzv2h_cpg_register_core_clk(&info->core_clks[i], priv);
-+        rzv2h_cpg_register_core_clk(&info->core_clks[i], priv, false);
-
-     for (i =3D 0; i < info->num_mod_clks; i++)
-         rzv2h_cpg_register_mod_clk(&info->mod_clks[i], priv);
-
-+    for (i =3D 0; i < info->num_late_core_clks; i++)
-+        rzv2h_cpg_register_core_clk(&info->late_core_clks[i], priv, true);
-+
-     error =3D of_clk_add_provider(np, rzv2h_cpg_clk_src_twocell_get, priv)=
-;
-     if (error)
-         return error;
-diff --git a/drivers/clk/renesas/rzv2h-cpg.h b/drivers/clk/renesas/rzv2h-cp=
-g.h
-index bce131bec80b..442289b9cafb 100644
---- a/drivers/clk/renesas/rzv2h-cpg.h
-+++ b/drivers/clk/renesas/rzv2h-cpg.h
-@@ -297,6 +297,8 @@ struct rzv2h_reset {
-  *
-  * @core_clks: Array of Core Clock definitions
-  * @num_core_clks: Number of entries in core_clks[]
-+ * @late_core_clks: Array of Core Clocks that are late initialized
-+ * @num_late_core_clks: Number of entries in late_core_clks[]
-  * @last_dt_core_clk: ID of the last Core Clock exported to DT
-  * @num_total_core_clks: Total number of Core Clocks (exported + internal)
-  *
-@@ -315,6 +317,8 @@ struct rzv2h_cpg_info {
-     /* Core Clocks */
-     const struct cpg_core_clk *core_clks;
-     unsigned int num_core_clks;
-+    const struct cpg_core_clk *late_core_clks;
-+    unsigned int num_late_core_clks;
-     unsigned int last_dt_core_clk;
-     unsigned int num_total_core_clks;
-
-
-# Option#2
-As mentioned in the previous thread I implemented FF clock with
-is_enabled() with this I can see the status of core clk_spi reports
-correct status.
-
-Logs for option #2
----------------------
-root@rzv2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep spi
-             spi_aclk                0       1        0
-200000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-             spi_hclk                0       1        0
-200000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-          .smux2_xspi_clk0           1       1        0
-533333333   0          0     50000      Y            deviceless
-              no_connection_id
-             .smux2_xspi_clk1        1       1        0
-533333333   0          0     50000      Y               deviceless
-                 no_connection_id
-                .pllcm33_xspi        2       2        0
-266666667   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   spi_clk_spix2     1       1        0
-266666667   0          0     50000      Y
-11030000.spi                    spix2
-                   spi_clk_spi       1       1        0
-133333333   0          0     50000      Y
-11030000.spi                    spi
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# modprobe -r spi_rpc_if
-[   58.860437] Deleting MTD partitions on "spi0.0":
-[   58.865078] Deleting bl2 MTD partition
-[   58.869355] Deleting fip MTD partition
-[   58.907329] Deleting user MTD partition
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep spi
-             spi_aclk                0       0        0
-200000000   0          0     50000      N               deviceless
-                 no_connection_id
-             spi_hclk                0       0        0
-200000000   0          0     50000      N               deviceless
-                 no_connection_id
-          .smux2_xspi_clk0           0       0        0
-533333333   0          0     50000      Y            deviceless
-              no_connection_id
-             .smux2_xspi_clk1        0       0        0
-533333333   0          0     50000      Y               deviceless
-                 no_connection_id
-                .pllcm33_xspi        0       0        0
-266666667   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   spi_clk_spix2     0       0        0
-266666667   0          0     50000      N
-deviceless                      no_connection_id
-                   spi_clk_spi       0       0        0
-133333333   0          0     50000      N
-deviceless                      no_connection_id
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# modprobe spi_rpc_if
-[   65.423581] 3 fixed-partitions partitions found on MTD device spi0.0
-[   65.429971] Creating 3 MTD partitions on "spi0.0":
-[   65.434778] 0x000000000000-0x000000060000 : "bl2"
-[   65.440203] 0x000000060000-0x000002000000 : "fip"
-[   65.446337] 0x000002000000-0x000004000000 : "user"
-root@rzv2h-evk:~#
-root@rzv2h-evk:~#
-root@rzv2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep spi
-             spi_aclk                0       1        0
-200000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-             spi_hclk                0       1        0
-200000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-          .smux2_xspi_clk0           1       1        0
-533333333   0          0     50000      Y            deviceless
-              no_connection_id
-             .smux2_xspi_clk1        1       1        0
-533333333   0          0     50000      Y               deviceless
-                 no_connection_id
-                .pllcm33_xspi        2       2        0
-266666667   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   spi_clk_spix2     1       1        0
-266666667   0          0     50000      Y
-11030000.spi                    spix2
-                   spi_clk_spi       1       1        0
-133333333   0          0     50000      Y
-11030000.spi                    spi
-root@rzv2h-evk:~#
-
-Code implementation for option#2
-------------------------------------------------
-
-diff --git a/drivers/clk/renesas/r9a09g057-cpg.c
-b/drivers/clk/renesas/r9a09g057-cpg.c
-index 9952474bcf48..c56e43492a02 100644
---- a/drivers/clk/renesas/r9a09g057-cpg.c
-+++ b/drivers/clk/renesas/r9a09g057-cpg.c
-@@ -231,7 +231,8 @@ static const struct cpg_core_clk
-r9a09g057_core_clks[] __initconst =3D {
-           CLK_PLLETH_DIV_125_FIX, 1, 1),
-     DEF_FIXED("gbeth_1_clk_ptp_ref_i", R9A09G057_GBETH_1_CLK_PTP_REF_I,
-           CLK_PLLETH_DIV_125_FIX, 1, 1),
--    DEF_FIXED("spi_clk_spi", R9A09G057_SPI_CLK_SPI, CLK_PLLCM33_XSPI, 1, 2=
-),
-+    DEF_FIXED_MOD_STATUS("spi_clk_spi", R9A09G057_SPI_CLK_SPI,
-CLK_PLLCM33_XSPI, 1, 2,
-+                 FIXED_MOD_CONF_XSPI),
- };
-
- static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst =3D {
-diff --git a/drivers/clk/renesas/rzv2h-cpg.c b/drivers/clk/renesas/rzv2h-cp=
-g.c
-index 97bcd252fcbf..96db6ce4460f 100644
---- a/drivers/clk/renesas/rzv2h-cpg.c
-+++ b/drivers/clk/renesas/rzv2h-cpg.c
-@@ -179,6 +179,28 @@ struct rzv2h_plldsi_div_clk {
- #define to_plldsi_div_clk(_hw) \
-     container_of(_hw, struct rzv2h_plldsi_div_clk, hw)
-
-+/**
-+ * struct rzv2h_ff_mod_status_clk - Fixed Factor Module Status Clock
-+ *
-+ * @priv: CPG private data
-+ * @conf: fixed mod configuration
-+ * @hw: Fixed Factor Status Clock handle
-+ * @mult: multiplier value
-+ * @div: divider value
-+ * @flags: flags for the clock
-+ */
-+ struct rzv2h_ff_mod_status_clk {
-+    struct rzv2h_cpg_priv *priv;
-+    struct fixed_mod_conf conf;
-+    struct clk_hw hw;
-+    unsigned int mult;
-+    unsigned int div;
-+    unsigned int flags;
-+};
-+
-+#define to_rzv2h_ff_mod_status_clk(_hw) \
-+    container_of(_hw, struct rzv2h_ff_mod_status_clk, hw)
-+
- static int rzv2h_cpg_pll_clk_is_enabled(struct clk_hw *hw)
- {
-     struct pll_clk *pll_clk =3D to_pll(hw);
-@@ -664,6 +686,114 @@ rzv2h_cpg_mux_clk_register(const struct
-cpg_core_clk *core,
-     return clk_hw->clk;
- }
-
-+static unsigned long
-+rzv2h_clk_ff_mod_status_recalc_rate(struct clk_hw *hw,
-+                    unsigned long parent_rate)
-+{
-+    struct rzv2h_ff_mod_status_clk *fix =3D to_rzv2h_ff_mod_status_clk(hw)=
-;
-+    unsigned long long int rate;
-+
-+    rate =3D (unsigned long long int)parent_rate * fix->mult;
-+    do_div(rate, fix->div);
-+    return (unsigned long)rate;
-+}
-+
-+static long
-+rzv2h_clk_ff_mod_status_round_rate(struct clk_hw *hw, unsigned long rate,
-+                   unsigned long *prate)
-+{
-+    struct rzv2h_ff_mod_status_clk *fix =3D to_rzv2h_ff_mod_status_clk(hw)=
-;
-+
-+    if (clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT) {
-+        unsigned long best_parent;
-+
-+        best_parent =3D (rate / fix->mult) * fix->div;
-+        *prate =3D clk_hw_round_rate(clk_hw_get_parent(hw), best_parent);
-+    }
-+
-+    return (*prate / fix->div) * fix->mult;
-+}
-+
-+static int rzv2h_clk_ff_mod_status_set_rate(struct clk_hw *hw,
-unsigned long rate,
-+                        unsigned long parent_rate)
-+{
-+    return 0;
-+}
-+
-+static unsigned long
-+rzv2h_clk_ff_mod_status_recalc_accuracy(struct clk_hw *hw,
-+                    unsigned long parent_accuracy)
-+{
-+    return parent_accuracy;
-+}
-+
-+static int
-+rzv2h_clk_ff_mod_status_is_enabled(struct clk_hw *hw)
-+{
-+    struct rzv2h_ff_mod_status_clk *fix =3D to_rzv2h_ff_mod_status_clk(hw)=
-;
-+    struct rzv2h_cpg_priv *priv =3D fix->priv;
-+    u32 offset =3D GET_CLK_MON_OFFSET(fix->conf.mon_index);
-+    u32 bitmask =3D BIT(fix->conf.mon_bit);
-+    u32 val;
-+
-+    val =3D readl(priv->base + offset);
-+    return !!(val & bitmask);
-+}
-+
-+static const struct clk_ops rzv2h_clk_ff_mod_status_ops =3D {
-+    .round_rate =3D rzv2h_clk_ff_mod_status_round_rate,
-+    .set_rate =3D rzv2h_clk_ff_mod_status_set_rate,
-+    .recalc_rate =3D rzv2h_clk_ff_mod_status_recalc_rate,
-+    .recalc_accuracy =3D rzv2h_clk_ff_mod_status_recalc_accuracy,
-+    .is_enabled =3D rzv2h_clk_ff_mod_status_is_enabled,
-+};
-+
-+static struct clk * __init
-+rzv2h_cpg_fixed_mod_status_clk_register(const struct cpg_core_clk *core,
-+                    struct rzv2h_cpg_priv *priv)
-+{
-+    struct rzv2h_ff_mod_status_clk *clk_hw_data;
-+    struct clk_init_data init =3D { };
-+    const struct clk *parent;
-+    const char *parent_name;
-+    struct clk_hw *hw;
-+    int ret;
-+
-+    WARN_DEBUG(core->parent >=3D priv->num_core_clks);
-+    parent =3D priv->clks[core->parent];
-+    if (IS_ERR(parent))
-+        return ERR_CAST(parent);
-+
-+    parent_name =3D __clk_get_name(parent);
-+    parent =3D priv->clks[core->parent];
-+    if (IS_ERR(parent))
-+        return ERR_CAST(parent);
-+
-+    clk_hw_data =3D devm_kzalloc(priv->dev, sizeof(*clk_hw_data), GFP_KERN=
-EL);
-+    if (!clk_hw_data)
-+        return ERR_PTR(-ENOMEM);
-+
-+    clk_hw_data->priv =3D priv;
-+    clk_hw_data->conf =3D core->cfg.fixed_mod;
-+    clk_hw_data->mult =3D core->mult;
-+    clk_hw_data->div =3D core->div;
-+
-+    init.name =3D core->name;
-+    init.ops =3D &rzv2h_clk_ff_mod_status_ops;
-+    init.flags =3D CLK_SET_RATE_PARENT;
-+    init.parent_names =3D &parent_name;
-+    init.num_parents =3D 1;
-+
-+    hw =3D &clk_hw_data->hw;
-+    hw->init =3D &init;
-+
-+    ret =3D devm_clk_hw_register(priv->dev, hw);
-+    if (ret)
-+        return ERR_PTR(ret);
-+
-+    return hw->clk;
-+}
-+
- static struct clk
- *rzv2h_cpg_clk_src_twocell_get(struct of_phandle_args *clkspec,
-                    void *data)
-@@ -742,6 +872,9 @@ rzv2h_cpg_register_core_clk(const struct cpg_core_clk *=
-core,
-         else
-             clk =3D clk_hw->clk;
-         break;
-+    case CLK_TYPE_FF_MOD_STATUS:
-+        clk =3D rzv2h_cpg_fixed_mod_status_clk_register(core, priv);
-+        break;
-     case CLK_TYPE_PLL:
-         clk =3D rzv2h_cpg_pll_clk_register(core, priv,
-&rzv2h_cpg_pll_ops, false);
-         break;
-diff --git a/drivers/clk/renesas/rzv2h-cpg.h b/drivers/clk/renesas/rzv2h-cp=
-g.h
-index bce131bec80b..29e1dc841b46 100644
---- a/drivers/clk/renesas/rzv2h-cpg.h
-+++ b/drivers/clk/renesas/rzv2h-cpg.h
-@@ -94,6 +94,23 @@ struct smuxed {
-         .width =3D (_width), \
-     })
-
-+/**
-+ * struct fixed_mod_conf - Structure for fixed module configuration
-+ *
-+ * @mon_index: monitor index
-+ * @mon_bit: monitor bit
-+ */
-+struct fixed_mod_conf {
-+    u8 mon_index;
-+    u8 mon_bit;
-+};
-+
-+#define FIXED_MOD_CONF_PACK(_index, _bit) \
-+    ((struct fixed_mod_conf){ \
-+        .mon_index =3D (_index), \
-+        .mon_bit =3D (_bit), \
-+    })
-+
- #define CPG_SSEL0        (0x300)
- #define CPG_SSEL1        (0x304)
- #define CPG_CDDIV0        (0x400)
-@@ -137,6 +154,8 @@ struct smuxed {
-                  FIELD_PREP_CONST(BUS_MSTOP_BITS_MASK, (mask)))
- #define BUS_MSTOP_NONE        GENMASK(31, 0)
-
-+#define FIXED_MOD_CONF_XSPI    FIXED_MOD_CONF_PACK(5, 1)
-+
- /**
-  * Definitions of CPG Core Clocks
-  *
-@@ -157,6 +176,7 @@ struct cpg_core_clk {
-         struct ddiv ddiv;
-         struct pll pll;
-         struct smuxed smux;
-+        struct fixed_mod_conf fixed_mod;
-     } cfg;
-     const struct clk_div_table *dtable;
-     const char * const *parent_names;
-@@ -169,6 +189,7 @@ enum clk_types {
-     /* Generic */
-     CLK_TYPE_IN,        /* External Clock Input */
-     CLK_TYPE_FF,        /* Fixed Factor Clock */
-+    CLK_TYPE_FF_MOD_STATUS,    /* Fixed Factor Clock which can report
-the status of module clock */
-     CLK_TYPE_PLL,
-     CLK_TYPE_DDIV,        /* Dynamic Switching Divider */
-     CLK_TYPE_SMUX,        /* Static Mux */
-@@ -186,6 +207,9 @@ enum clk_types {
-     DEF_TYPE(_name, _id, CLK_TYPE_IN)
- #define DEF_FIXED(_name, _id, _parent, _mult, _div) \
-     DEF_BASE(_name, _id, CLK_TYPE_FF, _parent, .div =3D _div, .mult =3D _m=
-ult)
-+#define DEF_FIXED_MOD_STATUS(_name, _id, _parent, _mult, _div, _gate) \
-+    DEF_BASE(_name, _id, CLK_TYPE_FF_MOD_STATUS, _parent, .div =3D _div, \
-+         .mult =3D _mult, .cfg.fixed_mod =3D _gate)
- #define DEF_DDIV(_name, _id, _parent, _ddiv_packed, _dtable) \
-     DEF_TYPE(_name, _id, CLK_TYPE_DDIV, \
-         .cfg.ddiv =3D _ddiv_packed, \
-
-Please share your thoughts on this.
-
-Cheers,
-Prabhakar
 
