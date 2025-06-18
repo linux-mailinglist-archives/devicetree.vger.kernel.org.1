@@ -1,108 +1,160 @@
-Return-Path: <devicetree+bounces-186994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40971ADE702
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 11:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14AF7ADE721
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 11:36:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9B3E40305D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:29:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9F984037A2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7093E284687;
-	Wed, 18 Jun 2025 09:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8188E254878;
+	Wed, 18 Jun 2025 09:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vqkAXk1W"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="k8PmZYfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E70283C9E
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 09:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEC825486E;
+	Wed, 18 Jun 2025 09:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750238905; cv=none; b=rhVeOTirsN0H0U0Gq/G9cuOeYEGy7tZ+wIH7IbwypJq30PEbOtlHghqzUw6PV24C88fmia2WIw9eojc/Ekny2bCkbREZWTPWd2eE+pUzDi9ZvIxed7pcz86e6XCf0cP49ek9CltYJp9h0WnQ5Ei3AnN9suCQqsRirayqM4WUtnc=
+	t=1750239161; cv=none; b=I6HzIVyu9H46g1D1PVAytLAY02EQHD7PI4gOpGUu3QE/3BEx9yTco75CI/oOBkk5zdaZFzj1SaaBNhG9lbEQpM/cOeK8SdGc7J2mHDI0JoTp9hJpmbiJY/Pt9MtgSBdbBNPnK/d8p7ak4zf/ClBNyEuam9xAjiX6r1bzCVauYhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750238905; c=relaxed/simple;
-	bh=BdTd86rD8wGBkEGobCd3dIkyDDHb4Ycg01Tusl+Lv0Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f3eKeUsaOzqL9fBpDSSdA2h1EcPCJ5B5Fy/eGIK4bMsfZo0me5vtmDNqfl9f7B7w2i4cv+AuXsh6XuJIzd4nhK/7p+FFETnOybbDht0ZhKYakzNe5Ll7KC5ENWPaoTE4wAQzt/caO+87qKXynqobsXDc4Dk2bLNJm2VFBC73R5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vqkAXk1W; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-553b3316160so4201222e87.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 02:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750238902; x=1750843702; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BdTd86rD8wGBkEGobCd3dIkyDDHb4Ycg01Tusl+Lv0Q=;
-        b=vqkAXk1WN4j8C7WfZ2pxXm/Ee8GQntNeRJ/0UOFpmjihDoEUU7TQY8QBVmPRFtFS6x
-         D6tdUVKuxDSmyrffgKiZ/zJiHUICj3kooLzbXXijH6bPZnS/CUQ4WJbW2oAsic2malkv
-         7TGstFzXDWREZjnkIylBm4IKd6IqfZ2AIcVAY3rnTUAHC+y+qoMvaEHbtDP4CY5tT+DC
-         j0YiOdJGUfMSRYo7lI7KcPWwj3bloTk09hc0/7dgezdthMN96xkBmuxjo7OxUj4Vzdt1
-         skTWhFRlNS7+C77bODAOtskqOHrnddKJ3fK9qMw93y2g8arjeflNO70/IPSTuFKeOJUf
-         L0kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750238902; x=1750843702;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BdTd86rD8wGBkEGobCd3dIkyDDHb4Ycg01Tusl+Lv0Q=;
-        b=bHj6r/9B1DpeIc4nL6FXvav2co9iS6eiR942SdH/CWfIhVXP79q0aw0gFipCzZCbc3
-         3ueHpekGWWy2Z45vUtu1Lj925fzHgQLnHqwUvYS216vsxMlzE2zyxq5Y4v4U4Y0ILnou
-         SXkOYmXcQGAkDy870RQns2Sc3wRZ5m9aCqCOn+yCT1qdpDtJE90TEhEnyynol20jNcO3
-         y+REXxci854K7LFhm+U9XCG2NB8gW1GFa1s7aAH3geaYIpy0ZgvaPb58L2o2h7O9o2wU
-         nfqAoH7WBKhTC12eSJoPXBrctPf8/XwChtFqrjfIflrPpuA2svIuP7a/cATtsKr3nbqi
-         XqdA==
-X-Forwarded-Encrypted: i=1; AJvYcCXr2VABRttcIZ2qR6yZ4twxpYwKlZZIzcJ7rfnbwKcr3JTlCx4Fc+qwETxaiJeA8WG3GO1BX3nJ/OGu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9zkUFdgCJdl+EC9/TVusj5iaIH98RpSUyFo8/DZpHmOQx30tg
-	LbhGQnTNhjO50Oea18NZ6OZgMQ/+v1fBsUOQY4Df2SHtnEHW5RpH9xFwOe+fQFVdGArybqUGYfO
-	WymDwj0vTiXiJkhk2n1+yCfaDHN6L1jJ2gydERPJPLA==
-X-Gm-Gg: ASbGncsirPX5TAUqHXY7VocUxIf4J8EE9q4gvmlZVi7qVooLvXMUJmyD7pQZwRbT8DN
-	1TAtGWMpOsmyHzcTDHmemBeqYLGPVLHTcqrOgbL9Lwe7WFJZ5vK783R5l2+nKZHWsrJHwAPDXeZ
-	acn3pgop6C9ETr7vefkY5OgMjMH6RTwIhCv29Iv6mKFDk=
-X-Google-Smtp-Source: AGHT+IEqIwMIpDCAfC/mp2g5or4udP4zqxj0H5Z8NfKN9pZpGaYnyn1sPYmydRm3962RKwUckswXX8mjoIzWXQbsVfs=
-X-Received: by 2002:a05:6512:3ba5:b0:553:25f4:695c with SMTP id
- 2adb3069b0e04-553b6f4470cmr4666950e87.50.1750238901764; Wed, 18 Jun 2025
- 02:28:21 -0700 (PDT)
+	s=arc-20240116; t=1750239161; c=relaxed/simple;
+	bh=JdojFS5/z7GIDAsap+z4JgrlAQemx2IMwtmPu+k/DxI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o/VHKMX3HJnP2zKFv5X8jXkCg0/VqsDkvVt1Z4d7ebjy+JC44JjdSvYgnm0eQ6upvVmfiyxHUOb32f3FQtNYe9n2ffYo+LmNEeLkHtMcojAslf4DS/u5Hc9oqNGZ3qfz0snCsg7r2lsspT2/4YtxxspcZmY/etpNZaaGqTVFF+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=k8PmZYfo; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 83B542047A;
+	Wed, 18 Jun 2025 09:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750239157;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vhlZhFy2yqBw+bfXv9cjrck9pl38ef3/+s+sDwfdRYE=;
+	b=k8PmZYfoOPSqpGRhk+lnKhojrkayOMFwAjCVwFcnLbNRms/bvFBQoK7RjBHqCcQa1A69ce
+	/F9Np2VNFQSEhcPUiqGo4u74S9+pbclLkWD9NaUfFYXLivrPwOxOe3buVEPvAXBjUEAzNN
+	rjIwQw80hzD5oZ9Pa+/2MifPtKcLq0mnURVpH0JmYBEpIWt1nKC0kfYhakBf1l2Z9qygM7
+	2UWORpAhAvswoXC7duuB8Jwv3G+UaKuCzMN+doNpOtPOOD0I2olFcGU2RNdFTdHhnmtNwp
+	t724tXJkwGs3p4m0+6VUFlr+uTqF8lVWGL/+Pl/Tm4VbpXQM28o5oSc99s45Dw==
+Date: Wed, 18 Jun 2025 11:32:32 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, David Gibson
+ <david@gibson.dropbear.id.au>, Ayush Singh <ayush@beagleboard.org>, Rob
+ Herring <robh@kernel.org>
+Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>,
+ devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
+Message-ID: <20250618113232.6d237208@bootlin.com>
+In-Reply-To: <49e1e1fc-412d-4334-8337-16e352a34788@kernel.org>
+References: <20250430125154.195498-1-herve.codina@bootlin.com>
+	<20250430125154.195498-2-herve.codina@bootlin.com>
+	<0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+	<20250528185740.4bf91bef@bootlin.com>
+	<49e1e1fc-412d-4334-8337-16e352a34788@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250609220900.3035642-1-robh@kernel.org>
-In-Reply-To: <20250609220900.3035642-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 18 Jun 2025 11:28:10 +0200
-X-Gm-Features: AX0GCFtHdJldExb7osATG0sE9yc28prRhU8fIk70sNT-r9whXSNHnrPKGLd_oDo
-Message-ID: <CACRpkdYea5F5pvQY1Sv=u3Oe9Bv5bp31Jwvo1uftQYbwF0U1rQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: arm,pl011: Drop interrupt properties
- as required
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgddvvdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduiedprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdro
+ hhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Tue, Jun 10, 2025 at 12:09=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org=
-> wrote:
+Hi Krzysztof,
 
-> It is possible that the PL011 doesn't have any interrupt connected and
-> can't be an interrupt provider, so drop the interrupt properties as
-> required.
->
-> The LG LG131x SoCs are one example of this.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+On Wed, 4 Jun 2025 20:35:51 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-After changing all PL011 to PL061:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+...
 
-Yours,
-Linus Walleij
+> > 
+> > Symbols are exported only when an overlay is applied on the node where the
+> > export-symbols node is available. Those symbols are visible only from the
+> > overlay applied. Symbols exported thanks to export-symbols are not global
+> > to the all device-tree (it is not __symbols__) but local to a node.
+> > 
+> > If an overlay is applied at connector1 node, it can use the 'connector'
+> > symbols and thanks to export-symbols, the 'connector' symbol will be
+> > resolved to foo_connector.
+> > 
+> > If the overlay is applied at connector2 node, the 'connector' symbol is then
+> > resolved to bar_connector.  
+> 
+> OK, this explains a lot. Unless I missed it, would be nice to include it
+> in binding description.
+
+Sure, I will add something in the next iteration.
+
+...
+
+> >>> +patternProperties:
+> >>> +  "^[a-zA-Z_]?[a-zA-Z0-9_]*$":    
+> >>
+> >> This messes up with coding style which I would prefer keep intact.
+> >> Basically these properties will be using label style.  
+> > 
+> > Yes, those properties remap phandles.
+> > 
+> > Their names are the name of the label used from the overlay and their
+> > values are the phandle mapped.
+> > 
+> > You already have this kind properties using label style in __symbols__,
+> > __fixups__, __local_fixups__ nodes.  
+> 
+> I have them in DTB, but I don't have these in DTS. The exported-symbols
+> would be in the DTS and that is what coding style is about.
+> 
+
+I think export-symbols has to be in DTS.
+Maybe it could be described in an other way in order to avoid the coding style
+issue you reported.
+
+Hardware:
+  i2c0 from SoC --------- connector 1, I2C A signals
+  i2c1 from SoC --------- connector 1, I2C B signals
+
+  connector1 {
+      export-symbols {
+	  i2c_a = <&i2c0>;
+	  i2c_b = <&i2c1>;
+      };
+  };
+
+In order to avoid the coding style issue, this could be replace
+with:
+ connector1 {
+      export-symbols {
+	  symbol-names = "i2c_a", "i2c_b";
+	  symbols = <&i2c0>, <&i2c1>;
+      };
+  };
+
+Krzysztof, Rob, do you think this could be accepted ?
+
+Ayush, David, do you thing this could be easily implemented in fdtoverlay ?
+
+Best regards,
+Hervé
+
 
