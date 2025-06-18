@@ -1,87 +1,81 @@
-Return-Path: <devicetree+bounces-187170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3905FADEEA0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:58:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1144EADEEB2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B704B7AE089
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:56:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 793E34A2A88
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2F02EA73D;
-	Wed, 18 Jun 2025 13:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC8F2EAB79;
+	Wed, 18 Jun 2025 14:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KZ0QXeDB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YPlFu2a7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA5E2EA734
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317A62EAB68
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 14:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750255091; cv=none; b=SI4MI+ZRYu5v/IlQod7w0mwXbDpFLohZUx4is4bsNh6cX7qweCxslDPCJfCfeNGCPdUR4ZdyMD4KBrfkUFKMzQjeB4gyllZE3dQrC7ABG5mTmPOzd2l5Q4fds487Qy0i+YF7I2UQB5E329Oln/giHR9uzp+Pl6ZV9akmvz+k5bk=
+	t=1750255285; cv=none; b=AR1vo6RJE2f5IzCNqPlSra23vuHmDnugSuoYS/1Lj+rw/K5BMKmabZyFsANt0i3KhSleMhXQ5yoSUnOofPdPkpN7f5raCVbRO/Q32Ds65v8WhLcTJh8tyclOweBnIAQgnvXEnTJs2N1XTJDeCz2zBHGn0Fcr1r7yipBVToYvkyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750255091; c=relaxed/simple;
-	bh=2LfCqOvxNrz9yCs3dGodu7cHKffVPSLbjLkeZKE5QTQ=;
+	s=arc-20240116; t=1750255285; c=relaxed/simple;
+	bh=ZLGt+M4oBpND3dBGcxJtJVboCBMPZ8HGMPGxWUIqf3I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dy8ePTl+pthYaWTjoLYBGO5JmB1f1T2aibd/pCTg9mjf2Lo7YRWEbX6F9a2jBvdMxfv+sDwJuJV3z1i4g7yFSLq41ifNcKkE3SemdFTw5t5LgN/5voCJzS5/dNMmby37ChprPyxTOc4KgF/8l+d7GY4P9yhlLPo41bw5ANmVv9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KZ0QXeDB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55IAUQZQ023689
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:58:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xWNDuLjs61HKmyKQ2RsY6PEfjDT+y4fR+sdFhZngCW0=; b=KZ0QXeDBzvd6Mwq4
-	eMA+TaaUD2+g74++ti18W5sHxyIUJIJ2kSFT0W7lb+A0Xc6BYG2vj8vlVui3ariX
-	8jpvxvY8dZVDsTEG+GidvlPspaAKEkeV2NcatB50sMDmaw2Cdue6uzK68+qpQYWD
-	8se0xUS5kCFqKkiR2SWffx78w/iPxFKG+q9Kz+7sVRhoInTh5ukrffhOHEMdFoQ3
-	GFq5fbKDLjzNpWyllnGjKsg0lHZAE47QKMW+7yOlU8Tr7fGGbiVgMzAlKTYUQATB
-	BOt+jBkzup7/cJ7U7G+1PfqgKdgSCyr9GmqITDMoOGO/E95pZYxfGP1llotGPEVe
-	w0RoMA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 479qp5u087-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:58:08 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d3cbf784acso1275109685a.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:58:08 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=udGr8LZX/coEkIarEoJUjAPq9r24iI3G2svPLfb8oWIUxCrkJcAT67KQNlkEKEJGEj3hAgmNKCNbkYji3lcuHCvIqGaYEq58xf7RyjnrUpl1zxaf7HLbZ8JnUELHtaQyLSH/1dZaS4kwJk89nHbjwocTsrdXuvcxcXhAEJ76mvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YPlFu2a7; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ade6ef7e72fso104402266b.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 07:01:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750255281; x=1750860081; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yNBX/m708IWteet4DlkrcpHB7CaXDOgqPr9oiiJLqjM=;
+        b=YPlFu2a7Lqwgs5gOhL6bh/aX+t72OrXOKSiiALC6DZy7rW2rMlbX/0rSi8zKA+VDcP
+         OTfYX9Xn0VDZkYToBZ/XCQvSeAS4iI5J7r3lKBy6bHDodcfcOGtPKL38W/kIRG4M6xhY
+         niO1aYlJtXuUjA6ZXIQLKadDq0kRsB0AuUXn0x2e3pIBHJ1aI8ZRF6q8hrXxrC8Rp0bu
+         P45eu9CR2RkErq16mUkm3wiTiPxQprzER5Ex63wpLDVAf6jr0BiJ099+5OPi4+FqHnwj
+         z2vFU4HqC9nrjrCUqesyCapiG2uEfXeBk9VjK4irewTJJCJ+OxRf7vz0QpOMiSCuQf7+
+         Bb+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750255087; x=1750859887;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xWNDuLjs61HKmyKQ2RsY6PEfjDT+y4fR+sdFhZngCW0=;
-        b=eoonM7BXwaUZVqU0rTXylMczcpH6ASAXY/GpRktaDbuITlyOTfXgcPzadRuNjsjkEe
-         /xVhJDkKOmFy9NT9+X33D9kswVkjsan4PfL+0j8S0uqg9IgQvpLjOCHwfgOolCz93D9T
-         Akn0JU4EE4TI/Z8c3XDV0n0CgPcwC82vnGCPHlORKHnfSph1OgwXurYBi3ZurRCELP+o
-         T4DUCGYsD2WkMuxxEi1NMuCPSMC9jODdgCr9dPXe4ww7xTzDKH4s3Y/pEs6rei6p0VZd
-         IY91lhILdq6hoU71puYu0JsvMHece0IGbVOtrzISUiA8lZQsQNVINIzRHbfcbdwMoDoD
-         PlcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVhfRjRi1GOd3KsXz6l9BHQ7cZcaQQ4Oy/fC97WnrRw74mOkh9pIvft0kZj0iUHtHgCDpcuXlDF5Eig@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlLLqADzTGEyItkeD1CJ0qU+9m66fYHOO00BqsXo1CxoiJCAFo
-	X1FMyrKgzBs/IBXloyBK8raLzoX7pU3MtCb+0T4l2H0VljTRMvBP6usRuaYY0AhN2FkNv6fYh/T
-	kAZpN6K50BV5BMhA3TI0LSMLl1RXQxFeGmt+g7hkDto40io5rRZ0BtC12COJwGgWW
-X-Gm-Gg: ASbGnctC0gqN0t6xF3ZyHXOAv+Y+HDArRDpLCLndRe8hxYdmjiPyoH8DGNN0s9qfwYz
-	pqVoZq2HHX+VlnfTXMREItpqUc/gwM0KZt6f0aH/pPvGB4CffFT+kJrLUx3ioB6rSEAdAe9QLbS
-	97L8BGlnXaOTgyzFyl5SfKD27aVxUUb0H8RZWE3t6IlmSnGkPSf275tWTvObJB/ngchsZilV0M4
-	YKcAQmRaTuNgvAIowDE9hwhC98HUu2GhopMQD2696/g95jJMnDn8RLB58Dco3sKPoUceTWsfDX0
-	H9fTACwQOp8e2BMwCRnoLDrkz07H7Jn0wc0Pln5ZNQ==
-X-Received: by 2002:a05:620a:4494:b0:7d3:c688:a4ee with SMTP id af79cd13be357-7d3c6c17879mr2527938085a.24.1750255087393;
-        Wed, 18 Jun 2025 06:58:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG0At7/LCw5/M/SPoralsaQOAVP/W8VEhHHYH6eAAF5BZgq79hxI+OOdeDg1uWbxWnHFjh9Cg==
-X-Received: by 2002:a05:620a:4494:b0:7d3:c688:a4ee with SMTP id af79cd13be357-7d3c6c17879mr2527933285a.24.1750255086908;
-        Wed, 18 Jun 2025 06:58:06 -0700 (PDT)
-Received: from [10.92.240.160] ([212.136.9.4])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adec81bb9cesm1051140966b.49.2025.06.18.06.58.04
+        d=1e100.net; s=20230601; t=1750255281; x=1750860081;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yNBX/m708IWteet4DlkrcpHB7CaXDOgqPr9oiiJLqjM=;
+        b=LIjTP/TPYVWVU7vKlUf1SADckBIKpyoIbOCDxFSczR8VsjS/eCcMqYjGOnAuIqB0Wz
+         bPICvFsuBkDNn9f5A7RoWxNha6PIauOhcC1vRE6b18GDvmFJP9anZqhzoduBjfy4EW9J
+         fwcpUfIAORYNLK4Y/1WtTKl0GH6OfEpv/qGV6we65iiOEuq/KVYf3458SGMiu6ibR5lc
+         NJPsnz5e3rntWdrHBGmG/kAuv2J+NZfK1g/x3RvCBeB12Z1Pl5YQ2FSd5ErXb7HdtFC3
+         UPcO3zyqEYiXORzBSARk7CELe7tUMEhA12aqxC9+LukkZ9Z9zYyNAn6KtPlor6sgxN/+
+         GaUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWDrtf7Vg3ywIX4TQy6+hIsmvB1M/hJC701OKEMPDMSI2t0IodQr1KsD/SdnLW2l7zrJnmpOprMYtgb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDGaMuUmdiJGHfPMEZbOn440ss2aITyajHB5xYpir5fasqwK/N
+	GTtp4b9u5WVYsbgze6riJHpFIQqCaPFjp0gimL/fmSLF2iphHa2zeA9QeJ3Jz0p4xhg=
+X-Gm-Gg: ASbGnct7aM1JkXhu/j8qajrwrUkUTXfgcjIqNUS3dZ6+M110/4DhIUsKR/ZtW45zYJD
+	lRK7k+ryv8hmVXJFPHIeXM4qnaSQU9Y1a3ZgXfCrxJsMG5y7gSh4hCZLkcide1MwYdoGiNTAD4x
+	d4LnQANTTrwz9IQ2e00k7jpGJulgTJwfJo3IhYS8f5HseWceOfYsrcMJMpeb4Ohd1zsXX2bmHXP
+	N4TKHeBiyzNpyxdhX4zIEG73W7JArwSEmEPQTA0uLE9fCioAw4CsxyXbXpSRxC/KeKMK2bNSbCR
+	QwfXX0nWuOV4z96ZzmD3xici2Lv75Rq99cCQK0e0xyUlKhX7ovGxhQs9xGcleybOLQHWn5AMgoU
+	VgUJ02S8=
+X-Google-Smtp-Source: AGHT+IHuYoQ3kQ1OLnKnBhyzJNq4b6cK861XY1mac3pE+KRnuI0Lvpb4iIeKA4kLtASLXRV1ukctZw==
+X-Received: by 2002:a17:907:7f15:b0:ad8:9c64:e9ca with SMTP id a640c23a62f3a-adffa90a1bbmr265034566b.0.1750255279768;
+        Wed, 18 Jun 2025 07:01:19 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.223.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adec88feb23sm1063387766b.96.2025.06.18.07.01.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jun 2025 06:58:06 -0700 (PDT)
-Message-ID: <28992d6c-eb98-412e-86d8-d35a96f69fd1@oss.qualcomm.com>
-Date: Wed, 18 Jun 2025 16:58:03 +0300
+        Wed, 18 Jun 2025 07:01:18 -0700 (PDT)
+Message-ID: <185f6038-d280-4e6f-9f52-daea3f827f01@linaro.org>
+Date: Wed, 18 Jun 2025 16:01:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,30 +85,24 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 08/17] drm/msm/dsi/phy: Fix reading zero as PLL rates
  when unprepared
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <lumag@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>
 References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
  <20250610-b4-sm8750-display-v6-8-ee633e3ddbff@linaro.org>
  <n5djafe2bm4cofoa3z4urfogchhfacybzou763nelttgfspo25@bywfd5febe6g>
@@ -125,144 +113,84 @@ References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
  <f2654844-091f-46bf-88c6-6f6d4edc5533@linaro.org>
  <fa8d4af9-e822-4dec-a8dc-f3bbf5dd0100@oss.qualcomm.com>
  <07af3f49-6992-4897-acec-b2d46158fa00@linaro.org>
+ <28992d6c-eb98-412e-86d8-d35a96f69fd1@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <07af3f49-6992-4897-acec-b2d46158fa00@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <28992d6c-eb98-412e-86d8-d35a96f69fd1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: hcRNRUWR6J-3TrVmuDgt5fHOq4teovEm
-X-Proofpoint-ORIG-GUID: hcRNRUWR6J-3TrVmuDgt5fHOq4teovEm
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDExNyBTYWx0ZWRfX4eGGCc0mtFkF
- I9VAYnXkVYDQz8GzsDZR+hPZdH1VzIG5bPIHl59uMhDd4jiIAYOaZRGk2kzxvbxKXidpuKm/3NH
- kpM3Sd6HUYR6e4lJp+vZb7lzoSW52JLgYlnLpoRq7PU3nDHNGsUWWRsoH9ULNuu65qbigm3cqOP
- ukgDul2o+hLfdrno41r6Czj8Y7JB3BhvwV+M2Z9xycXpCdVWwrudiw48pMbPm04B28HEoWhkifv
- iWDXlNZedIepR8JUYigBGXqkprUVEG3JHW7b4GiI4ofWVKgjakZlA6SuiQDRL32RQ1wiuimhq/o
- si4xR4UF0Pkqbiufos8hecJoPxJVjptkxmzSr5n+dWhueZ0bi5h1f9ERSLzTsNo+RVw3/Ir/zZM
- /gKCOq99TTkNPVMJgHmU67MK4dZ9AGnWSAnn+rSRJ22VNFKw1KY3Izr9CX967jYkggait3vi
-X-Authority-Analysis: v=2.4 cv=fMc53Yae c=1 sm=1 tr=0 ts=6852c5f0 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=dNlqnMcrdpbb+gQrTujlOQ==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=Yv6ZAifYCY2YzpHKyskA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-18_05,2025-06-18_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- mlxlogscore=908 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506180117
 
-On 18/06/2025 16:54, Krzysztof Kozlowski wrote:
-> On 18/06/2025 15:39, Dmitry Baryshkov wrote:
->> On 18/06/2025 16:34, Krzysztof Kozlowski wrote:
->>> On 18/06/2025 15:07, Dmitry Baryshkov wrote:
->>>> On Wed, Jun 18, 2025 at 10:28:10AM +0200, Krzysztof Kozlowski wrote:
->>>>> On 13/06/2025 16:04, Dmitry Baryshkov wrote:
->>>>>> On 13/06/2025 17:02, Krzysztof Kozlowski wrote:
->>>>>>> On 13/06/2025 15:55, Dmitry Baryshkov wrote:
->>>>>>>>>     
->>>>>>>>> @@ -361,24 +373,47 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
->>>>>>>>>     
->>>>>>>>>     static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
->>>>>>>>>     {
->>>>>>>>> +	unsigned long flags;
->>>>>>>>>     	u32 data;
->>>>>>>>>     
->>>>>>>>> +	spin_lock_irqsave(&pll->pll_enable_lock, flags);
->>>>>>>>> +	--pll->pll_enable_cnt;
->>>>>>>>> +	if (pll->pll_enable_cnt < 0) {
->>>>>>>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
->>>>>>>>> +		DRM_DEV_ERROR_RATELIMITED(&pll->phy->pdev->dev,
->>>>>>>>> +					  "bug: imbalance in disabling PLL bias\n");
->>>>>>>>> +		return;
->>>>>>>>> +	} else if (pll->pll_enable_cnt > 0) {
->>>>>>>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
->>>>>>>>> +		return;
->>>>>>>>> +	} /* else: == 0 */
->>>>>>>>> +
->>>>>>>>>     	data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
->>>>>>>>>     	data &= ~DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
->>>>>>>>>     	writel(0, pll->phy->pll_base + REG_DSI_7nm_PHY_PLL_SYSTEM_MUXES);
->>>>>>>>>     	writel(data, pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
->>>>>>>>> +	spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
->>>>>>>>>     	ndelay(250);
->>>>>>>>
->>>>>>>> What is this ndelay protecting? Is is to let the hardware to wind down
->>>>>>>> correctly? I'm worried about dsi_pll_disable_pll_bias() beng followed up
->>>>>>>> by dsi_pll_enable_pll_bias() in another thread, which would mean that
->>>>>>>> corresponding writes to the REG_DSI_7nm_PHY_CMN_CTRL_0 can come up
->>>>>>>> without any delay between them.
->>>>>>>>
->>>>>>>
->>>>>>> Great question, but why do you ask me? The code was there already and
->>>>>>> MSM DRM drivers are not something I know and could provide context about.
->>>>>>
->>>>>> Because it's you who are changing the code as you've faced the issue
->>>>>> with recalc_rate.
->>>>>>
->>>>> Heh, the answer is then: I don't know. I think authors of the code could
->>>>> know.
->>>>
->>>> The 10nm HPG documents a 250ns interval between enabling PLL bias and
->>>> and enabling the PLL via the CMN_PLL_CNTRL register. There is no extra
->>>> delay between disabling the PLL, disabling FIFO and remobing PLL bias.
->>>> Please adjust the code for 7nm and 10nm PHYs accordingly.
->>>>
->>>>
+On 18/06/2025 15:58, Dmitry Baryshkov wrote:
 >>>
->>> I can drop this 250 ns here, if that's what you ask me. But fixing
->>> anything in 10nm is not relevant to this patchset. You were already
->>> asking me for different fixes for some different things and I find it
->>> not acceptable anymore. Stop blocking this patchset with every little
->>> existing issue.
->>
->> I think that it is a common practice to ask to fix the issue in relevant
-> 
-> No, it is not.
-> 
-> It is common practice to fix things everywhere, but you rejecting the
-> patches on that basis (coming again with some requests for unrelated
-> issues) is not common and not correct.
-> 
->> pieces. For example, we frequently ask to fix all the DT files if there
->> was an issue / workaround reported against a selected set of those.
-> 
-> And you reject the submitted fix of one DT file based because
-> contributor did not fix the rest? Really? Since when do you employ such
-> practice?
-
-On a case-by-case basis. See the USB snps workarounds for an example.
-
-> 
->>
->> In this case you can send a fix for 10nm separately, but please post a
->> fix for that platform too.
->>
+>>> In this case you can send a fix for 10nm separately, but please post a
+>>> fix for that platform too.
 >>>
->>> Or merge this code without this patch if a fix for reading PLL as zero
->>> anyhow is questionable for you.
+>>>>
+>>>> Or merge this code without this patch if a fix for reading PLL as zero
+>>>> anyhow is questionable for you.
+>>>
+>>> I think I've asked it at some point, to split the generic code parts and
+>>> the DSI enablement into two different patch series, so that they could
+>>> be picked up separately.
+>>>
+>>> No, the fix is not questionable. The patch causes questions though.
 >>
->> I think I've asked it at some point, to split the generic code parts and
->> the DSI enablement into two different patch series, so that they could
->> be picked up separately.
->>
->> No, the fix is not questionable. The patch causes questions though.
+>> I have no interests in fixing DRM code. This is not my subsystem, this
+>> is not part I am responsible for. If it raises questions, why not
+>> devoting your time to fix it?
 > 
-> I have no interests in fixing DRM code. This is not my subsystem, this
-> is not part I am responsible for. If it raises questions, why not
-> devoting your time to fix it?
-
-Then why are you submitting patches towards the DRM driver? I think the 
-usual rules apply, you not having interest doesn't lower the bar for 
-your submissions.
-
-> 
-> Best regards,
-> Krzysztof
+> Then why are you submitting patches towards the DRM driver? I think the 
+> usual rules apply, you not having interest doesn't lower the bar for 
+> your submissions.
 
 
--- 
-With best wishes
-Dmitry
+I have interest in solving one particular problem, not solving unrelated
+DRM issues. One is not necessary for the other.
+
+Best regards,
+Krzysztof
 
