@@ -1,173 +1,130 @@
-Return-Path: <devicetree+bounces-187181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031D9ADEEF9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:15:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 782DDADEEFD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:16:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3AAB1BC0FDC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:15:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D48C400BE9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9F82EAB87;
-	Wed, 18 Jun 2025 14:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CDBC1991CA;
+	Wed, 18 Jun 2025 14:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M3GMdsgx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NlzmgwNi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D4B2E54AA;
-	Wed, 18 Jun 2025 14:14:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26A54C9D;
+	Wed, 18 Jun 2025 14:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750256097; cv=none; b=dD/4jZGtqezJoZ1kxW/z7E9yRMr+LTNhFoTPigOi75V2gJ2OFxQeWt/H2noUSiF7CIuzHJkIHsEX2xTUYJdfyKNtvq/nZ2DwqJpIRLcOaeuVDCkAxdq/MiO4x4K6LtcXyOPoaNYyAqSHOF1fj9S2MLTj2CLW5lRyRouNW2ysoLc=
+	t=1750256179; cv=none; b=nk7CZjqPPoBANPjGS+LJ/inTgulrORU6VTjprDGEK3eYO/NtwMAjshthSMhP6z/2QjthHFoLu0fGBnniJfJbI2+fM5iT/8NYve9baoPqje5Z5s8S//3ipkQ0bd2C6/1dMYqT66vx1jORi9PBR9Nqihx8b5E0ycqUYBhhBLwnXoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750256097; c=relaxed/simple;
-	bh=7joRVJmJSVqkdNthqW2fkY4i9Jk1mXkGvpIDShV3Pdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fdadVgbc1lYs9gg+fdYJ1djoM4p4B5dTgjE4oDTyYt2Ag2/keNmx4IKWId/6d8b6K231syv3+vVLXLoXafXPJCq9C5Yrhopj38bEdInKqKg8x7fYUWSwHlDFQjlR0ecP80N+eAM8/OjFmELVBmd3u1oojmnqDlAjNWkjZFWcFPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M3GMdsgx; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 44DE743A29;
-	Wed, 18 Jun 2025 14:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750256086;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BR2Js8AYTA3uqJ+dhjRGvYCUNC9Z3XvtFngEWfHaNL4=;
-	b=M3GMdsgxD6lk12yug3GZIA8tEeyFYbrlJgFxgmCaHKFUrC5JJagMIGi3UonPF93IgRsa0e
-	91VmMYNOWFqFjkgDwrtJCBNw0kqYZ78J7y/0GcpTTb5w9PScz8COG1ISoU+ymvY6deqwHU
-	eFa8aDov6g1X5Z0U7XvCaG3a2TC3vJx8Q58k96AcZsZcGLy0o+/s8AiHhvL/XRjHZQ57V+
-	t+oMgkfbyWN6LIZZE350GAwt4swQwwMRB8EIuQKKPAygPkzZQX4XpN0jddH+BhU7S55K1X
-	9XFLQ7bAdz5CemKbwN+ahVr+YigNdMg5BZoI32c8u593JeheOJHk+9jqWIv2BA==
-Message-ID: <3acaaf1c-b4ed-47ff-8de5-195a9cfc5338@bootlin.com>
-Date: Wed, 18 Jun 2025 16:14:44 +0200
+	s=arc-20240116; t=1750256179; c=relaxed/simple;
+	bh=AOJIIPCDy2pFBp8SjVbpE+WPNLuRlmHXWTuQl6cyooA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C9Ui5GeQ3XVhHQQXOKL3QwauYvF3rBjg4i9Cn4Q8iGdE1BNEWbp5sOyMaIuocA7uP5cdTkOTZyjZQ1lQIk7bi+tOXGZ83G3qprpX+v2eWoeNAZeJewFwrJHyvUO0ZsZ3Cxe632/rg6yr8mEUU+IX6PMglqd6H/g4h+BJMRd6fjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NlzmgwNi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A0AC4CEE7;
+	Wed, 18 Jun 2025 14:16:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750256176;
+	bh=AOJIIPCDy2pFBp8SjVbpE+WPNLuRlmHXWTuQl6cyooA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NlzmgwNi54dB6Lh1GR0H3qTJOrKlDkXjmofrM4rxAzydwut2AliMh93e+YqQfW71A
+	 VtUn91tAE5kO58VrrQkY7j3VVh+knjW4mbWvRC/MfmN7FktP75vmew4ljXDQgC55Op
+	 y9SQ4L3s4qysm8SmxZCOqiVItuJ6vtV4kduwwOh+lfFhrN0ibq0DVo82A4O0eDr4kP
+	 7a01OWrIDyTKoRRVECWKsSnD74ghdmYHY6f0a6eS9TwzTg9qnZ5ftPdtUZJfvOXxAi
+	 hpP23zBIuj9VsJGED1ZkXkM6uqIOdtNqnGFc944Uet/Oo5LmFo41X5MWQr/idZOxrA
+	 1qi1joxJNj0tw==
+Date: Wed, 18 Jun 2025 16:16:10 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Remo Senekowitsch <remo@buenzli.dev>,
+	Saravana Kannan <saravanak@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Mark Brown <broonie@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] samples: rust: platform: Add property child and
+ reference args examples
+Message-ID: <aFLKKr1bQue9iuTk@pollux>
+References: <20250616154511.1862909-1-remo@buenzli.dev>
+ <20250616154511.1862909-4-remo@buenzli.dev>
+ <CAL_JsqKXrsdGjTE5KDkqmVHUK5urMJnWSLWgEi8H1yM21gcOCA@mail.gmail.com>
+ <aFFpmKLKR2hGs1I1@pollux>
+ <DAPMND2X0QHE.1N0NF7R1F8J1G@buenzli.dev>
+ <20250618133155.GB1550757-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Fix the mipi port definition
- for RK3399
-To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250618-dtb_fixes-v1-0-e54797ad2eba@bootlin.com>
- <20250618-dtb_fixes-v1-2-e54797ad2eba@bootlin.com>
- <DAPPHL6RPWWM.94C7P26AUCCN@cknow.org>
-Content-Language: en-US
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-In-Reply-To: <DAPPHL6RPWWM.94C7P26AUCCN@cknow.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgddvkeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvheejtdeifeejvedvffdtuddtheehtdelvdehvefgjeetveejfeeiveduvdejteenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeipdhhvghloheplgfkrfggieemvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeingdpmhgrihhlfhhrohhmpeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddtpdhrtghpthhtohepughiughirdguvggsihgrnhestghknhhofidrohhrghdprhgtphhtthhop
- ehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehhvghikhhosehsnhhtvggthhdruggvpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-GND-Sasl: olivier.benjamin@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250618133155.GB1550757-robh@kernel.org>
 
+On Wed, Jun 18, 2025 at 08:31:55AM -0500, Rob Herring wrote:
+> On Wed, Jun 18, 2025 at 01:37:08PM +0200, Remo Senekowitsch wrote:
+> > On Tue Jun 17, 2025 at 3:11 PM CEST, Danilo Krummrich wrote:
+> > > On Tue, Jun 17, 2025 at 08:01:08AM -0500, Rob Herring wrote:
+> > >> On Mon, Jun 16, 2025 at 10:45 AM Remo Senekowitsch <remo@buenzli.dev> wrote:
+> > >> > @@ -91,6 +95,13 @@ fn properties_parse(dev: &device::Device) -> Result {
+> > >> >          let prop: KVec<i16> = fwnode.property_read_array_vec(name, 4)?.required_by(dev)?;
+> > >> >          dev_info!(dev, "'{name}'='{prop:?}' (KVec)\n");
+> > >> >
+> > >> > +        for child in fwnode.children() {
+> > >> > +            let name = c_str!("test,ref-arg");
+> > >> > +            let nargs = NArgs::N(2);
+> > >> > +            let prop: FwNodeReferenceArgs = child.property_get_reference_args(name, nargs, 0)?;
+> > >> 
+> > >> Is there some reason we can just pass 2 in rather than nargs? Seems
+> > >> overly verbose for my tastes.
+> > >
+> > > It's because you could also pass NArgs::Prop("foo-bar") to indicate the the
+> > > name of the property telling the number of arguments.
+> > >
+> > > NArgs is defined as
+> > >
+> > > 	pub enum NArgs<'a> {
+> > > 	    /// The name of the property of the reference indicating the number of
+> > > 	    /// arguments.
+> > > 	    Prop(&'a CStr),
+> > > 	    /// The known number of arguments.
+> > > 	    N(u32),
+> > > 	}
+> > >
+> > > and FwNode::property_get_reference_args() can match against the corresponding
+> > > enum variant to cover both cases.
+> > 
+> > I guess we could make the function generic if that's deemed worth it?
+> > A trait and an implementation for `u32` and `&CStr` each. Similar to how
+> > we made `property_read` generic.
 
+I don't think that's worth it; I think the current version is fine as it is.
 
-On 6/18/25 15:50, Diederik de Haas wrote:
-> Hi (again),
+> There is a case where the cells property is optional and we fallback to 
+> 0 cells if not found. #msi-cells is an example. I imagine NArgs could 
+> express that while a generic could not? In any case, I don't expect 
+> drivers to have to deal with that as it would be subsystem code handling 
+> it.
 > 
-Hello again, I appreciate you taking the time!
-> On Wed Jun 18, 2025 at 12:32 AM CEST, Olivier Benjamin wrote:
->> The RK3399's MIPI DSI has 2 ports: in an out. The definition of
->> the port property necessitates the value of #address-cells to be 1.
->>
->> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
->> index 5ebc380a24df86ba7172b0950b89cac56b61c507..5a7341fb6bcb0613af6f3ac31d99355a0f890e89 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
->> @@ -468,7 +468,7 @@ &mipi_dsi {
->>   
->>   	ports {
->>   		mipi_out: port@1 {
->> -			#address-cells = <0>;
->> +			#address-cells = <1>;
->>   			#size-cells = <0>;
->>   			reg = <1>;
->>   
-> 
-> In rk3399-base.dtsi there is already a definition for mipi-in and
-> mipi-out. AFAICT what this change does is require a reg property on the
-> endpoint and I don't think that's correct.
-> 
-Those definitions do indeed exist in the base DTSI.
-> It seems to me that all you need is a mipi_out_panel definition.
-> So what I came up with is this:
-> 
-> ```sh
-> $ git diff
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> index 04ba4c4565d0..b175aeed99e2 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -466,18 +466,6 @@ &mipi_dsi {
->   	status = "okay";
->   	clock-master;
-> 
-> -	ports {
-> -		mipi_out: port@1 {
-> -			#address-cells = <0>;
-> -			#size-cells = <0>;
-> -			reg = <1>;
-> -
-> -			mipi_out_panel: endpoint {
-> -				remote-endpoint = <&mipi_in_panel>;
-> -			};
-> -		};
-> -	};
-> -
->   	panel@0 {
->   		compatible = "hannstar,hsd060bhw4";
->   		reg = <0>;
-> @@ -495,6 +483,12 @@ mipi_in_panel: endpoint {
->   	};
->   };
-> 
-> +&mipi_out {
-> +	mipi_out_panel: endpoint {
-> +		remote-endpoint = <&mipi_in_panel>;
-> +	};
-> +};
-> +
->   &pmu_io_domains {
->   	pmu1830-supply = <&vcc_1v8>;
->   	status = "okay";
-> ```
-> 
-Thanks for the suggestion, that looks like it might actually solve the 
-issue.
-> I don't have a PPP so I can't verify it, but ``make CHECK_DTBS=y W=1
-> rockchip/rk3399-pinephone-pro.dtb`` no longer reports issues wrt
-> dsi@ff960000 (after I also fixed the panel compatible like in patch 1
-> and added a LCD1_RST pinctrl definition as indicated in my reply to
-> patch 3).
-> 
-I'll test on my PPP and report back in v2.
-> Cheers,
->    Diederik
+> As-is is fine I think. This function isn't too widely used that it could 
+> be changed later if we change our minds.
 
--- 
-Olivier Benjamin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Agreed.
 
