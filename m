@@ -1,203 +1,283 @@
-Return-Path: <devicetree+bounces-186951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE5CAADE42E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:03:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB5D4ADE451
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5976217B912
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:03:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 028FB1899E55
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54666277C82;
-	Wed, 18 Jun 2025 07:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F8127EC73;
+	Wed, 18 Jun 2025 07:09:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="Tsqj7N1t";
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="TORpedka"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-009a6c02.pphosted.com (mx0b-009a6c02.pphosted.com [148.163.141.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAC0277C84;
-	Wed, 18 Jun 2025 07:03:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750230212; cv=none; b=uDTng44/hXlKCFoQIsljchpG8LOZAXiGkJf9ws4P1kJ8NsnBgrRFawyQr7l6mSscdat56I6KCuO7G0WItqaJMbF2RKGJIgvzeC9TbjXEbqBUJKYMY2udxvbH5OWP6gbW0hidkyWF5bvGrxhwddRxrgyzzbtK4X1OnZu/pbJ9dAs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750230212; c=relaxed/simple;
-	bh=HDPxQfTWdVy/egLmGW4fvztcJq413LGa1QL4nEkePTY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LuPYKyTo15drovlOOjMJ7oMUmWYt1gOW031ZfbgsRJdJTaLl6BeIfXISlX/CskF+S7vWwdN2LOE5Yn5/kEhTHr++SM60DI/ems7Hx3uvSoZTwvtrYFTgrhbUXBobpXMjuxwc7CTqETNJ/rMDJpFUBvwJdexTd/jikMhBUlPW2OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-87f1b3a3e7bso976974241.1;
-        Wed, 18 Jun 2025 00:03:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750230208; x=1750835008;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Bx1g4H1TwGYzkFjYtTNms8UTlvHLn0G6i9T/+MuH4hA=;
-        b=Rgm8ncgy5n2f3FmmVf/C0wDK2b8+Kn1pQ2bhPv8a18C5izPmmITpuu4NKOXWGJROaD
-         nlr5WLIBQjyFcomI2nCQmaMZGviqdojJhA1/1sl6JpXsjtMbrQVAQmBdvMh10s5zMPv+
-         FMXo5irRyjUTHtfieJqbI+UazUaFislI8T8VrEd7OVoVTzUVoAZAA3fjOr0UI4Oi9DQ/
-         pJoPy9/KduDX63imezUwcACr5Bh95roej3GiRSoJUEuEWi6Q9l8EBgHDxUtjk4cJ5gHE
-         Rmrtx/h98LUsZfd2qUJAoFOjpyVbztJ4LemDiYaPIw6FEKxezHQE8cMlZwn3gU9RTL25
-         PF0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWOs99hLOZ7BqwTinoz4Z2XUGBcvrUuSGqJZlAejIRBj7cxjK9xCRfGVzHPL+PFpht0YDHPXpIhEurCV3tu+ympsBc=@vger.kernel.org, AJvYcCX9KAXr7FEk8q94r6y3CQ+RfUhSEgVOsOddRmq7uMST1EGSZXlyvvP+gc5RivQLwLeOuZST8HQXaVR1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwY3vvs+MXZpxr165YDVSkldK9l75UqsodyU3RvdcE20UTTQFRR
-	YlYH/G5YK4o+t5eVqBbIC40mywRixI6AGMaKuJKp3E6Dh9uQykYG+rxCEF/HhYoc
-X-Gm-Gg: ASbGncsCWJfnuaF1dmhVhJKABcZ9ps6SUPa7FL8qkKjqud2Kwf1rIW/Bh3C7d2of54V
-	6kJ+pyTxyHK9hr+jxkTimdLAAIAhUEHLA+8mxc3RFziSNxYriAFq+TOmD4MSVzjZDTJwR2mtIxa
-	10Fl9Yj7+tgeV/0idxD8IN+MGOhlpZknrIXqoB315Bj78ECT5eunzw6LEDPX6Jw6aXOUaAphOgq
-	tfDGRSFuCn4fix96Bf+aoiOCj+kc1iBqDR3XTmBiRF0ecHMsMlQC5A3Aq5Pciex2G//vKYABIt9
-	tPZnWs1K2e5FdztH6BkJ05RUhpe6Ia/r9bkxJwmXhFHMYND2kUgiW8p3BMnS1E61sNRyOVfD4ja
-	NZ3TyPqdPY2mOZDMWwgh97KuM
-X-Google-Smtp-Source: AGHT+IGlN+x/jPT9fn4hxTWcE0IpeuL9zHNvp7c8ie6x8wOILWFfzWIqXzp4LsX5W1t5KLKCQWZ7CA==
-X-Received: by 2002:a05:6122:390f:b0:530:7bd4:1761 with SMTP id 71dfb90a1353d-53149a6fca1mr12264295e0c.11.1750230208094;
-        Wed, 18 Jun 2025 00:03:28 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5313dd849e7sm1940526e0c.10.2025.06.18.00.03.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jun 2025 00:03:27 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4e7ade16082so1845503137.1;
-        Wed, 18 Jun 2025 00:03:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVLYKiDHAOSMzsa6w66u4y8Nln2F0Er3k7fI7nzwakOLADHJbJOMs9gh2vwciTHmBx0cDKyKZiIOT4/@vger.kernel.org, AJvYcCWkwIpn3btY0+j5x0z10QKtCWAocXm2NHeUqB64mgo/zMQTwWunLbv/gsDOhQuPpK+H/8MPjZgDnGn6o6GGG4zwaqg=@vger.kernel.org
-X-Received: by 2002:a05:6102:2c86:b0:4e5:958d:4962 with SMTP id
- ada2fe7eead31-4e7f6323326mr14620847137.2.1750230207208; Wed, 18 Jun 2025
- 00:03:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FD91F3FED;
+	Wed, 18 Jun 2025 07:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.141.152
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750230550; cv=fail; b=pIyhluyFOVDhXZ98KzalJpsYn9E9jKaaovUaBt1suB3qJ4Qhak/z3lvLNq0di0mtt3BNPch6Hae46D9thi+L4Fc2GNXINPls6ytMUWmja/K8eVxx9cAY1Pz550rulkL7WTITx2QAqjgpwrrHAV9Y2zVWHjfsyS8D13UsAOHj2y4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750230550; c=relaxed/simple;
+	bh=tojcD1sWJ+5Z8Z3jZrpla6MAEVQaFob3wGtZ0iw3Oqo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ENkiZqaPqiKw80qmyq8kQ+ABB/hZ0BCR6/YN6FipRsmHuMe+qveygYTYI0hbKPUwwloyDm23XOYcB/xzV1dh6pJre3cBMScmn2yuV7fjmDEVznzIGvM1bQIs6vEfE64gzx+H6tEVFfUzf+aM6/lJzTM0suca0FCU1KqS7gP009s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=Tsqj7N1t; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=TORpedka; arc=fail smtp.client-ip=148.163.141.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+Received: from pps.filterd (m0462408.ppops.net [127.0.0.1])
+	by mx0b-009a6c02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55HNA6nk010207;
+	Wed, 18 Jun 2025 15:08:29 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=20250420; bh=IqTetl6upexAsH4ZMTdRxrm
+	6z3s/zmsA9UK2sAWt5FA=; b=Tsqj7N1tLHLUyKj4gOCIHGV/bBY3vMqYqe/5a5u
+	U117UGgZo3l1ov/7ghhV3ARDVse77mrArxw+rRInh2nu2UHFOx2QA+2/+/0yE12Q
+	KbgshEBruFGM0izBGu1H5SgtHFz2muoD9fTlPGU9EjJ+A8nXJI42n4wlAO9yhwHE
+	BWm77Qit45XBcL1KLpuQoP6ifm9UxBcMZwbq4H8H8ab5otYJYmLxiPF0mErcQ1ms
+	NSttENyjpOsw05Lo5FOrnS+f34XvjKsc9bCcfqEgFI03pEIxtYyukjhXThnkBe6+
+	0ryF29c4g3AK8vnaO1IEsrujJdhnZx/oif9JkPRQlFVdSaQ==
+Received: from seypr02cu001.outbound.protection.outlook.com (mail-koreacentralazon11013027.outbound.protection.outlook.com [40.107.44.27])
+	by mx0b-009a6c02.pphosted.com (PPS) with ESMTPS id 47bhssgfpa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Jun 2025 15:08:29 +0800 (WST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pP+KDz7rvIuyLRIgcMrAdvKdul8OQdawszxZM7JuGLzMJka2mwVaw5ykJAMEKcVXY1qOnbuROZ//Y68Qe6c2gX5zgCOniQUIyA4HzRXy23LQa8V4z3Sk6/tP135LpqQMJ8e7kM7oZulkV/RMhr9hXSTM8gXIheLsIluB1CpBkktUX3DB7jkXEIQqtAWW9e5gixD4fgBBSl8pJg87fnStkKIb0b6W55VRiUHApMBAtvTeN++bMGnNqezCS5CiKE8yMdun8AdIcwKKksK6gV74upt+0Xcxf6qS8yHwWCPR7ScoJYWNVW+WI+w6RXUWZPadE12hihLJoVLOKXoqLGJSmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IqTetl6upexAsH4ZMTdRxrm6z3s/zmsA9UK2sAWt5FA=;
+ b=FuAa30OvcC9YbADzP6gD9fWPUOffykTY+MgnogyV0Nfiz9GPyT2Q2oufzxd2VXkM1p2sF0PUhCvBYXCbP9555Icy59Q9RzM9lF7iWJYbOYCgkn8m4Nz3V0vWDkRE98YFSTzrcOlKEyBd9qW4dwWfGHkRcgktUzpb0FWcAqqW+3GtCz4Dk2fiG9o+Md2tvTOINI+rOuPSmcK15Z4UzN5WdrCdDzTnjhQCYrp358LRpfw9pI5C69wJa5pBJI0rQwu7UKmIB2RxRPtGJ1dGcWKbzogUDZFE339pYM0uFrdH9S1jqlfSG1KJECaAHzq2nzSm8Hm07Lq2ebaVq1lab87J0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IqTetl6upexAsH4ZMTdRxrm6z3s/zmsA9UK2sAWt5FA=;
+ b=TORpedkarZybDgaIA8npOZR8//ZvmBm83nJfU4aUJkAT+sQyMnljfGGLJI4XLGgLEvtc30ecsddFeyw6HD63+Kwyjoz2zPZz2uXgFM5oCRbr+TFNMEgCeEKst83zsvLgH1crocJci3K4zvv+G/SAsiuGn2i+FtPRvRRBctfitn3lg5dYSUiG8aatj+s0sGGv/3iCumQop07Bew+DDQp3f8HRB65s6eX81NSOY/rpn74tiiPdCFxkF7ytxC2WLW/3fPyRNfFsGZeQVedqnQ1jsKP+x401rkBmdUjuTjs/y0lziiqzdjZz1YGj1mrdLpWRV27IBx+lDKTk99Tt73+ZfA==
+Received: from SI2P153CA0015.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::21) by
+ KL1PR04MB7209.apcprd04.prod.outlook.com (2603:1096:820:fb::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8835.30; Wed, 18 Jun 2025 07:08:24 +0000
+Received: from SG1PEPF000082E5.apcprd02.prod.outlook.com
+ (2603:1096:4:140:cafe::87) by SI2P153CA0015.outlook.office365.com
+ (2603:1096:4:140::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.5 via Frontend Transport; Wed,
+ 18 Jun 2025 07:08:24 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG1PEPF000082E5.mail.protection.outlook.com (10.167.240.8) with Microsoft
+ SMTP Server id 15.20.8857.21 via Frontend Transport; Wed, 18 Jun 2025
+ 07:08:23 +0000
+From: MarshallZhan-wiwynn <marshall_zhan@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Marshall Zhan <marshall_zhan@wiwynn.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@codeconstruct.com.au>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4] ARM: dts: aspeed: yosemite4: add gpio name for uart mux sel
+Date: Wed, 18 Jun 2025 15:08:22 +0800
+Message-Id: <20250618070823.4136687-1-marshall_zhan@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
- <20250311113620.4312-2-biju.das.jz@bp.renesas.com> <TYCPR01MB11332F064115080582332B78986AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdVy3B+i2p6unkX-n=7AYCfP5B8sW7F9GJi7URcvniGA2A@mail.gmail.com>
- <TYCPR01MB1133206083EC0249A827261EB86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdUyY8SsUQEZwxdCK-ggPuYy8L_WwnUgq3Cj7oYiTcyNTQ@mail.gmail.com>
- <TY3PR01MB11346123B74D86590C0F8B9CD86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdWevyJ8Z4YWYx0rr=_TD0OTywbkPfNwRcw5k=yDV-i2Ow@mail.gmail.com> <CA+V-a8t1siG17NKna-ACUzCoXFTOyVxuLonTVSRLnNq1ie3iTg@mail.gmail.com>
-In-Reply-To: <CA+V-a8t1siG17NKna-ACUzCoXFTOyVxuLonTVSRLnNq1ie3iTg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 18 Jun 2025 09:03:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXw+mcj-P=Zm4R8WF0PxogPLfFCbALBRFN9Wn8UEo1FkQ@mail.gmail.com>
-X-Gm-Features: Ac12FXw1RnKAXRPJAq0eRD5Mv4HXDFg96giukwQ-6mV3udJ0q68YZnrTxPiV39s
-Message-ID: <CAMuHMdXw+mcj-P=Zm4R8WF0PxogPLfFCbALBRFN9Wn8UEo1FkQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Stephen Boyd <sboyd@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E5:EE_|KL1PR04MB7209:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 21b7d367-1c78-4832-109b-08ddae36ea53
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?y/xnR1LntkW9zVjmQ8ZufqXY9xVIZDdWkrT2P2Cwu2FynlQU3gGVSc82JlWO?=
+ =?us-ascii?Q?RWLbr2fRptKVJZUqk6TSWiTbjhyBTnPQ9G2islc0gu/OIzsll4JBcmaAYtwi?=
+ =?us-ascii?Q?xC7FX5mqWZSYfoF4zOOfpKPpaOyk+jLFD4Ezr3RgFpv9zL0qn7baPCZnCheq?=
+ =?us-ascii?Q?Lh0VYfqARkkSHQ3D1ardOb5U7eU74p4sRzIum9q3THvXi6wJXdrXmEJybLZ9?=
+ =?us-ascii?Q?EEUIKMudT0oFPMaPB++00JQvS5OAawuDH1gqEciHN6efD9U4kFt1f31DgNzX?=
+ =?us-ascii?Q?W2teybxa2KejEn1YuSPTYnXKFiKBeoIQNkiJtGwA2nawk5T+DSyOuUbygrf8?=
+ =?us-ascii?Q?cV1tCiP3Ni4AX67E4PT5DgBMlXPtG1hC3U2ZgbPgypvTPczyCFEhYcX/PKQE?=
+ =?us-ascii?Q?pFKtnsQZu/AJyopf54gtxqTluqw4ZSy7xynN7f6VIeEBdRQEPMerqqE6ZDFu?=
+ =?us-ascii?Q?2Hd+u1zkSCI1Ca6nSqy5nN2lxu1Zpy++30SaWtVwr/eFqXyf+xMLadZxXVsB?=
+ =?us-ascii?Q?PWSmhDAtgjS/xmuC5L93/c/f56uHkfrBqEJofeGsovotPijCHQ902zub0e7k?=
+ =?us-ascii?Q?fzBDafCTucsn2XNljUq4rbpE7ACcHFhtSwRBxWx4I+pXd8JHtMrVnhUtAHmw?=
+ =?us-ascii?Q?tBChCABT0SxKuorhealPJ1cYKHMTsfitqEWAVEbjFuFoLL77IOREsWzlRT8V?=
+ =?us-ascii?Q?GpgBkeUmvnscwDdM9H8LDws7KOEEborLUlEAIHAaLJ/cbazxlbIaO8Pa3AtR?=
+ =?us-ascii?Q?WDvkGSZP+ckh+l5Qbuj5BZpyCQpF1fKbnMDfr6prJMrwQmiO+SGNXVir4X9G?=
+ =?us-ascii?Q?7PzEdc9zwVAuGT4CywIX8WpeVE2+GXf3SSbMMnbpaIkVcW+uz2U6AqN2sktW?=
+ =?us-ascii?Q?qT9kXyL13uL+Wbb9Jtw3+tADeaeBQoX2xNkIiWzjKNFPVV+PYePvq6VJcpp9?=
+ =?us-ascii?Q?OurVaBuu8eL+wn8DjymG6rPfzaBSzFgH/NPKYhhljhBYo8fPguMLULoVOjYO?=
+ =?us-ascii?Q?YSzTPkyg47yQ5jmDeh5RyxYE4wVM8LzoBvMmVMVErlClI0sqSa1ZCQ6zc+ZO?=
+ =?us-ascii?Q?zxU+Q67VE7GJb+cqC6we6YlCVnzW/21WqB4zC1O+IWatvrU8BR5DmAFxGxmb?=
+ =?us-ascii?Q?wYdi2IVuJG4MjhXE2yVYiR8oLHsUZ0PvYPrphhuN79sj370YGa0t73Ekl2SI?=
+ =?us-ascii?Q?yN4Y838HsGre23GPkD1mgY6XX78v2HKlJhcZZxAd0HkRVV5bLOjObhAKJTbv?=
+ =?us-ascii?Q?DiAfgWmzucfm0ZfMB31dcYZ8beTpIjL8WWZUN1nlxytm9fj0P2HgTTay9KRQ?=
+ =?us-ascii?Q?xgQ5fjjLDoVx15wVs29Te1qTJDd1u0gxzBm92MluvVqFNdXMPwuMNsuSyja5?=
+ =?us-ascii?Q?8Z4EywcI0uYRH+HJOZvizowQkV8KRBgliE1Xtjbj37DF8psbhAZFKxwyB9zH?=
+ =?us-ascii?Q?cN7DUP3FzGP9qPCutRIjkLDHp76rwgPFewIYQgGx9xATCO+9iRVwUA+3j/gy?=
+ =?us-ascii?Q?z3F1pCm9N2lGIrflM3Eq5pWRFH2E+99uYPFD?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	TrIw56rwnMWtEnDjlXYOqX67GeFoK3fWCirIG0+gA5vnX7hK0xuuABDu6EokBUUuuR9fHzyjsZb0wi4DTcqzesxxdvRTZ9lxWvwKA0JbJsoynSn9t5C5PDgs+XBJnEafF4YJgok887uYmDhB6jBvYu1y450n4BnzRvyKovIq+ODaiOClUeqnZNf1kpQUpThIHd1jf66Tq+4UyjlSzvCEdXaCQHXXRTM5kBP8oudBAEoetJthFaKZY323Hgz9QQwJtBXEqpmc1f3APnIDx3j+6tHDN+/zhGFwllvUPRiRlRjCA+mqA2jWvSONDKs8wMwkjKEEGb9DqDWEqxm4SBw6B49+M3B7GFIymP0egUHjbaepKITCgJ/g8voBDuYHWXWq/OxaypCLxi4oyYH3necCTHYwiwezY77LEeyLedio7mW7P15blvPOy6SITqUqhNtacwWGpKeEUNagw6YfGCiqjwqyrlqGAmzYLtm0cmuNpZg4j/d7uEiLjZ/hFiNTGmHFQuQzSHAVnByH5w/use53pUgVh+NlyptoPw+yG8FbZc26br19YVdpfUsrCIUcslvkkn7JqMvzoVvP2aEbrVw7d2kZ7KwdeenE0M3zoCn7oU8DENGHnRPO7+v7nvNdDlPW
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2025 07:08:23.2743
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21b7d367-1c78-4832-109b-08ddae36ea53
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E5.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB7209
+X-Authority-Analysis: v=2.4 cv=B9e50PtM c=1 sm=1 tr=0 ts=685265ed cx=c_pps a=dsIthHTsXEBkGW0VS6idzA==:117 a=6rDDh2uRNVCE5HFPCIqeAA==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=6IFa9wvqVegA:10
+ a=4AL28aEVfeMA:10 a=cPYzWk29AAAA:8 a=u2kzlEoHWhBIlCB3pKYA:9 a=oSR2DF9YFqZEN4IGatwP:22
+X-Proofpoint-ORIG-GUID: JnxlT6wqDCj_w1DQZrvvdKl0PVcg-3z6
+X-Proofpoint-GUID: JnxlT6wqDCj_w1DQZrvvdKl0PVcg-3z6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDA2MCBTYWx0ZWRfX7YlxDkhfcZSK pbfEGURS7SPlg4dmgzQT60DiMchr4ssRDOWux7eSSgmrrweEVQVMS733UIcVOemrofUY1ggS3gc Z+cJHluemv1DQmeA3QFx6yZ0BopLHSAFiO+FeZWlmO4vlLBiyRRlZWkuGO3HS59NXXT/NTGgkUa
+ cqsitliwk1gjf8qTRP93rxKIDcq7h4Cmvb15ziuDqC0CrBKE27JXM+GZZV4qOtpz9eug1ENV7Em x8i7YfcuE15w9QcWZ5XcRjLpVYXR8CkxsValC2ZG0h47cu56vVAyQJDZVzpEQVPueEYdGspQ9BR 4EQW5EqBiBpGw8rLckCFmcRv7nl6WETu1sTo6dQ/3UfDtVfBIbgZWYw8H6/vD/EfGFFfuSlu22p
+ YHolnorY3amw8n/0oIwDvWjh7BlMwVoXyfi7Qdil40899z4koWQkimppwRrsqzjbT3ZYsarq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-18_02,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=799 adultscore=0 bulkscore=0 malwarescore=0
+ clxscore=1015 suspectscore=0 phishscore=0 spamscore=0 priorityscore=1501
+ mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.21.0-2505280000
+ definitions=main-2506180060
 
-Hi Prabhakar,
+Add gpio line name to support multiplexed console
 
-On Tue, 17 Jun 2025 at 23:05, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
-rote:
-> On Mon, Mar 31, 2025 at 7:25=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Mon, 31 Mar 2025 at 17:33, Biju Das <biju.das.jz@bp.renesas.com> wro=
-te:
-> > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > > On Mon, 31 Mar 2025 at 16:34, Biju Das <biju.das.jz@bp.renesas.com>=
- wrote:
-> > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mon, 31 Mar =
-2025
-> > > > > > at 15:54, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com> Document suppor=
-t for
-> > > > > > > > the Expanded Serial Peripheral Interface (xSPI) Controller =
-in
-> > > > > > > > the Renesas RZ/G3E
-> > > > > > > > (R9A09G047) SoC.
-> > > > > > > >
-> > > > > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > >
-> > > > > > > > --- /dev/null
-> > > > > > > > +++ b/Documentation/devicetree/bindings/memory-controllers/=
-renes
-> > > > > > > > +++ as,r
-> > > > > > > > +++ zg3e
-> > > > > > > > +++ -xspi.yaml
-> > > > > >
-> > > > > > > > +    spi@11030000 {
-> > > > > > > > +        compatible =3D "renesas,r9a09g047-xspi";
-> > > > > > > > +        reg =3D <0x11030000 0x10000>, <0x20000000 0x100000=
-00>;
-> > > > > > > > +        reg-names =3D "regs", "dirmap";
-> > > > > > > > +        interrupts =3D <GIC_SPI 228 IRQ_TYPE_EDGE_RISING>,
-> > > > > > > > +                     <GIC_SPI 229 IRQ_TYPE_EDGE_RISING>;
-> > > > > > > > +        interrupt-names =3D "pulse", "err_pulse";
-> > > > > > > > +        clocks =3D <&cpg CPG_MOD 0x9f>, <&cpg CPG_MOD 0xa0=
->,
-> > > > > > > > +                 <&cpg CPG_MOD 0xa1>, <&cpg CPG_MOD 0xa1>;
-> > > > > > >
-> > > > > > > On the next version I am going to update spix2 clk as <&cpg
-> > > > > > > CPG_CORE R9A09G047_SPI_CLK_SPIX2>
-> >
-> > According to the RZ/G3E clock system diagram, (the parent of) clk_spi
-> > is derived from (the parent of) clk_spix2, not the other way around?
-> > So you can model clk_spi as a fixed divider clock with parent clk_spix2
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> > and factor two.  I.e. provide a new core clock R9A09G047_SPI_CLK_SPI
-> > instead of your proposed R9A09G047_SPI_CLK_SPIX2?
-> >
-> With this approach when R9A09G047_SPI_CLK_SPI is used as a core clock
-> and XSPI node is disabled the clk_summary reports the core clock is ON
-> (while it's actually OFF).
+Signed-off-by: Marshall Zhan <marshall_zhan@wiwynn.com>
+---
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-Is that a real problem, or is it purely cosmetic?
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 29f224bccd63..aae789854c52 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -189,6 +189,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT1_UART_SEL0","SLOT1_UART_SEL1",
++				"SLOT1_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -235,6 +240,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT2_UART_SEL0","SLOT2_UART_SEL1",
++				"SLOT2_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -281,6 +291,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT3_UART_SEL0","SLOT3_UART_SEL1",
++				"SLOT3_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -327,6 +342,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT4_UART_SEL0","SLOT4_UART_SEL1",
++				"SLOT4_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -373,6 +393,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT5_UART_SEL0","SLOT5_UART_SEL1",
++				"SLOT5_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -419,6 +444,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT6_UART_SEL0","SLOT6_UART_SEL1",
++				"SLOT6_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -465,6 +495,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT7_UART_SEL0","SLOT7_UART_SEL1",
++				"SLOT7_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -511,6 +546,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT8_UART_SEL0","SLOT8_UART_SEL1",
++				"SLOT8_UART_SEL2","","","","","",
++				"","","","","","","","",
++				"","","","","","","","",
++				"","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+-- 
+2.25.1
 
-> Can we maybe use a unused ON index and ON bit for example 25, 0 (ie
-> 0x190) and represent this is a module clock for example for the
-> spi_clk_spix2 clock and use this in the DT and let the CPG core code
-> handle such turning ON/OF the module clocks based on the enable count
-> which will be handled internally in the driver?
-
-Please do not use "unused" module clock bits.  These do not describe
-the hardware, and may actually exist in the hardware (try disabling
-all undocumented module clocks, and observe what fails...).
-
-If spi_clk_spi really must show being disabled, you can change it
-from a fixed divider clock (which does not implement .{en,dis}able())
-to a custom fixed divider clock that does implement .{en,dis}able()
-and keeps track internally of the fake state, or even looks at the
-state of spi_clk_spix2?
-
-However, upon second look, spi_clk_spi is not implemented as a fixed
-divider clock with parent clk_spix2, as described above:
-
-      .smux2_xspi_clk1     0  0  0 320000000  0  0  50000  Y
-         .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
-            spi_clk_spix2  0  0  0 40000000   0  0  50000  N
-            spi_clk_spi    0  0  0 20000000   0  0  50000  Y
-         spi_aclk          0  0  0 200000000  0  0  50000  N
-         spi_hclk          0  0  0 200000000  0  0  50000  N
-      .smux2_xspi_clk0     0  0  0 533333333  0  0  50000  Y
-
-Instead, they both use pllcm33_xspi as the parent clock.
-Apparently I missed that in the review of RZ/G3E XSPI clock support.
-The changelog for that patch does describe the correct topology?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
