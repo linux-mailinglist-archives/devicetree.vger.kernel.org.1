@@ -1,174 +1,267 @@
-Return-Path: <devicetree+bounces-187025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12AAADE827
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:10:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D8BADE810
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CC0B3B5899
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:08:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01F9818912CA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:09:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41D8628A1CC;
-	Wed, 18 Jun 2025 10:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7D228C036;
+	Wed, 18 Jun 2025 10:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GC3BPgKI"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="YhqGn9EV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2076.outbound.protection.outlook.com [40.92.42.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE78288C1C
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:02:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750240938; cv=none; b=HlGLf1exCO/b+guGMFyDRiWC21BWHkjDiWPuRy09HoHwz38H2ec+joMLRz3xIK8SoEoMnehlY2eY43DV7H03REUlIA5olhbSQ0AfQ7c8aCprN0Gen9RyjPWrESCtBAb0tbBLjr8toRZtnNU4T/DAuSa7ydQIfPtV9phZNOUlM4Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750240938; c=relaxed/simple;
-	bh=8i91py5Nf+YYJ+DDJ/UaSDJZPm1uvhaXzGn/NS5Cc60=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=TTFGRXbY1kaU137H4mat3pD7Dc0EGuZarvRzzEi6/RM14OsOd3pVA6j6Wt3d6hCUZlyBvnf7hQuYh/iL/P6TfYDuXtO6CIqfOYLxxfAaRYPdM+4hlbJP3Doe4/ni99+XAGQ+JY4ga3O7KwfJPFDcJrfZ+WUUAgfXQCutTz72vJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GC3BPgKI; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250618100214euoutp017b088c6e6c9e11ba1f2967f5e46957eb~KGttWbtVD2764627646euoutp01J
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:02:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250618100214euoutp017b088c6e6c9e11ba1f2967f5e46957eb~KGttWbtVD2764627646euoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1750240934;
-	bh=mnBVL+TiGzXcC6y2voLdZWspxbuthkDVJJY2G1jD6rI=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=GC3BPgKISPlo40xYj6LKCbLn1TG1GuRBIKI9k6RDE0adYjbjWW3V+CNPIUK9POa+G
-	 rg5JrO6X8a5L6Cb9k6vfyFay+hzBb0YwAiYLKJJETW4/vcj5VXxJiUG4KTiBXAVNCG
-	 6dlS2WNdMZmzVtCi5Co7nZdwml43AG3hXU3q4lFQ=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250618100213eucas1p10ead7541682e1c8b8985121bf634c83a~KGts1_7dl0901009010eucas1p1v;
-	Wed, 18 Jun 2025 10:02:13 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250618100212eusmtip23b29d2b5e5877af3f8f5b7582a97d35d~KGtr0JUpH2681926819eusmtip2Q;
-	Wed, 18 Jun 2025 10:02:12 +0000 (GMT)
-Message-ID: <4772bf3d-c7d7-4108-8bc6-ee28953c89c1@samsung.com>
-Date: Wed, 18 Jun 2025 12:02:12 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2AC28541A;
+	Wed, 18 Jun 2025 10:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750241018; cv=fail; b=dfnTAb+/DHG9XbiEokekF7fLgdki6HlyrSdBl0qTNpZPXY3JXmRYVBBWFC8o8FtzNZX23q4wAZ86eUVeDJYkihMz7R0fAIk8T6rEkG3WgVEhJQWeXXNiPwQK44cFG+yaE1+bVnkkZjOGiQiwNrqI08t1DJwOcaYkbHAgcRX0llg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750241018; c=relaxed/simple;
+	bh=JPihzxpGXTZ0ZT5lVuD/DGlzvjKy2kQi+MTu6n17Cbk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=BEt+c6r/VMcNAwU8Eup60u+UrkEKCA16vKPIfSpDQZAAYPsfbQBF9SWB/lvOzDpNossl/Cx4DHnKvRRpejpqXrOoFsTQ5w9FWQQeVwKcU0/NT/0Y7Uonp982Eossjxz2l1qiHfhMh+A4nCZt/un/OAVy+VEpYWTVT7y9ozdBYvA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=YhqGn9EV; arc=fail smtp.client-ip=40.92.42.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LzA/VeP9GKt1HwKHDige0tRE2I7jRkmAwaz7O6hK6VywfR7e9CBjYtja35+wq4+c1ZbAmTjzx3okMruIZBGtTDrhfNEbYpKK6LPZu0t1/mLhO6Y8vmved4SM1y1HFEKEK2YrHISudI0k8WkqfVdVeTpOHKet1A6cOD7eTn4/UWPn9+AZN1FPKRYaS4660XvUgSd2OEIp6gTKSYx9r/JB67WfWqyiz8ckAb/+CFeAKejA7MH9u0DPavujsosxOyZ7nllvA9ruP43KUptxo6Y5RPFV9C8o5Hm3rpSGHC2tyd+2aVGmpe4J+NQ4s2gQtFKsSu152XKXrOUJfJuASQhHAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oglveZlBinOEXw0Ye8sTATaiQy/gqwQfBApCw4tvr5w=;
+ b=VBh2so3ut9/AYHZ7U2kdRwCSsxU9NZYhUPsfxO+YgvRx2INdAtBa9wf0NKpNbN1TcPhKd/dItI+b3cW0UCZUj2IptKfv7m+/ydAVSFYh3X3z/0uNTzYsvRhVMt6050kV25fEUVSWWk+saPKJsuRhu0KUUEGl85OsckIvCHthL/xo9xFANQzCni/ANlV7NCUNa6qNiSw+Zv6yRriI8Q/dpeMP8Bma9+1dboXp4GPJfe5ssmqM/IOGaw+k8cUxzzhOTNDMah2JJXzWCEH9EpqqhoPG8EQ63f4ojY32YXNjN9C767DbekJ5DzW0QB+tRTNSkXfouk/YnWTr5ydiTIl2cQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oglveZlBinOEXw0Ye8sTATaiQy/gqwQfBApCw4tvr5w=;
+ b=YhqGn9EVUzAmjGpKBZIUfCBrpX8PGx0LoCPEMExLf1h/A4T8QbN3k2AUVaOBkcF/9AQEvSSoDcRWuBZgZgPsZyEMkB20Ox0AavtE0aPF18807WeDqQTfGqFmJfrSDm8G++CorLepuliwvCUq6ejhOSmx4bM9sGwE+4yggItM4slM7KIXZaTKA7384lnsTwewdPRyFvhhKV4rIoVuqIvZXE0vTtFnvkvMIiaV/VQrDTJ1is6eerhk8MtrwQgaiHQJp7rS+m9JMkLdKbD2u8ylFjbIebkUrpjzCxfOWdmivBnBVBY/+Vyo4MgX/YWvqDuLzabfPsvAyD5vn3XgEJoxTw==
+Received: from BL4PR19MB8902.namprd19.prod.outlook.com (2603:10b6:208:5aa::11)
+ by DS7PR19MB5853.namprd19.prod.outlook.com (2603:10b6:8:78::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.18; Wed, 18 Jun
+ 2025 10:03:32 +0000
+Received: from BL4PR19MB8902.namprd19.prod.outlook.com
+ ([fe80::b62f:534e:cf19:51f4]) by BL4PR19MB8902.namprd19.prod.outlook.com
+ ([fe80::b62f:534e:cf19:51f4%4]) with mapi id 15.20.8857.016; Wed, 18 Jun 2025
+ 10:03:31 +0000
+Message-ID:
+ <BL4PR19MB8902AFEA7DCC8C41B7C2C6569D72A@BL4PR19MB8902.namprd19.prod.outlook.com>
+Date: Wed, 18 Jun 2025 14:03:24 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] clk: qcom: ipq5018: keep XO clock always on
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
+ Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250516-ipq5018-cmn-pll-v4-0-389a6b30e504@outlook.com>
+ <20250516-ipq5018-cmn-pll-v4-1-389a6b30e504@outlook.com>
+ <wao5fe7nbupujho3ql46ctvbqhe6y2adzqrtbyxqgfja6oriwt@nekluv75lcze>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <wao5fe7nbupujho3ql46ctvbqhe6y2adzqrtbyxqgfja6oriwt@nekluv75lcze>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MR2P264CA0154.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:501:1::17) To BL4PR19MB8902.namprd19.prod.outlook.com
+ (2603:10b6:208:5aa::11)
+X-Microsoft-Original-Message-ID:
+ <530cf5f8-6c2e-4265-a449-415c6d6bf834@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/8] Add TH1520 GPU support with power sequencing
-To: Drew Fustini <drew@pdp7.com>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, Matt Coster
-	<matt.coster@imgtec.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, Marek
-	Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, Krzysztof
-	Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <aFHosEvn35Fr3LFv@x1>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20250618100213eucas1p10ead7541682e1c8b8985121bf634c83a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250614180906eucas1p116f8a13a4013edd3bbedfd2e4a8b0aa3
-X-EPHeader: CA
-X-CMS-RootMailID: 20250614180906eucas1p116f8a13a4013edd3bbedfd2e4a8b0aa3
-References: <CGME20250614180906eucas1p116f8a13a4013edd3bbedfd2e4a8b0aa3@eucas1p1.samsung.com>
-	<20250614-apr_14_for_sending-v4-0-8e3945c819cd@samsung.com>
-	<aFHosEvn35Fr3LFv@x1>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL4PR19MB8902:EE_|DS7PR19MB5853:EE_
+X-MS-Office365-Filtering-Correlation-Id: 093a60ce-fdd0-4a90-133c-08ddae4f6115
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|7092599006|6090799003|15080799009|8060799009|19110799006|461199028|5072599009|440099028|4302099013|3412199025|40105399003|10035399007|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ejFIcTIrejZKRi9kTGVTUk1wYURvbG95TGx4cmxYQmpOaTUyQUlxZHl4NzZF?=
+ =?utf-8?B?L284UENCYmdwelF2bDY1MkxhcUVFSmhhRE5FYkpTbU9yK3JnRGkyOUxRV3lU?=
+ =?utf-8?B?V2VvV08rY0Q4MWxOVk9LOTBIWkdFaHhnMVlPQ1R0MXVJRnZ4aFgxcHZhc2Fi?=
+ =?utf-8?B?b0FyVmVCMFp4dzF1ems5Y2VLRlJhTWxhbTlXSUtsL1kwbHg2aEczaXZMc05S?=
+ =?utf-8?B?M3E5N05Fa2NiVjh2OHczcDZnejdJN2xYd0tUQW9MQ1RtdGNsMzVWeU5xd2l3?=
+ =?utf-8?B?T1h2TzhseXFlWWl5cDBoVjl3OUhqTjFucTIrTkRQdW9abmNzUGhscTIwNjZu?=
+ =?utf-8?B?MVhkNkNDUzdzNU9NUzhGZTRrK1QwWHA2Mis1Wmk0dXJ0VGI3SXV6MWpHUXVF?=
+ =?utf-8?B?WUJadTAzTklJd3dJeThSUi9qaU1WOC85M3J1ZWhpL2pEZlQ5YVRoRktiWU5o?=
+ =?utf-8?B?aS9tZU00R2FZbitpMldNcjFNSWtYb2M1NnNJR3BDbG16T3NENDU2RlUzN1pN?=
+ =?utf-8?B?RFhLTS9MdWhacFNIakZWbTBGUW5GVmdaek1rZTZrRGZ5YUxsR2dvZWtxSVFz?=
+ =?utf-8?B?NlU0MU1qNytrNVNBbzZGWGk0MEczdnZ1VFpRZ2hKNi9pTlZSbEFWT1dMczJK?=
+ =?utf-8?B?UFg3bmNtU012MWlaSEpWcTBKb2JCVmQ2TlEwRDV5dE14c2NjUk1NNzhqSkJa?=
+ =?utf-8?B?dm1zbGxxYnhNK05SNExEREV4T2k5dEJDZ1dnRUg0WjZVL29MMytDY2tKRVQz?=
+ =?utf-8?B?UzQxdnNJWDFsanVsS3dvSUdXUjZON0tFTU1yWWU5OGV0Q0dKN3hKWGN2dldH?=
+ =?utf-8?B?Tkhrb3BEQXlJUXhpWEE1SVJueVRMRnlvdE5OV29hY0VDbHkyK29YRWk4UUty?=
+ =?utf-8?B?V0RTS29QRGpkRk1JM2dnb0dTaE80TmN3a2VVQnRDVEQ0bXNjUmFJSUl5RmRw?=
+ =?utf-8?B?WjZCWkVzY2VBb3U2OHlrSk5aWTVQMUxGM0VkVHR5TkJmUW02NStGQ3dmSHR2?=
+ =?utf-8?B?cmlzZVQ0T3c2d2lDbXFnZzlidGtUT3J1ZU9PNUVnL1B0S0I0Q0w2MnB1Q2Z0?=
+ =?utf-8?B?T1VVcHowY0s5NHRERmg1UXQ5T0Y0OVlwcVY5ZG9OeUp3OEgzcjEwK05ad3Bn?=
+ =?utf-8?B?MmxkUHNLVENOSVZTZE1OK3ZFbi9MU1lIWVpwK1BoYWJDbHExa05KYmhsVmZw?=
+ =?utf-8?B?ZVNKcmRZRmlZcFl4R1NLblU2RU42SzhtRzNuNTRPR3htYmlEUG45RXEvSTVT?=
+ =?utf-8?B?b3dGazNBNUZoRDMyYWpDNlpKTGNTd09KM0R3RkxWZk5Kd2xTczR4WWZJaFRO?=
+ =?utf-8?B?V2ZkajN0TndHdGgydVZWSVk2Z2s2K3FidGlNUENyYTJCTFRBQTdYRlM0L1RG?=
+ =?utf-8?B?RXE1YUloTXdlaDd3NmpxMkZIdk84SnNQM2JzVmxrRjBXYkg2Zm81THhOcnFE?=
+ =?utf-8?B?Rjg2TmJXTDVDUWdtRE54b084TkRpQWZLVlpkaDBzbEI5Ymhxb2xTQmJUWUdX?=
+ =?utf-8?B?b2gxMnpPVkpnY0M1VkUwajlFNUhlcWczNnhGb24rU0xFUVlOZGtvYllyTFhu?=
+ =?utf-8?B?eEhlbUZzZnlPaytEQ0Ixdk9EM24zNUxGYUE2WUVXN3JqL0MyZWZaa0puNjJQ?=
+ =?utf-8?B?NWphTHA5SVJWcUppZTZZNzVvUDhwMmk5YitCQUNRblgxcjVuZ2RYV05va0kv?=
+ =?utf-8?B?ZVJmb0VTNnBkTmpwWUREaUppUFE3TTR2ckRNNWhhRithb2syZGVkczB6OWQ5?=
+ =?utf-8?B?TlE1cU9USWdzLytHcjczeTQ5UGxSaERBR3lEOTZFa3dvdDgwZitEMzVnemhy?=
+ =?utf-8?B?ZlRTSUtER3ZkZndaMk02Zz09?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aWhQRlF2WHFtZFRrVnZzL2dXQnQxUENMV1VJUXVua0tFc3J5RFhNMmxqeTUy?=
+ =?utf-8?B?NUx3UkU2WFBWYkdsUXZ0c2wwSlh4VjRqMHVnLzlnQ0UrSEhJYU5HWXQxVDBB?=
+ =?utf-8?B?dnVUOVN3K2RONkpGVEw4QzFKVVFyWjBCeTRVZU1vYUFCc2ExQVBjVng2NGc0?=
+ =?utf-8?B?NC9hRFRBVWJvOU5pdk81SWxHYitCQVc0OW5iZlZ4NGc1WmM1bWhKY3crMGky?=
+ =?utf-8?B?emNOeGJwc04yUDJhTUFoc0tsaVRsYklMUmEyZnpUblE3T3lkZ3FMUzVxaitw?=
+ =?utf-8?B?Z0FRay9SQlNHRCs0RlNKQklIZllGSXYvMitJcHJCd0NtVm5vOS84a0Nqai9q?=
+ =?utf-8?B?QmtvcWVtNENXeHlCSlZYNE1qSmVXaElHbnNpb1ZGd2tkaHV5ZFR6UlVvNDZM?=
+ =?utf-8?B?KzlqRGtWU2kxcjdHM0RRRHIvdWdqNlBNbVVPT2FhTGs2QzB2SDJ5bENRM20w?=
+ =?utf-8?B?TjlQZktaZFh0OGhUSHRVUUY4UjVOZTBxU0ZGVWJ4dVFvVENhZzUrSE5kOWdh?=
+ =?utf-8?B?OGx4NGF3enpaVWREYTRzZ2tlZ0ROUXlzbFdYU1cvbldCUzN2T3ZaZDJOY1hn?=
+ =?utf-8?B?Z0NOcTBWYUdveHN3eGlzM2VwT2JkQ0VaR0UraXVMY3FSUkYwNXVqWktsbVBx?=
+ =?utf-8?B?eTdEM0NMZDFzVzZFckREYzNoQ2NVYzVkV29oZ2tNMU1qR3prK0ppSjRnOXQr?=
+ =?utf-8?B?L0hjNGxUMEtvbVAyRDRWZXJmRmkyTUE4N3U5WkdBRW4yZXZkZW5sRnRSTHBv?=
+ =?utf-8?B?eW9OSHF3M2Jyc0NNUGFpMDA0d0ZhMlk1Z3EwQU1iUWNyNGlMNDdNRjNuaitt?=
+ =?utf-8?B?SWt3TUs4Y1NzZTBQM3ZmNWtYem15NGJaaGw5SG9xd0lnSldYTGlSbDhvUE9o?=
+ =?utf-8?B?djB6ckF0YXJUSDNSTEtYazlYVEdKMEhnUzFYMmZtVTRXTW12Q3FxWU14WDll?=
+ =?utf-8?B?dTZIM3VjdFNnQUUyd1dWak8xd0llQmJHRTk3dytGQUIrdFUzRTVyWTl0R3hy?=
+ =?utf-8?B?K1JWMVRkbml6OUFNUjhEalBhenBCOXdwY3Ztb2pTbERvYnFjQ0dDWlhyS1JL?=
+ =?utf-8?B?cTVLWmk5YVk4TTQ4Z1JSaFF4dEkyVDVqWEt6MHlHa1FWUTV6amozMlYyVllz?=
+ =?utf-8?B?aE5mN1ZXcXV0cUZDWUQyaVlRUytnVVpYcjZMVUxmUUE3VlpIbWlMbmVBRjM1?=
+ =?utf-8?B?dDhDNmtkNmFpT2VTcVpzK21ON1J4L2VjNi9CWXN6Y1BxY3dyWnBhTGVIMDRF?=
+ =?utf-8?B?bHoxLzZLOWZ2eHZNM3pweFpkeG5pWGswWDYzdjFJelZNRDZZWEhBVnJXSStp?=
+ =?utf-8?B?eWhzdG1oU0FnOXZhSVNkVmVYZlBhRTQ5M3k3aW1WQVNaWTN3TUhPelVGQ09h?=
+ =?utf-8?B?OUlKUS9odGVGZk9YVUx4S2RUaGV3VkNma1RyQ0h0SlBWejYxcUxTS0twclhx?=
+ =?utf-8?B?SUxKUjZUenF1K3JWN2o4ZHNTMVBWb1J5WXdlQVdGVXd6MHcvUnREUGZwZFdF?=
+ =?utf-8?B?VGxYKzJJNWFuQWR5OFRCcVZXUEsvdnhRbkh3ckhKbUd0VnBQUnFTVjVNZm1T?=
+ =?utf-8?B?eTREL0swalYzUUdsMVB2ek5jKzgya3QrR0pXN0ZwVGRHSGZ5OG1HNzl6eFNm?=
+ =?utf-8?B?UnVxT0ZTMmxmWVRKY0ZLcFJSVFBVVWdGZWlRZDUydkFJdlB3bHB1cnBZV1Zw?=
+ =?utf-8?Q?cfwxZxePnCmi50KJQQVi?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 093a60ce-fdd0-4a90-133c-08ddae4f6115
+X-MS-Exchange-CrossTenant-AuthSource: BL4PR19MB8902.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2025 10:03:31.8175
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR19MB5853
 
+Hi Bjorn,
 
-
-On 6/18/25 00:14, Drew Fustini wrote:
-> On Sat, Jun 14, 2025 at 08:06:06PM +0200, Michal Wilczynski wrote:
->> This patch series introduces support for the Imagination IMG BXM-4-64
->> GPU found on the T-HEAD TH1520 SoC. A key aspect of this support is
->> managing the GPU's complex power-up and power-down sequence, which
->> involves multiple clocks and resets.
+On 6/18/25 07:33, Bjorn Andersson wrote:
+> On Fri, May 16, 2025 at 04:36:08PM +0400, George Moussalem via B4 Relay wrote:
+>> From: George Moussalem <george.moussalem@outlook.com>
 >>
->> The TH1520 GPU requires a specific sequence to be followed for its
->> clocks and resets to ensure correct operation. Initial discussions and
->> an earlier version of this series explored managing this via the generic
->> power domain (genpd) framework. However, following further discussions
->> with kernel maintainers [1], the approach has been reworked to utilize
->> the dedicated power sequencing (pwrseq) framework.
->>
->> This revised series now employs a new pwrseq provider driver
->> (pwrseq-thead-gpu.c) specifically for the TH1520 GPU. This driver
->> encapsulates the SoC specific power sequence details. The Imagination
->> GPU driver (pvr_device.c) is updated to act as a consumer of this power
->> sequencer, requesting the "gpu-power" target. The sequencer driver,
->> during its match phase with the GPU device, acquires the necessary clock
->> and reset handles from the GPU device node to perform the full sequence.
->>
->> This approach aligns with the goal of abstracting SoC specific power
->> management details away from generic device drivers and leverages the
->> pwrseq framework as recommended.
->>
->> The series is structured as follows:
->>
->> Patch 1: Introduces the pwrseq-thead-gpu auxiliary driver to manage the
->>          GPU's power-on/off sequence.
->> Patch 2: Adds device tree bindings for the gpu-clkgen reset to the
->>          existing thead,th1520-aon binding.
->> Patch 3: Extends the pm-domains driver to detect the gpu-clkgen reset
->>          and spawn the pwrseq-thead-gpu auxiliary driver.
->> Patch 4: Updates the Imagination DRM driver to utilize the pwrseq
->>          framework for TH1520 GPU power management.
->> Patch 5: Adds the thead,th1520-gpu compatible string to the PowerVR GPU
->>          device tree bindings.
->> Patch 6: Adds the gpu-clkgen reset property to the aon node in the
->>          TH1520 device tree source.
->> Patch 7: Adds the device tree node for the IMG BXM-4-64 GPU and its
->>          required fixed-clock.
->> Patch 8: Enables compilation of the Imagination PowerVR driver on the
->>          RISC-V architecture.
->>
->> This patchset finishes the work started in bigger series [2] by adding
->> all remaining GPU power sequencing piece. After this patchset the GPU
->> probes correctly.
->>
->> This series supersedes the previous genpd based approach. Testing on
->> T-HEAD TH1520 SoC indicates the new pwrseq based solution works
->> correctly.
->>
->> An open point in Patch 7/8 concerns the GPU memory clock (gpu_mem_clk),
->> defined as a fixed-clock. The specific hardware frequency for this clock
->> on the TH1520 could not be determined from available public
->> documentation. Consequently, clock-frequency = <0>; has been used as a
->> placeholder to enable driver functionality.
+>> The XO clock must not be disabled to avoid the kernel trying to disable
+>> the it. As such, keep the XO clock always on by flagging it as critical.
 >>
 > 
-> I don't have any more information that what is in the public PDFs [1],
-> so I think it is okay to have a placeholder frequency.
+> Is there any reason for us to model this clock in Linux, if we're not
+> allowed to touch it?
 > 
-> Is it the case that the frequency doesn't really matter from the
-> perspective of the driver?
+> CLK_IS_CRITICAL has side effect on the runtime PM state of the clock
+> controller, so would be nice if we can avoid that.
 
-Yeah it doesn't matter, I asked simply because it would be better in the
-DT to accurately describe the HW. I would omit the 'clock-frequency'
-altogether, but doing that makes the driver probe fail.
+see discussion here in v2:
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20250506-ipq5018-cmn-pll-v2-1-c0a9fcced114@outlook.com/
+
+we explored removing the structs for xo and xo_src and updating the
+parent clocks that relied on them, which worked. But the recommendation
+eventually was to go for this flag.
 
 > 
-> Thanks,
-> Drew
+> Regards,
+> Bjorn
 > 
-> [1] https://protect2.fireeye.com/v1/url?k=260051e8-477bfb60-2601daa7-74fe4860018a-782a548f971ff58f&q=1&e=7e973bd1-ed36-4a12-af1c-1cf44bea2e5c&u=https%3A%2F%2Fgit.beagleboard.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F-%2Ftree%2Fmain%2Fdocs
-> 
+>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>> ---
+>> The kernel will panic when parenting it under the CMN PLL reference
+>> clock and the below message will appear in the kernel logs.
+>>
+>> [    0.916515] ------------[ cut here ]------------
+>> [    0.918890] gcc_xo_clk_src status stuck at 'on'
+>> [    0.918944] WARNING: CPU: 0 PID: 8 at drivers/clk/qcom/clk-branch.c:86 clk_branch_wait+0x114/0x124
+>> [    0.927926] Modules linked in:
+>> [    0.936945] CPU: 0 PID: 8 Comm: kworker/0:0 Not tainted 6.6.74 #0
+>> [    0.939982] Hardware name: Linksys MX2000 (DT)
+>> [    0.946151] Workqueue: pm pm_runtime_work
+>> [    0.950489] pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>> [    0.954566] pc : clk_branch_wait+0x114/0x124
+>> [    0.961335] lr : clk_branch_wait+0x114/0x124
+>> [    0.965849] sp : ffffffc08181bb50
+>> [    0.970101] x29: ffffffc08181bb50 x28: 0000000000000000 x27: 61c8864680b583eb
+>> [    0.973317] x26: ffffff801fec2168 x25: ffffff800000abc0 x24: 0000000000000002
+>> [    0.980437] x23: ffffffc0809f6fd8 x22: 0000000000000000 x21: ffffffc08044193c
+>> [    0.985276] loop: module loaded
+>> [    0.987554] x20: 0000000000000000 x19: ffffffc081749278 x18: 000000000000007c
+>> [    0.987573] x17: 0000000091706274 x16: 000000001985c4f7 x15: ffffffc0816bbdf0
+>> [    0.987587] x14: 0000000000000174 x13: 000000000000007c x12: 00000000ffffffea
+>> [    0.987601] x11: 00000000ffffefff x10: ffffffc081713df0 x9 : ffffffc0816bbd98
+>> [    0.987615] x8 : 0000000000017fe8 x7 : c0000000ffffefff x6 : 0000000000057fa8
+>> [    1.026268] x5 : 0000000000000fff x4 : 0000000000000000 x3 : ffffffc08181b950
+>> [    1.033385] x2 : ffffffc0816bbd30 x1 : ffffffc0816bbd30 x0 : 0000000000000023
+>> [    1.040507] Call trace:
+>> [    1.047618]  clk_branch_wait+0x114/0x124
+>> [    1.049875]  clk_branch2_disable+0x2c/0x3c
+>> [    1.054043]  clk_core_disable+0x60/0xac
+>> [    1.057948]  clk_core_disable+0x68/0xac
+>> [    1.061681]  clk_disable+0x30/0x4c
+>> [    1.065499]  pm_clk_suspend+0xd4/0xfc
+>> [    1.068971]  pm_generic_runtime_suspend+0x2c/0x44
+>> [    1.072705]  __rpm_callback+0x40/0x1bc
+>> [    1.077392]  rpm_callback+0x6c/0x78
+>> [    1.081038]  rpm_suspend+0xf0/0x5c0
+>> [    1.084423]  pm_runtime_work+0xf0/0xfc
+>> [    1.087895]  process_one_work+0x17c/0x2f8
+>> [    1.091716]  worker_thread+0x2e8/0x4d4
+>> [    1.095795]  kthread+0xdc/0xe0
+>> [    1.099440]  ret_from_fork+0x10/0x20
+>> [    1.102480] ---[ end trace 0000000000000000 ]---
+>> ---
+>>  drivers/clk/qcom/gcc-ipq5018.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/qcom/gcc-ipq5018.c b/drivers/clk/qcom/gcc-ipq5018.c
+>> index 70f5dcb96700f55da1fb19fc893d22350a7e63bf..24eb4c40da63462077ee2e5714e838aa30ced2e3 100644
+>> --- a/drivers/clk/qcom/gcc-ipq5018.c
+>> +++ b/drivers/clk/qcom/gcc-ipq5018.c
+>> @@ -1371,7 +1371,7 @@ static struct clk_branch gcc_xo_clk = {
+>>  				&gcc_xo_clk_src.clkr.hw,
+>>  			},
+>>  			.num_parents = 1,
+>> -			.flags = CLK_SET_RATE_PARENT,
+>> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+>>  			.ops = &clk_branch2_ops,
+>>  		},
+>>  	},
+>>
+>> -- 
+>> 2.49.0
+>>
+>>
 
 Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+George
 
