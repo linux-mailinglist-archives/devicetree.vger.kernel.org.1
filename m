@@ -1,184 +1,223 @@
-Return-Path: <devicetree+bounces-186914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD86ADE1E2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:49:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42464ADE201
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:09:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0C97178414
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:49:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E903AF92A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 04:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734C11DE4FB;
-	Wed, 18 Jun 2025 03:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216651E1E1C;
+	Wed, 18 Jun 2025 04:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UspNE+ou"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="A+RsD6GW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA9F81DDC18
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:49:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A06155757
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 04:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750218593; cv=none; b=FMX2S8LOGbQzQ06Jd0g3A2hdQy41akV9q1hc9Umd93sO5ArgFtnOs3WjToZ0uTt2+ST9LwdysRDLI9U2n/xbAHMh3ZMp9CbTUw5+HvZeaMm0SZ4wlb0kUpSSnnhyFqReOPyGFFYKpkcWV1EX9z4/Ym6N9qLVWCq2tdeRD9twgPk=
+	t=1750219742; cv=none; b=ou8RBhavUHeknaQlmm0/GOspAZAACdRbyT/ALu4lC2i1pHidpODpSw9vX3LpAPvtRbrd31jteCRYc5d1/uNC1Qk4uG5y4nE1PmRs7jF7OOJmxd+fdbc+BEAWnqoKOcjwpobkHCfxzoued2i3r7Rnp9rhUIj8c4mPPkccglI7LPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750218593; c=relaxed/simple;
-	bh=RaWmMLjum0fPe+iknIMW6xtMg7QAwDNpqOuyOJJKsk0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EfuC0nOurhJdmjUYuJ/7KaawQWo+CzyeC7rnEfSpfGwiGkETWcDg2hUfPvu6mszARqenvEd+xhErOBX+tXbI5ymhyqd2VAUBvcaXvBwaloFNAr+kwDfH2g9VFByY/WbAzJUxAcqUUXNa7uzPkQUDOdzMNhGrPwKT13LpechHm9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UspNE+ou; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2350fc2591dso2732545ad.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 20:49:51 -0700 (PDT)
+	s=arc-20240116; t=1750219742; c=relaxed/simple;
+	bh=Rc7QRQavRmVFyB9IhxdzFHRfSkThkI3xPrEYilcz6ao=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RLR+0U60UOz2q+BNQWyholD7nTTejr8Ppkd9IvEO7RFCeePfyKFxw8uwLHVW0KF6fkRhqrJEL0uZH1KpSatZ1E5ZLptsX8d3H8+gMMTyLEZ+Xo72GOcWGFww6S2RAzaQKoBTVkDRs6TVy2jK1WRxnKcSRdEjoXdq3raCr37/lHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=A+RsD6GW; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-553644b8f56so6638449e87.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 21:08:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750218591; x=1750823391; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=ventanamicro.com; s=google; t=1750219738; x=1750824538; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7Crp3CEYLqrLG+apC2mAZnpDNJDCfTEyqUeeXu58j3U=;
-        b=UspNE+ouR6ieCNOog1OoDaNqMk/t2xdWIZwpjaAQsxrB2yTngFon9/u6RPenFBLeBa
-         qBB1h7i+EZ3CWl03+wUpIvKEhLJAlEP0+899F4c4zmgazuU0ALJAMtnIrsLL5oe2Y9AE
-         OvIXmbCF5DSRcBMVJu5RCht8mR/q0brLr2xH6Wa98qFVY8tWYDD/tnvHbCe9yWfbj9iY
-         0/LyvuxezMjFra0N/C9ZJan0n2tZQKEQnE7A8q+GA/LpMQqb0YlRFvB8EJrdwLVCPAMw
-         YVqK4206LValTVXZTHNomH46goNGJ8Nh2x/bqZWFYkHX7mGqVEYJg0yOSmb9/1pymQtN
-         juOw==
+        bh=hV+4GdLIPduWvDvm4cyTBr7zE4Nr+cAmACWAXvYhmEQ=;
+        b=A+RsD6GWOfrrfvbu/18Nxgkut5GandJnIFIRJLjfLD43GYf4I1L539jn+Y8ouXwBKH
+         6Sfj39qmJxEIHSbqaryuvh8a8Tmm1cZkGy7WFV/lqOP17/K68i420x77fUskDXzQcWbT
+         F/JvBAbeItsVkpyv/A46m9OXuluPHYZ2cXuy+ZbDnG7sEaNMSZJbUnTijrfEjVa+Ph+L
+         fBcuMRLUYjP2YHjm/D4OfTkNBSwJ03BBOawOfDEeobrx/TH3RP1EXicMuYRY4yuqXmp5
+         zkRTDCLiMRV1HCAG7IO4FOv16t++bmaR0Hkfx0lEssIwsyAQyuoQpZVNMLAkn2IgSatz
+         d71w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750218591; x=1750823391;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1750219738; x=1750824538;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7Crp3CEYLqrLG+apC2mAZnpDNJDCfTEyqUeeXu58j3U=;
-        b=ONp3iBjznaMTqeRAP73z16HWBHU1pjGB/CWdxzvxyFUYZUL1Prra3Osn7GGSb35+P0
-         ju7E8VQNYj1mL7tBDLZw/KJ+pFXRk7d6ox1kgpDhQyRR2YNmHw8jZydTShMlXjW5HmKt
-         lDo2ct/ID3hdcRI0zDLoIMWrceNfzvPANB7iS/vVZM/7Qyo7PM9WuEqJYE6W9/SVeUgw
-         6tqpCg8tDCTfI1hFug0HbdtcrkC/omxX71mZ7KmLPhcbckXWMuauX10psUL9AW7yp68J
-         VPmSHNW+qRbY2SfPLTCAqb6Fa/DZ0+GfOj9s8oS/KKcbIK0AvJJz5S/Vok3q4tCe0xN7
-         vEOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+801yDWoiDqQvszuo7VsZn1EykFubG98uHU1uRj5anU8PT5iWbPL+Sc2ljKPmRoP54gnSgera94Np@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUdt+FzDUJnZL0tWXpWJUwWo9cZLs5nvjXuAJIHIrzW7ZQ8PEv
-	11cLvOeQnugVAE1LJGDR6/vlEj+hipIclFC+YIEKkLasoAAqejsyZSam
-X-Gm-Gg: ASbGncuAaw43dna3d6su0euisPrdonwxLfdfe0eiF2tItazSWxHU4z1vcBCUGfMzKec
-	ixdgWDo8LHFp9YOaocdVYBfPs8OAH42fEbf5PvfcF70RaBbPOBgSH6RKmdeTFplF3ip3bhLU8+r
-	BvgaIAvyNumjeI3wUaivxoRZrI/lO87rHncGhOLzbpHyU3iJKXckmbjfGLJjYL5sWQkHuC8MqK/
-	CHQQqcFFgXM4mrt3yQHyFzzTgHEfhGsZmuTGNNhCuXi4b8dx2EyGIKx1Tbmbo02GEwGAEwf3/A+
-	/BF4m3rmuNhA8K3L5MZ2qi9Ur6i36aLYBG5idULhzi8Q3Nf01vckJEp+Vo/bV5jJgokh16chKO3
-	Z5mhJzOxnb+AtQQyj0vQYXslSzoD0IFEogDTEHwQ=
-X-Google-Smtp-Source: AGHT+IHbh93ZFfxvSAelhKz+a+nejv/JYZrkAogjMFdOMKtc/mynIFhBnCtf+5R6YwJYdXzQo1sAhA==
-X-Received: by 2002:a17:902:d548:b0:234:325:500b with SMTP id d9443c01a7336-237c20f843amr17338045ad.22.1750218591134;
-        Tue, 17 Jun 2025 20:49:51 -0700 (PDT)
-Received: from lcwang-Precision-3630-Tower.. (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-236736cb4f9sm63418405ad.138.2025.06.17.20.49.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 20:49:50 -0700 (PDT)
-From: LiangCheng Wang <zaq14760@gmail.com>
-To: cip-dev@lists.cip-project.org
-Cc: drm@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	noralf@tronnes.org,
-	robh+dt@kernel.org,
-	krzk@kernel.org,
-	zaq14760@gmail.com,
-	onlywig@gmail.com
-Subject: [PATCH 3/3] dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink panel
-Date: Wed, 18 Jun 2025 11:49:36 +0800
-Message-Id: <20250618034936.172150-4-zaq14760@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250618034936.172150-1-zaq14760@gmail.com>
-References: <20250618034936.172150-1-zaq14760@gmail.com>
+        bh=hV+4GdLIPduWvDvm4cyTBr7zE4Nr+cAmACWAXvYhmEQ=;
+        b=g8aPjE/VL+b9nMvpoqt1o+tjoqbQIkLi8CwnlgxCzNtcAM9V2GO/WPrmALwpr2YGML
+         8pNkwygiySBHDkPmXTV2D63X1GZpBkLBpnAaJ2i4hfDmlRn1FFACdj5afmgn5FYxWe7E
+         RCFFJ3kgr5SzoYo8wPZBwoeAbjdMmJ2hCYCfKnNdja0fdt1hZjaZ6ERrtGK5JUaR4oQn
+         1ZdVe3K1QUub1Cb30TDfkrmLhaiENwRF+CWaObiVkn8aWBhjf3Ljl0lP7jzRfF7CrDOT
+         uoHSa/wZKjAWdRW5w0dhPwKrvI5/WUXppnl1A8PB7YJX/Szimt1cP48G2Vvswel7gCpI
+         ykjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVbBHAaEuWgxYd20iD/9UPdVXxpRURiDOi15YWbDntI90s8PbKCCUjMqpOYsutTJeQbCh0MUMD1euvm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhS8UamNpmditXpwdwlN/8fYZ+BQeV/cYAYNZAT0H+R014laG1
+	VDIZ5l9kWM2TSoP3PQi0ltaZsVhkSzJRl/BMel1mJ4D/VDa5akM++PDE+brkTKea0KomKnNJM4u
+	+CF0co1rvX6fj6IAPQcYevWtqhEFyS0yuOTnYANowqg==
+X-Gm-Gg: ASbGncs7DaLJRO4Uszr3kglI/JOH3a5NiufiDDHVSTwTkc/GSJP/40e1cd5EqM+NHXG
+	35Q5AH25vWZdngLbM/zp5JVZlxBNtIorDo0Y2ZHdhFfIyyiFzjcXaYWJkAvreCkAey1AJeqhI/M
+	72rjKD1laAvrdlkIGe7p+7toY+f1glxR6KmzJYJXNZcw==
+X-Google-Smtp-Source: AGHT+IFnL3eHkaa0AaGa2260XzL4VnwU/UtF89FsaS0XOFT0LH12cqs0j3TtvsOBW7k3zdEpBSYUjjpFngr0GSrWEx8=
+X-Received: by 2002:a05:6512:1192:b0:553:addb:ef51 with SMTP id
+ 2adb3069b0e04-553b6e8c2f5mr3946779e87.18.1750219738106; Tue, 17 Jun 2025
+ 21:08:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250611062238.636753-1-apatel@ventanamicro.com>
+ <20250611062238.636753-6-apatel@ventanamicro.com> <aEmiOFwofEJyXm4R@smile.fi.intel.com>
+In-Reply-To: <aEmiOFwofEJyXm4R@smile.fi.intel.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 18 Jun 2025 09:38:46 +0530
+X-Gm-Features: AX0GCFuSAGiDE5-KiEpx1v8HnSXue_LepxDvBagpnGvUmEgx8W2v2dqjbNj1zB0
+Message-ID: <CAK9=C2Xhkfk4WZeD2gVCoJxeRHAuYjSfwx_zUHvVBqOQPLV7Lg@mail.gmail.com>
+Subject: Re: [PATCH v5 05/23] mailbox: Allow controller specific mapping using fwnode
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The binding is for the MAYQUEEN PIXPAPER e-ink display panel,
-controlled via an SPI interface.
+On Wed, Jun 11, 2025 at 9:05=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Wed, Jun 11, 2025 at 11:52:20AM +0530, Anup Patel wrote:
+> > Introduce optional fw_node() callback which allows a mailbox controller
+> > driver to provide controller specific mapping using fwnode.
+> >
+> > The Linux OF framework already implements fwnode operations for the
+> > Linux DD framework so the fw_xlate() callback works fine with device
+> > tree as well.
+>
+> ...
+>
+> >  struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int ind=
+ex)
+> >  {
+> > +     struct fwnode_reference_args fwspec;
+>
+> Define
+>
+>         struct fwnode_handle *fwnode;
+>
+>
+> >       struct device *dev =3D cl->dev;
+>
+> This better to be just a declaration.
+>
+> >       struct mbox_controller *mbox;
+> >       struct of_phandle_args spec;
+> >       struct mbox_chan *chan;
+> > +     unsigned int i;
+> >       int ret;
+>
+> With the above the below will look like...
+>
+> > -     if (!dev || !dev->of_node) {
+> > -             pr_debug("%s: No owner device node\n", __func__);
+> > +     if (!dev || !dev_fwnode(dev)) {
+> > +             pr_debug("No owner %s\n", dev ? "fwnode" : "device");
+> >               return ERR_PTR(-ENODEV);
+> >       }
+> >
+> > -     ret =3D of_parse_phandle_with_args(dev->of_node, "mboxes", "#mbox=
+-cells",
+> > -                                      index, &spec);
+> > +     ret =3D fwnode_property_get_reference_args(dev_fwnode(dev), "mbox=
+es",
+> > +                                              "#mbox-cells", 0, index,=
+ &fwspec);
+> >       if (ret) {
+> >               dev_err(dev, "%s: can't parse \"mboxes\" property\n", __f=
+unc__);
+> >               return ERR_PTR(ret);
+> >       }
+>
+> ...this
+>
+>         dev =3D cl->dev;
+>         if (!dev) {
+>                 pr_debug("No owner device\n");
+>                 return ERR_PTR(-ENODEV);
+>         }
+>
+>         fwnode =3D dev_fwnode(dev);
+>         if (!fwnode) {
+>                 dev_dbg(dev, "No owner fwnode\n");
+>                 return ERR_PTR(-ENODEV);
+>         }
+>
+>         ret =3D fwnode_property_get_reference_args(fwnode, "mboxes",
+>                                                  "#mbox-cells", 0, index,=
+ &fwspec);
+>         if (ret) {
+>                 dev_err(dev, "%s: can't parse \"mboxes\" property\n", __f=
+unc__);
+>
+> You may save a few bytes by doing it as
+>
+>                 dev_err(dev, "%s: can't parse \"%s\" property\n", __func_=
+_, "mboxes");
+>
+>                 return ERR_PTR(ret);
+>         }
+>
+> > +     spec.np =3D to_of_node(fwspec.fwnode);
+> > +     spec.args_count =3D fwspec.nargs;
+> > +     for (i =3D 0; i < spec.args_count; i++)
+> > +             spec.args[i] =3D fwspec.args[i];
+> > +
+> >       scoped_guard(mutex, &con_mutex) {
+> >               chan =3D ERR_PTR(-EPROBE_DEFER);
+> > -             list_for_each_entry(mbox, &mbox_cons, node)
+> > -                     if (mbox->dev->of_node =3D=3D spec.np) {
+> > +             list_for_each_entry(mbox, &mbox_cons, node) {
+>
+> > +                     if (mbox->fw_xlate && dev_fwnode(mbox->dev) =3D=
+=3D fwspec.fwnode) {
+>
+> We have a helper device_match_fwnode()
+>
+> > +                             chan =3D mbox->fw_xlate(mbox, &fwspec);
+> > +                             if (!IS_ERR(chan))
+> > +                                     break;
+> > +                     } else if (mbox->of_xlate && mbox->dev->of_node =
+=3D=3D spec.np) {
+>
+> No need to check OF node (again). Instead refactor as
+>
+>                         if (device_match_fwnode(...)) {
+>                                 if (fw_xlate) {
+>                                         ...
+>                                 } else if (of_xlate) {
+>                                         ...
+>                                 }
+>                         }
+>
 
-Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
----
- .../bindings/display/mayqueen,pixpaper.yaml   | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+Okay, I will update like you suggested.
 
-diff --git a/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-new file mode 100644
-index 000000000..f7c33957e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mayqueen,pixpaper.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MAYQUEEN PIXPAPER e-ink display panel
-+
-+maintainers:
-+  - LC Wang <zaq14760@gmail.com>
-+
-+description: |
-+  The PIXPAPER is an e-ink display panel controlled via an SPI interface.
-+  The panel has a resolution of 122x250 pixels and requires GPIO pins for
-+  reset, busy, and data/command control.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: mayqueen,pixpaper
-+
-+  reg:
-+    maxItems: 1
-+    description: SPI chip select number for the device.
-+
-+  spi-max-frequency:
-+    default: 1000000
-+    description: Maximum SPI clock frequency in Hz.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO for the panel reset pin.
-+
-+  busy-gpios:
-+    maxItems: 1
-+    description: GPIO for the panel busy pin.
-+
-+  dc-gpios:
-+    maxItems: 1
-+    description: GPIO for the data/command pin.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - busy-gpios
-+  - dc-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        display@0 {
-+            compatible = "mayqueen,pixpaper";
-+            reg = <0>;
-+            spi-max-frequency = <1000000>;
-+            reset-gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-+            busy-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
-+            dc-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
--- 
-2.34.1
-
+Regards,
+Anup
 
