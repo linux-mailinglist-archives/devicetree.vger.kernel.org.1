@@ -1,198 +1,171 @@
-Return-Path: <devicetree+bounces-187265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D494AADF426
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:40:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34037ADF437
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:41:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 195FE1BC2C62
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:40:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA5C37ADEB0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36402F4303;
-	Wed, 18 Jun 2025 17:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019132F5480;
+	Wed, 18 Jun 2025 17:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="TTJLXC1c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d8uCOzho"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E842F363C;
-	Wed, 18 Jun 2025 17:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C812F5475
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 17:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750268393; cv=none; b=HcFMVVbKxk3aMzIcp0nAvqDgpSKvMgp1ox7n6BA79bqVrJkKmuooTZr3t3XkBl5kh0Ft+yCdqEipaUo/AlF5wF+qSu89Pc1hlZRMLFhcNA6nxT8zNgMenAOklyLMSiYROoBP4xRwPM5N0WMFeNL/R+WzxwH93mwM1E9iuj6Rpa8=
+	t=1750268433; cv=none; b=QmbmE4/rDwJiyN0PkCSav5LT93xaY/C1Y2cXIghQPn7BbubH+1XuzFdxp5Al29LUe7aW47aCGv9EKeG2lDvgr8gDoBkV+03JRaUR/hyTg0JjzykaVGI6j/7Tu2BO2JxOrLZmp1OP07xS2idzZY031B10BAZuJwESsBlWPy52Pfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750268393; c=relaxed/simple;
-	bh=/pPJSNAfLSroCKYHXJLWwJVsQr93kBLP7GVw4wmp2I4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kEFV7Wt9wzmoDn37o+dqZrACdwQol9DNFCAQo9Ds6+0hNa1ubgNZlhmZzbpuASDlqmw8LpxrmdHXk2o1vjXlnyN0pqMD4JsiGqLNXNacIe6JC5Pfy2FAg4Xh5MlQCLIralG/YMWKw7YwDI/3HhGRMRpBNIRQwVQV1jwHai/6AxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=TTJLXC1c; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55IG03ao031954;
-	Wed, 18 Jun 2025 13:39:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=HTMmK
-	MgAUBd8WEFA9l2xGUFLTHm+A38dMxJbz03dPNY=; b=TTJLXC1ctWFL3aQ38Qqsz
-	rEP74v9btSVWUiwaiRtVLBz3VN/tCfkQubWS3FJ08zG+XkZmNWStNlZFZxv6QbEw
-	1ufkLn6mJxwzPjZwtH+0YE1mLJ4qYfAhUzRUyXb24KTR6iEAV+l6ay6WOFzDsM64
-	QcpSZX5GCRoVfp3gLNPEl2QSW3OlVl1OtfnX1hVJ3Z+Y8P2S0bFxqxU8vtuBiCl4
-	Zdvri0lxwn+Llkkl3kkJiaaUJ1XIMEEpi2MjC7SScF3gwdfsehfzIfpqoz6VGrTw
-	VSQMaacxPIm+BdvYTtYUmc7iuLD/mgPp14AiXq5Q9LTiNMU/IGsvI6G0Ssv3Kipo
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 47bfshddpc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Jun 2025 13:39:32 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 55IHdVpY016246
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 18 Jun 2025 13:39:31 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 18 Jun
- 2025 13:39:31 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 18 Jun 2025 13:39:31 -0400
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55IHdDLx007658;
-	Wed, 18 Jun 2025 13:39:15 -0400
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v6 12/12] iio: adc: ad4170: Add timestamp channel
-Date: Wed, 18 Jun 2025 14:39:12 -0300
-Message-ID: <63ebf4408a118a749481ecb3f5ce7ad67cedfa7b.1750258776.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1750258776.git.marcelo.schmitt@analog.com>
-References: <cover.1750258776.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1750268433; c=relaxed/simple;
+	bh=ac+dj0rndcYqjmn89tRE8u9Zk6zsyI4KTZ3RrPJLnbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Zb3eX6y7ATpUp2gk0aF+uGz5XdvrodCsRIYGpGN/iPXssHq8QnRduYThqE7Uz1rxPnjguwWVnVwZBLH6KNT7MqDKvqphgzM8sQpVvUBDTsxSkHKotAyWZ79tU0O4QX+FzntvdU3LZwpV8BTJGHG+vjrfmrXfu+GTgDXfFGHi5/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d8uCOzho; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-40a55314d06so1910161b6e.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:40:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750268430; x=1750873230; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3jheGvFrRBnUTJ/jqtFbTeeb7vfKBSDeMR+EMHPWYfE=;
+        b=d8uCOzholPdOILO1ieJ9Mi1nasnlFaGilYDpIqeWJQ2/1Q1IisC54hi2XCxF1T1yaA
+         iIUT8sA47bslB8oNIG+TaRLU2h1F2QjM4q2t3Zgl9q6OLE/LPSKLDUPl1L8CvrBDI2KK
+         rxbjJ7erOM/q/9dAENRKxyFzt3NQaUP+KBVnZfWLJDiI1JStcQp4OkXj6a+nos1SXvRf
+         /ajwxEs0FCBKSqBeJCETD9YnkOxmE8gYkoYbu0G6b0Co81dg23uwSEGNANKln2WfANMG
+         sSFMdmbeQdFy6NPSgIe2YEjiN6eMvdkrBGdn8y4S0e9XbBM7KsLae7db/Q/pw9IPf0Oe
+         vgmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750268430; x=1750873230;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3jheGvFrRBnUTJ/jqtFbTeeb7vfKBSDeMR+EMHPWYfE=;
+        b=qHOx2kfh50ONTmcMkvER2/ukBtadCXENcfFIesUpHsSb4A4JehjV5APeDor7ybjHf/
+         D3E4zJUPIta6HFxNXcIHD4HbLizbiSgABzccppgWmuhnqDX1/uL38A2D2AfcJIN92v+u
+         3CbFfXLIIvvWGOBDaqrTXaYr4ku77/JaKqEAoo1hO3hTJXO7XzWthe4ZCsIDmoj0nUyA
+         CRcYfNdez9pBQyVm5d87IdI7N0S2Enbc8V0tpzQZGVr9q4WfzibrJz4fiWazQoiT3WSd
+         +fa2Qt7ZHmymXFiah3naOUxaTlLDaL4QYJyFUHxwll7MycMJ3UMalhmJjizoZWugMSu5
+         v+Zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUd+y8d58jFvFD51e083VMPlhsYHfMJEglIVz96CNeha/1cPwfJ1JLuv1DkbnVWuL2hifFDF+Wlesc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNXdUaVvp8inhl6JeXUWDxAHzKUCjyScq1ZkhS3QS33DoOZJoj
+	ddawSYnvvTd5JZ6yFEcyg2BrNebBfI67w+OqrTPdsxu49J2uk4MH1k4S1AjXDOsJaEo=
+X-Gm-Gg: ASbGncvSMeYfsJGNhP8NnWjbbD2x6JfYvwJI+VaRNylM9XkgCwGhpXRvoFPnnaYVE/l
+	jh1tf6iNJ00Kdfth9UhgUl110jP0QzAC8GuX1RZMmadqhoHI0O3aHYSbQ6Aqf3K+9nuRVmkkBjc
+	g+MsSLxra/Ql4hnfl6oppUGoGEFX1CxOmUC1UR6lEyY3hZPLwhw7XWEVDIGJrWwuWAPU1ZIIC3T
+	Wilq3ZkavNVTisdWbwkmcySeusRQUFCgH7ZRCBeWcynyKJx0CUr3BNPIarrO766jsOSI+q7tF+D
+	UnRrcw4WEjrH6ecphJklNC4cSpitC7FLKK/cVL3CVC8nsJddkaCiyHHN5VCllQYfbgu9bA==
+X-Google-Smtp-Source: AGHT+IECG3DT0XZa253ZiAtrOyEDWibKqgxLSniShtQDZC/Qv6j2rHi/ZcKJqvX1Mm8kJIJS9Lnp8g==
+X-Received: by 2002:a05:6808:4fec:b0:406:7769:d351 with SMTP id 5614622812f47-40a7c20ba96mr10089279b6e.23.1750268430492;
+        Wed, 18 Jun 2025 10:40:30 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:1b3b:c162:aefa:da1b])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40a7418c881sm2415408b6e.41.2025.06.18.10.40.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 10:40:30 -0700 (PDT)
+Date: Wed, 18 Jun 2025 20:40:28 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev,
+	=?utf-8?B?VG9tw6HFoSBKdcWZZW5h?= <jurenatomas@gmail.com>,
+	dmitry.torokhov@gmail.com
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Tomas Jurena <jurenatomas@gmail.com>
+Subject: Re: [PATCH] Input: tca6416-keypad - Add OF support for driver
+ instantiation
+Message-ID: <eef98df0-5beb-40c1-a4e6-722012635812@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: wbgdZ0c0wYrprg2Qn6H9Y4KcxBfgpDQV
-X-Authority-Analysis: v=2.4 cv=SKhCVPvH c=1 sm=1 tr=0 ts=6852f9d4 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=6IFa9wvqVegA:10 a=gAnH3GRIAAAA:8 a=ooJTjvKFDTQpXrV7GjsA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDE1MCBTYWx0ZWRfX8r2pr08BrSmd
- ftGGA6y4QdW9K/9Ig3fcG4o8Hz+N9NnwK08dYyAZ5MJ8Xpr0RRz1SjAMooWB9JUp/y3SWizUpC9
- A91KdbN1JwbNg6ZPZ9uQT9RlwNZ6jbwMp0BKzJAhU1oJXV7ensto+tnRIgkT9eB1h4B68DXpVqB
- v5UxoTeJ/k45sXZgHnS9cBlvuKAcwWqVNgIywAlUsxavwcY1WXBTtppXaRCI6NRgaM0cpqLc22g
- XmG6wJICxUxpcb2CwspgAY9BYUJY61O+8g69/TQH8NXgKCL5KPkLVg9VzTB0v48/R5N4YyKHQLm
- 6/poQI6ElkC23WnQstmm1gQi29CyOseusM0X0LLNyRLUV8S1fXgE9BT4W+v+XvVc8eilzMqqNKy
- e/wbKu6Rwhl65f/fPBjZ6Erc0v0n5ZJbN+0Cs3RKdZx6FlYahJKADd4rmdUmo/LKUYpfTI3b
-X-Proofpoint-GUID: wbgdZ0c0wYrprg2Qn6H9Y4KcxBfgpDQV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-18_05,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999 clxscore=1015
- phishscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506180150
+In-Reply-To: <20250610154609.1382818-1-jurenatomas@gmail.com>
 
-Add timestamp channel allowing to record the moment at which ADC samples
-are captured in buffered read mode.
+Hi Tomáš,
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
-No changes in v6.
+kernel test robot noticed the following build warnings:
 
- drivers/iio/adc/ad4170.c | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
-index 2a2d4a05e9af..33b9a6b2255b 100644
---- a/drivers/iio/adc/ad4170.c
-+++ b/drivers/iio/adc/ad4170.c
-@@ -185,6 +185,7 @@
- #define AD4170_NUM_ANALOG_PINS				9
- #define AD4170_NUM_GPIO_PINS				4
- #define AD4170_MAX_CHANNELS				16
-+#define AD4170_MAX_IIO_CHANNELS				(AD4170_MAX_CHANNELS + 1)
- #define AD4170_MAX_ANALOG_PINS				8
- #define AD4170_MAX_SETUPS				8
- #define AD4170_INVALID_SETUP				9
-@@ -437,7 +438,7 @@ struct ad4170_state {
- 	int vrefs_uv[AD4170_MAX_SUP];
- 	u32 mclk_hz;
- 	struct ad4170_setup_info setup_infos[AD4170_MAX_SETUPS];
--	struct iio_chan_spec chans[AD4170_MAX_CHANNELS];
-+	struct iio_chan_spec chans[AD4170_MAX_IIO_CHANNELS];
- 	struct ad4170_chan_info chan_infos[AD4170_MAX_CHANNELS];
- 	struct spi_device *spi;
- 	struct regmap *regmap;
-@@ -454,6 +455,7 @@ struct ad4170_state {
- 	unsigned int clock_ctrl;
- 	int gpio_fn[AD4170_NUM_GPIO_PINS];
- 	unsigned int cur_src_pins[AD4170_NUM_CURRENT_SRC];
-+	unsigned int num_adc_chans;
- 	/*
- 	 * DMA (thus cache coherency maintenance) requires the transfer buffers
- 	 * to live in their own cache lines.
-@@ -2389,7 +2391,16 @@ static int ad4170_parse_channels(struct iio_dev *indio_dev)
- 			return dev_err_probe(dev, ret, "Invalid input config\n");
- 
- 		st->chan_infos[chan_num].input_range_uv = ret;
-+		chan_num++;
- 	}
-+	st->num_adc_chans = chan_num;
-+
-+	/* Add timestamp channel */
-+	struct iio_chan_spec ts_chan = IIO_CHAN_SOFT_TIMESTAMP(chan_num);
-+
-+	st->chans[chan_num] = ts_chan;
-+	num_channels = num_channels + 1;
-+
- 	indio_dev->num_channels = num_channels;
- 	indio_dev->channels = st->chans;
- 
-@@ -2581,7 +2592,7 @@ static int ad4170_initial_config(struct iio_dev *indio_dev)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to set ADC mode to idle\n");
- 
--	for (i = 0; i < indio_dev->num_channels; i++) {
-+	for (i = 0; i < st->num_adc_chans; i++) {
- 		struct ad4170_chan_info *chan_info;
- 		struct iio_chan_spec const *chan;
- 		struct ad4170_setup *setup;
-@@ -2706,7 +2717,7 @@ static int ad4170_buffer_predisable(struct iio_dev *indio_dev)
- 	 * is done after buffer disable. Disable all channels so only requested
- 	 * channels will be read.
- 	 */
--	for (i = 0; i < indio_dev->num_channels; i++) {
-+	for (i = 0; i < st->num_adc_chans; i++) {
- 		ret = ad4170_set_channel_enable(st, i, false);
- 		if (ret)
- 			return ret;
-@@ -2758,7 +2769,9 @@ static irqreturn_t ad4170_trigger_handler(int irq, void *p)
- 		memcpy(&st->bounce_buffer[i++], st->rx_buf, ARRAY_SIZE(st->rx_buf));
- 	}
- 
--	iio_push_to_buffers(indio_dev, st->bounce_buffer);
-+	iio_push_to_buffers_with_ts(indio_dev, st->bounce_buffer,
-+				    sizeof(st->bounce_buffer),
-+				    iio_get_time_ns(indio_dev));
- err_out:
- 	iio_trigger_notify_done(indio_dev->trig);
- 	return IRQ_HANDLED;
+url:    https://github.com/intel-lab-lkp/linux/commits/Tom-Ju-ena/Input-tca6416-keypad-Add-OF-support-for-driver-instantiation/20250611-094643
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20250610154609.1382818-1-jurenatomas%40gmail.com
+patch subject: [PATCH] Input: tca6416-keypad - Add OF support for driver instantiation
+config: csky-randconfig-r073-20250612 (https://download.01.org/0day-ci/archive/20250614/202506140034.iXbhyNCx-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 14.3.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202506140034.iXbhyNCx-lkp@intel.com/
+
+smatch warnings:
+drivers/input/keyboard/tca6416-keypad.c:263 tca6416_keypad_probe() error: we previously assumed 'pdata' could be null (see line 253)
+
+vim +/pdata +263 drivers/input/keyboard/tca6416-keypad.c
+
+3da11976b80c663 Uwe Kleine-König             2022-11-18  236  static int tca6416_keypad_probe(struct i2c_client *client)
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  237  {
+c4c4a926acb6b1c Tomas Jurena                 2025-06-10  238  	uint8_t io_size = (uintptr_t)i2c_get_match_data(client);
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  239  	struct tca6416_keys_platform_data *pdata;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  240  	struct tca6416_keypad_chip *chip;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  241  	struct input_dev *input;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  242  	int error;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  243  	int i;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  244  
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  245  	/* Check functionality */
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  246  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE)) {
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  247  		dev_err(&client->dev, "%s adapter not supported\n",
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  248  			dev_driver_string(&client->adapter->dev));
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  249  		return -ENODEV;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  250  	}
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  251  
+c838cb3d477f797 Jingoo Han                   2013-12-05  252  	pdata = dev_get_platdata(&client->dev);
+c4c4a926acb6b1c Tomas Jurena                 2025-06-10 @253  	if (!pdata && dev_fwnode(&client->dev)) {
+
+Imagine pdata is NULL and so is dev_fwnode()
+
+c4c4a926acb6b1c Tomas Jurena                 2025-06-10  254  		pdata = tca6416_parse_properties(&client->dev, io_size);
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  255  		if (!pdata) {
+c4c4a926acb6b1c Tomas Jurena                 2025-06-10  256  			dev_err(&client->dev,
+c4c4a926acb6b1c Tomas Jurena                 2025-06-10  257  				"Failed to parse device configuration from properties\n");
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  258  			return -EINVAL;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  259  		}
+c4c4a926acb6b1c Tomas Jurena                 2025-06-10  260  	}
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  261  
+91a4c69052bb660 Yangtao Li                   2023-07-23  262  	chip = devm_kzalloc(&client->dev,
+91a4c69052bb660 Yangtao Li                   2023-07-23 @263  			    struct_size(chip, buttons, pdata->nbuttons),
+                                                                                                               ^^^^^^^^^^^^^^^
+Then it will crash
+
+91a4c69052bb660 Yangtao Li                   2023-07-23  264  			    GFP_KERNEL);
+91a4c69052bb660 Yangtao Li                   2023-07-23  265  	if (!chip)
+91a4c69052bb660 Yangtao Li                   2023-07-23  266  		return -ENOMEM;
+91a4c69052bb660 Yangtao Li                   2023-07-23  267  
+91a4c69052bb660 Yangtao Li                   2023-07-23  268  	input = devm_input_allocate_device(&client->dev);
+91a4c69052bb660 Yangtao Li                   2023-07-23  269  	if (!input)
+91a4c69052bb660 Yangtao Li                   2023-07-23  270  		return -ENOMEM;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  271  
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  272  	chip->client = client;
+30ba3ead05763b1 Sriramakrishnan Govindarajan 2010-05-03  273  	chip->input = input;
+
 -- 
-2.47.2
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
