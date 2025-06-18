@@ -1,120 +1,145 @@
-Return-Path: <devicetree+bounces-187087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C1DADEA6F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:40:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C68EADEA89
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FD2017ABBA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 11:40:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41CFA189EF15
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 11:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0EDD2DE208;
-	Wed, 18 Jun 2025 11:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3439C2DFF00;
+	Wed, 18 Jun 2025 11:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="JgLjXdRv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C482DE1EF;
-	Wed, 18 Jun 2025 11:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180832DF3D9
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 11:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750246639; cv=none; b=mmxmYnNE0zUtWWLrv9W6psQBpbfXZyOfLWdNmou8AatMmNcHb8rJq/QMw1INonhJRmud+vQedSQz4iMet4P91E828/onMcmxODkzxcijBCO6dMVE8T9V5dOToEp1DD37gf7z+0IqcFyIlNRI8iCH1w3VRgoAaiW1ZG/2wnx9ID8=
+	t=1750246943; cv=none; b=BeGGaEUzvAYWDlq3GjzZT5R9jTG7wtoKZ/ZnNb9js68h85TD32dsA75Q+ZdmrPFjPY2VMML7bjGkoAB8ySIm4m7Mur/0tN0vLYQlBwUC0lHm/6WkZV0oGJ3wPDKr07xRqw/TfnRjySTJKDpdVmSLgQCvCCJlt35SyhP5rQLnDWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750246639; c=relaxed/simple;
-	bh=miWVdcEmACn9TbAvm2+Yx19kNh+0z9kIGEcvC9jyLfs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=HNM5McU1KovxmLW1i2Kf952SmPtIlM51ODt+WT7A16fv2IGQUlmOHxoJ8AyecrfWdogxOOSLWbkQdeYrX/ELjh4fZGhRyKca4PFFCwjcllXxRNNit3Q5mKfvSsYrHu2kapVtJG5mZImUx8Mc07HyoOZdmns3VeYmyaw2sW8HHzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bMhY56J3rz9tNN;
-	Wed, 18 Jun 2025 13:37:13 +0200 (CEST)
+	s=arc-20240116; t=1750246943; c=relaxed/simple;
+	bh=Bqx7nYXPk7+x8RpONNnSG7vtyH7Y7MIyIgUrVtpA5Ns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DZyg98OWO4Dk6hu55KTjfCQV6Z6ktKV/zBvaOTIBYwtsCn1Meki1XovfAJ0mq5ydnCp3dLhry8svFVq0Y91fUZIe8BNSc4Bxa+L3DsqbqOEO7Di5ZghMZOjQ/ATfxkBfH4+wyX+1r9eQpyYJ7XNExPmdfnapXHlqGdZEgG3n8Fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=JgLjXdRv; arc=none smtp.client-ip=209.85.166.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3da73df6b6bso23799715ab.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 04:42:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750246939; x=1750851739; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jGoYPJ/PjlTLAT3PAQl7BTNWNSTONrcIyBDN+6W+nw4=;
+        b=JgLjXdRvX24KVUIZOipvw3RiFGWCroYgATTFQU+u9keWi+oCec16z5kIi4aG+wl19b
+         Jm7LRBDdcMHDIB7/krJmjP7ePerbhyP1jUWOvryEc9iflfLUqmd44GRhkFuqxZiynYP9
+         fwh9wXH6RZ9OfKljjsZDr/5jNLSW06u+qw7MmbxQBao0R1ZTBpedH93jHACKxuFhOE4X
+         l2OI1/i1c9YBEOhgSBq+CBhmhzgLVgNhgLBA/37tignahxFK2S1oh3IyGZXBRgllg52+
+         uGlSXWXSxOtYb5m/fptPFpcYbPK06WlFrOMJP+P8NMX2naOgY7YgUNHFShJqqrTYsCZ6
+         UP+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750246939; x=1750851739;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jGoYPJ/PjlTLAT3PAQl7BTNWNSTONrcIyBDN+6W+nw4=;
+        b=RvI89DYOdXtgEkSM1hW1v4S2jWiAl8a1uaelo+9PJQZ24uTGMU0d4muHzxddK/zw7e
+         mt67QfkqQZSaWkLYGIhUQpQ2ji6d6oZXCt5hSqWohQkGEyS8OvdwCSvlROn3/eSul93r
+         7QCBuYXQ669qA7w6OPLRiL7WfL0tbbLSVe6VheqegYdfDp4RutqkOaCTPfKTCF2YcRe0
+         kPofu/yuw4IpsRlE4mNYkw2B4b1xGKlr9Vr7GzerQGsBIZuIIfNwuCsTIKiJaHKoIkkN
+         apSgcCUsVOjS70nJVol5kpK0DUnQaqp5A2fkfJx+LWekM8uQIelVET0DlVEzQOdkSFYo
+         89Pw==
+X-Forwarded-Encrypted: i=1; AJvYcCXZIKUfid0kRwlps2c2gPKRlx3CBmxjwmkcktbhZ2Q3gTaPsSQzPpAiAIKMKOd2n0mH9+QGc9NxGyPE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7qMKTzozHqF37Qi8pyxga7lLs7Dx8YBeOTwKl5/6wcRES2EFF
+	0V40hD6euj4ILlOPAVAeOSiWthLu7KfobWpkieKGtylgs7iDUWiJ56crGcwVp1GqXUE=
+X-Gm-Gg: ASbGncsBnIc45JdD3HsqYM/LoZpbkDZyNKtAOgTFLnGxAllDpNUOQDxhLQqztfv7AII
+	hCvoO1rJ70w/hVsceOjYzil6+uPO7grSJWy7PZ8FnSxjC0Zy6yS7Vx1M5Ly/29XIg/nc25Wh/sR
+	PhB+D9OqcYwbkLdXtGONQPV+Q0vMFyxq8BHhwzde5O86I2BtIH4TJh0ZjG8n8O33Osdbc8vEtkK
+	ujzM0cfGILZyR+rjbNzu6WMgKabdgKDN/X0K9bD5nZbBXnjXdwh0o21a5KeN5vGx/ywCZE44s3c
+	qTGc4fRtJWx2z3SqtKhfPa5bd7Klo7FzQRXR5MQm8FlB/YZpji4WCVXybzs7WUDeEfK2sX3zS9Z
+	lVxfTfOLrFQWGMlbuUcYxfSsAhw==
+X-Google-Smtp-Source: AGHT+IGZEcu6gwBAOkwxavLZ+RywP72ic1e+8WKzjWeayufFiBzYjvq43wkZd9VQN5U2/4NY0wJZaQ==
+X-Received: by 2002:a05:6e02:2493:b0:3dd:ebb5:6382 with SMTP id e9e14a558f8ab-3de07c40cf8mr191072635ab.4.1750246939145;
+        Wed, 18 Jun 2025 04:42:19 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50149b9d9b0sm2675217173.38.2025.06.18.04.42.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jun 2025 04:42:18 -0700 (PDT)
+Message-ID: <5be51d5f-67cf-4e47-9bdd-e1e5956e184a@riscstar.com>
+Date: Wed, 18 Jun 2025 06:42:17 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 18 Jun 2025 13:37:08 +0200
-Message-Id: <DAPMND2X0QHE.1N0NF7R1F8J1G@buenzli.dev>
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-To: "Danilo Krummrich" <dakr@kernel.org>, "Rob Herring" <robh@kernel.org>
-Cc: "Saravana Kannan" <saravanak@google.com>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Mark
- Brown" <broonie@kernel.org>, "Dirk Behme" <dirk.behme@de.bosch.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v1 3/3] samples: rust: platform: Add property child and
- reference args examples
-References: <20250616154511.1862909-1-remo@buenzli.dev>
- <20250616154511.1862909-4-remo@buenzli.dev>
- <CAL_JsqKXrsdGjTE5KDkqmVHUK5urMJnWSLWgEi8H1yM21gcOCA@mail.gmail.com>
- <aFFpmKLKR2hGs1I1@pollux>
-In-Reply-To: <aFFpmKLKR2hGs1I1@pollux>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 5/6] reset: spacemit: add support for SpacemiT CCU
+ resets
+To: Yixun Lan <dlan@gentoo.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
+ guodong@riscstar.com, devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250613011139.1201702-1-elder@riscstar.com>
+ <20250613011139.1201702-6-elder@riscstar.com>
+ <528522d9-0467-428c-820a-9e9c8a6166e7@riscstar.com>
+ <20250618111935-GYA156140@gentoo>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250618111935-GYA156140@gentoo>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue Jun 17, 2025 at 3:11 PM CEST, Danilo Krummrich wrote:
-> On Tue, Jun 17, 2025 at 08:01:08AM -0500, Rob Herring wrote:
->> On Mon, Jun 16, 2025 at 10:45=E2=80=AFAM Remo Senekowitsch <remo@buenzli=
-.dev> wrote:
->> > @@ -91,6 +95,13 @@ fn properties_parse(dev: &device::Device) -> Result=
- {
->> >          let prop: KVec<i16> =3D fwnode.property_read_array_vec(name, =
-4)?.required_by(dev)?;
->> >          dev_info!(dev, "'{name}'=3D'{prop:?}' (KVec)\n");
->> >
->> > +        for child in fwnode.children() {
->> > +            let name =3D c_str!("test,ref-arg");
->> > +            let nargs =3D NArgs::N(2);
->> > +            let prop: FwNodeReferenceArgs =3D child.property_get_refe=
-rence_args(name, nargs, 0)?;
->>=20
->> Is there some reason we can just pass 2 in rather than nargs? Seems
->> overly verbose for my tastes.
->
-> It's because you could also pass NArgs::Prop("foo-bar") to indicate the t=
-he
-> name of the property telling the number of arguments.
->
-> NArgs is defined as
->
-> 	pub enum NArgs<'a> {
-> 	    /// The name of the property of the reference indicating the number =
-of
-> 	    /// arguments.
-> 	    Prop(&'a CStr),
-> 	    /// The known number of arguments.
-> 	    N(u32),
-> 	}
->
-> and FwNode::property_get_reference_args() can match against the correspon=
-ding
-> enum variant to cover both cases.
+On 6/18/25 6:19 AM, Yixun Lan wrote:
+> Hi Alex,
+> 
+> On 21:44 Sat 14 Jun     , Alex Elder wrote:
+>> On 6/12/25 8:11 PM, Alex Elder wrote:
+>>> Implement reset support for SpacemiT CCUs.  A SpacemiT reset controller
+>>> device is an auxiliary device associated with a clock controller (CCU).
+>>>
+>>> This patch defines the reset controllers for the MPMU, APBC, and MPMU
+>>> CCUs, which already define clock controllers.  It also adds RCPU, RCPU2,
+>>> and ACPB2 CCUs, which only define resets.
+>>>
+>>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>>> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+>>> Reviewed-by: Yixun Lan <dlan@gentoo.org>
+>>> ---
+>>> v11: Redefined combined reset definitions into individual ones
+>>
+>> After I sent this, I realized the clocks use a different
+>> naming convention for two of the PCIe symbols.  I think
+>> reset should follow the same convention.
+>>
+>> Yixun if you accept this series, would you mind updating
+>> these?
+>>
+>>     RESET_PCIE0_SLV -> RESET_PCIE0_SLAVE
+>>     RESET_PCIE0_MSTR -> RESET_PCIE_MASTER
+>>
+>> (And similar changes for PCIE1 and PCIE2.)
+>>
+> sure, done, check here (let me know if I did wrong)
+>   https://github.com/spacemit-com/linux/releases/tag/spacemit-reset-drv-for-6.17
 
-I guess we could make the function generic if that's deemed worth it?
-A trait and an implementation for `u32` and `&CStr` each. Similar to how
-we made `property_read` generic.
+Looks good to me.  Thank you.	-Alex
 
->> > +            dev_info!(dev, "'{name}'=3D'{prop:?}'\n");
->> > +        }
->> > +
->> >          Ok(())
->> >      }
->> >  }
->> > --
->> > 2.49.0
->> >
+> 
+>> Thank you.
+>>
+>> 					-Alex
 
 
