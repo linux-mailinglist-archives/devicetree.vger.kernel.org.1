@@ -1,161 +1,113 @@
-Return-Path: <devicetree+bounces-187257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB11DADF3FD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:38:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3579ADF402
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:38:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 448FB4011F5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:37:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23DAE1BC0EDD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E1B2F3C36;
-	Wed, 18 Jun 2025 17:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B662F363C;
+	Wed, 18 Jun 2025 17:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YjUlKN6o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMjYJJMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5002F3C2E
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 17:37:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32CC2F2C62;
+	Wed, 18 Jun 2025 17:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750268278; cv=none; b=KRjzGw6RQdEW6XsIwO9xAHdx/oKnf3PvaL68ytrTDrGBr90UsNySmZVwpScbqKORzopOaAWOY0Q2EVFMtdnVcChfz2/25HfqaKpYOEKKF5iCknf7ttYf/h7ZMZ1HpmAS7FsEz+BPKyLdFnQiV8Y61vbrpMwnBZ4XHoVTDubeHsM=
+	t=1750268287; cv=none; b=Otz5XlWJbIxMS4vx2WHAdaNpcDpeSX7qRl503nh+bpLVAXB29AtUjkHcjuU/RGWFglnABk2AwhOYZQpVBT6hgcQvtIVsbRyIoSADj9p0sG0XB5owXuUpfWWWndTm8u3vRrE0EY5GIMsZZ8eQaYX9uVD97q/GWDDS/XVS0HCcQbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750268278; c=relaxed/simple;
-	bh=dSwvZmhnUv9vUtgb4j2wEBivI04TNySsv154Cfug3uU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=QRPGhLLg2PPGNiupIq3Agt6T1ctY7XULuu9bDYun+TZoNeMmWO12c93j+r10z7iUrgDRDUEaQ1jh6BJJVR060NA5cXi6z1D/85Va3op8+XVa2ap6tzB8JSFNwmr0Iw+omgjVHhlvKgnSpdB09vwPQ91nC1+ylKK5Ml4a/hZydLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YjUlKN6o; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-408d14c7ebeso4255848b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:37:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750268276; x=1750873076; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J5aw8HhvYF7rtQGj4otJAqopWyd24EowRxeQggi5V7c=;
-        b=YjUlKN6oDJBLEChi4+/FhQ91lDeBD6KEBHoRs+nJHY58W6W5XAIc+97LkUW4gbDmUR
-         AFOLlNeiFz5YKdJqQdoU0PqSfVBYTCBh0w9/zNStufnpaIQY4tscbpnMmB6jf/WhwirV
-         RzoJHlEYmvucS6H9Y5PlM3kWK5aXhdOBeVz57IRkvOMhLp+Wmmt/R1zbePOHiMV1yXMM
-         Q1RdKaRV6NM9m3qyUtLUlgA0xcygdApGUC5PaEOVRq+oTq4v0xvTURJZU5KE6x0sUcYh
-         nEai6svPJ0pK77JOOaORUI1swPN+FNwSoQ8fCp/eS7qzKbvqz0TMekDHNTt21zQzmaQl
-         ughw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750268276; x=1750873076;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J5aw8HhvYF7rtQGj4otJAqopWyd24EowRxeQggi5V7c=;
-        b=Os5YJ1A8clo5BWvZnCs+ZQcNBDVXneKlMDy1VwRUXQ29I5Uh0b1bV+5pzIZYzQ5BJz
-         u4UmhFBsq9AjDCGec8ZdS1oLLmEcKyp7DsmqGpR3za5sU+viQCGhAYK23nrh3GWjJTRG
-         KzpdJfMVjW61DoxYdR4iTFftL767GQm+SECMixBIIr0Yx7eK/CE2MW7pPfLhjDMBkTdS
-         kR6vMEM+iYwlp0YLjQMbv7S8WgmhuA0yUl9CaRwgxfUnlw0iZYWioEfSVrRvr6IPdjZE
-         HnsBAXKVZg1IkYhi5AHN4YVEvxkSCnv3rdRxGlqLxc/7sxwSwgRRMRWmou54VJCL/uJH
-         ub8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW449/OAGpI8o4/LCwVXFrFQ+Oo119TBMpw8unstcFqiz93yOdOf06aZRQmEAoym2WS1DthiRbXlH27@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDX/rd5aQcML9eTEYEIx08/vrad5M/Atk6/LO8pLxlidO/88Bq
-	8f3NajtP5mYGGJ95P/Z6b48rXOSr9Gnl6PGMViNBCFYtt0454QU22K4bxL8SusT5yPI=
-X-Gm-Gg: ASbGncsueBn0xThe009HlKkAHxZxs9BWi7VpX9GgX4a1ueG6M0g7h6N7QIn9tZ+UPya
-	2kswsYUxgeafSjeYvLbLBCQWwWQ9ucOrY93YmMVPPYUdc/kzGZ9BTs++wVlnLpVzHLMOBxAq3Au
-	bxpGwtfdL9DHK0XJfQQeNMWoFOLbaA82B/+w9gWtrjc2sW/fQdGzH2AXYKGUfTJjBnvoEJa4Fx9
-	/g3y6nmk2q1qdTQtk3z9M9fmH+FMtg8Z/sWWcfCb6dmwKarmZw3Bsd6U1cZQW2jrXV4kk4zPU3g
-	RlEXwHnRz4t+6t09GLzw7YUwM7FtuOKe117WTUQfpJ43V+pf1Qeb7XdHGPz4sod5AFFSgg==
-X-Google-Smtp-Source: AGHT+IHJf4DIqbuT4kMFEWquKQMMdw0WGjrkTOtMGLhJHqymSh9M3ASnzaQnXSIrz/mcQrHGd0u47w==
-X-Received: by 2002:a05:6808:3024:b0:3f7:e860:b5f3 with SMTP id 5614622812f47-40a7c17047bmr12151301b6e.22.1750268275537;
-        Wed, 18 Jun 2025 10:37:55 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700:1b3b:c162:aefa:da1b])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40a7418b932sm2358659b6e.40.2025.06.18.10.37.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 10:37:55 -0700 (PDT)
-Date: Wed, 18 Jun 2025 20:37:53 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, brgl@bgdev.pl, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
-Message-ID: <d6ae8122-ff38-4fca-8e02-f27c7ac2ccd8@suswa.mountain>
+	s=arc-20240116; t=1750268287; c=relaxed/simple;
+	bh=iW9LufXJIvbvUBrzExqn4UB+Dl7RTb6MInZzRTsd/gE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X/6NPn+So6Ak7wFfyPiRJ2fsgh2/7ybAlv1UaJINCjxvqZ7OE/eU++NqaBQDyKjxUjnnsew/qzHdSnFAbFplaWz+7jpDq7ZylRI/eZRifwfKOeh8y3Li7roUQN7PxRu6sDrXHaxhZ/+JyDJyIMlyxMyHzLAou6vggIWoJufWl/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMjYJJMN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2905C4CEF0;
+	Wed, 18 Jun 2025 17:37:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750268286;
+	bh=iW9LufXJIvbvUBrzExqn4UB+Dl7RTb6MInZzRTsd/gE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tMjYJJMNrwSXJJKi8YsQ2JJzCWZzP3aUZRw8z5zFfnRs1PXkskRU1Uy/yMHhyjNDZ
+	 aYyZvuF39WCJ0xfMW8VeWBs9XfgsxQPF+pfQhST331PYbTu5SMofDob0J6zFVIuQiD
+	 xSNdKxYMYh7U71x0eBK5yeKhMdcB9wxpVvFZ3qE1TB+ZhJbwwiFeANK7gl5OpRQQfV
+	 HSlnFlW678e57cd/6TC7LCfpEXAcYmojJXL5MBRF9yft0mAOs/z5mLjzxKGeOOJg26
+	 w8zV/ffBD4jrvfjL7VmhG/U0wMlv2WpMERp1XRhsOUdVpC+tBSoJP0eHtbj0yJFIBz
+	 Dl2uipre8dPhQ==
+Message-ID: <de30bc80-3dc9-4fac-afe8-bf6b0df42ea9@kernel.org>
+Date: Wed, 18 Jun 2025 19:37:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 4/6] rust: enable `clippy::as_underscore` lint
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow
+ <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>,
+ Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>,
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Benno Lossin <lossin@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Breno Leitao
+ <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org,
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Marcelo,
 
-kernel test robot noticed the following build warnings:
+On 6/15/25 10:55 PM, Tamir Duberstein wrote:
+> diff --git a/rust/kernel/error.rs b/rust/kernel/error.rs
+> index afcb00cb6a75..fd7a8b759437 100644
+> --- a/rust/kernel/error.rs
+> +++ b/rust/kernel/error.rs
+> @@ -153,7 +153,7 @@ pub(crate) fn to_blk_status(self) -> bindings::blk_status_t {
+>       /// Returns the error encoded as a pointer.
+>       pub fn to_ptr<T>(self) -> *mut T {
+>           // SAFETY: `self.0` is a valid error due to its invariant.
+> -        unsafe { bindings::ERR_PTR(self.0.get() as _).cast() }
+> +        unsafe { bindings::ERR_PTR(self.0.get() as isize).cast() }
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/dt-bindings-iio-adc-Add-AD4170/20250611-101842
-base:   4c6073fec2fee4827fa0dd8a4ab4e6f7bbc05ee6
-patch link:    https://lore.kernel.org/r/48598c0753cccf515addbe85acba3f883ff8f036.1749582679.git.marcelo.schmitt%40analog.com
-patch subject: [PATCH v5 02/11] iio: adc: Add basic support for AD4170
-config: powerpc-randconfig-r072-20250613 (https://download.01.org/0day-ci/archive/20250614/202506140009.GdV0BtKr-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202506140009.GdV0BtKr-lkp@intel.com/
-
-smatch warnings:
-drivers/iio/adc/ad4170.c:1181 ad4170_parse_adc_channel_type() warn: passing zero to 'dev_err_probe'
-
-vim +/dev_err_probe +1181 drivers/iio/adc/ad4170.c
-
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1170  static int ad4170_parse_adc_channel_type(struct device *dev,
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1171  					 struct fwnode_handle *child,
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1172  					 struct iio_chan_spec *chan)
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1173  {
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1174  	int ret, ret2;
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1175  	u32 pins[2];
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1176  
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1177  	/* Parse pseudo-differential channel configuration */
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1178  	ret = fwnode_property_read_u32(child, "single-channel", &pins[0]);
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1179  	ret2 = fwnode_property_read_u32(child, "common-mode-channel", &pins[1]);
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1180  	if (!ret && ret2)
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10 @1181  		return dev_err_probe(dev, ret,
-                                                                                          ^^^
-ret is zero, so this returns success.  s/ret/ret2/.
-
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1182  			"single-ended channels must define common-mode-channel\n");
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1183  
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1184  	if (!ret && !ret2) {
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1185  		chan->differential = false;
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1186  		chan->channel = pins[0];
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1187  		chan->channel2 = pins[1];
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1188  		return 0;
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1189  	}
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1190  	/* Failed to parse pseudo-diff chan props so try diff chan */
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1191  
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1192  	/* Parse differential channel configuration */
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1193  	ret = fwnode_property_read_u32_array(child, "diff-channels", pins,
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1194  					     ARRAY_SIZE(pins));
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1195  	if (!ret) {
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1196  		chan->differential = true;
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1197  		chan->channel = pins[0];
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1198  		chan->channel2 = pins[1];
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1199  		return 0;
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1200  	}
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1201  	return dev_err_probe(dev, ret,
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1202  		"Channel must define one of diff-channels or single-channel.\n");
-dfefd2b2405829 Ana-Maria Cusco 2025-06-10  1203  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Shouldn't this be `c_long`?
 
