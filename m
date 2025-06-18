@@ -1,218 +1,139 @@
-Return-Path: <devicetree+bounces-187173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4F7ADEECA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:06:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B97C9ADEED6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 16:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEACC189FFD7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:07:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D9EA188F64F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D992EAB6C;
-	Wed, 18 Jun 2025 14:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469382EAB81;
+	Wed, 18 Jun 2025 14:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="KWKb9dyT"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BF6Zile1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BBD522F;
-	Wed, 18 Jun 2025 14:06:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750255606; cv=pass; b=mqZB1xpB+OIcflVNN7BRdxqEhCrMEZMvDSXLikHDac4ob64jR9pkL/BtyxPExC/bHgqAMzbG0wtDJMM36m4GA1oJzYl2Jth+JKzw0KXugPBmVX3hCbnnKnoEqAwP51PBkaXbuWjijIufQkAb6o1lxOhF6eED/+D+krubdFsJPeU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750255606; c=relaxed/simple;
-	bh=hj3srasRo+5ur5rSqELAw8wT5z+tkgumudGWFKX2P2I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KIVbUV4vDuYySsqn/Q3CeX+gpzco9mQM4b2DB4q3gnvm3cLT+/d/BM06yXXyb0HBgWsFc/p2BgFjEEFt9ZK69zwLhgkz2zIs+O4diQu9aLZtv7rYlPNnG6IFMNt3XKvj+Sfppn7BBIAew0dVBRgYxg2Q7/7g4TZ3bqUicJwU1ZY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=KWKb9dyT; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541BD2D12F6;
+	Wed, 18 Jun 2025 14:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750255777; cv=none; b=CFqrfZNirDmYiafEdgHw5ZSZ6leGp4PQIz8sRPe+QScCQaRtmLUdbLZLQxujWwABsQ49My2ePsVZTWsyS5r7vmIQ/rFgSJAxNxIxMFJ7zKa6FrHoK0sFbSIPMVRMiXZw8FtKdu8pvYFMHjKgWhLrJR9Z9/MT6L/TDMCcjiut3ig=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750255777; c=relaxed/simple;
+	bh=AbqsY+BazuQPKrih3PHbSIbfF8unqnM3+U3VJBeLOj0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wrc8bDoV4Lnkf1vc2WqydO07//ij4HqW6wO/p/g8vK0n905Uyc8WKKhTqe5O+HiAxpl+4ADy2iuyShj/Mrk0T1OEjm95Xwt9ZgGYz157ujtTkdqFM6kbzPnw3J/Djebxq8xQpUnimJ6WOyMxW++B2FqPSH+iWPel+8Uxiv42xf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BF6Zile1; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750255583; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UJT88ereqHexP126cH3BC60Ftrjp3MqaeRhOmqhcCwuQnxgVIIJAhsOQ1++RlHCmrnLJDj/lhBtBkjpJFTpZGKVnPq/ZG3SQqKEbqPbpXhRK3o2ym1wkv5s0rlaph8qAzRi7Y4y269Scq+BUlZTZcNVkQCql3r07e1qGoWADdWU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750255583; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=sjpDqdUdnROUzOr37FSSwpzItdKuL53Ug5lBdtcujlI=; 
-	b=JII/6iHx9yKHuGNiWQYYxDWPsmXw2P8ma8rlDb+hPXjBdxY5tYLNZoRN11EvF+2l53WIxzSX+7/zpwHvt7r8ix5cvHZ+qHDwsObCKtP+T1aM6qXAUF2uT+IPCAWDX4Qa3AQkQ6ZFODJ5oOCvW7EclKrc7cuvGr42dgCuhlgyMvc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750255583;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=sjpDqdUdnROUzOr37FSSwpzItdKuL53Ug5lBdtcujlI=;
-	b=KWKb9dyTTnE8TqT/+lG8I+cGzN4Z+SU2LVX/YPXnJA3oYWZzFxosbiZ7Mp2hPTwM
-	2Y1wICXd9BawbTKCnENdQkVfLx27cEEsXOnvUrRWQlVkjnmgbqv51XXzr11PgIcqFvU
-	7QLRs7lRFhhaKjUpPGZhAisMQIF8c3LDsBMZgL8g=
-Received: by mx.zohomail.com with SMTPS id 1750255580611190.85093936823102;
-	Wed, 18 Jun 2025 07:06:20 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
- Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Jonas Karlman <jonas@kwiboo.se>
-Subject:
- Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
-Date: Wed, 18 Jun 2025 16:06:16 +0200
-Message-ID: <3286422.5fSG56mABF@workhorse>
-In-Reply-To:
- <CABjd4YyVJv0NmF9LsGWQ-O44MGjT5=FFeUjbg5rJ6XkNgjxb+g@mail.gmail.com>
-References:
- <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
- <80ACAAAE-F522-4199-9048-ADE69F6E1128@gmail.com>
- <CABjd4YyVJv0NmF9LsGWQ-O44MGjT5=FFeUjbg5rJ6XkNgjxb+g@mail.gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750255773;
+	bh=AbqsY+BazuQPKrih3PHbSIbfF8unqnM3+U3VJBeLOj0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BF6Zile11yaAxf1Y9/5SyLmogOa92FtcI13KXHY8Az2py36Ch7W7wWPM8/R2TyxzD
+	 29aLaP39PBFC/v/uiojZREEJd4NvDbtB7ZLFRQ7Zh1Y+K/sYYuyV/hcVLjPkCML3kF
+	 etquDrL0A+UPNRJcWfD9tI2MVQD/qUXLlu2+mAY00n3X4elovblyKYGFVPr+yLzoRe
+	 deQTQt5tW2b0qIwqm7SUlgC/J04lJiphuYN4zp7KQw5FtNUOkdWeUE0r44jdPZ6hnW
+	 zBGDwxcBffMBc9dyn2UQyHxIgVknUtelXWrsCjpowwreqbUGABueymFY2Zq4rhiK40
+	 ElFrgPHyjWaQQ==
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:45c6:994a:f902:5c74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: benjamin.gaignard)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D04C217E0DD0;
+	Wed, 18 Jun 2025 16:09:32 +0200 (CEST)
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: joro@8bytes.org,
+	will@kernel.org,
+	robin.murphy@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	nicolas.dufresne@collabora.com,
+	jgg@ziepe.ca
+Cc: iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v2 0/5] Add support for Verisilicon IOMMU used by media codec blocks
+Date: Wed, 18 Jun 2025 16:09:09 +0200
+Message-ID: <20250618140923.97693-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 
-Hello,
+Hi all,
 
-+Cc Jonas Karlman as he is intimately familiar with RK3576 clock shenanigan=
-s by now,
+This patch series adds support for the Verisilicon IOMMU, which is found in front
+of hardware encoder and decoder blocks in several SoCs using Verisilicon IP. 
+A first implementation of this IOMMU is available on the Rockchip RK3588 SoC.
 
-On Wednesday, 18 June 2025 15:51:45 Central European Summer Time Alexey Cha=
-rkov wrote:
-> On Sun, Jun 15, 2025 at 8:00=E2=80=AFPM Piotr Oniszczuk
-> <piotr.oniszczuk@gmail.com> wrote:
-> >
-> >
-> >
-> > > Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.com>=
- w dniu 9 cze 2025, o godz. 16:05:
-> > >
-> > > On Sun, Jun 8, 2025 at 11:24=E2=80=AFAM Piotr Oniszczuk
-> > > <piotr.oniszczuk@gmail.com> wrote:
-> > >>> Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.co=
-m> w dniu 5 cze 2025, o godz. 15:42:
-> > >>>> Alexey,
-> > >>>> I see you are using rk3576 board like me (nanopi-m5)
-> > >>>> Have you on your board correctly working cpu dvfs?
-> > >>>> I mean: [1][desired clocks reported by kernel sysfs are in pair wi=
-th [2[]cur clocks?
-> > >>>> In my case i see mine cpu lives totally on it=E2=80=99s own with d=
-vfs:
-> > >>>
-> > >>> Hi Piotr,
-> > >>>
-> > >>> I haven't tried to validate actual running frequencies vs. requested
-> > >>> frequencies, but subjective performance and power consumption seem =
-to
-> > >>> be in line with what I expect.
-> > >>
-> > >> well - my subjective l&f is that  - currently - my rk3576 seems =E2=
-=80=9Eslower" than i.e. 4xA53 h618.
-> > >
-> > > In my experience, native compilation of GCC 14 using 8 threads on
-> > > RK3576 (mainline with passive cooling and throttling enabled): 2 hours
-> > > 6 minutes, on RK3588 (mainline with passive cooling via Radxa Rock 5B
-> > > case and throttling enabled but never kicking in): 1 hour 10 minutes
-> >
-> > by curiosity i looked randomly on 3576 vs 3588:
-> > multithread passmark: 3675 (https://www.cpubenchmark.net/cpu.php?cpu=3D=
-Rockchip+RK3576&id=3D6213)
-> > multithread passmark: 4530 (https://www.cpubenchmark.net/cpu.php?cpu=3D=
-Rockchip+RK3588&id=3D4906)
-> >
-> > assuming 3588 as baseline, 3576 is approx 20% slower on multithread pas=
-smark (has ~0,8 comp power of 3588)
-> > 70 min compile on 3588 should take something like ~86min on 3576.
-> > In your case 126min compile on 3576 shows 3576 offers 0,55 comp power o=
-f 3588.
-> > Roughly 3576 should do this task in 40min less than you currently see i=
- think
-> >
-> >
-> > > Can't see how u-boot would affect CPU speed in Linux, as long as you
-> > > use comparable ATF images. Do you use the same kernel and dtb in all
-> > > these cases? Also, what's your thermal setup?
-> >
-> > yes. in all cases only change was: uboot & atf
-> > thermal is based on recent collabora series (+ recent pooling fix for c=
-locks return from throttling)
-> >
-> > >
-> > >
-> > > Not sure UX is a particularly good measure of CPU performance, as long
-> > > as you've got a properly accelerated DRM graphics pipeline. More
-> > > likely 2D/3D and memory.
-> >
-> > indeed.
-> > For quantified look i=E2=80=99m looking on v.simple approach to estimat=
-e real clock is http://uob-hpc.github.io/2017/11/22/arm-clock-freq.html
-> > by curiosity i looked what it reports on a53/a55/a72/a76 and it is surp=
-risingly accurate :-)
-> > on mine 3576 with collabora uboot+mainline atf is hows 800MHz (and in p=
-erf. gov it seems to be constant)
-> >
-> > >
-> > > There might be some difference in how PVTPLL behaves on RK3576 vs.
-> > > RK3588. But frankly first I would check if you are using comparable
-> > > ATF implementations (e.g. upstream TF-A in both cases), kernels and
-> > > thermal environment :)
-> >
-> > all tests: the same 6.15.2 mainline + some collabora patches
-> >
-> > diffs were:
-> > 1.collabora uboot[1] + mainline atf 2.13
-> > 2.collabora uboot[1] + rockchip rkbin bl31 blob
-> > 3.vendor uboot (bin dump from friendlyelec ubuntu image)
-> >
-> > on 1/2 i see kind of issue with clock values (i.e. perf gov gives const=
-ant 800MHz on mainline atf).
-> > 3 seems to perform better - (i.e. perf gov gives constant 1500MHz so al=
-l is snappier/faster)
->=20
-> There is indeed something weird going on. I've tried running sbc-bench
-> [1], and even though I observe dynamically varying CPU frequencies
-> after boot with schedutil governor, once sbc-bench switches the
-> governor to "performance" and goes through the OPPs in descending
-> frequency order, the CPUs seem to get stuck at the last applied low
-> frequency. Even after max frequency gets reverted from 408 MHz to
-> something higher, even after I switch the governor to something else -
-> no matter what. Only a reboot gets the higher frequencies 'unstuck'
-> for me.
->=20
-> These are all observed at around 55C SoC temperature, so throttling is
-> not an issue. Regulators are stuck at 950000 uV - way above 700000 uV
-> that the 408 MHz OPP requires (and power readings seem to match: I'm
-> getting about 2.3W consumption at 408 MHz in idle vs. normal idle
-> reading of 1.4W at around 1 GHz).
->=20
-> Not sure what's going on here, and I don't remember seeing anything
-> similar on RK3588. Thoughts welcome.
+Rockchip provides a driver for this hardware in their 6.1 kernel branch:
+https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
 
-This may once again be a "accidentally uses wrong clock IDs" type
-situation. The other possibility is that we're getting confused
-between what we think the clock rate is and what SCMI actually set
-the clock rate to.
+This series includes:
+- a new binding for the Verisilicon IOMMU
+- a basic driver implementation
+- DT updates for RK3588
 
-Things to check is whether the right clock controller (scmi vs cru)
-and the right clock id (check ATF source for this) is used.
+The driver was forward-ported from Rockchip’s 6.1 implementation, 
+the prefix was renamed to vsi for generality, and several fixes were applied.
 
-Kind regards,
-Nicolas Frattaroli
+AV1 decoding was tested using the stateless VPU driver and Fluster.
+The test results show a score of 205/239, which confirms that no regressions
+were introduced by this series.
 
->=20
-> Best regards,
-> Alexey
->=20
-> [1] https://github.com/ThomasKaiser/sbc-bench
->=20
+Feedback and testing welcome.
+
+changes in version 2:
+- Add a compatible "rockchip,rk3588-av1-iommu"
+- Fix clock-names in binding 
+- Remove "vsi_mmu" label in binding example.
+- Rework driver probe function
+- Remove double flush
+- Rework driver internal structures and avoid allocate
+  in xlate function.
+- Do not touch to VPU driver anymore (path removed)
+- Add a patch to enable the driver in arm64 defconfig
+
+Thanks,
+Benjamin
 
 
+Benjamin Gaignard (5):
+  dt-bindings: vendor-prefixes: Add Verisilicon
+  dt-bindings: iommu: verisilicon: Add binding for VSI IOMMU
+  iommu: Add verisilicon IOMMU driver
+  arm64: dts: rockchip: Add verisilicon IOMMU node on RK3588
+  arm64: defconfig: enable Verisilicon IOMMU
 
+ .../bindings/iommu/verisilicon,iommu.yaml     |  72 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  11 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/iommu/Kconfig                         |  12 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/vsi-iommu.c                     | 841 ++++++++++++++++++
+ 7 files changed, 940 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+ create mode 100644 drivers/iommu/vsi-iommu.c
+
+-- 
+2.43.0
 
 
