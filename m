@@ -1,108 +1,165 @@
-Return-Path: <devicetree+bounces-187080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD41DADE93A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:40:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05850ADE927
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:37:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93FF317E183
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:40:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C36D13A6968
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA792882C1;
-	Wed, 18 Jun 2025 10:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE726253941;
+	Wed, 18 Jun 2025 10:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="Qa+s9/si"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-190f.mail.infomaniak.ch (smtp-190f.mail.infomaniak.ch [185.125.25.15])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010009.outbound.protection.outlook.com [52.101.84.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A18286D62
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.15
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750243214; cv=none; b=pcmZY14FIH2lPWDy0Y+Pscp3RSjYnAIRJ4Gvm7eqQlvIbBFHpo16X5to6vK/YmoXZRRHspPq0DK5JcEJbssiY8nas0hojSu/Z1j/UUTym/aEPhw6ew5BneXlXdwSqFV4+JN0YJ+XS1XnqgQ3+OMYhUrCUiciDq0wB4DpaWE8foM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750243214; c=relaxed/simple;
-	bh=H/y4o1H0hvpF32O5vhAFHDz0k11JHSTAITGXft+o/A8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UwoPaGy1qmYQuG9HSl1AxUcwlQOfgT1NYBgsohazb3R1D3eAtjN+5pPPcDg/3eWGqqtNBGXcfjxOLJSTqzenzcDo1FGH7LfjKfHZ8y27IHhLKkAAy1crb23wftOJ8XmgmVDzEMeflsYGcVccyVGTBnamdOy5VNohJHx4LZWFu5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0001.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6c])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bMg6x3r9szVfM;
-	Wed, 18 Jun 2025 12:32:57 +0200 (CEST)
-Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bMg6w64MDzCyK;
-	Wed, 18 Jun 2025 12:32:56 +0200 (CEST)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Wed, 18 Jun 2025 12:32:44 +0200
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: force PMIC reset behavior to
- restart PMU on RK3588 Tiger
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFD5BA27;
+	Wed, 18 Jun 2025 10:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.9
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750243038; cv=fail; b=u+KBX2OKmJ4nEL/bwQJEpXTbuWoCwez99jXBrh7IR2XuUCwOJHheZkBb16t78VCNKUM0fJqRU53Q7vmzh/disl7SPm8HhhdkNiMNv1UPWRcmfjb6z/XQDTPcIsOXZ8aJirqMedxsj+3UGa4k5MT/Evq1/XKG8btg7rNYWRUG4uE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750243038; c=relaxed/simple;
+	bh=HOwg0XLBkaaW073sMF2Q7R8lj3pBaUmmVjnYYsw4hmc=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=YnOgz3YuUUvVZnMw/XXQtKmroIeoo1NN80lqR0LR8R2LHgsxrGgvRgG8pIdrEcFIFHBgmluBR0Nr4fo1tfR9oUatR3GA7nxJlW34CNDgheYqzUEIaNU+kc3P0v24g/rMDIKitCBwumB/8r6H1qtJind4qfTHtwVOm1SGEu5nIXE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=Qa+s9/si; arc=fail smtp.client-ip=52.101.84.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dlHeRZN67D4e7WSPUP/CeNXQZ/zEBoGQMSAt/cRGVcW3EhhDiryt6FULx0FWUtoevGWiapjUHH0Sr/wpMwgVR1xWQDiryYtCaejJsyZVkZH5cpsrZs/RpqFvyB5aeU22etui02MoNnG6Pa5UkXYFnV1yRHPgDOuUe4D4pZEEffS8EoY7JTkGG8tLGa5jeAhiUk+0YoupvAm7V2besrCNbCDZOVxMyKb6DdGiSkueQTwKFw9l7PPemPydQ6/qyBvOLI6v8VrsT/4/MsK7SGJKdYI1t54msr84zeZj/NRwkf8uOcjNxWNotZJ2wHKDntcBf61CkbKNQ2bG9nb1/UoFdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ikMPal/2gFl9Ddwj8q20srfYKEvCqE2XA5zoCe9m9C4=;
+ b=H02y8/g0VSzpLA33tr76ndnSlzbv7W9qdaSgGw087GJeN2MsuGUXo2s3rlNnIOAcMYB9dgOf8bcaSi2tL+g4ODcsjNwcSEBJNxZ6zl1rdr2gef8j79Z2JlwdYvgN/mnklTfn6xBXnIWmO0w1O7/k3JABznYIJ4m1mwfdUDmphYZFSXgovFnDsmejqaUS0B364pHTe3axW2BNmV2l98CWPY1ZwoqMLvs9c2hq8UFMbW3diSVV2waGqPz0+wE5KtCskeAF24uBl+z8LkVyQxUZAkmXOcyB+zg9CwZpTkgEVRoZ/E8DLN8IyhfS/HiS8CWKq1yg8FKzlyG5DXC6avko/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ikMPal/2gFl9Ddwj8q20srfYKEvCqE2XA5zoCe9m9C4=;
+ b=Qa+s9/siP9uNu4Xn28CiI3lMQCBV5bvqcSwdWJmk3VAjIhX0j1SrJVhqROdBAUiq3U3KsKnad4/E9aH6XMDeKjuSS0HvnrJhHNKjR/HcnwaATPEuSkN6xk/+muXaxhWxRPw0LV9rk/PhoCguPknSYzpwSLGseUhuheoYUhSsKPo=
+Received: from CWLP265CA0306.GBRP265.PROD.OUTLOOK.COM (2603:10a6:401:5d::30)
+ by DU4PR02MB11310.eurprd02.prod.outlook.com (2603:10a6:10:5d7::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.19; Wed, 18 Jun
+ 2025 10:37:13 +0000
+Received: from AMS0EPF00000199.eurprd05.prod.outlook.com
+ (2603:10a6:401:5d:cafe::80) by CWLP265CA0306.outlook.office365.com
+ (2603:10a6:401:5d::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.30 via Frontend Transport; Wed,
+ 18 Jun 2025 10:37:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ AMS0EPF00000199.mail.protection.outlook.com (10.167.16.245) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8857.21 via Frontend Transport; Wed, 18 Jun 2025 10:37:12 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail01w.axis.com (10.20.40.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 18 Jun
+ 2025 12:37:11 +0200
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <kernel@axis.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: proximity: Add Nicera
+ D3-323-AA PIR sensor
+In-Reply-To: <20250617-vagabond-fulmar-of-penetration-dbe048@kuoka> (Krzysztof
+	Kozlowski's message of "Tue, 17 Jun 2025 11:06:08 +0200")
+References: <cover.1749938844.git.waqar.hameed@axis.com>
+	<e2b1b56fbee07047f3fb549f17257dc3764af395.1749938844.git.waqar.hameed@axis.com>
+	<20250617-vagabond-fulmar-of-penetration-dbe048@kuoka>
+User-Agent: a.out
+Date: Wed, 18 Jun 2025 12:37:11 +0200
+Message-ID: <pndjz59l4iw.fsf@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250618-rk8xx-rst-fun-v3-5-081f02d3d348@cherry.de>
-References: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
-In-Reply-To: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, 
- Daniel Semkowicz <dse@thaumatec.com>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail01w.axis.com (10.20.40.7) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF00000199:EE_|DU4PR02MB11310:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed68a6d1-cb36-458a-0ecf-08ddae54163a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?PwmvuF8hF/9+Vcj8SX/zHwHNYzGIzUQw0UPzTf7HF1uSPrqpi5mH3fGy/svD?=
+ =?us-ascii?Q?SSlQyKAw0tcXnEHFHnnwzYX6aRCEeIrd7Y6e29nauM5if0dv90ya5rzZ+iS7?=
+ =?us-ascii?Q?W5H2C3qguV3wwRBfOal9cCTmwCCiJ26kIbnCvvjkt2TgL183KxldB1yXUgHl?=
+ =?us-ascii?Q?aFFBKqBKzlnTARBL3ZiZ2ui3gNcafakxB8GH/HLXSIGH0aTrmEobDjiw2yXj?=
+ =?us-ascii?Q?M4fCmCJtg54QpEqxHvXVVVo/9iEGqX5J4G62tDzUT+STBcP8rdYWft3s1aVS?=
+ =?us-ascii?Q?WBsrTETAg3Pcf6rnsC/azMeZ42P693b7eSakuPOFGoo9T7ROLmAbvb8Hd8tn?=
+ =?us-ascii?Q?RAKfojkcD1RTK9DZDf0vq+FPFks8Mzawmr0ra3HDYxB4Kahr68mx+S3WdcQo?=
+ =?us-ascii?Q?E+Qv/m9BfbCrYPuUC9HQfWVBQ5D0Ijd6rg3XvST7uAKbi8vvNwYPwJekRJvE?=
+ =?us-ascii?Q?+GaRF/QmFNRP2OF9hDXMHUA8rbUCRLpXaouxrKI+x4J9MtE4D352T+wJkzJC?=
+ =?us-ascii?Q?WYJ7ONoiVKltvjTUI/i6XhfXJw1aWY+d10htLoQpXB4JIIXoWlcTma+2Lleb?=
+ =?us-ascii?Q?PT7d14U256fOmiAvYv8Hrc5PfPVpd+v11W/7xUGMSkHquC56hX6/cr7tS+3n?=
+ =?us-ascii?Q?crUQu9UySdKkrY7uWjrSiS6U8Wkk4ztlyvENyBU907w4aBEMIQTy4XHpSWF3?=
+ =?us-ascii?Q?1PrMd4OW0LTleqFpSFXeWYZTOXvUT2T0Zfg0Zh+cpRmGo6r8IW0mbcHQC5Mn?=
+ =?us-ascii?Q?IKIAvrGX15nWSu0YhqYwTPxIQunT8C22dKpPBXSKDl4GKIoRYnJTDr/0MS8T?=
+ =?us-ascii?Q?4pbFaWGfl3HjyBVK+kYM/gzoLVRTKJUfR73c4Cg+eV3zPdzxs238LoJUARzE?=
+ =?us-ascii?Q?zaP2zFqwFuKGc5Q25A1bE7dxxlsakdKLhuXaWh7yyHWX68nPY383ae+5GGdO?=
+ =?us-ascii?Q?yq7rpINytMF3n+j2N9+XSNMZf8Q52u/MKQx0FTqJhbs6/4oTAWY4+0wXS6Vi?=
+ =?us-ascii?Q?yk4hcWzpaJEerWmU/0b0lQrdkRRw6CYC1Oh9SwZJzq9lL6JxnFWJ9bizP7OD?=
+ =?us-ascii?Q?Wy6vJSfnfHKz4+4ChzgF7z3zWbuDrvMdJXrJDPdXxfi+0s9XoVry0vvQPJ3B?=
+ =?us-ascii?Q?+h+8GIOP6AASl3zr4RkGuNOlQ9V3Rsfe9o/QK/5LNJ8OVeAG+7MKzE1q1ttt?=
+ =?us-ascii?Q?IIePpi6PG8mRZG7CCzmsxL78X/XrmCNB7bGJp9ljBY5Y+0xdQz6MrwvEehjW?=
+ =?us-ascii?Q?H30WzHFQfgLKGvpmrQuM5hrLzfSgykwShlhXujYUsqZv4ssfe3ogGfNzF9AI?=
+ =?us-ascii?Q?laGKNneGgp4ZMnVm0shi/BD+413rGRrp+6AU/MCX97Jwdz1PYKoKFSqdIyRI?=
+ =?us-ascii?Q?wdkXKh+jLf1D9ofA7zHaxicBFSjbX99dgFNhikYSBBHVnrf0AWg+qTR0K4mc?=
+ =?us-ascii?Q?e6UQHwUc90UT+qURktUUQY5CP30DhauXqKtdnql1mNzUagkedBAVLwneprUY?=
+ =?us-ascii?Q?TJTvlRigpMG3aXVQx9c8C64izCGCtpNtUwxa?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2025 10:37:12.9432
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed68a6d1-cb36-458a-0ecf-08ddae54163a
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF00000199.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR02MB11310
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+On Tue, Jun 17, 2025 at 11:06 +0200 Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-The bootloader for RK3588 Tiger currently forces the PMIC reset behavior
-(stored in RST_FUN bitfield in register SYS_CFG3 of the PMIC) to 0b1X
-which is incorrect for our devices.
+> On Sun, Jun 15, 2025 at 12:14:02AM GMT, Waqar Hameed wrote:
+>> +examples:
+>> +  - |
+>> +    proximity {
+>> +        compatible = "nicera,d3323aa";
+>> +        vdd-supply = <&regulator_3v3>;
+>> +        vout-clk-gpios = <&gpio 78 0>;
+>> +        data-gpios = <&gpio 76 0>;
+>
+> Same comment as before.
 
-It is required to restart the PMU as otherwise the companion
-microcontroller cannot detect the PMIC (and by extension the full
-product and main SoC) being rebooted which is an issue as that is used
-to reset a few things like the PWM beeper and watchdogs.
-
-Let's add the new rockchip,reset-mode property to make sure the PMIC
-reset behavior is the expected one.
-
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
-index c4933a08dd1e3c92f3e0747135faf97c5eeca906..b44e89e1bb1599ee70b921598c2eb6fd54614f55 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk8xx.h"
- #include "rk3588.dtsi"
- 
- / {
-@@ -440,6 +441,7 @@ pmic@0 {
- 		vcc13-supply = <&vcc_1v1_nldo_s3>;
- 		vcc14-supply = <&vcc_1v1_nldo_s3>;
- 		vcca-supply = <&vcc5v0_sys>;
-+		rockchip,reset-mode = <RK806_RESTART>;
- 
- 		rk806_dvs1_null: dvs1-null-pins {
- 			pins = "gpio_pwrctrl1";
-
--- 
-2.49.0
-
+I removed the include header thinking that would be fine, since there
+were already a bunch of other examples just using `0` as the GPIO flag
+(without the include). I'll re-add the include header in next version
+then and use `GPIO_ACTIVE_HIGH` on both `-gpios`.
 
