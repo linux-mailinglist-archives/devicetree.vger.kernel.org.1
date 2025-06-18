@@ -1,82 +1,204 @@
-Return-Path: <devicetree+bounces-186936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE317ADE36F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:12:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A75DEADE372
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:13:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DCE717344A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 738033BD5B9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231791FFC48;
-	Wed, 18 Jun 2025 06:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F631FC7E7;
+	Wed, 18 Jun 2025 06:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eV1hCvk7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EtgWsDgr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DA41FECC3;
-	Wed, 18 Jun 2025 06:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCDBE1A2630
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750227136; cv=none; b=ch/ltbbc1JSjwHSR+2yAQvhRAdrixDoVUGwb+YHPF0iTBlkOXOzdxQ49SJBW4o8tGEqHUmD7VicdgCFc8AXcEUidSmq225P6+NQXABTEKI1oTaCSPm9M2bjgKtMQjQg5xA7XvbDS3a2xjMr/siTKRDlNZUtxtl54j611vGDBrY4=
+	t=1750227223; cv=none; b=Pz9vJUbjL/r8k5pN4p6v/vg/NfRjBodELybHLBJYux1Ysfny0YrEquG/miQiOoIfSYgDYVcGwUqVCgPLgKsi5UflP/7IwO2dBclueQyGSq3LNb3UPXUyqMhgjbkKtPFnQy88loChCt/gBSEveFbGhoCXz7d9+rdGq305EYvRgog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750227136; c=relaxed/simple;
-	bh=dCHN8lj1Y5uAAi5KWGc7ILPGlVHAnVA7oxcd4riH7x0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pU4Xd96s+1FeG5iYN9PS270FUvVkFNy7zOOsSZpECizI0EyP2Oha7x8W1gTn/yfx0Mwo1zfn5ZJhU0e2vSizWypB+SnsWGIhUcLCW+5g55WpyZt0pRfU6hp1xSVf0RsO8Y7aXicgquyJAK5YnV5mD5wouNvyXAE+a19//7E37qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eV1hCvk7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7640CC4CEE7;
-	Wed, 18 Jun 2025 06:12:14 +0000 (UTC)
+	s=arc-20240116; t=1750227223; c=relaxed/simple;
+	bh=wJQDPPQJetS4I1Aeo7+LVEsKKXqK6ABtx+3C+TzKErI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oEWCwFVsVwsQvMVrTtT2Jyc9+YTZ+Ze+MIczsbgxfQ7HliS2HmADDpj2tl/kqkVE3CP6kC4jJC4B88/Y9++HGR4pgxolxTo47tRRluFdH+7TGzCVbt9T5FaCBvh0sxEFHPRhWkWSOzar8sQpixr+UQBYIfvvYhYadstozoapDjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EtgWsDgr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77F10C4CEE7;
+	Wed, 18 Jun 2025 06:13:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750227135;
-	bh=dCHN8lj1Y5uAAi5KWGc7ILPGlVHAnVA7oxcd4riH7x0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eV1hCvk7nH8Xeh6rlxuQw/IC0yCVGF9SfPrnkiWQkisK5WWkAMva+qlyZx0y5ReV2
-	 QV+sLCjX+dHJzEgFgtX9ch2L0lQBFHpOCyxuE/C1+OB+YV/rmp0QKIXcvp60fWKYiL
-	 +wUulNyPMa0mcha8lHZfgW0Acgs+kw2DQKIYaLf+/dhqTeeGP9JdErLijlnLN/vBGq
-	 qeXYjmg2xQCXPk1DpwGcR273hz64VPVD5i/FNMnK1Rg9jVjTgzz+8aDcGwZH6rFCNK
-	 RUv4vJ/pOJsnbu24xBULLLpNR2Lr8ZQa0B/RIE+AlCTBXgVNc8s6mSMOmQCaD4+FXl
-	 mcD9i2tKyn+1A==
-Date: Wed, 18 Jun 2025 11:42:11 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, neil.armstrong@linaro.org,
-	abel.vesa@linaro.org, kw@linux.com, conor+dt@kernel.org,
-	kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_qianyu@quicinc.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v6 1/6] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
- Update pcie phy bindings for qcs8300
-Message-ID: <aFJYu_RV86GyrkiI@vaman>
-References: <20250529035635.4162149-1-quic_ziyuzhan@quicinc.com>
- <20250529035635.4162149-2-quic_ziyuzhan@quicinc.com>
+	s=k20201202; t=1750227222;
+	bh=wJQDPPQJetS4I1Aeo7+LVEsKKXqK6ABtx+3C+TzKErI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EtgWsDgr2wXdqXmImNsunifsLSxtCatEBORnG7d9QydIbP74GwbHkNGgESDGIBpMI
+	 TFyeR0u4SdMAzAklV2ZBB7gGLLWJVSOBXzHtJ+nyuMZL8GbK6z6emec0uGK0oFjQ97
+	 LvTgPYs1+hZn+Xc3P9x4Qmlde4pxSdHAJ86QOqBvDpQKF84vUKKIdsNJdF2PqKX0S7
+	 HS+OCKIe/0PcKUphfaMLbzF775tmFu1Mi3uBiMj60wLHfyNXo8OeysWzXitDZTtv3d
+	 5fstH1ww9NWhCSb4y/LKdSnK/F0naKU74WdML+5h1U46LH6RC9S47XfX/n53uKRo2i
+	 /kT+3ZNoo3jEg==
+Message-ID: <76b20182-a3b2-4906-85e5-8db524d0811a@kernel.org>
+Date: Wed, 18 Jun 2025 08:13:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250529035635.4162149-2-quic_ziyuzhan@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink
+ panel
+To: LiangCheng Wang <zaq14760@gmail.com>, cip-dev@lists.cip-project.org
+Cc: drm@lists.freedesktop.org, devicetree@vger.kernel.org,
+ noralf@tronnes.org, robh+dt@kernel.org, onlywig@gmail.com
+References: <20250618034936.172150-1-zaq14760@gmail.com>
+ <20250618034936.172150-4-zaq14760@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250618034936.172150-4-zaq14760@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 29-05-25, 11:56, Ziyue Zhang wrote:
-> The gcc_aux_clk is not required by the PCIe PHY on qcs8300 and is not
-> specified in the device tree node. Hence, move the qcs8300 phy
-> compatibility entry into the list of PHYs that require six clocks.
+On 18/06/2025 05:49, LiangCheng Wang wrote:
+> The binding is for the MAYQUEEN PIXPAPER e-ink display panel,
+> controlled via an SPI interface.
 > 
-> As no compatible need the entry which require seven clocks, delete it.
+> Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
+> ---
+>  .../bindings/display/mayqueen,pixpaper.yaml   | 67 +++++++++++++++++++
 
-This fails to apply for me on phy/next, please rebase
+Don't send multiple patches but version them correctly.
 
--- 
-~Vinod
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+> new file mode 100644
+> index 000000000..f7c33957e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mayqueen,pixpaper.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MAYQUEEN PIXPAPER e-ink display panel
+
+Don't capitalize all letters. Mayqueen Pixpaper or whatever it is really
+called.
+
+> +
+> +maintainers:
+> +  - LC Wang <zaq14760@gmail.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  The PIXPAPER is an e-ink display panel controlled via an SPI interface.
+> +  The panel has a resolution of 122x250 pixels and requires GPIO pins for
+> +  reset, busy, and data/command control.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: mayqueen,pixpaper
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: SPI chip select number for the device.
+
+Drop description
+
+> +
+> +  spi-max-frequency:
+> +    default: 1000000
+> +    description: Maximum SPI clock frequency in Hz.
+
+Drop description
+
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO for the panel reset pin.
+
+Drop description
+
+
+> +
+> +  busy-gpios:
+> +    maxItems: 1
+> +    description: GPIO for the panel busy pin.
+> +
+> +  dc-gpios:
+> +    maxItems: 1
+> +    description: GPIO for the data/command pin.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - busy-gpios
+> +  - dc-gpios
+> +
+> +additionalProperties: false
+
+unevaluatedProperties instead
+
+
+
+Best regards,
+Krzysztof
 
