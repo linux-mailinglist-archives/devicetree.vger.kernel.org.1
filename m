@@ -1,89 +1,97 @@
-Return-Path: <devicetree+bounces-187070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F121ADE8E5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:28:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B72ADE901
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:32:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1160164A28
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:28:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD38F4043A2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF2A285C8D;
-	Wed, 18 Jun 2025 10:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20756287503;
+	Wed, 18 Jun 2025 10:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AriadzGw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hr6b8wA4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997A728507D
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:25:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CF127E7C0
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:25:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750242334; cv=none; b=pmSSiu1KUzfYK12MGhaDIkVCRVwiDunyFzwQ+eY1tEx2KLtl6EvGtzanFYcCsSU57Xjxm81Msjpo1A0wpC3lWcgZfbYbvOznXodL/wlm9p9foerwjilmsBBkBWFzsuVfNTT2xvndWhGRsG146+GDdGF1EQB1M+5DiKb2oy/4R48=
+	t=1750242336; cv=none; b=Cf5XAB3OpyiWmEhdM52wjmTc7zshmFVQDhwu48CGs4d+zBZrGDApWmY9lCJMawQuATVald709eNPTEphdpwEjoFPhCrMqFPaxHZFWyoWVddjFTGDnlPrA6gwC4te8gsLd4/Quhu+Be+GpS1JtsMS/qAAxRb/i9kQrhz3JbrdrEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750242334; c=relaxed/simple;
-	bh=WBj/VFHzpOBMITsYRlX2s8PzOuHxOLyagX79hheuk3Y=;
+	s=arc-20240116; t=1750242336; c=relaxed/simple;
+	bh=uo1jmmJSy0Tm6Ew7GTrNegQ39fiELjbLn8M0YyzkaJw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZIS4RDKRYqZ0hhnVXMor2ZfoTsZ9RDJ2qNXsEUQ+UhSPQxN7tDZCjLLFocOXuBLHHxBV2AjlDGu0pYkczy+Qp+Gda+VSTLgEskLjX5EHxqy3VvYTXSANYrXop/wOz1pxyYdhqMiIxoN9AozXNX3QnaOZMQCGLFzstcvKGzTvySk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AriadzGw; arc=none smtp.client-ip=209.85.221.49
+	 MIME-Version:Content-Type; b=LGP6w+VGLgc2ZnIU85634Yw35w6R0Astkez7Us/4/1J0Iedqw7nwHvzQpbMR+x1cg53VFz5X8iy2nDoZ18qoq9jt/1xCL1hCK6rkJ8mNZdi2pcExLyada1dPESPgFX4keMaDun2aBupQW4EH0qVS48+UARzdWwCE+T7pfzWIyts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hr6b8wA4; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a4e62619afso585370f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:25:32 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a4eed70f24so635997f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:25:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750242331; x=1750847131; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1750242332; x=1750847132; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aooWiy38peBjxv+9KQHPPSmI2vOz+cAS4Yak4J02roU=;
-        b=AriadzGweMggYAAAVqJWvi23A76s7KtF8a3Oj2lZmFYRlHpy5aA1ntLmWgUu8qjLpb
-         KSclMBpgpM37NpkUcfmd29VqIUFgNn1KjEiXPaXhbq6BCFpFFUXj5Hl1gQLlJ7h9ixPx
-         gca1Q252jOK3IsDZqeKAXMiVFsm8paIFBsu8XjJKN35lgdBe2s6m8AKN1Yv+j6PJtp5o
-         lDTF3jYzD5wKXzK9hyTrAIamA0frzYfLnQApqIEqQaHr4OfOUnoxdd1DAi+Ink9dVta8
-         EED1m4cOs/trbEnAyr/Fyno9VLkSYgex8LGvGjzlumbIjMTJ3clmTOfLuVC+F5cTYy2e
-         puog==
+        bh=kScCCH5B6HIlYQ8SpyD5iNsGwgWDsSmheszSBGTWPdk=;
+        b=Hr6b8wA4ZVknv3s4tX8asKYW/bbgPEfyGaUsmU3FRIUEw4xDT7C1uP8XSciWW+IPqW
+         /lRl3HtLsDKNj9pWLJvvYM2smcCDzseN2F/T2Az4P9AMZh/p9qIlsKi/RNFa6v2twa7z
+         RuTbmHP2/CIsBm8MsgvrBMtyfOEbLEQKgdwuySv/xzCElXfEJp0A5zlbKsYTy3whdDhV
+         TZUA6KgYxbHoMZsHFfSAqiPn2fwd3cY1u0z1oGjRi1WWyeiakJez8ovuI7YQ8HIbGLx3
+         9jFwMZFBVDJxdbY6rWD/aKAO0eNnDg/LxPtfNmTIC4sgY9VZrhsPBQmTtKHHG1fuIeos
+         4lVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750242331; x=1750847131;
+        d=1e100.net; s=20230601; t=1750242332; x=1750847132;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aooWiy38peBjxv+9KQHPPSmI2vOz+cAS4Yak4J02roU=;
-        b=Bt8552lwLmFHT6GreP/VnxofrDD9qwn31zDKb1RnFddSAwqTV6VQj5iiikN6rO/kcL
-         8+8whKE8QFSnaiSnEwlfNWyvGGhS6B7PZU+hu4EFWbnZqiWlRBg1BrHPaw1mOnudMXNI
-         a8qvHuD1N4T/2cHxAvWUnpo161gok0L30KT6eQjJc0jH1crlOFqVTRleflOZz/gTfKeD
-         4kI0vvBgO90VysL4A5UpQRG1JRf4xGErlg3iN54K55imTksBGdbu5VXy8582NOGS7Kza
-         Kv4Vd/iATrpxWagNv1LSi3FinZ9o7ypFwYQHp2Ofk0vIZ/iF6l5pXFNILHKeVf5s1ucS
-         FfDw==
-X-Gm-Message-State: AOJu0YxEQCemnwoODSJ361bx5jkh0bCzLTQ1YEr+3LKaKI8hL7IGhHFk
-	TMxOrJ0NuLuMMocycZRzcgUJyspzy8EMl6mu3sovyfr5JzDtjZpC92J3jlIh1QBh5/0=
-X-Gm-Gg: ASbGncshOq/EoRwwnKs8ifuHmy8K+KzVGlrK+h9FzTBMCp0tMt64j55y016UcE6/gX1
-	Q2Z9T/32Dyk9MG4uDrgsU3l2eLOBO4OxKLyy7gKpYPKiIQXLmzovRffQ/dBE8orVe8MJn8xI5B1
-	iMXAhRPbHmzeJRuKoYXZsWyUbZY3T7yJhUOLQDcOlbNQbpVFKvrwoUBZsgud1Ne9pFmBxeQN5Rc
-	1AzopgylQJmOxMWBo5Y+pdFAHESzgc+O2/F8RuGqBf+u/P7KIcLE1pn0G820pDbZhILgtb3UZAX
-	LammLTp6+jRGvC0MOKf+8HnM+bzsRFJ1nDgS2kXxr7dzMDEoPwcQgs2AO68k1T5rlgzrIwQ/wqN
-	OReGf9wk=
-X-Google-Smtp-Source: AGHT+IHJc2gsfkafUzYDEVgL2gH8eVceTDIyYVW64SCKXWQQR0AR9QQt8oTeByDjnRB/rhjrFb0byg==
-X-Received: by 2002:a5d:584c:0:b0:3a4:def8:1465 with SMTP id ffacd0b85a97d-3a585f73c82mr2051598f8f.9.1750242330796;
-        Wed, 18 Jun 2025 03:25:30 -0700 (PDT)
+        bh=kScCCH5B6HIlYQ8SpyD5iNsGwgWDsSmheszSBGTWPdk=;
+        b=Smi9LUtOQppDnxWKj/kRRPfum/6YCJiZwoXiyVbrIm4sSMXKawtSB77528pjku9hTH
+         RkvX1iaC0fZOw2lm37r+C3bnYBP6GZvJ6KvH6ZeLZ8ChXsjLvlXlf7ADepPCr7FyQOSW
+         Gle+5/2Nd0I85/Nv1ShFZ1vpScpf99mNhOUig9v+gKR3CTvfuIAcYRyglSKu3Xs0DRkz
+         4zCIVYPpmf5WkojlQU9MOweebDZ68MvtKf4/DB0ezqpCgRp2Dkf6Fxf9bBGLZOSVKSO0
+         FQE67SFkkjU9tDexVuKHyyCswPHVff7pR2uECvz2BxfFcPKdtJ1mSCv1/L4KodbWgIfi
+         ROvw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1BmxFU0xfi2TEQGL3AYaDS/UYqCGFdGrW1HxfAEUrnylOZ+As8ngu/DoZl/ykCQC3HxA6KCb9/nzg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ8Ksmhqc66XtkBZjZjPMur8SVX43o2pq8scK1KItqbooAiPK1
+	pbOik8vthE00jxavmk853Gwgq/NMDCaGbeRDhlO0vasiJ+7sFLwEXNizMtIXHAGe+4Q=
+X-Gm-Gg: ASbGncuHWLC1JvnKDh6ikXkGAw6X4fsTm9+fr7HgkD7mupdrAv9Jl2zILWPUvIWneqw
+	giNkzpG2Xk0yP6n1xX8UCFJ/9hl4tQZ8PMq4dbpCYUHJtV7URtLKcVgP2i+zl7SQbYFoz/lftB7
+	JO2KRjhjLSmJ8Z3JmL5fOfHKcS11IrV7CMlVTJpbleE57NO7EA5x50nprqddGmJPBMIKx93Q2YZ
+	d3oj6nt/JDxzpWWBk/vVnPqjPq2kYSzi2ceV3heRzqM1wRFvVSi+D/3L+Eib/2bGpha2w9Yn1/q
+	Tevfg0QfWWH3Hf5KUxz06fWBphNTpuJYQZ1Q2lieDjiQB/Pek6GkPPUbtgqrH550Cfxxlaa+m/X
+	4t7TaVEI=
+X-Google-Smtp-Source: AGHT+IHBRUMdMxTk0qQ52qgdxfLoQ44QoZ7cH9BJYyT5RbkqGF33Qob2tRNXh5Ck86JRubBU174MNQ==
+X-Received: by 2002:a05:600c:3545:b0:43e:94fa:4aef with SMTP id 5b1f17b1804b1-4533cae6918mr59442205e9.8.1750242332303;
+        Wed, 18 Jun 2025 03:25:32 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e256630sm208260265e9.29.2025.06.18.03.25.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e256630sm208260265e9.29.2025.06.18.03.25.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 03:25:30 -0700 (PDT)
+        Wed, 18 Jun 2025 03:25:31 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- alim.akhtar@samsung.com, Faraz Ata <faraz.ata@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rosa.pila@samsung.com
-In-Reply-To: <20250613062208.978641-1-faraz.ata@samsung.com>
-References: <CGME20250613061230epcas5p12c0a029edba39133fc0be22cb0aa1e09@epcas5p1.samsung.com>
- <20250613062208.978641-1-faraz.ata@samsung.com>
-Subject: Re: [PATCH v1] arm64: dts: exynos: Add DT node for all SPI ports
-Message-Id: <175024232949.57697.16977719390655455377.b4-ty@linaro.org>
-Date: Wed, 18 Jun 2025 12:25:29 +0200
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: William Mcvicker <willmcvicker@google.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kernel-team@android.com, Will Deacon <willdeacon@google.com>, 
+ Youngmin Nam <youngmin.nam@samsung.com>
+In-Reply-To: <20250611-gs101-cpuidle-v2-1-4fa811ec404d@linaro.org>
+References: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
+ <20250611-gs101-cpuidle-v2-1-4fa811ec404d@linaro.org>
+Subject: Re: (subset) [PATCH v2 1/2] arm64: dts: exynos: gs101: Add
+ 'local-timer-stop' to cpuidle nodes
+Message-Id: <175024233092.57697.11258654075985089157.b4-ty@linaro.org>
+Date: Wed, 18 Jun 2025 12:25:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,17 +103,18 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Fri, 13 Jun 2025 11:52:08 +0530, Faraz Ata wrote:
-> Universal Serial Interface (USI) supports three serial protocol
-> like uart, i2c and spi. ExynosAutov920 has 18 instances of USI.
-> Add spi nodes for all the instances.
+On Wed, 11 Jun 2025 10:34:25 +0100, Peter Griffin wrote:
+> In preparation for switching to the architected timer as the primary
+> clockevents device, mark the cpuidle nodes with the 'local-timer-stop'
+> property to indicate that an alternative clockevents device must be
+> used for waking up from the "c2" idle state.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: exynos: Add DT node for all SPI ports
-      https://git.kernel.org/krzk/linux/c/134442a04bb9a6981923cbb24f041b5f5690bda6
+[1/2] arm64: dts: exynos: gs101: Add 'local-timer-stop' to cpuidle nodes
+      https://git.kernel.org/krzk/linux/c/b649082312dd1a4c3989bbdb7c25eb711e9b1d94
 
 Best regards,
 -- 
