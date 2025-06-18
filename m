@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-186965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C31ADE4BC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:45:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 634B9ADE51C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B31E43BB66B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:45:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CE9017A023
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2754433CB;
-	Wed, 18 Jun 2025 07:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFD827F004;
+	Wed, 18 Jun 2025 08:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TU7G28jr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gjrxtSt7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53575944F;
-	Wed, 18 Jun 2025 07:45:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3404A78F36;
+	Wed, 18 Jun 2025 08:05:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750232737; cv=none; b=Qw7n/nlBc0bfi6//2rAIgA+P1ZGCt7+C1H/gfDdla/HFUt9OTuQNHSK7Hzi48it6SeX4NgwVFQ7JTPWvAwz+2Y2wjKKabMSZ147ZMcaILqRyPTSzf2+A/EP2GG5Sl3huhiu0XEXKX6T0whiDWULb5X/N4JEWn+a8IMqz+KjxhhM=
+	t=1750233910; cv=none; b=u9au9BKJ8PTV2ddcrGrxbct9g2ahqQzWX8FdF6O96aVwNkPwarDqFCgx5Yk/cRo/NQ+2h29msjTEa6Fm9VmwkJaSInaZO+CCea18UoV8ER49WS19RrJ5ZbMETNX9R0lP8n4rTN+vKlNQZqILv5wWrC1MYKlM+BhqmLWsLRY+3Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750232737; c=relaxed/simple;
-	bh=1JdQ904uDrVw5CrNkcjW/fEGquyhcUzIxxmQVdihypM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aWUYPTAceMbcsyzSvRN3KeZL+8SbVU3JcHwLqnd/TT1OBVP5rSqwdQkZreuSdbaO0MYlFiMWeMHMDueTC+FqbjloIg/LYDjuu/6cM1BME4f4BwtPioMn5/R6tqtcoYWW2lFHTgAFWlVwxjP6JsjZj6R3nXlOhLzubnJLR9Ox05Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TU7G28jr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750232733;
-	bh=1JdQ904uDrVw5CrNkcjW/fEGquyhcUzIxxmQVdihypM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TU7G28jrXco5LKBo88MJI++Q+39OFW5Pvy4t6nHJ5tPRAk0w6CKZmVmBE3WTXlXlI
-	 PLEo4d3UQc/w9X3mft+gsnDzSFFAIPnsQqnrJ+oikqcfzyKzkXZwoICJ9McYwo1QXk
-	 hL0rKRkyOjZlHT0TkrdI6pjN4TvztXLDSM5fNujhhxRkbFglMvIwjINvFtIWmYPwEO
-	 +ISZiLO3Rcw88JONnttSfqNs1vZhf9JdUDzBAG0hltjLPquofmSwhsgdX8Laq/kXEs
-	 tJihM2MU5HArPpBR4E+H2T+Rg3F6rNasL8DX8i96/IT9QUX8qvv90sJL2fSDz8eVC4
-	 3cvpFD+KoynVg==
-Received: from [10.40.0.100] (185-251-200-162.lampert.tv [185.251.200.162])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A548117E0F99;
-	Wed, 18 Jun 2025 09:45:32 +0200 (CEST)
-Message-ID: <e9db11c2-b02d-4fd5-8927-7b5857089533@collabora.com>
-Date: Wed, 18 Jun 2025 09:45:32 +0200
+	s=arc-20240116; t=1750233910; c=relaxed/simple;
+	bh=6/3qHFdiaMsBTrQbhD+mcQD74rIaA69OMemwtiFZ/+I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Y9Oi8XVdGtEXhZS1bzk5I/qbB+9j5Cm2CMVIZaGy5jJVQvRFpZQb1uvx9yWOi9mxG6yTkZnfbUteGLytIeJ1heUSX46bJ2JbiozUcy3ha6Om/IEC6yAQkXnaB1282smpTHBCPQUFkFZ/VqpfUA5MJ6KbDeIhenR4tpiimm3BHYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gjrxtSt7; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55I8509d258388;
+	Wed, 18 Jun 2025 03:05:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750233900;
+	bh=iAAvYxuuuYgZ6Udi3MqCZJcu5QStsstjQ/LkjzAIDBw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=gjrxtSt7FvQkXkHpVC5Uo2xcKnofCv6Ehf8qWIJw5uEl06UjNterpP3Dm/Yu2K32D
+	 sQRwzyqu30rrMEdd8EJIyydxx+jNTtLYeLssmXvSUsbNRm/pYCtyaJi1mYuWRtguTz
+	 4AqqXhaC5mTbS9xBzQgTBHAMSnAurR3N6bv8RCqA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55I850so2735878
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 18 Jun 2025 03:05:00 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 18
+ Jun 2025 03:04:59 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 18 Jun 2025 03:04:59 -0500
+Received: from [172.24.20.171] (lt2k2yfk3.dhcp.ti.com [172.24.20.171])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55I84sLG3131069;
+	Wed, 18 Jun 2025 03:04:55 -0500
+Message-ID: <fabe8565-cd27-4117-ba64-23022f1942ae@ti.com>
+Date: Wed, 18 Jun 2025 13:34:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,194 +65,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588
- variant
-To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20250616-rk3588-csi-dphy-v1-0-84eb3b2a736c@collabora.com>
- <20250616-rk3588-csi-dphy-v1-2-84eb3b2a736c@collabora.com>
- <DAOVBOKLXLS2.S9MXDD29X68J@cknow.org>
+Subject: Re: [PATCH v2 03/17] dmaengine: ti: k3-udma: move static inline
+ helper functions to header file
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+CC: Peter Ujfalusi <peter.ujfalusi@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh
+ Shilimkar <ssantosh@kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <praneeth@ti.com>,
+        <vigneshr@ti.com>, <u-kumar1@ti.com>, <a-chavda@ti.com>,
+        <p-mantena@ti.com>
+References: <20250612071521.3116831-1-s-adivi@ti.com>
+ <20250612071521.3116831-4-s-adivi@ti.com>
+ <acc1217d-50ce-4851-829d-38294b0a4d81@ti.com>
 Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <DAOVBOKLXLS2.S9MXDD29X68J@cknow.org>
-Content-Type: text/plain; charset=UTF-8
+From: "Adivi, Sai Sree Kartheek" <s-adivi@ti.com>
+In-Reply-To: <acc1217d-50ce-4851-829d-38294b0a4d81@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Diederik,
+Hi Siddharth,
 
-Thanks for your comments!
-
-On 6/17/25 16:12, Diederik de Haas wrote:
-> Hi,
-> 
-> I'm (unfortunately) not seeing any @rock-chips.com recipients ...
-
-Oops, I meant to include at least Kever, but forgot to do it. Will do in v2.
-
-Cc: Kever
-
-> 
-> On Tue Jun 17, 2025 at 10:54 AM CEST, Michael Riesch via B4 Relay wrote:
->> From: Michael Riesch <michael.riesch@collabora.com>
+On 6/12/2025 4:35 PM, Siddharth Vadapalli wrote:
+> On Thu, Jun 12, 2025 at 12:45:07PM +0530, Sai Sree Kartheek Adivi wrote:
+>> Move static inline helper functions in k3-udma.c to k3-udma.h header
+>> file for better separation and re-use.
 >>
->> The Rockchip RK3588 variant of the CSI-2 DPHY features two reset lines.
->> Add the variant and allow for the additional reset.
->>
->> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+>> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 >> ---
->>  .../bindings/phy/rockchip-inno-csi-dphy.yaml       | 60 ++++++++++++++++++++--
->>  1 file changed, 55 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
->> index 5ac994b3c0aa..6755738b13ee 100644
->> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
->> @@ -21,6 +21,7 @@ properties:
->>        - rockchip,rk3326-csi-dphy
->>        - rockchip,rk3368-csi-dphy
->>        - rockchip,rk3568-csi-dphy
->> +      - rockchip,rk3588-csi-dphy
->>  
->>    reg:
->>      maxItems: 1
->> @@ -39,18 +40,49 @@ properties:
->>      maxItems: 1
->>  
->>    resets:
->> -    items:
->> -      - description: exclusive PHY reset line
->> +    minItems: 1
->> +    maxItems: 2
->>  
->>    reset-names:
->> -    items:
->> -      - const: apb
->> +    minItems: 1
->> +    maxItems: 2
->>  
->>    rockchip,grf:
->>      $ref: /schemas/types.yaml#/definitions/phandle
->>      description:
->>        Some additional phy settings are access through GRF regs.
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - rockchip,px30-csi-dphy
->> +              - rockchip,rk1808-csi-dphy
->> +              - rockchip,rk3326-csi-dphy
->> +              - rockchip,rk3368-csi-dphy
->> +              - rockchip,rk3568-csi-dphy
->> +    then:
->> +      properties:
->> +        resets:
->> +          items:
->> +            - description: exclusive PHY reset line
->> +
->> +        reset-names:
->> +          items:
->> +            - const: apb
->> +
->> +      required:
->> +        - reset-names
->> +    else:
->> +      properties:
->> +        resets:
->> +          minItems: 2
->> +
->> +        reset-names:
->> +          minItems: 2
->> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -59,7 +91,6 @@ required:
->>    - '#phy-cells'
->>    - power-domains
->>    - resets
->> -  - reset-names
->>    - rockchip,grf
->>  
->>  additionalProperties: false
->> @@ -78,3 +109,22 @@ examples:
->>          reset-names = "apb";
->>          rockchip,grf = <&grf>;
->>      };
->> +  - |
->> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
->> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->> +
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        csi_dphy0: phy@fedc0000 {
->> +            compatible = "rockchip,rk3588-csi-dphy";
->> +            reg = <0x0 0xfedc0000 0x0 0x8000>;
->> +            clocks = <&cru PCLK_CSIPHY0>;
->> +            clock-names = "pclk";
->> +            #phy-cells = <0>;
->> +            resets = <&cru SRST_CSIPHY0>, <&cru SRST_P_CSIPHY0>;
->> +            rockchip,grf = <&csidphy0_grf>;
->> +            status = "disabled";
->> +        };
->> +    };
+>>   drivers/dma/ti/k3-udma.c | 108 --------------------------------------
+>>   drivers/dma/ti/k3-udma.h | 109 +++++++++++++++++++++++++++++++++++++++
 > 
-> ... which could hopefully tell us what the value is/should be for the
-> *required* 'power-domains' property, which is missing in this example.
-> IOW: the binding example is invalid according to its own binding.
+> Since this patch and the previous two patches seem to have the same
+> objective of moving contents from "k3-udma.c" to "k3-udma.h" for the
+> purpose of re-use, could they be squashed?
 
-Huh, indeed. Hm. Why didn't make dt_binding_check warn me about that?!
+I split them up to make the changes easier to review, bisect or revert 
+if needed. They're logically distinct changes even if the overall goal 
+is similar.
 
-TRM Part 1, p. 1097 states that HDMI_CSI_DPHY is in the ALIVE(PD_BUS)
-power domain. With some creativity one can interpret that the CSI DPHY
-is always on anyways. @Kever: Could you please elaborate on that?
-
-> (btw: you can drop the 'csi_dphy0' label)
-
-Will do.
+If there's a strong preference to squash them, I can do that but I'd 
+prefer keeping them separate.
 
 > 
-> And hopefully also for rk3568 so we can add it to rk356x-base.dtsi and
-> you can add it in patch 5 where it's also missing.
-
-I recall a similar discussion [0]. In the RK3568 the CSIPHY is in the
-ALIVE power domain.
-
-Note that the PHY must not be confused with the HOST blocks, which are
-the MIPI CSI-2 receivers.
-
-I guess the correct solution is to make power-domains optional. Further
-input welcome, though.
-
-Best regards,
-Michael
-
-> 
-> Grepping for "csi-dphy" in arch/arm*/boot/dts/rockchip returns:
-> - px30.dtsi
-> - rk356x-base.dtsi
-> 
-> With this patch set applied, we'd have a 3rd result: rk3588-base.dtsi
-> 
-> For all the listed compatibles, it's only actually defined in px30.dtsi.
-> 
-> Cheers (and sorry),
->   Diederik
-
-[0] https://lore.kernel.org/all/D4QNJ85V43NU.YD01E8AB4116@cknow.org/
+> Regards,
+> Siddharth.
 
 
