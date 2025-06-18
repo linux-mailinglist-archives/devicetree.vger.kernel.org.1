@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-187235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6DB4ADF1F7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF4F7ADF1FB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 17:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F017188C9B2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:56:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 415C518888C6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:58:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112BB2EBDF6;
-	Wed, 18 Jun 2025 15:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8FE2ED150;
+	Wed, 18 Jun 2025 15:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tiTLVs24"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j+ysl2En"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D11202C3A;
-	Wed, 18 Jun 2025 15:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4597198A2F;
+	Wed, 18 Jun 2025 15:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750262165; cv=none; b=tSkzl1f/MSGT1bXg+M6cVW5FGZJY78r4FgN00RJwQQtOqU/oPT3+EjlaNf+DsAvNADKac6SdfVHxBqwTkcFsQSiGS9Ms/OFJWZegHxfgJzYNtuDMKvZDRNefoyKVQa1XHTplqz1E0OBP2fuX34OQz9WIzM+WX6hqYsN9lhmR3hQ=
+	t=1750262303; cv=none; b=AB1Ol4E+rt6qgsYPBvhZKcaaWy9UWMu5jxYUBu0YeX8xtw6TYByW70YPs44TNrg9FgG6c6aPKMjgSmevDLKBHxkdPGMOGQzSyvKy48NIPkWFYB8MBcNigLnsGmYblMz3TWPLShVOoJQR22SEQha2JdhugEEjOJLuWOa2DVK48zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750262165; c=relaxed/simple;
-	bh=y14ImL1XP5d71TlD/C03rbujmTDgub3jAIW5DPpjTro=;
+	s=arc-20240116; t=1750262303; c=relaxed/simple;
+	bh=W3cSbpbAeTtEUnbGwlkU4DS4C49KOuT0YThhNsJs5bc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VOw7Nae5vDHxLUB+Fb+Ryf2UNWBHYJSjJS9Osdm/xBzj907WLqGGnpEyw5FtxjNecl9+zx8Y6T1p9niNCmSeOwETaoCYaxuNber7z1fVJpe1moPeGbMBA/vJDhYyguIw3cGM0cegl6U0AzzRVZwXqjapkG341A8Scr9kOk7wO3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tiTLVs24; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64C31C4CEE7;
-	Wed, 18 Jun 2025 15:56:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=K9SX1M8kUgbOaXAsPBv1C3ZpjN+DSouV9YNouUouvsHx6inHXqZzKIS4LDU41B7VXbV7qKymoqggfYFCJBmv/6yK68Zzrx7QY8i/xoIWpzclD9ORu6OUGt9TSgO1/gGl6hoPs8tBDjXMSYocjs60UIgGm3HJtf1+6rPwzifL+1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j+ysl2En; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A44C4CEE7;
+	Wed, 18 Jun 2025 15:58:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750262164;
-	bh=y14ImL1XP5d71TlD/C03rbujmTDgub3jAIW5DPpjTro=;
+	s=k20201202; t=1750262302;
+	bh=W3cSbpbAeTtEUnbGwlkU4DS4C49KOuT0YThhNsJs5bc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tiTLVs24ov/F6fXLP+VBWrYe/DlTd7uUrvgNJvE1noOe4Py7jE3N21L2npCpagKxj
-	 nExCzeEMlhXTJXAd5PrlDJiRiwVgaB7gxJeeuegcH2lmcWK234alCReruO1u/Juw/B
-	 aE+jfxwuV0hbkMv/tHdcIhQcYbHH4czrzK53Iurlblvc3kv7DV/budWE4/wsOlpPf4
-	 EqGwxR91q5pY3KLD0CwZ7Yw/pYvxKpWqhMYdgz0CZ0eP4cE2/Ad5LIvaLfvnMspi9M
-	 V7Do2AdO4783IldIsHnc7v/GesZ44/PelzNtLQjYP6S/qFnOIb4FDlgZ+qwR3y+09y
-	 AWEDKk7kL6z+A==
-Date: Wed, 18 Jun 2025 16:55:59 +0100
+	b=j+ysl2Enq25Bb/DRl+8JLiHDiiZBjFe3zvUqpRVKlVqv4Qfd+tMMCSc9umHN0fe+u
+	 8wZqk26+vUbgaziRPgbi1jpDemDa26ntkrRp2tkn+ie8Qgi74xlQaeVvXOJGTrloMq
+	 4y/CM50bLYktsxCxDlBUvG/cMOWOnm0XPyVebu+BxhMKcCQhgHjdT1420M/RD3ESG4
+	 Gg6o64H9D17sFXZtHNgD27DIxR3WtAZ+69epDgD6g3y7JlbqADpFvHMTjyH2318omt
+	 tSZnmtAiihyYTLfPlK2tKR5MfMU/vnqAQ9r9q9lGHD+ve3Uy4Eidh74amhTN0Iyhj0
+	 58w7YBlge/FHg==
+Date: Wed, 18 Jun 2025 16:58:17 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, jgg@ziepe.ca, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: iommu: verisilicon: Add binding for
- VSI IOMMU
-Message-ID: <20250618-tighten-morphing-47953075b131@spud>
-References: <20250618140923.97693-1-benjamin.gaignard@collabora.com>
- <20250618140923.97693-3-benjamin.gaignard@collabora.com>
+To: Maria Garcia <mariagarcia7293@gmail.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maria Garcia <mgarcia@qblox.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: pca95xx: add TI TCA6418
+Message-ID: <20250618-concierge-fencing-e62c1e884ce9@spud>
+References: <20250617204402.33656-1-mariagarcia7293@gmail.com>
+ <20250617204402.33656-2-mariagarcia7293@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,84 +62,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Z++lINJ27TajwB1V"
+	protocol="application/pgp-signature"; boundary="qERtATDEhjwRBM4E"
 Content-Disposition: inline
-In-Reply-To: <20250618140923.97693-3-benjamin.gaignard@collabora.com>
+In-Reply-To: <20250617204402.33656-2-mariagarcia7293@gmail.com>
 
 
---Z++lINJ27TajwB1V
+--qERtATDEhjwRBM4E
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 18, 2025 at 04:09:11PM +0200, Benjamin Gaignard wrote:
-> Add a device tree binding for the Verisilicon (VSI) IOMMU.
-> This IOMMU sits in front of hardware encoder and decoder
-> blocks on SoCs using Verisilicon IP, such as the Rockchip RK3588.
->=20
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> changes in version 2:
-> - Add a compatible "rockchip,rk3588-av1-iommu"
-> - Fix clock-names in binding=20
-> - Remove "vsi_mmu" label in binding example.
->=20
->  .../bindings/iommu/verisilicon,iommu.yaml     | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,i=
-ommu.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iommu/verisilicon,iommu.ya=
-ml b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
-> new file mode 100644
-> index 000000000000..9ae4a45d76f4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/verisilicon,iommu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Verisilicon IOMMU
-> +
-> +maintainers:
-> +  - Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> +
-> +description: |+
-> +  A Versilicon iommu translates io virtual addresses to physical address=
-es for
-> +  its associated video decoder.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - verisilicon,iommu
-> +          - rockchip,rk3588-av1-iommu
 
-This isn't right. Firstly, the "oneOf: - enum" construct doesn't do
-anything. oneOf one item is just the item. Secondly this still allows
-verisilicon,iommu in isolation which is not okay. What you actually want
-here is
-items:
-  - const: a
-  - const: b
 
-Thirdly, Nicolas mentioned that the version of this iommu is 1.2.0,
-which I would like to see reflected in the compatible.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---Z++lINJ27TajwB1V
+--qERtATDEhjwRBM4E
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFLhjgAKCRB4tDGHoIJi
-0vB/AQCNK4tUJrrBtB91ikBSoiUUESBAhs91t/tLoNI6BezTNwD/TT+xxCi+29w8
-EL8ApkHM1NexQn9tJmglNf0tfkz4rwA=
-=ASP4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFLiGQAKCRB4tDGHoIJi
+0p4yAQCRimq22+Rc1QPstE+Qc0b9aS3m+2t8waTdqH+DCFvnVAEAkSG0FNjQly4l
+fAEs1uRv7QwKmG8JEfRHp76Atmn5Vgs=
+=Tgmc
 -----END PGP SIGNATURE-----
 
---Z++lINJ27TajwB1V--
+--qERtATDEhjwRBM4E--
 
