@@ -1,144 +1,262 @@
-Return-Path: <devicetree+bounces-187302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B162ADF73A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 21:51:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53BB5ADF74C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 21:55:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC9A34A37CF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:51:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AF911BC113A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 19:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C39821ABD0;
-	Wed, 18 Jun 2025 19:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A4D219A71;
+	Wed, 18 Jun 2025 19:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XnM2iGOb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mTk11yM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD7621A421
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 19:50:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BFD219E8F;
+	Wed, 18 Jun 2025 19:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750276256; cv=none; b=nou9jxRDGScvEDn9C6f9D5Ua5T47t81+dlUjG+SI+C+D6KlZ+3+PVcyCtMNAlmpPCdzAx8M4mNWQ1sukjDLXeFL2IJKH6nX3c1Bocwmki19W1bJUorgTMLg8vUvIvyFOTAuuqoLGaXDBcCh1hPnkfCyhnPWhBDJLFxV/vnshug0=
+	t=1750276531; cv=none; b=kjRNg8uYyIiBLVgKyIt91iXr0d7ZzJ/YzA7CuOShNRiOthHfVELlMGftIWgi9tefE5antsddtyjeu7en/vWtxmI8wZVHaesEztuC3s4L6WQLQT2GNBsPEbDrUkOs2PWRmAPXj8Kx3bwnS7hxJP/9gnZjGiQFAh0S5fqyuZ1ayKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750276256; c=relaxed/simple;
-	bh=Abe84Q55V8uLaOGPFRiyP7NZWpfQt9lsxHaIzy2vJKE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HCAtNemGT4nbCcaN/nLIKbkf5sO5noP7vQgh72gt0AAImK0M+W2dQzmrA37UxiyTgH+T1a5TcvPA7L0dhAhEsExUZYJ9pZ6g5X+7OVZS0/MhPsYDgjoJ0NzC6jifecaVSD3ULc+mygQ7dcb6cszc8AnrQYmI1dav98H55I5km7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XnM2iGOb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55IHtKSD023298
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 19:50:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FOzsOSYkCLW2ggvd0CZgtgGnw4BaefQGhIvMT/TEkjU=; b=XnM2iGObMqoEo6lf
-	g2scR+b50htBei+ddhijz7lFpT6jkC+CUE9B8IXrQbeuRwAphjqxH4gyAzl36zGg
-	EAXjXw8FnlhtfQzmXSoWBzc81DDcaiqBVYKs8qMwUCxRrMqxAweXcq+sm50ESf9a
-	Su8mBE6j99asU3sNrJfLizPOqrstkfar1EqGiludaRf4yY9d1b4KQunRbfW867qY
-	AQi5kkjx4Mo5EXhKRbevfj3jIroX9JknaAQS5bfQnsPadSdegb311jv401rYl1Gj
-	XlMvCgq3IV7366lqZy2VYC6qOnWdCem0hX6XMnpoLK3cxzegaOrr/UxxL42IY1C1
-	A2QL+g==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h9ddjj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 19:50:53 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7d09a3b806aso1084985a.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 12:50:53 -0700 (PDT)
+	s=arc-20240116; t=1750276531; c=relaxed/simple;
+	bh=/hx69EgIRd5u5Yq56ErOQ7OjXNa8EoiLRyzeRsicTuc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tjfj3xYYHkwQwUd3WtMEsL9JZ727aCQ0YKRC+3jvve8uNfqjsC30l+fFZaIPOui+R8ezhY+y3ibvc3BCRyQTyYWowyGMNppwGQ4xTjHtobJi37Fd1S4HkzcFd/vNEx4pWOLPukVE7m4HT0KcM5Q3EFMb/RZ8CX/hiweWQkDmT5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mTk11yM4; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a548a73ff2so93566f8f.0;
+        Wed, 18 Jun 2025 12:55:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750276527; x=1750881327; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wNzDJ0oBkEzm8oLmVZ4FeBB/IbmdKIQf9CHD8w2IwKo=;
+        b=mTk11yM43YoFe/Qt9mx2V08m/ZeRFy4qUCu2XQVccVC//YKtYz7XhD/X+J9UgMU62t
+         D4oQWUGUs3gbp9lznEvv+VkBWBOKX+dirBfhSJox4Nb13yc+KYqB0sms4JkMULfCPmIp
+         2PhdjS/tnh+wuE+1GBDlM73h6xk/BePRHY1dppYcXM2ziyC/r4dXKqS9dWDUriiI48/z
+         oW8CkjmbDfT57ED+1E4pyUCRtjV+NIVFZocKTdRgVPBxo+WsBk/5zW1fjFdv8AcLuPGd
+         73RwjPEp145D2Yc+DPIGbGO6poF296+0NTu4kf+vrmXSqjR6VT61pFGVGbB0N1xdKxOD
+         wwGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750276252; x=1750881052;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FOzsOSYkCLW2ggvd0CZgtgGnw4BaefQGhIvMT/TEkjU=;
-        b=kcQK4gOTSCA6WLsUFjxx5xRVo3/NiYJPBoV1P2lbckwzRRpIpjkn/pca5rL4FhsNjl
-         e/DP/pDo/RePoWEAwGrh6emQptUxm4TuldCed5BVPS6ngKncJMGJG9QhK0OBulKRPek4
-         44nTPf3esFhNRiFLHSvkdsPn1vQqjCDL0kocEue39Ofnw/+AYapfKvKC87MMufxftTUY
-         WTmzr4oCHPEqF0dgsVhUrmxMzr/xFLzq/I4awy3MfLpgIIywTTOrALvz4l0vVvTEAljY
-         HyphnG7kheib+diyxTwFsAOi6uiZBmfZV/PQraZHvdjHi4jp+4wB6bcgOWpp20CX/2mz
-         P7wA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXp+fPtPAhiho1lSgyDkHLHUbSJMVKzZ6H4BGWcUVZMP/sRM+9sINxKDaVIfMNag3BHaYPPUImgdYA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDl1g1sj55unJ+TlouJUfNn3HC1jz7JWi2iJUnH7gYaq/OrVFk
-	9tgcWd7vUN7/OeIgEJ6PdfoCRB5ZgOkFk6SexfDNyzsXFE18p5HKwOd7aOWRLJayK1KmtdKBw8b
-	XOevzgF3GlMJ/1DQ+ETEXl9VBBCP940bcFwhNzr01rUBfmr0n1aXdu48j0fnlLE34
-X-Gm-Gg: ASbGnct+725zrN9mzZmd9LfyTP0sBsvfVbn1iVOpkIlp3lUaqyyb0b6Y6sxQNHAnHe8
-	b8U77HIyIj3UteHQ0QGejEcUlX9izjXqYfR6XyWv7F/oT31aRKMiKRqHeKQVxKhF2Opbb/kotY9
-	//JCq2v6w6/cTnfON53fJBzpeAIbWvmth/+87HxMzrafyb5YTzejEmi4erS2hEzLcSRvRbCsaDg
-	DCyNKZsRxnyqzhX3sR380Olx7ADfBSfix2Y9ECpSVAlJ+R42x3UgxpW4oADN21PgopgjiDbbKkf
-	J1Px0oYDobm6sMnkPSsJHkcuxNvY3yfPEQRc6ChDbWxSY0JRYG+4Inrtm3MddvuMY4J0ekE90Ag
-	mfwY=
-X-Received: by 2002:a05:620a:4307:b0:7c0:c024:d5 with SMTP id af79cd13be357-7d3f1b5439cmr37309285a.8.1750276252372;
-        Wed, 18 Jun 2025 12:50:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEKmaXk+Vmkvjg46kiwK/r2FLExfJoQV8V595azEx4ecLa7oANL+iNpPolnQOfeL6VLJxOtmQ==
-X-Received: by 2002:a05:620a:4307:b0:7c0:c024:d5 with SMTP id af79cd13be357-7d3f1b5439cmr37308185a.8.1750276251956;
-        Wed, 18 Jun 2025 12:50:51 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adf8b393ea8sm966523166b.159.2025.06.18.12.50.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jun 2025 12:50:51 -0700 (PDT)
-Message-ID: <f4ee6c98-3071-4121-bd6b-a41959f7f5ef@oss.qualcomm.com>
-Date: Wed, 18 Jun 2025 21:50:49 +0200
+        d=1e100.net; s=20230601; t=1750276527; x=1750881327;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wNzDJ0oBkEzm8oLmVZ4FeBB/IbmdKIQf9CHD8w2IwKo=;
+        b=h3+Budb/hZYs/hGEkAlNIFKEjT6RjYj+1aUUIcqsgdlGRC8QhGtYRWTKIUFleZqp/j
+         KyQXgDBuaxychAstHdzJtdLiuNvBHumqQGEnEhGcoJ6r9Lu7hUzERiG8N1eMBZivOZ0o
+         OkyFGxeWzpLA53cbg81XzdVJ+dXyImijMiMg7q5aJrYjREd9mFcPFRB+CoUFMUTUUSwM
+         YAw8Qvw95G1JOsiBuvFuFVnwqsA9Dmm4bSsPKwNud/MkHXX5yc63ahRccj6SMW1zkKkZ
+         qkPwsBRYU1yiO2prVbOG0nI+DjDoB2JkOX95y3qiGOdup1UBk4ArNzxGoH2KchSWtTV8
+         KMMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWMddTB5CxAM88TJFJ5Wu2qY73kYC6Zq5ofWLCjVQjEgg45h6SzmLWT13RMpjwS/6N8sQ+OkGCnj4fz/CQG@vger.kernel.org, AJvYcCXhmou4ON4KWGokB+94WKngRkeW+gplSRerhHAYxVHm5aT/yLEEIbv258JZrMVpnkflOebsJmZjYDCV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkvsDZW8XMhZnemBzYPoduNzC+JDLUNynlutCUnSYeuK1bAuFn
+	cptx5e6nDp5x9oR0A1IBxg1nwpR93dOcoOhs9uuaiyfSPVkKAqBVIq2y
+X-Gm-Gg: ASbGncuo47ZckQlUi7GlKRaksMs6FjJlu9NrTyeaLvI8X5jgkpqj1SDtFSsL6EgbBJg
+	25N+JVoT0r2Ihu+mrprjE9FIMQaodyuf2gmnfQ2W8D4gnsRtklJmfNtrE6H0OS241uia0RkB4zu
+	+dnhbRg9sxePNRMoc8zVH+gBapDsEE/YpdkSzcVYTjVDu6FSLK7GdWxHPFwCCVqkJbvR2xSSZgU
+	FGgu3Vpc1P7t4gmU0UYFF8QxElzPWyol5nYQpurGofT2fmHJrACl0w4Rz8kONd1ybwFamXDR1rr
+	eR85zDBlYNUN42okVo3BAxlDExpj0zJB+LCCnc1ylsxZoNeYT1dgInM19UniDeqRxGUg9xpqMYS
+	EwPkYMSM1aPU=
+X-Google-Smtp-Source: AGHT+IGf8e5oh4khYmXZMlIMvNd0kEOjqBixPh2SFjaQsD1l9BKRo8X19dErEHHzDb4u6nTTOodrng==
+X-Received: by 2002:a05:6000:653:b0:3a5:783f:5289 with SMTP id ffacd0b85a97d-3a5783f5758mr13454626f8f.49.1750276527099;
+        Wed, 18 Jun 2025 12:55:27 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:12c1:8801:20af:3ab0:e9d9:22c5])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568a54d74sm17994443f8f.10.2025.06.18.12.55.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 12:55:26 -0700 (PDT)
+Date: Wed, 18 Jun 2025 21:55:24 +0200
+From: Jorge Marques <gastmaier@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Add adi-i3c-master
+Message-ID: <dfejhrchaxwze7gkipdgcx5byefv6hudi456na25yrts6viqvw@lfnv55dgvk32>
+References: <20250618-adi-i3c-master-v3-0-e66170a6cb95@analog.com>
+ <20250618-adi-i3c-master-v3-1-e66170a6cb95@analog.com>
+ <20250618-visionary-hawk-of-success-d4aab8@kuoka>
+ <ymmn2jgpa4bia2wl4d32ccipybxt4nylz4hspdf2svivk5ao7s@vv7v3soq2e65>
+ <9260c217-9c63-4eec-854a-a7ec020d1e65@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sar2130p: use defines for DSI PHY
- clocks
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250618-sar2130p-fix-mdss-v1-0-78c2fb9e9fba@oss.qualcomm.com>
- <20250618-sar2130p-fix-mdss-v1-3-78c2fb9e9fba@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250618-sar2130p-fix-mdss-v1-3-78c2fb9e9fba@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: y0IcWB-L8QPSYbrxzRMotTTZO0Prde2P
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDE2OCBTYWx0ZWRfX3tHEucI6QQWk
- u2/R1q5TGareH/OpmF4CwkznZA2Cey0E3jJl6qfItarXOM1unpMdRxBBfy6oCZ5z+4eytLOEUI8
- 7fLUnyGPB6c0O/MApqTN/sYQwkPfvVI9/XF130TTVoMsJSGDXpDU6VED9I2a+XIZM8J0ywVu4MP
- abHHPFhzGsow5nhySPfrM6Br3Q3wcPdL9/WSd94o/Rwsa9dgIKbL72d2RxyRqik5oVGRDArAsho
- +Txm6jWrQ4q6s7aVUoOkk82A7cjGdD1LOCfFusavTpxcaSDOy2hRzaLSQRCNqQuN2T3Awa0k7sX
- 2X0fkH0WQWnJpRDBdvVcx97PdbkjN6/Do8bPuNq6HnmwWTpBnATEIF8XgwM2a5p4Dd0CkLa36kI
- 1lu7mBk2McwUTwgobp//dQ0QI7rrygKOurcFEuIbzQs7KPXUg4hVLXApMJzvOFzN2SevKOE6
-X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=6853189d cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=FoSyCDDHJe3iGoLm4rcA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: y0IcWB-L8QPSYbrxzRMotTTZO0Prde2P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-18_05,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=461
- malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506180168
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9260c217-9c63-4eec-854a-a7ec020d1e65@kernel.org>
 
-On 6/18/25 7:49 PM, Dmitry Baryshkov wrote:
-> Use defined IDs to reference DSI PHY clocks instead of using raw
-> numbers.
+On Wed, Jun 18, 2025 at 05:45:22PM +0200, Krzysztof Kozlowski wrote:
+> On 18/06/2025 14:15, Jorge Marques wrote:
+> >>>
+> >>> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> >>> ---
+> >>>  .../devicetree/bindings/i3c/adi,i3c-master.yaml    | 63 ++++++++++++++++++++++
+> >>>  MAINTAINERS                                        |  5 ++
+> >>>  2 files changed, 68 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
+> >>> new file mode 100644
+> >>> index 0000000000000000000000000000000000000000..718733bbb450c34c5d4924050cc6f85d8a80fe4b
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
+> >>
+> >> Filename based on the compatible, so adi,i3c-master-1.00.a.yaml
+> >>
+> > I agree, but I ended up following the pattern for the other adi,
+> > bindings. I will move for v4. IMO the version suffix has no much use
+> > since IP updates are handled in the driver.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
+> Filename is not related to whether given ABI works with every device.
+> Filename helps us to organize bindings and existing convention is that
+> we want it to follow the compatible.
+> 
+Hi Krzysztof,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Understood.
 
-Konrad
+> >>> @@ -0,0 +1,63 @@
+> >>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/i3c/adi,i3c-master.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Analog Devices I3C Controller
+> >>> +
+> >>> +description: |
+> >>> +  FPGA-based I3C controller designed to interface with I3C and I2C peripherals,
+> >>> +  implementing a subset of the I3C-basic specification.
+> >>> +
+> >>> +  https://analogdevicesinc.github.io/hdl/library/i3c_controller
+> >>> +
+> >>> +maintainers:
+> >>> +  - Jorge Marques <jorge.marques@analog.com>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: adi,i3c-master-1.00.a
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    minItems: 1
+> >>
+> >> Why?
+> >>
+> > The IP core requires a clock, and the second is optional.
+> 
+> OK
+> 
+> > minItems sets the minimum number of required clocks and the maxItems is
+> > inferred from the number of items.
+> > 
+> > On the IP core itself, one clock is required (axi), and if it is the
+> > only provided, it means that the same clock for the AXI bus is used
+> > also for the rest of the RTL logic.
+> 
+> Hm? What does it exactly mean - same clock? You mean one clock is routed
+> to two pins? That's still two clocks. Or you mean that IP core will
+> notice grounded clock input and do the routing inside?
+> 
+
+The routing is inside the IP core, and only one clock pin is used. In
+fullness, since it is a FPGA-based IP Core, the number of input clock
+pins are defined by the parameter [1] ASYNC_CLK that enables the
+asynchronous i3c clock input pin. The devicetree then describes how
+things are wired, if two clocks provided, it describes that both clock
+inputs, axi and i3c, are wired to the IP Core, if only axi, then there
+is no clock signal to the i3c input clock pin and axi clock drives the
+whole IP.
+
+[1] https://analogdevicesinc.github.io/hdl/library/i3c_controller/i3c_controller_host_interface.html#configuration-parameters
+
+> > 
+> > If a second clock is provided, i3c, it means it drives the RTL logic and is
+> > asynchronous to the axi clock, which then just drives the register map logic.
+> > For i3c specified nominal speeds, the RTL logic should run with a speed of
+> > 100MHz. Some FPGAs, such as Altera CycloneV, have a default bus clock speed of
+> > 50MHz. Changing the bus speed is possible, but affects timing and it may not be
+> > possible from users to double the bus speed since it will affect timing of all
+> > IP cores using the bus clock.
+> >>> +    items:
+> >>> +      - description: The AXI interconnect clock.
+> >>> +      - description: The I3C controller clock.
+> > I will update the descriptions to:
+> > 
+> >         - description: The AXI interconnect clock, drives the register map.
+> >         - description: The I3C controller clock. AXI clock drives all logic if not provided.
+> > 
+> >>> +
+> >>> +  clock-names:
+> >>
+> >> Not synced with clocks.
+> >>
+> > I will add `minItems: 1`.
+> >>> +    items:
+> >>> +      - const: axi
+> >>> +      - const: i3c
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - clocks
+> >>> +  - clock-names
+> >>> +  - interrupts
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: i3c.yaml#
+> >>> +
+> >>> +unevaluatedProperties: false
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    i3c@44a00000 {
+> >>> +        compatible = "adi,i3c-master";
+> >>> +        reg = <0x44a00000 0x1000>;
+> >>> +        interrupts = <0 56 4>;
+> >>
+> >> Use proper defines.
+> >>
+> > The following can added:
+> > 
+> >   #include <dt-bindings/interrupt-controller/irq.h>
+> > 
+> >   interrupts = <0 56 IRQ_TYPE_LEVEL_HIGH>;
+> > 
+> > Is there any other to be replaced?
+> 
+> Usually 0 has a meaning as well. Where is this used DTS snippet used (on
+> which platform)?
+> 
+
+The example provided is used on AMD xilinx arm,cortex-a9-gic.
+The IP core is tested on AMD Xilinx, Altera FPGAs (arm, microblaze, arm64).
+Test/support to RiscV-based Lattice FPGAs should eventually also come.
+
+In this example 0 means Shared Peripheral Interrupt, but has no header
+file defining. I guess I could make it generic and set to
+
+  interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+
+and let the user figure out for his target platform.
+> Best regards,
+> Krzysztof
+
+Best regards,
+Jorge
 
