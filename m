@@ -1,264 +1,138 @@
-Return-Path: <devicetree+bounces-186970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AC1ADE542
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:10:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07BA4ADE56D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:23:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CB5F17A510
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:10:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B73F189D3AD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E997727F005;
-	Wed, 18 Jun 2025 08:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB83E24E016;
+	Wed, 18 Jun 2025 08:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="IbxPeQx0"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iHtcDGmA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2066.outbound.protection.outlook.com [40.107.96.66])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D69E27EFF5;
-	Wed, 18 Jun 2025 08:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750234195; cv=fail; b=LkgG9fB0WiruC/XBc/gJNTWuBkXIzlW/GofMceWLdvGrkv4Fd0xliA8lLeqHmOft3rl2x913Zu7uC/KK50G2ZPQbiQKq+NB9QSwWV+Cei1OBcdBoHD2XKfX23LP47xah4QZQdN0YkN/SJteHgnAeuwyizPv5hTJngvOd7Px40lo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750234195; c=relaxed/simple;
-	bh=U2oAUO2T9ap2Ytheabz3m5gJ0PZ2iGqvJKiQEt9y1UM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WE3lBuZWknFCn4DkRkf8ux88ixNgOr6yvxo+ANwdy9qAsbFJEU48PS8rvt0I+ThzathTk2P93m6+qUcdj24rGL75QX8BiYGwfntFxhG9SOZIyuq4VQ+U6ZBnK6m1Y0x0dPOUCoDqqdXz70yJXFIy6MAjBs9VWw2Xe2nRGbRdj8U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=IbxPeQx0; arc=fail smtp.client-ip=40.107.96.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fTLdn1PpXxBnbCdwkzse3gG7tlbW2AmdZIV7ztWcgrh30ihhizD6DN+TpxeUEl917beA6zHtZsu3O/SoBiWbqUS7oNLXJzqtFidHsGbtfas7QIdsmKceEq/G+xRc2A0sj6yBiy0S3cJzQd9sKKnIIXdB9dD7zQ8mbkfimHRfOZmWV3S3XGQ8Z24mXEwcXR0NMrlLJFqv21ESWuNoc/l1cHfesNEN1bONz5rttK7BpnUB0PZhgMUdvRWqPJIACgIhi+Lx+rXfChnDpjWzOGd1qZUOSquhpalX6XMarHZjRV86tGWHdSzM+E/jitS8ouhUzdgz7AyK/9JygtB4LzLJDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RvuegM2OmNNzdm5mTrQZ+2CHj5Eh+SML9d3n7MXL8y0=;
- b=nsbo9lYhnrNbdF17NQzghRE6sbkJOFqgADQZCGmkqAQj1LpMqebn/iiX1NIAEeRlUvzZi9aHv/Hjt/S9r4yCe0NVJvT3dpU/tw+TWwKrSNTVMECgYvnzZRLbURwH4wyiEb4OiPhB5Q/DSEU9YvrJFSd0LPqB+U4HmozXxJkRj2vAlL5Klwavf5waUKfEjjCgmjL8L2Nz6UKRJNyqBpRp8zO/ypV0ots0XMJjppGH6JRvDAAi5aGHGp0Eksyh0sBZSup5YUeUjtfEWx+FbLTTFFR4gxwT7ni4Sr2tKhyQ34DleE4/TRI8hvVUbUaHmtmkppow+C6bgGU+8EkAcGytNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RvuegM2OmNNzdm5mTrQZ+2CHj5Eh+SML9d3n7MXL8y0=;
- b=IbxPeQx00yRgsHtSr8t15Z5MBqo368eqXo23X2EWcr2PfpM1/2wHr6Ikx+yIYS0ldrUV5sQyqnUKAZJbpjOqviUTxIAo2jpchXUNt+WRMq5uEBDaR+4j671XBJiIQzSTTLuBaBTUivL/h/WdkPLX7WkWxyQHRZ2pS3K5FWaP+n4=
-Received: from BL1PR13CA0350.namprd13.prod.outlook.com (2603:10b6:208:2c6::25)
- by SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.28; Wed, 18 Jun
- 2025 08:09:48 +0000
-Received: from BL02EPF00021F68.namprd02.prod.outlook.com
- (2603:10b6:208:2c6:cafe::9e) by BL1PR13CA0350.outlook.office365.com
- (2603:10b6:208:2c6::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8857.17 via Frontend Transport; Wed,
- 18 Jun 2025 08:09:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL02EPF00021F68.mail.protection.outlook.com (10.167.249.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8857.21 via Frontend Transport; Wed, 18 Jun 2025 08:09:47 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 18 Jun
- 2025 03:09:44 -0500
-Received: from xhdlc201964.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 18 Jun 2025 03:09:41 -0500
-From: Sai Krishna Musham <sai.krishna.musham@amd.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<mani@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <cassel@kernel.org>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
-	<bharat.kumar.gogada@amd.com>, <thippeswamy.havalige@amd.com>,
-	<sai.krishna.musham@amd.com>
-Subject: [PATCH v3 2/2] PCI: amd-mdb: Add support for PCIe RP PERST# signal handling
-Date: Wed, 18 Jun 2025 13:39:31 +0530
-Message-ID: <20250618080931.2472366-3-sai.krishna.musham@amd.com>
-X-Mailer: git-send-email 2.44.1
-In-Reply-To: <20250618080931.2472366-1-sai.krishna.musham@amd.com>
-References: <20250618080931.2472366-1-sai.krishna.musham@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A2A35963;
+	Wed, 18 Jun 2025 08:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750235006; cv=none; b=LlSR0Dt20CxCnq0nAkuh9qbR3XOtwhalZQv2oSBb3zKFaoU6rn7qHPwyinKuM6SLuXO1TiAKjsxx37Z5WXUpfKzH0SHxyRMR3QrhGXkZja2WJ2xMwxx4rhbMBe7HHE/b9tPPQ5L00h+5liIfAEAMT5Hks+Yh3C/5Hdf93atPc8c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750235006; c=relaxed/simple;
+	bh=9NU+gif1VqKOoeefRSIou7mERw+AySrXW0V17R4PjiI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KU3L9cPwbrW4HJpwQXAbTwrqkNEdEYHw5mZJGSj6kxo4F1SGATN5wLXWwdJ+RcGnucQRydg5Axo5xiQ3bd+sE3d9cSpl32/iFunnVQJLl4Wfus8y9v6Ar1jbB+YZ/ztLhoFo/RIpUBV2yWpBVYstotm2MOXFIHBNSupIUHKwaW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iHtcDGmA; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 5D01144341;
+	Wed, 18 Jun 2025 08:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750235002;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=cu2vOEx28B8Wk475wybPa3ZO6D0NFJUiHtOoTWhsPg8=;
+	b=iHtcDGmAY4bG/DzaTKk0YUyiaNUfc+ucIu7nHF9tUHehPAs1Soymo/ZJK2qiVN0CPiY4TB
+	SsjOV3QN4nFhON6jsQjhupymqtIM07OaqgCtLSY2nB4DD4qTivvjgCcRaseyCapItFrlzY
+	SZYtPi+r2jzKgvW5qZTdCpYec4yWRZlEUOJCu5r+FMcD5aHTnxHMxsFNYz/z4Xe4mcslRy
+	q6GdlL+nNnh0k2fm96IpymKRPF9iF1yH4SP4FfGxL5XnjjHbFd6ekPOhQ1pTvDHW8W8NCm
+	a/FQK2iGVulYgQ7MmoddNnPTPx/nVWsE9Sf9Fyt1cfNxIVcceEjdcPRYLOTryA==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree-spec@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v3 0/1] i2c: Introduce I2C bus extensions
+Date: Wed, 18 Jun 2025 10:23:11 +0200
+Message-ID: <20250618082313.549140-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: sai.krishna.musham@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00021F68:EE_|SJ1PR12MB6339:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4b27782-f264-4a5a-febd-08ddae3f7df9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?e3ngoSyajaJTopVcxc+PEgmXAgMtMp2J1DojnNds8DK6tM/b3vZ+p/fix8/A?=
- =?us-ascii?Q?GVnr3LDbKYE1jDLxYDEBdAvZgWmPD826ikDgTLEx+SJq1svyo4YBbzvaLv9x?=
- =?us-ascii?Q?N1NxNqKGkh+PCWWO34tmEXB2jIA6Je1xfYrjDtaKFG3HIqHANF4uOlIGAdHx?=
- =?us-ascii?Q?Tt7484CUANJ4UVDp/g1WPWqGoKfQZIMIzvnYxaD1SlCF2ex5T/07F8FYkcK7?=
- =?us-ascii?Q?uLnsMVKXV6DkERStiMYs4nDScHf4vUr0R4T1qBesyWWKPZTf0naCZt0CfCdo?=
- =?us-ascii?Q?Ob/E2c1xRCHiP+WBhPEhSUtLpS+S6/qw65C80c4lY5MPeiw+0xnUCM3yQ7eA?=
- =?us-ascii?Q?bK+DKJir4UMt5tDJPw/MAFyemw4W6SgZwagkqZBDpITcIcaTJpzBq3QavEWV?=
- =?us-ascii?Q?W4oPHIu5Lp+qN9wbhNmO8Yi21Ii5CYqgTs79SGLLcBs7f8iYPJAFu2zsj0lo?=
- =?us-ascii?Q?PsZ1VdF5QideSy1BuMa37At7ZN+V3HYLThC5I8LM7nK/+aIxsLDukatXbjmJ?=
- =?us-ascii?Q?sN0rCbZmVJ8TLI2Bf293dMxDncPR23w3ZjYHgWcZlHS8F3xJHGKqgoruOJVh?=
- =?us-ascii?Q?XbeJkopKx1jdbmFCv0eBVBDtof23Z46/LpY4D7U7B2ZIQZJGPAUruRdK9pgc?=
- =?us-ascii?Q?08glyGkCc8N66r7M4Z25cVOTPqH9gFW8SFrGeSgMaIcfXIo2dkkA5WYaHVwn?=
- =?us-ascii?Q?ZBr4WIF8Zvikt+/PW94sGtbcK0YM8t8VgmvUIRWm+RKhB46FVonEdfj9AoEE?=
- =?us-ascii?Q?2am2ztoeJyhWyoaAPwTrQA1hF1EhklH8YLFXr+Cvbx1Lik7tP5bipDBWarv+?=
- =?us-ascii?Q?teVp0sDbBX6VcM2KAt57p581ebJEIOEPW6WBFJWRiDitI/mNW1dCj6Dy17ap?=
- =?us-ascii?Q?U/qqo9aa/juXEx/3BeOEENRy/d2+HBkiR5rIL/1kuAbntJENQxQHl/9qLOOW?=
- =?us-ascii?Q?3cFjsLie5uVhsGTdNSW5uayRzBb8CPSbBvo81h0Db/akjt3Bx71xH09TY9ks?=
- =?us-ascii?Q?h4sAnq739wFlEvCeD7w9vdQyLDiMGWFGO2koyz4S2ajkhMAWH5eJ7UuywobO?=
- =?us-ascii?Q?KPpGMUjqj8APB8M3DO3+CJ6e/ihkg/cURwyQIJy6WWXMyA7tvGgFGK3WXP7F?=
- =?us-ascii?Q?o/yan8xo6vcSBnnzszLSBTZsC08/cKa+AwBs/YZxrpJlkfuqwsrxFTFznmRa?=
- =?us-ascii?Q?z3Wv/P7HdSSIRg4ZAG4rQ8EBIXAxtLlpb5eY+pFE7N91714pcGA0OwtNxrVW?=
- =?us-ascii?Q?/naspXMCFp4/c/gtiFdG0BRikGeFhEyYkW6UmWAp/e0uWSNP/Pjo0e3BDHjs?=
- =?us-ascii?Q?uu3NsFWBhBbYh/DyGGDAaakD2frWA+QUPc7dPdMse9kOPUOJMCU7ir0iGa7I?=
- =?us-ascii?Q?OFhEgdBJIbTFidTpcqldHmXdQejf2BCZhCIllAi0u8gUf9GAe3MTMEiKtRkG?=
- =?us-ascii?Q?HTfdbEiw7v2kA4HGcl00HKXDJ+OvWbM2sOJry0KnpkthB4SvVBgf2fmm18DA?=
- =?us-ascii?Q?cBfe/MagYkjqS3fIT3OCWlGwR0oWaiKspNVU?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2025 08:09:47.5741
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4b27782-f264-4a5a-febd-08ddae3f7df9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL02EPF00021F68.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6339
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgddvudelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeelteduffeltddvtdffgedugfejffeggeekheejiefggfeivefhkeffheehheeiueenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtoheprghnughirdhshhihthhisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpt
+ hhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: herve.codina@bootlin.com
 
-Add GPIO based PERST# signal handling for AMD Versal Gen 2 MDB
-PCIe Root Port.
+Hi,
 
-Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
----
-Changes in v3:
-- Implement amd_mdb_parse_pcie_port to parse bridge node for reset-gpios property.
+An I2C bus can be wired to the connector and allows an add-on board to
+connect additional I2C devices to this bus.
 
-Changes in v2:
-- Change delay to PCIE_T_PVPERL_MS
----
- drivers/pci/controller/dwc/pcie-amd-mdb.c | 45 ++++++++++++++++++++++-
- 1 file changed, 44 insertions(+), 1 deletion(-)
+Those additional I2C devices could be described as sub-nodes of the I2C
+bus controller node however for hotplug connectors described via device
+tree overlays there is additional level of indirection, which is needed
+to decouple the overlay and the base tree.
 
-diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-index 4eb2a4e8189d..b4c5b71900a5 100644
---- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
-+++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-@@ -18,6 +18,7 @@
- #include <linux/resource.h>
- #include <linux/types.h>
- 
-+#include "../../pci.h"
- #include "pcie-designware.h"
- 
- #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
-@@ -63,6 +64,7 @@ struct amd_mdb_pcie {
- 	void __iomem			*slcr;
- 	struct irq_domain		*intx_domain;
- 	struct irq_domain		*mdb_domain;
-+	struct gpio_desc		*perst_gpio;
- 	int				intx_irq;
- };
- 
-@@ -284,7 +286,7 @@ static int amd_mdb_pcie_init_irq_domains(struct amd_mdb_pcie *pcie,
- 	struct device_node *pcie_intc_node;
- 	int err;
- 
--	pcie_intc_node = of_get_next_child(node, NULL);
-+	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
- 	if (!pcie_intc_node) {
- 		dev_err(dev, "No PCIe Intc node found\n");
- 		return -ENODEV;
-@@ -402,6 +404,34 @@ static int amd_mdb_setup_irq(struct amd_mdb_pcie *pcie,
- 	return 0;
- }
- 
-+static int amd_mdb_parse_pcie_port(struct amd_mdb_pcie *pcie)
-+{
-+	struct device *dev = pcie->pci.dev;
-+	struct device_node *pcie_port_node;
-+
-+	pcie_port_node = of_get_next_child_with_prefix(dev->of_node, NULL, "pcie");
-+	if (!pcie_port_node) {
-+		dev_err(dev, "No PCIe Bridge node found\n");
-+		return -ENODEV;
-+	}
-+
-+	/* Request the GPIO for PCIe reset signal and assert */
-+	pcie->perst_gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(pcie_port_node),
-+						 "reset", GPIOD_OUT_HIGH, NULL);
-+	if (IS_ERR(pcie->perst_gpio)) {
-+		if (PTR_ERR(pcie->perst_gpio) != -ENOENT) {
-+			of_node_put(pcie_port_node);
-+			return dev_err_probe(dev, PTR_ERR(pcie->perst_gpio),
-+					     "Failed to request reset GPIO\n");
-+		}
-+		pcie->perst_gpio = NULL;
-+	}
-+
-+	of_node_put(pcie_port_node);
-+
-+	return 0;
-+}
-+
- static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
- 				 struct platform_device *pdev)
- {
-@@ -426,6 +456,14 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
- 
- 	pp->ops = &amd_mdb_pcie_host_ops;
- 
-+	if (pcie->perst_gpio) {
-+		mdelay(PCIE_T_PVPERL_MS);
-+
-+		/* Deassert the reset signal */
-+		gpiod_set_value_cansleep(pcie->perst_gpio, 0);
-+		mdelay(PCIE_T_RRS_READY_MS);
-+	}
-+
- 	err = dw_pcie_host_init(pp);
- 	if (err) {
- 		dev_err(dev, "Failed to initialize host, err=%d\n", err);
-@@ -444,6 +482,7 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct amd_mdb_pcie *pcie;
- 	struct dw_pcie *pci;
-+	int ret;
- 
- 	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
- 	if (!pcie)
-@@ -454,6 +493,10 @@ static int amd_mdb_pcie_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, pcie);
- 
-+	ret = amd_mdb_parse_pcie_port(pcie);
-+	if (ret)
-+		return ret;
-+
- 	return amd_mdb_add_pcie_port(pcie, pdev);
- }
- 
+This decoupling is performed thanks to the I2C bus extension feature
+which is introduced and detailed in patch 2 of this series.
+
+The implementation related to I2C bus extension has been already
+proposed as an RFC in Linux [0]. The missing part in this RFC was the
+binding.
+
+This binding related to I2C controller is not available in the Linux
+repository but in dt-schema repository and so, this series update the
+I2C controller binding to introduce the feature.
+
+Compare to the previous iteration, example has been fixed. No
+other modification has been done except adding a reviewed-by tag.
+
+In the v1 series review, discussion started but conclusions were not
+reached. As a reminder, topics started in the v1 series discussion were
+the following:
+ - i2c-bus-extension@0: usage of a subnode with unit address
+ - Presence of phandles in both direction (double linked list)
+
+[0] https://lore.kernel.org/all/20250205173918.600037-1-herve.codina@bootlin.com/
+
+Best regards,
+Hervé Codina
+
+Changes v2 -> v3
+  v2: https://lore.kernel.org/all/20250430152201.209797-1-herve.codina@bootlin.com/
+
+  Patch 1:
+  Fix the example provided in the commit log.
+  Add 'Reviewed-by: Luca Ceresoli'
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/all/20250401081041.114333-1-herve.codina@bootlin.com/
+
+  Patch 1 in v1:
+  Removed (already applied)
+
+  Patch 1 (2 in v1):
+  Add 'Reviewed-by: Ayush Singh <ayush@beagleboard.org>'
+
+Herve Codina (1):
+  schemas: i2c: Introduce I2C bus extensions
+
+ dtschema/schemas/i2c/i2c-controller.yaml | 67 ++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+
 -- 
-2.43.0
+2.49.0
 
 
