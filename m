@@ -1,174 +1,243 @@
-Return-Path: <devicetree+bounces-187149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05B56ADEDF9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:36:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A07BADEE05
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:39:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 495171BC0816
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:36:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7C2917F3CF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A302E9EBC;
-	Wed, 18 Jun 2025 13:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 472292E9EAC;
+	Wed, 18 Jun 2025 13:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpfGMXd8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TS6A3eEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E247C2E9EB3;
-	Wed, 18 Jun 2025 13:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41AD32E974B
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:39:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750253791; cv=none; b=ieleiSYqP8ZzEO0RZsdq9/xCaA1z+j6tbLoIIc+yOEhdzZjNuu62sYRld1vDVxDLl+783g3Gv+Fl6maeWfBu27SO6QfbPtgukWNjHHJ9yIgXXJoOswoZUI76DYUPDAlYc5cTFt+DdCxTbx11NvOYdK5g8BaE/ADlrOsSjXL7Pi8=
+	t=1750253964; cv=none; b=Pb4BszIh8FTW28RC74rlOjKWIw7iu19HAk8iSPQvySG7l65HOU610noT3y4qCzj4VQeQUC8BMM4yFkuspk0vIh+TOHqQU/39mDcnIOmsXy6+1IlrU/du9MFSKVtPMs9Z7PjMoC+pP69t2G7iqz3bEs+gMUx94TkyG8lj1LVouz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750253791; c=relaxed/simple;
-	bh=3PrGbD05/adEL24Dc6BiHTUdSQw3bSiCntd1ctDvbsE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Ob6yvkm2SxdnA0hYvlFk9OCUdzjyC8LZ4VN1WXYyeOlDit6KcdRMYlr5dcLbpOdQ3vOLA5xPDz4Js0OLIDDJ6dYm6LoqhUe1MB+0e8FZ9qaNh+oEVEnUcXM+hZlNxA3gqPWcUVqJ3G/YwBLXnd/urV/TESKCZbzX0VQY35ytmMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpfGMXd8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58684C4CEEE;
-	Wed, 18 Jun 2025 13:36:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750253789;
-	bh=3PrGbD05/adEL24Dc6BiHTUdSQw3bSiCntd1ctDvbsE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=LpfGMXd8xQ4zihon0vRIL0W2cnZooibfYbMwdZJHrs5z8tR5yqR8UuYbZEaMsgD9C
-	 ctgFRo1oeOFuKn5P2Rs6k7Nf+Gs9FIwtj3pMxId9YQw7WjYUADn+ddQIdM6KIRyJ3w
-	 WHc32uC9nfV8S3PSd1vR4r49NGYtt6cf5fHMbz5C+ui1bStSmtlBCrZnuHLDFz8BBT
-	 cQgO3L5HfPA41asHpSleWM/OU02FkcBQW8RKVnBfSC8OZcauQyaqC6gtbRLiTYUVry
-	 TPwAPDJatMXzHKByW+tgL2lz9kebviSIANruCcN4e9UUW+QnHaetadX3V2mqNGTfoI
-	 o0bKTKz3pmrmQ==
-Date: Wed, 18 Jun 2025 08:36:28 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750253964; c=relaxed/simple;
+	bh=R7do5X/dzbKFhPd80Rrbvxwt9EOrSDZ0d7dEdzQbftU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ir2kSYS3+NHRxL5z3FM4JaFB8gGTs5XDNVFRmsGpj53vWsYEceaJV5WvICGx1fhX2RP7pohnE/+uvAkIsPtmcQjfUvswPD2bEpfLVM5miH8zfoB4XMYOgUXotpdSSy3HQOMBp5smURGsrGZzay2R56taspr/BH2S0BO0yM1IpRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TS6A3eEa; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55ICH5W1013681
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:39:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4EXdgzWBp0rRNaJUQrduuFz9dcLZtkU3b7btYf+fyks=; b=TS6A3eEavcszJ+4u
+	utlHuBbP5Ro/XSrrrJk7631nSwT83ZoPwxnrnc3T95lXnS21LJ3HAliIeThWwOux
+	3yogDz/mEZ8S8gxtTUNJxEUEQJ55zjtwyOfXC0DAYbyjx8CCQWYcE3AVwm9eqzN1
+	pjRwAtBU+dWaUniwTTACHZVdQqCaf3xvwWK2eSO315X8J7TWs9EjH6CPejF3xvXz
+	uuz0AhLUkvtIpBApzpQnlj4IqM55SftmQ5/SVM6kBOv7tA5GK9daWgtk547skQPD
+	lApVocx52v4RYdsBqesRcTC97+OZTs5DC00hDXaIZoezSTGDXixvsPyKCRBFs67h
+	/hvdIQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 479qp5txnx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:39:20 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c7c30d8986so2306881085a.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:39:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750253960; x=1750858760;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4EXdgzWBp0rRNaJUQrduuFz9dcLZtkU3b7btYf+fyks=;
+        b=gUzv/kTC6uQf41cXxAgsdWNTO2iSsrLT6U+Aie6GsGbwTLd2+Te5YGbVg5UY95MeVs
+         i8vCGzRgEfNboCaaLDwW9wcVStd0YiBFzCJNoOg7lz+pvJIPjk83wNidkLh5ZDCDJghh
+         lTlI5frPLkzurOqciuAMkpOajpH2tRnADpIZmVxK6bfvNWugOzMnr7OONq2MGxfSzJ2P
+         O9be/9piM22m0sABxdlLulrWeJEh/0sOBx7A+vlKPQF9Pc6N8fhKVJUmBYh1Rl361hCo
+         h5AgUx9+ucXRvjwzSAZbb6gu9OR33EUuupRhtvxCXDmjzWVdJgVKyo5+G9V+9Ax3zu4o
+         huEw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTSo5l3RpyOj84QkLPGot7gNVNH2g9QxEd64vxX3E5Ohbh6cziGX6DKTVkFDfmHDq6i8lMmBHU3bTJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfpTltpCIGzBUvzOaCWJ/I7qerBizBt7lWeNJdRnTrVv6prF8I
+	cOgyyMPG+BWGm/ho2DQ4jmN2dt1y9QHloOUhQt2kRMKj3RJ8/4yS0XVUibxfvjf69tB3lSv9SsE
+	FVzlafRuIj+yFbuOEZdQjhIDQRoDp7MiDqknyxADHRnDCsZVo3MedJBNBTalhBTZb
+X-Gm-Gg: ASbGnctjyWSB8DZdBP9kVxm9LtT4h/5hNgKFS3qV2/YGAq1KSYHA0kFBu5c9RPObf9k
+	9vOxYoAHNKzLEEPxTV9/dM+7EfXD/ow0tGbl1Wwgfdd6DNtmYGMpViLfwtbkRz0sPy3eWlKBpBb
+	wqJNIZ0b2erZOj2pyCltKjLXHFurYqTTo6yE5yzmd5fSYU+uv5ie3VAnyJXntjHuvf+tKO4x43q
+	FzepqWBQfDsdpBAwQ9rDxlv9vzHIUYiOUC0i1NMKrpgnO/HZ7DZ8uHbYjVV0JSwDlUxSDTnCWBu
+	35+xhuBKYjXNzmsQT6ZSRJGRr5vGX9Wqy+Il+fYDaQ==
+X-Received: by 2002:a05:620a:4512:b0:7d0:9ee6:e7ac with SMTP id af79cd13be357-7d3c6c16571mr2603785985a.21.1750253959509;
+        Wed, 18 Jun 2025 06:39:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHUVtqsx2MV4WTV8JMc+1EJgnKxxG3YeGolNRkNZNGXdIZpmLSYPMNcqI7vB8yIshy4whg95A==
+X-Received: by 2002:a05:620a:4512:b0:7d0:9ee6:e7ac with SMTP id af79cd13be357-7d3c6c16571mr2603780285a.21.1750253959040;
+        Wed, 18 Jun 2025 06:39:19 -0700 (PDT)
+Received: from [10.92.240.160] ([212.136.9.4])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-adfa7435a1dsm906932066b.110.2025.06.18.06.39.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jun 2025 06:39:18 -0700 (PDT)
+Message-ID: <fa8d4af9-e822-4dec-a8dc-f3bbf5dd0100@oss.qualcomm.com>
+Date: Wed, 18 Jun 2025 16:39:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-aspeed@lists.ozlabs.org, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Conor Dooley <conor.dooley@microchip.com>, Tony Luck <tony.luck@intel.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Magnus Damm <magnus.damm@gmail.com>, george.kw.lee@fii-foxconn.com, 
- Leo Wang <leo.jt.wang@fii-foxconn.com>, Joel Stanley <joel@jms.id.au>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Geert Uytterhoeven <geert+renesas@glider.be>, bruce.jy.hung@fii-foxconn.com, 
- Kees Cook <kees@kernel.org>, linux-renesas-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-To: Leo Wang <leo.jt.wang@gmail.com>
-In-Reply-To: <20250618-add-support-for-meta-clemente-bmc-v1-0-e5ca669ee47b@fii-foxconn.com>
-References: <20250618-add-support-for-meta-clemente-bmc-v1-0-e5ca669ee47b@fii-foxconn.com>
-Message-Id: <175025355357.1756335.7026118663202059503.robh@kernel.org>
-Subject: Re: [PATCH 0/2] ARM: dts: Add support for Meta Clemente BMC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 08/17] drm/msm/dsi/phy: Fix reading zero as PLL rates
+ when unprepared
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Srinivas Kandagatla <srini@kernel.org>
+References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-8-ee633e3ddbff@linaro.org>
+ <n5djafe2bm4cofoa3z4urfogchhfacybzou763nelttgfspo25@bywfd5febe6g>
+ <dbcfcb3c-0cba-45f6-aaed-b79494d96cde@linaro.org>
+ <738a889d-9bd5-40c3-a8f5-f76fcde512f4@oss.qualcomm.com>
+ <8a986ebb-5c25-46d9-8a2f-7c0ad7702c15@linaro.org>
+ <24xkss4bw6ww43x2gbjchcm4gtmqhdecncmxopnnhf7y2tblc2@iibgqhuix5rm>
+ <f2654844-091f-46bf-88c6-6f6d4edc5533@linaro.org>
+Content-Language: en-US
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <f2654844-091f-46bf-88c6-6f6d4edc5533@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: GyFB7mPRlC1EclTdQQ-16_Aawy2jm0R_
+X-Proofpoint-ORIG-GUID: GyFB7mPRlC1EclTdQQ-16_Aawy2jm0R_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDExNSBTYWx0ZWRfXxiJIpubc5xkO
+ HYfEXOD8i8uiGVB63NRPYT0PehhACcey+k9A/JnySOQNpXyU3lmeWRKBI3uASbGY7imCXggsMjY
+ mVZonfH3RON0ruyvPDJ+VdRdE3p9qkKxhKez9btUMs7LD3fjhOw0v5l6hQeFHCrrbbOQyUQcjWD
+ s6YDcKPvmO6TqVUCm78clAnXRX7J5xfN1iN+EWpTpFYptm/4tRqTJnZZMfZC3egfpwnI47JFvLQ
+ ThHlN6bhdO/j6t0NdciX3hYm6oGS58F4Dzyrv7l2VBKsp95hr6RQwwS0gus3csxToqhGIJokskY
+ IRF4h/0yEXOSIoRcy4EyUDnCua03rkJ42+wWmYvokrUlacl7oYwvUL/Lhx8VxinQgw24S4u28w5
+ xp/UIsJUWnCzyJGMxng10V7sgTonVm+EiCV8WGl953qyCkhV0eaJcNHkPnVV/i6jL6TlT4ID
+X-Authority-Analysis: v=2.4 cv=fMc53Yae c=1 sm=1 tr=0 ts=6852c189 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=dNlqnMcrdpbb+gQrTujlOQ==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=BTWw6KF8kvBcRQRl-U4A:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-18_05,2025-06-18_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 malwarescore=0
+ mlxlogscore=642 spamscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506180115
+
+On 18/06/2025 16:34, Krzysztof Kozlowski wrote:
+> On 18/06/2025 15:07, Dmitry Baryshkov wrote:
+>> On Wed, Jun 18, 2025 at 10:28:10AM +0200, Krzysztof Kozlowski wrote:
+>>> On 13/06/2025 16:04, Dmitry Baryshkov wrote:
+>>>> On 13/06/2025 17:02, Krzysztof Kozlowski wrote:
+>>>>> On 13/06/2025 15:55, Dmitry Baryshkov wrote:
+>>>>>>>    
+>>>>>>> @@ -361,24 +373,47 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
+>>>>>>>    
+>>>>>>>    static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
+>>>>>>>    {
+>>>>>>> +	unsigned long flags;
+>>>>>>>    	u32 data;
+>>>>>>>    
+>>>>>>> +	spin_lock_irqsave(&pll->pll_enable_lock, flags);
+>>>>>>> +	--pll->pll_enable_cnt;
+>>>>>>> +	if (pll->pll_enable_cnt < 0) {
+>>>>>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+>>>>>>> +		DRM_DEV_ERROR_RATELIMITED(&pll->phy->pdev->dev,
+>>>>>>> +					  "bug: imbalance in disabling PLL bias\n");
+>>>>>>> +		return;
+>>>>>>> +	} else if (pll->pll_enable_cnt > 0) {
+>>>>>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+>>>>>>> +		return;
+>>>>>>> +	} /* else: == 0 */
+>>>>>>> +
+>>>>>>>    	data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+>>>>>>>    	data &= ~DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
+>>>>>>>    	writel(0, pll->phy->pll_base + REG_DSI_7nm_PHY_PLL_SYSTEM_MUXES);
+>>>>>>>    	writel(data, pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+>>>>>>> +	spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+>>>>>>>    	ndelay(250);
+>>>>>>
+>>>>>> What is this ndelay protecting? Is is to let the hardware to wind down
+>>>>>> correctly? I'm worried about dsi_pll_disable_pll_bias() beng followed up
+>>>>>> by dsi_pll_enable_pll_bias() in another thread, which would mean that
+>>>>>> corresponding writes to the REG_DSI_7nm_PHY_CMN_CTRL_0 can come up
+>>>>>> without any delay between them.
+>>>>>>
+>>>>>
+>>>>> Great question, but why do you ask me? The code was there already and
+>>>>> MSM DRM drivers are not something I know and could provide context about.
+>>>>
+>>>> Because it's you who are changing the code as you've faced the issue
+>>>> with recalc_rate.
+>>>>
+>>> Heh, the answer is then: I don't know. I think authors of the code could
+>>> know.
+>>
+>> The 10nm HPG documents a 250ns interval between enabling PLL bias and
+>> and enabling the PLL via the CMN_PLL_CNTRL register. There is no extra
+>> delay between disabling the PLL, disabling FIFO and remobing PLL bias.
+>> Please adjust the code for 7nm and 10nm PHYs accordingly.
+>>
+>>
+> 
+> I can drop this 250 ns here, if that's what you ask me. But fixing
+> anything in 10nm is not relevant to this patchset. You were already
+> asking me for different fixes for some different things and I find it
+> not acceptable anymore. Stop blocking this patchset with every little
+> existing issue.
+
+I think that it is a common practice to ask to fix the issue in relevant 
+pieces. For example, we frequently ask to fix all the DT files if there 
+was an issue / workaround reported against a selected set of those.
+
+In this case you can send a fix for 10nm separately, but please post a 
+fix for that platform too.
+
+> 
+> Or merge this code without this patch if a fix for reading PLL as zero
+> anyhow is questionable for you.
+
+I think I've asked it at some point, to split the generic code parts and 
+the DSI enablement into two different patch series, so that they could 
+be picked up separately.
+
+No, the fix is not questionable. The patch causes questions though.
 
 
-On Wed, 18 Jun 2025 17:40:01 +0800, Leo Wang wrote:
-> This series adds initial support for the Meta Clemente BMC based on the ASPEED AST2600 SoC.
-> 
-> Patch 1 documents the compatible string.
-> Patch 2 adds the device tree for the board.
-> 
-> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
-> ---
-> Leo Wang (2):
->       Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->       ARM: dts: aspeed: clemente: add Meta Clemente BMC
-> 
->  .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
->  arch/arm/boot/dts/aspeed/Makefile                  |    1 +
->  .../dts/aspeed/aspeed-bmc-facebook-clemente.dts    | 1254 ++++++++++++++++++++
->  3 files changed, 1256 insertions(+)
-> ---
-> base-commit: 52da431bf03b5506203bca27fe14a97895c80faf
-> change-id: 20250618-add-support-for-meta-clemente-bmc-941a469bc523
+
 > 
 > Best regards,
-> --
-> Leo Wang <leo.jt.wang@fii-foxconn.com>
-> 
-> 
-> 
+> Krzysztof
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 52da431bf03b5506203bca27fe14a97895c80faf
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250618-add-support-for-meta-clemente-bmc-v1-0-e5ca669ee47b@fii-foxconn.com:
-
-arch/arm/boot/dts/aspeed/aspeed-ast2500-evb.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2400-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@1e79b000 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yamp.dtb: /ahb/apb/syscon@1e6e2000/p2a-control@2c: failed to match any schema with compatible: ['aspeed,ast2500-p2a-ctrl']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): reg-io-width: 4 is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: lpc@1e789000 (aspeed,ast2600-lpc-v2): lpc-snoop@80: 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: kcs@24 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: kcs@28 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: kcs@2c (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: kcs@114 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: sdc@1e740000 (aspeed,ast2600-sd-controller): sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: fsi@1e79b000 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: fsi@1e79b100 (aspeed,ast2600-fsi-master): compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
-	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
