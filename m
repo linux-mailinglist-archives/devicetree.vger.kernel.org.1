@@ -1,102 +1,167 @@
-Return-Path: <devicetree+bounces-186986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C022ADE673
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 11:19:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE8DADE696
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 11:23:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9F1D174BC2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:19:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EAE61898487
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E7A2281378;
-	Wed, 18 Jun 2025 09:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xTzFNfW2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBCA283121;
+	Wed, 18 Jun 2025 09:21:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA4528136B
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 09:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43684280CC9
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 09:21:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750238349; cv=none; b=Ql86aKVr/IBqGG2Mz+WIlkBK8nkNSSwTPYkh2p51JE4sRPZinSqtaz+VDoXXfEWD22M/n/0tOSExSnDUe4f/Hdyf1Wm4cpDO4bQavxwe4xbDsQ1CPZIykuEPbxQfdHcrghdGElgDKAzdAo5D2/0oSPO4RiZJlKt99VOJTzc0fN8=
+	t=1750238482; cv=none; b=NBz2kebjdaokmlmcgxO5Ch1TgdIRA8cBBIIWxEOoU1x0lMrUdcQb5rPGAn0IPxceboi5XUjwI7OK4aW0l6q9NdBcGIuqoy9k15bHmS5j9lq98Fm/rygiAqxM3tujS9cMuDbnqLuqP6pWI939UISNV3E+4wR4h9Q//4EO6YYZmkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750238349; c=relaxed/simple;
-	bh=TSoT5Ck3uCBZrqz+LxFrOK/E5khPUOMPB7P6HPWYt/Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OvpVTd5EaqgfPm9Joe9BD2smzgDesu27dHYL9wsiSr+faAQdNhd2W7Lju6Bp6aYfTM8dunodA36LbtP1JMJGCCAr2P0imr3uHz+xEWFzBP6+gIdmfvZAUZtxaJE5A2DBH2qq1ikzaP5xVnmOLIAC9Md5oTwpPsxjdzD0Yl64LPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xTzFNfW2; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-553be4d2fbfso3881858e87.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 02:19:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750238346; x=1750843146; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TSoT5Ck3uCBZrqz+LxFrOK/E5khPUOMPB7P6HPWYt/Y=;
-        b=xTzFNfW2eQmscrXSLbo6IrF9LP0y1iD8YrmYy0VFS8Tf/5gnEqXkv7JufStWeSInsc
-         Zp/BRFb6Ogo0zWfUxCKSPRi8PJ2lo9k1dWbqgZt4qMopeN+8hBxNzFLrZbw6Kzg0L1Lp
-         4tSqkzBM8ESmQ3XMCK+Gy2dGQ2ikjJqCAfjmmhr8Wrum8EybctoCr4MAX5zD4ziP9v6U
-         j7IRxxrxqSsTmHVkf3ZmmHj2R0J5EKAwQQh16VVLgU/u6YtAr2VHx05zC176wmArbK7K
-         a4koPbcvjjM/ybiuQDyqgUdq3Fnopvp2bWwn8IPfCZuYDbwl/uXpvtB5ml6Jr5XIOrS9
-         cEuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750238346; x=1750843146;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TSoT5Ck3uCBZrqz+LxFrOK/E5khPUOMPB7P6HPWYt/Y=;
-        b=I8FwR4dV5gqoDqRZEuGwCeCeAMtDPGeB8h+07I8gupy4QyTZmJVtOYM58ttLqzPsyR
-         Jl+z674/8QuEDbBHYYZ5wsalnAV9vjnwqHLwJ+8mACd9DArVBUvFeh9Hr5H0eYpW0Acc
-         9doSQ8uie+iyofgplXcEEOwzhVQ3qUlEfOsN6cAiUB+kFd0zZsLm+28Zx9cfD1qnUZ6e
-         Aa94wp6NDl5pkEbgb72mSl6Bi9IuuK2Tn/0S53nvaCzvsodolfjHRS/HAVSQEyF4nAaf
-         jRwdgOAXGfZfopB/H36XY25fD+T2qDF+BdfOBX6iffvJ1Sqz39MjtlVPbEaryCCfFtk+
-         olNw==
-X-Forwarded-Encrypted: i=1; AJvYcCXuHuEB3ATglVOvcAqYTe1HE/BIZBAoVhH6+MGjyk+HOaCREnJFF7geyGj210LvyYhDR6t0uXLIS+vG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiBRFw6R0xQpAZqVtyoZnVFxOjpDSgbrYahEkIhQfVjiptcH8S
-	rJjsfgliSvpbSnwd15ea35xoA+HZzE5treYWBP+4SmJbKODU+O7dcsgYL1gry52gUoAxWnwbnd6
-	P2j9YgSDlEd53vxp/EY/XQaFj/mjAi5Cp7MQR/J0HEA==
-X-Gm-Gg: ASbGncuIQwkJWnIh3xWbepHO+WA8nXhDkjIw6SSh4Q5RspH/LfqDRrCfC/fHLDHUghL
-	yUVWo+Y8p8hyW3Xp8oh117w5HzNA/5c8St5SL6GmHIM9gecvZlUlQT6Zg/PuMSo38zIa6lsrmUQ
-	3KjxpOzinbl6XENp7t2EKMCWnXw9FRpOxMNn91ZGHu6eA=
-X-Google-Smtp-Source: AGHT+IGDviP5o5BpdYRHMCQZJ0KKYxkJwy63WpJVsRhdouoscbb+olcEs5D4kGqoukI8Mi1y4ymDThNKrTMCoqXbPKI=
-X-Received: by 2002:a05:6512:2212:b0:553:2c93:613d with SMTP id
- 2adb3069b0e04-553b6e713b0mr4277828e87.5.1750238345840; Wed, 18 Jun 2025
- 02:19:05 -0700 (PDT)
+	s=arc-20240116; t=1750238482; c=relaxed/simple;
+	bh=8E1ehRVYoTz9WwqT1b9dtBs8b6qcwXxr8HWeBeBxMM8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UE45OR4lIJ1tn10UfKU9iSL5LD1yWQ1OkxdSdJxKF0YUDUU2oOrBtvtOEiogmvft4BsZ3seguOli6XkrSAk/XS7GCEtip9B4VTo9SpTPv77AiZhygaYBqNG0/Z/t268JNaSLW7XEII4VFEfohoI/UstiHw2BLEgPo4HR+3j347M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1uRoyr-0003B5-6r; Wed, 18 Jun 2025 11:21:17 +0200
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1uRoyq-004757-2Q;
+	Wed, 18 Jun 2025 11:21:16 +0200
+Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
+	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1uRoyq-005QWt-25;
+	Wed, 18 Jun 2025 11:21:16 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v5 0/4] clk: add support for TI CDCE6214
+Date: Wed, 18 Jun 2025 11:21:11 +0200
+Message-Id: <20250618-clk-cdce6214-v5-0-9938b8ed0b94@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250606160359.1356555-1-Frank.Li@nxp.com>
-In-Reply-To: <20250606160359.1356555-1-Frank.Li@nxp.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 18 Jun 2025 11:18:54 +0200
-X-Gm-Features: AX0GCFsZz3aglhMm4E6BI1RVEFU98orqUWOtObnRoTsKi2nEtjPjvdxkzVSQEu0
-Message-ID: <CACRpkdb9=PxzA8FGR2=Ox+ndnAoh7LBB+QVte4kU246eucvt5Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: pinctrl: convert nxp,lpc1850-scu.txt
- to yaml format
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	"open list:PIN CONTROL SUBSYSTEM" <linux-gpio@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAeFUmgC/3XQQQ6CMBCF4auYrq2ZTgu1rryHcQHTqTYaMEWJx
+ nB3CyuCuvxfMt9i3qLjFLkTu9VbJO5jF9smR7FeCTpXzYll9LkFAhZgYCvpepHkiUtURgJZA0Z
+ 7wtKKfHJLHOJz4g7H3OfY3dv0mvRejesfqFcSZO0NW3BYORX2N25Oj3tqm/jceBaj1uNccAsBs
+ 2CgxqK2iEz1T0HPBAULQWfBW03BhaD9Fn4KZibopZA/Il1QBVuFZUXllzAMwwepizYlcwEAAA=
+ =
+X-Change-ID: 20250408-clk-cdce6214-0c74043dc267
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750238476; l=3422;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=8E1ehRVYoTz9WwqT1b9dtBs8b6qcwXxr8HWeBeBxMM8=;
+ b=ugTiqbkjv8Qt6G0qBx990iwWKhv9rCrE7gnUekl7QAAPq79duUebJ6F907vnukpZVGiVe7Mxv
+ /gsFY6xzVLCB8MTety5Hm5RnGD6xGhYPh7YQCBYgKWcyXRvhaoynRyo
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.hauer@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri, Jun 6, 2025 at 6:04=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+Differential Outputs, Two Inputs, and Internal EEPROM.
 
-> Convert nxp,lpc1850-scu.txt to yaml format.
+This series adds a common clk framework driver for this chip along with
+the dt-bindings document and a small fix needed for the common clk
+framework.
 
-Can I have a DT binding maintainer ACK on this patch?
+In this round I have split out the pin configuration support and
+binding to separate patches. My hope is that without the pin
+configuration the first two patches are acceptable already and then
+the pin configuration can be disscussed separately.
 
-Yours,
-Linus Walleij
+Sascha
+
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+Changes in v5:
+- Reword commit message for binding patch (Krzysztof)
+- Make clock binding yaml simpler (Krzysztof)
+- add link to datasheet to driver code (Stephen)
+- Drop inclusion of linux/clk.h (Stephen)
+- Add missing #include <linux/bitfield.h> (Kernel test robot)
+- simplify cdce6214_clk_out0_get_parent() (Stephen)
+- Use divider_get_val() where appropriate (Stephen)
+- Add Rxx defines for registers (Stephen)
+- Add define for magic value 24 (Stephen)
+- introduce and use cdce6214_clk_psx_mask() (Stephen)
+- Use clamp() instead of open code (Stephen)
+- declare const arrays const (Stephen)
+- more use of dev_err_probe() (Stephen)
+- use determine_rate() instead of round_rate (Stephen)
+- split out pin configuration to separate patches
+- Link to v4: https://lore.kernel.org/r/20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de
+
+Changes in v4:
+- add missing '>' modifier in include/dt-bindings/clock/ti,cdce6214.h
+- fix clocks maxItems should be 2
+- add missing license in include/dt-bindings/clock/ti,cdce6214.h
+- Fix checkpatch issues
+- Link to v3: https://lore.kernel.org/r/20250410-clk-cdce6214-v3-0-d73cf9ff3d80@pengutronix.de
+
+Changes in v3:
+- Use string properties instead of int for enums
+- Use units from property-units in dtschema
+- Link to v2: https://lore.kernel.org/r/20250409-clk-cdce6214-v2-0-40b25b722ecb@pengutronix.de
+
+Changes in v2:
+- Use consistent quotes in binding document
+- make clock-names an enum to make each clock fully optional
+- drop '|' in binding description where not needed
+- encode clock input mode into integer
+- encode clock output mode into integer
+- do not use defines for reg properties
+- support setting load capacity for the oscillator via device tree
+- support setting Bias current for the oscillator via device tree
+- support setting polarities of CMOS outputs via device tree
+- fix compatible string in driver
+- remove unused struct cdce6214_config
+- Link to v1: https://lore.kernel.org/r/20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de
+
+---
+Sascha Hauer (4):
+      dt-bindings: clock: add TI CDCE6214 binding
+      clk: add TI CDCE6214 clock driver
+      dt-bindings: clock: cdce6214: add binding for pin configuration
+      clk: cdce6214: add pin configuration support
+
+ .../devicetree/bindings/clock/ti,cdce6214.yaml     |  155 +++
+ drivers/clk/Kconfig                                |    7 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-cdce6214.c                         | 1389 ++++++++++++++++++++
+ include/dt-bindings/clock/ti,cdce6214.h            |   25 +
+ 5 files changed, 1577 insertions(+)
+---
+base-commit: e04c78d86a9699d136910cfc0bdcf01087e3267e
+change-id: 20250408-clk-cdce6214-0c74043dc267
+
+Best regards,
+-- 
+Sascha Hauer <s.hauer@pengutronix.de>
+
 
