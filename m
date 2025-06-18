@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-186938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFA3ADE37A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:14:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B183EADE389
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 08:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F0401896CC5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:15:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D60B174E90
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 06:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5721C1FF60A;
-	Wed, 18 Jun 2025 06:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933EB1E3769;
+	Wed, 18 Jun 2025 06:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ic3Ulc7s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fuCAYfUr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D241A2630
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684E51B0437;
+	Wed, 18 Jun 2025 06:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750227289; cv=none; b=CBPKahquKItlnFB/TAgUNJGlZhpmiD7UWgPsP4us/6/Lgq0TuuLnly10UyCbym0xUL6kGV98JNrauQIXOFtNnQC9AHj6fbxI4hpyMqwhDDpcc15mKVJoBloawK9iFoAGb8cetmGZc6RrO5sMiMOpikoKM9ZOpNADZJWlCd1GXMc=
+	t=1750227571; cv=none; b=cO5DTRojowkgbZYKRW3mw0RZsq+Az18nvUSr0XYxonRIGNk5xIjiABmPkDXeuryCyR3yYT9KYoWj8D8029KY0hGchtyNxgM8vfM7Q71zSB4AqFuIWFZsYLLlh0tbd0IwiyMKbChHPUdZ06l6yulCw3w8i4Yn/vbFjiJAI+ClAr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750227289; c=relaxed/simple;
-	bh=5E2ijx0m6u/TCWOdmNL/uRtF0dD872lxPRwG66MgXDY=;
+	s=arc-20240116; t=1750227571; c=relaxed/simple;
+	bh=032ckw2UZWrg7+vlZx89aJJ8YD2Pi2qcJAidK1LUh6U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MB7zkhPE/MQzqc0V7oPapgImqfISSOtgg0u3bHvN7foPDfFSiVExdnT0oN6wXiMTvvXqJlaRJloOFuZ1XCVo6MNp3PMNGLMeCfsGYyxVWTSTDvfWbrA6ZdYkRCqJPa7GEnyGD0qhClKCRC1I8HF2+BzLkPyP5ee3KNWmlsVSqUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ic3Ulc7s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D847C4CEE7;
-	Wed, 18 Jun 2025 06:14:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CtQpWBElmzAQVRPSLReFxeZ/MSnC5j3OVqo8uVSDrgwOQ91H8DFs3TX6bBoP9wG8V3ft4q4NJ7Jlj6hHK1FNG5vXTcvpt+zW92E3UnN+X4KNb8xtrBeuptRr0u3GeTrXtjHxFQ8fHRu8nuDf9DzgKRklI1tBbSy0b9jpowTy4fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fuCAYfUr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51361C4CEE7;
+	Wed, 18 Jun 2025 06:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750227289;
-	bh=5E2ijx0m6u/TCWOdmNL/uRtF0dD872lxPRwG66MgXDY=;
+	s=k20201202; t=1750227571;
+	bh=032ckw2UZWrg7+vlZx89aJJ8YD2Pi2qcJAidK1LUh6U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ic3Ulc7sGcOHtZV5lStbE6ckQU++Ay6IoXAbT6mpUHBfj6zA0vb4X4FNBmj6XKQz9
-	 c7xk8QqrqnGN4KVKHkqgyqyHhIe/6RvWSxLxxTTKtkwXKMCW7tQxYax7yO7OjqXrSm
-	 d+cqhIjGiw7J8Djx46ENNBwsHqEfz44dkfv1xwiziw5LbVqsZ2QzfX01tSDM92JzqN
-	 SaVdfPTTudEHwYO7I9pWDV5XCG6F6IdMTNhXwj7jO5sEXKDTzg6xjMoSqoAwDoAFOM
-	 DUctCIScd+ENgpGa5UY/QDNTU0iNafXINUyz2OgWd5A8RYnkJ08zHMPoHY48c9igl1
-	 xC/xOERcE09DA==
-Message-ID: <2f4a72d6-d0aa-4364-be61-a8c2263e194c@kernel.org>
-Date: Wed, 18 Jun 2025 08:14:45 +0200
+	b=fuCAYfUrUyVq6AHx2qwEqQ2fuNR0Eo0WaX55ck53RCRVm0YY4EktLc1o24uMJ/1tJ
+	 1H3wgBXF7hQiU6OTyQoTjJnnpx8rQ50FmVxAnCdjx4WYDjwfEdEeHyMTtAwsj+6AIX
+	 33k0ag/Fk3757J6jhbuShPngZkA1tpRy2z0zE0AaFNI3tfeGBf6dTecvdbJnndXbEl
+	 u3VhFB8RD0TtKu5yj3c/s1MsZJrxF8GGwZdhKDhPnWCYTJQPWlwGucozDWSxCAq6rG
+	 NtVvtDpy1g+3EgOa/Pc4oB/zD02amgFbHHcN0+rMTqr+L/Cac9bs6c7BjCotlNnvu+
+	 P+2KcJOFBmBog==
+Message-ID: <3041baa7-64d2-40ec-b3c6-168d0a57965f@kernel.org>
+Date: Wed, 18 Jun 2025 08:19:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] drm/tiny: Add MAYQUEEN PIXPAPER e-ink panel support
-To: LiangCheng Wang <zaq14760@gmail.com>, cip-dev@lists.cip-project.org
-Cc: drm@lists.freedesktop.org, devicetree@vger.kernel.org,
- noralf@tronnes.org, robh+dt@kernel.org, onlywig@gmail.com
-References: <20250618034936.172150-1-zaq14760@gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: mediatek,mtmips-sysc: Adapt
+ compatible for MT7688 boards
+To: Ezra Buehler <ezra@easyb.ch>
+Cc: linux-mips@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Harvey Hunt <harveyhuntnexus@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Reto Schneider <reto.schneider@husqvarnagroup.com>,
+ Rob Herring <robh@kernel.org>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>, Stefan Roese
+ <sr@denx.de>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ devicetree@vger.kernel.org, Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+References: <20250617103058.1125836-1-ezra@easyb.ch>
+ <20250617103058.1125836-2-ezra@easyb.ch>
+ <74402e94-6d1e-4a4c-9e50-d41fdf1080e0@kernel.org>
+ <a999bc7d-a141-4ebe-9adc-0d64d3e67d5a@kernel.org>
+ <CAM1KZSnFsc1r+DUCC81aKiP-Pomd7dUYASg5e9VYJLu+v64_QQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,46 +111,70 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250618034936.172150-1-zaq14760@gmail.com>
+In-Reply-To: <CAM1KZSnFsc1r+DUCC81aKiP-Pomd7dUYASg5e9VYJLu+v64_QQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/06/2025 05:49, LiangCheng Wang wrote:
-> This series adds support for the MAYQUEEN PIXPAPER e-ink panel
-> (122x250 pixels, SPI-controlled) to the tiny drm subsystem.
+On 17/06/2025 17:29, Ezra Buehler wrote:
+> On Tue, Jun 17, 2025 at 2:05 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 17/06/2025 13:40, Krzysztof Kozlowski wrote:
+>>> On 17/06/2025 12:30, Ezra Buehler wrote:
+>>>> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+>>>>
+>>>> As the MT7628 and MT7688 are identical in most respects, mt7628a.dtsi is
+>>>> used for both SoCs. To prevent "Kernel panic - not syncing: unable to
+>>>> get CPU clock, err=-2" and allow an MT7688-based board to boot, the
+>>>> following must be allowed:
+>>>>
+>>>>     compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
+>>>>
+>>>> Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
+>>>> ---
+>>>>  .../bindings/clock/mediatek,mtmips-sysc.yaml  | 29 +++++++++++--------
+>>>>  1 file changed, 17 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>>> index 83c1803ffd16..550807301fc5 100644
+>>>> --- a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
+>>>> @@ -26,18 +26,23 @@ description: |
+>>>>
+>>>>  properties:
+>>>>    compatible:
+>>>> -    items:
+>>>> -      - enum:
+>>>> -          - ralink,mt7620-sysc
+>>>> -          - ralink,mt7628-sysc
+>>>> -          - ralink,mt7688-sysc
+>>>> -          - ralink,rt2880-sysc
+>>>> -          - ralink,rt3050-sysc
+>>>> -          - ralink,rt3052-sysc
+>>>> -          - ralink,rt3352-sysc
+>>>> -          - ralink,rt3883-sysc
+>>>> -          - ralink,rt5350-sysc
+>>>> -      - const: syscon
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - ralink,mt7620-sysc
+>>>> +              - ralink,mt7628-sysc
+>>>
+>>> It's here already, so this must be dropped.
+>>
+>>
+>> I meant mt7628 is here already and you are adding it again further, so
+>> it is now in two places.
 > 
-> Patches (must be applied in order due to dependencies):
-> Patch 1/3: Adds 'mayqueen' vendor prefix.
-> Patch 2/3: Implements PIXPAPER tiny drm driver.
-> Patch 3/3: Adds PIXPAPER device tree bindings.
+> My idea was to support these variants, as they are all valid:
 > 
-> Tested on PIXPAPER hardware with linux-5.10.y-cip,
-> verifying display initialization and refresh.
-> All patches pass checkpatch.pl.
-> 
-> Signed-off-by: Wig Cheng <onlywig@gmail.com>
-> Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
-> 
+> compatible = "ralink,mt7628-sysc", "syscon";
+> compatible = "ralink,mt7688-sysc", "syscon";
+> compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
 
-I don't understand this CC list. Cip is for sure incorrect... unless you
-target CIP, but such patches must not be sent to upstream because that
-would be waste of our time.
+How is it valid? Provide arguments because this defies logic. Device is
+and is not compatible with 7688? The same time? How, really how?
 
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
 
 Best regards,
 Krzysztof
