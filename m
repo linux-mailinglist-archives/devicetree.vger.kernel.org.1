@@ -1,123 +1,152 @@
-Return-Path: <devicetree+bounces-187071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B72ADE901
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:32:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E684ADE8F1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:30:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD38F4043A2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:28:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B3D618893AB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20756287503;
-	Wed, 18 Jun 2025 10:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEAC284687;
+	Wed, 18 Jun 2025 10:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hr6b8wA4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ub/Kaxz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CF127E7C0
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:25:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBCAFBA27;
+	Wed, 18 Jun 2025 10:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750242336; cv=none; b=Cf5XAB3OpyiWmEhdM52wjmTc7zshmFVQDhwu48CGs4d+zBZrGDApWmY9lCJMawQuATVald709eNPTEphdpwEjoFPhCrMqFPaxHZFWyoWVddjFTGDnlPrA6gwC4te8gsLd4/Quhu+Be+GpS1JtsMS/qAAxRb/i9kQrhz3JbrdrEA=
+	t=1750242637; cv=none; b=UobYy/c1WffGhy3Zi+tBSsgU+BeQfqTGvGNaQmofZnue1nLPLTyL+TSy7uXTql3oheTlbtSc+E/EPq6E3S7lHpGlFGCplIjiVx62QLrRrWd04xBb8of7D6H7uQs7cx+eKyfETU/PvjvH+wDu7rDtUkarRWVt8xuj2lVxITbhYm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750242336; c=relaxed/simple;
-	bh=uo1jmmJSy0Tm6Ew7GTrNegQ39fiELjbLn8M0YyzkaJw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LGP6w+VGLgc2ZnIU85634Yw35w6R0Astkez7Us/4/1J0Iedqw7nwHvzQpbMR+x1cg53VFz5X8iy2nDoZ18qoq9jt/1xCL1hCK6rkJ8mNZdi2pcExLyada1dPESPgFX4keMaDun2aBupQW4EH0qVS48+UARzdWwCE+T7pfzWIyts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hr6b8wA4; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a4eed70f24so635997f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 03:25:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750242332; x=1750847132; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kScCCH5B6HIlYQ8SpyD5iNsGwgWDsSmheszSBGTWPdk=;
-        b=Hr6b8wA4ZVknv3s4tX8asKYW/bbgPEfyGaUsmU3FRIUEw4xDT7C1uP8XSciWW+IPqW
-         /lRl3HtLsDKNj9pWLJvvYM2smcCDzseN2F/T2Az4P9AMZh/p9qIlsKi/RNFa6v2twa7z
-         RuTbmHP2/CIsBm8MsgvrBMtyfOEbLEQKgdwuySv/xzCElXfEJp0A5zlbKsYTy3whdDhV
-         TZUA6KgYxbHoMZsHFfSAqiPn2fwd3cY1u0z1oGjRi1WWyeiakJez8ovuI7YQ8HIbGLx3
-         9jFwMZFBVDJxdbY6rWD/aKAO0eNnDg/LxPtfNmTIC4sgY9VZrhsPBQmTtKHHG1fuIeos
-         4lVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750242332; x=1750847132;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kScCCH5B6HIlYQ8SpyD5iNsGwgWDsSmheszSBGTWPdk=;
-        b=Smi9LUtOQppDnxWKj/kRRPfum/6YCJiZwoXiyVbrIm4sSMXKawtSB77528pjku9hTH
-         RkvX1iaC0fZOw2lm37r+C3bnYBP6GZvJ6KvH6ZeLZ8ChXsjLvlXlf7ADepPCr7FyQOSW
-         Gle+5/2Nd0I85/Nv1ShFZ1vpScpf99mNhOUig9v+gKR3CTvfuIAcYRyglSKu3Xs0DRkz
-         4zCIVYPpmf5WkojlQU9MOweebDZ68MvtKf4/DB0ezqpCgRp2Dkf6Fxf9bBGLZOSVKSO0
-         FQE67SFkkjU9tDexVuKHyyCswPHVff7pR2uECvz2BxfFcPKdtJ1mSCv1/L4KodbWgIfi
-         ROvw==
-X-Forwarded-Encrypted: i=1; AJvYcCV1BmxFU0xfi2TEQGL3AYaDS/UYqCGFdGrW1HxfAEUrnylOZ+As8ngu/DoZl/ykCQC3HxA6KCb9/nzg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ8Ksmhqc66XtkBZjZjPMur8SVX43o2pq8scK1KItqbooAiPK1
-	pbOik8vthE00jxavmk853Gwgq/NMDCaGbeRDhlO0vasiJ+7sFLwEXNizMtIXHAGe+4Q=
-X-Gm-Gg: ASbGncuHWLC1JvnKDh6ikXkGAw6X4fsTm9+fr7HgkD7mupdrAv9Jl2zILWPUvIWneqw
-	giNkzpG2Xk0yP6n1xX8UCFJ/9hl4tQZ8PMq4dbpCYUHJtV7URtLKcVgP2i+zl7SQbYFoz/lftB7
-	JO2KRjhjLSmJ8Z3JmL5fOfHKcS11IrV7CMlVTJpbleE57NO7EA5x50nprqddGmJPBMIKx93Q2YZ
-	d3oj6nt/JDxzpWWBk/vVnPqjPq2kYSzi2ceV3heRzqM1wRFvVSi+D/3L+Eib/2bGpha2w9Yn1/q
-	Tevfg0QfWWH3Hf5KUxz06fWBphNTpuJYQZ1Q2lieDjiQB/Pek6GkPPUbtgqrH550Cfxxlaa+m/X
-	4t7TaVEI=
-X-Google-Smtp-Source: AGHT+IHBRUMdMxTk0qQ52qgdxfLoQ44QoZ7cH9BJYyT5RbkqGF33Qob2tRNXh5Ck86JRubBU174MNQ==
-X-Received: by 2002:a05:600c:3545:b0:43e:94fa:4aef with SMTP id 5b1f17b1804b1-4533cae6918mr59442205e9.8.1750242332303;
-        Wed, 18 Jun 2025 03:25:32 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4532e256630sm208260265e9.29.2025.06.18.03.25.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 03:25:31 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>
-Cc: William Mcvicker <willmcvicker@google.com>, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel-team@android.com, Will Deacon <willdeacon@google.com>, 
- Youngmin Nam <youngmin.nam@samsung.com>
-In-Reply-To: <20250611-gs101-cpuidle-v2-1-4fa811ec404d@linaro.org>
-References: <20250611-gs101-cpuidle-v2-0-4fa811ec404d@linaro.org>
- <20250611-gs101-cpuidle-v2-1-4fa811ec404d@linaro.org>
-Subject: Re: (subset) [PATCH v2 1/2] arm64: dts: exynos: gs101: Add
- 'local-timer-stop' to cpuidle nodes
-Message-Id: <175024233092.57697.11258654075985089157.b4-ty@linaro.org>
-Date: Wed, 18 Jun 2025 12:25:30 +0200
+	s=arc-20240116; t=1750242637; c=relaxed/simple;
+	bh=ZBNO8zEoLupIoPE/PYTkk6eaDkHBKU0qCQBdkKT4VDA=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=WJPTutyHsGPKLBbSq7XxQtVH93yNtaflY9IqBNl7l/py2hgHxUsmpIePbOX0p1VRveCS7dlbvqv21odinlg7qJJtu4Z8Mb9fljUdAzuLkoDbV8qA0sDnzr4LnEFUsZ+J0Aa12lzlnd7XN2VuNuhiNOfjYasuY+zoKadup5pmQIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ub/Kaxz4; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55IAUEAE285503;
+	Wed, 18 Jun 2025 05:30:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750242614;
+	bh=f6wkIpLIcAEQ8BY8G45z4AjojyUSWta3TPNhOAIvdnM=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date;
+	b=Ub/Kaxz4fvhplIJBSiZhfasX4IPWPEvHn2tVaDgSIbIUYQWaTHwJA45HT2wqwvdQ2
+	 OHlNV/sT2ik7mhKuoUweidb/VLjXXSy2CuacVEh54PZNAdBWrcGOp9BfdD+z+UUXS8
+	 A4NTafOHDHIiUPB3gRuARkpeXNLWSnHM+9GV5gqo=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55IAUEpX294636
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 18 Jun 2025 05:30:14 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 18
+ Jun 2025 05:30:14 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 18 Jun 2025 05:30:14 -0500
+Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55IAUD813320091;
+	Wed, 18 Jun 2025 05:30:14 -0500
+From: Kamlesh Gurudasani <kamlesh@ti.com>
+To: Eric Biggers <ebiggers@kernel.org>, T Pratham <t-pratham@ti.com>
+CC: Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Manorit Chawdhry <m-chawdhry@ti.com>
+Subject: Re: [PATCH v5 0/2] Add support for Texas Instruments DTHE V2 crypto
+ accelerator
+In-Reply-To: <20250617042755.GG8289@sol>
+References: <20250603124217.957116-1-t-pratham@ti.com>
+ <20250617042755.GG8289@sol>
+Date: Wed, 18 Jun 2025 16:00:12 +0530
+Message-ID: <87ikktgx57.fsf@kamlesh.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Eric Biggers <ebiggers@kernel.org> writes:
 
-On Wed, 11 Jun 2025 10:34:25 +0100, Peter Griffin wrote:
-> In preparation for switching to the architected timer as the primary
-> clockevents device, mark the cpuidle nodes with the 'local-timer-stop'
-> property to indicate that an alternative clockevents device must be
-> used for waking up from the "c2" idle state.
-> 
-> 
+> On Tue, Jun 03, 2025 at 06:07:27PM +0530, T Pratham wrote:
+>> This series adds support for TI DTHE V2 crypto accelerator. DTHE V2 is a
+>> new crypto accelerator which contains multiple crypto IPs [1].
+>> This series implements support for ECB and CBC modes of AES for the AES
+>> Engine of the DTHE, using skcipher APIs of the kernel.
+>> 
+>> Tested with:
+>> CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+>> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+>> 
+>> and tcrypt,
+>> sudo modprobe tcrypt mode=500 sec=1
+>> 
+>> Signed-off-by: T Pratham <t-pratham@ti.com>
+>> ---
+>> [1]: Section 14.6.3 (DMA Control Registers -> DMASS_DTHE)
+>> Link: https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
+>
+> Numbers, please.  What is the specific, real use case in Linux where this
+> patchset actually improves performance?  Going off the CPU and back again just
+> to en/decrypt some data is hugely expensive.
+>
+We don't really care about the speed here. These crypto accelerators are
+from embedded system. Often less than 4 cores and this particular SOC
+have variant with only one core.
 
-Applied, thanks!
+ARMv8 is clocking at 1.4ghz and DTHEv2 at 400Mhz, so no way it can give
+better performance number in term of speed. But crypto acclerators are
+designed specifically for lower power consumption as well. ARMv8 crypto
+extensions leverage SIMD registers, but dedicated crypto accelerator are
+still more efficient. Think about battery operated low cost devices. 
 
-[1/2] arm64: dts: exynos: gs101: Add 'local-timer-stop' to cpuidle nodes
-      https://git.kernel.org/krzk/linux/c/b649082312dd1a4c3989bbdb7c25eb711e9b1d94
+These embedded devices are often in the open and vicinity of attacker.
+Crypto accelerator are much more secure.[1]
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Bottomline:
+1. Crypto accelerators can deliver a higher cryptography performance.
+2. Crypto accelerators can deliver better energy efficiency.
+3. Cryptography hardware usually has lower timing and power side channel leakage than running
+cryptography algorithms on the processor.
 
+IPSEC and partition encryption/decryption/authentication use cases are bulk
+operations and often have low setup cost than operation itself. 
+
+[1] https://www.trustedfirmware.org/docs/Introduction_to_Physical_protection_for_MCU_developers_final.pdf
+
+Cheers,
+Kamlesh
+
+> Note that the manual you linked to above explicitly states that the CPU supports
+> the ARMv8 Cryptography Extensions.  That definitively makes any off-CPU offload
+> obsolete.  But even without that, these sorts of off-CPU offloads have always
+> been highly questionable.
+>
+> I think it's implausible that this patchset could actually be beneficial.
+>
+> In fact, it might actually be really harmful.  You set your algorithms to
+> priority 30000, which makes them be prioritized over ARMv8 CE.  I've seen
+> exactly that bug with other "accelerators", which actually regressed performance
+> by over 50x compared to simply staying on the CPU.
+>
+> - Eric
 
