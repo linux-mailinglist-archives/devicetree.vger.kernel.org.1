@@ -1,169 +1,189 @@
-Return-Path: <devicetree+bounces-186954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD4BADE458
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:10:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2649ADE464
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:17:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47FCB3B7EC2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:09:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 599CA7A46BE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7C527E050;
-	Wed, 18 Jun 2025 07:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA3725484B;
+	Wed, 18 Jun 2025 07:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="esQarsYS"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="qN4wc4XX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F7278F36;
-	Wed, 18 Jun 2025 07:10:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959803BBF2;
+	Wed, 18 Jun 2025 07:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750230608; cv=none; b=jDj0NDtf2v0yBvawg09JJjylMKLp9jnC8oD1re3jVACYf+6K7AkhT+7HVWMNvIZJNZRqHNRIDL+azz3Z/g+yW0WF32sGlMJRg2VvJ6Z4m5CBWNatuGHYrziLhnfcDelU+Iurl41xD8ax9nePh+5yNoIb63t0xsNZJVek1SheQbc=
+	t=1750231047; cv=none; b=TDAZQW9WQpmQ6Ur5rWFRAHf4zEgMlY5YhkDB5BIsiz4sszBef5TB8+KOcvi4RlEzJnjlw8JIokpgDOnH/81TVk9b2buRh+58lXrfyHyvHGIK4Q53aJ+w75jByhBdiu4u14MS6JKt1fGQkkGUOAats2ShLr654KRH5KVDY3sbwiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750230608; c=relaxed/simple;
-	bh=3vquAr1YlfiylI1As2h+MQIfiv4ocQLAEY378qEErc8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tN7mTjpUlD7OlG4/rAOvBvWMGwC8tZZwgEdG5b0kLMaZ95LUWEVx0jCWImQmk8ekxDXyrqrqvUcYp+/qA/4fHIoZ133YVSc8FZO9ALwYqDZIZpxxM/GC3TNqsxZ70ZIiHJR34G/qi8/VdFrG/Sv7ah1Vq0as0u9A+uWsK9G6oXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=esQarsYS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so48696385e9.0;
-        Wed, 18 Jun 2025 00:10:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750230605; x=1750835405; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=blHlfMe+5CBJc/TGBy1gRr5vofntcL3F+SvJ+oaL4XI=;
-        b=esQarsYSzkv6LwwQCUQGN0fUm/DnA2jQ+Ai58pVKRvuL+TIvHtVjiODI21Z6P/eE/8
-         U5zPA51Tld5dCPWa5XbNB7LjW/TNUgQmGU9CF2NJey1oWpHqrk30QVIq7tRnTDuuNvMp
-         0ffQPfro8AA9mQgcHpQWm+83oHK2bEEssUjkRRKpfcZ7pbBjkABRVy2ZrgR0uTcbJXVA
-         ARfpU23I824yy/E5TKqdFrOHeqbS5NhjAvKiuQ9vhjul9nLiMUdk+bzeulh29KRZ/IJr
-         7UQUI2ozLiIWEP7XluQiI0TrfW+vp/tVS3v4UKpGwNAPsLKo5pcRpSGMBAKoLL6NR8VH
-         cZPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750230605; x=1750835405;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=blHlfMe+5CBJc/TGBy1gRr5vofntcL3F+SvJ+oaL4XI=;
-        b=XG8Ulrouf+IL1PhAyr1RSW1jtQAOHckaBVmI/5bE/k88NX+1QrXXRmdMwwdKQfDauv
-         IPJZiaYXVMhntemtltXDmmcqmSRy1ENKrYAnIV4qM293SYHWMwoth5BLTpFuE5TzRnZz
-         b3DhkbuoUer4An4Uwni10szFLVbFFHcDGPLM74WL4ukRMhQWfgTCCs6e4AZrEaiSZEXQ
-         j2eUB31f+fJvF6lSGj/Z1/YMRKKkM2gIUeZjfi9c4ZuoCMJz/j5A58T3IVIFwAWhUaZO
-         EwyBi+JjYiKF63u4UX4bLNkP8lqmwXxNpQPTon7ukG/8s2v9ozxu8ONIIUYNVOUZG4Cs
-         g+2g==
-X-Forwarded-Encrypted: i=1; AJvYcCU0/PMyzUTkWoU/v/5gV3te+mguBsDBq2IZI0yPHs3Yu5JbVk1caEFT9Gy1BgiFAIbNA5ZdnQD3abE/@vger.kernel.org, AJvYcCVarOIfi3KURNccy0+Ycr8wUKVc2cJiWDCI8O1BOZRHIc2Mtbie/5U6VTymQLVol0hIxPnajpLqpLCUl9+j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/vPvPGzt3gi83ojHqsfZEQL/dPMMGvqfyd3mMZhb5Cd4h3bH+
-	W8ht3d3B3gMMufPPc3kPyk/GT4QlWx7ThR0IX/esnunOUsn/6P0/NifT
-X-Gm-Gg: ASbGncvntxYA1sjSKTyc73VXiphpxGk/KJL54ycAt/eOkhaobYT/oD/mjB/vo8Ggxn+
-	/NavjnP4bmdgN1MXocpQXBR2X/eiFEwezH/BxZJCfHqpCXG6XpDWMIW+XN5YmG336rkHaF87eUI
-	QX/JbQ2BxkA63GYa9tCrb0/dYiHlBF8LwcGCEf/vE9XgrDMDTaaFiu6msFH2qGppG/wCKiy7GnP
-	eIjBus1jNSjTi+trh4jtv5Vw1BUAufYMwTrUeyv/P5S3q626mJmvJKzS+AuXTCsSR/V74bfzBhS
-	6iO5Nyf8VFjX16naDsklm7z7VqzhSEAsb0zjzBiQP+3fvUbbj8FNVotbgH19ECB37f/vNxcmCXF
-	T3NgZxog=
-X-Google-Smtp-Source: AGHT+IGbwEhIWV4IKMQ3WRcacP8pkDAtcfY/QWEP271EBcrbZmLFg+GQMV3so/GYmhjA/VhLeTRu7g==
-X-Received: by 2002:a05:600c:b95:b0:450:d012:df85 with SMTP id 5b1f17b1804b1-4534b4d8ad2mr103112555e9.18.1750230604970;
-        Wed, 18 Jun 2025 00:10:04 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b70d77sm16171244f8f.94.2025.06.18.00.10.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 00:10:04 -0700 (PDT)
-Date: Wed, 18 Jun 2025 09:10:01 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: i3c: Add adi-i3c-master
-Message-ID: <qg2l6wfzaquxepeubxgrp2xdbdsfqam3vpzc75sar66jhpc3zn@wi3yk75lebo2>
-References: <20250606-adi-i3c-master-v2-0-e68b9aad2630@analog.com>
- <20250606-adi-i3c-master-v2-1-e68b9aad2630@analog.com>
- <20250606-sliver-freeing-d01268258c25@spud>
- <ildi2pup2zkyv4stuknkrjysex3yzsbrrsrwbgcc4xgvdhwrdd@7qh4y6mutgy2>
- <20250617-pawing-octane-a983fbf7100d@spud>
+	s=arc-20240116; t=1750231047; c=relaxed/simple;
+	bh=Ien8JIYHGNL5X9LLCr5Rx52JCUxh6saVyb5rnnTYT6A=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=uue5V6255UMgG+hPVrxe737G/3cZIfMqD48npG9zdl6eJIU72JMIWduIYwPWU+txbuC7BFuC6X+awViw/+7iK+jtUdyVrC/wV5Tj4jiVsd+dodLpYaKOU7XzXRdtELd4QC0H6IwstUTKMbKzl9vYROcr1ghEFIMsovB5gDKDj4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=qN4wc4XX; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55I5snrQ032110;
+	Wed, 18 Jun 2025 03:17:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=xpEAYvZLAh3gR76m6/qRao45ed8
+	Isl8God5610JbqLE=; b=qN4wc4XXCXt2sPZQXWoUuQhk1ku7Ht2CNBz1XiZEpol
+	s0RopwDq8hwN/q5jwi91xd1TrvUP4KA9SBxIsUKjzkLZc1Vn7/qlXBwLgpMDjQcu
+	n23S9oEJrn2fXX5q/ilaDKqU7cPadNSwxMVpjIQu48JcaRYQXwnhVOH/51LWlKgG
+	WPpU+lToi5D/zCswBV21ZpqLPerlC3bWJXDMLIugNsNhBzYIUmQPoktCMp+HmiDR
+	PupciDym3byEJZV/ETwjfKDrxKU7f3fAMeXCeMdznaw3MswVm/Yv5Tje2kA3zA8y
+	GUyxmCmfEDWKTD/dZ0Em4pHaw2aHM7fNwlKgy0ilDyg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 47bfshaeq8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Jun 2025 03:17:01 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 55I7H0Qx037088
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 18 Jun 2025 03:17:00 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 18 Jun 2025 03:17:00 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 18 Jun 2025 03:17:00 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 18 Jun 2025 03:17:00 -0400
+Received: from HYB-DlYm71t3hSl.ad.analog.com (HYB-DlYm71t3hSl.ad.analog.com [10.44.3.56] (may be forged))
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 55I7GkPe027550;
+	Wed, 18 Jun 2025 03:16:48 -0400
+From: Jorge Marques <jorge.marques@analog.com>
+Subject: [PATCH v3 0/2] Add ADI I3C Controller
+Date: Wed, 18 Jun 2025 09:16:42 +0200
+Message-ID: <20250618-adi-i3c-master-v3-0-e66170a6cb95@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250617-pawing-octane-a983fbf7100d@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANpnUmgC/3XMQQ6CMBCF4auQrq0ppdTqynsYF0M7wCRCSUsaD
+ eHuFlYa4/K95PsXFjEQRnYpFhYwUSQ/5lEdCmZ7GDvk5PJmUshaaKE4OOJUWT5AnDFwCXWpjK2
+ NVSeW0RSwpecevN3z7inOPrz2fiq3928qlVxwoYxBIxy0trnCCA/fHa0f2NZK8tPrHy+zR22aM
+ 4CTuhJffl3XNzlo51/tAAAA
+X-Change-ID: 20250604-adi-i3c-master-2a5148c58c47
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Frank Li
+	<Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-i3c@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <gastmaier@gmail.com>,
+        Jorge Marques
+	<jorge.marques@analog.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750231006; l=2324;
+ i=jorge.marques@analog.com; s=20250303; h=from:subject:message-id;
+ bh=Ien8JIYHGNL5X9LLCr5Rx52JCUxh6saVyb5rnnTYT6A=;
+ b=VHvCqbVxJVVuKcCIgbiwFLjMYONjHpn2RhKRqQfhpRS9Hl1a8C3RFS0La6yvwPfC3shpefbIx
+ hLANmzJUM6OD3uUiDhqiekhJZZPHMVr1Bj0BcuqvBVJP6rZbzjKUOWL
+X-Developer-Key: i=jorge.marques@analog.com; a=ed25519;
+ pk=NUR1IZZMH0Da3QbJ2tBSznSPVfRpuoWdhBzKGSpAdbg=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: G2roF2RkUwpr_wxd-zUKabprrgpFIutW
+X-Authority-Analysis: v=2.4 cv=SKhCVPvH c=1 sm=1 tr=0 ts=685267ed cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=wI1k2SEZAAAA:8 a=VwQbUJbxAAAA:8
+ a=gAnH3GRIAAAA:8 a=Au82MslZ5VMqyGn2ihwA:9 a=QEXdDO2ut3YA:10
+ a=6HWbV-4b7c7AdzY24d_u:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDA2MiBTYWx0ZWRfX6mL8myALvm0Z
+ Qkgph8kxruPUuvfBZGcj66e7tD/N32/RgpMeyjrCJYdZz3R8Bw2h2pclmELh0cXm/In6COcrTNI
+ oOqbc6Wtk/lBm9++52BcY1mbug+a4uVOkBpCxdp7/mFQMv0MyfjPwY9ARK9iE1irURfn0H1zfLR
+ 4qL7WQ6LsRI2OlfY4zLxrwBCUsK8Dx9gEMcGmq094uIxNPixeooBAmTEN/s1VvBnJpB64Fc8yYa
+ 5zkZtRYmFJZRgSfjlGV+tBY3eXqfbBmGNkUUova8aLuRbs99/1WWLrjwkGTjaKN67/CfRMOOBuq
+ k5LXBRSio9FZkPZn0R4AkMjago5RVMUljdkywUvtRxjGn/8KBl8GjyVi9MtKJQFrShFba4wxie/
+ Ty6w1pZsDpSiOaNvldJlwpQRqDRhTWy7tagwVkWt3A3H7ehnhEGohfk1Mltgw3BA/7tu3/su
+X-Proofpoint-GUID: G2roF2RkUwpr_wxd-zUKabprrgpFIutW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-18_02,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999 clxscore=1011
+ phishscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506180062
 
-On Tue, Jun 17, 2025 at 04:47:58PM +0100, Conor Dooley wrote:
-> On Tue, Jun 17, 2025 at 04:50:43PM +0200, Jorge Marques wrote:
-> > On Fri, Jun 06, 2025 at 05:08:45PM +0100, Conor Dooley wrote:
-> > > On Fri, Jun 06, 2025 at 03:21:02PM +0200, Jorge Marques wrote:
-> > > > Add bindings doc for ADI I3C Controller IP core, a FPGA synthesizable IP
-> > > > core that implements the MIPI I3C Basic controller specification.
-> > > > 
-> > > > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> > > > ---
-> > > >  .../devicetree/bindings/i3c/adi,i3c-master.yaml    | 63 ++++++++++++++++++++++
-> > > >  MAINTAINERS                                        |  5 ++
-> > > >  2 files changed, 68 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
-> > > > new file mode 100644
-> > > > index 0000000000000000000000000000000000000000..e7fae394ad8fd4143eb1fffb9591a30a2d6cc6ac
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml
-> > > > @@ -0,0 +1,63 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/i3c/adi,i3c-master.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Analog Devices I3C Controller
-> > > > +
-> > > > +description: |
-> > > > +  The ADI I3C controller implements a subset of the I3C-basic specification to
-> > > > +  interface I3C and I2C peripherals [1].
-> > > > +
-> > > > +  [1] https://analogdevicesinc.github.io/hdl/library/i3c_controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Jorge Marques <jorge.marques@analog.com>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: adi,i3c-master
-> > > 
-> > Hi Conor,
-> > > Seeing this with no versioning info is pretty suspect.
-> > > The adi spi, pwm, axi-dmac etc all have versioning info, please try to
-> > > emulate that.
-> > > 
-> > > Otherwise, I think this is okay.
-> > > 
-> > > Cheers,
-> > > Conor.
-> > > 
-> > The driver checks the IP version via register access, for the other adi
-> > ips, the -x.00.a suffix was never updated. For example, the axi-dmac
-> > current IP version is v4.5.64 while the compatible still is 1.00.a and
-> > there is a mention of v4.3.a in the binding. It is unclear whether
-> > suffixing it with "-1.00.a" would be useful, or if the time comes call
-> > the new "adi,i3c-master-2".
-> > 
-> > Do you still think it is necessary?
-> 
-Hi Conor,
+I3C Controller is subset of the I3C-basic specification to interface
+peripherals through I3C and I2C. The controller RTL is FPGA
+synthesizable and documentation is provided at
+https://analogdevicesinc.github.io/hdl/library/i3c_controller
 
-> I do, yes. In the other cases, if a new version comes out that has some
-> sort of meaningful difference a new compatible can be added. Until then,
-> using the -1.00.a one is okay.
+The main target for the I3C Controller IP is low-cost FPGAs.
+In this version the driver supports IBI (only the MDB), I3C and I2C
+transfers.
 
-Ok, I will add the -1.00.a suffix,
+Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+---
+Changes in v3:
+Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml:
+- Small reworking of the description
+- Add -1.00.a suffix to compatible
+
+adi-i3c-master.c:
+- Misspelling
+- Remove REG_CMD_FIFO_0_LEN_MAX since it is a HDL parameter
+- Use adapter timeout value for I2C transfers, as in
+  https://lore.kernel.org/linux-i3c/aEBd%2FFIKADYr%2F631@lizhi-Precision-Tower-5810/T/#t
+
+- Link to v2: https://lore.kernel.org/r/20250606-adi-i3c-master-v2-0-e68b9aad2630@analog.com
+
+Changes in v2:
+Documentation/devicetree/bindings/i3c/adi,i3c-master.yaml:
+- Move allof
+- Rename clocks to axi, i3c
+
+adi-i3c-master.c:
+- Update license year
+- Rework regmap to use FIELD_GET, FIELD_PREP
+- Reformat regmap to have FIELDS after REG, prefixed by reg name.
+- Add overflow safeguards to cmd, tx fifos
+- Fix macro related macros (mostly erroneous `| ~BITMASK`
+- Use guard macros, remove goto.
+- Simplify daa logic
+- Replace devm_clk_get with devm_clk_get_enabled
+- Solve 64bit->32bit warnings on x86_64 systems by casting to u32
+- Immediate clear irq request flags, then handle it.
+
+- Link to v1: https://lore.kernel.org/r/20250604-adi-i3c-master-v1-0-0488e80dafcb@analog.com
+
+---
+Jorge Marques (2):
+      dt-bindings: i3c: Add adi-i3c-master
+      i3c: master: Add driver for Analog Devices I3C Controller IP
+
+ .../devicetree/bindings/i3c/adi,i3c-master.yaml    |   63 ++
+ MAINTAINERS                                        |    6 +
+ drivers/i3c/master/Kconfig                         |   11 +
+ drivers/i3c/master/Makefile                        |    1 +
+ drivers/i3c/master/adi-i3c-master.c                | 1026 ++++++++++++++++++++
+ 5 files changed, 1107 insertions(+)
+---
+base-commit: 00286d7d643d3c98e48d9cc3a9f471b37154f462
+change-id: 20250604-adi-i3c-master-2a5148c58c47
 
 Best regards,
-Jorge
+-- 
+Jorge Marques <jorge.marques@analog.com>
 
 
