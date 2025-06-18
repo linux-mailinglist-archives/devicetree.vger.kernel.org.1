@@ -1,159 +1,246 @@
-Return-Path: <devicetree+bounces-187135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA50ADED12
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D91DADED2A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 14:59:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75BCE16AFE6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:57:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DE111614CA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83612E2EF2;
-	Wed, 18 Jun 2025 12:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YsXxY8NY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166452E2EE9;
+	Wed, 18 Jun 2025 12:59:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1891D2E2EE9
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 12:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2CC2E06EF;
+	Wed, 18 Jun 2025 12:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750251419; cv=none; b=N3khVtWZ2vP0+v7MlAvYNHVuddOmXHURSxgfrvIncTnIlqp/GsX/tr4mQI/CSUgPLTYdh9kNcIOKsOSOQhDJIVN4Tqo3lU475z2TbfGmSXmM0wE85oxNc/4UGbbkrVVJPozaR6GRstunzu0bwLPi9k/REAb69n+ia32SfcAo58M=
+	t=1750251546; cv=none; b=SCNVs5WfFbsvwbfRy0WeTb+Z80lmvzYTdghloPway1c+0tH59fuf24tVrPNM/ovBUr6EjU2FnzWTpx7gfppEpQ4RowOLivfbvUppJiJVdKEhyn0x5OMPDDQSnZROm3WedBd/IuCSC0OuAv0Gee/yhvyuk5rAzaBhEXqxNIhR560=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750251419; c=relaxed/simple;
-	bh=0wBAwwU35T2EdCWcWHBQveoDRg+cQ5ZJBxvRBpS8XqA=;
+	s=arc-20240116; t=1750251546; c=relaxed/simple;
+	bh=sUE5LGpFJyA5Qa0xAihWgfI7AQnk+dJiPpO9R8rKSXc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xde9YzVGSWUpQvqIP7wZPDSw1HEAKvpScgoObps3/BuXmnwmv/O2N393Ex3qpm42spR2y2b+Y8LKB4MHGA4QZHlqXIlBGVR1YpV+UEWscxD7JcGf1B4tvLPZeG6X9fkRXbkMzGpIi0j1FyYrTkIUFYl7f87G4njmIMF4DBGJb58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YsXxY8NY; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e82596e88c4so2906450276.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 05:56:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750251417; x=1750856217; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Jfv7W89jcyNI5g8maM5e0NmglDrqdzJne5yo5vZPXg=;
-        b=YsXxY8NYzQoxZBRRqVNivh364fzheZLSJPL1iF2h8we2FJ8feKWiAKj6fIJCAen8Aw
-         Q9YS8U4gUb5Ni50asVbfdiJ/q3AQdphjISts1bfPWBVBMeU+sYOiR3URsmhtcUkMXqkV
-         9hi1z8nvl3KXcRMuDFXG/m+/9t81mjbFuR8v2LTZeRdF2lp+JYOp4HGGZxtqVLLiwLzC
-         tNMG6ynqSdI2dRgtiWE/Povfe7HL9Fi4C/tb7SWtGdkXgGs/Wbl2e9jxF4KdQLTcTzUj
-         sGRtN7G7n2FNmKQduoj7pgxJncgYYbOmh8gMQrdCwRYMNkEK24H8H3LDm+JDarRE1pSU
-         CKdA==
+	 To:Cc:Content-Type; b=bsZxL1NmVinP9ZnZiXPxNxamP0pggPvJvAIBYq4gmBfofqPqavIP96H8UkEtevL92Y6zOJWOqwvLpFOgns+tuComrjqUrvJ/9SC3/6zcxM6sozr0XnOPhwZNvhdJimwH3ZsPctzkDEcXKpANFYzGSbhkPNxPYuhDUxTpP07Y8DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-877d7fa49e0so4465152241.2;
+        Wed, 18 Jun 2025 05:59:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750251417; x=1750856217;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6Jfv7W89jcyNI5g8maM5e0NmglDrqdzJne5yo5vZPXg=;
-        b=jkrVvxBepMLNyS9NkLIfy9nPkGBcobGf7Rjfnua9NwfT3UWg8iw+AkQ7k6mzyc7NVF
-         VLa4lq+630ApGbmFlJEQj2FE0JkMK7VZgep8pZPGii5fFDMrUgq+ZznSLKhrYBphDRQU
-         neLbVxw2j/48jADET4ARPDoHifKtzN+mYWJ+ITguLkgCh9i5CwvK/K7TEX3fovuseP8q
-         n19twr+C0Obk7TkjWFkzChoUG/EH+SsY6nI9875VP/Bb32H/CXy1VZru14WUoHBcXm7B
-         AXQuS4a6YhuArGI+8wla8JKYNXwOnlB2EAig5FjfAfzQ+DFaCo5hDwIpSYVaZTWc511w
-         qyaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqVq65FFWii5UJGC2S1h0HXyD5MsCXhH62YiLwJtmxg/WsFgQNePhpVmurN7AnIp2pO/bErcOSERej@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5lpq0oVFdBMaeCcLPyA6Y0KC06vX2zyzqW/pnkX4Pzbm/VPkf
-	RUbA4AddEiqyw8EzKsBqb/ZWJqFvmXUTJ9Z4eFX/WbSBgH1OHLrFgpA8h5/lxw61tbCkvdJqlux
-	9MCkFXWcalryGRLTyQ2JPDpnws6Ig003+5znTpW8nvw==
-X-Gm-Gg: ASbGncvG0zGHpOuTZtqT36ow6sPWW3LG36jjiGv7V9zjy3JWGINlWrnc99mTBiylEV0
-	HX+04vtLKIVaPL/JjuY6kBClS/B3+czONEemlHgOvYjMc9lXnmucDsjjSkeJc79iCLeB/xtDdZz
-	B/ya26gZ2AqS8WL4zfsrsSLi8oC1i3nj67DRgbhAaNjvQ=
-X-Google-Smtp-Source: AGHT+IEF7aSd2gChdpDkWFgFxP4fyCJRIi/0rOPMDF7EBy8fifK6rpldismzyPaU5FnMtFjQSC8V5hmVyzcxyRjq81Y=
-X-Received: by 2002:a05:6902:a06:b0:e81:2740:2d96 with SMTP id
- 3f1490d57ef6-e822acc6cc8mr22162870276.17.1750251416986; Wed, 18 Jun 2025
- 05:56:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750251542; x=1750856342;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1meYcoxvrbd2d7zCFlmnwZmD+qg+m1hMmuA8AxCWAmU=;
+        b=I2k3MwZeXntDDAhHLW+fqVx4YvfOBfGZWZmiVW5q91+VxpEMtM+9+vuU+dT9uc1k+V
+         fpUfu95rMz5n9j8xo5/vWRlBqge26k9vKm0dt/j8u4sfpTajxodkSUN/DbXp15jZYdz4
+         2c30xYnad/K6lR2rkH/FYOVG7NZdD8ciWvi7fS91y3eFBbY7EFFPmLijBAdTjRDkYfKm
+         RxIlYxeyWWGrHzzwPJUWrdihtwrt+XApo+VLamS3UF92mLMGsmSxvvB/6f+80xZzF9Rf
+         YBD5m/ftAFIH08JAu0gao2DL/X2DSo3vYx9jgchXAI2ZSzIdlVJ3BUoWQR5eMxbUQJs/
+         fnjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUgdE/pMR2NabK6lSYHxXyKAS3U2dZs5SInFXOktBEdL7uaA+eQL0IlOnt04i9DMipJqfpEmX/2qKZkEMHyThRwsSo=@vger.kernel.org, AJvYcCXTGxjb9Su3e7lodBX77X2+AlodbIfuxKnhwkhr5Je3T9TPLpGKWVgZrd5mNtOueBaxoVPzYs7eQx1V@vger.kernel.org
+X-Gm-Message-State: AOJu0YznEA5FEU69QHkeYiehNRL8OmFOekM2ObTBxWRRtbcaq3oFw2Ir
+	YBhttyZthQQyJbfgTSC6+nVe4jUFlFO+3EB3u2gpJB6Krhxcrdi6CW2IqNo+hEzd
+X-Gm-Gg: ASbGncsX/XXRFKh8oLeoIzmhzUS5gXXHPToqfRoTBeUrmGoP2cHdm7gNhH8qHEXQgS2
+	dYkve0MIA2nceNLyNNK29qBEoXgShUJgq6AMQgSeHa1reoErll8d/fiIpf01cDYrOvhztPjgvc7
+	xZSPG2xTTRsXCVJl982ui+6tfMWqh7rdj9XTDq/Vkk1uvnfJEZySq/b3g/5ExZg28CPum+lfVSA
+	AwjSu1O3/LzzKmVdS1JF/IgXZf4pGmj7wi2RPLCHZ16+zfnkqNVr3sumXZjbjPy67o4NSqjWr8B
+	KoBiJeqj5arM+F7mK9zFintzKNc0sd67rTplNPYuvZQHFdmMQBPJj2I1be6r7T48J175PEnGxxS
+	DgUUYXpTZwfE1QHfhI2PM84YZ
+X-Google-Smtp-Source: AGHT+IH9kOtKhJCquLZLD3ZclHbELqy5aJRA58At7h/AfUyCpxJGcjRk7y2l3imgtEZIyaE/TCNyeA==
+X-Received: by 2002:a05:6102:598e:b0:4e6:245b:cf57 with SMTP id ada2fe7eead31-4e7f625b10cmr14082479137.24.1750251542463;
+        Wed, 18 Jun 2025 05:59:02 -0700 (PDT)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e7f239a920sm1828791137.27.2025.06.18.05.59.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jun 2025 05:59:02 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-87f2adec2b7so1215318241.0;
+        Wed, 18 Jun 2025 05:59:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXQhNVR5BZxyXW7YVhj4z30je9ZNUIqnfJC+2Hb7C4nlceSYS/Vu1ojWyA9D3wqJGmPo/o77ntTzWAG@vger.kernel.org, AJvYcCXXLe5c3w6ke6NgEr8l2I207Pef4cFYIM1sShWCEW6qzqO1iivautn6TmBNjPYkoFHn64b3N4VtlD3v3Ocpi7TEZZo=@vger.kernel.org
+X-Received: by 2002:a05:6102:50a1:b0:4e6:d7af:a7b1 with SMTP id
+ ada2fe7eead31-4e7f6163427mr11792185137.10.1750251541926; Wed, 18 Jun 2025
+ 05:59:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250518220707.669515-1-jonas@kwiboo.se>
-In-Reply-To: <20250518220707.669515-1-jonas@kwiboo.se>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 18 Jun 2025 14:56:21 +0200
-X-Gm-Features: AX0GCFurdlTWKY938doCIooXAEmUu9ZI2vYDArR38Vi5OuNwlGZr8B4vigPCwUY
-Message-ID: <CAPDyKFrtp7MHMuXhhYm7c8TY9u5DoGV89x4d__gYLQSNU48voA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] rockchip: Add power controller support for RK3528
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>, 
-	Chukun Pan <amadeus@jmu.edu.cn>, linux-rockchip@lists.infradead.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
+References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
+ <20250311113620.4312-2-biju.das.jz@bp.renesas.com> <TYCPR01MB11332F064115080582332B78986AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <CAMuHMdVy3B+i2p6unkX-n=7AYCfP5B8sW7F9GJi7URcvniGA2A@mail.gmail.com>
+ <TYCPR01MB1133206083EC0249A827261EB86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+ <CAMuHMdUyY8SsUQEZwxdCK-ggPuYy8L_WwnUgq3Cj7oYiTcyNTQ@mail.gmail.com>
+ <TY3PR01MB11346123B74D86590C0F8B9CD86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CAMuHMdWevyJ8Z4YWYx0rr=_TD0OTywbkPfNwRcw5k=yDV-i2Ow@mail.gmail.com>
+ <CA+V-a8t1siG17NKna-ACUzCoXFTOyVxuLonTVSRLnNq1ie3iTg@mail.gmail.com>
+ <CAMuHMdXw+mcj-P=Zm4R8WF0PxogPLfFCbALBRFN9Wn8UEo1FkQ@mail.gmail.com> <CA+V-a8u4PgttE0LaH7M=-5Br400sNE1gzk_a3L_9jfXZgCLd-Q@mail.gmail.com>
+In-Reply-To: <CA+V-a8u4PgttE0LaH7M=-5Br400sNE1gzk_a3L_9jfXZgCLd-Q@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 18 Jun 2025 14:58:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVQ7pK+zvZm6MHsfGRctyOSurQpDYJztSfD6P1gvuw_RA@mail.gmail.com>
+X-Gm-Features: Ac12FXwAn1i7if3raSJXh_qxLoG4NjstR8JSjZJWfoo_pM_Eodsqb7Z5GGJf2Sw
+Message-ID: <CAMuHMdVQ7pK+zvZm6MHsfGRctyOSurQpDYJztSfD6P1gvuw_RA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Stephen Boyd <sboyd@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"biju.das.au" <biju.das.au@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 19 May 2025 at 00:07, Jonas Karlman <jonas@kwiboo.se> wrote:
->
-> The Rockchip RK3528 support multiple power domains, one PD_GPU that can
-> fully be powered down, and other that can be idle requested.
->
-> Vendor kernel flag all power domains on RK3528 as always-on, this takes
-> a different route and instead tries to describe all devices power-domain
-> in the device tree, even for controllers with unsupported runtime status.
->
-> The PD_RKVDEC is used by RKVDEC and DDRPHY CRU, and is kept disabled to
-> prevent a full system reset when trying to read current rate of the
-> SCMI_CLK_DDR clock.
->
-> Patch 1-4 prepares and makes it possible to use the PD_GPU power domain
-> for a separate "Add GPU support for RK3528" series.
->
-> Patch 7-9 updates dt-bindings for controllers not supporting use of the
-> power-domains prop and enables the PD_RKVENC, PD_VO and PD_VPU domains.
->
-> pm_genpd_summary on a Radxa E20C after this:
->
->   domain                          status          children        performance
->       /device                         runtime status                  managed by
->   ------------------------------------------------------------------------------
->   vpu                             on                              0
->       ffaf0000.gpio                   unsupported                 0           SW
->       ffb10000.gpio                   unsupported                 0           SW
->       ffbe0000.ethernet               active                      0           SW
->       ffae0000.adc                    unsupported                 0           SW
->       ffbf0000.mmc                    suspended                   0           SW
->   vo                              on                              0
->       ffb00000.gpio                   unsupported                 0           SW
->       ffc30000.mmc                    suspended                   0           SW
->   venc                            on                              0
->       ffb20000.gpio                   unsupported                 0           SW
->       ffa58000.i2c                    unsupported                 0           SW
->   gpu                             off-0                           0
->       ff700000.gpu                    suspended                   0           SW
->
-> Jonas Karlman (9):
->   dt-bindings: power: rockchip: Add support for RK3528
->   pmdomain: rockchip: Add support for RK3528
->   dt-bindings: rockchip: pmu: Add compatible for RK3528
->   arm64: dts: rockchip: Add power controller for RK3528
->   dt-bindings: mmc: sdhci-of-dwcmhsc: Allow use of a power-domain
->   dt-bindings: gpio: rockchip: Allow use of a power-domain
->   dt-bindings: i2c: i2c-rk3x: Allow use of a power-domain
->   dt-bindings: iio: adc: rockchip-saradc: Allow use of a power-domain
->   arm64: dts: rockchip: Enable more power domains for RK3528
->
->  .../devicetree/bindings/arm/rockchip/pmu.yaml |  2 +
->  .../bindings/gpio/rockchip,gpio-bank.yaml     |  3 +
->  .../devicetree/bindings/i2c/i2c-rk3x.yaml     |  3 +
->  .../bindings/iio/adc/rockchip-saradc.yaml     |  3 +
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  4 -
->  .../power/rockchip,power-controller.yaml      |  1 +
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 87 +++++++++++++++++++
->  drivers/pmdomain/rockchip/pm-domains.c        | 27 ++++++
->  .../dt-bindings/power/rockchip,rk3528-power.h | 19 ++++
->  9 files changed, 145 insertions(+), 4 deletions(-)
->  create mode 100644 include/dt-bindings/power/rockchip,rk3528-power.h
->
+Hi Prabhakar,
 
-Patch 1->3 applied for next, thanks! Note that patch1 and patch 3 are
-also available on the immutable dt branch.
+On Wed, 18 Jun 2025 at 14:06, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+> On Wed, Jun 18, 2025 at 8:03=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Tue, 17 Jun 2025 at 23:05, Lad, Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> > > On Mon, Mar 31, 2025 at 7:25=E2=80=AFPM Geert Uytterhoeven <geert@lin=
+ux-m68k.org> wrote:
+> > > > On Mon, 31 Mar 2025 at 17:33, Biju Das <biju.das.jz@bp.renesas.com>=
+ wrote:
+> > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > > > > > On Mon, 31 Mar 2025 at 16:34, Biju Das <biju.das.jz@bp.renesas.=
+com> wrote:
+> > > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mon, 31 =
+Mar 2025
+> > > > > > > > at 15:54, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com> Document su=
+pport for
+> > > > > > > > > > the Expanded Serial Peripheral Interface (xSPI) Control=
+ler in
+> > > > > > > > > > the Renesas RZ/G3E
+> > > > > > > > > > (R9A09G047) SoC.
+> > > > > > > > > >
+> > > > > > > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > > > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > > > >
+> > > > > > > > > > --- /dev/null
+> > > > > > > > > > +++ b/Documentation/devicetree/bindings/memory-controll=
+ers/renes
+> > > > > > > > > > +++ as,r
+> > > > > > > > > > +++ zg3e
+> > > > > > > > > > +++ -xspi.yaml
+> > > > > > > >
+> > > > > > > > > > +    spi@11030000 {
+> > > > > > > > > > +        compatible =3D "renesas,r9a09g047-xspi";
+> > > > > > > > > > +        reg =3D <0x11030000 0x10000>, <0x20000000 0x10=
+000000>;
+> > > > > > > > > > +        reg-names =3D "regs", "dirmap";
+> > > > > > > > > > +        interrupts =3D <GIC_SPI 228 IRQ_TYPE_EDGE_RISI=
+NG>,
+> > > > > > > > > > +                     <GIC_SPI 229 IRQ_TYPE_EDGE_RISING=
+>;
+> > > > > > > > > > +        interrupt-names =3D "pulse", "err_pulse";
+> > > > > > > > > > +        clocks =3D <&cpg CPG_MOD 0x9f>, <&cpg CPG_MOD =
+0xa0>,
+> > > > > > > > > > +                 <&cpg CPG_MOD 0xa1>, <&cpg CPG_MOD 0x=
+a1>;
+> > > > > > > > >
+> > > > > > > > > On the next version I am going to update spix2 clk as <&c=
+pg
+> > > > > > > > > CPG_CORE R9A09G047_SPI_CLK_SPIX2>
+> > > >
+> > > > According to the RZ/G3E clock system diagram, (the parent of) clk_s=
+pi
+> > > > is derived from (the parent of) clk_spix2, not the other way around=
+?
+> > > > So you can model clk_spi as a fixed divider clock with parent clk_s=
+pix2
+> >                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^^
+[A]
 
-Kind regards
-Uffe
+> > > > and factor two.  I.e. provide a new core clock R9A09G047_SPI_CLK_SP=
+I
+> > > > instead of your proposed R9A09G047_SPI_CLK_SPIX2?
+> > > >
+> > > With this approach when R9A09G047_SPI_CLK_SPI is used as a core clock
+> > > and XSPI node is disabled the clk_summary reports the core clock is O=
+N
+> > > (while it's actually OFF).
+> >
+> > Is that a real problem, or is it purely cosmetic?
+> Just cosmetic tbh as despite being a MOD clock we have to define it as
+> a core clock in the DT.
+>
+> > > Can we maybe use a unused ON index and ON bit for example 25, 0 (ie
+> > > 0x190) and represent this is a module clock for example for the
+> > > spi_clk_spix2 clock and use this in the DT and let the CPG core code
+> > > handle such turning ON/OF the module clocks based on the enable count
+> > > which will be handled internally in the driver?
+> >
+> > Please do not use "unused" module clock bits.  These do not describe
+> > the hardware, and may actually exist in the hardware (try disabling
+> > all undocumented module clocks, and observe what fails...).
+> >
+> Agreed, "unused" module clock bits were only used as a dummy. The
+> read/write operations were only performed on the actual bits which are
+> documented in the HW manual.
+>
+> > If spi_clk_spi really must show being disabled, you can change it
+> > from a fixed divider clock (which does not implement .{en,dis}able())
+> > to a custom fixed divider clock that does implement .{en,dis}able()
+> > and keeps track internally of the fake state, or even looks at the
+> > state of spi_clk_spix2?
+> >
+> Good point. Maybe instead of implementing the dummy .{en,dis}able() I
+> will implement the is_enabled() + (clk_fixed_factor_ops). The
+> is_enabled() will take care of reading from the MON bits and report
+> the actual state of the clock.
+>
+> > However, upon second look, spi_clk_spi is not implemented as a fixed
+> > divider clock with parent clk_spix2, as described above:
+> >
+> >       .smux2_xspi_clk1     0  0  0 320000000  0  0  50000  Y
+> >          .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
+> >             spi_clk_spix2  0  0  0 40000000   0  0  50000  N
+> >             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
+> >          spi_aclk          0  0  0 200000000  0  0  50000  N
+> >          spi_hclk          0  0  0 200000000  0  0  50000  N
+> >       .smux2_xspi_clk0     0  0  0 533333333  0  0  50000  Y
+> >
+> > Instead, they both use pllcm33_xspi as the parent clock.
+> > Apparently I missed that in the review of RZ/G3E XSPI clock support.
+> > The changelog for that patch does describe the correct topology?
+> >
+> The topology is correct for RZ/G3E, spi/spix2 are sourced from
+> pllcm33_xspi divider and there is a divider (/2) for spi.
+
+Both spi_clk_spix2 and spi_clk_spix have .pllcm33_xspi as
+immediate parent.
+
+[A] describes something different:
+
+    .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
+        spi_clk_spix2  0  0  0 40000000   0  0  50000  N
+            spi_clk_spi    0  0  0 20000000   0  0  50000  Y
+
+I.e. if spi_clk_spix2() is disabled, spi_clk_spi() is disabled, too.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
