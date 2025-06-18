@@ -1,175 +1,396 @@
-Return-Path: <devicetree+bounces-186933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E25ADE2E3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:08:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C39ADE2F1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:15:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 328DD1704F2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:08:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 146A53B304E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1E81DE2D7;
-	Wed, 18 Jun 2025 05:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9933C1E1E04;
+	Wed, 18 Jun 2025 05:15:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="R6IReRDK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iOGHIrpA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0A613E02D
-	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 05:08:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D151922C0;
+	Wed, 18 Jun 2025 05:15:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750223302; cv=none; b=nO1eu+sIcwAyRLIqM66hjhxp3bA+7KKpavbG8UptFyKFR/Xq9O5CCGCmwRfIt63D3Q4UffuZztmvT+LyuDIvZL+esuauVm842Rh3anvM46dexorq8hs7u7a0YLU0cw+dfR805106MMDGrvvTZRNUCwmR3PHi+SA+UChMmHB90O8=
+	t=1750223740; cv=none; b=TmGIKeMTPxCEsCbhB61+HpZVypeeNqTILBj9JfSVsOikJ/0hoC0I7C2hWSQTNrrsXE2DNuSP7eYLWANTyZG5xef+jcsw5UZcO2azN1kdXBYpW0XhoeFaOLLr5m7fKMNVtkfAUpTskJhXIohblS6A6B2LQ9t7AffFkwLZhBCEgYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750223302; c=relaxed/simple;
-	bh=MzlWFzxk1qDJ/5xEzQ4YhLlPSbZkMC8YmJv1GemlOe0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZBsOHncE1Tj/TI1tncPoxeJufkv17bOws0d0Ox2x9JXYEUPSYOx7Pf0hYAPCEUWAZtuSg98Wt3qq0z2ELynp1AmE8yESfMYknn9FssH/RIYM83sytBgPKzULd1F1Ag9KbcHscTYkO8iY7+XP200zPTGuFAqtHGiM4cUbCQcIBpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=R6IReRDK; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-234b440afa7so65178025ad.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Jun 2025 22:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1750223300; x=1750828100; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0piupPu8V/gl6O7trlkzEQzKsY2tqiYS+DKkqKrrgIw=;
-        b=R6IReRDKPO8V6G+5cplMVZyDczIAJveJYxN5f4AYotF7R3iQKA5BNLamnM1uduQhSc
-         7gE4ru0iOQJj83ZF6X0xqeNTy3PxeQSEvPbgoTHrqr/Z7mgUj4jYvFYO4XgLNMAZN3b8
-         FrerMdvXuj2uwksGNFEIVgzBGAm0MGIowZsENt8dvb8E8iMebRH6+ioTvOhiU+avP10m
-         eDw1Sh4Hk84M8WCRg+P0tyjyPmzO6NJ7Q6LuteBfcNyelkFCVlkEQxlDu6q6K309sJl9
-         sPOuC4xzpFrCAAPUGQC9+GGkB/FXmyQGhD7cNKROJYgImlMcW7ehkm8tdyu96CFu1PmI
-         ix6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750223300; x=1750828100;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0piupPu8V/gl6O7trlkzEQzKsY2tqiYS+DKkqKrrgIw=;
-        b=Ah/dtxYC1tDVu28KmFbPMjKGmV++6SoNIj7ba4lj2LEde8WRKz5MByPyLgCEGsBi1g
-         R41lpco3JFzGkOQIjvU8dzvjV3754+pCa6txt0ITpVil5OKiTQsZDFN4SWSe8tAN+6PI
-         jvgcW5w7lcrFVHUnJxx/WNOiBCIaApC/P5P0OLfUnDuyTBv6mtLElqTl0bGkuJrryehU
-         Qkf2WsmlCpYBAK9GVcw3yTpDZlBjFSvCZDd87LPCeFWYeOQwMt8ilL0Rmm/ndmXVWzPL
-         9djFToFkS+aSl2GIH7/dWzqEGgb+95IifwhEekLCC/oqyKnT3wEoZFWSgTQ7J+CU0n2p
-         4LgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWl/ELsau/9twpe6/Mv5vPhsryiEGbg30NJvodTfffjTc3l1nbJG5jEv/99EBoJOC97TlV5li2gTneJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc9kQve6B++Y6f+ap6+8jhRFasUxQOYiE03/aXKUaoNbFLpcgl
-	DiSZV8CgQY5Q+PRkE5E950mORjhvhBXnWqGTAXkLSauqRQjrbAQN4ls/2JUTJAmbTHg=
-X-Gm-Gg: ASbGnct8mr2ASSAqrx24qUVEZ+el1eQX8FHRaxuIo2cWO4FljUClvRUfr14GdjZx04Z
-	Dv+9i3YeCEX9ynQaI/dHFsGuu5hKkv1GS8bli5sHavmhlKg9h02+DnWLM7LtBs42x9X2kPWuqLU
-	bbEeTDMbqTw+0Tk5cP7htOdwM7svYAUyVRT2L1lpT2BWxEVg1/JgUa/vxx3b0RXYBOUKTNxZ6Sm
-	nXT6yo0syXeh6W5NFX+u+vGQ+mGUerN5UKhl7xsCkIkb+mJA+VsDCytsTrnR5BWFHlbLtdrpIcJ
-	jb6dYe8gS7H7rAZeWlW9/e4kj9jiC0EPqWlo7yhWUSCaGpqk9R3BhTp7ul+UctRCcWregw==
-X-Google-Smtp-Source: AGHT+IFQmeYov3M4TJeicSZPxmrAUyfFLdsmh1502m8UPHV9igXkcxtyc+FtIrcqYue77oYSTt8fUA==
-X-Received: by 2002:a17:903:348f:b0:235:88b:2d06 with SMTP id d9443c01a7336-2366b337f3cmr135541935ad.6.1750223299794;
-        Tue, 17 Jun 2025 22:08:19 -0700 (PDT)
-Received: from sunil-laptop ([103.97.166.196])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365deb54desm90646085ad.179.2025.06.17.22.08.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jun 2025 22:08:19 -0700 (PDT)
-Date: Wed, 18 Jun 2025 10:38:05 +0530
-From: Sunil V L <sunilvl@ventanamicro.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Anup Patel <apatel@ventanamicro.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 21/23] irqchip/riscv-rpmi-sysmsi: Add ACPI support
-Message-ID: <aFJJternIoBDAxrz@sunil-laptop>
-References: <20250611062238.636753-1-apatel@ventanamicro.com>
- <20250611062238.636753-22-apatel@ventanamicro.com>
- <87frg3irgq.ffs@tglx>
+	s=arc-20240116; t=1750223740; c=relaxed/simple;
+	bh=9cnnnPk+qwpmc0uHzEP50LzcjBCctcnPH90s9o0gvYU=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=HG78dgcP24J7gv78EUbd2n63OI17eBGdr+ApW4oBjzCA+KcITDvLHLvlmhnQ+d2YIRhxyo8TfNaQzF83Z/0ass9hhsHnjO+zfxAP/rFSpu+JbsFA+bCfF0azEdC852uukrVzaxS9PAQdpnmOdt7+hnpx4LraQ/gT4GT5o49KUek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iOGHIrpA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55HNQGKJ017747;
+	Wed, 18 Jun 2025 05:15:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zYwBcLDqSZXEmkD+XgiK2pi5Ul4Qa6msN9KN86EaU2o=; b=iOGHIrpAEcfm03R1
+	qnkZjPm7THg+77P5o861YH+5q4tYBBmfacTCxWK/VhSAHphw0L3zd1YaF42ARY48
+	cCZF1wFdmX095cUTxFI5DFHzDY7glxiR+silYLdlX2I76bGBzmpA3u18PccvOuGQ
+	upw+UIpXbYUVKez/9uYQH7mtjJ4KbNZGidUX7VePCWjNkM232MO+u4yDWQg2vM9U
+	s+M/Z83ftSU6gGuBME6UMPOXpL5pNcNEZLaYrxz6+ZbcNDzA91OZHn+tUw1NQ9td
+	eFn3ZCjUUJx99wyZaRKCZqE7t537AdNzerdmWPjnakZYKCAtRDV8EUL+Kk0MZ7Ca
+	m7fO9w==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791crtkmr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Jun 2025 05:15:24 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55I5FMdn006302
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Jun 2025 05:15:22 GMT
+Received: from [10.239.29.49] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Jun
+ 2025 22:15:18 -0700
+Message-ID: <36464d9c-9bbb-488e-85c0-7e5318a16bf8@quicinc.com>
+Date: Wed, 18 Jun 2025 13:15:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87frg3irgq.ffs@tglx>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] misc: fastrpc: add support for gpdsp remoteproc
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <amahesh@qti.qualcomm.com>, <arnd@arndb.de>,
+        <gregkh@linuxfoundation.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
+ <20250320091446.3647918-3-quic_lxu5@quicinc.com>
+ <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
+ <e2a8528b-fa18-471f-9cb8-da64bb488f2a@quicinc.com>
+ <07bfc5f3-1bcb-4018-bd63-8317ec6dac48@linaro.org>
+ <5f70a482-6e61-4817-afdb-d5db4747897a@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <5f70a482-6e61-4817-afdb-d5db4747897a@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LQme4HAp6VPPDX9ZXZ5qmACbY6suSGID
+X-Authority-Analysis: v=2.4 cv=BoedwZX5 c=1 sm=1 tr=0 ts=68524b6c cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=NEAV23lmAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=vofbUKIwNjXqtydJ3YAA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: LQme4HAp6VPPDX9ZXZ5qmACbY6suSGID
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDA0MiBTYWx0ZWRfXw6wora67F3DJ
+ Lglk1ONJ2VONaC+U9nUB1XQBDgFEKW8/8Ak8IEZiYE3gBkxVe1wgzLpq2x7OJvG0aI69LUDE7tF
+ dLSln09KLLnEQgc3Er82fYP83D0UAgbJKJN8Kq00OmwKxgXyRgxnjpOwOxxXl3YOJEqyeyY1SM3
+ JqWgFstm7LPUg7gofkQqlHSrk4nd8Is7hvHKPrA7RcWCddm3HORwmR5+0ceCi1S859gsgSX2are
+ jtGp6SqKe/SrJZVo1Dh0ShaNc1Qb8KxJO4J3GXkObpAVA8MTbSIJlqmQ4+qNP4j2YaaHASTq6qt
+ xslpEkAMHx19h6NtFPZuhE2dHMdSdxG7C/iYigN9kXTsq4aj/2XAdqkpawvgcHuOOUokPwiQIOv
+ CdAl0iLReclvg0fdBSzBNSrbI5XihgAIQt48dZhGC9bDYix5KwUqtBjDoVzTWsXZW6nwS1m7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-18_01,2025-06-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506180042
 
-On Fri, Jun 13, 2025 at 05:36:21PM +0200, Thomas Gleixner wrote:
-> On Wed, Jun 11 2025 at 11:52, Anup Patel wrote:
-> > @@ -211,6 +213,9 @@ static int rpmi_sysmsi_probe(struct platform_device *pdev)
-> >  {
-> >  	struct device *dev = &pdev->dev;
-> >  	struct rpmi_sysmsi_priv *priv;
-> > +	struct irq_domain *msi_domain;
-> > +	struct fwnode_handle *fwnode;
-> > +	u32 id;
-> >  	int rc;
-> >  
-> >  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > @@ -241,6 +246,22 @@ static int rpmi_sysmsi_probe(struct platform_device *pdev)
-> >  	}
-> >  	priv->nr_irqs = rc;
-> >  
-> > +	fwnode = dev_fwnode(dev);
-> > +	if (is_acpi_node(fwnode)) {
-> > +		u32 nr_irqs;
-> > +
-> > +		rc = riscv_acpi_get_gsi_info(fwnode, &priv->gsi_base, &id,
-> > +					     &nr_irqs, NULL);
-> > +		if (rc) {
-> > +			dev_err(dev, "failed to find GSI mapping\n");
-> > +			return rc;
-> > +		}
-> > +
-> > +		/* Update with actual GSI range */
-> > +		if (nr_irqs != priv->nr_irqs)
-> > +			riscv_acpi_update_gsi_range(priv->gsi_base, priv->nr_irqs);
-> > +	}
-> > +
-> >  	/* Set the device MSI domain if not available */
-> >  	if (!dev_get_msi_domain(dev)) {
-> >  		/*
-> > @@ -250,8 +271,13 @@ static int rpmi_sysmsi_probe(struct platform_device *pdev)
-> >  		 * then we need to set it explicitly before using any platform
-> >  		 * MSI functions.
-> >  		 */
-> > -		if (dev_of_node(dev))
-> > +		if (is_of_node(fwnode)) {
-> >  			of_msi_configure(dev, dev_of_node(dev));
-> > +		} else if (is_acpi_device_node(fwnode)) {
-> > +			msi_domain = irq_find_matching_fwnode(imsic_acpi_get_fwnode(dev),
-> > +							      DOMAIN_BUS_PLATFORM_MSI);
+在 6/16/2025 7:28 PM, Ling Xu 写道:
+> 在 4/8/2025 4:14 PM, Srinivas Kandagatla 写道:
+>>
+>>
+>> On 07/04/2025 10:13, Ling Xu wrote:
+>>> 在 3/21/2025 1:11 AM, Srinivas Kandagatla 写道:
+>>>>
+>>>>
+>>>> On 20/03/2025 09:14, Ling Xu wrote:
+>>>>> The fastrpc driver has support for 5 types of remoteprocs. There are
+>>>>> some products which support GPDSP remoteprocs. Add changes to support
+>>>>> GPDSP remoteprocs.
+>>>>>
+>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>>>>> ---
+>>>>>    drivers/misc/fastrpc.c | 10 ++++++++--
+>>>>>    1 file changed, 8 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>>>>> index 7b7a22c91fe4..80aa554b3042 100644
+>>>>> --- a/drivers/misc/fastrpc.c
+>>>>> +++ b/drivers/misc/fastrpc.c
+>>>>> @@ -28,7 +28,9 @@
+>>>>>    #define SDSP_DOMAIN_ID (2)
+>>>>>    #define CDSP_DOMAIN_ID (3)
+>>>>>    #define CDSP1_DOMAIN_ID (4)
+>>>>> -#define FASTRPC_DEV_MAX        5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>>>> +#define GDSP0_DOMAIN_ID (5)
+>>>>> +#define GDSP1_DOMAIN_ID (6)
+>>>>
+>>>> We have already made the driver look silly here, Lets not add domain ids for each instance, which is not a scalable.
+>>>>
+>>>> Domain ids are strictly for a domain not each instance.
+>>>>
+>>>>
+>>>>> +#define FASTRPC_DEV_MAX        7 /* adsp, mdsp, slpi, cdsp, cdsp1, gdsp0, gdsp1 */
+>>>>>    #define FASTRPC_MAX_SESSIONS    14
+>>>>>    #define FASTRPC_MAX_VMIDS    16
+>>>>>    #define FASTRPC_ALIGN        128
+>>>>> @@ -107,7 +109,9 @@
+>>>>>    #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+>>>>>      static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
+>>>>> -                        "sdsp", "cdsp", "cdsp1" };
+>>>>> +                        "sdsp", "cdsp",
+>>>>> +                        "cdsp1", "gdsp0",
+>>>>> +                        "gdsp1" };
+>>>>>    struct fastrpc_phy_page {
+>>>>>        u64 addr;        /* physical address */
+>>>>>        u64 size;        /* size of contiguous region */
+>>>>> @@ -2338,6 +2342,8 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>>>>            break;
+>>>>>        case CDSP_DOMAIN_ID:
+>>>>>        case CDSP1_DOMAIN_ID:
+>>>>> +    case GDSP0_DOMAIN_ID:
+>>>>> +    case GDSP1_DOMAIN_ID:
+>>>>>            data->unsigned_support = true;
+>>>>>            /* Create both device nodes so that we can allow both Signed and Unsigned PD */
+>>>>>            err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+>>>>
+>>>>
+>>>> Can you try this patch: only compile tested.
+>>>>
+>>>> ---------------------------------->cut<---------------------------------------
+>>>>  From 3f8607557162e16673b26fa253d11cafdc4444cf Mon Sep 17 00:00:00 2001
+>>>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>>> Date: Thu, 20 Mar 2025 17:07:05 +0000
+>>>> Subject: [PATCH] misc: fastrpc: cleanup the domain names
+>>>>
+>>>> Currently the domain ids are added for each instance of domain, this is
+>>>> totally not scalable approch.
+>>>>
+>>>> Clean this mess and create domain ids for only domains not its
+>>>> instances.
+>>>> This patch also moves the domain ids to uapi header as this is required
+>>>> for FASTRPC_IOCTL_GET_DSP_INFO ioctl.
+>>>>
+>>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>>> ---
+>>>>   drivers/misc/fastrpc.c      | 45 ++++++++++++++++++++-----------------
+>>>>   include/uapi/misc/fastrpc.h |  7 ++++++
+>>>>   2 files changed, 32 insertions(+), 20 deletions(-)
+>>>>
+>>>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>>>> index 7b7a22c91fe4..b3932897a437 100644
+>>>> --- a/drivers/misc/fastrpc.c
+>>>> +++ b/drivers/misc/fastrpc.c
+>>>> @@ -23,12 +23,6 @@
+>>>>   #include <uapi/misc/fastrpc.h>
+>>>>   #include <linux/of_reserved_mem.h>
+>>>>
+>>>> -#define ADSP_DOMAIN_ID (0)
+>>>> -#define MDSP_DOMAIN_ID (1)
+>>>> -#define SDSP_DOMAIN_ID (2)
+>>>> -#define CDSP_DOMAIN_ID (3)
+>>>> -#define CDSP1_DOMAIN_ID (4)
+>>>> -#define FASTRPC_DEV_MAX        5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>>>   #define FASTRPC_MAX_SESSIONS    14
+>>>>   #define FASTRPC_MAX_VMIDS    16
+>>>>   #define FASTRPC_ALIGN        128
+>>>> @@ -106,8 +100,6 @@
+>>>>
+>>>>   #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+>>>>
+>>>> -static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
+>>>> -                        "sdsp", "cdsp", "cdsp1" };
+>>>>   struct fastrpc_phy_page {
+>>>>       u64 addr;        /* physical address */
+>>>>       u64 size;        /* size of contiguous region */
+>>>> @@ -1769,7 +1761,7 @@ static int fastrpc_get_dsp_info(struct fastrpc_user *fl, char __user *argp)
+>>>>           return  -EFAULT;
+>>>>
+>>>>       cap.capability = 0;
+>>>> -    if (cap.domain >= FASTRPC_DEV_MAX) {
+>>>> +    if (cap.domain >= FASTRPC_DOMAIN_MAX) {
+>>>>           dev_err(&fl->cctx->rpdev->dev, "Error: Invalid domain id:%d, err:%d\n",
+>>>>               cap.domain, err);
+>>>>           return -ECHRNG;
+>>>
+>>> I tested this patch and saw one issue.
+>>> Here FASTRPC_DOMAIN_MAX is set to 4, but in userspace, cdsp1 is 4, gdsp0 is 5 and gdsp1 is 6.
+>>
+>>
+>> Why is the userspace using something that is not uAPI?
+>>
+>> Why does it matter if its gdsp0 or gdsp1 for the userspace?
+>> It should only matter if its gdsp domain or not.
+>>
 > 
-> msi_domain is only used here and so it should be declared in this scope
-> and not at the top of the function.
+> Give an example here:
+> In test example, user can use below API to query the notification capability of the specific domain_id,
+> (actually this will not have any functional issue, but just return an error and lead wrong message):
+> request_status_notifications_enable(domain_id, (void*)STATUS_CONTEXT, pd_status_notifier_callback)
 > 
-Yes, let me change in the next revision. Thanks!
+> this will call ioctl_getdspinfo in fastrpc_ioctl.c:
+> https://github.com/quic-lxu5/fastrpc/blob/8feccfd2eb46272ad1fabed195bfddb7fd680cbd/src/fastrpc_ioctl.c#L201
+> 
+> code snip:
+> 	FARF(ALWAYS, "ioctl_getdspinfo in ioctl.c domain:%d", domain);
+> 	ioErr = ioctl(dev, FASTRPC_IOCTL_GET_DSP_INFO, &cap);
+> 	FARF(ALWAYS, "done ioctl_getdspinfo in ioctl.c ioErr:%x", ioErr);
+> 
+> and finally call fastrpc_get_dsp_info in fastrpc.c.
+> 
+> if I use the patch you shared, it will report below error:
+> 
+> UMD log:
+> 2025-01-08T18:45:03.168718+00:00 qcs9100-ride-sx calculator: fastrpc_ioctl.c:201: ioctl_getdspinfo in ioctl.c domain:5
+> 2025-01-08T18:45:03.169307+00:00 qcs9100-ride-sx calculator: log_config.c:396: file_watcher_thread starting for domain 5
+> 2025-01-08T18:45:03.180355+00:00 qcs9100-ride-sx calculator: fastrpc_ioctl.c:203: done ioctl_getdspinfo in ioctl.c ioErr:ffffffff
+> 
+> putty log:
+> [ 1332.308444] qcom,fastrpc 20c00000.remoteproc:glink-edge.fastrpcglink-apps-dsp.-1.-1: Error: Invalid domain id:5, err:0
+> 
+> Because on the user side, gdsp0 and gdsp1 will be distinguished to 5 and 6.
+> so do you mean you want me to modify UMD code to transfer both gdsp0 and gdsp1 to gdsp just in ioctl_getdspinfo?
+>>
 
-> > +			dev_set_msi_domain(dev, msi_domain);
-> > +		}
-> 
-> Other than that:
-> 
-> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+There is no error message after removing these lines based on srini's patch, is this modification appropriate? If so, I will submit a new patch.
+@@ -1771,17 +1763,6 @@ static int fastrpc_get_dsp_info(struct fastrpc_user *fl, char __user *argp)
+                return  -EFAULT;
 
-Thank you!
-Sunil
+        cap.capability = 0;
+-       if (cap.domain >= FASTRPC_DEV_MAX) {
+-               dev_err(&fl->cctx->rpdev->dev, "Error: Invalid domain id:%d, err:%d\n",
+-                       cap.domain, err);
+-               return -ECHRNG;
+-       }
+-
+-       /* Fastrpc Capablities does not support modem domain */
+-       if (cap.domain == MDSP_DOMAIN_ID) {
+-               dev_err(&fl->cctx->rpdev->dev, "Error: modem not supported %d\n", err);
+-               return -ECHRNG;
+-       }
+
+        if (cap.attribute_id >= FASTRPC_MAX_DSP_ATTRIBUTES) {
+                dev_err(&fl->cctx->rpdev->dev, "Error: invalid attribute: %d, err: %d\n",
+
+>> --srini
+>>
+>>
+>>> For example, if we run a demo on gdsp0, cap.domain copied from userspace will be 5 which could lead to wrong message.
+>>>
+>>> --Ling Xu
+>>>
+>>>> @@ -2255,6 +2247,24 @@ static int fastrpc_device_register(struct device *dev, struct fastrpc_channel_ct
+>>>>       return err;
+>>>>   }
+>>>>
+>>>> +static int fastrpc_get_domain_id(const char *domain)
+>>>> +{
+>>>> +    if (strncmp(domain, "adsp", 4) == 0) {
+>>>> +        return ADSP_DOMAIN_ID;
+>>>> +    } else    if (strncmp(domain, "cdsp", 4) == 0) {
+>>>> +        return CDSP_DOMAIN_ID;
+>>>> +    } else if (strncmp(domain, "mdsp", 4) ==0) {
+>>>> +        return MDSP_DOMAIN_ID;
+>>>> +    } else if (strncmp(domain, "sdsp", 4) ==0) {
+>>>> +        return SDSP_DOMAIN_ID;
+>>>> +    } else if (strncmp(domain, "gdsp", 4) ==0) {
+>>>> +        return GDSP_DOMAIN_ID;
+>>>> +    }
+>>>> +
+>>>> +    return -EINVAL;
+>>>> +
+>>>> +}
+>>>> +
+>>>>   static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>>>   {
+>>>>       struct device *rdev = &rpdev->dev;
+>>>> @@ -2272,15 +2282,10 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>>>           return err;
+>>>>       }
+>>>>
+>>>> -    for (i = 0; i < FASTRPC_DEV_MAX; i++) {
+>>>> -        if (!strcmp(domains[i], domain)) {
+>>>> -            domain_id = i;
+>>>> -            break;
+>>>> -        }
+>>>> -    }
+>>>> +    domain_id = fastrpc_get_domain_id(domain);
+>>>>
+>>>>       if (domain_id < 0) {
+>>>> -        dev_info(rdev, "FastRPC Invalid Domain ID %d\n", domain_id);
+>>>> +        dev_info(rdev, "FastRPC Domain %s not supported\n", domain);
+>>>>           return -EINVAL;
+>>>>       }
+>>>>
+>>>> @@ -2332,19 +2337,19 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>>>       case SDSP_DOMAIN_ID:
+>>>>           /* Unsigned PD offloading is only supported on CDSP and CDSP1 */
+>>>>           data->unsigned_support = false;
+>>>> -        err = fastrpc_device_register(rdev, data, secure_dsp, domains[domain_id]);
+>>>> +        err = fastrpc_device_register(rdev, data, secure_dsp, domain);
+>>>>           if (err)
+>>>>               goto fdev_error;
+>>>>           break;
+>>>>       case CDSP_DOMAIN_ID:
+>>>> -    case CDSP1_DOMAIN_ID:
+>>>> +    case GDSP_DOMAIN_ID:
+>>>>           data->unsigned_support = true;
+>>>>           /* Create both device nodes so that we can allow both Signed and Unsigned PD */
+>>>> -        err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+>>>> +        err = fastrpc_device_register(rdev, data, true, domain);
+>>>>           if (err)
+>>>>               goto fdev_error;
+>>>>
+>>>> -        err = fastrpc_device_register(rdev, data, false, domains[domain_id]);
+>>>> +        err = fastrpc_device_register(rdev, data, false, domain);
+>>>>           if (err)
+>>>>               goto populate_error;
+>>>>           break;
+>>>> diff --git a/include/uapi/misc/fastrpc.h b/include/uapi/misc/fastrpc.h
+>>>> index f33d914d8f46..89516abd258f 100644
+>>>> --- a/include/uapi/misc/fastrpc.h
+>>>> +++ b/include/uapi/misc/fastrpc.h
+>>>> @@ -133,6 +133,13 @@ struct fastrpc_mem_unmap {
+>>>>       __s32 reserved[5];
+>>>>   };
+>>>>
+>>>> +#define ADSP_DOMAIN_ID (0)
+>>>> +#define MDSP_DOMAIN_ID (1)
+>>>> +#define SDSP_DOMAIN_ID (2)
+>>>> +#define CDSP_DOMAIN_ID (3)
+>>>> +#define GDSP_DOMAIN_ID (4)
+>>>> +
+>>>> +#define FASTRPC_DOMAIN_MAX    4
+>>>>   struct fastrpc_ioctl_capability {
+>>>>       __u32 domain;
+>>>>       __u32 attribute_id;
+>>>
+> 
+
+-- 
+Thx and BRs,
+Ling Xu
+
 
