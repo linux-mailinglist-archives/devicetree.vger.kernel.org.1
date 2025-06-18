@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-186964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB57ADE4AF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C31ADE4BC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 09:45:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AE1E3BB17D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:43:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B31E43BB66B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 07:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F0B727EC73;
-	Wed, 18 Jun 2025 07:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2754433CB;
+	Wed, 18 Jun 2025 07:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSUPo4UD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TU7G28jr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A841FC109;
-	Wed, 18 Jun 2025 07:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53575944F;
+	Wed, 18 Jun 2025 07:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750232605; cv=none; b=XuUh+pQIP2JZJ6VWF1Y19rkjrDPviEmhYB1bcNtQTesmeIQ3L3CKoHaeB6FdSQGmD299+q7nNjccVecbWLw7QcOs9Od2B74sezamd0YOQF0uCagrhEgpxtU0oq8QI6ee9nSkgY962oDL4KmzQK1Tw3V0AWoq+OzMFOZbxrdjL9o=
+	t=1750232737; cv=none; b=Qw7n/nlBc0bfi6//2rAIgA+P1ZGCt7+C1H/gfDdla/HFUt9OTuQNHSK7Hzi48it6SeX4NgwVFQ7JTPWvAwz+2Y2wjKKabMSZ147ZMcaILqRyPTSzf2+A/EP2GG5Sl3huhiu0XEXKX6T0whiDWULb5X/N4JEWn+a8IMqz+KjxhhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750232605; c=relaxed/simple;
-	bh=NaM2HVWfl6halDDBEMD9hYdrjsVh2VQ5bKdbudC+Mh8=;
+	s=arc-20240116; t=1750232737; c=relaxed/simple;
+	bh=1JdQ904uDrVw5CrNkcjW/fEGquyhcUzIxxmQVdihypM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KgIYWv7wAoTWquu2pirIX22NkqqgPojgAH+d3VdORB+LZMLyjabSBUR4bPnjCOGptIGodCFe8z01eQi3GcXeAQAJW8YxEQmLQLtpftAB6zM+j38ZIUoA88tHT1RcfGi7L//sr1rVxU340wbvw4xQhDpsTckGeZ/KnpreeXaB0to=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSUPo4UD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3BECC4CEE7;
-	Wed, 18 Jun 2025 07:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750232605;
-	bh=NaM2HVWfl6halDDBEMD9hYdrjsVh2VQ5bKdbudC+Mh8=;
+	 In-Reply-To:Content-Type; b=aWUYPTAceMbcsyzSvRN3KeZL+8SbVU3JcHwLqnd/TT1OBVP5rSqwdQkZreuSdbaO0MYlFiMWeMHMDueTC+FqbjloIg/LYDjuu/6cM1BME4f4BwtPioMn5/R6tqtcoYWW2lFHTgAFWlVwxjP6JsjZj6R3nXlOhLzubnJLR9Ox05Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TU7G28jr; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750232733;
+	bh=1JdQ904uDrVw5CrNkcjW/fEGquyhcUzIxxmQVdihypM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lSUPo4UDyGKXa8FiN3gAyDi9cOHjXhy7GW9vUYqVLC9RutJ4knZCvpFROcisXMekF
-	 iod1hN4/XhY1My36ZDJ1YQcgL/dU0FsIW5ru+iHdagUZzWrn5ZhBGEo19wc4U+q3Jc
-	 f4qtcm9lY9JevDgVMKOpoydHDMuSxSLSUU+XRB6IT38y+njyUeJxv9OhNLIyh1+k3L
-	 nVhIzNJEOkkeFN2TDuQo8zL25puHJFURpW2GCcYT5j0eCWQ/HJfMuiUE4sHac/CzaZ
-	 stYhiCczF7rWX2m7WLR6t0h/fMTUBtcUOmu/4Z3Gxs/QLBlkQcNdk2D62jCiGsHQam
-	 xjdcM+yoy5HXQ==
-Message-ID: <6040afd9-a2a8-49f0-85e9-95257b938156@kernel.org>
-Date: Wed, 18 Jun 2025 09:43:19 +0200
+	b=TU7G28jrXco5LKBo88MJI++Q+39OFW5Pvy4t6nHJ5tPRAk0w6CKZmVmBE3WTXlXlI
+	 PLEo4d3UQc/w9X3mft+gsnDzSFFAIPnsQqnrJ+oikqcfzyKzkXZwoICJ9McYwo1QXk
+	 hL0rKRkyOjZlHT0TkrdI6pjN4TvztXLDSM5fNujhhxRkbFglMvIwjINvFtIWmYPwEO
+	 +ISZiLO3Rcw88JONnttSfqNs1vZhf9JdUDzBAG0hltjLPquofmSwhsgdX8Laq/kXEs
+	 tJihM2MU5HArPpBR4E+H2T+Rg3F6rNasL8DX8i96/IT9QUX8qvv90sJL2fSDz8eVC4
+	 3cvpFD+KoynVg==
+Received: from [10.40.0.100] (185-251-200-162.lampert.tv [185.251.200.162])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A548117E0F99;
+	Wed, 18 Jun 2025 09:45:32 +0200 (CEST)
+Message-ID: <e9db11c2-b02d-4fd5-8927-7b5857089533@collabora.com>
+Date: Wed, 18 Jun 2025 09:45:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,108 +57,194 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/4] dt-bindings: mmc: controller: Add
- max-sd-hs-frequency property
-To: Sarthak Garg <quic_sartgarg@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/5] dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588
+ variant
+To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
- quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
- quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-References: <20250618072818.1667097-1-quic_sartgarg@quicinc.com>
- <20250618072818.1667097-3-quic_sartgarg@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250616-rk3588-csi-dphy-v1-0-84eb3b2a736c@collabora.com>
+ <20250616-rk3588-csi-dphy-v1-2-84eb3b2a736c@collabora.com>
+ <DAOVBOKLXLS2.S9MXDD29X68J@cknow.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250618072818.1667097-3-quic_sartgarg@quicinc.com>
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <DAOVBOKLXLS2.S9MXDD29X68J@cknow.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2025 09:28, Sarthak Garg wrote:
-> Introduce a new optional device tree property `max-sd-hs-frequency` to
-> limit the maximum frequency (in Hz) used for SD cards operating in
-> High-Speed (HS) mode.
-> 
-> This property is useful for platforms with vendor-specific hardware
-> constraints, such as the presence of a level shifter that cannot
-> reliably support the default 50 MHz HS frequency. It allows the host
-> driver to cap the HS mode frequency accordingly.
-> 
-> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
-> ---
->  .../devicetree/bindings/mmc/mmc-controller-common.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
-> index 9a7235439759..1976f5f8c401 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
-> @@ -93,6 +93,16 @@ properties:
->      minimum: 400000
->      maximum: 384000000
->  
-> +  max-sd-hs-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Maximum frequency (in Hz) to be used for SD cards operating in
-> +      High-Speed (HS) mode. This is useful for platforms with vendor-specific
-> +      limitations, such as the presence of a level shifter that cannot support
-> +      the default 50 MHz HS frequency or other.
-> +    minimum: 400000
-> +    maximum: 50000000
+Hi Diederik,
 
-This might be fine, but your DTS suggests clearly this is SoC compatible
-deducible, which I already said at v1.
+Thanks for your comments!
 
-So now you send v3 which is the same as v1, so you get the same comments.
+On 6/17/25 16:12, Diederik de Haas wrote:
+> Hi,
+> 
+> I'm (unfortunately) not seeing any @rock-chips.com recipients ...
+
+Oops, I meant to include at least Kever, but forgot to do it. Will do in v2.
+
+Cc: Kever
+
+> 
+> On Tue Jun 17, 2025 at 10:54 AM CEST, Michael Riesch via B4 Relay wrote:
+>> From: Michael Riesch <michael.riesch@collabora.com>
+>>
+>> The Rockchip RK3588 variant of the CSI-2 DPHY features two reset lines.
+>> Add the variant and allow for the additional reset.
+>>
+>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+>> ---
+>>  .../bindings/phy/rockchip-inno-csi-dphy.yaml       | 60 ++++++++++++++++++++--
+>>  1 file changed, 55 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+>> index 5ac994b3c0aa..6755738b13ee 100644
+>> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+>> @@ -21,6 +21,7 @@ properties:
+>>        - rockchip,rk3326-csi-dphy
+>>        - rockchip,rk3368-csi-dphy
+>>        - rockchip,rk3568-csi-dphy
+>> +      - rockchip,rk3588-csi-dphy
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -39,18 +40,49 @@ properties:
+>>      maxItems: 1
+>>  
+>>    resets:
+>> -    items:
+>> -      - description: exclusive PHY reset line
+>> +    minItems: 1
+>> +    maxItems: 2
+>>  
+>>    reset-names:
+>> -    items:
+>> -      - const: apb
+>> +    minItems: 1
+>> +    maxItems: 2
+>>  
+>>    rockchip,grf:
+>>      $ref: /schemas/types.yaml#/definitions/phandle
+>>      description:
+>>        Some additional phy settings are access through GRF regs.
+>>  
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,px30-csi-dphy
+>> +              - rockchip,rk1808-csi-dphy
+>> +              - rockchip,rk3326-csi-dphy
+>> +              - rockchip,rk3368-csi-dphy
+>> +              - rockchip,rk3568-csi-dphy
+>> +    then:
+>> +      properties:
+>> +        resets:
+>> +          items:
+>> +            - description: exclusive PHY reset line
+>> +
+>> +        reset-names:
+>> +          items:
+>> +            - const: apb
+>> +
+>> +      required:
+>> +        - reset-names
+>> +    else:
+>> +      properties:
+>> +        resets:
+>> +          minItems: 2
+>> +
+>> +        reset-names:
+>> +          minItems: 2
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -59,7 +91,6 @@ required:
+>>    - '#phy-cells'
+>>    - power-domains
+>>    - resets
+>> -  - reset-names
+>>    - rockchip,grf
+>>  
+>>  additionalProperties: false
+>> @@ -78,3 +109,22 @@ examples:
+>>          reset-names = "apb";
+>>          rockchip,grf = <&grf>;
+>>      };
+>> +  - |
+>> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+>> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>> +
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        csi_dphy0: phy@fedc0000 {
+>> +            compatible = "rockchip,rk3588-csi-dphy";
+>> +            reg = <0x0 0xfedc0000 0x0 0x8000>;
+>> +            clocks = <&cru PCLK_CSIPHY0>;
+>> +            clock-names = "pclk";
+>> +            #phy-cells = <0>;
+>> +            resets = <&cru SRST_CSIPHY0>, <&cru SRST_P_CSIPHY0>;
+>> +            rockchip,grf = <&csidphy0_grf>;
+>> +            status = "disabled";
+>> +        };
+>> +    };
+> 
+> ... which could hopefully tell us what the value is/should be for the
+> *required* 'power-domains' property, which is missing in this example.
+> IOW: the binding example is invalid according to its own binding.
+
+Huh, indeed. Hm. Why didn't make dt_binding_check warn me about that?!
+
+TRM Part 1, p. 1097 states that HDMI_CSI_DPHY is in the ALIVE(PD_BUS)
+power domain. With some creativity one can interpret that the CSI DPHY
+is always on anyways. @Kever: Could you please elaborate on that?
+
+> (btw: you can drop the 'csi_dphy0' label)
+
+Will do.
+
+> 
+> And hopefully also for rk3568 so we can add it to rk356x-base.dtsi and
+> you can add it in patch 5 where it's also missing.
+
+I recall a similar discussion [0]. In the RK3568 the CSIPHY is in the
+ALIVE power domain.
+
+Note that the PHY must not be confused with the HOST blocks, which are
+the MIPI CSI-2 receivers.
+
+I guess the correct solution is to make power-domains optional. Further
+input welcome, though.
 
 Best regards,
-Krzysztof
+Michael
+
+> 
+> Grepping for "csi-dphy" in arch/arm*/boot/dts/rockchip returns:
+> - px30.dtsi
+> - rk356x-base.dtsi
+> 
+> With this patch set applied, we'd have a 3rd result: rk3588-base.dtsi
+> 
+> For all the listed compatibles, it's only actually defined in px30.dtsi.
+> 
+> Cheers (and sorry),
+>   Diederik
+
+[0] https://lore.kernel.org/all/D4QNJ85V43NU.YD01E8AB4116@cknow.org/
+
 
