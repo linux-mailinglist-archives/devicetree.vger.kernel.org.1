@@ -1,166 +1,122 @@
-Return-Path: <devicetree+bounces-186892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-186894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178A5ADE15F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 04:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27778ADE17A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 05:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E84D13A8825
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 02:55:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0129D3BA7B0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 03:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA39A1A314D;
-	Wed, 18 Jun 2025 02:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341DF1C860A;
+	Wed, 18 Jun 2025 03:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j2UXFJCE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BSOhZlwL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A23191F66;
-	Wed, 18 Jun 2025 02:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A879F1BD9F0;
+	Wed, 18 Jun 2025 03:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750215342; cv=none; b=jd2qbBIOBWJ+G0+YfWpJ0d9V9eFfH3mQWn4XycIZU7+QwZUqKmTBUm4Xxf6PqaPIjROeECjfJLpi0uRU6gwwgi4Jb9ITyEoFcPo0zwbsIrng7LpJwrDh8WFS5Mqga3D/0aY1iujvy9DTDvHHG4ZBi9FIKW3eKsOCzDnzg4tokM8=
+	t=1750216373; cv=none; b=jvelXFfab6p702MmOU1+4N0Y0MWYTtVvDk+TyvJk0UXiup/PlZdSZ50OzDqX5i4sE/56hyhfSGVOFfEzmntl+tPMQkv0i9wayknNGK+doX7P18wAv2xNKne5PyMqT03ZT2qtjXmeaRzFFeXPawMnpnLnvMYF8mENmVvZkwLz5hA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750215342; c=relaxed/simple;
-	bh=etmVRHcVDk2/UUoW7LnoA4oBmqkimfZ8EmByKA/x1Ww=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DtUMqiiDY8YeYKA1wSvodbO6mu6UOorBUBYKiwpDfLYXR8pYkfFalePDpAI86bE1Rcue68bM6P2nO4nwe6F08e5XF43J9csV2DgEKuhAiPY4M/NbX2OLo6CeRuxSoPFxWQYXp+dqD7046WkAFScmTcHatr+8sCXRNwv5+YcCcQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j2UXFJCE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55I0eTke014060;
-	Wed, 18 Jun 2025 02:55:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QPxKANHLv7NCrr5U8VFOG1yqB2CKXa4O2a9p0CNsww0=; b=j2UXFJCEXDaTMEWM
-	FVN2xTnRrhzPknDq68/pDJUhF57Vk+gZhilwPrtsVbOVLnAG14N6/jgS8GJid6Ef
-	qBvlbVOxerIZ2sEzXoJx7S50MNV30CzsFu5KqQH7ZuL1QCjUXxS36cgE8jOvILk8
-	Ws8XljwxwVOEo5ZiOBUQlZnPBWyzksD3GDdLlY1xNLVzfSZvrO5Du5Xh1PaePR+K
-	PQJaWGLdA6/w7UgtBwIDXl7psKf+v+upfRzdza+QVBwfP0hEKHOdH1+giO1IZdkD
-	qcVEH3nEGgvW1D6LGtwiEKXczzMZ/tKpZE72nZkVmFTR8LSSCkS/irK8tPXh/Zi6
-	U/Tpcw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47b9aksxfu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Jun 2025 02:55:37 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55I2taj0002766
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Jun 2025 02:55:36 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 17 Jun
- 2025 19:55:33 -0700
-Message-ID: <2ad9d5c5-c55c-4425-9581-2326871ac1be@quicinc.com>
-Date: Wed, 18 Jun 2025 10:55:30 +0800
+	s=arc-20240116; t=1750216373; c=relaxed/simple;
+	bh=snU775//kiO8hT9dWLIma8QLQBoQGPOkDX0gzwV8JmQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RDn3P5tERhuEvXz3CBSg+tB5iiuttVHhn0wTHlF6mOwra+B5L3lNQpbQB8j6Q0kSGsUhN/cPVt/lJ30t6EL32N4MLvptBDZgzBSZqm8zimxfD4qbXm9lBQxMnb83QHKhFIsY0fms2kEK2rjLoJ5Jyb7MByngF6tZwOUOL0mUC4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BSOhZlwL; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-236470b2dceso57162785ad.0;
+        Tue, 17 Jun 2025 20:12:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750216371; x=1750821171; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bN1ufSIz6Wdr6sIyj7BRHf668iy1Pf2mMb4+ZdyIh2E=;
+        b=BSOhZlwLVpoeXI79DEyR9FTpQZgye0Pfk1ovW8z1VT3ErqTENvuVP5PQQG/R7j73TS
+         zgsNxnVw81+I/YhL5MVtnHsmLXJ2Nfkk5hTd+kwpQDBOQQZVhqotW13VyMV990l+BPWU
+         IxlAceQed0tnp95vVS2oKGWiJ4tIujVcPebRiCuN2x/ic960TZQ+P+bcguBDcoKCprQ8
+         1+F1NMBdFbu3o1Mh0n66GHj9pD1pj4YpABmf/dgxOSui8fIkpSMuMiwvQCxV48EOCbhf
+         udBQrKseMhqPoqv8nsJkDJ09O9HEg6QYP6ZAugZ1E8kxehaxE1MdnkGeE/uWawl+60lM
+         f3jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750216371; x=1750821171;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bN1ufSIz6Wdr6sIyj7BRHf668iy1Pf2mMb4+ZdyIh2E=;
+        b=Mh/BTiAET1ceXGLUPyrfGtmKzrUHhY6OtnYad9yXwF3gn4LRq678zl0npl1iZbWtmW
+         LoryNXQQbtOEhnsGlN/XKJdOyfFVN9Z+AMdKfsGwvbxkQ8zDE/C+l29JAqJV30ivncnf
+         Bn3ClEiUICcb3zFRpy8936UlVvF+2IoteE2Qw9bM1Scoq5sHUs4IOvdO1CqWojdlXwHi
+         YDn+9hZ+iIwywkiw5YOEVII+RfkpBiDqIed9W1qh/+yni/kBZJhQimhHRQAYLQJGQyOo
+         trDaPgJ8uwWHaiDBOICzky2G02mL2x1/Di4hhK4UN1cKR5O4Ne04o3TvExFcbAZr+kw9
+         LKSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVwTEdu7H4Or+JfQM2hpnN01buuawJ2NEThGpKoP91NfKY8phqpsScdKxej05oDwL5B6H9sdCuWFTGb@vger.kernel.org, AJvYcCXjfcD0YQ3i8yBfdTt0dfepIxYpgCdoqGuKhklbYUgUGzSQdf8wGAQp/3Xs0pT7tf3rqb7mbctuuancx63t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxwt3yyYek/mpeUdGBjw1/taJRmhb5y8ELASiFe/oqLUpyRaPe8
+	UU4KBKuXYUgn99nOk1g3Mx6wtsM9zMQuk/UkbzzYs2lldoFslkHVi5za
+X-Gm-Gg: ASbGncs7N/qEYPUBMafnj8bAhK3Jc3I2uIAygIyTaFRyqMn4uiuQ5nPqb4GDVFavsDd
+	N9wkHuKSQuzr5o6NLLYyUgoFA7J1hcZukPhH6njpy0J3g8mRf9fie5PsxdofYvI5L5N69EZB8p5
+	EwA13tiDdu1UxZGqavWzD0bT7xPg7ccm/clr36HWjZgCjBw/JWWp0Gb58G9oKSvuQzmQIFFAOb6
+	YHJ+Lrolh5a16xrsaSA3s4BR0Gtdr9kzVJvrLu2OXtq84GTLDO+PsJOslLTknLv1+u7IjHsq1gI
+	emthKLjiBaNt88SmFEJaaSVsyaVfwV4IEY/AiqufGu/3iRFs/FfzL2rYcGY6eA==
+X-Google-Smtp-Source: AGHT+IGlk8EgvUOrNowxfJO2EgnlRzNvjbjQNVRsCmwDyUQL2qNF7QpmdsaUlm4gLUxNgjcVNHsS2A==
+X-Received: by 2002:a17:903:46cb:b0:234:dd3f:80fd with SMTP id d9443c01a7336-2366b316c17mr244719105ad.2.1750216370686;
+        Tue, 17 Jun 2025 20:12:50 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2365d8a1847sm89028055ad.67.2025.06.17.20.12.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jun 2025 20:12:50 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Minas Harutyunyan <hminas@synopsys.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH 0/2] riscv: sophgo: rename compatible string of the USB device for cv18xx
+Date: Wed, 18 Jun 2025 11:11:28 +0800
+Message-ID: <20250618031132.373216-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] Enable CTCU device for QCS8300
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250327024943.3502313-1-jie.gan@oss.qualcomm.com>
- <d87a6bba-eaed-4ac4-a272-3bb38b1607dc@quicinc.com>
- <yiz7tewisidbzztbcwc7v2sac4lv2lom5kv4a4rubdfcr73flt@rcga4a6fxhdv>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <yiz7tewisidbzztbcwc7v2sac4lv2lom5kv4a4rubdfcr73flt@rcga4a6fxhdv>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: owAuna-5gnzQPnIReTbNSS4k5VQqLhee
-X-Authority-Analysis: v=2.4 cv=UPTdHDfy c=1 sm=1 tr=0 ts=68522aa9 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
- a=cYWCKBAcly1RK3kNDnkA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDAyNCBTYWx0ZWRfX/T/SzQJjTAt+
- 9+kj4jkmAPpeVsdeLd1ICnfa2x3FvexQpbWdrpj/aGAAH2baf9UWXZYmeHibfm1XrxEh4ZomRx4
- u///Y56bFEM0MfzBudARNnlhDL+55POnWyBSanEghqq49nogdtJkXoN75gNsISsmOOCsl2xzIB7
- +XkUFGC+6+vtWBQiN2Hb9hZJ6hrphCTcAO/2bxj+e0Nt76frf3Jkuz/ahqxCBzpPwaCeyLRjcC1
- hDDaCkwHrbpYADw0IgsLT2lj4Dr0eMGkY1SZIc8sXrRQ8JWqPeA6CA+lqmIiyp5UwDGlaKzb4xS
- 67JN9TsBskzoe+qhOwuGKx0ARz6mQx9dB+wFPKYMTa8AdbhEb9h6DW6p4VooG/mpFUFSiA6CQjE
- YBJSf7m62iMf7X0LEvvfuaqP8ngOf7wLAte+oLSyDGwN9l/ZOXokrqjUveBCKAH1qaTjN+fZ
-X-Proofpoint-GUID: owAuna-5gnzQPnIReTbNSS4k5VQqLhee
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-18_01,2025-06-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- impostorscore=0 mlxlogscore=826 clxscore=1015 malwarescore=0 bulkscore=0
- suspectscore=0 mlxscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506180024
+Content-Transfer-Encoding: 8bit
 
+Old days I added the USB support with a wildcard compatible string.
+It is not formal and it is more clear to use a compatible for a
+real world SoC. As the usb device is not used in any board device
+tree (The patch for USB phy is under review), I think it is good
+to correct this mistake before submitting the device node.
 
+Inochi Amaoto (2):
+  dt-bindings: usb: dwc2: rename sophgo usb compatible string
+  usb: dwc2: follow compatible string change for Sophgo CV18XX/SG200X
+    series SoC
 
-On 6/18/2025 10:50 AM, Bjorn Andersson wrote:
-> On Wed, May 14, 2025 at 04:00:12PM +0800, Jie Gan wrote:
->>
->>
->> On 3/27/2025 10:49 AM, Jie Gan wrote:
->>> Enable CTCU device for QCS8300 platform. Add a fallback mechnasim in binding to utilize
->>> the compitable of the SA8775p platform becuase the CTCU for QCS8300 shares same
->>> configurations as SA8775p platform.
->>>
->>
->> Gentle ping for the series.
->>
->> dt-binding patch has been reviewed by Krzysztof.
->> dts patch has been acked by Konrad.
->>
-> 
-> You don't seem to have the Coresight maintainers among the recipients of
-> the binding patch, so that's probably why it hasn't been merged yet -
-> and I can't merge the DTS change until the binding is accepted.
-> 
-> Please apply Krzysztof's R-b and send the binding alone to Coresight
-> maintainers, once they have accepted the binding please resubmit the dts
-> change and I'd be happy to merge it. (v2 sounds good on both)
-> 
-> PS. Please see go/upstream on how to adopt b4; "b4 prep --auto-to-cc"
-> would have saved you from this mistake.
-> 
+ Documentation/devicetree/bindings/usb/dwc2.yaml | 2 +-
+ drivers/usb/dwc2/params.c                       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Thanks for the information.
-
-Will re-send the patch series.
-
-Thanks,
-Jie
-
-> Regards,
-> Bjorn
-> 
->> Thanks,
->> Jie
->>
->>> Jie Gan (2):
->>>     dt-bindings: arm: add CTCU device for QCS8300
->>>     arm64: dts: qcom: qcs8300: Add CTCU and ETR nodes
->>>
->>>    .../bindings/arm/qcom,coresight-ctcu.yaml     |   9 +-
->>>    arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 153 ++++++++++++++++++
->>>    2 files changed, 160 insertions(+), 2 deletions(-)
->>>
->>
+--
+2.49.0
 
 
