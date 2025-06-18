@@ -1,152 +1,134 @@
-Return-Path: <devicetree+bounces-187072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E684ADE8F1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:30:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F62ADE95D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:50:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B3D618893AB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:30:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0600C3AB97C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 10:49:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEAC284687;
-	Wed, 18 Jun 2025 10:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ub/Kaxz4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B83C275845;
+	Wed, 18 Jun 2025 10:50:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp-bc0f.mail.infomaniak.ch (smtp-bc0f.mail.infomaniak.ch [45.157.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBCAFBA27;
-	Wed, 18 Jun 2025 10:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14FA515D1
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 10:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750242637; cv=none; b=UobYy/c1WffGhy3Zi+tBSsgU+BeQfqTGvGNaQmofZnue1nLPLTyL+TSy7uXTql3oheTlbtSc+E/EPq6E3S7lHpGlFGCplIjiVx62QLrRrWd04xBb8of7D6H7uQs7cx+eKyfETU/PvjvH+wDu7rDtUkarRWVt8xuj2lVxITbhYm4=
+	t=1750243814; cv=none; b=QidmUQaaX3VFDsRmgEDDTxXW+VkFrSzsgDejtcAgfgi68+v0jBs4xoeT9Kq8nubkXEG0LpIWn5ztCaYjmO5sg193+HULCLv5TCW6qEa2V10iGnmMcHJmUO65ZmWOuqE6c+k5I4cJUXxMlhhXXSG4q3cFFB14Q1lRdsjYKSqelDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750242637; c=relaxed/simple;
-	bh=ZBNO8zEoLupIoPE/PYTkk6eaDkHBKU0qCQBdkKT4VDA=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=WJPTutyHsGPKLBbSq7XxQtVH93yNtaflY9IqBNl7l/py2hgHxUsmpIePbOX0p1VRveCS7dlbvqv21odinlg7qJJtu4Z8Mb9fljUdAzuLkoDbV8qA0sDnzr4LnEFUsZ+J0Aa12lzlnd7XN2VuNuhiNOfjYasuY+zoKadup5pmQIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Ub/Kaxz4; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55IAUEAE285503;
-	Wed, 18 Jun 2025 05:30:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750242614;
-	bh=f6wkIpLIcAEQ8BY8G45z4AjojyUSWta3TPNhOAIvdnM=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date;
-	b=Ub/Kaxz4fvhplIJBSiZhfasX4IPWPEvHn2tVaDgSIbIUYQWaTHwJA45HT2wqwvdQ2
-	 OHlNV/sT2ik7mhKuoUweidb/VLjXXSy2CuacVEh54PZNAdBWrcGOp9BfdD+z+UUXS8
-	 A4NTafOHDHIiUPB3gRuARkpeXNLWSnHM+9GV5gqo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55IAUEpX294636
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 18 Jun 2025 05:30:14 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 18
- Jun 2025 05:30:14 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 18 Jun 2025 05:30:14 -0500
-Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55IAUD813320091;
-	Wed, 18 Jun 2025 05:30:14 -0500
-From: Kamlesh Gurudasani <kamlesh@ti.com>
-To: Eric Biggers <ebiggers@kernel.org>, T Pratham <t-pratham@ti.com>
-CC: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>
-Subject: Re: [PATCH v5 0/2] Add support for Texas Instruments DTHE V2 crypto
- accelerator
-In-Reply-To: <20250617042755.GG8289@sol>
-References: <20250603124217.957116-1-t-pratham@ti.com>
- <20250617042755.GG8289@sol>
-Date: Wed, 18 Jun 2025 16:00:12 +0530
-Message-ID: <87ikktgx57.fsf@kamlesh.mail-host-address-is-not-set>
+	s=arc-20240116; t=1750243814; c=relaxed/simple;
+	bh=RoUxprTWYp6bt8a6NhcyoQF0P4UOPKXOfvfhvUMjDrM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OlEiQtk2OHtBdo1vKBx6hwMqQLNcsx7kvnTYa9VfGejuy5up89tIgvFkBM6YCTKzHy51cJV/v+Utx5yjoM8j7cbfADlY9wp/aQr4esJ9Ifn82v1k7GW6CvkJEP6RXNpnpAgEVS00SIy2saU94Aco23j4VDGuJJC7dchdAEnyRRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0001.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6c])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bMg6t0WC0zW6F;
+	Wed, 18 Jun 2025 12:32:54 +0200 (CEST)
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4bMg6r6KLZzD9N;
+	Wed, 18 Jun 2025 12:32:52 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH v3 0/5] rockchip: rk8xx: allow to customize PMIC reset mode
+ on RK806
+Date: Wed, 18 Jun 2025 12:32:39 +0200
+Message-Id: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMeVUmgC/3XMQQ6CMBCF4auQrq2ZlrZSV97DuMB2kMYEyBQbC
+ OHuFjYaE5fvJd+/sIgUMLJzsTDCFGLouzzKQ8FcW3cP5MHnzSRIDVoaTs9qmjjFkTevjjfSCKf
+ gbjw4ls1A2IRp711vebchjj3Nez6J7f1XSoIDx7qyylt1UggX1yLRfPTItlKSH21A/2qZtVClF
+ xa0Nd5/63Vd3yy6hw3oAAAA
+X-Change-ID: 20250526-rk8xx-rst-fun-f261c40b6d0c
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, 
+ Daniel Semkowicz <dse@thaumatec.com>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-Eric Biggers <ebiggers@kernel.org> writes:
+This allows to customize the PMIC reset method (also called RST_FUN) on
+RK806 PMIC from Rockchip, mainly found on RK3588 devices but also on
+RK3576.
 
-> On Tue, Jun 03, 2025 at 06:07:27PM +0530, T Pratham wrote:
->> This series adds support for TI DTHE V2 crypto accelerator. DTHE V2 is a
->> new crypto accelerator which contains multiple crypto IPs [1].
->> This series implements support for ECB and CBC modes of AES for the AES
->> Engine of the DTHE, using skcipher APIs of the kernel.
->> 
->> Tested with:
->> CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
->> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
->> 
->> and tcrypt,
->> sudo modprobe tcrypt mode=500 sec=1
->> 
->> Signed-off-by: T Pratham <t-pratham@ti.com>
->> ---
->> [1]: Section 14.6.3 (DMA Control Registers -> DMASS_DTHE)
->> Link: https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
->
-> Numbers, please.  What is the specific, real use case in Linux where this
-> patchset actually improves performance?  Going off the CPU and back again just
-> to en/decrypt some data is hugely expensive.
->
-We don't really care about the speed here. These crypto accelerators are
-from embedded system. Often less than 4 cores and this particular SOC
-have variant with only one core.
+Finally, this is required on the two RK3588 devices from Theobroma as
+U-Boot changes the silicon-default (which is suitable for us) to
+something that breaks our companion microcontroller's reboot detection
+which breaks a bunch of assumptions in the MCU FW code.
 
-ARMv8 is clocking at 1.4ghz and DTHEv2 at 400Mhz, so no way it can give
-better performance number in term of speed. But crypto acclerators are
-designed specifically for lower power consumption as well. ARMv8 crypto
-extensions leverage SIMD registers, but dedicated crypto accelerator are
-still more efficient. Think about battery operated low cost devices. 
+To validate this works on those devices do the following:
 
-These embedded devices are often in the open and vicinity of attacker.
-Crypto accelerator are much more secure.[1]
+On Tiger:
+i2cset -y -f 6 0x6f 0x9 0x62
+On Jaguar:
+i2cset -y -f 0 0x6f 0x9 0x62
 
-Bottomline:
-1. Crypto accelerators can deliver a higher cryptography performance.
-2. Crypto accelerators can deliver better energy efficiency.
-3. Cryptography hardware usually has lower timing and power side channel leakage than running
-cryptography algorithms on the processor.
+You hear a nice (loud :) ) beep, then reboot and it should stop right
+before entering U-Boot TPL again.
 
-IPSEC and partition encryption/decryption/authentication use cases are bulk
-operations and often have low setup cost than operation itself. 
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Changes in v3:
+- (hopefully) fixed missing bitfield.h include in driver as reported by
+  Intel's kernel test robot,
+- removed dt-binding header file,
+- removed mentions to constants that used to be in dt-binding header
+  file since they aren't anymore,
+- added (patch 3) header file in arch/arm64/boot/dts/rockchip to make
+  the value of rockchip,reset-mode easier to understand when reading the
+  device tree,
+- Link to v2: https://lore.kernel.org/r/20250605-rk8xx-rst-fun-v2-0-143d190596dd@cherry.de
 
-[1] https://www.trustedfirmware.org/docs/Introduction_to_Physical_protection_for_MCU_developers_final.pdf
+Changes in v2:
+- moved rst_fun variable declaration out of the switch-case,
+- initialized rst_fun variable to make kernel test robot happy even
+  though the variable wouldn't be used uninitialized due to breaking
+  before using it,
+- renamed rockchip,rst-fun to rockchip,reset-mode
+- rewrote rockchip,reset-mode binding description to not mention the
+  relation to registers or register values,
+- added binding header file to make it easier to understand what the
+  mode is when reading a Device Tree without having to read the binding,
+- Link to v1: https://lore.kernel.org/r/20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de
 
-Cheers,
-Kamlesh
+---
+Quentin Schulz (5):
+      dt-bindings: mfd: rk806: allow to customize PMIC reset mode
+      mfd: rk8xx-core: allow to customize RK806 reset mode
+      arm64: dts: rockchip: add header for RK8XX PMIC constants
+      arm64: dts: rockchip: force PMIC reset behavior to restart PMU on RK3588 Jaguar
+      arm64: dts: rockchip: force PMIC reset behavior to restart PMU on RK3588 Tiger
 
-> Note that the manual you linked to above explicitly states that the CPU supports
-> the ARMv8 Cryptography Extensions.  That definitively makes any off-CPU offload
-> obsolete.  But even without that, these sorts of off-CPU offloads have always
-> been highly questionable.
->
-> I think it's implausible that this patchset could actually be beneficial.
->
-> In fact, it might actually be really harmful.  You set your algorithms to
-> priority 30000, which makes them be prioritized over ARMv8 CE.  I've seen
-> exactly that bug with other "accelerators", which actually regressed performance
-> by over 50x compared to simply staying on the CPU.
->
-> - Eric
+ .../devicetree/bindings/mfd/rockchip,rk806.yaml     | 21 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts      |  2 ++
+ arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi      |  2 ++
+ arch/arm64/boot/dts/rockchip/rk8xx.h                | 18 ++++++++++++++++++
+ drivers/mfd/rk8xx-core.c                            | 15 +++++++++++++++
+ include/linux/mfd/rk808.h                           |  2 ++
+ 6 files changed, 60 insertions(+)
+---
+base-commit: 52da431bf03b5506203bca27fe14a97895c80faf
+change-id: 20250526-rk8xx-rst-fun-f261c40b6d0c
+
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@cherry.de>
+
 
