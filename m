@@ -1,127 +1,205 @@
-Return-Path: <devicetree+bounces-187137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06C4ADED2E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:00:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABDE9ADED6E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 15:07:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 703FF3B5772
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 12:59:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70AFC3AD729
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jun 2025 13:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005252E54AD;
-	Wed, 18 Jun 2025 13:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C7927E1C0;
+	Wed, 18 Jun 2025 13:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYpXFz/f"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JpzzW+kk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB342E3B10;
-	Wed, 18 Jun 2025 13:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6646D38F80
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750251603; cv=none; b=rJYPsvwDEyEw83Yc8wEcYAGU2tBuIGsC9gLy+79TAavkjocK1ikoABgrJrQTlLq9Fa6AR43orjSIkI2rByJpTLg6cOyzxunt1bRR/7im0O7SJgW4nhnD+Jz6ASZwkEAoH66C/QoLxgCAt/+4Qh5Ou5fJ83tJbySWNeB8RSydwoE=
+	t=1750252037; cv=none; b=ltfjVMOy70X14b7DSF/DDsGXHn6rKdyrDs/tTNRpmPXfCbkAYnw2DvQloaX28gq2msrs+H33onYLnI09GuKrz5rEmS9R+7wOFxqy+bNOyHz9Usc9AYhtJUOEIwtZCGLRaoKeKuG04zXrmhiLO46eXSFgM9hLaK27KAKLHflNUGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750251603; c=relaxed/simple;
-	bh=MRqEecx1OOYe0w2vHR29KSY1Ek3v/BZj9saNCAG+GcU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=XFzI5Q6/ZHFAqrSwTbleUwYaeIZ51eZAXwTDAlXw32NRPTamGvLNCMwX3Voql+na1tu2np6HhN0KXmCb5YqK+DKZ/mwuxwjuNTlpVz6HdNsX65JA7JVooPzeTll9HGvNc89Eia10ynpfnF6vOYKZ/lsqwrIOGUXU3FXWFZ/k2Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYpXFz/f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F52EC4CEEE;
-	Wed, 18 Jun 2025 13:00:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750251603;
-	bh=MRqEecx1OOYe0w2vHR29KSY1Ek3v/BZj9saNCAG+GcU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=hYpXFz/fg2f586yRIe9vDvlYwHywwIg0QM6bbGgAQbSHP2zJ3LRwkbMPvxZZhnD4j
-	 5HML5apfyR7mLMacWrp0GHtla95F5QQ0Z8qAAImLDDNO8bcIOOXvT6EQo5ZWLsLvUo
-	 CNtU84SZCzK5IopukR/e2cuBlEbpeMOEjWySxTHbEDW69nBk8Ph9xfIaRYsClnmsAE
-	 0tvqhIhiYhigWID4OzVbfOoCLFZhp2rzX+Zwe2Y9Z8lKu9u4A7HgTDaWuhjy7IgFRH
-	 NVrAV08GT0/wxvz7swU4LLhBPpEnSrFxN4eewqX8N17G5xWyZCcjWi2RV2g/3zW16a
-	 MmUAKAPG6EkGQ==
-Date: Wed, 18 Jun 2025 08:00:02 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1750252037; c=relaxed/simple;
+	bh=aA5LD0yZNfAlRiFQfSy4LfUnBmf76i3aBocEv8Iamu8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tuDVRUkepXCx7dpzO4zCBHpJhkT+1hFnXH53pGLlIj+q/AvGUNg7I5QYfPu1C/kyNa/sMRon9UEvK4Luf5shBEfbZuD0fHHjAyHIq5P/D5efbvcNT5/LW43kxV4Fh7ogpKG8cSRpjuXle9DNfisZ+aGQ1lxdBMxwD/VnFDyyL0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JpzzW+kk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55I8lJjC010256
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:07:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=pEB3IBW7SqwbHALnm+Lx2xPg
+	ZbrkAM8vQD8no4c94Fw=; b=JpzzW+kkQNR0fR0arMeveU/sDhXQsfV581HTRMzV
+	mLM1WtZudsBRSdUIZWCGv45SWcAfzVNdigRnJsYy4XwFMm4m73c/V1kA/QC7vhwz
+	vqf03ZIuucfAXSPWYTG7O3hdDKwmu0zZth14mPTJzRIYd3sN4TLNfMLk3p7EgEXE
+	bS7MvaUP28bhmnwZIlGVsWvRAUYF/MOaHKzMNAItg2ARAW7mrtFF4b6voNIYkV4a
+	Opzl2BFa4ZYDwsqrYdKs+bAr4SVp2B36YBrZkK1MQtMCXYTv6N2nU7TvdsQgpXpL
+	JbPmL2bscma82A0kQk5NGb+cstfNykXj9BpRoX2dz0JmnA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791f7c5he-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 13:07:14 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c53e316734so163023085a.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 06:07:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750252033; x=1750856833;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pEB3IBW7SqwbHALnm+Lx2xPgZbrkAM8vQD8no4c94Fw=;
+        b=Ii6txTitk2JX2DTNu3qxDrR4MJxhBOChl+KLQI89GOhxcjiAR0AaTjQyi7VRZlAcOj
+         EaFxOQ2GX84KG2RyDJ9bgfwO1BVTbRA/OLkpzhwNMl/Ah0QuaBRUHia8uptAGSDHy+dM
+         XAEtza5f4xnYfUSRUQR0lXU0ysemTFfX6rPQyrns90bIx1HASVHGOPX0pnsLWRRjAn2H
+         empknz12xZTxwBwb+ajMJRKmicJcKxOq3b9D90QjyS44JyKCfgtLmupaWoaoLNB+GUvm
+         ucIVJ94yA+SUswKa4JjQ8t59zj4SarUqfN8Jys+9/6I/6Ge9zFZ6e/YRba7NyGk+CScX
+         sMJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV2Gb37vDAHzMlzhwKr/20m4FzCxKHpiRzNNSeFiztrN6tDL25LTkMnh8hv2j8wxkI/lNZQo/hx9BaE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA6x9tdQ2Y70KEJDH4PUB7CbiQJRKlUzkmi2Ioe6sqegqGlLmC
+	O6fIk2noTnh0+mKTX5GdSO2MqB/l2swzsTB3ODpvu7TOnUhZFsyi5DVbBY6yBk0/06PSaU36Jl3
+	IJ1U4AEACHrwW52w9cox4rojjIlpCdVUSTl9ImB60AwL3Mv0jeHbvd6fz8Gw1eJj8
+X-Gm-Gg: ASbGncuV6WEICq64lBkoLSlBgcniWB3G8AC2vcsS1kb1mMkKNZrULmIfbgRkT1q66yW
+	44SVliJX0atlKKR/W6nBwzOx3Z22dqa+noMoluR8oR2DBnPp7U6jTeMr+s4h+fDOVSaShVWH1I1
+	rfczE8RTbNL/rJlKRkJW3TzKMdJrNNUUE247HRtkC2G9qQZmhWbp+I7Liue/QSr4PEHOWMqV1H5
+	EwrzLRdGoBz+yfSmjqIePDzuLuExrRBO/4DNwqu1A4s8/dad14VO5ueI8rsqFHSl/c/NGriokTe
+	gvuDCcttTqRuBz6g/mh8MTV6RRXaNzIISymDc0hGxd4N0kXlH8ZnBq8mszK8Nsa8sDy6qn8XI0X
+	zeRXsnOfIdBa48TonE8Xpd2C+EkFq8dZzYXw=
+X-Received: by 2002:a05:620a:3186:b0:7d0:9e8c:6fef with SMTP id af79cd13be357-7d3c6b7b64bmr2416843585a.0.1750252033129;
+        Wed, 18 Jun 2025 06:07:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHZYFBBGQhXUBuLVOvJiO43P1f2KVUStUccmAa1uQee7HeLw+oTe/UnhxWImacqUUL4x3Tnww==
+X-Received: by 2002:a05:620a:3186:b0:7d0:9e8c:6fef with SMTP id af79cd13be357-7d3c6b7b64bmr2416838585a.0.1750252032534;
+        Wed, 18 Jun 2025 06:07:12 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553cdef7fdasm529978e87.245.2025.06.18.06.07.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 06:07:11 -0700 (PDT)
+Date: Wed, 18 Jun 2025 16:07:09 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v6 08/17] drm/msm/dsi/phy: Fix reading zero as PLL rates
+ when unprepared
+Message-ID: <24xkss4bw6ww43x2gbjchcm4gtmqhdecncmxopnnhf7y2tblc2@iibgqhuix5rm>
+References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-8-ee633e3ddbff@linaro.org>
+ <n5djafe2bm4cofoa3z4urfogchhfacybzou763nelttgfspo25@bywfd5febe6g>
+ <dbcfcb3c-0cba-45f6-aaed-b79494d96cde@linaro.org>
+ <738a889d-9bd5-40c3-a8f5-f76fcde512f4@oss.qualcomm.com>
+ <8a986ebb-5c25-46d9-8a2f-7c0ad7702c15@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Julien Massot <julien.massot@collabora.com>, 
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-staging@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- linux-kernel@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Cosmin Tanislav <cosmin.tanislav@analog.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- linux-media@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20250618095858.2145209-15-demonsingur@gmail.com>
-References: <20250618095858.2145209-1-demonsingur@gmail.com>
- <20250618095858.2145209-15-demonsingur@gmail.com>
-Message-Id: <175025160249.1545873.9100402029038186913.robh@kernel.org>
-Subject: Re: [PATCH v4 14/19] dt-bindings: media: i2c: add MAX9296A,
- MAX96716A, MAX96792A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8a986ebb-5c25-46d9-8a2f-7c0ad7702c15@linaro.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE4MDExMSBTYWx0ZWRfX1iYsdXetjfIk
+ QiQGujZqAcHWhgZPZCBGeix5yTTjUuT+4/T3RBjNQJ6wi27Z1y0vk7rPPYy75yaxyqfRV7ErBzA
+ MEfFsQjSywcZaeCFhLRLjxCFlFwhvJwAAEkuJpymSD3WUszCNZag/fYnkKl17c/LklG+jwv57Yu
+ TwHU7eGlVJw2O7ntv/9g/387gAad/EQQ0kXubMBXwsKL15rXy0lxqjwZ1eK9StAfPO+ymswW60d
+ VlZhWIO4kh/m+lXASOxgNqCOSM+WfgrVy2HSu+Duud2xqpJECQW0sgFNQuplPZsu4Bp95Y5htjC
+ ucBPYcJXbDwwEIwW8Y8UthfjVOatISwTWkgLHN0R1HtCI65W895d0Yrux4VA6cJhDeWJm6PuBTy
+ c0v08l6Tn1D9nKfFHKxRW5Sa2Ka6sq2xvN0o/3uvJA7myuAtcCLhYx7pV1/WwO6gL9ZIOmCM
+X-Proofpoint-GUID: ED50-f4HjOXt6RuO2v0zEq36IUMLIoDx
+X-Proofpoint-ORIG-GUID: ED50-f4HjOXt6RuO2v0zEq36IUMLIoDx
+X-Authority-Analysis: v=2.4 cv=FrIF/3rq c=1 sm=1 tr=0 ts=6852ba02 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=uvfCOV_WgLjuMeome0MA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-18_05,2025-06-18_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 mlxlogscore=654 bulkscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506180111
+
+On Wed, Jun 18, 2025 at 10:28:10AM +0200, Krzysztof Kozlowski wrote:
+> On 13/06/2025 16:04, Dmitry Baryshkov wrote:
+> > On 13/06/2025 17:02, Krzysztof Kozlowski wrote:
+> >> On 13/06/2025 15:55, Dmitry Baryshkov wrote:
+> >>>>   
+> >>>> @@ -361,24 +373,47 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
+> >>>>   
+> >>>>   static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
+> >>>>   {
+> >>>> +	unsigned long flags;
+> >>>>   	u32 data;
+> >>>>   
+> >>>> +	spin_lock_irqsave(&pll->pll_enable_lock, flags);
+> >>>> +	--pll->pll_enable_cnt;
+> >>>> +	if (pll->pll_enable_cnt < 0) {
+> >>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+> >>>> +		DRM_DEV_ERROR_RATELIMITED(&pll->phy->pdev->dev,
+> >>>> +					  "bug: imbalance in disabling PLL bias\n");
+> >>>> +		return;
+> >>>> +	} else if (pll->pll_enable_cnt > 0) {
+> >>>> +		spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+> >>>> +		return;
+> >>>> +	} /* else: == 0 */
+> >>>> +
+> >>>>   	data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+> >>>>   	data &= ~DSI_7nm_PHY_CMN_CTRL_0_PLL_SHUTDOWNB;
+> >>>>   	writel(0, pll->phy->pll_base + REG_DSI_7nm_PHY_PLL_SYSTEM_MUXES);
+> >>>>   	writel(data, pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+> >>>> +	spin_unlock_irqrestore(&pll->pll_enable_lock, flags);
+> >>>>   	ndelay(250);
+> >>>
+> >>> What is this ndelay protecting? Is is to let the hardware to wind down
+> >>> correctly? I'm worried about dsi_pll_disable_pll_bias() beng followed up
+> >>> by dsi_pll_enable_pll_bias() in another thread, which would mean that
+> >>> corresponding writes to the REG_DSI_7nm_PHY_CMN_CTRL_0 can come up
+> >>> without any delay between them.
+> >>>
+> >>
+> >> Great question, but why do you ask me? The code was there already and
+> >> MSM DRM drivers are not something I know and could provide context about.
+> > 
+> > Because it's you who are changing the code as you've faced the issue 
+> > with recalc_rate.
+> > 
+> Heh, the answer is then: I don't know. I think authors of the code could
+> know.
+
+The 10nm HPG documents a 250ns interval between enabling PLL bias and
+and enabling the PLL via the CMN_PLL_CNTRL register. There is no extra
+delay between disabling the PLL, disabling FIFO and remobing PLL bias.
+Please adjust the code for 7nm and 10nm PHYs accordingly.
 
 
-On Wed, 18 Jun 2025 12:58:50 +0300, Cosmin Tanislav wrote:
-> The MAX9296A deserializer converts single or dual serial inputs to MIPI
-> CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps or 6Gbps
-> in the forward direction and 187.5Mbps in the reverse direction.
-> In GMSL1 mode, each serial link can be paired with 3.12Gbps or 1.5Gbps
-> GMSL1 serializers or operate up to 4.5Gbps with GMSL2 serializers with
-> GMSL1 backward compatibility. The MAX9296A supports mixed GMSL2 and
-> GMSL1 links. The serial inputs operate independently, allowing videos
-> with different timings and resolutions to be received on each input.
-> 
-> MAX96716A supports both tunnel and pixel mode.
-> MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/media/i2c/maxim,max9296a.yaml    | 242 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 248 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.example.dtb: serializer@40 (maxim,max96717): compatible: 'oneOf' conditional failed, one must be fixed:
-	['maxim,max96717'] is too short
-	'maxim,max96717' is not one of ['maxim,max9295a', 'maxim,max96717f']
-	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.example.dtb: serializer@40 (maxim,max96717): compatible: 'oneOf' conditional failed, one must be fixed:
-	['maxim,max96717'] is too short
-	'maxim,max96717' is not one of ['maxim,max9295a', 'maxim,max96717f']
-	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250618095858.2145209-15-demonsingur@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+With best wishes
+Dmitry
 
