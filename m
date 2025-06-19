@@ -1,269 +1,199 @@
-Return-Path: <devicetree+bounces-187578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22531AE0878
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 746FCAE0895
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:21:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B75763AB7D9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:19:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 269563AE578
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C45E202F93;
-	Thu, 19 Jun 2025 14:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C2F21019C;
+	Thu, 19 Jun 2025 14:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fud0b7Fs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CDYmHxVG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0968F1D6187;
-	Thu, 19 Jun 2025 14:20:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422C21EE7D5
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750342802; cv=none; b=n1rUv8nh1s6dJCWbZDwItNNKvPelAwPbHZ8edxH9QDGWtJTWqwChprsY7wfMUcoj5+7kfzKUzQKIsGjAhaSxcyvgJGRCkRz/pjZ0jb+GB84RgTJIt/7x3AY2Ye11BMzVeaNv4c+XZuxIhkj2mFuKqCKMslvaxhZhfJ73L9qyUIE=
+	t=1750342836; cv=none; b=eNY3R4iFSR9hxQ9xDNJXfBYurg1FpipPDP/NA9CmEjILtQNbn0k7Mtlhxz9qs0m7fxcPrm2cwtnu/SkMizlTloJLCQIPCX8oZUYouFpH85WBhUs+n5hLftzeswuKcxjSjGhlxAjXvsFCMlvAIO4+DVZlCmkKAnqOumkke7TymKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750342802; c=relaxed/simple;
-	bh=H5+BZQf88SoLlAxFu9jt0X4tMdMAcn56sYbqSqbZaCk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XEwauu104hybgqwN1vJAuVugQhmlW0zBVRgI1HemJZIYfh2PCLB6bRJL3WxF0zvSIAIfxgmZqPIpT9pn6t5U6TdtMGNtPiorLjoojsQ5miePISqtcC/MQgDwotOZobx/q1VrWrOLz4WuEFwD1JtIrl947/t/G+4qWl2OS/lwljU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fud0b7Fs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D62C4CEEA;
-	Thu, 19 Jun 2025 14:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750342801;
-	bh=H5+BZQf88SoLlAxFu9jt0X4tMdMAcn56sYbqSqbZaCk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fud0b7FsejVgRV5gn3u0v8TMuGq/HV7KrGNFhluWv0XSifzDg1WObMJW8Xgoo7hAS
-	 shcSetDWqX8wQCgkplJbETkhzn33AipF8X1+nmn4fPAIGE+cYpsZD3fB3OokafC8m8
-	 wLpL2NHuU1nhS4019Krctw8b4xzAUjAyAEivZ4RPpw/aLCV3ih16I5GC9syraHeSjJ
-	 3xJ2iyyBrTsYxPBtpobyq6ojN5z0cKdhJwI78WutHSAIXJp17jbRvILwI4skJZl/gt
-	 aCdBs7l+hh2S5l3on6nhqz0RYa/NBMSsnM0wbMQarUwYt+bCxwAEJAhkvwheRzB166
-	 xls8wd2iv0x9w==
-Date: Thu, 19 Jun 2025 15:19:56 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v5 06/20] mfd: adp5585: refactor how regmap defaults are
- handled
-Message-ID: <20250619141956.GD795775@google.com>
-References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
- <20250614-dev-adp5589-fw-v5-6-7e9d84906268@analog.com>
+	s=arc-20240116; t=1750342836; c=relaxed/simple;
+	bh=FlMMithB26EQ1ESHF1QhUmLgz+gJzZRPLQUpid6FMac=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aoNcIktQqDGcF0bkn2l9UThYS9JVil4Ax6cW4Fckfxmr/vr23aWER8KL8W27knkI4MYHgy4qrFTaY7rkPVOF6uLY0dL2sgU0mdj6MwWs82i7FKWRbdvipKXRb5c1WQR0IltFLisvmthSmW5bR/x5EbN1loG3i7pf7iO5wVAcUv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CDYmHxVG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55JDhMwN023126
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:20:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3qODGqf9VJdSUiKvIQsg8Q9NQxhvtEVcDlmVqRiAwAs=; b=CDYmHxVGcb/LeutO
+	zeczfjlS323GwLE8rWDj71hkBBefek7dP1iNG3guUA6IcFlDxFclpK1ciZ/JCQkY
+	TWoiqSD8caZ2T5hheWs8TjTl3CBMNv1FIHoymKgMUUR+itmKpao0h9iTEdFL6Yf6
+	u4JbKJeteXMirTyWC69efckUuCoIeUx8kMHZbMK+Y859b54mPlvUE3tVDPPBE/C+
+	n90lzfWEsssZwYzXJIF6COVBDN1Wx8sDQSETCqQSEN9ASSMADHxl3PgSsIXrO3rE
+	pHhwjZk5gyUebIr5Lp6v0vkv5F6HyXv2vavBMEGWJ91St7/EuuzbLAVEr+0KeL90
+	+nRnJg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791hd8b9n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:20:34 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5cd0f8961so183561585a.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:20:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750342816; x=1750947616;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3qODGqf9VJdSUiKvIQsg8Q9NQxhvtEVcDlmVqRiAwAs=;
+        b=Sju4V7ikBJ0LWK83IghmEsE7D4ITFcr1BITO7iMtmqwooMxOZ6NH87lNANUueGJgFB
+         u0HzTGxa1rgZNgYoG0pBHp8QjLGad1NOJKgaOXAf0MMX9jzf0wOgGmq+qFrv7vkEmuHN
+         nGa3mIlJ7zNwITnt6oi3wLawb8QItCrvYlmo9ZHofcGjj21gXDktDc3XTGFh8PV90Ke4
+         kufcjg+zOG6HbD7UFKbLNnjFSK2aznDzb1DpMvmF090M+5KqgG/R0FmqonnhgjyMt2n8
+         aONo0xDypUcBKg7ppYme3AScdge796jba5VhZnnLhlWu5Qs2jpllO6/v03mwMHJhQ5q0
+         Yojg==
+X-Forwarded-Encrypted: i=1; AJvYcCUx7Ff7ExrexbxM8YPGMaRsCPOqXheD734r9L60+PNPl6tF7ueHJ7pS/mh7Er89VSN5hJmFw2uleHpc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQIzJTx4kKw+rrXgwJrWVZbJ2WXDCnbHN4OXxx5tG6r2b0yPfp
+	BuDacZtO6xLaXk7VrI3Gu78M6VDJ5p7FxiW/RsqppFz3FkCNx4noRu4TtQZpStg8u684CTNLn6S
+	uqWtfTca13HpS/9+CoHiiUsfcnhFkML2WEWu20oklysoTjrhWTkEyMxw8gTCqr0qb
+X-Gm-Gg: ASbGncvJbjwfoMNmN1HOvMJwm2U1+nTnPn12nYB38tY/7Fq3nm5hWlPrISUPAFeM9u3
+	js2B0zEUGdnkWr8dj4LWG+nvMTX+IcN2v8V6DqJTMC0KIjbrTGBOzzsF/AK1ZravKgYURp81Fno
+	BDLKLo+bGsa5cS/pB0/p3IX2dLH3yMRqlTiqG9UM05wVWidrYLcEGxYD+E/jF65ipOh0H2zhyJD
+	OJrd6+n2zmyMBQKZiJoQfdwnnwUzRTo4rqCvl6ecoBv/7rqvWlbOFJ9+LIXmbvBQaWWZC/TByfz
+	oxqcQjqiWBTM8KmEv27OLmCw1ECh0wuWt+h1osmzZDktEwHYh5wOePq+aKOZUxXul249bhgkPoE
+	Y
+X-Received: by 2002:a05:620a:1a0c:b0:7d3:b8d7:a9a3 with SMTP id af79cd13be357-7d3c6cd8471mr2728882885a.29.1750342816273;
+        Thu, 19 Jun 2025 07:20:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGPJPPRNcZ8kHYxDa/J9cN97e03uBxW3LMwXBfnhk+BWCGhmRVlJ8NeVO7dEVheSMxMl0fG0w==
+X-Received: by 2002:a05:620a:1a0c:b0:7d3:b8d7:a9a3 with SMTP id af79cd13be357-7d3c6cd8471mr2728876285a.29.1750342815665;
+        Thu, 19 Jun 2025 07:20:15 -0700 (PDT)
+Received: from trex.. (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a58963561csm7254312f8f.47.2025.06.19.07.20.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 07:20:15 -0700 (PDT)
+From: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+To: jorge.ramirez@oss.qualcomm.com, quic_vgarodia@quicinc.com,
+        quic_dikshita@quicinc.com, bryan.odonoghue@linaro.org,
+        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        stanimir.k.varbanov@gmail.com
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/7] media: venus: Add QCM2290 support with AR50_LITE core
+Date: Thu, 19 Jun 2025 16:20:05 +0200
+Message-Id: <20250619142012.1768981-1-jorge.ramirez@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
+References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250614-dev-adp5589-fw-v5-6-7e9d84906268@analog.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE5MDExOSBTYWx0ZWRfX7wdOqeDZDp1V
+ zvjxVPVP0JBOrm2zoE13OVl7fIqzxrn62F7tGWp1Q8Wmw6uNiRhQRrDdS4FbfTt1bv/Qq/ouXpy
+ bEO3H0dYWrhj2GukDbDfi3oRQKcP426JzA85Iv5u7FyHII9ZSeg5nmxc1eKFRitj3JwKR4oajKn
+ nGx1Hk0HTA7Y0lq4QErq3TLMgmrPpRrgWLttSoINScLaMhBeurwsAXLf9K0GEYdZq4bwh2FFP/q
+ r1ji0OkhuMpEEQ7ZoOXJlZqezZIlbASm7JgxaeDVVaJlIqn9SadgyAAK8EdSn3d30LgJb5U5nWL
+ bGi7rrmAmCZZxO333msT0YPGyb424wAEaRFXrze+W9XX2HWgjPWE5J3RG/2WrODKg8X1bZZuD+Z
+ MCfkZP72Vl6WcSsLScdz4vC70qJCzf9hOapfWx6592S7qxMXvQMVv4dVMJawsLv8Au2NDLVh
+X-Authority-Analysis: v=2.4 cv=PtaTbxM3 c=1 sm=1 tr=0 ts=68541cb2 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=vaIsIKZIAAAA:8 a=YmGZQoAjZiUEEbKiF_4A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=rh-XPM1-DYv4t-UOgbwD:22
+X-Proofpoint-ORIG-GUID: xxzLXjTMOiba8HXvKQbts5OWyhDuGQcN
+X-Proofpoint-GUID: xxzLXjTMOiba8HXvKQbts5OWyhDuGQcN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-19_05,2025-06-18_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 impostorscore=0 adultscore=0 spamscore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506190119
 
-On Sat, 14 Jun 2025, Nuno Sá via B4 Relay wrote:
+Changes since v1:
+- Add IS_HFI macro usage
+- Move schema patch to top
+- Fix commit messages
 
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> The only thing changing between variants is the regmap default
-> registers. Hence, instead of having a regmap configuration for every
-> variant (duplicating lots of fields), add a chip info type of structure
-> with a regmap ID to identify which defaults to use and populate
-> regmap_config at runtime given a template plus the id. Also note that
-> between variants, the defaults can be the same which means the chip info
-> structure can be used in more than one compatible.
-> 
-> This will also make it simpler adding new chips with more variants.
-> 
-> Also note that the chip info structures are deliberately not const as
-> they will also contain lots of members that are the same between the
-> different devices variants and so we will fill those at runtime.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/mfd/adp5585.c       | 81 +++++++++++++++++++++++----------------------
->  include/linux/mfd/adp5585.h | 11 ++++++
->  2 files changed, 53 insertions(+), 39 deletions(-)
+This patch series adds support for the Venus video decoder/encoder block
+present on the Qualcomm QCM2290.
 
-Very close.  Couple of nits.
+The QCM2290 integrates an AR50_LITE core, a low-power implementation of
+Venus supporting H.264, HEVC (H.265), and VP9 decoding.
 
-NB: When you next submit, could you please ensure all subject match the
-style expected by the subsystem.  In the case of MFD, it's:
+The series includes:
+  • DT binding schema for qcom,qcm2290-venus
+  • SoC integration via qcm2290.dtsi
+  • Resource table definitions and frequency scaling
+  • Platform capability registration for the AR50_LITE core
 
-mfd: <driver>: Succinct subject line starting with an uppercase char
+Decoding was verified on the QCOM RB1 platform using GStreamer with V4L2-based
+decode plugins. The following pipelines were used for playback 1280x720 and
+1920x1080 H.264, HVEC and VP9 videos from https://www.elecard.com/videos.
 
-> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> index c764f481875831ff55bccb8cdc59421719afbedd..ec88adbace92791f10953fc2bbb463fc59557bd6 100644
-> --- a/drivers/mfd/adp5585.c
-> +++ b/drivers/mfd/adp5585.c
-> @@ -81,42 +81,37 @@ static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
->  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
->  };
->  
-> -enum adp5585_regmap_type {
-> -	ADP5585_REGMAP_00,
-> -	ADP5585_REGMAP_02,
-> -	ADP5585_REGMAP_04,
-> +/* -1 since the enum starts at 1 for error checking in i2c_get_match_data() */
+[H.264]
+gst-launch-1.0 filesrc location=videos/xxxxx.mp4 \
+  ! qtdemux name=demux demux.video_0 ! queue ! h264parse ! v4l2h264dec \
+  ! videoconvert ! autovideosink
 
-This comment is no longer applicable.
+[H.265]
+gst-launch-1.0 filesrc location=videos/xxxxx.mp4 \
+  ! qtdemux name=demux demux.video_0 ! queue ! h265parse ! v4l2h265dec \
+  ! videoconvert ! autovideosink
 
-> +static const u8 *adp5585_regmap_defaults[ADP5585_MAX] = {
-> +	[ADP5585_00] = adp5585_regmap_defaults_00,
-> +	[ADP5585_01] = adp5585_regmap_defaults_00,
-> +	[ADP5585_02] = adp5585_regmap_defaults_02,
-> +	[ADP5585_03] = adp5585_regmap_defaults_00,
-> +	[ADP5585_04] = adp5585_regmap_defaults_04,
->  };
->  
-> -static const struct regmap_config adp5585_regmap_configs[] = {
-> -	[ADP5585_REGMAP_00] = {
-> -		.reg_bits = 8,
-> -		.val_bits = 8,
-> -		.max_register = ADP5585_MAX_REG,
-> -		.volatile_table = &adp5585_volatile_regs,
-> -		.cache_type = REGCACHE_MAPLE,
-> -		.reg_defaults_raw = adp5585_regmap_defaults_00,
-> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
-> -	},
-> -	[ADP5585_REGMAP_02] = {
-> -		.reg_bits = 8,
-> -		.val_bits = 8,
-> -		.max_register = ADP5585_MAX_REG,
-> -		.volatile_table = &adp5585_volatile_regs,
-> -		.cache_type = REGCACHE_MAPLE,
-> -		.reg_defaults_raw = adp5585_regmap_defaults_02,
-> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
-> -	},
-> -	[ADP5585_REGMAP_04] = {
-> -		.reg_bits = 8,
-> -		.val_bits = 8,
-> -		.max_register = ADP5585_MAX_REG,
-> -		.volatile_table = &adp5585_volatile_regs,
-> -		.cache_type = REGCACHE_MAPLE,
-> -		.reg_defaults_raw = adp5585_regmap_defaults_04,
-> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
-> -	},
-> +static const struct regmap_config adp5585_regmap_config_template = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = ADP5585_MAX_REG,
-> +	.volatile_table = &adp5585_volatile_regs,
-> +	.cache_type = REGCACHE_MAPLE,
-> +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
->  };
->  
-> +static struct regmap_config *adp5585_fill_regmap_config(const struct adp5585_dev *adp5585)
-> +{
-> +	struct regmap_config *regmap_config;
-> +
-> +	regmap_config = devm_kmemdup(adp5585->dev, &adp5585_regmap_config_template,
-> +				     sizeof(struct regmap_config), GFP_KERNEL);
+[VP9]
+gst-launch-1.0 filesrc location=videos/xxxxx.webm \
+  ! matroskademus ! queue ! v4l2vp8dec \
+  ! videoconvert ! autovideosink
 
-sizeof(*regmap_config)
+---
 
-> +	if (!regmap_config)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	regmap_config->reg_defaults_raw = adp5585_regmap_defaults[adp5585->variant];
-> +	return regmap_config;
-> +}
-> +
->  static int adp5585_add_devices(struct device *dev)
->  {
->  	int ret;
-> @@ -147,7 +142,7 @@ static void adp5585_osc_disable(void *data)
->  
->  static int adp5585_i2c_probe(struct i2c_client *i2c)
->  {
-> -	const struct regmap_config *regmap_config;
-> +	struct regmap_config *regmap_config;
->  	struct adp5585_dev *adp5585;
->  	unsigned int id;
->  	int ret;
-> @@ -157,8 +152,16 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  		return -ENOMEM;
->  
->  	i2c_set_clientdata(i2c, adp5585);
-> +	adp5585->dev = &i2c->dev;
-> +
-> +	adp5585->variant = (enum adp5585_variant)(uintptr_t)i2c_get_match_data(i2c);
-> +	if (!adp5585->variant)
-> +		return -ENODEV;
-> +
-> +	regmap_config = adp5585_fill_regmap_config(adp5585);
-> +	if (IS_ERR(regmap_config))
-> +		return PTR_ERR(regmap_config);
->  
-> -	regmap_config = i2c_get_match_data(i2c);
->  	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
->  	if (IS_ERR(adp5585->regmap))
->  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
-> @@ -212,19 +215,19 @@ static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
->  static const struct of_device_id adp5585_of_match[] = {
->  	{
->  		.compatible = "adi,adp5585-00",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> +		.data = (void *)ADP5585_00,
->  	}, {
->  		.compatible = "adi,adp5585-01",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> +		.data = (void *)ADP5585_01,
->  	}, {
->  		.compatible = "adi,adp5585-02",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_02],
-> +		.data = (void *)ADP5585_02,
->  	}, {
->  		.compatible = "adi,adp5585-03",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> +		.data = (void *)ADP5585_03,
->  	}, {
->  		.compatible = "adi,adp5585-04",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_04],
-> +		.data = (void *)ADP5585_04,
->  	},
->  	{ /* sentinel */ }
->  };
-> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
-> index 016033cd68e46757aca86d21dd37025fd354b801..c56af8d8d76c4ebc0ede1ee4769ca059de29f53c 100644
-> --- a/include/linux/mfd/adp5585.h
-> +++ b/include/linux/mfd/adp5585.h
-> @@ -119,8 +119,19 @@
->  
->  struct regmap;
->  
-> +enum adp5585_variant {
-> +	ADP5585_00 = 1,
-> +	ADP5585_01,
-> +	ADP5585_02,
-> +	ADP5585_03,
-> +	ADP5585_04,
-> +	ADP5585_MAX
-> +};
-> +
->  struct adp5585_dev {
-> +	struct device *dev;
->  	struct regmap *regmap;
-> +	enum adp5585_variant variant;
->  };
->  
->  #endif
-> 
-> -- 
-> 2.49.0
-> 
-> 
+Jorge Ramirez-Ortiz (7):
+  dt-bindings: media: venus: Add qcm2290 dt schema
+  media: venus: helpers: add IS_VPU() and IS_HFI() macros
+  media: venus: use IS_HFI() macro for multi-version check
+  media: venus: vdec: AR50_LITE video core support
+  media: venus: hfi_plat_v6_lite: Populate decode capabilities
+  media: venus: core: Add qcm2290 DT compatible and resource data
+  arm64: dts: qcom: qcm2290: Add venus video node
+
+ .../bindings/media/qcom,qcm2290-venus.yaml    | 117 ++++++++++++++
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi         |  45 ++++++
+ drivers/media/platform/qcom/venus/Makefile    |   2 +-
+ drivers/media/platform/qcom/venus/core.c      |  51 +++++-
+ drivers/media/platform/qcom/venus/core.h      |  28 +++-
+ drivers/media/platform/qcom/venus/firmware.c  |   8 +-
+ drivers/media/platform/qcom/venus/helpers.c   |  81 ++++++++++
+ drivers/media/platform/qcom/venus/helpers.h   |   2 +
+ .../media/platform/qcom/venus/hfi_helper.h    |  10 +-
+ .../media/platform/qcom/venus/hfi_platform.c  |   2 +
+ .../media/platform/qcom/venus/hfi_platform.h  |   1 +
+ .../qcom/venus/hfi_platform_v6_lite.c         | 148 ++++++++++++++++++
+ drivers/media/platform/qcom/venus/hfi_venus.c |  19 ++-
+ .../media/platform/qcom/venus/pm_helpers.c    |   1 +
+ drivers/media/platform/qcom/venus/vdec.c      |  17 +-
+ 15 files changed, 504 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+ create mode 100644 drivers/media/platform/qcom/venus/hfi_platform_v6_lite.c
 
 -- 
-Lee Jones [李琼斯]
+2.34.1
+
 
