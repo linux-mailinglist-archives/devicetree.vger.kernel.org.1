@@ -1,63 +1,52 @@
-Return-Path: <devicetree+bounces-187504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1070AE02CE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 12:39:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE94AE02EA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 12:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73D25189F282
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:40:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A1CB1BC0536
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4608D224227;
-	Thu, 19 Jun 2025 10:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0A8224AEB;
+	Thu, 19 Jun 2025 10:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="faya4tNl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Fdj0OnyG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106BD21D3E4;
-	Thu, 19 Jun 2025 10:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F795223DF5;
+	Thu, 19 Jun 2025 10:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750329589; cv=none; b=j2VjOcRHJDnedgtN0htyj5zDJr9o7PjCce/lrN9usSGg85bGZ3rZB5L4o6dvddT1MSoFvrLEVbTuzCDmvRej8WH/Scy9IcdoWCL84TNqXA0Tw2YbBZylicifb6urMPOv8S3+W0+E9R//ln1mCZB0vrFQl5pVlyohF5cVqg97dQc=
+	t=1750330089; cv=none; b=q6NxVu5SFhzihROFAqtbQLCwbfLETtS2RMGvt9/ICyZ3eZLqycUrIsiWQolPylJTyC0uKwKT8uqSGeKvFAzlizRLf7HwaS+iPbB72eFJjMgyNRXuu0KtE9yILCzG0DFyCPHq3adU0F5jRBbIv2UE80YWQu0Jkf5MnHYOPDOKs2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750329589; c=relaxed/simple;
-	bh=DMAtv+adek9drvhyTukAZ0+GBN9EpBhmKsZ/5dLozBE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BSVROdRlNsms4ZI3ZVjRXlpesVVEKXt4/KdKg/YgAptDmBl+XGFxs5p6uuxFz1sgUrmSvaXqbPkBT0mraXwDeUwP6Ot8zG/cb6JpmGcFqKqfqvrDGKlVk4I9hz0XW6eB+LnJc3rxIbOxsQ5sOg+XqlOL7Tt7SLN1sS40giiokds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=faya4tNl; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55JAdSQd588824;
-	Thu, 19 Jun 2025 05:39:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750329568;
-	bh=tlRjm8eym2T9Hx/fyDaiY5Go0jYo5ZoRNES0P1c6pcM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=faya4tNlxHcgR0iN7NSGved1dittEmBomwKRYY1tsZ1dX7O2cqrTRP2yaLYKF4rv/
-	 8Vi0asnBam87XcKjMUq/lMIfgzQRY2vSH5gxDEAsK5Nk7btALkowj7KSXRgVuknjjs
-	 leX7ONT0oDAqw0KEZJ2CQvdFXnqSnD/rqrdezWm0=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55JAdRbU3819668
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 19 Jun 2025 05:39:28 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 19
- Jun 2025 05:39:27 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 19 Jun 2025 05:39:27 -0500
-Received: from [172.24.227.4] (hp-z2-tower.dhcp.ti.com [172.24.227.4])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55JAdN4r1220846;
-	Thu, 19 Jun 2025 05:39:24 -0500
-Message-ID: <b446e04f-0c4a-4cce-8330-0b7bc1e330dc@ti.com>
-Date: Thu, 19 Jun 2025 16:09:22 +0530
+	s=arc-20240116; t=1750330089; c=relaxed/simple;
+	bh=92oRe7d2R8Bz+GLGeI+CL7LHJz6LbFva0fu3VY+Ti6g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kk4mHXsTzvJbgGjSAbQkAxsF7lG9b39VuYsYJyn7mrlVymWfL9vdy0lKmcaIOXi5UeqE8l4hnsfoLPjOd4w0V0hZT6ZHVc6WJRGjNPwoiadEtfmQpz1zBT7NMFxzqTvZEyidYVdK2aL7QGF45oIzhGvSdcVXZN8uIsbkAMU/tjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Fdj0OnyG; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DF5F44396F;
+	Thu, 19 Jun 2025 10:47:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750330079;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YrYJ8w60yCUBZigSm+JV9lV/nNFVXOxrB9Gm7xPQC6A=;
+	b=Fdj0OnyGM/LIKEoR67MIFPtCrbEaBwTFCjHjfXIe2gV/5Q5MdeVZmWL1UAwK+YucK6tESv
+	1WPzDuiDlQMae4blgiTIVdGUVGALZJaWeKzzTlv2IaBS0NpVQiMsP7WDy/DlTfCSBX7TWw
+	7mXdmJjQ/ER2+q+7oHYIyzoEecykD096ST65HAG6c6lbzw38hVTaNEKKnbRDk6+Xote/rB
+	3TzQvUCx+GFM7JZx+sD6k3Nmawn3oHIkyu498nTe1rPNCEv2CI6v5l6sFDlUrro8jtextJ
+	jHeePypFVx4xYHK0U7uqG9y3VLi+wk3YVNoMFY4MX2BBz4w97QiKtD998UdXZg==
+Message-ID: <c26ce505-343a-4759-90b5-a026c66979c7@bootlin.com>
+Date: Thu, 19 Jun 2025 12:47:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,54 +54,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add idle-states for remaining
- SERDES instances
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <danishanwar@ti.com>, <srk@ti.com>,
-        Hrushikesh Salunke <h-salunke@ti.com>
-References: <20250609115921.2380611-1-h-salunke@ti.com>
- <ec2c7fab-6f4d-4163-90a9-16dddec80adb@ti.com>
- <afb54fe8-a271-4074-8249-669219954c4c@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix the PinePhone Pro DTS' panel
+ description
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Diederik de Haas <didi.debian@cknow.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com>
+ <DAQEX04P5320.CQDU7SL7AV4A@cknow.org> <5461462.0VBMTVartN@phil>
 Content-Language: en-US
-From: Hrushikesh Salunke <h-salunke@ti.com>
-In-Reply-To: <afb54fe8-a271-4074-8249-669219954c4c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: Olivier Benjamin <olivier.benjamin@bootlin.com>
+In-Reply-To: <5461462.0VBMTVartN@phil>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdehfedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeuieffteevudettdejleejheekkeeftefggedttefhheeikeejgeehveefjeejheenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiedphhgvlhhopeglkffrggeimedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiegnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedutddprhgtphhtthhopehhvghikhhosehsnhhtvggthhdruggvpdhrt
+ ghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughiughirdguvggsihgrnhestghknhhofidrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
+X-GND-Sasl: olivier.benjamin@bootlin.com
 
 
 
-On 19/06/25 11:35, Siddharth Vadapalli wrote:
-> On Wed, Jun 11, 2025 at 06:23:24PM +0530, Siddharth Vadapalli wrote:
->> On Mon, Jun 09, 2025 at 05:29:21PM +0530, Hrushikesh Salunke wrote:
->>> In AM69 SoC there are 4 instances of the 4 lane SERDES. So in
->>> "serdes_ln_ctrl" node there are total 16 entries in "mux-reg-mask"
->>> property. But "idle-states" is defined only for the lanes of first two
->>> SERDES instances. For completeness, set the "idle-states" of lanes of
->>> remaining SERDES instances to a default value of "unused".
->>>
->>> Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
+On 6/19/25 12:31, Heiko Stuebner wrote:
+> Am Donnerstag, 19. Juni 2025, 11:46:15 Mitteleuropäische Sommerzeit schrieb Diederik de Haas:
+>> Hi,
 >>
->> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> Thanks for working on upstreaming PPP things :-)
+>>
+My pleasure. I also have 
+https://lore.kernel.org/linux-rockchip/20250509-camera-v3-0-dab2772d229a@bootlin.com/ 
+pending = )
+>> On Thu Jun 19, 2025 at 7:21 AM CEST, Olivier Benjamin wrote:
+>>> Fix a few issues in the panel section of the PinePhone Pro DTS:
+>>>    - add the second part of the Himax HX8394 LCD panel controller
+>>>      compatible
+>>>    - as proposed by Diederik de Haas, reuse the mipi_out and ports
+>>>      definitions from rk3399-base.dtsi instead of redefining them
+>>>    - add a pinctrl for the LCD_RST signal for LCD1, derived from
+>>>      LCD1_RST, which is on GPIO4_D1, as documented on pages 11
+>>>      and 16 of the PinePhone Pro schematic
+>>>
+>>> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
 > 
-> I failed to notice that this change will introduce a regression on
-> AM69-SK for CPSW AND Display which rely on the SERDES Lane Mapping for
-> SERDES2 and SERDES4 being at their reset value of "zero". This patch
-> should be fixed by updating it to the following:
+>>> +	lcd {
+>>> +		lcd_reset_pin: reset-pin {
+>>
+>> I don't know if there's a 'hard rule' for it, but I'd recommend to use
+>> ``lcd1_rst_pin: lcd1-rst-pin {`` as that would match the naming from
+>> the schematics. I realize that some but not all (other) pinctrl nodes
+>> follow that 'rule', but it helps with traceability.
 > 
-> 	<J784S4_SERDES2_LANE0_IP2_UNUSED>, <J784S4_SERDES2_LANE1_IP2_UNUSED>,
-> 	<J784S4_SERDES2_LANE2_QSGMII_LANE1>, <J784S4_SERDES2_LANE3_QSGMII_LANE2>,
-> 	<J784S4_SERDES4_LANE0_EDP_LANE0>, <J784S4_SERDES4_LANE1_EDP_LANE1>,
-> 	<J784S4_SERDES4_LANE2_EDP_LANE2>, <J784S4_SERDES4_LANE3_EDP_LANE3>;
+> not a "hard" rule, but a strong preference.
+> I.e. we want people to ideally be able to just hit search in the
+> schematics PDFs for the name they saw in the devicetree.
+> 
+> Sometimes that is not possible, because of naming conventions or
+> overly strange schematic-names ... and sometimes things slip through
+> as well.
+> 
+> But following the schematic names, is the general goal.
+> 
+Very fair. I used "lcd_reset" because even the schematic is not super 
+clear: it uses "LCD_RST" on page 16 and LCD1_RST on pages 11 and 16.
+
+> 
+> If this stays the only suggestion though, I can fix that when
+> applying. Or you can send a v3 - up to you :-)
+> 
+I'll correct to lcd1_rst_pin and send a v3 (most likely later today)
+> 
+> Heiko
+> 
+> 
+>>
+>>> +			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
+>>> +		};
+>>> +	};
+>>> +
+>>>   	leds {
+>>>   		red_led_pin: red-led-pin {
+>>>   			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+>>
+>> Otherwise,
+>>
+>> Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
+>>
+>> Cheers,
+>>    Diederik
+>>
+> 
+> 
 > 
 > 
 
-Thanks for noticing this Siddharth. I will correct this and post the v2
-for this patch.
+-- 
+Olivier Benjamin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Regards,
-Hrushikesh
 
