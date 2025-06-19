@@ -1,127 +1,106 @@
-Return-Path: <devicetree+bounces-187430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26412ADFE57
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:07:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06826ADFE5F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:08:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF3B33B95DA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:03:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AC013A546F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F2D259CB2;
-	Thu, 19 Jun 2025 07:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5A7246790;
+	Thu, 19 Jun 2025 07:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OBapyA5P"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ipyZVNkl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3A32571C5;
-	Thu, 19 Jun 2025 07:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901F5242D9F;
+	Thu, 19 Jun 2025 07:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750316578; cv=none; b=Uj8yRHOqNQ2hfOSCQRM9f2BV1VZw75lLltU/iSBoZwW3cwOA7Dj42szEmQWcLciZ1QmYwuEahsW6/zUwpSTnR4BHi0mZJSK6pceSzijQGgsNHbtUVbxuRK4+rP+z5jLOQnU5WhSkMk9QDfnIFiQ7Md/8otQHwhyQzDcPaPF8rZI=
+	t=1750316813; cv=none; b=kseZZM40w76lkLA4NymOkLsHaXT8S4lYZuACLIuDn4IB32l4CKjp4qmK9+U0yTL1tgoY/5d0f6PW88ScDvK9FE4GL6LMVMz7MuNAMB/duXTmTHPR3GtwLqfs1JJbnIfj4pmjpSxk/cYWalN5qYRYuCCYxX+j52m0Wt8o+kbg+LM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750316578; c=relaxed/simple;
-	bh=2JI+YfrowwwUcoBJ2M58P69wLwPAB2vYNKdweZuO4VU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qrRGS50VKbWML9jebiYR3ME5v6wqS99EkOWVCdcxaFe5svGkIzVZ2J3r0UIOxOkMBKJAmBwi0CfS7S6brSj3O6Tndgwh3sSspHjmsVPUR+PWCx9N4pFR5SszHXw2AnaLbuDb7cfIvZbWrrBjXjU3YEq21hq1lucHlQF4/cHcB+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OBapyA5P; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55IInDMZ032248;
-	Thu, 19 Jun 2025 07:02:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=3GFLc6L3D05CPEwQBB+vavRm
-	RtyzaTOYISZFCs6voPo=; b=OBapyA5PvRDkMzwToP8VVdyisAu1gouZ978+gFit
-	vqjxYEMYuvJfW4KnkxvbZuTy++Rki14clcxd8F4qYqlUI77Aa6cRLtv5VrEsU/pT
-	X3ncDhgfkmS5a9cR4YwkOM4ymi4y75OI6uC6rT+4Ocu1OhxVGPrwlaAm0Lv7yhO3
-	VQEQi+Im3CiDeKx9EYHjMn2/Y0FCGfVMr550N5489fTk0R2ljUwHdKMRz7nTLokb
-	0OMtKO9V4xqEei9jHmm92oA1MqEjdxzwmIITHxk69SCzyLoiQz1RwJXzSkVyW6N4
-	bDEznK/6yTk2hRKErwOCZH1YneDTrrMcTyoKwutX+WVHjg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47928mpty9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jun 2025 07:02:54 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55J72r3G012880
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jun 2025 07:02:53 GMT
-Received: from hu-sayalil-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 19 Jun 2025 00:02:50 -0700
-From: Sayali Lokhande <quic_sayalil@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH V2 2/2] dt-bindings: mmc: Add sdhci compatible for qcs8300
-Date: Thu, 19 Jun 2025 12:32:24 +0530
-Message-ID: <20250619070224.23428-3-quic_sayalil@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250619070224.23428-1-quic_sayalil@quicinc.com>
-References: <20250619070224.23428-1-quic_sayalil@quicinc.com>
+	s=arc-20240116; t=1750316813; c=relaxed/simple;
+	bh=o//kVFDTunc99C0AXM+9AtF6fAsGoPk6QCMYBVVFa0Q=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GVv4eMBz8dZxemlNZ67+pa7HdripdadiwOxE+52TOv4kJdsUT92H5f0uum3qaCNR2vpigO4apZzMFuKK3/Vy9lCZ52GXbBoZl0PpsZ+JUSLwWMqIGeCfSltOVoavFSPHbdpQ9utg8LDfqAx32nYf6BvYdtixUaPP2YZjPeKc7u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ipyZVNkl; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1750316811; x=1781852811;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=o//kVFDTunc99C0AXM+9AtF6fAsGoPk6QCMYBVVFa0Q=;
+  b=ipyZVNklz8LJ7sms3UddP5+tyORGoNylq4dea2Kof6exw2brRPmk9xjv
+   8FQn0FBz/DQBBcnQWaG2KQUlLY7R344PapJ1hBMqXyaumCDxT/XOGsDXJ
+   QaiTWY3mRTMA8l4Dbj7FoNu8hn+a4XtqleublFJdHazm+yayhZmQjqrko
+   yZ5h5oIT66q/lqWAJBitF5n742ipADhcpG76VZJiOTDVBP5ZP18YXU3/X
+   reXXnrkaOGINEqS6a20LWjaUPwReH9mdl+meORd5qi6PtiRSjXdh/uhPS
+   38I/4DZnR6UOeSY8dEEVR9ZQ0l+79HkgTe5kK+W4FnJYmSifLkkir/u4D
+   A==;
+X-CSE-ConnectionGUID: oDr9x4EZQ9ubUqoabc0KFg==
+X-CSE-MsgGUID: lIjcawPLQnK5EqrSyawKcQ==
+X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; 
+   d="scan'208";a="43565501"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jun 2025 00:06:44 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 19 Jun 2025 00:06:44 -0700
+Received: from archlinux.mchp-main.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Thu, 19 Jun 2025 00:06:41 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH v3 0/2] Add cache configuration for Microchip SAMA7D and SAMA7G MPUs
+Date: Thu, 19 Jun 2025 10:06:34 +0300
+Message-ID: <20250619070636.8844-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE5MDA1OCBTYWx0ZWRfXwkxcYSgfCRii
- zZJ7eaFF+COiK8GnyBZydZyaInPXAKz0OkLigOqg3pLEp58yzX3bH5HJOGTKCnyu/RhKRsoDORA
- 6ywkzANzce3/YAveLwYCFvsvj5PDDg+TZYNiU96YF82dqFvyX052VJVBkIuTQZDz4z0A0ZHyOhS
- kmwuAH7K7cttcjKxZOw4CJ8f7GAinzhyw7z1zQV2TTty0JtQZlzcF0XoAuanh84vgk45OuJntko
- 6g/CJ2lkLv7rb3bsBKmxLEiRushB98CcP3XH2HUii/VThanqoCSnBy5BB6Boc393zRZwJEkCiPT
- zlmV5L64ANL3jkCbH/kiEPndeLn2jcSmAII/rOweKgNZI7qytlz7AC6UB5WLp8yGi1n7nI6iUCC
- M//ALOaokaUnkAnwkKXYT1s7oAqGF6GUh9evXuGdWX9OkVa+eCoL3loouLm+eCm06QOBAg46
-X-Authority-Analysis: v=2.4 cv=fvbcZE4f c=1 sm=1 tr=0 ts=6853b61e cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=KZcgMjtcvL42mtwMZ7kA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: f-YML77QkSEyOTHui74vePQSGpR5N2Nt
-X-Proofpoint-ORIG-GUID: f-YML77QkSEyOTHui74vePQSGpR5N2Nt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-19_02,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- mlxlogscore=761 phishscore=0 clxscore=1015 mlxscore=0 impostorscore=0
- adultscore=0 spamscore=0 suspectscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506190058
 
-Document the sdhci compatible for Qualcomm qcs8300
-to support function for emmc on the Soc.
+This patch series adds cache configuration for Microchip SAMA7D and SAMA7G MPUs.
+The cache configuration is described in datasheet chapter 15.2.
 
-Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
----
- Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changelog:
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-index 2b2cbce2458b..5ba2da8dbc7d 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-@@ -45,6 +45,7 @@ properties:
-               - qcom,qcm2290-sdhci
-               - qcom,qcs404-sdhci
-               - qcom,qcs615-sdhci
-+              - qcom,qcs8300-sdhci
-               - qcom,qdu1000-sdhci
-               - qcom,sar2130p-sdhci
-               - qcom,sc7180-sdhci
+v2 -> v3:
+- Remove the l1-cache node
+- Move the L1 cache properties in the cpu node
+- Align with device node requirements for cpu: 
+  https://devicetree-specification.readthedocs.io/en/latest/chapter3-devicenodes.html#internal-l1-cache-properties
+
+v1 -> v2:
+- Remove the cache-unified property from l1-cache node
+
+Mihai Sain (2):
+  ARM: dts: microchip: sama7d65: Add cache configuration for cpu node
+  ARM: dts: microchip: sama7g5: Add cache configuration for cpu node
+
+ arch/arm/boot/dts/microchip/sama7d65.dtsi | 10 ++++++++++
+ arch/arm/boot/dts/microchip/sama7g5.dtsi  | 10 ++++++++++
+ 2 files changed, 20 insertions(+)
+
+
+base-commit: fb4d33ab452ea254e2c319bac5703d1b56d895bf
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.50.0
 
 
