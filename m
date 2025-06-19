@@ -1,87 +1,82 @@
-Return-Path: <devicetree+bounces-187442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE0DADFECA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:34:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD3FADFED7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D06271899FB4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:34:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B084116FCA2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4770253959;
-	Thu, 19 Jun 2025 07:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5F025D1F7;
+	Thu, 19 Jun 2025 07:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="lxTLwirY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X6mtIv+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C0F242D96;
-	Thu, 19 Jun 2025 07:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061525D1E5;
+	Thu, 19 Jun 2025 07:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750318440; cv=none; b=UkQ1krnOQrXnhUpIcB2OVG2l3g7w6k0soiUrTk93xtg4fCKSZY6zpL9p7MkrYMvmKxQ5FylF3mAuP4uEqR4fLHmtl/w8OysZbRl/PNBQZylALY3vZps19haK8X3Iv9/7rE2WE+i/aISes1+kW7+OCMGgE/4Bh7Cd1nJQUTfzGLc=
+	t=1750318681; cv=none; b=dBxi/9l4yoqxQYjE7aEWjyV2ddagtRTFS3HIyZRbZcusuFywzqrnUXMpigA8ovIMuzbXctdq6LiDvvtWL8xrrHVcukK5pNGhn7Ik7fMEeSRvF7O4pwbtTtS7llespHiTTkKud6btqcHsMBP/7+bBqDDlpdwT2V5PSqlv0I5B6uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750318440; c=relaxed/simple;
-	bh=Qrruz0ihY1HWjqyIP6ErG3IY/GM/vgxQHIPcy+7dJyQ=;
+	s=arc-20240116; t=1750318681; c=relaxed/simple;
+	bh=Ih7bC5bhYbTmRpPMZBGaJQ8Pq8M2pDgtDYMsqv5VH/A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SL3J1iTHzuZbolaRgu0TCkfXvoYqM/fUEhqGmbVZz/gxS2GHvffIJyY1euOSO9c4vXSaC06Cgt7hgZFvf2MUqDVQKuVIeqQWRa1VG2ybufOcDjKQMVsEUS6ekJBoUPvzOjnIhet31mKadTb/Ty585jiSFQW9Z/3THmNtx5/RboY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=lxTLwirY; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=qQc8KBNXic1DZnFfIwGfGX0puZguj5Ag4lvx2OkjmOM=;
-	b=lxTLwirY93ccLYht3790YvQzbm2YudORaWDoDB3WQ4mKTfszjLri6EFbpbUF9l
-	x65H8Uhi1E33Ds5odQC0owBP2s0cw3RvxDrcwRx0ajC/wXUMGUxzgbV33MURRIQZ
-	zxh32iF+9i9aIC0XwrDAGyK7TUgkBlwu5RR4AUESYidvo=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBXVlEzvVNo33X_AA--.29592S3;
-	Thu, 19 Jun 2025 15:33:08 +0800 (CST)
-Date: Thu, 19 Jun 2025 15:33:06 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Primoz Fiser <primoz.fiser@norik.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH 1/2] arm64: dts: freescale: imx93-phycore-som: Move
- ethernet0 alias to SoM
-Message-ID: <aFO9MpNOSzTGfyJU@dragon>
-References: <20250522083909.533567-1-primoz.fiser@norik.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=j21jaYFL9qDWC9rD3apJCnGQLDmuZ2sMLwUiqcT1JjBcVonADGEUCRewq4ONp8/xoDpKyuXhUQrKL/70Ig4lM25BKUb9S7HcG8uXF6uFvjrWEmTuG+NFG0lu5255EZdbefO7bZb194AK4zaWQRK2pXLZjSpXEi1euRBOOHl2zSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X6mtIv+5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0A1AC4CEEF;
+	Thu, 19 Jun 2025 07:37:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750318680;
+	bh=Ih7bC5bhYbTmRpPMZBGaJQ8Pq8M2pDgtDYMsqv5VH/A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X6mtIv+5mMpVDsOa6GEQ+nq+5YkMSPNkvlbIzQ1Ew/NGgm6t0X9yaA2YP7urhUX3b
+	 +k+jOnYNJ6PfhRyK5bKPPweQKmTevzktmft7Kp9pdNrk+RVIqQSxzRyCrP9EsnTzTD
+	 KhfnK2BJ84YxSoBjHqYKxKFXD0P/m9qxcwqvfSnw0952rqiFfh7Ks77CBnHXHwNR2v
+	 lCGolP2eW2mrFoYghhWPxBxiKbsB5TS3XtzCRvol1AV0k6bbASL22g8IyRk7HoagJz
+	 BXb9dfMxUWU4MUlQeEx2CYf6hnJU8G/T8Ox+vH8X7vekCbEPr8je3TIhn7VKurV2tV
+	 Vlse/TdsvSGbQ==
+Date: Thu, 19 Jun 2025 09:37:57 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel@pengutronix.de, 
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH v5 1/4] dt-bindings: clock: add TI CDCE6214 binding
+Message-ID: <20250619-nonchalant-benign-ape-1fb180@kuoka>
+References: <20250618-clk-cdce6214-v5-0-9938b8ed0b94@pengutronix.de>
+ <20250618-clk-cdce6214-v5-1-9938b8ed0b94@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250522083909.533567-1-primoz.fiser@norik.com>
-X-CM-TRANSID:Mc8vCgBXVlEzvVNo33X_AA--.29592S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrGw43Kr4fXF4fJr4xJry7ZFb_yoWxArc_CF
-	W8u3WDAw4UAFya9343CFyFy3s3tw1kJr1IvrWagr93t34Fg3s3Gryvvas5CF4xW39xtr13
-	u3WSkFWSqrnagjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjMmh5UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIRVr0GhTvTVkkAAA3I
+In-Reply-To: <20250618-clk-cdce6214-v5-1-9938b8ed0b94@pengutronix.de>
 
-On Thu, May 22, 2025 at 10:39:08AM +0200, Primoz Fiser wrote:
-> Move alias for ethernet0 interface to the phyCORE-i.MX93 SoM include
-> file. The reason behind it is that the physical location of the PHY chip
-> connected to FEC interface is on the SoM itself and alias thus belongs
-> into the SoM device-tree. Consequently, it can be used by all boards
-> based on the phyCORE-i.MX93 SoM (phyBOARD-Segin and phyBOARD-Nash).
+On Wed, Jun 18, 2025 at 11:21:12AM GMT, Sascha Hauer wrote:
+> Add device tree binding for the CDCE6214, an Ultra-Low Power Clock
+> Generator With One PLL, Four Differential Outputs, Two Inputs, and
+> Internal EEPROM.
 > 
-> This also enables us to mark FEC interface as the primary / first for
-> networking in the bootloader and systemd (predictable interface names).
-> 
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 60 ++++++++++++++++++++++
+>  include/dt-bindings/clock/ti,cdce6214.h            | 25 +++++++++
+>  2 files changed, 85 insertions(+)
 
-Applied both, thanks!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
