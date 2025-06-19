@@ -1,243 +1,197 @@
-Return-Path: <devicetree+bounces-187491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2710CAE01EF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:44:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B5EAE01F7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C295C3A650E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:43:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AF831BC1D83
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBDE21D5B4;
-	Thu, 19 Jun 2025 09:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DCED21D5BA;
+	Thu, 19 Jun 2025 09:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="plQyC+M2"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="qBF6F/JF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E6E421D5B0;
-	Thu, 19 Jun 2025 09:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF47221A455
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 09:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750326260; cv=none; b=aY9ahYSJYUgo3AN8CORhDtnCT1mAH2KbNH1fa24PiRyDT++uyhfF4D6D+uyXZjfhw+4wG1BiNIUdE+yzzBUT40yvaaT+bDFdvSHJt56OmTdgEWmsj7n+W6AFbSP7qs/4qErslEa+ZFLuEmSZG6JvAr9Vqt746/6RJa1Rk0YxDyU=
+	t=1750326394; cv=none; b=hGd2+lSgvUtUsuH32pkzPQRyu1ICWMQKTpvruG7cJ3Ynz4/okTLyOF2HBSvEGIKtNigaGx7nhgYZUfDAjnD/Yg8dLJkIK6WfAZtsudjrZJahKkJ6T6z5MZMEHW+MEoPhBSxaezYWrlIZIilcpejcBZP6aq6yW38ACQPPz9g0mYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750326260; c=relaxed/simple;
-	bh=cCQWwvXkYBKj2yDuzsNH38nMWfLHScMgp0lVjz5a9vI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T+REhslUPeHLUmuvRpkCsEUHeX2msLY6RMm2mdnm8UuLrp1bcwRN0CakKv675ZKx79/5kCPwVPH7QapEfzo3oDsdYzS1ApBosplIDSOOliXUEhmERsNc3kD6FJ2p6KDexrTi+FpQhrDl0iipqXtnHsZCZrlr2v7bi8S3t7Ccw3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=plQyC+M2; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D243443B02;
-	Thu, 19 Jun 2025 09:44:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750326250;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o4Yn1AmvZSHJwnVEX7Q8ZOWNcDOmD6fTQEVrdoy4wnE=;
-	b=plQyC+M2KzD70YQbE/E8RIPi+QPaZRyIMMyZmqDdCoNbRKl0cX9fk0BwXTB/JKO1N96KHO
-	qLcWINZiAqq25ltHOUAEBoUGvBFuz93SwRDAZNkG92uzBvFBhpwN5hSkYU3QXmQkWGfwxy
-	hpb4yQlmi60F/YGqrWb+vZB5MZRFgbBHeAQKASLk6ycJlvydvT2JoOltRbX9gW7zY/ZZTQ
-	FTVHX/clQAqrkhFlJvxKpcKdIIKuzHU0KHBAJmHt0Au17KqOdDi/AUKxJzpZR8JWXBmlyH
-	Vva3+4TK5YWTKZMvTcAmqHvZXZjjmOQjRtAN8oTyAcfLmreN59KjPjRq0aswtg==
-Date: Thu, 19 Jun 2025 11:44:07 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Aleksandr Shubin <privatesub2@gmail.com>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v12 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-Message-ID: <20250619094407c4c849f3@mail.local>
-References: <20250427142500.151925-1-privatesub2@gmail.com>
- <20250427142500.151925-2-privatesub2@gmail.com>
- <20250512235619.30cff739@minigeek.lan>
+	s=arc-20240116; t=1750326394; c=relaxed/simple;
+	bh=apG/keP/KLT8pvUXGpwz4q0QvABCBcwZ3u8hqT6KHKE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=aU5/l/snutoSeOyu8C8bgEhd1AbTNgu4V1Be+beGqOe9M4mY20E8F7Zjs1+uRPhANvlz4oJbcTNFPl4/yyh44+2zOW370p09tbTmj5rGl7ICWDstyvUnVn8BQyWxpX9+10aYon6GweVwuRvVEucUbni/wJ/RSBCjoqdp1nPoang=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=qBF6F/JF; arc=none smtp.client-ip=95.215.58.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250512235619.30cff739@minigeek.lan>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdehudelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetlhgvgigrnhgurhgvuceuvghllhhonhhiuceorghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdekudegleeiteefgfekteevieeuudekfeeiudeiheduleeuueeuudfhffeuudfhnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghdpihhnfhhrrgguvggrugdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmedvrggtjeemfhgvgegvmeehiegrugemtgekvgegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmedvrggtjeemfhgvgegvmeehiegrugemtgekvgegpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhgvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopehprhhiv
- hgrthgvshhusgdvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdrughoohhlvgihsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtohepuhhklhgvihhnvghksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1750326388;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=95jwxwqOy3CE/suGZD6MlYCwgFQV2q5DD7APLcXDGSw=;
+	b=qBF6F/JFB8Ga+29xGShrQ+nv00Iv5P6Zpb4T/dk3e6MAJbO+H6+doGGxnsJfJI/kx0fgba
+	LpxYBlt/zc0ZxyJif1oMwDiMJa2RcXRGHRpLaLxrafWhFf3V0Vh+7RqAJQCUQwfRo8X7si
+	X0xwcrsDc9qzk1RPCPGkhrof7KLlyWVLEkl51JD73B8iW4qmHKoFatW4WrpoRqGSvpAClR
+	B9zyua4faYw4VV6P6C+tYUeI76n0bezZbhO9o7X0M0ecQ0TD9VFRS8HWMRmp7J4KWv1l/c
+	b34pOS6eG0FPqmk+YATMaGS1RL7N9JrziEtqd09cNbkXTkZ/gEMg38ZC+GAEKA==
+Content-Type: multipart/signed;
+ boundary=a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Thu, 19 Jun 2025 11:46:15 +0200
+Message-Id: <DAQEX04P5320.CQDU7SL7AV4A@cknow.org>
+Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix the PinePhone Pro DTS'
+ panel description
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Olivier Benjamin" <olivier.benjamin@bootlin.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+References: <20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com>
+In-Reply-To: <20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com>
+X-Migadu-Flow: FLOW_OUT
 
-On 12/05/2025 23:56:19+0100, Andre Przywara wrote:
-> On Sun, 27 Apr 2025 17:24:53 +0300
-> Aleksandr Shubin <privatesub2@gmail.com> wrote:
-> 
-> Hi,
-> 
-> > Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
-> > controller witch is different from the previous pwm-sun4i.
-> > 
-> > The D1 and T113 are identical in terms of peripherals,
-> > they differ only in the architecture of the CPU core, and
-> > even share the majority of their DT. Because of that,
-> > using the same compatible makes sense.
-> > The R329 is a different SoC though, and should have
-> > a different compatible string added, especially as there
-> > is a difference in the number of channels.
-> > 
-> > D1 and T113s SoCs have one PWM controller with 8 channels.
-> > R329 SoC has two PWM controllers in both power domains, one of
-> > them has 9 channels (CPUX one) and the other has 6 (CPUS one).
-> > 
-> > Add a device tree binding for them.
-> > 
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
-> > ---
-> >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 84 +++++++++++++++++++
-> >  1 file changed, 84 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > new file mode 100644
-> > index 000000000000..4b25e94a8e46
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > @@ -0,0 +1,84 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner D1, T113-S3 and R329 PWM
-> > +
-> > +maintainers:
-> > +  - Aleksandr Shubin <privatesub2@gmail.com>
-> > +  - Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: allwinner,sun20i-d1-pwm
-> > +      - items:
-> > +          - const: allwinner,sun50i-r329-pwm
-> > +          - const: allwinner,sun20i-d1-pwm
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#pwm-cells":
-> > +    const: 3
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus clock
-> > +      - description: 24 MHz oscillator
-> > +      - description: APB clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: hosc
-> > +      - const: apb
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  allwinner,npwms:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: The number of PWM channels configured for this instance
-> > +    enum: [6, 8, 9]
-> 
-> Do we really need to be so restrictive here? The IP has an
-> "architectural" limit of 16 channels (due to the MMIO register layout
-> and status/control bits usage in some registers), so can't we just leave
-> this value to be anything between 1 and 16 here? If people configure
-> this wrongly, it's their fault, I'd say? Without confining this further
-> based on the respective compatible strings this enum is less useful
-> anyway, I think. The Allwinner A523 uses the same IP, and supports all
-> 16 channels, the V853 implements 12, that's what I quickly found
-> already, and there might be more examples in the future, so I'd rather
-> open this up.
-> 
+--a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Do we really need this property? I feel like the number of PWM channels should be
-something the driver could infer from the compatible string as we are going to
-have one compatible string per SoC anyway.
+Hi,
 
-> > +
-> > +allOf:
-> > +  - $ref: pwm.yaml#
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: allwinner,sun50i-r329-pwm
-> > +
-> > +    then:
-> > +      required:
-> > +        - allwinner,npwms
-> 
-> Can't we just simplify this by always requiring this property? As
-> mentioned, there will be more SoCs with different values, so just
-> omitting this for the D1 seems odd.
-> 
-> Cheers,
-> Andre
-> 
-> 
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#pwm-cells"
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/sun20i-d1-ccu.h>
-> > +    #include <dt-bindings/reset/sun20i-d1-ccu.h>
-> > +
-> > +    pwm: pwm@2000c00 {
-> > +      compatible = "allwinner,sun20i-d1-pwm";
-> > +      reg = <0x02000c00 0x400>;
-> > +      clocks = <&ccu CLK_BUS_PWM>, <&dcxo>, <&ccu CLK_APB0>;
-> > +      clock-names = "bus", "hosc", "apb";
-> > +      resets = <&ccu RST_BUS_PWM>;
-> > +      #pwm-cells = <0x3>;
-> > +    };
-> > +
-> > +...
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Thanks for working on upstreaming PPP things :-)
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On Thu Jun 19, 2025 at 7:21 AM CEST, Olivier Benjamin wrote:
+> Fix a few issues in the panel section of the PinePhone Pro DTS:
+>   - add the second part of the Himax HX8394 LCD panel controller
+>     compatible
+>   - as proposed by Diederik de Haas, reuse the mipi_out and ports
+>     definitions from rk3399-base.dtsi instead of redefining them
+>   - add a pinctrl for the LCD_RST signal for LCD1, derived from
+>     LCD1_RST, which is on GPIO4_D1, as documented on pages 11
+>     and 16 of the PinePhone Pro schematic
+>
+> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+> ---
+> Small fixes to the PinePhone Pro DTS to fit bindings and
+> suppress warnings at build.
+> ---
+> Changes in v2:
+> - Added the pinctrl definition for GPIO4_D1/LCD1_RST
+> - Incorporated Diederik de Haas' suggestion for defining mipi_out
+> - Squashed multiple patches into one
+> - Link to v1: https://lore.kernel.org/r/20250618-dtb_fixes-v1-0-e54797ad2=
+eba@bootlin.com
+> ---
+>  .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 33 +++++++++++-----=
+------
+>  1 file changed, 17 insertions(+), 16 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch=
+/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> index 04ba4c4565d0a205e2e46d7535c6a3190993621d..98aba146749998dd5a798aabe=
+d0fe844c474d1cf 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> @@ -463,29 +463,18 @@ &io_domains {
+>  };
+> =20
+>  &mipi_dsi {
+> -	status =3D "okay";
+>  	clock-master;
+> -
+> -	ports {
+> -		mipi_out: port@1 {
+> -			#address-cells =3D <0>;
+> -			#size-cells =3D <0>;
+> -			reg =3D <1>;
+> -
+> -			mipi_out_panel: endpoint {
+> -				remote-endpoint =3D <&mipi_in_panel>;
+> -			};
+> -		};
+> -	};
+> +	status =3D "okay";
+> =20
+>  	panel@0 {
+> -		compatible =3D "hannstar,hsd060bhw4";
+> +		compatible =3D "hannstar,hsd060bhw4", "himax,hx8394";
+>  		reg =3D <0>;
+>  		backlight =3D <&backlight>;
+> -		reset-gpios =3D <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
+> -		vcc-supply =3D <&vcc2v8_lcd>;
+>  		iovcc-supply =3D <&vcc1v8_lcd>;
+>  		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&lcd_reset_pin>;
+> +		reset-gpios =3D <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
+> +		vcc-supply =3D <&vcc2v8_lcd>;
+> =20
+>  		port {
+>  			mipi_in_panel: endpoint {
+> @@ -495,6 +484,12 @@ mipi_in_panel: endpoint {
+>  	};
+>  };
+> =20
+> +&mipi_out {
+> +	mipi_out_panel: endpoint {
+> +		remote-endpoint =3D <&mipi_in_panel>;
+> +	};
+> +};
+> +
+>  &pmu_io_domains {
+>  	pmu1830-supply =3D <&vcc_1v8>;
+>  	status =3D "okay";
+> @@ -507,6 +502,12 @@ pwrbtn_pin: pwrbtn-pin {
+>  		};
+>  	};
+> =20
+> +	lcd {
+> +		lcd_reset_pin: reset-pin {
+
+I don't know if there's a 'hard rule' for it, but I'd recommend to use
+``lcd1_rst_pin: lcd1-rst-pin {`` as that would match the naming from
+the schematics. I realize that some but not all (other) pinctrl nodes
+follow that 'rule', but it helps with traceability.
+
+> +			rockchip,pins =3D <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+>  	leds {
+>  		red_led_pin: red-led-pin {
+>  			rockchip,pins =3D <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+
+Otherwise,
+
+Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
+
+Cheers,
+  Diederik
+
+--a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaFPcbQAKCRDXblvOeH7b
+boy+AQDbwzeOk3i0OYHIv6wu+lPogKc5TzKOKmCgkGkNRFumNwEAjC++J6IJV1V3
+YclMmumArJ0L1UN/PjW9uBrL/NoamwQ=
+=RIuv
+-----END PGP SIGNATURE-----
+
+--a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e--
 
