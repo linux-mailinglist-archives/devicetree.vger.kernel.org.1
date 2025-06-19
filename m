@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-187380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE32ADFC2F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23749ADFC33
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:05:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BDEE16EB24
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:05:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C443417C3FB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457AD23ABA7;
-	Thu, 19 Jun 2025 04:05:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196A123C4F5;
+	Thu, 19 Jun 2025 04:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bSShQE55"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="DD9uyEy9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A46A21B9CD;
-	Thu, 19 Jun 2025 04:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B1123ABAB;
+	Thu, 19 Jun 2025 04:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750305902; cv=none; b=MqBdZHFHigXOI2vJYrOhtmUqdQ7uH+1dbie6ZWWj3o+Jvaa2AV7gYQPV64h1a+r6RS/AQ/ydmADk8gk1mhiD/WiTIWEn4RfY6jsay4RpE5Q6Ps0yuYjca/7gPJFVfcNKZ1jfDMSdtJyMhIN8BWAIZL56YYFEl95o2X44IOXNek4=
+	t=1750305924; cv=none; b=EwTzHCMu1GpqM7hj04bX69P+ZqWDIsPT4UPJ/55R72/pFMb+aSJwSCyJFNbFgTp/tKvRLnaY7Iav9rrSkn0qUmXQhRoqkB0qtJmUKjLjmd7gEz+UZWl5HvCL59YGMCGptIia8vXN8B1/cAWS7XoQRhnm1vwZ2Io39GGFlhHho2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750305902; c=relaxed/simple;
-	bh=kmlXgdsNUgn8XgiTxVSrLP4WUDdb5I7hA+XEzKU2m78=;
+	s=arc-20240116; t=1750305924; c=relaxed/simple;
+	bh=DIG5albF6lOxDimZvvSfwW/v6tUAmJv6CFsTPIwACj8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jv1Lkd9OUiYr6iwx2n6Gh428mEjDTVRukg6eurfjEg/3OSyGegrNT1PPSnste3uFC5J6JbLshbquL1ErDeU1ESMM9SfWxdJMH2oFSOY03aUASQoFal3qGb6mCjAwbY3rQ38kn5c8BlzSZVM0b1ubotE2Fld/DfsBNR70chI7bZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bSShQE55; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=TMVtK41ORQb8HHgVo3c1GB5J+8AlwKB42tTyKKNF5BgYMao9J9aeVIuI/VDts5xoj1U71AYztBYuJh/OzknhEMSV8+dFIHCMsCIzUKR0YIsrZKy3A4Tyb5luEQzXy5QNZ1fpPID6TUcHPH2Kp5+abT0/v+iNl6gDl2FFmlxL+EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=DD9uyEy9; arc=none smtp.client-ip=220.197.32.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=9jL3UrAs4Pzh8kulwSxN4uC93Iezx2+kJVwgk+0EkKw=;
-	b=bSShQE55tirU3sipXpiYeBLELSwKyTdAktdIeB5Ju68r2tne88Yk3mvskCIpQe
-	HaLjME3x4OYb9HAHv3p5Sog2wQltkjwVHUSM5K0shcFeGUdLE7NdLhmi6nUsGiIl
-	0sxO22PUZx64GHwecIFZYm772I4O74C7b/1xl/FcsfCPQ=
+	Content-Type; bh=SzXacRK9YyFVZryxioMdSBKnpxohJunnJcdvONlrj6s=;
+	b=DD9uyEy90xjxZI9nMIRPXAkeq9hWWuDmp7fJSn8SaodTOeG9gRBe6H8p4pR/2u
+	Ht/s+uJ4KBVe25WCd4+Oste0xNIeqKsJqnGztSCOHrfUMouYfuviEWP9l6PK8/w+
+	lCBDJpkm182xoD/NARtXY5o3QgdM8l60x1iECvsQSKxK4=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBnjlE_jFNomST8AA--.27276S3;
-	Thu, 19 Jun 2025 12:04:17 +0800 (CST)
-Date: Thu, 19 Jun 2025 12:04:15 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgA3rw5SjFNo5nn2AA--.35256S3;
+	Thu, 19 Jun 2025 12:04:36 +0800 (CST)
+Date: Thu, 19 Jun 2025 12:04:34 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: maudspierings@gocontroll.com
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -50,11 +50,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v7 7/8] arm64: dts: freescale: Add the BOE av101hdt-a10
+Subject: Re: [PATCH v7 8/8] arm64: dts: freescale: Add the BOE av123z7m-n17
  variant of the Moduline Display
-Message-ID: <aFOMP+eFULDDAtOr@dragon>
+Message-ID: <aFOMUq5JcovQEW5V@dragon>
 References: <20250520-initial_display-v7-0-a8f0195420aa@gocontroll.com>
- <20250520-initial_display-v7-7-a8f0195420aa@gocontroll.com>
+ <20250520-initial_display-v7-8-a8f0195420aa@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250520-initial_display-v7-7-a8f0195420aa@gocontroll.com>
-X-CM-TRANSID:Mc8vCgBnjlE_jFNomST8AA--.27276S3
+In-Reply-To: <20250520-initial_display-v7-8-a8f0195420aa@gocontroll.com>
+X-CM-TRANSID:M88vCgA3rw5SjFNo5nn2AA--.35256S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
 	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU7sqXDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgtxZWhThWMa0QAAsb
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAR1xZWhTVBnN5wAAsU
 
-On Tue, May 20, 2025 at 08:34:56AM +0200, Maud Spierings via B4 Relay wrote:
+On Tue, May 20, 2025 at 08:34:57AM +0200, Maud Spierings via B4 Relay wrote:
 > From: Maud Spierings <maudspierings@gocontroll.com>
 > 
-> Add the BOE av101hdt-a10 variant of the Moduline Display, this variant
-> comes with a 10.1 1280x720 display with a touchscreen (not working in
-> mainline).
+> Add the BOE av123z7m-n17 variant of the Moduline Display, this variant
+> comes with a 12.3" 1920x720 display.
 > 
 > Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
