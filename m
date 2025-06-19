@@ -1,161 +1,135 @@
-Return-Path: <devicetree+bounces-187453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B225ADFF34
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:56:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E69ADFF42
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:59:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC9623BDBAB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:55:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 460D217B3A1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7B8248F51;
-	Thu, 19 Jun 2025 07:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aAk3ld15"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDF32475CB;
+	Thu, 19 Jun 2025 07:58:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5086E230BF2;
-	Thu, 19 Jun 2025 07:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+Received: from sgoci-sdnproxy-4.icoremail.net (sgoci-sdnproxy-4.icoremail.net [129.150.39.64])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC9821C9E3;
+	Thu, 19 Jun 2025 07:58:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.150.39.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750319757; cv=none; b=WXrY04R3PhY69a6AGBOufBIHn2uuDpFgslrJa3Ak4JvIpkqcWmJjX06cFHGrZrP/cn2Xp9+XcfrJrwIOKQE/zH38JnN+HrWtoNOBs87yL/c7WHZMOWMprrSt8XNfQdLsGo6fGnFxu1sdZVdvn3QtDV384CdItyswLXlxXnjv/Fo=
+	t=1750319939; cv=none; b=hjTSKz/caLPBtHCdJ4m+PUNcBPBQH/jMj51zZ0Af/KmQhN1E82ikw+PuLW/AgiJJbJlGDl1J7ehE9Yc+wa1DKzUl9reegqRPhbM6p9eLN6tpnsOY0eia3Z3tPgztL8dIcdYZItK5zH4a+sVLOoQ9pdG8ykNhTpJ5fa8TzRblnbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750319757; c=relaxed/simple;
-	bh=CpwCTD9AnUzXrbQp+d9zubfUboByeErtnwKYNnZJ0Js=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Bk6nq/XDDpRoEUdifEzir/5K2HaspSu2TCQDTciRj0relt0QT3SYUGQHjBmQxsgCFOKJerNKmsoEV86RpVtww9/QzJe3+u3Z203ahX8PuxxlxF8YkqfgXqR9xAM87Tem1CzCGnZ/pV5cWszFjvgTbxcloKsIQK+JsqJlJ4X7vlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aAk3ld15; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55J7tlWX336308;
-	Thu, 19 Jun 2025 02:55:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750319747;
-	bh=bKV7bT5H8Ss8TSiS7uA6G43ZL43gAMDND/KK9ixN5Mw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=aAk3ld15E3n6L6zqIsqMRoNXNgNjmPwnDcRR7GNPYGAIkeCz0LbMUH6NEMZ6ro2kb
-	 907wITu307DEzC9OxvXV/FyErbsVKvS9mrgXQA1UXLhUziedAPXHz+f0rzA6Cl4T8M
-	 /58xKvPW2uDjRGpQ1rcTrgADVd55jbZC5stGAaY8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55J7tlTr3513825
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 19 Jun 2025 02:55:47 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 19
- Jun 2025 02:55:47 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 19 Jun 2025 02:55:47 -0500
-Received: from [172.24.227.245] (uda0132425.dhcp.ti.com [172.24.227.245])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55J7th2X764414;
-	Thu, 19 Jun 2025 02:55:44 -0500
-Message-ID: <28c88a78-fe34-4595-b260-c6cc40897bc1@ti.com>
-Date: Thu, 19 Jun 2025 13:25:43 +0530
+	s=arc-20240116; t=1750319939; c=relaxed/simple;
+	bh=udWOnZrRgI2y+PCIemO3YH5qb5fdd89TfRNdT3smMAI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MeaiWW8jnEiWNoPMWZeqKgy9DIRZ17+RUlMHqq40LRs3lAKlaq9l/GrYJeo3E6SnaYnIYl3q19VLmatwQ0ytfoTGCAUk59YERC3J7piWqpdmituXHhb1NXLDNo6UJieAOmpOjoqlkESx7h86pe3xe+25c1J5gVLHZXAU2dH4BOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=129.150.39.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app2 (Coremail) with SMTP id TQJkCgAHp5Umw1NoNs+hAA--.11977S2;
+	Thu, 19 Jun 2025 15:58:32 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: p.zabel@pengutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v3 0/2] Add driver support for ESWIN eic7700 SoC reset controller
+Date: Thu, 19 Jun 2025 15:58:11 +0800
+Message-Id: <20250619075811.1230-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am642-evm-pcie0-ep: Add boot phase
- tag to "pcie0_ep"
-To: Hrushikesh Salunke <h-salunke@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <danishanwar@ti.com>
-References: <20250610054920.2395509-1-h-salunke@ti.com>
- <98e04654-a693-494d-9f60-930b6a4cd84a@ti.com>
- <b24a97fc-8dac-443b-aec7-317b9e393f2d@ti.com>
- <f6a57a82-c534-4439-a337-8592c2e121c5@ti.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <f6a57a82-c534-4439-a337-8592c2e121c5@ti.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-CM-TRANSID:TQJkCgAHp5Umw1NoNs+hAA--.11977S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Ww4DGryftF1kWrW8uw43Awb_yoW8tF47pF
+	s8GFy7KrsYyrWxXayfJ3WFyFyfXan3tF4UCrW0qw47Aa9xJFy8tr15tF1UAFyDCrs7Xry3
+	WF13C34S9Fyqy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBq14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7VUbknY7UUUUU==
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
+There are some register offsets in reset dt-bindings. It could be used.
+Therefore, we want to keep these bindings. I don't known if it meets
+the requirements.
 
-On 12/06/25 15:46, Hrushikesh Salunke wrote:
-> 
-> 
-> On 11/06/25 14:17, Hrushikesh Salunke wrote:
->>
->>
->> On 11/06/25 14:14, Vignesh Raghavendra wrote:
->>>
->>>
->>> On 10/06/25 11:19, Hrushikesh Salunke wrote:
->>>> AM64X SoC has one instance of PCIe which is PCIe0. To support PCIe boot
->>>> on AM64X SoC, PCIe0 needs to be in endpoint mode and it needs to be
->>>> functional at all stages of PCIe boot process. Thus add the
->>>> "bootph-all" boot phase tag to "pcie0_ep" device tree node.
->>>>
->>>> Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
->>>> ---
->>>> This patch is based on commit
->>>> 475c850a7fdd Add linux-next specific files for 20250606
->>>>
->>>> Changes since v1
->>>> As per feedback from Nishanth, changed the position of "bootph-all"
->>>> tag, according to ordering rules for device tree properties.
->>>>
->>>> v1 : https://lore.kernel.org/
->>>> all/20250609115930.w2s6jzg7xii55dlu@speckled/
->>>>
->>>>   arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso | 1 +
->>>>   1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/
->>>> arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
->>>> index 432751774853..a7e8d4ea98ac 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
->>>> @@ -46,6 +46,7 @@ pcie0_ep: pcie-ep@f102000 {
->>>>           max-functions = /bits/ 8 <1>;
->>>>           phys = <&serdes0_pcie_link>;
->>>>           phy-names = "pcie-phy";
->>>> +        bootph-all;
->>>>           ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
->>>>       };
->>>>   };
->>>
->>> Are the patches for PCIe boot support merged to U-Boot or such other
->>> bootloader repo?
->>> No, they are not in the U-Boot yet. I will be posting patches for PCIe
->> boot support for U-Boot this week.
->>
-> 
-> I have posted Patch series for the PCIe boot support in Uboot.
+PIPE_RST_CTRL, TBU_RST_CTRL and TEST_RST_CTRL are not used in this
+driver. Therefore, these are left out.
 
+Updates:
 
-Great, but dont you need bootph-all in dependent nodes as well such as
-serdes0_pcie_link pcie0_ctrl? how does this work otherwise?
+  dt-bindings: reset: eswin: Documentation for eic7700 SoC
+  v2 -> v3:
+    1. Drop syscon and simple-mfd from yaml and code, because these are
+       not necessary.
+    2. Update description to introduce reset controller.
+    3. Add reset control indices for dt-bindings.
+    4. Keep the register offsets in dt-bindings.
 
-> 
-> 1.https://patchwork.ozlabs.org/project/uboot/
-> patch/20250612084910.3457060-1-h-salunke@ti.com/
-> 2. https://patchwork.ozlabs.org/project/uboot/
-> cover/20250612085023.3457117-1-h-salunke@ti.com/
-> 3. https://patchwork.ozlabs.org/project/uboot/
-> cover/20250612085534.3457522-1-h-salunke@ti.com/
-> 
-> 
-> Regards,
-> Hrushikesh.
+  v1 -> v2:
+    1. Clear warnings/errors for using "make dt_binding_check".
+    2. Update example, change parent node from sys-crg to reset-controller
+       for reset yaml.
+    3. Drop the child node and add '#reset-cells' to the parent node.
+    4. Drop the description, because sys-crg block is changed to reset-
+       controller.
+    5. Change hex numbers to decimal numbers going from 0, and drop the
+       not needed hardware numbers.
 
--- 
-Regards
-Vignesh
-https://ti.com/opensource
+  reset: eswin: Add eic7700 reset driver
+  v2 -> v3:
+    1. Change syscon_node_to_regmap() to MMIO regmap functions, because
+       droped syscon.
+    2. Add BIT() in function eswin_reset_set() to shift the reset
+       control indices.
+    3. Remove forced type conversions from function eswin_reset_of_
+       xlate_lookup_id().
+
+  v1 -> v2:
+    1. Modify the code according to the suggestions.
+    2. Use eswin_reset_assert() and eswin_reset_deassert in function
+       eswin_reset_reset().
+    3. Place RESET_EIC7700 in Kconfig and Makefile in order.
+    4. Use dev_err_probe() in probe function.
+
+Xuyang Dong (2):
+  dt-bindings: reset: eswin: Documentation for eic7700 SoC
+  reset: eswin: Add eic7700 reset driver
+
+ .../bindings/reset/eswin,eic7700-reset.yaml   |  42 ++
+ drivers/reset/Kconfig                         |  10 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-eic7700.c                 | 243 +++++++++
+ .../dt-bindings/reset/eswin,eic7700-reset.h   | 460 ++++++++++++++++++
+ 5 files changed, 756 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
+ create mode 100644 drivers/reset/reset-eic7700.c
+ create mode 100644 include/dt-bindings/reset/eswin,eic7700-reset.h
+
+--
+2.17.1
 
 
