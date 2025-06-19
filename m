@@ -1,236 +1,158 @@
-Return-Path: <devicetree+bounces-187661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162A9AE0CFA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83AFEAE0D0D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:37:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6386189DFF1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:31:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBC151C230B2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8C0242D61;
-	Thu, 19 Jun 2025 18:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A62B17D2;
+	Thu, 19 Jun 2025 18:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="WYxBeqPm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from WA2P291CU004.outbound.protection.outlook.com (mail-polandcentralazon11022093.outbound.protection.outlook.com [40.107.155.93])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DEE1EDA2A;
-	Thu, 19 Jun 2025 18:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.155.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EDA23CB;
+	Thu, 19 Jun 2025 18:37:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750357841; cv=fail; b=GAZpIpBVW+AdMsVVnPJ4HARJ/zJ2X8TDfLPHqLxv/dfGRHfToAsKGPS1pJV7RW1HG+HMCdxxYH9+Kob8bQZcmTBgDa9PSWTtgzAqwyqTfNLmOtkOWY9zLXUzvhcNzOlC2dKhmcgiS2+AVutWVX8xbU3fUoL48JoMOasE6tyw020=
+	t=1750358245; cv=pass; b=Ek5mXnhOilashVHHfQud5BIy8Al6xAJz+TEFnM0PSB6kymro3kAG8Af133t0RAOwXEQzpMBBCkuXvR5AfKhQu47/siMeBD6Ctk6yjzNvXP9PSuC3+CxJHdYhjSV2CJwFWq16UfjEG0SmpjNmtdzCzID9pt/wF/Iw35pWF85G9nc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750357841; c=relaxed/simple;
-	bh=PHluIehl20JWIpe6jq2Gei4uDTz3YPzTLlZjk0zKnFs=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=PpY05gwd75fuWPQeZQIEqL8+VAdodTEdOvNNuHQsDeIoaTVRoGFEQuxcZmW3lWQmUok1/hZQNl+JnZUfveTyBhrUcnkri4KpETjKEIwp2LMjMpK/RsahIe5+43RsqNgctuBZApHEgFOf1sb5mXqSdlawtR/NsJzAPfePczX41NQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=videtronic.com; spf=pass smtp.mailfrom=videtronic.com; arc=fail smtp.client-ip=40.107.155.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=videtronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=videtronic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a78M+M3p7Khq9ePfZo+B9be4gctw4WgZ5MNB84ZE1nFwjCZXNBo7S8saUyvb1OKQVmOyDOWw5hHpEGl1nMOquSGQBnRU+Y3GZJkag+FJkoFPY2nFItNscQn+hm4XaeaOTWjXsIIH9r6jEW0Rd7MDOnnU/qQNx2clC/BOOYNxQnx2uCKsHsz8xU2lxTStIX8MPUboSssGnuOeQhkk9iX6e7JjbLZUxL0XDkz4pc6iAON9heLFfqsxKhivuJ3MytL6ESohTTfJjnKaNGSqdONkq3QUhpSXSPqqjp/EVgHPP7GDPTjySVEJfh+rb0drvr4k1VlpcQNUdMo7TxZu5yTm1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WK4D3GJW/B/HIssozlmgajRS05Y8k9zPp9pMjcEiqIc=;
- b=uo3H2U7t5labABQSUpHwjU6xfe9YMmelHGpgc4rpeehI4UHOZrMRPMi8EILspQX978DcihQ0sP+Zsg24vvuE5h44k9DZuH+/G4I3DIOjwPR6Mw0HQaZSleJBDUg768Ly7762W0FSs/Ju1HT6ljkmy+AOn9YFGildbcOFyTglE5odad6qp+AbwlEDFzbsRTEnfhG6PkEyHJkZQeuKnWg9zsz29syqs6JWPDpvLhhTvgFdd6BuFPjZwLqVGM5X0h2yEB+grooHqRGNr5sJ0ms+kC541QZ+L9YYCzvw66PTZL0QP7hB1lZkPOMihaNHfCF8L8tlgGHQh2adOXJk3cMMEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=videtronic.com; dmarc=pass action=none
- header.from=videtronic.com; dkim=pass header.d=videtronic.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=videtronic.com;
-Received: from WA2P291MB0309.POLP291.PROD.OUTLOOK.COM (2603:10a6:1d0:24::14)
- by WA2P291MB0287.POLP291.PROD.OUTLOOK.COM (2603:10a6:1d0:22::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.35; Thu, 19 Jun
- 2025 18:30:35 +0000
-Received: from WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
- ([fe80::5b7e:db51:5934:a36f]) by WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
- ([fe80::5b7e:db51:5934:a36f%5]) with mapi id 15.20.8835.027; Thu, 19 Jun 2025
- 18:30:35 +0000
-Message-ID: <e7c0ab0c-7d4c-4735-9f0d-22874edaf347@videtronic.com>
-Date: Thu, 19 Jun 2025 20:30:33 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 15/19] media: i2c: add Maxim GMSL2/3 serializer and
- deserializer drivers
-To: Cosmin Tanislav <demonsingur@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Julien Massot <julien.massot@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: "open list:MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS"
- <linux-media@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>,
- open "list:GPIO"
- "SUBSYSTEM:Keyword:(devm_)?gpio_(request|free|direction|get|set)"
- <linux-gpio@vger.kernel.org>, Cosmin Tanislav <cosmin.tanislav@analog.com>
-References: <20250618095858.2145209-1-demonsingur@gmail.com>
- <20250618095858.2145209-16-demonsingur@gmail.com>
-Content-Language: fr
-From: Jakub Kostiw <jakub.kostiw@videtronic.com>
-In-Reply-To: <20250618095858.2145209-16-demonsingur@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: WA2P291CA0039.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::25) To WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:24::14)
+	s=arc-20240116; t=1750358245; c=relaxed/simple;
+	bh=XNBzWlxMTRyuBHZBLMpzxvpsNdFqkNLkqiOFp1Z7t4I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hpyTBDLg6qlIk1s4ilRMX1j6v9zRuy0zCzWdbFw0TTi87Kbtnj+evH3LcIQYUNmk3Oxzn7nB2FxKYMDoeVLrqu3sGgfmRbCvKVtvIEvs9DcTFRA2LPqkwbT/JCD552bbNdUilQRzutE/upm/z07a0p0NKWuZ35r7Y+jxBYqbTQw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=WYxBeqPm; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750358210; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=JwIQrCkcAhboJiUhmHNXqk1Abj0FB9b72iTycYEzv6iMwQikYK3OFSXfbg2YredFGKXhMeGf8FbKhXoGCTnRgkBdg2WD4YJKTOvL54bn40SRfyIKVFSXWx2jOIOItyyR40bczKH6y147DJT+KYuGsISiyAkU9bMYCQuLmvAffQQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750358210; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=zMABvQfM1H6QX+dC9DoPW5FbqUymEExjF608nnNcYUM=; 
+	b=AutKEsMeTbgpA4OBNfe3izr7pTkKxKUvVUD9WjGIqg0QxIHjIon8X5ASe8Kvxbf1UN8/CW/0zNaLg1Pnqj7OovMvvb2ZABVgXdMPOEf51wJ7vzETAjJO5wW/wt+JnWndHtRp1fnPVnEMH5WLq3KNw6OeXnluRhJc0jSG+b4unvU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750358210;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=zMABvQfM1H6QX+dC9DoPW5FbqUymEExjF608nnNcYUM=;
+	b=WYxBeqPmXY/kpAneKHGolqwG3qYcEe6Qzc8BRRidh+hMqn3FweDshYP4B6sZvcHl
+	v5hGhumGLwn89DAkZNkuBL6Rn1EFmyAk2jerlVtcS8Xu310/oRUEmLYHCory/UG6K1c
+	lVa1xqUK8J2ociffXmdWx+eQjJ0czxLdEBzLYKB8=
+Received: by mx.zohomail.com with SMTPS id 1750358207480287.08214886347105;
+	Thu, 19 Jun 2025 11:36:47 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v5 0/2] RK3576 USB Enablement
+Date: Thu, 19 Jun 2025 20:36:35 +0200
+Message-Id: <20250619-rk3576-sige5-usb-v5-0-9069a7e750e1@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: WA2P291MB0309:EE_|WA2P291MB0287:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4360aa31-eb30-47da-2454-08ddaf5f6165
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RG54R00vRkVTd0dnQmtwU21uQmFhSThFampnalppZE9yb2dZSUx1SlQ4UXp1?=
- =?utf-8?B?cEhNRitWaEY5RFFJZmZNVFluVDQ1YldWZzNWZjNucVJ1V3dOb2RRb3l3QUlw?=
- =?utf-8?B?RUowemExSEttUmZOR0poS3RSQksrU1ViQVRvbGs0L1U2T003Y3NKUDRQMnlL?=
- =?utf-8?B?MUI4dVQ5MVJOQTdEcURBMjNMazhKYlJrRW4rOXEvNXhFb2dpY3E4ZnVOMXY3?=
- =?utf-8?B?NzJzeUhTNHJ5YkpFVlpjbXUxTG1JSm9vdTJGNVRhK3duZ0w3Yy9EaXQ1bWUz?=
- =?utf-8?B?Nk1xYkJCaVJTRVdTRWFhbFZmNXkwRTRkTG85ZVBDOXpSdlFoVEpjSkhtWlFW?=
- =?utf-8?B?WWRLTkxJNVZUMVc5d01vaFRSK0JPanpueTFJSkd0S1NmdE5HMStVK1BHRzdx?=
- =?utf-8?B?MmIxZTBvbFlZeHc4QmdlRWF2ZmRZNlM3NWZDSkNPcXo1aEdmV3FqdGM2WkdJ?=
- =?utf-8?B?OG9heGZhS1NsYjB3SCtEM0QzQzJkb2lUOTF6MXZqWWV2S3c2aHJsSnNzVmha?=
- =?utf-8?B?aDNiOExxK1FxTmxodTJmQ2dCZHdtYVZ5by9IL3R1dGJHbkxGc3NNWkdqNFJP?=
- =?utf-8?B?SlB2V01tSTFYUGc4VmtUcW15a0VuRTBlczRSaXlHQkJrcVhhRGVKN25MN0NL?=
- =?utf-8?B?bTYreFVUTjc2UzdrOXAzV2RiUUZGSmswN25qWDNkQVFJMjZoNWZ5dlNtbE1N?=
- =?utf-8?B?ZFBpUUlsMlpoa1NkN1RaTGF1N3pJY2t6TlFETmxjbkRVc1R4bUlxNW40cG1Q?=
- =?utf-8?B?WDd1MjBFam9XN2NXT2hGdGFLYlJqYlZBcS8rU3dGcXdaSzBLQkJ2aWZJS2o1?=
- =?utf-8?B?eHl5QmJwOEEweHQ4aFZQWkVMUzUxWDdyS0V3RXhMYWliZ3dXRTJlUTRHVG10?=
- =?utf-8?B?ZGtlcFlIZmJZY01QRlRiZG5JbFdBZ0NwNXJxNTdZNm5uUno2TkFKNHFUTThh?=
- =?utf-8?B?QzR3UmYzU1F4YW9Bc2syN0xGa01US2IrUitnSlB3WWQvUGs3ZmhKZnphVUVO?=
- =?utf-8?B?MGI1K25BY0JyRUp3cGVGeVd6RDAreTIxTjJNWDVsWVNsK1o5akdJdFFIclRI?=
- =?utf-8?B?NUhsblc2enRVSzhsRGpGeUZDdkRJYkVPNGJNT1h2MEhaT3ZFL1pHQnBacU1Y?=
- =?utf-8?B?U2gxbmY4eTlkdUZnV3E3c0h6b29uSWd0R0VyaG1MVVRHNnEwNXRISXNRUjZR?=
- =?utf-8?B?WGdVZndYcUFkRXJodVBnZEFYYWVFVGloLzdkZnEyNlJ1ZHNyZlFkTWNycDlz?=
- =?utf-8?B?alBEZ2J0Mm1BVzFob0p3MHNrM1F2N1cyR0tLWmlmWXJwV1Q5aXIvZmhQcnFn?=
- =?utf-8?B?TGdSTGJyb1EvQnZldDBPNUNKaGthMTc1TFFZc1BjMjBuYmIrdUhmNUNRWUhU?=
- =?utf-8?B?QXJjRTRvMGVwWnMxSGMwS2VDbnViTjRPbURKaXVnZlVqVlZRVU9INjYyNTky?=
- =?utf-8?B?OTRjTGtCdFhkUVVlczdaemtpT294SkcrQjlNemVpMXdsMThibk9ENm9iQnRK?=
- =?utf-8?B?bU1IN2RMTk1CM2N2eUtFYnF0YUhOSWdhTFFZTFovUWQ1czFmcjZ6NTFDdzdM?=
- =?utf-8?B?SHpoZlJVSFIwR3dzOU1QYlRTdlQycll3MGJMZXlJRDNWdmdsV3VNbjR2V3ND?=
- =?utf-8?B?UGw2aG1qZHVpTSttblFTVlRmcTAxbVkxWXoyMXdtMStidC9hZW02QVNXeCtp?=
- =?utf-8?B?RFI1WW9Xa1Z0OExFcklDdG9zRWZPUTBZb3lxN21ncWNvSHhiWGlRL2FacG9h?=
- =?utf-8?B?VUtlNU5UZWV4TmxucGdMTkpMcG1oaVJqTWhJN2kxSGpJZVJ1UmoyeTJnQmNr?=
- =?utf-8?B?NEc1RnpSVlFzcmtScG55cWhGNWRheVJHcE9NU0puNEJOMmoxU1VDZVJhNjdh?=
- =?utf-8?B?Vmh6OWtDSFlFSnhkcytSb2drVCtsdFArc09NSTJIdEV6UkVGWGRqdzdUY1V0?=
- =?utf-8?B?ZTY4c0t2czNpRjVPUU5iM00wTWhwSERYdjFacWlScEtJdThoY0tjclR1dVlw?=
- =?utf-8?B?bGlwSGtTcHhBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:WA2P291MB0309.POLP291.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bUtEVjdOVXJYZ1RYWjR2dnMwVjlSbmhFRnJvd0hiN21SaUJTZC9SbTl4bU9q?=
- =?utf-8?B?KzEzaUtackJ3WGtMWUovMlR5cDJGcUIyRU1TcUJKVTluWUFwVTJ3Wm0wY0k4?=
- =?utf-8?B?MGdONzY4WTJwT1FuOGpJUEgxSmRRNTgycXhGd3VmTDJmZEdCaWFkY1E5TUF5?=
- =?utf-8?B?Z1hsVzBsZGpOSUlUK0ZLKzRRekp6QWkzNHFLS0VYeWpoMjZtbWh6L0ROZUhp?=
- =?utf-8?B?RXoxYnd4MXNHVytnUnFiS24wa3JQUGZOV2FSNEo0aldYZE5VeWp2ZTZrSDdU?=
- =?utf-8?B?T0xqRzQ3Q2pselN4dXg0bUJtSWJTWUVLSXRHbTgzS3RXWnFrWnRETlMxZFBu?=
- =?utf-8?B?Wi92VExKcWxneDdRc09sNXNlME9EaDloQnozMUtnaE9rdG1EcmRGSk45K0VE?=
- =?utf-8?B?SU9KcTgraDhWUDV5N2pNQkVucG83b2QyWVNCcWV2TmN0eEVzUStJVXBxeDht?=
- =?utf-8?B?cEZaRlo2K05zZFhUcHNsTlFKLzQzelZmUVFoL25RN0lSZTd3bjE0TTdyVy8v?=
- =?utf-8?B?M0pQdVZja3gxU0I2cjBaMXhLT2l2d3dGT3E0Q3RHdmxKa0ZHdVlFTWF4aW5l?=
- =?utf-8?B?ZCtwbG91aEVhK0xQdjVXWjRkeE9wR3czSDBHWUIxc0tSd3BSUEZSRHVaczl0?=
- =?utf-8?B?NVRTNHJnbkg0aEg5RGl0SVVuU0VUektuSTdYbHBPMFcvak9XdjZGcG96allG?=
- =?utf-8?B?WW5IRGxsRU8zY2FzOWx5Qm9JOEVPSjBnZDBydTlraDh1dFNuQVJUTmh6SWth?=
- =?utf-8?B?UC9Rc0dwaUdDZ2d4bzBDTlY3YzVETm5jaVJ5SjErbWxOQTByTE8yVGF4d0wx?=
- =?utf-8?B?MG82NHhEcG9tdUk0RW4wbDUzdGx2aVVWcGJLYk9BL2xFWEJZM1k2TG1pa3o1?=
- =?utf-8?B?WnFrWDJMd05OZS9xTHNKOFRNNXBsZnAyZUZuNlhDUGFIb1VRZlo1TGJ1VWRC?=
- =?utf-8?B?NEp5eCt6Vzk2aHVoRVBtMDhhZStGY2hQaVRGODFQeFdKUU9YS1B6QVNZaDRQ?=
- =?utf-8?B?bGFLaVZZdDBIdS9aOXVzUlFBeWZXd3QxN1dmTGdIV3lMRnRQUmdiRWVpSWg4?=
- =?utf-8?B?L0x3Z2VjNGxqV1NxTUJiYjBkMVhrRndBVHUzeXRQQ2VSUEhvczF5eFJMRkpJ?=
- =?utf-8?B?YUtiSitoY05LMG5VV0UvYWtOekE3NStrOURiL1FtaGNVYTUwSEpkaC81QWI0?=
- =?utf-8?B?N05KZS8yUW91VnBVa1N5VjdFc2drRkc1elFDZ2VQalJ0ZFRjVzQ2aHdFRU1P?=
- =?utf-8?B?STVOOGoxTjRSNnZRdzBDV0RxQlB4OFordCt3SXVpNTBObU93MUV5aXU1eHVl?=
- =?utf-8?B?ZDJKUEdxcFhtV3Y0SHl6UWwxZHFWUmYzT0poTExmTVZaOGhTSGlZZGdwbjRN?=
- =?utf-8?B?dklaN2dzdGJXWWJuZTlUNWhpVElYUGI0WE1kUGlhN2xBeXJGMmkySFhocDNo?=
- =?utf-8?B?bTlJVGxRRC9jYzhPVnUwNDBkb1FxVW9id3hNblNlVVZyM01OeDByZHYyUGQx?=
- =?utf-8?B?V3QzQUhqNTV0aEZ1VE5yYUVqYURkZ3daZXp3SytqSlJZWm1oVHdaSkpCN2VF?=
- =?utf-8?B?dWVvWUZRZjArQmRkbjVSQ3d3elREbjB2bkZ5SmQ0VXF2VDlPOE5NOGdEMFhh?=
- =?utf-8?B?QkR6WnVjVWRtbVI1TzliZXQ3TC9KTmRWOWpacDJSOGdZcHdxM2kzZlhxSXNM?=
- =?utf-8?B?UVgzaHNMZ0hDWWhla2ZOTTR0bloxRENPbnJIVnJrblpmVU84QklUQUZQRlpz?=
- =?utf-8?B?Z1FYVUVpOHM1ZnlVR09Xa01Cc2dEZEhzNGp2UXBOQS80T1NLU21naXg3RHlG?=
- =?utf-8?B?bDU1OGhBUitnVnRXMW52SnFEZG5uS3Q3OGxxNUtKYlRwOTZ6WnYxTTMrQTBU?=
- =?utf-8?B?ckdoWG83N3hQenR6eVBSbEkzMDNpY0F5MFlXNU9VL1NMc0FsQU4wcnc2NWFh?=
- =?utf-8?B?NHZHamhkKzM0eEttUzd3QjlKWEpEOUhuY0RRUW1MN1AyNm5JYXZpWDU1K3hI?=
- =?utf-8?B?RHVTUkJEdk5HM1Yvc016cyt3QzFLcWY2UHJEVzFqa2tWR0tqVVpnYWJWKzU5?=
- =?utf-8?B?a2Q3R0s2YmgzVzZqaXVjOFIwRTY2aWZlYkxtSUVYVWlwRm9Fd2VvZ3UrYitZ?=
- =?utf-8?B?WjU5cnZ6a2pUTHhISHp5LzdCbExEck9tckJQOHltZjI5M0Q1dXFxb3c2dGlu?=
- =?utf-8?B?YlE9PQ==?=
-X-OriginatorOrg: videtronic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4360aa31-eb30-47da-2454-08ddaf5f6165
-X-MS-Exchange-CrossTenant-AuthSource: WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2025 18:30:34.9853
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 42908bfd-23a4-4a6c-951d-1ef4d8e0c612
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FPsKFCKHuSK1PyCsIbVRCVevvI+BO0WbcAPTFt7dOxHNWt9qSdu6QszIzFr3ClBDWOi27GowRt2OIT0HklI3O+hli7oNs2AEkIAX3cUCJhk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: WA2P291MB0287
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALNYVGgC/23QTW7DIBAF4KtYrEvFP3ZWvUfVBZAhQU1MC46VK
+ vLdOyWLVC1iNaD3zRM3UqEkqGQ33EiBNdWUZxz000DC0c0HoGmPMxFMaCbFSMu71NbQmg6g6aV
+ 6KiTjTDgAFxzB2EeBmK6NfH27zwU+Lygv90viXQUa8vmclt0ww3WhTTd8Ij+BY6pLLl+t0spbo
+ r0rZv9vXzll1FiAwI2Jo4gvIZ9OzufinnFFA1fxQPB0EIHIXnunJNNReugh8jfSayIRGScftTN
+ chdBtoh6I4ayDKEQs2GjthP8R+F9k27ZvLAT/wbQBAAA=
+X-Change-ID: 20250328-rk3576-sige5-usb-230102aeeaca
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Frank Wang <frank.wang@rock-chips.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Alexey Charkov <alchark@gmail.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-Hi Cosmin,
+This series is the result of what I thought would be a quick 10 minute
+job, but turned out to be more like 3 days of pain, suffering, and
+confusion. This should be expected with USB Type C though.
 
-I have tested V4 on Raspberry Pi 5 (v6.15) and I think that I might have 
-found some issues.
+The first patch in the series extends the inno usb2 PHY driver to fiddle
+with some GRF flags in that driver when the PHY is connected to a USB
+Type C port. Without this change, devices on USB-C simply don't
+enumerate at all, as the state machine gets stuck waiting for vbus to go
+low or something along those lines.
 
-MAX96714+MAX96717+IMX219:
+An alternate way to implement this would've been a vendor property in
+the PHY binding which is then checked for in the driver and needs to be
+present in all rockchip inno u2phy instances that happen to be connected
+to a USB Type C connector. This is what downstream does, for example.
 
-Streaming to memory works as expected, however I have encountered issues 
-when I was testing
-this with libcamera (streams + meta pad).
+Patch 2 adds the USB related nodes, including associated regulators and
+Type C controllers, to the Sige5 tree.
 
-To make things work in the first place (tested on V3) I had to create 2 
-streams - one for image
-and one for metadata. Essentialy what I did was setting up routes as 
-follows (for both serializer
-and deserializer):
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v5:
+- drop orientation handling patches, as this needs a proper solution in
+  dwc3
+- remove redundant property_enabled checks on svbus flags in otg_sm_work
+- Link to v4: https://lore.kernel.org/r/20250610-rk3576-sige5-usb-v4-0-7e7f779619c1@collabora.com
 
-Image stream: [0/0 -> 1/0]
-Meta stream: [0/1 -> 1/1]
+Changes in v4:
+- Rebase onto v6.16-rc1, no other changes
+- Link to v3: https://lore.kernel.org/r/20250507-rk3576-sige5-usb-v3-0-89bf5a614ccf@collabora.com
 
-With that and some extra adjustments on libcamera side I was able to get 
-video stream.
+Changes in v3:
+- Drop the utmi clock patch. This was always a speculative fix for a
+  problem I could no longer reproduce, and it doesn't conform to the
+  binding, as Robo-rob correctly caught.
+- Link to v2: https://lore.kernel.org/r/20250505-rk3576-sige5-usb-v2-0-d5ba4305f3be@collabora.com
 
-Now, above fails on V4. I belive that this is to due with following line:
-max_ser.c:
+Changes in v2:
+- Rebased onto next-20250505
+- Drop the u2susphy quirk, as I can no longer reproduce the original
+  problem with various amounts of ripping up the DT and changing the
+  config. Yeah I'm not super hyped about this now being a heisenbug
+  either.
+- Drop the bindings patch, as Rob showed me there's a way to do this
+  without extending the bindings
+- Rewrite the usb 2 phy driver patch to no longer walk an OF graph from
+  PHY to connector, but instead first find the USB controller that uses
+  this PHY, and then use the USB controller's existing graph connection
+  to the usb connector.
+- Adjust the Sige5 DTS patch to now have two port connections from the
+  USB connector to the drd0 USB controller, one for high-speed aka
+  USB2, one for super-speed aka USB3, ordered as per its binding.
+- Add a patch for rk3576.dtsi to reference u2phy1 as a clock in the drd1
+  controller.
+- Add two patches to fix USB Type-C super speed in reverse orientation.
+- Link to v1: https://lore.kernel.org/r/20250407-rk3576-sige5-usb-v1-0-67eec166f82f@collabora.com
 
-> +	ret = max_validate_tpg_routing(routing);
-> +	if (ret)
-> +		return ret;  
+---
+Nicolas Frattaroli (2):
+      phy: rockchip: inno-usb2: add soft vbusvalid control
+      arm64: dts: rockchip: enable USB on Sige5
 
-Routing fails here as (I believe) tpg routing is checked even if tpg is not being routed.
-After I commented out this check all worked as before. This was not a problem for deserializer
-as such check does not exist there.
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 160 +++++++++++++++++++++
+ drivers/phy/rockchip/phy-rockchip-inno-usb2.c      | 108 +++++++++++++-
+ 2 files changed, 264 insertions(+), 4 deletions(-)
+---
+base-commit: 1d07605c859ee3f483f07acd461452d9e505c58c
+change-id: 20250328-rk3576-sige5-usb-230102aeeaca
 
-Perhaps this check should be conducted only when is_tpg is true?
-
-MAX96724+MAX96717+IMX219:
-
-This setup was also tested by me on V3 (streaming to memory only) and worked as expected. With V4
-however, after setting up the pipeline, I am unable to get video stream. No error is reported.
-I doubled checked my setup with V3 and it worked flawlessly (with the same configuration scripts).
-Streaming simply hangs after VIDIOC_STREAMON.  I am able to quickly test V3 and V4 so I can provide
-you some further information if needed.
-
---
-Regards
-Jakub
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
 
