@@ -1,161 +1,261 @@
-Return-Path: <devicetree+bounces-187477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D38BAE0085
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:54:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63680AE010A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8926189616C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:54:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1ED8317B9DA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D0625D549;
-	Thu, 19 Jun 2025 08:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2610427F008;
+	Thu, 19 Jun 2025 09:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fRnctNSj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KObDt8YH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E67200127;
-	Thu, 19 Jun 2025 08:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303F1261594;
+	Thu, 19 Jun 2025 09:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750323267; cv=none; b=EfWRjClmbHrU9txzh3/3PXaZX53yR/oQLNQ5dv+yCbnB0HzjSbAwrjVbNdS41mCdqttxPHefwjVnCl/qVsKkf33tZQf28wOo24ubv8oivgpS+G06FWKDr7pi7M3sVHz/p7VLcPf0qqjM1UQ2lfkSYOEbb2Y/Z2ovOcU0chHlJsY=
+	t=1750323611; cv=none; b=e6bHpW1Dp32CkBZok6heqoTiVi7tvVMcuiYSsgqovPDEyu4E3iOGFdivKy83n6nPkUuODSFXfoIQhxzGiUbtJnsUhgt+VTlt+n/wCUUpYFVX9L53RnR39sS3W5n9Pec+1Z9KAYKaM3ARGbFYVFwdx9H+7VBFEwApsJ3LxwoIbqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750323267; c=relaxed/simple;
-	bh=5TsKhf5TFRjYNYJ1lfoUHSCn3Ye0Fxta6qs1C8pi8eE=;
+	s=arc-20240116; t=1750323611; c=relaxed/simple;
+	bh=n6DT5bAQL+RAQCVZkU8+hke6RxMaD2RlMP22Za8Eif0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GE06LdpmlC5Fe+kAe7zPhwJJAOugVZl9/2zd18k8uBnySjF3a79ZTGj/Hj5ZCEpfeFU6M7/aM3//as+j5gmxbeVqiPShRo6UkKhHAk8n7EfOfJJq1PaSP/7z61nlKQRlIi4cGOfShy68aTq61f9p3cbfbueV+YOIystaK5rOVxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fRnctNSj; arc=none smtp.client-ip=209.85.128.43
+	 To:Cc:Content-Type; b=OiV2HooPEBGCAFVuz1OPMY67dm3bbLs7Sz3j/A+Q6mcJjxEWK4hXEius5FERD75wIJ8r9txclgitY9DMJdtCrmxQRt/pXKAvPafUqUWhUCDGcrEQdm95MBjQiodFVfDzlajSYng/w/a36qVftpnzuGbwSfsoYIM/w77LrQhiD5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KObDt8YH; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-451dbe494d6so6152735e9.1;
-        Thu, 19 Jun 2025 01:54:25 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-450ce671a08so3027375e9.3;
+        Thu, 19 Jun 2025 02:00:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750323264; x=1750928064; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1750323607; x=1750928407; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2BgTuvT3u6AIqLm/PQRYt/22SDLcCwFXFs+qer6/yKE=;
-        b=fRnctNSj2kH9uNpxIF2m3a/TTdBMdEdmlCrNMw98v4JDDNva6cfn3UzYvmy7gezxUf
-         BwMir0NTHcwklEfjI+hXtaVBT6x/YyhynVnXxP3G+df5UfeDuykRY2M3aq4meJboaqe2
-         3Xg5apE9ioduKNAKWx85l0V8pYvzNWbzBpDJIefVCw0fpzisNSq2/wgm6bMKahMQIfwS
-         66Z5rlgA2eyIoMVPsG9GgXqLt2Bwdw0yRxwxHJBwnhXoySXxp4liFMc34MqkWZ4rseq6
-         qoMRLhZXPnMovWxAqrbrYujf+Ee3rPdqha8Lf3164p6NZWJBW1SGwQTCutAFAmNMC92M
-         KIEA==
+        bh=BMLvtRW8lP9BVVUwuPMh8xqp/K6tyZKhWFpUJL3ALEg=;
+        b=KObDt8YH3HMn60ZL8faB+4Gz+EX0KzPuXAq8CM47Kbhy7l563qYSn9WwV4rsa3w1Ll
+         vf0yT0tqWa58kT7vO5i/NiIkwHTw+JEodLaoe7JK5hxS1jp5d6yb8Mm4tsJLdoOJUW49
+         wPwRXX0LzcLl8sEPU8CuTc/mlf9JIgkwK5zXHg4zzRjxXdSB5rxtcdElnu4y/p5lb4xg
+         Tj3Cc60LpgS+0hia6vFN6xIvnqEtlRwvAcLEuII+fPPfn3DoscGJE4pzZzLjGcUFfpMy
+         wY+GZJPTIGeVjyhzw1yXwbXgCawQauumWC+TmPLB/0+yAn4DJIAj99u7LbENmGiely1P
+         z48g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750323264; x=1750928064;
+        d=1e100.net; s=20230601; t=1750323607; x=1750928407;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2BgTuvT3u6AIqLm/PQRYt/22SDLcCwFXFs+qer6/yKE=;
-        b=oZwlywC9G2+EZS7vM3rZpB4+Bmq8kllNyJEo+fm3wF7gYi6yNERr3hHrW7Oykd3fxj
-         kkvzbeVNC6wpbUB6RJED/GbGrN2DsooLyhWNZusQSow3xP3mDR/X2kIjZWmn5ynEaFuB
-         UQrrsYYmtc+gY8qMToKbX+4AmDMjR+6ocgRG3ijgKLukNEx+cjRQICS4KRxn1D0GUABY
-         Ytvz4p94OMIdAVcS6uhpDtCjKVMhoF8P4HaLJaM7KvGmkerYNigfDCecvObOMrjBpLIp
-         o1tgIYvIOBNxwOlZtyoxRnKNRo3wNmEaQt8xO6EavnmUi3Kt9alqykOyPr4EVPYCIphp
-         lR5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXkJFllQAW72oZqgfBoOT8rl8QFJ8aoB4FlxQp1yCpqVoKFqn7HAembIO7MWHjL646G74bveqtuXt8t@vger.kernel.org, AJvYcCXqFfekZO/a/u0k14nGsjBb+jfmTAfgCmis/NReawNg6NxPbzNYwpeP/EuTxDhVjJDX0ToLJQdCzC70m1Z2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4js1hFF9XyjFEI5/G3kPUU1r1/XMpp/h8IlfMwqGwno1lRxAH
-	JSs94i74i3331qTRZd8DHlQALtpwCQ8W5PRp2q+PP8FLJSwJ6mDGyrgdM8fKS8SIvGx5ldrPrJz
-	2f/pQpPoIysjaZfs3CPQSokdknU/mtJs=
-X-Gm-Gg: ASbGncvSjuHdfapcazY08RbkKa64OY1MZokACROOvSWMv4S2MM4oao6tNKAtTqfImaa
-	r+i3Lvhs3eJfrBu4QQeTtmkOyvQZiHR3xf9tCS9q1U5jjAnebGljKbz1WMYNYdO+SPrt5AbJSdS
-	tX6FoEkRCH7lDJJ1tOGU3/7UiFFbpDBDOL0T5t3OTgp0I7
-X-Google-Smtp-Source: AGHT+IEPcrAct2MvP6lMu67WHWgZkRHjbRH9x4L5SPSXZCedtmDIaEdykoVs3GdsAansa3lx+5kGChF4gR2TEuObCOU=
-X-Received: by 2002:a05:6000:144f:b0:3a4:f72a:b18a with SMTP id
- ffacd0b85a97d-3a5723a197amr16822801f8f.26.1750323263687; Thu, 19 Jun 2025
- 01:54:23 -0700 (PDT)
+        bh=BMLvtRW8lP9BVVUwuPMh8xqp/K6tyZKhWFpUJL3ALEg=;
+        b=SjkSb2qwcgL1PGr6sJZCZWS5xOUGqq5DhXeOuVfXdD7clhHCYBDMd5sm5DpgJjO04B
+         YJn+LdrF/X45rb8zB2Lg92UKqVsqx3wvBEhppPheYyf7tZWcMOHKUCXhKRc4cKfpRIGM
+         MiKoqEl8DGJ3C1RF+R1PRYSMz0cU3DwS1xopNTm310jS5BJBt/E52vZnTfB5yfRJ+A4W
+         3Suh1TjtlKFEZ6ccp5I7iyEvL0qLu1+QdXqaTOHRJYYIEfuoUC8/2uamxQm4A5C+KS7Y
+         lVFUXEOpCZAEqmSnNbpZyUjZ9DTgvSl0AGXocIPpDGzKCyEPKTa3E3EVdKJu5zPdHkdp
+         Hmdg==
+X-Forwarded-Encrypted: i=1; AJvYcCUWyb0pjbMykxab2RtPFCQpmZrT0QBrV1dAMF6MWgNC8cpvkPSMhEuMX10hBk0WTpPM+KgtGUwcUX3K@vger.kernel.org, AJvYcCWAxMdYFP4kjf+JQzDFv9Vj6OR1rhGi0OgaDPJ30PzzwxT8lKYsgTQZzhdhXe2fl0LB7+HwAY9U@vger.kernel.org, AJvYcCWgEUG9OaWYxQ6corbsRyoIOEnYHpYhgJ3xjNN4UcWfBtTnvTscBIQi4X4C/CWk8SPhupgPsFprChd5rKka@vger.kernel.org, AJvYcCWv/Fl+IedIif/+eOFCMGttsKmU9lS4hKx3XM41KcFXVxAY0xQb6/dxTVjKWeKeFeu9R0/AwZNopwVpqDLEo9E20I8=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yys3x84n+wspTqIQB0ynqjQ9RqM1WqPW+gFj+Bx41XwpOEfmEYU
+	r72g1OBDA1/tC250aHW7srHlWhx3CcRk35YxLqFYqtL1paCET27ndMI5yAhdwxfrNmAu028qmdl
+	LzUviOHAex+Uq0bcFdoMXdE0oWMJCfjA=
+X-Gm-Gg: ASbGncvXiSskg4erDxzDKfTOdq0HLwKuu1Qw5JZXOl1YevHU6mIO+3gCW65Zq6psg65
+	4Bv7bHSgDS/EZSVaBojWGe1qmeMpEIteHGuZ+Gn1E3PXf1Ys/jA5s2Xwf1DGRQsvFcFaFfZLKOF
+	rADbMRz8HiPxZgUWwo3nnDYRSAahQiwnf5cM8LvrQ2rJIgi6RCBRiJV7SFi+Qv9nHzHOai5gmZN
+	QZS
+X-Google-Smtp-Source: AGHT+IGhu8co19gsbnewWhNefXxhKDeZw+yRoWO6wb7/e+7qCs6ACRJfdkx53ZLyixNkwCGavN9xkSNMsCx1jFBc7Uo=
+X-Received: by 2002:a05:600c:46cc:b0:453:b1c:442a with SMTP id
+ 5b1f17b1804b1-4533cb53989mr181220065e9.27.1750323607211; Thu, 19 Jun 2025
+ 02:00:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250526114353.12081-1-clamor95@gmail.com>
-In-Reply-To: <20250526114353.12081-1-clamor95@gmail.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 19 Jun 2025 11:54:12 +0300
-X-Gm-Features: Ac12FXzaBC7401W2R75FUry1Dj9NV-cb1lVlcCWDqwkSkHUUU5xEZJLQ_IxV-to
-Message-ID: <CAPVz0n3QJHBVbTvfW8A-4nTDmagEiav4iwiekFd-z2nQTvUegg@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20250611061609.15527-1-john.madieu.xa@bp.renesas.com> <20250611061609.15527-4-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250611061609.15527-4-john.madieu.xa@bp.renesas.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 19 Jun 2025 09:59:41 +0100
+X-Gm-Features: Ac12FXxEbSDhRUhp-8lwipAqXbd42CO72LWVe4CbodNCzZQmHjti3RncJNUk7JY
+Message-ID: <CA+V-a8uizu5MCur_=g5vJyWbWSTSP2J6FkQ89JB8ges7GWdsjg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: rzg3e-smarc-som: Enable
+ eth{0-1} (GBETH) interfaces
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: andrew+netdev@lunn.ch, conor+dt@kernel.org, davem@davemloft.net, 
+	edumazet@google.com, geert+renesas@glider.be, krzk+dt@kernel.org, 
+	kuba@kernel.org, pabeni@redhat.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	robh@kernel.org, biju.das.jz@bp.renesas.com, devicetree@vger.kernel.org, 
+	john.madieu@gmail.com, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, magnus.damm@gmail.com, 
+	netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=D0=BF=D0=BD, 26 =D1=82=D1=80=D0=B0=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 14:4=
-4 Svyatoslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+Hi John,
+
+Thank you for the patch.
+
+On Wed, Jun 11, 2025 at 7:20=E2=80=AFAM John Madieu
+<john.madieu.xa@bp.renesas.com> wrote:
 >
-> Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P880
-> and LG Optimus Vu P895
+> Enable the Gigabit Ethernet Interfaces (GBETH) populated on the RZ/G3E SM=
+ARC EVK
 >
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 > ---
-> Changes on switching from v5 to v6:
-> - set correct module name in Kconfig help
-> - return error if spi sync failed for reading
+>  .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 106 ++++++++++++++++++
+>  1 file changed, 106 insertions(+)
 >
-> Changes on switching from v4 to v5:
-> - rebased on top of drm-misc-next with adjustments to fit
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm6=
+4/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> index f99a09d04ddd..4b4c7f3381ad 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> @@ -26,6 +26,8 @@ / {
+>         compatible =3D "renesas,rzg3e-smarcm", "renesas,r9a09g047e57", "r=
+enesas,r9a09g047";
 >
-> Changes on switching from v3 to v4:
-> - no changes, resend
+>         aliases {
+> +               ethernet0 =3D &eth0;
+> +               ethernet1 =3D &eth1;
+>                 i2c2 =3D &i2c2;
+>                 mmc0 =3D &sdhi0;
+>                 mmc2 =3D &sdhi2;
+> @@ -77,6 +79,74 @@ &audio_extal_clk {
+>         clock-frequency =3D <48000000>;
+>  };
 >
-> Changes on switching from v2 to v3:
-> - added mutex guard
-> - configuration register flags parametrized using panel flags
-> - removed unneded debug messages
-> - removed unimplemented modes checks
-> - added check for maximum pixel row length
-> - use types header
-> - remove ssd2825_to_ns
-> - shift bridge setup into atomic pre-enable
-> - cleaned default values of hzd and hpd
+> +&eth0 {
+> +       phy-handle =3D <&phy0>;
+> +       phy-mode =3D "rgmii-id";
+> +
+> +       pinctrl-0 =3D <&eth0_pins>;
+> +       pinctrl-names =3D "default";
+> +       status =3D "okay";
+> +
+> +       mdio {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               compatible =3D "snps,dwmac-mdio";
+> +
+> +               phy0: ethernet-phy@7 {
+> +                       compatible =3D "ethernet-phy-id0022.1640",
+> +                                    "ethernet-phy-ieee802.3-c22";
+> +                       reg =3D <7>;
+> +                       interrupts-extended =3D <&icu 3 IRQ_TYPE_LEVEL_LO=
+W>;
+> +                       rxc-skew-psec =3D <1400>;
+> +                       txc-skew-psec =3D <1400>;
+> +                       rxdv-skew-psec =3D <0>;
+> +                       txdv-skew-psec =3D <0>;
+> +                       rxd0-skew-psec =3D <0>;
+> +                       rxd1-skew-psec =3D <0>;
+> +                       rxd2-skew-psec =3D <0>;
+> +                       rxd3-skew-psec =3D <0>;
+> +                       txd0-skew-psec =3D <0>;
+> +                       txd1-skew-psec =3D <0>;
+> +                       txd2-skew-psec =3D <0>;
+> +                       txd3-skew-psec =3D <0>;
+> +               };
+> +       };
+> +};
+> +
+> +&eth1 {
+> +       phy-handle =3D <&phy1>;
+> +       phy-mode =3D "rgmii-id";
+> +
+> +       pinctrl-0 =3D <&eth1_pins>;
+> +       pinctrl-names =3D "default";
+> +       status =3D "okay";
+> +
+> +       mdio {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               compatible =3D "snps,dwmac-mdio";
+> +
+> +               phy1: ethernet-phy@7 {
+> +                       compatible =3D "ethernet-phy-id0022.1640",
+> +                                    "ethernet-phy-ieee802.3-c22";
+> +                       reg =3D <7>;
+> +                       interrupts-extended =3D <&icu 16 IRQ_TYPE_LEVEL_L=
+OW>;
+> +                       rxc-skew-psec =3D <1400>;
+> +                       txc-skew-psec =3D <1400>;
+> +                       rxdv-skew-psec =3D <0>;
+> +                       txdv-skew-psec =3D <0>;
+> +                       rxd0-skew-psec =3D <0>;
+> +                       rxd1-skew-psec =3D <0>;
+> +                       rxd2-skew-psec =3D <0>;
+> +                       rxd3-skew-psec =3D <0>;
+> +                       txd0-skew-psec =3D <0>;
+> +                       txd1-skew-psec =3D <0>;
+> +                       txd2-skew-psec =3D <0>;
+> +                       txd3-skew-psec =3D <0>;
+> +               };
+> +       };
+> +};
+> +
+>  &gpu {
+>         status =3D "okay";
+>         mali-supply =3D <&reg_vdd0p8v_others>;
+> @@ -103,6 +173,42 @@ raa215300: pmic@12 {
+>  };
 >
-> Changes on switching from v1 to v2:
-> - added description for clock
-> - removed clock-names
-> - added boundries for hs-zero-delay-ns and hs-prep-delay-ns
-> - added mutex lock for host transfers
-> - converted to atomic ops
-> - get drm_display_mode mode with atomic helpers
-> - parameterized INTERFACE_CTRL_REG_6 configuration
-> - added video mode validation and fixup
-> - removed clock name
-> - switched to devm_regulator_bulk_get_const
-> - added default timings
-> ---
->
-> Svyatoslav Ryhel (2):
->   dt-bindings: display: bridge: Document Solomon SSD2825
->   drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
->
->  .../display/bridge/solomon,ssd2825.yaml       | 141 +++
->  drivers/gpu/drm/bridge/Kconfig                |  13 +
->  drivers/gpu/drm/bridge/Makefile               |   1 +
->  drivers/gpu/drm/bridge/ssd2825.c              | 814 ++++++++++++++++++
->  4 files changed, 969 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/solo=
-mon,ssd2825.yaml
->  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
->
+>  &pinctrl {
+> +       eth0_pins: eth0 {
+> +               pinmux =3D <RZG3E_PORT_PINMUX(A, 1, 1)>, /* MDC */
+> +                        <RZG3E_PORT_PINMUX(A, 0, 1)>, /* MDIO */
+> +                        <RZG3E_PORT_PINMUX(C, 2, 15)>, /* PHY_INTR (IRQ2=
+) */
+> +                        <RZG3E_PORT_PINMUX(C, 1, 1)>, /* RXD3 */
+> +                        <RZG3E_PORT_PINMUX(C, 0, 1)>, /* RXD2 */
+> +                        <RZG3E_PORT_PINMUX(B, 7, 1)>, /* RXD1 */
+> +                        <RZG3E_PORT_PINMUX(B, 6, 1)>, /* RXD0 */
+> +                        <RZG3E_PORT_PINMUX(B, 0, 1)>, /* RXC */
+> +                        <RZG3E_PORT_PINMUX(A, 2, 1)>, /* RX_CTL */
+> +                        <RZG3E_PORT_PINMUX(B, 5, 1)>, /* TXD3 */
+> +                        <RZG3E_PORT_PINMUX(B, 4, 1)>, /* TXD2 */
+> +                        <RZG3E_PORT_PINMUX(B, 3, 1)>, /* TXD1 */
+> +                        <RZG3E_PORT_PINMUX(B, 2, 1)>, /* TXD0 */
+> +                        <RZG3E_PORT_PINMUX(B, 1, 1)>, /* TXC */
+> +                        <RZG3E_PORT_PINMUX(A, 3, 1)>; /* TX_CTL */
+like RZ/V2H on RZ/G3E PFC_OEN BITS(0,1) need to be configured based on
+RGMII/MII mode?
+
+Cheers,
+Prabhakar
+
+> +       };
+> +
+> +       eth1_pins: eth1 {
+> +               pinmux =3D <RZG3E_PORT_PINMUX(D, 1, 1)>, /* MDC */
+> +                        <RZG3E_PORT_PINMUX(D, 0, 1)>, /* MDIO */
+> +                        <RZG3E_PORT_PINMUX(F, 2, 15)>, /* PHY_INTR (IRQ1=
+5) */
+> +                        <RZG3E_PORT_PINMUX(F, 1, 1)>, /* RXD3 */
+> +                        <RZG3E_PORT_PINMUX(F, 0, 1)>, /* RXD2 */
+> +                        <RZG3E_PORT_PINMUX(E, 7, 1)>, /* RXD1 */
+> +                        <RZG3E_PORT_PINMUX(E, 6, 1)>, /* RXD0 */
+> +                        <RZG3E_PORT_PINMUX(E, 0, 1)>, /* RXC */
+> +                        <RZG3E_PORT_PINMUX(D, 2, 1)>, /* RX_CTL */
+> +                        <RZG3E_PORT_PINMUX(E, 5, 1)>, /* TXD3 */
+> +                        <RZG3E_PORT_PINMUX(E, 4, 1)>, /* TXD2 */
+> +                        <RZG3E_PORT_PINMUX(E, 3, 1)>, /* TXD1 */
+> +                        <RZG3E_PORT_PINMUX(E, 2, 1)>, /* TXD0 */
+> +                        <RZG3E_PORT_PINMUX(E, 1, 1)>, /* TXC */
+> +                        <RZG3E_PORT_PINMUX(D, 3, 1)>; /* TX_CTL */
+> +       };
+> +
+>         i2c2_pins: i2c {
+>                 pinmux =3D <RZG3E_PORT_PINMUX(3, 4, 1)>, /* SCL2 */
+>                          <RZG3E_PORT_PINMUX(3, 5, 1)>; /* SDA2 */
 > --
-> 2.48.1
+> 2.25.1
 >
-
-These patches had no activity/feedback from DRM maintainers for a
-while, so, in case they got lost in the depths of email box, this is a
-friendly reminder that they are still relevant and I would like them
-to move on.
-
-Best regards,
-Svyatoslav R.
+>
 
