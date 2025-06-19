@@ -1,106 +1,132 @@
-Return-Path: <devicetree+bounces-187648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8EA8AE0BC2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 19:10:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61462AE0BCE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 19:16:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E51B16B29D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:10:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E02CA1BC5459
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9773B28C865;
-	Thu, 19 Jun 2025 17:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D9A239E9C;
+	Thu, 19 Jun 2025 17:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KjyYMQ1B"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="FDgbpl2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AAAF9DA;
-	Thu, 19 Jun 2025 17:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5350F1917CD
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 17:16:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750353031; cv=none; b=qTY9CXBwd4khoWUlvGNFLhU9MI9RX6edNnTRl0mi7V1RJIOkBc+oNUMCvvUSlQ3x970U7l9FjAsCxeiJ7OqFz+HSQ3TbGAoZbBgz/q1C4myxVdewcO0uXQMxvA6f+8GLm+powvDPWqRu5ggLDKyhL0ZDjk2c+kaMnJq/iG85Fy0=
+	t=1750353397; cv=none; b=LlKbCj65+YEQBoCPHbKV5zczc0BtxCgUIezLVux+i4QkDCALgtlLHXUGMX2Zij7dwBFnQzDfTBVHlebeSo/Q9JNQT5KyupPQ570mOh+l5Vi+H2lBMgFOqSuskB5Qqzx5KK1cJq5hiLEH606R7QBsVFqeyY54oS7o3YYlXl158ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750353031; c=relaxed/simple;
-	bh=1tM7lfGa2OX6upFSfSRNAvjF/6bzMIakzUVOukjfgp0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cbOJFkCD6p1W2OmwKAh4T/wuRjkdwlMHa7fePfeJw3Cc41kwyNSptgfD69u3Fjnf0GaddxuZHhj8TeFIzjehcQr63CEAawSN5W5f9mbduHvgVyj/TuY6DvGq1woupzsPPdjroDrjpP3QLRhc0pqqSfrEvJGbj+KquPVmYAOgzBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KjyYMQ1B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11CBEC4CEEA;
-	Thu, 19 Jun 2025 17:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750353031;
-	bh=1tM7lfGa2OX6upFSfSRNAvjF/6bzMIakzUVOukjfgp0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KjyYMQ1Be302kdviESang5cJb1yKX07PYqBpvNGpMtyiRA+F0DJVli2y2lUvUL1AJ
-	 mg1uRLdqOSv9XpfshipGT4rCfCIKKYzL5EeAy5sB2WqeCHajR7KY+xtU6tmoZ+vW96
-	 l6SqVsGDPti766CEhXkzPt9+f53H8EO2xWk0gElBGHTa/K8wY3JUSwWtrdDFhcqpLv
-	 3vuwVXSG3MdhQR6VEWPLVTdi0+e2UMRP0rEoGoohU9MNWoZYoOI1U0bcGdP5u2G5Vs
-	 YKvPjFQ50jcrAx1nwNOx5O1K5nTZ6HbDrfWpOtJimUAxZz592GYBq/rgRC8hnhCNUJ
-	 ZerjfQ2poc2xg==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 8E4075FF4F; Fri, 20 Jun 2025 01:10:28 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] clk: sunxi-ng: sun55i-a523-r-ccu: Add missing PPU0 reset
-Date: Fri, 20 Jun 2025 01:10:25 +0800
-Message-Id: <20250619171025.3359384-3-wens@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250619171025.3359384-1-wens@kernel.org>
-References: <20250619171025.3359384-1-wens@kernel.org>
+	s=arc-20240116; t=1750353397; c=relaxed/simple;
+	bh=vavngEW490W1TVlna35U5JsoXyvTKiOlogApqdvOnX8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VcVjJ3Bw7MYjKPEuauJA/Z7+2HiqtgQF6MKCRWyuO3ULwoM8WLv2I8gV8tf8UqweWnxOQtFY5pwdQfC60pSId36WIwoyGGsqmZYrB6x6fqXX9C8OUtdCzoEFN2aoi58V1fwuG+HX5S1UezDTuWIB0MqDN54l/8UsRQ+usbmXB0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=FDgbpl2w; arc=none smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6fabe9446a0so10312346d6.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 10:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1750353394; x=1750958194; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vavngEW490W1TVlna35U5JsoXyvTKiOlogApqdvOnX8=;
+        b=FDgbpl2wK4Z3hPOt4a++qe38RCn3R4IlGGc2p3z4Tccl/hT5c03yTZsbobd/N5bIxD
+         4n2eMvABYOpBwJVd0Eb0RDBKPj2Gp5zSZKaDoMC3bQf1eHMHB0+FFSVr1a2HZ9O4qEGb
+         MKoF/Ma8uxZr41sM3URhEF3+cNIg+Y9aG84TC58I4URBNViyBNpyVkvFQqFK5GH0tXye
+         yGd2ZwuDI+MMKrtWrkMe4n8tMx4Fyy9l+pMU0iODj029HCYVoavCnKanC6/Aznq7y5iF
+         qiguE4kkxLIi5AlH0voWyHZY/+KusRKaSl5yZgU9K2mmkZ0+sYODLtTR0v9DtIW+h7X9
+         +I7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750353394; x=1750958194;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vavngEW490W1TVlna35U5JsoXyvTKiOlogApqdvOnX8=;
+        b=xONKzk/9EuBFQQqJZzfgl5n8iSd+w6MWa71arQ9sROJaY8I3cRPI667IyOSx3QaVTz
+         QkKInUk/B2NJ/wJCmOOiAuhni5PyCKBhU/9x0Sh4ARCcLazFAOSjPKWZ8lzqt7IyVBTi
+         KEjeYmfk3+S4oa0EPQhbCJixY8eQ3je7mD1T7Rdx40vpb/mEjG2TvrZ8ke/LnaDzgpyO
+         kKgFD1fZtY1yrT7cX0kXtmPTPzNwzZSF5390lfhOaeW6D5Ms1KZJ/1jFNqmimnnsLB3G
+         Jzcf4ih0x3MRrGH5KWj16NHt5sJ9yKQCeJhUKQ4n0xtHJA94EA4/KKqHHK+VzCZt3RQQ
+         kNLA==
+X-Forwarded-Encrypted: i=1; AJvYcCXM0+jCiO7OykIa3Uvko3hlQF8bL/2H7JvfcAe8TrX79TuD7Z+NRHKEYY/TuTaIPY4YWwKsOoUY6HI7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXS2+kFs5kg11qesQSxqVigPru24VeS7Njw7cPyLaBtlnNIRo/
+	fUECVpx+CNaHUDLy25q3SpBd4tzq4MXRSFvCV28JfMFzqYtvOvPXnIIZkOzUsglcm38=
+X-Gm-Gg: ASbGncvV6rtcdWC2sIswVWf2TNcoOPbTWpgCqr/aJ3uIbGb2bwDVC7emGPczTOCRVjC
+	KTxCSk5OQL9v1uU0jK1Ze49ddejqfx9HlJGWby7kFMbpE9VQ+8Jypegae07+SIl4ORcEhScC5pV
+	07qBomGq7jyvW+WVrGgr7xGv40uq7fBCSB/T6wIlxQh7BOG8PWuDUNCDCnRqEh5b3byM7mON2qt
+	9MtP8PA/eqzaE7zV/TQK4CdtKRH2VrjDGMTV/Z2tr+Ea7JGVkhgafJ8dy7NrBVABHXvp+4EUHPB
+	Gxid+AQQIS2CV/9ZCoWhJwmveW9on37tPdATvD15Yz7RMHfXaky9YfKrQJpAbBW14hw=
+X-Google-Smtp-Source: AGHT+IFZGR1oLZzp6cLHcCiYls3uKiELGOeDzcSxdXOkGm/XLOLstBIyI7bjhXg4re8Xuf3yDJehIw==
+X-Received: by 2002:a05:6214:540c:b0:6fb:4e46:7f3a with SMTP id 6a1803df08f44-6fd0a4d68f5mr760206d6.16.1750353394282;
+        Thu, 19 Jun 2025 10:16:34 -0700 (PDT)
+Received: from ?IPv6:2606:6d00:17:b699::5ac? ([2606:6d00:17:b699::5ac])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7d3f8e4b0f7sm19537985a.67.2025.06.19.10.16.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 10:16:33 -0700 (PDT)
+Message-ID: <d46d73f84e78daf152962ffb5cce7dd3ae0920d1.camel@ndufresne.ca>
+Subject: Re: [PATCH RESEND 1/2] media: dt-bindings: nxp,imx8-jpeg: Add
+ compatible strings for IMX95 JPEG
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Frank Li <Frank.Li@nxp.com>, mirela.rabulea@nxp.com, mchehab@kernel.org,
+ 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, 	s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, 	krzysztof.kozlowski@linaro.org, imx@lists.linux.dev,
+ linux-media@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-kernel@vger.kernel.org,
+ ming.qian@nxp.com
+Date: Thu, 19 Jun 2025 13:16:32 -0400
+In-Reply-To: <aFORokzx/sImgDtA@dragon>
+References: <20250521-95_jpeg-v1-0-392de5d29672@nxp.com>
+	 <20250521173444.310641-1-Frank.Li@nxp.com>
+	 <eef5ccd99d82dd33e3a4ecdb5d4a5b75ccb0b972.camel@ndufresne.ca>
+	 <aFORokzx/sImgDtA@dragon>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Chen-Yu Tsai <wens@csie.org>
+Le jeudi 19 juin 2025 =C3=A0 12:27 +0800, Shawn Guo a =C3=A9crit=C2=A0:
+> On Fri, May 23, 2025 at 07:22:04PM -0400, Nicolas Dufresne wrote:
+> > Hi,
+> >=20
+> > Le mercredi 21 mai 2025 =C3=A0 13:34 -0400, Frank Li a =C3=A9crit=C2=A0=
+:
+> > > Add compatible strings "nxp,imx95-jpgdec" and "nxp,imx95-jpgenc", whi=
+ch
+> > > are backward compatible with "nxp,imx8qxp-jpgdec" and
+> > > "nxp,imx8qxp-jpegenc". i.MX95 just need one power domain which combin=
+e
+> > > wrap and all slots together. Reduce minItems of power-domains to 1 fo=
+r
+> > > i.MX95 and keep the same restriction for others.
+> > >=20
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> >=20
+> > Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> >=20
+> > Krzysztof, will you take this one once the DTS part is ready ?
+>=20
+> dt-bindings is the prerequisite of DTS.=C2=A0 DTS patch looks good to me
+> and I'm waiting for dt-bindings part to be applied first.
 
-There is a PPU0 reset control bit in the same register as the PPU1
-reset control. This missing reset control is for the PCK-600 unit
-in the SoC. Manual tests show that the reset control indeed exists,
-and if not configured, the system will hang when the PCK-600 registers
-are accessed.
+I was waiting for sign of life on the DTS part, we usually get some ack,
+which is good sign we can take the bindings.
 
-Add a reset entry for it at the end of the existing ones.
-
-Fixes: 8cea339cfb81 ("clk: sunxi-ng: add support for the A523/T527 PRCM CCU")
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c b/drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c
-index b5464d8083c8..70ce0ca0cb7d 100644
---- a/drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c
-@@ -204,6 +204,7 @@ static struct ccu_reset_map sun55i_a523_r_ccu_resets[] = {
- 	[RST_BUS_R_IR_RX]	= { 0x1cc, BIT(16) },
- 	[RST_BUS_R_RTC]		= { 0x20c, BIT(16) },
- 	[RST_BUS_R_CPUCFG]	= { 0x22c, BIT(16) },
-+	[RST_BUS_R_PPU0]	= { 0x1ac, BIT(16) },
- };
- 
- static const struct sunxi_ccu_desc sun55i_a523_r_ccu_desc = {
--- 
-2.39.5
-
+Nicolas
 
