@@ -1,170 +1,131 @@
-Return-Path: <devicetree+bounces-187638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E40FEAE0B3C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:19:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06748AE0B48
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:21:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 373257ADDC7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:18:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F35E4A45F8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A83235046;
-	Thu, 19 Jun 2025 16:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EBB23535A;
+	Thu, 19 Jun 2025 16:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="mqw+9OXl"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="o1oiWiCk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A8021C184
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 16:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BEB2BCF5;
+	Thu, 19 Jun 2025 16:20:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750349982; cv=none; b=sG01olFj0pj6Jwwn1GSNYDJX8JMVyN9Q0KaH+V6yM2xaaaONwLyK65LkGntxZPJpt4vE1RjOIMekJKvaAL7b1P19bq0ycfVlkI+uuZoPhf54hN6LCa12lK5s8R2gvGD1qjz5i93i0ljikll5LmV7w2riGRByY/+MWlgVMmSSi/c=
+	t=1750350061; cv=none; b=kSoagPiIZcKH1PRrksytwzpmJsvHZduMIx2Z3sVcw1Yik0XSJArZVGurWLUG02JaKF//k+vwkqK+w092jSVH9NfHglOUQhK0jPl5fHJv102/aQV0j2uNv3P7s1LE/byIrfYYFJvHInoV4Vm7BL8h1q/X+mE54YXQvIHOfXrkXp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750349982; c=relaxed/simple;
-	bh=H0ev4YTGdT5Inv2bovVKvHYprggpynPPmC71UiQ3zPo=;
+	s=arc-20240116; t=1750350061; c=relaxed/simple;
+	bh=kPDfthMkxPFZanpnkw6rTYC0wNDIoDrAboTw+WSvhVI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c38HPYHL/EF9/tVPDWBHFIdaZkTOh5Ok3n9wrlf0ammtMzVYXWUTMwMQusaGF1YSmPIF1P5YbzosndghcCN91FyM3cWwN9u0H1qbRCwaMqymETEMOGVJ57ju+0WFoX0jrVLBhnN58xUo0zZpFHboGFGEoGWF7pGRWOmW2iRTHwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=mqw+9OXl; arc=none smtp.client-ip=91.218.175.170
+	 In-Reply-To:Content-Type; b=ijvfrvyzFnR9GH5Hp3Wls9CVQW9WBb10CEAxs+TSYPXkYvuu1ldQJz5YZA/IfXs9xQaQBmkttss3QhyHSB+wBmxf48yyOeBIdPhsDvS0nCh6kKYvQ2pYTA0gQY4W+ur/ZsQQfrIF6lzOy/45aQRSisN33D1RuYP0Kw8DuEjAP4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=o1oiWiCk; arc=none smtp.client-ip=91.218.175.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <6d14a0fb-2bf3-4ca5-9356-b94517ddfb14@linux.dev>
+Message-ID: <cdeb54e8-0624-42de-bac2-25b151c37872@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1750349967;
+	t=1750350057;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jjmy14KdtUGXxjll71XuQpqDflBtLFFz5WxBq5DW78k=;
-	b=mqw+9OXl9vv+1OwkbxkqJ3uRvGBNrLQx9HgCHPwUVy26XgABo/e/PnPJPK2BHY11F+g8Oe
-	+L2g4li6SAUWha7MV3Fe39h+CqLUEIvgefpYR71Z1HZvqhONfeq8BHaN0WhmmWc5pWrY5+
-	u0VFqqsI+l9e/0d+lpEXyVVYxW6jcT8=
-Date: Thu, 19 Jun 2025 12:19:23 -0400
+	bh=gkIvAdIcknw7YGYgEy5AX0Ny3blQrj6I2SRgxFMhm0A=;
+	b=o1oiWiCkmefm2k4pQhom1x13NN1mCxQEtwKqsY3LCg6R4zNo35wUI0HWjTuwvq/8KnittX
+	DeTTv5QzBnpQWEuCfN2xouE7HmqFtOhD6r12vrIIG4x2pDVOLkYtApUapK6vkLJaKzNzr5
+	tcf1+D5gXnfFpQwHkNsoRBOyjU+nZYc=
+Date: Thu, 19 Jun 2025 12:20:53 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] driver core: Prevent deferred probe loops
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich
- <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, Rob Herring <robh+dt@kernel.org>,
- Grant Likely <grant.likely@linaro.org>
-References: <CAGETcx-koKBvSXTHChYYF-qSU-r1cBUbLghJZcqtJOGQZjn3BA@mail.gmail.com>
- <a52c513c-ff93-4767-a370-3f7c562df7bd@linux.dev>
- <2025061147-squishier-oversleep-80cd@gregkh>
- <7d6d8789-e10b-4b06-aa99-5c1a1bdd3b4c@linux.dev>
- <CAGETcx9E5DB4UtdjjAO2=XfTNXdXocj7uk0JkVZ8hf9YadwNcA@mail.gmail.com>
- <70958a2e-abc8-4894-b99a-f2981db9981f@linux.dev>
- <2025061700-unmapped-labrador-a8c9@gregkh>
- <0ee2f641-c3f3-4a3a-87b4-e1279a862d68@linux.dev>
- <2025061740-banter-acclaim-2006@gregkh>
- <24a0f3fa-2121-4de3-89fd-482b217ab98d@linux.dev>
- <2025061929-produce-petticoat-8e0f@gregkh>
+Subject: Re: [PATCH v2 2/9] dt-bindings: spi: zynqmp-qspi: Add example dual
+ upper/lower bus
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20250616220054.3968946-1-sean.anderson@linux.dev>
+ <20250616220054.3968946-3-sean.anderson@linux.dev>
+ <2588bb7f-2a3a-4001-ab1b-6d9bd57b545b@baylibre.com>
 Content-Language: en-US
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <2025061929-produce-petticoat-8e0f@gregkh>
+In-Reply-To: <2588bb7f-2a3a-4001-ab1b-6d9bd57b545b@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Migadu-Flow: FLOW_OUT
 
-On 6/19/25 04:21, Greg Kroah-Hartman wrote:
-> On Tue, Jun 17, 2025 at 01:14:31PM -0400, Sean Anderson wrote:
->> On 6/17/25 11:49, Greg Kroah-Hartman wrote:
->> > On Tue, Jun 17, 2025 at 11:35:04AM -0400, Sean Anderson wrote:
->> >> On 6/17/25 04:50, Greg Kroah-Hartman wrote:
->> >> > On Thu, Jun 12, 2025 at 04:40:48PM -0400, Sean Anderson wrote:
->> >> >> On 6/12/25 13:56, Saravana Kannan wrote:
->> >> >> > On Thu, Jun 12, 2025 at 8:53 AM Sean Anderson <sean.anderson@linux.dev> wrote:
->> >> >> >>
->> >> >> >> On 6/11/25 08:23, Greg Kroah-Hartman wrote:
->> >> >> >> > On Tue, Jun 10, 2025 at 07:44:27PM -0400, Sean Anderson wrote:
->> >> >> >> >> On 6/10/25 19:32, Saravana Kannan wrote:
->> >> >> >> >> > On Tue, Jun 10, 2025 at 11:35 AM Sean Anderson <sean.anderson@linux.dev> wrote:
->> >> >> >> >> >>
->> >> >> >> >> >> A deferred probe loop can occur when a device returns EPROBE_DEFER after
->> >> >> >> >> >> registering a bus with children:
->> >> >> >> >> >
->> >> >> >> >> > This is a broken driver. A parent device shouldn't register child
->> >> >> >> >> > devices unless it is fully read itself. It's not logical to say the
->> >> >> >> >> > child devices are available, if the parent itself isn't fully ready.
->> >> >> >> >> > So, adding child devices/the bus should be the last thing done in the
->> >> >> >> >> > parent's probe function.
->> >> >> >> >> >
->> >> >> >> >> > I know there are odd exceptions where the parent depends on the child,
->> >> >> >> >> > so they might add the child a bit earlier in the probe
->> >> >> >> >>
->> >> >> >> >> This is exactly the case here. So the bus probing cannot happen any
->> >> >> >> >> later than it already does.
->> >> >> >> >
->> >> >> >> > Please fix the driver not to do this.
->> >> >> >>
->> >> >> >> How? The driver needs the PCS to work. And the PCS can live on the MDIO
->> >> >> >> bus.
->> >> >> > 
->> >> >> > Obviously I don't know the full details, but you could implement it as
->> >> >> > MFD. So the bus part would not get removed even if the PCS fails to
->> >> >> > probe. Then the PCS can probe when whatever it needs ends up probing.
->> >> >> 
->> >> >> I was thinking about making the MDIO bus a separate device. But I think
->> >> >> it will be tricky to get suspend/resume working correctly. And this
->> >> >> makes conversions more difficult because you cannot just add some
->> >> >> pcs_get/pcs_put calls, you have to split out the MDIO bus too (which is
->> >> >> invariably created as a child of the MAC).
->> >> >> 
->> >> >> And what happens if a developer doesn't realize they have to split off
->> >> >> the MDIO bus before converting? Everything works fine, except if there
->> >> >> is some problem loading the PCS driver, which they may not test. Is this
->> >> >> prohibition against failing after creating a bus documented anywhere? I
->> >> >> don't recall seeing it...
->> >> > 
->> >> > What do you mean "failing after creating a bus"?  If a bus is failed to
->> >> > be created, you fail like normal, no difference here.
->> >> 
->> >> Creating the bus is successful, but there's an EPROBE_DEFER failure after
->> >> that. Which induces the probe loop as described in my initial email.
->> > 
->> > Then don't allow a defer to happen :)
+On 6/18/25 14:27, David Lechner wrote:
+> On 6/16/25 5:00 PM, Sean Anderson wrote:
+>> Add an example of the spi-buses property showcasing how to have devices
+>> on both the upper and lower buses.
 >> 
->> Well, I could require all PCS drivers to be built-in I guess. But I suspect
->> users will want them to be modules to reduce kernel size.
-> 
-> True, then just auto-load them as needed like all other busses do.
-> 
->> > Or better yet, just succeed and spin up a new thread for the new bus to
->> > attach it's devices to.  That's what many other busses do today.
+>> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+>> ---
 >> 
->> Sorry, I'm not sure I follow. How can you attach a device to a thread? Do
->> you have an example for this?
+>> Changes in v2:
+>> - New
+>> 
+>>  .../bindings/spi/spi-zynqmp-qspi.yaml         | 22 ++++++++++++++++++-
+>>  1 file changed, 21 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>> index 02cf1314367b..c6a57fbb9dcf 100644
+>> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
 > 
-> Busses discover their devices in a thread, which then calls probe for
-> them when needed.  A device isn't being attached to a thread, sorry for
-> the confusion.
+> 
+> In addition to changing the example, we could also extend the
+> spi-buses property for this controller since we know this controller
+> has 2 buses.
+> 
+>   properties:
+>     ...
+> 
 
-OK, just to clarify, the subsystem I linked above is not a bus, it's an
-internal API. Think GPIO or PWM. The devices typically live on an MDIO
-bus (although a platform bus wouldn't be out of the question). So it's
-"not our job" to load the module; that should be done by the bus. From
-our perspective, if we look up a device and it's not there we don't
-really know if it's ever going to show up.
+OK, but this property is for the slaves not the master. I'm not sure what the right incantation is.
 
-Regarding the auxiliary bus, I tried it out and it works. The conversion
-is around +50 lines, which is not ideal. Ideally I would like to push
-complexity into subsystem code rather than making drivers deal with it,
-but I don't really see a good way to do this in the subsystem. There are
-just a lot of assumptions along the line of "when you register the
-device you must know what capabilities it supports." For example, fixed
-links (MAC to MAC) are validated when the phylink is created and the
-whole process fails if there's an incompatibility. Which can occur if
-the late-binding component is the thing that adds support for the fixed
-link.
+>     spi-buses:
+>       description: 0 is the "lower" bus, 1 is the "upper" bus
+>       maxItems: 2
+>       items:
+>         enum: [0, 1]
+> 
+> Not sure what to do about the default though since as discussed elsewhere,
+> this controller needs the default bus number to be the CS number for
+> backwards compatibility rather than `default: [0]` as is specified in the
+> previous patch.
+> 
+> I suppose we could leave default out of the generic binding and leave it
+> up to each individual controller to decide how to handle that.
+> 
+>> @@ -69,7 +69,7 @@ examples:
+>>        #address-cells = <2>;
+>>        #size-cells = <2>;
+>>  
+>> -      qspi: spi@ff0f0000 {
+>> +      qspi: spi-controller@ff0f0000 {
+> 
+> It seems more common to have spi@ rather than spi-controller@.
+> Is there a push to change this in general?
+
+iirc I got a warning when running dt_binding_check. I can re-test this...
 
 --Sean
 
