@@ -1,177 +1,161 @@
-Return-Path: <devicetree+bounces-187361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0A5ADFB66
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC4DADFBA3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 05:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B88A3AC9E6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 02:50:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 341E33AD8EA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 03:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391971D63F5;
-	Thu, 19 Jun 2025 02:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC49E237708;
+	Thu, 19 Jun 2025 03:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="zClKA5Nd"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="eZ8lGZzc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B662257D
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 02:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2592B4A3C;
+	Thu, 19 Jun 2025 03:11:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750301421; cv=none; b=EI3eAiUA29hwtLNaGWyE3BTNM7Ivbe8FO9UwXWRhz/isDRPYlOv6dzTA/9F0QazthTNiM1K8FPazW6chkBHspxVbNNBrK6ujwPCI8CUj9lpm/W1dNIISH9yDv0CTjcx8arZyM39GxtVSiwNM5F6HgDZdUKW5aCtF+k+XrfQTZn4=
+	t=1750302719; cv=none; b=udjZ2rxbfIvxAiHcprd6u0oVDBWqCD5T8iEiDivmeqs8eoiDfIc3iB5xkFYEUhzx0GmCggcdDFr0HfFo1kC/5OilP69Sdx7s5YDDpB4jVSr3ss7UZz0IZRA8TLZgtJWK7ctXKKoYLmBUCKNRvLDo8SxU5kydepYjKhNe3PzSjBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750301421; c=relaxed/simple;
-	bh=iJcBSfG+nm1MBrPhYrWZUr0TYe4Yf60WLTUAK/r6mlw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ESUetTOOlRV0L0ZeI6d0H/tHpTq7y+tT5liggTJ4S344OqXFzm8NvF+hNvjKhIexqllcw70LYzTW6znvJQGXhxW1fkpQsKlvetZGWpZLVEYejEsF6FyzGgOlmma1rWIspbr3T3wUhHeb7OD56cqD0GmAxqMoya3WfSmzBcRsMIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=zClKA5Nd; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b2f1032e1c4so386909a12.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 19:50:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1750301419; x=1750906219; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tB8e1qVEfhuTIR6cCezHfjL1333Oy60fxLgjuSXst14=;
-        b=zClKA5NdFcZ7xzosWBVTfvmjeZPelkG4jwrzZbQyED0OmTl33fOCymfsbml1aK8kpS
-         9RPQQi47CRyXeiYOKxKUtzgRn6kp+42sc0jRVTyMZbk/YyOmzAIXJpGFtjcmiYMpwSFg
-         BpiiDip0wgt4aHHg4ylo4fPxR/0PpQpo1px11+/UNF5KnxbPfVhqNNv8bfISlgrj8K0m
-         T6nyAKD8jXiZK9YWJbNk+GM2uMjlBpqqNaWfETMCwX+Nt+lI1FP0c0MkCyDLY3+90LAt
-         yexXJsaieGoEt/z+o8QCYZk2u6GppGJJf9v+5bJmXyxKTk05cEy0VVjJrhK7VZLBAYW8
-         ZqAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750301419; x=1750906219;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tB8e1qVEfhuTIR6cCezHfjL1333Oy60fxLgjuSXst14=;
-        b=Tgieh2DUT5CDLLfXCMRXF3rmrnGLdUGf1kAJpCGT1fPM+C8D7edXlK7CXYuEH2XrLf
-         CEusigMHk9mF1Tn0+g9+lNY8SztLtjFl1xgoXAdMuJcL7JXt2ZTNkKkLKHoOg71ceIMR
-         CDotfYa8MzxprwXEOSEqFdW2zDO0tH87bwXnNlAZYV3xv3CsJSpvGxDOU/P/n5rx/SKK
-         KhKsUqc6zEaA0MicckQxY29g2rm0aQosuhrbgNASQMFdr24HQq6OsSQEBc2gkdDT8Xcq
-         IrtIymqPzZegtgGxlvKj8OmSEZ30HwUxjvozrbbia0Z3hqr16GApXzsQ1hafpR3UGCxw
-         QMGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXqNGnGie/A7VuBZnKqO3IyYkpZePo1E9BS9CL7+TE7QPIGxAEG7wUsS/oIqa50Yd1qnU7B2hfXuHD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwC3TLd4Cq8Sd2MKeRK4Mo59lKRgWZNf/18Fl0CRuMqZaBu6iQV
-	lxIxmB/PFLXD+NcUoV4CApt+OuApZO/lG0hy22zaHBi3ft3tJZF5nkhSBoHy5Farxus=
-X-Gm-Gg: ASbGncuKABGSZjA7CyJ+DmUHVVeDOCCtf17EtIsN06rIw6gvj9sMb/WSOzml6CgSgai
-	tLqDlCp6RaPBduDi9FJS3QAAd+fv2z32Tqiymax2KgzMuaVS3UDe5kdIQxnE/hagZMq0LF1W9I6
-	w323mSvvY6/vs3OsWCEniLCFs73IoL9/zG0o+qrFzUdxZDmAyk1cBySrrWQoXKiR3itAE5E0hwm
-	bUA52foUZQe4yDjp6pX+5jPcDQIm8k2YztHr7eyFpA3mvA0sw48YRu57MuGCRoTokUu/SvaIWCR
-	xi3mlzKLtf4bjzDCJoUSTCcQuRQKKWMl2Zc0qhrpNhdF+E5PYeuONLBuT9qLozkOGMl6FKA=
-X-Google-Smtp-Source: AGHT+IFubn9Xjjn7fmMto+xZqblm2yd0WPXfa0iuVG1BkV+6lAGb7+2YAe7yAyYCgSsbecVsjsPVIw==
-X-Received: by 2002:a17:90b:524b:b0:311:ab20:159a with SMTP id 98e67ed59e1d1-313f1d1c00cmr26840306a91.29.1750301418839;
-        Wed, 18 Jun 2025 19:50:18 -0700 (PDT)
-Received: from x1 (97-120-250-80.ptld.qwest.net. [97.120.250.80])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3158a25617asm985583a91.33.2025.06.18.19.50.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jun 2025 19:50:18 -0700 (PDT)
-Date: Wed, 18 Jun 2025 19:50:16 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 7/8] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-Message-ID: <aFN66I9GsCb9qC4G@x1>
-References: <20250618-apr_14_for_sending-v5-0-27ed33ea5c6f@samsung.com>
- <CGME20250618102233eucas1p228b24f58e4cb3d15b0f273530b582cea@eucas1p2.samsung.com>
- <20250618-apr_14_for_sending-v5-7-27ed33ea5c6f@samsung.com>
+	s=arc-20240116; t=1750302719; c=relaxed/simple;
+	bh=MFAuk96MoSjlkSJYPkinU7Cnn1W/ZUDNhoAOIfyE3e0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AgsLNmAvQPy2c4ZM1f6EcRLzE9Jk+9DHxJQpTg3NxXuYyJDjIeaYjpktWTwjbRr/3q+l+R5uLSBbiAWfe1b7rz5UVqkANU/JUyYrohzE+WDzDzg2gsNYJlTXid6fDQnbjI7zbgNX19zunOTvbA7rhLIGUD/ej+3HJxqBDWWL2fE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=eZ8lGZzc; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 24b8967e4cbb11f0b910cdf5d4d8066a-20250619
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=aHlQ29GfE7GPw0vRvmvgfDlNtf7v7UnON80MlnW7oeY=;
+	b=eZ8lGZzcuy8e6m2wZHnWYrrZZwcx/xaIO/5d7bxCyTLUvWC3etdMmI+rP8Csh5wsZsZAr1+JyrvejzT8C0udgO31s9+F6OdPHCiVDW1UPVOkU96d63WQAECUsawOGq4f8xnOFmpUVOkvXsQ9AsPcKaCLmg/Nm4XgukoL3r4mUYs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.3,REQID:244a7a8b-5348-4d61-b289-dab4917ff57c,IP:0,UR
+	L:0,TC:0,Content:0,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-30
+X-CID-META: VersionHash:09905cf,CLOUDID:9e972377-7521-4364-b0ef-cd7d9c0ecbde,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:2,IP:nil
+	,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 24b8967e4cbb11f0b910cdf5d4d8066a-20250619
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1210089391; Thu, 19 Jun 2025 11:11:50 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Thu, 19 Jun 2025 11:11:47 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Thu, 19 Jun 2025 11:11:47 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: <srv_heupstream@mediatek.com>
+Subject: [PATCH v6 00/12] Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Thu, 19 Jun 2025 11:11:28 +0800
+Message-ID: <20250619031142.27180-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250618-apr_14_for_sending-v5-7-27ed33ea5c6f@samsung.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Wed, Jun 18, 2025 at 12:22:13PM +0200, Michal Wilczynski wrote:
-> Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
-> TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
-> the GPU using the drm/imagination driver.
-> 
-> By adding this node, the kernel can recognize and initialize the GPU,
-> providing graphics acceleration capabilities on the Lichee Pi 4A and
-> other boards based on the TH1520 SoC.
-> 
-> Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can't be
-> controlled programatically.
-> 
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index f3f5db0201ab8c0306d4d63072a1573431e51893..c8447eef36c3a6e92d768658b6b19dfeb59a47c4 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -225,6 +225,13 @@ aonsys_clk: clock-73728000 {
->  		#clock-cells = <0>;
->  	};
->  
-> +	gpu_mem_clk: mem-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <0>;
-> +		clock-output-names = "gpu_mem_clk";
-> +		#clock-cells = <0>;
-> +	};
-> +
->  	stmmac_axi_config: stmmac-axi-config {
->  		snps,wr_osr_lmt = <15>;
->  		snps,rd_osr_lmt = <15>;
-> @@ -500,6 +507,21 @@ clk: clock-controller@ffef010000 {
->  			#clock-cells = <1>;
->  		};
->  
-> +		gpu: gpu@ffef400000 {
-> +			compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
-> +				     "img,img-rogue";
-> +			reg = <0xff 0xef400000 0x0 0x100000>;
-> +			interrupt-parent = <&plic>;
-> +			interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk_vo CLK_GPU_CORE>,
-> +				 <&gpu_mem_clk>,
-> +				 <&clk_vo CLK_GPU_CFG_ACLK>;
-> +			clock-names = "core", "mem", "sys";
-> +			power-domains = <&aon TH1520_GPU_PD>;
-> +			power-domain-names = "a";
-> +			resets = <&rst TH1520_RESET_ID_GPU>;
-> +		};
-> +
->  		rst: reset-controller@ffef528000 {
->  			compatible = "thead,th1520-reset";
->  			reg = <0xff 0xef528000 0x0 0x4f>;
-> 
-> -- 
-> 2.34.1
-> 
+This series have the follow changing:
+Firstly fix some bugs, including resolution change handleing, stop
+streaming sw flow, fix buffer layout and clock setting to support multi-hw
+jpeg working and others.
+Secondly add mt8196 jpegdec and jpegenc compatible to support MT8196
+kernel driver.
+Lastly, Add smmu setting to support smmu and iommu at the same time.
 
-Reviewed-by: Drew Fustini <drew@pdp7.com>
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
+
+Patches 1 fix jpeg hw count setting to support different chips.
+Patches 2 fix jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 3 fix jpeg dst buffer layout.
+Patches 4 fix multi-core stop streaming flow
+Patches 5 fix multi-core clk suspend/resume setting
+Patches 6 fix decoding buffer number setting timing issue
+Patches 7 fix decoding resolution change operation
+Patches 8 fix remove buffer operation
+Patches 9-11 Adds jpeg encoder and decoder compatible.
+Patches 12 add jpeg smmu sid setting.
+
+---
+This series patches dependent on:
+[1]
+https://patchwork.linuxtv.org/project/linux-media/patch/20250424090824.5309-1-jianhua.lin@mediatek.com/
+
+Changes compared with v5:
+--reorder the patches set.
+--fix commit message of patch 1-8.
+
+Changes compared with v4:
+--fix kernel robot build errors for patch 4.
+--add reviewer for patch 1 and patch 2.
+
+Changes compared with v3:
+--change patch subject of jpeg encoder and decoder compatible.
+
+Changes compared with v2:
+--refactor smmu sid setting function interface
+--Some modifications for patch v2's review comments.
+
+Changes compared with v1:
+--refine jpeg dt-bindings for MT8196
+--optimize software code to manage jpeg HW count
+--refactor smmu sid setting function interface
+--Some modifications for patch v1's review comments.
+
+Kyrie Wu (12):
+  media: mediatek: jpeg: fix jpeg hw count setting
+  media: mediatek: jpeg: fix jpeg buffer payload setting
+  media: mediatek: jpeg: fix jpeg buffer layout
+  media: mediatek: jpeg: fix stop streaming flow for multi-core
+  media: mediatek: jpeg: fix multi-core clk suspend and resume setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: fix decoding resolution change operation
+  media: mediatek: jpeg: fix remove buffer operation for multi-core
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgdec
+    compatible
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgenc
+    compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   8 +-
+ .../media/mediatek,mt8195-jpegenc.yaml        |   8 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 170 +++++++++++++-----
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  21 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 112 +++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 112 +++++++++++-
+ 6 files changed, 376 insertions(+), 55 deletions(-)
+
+-- 
+2.46.0
+
 
