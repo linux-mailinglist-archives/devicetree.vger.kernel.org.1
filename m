@@ -1,152 +1,114 @@
-Return-Path: <devicetree+bounces-187533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 595D3AE055C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:19:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0CCAE05D0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05C8C1794BF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 12:19:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B74F63ACE47
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 12:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B45822B585;
-	Thu, 19 Jun 2025 12:19:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2sVfizp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8742824DCF8;
+	Thu, 19 Jun 2025 12:25:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0943621FF33;
-	Thu, 19 Jun 2025 12:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFD82459EA;
+	Thu, 19 Jun 2025 12:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750335563; cv=none; b=AtrmXZNfIXB9waKDrIvNj2oM9ALSipA10OMoPQHmgpTU+9ofb4gf+++RkGlHxtCkNf82zpWPmUsdKS0zp0l08q4WNpj069K9aSaxIylVtZXmVdMSf4NPSq9L2AiuVMbuuFvoU8hLsmcpUAfNMfGr8Le1QTZQrxnRh6CWrP6XefU=
+	t=1750335959; cv=none; b=XuVkt40SAHKTMu6vNFFywebodY63fXSfnbfvZDQxrLo2zHyy3AjYX3dZdpOcpX/DvU54hnDozUq6Vu+g5sJyAarO/ob0BMvHOwM8CcNdUvU5NXEpnQYqRcqsxEfBA23BqG4B6wNowX90PbwXkWtHiM5gMQwEeaPPyNoaBoDgeik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750335563; c=relaxed/simple;
-	bh=wOtxYd7FeByenB+qByLpAwEF4ztZQ/PR/wXrB5umFwM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ClV+7hjAmzOQDhZse8UI3UsSLEfEJUQxSTk7POo6FzWj2AsFmyqkRF3n6aSi/DMtMEUesqqVsim84NBOoJdQhWtIchHfNgnv//OCde1+HkDoGo6i3O4tJMppR5ovVlLUn60H7ZT6f2jsPNcrXhm0gTlEmv2RTmcQkOxPL4JIJVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2sVfizp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C403C4CEEA;
-	Thu, 19 Jun 2025 12:19:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750335562;
-	bh=wOtxYd7FeByenB+qByLpAwEF4ztZQ/PR/wXrB5umFwM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U2sVfizp/8RjiMYlKKqsnF7R2f5DhvS65P6lko53nexYpYpd6ASNO5gMQTW1b6wF9
-	 zPwiLBsX5cLhpZiCkZgzQVQOdQcMQm5H1vnJNo6bpRo7GX9qHdPkm2JwDVidusIK5D
-	 Z6w2GJcarqXOat8r5iPWVfDEUaiBoZyw52kVkR9sCXSqkMERPv1qaKj3KNDARM2VQD
-	 Vm6vnpZ7uzpVGuZO5tF7zbSQE1TOxg29rM8rHEykwQZpestS8+PRf4NHPYVvWOL/3e
-	 VEg8L8mom599SmeL2gzNC+Fe2XHzh4jLy0k0Q4NnjvunpJIwOrwDwoFWZdWUkggm8k
-	 SwdbZMnO/3p+A==
-Date: Thu, 19 Jun 2025 14:19:14 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 4/9] pwm: Add Rust driver for T-HEAD TH1520 SoC
-Message-ID: <aFQAQlB6gG3CElcN@pollux>
-References: <20250618-rust-next-pwm-working-fan-for-sending-v4-0-a6a28f2b6d8a@samsung.com>
- <CGME20250618122807eucas1p22d41cd6a9ac5131d91d41dfb09b8c92a@eucas1p2.samsung.com>
- <20250618-rust-next-pwm-working-fan-for-sending-v4-4-a6a28f2b6d8a@samsung.com>
+	s=arc-20240116; t=1750335959; c=relaxed/simple;
+	bh=nw+6paORmE3fJuO8ylVKNY7c0AcGWBN96GycDaN9lNE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MgL9UFzYmj8/gaI0vgb1x+e02frUfHTD44u22RQN0VR4TSITktCouBGyOXydHF01oBZZ+LkCHfFDRaVV7Ty0cSC8jiSDYuQEJmpV0EW8Inc8PIBjCw6BWl2XP85NTy0fw9hII64Cul6UOsgRrcRQie3bQtv46S/JxweT1paC90s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4e7efae1bfdso171558137.3;
+        Thu, 19 Jun 2025 05:25:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750335955; x=1750940755;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QRKDQT8PZNuVIkxqQQfCZ0RpWeCez8dwdZEAe8PYgYg=;
+        b=e8Yvs3asvys8i3HZxxcbjba8wuzJXWw4WTURm7wwBVdvPuTTlydRBPsGaFs4KUlM7v
+         SxvpzKF9dg7YKsRLtS2qmaXStk423xsUm95SA5wrl48/0TlNqCAAhde6eRU6Xh5myuCe
+         DYQyOmlTnAjq4rFTnLXQVCVZ2A8N8/ypxlCLh8OYxs9aa2EHLtv8+FIHShSV+yxqDdcz
+         Xqa+sFHp555z3GPgsR2LlrYUYvhlcWXtOVDL1DPiB86PePUIYfQDGOW8DvjHnEDnbsPN
+         Hp3/yuQIIhJ70Cpjge/A2X1PXUX/DsU34WmTVyw+Y5Q+QIZ2/RA5ALjykObmKU9eo1uK
+         u6KA==
+X-Forwarded-Encrypted: i=1; AJvYcCVTVzI3H9CD4fss36FE0tD+tJI5gyVrzw1WfHfJulWYrNJN4I4DJDEqHDa+Y9pMHnf7A1HoaEz0LwVm@vger.kernel.org, AJvYcCW1P1faC5NLgd5kNYaEoofg0fby5HXfTn8LkYak4xLM5gSYnS+4zNm9EnToXXwlgTxPpdadajjUwYNxw4YF@vger.kernel.org, AJvYcCXcX3rXYZs5bfgHkJDHvFQajyhERLXlyHmo7atxn2B+7CSMQgFI3/rSM7cRSObvsBb50U0rabUaGBhg5ENYa561CzU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUjJv462B1O7dByovK5siQzJozk5rmGXG7wT5r6RxMYwwdE/87
+	TBiGC5EeAn46SpiRTXxvkkPbRArLeVgvu3ElFWgFVT3uaKHDSXPJ6VNC+mF5u0ko
+X-Gm-Gg: ASbGncsU2KdahPraKD1e87KCkX1X2aCAspeef49QqX9GWS1FP7Cl006+mgz2VqeF4iz
+	qt9C8t2ZRN1gzIYgPZCKYZKoYn48BPb1WI1c23ivhTQkmgEiRB2+brMcmk1+VKPt2JcyS3Hp/Hp
+	9Kb4lZPYafvSvVOco2K3JS0N1vyOZdgNrTkgpDpiY1I2TzATSECB3QgQsO1eKTE52f8ERCsm0KA
+	HAIt9YbNHHgKFtf5fjGkGAJTaiEEdoUkojgoUEbuvFFFre7NB6fBLNIXfoKAjurEarkRY3WmVsP
+	kkN0UnvaMpoa5terWknO2RkmiHB50V64SRxmLfV2hEN51yDlrRHoxJeiPWMDcD9SWQCya9e9hzm
+	+Alhe4wyj7rjuv1FtoqOtFbWU
+X-Google-Smtp-Source: AGHT+IFyz5Yg/uTDzTv8rfupdZi+qtm6CmvCpnHtM1ea362AW4aA8J10dv8uyvJW7PcELXnOZyTqng==
+X-Received: by 2002:a05:6102:4b8c:b0:4e6:d94f:c197 with SMTP id ada2fe7eead31-4e7f62629b7mr15996686137.23.1750335955041;
+        Thu, 19 Jun 2025 05:25:55 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87f0fb27703sm2278914241.18.2025.06.19.05.25.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jun 2025 05:25:54 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-87f26496daeso160231241.2;
+        Thu, 19 Jun 2025 05:25:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW+AabZIe0s+K9Q4z8PgHwM2AOzsmjvsLfaKv4z6uk+QSCY9I8d49xePm9N2PVSELuRJ59X32dRENdC@vger.kernel.org, AJvYcCWWVSCU9MF87N1zSe9xWawJeatLw2QH93VU73yaP0U0JCCpnsS+r9fZ2p0o7U4POnfhDd1nF3evX33rKAfx@vger.kernel.org, AJvYcCWus4rHjQWWTvv5eL2t/o9UyqLQzUiZC2P/m+Rjv0eD0khEwedwstesG1qOy6kLMdLsIYvhTjNnnybP4zxUmT1Wyus=@vger.kernel.org
+X-Received: by 2002:a05:6102:c8f:b0:4e5:59ce:4717 with SMTP id
+ ada2fe7eead31-4e7f614b8femr15344553137.9.1750335954100; Thu, 19 Jun 2025
+ 05:25:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250618-rust-next-pwm-working-fan-for-sending-v4-4-a6a28f2b6d8a@samsung.com>
+References: <20250613135614.154100-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250613135614.154100-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250613135614.154100-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 19 Jun 2025 14:25:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW3ScFxjDbyV8Bv6q_DiA1URX_vjMgEm7vHVTtt6CC5vg@mail.gmail.com>
+X-Gm-Features: Ac12FXzTevVT1F9nmwPwzvFo3iv8JFfZZuEc_a8tX7ch1cGzxu9PI7Dt0EFhBXE
+Message-ID: <CAMuHMdW3ScFxjDbyV8Bv6q_DiA1URX_vjMgEm7vHVTtt6CC5vg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: r9a09g077: Remove
+ GIC_CPU_MASK_SIMPLE() from timer node
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jun 18, 2025 at 02:27:37PM +0200, Michal Wilczynski wrote:
+On Fri, 13 Jun 2025 at 17:26, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The RZ/T2H SoC uses GICv3, which does not require a CPU mask in the
+> `interrupts-extended` property of the ARMv8 timer node. The CPU mask
+> macro `GIC_CPU_MASK_SIMPLE()` is only applicable to pre-GICv3 systems.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-<snip>
+JFTR
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> +    fn write_waveform(
-> +        chip: &pwm::Chip,
-> +        pwm: &pwm::Device,
-> +        wfhw: &Self::WfHw,
-> +        parent_dev: &Device<Bound>,
-> +    ) -> Result {
-> +        let data: &Self = chip.drvdata().ok_or(EINVAL)?;
+Gr{oetje,eeting}s,
 
-<snip>
+                        Geert
 
-> +impl platform::Driver for Th1520PwmPlatformDriver {
-> +    type IdInfo = ();
-> +    const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> = Some(&OF_TABLE);
-> +
-> +    fn probe(
-> +        pdev: &platform::Device<Core>,
-> +        _id_info: Option<&Self::IdInfo>,
-> +    ) -> Result<Pin<KBox<Self>>> {
-> +        let dev = pdev.as_ref();
-> +        let resource = pdev.resource(0).ok_or(ENODEV)?;
-> +        let iomem = pdev.ioremap_resource_sized::<TH1520_PWM_REG_SIZE>(resource)?;
-> +        let clk = Clk::get(pdev.as_ref(), None)?;
-> +
-> +        clk.prepare_enable()?;
-> +
-> +        // TODO: Get exclusive ownership of the clock to prevent rate changes.
-> +        // The Rust equivalent of `clk_rate_exclusive_get()` is not yet available.
-> +        // This should be updated once it is implemented.
-> +        let rate_hz = clk.rate().as_hz();
-> +        if rate_hz == 0 {
-> +            dev_err!(dev, "Clock rate is zero\n");
-> +            return Err(EINVAL);
-> +        }
-> +
-> +        if rate_hz > time::NSEC_PER_SEC as usize {
-> +            dev_err!(
-> +                dev,
-> +                "Clock rate {} Hz is too high, not supported.\n",
-> +                rate_hz
-> +            );
-> +            return Err(ERANGE);
-> +        }
-> +
-> +        let chip = pwm::Chip::new(dev, MAX_PWM_NUM, 0)?;
-> +
-> +        let drvdata = KBox::new(Th1520PwmDriverData { iomem, clk }, GFP_KERNEL)?;
-> +        chip.set_drvdata(drvdata);
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Sorry that I didn't spot this before: Is there a reason you can't pass drvdata
-directly to pwm::Chip::new()?
-
-If not, you can initialize the pwm::Chip's drvdata on creation of the pwm::Chip.
-
-This has the advantage that your chip.drvdata() (see write_waveform() above)
-becomes infallible.
-
-(If there are reasons this isn't possible, there are other potential solutions
-to avoid chip.drvdata() to return an Option.)
-
-> +
-> +        pwm::Registration::new_foreign_owned(dev, chip, &TH1520_PWM_OPS)?;
-> +
-> +        Ok(KBox::new(Th1520PwmPlatformDriver, GFP_KERNEL)?.into())
-> +    }
-> +}
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
