@@ -1,160 +1,226 @@
-Return-Path: <devicetree+bounces-187499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97703AE0288
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 12:20:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C231BAE0294
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 12:25:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3593117BD8C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:20:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B0D21BC1C11
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AA02222BE;
-	Thu, 19 Jun 2025 10:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9BF222584;
+	Thu, 19 Jun 2025 10:25:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HfGQfc7m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zWMhsiJy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4947C221725;
-	Thu, 19 Jun 2025 10:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9469F221F05
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 10:25:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750328427; cv=none; b=oskUDEaImYQWiotWEU9nmSITPT7nCVj5eW4Z82qtM+hHX88BGTzGMvLoHdyZIQ0hfCq13tzl7PAk+jvFfL8vAO5xY/9dPXXVTq0KWdaP3rF/9S4ibDWnugbCIa1H5ch+2sVERwf5lqh/krTjSTRljQpaQYOiDJwjiOGLMVm6lQ4=
+	t=1750328726; cv=none; b=fMUptOweeEhOkygjHauDc1va3thym+GT7yq3CflosG9grhfwQxas++zs/qdZO3724ZcFzlG1N4SMTlbsj+89qhNEnsg2bs5YtXXSkzJVMqxW0y55MQInN6nIB26+s3LUZm18UVa8NeIhsnbdLo3fEzIN4Qvi93PEqK4HnfAt4rI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750328427; c=relaxed/simple;
-	bh=0DgFTAL6mz9/5mlr4eRewZuvWWgktHbE0dCpfKYuO5Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cSCpnGDemti175qkTtzJ6qCImj0cbiWSwb0fGk4u+XVsqv+UZgJux4kxmMGlQ1UzJbQQb6ll3MXF0rwWXvzAQrPtTWI4Sa4J+n5eVLqYXCbkzJJvPaHq3+jAZEPjb9zj4bnhhAm0NKy6NLqtXS366ioQdZoL4OhWGbcz0yIvcXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HfGQfc7m; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55J5wNNY002625;
-	Thu, 19 Jun 2025 10:20:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FIwbK4fsuTi2Ekg9nbMkJqw3FQ1RBeyBosd/m9t3QZI=; b=HfGQfc7m3b++WjVf
-	hHM5n6UFF51uDG5oD7ScfITiITd3h2hVtuOqOfehHJINXh/o3GmzeqgpQ4lh9aXW
-	v4697Dixc0TD74BtYoYsPUwJWrsA1Xz7afkFjcAK1DR464VdHebX+SKhhsLXfLUz
-	16M6AW2J3y10zWp1ugfiehCXWyjj/w0loqZdwiYm0KpeVm0CxJO0hwlH+ijYils4
-	rI9Nwpnk2j8wpnBKKrTZ/Gmi7njrAv+MjyeTlYma8QRIxaxGejbWPP0t/VDCc17W
-	Wd1U0ypCmXb2Y+BnuQbR0FYtNI6Zz6biYl6/vsZLvkE1BRqyMkfWNNEcBDHnGDCI
-	wliEjQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791hd7p88-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jun 2025 10:20:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55JAKImX007362
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jun 2025 10:20:18 GMT
-Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 19 Jun
- 2025 03:20:11 -0700
-Message-ID: <5ed72663-da54-46a4-8f44-1ceda4a7d0d9@quicinc.com>
-Date: Thu, 19 Jun 2025 15:50:07 +0530
+	s=arc-20240116; t=1750328726; c=relaxed/simple;
+	bh=DkKRPt2S9JILvfKxP9uxHp6g7VV72WM/XlW0GeOUMm4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FSRNgcirWtAkvPgGb6HZayqUf4JaIN1sQRzUHJ6PAWBkX8XYqs6MFJKadfGv/nSCqqZMYNz7sMCOvwuDCg+XLiVKBU1ziMzrFv4wwqvR4VyYaj6m67cHx7Mw1TdlUOquZRgvRRcljs9mSuollaEskUFPmHs3owmQkrm6/+jIZmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zWMhsiJy; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e81749142b3so588760276.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 03:25:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750328723; x=1750933523; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ua4ESBOBusXcEPYVXoT+f1Oc5QbUn+Vjv+tNr5h2kMY=;
+        b=zWMhsiJywAMd/qftiJySoSSj8tO+yVsJvcFcexFWT9QA30y/QpoyBtdRFHdCMebHjT
+         Swum5ct8q6vRYpH2rQO5dilN0/AegRRQx8TCuVEUgRD+PN7dzVijkvP8vV9JR6JCnzgN
+         UYLTeZth66jXbpYekpiYrxnh2rfU5Ndy69XcUDKLrq3URg1rw5W6VNWM+8IWGbZGrtbN
+         sKUfY4V6fvpwKbCNdubEgC7iAej/0+Ocwd2G6y1sxW/br6BHm+T2FvNGd83kIJBOWBXw
+         W8Y7u+/8tc3ouhVc/rugN2Q+yvT+Mhadgs+p0Pb7kxgY7Fu2fS4hqf/EGbFYAzX0B3p8
+         lSGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750328723; x=1750933523;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ua4ESBOBusXcEPYVXoT+f1Oc5QbUn+Vjv+tNr5h2kMY=;
+        b=pW3S6RQeTDFcFzHqGu5FdaNTlOLN0+s3k6wJ9N+fLAWkYKTzOzjHVLGbT46bgIz1GY
+         nKNaiB7O/IkYwUMweCRXVs5HY9qsPfaY5udfCwLML2T0Efq3hP+bGCefyprRP7sQyelY
+         1ToHQ0eteTPeK5QiIRCV05B9UGkh9+uOEWT/10hbAsKo88+uOjTrHE5AhLTYMNXksOz0
+         SA5pRhSjPGfeYDZTwP+ieKzZrHbJq/DKIFPlM09B2FPu8aYk7j9qA8tDLXz36MVTf5aJ
+         aXRntbQt9A32XEiIJXTdr/IC9Bk5/ANDO0C7ebfLOuLIm9+J/ZN+V4UnxmrCys//Lpkr
+         pe4g==
+X-Forwarded-Encrypted: i=1; AJvYcCWl8TPVrUFgqOOXOXKi0+J3zaVm2fKGgs1LbpUrPzbHn42vIJtahj01c6c3Bd3B+PuNwV9OLnhYHdD9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzmsn3uR1PMwgik46FTlVYQNv/lhZ8hvM8ERhKXdqR+K2H21UPT
+	THVdBeHgQrR5CMHD7yz1KtVfG3gqHzgyYHS6jcbg8Yh6Y8vw5qCuBSAbZhB/z/8XbqMhMkpHEFn
+	SwocRWxB+Q/RVb+pDvidZjgAmtnJUFJ4MAKzHcAg1+g==
+X-Gm-Gg: ASbGncvzywHt7p7IUvmdAR0ZKMIfQzM2yuJ4wfTALy7F3TuFh+xrHwmOqwNs1oKsPN8
+	q5dzDWcE329V8CHRO/jSWdfg76K7NirL7dGIX0mM4KEZCoT/KK8hLgLnZWfBdlLRuMC44WYqcgu
+	NoNHKhUPSqqne3FrATkw6vWwzFoCOZfbuAOwegTbzd3/D1
+X-Google-Smtp-Source: AGHT+IEd1Y2dYwu5kQzmOiqV3OZ5X0v2pCQJYBuRmzgW1uRqeViVETMJf6n3heh0RuoVtnPHqbuzFhL0HpKezAowQ9Y=
+X-Received: by 2002:a05:6902:1207:b0:e7d:13f2:943c with SMTP id
+ 3f1490d57ef6-e822ad92dedmr26314262276.41.1750328723568; Thu, 19 Jun 2025
+ 03:25:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom,sm8450-videocc: Add minItems
- property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Vladimir Zapolskiy
-	<vladimir.zapolskiy@linaro.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya
- Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-References: <20250618-sm8450-videocc-camcc-bindings-single-pd-fix-v1-0-02e83aeba280@quicinc.com>
- <20250618-sm8450-videocc-camcc-bindings-single-pd-fix-v1-1-02e83aeba280@quicinc.com>
- <4657c6d8-8454-478a-aac3-114c6194b72e@linaro.org>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <4657c6d8-8454-478a-aac3-114c6194b72e@linaro.org>
+References: <CGME20250618102228eucas1p1906803f73cc004e68f281b2bdf871da3@eucas1p1.samsung.com>
+ <20250618-apr_14_for_sending-v5-0-27ed33ea5c6f@samsung.com> <20250618-apr_14_for_sending-v5-3-27ed33ea5c6f@samsung.com>
+In-Reply-To: <20250618-apr_14_for_sending-v5-3-27ed33ea5c6f@samsung.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 19 Jun 2025 12:24:47 +0200
+X-Gm-Features: Ac12FXzw77jNMgM4ecKpiOyLqo41UGjlRF2A49p8Af0bxhXr8nkUTTfXWCm5OqM
+Message-ID: <CAPDyKFq_4W7bPr1NiuEGzMDoY6tQuHbw5uOXrkJagbEbtmqMWg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/8] pmdomain: thead: Instantiate GPU power sequencer
+ via auxiliary bus
+To: Michal Wilczynski <m.wilczynski@samsung.com>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
+	Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE5MDA4NyBTYWx0ZWRfX/trn2uyXOjTc
- 4IeRI9Cdlx3pU/HuRaOht29drWcPFBCK3gbknQh8urk0Ew7+NgFscoWuUZgq23RxvoLmVyEF4rU
- Ijlfq49ZrttjTaRu5vCEMweP5D2tpT2mMxXrrG5Qy6Sqs75rkkwjy6gXWcBeePwb02CNtPGoVF3
- SsJXdxJR/tmWVs5mHrq9Xv2kFp0Vo3r8ZvcGFrBXkor4JMPxWSW75vv9jcKncxnkpJvuWmaAzax
- zkMW6pHohJey/V4ZUXRhi8XD6BlHnksoLfcT3hlfiFkoNeJGiL5x50e2GN/j4k63Ca03G5WJ1Bm
- 0q51pPjJIIXY+/XLUrVq0AvTrgHkBQqKCFzQARbkrjaaEYlJ3EZhO/iGqHJZ0k9d5C4ETKyWFMZ
- QpJ7zNTTklqw49wvQzdHy9ZNc7YxW8lhE2AZkdCogktAh8dtYbiJUusHNTy28rRj5qpjiVEv
-X-Authority-Analysis: v=2.4 cv=PtaTbxM3 c=1 sm=1 tr=0 ts=6853e462 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=cLWHS4kKuHwVDwOVLkgA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: GAUMW2cVFg-9ItYRwUoI_TkgEoHvKSCw
-X-Proofpoint-GUID: GAUMW2cVFg-9ItYRwUoI_TkgEoHvKSCw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-19_03,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0 malwarescore=0
- lowpriorityscore=0 impostorscore=0 adultscore=0 spamscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506190087
 
-
-
-On 6/18/2025 11:56 AM, Krzysztof Kozlowski wrote:
-> On 17/06/2025 21:07, Jagadeesh Kona wrote:
->> Add minItems as 1 for power-domains and required-opps properties
->> to allow this binding to be compatible with both single and multiple
->> power domains.
-> 
-> This is your hardware, so you know how it works thus I expect here
-> arguments why this is correct from the hardware point of view. Without
-> this, it is impossible to judge whether this is a correct change.
-> 
-> If I overlook this now, it will be used in discussions by other qcom
-> engineers, so unfortunately you see, you need to prepare perfect commits
-> now...
+On Wed, 18 Jun 2025 at 12:22, Michal Wilczynski
+<m.wilczynski@samsung.com> wrote:
 >
+> In order to support the complex power sequencing required by the TH1520
+> GPU, the AON power domain driver must be responsible for initiating the
+> corresponding sequencer driver. This functionality is specific to
+> platforms where the GPU power sequencing hardware is controlled by the
+> AON block.
+>
+> Extend the AON power domain driver to check for the presence of the
+> "gpu-clkgen" reset in its own device tree node.
+>
+> If the property is found, create and register a new auxiliary device.
+> This device acts as a proxy that allows the dedicated `pwrseq-thead-gpu`
+> auxiliary driver to bind and take control of the sequencing logic.
+>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 
-These clk controllers mainly require MMCX power domain to be enabled to access
-the clock registers. But to configure the cam & video PLLs in probe, an additional
-MXC power domain also needs to be enabled.
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Since the initial DTS changes only added MMCX power domain, this change is required
-to be backward compatible with older DTS and avoid ABI breakage as discussed in below
-thread.
+It looks like there is another re-spin needed, but thinking of the
+merge-strategy I could potentially take patch1->patch3 via my pmdomain
+tree, as it seems reasonable to keep those changes together. Unless
+Bartosz sees any problem with that, of course.
 
-https://lore.kernel.org/all/cc737a89-77e0-43bc-8766-2c8e9cce1863@quicinc.com/#t
+Kind regards
+Uffe
 
-Thanks,
-Jagadeesh
- 
-> Best regards,
-> Krzysztof
+> ---
+>  drivers/pmdomain/thead/Kconfig             |  1 +
+>  drivers/pmdomain/thead/th1520-pm-domains.c | 51 ++++++++++++++++++++++++++++++
+>  2 files changed, 52 insertions(+)
+>
+> diff --git a/drivers/pmdomain/thead/Kconfig b/drivers/pmdomain/thead/Kconfig
+> index 7d52f8374b074167d508a80fd807929c53faef12..208828e0fa0dc91256bf808b905bea32bb84250d 100644
+> --- a/drivers/pmdomain/thead/Kconfig
+> +++ b/drivers/pmdomain/thead/Kconfig
+> @@ -4,6 +4,7 @@ config TH1520_PM_DOMAINS
+>         tristate "Support TH1520 Power Domains"
+>         depends on TH1520_AON_PROTOCOL
+>         select REGMAP_MMIO
+> +       select AUXILIARY_BUS
+>         help
+>           This driver enables power domain management for the T-HEAD
+>           TH-1520 SoC. On this SoC there are number of power domains,
+> diff --git a/drivers/pmdomain/thead/th1520-pm-domains.c b/drivers/pmdomain/thead/th1520-pm-domains.c
+> index f702e20306f469aeb0ed15e54bd4f8309f28018c..9040b698e7f7f2400163841530fecacfb0f917bc 100644
+> --- a/drivers/pmdomain/thead/th1520-pm-domains.c
+> +++ b/drivers/pmdomain/thead/th1520-pm-domains.c
+> @@ -5,6 +5,7 @@
+>   * Author: Michal Wilczynski <m.wilczynski@samsung.com>
+>   */
+>
+> +#include <linux/auxiliary_bus.h>
+>  #include <linux/firmware/thead/thead,th1520-aon.h>
+>  #include <linux/slab.h>
+>  #include <linux/platform_device.h>
+> @@ -128,6 +129,50 @@ static void th1520_pd_init_all_off(struct generic_pm_domain **domains,
+>         }
+>  }
+>
+> +static void th1520_pd_pwrseq_unregister_adev(void *adev)
+> +{
+> +       auxiliary_device_delete(adev);
+> +       auxiliary_device_uninit(adev);
+> +}
+> +
+> +static int th1520_pd_pwrseq_gpu_init(struct device *dev)
+> +{
+> +       struct auxiliary_device *adev;
+> +       int ret;
+> +
+> +       /*
+> +        * Correctly check only for the property's existence in the DT node.
+> +        * We don't need to get/claim the reset here; that is the job of
+> +        * the auxiliary driver that we are about to spawn.
+> +        */
+> +       if (device_property_match_string(dev, "reset-names", "gpu-clkgen") < 0)
+> +               /*
+> +                * This is not an error. It simply means the optional sequencer
+> +                * is not described in the device tree.
+> +                */
+> +               return 0;
+> +
+> +       adev = devm_kzalloc(dev, sizeof(*adev), GFP_KERNEL);
+> +       if (!adev)
+> +               return -ENOMEM;
+> +
+> +       adev->name = "pwrseq-gpu";
+> +       adev->dev.parent = dev;
+> +
+> +       ret = auxiliary_device_init(adev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = auxiliary_device_add(adev);
+> +       if (ret) {
+> +               auxiliary_device_uninit(adev);
+> +               return ret;
+> +       }
+> +
+> +       return devm_add_action_or_reset(dev, th1520_pd_pwrseq_unregister_adev,
+> +                                       adev);
+> +}
+> +
+>  static int th1520_pd_probe(struct platform_device *pdev)
+>  {
+>         struct generic_pm_domain **domains;
+> @@ -186,8 +231,14 @@ static int th1520_pd_probe(struct platform_device *pdev)
+>         if (ret)
+>                 goto err_clean_genpd;
+>
+> +       ret = th1520_pd_pwrseq_gpu_init(dev);
+> +       if (ret)
+> +               goto err_clean_provider;
+> +
+>         return 0;
+>
+> +err_clean_provider:
+> +       of_genpd_del_provider(dev->of_node);
+>  err_clean_genpd:
+>         for (i--; i >= 0; i--)
+>                 pm_genpd_remove(domains[i]);
+>
+> --
+> 2.34.1
+>
 
