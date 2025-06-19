@@ -1,55 +1,39 @@
-Return-Path: <devicetree+bounces-187398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC40AADFD5E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F48DADFD74
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:03:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 168E7189B4FF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 05:57:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B5A4189C1AA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8482D242D96;
-	Thu, 19 Jun 2025 05:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HYePmHLQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0CB20E711;
+	Thu, 19 Jun 2025 06:03:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59748239E8D;
-	Thu, 19 Jun 2025 05:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D850414F98;
+	Thu, 19 Jun 2025 06:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750312635; cv=none; b=MlsvWNJ1KhViFOsi7tYRCNdcSpDcYRSWxe5eePZirkRv0/xX2x54tAMrpNyMuHzBTpxrcXr3cL+GT4T99TW+96kPhOOzl3Nq/LD6Rdbo4U4svjGxGSi8fuPfBNn23CjGWejflzriF7qPuFvjW3dq6JF19+d0wEYG8weRwpMXtTw=
+	t=1750313008; cv=none; b=trVaFvU/30cqCV4Q6v2am28C8p6og5SBmcWqaC5h3HkzRqkkeKRigrbaE0mipHxJTc1ZXw/cBWOtmLtNOnsFmHHUrkdkg2d09aSnWJmkcKjskMxDkngE5nwdFM7MtPX3tojLwEc/HBFJ4YOF4tU2oiiY5YwIOx08HN0M456kxA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750312635; c=relaxed/simple;
-	bh=D/xlw55EoSMWX+1oNBIVOI7WZ/cWsoba7+lpu84WuNQ=;
+	s=arc-20240116; t=1750313008; c=relaxed/simple;
+	bh=Hx6dDfBI/0hQY9A2qgY8931u45fNYGeo9/rMq5NN1RY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=su/dg2NdaWnHxPOfHlkHIf29iIFNRan61qtj0hc/XMulH6eX445Y+B4+/u/1BvwjoqI7q739l3XHgCArlsAyqmZrT0cDXoACI96MnLGb50px5Eh+rUuDqNGg3UGx9o1kpNapgF0mO8UyBTbXktNdsVpJ1ELwdt8xL0JXgjpGjVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HYePmHLQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1750312631;
-	bh=D/xlw55EoSMWX+1oNBIVOI7WZ/cWsoba7+lpu84WuNQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HYePmHLQBPfH9nqNrBiWlUk9B7aSLg1PcCX6BQGVyy1svSIar9TjqA+9hmSzVyIDE
-	 zG4F9kSlE1W7H+GxLABGyl+VdZACo0DO+7z1srK6g5VsLuwe0iCfTfPNBQp7WvFzw0
-	 DMsJ5/0IZliTgBFXU7jjyokLq9Nj21GNr3pmXJS3EHt00dv6hAdx11Ru9DMpoiSjb3
-	 tSGM0qBjCCnLTZh+YChAp7g1T/JbCqvGmA/8+50mO7perxqmfusXI0MMhDkHJbIAIY
-	 /tW6PeOrGSMbe0RBwzzOZTMbbLxIuZe+7YqzE56U7oPlx27ZVfQhfmDX54auoyrX6h
-	 NoHEjjqxML6sQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EC68417E1559;
-	Thu, 19 Jun 2025 07:57:09 +0200 (CEST)
-Message-ID: <9cdf0624-f9bb-4b11-973e-9480fd655136@collabora.com>
-Date: Thu, 19 Jun 2025 07:57:09 +0200
+	 In-Reply-To:Content-Type; b=mJD7w8wmCgmMLiilmdIv46DjpIEnkproz3Kh0wvvJSCJy40+o6P7jLosFd2znSRayGeG8VigQf4HOcJQr+CkDzQ/tE3/bDavyu5O6Ad+Z2M+aP65iNzA0K+XpaAjcZ6s9L540wf05RgeYx9GejZbE6xfhlzHFAvRcDCYTPUnDN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.33.139] (unknown [210.73.43.2])
+	by APP-01 (Coremail) with SMTP id qwCowAA359UdqFNolI6KBw--.6418S2;
+	Thu, 19 Jun 2025 14:03:10 +0800 (CST)
+Message-ID: <123a7558-fda9-4b56-b6ae-a29d704419ac@iscas.ac.cn>
+Date: Thu, 19 Jun 2025 14:03:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,135 +41,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/13] further mt7988 devicetree work
-To: Frank Wunderlich <linux@fw-web.de>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- Jia-Wei Chang <jia-wei.chang@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?=
- <arinc.unal@arinc9.com>, Landen Chao <Landen.Chao@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
- Daniel Golle <daniel@makrotopia.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Felix Fietkau <nbd@nbd.name>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250616095828.160900-1-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add support the SpacmiT P1 PMIC
+To: Alex Elder <elder@riscstar.com>, lee@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dlan@gentoo.org
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, troymitchell988@gmail.com, guodong@riscstar.com,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250613210150.1468845-1-elder@riscstar.com>
+ <20250613210150.1468845-2-elder@riscstar.com>
 Content-Language: en-US
-In-Reply-To: <20250616095828.160900-1-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250613210150.1468845-2-elder@riscstar.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:qwCowAA359UdqFNolI6KBw--.6418S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7XryxCw47JF45ZF1fWFyfZwb_yoWDAFX_ur
+	93uayDtrsrJFn2kas0van7AryfGr42yr4xXay3JFy8J395Z3Z8u3ZrJry7ArWrXrWUZrn3
+	Jrn3Xr40q3WjgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUb-8YjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_JFC_Wr1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
+	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26r4a6rW5MxkIecxEwVAFwVW8AwCF04k20xvY0x0EwIxGrwCFx2IqxV
+	CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
+	6r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
+	WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG
+	6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
+	1UYxBIdaVFxhVjvjDU0xZFpf9x07jm4E_UUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Il 16/06/25 11:58, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
+Hi Alex,
 
-I think that this series is ready to be applied; however, I need someone to take
-the bindings before I can apply the devicetree part to the MediaTek trees.
+Before the patch body, there's a typo in the subject line: "SpacmiT" ->
+"SpacemiT".
 
-Cheers,
-Angelo
+On 6/14/25 05:01, Alex Elder wrote:
+> Enable the SpacemiT P1, which is an I2C-controlled PMIC.  Initially we
+> only the regulators will be supported.
+>
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  .../devicetree/bindings/mfd/spacemit,p1.yaml  | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
+>
+> <snip>
+>
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@41 {
+> +            compatible = "spacemit,p1";
+> +            reg = <0x41>;
+> +            interrupts = <64>;
+> +
 
+(Not really a review, just a note.)
 
-> This series continues mt7988 devicetree work
-> 
-> - Extend cpu frequency scaling with CCI
-> - GPIO leds
-> - Basic network-support (ethernet controller + builtin switch + SFP Cages)
-> 
-> depencies (i hope this list is complete and latest patches/series linked):
-> 
-> support interrupt-names because reserved IRQs are now dropped, so index based access is now wrong
-> https://patchwork.kernel.org/project/netdevbpf/patch/20250616080738.117993-2-linux@fw-web.de/
-> 
-> for SFP-Function (macs currently disabled):
-> 
-> PCS clearance which is a 1.5 year discussion currently ongoing
-> 
-> e.g. something like this (one of):
-> * https://patchwork.kernel.org/project/netdevbpf/patch/20250610233134.3588011-4-sean.anderson@linux.dev/ (v6)
-> * https://patchwork.kernel.org/project/netdevbpf/patch/20250511201250.3789083-4-ansuelsmth@gmail.com/ (v4)
-> * https://patchwork.kernel.org/project/netdevbpf/patch/ba4e359584a6b3bc4b3470822c42186d5b0856f9.1721910728.git.daniel@makrotopia.org/
-> 
-> full usxgmii driver:
-> https://patchwork.kernel.org/project/netdevbpf/patch/07845ec900ba41ff992875dce12c622277592c32.1702352117.git.daniel@makrotopia.org/
-> 
-> first PCS-discussion is here:
-> https://patchwork.kernel.org/project/netdevbpf/patch/8aa905080bdb6760875d62cb3b2b41258837f80e.1702352117.git.daniel@makrotopia.org/
-> 
-> and then dts nodes for sgmiisys+usxgmii+2g5 firmware
-> 
-> when above depencies are solved the mac1/2 can be enabled and 2.5G phy/SFP slots will work.
-> 
-> changes:
-> v4:
->    net-binding:
->      - allow interrupt names and increase max interrupts to 6 because of RSS/LRO interrupts
->        (dropped Robs RB due to this change)
-> 
->    dts-patches:
->    - add interrupts for RSS/LRO and interrupt-names for ethernet node
->    - eth-reg and clock whitespace-fix
->    - comment for fixed-link on gmac0
->    - drop phy-mode properties as suggested by andrew
->    - drop phy-connection-type on 2g5 board
->    - reorder some properties
->    - update 2g5 phy node
->      - unit-name dec instead of hex to match reg property
->      - move compatible before reg
->      - drop phy-mode
-> 
-> v3:
->    - dropped patches already applied (SPI+thermal)
->    - added soc specific cci compatible (new binding patch + changed dts)
->    - enable 2g5 phy because driver is now merged
->    - add patch for cleaning up unnecessary pins
->    - add patch for gpio-leds
->    - add patch for adding ethernet aliases
-> 
-> v2:
->    - change reg to list of items in eth binding
->    - changed mt7530 binding:
->      - unevaluatedProperties=false
->      - mediatek,pio subproperty
->      - from patternProperty to property
->    - board specific properties like led function and labels moved to bpi-r4 dtsi
-> 
-> 
-> Frank Wunderlich (13):
->    dt-bindings: net: mediatek,net: update for mt7988
->    dt-bindings: net: dsa: mediatek,mt7530: add dsa-port definition for
->      mt7988
->    dt-bindings: net: dsa: mediatek,mt7530: add internal mdio bus
->    dt-bindings: interconnect: add mt7988-cci compatible
->    arm64: dts: mediatek: mt7988: add cci node
->    arm64: dts: mediatek: mt7988: add basic ethernet-nodes
->    arm64: dts: mediatek: mt7988: add switch node
->    arm64: dts: mediatek: mt7988a-bpi-r4: add proc-supply for cci
->    arm64: dts: mediatek: mt7988a-bpi-r4: drop unused pins
->    arm64: dts: mediatek: mt7988a-bpi-r4: add gpio leds
->    arm64: dts: mediatek: mt7988a-bpi-r4: add aliases for ethernet
->    arm64: dts: mediatek: mt7988a-bpi-r4: add sfp cages and link to gmac
->    arm64: dts: mediatek: mt7988a-bpi-r4: configure switch phys and leds
-> 
->   .../bindings/interconnect/mediatek,cci.yaml   |  11 +-
->   .../bindings/net/dsa/mediatek,mt7530.yaml     |  24 +-
->   .../devicetree/bindings/net/mediatek,net.yaml |  28 +-
->   .../mediatek/mt7988a-bananapi-bpi-r4-2g5.dts  |  11 +
->   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  |  19 ++
->   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 198 ++++++-----
->   arch/arm64/boot/dts/mediatek/mt7988a.dtsi     | 307 +++++++++++++++++-
->   7 files changed, 498 insertions(+), 100 deletions(-)
-> 
+I couldn't believe it at first, but it looks like the SpacemiT K1 really
+does have PLIC interrupt 64 dedicated to receiving PMIC interrupt [1]
+over pin "PMIC_INT_N".
 
+Regards,
+Vivian "dramforever" Wang
+
+[1]: https://developer.spacemit.com/documentation?token=AZsXwVrqaisaDGkUqMWcNuMVnPb
+
+> <snip>
 
 
