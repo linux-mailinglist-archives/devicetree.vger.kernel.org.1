@@ -1,137 +1,236 @@
-Return-Path: <devicetree+bounces-187660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527ADAE0C06
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 19:41:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 162A9AE0CFA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03FA43B6BDC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:40:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6386189DFF1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C82628D843;
-	Thu, 19 Jun 2025 17:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrH2f8aL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8C0242D61;
+	Thu, 19 Jun 2025 18:30:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from WA2P291CU004.outbound.protection.outlook.com (mail-polandcentralazon11022093.outbound.protection.outlook.com [40.107.155.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1338B28CF64;
-	Thu, 19 Jun 2025 17:41:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750354874; cv=none; b=U/Dvx/2itx7Pz718Oymu4F7i5pmhFQuf76pWGzSLdbtwYQ+WL9LvJS6MVWzXZmy7Hy/CZERtccWiY6sFjajkvx/tAvZWFDWqKIXBUkMS14+RXzuomDhTagNBNOPGbFn2wLYHha84mkWbRBg40bJf15eN8c5tL+Sz5Jc2E6SHdYo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750354874; c=relaxed/simple;
-	bh=ikAdaCnZcwylMIvKHt+5EeFYJ7Cb4l8ylSoZt9x7e0U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E0yJpmdVDffQhdTkxTcInbRwo1Fpex1xTAqRRXP+0iAcmgtnJsTQKM9fiCPCjvZ5MbyLJ8WKSxMhIkgD/EyoJqbsa1+G7yRCvfZ/jtORDwFT4WvIo1FdLEBByF30SNVRLZbuwfdJIbU/Z1KfxtcnzGShz8c3LZVXfIROzgQOxG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrH2f8aL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 452DFC4CEEA;
-	Thu, 19 Jun 2025 17:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750354873;
-	bh=ikAdaCnZcwylMIvKHt+5EeFYJ7Cb4l8ylSoZt9x7e0U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OrH2f8aLAMSC1Uu2R36bG2jBW0dyAmNN1CdJBAUZvXIr7tVFlzR78spQEUkwCaBqQ
-	 LLDTBO5sBAvrBkEZqedP80kHe9K6Ftvd+F7d8mSG+kbEDENjZoTD/LOs4RBMoxFmPw
-	 x1agOwhB2gmqA7xvJ6V6+gH5dFYb1tXnrDG0zLyFAAMpYz04t0OvuWGmKWXK6B3Wan
-	 gF3DU/BI7kN9FgPq86C3JmjuzPVRBdNsLIxHUq15bTYX8oIyFZgZs6N1MAuY/FFubB
-	 BsgBF1rQX5ATmI4cxPAaZ2oKDTLVccAkPK6x18Vgz5AUcqSyf5SU5NXBXyGd1iw1KW
-	 tJKM0rlQod6PQ==
-Message-ID: <f9a48d99-49c6-4efa-bd97-e9dba9fc55f6@kernel.org>
-Date: Thu, 19 Jun 2025 19:41:09 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DEE1EDA2A;
+	Thu, 19 Jun 2025 18:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.155.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750357841; cv=fail; b=GAZpIpBVW+AdMsVVnPJ4HARJ/zJ2X8TDfLPHqLxv/dfGRHfToAsKGPS1pJV7RW1HG+HMCdxxYH9+Kob8bQZcmTBgDa9PSWTtgzAqwyqTfNLmOtkOWY9zLXUzvhcNzOlC2dKhmcgiS2+AVutWVX8xbU3fUoL48JoMOasE6tyw020=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750357841; c=relaxed/simple;
+	bh=PHluIehl20JWIpe6jq2Gei4uDTz3YPzTLlZjk0zKnFs=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=PpY05gwd75fuWPQeZQIEqL8+VAdodTEdOvNNuHQsDeIoaTVRoGFEQuxcZmW3lWQmUok1/hZQNl+JnZUfveTyBhrUcnkri4KpETjKEIwp2LMjMpK/RsahIe5+43RsqNgctuBZApHEgFOf1sb5mXqSdlawtR/NsJzAPfePczX41NQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=videtronic.com; spf=pass smtp.mailfrom=videtronic.com; arc=fail smtp.client-ip=40.107.155.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=videtronic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=videtronic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a78M+M3p7Khq9ePfZo+B9be4gctw4WgZ5MNB84ZE1nFwjCZXNBo7S8saUyvb1OKQVmOyDOWw5hHpEGl1nMOquSGQBnRU+Y3GZJkag+FJkoFPY2nFItNscQn+hm4XaeaOTWjXsIIH9r6jEW0Rd7MDOnnU/qQNx2clC/BOOYNxQnx2uCKsHsz8xU2lxTStIX8MPUboSssGnuOeQhkk9iX6e7JjbLZUxL0XDkz4pc6iAON9heLFfqsxKhivuJ3MytL6ESohTTfJjnKaNGSqdONkq3QUhpSXSPqqjp/EVgHPP7GDPTjySVEJfh+rb0drvr4k1VlpcQNUdMo7TxZu5yTm1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WK4D3GJW/B/HIssozlmgajRS05Y8k9zPp9pMjcEiqIc=;
+ b=uo3H2U7t5labABQSUpHwjU6xfe9YMmelHGpgc4rpeehI4UHOZrMRPMi8EILspQX978DcihQ0sP+Zsg24vvuE5h44k9DZuH+/G4I3DIOjwPR6Mw0HQaZSleJBDUg768Ly7762W0FSs/Ju1HT6ljkmy+AOn9YFGildbcOFyTglE5odad6qp+AbwlEDFzbsRTEnfhG6PkEyHJkZQeuKnWg9zsz29syqs6JWPDpvLhhTvgFdd6BuFPjZwLqVGM5X0h2yEB+grooHqRGNr5sJ0ms+kC541QZ+L9YYCzvw66PTZL0QP7hB1lZkPOMihaNHfCF8L8tlgGHQh2adOXJk3cMMEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=videtronic.com; dmarc=pass action=none
+ header.from=videtronic.com; dkim=pass header.d=videtronic.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=videtronic.com;
+Received: from WA2P291MB0309.POLP291.PROD.OUTLOOK.COM (2603:10a6:1d0:24::14)
+ by WA2P291MB0287.POLP291.PROD.OUTLOOK.COM (2603:10a6:1d0:22::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.35; Thu, 19 Jun
+ 2025 18:30:35 +0000
+Received: from WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
+ ([fe80::5b7e:db51:5934:a36f]) by WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
+ ([fe80::5b7e:db51:5934:a36f%5]) with mapi id 15.20.8835.027; Thu, 19 Jun 2025
+ 18:30:35 +0000
+Message-ID: <e7c0ab0c-7d4c-4735-9f0d-22874edaf347@videtronic.com>
+Date: Thu, 19 Jun 2025 20:30:33 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 15/19] media: i2c: add Maxim GMSL2/3 serializer and
+ deserializer drivers
+To: Cosmin Tanislav <demonsingur@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Julien Massot <julien.massot@collabora.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: "open list:MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS"
+ <linux-media@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>,
+ open "list:GPIO"
+ "SUBSYSTEM:Keyword:(devm_)?gpio_(request|free|direction|get|set)"
+ <linux-gpio@vger.kernel.org>, Cosmin Tanislav <cosmin.tanislav@analog.com>
+References: <20250618095858.2145209-1-demonsingur@gmail.com>
+ <20250618095858.2145209-16-demonsingur@gmail.com>
+Content-Language: fr
+From: Jakub Kostiw <jakub.kostiw@videtronic.com>
+In-Reply-To: <20250618095858.2145209-16-demonsingur@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA2P291CA0039.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::25) To WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:24::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] reset: eswin: Add eic7700 reset driver
-To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com
-References: <20250619075811.1230-1-dongxuyang@eswincomputing.com>
- <20250619080101.1360-1-dongxuyang@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250619080101.1360-1-dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: WA2P291MB0309:EE_|WA2P291MB0287:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4360aa31-eb30-47da-2454-08ddaf5f6165
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RG54R00vRkVTd0dnQmtwU21uQmFhSThFampnalppZE9yb2dZSUx1SlQ4UXp1?=
+ =?utf-8?B?cEhNRitWaEY5RFFJZmZNVFluVDQ1YldWZzNWZjNucVJ1V3dOb2RRb3l3QUlw?=
+ =?utf-8?B?RUowemExSEttUmZOR0poS3RSQksrU1ViQVRvbGs0L1U2T003Y3NKUDRQMnlL?=
+ =?utf-8?B?MUI4dVQ5MVJOQTdEcURBMjNMazhKYlJrRW4rOXEvNXhFb2dpY3E4ZnVOMXY3?=
+ =?utf-8?B?NzJzeUhTNHJ5YkpFVlpjbXUxTG1JSm9vdTJGNVRhK3duZ0w3Yy9EaXQ1bWUz?=
+ =?utf-8?B?Nk1xYkJCaVJTRVdTRWFhbFZmNXkwRTRkTG85ZVBDOXpSdlFoVEpjSkhtWlFW?=
+ =?utf-8?B?WWRLTkxJNVZUMVc5d01vaFRSK0JPanpueTFJSkd0S1NmdE5HMStVK1BHRzdx?=
+ =?utf-8?B?MmIxZTBvbFlZeHc4QmdlRWF2ZmRZNlM3NWZDSkNPcXo1aEdmV3FqdGM2WkdJ?=
+ =?utf-8?B?OG9heGZhS1NsYjB3SCtEM0QzQzJkb2lUOTF6MXZqWWV2S3c2aHJsSnNzVmha?=
+ =?utf-8?B?aDNiOExxK1FxTmxodTJmQ2dCZHdtYVZ5by9IL3R1dGJHbkxGc3NNWkdqNFJP?=
+ =?utf-8?B?SlB2V01tSTFYUGc4VmtUcW15a0VuRTBlczRSaXlHQkJrcVhhRGVKN25MN0NL?=
+ =?utf-8?B?bTYreFVUTjc2UzdrOXAzV2RiUUZGSmswN25qWDNkQVFJMjZoNWZ5dlNtbE1N?=
+ =?utf-8?B?ZFBpUUlsMlpoa1NkN1RaTGF1N3pJY2t6TlFETmxjbkRVc1R4bUlxNW40cG1Q?=
+ =?utf-8?B?WDd1MjBFam9XN2NXT2hGdGFLYlJqYlZBcS8rU3dGcXdaSzBLQkJ2aWZJS2o1?=
+ =?utf-8?B?eHl5QmJwOEEweHQ4aFZQWkVMUzUxWDdyS0V3RXhMYWliZ3dXRTJlUTRHVG10?=
+ =?utf-8?B?ZGtlcFlIZmJZY01QRlRiZG5JbFdBZ0NwNXJxNTdZNm5uUno2TkFKNHFUTThh?=
+ =?utf-8?B?QzR3UmYzU1F4YW9Bc2syN0xGa01US2IrUitnSlB3WWQvUGs3ZmhKZnphVUVO?=
+ =?utf-8?B?MGI1K25BY0JyRUp3cGVGeVd6RDAreTIxTjJNWDVsWVNsK1o5akdJdFFIclRI?=
+ =?utf-8?B?NUhsblc2enRVSzhsRGpGeUZDdkRJYkVPNGJNT1h2MEhaT3ZFL1pHQnBacU1Y?=
+ =?utf-8?B?U2gxbmY4eTlkdUZnV3E3c0h6b29uSWd0R0VyaG1MVVRHNnEwNXRISXNRUjZR?=
+ =?utf-8?B?WGdVZndYcUFkRXJodVBnZEFYYWVFVGloLzdkZnEyNlJ1ZHNyZlFkTWNycDlz?=
+ =?utf-8?B?alBEZ2J0Mm1BVzFob0p3MHNrM1F2N1cyR0tLWmlmWXJwV1Q5aXIvZmhQcnFn?=
+ =?utf-8?B?TGdSTGJyb1EvQnZldDBPNUNKaGthMTc1TFFZc1BjMjBuYmIrdUhmNUNRWUhU?=
+ =?utf-8?B?QXJjRTRvMGVwWnMxSGMwS2VDbnViTjRPbURKaXVnZlVqVlZRVU9INjYyNTky?=
+ =?utf-8?B?OTRjTGtCdFhkUVVlczdaemtpT294SkcrQjlNemVpMXdsMThibk9ENm9iQnRK?=
+ =?utf-8?B?bU1IN2RMTk1CM2N2eUtFYnF0YUhOSWdhTFFZTFovUWQ1czFmcjZ6NTFDdzdM?=
+ =?utf-8?B?SHpoZlJVSFIwR3dzOU1QYlRTdlQycll3MGJMZXlJRDNWdmdsV3VNbjR2V3ND?=
+ =?utf-8?B?UGw2aG1qZHVpTSttblFTVlRmcTAxbVkxWXoyMXdtMStidC9hZW02QVNXeCtp?=
+ =?utf-8?B?RFI1WW9Xa1Z0OExFcklDdG9zRWZPUTBZb3lxN21ncWNvSHhiWGlRL2FacG9h?=
+ =?utf-8?B?VUtlNU5UZWV4TmxucGdMTkpMcG1oaVJqTWhJN2kxSGpJZVJ1UmoyeTJnQmNr?=
+ =?utf-8?B?NEc1RnpSVlFzcmtScG55cWhGNWRheVJHcE9NU0puNEJOMmoxU1VDZVJhNjdh?=
+ =?utf-8?B?Vmh6OWtDSFlFSnhkcytSb2drVCtsdFArc09NSTJIdEV6UkVGWGRqdzdUY1V0?=
+ =?utf-8?B?ZTY4c0t2czNpRjVPUU5iM00wTWhwSERYdjFacWlScEtJdThoY0tjclR1dVlw?=
+ =?utf-8?B?bGlwSGtTcHhBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:WA2P291MB0309.POLP291.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bUtEVjdOVXJYZ1RYWjR2dnMwVjlSbmhFRnJvd0hiN21SaUJTZC9SbTl4bU9q?=
+ =?utf-8?B?KzEzaUtackJ3WGtMWUovMlR5cDJGcUIyRU1TcUJKVTluWUFwVTJ3Wm0wY0k4?=
+ =?utf-8?B?MGdONzY4WTJwT1FuOGpJUEgxSmRRNTgycXhGd3VmTDJmZEdCaWFkY1E5TUF5?=
+ =?utf-8?B?Z1hsVzBsZGpOSUlUK0ZLKzRRekp6QWkzNHFLS0VYeWpoMjZtbWh6L0ROZUhp?=
+ =?utf-8?B?RXoxYnd4MXNHVytnUnFiS24wa3JQUGZOV2FSNEo0aldYZE5VeWp2ZTZrSDdU?=
+ =?utf-8?B?T0xqRzQ3Q2pselN4dXg0bUJtSWJTWUVLSXRHbTgzS3RXWnFrWnRETlMxZFBu?=
+ =?utf-8?B?Wi92VExKcWxneDdRc09sNXNlME9EaDloQnozMUtnaE9rdG1EcmRGSk45K0VE?=
+ =?utf-8?B?SU9KcTgraDhWUDV5N2pNQkVucG83b2QyWVNCcWV2TmN0eEVzUStJVXBxeDht?=
+ =?utf-8?B?cEZaRlo2K05zZFhUcHNsTlFKLzQzelZmUVFoL25RN0lSZTd3bjE0TTdyVy8v?=
+ =?utf-8?B?M0pQdVZja3gxU0I2cjBaMXhLT2l2d3dGT3E0Q3RHdmxKa0ZHdVlFTWF4aW5l?=
+ =?utf-8?B?ZCtwbG91aEVhK0xQdjVXWjRkeE9wR3czSDBHWUIxc0tSd3BSUEZSRHVaczl0?=
+ =?utf-8?B?NVRTNHJnbkg0aEg5RGl0SVVuU0VUektuSTdYbHBPMFcvak9XdjZGcG96allG?=
+ =?utf-8?B?WW5IRGxsRU8zY2FzOWx5Qm9JOEVPSjBnZDBydTlraDh1dFNuQVJUTmh6SWth?=
+ =?utf-8?B?UC9Rc0dwaUdDZ2d4bzBDTlY3YzVETm5jaVJ5SjErbWxOQTByTE8yVGF4d0wx?=
+ =?utf-8?B?MG82NHhEcG9tdUk0RW4wbDUzdGx2aVVWcGJLYk9BL2xFWEJZM1k2TG1pa3o1?=
+ =?utf-8?B?WnFrWDJMd05OZS9xTHNKOFRNNXBsZnAyZUZuNlhDUGFIb1VRZlo1TGJ1VWRC?=
+ =?utf-8?B?NEp5eCt6Vzk2aHVoRVBtMDhhZStGY2hQaVRGODFQeFdKUU9YS1B6QVNZaDRQ?=
+ =?utf-8?B?bGFLaVZZdDBIdS9aOXVzUlFBeWZXd3QxN1dmTGdIV3lMRnRQUmdiRWVpSWg4?=
+ =?utf-8?B?L0x3Z2VjNGxqV1NxTUJiYjBkMVhrRndBVHUzeXRQQ2VSUEhvczF5eFJMRkpJ?=
+ =?utf-8?B?YUtiSitoY05LMG5VV0UvYWtOekE3NStrOURiL1FtaGNVYTUwSEpkaC81QWI0?=
+ =?utf-8?B?N05KZS8yUW91VnBVa1N5VjdFc2drRkc1elFDZ2VQalJ0ZFRjVzQ2aHdFRU1P?=
+ =?utf-8?B?STVOOGoxTjRSNnZRdzBDV0RxQlB4OFordCt3SXVpNTBObU93MUV5aXU1eHVl?=
+ =?utf-8?B?ZDJKUEdxcFhtV3Y0SHl6UWwxZHFWUmYzT0poTExmTVZaOGhTSGlZZGdwbjRN?=
+ =?utf-8?B?dklaN2dzdGJXWWJuZTlUNWhpVElYUGI0WE1kUGlhN2xBeXJGMmkySFhocDNo?=
+ =?utf-8?B?bTlJVGxRRC9jYzhPVnUwNDBkb1FxVW9id3hNblNlVVZyM01OeDByZHYyUGQx?=
+ =?utf-8?B?V3QzQUhqNTV0aEZ1VE5yYUVqYURkZ3daZXp3SytqSlJZWm1oVHdaSkpCN2VF?=
+ =?utf-8?B?dWVvWUZRZjArQmRkbjVSQ3d3elREbjB2bkZ5SmQ0VXF2VDlPOE5NOGdEMFhh?=
+ =?utf-8?B?QkR6WnVjVWRtbVI1TzliZXQ3TC9KTmRWOWpacDJSOGdZcHdxM2kzZlhxSXNM?=
+ =?utf-8?B?UVgzaHNMZ0hDWWhla2ZOTTR0bloxRENPbnJIVnJrblpmVU84QklUQUZQRlpz?=
+ =?utf-8?B?Z1FYVUVpOHM1ZnlVR09Xa01Cc2dEZEhzNGp2UXBOQS80T1NLU21naXg3RHlG?=
+ =?utf-8?B?bDU1OGhBUitnVnRXMW52SnFEZG5uS3Q3OGxxNUtKYlRwOTZ6WnYxTTMrQTBU?=
+ =?utf-8?B?ckdoWG83N3hQenR6eVBSbEkzMDNpY0F5MFlXNU9VL1NMc0FsQU4wcnc2NWFh?=
+ =?utf-8?B?NHZHamhkKzM0eEttUzd3QjlKWEpEOUhuY0RRUW1MN1AyNm5JYXZpWDU1K3hI?=
+ =?utf-8?B?RHVTUkJEdk5HM1Yvc016cyt3QzFLcWY2UHJEVzFqa2tWR0tqVVpnYWJWKzU5?=
+ =?utf-8?B?a2Q3R0s2YmgzVzZqaXVjOFIwRTY2aWZlYkxtSUVYVWlwRm9Fd2VvZ3UrYitZ?=
+ =?utf-8?B?WjU5cnZ6a2pUTHhISHp5LzdCbExEck9tckJQOHltZjI5M0Q1dXFxb3c2dGlu?=
+ =?utf-8?B?YlE9PQ==?=
+X-OriginatorOrg: videtronic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4360aa31-eb30-47da-2454-08ddaf5f6165
+X-MS-Exchange-CrossTenant-AuthSource: WA2P291MB0309.POLP291.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2025 18:30:34.9853
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 42908bfd-23a4-4a6c-951d-1ef4d8e0c612
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FPsKFCKHuSK1PyCsIbVRCVevvI+BO0WbcAPTFt7dOxHNWt9qSdu6QszIzFr3ClBDWOi27GowRt2OIT0HklI3O+hli7oNs2AEkIAX3cUCJhk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: WA2P291MB0287
 
-On 19/06/2025 10:01, dongxuyang@eswincomputing.com wrote:
-> +
-> +static const struct reset_control_ops eswin_reset_ops = {
-> +	.reset = eswin_reset_reset,
-> +	.assert = eswin_reset_assert,
-> +	.deassert = eswin_reset_deassert,
-> +};
-> +
-> +static int eswin_reset_of_xlate_lookup_id(int id, void *p, void *data)
-> +{
-> +	struct of_phandle_args *reset_spec = data;
+Hi Cosmin,
 
-Still wrong cast.
+I have tested V4 on Raspberry Pi 5 (v6.15) and I think that I might have 
+found some issues.
 
-What is the type? You got exactly that question. How did you resolve it?
+MAX96714+MAX96717+IMX219:
 
-> +	struct eswin_reset_control *slot_control = p;
-> +
-> +	if (reset_spec->args[0] == slot_control->dev_id &&
-> +	    reset_spec->args[1] == slot_control->reset_bit)
-> +		return id;
-> +
-> +	return 0;
-> +}
-> +
-Best regards,
-Krzysztof
+Streaming to memory works as expected, however I have encountered issues 
+when I was testing
+this with libcamera (streams + meta pad).
+
+To make things work in the first place (tested on V3) I had to create 2 
+streams - one for image
+and one for metadata. Essentialy what I did was setting up routes as 
+follows (for both serializer
+and deserializer):
+
+Image stream: [0/0 -> 1/0]
+Meta stream: [0/1 -> 1/1]
+
+With that and some extra adjustments on libcamera side I was able to get 
+video stream.
+
+Now, above fails on V4. I belive that this is to due with following line:
+max_ser.c:
+
+> +	ret = max_validate_tpg_routing(routing);
+> +	if (ret)
+> +		return ret;  
+
+Routing fails here as (I believe) tpg routing is checked even if tpg is not being routed.
+After I commented out this check all worked as before. This was not a problem for deserializer
+as such check does not exist there.
+
+Perhaps this check should be conducted only when is_tpg is true?
+
+MAX96724+MAX96717+IMX219:
+
+This setup was also tested by me on V3 (streaming to memory only) and worked as expected. With V4
+however, after setting up the pipeline, I am unable to get video stream. No error is reported.
+I doubled checked my setup with V3 and it worked flawlessly (with the same configuration scripts).
+Streaming simply hangs after VIDIOC_STREAMON.  I am able to quickly test V3 and V4 so I can provide
+you some further information if needed.
+
+--
+Regards
+Jakub
+
 
