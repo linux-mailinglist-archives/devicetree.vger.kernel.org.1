@@ -1,115 +1,127 @@
-Return-Path: <devicetree+bounces-187589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B68AE08A2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:23:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C56AE08A5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:23:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C772189164E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:23:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C31123B2D30
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E522521E0AD;
-	Thu, 19 Jun 2025 14:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F0521C188;
+	Thu, 19 Jun 2025 14:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bK+UQPn8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9UurjIV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260792116F5
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1578C21A43D;
+	Thu, 19 Jun 2025 14:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750343006; cv=none; b=P85v3+CYfet/E1LWgC+rpRkWpZPByIh/EATf262LbJ8LVwgal2X8EIb9VXtLQ5AHPq2SGMJ598KQhWK0zTAZ5fyH+rC6z1K/lTDCH+CQMNk4f/byY/F2oA5Y+mAk//YHUO8aGTtZoiEf1KPWk3/uLp74cbUCYyT8o50wrJ0HZ5s=
+	t=1750343026; cv=none; b=B6bSYocZ1uqLCSWD/N5JG0JMVypGmh30PEO7cAI1zy/aLM1BGie0NG1Uh2AdlUB16kSkhMGuy+z958/IcqdQO1SS6Axcb64wejMLO+yh5nBH/yJnd130GeHlQfHHBijwLZvjKl67fPMUUO258cw1S/OldvNebTOgGP65205XGz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750343006; c=relaxed/simple;
-	bh=6kzgpoC/6r42t3YE4N/s+jy2WCWfT8as0yTg6s3TFZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FFQlNoR7L9z1baC3MZxwNYWhHAOy4AwvsQt9mzEDaTGHSXBGfcWmKICr9mQZIFfkvK5/2MNUVEIR9XRC0fL/vyI436YhJ4ZD7GVqPq7tvPQFYMU5xEWSWHt3+FbA+Pk4n1ZJlGMsbjVnc01XZdAArxXrvAROGvBf5cZMQpnU0i8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bK+UQPn8; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a507e88b0aso751377f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:23:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750343002; x=1750947802; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NRuOPGj+1FvnFYpArdk/uAbPOCfkau6emWeICNDblLU=;
-        b=bK+UQPn80TDUMaDAdGEP+Jnjqm+Phi18quF1sDStfxEotLI2IcwkfmrNTvEKWoKTX5
-         MYXPkKtbY0XzX5pffEoUQe85bd6xC7Eq9NJRPCw6F2qPV71H/nnqZcdUaubXlBIWOSWz
-         zEzcsHVzU88ym0mSE4uqKEUF156SLwL2uTIDIGkCst4j1yfMdORhL4EbPiX3yyQzRh/x
-         uqRxQA/htu8pN4/lWGt2NzFMm6QPAjHSaS16PeyPLftcEz201a/6SbWOhEW7fXBaYy3H
-         8e+ZQdCTDDjdYHK6QUuXYte7VZgBqzsmEOFQZiN7h8Hc1ecKlmj/URONo09b6uSpwJk2
-         gdlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750343002; x=1750947802;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NRuOPGj+1FvnFYpArdk/uAbPOCfkau6emWeICNDblLU=;
-        b=LtcMW5lXsbvwcOImsMo55wGqGT4qepiq6lB1CFBinS/0jjsA/3bq/gcIYwHIe0MGWK
-         HQhMkDwsOaoEhMp7YkbFrkdYim9bCgeJjZbxhNjmcILKsUmj/sztoBvKttt9qaMm2Xri
-         537B4BGq00WMgM0pJB43h4deNbnFxy0PlWFw/ZMT11Q+PmdMUY46nCGHNuyHt4us0jLk
-         TDm9VkqnQcLs1Rw83dFG4cHlFT3gJS5QYtHbm8/dQgJqCBOEfd/2mOgDfPlgej8Rs/Mx
-         /Cm42pljnNzTThYyUrAV1p8jSh+Kavs6Q98ybkQ+5WUTrSQ5t8kZ3SzVH2F8RBJRIoVz
-         lBVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOSSUjx3gRaRJX68MibAb01/EFQ0KYJt9Tpm+DTAht2s+xFOBWV147/PE2MZYx0S3UDlqv0XcOjN1q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOSrwYCvXQ0DqDIN1bKRBxMiZm1h1hLhfqTD0rjM/20bdo243q
-	S7ULCJQMfziPNCmqyQZuaQ87ahH+Ydx6NsRnUi1mellgWJVbkXGgpkyNMhhfNZdmwT4=
-X-Gm-Gg: ASbGncsTnbk0nc7We0uQO+Wq53oXJOIQRteBwJbdEIaF8AEwObMixKFWctaxDrIt03b
-	qerROszzqRRVKtneX5o3K+fnDpRBhwRzKrTLRJdHRh/H7pXrj3CIOuXCpQBGDf+pHnQMCVDtR5H
-	pOU9sjydiK/k76foZxcLtg5Ewz8GLjrHffspDpIftbW/xD/70swxmqhQ8om415CS21FgZnBvt6G
-	oyRK0HiJsYI6PF7v7mmnwHxggs3NEVYUQM4vEWaCQNYJniC7Wd0z9isu2H5HUQ9Mqu+H6LZ1mKt
-	lLVpnAw9D96tB96YffYn/22c0SVPolO8zCL/9Sin6TSrwu9+ZdfpfINpjitQ21CtfnjNpvYNEV5
-	uzzRaGPstYlsQtV+7X6pDOO46Cz4=
-X-Google-Smtp-Source: AGHT+IHp+ZdhxuAAGQlqFZ4R4iZi67IGZtlL61Gzmpey7v/7Hirij3KEhOesLK5659xblWS4V6bLHQ==
-X-Received: by 2002:a05:6000:2884:b0:3a5:2ef8:3512 with SMTP id ffacd0b85a97d-3a572373cdamr19566371f8f.14.1750343002467;
-        Thu, 19 Jun 2025 07:23:22 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b4b67bsm19368026f8f.83.2025.06.19.07.23.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jun 2025 07:23:21 -0700 (PDT)
-Message-ID: <620f9281-208f-43ae-ba38-4c3da04fe5af@linaro.org>
-Date: Thu, 19 Jun 2025 15:23:20 +0100
+	s=arc-20240116; t=1750343026; c=relaxed/simple;
+	bh=ujz4WdiT5pNH0VMHgde3DOK3OwOr/UQcYBIuD4DdIcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bu96UTpiWI3UNy664gDzzpyjjS076dIlP0iCkzMU94BD87UcXlSvhzP+E0NTq0QKZ9Ufcve6ZGOIlgu+mo3WaB5moVcjhyA1Tw/IYzhuQ/GE2T1vX6POGKLZg5LqxPAd2vOm4gWeXGNM+SjNQmTOW15tOKvwKEFoHwRdbwQytcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9UurjIV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB6EC4CEEF;
+	Thu, 19 Jun 2025 14:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750343025;
+	bh=ujz4WdiT5pNH0VMHgde3DOK3OwOr/UQcYBIuD4DdIcU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I9UurjIV3oCDBKjgvN4CJe0PdiPE52wjHbJMS1Bf9R9dcHfglSfDuUwOT67OqpzjW
+	 iVrGdJnTOk7jiOJvujiRvT3ghUy3Yt8fnDt8gfCPB7KBpYcvhV00hwZ9IlXU6q4F04
+	 mu1iMZgiOH/eCTMApsvUPJsGHXdZ660ZEcQTpDJM1PijCxnT4hZpCNUvl7upnCFucT
+	 5w1qbpG26L4Ca1rDPHcVq8p/TYUE/jwD2GLib+yGbb1PHdThxcjD1MyLCUwMjlPY/I
+	 3ZoBOSzK/pk0G4CUkB++fhD+mbH34iOB/beSfMa2BJv+J1QbsvQUUa9XEGF2qKeykF
+	 shAw3VeTbWF0g==
+Date: Thu, 19 Jun 2025 15:23:39 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 00/20] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Message-ID: <20250619142339.GF795775@google.com>
+References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: media: venus: Add qcm2290 dt schema
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
- quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, stanimir.k.varbanov@gmail.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
- <20250619142012.1768981-1-jorge.ramirez@oss.qualcomm.com>
- <20250619142012.1768981-2-jorge.ramirez@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250619142012.1768981-2-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
 
-On 19/06/2025 15:20, Jorge Ramirez-Ortiz wrote:
-> +maintainers:
-> +  - Stanimir Varbanov<stanimir.k.varbanov@gmail.com>
+On Sat, 14 Jun 2025, Nuno Sá via B4 Relay wrote:
 
-I think this is the wrong maintainer entry at this stage.
+> Hi all,
+> 
+> Here it goes v4. Main changes is to drop chip info based struct and
+> directly use an enum in the FW .data pointer, use the notifier API for
+> dispatching events and multiple calls to mfd_add_devices().
+> 
+> Regarding the last point, I think I could have used multiple calls to
+> devm_mfd_add_devices() and avoid those gotos in adp5585_add_devices()
+> but I do not feel that would have been "correct".
+> 
+> Thanks!
+> - Nuno Sá
+> 
+> ---
+> Changes in v5:
+> - Patch 2:
+>   * Use the existing devm_mfd_add_devices().
+> - Patch 3:
+>   * Remove TODO comment.
+> - Patch 4:
+>   * Mention in the commit message the Copyright update.
+> - Patch 6:
+>   * Return a struct regmap_config pointer in
+>     adp5585_fill_regmap_config();
+>   * Just leave a blank entry in the adp5585_regmap_defaults array.
+> - Patch 13:
+>   * Improve comments for pin6 (row5) validation;
+>   * Don't use magic numbers;
+>   * Drop some odd line breaks;
+>   * Initialize vartiable when declaring.
+> - Patch 14:
+>   * Drop double spaces;
+>   * Don't use magic numbers;
+>   * Improve some comments.
+> - Patch 16:
+>   * Fix missing semicolon.
+> - Patch 20:
+>   * DS -> datasheet. 
+> 
+> - Link to v4: https://lore.kernel.org/r/20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com
+> - Link to v3: https://lore.kernel.org/r/20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com
+> - Link to v2: https://lore.kernel.org/r/20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com
+> - Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
 
-You can ^should list yourself and/or Vikash, Dikshita and me.
+Okay, that's it from me.
 
-Other than that, LGTM.
+Please respin those nits, then you should be good to go.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
----
-bod
+-- 
+Lee Jones [李琼斯]
 
