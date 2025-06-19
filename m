@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-187408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC68ADFDBD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:40:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32700ADFDC6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393E1189A683
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:40:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C97773BE3C4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E31324729C;
-	Thu, 19 Jun 2025 06:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF5A254AF4;
+	Thu, 19 Jun 2025 06:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="bUG5HHSY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="imlhkyh6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B1124167D;
-	Thu, 19 Jun 2025 06:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C6D2472AE;
+	Thu, 19 Jun 2025 06:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750315203; cv=none; b=NyF/zQ8fnha7DTNV5N2vgOQLyEuLeKSGBQu5BtHLrf+ATF3HV7tTOvFAZiNLfm9uLNNWCUJi4kF3P4Rwkev5wa1qgWeW1txRrZ7o/nWUikL+VpQ1avLGy6HGW2FMTSO4rimxE2ncYZ0salj5P2douWoEiZO4IbJ5QvPuMGF+O8M=
+	t=1750315206; cv=none; b=ZV5CBp/aUyqVIb5nTKw3GYuOJHRKspZxkYiXtVi9+XrSO7omTK4VfH10V0BWF1oMcFathxavnsrmRX+OGmrk34nchWv8o1QmTC5c9HtQFQl6VpdapmUT1/4AqlLfwmGQlSJ3DgHkS4aWs6eaAhshpsG/FjZXBqpnkpgILOEPca0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750315203; c=relaxed/simple;
-	bh=4MOTPL+eD9R/a8ShunIQD4Ak8F19x2srD1y1ZM5qBns=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C5ysfBdBo1OheSibJXpw+FmDyvLQcF4w43YVa+oLhd8c43reUbANzcnAnuAPtGb6IgEvV5+kP82jUOazworh+K22Ojbvp2mKG+zNyUJveH+/fOtDHKacNXvhNkDpfmIWLDsXl5kbuUnutSrWg8QXsOVdRLHs2VLBWpjKnXqeWq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=bUG5HHSY; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=xp
-	tJ5nlr75MekjpYY473ZW53Q3YMWO/bs6PyrYC1z1Q=; b=bUG5HHSY7FF7NspWRv
-	PkP93TfuJt5Fv8+05P23ZTtp0G5l96uZgRXudnKAxTbtWciuhR495YBu3LotJd9c
-	TLc0A/1Y5p/tIcJGBS7qKbjAll8BWnAl56bO6LroXnI0d8USeLfzl4jLseiOu8n3
-	KKcODqiCzf7+Z22J/+kv61rr0=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wD312OGsFNoUtqyAQ--.3973S11;
-	Thu, 19 Jun 2025 14:39:19 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: dmitry.baryshkov@oss.qualcomm.com,
-	heiko@sntech.de
-Cc: hjc@rock-chips.com,
-	mripard@kernel.org,
-	naoki@radxa.com,
-	stephen@radxa.com,
-	cristian.ciocaltea@collabora.com,
-	neil.armstrong@linaro.org,
-	Laurent.pinchart@ideasonboard.com,
-	yubing.zhang@rock-chips.com,
-	krzk+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
+	s=arc-20240116; t=1750315206; c=relaxed/simple;
+	bh=QdblX/Adz2YehdKa6jPrwXXt8N4R935JXL9kTT6qi6Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pkhmxyh7NFIF3cTD096s1PWtGfwWxJmw2nZ11T1YCFufWJe5EDJyav4QJYv1rm0olOy8LYcPjVR/KJiCiqVfRill59+s7HovHLbhDjOJdYyvZeLbPyawVf+dzpd//BXhHbv5vU3PqumbuoXYJvU6BcNJK9Gh3Kbo/feWmvmmjx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=imlhkyh6; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=edXj2ym4g9lNt0PMawzo8NDuOLySpaifvZv9IBIuZ4c=; b=imlhkyh6MlN+6j4ZWxWlrZKzjZ
+	3c/ByYrwNWeH/euhzS8ZV7ZdqSsJb69eSbZyIMvf4qmAeYJJoEJ3efEDqGOXgBd3eE4rWvMxHMj9V
+	memxnFohR50BJ2edxFfNTxkyD5rb2HEPFOpw/64XZqzFb0+WpDhXyvSiezP6A2VgZwgTWd3bz42YT
+	MD2cXebyCORILG+h5wZfngvfofA5fotzrndyoiZPG1Pm5DPwY8gIoj91tjrgOiCx21Ott8z2nqrW6
+	zJoJv9T6q3UOXBBLJxE5Vi41ty8XV+XmkHtiC6CtPPIg+ZsaYhafi3lbv/l1B9V/xcB4iMHjVJzq6
+	+9jnbHKw==;
+Received: from [89.212.21.243] (port=44058 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uS8wG-00EVcY-1H;
+	Thu, 19 Jun 2025 08:39:55 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v4 9/9] arm64: dts: rockchip: Enable DP2HDMI for ROCK 5 ITX
-Date: Thu, 19 Jun 2025 14:38:55 +0800
-Message-ID: <20250619063900.700491-10-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250619063900.700491-1-andyshrk@163.com>
-References: <20250619063900.700491-1-andyshrk@163.com>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Initial PHYTEC i.MX93 overlays
+Date: Thu, 19 Jun 2025 08:39:50 +0200
+Message-Id: <20250619063954.1730231-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,126 +71,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD312OGsFNoUtqyAQ--.3973S11
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CrykKw18Xw43uF4kCF18uFg_yoW8tFW8pF
-	nF9rs5KryxuryYqw1YyF1kZF4DKrs5ua93Jr1aqry0yFW7Xas5K3WrWr9YqF1jvF1xXw4a
-	yr4kXa4j93WDXFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j2XdbUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0g5xXmhTsFoIBwAAst
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-From: Andy Yan <andy.yan@rock-chips.com>
+Add initial overlays for the PHYTEC phyCORE-i.MX93 SoM based boards,
+that is the phyBOARD-Segin-i.MX93 and phyBOARD-Nash-i.MX93.
 
-The HDMI0(Port next to Headphone Jack) is drived by DP1 on rk3588
-via RA620(a dp2hdmi converter).
+Overlay #1:
+ - imx93-phycore-rpmsg.dtbo
+ - add support for M33 core RPMsg on phyCORE-i.MX93 based boards
+ - applicable to both phyBOARD-Nash and phyBOARD-Segin boards
 
-Add related dt nodes to enable it.
+Overlay #2:
+ - imx93-phyboard-segin-peb-eval-01.dtbo
+ - add support for PHYTEC PEB-EVAL-01 evaluation adapter
+ - applicable to phyBOARD-Segin board
 
-Note: ROCKCHIP_VOP2_EP_DP1 is defined as 11 in dt-binding header,
-but it will trigger a dtc warning like "graph node unit address
-error, expected "b"" if we use it directly after endpoint, so we
-use "b" instead here.
+Overlay #3:
+ - imx93-phyboard-segin-peb-wlbt-05.dtbo
+ - add support for PHYTEC PEB-WLBT-05 WLAN/BT adapter
+ - applicable to phyBOARD-Segin board
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+Overlay #4: 
+ - imx93-phyboard-nash-peb-wlbt-07.dtbo
+ - add support for PHYTEC PEB-WLBT-07 WLAN/BT adapter
+ - applicable to phyBOARD-Nash board
 
----
 
-(no changes since v3)
+Primoz Fiser (4):
+  arm64: dts: imx93-phycore-som: Add RPMsg overlay
+  arm64: dts: imx93-phyboard-segin: Add PEB-EVAL-01 overlay
+  arm64: dts: imx93-phyboard-segin: Add PEB-WLBT-05 overlay
+  arm64: dts: imx93-phyboard-nash: Add PEB-WLBT-07 overlay
 
-Changes in v3:
-- Add RA620 into bridge chain.
+ arch/arm64/boot/dts/freescale/Makefile        | 10 ++
+ .../imx93-phyboard-nash-peb-wlbt-07.dtso      | 88 ++++++++++++++++++
+ .../imx93-phyboard-segin-peb-eval-01.dtso     | 52 +++++++++++
+ .../imx93-phyboard-segin-peb-wlbt-05.dtso     | 93 +++++++++++++++++++
+ .../dts/freescale/imx93-phycore-rpmsg.dtso    | 60 ++++++++++++
+ 5 files changed, 303 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-nash-peb-wlbt-07.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-rpmsg.dtso
 
- .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index 7de17117df7ae..903ad42f97177 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -57,6 +57,29 @@ analog-sound {
- 			  "Headphone", "Headphones";
- 	};
- 
-+	bridge {
-+		compatible = "radxa,ra620";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@0 {
-+				reg = <0>;
-+				hdmi_bridge_in: endpoint {
-+					remote-endpoint = <&dp1_out_con>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				hdmi_bridge_out: endpoint {
-+					remote-endpoint = <&hdmi_con_in>;
-+				};
-+			};
-+		};
-+	};
-+
- 	gpio-leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -73,6 +96,17 @@ hdd-led2 {
- 		};
- 	};
- 
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_bridge_out>;
-+			};
-+		};
-+	};
-+
- 	hdmi1-con {
- 		compatible = "hdmi-connector";
- 		type = "a";
-@@ -268,6 +302,24 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
- };
- 
-+&dp1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp1m0_pins>;
-+};
-+
-+&dp1_in {
-+	dp1_in_vp2: endpoint {
-+		remote-endpoint = <&vp2_out_dp1>;
-+	};
-+};
-+
-+&dp1_out {
-+	dp1_out_con: endpoint {
-+		remote-endpoint = <&hdmi_bridge_in>;
-+	};
-+};
-+
- &gpu {
- 	mali-supply = <&vdd_gpu_s0>;
- 	status = "okay";
-@@ -1261,3 +1313,10 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
- 		remote-endpoint = <&hdmi1_in_vp1>;
- 	};
- };
-+
-+&vp2 {
-+	vp2_out_dp1: endpoint@b {
-+		reg = <ROCKCHIP_VOP2_EP_DP1>;
-+		remote-endpoint = <&dp1_in_vp2>;
-+	};
-+};
 -- 
-2.43.0
+2.34.1
 
 
