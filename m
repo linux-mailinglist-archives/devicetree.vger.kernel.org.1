@@ -1,171 +1,106 @@
-Return-Path: <devicetree+bounces-187687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05BE9AE0ECE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 23:03:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9897EAE0EE6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 23:17:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 557931BC7C5F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:03:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 797D11648C9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C18253B43;
-	Thu, 19 Jun 2025 21:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70739241CBA;
+	Thu, 19 Jun 2025 21:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nHzBpkMp"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="QH8mXZfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C761E244693;
-	Thu, 19 Jun 2025 21:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98ADE2206BF;
+	Thu, 19 Jun 2025 21:17:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750366979; cv=none; b=TD2vqAs8vB6YESw2TG+p3dMUUaX1NhV58aXyWkOudjMYBKB9/gQI3OUy2Y8pzZtxO9tBJI5YoygiccQmvAHIJBxSQ97yLh+PYm8lIL/6zJdzlWnh4vhicj8sBJrpmcebvHBisKL9sFp95836PItMRv78NkRCWkfm1Q8K7yJKMrI=
+	t=1750367864; cv=none; b=IbQge4Is4WwHc+rIBWyGDzoRfxHipOEU5s2sK+Vkxuf0igqroodI84NkN7IGdQ1nVhk1iRbwYG6BBogwFkTZzwuUNs9qChw7h/Vy8t6vlpEv1HlkkmrFA3TTW/cO9DyDCAfYic4GBHvkX62Cpj1MUbEX7L/WqO1CMup0JscQxCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750366979; c=relaxed/simple;
-	bh=cMcgUkKcU4XsVXe3puMc1IqvW3rgKBUEbIiiJLipLQI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wwz1v7ITBtacYHTNB9HGJGGhoDm6NSLc4iNn9cx6wxqHHL/nRBUg3T68bTR+v+/vxeEdGSScFnqhhOZVCQ/n9hKECOxdKt4YDfwk8+p6oNLWXMgGtsuurzVBl+Xc4f6pqJDp5g1/eIOaqhh1/a9o93OtZKWpgR/2OahuezprUNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nHzBpkMp; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EE9192EC;
-	Thu, 19 Jun 2025 23:02:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750366962;
-	bh=cMcgUkKcU4XsVXe3puMc1IqvW3rgKBUEbIiiJLipLQI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nHzBpkMpW+52bQS9MZNB33ymQm5kq4+JmXeNbxNXzA99jYVDEyEzQxuNgb231G0vw
-	 p9w1Q2rETQcwko4GJ8gIE6Fky1RgWDPPfJ3wYVTN6SdwEkcjARLPrpURRXbzR2YeF8
-	 dGpVql/nGJTd4hl4rsPmDL4igkyFSI1zJgZjmn38=
-Date: Fri, 20 Jun 2025 00:02:37 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Adam Ford <aford173@gmail.com>, Frank Li <Frank.li@nxp.com>,
-	Isaac Scott <isaac.scott@ideasonboard.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	s=arc-20240116; t=1750367864; c=relaxed/simple;
+	bh=emGQpgfZNVxPTF8CtUoR2PPOZht/3gzFE34gP6kZ2DA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jBCblIqOcNmNE0UuIucJhPfRtsM4F54Cc3eirhdxOpPayQkRiSymGXeskffPTy58XVl04K8v8aY3uGIlSw/gJVTCDUm65oGQLORbzZ8biR0AsLv6BtsatYCML0IwwcWo1MFGpEzPIeXJ4B46gC/Yw+bQMh2rZhhEMbI4bO6hDKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=QH8mXZfz; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=136gTLj/Y0HhKLYdP9vuRieftyoXRpz7sdT5yNch5VM=; b=QH8mXZfzmnidfYF+tyRI3+PsbV
+	fxoIuns/M44n0uG2Rc67+usaCePYkFX2F2F8H/5wHsZiF2KC9SlXbAz9fLsmH3CxwBH1plmPQwl0Z
+	unBdqRs/Id2fE+ud78jwRICesEYhjpCZF4u7D8Yaa5/gE8M9gd6pwc3Dya2l3k9KdjcWR4BRIzwpv
+	vACAr1YnOCPHLPmksbrWoms9ZBGLA2TXeaxbRWBbak5VHH95WwioBatFoSZRFXD/Z73wlsAnIVZJN
+	mARKVOwdRzT+AHt+NJkkVYjjNIbXrHprV3uqIUQlWBC1UYSCqDrxgxWJlu7nEakbPjkvKfAh4g5Y8
+	+1OIpuZg==;
+Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uSMdd-0007fA-Cl; Thu, 19 Jun 2025 23:17:37 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	Purism Kernel Team <kernel@puri.sm>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 6/8] dt-bindings: media: nxp,imx-mipi-csi2: Add
- fsl,num-channels property
-Message-ID: <20250619210237.GA21935@pendragon.ideasonboard.com>
-References: <20250608235840.23871-1-laurent.pinchart@ideasonboard.com>
- <20250608235840.23871-7-laurent.pinchart@ideasonboard.com>
- <aEb+iTlDh0H/bRMY@lizhi-Precision-Tower-5810>
- <CAHCN7xJjR1zZXeJAvkXmdNYroP6Jm6TLjHjnPUOF4z7yaL7EFw@mail.gmail.com>
- <20250609182033.GA11428@pendragon.ideasonboard.com>
- <aEcxN7xClLfp0STx@lizhi-Precision-Tower-5810>
- <20250610081829.GC11428@pendragon.ideasonboard.com>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: Re: [PATCH v2 0/4] arm64: dts: rockchip: enable further peripherals on ArmSoM Sige5
+Date: Thu, 19 Jun 2025 23:17:24 +0200
+Message-ID: <175036770856.1520003.17823147228060153634.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250614-sige5-updates-v2-0-3bb31b02623c@gmail.com>
+References: <20250614-sige5-updates-v2-0-3bb31b02623c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250610081829.GC11428@pendragon.ideasonboard.com>
 
-On Tue, Jun 10, 2025 at 11:18:29AM +0300, Laurent Pinchart wrote:
-> On Mon, Jun 09, 2025 at 03:08:39PM -0400, Frank Li wrote:
-> > On Mon, Jun 09, 2025 at 09:20:33PM +0300, Laurent Pinchart wrote:
-> > > On Mon, Jun 09, 2025 at 12:53:48PM -0500, Adam Ford wrote:
-> > > > On Mon, Jun 9, 2025 at 10:32 AM Frank Li wrote:
-> > > > > On Mon, Jun 09, 2025 at 02:58:38AM +0300, Laurent Pinchart wrote:
-> > > > > > The CSI-2 receiver can be instantiated with up to four output channels.
-> > > > > > This is an integration-specific property, specify the number of
-> > > > > > instantiated channels through a new fsl,num-channels property. The
-> > > > > > property is optional, and defaults to 1 as only one channel is currently
-> > > > > > supported by drivers.
-> > > > > >
-> > > > > > The only known SoC to have more than one channel is the i.MX8MP. As the
-> > > > > > binding examples do not cover that SoC, don't update them.
-> > > > > >
-> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/media/nxp,imx-mipi-csi2.yaml       | 7 +++++++
-> > > > > >  1 file changed, 7 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
-> > > > > > index db4889bf881e..41ad5b84eaeb 100644
-> > > > > > --- a/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
-> > > > > > @@ -68,6 +68,13 @@ properties:
-> > > > > >      default: 166000000
-> > > > > >      deprecated: true
-> > > > > >
-> > > > > > +  fsl,num-channels:
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > +    description: Number of output channels
-> > > > > > +    minimum: 1
-> > > > > > +    maximum: 4
-> > > > > > +    default: 1
-> > > > > > +
-> > > > >
-> > > > > Look like it is fixed value for each compabiable string, So it is not
-> > > > > suitable for adding new property. It should be in driver data of each
-> > > > > compatible strings.
-> > > > >
-> > > > > I met similar case before. DT team generally don't agree on add such
-> > > > > property, unless there are two instances in the same chip, which have
-> > > > > difference channel number.
-> > > >
-> > > > If the DT changes are rejected, can the number of channels be added to
-> > > > the data structure inside mipi_csis_of_match?  We have compatibles for
-> > > > 8mm and imx7.  If we add an imx8mp compatible we could add a reference
-> > > > to the number of channels.
-> > >
-> > > I thought about it, and decided to add a new property because the number
-> > > of channels is really a synthesis time configuration parameter, and
-> > > could differ between different CSIS instances in the same SoC.
-> > 
-> > Need add such information at binding doc's commit message,
+
+On Sat, 14 Jun 2025 22:14:32 +0400, Alexey Charkov wrote:
+> Link up the CPU regulators for DVFS, enable WiFi and Bluetooth.
 > 
-> I'll update the commit message.
-
-The commit message in v2 will state
-
-    dt-bindings: media: nxp,imx-mipi-csi2: Add fsl,num-channels property
-
-    The CSI-2 receiver can be instantiated with up to four output channels.
-    This is an integration-specific property, specify the number of
-    instantiated channels through a new fsl,num-channels property. The
-    property is optional, and defaults to 1 as only one channel is currently
-    supported by drivers.
-
-    Using the compatible string to infer the number of channels has been
-    considered, but multiple instances of the same CSIS in the same SoC
-    could conceptually be synthesized with a different number of channels.
-    An explicit property is therefore more appropriate.
-
-    The only known SoC to have more than one channel is the i.MX8MP. As the
-    binding examples do not cover that SoC, don't update them.
-
-Rob, Krzysztof, Conor, are you fine with adding this property ?
-
-> > ideally provide an example for it.
+> Different board versions use different incompatible WiFi/Bluetooth modules
+> so split the version-specific bits out into an overlay. Basic WiFi
+> functionality works even without an overlay, but OOB interrupts and
+> all Bluetooth stuff requires one.
 > 
-> That I can't provide because the few SoCs I'm working with do not
-> integrate multiple CSIS instances with different parameters.
-> 
-> > > > > >    ports:
-> > > > > >      $ref: /schemas/graph.yaml#/properties/ports
-> > > > > >
+> [...]
 
+Applied, thanks!
+
+[1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
+      commit: c76bcc7d1f24e90a2d7b98d1e523d7524269fc56
+[2/4] arm64: dts: rockchip: add SDIO controller on RK3576
+      commit: e490f854b46369b096f3d09c0c6a00f340425136
+[3/4] arm64: dts: rockchip: add version-independent WiFi/BT nodes on Sige5
+      commit: 358ccc1d8b242b8c659e5e177caef174624e8cb6
+[4/4] arm64: dts: rockchip: add overlay for the WiFi/BT module on Sige5 v1.2
+      commit: a8cdcbe6a9f64f56ee24c9e8325fb89cf41a5d63
+
+Patch 1 as fix for v6.16
+
+I've also fixed the wifi@1 node in the overlay - which was using
+spaces instead of tabs.
+
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Heiko Stuebner <heiko@sntech.de>
 
