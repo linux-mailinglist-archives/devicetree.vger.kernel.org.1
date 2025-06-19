@@ -1,357 +1,177 @@
-Return-Path: <devicetree+bounces-187360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8095ADFB5D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:46:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0A5ADFB66
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E21B3BFBDA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 02:46:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B88A3AC9E6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 02:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0358633F;
-	Thu, 19 Jun 2025 02:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391971D63F5;
+	Thu, 19 Jun 2025 02:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="e8Bxf0FA"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="zClKA5Nd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011012.outbound.protection.outlook.com [40.107.130.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7F92AF11;
-	Thu, 19 Jun 2025 02:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750301199; cv=fail; b=KRqsvHc+O93SFAyV5CDWyuNmiNOMxofQX0w2nhcbayfGDBZGGTmp5BEadAzuDlxjWz5bsrR3d6KzfCHCVPR0SpNWGezi1Bbf6Xzo/iiGwd1ihWFQLkkxlbMOFJy6/PDzg+rdoZcgZmrf0159KvSIrmzq31HywU8PfEf0e1B63ac=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750301199; c=relaxed/simple;
-	bh=T5kyIm4BtwJtoqeGGr2jHYoNCWROfXNLSThrscQy9kc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=S+PFZlf0vNju2B+286dMR0dLhDQnqQEHgeuMWuFeh+WvFCR1tCauOHFL7biFYTSQ/mf3kuSgr5juCzSsFTgVJ/2nLdirJsuBez7RqqPrOnmYChZ9Z5Xx4l13lyy5NlfkNUIThH97Uq5DGFWhRTWQ6Ht62xCs085aSmQBAD5RRZ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=e8Bxf0FA; arc=fail smtp.client-ip=40.107.130.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=upraSWQFU4XyapGnIzSQOGxxP5zl0L1bAExR7/Tnnsp3+kOEtsuqrmYfs188spuhdXZ44H7anhCQ/NiLrcXHuahWM6j2StZzDM8JmXfegoXd4Z+LaBP/FaekOElIw8qgp/T5cEvfS3QMxNY06JM43ytCJMZsWPOITvCa5ADAsAOv/f/r17b/sdpEY0DAfsBEOnx5S2az+rhJ7VcYvY6RPPXNsApWo4GZ70FVm3TNNQ7hTQm0o3VK5l5dwdQf+w5r9oY2fELJnuu5ZSW9vXQjZPl2X6WByxbLujEFmB1CmboA5f6ZcHiE8u/qnlWlyxqtSpPn0zQ6CcsYJF8Ft/z++g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Vub7nWdeaA1Zju4+Oyx5pWrtmlppv3RLmCvD04FrahY=;
- b=ikDWBF16Ez8+o6vfBQJvFjrRa6n/JNjvQMqrAywM1KDKhFm0nGz5tVALtEchS4eTtwHTkWNxFz13QQ2Omrt1n80JIuo5MuPhaYFQkIi5kO02IRWsMvXrZdkst/uSc+Ig0pAHMo6IgftVYDj/Z6NA1GBtTfWkzCV19ATv/AqQBgBYoIoWwR5NlxW+FSnL53RfSv+LSArZfGrbt2ZzpBODxdT3a5Dex5YDFR+u5VqYcpjhKi5Qm+jXpIIBBYdhfMV9kHo5j6ITTR1LbWL48Gq4NKoNKmtl3jl7pHS7GW1K+YiWCM/+gB1cEyzBM9Wbv+XjFd67DziIgJUDED0hPX5Q8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vub7nWdeaA1Zju4+Oyx5pWrtmlppv3RLmCvD04FrahY=;
- b=e8Bxf0FAxQryF48LrQh+NBYLoLeeUUFnSywwIbBOEz4vAKOe2w38+caEdWl/jwS3hdA3CzsIA031Xyb0osT/ALkvRSokQz6oMpt7vUMe+qt/vDGFoNkbxx84PPYOdPo6furnbX/CDddUcM1L8wdmCsNq12cYJSi1Nsooynju7OoRiEWbujxDK5eG3kuDReItbje4sCzbuLG9gxm/UZf223mz4al4NT+6ojruQ1VDuU+5Pr5Y+oxDUZvMRKidAcxNI9m6gC9qSWgT+1lZ/KXM2xjV2KsRTIYnCfw1CCHYduGZSDbvA0tvZpu9US/+EpMI3GykAZtk4mgwx4rrr06OiA==
-Received: from DB9PR04MB8429.eurprd04.prod.outlook.com (2603:10a6:10:242::19)
- by AM9PR04MB8810.eurprd04.prod.outlook.com (2603:10a6:20b:409::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.21; Thu, 19 Jun
- 2025 02:46:21 +0000
-Received: from DB9PR04MB8429.eurprd04.prod.outlook.com
- ([fe80::2edf:edc4:794f:4e37]) by DB9PR04MB8429.eurprd04.prod.outlook.com
- ([fe80::2edf:edc4:794f:4e37%3]) with mapi id 15.20.8857.016; Thu, 19 Jun 2025
- 02:46:21 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, "marcel@holtmann.org"
-	<marcel@holtmann.org>, "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-CC: "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Amitkumar Karwar
-	<amitkumar.karwar@nxp.com>, Manjeet Gupta <manjeet.gupta@nxp.com>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: RE: [PATCH v3 2/2] Bluetooth: btnxpuart: Add support for 4M baudrate
-Thread-Topic: [PATCH v3 2/2] Bluetooth: btnxpuart: Add support for 4M baudrate
-Thread-Index: AQHb4GconGpl39/tDE6+gJCceirOXbQJxP5w
-Date: Thu, 19 Jun 2025 02:46:21 +0000
-Message-ID:
- <DB9PR04MB8429D6634D666DED120EFCD5927DA@DB9PR04MB8429.eurprd04.prod.outlook.com>
-References: <20250618152113.25500-1-neeraj.sanjaykale@nxp.com>
- <20250618152113.25500-2-neeraj.sanjaykale@nxp.com>
-In-Reply-To: <20250618152113.25500-2-neeraj.sanjaykale@nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB9PR04MB8429:EE_|AM9PR04MB8810:EE_
-x-ms-office365-filtering-correlation-id: d1d32966-485e-4b44-ac1d-08ddaedb798e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|366016|38070700018|7053199007;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?jtDa++KNeUd1iSu3Iyj62+s6yxSY+m5Z1tDb7rNjmO8nHC7+lld9hbGPrCIf?=
- =?us-ascii?Q?fZgQ3gKkxhhUiVLq1+srHxPFJVNvoja3vj/7b60AqDs5/EKTouwFlimszQ6C?=
- =?us-ascii?Q?rMuS1EHKGzy/IImQKEFGr+J38fVAQDK7Sm0nMqUPs60auOZrbvBX5TDMSN6t?=
- =?us-ascii?Q?wbepA3TraDX6tV32+NSSKF79CrWJvTj7mB091790o2IJlmbAZo1XyZW3XsHj?=
- =?us-ascii?Q?pslwWzqwLR+zZVRy0Qd8D/XodNIDON0U5tDe76GkW+svfr364I8TnZGXF1Zs?=
- =?us-ascii?Q?v0GAg758PzvnzYIMsV3owmin1/QN1oakTTtY14iBWVKuUSO6LHbnDZHwFFcZ?=
- =?us-ascii?Q?UJ+i8b4y6MofSxavUMXtiEBP3uHzHBrnVENR4tH0RwoYi8dhvEsELHmbZ75K?=
- =?us-ascii?Q?xodl3ib6dUk9kZPBU4BIJ03XZUnGi3GcTw7U0IjZxK3uFmgs2QdAxxxIEwGp?=
- =?us-ascii?Q?Yt6uJCmDCRDmtmxXqsCdkVV/4X0SGwgJmcSVtvM0vfUUQ+pq9M+bdaBxQ34J?=
- =?us-ascii?Q?O8WlmBGtxkI5U5bv99scStFetB9AHQHdby9T607UJ7BkpIrJ4Y27/pYfqvwn?=
- =?us-ascii?Q?HAjozEOp8n9pvyXJgdg9/9OYHffH0Dq6+rIWKmgNejyZvPYADDQLw2KiYrku?=
- =?us-ascii?Q?A/VMIHrnjqdd7fpj1fEJdhaZCoLpqtQ/P2G13kjyU9I079uY4Wiel5sxF7DN?=
- =?us-ascii?Q?FGCI3IbXdNAOjxsOkVlX/dA2Gg1Kp3vNmEK+1W53JM7IkZgCEvFfwbCbeqth?=
- =?us-ascii?Q?of+xUh16R76o6q2gF8H53ohbdW6o9G+fCrRz/cVOlWBjECAfLqIyU0J94MMl?=
- =?us-ascii?Q?ffHef9n1X3h2CdWfxfQqYxCDvU6XeEVZp8Vuk1fW/05S+79JsOWSlNY04jJx?=
- =?us-ascii?Q?7KgJZmUeiQkZeCUJUT2d2marAGy03yfncPwPsJO1Q8OY99zxSvJ4lXMfJY34?=
- =?us-ascii?Q?w2EW0t+jz4jBuGUlOQJLVeiaNMpLSbv1g0kf2twO8TBawCnCZ/11bU6uBcvN?=
- =?us-ascii?Q?ym1sFcTHpMvKnGci59lXhyiAC5HWOzP1YahtARZYPZiC82KNktqTtuP3YbsR?=
- =?us-ascii?Q?m9jMR+LZAHDbDnrwLKPhhrfbrUnc+xRHUvt9+EuUYBi9af4Wl9nIYbw4z9Xi?=
- =?us-ascii?Q?r173O/S3GLTiDHZYX0qr/eKVQEsrg8UQRRujGh9IJi4VIMrqldD6QJS5khIO?=
- =?us-ascii?Q?2KgNUqixeb4525dHNQjMwFZBjWxPSaROZ8uTsTb8jUcZnfJJYxGMsv+19l2X?=
- =?us-ascii?Q?lK2zGtIkB6Y0E3VffqI3XApTelDNZibz24cm0ZrgevZbFbCq9DJh8s2c9qHP?=
- =?us-ascii?Q?XOX5c4LdxDfEeF6GhYzfgMcwx9DLTd2lVEkVNHC6wWFW5h5zRvC3pi6biFk+?=
- =?us-ascii?Q?C6OeQM4GIbZO35yQH2d8vwUqAwwIm9AmYtAhdbqkEIKEm9OnfFGynkVnvkUa?=
- =?us-ascii?Q?uvbcdsf315GKYmJ82z744NrVWae5oWKoBnMfcBRvmYeSdmt2/ZEOxwdXubP9?=
- =?us-ascii?Q?/e5PSXvXZp+bPBQ=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8429.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700018)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?mjSIk2V6/8GTtFaXZDLVuJno50ZGoYON6xV8O6T8QrdbQYJU07z3hchCcfoo?=
- =?us-ascii?Q?LPgO0xUAnwDE+ayg2XYRXdzlc56Luzs4kOpyHCwGELOcfmBiDhgpRPLEyzd/?=
- =?us-ascii?Q?Ojz7pxxu/hjSfbPJl095486qrUrhTx7I1Tv+qx8Hi2WtsCIGAakz6TpOZQJR?=
- =?us-ascii?Q?8umQloNCeRLGfJBDpA1F1HIC/T/g+2eKEuAMRupRrUT+OgM36O6lWCkC+ssA?=
- =?us-ascii?Q?NsdICnT8nuCrzd31alxuB3to8xT/V6pYp6y/tyOxOszexdiSKd/XK6J/FS+Q?=
- =?us-ascii?Q?gA9lRNxcA+e/ph6aCI7mFMdfuUHq1jf14kK5OVdqkEq8DqKh88SmDxgStNy9?=
- =?us-ascii?Q?5aAT1oy+jfrA+ta15SIyt4ka7MIe/om6k9t3D5nq3REuIToQRQfwoGJYHaZv?=
- =?us-ascii?Q?MoziX73eZB1sy3Fx8OnRGqZpTYIPloOQQADgk1T+ZZKWDvmW4ij/qnFJA5B1?=
- =?us-ascii?Q?ECKovQSyVP1v37ERDKm6uUndbtNQsJKS6aXL8ssLY605ymN1buAJEcKiunj8?=
- =?us-ascii?Q?ZxXr3jvIcsnPersPzzPWq0OLu5uIBL58aG2vYnXMsTRY6HICq4USQ6wtjYfm?=
- =?us-ascii?Q?9bLiDFBXFi8ALeor48nqyJL/5gmjQuf64C5Mgwu2jwVP4QNZPHIS60W84K3m?=
- =?us-ascii?Q?02UtL6oCGBHVqx0Tjdwb8E4iFTfOAXWGi/xG46JkHrfPbWOAT0g10LIRH5pL?=
- =?us-ascii?Q?AX3WZ0GaRw6MNrudF6NQbpH4s18e1ZHTi/fcZucyoOKxJocXqD84LMBIyqCO?=
- =?us-ascii?Q?g/gql0Uai28w2DKPgy1MBTho2gXOqoMlVDJfFnzVE8OMTF8uB5vc0tW3GBkl?=
- =?us-ascii?Q?80GlAC25ucAFR9bRKjN50mkaHXS4qQT/Em7INcnu7zYyYzRk6XBeWJcXNLc+?=
- =?us-ascii?Q?OKAHIYBS4ao9RsRFz/giyLxpuv4j420VCPHDUiOkG3pcmO7+C1ZqxHcZkyoF?=
- =?us-ascii?Q?46TK1dkg/ADWSlgVIWgyZzcfIKX9bGjUnz1GBrvGbev4oQZZrodvl6G6SJ9U?=
- =?us-ascii?Q?cWji7Ekuk47IWdaj0kcQBuPiPrEz7RXdbkn6LKpZ5tj+eGdE5Lz7+qHRpJg9?=
- =?us-ascii?Q?IjydIZBz2JWJNm8mI5br7iIsYHlatTGSh7ODd20v63D9savI0xZDAW8wrvq9?=
- =?us-ascii?Q?4Na70NeAqXov8QgVLhX8bomzIRKwFOt3LmWhdzNrF4CPYo+GEVsxOK1TrG9w?=
- =?us-ascii?Q?++TjOEsNX7R/JUImiwLUEivZafeN0URS3jtj4BPGfv3oiG+ZyUw6sxSE6BL5?=
- =?us-ascii?Q?d8i2Ubki8wHGTaseFc30gZyczkshy1b7bYXH//Mrk5Z9LQyqz9LvE+yG8HOH?=
- =?us-ascii?Q?/ieUIdxXsnSaIc0WdKJA4XT05L7AIH2qf4uGDLmPpuljnyjTowS9RKxnCaSG?=
- =?us-ascii?Q?HoEifNnsp1rG5bit4m77U85QaDiBzsiXmZDV0bxWGvv5h5j1h7Ep59cs+zaY?=
- =?us-ascii?Q?uaz9mRInhuC43+V25OgCY+y7j7N6FHx402pIBKDIm9tJCdXwI4K9mEWVhQAx?=
- =?us-ascii?Q?gp6qds2DvSE8kPqyv1Byzhuqmvn142k7NZbaiDTPX0AHgkhMafB7K97Wldip?=
- =?us-ascii?Q?c/YQ2Ic5SlgOKHqETn4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B662257D
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 02:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750301421; cv=none; b=EI3eAiUA29hwtLNaGWyE3BTNM7Ivbe8FO9UwXWRhz/isDRPYlOv6dzTA/9F0QazthTNiM1K8FPazW6chkBHspxVbNNBrK6ujwPCI8CUj9lpm/W1dNIISH9yDv0CTjcx8arZyM39GxtVSiwNM5F6HgDZdUKW5aCtF+k+XrfQTZn4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750301421; c=relaxed/simple;
+	bh=iJcBSfG+nm1MBrPhYrWZUr0TYe4Yf60WLTUAK/r6mlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ESUetTOOlRV0L0ZeI6d0H/tHpTq7y+tT5liggTJ4S344OqXFzm8NvF+hNvjKhIexqllcw70LYzTW6znvJQGXhxW1fkpQsKlvetZGWpZLVEYejEsF6FyzGgOlmma1rWIspbr3T3wUhHeb7OD56cqD0GmAxqMoya3WfSmzBcRsMIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=zClKA5Nd; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b2f1032e1c4so386909a12.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jun 2025 19:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1750301419; x=1750906219; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tB8e1qVEfhuTIR6cCezHfjL1333Oy60fxLgjuSXst14=;
+        b=zClKA5NdFcZ7xzosWBVTfvmjeZPelkG4jwrzZbQyED0OmTl33fOCymfsbml1aK8kpS
+         9RPQQi47CRyXeiYOKxKUtzgRn6kp+42sc0jRVTyMZbk/YyOmzAIXJpGFtjcmiYMpwSFg
+         BpiiDip0wgt4aHHg4ylo4fPxR/0PpQpo1px11+/UNF5KnxbPfVhqNNv8bfISlgrj8K0m
+         T6nyAKD8jXiZK9YWJbNk+GM2uMjlBpqqNaWfETMCwX+Nt+lI1FP0c0MkCyDLY3+90LAt
+         yexXJsaieGoEt/z+o8QCYZk2u6GppGJJf9v+5bJmXyxKTk05cEy0VVjJrhK7VZLBAYW8
+         ZqAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750301419; x=1750906219;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tB8e1qVEfhuTIR6cCezHfjL1333Oy60fxLgjuSXst14=;
+        b=Tgieh2DUT5CDLLfXCMRXF3rmrnGLdUGf1kAJpCGT1fPM+C8D7edXlK7CXYuEH2XrLf
+         CEusigMHk9mF1Tn0+g9+lNY8SztLtjFl1xgoXAdMuJcL7JXt2ZTNkKkLKHoOg71ceIMR
+         CDotfYa8MzxprwXEOSEqFdW2zDO0tH87bwXnNlAZYV3xv3CsJSpvGxDOU/P/n5rx/SKK
+         KhKsUqc6zEaA0MicckQxY29g2rm0aQosuhrbgNASQMFdr24HQq6OsSQEBc2gkdDT8Xcq
+         IrtIymqPzZegtgGxlvKj8OmSEZ30HwUxjvozrbbia0Z3hqr16GApXzsQ1hafpR3UGCxw
+         QMGA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXqNGnGie/A7VuBZnKqO3IyYkpZePo1E9BS9CL7+TE7QPIGxAEG7wUsS/oIqa50Yd1qnU7B2hfXuHD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC3TLd4Cq8Sd2MKeRK4Mo59lKRgWZNf/18Fl0CRuMqZaBu6iQV
+	lxIxmB/PFLXD+NcUoV4CApt+OuApZO/lG0hy22zaHBi3ft3tJZF5nkhSBoHy5Farxus=
+X-Gm-Gg: ASbGncuKABGSZjA7CyJ+DmUHVVeDOCCtf17EtIsN06rIw6gvj9sMb/WSOzml6CgSgai
+	tLqDlCp6RaPBduDi9FJS3QAAd+fv2z32Tqiymax2KgzMuaVS3UDe5kdIQxnE/hagZMq0LF1W9I6
+	w323mSvvY6/vs3OsWCEniLCFs73IoL9/zG0o+qrFzUdxZDmAyk1cBySrrWQoXKiR3itAE5E0hwm
+	bUA52foUZQe4yDjp6pX+5jPcDQIm8k2YztHr7eyFpA3mvA0sw48YRu57MuGCRoTokUu/SvaIWCR
+	xi3mlzKLtf4bjzDCJoUSTCcQuRQKKWMl2Zc0qhrpNhdF+E5PYeuONLBuT9qLozkOGMl6FKA=
+X-Google-Smtp-Source: AGHT+IFubn9Xjjn7fmMto+xZqblm2yd0WPXfa0iuVG1BkV+6lAGb7+2YAe7yAyYCgSsbecVsjsPVIw==
+X-Received: by 2002:a17:90b:524b:b0:311:ab20:159a with SMTP id 98e67ed59e1d1-313f1d1c00cmr26840306a91.29.1750301418839;
+        Wed, 18 Jun 2025 19:50:18 -0700 (PDT)
+Received: from x1 (97-120-250-80.ptld.qwest.net. [97.120.250.80])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3158a25617asm985583a91.33.2025.06.18.19.50.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 19:50:18 -0700 (PDT)
+Date: Wed, 18 Jun 2025 19:50:16 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v5 7/8] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
+ node
+Message-ID: <aFN66I9GsCb9qC4G@x1>
+References: <20250618-apr_14_for_sending-v5-0-27ed33ea5c6f@samsung.com>
+ <CGME20250618102233eucas1p228b24f58e4cb3d15b0f273530b582cea@eucas1p2.samsung.com>
+ <20250618-apr_14_for_sending-v5-7-27ed33ea5c6f@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8429.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1d32966-485e-4b44-ac1d-08ddaedb798e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2025 02:46:21.6777
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kQ1qAFxyfFAwc+rvxbHZQ0KoGHXTUV6tqYEiUYV8OnNxvZQ+vlcpyYg3jCRkWBqj8Nf5lTqk4Tj/fGK1uz2Q9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8810
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250618-apr_14_for_sending-v5-7-27ed33ea5c6f@samsung.com>
 
-
-
-> -----Original Message-----
-> From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> Sent: Wednesday, June 18, 2025 11:21 PM
-> To: marcel@holtmann.org; luiz.dentz@gmail.com; robh@kernel.org;
-> krzk+dt@kernel.org; conor+dt@kernel.org
-> Cc: linux-bluetooth@vger.kernel.org; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org; Amitkumar Karwar
-> <amitkumar.karwar@nxp.com>; Neeraj Sanjay Kale
-> <neeraj.sanjaykale@nxp.com>; Sherry Sun <sherry.sun@nxp.com>; Manjeet
-> Gupta <manjeet.gupta@nxp.com>
-> Subject: [PATCH v3 2/2] Bluetooth: btnxpuart: Add support for 4M baudrate
->=20
-> This adds support for 4000000 as secondary baudrate.
->=20
-> This value is selected from device tree property "max-speed"
-> which is then used to download FW chunks, and as operational baudrate
-> after HCI initialization is done.
->=20
-> Earlier, the secondary baudrate was fixed to 3000000 in driver, but now w=
-ith
-> "max-speed" property, this secondary baudrate can be set to 4000000.
->=20
-> The secondary baudrate is set by the driver by sending a vendor command
-> (3F 09) to the firmware, with secondary baudrate parameter, in
-> nxp_post_init().
->=20
-> Any other value set for max-speed other than 3000000 or 4000000 will
-> default to 3000000, which is supported by all legacy and new NXP chipsets=
-.
->=20
-> This feature is applicable for all new V3 bootloader chips and w8987 V1
-> bootloader chip.
->=20
-> This property does not apply for w8997 compatible device, since it downlo=
-ads
-> a helper.bin FW file that sets secondary baudrate as 3000000 only.
->=20
-> The switch to 4000000 baudrate is validated using a Saleae Logic Analyzer=
- and
-> imx8m-mini with AW693 M.2 module.
->=20
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+On Wed, Jun 18, 2025 at 12:22:13PM +0200, Michal Wilczynski wrote:
+> Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
+> TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
+> the GPU using the drm/imagination driver.
+> 
+> By adding this node, the kernel can recognize and initialize the GPU,
+> providing graphics acceleration capabilities on the Lichee Pi 4A and
+> other boards based on the TH1520 SoC.
+> 
+> Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can't be
+> controlled programatically.
+> 
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
-> v2: Change DT property to 'max-speed'. (Krzysztof)
->     Add support for 4M baudrate to w8987. Update commit message.
-> (Sherry)
-> v3: Add check for 'max-speed' and set default to 3000000. (Sherry)
->     Add functional and testing details in commit message. (Paul)
-> ---
->  drivers/bluetooth/btnxpuart.c | 32 +++++++++++++++++++++++---------
->  1 file changed, 23 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.=
-c
-> index 6b13feed06df..a9a53e6b35cb 100644
-> --- a/drivers/bluetooth/btnxpuart.c
-> +++ b/drivers/bluetooth/btnxpuart.c
-> @@ -73,7 +73,8 @@
->  #define FW_AUTH_ENC		0xc0
->=20
->  #define HCI_NXP_PRI_BAUDRATE	115200
-> -#define HCI_NXP_SEC_BAUDRATE	3000000
-> +#define HCI_NXP_SEC_BAUDRATE_3M	3000000
-> +#define HCI_NXP_SEC_BAUDRATE_4M	4000000
->=20
->  #define MAX_FW_FILE_NAME_LEN    50
->=20
-> @@ -201,6 +202,7 @@ struct btnxpuart_dev {
->  	u32 new_baudrate;
->  	u32 current_baudrate;
->  	u32 fw_init_baudrate;
-> +	u32 secondary_baudrate;
->  	enum bootloader_param_change timeout_changed;
->  	enum bootloader_param_change baudrate_changed;
->  	bool helper_downloaded;
-> @@ -802,7 +804,10 @@ static bool nxp_fw_change_baudrate(struct hci_dev
-> *hdev, u16 req_len)
->  		nxpdev->fw_v3_offset_correction +=3D req_len;
->  	} else if (req_len =3D=3D sizeof(uart_config)) {
->  		uart_config.clkdiv.address =3D __cpu_to_le32(clkdivaddr);
-> -		uart_config.clkdiv.value =3D __cpu_to_le32(0x00c00000);
-> +		if (nxpdev->new_baudrate =3D=3D HCI_NXP_SEC_BAUDRATE_4M)
-> +			uart_config.clkdiv.value =3D
-> __cpu_to_le32(0x01000000);
-> +		else
-> +			uart_config.clkdiv.value =3D
-> __cpu_to_le32(0x00c00000);
->  		uart_config.uartdiv.address =3D __cpu_to_le32(uartdivaddr);
->  		uart_config.uartdiv.value =3D __cpu_to_le32(1);
->  		uart_config.mcr.address =3D __cpu_to_le32(uartmcraddr); @@
-> -966,12 +971,13 @@ static int nxp_recv_fw_req_v1(struct hci_dev *hdev,
-> struct sk_buff *skb)
->  			goto free_skb;
->  		}
->  		if (nxpdev->baudrate_changed !=3D changed) {
-> +			nxpdev->new_baudrate =3D nxpdev-
-> >secondary_baudrate;
->  			if (nxp_fw_change_baudrate(hdev, len)) {
->  				nxpdev->baudrate_changed =3D changed;
->  				serdev_device_set_baudrate(nxpdev->serdev,
-> -
-> HCI_NXP_SEC_BAUDRATE);
-> +							   nxpdev-
-> >secondary_baudrate);
->  				serdev_device_set_flow_control(nxpdev-
-> >serdev, true);
-> -				nxpdev->current_baudrate =3D
-> HCI_NXP_SEC_BAUDRATE;
-> +				nxpdev->current_baudrate =3D nxpdev-
-> >secondary_baudrate;
->  			}
->  			goto free_skb;
->  		}
-> @@ -992,7 +998,7 @@ static int nxp_recv_fw_req_v1(struct hci_dev *hdev,
-> struct sk_buff *skb)
->  			nxpdev->helper_downloaded =3D true;
->  			serdev_device_wait_until_sent(nxpdev->serdev, 0);
->  			serdev_device_set_baudrate(nxpdev->serdev,
-> -						   HCI_NXP_SEC_BAUDRATE);
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index f3f5db0201ab8c0306d4d63072a1573431e51893..c8447eef36c3a6e92d768658b6b19dfeb59a47c4 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -225,6 +225,13 @@ aonsys_clk: clock-73728000 {
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	gpu_mem_clk: mem-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <0>;
+> +		clock-output-names = "gpu_mem_clk";
+> +		#clock-cells = <0>;
+> +	};
 > +
-> HCI_NXP_SEC_BAUDRATE_3M);
->  			serdev_device_set_flow_control(nxpdev->serdev,
-> true);
->  		} else {
->  			clear_bit(BTNXPUART_FW_DOWNLOADING,
-> &nxpdev->tx_state); @@ -1216,12 +1222,13 @@ static int
-> nxp_recv_fw_req_v3(struct hci_dev *hdev, struct sk_buff *skb)
->  	}
->=20
->  	if (nxpdev->baudrate_changed !=3D changed) {
-> +		nxpdev->new_baudrate =3D nxpdev->secondary_baudrate;
->  		if (nxp_fw_change_baudrate(hdev, len)) {
->  			nxpdev->baudrate_changed =3D cmd_sent;
->  			serdev_device_set_baudrate(nxpdev->serdev,
-> -						   HCI_NXP_SEC_BAUDRATE);
-> +						   nxpdev-
-> >secondary_baudrate);
->  			serdev_device_set_flow_control(nxpdev->serdev,
-> true);
-> -			nxpdev->current_baudrate =3D
-> HCI_NXP_SEC_BAUDRATE;
-> +			nxpdev->current_baudrate =3D nxpdev-
-> >secondary_baudrate;
->  		}
->  		goto free_skb;
->  	}
-> @@ -1447,8 +1454,8 @@ static int nxp_post_init(struct hci_dev *hdev)
->  	struct btnxpuart_dev *nxpdev =3D hci_get_drvdata(hdev);
->  	struct ps_data *psdata =3D &nxpdev->psdata;
->=20
-> -	if (nxpdev->current_baudrate !=3D HCI_NXP_SEC_BAUDRATE) {
-> -		nxpdev->new_baudrate =3D HCI_NXP_SEC_BAUDRATE;
-> +	if (nxpdev->current_baudrate !=3D nxpdev->secondary_baudrate) {
-> +		nxpdev->new_baudrate =3D nxpdev->secondary_baudrate;
->  		nxp_set_baudrate_cmd(hdev, NULL);
->  	}
->  	if (psdata->cur_h2c_wakeupmode !=3D psdata->h2c_wakeupmode) @@
-> -1773,6 +1780,13 @@ static int nxp_serdev_probe(struct serdev_device
-> *serdev)
->  	if (!nxpdev->fw_init_baudrate)
->  		nxpdev->fw_init_baudrate =3D FW_INIT_BAUDRATE;
->=20
-> +	device_property_read_u32(&nxpdev->serdev->dev, "max-speed",
-> +				 &nxpdev->secondary_baudrate);
-> +	if (!nxpdev->secondary_baudrate ||
-> +	    (nxpdev->secondary_baudrate !=3D HCI_NXP_SEC_BAUDRATE_3M &&
-> +	     nxpdev->secondary_baudrate !=3D HCI_NXP_SEC_BAUDRATE_4M))
-> +		nxpdev->secondary_baudrate =3D
-> HCI_NXP_SEC_BAUDRATE_3M;
-
-Hi Neeraj,
-
-If the user sets an unsupported baud rate in dts, better to add a bt_dev_in=
-fo here to
-prompt the user that the speed set is not supported and switch to the defau=
-lt 3M.
-Otherwise, the user may think that BT is running at the max speed they set.
-
-Best Regards
-Sherry
-
+>  	stmmac_axi_config: stmmac-axi-config {
+>  		snps,wr_osr_lmt = <15>;
+>  		snps,rd_osr_lmt = <15>;
+> @@ -500,6 +507,21 @@ clk: clock-controller@ffef010000 {
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		gpu: gpu@ffef400000 {
+> +			compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
+> +				     "img,img-rogue";
+> +			reg = <0xff 0xef400000 0x0 0x100000>;
+> +			interrupt-parent = <&plic>;
+> +			interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk_vo CLK_GPU_CORE>,
+> +				 <&gpu_mem_clk>,
+> +				 <&clk_vo CLK_GPU_CFG_ACLK>;
+> +			clock-names = "core", "mem", "sys";
+> +			power-domains = <&aon TH1520_GPU_PD>;
+> +			power-domain-names = "a";
+> +			resets = <&rst TH1520_RESET_ID_GPU>;
+> +		};
 > +
->  	set_bit(BTNXPUART_FW_DOWNLOADING, &nxpdev->tx_state);
->=20
->  	crc8_populate_msb(crc8_table, POLYNOMIAL8);
-> --
+>  		rst: reset-controller@ffef528000 {
+>  			compatible = "thead,th1520-reset";
+>  			reg = <0xff 0xef528000 0x0 0x4f>;
+> 
+> -- 
 > 2.34.1
+> 
 
+Reviewed-by: Drew Fustini <drew@pdp7.com>
 
