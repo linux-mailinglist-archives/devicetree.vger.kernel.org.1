@@ -1,98 +1,110 @@
-Return-Path: <devicetree+bounces-187385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9E3ADFC63
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:28:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C3BCADFC6B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:30:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB7211BC1900
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:28:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 066433BA2B8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 04:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AA6227599;
-	Thu, 19 Jun 2025 04:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B47226CF9;
+	Thu, 19 Jun 2025 04:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="oIL3Q0De"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="GzCxRxVB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CD43085D4;
-	Thu, 19 Jun 2025 04:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454314C6C;
+	Thu, 19 Jun 2025 04:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750307295; cv=none; b=SWgMduUf/3HWb21na35H152raVfDw/mmIepIwUtDm9+BHs8XqOj6+BIcH6bf9LBF4SybIrdJeT84WtBvpTWdFRFkcrbnYJrWcnHNOJLgB/cMlCwEUnWIZ0eYA8Ueptm3ucSdk/E8GGLCmuheJIePPYd3Qd4q01pYfyOoGAaJ9EU=
+	t=1750307436; cv=none; b=H5rp31L02Ghi9F/U9XEKFlI9mA2nmYXcndHQD7C5r8bxbz4vxnXX+6zQrupkTtFqNmHwZSJtJ51+hHicYfHw/MCN1lMqY9YGtxaCA/zhk1utXWZNtZmneNXL9ClcIFhUvmvqyZY02QQnh/2Onu6dGNja3sm8yvlyp/8iEdtRK/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750307295; c=relaxed/simple;
-	bh=wGPPr8evg8EGvCbT/ay4qY+qSgTYYixp+8b3bm2r8yM=;
+	s=arc-20240116; t=1750307436; c=relaxed/simple;
+	bh=hO0TBASwoc3FULZXFzHhHmKijD+SjFrHsXI7r55AdbM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kllvPnFc1NiX8dlbWmyLk3dZsGyfM25IOBT6QvnuATT4AFyb2OIYzDZzmmBV2do38Uzr/tjcaUjWMTf/CMFh/i3n6uEgozBerDJTbhTWKLZT9HtNtO+xfanIxabEh6iCIen7+lrRZPqp4XJaBM3CR++10G3Z5IQP74J03oE0GkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=oIL3Q0De; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=7Yv8PVd52JTRw4r6qh65xK+kFgGp7k/YH+t5aN2ivQM=;
-	b=oIL3Q0De6A3nMNlyVAjT96y81tN5M/D0G3WdBE0268+AIXgutdBEL4keyZiTUm
-	Yyo0jkkZjwwl9DbTsUGXq/vAXZzuGxY3gsH+DQZdkDluJnKylod0iDvZ18myVvWA
-	XXc6o43PuZS+Gg4g82XJ7Lw7WMYQTwv5IbLQhY+UoB16A=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgAHfw6ikVNoUc_2AA--.36272S3;
-	Thu, 19 Jun 2025 12:27:16 +0800 (CST)
-Date: Thu, 19 Jun 2025 12:27:14 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc: Frank Li <Frank.Li@nxp.com>, mirela.rabulea@nxp.com, mchehab@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, krzysztof.kozlowski@linaro.org,
-	imx@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, ming.qian@nxp.com
-Subject: Re: [PATCH RESEND 1/2] media: dt-bindings: nxp,imx8-jpeg: Add
- compatible strings for IMX95 JPEG
-Message-ID: <aFORokzx/sImgDtA@dragon>
-References: <20250521-95_jpeg-v1-0-392de5d29672@nxp.com>
- <20250521173444.310641-1-Frank.Li@nxp.com>
- <eef5ccd99d82dd33e3a4ecdb5d4a5b75ccb0b972.camel@ndufresne.ca>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sRu7iWF1mKtRroZyZtl363XNQ1z5UAmY+DXfuzJF0NDXwyraYVu+qDDKDRzuiFjCyxMzhdHUKB++IcIUXsgSo3qFAx5qncMlrGgamne/0oZJwbe4XQJaqs4fUwH7ezKVt9VEuTnrzZ21Cpa8Dq8dh3vevjK4ROQTTZhykGJ9vQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=GzCxRxVB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55B6BC4CEEA;
+	Thu, 19 Jun 2025 04:30:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1750307435;
+	bh=hO0TBASwoc3FULZXFzHhHmKijD+SjFrHsXI7r55AdbM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GzCxRxVBtx0jtsOzTuX5lDiIuXCgfmTkoIsSs4pvrxvGPGJnnznlBOCC+SumafN9C
+	 hGscwnr1vSXreuaYFr8wOn+XZRaxWe3djIwnySC08WCgOa8OnehiLnwvAwJmScrV9B
+	 73U8zk4S21SJ6Ck6LJeAECPS5KdQgVrJYCdl/Ys0=
+Date: Thu, 19 Jun 2025 06:30:26 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Tamir Duberstein <tamird@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Frederic Weisbecker <frederic@kernel.org>,
+	Lyude Paul <lyude@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+	Anna-Maria Behnsen <anna-maria@linutronix.de>,
+	Benno Lossin <lossin@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Breno Leitao <leitao@debian.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org,
+	linux-mm@kvack.org, linux-pm@vger.kernel.org,
+	nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v12 3/6] rust: enable `clippy::as_ptr_cast_mut` lint
+Message-ID: <2025061919-stooge-fascism-d734@gregkh>
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-3-f43b024581e8@gmail.com>
+ <CANiq72mn6fFL86-7XjsovdjQ2ySiNNviP4dvE170FmK_4E19OQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <eef5ccd99d82dd33e3a4ecdb5d4a5b75ccb0b972.camel@ndufresne.ca>
-X-CM-TRANSID:M88vCgAHfw6ikVNoUc_2AA--.36272S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7GFy5tr4rtF45AFy5uw13CFg_yoWfXrbE9w
-	18Zw1Iqay3ZrW3Wry5AFs5C34Fga47XryUXryFyw1kuws0yr98AFZrGrn3XFy5uFZ5WF9F
-	kwnrtw1DCa9FgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1Hq2tUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCwlxZWhTizsX7wAAsl
+In-Reply-To: <CANiq72mn6fFL86-7XjsovdjQ2ySiNNviP4dvE170FmK_4E19OQ@mail.gmail.com>
 
-On Fri, May 23, 2025 at 07:22:04PM -0400, Nicolas Dufresne wrote:
-> Hi,
+On Wed, Jun 18, 2025 at 07:29:25PM +0200, Miguel Ojeda wrote:
+> On Sun, Jun 15, 2025 at 10:55â€¯PM Tamir Duberstein <tamird@gmail.com> wrote:
+> >
+> >  rust/kernel/devres.rs | 2 +-
 > 
-> Le mercredi 21 mai 2025 à 13:34 -0400, Frank Li a écrit :
-> > Add compatible strings "nxp,imx95-jpgdec" and "nxp,imx95-jpgenc", which
-> > are backward compatible with "nxp,imx8qxp-jpgdec" and
-> > "nxp,imx8qxp-jpegenc". i.MX95 just need one power domain which combine
-> > wrap and all slots together. Reduce minItems of power-domains to 1 for
-> > i.MX95 and keep the same restriction for others.
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> 
-> Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> 
-> Krzysztof, will you take this one once the DTS part is ready ?
+> Danilo, Greg: for completeness: if you don't want this, please shout. Thanks!
 
-dt-bindings is the prerequisite of DTS.  DTS patch looks good to me
-and I'm waiting for dt-bindings part to be applied first.
-
-Shawn
-
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
