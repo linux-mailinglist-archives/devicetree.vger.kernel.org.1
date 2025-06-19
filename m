@@ -1,277 +1,153 @@
-Return-Path: <devicetree+bounces-187622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702F2AE09F9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCB6AE0A10
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:16:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD78517DDB3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:13:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87E7D16D614
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587B923507A;
-	Thu, 19 Jun 2025 15:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBBB221F0E;
+	Thu, 19 Jun 2025 15:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b="MiCTyE13"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kelXxDEN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EA427F012
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 15:11:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4946C21CA0C;
+	Thu, 19 Jun 2025 15:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750345898; cv=none; b=fUl3n9G5h3+r9Tfst3YHOZVe2++nNvcH1o9JwwTPTvqyWoONNgcV9RyrpJbFMjIsshY6Om9VJxcM+T9UKAQaU2FrC/CRuVMh+1hjN2rKt7gg+sbZtuk8Ai0xLCVMCTJ6SMX+h3YSt35pReZd+VnLUt9KKV4vwaFmgeztSsDUDTQ=
+	t=1750346184; cv=none; b=Mym0yARWnnWIuKrESoAHeqY8TDCJ85Ll1hphPXUpGnQevqbxPpiUvQIxKYua/s2fdlwbpsNKz27ea3+Zuig4ae3jyJebCtCSy1P3yZeMY6lepmJvdwGuulEWfdmL2OschlqMW6Jk4f4yFDhn/4OOdaJVbXFeF8hhlqF17pb63Dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750345898; c=relaxed/simple;
-	bh=8htbHuxeV073R1YJdk2jC84NXcVju+3iR3pYFD8tCCQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TTNqymlnuOpI0VBjexHnmtIaAyze9b0YvIVyp66OsuevjZwJAXJDm901QlevJZenL/RwFPgxaeALVevwnstvP1elNkvnn0dBRqO9ovfIAlTvhBmtp6eAE2bJzpI1hekp/iF0YE8u99Q/qla52c3ReZTwPOEvpvlaZNEdMqlgydI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org; spf=pass smtp.mailfrom=ieee.org; dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b=MiCTyE13; arc=none smtp.client-ip=209.85.166.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ieee.org
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-86d0bd7ebb5so25896239f.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:11:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1750345895; x=1750950695; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oFGwKffzZxxx+liHIJgaBF+mW0zmVCScmb0c46n6Kak=;
-        b=MiCTyE13EOfR3kzO4VHLNjqyM5osBbL1q3Tq/R85YdRLy4KENKLyKFk7xrSyGbXiXl
-         0zbq08VijbL0QBb7SBxekfmmReDD+iPWmkCI+bqA4g1mQu/lNQDbnHNzUk3COfCamDSp
-         4sj0daQnI101Onjd+Twe7RFmtRAARq4N99r0k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750345895; x=1750950695;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oFGwKffzZxxx+liHIJgaBF+mW0zmVCScmb0c46n6Kak=;
-        b=GKd9tXeKMNFP0wHMPes270MrlQFVWmiVG5YiPf32RFUXLdBI3rGuX0Oje0i5k+ndxh
-         1LJPdSKDjDCtHO9X/3m9sZYdiqJ62Oj6MNrEgw87p5QSe1Oge/0vewIi96x55uj0B2pJ
-         0188/7AH0guLAkpojGvr1hOPgrHu2PxO9cvC0W1jSSzkGRE5pSGpjz3PjH/FFb/0mGKJ
-         713pDKSdqwXPG2hJ/a84OSJxUNjxAeUaIgd9nSm6Vj/pKaJBIv7fQo8BMkjW2WBjvduw
-         uVEKzuR08TLXDyU8sjMAND3VWI24BROXeWkcNnlXohamRItEiqkCnOkJxmXIvMt9dFi9
-         BubA==
-X-Forwarded-Encrypted: i=1; AJvYcCWYDxtEQENbuEzoGPMVp0SfJAqDqI+QzdRDeiOwhXnwUDUdMhD+Rvynyi5aHg//odlgnlfRD25maH0d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1fy/Iv9YE9LOoIGExaLN0FOMEBv2aufsJNLQ2kjechqYJ59aR
-	02kHLv89VNJa2u7ODvIYNDP6ntVl2u9tSXvoybgKMCey1CJfcdffUu/alyd371bFow==
-X-Gm-Gg: ASbGncvoUj6A1WLsHrIJAnPJ4GOQh5ZipwTa7BUhFN0QS7HLubOGRPrsPK4/e6E6kpZ
-	7MAMkXg+jMjNK0ED/1ABLpSyaGc66WTpLWig+weg5pCvIbGQRzkRrzeBzDHwpAyj9q55XWSnIxu
-	9J4trTYsdpp4w0BHoTCSbiNHNjFDOKSsj9B2uCqPULAHMkB4KS7f4H+MyjB5/dJNe6rNLCdihSY
-	s2xcJEly20eBI2pXcM454LgacAZSDDywKUQnllSVd3OLK6EBQDngfCCV5Byvr3ynsW8oABGxQzE
-	KXzphoHDzoZxudHbveB7VQxGRQg2nBcyY/6BxNWVJDjhCrx/clxQJCQ4oeMGkQ6EDPPhD9TYr5a
-	dVFw+IH3FZtKAIHMjSyWQD7IiUqqItuE=
-X-Google-Smtp-Source: AGHT+IF6bvglZ3cpBSripQco+ttcnZ5jzG2rPUkRsO79qncZB/5WB1V0utxb8yyQkNyJncd7lYe5LA==
-X-Received: by 2002:a05:6602:6424:b0:862:fe54:df4e with SMTP id ca18e2360f4ac-875ded5d849mr2848267139f.7.1750345894752;
-        Thu, 19 Jun 2025 08:11:34 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.googlemail.com with ESMTPSA id ca18e2360f4ac-875d5829e9dsm302704139f.37.2025.06.19.08.11.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jun 2025 08:11:33 -0700 (PDT)
-Message-ID: <5cc644f8-7394-48f2-b62b-1e7cd5ce27d3@ieee.org>
-Date: Thu, 19 Jun 2025 10:11:32 -0500
+	s=arc-20240116; t=1750346184; c=relaxed/simple;
+	bh=XqbG1XOiL6qsyT/mbeOSE4rpnh2l2DOkWH/Yqj+Cv9o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ctMWdbjKAH3F+Hi2l3lxK0C26aH1tiPBQEqsYduT3bP/TABEepgfXqK1Hcab9NRQXeWIQwTR0a2Dud+HMZpnc7YA8bQpBc+xYcAuvU4qGpJQX5OFgvnqC51ZnpIz4qPPgNXT6N/8QpRZ0joYxRMz84GmOZHaY9Jq6lO0n3V+Hhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kelXxDEN; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1750346180;
+	bh=XqbG1XOiL6qsyT/mbeOSE4rpnh2l2DOkWH/Yqj+Cv9o=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=kelXxDEN/QdNHQKOrU58SnIzr+lEWmj8NR0M3TjYD6c4pwh5GIDWFI6zPOOZq6hYe
+	 w0olGxtPwgdjA2DGyxuRYVsrbZea59M+zKjKQ9X68Iwwp7UUE90klv8B8zWX4Uaq0f
+	 YWPngXinkEPdoYEw5W0qp+lpTYMIE1P4beue8AMetujUtz74DwMlVzV7A7WRKDBZyw
+	 NB+ZWX/7jK2YuH4+hIDKk8uDDFLgl/HrabTZeSbqPRwAu/7HbSI8CSQWcpmbsA5YVb
+	 Ln1wJXr5BuZlzx+PjI38u8eaO87Ub10ebGV5WC3CdovpObP+75yuTB8+J/GtACu/BP
+	 KGwyjN9daMBqg==
+Received: from [IPv6:2606:6d00:17:b699::5ac] (unknown [IPv6:2606:6d00:17:b699::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D137217E09F0;
+	Thu, 19 Jun 2025 17:16:16 +0200 (CEST)
+Message-ID: <a66e3d27ee427710ed3de8ce89fa3aca40dced03.camel@collabora.com>
+Subject: Re: [PATCH v4 4/6] media: rockchip: Introduce the rkvdec2 driver
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Detlev Casanova <detlev.casanova@collabora.com>, 
+	20250325213303.826925-5-detlev.casanova@collabora.com
+Cc: alchark@gmail.com, andrzej.p@collabora.com, cassel@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmitry.perchanov@intel.com, 	dsimic@manjaro.org,
+ ezequiel@vanguardiasur.com.ar, gregkh@linuxfoundation.org, 
+	heiko@sntech.de, hverkuil@xs4all.nl, jacopo.mondi@ideasonboard.com, 
+	jeanmichel.hautbois@ideasonboard.com, jonas@kwiboo.se,
+ kernel@collabora.com, 	kieran.bingham@ideasonboard.com, krzk+dt@kernel.org,
+ 	laurent.pinchart@ideasonboard.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev, Jianfeng
+ Liu	 <liujianfeng1994@gmail.com>, mchehab@kernel.org,
+ naush@raspberrypi.com, 	robh@kernel.org, sakari.ailus@linux.intel.com,
+ sebastian.reichel@collabora.com, 	tomi.valkeinen@ideasonboard.com,
+ umang.jain@ideasonboard.com
+Date: Thu, 19 Jun 2025 11:16:15 -0400
+In-Reply-To: <5900973.DvuYhMxLoT@trenzalore>
+References: <9f098eab-7b98-4827-8538-3cab0e8d7c63@gmail.com>
+	 <5900973.DvuYhMxLoT@trenzalore>
+Organization: Collabora Canada
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
- K1
-To: Vivian Wang <wangruikang@iscas.ac.cn>, Yixun Lan <dlan@gentoo.org>,
- Guodong Xu <guodong@riscstar.com>, Ze Huang <huangze@whut.edu.cn>,
- spacemit@lists.linux.dev
-Cc: Vivian Wang <uwu@dram.page>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
-Content-Language: en-US
-From: Alex Elder <elder@ieee.org>
-In-Reply-To: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 6/17/25 12:21 AM, Vivian Wang wrote:
-> The SpacemiT K1 has various static translations of DMA accesses. Add
-> these as simple-bus nodes. Devices actually using these translation will
-> be added in later patches.
+Le jeudi 19 juin 2025 à 10:39 -0400, Detlev Casanova a écrit :
+> Hi Jianfeng,
 > 
-> The bus names are assigned according to consensus with SpacemiT [1].
+> This patch set is now a  bit outdated. I will soon send a new version that you 
+> can find at [1].
+> That being said, you may be right. without an iommu, it would panic here 
+> (although the iommu should really be used).
+
+Let's make sure to test it in the next series. One should be able to comment out
+the mmu node in the DT, and then it should work with CMA transparently.
+
+thanks,
+Nicolas
+
 > 
-> [1] https://lore.kernel.org/all/CAH1PCMaC+imcMZCFYtRdmH6ge=dPgnANn_GqVfsGRS=+YhyJCw@mail.gmail.com/
-
-So what you include here very closely matches what Guodong
-said in the message above.  Yours differs from his proposal
-and that makes it hard to compare them.  I have a few comments
-on that below.
-
-> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> ---
-> This is my concrete proposal for representing DMA translations for
-> SpacemiT K1.
-
-It's worth acknowledging that this is derived from what Guodong
-proposed (it's not "your" proposal in that respect).  That said,
-yours is a more complete and "formal" RFP than what he wrote.
-
-> For context, memory on the SpacemiT K1 is split into two chunks:
+> [1]: https://gitlab.collabora.com/detlev/linux/-/tree/add-vdpu381-and-383-to-rkvdec
 > 
-> - 0x0000_0000 to 0x8000_0000: First 2 GiB of memory
-> - 0x1_0000_0000 above: Rest of memory
+> Regards,
+> Detlev
 > 
-> DMA-capable devices on the K1 all have access to the lower 2G of memory
-> through an identity mapping. However, for the upper region of memory,
-> each device falls under one of six different mappings. The mappings are
-> provided in this patch as simple-bus nodes that device nodes should be
-> added to.
+> On Thursday, 19 June 2025 05:19:32 EDT Jianfeng Liu wrote:
+> > Hi Detlev,
+> > 
+> > On Tue, 25 Mar 2025 17:22:20 -0400, Detlev Casanova wrote:
+> >  >+        case RKVDEC2_ALLOC_SRAM:
+> >  >+            virt_addr = (unsigned long)ctx->rcb_bufs[i].cpu;
+> >  >+
+> >  >+            iommu_unmap(rkvdec->iommu_domain, virt_addr, rcb_size)
+> > 
+> > I'm testing your patch with ffmpeg patched with v4l2-request patches[1],
+> > and I usually
+> > 
+> > get kernel panic here. After checking rkvdec->iommu_domain before
+> > running iommu_unmap,
+> > 
+> > I can pass fluster ffmpeg v4l2-request test. Here is my patch based on
+> > your commit:
+> > 
+> > 
+> > diff --git a/drivers/media/platform/rockchip/rkvdec2/rkvdec2.c
+> > b/drivers/media/platform/rockchip/rkvdec2/rkvdec2.c
+> > index 75768561399..122bcdcebd4 100644
+> > --- a/drivers/media/platform/rockchip/rkvdec2/rkvdec2.c
+> > +++ b/drivers/media/platform/rockchip/rkvdec2/rkvdec2.c
+> > @@ -681,8 +681,8 @@ static void rkvdec2_free_rcb(struct rkvdec2_ctx *ctx)
+> >                  switch (ctx->rcb_bufs[i].type) {
+> >                  case RKVDEC2_ALLOC_SRAM:
+> >                          virt_addr = (unsigned long)ctx->rcb_bufs[i].cpu;
+> > -
+> > -                       iommu_unmap(rkvdec->iommu_domain, virt_addr,
+> > rcb_size);
+> > +                       if (rkvdec->iommu_domain)
+> > + iommu_unmap(rkvdec->iommu_domain, virt_addr, rcb_size);
+> >                          gen_pool_free(ctx->dev->sram_pool, virt_addr,
+> > rcb_size);
+> >                          break;
+> >                  case RKVDEC2_ALLOC_DMA:
+> > 
+> > 
+> > [1] https://github.com/amazingfate/FFmpeg/commits/n6.1.1-new-patches/
+> > 
+> > 
+> > Best regards,
+> > 
+> > Jianfeng
 > 
-> This patch is an RFC because it is not meant to be applied, or at least,
-> not certainly meant to be applied. Instead, this is an attempt to come
-> to a consensus on how these bus nodes should look like.
-
-I think the above is what Krzysztof might not have seen.  Perhaps
-it could have been made more clear--maybe in the "main" description
-section (above the ---) or even the subject line.
-
-> More specifically, I propose that the process proceeds as follows:
 > 
-> - Firstly, relevant parties agree on these bus nodes given here.
-> - After that, each time the first user of a bus appears, the series
->    should include a patch to add the bus required for that driver.
-> - If a driver being submitted uses the same bus as another one that has
->    been submitted but hasn't yet landed, it can depend on the bus patch
->    from that previous series.
-
-Getting agreement is good, but otherwise this is basically
-the process Guodong was suggesting, right?
-
-> For conventions regarding coding style, I propose that:
 > 
-> - #address-cells and #size-cells are 2 for consistency
-> - These bus nodes are put at the end of /soc, inside /soc
-> - These bus nodes are sorted alphabetically, not in vendor's order
-> - Devices are added into *-bus nodes directly, not appended towards the
->    end with a label reference
-
-I do like that you're trying to be more complete and explicit
-on what you think needs agreement on.
-
-> The K1 DMA translations are *not* interconnects, since they do not
-> provide any configuration capabilities.
-> 
-> These bus nodes names and properties are provided compliant with
-> "simple-bus" bindings, and should pass "make dtbs_check".
-> 
-> Remaining questions:
-> 
-> - Should storage-bus exist? Or should drivers under it simply specify
->    32-bit DMA?
-
-Explicitly saying storage devices have one-to-one mapping
-seems informative, to me.
-
-> ---
->   arch/riscv/boot/dts/spacemit/k1.dtsi | 53 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 53 insertions(+)
-
-The short summary of what differs between your proposal
-and what Guodong said is:
-- You sort nodes alphabetically, Guodong did not
-- You dropped the unit address
-- You dropped the comments he had, which indicated which
-   devices "belonged" to each mapping
-- You added a compatible property to each ("simple-bus")
-- You added an explicit (empty) ranges property to each
-- You add #address-cells and #size-cells properties, both 2
-- Your dma-ranges properties are identical to Guodong's,
-   for all nodes
-
-My comments:
-- I agree with you that a unit address doesn't really make
-   sense, because there is no meaningful ordering
-- Sorting alphabetically also makes sense to me
-- I think the comments about devices associated with each
-   mapping were informative
-
-I think Yixun should manage getting consensus on this
-(i.e., he should sign off on the RFP somehow).
-
-					-Alex
-
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index c0f8c5fca975d73b6ea6886da13fcf55289cb16c..efefed21b9fa1ab9c6ac3d24cd0cca8958b85184 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> @@ -562,5 +562,58 @@ sec_uart1: serial@f0612000 {
->   			reg-io-width = <4>;
->   			status = "reserved"; /* for TEE usage */
->   		};
-> +
-> +		camera-bus {
-> +			compatible = "simple-bus";
-> +			ranges;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
-> +				     <0x0 0x80000000 0x1 0x00000000 0x1 0x80000000>;
-> +		};
-> +
-> +		dma-bus {
-> +			compatible = "simple-bus";
-> +			ranges;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
-> +				     <0x1 0x00000000 0x1 0x80000000 0x3 0x00000000>;
-> +		};
-> +
-> +		multimedia-bus {
-> +			compatible = "simple-bus";
-> +			ranges;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
-> +				     <0x0 0x80000000 0x1 0x00000000 0x3 0x80000000>;
-> +		};
-> +
-> +		network-bus {
-> +			compatible = "simple-bus";
-> +			ranges;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
-> +				     <0x0 0x80000000 0x1 0x00000000 0x0 0x80000000>;
-> +		};
-> +
-> +		pcie-bus {
-> +			compatible = "simple-bus";
-> +			ranges;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
-> +				     <0x0 0xb8000000 0x1 0x38000000 0x3 0x48000000>;
-> +		};
-> +
-> +		storage-bus {
-> +			compatible = "simple-bus";
-> +			ranges;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-> +		};
->   	};
->   };
-> 
-> ---
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> change-id: 20250616-k1-dma-buses-rfc-wip-3be7a01f47c8
-> 
-> Best regards,
-
 
