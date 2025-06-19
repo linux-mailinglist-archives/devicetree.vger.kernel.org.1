@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-187607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42037AE096F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:59:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1143AAE0983
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:00:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36E69189BDBF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:57:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 126465A5F32
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FA328DEF8;
-	Thu, 19 Jun 2025 14:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A24F028D850;
+	Thu, 19 Jun 2025 14:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n5NbvsIW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IOUf57Mu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B797328CF4A
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6616028D8D2
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:55:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750344931; cv=none; b=lgeFfEWykZZxfv9VnlvmuFyv6UP25xPB1vgOsZ4O71WwPza33N5EN3QsLrpdXbHSVxgw7ps4kKp55rLZTo/Kz05qT8JL59yp/3O143EgoTqmhBEyxvNmIkcIJ6QT712cP5LiGB081LXJs71Yhr8QNUfz1Za4dW0yRXTHGj8HuxM=
+	t=1750344933; cv=none; b=i5TFSlEh3nrC1jMcUpsnZOwL4BpIoCBn8Dh/B9WQ6QwP1PZXk2QhRVH1ano6311QsCnhEZBbo/yls6A2cQcz9xO8aUPL+fbotpzFE1JgjCkLZSM51a35VsBGX0Dqua9Svxp3uXVhYyr8C+6cTKYl4jPDPMkklH1GyATmUcwS41Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750344931; c=relaxed/simple;
-	bh=4C4/BzYVvqykLCWqBbtexksZlDrp0KmcIoZ0MxhlLow=;
+	s=arc-20240116; t=1750344933; c=relaxed/simple;
+	bh=hfxv1DtZdlwRviIOgnak2gccDnkJhuul0zWJ5mSgHQI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aC/btg0ncIRa+PG1QsJHNOVszY9nLwM1L3gndG11UdGESlPBpQfm5rGutZOSHevr28r1XsvESaNdTRxdbh7Ro1K6Ylci0/PNnUl3dBb2wQEyztgYz/D7GwDZqdZCJxI8ziBRRJSxtc5C/bEp01gX/s8/wGrNkpmRfbksffVa3Y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n5NbvsIW; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:To:Cc; b=GUXFsxDnsg1JXh7Msj6A7j4w4itoPf4rbTG1VVVbLuyHytj10ka/BXYpSExqLnIJTgaQ4Bo0/D5DGRuSbjZGjOEcpgx1o2tKayDAI/zPs6h/WQi74M2WmT5SEM2sA2vuPfmTYMymGT+W3SvfN3/I0SLWTfKtUa8+FhbWadGHgdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IOUf57Mu; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a54690d369so882794f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:55:28 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a375e72473so424147f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:55:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750344927; x=1750949727; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1750344928; x=1750949728; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uiY+DVkF0Tx7wXnhclKSYzhcL2ot81tRcGxMxTU/GtI=;
-        b=n5NbvsIWZM5mNmIcMxSGObHD4oh/+gSoVWheGopgdWuJXJM8a8YG9YCISaLYypmqYo
-         NmBMjnWFzU6LfSv2R5f65UljTyLoqEHddG2CFmaj+iXt9oSQW4Cdi54l599H8GIP9Pe0
-         b0gJNvI5ANTlTZvClbXjzKfpcnGUNEq/zepfHDSWKkajV9v9UXouc3yfHTUL4A66aT7w
-         Gs7DY5c+JNtqSVVgTsJlhFmk0RblKTFAQC1R6jMEL76tIZ6d0UAxslSj2U44xqd3j3BT
-         /ycPkxWGFN3Fd9MjsodMRG9L/Bb4lxOQ7rXk/mYGIB8TLSwr7QMKrkawqImOo3oId/ib
-         hQbw==
+        bh=h2x2H08jDXRaXR0Yr7xxE830BP4sQoxluaMapVfIpIs=;
+        b=IOUf57MuLLkbTBdHh+DATkmjB7sMrl68nrL4Q8XlEaloRPyxQXQnGYNFxf67HTq+xx
+         zbj9E5cVlRqMKhqVmJJNNuaRkvhT3s2A9Uodvhx+13aDxtFUjYXwe662hl05VCuH2LBk
+         vCOHHsFeL336DPw+XRWRzqt8+rdkI7KUXqM+xSlWYvLIIdFsJBh4Bk19yW/LHNWZqEmT
+         fv+TrFrTPzBXygBjvHTYrnneidlgb3hRVPxcg679RX1Z7tTNG/ksb/yPApiJ07WEMHok
+         gghI7ltV0kIQ5pV7HcoM1X2M0BuXDLUFP+hVuBOGcgehyFDdPgtz0FJc5I12XM0CWHTz
+         /g8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750344927; x=1750949727;
+        d=1e100.net; s=20230601; t=1750344928; x=1750949728;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uiY+DVkF0Tx7wXnhclKSYzhcL2ot81tRcGxMxTU/GtI=;
-        b=mP6/Jt9MLlqLvmlwzYkZ34D+KKkFKjb+3LNRoPEdxhEh+XNpuSyzKdpRwjY8bNRG02
-         y25Awucniypf3jbQMBrVDTjcB30kjt8h1VDWXjhpstsOKNHsip6l5j5DUOUl4+MA8IjO
-         Zo3x9Oc3B26cj6tD0TFW7hvx0dmT13puYcXQXRmIRkEDHR3tgkGTSSpcx4vvWPMFzwL6
-         rukCgPLscf24KRsilwx1R4VOk0dY0YI8mjW6XH2AevODuexQsYBn0qsSqq3YZPOPyziD
-         j2xMFAFf2YPfXOM1aS/SPFpE4sWgZWa4nCFHRsw06hm1pT9VSEHhno4pdE5RmlMkYVUh
-         vpyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzwRu7oYQq36XPZpfqxAJJAlaZwbkLMJp1U8qbQ5NIyYgA5ugkgJTHsjI2Nx7E55/Ln3Hk1m09aTLI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbjOaf6u33c3s5ZpnV/VhtWmV1Q0x7vNTb4HyrrV4ZpZpN709A
-	Td1B+HihXrW8c3vwqWGs9sqofKKh3Etw9QXU1uyp1cxFUROLjyZ9szjJGwRISB6acKY=
-X-Gm-Gg: ASbGncsVV/D4UuwVEF0RlfTxpTPH4nDJKuGoL/D/+iLcRDnm7NPzjHbGgDYsh8PTpPs
-	qiGkU2x/EUGUnOjGVRjL9IDBYKKFjdnn1YxGkYbYrNo88z2kDnPFa5dOa1+YJV3zT8TEEa/hjIo
-	BpvrwSxH9Z/LxQgQz+hjvhecddbDLBmI9KZC+6yBmsM2l6vE1N30PvK1fvp2EOsODRMNLgvHwUL
-	moRaSdiEUztwUb23KjSdSbMwySLrmER1U3RXMznuL7x7Lm2kSU1rj74RzYeKtdq2tefmuzLOfRT
-	SatEjY14ih9QkKOLwboUSu8J6ZnyukOpJo8wLeaZP2n3vhnRriOgYEJuo+5oXFUON0hIM2ZgBV3
-	jjWje0+lkBwQ=
-X-Google-Smtp-Source: AGHT+IGgc5GkhPO/vj3LU4YDmcm6Dit5qWlLwjFG7XrsUFfqD8cTmVzqG/+/ie6nUOAJEDHqELYGwQ==
-X-Received: by 2002:a05:6000:2c13:b0:3a4:ef36:1f4d with SMTP id ffacd0b85a97d-3a5723a4c09mr18760617f8f.38.1750344926745;
-        Thu, 19 Jun 2025 07:55:26 -0700 (PDT)
+        bh=h2x2H08jDXRaXR0Yr7xxE830BP4sQoxluaMapVfIpIs=;
+        b=eXVC2BrbHLXWD3qg1UBjOdkI5gKe/HKQ3n0q01e0Kr82Zuk/3lUccfbZXM/RbEkRc9
+         p/o1c8x1c3UPD9FcaFKb2zSgM3/h4Itjhh5sSONIduA7dILKQPcay/qtEUBsbSxXqhFu
+         uAhVsG+JI/PTm1gqxFaE6CPEJBH4Zl3MNBdO1FyFEgYB6zl+11w4bpGy4ByFV2UFw75s
+         Qei7+uRzzOiJKiczDgUch2pguWCK8dOHXfNVTagiUVVrg7oqzcpdR+UQYbnvm5GZvd95
+         sqqsKpAr3yzrqLDgQsDRROSKGIRRSOrUgP1GogBTCR5Wrp8NPBBrKDwROubFOjjKGtKW
+         ABFA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+rTZrSFF+cZx6xyLIRCFklI1Y64/3qYi6EcC5cgX6p0uZRhxavwXcArNBzd8IO08sXWpctnDBifBF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzt3e8xTNTOUdMYDv5Ea/cq+Mf92cdEBEt4eYbOckZJJO0UWUdz
+	DhLTJWZrI0YFPjWXpwvO1PVnz1dNY1Kmoho9G5BtvVFgSkWdiTD4yGEqdwDucyYF/2M=
+X-Gm-Gg: ASbGncsSGRBCooFqC8AS55codXpz5yGP/reYbY1/ngIUjgVpjIy1w/wEpniig2/VFMc
+	LSoBAcDmeUDCrz+IE6yP5n4PUNbTbIrmBTz1xPhYB0CQWbDoGyzRcHhDJK/GgpgnHxy2urxHjk/
+	OLh1df9NY7TqIF29tMSkPpvdTaQ61NnTiJ+IoCa4qpKeNAZErwLQeMhzt6HsSxWFkXLQfBDixO1
+	WcJxrG04OhCi9b8pEFKz5eXX7YEEhwVl/xT3neaO5aiQWFGZ8meaMMetErAGHXm2D3m+73bPRtm
+	ajJQva+iZBqS0fnQ1Na/2FnG1Rq8vpNfjKmORB4WpZGHgoNpjV6wPCLz/JOy7wUbPvNJp8xLNjI
+	tU8vKIAZCO7gkQTLmhnPMfQ==
+X-Google-Smtp-Source: AGHT+IG0Myiu1GtIhNeuFtAB8WQQ1lcfVyrvJFwgX2fNT6Rbat1lEOhnWuxbqqqsxLOWIwDEmETQhw==
+X-Received: by 2002:a05:6000:65b:b0:3a5:88e9:a543 with SMTP id ffacd0b85a97d-3a588e9ab75mr8835780f8f.58.1750344928183;
+        Thu, 19 Jun 2025 07:55:28 -0700 (PDT)
 Received: from toyger.tail248178.ts.net ([2a0e:c5c1:0:100:b058:b8f5:b561:423c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ebced8asm31343715e9.40.2025.06.19.07.55.25
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ebced8asm31343715e9.40.2025.06.19.07.55.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jun 2025 07:55:26 -0700 (PDT)
+        Thu, 19 Jun 2025 07:55:27 -0700 (PDT)
 From: Casey Connolly <casey.connolly@linaro.org>
-Date: Thu, 19 Jun 2025 16:55:15 +0200
-Subject: [PATCH 07/11] power: supply: qcom_smbx: bump up the max current
+Date: Thu, 19 Jun 2025 16:55:16 +0200
+Subject: [PATCH 08/11] power: supply: qcom_smbx: remove unused registers
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250619-smb2-smb5-support-v1-7-ac5dec51b6e1@linaro.org>
+Message-Id: <20250619-smb2-smb5-support-v1-8-ac5dec51b6e1@linaro.org>
 References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
 In-Reply-To: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
 To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -97,82 +97,351 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
  Sebastian Reichel <sebastian.reichel@collabora.com>, 
  linux-hardening@vger.kernel.org, Casey Connolly <casey.connolly@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2386;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=12313;
  i=casey.connolly@linaro.org; h=from:subject:message-id;
- bh=4C4/BzYVvqykLCWqBbtexksZlDrp0KmcIoZ0MxhlLow=;
- b=owEBbQKS/ZANAwAKAQWDMSsZX2S2AcsmYgBoVCTR74CQMAmQ7VTKPiBk6x+W6w8QNhr/qM/SB
- 9TbzQLsqpeJAjMEAAEKAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCaFQk0QAKCRAFgzErGV9k
- tjg4D/49MaTCqWbRpdaxNKlfjLtTNMq6C9Bn1so6q9lsEIryZcn2Ooc0TMkBNln+4horde0iNNJ
- X2/ofIrJou53ToJo3p8nVgcm3F1V7K1kiEJhuaoAWV0huFC0R4EOn5MGZq4Ezs9o9uz5XiP6kQx
- 30i6f1fp0lsK1b9qFAP1JZGD3T2NYJOxNc8XhC5EOk03Rc/dHZZSgP+R8MLtTMo6kMCH4HevBg0
- QJZICJVFDAZcDJ+bDGgRLEf9ra7byCHf0xJpavDa0tGQzbCJ41HvLZBRe75gm23DF3vNEtrRcXh
- 1RGcDK4tSecPLWogN9JP5uhg+791eX4EO3JatzB3IMRdqoBRqvuaTH0PHhUfDcdhxF32Jo7hBvU
- O59D+1xqoZZXiuu0HNJvYeAj7uqXIMzrvyRcTLBsw+49l63f6CAoj9tQ6l7TE+poi3X54VfrrVo
- 50EIra7sk997D/cIaGfbrwA6DFvQfCCqDiufIl9ZIN43wPHH9I6Zbc9RhoWaiUaOZ4yZsFkrWoJ
- fs5cytgISNmqKCoPkcbYPTr5vNxwNc3YbNmO3dm9bWtiBVWof9hhTZWSwuPYIde2Gnhd3C9Fp3c
- 8miD0OTi7H6GIaYNv6++MWsbUn3bHavXZ2wKR7kw8Es65a6jPDAgFo2eKcfWYeLDPiP9LF0SPT3
- U0dZAP3PMslLCNQ==
+ bh=hfxv1DtZdlwRviIOgnak2gccDnkJhuul0zWJ5mSgHQI=;
+ b=owEBbQKS/ZANAwAKAQWDMSsZX2S2AcsmYgBoVCTSkrP4staRfrVo6Lmof5bKK4TE5DAIiIpII
+ PNaPKc6RiOJAjMEAAEKAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCaFQk0gAKCRAFgzErGV9k
+ tsnjD/4uQm9oG6R8NCMu9BFl0L/iRCn21g/iNjbnnJNqzA+cCJ/56ZroylewWKVnP4PJ8Kk/HMz
+ 7Pv3h22pucBcDw7H4I06JNy71pEkkY2L40oJy2+JVkm8al27IL8mR0NXhP2OCI9pS5qwerJr/AV
+ Ya11eVP5MH7O4z3LZJKZVkvGRuYMCdatHGI314SlOOtUV8w6r0bR7XlLwgp/yNoYWRcECzRewAt
+ g0IpbZrABtDzGIU2qpkjdylF3jv3cv+y0khWkd0QXD+peLgGFA51/Q6LnVxUI+Y4cQFBplmXFYu
+ 52Hm8TWOi+TcGWRojs7+lItfb2DDxJ4xw8bf+Ga+l9HfTl6vQHJCiLyCH948oI7ayy9dP/fh9Yb
+ J08m4a2VeO2YgnuEp8dSLiYhUIXoA2q2jGeE2RCKQpQ4e6w/GxIw3heztj408ITwqiC5hnuJbcV
+ B9bv/fO37tx0ooWxJlxCGaMH7V7Ceklr05w83JNofgx3apL2VBXBqESzUSjprceOG0EHgi3lhEa
+ 6KPmta5djWAe3eRAa7qLAXy0m4zzQ5JaYpQUTjUQ5F7XvhVnus2GIErKNDjOuDe+X/FvMKZ+rbl
+ QGGG2kJZ1rOQPPnQHqclN9oA07f6nE0jTpoIgRXXU39EmB9MInf5A9faytx+9oz6myBbT2TDvjm
+ GxK9XUDsfWxt7fw==
 X-Developer-Key: i=casey.connolly@linaro.org; a=openpgp;
  fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 
-I set a super conservative current limit since we lack many of the
-safety features (thermal monitoring, etc) that these drivers really
-need. However now we have a better understanding of the hardware, it's
-fine to bump this limit up a bit, devices can additionally set the max
-current via devicetree instead.
-
-Since this is common to smb2 and smb5, move this write out of the init
-sequence and into probe proper.
+Remove registers and bits that aren't used to make things a bit more
+readable.
 
 Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
 ---
- drivers/power/supply/qcom_smbx.c | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+ drivers/power/supply/qcom_smbx.c | 211 +--------------------------------------
+ 1 file changed, 4 insertions(+), 207 deletions(-)
 
 diff --git a/drivers/power/supply/qcom_smbx.c b/drivers/power/supply/qcom_smbx.c
-index 7fc232fa7260a7422ac12a48686cd7d396edd9a4..d1607674d291d6ef5762d35acd3330e2116f41a3 100644
+index d1607674d291d6ef5762d35acd3330e2116f41a3..10ddd33a09599decb23c0f1ccd02fa9b56602543 100644
 --- a/drivers/power/supply/qcom_smbx.c
 +++ b/drivers/power/supply/qcom_smbx.c
-@@ -875,16 +875,8 @@ static const struct smb_init_register smb_init_seq[] = {
- 	 */
- 	{ .addr = PRE_CHARGE_CURRENT_CFG,
- 	  .mask = PRE_CHARGE_CURRENT_SETTING_MASK,
- 	  .val = 500000 / CURRENT_SCALE_FACTOR },
--	/*
--	 * This overrides all of the current limit options exposed to userspace
--	 * and prevents the device from pulling more than ~1A. This is done
--	 * to minimise potential fire hazard risks.
--	 */
--	{ .addr = FAST_CHARGE_CURRENT_CFG,
--	  .mask = FAST_CHARGE_CURRENT_SETTING_MASK,
--	  .val = 1000000 / CURRENT_SCALE_FACTOR },
- };
+@@ -24,39 +24,17 @@
+ #include <linux/workqueue.h>
  
- static int smb_init_hw(struct smb_chip *chip)
- {
-@@ -1029,8 +1021,22 @@ static int smb_probe(struct platform_device *pdev)
- 		return dev_err_probe(chip->dev, rc, "Couldn't set wake irq\n");
+ /* clang-format off */
+ #define BATTERY_CHARGER_STATUS_1			0x06
+-#define BVR_INITIAL_RAMP_BIT				BIT(7)
+-#define CC_SOFT_TERMINATE_BIT				BIT(6)
+-#define STEP_CHARGING_STATUS_SHIFT			3
+-#define STEP_CHARGING_STATUS_MASK			GENMASK(5, 3)
+ #define BATTERY_CHARGER_STATUS_MASK			GENMASK(2, 0)
  
- 	platform_set_drvdata(pdev, chip);
+ #define BATTERY_CHARGER_STATUS_2			0x07
+-#define INPUT_CURRENT_LIMITED_BIT			BIT(7)
+-#define CHARGER_ERROR_STATUS_SFT_EXPIRE_BIT		BIT(6)
+ #define CHARGER_ERROR_STATUS_BAT_OV_BIT			BIT(5)
+-#define CHARGER_ERROR_STATUS_BAT_TERM_MISSING_BIT	BIT(4)
+-#define BAT_TEMP_STATUS_MASK				GENMASK(3, 0)
+-#define BAT_TEMP_STATUS_SOFT_LIMIT_MASK			GENMASK(3, 2)
+ #define BAT_TEMP_STATUS_HOT_SOFT_LIMIT_BIT		BIT(3)
+ #define BAT_TEMP_STATUS_COLD_SOFT_LIMIT_BIT		BIT(2)
+ #define BAT_TEMP_STATUS_TOO_HOT_BIT			BIT(1)
+ #define BAT_TEMP_STATUS_TOO_COLD_BIT			BIT(0)
  
-+	/*
-+	 * This overrides all of the other current limits and is expected
-+	 * to be used for setting limits based on temperature. We set some
-+	 * relatively safe default value while still allowing a comfortably
-+	 * fast charging rate. Once temperature monitoring is hooked up we
-+	 * would expect this to be changed dynamically based on temperature
-+	 * reporting.
-+	 */
-+	rc = regmap_write(chip->regmap, chip->base + FAST_CHARGE_CURRENT_CFG,
-+			  1950000 / CURRENT_SCALE_FACTOR);
-+	if (rc < 0)
-+		return dev_err_probe(chip->dev, rc,
-+				     "Couldn't write fast charge current cfg");
-+
- 	/* Initialise charger state */
- 	schedule_delayed_work(&chip->status_change_work, 0);
+-#define BATTERY_CHARGER_STATUS_4			0x0A
+-#define CHARGE_CURRENT_POST_JEITA_MASK			GENMASK(7, 0)
+-
+-#define BATTERY_CHARGER_STATUS_7			0x0D
+-#define ENABLE_TRICKLE_BIT				BIT(7)
+-#define ENABLE_PRE_CHARGING_BIT				BIT(6)
+-#define ENABLE_FAST_CHARGING_BIT			BIT(5)
+-#define ENABLE_FULLON_MODE_BIT				BIT(4)
+-#define TOO_COLD_ADC_BIT				BIT(3)
+-#define TOO_HOT_ADC_BIT					BIT(2)
+-#define HOT_SL_ADC_BIT					BIT(1)
+-#define COLD_SL_ADC_BIT					BIT(0)
+-
+ #define CHARGING_ENABLE_CMD				0x42
+ #define CHARGING_ENABLE_CMD_BIT				BIT(0)
  
- 	return 0;
+ #define CHGR_CFG2					0x51
+@@ -78,270 +56,89 @@
+ #define FLOAT_VOLTAGE_CFG				0x70
+ #define FLOAT_VOLTAGE_SETTING_MASK			GENMASK(7, 0)
+ 
+ #define FG_UPDATE_CFG_2_SEL				0x7D
+-#define SOC_LT_OTG_THRESH_SEL_BIT			BIT(3)
+ #define SOC_LT_CHG_RECHARGE_THRESH_SEL_BIT		BIT(2)
+ #define VBT_LT_CHG_RECHARGE_THRESH_SEL_BIT		BIT(1)
+-#define IBT_LT_CHG_TERM_THRESH_SEL_BIT			BIT(0)
+-
+-#define JEITA_EN_CFG					0x90
+-#define JEITA_EN_HARDLIMIT_BIT				BIT(4)
+-#define JEITA_EN_HOT_SL_FCV_BIT				BIT(3)
+-#define JEITA_EN_COLD_SL_FCV_BIT			BIT(2)
+-#define JEITA_EN_HOT_SL_CCC_BIT				BIT(1)
+-#define JEITA_EN_COLD_SL_CCC_BIT			BIT(0)
+-
+-#define INT_RT_STS					0x310
+-#define TYPE_C_CHANGE_RT_STS_BIT			BIT(7)
+-#define USBIN_ICL_CHANGE_RT_STS_BIT			BIT(6)
+-#define USBIN_SOURCE_CHANGE_RT_STS_BIT			BIT(5)
+-#define USBIN_PLUGIN_RT_STS_BIT				BIT(4)
+-#define USBIN_OV_RT_STS_BIT				BIT(3)
+-#define USBIN_UV_RT_STS_BIT				BIT(2)
+-#define USBIN_LT_3P6V_RT_STS_BIT			BIT(1)
+-#define USBIN_COLLAPSE_RT_STS_BIT			BIT(0)
+ 
+ #define OTG_CFG						0x153
+-#define OTG_RESERVED_MASK				GENMASK(7, 6)
+-#define DIS_OTG_ON_TLIM_BIT				BIT(5)
+-#define QUICKSTART_OTG_FASTROLESWAP_BIT			BIT(4)
+-#define INCREASE_DFP_TIME_BIT				BIT(3)
+-#define ENABLE_OTG_IN_DEBUG_MODE_BIT			BIT(2)
+ #define OTG_EN_SRC_CFG_BIT				BIT(1)
+-#define CONCURRENT_MODE_CFG_BIT				BIT(0)
+-
+-#define OTG_ENG_OTG_CFG					0x1C0
+-#define ENG_BUCKBOOST_HALT1_8_MODE_BIT			BIT(0)
+ 
+ #define APSD_STATUS					0x307
+-#define APSD_STATUS_7_BIT				BIT(7)
+-#define HVDCP_CHECK_TIMEOUT_BIT				BIT(6)
+-#define SLOW_PLUGIN_TIMEOUT_BIT				BIT(5)
+-#define ENUMERATION_DONE_BIT				BIT(4)
+-#define VADP_CHANGE_DONE_AFTER_AUTH_BIT			BIT(3)
+-#define QC_AUTH_DONE_STATUS_BIT				BIT(2)
+-#define QC_CHARGER_BIT					BIT(1)
+ #define APSD_DTC_STATUS_DONE_BIT			BIT(0)
+ 
+ #define APSD_RESULT_STATUS				0x308
+-#define ICL_OVERRIDE_LATCH_BIT				BIT(7)
+ #define APSD_RESULT_STATUS_MASK				GENMASK(6, 0)
+-#define QC_3P0_BIT					BIT(6)
+-#define QC_2P0_BIT					BIT(5)
+ #define FLOAT_CHARGER_BIT				BIT(4)
+ #define DCP_CHARGER_BIT					BIT(3)
+ #define CDP_CHARGER_BIT					BIT(2)
+ #define OCP_CHARGER_BIT					BIT(1)
+ #define SDP_CHARGER_BIT					BIT(0)
+ 
+-#define TYPE_C_STATUS_1					0x30B
+-#define UFP_TYPEC_MASK					GENMASK(7, 5)
+-#define UFP_TYPEC_RDSTD_BIT				BIT(7)
+-#define UFP_TYPEC_RD1P5_BIT				BIT(6)
+-#define UFP_TYPEC_RD3P0_BIT				BIT(5)
+-#define UFP_TYPEC_FMB_255K_BIT				BIT(4)
+-#define UFP_TYPEC_FMB_301K_BIT				BIT(3)
+-#define UFP_TYPEC_FMB_523K_BIT				BIT(2)
+-#define UFP_TYPEC_FMB_619K_BIT				BIT(1)
+-#define UFP_TYPEC_OPEN_OPEN_BIT				BIT(0)
+-
+-#define TYPE_C_STATUS_2					0x30C
+-#define DFP_RA_OPEN_BIT					BIT(7)
+-#define TIMER_STAGE_BIT					BIT(6)
+-#define EXIT_UFP_MODE_BIT				BIT(5)
+-#define EXIT_DFP_MODE_BIT				BIT(4)
+-#define DFP_TYPEC_MASK					GENMASK(3, 0)
+-#define DFP_RD_OPEN_BIT					BIT(3)
+-#define DFP_RD_RA_VCONN_BIT				BIT(2)
+-#define DFP_RD_RD_BIT					BIT(1)
+-#define DFP_RA_RA_BIT					BIT(0)
+-
+-#define TYPE_C_STATUS_3					0x30D
+-#define ENABLE_BANDGAP_BIT				BIT(7)
+-#define U_USB_GND_NOVBUS_BIT				BIT(6)
+-#define U_USB_FLOAT_NOVBUS_BIT				BIT(5)
+-#define U_USB_GND_BIT					BIT(4)
+-#define U_USB_FMB1_BIT					BIT(3)
+-#define U_USB_FLOAT1_BIT				BIT(2)
+-#define U_USB_FMB2_BIT					BIT(1)
+-#define U_USB_FLOAT2_BIT				BIT(0)
+-
+-#define TYPE_C_STATUS_4					0x30E
+-#define UFP_DFP_MODE_STATUS_BIT				BIT(7)
+-#define TYPEC_VBUS_STATUS_BIT				BIT(6)
+-#define TYPEC_VBUS_ERROR_STATUS_BIT			BIT(5)
+-#define TYPEC_DEBOUNCE_DONE_STATUS_BIT			BIT(4)
+-#define TYPEC_UFP_AUDIO_ADAPT_STATUS_BIT		BIT(3)
+-#define TYPEC_VCONN_OVERCURR_STATUS_BIT			BIT(2)
+-#define CC_ORIENTATION_BIT				BIT(1)
+-#define CC_ATTACHED_BIT					BIT(0)
+-
+-#define TYPE_C_STATUS_5					0x30F
+-#define TRY_SOURCE_FAILED_BIT				BIT(6)
+-#define TRY_SINK_FAILED_BIT				BIT(5)
+-#define TIMER_STAGE_2_BIT				BIT(4)
+-#define TYPEC_LEGACY_CABLE_STATUS_BIT			BIT(3)
+-#define TYPEC_NONCOMP_LEGACY_CABLE_STATUS_BIT		BIT(2)
+-#define TYPEC_TRYSOURCE_DETECT_STATUS_BIT		BIT(1)
+-#define TYPEC_TRYSINK_DETECT_STATUS_BIT			BIT(0)
+-
+ #define CMD_APSD					0x341
+-#define ICL_OVERRIDE_BIT				BIT(1)
+ #define APSD_RERUN_BIT					BIT(0)
+ 
+ #define TYPE_C_CFG					0x358
+-#define APSD_START_ON_CC_BIT				BIT(7)
+-#define WAIT_FOR_APSD_BIT				BIT(6)
+ #define FACTORY_MODE_DETECTION_EN_BIT			BIT(5)
+-#define FACTORY_MODE_ICL_3A_4A_BIT			BIT(4)
+-#define FACTORY_MODE_DIS_CHGING_CFG_BIT			BIT(3)
+-#define SUSPEND_NON_COMPLIANT_CFG_BIT			BIT(2)
+ #define VCONN_OC_CFG_BIT				BIT(1)
+-#define TYPE_C_OR_U_USB_BIT				BIT(0)
+-
+-#define TYPE_C_CFG_2					0x359
+-#define TYPE_C_DFP_CURRSRC_MODE_BIT			BIT(7)
+-#define DFP_CC_1P4V_OR_1P6V_BIT				BIT(6)
+-#define VCONN_SOFTSTART_CFG_MASK			GENMASK(5, 4)
+-#define EN_TRY_SOURCE_MODE_BIT				BIT(3)
+-#define USB_FACTORY_MODE_ENABLE_BIT			BIT(2)
+-#define TYPE_C_UFP_MODE_BIT				BIT(1)
+-#define EN_80UA_180UA_CUR_SOURCE_BIT			BIT(0)
+-
+-#define TYPE_C_CFG_3					0x35A
+-#define TVBUS_DEBOUNCE_BIT				BIT(7)
+-#define TYPEC_LEGACY_CABLE_INT_EN_BIT			BIT(6)
+-#define TYPEC_NONCOMPLIANT_LEGACY_CABLE_INT_EN_B	BIT(5)
+-#define TYPEC_TRYSOURCE_DETECT_INT_EN_BIT		BIT(4)
+-#define TYPEC_TRYSINK_DETECT_INT_EN_BIT			BIT(3)
+-#define EN_TRYSINK_MODE_BIT				BIT(2)
+-#define EN_LEGACY_CABLE_DETECTION_BIT			BIT(1)
+-#define ALLOW_PD_DRING_UFP_TCCDB_BIT			BIT(0)
+ 
+ #define USBIN_OPTIONS_1_CFG				0x362
+-#define CABLE_R_SEL_BIT					BIT(7)
+-#define HVDCP_AUTH_ALG_EN_CFG_BIT			BIT(6)
+-#define HVDCP_AUTONOMOUS_MODE_EN_CFG_BIT		BIT(5)
+-#define INPUT_PRIORITY_BIT				BIT(4)
+-#define AUTO_SRC_DETECT_BIT				BIT(3)
+ #define HVDCP_EN_BIT					BIT(2)
+-#define VADP_INCREMENT_VOLTAGE_LIMIT_BIT		BIT(1)
+-#define VADP_TAPER_TIMER_EN_BIT				BIT(0)
+-
+-#define USBIN_OPTIONS_2_CFG				0x363
+-#define WIPWR_RST_EUD_CFG_BIT				BIT(7)
+-#define SWITCHER_START_CFG_BIT				BIT(6)
+-#define DCD_TIMEOUT_SEL_BIT				BIT(5)
+-#define OCD_CURRENT_SEL_BIT				BIT(4)
+-#define SLOW_PLUGIN_TIMER_EN_CFG_BIT			BIT(3)
+-#define FLOAT_OPTIONS_MASK				GENMASK(2, 0)
+-#define FLOAT_DIS_CHGING_CFG_BIT			BIT(2)
+-#define SUSPEND_FLOAT_CFG_BIT				BIT(1)
+-#define FORCE_FLOAT_SDP_CFG_BIT				BIT(0)
+-
+-#define TAPER_TIMER_SEL_CFG				0x364
+-#define TYPEC_SPARE_CFG_BIT				BIT(7)
+-#define TYPEC_DRP_DFP_TIME_CFG_BIT			BIT(5)
+-#define TAPER_TIMER_SEL_MASK				GENMASK(1, 0)
+-
+-#define USBIN_LOAD_CFG					0x365
+-#define USBIN_OV_CH_LOAD_OPTION_BIT			BIT(7)
+-#define ICL_OVERRIDE_AFTER_APSD_BIT			BIT(4)
+ 
+ #define USBIN_ICL_OPTIONS				0x366
+-#define CFG_USB3P0_SEL_BIT				BIT(2)
+ #define USB51_MODE_BIT					BIT(1)
+ #define USBIN_MODE_CHG_BIT				BIT(0)
+ 
++/* PMI8998 only */
+ #define TYPE_C_INTRPT_ENB_SOFTWARE_CTRL			0x368
+-#define EXIT_SNK_BASED_ON_CC_BIT			BIT(7)
+-#define VCONN_EN_ORIENTATION_BIT			BIT(6)
+-#define TYPEC_VCONN_OVERCURR_INT_EN_BIT			BIT(5)
+ #define VCONN_EN_SRC_BIT				BIT(4)
+ #define VCONN_EN_VALUE_BIT				BIT(3)
+ #define TYPEC_POWER_ROLE_CMD_MASK			GENMASK(2, 0)
+ #define UFP_EN_CMD_BIT					BIT(2)
+ #define DFP_EN_CMD_BIT					BIT(1)
+ #define TYPEC_DISABLE_CMD_BIT				BIT(0)
+ 
+ #define USBIN_CURRENT_LIMIT_CFG				0x370
+-#define USBIN_CURRENT_LIMIT_MASK			GENMASK(7, 0)
+ 
+ #define USBIN_AICL_OPTIONS_CFG				0x380
+ #define SUSPEND_ON_COLLAPSE_USBIN_BIT			BIT(7)
+-#define USBIN_AICL_HDC_EN_BIT				BIT(6)
+ #define USBIN_AICL_START_AT_MAX_BIT			BIT(5)
+-#define USBIN_AICL_RERUN_EN_BIT				BIT(4)
+ #define USBIN_AICL_ADC_EN_BIT				BIT(3)
+ #define USBIN_AICL_EN_BIT				BIT(2)
+ #define USBIN_HV_COLLAPSE_RESPONSE_BIT			BIT(1)
+ #define USBIN_LV_COLLAPSE_RESPONSE_BIT			BIT(0)
+ 
++// FIXME: drop these and their programming, no need to set min to 4.3v
+ #define USBIN_5V_AICL_THRESHOLD_CFG			0x381
+ #define USBIN_5V_AICL_THRESHOLD_CFG_MASK		GENMASK(2, 0)
+ 
+ #define USBIN_CONT_AICL_THRESHOLD_CFG			0x384
+ #define USBIN_CONT_AICL_THRESHOLD_CFG_MASK		GENMASK(5, 0)
+ 
+-#define DC_ENG_SSUPPLY_CFG2				0x4C1
+-#define ENG_SSUPPLY_IVREF_OTG_SS_MASK			GENMASK(2, 0)
+-#define OTG_SS_SLOW					0x3
+-
+-#define DCIN_AICL_REF_SEL_CFG				0x481
+-#define DCIN_CONT_AICL_THRESHOLD_CFG_MASK		GENMASK(5, 0)
+-
+-#define WI_PWR_OPTIONS					0x495
+-#define CHG_OK_BIT					BIT(7)
+-#define WIPWR_UVLO_IRQ_OPT_BIT				BIT(6)
+-#define BUCK_HOLDOFF_ENABLE_BIT				BIT(5)
+-#define CHG_OK_HW_SW_SELECT_BIT				BIT(4)
+-#define WIPWR_RST_ENABLE_BIT				BIT(3)
+-#define DCIN_WIPWR_IRQ_SELECT_BIT			BIT(2)
+-#define AICL_SWITCH_ENABLE_BIT				BIT(1)
+-#define ZIN_ICL_ENABLE_BIT				BIT(0)
+-
+ #define ICL_STATUS					0x607
+ #define INPUT_CURRENT_LIMIT_MASK			GENMASK(7, 0)
+ 
+ #define POWER_PATH_STATUS				0x60B
+-#define P_PATH_INPUT_SS_DONE_BIT			BIT(7)
+-#define P_PATH_USBIN_SUSPEND_STS_BIT			BIT(6)
+-#define P_PATH_DCIN_SUSPEND_STS_BIT			BIT(5)
+ #define P_PATH_USE_USBIN_BIT				BIT(4)
+-#define P_PATH_USE_DCIN_BIT				BIT(3)
+-#define P_PATH_POWER_PATH_MASK				GENMASK(2, 1)
+ #define P_PATH_VALID_INPUT_POWER_SOURCE_STS_BIT		BIT(0)
+ 
+ #define BARK_BITE_WDOG_PET				0x643
+ #define BARK_BITE_WDOG_PET_BIT				BIT(0)
+ 
+ #define WD_CFG						0x651
+ #define WATCHDOG_TRIGGER_AFP_EN_BIT			BIT(7)
+ #define BARK_WDOG_INT_EN_BIT				BIT(6)
+-#define BITE_WDOG_INT_EN_BIT				BIT(5)
+-#define SFT_AFTER_WDOG_IRQ_MASK				GENMASK(4, 3)
+-#define WDOG_IRQ_SFT_BIT				BIT(2)
+ #define WDOG_TIMER_EN_ON_PLUGIN_BIT			BIT(1)
+-#define WDOG_TIMER_EN_BIT				BIT(0)
+ 
+ #define SNARL_BARK_BITE_WD_CFG				0x653
+-#define BITE_WDOG_DISABLE_CHARGING_CFG_BIT		BIT(7)
+-#define SNARL_WDOG_TIMEOUT_MASK				GENMASK(6, 4)
+-#define BARK_WDOG_TIMEOUT_MASK				GENMASK(3, 2)
+-#define BITE_WDOG_TIMEOUT_MASK				GENMASK(1, 0)
+ 
+ #define AICL_RERUN_TIME_CFG				0x661
+ #define AICL_RERUN_TIME_MASK				GENMASK(1, 0)
++#define AIC_RERUN_TIME_3_SECS				0x0
+ 
++/* FIXME: probably remove this so we get parallel charging? */
+ #define STAT_CFG					0x690
+-#define STAT_SW_OVERRIDE_VALUE_BIT			BIT(7)
+ #define STAT_SW_OVERRIDE_CFG_BIT			BIT(6)
+-#define STAT_PARALLEL_OFF_DG_CFG_MASK			GENMASK(5, 4)
+-#define STAT_POLARITY_CFG_BIT				BIT(3)
+-#define STAT_PARALLEL_CFG_BIT				BIT(2)
+-#define STAT_FUNCTION_CFG_BIT				BIT(1)
+-#define STAT_IRQ_PULSING_EN_BIT				BIT(0)
+ 
+ #define SDP_CURRENT_UA					500000
+ #define CDP_CURRENT_UA					1500000
+ #define DCP_CURRENT_UA					1500000
 
 -- 
 2.49.0
