@@ -1,298 +1,117 @@
-Return-Path: <devicetree+bounces-187664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4ECAE0D12
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:37:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42F97AE0E13
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:38:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF3BF3A19F6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:37:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBA0E169B0E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 19:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC1A28D8D9;
-	Thu, 19 Jun 2025 18:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C9E24397A;
+	Thu, 19 Jun 2025 19:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="XvZjDPEe"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PxIOddVa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8EA28CF6B;
-	Thu, 19 Jun 2025 18:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750358251; cv=pass; b=X975m0LBNQvZkOvJwwxx/i33Rjkks0UotPVxpiF/NwQUL7ZSBgw2E6dGpAiWXErbmvRtqUFxeN5EFOCzKjNMyGOXLICXxkHwy89nfL8pXDRO6JM1wiBpuuGKIaxfVEVKOr4KmXREPw/IOvjwGoEp0xAC/yp9K4scaVn9fuknQmI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750358251; c=relaxed/simple;
-	bh=V9CQvzys+m7Loz1PpNe3/GgsFMgX2Mnh9CateKTX9aM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cXG0+oLgM7ATaOQN2GInV2Q2ttmB+i0U25BzY+FGpq961eAzuMqt0iE9q+bNXOCfNDp+DTAN8+u2yE27+j7UwUkCArR1y93TeQxH0UqSvsWar8zfNFC1Wf/tH4YMXJZnut4is9W6tz+1NpOWv3NM+6IhUv3jYDwz9phvXlPKN/U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=XvZjDPEe; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750358218; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=A8azS6m+S5iFUo0+brLwmHycViLdwvdq+AZEe7p66hKfi5uPE/dd7zF/AuHSOGoy+BUlbOMgZPwq54snpnKonL2jpwlBixl1XVk/cvwSXoX2/EcPIIjqUzZ0QW7j0/HnovTrDrUmB+z4V5SYyUEJOHCH5u/sfzVOy2h8ADDxN64=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750358218; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=LD61zwrmreCa4aB/M9FxrH821zs6AkG4g0unv/BUYoY=; 
-	b=PIDbaAQYPoSZJSPBgxu/m711LYDMfFr7OK6JF0UdABo6S7eu3Oovmbtwd5mezpezmi7z8oI6Fk6F7i3JaURJ47r6LHWoilNr66XB6oLYQvZQsFvferlI6selm85d8buOMHncJqvMZBGdGGv4FRAB9uki4xsGYF+h/Osvn8BG2rM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750358218;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=LD61zwrmreCa4aB/M9FxrH821zs6AkG4g0unv/BUYoY=;
-	b=XvZjDPEeomfmPUObvXs1e7kdzLzehZrXrgMECUnek+8dZNE31wLTam19y9uE8EoJ
-	EVwKPnY0zx712uVchfo7m89H/n5B249adXdTstTGQsA9hTakw1JpSNJ2bP4WUCr2u01
-	4Xd3JZo351upElVit+mexZCwliiv3yr2OxFt1VXk=
-Received: by mx.zohomail.com with SMTPS id 1750358216401837.8847047716139;
-	Thu, 19 Jun 2025 11:36:56 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 19 Jun 2025 20:36:37 +0200
-Subject: [PATCH v5 2/2] arm64: dts: rockchip: enable USB on Sige5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCFA30E83E
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 19:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750361882; cv=none; b=fs5aAxXqSaLrCft19NIoAj6H5YgoQk35nSSPueGOZca9XoNayHgJpy4VBiLPfHggWNKQSf+/sLWZLa0GQG1FGa7sYL4TM0Aj9t1yxfyg197Lr8Za/XIPvZIGM1wKb48WBzivsdfGN4CI0ccvMUqfyd/U3SRNHAXwnUgiIouaEzA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750361882; c=relaxed/simple;
+	bh=NIFjyyzuaNIdw3YOaVRSCkqGyAMbR5LtcqtqSv0Jb38=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YQgD9meZ6D9I222FCP3Cotfa54AZTxpX4EU+k46sYnrhRrTkawuBcbOoGjlmHhVztLIVCQa/nz7tlgj3CclllYwZ+359mJiv1sgTkBb17hRNnEte6u/TvGrrUlplByhJ12i6i0JJY0n2WgajSCr7CfeTCzGwq5CXibwcEEFv9pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PxIOddVa; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-607c5715ef2so1724732a12.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 12:38:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750361879; x=1750966679; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DEw+XHTgMkkpVsk+76/bQtWmWF827UIFe6sQvlC4/B0=;
+        b=PxIOddVa0QdzZtAJQ8PGI+DgG0o2fWiw1P3iygGZLoGVQeQSyK/aXm9RaCLh//EpJZ
+         QKLQAAMUSbdb7mM4gfr0sNcHFo+wtB450aKwb7epIiAlZTl9baDV15KdK/E+hflSFTbU
+         ctTvkvgk/6kMLPmqjcLBpNjr3D7cOrG0szd9PcaPFY7jCoeYlCwEdZ0U6Nzaz58r2HaN
+         CymUZvEnTkv6odwa9SdTlgC1ua+Q7ajNtyJgtkHArfzCpBuPX0CAo3w8BF/CBeph8Wxt
+         cminZHyoMIDFkZkL/41gMQWywia8GsiXpU0Om117ZM/xxObWElNWUHiaQg3jReNpcA/m
+         ySdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750361879; x=1750966679;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DEw+XHTgMkkpVsk+76/bQtWmWF827UIFe6sQvlC4/B0=;
+        b=RT8RpTwHs5HB8OMnK3w/HfKm5swdl0KVvdT2ntfYqQ2zHbTjli8fC67rP81Ln8UV/N
+         BR90d1Qr+NyRZL15StgN7e1lun+CI9t+KuhDGcAlbdhUFclappP8uUKOJAWNG290rsBm
+         1EHcsIvZxAQpk0dq4hURQPkhHZvspHGSPvDaK0l3ZaswufRbUydCJmnt0sZuGZSGB3aR
+         GXAEP6YIan+bCRwLbF3TJwlcDmoar2q+lk8qeHIqir3YJNdZNO1f4VemKPGmh8T4fVZx
+         jJrGJ+e4TfZpzQWRj6e/clzkyoko+texCFksFrzHPjc46ir8r5mNDHWyk5xBKIs5ZXzf
+         BkQg==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ/iabvAmeTFIJbtiDg3zymDhZJCuMyTN4d77oRo4Y1Zyf2fbTtQgIE0PK03NUBRiNilf7lb9kkK2r@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzs6sb8cVO2EmOeVJmAJcs9kRXmhISEIhMK7ER71Uc67Lvto4+K
+	nJvFcpSqk7nt9m6WEoYXm3OdncPGI1pj3uCpb0KxAo/so2S237VQvgoWJ0n7zvZ7pSc=
+X-Gm-Gg: ASbGncu+lm5GiHENqxepUjlN5SWjkgrGNkSr0lUXN4dKj5s5uKRa5f5ce0oK4jVCo4U
+	V6rgSiBE2sVDlSuMdRr1HAGk/NnjKw787qJ0C2LsVUCFsuT1AAnQ3+RMt0puriExeKXosTs7QmO
+	SvYDa4it12ghajuxisI76/9bXd+Q5TrKC44S8Y9OzANfsSRzaBdtDwIrNUtfghYjxxFuglDTvUc
+	b/wPVFbEkDpNoMX3J8SHDCf7AOCEnxF1cNH2hJnbgeq5bjA8XhibIUg7Kbd82r6Z7oDmePbJ5TJ
+	X8e82u+jR5FcaNzIq9/g5B87QqBVNsCUB8BBEymsqMu50RLZCqGjxpJk+Y0H7xwFXPw=
+X-Google-Smtp-Source: AGHT+IExty0s/qqPMzZoWioOGaL/D5l3jKw1pRA3K84JdSTooeAoNuus4825RUxWdFOd6p3crKYCdQ==
+X-Received: by 2002:a17:907:9215:b0:ad8:a50c:f6b7 with SMTP id a640c23a62f3a-ae057b6e710mr9182966b.28.1750361878727;
+        Thu, 19 Jun 2025 12:37:58 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-ae053ecbf2bsm35610166b.46.2025.06.19.12.37.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 12:37:58 -0700 (PDT)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] hwmon: adt7475: Implement support for #pwm-cells = <3>
+Date: Thu, 19 Jun 2025 21:37:44 +0200
+Message-ID: <cover.1750361514.git.u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250619-rk3576-sige5-usb-v5-2-9069a7e750e1@collabora.com>
-References: <20250619-rk3576-sige5-usb-v5-0-9069a7e750e1@collabora.com>
-In-Reply-To: <20250619-rk3576-sige5-usb-v5-0-9069a7e750e1@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Frank Wang <frank.wang@rock-chips.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Alexey Charkov <alchark@gmail.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=702; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=NIFjyyzuaNIdw3YOaVRSCkqGyAMbR5LtcqtqSv0Jb38=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBoVGcJKmVssP8jB9YqPPmLToOVDCM1PRQGoejec s3avXa2MpaJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCaFRnCQAKCRCPgPtYfRL+ Tm26B/0XY1eUwzzORX/Jlz40BkiXErdvfjjms6ozU/9Ukyk16S49RMwEwRXw+nRDJF8HgpI4Xb8 EAbYwJXLdw6RlcnhUOfpWd0KuY78Z4RljV5TtLRTEKwpbhY96b/uWsOPMAIiKlBNzB3ToyXCuoI 42kq371B52N6H/qy7tOL/hhm3Lz+CG01/nwK/HEZRcq9qj/feYpnyjn9Z2zpun3FDOMqzEdFetE cDjvXYAGZQc3mpJGgLUB8TkTKqqzdtzPmeuPQS9Q5CzPxdH70yyyVKIg8TpKSLLZx4bYoBkn/6B OIEfZbjMdeLZ+L13zorCyIur9JgoMs09yODY+fs3o6EYL+/l
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 
-The ArmSoM Sige5 has several USB ports: a Type-A USB 3 port (USB2 lines
-going through a hub), a Type-A USB 2.0 port (also going through a hub),
-a Type-C DC input port that has absolutely no USB data connection and a
-Type-C port with USB3.2 Gen1x1 that's also the maskrom programming port.
+Hello,
 
-Enable these ports, and set the device role to be host for the host
-ports.
+this patch series implements support for #pwm-cells = <3> and updates the
+binding accordingly. 3 cells is the usual PWM binding as was discussed in
+https://lore.kernel.org/linux-hwmon/jmxmxzzfyobuheqe75lj7qcq5rlt625wddb3rlhiernunjdodu@tgxghvfef4tl .
 
-The data capable Type-C USB port uses a fusb302 for data role switching.
+Best regards
+Uwe
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 160 +++++++++++++++++++++
- 1 file changed, 160 insertions(+)
+Uwe Kleine-König (2):
+  hwmon: adt7475: Implement support for #pwm-cells = <3>
+  dt-bindings: hwmon: adt7475: Allow and recommend #pwm-cells = <3>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-index 34e51cd71eac0395c7f36c892fc0711f6c324aea..b52646d76454671d83e7d684f67c2186f8b8c3d7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-@@ -205,6 +205,33 @@ vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc_5v0_sys>;
- 	};
-+
-+	vcc_5v0_typec0: regulator-vcc-5v0-typec0 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_otg0_pwren>;
-+		regulator-name = "vcc_5v0_typec0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0_device>;
-+	};
-+	vcc_5v0_usbhost: regulator-vcc-5v0-usbhost {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_host_pwren>;
-+		regulator-name = "vcc_5v0_usbhost";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0_device>;
-+	};
-+};
-+
-+&combphy1_psu {
-+	status = "okay";
- };
- 
- &combphy0_ps {
-@@ -631,6 +658,58 @@ regulator-state-mem {
- &i2c2 {
- 	status = "okay";
- 
-+	usbc0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_interrupt>;
-+		vbus-supply = <&vcc_5v0_typec0>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
-+			power-role = "source";
-+			source-pdos = <PDO_FIXED(5000, 2000,
-+						 PDO_FIXED_USB_COMM | PDO_FIXED_DATA_SWAP)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0xffffffff>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_hs_ep: endpoint {
-+						remote-endpoint = <&usb_drd0_hs_ep>;
-+					};
-+				};
-+				port@1 {
-+					reg = <1>;
-+					usbc0_ss_ep: endpoint {
-+						remote-endpoint = <&usb_drd0_ss_ep>;
-+					};
-+				};
-+				port@2 {
-+					reg = <2>;
-+					usbc0_dp_ep: endpoint {
-+						remote-endpoint = <&usbdp_phy_ep>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	hym8563: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
-@@ -736,6 +815,24 @@ pcie_reset: pcie-reset {
- 			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
-+
-+	usb {
-+		usb_host_pwren: usb-host-pwren {
-+			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		usb_otg0_pwren: usb-otg0-pwren {
-+			rockchip,pins = <4 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		usbc0_interrupt: usbc0-interrupt {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+		usbc0_sbu1: usbc0-sbu1 {
-+			rockchip,pins = <2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+		usbc0_sbu2: usbc0-sbu2 {
-+			rockchip,pins = <2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
- };
- 
- &sai1 {
-@@ -777,11 +874,74 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&u2phy1_otg {
-+	phy-supply = <&vcc_5v0_usbhost>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-0 = <&uart0m0_xfer>;
- 	status = "okay";
- };
- 
-+&usb_drd0_dwc3 {
-+	usb-role-switch;
-+	dr_mode = "otg";
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			usb_drd0_hs_ep: endpoint {
-+				remote-endpoint = <&usbc0_hs_ep>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			usb_drd0_ss_ep: endpoint {
-+				remote-endpoint = <&usbc0_ss_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&usb_drd1_dwc3 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbdp_phy {
-+	mode-switch;
-+	orientation-switch;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usbc0_sbu1 &usbc0_sbu2>;
-+	sbu1-dc-gpios = <&gpio2 RK_PA6 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		usbdp_phy_ep: endpoint {
-+			remote-endpoint = <&usbc0_dp_ep>;
-+		};
-+	};
-+};
-+
- &vop {
- 	status = "okay";
- };
+ .../devicetree/bindings/hwmon/adt7475.yaml    | 15 ++++++++------
+ drivers/hwmon/adt7475.c                       | 20 ++++++++++++++++---
+ 2 files changed, 26 insertions(+), 9 deletions(-)
 
+base-commit: 4325743c7e209ae7845293679a4de94b969f2bef
 -- 
 2.49.0
 
