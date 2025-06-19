@@ -1,376 +1,267 @@
-Return-Path: <devicetree+bounces-187458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06EEEADFF62
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:04:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4D1CADFF66
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:05:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 794355A10C0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:02:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23589188CD82
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBBF625DB07;
-	Thu, 19 Jun 2025 08:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6719E25B2E8;
+	Thu, 19 Jun 2025 08:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i+1PGMhf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmty1ljiyny4xntuumtyw.icoremail.net (zg8tmty1ljiyny4xntuumtyw.icoremail.net [165.227.155.160])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7C625DAE8;
-	Thu, 19 Jun 2025 08:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=165.227.155.160
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B551D2472A4
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750320085; cv=none; b=irSjBRvF8/k2XS2VJtTpgDBDvHw/Nmfmby6hhcsEZH/1Og1FVO23A5zfmdg3sgoRf6RGDhe+ky6kIa26Azr0I6jVh1B27bsmLEduFa3isizhB3P3LVW7+wkVdxPN7KlvW65tSLcMlvsBzsFhfpfBcIC5EGTf2M+Ag+pjxBBHiUo=
+	t=1750320299; cv=none; b=eS8V5WvHWaECCl/ZD1GnbQIJkZfbpxfRkM8Xz/89VHPlzDbBIisRACpOE71wHM0WUSLYvIgKAsjzZ0pIYt/8DwxANkLB66Ia+CZhJpBlhbgKQQWonebvAZyrGwWKj/5gx0XY5Y2s5rbgnWN4O+zvwuf7i+7SKUs2ywRY5lW7DN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750320085; c=relaxed/simple;
-	bh=mkDWQIXYU/4z8xx0YSNSPkiqALUhlAz25BHxoRNhRs8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Y9OHSyRAUSlI/bT4wkVFMUHQdv74V0EAjiOIZMXaErM4aqLE5+pML2b02mCs1+nx8aOYbYt84ZzatmQ25/OM3zUAxarEYjjhWxOjnkj9fAIyMx7Lfph8ySct2PrO6BT7beDw2XJ5Epz2Onr1Z2NiLNbFAVi+Uyj2P1wv1VPtj7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=165.227.155.160
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgBXexG_w1NozM+hAA--.32881S2;
-	Thu, 19 Jun 2025 16:01:05 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: p.zabel@pengutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v3 2/2] reset: eswin: Add eic7700 reset driver
-Date: Thu, 19 Jun 2025 16:01:01 +0800
-Message-Id: <20250619080101.1360-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20250619075811.1230-1-dongxuyang@eswincomputing.com>
-References: <20250619075811.1230-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1750320299; c=relaxed/simple;
+	bh=PbpTuz4WTa28cFpAxtpOHQNwNhJ0jkygBok3OeWvnoA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i6HaWtRDYAyQZm9c5K6iCeRkoxfkiEY2wW/qCxe4VTia5fS1793MKdi4o0g3+Z5pLx5///JDLZkAM8lA/7hM/BU+rO5Wkd/jyR6HbXxApcF6kAXy6JWpH+ibGx+QxIj12DPKJwrPMye3WGytN6mbWAZVJAeGqZDbS5jh6WNFE9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i+1PGMhf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55J6EPqo028015
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:04:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	l5CbaYk82IflDePG5vYT+cBebOeLvhXszPekPl5GZ2g=; b=i+1PGMhfpRspR4H3
+	WDFJVrXsmTNkhW7gw6r4LfxvGRv3y/HmOeHN4FnQb/l7BgzaeMOZgGjLPhLPucZm
+	hrEb02cLBHd9AG/uC5DUVjDjuttrWpTjLVCU5XpiJvei9oTDyhLbz/Bxy1M0VtMH
+	sUNhfyVEJsuAJBUED3fYFI8wvqD4Onim1BhQd6bwuUIvBIQOfiswDqC1OGysjqCg
+	/mFqedjpI12RLGlw8GSnD/KkRiSg893FKk199dG9bu/YwM4ankAVhHVnSLAQrYA7
+	w5ytGDkBWHS9CT3SNAAqmVbogPy3udWxvPt9E1y2niP7hcPtLkYtSwQq7uPyeRgH
+	+qfi0g==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791f7f3gq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:04:56 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-234906c5e29so8475055ad.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 01:04:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750320295; x=1750925095;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l5CbaYk82IflDePG5vYT+cBebOeLvhXszPekPl5GZ2g=;
+        b=PiUp0z/hV0TlcRRNY6MTHHWh7D0Thy9tA9DIU5zpYhWcmYKVD0TUYiyVOVXuca3zxL
+         v78QeGuVuPiGtBhuQ19Ulmg2/qrVI+TcbwDjtSOFc0bdjhAGQq1cwNaTyLHk0kmmHSVZ
+         /9nPOzpaTvHk6RXDA7xwlkCGfOSlpS5FDQpCSdPtzuYIdIGbueRG8mIQxLhTfRuaACoJ
+         22NPd5wxc9e5lUPLg7CvE/9C/13f5VyPsdRymuyG5Lc/s9EHNhC7l9DW/SP50u0kHxjg
+         MxsQ+c/8Np9I8HshPpRglfD+5cnMYpCSoKGclnLMrUbqkEs/0oWrV45+C9bvfWfgt07V
+         mVZg==
+X-Forwarded-Encrypted: i=1; AJvYcCX9R/r3qWdNWd2PU/bPT3wHwHPCA67VPza0DM7A7bAxy8xRSBP6J16kf/EXF6+wxJ8hS1GtSVoIkp36@vger.kernel.org
+X-Gm-Message-State: AOJu0YyahLJ0u45GO37TlKHgCIMbob8UMr4cVF6OLMfkvh6Kvgi7LcL1
+	f/2Aa7CVqztE5wXsWDnWZbtHDY3u78PZgVczbf6m3Y37RAC9ZML8amyVBdWdCoPlFoHF+qRyosA
+	PIn5Ob2xk6ay3CMF8C1JpcE/NUaG0ObLD7WZ933tfTb2Adh4VXEQk8vFEuOE14WsH
+X-Gm-Gg: ASbGnctGlxWbdzujaTL6jLMkQ6+NbhSAXGtZ//m5hnW5VQ5b7mTb/fTwDSCAmt2ED9q
+	kQnk2ChtAIsUfx7UxLr7gRzRoyvPWgYbH6wNYRcZc9ZKYAO1MOT3w7qSmk/vc6rDiyS+YwYv6NT
+	nN7C4BgxNN29fcDudYTLGSw6m51+c/LO+jY/kFJoXfqUnhitf3+jBfNWeGSlLFPHX9/sLqG5MAZ
+	sKgq/tPJQvrkZBy0ZEHk1lhyMnw8TBORwGmAWuSQoH+SY5IgFSZT53rkVacjPzVSYj7H7l9dKF+
+	gr8CFvCmWXf5B1fewucGUSHDwKb+O7ZTXnFzoxm4/m1Dn8biDX0SnnE0e8HP
+X-Received: by 2002:a17:902:e94c:b0:234:df51:d16c with SMTP id d9443c01a7336-2366b149ff4mr331118615ad.45.1750320295231;
+        Thu, 19 Jun 2025 01:04:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGY1beQgQr3/xXUKU2HPw/CdQ0Sirtdrq7sSeNKyvBRqo0slYfZrHuVzsUs/ENA+cfekMDTEQ==
+X-Received: by 2002:a17:902:e94c:b0:234:df51:d16c with SMTP id d9443c01a7336-2366b149ff4mr331118135ad.45.1750320294704;
+        Thu, 19 Jun 2025 01:04:54 -0700 (PDT)
+Received: from [10.218.21.68] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365deb2ce2sm114714615ad.161.2025.06.19.01.04.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jun 2025 01:04:54 -0700 (PDT)
+Message-ID: <073c293c-325c-484e-b843-80e254716d7c@oss.qualcomm.com>
+Date: Thu, 19 Jun 2025 13:34:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs9075-evk: Add sound card
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_pkumpatl@quicinc.com,
+        kernel@oss.qualcomm.com
+References: <20250616070405.4113564-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250616070405.4113564-3-mohammad.rafi.shaik@oss.qualcomm.com>
+ <6463f18d-b258-4773-aa12-d3ae3af60715@oss.qualcomm.com>
+Content-Language: en-US
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <6463f18d-b258-4773-aa12-d3ae3af60715@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgBXexG_w1NozM+hAA--.32881S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3XFW7Kry5GrW7Gry3CFy8Xwb_yoWfCw1DpF
-	4rGFW3Jr4UJr4fWw4xJr1kuF4ag3Z3KFyUGrZrKw4Iyw13ta4UJF48tFy8tFyDCryDXFy5
-	tF1agayruFnxtF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUHCJQUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE5MDA2NyBTYWx0ZWRfX4MTv0+ANTjkz
+ 94dbC1511OQwnPc1SOGt5dEvGdAk0OkyPiDlzxU5A6dyL2WoADGezvCE/yElqKUqZQzc5kdZzd/
+ LqH9C0Dnf+o0ZT5sqLq6hnZHAl7Ux6b6NeiwhhyCkL1eGG/DZk5TkEt0QzN5iBrXiKYJqIHsCj0
+ xR8mjQkgPZrY2F0zqGRCl6Kbz5N7R/UXvb4ff1CdOq3T/xiJAlYSUxVpKvinsOEg0R0tLFq64Nn
+ UVLarLuPTroFw1ZHUTNz5YTf+rmrOLLbb3c3sPMcOhR0r86WkppJc7ixXO+bnPkoxGHUg0oqHgo
+ qrbeIluu0NyS5bSOqgNHXeKo75/qKwiUL4+bofw6LgeR2pr1ATLuMsWjSWXYV1LHNILcqNj3Nve
+ UyapFMkwDGcjBx2QHwy2eMeJF4DsNPbXxFauPRGj+cvLqv7FU2iPkaWo48nkaPudkdnT5NA9
+X-Proofpoint-GUID: 0r9E-tMHJ6q_OHYV_JdyFyRRXK_Zru_z
+X-Proofpoint-ORIG-GUID: 0r9E-tMHJ6q_OHYV_JdyFyRRXK_Zru_z
+X-Authority-Analysis: v=2.4 cv=FrIF/3rq c=1 sm=1 tr=0 ts=6853c4a8 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=yNxIl_n-nE1iyR5tU-sA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-19_03,2025-06-18_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 mlxlogscore=970 bulkscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506190067
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Add support for reset controller in eic7700 series chips.
-Provide functionality for asserting and deasserting resets
-on the chip.
 
-Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- drivers/reset/Kconfig         |  10 ++
- drivers/reset/Makefile        |   1 +
- drivers/reset/reset-eic7700.c | 243 ++++++++++++++++++++++++++++++++++
- 3 files changed, 254 insertions(+)
- create mode 100644 drivers/reset/reset-eic7700.c
+On 6/16/2025 4:54 PM, Dmitry Baryshkov wrote:
+> On 16/06/2025 10:04, Mohammad Rafi Shaik wrote:
+>> Add the sound card node with tested playback over max98357a
+>> I2S speakers amplifier and I2S mic.
+>>
+>> Introduce HS (High-Speed) MI2S pin control support.
+>> The I2S max98357a speaker amplifier is connected via HS0 and I2S
+>> microphones utilize the HS2 interface.
+>>
+>> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+>> ---
+>>   .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 52 +++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 14 +++++
+>>   2 files changed, 66 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts b/arch/ 
+>> arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+>> index ab161180d1d5..d073c6f95d4c 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+>> @@ -5,6 +5,7 @@
+>>   /dts-v1/;
+>>   #include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/sound/qcom,q6afe.h>
+>>   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>   #include "qcs9075.dtsi"
+>> @@ -21,6 +22,57 @@ aliases {
+>>       chosen {
+>>           stdout-path = "serial0:115200n8";
+>>       };
+>> +
+>> +    max98357a: audio-codec-0 {
+> 
+> This wasn't sorted out properly.
+>
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index d85be5899da6..82f829f4c9f0 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -66,6 +66,16 @@ config RESET_BRCMSTB_RESCAL
- 	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
- 	  BCM7216.
+Ack, will take care in next version.
 
-+config RESET_EIC7700
-+	bool "Reset controller driver for ESWIN SoCs"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	default ARCH_ESWIN
-+	help
-+	  This enables the reset controller driver for ESWIN SoCs. This driver is
-+	  specific to ESWIN SoCs and should only be enabled if using such hardware.
-+	  The driver supports eic7700 series chips and provides functionality for
-+	  asserting and deasserting resets on the chip.
-+
- config RESET_EYEQ
- 	bool "Mobileye EyeQ reset controller"
- 	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 91e6348e3351..ceafbad0555c 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
- obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-+obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
- obj-$(CONFIG_RESET_EYEQ) += reset-eyeq.o
- obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-diff --git a/drivers/reset/reset-eic7700.c b/drivers/reset/reset-eic7700.c
-new file mode 100644
-index 000000000000..61513746c06c
---- /dev/null
-+++ b/drivers/reset/reset-eic7700.c
-@@ -0,0 +1,243 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
-+ *
-+ * ESWIN Reset Driver
-+ *
-+ * Authors:
-+ *	Yifeng Huang <huangyifeng@eswincomputing.com>
-+ *	Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+#define SYSCRG_CLEAR_BOOT_INFO_OFFSET 0x30C
-+#define CLEAR_BOOT_FLAG_BIT BIT(0)
-+#define SYSCRG_RESET_OFFSET 0x400
-+
-+/**
-+ * struct eswin_reset_data - reset controller information structure
-+ * @rcdev: reset controller entity
-+ * @dev: reset controller device pointer
-+ * @idr: idr structure for mapping ids to reset control structures
-+ * @regmap: reset controller device register map
-+ */
-+struct eswin_reset_data {
-+	struct reset_controller_dev rcdev;
-+	struct device *dev;
-+	struct idr idr;
-+	struct regmap *regmap;
-+};
-+
-+/**
-+ * struct eswin_reset_control - reset control structure
-+ * @dev_id: SoC-specific device identifier
-+ * @reset_bit: reset mask to use for toggling reset
-+ */
-+struct eswin_reset_control {
-+	u32 dev_id;
-+	u32 reset_bit;
-+};
-+
-+static const struct regmap_config eswin_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.max_register = 0x8000000,
-+};
-+
-+#define to_eswin_reset_data(p) container_of((p), struct eswin_reset_data, rcdev)
-+
-+/**
-+ * eswin_reset_set() - program a device's reset
-+ * @rcdev: reset controller entity
-+ * @id: ID of the reset to toggle
-+ * @assert: boolean flag to indicate assert or deassert
-+ *
-+ * This is a common internal function used to assert or deassert a device's
-+ * reset by clear and set the reset bit. The device's reset is asserted if the
-+ * @assert argument is true, or deasserted if @assert argument is false.
-+ *
-+ * Return: 0 for successful request, else a corresponding error value
-+ */
-+static int eswin_reset_set(struct reset_controller_dev *rcdev, unsigned long id,
-+			   bool assert)
-+{
-+	struct eswin_reset_data *data = to_eswin_reset_data(rcdev);
-+	struct eswin_reset_control *control;
-+	int ret;
-+
-+	control = idr_find(&data->idr, id);
-+
-+	if (!control)
-+		return -EINVAL;
-+
-+	if (assert)
-+		ret = regmap_clear_bits(data->regmap, SYSCRG_RESET_OFFSET +
-+						       control->dev_id * sizeof(u32),
-+							   BIT(control->reset_bit));
-+	else
-+		ret = regmap_set_bits(data->regmap, SYSCRG_RESET_OFFSET +
-+						     control->dev_id * sizeof(u32),
-+						     BIT(control->reset_bit));
-+
-+	return ret;
-+}
-+
-+static int eswin_reset_assert(struct reset_controller_dev *rcdev,
-+			      unsigned long id)
-+{
-+	return eswin_reset_set(rcdev, id, true);
-+}
-+
-+static int eswin_reset_deassert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	return eswin_reset_set(rcdev, id, false);
-+}
-+
-+static int eswin_reset_reset(struct reset_controller_dev *rcdev,
-+			     unsigned long id)
-+{
-+	int ret;
-+
-+	ret = eswin_reset_assert(rcdev, id);
-+	if (ret != 0)
-+		return ret;
-+
-+	usleep_range(10, 15);
-+	ret = eswin_reset_deassert(rcdev, id);
-+	if (ret != 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct reset_control_ops eswin_reset_ops = {
-+	.reset = eswin_reset_reset,
-+	.assert = eswin_reset_assert,
-+	.deassert = eswin_reset_deassert,
-+};
-+
-+static int eswin_reset_of_xlate_lookup_id(int id, void *p, void *data)
-+{
-+	struct of_phandle_args *reset_spec = data;
-+	struct eswin_reset_control *slot_control = p;
-+
-+	if (reset_spec->args[0] == slot_control->dev_id &&
-+	    reset_spec->args[1] == slot_control->reset_bit)
-+		return id;
-+
-+	return 0;
-+}
-+
-+/**
-+ * eswin_reset_of_xlate() - translate a set of OF arguments to a reset ID
-+ * @rcdev: reset controller entity
-+ * @reset_spec: OF reset argument specifier
-+ *
-+ * This function performs the translation of the reset argument specifier
-+ * values defined in a reset consumer device node. The function allocates a
-+ * reset control structure for that device reset, and will be used by the
-+ * driver for performing any reset functions on that reset. An idr structure
-+ * is allocated and used to map to the reset control structure. This idr
-+ * is used by the driver to do reset lookups.
-+ *
-+ * Return: 0 for successful request, else a corresponding error value
-+ */
-+static int eswin_reset_of_xlate(struct reset_controller_dev *rcdev,
-+				const struct of_phandle_args *reset_spec)
-+{
-+	struct eswin_reset_data *data = to_eswin_reset_data(rcdev);
-+	struct eswin_reset_control *control;
-+	int ret;
-+
-+	if (WARN_ON(reset_spec->args_count != rcdev->of_reset_n_cells))
-+		return -EINVAL;
-+
-+	ret = idr_for_each(&data->idr, eswin_reset_of_xlate_lookup_id,
-+			   (void *)reset_spec);
-+	if (ret)
-+		return ret;
-+
-+	control = devm_kzalloc(data->dev, sizeof(*control), GFP_KERNEL);
-+	if (!control)
-+		return -ENOMEM;
-+
-+	control->dev_id = reset_spec->args[0];
-+	control->reset_bit = reset_spec->args[1];
-+
-+	return idr_alloc(&data->idr, control, 0, 0, GFP_KERNEL);
-+}
-+
-+static const struct of_device_id eswin_reset_dt_ids[] = {
-+	{
-+		.compatible = "eswin,eic7700-reset",
-+	},
-+	{ /* sentinel */ }
-+};
-+
-+static int eswin_reset_probe(struct platform_device *pdev)
-+{
-+	struct eswin_reset_data *data;
-+	struct device *dev = &pdev->dev;
-+	void __iomem *base;
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	data->regmap = devm_regmap_init_mmio(dev, base, &eswin_regmap_config);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(dev, PTR_ERR(data->regmap), "failed to get regmap!\n");
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	data->rcdev.owner = THIS_MODULE;
-+	data->rcdev.ops = &eswin_reset_ops;
-+	data->rcdev.of_node = pdev->dev.of_node;
-+	data->rcdev.of_reset_n_cells = 2;
-+	data->rcdev.of_xlate = eswin_reset_of_xlate;
-+	data->rcdev.dev = &pdev->dev;
-+	data->dev = &pdev->dev;
-+	idr_init(&data->idr);
-+
-+	/* clear boot flag so u84 and scpu could be reseted by software */
-+	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET,
-+			CLEAR_BOOT_FLAG_BIT);
-+	msleep(50);
-+
-+	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-+}
-+
-+static void eswin_reset_remove(struct platform_device *pdev)
-+{
-+	struct eswin_reset_data *data = platform_get_drvdata(pdev);
-+
-+	idr_destroy(&data->idr);
-+}
-+
-+static struct platform_driver eswin_reset_driver = {
-+	.probe	= eswin_reset_probe,
-+	.remove = eswin_reset_remove,
-+	.driver = {
-+		.name		= "eswin-reset",
-+		.of_match_table	= eswin_reset_dt_ids,
-+	},
-+};
-+
-+static int __init eswin_reset_init(void)
-+{
-+	return platform_driver_register(&eswin_reset_driver);
-+}
-+arch_initcall(eswin_reset_init);
---
-2.17.1
+>> +        compatible = "maxim,max98357a";
+> 
+> No SD_MODE pin?
+> 
+Yes, SD_MODE pin is always on in this specific qcs9075-iq-evk board hw.
+
+No need to handle.
+
+>> +        #sound-dai-cells = <0>;
+>> +    };
+>> +
+>> +    dmic: audio-codec-1 {
+>> +        compatible = "dmic-codec";
+>> +        #sound-dai-cells = <0>;
+>> +        num-channels = <1>;
+> 
+> no enable GPIO, no vref-supply?
+
+On qcs9075-iq-evk boards the enable gpios and vref-spply is always on.
+Not configurable from DT.
+
+Thanks & best regards,
+Rafi.
+> 
+>> +    };
+>> +
+>> +    sound {
+>> +        compatible = "qcom,qcs9075-sndcard";
+>> +        model = "qcs9075-iq-evk-snd-card";
+>> +
+>> +        pinctrl-0 = <&hs0_mi2s_active>, <&hs2_mi2s_active>;
+>> +        pinctrl-names = "default";
+>> +
+>> +        hs0-mi2s-playback-dai-link {
+>> +            link-name = "HS0 mi2s playback";
+>> +
+>> +            codec {
+>> +                sound-dai = <&max98357a>;
+>> +            };
+>> +
+>> +            cpu {
+>> +                sound-dai = <&q6apmbedai PRIMARY_MI2S_RX>;
+>> +            };
+>> +
+>> +            platform {
+>> +                sound-dai = <&q6apm>;
+>> +            };
+>> +        };
+>> +
+>> +        hs2-mi2s-capture-dai-link {
+>> +            link-name = "HS2 mi2s capture";
+>> +
+>> +            codec {
+>> +                sound-dai = <&dmic>;
+>> +            };
+>> +
+>> +            cpu {
+>> +                sound-dai = <&q6apmbedai TERTIARY_MI2S_TX>;
+>> +            };
+>> +
+>> +            platform {
+>> +                sound-dai = <&q6apm>;
+>> +            };
+>> +        };
+>> +    };
+>>   };
+>>   &apps_rsc {
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/ 
+>> dts/qcom/sa8775p.dtsi
+>> index 07ca6dd4f759..968730da180d 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> @@ -4711,6 +4711,20 @@ tlmm: pinctrl@f000000 {
+>>               gpio-ranges = <&tlmm 0 0 149>;
+>>               wakeup-parent = <&pdc>;
+>> +            hs0_mi2s_active: hs0-mi2s-active-state {
+>> +                pins = "gpio114", "gpio115", "gpio116", "gpio117";
+>> +                function = "hs0_mi2s";
+>> +                drive-strength = <8>;
+>> +                bias-disable;
+>> +            };
+>> +
+>> +            hs2_mi2s_active: hs2-mi2s-active-state {
+>> +                pins = "gpio122", "gpio123", "gpio124", "gpio125";
+>> +                function = "hs2_mi2s";
+>> +                drive-strength = <8>;
+>> +                bias-disable;
+>> +            };
+>> +
+>>               qup_i2c0_default: qup-i2c0-state {
+>>                   pins = "gpio20", "gpio21";
+>>                   function = "qup0_se0";
+> 
+> 
 
 
