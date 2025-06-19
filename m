@@ -1,148 +1,165 @@
-Return-Path: <devicetree+bounces-187516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17F6AE0410
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:40:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B91AE0418
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853A53A00BF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:40:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F26687AD0AE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B35229B29;
-	Thu, 19 Jun 2025 11:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D86D22B5BC;
+	Thu, 19 Jun 2025 11:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LNZcfN0O"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="P92wfx2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CE1132103
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 11:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BC922370C
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 11:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750333237; cv=none; b=NJ5W0gRF6mwOkzH9I+BScoQPWsFnb+Ka0JcbjjvsYu/8aT/Er272t1wTJoWiqeKUZ9y3DaAJ3vr1ovIdsIYyXhDxlh4YUP3BhAxgNPlEqkZYLzMHqQ3UMylLVUUbuCwmfZji3rQ1YqLKok7waTSvuDa18CUxX+gN9HuZHLPIl1Y=
+	t=1750333291; cv=none; b=XW3eNUdeVLkACdcZ0rXhgNo+JuYaYo5SAMRBacvMFVNyez7L9cnHQxV3ZTkf89aJc4MolTLPdsOrxG2YPGBoayRsVydR3xUmDQgoFe2jf4UqKdJocCj7uw0i/7pw8UYkfUy1qKXUVF51JZb2OMUfEX+dw05YilJvGcY5DEubCvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750333237; c=relaxed/simple;
-	bh=fI4b0JmvmR/LKJHS4kYGRgS79fqtVDdNyB26iJdkI7Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fylYRwaVH0JkndoiqiwA9upAa4Q3t6D44d9FPzaDn06ccTjyOWH8ZylHgeVM7c1fCAFkJow972HrgardsElMsSzQ2BzLLfjryActrWA/Qodix0deijomWBVCzD+k2Txd+fKYx8Jk8DL+uK/nA6kSuwhlan2VFXTuWxSGqqFW+4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=LNZcfN0O; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1750333234;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=g5MqY5EbJPpgVIT/GMNbBL+m8bzhYEjTyXfnL0CxcoM=;
-	b=LNZcfN0O5EiHbj61InS26SG0DzgdUWWkci85mvoDr02Jd0QJjHDcXuzfG+DX48i/0nJxv8
-	nbpvCl16f3280jjXtn0KogAmJZy/KVQsA/eBHUWqIMCPVYoR85DHFC78sitAGwReqtsP7g
-	eGM9zD7jKB8dOuDqOW+S/QtDDyaptoA=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-678-4Y5y4CpvORWPzsnzsdpFVA-1; Thu, 19 Jun 2025 07:40:33 -0400
-X-MC-Unique: 4Y5y4CpvORWPzsnzsdpFVA-1
-X-Mimecast-MFC-AGG-ID: 4Y5y4CpvORWPzsnzsdpFVA_1750333232
-Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-3a54a8a0122so338153f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 04:40:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750333232; x=1750938032;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g5MqY5EbJPpgVIT/GMNbBL+m8bzhYEjTyXfnL0CxcoM=;
-        b=Cn++z1LfSB/3sW7ggXmT5+QZuBjnQFlOi+Cv+F1PJKTeZLGTdYl8ysVzJ3Zp+F+ezH
-         OcFm1S7I3By1T1C1lat9MadOOiKoExqSy3fBRzbu/Yc0ubZgMDhoiQcK79DihSmtICZF
-         x396YT5yh+tTEB0JhxuR4QBffqR5FLaaDbaFcTzprVcsxDi3CMQUwss2+neGeO0AD3G8
-         dvMvnr1W4rJr2DGw5hWYmnU1ljUPm2XnrmNJAfdtkx7jNCSZufNXAy2fYssSLhcZ830t
-         CyMXWwg0/kO8QQ8Un6Yux+EvifX5MoMC7zGEmWMBAu9l2XejhPWUNMevZRN0TwlsmMBN
-         7cFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWD3oVona7CSayr0UC3WE2lOSh9VThp2nnHP0u7UIt4/9pwz6PMs1RhUKJBptaZ+Y6nfMGUmunfNgwZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL7MM5UHAKjNFca7LapgT8uNt37xjqxZyHF9/b+WLq6Bh+hXtk
-	YrCgQl8lDrk6t/nwZUUB6jvb+6sZFnAsCyWgioDMvxLUayU4vCqvHxUOksJCJ02/ziqPvWs6uZd
-	WjrHTK5BHiMCDZ8ZPRsBisIaHpsTTUWs6Ua+zmFfAygE1CrtMgiCMr6mokdkiuys=
-X-Gm-Gg: ASbGncumAeBFU67EboVoooeZ3X9//jeROpZj2fpZudsf3n6BkgMv52RvIyv42X7Fxf5
-	nR1dsPKtfhGCGO4gej1NQf3QWwjubJWzwylDbla8wEDJic+SyqaEd8oa0doR7y/R8XMiPnpT6mb
-	2bmljlhGq2Cu8dA+zNrAIyel7NuKRLNECCwkucKt4XHTH/HjmAJW87uE5sdG2+J841lEk6rEbLS
-	i+sCPAgsvUsJD9XBaxJKb9sRqCubHwRpFx1FMYQnM9JzRbo4z2/nUpheVjAhsqLKMmvcgHShAWm
-	c/ozrxuxP3/qW3RiFb1sFYScThcCKPCeSotLDQKM2jmVE/6GRCADiuylbkWg2pRf2J8JgA==
-X-Received: by 2002:a05:6000:2d0c:b0:3a5:8d0b:d0b8 with SMTP id ffacd0b85a97d-3a58d0bd1camr4831902f8f.54.1750333231804;
-        Thu, 19 Jun 2025 04:40:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEkPsAM7rzvUuUIwuWTbnbsaa2hHEQ50y/ld0Zh2qJ6v7nBnPiul0WnrvWb0vFBIsYzskhEqg==
-X-Received: by 2002:a05:6000:2d0c:b0:3a5:8d0b:d0b8 with SMTP id ffacd0b85a97d-3a58d0bd1camr4831872f8f.54.1750333231356;
-        Thu, 19 Jun 2025 04:40:31 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:271a:7310:d5d8:c311:8743:3e10? ([2a0d:3344:271a:7310:d5d8:c311:8743:3e10])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b28876sm19250304f8f.73.2025.06.19.04.40.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jun 2025 04:40:30 -0700 (PDT)
-Message-ID: <7fce273d-06f4-498c-a36a-d6828b4d4f30@redhat.com>
-Date: Thu, 19 Jun 2025 13:40:28 +0200
+	s=arc-20240116; t=1750333291; c=relaxed/simple;
+	bh=aZ7rsXK+pQ63res4/2ZuCtjBRras3Ceyq6psDA84uRc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=ANPe/RUMKSpPJb9S6ZoroicKJu84Bsf5Z8amtSqFp/ufhf8VEw/XmNg67tOOs2TfK+8libe5G5ZvBTWWvjEN1LHyhkrrVZeSLwxM+cIKQFvgnVRI7xA0iU3mOMYep21HMuIuhq/XjSwr5T6Ifs0neJgQtzXSdH02bbOFQ0GCm/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=P92wfx2k; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v11 14/14] dpll: zl3073x: Add support to get/set
- frequency on output pins
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: Prathosh Satish <Prathosh.Satish@microchip.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
- Dave Jiang <dave.jiang@intel.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-References: <20250616201404.1412341-1-ivecera@redhat.com>
- <20250616201404.1412341-15-ivecera@redhat.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20250616201404.1412341-15-ivecera@redhat.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1750333273;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UlxTUj5Ir+oO3iGWYKmoJ9ycuaXkjQkkYTvLvsQbhwI=;
+	b=P92wfx2kjqVESzvsjtMDG06Ohguto8BeIB3FFHgIMXvCnwAQj49+r7N2yWFEA4MI6m4Q59
+	shyyFpYG9kEpxklcX2EbTabMIHxV0RJH4z6DOP5bnrtIWy7KlMqWw0cUYlovxX2Y3O0vaJ
+	IDWXdqxT98Ge7B7XTe7HuYVWBLXeC+TscRPYns1xaFP4vdI7g2Itwx2jK7hjZCwm2e4BFd
+	VAsBsm1t5U6vOFMINsb/VMqcX71NMDHyU/QfKac88/qitTP5aYH8q9p7cWoKujwJUj79Nv
+	+TvErZLKsDYOSXadvbF9iz7EaVd7Xrun7+xwJqCDCW3lR6wLDt88+H0abmFNvA==
+Content-Type: multipart/signed;
+ boundary=b5fff2ebebde679f93dfaf923c9136a97ab4b047f673687733da1b95f36b;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Thu, 19 Jun 2025 13:41:03 +0200
+Message-Id: <DAQHCWR6W4LD.2Q1H9B9JO2LJZ@cknow.org>
+Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix the PinePhone Pro DTS'
+ panel description
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Olivier Benjamin" <olivier.benjamin@bootlin.com>, "Heiko Stuebner"
+ <heiko@sntech.de>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+References: <20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com>
+ <DAQEX04P5320.CQDU7SL7AV4A@cknow.org> <5461462.0VBMTVartN@phil>
+ <c26ce505-343a-4759-90b5-a026c66979c7@bootlin.com>
+In-Reply-To: <c26ce505-343a-4759-90b5-a026c66979c7@bootlin.com>
+X-Migadu-Flow: FLOW_OUT
+
+--b5fff2ebebde679f93dfaf923c9136a97ab4b047f673687733da1b95f36b
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 6/16/25 10:14 PM, Ivan Vecera wrote:
-> +static int
-> +zl3073x_dpll_output_pin_frequency_set(const struct dpll_pin *dpll_pin,
-> +				      void *pin_priv,
-> +				      const struct dpll_device *dpll,
-> +				      void *dpll_priv, u64 frequency,
-> +				      struct netlink_ext_ack *extack)
-> +{
-> +	struct zl3073x_dpll *zldpll = dpll_priv;
-> +	struct zl3073x_dev *zldev = zldpll->dev;
-> +	struct zl3073x_dpll_pin *pin = pin_priv;
-> +	struct device *dev = zldev->dev;
-> +	u32 output_n_freq, output_p_freq;
-> +	u8 out, signal_format, synth;
-> +	u32 cur_div, new_div, ndiv;
-> +	u32 synth_freq;
-> +	int rc;
-> +
-> +	out = zl3073x_output_pin_out_get(pin->id);
-> +	synth = zl3073x_out_synth_get(zldev, out);
-> +	synth_freq = zl3073x_synth_freq_get(zldev, synth);
-> +
-> +	/* Check the requested frequency divides synth frequency without
-> +	 * remainder.
-> +	 */
-> +	if (synth_freq % (u32)frequency) {
+On Thu Jun 19, 2025 at 12:47 PM CEST, Olivier Benjamin wrote:
+> On 6/19/25 12:31, Heiko Stuebner wrote:
+>> Am Donnerstag, 19. Juni 2025, 11:46:15 Mitteleurop=C3=A4ische Sommerzeit=
+ schrieb Diederik de Haas:
+>>> On Thu Jun 19, 2025 at 7:21 AM CEST, Olivier Benjamin wrote:
+>>> Thanks for working on upstreaming PPP things :-)
+>>>
+> My pleasure. I also have
+> https://lore.kernel.org/linux-rockchip/20250509-camera-v3-0-dab2772d229a@=
+bootlin.com/
+> pending =3D )
 
-As the frequency comes from user-space and is validated only the DT
-info, which in turn is AFAICS imported verbatim into the kernel, I
-*think* it would be safer to check for 0 here or at DT info load time.
+Happy about that too, but I 'happen' to research DSI connected displays
+(for other devices), so I felt comfortable to chime in with that.
+I haven't looked at camera stuff yet (and it's not high on my prio
+list), so hopefully others will chime in for that :-)
 
-/P
+>>>> Fix a few issues in the panel section of the PinePhone Pro DTS:
+>>>>    - add the second part of the Himax HX8394 LCD panel controller
+>>>>      compatible
+>>>>    - as proposed by Diederik de Haas, reuse the mipi_out and ports
+>>>>      definitions from rk3399-base.dtsi instead of redefining them
+>>>>    - add a pinctrl for the LCD_RST signal for LCD1, derived from
+>>>>      LCD1_RST, which is on GPIO4_D1, as documented on pages 11
+>>>>      and 16 of the PinePhone Pro schematic
+>>>>
+>>>> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+>>=20
+>>>> +	lcd {
+>>>> +		lcd_reset_pin: reset-pin {
+>>>
+>>> I don't know if there's a 'hard rule' for it, but I'd recommend to use
+>>> ``lcd1_rst_pin: lcd1-rst-pin {`` as that would match the naming from
+>>> the schematics. I realize that some but not all (other) pinctrl nodes
+>>> follow that 'rule', but it helps with traceability.
+>>=20
+>> not a "hard" rule, but a strong preference.
+>> I.e. we want people to ideally be able to just hit search in the
+>> schematics PDFs for the name they saw in the devicetree.
+>>=20
+>> But following the schematic names, is the general goal.
+>>=20
+> Very fair. I used "lcd_reset" because even the schematic is not super=20
+> clear: it uses "LCD_RST" on page 16 and LCD1_RST on pages 11 and 16.
 
+AIUI, the GPIO pin (GPIO4_D1) is labeled LCD1_RST and on page 16 you can
+see that is connected to LCD_RST from BL102-G39-1FR.
+The definition here is about the GPIO pin, hence LCD1_RST.
+The other part of my suggestion was related to another 'convention':
+the name and label/phandle are the same with ``s/-/_/`` (and 'reset-pin'
+is not specific enough; there are a number of reset pins).
+
+Afaic you don't need to mention that I suggested the mipi_out related
+changes; the reason to do that (unneeded redefinition of already defined
+things), is.
+
+Cheers,
+  Diederik=20
+=20
+>> If this stays the only suggestion though, I can fix that when
+>> applying. Or you can send a v3 - up to you :-)
+>>=20
+> I'll correct to lcd1_rst_pin and send a v3 (most likely later today)
+>
+>>>> +			rockchip,pins =3D <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
+>>>> +		};
+>>>> +	};
+>>>> +
+>>>>   	leds {
+>>>>   		red_led_pin: red-led-pin {
+>>>>   			rockchip,pins =3D <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+>>>
+>>> Otherwise,
+>>>
+>>> Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
+>>>
+
+--b5fff2ebebde679f93dfaf923c9136a97ab4b047f673687733da1b95f36b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaFP3UgAKCRDXblvOeH7b
+bi9DAP9ZolhYlKXrTz+ChkMa/hViAuhi8CvNP7H+iQUeMfPungEAvGMwNigMNSff
+1ZcRaGagcoiWom9lXI7yxhvd5TpmGws=
+=K75Z
+-----END PGP SIGNATURE-----
+
+--b5fff2ebebde679f93dfaf923c9136a97ab4b047f673687733da1b95f36b--
 
