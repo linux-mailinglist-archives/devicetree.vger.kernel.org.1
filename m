@@ -1,83 +1,85 @@
-Return-Path: <devicetree+bounces-187446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F24ADFEF3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:43:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 230E1ADFEE1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:42:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B4561892B99
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:44:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 983FA189B142
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ED425B2FE;
-	Thu, 19 Jun 2025 07:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BC025C80F;
+	Thu, 19 Jun 2025 07:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Il1fwPTx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4qh+box"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6393D24467A;
-	Thu, 19 Jun 2025 07:43:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6597A1624FE;
+	Thu, 19 Jun 2025 07:42:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750319032; cv=none; b=t8R2f3zEjoIYz6HkqaSoYs/3P+EmdxxiGL2dJdfRc8CshXQWwi8hUZe1NCWHrVzAUp/+Dka3Vd5eK2+jicXMxREAXLdvkQMzcehGBWgHixx2ytq+qczwckvWL2MbqHB1jG6kxGV2MrA1t4GJyQQQ//XI+IXM22Tohhqz2am23ic=
+	t=1750318929; cv=none; b=IcwLfcO7tA1Oy3fFZBHnmNdta43t3AdgcSOwXvo4SPCM5GU4a4Nbm2As18fMq8G+gPMrkNpQCIJx0bLlOiiGqVV0O5tM6sz/GD2LuyKRlzgqsi8bovrnJFKyvTB//ss62dZMWx1SMIsY7dE4wFOQ6xqZYGbPh6ohc9rK0fgmMFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750319032; c=relaxed/simple;
-	bh=rbT33KMGZn5PjflB+2U7aFNbMysCNyytlu8rmV/EDOc=;
+	s=arc-20240116; t=1750318929; c=relaxed/simple;
+	bh=JS9XHw+PeP81VV63507B4fUmB28qpg71AUHMCfdVdTQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LXWS1cQ6O9M1MecJplUrQW+dthldB7ym/yvidby/59nXj+0iM1Bhi08Tz32xkgr1SVIzVjl74+6ACJf+SBOIOmhfOfF2WcBsWoasPExbFcybbAqt8G6aRSJRw/LvJD2Wrv7r7n0tE4KWZYU6wP+yTESD9D2rg1h2MZtC2qbRvtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Il1fwPTx; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=gx9ZYZEfMPvpNfsm7y2FmscG8VU7g8hiMvYXHAUSJ20=;
-	b=Il1fwPTxBxtqZ3FQjQNk7TdfLMfBJFI1gsaPam5Fw7dTvDxqCeWquWZvrpcYoO
-	CkHpyKXr0o/3nsk3h3ksRjfHnbVKrmhxe22UaPuEEptqQ0Mgel6XsDPF9VBNqA3w
-	qRhykdiJzzw/H99mxJw5OIFmnp8yj6BL+z2wAzHjCdvHw=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDXHzwnv1NoPNT5AA--.63344S3;
-	Thu, 19 Jun 2025 15:41:29 +0800 (CST)
-Date: Thu, 19 Jun 2025 15:41:27 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Stefan Agner <stefan@agner.ch>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Xiubo Li <Li.Xiubo@freescale.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: vfxxx: Correctly use two tuples for timer
- address
-Message-ID: <aFO/J1+Q8mWiffKi@dragon>
-References: <20250523071921.43216-2-krzysztof.kozlowski@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VysXzQvEx5iq7eL8hcpAWNnIKywMw6tN2dDmVHaf/QfDoSo+h/Jc9WwYzL/CHfA0y3YauQcq7lJS//WwUJ3sQaqK4lRiVhlkZAxrnRDbnCQV6aD0u9/2gnmVuNoQ6k3GLChKBEiFo9DeF4+Pi5oAQ1G0gvXLSBsgSul+QK15eTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4qh+box; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4E29C4CEF2;
+	Thu, 19 Jun 2025 07:42:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750318929;
+	bh=JS9XHw+PeP81VV63507B4fUmB28qpg71AUHMCfdVdTQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P4qh+boxQGWWBKicSQkt8ZyfPpLZpGLAElmdv4xvq1UGkzVSuthur+LPgyjVHK0sO
+	 nZZ4LcH0dxuqxrgcgGLV9OzL5JuXmXaoiwK8MsBECb0i3yT6O+eGpIh+jp0iryXTH8
+	 YBzFwz+4hQ5wP+h99lEj5Sd/gzaR+9c/E3RVfsdV2jVfs78tgbXD4k1OAbdng5UOsd
+	 AGQaWMVFNfpriM08HEB6OFm4qicoCJri/VByaRlTmIkhaWzRjPy9D9G2G3xsCWAPsh
+	 bmTKhsWd3BtkL8m9gk7YQzUlFIFYHpFM8gQE2kMiwwYg/W3jOScdYantSWAaYsi25n
+	 ZpEC4Z1sy+61w==
+Date: Thu, 19 Jun 2025 09:42:06 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel@pengutronix.de, 
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH v5 3/4] dt-bindings: clock: cdce6214: add binding for pin
+ configuration
+Message-ID: <20250619-arboreal-jaguarundi-of-passion-a2eaa1@kuoka>
+References: <20250618-clk-cdce6214-v5-0-9938b8ed0b94@pengutronix.de>
+ <20250618-clk-cdce6214-v5-3-9938b8ed0b94@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250523071921.43216-2-krzysztof.kozlowski@linaro.org>
-X-CM-TRANSID:M88vCgDXHzwnv1NoPNT5AA--.63344S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUzOzVUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIQnoTmhTvylr5gAA3u
+In-Reply-To: <20250618-clk-cdce6214-v5-3-9938b8ed0b94@pengutronix.de>
 
-On Fri, May 23, 2025 at 09:19:22AM +0200, Krzysztof Kozlowski wrote:
-> Address and size-cells are 1 and the ftm timer node takes two address
-> spaces in "reg" property, so this should be in two <> tuples.  Change
-> has no functional impact, but original code is confusing/less readable.
+On Wed, Jun 18, 2025 at 11:21:14AM GMT, Sascha Hauer wrote:
+> Add pin configuration binding for the TI CDCE6214. The CDCE6214 has
+> an internal EEPROM to to fully configure the chip, but this EEPROM
+> might be empty, so add support for configuring the chip through
+> the device tree.
 > 
-> Fixes: 07513e1330a9 ("ARM: dts: vf610: Add Freescale FlexTimer Module timer node.")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 95 ++++++++++++++++++++++
+>  1 file changed, 95 insertions(+)
 
-Applied, thanks!
+
+This should be part of previous patch. Bindings should be complete, not
+added in partial sets.
+
+Best regards,
+Krzysztof
 
 
