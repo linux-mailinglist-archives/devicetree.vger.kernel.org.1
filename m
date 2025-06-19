@@ -1,120 +1,130 @@
-Return-Path: <devicetree+bounces-187433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE6FADFE62
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:09:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E6AADFE66
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33FE53B0A95
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:07:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A378D3A2054
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD6425229E;
-	Thu, 19 Jun 2025 07:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87DD22472AE;
+	Thu, 19 Jun 2025 07:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="d9id/6Iw"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="zR6pnixk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB99B246799;
-	Thu, 19 Jun 2025 07:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC15246799
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750316835; cv=none; b=H52K71RXodfbVDw0/e0qpxkHYW9LLayfBAyDSj+o6alT56g1NvIypkhdDiHIHnulUP0PhgeOWolCnL8g/AL3SaGVhu0ttbMYXl0UESIR02KMf79+1PyqAkt5pcvzQEczlQ1Z7Z8f4Xbp0vIEoC5hdifZJ7ConyI1CrOsAhKk/jE=
+	t=1750317013; cv=none; b=H+SA3AAmavL3E4wQT17V9ZZS5/m692LmFMbEeLO7udbwn/eF5vcMp2zT/WWKrgW0xJtJ/yCOfMA/gQXItYaeTEKj7NWU8FRDnwmdsCPwzg17U/Zy0H23rf555ms26kd+ThcwKJ0WPOMt/GMpSw/60gejgzsJUMWoqFg8ZHcgZhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750316835; c=relaxed/simple;
-	bh=a6Xv7ZZ6shJzK/0F5v3pecDxLl9giCPyL20Xa7pa8lo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XdNTwDl5yjnGsDAz3FEd4fJvRnWhode1+OjYOc679jLIiXFYE6xnDe9QfRu0XTvPXGEir4YoFwt/tlgD1yuNn6QMSkvE8S25DWVGKWxpqAqtwhrpFs1qmZNRPNHlrrb3W9cJtL+d8S4m7Wiho5wLZBn9qEuJOuNFfFdRoBMKUuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=d9id/6Iw; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1750316833; x=1781852833;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=a6Xv7ZZ6shJzK/0F5v3pecDxLl9giCPyL20Xa7pa8lo=;
-  b=d9id/6IwWWGOt/w1z2ejXva1fgV8nyVm67pnJqiokG4iBqqBnkjYuyLy
-   UJ2eoDZZmDWIyItmLvHtaiRPp8jui13jQfeaEIHJTAIMk6iBLyJpKlwtQ
-   YGGcE9QpaPGhjMWSaMxn1a6nrROkjAmmJOeu1WyzywmdVvQq3KEbhcDMM
-   RHfbXynUMiJz90p8KkDuvd66AhZqGfkMTz9r0Vlvi6mbgq4jOtUlrhgQa
-   hTxg4sskuZwD52YqmDQRg8HQ9l4elYAGw9zhkjstl9/iTE5wDpIfow8oS
-   RLF4C1usl0EuLC98sUHT2bBzuYr1h0GTRNRRoXz5v08Y3ocwD2w0/PwzK
-   g==;
-X-CSE-ConnectionGUID: PlQ5gDZlQHSrfxlUJA1/0Q==
-X-CSE-MsgGUID: A0PB8EHXQX28o+AEtNDLlw==
-X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; 
-   d="scan'208";a="48018363"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jun 2025 00:07:02 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 19 Jun 2025 00:06:49 -0700
-Received: from archlinux.mchp-main.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Thu, 19 Jun 2025 00:06:46 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH v3 2/2] ARM: dts: microchip: sama7g5: Add cache configuration for cpu node
-Date: Thu, 19 Jun 2025 10:06:36 +0300
-Message-ID: <20250619070636.8844-3-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250619070636.8844-1-mihai.sain@microchip.com>
-References: <20250619070636.8844-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1750317013; c=relaxed/simple;
+	bh=idDFcxqcaZi9ITOA6O7O8mllE4ghKzrrd7yNzSOM2L4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AMRyox25pCFYIhnNEC/a9bP11vsmVKqp+bP7aQDaYvRc6UMbiHubcHSwnuBEOT7OfSQGOr+BFdzCKBUt6PxgxVmIGV7eZOl3oJ7F2JGvszY3/ElcvKvYuQ/eRzZuUFuMeUrq94XSGqkVL3UkwlYS4fShrZUAxkY9UZEfvyA6Uv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=zR6pnixk; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45310223677so3640665e9.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 00:10:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1750317010; x=1750921810; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xJ7WKC8SwlHWnkxUpPjJRL3c4L2d7RoKGqvzAae/doc=;
+        b=zR6pnixkCp6zsjJXT0jpVG9em6OAYlr60twEB/Tnwh9XI+3ZEmAHkb9wA/wD9NEQKh
+         vqGFjJdypKx/+/2nRpH5UPVmgmbFDEstlJxOUccLZRv7YDNXGGpWdtJyvYAua3eE1b3c
+         eETtsyfiSJYQrJ+oQBOzBX1C281aLpvRIcpGmy9BOFsr/jvNCdhrFpjaFD3OJ1tsmLgF
+         t+4BawXxhbMYqDS/2r5h4Jr9La1wUdzdyVlfTZTxQInLMc6FyPAk4z7BpyymRr4ceSLh
+         c4IKRk37UuTtsn+iGXzcPv9wvXOf5NpYNp4dKPCGb1VFcZI6Bv3eDejNZ12+LQ8ph3rW
+         sMHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750317010; x=1750921810;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xJ7WKC8SwlHWnkxUpPjJRL3c4L2d7RoKGqvzAae/doc=;
+        b=r0QC2+3oXWZtBGa0/RHiY2pJwlYxkiGGQN3KncuZVjcTLIpRVEF3emRLOnq3xg3ZJw
+         6DFd9iYqXpj7oBN1CC3mt8/D1RuSVtoWTTtwwJJgXQdhFu1c8uWW6CmowlGWVBf9CSGh
+         42Foa5sabLM+q5pVJfsLNb4zeyzkhYXSa6ShMcvoVUo5vXMvnjk4uBA4yudBbV1x+t6r
+         TEuiA0wAEA9NMhN3Jz87E/DrR/kRm+J00npRr2Ti+H98GcimBIjlNkdxmF4L2LgfniRL
+         eKjT8bI9EViEvi+ccgW5Fo8C4azn5dWLpVfOsKIbBlLHu6IoBPf3wMoLOXHldU2hdTxT
+         5oVA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5un++2R1Q0ATuj44g9UoecSHT8SI/TPnWE19p2rWyUm3kp1h/BMGNAzMRgP/uyFlsIyhOrn8o/aqA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcXvbN+oFMSIg0ihAqrBTj9aRkQmjHezpva1Hn5FbvdaOGoURR
+	wGjIUFSY4mwFaHlimdn7AT6DR80dvewpS34ErbHMuzR5RA5uogsjxpkDLJNDGvYjMSk=
+X-Gm-Gg: ASbGnctslw0R01EAtvBVPgfRd7Z43c2HWsqo9ypj1nQKBhl7BlPlLg7Yj0/UtdQZwOw
+	Xj05H5WiD2bIGfyuXJIf7KQLpyQNSj5D8f8IgBSHKj0tKp+fSmPRqn4wY0vdnCI6jw025PztcR3
+	xleTFT3979NgebE5bpiDrC3QDvCMU0DV5XXFGagYTO6j2JkVkIm4WLxS++FhXt0xkiDutrboC5o
+	9F1mhcPqsBV2u9lJjomTpl166n01aZfB9M0H2pFPyuslL2I2cRLUhrZ5q6lEHN6/+nS/46I/rdi
+	e11FCKtGI/NNZoPOhbsWf2a26RCgpnJTsDJkjAYRGJEFQHPXwkGaeDzBII8vIdw=
+X-Google-Smtp-Source: AGHT+IHzP+i1T5dB4ay7/aTiSPYaINe2A3Zw6rt9PEf6xWeqmugHB7dSuPeuV0xJhfe2MdtyIcwRZQ==
+X-Received: by 2002:a05:6000:1881:b0:3a4:e5fa:73f0 with SMTP id ffacd0b85a97d-3a572397846mr17415430f8f.20.1750317009976;
+        Thu, 19 Jun 2025 00:10:09 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:c485:fe15:c9ab:c72f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b628ecsm18982991f8f.92.2025.06.19.00.10.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 00:10:09 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	=?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?= <clement.legoffic@foss.st.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v5 0/9] Introduce HDP support for STM32MP platforms
+Date: Thu, 19 Jun 2025 09:10:08 +0200
+Message-ID: <175031700235.8154.11042956002137082224.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250613-hdp-upstream-v5-0-6fd6f0dc527c@foss.st.com>
+References: <20250613-hdp-upstream-v5-0-6fd6f0dc527c@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-Describe the cache memories according with datasheet chapter 15.2:
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-- L1 cache configuration with 32KB for both data and instruction cache.
-- L2 cache configuration with 256KB unified cache.
 
-Before this patch the kernel reported the warning:
+On Fri, 13 Jun 2025 12:14:11 +0200, Clément Le Goffic wrote:
+> This patch series introduces the Hardware Debug Port (HDP) support for
+> STM32MP platforms.
+> 
+> It includes updates to the mmio gpio driver, the addition of device tree
+> bindings, the HDP driver, and updates to the device tree files for
+> STM32MP13, STM32MP15,
+> and STM32MP25 SoCs.
+> The series also updates the MAINTAINERS file to include myself as the
+> maintainer for the STM32 HDP driver and adds the necessary
+> pinmux configurations for HDP pins on STM32MP157C-DK2 as example.
+> 
+> [...]
 
-[    0.171425] cacheinfo: Unable to detect cache hierarchy for CPU 0
+Applied, thanks!
 
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- arch/arm/boot/dts/microchip/sama7g5.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+[1/9] gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
+      https://git.kernel.org/brgl/linux/c/deefc7083414de81aad102b60f0390f600d7eb79
 
-diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-index 17bcdcf0cf4a..f28bcf6daf4e 100644
---- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-@@ -38,6 +38,16 @@ cpu0: cpu@0 {
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
- 			#cooling-cells = <2>; /* min followed by max */
-+			d-cache-size = <0x8000>;	// L1, 32 KB
-+			i-cache-size = <0x8000>;	// L1, 32 KB
-+			next-level-cache = <&L2>;
-+
-+			L2: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-size = <0x40000>; // L2, 256 KB
-+				cache-unified;
-+			};
- 		};
- 	};
- 
+Best regards,
 -- 
-2.50.0
-
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
