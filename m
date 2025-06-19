@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-187605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17789AE0950
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:56:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD571AE0955
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:57:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 518C07A9B93
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:55:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C69F163E16
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:56:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BA928C840;
-	Thu, 19 Jun 2025 14:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DEF28C5A1;
+	Thu, 19 Jun 2025 14:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LXV+9nc/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MKQwnBo5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3FC28BA89
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B42A22AE71
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 14:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750344927; cv=none; b=HZ2xQ+2eTIL8DQ/ODzTpbMNKLgPb+oUXe6beSurdEPHSje+E/lsOGZOwLNwe/4isUIGQAe+OqJUceoHokQmCV/nG8fBhxSJ3LHlwE9zXI7kQY1WhVTOfFGhWeK1EIBLZz4IvMT+ldwFfmzAGZm8eEdf1zg0lQOz5WDqOB4mPyMo=
+	t=1750344929; cv=none; b=aYaBbnoXv7g5RfVcCTFDfvmyk+nzoE0+AHOQZhRD2ClI9BWPfYS4I2xsPdNYVnWqWSS4jreNFJn8g7rVvmBKwDfqDlslANuI4tQtmQx6XHJEDHsBuP4MAknLhoWz8FNQiEMSxRH5LCUz6vVf7LNFxvgDW1YsZgXt7uE4PnFIYVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750344927; c=relaxed/simple;
-	bh=5zLQjefFl1xoVe/hjAGrMynvu2zXA+YnEoPsGjdFfEE=;
+	s=arc-20240116; t=1750344929; c=relaxed/simple;
+	bh=JemuwVrf8yUubUQ04X5WC7YM6uXAXUdph7sXz3IArE8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l+7xWuewSAKsalHJsZwiSnezKDREzwdMJLe9ElZThG/rQ4TcQTxKviydtS12X/nTURgwu8jbjW0Lm9UpDJbIuz1J20Berjp5czUmIuS9uWaft9iNp7mW/AvSJkr9IUCgkjM7udEt5XS2ZoYpmF6BoS9kxW+h/f0SAwRB6egnhC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LXV+9nc/; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:To:Cc; b=euSEO8r4eD0YaIubSe6iWKJtsSw8eni5EG9R2f3iLiNx4jrzGZqaiQKBTWUdGXJ2n/c0CvZChTP+FEWX6utRJNWBgsSsQ9BoOGKFg0FPWV+98VYeazAfheKv9+TWBFKlAOibRTLPI6M4a2Cz0vAg8TAkio3kbLXaxgcaTybLFpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MKQwnBo5; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a50fc819f2so770546f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:55:24 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so10655625e9.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750344923; x=1750949723; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1750344925; x=1750949725; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gLzhodFNjkX+gPU6aAgcbyZ8ijaQa1ht97PNw+na+88=;
-        b=LXV+9nc/vNCVeHlWGbgbDdZH3dLqOuPng4aK846sesQD+tVwCDrEbNGd9GY0iEbVAM
-         iTcVa17ToqJL4kH6wmbbiwNvOzRPJ5xWJCYH8+BnJ1wNo1tIa9tTtLcr8Klxsncsx9Id
-         qXIkCzAAmfC7m+rfBXJOzT/8XamfD+VSEP6h4geTYMWotij7lQKMeRaUWhNxzsWSKR2n
-         Q1a4jHXwZU/FT3wqqRNw3P9yqOOm6rjlo9k194gEwt6XT8b/qp8rnfbL/Y+klom13g5R
-         7Ns3KFD58EuMQntKt6nzOTbNCeyr3iim41oXnfRb95gqgf6FeTGkEdvYlQ25Jna0W+0m
-         P8rw==
+        bh=V5fVBNslUv5VUBRyFZmw0sYPamOw5qzhbaF7o6iXTDM=;
+        b=MKQwnBo5ycoQ/UXxhYlQBsU9BNuXvxuvbtIza5uFsskVzgo/g5NUZTb0wFpwjL/vrr
+         DBbsTtYB22W29rDm8yoJXhTw4sP+yXQz1037p97ZYXPEfWLKxrBYItKDWzIekuc5Xtcr
+         Y1oidYG4RHkF3h79svdqoDjtr50NeDG1yUGq+vhWUptFOIXU8dvTiarbQcm6Yu9vOoVz
+         QHufH5OrcdelBqgsl6/p7Tql2VhUPqm9S5UTxDuJTgokZJ3Cw4sJtfpBU+RF6BXrCZJW
+         ieF9j1Aty6+dFx28iZHz4BRhRhhdDSIE20bDrl4vC6727fvafqX8XtNr9P5obdOcVydP
+         np8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750344923; x=1750949723;
+        d=1e100.net; s=20230601; t=1750344925; x=1750949725;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gLzhodFNjkX+gPU6aAgcbyZ8ijaQa1ht97PNw+na+88=;
-        b=sPz9FG2Y9sAiOlbzW+SfhLgmTzuATRPamUrItdTT+enlN7oKyY2CFmd7Q/vh5kOa5M
-         T/U0S8SjpHZlP7arGyNHysy3om781wvl2VkhRxPKHsq9E/P1ucq2A70TEZJxko+RvykG
-         GJ9ehnzyzTEsaqx36bDVBpcvH1K0FJWFYK8O/JF/QOTzXbglq+Uk5upgZZxpx+BW3Ew3
-         vlsYA7d4RBKO8fyPZiFlZC5x6W1TS6e1dbDYWeGbqEgY7lvDkk0hyJtXw4XjqS6Z0oMl
-         Q23AKLsxbjQBVItA9e3vu057ADPjUZn0/j8Gc2pCNjzmswH7WWbgvDC67aqGio3X5qH8
-         IKSA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxceNb1/OmBujABQpD7/lkzmhbljQsWIe7fmzgcIFlViMN4U3ZUbcNaQ3qR+5j1X3Q/dY4g187C+S6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIp6PceHKBg/9C1Fxp3/N/clVbeYUVRcRODzy5Rk0mM1itCbxe
-	fhsRuY30pUVmL8kNnkG00p0izOynQJU/ojQk6f3Xle8kEQqjWA6yTDZWnUY+1LTUT78=
-X-Gm-Gg: ASbGncs/quYD/ynSFK0jaiTYF7sXHrDkPrRJE2/RMMvOuwRPTsv7xwU4RX4aX6awWNy
-	Iq0Es6+AwzSCBhV3vMmUwOMDOK1JDA1RDhnvnfCjWJFGODJmq54X+3WIgrtfGp1Vjhno7Tf1GyI
-	sEQ9iqcmMaiIGPvHHGU94GJhCaQk+eRn49Lyq7q2RM8+CALdVB/vAaGg/0OBPIhg//CfBn2TQ7/
-	Zq6MAr+YQSZAEnSiu5dHScog40YTAlbkjMYDQyHZp8UMNxIfDxwcku3oLSCI1TUu+rDim6eXBNO
-	KezVzjTRWZjibCoRRrU8aElw79kT4/kePKLuGVBpBx3FpUS9TPFIA5SCCzgvrxokUzfwQeMTFn0
-	UKQ0gd1+NaOc=
-X-Google-Smtp-Source: AGHT+IEDxOs2fv0eODh32EDd8cdAU32JALjDJpZubvkYuesAwi2i9gcqAOAB2Ga5J//4M2trs4Fd0w==
-X-Received: by 2002:a05:6000:210b:b0:3a5:8abe:a264 with SMTP id ffacd0b85a97d-3a58abed70emr6303048f8f.37.1750344923430;
-        Thu, 19 Jun 2025 07:55:23 -0700 (PDT)
+        bh=V5fVBNslUv5VUBRyFZmw0sYPamOw5qzhbaF7o6iXTDM=;
+        b=IdBWMXAR2+wnOKTy19NaLBSUUiIfwAJJbQgqSHRZKmVKRw+K/7Wa5ntOSAIPx+i4Qp
+         MLc1gYV4soUKH2h89LfqmJTJWjTXsWtwY0RV2zIx+VhE0g/hM4xqyW7omPmRpKk+MP3B
+         T1Z9hEcje8gpEVWcqHeV4T3+mJ+bft8Pn+ekvPlbVFMOMSLWcV+uwkMf9P9KNPRo8TgN
+         g5sszIhFC4+RW1eO4EZGpiaw07Vb5dZJdBqLfb6dfT/aFaQ+wTQuiWC4ruOhKVZyBjtM
+         mNoGFGTck6Cn8UgFIiyMXF5kAJdN7s28yweXmxWYuqAYkcplirP8vykFfLflYIbGxBMD
+         C+mA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQ40B5UsdwiCscQOluLQTF/1ZnJ4dVZF/yW3sSznvANKtxI34qsj1jDzXe//6WtS7/LkSzF4A/NQOE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9ksHvtJpfk4kKmkaqbnYvxKsXw3h1TZPHYAn2O2jLFUsk+/TJ
+	lwFGVS4+MKr8vJQcqid2CcNWpQQeSe5KKYYt9/dmwpIooeZq2viFJs7fHgM8qIXKEeg=
+X-Gm-Gg: ASbGncvs0jiHXanCc+TqQzCIYiYrq9AKnO9LzlNIGHzhtT3oxqXYAi3qzeceCvHfITq
+	pI8Om52UvTtSS6+RFsGKE86FS66ptMaEBaoIUHmAWTSqxhRanMOR6lywgpvbSnfIeSN3GmlESQT
+	vUczMmQ1E+vdOslD1dPe0iw/jS7FQARcbdkMxnbReNCXdDnCVaWfNusCYCGz6stEIYHkbs6RLmP
+	d1e9k6oynXZJUdXSQ/8qvpDCc7cdDkftOoVEgvpljGNiHy5soisH69jNNFlI+FXcQRvQsnFA68R
+	3YC/Y43Mko9pyH02TJ4H13MS/uGQES6+QBCww1UOfTPnVZvq9+QqxZM5NheKb2NGy5iRf/dtCvw
+	hKp9faLMXY+wv4UnWDHej0A==
+X-Google-Smtp-Source: AGHT+IGtKHGGVTcveyhymsAylUd1eIhqDyS+/H63/Vk/2Z2lAu24ERgJx0a95RwSPxwt7eNSWAKzyg==
+X-Received: by 2002:a05:600c:8b65:b0:44b:eb56:1d45 with SMTP id 5b1f17b1804b1-4533ca6e6a8mr234107125e9.15.1750344925237;
+        Thu, 19 Jun 2025 07:55:25 -0700 (PDT)
 Received: from toyger.tail248178.ts.net ([2a0e:c5c1:0:100:b058:b8f5:b561:423c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ebced8asm31343715e9.40.2025.06.19.07.55.22
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ebced8asm31343715e9.40.2025.06.19.07.55.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jun 2025 07:55:22 -0700 (PDT)
+        Thu, 19 Jun 2025 07:55:24 -0700 (PDT)
 From: Casey Connolly <casey.connolly@linaro.org>
-Date: Thu, 19 Jun 2025 16:55:13 +0200
-Subject: [PATCH 05/11] power: supply: qcom_smbx: allow disabling charging
+Date: Thu, 19 Jun 2025 16:55:14 +0200
+Subject: [PATCH 06/11] power: supply: qcom_smbx: respect battery
+ charge-term-current-microamp
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250619-smb2-smb5-support-v1-5-ac5dec51b6e1@linaro.org>
+Message-Id: <20250619-smb2-smb5-support-v1-6-ac5dec51b6e1@linaro.org>
 References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
 In-Reply-To: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
 To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -97,59 +98,59 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
  Sebastian Reichel <sebastian.reichel@collabora.com>, 
  linux-hardening@vger.kernel.org, Casey Connolly <casey.connolly@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1357;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1515;
  i=casey.connolly@linaro.org; h=from:subject:message-id;
- bh=5zLQjefFl1xoVe/hjAGrMynvu2zXA+YnEoPsGjdFfEE=;
- b=owEBbQKS/ZANAwAKAQWDMSsZX2S2AcsmYgBoVCTR5g7afOe/JLNddLPQnw8+CLIW9X0RRbizc
- AD20INQzGuJAjMEAAEKAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCaFQk0QAKCRAFgzErGV9k
- tr3SEACdCNo03bzqVOxk1mrxOgrONtYGGJjUcXqLvWuPXcJs2Dngoaq/Dg3UvuhGe8oGlZwrD+I
- Fzo4PwcBuIqf8SOc9A/MJsNyS7FJX0oYJrpNI/ta8TSk0i32NTYFCpVtmIRPN+RZ3Fpxzr1uzAL
- sqHS1LXrjlth/+XJwkdtPyFavnmeKl2MiWY6GtsC/UVNaVMKLtjA0UTv7icN/ozvlSxNhKU6tEU
- UoLYtPz9Fqwp5QiAKn847s/tKxODhKRYFOPYA0rhB985tOyhpHkYsCk+4IPIwAczS4snyPa9uuB
- YKy5vRvAT0lsVAd6Vh6UGyXh+ZXIZjXwpibHxG4yRqGSsS3qztTOfeJ/C6bXLEZ6i16fx7cwZaF
- V/9yRpXf5Aj7TTyBq8C3mXogqE+hn7RxSdnGW+PTlwKxfmzY0LQam5UY81bxoZ8ZzcNa01EP5Zf
- +kkcNaaVJ3PPSpcRRsVP7UXgNotlvibEA8VFJmQnh3EqmA5Hppn3XJfHoe+BmNnOp8h/YRfH+n4
- htj80jTZ3GTFjCOgH7wUAOiQt28xTy/QUPfcVWIKaavS4SKv40NQpof49aLlY2ArkCy635xjTuL
- Z8IcsmPymiw1jJ1zDNie+RbE6ONBiA4PQ5Q1qAx9yNC5wu5AHv2/5UsRLB+v2rk8SztZdJHlvo8
- /lcBkraryspc5oA==
+ bh=JemuwVrf8yUubUQ04X5WC7YM6uXAXUdph7sXz3IArE8=;
+ b=owEBbQKS/ZANAwAKAQWDMSsZX2S2AcsmYgBoVCTRT9U4Qg9OJkb0pSzAf9sdjAQKdeIlP+DEF
+ qNb2vf0iUSJAjMEAAEKAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCaFQk0QAKCRAFgzErGV9k
+ trkoD/9uMDtivCbMTOrgggGTlyDa6eGLdCUlIPlMr/C7iumj9T0+pX9tt94ykFnWvge1K153/Ic
+ TFvf4k+NVmqWQqnDGZw8RvUT1B1uv58Av1/6G7HsTOxkWERwnOosXXYUk+OznOcVeAI8zFd0cg4
+ K9on/a6vvkYan6qqINynhXA/Gth3JlCwe/iImk2cx0xqioduRDFfzxcMYhQbUPqAHyvRWS9MHpM
+ Imr/3fhnenlaX13mjqfddKkhAQUeM1dE6Lq3Kc8yNXed6rBRSPnJXj82zh3ZYg8/dkzue0TLt0T
+ 8E5ydS/cMnzR0bIwT3tsuczQmDi2+E381QgV58rsVTu1joDTuVwgD6sVykud5TTOpgOJBGXjTE4
+ XlmtoBs1m5k5YkqqsLySsxPuNhm2wPq0BVj7xkUsqn8zErx73u1pPo1pCS6TEfphB8i9jJ2BKwh
+ kQ6SAoZsLK7GkQH+A/peNERM42glBRPQiFtzALsI9lumBkZ2IOcgZ9mTD3mHThukOw8yn3bTLFy
+ zc40iGbihYhOlY4NxbaCx1YF82AQjKAXO+m66co3u1cyy6E35kfuRuL/DrtIk/TUFoOl3r50LgK
+ iHWqEcym98u6mv7isjQHGUN6L8hZKRkVm/mqPOAh/wyT3HvG7coz33+0qPiYK1IZKiGCxsu+Z4F
+ lS5agEn1VU+xBsQ==
 X-Developer-Key: i=casey.connolly@linaro.org; a=openpgp;
  fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 
-Hook up USBIN_CMD_IL so that writing "0" to the status register will
-disable charging, this is useful to let users limit charging
-automatically.
+Respect the max current limit set on the battery node, one some devices
+this is set conservatively to avoid overheating since they only have a
+single charger IC (instead of two in parallel).
 
 Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
 ---
- drivers/power/supply/qcom_smbx.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/power/supply/qcom_smbx.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/power/supply/qcom_smbx.c b/drivers/power/supply/qcom_smbx.c
-index b1cb925581ec6b8cfca3897be2de5b00a336c920..fc2a8e20435639a9da4d966c43271beaeb57a03f 100644
+index fc2a8e20435639a9da4d966c43271beaeb57a03f..7fc232fa7260a7422ac12a48686cd7d396edd9a4 100644
 --- a/drivers/power/supply/qcom_smbx.c
 +++ b/drivers/power/supply/qcom_smbx.c
-@@ -692,8 +692,11 @@ static int smb_set_property(struct power_supply *psy,
- {
- 	struct smb_chip *chip = power_supply_get_drvdata(psy);
+@@ -583,9 +583,9 @@ static void smb_status_change_work(struct work_struct *work)
+ 	case POWER_SUPPLY_USB_TYPE_CDP:
+ 		current_ua = CDP_CURRENT_UA;
+ 		break;
+ 	case POWER_SUPPLY_USB_TYPE_DCP:
+-		current_ua = DCP_CURRENT_UA;
++		current_ua = chip->batt_info->constant_charge_current_max_ua;
+ 		break;
+ 	case POWER_SUPPLY_USB_TYPE_SDP:
+ 	default:
+ 		current_ua = SDP_CURRENT_UA;
+@@ -989,8 +989,10 @@ static int smb_probe(struct platform_device *pdev)
+ 	rc = power_supply_get_battery_info(chip->chg_psy, &chip->batt_info);
+ 	if (rc)
+ 		return dev_err_probe(chip->dev, rc,
+ 				     "Failed to get battery info\n");
++	if (chip->batt_info->constant_charge_current_max_ua == -EINVAL)
++		chip->batt_info->constant_charge_current_max_ua = DCP_CURRENT_UA;
  
- 	switch (psp) {
-+	case POWER_SUPPLY_PROP_STATUS:
-+		return regmap_update_bits(chip->regmap, chip->base + USBIN_CMD_IL,
-+					  USBIN_SUSPEND_BIT, !val->intval);
- 	case POWER_SUPPLY_PROP_CURRENT_MAX:
- 		return smb_set_current_limit(chip, val->intval);
- 	default:
- 		dev_err(chip->dev, "No setter for property: %d\n", psp);
-@@ -704,8 +707,9 @@ static int smb_set_property(struct power_supply *psy,
- static int smb_property_is_writable(struct power_supply *psy,
- 				     enum power_supply_property psp)
- {
- 	switch (psp) {
-+	case POWER_SUPPLY_PROP_STATUS:
- 	case POWER_SUPPLY_PROP_CURRENT_MAX:
- 		return 1;
- 	default:
- 		return 0;
+ 	rc = devm_delayed_work_autocancel(chip->dev, &chip->status_change_work,
+ 					  smb_status_change_work);
+ 	if (rc)
 
 -- 
 2.49.0
