@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-187493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3C8AE0220
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99520AE0226
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7E437B070A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:53:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 130A97A8EAD
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F589221546;
-	Thu, 19 Jun 2025 09:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322E5221277;
+	Thu, 19 Jun 2025 09:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5pcnnEL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i/SYhRc0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480C4221286;
-	Thu, 19 Jun 2025 09:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047DA21CC79;
+	Thu, 19 Jun 2025 09:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750326859; cv=none; b=iOXxlcPhWsclR92ddSLOaZJun0XtQvNJfQEo91WwHc6O4l0zbkXiZVGK5etIfma1M1c899pghbzRDRE2YmzUA+l/7W5c+mCB6HFcxQOb+fUMO8BC77MjObqhAanwq9L48Q3as/s5o0LgywCGvztiuM1Cq/0kRHEXYshbLzJWZwk=
+	t=1750327026; cv=none; b=YdhKDOzJKvkYBpZ0fLDQZmTwFDnr3S9gbtXsgy6jizz2FyFtiDS6R51Y6TTQwwg88fJjLk38nmj824xSlRtydnt3nxgnneVeSZVnX2uIpyV/tYdp+eeCuMUi+yuR/gWydZmK0dI0saIHtuSx5OksDiN72i0joFk2b0XtZm8qA6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750326859; c=relaxed/simple;
-	bh=liBrC581olewIxjbEjqmezkc4FAvhL6bE6utTt8dFjU=;
+	s=arc-20240116; t=1750327026; c=relaxed/simple;
+	bh=FJl3qdYpg6zgOGZVK6n5oQKa8fLrJgPej0TUr488JGA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HB91ON/fkDr0wuzIYTEv48x5/yOf2hmgHInCWS/1voTxvOrLTy0xFHVfPsAX5KXPbMaRLZqZhisGZAW5S2H3n5GtsvIFN+dsks+j5DOlJSCA23F+z8FC6aMBmp28wgQCnB3gA5qPxMc28Lq0esL0VFUVpG5lYyDBACTpQSFz22Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5pcnnEL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 426C3C4CEEA;
-	Thu, 19 Jun 2025 09:54:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AIWX5TS0kzu2KCIR3sXMjIAI1FN74WacleOEudpNoScmDcr7pgssTJheXLGartSAz/3xCiiMnIzfnD8HX2B0sE0hzQsvo8tT5pszPSGGRJlS+5EjLNpH9Luf+0/rdW2bwE6MQfeDwFlt0sFBuukDaHHhLmfIy1HI/BAxsURrV34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i/SYhRc0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ACAEC4CEEF;
+	Thu, 19 Jun 2025 09:57:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750326857;
-	bh=liBrC581olewIxjbEjqmezkc4FAvhL6bE6utTt8dFjU=;
+	s=k20201202; t=1750327025;
+	bh=FJl3qdYpg6zgOGZVK6n5oQKa8fLrJgPej0TUr488JGA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z5pcnnELNdgWWTpUPqvWO/Rjn59mzJal3u0PTtDti6dHWFKIeZ9bYaddL+4kJYJsY
-	 +imfxJt+pi3/S79q8A25sV833O7pajN7iYJR4F8wzkP04ZeRLpzC2N26SF0XiYQyzz
-	 0SXoZguPVAbHYQ1idOBHeuHxYh8hXzLDqWYiF4dSpWcFtp8R4QdGnLfQUu3CSUjR6D
-	 xTXQIFzHKKXhYyB5/rzqzgdG9vKqbHPdS6ccjWvYPtlTeKNieMbs80rtW0ls0Hyvm0
-	 XwsTe6eYbyGy2gWPm3phDYEtrviPH+8L+0qMtYrwUfu6XqQHSJsXFjKL9z46UICmKN
-	 z+oIUFNTFph8g==
-Date: Thu, 19 Jun 2025 11:54:15 +0200
+	b=i/SYhRc0YgG7XfqYZ9mXh1HpFgjD1HTa5rXFsQksLxFg3dSFzfV+kFeDCIL8o7wOC
+	 p2+zna45L8rwVZFOe50xcdpKVlqUIIr5UeveSGAANC9ajjcU6iXELxZA7BnyTPcvJ9
+	 GD8G6Hx2Zaxlv0ULalCLYrDVacBO5QHA1k1kGxk9T/02kZEm0rNKNwKEk0RygC4NjT
+	 mgvFXhGgeSbYR6ZU+qfSg+hG/jY8T4WyJjZSEQj1zKJZkdh9I1wmF/K9hT2LYN9/gY
+	 kfqHpVaD/iWER2TeXUM+3+iBRyFrh8pBVSJwLHbed5F4pcsD7rEx1iTTKGhxeYWK6J
+	 BiTpdXvfYr4YQ==
+Date: Thu, 19 Jun 2025 11:57:03 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, Daniel Semkowicz <dse@thaumatec.com>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: rk806: allow to customize PMIC
- reset mode
-Message-ID: <20250619-unselfish-gorilla-of-joy-13fb93@kuoka>
-References: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
- <20250618-rk8xx-rst-fun-v3-1-081f02d3d348@cherry.de>
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, 
+	sherry.sun@nxp.com, manjeet.gupta@nxp.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: nxp: Add support for
+ 4M baudrate
+Message-ID: <20250619-vegan-beluga-of-intensity-74d4da@kuoka>
+References: <20250618152113.25500-1-neeraj.sanjaykale@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,34 +60,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250618-rk8xx-rst-fun-v3-1-081f02d3d348@cherry.de>
+In-Reply-To: <20250618152113.25500-1-neeraj.sanjaykale@nxp.com>
 
-On Wed, Jun 18, 2025 at 12:32:40PM GMT, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On Wed, Jun 18, 2025 at 08:51:12PM GMT, Neeraj Sanjay Kale wrote:
+> Add support for 4000000 as secondary baudrate.
 > 
-> The RK806 PMIC allows to configure its reset/restart behavior whenever
-> the PMIC is reset either programmatically or via some external pins
-> (e.g. PWRCTRL or RESETB).
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Use the available 'max-speed' device tree property. (Krzysztof)
+> v3: No Change
+> ---
+>  .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml  | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> The following modes exist:
->  - 0; restart PMU,
->  - 1; reset all power off reset registers and force state to switch to
->    ACTIVE mode,
->  - 2; same as mode 1 and also pull RESETB pin down for 5ms,
-> 
-> For example, some hardware may require a full restart (mode 0) in order
-> to function properly as regulators are shortly interrupted in this mode.
-> 
-> This is the case for RK3588 Jaguar and RK3588 Tiger which have a
-> companion microcontroller running on an independent power supply and
-> monitoring the PMIC power rail to know the state of the main system.
-> When it detects a restart, it resets its own IPs exposed to the main
-> system as if to simulate its own reset. Failing to perform this fake
-> reset of the microcontroller may break things (e.g. watchdog not
-> automatically disabled, buzzer still running until manually disabled,
-> leftover configuration from previous main system state, etc...).
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> index 3ab60c70286f..4a1b6ea48a2f 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> @@ -34,6 +34,12 @@ properties:
+>        This property depends on the module vendor's
+>        configuration.
+>  
+> +  max-speed:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Definition is in serial-peripheral-props.yaml so you need to add its
+$ref. Just like other bindings.
 
 Best regards,
 Krzysztof
