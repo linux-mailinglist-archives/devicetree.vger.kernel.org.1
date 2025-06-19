@@ -1,117 +1,163 @@
-Return-Path: <devicetree+bounces-187627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46383AE0A5C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:26:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 172EBAE0A43
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 17:23:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 849B41BC274A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:21:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4DD0167D34
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25628221F2E;
-	Thu, 19 Jun 2025 15:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5B0224254;
+	Thu, 19 Jun 2025 15:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g7PDLPTH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3FE1917CD;
-	Thu, 19 Jun 2025 15:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915827494;
+	Thu, 19 Jun 2025 15:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750346437; cv=none; b=txiEtq3Lby9wzcpztF2ixDiVv/UkDNSm7AAmc698y6uVfaAMixIivzvUk7f4VtsQsiglaTMEL3wvOdgMyIivT81TH6A4+mBLJgXoVLk/X0WUZz/uh9JBO0w7qsFl4Zzq1IA2Bc96UIT+AFpmb9QOchVDVHR9X1QkqVc4eKq8FlU=
+	t=1750346594; cv=none; b=DSMh+kxZv/k6zgEExMLwhSCXCiOIylA0+aog/vJz/92ImXocrY9mbkcOxumDbkX0XrKMQQ28bwLqYGRlx48rTfjJAdr3wihiZBCu2a0JeSzoBSmqPb9EdZtSZOGuikLf7D563c1A9PIPrxiFLlSTy98BJv08jzFPq0QJPOr7X7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750346437; c=relaxed/simple;
-	bh=ScOYzWHPQH8+sx/yjMIEThr5Pi2LHGCdgt5KNkdEvRI=;
+	s=arc-20240116; t=1750346594; c=relaxed/simple;
+	bh=SwDI5O+tZvIfRNuyVcMNkxY6LY3/oXoFoTGFL2+xKdU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eEhIKSpJMkJKbTuvCTcWhO9mnOBrgY1/kQ4M9PmEAifzwgkvBQgLishWVzYRHVDkD0qFBZPaN//swM4LFgIKHEGbQIqK0v9Y8UCQUHRS6uasmV0ADCdYyjoyXmwuesVBYNA5nEcPJw6gq+v5OhijWczkYOxpccWgNslJRM+7BSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4e77d1333aeso292632137.0;
-        Thu, 19 Jun 2025 08:20:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750346433; x=1750951233;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aSkl/380e5H5cxv39S6/yq0VkCvcYJimq8W0g/WHe10=;
-        b=A0HuaEh3BiPyxf1qL3I1BVCbLPMUOL17hYnhC9QmPaFAIHk2nNY/2ABjjD+n8H0dKY
-         tqceiL+fWu2ABIq22IxO0WTM+EcMYRKf9FzRQwsb77SKpkrBgnHadupzgbKuGP8FyU2r
-         qNO9undBdhgSRcz4zH9Di1tRGi1NsoFnf6dMNhk59Ndr+V1IGltWQln2PoQ1YKfiYeAB
-         r0cswU/A3LkD7fzML59oBd2iSfqncJO7ZJ9YOyBovokFhOSHgPcwcdTs1psOPMHK32Yd
-         q/J18xuKtzaBXramq8Thlh+gvBtqiCUmaqpwN+Svw8Z0/5GcZ/coa3tGg5FyxQ1CG5XS
-         5vzA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQp76DeyKeUJpufw4VKG/Mp26dGijgymQbjB/22zV200wr/lQ+MNasZMCqRL9nueOlkuuFPeVfv8VPF1dL@vger.kernel.org, AJvYcCUmjDInxlboEqZsrT3J4Mf+dbK1EUimE2jIgiqBuELmZscPef96lFNyMntlEnV9YivgiAKhu74NAW80@vger.kernel.org, AJvYcCXJWAZf8o6TToH0Bpo8jprBJErV7EDcvAsn+1LqyvKOWzeJ8Ed+AtTJqygn5QcGmI2A8hYAQ8oZXMUpOUHm/dDXRP4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJgumdBBoe3B2Wo92GjtMOcEOu3SPmXC3gLru9/Sev3rGOHxyR
-	r8lSmJRPOJLnSO+n34nY3jmAxhSsjPcdByU/YKKnN0Z7pAlPwjZkln2Cnm+c3PXy
-X-Gm-Gg: ASbGncuqgo8Q4YdeG8QMJGy0+8A8sTp8VzccIIJS1QYbbrBtXuG0Xwk5iM9hxCbWLdk
-	92GkZr3ElOouifskS0Vnokc9Dm8cLQv0GubcR9MMOIfT3glzUh2wh+HWxE7S6Xr6nlSJ2RrO9bR
-	RRc+GXmrtx79KXnq93XK4Wgy5qYgQmcURzS7BUKTT0KKso8ulii9sE0FnBlJS2gqOegyoeE8uei
-	avSPuQ9ZyQa5R2duV38H7DvLi/KZT6M3DZMa/cKAliZvtl+kv2uvUr67xLZTPSp50rcJL0+VoL/
-	DV8lvu+1MaODGF6zDC03RF9Nuci6S+AlMVqDTQZ/1ST6NnfCJsrjtJRLidqu7e6Sdc6LMQmIS9U
-	Y30UODNCuKt+NwFvyXKnXvbFKmVl7
-X-Google-Smtp-Source: AGHT+IHJkNv5WxWdZgn/0MuGVp/4r8uoIrIcVhGnn2itwg7AS3ocRMykjdeQ5qYR+CcZuxPAg0rAtw==
-X-Received: by 2002:a05:6102:4424:b0:4e6:da5d:2c42 with SMTP id ada2fe7eead31-4e7f62b12d4mr16701176137.19.1750346433447;
-        Thu, 19 Jun 2025 08:20:33 -0700 (PDT)
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com. [209.85.221.172])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87f0f8e8682sm2429934241.0.2025.06.19.08.20.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jun 2025 08:20:33 -0700 (PDT)
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-531a1fad7faso238414e0c.2;
-        Thu, 19 Jun 2025 08:20:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV7MQa38SRB7/ngp/rp2vy+rjaRKwxzb3u6l5W5CQb1L3h/SEn1brBCy/vSI/CaKjhhVgfUDxN55RX9NWLxw/CmGP8=@vger.kernel.org, AJvYcCW8XHyq5s7t3C6UVI00budfJjLpWD8LQbhvfqitb+U/lST8dmPGdYu+O/lp2e3H9TgG+WhLkBafAQm+2DIE@vger.kernel.org, AJvYcCWh+///RLGxWVPHE1gnHJW8TN4rqlxEathEfmfTO5zhqgURcncSxDJymWA2yCCnJEjVMnqJ8Hw4JLPK@vger.kernel.org
-X-Received: by 2002:a05:6122:3d0d:b0:520:6773:e5ea with SMTP id
- 71dfb90a1353d-53149c507aamr16508674e0c.7.1750346432516; Thu, 19 Jun 2025
- 08:20:32 -0700 (PDT)
+	 To:Cc:Content-Type; b=YFqlSIYUZOO0bSUvZYLNh0npXpsA9880YfBGxghdwoVMXhxHuexDP+sGenfvQ2m2cstYkKI2pT99f6eIm5BAuaddlZ1v27B3f3e8ic6fMQ9yXkO4gDeezpN+4eUbxJw+TYxy1vmJS22nSeAYzoVHXE1dDxx+5PfQbPPv6qgR1qI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g7PDLPTH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44F57C4CEF1;
+	Thu, 19 Jun 2025 15:23:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750346594;
+	bh=SwDI5O+tZvIfRNuyVcMNkxY6LY3/oXoFoTGFL2+xKdU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=g7PDLPTH86VqIWFBR/dq5nZkYzcm/0ocX6eZdxVfOS9hAmc7LcdqDA4dP0UIVrbUJ
+	 iiLvm2tsVxKjOh89r/HgntGu4MeALTZTYHM6gbQ99HrVnzkZagwL7vrdM489JXYOBv
+	 ZKIIyFu4VDB7BhR/Zn+RYe6JiZZx4Y3MmxZCJzusuQcFHgD5Qelvo6fAA7w81xXxzi
+	 Y11NFLg5IbIgyqdRLt4dsa5a3+KL3aeBn/XqdA0zatcRfu4LMoWIHrM3SufS0vzjqu
+	 Zdq0MFIEodVvwNQ8Lw88Baeo8zniUAZhxRS1gs1yqLD3MjdwNezp8MJOSw0AGpcqh8
+	 AqFlbNGwZEVgQ==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-60727e46168so1623586a12.0;
+        Thu, 19 Jun 2025 08:23:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVVjWXRif/iBSxZZ4J5XyyhZQw6PBQRuoh8C0wQv4OsnNSeTX/42G8G7Xi0LRjE/A50HbGq95I2P6wz@vger.kernel.org, AJvYcCW1XVLQVZ+q1xx1TJEOJtpxvS2hvVcYo2wyXGuJNUhkJNx0hvxgZ14jC3wmHbvaVH90HXJBhydw5w01r/mK@vger.kernel.org, AJvYcCXrO7caFvvkqB5W1yx6apP1R42q92pFc+hW63Ss3i4GJjTowzTr8vI8DY/1e4VzbgT5OnAK4c+JiSjX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJxrxYMGXZ/H83avUQ3AqrXTD3WZ4p3U9l2XP2fih3QH7UaHlB
+	lvma/hOi1DBmcwXc9aoQZISj9LRl0Yx2ARIccpjvvxDkhgrEj9YDpHci5ti10rhz+T5HmBQKOXz
+	M8U2bd64s3JJ3icdhB08Xb+exLPGv8qk=
+X-Google-Smtp-Source: AGHT+IG/pZuTmErWjVZ0Wq/kq9f6qxWsOesVABoR2+f8hJPtebRo74IpJF1gGR0hdGST63n8p846BRR2Vx2xAjaeraU=
+X-Received: by 2002:a05:6402:50d1:b0:607:6324:8da2 with SMTP id
+ 4fb4d7f45d1cf-608d09cf5e7mr19497555a12.24.1750346592796; Thu, 19 Jun 2025
+ 08:23:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250617171957.162145-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250617171957.162145-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250617171957.162145-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 19 Jun 2025 17:20:20 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXUJOh+7Za5j1OKmKsUAtAFF91=817b6XTgcHm8KkH4jg@mail.gmail.com>
-X-Gm-Features: Ac12FXwu4ud-dOAPgVZ6B87gIE8_tROCw6zpgToA0179mn-fWyXkmiQIoEVlLCI
-Message-ID: <CAMuHMdXUJOh+7Za5j1OKmKsUAtAFF91=817b6XTgcHm8KkH4jg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] arm64: dts: renesas: Refactor RZ/T2H EVK device tree
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+References: <20250617162426.12629-1-ziyao@disroot.org> <CAAhV-H4dR3cd6g2+bGS1uLRKkpVVEjHY6Kd_QCYx4LuY71y6uA@mail.gmail.com>
+ <aFQN2TSjT1IOvOt3@pie.lan>
+In-Reply-To: <aFQN2TSjT1IOvOt3@pie.lan>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Thu, 19 Jun 2025 23:23:02 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H6EDEf3U6w5KY3R3HCAdAbqDefqpE3ktCQeQtFbDK2Ypg@mail.gmail.com>
+X-Gm-Features: AX0GCFvvW6SYVKrmH037GeOA3vr2AnqCqYBdHT4NDoXMM5cozrqAuCu19uS9S9U
+Message-ID: <CAAhV-H6EDEf3U6w5KY3R3HCAdAbqDefqpE3ktCQeQtFbDK2Ypg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/8] Add clock support for Loongson 2K0300 SoC
+To: Yao Zi <ziyao@disroot.org>
+Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+	WANG Xuerui <kernel@xen0n.name>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 17 Jun 2025 at 19:20, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Paul Barker <paul.barker.ct@bp.renesas.com>
+On Thu, Jun 19, 2025 at 9:17=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
 >
-> The RZ/T2H EVK and RZ/N2H EVK are very similar boards. As there is so
-> much overlap between these parts, common device tree entries are moved
-> to the new file rzt2h-evk-common.dtsi.
+> On Thu, Jun 19, 2025 at 05:02:48PM +0800, Huacai Chen wrote:
+> > Hi, Yao,
+> >
+> > I suggest dropping the last two patches temporarily, because:
+> > 1, the last two should be merged via another tree.
+> > 2, the last two depend on another series which hasn't been merged now,
+> > and can be squashed to that series.
 >
-> Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2:
-> - Renamed the file to `rzt2h-n2h-evk-common.dtsi` to better reflect its
->   purpose.
+> These are fair points, but I think including corresponding devicetree
+> changes along with the binding patch helps review and proves the binding
+> makes sense. it should be okay to merge only parts of a series, so I
+> guess keeping the patches doesn't hurt, does it?
+Yes, keeping them is just OK.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> By the way, do you prefer to wait until all fundamental drivers (clock,
+> pinctrl, and reset) ready and merged, then merge the devicetree with all
+> the three devices added? Or is it just fine to go part by part, with
+> incremental changes to the devicetree?
+Yes, I prefer to wait until fundamental drivers are merged.
 
-Gr{oetje,eeting}s,
 
-                        Geert
+Huacai
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> Best regards,
+> Yao Zi
+>
+> > Huacai
+> >
+> > On Wed, Jun 18, 2025 at 12:25=E2=80=AFAM Yao Zi <ziyao@disroot.org> wro=
+te:
+> > >
+> > > This series adds support for Loongson 2K0300's clock controller.
+> > > Loongson 2 clock driver is prepared to support more clock variants an=
+d
+> > > its flexibility is improved. All clock hardwares except the output on=
+e
+> > > for GMAC module are then defined.
+> > >
+> > > A clock tree dump could be obtained here[1]. This series depends on v=
+3
+> > > of series "Initial support for CTCISZ Forever Pi"[2] to apply.
+> > >
+> > > [1]: https://gist.github.com/ziyao233/160bb4693e7758b2a2a996d4510b724=
+7
+> > > [2]: https://lore.kernel.org/all/20250523095408.25919-1-ziyao@disroot=
+.org/
+> > >
+> > > Changed from v1:
+> > > - Fold loongson,ls2k0300-clk.yaml into loongson,ls2k-clk.yaml
+> > > - Include the new binding header in MAINTAINERS
+> > > - Link to v1: https://lore.kernel.org/all/20250523104552.32742-1-ziya=
+o@disroot.org/
+> > >
+> > > Yao Zi (8):
+> > >   dt-bindings: clock: loongson2: Add Loongson 2K0300 compatible
+> > >   clk: loongson2: Allow specifying clock flags for gate clock
+> > >   clk: loongson2: Support scale clocks with an alternative mode
+> > >   clk: loongson2: Allow zero divisors for dividers
+> > >   clk: loongson2: Avoid hardcoding firmware name of the reference clo=
+ck
+> > >   clk: loongson2: Add clock definitions for Loongson 2K0300 SoC
+> > >   LoongArch: dts: Add clock tree for Loongson 2K0300
+> > >   LoongArch: dts: Remove clock-frquency from UART0 of CTCISZ Forever =
+Pi
+> > >
+> > >  .../bindings/clock/loongson,ls2k-clk.yaml     |  26 +++-
+> > >  MAINTAINERS                                   |   1 +
+> > >  .../dts/loongson-2k0300-ctcisz-forever-pi.dts |   1 -
+> > >  arch/loongarch/boot/dts/loongson-2k0300.dtsi  |  17 ++-
+> > >  drivers/clk/clk-loongson2.c                   | 124 +++++++++++++++-=
+--
+> > >  .../dt-bindings/clock/loongson,ls2k0300-clk.h |  54 ++++++++
+> > >  6 files changed, 193 insertions(+), 30 deletions(-)
+> > >  create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
+> > >
+> > > --
+> > > 2.49.0
+> > >
+> > >
+>
 
