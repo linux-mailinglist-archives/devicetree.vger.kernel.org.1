@@ -1,116 +1,89 @@
-Return-Path: <devicetree+bounces-187452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A855ADFF27
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:52:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5257AADFF3F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:57:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 512A63B0FD2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:51:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B989A19E00F0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE8F22CBFC;
-	Thu, 19 Jun 2025 07:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC652257ACF;
+	Thu, 19 Jun 2025 07:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bnO8TB91"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="flQ+1SN9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C713085D8
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 07:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E46B230BF2;
+	Thu, 19 Jun 2025 07:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750319523; cv=none; b=p81c85Cuxl8gj1i+sbdmkupWOy6gS/KZOZGAPNqGsltHmwtrDjHQbQXOy+UfyAPW2jPQh6JY63cxNLIQPk7ZuxlbzNDpIjbL4q1Uylpi3W5F8rSypG1rSCGAkszgCtXW1UTYl1Y1hmGc7jgxg7QVO/DWZvUGh+RqZCKX6VHZ0Co=
+	t=1750319810; cv=none; b=SkKpXOxCKiCPSYnKs/EUzt1bwZ3iNAoPuMIiNYyr0Bs+Bigff7ociScltRa231KaHY1rvm1X0X5e6R4bDH0cYkatktfIhhbYp3yLVXZM8yzPgIgFbOSwr7DmQ2kbNjdYPDF7CS05n3w+1+SolILU0F3H2q4I8AGKcTHcVErxMoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750319523; c=relaxed/simple;
-	bh=7mQQX0g/RXBoYey7jHVoGxTSFtEhgzlZ2xKLsOSPaOg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ReVn0mT0HNpxRXtGm5Mev1TnO8CDNSZmG3TQwSWL8GxTH3HcM0b1VBMneTgzvMU4hkkQqg/+gNdrU9mn88YBmdjhmnxloN24xj6B+8OLdmqB97xn3YJ+P3/A3R56INnAvz3ysvnUuw3Z3yD7JvdEYSN1h783ajrZ5FHZxHtFnVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bnO8TB91; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-55220699ba8so554505e87.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 00:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1750319519; x=1750924319; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7mQQX0g/RXBoYey7jHVoGxTSFtEhgzlZ2xKLsOSPaOg=;
-        b=bnO8TB91+bqkCFtzVBCIsOhc02OTDTmRRCSBYqU3GSPneYpVvvaff7+B8i9Ez/7W5B
-         FnJRV+isIylWBbWVTd5QPuVKbFOK4wIJDsOvwlFaazre+3Gie4lwgooaXNGTae3YfAN7
-         6WwrQznORydJrN7fGvAvwFi9ugGvRsyHYhMGQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750319519; x=1750924319;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7mQQX0g/RXBoYey7jHVoGxTSFtEhgzlZ2xKLsOSPaOg=;
-        b=f1qhnCh5N9q/on/hw9zMbktZjECIfX4sPqJ2yDD8GtOypdOswdSDfKAG6DFtN+OYhF
-         +rOxL+RNvTgn3i+PRa1CaTDqno4HseKMZ+G19jTHaoxIoid+62Wsg+BAhpepkSxNV7rf
-         kvfzyftPYpR5Sm4XdSozrEuHJVkE8UaYNE+DB2U5PtVU362FEXHNpnwkb7/194pdil/H
-         ENOj/em4xzlyewBSfNDgSJbir+6r5jbaqb4L8rgcQhIOouUuYg3LiCK/dQ2WpgqyVC1A
-         WMxEx/6pizeUHaLH8V4To3upt12oQYRMFHsqCuhwrot+yDvWNyC8qkmybpcdxGafUzGh
-         TP3w==
-X-Gm-Message-State: AOJu0YyPZ3BZwjwALZXgiJC2G9GmhtLymjfPW5vdckygh69TgXas/h2Q
-	8ME6R+Losrpq4JFa8SB/InJqeNsbtZ6SUlsuP6d7+hJ/hd53Y/zMw3QOJ+DskCP8ts2iD7L1f+Z
-	6iQHxCE1rS358mCPEM8gMZGHJ2N0D8NBqKhGYoKXk
-X-Gm-Gg: ASbGncuMQW93C37h6zdXZKp9dbt+zqCg8rKIK1pwkt+Fu4TdfRDPc6zeFYxQbJHvne8
-	tcpo1V7nDdIi5HIRODHZ0EXqFA/RKfQ8UqdvcRLmyJRUv+GqAai2wLzl6HZKIpWnDzep36dx+Fv
-	HpB6P29LjwA53goPzEyWvqLkgcHhMYu8ie/YMVXRO6KNg7hqxPh7YR9IJTn9NlGT5atHEunCM=
-X-Google-Smtp-Source: AGHT+IGKSw6WMdR9IoIRey67gW5v3Kd28RATCpIk0gj4cgp0HNOfe/nKQSJBKksAip/SsLckx6UbC9sCyZs1uSNHQ90=
-X-Received: by 2002:a05:6512:6ca:b0:553:6488:fa56 with SMTP id
- 2adb3069b0e04-553b6f42225mr6061529e87.43.1750319519609; Thu, 19 Jun 2025
- 00:51:59 -0700 (PDT)
+	s=arc-20240116; t=1750319810; c=relaxed/simple;
+	bh=oyoPhoyqefrB3p9QqeabaAStTKM8c8deF2hGOQdrLlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PASyy6RiiFuUCxqRjfYdtcra8eM6JaU5T+h9DBGv1hGY4HEyj24hXF2R/TZm1aCoX4jiYKVasBDkJJkrbNEv2p9dVKUxYcFu98tPRf/KXhSG5pOLAMDY0Sq9ND37yjKtVX8OL0sB1G/llrzjTgaqJ3OGWjdGHHgucWVTnxLhQXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=flQ+1SN9; arc=none smtp.client-ip=220.197.32.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=dzI0z+Mor5geUtGLZUIfALB2YqIZPR9sIP0s0VrIuhc=;
+	b=flQ+1SN9rSoyu8C/E5IRDER1gqFwqZA+0yErsk5h7gjXXTiptUqS1o5iCkGe6U
+	Q+X+kCjoZJV7aR/KWBnTfgu1fKnMcGvIhIkl1CGk3R6uSk2BrTuK7IZSx+5iSHeA
+	vcfTtHPg0S+iwTy+aOI3xu9SNU7FTM/kU6zwBhJ/Sbfxs=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3l_NpwlNo_koAAQ--.3468S3;
+	Thu, 19 Jun 2025 15:55:23 +0800 (CST)
+Date: Thu, 19 Jun 2025 15:55:21 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Eric Chanudet <echanude@redhat.com>
+Subject: Re: [PATCH] arm64: dts: s32g: add RTC node
+Message-ID: <aFPCaQyXuBlyYcpb@dragon>
+References: <20250526162140.2460122-1-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250318102259.189289-1-laura.nao@collabora.com>
- <20250318102259.189289-3-laura.nao@collabora.com> <CAGXv+5E-G0BY5q_EsxOkEEJvqXaX5=Y9PWqNbwysLEFfU-UmAg@mail.gmail.com>
-In-Reply-To: <CAGXv+5E-G0BY5q_EsxOkEEJvqXaX5=Y9PWqNbwysLEFfU-UmAg@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 19 Jun 2025 15:51:48 +0800
-X-Gm-Features: AX0GCFshC_lgMp9vezDeihTD0kDhQFAT31Y9bBRKASrIpMKtnPIy3f3lDgJ-TQs
-Message-ID: <CAGXv+5Ff8jFqURizywr7NedprytSoCz9HvaW__v_Q1LcuzMxrw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8192-asurada-spherion: Mark
- trackpads as fail-needs-probe
-To: angelogioacchino.delregno@collabora.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	nfraprado@collabora.com, kernel@collabora.com, 
-	Laura Nao <laura.nao@collabora.com>, matthias.bgg@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250526162140.2460122-1-ciprianmarian.costea@oss.nxp.com>
+X-CM-TRANSID:Ms8vCgD3l_NpwlNo_koAAQ--.3468S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUnD73DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEg9xZWhThWPlHwAAsu
 
-Hi Angelo,
+On Mon, May 26, 2025 at 07:21:40PM +0300, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> 
+> The RTC module on S32G2/S32G3 based SoCs is used as a wakeup source from
+> system suspend.
+> 
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-On Wed, Mar 19, 2025 at 12:23=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> =
-wrote:
->
-> On Tue, Mar 18, 2025 at 6:26=E2=80=AFPM Laura Nao <laura.nao@collabora.co=
-m> wrote:
-> >
-> > Different Spherion variants use different trackpads on the same I2C2
-> > bus. Instead of enabling all of them by default, mark them as
-> > "fail-needs-probe" and let the implementation determine which one is
-> > actually present.
-> >
-> > Additionally, move the trackpad pinctrl entry back to the individual
-> > trackpad nodes.
-> >
-> > Signed-off-by: Laura Nao <laura.nao@collabora.com>
->
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Applied, thanks!
 
-It looks like this patch has fallen through the cracks.
-Could you pick it up?
-
-
-Thanks
-ChenYu
 
