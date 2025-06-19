@@ -1,89 +1,161 @@
-Return-Path: <devicetree+bounces-187454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5257AADFF3F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:57:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B225ADFF34
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:56:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B989A19E00F0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:57:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC9623BDBAB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC652257ACF;
-	Thu, 19 Jun 2025 07:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7B8248F51;
+	Thu, 19 Jun 2025 07:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="flQ+1SN9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aAk3ld15"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E46B230BF2;
-	Thu, 19 Jun 2025 07:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5086E230BF2;
+	Thu, 19 Jun 2025 07:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750319810; cv=none; b=SkKpXOxCKiCPSYnKs/EUzt1bwZ3iNAoPuMIiNYyr0Bs+Bigff7ociScltRa231KaHY1rvm1X0X5e6R4bDH0cYkatktfIhhbYp3yLVXZM8yzPgIgFbOSwr7DmQ2kbNjdYPDF7CS05n3w+1+SolILU0F3H2q4I8AGKcTHcVErxMoM=
+	t=1750319757; cv=none; b=WXrY04R3PhY69a6AGBOufBIHn2uuDpFgslrJa3Ak4JvIpkqcWmJjX06cFHGrZrP/cn2Xp9+XcfrJrwIOKQE/zH38JnN+HrWtoNOBs87yL/c7WHZMOWMprrSt8XNfQdLsGo6fGnFxu1sdZVdvn3QtDV384CdItyswLXlxXnjv/Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750319810; c=relaxed/simple;
-	bh=oyoPhoyqefrB3p9QqeabaAStTKM8c8deF2hGOQdrLlw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PASyy6RiiFuUCxqRjfYdtcra8eM6JaU5T+h9DBGv1hGY4HEyj24hXF2R/TZm1aCoX4jiYKVasBDkJJkrbNEv2p9dVKUxYcFu98tPRf/KXhSG5pOLAMDY0Sq9ND37yjKtVX8OL0sB1G/llrzjTgaqJ3OGWjdGHHgucWVTnxLhQXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=flQ+1SN9; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=dzI0z+Mor5geUtGLZUIfALB2YqIZPR9sIP0s0VrIuhc=;
-	b=flQ+1SN9rSoyu8C/E5IRDER1gqFwqZA+0yErsk5h7gjXXTiptUqS1o5iCkGe6U
-	Q+X+kCjoZJV7aR/KWBnTfgu1fKnMcGvIhIkl1CGk3R6uSk2BrTuK7IZSx+5iSHeA
-	vcfTtHPg0S+iwTy+aOI3xu9SNU7FTM/kU6zwBhJ/Sbfxs=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3l_NpwlNo_koAAQ--.3468S3;
-	Thu, 19 Jun 2025 15:55:23 +0800 (CST)
-Date: Thu, 19 Jun 2025 15:55:21 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>
-Subject: Re: [PATCH] arm64: dts: s32g: add RTC node
-Message-ID: <aFPCaQyXuBlyYcpb@dragon>
-References: <20250526162140.2460122-1-ciprianmarian.costea@oss.nxp.com>
+	s=arc-20240116; t=1750319757; c=relaxed/simple;
+	bh=CpwCTD9AnUzXrbQp+d9zubfUboByeErtnwKYNnZJ0Js=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Bk6nq/XDDpRoEUdifEzir/5K2HaspSu2TCQDTciRj0relt0QT3SYUGQHjBmQxsgCFOKJerNKmsoEV86RpVtww9/QzJe3+u3Z203ahX8PuxxlxF8YkqfgXqR9xAM87Tem1CzCGnZ/pV5cWszFjvgTbxcloKsIQK+JsqJlJ4X7vlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aAk3ld15; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55J7tlWX336308;
+	Thu, 19 Jun 2025 02:55:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1750319747;
+	bh=bKV7bT5H8Ss8TSiS7uA6G43ZL43gAMDND/KK9ixN5Mw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=aAk3ld15E3n6L6zqIsqMRoNXNgNjmPwnDcRR7GNPYGAIkeCz0LbMUH6NEMZ6ro2kb
+	 907wITu307DEzC9OxvXV/FyErbsVKvS9mrgXQA1UXLhUziedAPXHz+f0rzA6Cl4T8M
+	 /58xKvPW2uDjRGpQ1rcTrgADVd55jbZC5stGAaY8=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55J7tlTr3513825
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 19 Jun 2025 02:55:47 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 19
+ Jun 2025 02:55:47 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 19 Jun 2025 02:55:47 -0500
+Received: from [172.24.227.245] (uda0132425.dhcp.ti.com [172.24.227.245])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55J7th2X764414;
+	Thu, 19 Jun 2025 02:55:44 -0500
+Message-ID: <28c88a78-fe34-4595-b260-c6cc40897bc1@ti.com>
+Date: Thu, 19 Jun 2025 13:25:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250526162140.2460122-1-ciprianmarian.costea@oss.nxp.com>
-X-CM-TRANSID:Ms8vCgD3l_NpwlNo_koAAQ--.3468S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUnD73DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEg9xZWhThWPlHwAAsu
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am642-evm-pcie0-ep: Add boot phase
+ tag to "pcie0_ep"
+To: Hrushikesh Salunke <h-salunke@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <danishanwar@ti.com>
+References: <20250610054920.2395509-1-h-salunke@ti.com>
+ <98e04654-a693-494d-9f60-930b6a4cd84a@ti.com>
+ <b24a97fc-8dac-443b-aec7-317b9e393f2d@ti.com>
+ <f6a57a82-c534-4439-a337-8592c2e121c5@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <f6a57a82-c534-4439-a337-8592c2e121c5@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, May 26, 2025 at 07:21:40PM +0300, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> 
-> The RTC module on S32G2/S32G3 based SoCs is used as a wakeup source from
-> system suspend.
-> 
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-Applied, thanks!
+
+On 12/06/25 15:46, Hrushikesh Salunke wrote:
+> 
+> 
+> On 11/06/25 14:17, Hrushikesh Salunke wrote:
+>>
+>>
+>> On 11/06/25 14:14, Vignesh Raghavendra wrote:
+>>>
+>>>
+>>> On 10/06/25 11:19, Hrushikesh Salunke wrote:
+>>>> AM64X SoC has one instance of PCIe which is PCIe0. To support PCIe boot
+>>>> on AM64X SoC, PCIe0 needs to be in endpoint mode and it needs to be
+>>>> functional at all stages of PCIe boot process. Thus add the
+>>>> "bootph-all" boot phase tag to "pcie0_ep" device tree node.
+>>>>
+>>>> Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
+>>>> ---
+>>>> This patch is based on commit
+>>>> 475c850a7fdd Add linux-next specific files for 20250606
+>>>>
+>>>> Changes since v1
+>>>> As per feedback from Nishanth, changed the position of "bootph-all"
+>>>> tag, according to ordering rules for device tree properties.
+>>>>
+>>>> v1 : https://lore.kernel.org/
+>>>> all/20250609115930.w2s6jzg7xii55dlu@speckled/
+>>>>
+>>>>   arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso | 1 +
+>>>>   1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/
+>>>> arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+>>>> index 432751774853..a7e8d4ea98ac 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+>>>> @@ -46,6 +46,7 @@ pcie0_ep: pcie-ep@f102000 {
+>>>>           max-functions = /bits/ 8 <1>;
+>>>>           phys = <&serdes0_pcie_link>;
+>>>>           phy-names = "pcie-phy";
+>>>> +        bootph-all;
+>>>>           ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
+>>>>       };
+>>>>   };
+>>>
+>>> Are the patches for PCIe boot support merged to U-Boot or such other
+>>> bootloader repo?
+>>> No, they are not in the U-Boot yet. I will be posting patches for PCIe
+>> boot support for U-Boot this week.
+>>
+> 
+> I have posted Patch series for the PCIe boot support in Uboot.
+
+
+Great, but dont you need bootph-all in dependent nodes as well such as
+serdes0_pcie_link pcie0_ctrl? how does this work otherwise?
+
+> 
+> 1.https://patchwork.ozlabs.org/project/uboot/
+> patch/20250612084910.3457060-1-h-salunke@ti.com/
+> 2. https://patchwork.ozlabs.org/project/uboot/
+> cover/20250612085023.3457117-1-h-salunke@ti.com/
+> 3. https://patchwork.ozlabs.org/project/uboot/
+> cover/20250612085534.3457522-1-h-salunke@ti.com/
+> 
+> 
+> Regards,
+> Hrushikesh.
+
+-- 
+Regards
+Vignesh
+https://ti.com/opensource
 
 
