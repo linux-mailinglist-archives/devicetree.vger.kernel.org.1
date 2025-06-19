@@ -1,414 +1,174 @@
-Return-Path: <devicetree+bounces-187508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF417AE031D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:11:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F83AAE0333
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:15:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7AA0189EC3B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:11:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B192418885A7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E544522756A;
-	Thu, 19 Jun 2025 11:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4FA225407;
+	Thu, 19 Jun 2025 11:15:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aX2a8GZe"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ba1iy66j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BC52264BF;
-	Thu, 19 Jun 2025 11:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE327218585
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 11:15:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750331491; cv=none; b=jQbASf++OrrEgBGyyZie35LQWXfvYUnz9BLb0zpFzKsMNyU6zVRJYW6WIiDtFObz+sMTNYDjz8ni4Y2aBig6rZHvU+cHi0R69OyZ/TsR+rSIGWE6oV77MHcf6SaHOFn7hn44YfYfXauEYuZY4e7juAzW0JNh/ZH1cRIfpvX5QlE=
+	t=1750331733; cv=none; b=J+sMglDDadqpgVS0Ak/BFAAp7svtmQVlJrmS6oqBO+vE0uCjASpw354SRIw99Ol2ojD0R8Nf23k8aW2f5saCfcZlLu/6bhN0op25QSvCu/to3cMx76xTNxkWqpYTzMvRvafpku+XwWtIQbTU9URUN10iqPvA6VZb1Lm7SzsbEDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750331491; c=relaxed/simple;
-	bh=pXus7cj1wG9bTDuk8iidp2CdA3WvhfJXCegiJR3X2zQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=g/MvDX671dc/DsAuRigXEvFt1VquOqXGQK5tAF0L7lLN3s9yc6euCfrlh1Bw56q+h8B6RKZva4KzXI3EV/lPSsSfVpnnu9tz3br7xJzOZHqVp8RFGg6PxHpDwujzi3qBXOr87mzU1yZh+DkI/OXpL4w/1UDNMmw5+FDPgEM6PtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aX2a8GZe; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a4f71831abso592228f8f.3;
-        Thu, 19 Jun 2025 04:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750331488; x=1750936288; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RybFHnSXUysaAJ4YRjCeBGCDrKvoHW/R4Y8aURPoLPA=;
-        b=aX2a8GZeexzlVhLc0V9/D1gvNyUblNH8uyq2KWiRdGNnJSPEfLVJsdoU4t8sEtpkk1
-         EZilKVjT35V+RTMAfsnXoTx84HYe2cxqLFS1hUqMtVHEo6KJnlDt8XVEPOehTrz0nscA
-         BIqnWOvZKcYQfT3v9g7i5u61IrRMXSixyrLUC4rmX0T3lSY1esLwIavOdAiC8ulQn9Uq
-         81LQCQTN0AqS3irtCJdicMIfun9lUbDrKvX65BtndslIJH/dpBVJJpFBA/PMUBvGm1YT
-         eQwO1RYbCiVG73IB/2XIPqqtEkgP2LpBxx7ju6J6aYsV5KM9ZgTh89oj7pSHkM2EuRDf
-         YqXQ==
+	s=arc-20240116; t=1750331733; c=relaxed/simple;
+	bh=LUeQAjtBZos6OdUZbbQVfexhZynCiSgqlsEwbuBatHQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qsgnKFs+UsGcHh/h39tBjTxhi4Ps518ZL+Qcnqx8kq/Te47A+lXzybPCABS6eMDrU+fYJyHTjcK12d9fStHtugysn9deFlMApnuPgo7L2sFWWY6wGpEMEuPW1WIQ4bdDF3kXqQ9kmAlfFTGYxqWkIwzRdT9FfzC+Y3seQCGogjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ba1iy66j; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1750331730;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3xZv/IaN3pVBxm6Ay/mMD7muLAWVYifKr0RAn2IkTKE=;
+	b=ba1iy66jrY3A+2qdWoghrzrb+8yfNWKaw+0rMZgtvIFKRL5l92OsE+GeJlSLEbdJ0C1iij
+	TooyEEf57u7YU4WtSpL5HnMwi+8KAiBkg0nv6sOmVzuc/MnjuDYrY6hc84D91ql7y4WfZg
+	MHCTMN3LME10M5/aM2p+WQCtkU1ftls=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-26--qOfN211NyePlkbmqwlsng-1; Thu, 19 Jun 2025 07:15:29 -0400
+X-MC-Unique: -qOfN211NyePlkbmqwlsng-1
+X-Mimecast-MFC-AGG-ID: -qOfN211NyePlkbmqwlsng_1750331728
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-450cb8f8b1bso681375e9.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 04:15:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750331488; x=1750936288;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RybFHnSXUysaAJ4YRjCeBGCDrKvoHW/R4Y8aURPoLPA=;
-        b=M+27qBg+fXmvSNcIZe79yGVDl0rJB4ZDM4H/lmFuQj+EpQUj5+SySaetjacWFrJiKB
-         BIq4Onyv9ddSWQudeq6+TpqJim7I2k4PBcoCuwHBKPz0JPTv6obKD+Ir83R5oCitWb1I
-         0M9fdt+PWaQkEgvmqAvWDW5s+F0j2HeO6F5OKYCsoNfah62dpsIh2VaaqHx1X0ih7Of4
-         rBgEoHrSdg2lCjXkRteHsoDdXmlzlJCxbtU/EVyVxBRJRdK8bPXEnMFG5dWrRYqk+zE+
-         4G3vkYzmFX7dWzo7TRt1WAvnCl6Ut2+2nGZheVqK5IQRDDjOtKHIh2s+U2RO5e2FkQ/T
-         9qKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVoxPHa8wMUCdlkwYzyT9En7Gs55oqafSg8WsdEY+5IcWQvPt7ykF3vZUrASAiXhHmtxGYTM3BC54Ge@vger.kernel.org, AJvYcCXmAzoebpNije5pZjAKxJ4utG090Za9X0S+VLb2lKm0CmFFe81q6lIRaGGEBJRLFm2oCxcnNq8ofqKOcp6dUBAw4rU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMMg95m4xhfou9Npzu4de0rV9upE/oWUukJxQmtdECkcl++c1e
-	3axCjLk94y3KhxDfGXJGuTUmLu9o943P7dRAQNgeG7mLx525Iu8cHx6Ovt3/qqG+Ecad2PLYKEZ
-	fG1GaaREk5mUZMc44FqKSiAlidzpkx23t1pICT5g=
-X-Gm-Gg: ASbGnct7ABS7ytt+rWbuRwezTrWj3vK8ZGif2mcF5wTnWKBwLD5iBifkoWsjx6jof8L
-	ghyS37exq1BHfs9P9WrYFuOvUqE/4VkWn5Ch4GvyZ8TNd748JyPhSV8dq4b0tNpXVzURr2DMkNK
-	Fc8a2NiOFIsNz99lgIKCE3laMtpwt1+/VzrjyP0D5Whg0CygKI7omdP8+okTXTR5mlC/cFz2TvP
-	cxJ
-X-Google-Smtp-Source: AGHT+IEBYk0BLj2bzHdF/ejrDqZCzeu2j4zfPViMC0k16l6D0bgRld/ZOGusPH2FZPnfLozpEdMGBEFgKXolHU2ukHw=
-X-Received: by 2002:a05:6000:25c7:b0:3a0:a0d1:1131 with SMTP id
- ffacd0b85a97d-3a572367717mr17499281f8f.7.1750331487443; Thu, 19 Jun 2025
- 04:11:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750331728; x=1750936528;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3xZv/IaN3pVBxm6Ay/mMD7muLAWVYifKr0RAn2IkTKE=;
+        b=TagcECkF4lw0l+pKG3zkGK2tpDgRlTz6EW4CbafNElYIBEne17O/IdaltYejgPjtYH
+         giwq9pyjsPdpPOE3sp2Sx7kKVQOe/rxP/0dD+t3wjDstAXh9kEPp3eJsIgbGyWTPU/+G
+         J6E1tP4MPT91vPH6YzOi4rBcmHeahAsmKLr6PmNdS5qHcgMhD02451neXnDABSNtHGC0
+         Kk+FNeiBajtDqVQEpJaVinwgEu+gsZVsWVwEzPGeLAe/2A7zS07rExvYf6cahpbx4nv5
+         FTcpsjgOO+n2v4aLGEiVJcxdjAoHCwfaKRN8izqbRiD3GKQ9+612LTjlKxIQfj2D5FMk
+         MUXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhPx8RHSVPd/BOMbdtVH42x+smBn9ca7AfaABT+eod6lMRMjZJh4fKxVphXgp6yyBZKtfSP9KMwt8P@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywc25f2GIn4nqpc6Kf27B5Rut9MlnSO4wEzsVU0Yb9glGXXg0FZ
+	jXMrFuHlJ565YCArmIngUGbNDz4QmABu74HujKXmoo9wP0/5+pmA1dHnWlOVETQsiRK/eaWWVnD
+	Ew4MORb4MT4LJaTJ8gHs8/HcNUiF5kNEXCFNqofmBdvzWO72a5V57Hmd0OUfIpnM=
+X-Gm-Gg: ASbGnctH8KWZ6/0i0+6ZjMhTsuvNw2YJ/lprTwjWlYzd44lEYS2qzvFpIPZyx1LLNZ+
+	dXQkXO/gdx936CkFV6eQjVidHK3KNT+J7YfqHybWjkTdBjbEeQ3FA4zEa7xiyJrP8xGO0mEy4mR
+	+yH2OwjkhtDJ++XR398q0kwza8WFsa0QasybekdXXpuqzotCo9zgUCu9hZ8Ds2jV81Z5jJOrUUE
+	ybyHXoq2/zwX8LWL8773nfZkcm9T8UsCVCc2x8e1aCWL9vDu25h6J3eVXaxINyJ9qIJlyM1NVUi
+	r3aeZJkJVzWNyK1WtYEa3EcI4KMoLR4oJMzdHD51AsmDH6P6T2n7uEL7cFwLecParmCqVw==
+X-Received: by 2002:a05:600c:190b:b0:445:1984:247d with SMTP id 5b1f17b1804b1-4533cadefe8mr187697325e9.7.1750331728257;
+        Thu, 19 Jun 2025 04:15:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG43dOM5T7qmoDFSYxKLqTuwEzuqqfaVGRVW809R5AKI8GEve+HAJw7T1QeY9uWvmBGJ78U+g==
+X-Received: by 2002:a05:600c:190b:b0:445:1984:247d with SMTP id 5b1f17b1804b1-4533cadefe8mr187696945e9.7.1750331727767;
+        Thu, 19 Jun 2025 04:15:27 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:271a:7310:d5d8:c311:8743:3e10? ([2a0d:3344:271a:7310:d5d8:c311:8743:3e10])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535e99503asm25371355e9.29.2025.06.19.04.15.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jun 2025 04:15:25 -0700 (PDT)
+Message-ID: <72bab3b2-bdd6-43f6-9243-55009f9c1071@redhat.com>
+Date: Thu, 19 Jun 2025 13:15:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
- <20250311113620.4312-2-biju.das.jz@bp.renesas.com> <TYCPR01MB11332F064115080582332B78986AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdVy3B+i2p6unkX-n=7AYCfP5B8sW7F9GJi7URcvniGA2A@mail.gmail.com>
- <TYCPR01MB1133206083EC0249A827261EB86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdUyY8SsUQEZwxdCK-ggPuYy8L_WwnUgq3Cj7oYiTcyNTQ@mail.gmail.com>
- <TY3PR01MB11346123B74D86590C0F8B9CD86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdWevyJ8Z4YWYx0rr=_TD0OTywbkPfNwRcw5k=yDV-i2Ow@mail.gmail.com>
- <CA+V-a8t1siG17NKna-ACUzCoXFTOyVxuLonTVSRLnNq1ie3iTg@mail.gmail.com>
- <CAMuHMdXw+mcj-P=Zm4R8WF0PxogPLfFCbALBRFN9Wn8UEo1FkQ@mail.gmail.com>
- <CA+V-a8u4PgttE0LaH7M=-5Br400sNE1gzk_a3L_9jfXZgCLd-Q@mail.gmail.com>
- <CAMuHMdVQ7pK+zvZm6MHsfGRctyOSurQpDYJztSfD6P1gvuw_RA@mail.gmail.com>
- <CA+V-a8tG4_2bXJ9H=FPT-Qa8zcgsE_5vkVQRj-ONDna5n4Ptgw@mail.gmail.com>
- <CAMuHMdUOHmKM6mqQHFhGqmNp-doox1rHx0WNN9O8xntp1-TXqw@mail.gmail.com>
- <CA+V-a8voEU7CpEarBN-0FugdE1Zny_YvkwKEw9ZChns95oXHaw@mail.gmail.com> <CAMuHMdW3TYvAm3YMCkKLxRPvvdWE7Mg_jeOpioxVN4Hudp8C1Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdW3TYvAm3YMCkKLxRPvvdWE7Mg_jeOpioxVN4Hudp8C1Q@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 19 Jun 2025 12:11:00 +0100
-X-Gm-Features: Ac12FXyfFKZ_SLRpHegGvVYEnpmUoQG54W0xdg536MafR-HG6f1x3QznMpdsfvI
-Message-ID: <CA+V-a8sChpGAyi3c0rmEJsYW-YWQQ-gQqf0yXBrwPzQgdN7g4A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Stephen Boyd <sboyd@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 13/14] dpll: zl3073x: Add support to get/set
+ frequency on input pins
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250616201404.1412341-1-ivecera@redhat.com>
+ <20250616201404.1412341-14-ivecera@redhat.com>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20250616201404.1412341-14-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
+On 6/16/25 10:14 PM, Ivan Vecera wrote:
+> +/**
+> + * zl3073x_dpll_input_ref_frequency_get - get input reference frequency
+> + * @zldpll: pointer to zl3073x_dpll
+> + * @ref_id: reference id
+> + * @frequency: pointer to variable to store frequency
+> + *
+> + * Reads frequency of given input reference.
+> + *
+> + * Return: 0 on success, <0 on error
+> + */
+> +static int
+> +zl3073x_dpll_input_ref_frequency_get(struct zl3073x_dpll *zldpll, u8 ref_id,
+> +				     u32 *frequency)
+> +{
+> +	struct zl3073x_dev *zldev = zldpll->dev;
+> +	u16 base, mult, num, denom;
+> +	int rc;
+> +
+> +	guard(mutex)(&zldev->multiop_lock);
+> +
+> +	/* Read reference configuration */
+> +	rc = zl3073x_mb_op(zldev, ZL_REG_REF_MB_SEM, ZL_REF_MB_SEM_RD,
+> +			   ZL_REG_REF_MB_MASK, BIT(ref_id));
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Read registers to compute resulting frequency */
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_REF_FREQ_BASE, &base);
+> +	if (rc)
+> +		return rc;
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_REF_FREQ_MULT, &mult);
+> +	if (rc)
+> +		return rc;
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_REF_RATIO_M, &num);
+> +	if (rc)
+> +		return rc;
+> +	rc = zl3073x_read_u16(zldev, ZL_REG_REF_RATIO_N, &denom);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Sanity check that HW has not returned zero denominator */
+> +	if (!denom) {
+> +		dev_err(zldev->dev,
+> +			"Zero divisor for ref %u frequency got from device\n",
+> +			ref_id);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Compute the frequency */
+> +	*frequency = base * mult * num / denom;
 
-On Thu, Jun 19, 2025 at 9:17=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, 18 Jun 2025 at 17:24, Lad, Prabhakar <prabhakar.csengg@gmail.com>=
- wrote:
-> > On Wed, Jun 18, 2025 at 3:03=E2=80=AFPM Geert Uytterhoeven <geert@linux=
--m68k.org> wrote:
-> > > On Wed, 18 Jun 2025 at 15:41, Lad, Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> > > > On Wed, Jun 18, 2025 at 1:59=E2=80=AFPM Geert Uytterhoeven <geert@l=
-inux-m68k.org> wrote:
-> > > > > On Wed, 18 Jun 2025 at 14:06, Lad, Prabhakar <prabhakar.csengg@gm=
-ail.com> wrote:
-> > > > > > On Wed, Jun 18, 2025 at 8:03=E2=80=AFAM Geert Uytterhoeven <gee=
-rt@linux-m68k.org> wrote:
-> > > > > > > On Tue, 17 Jun 2025 at 23:05, Lad, Prabhakar <prabhakar.cseng=
-g@gmail.com> wrote:
-> > > > > > > > On Mon, Mar 31, 2025 at 7:25=E2=80=AFPM Geert Uytterhoeven =
-<geert@linux-m68k.org> wrote:
-> > > > > > > > > On Mon, 31 Mar 2025 at 17:33, Biju Das <biju.das.jz@bp.re=
-nesas.com> wrote:
-> > > > > > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > > > > > > > > > On Mon, 31 Mar 2025 at 16:34, Biju Das <biju.das.jz@b=
-p.renesas.com> wrote:
-> > > > > > > > > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> O=
-n Mon, 31 Mar 2025
-> > > > > > > > > > > > > at 15:54, Biju Das <biju.das.jz@bp.renesas.com> w=
-rote:
-> > > > > > > > > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com> D=
-ocument support for
-> > > > > > > > > > > > > > > the Expanded Serial Peripheral Interface (xSP=
-I) Controller in
-> > > > > > > > > > > > > > > the Renesas RZ/G3E
-> > > > > > > > > > > > > > > (R9A09G047) SoC.
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.o=
-rg>
-> > > > > > > > > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renes=
-as.com>
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > > > --- /dev/null
-> > > > > > > > > > > > > > > +++ b/Documentation/devicetree/bindings/memor=
-y-controllers/renes
-> > > > > > > > > > > > > > > +++ as,r
-> > > > > > > > > > > > > > > +++ zg3e
-> > > > > > > > > > > > > > > +++ -xspi.yaml
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > > > +    spi@11030000 {
-> > > > > > > > > > > > > > > +        compatible =3D "renesas,r9a09g047-xs=
-pi";
-> > > > > > > > > > > > > > > +        reg =3D <0x11030000 0x10000>, <0x200=
-00000 0x10000000>;
-> > > > > > > > > > > > > > > +        reg-names =3D "regs", "dirmap";
-> > > > > > > > > > > > > > > +        interrupts =3D <GIC_SPI 228 IRQ_TYPE=
-_EDGE_RISING>,
-> > > > > > > > > > > > > > > +                     <GIC_SPI 229 IRQ_TYPE_E=
-DGE_RISING>;
-> > > > > > > > > > > > > > > +        interrupt-names =3D "pulse", "err_pu=
-lse";
-> > > > > > > > > > > > > > > +        clocks =3D <&cpg CPG_MOD 0x9f>, <&cp=
-g CPG_MOD 0xa0>,
-> > > > > > > > > > > > > > > +                 <&cpg CPG_MOD 0xa1>, <&cpg =
-CPG_MOD 0xa1>;
-> > > > > > > > > > > > > >
-> > > > > > > > > > > > > > On the next version I am going to update spix2 =
-clk as <&cpg
-> > > > > > > > > > > > > > CPG_CORE R9A09G047_SPI_CLK_SPIX2>
-> > > > > > > > >
-> > > > > > > > > According to the RZ/G3E clock system diagram, (the parent=
- of) clk_spi
-> > > > > > > > > is derived from (the parent of) clk_spix2, not the other =
-way around?
-> > > > > > > > > So you can model clk_spi as a fixed divider clock with pa=
-rent clk_spix2
-> > > > > > >                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
-^^^^^^^^^^^^^^
-> > > > > [A]
-> > > > >
-> > > > > > > > > and factor two.  I.e. provide a new core clock R9A09G047_=
-SPI_CLK_SPI
-> > > > > > > > > instead of your proposed R9A09G047_SPI_CLK_SPIX2?
-> > > > > > > > >
-> > > > > > > > With this approach when R9A09G047_SPI_CLK_SPI is used as a =
-core clock
-> > > > > > > > and XSPI node is disabled the clk_summary reports the core =
-clock is ON
-> > > > > > > > (while it's actually OFF).
-> > > > > > >
-> > > > > > > Is that a real problem, or is it purely cosmetic?
-> > > > > > Just cosmetic tbh as despite being a MOD clock we have to defin=
-e it as
-> > > > > > a core clock in the DT.
->
-> > > > > > > If spi_clk_spi really must show being disabled, you can chang=
-e it
-> > > > > > > from a fixed divider clock (which does not implement .{en,dis=
-}able())
-> > > > > > > to a custom fixed divider clock that does implement .{en,dis}=
-able()
-> > > > > > > and keeps track internally of the fake state, or even looks a=
-t the
-> > > > > > > state of spi_clk_spix2?
-> > > > > > >
-> > > > > > Good point. Maybe instead of implementing the dummy .{en,dis}ab=
-le() I
-> > > > > > will implement the is_enabled() + (clk_fixed_factor_ops). The
-> > > > > > is_enabled() will take care of reading from the MON bits and re=
-port
-> > > > > > the actual state of the clock.
-> > > > > >
-> > > > > > > However, upon second look, spi_clk_spi is not implemented as =
-a fixed
-> > > > > > > divider clock with parent clk_spix2, as described above:
-> > > > > > >
-> > > > > > >       .smux2_xspi_clk1     0  0  0 320000000  0  0  50000  Y
-> > > > > > >          .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
-> > > > > > >             spi_clk_spix2  0  0  0 40000000   0  0  50000  N
-> > > > > > >             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
-> > > > > > >          spi_aclk          0  0  0 200000000  0  0  50000  N
-> > > > > > >          spi_hclk          0  0  0 200000000  0  0  50000  N
-> > > > > > >       .smux2_xspi_clk0     0  0  0 533333333  0  0  50000  Y
-> > > > > > >
-> > > > > > > Instead, they both use pllcm33_xspi as the parent clock.
-> > > > > > > Apparently I missed that in the review of RZ/G3E XSPI clock s=
-upport.
-> > > > > > > The changelog for that patch does describe the correct topolo=
-gy?
-> > > > > > >
-> > > > > > The topology is correct for RZ/G3E, spi/spix2 are sourced from
-> > > > > > pllcm33_xspi divider and there is a divider (/2) for spi.
-> > > > >
-> > > > > Both spi_clk_spix2 and spi_clk_spix have .pllcm33_xspi as
-> > > > > immediate parent.
-> > > > >
-> > > > > [A] describes something different:
-> > > > >
-> > > > >     .pllcm33_xspi     0  0  0 40000000   0  0  50000  Y
-> > > > >         spi_clk_spix2  0  0  0 40000000   0  0  50000  N
-> > > > >             spi_clk_spi    0  0  0 20000000   0  0  50000  Y
-> > > > >
-> > > > > I.e. if spi_clk_spix2() is disabled, spi_clk_spi() is disabled, t=
-oo.
-> > > > >
-> > > > Okay, thanks - got it.
-> > > >
-> > > > To clarify, to implement spi_clk_spi core clock as a parent of
-> > > > spi_clk_spix2 I will need to implement some sort of mechanism which
-> > > > registers (late) core clks after core clks and module clks are
-> > > > registered as spi_clk_spix2 is a module clock.
-> > >
-> > > Yes, I wondered about that as well, but wasn't too worried as you
-> > > already added the smux with e.g. "et0_rxclk" as parent, which also
-> > > doesn't exist at registration time ;-)
-> > >
-> > Good point.
-> >
-> > > But indeed, the smux uses clock names to find the parents, while
-> > > fixed-factor clocks in zv2h_cpg_register_core_clk() expect clock IDs
-> > > (which are converted to names), and don't handle non-core clocks yet.
-> > > So either add support for late core clocks, or modify CLK_TYPE_FF
-> > > to use cpg_core_clock.parent_names[] in case of a non-core parent?
-> > >
-> > I choose the late core registration of the clocks and with this the
-> > core clk_spi still reports `Y` in the summary while the parent is OFF
-> > (since its a FF clock).
->
-> That leads to an interesting philosophical question: if a clock does
-> not have an .is_enabled() callback, or cannot be disabled, should its
-> enabled state match the enabled state of its parent?
-> However, the same question can be asked for a clock that does have an
-> .is_enabled() callback, and is currently enabled.  What if its parent
-> is disabled?
->
-That's indeed a subtle and thought-provoking question ;)
+As base, mult, num and denom are u16, the above looks like integer
+overflow prone.
 
-> > Code implementation for option#1
-> > ------------------------------------------------
->
->
-> > --- a/drivers/clk/renesas/rzv2h-cpg.c
-> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
->
-> > @@ -727,8 +727,12 @@ rzv2h_cpg_register_core_clk(const struct
-> > cpg_core_clk *core,
-> >          break;
-> >      case CLK_TYPE_FF:
-> >          WARN_DEBUG(core->parent >=3D priv->num_core_clks);
-> > -        parent =3D priv->clks[core->parent];
-> > +        if (late)
-> > +            parent =3D priv->clks[priv->num_core_clks + core->parent];
-> > +        else
-> > +            parent =3D priv->clks[core->parent];
->
-> I'd rather keep the meaning of the parent ID the same in both cases,
-> to avoid confusion.
->
-> Perhaps keep the (modified) WARN_DEBUG():
->
->     WARN_DEBUG(core->parent >=3D
->                priv->num_core_clks + (late ? priv->num_mod_clks : 0));
->
-Agreed.
+I think you should explicitly cast to u64, and possibly use a u64 frequency.
 
-> >          if (IS_ERR(parent)) {
-> > +            pr_err("parent clk is NULL for %s parent:%d\n",
-> > core->name, core->parent);
-> >              clk =3D parent;
-> >              goto fail;
-> >          }
->
-> Thanks , this the simplest option of the two, but still shows the
-> clock as enabled when it is not.
->
-Yea.
+/P
 
-> > # Option#2
-> > As mentioned in the previous thread I implemented FF clock with
-> > is_enabled() with this I can see the status of core clk_spi reports
-> > correct status.
->
-> > Code implementation for option#2
-> > ------------------------------------------------
->
-> > --- a/drivers/clk/renesas/rzv2h-cpg.c
-> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
-> > @@ -179,6 +179,28 @@ struct rzv2h_plldsi_div_clk {
-> >  #define to_plldsi_div_clk(_hw) \
-> >      container_of(_hw, struct rzv2h_plldsi_div_clk, hw)
-> >
-> > +/**
-> > + * struct rzv2h_ff_mod_status_clk - Fixed Factor Module Status Clock
-> > + *
-> > + * @priv: CPG private data
-> > + * @conf: fixed mod configuration
-> > + * @hw: Fixed Factor Status Clock handle
-> > + * @mult: multiplier value
-> > + * @div: divider value
-> > + * @flags: flags for the clock
-> > + */
-> > + struct rzv2h_ff_mod_status_clk {
-> > +    struct rzv2h_cpg_priv *priv;
-> > +    struct fixed_mod_conf conf;
-> > +    struct clk_hw hw;
-> > +    unsigned int mult;
-> > +    unsigned int div;
-> > +    unsigned int flags;
->
-> You can replace the last four by embedding struct clk_fixed_factor
-> (at the top of the struct!).
->
-Agreed.
-
-> > +};
-> > +
-> > +#define to_rzv2h_ff_mod_status_clk(_hw) \
-> > +    container_of(_hw, struct rzv2h_ff_mod_status_clk, hw)
-> > +
-> >  static int rzv2h_cpg_pll_clk_is_enabled(struct clk_hw *hw)
-> >  {
-> >      struct pll_clk *pll_clk =3D to_pll(hw);
-> > @@ -664,6 +686,114 @@ rzv2h_cpg_mux_clk_register(const struct
-> > cpg_core_clk *core,
-> >      return clk_hw->clk;
-> >  }
-> >
-> > +static unsigned long
-> > +rzv2h_clk_ff_mod_status_recalc_rate(struct clk_hw *hw,
-> > +                    unsigned long parent_rate)
->
-> [...]
->
-> > +static const struct clk_ops rzv2h_clk_ff_mod_status_ops =3D {
-> > +    .round_rate =3D rzv2h_clk_ff_mod_status_round_rate,
-> > +    .set_rate =3D rzv2h_clk_ff_mod_status_set_rate,
-> > +    .recalc_rate =3D rzv2h_clk_ff_mod_status_recalc_rate,
-> > +    .recalc_accuracy =3D rzv2h_clk_ff_mod_status_recalc_accuracy,
-> > +    .is_enabled =3D rzv2h_clk_ff_mod_status_is_enabled,
-> > +};
->
-> Lots of code copied from drivers/clk/clk-fixed-factor.c.  Fortunately
-> clk_fixed_factor_ops is public and exported, so you can just copy its
-> callback pointers. instead of duplicating the code.
->
-Agreed.
-
-> > Please share your thoughts on this.
->
-> Thanks , this is (slightly) more complex, and shows the correct
-> clock state.
->
-> Initially, I favored the first solution, due to its simplicity. But
-> that was before I realized the second option could avoid duplicating
-> code by reusing the callbacks from clk_fixed_factor_ops...
-> What do other people think?
->
-Given that, Biju is OK with this solution I will go ahead with this approac=
-h.
-
-Cheers,
-Prabhakar
 
