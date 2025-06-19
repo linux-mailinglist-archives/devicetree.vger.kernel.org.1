@@ -1,197 +1,99 @@
-Return-Path: <devicetree+bounces-187492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B5EAE01F7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:46:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3C8AE0220
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:54:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AF831BC1D83
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:46:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7E437B070A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DCED21D5BA;
-	Thu, 19 Jun 2025 09:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F589221546;
+	Thu, 19 Jun 2025 09:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="qBF6F/JF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5pcnnEL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF47221A455
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 09:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480C4221286;
+	Thu, 19 Jun 2025 09:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750326394; cv=none; b=hGd2+lSgvUtUsuH32pkzPQRyu1ICWMQKTpvruG7cJ3Ynz4/okTLyOF2HBSvEGIKtNigaGx7nhgYZUfDAjnD/Yg8dLJkIK6WfAZtsudjrZJahKkJ6T6z5MZMEHW+MEoPhBSxaezYWrlIZIilcpejcBZP6aq6yW38ACQPPz9g0mYo=
+	t=1750326859; cv=none; b=iOXxlcPhWsclR92ddSLOaZJun0XtQvNJfQEo91WwHc6O4l0zbkXiZVGK5etIfma1M1c899pghbzRDRE2YmzUA+l/7W5c+mCB6HFcxQOb+fUMO8BC77MjObqhAanwq9L48Q3as/s5o0LgywCGvztiuM1Cq/0kRHEXYshbLzJWZwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750326394; c=relaxed/simple;
-	bh=apG/keP/KLT8pvUXGpwz4q0QvABCBcwZ3u8hqT6KHKE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=aU5/l/snutoSeOyu8C8bgEhd1AbTNgu4V1Be+beGqOe9M4mY20E8F7Zjs1+uRPhANvlz4oJbcTNFPl4/yyh44+2zOW370p09tbTmj5rGl7ICWDstyvUnVn8BQyWxpX9+10aYon6GweVwuRvVEucUbni/wJ/RSBCjoqdp1nPoang=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=qBF6F/JF; arc=none smtp.client-ip=95.215.58.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1750326859; c=relaxed/simple;
+	bh=liBrC581olewIxjbEjqmezkc4FAvhL6bE6utTt8dFjU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HB91ON/fkDr0wuzIYTEv48x5/yOf2hmgHInCWS/1voTxvOrLTy0xFHVfPsAX5KXPbMaRLZqZhisGZAW5S2H3n5GtsvIFN+dsks+j5DOlJSCA23F+z8FC6aMBmp28wgQCnB3gA5qPxMc28Lq0esL0VFUVpG5lYyDBACTpQSFz22Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5pcnnEL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 426C3C4CEEA;
+	Thu, 19 Jun 2025 09:54:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750326857;
+	bh=liBrC581olewIxjbEjqmezkc4FAvhL6bE6utTt8dFjU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z5pcnnELNdgWWTpUPqvWO/Rjn59mzJal3u0PTtDti6dHWFKIeZ9bYaddL+4kJYJsY
+	 +imfxJt+pi3/S79q8A25sV833O7pajN7iYJR4F8wzkP04ZeRLpzC2N26SF0XiYQyzz
+	 0SXoZguPVAbHYQ1idOBHeuHxYh8hXzLDqWYiF4dSpWcFtp8R4QdGnLfQUu3CSUjR6D
+	 xTXQIFzHKKXhYyB5/rzqzgdG9vKqbHPdS6ccjWvYPtlTeKNieMbs80rtW0ls0Hyvm0
+	 XwsTe6eYbyGy2gWPm3phDYEtrviPH+8L+0qMtYrwUfu6XqQHSJsXFjKL9z46UICmKN
+	 z+oIUFNTFph8g==
+Date: Thu, 19 Jun 2025 11:54:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, Daniel Semkowicz <dse@thaumatec.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: rk806: allow to customize PMIC
+ reset mode
+Message-ID: <20250619-unselfish-gorilla-of-joy-13fb93@kuoka>
+References: <20250618-rk8xx-rst-fun-v3-0-081f02d3d348@cherry.de>
+ <20250618-rk8xx-rst-fun-v3-1-081f02d3d348@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1750326388;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=95jwxwqOy3CE/suGZD6MlYCwgFQV2q5DD7APLcXDGSw=;
-	b=qBF6F/JFB8Ga+29xGShrQ+nv00Iv5P6Zpb4T/dk3e6MAJbO+H6+doGGxnsJfJI/kx0fgba
-	LpxYBlt/zc0ZxyJif1oMwDiMJa2RcXRGHRpLaLxrafWhFf3V0Vh+7RqAJQCUQwfRo8X7si
-	X0xwcrsDc9qzk1RPCPGkhrof7KLlyWVLEkl51JD73B8iW4qmHKoFatW4WrpoRqGSvpAClR
-	B9zyua4faYw4VV6P6C+tYUeI76n0bezZbhO9o7X0M0ecQ0TD9VFRS8HWMRmp7J4KWv1l/c
-	b34pOS6eG0FPqmk+YATMaGS1RL7N9JrziEtqd09cNbkXTkZ/gEMg38ZC+GAEKA==
-Content-Type: multipart/signed;
- boundary=a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Thu, 19 Jun 2025 11:46:15 +0200
-Message-Id: <DAQEX04P5320.CQDU7SL7AV4A@cknow.org>
-Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix the PinePhone Pro DTS'
- panel description
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Olivier Benjamin" <olivier.benjamin@bootlin.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
-References: <20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com>
-In-Reply-To: <20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250618-rk8xx-rst-fun-v3-1-081f02d3d348@cherry.de>
 
---a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Wed, Jun 18, 2025 at 12:32:40PM GMT, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> The RK806 PMIC allows to configure its reset/restart behavior whenever
+> the PMIC is reset either programmatically or via some external pins
+> (e.g. PWRCTRL or RESETB).
+> 
+> The following modes exist:
+>  - 0; restart PMU,
+>  - 1; reset all power off reset registers and force state to switch to
+>    ACTIVE mode,
+>  - 2; same as mode 1 and also pull RESETB pin down for 5ms,
+> 
+> For example, some hardware may require a full restart (mode 0) in order
+> to function properly as regulators are shortly interrupted in this mode.
+> 
+> This is the case for RK3588 Jaguar and RK3588 Tiger which have a
+> companion microcontroller running on an independent power supply and
+> monitoring the PMIC power rail to know the state of the main system.
+> When it detects a restart, it resets its own IPs exposed to the main
+> system as if to simulate its own reset. Failing to perform this fake
+> reset of the microcontroller may break things (e.g. watchdog not
+> automatically disabled, buzzer still running until manually disabled,
+> leftover configuration from previous main system state, etc...).
 
-Hi,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks for working on upstreaming PPP things :-)
+Best regards,
+Krzysztof
 
-On Thu Jun 19, 2025 at 7:21 AM CEST, Olivier Benjamin wrote:
-> Fix a few issues in the panel section of the PinePhone Pro DTS:
->   - add the second part of the Himax HX8394 LCD panel controller
->     compatible
->   - as proposed by Diederik de Haas, reuse the mipi_out and ports
->     definitions from rk3399-base.dtsi instead of redefining them
->   - add a pinctrl for the LCD_RST signal for LCD1, derived from
->     LCD1_RST, which is on GPIO4_D1, as documented on pages 11
->     and 16 of the PinePhone Pro schematic
->
-> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
-> ---
-> Small fixes to the PinePhone Pro DTS to fit bindings and
-> suppress warnings at build.
-> ---
-> Changes in v2:
-> - Added the pinctrl definition for GPIO4_D1/LCD1_RST
-> - Incorporated Diederik de Haas' suggestion for defining mipi_out
-> - Squashed multiple patches into one
-> - Link to v1: https://lore.kernel.org/r/20250618-dtb_fixes-v1-0-e54797ad2=
-eba@bootlin.com
-> ---
->  .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 33 +++++++++++-----=
-------
->  1 file changed, 17 insertions(+), 16 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch=
-/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> index 04ba4c4565d0a205e2e46d7535c6a3190993621d..98aba146749998dd5a798aabe=
-d0fe844c474d1cf 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -463,29 +463,18 @@ &io_domains {
->  };
-> =20
->  &mipi_dsi {
-> -	status =3D "okay";
->  	clock-master;
-> -
-> -	ports {
-> -		mipi_out: port@1 {
-> -			#address-cells =3D <0>;
-> -			#size-cells =3D <0>;
-> -			reg =3D <1>;
-> -
-> -			mipi_out_panel: endpoint {
-> -				remote-endpoint =3D <&mipi_in_panel>;
-> -			};
-> -		};
-> -	};
-> +	status =3D "okay";
-> =20
->  	panel@0 {
-> -		compatible =3D "hannstar,hsd060bhw4";
-> +		compatible =3D "hannstar,hsd060bhw4", "himax,hx8394";
->  		reg =3D <0>;
->  		backlight =3D <&backlight>;
-> -		reset-gpios =3D <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
-> -		vcc-supply =3D <&vcc2v8_lcd>;
->  		iovcc-supply =3D <&vcc1v8_lcd>;
->  		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&lcd_reset_pin>;
-> +		reset-gpios =3D <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
-> +		vcc-supply =3D <&vcc2v8_lcd>;
-> =20
->  		port {
->  			mipi_in_panel: endpoint {
-> @@ -495,6 +484,12 @@ mipi_in_panel: endpoint {
->  	};
->  };
-> =20
-> +&mipi_out {
-> +	mipi_out_panel: endpoint {
-> +		remote-endpoint =3D <&mipi_in_panel>;
-> +	};
-> +};
-> +
->  &pmu_io_domains {
->  	pmu1830-supply =3D <&vcc_1v8>;
->  	status =3D "okay";
-> @@ -507,6 +502,12 @@ pwrbtn_pin: pwrbtn-pin {
->  		};
->  	};
-> =20
-> +	lcd {
-> +		lcd_reset_pin: reset-pin {
-
-I don't know if there's a 'hard rule' for it, but I'd recommend to use
-``lcd1_rst_pin: lcd1-rst-pin {`` as that would match the naming from
-the schematics. I realize that some but not all (other) pinctrl nodes
-follow that 'rule', but it helps with traceability.
-
-> +			rockchip,pins =3D <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
->  	leds {
->  		red_led_pin: red-led-pin {
->  			rockchip,pins =3D <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-
-Otherwise,
-
-Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
-
-Cheers,
-  Diederik
-
---a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaFPcbQAKCRDXblvOeH7b
-boy+AQDbwzeOk3i0OYHIv6wu+lPogKc5TzKOKmCgkGkNRFumNwEAjC++J6IJV1V3
-YclMmumArJ0L1UN/PjW9uBrL/NoamwQ=
-=RIuv
------END PGP SIGNATURE-----
-
---a3a566baaebf2efb32d488967dad63a47cda141ad75c7e052b59f3fe5c0e--
 
