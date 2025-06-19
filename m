@@ -1,172 +1,172 @@
-Return-Path: <devicetree+bounces-187558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0473AE078D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:38:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31603AE079F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 218B74A1633
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:38:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDCA34A1656
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0254926C3AA;
-	Thu, 19 Jun 2025 13:38:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5997925DB13;
+	Thu, 19 Jun 2025 13:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bn/uqpPL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="U6UhRPCy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay15.mail.gandi.net (relay15.mail.gandi.net [217.70.178.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CE225D1E1;
-	Thu, 19 Jun 2025 13:38:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD3B2AF07;
+	Thu, 19 Jun 2025 13:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750340320; cv=none; b=QSqf5tg2JtgNj3pkIMLi46roQv6vCPyxKxR/ZAI492CNkn/6M+jA410L+Tf2yL8Pw6UnqKz4t8tIU0sERbvwzvHgPykHpFguRKRGrekJdqRK2ucazD3/pbzPI6QtbZap2gogjRfTmFgh4NfAJlnMmtSaraPBucAPBs9BFfBB6+M=
+	t=1750340505; cv=none; b=CASIboj8y4QyzsM7XfRmDvvMbDOmnBUGvspYubwlN49lsxIs9oB+kV+kZZiKWrZx3ZTe5UtRWyjA0Sr7GvoHAwnJr7P2IUbXxJq4QTmjke1ZuwPX4c9aGYJdjSUWeyyadw1TxXktF1VqkQfM5sxLRyDS1Ea3B5zRxIhVsXl9pW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750340320; c=relaxed/simple;
-	bh=MUcIIYeNFNdVSgZmodd9gQcOciHLU+o3JjUKidTW6Rk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=it0AsmEFBrM3oidTKSeGEV7mjGhyLTndimcy5rJfHQD+FJvF5OIpqq1Sg4rv18NJUAQVC/4rWoAAiqXRv+lQTTanFm63OAEHFiJTJWumORO1SrI4tQTnX+b8zmOFzwEpbUMyO/L7tW6kEdHo7iLhvP3prWoLCmUNiIYAGpr+hI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bn/uqpPL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4625CC4CEEA;
-	Thu, 19 Jun 2025 13:38:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750340320;
-	bh=MUcIIYeNFNdVSgZmodd9gQcOciHLU+o3JjUKidTW6Rk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bn/uqpPLTn9jf0Bo4wvXQrPX8Y24/pIIvQ+CaLLBDcBdTErtzU3W0EDw6MbGwIJDY
-	 tKHh3G5R5dXY7GUhHDbN76D/4vnwr0GmGZ57E8HPXqc8+uxSfFx08JfhZvNt7hLJ4Y
-	 JrmMMImGG2rllZOkTenw62vFdthBUvsI9UVikGjaEnj7Mi63FAriMNqAG+ex0xPs4J
-	 mrhGGcDptQfO4jTiReVbtfQHCe3X+fEy0faM5Ms3LuS7M3iNpCE/LI4U2WbncMa/Lq
-	 siz96CEIokVZaW948esbokgoZqdLgS4NyiqrIPkROuEuzd4vljtB0NkwxPqTe2pd2w
-	 78XvWGSLoH85Q==
-Date: Thu, 19 Jun 2025 14:38:34 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 00/20] mfd: adp5585: support keymap events and drop
- legacy Input driver
-Message-ID: <20250619133834.GC795775@google.com>
-References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
+	s=arc-20240116; t=1750340505; c=relaxed/simple;
+	bh=+dwseforO2BM0AdnV3KhkgIxdx8vHKv7acvhjj7Tpd4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=efYhDkA4LRTrUGmEoLEcSMECFWig88B0JBX4SZRrAudqNq165JDsED4UroEXCmQXmHmB4mQ2PkLATP8ErwgFezu5umJxhbxuDaZIkLGsZ2NOmezQyCo2MGBYnxRWaeGHEm9aWQKTWbammZPpX1XpR/To743ckphoUdEKlcOxAs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=U6UhRPCy; arc=none smtp.client-ip=217.70.178.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 06EB4442A7;
+	Thu, 19 Jun 2025 13:41:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750340495;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3Vu3ojqeO4nEZGrlEv+MrMGB/iAFdtlTHlUQ6a2DKkk=;
+	b=U6UhRPCyisMszMQuQ9+irt0NQEBugn34Ray3XLy55XnpTRmLgtwWlthDhmUb+ZZxycsxRv
+	+IosUqV58UdhyU2kRmvmHsv2FEng3dOVxiibyO1OlRopR0rZvzbXyF9G15oiWIB8RtRRu2
+	CX2dZLcXKXT8HG0H0sBSRDIUf8wJURT6hF5Ze7E3rJPaxbb0HVkj4aM4AfZgERYvcgB5EE
+	thC/YJGxoKAkURrlVEZT8n6m+YArkRrEIQy8pYmbl9XJsLCsGlDhxU7/8k8HEaQwLhxW7h
+	qndtgDRT+14KqrGqGZBTFdtEEinmju109AP2KwQppoYMeCrWZJXYyGicSOVMmw==
+From: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Date: Thu, 19 Jun 2025 15:41:24 +0200
+Subject: [PATCH v3] arm64: dts: rockchip: Fix the PinePhone Pro DTS' panel
+ description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250619-dtb_fixes-v3-1-9cb02ddd8ce4@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIAIMTVGgC/22MTQ6CMBBGr0Jm7RimAhVX3sMY09JRJlFqWtJoC
+ He3uMLE5ffz3gSRg3CEQzFB4CRR/JDDblNA15vhxiguZ1ClqsuG9uhGe7nKiyO2uqnqKvekGPL
+ /Gfg75PvpnHMvcfTh/VUnWtp/lkRYIteVbrVxiq05Wu/Huwzbzj9g8SS1Zts1q5DQWKeJHJFt9
+ C87z/MHptoQeeAAAAA=
+X-Change-ID: 20250618-dtb_fixes-97645402512e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Olivier Benjamin <olivier.benjamin@bootlin.com>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdehieejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkvfevofesthejredtredtjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetkefhvdelleeuhefgvdekveffieelhfeujefgtdejueelgfeltdefffehtddvfeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiedphhgvlhhopegludelvddrudeikedruddrvddtngdpmhgrihhlfhhrohhmpeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddtpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheph
+ hgvihhkohesshhnthgvtghhrdguvgdprhgtphhtthhopehlihhnuhigqdhrohgtkhgthhhipheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
 
-On Sat, 14 Jun 2025, Nuno Sá via B4 Relay wrote:
+Fix a few issues in the panel section of the PinePhone Pro DTS:
+  - add the second part of the Himax HX8394 LCD panel controller
+    compatible
+  - as proposed by Diederik de Haas, reuse the mipi_out and ports
+    definitions from rk3399-base.dtsi instead of redefining them
+  - add a pinctrl for the LCD_RST signal for LCD1, derived from
+    LCD1_RST, which is on GPIO4_D1, as documented on pages 11
+    and 16 of the PinePhone Pro schematic
 
-> Hi all,
-> 
-> Here it goes v4. Main changes is to drop chip info based struct and
-> directly use an enum in the FW .data pointer, use the notifier API for
-> dispatching events and multiple calls to mfd_add_devices().
-> 
-> Regarding the last point, I think I could have used multiple calls to
-> devm_mfd_add_devices() and avoid those gotos in adp5585_add_devices()
-> but I do not feel that would have been "correct".
-> 
-> Thanks!
-> - Nuno Sá
-> 
-> ---
-> Changes in v5:
+Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+---
+Small fixes to the PinePhone Pro DTS to fit bindings and
+suppress warnings at build.
+---
+Changes in v3:
+- Amended the LCD pinctrl name to match the pin's name in the Datasheet
+- Link to v2: https://lore.kernel.org/r/20250619-dtb_fixes-v2-1-abd711d11b67@bootlin.com
 
-In future, these should be inside the patches themselves please.
+Changes in v2:
+- Added the pinctrl definition for GPIO4_D1/LCD1_RST
+- Removed redefinition of the lcd panel ports from rk3399-base.dtsi and
+  added only the mipi_out definition
+- Squashed multiple patches into one
+- Link to v1: https://lore.kernel.org/r/20250618-dtb_fixes-v1-0-e54797ad2eba@bootlin.com
+---
+ .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 33 +++++++++++-----------
+ 1 file changed, 17 insertions(+), 16 deletions(-)
 
-> - Patch 2:
->   * Use the existing devm_mfd_add_devices().
-> - Patch 3:
->   * Remove TODO comment.
-> - Patch 4:
->   * Mention in the commit message the Copyright update.
-> - Patch 6:
->   * Return a struct regmap_config pointer in
->     adp5585_fill_regmap_config();
->   * Just leave a blank entry in the adp5585_regmap_defaults array.
-> - Patch 13:
->   * Improve comments for pin6 (row5) validation;
->   * Don't use magic numbers;
->   * Drop some odd line breaks;
->   * Initialize vartiable when declaring.
-> - Patch 14:
->   * Drop double spaces;
->   * Don't use magic numbers;
->   * Improve some comments.
-> - Patch 16:
->   * Fix missing semicolon.
-> - Patch 20:
->   * DS -> datasheet. 
-> 
-> - Link to v4: https://lore.kernel.org/r/20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com
-> - Link to v3: https://lore.kernel.org/r/20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com
-> - Link to v2: https://lore.kernel.org/r/20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com
-> - Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
-> 
-> ---
-> Nuno Sá (20):
->       dt-bindings: mfd: adp5585: ease on the required properties
->       mfd: adp5585: only add devices given in FW
->       mfd: adp5585: enable oscilator during probe
->       mfd: adp5585: make use of MFD_CELL_NAME()
->       dt-bindings: mfd: adp5585: document adp5589 I/O expander
->       mfd: adp5585: refactor how regmap defaults are handled
->       mfd: adp5585: add support for adp5589
->       mfd: adp5585: add a per chip reg struture
->       gpio: adp5585: add support for the adp5589 expander
->       pwm: adp5585: add support for adp5589
->       dt-bindings: mfd: adp5585: add properties for input events
->       mfd: adp5585: add support for event handling
->       mfd: adp5585: support reset and unlock events
->       mfd: adp5585: add support for input devices
->       gpio: adp5585: support gpi events
->       Input: adp5585: Add Analog Devices ADP5585/89 support
->       Input: adp5589: remove the driver
->       mfd: adp5585: support getting vdd regulator
->       dt-bindings: mfd: adp5585: document reset gpio
->       mfd: adp5585: add support for a reset pin
-> 
->  .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
->  .../devicetree/bindings/trivial-devices.yaml       |    2 -
->  MAINTAINERS                                        |    1 +
->  drivers/gpio/Kconfig                               |    1 +
->  drivers/gpio/gpio-adp5585.c                        |  364 ++++++-
->  drivers/input/keyboard/Kconfig                     |   21 +-
->  drivers/input/keyboard/Makefile                    |    2 +-
->  drivers/input/keyboard/adp5585-keys.c              |  371 +++++++
->  drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
->  drivers/mfd/adp5585.c                              |  743 +++++++++++++-
->  drivers/pwm/pwm-adp5585.c                          |   78 +-
->  include/linux/mfd/adp5585.h                        |  118 ++-
->  12 files changed, 1799 insertions(+), 1208 deletions(-)
-> ---
-> base-commit: 407f60a151df3c44397e5afc0111eb9b026c38d3
-> change-id: 20250311-dev-adp5589-fw-e04cfd945286
-> --
-> 
-> Thanks!
-> - Nuno Sá
-> 
-> 
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 04ba4c4565d0a205e2e46d7535c6a3190993621d..909ed14035f783fd14362f4e3a9a3fe3b50d5937 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -463,29 +463,18 @@ &io_domains {
+ };
+ 
+ &mipi_dsi {
+-	status = "okay";
+ 	clock-master;
+-
+-	ports {
+-		mipi_out: port@1 {
+-			#address-cells = <0>;
+-			#size-cells = <0>;
+-			reg = <1>;
+-
+-			mipi_out_panel: endpoint {
+-				remote-endpoint = <&mipi_in_panel>;
+-			};
+-		};
+-	};
++	status = "okay";
+ 
+ 	panel@0 {
+-		compatible = "hannstar,hsd060bhw4";
++		compatible = "hannstar,hsd060bhw4", "himax,hx8394";
+ 		reg = <0>;
+ 		backlight = <&backlight>;
+-		reset-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
+-		vcc-supply = <&vcc2v8_lcd>;
+ 		iovcc-supply = <&vcc1v8_lcd>;
+ 		pinctrl-names = "default";
++		pinctrl-0 = <&lcd1_rst_pin>;
++		reset-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
++		vcc-supply = <&vcc2v8_lcd>;
+ 
+ 		port {
+ 			mipi_in_panel: endpoint {
+@@ -495,6 +484,12 @@ mipi_in_panel: endpoint {
+ 	};
+ };
+ 
++&mipi_out {
++	mipi_out_panel: endpoint {
++		remote-endpoint = <&mipi_in_panel>;
++	};
++};
++
+ &pmu_io_domains {
+ 	pmu1830-supply = <&vcc_1v8>;
+ 	status = "okay";
+@@ -507,6 +502,12 @@ pwrbtn_pin: pwrbtn-pin {
+ 		};
+ 	};
+ 
++	lcd {
++		lcd1_rst_pin: lcd1-rst-pin {
++			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	leds {
+ 		red_led_pin: red-led-pin {
+ 			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
 -- 
-Lee Jones [李琼斯]
+Olivier Benjamin <olivier.benjamin@bootlin.com>
+
 
