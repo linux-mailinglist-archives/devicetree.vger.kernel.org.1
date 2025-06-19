@@ -1,109 +1,148 @@
-Return-Path: <devicetree+bounces-187513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA97AE037E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:29:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17F6AE0410
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:40:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 630AC17B437
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:29:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853A53A00BF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 11:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A429822B8A7;
-	Thu, 19 Jun 2025 11:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B35229B29;
+	Thu, 19 Jun 2025 11:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LNZcfN0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B8122A80A
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 11:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CE1132103
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 11:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750332542; cv=none; b=NO03cdICTHwZsthSqjC1IeVBoxK0CSSO8zB0I9rIdxVHZpK2uwWzm1dBZD90o7kountSLK83dBRk/vZU6FGtawMv1jipIl0CS0aE/w9oZPdKJTjcNVzM8d5S+57szuA1qjv6DJetdG3fMLO1nWJQsAGAWCNfvagVW7t4hWtJ4LM=
+	t=1750333237; cv=none; b=NJ5W0gRF6mwOkzH9I+BScoQPWsFnb+Ka0JcbjjvsYu/8aT/Er272t1wTJoWiqeKUZ9y3DaAJ3vr1ovIdsIYyXhDxlh4YUP3BhAxgNPlEqkZYLzMHqQ3UMylLVUUbuCwmfZji3rQ1YqLKok7waTSvuDa18CUxX+gN9HuZHLPIl1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750332542; c=relaxed/simple;
-	bh=7ago14q1gQ9JAob84HS378yfaJHxlW6UjfAjq6a307c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hl/XOPdiE6GCAv22oqXl6hKTF4A0CEa+GN2ABl0I5zR6HCyXetgz3w7IPj5BKgKAw2SccMXsZFrY2LmrRbtB0CgYsYmP06WUCbtEJGkjK2ZJVx+rJqNh711gVWNPgbZlpqcIs26Iiw8q/riW7maRD3tePsBKzNBpClq6Jj3p5Pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uSDRY-0007wh-JV; Thu, 19 Jun 2025 13:28:32 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uSDRY-004I9Q-0d;
-	Thu, 19 Jun 2025 13:28:32 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uSDRY-005PyJ-0G;
-	Thu, 19 Jun 2025 13:28:32 +0200
-Date: Thu, 19 Jun 2025 13:28:32 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH v5 3/4] dt-bindings: clock: cdce6214: add binding for pin
- configuration
-Message-ID: <aFP0YIgXndjTVyAL@pengutronix.de>
-References: <20250618-clk-cdce6214-v5-0-9938b8ed0b94@pengutronix.de>
- <20250618-clk-cdce6214-v5-3-9938b8ed0b94@pengutronix.de>
- <20250619-arboreal-jaguarundi-of-passion-a2eaa1@kuoka>
+	s=arc-20240116; t=1750333237; c=relaxed/simple;
+	bh=fI4b0JmvmR/LKJHS4kYGRgS79fqtVDdNyB26iJdkI7Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fylYRwaVH0JkndoiqiwA9upAa4Q3t6D44d9FPzaDn06ccTjyOWH8ZylHgeVM7c1fCAFkJow972HrgardsElMsSzQ2BzLLfjryActrWA/Qodix0deijomWBVCzD+k2Txd+fKYx8Jk8DL+uK/nA6kSuwhlan2VFXTuWxSGqqFW+4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=LNZcfN0O; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1750333234;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g5MqY5EbJPpgVIT/GMNbBL+m8bzhYEjTyXfnL0CxcoM=;
+	b=LNZcfN0O5EiHbj61InS26SG0DzgdUWWkci85mvoDr02Jd0QJjHDcXuzfG+DX48i/0nJxv8
+	nbpvCl16f3280jjXtn0KogAmJZy/KVQsA/eBHUWqIMCPVYoR85DHFC78sitAGwReqtsP7g
+	eGM9zD7jKB8dOuDqOW+S/QtDDyaptoA=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-678-4Y5y4CpvORWPzsnzsdpFVA-1; Thu, 19 Jun 2025 07:40:33 -0400
+X-MC-Unique: 4Y5y4CpvORWPzsnzsdpFVA-1
+X-Mimecast-MFC-AGG-ID: 4Y5y4CpvORWPzsnzsdpFVA_1750333232
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-3a54a8a0122so338153f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 04:40:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750333232; x=1750938032;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g5MqY5EbJPpgVIT/GMNbBL+m8bzhYEjTyXfnL0CxcoM=;
+        b=Cn++z1LfSB/3sW7ggXmT5+QZuBjnQFlOi+Cv+F1PJKTeZLGTdYl8ysVzJ3Zp+F+ezH
+         OcFm1S7I3By1T1C1lat9MadOOiKoExqSy3fBRzbu/Yc0ubZgMDhoiQcK79DihSmtICZF
+         x396YT5yh+tTEB0JhxuR4QBffqR5FLaaDbaFcTzprVcsxDi3CMQUwss2+neGeO0AD3G8
+         dvMvnr1W4rJr2DGw5hWYmnU1ljUPm2XnrmNJAfdtkx7jNCSZufNXAy2fYssSLhcZ830t
+         CyMXWwg0/kO8QQ8Un6Yux+EvifX5MoMC7zGEmWMBAu9l2XejhPWUNMevZRN0TwlsmMBN
+         7cFg==
+X-Forwarded-Encrypted: i=1; AJvYcCWD3oVona7CSayr0UC3WE2lOSh9VThp2nnHP0u7UIt4/9pwz6PMs1RhUKJBptaZ+Y6nfMGUmunfNgwZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxL7MM5UHAKjNFca7LapgT8uNt37xjqxZyHF9/b+WLq6Bh+hXtk
+	YrCgQl8lDrk6t/nwZUUB6jvb+6sZFnAsCyWgioDMvxLUayU4vCqvHxUOksJCJ02/ziqPvWs6uZd
+	WjrHTK5BHiMCDZ8ZPRsBisIaHpsTTUWs6Ua+zmFfAygE1CrtMgiCMr6mokdkiuys=
+X-Gm-Gg: ASbGncumAeBFU67EboVoooeZ3X9//jeROpZj2fpZudsf3n6BkgMv52RvIyv42X7Fxf5
+	nR1dsPKtfhGCGO4gej1NQf3QWwjubJWzwylDbla8wEDJic+SyqaEd8oa0doR7y/R8XMiPnpT6mb
+	2bmljlhGq2Cu8dA+zNrAIyel7NuKRLNECCwkucKt4XHTH/HjmAJW87uE5sdG2+J841lEk6rEbLS
+	i+sCPAgsvUsJD9XBaxJKb9sRqCubHwRpFx1FMYQnM9JzRbo4z2/nUpheVjAhsqLKMmvcgHShAWm
+	c/ozrxuxP3/qW3RiFb1sFYScThcCKPCeSotLDQKM2jmVE/6GRCADiuylbkWg2pRf2J8JgA==
+X-Received: by 2002:a05:6000:2d0c:b0:3a5:8d0b:d0b8 with SMTP id ffacd0b85a97d-3a58d0bd1camr4831902f8f.54.1750333231804;
+        Thu, 19 Jun 2025 04:40:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEkPsAM7rzvUuUIwuWTbnbsaa2hHEQ50y/ld0Zh2qJ6v7nBnPiul0WnrvWb0vFBIsYzskhEqg==
+X-Received: by 2002:a05:6000:2d0c:b0:3a5:8d0b:d0b8 with SMTP id ffacd0b85a97d-3a58d0bd1camr4831872f8f.54.1750333231356;
+        Thu, 19 Jun 2025 04:40:31 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:271a:7310:d5d8:c311:8743:3e10? ([2a0d:3344:271a:7310:d5d8:c311:8743:3e10])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a568b28876sm19250304f8f.73.2025.06.19.04.40.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jun 2025 04:40:30 -0700 (PDT)
+Message-ID: <7fce273d-06f4-498c-a36a-d6828b4d4f30@redhat.com>
+Date: Thu, 19 Jun 2025 13:40:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250619-arboreal-jaguarundi-of-passion-a2eaa1@kuoka>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 14/14] dpll: zl3073x: Add support to get/set
+ frequency on output pins
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Shannon Nelson <shannon.nelson@amd.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
+References: <20250616201404.1412341-1-ivecera@redhat.com>
+ <20250616201404.1412341-15-ivecera@redhat.com>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20250616201404.1412341-15-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 19, 2025 at 09:42:06AM +0200, Krzysztof Kozlowski wrote:
-> On Wed, Jun 18, 2025 at 11:21:14AM GMT, Sascha Hauer wrote:
-> > Add pin configuration binding for the TI CDCE6214. The CDCE6214 has
-> > an internal EEPROM to to fully configure the chip, but this EEPROM
-> > might be empty, so add support for configuring the chip through
-> > the device tree.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 95 ++++++++++++++++++++++
-> >  1 file changed, 95 insertions(+)
-> 
-> 
-> This should be part of previous patch. Bindings should be complete, not
-> added in partial sets.
+On 6/16/25 10:14 PM, Ivan Vecera wrote:
+> +static int
+> +zl3073x_dpll_output_pin_frequency_set(const struct dpll_pin *dpll_pin,
+> +				      void *pin_priv,
+> +				      const struct dpll_device *dpll,
+> +				      void *dpll_priv, u64 frequency,
+> +				      struct netlink_ext_ack *extack)
+> +{
+> +	struct zl3073x_dpll *zldpll = dpll_priv;
+> +	struct zl3073x_dev *zldev = zldpll->dev;
+> +	struct zl3073x_dpll_pin *pin = pin_priv;
+> +	struct device *dev = zldev->dev;
+> +	u32 output_n_freq, output_p_freq;
+> +	u8 out, signal_format, synth;
+> +	u32 cur_div, new_div, ndiv;
+> +	u32 synth_freq;
+> +	int rc;
+> +
+> +	out = zl3073x_output_pin_out_get(pin->id);
+> +	synth = zl3073x_out_synth_get(zldev, out);
+> +	synth_freq = zl3073x_synth_freq_get(zldev, synth);
+> +
+> +	/* Check the requested frequency divides synth frequency without
+> +	 * remainder.
+> +	 */
+> +	if (synth_freq % (u32)frequency) {
 
-See cover letter why I did this. If everybody is fine with the pin
-configuration binding then I can merge this back together, but I doubt
-it and in that case I'd rather get the driver upstream without the pin
-configuration at first.
+As the frequency comes from user-space and is validated only the DT
+info, which in turn is AFAICS imported verbatim into the kernel, I
+*think* it would be safer to check for 0 here or at DT info load time.
 
-Sascha
+/P
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
