@@ -1,107 +1,133 @@
-Return-Path: <devicetree+bounces-187403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B509ADFD76
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:05:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B23ADFD85
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:15:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C606D189BEAB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:05:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 075B6178706
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:15:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018E223C4EF;
-	Thu, 19 Jun 2025 06:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eAtYBi/h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681823085B1;
+	Thu, 19 Jun 2025 06:15:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1D1219A6B;
-	Thu, 19 Jun 2025 06:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973573085A9;
+	Thu, 19 Jun 2025 06:15:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750313131; cv=none; b=mGrPq5o5CoqVj/SuQIuDxkFA7lKhz04p3jQRVeKyz4Ibk4tIkezBTJk/CbjNPtmjLHEl+s83RdorMvnUbnXj6d9itsfRZ3ZhShAJk+yNouEeQpa+CvlNqA9xdIPEJoabJPkvtLa/HmuLZz36nbu7iAfeTJcEIjfFJuo3hWDey4A=
+	t=1750313743; cv=none; b=eY3c9BYoIECq1gebm8RaNOzjgYVHw+tfRbAhm2oZUmR+Tq1FNPbxQsX2TqnJiC+qOg40tQ6QuNyelBjc+6gJEIqdfXptP1fJCOBg+s4zRd0EDM44mGPXVVdj6HNYzpeW4QIZUv5pDktCpJSwELB1QfgqwFGg1Oc+1/37oL9CkLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750313131; c=relaxed/simple;
-	bh=Ogiw8EsJ+KJIyBByYR9AOX0+PVQFpvWshZyaLqVVN5w=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gG1vKrYFD0FxwXfpHmOhgT1+KNSmmVFKxcjjRzKE74kWKJbo6W7S6SmZTZwf5Qt0ZGsgyN+INnduU23812R+m839dD1YGAAfeCQuq7vV2eKSw5cJDRc9IoJalosYFJ6iYy4U9OCgRhyhqlzwNdFqBbw/EHyOQAO/8zUxJJa5PVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eAtYBi/h; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55J65MYE501592;
-	Thu, 19 Jun 2025 01:05:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750313122;
-	bh=YK+Gj/0u2hys6DnhOqcAJq/Yz44aEkVVmMrGi6rPzMI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=eAtYBi/hBnw4kRlaFXvk186EPxxrHHAg11Q3O7cYXYUk2gj31e0KeQpCfoRjnWb2X
-	 /sXQe5pYzAJ5muMMQY63rJrMVEK7HZ5VTdrThPFFtn6TzxbmvCJMeuppQxYASk3jxV
-	 VDOpWDCeHcpc/yGJ88fB44e0Yki42JXMdfUQRItc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55J65Mc71060565
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 19 Jun 2025 01:05:22 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 19
- Jun 2025 01:05:21 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 19 Jun 2025 01:05:21 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.169])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55J65L6W627745;
-	Thu, 19 Jun 2025 01:05:21 -0500
-Date: Thu, 19 Jun 2025 11:35:20 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Hrushikesh Salunke <h-salunke@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <s-vadapalli@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <danishanwar@ti.com>, <srk@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add idle-states for
- remaining SERDES instances
-Message-ID: <afb54fe8-a271-4074-8249-669219954c4c@ti.com>
-References: <20250609115921.2380611-1-h-salunke@ti.com>
- <ec2c7fab-6f4d-4163-90a9-16dddec80adb@ti.com>
+	s=arc-20240116; t=1750313743; c=relaxed/simple;
+	bh=ByEiA4j+UXW4Q9BDuiOMKbZSr+Mx89lc9MWICsEynCc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bUW658adZs5ZLKR5G9Y+WgOufP8ptUdcJtwTsBojOdbTdA/Z376+36f2c4ugFfXS8fXowUYFpy0PpppPS214z4SRW8mlJqxw+yXeyDF1v2Xqx+v6K3WSZBrydg0JlWuSA12VdyrwA/UkMnUMdLYMlLZCh5gas6CxLqqYsMK2aBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.33.139] (unknown [210.73.43.2])
+	by APP-01 (Coremail) with SMTP id qwCowACHONf6qlNoGg+LBw--.43032S2;
+	Thu, 19 Jun 2025 14:15:23 +0800 (CST)
+Message-ID: <acac9522-fb19-4659-8e1a-544bf75f3864@iscas.ac.cn>
+Date: Thu, 19 Jun 2025 14:15:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ec2c7fab-6f4d-4163-90a9-16dddec80adb@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] regulator: spacemit: support SpacemiT P1 regulators
+To: Alex Elder <elder@riscstar.com>, lee@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dlan@gentoo.org
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, troymitchell988@gmail.com, guodong@riscstar.com,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250613210150.1468845-1-elder@riscstar.com>
+ <20250613210150.1468845-4-elder@riscstar.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250613210150.1468845-4-elder@riscstar.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:qwCowACHONf6qlNoGg+LBw--.43032S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZF4xXF1xZFWktr1DKr18Grg_yoW8Ww1UpF
+	s0vr9xCr1ktFWrur4xur9Fy3W5W3Z3XasrAry8Jw45W3yDCF1xZr4DtF43ZF1kZrn5Gr12
+	934kuF4xWFnxWrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9qb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwV
+	C2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F
+	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
+	xwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE14v_GF1l42xK82IYc2Ij64vIr41l4I8I3I
+	0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWU
+	GVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI
+	0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0
+	rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJbIYCTnIWIevJa73UjIFyTuYvjxUB1SrDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-On Wed, Jun 11, 2025 at 06:23:24PM +0530, Siddharth Vadapalli wrote:
-> On Mon, Jun 09, 2025 at 05:29:21PM +0530, Hrushikesh Salunke wrote:
-> > In AM69 SoC there are 4 instances of the 4 lane SERDES. So in
-> > "serdes_ln_ctrl" node there are total 16 entries in "mux-reg-mask"
-> > property. But "idle-states" is defined only for the lanes of first two
-> > SERDES instances. For completeness, set the "idle-states" of lanes of
-> > remaining SERDES instances to a default value of "unused".
-> > 
-> > Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
-> 
-> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+On 6/14/25 05:01, Alex Elder wrote:
+> <snip>
+>
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 6d8988387da45..7bb7b8fad24f2 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -1384,6 +1384,15 @@ config REGULATOR_SLG51000
+>  	  The SLG51000 is seven compact and customizable low dropout
+>  	  regulators.
+>  
+> +config REGULATOR_SPACEMIT_P1
+> +	tristate "SpacemiT P1 regulators"
+> +	depends on ARCH_SPACEMIT || COMPILE_TEST
+> +	default ARCH_SPACEMIT
+> +	help
+> +	  Enable support for regulators implemented by the SpacemiT P1
+> +	  power controller.  The P1 implements 6 high-efficiency buck
+> +	  converters and 12 programmable LDO regulators.
+Needs module name in help text, as is the case with spacemit-pmic.
+> +
+>  config REGULATOR_STM32_BOOSTER
+>  	tristate "STMicroelectronics STM32 BOOSTER"
+>  	depends on ARCH_STM32 || COMPILE_TEST
+>
+> <snip>
+>
+> +static struct platform_driver p1_regulator_driver = {
+> +	.probe = p1_regulator_probe,
+> +	.driver = {
+> +		.name = "spacemit-p1-regulator",
+> +	},
+> +};
+> +
+> +module_platform_driver(p1_regulator_driver);
+> +
+> +MODULE_DESCRIPTION("SpacemiT P1 regulator driver");
+> +MODULE_LICENSE("GPL");
 
-I failed to notice that this change will introduce a regression on
-AM69-SK for CPSW AND Display which rely on the SERDES Lane Mapping for
-SERDES2 and SERDES4 being at their reset value of "zero". This patch
-should be fixed by updating it to the following:
+If this driver is compiled as a module, it needs to be found by modalias
+so the driver auto-loads after spacemit-pmic registers the regulator
+device, so you need:
 
-	<J784S4_SERDES2_LANE0_IP2_UNUSED>, <J784S4_SERDES2_LANE1_IP2_UNUSED>,
-	<J784S4_SERDES2_LANE2_QSGMII_LANE1>, <J784S4_SERDES2_LANE3_QSGMII_LANE2>,
-	<J784S4_SERDES4_LANE0_EDP_LANE0>, <J784S4_SERDES4_LANE1_EDP_LANE1>,
-	<J784S4_SERDES4_LANE2_EDP_LANE2>, <J784S4_SERDES4_LANE3_EDP_LANE3>;
++MODULE_ALIAS("platform:spacemit-p1-regulator");
 
+Also, consider extracting the name to a macro:
+
+#define DRV_NAME "spacemit-p1-regulator"
+
+Also, consider naming this consistently: "spacemit-p1", or
+"spacemit-p1-regulator"?
 
 Regards,
-Siddharth.
+Vivian "dramforever" Wang
+
 
