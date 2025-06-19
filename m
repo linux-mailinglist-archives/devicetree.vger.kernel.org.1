@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-187692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED57AE0F76
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 00:14:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59C43AE0FA5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 00:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62CCE17A68C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 22:14:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E33A23AEB16
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 22:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0345257ACF;
-	Thu, 19 Jun 2025 22:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCD125F797;
+	Thu, 19 Jun 2025 22:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="liASiEjR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ae+jEnV8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1DA30E826;
-	Thu, 19 Jun 2025 22:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEBB1FBE8B;
+	Thu, 19 Jun 2025 22:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750371238; cv=none; b=gcHnedqBUayOWTwUWLxopDA7QrAfUOA9Cjue2pVQp1gOHIAgPY+Tg8/xvFa8W3R334sm3FsrZt07Vl9iqDJYEYMMUllB0Xv3FIfDno4HBxKIvu2/nX/ohdvEECJ0wmXf4TRXG+AoBztQ4YjunhNEBTg3wjcgG4NsAO32sQLAXFE=
+	t=1750372628; cv=none; b=H4EhjrmM9Afs6Rn3GSH4R04z6BEv7jf9GoMBC0BUI6KynE5eQlDnuQwciOONFMUNLTz52Cvo5TAVefZ6wMm2GGaV8GqaK7cRSf78Ik4dmxLlpR6vLojKRXgBi4Fl4xpz11NyNFTxgchvPwwZuyXyskVtcUZux1hXzhsN7GTJkPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750371238; c=relaxed/simple;
-	bh=VkvJZaf1xIQ7oLQmdRrNT1Hr+EoYVxauf+en4PevQXw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jHbwct2oigvvJt2Q66jBPvBV+kxSRV16ZoepZdEdUK0fqWyGNMhnCE7gGKekdtJjQWNlb7DTPfomuXgxQASNog9E5ZgkFJrNTCODIZ1LUtquqpGa9/rbjV/QZjtXnR/WqOo7UDa/jmE44YEJzcnRlQqwijaqdye6mQnyeXXeIq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=liASiEjR; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=9Y/aI1+KgOz6LLSAu2ncBoBTsqSkVCTLSAMw2PTIoL0=; b=liASiEjRzLOVhojwGDYmpVSYE2
-	/DM61Ku2Wc7QEnUaf57vFLmY46CMKcSD6sWL6PjGivLcZBT/gFcT8/AkEZxEfnOhMjAQWnKAghDqP
-	vV4T6udEV4HxgWlMfUqFsq75ONrCMs6Vs8r8pODGC9uUNwt12GLBnLmO+t3uBKnYPbmhkXqvmeHOL
-	9+riJhsXg2e9noOJ2zH9CZ3zaAVQIllgsAmF9MDQKIjDlgSteNfw97gvzwiKS8tYzFi5ALpIk9HVm
-	j0PQLgsZmj2Fip5gptktByvP/EavMxCYuMy/yiY1IRYDYKE9wigPn5+EroXq7E7PERI8md1gMDdq0
-	/QgxUOpA==;
-Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uSNW2-0008Oo-1j; Fri, 20 Jun 2025 00:13:50 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yao Zi <ziyao@disroot.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	linux-rockchip@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH 0/9] rockchip: Add power controller support for RK3528
-Date: Fri, 20 Jun 2025 00:13:38 +0200
-Message-ID: <175037106381.1530547.11103096217205983785.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250518220707.669515-1-jonas@kwiboo.se>
-References: <20250518220707.669515-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1750372628; c=relaxed/simple;
+	bh=39JAU3gIUJNw4/Obnh4uj/czS3LYI4EoxVitgjt6v44=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=epM+JNKFQPyg21RUPAewfK6xYL1GMe4/vFYNLOQuroGELL0DbryIHWDmm6w4xV3Td/hSm13DNIGXmqgo1Y1cW5Y+7cpdhnM+nTrvpLtuZpfnpDESQdmQgv1dVIkKlP8oR1HoWEW48WH3PoHLifRdCtneN3bu8Z+4T3XZ6zV8eiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ae+jEnV8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7089DC4CEEA;
+	Thu, 19 Jun 2025 22:37:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750372628;
+	bh=39JAU3gIUJNw4/Obnh4uj/czS3LYI4EoxVitgjt6v44=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ae+jEnV8JA4rtMN4v7/sr9DR3/lCtpRLZ5TNL4uuIoNdwkHqfJMCp6PX7hTWHPfb/
+	 dXZe75UoKPdKjkgZba617W9de55LNBqNONzVTlc/A7alNatJh+rlHPEVWb5k/Z+y7N
+	 MWZp2nKwf4v4C2wfckfcJ0aZMFLZUl6TD47T5IpgT8UG7eCzVl+Wy/A8/hJ8wwSLOa
+	 ESfu9ct9Lx60KLKqoay6/6Cr8i7/5JIs7lycKWsxhuHe5GAoKsVvyRCQQkU1Wtn4S4
+	 679GBe1HW10ceqRiV2AgtP2bVnchvrzw5/XoJew1muvpm+gCF8jVKs5F4XpXnMdrV7
+	 bLsTfvSBHXtNA==
+From: Mark Brown <broonie@kernel.org>
+To: David Rhodes <david.rhodes@cirrus.com>, 
+ Richard Fitzgerald <rf@opensource.cirrus.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250617144619.1130857-1-laurentiumihalcea111@gmail.com>
+References: <20250617144619.1130857-1-laurentiumihalcea111@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: add 'port' property
+Message-Id: <175037262617.685177.1653253017123895737.b4-ty@kernel.org>
+Date: Thu, 19 Jun 2025 23:37:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,25 +62,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-08c49
 
-
-On Sun, 18 May 2025 22:06:47 +0000, Jonas Karlman wrote:
-> The Rockchip RK3528 support multiple power domains, one PD_GPU that can
-> fully be powered down, and other that can be idle requested.
+On Tue, 17 Jun 2025 10:46:19 -0400, Laurentiu Mihalcea wrote:
+> The cs42xx8 codecs may be used with audio graph card and thus may require
+> an additional property: 'port'. Add it.
 > 
-> Vendor kernel flag all power domains on RK3528 as always-on, this takes
-> a different route and instead tries to describe all devices power-domain
-> in the device tree, even for controllers with unsupported runtime status.
 > 
-> [...]
 
-Applied, thanks!
+Applied to
 
-[4/9] arm64: dts: rockchip: Add power controller for RK3528
-      commit: 654df8e74dbc19ba0625051079e6889e6999d16e
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Thanks!
+
+[1/1] ASoC: dt-bindings: cirrus,cs42xx8: add 'port' property
+      commit: 7f8924e8785b68c998bc1906e049bf5595865e60
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
