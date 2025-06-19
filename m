@@ -1,100 +1,108 @@
-Return-Path: <devicetree+bounces-187467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B72AE0007
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:39:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA116AE0014
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:41:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34B9F19E0C0F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:39:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BBAB1692F7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D206D26463E;
-	Thu, 19 Jun 2025 08:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571C7263F54;
+	Thu, 19 Jun 2025 08:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Csh8OR/p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zNCrB10v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED8C264618
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A34A4A1D
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750322363; cv=none; b=bOQcMZNQQ6BiaCivOp1/rNmGt4oLqJGRtSi7DJ4dgsndoFPmVDOsmZXVENVyocySKgzxZrwnVlH++Vq9JdcvoD0t8gFKjYYd8G1bypPeVwpmAlqin38fGaoXjronNidRcaMvToMaaIuxlX9gLKpTM/0kfyJKYx/FD4nen0FYXVo=
+	t=1750322504; cv=none; b=K7BC+HAXwf2RH30upNADYfGgLYr7RiwVD7l+Mh1XVMqEVHpH/yc2ttiGorSRvvuKCNHqIHaODQDFqIBMg16sOX7pGueg7ysrHKOGEZGLnvsd7x+5Lk3pz6XS4WFe52Dklr70rc4Fp2XqTipAJ9utvVFo3PrlTdENwi0uBsZkHzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750322363; c=relaxed/simple;
-	bh=Af1OBCdjmgbt/lD9KT32L5IXYHmC0HvCKLNQiW6fK9w=;
+	s=arc-20240116; t=1750322504; c=relaxed/simple;
+	bh=n/3JI9hpwUNX1wRMtpySGbKxpzNwm/24BRDXUmlzv08=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R8f7FuZP+oPsiGNLyEZK++Bb6HEAW/uoKJVle6P7doSkOJShNe/u7xmMRSCmoEQyDJz30h6+p7ddcXnvdMXNfqF2hmZzNsm8b73OaL6ex9BmqckRaBx8QVaZt0v7P9nGwo/hlbk/eZFJUj/4EkRD+JkpEmc8Ao38BW1g8FRKT0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Csh8OR/p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EAACC4CEF5
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:39:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750322363;
-	bh=Af1OBCdjmgbt/lD9KT32L5IXYHmC0HvCKLNQiW6fK9w=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Csh8OR/pk9BFeNnwmvLfFJG2JwmWeRuYOUoDSa+zSj9lRB1ZY/XlsL5cqON4UBYfT
-	 ioVVAYqhvrTTZakzEiywyCQXZEcqZiTfWyccel4wCkjQfX3nM8Y1r//TP2rQrDIh63
-	 QUSKrx/IeUGfqXERYQNcTYfEZIU3c0+dCr4+OJE2xeIZk5+Y6iOwlP4LCKbcGzppg6
-	 YoBeAFYEidFfiV5gZwsYBXEexzL+0qcll7sNXfjMQ4sYlALzp8sr8t1hHYodFaiAkw
-	 eEAI4C12T8jRtDiKMcZltn2jtsqJKFJPASK52m27RswXlJ/2qWJwm/dCtoZKo/mpyn
-	 clP11XuDD/OmA==
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e8187601f85so552519276.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 01:39:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXrLWZ5BQx8V1HBZVXjy2RX0vgz6YsQyT5Wgs3eTIR+symLx7SLZGjmcSnDDYIwX/FlriEKzdUNc56G@vger.kernel.org
-X-Gm-Message-State: AOJu0YxX4BUlaIpum7qu5Fl68Lf9onb0BGg+f8oAueH4Te5LB/CaRWK8
-	ZS6LumiVMfzuILeXnvzDtuG2iSdghCTD8LvzglOgKFYRdjuOue9YhMspqjSkmR4+I2xEhbwM4C2
-	aZZDX3bCjjUUeucK+RtO8wnF79iG0azBLxuZebSRWfg==
-X-Google-Smtp-Source: AGHT+IHFhbTPC3IHdAEhse776L10W8aRjQW3q5wXxAWG0QvKzfsbI08GKkjb4oJHnymnKzxYSdGNC0f44vXXp8PZN6Y=
-X-Received: by 2002:a05:6902:707:b0:e81:838b:c58c with SMTP id
- 3f1490d57ef6-e822ac0a614mr27592560276.20.1750322362356; Thu, 19 Jun 2025
- 01:39:22 -0700 (PDT)
+	 To:Cc:Content-Type; b=X90hLCsLRIPp/gS7trKzYbQzZZgn0h/okeK/bmPTQRTce1UamVnySJFO2dhy82xOEfMperFnoKEJx2UxEBDsXwijqSjuaUJM6bYLclBKLcIEr2oVtdoFthGEhYeEIZ93eGSxesSb/+Hom9GdXWwZjUMEak+tsjljUfMj1FHCDRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zNCrB10v; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5535652f42cso588817e87.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 01:41:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1750322501; x=1750927301; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n/3JI9hpwUNX1wRMtpySGbKxpzNwm/24BRDXUmlzv08=;
+        b=zNCrB10vTbnnjpLM9SrZ7zvfJ1MMlIjC0So6wbKQbA1hpQ4zv+oSCCri3SPd/PUCPy
+         hJnynzeKKl/5PfuD1pSipTuRZpdA8F+o26aXN+vYn6YUAi9F4RAnw4UYV6sfQ1IO7a+4
+         JE+OcK6RbXh9NvKjszgRams/pD9C5mmr5ri+95kMpVYR+hWOf9zDPmV0YXmZaPMmn2DV
+         BhbiuKdOJEE9t492VXtTkJ58v9qt55I2+kMB6ZOU7plBZXssjLvigrC4JaGT5Q9X+mGB
+         SJW1RSv5zWAorcsQ7MgClmVHjqJJEnFyZPSYRzaTM5mZF4UWURGLCaFNw98MJS68+Qw6
+         yjow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750322501; x=1750927301;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n/3JI9hpwUNX1wRMtpySGbKxpzNwm/24BRDXUmlzv08=;
+        b=PucarzdXDKV9wh/MTsQCIKXM5E4cJwQuBFJWohAGatKl+3wO08i+wFioCuL5VMaKNx
+         zWZtK86PcOK547AOIuNPS+2eSpeLRvLUTVQuO2bh9t4tPY8vQL2uLpva4Gy9wepQD8Nr
+         DGpx+x/6u9/HPVmf/KKUlnCQxtYi5O8/wf/F04RXjoqRMqws3nKj5aCwZYrGNPZHZj/F
+         cZKrYPcVYkD5RltF8wJc2ZonFH0Ul2+VTErhirfK2XnhOksAR62vx3ta18oqcDiIL9nG
+         96HHXvDB39Qw/recwLnUbGLbEcBqSTrfXSOYmvx0fo8hpwqZ0sNTd9nc0FXk/wp2Kna9
+         FABQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9JeM9ehZdQrwKrmWN+FBqc9TRPc0aD7asgx8WyiRWjqzVBlJ+K7My5HNHtsX0miwmc/Wkx+F9yHMj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoSAAktaCtxp3RfF1ggXNp5dcoynDQAl5AoyL8Q+ZBTpy0GsGv
+	vTwlMJBldnuOI9qrWdemy+DIKxOlVBw9QRgyCOPCjPlmX8yEzhsWz+QjeGyhR6wIB45arYZ8X2p
+	VZkh2PjeTwsstfOSDKbj41szEojby8WFVdniPru015Q==
+X-Gm-Gg: ASbGncs6oS4o3o0Y6G1RK/SLdynl557gZMMd/4CzFO/fq0vVpf0rCwsw4JXa4y7CD6t
+	G7vXOgBA3a7NM3e6eaku/Jvj98IeX1HeINezd9sY6kBOpFBsZdvJ8soLm1u3t1pECV6pK3TYOM7
+	vXDHmdKXjknspq/tuGEDVDd0JT23WXINzhbfs8lEjZJpI=
+X-Google-Smtp-Source: AGHT+IHVGgFPaQG0OhPXqsCqY9LUDkKPUDQE3Jy/DgzWX341H6DxvHpFRsv8n2zH9CF8v26QIPfqbwftMAeHyo7UZV4=
+X-Received: by 2002:a05:6512:b9e:b0:553:a64a:18b0 with SMTP id
+ 2adb3069b0e04-553b6f3ed33mr5548057e87.42.1750322500571; Thu, 19 Jun 2025
+ 01:41:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net> <20250606-6-10-rocket-v7-1-dc16cfe6fe4e@tomeuvizoso.net>
-In-Reply-To: <20250606-6-10-rocket-v7-1-dc16cfe6fe4e@tomeuvizoso.net>
-From: Robert Foss <rfoss@kernel.org>
-Date: Thu, 19 Jun 2025 10:39:11 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi5Q_az2zYGLhNxvxmpZdHXusE-Uxwe9N0nWobdGQSVjQQ@mail.gmail.com>
-X-Gm-Features: AX0GCFtRCeI0XKT_8-8WC0wDHRHS1a_MhotfcVvZBvXr_sxNNlpYqYYLoNopHpg
-Message-ID: <CAN6tsi5Q_az2zYGLhNxvxmpZdHXusE-Uxwe9N0nWobdGQSVjQQ@mail.gmail.com>
-Subject: Re: [PATCH v7 01/10] accel/rocket: Add registers header
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
-	Robin Murphy <robin.murphy@arm.com>, Daniel Stone <daniel@fooishbar.org>, Da Xue <da@libre.computer>, 
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org
+References: <20250613-hdp-upstream-v5-0-6fd6f0dc527c@foss.st.com>
+ <CAMRc=MeTmwgbHv9R_=GFmjkAV4Nvc-SeSCOz1k6pnGUrF+R9Mg@mail.gmail.com>
+ <CACRpkdax9ojguF1SAfiN9iZi=x3VFpCea6KnhzL3JBD9EXZepw@mail.gmail.com>
+ <CAMRc=Me8KZPU_KbbifL-j74GMPSuDgmmacw9g1UEfy=zeGyZcw@mail.gmail.com>
+ <CACRpkdYUr+82AKndieXm24Eg1-HY4LyfKZ9J_kTFKT1Nyyju1A@mail.gmail.com> <CAMRc=Meq9+hnmvjXnq-YUJRPOOBvAV+pjHQ25k1wgFqV30Vo=A@mail.gmail.com>
+In-Reply-To: <CAMRc=Meq9+hnmvjXnq-YUJRPOOBvAV+pjHQ25k1wgFqV30Vo=A@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 19 Jun 2025 10:41:29 +0200
+X-Gm-Features: AX0GCFu8Dbo5pcDv8ujsp9IKLDaddp4Y2N5p47cQpThWdtIAL2mf912Bw-JLnyM
+Message-ID: <CACRpkdYNRC14d-jBbJy9-0OfdXR2anUJ6osw+DWsLNPf4VymnQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/9] Introduce HDP support for STM32MP platforms
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 6, 2025 at 8:29=E2=80=AFAM Tomeu Vizoso <tomeu@tomeuvizoso.net>=
+On Thu, Jun 19, 2025 at 9:21=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl>=
  wrote:
->
-> A XML file was generated with the data from the TRM, and then this
-> header was generated from it.
->
-> The canonical location for the XML file is the Mesa3D repository.
->
-> v3:
-> - Make use of GPL-2.0-only for the copyright notice (Jeff Hugo)
->
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
-Reviewed-by: Robert Foss <rfoss@kernel.org>
+> Sorry I didn't notice this one. But I see you already responded that
+> you pulled my PR from today. Should I ignore it?
+
+Yeah ignore it, let's use your PR instead.
+
+Yours,
+Linus Walleij
 
