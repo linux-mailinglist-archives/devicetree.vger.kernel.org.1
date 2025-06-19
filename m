@@ -1,169 +1,100 @@
-Return-Path: <devicetree+bounces-187466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF3FADFFE4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B72AE0007
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:39:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8F7F19E2CB3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34B9F19E0C0F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C3927FD53;
-	Thu, 19 Jun 2025 08:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D206D26463E;
+	Thu, 19 Jun 2025 08:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Pb8k3kX/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Csh8OR/p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6DF27FB2A;
-	Thu, 19 Jun 2025 08:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED8C264618
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750322028; cv=none; b=ec8+oqS+pIZxZQWboGuPTjYIzUR73xq+HdaXzNrG8gVaJUTkv1T+s/68f9Cjs102PupNdGCfn+0jkCtVZAgqlC1v/mBRnAOhEU0vwyONzN1kyVBnKq/G+3WHmcz5L0MdglUnaeGnAU4PWyYdk0n2NJC1JGXbyTxNAC0mCfCqeN8=
+	t=1750322363; cv=none; b=bOQcMZNQQ6BiaCivOp1/rNmGt4oLqJGRtSi7DJ4dgsndoFPmVDOsmZXVENVyocySKgzxZrwnVlH++Vq9JdcvoD0t8gFKjYYd8G1bypPeVwpmAlqin38fGaoXjronNidRcaMvToMaaIuxlX9gLKpTM/0kfyJKYx/FD4nen0FYXVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750322028; c=relaxed/simple;
-	bh=Wy1UKlPMJxFgQotHhYltNJD9kZi54UdcAipelI9JT1M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Rjt8FjbO2oxHg91lQQbcpxWy86HsnbduVHdwCPVZXzszDX1qf75KiuFB4rNgy6YXh8TeDmb78Kwi6+KceNnd0vVowuCpF0A3rlYjCJBO/pxx1+WlMX3oLhMjKgBGNrwOdUOx62l0WOIbZzB8n4WHT20LgFypIiNoCxC+yFqMsCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Pb8k3kX/; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55J8XMQR532765;
-	Thu, 19 Jun 2025 03:33:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1750322002;
-	bh=2JTcC8uoCOSM0+5JiXWDBYfybPyfdDoEoObObpyrYRk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Pb8k3kX/r1jnFe/WEbbreOL/yDgBTgd73YVFDTq4jom9bvHeiqyV2xiyuY/kzAGKF
-	 vrlEsjMc8DjztNfoMraHrUAWcUlXHw/IbFBERcJ4SiJ8LebEwy7lw0IMGcr2rSmUsE
-	 ktuVEgZPBmP1Vvk34+fQFkwbLnI2gHF7upicEKUU=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55J8XMPc3732274
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 19 Jun 2025 03:33:22 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 19
- Jun 2025 03:33:21 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 19 Jun 2025 03:33:21 -0500
-Received: from [172.24.227.4] (hp-z2-tower.dhcp.ti.com [172.24.227.4])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55J8XHnY822301;
-	Thu, 19 Jun 2025 03:33:18 -0500
-Message-ID: <5c56f6d6-fc3e-40a1-b501-7f1054e6e408@ti.com>
-Date: Thu, 19 Jun 2025 14:03:17 +0530
+	s=arc-20240116; t=1750322363; c=relaxed/simple;
+	bh=Af1OBCdjmgbt/lD9KT32L5IXYHmC0HvCKLNQiW6fK9w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R8f7FuZP+oPsiGNLyEZK++Bb6HEAW/uoKJVle6P7doSkOJShNe/u7xmMRSCmoEQyDJz30h6+p7ddcXnvdMXNfqF2hmZzNsm8b73OaL6ex9BmqckRaBx8QVaZt0v7P9nGwo/hlbk/eZFJUj/4EkRD+JkpEmc8Ao38BW1g8FRKT0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Csh8OR/p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EAACC4CEF5
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 08:39:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750322363;
+	bh=Af1OBCdjmgbt/lD9KT32L5IXYHmC0HvCKLNQiW6fK9w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Csh8OR/pk9BFeNnwmvLfFJG2JwmWeRuYOUoDSa+zSj9lRB1ZY/XlsL5cqON4UBYfT
+	 ioVVAYqhvrTTZakzEiywyCQXZEcqZiTfWyccel4wCkjQfX3nM8Y1r//TP2rQrDIh63
+	 QUSKrx/IeUGfqXERYQNcTYfEZIU3c0+dCr4+OJE2xeIZk5+Y6iOwlP4LCKbcGzppg6
+	 YoBeAFYEidFfiV5gZwsYBXEexzL+0qcll7sNXfjMQ4sYlALzp8sr8t1hHYodFaiAkw
+	 eEAI4C12T8jRtDiKMcZltn2jtsqJKFJPASK52m27RswXlJ/2qWJwm/dCtoZKo/mpyn
+	 clP11XuDD/OmA==
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e8187601f85so552519276.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 01:39:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXrLWZ5BQx8V1HBZVXjy2RX0vgz6YsQyT5Wgs3eTIR+symLx7SLZGjmcSnDDYIwX/FlriEKzdUNc56G@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX4BUlaIpum7qu5Fl68Lf9onb0BGg+f8oAueH4Te5LB/CaRWK8
+	ZS6LumiVMfzuILeXnvzDtuG2iSdghCTD8LvzglOgKFYRdjuOue9YhMspqjSkmR4+I2xEhbwM4C2
+	aZZDX3bCjjUUeucK+RtO8wnF79iG0azBLxuZebSRWfg==
+X-Google-Smtp-Source: AGHT+IHFhbTPC3IHdAEhse776L10W8aRjQW3q5wXxAWG0QvKzfsbI08GKkjb4oJHnymnKzxYSdGNC0f44vXXp8PZN6Y=
+X-Received: by 2002:a05:6902:707:b0:e81:838b:c58c with SMTP id
+ 3f1490d57ef6-e822ac0a614mr27592560276.20.1750322362356; Thu, 19 Jun 2025
+ 01:39:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am642-evm-pcie0-ep: Add boot phase
- tag to "pcie0_ep"
-To: Vignesh Raghavendra <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <danishanwar@ti.com>, Hrushikesh Salunke <h-salunke@ti.com>
-References: <20250610054920.2395509-1-h-salunke@ti.com>
- <98e04654-a693-494d-9f60-930b6a4cd84a@ti.com>
- <b24a97fc-8dac-443b-aec7-317b9e393f2d@ti.com>
- <f6a57a82-c534-4439-a337-8592c2e121c5@ti.com>
- <28c88a78-fe34-4595-b260-c6cc40897bc1@ti.com>
-Content-Language: en-US
-From: Hrushikesh Salunke <h-salunke@ti.com>
-In-Reply-To: <28c88a78-fe34-4595-b260-c6cc40897bc1@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250606-6-10-rocket-v7-0-dc16cfe6fe4e@tomeuvizoso.net> <20250606-6-10-rocket-v7-1-dc16cfe6fe4e@tomeuvizoso.net>
+In-Reply-To: <20250606-6-10-rocket-v7-1-dc16cfe6fe4e@tomeuvizoso.net>
+From: Robert Foss <rfoss@kernel.org>
+Date: Thu, 19 Jun 2025 10:39:11 +0200
+X-Gmail-Original-Message-ID: <CAN6tsi5Q_az2zYGLhNxvxmpZdHXusE-Uxwe9N0nWobdGQSVjQQ@mail.gmail.com>
+X-Gm-Features: AX0GCFtRCeI0XKT_8-8WC0wDHRHS1a_MhotfcVvZBvXr_sxNNlpYqYYLoNopHpg
+Message-ID: <CAN6tsi5Q_az2zYGLhNxvxmpZdHXusE-Uxwe9N0nWobdGQSVjQQ@mail.gmail.com>
+Subject: Re: [PATCH v7 01/10] accel/rocket: Add registers header
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
+	Robin Murphy <robin.murphy@arm.com>, Daniel Stone <daniel@fooishbar.org>, Da Xue <da@libre.computer>, 
+	Jeff Hugo <jeff.hugo@oss.qualcomm.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Jun 6, 2025 at 8:29=E2=80=AFAM Tomeu Vizoso <tomeu@tomeuvizoso.net>=
+ wrote:
+>
+> A XML file was generated with the data from the TRM, and then this
+> header was generated from it.
+>
+> The canonical location for the XML file is the Mesa3D repository.
+>
+> v3:
+> - Make use of GPL-2.0-only for the copyright notice (Jeff Hugo)
+>
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
-
-On 19/06/25 13:25, Vignesh Raghavendra wrote:
-> 
-> 
-> On 12/06/25 15:46, Hrushikesh Salunke wrote:
->>
->>
->> On 11/06/25 14:17, Hrushikesh Salunke wrote:
->>>
->>>
->>> On 11/06/25 14:14, Vignesh Raghavendra wrote:
->>>>
->>>>
->>>> On 10/06/25 11:19, Hrushikesh Salunke wrote:
->>>>> AM64X SoC has one instance of PCIe which is PCIe0. To support PCIe boot
->>>>> on AM64X SoC, PCIe0 needs to be in endpoint mode and it needs to be
->>>>> functional at all stages of PCIe boot process. Thus add the
->>>>> "bootph-all" boot phase tag to "pcie0_ep" device tree node.
->>>>>
->>>>> Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
->>>>> ---
->>>>> This patch is based on commit
->>>>> 475c850a7fdd Add linux-next specific files for 20250606
->>>>>
->>>>> Changes since v1
->>>>> As per feedback from Nishanth, changed the position of "bootph-all"
->>>>> tag, according to ordering rules for device tree properties.
->>>>>
->>>>> v1 : https://lore.kernel.org/
->>>>> all/20250609115930.w2s6jzg7xii55dlu@speckled/
->>>>>
->>>>>    arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso | 1 +
->>>>>    1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/
->>>>> arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
->>>>> index 432751774853..a7e8d4ea98ac 100644
->>>>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
->>>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
->>>>> @@ -46,6 +46,7 @@ pcie0_ep: pcie-ep@f102000 {
->>>>>            max-functions = /bits/ 8 <1>;
->>>>>            phys = <&serdes0_pcie_link>;
->>>>>            phy-names = "pcie-phy";
->>>>> +        bootph-all;
->>>>>            ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
->>>>>        };
->>>>>    };
->>>>
->>>> Are the patches for PCIe boot support merged to U-Boot or such other
->>>> bootloader repo?
->>>> No, they are not in the U-Boot yet. I will be posting patches for PCIe
->>> boot support for U-Boot this week.
->>>
->>
->> I have posted Patch series for the PCIe boot support in Uboot.
-> 
-> 
-> Great, but dont you need bootph-all in dependent nodes as well such as
-> serdes0_pcie_link pcie0_ctrl? how does this work otherwise?
-> 
-
-When booting through PCIe, ROM configures SERDES for PCIe. So we don't
-need to reconfigure it again in subsequent bootstages, we can keep
-using the same configuration. As for PCIe endpoint controller, BAR
-registers and Address Translation registers needs to be re-configured
-at each bootstage, as bootloaders at different stage are stored at
-different memory location.
-
-
->>
->> 1.https://patchwork.ozlabs.org/project/uboot/
->> patch/20250612084910.3457060-1-h-salunke@ti.com/
->> 2. https://patchwork.ozlabs.org/project/uboot/
->> cover/20250612085023.3457117-1-h-salunke@ti.com/
->> 3. https://patchwork.ozlabs.org/project/uboot/
->> cover/20250612085534.3457522-1-h-salunke@ti.com/
->>
->>
->> Regards,
->> Hrushikesh.
-> 
+Reviewed-by: Robert Foss <rfoss@kernel.org>
 
