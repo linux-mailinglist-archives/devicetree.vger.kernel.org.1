@@ -1,193 +1,269 @@
-Return-Path: <devicetree+bounces-187579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54526AE087C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:20:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22531AE0878
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:20:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4C8F17C78B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:20:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B75763AB7D9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 14:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F2B21019C;
-	Thu, 19 Jun 2025 14:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C45E202F93;
+	Thu, 19 Jun 2025 14:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="IVbmkkhm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fud0b7Fs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2691D6187;
-	Thu, 19 Jun 2025 14:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750342809; cv=pass; b=k5y/jAyqOX9iAtuOPvt+jg+EHyQ7jSKWE6+I58bZkrnBPLCZQ+ez/nP3cwZWPC+OctkHj27fLdmoAfMfQoSASxx2l5+kw3FWkcq8Dm6/s0wpf6eBrghdCOndUyvZjn6JWHNHvOf6zSUQDPhYPagiCB2lvOXgzmBa+0O9hk0nWi0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750342809; c=relaxed/simple;
-	bh=0Cym437Fzw1lGFc5sfa9fLx57YRauPELSn/2mY5STGM=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0968F1D6187;
+	Thu, 19 Jun 2025 14:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750342802; cv=none; b=n1rUv8nh1s6dJCWbZDwItNNKvPelAwPbHZ8edxH9QDGWtJTWqwChprsY7wfMUcoj5+7kfzKUzQKIsGjAhaSxcyvgJGRCkRz/pjZ0jb+GB84RgTJIt/7x3AY2Ye11BMzVeaNv4c+XZuxIhkj2mFuKqCKMslvaxhZhfJ73L9qyUIE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750342802; c=relaxed/simple;
+	bh=H5+BZQf88SoLlAxFu9jt0X4tMdMAcn56sYbqSqbZaCk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BMCCByyk67BQ+dSaVwYIR7iHARODeek0aPh8fEf/DxAcH80VBkEko+tNpYHdvtIWJIncxU6Xmf0YIryf1rMlidEBzo2c5PWIu/NRVT2SYiXZYizYpozrMPyXrs1eq8aHB4DenlbZucHj/WY8EMvz7EkdzFYzOWrugvDP4iYdoVo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=IVbmkkhm; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750342780; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Sr5BuXOgL2KVTzPmp8+v1j9JhBQTMY363XCLrtS9H9Z9IZteGXR1fez9QbHoCQsH+3EZN1CWFqXzcb2IV8DAKGFVsdr1zPITYSNLVKlTLm+Drr0vmI2Po5BkEJt3e5ijl1o5ipkDy0R5W2Jxf+J4TuVY2Q/P8f833i+2hBMagEk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750342780; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=CEQBftYU5GEsq+N2TpwS8b8J87N/ZfaxNbCv461Psqg=; 
-	b=PUu6EExDbfETJz0GDpKE5VnemHaQxMu9+yF+YQ3zEgT6BPfEtuyA2kBNILwR4wJEH9LPS93Pu/xyqvYwEZVpi8Kjjo7mhZtxAdr+fDcwaa4N5W4l19AxjvoVB1BDHGANOXzIWzS94khBqTMpZ1eBdP969/rychvWGOJOuIOpeNA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750342780;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=CEQBftYU5GEsq+N2TpwS8b8J87N/ZfaxNbCv461Psqg=;
-	b=IVbmkkhmZn3/slqjttwKvzYB3/PzTbZ+Q9nrn4mD1bqlo/qqdLY1Eecb57hS5DTQ
-	5zbAuHsb7ODTYngCTv4umq5/Vcgp29Ig9IdOMI8K9Qm89m+AKYtUB15IC2Cam4FaZLA
-	iEMEvCYN2kweNdcr70RfhOGxNLUZjYdEzNC6o+AY=
-Received: by mx.zohomail.com with SMTPS id 17503427768471007.5123585560125;
-	Thu, 19 Jun 2025 07:19:36 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 3965E1805A8; Thu, 19 Jun 2025 16:19:32 +0200 (CEST)
-Date: Thu, 19 Jun 2025 16:19:32 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
-	nicolas.dufresne@collabora.com, jgg@ziepe.ca, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v3 2/5] dt-bindings: iommu: verisilicon: Add binding for
- VSI IOMMU
-Message-ID: <n5ddeogrpgctrljnxjfxqaz22qfnxsgm6ro7qihbjeyhd5br44@ojlzlz7gsuzb>
-References: <20250619131232.69208-1-benjamin.gaignard@collabora.com>
- <20250619131232.69208-3-benjamin.gaignard@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XEwauu104hybgqwN1vJAuVugQhmlW0zBVRgI1HemJZIYfh2PCLB6bRJL3WxF0zvSIAIfxgmZqPIpT9pn6t5U6TdtMGNtPiorLjoojsQ5miePISqtcC/MQgDwotOZobx/q1VrWrOLz4WuEFwD1JtIrl947/t/G+4qWl2OS/lwljU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fud0b7Fs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D62C4CEEA;
+	Thu, 19 Jun 2025 14:19:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750342801;
+	bh=H5+BZQf88SoLlAxFu9jt0X4tMdMAcn56sYbqSqbZaCk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fud0b7FsejVgRV5gn3u0v8TMuGq/HV7KrGNFhluWv0XSifzDg1WObMJW8Xgoo7hAS
+	 shcSetDWqX8wQCgkplJbETkhzn33AipF8X1+nmn4fPAIGE+cYpsZD3fB3OokafC8m8
+	 wLpL2NHuU1nhS4019Krctw8b4xzAUjAyAEivZ4RPpw/aLCV3ih16I5GC9syraHeSjJ
+	 3xJ2iyyBrTsYxPBtpobyq6ojN5z0cKdhJwI78WutHSAIXJp17jbRvILwI4skJZl/gt
+	 aCdBs7l+hh2S5l3on6nhqz0RYa/NBMSsnM0wbMQarUwYt+bCxwAEJAhkvwheRzB166
+	 xls8wd2iv0x9w==
+Date: Thu, 19 Jun 2025 15:19:56 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v5 06/20] mfd: adp5585: refactor how regmap defaults are
+ handled
+Message-ID: <20250619141956.GD795775@google.com>
+References: <20250614-dev-adp5589-fw-v5-0-7e9d84906268@analog.com>
+ <20250614-dev-adp5589-fw-v5-6-7e9d84906268@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hnoyd7gcbfhdjsab"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250619131232.69208-3-benjamin.gaignard@collabora.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.2/250.326.2
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250614-dev-adp5589-fw-v5-6-7e9d84906268@analog.com>
 
+On Sat, 14 Jun 2025, Nuno Sá via B4 Relay wrote:
 
---hnoyd7gcbfhdjsab
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/5] dt-bindings: iommu: verisilicon: Add binding for
- VSI IOMMU
-MIME-Version: 1.0
+> From: Nuno Sá <nuno.sa@analog.com>
+> 
+> The only thing changing between variants is the regmap default
+> registers. Hence, instead of having a regmap configuration for every
+> variant (duplicating lots of fields), add a chip info type of structure
+> with a regmap ID to identify which defaults to use and populate
+> regmap_config at runtime given a template plus the id. Also note that
+> between variants, the defaults can be the same which means the chip info
+> structure can be used in more than one compatible.
+> 
+> This will also make it simpler adding new chips with more variants.
+> 
+> Also note that the chip info structures are deliberately not const as
+> they will also contain lots of members that are the same between the
+> different devices variants and so we will fill those at runtime.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  drivers/mfd/adp5585.c       | 81 +++++++++++++++++++++++----------------------
+>  include/linux/mfd/adp5585.h | 11 ++++++
+>  2 files changed, 53 insertions(+), 39 deletions(-)
 
-Hi,
+Very close.  Couple of nits.
 
-On Thu, Jun 19, 2025 at 03:12:23PM +0200, Benjamin Gaignard wrote:
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: verisilicon,iommu
-> +      - const: rockchip,rk3588-iommu-1.2
+NB: When you next submit, could you please ensure all subject match the
+style expected by the subsystem.  In the case of MFD, it's:
 
-The entries should be ordered the other way around, so that the
-"generic" compatible is the fallback. Also the 1.2 version is from
-Verisilicon. It does not really make sense for Rockchip. So I
-think it should look like this:
+mfd: <driver>: Succinct subject line starting with an uppercase char
 
-properties:
-  compatible:
-    items:
-      - const: rockchip,rk3588-av1-iommu
-      - const: verisilicon,iommu-1.2
+> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> index c764f481875831ff55bccb8cdc59421719afbedd..ec88adbace92791f10953fc2bbb463fc59557bd6 100644
+> --- a/drivers/mfd/adp5585.c
+> +++ b/drivers/mfd/adp5585.c
+> @@ -81,42 +81,37 @@ static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
+>  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
+>  };
+>  
+> -enum adp5585_regmap_type {
+> -	ADP5585_REGMAP_00,
+> -	ADP5585_REGMAP_02,
+> -	ADP5585_REGMAP_04,
+> +/* -1 since the enum starts at 1 for error checking in i2c_get_match_data() */
 
-Otherwise LGTM.
+This comment is no longer applicable.
 
--- Sebastian
-
+> +static const u8 *adp5585_regmap_defaults[ADP5585_MAX] = {
+> +	[ADP5585_00] = adp5585_regmap_defaults_00,
+> +	[ADP5585_01] = adp5585_regmap_defaults_00,
+> +	[ADP5585_02] = adp5585_regmap_defaults_02,
+> +	[ADP5585_03] = adp5585_regmap_defaults_00,
+> +	[ADP5585_04] = adp5585_regmap_defaults_04,
+>  };
+>  
+> -static const struct regmap_config adp5585_regmap_configs[] = {
+> -	[ADP5585_REGMAP_00] = {
+> -		.reg_bits = 8,
+> -		.val_bits = 8,
+> -		.max_register = ADP5585_MAX_REG,
+> -		.volatile_table = &adp5585_volatile_regs,
+> -		.cache_type = REGCACHE_MAPLE,
+> -		.reg_defaults_raw = adp5585_regmap_defaults_00,
+> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
+> -	},
+> -	[ADP5585_REGMAP_02] = {
+> -		.reg_bits = 8,
+> -		.val_bits = 8,
+> -		.max_register = ADP5585_MAX_REG,
+> -		.volatile_table = &adp5585_volatile_regs,
+> -		.cache_type = REGCACHE_MAPLE,
+> -		.reg_defaults_raw = adp5585_regmap_defaults_02,
+> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
+> -	},
+> -	[ADP5585_REGMAP_04] = {
+> -		.reg_bits = 8,
+> -		.val_bits = 8,
+> -		.max_register = ADP5585_MAX_REG,
+> -		.volatile_table = &adp5585_volatile_regs,
+> -		.cache_type = REGCACHE_MAPLE,
+> -		.reg_defaults_raw = adp5585_regmap_defaults_04,
+> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
+> -	},
+> +static const struct regmap_config adp5585_regmap_config_template = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = ADP5585_MAX_REG,
+> +	.volatile_table = &adp5585_volatile_regs,
+> +	.cache_type = REGCACHE_MAPLE,
+> +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
+>  };
+>  
+> +static struct regmap_config *adp5585_fill_regmap_config(const struct adp5585_dev *adp5585)
+> +{
+> +	struct regmap_config *regmap_config;
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Core clock
-> +      - description: Interface clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: iface
-> +
-> +  "#iommu-cells":
-> +    const: 0
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - "#iommu-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    bus {
-> +      #address-cells =3D <2>;
-> +      #size-cells =3D <2>;
-> +
-> +      iommu@fdca0000 {
-> +        compatible =3D "verisilicon,iommu","rockchip,rk3588-iommu-1.2";
-> +        reg =3D <0x0 0xfdca0000 0x0 0x600>;
-> +        interrupts =3D <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        clocks =3D <&cru ACLK_AV1>, <&cru PCLK_AV1>;
-> +        clock-names =3D "core", "iface";
-> +        #iommu-cells =3D <0>;
-> +      };
-> +    };
-> --=20
-> 2.43.0
->=20
+> +	regmap_config = devm_kmemdup(adp5585->dev, &adp5585_regmap_config_template,
+> +				     sizeof(struct regmap_config), GFP_KERNEL);
 
---hnoyd7gcbfhdjsab
-Content-Type: application/pgp-signature; name="signature.asc"
+sizeof(*regmap_config)
 
------BEGIN PGP SIGNATURE-----
+> +	if (!regmap_config)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	regmap_config->reg_defaults_raw = adp5585_regmap_defaults[adp5585->variant];
+> +	return regmap_config;
+> +}
+> +
+>  static int adp5585_add_devices(struct device *dev)
+>  {
+>  	int ret;
+> @@ -147,7 +142,7 @@ static void adp5585_osc_disable(void *data)
+>  
+>  static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  {
+> -	const struct regmap_config *regmap_config;
+> +	struct regmap_config *regmap_config;
+>  	struct adp5585_dev *adp5585;
+>  	unsigned int id;
+>  	int ret;
+> @@ -157,8 +152,16 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  		return -ENOMEM;
+>  
+>  	i2c_set_clientdata(i2c, adp5585);
+> +	adp5585->dev = &i2c->dev;
+> +
+> +	adp5585->variant = (enum adp5585_variant)(uintptr_t)i2c_get_match_data(i2c);
+> +	if (!adp5585->variant)
+> +		return -ENODEV;
+> +
+> +	regmap_config = adp5585_fill_regmap_config(adp5585);
+> +	if (IS_ERR(regmap_config))
+> +		return PTR_ERR(regmap_config);
+>  
+> -	regmap_config = i2c_get_match_data(i2c);
+>  	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
+>  	if (IS_ERR(adp5585->regmap))
+>  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+> @@ -212,19 +215,19 @@ static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
+>  static const struct of_device_id adp5585_of_match[] = {
+>  	{
+>  		.compatible = "adi,adp5585-00",
+> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> +		.data = (void *)ADP5585_00,
+>  	}, {
+>  		.compatible = "adi,adp5585-01",
+> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> +		.data = (void *)ADP5585_01,
+>  	}, {
+>  		.compatible = "adi,adp5585-02",
+> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_02],
+> +		.data = (void *)ADP5585_02,
+>  	}, {
+>  		.compatible = "adi,adp5585-03",
+> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> +		.data = (void *)ADP5585_03,
+>  	}, {
+>  		.compatible = "adi,adp5585-04",
+> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_04],
+> +		.data = (void *)ADP5585_04,
+>  	},
+>  	{ /* sentinel */ }
+>  };
+> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
+> index 016033cd68e46757aca86d21dd37025fd354b801..c56af8d8d76c4ebc0ede1ee4769ca059de29f53c 100644
+> --- a/include/linux/mfd/adp5585.h
+> +++ b/include/linux/mfd/adp5585.h
+> @@ -119,8 +119,19 @@
+>  
+>  struct regmap;
+>  
+> +enum adp5585_variant {
+> +	ADP5585_00 = 1,
+> +	ADP5585_01,
+> +	ADP5585_02,
+> +	ADP5585_03,
+> +	ADP5585_04,
+> +	ADP5585_MAX
+> +};
+> +
+>  struct adp5585_dev {
+> +	struct device *dev;
+>  	struct regmap *regmap;
+> +	enum adp5585_variant variant;
+>  };
+>  
+>  #endif
+> 
+> -- 
+> 2.49.0
+> 
+> 
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhUHGUACgkQ2O7X88g7
-+prRww//e+aSThtmJ810xji+RnvlWS2wXqSSig1uhBCoEFpCcWL8o04mLBsHlg+t
-QEXbDsWRcs2dstJ8R/0zTskv4dXptRsA99DDBw0oqFXDVT7DA5brVDSL36BMDKW9
-KI8KYrP1V2RpeV86Ry3q1ETRVGmiBUfN33KWDRuUDMMIW0/VIynan07sZap/0Cz4
-vxTOJ0KiLchDa92nzX2bqn0UldSlFJct4G8sVfDJui9zTpw4RmMA+5IL6c+qC/jq
-yIbHUniQVieY8q1vwAYkbw2VigzMeU/+rv/4EIuHB8lyhoMQwtGb/Zo6Dt2NgwmX
-Vad1qXEzE5HIc/4V9PjXAU+mCOcnmEhSGFRGCkbZFmirMRbpErNd/yxVvgcxP3Fy
-3IFoIkzZN9wc0aGOdWOH1Y/y5SwQHP31RRNwAlc2rQCdUQNkKUjXls7Im8Om40cD
-pJpTDGTUX0PJUg6Cq+0CmVPsIa+KMN6l2QzThllthrJICmoDvBsTROg7eQJ5sfYF
-fUTDG6G1I+MwrxgWyVtP+6C46xrXaKW+ny9XB5Cw3lITNPXTsIGugzwCZzMN85Cr
-d/KwLnOdfVykNTLDbWtkmViXDy3G7vT1lBymWPaiIxSygNjUPvcH6lELbi5hQkSS
-ys0Hb/aioLfK3y/Oz1mqsqRAcTtA96j2UxwUchBfUyRk0e9Do/A=
-=wgbS
------END PGP SIGNATURE-----
-
---hnoyd7gcbfhdjsab--
+-- 
+Lee Jones [李琼斯]
 
