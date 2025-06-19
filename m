@@ -1,165 +1,171 @@
-Return-Path: <devicetree+bounces-187686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C0EAE0EC6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 22:54:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05BE9AE0ECE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 23:03:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49D981BC47E8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:55:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 557931BC7C5F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23AE925D558;
-	Thu, 19 Jun 2025 20:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C18253B43;
+	Thu, 19 Jun 2025 21:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aDz8+r9I"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nHzBpkMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9585D21D5B2
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 20:54:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C761E244693;
+	Thu, 19 Jun 2025 21:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750366493; cv=none; b=Gkp9SNj9rLUGc939M7ng2MfTjcDjlndyVWRNGEQYibGWEIFTmE+ykEoocUp4AGtLZvfVh846HfWDPeC+VzQho0KTeBNfUT7sZdl+Yl4zdkpYV/KHnpt3qi81ZpXK3UHARYWGZP232OoDmfPDsEjNKBw0A1x/UoT0qvRrIjReiQQ=
+	t=1750366979; cv=none; b=TD2vqAs8vB6YESw2TG+p3dMUUaX1NhV58aXyWkOudjMYBKB9/gQI3OUy2Y8pzZtxO9tBJI5YoygiccQmvAHIJBxSQ97yLh+PYm8lIL/6zJdzlWnh4vhicj8sBJrpmcebvHBisKL9sFp95836PItMRv78NkRCWkfm1Q8K7yJKMrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750366493; c=relaxed/simple;
-	bh=V76wWtfNssZuJeL7jIN/TzprmpMDK9ODtvOoXZpS9a0=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dcBI6mc2NvR4yiE+B/pAUCYOYMjCCzcEwazMv1o5Iam8HcKNloSa1H7DrPfEEc2HfPjpyhLtUk3AsVppdsI7mx1nAsTwc3F//1ubP7bk1cnAss3+KSmPXHI7SgN+lw94kRhnDFCMJrAUQ04ahlRVI/Tm6vagIox7+ZSVl1RsBaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aDz8+r9I; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55JCg0CY005657
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 20:54:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=2jzLK9E63pyYq1kVv2ZUpQ6X
-	CYSuynTHjbdFSuxz/xI=; b=aDz8+r9IhTgz4pHFJAzbfqs0AYT/p+vDaiel3i1A
-	XHoZGdNokpPD5IzCx5+M5A39VRqlxvAQizXbBPqBWu+1IlEUh88FekbGFQozXCxr
-	ouQikmEFPuc+lMhevA+HYUgcGpUuoBO9cn9UMu2FCzNq7BYsOljF3fAHr/R5jTyd
-	18o8bhN+2Zka5Cr9wIhLFlVcXqZ1sC5iaPw+MMgaHhH86NgG8eaofrzCyMrb5T9s
-	L8GKQDxtQ47Bo0eRcL9dAN04pr0sC0UnuWAJM95oUePDS914yW0+EQ77nEzs6CeI
-	ej1Hq6Ivik+MAc7NwMNvqch+nc67b0mPSXj41IuifUbQDw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47c0rvmbvw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 20:54:50 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5e28d0cc0so153849385a.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 13:54:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750366489; x=1750971289;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2jzLK9E63pyYq1kVv2ZUpQ6XCYSuynTHjbdFSuxz/xI=;
-        b=eghPOy48cmVwgRzrl7t4MoSB0UOJfA1KwFCuPjCvUciuXYDWhr/Zy2xeXEs7sCRfL5
-         J/p9vrzKe7KGK5B3a2GINRVjs6eJ3YHb8Q0luxsiYyTW3/PXPdtrdPLCxSyP/AZZZcoX
-         zLt7cp0YatWpywGuUQ+daruPLI4QAYF7uN0jGvvYJUpIfjUYOKOvAHZH6MEVxnN8g0qJ
-         VKzcWnTTShQeouv5h+T5egL7N5rpCtQdjF6aCrvfWHXq9MyXTDMfXQgjyLlcSBB60/PU
-         Zv2QqU6nXDPX4apmFyX8sOyWTETOXAEefB1V3wTzv5eZWwEFj8i9wVr0bxKnK2eWnnkl
-         HoQg==
-X-Forwarded-Encrypted: i=1; AJvYcCWbQrLgjz070aTCT2vJwl6qPFxHJYy1DpjiH7iFSo/8G4hog9xxiASWIxEEy93z9Pc7xHeSxd+gf70w@vger.kernel.org
-X-Gm-Message-State: AOJu0YynrmDljgplGdjRXRNUaUy/pYmjdIY4dCL4rA8qTk7mjMCbLtAh
-	q8zJ2nY58jLAUlUsQG+p/Gt0t3K7onMPNIdin75XAGb3eOPsZLO/gr5bCU2HhLCzwlmekF344/B
-	VGbuu+oz4Cf80Wf+0QZg/sya14PpwbNKAOhXGr49qk+0FTsYrg0Kkf7xgUjlIIa67
-X-Gm-Gg: ASbGncsznQJRFZ1bJGqEZiBggMhzbcvgjtORE5+IT6Y+RtYewSz0LjpfWLI0JurwIge
-	FLtCLL3w1VilJHPKS6QtwuoBipsIOPCmddFGjBjXqnVSGz5pG+eDmbs4O5suaxAdKjKdSDOSPCc
-	s+4s5dzcqkR0sa1weFXLBVKtFigOe1cIh9kF9KVUn7zpyLHl+YDiiNMxzRiiDuSQbb2wo6jBDbk
-	CFDMV44xgtzVVjgwj0inpr8ajEV9n5g4YHggYRs7e+JfVikV2fb2/Ue4ADFiHYD+KX4gkvoPPwV
-	2s3E3tFx31s8PRrMcjORNTIvgiXE0C3ESZaXsCX+DRiunbPWFkDM2L5IjQ==
-X-Received: by 2002:a05:620a:44d4:b0:7c7:b4aa:85bc with SMTP id af79cd13be357-7d3f98c9736mr78861885a.17.1750366489468;
-        Thu, 19 Jun 2025 13:54:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFkpeI51MxI0xEdFKrJEvaOGoAVyfUsMbYCSR52G26n+A57buXYC0rJ8WA024sdRvFNlTca8g==
-X-Received: by 2002:a05:620a:44d4:b0:7c7:b4aa:85bc with SMTP id af79cd13be357-7d3f98c9736mr78860185a.17.1750366489005;
-        Thu, 19 Jun 2025 13:54:49 -0700 (PDT)
-Received: from trex (132.red-79-144-190.dynamicip.rima-tde.net. [79.144.190.132])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453646cb5a8sm5065545e9.7.2025.06.19.13.54.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jun 2025 13:54:48 -0700 (PDT)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Thu, 19 Jun 2025 22:54:47 +0200
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>, quic_vgarodia@quicinc.com,
-        quic_dikshita@quicinc.com, mchehab@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-        konradybcio@kernel.org, stanimir.k.varbanov@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] media: venus: Add QCM2290 support with AR50_LITE
- core
-Message-ID: <aFR5F7zEmMzYDxWR@trex>
-References: <20250613140402.3619465-1-jorge.ramirez@oss.qualcomm.com>
- <20250619142012.1768981-1-jorge.ramirez@oss.qualcomm.com>
- <672b5db1-e045-4625-bad6-83224c27c07f@linaro.org>
- <aFQg6x+FxXDY4P5m@trex>
- <66edbe65-a137-4661-b0c8-8a6813635c44@linaro.org>
+	s=arc-20240116; t=1750366979; c=relaxed/simple;
+	bh=cMcgUkKcU4XsVXe3puMc1IqvW3rgKBUEbIiiJLipLQI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wwz1v7ITBtacYHTNB9HGJGGhoDm6NSLc4iNn9cx6wxqHHL/nRBUg3T68bTR+v+/vxeEdGSScFnqhhOZVCQ/n9hKECOxdKt4YDfwk8+p6oNLWXMgGtsuurzVBl+Xc4f6pqJDp5g1/eIOaqhh1/a9o93OtZKWpgR/2OahuezprUNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nHzBpkMp; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EE9192EC;
+	Thu, 19 Jun 2025 23:02:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1750366962;
+	bh=cMcgUkKcU4XsVXe3puMc1IqvW3rgKBUEbIiiJLipLQI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nHzBpkMpW+52bQS9MZNB33ymQm5kq4+JmXeNbxNXzA99jYVDEyEzQxuNgb231G0vw
+	 p9w1Q2rETQcwko4GJ8gIE6Fky1RgWDPPfJ3wYVTN6SdwEkcjARLPrpURRXbzR2YeF8
+	 dGpVql/nGJTd4hl4rsPmDL4igkyFSI1zJgZjmn38=
+Date: Fri, 20 Jun 2025 00:02:37 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Adam Ford <aford173@gmail.com>, Frank Li <Frank.li@nxp.com>,
+	Isaac Scott <isaac.scott@ideasonboard.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Purism Kernel Team <kernel@puri.sm>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 6/8] dt-bindings: media: nxp,imx-mipi-csi2: Add
+ fsl,num-channels property
+Message-ID: <20250619210237.GA21935@pendragon.ideasonboard.com>
+References: <20250608235840.23871-1-laurent.pinchart@ideasonboard.com>
+ <20250608235840.23871-7-laurent.pinchart@ideasonboard.com>
+ <aEb+iTlDh0H/bRMY@lizhi-Precision-Tower-5810>
+ <CAHCN7xJjR1zZXeJAvkXmdNYroP6Jm6TLjHjnPUOF4z7yaL7EFw@mail.gmail.com>
+ <20250609182033.GA11428@pendragon.ideasonboard.com>
+ <aEcxN7xClLfp0STx@lizhi-Precision-Tower-5810>
+ <20250610081829.GC11428@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <66edbe65-a137-4661-b0c8-8a6813635c44@linaro.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE5MDE3MCBTYWx0ZWRfX0pnLeG8RFeTT
- KrEhQzkY9bcvDGdR9P2homOpWdBEXrS44jybCzqS/pHbmDaTw+vMaYH1TAaSnOIa6JdWjiJaDFj
- cRwz5sgKWbj8Zy6eyB7jH1TgQsKJf5ndsgNFs4MlkO64WWUwGw627vPdz8K7SJCUZ3piKCg6Wk3
- 6SQ5EkyM0+1l1VI6epfjEdqcqgZdENFBaHvhGSct3Tct5Jxnd8+rfiHjhLi0udGpOlL9o73aX1i
- 5k22gXLttVg+n/C62ts9S1x+ZEjL+S7BM8VXju+1jw3zpZ8eXLOiDrJxWg5L/EGac+oBqgLsjiN
- oqNpONFn+cEDiRxbp0f9DC1XML5k3R5fUbEZuR5zqPSNEq+uHKV81/esKewJwzJu1Gz7GPJ+MFa
- lLblU/dzuJHrW/yFT8z6dt+P3JIAWO7SrheLnzQsSD/fqJfgxDsLYrDZXDv7aHcC4+pRww/E
-X-Proofpoint-GUID: qw1q6-ZQ-ai6u8aFBFwQ3SKW3w3TAIez
-X-Authority-Analysis: v=2.4 cv=btJMBFai c=1 sm=1 tr=0 ts=6854791a cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=wjE3nLva0YkvARyJ+Gfmxg==:17
- a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=nbKgHqp8-yig3D_XBBYA:9
- a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-ORIG-GUID: qw1q6-ZQ-ai6u8aFBFwQ3SKW3w3TAIez
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-19_07,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 clxscore=1015 malwarescore=0 spamscore=0 mlxlogscore=999
- bulkscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506190170
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250610081829.GC11428@pendragon.ideasonboard.com>
 
-On 19/06/25 20:43:46, Bryan O'Donoghue wrote:
-> On 19/06/2025 15:38, Jorge Ramirez wrote:
-> > > WARNING: Argument '_1' is not used in function-like macro
-> > > #42: FILE: drivers/media/platform/qcom/venus/core.h:546:
-> > > +#define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME /* _1-_4 are ignored */
-> > > 
-> > > WARNING: Argument '_2' is not used in function-like macro
-> > > #42: FILE: drivers/media/platform/qcom/venus/core.h:546:
-> > > +#define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME /* _1-_4 are ignored */
-> > > 
-> > > WARNING: Argument '_3' is not used in function-like macro
-> > > #42: FILE: drivers/media/platform/qcom/venus/core.h:546:
-> > > +#define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME /* _1-_4 are ignored */
-> > > 
-> > > WARNING: Argument '_4' is not used in function-like macro
-> > > #42: FILE: drivers/media/platform/qcom/venus/core.h:546:
-> > > +#define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME /* _1-_4 are ignored */
+On Tue, Jun 10, 2025 at 11:18:29AM +0300, Laurent Pinchart wrote:
+> On Mon, Jun 09, 2025 at 03:08:39PM -0400, Frank Li wrote:
+> > On Mon, Jun 09, 2025 at 09:20:33PM +0300, Laurent Pinchart wrote:
+> > > On Mon, Jun 09, 2025 at 12:53:48PM -0500, Adam Ford wrote:
+> > > > On Mon, Jun 9, 2025 at 10:32 AM Frank Li wrote:
+> > > > > On Mon, Jun 09, 2025 at 02:58:38AM +0300, Laurent Pinchart wrote:
+> > > > > > The CSI-2 receiver can be instantiated with up to four output channels.
+> > > > > > This is an integration-specific property, specify the number of
+> > > > > > instantiated channels through a new fsl,num-channels property. The
+> > > > > > property is optional, and defaults to 1 as only one channel is currently
+> > > > > > supported by drivers.
+> > > > > >
+> > > > > > The only known SoC to have more than one channel is the i.MX8MP. As the
+> > > > > > binding examples do not cover that SoC, don't update them.
+> > > > > >
+> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/media/nxp,imx-mipi-csi2.yaml       | 7 +++++++
+> > > > > >  1 file changed, 7 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
+> > > > > > index db4889bf881e..41ad5b84eaeb 100644
+> > > > > > --- a/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
+> > > > > > @@ -68,6 +68,13 @@ properties:
+> > > > > >      default: 166000000
+> > > > > >      deprecated: true
+> > > > > >
+> > > > > > +  fsl,num-channels:
+> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > +    description: Number of output channels
+> > > > > > +    minimum: 1
+> > > > > > +    maximum: 4
+> > > > > > +    default: 1
+> > > > > > +
+> > > > >
+> > > > > Look like it is fixed value for each compabiable string, So it is not
+> > > > > suitable for adding new property. It should be in driver data of each
+> > > > > compatible strings.
+> > > > >
+> > > > > I met similar case before. DT team generally don't agree on add such
+> > > > > property, unless there are two instances in the same chip, which have
+> > > > > difference channel number.
+> > > >
+> > > > If the DT changes are rejected, can the number of channels be added to
+> > > > the data structure inside mipi_csis_of_match?  We have compatibles for
+> > > > 8mm and imx7.  If we add an imx8mp compatible we could add a reference
+> > > > to the number of channels.
+> > >
+> > > I thought about it, and decided to add a new property because the number
+> > > of channels is really a synthesis time configuration parameter, and
+> > > could differ between different CSIS instances in the same SoC.
 > > 
-> > about the warnings there is nothing that can be done - those parameters
-> > as per the comments are necessarily ignored - that is the way the macro
-> > is supposed to work.
-> > 
-> > can we not live with them? otherwise I cant do it in a nice way.
+> > Need add such information at binding doc's commit message,
 > 
-> For preference I'd like to avoid adding warnings.
-> 
-> Let's just stick with your first version instead.
+> I'll update the commit message.
 
-ok - but I think this made the code more readable
+The commit message in v2 will state
 
+    dt-bindings: media: nxp,imx-mipi-csi2: Add fsl,num-channels property
+
+    The CSI-2 receiver can be instantiated with up to four output channels.
+    This is an integration-specific property, specify the number of
+    instantiated channels through a new fsl,num-channels property. The
+    property is optional, and defaults to 1 as only one channel is currently
+    supported by drivers.
+
+    Using the compatible string to infer the number of channels has been
+    considered, but multiple instances of the same CSIS in the same SoC
+    could conceptually be synthesized with a different number of channels.
+    An explicit property is therefore more appropriate.
+
+    The only known SoC to have more than one channel is the i.MX8MP. As the
+    binding examples do not cover that SoC, don't update them.
+
+Rob, Krzysztof, Conor, are you fine with adding this property ?
+
+> > ideally provide an example for it.
 > 
-> ---
-> bod
+> That I can't provide because the few SoCs I'm working with do not
+> integrate multiple CSIS instances with different parameters.
+> 
+> > > > > >    ports:
+> > > > > >      $ref: /schemas/graph.yaml#/properties/ports
+> > > > > >
+
+-- 
+Regards,
+
+Laurent Pinchart
 
