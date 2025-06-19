@@ -1,233 +1,141 @@
-Return-Path: <devicetree+bounces-187447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FD3ADFEF6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:44:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A21DADFF79
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 10:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E62F816553B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:44:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E6877A36EF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 08:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D0B25B69F;
-	Thu, 19 Jun 2025 07:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC19C25F986;
+	Thu, 19 Jun 2025 08:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="eV5z9HD3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Eue6Ooen"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012064.outbound.protection.outlook.com [52.101.66.64])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8D223ABAB;
-	Thu, 19 Jun 2025 07:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750319033; cv=fail; b=fM0W+xDKVI6e2ya/mSSPQU3DNikugMtRQya6vAQsRXYXAZ1u17xTJayKMzRGScyghum47gj8RBf8MpQcR2HC0z8QItltzpt6cmXj5a1zvy1cqJqiq8MuchESh8DK5S69cXOlTcakoGipTo0NneQCv6il8PiVjaI3oTqQUzDLSl0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750319033; c=relaxed/simple;
-	bh=5u/GqeIBD2GYlBJxNrztg7QPXwWc3zbaFTD/iO24eQk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=X6blq3yo0o8mwPeuOxOMsBqaXoWT6+V1urDsW/PJSh1U/eSMwxJoZImqrpUMf+33769gquGexLIpfCiprdyHC4pCOngiKQV/OesBzI45AanzDQZctwpVpJEXucoKa2DJav0MbmL4yWj1fCieO1IDjS9OzRvx+sde+WCd73oWihA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=eV5z9HD3; arc=fail smtp.client-ip=52.101.66.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cavST3NNGEoN9v5JRD1uIz4BbP4v4bdcGW31plQMewN+Xudv9kd+Y4k6A7eEOQwZw8/dNsIi0oh02bNKAxI2QgnNYjkeMfrXJeRN57Cho5iCFZGPuLgYAwZfK8LgwP2w8ccJHUHiNWhsLTtzdP+8JxM4amFWvRlN5hJFkAvXzFe8cmb0yWzuWHuzGmooeEu+zvG4zSyQE+wpL7P5DgjicR1dAma5vnbb1U8mlTOH+eIf1/ORJcdfUcc6xNB8WcGSESjtBBy5rzNQFbxsxlp3fov7WVQZo6OCVaIwTqDZrP73Xn02NTGQ9I7aKYszTPgU/a9jZfSaJOCRF0wDlN/UwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xRvQiyDS1rBlFXj6bgga+V9EUN9ClWBnmwIHzKqWA5Y=;
- b=qeof32qPOXHN410//V7iN890azo2xeQD5ZDx6JqRiX7BZg3ieDG7+RrHnlAq90Hx3lGx86dEh7QGht7CGNAZXhc6qMWhqJSe/QorQlHrHy3K1XSUHwuknb3JTuNIeurX0GhVLc+q+QLyCZcV01gn9lOE+CtF45Cpsax6wKuAJXza37sOXH4nGoQbk75/HaBIfx3UBzj35nnDABCh27xs3h6iwFGQCBtVo8ujUdA1yW++7+xF5xvNm5acDzeTcLXRFYDrw8YF2qRFt3hT8x473ytG8aX/xQYQPxJl5iL8pcHv87s2Xj/B9COr2V6O69u8j2aWOHb3PaoizVabQDaWAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xRvQiyDS1rBlFXj6bgga+V9EUN9ClWBnmwIHzKqWA5Y=;
- b=eV5z9HD3CY+hCLnhkZOwRmlKB89xw+J5IKdlQQeXvOFJoRwACTqiyk+aC/hWVseeLaLlAq+L4zvbx4CcVCD1+0MbQZUrYJL3qXaSsDVTuIedPUdlfsAGOqgOaWa/PVKhuIz2DMlJ9cVpZ9Iw2Zd8xhcqBxSOjn2vd2gORtFHqccKHk53x/7XXo3j/wHWOtYqYoxO1/vg0JXQREnH+ykkuVtu+7ludtgk4nmwUbgD/9ZtTUZ+2TmgLK5DsIVYNhtjfbPdTzkGkaPOtk1jQMbbOG73PqvOSkFM0jzVYtwTEexjUbWXFXQcAFS6OPdRbbNChsbzAthEQAJqOqJflJ4Zig==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AM0PR04MB7138.eurprd04.prod.outlook.com (2603:10a6:208:19e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.23; Thu, 19 Jun
- 2025 07:43:48 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%3]) with mapi id 15.20.8857.021; Thu, 19 Jun 2025
- 07:43:48 +0000
-Date: Thu, 19 Jun 2025 16:54:08 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Iuliana Prodan <iuliana.prodan@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 0/3] remoteproc: imx_rproc: Support i.MX95
-Message-ID: <20250619085408.GB22452@nxa18884-linux>
-References: <20250606-imx95-rproc-1-v2-0-a2bd64438be9@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250606-imx95-rproc-1-v2-0-a2bd64438be9@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SG2PR06CA0226.apcprd06.prod.outlook.com
- (2603:1096:4:68::34) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3705215766;
+	Thu, 19 Jun 2025 08:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750320823; cv=none; b=g2uUGUr5NiLtj/Dm1Un1JuGJ89x/ZaZyv/a472RW/sciyJu4Gbc8dczDuRN8h5jbz1CHmat0Y7FT7CrGp5HGUXkL9GM3g5r3KqjMMIS9+bpVR6OuAy+dNqbfUgjjP5M+1Vzcdg6bdIun5w5vxPt86utI6ilsszfEEaJTkQPiWvU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750320823; c=relaxed/simple;
+	bh=TOnvNAFh5loptubbVx+ifrw8+CaOXeq3Jklun6ffQ3Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pU7zHpmzWKlq498dl1g9ClsCuqM+haNHkzZOoHFepFL1Fm+aLAd1z9DP2NdiIhv6wxs3iny4zWWXs78SNDlcxqcwXNBaMmUDQFUmJEk9SFczV4xxihNVFBa0f2CH7Trd349e4PCwmZldj6UAOkAwSmU1UnIzOr68qEqZOuULFME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Eue6Ooen; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7AF2C433B5;
+	Thu, 19 Jun 2025 08:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750320818;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yX6a2kX+avN/Me66IK4ZdJGprGWZ34+Ag3m54z+SpxI=;
+	b=Eue6OoenItyJlrcTK8NqgxPTI37swvCJGgAJnJELLfqV+fYQW8Ef/A/4O+hUj/Fs9GmeKs
+	1YinOFWt6yZ6GN+aca9mfFx3psV6E0SPYS7N0rdzu7OMDQMdAUHg5K08EIBWvQvVOT9bDS
+	ttk4rJxeh5JZto5P6K5u5VVYaHE/amvOT/jBSqTCvRAJ+Fwlkq3cIyh8CPEg0+SxiNBY3U
+	ROtfmJYWC659jVw5L2J3nlpXGdwZlB+mJ4+ZCxELo6quZVZKzP0fLtGZE9R4ZO2gRbDzBD
+	2zOjaJpWPmj+vQBeoaAKdQMKWTuevNg8edK5uTNGLn3lGNMAbfPgBC2JAW45Aw==
+Date: Thu, 19 Jun 2025 10:13:34 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas
+ Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, Russell
+ King <linux@armlinux.org.uk>, Paul Barker <paul.barker@sancloud.com>, Marc
+ Murphy <marc.murphy@sancloud.com>, Jason Kridner <jkridner@gmail.com>,
+ Andrew Davis <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/7] arm: dts: omap: Remove incorrect compatible
+ strings from device trees
+Message-ID: <20250619101334.5b67741c@kmaincent-XPS-13-7390>
+In-Reply-To: <7hzfe4ok9c.fsf@baylibre.com>
+References: <20250617-bbg-v4-0-827cbd606db6@bootlin.com>
+	<20250617-bbg-v4-2-827cbd606db6@bootlin.com>
+	<7hzfe4ok9c.fsf@baylibre.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AM0PR04MB7138:EE_
-X-MS-Office365-Filtering-Correlation-Id: 60bdc37f-5b1d-4cca-2e41-08ddaf0506d7
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XIyM3E2I6Zhk6CK1ceq+aUgJOU3/b1YOGOhxbPNPodvcl8SfiuKZQm6qBSoY?=
- =?us-ascii?Q?XzCFizMUEYgD/XANHHeyShkFBJprdflLAasgFDi9t6aDDGo01U5PU/u28X2Z?=
- =?us-ascii?Q?l0qTPov/YVNz9FbjVH+ukfvTOYjp2BMRj5UJqEFEZpeLtH1vjgrn9BeE9aZy?=
- =?us-ascii?Q?iHbYvAEI3ihemSMAoPiJSt7SVguT9YFLy0eaLZmIGE9AsCX+TEWO3WzQ9D/4?=
- =?us-ascii?Q?bZnlDhE9kMaoxzK5DkTv66EzjJXVuuPgqReyNBJDxSHt5nCa4aQAUxikC6u6?=
- =?us-ascii?Q?9PmLbki9UE7vN2hw+E4FYjJHgqO0sSE/z1PRcmqDLWRCWP50MCYT3VNJ+YvS?=
- =?us-ascii?Q?JNpxFk+HROUcq515+zfOOnLJHmY8g28RQuZAsUw/hQWVL/7x5B50e7V91N2H?=
- =?us-ascii?Q?ubg/lkmhmgphhV6DSkRnyqK9H7oxmSmXiIEZuIjChsF25lVYpJCoQ6xl+jSH?=
- =?us-ascii?Q?Gm67MX0a8UiRjIqKASC2A+mE0ktX37bX8hz/+jN+qZ7maQbADQC2ur2d1nU1?=
- =?us-ascii?Q?X3NwPZ669RGioakphnCQ+cKn3O7I/EJ/nNtGNQVcD1yz5PI5G6zVYoInUMYK?=
- =?us-ascii?Q?WDMwfzDzD3zWzyqgmLLX2/RiBSLh2y1R42QK4jDKLKzH02M6bPw+1yZ+THjV?=
- =?us-ascii?Q?UkzPWiUruAYJ7pJJIvUSrwWjKjqSsTb3K/tz5D8Wa6tRyph1fLUeH1KyLbZd?=
- =?us-ascii?Q?dtH9+0f6daLG+QtvrHnzjfcni7hs8bSvvEjEIJKLAD+3gLS5sgpVZMMei9p2?=
- =?us-ascii?Q?Ni/SugWaSA6xGpRYDZvHfeJNEFi53dkwfxYY47cIjDDkMpFzSNNPZWhfe2O9?=
- =?us-ascii?Q?C4t3GytcnpmYiHjvU/fORjjly+qu1oyB/e4koIa157lSaShnRYOuzyOrDSuQ?=
- =?us-ascii?Q?TtmPMd/6AxH5NjQo3pBw69YLYpM0uTCb9HlUQjn+dESqepmUDxp01zp8Jsuf?=
- =?us-ascii?Q?rbmsupPYII/Al2bsBomJaRcc5Nvz7g6DgT+HeHcGMklprEbFu97JO5EpSmfg?=
- =?us-ascii?Q?Hqu8mQIiE01KTQzT3lfismBrVnXTKFhkx+Kmw5y8LPlJ5ba2Pm1YUmzW+UAF?=
- =?us-ascii?Q?w6qxgOeAjGZDAGDb9Lpp/3abqm1C5agSr2IMqjPXTYKRu5/YrJJ8VtROj75Y?=
- =?us-ascii?Q?f1AJooJez8SjuHupqThe/hws9Tf0SPMebE8dtxQiS00LxuTucs5iLOREV+Dv?=
- =?us-ascii?Q?5hLltbxs5MzcCf8RFCeGhF+Hjs5+WFQEv/as3xhJ8DANVZxuM6yKv5xT7ksF?=
- =?us-ascii?Q?SkuJMdb620BItgkOR96MA/3GCfpb2K6BOo6mB7tPnFKZcvibfrVljsSQAPxS?=
- =?us-ascii?Q?HMiL9luZRyzCyNiipeCuRYj5A495/hKyRR3jLJaPCyAb2WbMolEjsa9xaSHr?=
- =?us-ascii?Q?6GNmvxTsS/tJccihiNe+LoeGMIvuywd6zHN2rGUJ/Bxw3vw1U2ve2rTSGtbx?=
- =?us-ascii?Q?yKsrx8Z/Dhf0jz4Gu7u6yHJA2/+3ycg2?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sw0y/QB00TG6O5/v13Y7pWgkPxk+p4eR0rB5FmtkBD1D/Xxy0c2rn5IQfTpl?=
- =?us-ascii?Q?ns0jBnNE55gd+1OoCtnUswmcVsBMpMC1+HpryNtbKMJqi2xD/0TlbGjDLNwC?=
- =?us-ascii?Q?BTFECa6vHBVI+bPLoom92KPJKd0iszk9a7rT+dx0QGtB3UFqME+EU/l9kOR4?=
- =?us-ascii?Q?mCjHkhn3FM0kEuvK5pMrYbkOAL6q27tdBdU6qLzuDimKCPjkme4peuJSllKG?=
- =?us-ascii?Q?QU6suN2lKh3XYt4/ePAgCWeGBFpQeK8kF+ht/IuQxdvVzWgSIyxs+zuoV68e?=
- =?us-ascii?Q?B9mBjNf3tYvzL8HqQwcfEMC8XR8Uq7twqiU8FKFbwG3tqe8HwOF7jKEiVzST?=
- =?us-ascii?Q?xQyOtaHl9OBX5BwDe0dkMDJ6GCSNS/bwhetM3n55aC7FTJg9c1blQFJla55/?=
- =?us-ascii?Q?PU1RRRIH6OMhQQBzNpZiYWCU1975JeW4ktEoY1uYJrAMm/bZ7QjR5YyGADGf?=
- =?us-ascii?Q?xrNOFz6HPsF8rQHX/2oZiWAUz0JZnYVnCXGbowu1lu3evt9v/SdivQo0sxQe?=
- =?us-ascii?Q?+CP1O6KUHtCPblyzf7OTGbcdbJMwRCaZ91OwFwY+Wnft/D+EqwmnKRvs/R/p?=
- =?us-ascii?Q?bOrVrBSZGPQVrwtOytvqZiyuEwNS8onaA3QWvFjqd9bS4mf5rgMbJbrxtO4Z?=
- =?us-ascii?Q?H/GePZtey+ngEBIhWSYvYhuFu5CWSU12zAB4mBPe/CCzANPBt2veAnwSV8cc?=
- =?us-ascii?Q?zPLRwNZ0vngh/pJ4SCPpM5SME1EYhwkzWKTHPbBLBcAH+xQehISbJkY9lcVD?=
- =?us-ascii?Q?tW49Mjs14bjK6KlPGxjyWGcEo5B8+zXENJtR8VQRld/knvyCxuTO89vICmEL?=
- =?us-ascii?Q?BNyCQ5IthtPzKCLMsuEt5TWgIC0gnc1meOENX89iP/olZ1lCxGTgytpuzGy6?=
- =?us-ascii?Q?1KQWsPMJ5CTqXXMEw3wllr1b5rZBTDpA/E07Lm2tidob+xRX3ie1RA036Fhl?=
- =?us-ascii?Q?+ssf9eaAoNxSLKykQenWFt/dailm5Te6yPgQWdAS0QBL7eNWNtINnWofyXKr?=
- =?us-ascii?Q?uWowAghVkbhgwapiTmdCRCRLSwITxAKf/MB0u+qRs6TzctF2mlJhsI/q1oyY?=
- =?us-ascii?Q?dI2F9q18eGXvGbl4cVpfNCdy/QGuF9zf3EIb3OAsjyVe+YDqLjftZIEr7SIj?=
- =?us-ascii?Q?5ib3AY1eZCb8PT//dMtZh5lCsBxFPFBjUb4HyaIcgJQmHbHzHE1beZNgiiIr?=
- =?us-ascii?Q?1FcMUoAHEidMyUgmdHlMC07sjKq4HICywoNDiiBWE1DVqX1Rsxho9iUt5278?=
- =?us-ascii?Q?D+C0Gm6AxPuHlKBoU2WYHvDlqWLWv73oT/fu1fa3vf9oiUb/0ATMSWIitomC?=
- =?us-ascii?Q?wgMLZNbzSxfDokXRAxEQP81ZIKBtDaD+MWPiMrmZXf8B7fLNWLixPDYlJc1R?=
- =?us-ascii?Q?2R2aX7WvcwLUZZPc55ZFxKiWvwGwmzNg6L3e/tPtiAzoV2vT5VNm4y25zfGr?=
- =?us-ascii?Q?aNQYQ3isMa7L66kGeqvnYm76qElOS6uBbpZTvAwWkqYElxzYnK4uj4ZfM3yM?=
- =?us-ascii?Q?ZbtCW4nn9y0sbZHA3YgIx5o8xoTce7t+zVBCaQEOWPWMn+IOpm0t9ceZOKR5?=
- =?us-ascii?Q?WsY4zb9VKTq1TSCLbmpPmFOHkVZ3H4jVF0eu/JFq?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60bdc37f-5b1d-4cca-2e41-08ddaf0506d7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2025 07:43:48.2955
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5AycxrMz2EZb7RHMzNg8F63xYK8nVafM5Ep6dYyHT1A9zVn12T4IAvAsdN/I6hdKCQje1E4T0/JTkV8AOeYczw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7138
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdehtdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddvpdhrtghpthhtohepkhhhihhlmhgrnhessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepthhonhihsegrthhomhhiuggvrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodguthesk
+ hgvrhhnvghlrdhorhhgpdhrtghpthhtoheprggrrhhordhkohhskhhinhgvnhesihhkihdrfhhipdhrtghpthhtoheprghnughrvggrsheskhgvmhhnrgguvgdrihhnfhhopdhrtghpthhtoheprhhoghgvrhhqsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Fri, Jun 06, 2025 at 09:55:11AM +0800, Peng Fan (OSS) wrote:
->i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
->one Cortex-M7 core. The System Control Management Interface(SCMI)
->firmware runs on the M33 core. The i.MX95 SCMI firmware named System
->Manager(SM) includes vendor extension protocols, Logical Machine
->Management(LMM) protocol and CPU protocol and etc.
+Le Wed, 18 Jun 2025 13:41:19 -0700,
+Kevin Hilman <khilman@baylibre.com> a =C3=A9crit :
 
-Ping..
+> Kory Maincent <kory.maincent@bootlin.com> writes:
+>=20
+> > Several device trees incorrectly included extraneous compatible strings
+> > in their compatible property lists. The policy is to only describe the
+> > specific board name and SoC name to avoid confusion.
+> >
+> > Remove these incorrect compatible strings to fix the inconsistency.
+> >
+> > Also fix board vendor prefixes for BeagleBoard variants that were
+> > incorrectly using "ti" instead of "beagle" or "seeed".
+> >
+> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com> =20
+>=20
+> While I agree with adding the new compatibles for clarity, I question
+> removing the old ones after so much time in the kernel.=20
+>=20
+> As mentioned in earlier reviews, there is other tooling outside the
+> kernel that has been built around these strings.  The one that I have in
+> mind is KernelCI based tooling that tracks boards based on compatible
+> strings.
+>=20
+> While the KernelCI tooling does evolve with these kinds of kernel
+> changes, it also still builds and tests older kernels.  So if we want
+> these tools to know that "beagle,am335x-bone" on a new kernel and
+> "ti,am335x-bone" on an older stable kernel are actually the same board,
+> the tools will need to keep track of that mapping as these change.
+>=20
+> So instead of removing them, can't we just make the new ones higher prio
+> than the old ones?  That way the tools can see both, and also see which
+> one is higher prio.
 
-Thanks,
-Peng
+But we can't add something like what you describe to the bindings. I don't =
+think
+they will accept this. And if we don't align the bindings the dtbs check wi=
+ll
+complain forever.
 
->
->There are three cases for M7:
->(1) M7 in a separate Logical Machine(LM) that Linux couldn't control it.
->(2) M7 in a separate Logical Machine that Linux could control it using
->    LMM protocol
->(3) M7 runs in same Logical Machine as A55, so Linux could control it
->    using CPU protocol
->
->In patch 1, add fsl,lmm-id and fsl,cpu-id to indicate LM ID and CPU ID
->In patch 2, Use LMM and CPU protocol to manage M7. More info could be
->found in the patch commit log
->
->Current setup relies on pre-Linux software(U-Boot) to do
->M7 TCM ECC initialization. In future, we could add the support in Linux
->to decouple U-Boot and Linux.
->
->Patchset was tested with below boot images when the patchset based on next-20250526:
->imx-boot-variant-rpmsg-imx95-19x19-lpddr5-evk-sd.bin-flash_lpboot_sm_a55 (Use LMM protocol)
->imx-boot-variant-alt-imx95-19x19-lpddr5-evk-sd.bin-flash_alt (Use CPU protocol)
->imx-boot-imx95-19x19-lpddr5-evk-sd.bin-flash_a55 (M7 not under A55 control)
->imx-boot-imx95-19x19-lpddr5-evk-sd.bin-flash_all (M7 not under A55 control)
->
->Patchset is re-based on next-20250603.
->
->Thanks for Daniel helping review the patchset before posting out to list.
->
->Signed-off-by: Peng Fan <peng.fan@nxp.com>
->---
->Changes in v2:
->- Typo fix in patch 2 commit message
->- Move the m7 address mapping array from patch 2 to patch 3
->- Add R-b from Daniel to patch 3
->- Link to v1: https://lore.kernel.org/r/20250604-imx95-rproc-1-v1-0-a6e5f512731c@nxp.com
->
->---
->Peng Fan (3):
->      dt-bindings: remoteproc: fsl,imx-rproc: Add support for i.MX95
->      remoteproc: imx_rproc: Add support for System Manager API
->      remoteproc: imx_rproc: Add support for i.MX95
->
-> .../bindings/remoteproc/fsl,imx-rproc.yaml         |  27 ++++
-> drivers/remoteproc/imx_rproc.c                     | 146 ++++++++++++++++++++-
-> drivers/remoteproc/imx_rproc.h                     |   2 +
-> 3 files changed, 173 insertions(+), 2 deletions(-)
->---
->base-commit: b79c044712e34fe49e7b85ffafd0bd460b5c4afa
->change-id: 20250525-imx95-rproc-1-20bb74ddc8af
->
->Best regards,
->-- 
->Peng Fan <peng.fan@nxp.com>
->
+> I fully realize this is not necessarily the best technical argument to
+> keeping the old and wrong names, so I will defer to DT maintainers on
+> this one.  But since it's been wrong for a long time, I'm a bit
+> reluctant to remove them completely knowing there will be external tools
+> breakage.
+
+Yes, still waiting DT maintainers point of vue on this. :/
+
+I am wondering if I will separate my patch series, the cleaning part raises
+lots of push back.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
