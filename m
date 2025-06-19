@@ -1,58 +1,80 @@
-Return-Path: <devicetree+bounces-187640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E844AE0B5C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB8EAE0B65
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 18:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9E7517C351
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:28:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E2C117F01A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 16:29:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BAC28BA89;
-	Thu, 19 Jun 2025 16:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4BE28C01D;
+	Thu, 19 Jun 2025 16:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="dvQ7yEn2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RAvdPmVZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB7B33085B2;
-	Thu, 19 Jun 2025 16:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750350501; cv=pass; b=hOIfSfy/gqEWJZOgplWHfDEh4EtsWetcw21+zS6mY0THm+4xOwVbzBCUCLN2+28t7sKpfM2bhInYfU5beQ+yWIjpUbMbBJ/X62VE/44+sWMyw3cScWUPxT6as3jW2lku0Nn2KkUi/t+GNSTkbgOINSFdFwlJCBqSwmAazGHzPJA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750350501; c=relaxed/simple;
-	bh=0A5Hirrm/1Adlqdoo/cMvx+fh1eWGCy/X/w+oEcbnGc=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98BEC28B519
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 16:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750350563; cv=none; b=SEoJyWQRZUCkaVenuTXh3ZMw2bJ1Q09QoKETNu9afXk84+1jCPivDweQRh6cIk8rZMFP8hyl4o8IORcHowBA1lIsrzbaw8e+QQkv67FKloCuNma05Xa5Dy9t3b9O0XZ9gAtsXX10uNpb/muNO2oYbnRtf3dS3Ccg0AU+UTVuHfk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750350563; c=relaxed/simple;
+	bh=EMyL1Uo0zzWNprcGuHaXIt2QwhvXtZojt+40ir9jHkc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NusWCvnuylRvhy+GYXNdjY+tBvvwxxb7pGUgiYUy31L1tvSeejx6epGoy0Mok3ti43v9xoeTnBtzDVMBwquhZ9JIq+qqukFVNc/oiW9xiyMI7e0aC5vPIUva+lyaF8bze43jfOHahnCfa3hr5A2FkwKrYHHm7pf9vea0K8ooebo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=dvQ7yEn2; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750350477; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=cv7cshst83TrnjaCmvllkmN1E3sluuWfbFU/aFnHdPxoIiZ74Loz0kiUfgovvgZ9sJYPLVZZ5KaCsNfmfW/eD4viLVe3FzHDtRCrLauA6KTwCPETGX6LMA+xfQWDd/8+AjJwT6ATyCi6mJUwnB067uUd3H/aKvuOEef0p2yENNY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750350477; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=rVGVg+OYlp1Qk6fmw5rcJaBayL/Ch3LmOzOtD7sBbTQ=; 
-	b=B0fqkAYa1GChomZVAEO8hfuVtA/6ws8c7t3h8M1AMqoAjq7gj9nw2PVe8pTi9l1if57Q9V1dfbjTA8gXgrjMOPTMmc8xyQE9IgicFCC2pty4fyQcBfXe9BDZJNR/vOJ9NmbER7U2d12zDxTtQ6yfZ7H+j/HR7Z8PZQ9Skg1GPWU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750350477;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=rVGVg+OYlp1Qk6fmw5rcJaBayL/Ch3LmOzOtD7sBbTQ=;
-	b=dvQ7yEn2PkcD9rwE4l1CKHMASbvPLEKc8iMdkF4UT5JFyJbQth2T7ltguaEV52P+
-	w6omdqpFnEr5iFwF9Bq66ybOCsFCGpaWNv0ptKQhpWkcujvJm6vvRypW8BxGu7AXeKT
-	k9M6aG032aBMEPm9XL3CX86YUj+7zt54lbzahZHM=
-Received: by mx.zohomail.com with SMTPS id 1750350476585176.7450336893728;
-	Thu, 19 Jun 2025 09:27:56 -0700 (PDT)
-Message-ID: <073ffe14-d631-4a4f-8668-ddeb7d611448@collabora.com>
-Date: Thu, 19 Jun 2025 18:27:52 +0200
+	 In-Reply-To:Content-Type; b=W/kpSOFK0hSwh5w1NMgR8GtZOVnmPthCPIUNTd+hedRMEH1LqOehFmO2dq+AxHDd21qDY/XYA4+GMqpbPVLPCAWFTLBijhN2WbDyJ0FuI0UslcXrA72f1sVnBd0fRGk9jc+6VgEhvVfCekRLluZiKh1hM7A7J6L7Gdb/Y9LeypE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RAvdPmVZ; arc=none smtp.client-ip=209.85.167.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-407a5b577f8so221272b6e.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 09:29:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750350559; x=1750955359; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Id+f7kVLppAX20HAP2AURqNW1tLLgPJWhJTti78Nq48=;
+        b=RAvdPmVZiiyVV4XKLJ/iNfBCoCl62eXfu4FRUgmdYnhCOWt2SZTcRC1I3WR3MS1/Nq
+         jCuzzAKhWNHn5vpD1jA3NxkVySJT2XQQ1xmaOdljUbkiV0jiOLfrcMusqmxqrkZC+iJy
+         FyGi2IMa6cQLNbiF4zpsPH9ZIjpRZ+MSYxaKKm5uoAzaw5Y0B+U3O9PrFV8CLHqbxrh2
+         vkRIhltCm/N9tAiADQh1A4dpMxJKeYJOOJ0oifd0o+mkrbEhOPxrwk+FN/Kj12NGSUI0
+         Z8CdYGf1TgBNftKk1//XtTnEeudbOLwecnK3RJfc25/NK7ofRaifBv6j81/QOCNno0QT
+         36wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750350559; x=1750955359;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Id+f7kVLppAX20HAP2AURqNW1tLLgPJWhJTti78Nq48=;
+        b=qswP3dzVlBVvRofYFykeuKFv8SaxsfN2AZnnFbZ8tT3nWHJbbduiJWS6Q1Eb88/aAq
+         b3uwoZXMYNo5iWpHBg0ghMoY9tu180ox72QIWPJ7tsAaantO8RakNRJuj0BOFr0oZKgD
+         RIOkqhBicxXuZ1x2tYut0nCYY96m/ASUc/z5WLgMcJkBuiGzdWzFGT84Lb6bWpyDcTNZ
+         hs5bUKPZaAbmlmW1s6v3UoIAG6LOsXE8h6mjKEwljGyIu8Y0TpwIdXsudogFEjK73h2o
+         PUg8nHieO16yrjJAHln7ON9luEkGkelDQ5LOlHkk9sKyCWz1vfhrTrg1XQXx33wa+8+Q
+         wIYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkECNjpw/5acp7irPyipGDbhFUDWuqoczKhzjVC3sa/VVBOj5HvTI+4zpBLsJC0bVXB6t6Dh8ZEPMv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2S7y4un2B6a177NBzHbTPpDs+2XpcgQHNHfwUHnQwELqyObgn
+	Up1+hkcpdNkuBvIT5sesCMrx5ivIEePyDqo38YG6GTxnTBtxW/aqOBNdxnIOTW+k0ew=
+X-Gm-Gg: ASbGncs21RN0Zc8cS6JJMXsue7x08lHEPZPI0Zmy2xnDHYhkPygV7UqHmQE2MNPOo19
+	XyWvjJeRXiO2Hx6abh34erQkO4z4Cqgs6PeF/b94KsC4TRMpMOeA9F0dejsgjDNBLLyOQoXVGn2
+	8horwkkNDQilWLm4kGFaOADefEYFmEN/i4v5fSkYvFRd9tD+EsEgb0LzRZVcQeTyHzDjW2a2dL/
+	wuY0mDtmbKq+RBCwC7I6aeL528QdKIUjO2Qb8x614Nghc2de14zqu1U1pOs7wxxhykvAsbWTpA2
+	BFkpaJAU15uf5ucCOtrvhFd++7d0OwiIloyu9VWHQteWYFdSpeCI9kuPdGUE/TAMF8CJrzYbcdC
+	rfUyYVVO1hiqDKDq96Qizk3Hmd3W4jS7TcDPIOcE=
+X-Google-Smtp-Source: AGHT+IE3wykgtpudCLPxyYXHgot19QH7CguFGEPEsZeTABHQ1Nd9aytQtOo9OtA4EGXFPZmqiX54mQ==
+X-Received: by 2002:a05:6808:189c:b0:40a:56e7:1e59 with SMTP id 5614622812f47-40a7c17ecdemr15537482b6e.5.1750350559492;
+        Thu, 19 Jun 2025 09:29:19 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:5504:5211:6fc4:c093? ([2600:8803:e7e4:1d00:5504:5211:6fc4:c093])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40a74172cb3sm2790979b6e.25.2025.06.19.09.29.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jun 2025 09:29:19 -0700 (PDT)
+Message-ID: <b27c6aab-e363-45df-8521-e85c2b3f4421@baylibre.com>
+Date: Thu, 19 Jun 2025 11:29:17 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,175 +82,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] iommu: Add verisilicon IOMMU driver
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com
-References: <20250619131232.69208-1-benjamin.gaignard@collabora.com>
- <20250619131232.69208-4-benjamin.gaignard@collabora.com>
- <20250619134752.GB1643390@ziepe.ca>
+Subject: Re: [PATCH v2 2/9] dt-bindings: spi: zynqmp-qspi: Add example dual
+ upper/lower bus
+To: Sean Anderson <sean.anderson@linux.dev>, Mark Brown <broonie@kernel.org>,
+ Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20250616220054.3968946-1-sean.anderson@linux.dev>
+ <20250616220054.3968946-3-sean.anderson@linux.dev>
+ <2588bb7f-2a3a-4001-ab1b-6d9bd57b545b@baylibre.com>
+ <cdeb54e8-0624-42de-bac2-25b151c37872@linux.dev>
 Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <20250619134752.GB1643390@ziepe.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <cdeb54e8-0624-42de-bac2-25b151c37872@linux.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 6/19/25 11:20 AM, Sean Anderson wrote:
+> On 6/18/25 14:27, David Lechner wrote:
+>> On 6/16/25 5:00 PM, Sean Anderson wrote:
+>>> Add an example of the spi-buses property showcasing how to have devices
+>>> on both the upper and lower buses.
+>>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - New
+>>>
+>>>  .../bindings/spi/spi-zynqmp-qspi.yaml         | 22 ++++++++++++++++++-
+>>>  1 file changed, 21 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>>> index 02cf1314367b..c6a57fbb9dcf 100644
+>>> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>>
+>>
+>> In addition to changing the example, we could also extend the
+>> spi-buses property for this controller since we know this controller
+>> has 2 buses.
+>>
+>>   properties:
+>>     ...
+>>
+> 
+> OK, but this property is for the slaves not the master. I'm not sure what the right incantation is.
 
 
-Le 19/06/2025 à 15:47, Jason Gunthorpe a écrit :
-> On Thu, Jun 19, 2025 at 03:12:24PM +0200, Benjamin Gaignard wrote:
->
->> +static struct iommu_domain *vsi_iommu_domain_alloc_paging(struct device *dev)
->> +{
->> +	struct vsi_iommu *iommu = vsi_iommu_get_from_dev(dev);
->> +	struct vsi_iommu_domain *vsi_domain;
->> +
->> +	vsi_domain = kzalloc(sizeof(*vsi_domain), GFP_KERNEL);
->> +	if (!vsi_domain)
->> +		return NULL;
->> +
->> +	vsi_domain->dma_dev = iommu->dev;
->> +	iommu->domain = &vsi_identity_domain;
-> ?? alloc paging should not change the iommu.
->
-> Probably this belongs in vsi_iommu_probe_device if the device starts
-> up in an identity translation mode.
+I think using patternProperties, like in Documentation/devicetree/
+bindings/spi/spi-controller.yaml
 
-Your are right it useless here, I will remove it.
+patternProperties:
+  "^.*@[01]$":
+    spi-buses:
+      ...
 
->
->> +static u32 *vsi_dte_get_page_table(struct vsi_iommu_domain *vsi_domain, dma_addr_t iova)
->> +{
->> +	u32 *page_table, *dte_addr;
->> +	u32 dte_index, dte;
->> +	phys_addr_t pt_phys;
->> +	dma_addr_t pt_dma;
->> +
->> +	assert_spin_locked(&vsi_domain->dt_lock);
->> +
->> +	dte_index = vsi_iova_dte_index(iova);
->> +	dte_addr = &vsi_domain->dt[dte_index];
->> +	dte = *dte_addr;
->> +	if (vsi_dte_is_pt_valid(dte))
->> +		goto done;
->> +
->> +	page_table = (u32 *)iommu_alloc_pages_sz(GFP_ATOMIC | GFP_DMA32, SPAGE_SIZE);
-> Unnecessary casts are not the kernel style, I saw a couple others too
->
-> Ugh. This ignores the gfp flags that are passed into map because you
-> have to force atomic due to the spinlock that shouldn't be there :(
-> This means it does not set GFP_KERNEL_ACCOUNT when required. It would
-> be better to continue to use the passed in GFP flags but override them
-> to atomic mode.
-
-I will add a gfp_t parameter and use it like that:
-page_table = iommu_alloc_pages_sz(gfp | GFP_ATOMIC | GFP_DMA32, SPAGE_SIZE);
-
->
->> +static int vsi_iommu_identity_attach(struct iommu_domain *domain,
->> +				     struct device *dev)
->> +{
->> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
->> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
->> +	unsigned long flags;
->> +	int ret;
->> +
->> +	if (WARN_ON(!iommu))
->> +		return -ENODEV;
-> These WARN_ON's should be removed. ops are never called by the core
-> without a probed device.
-
-ok
-
->
->> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
->> +				   struct device *dev)
->> +{
->> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
->> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
->> +	unsigned long flags;
->> +	int ret;
->> +
->> +	if (WARN_ON(!iommu))
->> +		return -ENODEV;
->> +
->> +	/* iommu already attached */
->> +	if (iommu->domain == domain)
->> +		return 0;
->> +
->> +	ret = vsi_iommu_identity_attach(&vsi_identity_domain, dev);
->> +	if (ret)
->> +		return ret;
-> Hurm, this is actually quite bad, now that it is clear the HW is in an
-> identity mode it is actually a security problem for VFIO to switch the
-> translation to identity during attach_device. I'd really prefer new
-> drivers don't make this mistake.
->
-> It seems the main thing motivating this is the fact a linked list has
-> only a single iommu->node so you can't attach the iommu to both the
-> new/old domain and atomically update the page table base.
->
-> Is it possible for the HW to do a blocking behavior? That would be an
-> easy fix.. You should always be able to force this by allocating a
-> shared top page table level during probe time and making it entirely
-> empty while staying always in the paging mode. Maybe there is a less
-> expensive way.
->
-> Otherwise you probably have work more like the other drivers and
-> allocate a struct for each attachment so you can have the iommu
-> attached two domains during the switch over and never drop to an
-> identity mode.
-
-I will remove the switch to identity domain and it will works fine.
-
->
->> +	iommu->domain = domain;
->> +
->> +	spin_lock_irqsave(&vsi_domain->iommus_lock, flags);
->> +	list_add_tail(&iommu->node, &vsi_domain->iommus);
->> +	spin_unlock_irqrestore(&vsi_domain->iommus_lock, flags);
->> +
->> +	ret = pm_runtime_get_if_in_use(iommu->dev);
->> +	if (!ret || WARN_ON_ONCE(ret < 0))
->> +		return 0;
-> This probably should have a comment, is the idea the resume will setup
-> the domain? How does locking of iommu->domain work in that case?
->
-> Maybe the suspend resume paths should be holding the group mutex..
->
->> +	ret = vsi_iommu_enable(iommu);
->> +	if (ret)
->> +		WARN_ON(vsi_iommu_identity_attach(&vsi_identity_domain, dev));
-> Is this necessary though? vsi_iommu_enable failure cases don't change
-> the HW, and a few lines above was an identity_attach. Just delay
-> setting iommu->domain until it succeeds, and this is a simple error.
-
-I think I will change vsi_iommu_enable() prototype to:
-static int vsi_iommu_enable(struct vsi_iommu *iommu, struct iommu_domain *domain)
-and do iommu->domain = domain; at the end of the function if everything goes correctly.
-
-
-> iommu->domain = domain;
->
->
->> +static struct iommu_ops vsi_iommu_ops = {
->> +	.identity_domain = &vsi_identity_domain,
-> Add:
->
->    .release_domain = &vsi_identity_domain,
->
-> Which will cause the core code to automatically run through to
-> vsi_iommu_disable() prior to calling vsi_iommu_release_device(), which
-> will avoid UAF problems.
->
-> Also, should the probe functions be doing some kind of validation that
-> there is only one struct device attached?
-
-which kind of validation ?
-
->
-> Jason
+> 
+>>     spi-buses:
+>>       description: 0 is the "lower" bus, 1 is the "upper" bus
+>>       maxItems: 2
+>>       items:
+>>         enum: [0, 1]
+>>
 
