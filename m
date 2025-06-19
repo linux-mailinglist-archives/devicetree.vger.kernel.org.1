@@ -1,217 +1,120 @@
-Return-Path: <devicetree+bounces-187427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8890CADFE3C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:00:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0AC1ADFE47
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 09:02:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D18E1885872
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 06:58:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31063188E527
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 07:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653DE246BB5;
-	Thu, 19 Jun 2025 06:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E4F246786;
+	Thu, 19 Jun 2025 07:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="alG2FtT3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bCDHMHYU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA3321B8F5;
-	Thu, 19 Jun 2025 06:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0266B24167E;
+	Thu, 19 Jun 2025 07:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750316308; cv=none; b=ov+pFTuP45faX14lsFD3TXOH2+fi5HFQH3bY1jStFFPjOOY2EdVw584qiA110QH1RQzJFhdVTtLPg3RLgm17BwgIzvj27K3kGfd1pkKqjNTP5dke26X54KqQy+ReVqa3sIWooG18qiuJplox33WepEYYkx7SZs5CV/K9J9dYN2c=
+	t=1750316573; cv=none; b=WqoGkPBhvrRXjEFkRKVVTQBUqzA/YqTphGxOvsRz/kX9SyzfKnAoSYxFY2syOnerXTsvkfKpdhs713HtmxlR+OXBFLzE3bfsdG0lsoY20D9RzZ4dCZK2RiL4RPIgGfpHLJRp40ocBrBp2TAYcTo541KU/dr5VEDTd5yPbHoOLrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750316308; c=relaxed/simple;
-	bh=tL14BD8Yh5kWnpy+bfzqyRdCOXWQ8nMEwYBpreKExhI=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=bEqc+XBo1SRL1tQeEFnYxkB32W6S1r2Ty3s+jGrho0i4goVBGdhpF8jUHCLLOnY/ZNoApIVKZA/y99eVdZvHPKx7VQ8xim6gs176uFEQhjZRN7L2TgcrDzBjoagsOdUc+xtKh5IsnUwVa/5gBjqH1bBJvG1ysCIsnwx9lmBkW54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=alG2FtT3; arc=none smtp.client-ip=134.0.28.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
-	by mxout2.routing.net (Postfix) with ESMTP id 50A125FB6C;
-	Thu, 19 Jun 2025 06:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1750316302;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=njQ31qrrY9HaE80KOkYp3xG43496qOQx+zhSn6xjDeA=;
-	b=alG2FtT3L898ztBmhlM2pSNVcjIkFUk7/1xSwM2dgG9YK2I3a0t48c4zf1DP18CV4lZJhI
-	cqhxtGUORlrTEY7zuo0CEIIN+s8RdFddsgQkMegRs9RelFqdh9G11AtkR7FfHwhbCUqP+M
-	xZWy4Bx1lY8WMMg4m782Pb82ISFh3ck=
-Received: from [127.0.0.1] (fttx-pool-80.245.76.73.bambit.de [80.245.76.73])
-	by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 72C3D808E4;
-	Thu, 19 Jun 2025 06:58:20 +0000 (UTC)
-Date: Thu, 19 Jun 2025 08:58:20 +0200
-From: Frank Wunderlich <linux@fw-web.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>
-CC: Frank Wunderlich <frank-w@public-files.de>,
- Jia-Wei Chang <jia-wei.chang@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>,
- =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 00/13] further mt7988 devicetree work
-User-Agent: K-9 Mail for Android
-In-Reply-To: <9cdf0624-f9bb-4b11-973e-9480fd655136@collabora.com>
-References: <20250616095828.160900-1-linux@fw-web.de> <9cdf0624-f9bb-4b11-973e-9480fd655136@collabora.com>
-Message-ID: <40C42E40-25C3-4FB2-8EB4-E7FCB677E415@fw-web.de>
+	s=arc-20240116; t=1750316573; c=relaxed/simple;
+	bh=Aiv6sCZ/fmMVPkItCwPVs8JmA+7DNDSDrgAmzaW16NM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NKp4To3sdDM1oSO9Wfx5NlB2LTut61WE51NfnmTmOxBFs6gtJhLMXfMfQMOY/XjxGP+g6fqbmHtu/o2EJaDz/fiILpNxrqwX6ZzX9nej4lahifSvCpr6xkjyMUsDZ4ArqaIjoJxsQhCm479Khkgmftz90Zyg8ecG6t5mec16j/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bCDHMHYU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55J4fjn0005657;
+	Thu, 19 Jun 2025 07:02:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=1xqjmkKshB5BdZBTzmxvIga0qHDG2eCUpCOLSiBsvAc=; b=bC
+	DHMHYUYN+wcdQFW8QzpfGQEe5+veMCuQTH0KTSA7Tyivx38c+4XWKhNxxtGhcXYg
+	rPp/pS9vvEZbSs3tbw2lxcj+kNUuKDIFfZrWGIkhQmMwVLtdHMTnYPQu3QEChDx4
+	tYEHM6jFKGqte2IsA4BSSFrBt9V36x5QWe8Jzzhv7NN8U3XHe1DtW4k4TDXHU7Pn
+	M8S+lc77YIVntivGmFHtA+sRgdwrhmAytYPQ8CqOwpYfVCfQYxsDN0RbmqoOXpTr
+	BnZy+6bD0DqqCZEHUoYT1aWjc3C3GdsLPHBiJP3oeKWTaLqTkdC5jyMpX8nJIiyL
+	fCcBhJqaOsey1UzrjQHQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47c0rvj3mq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Jun 2025 07:02:48 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55J72lpv011402
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Jun 2025 07:02:47 GMT
+Received: from hu-sayalil-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 19 Jun 2025 00:02:44 -0700
+From: Sayali Lokhande <quic_sayalil@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH V2 0/2] Add eMMC support for qcs8300
+Date: Thu, 19 Jun 2025 12:32:22 +0530
+Message-ID: <20250619070224.23428-1-quic_sayalil@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: 376531bd-c831-454f-b55f-f96f05563171
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjE5MDA1OCBTYWx0ZWRfX6mnjYz1+q6Jz
+ pgz7C5X/pYdmbKTN6rZ9DWoDUph7ZLavP3U2PXVRcsSpoh9J+si6DH5D5pWyTBYNGwPGCtWx8dK
+ +eGGxtkxmeqqMOzLEeb4npEA27OydHwU+xbFSC4IS7RQV+rXosxmlKOCeE+ojl2KDzU1fRJl1N9
+ QXd149+CrFDMBdcbv542Q72gTE4JBWyR2uepliJDULc0T1d+BsjuMVK9BhAYFK787Br6k14iU34
+ uCQiqL+d6dk21hB8EYBUQH0gzbyNbyhPEqNTgtCw1zewgmj9xW1SorFuW4FrhHKXC71lQPURi20
+ VCcUo9ta3J85HZhjs0QyqSi622uUbpcz9E2Qz/hKz7TX9bt38fOR7Cho1lD/HpvVCasw07/G/g4
+ qcLwvEkEnVcqWcYuetKXxEllH5ZL+9a541IIm8H6dv9KqQL4YYvfAdrMCdZ3jpbKaSS8z+IS
+X-Proofpoint-GUID: 4-7kSJtnNT61L7KbNjbGaw25UvoC5vxK
+X-Authority-Analysis: v=2.4 cv=btJMBFai c=1 sm=1 tr=0 ts=6853b618 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=s9HvSjK2G09CRz63pcIA:9
+X-Proofpoint-ORIG-GUID: 4-7kSJtnNT61L7KbNjbGaw25UvoC5vxK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-19_02,2025-06-18_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0
+ suspectscore=0 clxscore=1015 malwarescore=0 spamscore=0 mlxlogscore=817
+ bulkscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506190058
 
-Am 19=2E Juni 2025 07:57:09 MESZ schrieb AngeloGioacchino Del Regno <angelo=
-gioacchino=2Edelregno@collabora=2Ecom>:
->Il 16/06/25 11:58, Frank Wunderlich ha scritto:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->
->I think that this series is ready to be applied; however, I need someone =
-to take
->the bindings before I can apply the devicetree part to the MediaTek trees=
-=2E
+Add eMMC support for qcs8300 board.
 
-Please wait a bit for the eth part=2E=2E=2Eseems like reserved irqs are no=
-t unusable as i thought=2E=2E=2Ei think we should upstream them too and may=
-be with different names=2E=2E=2Eas they are not fixed to function in hardwa=
-re=2E
+- Changed from v1
+ -added SoC-specific compatible and a corresponding dt-bindings.
+  used QCOM_ICC_TAG_ALWAYS for interconnects.
+  fixed sdc pin nodes.
+  corrected msm to qcom.
 
->Cheers,
->Angelo
->
->
->> This series continues mt7988 devicetree work
->>=20
->> - Extend cpu frequency scaling with CCI
->> - GPIO leds
->> - Basic network-support (ethernet controller + builtin switch + SFP Cag=
-es)
->>=20
->> depencies (i hope this list is complete and latest patches/series linke=
-d):
->>=20
->> support interrupt-names because reserved IRQs are now dropped, so index=
- based access is now wrong
->> https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/20250616080738=
-=2E117993-2-linux@fw-web=2Ede/
->>=20
->> for SFP-Function (macs currently disabled):
->>=20
->> PCS clearance which is a 1=2E5 year discussion currently ongoing
->>=20
->> e=2Eg=2E something like this (one of):
->> * https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/202506102331=
-34=2E3588011-4-sean=2Eanderson@linux=2Edev/ (v6)
->> * https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/202505112012=
-50=2E3789083-4-ansuelsmth@gmail=2Ecom/ (v4)
->> * https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/ba4e359584a6=
-b3bc4b3470822c42186d5b0856f9=2E1721910728=2Egit=2Edaniel@makrotopia=2Eorg/
->>=20
->> full usxgmii driver:
->> https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/07845ec900ba41=
-ff992875dce12c622277592c32=2E1702352117=2Egit=2Edaniel@makrotopia=2Eorg/
->>=20
->> first PCS-discussion is here:
->> https://patchwork=2Ekernel=2Eorg/project/netdevbpf/patch/8aa905080bdb67=
-60875d62cb3b2b41258837f80e=2E1702352117=2Egit=2Edaniel@makrotopia=2Eorg/
->>=20
->> and then dts nodes for sgmiisys+usxgmii+2g5 firmware
->>=20
->> when above depencies are solved the mac1/2 can be enabled and 2=2E5G ph=
-y/SFP slots will work=2E
->>=20
->> changes:
->> v4:
->>    net-binding:
->>      - allow interrupt names and increase max interrupts to 6 because o=
-f RSS/LRO interrupts
->>        (dropped Robs RB due to this change)
->>=20
->>    dts-patches:
->>    - add interrupts for RSS/LRO and interrupt-names for ethernet node
->>    - eth-reg and clock whitespace-fix
->>    - comment for fixed-link on gmac0
->>    - drop phy-mode properties as suggested by andrew
->>    - drop phy-connection-type on 2g5 board
->>    - reorder some properties
->>    - update 2g5 phy node
->>      - unit-name dec instead of hex to match reg property
->>      - move compatible before reg
->>      - drop phy-mode
->>=20
->> v3:
->>    - dropped patches already applied (SPI+thermal)
->>    - added soc specific cci compatible (new binding patch + changed dts=
-)
->>    - enable 2g5 phy because driver is now merged
->>    - add patch for cleaning up unnecessary pins
->>    - add patch for gpio-leds
->>    - add patch for adding ethernet aliases
->>=20
->> v2:
->>    - change reg to list of items in eth binding
->>    - changed mt7530 binding:
->>      - unevaluatedProperties=3Dfalse
->>      - mediatek,pio subproperty
->>      - from patternProperty to property
->>    - board specific properties like led function and labels moved to bp=
-i-r4 dtsi
->>=20
->>=20
->> Frank Wunderlich (13):
->>    dt-bindings: net: mediatek,net: update for mt7988
->>    dt-bindings: net: dsa: mediatek,mt7530: add dsa-port definition for
->>      mt7988
->>    dt-bindings: net: dsa: mediatek,mt7530: add internal mdio bus
->>    dt-bindings: interconnect: add mt7988-cci compatible
->>    arm64: dts: mediatek: mt7988: add cci node
->>    arm64: dts: mediatek: mt7988: add basic ethernet-nodes
->>    arm64: dts: mediatek: mt7988: add switch node
->>    arm64: dts: mediatek: mt7988a-bpi-r4: add proc-supply for cci
->>    arm64: dts: mediatek: mt7988a-bpi-r4: drop unused pins
->>    arm64: dts: mediatek: mt7988a-bpi-r4: add gpio leds
->>    arm64: dts: mediatek: mt7988a-bpi-r4: add aliases for ethernet
->>    arm64: dts: mediatek: mt7988a-bpi-r4: add sfp cages and link to gmac
->>    arm64: dts: mediatek: mt7988a-bpi-r4: configure switch phys and leds
->>=20
->>   =2E=2E=2E/bindings/interconnect/mediatek,cci=2Eyaml   |  11 +-
->>   =2E=2E=2E/bindings/net/dsa/mediatek,mt7530=2Eyaml     |  24 +-
->>   =2E=2E=2E/devicetree/bindings/net/mediatek,net=2Eyaml |  28 +-
->>   =2E=2E=2E/mediatek/mt7988a-bananapi-bpi-r4-2g5=2Edts  |  11 +
->>   =2E=2E=2E/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edts  |  19 ++
->>   =2E=2E=2E/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edtsi | 198 ++++++---=
---
->>   arch/arm64/boot/dts/mediatek/mt7988a=2Edtsi     | 307 +++++++++++++++=
-++-
->>   7 files changed, 498 insertions(+), 100 deletions(-)
->>=20
->
->
+Sayali Lokhande (2):
+  arm64: dts: qcom: Add eMMC support for qcs8300
+  dt-bindings: mmc: Add sdhci compatible for qcs8300
 
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  21 ++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 113 ++++++++++++++++++
+ 3 files changed, 135 insertions(+)
 
-regards Frank
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
 
