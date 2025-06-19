@@ -1,185 +1,169 @@
-Return-Path: <devicetree+bounces-187552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC41AE0726
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:25:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26733AE0782
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 15:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1CFB5A36EE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:23:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEEA63BE915
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 13:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E7D25A35F;
-	Thu, 19 Jun 2025 13:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E909C27EC80;
+	Thu, 19 Jun 2025 13:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="DqtdU1SR"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="CdcwNBhJ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="R54bhBGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59215259C9A
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 13:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8322737F5;
+	Thu, 19 Jun 2025 13:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750339437; cv=none; b=UZ8MhTMhdgy+E5TnGgcFffzfeKTes39K/fIDQPvhe5PGqCbA+B6WQD1O08ZkSsRATayuSaHTjgXPqAc2mYH7Jg8JDpngio/xYeLlOuMFSZ7+aX+Q1DeDDes3yLeFVLBeiKVZxR7yqpMieH6VIyJ6zrH05jvfA5GrmzDgYceY+2Y=
+	t=1750339968; cv=none; b=CU3RHEEdx84htjhBI5JxCJ0f0MPbZf4w/JuUtt4KyToGu3ggMozKti1d4/2F31kEfvQTxSHYiBl45UpWSkyn8WZh3RJQXT8coQH3HjRn/rN/9yqyMMBJaqkEjda3XG/KmP97aWaW5ozSLhSKNQqdPdNpjFbcCggPM9cnD3c/n9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750339437; c=relaxed/simple;
-	bh=yRrInhMCgBKy4u70p2vAMUnikJnhAHKwHd4sMoJNiLQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JWOJ7fPlZd9Ii0iBrV4ESd2eKPLhu48FVsW4r/8Eqqo2Ee1xINITXM1cdwrN/qoUpp53VmKe8aZkerN3o54COTJJ+CevndGLa+Hz1oX9z83RrStWbLP6oLr/zA0/JFX0C+ztDSGazGmgNWSqKWDV/BF48Y9w3sD24Y+qWJtbHlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=DqtdU1SR; arc=none smtp.client-ip=209.85.210.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-72c27166ab3so574328a34.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 06:23:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750339433; x=1750944233; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xMgLZ/LtsoXII7nkbaS4tPTkpnKfRrfyc3zePK7XFH4=;
-        b=DqtdU1SRnX4SlBvbciLYA+LuMMlnu1sOZ9ayVpUL8Ed0uHFBv52hpEKqOF3HQhlI/8
-         BKQpG73U8NYPFRmyUB87ExhjLgGVnLdlGNfO4fmrdoLksie+Vrwp9iTVlZZYj9S0Tb4f
-         mUPk9dqXfxwHkh75OSDVV5m2CxUzUWksiq3p92p9TxnQNhDLktYe4u8O2TZHL4vyA3EF
-         qayrrroZ9ieeQAngg61UvAFg1ZzbjtLgtKGw5G5y/8MaXtgFcpz9CqOW+eC9dY4p2U0O
-         Jyg7YduYvBSnK994Ju3PuCJVpKCnAfjXlcDfwiwIzuiFVjWdDveJaJDpk+TSg3n90y6v
-         o2dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750339433; x=1750944233;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xMgLZ/LtsoXII7nkbaS4tPTkpnKfRrfyc3zePK7XFH4=;
-        b=F+vyeWluqy4snaWfWEfkn7jd7pmpjSs2Be4t5pLVp06NM5HkDYkH4w7HXWKyC/iuoi
-         rzj9PT0TrHxFG8vzLoCXHRjyxTzqaGxj8O3H0IEjA3JyytAUenfru/jQLxxwClZMEjl+
-         lZPHXTk/qN8t8WI+lFNJl6buaGG7OCugNRVP3PBVX5/e4wgdf88QLnwFK4gjZiH6HwOr
-         9LHb6rAhmHqUWC9UXgJlcrJVib96oqQB0dpjeS7rfSmFVKdutUqVzR1lxInaMV+Ic+yu
-         KUNiTql47hECyM3Xm0Lim/vtql1LOzX/cmpt+pmVlYebVnowT+SxasYvB2j+KMScwLRr
-         OsJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmd4V4ehuRBs8B7vPZm9lhe0thmHXB4t5ExTMk1wV0l19kXLA+BpltlOHvxK3oFDgODrOZ1RPZEFdm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy47bjNSv3OtORPByVO/DRJtn4CYtQJ2gYWs26UOaqK4JWWsOvW
-	cpRT1Cnf6OxgUJJd4Dr07LBJVCdJb+1rB8xCb8tGlM3ba6U3woHThV2UtZMKVC6YFNI=
-X-Gm-Gg: ASbGncu/3njgahkZFpCvzpSfaqVV4AvOjKxYKIKxavoq0NT5Svzx1Aw2/UXEmhSCKTt
-	RSoVKigX49xslWxyiA1ajGQuSuJU/1EUJo2YkMs/TcGim/BlXYAddobaAhZonL/kFfC5eA9Ha29
-	6R4xYD1dfL5U/3dee8ATfmZUYO+DnRgNT1GKhNeC0JmbbaahKLxzbuvZXFmhSEcFk1KnpNaHa9v
-	IOwiOB65YbhAk/EXUDrjCXzvZ2enVLhFNwQYw744Le5Z+sl8NjXqCmcsLhbDE6WDbsCzLROm1Jt
-	MVDJsYv/+Gi6QU+n1XQTRYkBMbXEGrUGsxUwHgzxGRQxwsqNoTgVCbOovL/I3MXy+iv2Rg71ZIu
-	mft2MUW1JjBaakZa7OFF/rDdeyA==
-X-Google-Smtp-Source: AGHT+IFv7xGd3UTr9p6P6RvePe4D/mQncFt71O03oqdU9wFu4hav14OEVRV5ZjR0JYA/8QQYzl/Uag==
-X-Received: by 2002:a05:6830:8207:b0:736:8a4:6835 with SMTP id 46e09a7af769-73a36297f86mr11682241a34.2.1750339433423;
-        Thu, 19 Jun 2025 06:23:53 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73a6e73284fsm645977a34.64.2025.06.19.06.23.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jun 2025 06:23:53 -0700 (PDT)
-Message-ID: <6504c609-f8b5-42e3-88ad-5cbee30a52ed@riscstar.com>
-Date: Thu, 19 Jun 2025 08:23:51 -0500
+	s=arc-20240116; t=1750339968; c=relaxed/simple;
+	bh=0k/sg6OaFxMvYOgpWioYAendbgulW/Kl8Ee3ts+/pVk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jmufgw9hsApTS7mY5iRj5NnuG2+odP6aBJLMjVCheXfxtlXSgGXp6H7L9I6g5TiwW3Q9ekc4PSNMlYLcX/oAJg+PLLR0Pp3In304xKZvihmz0/k2rH09W+Fgwro6pR7DIjcELXnZvhLNADkqgibIEkA2JmkBoKR19cUqvbSNDYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=CdcwNBhJ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=R54bhBGP; arc=none smtp.client-ip=103.168.172.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 788AC114012D;
+	Thu, 19 Jun 2025 09:32:45 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-07.internal (MEProxy); Thu, 19 Jun 2025 09:32:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1750339965;
+	 x=1750426365; bh=fIqWDwQJOYSkV3+he9XfhSJxreNYHuyVwziNAwlI17I=; b=
+	CdcwNBhJeAKWAAovkzBYNPKNGr4TEWVw6rj3W6mDKB/yoZRPciocJ1zjT2P46nMr
+	Bm3Z4otQZtwjiQexV2GzJ+gG0k0JlfjEA9hRYeRskOouecrWiWQQP7MmNfmgfAv8
+	u3bpAnP2dh2KGBMJ5aFQ6hfVpOftsHZI2TR+FtQDuAXRion657VpzmPCXMCB/f5K
+	U4TxHPSU/4u0wQxP8WErtWNti4ZI0ne8J4yhdTjoiLiGFuB05b6RzyDZ/JApCWDF
+	y5JbjXYirZwPnZ+rT9BDnFhx2EBCP8gstbdYYwIac9bA2kI87U06ZcxVEOxvE8g8
+	afMrYi4FUSn22KIvkVzMoQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1750339965; x=
+	1750426365; bh=fIqWDwQJOYSkV3+he9XfhSJxreNYHuyVwziNAwlI17I=; b=R
+	54bhBGP083Nplo9mRyI6LLQYfMrq7ClZiKrPKJQ1crjnVU/8DKQXq47woSIa7bz7
+	OPkxdA/kG22PvlMEwLVt532UpDlxq4Cfc1LQY/67J7BHV/G4CQnOEIYjNAQaeGt1
+	ZPWCtgrsEkiWRM5Tfbr8+RALlO16dBU5JKb85NPBVdt7KQnpUa5BsQsVrt33xpQj
+	Bm36FxIWPDC8UDUnvdaKxnm/KO+c6XPfOYg+zK15dT3/kVAkdkSwIGA7QfpuQFFU
+	MTWJbePn1pXIjN1C49Jq2krSuGC+8Y1N5cy40dhb3/zQVG/VLm/ti9su8j8yy4jB
+	vNL7AROwO0NNBk26fDaPg==
+X-ME-Sender: <xms:fBFUaNvSpnp-EhufqloOUHQLiQieLwkChRFG9yfKGzi_GPPsGg6OcA>
+    <xme:fBFUaGelUq4ZfefOqvPegeRT6QOlYtjWIs6VQssPu6OyjR89LdJFNAbcKLl7tEvY-
+    z6T4GOkNs5EtC17QJY>
+X-ME-Received: <xmr:fBFUaAxPHz408tTQ6hNN1DeQblAr0y2Lw0stQpN2C3YIIXjtheiLAX2cvpISN28zfXC74HEgSo8H5_3pwUWvs_J72MPsn2EIag>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdehieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
+    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
+    epfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgrshcu
+    ufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvg
+    gthhdrshgvqeenucggtffrrghtthgvrhhnpeevteegtddvvdfhtdekgefhfeefheetheek
+    keegfeejudeiudeuleegtdehkeekteenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrght
+    vggthhdrshgvpdhnsggprhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhhtpdhrtg
+    hpthhtohepuggvmhhonhhsihhnghhurhesghhmrghilhdrtghomhdprhgtphhtthhopeht
+    ohhmihdrvhgrlhhkvghinhgvnhdorhgvnhgvshgrshesihguvggrshhonhgsohgrrhgurd
+    gtohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskhgvrhhnvghlrdhorhhgpdhrtghpthht
+    oheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjuhhlihgvnhdrmhgrsh
+    hsohhtsegtohhllhgrsghorhgrrdgtohhmpdhrtghpthhtohepshgrkhgrrhhirdgrihhl
+    uhhssehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheplhgruhhrvghnthdrph
+    hinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehgrhgv
+    ghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehlihhnuh
+    hsrdifrghllhgvihhjsehlihhnrghrohdrohhrgh
+X-ME-Proxy: <xmx:fBFUaEPcTCAJjTMhuQPeAKRqr8-crCSxF6X7ohD8wIzgWrvrIDK9dA>
+    <xmx:fBFUaN--pTLgTd9mUviIY71-5Hpge0k6Q904UTNihMOSI7zfz7vmUQ>
+    <xmx:fBFUaEU7iVIZsRtcqPWDThTDAxz22M_R1Tb4UTOecrbJBX1qEL_voA>
+    <xmx:fBFUaOfL51uhInf9I7O-4xveJLthYQpPoya2H6p_YOro6L77Q9ircQ>
+    <xmx:fRFUaCvcQhP1SJDti5X9xE47TVcuwCm-5SqDAZHI1nuAMdwdD_9dPA01>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Jun 2025 09:32:43 -0400 (EDT)
+Date: Thu, 19 Jun 2025 15:32:42 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Cosmin Tanislav <demonsingur@gmail.com>
+Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Julien Massot <julien.massot@collabora.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"open list:MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS" <linux-media@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" <linux-arm-kernel@lists.infradead.org>,
+	"open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>,
+	"open list:GPIO SUBSYSTEM:Keyword:(devm_)?gpio_(request|free|direction|get|set)" <linux-gpio@vger.kernel.org>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v4 10/19] dt-bindings: media: i2c: max96712: add support
+ for POC supplies
+Message-ID: <20250619133242.GC2847778@ragnatech.se>
+References: <20250618095858.2145209-1-demonsingur@gmail.com>
+ <20250618095858.2145209-11-demonsingur@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] regulator: spacemit: support SpacemiT P1 regulators
-To: Vivian Wang <wangruikang@iscas.ac.cn>, lee@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, troymitchell988@gmail.com, guodong@riscstar.com,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250613210150.1468845-1-elder@riscstar.com>
- <20250613210150.1468845-4-elder@riscstar.com>
- <acac9522-fb19-4659-8e1a-544bf75f3864@iscas.ac.cn>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <acac9522-fb19-4659-8e1a-544bf75f3864@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250618095858.2145209-11-demonsingur@gmail.com>
 
-On 6/19/25 1:15 AM, Vivian Wang wrote:
-> On 6/14/25 05:01, Alex Elder wrote:
->> <snip>
->>
->> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
->> index 6d8988387da45..7bb7b8fad24f2 100644
->> --- a/drivers/regulator/Kconfig
->> +++ b/drivers/regulator/Kconfig
->> @@ -1384,6 +1384,15 @@ config REGULATOR_SLG51000
->>   	  The SLG51000 is seven compact and customizable low dropout
->>   	  regulators.
->>   
->> +config REGULATOR_SPACEMIT_P1
->> +	tristate "SpacemiT P1 regulators"
->> +	depends on ARCH_SPACEMIT || COMPILE_TEST
->> +	default ARCH_SPACEMIT
->> +	help
->> +	  Enable support for regulators implemented by the SpacemiT P1
->> +	  power controller.  The P1 implements 6 high-efficiency buck
->> +	  converters and 12 programmable LDO regulators.
-> Needs module name in help text, as is the case with spacemit-pmic.
+Hi Cosmin,
 
-I will add this text.
+Thanks for your work.
 
->> +
->>   config REGULATOR_STM32_BOOSTER
->>   	tristate "STMicroelectronics STM32 BOOSTER"
->>   	depends on ARCH_STM32 || COMPILE_TEST
->>
->> <snip>
->>
->> +static struct platform_driver p1_regulator_driver = {
->> +	.probe = p1_regulator_probe,
->> +	.driver = {
->> +		.name = "spacemit-p1-regulator",
->> +	},
->> +};
->> +
->> +module_platform_driver(p1_regulator_driver);
->> +
->> +MODULE_DESCRIPTION("SpacemiT P1 regulator driver");
->> +MODULE_LICENSE("GPL");
+On 2025-06-18 12:58:46 +0300, Cosmin Tanislav wrote:
+> The GMSL links can carry power to the serializer when using coaxial
+> cables.
 > 
-> If this driver is compiled as a module, it needs to be found by modalias
-> so the driver auto-loads after spacemit-pmic registers the regulator
-> device, so you need:
+> Document this capability.
 > 
-> +MODULE_ALIAS("platform:spacemit-p1-regulator");
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max96712.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Also, consider extracting the name to a macro:
-> 
-> #define DRV_NAME "spacemit-p1-regulator"
-
-I will implement both of these suggestions (and will do so in
-the PMIC driver as well).
-
-> Also, consider naming this consistently: "spacemit-p1", or
-> "spacemit-p1-regulator"?
-
-Let me see if I understand your comment, by explaining the
-naming I used.
-
-The PMIC driver could support a different PMIC.  Its OF
-match table specifies a compatible string with matching
-data, and the data describes attributes of the P1 PMIC.
-So that driver uses MOD_NAME "spacemit-pmic".
-
-This driver describes specifically the regulators found
-in the P1 PMIC, so it uses "spacemit-p1-regulator" as
-its MOD_NAME.
-
-You might still be right; but does this change what you
-are suggesting?
-
-Thanks.
-
-					-Alex
-
-> 
-> Regards,
-> Vivian "dramforever" Wang
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> index 758c0223977d..b345305acc4c 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> @@ -96,6 +96,10 @@ properties:
+>        - required: [port@6]
+>        - required: [port@7]
+>  
+> +patternProperties:
+> +  '^port[0-3]-poc-supply$':
+> +    description: Regulator providing Power over Coax for GMSL ports
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.49.0
 > 
 
+-- 
+Kind Regards,
+Niklas Söderlund
 
