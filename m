@@ -1,157 +1,338 @@
-Return-Path: <devicetree+bounces-187667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDE3AE0E17
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:38:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF8EAE0E1A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:42:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D0C616C475
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 19:38:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6DB91C231FF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 19:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A310242D7D;
-	Thu, 19 Jun 2025 19:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0F024467D;
+	Thu, 19 Jun 2025 19:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FK3j/1R3"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="O9iueXfR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABEF630E83E
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 19:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296C030E83E;
+	Thu, 19 Jun 2025 19:42:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750361885; cv=none; b=ASf8h5cJwLPwaizJ+4WIetGeuThjLdoUawOVRugMFutZJDhEDvYcAfC93s9WMyyyDXSnjN3nF0lL5v2VceEku97znFuZIWyf2plTGXRfViO3bOhpIh1DQWf3Oh5VV7pntqakxN9HvRwOieV7qBwC4BKNcYnxUmyKI4gcci9pjvc=
+	t=1750362135; cv=none; b=r1nxstxv98090ZFBJYVIBkQjHm02SH2opHxtwg0O59PKosE89wo0wQtXGU/XwdSrpfYnfqXLpAx5HDB0XSpv4PW3XvKxJitCSOlEEUMWPE7na1d3lHscIMviZkJ1l/Azau+SbIqVAXUlTH2urA0JUYE6I8N9FhpboLZxGEkZYM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750361885; c=relaxed/simple;
-	bh=/4FUKzJGctfh4F0xV6RfSXalAyRIePr7kz+uFmRa8D8=;
+	s=arc-20240116; t=1750362135; c=relaxed/simple;
+	bh=TzeHJzZ7h0/TmOcB7LFuWJJpKpZGwp266lYNGJjFFoc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=avEo90S8MxAu45UiFU2G/LoXg0zJuW2LS9ZEMJSsIqhT6TefXI9+j+YuhDYQPGt21WHUjMe1Gpg+cTRbMRC0Etojhrm2hb4+E9jA/F+wEe3HolKctDFrdJXYVUAW4lx7P8KeGOM6S8tCFE+nzj925WRQJE5SdDp2SMPf/Hseo74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FK3j/1R3; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-607c2b96b29so1939775a12.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 12:38:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750361882; x=1750966682; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WDdReUCNxh7kd/Z4bkc56sI2H6wihwxJvgXXCb9jS7U=;
-        b=FK3j/1R3KZfkr6kRFpHjSoCDijsFtzbeU3NGFwatbPq0nYs++p3S0epYU6zHgvZa2y
-         +KyelKK9s92FlorVYisbytoc9ZLj44vBy7JU3BJMKnzYX3hGr6wPJqUeQIoqZcYaNvFz
-         NdVFQIy4KHxEufjFzQgkI/+76Pj/SqfkJCtv1lq9sfHAJ1AcwgXR8U/K4dEKRC99BKJL
-         apRDhtXoHjL4yWxtPHa+KXEBNhT1MegORYpaGV0Fdlswb5Nv6PwqJSSWtNmwd7AqDXJ/
-         rd06Ucg6X9M7sa8odDw/cFzXjZye5BdrYDjm9pmI6UawQo4WIgDwkvvrF5csTpimEN3Z
-         rqwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750361882; x=1750966682;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WDdReUCNxh7kd/Z4bkc56sI2H6wihwxJvgXXCb9jS7U=;
-        b=mid5dm9iSWLcBr3874fPO/KAWipKHo5it5HPfH5+KtdUzVRPyRP72TbiN19hAfzNVy
-         0WEPx1jyd6tKMkJqy/XAnnaRodcFSobmQfjIwvT77tl9yx+J9vb+kn6AkrLDtwum9eL6
-         ILmb+WtVzvz2eLnZTaSXVFaA6b1tG5yUIi7sOdkD97ljMnF8VyVubHkICAwm2QaKxCdc
-         RO9WgtfKys3G68LLlp4DX+7+727S1g53/eTebwni/12nddnSLj5Tuhfcy+J60QLn5iQE
-         siRmaunyY1CNrA9fCEshilTis3JjyREMqOi1xC/yYP7IvjKeNjxtgC/PG/xdIfSa9qHw
-         SY6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXo5VgFR+HiAZNzMWy6PdWkLU88cQ4D8kdChxxF/zbhg4pM+urqd/M/V5wcC05repoLGqFoZC7I3y14@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBPyJmvhag/QurjMqi8PokkyeMROcd6wljzDiyD784RmqAFwsi
-	G0PaMXTSdZOBTU4uT2Zu4kdlXvA6QojueIpZbO4DG6sLeeiAblYhJ4uKuMomGzKxkuw=
-X-Gm-Gg: ASbGncuIP/1OPESdVD15JMN5PmYq04YjuU6wp/DdJBDxHo93o/bHM6WgxG0zPlx3vk/
-	C6U1gYmlvsy5ROnc2QNpVKJtL3eethO1DX3gpQSbMnd/eQ37zP7QYDDeZHQHA0aa5lAd17ommzh
-	ue5CvsrTLURTnur/pXZn29+tgyND5LCLlApF42K8AyRzMb2oYZM/ODm0gsTMoUNc4ZGF404rkEi
-	H7Euj93NXNSD1hFhuqEwmp57Stpoqt4wAag8TANXXm3rcboANUErfJUW19fdq5TUHsZx0uFtNVd
-	47uH9y48oqgJpNNsO7mtJorRBIMitYAQUBYstxQourD4FdJ0Ov+c8K4vFlMR8VAk8YU=
-X-Google-Smtp-Source: AGHT+IFNRziKzwyTYykIWbCd8I4m09uDgsNr/FjlRZAov9xS5nfVCYLscsjvNom85tKOHH+EclWA6A==
-X-Received: by 2002:a17:906:9fc6:b0:ade:9b52:4cc0 with SMTP id a640c23a62f3a-ae057973159mr14369066b.26.1750361882019;
-        Thu, 19 Jun 2025 12:38:02 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-ae0541b719fsm34386766b.128.2025.06.19.12.38.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jun 2025 12:38:01 -0700 (PDT)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: hwmon: adt7475: Allow and recommend #pwm-cells = <3>
-Date: Thu, 19 Jun 2025 21:37:46 +0200
-Message-ID:  <77895aec937b6217f513d3b12e7945f1707fd906.1750361514.git.u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <cover.1750361514.git.u.kleine-koenig@baylibre.com>
-References: <cover.1750361514.git.u.kleine-koenig@baylibre.com>
+	 MIME-Version:Content-Type; b=IpTe7iQhSwzi+ONnMCbb8XXAUvLFX0x0ojyVXbJ7vdEkXJOwWYHsgqf/NieZjqLpL4ZS22PZ2IKvjA7XATBKWcR9u9y+x/FXoYr1zBTBkDbyuRjLsYXvhRkxOMHqz6g6Wemt9z4JXklzAm9CEedaEVA/emn6ZE08olgGdWZVih8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=O9iueXfR; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=mXmvKHVyVneLNACt7FikTBcRVPKpi1VtdHVp1Bud38o=; b=O9iueXfRxbTTpObfvpHY5997gU
+	L35A1Q1ccvwrqb6emiFzg25TEFCYSP+QIIw9q3PQpHknDfKLQJPtRSkJ/o3SZRxrkQCafEVgdIkl+
+	5/JvnBprIHh/ktRDaqcSTONu+AKeaWxcRuGzedrDy4cOshIJG9M8PPkR3D7A/VWKNQTvqW7pBs7ju
+	MtPnxLxOvREZ7Yv+Fa5z5Ur5Xyd31p9WiD4KU3T7U5qR+tTRQ0JB+6vzrpF1wjTFBRAZfy1GrLEOo
+	Z72lXlLTq54NmfIp0Y8zrY4NpRBDldZ7NfZnw5MK23AWv4VfnoDH9Lx0QJdNtsgYffp7hjsVnpg5g
+	w17m70Rg==;
+Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uSL97-0006Um-Kt; Thu, 19 Jun 2025 21:42:01 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kever Yang <kever.yang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Alexey Charkov <alchark@gmail.com>, kernel@collabora.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject:
+ Re: [PATCH v5 1/2] phy: rockchip: inno-usb2: add soft vbusvalid control
+Date: Thu, 19 Jun 2025 21:42:00 +0200
+Message-ID: <7131451.G0QQBjFxQf@phil>
+In-Reply-To: <20250619-rk3576-sige5-usb-v5-1-9069a7e750e1@collabora.com>
+References:
+ <20250619-rk3576-sige5-usb-v5-0-9069a7e750e1@collabora.com>
+ <20250619-rk3576-sige5-usb-v5-1-9069a7e750e1@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1746; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=/4FUKzJGctfh4F0xV6RfSXalAyRIePr7kz+uFmRa8D8=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBoVGcOLupelSkrmQjV6M90KjftqVREBMjymX2NE FYbmeD8SOuJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCaFRnDgAKCRCPgPtYfRL+ TiYpB/4gIq2rQz2gQtCu/oAre9BDqpnQM+7a9sStdUsaCWu9tgn+biAyDMU8ogazmQH/CcPrwmS 55Fxh/lS7BGRga5T0tMxWuM+5pbaNmTY7RN+3ifCVpC9LYoS3Au1fYhzcfyTML8+0toS1bJZoVo i6zC8fnW0Vbw8Z261EIfStmLVu7HF/P4cClUu9U7lQ8fbA9NPwF+2G8cwJ+WkOoSX1wvXfLO7J2 98BsuAaqS2XpN4W6dQGOlAt3kgFIAtG2ykP/xKTvOMGzoVLGN1T3Ns2gqnfSq3L4BskcY8vwf13 9fXlXocxH2Df6xmwCljE+O0Fu8LmE34lDg1pnPcZvEAvwODd
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-To make this binding match what is usally used for PWMs, deprecate 4
-cells and allow 3 instead.
+Hi Nicolas,
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- .../devicetree/bindings/hwmon/adt7475.yaml        | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+Am Donnerstag, 19. Juni 2025, 20:36:36 Mitteleurop=C3=A4ische Sommerzeit sc=
+hrieb Nicolas Frattaroli:
+> With USB type C connectors, the vbus detect pin of the OTG controller
+> attached to it is pulled high by a USB Type C controller chip such as
+> the fusb302. This means USB enumeration on Type-C ports never works, as
+> the vbus is always seen as high.
+>=20
+> Rockchip added some GRF register flags to deal with this situation. The
+> RK3576 TRM calls these "soft_vbusvalid_bvalid" (con0 bit index 15) and
+> "soft_vbusvalid_bvalid_sel" (con0 bit index 14).
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-index 79e8d62fa3b3..43e9fe225870 100644
---- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-@@ -53,7 +53,10 @@ properties:
-       default: 1
- 
-   "#pwm-cells":
--    const: 4
-+    oneOf:
-+      - const: 3
-+      - const: 4
-+        deprecated: true
-     description: |
-       Number of cells in a PWM specifier.
-       - 0: The PWM channel
-@@ -68,7 +71,7 @@ properties:
-            - 11363636 (88 Hz)
-            - 44444 (22 kHz)
-       - 2: PWM flags 0 or PWM_POLARITY_INVERTED
--      - 3: The default PWM duty cycle in nanoseconds
-+      - 3: The default PWM duty cycle in nanoseconds, defaults to period.
- 
- patternProperties:
-   "^adi,bypass-attenuator-in[0-4]$":
-@@ -124,15 +127,15 @@ examples:
-         adi,bypass-attenuator-in1 = <0>;
-         adi,pin10-function = "smbalert#";
-         adi,pin14-function = "tach4";
--        #pwm-cells = <4>;
-+        #pwm-cells = <3>;
- 
--        /* PWMs at 22.5 kHz frequency, 50% duty*/
-+        /* PWMs at 22.5 kHz frequency */
-         fan-0 {
--          pwms = <&pwm 0 44444 0 22222>;
-+          pwms = <&pwm 0 44444 0>;
-         };
- 
-         fan-1 {
--          pwms = <&pwm 2 44444 0 22222>;
-+          pwms = <&pwm 2 44444 0>;
-         };
-       };
-     };
--- 
-2.49.0
+I would expect a paragraph more about what those bits (and their
+functionality) actually do here :-)=20
+
+
+> Downstream introduces a new vendor property which tells the USB 2 PHY
+> that it's connected to a type C port, but we can do better. Since in
+> such an arrangement, we'll have an OF graph connection from the USB
+> controller to the USB connector anyway, we can walk said OF graph and
+> check the connector's compatible to determine this without adding any
+> further vendor properties.
+>=20
+> Do keep in mind that the usbdp PHY driver seemingly fiddles with these
+> register fields as well, but what it does doesn't appear to be enough
+> for us to get working USB enumeration, presumably because the whole
+> vbus_attach logic needs to be adjusted as well either way.
+
+
+In the rk3588 TRM I find USB2PHY_GRF_CON4
+bit3 - sft_vbus_sel (VBUS software control select)
+bit2 - sft_vbus (When sft_vbus_sel is 1'b1, vbusvalid and bvalid is
+                 controlled by sft_vbus)
+
+Is that the same stuff as you're adding for rk3576 ?
+
+My last dance with rk3588-type-c is already some months back, but I do
+remember running into "some" issue - but don't remember which one ;-)
+
+
+Heiko
+
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 108 ++++++++++++++++++++=
++++++-
+>  1 file changed, 104 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/=
+rockchip/phy-rockchip-inno-usb2.c
+> index b0f23690ec3002202c0f33a6988f5509622fa10e..71810c07e4150ea81f65a8a93=
+2541b144e95a137 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  #include <linux/of.h>
+> +#include <linux/of_graph.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> @@ -114,6 +115,8 @@ struct rockchip_chg_det_reg {
+>  /**
+>   * struct rockchip_usb2phy_port_cfg - usb-phy port configuration.
+>   * @phy_sus: phy suspend register.
+> + * @svbus_en: soft vbus bvalid enable register.
+> + * @svbus_sel: soft vbus bvalid selection register.
+>   * @bvalid_det_en: vbus valid rise detection enable register.
+>   * @bvalid_det_st: vbus valid rise detection status register.
+>   * @bvalid_det_clr: vbus valid rise detection clear register.
+> @@ -140,6 +143,8 @@ struct rockchip_chg_det_reg {
+>   */
+>  struct rockchip_usb2phy_port_cfg {
+>  	struct usb2phy_reg	phy_sus;
+> +	struct usb2phy_reg	svbus_en;
+> +	struct usb2phy_reg	svbus_sel;
+>  	struct usb2phy_reg	bvalid_det_en;
+>  	struct usb2phy_reg	bvalid_det_st;
+>  	struct usb2phy_reg	bvalid_det_clr;
+> @@ -203,6 +208,7 @@ struct rockchip_usb2phy_cfg {
+>   * @event_nb: hold event notification callback.
+>   * @state: define OTG enumeration states before device reset.
+>   * @mode: the dr_mode of the controller.
+> + * @typec_vbus_det: whether to apply Type C logic to OTG vbus detection.
+>   */
+>  struct rockchip_usb2phy_port {
+>  	struct phy	*phy;
+> @@ -222,6 +228,7 @@ struct rockchip_usb2phy_port {
+>  	struct notifier_block	event_nb;
+>  	enum usb_otg_state	state;
+>  	enum usb_dr_mode	mode;
+> +	bool typec_vbus_det;
+>  };
+> =20
+>  /**
+> @@ -495,6 +502,13 @@ static int rockchip_usb2phy_init(struct phy *phy)
+>  	mutex_lock(&rport->mutex);
+> =20
+>  	if (rport->port_id =3D=3D USB2PHY_PORT_OTG) {
+> +		if (rport->typec_vbus_det) {
+> +			if (rport->port_cfg->svbus_en.enable &&
+> +					rport->port_cfg->svbus_sel.enable) {
+> +				property_enable(rphy->grf, &rport->port_cfg->svbus_en, true);
+> +				property_enable(rphy->grf, &rport->port_cfg->svbus_sel, true);
+> +			}
+> +		}
+>  		if (rport->mode !=3D USB_DR_MODE_HOST &&
+>  		    rport->mode !=3D USB_DR_MODE_UNKNOWN) {
+>  			/* clear bvalid status and enable bvalid detect irq */
+> @@ -535,8 +549,7 @@ static int rockchip_usb2phy_init(struct phy *phy)
+>  			if (ret)
+>  				goto out;
+> =20
+> -			schedule_delayed_work(&rport->otg_sm_work,
+> -					      OTG_SCHEDULE_DELAY * 3);
+> +			schedule_delayed_work(&rport->otg_sm_work, 0);
+>  		} else {
+>  			/* If OTG works in host only mode, do nothing. */
+>  			dev_dbg(&rport->phy->dev, "mode %d\n", rport->mode);
+> @@ -666,8 +679,12 @@ static void rockchip_usb2phy_otg_sm_work(struct work=
+_struct *work)
+>  	unsigned long delay;
+>  	bool vbus_attach, sch_work, notify_charger;
+> =20
+> -	vbus_attach =3D property_enabled(rphy->grf,
+> -				       &rport->port_cfg->utmi_bvalid);
+> +	if (rport->port_cfg->svbus_en.enable && rport->typec_vbus_det) {
+> +		vbus_attach =3D true;
+> +	} else {
+> +		vbus_attach =3D property_enabled(rphy->grf,
+> +					       &rport->port_cfg->utmi_bvalid);
+> +	}
+> =20
+>  	sch_work =3D false;
+>  	notify_charger =3D false;
+> @@ -1276,6 +1293,83 @@ static int rockchip_otg_event(struct notifier_bloc=
+k *nb,
+>  	return NOTIFY_DONE;
+>  }
+> =20
+> +static const char *const rockchip_usb2phy_typec_cons[] =3D {
+> +	"usb-c-connector",
+> +	NULL,
+> +};
+> +
+> +static struct device_node *rockchip_usb2phy_to_controller(struct rockchi=
+p_usb2phy *rphy)
+> +{
+> +	struct device_node *np;
+> +	struct device_node *parent;
+> +
+> +	for_each_node_with_property(np, "phys") {
+> +		struct of_phandle_iterator it;
+> +		int ret;
+> +
+> +		of_for_each_phandle(&it, ret, np, "phys", NULL, 0) {
+> +			parent =3D of_get_parent(it.node);
+> +			if (it.node !=3D rphy->dev->of_node && rphy->dev->of_node !=3D parent=
+) {
+> +				if (parent)
+> +					of_node_put(parent);
+> +				continue;
+> +			}
+> +
+> +			/*
+> +			 * Either the PHY phandle we're iterating or its parent
+> +			 * matched, we don't care about which out of the two in
+> +			 * particular as we just need to know it's the right
+> +			 * USB controller for this PHY.
+> +			 */
+> +			of_node_put(it.node);
+> +			of_node_put(parent);
+> +			return np;
+> +		}
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +static bool rockchip_usb2phy_otg_is_type_c(struct rockchip_usb2phy *rphy)
+> +{
+> +	struct device_node *controller =3D rockchip_usb2phy_to_controller(rphy);
+> +	struct device_node *ports;
+> +	struct device_node *ep =3D NULL;
+> +	struct device_node *parent;
+> +
+> +	if (!controller)
+> +		return false;
+> +
+> +	ports =3D of_get_child_by_name(controller, "ports");
+> +	if (ports) {
+> +		of_node_put(controller);
+> +		controller =3D ports;
+> +	}
+> +
+> +	for_each_of_graph_port(controller, port) {
+> +		ep =3D of_get_child_by_name(port, "endpoint");
+> +		if (!ep)
+> +			continue;
+> +
+> +		parent =3D of_graph_get_remote_port_parent(ep);
+> +		of_node_put(ep);
+> +		if (!parent)
+> +			continue;
+> +
+> +		if (of_device_compatible_match(parent, rockchip_usb2phy_typec_cons)) {
+> +			of_node_put(parent);
+> +			of_node_put(controller);
+> +			return true;
+> +		}
+> +
+> +		of_node_put(parent);
+> +	}
+> +
+> +	of_node_put(controller);
+> +
+> +	return false;
+> +}
+> +
+>  static int rockchip_usb2phy_otg_port_init(struct rockchip_usb2phy *rphy,
+>  					  struct rockchip_usb2phy_port *rport,
+>  					  struct device_node *child_np)
+> @@ -1297,6 +1391,8 @@ static int rockchip_usb2phy_otg_port_init(struct ro=
+ckchip_usb2phy *rphy,
+> =20
+>  	mutex_init(&rport->mutex);
+> =20
+> +	rport->typec_vbus_det =3D rockchip_usb2phy_otg_is_type_c(rphy);
+> +
+>  	rport->mode =3D of_usb_get_dr_mode_by_phy(child_np, -1);
+>  	if (rport->mode =3D=3D USB_DR_MODE_HOST ||
+>  	    rport->mode =3D=3D USB_DR_MODE_UNKNOWN) {
+> @@ -2050,6 +2146,8 @@ static const struct rockchip_usb2phy_cfg rk3576_phy=
+_cfgs[] =3D {
+>  		.port_cfgs	=3D {
+>  			[USB2PHY_PORT_OTG] =3D {
+>  				.phy_sus	=3D { 0x0000, 8, 0, 0, 0x1d1 },
+> +				.svbus_en	=3D { 0x0000, 15, 15, 0, 1 },
+> +				.svbus_sel	=3D { 0x0000, 14, 14, 0, 1 },
+>  				.bvalid_det_en	=3D { 0x00c0, 1, 1, 0, 1 },
+>  				.bvalid_det_st	=3D { 0x00c4, 1, 1, 0, 1 },
+>  				.bvalid_det_clr =3D { 0x00c8, 1, 1, 0, 1 },
+> @@ -2087,6 +2185,8 @@ static const struct rockchip_usb2phy_cfg rk3576_phy=
+_cfgs[] =3D {
+>  		.port_cfgs	=3D {
+>  			[USB2PHY_PORT_OTG] =3D {
+>  				.phy_sus	=3D { 0x2000, 8, 0, 0, 0x1d1 },
+> +				.svbus_en	=3D { 0x2000, 15, 15, 0, 1 },
+> +				.svbus_sel	=3D { 0x2000, 14, 14, 0, 1 },
+>  				.bvalid_det_en	=3D { 0x20c0, 1, 1, 0, 1 },
+>  				.bvalid_det_st	=3D { 0x20c4, 1, 1, 0, 1 },
+>  				.bvalid_det_clr =3D { 0x20c8, 1, 1, 0, 1 },
+>=20
+>=20
+
+
+
 
 
