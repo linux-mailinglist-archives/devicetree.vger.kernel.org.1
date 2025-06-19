@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-187682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28BB7AE0EAA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 22:35:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D92AE0EA8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 22:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D66D7AEDF6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:33:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 118761BC6713
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 20:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E56724679F;
-	Thu, 19 Jun 2025 20:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C36325D208;
+	Thu, 19 Jun 2025 20:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="LOO7vVlK"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="bVl5qy8l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C44723814D
-	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 20:35:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BDF21ADA2
+	for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 20:35:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750365312; cv=none; b=IODolpjLxCXEopHRcQ3lilappIyMEpTHQP6jhJ070oTiMiaj2rOvp1NbxBvVlBpt3aIIOF0aYkN6DGv8koHvXE87WRtUgGTEddXkrSIQQrYlueff+Ux6hOUgUE7GnAh7txbfHNI/gIVTWbM6tHqfFeCbgcwNHW3XrnhockUrOMs=
+	t=1750365313; cv=none; b=f/eOEsox3JHELYfnw+GNMjvI/GB+yuQUksBYlOThtjzy+ay8gbp88EQjF7lSW3lzLiYIvsF3uv76j6zNjdL4MZk7A2P25pe7/BX2vLpSO1v9nxKBzFlh9X2iurmy44Ryu55jTs1il4sXF7its/c5oyYJ86/By8kSviF/F6peWok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750365312; c=relaxed/simple;
-	bh=h3UPqbe4sHsIOrKmfTrEkvLZUI22mR3WiPaH1WtZ+Lc=;
+	s=arc-20240116; t=1750365313; c=relaxed/simple;
+	bh=xXOn0HsXOLMhwrK8hxGYgemk6ajiFApPGs1BV9Yy8Ao=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dAV6PyXFbM5FEsJEeYh5WUqiQFZ8d7yHvm7MH9nOJ/r3h3UqOO3i59S68z6qHqrnv9XOAMDxeBuRePm2C/Z86YniSz9/lt9757zO+GnjEm1T1njxpsEdhRxRVg/G/kx2vfUDfvl5+Od5IJ4ILcP1qSPw2gtSccHceLrn1oQkOwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=LOO7vVlK; arc=none smtp.client-ip=209.85.221.51
+	 MIME-Version; b=jvR6cJdRUYj4EdydGevM5RQsmuRidDcFJIIT1tq4ew/ni2aU9V8hDa5Ou9tx7IQXa4rgbgm8bshbFw/UYowRBSsXLgvGbTEGjQyRihjQAKtkmWw2LEsBCRvwmeFw6aB6CgUyNLWC6wt8mQfksIg+nOuVXNwi8wRMklj8kuN0RYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch; spf=none smtp.mailfrom=easyb.ch; dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b=bVl5qy8l; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a6cd1a6fecso837758f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 13:35:09 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-450dd065828so8643695e9.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 13:35:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1750365308; x=1750970108; darn=vger.kernel.org;
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1750365309; x=1750970109; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UqIJMZJtR2MozSAlBaEIUnoVSAIXjXDAyYywqzDZ/go=;
-        b=LOO7vVlK13PddqBStlK86Da86l+wfv9emJaLypWnAiL7AolWaJZHiBYRNZ/vHUJXPx
-         PUdjummFJ/DUQq8Y/WUtFcgMWlZLS8ebMa1/bV/uSm7u6J7r9OFjpNSZcycshKXD/W5+
-         6ho2tRtneeU28+do8Q94C+fT4G4fYKGYcwGodUBnbLI/g2h/VRA0Hm5mdvSY3xy9Pe8H
-         Q/8fLe1bGnb0aeHDQxZWY2VnsIXO7vghYI4GBBOQ5qvATaQaR6z2+OYpSw43csKUloGI
-         /E+pUwaYt/TFn3PrhU9GYxw35k1p5S5a1qfBwIbaupVi/oeXmWETnswB3RIIrdEGPx7n
-         ghRw==
+        bh=SGE4KFMiA3w+V5SFnoNxn7J/yaSX/gETYA3wlTGQnvE=;
+        b=bVl5qy8l/d7b0xNBebE7U1lzN3Qud7ln4E2gsDDan2miMGMxqMOebG6MCGXAtzdjFx
+         nMSo8n0lRQqHHX6ATQ/Sq9Xxjzd+J4ziPYeNozYLY3LQFvn2DEgz5Q8ldBKthg156lyD
+         U4ErYnamDPN1eLqGufC3Hpuq8OvwYINK36lTPp09wgUhubXsrx3Ua2p1tbdds1T24RJM
+         yGWohOzTsusNZoJiJsD0XFf24L9V1D5sE2DgpSnS+oIDXUWZLP+D9dS0U9kUpTstNqbh
+         9y1oSRlRqNqeVd39Q7egdHgaYHRFkTyMUB2jibtJXWAL06xDvGMJ+qLpcIHqFm+GaG59
+         mTeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750365308; x=1750970108;
+        d=1e100.net; s=20230601; t=1750365309; x=1750970109;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UqIJMZJtR2MozSAlBaEIUnoVSAIXjXDAyYywqzDZ/go=;
-        b=Awfyb44tZk4HqL7CiXeExKyG6lN7FrNAh1fPdJcdSdDYFh0p8cbNtBhTJeHPgFq29y
-         1z7Mc6c775bfgUfzw3rqUD/GBYj+SyMH2gdHePQVuyYxPQuyA7oJPzqFXoEAptV0je9m
-         auBSAsrypM5yDXcJh5spCXu3BfRJxmEq25w/hEqq2z/6wrItpUX8LGLNpiycJN+8LvSA
-         zjQwx4bsMHxxRdFZrT3t8Fvpsj3PzaStFsGjCz4Kce42/3YP0Gid6suJHECKO5aoDzZz
-         it+JcTUE27394bwK5pAHFDW+LKzEjgC6Rgk4gzVhfPkwr4M7+Oq5ba+htsx0SyVeI5hS
-         9axA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/qH1tURgbf5dwGTcLJKl7+lGWUpxWWJxcs1VGSb9+Dp2U5qVTWqA6CPMwzvzlKLcjq/XZSPx3GBWn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnQ/VR16xiiZOmRJf2sflTYLYTHm9ZKLsXC78FRDlrXUnlZd6E
-	hYRmrJpMpgy2vVbN5E4R4uIUOaFXNKtFPty04sGGQHxGZBlOoQJirGelNcdUj+W9CYU=
-X-Gm-Gg: ASbGncuxxu7XN0E5+mNSieh1x9w0WIK+TFC6Yyvqk3U3M1GcTpJxWz1ttcpQMXO0jQl
-	CQ7CdLApH+Us15NXIQMgVWbGvuajx/MRBmitCLNrorfsTNZ5BKeGLOFVON/p6usNzJHu3tfkv6P
-	slSOkbkT8TVYUdQc7D3Z2TlAlNdsXgmOKN/g8srAIgN8kvC0OClZZhUFKj4IoKxyFCVOPMDgL0t
-	qyG/TeKY3J9Hro4IrJBnRfBJxy/6z7wpLe80Sncv0SQ/UXMrd4+HgY9D8dQRA6sdVAsESfpYrUO
-	lWJJjmaYTXBlWI/Nop6E2N95wgUKc48GLkrsMZ8yvcBRbVaaDHrAMb6VBqti
-X-Google-Smtp-Source: AGHT+IHaa/0DwyjqICRhYqGySJHbrarH+g1ieC9QlV5bX5bc3ypPAuIZ0V2lnIE42rr80V+RNBEoOg==
-X-Received: by 2002:a5d:5f4b:0:b0:3a1:fe77:9e1d with SMTP id ffacd0b85a97d-3a6d12c1848mr307365f8f.16.1750365307710;
-        Thu, 19 Jun 2025 13:35:07 -0700 (PDT)
+        bh=SGE4KFMiA3w+V5SFnoNxn7J/yaSX/gETYA3wlTGQnvE=;
+        b=BWT691JXLNv+rvRXqmlkrax29DOkOOg1oHENltFMh4YaGW3MQufbH02pOpoP/utbMr
+         z8HGgfIPmeApqUQ6gw5NDKFihyZWTkOXZM94pFbSoOHLT3LZUDIkMwp2dWvN5mo+eP+6
+         id0WqrMp39inZh25Ulrf33xhuqY3U2kZHrBNDOsjzpDW6G7XfeXq6/TP9tOYkxG1blij
+         e7A12hHn7GSBZhtfGVUSWDLZMsYokrzANN9ta9w9WJEE33ydbejNYTfFstBThod2nXxX
+         kWNvqDWIEiPYvmZlzlJdbQktynCy3ylez9nYMb9wknezQDkTWqqxNxpbWpSxfs3GIYsj
+         6Tzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWjUgQt4VNUugTT99Gl4VJY8QVskCH6bCDEB74UUBLOg1zJKO0KZMn2Wg6jPr7DoCIv7HEJOIzoclHX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxlcHPX6gKq91pfggPgwp36ZVfqkHBtF3gTtUzZOpE+Lt7aH5i
+	/Z0u9U5f2rAdcivVott3/jU/pJIz8iFsWlKGVMb7yHgeTgYg0cNW/+86FQ4oMCMTNXc=
+X-Gm-Gg: ASbGncsBEGWLAbZFFJ8oIQFw8GMJB74C+W7cu8WzmZ+ptcct5fOB+XLDlJs0QEuUF59
+	Y6Ppk3YpqJ47YC+pvq9R+eAZ6GFbsqDbLQmG9wHW34wnClhzx/tabh6e9kl2jhyYFLtrmL1+km4
+	LeYpXwO8+1csFmDl91DSQEY70SQ9zrI9Eh1Gouesaubz/8C8H3z4065AFQIsOkKeNHth1ONcxFU
+	c8zbkIzChVPTarT8PtBAUp26/7KinTnrA04+jTW1OFRogP1EZ/vkPtMLRRfrToT2srfoJkELQ8h
+	MOzbXL2juV1jV2ULOSI1FE+PXGHY3xiGUPK/F4Yo5/3A3fERksGC13UBH5me
+X-Google-Smtp-Source: AGHT+IGTRuDsJQhGE2JsFOOf2cSPgq8KRfMogQt+8xubaFrCIb1LfzJh5AqVuEeNoZ7tBfsJjgbAew==
+X-Received: by 2002:a05:600c:6305:b0:43c:f513:958a with SMTP id 5b1f17b1804b1-453654cc279mr1601115e9.13.1750365308756;
+        Thu, 19 Jun 2025 13:35:08 -0700 (PDT)
 Received: from fraxinus.easyland ([2a02:16a:7402:0:a60c:e454:f09e:79d5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6d0f1d91bsm288495f8f.42.2025.06.19.13.35.06
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6d0f1d91bsm288495f8f.42.2025.06.19.13.35.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jun 2025 13:35:07 -0700 (PDT)
+        Thu, 19 Jun 2025 13:35:08 -0700 (PDT)
 From: Ezra Buehler <ezra@easyb.ch>
 To: linux-mips@vger.kernel.org,
 	devicetree@vger.kernel.org
@@ -84,9 +84,9 @@ Cc: Conor Dooley <conor+dt@kernel.org>,
 	Stefan Roese <sr@denx.de>,
 	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
 	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-Subject: [PATCH v3 2/4] MIPS: dts: ralink: mt7628a: Fix sysc's compatible property for MT7688
-Date: Thu, 19 Jun 2025 22:35:00 +0200
-Message-ID: <20250619203502.1293695-3-ezra@easyb.ch>
+Subject: [PATCH v3 3/4] MIPS: dts: ralink: mt7628a: Update watchdog node according to bindings
+Date: Thu, 19 Jun 2025 22:35:01 +0200
+Message-ID: <20250619203502.1293695-4-ezra@easyb.ch>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250619203502.1293695-1-ezra@easyb.ch>
 References: <20250619203502.1293695-1-ezra@easyb.ch>
@@ -100,28 +100,40 @@ Content-Transfer-Encoding: 8bit
 
 From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 
-Otherwise, the MT7688-based GARDENA smart Gateway will fail to boot
-printing "Kernel panic - not syncing: unable to get CPU clock, err=-2".
+Most notably, add the mediatek,sysctl phandle and remove the redundant
+reset/interrupt-related properties from the watchdog node. This is in
+line with the corresponding devicetree (mt7628an.dtsi) used by the
+OpenWrt project.
+
+This has been tested on the MT7688-based GARDENA smart Gateway.
 
 Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 Reviewed-by: Stefan Roese <sr@denx.de>
+Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 ---
- arch/mips/boot/dts/ralink/mt7628a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/mips/boot/dts/ralink/mt7628a.dtsi | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-index 0212700c4fb4..10221a41f02a 100644
+index 10221a41f02a..5d7a6cfa9e2b 100644
 --- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
 +++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-@@ -33,7 +33,7 @@ palmbus@10000000 {
- 		#size-cells = <1>;
+@@ -134,13 +134,8 @@ pinmux_p4led_an_gpio: p4led-an-gpio-pins {
  
- 		sysc: syscon@0 {
--			compatible = "ralink,mt7628-sysc", "syscon";
-+			compatible = "ralink,mt7628-sysc", "ralink,mt7688-sysc", "syscon";
- 			reg = <0x0 0x60>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
+ 		watchdog: watchdog@100 {
+ 			compatible = "mediatek,mt7621-wdt";
+-			reg = <0x100 0x30>;
+-
+-			resets = <&sysc 8>;
+-			reset-names = "wdt";
+-
+-			interrupt-parent = <&intc>;
+-			interrupts = <24>;
++			reg = <0x100 0x100>;
++			mediatek,sysctl = <&sysc>;
+ 
+ 			status = "disabled";
+ 		};
 -- 
 2.43.0
 
