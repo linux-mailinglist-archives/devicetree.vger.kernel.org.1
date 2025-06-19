@@ -1,75 +1,69 @@
-Return-Path: <devicetree+bounces-187691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902EAAE0F1C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 23:51:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED57AE0F76
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 00:14:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D8603AF780
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 21:50:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62CCE17A68C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jun 2025 22:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A9421D5A2;
-	Thu, 19 Jun 2025 21:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0345257ACF;
+	Thu, 19 Jun 2025 22:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="vwlc3ekO"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="liASiEjR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB7A30E85D;
-	Thu, 19 Jun 2025 21:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1DA30E826;
+	Thu, 19 Jun 2025 22:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750369860; cv=none; b=Fg7DQgWJ4E4mOJjzu7IImKhv0foOpy1KCQz1+X8+1sHN860HdbFdw0JcAqldKK0nyItqpDf0T7obasEGBUejNHskWCgIqgg0S65RS3KmjfNpRF8M7iVdvkPBLrwttiQNkAtoPgusEyr/Is7ckJs1f/XFwxIG5mEX6jfMhSPF+sw=
+	t=1750371238; cv=none; b=gcHnedqBUayOWTwUWLxopDA7QrAfUOA9Cjue2pVQp1gOHIAgPY+Tg8/xvFa8W3R334sm3FsrZt07Vl9iqDJYEYMMUllB0Xv3FIfDno4HBxKIvu2/nX/ohdvEECJ0wmXf4TRXG+AoBztQ4YjunhNEBTg3wjcgG4NsAO32sQLAXFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750369860; c=relaxed/simple;
-	bh=A45MqkvigqGY87gNAFmP5A7QGENiNwBzRwE2i+XEg8A=;
+	s=arc-20240116; t=1750371238; c=relaxed/simple;
+	bh=VkvJZaf1xIQ7oLQmdRrNT1Hr+EoYVxauf+en4PevQXw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jGkKMegIrJnlR8ZoGp+X0Po4fXv6foV4SXbXt4vZvoSKglzBINCHRvjwElAG2MAdC2qsaqvSEfhZS8sYcqksFntw1rME1tNlCkQVvy5GHZ+iKhjzQizuDFXOiHaroz6thPX2x/zYlH7H57wz8aLAajDOf2wZ3J+l1d9fF6g3KyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=vwlc3ekO; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=jHbwct2oigvvJt2Q66jBPvBV+kxSRV16ZoepZdEdUK0fqWyGNMhnCE7gGKekdtJjQWNlb7DTPfomuXgxQASNog9E5ZgkFJrNTCODIZ1LUtquqpGa9/rbjV/QZjtXnR/WqOo7UDa/jmE44YEJzcnRlQqwijaqdye6mQnyeXXeIq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=liASiEjR; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=p78c4pFSZsl/cYAu+NblAgf0zSrytRvAYqFqDj5uriw=; b=vwlc3ekOINkhRghcoe6/+IXwj0
-	anuJlyiboOwB4gTx5wFPmQIh8ZLldn4lTsXVOBzd9ctUvyL0EPK4ifg67GlWNWgW05W+5RhlM2fjD
-	VdjGBB4R4bPL5fcVtSa45yjp3RX6Zp1KkBZYrEiDpSXx/6e7R5Ub8tDO/bfMw/kl3ofWpV0D+xXMb
-	/mpotHo70MsV7BAIEd4WEDOVsjyCE29O9/Lwf9NZr79067oLYRGW0m74nVIOpQjxizzekTiUmgops
-	P4ol8wnMkj7mWZEYoyOj/zlvqFb+GcqtwvtroC21Nga67uaJjg46x6jZLl+uqgzL9UQSNia5BFmG7
-	LQEBK9Yg==;
+	bh=9Y/aI1+KgOz6LLSAu2ncBoBTsqSkVCTLSAMw2PTIoL0=; b=liASiEjRzLOVhojwGDYmpVSYE2
+	/DM61Ku2Wc7QEnUaf57vFLmY46CMKcSD6sWL6PjGivLcZBT/gFcT8/AkEZxEfnOhMjAQWnKAghDqP
+	vV4T6udEV4HxgWlMfUqFsq75ONrCMs6Vs8r8pODGC9uUNwt12GLBnLmO+t3uBKnYPbmhkXqvmeHOL
+	9+riJhsXg2e9noOJ2zH9CZ3zaAVQIllgsAmF9MDQKIjDlgSteNfw97gvzwiKS8tYzFi5ALpIk9HVm
+	j0PQLgsZmj2Fip5gptktByvP/EavMxCYuMy/yiY1IRYDYKE9wigPn5+EroXq7E7PERI8md1gMDdq0
+	/QgxUOpA==;
 Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1uSN9k-00086P-8T; Thu, 19 Jun 2025 23:50:48 +0200
+	id 1uSNW2-0008Oo-1j; Fri, 20 Jun 2025 00:13:50 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Alexey Charkov <alchark@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	Yao Zi <ziyao@disroot.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v5 0/2] RK3576 USB Enablement
-Date: Thu, 19 Jun 2025 23:50:38 +0200
-Message-ID: <175036980219.1524492.2279804764361633284.b4-ty@sntech.de>
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH 0/9] rockchip: Add power controller support for RK3528
+Date: Fri, 20 Jun 2025 00:13:38 +0200
+Message-ID: <175037106381.1530547.11103096217205983785.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250619-rk3576-sige5-usb-v5-0-9069a7e750e1@collabora.com>
-References: <20250619-rk3576-sige5-usb-v5-0-9069a7e750e1@collabora.com>
+In-Reply-To: <20250518220707.669515-1-jonas@kwiboo.se>
+References: <20250518220707.669515-1-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,27 +74,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 19 Jun 2025 20:36:35 +0200, Nicolas Frattaroli wrote:
-> This series is the result of what I thought would be a quick 10 minute
-> job, but turned out to be more like 3 days of pain, suffering, and
-> confusion. This should be expected with USB Type C though.
+On Sun, 18 May 2025 22:06:47 +0000, Jonas Karlman wrote:
+> The Rockchip RK3528 support multiple power domains, one PD_GPU that can
+> fully be powered down, and other that can be idle requested.
 > 
-> The first patch in the series extends the inno usb2 PHY driver to fiddle
-> with some GRF flags in that driver when the PHY is connected to a USB
-> Type C port. Without this change, devices on USB-C simply don't
-> enumerate at all, as the state machine gets stuck waiting for vbus to go
-> low or something along those lines.
+> Vendor kernel flag all power domains on RK3528 as always-on, this takes
+> a different route and instead tries to describe all devices power-domain
+> in the device tree, even for controllers with unsupported runtime status.
 > 
 > [...]
 
 Applied, thanks!
 
-[2/2] arm64: dts: rockchip: enable USB on Sige5
-      commit: 64df8e2e207a2152201ef3515baacd8816c13282
-
-Adapted to the other Sige5 series I just applied.
-Please double-check.
-
+[4/9] arm64: dts: rockchip: Add power controller for RK3528
+      commit: 654df8e74dbc19ba0625051079e6889e6999d16e
 
 Best regards,
 -- 
