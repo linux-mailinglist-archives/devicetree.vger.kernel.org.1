@@ -1,214 +1,110 @@
-Return-Path: <devicetree+bounces-187904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599DDAE1BB5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:12:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22BBAE1C00
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCB251C209BE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:12:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 087127AD250
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B774C28D8F7;
-	Fri, 20 Jun 2025 13:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6072128CF6C;
+	Fri, 20 Jun 2025 13:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="nNI+ajM6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MtebPBvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2201E2857DE
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 13:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD00028A1FC;
+	Fri, 20 Jun 2025 13:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750425002; cv=none; b=olzfwSDYLAFvzXTRVHsVvxCbnWUjqe4y+GDJe9nHlyKcXxvZnOZv1KJF2TsioyeX7HyOErYi758KQ6UHCdjlp/kdl35vd1y4W0YCVu5RSqKGvCZqxZiJjPdRHssFlOeIffX2EJ6dH6wGjVbKtL64sBjNmPFm95ATDQbmvRKv8Mg=
+	t=1750425787; cv=none; b=FthmTSm3OUpvAGC6clEaju3C4jPPCBH/g05i0V6qaUd32IPYwHRdpELQTF5f0Mcm9ZZNlKAcSm0mJJpvAHOcCFbq/dfM9d8Qmxd0buYMYyHlLSDfNelVyJtIusVShjm7O2KyE2+UMIkDDLolpKazlpLRFV+zQuRfVjNj7WDiQJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750425002; c=relaxed/simple;
-	bh=nHJlRRXHCltVDM0SPmxxQhkuFzik5VSZCZ8u76ZAQYc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=M06y4ZKSBRsZ75GoTwUyW3NLOkgUxqsGNJV/RXLCnJDFBFYGxBdwMX3YSltHs3iJ2OiXOV7T2bxIXZnLQbbOOTNp815vkGOT30vMhiN7vfaZ49j01qtg2FjFXhE7V3Mo1hgnce9dvuEKB7kjbzRTfBxQ4c7XixK+GQV+v1GMv+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=nNI+ajM6; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ad8a8da2376so291822966b.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 06:09:59 -0700 (PDT)
+	s=arc-20240116; t=1750425787; c=relaxed/simple;
+	bh=vVbVRFQUAznwYxpCtzkO4d0c66o8bC/lMZQmfZTPce8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VINNoCroEZb8fzH1GACCjnsdpoMGMmyWIIUXB5h+6iZUNuN23+ffK5QKFPKaJA5rNwVFitHzQK2A1n8c4vFS25ukwf8KuWWlJaPbMrtqPbEthF8nx2jZekkQEC/48C4P2Hohp5Na0/uf8YbpiajRvQDgWWjONCz+qpd7tFVQzAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MtebPBvk; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-31329098ae8so1548636a91.1;
+        Fri, 20 Jun 2025 06:23:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1750424998; x=1751029798; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1750425785; x=1751030585; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=70ctTpSJsq+bQHgnXDWzVP4qaU3/3WUnYFhQbeURUT8=;
-        b=nNI+ajM631phue9gNU0R//9nD+1z0es0SOg/pso5Wy3ApnO0/optB5TNz0t+l2tQva
-         Ej/EWyRtj505M4h3GCc/oyGw3qHrRWNCnYebikry7r5xhFPYLhP/HOaY70z6UVlxao65
-         ccejSRNjeKqS5X6UJ3y4q0FP3tCbKsd8UVnTcDH5phs+cGpow4TAn7kz+Gd2nTxMqKL6
-         E8w3f8yvC80sxLG2gFQrZxzYdgS2tFgPKPNWxczNVta16CBg8hfhsyS5XyDwlR4xDWNL
-         slxgU9WhoZmbduQxJyueUfkXrt0XNcgPUBtivBBJU/UtfBDng9lw7EB+OVUuaAm0wRup
-         RFKA==
+        bh=vVbVRFQUAznwYxpCtzkO4d0c66o8bC/lMZQmfZTPce8=;
+        b=MtebPBvky1kL4iru3D24DKY3LLy3rAJSKB+QRR8/FUvLRaGKVtTn2sXxYnQcrKICoi
+         iQTOiaJ9DN9fMbHUdiIysteYtK7esdIyZyoJ3HJ3F8csfQzmECdoZKskIt++RU2dImW3
+         +VSPVMTXoBfec2rcaZmA0veMJJ58+zjYXoSjIb4nhnI2GOjYGydTNbknf7pHNh5Vb2nO
+         vGMisuANz+SHrpJOE15wQV+rGwQTz9blK0CFDeOCv5gU6L+6+AiNT8o/M19nl2LT6Bm/
+         Pg/BtTh7iSsLpIX6vi9ebYWD7Yv795PtNIa+GeqykZJ9fJZgg/pqEzAXMEinYeQpw4Ey
+         zWVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750424998; x=1751029798;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=70ctTpSJsq+bQHgnXDWzVP4qaU3/3WUnYFhQbeURUT8=;
-        b=grqEBFTlSBPlK3EzE28C7NNwceqGhWJxHBybpscMgq0fmoBAC57KCFrm8mdIXa5Zv0
-         0R9SLK5RyT5QWsZbVdvXOP14r8ibkhFf2Ms8dtwFdfuny4Nxda1I4UTUwBgvqSU3ymCw
-         0wVhH1+0F33ALXhpQvf63CxEPeRvnEuekTPaP1IgY3KX1BkRzJ7wcMxH+ZYTmISuzmPM
-         AdPt8LejFrmoI/HGxMBshhpv8V1MzimSu/wdsJJSeH1RFHDHynNV9Y/Bw/r6NXZmZ8rl
-         //TppofwCol2hR7f03B7yl5UP/hOCo/sMn0QiKmcr5thZPIfQUCLqsPTIVuLbBRADRqx
-         1F+w==
-X-Forwarded-Encrypted: i=1; AJvYcCXSCMmXpeLb381pSH+s16eqdyQEC+fPDqj/vwj95DFBsqXpXBc01CzXaxRHHv6J49PtqrnoC1Focoss@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGgTTtpRu68lTaf9BWi2B4CW06JH/1fmCpCXKJd+J/Xim7Dfbc
-	+S0V7NesmUeaKagc/xrKt4V5PY5EENPdj3pL/xmkkN1hjnOAcZ4h61XG0P+Dyodi0dw=
-X-Gm-Gg: ASbGncsdmEXLK0bvkGMWcd4FXpdYscgabG143eYM3mhLvPAQZ2bq83qsGcQGmnvzv5h
-	dTRM3d3FE1I3AsB52u2gB75qnbGpe1gHxkAc4/NGEX0s5nKaoYDzxvyOMexrVgvettKq29YVR4o
-	Ybn/Fh9AxgsQfmaq9wcVr9mk1OL8E7t1SYEgCqFUCigBb8OnzuiIfStIPNcuhn68uQ1ABCxuRJ9
-	PqxvL6u97+zE8jtXj71zrpgJzm15On+VWMCWOnBgRoi2SkN8P6yqhYi1BrCsCjCqTV+L2OKR6jp
-	7v76gX/pXef8Hz39DVmjPv2IBcmDZgspqtEXmcM/URKuxVtEslPGr03ov2fQXTRPrZUPy92WN4n
-	8KGsI7XDhPZYkwC07g/9gjpoabKNV20o=
-X-Google-Smtp-Source: AGHT+IHvlXLALS4AHiE4SoJGkmgQzjz8Tofgh17vREN5VuVWgpnSvyEfhznZhRgrJb/j59g9wyMOzg==
-X-Received: by 2002:a17:907:6e9f:b0:ada:99ed:67a3 with SMTP id a640c23a62f3a-ae057ac2433mr265724666b.27.1750424998367;
-        Fri, 20 Jun 2025 06:09:58 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae053e809f6sm159702466b.1.2025.06.20.06.09.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jun 2025 06:09:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750425785; x=1751030585;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vVbVRFQUAznwYxpCtzkO4d0c66o8bC/lMZQmfZTPce8=;
+        b=KJQuRr8RBFjTk0IZLy6CEzYyFFM4ngVJEZ08Xs70sP54RLQJg7+vuXCi9nrUaKldzH
+         ZUzmdGtU57rcN0YyvJrSYJ8u0CT2/Hmt2BG1Ei7WCzwmSZLj0+A6hAmoJI2sCHjLrM3h
+         ztFqnTb49mpHBS/UgiRtv9Zh0eeO9GmYjqewTNmXxJDPuYUZ5iLyIG1INLCNELRsvcTz
+         DkMHSm1/tlyFGEC3AkH8jq3Bfgcr+jvOTa2nawycimymd8gCpLhkeaTRxFnBYMFiYvMW
+         kKZzAJwXvAynIbmlAm04BQNKQF095mky0oo+jBxiOcGQlUva6Yu7CtvYu9+ouwX3n5Vg
+         x7lw==
+X-Forwarded-Encrypted: i=1; AJvYcCUlePn7ItkrqMSnOPTdY3i/Wpf/kA+Ma44dJlIQ5u+I/NRtkDbIq7tTV8Jr3Qwysi5xP3VsOO37n7GjNgd2@vger.kernel.org, AJvYcCXhXfatwXBPMYPA7lYbs2yd7oGN94rT4tON7DJnPISK1n/pDvkyG+sAViVFbJh6ojMlZiFkojyvQ6Cb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNX8Fqrey/P5nhsGbkV5DvwW4gc2wMQdot3nPqcMloaYNkYA8l
+	AyfI3GT1RmAqWG2ZFGKbgsehaygCHE6VtFc3jLL1N87W64QzQLYGJaj/1cFCTIhJ7PiaQfdwruG
+	+7manGySReoy5juZv27kg+3dlg/9H3+M=
+X-Gm-Gg: ASbGnctMSl7q3Eq7bKnEE9u71wH0pgipcXECa70Gm+VRVf/FJQ3qa3igeMjyyYXlL9B
+	EZ4CYkV3lCEmZUt+X31Lg6fQ/7fug2Hzn93CFFy8JGOsc+96oW5avql9XRIUqWSMfdaKF+vv3fa
+	cqmnVhCCmX0A+LIzqpq1XIn5y745vR+ElOpXyhL8Ur
+X-Google-Smtp-Source: AGHT+IE1J/3agy2pvlBUpx5CZrzP7qFSI3FtPdha4ZfRPlkfSyGlRzieK+BAcz2I5VxrRAtzHU31ktVhErvAuBdqNfo=
+X-Received: by 2002:a17:90b:288f:b0:310:8d4a:4a97 with SMTP id
+ 98e67ed59e1d1-3159f518ab7mr3470283a91.15.1750425785075; Fri, 20 Jun 2025
+ 06:23:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com> <20250610160152.1113930-7-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20250610160152.1113930-7-laurentiumihalcea111@gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 20 Jun 2025 16:25:04 +0300
+X-Gm-Features: AX0GCFu22qEJwTwiXYLJyDUpuSZfvl_dtoxWhsBOKOtPed2Sd_Y2mWRPu5m8p4M
+Message-ID: <CAEnQRZAhsCc==X1At+s5pb1bocnVmb2sFKmzNo+gqkiWAqFHag@mail.gmail.com>
+Subject: Re: [PATCH v7 6/6] arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+	Frank Li <Frank.Li@nxp.com>, Marco Felsch <m.felsch@pengutronix.de>, 
+	Marc Kleine-Budde <mkl@pengutronix.de>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Jun 2025 15:09:57 +0200
-Message-Id: <DARDVIP633UV.36218UJFJZJIY@fairphone.com>
-Subject: Re: [PATCH 3/3] fbdev/simplefb: Add support for interconnect paths
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>, "Hans de Goede"
- <hdegoede@redhat.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Javier Martinez Canillas"
- <javierm@redhat.com>, "Helge Deller" <deller@gmx.de>
-Cc: <linux-fbdev@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250620-simple-drm-fb-icc-v1-0-d92142e8f74f@fairphone.com>
- <20250620-simple-drm-fb-icc-v1-3-d92142e8f74f@fairphone.com>
- <cf29862b-496b-4825-aa0f-493eb44838a5@suse.de>
- <DARBA03BEQA1.3KLHCBFNTVXKJ@fairphone.com>
- <4475251a-ede7-42d1-a95e-497e09beba0d@suse.de>
- <DARCJEWMK6C2.21Y93IPCZO7NM@fairphone.com>
- <8874b905-dd1a-4bcc-9572-edcf5451f400@suse.de>
-In-Reply-To: <8874b905-dd1a-4bcc-9572-edcf5451f400@suse.de>
 
-On Fri Jun 20, 2025 at 2:36 PM CEST, Thomas Zimmermann wrote:
-> Hi
+On Tue, Jun 10, 2025 at 7:04=E2=80=AFPM Laurentiu Mihalcea
+<laurentiumihalcea111@gmail.com> wrote:
 >
-> Am 20.06.25 um 14:07 schrieb Luca Weiss:
->> On Fri Jun 20, 2025 at 1:28 PM CEST, Thomas Zimmermann wrote:
->>> Hi
->>>
->>> Am 20.06.25 um 13:07 schrieb Luca Weiss:
->>>> Hi Thomas,
->>>>
->>>> On Fri Jun 20, 2025 at 1:02 PM CEST, Thomas Zimmermann wrote:
->>>>> Hi
->>>>>
->>>>> Am 20.06.25 um 12:31 schrieb Luca Weiss:
->>>>>> Some devices might require keeping an interconnect path alive so tha=
-t
->>>>>> the framebuffer continues working. Add support for that by setting t=
-he
->>>>>> bandwidth requirements appropriately for all provided interconnect
->>>>>> paths.
->>>>>>
->>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>>> ---
->>>>>>     drivers/video/fbdev/simplefb.c | 83 ++++++++++++++++++++++++++++=
-++++++++++++++
->>>>>>     1 file changed, 83 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/video/fbdev/simplefb.c b/drivers/video/fbdev/si=
-mplefb.c
->>>>>> index be95fcddce4c8ca794826b805cd7dad2985bd637..ca73e079fd13550ddc77=
-9e84db80f7f9b743d074 100644
->>>>>> --- a/drivers/video/fbdev/simplefb.c
->>>>>> +++ b/drivers/video/fbdev/simplefb.c
->>>>>> @@ -27,6 +27,7 @@
->>>>>>     #include <linux/parser.h>
->>>>>>     #include <linux/pm_domain.h>
->>>>>>     #include <linux/regulator/consumer.h>
->>>>>> +#include <linux/interconnect.h>
->>>>> With alphabetical sorting:
->>>>>
->>>>> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->>>> Thanks for the reviews!
->>>>
->>>> For both simpledrm.c and simplefb.c, the includes are not strictly
->>>> alphabetically sorted (1 mis-sort in simpledrm, 3 in simplefb), shall =
-I
->>>> just try and slot it into the best fitting place, or make them sorted =
-in
->>>> my patch? Or I can add a separate commit for each driver before to sor=
-t
->>>> them.
->>>>
->>>> Let me know!
->>> Best is to try to fit it into the <linux/*> block. In simpledrm, it's
->>> probably my mistake. Don't bother with sending an extra cleanup if you
->>> don't want to.
->> I was mostly asking whether this diff is okay as part of my patch (for
->> just adding <linux/interconnect.h>)
->>
->> diff --git a/drivers/video/fbdev/simplefb.c b/drivers/video/fbdev/simple=
-fb.c
->> index be95fcddce4c..f2efa4b51401 100644
->> --- a/drivers/video/fbdev/simplefb.c
->> +++ b/drivers/video/fbdev/simplefb.c
->> @@ -13,18 +13,19 @@
->>    */
->>  =20
->>   #include <linux/aperture.h>
->> +#include <linux/clk.h>
->>   #include <linux/errno.h>
->>   #include <linux/fb.h>
->> +#include <linux/interconnect.h>
->>   #include <linux/io.h>
->>   #include <linux/module.h>
->> -#include <linux/platform_data/simplefb.h>
->> -#include <linux/platform_device.h>
->> -#include <linux/clk.h>
->>   #include <linux/of.h>
->>   #include <linux/of_address.h>
->>   #include <linux/of_clk.h>
->>   #include <linux/of_platform.h>
->>   #include <linux/parser.h>
->> +#include <linux/platform_data/simplefb.h>
->> +#include <linux/platform_device.h>
->>   #include <linux/pm_domain.h>
->>   #include <linux/regulator/consumer.h>
->>  =20
->>
->> Or if you want this churn to be a separate commit. Either way is fine
->> with me, just trying to figure out the preferences of this subsystem :)
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 >
-> If you want to resort the entries, please do so in a separate patch.
-
-Ack, will do in v2!
-
-Regards
-Luca
-
+> The DSP needs to access peripherals on AIPSTZ5 (to communicate with
+> the AP using AUDIOMIX MU, for instance). To do so, the security-related
+> registers of the bridge have to be configured before the DSP is started.
+> Enforce a dependency on AIPSTZ5 by adding the 'access-controllers'
+> property to the 'dsp' node.
 >
-> Best regards
-> Thomas
->
->>
->> Regards
->> Luca
->>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
