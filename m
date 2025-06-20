@@ -1,63 +1,95 @@
-Return-Path: <devicetree+bounces-187883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B7EAE1965
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC46AE1972
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:01:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6860516C0CF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:59:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EDF517AA77
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD163284B3E;
-	Fri, 20 Jun 2025 10:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A7E28936F;
+	Fri, 20 Jun 2025 11:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="piaOoly6"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="DtFCICrf";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="TMJLbxT0";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LgNWGdYK";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0vt0H32l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76BD255250;
-	Fri, 20 Jun 2025 10:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A457A255250
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 11:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750417173; cv=none; b=ejb/ga1wLGCDqhpOKzKUVP8QEjkwMNum1Jszw6Do92avN0ZwZSJyXQpPdu0NFhOKoqqM/Fkdhc5P5MoLLO/NXUNc8Fhh4zRL9oZscezuRykHE/SopYg5kMvgDwGvTLIX6n0pNMO9M9vQNLOuZnfq+ktvaTzH0LBVwk86gfkghLE=
+	t=1750417289; cv=none; b=oKJ1BGjcZ3bg1fc06mj7QJYyWFYqZJJcpIo5UiFZGihQmrafhRJoeHDvWGKhC4sbShEcj21qLNVoy2q9Q2JHXmvXoVn0Jhksw2oxUMKuWRIki0A6sJHvNVgfhaaJwrpUDFaVv99AybGjs+TxTCDfMhG3Av0x2SYt4CzIsvUImRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750417173; c=relaxed/simple;
-	bh=0Gh0K0xRFhKRF8AXu7ZZ0JwytEf4US5iUdrDtxqErbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cGKHqwKGUF2d4FMZgJGd4z2ilAN3XxcOAK29Ika5EJLU+djDHzeVIAta3a4e9vnMeVV/Fdrs3b0KviEWiPcDVHof35lJXCuArZ4JHlggfxR71MK38oG9yZp2+63bSX2EIpF2w0Q077YRtTKG76QLpYRYZl/shDoaLKqFQ0BXjeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=piaOoly6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55K8lRtW032388;
-	Fri, 20 Jun 2025 10:59:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+fu3w1v+rnRjSpeA3zYgBtl1n21MunfueBeCZusnnoY=; b=piaOoly6EaAIiN7U
-	8wcBVDuu1kSFF/VDqUgC6HVgaWjRhDpvJEXDmrBnWkyYO54BDZlF1bcvMlFs1Cdi
-	FCa3+eHUyeVnKgWs4BD1DBeSf30jV7AQjNg8vr02y9B1qg0PQETBR4FZks3CJ0UN
-	+qTKIy0hNJqHkdL/KmccVfQTOPuZUb2bsEDMlsyIvIq/8SHzIKZDCdEtNH7gm1Lj
-	VToOMgEv0D5ANZZGkYWHii7XeaKGehGFs6ZbkXdEjzKWp5Oq6YLqshH/IV3nvu59
-	hHbqDabh1dncMTEgkSaY5/fMQl/oRBaon0bUna580mN34MIaWEQuNLkbZ0t3OQ9C
-	hzGFAg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47928mtwkn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Jun 2025 10:59:25 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55KAxPTX015654
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Jun 2025 10:59:25 GMT
-Received: from [10.216.41.11] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Jun
- 2025 03:59:19 -0700
-Message-ID: <71b180b4-6f4d-457e-89ad-0021c455d773@quicinc.com>
-Date: Fri, 20 Jun 2025 16:29:17 +0530
+	s=arc-20240116; t=1750417289; c=relaxed/simple;
+	bh=GZyJlghAjV74ESJCO6rL3iNVUFWPBi24XFkhZJRz03M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GUJl0+lVljM/i8Ysk5+bEubFBm3kj6r5OrVIrv5GHONUEvAi8o+KnMKDBqTBWLe9dnz56SehszfXNDHOq/KNl4xynIPwq7jr7kSv/r4HP8RMrjxmcHCKz14GbAh+ltXswJjg4UKbV/27vqKJS5XTEjh90MTem5qPoB7Hs1wlFDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=DtFCICrf; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=TMJLbxT0; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=LgNWGdYK; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=0vt0H32l; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id B371F1F38D;
+	Fri, 20 Jun 2025 11:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1750417284; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=rS40jZFiDpkw75Neq1Zu1fmqKj0S511i6aJ2qFu8IE0=;
+	b=DtFCICrf6K7PVKzNvhmithFJw+CXmOENLM3f4gWD3MNEjrWIh5HzRaaoXopukgUYABVWW5
+	29/BFiZz+5bgwu+VgknshnaorZJ0xyBFwZDtesIFincKJtqdi5XHUD4yQNeM04/4clj5Y6
+	lJDcnhi7Aqyuk92KoHZMNQ9tuTXeJAw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1750417284;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=rS40jZFiDpkw75Neq1Zu1fmqKj0S511i6aJ2qFu8IE0=;
+	b=TMJLbxT0t3gpve1iekrnidQTDxmbuB0dASwn/a5+ffgFTdgvVBrTgI0dTvdGc0evnJ7f3n
+	jJ3QV2gZDA731FBg==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1750417283; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=rS40jZFiDpkw75Neq1Zu1fmqKj0S511i6aJ2qFu8IE0=;
+	b=LgNWGdYKfnjSYNlL984+zcn4gVvqBH3fYhdWhFzSmY7znim7dCdfzJiKSjhTlpKwF++wvl
+	dwaQqtl5fYftQG4iLWpc+Eh8PidcquekWLR49gAuwhBnIams5NTewROkmVNg/vDtvUslMj
+	4WgngR1PQJjESw8sl9VBSSioAnqqLik=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1750417283;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=rS40jZFiDpkw75Neq1Zu1fmqKj0S511i6aJ2qFu8IE0=;
+	b=0vt0H32lfCVmL0tUExIxditv7B2Z7evOEFU/NVJ4Nykozqi9gibzj6rRJqnr3jM4m9B4Vr
+	NEOq0kV3kWUGSuCQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 57C24136BA;
+	Fri, 20 Jun 2025 11:01:23 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id +y3VE4M/VWgJDwAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Fri, 20 Jun 2025 11:01:23 +0000
+Message-ID: <95f59f54-0f7b-4268-8811-ccc4af565368@suse.de>
+Date: Fri, 20 Jun 2025 13:01:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,290 +97,222 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/8] soc: qcom: geni-se: Enable QUPs on SA8255p
- Qualcomm platforms
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <psodagud@quicinc.com>, <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
-        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
-        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <SlCtr38wFck_Zdxg3nfChaMwe2uSvlQdfRCutdXc-Z2BTqoUOPd9Z9QY0cdREgcdxl40k41wXpszBkVTBB2T7A==@protonmail.internalid>
- <20250606172114.6618-4-quic_ptalari@quicinc.com>
- <2eea0b19-1a82-428a-8c04-74ee465e7516@linaro.org>
+Subject: Re: [PATCH 2/3] drm/sysfb: simpledrm: Add support for interconnect
+ paths
+To: Luca Weiss <luca.weiss@fairphone.com>, Hans de Goede
+ <hdegoede@redhat.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250620-simple-drm-fb-icc-v1-0-d92142e8f74f@fairphone.com>
+ <20250620-simple-drm-fb-icc-v1-2-d92142e8f74f@fairphone.com>
 Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <2eea0b19-1a82-428a-8c04-74ee465e7516@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDA3OSBTYWx0ZWRfX/b7i/UZpB1fx
- Rnw+A058r46sTPyiIi8/JkcRMc7JbXQ4C5K3JlNLFged+aV5e3T1LLg6hqaiDT5ZVfedULbk8h4
- LLbnGkh20QF1cgIo2Ja9ulNcZhzR2EVPHavkn1TAhx1Q2QaPyOyosrqmjoQgoGl48nc3x1NbARx
- b9yf6HwHxxDYqDRucGOhWdhJfcIJaT3kF8Vuw2XKsJk/EUVFDVB9oO0jjXelVl5XRr5S5SoYqlw
- eycaSGU5z8DQIvEN3EdxfFPraHLlEAaP+YHbh72IARJht2+0oQ7N+zyB8IOqOs0GLHmrmxUIweT
- qKT9fP695Tdb09wdH0vcErx3ZmqQZg+JXyPOfOFQ+5HRBYNYLvAc4W3MWuxEaO9HLICIiX91ux7
- rUcJOxTK6HbJ7omoDuBF8k+NCid5p/L//mUf3SQzYJB8jIjkDXSTziFafEf1V9eBqBerL8y1
-X-Authority-Analysis: v=2.4 cv=fvbcZE4f c=1 sm=1 tr=0 ts=68553f0d cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
- a=YZsGvGvhtn17Bq1j2ksA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 9u2nym_CVBotSDrQCwnF4QyaB-xE6RG5
-X-Proofpoint-ORIG-GUID: 9u2nym_CVBotSDrQCwnF4QyaB-xE6RG5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-20_04,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- mlxlogscore=999 phishscore=0 clxscore=1015 mlxscore=0 impostorscore=0
- adultscore=0 spamscore=0 suspectscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506200079
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20250620-simple-drm-fb-icc-v1-2-d92142e8f74f@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[fairphone.com,redhat.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch,gmx.de];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TAGGED_RCPT(0.00)[dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:email,imap1.dmz-prg2.suse.org:helo,suse.de:mid]
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
 
-HI Bryan,
+Hi
 
-Thank you for review.
-
-On 6/17/2025 12:23 AM, Bryan O'Donoghue wrote:
-> On 06/06/2025 18:21, Praveen Talari wrote:
->> On the sa8255p platform, resources such as clocks,interconnects
->> and TLMM (GPIO) configurations are managed by firmware.
->>
->> Introduce a platform data function callback to distinguish whether
->> resource control is performed by firmware or directly by the driver
->> in linux.
->>
->> The refactor ensures clear differentiation of resource
->> management mechanisms, improving maintainability and flexibility
->> in handling platform-specific configurations.
->>
->> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
->> ---
->> v5 -> v6
->> - replaced dev_err with dev_err_probe
-> 
-> You've missed two opportunities for dev_err_probe() in this submission.
-
-Thank you for pointing out. Yes i can see two more dev_err in new API.
-Will address in next patch.
-
-> 
->> - added a check for desc->num_clks with MAX_CLKS, an error if
->>    the specified num_clks in descriptor exceeds defined MAX_CLKS.
->> - removed min_t which is not necessary.
->> - renamed callback function names to resources_init.
->> - resolved kernel bot warning error by documenting function
->>    pointer in geni_se_desc structure.
->>
->> v3 -> v4
->> - declared an empty struct for sa8255p and added check as num clks.
->> - Added version log after ---
->>
->> v1 -> v2
->> - changed datatype of i from int to unsigned int as per comment.
->> ---
->>   drivers/soc/qcom/qcom-geni-se.c | 77 +++++++++++++++++++++------------
->>   1 file changed, 49 insertions(+), 28 deletions(-)
->>
->> diff --git a/drivers/soc/qcom/qcom-geni-se.c 
->> b/drivers/soc/qcom/qcom-geni-se.c
->> index 4cb959106efa..5c727b9a17e9 100644
->> --- a/drivers/soc/qcom/qcom-geni-se.c
->> +++ b/drivers/soc/qcom/qcom-geni-se.c
->> @@ -101,10 +101,13 @@ struct geni_wrapper {
->>    * struct geni_se_desc - Data structure to represent the QUP Wrapper 
->> resources
->>    * @clks:        Name of the primary & optional secondary AHB clocks
->>    * @num_clks:        Count of clock names
->> + * @resources_init:    Function pointer for initializing QUP Wrapper 
->> resources
->>    */
->>   struct geni_se_desc {
->>       unsigned int num_clks;
->>       const char * const *clks;
->> +    int (*resources_init)(struct geni_wrapper *wrapper,
->> +                  const struct geni_se_desc *desc);
->>   };
->>
->>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
->> @@ -891,10 +894,47 @@ int geni_icc_disable(struct geni_se *se)
->>   }
->>   EXPORT_SYMBOL_GPL(geni_icc_disable);
->>
->> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
->> +                 const struct geni_se_desc *desc)
->> +{
->> +    struct device *dev = wrapper->dev;
->> +    int ret;
->> +    unsigned int i;
->> +
->> +    if (desc->num_clks > MAX_CLKS)
->> +        return dev_err_probe(dev, -EINVAL,
->> +                     "Too many clocks specified in descriptor:%u (max 
->> allowed: %u)\n",
->> +                     desc->num_clks, MAX_CLKS);
-> 
-> I think this is an extraneous add, we should trust the array indexes 
-> inside our own driver that we control.
-> 
-> Actually why do we have a MAX_CLKS ? We specify a list of clk names with 
-
-MAX_CLKS is needed for static declaration of "struct clk_bulk_data 
-clK[MAX_CLKS]" which is need to save clk related info.
-
-otherwise we allocate dynamic memory instead of static.
-
-> aggregate-initialisation and ARRAY_SIZE() of the aggregate.
-> 
-> Like so:
-> 
-> static const char * const qup_clks[] = {
->          "m-ahb",
->          "s-ahb",
-> };
-> 
-> static const struct geni_se_desc qup_desc = {
->          .clks = qup_clks,
->          .num_clks = ARRAY_SIZE(qup_clks),
-> 
->> +
->> +    wrapper->num_clks = desc->num_clks;
->> +
->> +    for (i = 0; i < wrapper->num_clks; ++i)
->> +        wrapper->clks[i].id = desc->clks[i];
->> +
->> +    ret = of_count_phandle_with_args(dev->of_node, "clocks", 
->> "#clock-cells");
->> +    if (ret < 0)
->> +        return dev_err_probe(dev, ret, "invalid clocks property at 
->> %pOF\n", dev->of_node);
->> +
->> +    if (ret < wrapper->num_clks) {
->> +        dev_err(dev, "invalid clocks count at %pOF, expected %d 
->> entries\n",
->> +            dev->of_node, wrapper->num_clks);
->> +        return -EINVAL;
->> +    }
-> 
-> This code OTOH makes way more sense as we are validating our internal 
-> num_clks variable which we have enumerated ourselves against a DT input 
-> which we are consuming.
-
-Yes, we have fixed clks which are enumerated in desc wrt DT.
-
-> 
->> +
->> +    ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
->> +    if (ret) {
->> +        dev_err(dev, "Err getting clks %d\n", ret);
->> +        return ret;
->> +    }
->> +
->> +    return ret;
->> +}
->> +
->>   static int geni_se_probe(struct platform_device *pdev)
->>   {
->>       struct device *dev = &pdev->dev;
->>       struct geni_wrapper *wrapper;
->> +    const struct geni_se_desc *desc;
->>       int ret;
->>
->>       wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
->> @@ -906,36 +946,12 @@ static int geni_se_probe(struct platform_device 
->> *pdev)
->>       if (IS_ERR(wrapper->base))
->>           return PTR_ERR(wrapper->base);
->>
->> -    if (!has_acpi_companion(&pdev->dev)) {
->> -        const struct geni_se_desc *desc;
->> -        int i;
->> -
->> -        desc = device_get_match_data(&pdev->dev);
->> -        if (!desc)
->> -            return -EINVAL;
->> -
->> -        wrapper->num_clks = min_t(unsigned int, desc->num_clks, 
->> MAX_CLKS);
->> -
->> -        for (i = 0; i < wrapper->num_clks; ++i)
->> -            wrapper->clks[i].id = desc->clks[i];
->> -
->> -        ret = of_count_phandle_with_args(dev->of_node, "clocks", 
->> "#clock-cells");
->> -        if (ret < 0) {
->> -            dev_err(dev, "invalid clocks property at %pOF\n", 
->> dev->of_node);
->> -            return ret;
->> -        }
->> +    desc = device_get_match_data(&pdev->dev);
->>
->> -        if (ret < wrapper->num_clks) {
->> -            dev_err(dev, "invalid clocks count at %pOF, expected %d 
->> entries\n",
->> -                dev->of_node, wrapper->num_clks);
->> +    if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
->> +        ret = desc->resources_init(wrapper, desc);
->> +        if (ret)
->>               return -EINVAL;
->> -        }
->> -
->> -        ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
->> -        if (ret) {
->> -            dev_err(dev, "Err getting clks %d\n", ret);
->> -            return ret;
->> -        }
->>       }
->>
->>       dev_set_drvdata(dev, wrapper);
->> @@ -951,8 +967,11 @@ static const char * const qup_clks[] = {
->>   static const struct geni_se_desc qup_desc = {
->>       .clks = qup_clks,
->>       .num_clks = ARRAY_SIZE(qup_clks),
->> +    .resources_init = geni_se_resource_init,
->>   };
->>
->> +static const struct geni_se_desc sa8255p_qup_desc;
->> +
->>   static const char * const i2c_master_hub_clks[] = {
->>       "s-ahb",
->>   };
->> @@ -960,11 +979,13 @@ static const char * const i2c_master_hub_clks[] = {
->>   static const struct geni_se_desc i2c_master_hub_desc = {
->>       .clks = i2c_master_hub_clks,
->>       .num_clks = ARRAY_SIZE(i2c_master_hub_clks),
->> +    .resources_init = geni_se_resource_init,
->>   };
->>
->>   static const struct of_device_id geni_se_dt_match[] = {
->>       { .compatible = "qcom,geni-se-qup", .data = &qup_desc },
->>       { .compatible = "qcom,geni-se-i2c-master-hub", .data = 
->> &i2c_master_hub_desc },
->> +    { .compatible = "qcom,sa8255p-geni-se-qup", .data = 
->> &sa8255p_qup_desc },
->>       {}
->>   };
->>   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
->> -- 
->> 2.17.1
->>
->>
-> 
+Am 20.06.25 um 12:31 schrieb Luca Weiss:
+> Some devices might require keeping an interconnect path alive so that
+> the framebuffer continues working. Add support for that by setting the
+> bandwidth requirements appropriately for all provided interconnect
+> paths.
+>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
-> bod
+>   drivers/gpu/drm/sysfb/simpledrm.c | 83 +++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 83 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/sysfb/simpledrm.c b/drivers/gpu/drm/sysfb/simpledrm.c
+> index a1c3119330deffc9e122b83941f3697e5b87f277..9643f7c1734ab558d52779d7c45465dbe1d85762 100644
+> --- a/drivers/gpu/drm/sysfb/simpledrm.c
+> +++ b/drivers/gpu/drm/sysfb/simpledrm.c
+> @@ -9,6 +9,7 @@
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_domain.h>
+>   #include <linux/regulator/consumer.h>
+> +#include <linux/interconnect.h>
+
+Alphabetical sorting please.
+
+Apart from this nitpick, the patch looks good. For the update:
+
+Reviewed-by: Thomas Zimmermann <tzimmermann>
+
+Best regards
+Thomas
+
+>   
+>   #include <drm/clients/drm_client_setup.h>
+>   #include <drm/drm_atomic.h>
+> @@ -225,6 +226,10 @@ struct simpledrm_device {
+>   	struct device **pwr_dom_devs;
+>   	struct device_link **pwr_dom_links;
+>   #endif
+> +#if defined CONFIG_OF && defined CONFIG_INTERCONNECT
+> +	unsigned int icc_count;
+> +	struct icc_path **icc_paths;
+> +#endif
+>   
+>   	/* modesetting */
+>   	u32 formats[DRM_SYSFB_PLANE_NFORMATS(1)];
+> @@ -547,6 +552,81 @@ static int simpledrm_device_attach_genpd(struct simpledrm_device *sdev)
+>   }
+>   #endif
+>   
+> +#if defined CONFIG_OF && defined CONFIG_PM_GENERIC_DOMAINS
+> +/*
+> + * Generic interconnect path handling code.
+> + */
+> +static void simpledrm_device_detach_icc(void *res)
+> +{
+> +	struct simpledrm_device *sdev = res;
+> +	int i;
+> +
+> +	for (i = sdev->icc_count - 1; i >= 0; i--) {
+> +		if (!IS_ERR_OR_NULL(sdev->icc_paths[i]))
+> +			icc_put(sdev->icc_paths[i]);
+> +	}
+> +}
+> +
+> +static int simpledrm_device_attach_icc(struct simpledrm_device *sdev)
+> +{
+> +	struct device *dev = sdev->sysfb.dev.dev;
+> +	int ret, count, i;
+> +
+> +	count = of_count_phandle_with_args(dev->of_node, "interconnects",
+> +							 "#interconnect-cells");
+> +	if (count < 0)
+> +		return 0;
+> +
+> +	/* An interconnect path consists of two elements */
+> +	if (count % 2) {
+> +		drm_err(&sdev->sysfb.dev,
+> +			"invalid interconnects value\n");
+> +		return -EINVAL;
+> +	}
+> +	sdev->icc_count = count / 2;
+> +
+> +	sdev->icc_paths = devm_kcalloc(dev, sdev->icc_count,
+> +					       sizeof(*sdev->icc_paths),
+> +					       GFP_KERNEL);
+> +	if (!sdev->icc_paths)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < sdev->icc_count; i++) {
+> +		sdev->icc_paths[i] = of_icc_get_by_index(dev, i);
+> +		if (IS_ERR_OR_NULL(sdev->icc_paths[i])) {
+> +			ret = PTR_ERR(sdev->icc_paths[i]);
+> +			if (ret == -EPROBE_DEFER)
+> +				goto err;
+> +			drm_err(&sdev->sysfb.dev, "failed to get interconnect path %u: %d\n",
+> +				i, ret);
+> +			continue;
+> +		}
+> +
+> +		ret = icc_set_bw(sdev->icc_paths[i], 0, UINT_MAX);
+> +		if (ret) {
+> +			drm_err(&sdev->sysfb.dev, "failed to set interconnect bandwidth %u: %d\n",
+> +				i, ret);
+> +			continue;
+> +		}
+> +	}
+> +
+> +	return devm_add_action_or_reset(dev, simpledrm_device_detach_icc, sdev);
+> +
+> +err:
+> +	while (i) {
+> +		--i;
+> +		if (!IS_ERR_OR_NULL(sdev->icc_paths[i]))
+> +			icc_put(sdev->icc_paths[i]);
+> +	}
+> +	return ret;
+> +}
+> +#else
+> +static int simpledrm_device_attach_icc(struct simpledrm_device *sdev)
+> +{
+> +	return 0;
+> +}
+> +#endif
+> +
+>   /*
+>    * Modesetting
+>    */
+> @@ -633,6 +713,9 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>   	if (ret)
+>   		return ERR_PTR(ret);
+>   	ret = simpledrm_device_attach_genpd(sdev);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +	ret = simpledrm_device_attach_icc(sdev);
+>   	if (ret)
+>   		return ERR_PTR(ret);
+>   
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
 
