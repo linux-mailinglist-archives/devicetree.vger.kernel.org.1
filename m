@@ -1,152 +1,196 @@
-Return-Path: <devicetree+bounces-187983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0201BAE2087
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 19:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1D6AE208C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 19:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 732BE188C35F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:05:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 869B3188D368
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EA92E9738;
-	Fri, 20 Jun 2025 17:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C690D2E92B4;
+	Fri, 20 Jun 2025 17:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="AKRaMwlW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jGFbBnwr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE692DFF2F
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45BD22DFF2F
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:07:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750439124; cv=none; b=bDUidUPDGiiUMy9WxgiwXXabTqtNn0ShdbxD04SzlryuvV5s5M4us2BjR8Su/kRFhWnj4r5dWrvZPfMRsal/sMS75AxvtOKK56TXzy2/xWYPANkn0ku6VQQNz2of/KPhhdgAtVP+nH6uaullgtvl/fP8JC9Br6f8+YUkjr7LqwY=
+	t=1750439266; cv=none; b=GVDnALq71evoEOwrlIOlibuso0FDCphOoLC1QCQa0PIWLoAId2my7IJLYT6VyMAjA9E4zBHe+v1yWEjAE/LFuhm1+uY79J7rWbvu48+lQFE6XomjhSABOgiACxDCgV6pzpsaP8bSCo5LnAgjydwY6/Yd+Tdj8yBnv1c+7Xks2po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750439124; c=relaxed/simple;
-	bh=qz32WDm8kGqJZkxyvJ3a2TRLVvgFrditQhnsHw8Tesc=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=jbfP97v4vS7H5VHpJpEVieZCh/D1pjr0hP6xxt3KkCwC0GCV3nq4Kmb6uxo7+w/QfHj1guB0NyAUfkbfF0wDtzKgDKt9wH4UVuMld0jvK7SJoAQykou32UtqCcDnXK4sSk90y7jM8oQVUGKCV7aT1eauUlYUAn1jxEgP3ytWh6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=AKRaMwlW; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1750439122;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=O0uKaElPF1p9RN7ExopibAGaJCOW8iQTnWa+hoEBRAw=;
-	b=AKRaMwlW+h+tc+aMIrkdHf2SgkBuUhcjwZT68nkWIbZ0bNtiwEADDKFae7pvumGMpUxFGG
-	kXvDmklS+Z7yb7MunSGXF3dJHqp19GpZdaLgzMncZKEFhM249e8C4cSgt9bgaUaaIT6Ink
-	jUxEUpMk9bFHx0Zfi/7Cu4hC1bKiBYc=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-169-Qz6GXShzMUCl9QVn2JjjUg-1; Fri, 20 Jun 2025 13:05:21 -0400
-X-MC-Unique: Qz6GXShzMUCl9QVn2JjjUg-1
-X-Mimecast-MFC-AGG-ID: Qz6GXShzMUCl9QVn2JjjUg_1750439120
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-451d7de4ae3so12122245e9.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 10:05:21 -0700 (PDT)
+	s=arc-20240116; t=1750439266; c=relaxed/simple;
+	bh=TJoa2xPImS4wAM1uUVWoOFg2ZyzLr2gFfx8eCrn+wM0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a14Kns4wt1F2hCg0VhGrztKwvDlELDm/AJP/lcAlk4jKrWe/ghnDTksMTrtLwP0lNKSvrE7trI6bo1TxGZmx4Tf36YLemVDRbiEjbbARsZVeSZPmbxrDKOY1D/yhTUWXKPNZtsiEK3j9UUen3Vz/fE+L71IYg46sZD5U5Ebu7So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jGFbBnwr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55KDG3RI019148
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:07:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hKKwQ1dKYiwuL/gFRwwSIgyThK0XHURSCnVrX9k5gJg=; b=jGFbBnwrmAaYrBWh
+	0xzZGscS1uyi5Kkfttcn23aT9G8l2Rm+6h0wVa2FWYAxlCSHsrN+K6+AVY9Vo3i4
+	B67RczhwXtXSPBUggERRf2kSNESIGDWPQ4bN53te4EnYjnLbLzOoC2LoLrIMAQ5T
+	f4zz2zR5SK2FeIj62BUGC3ly6O1DF72RH9+wbt5Cfz96BOJaHz/4AznNj7EAVMj6
+	ESsiyHmo0bWm5zfZJJ7eL2W6BfwOhcPoMp9Z3p2np17DhKDPhQiaTe+rJSvcuyiq
+	qiDF1RABlLwmL7Ec51bOyE2nVy1mWfhM+1oUc3C4LQnBPTSrH21iu/J7V/rVMB2c
+	zdgdHQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47d0pcj01k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:07:44 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6facbe71504so4615136d6.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 10:07:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750439120; x=1751043920;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O0uKaElPF1p9RN7ExopibAGaJCOW8iQTnWa+hoEBRAw=;
-        b=UppqIR3vFxliPrP2uNpDyg7Segi7Lq7xPvs3PkwnV19Ppz/daPnHn5eLhG8GAEhBfv
-         wvF6YqER2mi6sRkshHLdAIuXs/mjrcv7X8rTEw0ztZbwyHhNSv1JOduCHfGofnbtuN92
-         A8gloDSAs2Xsig4vL0VLI9c1z7RHb8AfMw0cfvr4aScGqOz/MBqf0ZSJ3qOn8/4v3zYw
-         MYlSwc/3V41I3D4sN7X3435WBt4yBZ2lLBUDaSsWFErI+ihfUaUZGgZRZ/LzNTzC3aCQ
-         xpTFGdIohbXrBQGmwxybxfh55HewuXSTbhW/j5q618s7Eu6fxF9emG4r/1iGYVfMpF79
-         INvA==
-X-Forwarded-Encrypted: i=1; AJvYcCWWwZxsB59Q05MMgkVPtIIRVT60OXgqE8hiJWv84ZllyzNRdeZrfzbbIpkOf8+O1j2KD2GznbpLfP0E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPM9gisGC3TBmAz4DPyQWHLP0BrJYZJVp5f5eghRjyGyBwF5n3
-	Q6gppsWuwVnBhQnWD8Mbz9KaKA9iFaRzwPDXJRe4j7FRedj+jQrl44Ddoi5+aruxTqblVD6vAxc
-	jHgU/MLIUI7EXxwkQq8jEVQfHuDhr6LyX5OrYawsi3NwMwdSAkmYg91W4XCJGQJE=
-X-Gm-Gg: ASbGnctJYrnwcC3pSD811NV2887oo0RuO7OsyTP8p8TV5jIw3ptX0Zg4GB1JeQa8u7z
-	IAoHFx3oDqIoioyD8dQ6+pVBWIBJQHIi3im/qPlnGqKuvARyxtk9dTuTuipTF8Fgp4mecwlshRF
-	RSnrMMEUpfS6LytgdeYgO6NbR8vqVmWoyXNEQfNQlyYxJ4t4WSLzGIxermCREgahx6zDls9mUym
-	pR/oRZThhreeFqi8h9W5uWUmTHfyiquwJNYRJ6Ze80LPapFAVnBit4n9ssQ6VhTlZ57jFT2+671
-	4eM78SeAnIjn9Oue8sQ=
-X-Received: by 2002:a05:600c:c4ac:b0:43c:fd27:a216 with SMTP id 5b1f17b1804b1-453659ba4d5mr32818325e9.23.1750439118373;
-        Fri, 20 Jun 2025 10:05:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IErRRYJ7yHniQTxZlTtcjXynaBaSE5vB7XTQS6ITom5OtykTCmLWDLCyce9A+anV5QdRiHhQg==
-X-Received: by 2002:a05:600c:c4ac:b0:43c:fd27:a216 with SMTP id 5b1f17b1804b1-453659ba4d5mr32817665e9.23.1750439117743;
-        Fri, 20 Jun 2025 10:05:17 -0700 (PDT)
-Received: from [127.0.0.1] ([185.23.110.203])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535ef6edbesm62743115e9.20.2025.06.20.10.05.16
+        d=1e100.net; s=20230601; t=1750439263; x=1751044063;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hKKwQ1dKYiwuL/gFRwwSIgyThK0XHURSCnVrX9k5gJg=;
+        b=Ku2k+3ASP3iK38D1lY26WAE4TRW1vCEO/Ylft1/Q95/+VBA5CYYwZqrU0J6ayA3jLY
+         jJhMUZ/BmUXfT5FARYb8bNVkgc2A8oTOMqTn5P0FIYOU7wVVcGX9kpI2rCJi/Mj9BaBF
+         44Hii1ZDOsRMfmKspcMHswHZ6hCjAWuhPFB+8yxgjTqFykpQIb85KGfZrsKtiWRjmSWP
+         hLJEaaUB7eF+kpjcTpSckwsgs1loyAlCwzkWRWP6jRZMI2UidEtvWcZux86+DWF9XtG6
+         ffCIxa1TjazCmEke4V4gsxG9GUqpYgztmVyyy1k9EFPaFJenm2svyDRwc1mizHKtBv5W
+         qB9w==
+X-Forwarded-Encrypted: i=1; AJvYcCVSx4HIM5+N+9ZeM5/HGddCC65wD8NYeYQ01YkSTR5mKe+90/AKKlngzD9FgiuL6D0RBbvPnKnHBp+u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4hCN/UH4Ef8KTiRY9brSjx6j4nTWpIUSiwSW+0ZWEi9kTsxNW
+	x9JKUziWAYqYVUKPWyTqIJT9XZyt24D2d71YFd2+7Dsi4cRvQXg6b8KudntM59dK8thIjzpyYdU
+	i9Mvl9cBgFANRyR6r1WLizOd0NgDVscir8KkUX3soOKlWli1KtVOC584xg95T7h+K
+X-Gm-Gg: ASbGncveTgaf0vku1LbNz4v+9nijjxuDCz1Je+FPxil3oDiPCopZX9hsOQmtl3SnSk9
+	4VxZ2bdYtNho64b5N5R0l8UDvAwJnDsDvGqSkVOalgTmhJb7KXtrsTzOR2sfOXw0Ps3zA2o3EM0
+	Clwn32oG77ebYjgNizgB2oMN0s/j69symu8SVulOSgpDEZQVWYbd3t7rrKf5f1dECeW0rAx6kiq
+	+/b3YHJL5qgm2nNxza6N5k+sId95LFUTPwbDcdKrXg93S7VaBFxFJODUuTYpml3NuZ0MacyWrlf
+	NAcmiBdCB/QLvsFoJmZgZ6O28ao0YbRKoTjyduFLR/H+KvqVBX5Qn5JT00JhRBA/llemzV1ilIW
+	vO2g=
+X-Received: by 2002:a05:620a:f10:b0:7d3:8e88:dc0a with SMTP id af79cd13be357-7d3f9916bfamr156998685a.11.1750439262663;
+        Fri, 20 Jun 2025 10:07:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEVSWLQFC0kpw0PBqz9gCS9IFs8NVF3u0lcuSEdXmZtlYNC6FTQskFyKD9xoz9LSWWobdlLxQ==
+X-Received: by 2002:a05:620a:f10:b0:7d3:8e88:dc0a with SMTP id af79cd13be357-7d3f9916bfamr156996185a.11.1750439262103;
+        Fri, 20 Jun 2025 10:07:42 -0700 (PDT)
+Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae05433aa56sm188279866b.183.2025.06.20.10.07.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jun 2025 10:05:17 -0700 (PDT)
-Date: Fri, 20 Jun 2025 19:05:14 +0200
-From: Ivan Vecera <ivecera@redhat.com>
-To: Paolo Abeni <pabeni@redhat.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-CC: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Jason Gunthorpe <jgg@ziepe.ca>,
- Shannon Nelson <shannon.nelson@amd.com>, Dave Jiang <dave.jiang@intel.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
- Petr Oros <poros@redhat.com>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_net-next_v11_03/14=5D_dpll=3A?=
- =?US-ASCII?Q?_Add_basic_Microchip_ZL3073x_support?=
-User-Agent: Thunderbird for Android
-In-Reply-To: <15618298-4598-472e-9441-8b1116a34de2@redhat.com>
-References: <20250616201404.1412341-1-ivecera@redhat.com> <20250616201404.1412341-4-ivecera@redhat.com> <20250618095646.00004595@huawei.com> <15618298-4598-472e-9441-8b1116a34de2@redhat.com>
-Message-ID: <DD848DCC-23FE-448D-AA1E-22EE281E34F9@redhat.com>
+        Fri, 20 Jun 2025 10:07:41 -0700 (PDT)
+Message-ID: <efa03e46-35c1-468e-a188-8e857ecd4b8b@oss.qualcomm.com>
+Date: Fri, 20 Jun 2025 19:07:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/11] power: supply: qcom_smbx: bump up the max current
+To: Casey Connolly <casey.connolly@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        linux-hardening@vger.kernel.org
+References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
+ <20250619-smb2-smb5-support-v1-7-ac5dec51b6e1@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250619-smb2-smb5-support-v1-7-ac5dec51b6e1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: KLQhcm1jNzHsCoD5ffV3gty-YhBDeUBj
+X-Authority-Analysis: v=2.4 cv=YKyfyQGx c=1 sm=1 tr=0 ts=68559560 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=KKAkSRfTAAAA:8 a=rhSfmRiNZEirnHGn6ZAA:9
+ a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: KLQhcm1jNzHsCoD5ffV3gty-YhBDeUBj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDEyMCBTYWx0ZWRfX4fd++Meg/fZg
+ mj+sKWgiNmPzec03ZhSGadQevH0sT20MsIwX3wzqQ7wlhe5GSHwKV3IiCu5dUBo9r/0X35ycu3Z
+ h3L2YVzmwfxQd3lpOTokxB8/eLbuztybEfMZl1z2RsiWY5Sq8d89xPUZ/C0r5HMfnjeCaLYAtpt
+ eqDwlXvrZL4EpFW+v1XbV8meu5D7uelgeI67OjGs5aHaPNn6wRSgac98Uba/a+9sq2wKWKYcgLh
+ uDH9J9eop723kD/OYrvOcrtqGN8x2yLS1g8koOiCp+Q3rkzBN47mbJ9hyC3eGZ0M2LrMWWSlFW8
+ 08wRbahKaJfYgTyk6B1jlkSZIexGF/BE57QS5LRi1FViUgrjO8H/i4xriMBZw+PdJ8iuAJ8rbRp
+ d2jxP2UGg6m8n6XfryW8nbpSPuviYdXWadZHkwV+ptqsqd84v1qLmbb2WLxJzfB9xE9gFv0e
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-20_07,2025-06-20_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 mlxlogscore=999 phishscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506200120
 
+On 6/19/25 4:55 PM, Casey Connolly wrote:
+> I set a super conservative current limit since we lack many of the
+> safety features (thermal monitoring, etc) that these drivers really
+> need. However now we have a better understanding of the hardware, it's
+> fine to bump this limit up a bit, devices can additionally set the max
+> current via devicetree instead.
+> 
+> Since this is common to smb2 and smb5, move this write out of the init
+> sequence and into probe proper.
+> 
+> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+> ---
+>  drivers/power/supply/qcom_smbx.c | 22 ++++++++++++++--------
+>  1 file changed, 14 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/power/supply/qcom_smbx.c b/drivers/power/supply/qcom_smbx.c
+> index 7fc232fa7260a7422ac12a48686cd7d396edd9a4..d1607674d291d6ef5762d35acd3330e2116f41a3 100644
+> --- a/drivers/power/supply/qcom_smbx.c
+> +++ b/drivers/power/supply/qcom_smbx.c
+> @@ -875,16 +875,8 @@ static const struct smb_init_register smb_init_seq[] = {
+>  	 */
+>  	{ .addr = PRE_CHARGE_CURRENT_CFG,
+>  	  .mask = PRE_CHARGE_CURRENT_SETTING_MASK,
+>  	  .val = 500000 / CURRENT_SCALE_FACTOR },
+> -	/*
+> -	 * This overrides all of the current limit options exposed to userspace
+> -	 * and prevents the device from pulling more than ~1A. This is done
+> -	 * to minimise potential fire hazard risks.
+> -	 */
+> -	{ .addr = FAST_CHARGE_CURRENT_CFG,
+> -	  .mask = FAST_CHARGE_CURRENT_SETTING_MASK,
+> -	  .val = 1000000 / CURRENT_SCALE_FACTOR },
+>  };
+>  
+>  static int smb_init_hw(struct smb_chip *chip)
+>  {
+> @@ -1029,8 +1021,22 @@ static int smb_probe(struct platform_device *pdev)
+>  		return dev_err_probe(chip->dev, rc, "Couldn't set wake irq\n");
+>  
+>  	platform_set_drvdata(pdev, chip);
+>  
+> +	/*
+> +	 * This overrides all of the other current limits and is expected
+> +	 * to be used for setting limits based on temperature. We set some
+> +	 * relatively safe default value while still allowing a comfortably
+> +	 * fast charging rate. Once temperature monitoring is hooked up we
+> +	 * would expect this to be changed dynamically based on temperature
+> +	 * reporting.
+> +	 */
+> +	rc = regmap_write(chip->regmap, chip->base + FAST_CHARGE_CURRENT_CFG,
+> +			  1950000 / CURRENT_SCALE_FACTOR);
 
+In surprise to no one, I'm really not sure..
 
-On June 19, 2025 1:43:38 PM GMT+02:00, Paolo Abeni <pabeni@redhat=2Ecom> w=
-rote:
->On 6/18/25 10:56 AM, Jonathan Cameron wrote:
->> On Mon, 16 Jun 2025 22:13:53 +0200
->>> +static int zl3073x_spi_probe(struct spi_device *spi)
->>> +{
->>> +	struct device *dev =3D &spi->dev;
->>> +	struct zl3073x_dev *zldev;
->>> +
->>> +	zldev =3D zl3073x_devm_alloc(dev);
->>> +	if (IS_ERR(zldev))
->>> +		return PTR_ERR(zldev);
->>> +
->>> +	zldev->regmap =3D devm_regmap_init_spi(spi, &zl3073x_regmap_config);
->>> +	if (IS_ERR(zldev->regmap)) {
->>> +		dev_err_probe(dev, PTR_ERR(zldev->regmap),
->>> +			      "Failed to initialize regmap\n");
->>> +		return PTR_ERR(zldev->regmap);
->>=20
->> return dev_err_probe();
->> One of it's biggest advantages is that dev_err_probe() returns the
->> ret value passed in avoiding duplication like this and saving
->> a few lines of code each time=2E
->
->@Ivan: since patch 13 requires IMHO a fix, please also take care of the
->above in the next revision, thanks!
->
->Paolo
->
-Hi Paolo=20
-I will send the next series after vacation=2E=2E=2E
-I'm now in mountains in Albania=2E
-Will be back on 6/30
+1A is not a bad default value if no other information at all is provided.
+I'd say deferring this to DTS would be the best, so that if the programmer
+knows that e.g. the batt/skin temp sensors are there, it takes an explicit
+addition to allow more current
 
-I=2E
-
+Konrad
 
