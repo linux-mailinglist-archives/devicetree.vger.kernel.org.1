@@ -1,226 +1,293 @@
-Return-Path: <devicetree+bounces-187976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C68AE1F71
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:52:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A3CAE1FB6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 18:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F13818880C5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:49:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72AC51681C5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB39D2E9ED8;
-	Fri, 20 Jun 2025 15:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47EC2C374E;
+	Fri, 20 Jun 2025 16:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l4kU49/Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NKr5Lo38"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073A02E763C;
-	Fri, 20 Jun 2025 15:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBF119A297;
+	Fri, 20 Jun 2025 16:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750434478; cv=none; b=BmyxJQW5Z0LGE4rYq/A+QUzWu2bGUrW+AezR/dwwFwoRvz15TqC8IdFfqUpvBgtF7fYRBUJqk/jJiqz7RjQV7w9AaI5nCe0I20DCCj5tiGj2kQlGk/wQdJMwrPpF4SGAfTj7gOUEdBEpTQ4NIcn7DCAMXhdscj2w9iutAK3q0fI=
+	t=1750435384; cv=none; b=sswSssM0r9OmM0XweBaVCmzzQjm8p3Tn13OH8fG8cxyU4Cn6ZP8F10bYT1hFXmSwm9bFNhLNuyxHMAl1A/mgoT4zNTWLE7tuUZ761dZkY1/dTGehEjo8sr7KKdBiqkilBr2iVuDhLcRfi/NXduZQJOsXPw8eusBV1r3NWmXODjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750434478; c=relaxed/simple;
-	bh=puPbHpytOZW7mie8GfL84As9P2RFvRpERNKNKQE1xwk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nmaIicZC6sJ8eWw1BHS6y3X6WMdpHsBSgdj+RgW5pvrzrtpT1gnIRGb0UHEYkulfAk8rGq69GThhl+kHTqA3p9RtTNvoW36yDFUYMSzIbKctDkvJNxffOc7rhWERWoWoJyctMV6lOFORHd2fv5WkgIJw440eajK/nl2bEiLARo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l4kU49/Y; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1750435384; c=relaxed/simple;
+	bh=W3DvKeM4EqzLWasnxKnmL5cXYh+j/mu4ated+XvGcS8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=czn9gOQKHklmH9UUiqOPtj7UhU5B9/E5mA9a6clPa8fMvHpJQulZLqRez2cO76R5aKjwdjb3UR0ygkP1fS/8XysybsMOn8awVQ+OEanF0f/TbPiVpIttZLEQwZ1JupCJ7eYlD+naAZy6se/lVAFhlqncVBy1tXyAd6GIyMlr5CE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NKr5Lo38; arc=none smtp.client-ip=209.85.160.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-453647147c6so10377325e9.2;
-        Fri, 20 Jun 2025 08:47:56 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4a76ea97cefso21101751cf.2;
+        Fri, 20 Jun 2025 09:03:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750434475; x=1751039275; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1750435382; x=1751040182; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bqFUjW8+uNCNgRtyXVYxbhOT3igrLvGYOROHOkaDs3Q=;
-        b=l4kU49/YCMtXxAV9xfHhoLUTfzCMwTHjrNNI4ZAEuYnBLDMFt8fBSJcCSHfIJGQAdE
-         bEXQjV/iAKGnR+BlMPXIsspmNMJjD4qjeQ1tT+N977UloaLbgYYpJ2wj9JCx2FzeMfSD
-         rmDbELZyuBNy6FkCkvHptQ5P4yR70VU5g/35uY9AoG+Pcdq9A1UH7MGSqdvgQRjMqgMC
-         RkQdQKVE1u0AfgQp0C3yrhtLJZHJiFdZ26cAIa9a22G1czCdbRN7BOw4d/y6Xsy1yBOI
-         nWEjyKtg568z2ZMCzuVfXEqfLIrEIJiL9is88HwlQ2LRiUPbUTAunzcAMOYniUQifqKz
-         8kMA==
+        bh=rvqqy5YTKLkCqgHETfYa8hhkLZxk0yPmImTHTMo7/0s=;
+        b=NKr5Lo38ybJ/lZIdhjTcTVOPPCOrIAlNxKFbaa29WgANxbeB6i3ZYzb+z3+cosdvop
+         292vQDB7X8jb/XjRtqr7e+xHO6seGkWifC7fp7jLRd3crmtRm1sHlO11S0rBEU4nlaMg
+         g8xYzZK1ouCD6Hthm8hZHQvK57DYe86NjPe0Yyw9ClamO3iAo9VAtUzGNhUZcwKr0FhE
+         IIrOM++iHIg7T0Xqqr9BLftVFUFBayLoM/xarm20q0/iY/oPEKIMV6WRCtlcC8tjntdw
+         9F3OCEQOMimxoRCruM04ZRLmLBIaA+KwGzEpJWJZtJa521wmTXxYcMKveYRG3kKpbrke
+         GGhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750434475; x=1751039275;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=bqFUjW8+uNCNgRtyXVYxbhOT3igrLvGYOROHOkaDs3Q=;
-        b=kwAL+DVblYmuanI09kS63ZNSSoZrhNwHyNG9vplPYg7L46EpyJua5EPG+YBEVBIKeg
-         9EwfuyYTqkl2jgrg0qqJgOjbJ+rqN9jlfS+p0zaZJU3pFJzAfUdBKa1pLuG4w+PqAVgf
-         Gl8LxJp9DYSQv9gb5bNXPY0SBf6NLDUQp8pKDZD4hTy4BxxxxfI2MqFdqcIe+d+MGSTn
-         yKdKdVaSVCDErZgZ9zxAaI3c4vAYblKdpuVjymUwSuf2V53u5ELKLAKMJFlUj5W3yVY+
-         3ckPLsDxW7xBOHpgTQ3tGAhsJWKBroQAlrTVQ0Rh5EY8vKU9Uio3X04LsvL8o0gT5WOD
-         PQbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVGPMt8k9nw+lo/zmHXjqvkSGFDGNXbSiassgnQUChP7zTV64WXXHIBjIEVNk0TN6rdgL15FDAK6bp1CYDU@vger.kernel.org, AJvYcCWkNWAD9n5MYeXxWnTFbZrMLhx5I4OFsKWjZYt1rpZBYzSgi/wKNKu+J71xHdTNZ6oL56Pw2cbn+q6LzTQAk/0=@vger.kernel.org, AJvYcCX1xZJkiQ6c/iaeSPAhLWcJFBDakCCOagHl9b9RzrfVtooxEQEuoCfNWQ9PtBoRE8ppP3PN8uE1i4nFBA==@vger.kernel.org, AJvYcCXLSjO9jokepqSYoG8KuPUUMDGr90u2+IYGrWIiLvJnHHGO9vIHubXwqPf6zVrpifOv6N7EDWnQ36yS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzb0WcwUsdnlwtfR4RcscUoEEtqRF0DJPm6dgZkDnFvI86gcWLR
-	9bE0LlShQbTtTuoXMmRl/SJh8PSlKEsfiB/iitwffVKjgMVm6lWidEww
-X-Gm-Gg: ASbGncvmYLyT/Kjuk8YMOdRCde246fvNEyrAAj2rlAYGnN8yMCX67s7gZZ5+kMcuN+c
-	LHLOsFeDaZQ0+imYfUJxu7uK5EVXrynng+mEfyqj1/3H+T3vBBNwxw4d2VmEyPzjK47MHGOI/iB
-	Zxe2Nv4654uwL4aLNyrzjtA/lnRj3iJVGtjcjYOh5bpnV+kSc6Oge9dxVF/rq5kzOJhf90fegDh
-	EGCQfPsaf/WjrkNx7dJKYiuV/+TsmDS68pbrAR+fPAgqaf3pBdG2bPKY3NYk5cfV3XnXmKXWt8W
-	U8sZ6AxTTerJPiM9g4iatUOao1g1xl/Ys0hZzaI7BO93G8w4WTwxpOJ8tCw+BF4zYXUctJvk5YF
-	6lIGYKoyqj0xhtXUo+XUBqyy0IdAYe+Fb9rpT
-X-Google-Smtp-Source: AGHT+IGq8HrsMga9eVPB6fzJA1zoMGuoKpuD12G+vs6rwDV90u10qjjl3ByW06NQ8l5TR4U+898YzQ==
-X-Received: by 2002:a05:6000:248a:b0:3a5:2fae:1348 with SMTP id ffacd0b85a97d-3a6d13129c6mr2772728f8f.51.1750434474935;
-        Fri, 20 Jun 2025 08:47:54 -0700 (PDT)
-Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6d0f18a29sm2442795f8f.36.2025.06.20.08.47.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 08:47:54 -0700 (PDT)
-Sender: Igor Korotin <igorkor.3vium@gmail.com>
-From: Igor Korotin <igor.korotin.linux@gmail.com>
-To: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Alex Hung <alex.hung@amd.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Igor Korotin <igor.korotin.linux@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>,
-	Tamir Duberstein <tamird@gmail.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Xiangfei Ding <dingxiangfei2009@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Benno Lossin <lossin@kernel.org>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Gary Guo <gary@garyguo.net>,
-	Len Brown <lenb@kernel.org>,
-	Trevor Gross <tmgross@umich.edu>
-Subject: [PATCH v8 9/9] samples: rust: add ACPI match table example to platform driver
-Date: Fri, 20 Jun 2025 16:45:52 +0100
-Message-ID: <20250620154552.299932-1-igor.korotin.linux@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
-References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+        d=1e100.net; s=20230601; t=1750435382; x=1751040182;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rvqqy5YTKLkCqgHETfYa8hhkLZxk0yPmImTHTMo7/0s=;
+        b=qDbwgaf/VomVO960NvVMfEyd8TgBiPDP44ex6Mq+HQ9s3BI/HcG4wZCYPzzQuIWYg+
+         8iJ9a+vih6xe3nhT43W1smE2QrCuOoX80Po09apgbJl1WLXGS5NRJ5ibGfVqYZDLnhoO
+         Usv6rRhbPGKKjJeG3Ej5wDDP2Y06eJu8iSeCYP73wuzFCxhNHFEya1DIsB/Ct8F4g0C3
+         dN8voV6dFBk3ycsy9zaVIdVTPHW0+xpq+BA2CfmrN2YQHtvsZWEuDLnullVK7mQvbLeF
+         oL1CsoqLwokYyuQRnHemzTBiTku8M1L3TP+UHcyrwV1KzJRakhb9w7oaqxZGhO5iqGxW
+         yGIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+H3KxgbmictsqB0ONlnq4jOvvnn95hkvn+9207aqkj5i3wWMxECZOWFEcnAiLufQ22yCV6kMwlLsF@vger.kernel.org, AJvYcCWyDiMHyerDxIeBEPp9MaIeqWMwUXn2VrICCZuDYwydEH+zGH+3wxpZy7KmMHBi3zvKxfUkTMNatINMW+IX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLzgAgPC2co3IBeXs5z/0E/IgTBiJj4z2ws4J4sGwiuvCmrb+e
+	G9jNd0Krar0+rCbvkI4yytw+PaG71BwOw5Ji38rEfBvQIqFzIUcrE8uijdQh5WhAZak1xtBLpWR
+	YKXoorC2aNJSK3qK2CmGbUiwJLjPCGFY=
+X-Gm-Gg: ASbGncszGV5uC0EkDjoJmGUJWpSjbyMLBfTv0+9YiBi94pSgmOAiQitnkl6jAl7bkWB
+	NfFiOFe9W5FjAE6ozpR1Soxgf6Fm1EKlMj+Pn7XTfHNZWpctyyp53zTFG63g8P9NBr2SIW254DU
+	ObTFgTZ68ntXqwEadlutbXev+nLT2bu1iBlc4eXjpKzfXy7tq3W8Toy9/j5enBGA2AfKbuOGTKc
+	gEy
+X-Google-Smtp-Source: AGHT+IEbRIf1llrIp083n5cVXqVqWOQqhIoBknN8uXJqch8RV+Pe1B/1Kqh6XJDtTUh7xY9AjMghXr/jUe/Nc2Ohsfc=
+X-Received: by 2002:a05:622a:22a2:b0:4a7:6ddf:f7d6 with SMTP id
+ d75a77b69052e-4a77a1f5fe1mr37932691cf.10.1750435381694; Fri, 20 Jun 2025
+ 09:03:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <80ACAAAE-F522-4199-9048-ADE69F6E1128@gmail.com> <CABjd4YyVJv0NmF9LsGWQ-O44MGjT5=FFeUjbg5rJ6XkNgjxb+g@mail.gmail.com>
+ <3286422.5fSG56mABF@workhorse> <CABjd4Yy0rjET+TyA3pNGrzfKd1xKKG1AjWFFLsgb+mgDpu_TRg@mail.gmail.com>
+In-Reply-To: <CABjd4Yy0rjET+TyA3pNGrzfKd1xKKG1AjWFFLsgb+mgDpu_TRg@mail.gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 20 Jun 2025 20:02:50 +0400
+X-Gm-Features: AX0GCFvdN48ERIfe-GKBbQO5ahvzTNBpETI9sWZVQzOBmONmFE6WTCwT7mhrfFQ
+Message-ID: <CABjd4YwrBurnKOAqXK_wFj0c7bEV-PZ682_-1y_VNMPvFrJ-Aw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+	XiaoDong Huang <derrick.huang@rock-chips.com>
+Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Extend the Rust sample platform driver to probe using device/driver name
-matching, OF ID table matching, or ACPI ID table matching.
+On Wed, Jun 18, 2025 at 6:48=E2=80=AFPM Alexey Charkov <alchark@gmail.com> =
+wrote:
+>
+> On Wed, Jun 18, 2025 at 6:06=E2=80=AFPM Nicolas Frattaroli
+> <nicolas.frattaroli@collabora.com> wrote:
+> >
+> > Hello,
+> >
+> > +Cc Jonas Karlman as he is intimately familiar with RK3576 clock shenan=
+igans by now,
+> >
+> > On Wednesday, 18 June 2025 15:51:45 Central European Summer Time Alexey=
+ Charkov wrote:
+> > > On Sun, Jun 15, 2025 at 8:00=E2=80=AFPM Piotr Oniszczuk
+> > > <piotr.oniszczuk@gmail.com> wrote:
+> > > >
+> > > >
+> > > >
+> > > > > Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.=
+com> w dniu 9 cze 2025, o godz. 16:05:
+> > > > >
+> > > > > On Sun, Jun 8, 2025 at 11:24=E2=80=AFAM Piotr Oniszczuk
+> > > > > <piotr.oniszczuk@gmail.com> wrote:
+> > > > >>> Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmai=
+l.com> w dniu 5 cze 2025, o godz. 15:42:
+> > > > >>>> Alexey,
+> > > > >>>> I see you are using rk3576 board like me (nanopi-m5)
+> > > > >>>> Have you on your board correctly working cpu dvfs?
+> > > > >>>> I mean: [1][desired clocks reported by kernel sysfs are in pai=
+r with [2[]cur clocks?
+> > > > >>>> In my case i see mine cpu lives totally on it=E2=80=99s own wi=
+th dvfs:
+> > > > >>>
+> > > > >>> Hi Piotr,
+> > > > >>>
+> > > > >>> I haven't tried to validate actual running frequencies vs. requ=
+ested
+> > > > >>> frequencies, but subjective performance and power consumption s=
+eem to
+> > > > >>> be in line with what I expect.
+> > > > >>
+> > > > >> well - my subjective l&f is that  - currently - my rk3576 seems =
+=E2=80=9Eslower" than i.e. 4xA53 h618.
+> > > > >
+> > > > > In my experience, native compilation of GCC 14 using 8 threads on
+> > > > > RK3576 (mainline with passive cooling and throttling enabled): 2 =
+hours
+> > > > > 6 minutes, on RK3588 (mainline with passive cooling via Radxa Roc=
+k 5B
+> > > > > case and throttling enabled but never kicking in): 1 hour 10 minu=
+tes
+> > > >
+> > > > by curiosity i looked randomly on 3576 vs 3588:
+> > > > multithread passmark: 3675 (https://www.cpubenchmark.net/cpu.php?cp=
+u=3DRockchip+RK3576&id=3D6213)
+> > > > multithread passmark: 4530 (https://www.cpubenchmark.net/cpu.php?cp=
+u=3DRockchip+RK3588&id=3D4906)
+> > > >
+> > > > assuming 3588 as baseline, 3576 is approx 20% slower on multithread=
+ passmark (has ~0,8 comp power of 3588)
+> > > > 70 min compile on 3588 should take something like ~86min on 3576.
+> > > > In your case 126min compile on 3576 shows 3576 offers 0,55 comp pow=
+er of 3588.
+> > > > Roughly 3576 should do this task in 40min less than you currently s=
+ee i think
+> > > >
+> > > >
+> > > > > Can't see how u-boot would affect CPU speed in Linux, as long as =
+you
+> > > > > use comparable ATF images. Do you use the same kernel and dtb in =
+all
+> > > > > these cases? Also, what's your thermal setup?
+> > > >
+> > > > yes. in all cases only change was: uboot & atf
+> > > > thermal is based on recent collabora series (+ recent pooling fix f=
+or clocks return from throttling)
+> > > >
+> > > > >
+> > > > >
+> > > > > Not sure UX is a particularly good measure of CPU performance, as=
+ long
+> > > > > as you've got a properly accelerated DRM graphics pipeline. More
+> > > > > likely 2D/3D and memory.
+> > > >
+> > > > indeed.
+> > > > For quantified look i=E2=80=99m looking on v.simple approach to est=
+imate real clock is http://uob-hpc.github.io/2017/11/22/arm-clock-freq.html
+> > > > by curiosity i looked what it reports on a53/a55/a72/a76 and it is =
+surprisingly accurate :-)
+> > > > on mine 3576 with collabora uboot+mainline atf is hows 800MHz (and =
+in perf. gov it seems to be constant)
+> > > >
+> > > > >
+> > > > > There might be some difference in how PVTPLL behaves on RK3576 vs=
+.
+> > > > > RK3588. But frankly first I would check if you are using comparab=
+le
+> > > > > ATF implementations (e.g. upstream TF-A in both cases), kernels a=
+nd
+> > > > > thermal environment :)
+> > > >
+> > > > all tests: the same 6.15.2 mainline + some collabora patches
+> > > >
+> > > > diffs were:
+> > > > 1.collabora uboot[1] + mainline atf 2.13
+> > > > 2.collabora uboot[1] + rockchip rkbin bl31 blob
+> > > > 3.vendor uboot (bin dump from friendlyelec ubuntu image)
+> > > >
+> > > > on 1/2 i see kind of issue with clock values (i.e. perf gov gives c=
+onstant 800MHz on mainline atf).
+> > > > 3 seems to perform better - (i.e. perf gov gives constant 1500MHz s=
+o all is snappier/faster)
+> > >
+> > > There is indeed something weird going on. I've tried running sbc-benc=
+h
+> > > [1], and even though I observe dynamically varying CPU frequencies
+> > > after boot with schedutil governor, once sbc-bench switches the
+> > > governor to "performance" and goes through the OPPs in descending
+> > > frequency order, the CPUs seem to get stuck at the last applied low
+> > > frequency. Even after max frequency gets reverted from 408 MHz to
+> > > something higher, even after I switch the governor to something else =
+-
+> > > no matter what. Only a reboot gets the higher frequencies 'unstuck'
+> > > for me.
+> > >
+> > > These are all observed at around 55C SoC temperature, so throttling i=
+s
+> > > not an issue. Regulators are stuck at 950000 uV - way above 700000 uV
+> > > that the 408 MHz OPP requires (and power readings seem to match: I'm
+> > > getting about 2.3W consumption at 408 MHz in idle vs. normal idle
+> > > reading of 1.4W at around 1 GHz).
+> > >
+> > > Not sure what's going on here, and I don't remember seeing anything
+> > > similar on RK3588. Thoughts welcome.
+> >
+> > This may once again be a "accidentally uses wrong clock IDs" type
+> > situation. The other possibility is that we're getting confused
+> > between what we think the clock rate is and what SCMI actually set
+> > the clock rate to.
+> >
+> > Things to check is whether the right clock controller (scmi vs cru)
+> > and the right clock id (check ATF source for this) is used.
+>
+> Clock IDs in the kernel seem to match those in ATF, but I've noticed
+> what appears to be a buffer overflow in some of the SCMI clock names
+> defined in the opensource TF-A (thanks GCC 15 and its zealous
+> warnings):
 
-Signed-off-by: Igor Korotin <igor.korotin.linux@gmail.com>
----
- samples/rust/rust_driver_platform.rs | 70 +++++++++++++++++++++++++++-
- 1 file changed, 69 insertions(+), 1 deletion(-)
+After some more testing, I tend to confirm what Piotr observed
+earlier. Namely, frequency scaling acts weird on any ATF version (be
+it binary BL31 or opensource TF-A), as long as mainline u-boot is
+used. Using the u-boot binary extracted from the ArmSoM QWRT image
+does not lead to "stuck" CPU frequencies when running sbc-bench.
 
-diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-index 8579290eecb3..9c16945e6c70 100644
---- a/samples/rust/rust_driver_platform.rs
-+++ b/samples/rust/rust_driver_platform.rs
-@@ -2,8 +2,68 @@
- 
- //! Rust Platform driver sample.
- 
-+//! ACPI match table test
-+//!
-+//! This demonstrates how to test an ACPI-based Rust platform driver using QEMU
-+//! with a custom SSDT.
-+//!
-+//! Steps:
-+//!
-+//! 1. **Create an SSDT source file** (`ssdt.dsl`) with the following content:
-+//!
-+//!     ```asl
-+//!     DefinitionBlock ("", "SSDT", 2, "TEST", "VIRTACPI", 0x00000001)
-+//!     {
-+//!         Scope (\_SB)
-+//!         {
-+//!             Device (T432)
-+//!             {
-+//!                 Name (_HID, "TST0001")  // ACPI hardware ID to match
-+//!                 Name (_UID, 1)
-+//!                 Name (_STA, 0x0F)        // Device present, enabled
-+//!                 Name (_CRS, ResourceTemplate ()
-+//!                 {
-+//!                     Memory32Fixed (ReadWrite, 0xFED00000, 0x1000)
-+//!                 })
-+//!             }
-+//!         }
-+//!     }
-+//!     ```
-+//!
-+//! 2. **Compile the table**:
-+//!
-+//!     ```sh
-+//!     iasl -tc ssdt.dsl
-+//!     ```
-+//!
-+//!     This generates `ssdt.aml`
-+//!
-+//! 3. **Run QEMU** with the compiled AML file:
-+//!
-+//!     ```sh
-+//!     qemu-system-x86_64 -m 512M \
-+//!         -enable-kvm \
-+//!         -kernel path/to/bzImage \
-+//!         -append "root=/dev/sda console=ttyS0" \
-+//!         -hda rootfs.img \
-+//!         -serial stdio \
-+//!         -acpitable file=ssdt.aml
-+//!     ```
-+//!
-+//!     Requirements:
-+//!     - The `rust_driver_platform` must be present either:
-+//!         - built directly into the kernel (`bzImage`), or
-+//!         - available as a `.ko` file and loadable from `rootfs.img`
-+//!
-+//! 4. **Verify it worked** by checking `dmesg`:
-+//!
-+//!     ```
-+//!     rust_driver_platform TST0001:00: Probed with info: '0'.
-+//!     ```
-+//!
-+
- use kernel::{
--    c_str,
-+    acpi, c_str,
-     device::{self, Core},
-     of, platform,
-     prelude::*,
-@@ -24,9 +84,17 @@ struct SampleDriver {
-     [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
- );
- 
-+kernel::acpi_device_table!(
-+    ACPI_TABLE,
-+    MODULE_ACPI_TABLE,
-+    <SampleDriver as platform::Driver>::IdInfo,
-+    [(acpi::DeviceId::new(b"TST0001"), Info(0))]
-+);
-+
- impl platform::Driver for SampleDriver {
-     type IdInfo = Info;
-     const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> = Some(&OF_TABLE);
-+    const ACPI_ID_TABLE: Option<acpi::IdTable<Self::IdInfo>> = Some(&ACPI_TABLE);
- 
-     fn probe(
-         pdev: &platform::Device<Core>,
--- 
-2.43.0
+I'm getting this with the exact same kernel build (6.16-rc1 with some
+Sige5 related patches, namely v2 of this series, Nicolas' USB
+enablement series and TSADC). The only other difference is that the
+binary u-boot doesn't have EFI support, so I had to boot into the
+ARM64 uncompressed Image instead of vmlinuz.efi, but those were both
+taken from the same build.
 
+What I'm observing during the sbc-bench run:
+ - It switches the cpufreq governor from schedutil to performance
+ - It goes through all CPU OPPs in descending frequency order
+ --- While it does that when booted using mainline u-boot +
+vmlinuz.efi: "hardware limits" line in "cpupower -c 0,4
+frequency-info" changes with each OPP change (the max frequency
+getting reduced sequentially), then it resets to the initial full
+range, but the actual frequency stays stuck at the lowest possible
+value
+ --- While it does that when booted using binary u-boot + Image:
+"hardware limits" line in "cpupower -c 0,4 frequency-info" doesn't
+change, but the actual frequency gets reduced sequentially. Then after
+the iteration over all OPPs is completed it returns to the highest
+possible value, and adjusts dynamically based on thermal throttling as
+the benchmark progresses
+
+So it seems that it's not really linked to SCMI clocks or PVTPLL per
+se, but rather what the binary u-boot configures differently vs.
+mainline before the kernel takes over, or something in other firmware
+services that the binary u-boot provides (?)
+
+I'm wondering if there is any clock related functionality in the
+OP-TEE? I didn't have any OP-TEE image in my mainline u-boot builds
+(frankly, I don't even know where to grab one), but the binary u-boot
+from ArmSoM advertises the following:
+
+I/TC: OP-TEE version: 3.13.0-791-g185dc3c92 #hisping.lin (gcc version
+10.2.1 20201103 (GNU Toolchain for the A-profile Architecture
+10.2-2020.11 (arm-10.16))) #2 Tue Apr 16 11:05:25 CST 2024 aarch64,
+fwver: v1.01
+
+Any thoughts would be much appreciated.
+
+Best regards,
+Alexey
 
