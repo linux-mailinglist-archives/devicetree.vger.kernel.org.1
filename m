@@ -1,188 +1,202 @@
-Return-Path: <devicetree+bounces-187917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE40AE1C8B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1DB1AE1CAB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:53:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CACF317492D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:47:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CBFF173017
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7546C2980D3;
-	Fri, 20 Jun 2025 13:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7867F28C037;
+	Fri, 20 Jun 2025 13:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="pohHG9Da"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="XMz83gLG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010047.outbound.protection.outlook.com [52.101.84.47])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB6D295D91;
-	Fri, 20 Jun 2025 13:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A525928A3FA;
+	Fri, 20 Jun 2025 13:53:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750427189; cv=fail; b=IAjTpQGNfJ1N3kaLhpBSYBzEp8J+RvTvovN4vESESbycuAtWaRu1t7NNq3WoNNNArmp+FIuX34inkxj0z5qJQXVRbKoBsIdeCkx7pp4hLakKoQYg9DKDYmxRhJ3LekopkG8x7JTKKxwUUoRSKVAIq7zc0hort4jYjBZbiw58tjo=
+	t=1750427600; cv=pass; b=dKh7nF3U33Yxw7G8jnf+uqFjA2scoLB4dZWA6U1FWA3qIkIa5xzFmQXC00+Ra+7Oq20STIApIgXFfVjI6WfLk6TSjDUxJCXk0QqcJZ9UrUENt+ci1kHsJ9GG/RXzB9/wDqzoaM7oL918P5adXQB4xwNGhz/VHIYCzl5/kxwnYMs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750427189; c=relaxed/simple;
-	bh=QF/x62rH7SNjnTjgAd81eOMlOdFl+Cxw9K9eA8AAHoY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IbqvvfM0RbvVM2AZqGvA70Nf7VSPX5uoo8VArDqQJzVN3IIUEF36smqlglFs0kJ4aoWvB7Mp96a0OMePVZvH09QBspUuAReovJi2kbVkumPd4wuDqYkA+PsOzYPD3iLLdwoJ0i+6ZoNX6zuZojUOeAWJNvFbDrnIpCjTey5E2pI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=2n.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=pohHG9Da; arc=fail smtp.client-ip=52.101.84.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=2n.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Fp4/UJuw6AyowSZuXD2olxUPEZnCL9fmapyJwcW8w0o668g10xArL3YHWk7dQpPaVxIJc67T/10G+Jnnqta4n3n/FKlsQUR+p9ncQIWplmmFkF7nuVX1JKNdW+b0hJlo3QgwPOWvTtHZ/hF8qdOalF6pmvfnJ7qMlVkTuxIqlaM6Pdz/u2zG1JxWBFn/9EK04am6x4tQdZPWPcSJktUF3NnvaYmHVhtVHRJB34hPASKzNnO/kdBlAeH6aolfYpvTfht/89WIvp+RdNtoTLwIl0g+SrXzQB8WgvCDTtWsQz/y3JS8NfvPNgwwI5e9+nVGHgmiDArowgzIjBaKwJLtdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vdoRrWZJ3GPXjwD9PDit3j86z6d0SP4w98qUWA4stLk=;
- b=ZbagK4Rcf/7UyEpBOguB8eatZhtoSiJ90YILDt6InKziEAMhZjAm0/cvT5sarJ7pvm4M8BlMVt10rALaMBgpw+1GWIL4mZOGXqZQyoz2gveeV9/HJbNEE50HMWPmJGQOho5NqB5C19pGyuWm+yyrll8dzfbjE8UoHNdQalpZly+h83GnJWSNqRqABPrv//sya0HSL+FGTcf2PLrkz7CWtBAJS1ZBxp+c49xcrxYQerDzFXv5xkLG17RKfY8z7FZV08zaRzeN2uwaq290Wr/PVce7OYNam0iKD1JdJfX8PMj68ATVtJOAlG8NupMCb3doO3NcBwgvMmbzDWFgDzryuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=broadcom.com smtp.mailfrom=2n.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vdoRrWZJ3GPXjwD9PDit3j86z6d0SP4w98qUWA4stLk=;
- b=pohHG9Da5EcZn5pqDC7WxJ9dLaD5W4pJ/Ym5jBLbV4gEqvNhxtsY/FjLYzeDLX73/79AKUH20NNZCLLrleY4/VKgWtgFKTLFz8yeju7oProoJL3U6WiUhXP3/TAnMHC7zHgLrAnN+fvKzZwITnDyH7lq99hCl87AKMYic6pHpeM=
-Received: from AM4PR05CA0036.eurprd05.prod.outlook.com (2603:10a6:205::49) by
- VI1PR02MB6126.eurprd02.prod.outlook.com (2603:10a6:800:182::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.28; Fri, 20 Jun
- 2025 13:46:20 +0000
-Received: from AM3PEPF0000A78D.eurprd04.prod.outlook.com
- (2603:10a6:205:0:cafe::ac) by AM4PR05CA0036.outlook.office365.com
- (2603:10a6:205::49) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8857.25 via Frontend Transport; Fri,
- 20 Jun 2025 13:46:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=2n.com; dkim=none (message not signed) header.d=none;dmarc=fail
- action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of 2n.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AM3PEPF0000A78D.mail.protection.outlook.com (10.167.16.116) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8857.21 via Frontend Transport; Fri, 20 Jun 2025 13:46:20 +0000
-Received: from pcczc3457tyd.2n.cz.axis.com (10.4.0.13) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 20 Jun
- 2025 15:46:18 +0200
-From: =?UTF-8?q?Kamil=20Hor=C3=A1k=20=282N=29?= <kamilh@axis.com>
-To: <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
-	<andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <kamilh@axis.com>, <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <robh@kernel.org>
-Subject: [PATCH 3/3] dt-bindings: ethernet-phy: add optional mii-lite-mode flag
-Date: Fri, 20 Jun 2025 15:44:30 +0200
-Message-ID: <20250620134430.1849344-4-kamilh@axis.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250620134430.1849344-1-kamilh@axis.com>
-References: <20250620134430.1849344-1-kamilh@axis.com>
+	s=arc-20240116; t=1750427600; c=relaxed/simple;
+	bh=k67JtgBrtKH5c8MilgA2/jhp1oqwbs+SGFRe0IdC070=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T6jD852rPQibHQtEzBx3j1hfvPLm6ige6Av5GfGmvhsNb96cidtKImeqYdYg8stpBcmBayOhOC8pdr1cmvtyyMKYLBpDNNkINNw/c7ea6duXP2JmELLQf1An7BwxrcgWMaSEVU1clGkbfVR4GLxvei0YA8z1qhcA8/dVDpxgiYo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=XMz83gLG; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750427571; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=TXFOrOvEz7z1ai2laSiHdc57LGo4WZ9k8SJkVhzrfhqnwR0b1rPncIkqMG4VX7ZpvyYelO0JBnkmhrDGjgGNrpwvL0TZWo94GZaOUrP9myK6Isj2y5llSo/uUrvLQed+opagwHRuo6jvJ5DavjSyw1jIYOsgxMftmwnigA714k0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750427571; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=V459JMUmyF9w2CF7odfd6vdr2BDTmJkRuH7Scgg3lLo=; 
+	b=MMTZaNXtnwEFO2WRdtoGadqLqAnzc/YzvA/W7Z2ArWiZ9cqNU/hUQfcLQz7ulhlcUlCExzCFwcpkxKIRch4wnIQqGxO8FpNFOfKNOtYKSO5v+JHODAaPbzxqXk0EJgb8OY3pLxG0u5SR9olb2fiMMO990y9JuMXKp99EdfKR/90=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750427571;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=V459JMUmyF9w2CF7odfd6vdr2BDTmJkRuH7Scgg3lLo=;
+	b=XMz83gLGVocBQQxhMXW3P41Im4nz6IP8qnRncCfexbBczpHYl1RS8MFGcilrvPYa
+	gCE6lYBG8nfrS65sPW5tCrhl4mTSHQSVEhOyY6KOT13Ijf6FE/ha3v2o/A2qCdvvEkw
+	32AsJPhSZf6Hzk8n3E2138cANxh3Z8xrQfCPOdmQ=
+Received: by mx.zohomail.com with SMTPS id 1750427570159193.5196944847704;
+	Fri, 20 Jun 2025 06:52:50 -0700 (PDT)
+Message-ID: <d9a1b9ab-b6ab-4364-a1b7-df4debc21bc1@collabora.com>
+Date: Fri, 20 Jun 2025 15:52:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/5] iommu: Add verisilicon IOMMU driver
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+References: <20250619131232.69208-1-benjamin.gaignard@collabora.com>
+ <20250619131232.69208-4-benjamin.gaignard@collabora.com>
+ <20250619134752.GB1643390@ziepe.ca>
+ <073ffe14-d631-4a4f-8668-ddeb7d611448@collabora.com>
+ <20250619165928.GA10257@ziepe.ca>
+ <e034a111-93eb-42e8-a533-46553b4f5588@collabora.com>
+ <20250620120509.GA39770@ziepe.ca>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <20250620120509.GA39770@ziepe.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: se-mail01w.axis.com (10.20.40.7) To se-mail01w.axis.com
- (10.20.40.7)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM3PEPF0000A78D:EE_|VI1PR02MB6126:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc334f32-b8be-4ad3-f1f8-08ddb000d6ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|7416014|82310400026|1800799024|376014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZDExMmQwNzZXMi9aU1RIalMrejFlczZXQU1KeVQxZXljYzFoT3BETDIvYXVY?=
- =?utf-8?B?USswQWRMd1JPWWJla0ZaVytnSUxORVdSMThSRTVQblRySUxMZWtkNC9hN1c1?=
- =?utf-8?B?d2N2UVJsL3Zid09XNXFEeXBreDRTRFIwc1NLbEtGa2I3R2NsNWpNay9UQndJ?=
- =?utf-8?B?RDg1L0VCcjg5R1N3a0x4L3hIN0tKeFl0cGk3KzFJZ2h6L3JpWW5BUjdWYUl5?=
- =?utf-8?B?YUw5QUdlSThKZFhKdkh3ZUQzbmV2YnAwTlhxdWRTaTVZN1phRnRvRE1xaUxu?=
- =?utf-8?B?SEJlMEVoWSsySkhZdmsvUDJHREEzTXpUWEgyQU9jZmw2Szc4NDRPRUp0Zng5?=
- =?utf-8?B?ZnR5MGVBL3lSTS8zRzlPbFg5dDNPZXpxNit4OVM3K2lKMHpodDJpWFdjT3Uz?=
- =?utf-8?B?cWR3cEIrSXpXVWQwVEtxYlhuVG15bkVzRGxkVXdmeitJSE9DWUl3R0Rad3Jx?=
- =?utf-8?B?NkhwbXhHN2NqbDlCTGNvSjVSdFk4a2t2YU9vZFl5NVM3MnlJZjlTZk5xU2ZK?=
- =?utf-8?B?Sk0vM0oxdDFTeHM1YWR6NHAzRVhmVmVsUERzOFc1VnRwc1c4S0s3SG8xd0RZ?=
- =?utf-8?B?QVhoOTdPaWRwcmpsQ3JyNFZFanBtZERnQkNkemtjM0IxRnN6L2pMYmRGaVVC?=
- =?utf-8?B?a3pnM0RtM3VTTlBWaXB3cVhEdThwWDAvdTd2d3FPWlRITWVvcGNFYmt6dksy?=
- =?utf-8?B?U013cElraWNoQkZHaHBuZllTYU8xVUpLS1A4RzY4OWEvUHJDR3lJc3VBbHlp?=
- =?utf-8?B?clVid0RSa0ZVMFFRYnJrUXg5K0wyN0hkcXpTU0Fhdyt3OUVkNi9tWGlkMkdO?=
- =?utf-8?B?a3hSS2phWW4zdFJYME9JNFNUejlWdU9yc1JOcFEzckNkM2t5cTRoazI4YVdk?=
- =?utf-8?B?Q3FSbWFqQVI4Ym8xeExZUkRJZjljclc5M3UzUlBSbml1WlJmTTBWMU5UdjRQ?=
- =?utf-8?B?T1ZWSWdQSDY0VVpYM254cUQzcUlJckRBbzRrTW5mTnRUSUZKSmRBblNYSWNr?=
- =?utf-8?B?K2lmQXdrYnEvQVNYSlpCU0R5R2dQQlRJeGFJeTUwNkZXN0xiNGtML0lxVzRJ?=
- =?utf-8?B?T1N0VHQ1VjRxZ2FlSU84d1FwMG1ESmM2SEZLb25FU3dNT01LS09vY0VoOFlT?=
- =?utf-8?B?UnM5SkhWVE12TUhhY09IcEE0enNpU2tUZ2Z6L20xQldGRXh5TFhLZjE1Q2tQ?=
- =?utf-8?B?cHdvZy9NNFJsSkNmUkhHOTVKdzQyeUg5YnBESlpqUkYxa3d0RDM3U1k5ZTJE?=
- =?utf-8?B?OWpmWmpYTy85bHlRT3FEa21ydEF0b25JMUFsWWsvMm14VVBTZW9aN2JxWXpD?=
- =?utf-8?B?VEk2eVpSUzNYOFZOS1F3cmFsWEp1Sno3dERZcER2S09iM0ZVZkZNdGM5YWNx?=
- =?utf-8?B?UDFKMGNuME5ScWd2MWtjRXNBQXdrRW5lcHYxVDM2bUdZME1KYXNKcEtOL2ty?=
- =?utf-8?B?bXM2RFJiWEd5QVhoVFJ5RlhRdmtmOGtYazJXbW1aUnFKMTNtWE9iTmZic1N1?=
- =?utf-8?B?T1o2eExiUFRCUlNIcjBwYWxQSU1kOEdxa0gzVnBOVWM4Q2xwSkRKTlJTRVFs?=
- =?utf-8?B?L2xtQkRBNVFVRG02QnpPK2pKK0ZVdGJzK25ZR0UvUTBuWlAzekxUWHNNYk9y?=
- =?utf-8?B?Z2grMHJrTjFLM1BLT0VSS2dUUnVVL09XRnVTdmVFTENOd2NzWmRhazNJbmRF?=
- =?utf-8?B?SUtXcXd0aElGZ1hwNWdXNmNZQWsxelhxVHFYVG5TdDNwd3hZV3crVEFQWDhY?=
- =?utf-8?B?OHBFUC9reVNIV09WNXlYL1lybWtaamRHNEoydisraUdKSDJLSUM4Tnd5N1Vl?=
- =?utf-8?B?WVE1QzVUY0pZazN6akxFd1ljUDlpK0FrZ1piNERONk5rVWg0eWRaNDl0aTVK?=
- =?utf-8?B?S0o0dmRiakhVZWMvcEViUDlBZXBaa25Ea0puOFFYZUx4R1h4RFBpRWUyOEZ6?=
- =?utf-8?B?NG5FazB2NFZBRi9JR0Jlb013eFpYMW5qNUNkUGdCVXVYaFh0UlZKdUxqa2hW?=
- =?utf-8?B?dmFPNHFaMnlaV0RFOWFxS1VEb0JHSXE4UG9tNTBuZkhjM3BNZkJweXZJSXpL?=
- =?utf-8?B?TTMxY0pzMzR5VjFDakMyQzlLRjR0ejRJeDFLUT09?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(82310400026)(1800799024)(376014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2025 13:46:20.4267
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc334f32-b8be-4ad3-f1f8-08ddb000d6ad
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM3PEPF0000A78D.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR02MB6126
 
-The Broadcom bcm54810 and bcm54811 PHYs support MII and MII-Lite
-interface modes. The MII-Lite mode does not use TXR, RXER, CRS and COL
-signals. However, the hardware strapping only selects MII mode,
-distinction between MII and MII-Lite must be done by software.
 
-Add optional mii-lite-mode flag to switch the PHY to MII-Lite mode.
+Le 20/06/2025 à 14:05, Jason Gunthorpe a écrit :
+> On Fri, Jun 20, 2025 at 10:57:49AM +0200, Benjamin Gaignard wrote:
+>> Le 19/06/2025 à 18:59, Jason Gunthorpe a écrit :
+>>> On Thu, Jun 19, 2025 at 06:27:52PM +0200, Benjamin Gaignard wrote:
+>>>> Le 19/06/2025 à 15:47, Jason Gunthorpe a écrit :
+>>>>> Ugh. This ignores the gfp flags that are passed into map because you
+>>>>> have to force atomic due to the spinlock that shouldn't be there :(
+>>>>> This means it does not set GFP_KERNEL_ACCOUNT when required. It would
+>>>>> be better to continue to use the passed in GFP flags but override them
+>>>>> to atomic mode.
+>>>> I will add a gfp_t parameter and use it like that:
+>>>> page_table = iommu_alloc_pages_sz(gfp | GFP_ATOMIC | GFP_DMA32, SPAGE_SIZE);
+>>> This will or together GFP_ATOMIC and GFP_KERNEL, I don't think that
+>>> works..
+>> I have test it, I don't see conflicts or errors. What worries you ?
+> Just looking at the bitmaps I'm not sure? Did you run with lockdep?
 
-Signed-off-by: Kamil Horák (2N) <kamilh@axis.com>
----
- Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Yes and it complains about that.
+I see that sun50i driver have more less the same struct than my driver
+but doesn't use lock. I will try see if I can remove the lock.
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index 71e2cd32580f..edfd16044770 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -101,6 +101,14 @@ properties:
-       1BR-10 names. The PHY must be configured to operate in BroadR-Reach mode
-       by software.
- 
-+  mii-lite-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      If set, indicates the use of MII-Lite variant of MII, without the
-+      functions of TXER, RXER, CRS and COL signals for Broadcom PHYs. These
-+      PHYs can be strapped to use MII mode but the MII or MII-Lite selection
-+      must be done by software.
-+
-   clocks:
-     maxItems: 1
-     description:
--- 
-2.39.5
+>>>>>> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
+>>>>>> +				   struct device *dev)
+>>>>>> +{
+>>>>>> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
+>>>>>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+>>>>>> +	unsigned long flags;
+>>>>>> +	int ret;
+>>>>>> +
+>>>>>> +	if (WARN_ON(!iommu))
+>>>>>> +		return -ENODEV;
+>>>>>> +
+>>>>>> +	/* iommu already attached */
+>>>>>> +	if (iommu->domain == domain)
+>>>>>> +		return 0;
+>>>>>> +
+>>>>>> +	ret = vsi_iommu_identity_attach(&vsi_identity_domain, dev);
+>>>>>> +	if (ret)
+>>>>>> +		return ret;
+>>>>> Hurm, this is actually quite bad, now that it is clear the HW is in an
+>>>>> identity mode it is actually a security problem for VFIO to switch the
+>>>>> translation to identity during attach_device. I'd really prefer new
+>>>>> drivers don't make this mistake.
+>>>>>
+>>>>> It seems the main thing motivating this is the fact a linked list has
+>>>>> only a single iommu->node so you can't attach the iommu to both the
+>>>>> new/old domain and atomically update the page table base.
+>>>>>
+>>>>> Is it possible for the HW to do a blocking behavior? That would be an
+>>>>> easy fix.. You should always be able to force this by allocating a
+>>>>> shared top page table level during probe time and making it entirely
+>>>>> empty while staying always in the paging mode. Maybe there is a less
+>>>>> expensive way.
+>>>>>
+>>>>> Otherwise you probably have work more like the other drivers and
+>>>>> allocate a struct for each attachment so you can have the iommu
+>>>>> attached two domains during the switch over and never drop to an
+>>>>> identity mode.
+>>>> I will remove the switch to identity domain and it will works fine.
+>>> You'll loose invalidations..
+>>>
+>>> Maybe the easiest thing is to squish vsi_iommu_enable() and reorganize
+>>> it so that the spinlock is held across the register programming and
+>>> then you can atomically under the lock change the registers and change
+>>> the linked list. The register write cannot fail so this is fine.
+>>>
+>>> This should probably also flush the iotlb inside the lock.
+>> I will try to summarize:
+>> in vsi_iommu_attach_device() I should:
+>> - take the lock
+>> - do nothing if the domain is the same.
+>> - if iommu is used (ie powered up):
+>>    - update the registers to enable the iommu
+>>    - flush
+>>    - update the link list
+>> - update iommu->domain
+>> - release the lock
+> That sounds believable, yes.. Though can you do the "powered up" checks
+> inside the spinlock - are they sleeping? Can they be done before the
+> spinlock?
+>
+>> in vsi_iommu_identity_attach() I should:
+>> - take the lock
+>> - do nothing if the domain is the same.
+>> - if iommu is used (ie powered up):
+>>    - disable the iommu
+>>    - remove the node from the list
+>> - update iommu->domain
+>> - release the lock
+> And maybe flush too? How does the caching hw work at this point? You
+> can't have stale entries in the cache when you switch back to an
+> enabled/translating configuration. So either the HW flushes implicitly
+> or you need to add a flush somewhere..
 
+I do not have the documentation for the hardware but it seems that
+enable/disable are enough to do the job.
+  
+
+>   
+>> vsi_iommu_suspend() and vsi_iommu_resume() will also have to take the lock
+>> before calling vsi_iommu_disable() and vsi_iommu_enable().
+> Yes, if they use iommu->domain that seems good
+>
+> If the above locking is a problem then I'd use the group mutex instead
+> during resume/suspend. The attach functions are already called with
+> the group mutex held.
+
+Does group mutex is also called when using vsi_iommu_map or vsi_iommu_unmap ?
+
+>
+>> Do I have to switch to identity domain in vsi_iommu_attach_device()
+>> before applying the requested domain ?
+> No, that is what creates the security problem. What you want is to
+> update the HW registers in a way that the HW just changes hitlessly
+> from one translation to another, then flush the cache.
+>
+> Jason
 
