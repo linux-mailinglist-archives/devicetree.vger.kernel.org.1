@@ -1,217 +1,153 @@
-Return-Path: <devicetree+bounces-187898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E532AAE1AAD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:12:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15BD5AE1ADB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:24:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57C761BC7905
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 845295A36D0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36DE928C2D6;
-	Fri, 20 Jun 2025 12:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27F02836B4;
+	Fri, 20 Jun 2025 12:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxXo6nRW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UgST6mxw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4399128B7C6;
-	Fri, 20 Jun 2025 12:11:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B142080E8;
+	Fri, 20 Jun 2025 12:24:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750421462; cv=none; b=J3XcWm9I9ANkWigDu+7TipftiY+3Uuvfk60YGdnJFNgPOjgxL7Fxc/1LrYMC0nKI/mubPTS12aYW94Rs70OElXpf//VWjydKeuCFZxqz5Y7U1XOzPh6ZQyOviU6eQUGQbr+/A0ABjYWed6NDIkdOraeyWIOGcxYaTLrEhx5XsLs=
+	t=1750422246; cv=none; b=iqCSGSruyuOV498C4R/1T9e82FcJJfsyPmTfoIO1+g3ckZBH36NuaVgoy4e5qeqGE4+vbJha9o5QfmpBoICZpOKXQb60XO3NRnkS+0jq++7vI/1Ktg8czWSPt+qb4mlldNFoZfqqePnp/WvGx688YvDKETzeax+GpV7IvnpBQI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750421462; c=relaxed/simple;
-	bh=AnGRAkc9BMpPvg3geLJcR4vv/ZfyXpKFYjT72sWIAn8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kkWZPD11IS+/WGSegDxH9jrhhG89yZJPDv03lfIbF0S30D94FxN8ND7+0Ut/8ix1FhscxLqh5YDLFs/ayY9SYATsZO5Pvtoik2uWhXHg4L6to1h0PkKOK8qJ8Alvf5b1ZwmhQGcmEIDyBqjn3KHMc35AGqCRcnKyrXSN9VQJoMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IxXo6nRW; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1750422246; c=relaxed/simple;
+	bh=2YzTh/LaLRT0RPvVJKqWN+pvYK3F6uBn5nFIAu2E9MQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QJn9xIkmjS2kZIWNB5PtDjmarDpbH0VfgJzYVKamyGvNA3VqwJqe7M7lbETPWlpyd68/UIinnjirfxsZDmxsKCIQinEDL6zxsEHVJAs79Q1zOfkZYbLCJm1dED2Vdmo84cABO2L4Zo46KuVKE4nFlUK1aAijAMgi0TE0Gt5VcRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UgST6mxw; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-450cfb790f7so13416725e9.0;
-        Fri, 20 Jun 2025 05:10:59 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ade5ca8bc69so311940066b.0;
+        Fri, 20 Jun 2025 05:24:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750421458; x=1751026258; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aP9xujfHxj5r05oJlluxnAgUZ86qmiSmeE+yMyUkYY8=;
-        b=IxXo6nRW6HSyo+vwXHDw49Tq/aBidSLJY7GXR7hQbXsvI3Y+MYfnbqVvB5N8Gf+Hrx
-         D5UkkaGAD3Kz3VQd3TDKLGimy9o6zRy378oyMlPzvZTlsTaMsBhMcLNMVdrPPjV012Vc
-         MRiFOkoZPf4SiIlRr8gPY+80Srl28W6KEjq0GWbX+7roKivzI6eXozFtrFcO0NL3n6mw
-         VSz/7jUnm3c4ksWVS9z/ZcnBU5GDoNvJ5x6cci4dxrl18WtYJwUCZdAZcPicIcXTTXTw
-         A21hnYj4Y7fNn+ZpPv5URgY4dFyXQA1QYb7k6mTBA2OBYzRKh6j7pDNtRcSjMamFMtcQ
-         QZUA==
+        d=gmail.com; s=20230601; t=1750422243; x=1751027043; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Aku6I+Z1otaiPYqearkHVG7C/o8TpU3V/UW7Y/eqXAs=;
+        b=UgST6mxwq1YmVFFg6IEvNIgfiONG3ewqRYx2UekVtC0vdhENur9yzCih90kBxUHy+t
+         KQUaBGJvb5ENVxnJkT24qyVkdyHfgxqCEjzhLUzFaXsQ9GwiRe/HILiK3bKOmM7tuD59
+         wO/vdCT/HFtFccRX4fUuggDCIkCdjhwfvxGi3GQnrDQIJv+2VVGKXgVMFYbjsVlnEGLM
+         jQyif9pPnkbxqDFpzQrSKb03q+6eabvZ/UzC9z7jl+Q13Zh2DTa1bmKD8pCwNxjvkJhj
+         y7Z0ofpd8k3HR/A88hQts6HEtfr74TrYsdhr5EygEqbMyyn6Nzc2H5R6hKCPZIDz+oI6
+         p0kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750421458; x=1751026258;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aP9xujfHxj5r05oJlluxnAgUZ86qmiSmeE+yMyUkYY8=;
-        b=kAEAly8B/qxfoeCaDclrdIqp4mDkPrVZADP4mQ/DzxlX6hJUiPSn0qn12tIUmpvQ6h
-         Zpgj0o4FFFpZdMu8fp6ptSRwiK3O4+JLltiY7EnhW8m9Etx2l3wFtmar6zuedjDOzEf3
-         qrElu32YKZHYBD7+rPp459asYGdvUGdnEa9QNOmfdawvn53BfbP/CZdHTaB79BsXxcs/
-         GZoYkxumuIJUfl8qGQEVShhsCNBqTEKdxMyYUOKC0dowlzwAlE/sJJYPA5gO0mquZWk8
-         37fuZ247UEjiQggpfBLkrc0T+/t5177BixASLIY38uPNFpVQY23rjj2li/n42aQaKv1c
-         3kCw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/fhcugiLmoEaUtjGt1zculfAxtdVxKENxsBIP0HZr8gmnJXzritHeGfji6DjgtXpr1yKPldEFH5zH/wMs@vger.kernel.org, AJvYcCWHsuVaUgkzxEPWWJyvFFJlMi4+7PqbaRmWIBnyp+jC1A3p2IOJQm+NTOaX167Jab0VvdnBnOe0QCaI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz+aYNS9FbdHxQcti5zbnqe0jWuQAP6CgwLn4LliuIDRzKGt6L
-	hba4cF1oFQmCQGxMxvix5SMFkY9WZvvO0OLrcDeKbVILQgOEtIo08SnW
-X-Gm-Gg: ASbGnctVahOSYCqfYm4lKVhGyruT1Ux7cZzRFXOTv5TpeEVfCXyxuTTjTatXNv74/H+
-	l5as+pbx2zRUlRoebLHHrXZNKMlv2Vim5HbsngvXyWhFJiSLNZhA9wizW1jvgXC9o0Y57WzoUzN
-	jiZpbrJFfIZRcJUzHYd8Nq3Xl25YGsGcPpEoX+2mkbXcSNhrkGuIEjDgNKls1WHh38VI8Ikp/71
-	j2G6+EacoduPKQ6MujKCIGeLy1wjl5E9VkjoUq/sAGpqmsiWMVcVSQRj5lNlPSqoY+NAo/WnDTC
-	Wr4dc1HCMx/vnouG3sqqFKUN/P2rtsuNaanMXdGtLlDQkhzozTH0KBzedg3dOsdZBb128p/2bfX
-	S+7Ja9y43DGD0BuYQ3ycX
-X-Google-Smtp-Source: AGHT+IFEa3C/AcgeqxqSFGTqcyqJroZzEp8+WF1neicE6h9J5RYegCWvfhFFwltJcwaQ5vhFdvdmsw==
-X-Received: by 2002:a05:6000:2482:b0:3a5:8abe:a264 with SMTP id ffacd0b85a97d-3a6d12fb9f9mr2014463f8f.37.1750421458395;
-        Fri, 20 Jun 2025 05:10:58 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:e188:15d5:9cc6:1db])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4535e97a915sm58234645e9.7.2025.06.20.05.10.57
+        d=1e100.net; s=20230601; t=1750422243; x=1751027043;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Aku6I+Z1otaiPYqearkHVG7C/o8TpU3V/UW7Y/eqXAs=;
+        b=vt8imAE+5dKEQhmZwaTWzNLXQIG84wP9CW036+NLHeiL8Iz2ikrMCcbZBnMjOkOUfP
+         0ZFUfUvFDCz64FRKjbDnRziQLilOtLzPWdgJtyOMYmtKfaDr9Gc51ykNHLiVgjMvxVZI
+         eE40xXG6GKn/0LcVs+2lxJz9OSUXexssjmNM5qzUBQX8671UYmO/iG+CGJwmozBHchNA
+         rIfxK+vm1zAhk2wpa9PvQkt56I6Nv19AK0ajmG/fn1etFFqO2wVw3Co+PXEli1KRedbo
+         NjOiW5nZY2M4d08pcWqcefKS14EeUdlT7mkqhKq0jqXL0ia7OcF9rI7LchwWPUUro+vc
+         RTdA==
+X-Forwarded-Encrypted: i=1; AJvYcCUPM/Vn+GXOx3EBshfEgJpJARlT3RNPr6IwDvMiKnc5o+Ohuc5tItDC4+iUnimnv204yC+MpqWyqpqx@vger.kernel.org, AJvYcCVtwdAqzYeCUhnBrxNsEGzMBWP95O4ne28d0V6UYV/zTpDMrD3rwR2EuUAbYh+bGveLFZ6slqBhaNvT37nz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzALZOCykvtcYrCpoJwuFdpTEtPWMVs0hq2lmD2VtmDjQvRh+vV
+	LogzXZ4rVPnrJ9HT3bJ7sscxO6zEEtUTxEvr80cp5GsSNbH+79gX0yWr
+X-Gm-Gg: ASbGnctdKzJljp1GUtwwL1duzu6X+a+g6+1y6T1tXliyPF11T1h90Lrnznn+9oUXkeA
+	IAKp1L+S/UzluMvrdGvx7qQM+TbaBl96EUAYKZTf+rO0BoXA5yWhk12Q7KzPOTxUo0qA3Iz8Fny
+	XaYWINB3O62qFlNuolNFXNSHBT1BCTBbuJHazGa/MUVcdKntY6A3NWCWbk1GpmzfNlBBKUul+Ka
+	iAEhs9ajjDPnU6y1iOy6fZ9BwcU3zvjsc9sh86/oxQBYTVUkuskSTcoUaalg8vpWtHCx1eiy2rM
+	m4XO0XPHZzdOmTisQE6ibXhzAzysLaIDBzBJtenQtZErhrEXpbPuN4aGXugaMobayf4UrkKzLec
+	27Kh91SH9xADn
+X-Google-Smtp-Source: AGHT+IEYpjSbP+5kauJO7OsmCiLi3LL3VA+uEreYie6xCKg7Byu2oLbO5XxrEDg8qXznylM8ayXxoQ==
+X-Received: by 2002:a17:906:dc8d:b0:ad8:9257:5735 with SMTP id a640c23a62f3a-ae0578f527emr254169166b.3.1750422242973;
+        Fri, 20 Jun 2025 05:24:02 -0700 (PDT)
+Received: from wslxew242.. (11-127.static.abakusbp.net. [46.17.127.11])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae053e809f6sm154000566b.1.2025.06.20.05.24.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 05:10:57 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
+        Fri, 20 Jun 2025 05:24:02 -0700 (PDT)
+From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	boerge.struempfel@gmail.com
+Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: Add CN15 eMMC and SD overlays for RZ/V2H EVK
-Date: Fri, 20 Jun 2025 13:10:45 +0100
-Message-ID: <20250620121045.56114-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250620121045.56114-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250620121045.56114-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] arm64: dts: Add support for Ultratronik i.MX8MP Ultra-MACH SBC
+Date: Fri, 20 Jun 2025 14:23:48 +0200
+Message-ID: <20250620122353.150700-1-goran.radni@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This patch series adds support for the Ultratronik i.MX8MP-based Ultra-MACH SBC.
 
-Introduce device tree overlays to support the eMMC (RTK0EF0186B02000BJ)
-and microSD (RTK0EF0186B01000BJ) sub-boards via the CN15 connector on the
-RZ/V2H EVK. These overlays make use of shared DTSI fragments
-(`rzv2-evk-cn15-emmc-common.dtsi` and `rzv2-evk-cn15-sd-common.dtsi`)
-that encapsulate common CN15-specific configurations, including pinctrl
-settings, SDHI0 setup, and required regulators.
+The Ultra-MACH SBC is an industrial-grade single-board computer based on the NXP i.MX8M Plus SoC. This initial support includes:
 
-Additionally, the base board DTS is updated to define an `mmc0` alias
-pointing to `&sdhi0`, and to add a fixed 1.8V regulator node (`reg_1p8v`)
-intended for use by the optional eMMC sub-board and, in the future, the
-ADV7535 HDMI encoder (not yet enabled in the DTS).
+- Updating the MAINTAINERS file to include the new board in the Ultratronik support section.
+- Adding a compatible string entry for the board to `fsl.yaml` in device tree bindings.
+- Introducing a new device tree source file `imx8mp-ultra-mach-sbc.dts` with basic hardware support.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/Makefile             |  4 ++++
- .../r9a09g057h44-rzv2h-evk-cn15-emmc.dtso        | 15 +++++++++++++++
- .../renesas/r9a09g057h44-rzv2h-evk-cn15-sd.dtso  | 16 ++++++++++++++++
- .../boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts  | 10 ++++++++++
- 4 files changed, 45 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-emmc.dtso
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-sd.dtso
+This series is modeled after the support added for the STM32MP157C-based Ultra-FLY SBC and aims to follow the conventions used for other i.MX8MP boards in mainline..
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 130ef8f34d52..8fa93ca8204e 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -167,6 +167,10 @@ dtb-$(CONFIG_ARCH_R9A09G056) += r9a09g056n48-rzv2n-evk-cn15-sd.dtbo
- r9a09g056n48-rzv2n-evk-cn15-sd.dts := r9a09g056n48-rzv2n-evk.dtb r9a09g056n48-rzv2n-evk-cn15-sd.dtbo
- 
- dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
-+dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk-cn15-emmc.dtbo
-+r9a09g057h44-rzv2h-evk-cn15-emmc.dts := r9a09g057h44-rzv2h-evk.dtb r9a09g057h44-rzv2h-evk-cn15-emmc.dtbo
-+dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk-cn15-sd.dtbo
-+r9a09g057h44-rzv2h-evk-cn15-sd.dts := r9a09g057h44-rzv2h-evk.dtb r9a09g057h44-rzv2h-evk-cn15-sd.dtbo
- dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
- 
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-emmc.dtso b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-emmc.dtso
-new file mode 100644
-index 000000000000..b9a17f505efd
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-emmc.dtso
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree overlay for the RZ/V2H EVK with the eMMC sub-board
-+ * (RTK0EF0186802000BJ) connected to the CN15 connector.
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#define RZV2H_PA		10
-+#define EMMC_GPIO(port, pin)	RZG2L_GPIO(RZV2H_P##port, pin)
-+
-+#include "rzv2-evk-cn15-emmc-common.dtsi"
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-sd.dtso b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-sd.dtso
-new file mode 100644
-index 000000000000..47cb581c1add
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk-cn15-sd.dtso
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree overlay for the RZ/V2H EVK with the SD sub-board
-+ * (RTK0EF0186B01000BJ) connected to the CN15 connector.
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#define RZV2H_PA		10
-+#define SD_GPIO(port, pin)	RZG2L_GPIO(RZV2H_P##port, pin)
-+#define SD_PORT_PINMUX(b, p, f)	RZG2L_PORT_PINMUX(RZV2H_P##b, p, f)
-+
-+#include "rzv2-evk-cn15-sd-common.dtsi"
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index 01b2e0c7c7db..219347d73753 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -25,6 +25,7 @@ aliases {
- 		i2c6 = &i2c6;
- 		i2c7 = &i2c7;
- 		i2c8 = &i2c8;
-+		mmc0 = &sdhi0;
- 		mmc1 = &sdhi1;
- 		serial0 = &scif;
- 	};
-@@ -55,6 +56,15 @@ reg_0p8v: regulator-0p8v {
- 		regulator-always-on;
- 	};
- 
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 
+Changes in v2:
+  - Use `enum` with `const:` values in fsl.yaml to correctly represent multiple compatibles.
+  - Updated SPI child node name to use the generic `nfc-transceiver` per DT naming conventions.
+  - Renamed several peripheral nodes (`crypto@35`, `pmic@25`, etc.) to standard names.
+  - Minor formatting cleanup and compliance fixes per review feedback.
+
+Changes in v3:
+- Added "ultratronik,imx8mp-ultra-mach-sbc" to the shared i.MX8MP enum block in `fsl.yaml` [1].
+- Ensured the compatible entry is validated by the existing binding structure.
+- Updated `imx8mp-ultra-mach-sbc.dts` to address review feedback from v2 [2], including:
+  - Proper formatting and indentation fixes.
+  - Cleaned up node ordering and property alignment.
+
+Link to v2 DT binding discussion:
+[1] https://lore.kernel.org/all/578ea477-c68c-4427-8013-550bf4f9c05b@kernel.org/#t
+
+Link to v2 DTS review:
+[2] https://lore.kernel.org/all/aEmh7VL7BHkXp5Fu@lizhi-Precision-Tower-5810/
+
+The board is based on NXP's i.MX8MP SoC and includes eMMC, LPDDR4, USB-C, Ethernet, and HDMI.
+
+Tested with:
+- `make ARCH=arm64 dtbs_check` (passes)
+- Boot tested on hardware
+
+Best regards,  
+Goran Rađenović
+
+
+Goran Rađenović (3):
+  MAINTAINERS: Add i.MX8MP Ultra-MACH SBC to ULTRATRONIK BOARD SUPPORT
+  dt-bindings: arm: imx8mp: Add Ultratronik Ultra-MACH SBC
+  arm64: dts: imx8mp: Add initial support for Ultratronik
+    imx8mp-ultra-mach-sbc board
+
+ Documentation/devicetree/bindings/arm/fsl.yaml          |   1 +
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ arch/arm64/boot/dts/freescale/imx8mp-ultra-mach-sbc.dts   | 909 ++++++++++++++++++
+ 4 files changed, 912 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-ultra-mach-sbc.dts
+
+
+base-commit: 75f5f23f8787c5e184fcb2fbcd02d8e9317dc5e7
 -- 
-2.49.0
+2.43.0
 
 
