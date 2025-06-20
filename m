@@ -1,113 +1,97 @@
-Return-Path: <devicetree+bounces-187879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E0DAE190C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:36:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB1D8AE1931
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:44:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18FEB1BC54C2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:36:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7800F3A7108
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DF72857FB;
-	Fri, 20 Jun 2025 10:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE1C265CC6;
+	Fri, 20 Jun 2025 10:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="BWZHLfWL"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Gjpy6Q0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE5C101EE;
-	Fri, 20 Jun 2025 10:36:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8D1264A97;
+	Fri, 20 Jun 2025 10:44:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750415786; cv=none; b=d3f35O/ajYfZj3muyuYCbc99W5Q6dhf8QGhzt99bFq6nxUUdQ65g8c7fU03MDJL6h73LX640Cy+hqg9IJ3d8nGqYrNwcffWdX3K6Wz0cUrf1nKTkj7oB7Ae6K/EPc186duveUHjnE5OEVXtVsyr6Yx3qs5RYEV0kBRm+pEkLy4c=
+	t=1750416293; cv=none; b=gNmmGRy5alATQBT50cp4MU69D4jUaTUVExomc4eatNfQNySNMKYOiO4DBuCXGC+l9PhepfECzeyUC7gXdBRBvQb05OeNlgLnFXY1BjHIM9MVSZ7n94Ia50insJHLLDvZTE5GEENhRrOCznl0b+ZRNryuJkOKEjvfgWDZx+iJwvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750415786; c=relaxed/simple;
-	bh=YA/8455JNBiRGiG5LU/OFauBMfI9puQ8K3N/nTN5QUU=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=pSSl3EvDgATnjMV+a5RZgki+LXMV0PAgpFdeeVudiIQ+Ts9/p4mfaBmFQ6/DuilO301I62cGX3RWXIOgaqZGx/0viaLvJHVZraQrvhFO9OCH+jciE3/WmtpjjdbBiS0OzeHkVs/ISbbFhX3+D0Rz8IIlvSX0WZhs6IZq/N5dPaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=BWZHLfWL; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
-	by mxout1.routing.net (Postfix) with ESMTP id CFE9440265;
-	Fri, 20 Jun 2025 10:36:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1750415782;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ymGnUSpkRYHimfXYhbTcSoJdcHrDDRnjSW4Hs85r/BU=;
-	b=BWZHLfWL6yztxVhkUvb6zkqvR+EVMfS3EFL+phNtPF05FcCJtKkzgV+XzVTyfpvhF6uzgl
-	WfjlMArQzLuwmI7YLZLPOPD4hE21LQJBmbVArjo8W4rd1hNEGz/6lECib4SZGX1vD0w0u8
-	hVxlUDd2Rdd8DARtsQCVbfb3HBqu6Hk=
-Received: from [127.0.0.1] (fttx-pool-157.180.225.81.bambit.de [157.180.225.81])
-	by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 12D1580238;
-	Fri, 20 Jun 2025 10:36:20 +0000 (UTC)
-Date: Fri, 20 Jun 2025 12:36:22 +0200
-From: Frank Wunderlich <linux@fw-web.de>
-To: Daniel Golle <daniel@makrotopia.org>
-CC: MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Jia-Wei Chang <jia-wei.chang@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>,
- =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Felix Fietkau <nbd@nbd.name>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v5_01/13=5D_dt-bindings=3A_n?=
- =?US-ASCII?Q?et=3A_mediatek=2Cnet=3A_update_for_mt7988?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <aFU4jSUFjWJlJCWJ@pidgin.makrotopia.org>
-References: <20250620083555.6886-1-linux@fw-web.de> <20250620083555.6886-2-linux@fw-web.de> <aFU4jSUFjWJlJCWJ@pidgin.makrotopia.org>
-Message-ID: <8EFC68B9-E560-4BB0-AD16-98A847D2F084@fw-web.de>
+	s=arc-20240116; t=1750416293; c=relaxed/simple;
+	bh=sn/hyt1c0VCkcr8vXMO+BQcUYCwSDgiHcd4pafoMzBg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U9k7rtVcFwgprw+0RGUvkBG8aVEg8zMbzou80yyt4d43lOKR1Q48d7+pcmw7aDBBWMkJKueznKN33V7ePQJWH0wC3p3fdJHO1sL9Ku0oZuu5+psX3+2Wp4UgmVrkoUlhY1CXHfMs0gmNplvp/QVlgd6LuRFUpEnU8JRc02e6Yus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Gjpy6Q0s; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=E6NpiPrYTwALDtKz4Xo4CAOrnjqTcZtEQ2HVXqcTS0c=; b=Gjpy6Q0sKwh6AFiY4TGtAC7cU/
+	JUK0+UG0Mjnp2hEHiNtteiPOxf9cdPvx5YRDNYhTrh2Ci2Z/AYju00OGsjM1MFDXw5KpIM2s9qLoz
+	4Hxc3Ld9HeT7SmrgLOUC7/ej1VJ3wHaO6mgK9zqMkAhichj9AKUuyxVLLJyyUXDBZSqkVgmRjUJjI
+	3FfZSwItxTBhu8JAyI253+5EPjYrMu7ViqAwOJedra7bBNkKFbOL6LNgK3WxTsveh6A04KJnspgKI
+	PyK+sUriknvtIHUiSnNPcJBCq+lFOfOfH0535EAnyrfdCqnGZSID66W1J7YepvUimT7tYz/DCkr/8
+	aPVeyuZA==;
+Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uSZEi-00015m-Bw; Fri, 20 Jun 2025 12:44:44 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Quentin Schulz <foss+kernel@0leil.net>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: support camera module on Haikou Video Demo on PX30 Ringneck
+Date: Fri, 20 Jun 2025 12:44:34 +0200
+Message-ID: <175041626982.1561125.14591843219943750860.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250610-ringneck-haikou-video-demo-cam-v2-0-de1bf87e0732@cherry.de>
+References: <20250610-ringneck-haikou-video-demo-cam-v2-0-de1bf87e0732@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: 2c931364-7c27-4fb5-b79b-85688067c00d
-
-Am 20=2E Juni 2025 12:31:41 MESZ schrieb Daniel Golle <daniel@makrotopia=2E=
-org>:
->On Fri, Jun 20, 2025 at 10:35:32AM +0200, Frank Wunderlich wrote:
->> @@ -40,7 +43,11 @@ properties:
->> =20
->>    interrupts:
->>      minItems: 1
->> -    maxItems: 4
->> +    maxItems: 8
->> +
->> +  interrupt-names:
->> +    minItems: 1
->> +    maxItems: 8
->
->Shouldn't interrupt-names only be required for MT7988 (and future SoCs)?
->Like this at least one entry in interrupt-names is now always required=2E
-
-No,this section only allows this property and it
- is not listed in required section and so an
- optional property=2E But if it is defined in
- devicetree it needs 1 to 8 items=2E
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
-regards Frank
+On Tue, 10 Jun 2025 18:22:15 +0200, Quentin Schulz wrote:
+> The first patch is fixing dtc warnings related to the ISP on PX30.
+> Sadly there's still one due to there only be one port in PX30's ISP and
+> still address-cells and size-cells properties set. The "issue" is that
+> there are actually two ports (see binding) so we shouldn't really remove
+> it, but the binding requires a bus-type property (either parallel or
+> bt656 mode) for the port@1, which we cannot know from the SoC PoV.
+> 
+> [...]
+
+Applied, thanks!
+
+[1/3] arm64: dts: rockchip: fix endpoint dtc warning for PX30 ISP
+      commit: 5ddb2d46852997a28f8d77153e225611a8268b74
+[2/3] arm64: dts: rockchip: px30: add label to first port of ISP
+      commit: 9ad8e83d8abd083c701e75d7fe664c706daf6d56
+[3/3] arm64: dts: rockchip: support camera module on Haikou Video Demo on PX30 Ringneck
+      commit: 99680fd394b912bf133b5b1e45aced1b7aea1d2e
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
