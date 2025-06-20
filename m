@@ -1,291 +1,283 @@
-Return-Path: <devicetree+bounces-187844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608C8AE176E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:23:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BC2AE1772
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:25:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD8E25A28E7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:23:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3388C16D3CF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAF028135B;
-	Fri, 20 Jun 2025 09:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027D8281362;
+	Fri, 20 Jun 2025 09:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uRNalUTQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zx7GaUb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1651280CD9;
-	Fri, 20 Jun 2025 09:23:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EEC27BF76
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 09:25:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750411432; cv=none; b=rKL6+kGSwf7yb0hAslQ0rBvT6KiCwyY4+rhios+A9d3mnDxUEU+D7PIm4FqZReGw/+E093HmLLCr5sabJI82PfEmf8peLUQOCODrqGZNsv+mnQQztKactuGEHMvvSC5jW9MqarNTHRaj+FwVvjms3BMHfGd91xBQ15I/hTB5BYE=
+	t=1750411530; cv=none; b=qx41Kmcff5tt7B3bfQ8ffW3wTcCXjgYZk7ywIJlUbzzi7YMwlg4oawdN4Hmn1LA+xnfz5KPjEMrNWRkVHX8hWuW1WpQvjxu5uyhNjvcol9VSNJ7WRYLfn2nvs4foPtuyliwOPLKZh7w7bDRvTQBPFDfrYAwcIre0yjSev6drPrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750411432; c=relaxed/simple;
-	bh=gFqKMGB+599gWiIDRuPwLjV0AGFzK9hvlcYgaGWzgvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T+POmuoUb3NC01yPoeOspeCyZcO5j6I7fG34hoiGW3bwSURuggHwvaCqiJsjiadL+4FmrSneVP8TPO4XfRL5xl6L+hOoyz3AzfoirRjJwtvI53eECDcCOHQgqjGvCH9RkXGTK1cqQPMBaS3i6MwIXr5APNNOyETLBcchUZveR3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uRNalUTQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13606C4CEED;
-	Fri, 20 Jun 2025 09:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750411432;
-	bh=gFqKMGB+599gWiIDRuPwLjV0AGFzK9hvlcYgaGWzgvY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uRNalUTQ5gxcjvSaBaopQhZFUT6v9dCfyTuq9SEEvAtoGA7gQDel3vreSKWnZIXIs
-	 a3BqJe3+kgEPbRgUCEXcMC6AgKxnZ8jnx+B0YWA0aTb0JsjJ6K6+6HRYdf2+cpRvjs
-	 5TWmbfeXAglJ2sVFzVGxaMsmKMAbJaudbip8N7bG40c0agXcZlHtzxsYgvPjxT8dis
-	 uyR42v2Fzw8HLgY112XHfv7G1ekIHDnHjvauUvqtD3r24kBfBq14HaBGnYfSw1ukig
-	 835Kk5pYJ3DQFi+9bGebYH50tSgdxn4v7A7VQozKxvSgLqM7CxeazzRliEXnhsgmk/
-	 L7S0Ghv5/5uDw==
-Message-ID: <47a7209a-5f8b-40d0-9bba-19339fd4fc5b@kernel.org>
-Date: Fri, 20 Jun 2025 11:23:43 +0200
+	s=arc-20240116; t=1750411530; c=relaxed/simple;
+	bh=VFQEjatytVa2eaitgpsCCyaRoda1vFE9rL6HqoOE1rc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qP8WfxOElw/NIx4mRhHtrlKLcfOqsbky0U5VhT4vNHkb+Vt/fGj8vb5zdo69YeC50GeI41x69RzGjsKbSrItLEv+CeWNQKDo6KgXJ5gSw+QddgaGVYLglVA1omNIBhuCgjlCU7jw+SvtdvJQ/Q72DVEqA3HwCUANWhowd1dypBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zx7GaUb8; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b31befde0a0so959057a12.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 02:25:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750411528; x=1751016328; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p30ePQOC+SAF8jlMZ8vqXSo8vrTqOdbIkXaej7pwom8=;
+        b=Zx7GaUb8onRRqb8lDZSMFQdQUjwPHm94enSbdZ1TcKl/g7au6qMXfk0zV8x3TXUGCv
+         C6fTHZsUJyzSg3rY+i6wj1H/KKsiXQblJ226grp2Mj4UUfUSas6fCxqCBqdxykKOLeYR
+         J8B/IBmbg8XHAVD2oi6VnsXzgECgUMTilkWoVTxI1sEjcKj0TrTUGI/NxqL3X+6gY/GO
+         cUkUNw7oFDCPAJ5pycD5QbUEEbiQg+t4rNMMT/1qpKWwO8QP9dKB7wZWxwARWUHsBobG
+         qOah4ZO6YJ16h+DQMePy7rF29p7Y1vZlr9wkRk2Cu41HvDKXk9YChbk14lGhDz3tM/mX
+         XAFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750411528; x=1751016328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p30ePQOC+SAF8jlMZ8vqXSo8vrTqOdbIkXaej7pwom8=;
+        b=Yukj8N/g1mwJCybT6YIMHwEH01RK2GZuV4lNPwSqdXn96/ZLKnQRVbQ68kCPlyM4VS
+         DyiN5e6OSsRKOfWgSGHe6x5L3qIG1OPta8aQsXVLFJiO67Bd/G3rZqtN9cIwaP3bQjEP
+         VaElWnU8QUIU44nHHOjftEb//i6sDzHSiiFVhXp+c9iOxWhd7FKyWPOhobo5hJ3iAzq8
+         +ICos92fY7l6c7rZkRxW7dHTyB30tMNZxlAU1PzFcBCPsH375hpY2ptw0MPKD8dMLjy+
+         410ACnf4+oN8V17dmTbHvZyX5exVfTwX+YbuK5DK/YyRiW4od4xib+tI/r0UNUf7/Jw7
+         OJ/w==
+X-Gm-Message-State: AOJu0YzxMm7CS4CuICERuG4N/t9ym5KZSOgbiLiEip3k+aw20eQGJf01
+	6+4WEzsQMd4tCLk6niiUsBCI0vQYJybs+MmY7P9OEicYqql/tP1wGUrc6pIOPqgm5+53ihmMY3n
+	f4YgOd6/NYiWHiXXs8YoQw0fH61IORDBCOLG+mgg=
+X-Gm-Gg: ASbGnct5LX2oYAFM/PcVODllnb+LQx4LbIO2t7IUwAHaffMs4fksvoVZauPc/S3xZLo
+	U/GcIHLSKFS5Wy1f0fqSP9igOqAsi9Z1LBZ0GAJKyWozFUGkNNF0iN68IqyrgRPaBYprp2jsogC
+	reC7sYJCQQd+JhugavyMH8klBFyVL9LzU4knzzKfV1qHA5MSjWzwrIYJTywSunLY2IXNd2+K8GO
+	sf9
+X-Google-Smtp-Source: AGHT+IHJch8aEGl0zKbmbLBJACXFAEfjaURthAUH545QBPCLnVvIaCwJsiidMkVHCViZvpA2EVAIx8LczAt64vzoefA=
+X-Received: by 2002:a17:90b:278a:b0:311:e4ff:1810 with SMTP id
+ 98e67ed59e1d1-3159d6260b8mr3614372a91.3.1750411528183; Fri, 20 Jun 2025
+ 02:25:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: freescale: Add Mettler-Toledo
- Snowflake V2 support
-To: Wojciech Dubowik <Wojciech.Dubowik@mt.com>, linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Marek Vasut <marex@denx.de>, Frieder Schrempf <frieder.schrempf@kontron.de>,
- Markus Niebel <Markus.Niebel@tq-group.com>, Frank Li <Frank.Li@nxp.com>,
- =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
- Michael Walle <mwalle@kernel.org>, Heiko Schocher <hs@denx.de>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- Max Merchel <Max.Merchel@ew.tq-group.com>, Tim Harvey
- <tharvey@gateworks.com>, Primoz Fiser <primoz.fiser@norik.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Manivannan Sadhasivam <mani@kernel.org>,
- Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Tobias Graemer <Tobias.Graemer@mt.com>
-References: <20250620084512.31147-1-Wojciech.Dubowik@mt.com>
- <20250620084512.31147-4-Wojciech.Dubowik@mt.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250620084512.31147-4-Wojciech.Dubowik@mt.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250620091429.388981-1-shankari.ak0208@gmail.com>
+In-Reply-To: <20250620091429.388981-1-shankari.ak0208@gmail.com>
+From: Shankari Anand <shankari.ak0208@gmail.com>
+Date: Fri, 20 Jun 2025 14:55:16 +0530
+X-Gm-Features: AX0GCFuuLtm0akiM_qKaUf2fmvVHHFmk91MXKPnjloQdd359KUGDovK8rMDbhV4
+Message-ID: <CAPRMd3kP3qE5jD93cB577UMfHwfZ4DM-mHrJFjDPB=5HWdvXbA@mail.gmail.com>
+Subject: Re: [PATCH v5] dt-bindings: memory-controllers: Convert Altera SDRAM
+ EDAC .txt to YAML
+To: devicetree@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthew.gerlach@altera.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/06/2025 10:41, Wojciech Dubowik wrote:
-> +
-> +	ili2511: ili2511@41 {
+Hi all,
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+I wanted to follow up on an issue I=E2=80=99ve noticed with the patch I
+recently submitted.
 
+While the indentation appears correct in my local `.patch` file and
+IDE, it seems that the formatting doesn=E2=80=99t render correctly in the
+email view. I suspect this might be due to the way tabs or whitespace
+are handled when the patch is transmitted via email.
 
-> +		compatible = "ilitek,ili251x";
-> +		reg = <0x41>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_touch>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&gpio3 16 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	lvds: lvds@2c {
-> +		compatible = "ti,sn65dsi83";
-> +		reg = <0x2c>;
-> +		vcc-supply = <&reg_sn65dsi83_1v8>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_sn65dsi83>;
-> +		status = "okay";
+I'm investigating my email configuration and environment to ensure
+this doesn=E2=80=99t happen again. I=E2=80=99ll make sure future submission=
+s are
+double-checked and rendered correctly both locally and on-list.
 
-Was it disabled anywhere?
+Apologies for the inconvenience, and thank you for your patience and feedba=
+ck.
 
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+On Fri, Jun 20, 2025 at 2:44=E2=80=AFPM Shankari Anand
+<shankari.ak0208@gmail.com> wrote:
+>
+> Convert the Altera SOCFPGA SDRAM EDAC devicetree binding from the
+> .txt format to a YAML schema.
+>
+> Added a 'reg' property as dt_binding_check flagged its absence.
+> The controller is memory-mapped; address is confirmed from Intel's manual=
+.
+>
+> Also added two strings: altr,sdram-edac-a10 and altr,sdram-edac-s10,
+> compatible with altr,sdram-edac but use two interrupts;
+> Schema enforces interrupt count per variant.
+>
+> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+> ---
+> v4 -> v5: Updated commit message, fixed placement of reg, added allOf con=
+dition per variant, fixed example section, dropped description as specified
+>
+> Reference for reg address - https://www.intel.com/content/www/us/en/progr=
+ammable/hps/arria-10/hps.html#topic/sfo1429889205804.html ,
+> https://www.intel.com/content/www/us/en/programmable/hps/stratix-10/hps.h=
+tml#bal1505408006582.html
+> ---
+>
+>  .../arm/altera/socfpga-sdram-edac.txt         |  15 ---
+>  .../memory-controllers/altr,sdram-edac.yaml   | 104 ++++++++++++++++++
+>  2 files changed, 104 insertions(+), 15 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-=
+sdram-edac.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/=
+altr,sdram-edac.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-e=
+dac.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.t=
+xt
+> deleted file mode 100644
+> index f5ad0ff69fae..000000000000
+> --- a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
+> +++ /dev/null
+> @@ -1,15 +0,0 @@
+> -Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
+> -The EDAC accesses a range of registers in the SDRAM controller.
+> -
+> -Required properties:
+> -- compatible : should contain "altr,sdram-edac" or "altr,sdram-edac-a10"
+> -- altr,sdr-syscon : phandle of the sdr module
+> -- interrupts : Should contain the SDRAM ECC IRQ in the
+> -       appropriate format for the IRQ controller.
+> -
+> -Example:
+> -       sdramedac {
+> -               compatible =3D "altr,sdram-edac";
+> -               altr,sdr-syscon =3D <&sdr>;
+> -               interrupts =3D <0 39 4>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/altr,sd=
+ram-edac.yaml b/Documentation/devicetree/bindings/memory-controllers/altr,s=
+dram-edac.yaml
+> new file mode 100644
+> index 000000000000..652289c2c2f4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/altr,sdram-eda=
+c.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/altr,sdram-edac.ya=
+ml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +			port@0 {
-> +				reg = <0>;
-> +				bridge_in: endpoint {
-> +					remote-endpoint = <&mipi_dsi_out>;
-> +					data-lanes = <1 2>;
-> +				};
-> +			};
+> +title: Altera SoCFPGA SDRAM EDAC Controller
 > +
-> +			port@2 {
-> +				reg = <2>;
-> +				bridge_out: endpoint {
-> +					remote-endpoint = <&panel_in>;
-> +					data-lanes = <4 3 2 1>;
-> +				};
-> +			};
-> +		};
-> +	};
+> +maintainers:
+> +  - Matthew Gerlach <matthew.gerlach@altera.com>
 > +
-> +	usbc-cc-controller@61 {
-> +		compatible = "ti,tusb320";
-> +		reg = <0x61>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_usbc_controller>;
-> +		interrupts-extended = <&gpio1 6 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
+> +description: |
+> +  EDAC-compatible controller for SDRAM error detection and correction on
+> +  Altera (Intel) SoCFPGA platforms.
 > +
-> +&mipi_dsi {
-> +	status = "okay";
-> +	vddio-supply = <&reg_sn65dsi83_1v8>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_DSI_CORE>,
-> +			  <&clk IMX8MM_VIDEO_PLL1_OUT>,
-> +			  <&clk IMX8MM_CLK_DSI_PHY_REF>;
-> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_266M>,
-> +			  <&clk IMX8MM_VIDEO_PLL1_BYPASS>,
-> +			  <&clk IMX8MM_CLK_24M>;
-> +	assigned-clock-rates = <266000000>, <594000000>, <12000000>;
-> +	samsung,pll-clock-frequency = <12000000>;
-> +	samsung,burst-clock-frequency = <891000000>;
-> +	samsung,esc-clock-frequency = <54000000>;
-> +};
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - altr,sdram-edac
+> +      - altr,sdram-edac-a10
+> +      - altr,sdram-edac-s10
 > +
-> +&mipi_dsi_out {
-> +	remote-endpoint = <&bridge_in>;
-> +};
+> +  reg:
+> +    maxItems: 1
 > +
-> +&lcdif {
-> +	status = "okay";
-> +};
+> +  altr,sdr-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to the SDRAM system controller (SDR) syscon nod=
+e.
 > +
-> +&gpu_2d {
-> +	status = "okay";
-> +};
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
 > +
-> +&gpu_3d {
-> +	status = "okay";
-> +};
+> +required:
+> +  - compatible
+> +  - reg
+> +  - altr,sdr-syscon
+> +  - interrupts
 > +
-> +&ecspi1 {
-> +	status = "disabled";
-> +};
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - altr,sdram-edac-a10
+> +              - altr,sdram-edac-s10
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 2
 > +
-> +&gpio1 {
-> +	bootph-pre-ram;
-> +};
+> +additionalProperties: false
 > +
-> +&gpio2 {
-> +	bootph-pre-ram;
-> +};
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
 > +
-> +&gpio3 {
-> +	bootph-pre-ram;
-> +};
+> +    / {
+> +        model =3D "Example SoC with SDRAM EDAC";
+> +        compatible =3D "arm-soc";
 > +
-> +&gpio4 {
-> +	bootph-pre-ram;
-> +};
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
 > +
-> +&gpio5 {
-> +	bootph-pre-ram;
-> +	status_led_controller_oe: status-led-controller-hog {
-> +		gpio-hog;
-> +		gpios = <4 GPIO_ACTIVE_HIGH>;
-> +		output-low;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_hog_status_led_controller>;
-> +	};
-> +};
+> +        intc: interrupt-controller@0 {
+> +            compatible =3D "arm,cortex-a9-gic";
+> +            interrupt-controller;
+> +            #interrupt-cells =3D <3>;
+> +            reg =3D <0x0 0x1000>, <0x1000 0x1000>; // Dummy
+> +        };
 > +
-> +&pca9450 {
-> +	bootph-pre-ram;
-> +};
+> +        sdr: syscon@f8000000 {
+> +            compatible =3D "altr,sdr-ctl", "syscon";
+> +            reg =3D <0xf8000000 0x1000>; // Dummy
+> +        };
 > +
-> +&{/soc@0/bus@30800000/i2c@30a20000/pmic@25/regulators} {
-
-There is no label to override it? Probably should be added.
-
-
-> +	bootph-pre-ram;
-> +};
+> +        memory-controller@f8004000 {
+> +            compatible =3D "altr,sdram-edac-a10";
+> +            reg =3D <0xf8004000 0x1000>;
+> +            altr,sdr-syscon =3D <&sdr>;
+> +            interrupt-parent =3D <&intc>;
+> +            interrupts =3D <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
 > +
-
-
-
-
-> +&usbotg2 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	disable-over-current;
-> +	dr_mode = "host";
-> +	status = "okay";
+> +        memory-controller@f8011000 {
+> +            compatible =3D "altr,sdram-edac-s10";
+> +            reg =3D <0xf8011000 0x1000>;
+> +            altr,sdr-syscon =3D <&sdr>;
+> +            interrupt-parent =3D <&intc>;
+> +            interrupts =3D <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
 > +
-> +	usb1@1 {
-
-usb@
-
-Why usb1?
-
-> +		reg = <1>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		usbnet: ethernet@1 {
-> +			compatible = "usb424,9500";
-> +			reg = <1>;
-> +			mac-address = [ 00 00 00 00 00 00 ];
-> +		};
-> +	};
-> +};
-
-
-
-Best regards,
-Krzysztof
+> +        memory-controller@ffc25000 {
+> +            compatible =3D "altr,sdram-edac";
+> +            reg =3D <0xffc25000 0x1000>;
+> +            altr,sdr-syscon =3D <&sdr>;
+> +            interrupt-parent =3D <&intc>;
+> +            interrupts =3D <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> --
+> 2.34.1
+>
 
