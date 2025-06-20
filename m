@@ -1,409 +1,264 @@
-Return-Path: <devicetree+bounces-187708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97263AE1113
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 04:24:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14D53AE1122
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 04:36:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0199C19E20DA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 02:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9942F4A2D42
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 02:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0D613AA2E;
-	Fri, 20 Jun 2025 02:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B7C1AE875;
+	Fri, 20 Jun 2025 02:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="h++eqcny"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="H8y0kd/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010005.outbound.protection.outlook.com [52.101.69.5])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2106.outbound.protection.outlook.com [40.92.23.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5101A137C37;
-	Fri, 20 Jun 2025 02:24:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25511A8419;
+	Fri, 20 Jun 2025 02:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.106
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750386270; cv=fail; b=nppenRiyIvtJbrdiszztA48eduNDTA1zpz1rYW7qnlEDEP5DDwFA4RqEi0vS6918g57/5FSaYgbHB5HADEEYNKbD21KzbPnSc59GqcbAVyrK9RxHVFcFNQM2WV4Qnw2Rq/7BCe7pXleHz8yeTY39c2w7nrpygptKfjta+v5qX9E=
+	t=1750387004; cv=fail; b=Hs3eJ/Eu9zuWlCMsIhbcoZlTkUVM5N1J0N71q7o8DVh0ywY0ESpugknuMxA7eVo5RUVSH1prxhc2REIZuaQQUhSVLVCPMKD7uX2PDlNQ7S0zYoOaGQsUObaU7/kZ/K8AFf9NuFTKv9Nuzp45msrCbXpl2d1vZPSIxZjyJaHMG6o=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750386270; c=relaxed/simple;
-	bh=Ih1Hgeqazm5UYbCl4If2b4Ye0KoKSIYU1Bquxwwo1mA=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=soiybMNc4lGbeM0KoUE/JEeyMRv9VstlhpGkdebXnZpmP5tNcsQL8C1ooNpnRj/6N5AzTSVCR8x20xVQ2L2ozoc5lihbX+L/xewWnQKQnm/D3hoQW5ZHelRoK9c+XFi1ivyjOIYrl6e9kBEwcNXtPY6Rq9sgRYzW+joEAP5i9VE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=h++eqcny; arc=fail smtp.client-ip=52.101.69.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1750387004; c=relaxed/simple;
+	bh=Z9e+BREy2PxGJv4ZFlCQo5CExzXEfu9uzXiL67R8nSY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tlTpdnz0fifNC2iE5IyBVtBfFKyrg3uxGOgiz5JLj6yPGMZr7M+34z/EayUkGRrRYlqQFsoBPdj2Sz4r2W7HNLHlJ5uM9v9sBt/23+VjmTvisdxCncHVXz0GosRNkpk0wjC1slO7my4mmaI18juNqTt9mPiOil57wQyhoclXU+Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=H8y0kd/i; arc=fail smtp.client-ip=40.92.23.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ruAP/p2CBCa+oBnypb7vLNCdSL5LF0dGlQqbPQoFQ9VfOvJTq2KtCsMVBzyUXqfktqvSO2V44gXSkLFePHQ4QAu+ivjwQo2pu5ExSVuCw9XYevW4N3wog7917MR+OlJ6navi1thz7BnQJ+JjCtztAtVYyDOP80LKL+OYjwmuQoU9ixZVCMEvjHSJ8aOzdtdUuoqJ7O8GCHWL9KuFJGG2L3PYEeSdQU2jC6gHHx4MvFK/U/d9iNeM97O6EAtPTbmqNQ35ry9IBn+HFxj+6z8YBcs2x0QWInJKOJdRlvxbiNkt1itNqTwYw8pVKLmm9523NCfkDSZHe3/g3s4cd5blkQ==
+ b=sRa1Y/y9jzFXeCCpT8UUM7rmZUPHaTY6ytKr3A09POsARs9WwRt51mgjE8AasT5I9QpfIIlDzXqfcixgLVTtbfCw4J67J9arrw5mivEhhURe56J67PeZEY24i5k4n4GQ/rso37aV+mWt1f0x+XkX22XeyCME6543mS2PWbx3QINEJ5KPWGc4BVnOA64jrRoy0VeZjJ/fjbhT1m+HFA4eZ0e5T8kfcfIcwoM0mcBYya/ZIi2XrWGyT6pSw7oEyBvc74kc+CtqMaeLsFU/2dsSd3n7e7jMPD9EUHVx6iiYVxaG3KHxH4yCaVsf+i8Oi3bqQc5QGXFIU7jeXOSm5N2FBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M1CSRAnsqiDVE42NqZ4NY/jYZLBYyekF4LpbRByctog=;
- b=k1KNg1PoaJimBUxo+eTU1SuFx6VauBDVjxpHCA73YSg4RfgyF3VWunHia/eJmXWlz+XpeWr/ALyKhmS2N42bzd5JyQ8P9u9orTM4mcIm+IBnoOYjZ+rqgZoclRHxkueK6tUm93/TLjNn26DnQAiLWNvPtwz5BwCGACssaCPIkUZN+Uiha0g8VBh3Ouq1OrNpnhO02XZHqK9uXDjsGI9fcu8U6yMgwpA8YyjoPLsALupGJcEOPqXEO351pe7W+Ggwp7/xYVziI3t18jtKHlD5XYfOuxpegyEMeLj3VIEoYDJHPu12fvyCWCFO5VN0JqdqPZe8IyVCgQi5QgcRK+YBOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=KCXeDUH95sRQZJOHcprUKblfdx/ko0IMvb5iIxOV1G4=;
+ b=Qjqt5htszhu9yvv4d1UH5hhHMiUT5pwuEAVo8DzxOxCiC/4p060VRTs5g9aqCmnqsS8m3UKvVR2EsqHpDB6l3QSoOqQyubHbnBDvRSWcjgC2yuF+Az+ZE+rrobjhlF7J3+sQ7N4iY2MLq8JjdQHB7W5z8zTwRXhN5K/r5+SAFRyW2ycFCLmQMF5iTBOKQjzTkfgVRyHw7hFUYC1/LHBfMdu1nfv9ktCw1MfaRGeCwaboskM9LMy1xtUjQKLBp/t3J6cVhgiIdV3pPE89e9QWMJPF9IeT0Bxkb50u7YK+KLmB3rPe7AK1Ugr29TqeiX3Elwnlmlo9kw4hPuJQBL45ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M1CSRAnsqiDVE42NqZ4NY/jYZLBYyekF4LpbRByctog=;
- b=h++eqcnyLnJQx58ugNGwoh1aWg2k5Hb1h3R7QjuP9YxrTCOGUisAf9x8d17Q/1wwNCrvb8fQivs56wKwTpkDeDsx4uHBSnxaeV1YR6CH269UMrAXoaHGvq12T87iGEeDtUu7pzK5fc+KNTaYWit2uxKHpJIgD7JtvvEAgsPPZjV0xUHKptGi2zN+bFEzqQMKuLur7Er2wMt02TOnEeQQxt7kBd6lowgNgADwEiwuINkh+4p+1+/rggHliNxSA1MmnZjkG8v5CKfixDB6Gi1XrkTJdy+QS4BzvBzXRSTQj9Q73/Owg7wem9n50AxGVl9WcSBLwD2nblPgdOx3XjYovg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AM8PR04MB7347.eurprd04.prod.outlook.com (2603:10a6:20b:1d0::13) with
+ bh=KCXeDUH95sRQZJOHcprUKblfdx/ko0IMvb5iIxOV1G4=;
+ b=H8y0kd/i2fALpmgeHxVo/wAGkorBRWjE4XNYgX8aQ1XewzIQQ6qSjQYis8gBkHTjRUMeHp156p6Fa6JTzDjwl3k8K8E8fVQDhF3TQR0IwOqsUNyduhBQBmyxcLdyGEKa2JhAQiBnhGzUdsxuo5S6CTup2nHFr5pTiTS3J3vAfORLf+6pFljzJF7AOJ77mfSRQvlrVYrt7Wzv8pGuyn/KSXMRtXb3ZM6vTnf6/m/y3iQo5o7dY3tbtNsR4r/LMcj0+8+9w1lJVFqZ1daHzW42QiqaPWM2s/9BPewgLNaTOcspO5Ooei7VsDbwcEVZNyvOdnty4MtGhPIQ4rZEgywRyA==
+Received: from SN6PR02MB4157.namprd02.prod.outlook.com (2603:10b6:805:33::23)
+ by BY5PR02MB6802.namprd02.prod.outlook.com (2603:10b6:a03:207::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.28; Fri, 20 Jun
- 2025 02:24:24 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%5]) with mapi id 15.20.8857.022; Fri, 20 Jun 2025
- 02:24:24 +0000
-From: Liu Ying <victor.liu@nxp.com>
-To: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	lee@kernel.org,
-	victor.liu@nxp.com,
-	gregkh@linuxfoundation.org,
-	frank.li@nxp.com
-Subject: [PATCH v2] dt-bindings: mfd: fsl,imx8qxp-csr: Remove binding documentation
-Date: Fri, 20 Jun 2025 10:25:37 +0800
-Message-Id: <20250620022537.3072877-1-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2P153CA0041.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::10)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.20; Fri, 20 Jun
+ 2025 02:36:39 +0000
+Received: from SN6PR02MB4157.namprd02.prod.outlook.com
+ ([fe80::cedd:1e64:8f61:b9df]) by SN6PR02MB4157.namprd02.prod.outlook.com
+ ([fe80::cedd:1e64:8f61:b9df%4]) with mapi id 15.20.8835.027; Fri, 20 Jun 2025
+ 02:36:39 +0000
+From: Michael Kelley <mhklinux@outlook.com>
+To: Hardik Garg <hargar@linux.microsoft.com>, "kys@microsoft.com"
+	<kys@microsoft.com>, "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
+	"wei.liu@kernel.org" <wei.liu@kernel.org>, "decui@microsoft.com"
+	<decui@microsoft.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"ssengar@linux.microsoft.com" <ssengar@linux.microsoft.com>,
+	"hargar@microsoft.com" <hargar@microsoft.com>, "apais@microsoft.com"
+	<apais@microsoft.com>
+Subject: RE: [PATCH v4 2/2] vmbus: retrieve connection-id from DeviceTree
+Thread-Topic: [PATCH v4 2/2] vmbus: retrieve connection-id from DeviceTree
+Thread-Index: AQHb4W76TCYPtIrHMUi6VpAB7R0jC7QLUMVA
+Date: Fri, 20 Jun 2025 02:36:39 +0000
+Message-ID:
+ <SN6PR02MB4157F2C0674B85C7206E6047D47CA@SN6PR02MB4157.namprd02.prod.outlook.com>
+References: <1750374395-14615-1-git-send-email-hargar@linux.microsoft.com>
+ <1750374395-14615-3-git-send-email-hargar@linux.microsoft.com>
+In-Reply-To: <1750374395-14615-3-git-send-email-hargar@linux.microsoft.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN6PR02MB4157:EE_|BY5PR02MB6802:EE_
+x-ms-office365-filtering-correlation-id: cf17c686-cbfd-42af-812d-08ddafa34921
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|461199028|41001999006|19110799006|15080799009|8062599006|8060799009|102099032|1602099012|440099028|52005399003|40105399003|3412199025|4302099013|10035399007;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?CgX5xAWfpwTZJZpRb1bQsRcluj2JIaQqpWfgFceCe8GZ5NuvvnC6o6xWuDW6?=
+ =?us-ascii?Q?QfOA/ksaxIab9RH0toIZn+7T0t2FgLP++A7GazwYCFxehYT92pEFiK7Bu6XS?=
+ =?us-ascii?Q?SoarxsO5ewgthwXc1ulU2NfEgprs66paR0F63lKxz/rSL+I6VvB6HE6E8vAe?=
+ =?us-ascii?Q?6YseWR4H/55KiJn2o8L32HmDIO6gBei8Y9oRrkZwA/IZyDQHS1GCMunELB/A?=
+ =?us-ascii?Q?Ezt0GtTD0OlnNpqyPImslkgJfj119iXD2sP+0CmqIymmKaP3VKq4PcNTvhHl?=
+ =?us-ascii?Q?qf7xCBBpkHwyxtOVVRCcIlnFfm5VnADyX+MFp6uMj1oDAAOmrAEVgrKlLaxP?=
+ =?us-ascii?Q?34zDgnyHKhDnHbt6CDLGOvGftDyXItMNwvF/pksBGH0CJcD9nz0bGv/CzPrw?=
+ =?us-ascii?Q?afGTJ1x56RBx6JAQwu2AEIbLDf3O8xgaKZACARSKgYnbpITYtqONh6Q1tURy?=
+ =?us-ascii?Q?CIuZGqNHmAshxDsA//VM2ELxZpyDrlWQAgf8A7B/oXv5C8zVc5A3akq3RWlZ?=
+ =?us-ascii?Q?pMzD8moFkntSOJgwaf6UAO9Dssbt7XC7klV+7uCcyBDJqfalouJlwBX7a917?=
+ =?us-ascii?Q?E9ZszP1eq+GqMjEsaBT6qzFYtEjxd4Ufhu/yNVWgZfbMHFFuoeHgRT3J4X+3?=
+ =?us-ascii?Q?+5UNj+LNJ5R+I6y9BxsOJikSjaAc2ypqqVdMTV5h/BD1BF56A3ckZNLQgZhr?=
+ =?us-ascii?Q?dH7o5pE2srOxEXYcszT22pYOTreggezRYjDHcAgxcjOXQeP7OJeFZi6nucuB?=
+ =?us-ascii?Q?rb7avwshnAcFbemQkVBZA9bVG708U9y2YcCvV3SNMqumVa1sAaeM8Z80Yqos?=
+ =?us-ascii?Q?FxMB2yDq7ls3Z/acTZFHcaSGdW2XtBY1M08kZsVW9mESlh2m1z1U800ZidA1?=
+ =?us-ascii?Q?2YFVVqh+gPd1ergMxfvAJKIg4S6vw8hDMVQdZ6qkhgt1NTzcONHJpUddbiOB?=
+ =?us-ascii?Q?bYplevpjbgzXrX5AKJ5juTEfI1AojjKjt0QKeyJSXBPfL/jAY7aE7uicvyBl?=
+ =?us-ascii?Q?Lgziqh8t4GzXYliddlH3TDXOWRHAIiKerDjqNeOd8mnISrQoKXygMxDzHjpZ?=
+ =?us-ascii?Q?cx/lZx1QRu6bYVO4QQsb3S/0qp2fFU6Mv8nl75Np6vF5W8UkrznzOGHpLfDI?=
+ =?us-ascii?Q?OypYVWOjFygm8vfFo1ieflx1iwoIgttlhwZEH7saOHOme4GIaCQppXD53peA?=
+ =?us-ascii?Q?TPD2o2g+to5CpiP49ajy3H68spE2hh3Fwmmgak7oXWXwWv7QECKsFpVPnwU8?=
+ =?us-ascii?Q?O6IUAzbcfYSqSgppqCV7mi1cdEa5V56nAp0FpvKsvJXUtitvtdKJRZpgjgDm?=
+ =?us-ascii?Q?EQU=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?+OwUlZnJb9y+fBfiU6COdzJpiwDGw3QD9+t8eSfOZZNXbk7G5XUGWebNwV5/?=
+ =?us-ascii?Q?89q5iQOu1clmckKjOJzuQYBYvn34XnSldCZ9u0zGeJqxwI1hsQFg2Slv1NBw?=
+ =?us-ascii?Q?4ZKxwZ4vKOC5Z9FsCPDCHWXqKMh/TGDOAq5oUxxkgqVe5kUjccNuRQhKsjuB?=
+ =?us-ascii?Q?amu/P41OmXW1YCXw+4Dz4VTw8CXKtIo5e8fXc0AqPaK3Qm6WgLtiCZLUDaB1?=
+ =?us-ascii?Q?4j6li+5C3jZna+4eVQalF6dAtqgBR9a15F6YCgZi1mSZJggi037zUbbeTxoy?=
+ =?us-ascii?Q?XZER4DvXwXNd8oGfI9QMaeE5cvf9fRmw7JfiqUZVaU764WQ3mxa/DLSMPANC?=
+ =?us-ascii?Q?i6AvH4+pKCZW+QPaPzO3rm6euVW7Eoe2z785yIYI4zBmkH47+GtKNq76X6g7?=
+ =?us-ascii?Q?G2WQ6ccAr5ORbLCmvgsCuQyV1On8c4ce6avOAmJ43gath5o4yTJYkGAM3QsS?=
+ =?us-ascii?Q?7iCMKGHfnE36D+ot3FT/p1qq1X4BqNGz3TE1rPMOgXCSsU2U9I8ldEnQ7eDZ?=
+ =?us-ascii?Q?XugyoCN9DnTKYPzmn07MwALdPsAXP4EJi5goCzxkrOn0GMQ1Nr/oUj5pSzG7?=
+ =?us-ascii?Q?eoVFGxHBQnfTJ0EmkzW5PrfWeXNviga/kSoEoaaZqHXLpJDwOjdUv3RN5Z3Q?=
+ =?us-ascii?Q?s08bZlnjGzifdmXyNGyfOssKwSWu2HxfYK++e2hOaF6spctYQDc//z/nmNMm?=
+ =?us-ascii?Q?57+IcMeLp5pCsG6eT3uFCqfVbz7gNfO6hNLE2iEv+bZ1lgABG9Hxc1masDNQ?=
+ =?us-ascii?Q?MspOSKX4yH5ai774L32IsWWxF2vpg5MfWo/14paissQAQKT+FQ5mQhjXMT7Q?=
+ =?us-ascii?Q?Rekz8H21p6kiCf+7tnRVBitH+cbQT/XkJWng/8f/6B3RxlOb43eux2rWcV/h?=
+ =?us-ascii?Q?mhFeHQATWbsrqQf2QjzJpVsy4Kaove0W6Y+7qy8AbT3ICzHFhKnJ345JNQCC?=
+ =?us-ascii?Q?SHs9XJXLbAsIdMD3VTtLrM/gWEv9H9WADNI9dGSMXJS/SMgPYah1gsDtHB9t?=
+ =?us-ascii?Q?sjhiXXIWtyhMNpMt9lcy7JcSeXR4FNjNK/ZU81t7AJ+KX6KI+MLtY3JrRrNp?=
+ =?us-ascii?Q?e1Y48Z7q9JrUQB6cVYIVkUOWqF3Rc7xKUFyJd9AV3T3DvaJXCxFV3hF2CecB?=
+ =?us-ascii?Q?g+1F7RdTmZpSEgNNlQqbLPZCnh4HLEnF19V0OKsOFfRWkNqQ7RLYvhunVxyh?=
+ =?us-ascii?Q?fdclFruzgsWymqdQf1TjisixodIxpQoHktchaDLtJzhmhS0/4pMQYI2FLoY?=
+ =?us-ascii?Q?=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM8PR04MB7347:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42f8c61a-8be8-4a79-ad5f-08ddafa19275
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?SocwiX+4b6s3y+SWlMqCtp5/nbDjz/zxRaVm5YdoKrnlQ1TAyhsaKVcefu1N?=
- =?us-ascii?Q?/RNQxXIZBWl+HFI0Oy1xzjIgoLw6DYhKgjt0ZdmqkILjpzmdFkZawsSdyEzC?=
- =?us-ascii?Q?Q402ctApo99THUauBWR3WvPWn4Cbx7T9FV0bqQkjLIPDoNPQJQbG/o1yB/QM?=
- =?us-ascii?Q?hD4JNYFQxzNh4WToA6r1VSgkjBn6wtM72xfTfPPbncIXpUH7cqedGKCO/Aga?=
- =?us-ascii?Q?4KUy5hhUY71q2UInQ7UmPTZpPRB2TTtymnf19eA/TLUNVLFOtaJ/8pXLq64t?=
- =?us-ascii?Q?hkLYuzsjyePrObHhvkazBeDC2K9v96h7okk15COB7AYS2mIRBlAke0yZvKMk?=
- =?us-ascii?Q?LyCFR0wm7SowdkHQTFiuWdF9JLT55ZiD7F7sjx/15p7bBn+XRb8/s+Nzc5pY?=
- =?us-ascii?Q?7ZIdtrQNaAu6qZwNAJgV9N07f9se/B1kkIg19iiQUEx79XOE+xdq738yLcWz?=
- =?us-ascii?Q?MjCx4w3da8T9SYax155BXu5helrfqN/IRxzBJpBxlLmp07ae2qfZuYKZ0cyr?=
- =?us-ascii?Q?snb0R5qj5MjLcsveUOlE8zubbvIfqYiXVDWhSU7wMsVduT/Mn77nmg//KOdf?=
- =?us-ascii?Q?emmhezpi8gcSykVVMpk2mphYLEMdkWSprpyfpuNqhEyGGTFyWvygYJfMeshx?=
- =?us-ascii?Q?ix6TbVxcgxlB7i5vuxWrljJ2/bc5M12V2j7HL/zx03wFHzqKFZolYDHvzTC0?=
- =?us-ascii?Q?rTKj3eKgNFHKWe/y6ZHVyT33QyYKcRh1AObAMDB47EOmooxd5ur/t8ONMxD7?=
- =?us-ascii?Q?zz1ynOQ5ddoK1Ec1weOLxDDtE3Fm1ebLXMlEEDKFiHUPLzoyPIresnGf1HEq?=
- =?us-ascii?Q?NMRO+F3ZJPBUVOdeF1KnHcU0yT/ypCVQgO9/qvrDgc4mGq/N4TwrVEnMa1IR?=
- =?us-ascii?Q?FpN72FNmrYkELFg18fx7nOsNxFMESAuvaQPaeNKAwupWhraJM4TeJx1QhVy1?=
- =?us-ascii?Q?vKH3w3eqRIlBSVqKhke64eGBCgr4P4K0kXKlPOrlqWvHSd7cpynM7BVrlTab?=
- =?us-ascii?Q?vIjiVX0G+DbefCmGaTReOVsGzNnQFtZLwtjuK7AB5DT+k4tZ7k3Q8I7FyutY?=
- =?us-ascii?Q?JNQCgDdxay36j5t3h5G/bTjA+8dRkWkQ7y68fUVzSpL0JoXxlM0m3yc8Qo09?=
- =?us-ascii?Q?3fYbafA8yIj7x0PPNot4adOxAgdfE2exDtTu8VcSVfiv532qE5YSdLorL8ax?=
- =?us-ascii?Q?vpJMDRCvUHudiEJj1gKwLio/PYYHDzqJ4n5kxo53BQMEBdDKUv0vZgWaVUEJ?=
- =?us-ascii?Q?ErV+xLq3Vf0f0sin0xYJkgsHIPrw/DsqKWj8bQsTHbofejqjclTwZQYPYvr4?=
- =?us-ascii?Q?s9GWt+/pwLcCQZ0o8hcsrqVnyVw6byhIfVQzR0OYJ7VwyjqZ2EVTJj8daNkX?=
- =?us-ascii?Q?pIolbhxpuALgUnC4f/iQuU5hpiCEeigcqqgAr7tyTiz+XQkJw9OCLRXwTn0g?=
- =?us-ascii?Q?ypt/W3BDozs=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?LBIatPRRun9ASfx7gxETXaKCsidpk3YtpnuLqUkgA4UYmjuRqOE5Br51SO5x?=
- =?us-ascii?Q?JAv/SHsmxRVISJhFek6XTF10ZbychlHqzbGT4wcccauklwaX3n94/MJ0BNLr?=
- =?us-ascii?Q?G2Fnex5KklL1rcAI7gpXkRAR5mYDA7WQ3YJgZL8fUwjZWdst8d61Ffk/d7O4?=
- =?us-ascii?Q?Jmy2P7c2NjBNWpGt8HjEN1NWtUq8xFVw7Sg6FIiwr7pfmsm9u8o5noM4eyqQ?=
- =?us-ascii?Q?hgttbQrG+kE15HQFu9uwi7yCWET9eAAK3E+go6nW7q9r+nr+k+V+L8jblHMw?=
- =?us-ascii?Q?EvMd5Bc+grbdGJ09SZUtUFn8bmZNPoGA0L80EIK97hyNDoSllxnLGPcX8HhV?=
- =?us-ascii?Q?NSmyOw8FMdQzGJI+ppDvVzsgg0nF0WmuG24JCJb9+Aq7RjZN3KvnMGm6kweF?=
- =?us-ascii?Q?2Z3f44t9+RLuA+LfqrdUOH7ukKChxl/q8OTCDaMDvVz573J9JGdf+UHaCJ6Q?=
- =?us-ascii?Q?i+wTL+H+AmpLopqFwJF+8jRAbRvG43husAkkebLqrswOdaxvESULt1b5emTe?=
- =?us-ascii?Q?nRqrqRQ7Yn3iI0AyHTfw7xLN+T+gXIGLv2fa3iKI25ecmKuip6/GXHYo3mxC?=
- =?us-ascii?Q?mFv6S4TCDJ28QS94FU2Q7uKwm9G6GvaTH6HtLU9kzY/6QYyX86lKgtwjMzcq?=
- =?us-ascii?Q?OQZ3wVKpb/3MDsmPuJ5vt196FMcANGuG71hQF30/9fyi2pj4Rlz9lgn4s0ZD?=
- =?us-ascii?Q?/a1dws9Vgsm7ecGfifgeowtO1FFkZWVuDgkh9XpPVb9MXHrlYEMmFhyXZypo?=
- =?us-ascii?Q?5CKTLj8D5gLHH6zehC95MiZqpC+YZ0n/oNjyv4DNozYWsLn/HnzWVbNmtAiZ?=
- =?us-ascii?Q?C5Ul0/qZYR92BApeINNRDukI2S+7WighKksJu5pZ4rWtrUbj811kXGCjmoAg?=
- =?us-ascii?Q?+0RZ7g4pyp/82/dZ+LVwC7wfBVrbNocTyaWQ2yYf4Blyb6CIC3m8x9QDg6SR?=
- =?us-ascii?Q?cTq3MW6sg1Hb+YQyIevowoR3UKyuw1Wq33xby7urOPbBfE105lwJi7V0Y87A?=
- =?us-ascii?Q?tuLLwquu2gMudsF2qR0y0dsbIMUFIY/L6j6YN0azDpBIK2UapIQhdWLwneou?=
- =?us-ascii?Q?RgU3TRBnKEH9snijsek3clUA9Qo8b5aGdjy/MUj0bQXg2keil59NvFV8tm2h?=
- =?us-ascii?Q?xFn0LmXMj1SJdvr5/r4siq5BJi85wCTqdkk+cWaIBMrOQkJ9kWlkhKnJUFnr?=
- =?us-ascii?Q?l0j17WyEx8T602OZP1qLiTeXZZZCYpfLdi1AJgSzipLYkjz2brZFjfLpo4u0?=
- =?us-ascii?Q?Hd6qdTCGcBPBPgG21RvCiy+8i2C7xJveSxClXvYE3tQoY9uu3jx5ep56HyBw?=
- =?us-ascii?Q?Zo+Ez9VatyOq+PnWbuohBeERtj22ZZ4gNElqyaH2krPt6IG7ej7dKbXLbMMh?=
- =?us-ascii?Q?B11ajYIysgPU7PwULT4VTir6oy9cIfpqSiGYYA67jVnbC9WO4n6zUeUYWD3P?=
- =?us-ascii?Q?xw7SuFfdVs0cOqil7qBAFFu6VaEmdjF87itWqWrlsCQOCXCWFPkBPhNiU7mm?=
- =?us-ascii?Q?1ig0XL50lMtJu0HdYUntL6TgcRglkGwC482o27C68Tv3iLpUu2hCwcISJ2S/?=
- =?us-ascii?Q?joSFhZDT6amVPk03p20KPIEriPewfO/PfIhBQOTz?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42f8c61a-8be8-4a79-ad5f-08ddafa19275
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-OriginatorOrg: outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2025 02:24:24.2607
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR02MB4157.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf17c686-cbfd-42af-812d-08ddafa34921
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2025 02:36:39.7916
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: p6rN7aHmmj6MOU5r6C9wQqBfEtA8yEbV4KF/5nekSIHzmy9aTAxvGhR6IROL5xI5LhB5YDJW5IFLB3ntjPDMxA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7347
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6802
 
-commit b0a5cde57cf1 ("dt-bindings: mfd: Explain lack of child dependency
-in simple-mfd") pointed out that it's a mistake for a child device of
-a simple MFD device to depend on the simple MFD device's clock resources.
-fsl,imx8qxp-csr.yaml happens to make that mistake.  To fix that, remove
-fsl,imx8qxp-csr.yaml and use "simple-pm-bus" and "syscon" as the CSR node's
-compatible strings in the examples of fsl,imx8qxp-pixel-link-msi-bus.yaml
-to replace the wrong compatible strings which include "simple-mfd" and
-"fsl,imx8qxp-mipi-lvds-csr".  Since fsl,imx8qxp-pixel-link-msi-bus.yaml
-as the last user of the CSR compatible strings no longer uses them, it's
-safe to remove the fsl,imx8qxp-csr.yaml binding documentation.
+From: Hardik Garg <hargar@linux.microsoft.com> Sent: Thursday, June 19, 202=
+5 4:07 PM
+>=20
 
-Fixes: 9b2c55b5403f ("dt-bindings: mfd: Add i.MX8qm/qxp Control and Status Registers module binding")
-Fixes: c08645ea215c ("dt-bindings: bus: Add Freescale i.MX8qxp pixel link MSI bus binding")
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v2:
-* Mention it's safe to remove fsl,imx8qxp-csr.yaml in commit message. (Frank)
+For the patch "Subject:" line, prefer prefix "Drivers: hv: vmbus:" to be co=
+nsistent
+historical precedent. We haven't always been consistent with that precedent=
+,
+but I try to call it out when I have the opportunity. :-)  If you look at t=
+he commit
+log for drivers/hv, you'll see that prefix fairly often, though sometimes
+shortened to just "Drivers: hv:" when the change is more generically for
+Hyper-V and not specifically VMBus.
 
- .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   |   7 +-
- .../bindings/mfd/fsl,imx8qxp-csr.yaml         | 192 ------------------
- 2 files changed, 5 insertions(+), 194 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
+> The connection-id determines which hypervisor communication channel the
+> guest should use to talk to the VMBus host. This patch adds support to
+> read this value from the DeviceTree where it exists as a property under
+> the vmbus node with the compatible ID "microsoft,message-connection-id".
 
-diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
-index 7e1ffc551046..4adbb7afa889 100644
---- a/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
-+++ b/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
-@@ -103,11 +103,14 @@ examples:
-         clock-names = "msi", "ahb";
-         power-domains = <&pd IMX_SC_R_DC_0>;
- 
--        syscon@56221000 {
--            compatible = "fsl,imx8qxp-mipi-lvds-csr", "syscon", "simple-mfd";
-+        bus@56221000 {
-+            compatible = "simple-pm-bus", "syscon";
-             reg = <0x56221000 0x1000>;
-             clocks = <&mipi_lvds_0_di_mipi_lvds_regs_lpcg IMX_LPCG_CLK_4>;
-             clock-names = "ipg";
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            ranges;
- 
-             pxl2dpi {
-                 compatible = "fsl,imx8qxp-pxl2dpi";
-diff --git a/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml b/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
-deleted file mode 100644
-index 20067002cc4a..000000000000
---- a/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
-+++ /dev/null
-@@ -1,192 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mfd/fsl,imx8qxp-csr.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Freescale i.MX8qm/qxp Control and Status Registers Module
--
--maintainers:
--  - Liu Ying <victor.liu@nxp.com>
--
--description: |
--  As a system controller, the Freescale i.MX8qm/qxp Control and Status
--  Registers(CSR) module represents a set of miscellaneous registers of a
--  specific subsystem.  It may provide control and/or status report interfaces
--  to a mix of standalone hardware devices within that subsystem.  One typical
--  use-case is for some other nodes to acquire a reference to the syscon node
--  by phandle, and the other typical use-case is that the operating system
--  should consider all subnodes of the CSR module as separate child devices.
--
--properties:
--  $nodename:
--    pattern: "^syscon@[0-9a-f]+$"
--
--  compatible:
--    items:
--      - enum:
--          - fsl,imx8qxp-mipi-lvds-csr
--          - fsl,imx8qm-lvds-csr
--      - const: syscon
--      - const: simple-mfd
--
--  reg:
--    maxItems: 1
--
--  clocks:
--    maxItems: 1
--
--  clock-names:
--    const: ipg
--
--patternProperties:
--  "^(ldb|phy|pxl2dpi)$":
--    type: object
--    description: The possible child devices of the CSR module.
--
--required:
--  - compatible
--  - reg
--  - clocks
--  - clock-names
--
--allOf:
--  - if:
--      properties:
--        compatible:
--          contains:
--            const: fsl,imx8qxp-mipi-lvds-csr
--    then:
--      required:
--        - pxl2dpi
--        - ldb
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            const: fsl,imx8qm-lvds-csr
--    then:
--      required:
--        - phy
--        - ldb
--
--additionalProperties: false
--
--examples:
--  - |
--    #include <dt-bindings/clock/imx8-lpcg.h>
--    #include <dt-bindings/firmware/imx/rsrc.h>
--    mipi_lvds_0_csr: syscon@56221000 {
--        compatible = "fsl,imx8qxp-mipi-lvds-csr", "syscon", "simple-mfd";
--        reg = <0x56221000 0x1000>;
--        clocks = <&mipi_lvds_0_di_mipi_lvds_regs_lpcg IMX_LPCG_CLK_4>;
--        clock-names = "ipg";
--
--        mipi_lvds_0_pxl2dpi: pxl2dpi {
--            compatible = "fsl,imx8qxp-pxl2dpi";
--            fsl,sc-resource = <IMX_SC_R_MIPI_0>;
--            power-domains = <&pd IMX_SC_R_MIPI_0>;
--
--            ports {
--                #address-cells = <1>;
--                #size-cells = <0>;
--
--                port@0 {
--                    #address-cells = <1>;
--                    #size-cells = <0>;
--                    reg = <0>;
--
--                    mipi_lvds_0_pxl2dpi_dc0_pixel_link0: endpoint@0 {
--                        reg = <0>;
--                        remote-endpoint = <&dc0_pixel_link0_mipi_lvds_0_pxl2dpi>;
--                    };
--
--                    mipi_lvds_0_pxl2dpi_dc0_pixel_link1: endpoint@1 {
--                        reg = <1>;
--                        remote-endpoint = <&dc0_pixel_link1_mipi_lvds_0_pxl2dpi>;
--                    };
--                };
--
--                port@1 {
--                    #address-cells = <1>;
--                    #size-cells = <0>;
--                    reg = <1>;
--
--                    mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch0: endpoint@0 {
--                        reg = <0>;
--                        remote-endpoint = <&mipi_lvds_0_ldb_ch0_mipi_lvds_0_pxl2dpi>;
--                    };
--
--                    mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch1: endpoint@1 {
--                        reg = <1>;
--                        remote-endpoint = <&mipi_lvds_0_ldb_ch1_mipi_lvds_0_pxl2dpi>;
--                    };
--                };
--            };
--        };
--
--        mipi_lvds_0_ldb: ldb {
--            #address-cells = <1>;
--            #size-cells = <0>;
--            compatible = "fsl,imx8qxp-ldb";
--            clocks = <&clk IMX_SC_R_LVDS_0 IMX_SC_PM_CLK_MISC2>,
--                     <&clk IMX_SC_R_LVDS_0 IMX_SC_PM_CLK_BYPASS>;
--            clock-names = "pixel", "bypass";
--            power-domains = <&pd IMX_SC_R_LVDS_0>;
--
--            channel@0 {
--                #address-cells = <1>;
--                #size-cells = <0>;
--                reg = <0>;
--                phys = <&mipi_lvds_0_phy>;
--                phy-names = "lvds_phy";
--
--                port@0 {
--                    reg = <0>;
--
--                    mipi_lvds_0_ldb_ch0_mipi_lvds_0_pxl2dpi: endpoint {
--                        remote-endpoint = <&mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch0>;
--                    };
--                };
--
--                port@1 {
--                    reg = <1>;
--
--                    /* ... */
--                };
--            };
--
--            channel@1 {
--                #address-cells = <1>;
--                #size-cells = <0>;
--                reg = <1>;
--                phys = <&mipi_lvds_0_phy>;
--                phy-names = "lvds_phy";
--
--                port@0 {
--                    reg = <0>;
--
--                    mipi_lvds_0_ldb_ch1_mipi_lvds_0_pxl2dpi: endpoint {
--                        remote-endpoint = <&mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch1>;
--                    };
--                };
--
--                port@1 {
--                    reg = <1>;
--
--                    /* ... */
--                };
--            };
--        };
--    };
--
--    mipi_lvds_0_phy: phy@56228300 {
--        compatible = "fsl,imx8qxp-mipi-dphy";
--        reg = <0x56228300 0x100>;
--        clocks = <&clk IMX_SC_R_LVDS_0 IMX_SC_PM_CLK_PHY>;
--        clock-names = "phy_ref";
--        #phy-cells = <0>;
--        fsl,syscon = <&mipi_lvds_0_csr>;
--        power-domains = <&pd IMX_SC_R_MIPI_0>;
--    };
--- 
-2.34.1
+Avoid wording like "this patch" in commit messages. Commit messages should
+be in imperative mood.  So something like:
+
+The connection-id determines which hypervisor communication channel the
+guest should use to talk to the VMBus host. Add steps to read this value fr=
+om
+the DeviceTree where it exists as a property under the vmbus node with the
+compatible ID "microsoft,message-connection-id".
+
+> The property name follows the format <vendor>,<field> where
+> "vendor": "microsoft" and "field": "message-connection-id"
+>=20
+> Reading from DeviceTree allows platforms to specify their preferred
+> communication channel, making it more flexible. If the property is
+> not found in the DeviceTree, use the default connection ID
+> (VMBUS_MESSAGE_CONNECTION_ID or VMBUS_MESSAGE_CONNECTION_ID_4
+> based on protocol version).
+>=20
+> Signed-off-by: Hardik Garg <hargar@linux.microsoft.com>
+> ---
+> v3: https://lore.kernel.org/all/6a92ca86-ad6b-4d49-af6e-1ed7651b8ab8@linu=
+x.microsoft.com/
+> v2: https://lore.kernel.org/all/096edaf7-cc90-42b6-aff4-c5f088574e1e@linu=
+x.microsoft.com/
+> v1: https://lore.kernel.org/all/6acee4bf-cb04-43b9-9476-e8d811d26dfd@linu=
+x.microsoft.com/
+> ---
+>  drivers/hv/connection.c |  6 ++++--
+>  drivers/hv/vmbus_drv.c  | 13 +++++++++++++
+>  2 files changed, 17 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/hv/connection.c b/drivers/hv/connection.c
+> index be490c598785..15d2b652783d 100644
+> --- a/drivers/hv/connection.c
+> +++ b/drivers/hv/connection.c
+> @@ -99,11 +99,13 @@ int vmbus_negotiate_version(struct vmbus_channel_msgi=
+nfo *msginfo, u32 version)
+>  	if (version >=3D VERSION_WIN10_V5) {
+>  		msg->msg_sint =3D VMBUS_MESSAGE_SINT;
+>  		msg->msg_vtl =3D ms_hyperv.vtl;
+> -		vmbus_connection.msg_conn_id =3D VMBUS_MESSAGE_CONNECTION_ID_4;
+>  	} else {
+>  		msg->interrupt_page =3D virt_to_phys(vmbus_connection.int_page);
+> -		vmbus_connection.msg_conn_id =3D VMBUS_MESSAGE_CONNECTION_ID;
+>  	}
+> +	/* Set default connection ID if not provided via DeviceTree */
+> +	if (!vmbus_connection.msg_conn_id)
+> +		vmbus_connection.msg_conn_id =3D (version >=3D VERSION_WIN10_V5) ?
+> +			VMBUS_MESSAGE_CONNECTION_ID_4 : VMBUS_MESSAGE_CONNECTION_ID;
+>=20
+>  	/*
+>  	 * shared_gpa_boundary is zero in non-SNP VMs, so it's safe to always
+> diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> index c236081d0a87..b78d5499e4bc 100644
+> --- a/drivers/hv/vmbus_drv.c
+> +++ b/drivers/hv/vmbus_drv.c
+> @@ -2541,10 +2541,23 @@ static int vmbus_device_add(struct platform_devic=
+e *pdev)
+>  	struct of_range range;
+>  	struct of_range_parser parser;
+>  	struct device_node *np =3D pdev->dev.of_node;
+> +	unsigned int conn_id;
+>  	int ret;
+>=20
+>  	vmbus_root_device =3D &pdev->dev;
+>=20
+> +	/*
+> +	 * Read connection ID from DeviceTree. The property name follows the
+> +	 * format <vendor>,<field> where:
+> +	 * - vendor: "microsoft"
+> +	 * - field: "message-connection-id"
+> +	 */
+> +	ret =3D of_property_read_u32(np, "microsoft,message-connection-id", &co=
+nn_id);
+> +	if (!ret) {
+> +		pr_info("VMBus message connection ID: %u\n", conn_id);
+> +	    vmbus_connection.msg_conn_id =3D conn_id;
+
+Indentation problem here. Should be a full tab, not 4 spaces.
+
+> +	}
+> +
+>  	ret =3D of_range_parser_init(&parser, np);
+>  	if (ret)
+>  		return ret;
+> --
+> 2.40.4
+>=20
 
 
