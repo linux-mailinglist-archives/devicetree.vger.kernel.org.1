@@ -1,83 +1,94 @@
-Return-Path: <devicetree+bounces-188002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09792AE2267
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 20:43:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B5CAE228A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 20:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74BD21BC6D2B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 18:43:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BB293B66C4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 18:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8B62EA75A;
-	Fri, 20 Jun 2025 18:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B7A2DF3F2;
+	Fri, 20 Jun 2025 18:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="XmJvixB3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UmD5PAnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC7821FF3D;
-	Fri, 20 Jun 2025 18:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD3C1FBEA6;
+	Fri, 20 Jun 2025 18:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750445011; cv=none; b=dKXRX5OuvU9HeCwYIiTUwd2mQSAHCmwVo2IAzWXALjrFHeqDp8RbbtfInCp6tly0RihC8XY7Ue1JwXoohNGcTcOqvyfIbj4X5KcXD4Qy+L97mQCPlH7sufgyh40za7n43ZOoliXXWU46JqPFv/VbkhCSCgmQ/cI9ySb5ft55ziA=
+	t=1750445537; cv=none; b=HN4O6WSXVsjx8xHBYwn/6F3+/hOFZ+h1uMfEPnCb29EMrcbxwlNCMOlm4M6BnzDdD+4vjlauUA+fbbBwYQa39xTGRnAdRhT5qFLtczqjw0vlJk9UMpCzkI/YqUtYJFEyLI2myrR3LbAjH4gLWbwRpiNCmhlRNlOjOE8s7l8yi6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750445011; c=relaxed/simple;
-	bh=hfeTC/LbrTNu/kIwcjwzlqTcJlOSBsGVhxjsYYmiXcY=;
+	s=arc-20240116; t=1750445537; c=relaxed/simple;
+	bh=d61578dvdp+7dqnHw6aOy57T/vUq2K6C3ebottvLP48=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EOv9vPdUC5wmBby9XCzDpWSxhz99lmd7Aon6vXfXiJ7xrbxzUusymWrJSfWRSPj6Y+J29Kr8UPxPrN483tUyAkclMyH45h86pes0ZL0akcoOXGTdG8PeSYPTf7thLNB5MO4+LuQSdaf0JFmDdj+6H/WCFwwH+2sKrt8KkHeQEaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=XmJvixB3; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 393753D8762C;
-	Fri, 20 Jun 2025 14:43:21 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id gYTgZfNRbSRD; Fri, 20 Jun 2025 14:43:20 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 4683A3D8762F;
-	Fri, 20 Jun 2025 14:43:20 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 4683A3D8762F
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZWYTztVJ8siMjlw/RptzY1kdLJKo1b9+igC6a4KAD8J5rGwv0E+l+pTKjx1vWPd+PZKtHFiZAyJifnHnYQUtW/hG1lQcBn9dyN4srjozEgfrtrMvbdzz7fqs7IakSa3u9NJhLnB1ClMJtiDry6wI6xoStrk6ezKZngeBhyUOnPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UmD5PAnh; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-453643020bdso10073495e9.1;
+        Fri, 20 Jun 2025 11:52:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1750445000; bh=TaQQHObo8HRDlJD+n70gAPQXWO2RtYiWYUzJBZk6vh4=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=XmJvixB32vMJfc7yNrKh45ZFj1uA5zrDmuGUdWoqrIS0o+GaD0hiTpxl6/iHNj4jV
-	 9DSmGcn1Xn2WVxgfx9Fs4NiCpGxZCPwkI4J8yVkcm6fax7kpPPyw0AE0icPxyHP8Su
-	 58ZYgmgvW/JVQtM/6AT000t9zJ21VLYPF18qhAgQqafGsUZ6jk5lzph6/RUYVWSG01
-	 o6Vrqj9JvyDjBJSRgi6Pwf4i+7CZcyJWuTEB19ja0OV4kl0KxsL/WhqwEIH9xUfAu2
-	 Q02xezEjgxiS+qMZZ0xrMWBv/e+j1J6aGjsBJx3sTyqTHKECxrT3acwep6l9mWb5LJ
-	 D+d5YMoK7r1wQ==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id uB8q18XrN1G8; Fri, 20 Jun 2025 14:43:20 -0400 (EDT)
-Received: from fedora (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id DCFEA3D8762C;
-	Fri, 20 Jun 2025 14:43:19 -0400 (EDT)
-Date: Fri, 20 Jun 2025 14:43:18 -0400
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>
-Subject: Re: [PATCH v7 2/6] mfd: pf1550: add core mfd driver
-Message-ID: <aFWrxtArHjb5nc0M@fedora>
-References: <20250612-pf1550-v7-0-0e393b0f45d7@savoirfairelinux.com>
- <20250612-pf1550-v7-2-0e393b0f45d7@savoirfairelinux.com>
- <20250619130337.GA795775@google.com>
+        d=gmail.com; s=20230601; t=1750445534; x=1751050334; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SuvVprvH+lcp/bEtCacgmv7HR7bf4BfFOrawh5qnz0=;
+        b=UmD5PAnhN1FWtTsoi2uEoa5bKnMIRNJ/hpkTweFkaiS1/aWTHG6lgas92Qv6OQVTZy
+         QhrrWrTd9GCfOxvXUaa/gjMgaIOw5TCm/1CRoJI9ar/amdowY9oFyCr+U2j3Rimx7329
+         ibc9Sxjw5RKXCU6yYAMQ65C4+zdbTpoMFnsgYj8TvP6YUGY+ZKDUZEbZGS/itF2O6QEF
+         qNSTcHIlyV026MJR9zJ1+HfgJ3HPnu0fJ7//qunFQc8NqeewhhItExL8F0kdgIuGhlYv
+         ua4NDGT4IDFW7VGOD0DRrhyyRoXj5pEijKMIkcnef6j71ACTXyRtvWcZJOVX3ueIL2E6
+         Jwog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750445534; x=1751050334;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3SuvVprvH+lcp/bEtCacgmv7HR7bf4BfFOrawh5qnz0=;
+        b=vU7FYhSENAiCvZZSg64TVGCYOiKzbYnAoDYhPuhv5u2mX/kbXMEm/r4EIWK4JhdfRL
+         s+HOkusbd5nQRSOiyqFF8PId+syJp1lPEeL2mEipXg92a0VLFNQGSaiDJafdLkwoltc0
+         fPtZaTGoM3s6EI/GuUKhuzlNczNrf71fMHK0W/q1kx/6+9GvcUSbOmmZ6C47FUmMDcQN
+         KVo9SyXHU0f4j+2Yu4ZeVKDwMWjMUHLM4I5D5QWmvvuEcNavlpsoeYiH/NT1x8cKf6iD
+         nKXmVC9EAFRnykHg+9S+WcYJuxNeoO/S4AxGdzs1BR8wlF23M6+r7iI9iNgkmdHK7oXA
+         RMLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQbuEopdS+pk0Ce8FmoNP/Uawc9Vhk+hQUGsHBtH/99YzdINxJ6rq5CdLzqk4k8ojnDOydLH4E5iPma3Hg@vger.kernel.org, AJvYcCUYXNYH3ByCxlvMqTG/49nBlHMcxKm825gCEuXAoWeECJcxuD9j4Qnr95tPGUkeFmu/7fi+bTLQfoXL@vger.kernel.org, AJvYcCUZ/2BUgUa/eCs7V9DvP4clpxuaBsXL1IK4B773Ccy7O6i7oySaMXyUX3WhAXvuGkVCoUjoC585PeGJ@vger.kernel.org, AJvYcCWVBU8T0M+zj3eEKOEfMT8zXamRfvw2M4FEPXZ73BV2B3JZovYFdln1DmBA2TIiXBknXSzkworfa+q+@vger.kernel.org, AJvYcCWw/OCPwxtMEOnpcyuSAhWcV9OJLhrUODOYqeHRjLnnUxtCf0M5smGIJSQg831xBjMKoDWNeziOneA4@vger.kernel.org
+X-Gm-Message-State: AOJu0YycEPjU4rG1G0irUlBmpeerXp1HoI+N9R+4P5ACivxlFNAHG4RH
+	fZHLxXW+0NL9RRx5hh3UoDbngv+zMMNbf7R+l3/ttFp83xS2QUkZHg78
+X-Gm-Gg: ASbGncuEAyR99lhafaCx4HtmbEQ294b1t71FYNMrxQregrzI+VjIQdW0JlxBeghI+aE
+	wTT3u1hanicjp550+AdGunmdGfjvuUxgSgEsxwPUCT7n8Qfa7eeiAurCzOQEl7G7DPGagH4EDp6
+	fqja3N2HL8hNi7mL+F3ZJPdrfneNc9V3tC5CIKTEkWYunUYLXZ9OhXAae+Rc+uAvscJzJImWXE2
+	ZopYJvfuoUb/B87BCGENQ3BXk1xYvauYYpNdmvw/OYGEGDFZSu3MhcSFT4dlV7eeeNV0GDynXJQ
+	zBfdhRcYac+4UoTeRnpnRi4rFaOhF0RwISvc90JBkD3QVB+PuMDvW+Yqf0UlzEMRDCdvCNLOVCu
+	w4VMyeVNojvQ1bdEcajaVYzyJ/oMMQDsuBaGP4WXmuCAc+Kh0ysbySnxtv2qrhhvQZmv/gWcZ2A
+	==
+X-Google-Smtp-Source: AGHT+IFyJDFhnRLMDV+Vtu5Y/1Vd85itLGHwRZWROszXt6mNgeAMTKnEZ8wy1wyvkiYXDy+Ydv3bFA==
+X-Received: by 2002:adf:9dd2:0:b0:3a5:39bb:3d61 with SMTP id ffacd0b85a97d-3a6d1322a3dmr3100604f8f.27.1750445533322;
+        Fri, 20 Jun 2025 11:52:13 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com (dynamic-176-002-177-020.176.2.pool.telefonica.de. [176.2.177.20])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6d117c073sm2777413f8f.58.2025.06.20.11.52.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jun 2025 11:52:12 -0700 (PDT)
+Date: Fri, 20 Jun 2025 20:52:10 +0200
+From: Jorge Marques <gastmaier@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 6/8] iio: adc: Add offload support for ad4052
+Message-ID: <hdwuh3ouw4gzpbj7u7dtzaphdjonecls2xuu7p4nmi7wwrcmye@jhhhqvdlbuv3>
+References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
+ <20250610-iio-driver-ad4052-v3-6-cf1e44c516d4@analog.com>
+ <20250614112022.24bf9212@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,208 +97,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250619130337.GA795775@google.com>
+In-Reply-To: <20250614112022.24bf9212@jic23-huawei>
 
-Hi Lee,
+On Sat, Jun 14, 2025 at 11:20:22AM +0100, Jonathan Cameron wrote:
+> On Tue, 10 Jun 2025 09:34:39 +0200
+> Jorge Marques <jorge.marques@analog.com> wrote:
+> 
+> > Support SPI offload with appropriate FPGA firmware. Since the SPI-Engine
+> > offload module always sends 32-bit data to the DMA engine, the
+> > scantype.storagebytes is set to 32-bit and the SPI transfer length is
+> > based on the scantype.realbits. This combination allows to optimize the
+> > SPI to transfer only 2 or 3 bytes (depending on the granularity and
+> > mode), while the number of samples are computed correctly by tools on
+> > top of the iio scantype.
+> > 
+> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> Minor comments inline.  I think they are all follow up from comments on
+> earlier patches that apply here as well.
+> 
+> > ---
+> >  drivers/iio/adc/ad4052.c | 244 ++++++++++++++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 242 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/ad4052.c b/drivers/iio/adc/ad4052.c
+> > index 842f5972a1c58701addf5243e7b87da9c26c773f..7d32dc4701ddb0204b5505a650ce7caafc2cb5ed 100644
+> > --- a/drivers/iio/adc/ad4052.c
+> > +++ b/drivers/iio/adc/ad4052.c
+> > @@ -11,6 +11,8 @@
+> >  #include <linux/delay.h>
+> >  #include <linux/err.h>
+> >  #include <linux/gpio/consumer.h>
+> > +#include <linux/iio/buffer.h>
+> > +#include <linux/iio/buffer-dmaengine.h>
+> >  #include <linux/iio/iio.h>
+> >  #include <linux/iio/sysfs.h>
+> >  #include <linux/interrupt.h>
+> > @@ -23,6 +25,8 @@
+> >  #include <linux/regmap.h>
+> >  #include <linux/regulator/consumer.h>
+> >  #include <linux/spi/spi.h>
+> > +#include <linux/spi/offload/consumer.h>
+> > +#include <linux/spi/offload/provider.h>
+> >  #include <linux/string.h>
+> >  #include <linux/types.h>
+> >  #include <linux/units.h>
+> > @@ -111,6 +115,7 @@ enum ad4052_interrupt_en {
+> >  
+> >  struct ad4052_chip_info {
+> >  	const struct iio_chan_spec channels[1];
+> > +	const struct iio_chan_spec offload_channels[1];
+> 
+> If there is only ever one of these drop the array.
+> 
+Hi Jonathan,
 
-Thanks a lot for the review.
-
-On Thu, Jun 19, 2025 at 02:03:37PM +0100, Lee Jones wrote:
-> > +static int pf1550_read_otp(const struct pf1550_dev *pf1550, unsigned int index,
+It is hard to predict if no other similar device will have only two
+channels. But I would say most drivers end-up having more channels.
 > 
-> What does OTP mean?
->
-It's a One-Time Programmable memory with configuration for the pf1550. I will
-expand on this in the commit description of the next version.
-> Why do you have to write to 4 registers first?
-> 
-The pf1550 was designed such that the registers of the accompanying OTP is
-accessed indirectly. Valid keys have to be written to specific pf1550
-registers. After writing the keys, the address of the OTP register to be read
-is then written to PF1550_TEST_REG_FMRADDR and its corresponding value read from
-PF1550_TEST_REG_FMRDATA.
-> This should all be made clear in some way or another.
-> 
-I'll be adding comments on this in the next version.
-> > +			   unsigned int *val)
+> >  
+> > +static int ad4052_update_xfer_offload(struct iio_dev *indio_dev,
+> > +				      struct iio_chan_spec const *chan)
 > > +{
-> > +	int ret = 0;
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	const struct iio_scan_type *scan_type;
+> > +	struct spi_transfer *xfer = &st->offload_xfer;
 > > +
-> > +	ret = regmap_write(pf1550->regmap, PF1550_PMIC_REG_KEY, 0x15);
+> > +	scan_type = iio_get_current_scan_type(indio_dev, chan);
+> > +	if (IS_ERR(scan_type))
+> > +		return PTR_ERR(scan_type);
+> > +
+> > +	xfer->bits_per_word = scan_type->realbits;
+> > +	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
+> > +	xfer->len = scan_type->realbits == 24 ? 4 : 2;
 > 
-> No magic numbers.  These should all be defined.
-Will do.
+> Same question on length vs bits_per_word applies here as in the earlier
+> patch.
 > 
-> > +	if (ret)
-> > +		goto read_err;
-> > +	ret = regmap_write(pf1550->regmap, PF1550_CHARG_REG_CHGR_KEY2, 0x50);
-> > +	if (ret)
-> > +		goto read_err;
-> > +	ret = regmap_write(pf1550->regmap, PF1550_TEST_REG_KEY3, 0xab);
-> > +	if (ret)
-> > +		goto read_err;
-> > +	ret = regmap_write(pf1550->regmap, PF1550_TEST_REG_FMRADDR, index);
-> > +	if (ret)
-> > +		goto read_err;
-> > +	ret = regmap_read(pf1550->regmap, PF1550_TEST_REG_FMRDATA, val);
-> > +	if (ret)
-> > +		goto read_err;
+To be able to optimize the SPI message, len must be a multiple of 16
+bits. To achieve maximum throughput, no extra bits (and therefore SCLK
+clock cycles) must be transferred during the SPI transfer. This is set
+by bits_per_word, 24-bits means 24 SCLK.
+
+Finally, storagebits is the number of bits actually used to store the
+reading, and for the offload channel is the DMA width, always 32-bits.
+An abstraction to obtain the DMA width should be created, so the 32-bits
+value is not hard-coded into the driver, still, for this series, it is.
+
+> > +	xfer->speed_hz = AD4052_SPI_MAX_ADC_XFER_SPEED(st->vio_uv);
+> > +
+> > +	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
+> > +	st->offload_msg.offload = st->offload;
 > > +
 > > +	return 0;
-> > +
-> > +read_err:
-> > +	dev_err_probe(pf1550->dev, ret, "read otp reg %x found!\n", index);
-...
-> > +static int pf1550_add_child_device(struct pf1550_dev *pmic,
-> > +				   const struct mfd_cell *cell,
-> > +				   struct regmap_irq_chip_data *pdata,
-> 
-> This is not pdata.
-> 
-> > +				   int pirq,
-> > +				   const struct regmap_irq_chip *chip,
-> > +				   struct regmap_irq_chip_data **data)
-> > +{
-> > +	struct device *dev = pmic->dev;
-> > +	struct irq_domain *domain;
-> > +	int irq, ret;
-> > +
-> > +	irq = regmap_irq_get_virq(pdata, pirq);
-> > +	if (irq < 0)
-> > +		return dev_err_probe(dev, irq,
-> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
-> > +				     pirq, chip->name);
-> > +
-> > +	ret = devm_regmap_add_irq_chip(dev, pmic->regmap, irq,
-> > +				       IRQF_ONESHOT | IRQF_SHARED |
-> > +				       IRQF_TRIGGER_FALLING, 0, chip, data);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				     "Failed to add %s IRQ chip\n",
-> > +				     chip->name);
-> > +
-> > +	domain = regmap_irq_get_domain(*data);
-> > +
-> > +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE, cell, 1,
-> > +				    NULL, 0, domain);
-> 
-> Why can't all 3 devices be registered in one call?
-> 
-The 3 devices use different regmap_irq_chip s. I have to register them
-separately cause they have different irq domains but perhaps there is a better
-way to handle this?
 > > +}
-> 
-> To be honest, the premise around this function is a bit of a mess.
-> 
-> Please move all of this into .probe().
-Will do.
-> 
-> > +static int pf1550_i2c_probe(struct i2c_client *i2c)
-> > +{
-> > +	const struct mfd_cell *regulator = &pf1550_regulator_cell;
-> > +	const struct mfd_cell *charger = &pf1550_charger_cell;
-> > +	const struct mfd_cell *onkey = &pf1550_onkey_cell;
-> > +	unsigned int reg_data = 0, otp_data = 0;
-> > +	struct pf1550_dev *pf1550;
-> > +	int ret = 0;
 > > +
-> > +	pf1550 = devm_kzalloc(&i2c->dev, sizeof(*pf1550), GFP_KERNEL);
-> > +	if (!pf1550)
-> > +		return -ENOMEM;
-> > +
-> > +	i2c_set_clientdata(i2c, pf1550);
-> > +	pf1550->dev = &i2c->dev;
-> > +	pf1550->i2c = i2c;
+> >  static int ad4052_set_oversampling_ratio(struct iio_dev *indio_dev,
+> >  					 const struct iio_chan_spec *chan,
+> >  					 unsigned int val)
+> > @@ -838,6 +873,87 @@ static int ad4052_write_raw(struct iio_dev *indio_dev,
+> >  	return ret;
+> >  }
 > 
-> What are you storing i2c for?
-> 
-It doesn't need to be stored.
-> Either store dev and irq OR i2c.  You don't need all three.
-> 
-Will do.
-> > +	ret = regmap_read(pf1550->regmap, PF1550_PMIC_REG_DEVICE_ID, &reg_data);
-> > +	if (ret < 0 || reg_data != PF1550_DEVICE_ID)
-> > +		return dev_err_probe(pf1550->dev, ret ?: -EINVAL,
-> > +				     "device not found!\n");
-> 
-> Are you sure?  What if the wrong device was found?
->
-I can change the error log here to "Invalid device ID: ..."?
->
-...
-> > +	/* add top level interrupts */
-> > +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf1550->irq,
-> > +				       IRQF_ONESHOT | IRQF_SHARED |
-> > +				       IRQF_TRIGGER_FALLING,
-> > +				       0, &pf1550_irq_chip,
-> > +				       &pf1550->irq_data);
-> > +	if (ret)
-> > +		return ret;
+> >  static int __ad4052_validate_trigger_sources(struct of_phandle_args *trigger_sources)
+> >  {
+> >  	switch (trigger_sources->args[1]) {
+> > +	case AD4052_TRIGGER_PIN_GP0:
+> > +		return trigger_sources->args[0] == AD4052_TRIGGER_EVENT_EITHER_THRESH ?
+> > +		       0 : -EINVAL;
+> >  	case AD4052_TRIGGER_PIN_GP1:
+> >  		return trigger_sources->args[0] == AD4052_TRIGGER_EVENT_DATA_READY ?
+> >  		       0 : -EINVAL;
+> > @@ -903,14 +1092,45 @@ static int ad4052_validate_trigger_sources(struct iio_dev *indio_dev)
+> >  	int ret;
+> >  
+> >  	np = st->spi->dev.of_node;
+> > +	for (u8 i = 0; i < 2; i++) {
+> > +		ret = of_parse_phandle_with_args(np, "trigger-sources",
+> > +						 "#trigger-source-cells", i,
+> > +						 &trigger_sources);
+> > +		if (ret)
+> > +			return ret;
 > > +
-> > +	ret = pf1550_add_child_device(pf1550, regulator, pf1550->irq_data,
-> > +				      PF1550_IRQ_REGULATOR,
-> > +				      &pf1550_regulator_irq_chip,
-> > +				      &pf1550->irq_data_regulator);
-> > +	if (ret)
-> > +		return ret;
+> > +		ret = __ad4052_validate_trigger_sources(&trigger_sources);
+> > +		of_node_put(trigger_sources.np);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
 > > +
-> > +	ret = pf1550_add_child_device(pf1550, onkey, pf1550->irq_data,
-> > +				      PF1550_IRQ_ONKEY,
-> > +				      &pf1550_onkey_irq_chip,
-> > +				      &pf1550->irq_data_onkey);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = pf1550_add_child_device(pf1550, charger, pf1550->irq_data,
-> > +				      PF1550_IRQ_CHG,
-> > +				      &pf1550_charger_irq_chip,
-> > +				      &pf1550->irq_data_charger);
 > > +	return ret;
-> > +}
-> > +
-> > +static int pf1550_suspend(struct device *dev)
-> > +{
-> > +	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
-> > +	struct pf1550_dev *pf1550 = i2c_get_clientdata(i2c);
 > 
-> You can swap all of this for:
+> I think this is always 0. So return 0; preferred to make that explicit.
 > 
-> 	struct pf1550_dev *pf1550 = dev_get_drvdata(dev).
-> 
-Will do.
-> > +
-> > +	if (device_may_wakeup(dev)) {
-> > +		enable_irq_wake(pf1550->irq);
-> > +		disable_irq(pf1550->irq);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int pf1550_resume(struct device *dev)
-> > +{
-> > +	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
-> > +	struct pf1550_dev *pf1550 = i2c_get_clientdata(i2c);
-> 
-> As above.
-> 
-> > +
-> > +	if (device_may_wakeup(dev)) {
-> > +		disable_irq_wake(pf1550->irq);
-> > +		enable_irq(pf1550->irq);
-> 
-> I would normally expect these to be around the opposite way to the ones
-> in .suspend().
-Do you mean enable_irq_wake and disable_irq in .resume() and the opposite for
-.suspend()?
-> 
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
+Well, this whole method is deleted for v4 due to the trigger-sources
+discussion. Per following David suggestion, gp0 is assumed drdy and gp1
+threshold events, unless the parent (spi offload) trigger-sources says
+otherwise (gp1).
 
-Thanks,
-Sam
+Best regards,
+Jorge
+> > +}
+> > 
+> 
 
