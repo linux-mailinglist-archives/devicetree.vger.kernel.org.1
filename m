@@ -1,371 +1,198 @@
-Return-Path: <devicetree+bounces-188024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFBBAE2582
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 00:27:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0949CAE25A9
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 00:29:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD2307B1D45
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 22:26:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAFC54C085A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 22:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2207523D290;
-	Fri, 20 Jun 2025 22:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E73824DFF1;
+	Fri, 20 Jun 2025 22:21:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="iVE6Hq+p"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fhN5byA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD23623C505;
-	Fri, 20 Jun 2025 22:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E83D24EAB2
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 22:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750458022; cv=none; b=WzbIXK1QkR80X4zw+j36Xej/zXUyd6iB2Mp+YCz/IcsT0NIxrjbQSppG251reqhGw5I26PhNouxqI0PqwUSds8qwDqRdYsWNgoRAdG4Kg+XUoWbS78np44IeArq5hgo4Ya7XA7t0vhZ0CK0sXSflxwlCj0BePoKG1PXD6avm9ic=
+	t=1750458096; cv=none; b=APxA6jVuTNutHmHrBjGJ6fWIBWab24bgOJreq4xrIQCqQMRbTvDmVVreP3WI5FXtb0hhdTeG+KqIrALfBFT7wZzhu4+72WKzi8Y/LwOGzmJdVtB9e/hVRwE6BMsl4wP0z49nKo/JpQgFJuAW6uRC2Ls5YQynKeqVstEedluKHp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750458022; c=relaxed/simple;
-	bh=qHB0fqkbMgKmWT614pkeoUg7b5X7upr9aAVqBFaaggw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fzcZd/7XtDmYLGXBf7g7zmbpLmzBd2H50MQxn2wKF2MQNoHiS7VXS2/ya90/yU8XhBrWr/suVvvTnbKGCC/iTemsoVsIlyJuynljv1+HsMVGBZV8e3npMID6obAJoUkh3Ae1G3C6d4lJ84Wnkh6Wfv5YCFMZ65edYE3UBLKJ6ME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=iVE6Hq+p; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1750458012; bh=qHB0fqkbMgKmWT614pkeoUg7b5X7upr9aAVqBFaaggw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=iVE6Hq+pcNg2FfnGNByMbjpvehjarmWT7OQs2GajQbkSynVd2VgMuh/yKdzn7cZAF
-	 Wu6tWc9RFvx8Co/hPqQf4zQB/nhDADEcZjMcDyHRkjsejcGFBQji8bEsdD/LaDlxZO
-	 Xu2HzcMYCSx75i0o71wK6CmaK1LkMprg+RxjCPXc=
-Message-ID: <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
-Date: Sat, 21 Jun 2025 00:20:11 +0200
+	s=arc-20240116; t=1750458096; c=relaxed/simple;
+	bh=MgpLRHOcZVJ/2tnDLCDfnuJFhe8jp/MxItvFSS0S1SM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=q/FbgCNMqdB2I3z/47/xxkJYAKEeVmqeAhGybbtgd0tEMBnM9OtWSrI+QSECsAK6Fne1qjiAQH4QTxqbMmpG+7u1kSVf38GXUXQDhEw3WSAkRsxf+oZe8OyteQJ/GHOr9bXNE2Nyt74pUzmhkJvBVAV5or24gxKpJZvEzY7HaQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fhN5byA0; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-60f22023eddso1476209eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:21:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1750458093; x=1751062893; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=43WTYGtum1Th6RvZIB3bhmeCSu/8SL+mkbZemZWRqVA=;
+        b=fhN5byA0C28AjQL3fh8RnnRMWN0zRs5QnfSVkRea38FpzHelfwB6jsXpo6cWpDQBBh
+         4eGQQeRJb1HdpqhiXSm0o2cjyI76cTSsPT8WzRWJUSE+DaGmUlijPCcML7ehDoFrcFah
+         LhnhWi82DzgF35R7IzCOeL/Z0BsszHSovMc00uxm10sMY0jVKhlWEAFgf8xmFzXqkmb6
+         S7Eo2w6Q7+DGHb88JcKEhIy38TjdqSg3io50NQEZ29u5C6Xp+7CUVCHJPTJIL/JcKNVT
+         19OTWmXqjqfoIisDV1kpAIEIIbyzxkAb0IpilRmt2tvBBynE7Lbya85YtfVkagSGrrw4
+         8OMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750458093; x=1751062893;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=43WTYGtum1Th6RvZIB3bhmeCSu/8SL+mkbZemZWRqVA=;
+        b=kL772WEIXGSuiyg4kmC1gpGLirFBJOkikHR1f0r7+NgVxe5+58vpl7vbtRECl6yzcG
+         EiTgK+fbjDi/3NM5FDaysZsStskvFnbBIp1tq0k2dX/5xTjp1PSlJeuMcj7lWvIdlvUj
+         vrfMES5tWiLuJMinh+mOwFXXVcRJLcU3MohBpgPDsR5Hao7nrUcPUxWhauv8R2rB9OEU
+         JfgyfZogY4bHqVCQ06eu1sXKkgfb5ZZvs1uxrml/MIZygG0g86i8l07tg4riQ1kL1YdG
+         F4VFiy9p3npXjB+cZcvvJ1fvDn+p2oeMqfhvHNYxUF8G9c3HcijdrvbsJVhjIGGWKlCe
+         X+0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVzdW/YjkEUU3ir2cbPjm6oN9b+pVv3B1Su2fyfkbAs3g5iKtyTTLwJAF51X/PDhUelKzzwcJhWggLc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHjUfKwKaZGTru4nuHThb4VbwgGqdmuVRPLrDGlML2RqXviELS
+	qF2ANHKohUtDRpKCjs/Qpu2sSJwF8ys83jFjK+286UdQVXFqCQbY0L6SfBUtQe5hA9U=
+X-Gm-Gg: ASbGncsumiIkiu/CYF1HqOw5t/u07sdQeecHzfdMrESdY91M9aSa/hNAo5cDAfqOwmP
+	mm6VQTEjjVjV1qlY5QW5YIKAUq2WqkV6HngzvRGArB1II2CRrVD64bZIt0kreJ3t57X1ozLpZFh
+	rAiFcjK3LG6pJDOuIS08Spe53rxn+y3duf+uvX+qFwCIRn1iQUk3+X5e1JLig4SpgftgBYMawy0
+	f/Xkr2tB1NZ8LszWKbc3ySVu+6SkE3n6KfTSkW2sfCSUG1fQjQEY7HU7nN6jDPjWxT/jmmShqGj
+	KtPEtz0sy38+f9zBYMyvb7OB2wVNMzXUydT1RhlVmyZO6RD4qiehMh88VFAPHWtvmqtf
+X-Google-Smtp-Source: AGHT+IEc2nVeyrSHlCquh9VuIExCHCGOiKwU4IsdwWSmCTWnlAcehYcksdKGdeerVAcrqyPXaPtWNg==
+X-Received: by 2002:a05:6870:ff44:b0:2d5:4d2d:9525 with SMTP id 586e51a60fabf-2eeda55d669mr3193399fac.8.1750458093305;
+        Fri, 20 Jun 2025 15:21:33 -0700 (PDT)
+Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:c4bf:cf27:203c:f8b0])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ef481fe06esm7561fac.35.2025.06.20.15.21.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jun 2025 15:21:33 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 20 Jun 2025 17:20:12 -0500
+Subject: [PATCH 6/9] dt-bindings: trigger-source: add ADI Util Sigma-Delta
+ SPI
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8953: Add device tree for
- Billion Capture+
-Content-Language: en-US
-To: cristian_ci@protonmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com>
- <20250620-rimob-initial-devicetree-v1-3-8e667ea21f82@protonmail.com>
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <20250620-rimob-initial-devicetree-v1-3-8e667ea21f82@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-6-0766f6297430@baylibre.com>
+References: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-0-0766f6297430@baylibre.com>
+In-Reply-To: <20250620-iio-adc-ad7173-add-spi-offload-support-v1-0-0766f6297430@baylibre.com>
+To: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2693; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=MgpLRHOcZVJ/2tnDLCDfnuJFhe8jp/MxItvFSS0S1SM=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoVd7DTso31Vwy+hQKXbz8lwu3sIYtN0jGDYgXh
+ nrUKMbeR1+JATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaFXewwAKCRDCzCAB/wGP
+ wP/VB/oDkOimP/alMgbmtPW6ZnvK1uwphrV/dFIVNUKNmM8LVl1+faMeJCcoNsaKXjws+C44L3A
+ ynCz7tneQRgUhWlepFBndQis7h4urp5LNu+ppbuFWvI68VvQPeJkQhvFccrXyCkmOvVFJn0eu5W
+ PAisSuvuGMaa2yDmldjiKoUuWWFMJ2Nvt7By5Hc7QfqOTnSBWef54lpiBnj6jeStWYCgQi14RtH
+ B4KykktHNdrdl5EpXoNF2dLDcF2ogySUoFyeeQL4TarZbLw/5dF9/SIXGViHiNcfBWT9W/cEbw8
+ Y0XUYnSHyhFrjqZ1V0k5YLCyhWkgGNWr9F1QfGWq/3+9UZwe
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Hi Cristian,
+Add new binding for the ADI Util Sigma-Delta SPI FPGA IP Core.
 
-On 20-06-2025 11:51 p.m., Cristian Cozzolino via B4 Relay wrote:
-> From: Cristian Cozzolino <cristian_ci@protonmail.com>
-> 
-> Billion Capture+ (flipkart,rimob) is a smartphone released in 2017, based
-> on Snapdragon 625 (MSM8953) SoC.
-> 
-> Add a device tree with initial support for:
-> 
-> - GPIO keys
-> - SDHCI (internal and external storage)
-> - USB Device Mode
-> - Regulators
-> - Simple framebuffer
+This is used to trigger a SPI offload based on a RDY signal from the
+ADC while masking out other signals on the same line.
 
-Thanks for sending this upstream!
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+ .../trigger-source/adi,util-sigma-delta-spi.yaml   | 49 ++++++++++++++++++++++
+ MAINTAINERS                                        |  5 +++
+ 2 files changed, 54 insertions(+)
 
-> 
-> Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->   .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 251 +++++++++++++++++++++
->   2 files changed, 252 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 140b0b2abfb555b8ef61bd9ed0217d8997800809..af3757ca017b6e3d8c579e43f647a71fc64c62b3 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -70,6 +70,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918hd.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-flipkart-rimob.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9fc58bb4dae7b463691659f8e84a634529642b69
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-> @@ -0,0 +1,251 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2025, Cristian Cozzolino
-> + */
-> +/dts-v1/;
-> +
-> +#include "msm8953.dtsi"
-> +#include "pm8953.dtsi"
-> +#include "pmi8950.dtsi"
-> +
-> +/delete-node/ &cont_splash_mem;
-> +/delete-node/ &qseecom_mem;
-> +
-> +/ {
-> +	model = "Billion Capture+";
-> +	compatible = "flipkart,rimob", "qcom,msm8953";
-> +	chassis-type = "handset";
-> +	qcom,msm-id = <293 0>;
-> +	qcom,board-id = <0x340008 0>;
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer@90001000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x90001000 0 (1920 * 1080 * 3)>;
-> +
-> +			width = <1080>;
-> +			height = <1920>;
-> +			stride = <(1080 * 3)>;
-> +			format = "r8g8b8";
-> +
-> +			power-domains = <&gcc MDSS_GDSC>;
-> +
-> +			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +				 <&gcc GCC_MDSS_AXI_CLK>,
-> +				 <&gcc GCC_MDSS_VSYNC_CLK>,
-> +				 <&gcc GCC_MDSS_MDP_CLK>,
-> +				 <&gcc GCC_MDSS_BYTE0_CLK>,
-> +				 <&gcc GCC_MDSS_PCLK0_CLK>,
-> +				 <&gcc GCC_MDSS_ESC0_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_key_default>;
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		qseecom@0 {
+diff --git a/Documentation/devicetree/bindings/trigger-source/adi,util-sigma-delta-spi.yaml b/Documentation/devicetree/bindings/trigger-source/adi,util-sigma-delta-spi.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea466179551cb0d8f8e1cf01f91101b88734da88
+--- /dev/null
++++ b/Documentation/devicetree/bindings/trigger-source/adi,util-sigma-delta-spi.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2025 Analog Devices, Inc.
++# Copyright (c) 2025 BayLibre, SAS
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/trigger-source/adi,util-sigma-delta-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices Util Sigma-Delta SPI IP Core
++
++maintainers:
++  - David Lechner <dlechner@baylibre.com>
++
++description:
++  The Util Sigma-Delta SPI is an FPGA IP core from Analog Devices that provides
++  a SPI offload trigger from the RDY signal of the combined DOUT/RDY pin of
++  the sigma-delta family of ADCs.
++  https://analogdevicesinc.github.io/hdl/library/util_sigma_delta_spi/index.html
++
++properties:
++  compatible:
++    const: adi,util-sigma-delta-spi
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  '#trigger-source-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#trigger-source-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    trigger@40000 {
++        reg = <0x40000 0x1000>;
++        compatible = "adi,util-sigma-delta-spi";
++        clocks = <&clk 0>;
++        #trigger-source-cells = <0>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ea082c6be8acd5081d95bbada99ae47793f206e5..60ba572be7f5b48c0ab1d0d9724e19e335e8761b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -25176,6 +25176,11 @@ W:	https://github.com/srcres258/linux-doc
+ T:	git git://github.com/srcres258/linux-doc.git doc-zh-tw
+ F:	Documentation/translations/zh_TW/
+ 
++TRIGGER SOURCE - ADI UTIL SIGMA DELTA SPI
++M:	David Lechner <dlechner@baylibre.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/trigger-source/adi,util-sigma-delta-spi.yaml
++
+ TRIGGER SOURCE - PWM
+ M:	David Lechner <dlechner@baylibre.com>
+ S:	Maintained
 
-qseecom@84a00000 ?
-
-> +			reg = <0x00 0x84a00000 0x00 0x1900000>;
-> +			no-map;
-> +		};
-> +
-> +		cont_splash_mem: cont-splash@90001000 {
-> +			reg = <0x0 0x90001000 0x0 (1080 * 1920 * 3)>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +
-> +&hsusb_phy {
-> +	vdd-supply = <&pm8953_l3>;
-> +	vdda-pll-supply = <&pm8953_l7>;
-> +	vdda-phy-dpdm-supply = <&pm8953_l13>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pm8953_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	regulators {
-> +		compatible = "qcom,rpm-pm8953-regulators";
-> +		vdd_s1-supply = <&vph_pwr>;
-> +		vdd_s2-supply = <&vph_pwr>;
-> +		vdd_s3-supply = <&vph_pwr>;
-> +		vdd_s4-supply = <&vph_pwr>;
-> +		vdd_s5-supply = <&vph_pwr>;
-> +		vdd_s6-supply = <&vph_pwr>;
-> +		vdd_s7-supply = <&vph_pwr>;
-> +		vdd_l1-supply = <&pm8953_s3>;
-> +		vdd_l2_l3-supply = <&pm8953_s3>;
-> +		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-> +		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-> +		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-> +		vdd_l23-supply = <&pm8953_s3>;
-> +
-> +		pm8953_s1: s1 {
-> +			regulator-min-microvolt = <870000>;
-> +			regulator-max-microvolt = <1156000>;
-> +		};
-> +
-> +		pm8953_s3: s3 {
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1224000>;
-> +		};
-> +
-> +		pm8953_s4: s4 {
-> +			regulator-min-microvolt = <1900000>;
-> +			regulator-max-microvolt = <2050000>;
-> +		};
-> +
-> +		pm8953_l1: l1 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1000000>;
-> +		};
-> +
-> +		pm8953_l2: l2 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +
-> +		pm8953_l3: l3 {
-> +			regulator-min-microvolt = <925000>;
-> +			regulator-max-microvolt = <925000>;
-> +		};
-> +
-> +		pm8953_l5: l5 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l6: l6 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l7: l7 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1900000>;
-> +		};
-> +
-> +		pm8953_l8: l8 {
-> +			regulator-min-microvolt = <2900000>;
-> +			regulator-max-microvolt = <2900000>;
-> +		};
-> +
-> +		pm8953_l9: l9 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3300000>;
-> +		};
-> +
-> +		pm8953_l10: l10 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l11: l11 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l12: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l13: l13 {
-> +			regulator-min-microvolt = <3125000>;
-> +			regulator-max-microvolt = <3125000>;
-> +		};
-> +
-> +		pm8953_l16: l16 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l17: l17 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l19: l19 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1350000>;
-> +		};
-> +
-> +		pm8953_l22: l22 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2800000>;
-> +		};
-> +
-> +		pm8953_l23: l23 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	vmmc-supply = <&pm8953_l8>;
-> +	vqmmc-supply = <&pm8953_l5>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	vmmc-supply = <&pm8953_l11>;
-> +	vqmmc-supply = <&pm8953_l12>;
-> +
-> +	cd-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> +
-> +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-> +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
-> +	pinctrl-names = "default", "sleep";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <135 4>;
-
-Any ideas what's connected to these pins? If you do, good to document 
-this like in other devices.
-
-Regards
-Luca
-
-> +
-> +	gpio_key_default: gpio-key-default-state {
-> +		pins = "gpio85";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> 
+-- 
+2.43.0
 
 
