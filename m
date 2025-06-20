@@ -1,489 +1,205 @@
-Return-Path: <devicetree+bounces-187730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79FCAE1290
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 06:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA33AE12C4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:03:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5047319E0F5D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 04:46:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C97D21BC36DE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E501FFC54;
-	Fri, 20 Jun 2025 04:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65955202C5A;
+	Fri, 20 Jun 2025 05:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="atkxEsop"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="Al5cTlL9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022119.outbound.protection.outlook.com [52.101.126.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06EC1F9EC0;
-	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750394772; cv=none; b=Bnc0cWzl2R3qsSeAr4gcQosNrMFmCw9fKM3EqfPnUT3+vi6DVj0zNf6De4VSN5du95r1gKKVkrKhWboW0ca3TqaBEMKKXx7YNB1X1uGy24Lzpl+S8ZZaI1Dv4Bj0FWy8gOvOL4naxvlKU4DNL4sisdFvurkU7R8FBfGNPzlrPqY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750394772; c=relaxed/simple;
-	bh=Mg5I9GQaPwUd+79TO7AVQNChtWaRs7LbsN5ONrDkgus=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=S0NwYhOG5wGsVEpbit1xLYe8owp0vk/8p1r+G7OCkHF69zAe9jYrAdXGc7nuvPMngemU/X6pGmC8JYVw32ZB+pTglRNBeaPBFmBejPWE3rbI/uKmweA87W4COPfYa78iX4aiLuDiS16g1XvvWxukt9NMI6NqhitEXMneuDj+ut8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=atkxEsop; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5B88CC4CEFD;
-	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750394771;
-	bh=Mg5I9GQaPwUd+79TO7AVQNChtWaRs7LbsN5ONrDkgus=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=atkxEsopryb9Tiwlf+njFE2TLRd7Eqv/xyFRQpqCgwicEkSa5sj7Nc26emPZsJPV6
-	 zKm5mzvoSJK35zBy1hLF2DqKkPSuOEed8V6+DpRWSybpiC1r+jU1kFkLaDzf9Zjdk1
-	 x5IZIsCH8A0P2pYdiY/aMeTt1kteo20bOSwR1F/XitQz4aEC/98nN4hkwfmZbkVIZe
-	 e1oBRVnF/M9CJ7vdSnEjgcNKpnVB6DrP6y+nWHBfGsvHc/cXPttWtTRN5eZkYDw7Xb
-	 pKMZwh+FuAAZ0Ct4GJnTnomFwxORZzJjjo3guY3gNowv7iROCYjJZgo9xX/ik5fVXD
-	 67hlP5wICy+eA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5394FC7115B;
-	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
-From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
-Date: Fri, 20 Jun 2025 12:46:07 +0800
-Subject: [PATCH v5 5/5] firmware: stratix10-rsu: Migrate RSU driver to use
- stratix10 asynchronous framework.
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9704F2A8C1;
+	Fri, 20 Jun 2025 05:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.119
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750395794; cv=fail; b=gcN/33Z5QkgVnU96vd1ohRBW46OTg5JrYfJSlu/9vK08BBxuli5iOTu+XqXNfbe5HsFZW0AdhNA32Dg0GesN3Tk4FkMlS+IQFLGutMbapwM7RR/Mgt3TVq9h8zMNp8XN5VG3FYh6c5Em0w/BJzcveoAYYclNuRynuyAnwH3Hges=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750395794; c=relaxed/simple;
+	bh=NihuYNfJDGD9+BZH8VGxwhWRFdH+Pyg50YDVRY7OsS4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Lou1W68hiekqpPpEMgt4Gmno4MwTTSwZIzlohRpqyC8XIXiKdtBpoGlAOcxI2G9CIe3Hu1LkA36QUNT6nlXqTzKZAr9FMVTu/xD30JeWI9Qlf3gWOsWcJTJjsmuKOSoKwUs0DfnMQ5nNcBTtATEzpKImQuASRWAm+TP9mZf0qWk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=Al5cTlL9; arc=fail smtp.client-ip=52.101.126.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=N/QWjZOVvGHnMNseyv+WfHqil/Ok+N9mvawHNhiiP4v0XKZaUpyQUg8n2C0FhEz7dj9zWmKQ7S77WFnyTrk3sF0Nha6Q62mjR48Hnf8Jy4TlkMMSzlqJQ0H1NM8QAHiePdWllwVTdbG/uXAdTGhhq5qjk1/I751W9y8VZw8kS8K4N4c1QTeIWVWh1Eaz/hzZ6R/sgzZc2fP8YZ1/NmjWBcB/hzSLA0ne4Kmo+pGgPg505VBbEwdSBAx06pNIXvKLYIrsBIQULdVyb3AlxwP6/sUAwo0xIdxPlqPcfkQ0TKPZSne4jG8W+ka4A24RRPJh0eWNLyTwKP1NB88dymFU4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NihuYNfJDGD9+BZH8VGxwhWRFdH+Pyg50YDVRY7OsS4=;
+ b=DEmAiSvrjXPemFThgO4VA5t62s9Dj48Be+TrnKKqVBZcwgB8mIzXqic9re2e8hVxf8LKbH2wivxVTXqZ1nxC/XjV1u3BmxHaDax13VImqWSqkhmFV2Y7TEKulmf32rki+r8+Jo6OdhzRXIv1hcFHlyHPmc5Ik/9fr41db42Y1cj9p901CSodxB+XmAMc52Ye+iVgFMDVWeH4gHwlN4nOzr+H9gX/FHhajmXWztBNoeQTU9eKZGZLEDubZziGqyb0rjomvwJEUZkPhCOm3zUKYNCVoZozxFN15LdyOwgSKcc/GsaiQMTgZIIoxvg9dd30z8eCLPXMvPxVa9z1NRjTVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NihuYNfJDGD9+BZH8VGxwhWRFdH+Pyg50YDVRY7OsS4=;
+ b=Al5cTlL9k6KGgW+hTN69ucWsDnSDyohlzqbFoS5OUlIcW0P8QguE/tF49PB3lYK0IbyT39zxBen5XM86rtJoDOYdwpyu0fjwTdc+2edzCUhU6SYOUzkdASmVtIwF+4jaCN6VXb9edvFbwws3KX/Nim2TfvNxVoqm+6nMD+2E2FSb4J/qOw22y1eGu3ih0Xr4GBeb5Y3RqH4+iHM0RelLx+mt4QJStVo+h+epcygGWk4YQaUm55Ggmb7W7//jbPHQcGa+kaTk4gdV6PqsQ4FULkaYN1Jq1EJzpaW3Y6k6kvW7Ykl2YDvcMSxoZO4EYj8xfsLpghavXyNRcARJjTj3VQ==
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
+ by TYSPR06MB7299.apcprd06.prod.outlook.com (2603:1096:405:97::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.21; Fri, 20 Jun
+ 2025 05:03:01 +0000
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28%5]) with mapi id 15.20.8835.027; Fri, 20 Jun 2025
+ 05:03:01 +0000
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "mani@kernel.org"
+	<mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "vkoul@kernel.org" <vkoul@kernel.org>,
+	"kishon@kernel.org" <kishon@kernel.org>, "linus.walleij@linaro.org"
+	<linus.walleij@linaro.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>, "openbmc@lists.ozlabs.org"
+	<openbmc@lists.ozlabs.org>, "linux-gpio@vger.kernel.org"
+	<linux-gpio@vger.kernel.org>
+CC: "elbadrym@google.com" <elbadrym@google.com>, "romlem@google.com"
+	<romlem@google.com>, "anhphan@google.com" <anhphan@google.com>,
+	"wak@google.com" <wak@google.com>, "yuxiaozhang@google.com"
+	<yuxiaozhang@google.com>, BMC-SW <BMC-SW@aspeedtech.com>
+Subject:
+ =?utf-8?B?5Zue6KaGOiBbUEFUQ0ggMS83XSBkdC1iaW5kaW5nczogcGh5OiBBZGQgZG9j?=
+ =?utf-8?Q?ument_for_ASPEED_PCIe_PHY?=
+Thread-Topic: [PATCH 1/7] dt-bindings: phy: Add document for ASPEED PCIe PHY
+Thread-Index: AQHb3BN3poZHqaPRJEuwtTAqS+UGirQAzvcAgAq5i9A=
+Date: Fri, 20 Jun 2025 05:03:00 +0000
+Message-ID:
+ <SEYPR06MB513488A235CAF69592364E469D7CA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+References: <20250613033001.3153637-1-jacky_chou@aspeedtech.com>
+ <20250613033001.3153637-2-jacky_chou@aspeedtech.com>
+ <5d624bce-a46f-4b75-b785-56def0c7f108@linaro.org>
+In-Reply-To: <5d624bce-a46f-4b75-b785-56def0c7f108@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|TYSPR06MB7299:EE_
+x-ms-office365-filtering-correlation-id: 0c0b945d-139f-44af-861e-08ddafb7bb32
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018|921020;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?ckV4RWpZZG5NR1QxTGpOREtRUCt5WEl4cmtmUFB2allGYnJqMXhQcVpzSnVN?=
+ =?utf-8?B?WGhKbEJubE5OQWIxQzZOUnBrcFZMelZjb2oveVYrMFlQVkRKa0llSHphN0JB?=
+ =?utf-8?B?Q2J5SWFEQXZ6ZCt0dGZjaytnelYxWUk5V0cxZGR1YUw5MTRXMWJJRDdjR282?=
+ =?utf-8?B?RU5OU3pXQlRJMVU1enViK2I4a0x4blVHa3owYW9nbE05Tlo3NjBVVXFvZmM2?=
+ =?utf-8?B?Zk1NV1dadU5Rb01CeVhseVZKd2lWc2xSVWtMTXA4S21jWWZzMlJaTC83UjBB?=
+ =?utf-8?B?azE1QmRRK0dZcWtLVklmb1lFR2piblR3RjlFWmIvckl6OGVyWEtyS0pBSUYr?=
+ =?utf-8?B?Qm1iZ3RGRmxhRkliRkVTbjhkY3J2dllRRFVUZUJFYTVNbEIybEloM0xrMDZM?=
+ =?utf-8?B?dUk0SEJtRDg5Y2V4RGQ2N0gwTUViVk43TUMwK1hkekI1N1oxYjNZelhQZERG?=
+ =?utf-8?B?TDcraUIycTRybHkzTnNxY0p3TGJvS3dMWmNGd2VyNXVUM3hHai9WclY5d21L?=
+ =?utf-8?B?RGNoQXRUdERmWjBCei9JcklTT2U1VjZRa2RnYW1POGI5dmtDTG9zbHFkNnJX?=
+ =?utf-8?B?QWtYaWtmbExuNCtEamdQVDJMUDhkeWNvcHppckZpRmwvQWhTbDJjZGxHZlFy?=
+ =?utf-8?B?SmdBdlY1cnVtS2t1MEpKUGVtckdQVVIzZDhvaklCcTA3czY3YjVxd1hia1NE?=
+ =?utf-8?B?OEgzYzNnb2h4SmlpQVc5K3lmSGpxRXBsSUNDSXJXb2NzWXQ1K29QbFRBSUNO?=
+ =?utf-8?B?QTdQbUk2SytaSnhLZ1JFdjliUU1KUm5rdHd4aDZ2MExEekNGV0dIaGx6aWV0?=
+ =?utf-8?B?R3ZNSHVMQVZNbk45K3IzTG13MzM1ajlTbmorS0ZMVGpSTG1qNDNjNEJ1Q3ZQ?=
+ =?utf-8?B?YXV6NE5MOFdYQ3BRWDFGQzlvTWdYRDRlLzlvVi9XdVBISWxaTU0zWEs0bVNx?=
+ =?utf-8?B?dXdDQm13Tis5clBaSHdoNlZzWDZJSXpjQkJoUFlCN2VhWmJoOXZBdHRCaGtt?=
+ =?utf-8?B?WXdPakk5Ulo5QVVtOEpmZlJqK3FtSE5PSmF4b2FwRlE2NHNDOHArTm90UlNi?=
+ =?utf-8?B?WHA5VlpqWFRpeDZXRjcrc25tVkFyM21LK2NnTWs4R21RWnNEeFdDNVFEdG1D?=
+ =?utf-8?B?RU5LSklCTEswVzRkNFJKRVVzSnJLQis2anFrdHMzNFpiN1Vkb3NTTGNJVWM1?=
+ =?utf-8?B?REhTUERjOW5lQ3RRVCtLQkZDcUhGOGx6SnlNWFIvK3dobzVwSityUlJjVmRk?=
+ =?utf-8?B?WGVKVks0MGRtVWU1UGhnb3dCTG4wbW0rczNHNFZYNHlMRTJPVldpcnVtWXRl?=
+ =?utf-8?B?VWFQQi9TNjlkbUVZTjB2YmJTL2NPY09tZy96REo1dGVPd0hxcCsxaHlDODZN?=
+ =?utf-8?B?dDdKZ1dXUHNMcE9sWlgwcVg4S04ydGZka1hxa1RQRnpvQ2tzaThrTGUzNGdT?=
+ =?utf-8?B?aHR4NkRKUmg2SDM2djBqWHlvSnhrRHcxSXNUQVV4UTROOUwweHB6bWVmR3lL?=
+ =?utf-8?B?dWlrVTIxZldmK3FvWDM3R1M2bFdveldGRi9WN1owY0FLLzZVYXpVTUdjeTRq?=
+ =?utf-8?B?bE15aDR0c0o0Z24yaFZyQ1ZjRm5weENVcjh6dUE4azB5VFhiS2lyVDRvSk5I?=
+ =?utf-8?B?cHNId255MFlvd3owMDR4NHMvdmhhKzZVRi9OZ29DelNIa1lCZlBKbmEwVHRq?=
+ =?utf-8?B?bTFzQWJpOVZNZzBUR09BUitNU1JJK3hlYWNSdGhwUWpHRC9GV1pQNWJTYjhz?=
+ =?utf-8?B?M2pvYWZuQnFGeHlQS2gwMEFnb1FhazRqYUQ5UEV1TzNOckxuclc4emxIMXJn?=
+ =?utf-8?B?amFTRCszVm9rZk1qSk4zWlJ6YXVWeE11eGtlL1FOZjljTzNCTWhqOHB5NHFj?=
+ =?utf-8?B?TUpUaWMwaFhyVERyeHRlRUlNSEJ1TDdvZDNITEV0b3hrMG90ZUFUdXEzYit1?=
+ =?utf-8?B?S1l4ZWdsOGEwZHhvK3ZJN2lIMSt4aHBUVmVQV1J4WEFqVEdxWXBJOVF6dS9s?=
+ =?utf-8?Q?yiBiJdtwbdVJoLRHErzO+R4BftAiSo=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018)(921020);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?WXFtbzZrSnlTQ0VBK1IrM2htSWc2N3plWEZDT0x1Z0dZYkFVSEtLYW1pT1JL?=
+ =?utf-8?B?Z1BDV0lpM3dMcW1xK3cyNDYyZmY0SUFTUmp6T0kyZmx1WTk1QkM0WUpKLzll?=
+ =?utf-8?B?WmhWckpya0JJNGNEL2JnbDc0WjJtdjl1aTRZUTN4NVNrUUg3akh3UFZyWFQ4?=
+ =?utf-8?B?RWZYQ2ZKQXZjMGxKTHNBMVhwbCtneXlSWFdZM0Uzc2IxellGQ3QwbVRLWUxk?=
+ =?utf-8?B?VCtuZEFhOVh0dWVCNVkyaGo1eWdjc3c2MmpLWVRlajEydHcwNzNQcmlkeVBj?=
+ =?utf-8?B?ck5IMERoZ0Y3c0I0TEpuS0EwWDNKZmpZWCtML0FMajZRelRackthUWFwWVZp?=
+ =?utf-8?B?RDNxbzR0c25OMVY2TURMd3BVb2MxclVHeWl5djhqR1hscDZBeDZ0SmJVWVdK?=
+ =?utf-8?B?K1F1TXdWcDFhZGZ5YjJuVHlJZVJBbFMxYXNKVDVtSGllWk1SRjdPanhMY0Rw?=
+ =?utf-8?B?Q1ZhWjFUTjlMUVFYT3RzS1Y2RUlqRjJDeC84R2FQNURJRWx2cFQzRlIzK3FQ?=
+ =?utf-8?B?Q0I2aGo0b2svdE5Hdk83UjBtNk9FUEdoRmJhaG1uTllQazhzcXpMSGZwczJk?=
+ =?utf-8?B?Q2xVQ2ZhK1c4cWZwSHRaT3E1MndweXJTVkZaNHE4czJXTGhabUNJTHR0ZCtI?=
+ =?utf-8?B?RVNkd1JiRysycmpmanlRV0hEcUNFbmVIcXRTc2lRcG91eCtzNUxLNUUraDdC?=
+ =?utf-8?B?M2ZNaHlmNVR0eDlhdDl3YmJOWmhFTzlJMFlTWThuRm1uNW5XUFJqVDUvL1hC?=
+ =?utf-8?B?SkVSdVBiWXlIa0xldURsdis5U011NVBkMmpBNmtUWHJOcFc0N1FtMlNRNit0?=
+ =?utf-8?B?bHRrL24yUUlEN2w0RmJMNnA4T242eW1ha3pyblU3bEVtbTUyNjlMa1V1WjI5?=
+ =?utf-8?B?YnI5Mm82K1dXb0k3VUN1YUxlU0hXa0F5SUZ1RWZTZjJwUUU0azJhUWtHcVJr?=
+ =?utf-8?B?ZEN6bWVkR3g0M2RtUWp4bmxPeEFNM2E0RkVZa3p5dmI2VFM0MUREQXFyT0Jk?=
+ =?utf-8?B?SVlBSFNwcklkbHlobjEwK1djclY1VmZZVTBCNTJwTURzL0xRRzh4OW9QcWdF?=
+ =?utf-8?B?bUYwWGRhbjZHcFJhZlAreDlIamlIM3VuMnVZTEY5bkU4NldWN2lNdW1KZ3dy?=
+ =?utf-8?B?TU1TbmpDcGFtS3hlWmVlNDM3eWFUaDF2aDArUFBaSkFrSjN3clZ5RFlnS09I?=
+ =?utf-8?B?eFdldGdmeXV4U2h2aTFkU2lINUNSNGxhZjgyMEh0SHoxcW8wbkZ0a2xnNnZx?=
+ =?utf-8?B?QVY0QkpBQ2tyZUZleHdhWVA2aGZhbTNYdEVxQkJCeUE0OXJQeVhTSW5BWVBT?=
+ =?utf-8?B?Zy9NWW9pWEt3ZDlSTEZKTUhwRzVRSnpkSzdMV0I4ZU5oMlIzV2lZQlJ4Tktj?=
+ =?utf-8?B?Wk56S2VuaU03Y1B1N3pwSkF3OUpMQ2cvcHA5a2xMd2JjQy8wd1dPT1BkbStr?=
+ =?utf-8?B?MHFvK3FSbDJOK3BuVkpNS3FuWXNWZVZkTkNWVlZub2RsN25xK2c1aVRvdmk4?=
+ =?utf-8?B?KzFwQVhmeXFKa2xoUERzQjdjakVKVzZBcVN0b2crT1BkODZqVXQ4ZjJqTC9C?=
+ =?utf-8?B?dGRYYXM0dS80QnI2VTg1UDN1UUxnSUlBU3FqaXVHWFg2T0hxRzhWQkhZYURp?=
+ =?utf-8?B?cjVLODZmMGVQd1RuMGZSWlNpTG4vODBTZkE4cjhibTJHdFVQK1Q4dVprbUlv?=
+ =?utf-8?B?UjdsZkxwVk5IaVh3akhnbTFZZmNvbnRRVVl1VmNoZE1YZ3IvaVFsam9uY05q?=
+ =?utf-8?B?OTFHTFZGNDdjMTNSajdEUHYrN0V4ZjJORkRQT1l5cHQ5MTZpVzNiRzhJYlpR?=
+ =?utf-8?B?S2xKVlRuam1XRytRWkZNVThZUmRBMjRnbCtJVFZEL2JmeW0rQ3ZDUjJvMUh2?=
+ =?utf-8?B?Q0M5czFtbVRHMGJMVzJyWVRFMVdGazN6bkJwVjJOVDg4UmRYbE5aUnJWVE53?=
+ =?utf-8?B?eE1SUXljU00rK210K0oyOXBEYnpoajQzZHErdUhMM01ISE1jYVkvU0VJNzh5?=
+ =?utf-8?B?K2RVTWtaQWUvVHViNzNOUzJHUUgyTkNQOS93OFVTUVdLUDBPMzRZUG9sVWFk?=
+ =?utf-8?B?d1hqMURBWTVhZUhhSGMyT0FoZzJVLzdZR3dWZ3IrSm5HVzc4NTBTRUNIM3Jr?=
+ =?utf-8?Q?lAGzR1LoM69NcPO0oCnTsY2TK?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250620-sip_svc_upstream-v5-5-732d4ac08a32@altera.com>
-References: <20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com>
-In-Reply-To: <20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com>
-To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750394768; l=13278;
- i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
- bh=kI23gIa6PngF5SYH1gAyhV6qX0hobd+0qY9aPOd8c7U=;
- b=EFv3v5EOgaEYtWxg94ZaTIpCFtpSY85jspTO2QDLX48rNnHzWzKiGbDmJXEEkSyGwJh/1ZAMB
- dvJgQ/0v6nmCMGhigh9Gzh5ThzYI7k7KU77pYKRdoi40K84CgRt8TUQ
-X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
- pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
-X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
- auth_id=337
-X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
-Reply-To: mahesh.rao@altera.com
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c0b945d-139f-44af-861e-08ddafb7bb32
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2025 05:03:01.0546
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: arYB8o2ZG0Ls5J8yeNMX9u0dIxEnaSkvoV00e2UZWSf7AlHV/QJo9ZbQYAIQa9Y/hoQ+nQG7lmkhuUik7PzvfHo5VCJz4aulqmAokp0ZKJA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB7299
 
-From: Mahesh Rao <mahesh.rao@altera.com>
-
-* Add support for asynchronous communication to the
-  RSU client channel.
-* Migrate functions that communicate with the SDM
-  to use the asynchronous framework.
-
-Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
----
- drivers/firmware/stratix10-rsu.c | 272 ++++++++++++++++++++-------------------
- 1 file changed, 142 insertions(+), 130 deletions(-)
-
-diff --git a/drivers/firmware/stratix10-rsu.c b/drivers/firmware/stratix10-rsu.c
-index 1ea39a0a76c787c6396300734b636b4b3a0ae04d..53b67b242cf0afa4102340aa099cef66b642effa 100644
---- a/drivers/firmware/stratix10-rsu.c
-+++ b/drivers/firmware/stratix10-rsu.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (C) 2018-2019, Intel Corporation
-+ * Copyright (C) 2025, Altera Corporation
-  */
- 
- #include <linux/arm-smccc.h>
-@@ -14,11 +15,9 @@
- #include <linux/firmware/intel/stratix10-svc-client.h>
- #include <linux/string.h>
- #include <linux/sysfs.h>
-+#include <linux/delay.h>
- 
--#define RSU_STATE_MASK			GENMASK_ULL(31, 0)
--#define RSU_VERSION_MASK		GENMASK_ULL(63, 32)
--#define RSU_ERROR_LOCATION_MASK		GENMASK_ULL(31, 0)
--#define RSU_ERROR_DETAIL_MASK		GENMASK_ULL(63, 32)
-+#define RSU_ERASE_SIZE_MASK		GENMASK_ULL(63, 32)
- #define RSU_DCMF0_MASK			GENMASK_ULL(31, 0)
- #define RSU_DCMF1_MASK			GENMASK_ULL(63, 32)
- #define RSU_DCMF2_MASK			GENMASK_ULL(31, 0)
-@@ -35,7 +34,8 @@
- #define INVALID_DCMF_STATUS		0xFFFFFFFF
- #define INVALID_SPT_ADDRESS		0x0
- 
--#define RSU_GET_SPT_CMD			0x5A
-+#define RSU_RETRY_SLEEP_MS		(1U)
-+#define RSU_ASYNC_MSG_RETRY		(3U)
- #define RSU_GET_SPT_RESP_LEN		(4 * sizeof(unsigned int))
- 
- typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-@@ -64,7 +64,6 @@ typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-  * @max_retry: the preset max retry value
-  * @spt0_address: address of spt0
-  * @spt1_address: address of spt1
-- * @get_spt_response_buf: response from sdm for get_spt command
-  */
- struct stratix10_rsu_priv {
- 	struct stratix10_svc_chan *chan;
-@@ -99,47 +98,32 @@ struct stratix10_rsu_priv {
- 
- 	unsigned long spt0_address;
- 	unsigned long spt1_address;
--
--	unsigned int *get_spt_response_buf;
- };
- 
-+typedef void (*rsu_async_callback)(struct device *dev,
-+	struct stratix10_rsu_priv *priv, struct stratix10_svc_cb_data *data);
-+
- /**
-- * rsu_status_callback() - Status callback from Intel Service Layer
-- * @client: pointer to service client
-+ * rsu_async_status_callback() - Status callback from rsu_async_send()
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-  * @data: pointer to callback data structure
-  *
-- * Callback from Intel service layer for RSU status request. Status is
-- * only updated after a system reboot, so a get updated status call is
-- * made during driver probe.
-+ * Callback from rsu_async_send() to get the system rsu error status.
-  */
--static void rsu_status_callback(struct stratix10_svc_client *client,
--				struct stratix10_svc_cb_data *data)
-+static void rsu_async_status_callback(struct device *dev,
-+				      struct stratix10_rsu_priv *priv,
-+				      struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	struct arm_smccc_res *res = (struct arm_smccc_res *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK)) {
--		priv->status.version = FIELD_GET(RSU_VERSION_MASK,
--						 res->a2);
--		priv->status.state = FIELD_GET(RSU_STATE_MASK, res->a2);
--		priv->status.fail_image = res->a1;
--		priv->status.current_image = res->a0;
--		priv->status.error_location =
--			FIELD_GET(RSU_ERROR_LOCATION_MASK, res->a3);
--		priv->status.error_details =
--			FIELD_GET(RSU_ERROR_DETAIL_MASK, res->a3);
--	} else {
--		dev_err(client->dev, "COMMAND_RSU_STATUS returned 0x%lX\n",
--			res->a0);
--		priv->status.version = 0;
--		priv->status.state = 0;
--		priv->status.fail_image = 0;
--		priv->status.current_image = 0;
--		priv->status.error_location = 0;
--		priv->status.error_details = 0;
--	}
--
--	complete(&priv->completion);
-+	struct arm_smccc_1_2_regs *res = (struct arm_smccc_1_2_regs *)data->kaddr1;
-+
-+	priv->status.current_image = res->a2;
-+	priv->status.fail_image = res->a3;
-+	priv->status.state = res->a4;
-+	priv->status.version = res->a5;
-+	priv->status.error_location = res->a7;
-+	priv->status.error_details = res->a8;
-+	priv->retry_counter = res->a9;
- }
- 
- /**
-@@ -163,32 +147,6 @@ static void rsu_command_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--/**
-- * rsu_retry_callback() - Callback from Intel service layer for getting
-- * the current image's retry counter from the firmware
-- * @client: pointer to client
-- * @data: pointer to callback data structure
-- *
-- * Callback from Intel service layer for retry counter, which is used by
-- * user to know how many times the images is still allowed to reload
-- * itself before giving up and starting RSU fail-over flow.
-- */
--static void rsu_retry_callback(struct stratix10_svc_client *client,
--			       struct stratix10_svc_cb_data *data)
--{
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned int *counter = (unsigned int *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK))
--		priv->retry_counter = *counter;
--	else if (data->status == BIT(SVC_STATUS_NO_SUPPORT))
--		dev_warn(client->dev, "Secure FW doesn't support retry\n");
--	else
--		dev_err(client->dev, "Failed to get retry counter %lu\n",
--			BIT(data->status));
--
--	complete(&priv->completion);
--}
- 
- /**
-  * rsu_max_retry_callback() - Callback from Intel service layer for getting
-@@ -270,34 +228,19 @@ static void rsu_dcmf_status_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--static void rsu_get_spt_callback(struct stratix10_svc_client *client,
--				 struct stratix10_svc_cb_data *data)
-+/**
-+ * rsu_async_get_spt_table_callback() - Callback to be used by the rsu_async_send()
-+ * to retrieve the SPT table information.
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-+ * @data: pointer to callback data structure
-+ */
-+static void rsu_async_get_spt_table_callback(struct device *dev,
-+					     struct stratix10_rsu_priv *priv,
-+					     struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned long *mbox_err = (unsigned long *)data->kaddr1;
--	unsigned long *resp_len = (unsigned long *)data->kaddr2;
--
--	if (data->status != BIT(SVC_STATUS_OK) || (*mbox_err) ||
--	    (*resp_len != RSU_GET_SPT_RESP_LEN))
--		goto error;
--
--	priv->spt0_address = priv->get_spt_response_buf[0];
--	priv->spt0_address <<= 32;
--	priv->spt0_address |= priv->get_spt_response_buf[1];
--
--	priv->spt1_address = priv->get_spt_response_buf[2];
--	priv->spt1_address <<= 32;
--	priv->spt1_address |= priv->get_spt_response_buf[3];
--
--	goto complete;
--
--error:
--	dev_err(client->dev, "failed to get SPTs\n");
--
--complete:
--	stratix10_svc_free_memory(priv->chan, priv->get_spt_response_buf);
--	priv->get_spt_response_buf = NULL;
--	complete(&priv->completion);
-+	priv->spt0_address = *((unsigned long *)data->kaddr1);
-+	priv->spt1_address = *((unsigned long *)data->kaddr2);
- }
- 
- /**
-@@ -329,14 +272,6 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	if (arg)
- 		msg.arg[0] = arg;
- 
--	if (command == COMMAND_MBOX_SEND_CMD) {
--		msg.arg[1] = 0;
--		msg.payload = NULL;
--		msg.payload_length = 0;
--		msg.payload_output = priv->get_spt_response_buf;
--		msg.payload_length_output = RSU_GET_SPT_RESP_LEN;
--	}
--
- 	ret = stratix10_svc_send(priv->chan, &msg);
- 	if (ret < 0)
- 		goto status_done;
-@@ -362,6 +297,95 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	return ret;
- }
- 
-+/**
-+ * soc64_async_callback() - Callback from Intel service layer for async requests
-+ * @ptr: pointer to the completion object
-+ */
-+static void soc64_async_callback(void *ptr)
-+{
-+	if (ptr)
-+		complete(ptr);
-+}
-+
-+/**
-+ * rsu_send_async_msg() - send an async message to Intel service layer
-+ * @dev: pointer to device object
-+ * @priv: pointer to rsu private data
-+ * @command: RSU status or update command
-+ * @arg: the request argument, notify status
-+ * @callback: function pointer for the callback (status or update)
-+ */
-+static int rsu_send_async_msg(struct device *dev, struct stratix10_rsu_priv *priv,
-+			      enum stratix10_svc_command_code command,
-+			      unsigned long arg,
-+			      rsu_async_callback callback)
-+{
-+	struct stratix10_svc_client_msg msg = {0};
-+	struct stratix10_svc_cb_data data = {0};
-+	struct completion completion;
-+	int status, index, ret;
-+	void *handle = NULL;
-+
-+	msg.command = command;
-+	msg.arg[0] = arg;
-+
-+	init_completion(&completion);
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_send(priv->chan, &msg,
-+						  &handle, soc64_async_callback,
-+						  &completion);
-+		if (status == 0)
-+			break;
-+		dev_warn(dev, "Failed to send async message\n");
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (status && !handle) {
-+		dev_err(dev, "Failed to send async message\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	ret = wait_for_completion_io_timeout(&completion, RSU_TIMEOUT);
-+	if (ret > 0)
-+		dev_dbg(dev, "Received async interrupt\n");
-+	else if (ret == 0)
-+		dev_dbg(dev, "Timeout occurred. Trying to poll the response\n");
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_poll(priv->chan, handle, &data);
-+		if (status == -EAGAIN) {
-+			dev_dbg(dev, "Async message is still in progress\n");
-+		} else if (status < 0) {
-+			dev_alert(dev, "Failed to poll async message\n");
-+			ret = -ETIMEDOUT;
-+		} else if (status == 0) {
-+			ret = 0;
-+			break;
-+		}
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (ret) {
-+		dev_err(dev, "Failed to get async response\n");
-+		goto status_done;
-+	}
-+
-+	if (data.status == 0) {
-+		ret = 0;
-+		if (callback)
-+			callback(dev, priv, &data);
-+	} else {
-+		dev_err(dev, "%s returned 0x%x from SDM\n", __func__,
-+			data.status);
-+		ret = -EFAULT;
-+	}
-+
-+status_done:
-+	stratix10_svc_async_done(priv->chan, handle);
-+	return ret;
-+}
-+
- /*
-  * This driver exposes some optional features of the Intel Stratix 10 SoC FPGA.
-  * The sysfs interfaces exposed here are FPGA Remote System Update (RSU)
-@@ -597,27 +621,20 @@ static ssize_t notify_store(struct device *dev,
- 	if (ret)
- 		return ret;
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_NOTIFY,
--			   status, rsu_command_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_NOTIFY, status, NULL);
- 	if (ret) {
- 		dev_err(dev, "Error, RSU notify returned %i\n", ret);
- 		return ret;
- 	}
- 
- 	/* to get the updated state */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		return ret;
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		return ret;
--	}
--
- 	return count;
- }
- 
-@@ -737,12 +754,19 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		return PTR_ERR(priv->chan);
- 	}
- 
-+	ret = stratix10_svc_add_async_client(priv->chan, false);
-+	if (ret) {
-+		dev_err(dev, "failed to add async client\n");
-+		stratix10_svc_free_channel(priv->chan);
-+		return ret;
-+	}
-+
- 	init_completion(&priv->completion);
- 	platform_set_drvdata(pdev, priv);
- 
- 	/* get the initial state from firmware */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		stratix10_svc_free_channel(priv->chan);
-@@ -763,12 +787,6 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		stratix10_svc_free_channel(priv->chan);
--	}
--
- 	ret = rsu_send_msg(priv, COMMAND_RSU_MAX_RETRY, 0,
- 			   rsu_max_retry_callback);
- 	if (ret) {
-@@ -776,18 +794,12 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	priv->get_spt_response_buf =
--		stratix10_svc_allocate_memory(priv->chan, RSU_GET_SPT_RESP_LEN);
- 
--	if (IS_ERR(priv->get_spt_response_buf)) {
--		dev_err(dev, "failed to allocate get spt buffer\n");
--	} else {
--		ret = rsu_send_msg(priv, COMMAND_MBOX_SEND_CMD,
--				   RSU_GET_SPT_CMD, rsu_get_spt_callback);
--		if (ret) {
--			dev_err(dev, "Error, getting SPT table %i\n", ret);
--			stratix10_svc_free_channel(priv->chan);
--		}
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_GET_SPT_TABLE, 0,
-+				 rsu_async_get_spt_table_callback);
-+	if (ret) {
-+		dev_err(dev, "Error, getting SPT table %i\n", ret);
-+		stratix10_svc_free_channel(priv->chan);
- 	}
- 
- 	return ret;
-
--- 
-2.35.3
-
-
+SGkgTmVpbCwNCg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5Lg0KDQo+IA0KPiBQbGVhc2UgbW92ZSB0
+aGUgTUFJTlRBSU5FUlMgY2hhbmdlIGluIGEgc2VwYXJhdGUgcGF0Y2guDQoNCkFncmVlZC4NCklz
+IGl0IGF0dGFjaGVkIHRoZSBlbmQgb2Ygc2VyaWVzPyBPciB0aGUgZmlyc3Q/DQoNClRoYW5rcywN
+CkphY2t5DQo=
 
