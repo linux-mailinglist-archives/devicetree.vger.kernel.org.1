@@ -1,154 +1,136 @@
-Return-Path: <devicetree+bounces-187955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD05CAE1E89
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:27:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0659DAE1E70
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:22:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCB506A3DE0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:25:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DC1E3AE8B8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090142E62B1;
-	Fri, 20 Jun 2025 15:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AEE82C374E;
+	Fri, 20 Jun 2025 15:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V/UMaeWA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fcG0fTot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434BC2C0302;
-	Fri, 20 Jun 2025 15:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A40B22C3275;
+	Fri, 20 Jun 2025 15:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750433019; cv=none; b=jk4gMfCztH/rqYJnXpB3WD8y/wB70jw4PeaHIQXY8/rj2BvBK4CT8M1MO+Wp5E+3uLi36zL8LmqJlaxT2cIZYbf1kLB0sNChd2Lm5nn3DrRjDuoM0I/XjR8g1R4fUb98e9rQvK7uSxguSFYuI7fOolv4CmbLAzd0j5ZBGiSFG/A=
+	t=1750432907; cv=none; b=nHhkepBHeIdnm6OWrknGTAxZmW3VlhsAS8DKukQW0ejx/PLKaFj3M+nyCIUJ5szUUQDQiN8Hkk8k9gfoH8PAan3373kWpi1ehFNDhovFr7u2Fi0IhVZCleCUF0fPvvJbBA4BYnYhWA3vWuAGrniS4+Bc+Z49jcyXcn5OACJWyMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750433019; c=relaxed/simple;
-	bh=dvtN9eJlUFurArdkvVXhsE2a5bCUKBuAQsM5cOZ1ULE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=U+LxttqsU3lqEH5uwZCFApT9mdqqL2VuInn0Pm2GpcdEFGvZGbbn07XD2fBoSpF5bC+jhZfWR5hSdYjlApkLs5qE3OOIahly48tV/BLw5Fv3T78J+QTcftaCvljrKUuxjLfjVJnA26W+GamSFFAj0ISvneZxrcTa99ON2PpE1JU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V/UMaeWA; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-451d41e1ad1so15084895e9.1;
-        Fri, 20 Jun 2025 08:23:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750433015; x=1751037815; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mNAXzfmh7HFb857b4kPNw1wjOg7WWnf6DO/mp8yJ9IU=;
-        b=V/UMaeWANHT5yNDPzRREVPfL5IUh6ez+wasTPC3nI59nux5DpL7bWCy4YZ1ONwAlfy
-         /V5izPlrx07uy7uifKdzD5MxCIPj3QTpfOMub4ZS2eUruOWYaMSh3BgERm25gsKeOX4U
-         VoXqP36MQlTIT4Q214gW+66MTC6x7AuSiwD1Gk9+ynBt/HzZhm4S86gR2WYEkQVL6l8l
-         zlNqqkEZ3/9zHTnUQHPUYxVEGACiH7Gs6cwv2jYZ6cPThXnc5ge1wCnyUEYcmOICIef/
-         ZO0AP35VjkJXarfhtBCPN42XJFMgf5VoUq/5LD8LT8zQUNFOUfpYuVSWEMLz1hjCHfgx
-         vdtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750433015; x=1751037815;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=mNAXzfmh7HFb857b4kPNw1wjOg7WWnf6DO/mp8yJ9IU=;
-        b=FIs6Xy4hQXqsjBsusWYfORbfUyK9MO/abGC17tqCJ8mHIduocARo+2e13n5QIXgRpe
-         4wNiG5Je5KEQIdcuGmD3dd60Y73wz6rhJl4XmKvyP5zs8oTfM/zRfEU5mA2R2zFsJ06/
-         x6Tm4wZLIbKWaewW+QKlfiXBxIivl+3tVZ04sx7qu7wiXQmouiOGtuXbaynalDDHqK6g
-         iwPlHXNjsEIZG8GrFmuGURx9zW1UTy6a0fde5g7oIjIWkNMu4lY+NjxRkIc5YcPByl7f
-         3LA+kd/JHvJ4v9odcY+jeGUUnjTMngjkJE89tDeWfpXovoiveZd0q11DHqecPYS4/D04
-         mStg==
-X-Forwarded-Encrypted: i=1; AJvYcCV8J6vCBX88XJiH2vSvAPCfpiRrbrG7Rqw5nRIQbNkiqvDWubWZLndkqkBhy9yP6ozZaT6lCuE1Qcf7uw==@vger.kernel.org, AJvYcCVumfv91yMUjZLK7PmF4EY2M1mppEpvWaJGj3sBXZbeETWzd+9am8+JcwsuwVOory1L+xeRlHmITLI5L5oZMpk=@vger.kernel.org, AJvYcCXkYJ6GQ0Om/1lnKfLomiKFfNPry4OxT04BG7isrHhhEnsag4SZ8caLa8C6dtAWqOterzSzT8y6aqxV@vger.kernel.org, AJvYcCXrWOmPKUdmsyfumP2f1OwPqc7jfoXlV++cVcaa9Kac209ANRdtC85vXEqVY4cvBTPAalHGwQodYKa5rUhc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxccZpzymLWKkxHhfuvkRioTyhEYNdPFAmmyQzxlTfDxIMrd4jy
-	+nyS5rwkyIUpUUFDaaTkTz4VfPdtTQ15BZr0BqqRmjUaTAHb+hvoEJs52xrvjtZLWX0=
-X-Gm-Gg: ASbGncu2H8f2WeyFC5MbRJ01VyA2GvICaqDjHDzvjjXyJFVe7K3cTH1ysxlmLFCLR3h
-	EC4sHGFRvVkksoNd3xifXFVyJrAnpaQFng+uBdlC4v37YyTaq7iW/8llohmkPgU0WSv4vTCuaa3
-	MWsTgB6zXkLZ0M6bN53WXGErtErLzLsHHTybx54nI+GOMLKbVoWzFcKqDRUNxwVkqvjzP9XzcJI
-	VVMh0m/H7BjPbnDHb5bZRC8KecJ7ImPVGlo+07yMMz/AAl3HwZK5aaRgvEFZc2a6GPqs0Fh/oSL
-	X2VIcVgED5kYBTufOzUVgcj5O+ivAe4+Ct52wF2f83K7VdDmXRyO1tKnw07gh5xnWi+JMLW7hpo
-	GeqtrQuHBuatrtk2vGdos4MZ/qAK0y91v3XauEJiOI/csQ6I=
-X-Google-Smtp-Source: AGHT+IFihYFIqfttAHK5bJgnnS222iRdKvNF+qBgQzgtvlXsebluzOgG6hM64nIzrSpanqXdiR1uSg==
-X-Received: by 2002:a05:600c:46cb:b0:43c:f1b8:16ad with SMTP id 5b1f17b1804b1-4536877fc08mr16753075e9.30.1750433015111;
-        Fri, 20 Jun 2025 08:23:35 -0700 (PDT)
-Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453624554cfsm23696085e9.0.2025.06.20.08.23.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 08:23:34 -0700 (PDT)
-Sender: Igor Korotin <igorkor.3vium@gmail.com>
-From: Igor Korotin <igor.korotin.linux@gmail.com>
-To: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Alex Hung <alex.hung@amd.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Igor Korotin <igor.korotin.linux@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>,
-	Tamir Duberstein <tamird@gmail.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Xiangfei Ding <dingxiangfei2009@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Benno Lossin <lossin@kernel.org>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Gary Guo <gary@garyguo.net>,
-	Len Brown <lenb@kernel.org>,
-	Trevor Gross <tmgross@umich.edu>
-Subject: [PATCH v8 3/9] samples: rust: platform: conditionally call Self::properties_parse()
-Date: Fri, 20 Jun 2025 16:21:03 +0100
-Message-ID: <20250620152103.282763-1-igor.korotin.linux@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
-References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+	s=arc-20240116; t=1750432907; c=relaxed/simple;
+	bh=1iz7mciR4S3YtTkd03g9kECW2fd2PI+JECbSb6pESr8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VGo78ZJJGgwqrGDWZgJiOSOH0rjAb9Gl6J6TX0umhFBvR/rY2xv7ZaXkSW4IHYqYU/QxPudyzHjY+6h2uVnyAEqDfqJ9BX+QKVScoBlZ/Z5ww15qz1crHld6d0gmrwQBiT+rZDleZ4LkepHNNPwbp6jDwdYUGBKCldxEU4Rg6eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fcG0fTot; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 33C6341D11;
+	Fri, 20 Jun 2025 15:21:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1750432902;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=x/e6LiudPsu/XWNdoyPtUaZGCXB8UHcl+kvG7URbQ38=;
+	b=fcG0fTotkaaUETz5PQGBGmcF+EgyyrdJoD/gngd1tBFBfBxo6aUk04Z9jj+6AExPr1R4ks
+	Mfbu9VG3zGWPLHXCSimpgrzIoVUjmj3NVxukVhqMZfumZHRuipddhgxwhzqbVa0s7/0cY5
+	WSFqq9HTeWoDcw0hFn7Zs3gLv5xftkHppIqSnnkV9l5g0uMc1STg0DxWEOZLXa3u6X1Vfk
+	9GblIIfz3q7M82xmcGtN0n8ClRewGXiHAcqksnK3uQsB5wjTBzafuO0zv95u0LfOieGyjU
+	VSv2mu6oTKUj7DDgmGuAavDVVRXRaGNVtSK6wDFwnP1iyk5PMtcEISAc9XAO0g==
+From: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Subject: [PATCH v4 0/4] Describe the cameras in the PinePhone Pro dts
+Date: Fri, 20 Jun 2025 17:21:31 +0200
+Message-Id: <20250620-camera-v4-0-0201a8ed5fae@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHt8VWgC/2XO0Q6CIBiG4VtxHEeDHwzpqPtoHQBCsqU0cKzmv
+ PfQA13z8PvH844JJRu9TehaTSja7JMPQxn8VCHTqeFpsW/LRkCgJgANNqq3UWGhGsm1dcopgcr
+ jd7TOf9bQ/VF259MY4nftZrpcD4lMMcGmps1FOsmtFDcdwvjyw9mEHi2RDDtkBDYIBTIKmnPNy
+ z/MEbId1kRukBXYKg1CQAsg1T+c5/kHIAPIUBABAAA=
+X-Change-ID: 20250228-camera-7a894befafa7
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Nicholas Roth <nicholas@rothemail.net>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ imx@lists.linux.dev, Olivier Benjamin <olivier.benjamin@bootlin.com>, 
+ ~diederik/pine64-discuss@lists.sr.ht, Dragan Simic <dsimic@manjaro.org>, 
+ Ondrej Jirman <megi@xff.cz>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdekjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedtudehfeeutdffjeeviefgjeetieeuleefkeefgfevfedvlefgiefhheejueejvdenucffohhmrghinheptghouggvsggvrhhgrdhorhhgpdhkvghrnhgvlhdrohhrghenucfkphepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeipdhhvghloheplgduledvrdduieekrddurddvtdgnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopeimughivgguvghrihhksdhpihhnvgeigedqughishgtuhhssheslhhishhtshdrshhrrdhhthdprhgtphhtthhopehrohgshhesk
+ hgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhitghhohhlrghssehrohhthhgvmhgrihhlrdhnvghtpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehimhigsehlihhsthhsrdhlihhnuhigrdguvghv
+X-GND-Sasl: olivier.benjamin@bootlin.com
 
-From: Danilo Krummrich <dakr@kernel.org>
+This series adds support for the Pine64 PinePhone Pro's rear and front
+cameras in Device Tree.
+This is based on some of Ondrej Jirman's patches hosted in his tree at
+https://codeberg.org/megi/linux, but I have also fully reviewed and
+re-written the code from the RK3399 datasheet, the PinePhone Pro
+schematic, and the IMX258-0AQH5 software reference manual.
 
-Only call Self::properties_parse() when the device is of node
+I have tested these changes on my PinePhone Pro and am able to take
+photos from both cameras using libcamera's cam.
 
-Once we add ACPI support, we don't want the ACPI device to fail probing
-in Self::properties_parse().
+This series has raised a question about the proper label name for the
+front/user camera and rear/world camera for phones.
+This series is using "ucam" and "wcam", which is used in a few other
+Rockship DTBs:
+ - arch/arm64/boot/dts/rockchip/px30-evb.dts
+ - rk3399-gru-scarlet.dtsi
 
-Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-Signed-off-by: Igor Korotin <igor.korotin.linux@gmail.com>
+Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
 ---
- samples/rust/rust_driver_platform.rs | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Changes in v4:
+- Dropped "clock-names" property from IM258 as it is absent from the binding.
+- Renamed pinctrl definitions to match the names in the PinePhone Pro datasheet.
+- Collected Rob Herring's acked-by for patches 1 and 2
+- Link to v3: https://lore.kernel.org/r/20250509-camera-v3-0-dab2772d229a@bootlin.com
 
-diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-index 000bb915af60..8579290eecb3 100644
---- a/samples/rust/rust_driver_platform.rs
-+++ b/samples/rust/rust_driver_platform.rs
-@@ -40,7 +40,9 @@ fn probe(
-             dev_info!(dev, "Probed with info: '{}'.\n", info.0);
-         }
- 
--        Self::properties_parse(dev)?;
-+        if dev.fwnode().is_some_and(|node| node.is_of_node()) {
-+            Self::properties_parse(dev)?;
-+        }
- 
-         let drvdata = KBox::new(Self { pdev: pdev.into() }, GFP_KERNEL)?;
- 
+Changes in v3:
+- Fixed new DTB warnings reported by Rob Herring's bot
+- Link to v2: https://lore.kernel.org/r/20250302-camera-v2-0-312b44b4a89c@bootlin.com
+
+Changes in v2:
+- Rebase on mainline
+- Change patch subject to arm64: dts: rockchip
+- Rename new regulators to fit preferred form for fixed regulators
+- Link to v1: https://lore.kernel.org/r/20250228-camera-v1-0-c51869f94e97@bootlin.com
+
+---
+Olivier Benjamin (4):
+      dt-bindings: media: ov8858: inherit video-interface-devices properties
+      dt-bindings: media: imx258: inherit video-interface-devices properties
+      arm64: dts: rockchip: describe I2c Bus 1 and IMX258 world camera on PinePhone Pro
+      arm64: dts: rockchip: describe the OV8858 user camera on PinePhone Pro
+
+ .../devicetree/bindings/media/i2c/ovti,ov8858.yaml |   4 +-
+ .../devicetree/bindings/media/i2c/sony,imx258.yaml |   4 +-
+ .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 138 +++++++++++++++++++++
+ 3 files changed, 144 insertions(+), 2 deletions(-)
+---
 -- 
-2.43.0
+Olivier Benjamin <olivier.benjamin@bootlin.com>
 
 
