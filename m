@@ -1,158 +1,293 @@
-Return-Path: <devicetree+bounces-188001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC68BAE224F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 20:35:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09792AE2267
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 20:43:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 538961BC6D43
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 18:36:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74BD21BC6D2B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 18:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685B12EA746;
-	Fri, 20 Jun 2025 18:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8B62EA75A;
+	Fri, 20 Jun 2025 18:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X5nx7/Gr"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="XmJvixB3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0EFB21FF3D
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 18:35:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC7821FF3D;
+	Fri, 20 Jun 2025 18:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750444546; cv=none; b=hfjZTlfFuuon99nCkOdytJLy5EnMPdYhOSnDw1Qct5PKQBJJw6Oh2TRY8jFewfKiBzPovv6TWy1h55B7YFXATjotHOBrHyc5xxtSESZXfXSTkUpLPrCOXIPZQAuA1N9aVQZDOO/WK6aNIMq1+ofW/KRZqMY4gmMU5OFIufZjTzE=
+	t=1750445011; cv=none; b=dKXRX5OuvU9HeCwYIiTUwd2mQSAHCmwVo2IAzWXALjrFHeqDp8RbbtfInCp6tly0RihC8XY7Ue1JwXoohNGcTcOqvyfIbj4X5KcXD4Qy+L97mQCPlH7sufgyh40za7n43ZOoliXXWU46JqPFv/VbkhCSCgmQ/cI9ySb5ft55ziA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750444546; c=relaxed/simple;
-	bh=JWMSYzBtLnLZCvwsZk3KkGLaQqwSbdl7evbVSyyidtQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WxLeedXx2VA45UaUgJCxiRcgCv8/MLRPzKGbsQIc1LQLCKcAw6a+GaGQ6ZIEZ8YB4oxX4wNomcIHxGgP6/ohujqmSQa6HFnM4LfLOfkgtNfgoYiiOKBuwRh/CaPE3zT62+1tgUPqLW8YxXhArt7hZStdfMPom47CiCKqm+PySXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X5nx7/Gr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55KIYxTk026312
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 18:35:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gJw9p79NQp28rgL0YjqCtfjNT9ZaiNa7ynXf7QFlFhE=; b=X5nx7/Gr7MmRCnEu
-	ylS3DFsjLg6Dqq3SlAo/V3lwIKBV7b1RxrEClRzwr7TloClwe3i3vX1hRNTY20O0
-	lltwffkVdYLQYVcoP51FkX7yBVYgwGWFV8j09CNuUWVKjpaa51WYwOQMDwiOZEux
-	1lUFguT22EJv3rd4mMGu/LYPAjC2sYMHxd01+T6xUUAx3Gxs6CF8RimcXXzYeSyZ
-	ZD2VcC5CJiVw5ZGvX1R/XdzA9kIPNxvgDL7YFboE4Gi7K/5KaAY4v6XU8tJiq5a2
-	SRJJ2gF7NBP5vOtA6dw1LgPkl/GNwb4otu6qBuRAwN0KTGIph8WMJsI/ooBcCcfe
-	PmmcNA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47dd1yg02f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 18:35:43 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d399070cecso380978785a.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 11:35:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750444542; x=1751049342;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gJw9p79NQp28rgL0YjqCtfjNT9ZaiNa7ynXf7QFlFhE=;
-        b=RdmP90PuoEgVRmEmfanGzy2g+ObW9oPz3cRuw6qmOoqp4KMBcc5VH02M28ErRfUKmx
-         sUBPELUmvgHHX4nap9D9m0T+RCFapiS13hRVCNgCYywLYLLl1VaAu0qowId4CMufx3Tn
-         3Wq5G7SXWQUp2ch5jfwjwdUag8geQucTsnRrlrSZbYC0H3y/P0665VAXvyB+//ABAUev
-         tfAYOrrjaoR3f+jILXj9y2TbOw4XxFy0Gjw9oNrIJPh20pZcu1hXQOdXL+wP3Y970QoX
-         EW1NbQK3rb8KyNHIJpKnbFUHl3flW3D9NWw8+raDLwTVxKi4jwumErm9Et8JtBzrnSxT
-         SGng==
-X-Forwarded-Encrypted: i=1; AJvYcCXJYSmEd34rU/GA3Kwv4Bf4a3RaJoUOgC4C/iDAkz8Cj/M/360ZbvRQVZW0RC1IiYR8iy4f5t16MoEO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm69mB/zQuK1gKK/OAf/KRH93MkPwkeyKw1sJizAoNqIjbE1mc
-	R4By0ZtjrcLPxOqf/KpOp/oQfKbS0b2FLRs5LPBC+XhW0eNS25uD/bc/DVdWWlHs1GS8XE7uQD2
-	SLHGQSPsp8PPPoI9QyAwr4LNGnI0aWxJeoyvcUjHpaONU0MEPVgsGFi51rYN3ubrE
-X-Gm-Gg: ASbGncucAD8glWOh5tuwQJ3G364danWUXCwZiCmtDpwe3X2fAPUeYVwyBaUa6qILUHW
-	roZReFdLUPvImij/HGmWyV88H1cKyWrNpM9NzP4019xNzb8rmEfAbvaTdy5IgA4cy1+uM2b5V15
-	7XFoyl2FJKe0GYaCZglZQaPmd7vZdgqF3sWvEv9tG+uCMfC9A0iU2f/RZQzCzN2mHer917lng/f
-	v6vSSFpFEVjimJXTI/1L4Xh7AaenXWFnD7w+m3rhkMj4WdQacdwB1jFX9kOSA7ecta9SN/c1FDn
-	GEnJT+xwS4fMou1PcYSC+pw5gEC8lwXk667jWeu2xGHU7U+kLAhhARgcKLMlAh8miQk5roE6loc
-	arfX6InUy4Ri35J/WhAIfMQGnId0fhbRQPhXWaLyL2zZV12OAYOJs6JUZZ/S6YTs/JV02G0efED
-	g=
-X-Received: by 2002:a05:620a:7003:b0:7d0:a1ac:e83a with SMTP id af79cd13be357-7d3f98e00bfmr464036385a.16.1750444541650;
-        Fri, 20 Jun 2025 11:35:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFsuEvU180uOuJG3lc80Lg0/m23ATne7omtzgMrhGIFzbRZsPZTYyD0LPioJVHR3t63qkWJcA==
-X-Received: by 2002:a05:620a:7003:b0:7d0:a1ac:e83a with SMTP id af79cd13be357-7d3f98e00bfmr464031685a.16.1750444541092;
-        Fri, 20 Jun 2025 11:35:41 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:a2:64d7:15aa:a456:4eca:f826? (2001-14bb-a2-64d7-15aa-a456-4eca-f826.rev.dnainternet.fi. [2001:14bb:a2:64d7:15aa:a456:4eca:f826])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41bbbe4sm369113e87.110.2025.06.20.11.35.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jun 2025 11:35:39 -0700 (PDT)
-Message-ID: <f9f96bf0-3539-4e77-8d3e-b87ddc561925@oss.qualcomm.com>
-Date: Fri, 20 Jun 2025 21:35:37 +0300
+	s=arc-20240116; t=1750445011; c=relaxed/simple;
+	bh=hfeTC/LbrTNu/kIwcjwzlqTcJlOSBsGVhxjsYYmiXcY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EOv9vPdUC5wmBby9XCzDpWSxhz99lmd7Aon6vXfXiJ7xrbxzUusymWrJSfWRSPj6Y+J29Kr8UPxPrN483tUyAkclMyH45h86pes0ZL0akcoOXGTdG8PeSYPTf7thLNB5MO4+LuQSdaf0JFmDdj+6H/WCFwwH+2sKrt8KkHeQEaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=XmJvixB3; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 393753D8762C;
+	Fri, 20 Jun 2025 14:43:21 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id gYTgZfNRbSRD; Fri, 20 Jun 2025 14:43:20 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 4683A3D8762F;
+	Fri, 20 Jun 2025 14:43:20 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 4683A3D8762F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1750445000; bh=TaQQHObo8HRDlJD+n70gAPQXWO2RtYiWYUzJBZk6vh4=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=XmJvixB32vMJfc7yNrKh45ZFj1uA5zrDmuGUdWoqrIS0o+GaD0hiTpxl6/iHNj4jV
+	 9DSmGcn1Xn2WVxgfx9Fs4NiCpGxZCPwkI4J8yVkcm6fax7kpPPyw0AE0icPxyHP8Su
+	 58ZYgmgvW/JVQtM/6AT000t9zJ21VLYPF18qhAgQqafGsUZ6jk5lzph6/RUYVWSG01
+	 o6Vrqj9JvyDjBJSRgi6Pwf4i+7CZcyJWuTEB19ja0OV4kl0KxsL/WhqwEIH9xUfAu2
+	 Q02xezEjgxiS+qMZZ0xrMWBv/e+j1J6aGjsBJx3sTyqTHKECxrT3acwep6l9mWb5LJ
+	 D+d5YMoK7r1wQ==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id uB8q18XrN1G8; Fri, 20 Jun 2025 14:43:20 -0400 (EDT)
+Received: from fedora (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id DCFEA3D8762C;
+	Fri, 20 Jun 2025 14:43:19 -0400 (EDT)
+Date: Fri, 20 Jun 2025 14:43:18 -0400
+From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>
+Subject: Re: [PATCH v7 2/6] mfd: pf1550: add core mfd driver
+Message-ID: <aFWrxtArHjb5nc0M@fedora>
+References: <20250612-pf1550-v7-0-0e393b0f45d7@savoirfairelinux.com>
+ <20250612-pf1550-v7-2-0e393b0f45d7@savoirfairelinux.com>
+ <20250619130337.GA795775@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] ASoC: codecs: wsa883x: Handle shared reset GPIO
- for WSA883x speakers
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
-        kernel@oss.qualcomm.com
-References: <20250620103012.360794-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20250620103012.360794-3-mohammad.rafi.shaik@oss.qualcomm.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <20250620103012.360794-3-mohammad.rafi.shaik@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: pSeXWUwUAfowhhMYWmN3Zib0n168NPH7
-X-Proofpoint-ORIG-GUID: pSeXWUwUAfowhhMYWmN3Zib0n168NPH7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDEzMCBTYWx0ZWRfXw+vAWnEV1BWd
- s4Fj8UfmW6ubo8NmjRT3OBJqIcFdg5uqi75OPd67a2PCAbW+LRxD9rkmbqtXWO9RNj7O66PJgE6
- JH0DcJpNfNwpYVV/uk4h02boGQ1o4hd0DwodA6ZI5iev7A0s0Jpv7z7vAba1Vf/R5u7pBa9AEAh
- acFWoovF2cUO9uGK+FjFqnB9Vuqzh0K5kA4Yc6QcuDDklEBt9pZtd/w7wSqttnhn5Nf+mVutdQv
- nn0US9sBNRP6+Mmqhuk3WEEtxxxgXJ8kw5StqB793NhC0pJH2lX9uba9b0wz2I/QFDuNb5tXcKR
- GAHG6ItIEoqvGz7QMfJ5D+VSjANP00z3qzQZF2UI4iBFBH0FLB19K52cdlqQHz6JJwmAIE32+4h
- coCOUdT/DjPCCKEiKfOO8hDkgg5C063qFgYp8i4JJSf/YQkJoz/u91C9MX1M3KlIb82vB9hz
-X-Authority-Analysis: v=2.4 cv=aseyCTZV c=1 sm=1 tr=0 ts=6855a9ff cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=5BTet7WxsRtOupFzBhsA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-20_07,2025-06-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 malwarescore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
- spamscore=0 mlxlogscore=723 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506200130
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250619130337.GA795775@google.com>
 
-On 20/06/2025 13:30, Mohammad Rafi Shaik wrote:
-> On some Qualcomm platforms, such as QCS6490-RB3Gen2 and QCM6490-IDP,
-> multiple WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
-> To handle such cases, use the reset controller framework along with the
-> "reset-gpio" driver.
+Hi Lee,
 
-How does this handle the fact that resetting one codec will also 
-silently reset another one?
+Thanks a lot for the review.
 
+On Thu, Jun 19, 2025 at 02:03:37PM +0100, Lee Jones wrote:
+> > +static int pf1550_read_otp(const struct pf1550_dev *pf1550, unsigned int index,
 > 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> ---
->   sound/soc/codecs/wsa883x.c | 57 ++++++++++++++++++++++++++++++++------
->   1 file changed, 48 insertions(+), 9 deletions(-)
+> What does OTP mean?
+>
+It's a One-Time Programmable memory with configuration for the pf1550. I will
+expand on this in the commit description of the next version.
+> Why do you have to write to 4 registers first?
+> 
+The pf1550 was designed such that the registers of the accompanying OTP is
+accessed indirectly. Valid keys have to be written to specific pf1550
+registers. After writing the keys, the address of the OTP register to be read
+is then written to PF1550_TEST_REG_FMRADDR and its corresponding value read from
+PF1550_TEST_REG_FMRDATA.
+> This should all be made clear in some way or another.
+> 
+I'll be adding comments on this in the next version.
+> > +			   unsigned int *val)
+> > +{
+> > +	int ret = 0;
+> > +
+> > +	ret = regmap_write(pf1550->regmap, PF1550_PMIC_REG_KEY, 0x15);
+> 
+> No magic numbers.  These should all be defined.
+Will do.
+> 
+> > +	if (ret)
+> > +		goto read_err;
+> > +	ret = regmap_write(pf1550->regmap, PF1550_CHARG_REG_CHGR_KEY2, 0x50);
+> > +	if (ret)
+> > +		goto read_err;
+> > +	ret = regmap_write(pf1550->regmap, PF1550_TEST_REG_KEY3, 0xab);
+> > +	if (ret)
+> > +		goto read_err;
+> > +	ret = regmap_write(pf1550->regmap, PF1550_TEST_REG_FMRADDR, index);
+> > +	if (ret)
+> > +		goto read_err;
+> > +	ret = regmap_read(pf1550->regmap, PF1550_TEST_REG_FMRDATA, val);
+> > +	if (ret)
+> > +		goto read_err;
+> > +
+> > +	return 0;
+> > +
+> > +read_err:
+> > +	dev_err_probe(pf1550->dev, ret, "read otp reg %x found!\n", index);
+...
+> > +static int pf1550_add_child_device(struct pf1550_dev *pmic,
+> > +				   const struct mfd_cell *cell,
+> > +				   struct regmap_irq_chip_data *pdata,
+> 
+> This is not pdata.
+> 
+> > +				   int pirq,
+> > +				   const struct regmap_irq_chip *chip,
+> > +				   struct regmap_irq_chip_data **data)
+> > +{
+> > +	struct device *dev = pmic->dev;
+> > +	struct irq_domain *domain;
+> > +	int irq, ret;
+> > +
+> > +	irq = regmap_irq_get_virq(pdata, pirq);
+> > +	if (irq < 0)
+> > +		return dev_err_probe(dev, irq,
+> > +				     "Failed to get parent vIRQ(%d) for chip %s\n",
+> > +				     pirq, chip->name);
+> > +
+> > +	ret = devm_regmap_add_irq_chip(dev, pmic->regmap, irq,
+> > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > +				       IRQF_TRIGGER_FALLING, 0, chip, data);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "Failed to add %s IRQ chip\n",
+> > +				     chip->name);
+> > +
+> > +	domain = regmap_irq_get_domain(*data);
+> > +
+> > +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE, cell, 1,
+> > +				    NULL, 0, domain);
+> 
+> Why can't all 3 devices be registered in one call?
+> 
+The 3 devices use different regmap_irq_chip s. I have to register them
+separately cause they have different irq domains but perhaps there is a better
+way to handle this?
+> > +}
+> 
+> To be honest, the premise around this function is a bit of a mess.
+> 
+> Please move all of this into .probe().
+Will do.
+> 
+> > +static int pf1550_i2c_probe(struct i2c_client *i2c)
+> > +{
+> > +	const struct mfd_cell *regulator = &pf1550_regulator_cell;
+> > +	const struct mfd_cell *charger = &pf1550_charger_cell;
+> > +	const struct mfd_cell *onkey = &pf1550_onkey_cell;
+> > +	unsigned int reg_data = 0, otp_data = 0;
+> > +	struct pf1550_dev *pf1550;
+> > +	int ret = 0;
+> > +
+> > +	pf1550 = devm_kzalloc(&i2c->dev, sizeof(*pf1550), GFP_KERNEL);
+> > +	if (!pf1550)
+> > +		return -ENOMEM;
+> > +
+> > +	i2c_set_clientdata(i2c, pf1550);
+> > +	pf1550->dev = &i2c->dev;
+> > +	pf1550->i2c = i2c;
+> 
+> What are you storing i2c for?
+> 
+It doesn't need to be stored.
+> Either store dev and irq OR i2c.  You don't need all three.
+> 
+Will do.
+> > +	ret = regmap_read(pf1550->regmap, PF1550_PMIC_REG_DEVICE_ID, &reg_data);
+> > +	if (ret < 0 || reg_data != PF1550_DEVICE_ID)
+> > +		return dev_err_probe(pf1550->dev, ret ?: -EINVAL,
+> > +				     "device not found!\n");
+> 
+> Are you sure?  What if the wrong device was found?
+>
+I can change the error log here to "Invalid device ID: ..."?
+>
+...
+> > +	/* add top level interrupts */
+> > +	ret = devm_regmap_add_irq_chip(pf1550->dev, pf1550->regmap, pf1550->irq,
+> > +				       IRQF_ONESHOT | IRQF_SHARED |
+> > +				       IRQF_TRIGGER_FALLING,
+> > +				       0, &pf1550_irq_chip,
+> > +				       &pf1550->irq_data);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = pf1550_add_child_device(pf1550, regulator, pf1550->irq_data,
+> > +				      PF1550_IRQ_REGULATOR,
+> > +				      &pf1550_regulator_irq_chip,
+> > +				      &pf1550->irq_data_regulator);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = pf1550_add_child_device(pf1550, onkey, pf1550->irq_data,
+> > +				      PF1550_IRQ_ONKEY,
+> > +				      &pf1550_onkey_irq_chip,
+> > +				      &pf1550->irq_data_onkey);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = pf1550_add_child_device(pf1550, charger, pf1550->irq_data,
+> > +				      PF1550_IRQ_CHG,
+> > +				      &pf1550_charger_irq_chip,
+> > +				      &pf1550->irq_data_charger);
+> > +	return ret;
+> > +}
+> > +
+> > +static int pf1550_suspend(struct device *dev)
+> > +{
+> > +	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
+> > +	struct pf1550_dev *pf1550 = i2c_get_clientdata(i2c);
+> 
+> You can swap all of this for:
+> 
+> 	struct pf1550_dev *pf1550 = dev_get_drvdata(dev).
+> 
+Will do.
+> > +
+> > +	if (device_may_wakeup(dev)) {
+> > +		enable_irq_wake(pf1550->irq);
+> > +		disable_irq(pf1550->irq);
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int pf1550_resume(struct device *dev)
+> > +{
+> > +	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
+> > +	struct pf1550_dev *pf1550 = i2c_get_clientdata(i2c);
+> 
+> As above.
+> 
+> > +
+> > +	if (device_may_wakeup(dev)) {
+> > +		disable_irq_wake(pf1550->irq);
+> > +		enable_irq(pf1550->irq);
+> 
+> I would normally expect these to be around the opposite way to the ones
+> in .suspend().
+Do you mean enable_irq_wake and disable_irq in .resume() and the opposite for
+.suspend()?
+> 
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
 
--- 
-With best wishes
-Dmitry
+Thanks,
+Sam
 
