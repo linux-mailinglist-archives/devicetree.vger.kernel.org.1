@@ -1,192 +1,130 @@
-Return-Path: <devicetree+bounces-187739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A19FAE1378
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:56:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2D1AE137E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:57:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E14475A035D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:56:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 801DA19E1411
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:57:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594EB21D59B;
-	Fri, 20 Jun 2025 05:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BE221D3D1;
+	Fri, 20 Jun 2025 05:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IFJWUep7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ewCLpM64"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5F921D001
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 05:56:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975C921C18E
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 05:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750398996; cv=none; b=F/cfD1D+jCIBx6OZX2yZYjOipcIfcypjI+U1DI9vCLMIXsj4gwGJtI2LtAGTuEkYVF/XCrTLi32CZBBi4Nf38Q51eiVNUri828h0uPO2Gn5bB0P6ulu/lAdvRyzdixM7dcckN37iSsF4KmF8PYO96arxTzNMZLttltuuHtUctzQ=
+	t=1750399046; cv=none; b=XBXBkNxA8rcROBamItpENPye84IIFekvrnxAZDI3shddOsMSq15Jw3XDVQzwHfIj83GWoBsY14gK33mdMv8t6TOl8h2mt+V6TysuZ9fca4ttW6cXR2P0o8E8m1lkwPtrKRQFQC2yNd81p7WK2QmCuaASbm6lVPke++LIESpmPBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750398996; c=relaxed/simple;
-	bh=5/mWVtLGD24gCM1si9RPcf5SvCDoz6p53AqCSJC9PcQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rFWPWBPicRXaA9UVUe2wHe9pd1NZPx6MzBJazIz4UM7IQSLroCI1bTtq5283TViGrrPmYZ5jSWWBu/ql6fv56QpAKamnQ88uM5PG+va7d3pburFPv9U9Rtl0Oq35JLAVPR9XwCCitMyaQFguBPBAdQTmtvnwFLtA8diShIHEWB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IFJWUep7; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a4e749d7b2so296614f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 22:56:34 -0700 (PDT)
+	s=arc-20240116; t=1750399046; c=relaxed/simple;
+	bh=cpJEroiiHu2iHscIFAmNE0fBEwKjC8QxSm48smAE+Rc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tXTLwYLcsLEqKxpms07jf6gDwJWlFnwjisFMLzv/A4CFsgX9Ve6qNjsxSVxiA7MjxrCQcorhxdD9CuDMWBN7BVQPVN1k4Bvqa4iRnX2RyH6aMk09tyWia1ujmd8flz+OkVvnaxgoFSmF9AImKEHZ/Bs/uGAChxNtrqgbZ/FBBA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ewCLpM64; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-747abb3cd0bso968429b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 22:57:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1750398993; x=1751003793; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6xdA68MYggUa1w4ukHSrMIxDEwDuDuAxvHXLdqvwJY0=;
-        b=IFJWUep74XQpWvrWThwcpOyqeIArG/WGF0RSkIDu3e8VXObyjJYuKDwCp8pVy63VsL
-         6qF7ohcrAtD1J5bMSVzRu1v0q6JM5rOh01GjDBaw5cTfuNXLkjYT8EqSg2lbOFGAPuxa
-         GcSYsFMBjTrE7Rqp2liQii/xE9OQe/KlOPoZnbR+rs194xvyVit7xCE4GB5RYJjiHM4z
-         Tf6Nh49ncqUgiErfWc+Fi7dN3+aNbGX4N3SQEFER8UzcCyhUyVAiMGH1MTXMh2Xk2ybN
-         hk++uQl2TbCvaDA4eUYw6B+MB3xHR5eSm4Jt4BrvdSMeZNTU74xbiWKiONDkWpzSfV69
-         LvuQ==
+        d=gmail.com; s=20230601; t=1750399044; x=1751003844; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=K1da7fqchV8mO12ekhkgVFYDZ14f/G7ZKMsF+C6kGGg=;
+        b=ewCLpM64IGzIl7Lkj8IqDG4zNIIVDpISG9sdLDu/TMWskit3H1tVBhrUR0eQnUHntV
+         EXMTQQiHW9bUPsMP0fMhBFL/cF0DusxC/62T6YQmGO7v2jyqf/2bck7H7Ltz7JKjv8q3
+         ztQ8fNfmq61mfLQYbbPUCsHKvkkX3WkjPsM/9iySOjDOr1zA9MQPvob8ZtPJXxlmt5zE
+         7KQ4fuQ6alYFR2lebLC54VWDJOejzoswnBfXpHMhHyzGTIIj0loyD4ELh9nWMJiBV7Jv
+         Q96TWsNiPnAIdt6eho68KxgzUsftNcdNiUv/8ngozc9Yh84149XdzPsxVcnX14viaW1J
+         b3wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750398993; x=1751003793;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1750399044; x=1751003844;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6xdA68MYggUa1w4ukHSrMIxDEwDuDuAxvHXLdqvwJY0=;
-        b=p8l9L4NzyB13CsJ15lOh0n7wnQL+snJCG0IURjQfnuFmQ1Y0osDsCNb1POHYdk/77M
-         IagBWaevIuEaLl653DYAATdhWklA64HfR42FaoB5NXMmQ1i4eUdrpiJosFQc+3itKze4
-         1fLUK7fzQz1uyPCEClHo2Gy4oTclbdzNo4aww845jmTe9w1Eu3rClND3t/qneccUGxUY
-         5Qn+mMOIkp20JH86RdE/3sCbIgRKC1jCg4DPM+mBW3146Stzwh5wKvq6zBlgxAVyoeY4
-         1ssH5Ws50eiPurm9PxYrbXVOFk94CAHuG7TH2JBukh1xtsi8cWVGKl/ovksJrBd448Z6
-         gFSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSzQslx/OwM5qjGSBN6UnDRxG7pcd2fHPoJYWF2XW7EXf/mDM38tDlupUBupiV0gisARrMqa3fhE60@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwhfDyovi9T9YbjMArIgZ4kMq9PLQCb/HPWenIHp+VSqARONbH
-	cHB68nJ9x66zQWsJFkBMEFTtUWS/QVK3E3sGNvLmle2Ctwc5HY1kqmyNsrBXc4HToqg=
-X-Gm-Gg: ASbGnctVk73nJUcDwJgLqcHQsEztC0RnDMBfanF+B4naWzrpgJdArQWncQiSChJ0rfy
-	vKsA387TvtdOMnHKJZ/92VnU3FHJmkjKsZLGr0MDDHnDFCRs6p+0ffyU4OdqG2GBkqj3rt4Bgo3
-	PVcmcAAwKC8aD2jEjbFD/yN/1Z8vRD4WDeYAmHPHFqEB9MLcJXCNYlbi6uTmJxGW+qlwk7gOM1L
-	rGSQdxESZyFz2Aq3UA1EkNscIiDyn0s9LBnPTdudOg6zwOYY1u0r9Hk7YTL0KXyxDKo0C6F9/WG
-	I+v3kZbxIeAtNq0Ofv0/YDyc60KrYjW6vBiMQdHrdZ0vNvTUUJwWVbm2UOUIIC09y6yJcpHLAAJ
-	a0sreGmU=
-X-Google-Smtp-Source: AGHT+IG3gZgWQ6JAyDSzJW9KbdQ4hIpZgLdkML6+8ZihoNGPY7Ys650erfeEVxWvpsawBniEN4L/cg==
-X-Received: by 2002:a05:600c:a09:b0:453:c39:d0b1 with SMTP id 5b1f17b1804b1-453653ba8cemr4510965e9.2.1750398992874;
-        Thu, 19 Jun 2025 22:56:32 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45365af83easm9867515e9.25.2025.06.19.22.56.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jun 2025 22:56:32 -0700 (PDT)
-Message-ID: <6068badd-8d33-4660-aef8-81de15d9b566@linaro.org>
-Date: Fri, 20 Jun 2025 07:56:30 +0200
+        bh=K1da7fqchV8mO12ekhkgVFYDZ14f/G7ZKMsF+C6kGGg=;
+        b=Mn+zSwPNbZBZc4AyjAuogJje4ez2xUMONBJKnaDhUsj7eCpG/mAnFc/Qp9kFE4aygm
+         a4M3iVQHNQiIBLYT0bnw4xFxgI/Afs8Jw4txrZDUogHtggCUvvM4li2rz5dY6y4TuAS1
+         YN33nN9VESurwUWtQ0qc0s7nI0dvKQ/8JA6rnqyj6kywyYEKoUaiDzk4c+Hlw94TEAHJ
+         Z3K1iP0akOu5Pvs8mYU1y3s6Sn9/eiDfolhDAearw6ugSq7cg1C1z7BBO9BxNoQdNes5
+         ZQ8eI4oJsFUhQB8unJyoD2ztvsoYLDZymAEBM8g6yof+CWbmFfDLXE8pAcaTa/DhytgV
+         cSxQ==
+X-Gm-Message-State: AOJu0Yx1sQbxPrR4bDFpZqDD1uFVQinuK6mrUqAjL8iy+DW5xIXtRx04
+	HIA9+Xedcz8AiO/IdTkyEtPX5hAwnQbF/Xcf+k87LpM0LfO5vgwGeUeUw3W1tbeY
+X-Gm-Gg: ASbGnctFtXFXH1D4ISFwVIFKlwJyi09TTlbmrrLu8oICbptQ0NeD3+/ZXcub8CYTztJ
+	cxunNNc+9BkAit+kwzg3Se1N2rKGBTVdzzWlmDIPPjxunhLaAWKNaXpYf9pVbnnohEPt+E0C2QW
+	8WRh8Bac/hgiz2vS0M6Lf8swTtjhuVj5+mkxI35re1ssbDTBgL8DK/YjXnviHJ5XWaqh5RefKk2
+	P5GH82Zk9Plvtl6gG9a/6Aviz13p8UJ7LOvyV1nMwSkV8wP/U0o7xUzjcPJ8NtJD8yOHSpimZQ5
+	h2oTqI/VaUnjHa/6mwmY2Jo25gJtDWSkFPaDrnXYGaHNZiKFFUafav1j9ExTsOuih7eqBORw+pu
+	73yUnh92H0J5OT4dB
+X-Google-Smtp-Source: AGHT+IFHoWmkxlH4fYPdnRBfCLqzkjohTXSqk4hN4BXlE7g/sKFBcHK/71a7vcmMsJR5bi0AqKayHg==
+X-Received: by 2002:a05:6a21:7a4c:b0:215:d64d:412e with SMTP id adf61e73a8af0-22029410bd1mr2116243637.20.1750399043546;
+        Thu, 19 Jun 2025 22:57:23 -0700 (PDT)
+Received: from shankari-IdeaPad.. ([2409:4080:e3d:e62b:4376:e838:1d14:fa34])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7490a46acf4sm1241380b3a.11.2025.06.19.22.57.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 22:57:23 -0700 (PDT)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrew@lunn.ch,
+	bbrezillon@kernel.org,
+	Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH] dt-bindings: crypto: Fix schema violation in marvell,orion-crypto.yaml
+Date: Fri, 20 Jun 2025 11:27:08 +0530
+Message-Id: <20250620055708.214343-1-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom,sm8450-videocc: Add minItems
- property
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel test robot <lkp@intel.com>
-References: <20250618-sm8450-videocc-camcc-bindings-single-pd-fix-v1-0-02e83aeba280@quicinc.com>
- <20250618-sm8450-videocc-camcc-bindings-single-pd-fix-v1-1-02e83aeba280@quicinc.com>
- <4657c6d8-8454-478a-aac3-114c6194b72e@linaro.org>
- <5ed72663-da54-46a4-8f44-1ceda4a7d0d9@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <5ed72663-da54-46a4-8f44-1ceda4a7d0d9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/06/2025 12:20, Jagadeesh Kona wrote:
-> 
-> 
-> On 6/18/2025 11:56 AM, Krzysztof Kozlowski wrote:
->> On 17/06/2025 21:07, Jagadeesh Kona wrote:
->>> Add minItems as 1 for power-domains and required-opps properties
->>> to allow this binding to be compatible with both single and multiple
->>> power domains.
->>
->> This is your hardware, so you know how it works thus I expect here
->> arguments why this is correct from the hardware point of view. Without
->> this, it is impossible to judge whether this is a correct change.
->>
->> If I overlook this now, it will be used in discussions by other qcom
->> engineers, so unfortunately you see, you need to prepare perfect commits
->> now...
->>
-> 
-> These clk controllers mainly require MMCX power domain to be enabled to access
-> the clock registers. But to configure the cam & video PLLs in probe, an additional
-> MXC power domain also needs to be enabled.
+The 'reg-names' schema in marvell,orion-crypto.yaml uses 'deprecated: true'
+within 'items' array, which is not valid per the string-array meta-schema.
+This breaks 'make dt_binding_check' with:
 
+'deprecated' is not ['const', 'description', 'enum', 'not', 'pattern']
 
-Then your patch is not correct. Anyway, you should explain the hardware
-in commit msg, why this domain is optional in the hardware.
+Remove the invalid use of 'deprecated' and replace it with
+a comment-style description noting that "sram" is deprecated.
 
-> 
-> Since the initial DTS changes only added MMCX power domain, this change is required
-> to be backward compatible with older DTS and avoid ABI breakage as discussed in below
-> thread.
+Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+---
+ .../devicetree/bindings/crypto/marvell,orion-crypto.yaml       | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml b/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml
+index b44d36c50ec4..b006fe8fee60 100644
+--- a/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml
++++ b/Documentation/devicetree/bindings/crypto/marvell,orion-crypto.yaml
+@@ -32,11 +32,12 @@ properties:
+         deprecated: true
+ 
+   reg-names:
++    description: |
++      Names for register regions. "sram" is deprecated.
+     minItems: 1
+     items:
+       - const: regs
+       - const: sram
+-        deprecated: true
+ 
+   interrupts:
+     description: One interrupt for each CESA engine
+-- 
+2.34.1
 
-So you send incorrect hardware description allowing something which will
-not work? Or how exactly?
-
-Best regards,
-Krzysztof
 
