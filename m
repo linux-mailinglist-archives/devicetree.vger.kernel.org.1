@@ -1,259 +1,354 @@
-Return-Path: <devicetree+bounces-187882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5593CAE194B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:56:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B7EAE1965
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D23D85A51AE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:56:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6860516C0CF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457032836B0;
-	Fri, 20 Jun 2025 10:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD163284B3E;
+	Fri, 20 Jun 2025 10:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="piaOoly6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378F5255250;
-	Fri, 20 Jun 2025 10:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76BD255250;
+	Fri, 20 Jun 2025 10:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750416994; cv=none; b=fsiPt81qCkwk+n4F09olBgrDTczrpfH1ZqAnl6sKgIIaH7wLvsm2s8KPK0N2z33PizpyYhFBNbJxbzTZ3SJy3t4ZOnA3IrZnkml91CUGAuHyfexSTrBvlW4CNF1GlBXZs/NrSNpUGRo6KaQPlN/ryM+rogVAui4JhTzkOEf7aL0=
+	t=1750417173; cv=none; b=ejb/ga1wLGCDqhpOKzKUVP8QEjkwMNum1Jszw6Do92avN0ZwZSJyXQpPdu0NFhOKoqqM/Fkdhc5P5MoLLO/NXUNc8Fhh4zRL9oZscezuRykHE/SopYg5kMvgDwGvTLIX6n0pNMO9M9vQNLOuZnfq+ktvaTzH0LBVwk86gfkghLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750416994; c=relaxed/simple;
-	bh=Qw8J2XLGpP6ZEgYmhSsA6TxzNaQw//2ZbiHHYeylZv0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CGhli3Sq9hqzhg49ifISXY6a/VVjsuEVr+WX9rQVr4DWD3sBvAMrCW5/+dV9Tg0sTOLklsgk8k1H8ewLwUn/EuWdU2ZkhTU3Nc57RSdI8sSkX2uNyY/JJU5XLFJ53BimfLTqiq9TmlTsB5Uet7i+FL+vUxqxUuUZcC8uGrLPB50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.232])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 9A259341000;
-	Fri, 20 Jun 2025 10:56:30 +0000 (UTC)
-Date: Fri, 20 Jun 2025 10:56:19 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Alex Elder <elder@ieee.org>, Guodong Xu <guodong@riscstar.com>,
-	Ze Huang <huangze@whut.edu.cn>, spacemit@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
- K1
-Message-ID: <20250620105619-GYA165049@gentoo>
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
- <5cc644f8-7394-48f2-b62b-1e7cd5ce27d3@ieee.org>
- <9e5e54a9-ef90-4a87-b082-d6eb9c7468c5@iscas.ac.cn>
+	s=arc-20240116; t=1750417173; c=relaxed/simple;
+	bh=0Gh0K0xRFhKRF8AXu7ZZ0JwytEf4US5iUdrDtxqErbk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cGKHqwKGUF2d4FMZgJGd4z2ilAN3XxcOAK29Ika5EJLU+djDHzeVIAta3a4e9vnMeVV/Fdrs3b0KviEWiPcDVHof35lJXCuArZ4JHlggfxR71MK38oG9yZp2+63bSX2EIpF2w0Q077YRtTKG76QLpYRYZl/shDoaLKqFQ0BXjeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=piaOoly6; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55K8lRtW032388;
+	Fri, 20 Jun 2025 10:59:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+fu3w1v+rnRjSpeA3zYgBtl1n21MunfueBeCZusnnoY=; b=piaOoly6EaAIiN7U
+	8wcBVDuu1kSFF/VDqUgC6HVgaWjRhDpvJEXDmrBnWkyYO54BDZlF1bcvMlFs1Cdi
+	FCa3+eHUyeVnKgWs4BD1DBeSf30jV7AQjNg8vr02y9B1qg0PQETBR4FZks3CJ0UN
+	+qTKIy0hNJqHkdL/KmccVfQTOPuZUb2bsEDMlsyIvIq/8SHzIKZDCdEtNH7gm1Lj
+	VToOMgEv0D5ANZZGkYWHii7XeaKGehGFs6ZbkXdEjzKWp5Oq6YLqshH/IV3nvu59
+	hHbqDabh1dncMTEgkSaY5/fMQl/oRBaon0bUna580mN34MIaWEQuNLkbZ0t3OQ9C
+	hzGFAg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47928mtwkn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Jun 2025 10:59:25 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55KAxPTX015654
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Jun 2025 10:59:25 GMT
+Received: from [10.216.41.11] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Jun
+ 2025 03:59:19 -0700
+Message-ID: <71b180b4-6f4d-457e-89ad-0021c455d773@quicinc.com>
+Date: Fri, 20 Jun 2025 16:29:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/8] soc: qcom: geni-se: Enable QUPs on SA8255p
+ Qualcomm platforms
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <psodagud@quicinc.com>, <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
+References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
+ <SlCtr38wFck_Zdxg3nfChaMwe2uSvlQdfRCutdXc-Z2BTqoUOPd9Z9QY0cdREgcdxl40k41wXpszBkVTBB2T7A==@protonmail.internalid>
+ <20250606172114.6618-4-quic_ptalari@quicinc.com>
+ <2eea0b19-1a82-428a-8c04-74ee465e7516@linaro.org>
+Content-Language: en-US
+From: Praveen Talari <quic_ptalari@quicinc.com>
+In-Reply-To: <2eea0b19-1a82-428a-8c04-74ee465e7516@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9e5e54a9-ef90-4a87-b082-d6eb9c7468c5@iscas.ac.cn>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDA3OSBTYWx0ZWRfX/b7i/UZpB1fx
+ Rnw+A058r46sTPyiIi8/JkcRMc7JbXQ4C5K3JlNLFged+aV5e3T1LLg6hqaiDT5ZVfedULbk8h4
+ LLbnGkh20QF1cgIo2Ja9ulNcZhzR2EVPHavkn1TAhx1Q2QaPyOyosrqmjoQgoGl48nc3x1NbARx
+ b9yf6HwHxxDYqDRucGOhWdhJfcIJaT3kF8Vuw2XKsJk/EUVFDVB9oO0jjXelVl5XRr5S5SoYqlw
+ eycaSGU5z8DQIvEN3EdxfFPraHLlEAaP+YHbh72IARJht2+0oQ7N+zyB8IOqOs0GLHmrmxUIweT
+ qKT9fP695Tdb09wdH0vcErx3ZmqQZg+JXyPOfOFQ+5HRBYNYLvAc4W3MWuxEaO9HLICIiX91ux7
+ rUcJOxTK6HbJ7omoDuBF8k+NCid5p/L//mUf3SQzYJB8jIjkDXSTziFafEf1V9eBqBerL8y1
+X-Authority-Analysis: v=2.4 cv=fvbcZE4f c=1 sm=1 tr=0 ts=68553f0d cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8
+ a=YZsGvGvhtn17Bq1j2ksA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 9u2nym_CVBotSDrQCwnF4QyaB-xE6RG5
+X-Proofpoint-ORIG-GUID: 9u2nym_CVBotSDrQCwnF4QyaB-xE6RG5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-20_04,2025-06-18_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
+ mlxlogscore=999 phishscore=0 clxscore=1015 mlxscore=0 impostorscore=0
+ adultscore=0 spamscore=0 suspectscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506200079
 
-Hi Vivian, Alex,
+HI Bryan,
 
-On 23:42 Thu 19 Jun     , Vivian Wang wrote:
-> Hi Alex,
-> 
-> Thank you for your comments on this.
-> 
-> On 6/19/25 23:11, Alex Elder wrote:
-> > On 6/17/25 12:21 AM, Vivian Wang wrote:
-> >> The SpacemiT K1 has various static translations of DMA accesses. Add
-> >> these as simple-bus nodes. Devices actually using these translation will
-> >> be added in later patches.
-> >>
-> >> The bus names are assigned according to consensus with SpacemiT [1].
-> >>
-> >> [1] 
-> >> https://lore.kernel.org/all/CAH1PCMaC+imcMZCFYtRdmH6ge=dPgnANn_GqVfsGRS=+YhyJCw@mail.gmail.com/
-> >
-> > So what you include here very closely matches what Guodong
-> > said in the message above.� Yours differs from his proposal
-> > and that makes it hard to compare them.� I have a few comments
-> > on that below.
-> >
-> >> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> >> ---
-> >> This is my concrete proposal for representing DMA translations for
-> >> SpacemiT K1.
-> >
-> > It's worth acknowledging that this is derived from what Guodong
-> > proposed (it's not "your" proposal in that respect).� That said,
-> > yours is a more complete and "formal" RFP than what he wrote.
-> >
-> I had thought that since the addresses were already there in vendor's DT 
-> [2], and the names were provided by SpacemiT, anything other than the 
-> names was "well-known information". In retrospect, I should have made 
-> the chain of information of this clearer and make it explicit that this 
-> was based on Guodong's note.
-> 
-> So, just to be clear, the information in my proposal is based on 
-> Guodong's reply [1] (link the quoted text), which I had assumed, but not 
-> explicitly confirmed, was based on already addresses in SpacemiT's DT 
-> and names provided by SpacemiT.
-> 
-> [2]: https://github.com/spacemit-com/linux-k1x/blob/k1/arch/riscv/boot/dts/spacemit/k1-x.dtsi
-> 
-> >> For context, memory on the SpacemiT K1 is split into two chunks:
-> >>
-> >> - 0x0000_0000 to 0x8000_0000: First 2 GiB of memory
-> >> - 0x1_0000_0000 above: Rest of memory
-> >>
-> >> DMA-capable devices on the K1 all have access to the lower 2G of memory
-> >> through an identity mapping. However, for the upper region of memory,
-> >> each device falls under one of six different mappings. The mappings are
-> >> provided in this patch as simple-bus nodes that device nodes should be
-> >> added to.
-> >>
-> >> This patch is an RFC because it is not meant to be applied, or at least,
-> >> not certainly meant to be applied. Instead, this is an attempt to come
-> >> to a consensus on how these bus nodes should look like.
-> >
-> > I think the above is what Krzysztof might not have seen.� Perhaps
-> > it could have been made more clear--maybe in the "main" description
-> > section (above the ---) or even the subject line.
-> >
-> Yeah, that's my mistake in organizing the paragraphs.
-> 
-> >> More specifically, I propose that the process proceeds as follows:
-> >>
-> >> - Firstly, relevant parties agree on these bus nodes given here.
-> >> - After that, each time the first user of a bus appears, the series
-> >> �� should include a patch to add the bus required for that driver.
-> >> - If a driver being submitted uses the same bus as another one that has
-> >> �� been submitted but hasn't yet landed, it can depend on the bus patch
-> >> �� from that previous series.
-> >
-> > Getting agreement is good, but otherwise this is basically
-> > the process Guodong was suggesting, right?
-> 
-> Hmm, actually re-reading the discussion now, I realized that I may have 
-> come to this late and missed out on some previous discussions, which 
-> were alluded to in Yixun's messages. (This is again thread around link 
-> [1] in quoted text.) This led me to believe that some of these were not 
-> really agreed upon.
-> 
-> I also realized I think one of the things I may have not yet made clear 
-> is that I would like the bus node to be a *separate* patch. I think this 
-> makes sense, because it's dealing with two different subsystems.
-> 
-> >
-> >> For conventions regarding coding style, I propose that:
-> >>
-> >> - #address-cells and #size-cells are 2 for consistency
-> >> - These bus nodes are put at the end of /soc, inside /soc
-> >> - These bus nodes are sorted alphabetically, not in vendor's order
-> >> - Devices are added into *-bus nodes directly, not appended towards the
-> >> �� end with a label reference
-> >
-> > I do like that you're trying to be more complete and explicit
-> > on what you think needs agreement on.
-> >
-> Being thorough was the main goal of this RFC. If there was previous 
-> agreement on how dma-ranges should be done, I'm sorry for missing them, 
-> but from my observations on the mailing list on how these ended up into 
-> patches I really haven't seen much consistency. Maybe there was 
-> misunderstanding, which I'm hoping to clear up.
-> 
-> (Although see my paragraph above, maybe I haven't been thorough enough.)
-> 
-> >> The K1 DMA translations are *not* interconnects, since they do not
-> >> provide any configuration capabilities.
-> >>
-> >> These bus nodes names and properties are provided compliant with
-> >> "simple-bus" bindings, and should pass "make dtbs_check".
-> >>
-> >> Remaining questions:
-> >>
-> >> - Should storage-bus exist? Or should drivers under it simply specify
-> >> �� 32-bit DMA?
-> >
-> > Explicitly saying storage devices have one-to-one mapping
-> > seems informative, to me.
-sounds good to be explicit 
+Thank you for review.
 
-> >
-> >> ---
-> >> � arch/riscv/boot/dts/spacemit/k1.dtsi | 53 
-> >> ++++++++++++++++++++++++++++++++++++
-> >> � 1 file changed, 53 insertions(+)
-> >
-> > The short summary of what differs between your proposal
-> > and what Guodong said is:
-> > - You sort nodes alphabetically, Guodong did not
-> > - You dropped the unit address
-I'd agree with not adding unit number to the simple-bus
-
-> > - You dropped the comments he had, which indicated which
-> > � devices "belonged" to each mapping
-I went ahead and checked those comments, and found them all about 
-devices under specific bus, I'm not strongly against adding the
-comments but feel it's kind of unnecessary, or even in worst cases,
-it may bring extra confusions.. on the other hand, you can always
-check  device nodes under the bus to find what's there.
-
-exmaple for dram4_range(vendor code)/dma_bus, the comments is
- /* DMA controller, and users */
-what's is 'users'? still have to check the dts, and find them -
-uart, spi, i2c, qspi, hdmi, sounds..
-
-If people really want to add comments and help others to understand
-this patch, then I'd suggest to add explanation in commit message(better?)
-to fully describe all the busses, or why choose this name? -
- storage/multimedia/pcie/camera/dma/network_bus
-pretty much in much high level perspective..
-
-> > - You added a compatible property to each ("simple-bus")
-> > - You added an explicit (empty) ranges property to each
-> > - You add #address-cells and #size-cells properties, both 2
-> > - Your dma-ranges properties are identical to Guodong's,
-> > � for all nodes
-I think those all above already exist in Guodong's version which
-align his idea
-
-> >
-> That was a good summary. Thanks!
+On 6/17/2025 12:23 AM, Bryan O'Donoghue wrote:
+> On 06/06/2025 18:21, Praveen Talari wrote:
+>> On the sa8255p platform, resources such as clocks,interconnects
+>> and TLMM (GPIO) configurations are managed by firmware.
+>>
+>> Introduce a platform data function callback to distinguish whether
+>> resource control is performed by firmware or directly by the driver
+>> in linux.
+>>
+>> The refactor ensures clear differentiation of resource
+>> management mechanisms, improving maintainability and flexibility
+>> in handling platform-specific configurations.
+>>
+>> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+>> ---
+>> v5 -> v6
+>> - replaced dev_err with dev_err_probe
 > 
-> My main goal of organizing the bus this way is making it actually pass 
-> "make dtbs_check". I'm not sure if Krzysztof still objects to my reading 
-> of simple-bus.yaml though.
-It would be great if DT maintainer can clarify, or give an ACK
+> You've missed two opportunities for dev_err_probe() in this submission.
+
+Thank you for pointing out. Yes i can see two more dev_err in new API.
+Will address in next patch.
 
 > 
-> By the way, I don't think I will be making an RFC v2 of this. I think we 
-> should get everything sorted under this one thread.
+>> - added a check for desc->num_clks with MAX_CLKS, an error if
+>>    the specified num_clks in descriptor exceeds defined MAX_CLKS.
+>> - removed min_t which is not necessary.
+>> - renamed callback function names to resources_init.
+>> - resolved kernel bot warning error by documenting function
+>>    pointer in geni_se_desc structure.
+>>
+>> v3 -> v4
+>> - declared an empty struct for sa8255p and added check as num clks.
+>> - Added version log after ---
+>>
+>> v1 -> v2
+>> - changed datatype of i from int to unsigned int as per comment.
+>> ---
+>>   drivers/soc/qcom/qcom-geni-se.c | 77 +++++++++++++++++++++------------
+>>   1 file changed, 49 insertions(+), 28 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/qcom-geni-se.c 
+>> b/drivers/soc/qcom/qcom-geni-se.c
+>> index 4cb959106efa..5c727b9a17e9 100644
+>> --- a/drivers/soc/qcom/qcom-geni-se.c
+>> +++ b/drivers/soc/qcom/qcom-geni-se.c
+>> @@ -101,10 +101,13 @@ struct geni_wrapper {
+>>    * struct geni_se_desc - Data structure to represent the QUP Wrapper 
+>> resources
+>>    * @clks:        Name of the primary & optional secondary AHB clocks
+>>    * @num_clks:        Count of clock names
+>> + * @resources_init:    Function pointer for initializing QUP Wrapper 
+>> resources
+>>    */
+>>   struct geni_se_desc {
+>>       unsigned int num_clks;
+>>       const char * const *clks;
+>> +    int (*resources_init)(struct geni_wrapper *wrapper,
+>> +                  const struct geni_se_desc *desc);
+>>   };
+>>
+>>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
+>> @@ -891,10 +894,47 @@ int geni_icc_disable(struct geni_se *se)
+>>   }
+>>   EXPORT_SYMBOL_GPL(geni_icc_disable);
+>>
+>> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
+>> +                 const struct geni_se_desc *desc)
+>> +{
+>> +    struct device *dev = wrapper->dev;
+>> +    int ret;
+>> +    unsigned int i;
+>> +
+>> +    if (desc->num_clks > MAX_CLKS)
+>> +        return dev_err_probe(dev, -EINVAL,
+>> +                     "Too many clocks specified in descriptor:%u (max 
+>> allowed: %u)\n",
+>> +                     desc->num_clks, MAX_CLKS);
 > 
-Instead, from a SoC tree maintainer's perspective (whom taking care of
-merging all the dts files), I'd rather perfer an independent or
-separated patch for this given every party reached consesus, so we could
-get this patch merged first and early, instead of getting them distributed all
-over in different series, IMO, separated patches brings more dedependencies
-if more than two series require one bus and result in more merge conflicts..
-Besides, introducing new busses result in re-arrangement of previous nodes,
-those like uart, i2c (even they have no DMA feature implemented currently)..
+> I think this is an extraneous add, we should trust the array indexes 
+> inside our own driver that we control.
+> 
+> Actually why do we have a MAX_CLKS ? We specify a list of clk names with 
 
-> Thanks again for taking a look.
-> 
-> Vivian "dramforever" Wang
-> 
+MAX_CLKS is needed for static declaration of "struct clk_bulk_data 
+clK[MAX_CLKS]" which is need to save clk related info.
 
--- 
-Yixun Lan (dlan)
+otherwise we allocate dynamic memory instead of static.
+
+> aggregate-initialisation and ARRAY_SIZE() of the aggregate.
+> 
+> Like so:
+> 
+> static const char * const qup_clks[] = {
+>          "m-ahb",
+>          "s-ahb",
+> };
+> 
+> static const struct geni_se_desc qup_desc = {
+>          .clks = qup_clks,
+>          .num_clks = ARRAY_SIZE(qup_clks),
+> 
+>> +
+>> +    wrapper->num_clks = desc->num_clks;
+>> +
+>> +    for (i = 0; i < wrapper->num_clks; ++i)
+>> +        wrapper->clks[i].id = desc->clks[i];
+>> +
+>> +    ret = of_count_phandle_with_args(dev->of_node, "clocks", 
+>> "#clock-cells");
+>> +    if (ret < 0)
+>> +        return dev_err_probe(dev, ret, "invalid clocks property at 
+>> %pOF\n", dev->of_node);
+>> +
+>> +    if (ret < wrapper->num_clks) {
+>> +        dev_err(dev, "invalid clocks count at %pOF, expected %d 
+>> entries\n",
+>> +            dev->of_node, wrapper->num_clks);
+>> +        return -EINVAL;
+>> +    }
+> 
+> This code OTOH makes way more sense as we are validating our internal 
+> num_clks variable which we have enumerated ourselves against a DT input 
+> which we are consuming.
+
+Yes, we have fixed clks which are enumerated in desc wrt DT.
+
+> 
+>> +
+>> +    ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+>> +    if (ret) {
+>> +        dev_err(dev, "Err getting clks %d\n", ret);
+>> +        return ret;
+>> +    }
+>> +
+>> +    return ret;
+>> +}
+>> +
+>>   static int geni_se_probe(struct platform_device *pdev)
+>>   {
+>>       struct device *dev = &pdev->dev;
+>>       struct geni_wrapper *wrapper;
+>> +    const struct geni_se_desc *desc;
+>>       int ret;
+>>
+>>       wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
+>> @@ -906,36 +946,12 @@ static int geni_se_probe(struct platform_device 
+>> *pdev)
+>>       if (IS_ERR(wrapper->base))
+>>           return PTR_ERR(wrapper->base);
+>>
+>> -    if (!has_acpi_companion(&pdev->dev)) {
+>> -        const struct geni_se_desc *desc;
+>> -        int i;
+>> -
+>> -        desc = device_get_match_data(&pdev->dev);
+>> -        if (!desc)
+>> -            return -EINVAL;
+>> -
+>> -        wrapper->num_clks = min_t(unsigned int, desc->num_clks, 
+>> MAX_CLKS);
+>> -
+>> -        for (i = 0; i < wrapper->num_clks; ++i)
+>> -            wrapper->clks[i].id = desc->clks[i];
+>> -
+>> -        ret = of_count_phandle_with_args(dev->of_node, "clocks", 
+>> "#clock-cells");
+>> -        if (ret < 0) {
+>> -            dev_err(dev, "invalid clocks property at %pOF\n", 
+>> dev->of_node);
+>> -            return ret;
+>> -        }
+>> +    desc = device_get_match_data(&pdev->dev);
+>>
+>> -        if (ret < wrapper->num_clks) {
+>> -            dev_err(dev, "invalid clocks count at %pOF, expected %d 
+>> entries\n",
+>> -                dev->of_node, wrapper->num_clks);
+>> +    if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
+>> +        ret = desc->resources_init(wrapper, desc);
+>> +        if (ret)
+>>               return -EINVAL;
+>> -        }
+>> -
+>> -        ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+>> -        if (ret) {
+>> -            dev_err(dev, "Err getting clks %d\n", ret);
+>> -            return ret;
+>> -        }
+>>       }
+>>
+>>       dev_set_drvdata(dev, wrapper);
+>> @@ -951,8 +967,11 @@ static const char * const qup_clks[] = {
+>>   static const struct geni_se_desc qup_desc = {
+>>       .clks = qup_clks,
+>>       .num_clks = ARRAY_SIZE(qup_clks),
+>> +    .resources_init = geni_se_resource_init,
+>>   };
+>>
+>> +static const struct geni_se_desc sa8255p_qup_desc;
+>> +
+>>   static const char * const i2c_master_hub_clks[] = {
+>>       "s-ahb",
+>>   };
+>> @@ -960,11 +979,13 @@ static const char * const i2c_master_hub_clks[] = {
+>>   static const struct geni_se_desc i2c_master_hub_desc = {
+>>       .clks = i2c_master_hub_clks,
+>>       .num_clks = ARRAY_SIZE(i2c_master_hub_clks),
+>> +    .resources_init = geni_se_resource_init,
+>>   };
+>>
+>>   static const struct of_device_id geni_se_dt_match[] = {
+>>       { .compatible = "qcom,geni-se-qup", .data = &qup_desc },
+>>       { .compatible = "qcom,geni-se-i2c-master-hub", .data = 
+>> &i2c_master_hub_desc },
+>> +    { .compatible = "qcom,sa8255p-geni-se-qup", .data = 
+>> &sa8255p_qup_desc },
+>>       {}
+>>   };
+>>   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
+>> -- 
+>> 2.17.1
+>>
+>>
+> 
+> ---
+> bod
 
