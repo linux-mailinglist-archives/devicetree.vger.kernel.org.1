@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-187772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135C1AE14E4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:27:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50B0AE14E8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:28:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8584C19E2921
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:28:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69FDD1755A3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 301FD227B81;
-	Fri, 20 Jun 2025 07:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C342B30E85C;
+	Fri, 20 Jun 2025 07:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rPLgba/j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWnJf0yG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC4130E85C
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 07:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9D8227B81
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 07:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750404467; cv=none; b=QF+vUMZn3Xn+bhuIqm004MGVKaQ3D785GY+7vKTc5orjFSGWYh2uCkV6aV8kn5Afs/rahLse3fuAST21eqtQgyJlnvf+nvCQA+aeBGYxWCfxWVK8ssgVYwfp1VR06XBZ3GzQExc61auCnMgH1stjoQ1Arbmr6GioKmYrPHT9cQE=
+	t=1750404516; cv=none; b=a5UNyKcyouSBkVXUMTeyz7yW6OzMArBvDs/Mj27D4RrEWDi4uiK0fNYQcVo6OW2pc2KaLfRbNslFXJV+UCDfmw0hHoyss7+ebsENXIFI5xUGfKHXsk7xS7FhtdoxSxLOVgLd6p72ySd8YjdAmaj1kVRtiMjxoEcheZl4QZgi84M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750404467; c=relaxed/simple;
-	bh=glK0OkxsOOdQ+2F37FlJiX8MDpqmVygs0MvAxwZYHAM=;
+	s=arc-20240116; t=1750404516; c=relaxed/simple;
+	bh=S70XKRYBaw1mAzuZMLTGJ4yyDg8pvgH6xFea1aFdfvQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gs9XscQUH4qdbWyMecLv8XSODC92Olyenv8xVH5TbZAh8jrz+tqPw2Fs6d9OOh5qn4TswVR3Hntfvr8HVt1qt3ZsTnbIcrPS4qcgfJe3gpIWQVAYz033MHc96QVeJZE01Y1+5Jch8Uc0Uag6gYi4oRZ2zrBjA+y1CZa6rTl5Z+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rPLgba/j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D536C4CEE3;
-	Fri, 20 Jun 2025 07:27:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dnDflkMCC25VKfQp1u5rSFVFE54CCOXafvIMSTj/6C65mSFHfY8qMW4tIeStllok/L7l5ocx7XvhGiAGzmOT19zSIDTEkXePoyLtVUE2jAsdyIxAK+EOk3qIPU5VD/7Q85jRBNYdNB8JOEGq2h+ASHp/f+iIcWvpemvdzF3Txqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWnJf0yG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EEE6C4CEE3;
+	Fri, 20 Jun 2025 07:28:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750404466;
-	bh=glK0OkxsOOdQ+2F37FlJiX8MDpqmVygs0MvAxwZYHAM=;
+	s=k20201202; t=1750404516;
+	bh=S70XKRYBaw1mAzuZMLTGJ4yyDg8pvgH6xFea1aFdfvQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rPLgba/jBbJOYPqkSCfSTIwDAinwlUfz0lO3P47wB2y3GzgO4hJ5AnFfCcDE7Uds6
-	 Au6tnCFVLyDXGPEnV8EPQ61jEFMxBbsLChK6xCTbNT9CGtUj+JiUSmUQWkvmz2uIY2
-	 9QmkclucH/vd6kFYr4P8nqwLb/o3w7MNhU3lgskXO+7gG4wySyNPPAKx+8oVSZ7dmz
-	 QQDoH/iMuTtVsfU8AeNZRtiuZLfckM7kv0IaGhGlu0ZGI8vOl9W5BUC0Meb4ne7xCX
-	 xlPbh0dCScaL1fbo4gxFAzjwsaTamhU7NELwQaUa2B0RqRrJYP2f42b6XlvHs5rs2z
-	 BDdWe+ugX1UfA==
-Message-ID: <8afd468e-c394-41e5-8578-016b324db7f8@kernel.org>
-Date: Fri, 20 Jun 2025 09:27:42 +0200
+	b=PWnJf0yGWfSEfrZAYuoBm8dYjC7/a4pmiw8RiNBr7c6tQF47RrbNA/BNMgpg6qJ23
+	 x977Z7W2elyXqQrnyWg8MovLRc64RNstMKL2PiDirZsa7bpkR5dKExf+heSTDCa2Fy
+	 ndeCWYfksHjHUQetPBv7uTkQRLRryyNkMpc2eczxk7MgjBuL5PGANJKkt0oNvDrz+s
+	 p/pPHdrrGbWI/DrbP0L27tQdrFS8F0vbN8kReNs9V6/yS94WR3A+/mlry5vqa8vZhy
+	 23CcaNVigAjx0sNRBIiVLkr9jGTr76M4AogNInkBCl8NIDE70PuKjhUEkN6IS1rnfj
+	 uNi3UNQMXEK4g==
+Message-ID: <615522b2-544f-487d-aeb1-5ba069c322cd@kernel.org>
+Date: Fri, 20 Jun 2025 09:28:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] drm/tiny: Add MAYQUEEN PIXPAPER e-ink panel
- support
-To: LiangCheng Wang <zaq14760@gmail.com>, conor@kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink
+ panel
+To: LiangCheng Wang <zaq14760@gmail.com>
 Cc: drm@lists.freedesktop.org, devicetree@vger.kernel.org,
  noralf@tronnes.org, robh+dt@kernel.org, onlywig@gmail.com,
- cip-dev@lists.cip-project.org
+ cip-dev@lists.cip-project.org, conor@kernel.org
 References: <20250620035310.735055-1-lcwang@ieiworld.com>
- <20250620071825.741903-1-zaq14760@gmail.com>
+ <20250620071825.741903-2-zaq14760@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,36 +103,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250620071825.741903-1-zaq14760@gmail.com>
+In-Reply-To: <20250620071825.741903-2-zaq14760@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 20/06/2025 09:18, LiangCheng Wang wrote:
-> This series adds support for the MAYQUEEN PIXPAPER e-ink panel
-> (122x250 pixels, SPI-controlled) to the tiny drm subsystem.
+> The binding is for the MAYQUEEN PIXPAPER e-ink display panel,
+> controlled via an SPI interface.
 > 
-> Patches (must be applied in order due to dependencies):
-> Patch 1/3: Adds 'mayqueen' vendor prefix.
-> Patch 2/3: Implements PIXPAPER tiny drm driver.
-> Patch 3/3: Adds PIXPAPER device tree bindings.
-> 
-> Tested on PIXPAPER hardware with linux-5.10.y-cip,
+> Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
+> ---
 
-So this explains incorrect Cc list. Your emails keep bouncing and you do
-not even cared enough to fix it.
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-No, don't work on ancient 5.10 kernels. This is so ancient it should
-have never been used (regardless of what CIP tells you).
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
 
-Using v5.10 kernel as starting point for your driver means you probably
-replicated all the style issues, all the bugs we already fixed.
+Important from above:
 
-This must be developed on latest kernel. You must take latest reviewed
-drivers as your template.
+"ancient tree (don't, instead use mainline) or work on fork of kernel"
 
-Then test it on latest kernel, not CIP!
-
-Then send it from latest kernel, so you will get CC list right.
+That's exactly what you did.
 
 Best regards,
 Krzysztof
