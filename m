@@ -1,331 +1,356 @@
-Return-Path: <devicetree+bounces-187927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70674AE1D0A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:10:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E30BAE1D0E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:10:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7F705A2977
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:09:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BDEE4A6724
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECDBB28E578;
-	Fri, 20 Jun 2025 14:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CC628E578;
+	Fri, 20 Jun 2025 14:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="3UdFHXIV"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="OxkGvU0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406EE28D8E9
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 14:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63CC28DF2D
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 14:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750428616; cv=none; b=PohkFn8FMUNdcj05qJfiVsIAJbNxOqIdV4UMnQ8RxspFUrmlCT7V1PpSlQm1fX8N47R3lvlOWhJsfJJ3kJh8+RrBqA+nHIvSCRfARBvgQD6UiVwa/6l1j7w68zUcgkSd8P3wVhAmDmbPMSrdeaJqzhax+TlibzjfpU1Ws6z14F0=
+	t=1750428646; cv=none; b=uc3ykSDMXhjkFaPrEajAUYny5Ak7gEoYHFpoalygsMefazih/aHtqMK1iak4wX9iXTAt/qP/aoph/Z46xsYubejMpAHF8eE+uTciXkJNVx6FKW1V228KiK4CBh+Uz0/nuxkJPYs8ek0U8oYF3eLV65NFBySqQ/JXgHfd22uTMSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750428616; c=relaxed/simple;
-	bh=TjGiW7i9K3ODr2HIBkdPJY5MK/H2xVSqGYS4lHnPSws=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Uhq9iVQu3bGrGqBiNcNrhB+Aod5rH4aczb98fFke4+cBPTCoN282Zrd9DS8IAgf9rMItT8iRUTyhTkJjywB6Hm0jpeUTujYeMSRLXejZ1BGmOZt/buHCP7jy+VUqlaZAuXS8AKZzk9Ctml7gv7+x4inH0w/PwULhpEt2QVO00gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=3UdFHXIV; arc=none smtp.client-ip=209.85.128.177
+	s=arc-20240116; t=1750428646; c=relaxed/simple;
+	bh=YAqDZHxmNX+RObv8DIq8wmyRMyMZqfUDCmP+WImAVpU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bDHrbqqpJAJrvng5ogf7BqKwSyR0cz3DK3kGxTHDExbaO39MeAETN89dNRJOw2OMPgMSsgyLTcB4+zr8rZiv4IWSFTcQUxSwVi98P48VexxEsZJYxh03yLsSehz/ySVdtmhMb8BeiUYRdbhy8DCTOc6TO71ADY5Qi5W92T5/XHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=OxkGvU0F; arc=none smtp.client-ip=209.85.166.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-708d90aa8f9so19009527b3.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 07:10:14 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-875acfc133dso62973439f.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 07:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750428613; x=1751033413; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r+pLxQe4eVRAY0bh5C+6wdQnLVkUY9s5flt9lCy/28I=;
-        b=3UdFHXIVLpDk8PG41k8WyMpOoDdxWWzipQm9Wpjb2LgaoKVllqPzS5UNvuPCsgZtlW
-         f5lx3j7ezN3PRAfzXIMTjqK16G59N9BbhR4DGlM+de756yeg5b3nCBXszyeEcAFx+IRq
-         UL50dXATwiza4s7PBocviT1aEJwsu7Ob2OVfVtdSxyPUHRmOfELFCsxP4I4k8SxJe5LJ
-         dq3ZDhpBn7CkkkFHTHCbeecUXhtUG2nJJHxB9bv5rQnYl2+k/rAuClaeqSAcprDt//Ys
-         1UCRdp6uJtY4R5YrgwgBwIZWj9pr91qz2z3M5JZF9f9JjNob+Ow11HRNJL9fT49l9vz+
-         KzqA==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1750428644; x=1751033444; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cb95wT6YAeXhB7wAUnmyxgUJVnkrUiVyQ4loitF5Mh0=;
+        b=OxkGvU0FRZib6OX6MGK7Bjr6VPlDLSKHsegvdae/aVAsEe/kHcFFNPDbBDNuPGvdVC
+         0tBqJxesT+33InibM1Ge1xPmK3pt+0yJY0Vu0CA42Ks+PaRKX8THg+oyZ5rbWnyzaU7o
+         CrT7GA8WN+sRAzjZCzR0e7FzUj+pneXEIYX69YgbVf49k3MTR6EpY797+2P9hrrP8yBB
+         x9oVJKWJVhoOfk0uXj7PAG75Koc6fnJ4nH/BB0zw+FEAqZldMuJgSBWFINK/KY/phx1u
+         2eLJOo4nW2nmIOhSFM93QO9prYR36nPcSFdyE0MM6uk8AI7nO+HzebSy8iqC3cKo02VN
+         hAug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750428613; x=1751033413;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r+pLxQe4eVRAY0bh5C+6wdQnLVkUY9s5flt9lCy/28I=;
-        b=Ij3nBC6jErHmXkAYP8ii+6lhE0ibLNU0uEdxpN+vtb7Wt9DhawQu/NBZYAr7Yo0s1X
-         VCAbAcPgtJQbrPYRuqUHnJK+iS+pxsXmIhX+CDt0jcTFSAGJmKBR66r4wSi/xRwelviL
-         PGQfREr9xDHoJDvkjSzLn/tzDn3/MBgx6JNC5+qwo4CDfmMHMhgQq/ixuQrxDcZgLpoP
-         IwoSlH+NOtodP95EgBYQ7woWs9Q6hHZmXRyuIjsPDMG9zY+fwwMCNMF/vm+aqiyKukHK
-         ZDOwWNV09igzUSgDcdSS11dLNS0aPSqdQGZxK+7IKYY60EPxkDRw4YJdyjhNt/Mx7elV
-         4lTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKyq9oJQM9yWxbnarRlj+OLfXT8pwHfhSfc1FlPgDPmsJY6efJKAkv6JpObnnc7JAH87typ63wYqKG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIRVgM7uZ2BmiZqaV3aDqhVYEGiegmFCiRv6toLjp+z1eqR2GE
-	ixAMz5Bt5pk6eSBwMiX+YA4+UGlvSQIVd/Wl6xbG+rtmOgaleW6/XBMhQbZ4dgIKQl+yM1HNSgY
-	ZDcV4REyFgUIinzUfXvXYTuZuyzPDm4McRarrt7liLQ==
-X-Gm-Gg: ASbGncslidvaJ8HFyQo3hsFGx3KigTxOC/45auiAQ3nsThUTl93iE/lf4HRtQCvJPq3
-	4wy5VgY8+C/lhM30qUP2ohbFE/0nIz2mWOZCNcLjSrCv4q95HNUvlwv6V1N6oxIRC5nI1TKdjlX
-	MibVeQSAbRyxVK4tYANH74SpAnqtfAXWI8sM5W8Q3Mpik=
-X-Google-Smtp-Source: AGHT+IErXi1FXvWIfcINPIC2kRfbQWrm886Vqr6UoQFGwv43uK/gV2FH6lDzRfIyRbnRc7wq5KlIwUNxU6fp12JvFqM=
-X-Received: by 2002:a05:690c:6b85:b0:710:f74b:61ab with SMTP id
- 00721157ae682-712c63ed50amr38667807b3.9.1750428612962; Fri, 20 Jun 2025
- 07:10:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750428644; x=1751033444;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cb95wT6YAeXhB7wAUnmyxgUJVnkrUiVyQ4loitF5Mh0=;
+        b=p5Ime5hoZyMgL1okEQbvEy/KY443sVUCsJ76sviWvOmAOYal2+ybc1N3XciqrzQ5b/
+         Oar85sz66C+ST8cHjjYhsK58kcXPK7X0x6S7jxMMYmv+FsKVzem38wi6IV2P84y+X6fy
+         nvJJY3Lj08SYLcOnfjAGtukv7D4FW0QTLfUJGQIRfHBgZKOfPi5k9qLqUehVqR2px2C3
+         xYjLwT1jAGDAVM76RgTvtBdxwQeZIlWq5DPTzDdFyYtd91JBKN9bjf7YEsgE3AJze7Sv
+         qWbhtgeQPj3yctP/4lBP5r7BC0YzFPnHIx9Vif7WtuKyiG38ObLcT2y6U+rDU6y03LqK
+         I2Ag==
+X-Forwarded-Encrypted: i=1; AJvYcCUrc9/RI0tgJv9u9E3az0CePPZARaxVL8pj22UmpFPwaAlw/azKRqOFr3e3OtzyXj+OIh+mFx7wpPLs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzE0MVLr89+FHHDMmhswYSJ7EmFOBvIOnEvb/4EKv4IH4s0TFy6
+	wpIhfMSc7QqLanyACLYiqDnK1jh/rprx5B0CRDt71lx3ldnpDHm/xMyFSyuM/oSX3vA=
+X-Gm-Gg: ASbGnctybJ8XVmYno2W4YGVH1GH0MkCe28JwiXWmv1KxNqz9M4hk6hsYu1HSeibWjwX
+	aMfTpJNxFnSeKrtZu4oljkbNebz1mkgJ8PaQup3PoHwfzLlUPHR1RK2Nbs9NyATpy0JcyAl4UtZ
+	ydL8OOQsq55xAQ2n28pVe+JXe6/v1/jvxp1N5aqQzezIcJ53P3Qn7Fx5HJv1o7dtma8LoldRQtE
+	RrEDQEfqgX/4XspAdJNwkhcd9m4kduPCOqaWDMhzqmajafpymGg4g45kx7ZgAYv55ezlabqemL2
+	9DI0qKO+McX0x2Fp1NXIpg24WEWSoENDZXKY/AJLq7H9zluxKwDMrVhrDVTPqn/UeYPoXLDGxhj
+	mlEbR2m0ur5VcKK1/Ba1MSEn9Hly30XlCeBf2
+X-Google-Smtp-Source: AGHT+IHOWUr/z3EkWBYHmgxBtlE4mt4YGXnWdQgUSVsQC0wQSTfNxZFXIK4wwFK7GGyxDqhayW89fg==
+X-Received: by 2002:a05:6602:26ca:b0:86d:5b3:3b88 with SMTP id ca18e2360f4ac-8762d1b0cedmr243625639f.1.1750428637859;
+        Fri, 20 Jun 2025 07:10:37 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-8762b7adc23sm50782439f.35.2025.06.20.07.10.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jun 2025 07:10:37 -0700 (PDT)
+Message-ID: <8126de92-0338-4cd0-98fc-4f8c37500201@riscstar.com>
+Date: Fri, 20 Jun 2025 09:10:35 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
- <5cc644f8-7394-48f2-b62b-1e7cd5ce27d3@ieee.org> <9e5e54a9-ef90-4a87-b082-d6eb9c7468c5@iscas.ac.cn>
- <20250620105619-GYA165049@gentoo>
-In-Reply-To: <20250620105619-GYA165049@gentoo>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Fri, 20 Jun 2025 22:10:01 +0800
-X-Gm-Features: AX0GCFv9n0bzPRKSi_EV7zEUnvgGx0rfSCuPNUTx-ocg18nmlNPk27cj-wTyKM8
-Message-ID: <CAH1PCMZibCc-P7JQf4WyhkKuT607bWppKfKQ-7eo7-PyNGDAOg@mail.gmail.com>
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for K1
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Vivian Wang <wangruikang@iscas.ac.cn>, Alex Elder <elder@ieee.org>, 
-	Ze Huang <huangze@whut.edu.cn>, spacemit@lists.linux.dev, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] mfd: spacemit: add support for SpacemiT PMICs
+To: Lee Jones <lee@kernel.org>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, troymitchell988@gmail.com, guodong@riscstar.com,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250613210150.1468845-1-elder@riscstar.com>
+ <20250613210150.1468845-3-elder@riscstar.com>
+ <20250619144023.GG795775@google.com>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250619144023.GG795775@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 20, 2025 at 6:56=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
->
-> Hi Vivian, Alex,
->
-> On 23:42 Thu 19 Jun     , Vivian Wang wrote:
-> > Hi Alex,
-> >
-> > Thank you for your comments on this.
-> >
-> > On 6/19/25 23:11, Alex Elder wrote:
-> > > On 6/17/25 12:21 AM, Vivian Wang wrote:
-> > >> The SpacemiT K1 has various static translations of DMA accesses. Add
-> > >> these as simple-bus nodes. Devices actually using these translation =
-will
-> > >> be added in later patches.
-> > >>
-> > >> The bus names are assigned according to consensus with SpacemiT [1].
-> > >>
-> > >> [1]
-> > >> https://lore.kernel.org/all/CAH1PCMaC+imcMZCFYtRdmH6ge=3DdPgnANn_GqV=
-fsGRS=3D+YhyJCw@mail.gmail.com/
-> > >
-> > > So what you include here very closely matches what Guodong
-> > > said in the message above.  Yours differs from his proposal
-> > > and that makes it hard to compare them.  I have a few comments
-> > > on that below.
-> > >
-> > >> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> > >> ---
-> > >> This is my concrete proposal for representing DMA translations for
-> > >> SpacemiT K1.
-> > >
-> > > It's worth acknowledging that this is derived from what Guodong
-> > > proposed (it's not "your" proposal in that respect).  That said,
-> > > yours is a more complete and "formal" RFP than what he wrote.
-> > >
-> > I had thought that since the addresses were already there in vendor's D=
-T
-> > [2], and the names were provided by SpacemiT, anything other than the
-> > names was "well-known information". In retrospect, I should have made
-> > the chain of information of this clearer and make it explicit that this
-> > was based on Guodong's note.
-> >
-> > So, just to be clear, the information in my proposal is based on
-> > Guodong's reply [1] (link the quoted text), which I had assumed, but no=
-t
-> > explicitly confirmed, was based on already addresses in SpacemiT's DT
-> > and names provided by SpacemiT.
-> >
-> > [2]: https://github.com/spacemit-com/linux-k1x/blob/k1/arch/riscv/boot/=
-dts/spacemit/k1-x.dtsi
-> >
-> > >> For context, memory on the SpacemiT K1 is split into two chunks:
-> > >>
-> > >> - 0x0000_0000 to 0x8000_0000: First 2 GiB of memory
-> > >> - 0x1_0000_0000 above: Rest of memory
-> > >>
-> > >> DMA-capable devices on the K1 all have access to the lower 2G of mem=
-ory
-> > >> through an identity mapping. However, for the upper region of memory=
-,
-> > >> each device falls under one of six different mappings. The mappings =
-are
-> > >> provided in this patch as simple-bus nodes that device nodes should =
-be
-> > >> added to.
-> > >>
-> > >> This patch is an RFC because it is not meant to be applied, or at le=
-ast,
-> > >> not certainly meant to be applied. Instead, this is an attempt to co=
-me
-> > >> to a consensus on how these bus nodes should look like.
-> > >
-> > > I think the above is what Krzysztof might not have seen.  Perhaps
-> > > it could have been made more clear--maybe in the "main" description
-> > > section (above the ---) or even the subject line.
-> > >
-> > Yeah, that's my mistake in organizing the paragraphs.
-> >
-> > >> More specifically, I propose that the process proceeds as follows:
-> > >>
-> > >> - Firstly, relevant parties agree on these bus nodes given here.
-> > >> - After that, each time the first user of a bus appears, the series
-> > >>    should include a patch to add the bus required for that driver.
-> > >> - If a driver being submitted uses the same bus as another one that =
-has
-> > >>    been submitted but hasn't yet landed, it can depend on the bus pa=
-tch
-> > >>    from that previous series.
-> > >
-> > > Getting agreement is good, but otherwise this is basically
-> > > the process Guodong was suggesting, right?
-> >
-> > Hmm, actually re-reading the discussion now, I realized that I may have
-> > come to this late and missed out on some previous discussions, which
-> > were alluded to in Yixun's messages. (This is again thread around link
-> > [1] in quoted text.) This led me to believe that some of these were not
-> > really agreed upon.
-> >
-> > I also realized I think one of the things I may have not yet made clear
-> > is that I would like the bus node to be a *separate* patch. I think thi=
-s
-> > makes sense, because it's dealing with two different subsystems.
-> >
-> > >
-> > >> For conventions regarding coding style, I propose that:
-> > >>
-> > >> - #address-cells and #size-cells are 2 for consistency
-> > >> - These bus nodes are put at the end of /soc, inside /soc
-> > >> - These bus nodes are sorted alphabetically, not in vendor's order
-> > >> - Devices are added into *-bus nodes directly, not appended towards =
-the
-> > >>    end with a label reference
-> > >
-> > > I do like that you're trying to be more complete and explicit
-> > > on what you think needs agreement on.
-> > >
-> > Being thorough was the main goal of this RFC. If there was previous
-> > agreement on how dma-ranges should be done, I'm sorry for missing them,
-> > but from my observations on the mailing list on how these ended up into
-> > patches I really haven't seen much consistency. Maybe there was
-> > misunderstanding, which I'm hoping to clear up.
-> >
-> > (Although see my paragraph above, maybe I haven't been thorough enough.=
-)
-> >
-> > >> The K1 DMA translations are *not* interconnects, since they do not
-> > >> provide any configuration capabilities.
-> > >>
-> > >> These bus nodes names and properties are provided compliant with
-> > >> "simple-bus" bindings, and should pass "make dtbs_check".
-> > >>
-> > >> Remaining questions:
-> > >>
-> > >> - Should storage-bus exist? Or should drivers under it simply specif=
-y
-> > >>    32-bit DMA?
-> > >
-> > > Explicitly saying storage devices have one-to-one mapping
-> > > seems informative, to me.
-> sounds good to be explicit
->
-> > >
-> > >> ---
-> > >>   arch/riscv/boot/dts/spacemit/k1.dtsi | 53
-> > >> ++++++++++++++++++++++++++++++++++++
-> > >>   1 file changed, 53 insertions(+)
-> > >
-> > > The short summary of what differs between your proposal
-> > > and what Guodong said is:
-> > > - You sort nodes alphabetically, Guodong did not
-> > > - You dropped the unit address
-> I'd agree with not adding unit number to the simple-bus
->
-> > > - You dropped the comments he had, which indicated which
-> > >   devices "belonged" to each mapping
-> I went ahead and checked those comments, and found them all about
-> devices under specific bus, I'm not strongly against adding the
-> comments but feel it's kind of unnecessary, or even in worst cases,
-> it may bring extra confusions.. on the other hand, you can always
-> check  device nodes under the bus to find what's there.
->
-> exmaple for dram4_range(vendor code)/dma_bus, the comments is
->  /* DMA controller, and users */
-> what's is 'users'? still have to check the dts, and find them -
-> uart, spi, i2c, qspi, hdmi, sounds..
->
-> If people really want to add comments and help others to understand
-> this patch, then I'd suggest to add explanation in commit message(better?=
-)
-> to fully describe all the busses, or why choose this name? -
->  storage/multimedia/pcie/camera/dma/network_bus
-> pretty much in much high level perspective..
->
-> > > - You added a compatible property to each ("simple-bus")
-> > > - You added an explicit (empty) ranges property to each
-> > > - You add #address-cells and #size-cells properties, both 2
-> > > - Your dma-ranges properties are identical to Guodong's,
-> > >   for all nodes
-> I think those all above already exist in Guodong's version which
-> align his idea
->
-> > >
-> > That was a good summary. Thanks!
-> >
-> > My main goal of organizing the bus this way is making it actually pass
-> > "make dtbs_check". I'm not sure if Krzysztof still objects to my readin=
-g
-> > of simple-bus.yaml though.
-> It would be great if DT maintainer can clarify, or give an ACK
->
-> >
-> > By the way, I don't think I will be making an RFC v2 of this. I think w=
-e
-> > should get everything sorted under this one thread.
-> >
-> Instead, from a SoC tree maintainer's perspective (whom taking care of
-> merging all the dts files), I'd rather perfer an independent or
-> separated patch for this given every party reached consesus, so we could
-> get this patch merged first and early, instead of getting them distribute=
-d all
-> over in different series, IMO, separated patches brings more dedependenci=
-es
-> if more than two series require one bus and result in more merge conflict=
-s..
-> Besides, introducing new busses result in re-arrangement of previous node=
-s,
-> those like uart, i2c (even they have no DMA feature implemented currently=
-)..
->
+On 6/19/25 9:40 AM, Lee Jones wrote:
+> On Fri, 13 Jun 2025, Alex Elder wrote:
+> 
+>> Add support for SpacemiT PMICs. Initially only the P1 PMIC is supported
+>> but the driver is structured to allow support for others to be added.
+>>
+>> The P1 PMIC is controlled by I2C, and is normally implemented with the
+>> SpacemiT K1 SoC.  This PMIC provides six buck converters and 12 LDO
+> 
+> six or 12.  Please pick a format and remain consistent.
 
-Hi Yixun,
+"Numbers smaller than ten should be spelled out."
 
-So, here is my proposed plan: I will submit two patches. The first
-patch will introduce the dma-bus node and move the relevant (uart0, uart2
-..uart9) device nodes under it. The second patch will then add the pdma0
-node itself. Please let me know if you have a different approach in mind.
+But I'll use 6 and 12.
 
-Maybe you want to see an independent patchset with just the first patch? Th=
-is
-way it can be merged early without waiting for the pdma0 series.
-Let me know. Thanks.
+>> regulators.  It also implements a switch, watchdog timer, real-time clock,
+>> and more, but initially we will only support its regulators.
+> 
+> You have to provide support for more than one device for this to be
+> accepted into MFD.
 
-On a side note, you mentioned I2C. I searched for upstream I2C DTS nodes
-for the K1 but couldn't find any. I checked the for-next/dt-for-next
-branches in the spacemit-com/linux.git repository. Did I miss something?
+OK.  I'm looking at the other device functions to see if I
+can pick the easiest one.
 
-BR,
-Guodong
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   drivers/mfd/Kconfig         | 11 +++++
+>>   drivers/mfd/Makefile        |  1 +
+>>   drivers/mfd/spacemit-pmic.c | 91 +++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 103 insertions(+)
+>>   create mode 100644 drivers/mfd/spacemit-pmic.c
+>>
+>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+>> index 6fb3768e3d71c..c59ae6cc2dd8d 100644
+>> --- a/drivers/mfd/Kconfig
+>> +++ b/drivers/mfd/Kconfig
+>> @@ -1182,6 +1182,17 @@ config MFD_QCOM_RPM
+>>   	  Say M here if you want to include support for the Qualcomm RPM as a
+>>   	  module. This will build a module called "qcom_rpm".
+>>   
+>> +config MFD_SPACEMIT_PMIC
+>> +	tristate "SpacemiT PMIC"
+>> +	depends on ARCH_SPACEMIT || COMPILE_TEST
+>> +	depends on I2C && OF
+>> +	select MFD_CORE
+>> +	select REGMAP_I2C
+>> +	default ARCH_SPACEMIT
+>> +	help
+>> +	  This option enables support for SpacemiT I2C based PMICs.  At
+>> +	  this time only the P1 PMIC (used with the K1 SoC) is supported.
+>> +
+>>   config MFD_SPMI_PMIC
+>>   	tristate "Qualcomm SPMI PMICs"
+>>   	depends on ARCH_QCOM || COMPILE_TEST
+>> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+>> index 79495f9f3457b..59d1ec8db3a3f 100644
+>> --- a/drivers/mfd/Makefile
+>> +++ b/drivers/mfd/Makefile
+>> @@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_SUN4I_GPADC)	+= sun4i-gpadc.o
+>>   obj-$(CONFIG_MFD_STM32_LPTIMER)	+= stm32-lptimer.o
+>>   obj-$(CONFIG_MFD_STM32_TIMERS) 	+= stm32-timers.o
+>>   obj-$(CONFIG_MFD_MXS_LRADC)     += mxs-lradc.o
+>> +obj-$(CONFIG_MFD_SPACEMIT_PMIC)	+= spacemit-pmic.o
+>>   obj-$(CONFIG_MFD_SC27XX_PMIC)	+= sprd-sc27xx-spi.o
+>>   obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
+>>   obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+>> diff --git a/drivers/mfd/spacemit-pmic.c b/drivers/mfd/spacemit-pmic.c
+>> new file mode 100644
+>> index 0000000000000..7c3c3e27236da
+>> --- /dev/null
+>> +++ b/drivers/mfd/spacemit-pmic.c
+>> @@ -0,0 +1,91 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
+>> + * Derived from code from:
+>> + *	Copyright (C) 2024 Troy Mitchell <troymitchell988@gmail.com>
+>> + */
+>> +
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/mfd/core.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/types.h>
+>> +
+>> +struct spacemit_pmic_data {
+> 
+> s/data/ddata/
+
+I hadn't noticed that convention.  I'll use it.
+
+>> +	const struct regmap_config *regmap_config;
+>> +	const struct mfd_cell *mfd_cells;	/* array */
+> 
+> Hmm ... this is a red flag.  Let's see.
+> 
+>> +	size_t mfd_cell_count;
+>> +};
+>> +
+>> +static const struct regmap_config p1_regmap_config = {
+>> +	.reg_bits	= 8,
+>> +	.val_bits	= 8,
+>> +	.max_register	= 0xaa,
+>> +};
+>> +
+>> +/* The name field defines the *driver* name that should bind to the device */
+> 
+> This comment is superfluous.
+
+I'll delete it.
+
+I was expecting the driver to recognize the device, not
+the device specifying what driver to use, but I guess
+I'm used to the DT model.
+
+>> +static const struct mfd_cell p1_cells[] = {
+>> +	{
+>> +		.name		= "spacemit-p1-regulator",
+> 
+> This spacing is wonky.  Take a look at all the other drivers here.
+> 
+> Also, you probably want to use MFD_CELL_NAME().
+
+Yes, I see that does what I want.
+
+> One is not enough.
+> 
+>> +	},
+>> +};
+>> +
+>> +static const struct spacemit_pmic_data p1_pmic_data = {
+>> +	.regmap_config	= &p1_regmap_config,
+>> +	.mfd_cells	= p1_cells,
+>> +	.mfd_cell_count	= ARRAY_SIZE(p1_cells),
+>> +};
+>> +
+>> +static int spacemit_pmic_probe(struct i2c_client *client)
+>> +{
+>> +	const struct spacemit_pmic_data *data;
+>> +	struct device *dev = &client->dev;
+>> +	struct regmap *regmap;
+>> +
+>> +	/* We currently have no need for a device-specific structure */
+> 
+> Then why are we adding one?
+
+I don't understand, but it might be moot once I add support
+for another (sub)device.
+
+>> +	data = of_device_get_match_data(dev);
+>> +	regmap = devm_regmap_init_i2c(client, data->regmap_config);
+>> +	if (IS_ERR(regmap))
+>> +		return dev_err_probe(dev, PTR_ERR(regmap),
+>> +				     "regmap initialization failed");
+>> +
+>> +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
+>> +				    data->mfd_cells, data->mfd_cell_count,
+>> +				    NULL, 0, NULL);
+>> +}
+>> +
+>> +static const struct of_device_id spacemit_pmic_match[] = {
+>> +	{
+>> +		.compatible	= "spacemit,p1",
+>> +		.data		= &p1_pmic_data,
+> 
+> Ah, now I see.
+> 
+> We do not allow one data from registration mechanism (MFD) to be piped
+> through another (OF).  If you have to match platform data to device (you
+> don't), then pass through identifiers and match on those in a switch()
+> statement instead.
+
+I haven't done an MFD driver before and it took some time
+to get this working.  I'll tell you what led me to it.
+
+I used code posted by Troy Mitchell (plus downstream) as a
+starting point.
+   https://lore.kernel.org/lkml/20241230-k1-p1-v1-0-aa4e02b9f993@gmail.com/
+
+Krzysztof Kozlowski made this comment on Troy's DT binding:
+   Drop compatible, regulators are not re-usable blocks.
+
+So my goal was to have the PMIC regulators get bound to a
+driver without specifying a DT compatible string, and I
+found this worked.
+
+You say I don't need to match platform data to device, but
+if I did I would pass through identifiers.  Can you refer
+me to an example of code that correctly does what I should
+be doing instead?
+
+One other comment/question:
+   This driver is structured as if it could support a different
+   PMIC (in addition to P1).  Should I *not* do that, and simply
+   make a source file hard-coded for this one PMIC?
+
+>> +	},
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, spacemit_pmic_match);
+>> +
+>> +static struct i2c_driver spacemit_pmic_i2c_driver = {
+>> +	.driver = {
+>> +		.name = "spacemit-pmic",
+>> +		.of_match_table = spacemit_pmic_match,
+>> +	},
+>> +	.probe    = spacemit_pmic_probe,
+> 
+> Remove these odd tabs please.
+
+OK.
+
+>> +};
+>> +
+>> +static int __init spacemit_pmic_init(void)
+>> +{
+>> +	return i2c_add_driver(&spacemit_pmic_i2c_driver);
+>> +}
+>> +
+>> +static void __exit spacemit_pmic_exit(void)
+>> +{
+>> +	i2c_del_driver(&spacemit_pmic_i2c_driver);
+>> +}
+>> +
+> 
+> Remove this line.
+
+Sure.
+
+>> +module_init(spacemit_pmic_init);
+>> +module_exit(spacemit_pmic_exit);
+> 
+> Are you sure there isn't some boiler plate to do all of this?
+> 
+> Ah ha:
+> 
+>    module_i2c_driver()
+
+Thanks for Googling that for me.  And thank you very much
+for the review.
+
+					-Alex
 
 
-> >
->
-> --
-> Yixun Lan (dlan)
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("SpacemiT multi-function PMIC driver");
+>> -- 
+>> 2.45.2
+>>
+> 
+
 
