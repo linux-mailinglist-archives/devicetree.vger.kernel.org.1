@@ -1,265 +1,297 @@
-Return-Path: <devicetree+bounces-187942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C772AE1DDB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:53:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1717FAE1DF8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:58:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FA3C1897054
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:53:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 929DF3B924A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911F62BD591;
-	Fri, 20 Jun 2025 14:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AG//5gO2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31902BD5B9;
+	Fri, 20 Jun 2025 14:57:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A1686334;
-	Fri, 20 Jun 2025 14:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBB223183F;
+	Fri, 20 Jun 2025 14:57:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750431178; cv=none; b=lERTXnJmYu7Ett1C4CZdsypcSEYw/PuTw8M8lFDvmQ3igpIrolOSWUiPcFyjEm4i00RT2U0RxkgVDoZGSZE3RpN33xNyZQFguV/5p4BJ9hotSgJC35KCoUFYTGNKD1Nj7yNjbFxl8WEJF98Wu+ZXcdt150iCqOONysHF8jdV5Fk=
+	t=1750431479; cv=none; b=hegUETBMXKduaHz4cG5OnIstxYtIAXMeqm19n4hfqseWpZ5HxfjsQ0e3O3fKZh2mqz3tDVIKsRy3na0uDIGpBip+aiJQ/Fcy8ROx86TEDBckK4p7l/Bi2hUw688fjhXq+I1BCMrOM2rAB4T5wn16gpLrkljWDfy+C90QRh+eeVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750431178; c=relaxed/simple;
-	bh=ZgQEB60w6UqtiFd6A8aQGI0WM2R66I1WY6Jy68Ywk6s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bknnp0IXQzyF2ximjpAZ7vR+mpIKmgI72Vs18fzOxdiISXT3tVyqju6UColWSgoHKSaQVxcV3b0SFLiDh4t9tbF55I6OFB9osl0uSBd6/Aart6hl3rLzxkG5vAG0J5ukbgXvVPKqISFRx/ZMlxfN1/6JP8hRug/QhrawPUbymjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AG//5gO2; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 860647E6;
-	Fri, 20 Jun 2025 16:52:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1750431159;
-	bh=ZgQEB60w6UqtiFd6A8aQGI0WM2R66I1WY6Jy68Ywk6s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AG//5gO2YZzYBe7p+P743mUhJLU8fdxeTBMfXeLUcS0TpGxUEyPHOF6N5k04VKEjW
-	 AoLx7iN5IugGbY1x98ZSP8hkbZfz3AVCdPnVijCel7+kPH5KGrIrt6s8hp5Nxzf3kW
-	 jEYyH0jYUBHjyawDsW5KJ8fwFjD431MGHz0lF4h0=
-Message-ID: <51b6e000-c01e-4d5e-a72a-0817d6745e3e@ideasonboard.com>
-Date: Fri, 20 Jun 2025 15:52:50 +0100
+	s=arc-20240116; t=1750431479; c=relaxed/simple;
+	bh=rtf6fKS0X3lTK+Oyq/JlhDhHWr2lGFEUs4boALAlBYM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WqdsDB93SeCSsE2xku/J0oFuUtM8afPDBVl6kwj1ssu5mIlwrzRXjcjaEF/wLLhzvWS8I4TOMD6puVhvjcUBo+ABTWHNL0wUfEt2ne8/yAC/9hOItlnvDqVoSOqWCola0max266aLGDz8FtyFCRKQ2B2EmpD+OIW7DQt48eehL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.232])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id DDCA7340E0E;
+	Fri, 20 Jun 2025 14:57:56 +0000 (UTC)
+Date: Fri, 20 Jun 2025 14:57:51 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Vivian Wang <wangruikang@iscas.ac.cn>, Alex Elder <elder@ieee.org>,
+	Ze Huang <huangze@whut.edu.cn>, spacemit@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
+ K1
+Message-ID: <20250620145751-GYB165049@gentoo>
+References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
+ <5cc644f8-7394-48f2-b62b-1e7cd5ce27d3@ieee.org>
+ <9e5e54a9-ef90-4a87-b082-d6eb9c7468c5@iscas.ac.cn>
+ <20250620105619-GYA165049@gentoo>
+ <CAH1PCMZibCc-P7JQf4WyhkKuT607bWppKfKQ-7eo7-PyNGDAOg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: media: Add bindings for the RZ/V2H IVC
- block
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>
-References: <20250519145754.454005-1-dan.scally@ideasonboard.com>
- <20250519145754.454005-2-dan.scally@ideasonboard.com>
- <TY3PR01MB113467229C60E42AA67F9384C869FA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- xsFNBGLydlEBEADa5O2s0AbUguprfvXOQun/0a8y2Vk6BqkQALgeD6KnXSWwaoCULp18etYW
- B31bfgrdphXQ5kUQibB0ADK8DERB4wrzrUb5CMxLBFE7mQty+v5NsP0OFNK9XTaAOcmD+Ove
- eIjYvqurAaro91jrRVrS1gBRxIFqyPgNvwwL+alMZhn3/2jU2uvBmuRrgnc/e9cHKiuT3Dtq
- MHGPKL2m+plk+7tjMoQFfexoQ1JKugHAjxAhJfrkXh6uS6rc01bYCyo7ybzg53m1HLFJdNGX
- sUKR+dQpBs3SY4s66tc1sREJqdYyTsSZf80HjIeJjU/hRunRo4NjRIJwhvnK1GyjOvvuCKVU
- RWpY8dNjNu5OeAfdrlvFJOxIE9M8JuYCQTMULqd1NuzbpFMjc9524U3Cngs589T7qUMPb1H1
- NTA81LmtJ6Y+IV5/kiTUANflpzBwhu18Ok7kGyCq2a2jsOcVmk8gZNs04gyjuj8JziYwwLbf
- vzABwpFVcS8aR+nHIZV1HtOzyw8CsL8OySc3K9y+Y0NRpziMRvutrppzgyMb9V+N31mK9Mxl
- 1YkgaTl4ciNWpdfUe0yxH03OCuHi3922qhPLF4XX5LN+NaVw5Xz2o3eeWklXdouxwV7QlN33
- u4+u2FWzKxDqO6WLQGjxPE0mVB4Gh5Pa1Vb0ct9Ctg0qElvtGQARAQABzShEYW4gU2NhbGx5
- IDxkYW4uc2NhbGx5QGlkZWFzb25ib2FyZC5jb20+wsGNBBMBCAA3FiEEsdtt8OWP7+8SNfQe
- kiQuh/L+GMQFAmLydlIFCQWjmoACGwMECwkIBwUVCAkKCwUWAgMBAAAKCRCSJC6H8v4YxDI2
- EAC2Gz0iyaXJkPInyshrREEWbo0CA6v5KKf3I/HlMPqkZ48bmGoYm4mEQGFWZJAT3K4ir8bg
- cEfs9V54gpbrZvdwS4abXbUK4WjKwEs8HK3XJv1WXUN2bsz5oEJWZUImh9gD3naiLLI9QMMm
- w/aZkT+NbN5/2KvChRWhdcha7+2Te4foOY66nIM+pw2FZM6zIkInLLUik2zXOhaZtqdeJZQi
- HSPU9xu7TRYN4cvdZAnSpG7gQqmLm5/uGZN1/sB3kHTustQtSXKMaIcD/DMNI3JN/t+RJVS7
- c0Jh/ThzTmhHyhxx3DRnDIy7kwMI4CFvmhkVC2uNs9kWsj1DuX5kt8513mvfw2OcX9UnNKmZ
- nhNCuF6DxVrL8wjOPuIpiEj3V+K7DFF1Cxw1/yrLs8dYdYh8T8vCY2CHBMsqpESROnTazboh
- AiQ2xMN1cyXtX11Qwqm5U3sykpLbx2BcmUUUEAKNsM//Zn81QXKG8vOx0ZdMfnzsCaCzt8f6
- 9dcDBBI3tJ0BI9ByiocqUoL6759LM8qm18x3FYlxvuOs4wSGPfRVaA4yh0pgI+ModVC2Pu3y
- ejE/IxeatGqJHh6Y+iJzskdi27uFkRixl7YJZvPJAbEn7kzSi98u/5ReEA8Qhc8KO/B7wprj
- xjNMZNYd0Eth8+WkixHYj752NT5qshKJXcyUU87BTQRi8nZSARAAx0BJayh1Fhwbf4zoY56x
- xHEpT6DwdTAYAetd3yiKClLVJadYxOpuqyWa1bdfQWPb+h4MeXbWw/53PBgn7gI2EA7ebIRC
- PJJhAIkeym7hHZoxqDQTGDJjxFEL11qF+U3rhWiL2Zt0Pl+zFq0eWYYVNiXjsIS4FI2+4m16
- tPbDWZFJnSZ828VGtRDQdhXfx3zyVX21lVx1bX4/OZvIET7sVUufkE4hrbqrrufre7wsjD1t
- 8MQKSapVrr1RltpzPpScdoxknOSBRwOvpp57pJJe5A0L7+WxJ+vQoQXj0j+5tmIWOAV1qBQp
- hyoyUk9JpPfntk2EKnZHWaApFp5TcL6c5LhUvV7F6XwOjGPuGlZQCWXee9dr7zym8iR3irWT
- +49bIh5PMlqSLXJDYbuyFQHFxoiNdVvvf7etvGfqFYVMPVjipqfEQ38ST2nkzx+KBICz7uwj
- JwLBdTXzGFKHQNckGMl7F5QdO/35An/QcxBnHVMXqaSd12tkJmoRVWduwuuoFfkTY5mUV3uX
- xGj3iVCK4V+ezOYA7c2YolfRCNMTza6vcK/P4tDjjsyBBZrCCzhBvd4VVsnnlZhVaIxoky4K
- aL+AP+zcQrUZmXmgZjXOLryGnsaeoVrIFyrU6ly90s1y3KLoPsDaTBMtnOdwxPmo1xisH8oL
- a/VRgpFBfojLPxMAEQEAAcLBfAQYAQgAJhYhBLHbbfDlj+/vEjX0HpIkLofy/hjEBQJi8nZT
- BQkFo5qAAhsMAAoJEJIkLofy/hjEXPcQAMIPNqiWiz/HKu9W4QIf1OMUpKn3YkVIj3p3gvfM
- Res4fGX94Ji599uLNrPoxKyaytC4R6BTxVriTJjWK8mbo9jZIRM4vkwkZZ2bu98EweSucxbp
- vjESsvMXGgxniqV/RQ/3T7LABYRoIUutARYq58p5HwSP0frF0fdFHYdTa2g7MYZl1ur2JzOC
- FHRpGadlNzKDE3fEdoMobxHB3Lm6FDml5GyBAA8+dQYVI0oDwJ3gpZPZ0J5Vx9RbqXe8RDuR
- du90hvCJkq7/tzSQ0GeD3BwXb9/R/A4dVXhaDd91Q1qQXidI+2jwhx8iqiYxbT+DoAUkQRQy
- xBtoCM1CxH7u45URUgD//fxYr3D4B1SlonA6vdaEdHZOGwECnDpTxecENMbz/Bx7qfrmd901
- D+N9SjIwrbVhhSyUXYnSUb8F+9g2RDY42Sk7GcYxIeON4VzKqWM7hpkXZ47pkK0YodO+dRKM
- yMcoUWrTK0Uz6UzUGKoJVbxmSW/EJLEGoI5p3NWxWtScEVv8mO49gqQdrRIOheZycDmHnItt
- 9Qjv00uFhEwv2YfiyGk6iGF2W40s2pH2t6oeuGgmiZ7g6d0MEK8Ql/4zPItvr1c1rpwpXUC1
- u1kQWgtnNjFHX3KiYdqjcZeRBiry1X0zY+4Y24wUU0KsEewJwjhmCKAsju1RpdlPg2kC
-In-Reply-To: <TY3PR01MB113467229C60E42AA67F9384C869FA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH1PCMZibCc-P7JQf4WyhkKuT607bWppKfKQ-7eo7-PyNGDAOg@mail.gmail.com>
 
-Hi Biju
+Hi Guodong,
 
-On 20/05/2025 07:55, Biju Das wrote:
-> Hi Daniel,
->
-> Thanks for the patch.
->
->> -----Original Message-----
->> From: Daniel Scally <dan.scally@ideasonboard.com>
->
->> Subject: [PATCH 1/3] dt-bindings: media: Add bindings for the RZ/V2H IVC block
->>
->> The RZ/V2H SoC has a block called the Input Video Control block which feeds image data into the Image
->> Signal Processor. Add dt bindings to describe the IVC.
->>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->>   .../bindings/media/renesas,rzv2h-ivc.yaml     | 99 +++++++++++++++++++
->>   1 file changed, 99 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
->> b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
->> new file mode 100644
->> index 000000000000..29d522f7d365
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
->> @@ -0,0 +1,99 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/renesas,rzv2h-ivc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Renesas RZ/V2H Input Video Control Block
->> +
->> +maintainers:
->> +  - Daniel Scally <dan.scally@ideasonboard.com>
->> +
->> +description:
->> +  The IVC block is a module that takes video frames from memory and
->> +feeds them
->> +  to the Image Signal Processor for processing.
->> +
->> +properties:
->> +  compatible:
->> +    const: renesas,r9a09g057-ivc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Input Video Control block register access clock
->> +      - description: Video input data AXI bus clock
->> +      - description: ISP system clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: pclk
->> +      - const: vin_aclk
->> +      - const: sclk
->
-> power-domains:
-> 	maxItems: 1 ??
+On 22:10 Fri 20 Jun     , Guodong Xu wrote:
+> On Fri, Jun 20, 2025 at 6:56 PM Yixun Lan <dlan@gentoo.org> wrote:
+> >
+> > Hi Vivian, Alex,
+> >
+> > On 23:42 Thu 19 Jun     , Vivian Wang wrote:
+> > > Hi Alex,
+> > >
+> > > Thank you for your comments on this.
+> > >
+> > > On 6/19/25 23:11, Alex Elder wrote:
+> > > > On 6/17/25 12:21 AM, Vivian Wang wrote:
+> > > >> The SpacemiT K1 has various static translations of DMA accesses. Add
+> > > >> these as simple-bus nodes. Devices actually using these translation will
+> > > >> be added in later patches.
+> > > >>
+> > > >> The bus names are assigned according to consensus with SpacemiT [1].
+> > > >>
+> > > >> [1]
+> > > >> https://lore.kernel.org/all/CAH1PCMaC+imcMZCFYtRdmH6ge=dPgnANn_GqVfsGRS=+YhyJCw@mail.gmail.com/
+> > > >
+> > > > So what you include here very closely matches what Guodong
+> > > > said in the message above.  Yours differs from his proposal
+> > > > and that makes it hard to compare them.  I have a few comments
+> > > > on that below.
+> > > >
+> > > >> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+> > > >> ---
+> > > >> This is my concrete proposal for representing DMA translations for
+> > > >> SpacemiT K1.
+> > > >
+> > > > It's worth acknowledging that this is derived from what Guodong
+> > > > proposed (it's not "your" proposal in that respect).  That said,
+> > > > yours is a more complete and "formal" RFP than what he wrote.
+> > > >
+> > > I had thought that since the addresses were already there in vendor's DT
+> > > [2], and the names were provided by SpacemiT, anything other than the
+> > > names was "well-known information". In retrospect, I should have made
+> > > the chain of information of this clearer and make it explicit that this
+> > > was based on Guodong's note.
+> > >
+> > > So, just to be clear, the information in my proposal is based on
+> > > Guodong's reply [1] (link the quoted text), which I had assumed, but not
+> > > explicitly confirmed, was based on already addresses in SpacemiT's DT
+> > > and names provided by SpacemiT.
+> > >
+> > > [2]: https://github.com/spacemit-com/linux-k1x/blob/k1/arch/riscv/boot/dts/spacemit/k1-x.dtsi
+> > >
+> > > >> For context, memory on the SpacemiT K1 is split into two chunks:
+> > > >>
+> > > >> - 0x0000_0000 to 0x8000_0000: First 2 GiB of memory
+> > > >> - 0x1_0000_0000 above: Rest of memory
+> > > >>
+> > > >> DMA-capable devices on the K1 all have access to the lower 2G of memory
+> > > >> through an identity mapping. However, for the upper region of memory,
+> > > >> each device falls under one of six different mappings. The mappings are
+> > > >> provided in this patch as simple-bus nodes that device nodes should be
+> > > >> added to.
+> > > >>
+> > > >> This patch is an RFC because it is not meant to be applied, or at least,
+> > > >> not certainly meant to be applied. Instead, this is an attempt to come
+> > > >> to a consensus on how these bus nodes should look like.
+> > > >
+> > > > I think the above is what Krzysztof might not have seen.  Perhaps
+> > > > it could have been made more clear--maybe in the "main" description
+> > > > section (above the ---) or even the subject line.
+> > > >
+> > > Yeah, that's my mistake in organizing the paragraphs.
+> > >
+> > > >> More specifically, I propose that the process proceeds as follows:
+> > > >>
+> > > >> - Firstly, relevant parties agree on these bus nodes given here.
+> > > >> - After that, each time the first user of a bus appears, the series
+> > > >>    should include a patch to add the bus required for that driver.
+> > > >> - If a driver being submitted uses the same bus as another one that has
+> > > >>    been submitted but hasn't yet landed, it can depend on the bus patch
+> > > >>    from that previous series.
+> > > >
+> > > > Getting agreement is good, but otherwise this is basically
+> > > > the process Guodong was suggesting, right?
+> > >
+> > > Hmm, actually re-reading the discussion now, I realized that I may have
+> > > come to this late and missed out on some previous discussions, which
+> > > were alluded to in Yixun's messages. (This is again thread around link
+> > > [1] in quoted text.) This led me to believe that some of these were not
+> > > really agreed upon.
+> > >
+> > > I also realized I think one of the things I may have not yet made clear
+> > > is that I would like the bus node to be a *separate* patch. I think this
+> > > makes sense, because it's dealing with two different subsystems.
+> > >
+> > > >
+> > > >> For conventions regarding coding style, I propose that:
+> > > >>
+> > > >> - #address-cells and #size-cells are 2 for consistency
+> > > >> - These bus nodes are put at the end of /soc, inside /soc
+> > > >> - These bus nodes are sorted alphabetically, not in vendor's order
+> > > >> - Devices are added into *-bus nodes directly, not appended towards the
+> > > >>    end with a label reference
+> > > >
+> > > > I do like that you're trying to be more complete and explicit
+> > > > on what you think needs agreement on.
+> > > >
+> > > Being thorough was the main goal of this RFC. If there was previous
+> > > agreement on how dma-ranges should be done, I'm sorry for missing them,
+> > > but from my observations on the mailing list on how these ended up into
+> > > patches I really haven't seen much consistency. Maybe there was
+> > > misunderstanding, which I'm hoping to clear up.
+> > >
+> > > (Although see my paragraph above, maybe I haven't been thorough enough.)
+> > >
+> > > >> The K1 DMA translations are *not* interconnects, since they do not
+> > > >> provide any configuration capabilities.
+> > > >>
+> > > >> These bus nodes names and properties are provided compliant with
+> > > >> "simple-bus" bindings, and should pass "make dtbs_check".
+> > > >>
+> > > >> Remaining questions:
+> > > >>
+> > > >> - Should storage-bus exist? Or should drivers under it simply specify
+> > > >>    32-bit DMA?
+> > > >
+> > > > Explicitly saying storage devices have one-to-one mapping
+> > > > seems informative, to me.
+> > sounds good to be explicit
+> >
+> > > >
+> > > >> ---
+> > > >>   arch/riscv/boot/dts/spacemit/k1.dtsi | 53
+> > > >> ++++++++++++++++++++++++++++++++++++
+> > > >>   1 file changed, 53 insertions(+)
+> > > >
+> > > > The short summary of what differs between your proposal
+> > > > and what Guodong said is:
+> > > > - You sort nodes alphabetically, Guodong did not
+> > > > - You dropped the unit address
+> > I'd agree with not adding unit number to the simple-bus
+> >
+> > > > - You dropped the comments he had, which indicated which
+> > > >   devices "belonged" to each mapping
+> > I went ahead and checked those comments, and found them all about
+> > devices under specific bus, I'm not strongly against adding the
+> > comments but feel it's kind of unnecessary, or even in worst cases,
+> > it may bring extra confusions.. on the other hand, you can always
+> > check  device nodes under the bus to find what's there.
+> >
+> > exmaple for dram4_range(vendor code)/dma_bus, the comments is
+> >  /* DMA controller, and users */
+> > what's is 'users'? still have to check the dts, and find them -
+> > uart, spi, i2c, qspi, hdmi, sounds..
+> >
+> > If people really want to add comments and help others to understand
+> > this patch, then I'd suggest to add explanation in commit message(better?)
+> > to fully describe all the busses, or why choose this name? -
+> >  storage/multimedia/pcie/camera/dma/network_bus
+> > pretty much in much high level perspective..
+> >
+> > > > - You added a compatible property to each ("simple-bus")
+> > > > - You added an explicit (empty) ranges property to each
+> > > > - You add #address-cells and #size-cells properties, both 2
+> > > > - Your dma-ranges properties are identical to Guodong's,
+> > > >   for all nodes
+> > I think those all above already exist in Guodong's version which
+> > align his idea
+> >
+> > > >
+> > > That was a good summary. Thanks!
+> > >
+> > > My main goal of organizing the bus this way is making it actually pass
+> > > "make dtbs_check". I'm not sure if Krzysztof still objects to my reading
+> > > of simple-bus.yaml though.
+> > It would be great if DT maintainer can clarify, or give an ACK
+> >
+> > >
+> > > By the way, I don't think I will be making an RFC v2 of this. I think we
+> > > should get everything sorted under this one thread.
+> > >
+> > Instead, from a SoC tree maintainer's perspective (whom taking care of
+> > merging all the dts files), I'd rather perfer an independent or
+> > separated patch for this given every party reached consesus, so we could
+> > get this patch merged first and early, instead of getting them distributed all
+> > over in different series, IMO, separated patches brings more dedependencies
+> > if more than two series require one bus and result in more merge conflicts..
+> > Besides, introducing new busses result in re-arrangement of previous nodes,
+> > those like uart, i2c (even they have no DMA feature implemented currently)..
+> >
+> 
+> Hi Yixun,
+> 
+> So, here is my proposed plan: I will submit two patches. The first
+> patch will introduce the dma-bus node and move the relevant (uart0, uart2
+> ..uart9) device nodes under it. The second patch will then add the pdma0
+> node itself. Please let me know if you have a different approach in mind.
+> 
+..
+> Maybe you want to see an independent patchset with just the first patch? This
+> way it can be merged early without waiting for the pdma0 series.
+> Let me know. Thanks.
+yes, I prefer this way, this will also help other drivers - usb/emac,
+since they all wait for those bus nodes..
 
-Thanks; I'd missed this entirely - I'll add it in.
+please submit following two parts a) introduce bus b) move relevant nodes.
+notice, I don't mind who (you or Vivian) doing the job, but keep in
+mind don't duplicate the work..
 
+> 
+> On a side note, you mentioned I2C. I searched for upstream I2C DTS nodes
+> for the K1 but couldn't find any. I checked the for-next/dt-for-next
+> branches in the spacemit-com/linux.git repository. Did I miss something?
+> 
+you right here, the i2c driver is accepted, but not dts..
+btw, the PMIC series do introduce i2c nodes at patch 3/6
 
-Dan
+> BR,
+> Guodong
+> 
+> 
+> > >
+> >
+> > --
+> > Yixun Lan (dlan)
 
->
->> +
->> +  resets:
->> +    items:
->> +      - description: Input Video Control block register access reset
->> +      - description: Video input data AXI bus reset
->> +      - description: ISP core reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: presetn
->> +      - const: vin_aresetn
->> +      - const: sresetn
->> +
->> +  port:
->> +    $ref: /schemas/graph.yaml#/properties/port
->> +    description: Output parallel video bus
->> +
->> +    properties:
->> +      endpoint:
->> +        $ref: /schemas/graph.yaml#/properties/endpoint
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
-> - power-domains ??
->
->
->> +  - resets
->> +  - reset-names
->> +  - port
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    ivc: ivc@16040000 {
->> +      compatible = "renesas,r9a09g057-ivc";
->> +      reg = <0x16040000 0x230>;
->> +
->> +      clocks = <&cpg CPG_MOD R9A09G057_ISP0_PCLK>,
->> +      <&cpg CPG_MOD R9A09G057_ISP0_VIN_ACLK>,
->> +      <&cpg CPG_MOD R9A09G057_ISP0_SCLK>;
->> +      clock-names = "pclk", "vin_aclk", "sclk";
-> power-domains??
->
-> Cheers,
-> Biju
->
->> +
->> +      resets = <&cpg R9A09G057_ISP_0_PRESETN>,
->> +      <&cpg R9A09G057_ISP_0_VIN_ARESETN>,
->> +      <&cpg R9A09G057_ISP_0_ISP_SRESETN>;
->> +      reset-names = "presetn", "vin_aresetn", "sresetn";
->> +
->> +      interrupts = <GIC_SPI 861 IRQ_TYPE_EDGE_RISING>;
->> +
->> +      status = "okay";
->> +
->> +      port {
->> +        ivc_out: endpoint {
->> +          remote-endpoint = <&isp_in>;
->> +        };
->> +      };
->> +    };
->> +...
->> --
->> 2.34.1
->>
+-- 
+Yixun Lan (dlan)
 
