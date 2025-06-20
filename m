@@ -1,203 +1,229 @@
-Return-Path: <devicetree+bounces-187954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1827AE1E78
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:23:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDD32AE1E9F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:30:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 010CC6A1215
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:22:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4BEE7B0A2A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9742DBF5F;
-	Fri, 20 Jun 2025 15:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B626A2C375A;
+	Fri, 20 Jun 2025 15:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FBEHMOt3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ya3OYn/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 905D82D29CC;
-	Fri, 20 Jun 2025 15:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C382C324B;
+	Fri, 20 Jun 2025 15:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750432911; cv=none; b=iebmdW1P1xM8kNn2TNQSNO7biz1BXLRIbuUhWo0slGtwsMsSRN+oFlLSGvFB6u1y7PWn/+BldC9Yrlkfj4OORfI+k7NyvngX/xuN22TfZq3TREro1E4ibzOlKAnLnv2o8VpvWTVryShqTkImejbkCUgrqwBl5xGVWiaecZTbs0c=
+	t=1750433191; cv=none; b=lXVI1LrFp++xPeyxKsmgsFUNxLpRBRqFgCJqcIDDQyVbquYgNnqJOEyYjvAme0xt1cPyLsXJuvUijK15ANeV3v8N81SpIW1wzAe5CiTsfaxLvp5JGVkqEua+JMPnGp/DTZGk+huO84uecBNLheuMnd1wBm25AzDQ+D1ZIoDX2lY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750432911; c=relaxed/simple;
-	bh=LGnSFN9H9rbozGSNGVsWo0FtVKSQwW61jLk2zd/IGI8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pZp2P0yWEhhm//UXnHNP/F3eK5s10wCb5AH2pZ2/vJWGxfzmpodOKRw4ygyKBNViHP7iYD4cGd6sC79Is5UPFMZv0ms3Xs7iNxI7MRANOEf4hLWa3Kchm54XW7MPlfqzFpLTf1574D70G3fcQKF02ffSUFVpxrCZHrRRkcZiK4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FBEHMOt3; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CB8D44326A;
-	Fri, 20 Jun 2025 15:21:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750432906;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9nY0S3h9TNbvjPa0oqXiKssMDiiZYbdnLuZAy4PGUKk=;
-	b=FBEHMOt3QA2tcRmg1IhTgJpD0kDH1a6QghFDUG9YKdXBL1/I3I536lWB8AdIqODJiCAcW2
-	9Q6vTKNX4DtrAwGRqJCs3M/aZP+6z4/Ukoik0FB2Tn6Rz5GlXr7meC6NihPF7CnWK0mDzs
-	WRPnbP8uJaefVnSXFc6P6McyZqyvx3cFUrLzRtPdHu00FzmdVbmq3C69sTBTtjh6QLO9fm
-	yEQMPP2E+WLiwC238XM5Tgz6zmFNWEUATafkTmf/D6P+A27pWzQr0FOX+2xFSdlgdobxOi
-	00dJ9s42pIeng7pJay1IdSM/asFH6pz0hsUYQWhXGLaE31YcQu01MbP1+aLC/w==
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-Date: Fri, 20 Jun 2025 17:21:35 +0200
-Subject: [PATCH v4 4/4] arm64: dts: rockchip: describe the OV8858 user
- camera on PinePhone Pro
+	s=arc-20240116; t=1750433191; c=relaxed/simple;
+	bh=WUB2wpa3W+3uIW4pg1fQ/88tmjy06qgVmc5O/tjNYJQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=h32tT5CJPGcZs2b2GTFNU10k+fJEcJ86D02t3J+Dw5FxSInlj5BSza+SdSHtjZLREToImD4bnOJAQG/dAkqlfaxyd5shHanO5O0zj6WWpkNKSskL3UO6Aa4rHHiENm3WZB3nrVDyj2f1odoxDKKdolCY19cf9FP7XEnC1Tu92Iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ya3OYn/b; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-450cb2ddd46so11943935e9.2;
+        Fri, 20 Jun 2025 08:26:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750433188; x=1751037988; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dvw6+KSPOqtrmOukGHEiEP8MZe9/XdRUXjCAQWIBviU=;
+        b=Ya3OYn/bxS5vCtVeI70dsYBs6h0TDnnczTD5q4G3GGIrzWUjdDMg5gR8fx26KU00ED
+         EBhoWcr6MDtpDkJE8PiMXI3TIggpab949ihqGzLxnYau8HWozxZInYrTScfzqeNMoNku
+         SKmwjDJNEUcxPFjCXXbeARVOQyIxmlAPYzsthNCHi+8pyfvI0VwBZHwojG17PUdyHKz4
+         Mxq9Gveqnmi+HjRFl/b6PBw/8DXi9P6ukUxPBb+3kj8exo42sS+Lw2ysUWp8kXkrD5Wj
+         /X3E6MSQWn1qPYM2Hf/bkwU7zRXbPKkRW4P9pPqQrygaAWPZF1aj+SZOdyNs3oVLZh69
+         dxmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750433188; x=1751037988;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=dvw6+KSPOqtrmOukGHEiEP8MZe9/XdRUXjCAQWIBviU=;
+        b=oDnSjuQL66C7SxtYa220FAH8sT67LHAGglbj6HZ1ycXScibJa7jyQSEAXxXXyHcbqg
+         UfLPEpBxWsJrxWPYu7rcCrGTTYEgVnuxwIxdxhQ36/K/dktAt+nmpapgaPQ8nkxj/BHV
+         3FXv4Fg4AysE78jT/EHEi3id2zvWlQ4yLvfKAoEDkG5RKDE75Gb6V8miJugCS/KcQ/PO
+         i6KcO3ib3JarfY6IjdcsLwOzC4RCMyGuP16IxW6zinCsjl5n2jLCWuOZmVtTtKTc1C8S
+         zAGNolnUBNKdRmhoaTxTk2QDq1SIDY+nXpqXk+IurZvJBZGsYAkkdkq1jgdsk+sSNWJZ
+         sM0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUhu4GxXGO72J6ULHhMT+Ws1qW8AjtbC58xhWG4wPChq5GXpPtGPYJZsSijnzf0N5NejLb+F6BrKa4Y@vger.kernel.org, AJvYcCUz0YcXz4HR4kAxbuWtSqFkw85ojXVgl2xAIlPbez2gScAxDv7fjXSKro6LunolUu1pVcviuncPaOANeAX5@vger.kernel.org, AJvYcCV5JF+rlLs30etVDCxXXAZrdZa8tkGMvQn2RUftRqTEYfnyIbZFevJJ7Lc965pncRtsIj0atiFtGFz7hwou3DU=@vger.kernel.org, AJvYcCVlOh55vSDBXSsLD6RK4id/I20JKx2eEaH8nHWJGKApk91Pl2bV1Zf1x3PIDVcWjw45Vv4LtE36O4fSMQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0kD+vGcfWZaq3Pfvb4MJvpo1X0rWKWjHNv+WaDi8OlunUuc/t
+	fIryBTwubwIIXJ3zFXED6V0LnTa4axqVgsIegfTGKeXJChdCnr4ot8Tz
+X-Gm-Gg: ASbGncvE8Ii1cr1GwJPEPJ579I1YBpyLIaG95KsMTgKqousdvOSnjOgXQkxTRX0U9OQ
+	fRGrSwoQo26HsR/8+bZBjolFUeBC8mdfvGntqDEApDltDKzSQHZEeDa4yy9F83GrU3YP+BPmTEY
+	ugnCuxJYdB7qRz9dpFgrt9lT1I51dEJZasFIJCDrXaAT6cIKNoWmytl5Z6gKJFD9NPU1R265kwB
+	bfOfLQwiomFdPhc+1eFFCETUliHOm36a0io0rlF0AleCP58X8awBAwCUv5l8CUol+J+x/WcT4Tr
+	1a1xneFYNC+XJnNhSV+Kr7+4HUPnILfsmS1Erz3BwqiY5/FqQIDWVR4GxVY6klXze/TgBi3b7+B
+	SVY/gL37cATzDsAQtOi6h5ElxFLBFzc7cQYxk
+X-Google-Smtp-Source: AGHT+IFGJ4j2oFpKlnm3TiPSB5wBBPqtGsgs71FDdaXalDsriq6wX0J9e6BEAmaAsoKXsWO/2igTtQ==
+X-Received: by 2002:a05:600c:4443:b0:43d:172:50b1 with SMTP id 5b1f17b1804b1-453659ef73fmr31399135e9.29.1750433187813;
+        Fri, 20 Jun 2025 08:26:27 -0700 (PDT)
+Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453646cb57fsm29222215e9.1.2025.06.20.08.26.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jun 2025 08:26:27 -0700 (PDT)
+Sender: Igor Korotin <igorkor.3vium@gmail.com>
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+To: "Rafael J . Wysocki" <rafael@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Alex Hung <alex.hung@amd.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Igor Korotin <igor.korotin.linux@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+	Remo Senekowitsch <remo@buenzli.dev>,
+	Tamir Duberstein <tamird@gmail.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Xiangfei Ding <dingxiangfei2009@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Benno Lossin <lossin@kernel.org>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	Len Brown <lenb@kernel.org>,
+	Trevor Gross <tmgross@umich.edu>
+Subject: [PATCH v8 4/9] rust: acpi: add `acpi::DeviceId` abstraction
+Date: Fri, 20 Jun 2025 16:24:25 +0100
+Message-ID: <20250620152425.285683-1-igor.korotin.linux@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250620-camera-v4-4-0201a8ed5fae@bootlin.com>
-References: <20250620-camera-v4-0-0201a8ed5fae@bootlin.com>
-In-Reply-To: <20250620-camera-v4-0-0201a8ed5fae@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Nicholas Roth <nicholas@rothemail.net>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- imx@lists.linux.dev, Olivier Benjamin <olivier.benjamin@bootlin.com>, 
- ~diederik/pine64-discuss@lists.sr.ht, Dragan Simic <dsimic@manjaro.org>, 
- Ondrej Jirman <megi@xff.cz>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdekjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegueegiedvvdevveevvddufeejvefftdeugfffkeeileehheefieehgfelfeeileenucfkphepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeinecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghmpehinhgvthepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeipdhhvghloheplgduledvrdduieekrddurddvtdgnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopeimughivgguvghrihhksdhpihhnvgeigedqughishgtuhhssheslhhishhtshdrshhrrdhhthdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhitghhohhlrghssehrohhth
- hgvmhgrihhlrdhnvghtpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehimhigsehlihhsthhsrdhlihhnuhigrdguvghv
-X-GND-Sasl: olivier.benjamin@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Add the description of the front/user camera (OV8858) on the PinePhone Pro
-to the device dts file.
-It receives commands over SCCB, an I2C-compatible protocol, at
-I2C address 0x36 and transmits data over CSI-MIPI.
-I confirmed this address experimentally.
+`acpi::DeviceId` is an abstraction around `struct acpi_device_id`.
 
-The pin control mapping was again extracted from the PinePhone Pro
-schematic v1.0 as well as the RK3399 datasheet revision 1.8.
+This is used by subsequent patches, in particular the i2c driver
+abstractions, to create ACPI device ID tables.
 
-Table 2-3 in section 2.8 of the RK3399 datasheet contains the mapping
-of IO functions for the SoC pins. Page 52 shows GPIO1_A4, page 54 shows
-GPIO2_B4.
-
-For the reset (RESET) signal:
-page 11 quadrant D2             | p.18 q.B3-4 | p.18 q.C2
-RK3399_E.R28 -> GPIO1_A4 -> Camera2_RST -> MIPI_RST1 -> OV8858.12
-
-For the powerdown (PWDN) signal:
-page 9 quadrants D4-5          | p.18 q.B2
-RK3399_L.F31 -> GPIO2_B4 -> DVP_PDN0_H -> OV8858.14
-
-Helped-by: Dragan Simic <dsimic@manjaro.org>
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Signed-off-by: Igor Korotin <igor.korotin.linux@gmail.com>
 ---
- .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 49 +++++++++++++++++++++-
- 1 file changed, 47 insertions(+), 2 deletions(-)
+ MAINTAINERS         |  1 +
+ rust/kernel/acpi.rs | 60 +++++++++++++++++++++++++++++++++++++++++++++
+ rust/kernel/lib.rs  |  1 +
+ 3 files changed, 62 insertions(+)
+ create mode 100644 rust/kernel/acpi.rs
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index b335d044138b413359ba54269ab646142254a55f..c1a151ed4215638895ef5c9872d746dca38cb671 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -454,7 +454,7 @@ wcam: camera@1a {
- 		reg = <0x1a>;
- 		clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK0, derived from CIF_CLKO */
- 		pinctrl-names = "default";
--		pinctrl-0 = <&camera_rst>;
-+		pinctrl-0 = <&camera_rst_l>;
- 		/* Note: both cameras also depend on vcca1v8_codec to power the I2C bus. */
- 		vif-supply = <&vcc1v8_dvp>;
- 		vana-supply = <&avdd2v8_dvp>;
-@@ -479,6 +479,27 @@ wcam_lens: camera-lens@c {
- 		/* Same I2c bus as both cameras, depends on vcca1v8_codec for power. */
- 		vcc-supply = <&vcc1v8_dvp>;
- 	};
-+
-+	ucam: camera@36 {
-+		compatible = "ovti,ov8858";
-+		reg = <0x36>;
-+		clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK1, derived from CIF_CLK0 */
-+		clock-names = "xvclk";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&camera2_rst_l &dvp_pdn0_h>;
-+		dovdd-supply = <&vcc1v8_dvp>;
-+		reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
-+		powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
-+		orientation = <0>; /* V4L2_CAMERA_ORIENTATION_FRONT */
-+		rotation = <90>;
-+
-+		port {
-+			ucam_out: endpoint {
-+				remote-endpoint = <&mipi_in_ucam>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
- };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1e918319cff4..3e59a177ac0c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -302,6 +302,7 @@ F:	include/linux/acpi.h
+ F:	include/linux/fwnode.h
+ F:	include/linux/fw_table.h
+ F:	lib/fw_table.c
++F:	rust/kernel/acpi.rs
+ F:	tools/power/acpi/
  
- &i2c3 {
-@@ -523,6 +544,24 @@ &io_domains {
- 	status = "okay";
- };
- 
-+&isp0 {
-+	status = "okay";
+ ACPI APEI
+diff --git a/rust/kernel/acpi.rs b/rust/kernel/acpi.rs
+new file mode 100644
+index 000000000000..2b25dc9e07ac
+--- /dev/null
++++ b/rust/kernel/acpi.rs
+@@ -0,0 +1,60 @@
++// SPDX-License-Identifier: GPL-2.0
 +
-+	ports {
-+		port@0 {
-+			mipi_in_ucam: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&ucam_out>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
++//! Advanced Configuration and Power Interface abstractions.
 +
-+&isp0_mmu {
-+	status = "okay";
-+};
++use crate::{bindings, device_id::RawDeviceId, prelude::*};
 +
- &isp1 {
- 	status = "okay";
++/// IdTable type for ACPI drivers.
++pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<DeviceId, T>;
++
++/// An ACPI device id.
++#[repr(transparent)]
++#[derive(Clone, Copy)]
++pub struct DeviceId(bindings::acpi_device_id);
++
++// SAFETY:
++// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct acpi_device_id` and does not add
++//   additional invariants, so it's safe to transmute to `RawType`.
++// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
++unsafe impl RawDeviceId for DeviceId {
++    type RawType = bindings::acpi_device_id;
++
++    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::acpi_device_id, driver_data);
++
++    fn index(&self) -> usize {
++        self.0.driver_data as _
++    }
++}
++
++impl DeviceId {
++    const ACPI_ID_LEN: usize = 16;
++
++    /// Create a new device id from an ACPI 'id' string.
++    pub const fn new<const N: usize>(id: &[u8; N]) -> Self {
++        build_assert!(N <= Self::ACPI_ID_LEN, "ID exceeds 16 bytes");
++        // Replace with `bindings::acpi_device_id::default()` once stabilized for `const`.
++        // SAFETY: FFI type is valid to be zero-initialized.
++        let mut acpi: bindings::acpi_device_id = unsafe { core::mem::zeroed() };
++        let mut i = 0;
++        while i < N {
++            acpi.id[i] = id[i];
++            i += 1;
++        }
++
++        Self(acpi)
++    }
++}
++
++/// Create an ACPI `IdTable` with an "alias" for modpost.
++#[macro_export]
++macro_rules! acpi_device_table {
++    ($table_name:ident, $module_table_name:ident, $id_info_type: ty, $table_data: expr) => {
++        const $table_name: $crate::device_id::IdArray<
++            $crate::acpi::DeviceId,
++            $id_info_type,
++            { $table_data.len() },
++        > = $crate::device_id::IdArray::new($table_data);
++
++        $crate::module_device_table!("acpi", $module_table_name, $table_name);
++    };
++}
+diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+index 6b4774b2b1c3..5bbf3627212f 100644
+--- a/rust/kernel/lib.rs
++++ b/rust/kernel/lib.rs
+@@ -51,6 +51,7 @@
  
-@@ -594,10 +633,16 @@ pwrbtn_pin: pwrbtn-pin {
- 		};
- 	};
+ pub use ffi;
  
--	camera {
-+	cameras {
- 		camera_rst_l: camera-rst-l {
- 			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+		camera2_rst_l: camera2-rst-l {
-+			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		dvp_pdn0_h: dvp-pdn0-h {
-+			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- 
- 	leds {
-
++pub mod acpi;
+ pub mod alloc;
+ #[cfg(CONFIG_AUXILIARY_BUS)]
+ pub mod auxiliary;
 -- 
-2.49.0
+2.43.0
 
 
