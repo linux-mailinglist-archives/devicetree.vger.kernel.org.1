@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-187734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B73AE12EC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:28:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB83BAE12F8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:32:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D46743BEB54
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:27:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 463BB19E1202
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0777D1EB5FE;
-	Fri, 20 Jun 2025 05:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600721D86D6;
+	Fri, 20 Jun 2025 05:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="miCke9Ev"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srlKz2C6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68071E5B78
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 05:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD7EA923;
+	Fri, 20 Jun 2025 05:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750397299; cv=none; b=J1RXkTN6mfjs/eQiXbVYcH9jHzfqiTsv/ossKIv+LE9mQ5nTypc0Wp3i5clMSF8IOdKJ7h2b8HJV0KabztTuj4HSj6iKASkGWbPGpJMSzOqEnhKwoWtKPCBXTWnKpgeT7JKBV5CKS8F7K+DGtCb1JzsgNefE6YG9JRWICsKhupc=
+	t=1750397539; cv=none; b=LWyeJ9kX9myncehr72kYfXgLoya8EGcM7/6MlZyvtdadlIvz28EypPw2yinwydz8XmFH+cpAgxYndeqns65xHzCC3raD0kT523za0j0tkrStDxUMzvg5pSduCMhiaoZkDEgIGEXyJuGQL+TE+6GWUAVNn+yLWXxIgJXAEO+CL18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750397299; c=relaxed/simple;
-	bh=qUtTKBax3hS2wxTEe9Apj1QKfE6cWtDS567AyLktmis=;
+	s=arc-20240116; t=1750397539; c=relaxed/simple;
+	bh=aHsm9Y14E81PwbGn4pj70nBL2Sh53QJVuexcsgMJYFk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pw8etvox3bPXiiXZddE7u3/Mi6DLeyr+Qz/wE7oMVOvUrIXbYpHW8TIBMuMzKl292CtWCPvWlmqXiASmRVMsTkrHWZzAA1vqzPR7nyCHrfKFj/y8017l6iff/T6QW9v0Gx7rR8uUEZSjqRRjAfUdq3FnL+GT8gVpsci2UrxWYZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=miCke9Ev; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 405F7C4CEE3;
-	Fri, 20 Jun 2025 05:28:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jiptoUsWtwKZRSmakzRsijXZ3Sd+YTF4nY/8lEi3tPJlBiNJbtQzUc/hXTjsRf/9/OrWIbMAoLvrNFKGRbgESQcclTQMUS4AJ4QaMHQan0bnDJ2OAFWsbYoq61iJF49hyW4Gds2fzWQIkms4clPlt79ySnRSC6naLVXEYGC9slo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srlKz2C6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D6C8C4CEED;
+	Fri, 20 Jun 2025 05:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750397299;
-	bh=qUtTKBax3hS2wxTEe9Apj1QKfE6cWtDS567AyLktmis=;
+	s=k20201202; t=1750397538;
+	bh=aHsm9Y14E81PwbGn4pj70nBL2Sh53QJVuexcsgMJYFk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=miCke9EvwMnpoCVHbes2oEDUmQVwYCEtxaapIGtnaXR2FuD/gIqU4+qEXZyR0Ut9Q
-	 Ma1DFoDV3ixR/LcyTmlA4GFXGYs47j/EICkHtihziKLBSpl2iFQNw4bUdG5jblHuiJ
-	 SgxL1GOBorfwTi28+omYsJGlCAjHFujphRtCwx98V50OOh4CttX6znINYTZr9Ld7Kj
-	 OYyasTL6l49l5sce22yu6h2A7CFV36VmxBp6vTkfCZIcqudMmE2SeYmzSWAJfFjzlK
-	 jecgB+Gm8c2zwo0Q3GimXzMh3/1i2mw9Xo6pW+VKcUf+yqMyOSrIog1/hkpPORtLa5
-	 4nn/teLLp2HhQ==
-Message-ID: <89a07907-8527-4bf6-9a76-9a050c0e95f1@kernel.org>
-Date: Fri, 20 Jun 2025 07:28:15 +0200
+	b=srlKz2C6xjGOLesp+Z6s0Jw0QgaIX9tSq5RQarlr+GD5a6ul/NobFJ+4ve0gS/usv
+	 xdQ6SoF/hodYsDfS2AtgDcIgfdPIZqvFAeahlQNK8uofJovOvtuqle/A5s4Beg591J
+	 tNlj0Y15aicmWdf5Hkl8QefYsu904Y9zTQTwmB2e0Lji5y+vubLL/itPRoGPWaaK6I
+	 zJEcesF+SgtasBYU2EJIGWgV9la6ELgqZxUGzH53wAf2QO+/6nVS2ICpMVugicZI+D
+	 018m7pz0kQOTAPOII6FiHJoa9qLQtVL2XiOnJo4s34COH2HtaswSJkzikyL/QIO895
+	 DbS6f4y4EWJGQ==
+Message-ID: <ef0db40a-14d1-4670-82ca-f724a0eeee0d@kernel.org>
+Date: Fri, 20 Jun 2025 07:32:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: display: Add Mayqueen Pixpaper e-ink
- panel
-To: lcwang <zaq14760@gmail.com>, conor@kernel.org
-Cc: drm@lists.freedesktop.org, devicetree@vger.kernel.org,
- noralf@tronnes.org, robh+dt@kernel.org, onlywig@gmail.com,
- cip-dev@lists.cip-project.org
-References: <20250619-earlobe-skiing-25605816a861@spud>
- <20250620035310.735055-1-lcwang@ieiworld.com>
- <20250620035310.735055-2-lcwang@ieiworld.com>
+Subject: Re: [PATCHv5 0/5] wifi: ath9k: add ahb OF support
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
+Cc: =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
+ nbd@nbd.name, Johannes Berg <johannes@sipsolutions.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "open list:MIPS" <linux-mips@vger.kernel.org>
+References: <20250609030851.17739-1-rosenp@gmail.com>
+ <37561ac8-ac0f-4744-9495-c7589544d4bb@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,25 +108,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250620035310.735055-2-lcwang@ieiworld.com>
+In-Reply-To: <37561ac8-ac0f-4744-9495-c7589544d4bb@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/06/2025 05:53, lcwang wrote:
-> From: LiangCheng Wang <zaq14760@gmail.com>
+On 20/06/2025 02:33, Jeff Johnson wrote:
+> On 6/8/2025 8:08 PM, Rosen Penev wrote:
+>> First two commits are small cleanups to make the changes of the third
+>> simpler. The fourth actually adds dts definitions to use ahb.
+>>
+>> v2: Add documentation, use kernel_ulong_t, and of_device_get_match_data
+>> v3: Use qcom prefix and wifi suffix as in other ath drivers.
+>> v4: fix up dts example in Documentation
+>> v5: move back to using qca prefix. It makes no sense to diverge between
+>> all the other drivers for MIPS based qualcomm devices. qcom as a prefix
+>> is used for Quallcomm's ARM(64) stuff.
+>>
+>> Rosen Penev (5):
+>>   wifi: ath9k: ahb: reorder declarations
+>>   wifi: ath9k: ahb: reorder includes
+>>   wifi: ath9k: ahb: replace id_table with of
+>>   dt-bindings: net: wireless: ath9k: add OF bindings
+>>   mips: dts: qca: add wmac support
+>>
+>>  .../bindings/net/wireless/qca,ath9k.yaml      | 23 ++++++-
+>>  arch/mips/boot/dts/qca/ar9132.dtsi            |  9 +++
+>>  .../boot/dts/qca/ar9132_tl_wr1043nd_v1.dts    |  4 ++
+>>  arch/mips/boot/dts/qca/ar9331.dtsi            |  9 +++
+>>  arch/mips/boot/dts/qca/ar9331_dpt_module.dts  |  4 ++
+>>  .../mips/boot/dts/qca/ar9331_dragino_ms14.dts |  4 ++
+>>  arch/mips/boot/dts/qca/ar9331_omega.dts       |  4 ++
+>>  .../qca/ar9331_openembed_som9331_board.dts    |  4 ++
+>>  arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts   |  4 ++
+>>  drivers/net/wireless/ath/ath9k/ahb.c          | 60 +++++++------------
+>>  10 files changed, 84 insertions(+), 41 deletions(-)
+>>
 > 
-> The binding is for the Mayqueen Pixpaper e-ink display panel,
-> controlled via an SPI interface.
-> 
-> Changes in v2:
-
-This goes to changelog.
-
-Please version your patches correctly, e.g. use b4 or git format-patch
--vX, and add changelog in cover letter or under '---' of individual
-patches describing changes from previous version.
-
-Just look at other patches on the list.
+> DT team, should I take this series through my tree?
+> Toke, Ack?
+No, of course not. The same as you asked some time ago: DTS never, NEVER
+goes via driver subsystem tree.
 
 Best regards,
 Krzysztof
