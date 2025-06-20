@@ -1,241 +1,263 @@
-Return-Path: <devicetree+bounces-188003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B5CAE228A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 20:52:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5FAAE22BE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 21:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BB293B66C4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 18:51:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E3444A371E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 19:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B7A2DF3F2;
-	Fri, 20 Jun 2025 18:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B2F1EE02F;
+	Fri, 20 Jun 2025 19:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UmD5PAnh"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Wo7FvqMP";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="mYnhDXvx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD3C1FBEA6;
-	Fri, 20 Jun 2025 18:52:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE7230E853;
+	Fri, 20 Jun 2025 19:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750445537; cv=none; b=HN4O6WSXVsjx8xHBYwn/6F3+/hOFZ+h1uMfEPnCb29EMrcbxwlNCMOlm4M6BnzDdD+4vjlauUA+fbbBwYQa39xTGRnAdRhT5qFLtczqjw0vlJk9UMpCzkI/YqUtYJFEyLI2myrR3LbAjH4gLWbwRpiNCmhlRNlOjOE8s7l8yi6g=
+	t=1750447119; cv=none; b=tZhlOo09nZLOFYdoKpXdXQPAq9pPxcuF7cG5ozidfU6fds8SIfDZbx2RL/uzSq7auPdgQ0BcAy8irL9SVHfY4lYlUyhQDQNrayK1pnt3jtpg1fszlGqQCpNvVIk954kARGZRY+dZt1epC3uoxtNxbpEBzQg9Op6vPHotq+Ffi8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750445537; c=relaxed/simple;
-	bh=d61578dvdp+7dqnHw6aOy57T/vUq2K6C3ebottvLP48=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZWYTztVJ8siMjlw/RptzY1kdLJKo1b9+igC6a4KAD8J5rGwv0E+l+pTKjx1vWPd+PZKtHFiZAyJifnHnYQUtW/hG1lQcBn9dyN4srjozEgfrtrMvbdzz7fqs7IakSa3u9NJhLnB1ClMJtiDry6wI6xoStrk6ezKZngeBhyUOnPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UmD5PAnh; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-453643020bdso10073495e9.1;
-        Fri, 20 Jun 2025 11:52:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750445534; x=1751050334; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3SuvVprvH+lcp/bEtCacgmv7HR7bf4BfFOrawh5qnz0=;
-        b=UmD5PAnhN1FWtTsoi2uEoa5bKnMIRNJ/hpkTweFkaiS1/aWTHG6lgas92Qv6OQVTZy
-         QhrrWrTd9GCfOxvXUaa/gjMgaIOw5TCm/1CRoJI9ar/amdowY9oFyCr+U2j3Rimx7329
-         ibc9Sxjw5RKXCU6yYAMQ65C4+zdbTpoMFnsgYj8TvP6YUGY+ZKDUZEbZGS/itF2O6QEF
-         qNSTcHIlyV026MJR9zJ1+HfgJ3HPnu0fJ7//qunFQc8NqeewhhItExL8F0kdgIuGhlYv
-         ua4NDGT4IDFW7VGOD0DRrhyyRoXj5pEijKMIkcnef6j71ACTXyRtvWcZJOVX3ueIL2E6
-         Jwog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750445534; x=1751050334;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3SuvVprvH+lcp/bEtCacgmv7HR7bf4BfFOrawh5qnz0=;
-        b=vU7FYhSENAiCvZZSg64TVGCYOiKzbYnAoDYhPuhv5u2mX/kbXMEm/r4EIWK4JhdfRL
-         s+HOkusbd5nQRSOiyqFF8PId+syJp1lPEeL2mEipXg92a0VLFNQGSaiDJafdLkwoltc0
-         fPtZaTGoM3s6EI/GuUKhuzlNczNrf71fMHK0W/q1kx/6+9GvcUSbOmmZ6C47FUmMDcQN
-         KVo9SyXHU0f4j+2Yu4ZeVKDwMWjMUHLM4I5D5QWmvvuEcNavlpsoeYiH/NT1x8cKf6iD
-         nKXmVC9EAFRnykHg+9S+WcYJuxNeoO/S4AxGdzs1BR8wlF23M6+r7iI9iNgkmdHK7oXA
-         RMLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQbuEopdS+pk0Ce8FmoNP/Uawc9Vhk+hQUGsHBtH/99YzdINxJ6rq5CdLzqk4k8ojnDOydLH4E5iPma3Hg@vger.kernel.org, AJvYcCUYXNYH3ByCxlvMqTG/49nBlHMcxKm825gCEuXAoWeECJcxuD9j4Qnr95tPGUkeFmu/7fi+bTLQfoXL@vger.kernel.org, AJvYcCUZ/2BUgUa/eCs7V9DvP4clpxuaBsXL1IK4B773Ccy7O6i7oySaMXyUX3WhAXvuGkVCoUjoC585PeGJ@vger.kernel.org, AJvYcCWVBU8T0M+zj3eEKOEfMT8zXamRfvw2M4FEPXZ73BV2B3JZovYFdln1DmBA2TIiXBknXSzkworfa+q+@vger.kernel.org, AJvYcCWw/OCPwxtMEOnpcyuSAhWcV9OJLhrUODOYqeHRjLnnUxtCf0M5smGIJSQg831xBjMKoDWNeziOneA4@vger.kernel.org
-X-Gm-Message-State: AOJu0YycEPjU4rG1G0irUlBmpeerXp1HoI+N9R+4P5ACivxlFNAHG4RH
-	fZHLxXW+0NL9RRx5hh3UoDbngv+zMMNbf7R+l3/ttFp83xS2QUkZHg78
-X-Gm-Gg: ASbGncuEAyR99lhafaCx4HtmbEQ294b1t71FYNMrxQregrzI+VjIQdW0JlxBeghI+aE
-	wTT3u1hanicjp550+AdGunmdGfjvuUxgSgEsxwPUCT7n8Qfa7eeiAurCzOQEl7G7DPGagH4EDp6
-	fqja3N2HL8hNi7mL+F3ZJPdrfneNc9V3tC5CIKTEkWYunUYLXZ9OhXAae+Rc+uAvscJzJImWXE2
-	ZopYJvfuoUb/B87BCGENQ3BXk1xYvauYYpNdmvw/OYGEGDFZSu3MhcSFT4dlV7eeeNV0GDynXJQ
-	zBfdhRcYac+4UoTeRnpnRi4rFaOhF0RwISvc90JBkD3QVB+PuMDvW+Yqf0UlzEMRDCdvCNLOVCu
-	w4VMyeVNojvQ1bdEcajaVYzyJ/oMMQDsuBaGP4WXmuCAc+Kh0ysbySnxtv2qrhhvQZmv/gWcZ2A
-	==
-X-Google-Smtp-Source: AGHT+IFyJDFhnRLMDV+Vtu5Y/1Vd85itLGHwRZWROszXt6mNgeAMTKnEZ8wy1wyvkiYXDy+Ydv3bFA==
-X-Received: by 2002:adf:9dd2:0:b0:3a5:39bb:3d61 with SMTP id ffacd0b85a97d-3a6d1322a3dmr3100604f8f.27.1750445533322;
-        Fri, 20 Jun 2025 11:52:13 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com (dynamic-176-002-177-020.176.2.pool.telefonica.de. [176.2.177.20])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6d117c073sm2777413f8f.58.2025.06.20.11.52.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 11:52:12 -0700 (PDT)
-Date: Fri, 20 Jun 2025 20:52:10 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 6/8] iio: adc: Add offload support for ad4052
-Message-ID: <hdwuh3ouw4gzpbj7u7dtzaphdjonecls2xuu7p4nmi7wwrcmye@jhhhqvdlbuv3>
-References: <20250610-iio-driver-ad4052-v3-0-cf1e44c516d4@analog.com>
- <20250610-iio-driver-ad4052-v3-6-cf1e44c516d4@analog.com>
- <20250614112022.24bf9212@jic23-huawei>
+	s=arc-20240116; t=1750447119; c=relaxed/simple;
+	bh=tqCPNPcIw1CeTx+EefrIdaj6iN3r4QJnlrjAf+bq93M=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=HEIPYsUAswcKZ55OcZyZ24Bu75bfGpsizkY8fqA8r4j9e4gvSofrz8HWs0a5gwv1X7e52ldH8e4WJwnC6I28sjc4nGGcZFwoKh10NBry9NqeJb0XNzc49ypjLSCVGeyCfIjcaP3e93++qAQow4/PX21jgJdM8Q61uvrc9fkjsi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Wo7FvqMP; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=mYnhDXvx; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1750447113;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9mGflkL/ZVdAASldw1hk3VuG1rhuf0NrOR2v98rVPcU=;
+	b=Wo7FvqMPifmFfy2fOAKavWwtVfDL2s1uoGZfVzNtAC8x9nZs2WYUWFA+edsXhxgV3bYIi9
+	mATMsyHMaRIwlG3xRkSScJIivyrPfv6HbhSr6WYqkkEg/BabgBvEvwBAjoQtvxzNYBj373
+	VJaztRQS1Q067C6DsSFlem/LhcPufxq75iNn2AS/bpoMQKsLT3CrDEAE7Yo5tbp070FRoS
+	I3WTCKJOe1xPpeheDvWOd/LziCIYlPgPWLI9Z+UQ5s8rDuwv96XK0iSxzMXUCKz96he4f5
+	iZq6q7mRMdrPDyu86sjyOC/DNoxqaWsIGbPzmhdkwEqxJ7omkNVIzBkZSbc85Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1750447113;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9mGflkL/ZVdAASldw1hk3VuG1rhuf0NrOR2v98rVPcU=;
+	b=mYnhDXvxvgkPULRpgzofLbJh/RchuVTknl95XmzZGhIm4EjWz6QFL896qMYyKPZxpWhirJ
+	nT24sIaReZ5E1MDA==
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier
+ <maz@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff
+ <sascha.bischoff@arm.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Timothy Hayes <timothy.hayes@arm.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, Peter
+ Maydell <peter.maydell@linaro.org>, Mark Rutland <mark.rutland@arm.com>,
+ Jiri Slaby <jirislaby@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>
+Subject: Re: [PATCH v5 24/27] irqchip/gic-v5: Add GICv5 ITS support
+In-Reply-To: <20250618-gicv5-host-v5-24-d9e622ac5539@kernel.org>
+References: <20250618-gicv5-host-v5-0-d9e622ac5539@kernel.org>
+ <20250618-gicv5-host-v5-24-d9e622ac5539@kernel.org>
+Date: Fri, 20 Jun 2025 21:18:32 +0200
+Message-ID: <87y0tmp6gn.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250614112022.24bf9212@jic23-huawei>
+Content-Type: text/plain
 
-On Sat, Jun 14, 2025 at 11:20:22AM +0100, Jonathan Cameron wrote:
-> On Tue, 10 Jun 2025 09:34:39 +0200
-> Jorge Marques <jorge.marques@analog.com> wrote:
-> 
-> > Support SPI offload with appropriate FPGA firmware. Since the SPI-Engine
-> > offload module always sends 32-bit data to the DMA engine, the
-> > scantype.storagebytes is set to 32-bit and the SPI transfer length is
-> > based on the scantype.realbits. This combination allows to optimize the
-> > SPI to transfer only 2 or 3 bytes (depending on the granularity and
-> > mode), while the number of samples are computed correctly by tools on
-> > top of the iio scantype.
-> > 
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> Minor comments inline.  I think they are all follow up from comments on
-> earlier patches that apply here as well.
-> 
-> > ---
-> >  drivers/iio/adc/ad4052.c | 244 ++++++++++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 242 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/ad4052.c b/drivers/iio/adc/ad4052.c
-> > index 842f5972a1c58701addf5243e7b87da9c26c773f..7d32dc4701ddb0204b5505a650ce7caafc2cb5ed 100644
-> > --- a/drivers/iio/adc/ad4052.c
-> > +++ b/drivers/iio/adc/ad4052.c
-> > @@ -11,6 +11,8 @@
-> >  #include <linux/delay.h>
-> >  #include <linux/err.h>
-> >  #include <linux/gpio/consumer.h>
-> > +#include <linux/iio/buffer.h>
-> > +#include <linux/iio/buffer-dmaengine.h>
-> >  #include <linux/iio/iio.h>
-> >  #include <linux/iio/sysfs.h>
-> >  #include <linux/interrupt.h>
-> > @@ -23,6 +25,8 @@
-> >  #include <linux/regmap.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/spi/spi.h>
-> > +#include <linux/spi/offload/consumer.h>
-> > +#include <linux/spi/offload/provider.h>
-> >  #include <linux/string.h>
-> >  #include <linux/types.h>
-> >  #include <linux/units.h>
-> > @@ -111,6 +115,7 @@ enum ad4052_interrupt_en {
-> >  
-> >  struct ad4052_chip_info {
-> >  	const struct iio_chan_spec channels[1];
-> > +	const struct iio_chan_spec offload_channels[1];
-> 
-> If there is only ever one of these drop the array.
-> 
-Hi Jonathan,
+On Wed, Jun 18 2025 at 12:17, Lorenzo Pieralisi wrote:
+>  drivers/of/irq.c                                   |   21 +
+>  drivers/pci/msi/irqdomain.c                        |   19 +
+>  include/linux/msi.h                                |    5 +
+>  include/linux/of_irq.h                             |    7 +
 
-It is hard to predict if no other similar device will have only two
-channels. But I would say most drivers end-up having more channels.
-> 
-> >  
-> > +static int ad4052_update_xfer_offload(struct iio_dev *indio_dev,
-> > +				      struct iio_chan_spec const *chan)
-> > +{
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	const struct iio_scan_type *scan_type;
-> > +	struct spi_transfer *xfer = &st->offload_xfer;
-> > +
-> > +	scan_type = iio_get_current_scan_type(indio_dev, chan);
-> > +	if (IS_ERR(scan_type))
-> > +		return PTR_ERR(scan_type);
-> > +
-> > +	xfer->bits_per_word = scan_type->realbits;
-> > +	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-> > +	xfer->len = scan_type->realbits == 24 ? 4 : 2;
-> 
-> Same question on length vs bits_per_word applies here as in the earlier
-> patch.
-> 
-To be able to optimize the SPI message, len must be a multiple of 16
-bits. To achieve maximum throughput, no extra bits (and therefore SCLK
-clock cycles) must be transferred during the SPI transfer. This is set
-by bits_per_word, 24-bits means 24 SCLK.
+This are preparatory changes. Please split them out into a seperate patch.
 
-Finally, storagebits is the number of bits actually used to store the
-reading, and for the offload channel is the DMA width, always 32-bits.
-An abstraction to obtain the DMA width should be created, so the 32-bits
-value is not hard-coded into the driver, still, for this series, it is.
+>  ...3-its-msi-parent.c => irq-gic-its-msi-parent.c} |  187 ++-
+>  drivers/irqchip/irq-gic-its-msi-parent.h           |   14 +
+>  drivers/irqchip/irq-gic-v3-its.c                   |    3 +-
 
-> > +	xfer->speed_hz = AD4052_SPI_MAX_ADC_XFER_SPEED(st->vio_uv);
-> > +
-> > +	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
-> > +	st->offload_msg.offload = st->offload;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int ad4052_set_oversampling_ratio(struct iio_dev *indio_dev,
-> >  					 const struct iio_chan_spec *chan,
-> >  					 unsigned int val)
-> > @@ -838,6 +873,87 @@ static int ad4052_write_raw(struct iio_dev *indio_dev,
-> >  	return ret;
-> >  }
-> 
-> >  static int __ad4052_validate_trigger_sources(struct of_phandle_args *trigger_sources)
-> >  {
-> >  	switch (trigger_sources->args[1]) {
-> > +	case AD4052_TRIGGER_PIN_GP0:
-> > +		return trigger_sources->args[0] == AD4052_TRIGGER_EVENT_EITHER_THRESH ?
-> > +		       0 : -EINVAL;
-> >  	case AD4052_TRIGGER_PIN_GP1:
-> >  		return trigger_sources->args[0] == AD4052_TRIGGER_EVENT_DATA_READY ?
-> >  		       0 : -EINVAL;
-> > @@ -903,14 +1092,45 @@ static int ad4052_validate_trigger_sources(struct iio_dev *indio_dev)
-> >  	int ret;
-> >  
-> >  	np = st->spi->dev.of_node;
-> > +	for (u8 i = 0; i < 2; i++) {
-> > +		ret = of_parse_phandle_with_args(np, "trigger-sources",
-> > +						 "#trigger-source-cells", i,
-> > +						 &trigger_sources);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		ret = __ad4052_validate_trigger_sources(&trigger_sources);
-> > +		of_node_put(trigger_sources.np);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	return ret;
-> 
-> I think this is always 0. So return 0; preferred to make that explicit.
-> 
-Well, this whole method is deleted for v4 due to the trigger-sources
-discussion. Per following David suggestion, gp0 is assumed drdy and gp1
-threshold events, unless the parent (spi offload) trigger-sources says
-otherwise (gp1).
+Ditto, i.e. the rename and code move, not the v5 add ons.
 
-Best regards,
-Jorge
-> > +}
-> > 
-> 
+> +static bool its_v5_init_dev_msi_info(struct device *dev, struct irq_domain *domain,
+> +				     struct irq_domain *real_parent, struct msi_domain_info *info)
+> +{
+> +	if (!msi_lib_init_dev_msi_info(dev, domain, real_parent, info))
+> +		return false;
+> +
+> +	switch (info->bus_token) {
+> +	case DOMAIN_BUS_PCI_DEVICE_MSI:
+> +	case DOMAIN_BUS_PCI_DEVICE_MSIX:
+> +		/*
+> +		 * FIXME: This probably should be done after a (not yet
+> +		 * existing) post domain creation callback once to make
+> +		 * support for dynamic post-enable MSI-X allocations
+> +		 * work without having to reevaluate the domain size
+> +		 * over and over. It is known already at allocation
+> +		 * time via info->hwsize.
+> +		 *
+> +		 * That should work perfectly fine for MSI/MSI-X but needs
+> +		 * some thoughts for purely software managed MSI domains
+> +		 * where the index space is only limited artificially via
+> +		 * %MSI_MAX_INDEX.
+
+
+This comment is stale after Marc moved the prepare callback into
+the domain creation, where the prepare callback gets hwsize for scaling.
+
+The only valid caveat are software managed domains, where hwsize is
+unspecified, but that's a different problem (and not used as of today).
+
+> +		 */
+> +		info->ops->msi_prepare = its_v5_pci_msi_prepare;
+> +		info->ops->msi_teardown = its_msi_teardown;
+> +		break;
+> +	case DOMAIN_BUS_DEVICE_MSI:
+> +	case DOMAIN_BUS_WIRED_TO_MSI:
+> +		/*
+> +		 * FIXME: See the above PCI prepare comment. The domain
+> +		 * size is also known at domain creation time.
+> +		 */
+
+See above.
+
+> +void gicv5_irs_syncr(void)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data;
+> +	u32 syncr;
+> +
+> +	irs_data = list_first_entry_or_null(&irs_nodes,
+> +					    struct gicv5_irs_chip_data, entry);
+
+Let it stick out. You have 100 characters.
+
+> +	if (WARN_ON(!irs_data))
+
+WARN_ON_ONCE() ?
+
+> +static unsigned int gicv5_its_l2sz_to_l2_bits(unsigned int sz)
+> +{
+> +	switch (sz) {
+> +	case GICV5_ITS_DT_ITT_CFGR_L2SZ_64k:
+> +		return 13;
+> +	case GICV5_ITS_DT_ITT_CFGR_L2SZ_16k:
+> +		return 11;
+> +	case GICV5_ITS_DT_ITT_CFGR_L2SZ_4k:
+> +	default:
+> +		return 9;
+
+Magic numbers pulled out of thin air?
+
+> +static __le64 *gicv5_its_device_get_itte_ref(struct gicv5_its_dev *its_dev,
+> +					     u16 event_id)
+> +{
+> +	unsigned int l1_idx, l2_idx, l2_bits;
+> +	__le64 *l2_itt, *l1_itt;
+> +
+> +	if (!its_dev->itt_cfg.l2itt) {
+> +		__le64 *itt = its_dev->itt_cfg.linear.itt;
+> +
+> +		return &itt[event_id];
+> +	}
+> +
+> +	l1_itt = its_dev->itt_cfg.l2.l1itt;
+> +
+> +	l2_bits = gicv5_its_l2sz_to_l2_bits(its_dev->itt_cfg.l2.l2sz);
+> +
+> +	l1_idx = event_id >> l2_bits;
+> +
+> +	BUG_ON(!FIELD_GET(GICV5_ITTL1E_VALID, le64_to_cpu(l1_itt[l1_idx])));
+
+I assume this is truly unrecoverable
+
+> +	l2_idx = event_id & GENMASK(l2_bits - 1, 0);
+> +
+> +	l2_itt = its_dev->itt_cfg.l2.l2ptrs[l1_idx];
+> +
+> +	return &l2_itt[l2_idx];
+> +}
+> +
+....
+> +
+> +	return 0;
+> +out_free_lpi:
+
+It's amazing. All the code has a gazillion of empty newlines, which just
+take up space and have no delimiting value. But on these error labels,
+you glue them right at the return statement (not only here, noticed that
+before).
+
+> +	gicv5_free_lpi(lpi);
+> +out_eventid:
+> +	gicv5_its_free_eventid(its_dev, event_id_base, nr_irqs);
+> +
+> +	return ret;
+> +}
+
+> + * Taken from msi_lib_irq_domain_select(). The only difference is that
+> + * we have to match the fwspec->fwnode parent against the domain->fwnode
+> + * in that in GICv5 the ITS domain is represented by the ITS fwnode but
+> + * the MSI controller (ie the ITS frames) are ITS child nodes.
+> + */
+> +static int gicv5_its_irq_domain_select(struct irq_domain *d, struct irq_fwspec *fwspec,
+> +				       enum irq_domain_bus_token bus_token)
+> +{
+> +	const struct msi_parent_ops *ops = d->msi_parent_ops;
+> +	u32 busmask = BIT(bus_token);
+> +
+> +	if (!ops)
+> +		return 0;
+> +
+> +	if (fwnode_get_parent(fwspec->fwnode) != d->fwnode ||
+> +	    fwspec->param_count != 0)
+> +		return 0;
+
+Just add a MSI flag and set it in parent_ops::required_flags and extend
+the lib with
+
+        struct fwnode_handle *fwh;
+
+        fwh = d->flags & MAGIC ? fwnode_get_parent(fwspec->fwnode) : fwspec->fwnode;
+
+No?
+
+> diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
+> index c2e7ba7e38f7..4a0990f46358 100644
+> --- a/drivers/irqchip/irq-gic-v5.c
+> +++ b/drivers/irqchip/irq-gic-v5.c
+> @@ -57,12 +57,12 @@ static void release_lpi(u32 lpi)
+>  	ida_free(&lpi_ida, lpi);
+>  }
+>  
+> -static int gicv5_alloc_lpi(void)
+> +int gicv5_alloc_lpi(void)
+>  {
+>  	return alloc_lpi();
+>  }
+>  
+> -static void gicv5_free_lpi(u32 lpi)
+> +void gicv5_free_lpi(u32 lpi)
+>  {
+>  	release_lpi(lpi);
+>  }
+
+Just make them global right away when you implement them. No point for
+this kind of churn.
+
+Thanks,
+
+        tglx
 
