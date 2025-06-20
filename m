@@ -1,185 +1,231 @@
-Return-Path: <devicetree+bounces-187945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1661FAE1E10
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:06:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3042EAE1E42
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:13:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87FBE1C20D9A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:07:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 588155A51DD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCDD2BDC03;
-	Fri, 20 Jun 2025 15:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFF6C2BEC5F;
+	Fri, 20 Jun 2025 15:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="zmv6Hlun"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GYkKydPK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4546A2951CD
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D23A2BF3D7;
+	Fri, 20 Jun 2025 15:13:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750432012; cv=none; b=XNUomecMnQVgwl/AP3NL5lMN+iNm0gnifO6wHIBNiC9CeCMoRI2DqdrfmC8HWVrrQdQwPAzdyP54VUj2df+CxJDICw/yKMFzjieGgM54k+5Rc5hQ1j/Vmd1arV+awSsT28DQESrnMN+PLWtZVcsqwKJJO5wqlolFm6wWb5/fXjY=
+	t=1750432415; cv=none; b=CULMyVX1IT1tjfOiC/uG1Wku2Zet/69gtW49UhNtiKHbN4MOEvvctvg5zFJI9XvjZkJkr3xrSJe6pXlE01RY13PCSTucQxAwMchZHToRKJak7RuqoRG+RVbtVDpmy/ntBbuTlD8xiME6vGf2O0qgHU4lBEkgUwFhzRzekSU1OgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750432012; c=relaxed/simple;
-	bh=LSJDkcrrLoGkZMF1EcEy87q2AqYWTZd7Xq9u6uACDbA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=W/dI3hNnKGUx3j6uOXP4moCg+fk7lbdTQX7Pwc4z0k8vFVYcTmOIq5ZPOo9e8GEKmkon2q0q9Yw/T12f7ZV0GTR3xmv6tpPaKeCF4ekOedwVr1XIR/Msn6uaJf2n7Loaey7sb/lJofzfjKnpGFNiRHrGv96vwCakrlqDLVRxdX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=zmv6Hlun; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6fafdd322d3so21205296d6.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 08:06:50 -0700 (PDT)
+	s=arc-20240116; t=1750432415; c=relaxed/simple;
+	bh=La6pk9H26/bpjKQuvWN5PPW4SZbFgZLl7FVv69yhG8I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f1Rg1VFeWmqmBt0h3rRDE515QP7CC3T91bfI7m84RHCnjMNS6z8r/u5BNGN1p8XwVl8271mODAgSvddPtiDh8APRECgkUk7sZf+73frgGuF4kCoe/XjY8YQVOF29eFGR1zxP/NDRfnPI/ToPLmbMQlWafVkBhDlVPTDXn1zjRnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GYkKydPK; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a50fc7ac4dso1196713f8f.0;
+        Fri, 20 Jun 2025 08:13:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1750432009; x=1751036809; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LSJDkcrrLoGkZMF1EcEy87q2AqYWTZd7Xq9u6uACDbA=;
-        b=zmv6Hlun5MD8eXUeWIFU/QwIGl0gg+q0NuMqEX5rk3xctKJ5wvM+AhlGgqWAhos15T
-         muqK4nHHco6V2ok+CGfJ7/KXrXdiqEPvRY2kaLvYGD+fCgTLOojH4h90WpNDhQiyhDbv
-         tUwm5+p4/j4UkSp8EYZF1WFWw+haRorRKKt0jHJ+OXarfEFbkuNzQcBotZLOAtaXzfZ9
-         AW4W5pKXsLMu/Z7BrxhbPSWMr7FSPnLIw0Kme5cdZZUS7RVpbc0C9ajc5JxPELaWEnHF
-         3+5akoEoVPNTmfXAR2bwVUcR8U/y2P0Vny5VVOjs+9P1EDnnll+VOxEArFJPREWGmOrG
-         CfjQ==
+        d=gmail.com; s=20230601; t=1750432412; x=1751037212; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yd8rIVXOWJDKzY1bPiiA23oWqQqx2bHkD00sbIK0oyg=;
+        b=GYkKydPKtLm8gkLXjioyWtUkJK77fSy14NCwb97I3vvQWfuFUTySZUVQW5BvvTD2P/
+         At5gSIbmO+0rphBGBnXlKhzAC3dz4WqgWi+7GY06G+7bN2S2xgaz5cwksLJyMkMD+T+t
+         vxXkYnLnqg67tdk9kCkaGcfZlhhq6RS921sKLWLEj5sRr8uoiwACzJbdEtdENbQjykM+
+         pQcMpn4fBf4b+/3WcCPAIcgiBaTh9a+y6sgC/l1YiZ3HV6u94qp/NVyGXnwnok5vgMS9
+         vrJZf00J+ak5Mvfo/h/Zi7oa4oqUexzgHtPDmvVeKT0cSsVk5wAYrW90+yTRwE07tX0r
+         NQLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750432009; x=1751036809;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1750432412; x=1751037212;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LSJDkcrrLoGkZMF1EcEy87q2AqYWTZd7Xq9u6uACDbA=;
-        b=s7RuPnXEGu6vnX8kgA6CHXFtgGhYF1KSuMmgT0cuSTP8JIN3DN7Iw0U79bwREb0+qX
-         PNqt+wpA2JCMkpbLT8JgRBFxZ2ahCixH4pXCuZ0+DcOp67WyxBC5JGIDrMAPxXmEFt9V
-         cWE3mLCZxuxlDXcMj0Cbb/U3Zqv0dGSzKerRNlQox6YaJx+oZB9Zby8zadJWHRb5iUYb
-         HmSo8IQnb5g5dsQgRGtJbcoFJfOmdz8vmFWljw7xRzK6m0gFXxYZNe2RDxlw24ue9WQm
-         iApPTxbg1DxOtncaA6/NSG4S5HIz/wJXcGcmBDEixpswIyjrm/VUU6+pbsfvh1/akxf3
-         L0OA==
-X-Forwarded-Encrypted: i=1; AJvYcCUi+75D1TVaHPS6J1kiuqptFLferucu1qYAxL4GahExwqofODUKCHXWgpYQZt194AfF6ZRSI+tFwJt1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAOlNYsxsPaveyvC2aEkekBZQMk2+xPNlr1x8une9rlUt3H0Li
-	3oobT84232lzKr0mhG5KlDrYuAI//AlCqWooVUHcjdfmNr3q6nJWKUmkj1U4loEBgJA=
-X-Gm-Gg: ASbGncs5bMQsnqXInQ/ZXOeFYKsU9vvBh5LKskO4FzKeyPPuamTE0vgXTL5aMJU340X
-	fORzz2+YPgKdBUrUorAEzNWsxlKXeyecKtvbmhNlv4FvOS+i+ZmF7d8cCJCE1umqlxWW702xHCS
-	y8shEzeVA/4LxT9G2VVZXMY1lsdZbKvtrOQWgf67BW75lKj4BmOgpaf92z/sCYQukbEGn0haY4d
-	7piXhR0puksmPlFHmbIb7Wqx+yaIdJP3PS/wnz/BC1W2Aj58i5Tr/HyyhsrgiVAVVxiNRWMAc1m
-	GEhFgwMHuzG6RNyLJl16rMb1+x4TW4I9zzRV0C9hF0LDcB5RfNmZbvXS9YsNrCNaZiM=
-X-Google-Smtp-Source: AGHT+IFSbdWcJq6maD1xUyD31N97nxqkeERkrPfl+oPHZ7odb6VWFZL/FFDSL0pRREpka1+wvb6uPw==
-X-Received: by 2002:a05:6214:2463:b0:6f8:8fdf:f460 with SMTP id 6a1803df08f44-6fd0a461262mr40636306d6.9.1750432009010;
-        Fri, 20 Jun 2025 08:06:49 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:17:b699::c41? ([2606:6d00:17:b699::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fd095a3f94sm12971696d6.111.2025.06.20.08.06.46
+        bh=Yd8rIVXOWJDKzY1bPiiA23oWqQqx2bHkD00sbIK0oyg=;
+        b=VulZ42egaF4uluxCQMifPQfBUE3QXZnmOXyiuX1XM4FHj6HKGScUg1YHH6Yg8Fbf9D
+         MIM1z2MTtQfH9brp+c7ei9i3oGRrX/wLpZk8xmQtIahn2W03OtM9tXVfReYCvCyghGxz
+         bFHDuw0PiMjBqlzIuup9mlujGx2I/ftZU7sJ0srE0BzoQI5+hVX6lhbdm190/A0N8ufv
+         q8v9B1YBWEbNGM2q0mtCQfb8vVjnEQwdTthu3wvAhszFbA06XY4zHM2I7NMudLDCHMaw
+         4XHHGrg6pDa8IFxPukOQ3YiLDxqAuVKdeSaD2KeYpP5VoqvHAsv/A2SZHEsTxRpAr7Bl
+         49CA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOW+O8ngF0jvHoJ+mE6HZxKPdOBrNAI6zTfLHgV9mudfub6e2KyAh1mgB3gVtRU3agchsK+58Gqfzp3A==@vger.kernel.org, AJvYcCW+J64QNEfClNKnugtUDOnz2ONW/akieO2cg/6XM/aKoky3Udq6ewsdvS/wQ7iZyio7Y8hUrj/5aYAyXyhUXCs=@vger.kernel.org, AJvYcCWZDnJkof2aOP5CP00OYE6uXaJcH45CffDte13YOah1nxKfY0p7TPkJSsCgkXWUMho/2GhXUaPmqOqT@vger.kernel.org, AJvYcCWkEwssWY6r77OvwqThnCVgmWuzaNEkAGc+Ri/WoB67cEiSFjhl+rCj2K6u+QMZzst9pxDZjVRmKOEhc7TM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeZuxBGLYytdK9qEzjzLvpwVh5+nEx/m8OmPBu9SAql0NhRHH1
+	pyUmQYcdl2cKtn1URzlAtyMVJkMI2rflBHhRIVupBy0luyaZUgSbM1IT
+X-Gm-Gg: ASbGncsLx4x5Sgw/lZCxY2U+ec4Ah6EYIcK789iOn+WZC8ZuyJSfPnJxx0uKiWsOOXV
+	sagLHiD/v1ga26pbHG+bFOG/+49Ng32VaQO7/81z1j9+KwQbN6ZQrHljUlrYiXZUuWUWjxI+FYI
+	W7AtS4M864FJvArXdEBcrWhCCGerzpT4ri6IHfd33vh7Pb2q+/bKhQlpE6WZkeQtw9K6BZieFeu
+	fCvL33Nqom+iRhZodugJBEIExlTGu7XE97YgVAs6Am+2+lqKMKhro9WXFTsJ4I8gOQIyOzcatsc
+	k5wi5AlguZux9fsQgEWnR3760u8lDsfuWaHiwZkXhtDzeWq8S2zD5ur58uuV4BVv2lGgP52u98x
+	voyy2X/2HavJa+STFBQ75J64rgEzFI6lc6AIi
+X-Google-Smtp-Source: AGHT+IEiQS5a6M/z7+a+7H4+mmNgx+XDfQPrstdLX634ovqwc56MLO4MSVvB9pX/lYkaCnyDyKTcVQ==
+X-Received: by 2002:a05:6000:1ac8:b0:3a4:ee40:715c with SMTP id ffacd0b85a97d-3a6d130168fmr3360160f8f.14.1750432411973;
+        Fri, 20 Jun 2025 08:13:31 -0700 (PDT)
+Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453647070cesm28172575e9.33.2025.06.20.08.13.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 08:06:47 -0700 (PDT)
-Message-ID: <82d38c0dc93255da3195a919dc650ef8fc07e7f2.camel@ndufresne.ca>
-Subject: Re: [PATCH RESEND 1/2] media: dt-bindings: nxp,imx8-jpeg: Add
- compatible strings for IMX95 JPEG
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Shawn Guo
-	 <shawnguo2@yeah.net>
-Cc: Frank Li <Frank.Li@nxp.com>, mirela.rabulea@nxp.com, mchehab@kernel.org,
- 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, 	s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, 	imx@lists.linux.dev, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, 	ming.qian@nxp.com
-Date: Fri, 20 Jun 2025 11:06:45 -0400
-In-Reply-To: <6898ce74-808d-4976-b04e-31737396a86c@linaro.org>
-References: <20250521-95_jpeg-v1-0-392de5d29672@nxp.com>
-	 <20250521173444.310641-1-Frank.Li@nxp.com>
-	 <eef5ccd99d82dd33e3a4ecdb5d4a5b75ccb0b972.camel@ndufresne.ca>
-	 <aFORokzx/sImgDtA@dragon>
-	 <d46d73f84e78daf152962ffb5cce7dd3ae0920d1.camel@ndufresne.ca>
-	 <6898ce74-808d-4976-b04e-31737396a86c@linaro.org>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0MU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAY29sbGFib3JhLmNvbT6ImQQTFg
- oAQQIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgBYhBO8NUoEVxMPCGgRvEtlBlFEpYHL0BQJ
- oLLLGBQkJZfd1AAoJENlBlFEpYHL0BEkA/3qkWYt99myYFSmTJUF8UB/7OroEm3vr1HRqXeQe9Qp2
- AP0bsoAe6KjEPa/pJfuJ2khrOPPHxvyt/PBNbI5BYcIABLQnTmljb2xhcyBEdWZyZXNuZSA8bmljb
- 2xhc0BuZHVmcmVzbmUuY2E+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQ
- TvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyy+AUJCWX3dQAKCRDZQZRRKWBy9FJ5AQCNy8SX8DpHbLa
- cy58vgDwyIpB89mok9eWGGejY9mqpRwEAhHzs+/n5xlVlM3bqy1yHnAzJqVwqBE1D0jG0a9V6VQI=
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-6BjHJSIIonN27c8RdqsP"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+        Fri, 20 Jun 2025 08:13:31 -0700 (PDT)
+Sender: Igor Korotin <igorkor.3vium@gmail.com>
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+To: "Rafael J . Wysocki" <rafael@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Alex Hung <alex.hung@amd.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Igor Korotin <igor.korotin.linux@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+	Remo Senekowitsch <remo@buenzli.dev>,
+	Tamir Duberstein <tamird@gmail.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Xiangfei Ding <dingxiangfei2009@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Benno Lossin <lossin@kernel.org>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	Len Brown <lenb@kernel.org>,
+	Trevor Gross <tmgross@umich.edu>
+Subject: [PATCH v8 0/9] rust: Add ACPI match table support for Rust drivers
+Date: Fri, 20 Jun 2025 16:09:13 +0100
+Message-ID: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This patch series introduces support for ACPI match tables in Rust 
+drivers.
+
+Currently, Rust abstractions support only Open Firmware (OF) device 
+matching. This series extends the driver model to support ACPI-based 
+matching, enabling Rust drivers to bind to ACPI-described devices.
+
+Changes include:
+  - A new `acpi::DeviceId` abstraction for working with 
+   `struct acpi_device_id`.
+  - Updates to the core `Adapter` trait and `platform::Driver` to support
+    optional ACPI ID tables.
+  - A sample implementation in the Rust platform driver, demonstrating 
+    multi-bus matching.
+
+This is especially useful for writing drivers that work across platforms 
+using both OF and ACPI.
+
+Tested using QEMU with a custom SSDT that creates an ACPI device matching
+the sample Rust platform driver.
+
+This series is based on three patches by Danilo Krummrich, which 
+introduce general improvements to the Rust platform driver. These patches 
+re included unchanged at the beginning of the series for completeness, as 
+they are required for the ACPI integration.
+
+Danilo Krummrich (3):
+  rust: device: implement FwNode::is_of_node()
+  samples: rust: platform: don't call as_ref() repeatedly
+  samples: rust: platform: conditionally call Self::properties_parse()
+
+Igor Korotin (6):
+  rust: acpi: add `acpi::DeviceId` abstraction
+  rust: driver: Consolidate `Adapter::of_id_info` methods using `#[cfg]`
+  rust: driver: Add ACPI id table support to Adapter trait
+  rust: platform: Set `OF_ID_TABLE` default to `None` in `Driver` trait
+  rust: platform: Add ACPI match table support to `Driver` trait
+  samples: rust: add ACPI match table example to platform driver
+
+Changelog
+---------
+v8: 
+ - Rebased on top of the latest state of the `driver-core-next` branch.
+ - Replaced `FwNode::is_compatible()` API  with `FwNode::is_of_node()` 
+   per Danilo's request. This includes initial commit and conditional call
+   in `samples: rust: platform: conditionally call Self::properties_parse()`
+ - Link to v7: https://lore.kernel.org/rust-for-linux/20250618100221.3047133-1-igor.korotin.linux@gmail.com/
+v7:
+ - Rebased onto the driver-core-next branch
+ - Incorporated three of Danilo’s upstream patches as a base
+ - Switched from `assert!` to `build_assert!` in `acpi::DeviceId::new` 
+   for compile-time checks
+ - Renamed the sample ACPI HID to `TST0001`
+ - Moved the ACPI test instructions into the module’s top-level 
+   documentation comment
+ - Link to v6: https://lore.kernel.org/rust-for-linux/20250613133517.1229722-1-igor.korotin.linux@gmail.com/
+v6:
+ - Moved set `Driver::OF_ID_TABLE` default to `None` to a separate commit 
+ - Removed out of scope change related to cpufreq driver.
+ - Link to v5: https://lore.kernel.org/rust-for-linux/20250611174034.801460-1-igor.korotin.linux@gmail.com/
+v5:
+ - Got rid of unnecessary consolidation of `Adapter::acpi_id_info` methods.
+   Instead, firstly made consolidation of `Adapter::of_id_info`, then
+   `Adapter::acpi_id_info` is added using the same pattern. 
+ - Set `Adapter::OF_ID_TABLE` and `Adapter::ACPI_ID_TABLE` as None by 
+   default. 
+ - Removed `Adapter::OF_ID_TABLE`/`Adapter::ACPI_ID_TABLE` initialization
+   example due to irrelevance.
+ - Removed extra `of` dependency and `Adapter::OF_ID_TABLE` initialization 
+   in cpufreq driver.
+ - Link to v4: https://lore.kernel.org/rust-for-linux/20250610145234.235005-1-igor.korotin.linux@gmail.com/
+v4:
+ - Fixed code example for `trait Adapter` in platform.rs 
+ - Fixed driver implementation example in rust_driver_platform.rs and moved
+   it to `trait Adapter` in platform.rs per Danilo Krummrich's suggestion.
+ - Consolidated `Adapter::of_id_info` and `Adapter::acpi_id_info` methods using
+   `#[cfg]` per Benno Lossin's suggestion.
+ - Link to v3: https://lore.kernel.org/rust-for-linux/20250606170341.3880941-1-igor.korotin.linux@gmail.com/
+v3:
+ - Removed fwnode type check in `Adapter::id_info` per Greg's and Danilo's
+   comments
+ - Removed `is_of_node` rust helper, due to unnecessity. 
+ - Fixed example code in `rust_driver_platform.rs` per Danilo's comment
+ - Added an instruction of testing ACPI using QEMU with a custom SSDT
+ - Fixed minor code formatting issues.
+ - Link to v2: https://lore.kernel.org/rust-for-linux/20250605161956.3658374-1-igor.korotin.linux@gmail.com/
+v2:
+ - Removed misleading comment in `acpi::DeviceID` implementation. 
+ - Removed unnecessary casting in `acpi::DeviceID::new`.
+ - Moved `pub mod acpi` to correct alphabetical position in `rust/kernel/lib.rs`.
+ - Link to v1: https://lore.kernel.org/rust-for-linux/20250530123815.1766726-1-igor.korotin.linux@gmail.com/
+
+ MAINTAINERS                          |  2 +
+ rust/bindings/bindings_helper.h      |  1 +
+ rust/helpers/helpers.c               |  1 +
+ rust/helpers/of.c                    |  8 +++
+ rust/kernel/acpi.rs                  | 60 +++++++++++++++++++++
+ rust/kernel/device/property.rs       |  7 +++
+ rust/kernel/driver.rs                | 81 +++++++++++++++++++++-------
+ rust/kernel/lib.rs                   |  1 +
+ rust/kernel/platform.rs              | 29 ++++++++--
+ samples/rust/rust_driver_platform.rs | 80 +++++++++++++++++++++++++--
+ 10 files changed, 243 insertions(+), 27 deletions(-)
+ create mode 100644 rust/helpers/of.c
+ create mode 100644 rust/kernel/acpi.rs
 
 
---=-6BjHJSIIonN27c8RdqsP
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+base-commit: b29929b819f35503024c6a7e6ad442f6e36c68a0
+-- 
+2.43.0
 
-Le vendredi 20 juin 2025 =C3=A0 07:54 +0200, Krzysztof Kozlowski a =C3=A9cr=
-it=C2=A0:
-> On 19/06/2025 19:16, Nicolas Dufresne wrote:
-> > Le jeudi 19 juin 2025 =C3=A0 12:27 +0800, Shawn Guo a =C3=A9crit=C2=A0:
-> > > On Fri, May 23, 2025 at 07:22:04PM -0400, Nicolas Dufresne wrote:
-> > > > Hi,
-> > > >=20
-> > > > Le mercredi 21 mai 2025 =C3=A0 13:34 -0400, Frank Li a =C3=A9crit=
-=C2=A0:
-> > > > > Add compatible strings "nxp,imx95-jpgdec" and "nxp,imx95-jpgenc",=
- which
-> > > > > are backward compatible with "nxp,imx8qxp-jpgdec" and
-> > > > > "nxp,imx8qxp-jpegenc". i.MX95 just need one power domain which co=
-mbine
-> > > > > wrap and all slots together. Reduce minItems of power-domains to =
-1 for
-> > > > > i.MX95 and keep the same restriction for others.
-> > > > >=20
-> > > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > >=20
-> > > > Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > > >=20
-> > > > Krzysztof, will you take this one once the DTS part is ready ?
-> > >=20
-> > > dt-bindings is the prerequisite of DTS.=C2=A0 DTS patch looks good to=
- me
-> > > and I'm waiting for dt-bindings part to be applied first.
-> >=20
-> > I was waiting for sign of life on the DTS part, we usually get some ack=
-,
-> > which is good sign we can take the bindings.
->=20
-> Such process never happens. DT bindings are the prerequisite here and
-> platform maintainers wait for bindings to be accepted before taking DTS
-> or even sometimes reviewing DTS. Why even bother to review DTS if it
-> follows entirely incorrect binding?
-
-You are the one requesting DTS with DT bindings for review purpose. You've
-done so regularly this year.
-
-As for review process, Ack are a workaround to a black whole in our review
-process. Patches without any reply can either be un-reviewed due to lack
-of time, or accepted. You do whatever you like, I'm just saying that clarit=
-y
-can help to coordinate.
-
-regards,
-Nicolas
-
->=20
-> Best regards,
-> Krzysztof
-
---=-6BjHJSIIonN27c8RdqsP
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaFV5BQAKCRDZQZRRKWBy
-9KazAQCZpPC27cOiLrCeirOx9KtegKeVBpOKvNdcjZFKHZg+0AD+OJGvNGaHn+Di
-rFaOSJG8M735rmjWeSPrkNAWKU2s4Qc=
-=Chy2
------END PGP SIGNATURE-----
-
---=-6BjHJSIIonN27c8RdqsP--
 
