@@ -1,220 +1,192 @@
-Return-Path: <devicetree+bounces-187893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA82CAE1A74
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:05:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF38AE1A84
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:07:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 316A05A4F41
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA2CE3BA871
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B833428A40D;
-	Fri, 20 Jun 2025 12:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2FE28A72B;
+	Fri, 20 Jun 2025 12:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="XnqnDs6p"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="WciHImfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7453289E1F
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 12:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D784C263F5B
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 12:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750421113; cv=none; b=BY4IJrDay6pwC216j4j01gLlmBa1wN6KumVCp16RFW1w7K2xwN4RvUv697+6qmQnDrMfyULXffOtyjD6U4emiD04bMCPS1YXpoYKKoTvDV67PqkXzmdxRZOuOdEhstkYWksCulUSXlLaP7/p/8dnThHhyIfLl0/QX/bemP6YpsY=
+	t=1750421233; cv=none; b=Wpevq/EpmC22qbkv5mw1ovJSI2q84hqk7QEa+ZnTUUn/HjF6WmkUeNiOyp9m2u7NLD7LAW1QbJXrL4UHHfjwkNqWB7a3Um5iIK/J4yhPhZckhu0p0b0ujW3QYpdKkBpeDh1Z1QgzBvNgPef7O5cV/yyo3VZmYPSQ1kMW63Uo/Ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750421113; c=relaxed/simple;
-	bh=jsmOaERJJJU+XCJVI4JWcgqpWpirMEBecRWGeNiANCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jWeGsAd8OdAlySsvdHenGD5sd4auMkzXJHip1YQ9MrU3Cj5VKJqBKYMqIpW8TJtYClMkpZXd+BuLC01PF5q9HgCOF1Inz0NfBhRqqCFDOk+GzJ4jiQj3nbtLJR4OhPGHJs4DPtcdAbrEbzeSwXF35Avo0TcrtB7+aqf/WeAhgtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=XnqnDs6p; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6faff792f9bso16124136d6.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 05:05:11 -0700 (PDT)
+	s=arc-20240116; t=1750421233; c=relaxed/simple;
+	bh=EtRUcRnnvwKaEoPNvie571Q7bf0PXL/8PzpE64KHIRc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=dOZ2mfyc81UpfZxXT9b78rMEQW90//3U8am3zyATWf4IBQamPsUoQlUjh1IG2BEYWYLrP03ZYpypULRbfIKsv8ARsdnqtOI5gSWlhdx+CrOa25WEO3tPY5nQZ3AZ6uhJ57tHXvRXfSNn5k5832j4Cu9kIGZw/zgih8v/JEzeuJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=WciHImfz; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-addcea380eeso305229266b.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 05:07:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1750421111; x=1751025911; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iKSU6GlAD0b+reZYhRj4iOMFyn23zu+YAR94aAzdOEg=;
-        b=XnqnDs6p093TCT0u8xqmUP9nS4uieNJqvVLhZDwkVGUw4MdQ47jN37NI2sTNIozzv0
-         T0Kttc8FSmfLO60GssmTqxeO1WgXRf0ipNz4gIt2JVcizpYH3Z2bL4DqA8uI5zjxHsap
-         ZF6tb0fudVZzRJZOsNz39i2lgKwwbi0g7CnK1xai9W7mRC2ZQZZpC1Yw8gRTtTyeuubv
-         6OYrueD3o4IbR8kIoPptK9lnACCGtVDRuZReSGMF/pAfa+o8WsryNQd9gbND1tKEgOCS
-         dTo7ApYZlouKnJxC6XYU5qFRwCmYcRGakwdmR1iKXF8NhcfA4UT0Wm9fOOTwNMdnGmr+
-         aPcg==
+        d=fairphone.com; s=fair; t=1750421230; x=1751026030; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lG/pp+YecK6TL9JZ8UqalWMy4MkbPjqfLN1AxeBtCuM=;
+        b=WciHImfzRZ9V7PUwwHv+EbBSJ4I5zk+4c1fbrAYz4XgZWQo1EA3n930KwkG44k9iFN
+         qqgzJ+31nPw9BXuYhfczmoTW7SdfwdGEkWr85hU7rhvp2lkPnAhTjD/l3MamAuUj5b3o
+         62+JzinqVKDrNDyqUnuqPG5Nb4IFYLBqvVpHCRRxOEFgcpLq+rAS8WylhPMG9iCohAwX
+         6fMxxMxf0RDFa5JrPt/3EGtvj+Zy6nl0+uW/yhtSPTXkJUfz1Zr+oVSVQhorIi483rds
+         +QZ672h9jkLNFB2Tw7BEetn5BMNKKOyobCV5XBhRAWx3TwR1bhKO5Vh+6A4M5pP/LKhl
+         CiKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750421111; x=1751025911;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iKSU6GlAD0b+reZYhRj4iOMFyn23zu+YAR94aAzdOEg=;
-        b=f1P6NcNxTzWSWA/reJ0dhJz0NRr0dIBoRSLSe+EcejF6nFcihchZIHqJ/50WNXjdEO
-         jQfOBrW5rpKmu9U6q8+adcMz7zIHtAb1TBxw3W3qfa8Wo30Xbi7yp166yrYfhKDsJiKf
-         1XMqX/vRs+FEiM5N0cMAJwfK4k9Yy57nrIPMvKjiR+mYTMMB+M2y5082e+fDQZ/eYEoL
-         6N0bDblnW7kQRheLjxxK1vQowwUVad46iSN3bK6OclF1Vo9EXajB9HxWrvEvwA4ipWnz
-         ufdHcwX7vGWM0BR58lZ+OQEXolxS358Z4B3gO6QD6pbV6ZoIjNFXElOEhRc4P8mUoZJ3
-         0UIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmtnNC8UDFGIHepNGyR3DNbTI28xWw+w1Mj7DzBbsK26ZRMQSZdaqKLRs+5phcLVridRMlW3dYoHkb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzah7bVgG6PSyfie7zRvvUy+ySvpcO2fsJPzjOFRsgkKpUrSGvC
-	BS8mhOd8KQ+cvtomGUF0SMErdJUnnrEH2NlpYjMw7iudDA2A4KuL2P7edc86d0UO+zc=
-X-Gm-Gg: ASbGnct5v+TSOk6eos9Y+j/9PBKkaTFoqe8QV+c6REBOKOSme5oAF31gFaMK7CMiovo
-	V+OAQwnPp5zT2jw+gdvvmHNrsqq1nOM4vmeJuXg66KBME2ypNu8uyaX7dfu9SRG31CyY91wM24q
-	EZZRWujYvAo4qkyrCURKb4YjcAVW3hk3AB/Uxq+drBvzUk22DjAvRUO5wK3Pa1kiB4Qcnte/n5u
-	mHDEuOzvz92QbNIr3qG0htgRk7GC/3Sypcx+tysy+KHyzJNTu+yzH/JS0eo36CPQo6gacL8+0Ft
-	dFBNiLePSjvFZyr7GluHSnwvqLh1GCQ54ASlrGddawXcRM9FTQANmL71bFGl3XARhxrrFFO0s2d
-	ybP++8qh2C3HUYMfBMBZE0fVabfnFAgf7dEjivA==
-X-Google-Smtp-Source: AGHT+IHfu4I3beDwgjtHUIfD6yuQvdS/JqKOrGvhTdy+iUwvWk3om69mhib1iCashING8Al0Lp0xvw==
-X-Received: by 2002:a05:6214:1d24:b0:6fa:c81a:6202 with SMTP id 6a1803df08f44-6fd0a58f236mr37698336d6.29.1750421110649;
-        Fri, 20 Jun 2025 05:05:10 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-167-56-70.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.56.70])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fd09576766sm11104646d6.81.2025.06.20.05.05.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 05:05:10 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1uSaUX-00000000Dmo-1ZEQ;
-	Fri, 20 Jun 2025 09:05:09 -0300
-Date: Fri, 20 Jun 2025 09:05:09 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v3 3/5] iommu: Add verisilicon IOMMU driver
-Message-ID: <20250620120509.GA39770@ziepe.ca>
-References: <20250619131232.69208-1-benjamin.gaignard@collabora.com>
- <20250619131232.69208-4-benjamin.gaignard@collabora.com>
- <20250619134752.GB1643390@ziepe.ca>
- <073ffe14-d631-4a4f-8668-ddeb7d611448@collabora.com>
- <20250619165928.GA10257@ziepe.ca>
- <e034a111-93eb-42e8-a533-46553b4f5588@collabora.com>
+        d=1e100.net; s=20230601; t=1750421230; x=1751026030;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lG/pp+YecK6TL9JZ8UqalWMy4MkbPjqfLN1AxeBtCuM=;
+        b=UcRgMjAThIcAhTcPKXZwBb8FoF8CvCDbK3pOfOASNpDEVu3KgBlfPM9XZAorVoLRpL
+         Vbf37kWkjIdCT1Xy4+QSc8QdYbqHaplkgThI6U44tIo6GE3mtFrbEBUxVNly+yrrXiVV
+         Ivphm9vSFbn6NUttkcY5PbNi8uRYamnaCG25fkkA0s0ewMsBhJgULRmhESRtX9IoSoHy
+         f11G2Oe/nGuRVj64OeNSYUAATqUlUcO7hnvv7tu9+E3s08FZ38hcCf1TeWvqjippAKLu
+         ylc411HzTLCXPdC45a+KhVXdbaInFFA5Bjn109B/Y96R/B/6yidINUmRJrgXh1CSMEV+
+         toNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWBPMOc2OKLAL7m8JkrTlGXjcpJcXAPAvjNYAfCFHkiHyObdnDpSyhrBWrQVsQTbpaZ8RdajX2BmESG@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywq4AI975h4C2gUsS8rbXfkmS0AGWAjptOOjuoHgwrDvBcviCb+
+	doVLHwD1xAVSPBHKF+TjEsoxTNJeqH+gpuncdQ1V+WllwXuBQCk60xCrd1rIMCf1KBg=
+X-Gm-Gg: ASbGncuG3q/EUUyDzbke/3evn/gv/evIujAXnVXNh2gU7+7fEWha+a1Z5EKOFtYKtEw
+	OZrCOUw/HrMqwS3qqxklVjOSC+UXm+vBiBUuKESx0nEC2s1SQURG4AZRoehB62bynIhD/vZUr4q
+	We3PXNbQXVS6ZSVF/Mc2zmjo/yfzh+Stdeom6DuEQREt5ZBv1iTJeSyQc06xfLQoObzAQxgAqQb
+	bKpZACfFIJJ+hK9gaTydmQ+lNdfShroDwonSyLBqRN1rscT/MhgCBeDclPUCNiS6rWTMauDWjH8
+	EztYERuC9ZLlzSLani1cnw7SGTQoEZAeLetMcVuzohFPymsz5IcY0u4lpexal9lNMevc7+hZ8E9
+	mM9Ojwtb0wfy0wUl7PSdw14hAwJQMZuI=
+X-Google-Smtp-Source: AGHT+IF+wrgDWF2MbI5/b7UwRcOpVaso3voR+Zg/6OIhVMjvknso7RtJOSmtvATMmjnDhH2I7Iju4Q==
+X-Received: by 2002:a17:907:7244:b0:adb:2bb2:ee2 with SMTP id a640c23a62f3a-ae057f1f567mr241816566b.41.1750421230048;
+        Fri, 20 Jun 2025 05:07:10 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae054080a6csm154878566b.93.2025.06.20.05.07.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jun 2025 05:07:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e034a111-93eb-42e8-a533-46553b4f5588@collabora.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 20 Jun 2025 14:07:07 +0200
+Message-Id: <DARCJEWMK6C2.21Y93IPCZO7NM@fairphone.com>
+Subject: Re: [PATCH 3/3] fbdev/simplefb: Add support for interconnect paths
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>, "Hans de Goede"
+ <hdegoede@redhat.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Javier Martinez Canillas"
+ <javierm@redhat.com>, "Helge Deller" <deller@gmx.de>
+Cc: <linux-fbdev@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250620-simple-drm-fb-icc-v1-0-d92142e8f74f@fairphone.com>
+ <20250620-simple-drm-fb-icc-v1-3-d92142e8f74f@fairphone.com>
+ <cf29862b-496b-4825-aa0f-493eb44838a5@suse.de>
+ <DARBA03BEQA1.3KLHCBFNTVXKJ@fairphone.com>
+ <4475251a-ede7-42d1-a95e-497e09beba0d@suse.de>
+In-Reply-To: <4475251a-ede7-42d1-a95e-497e09beba0d@suse.de>
 
-On Fri, Jun 20, 2025 at 10:57:49AM +0200, Benjamin Gaignard wrote:
-> 
-> Le 19/06/2025 à 18:59, Jason Gunthorpe a écrit :
-> > On Thu, Jun 19, 2025 at 06:27:52PM +0200, Benjamin Gaignard wrote:
-> > > Le 19/06/2025 à 15:47, Jason Gunthorpe a écrit :
-> > > > Ugh. This ignores the gfp flags that are passed into map because you
-> > > > have to force atomic due to the spinlock that shouldn't be there :(
-> > > > This means it does not set GFP_KERNEL_ACCOUNT when required. It would
-> > > > be better to continue to use the passed in GFP flags but override them
-> > > > to atomic mode.
-> > > I will add a gfp_t parameter and use it like that:
-> > > page_table = iommu_alloc_pages_sz(gfp | GFP_ATOMIC | GFP_DMA32, SPAGE_SIZE);
-> > This will or together GFP_ATOMIC and GFP_KERNEL, I don't think that
-> > works..
-> 
-> I have test it, I don't see conflicts or errors. What worries you ?
+On Fri Jun 20, 2025 at 1:28 PM CEST, Thomas Zimmermann wrote:
+> Hi
+>
+> Am 20.06.25 um 13:07 schrieb Luca Weiss:
+>> Hi Thomas,
+>>
+>> On Fri Jun 20, 2025 at 1:02 PM CEST, Thomas Zimmermann wrote:
+>>> Hi
+>>>
+>>> Am 20.06.25 um 12:31 schrieb Luca Weiss:
+>>>> Some devices might require keeping an interconnect path alive so that
+>>>> the framebuffer continues working. Add support for that by setting the
+>>>> bandwidth requirements appropriately for all provided interconnect
+>>>> paths.
+>>>>
+>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>> ---
+>>>>    drivers/video/fbdev/simplefb.c | 83 +++++++++++++++++++++++++++++++=
++++++++++++
+>>>>    1 file changed, 83 insertions(+)
+>>>>
+>>>> diff --git a/drivers/video/fbdev/simplefb.c b/drivers/video/fbdev/simp=
+lefb.c
+>>>> index be95fcddce4c8ca794826b805cd7dad2985bd637..ca73e079fd13550ddc779e=
+84db80f7f9b743d074 100644
+>>>> --- a/drivers/video/fbdev/simplefb.c
+>>>> +++ b/drivers/video/fbdev/simplefb.c
+>>>> @@ -27,6 +27,7 @@
+>>>>    #include <linux/parser.h>
+>>>>    #include <linux/pm_domain.h>
+>>>>    #include <linux/regulator/consumer.h>
+>>>> +#include <linux/interconnect.h>
+>>> With alphabetical sorting:
+>>>
+>>> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Thanks for the reviews!
+>>
+>> For both simpledrm.c and simplefb.c, the includes are not strictly
+>> alphabetically sorted (1 mis-sort in simpledrm, 3 in simplefb), shall I
+>> just try and slot it into the best fitting place, or make them sorted in
+>> my patch? Or I can add a separate commit for each driver before to sort
+>> them.
+>>
+>> Let me know!
+>
+> Best is to try to fit it into the <linux/*> block. In simpledrm, it's=20
+> probably my mistake. Don't bother with sending an extra cleanup if you=20
+> don't want to.
 
-Just looking at the bitmaps I'm not sure? Did you run with lockdep?
+I was mostly asking whether this diff is okay as part of my patch (for
+just adding <linux/interconnect.h>)
 
-> > > > > +static int vsi_iommu_attach_device(struct iommu_domain *domain,
-> > > > > +				   struct device *dev)
-> > > > > +{
-> > > > > +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
-> > > > > +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
-> > > > > +	unsigned long flags;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	if (WARN_ON(!iommu))
-> > > > > +		return -ENODEV;
-> > > > > +
-> > > > > +	/* iommu already attached */
-> > > > > +	if (iommu->domain == domain)
-> > > > > +		return 0;
-> > > > > +
-> > > > > +	ret = vsi_iommu_identity_attach(&vsi_identity_domain, dev);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > Hurm, this is actually quite bad, now that it is clear the HW is in an
-> > > > identity mode it is actually a security problem for VFIO to switch the
-> > > > translation to identity during attach_device. I'd really prefer new
-> > > > drivers don't make this mistake.
-> > > > 
-> > > > It seems the main thing motivating this is the fact a linked list has
-> > > > only a single iommu->node so you can't attach the iommu to both the
-> > > > new/old domain and atomically update the page table base.
-> > > > 
-> > > > Is it possible for the HW to do a blocking behavior? That would be an
-> > > > easy fix.. You should always be able to force this by allocating a
-> > > > shared top page table level during probe time and making it entirely
-> > > > empty while staying always in the paging mode. Maybe there is a less
-> > > > expensive way.
-> > > > 
-> > > > Otherwise you probably have work more like the other drivers and
-> > > > allocate a struct for each attachment so you can have the iommu
-> > > > attached two domains during the switch over and never drop to an
-> > > > identity mode.
-> > > I will remove the switch to identity domain and it will works fine.
-> > You'll loose invalidations..
-> > 
-> > Maybe the easiest thing is to squish vsi_iommu_enable() and reorganize
-> > it so that the spinlock is held across the register programming and
-> > then you can atomically under the lock change the registers and change
-> > the linked list. The register write cannot fail so this is fine.
-> > 
-> > This should probably also flush the iotlb inside the lock.
-> 
-> I will try to summarize:
-> in vsi_iommu_attach_device() I should:
-> - take the lock
-> - do nothing if the domain is the same.
-> - if iommu is used (ie powered up):
->   - update the registers to enable the iommu
->   - flush
->   - update the link list
-> - update iommu->domain
-> - release the lock
+diff --git a/drivers/video/fbdev/simplefb.c b/drivers/video/fbdev/simplefb.=
+c
+index be95fcddce4c..f2efa4b51401 100644
+--- a/drivers/video/fbdev/simplefb.c
++++ b/drivers/video/fbdev/simplefb.c
+@@ -13,18 +13,19 @@
+  */
+=20
+ #include <linux/aperture.h>
++#include <linux/clk.h>
+ #include <linux/errno.h>
+ #include <linux/fb.h>
++#include <linux/interconnect.h>
+ #include <linux/io.h>
+ #include <linux/module.h>
+-#include <linux/platform_data/simplefb.h>
+-#include <linux/platform_device.h>
+-#include <linux/clk.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/of_clk.h>
+ #include <linux/of_platform.h>
+ #include <linux/parser.h>
++#include <linux/platform_data/simplefb.h>
++#include <linux/platform_device.h>
+ #include <linux/pm_domain.h>
+ #include <linux/regulator/consumer.h>
+=20
 
-That sounds believable, yes.. Though can you do the "powered up" checks
-inside the spinlock - are they sleeping? Can they be done before the
-spinlock?
+Or if you want this churn to be a separate commit. Either way is fine
+with me, just trying to figure out the preferences of this subsystem :)
 
-> in vsi_iommu_identity_attach() I should:
-> - take the lock
-> - do nothing if the domain is the same.
-> - if iommu is used (ie powered up):
->   - disable the iommu
->   - remove the node from the list
-> - update iommu->domain
-> - release the lock
+Regards
+Luca
 
-And maybe flush too? How does the caching hw work at this point? You
-can't have stale entries in the cache when you switch back to an
-enabled/translating configuration. So either the HW flushes implicitly
-or you need to add a flush somewhere..
- 
-> vsi_iommu_suspend() and vsi_iommu_resume() will also have to take the lock
-> before calling vsi_iommu_disable() and vsi_iommu_enable().
-
-Yes, if they use iommu->domain that seems good
-
-If the above locking is a problem then I'd use the group mutex instead
-during resume/suspend. The attach functions are already called with
-the group mutex held.
-
-> Do I have to switch to identity domain in vsi_iommu_attach_device()
-> before applying the requested domain ?
-
-No, that is what creates the security problem. What you want is to
-update the HW registers in a way that the HW just changes hitlessly
-from one translation to another, then flush the cache.
-
-Jason
 
