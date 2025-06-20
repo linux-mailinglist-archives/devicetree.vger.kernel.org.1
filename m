@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-187933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27640AE1D28
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:18:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2732BAE1D34
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:23:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06B66168F25
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:17:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89AC23B64F2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9B328B4FD;
-	Fri, 20 Jun 2025 14:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FEE28CF41;
+	Fri, 20 Jun 2025 14:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZ6dtslt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nQSIIlp3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7157FBA1;
-	Fri, 20 Jun 2025 14:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D684C79;
+	Fri, 20 Jun 2025 14:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750429070; cv=none; b=GE6qH6yE+LFyOTnLdxKJ4THXvqao4fm7vvtH0ZDcPZ0idPDGuHJANMh++ZVInInfgmac3M/lzrv+5ZxIZC3sZxGIyHelLz3i983zLGbEUidXwYDFvxWVRnbnzlD6DW6ggET1oH6Sn34FMJE+Oj0sOvRr1x8YRnl8T+++5tU9jnE=
+	t=1750429367; cv=none; b=agbuMJxNMj/X+OSKEY1RrVW05CEslqsLX/GX+EGcr/w1rRyupbm3jfcchGHdXcyJEvzNPpXSJ9rTn9GsUXVB0Gxb1R2ASTcTLYop+mk2iNz+hP79AR4jhH0OqM4/wAE/NtVFI6NbKrSGoVfDk7t9GChi4QpoP2O6OlUfnraiRwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750429070; c=relaxed/simple;
-	bh=KPvCPPMWre8gKapQM76kxEQscahxubiK8cL/rbbJAJU=;
+	s=arc-20240116; t=1750429367; c=relaxed/simple;
+	bh=eGxHfyeE9o00L+BIdTzrAWlPzQaJp+kjyTjmC6hWtig=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TpV6Ld11Tu4tFM8ubBW7kw6NdgxsI7/64g9KfSqaWHyvxt4E3mJsvWgxczSYo9PcU4AENLBsEkaoOwVN+cIE9qRedOkqKMpyWyBBTtJQhlp3xS6GbAHPOWQPkRctZ8NdEFQxGaMIHhmMN6vpwT3TW2h24/xdH1CiGT+v6yDNJns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZ6dtslt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA07C4CEE3;
-	Fri, 20 Jun 2025 14:17:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W05YMFNRIbZR/KMN+pAz734pwurMxssqtDcBXKLP1bcrmNndFhUpGdnD8JIIyDrthdk8u50wKXBsMzTGRLofI7L9QBrUWAyuK+PqynppIwjZd9p2UuF9zSRBbsQt34pfNPvGaAykfmvAsYw9JdyQMK7OxZ1ZjXNFIo19lb1eMcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nQSIIlp3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 222EEC4CEE3;
+	Fri, 20 Jun 2025 14:22:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750429069;
-	bh=KPvCPPMWre8gKapQM76kxEQscahxubiK8cL/rbbJAJU=;
+	s=k20201202; t=1750429366;
+	bh=eGxHfyeE9o00L+BIdTzrAWlPzQaJp+kjyTjmC6hWtig=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aZ6dtslt1Jp1miZRnCWarasA8latQYl4eaUeiJtcB+Y1xKJRFhFVBgbCzQbHIU5Eg
-	 1AGTgHQsMWbcEZHFOvGO1nzvREQGdk9aFQZX0JUvnOt5B7aqHnez1Q4D0Y4MTfFZOG
-	 KX97RGf3+fP/1p2q4A4GzqS4fKRobS9PuG2Fg9Psjsy9LWeRS+i4GzQal5Dy2UgaCB
-	 Z5QiOogQ4tTyYn7kp4JwYhgrEH3nr1Nh4nXXVrEDiqJ1Fyxs52NPzZkjB5OwSMCNzf
-	 PyWTUYk7Eh+JHeab3hvB/8LfhhC7wl2evP58goaLbcSwpyXaxmpudoVWMnC7lbH0AT
-	 OSarEjQaX9Dwg==
-Date: Fri, 20 Jun 2025 15:17:44 +0100
+	b=nQSIIlp34NkiVdqt1m4jSFP/RwjZeneA5lxU1anonztSaNY0S7eR0vxDJO82GtIe6
+	 GduLWP6HDkS/RHEyI0unEVWP1aizZDlLtSIJr0MCtFSHYZFEpA4mGRXa6fEXE0sed3
+	 /G8dcHSzjyEhVhaCVk1pj7zw2F5mm/qKzw9+Bt+DbS78lREivZPVrOZJ+6OpNx5qM/
+	 g7Z1bOta6EEkrqBLGtMgL7j+VLO+d+9OnlNarmWLuP9Qi1xQbG1bNcZ3ZP2kR+0I/4
+	 kubjMWpJKzIHnRadJPxuVAaipXTqHL0EAEDImhwkWvsLlrbXiMdbT0BbLntkFtoIK/
+	 hXVFFqk45oy6g==
+Date: Fri, 20 Jun 2025 15:22:41 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: reset: sun55i-a523-r-ccu: Add missing
- PPU0 reset
-Message-ID: <20250620-stegosaur-subpanel-08403c80910b@spud>
-References: <20250619171025.3359384-1-wens@kernel.org>
- <20250619171025.3359384-2-wens@kernel.org>
+To: Ryan.Wanner@microchip.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: net: cdns,macb: Add external REFCLK
+ property
+Message-ID: <20250620-giveaway-crazily-e8afbe8a7b5a@spud>
+References: <cover.1750346271.git.Ryan.Wanner@microchip.com>
+ <7f9c7308e404a6bcebdc8cc65ccf188dde435924.1750346271.git.Ryan.Wanner@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,43 +62,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="P4JxWVq/o9oAhrtu"
+	protocol="application/pgp-signature"; boundary="SmErXyrqfDynvb+c"
 Content-Disposition: inline
-In-Reply-To: <20250619171025.3359384-2-wens@kernel.org>
+In-Reply-To: <7f9c7308e404a6bcebdc8cc65ccf188dde435924.1750346271.git.Ryan.Wanner@microchip.com>
 
 
---P4JxWVq/o9oAhrtu
+--SmErXyrqfDynvb+c
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 20, 2025 at 01:10:24AM +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
+On Thu, Jun 19, 2025 at 10:04:13AM -0700, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 >=20
-> There is a PPU0 reset control bit in the same register as the PPU1
-> reset control. This missing reset control is for the PCK-600 unit
-> in the SoC. Manual tests show that the reset control indeed exists,
-> and if not configured, the system will hang when the PCK-600 registers
-> are accessed.
+> REFCLK can be provided by an external source so this should be exposed
+> by a DT property. The REFCLK is used for RMII and in some SoCs that use
+> this driver the RGMII 125MHz clk can also be provided by an external
+> source.
 >=20
-> Add a reset entry for it at the end of the existing ones.
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/net/cdns,macb.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >=20
-> Fixes: 52dbf84857f0 ("dt-bindings: clk: sunxi-ng: document two Allwinner =
-A523 CCUs")
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Docum=
+entation/devicetree/bindings/net/cdns,macb.yaml
+> index 8d69846b2e09..e69f60c37793 100644
+> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> @@ -114,6 +114,13 @@ properties:
+>    power-domains:
+>      maxItems: 1
+> =20
+> +  cdns,refclk-ext:
+> +    type: boolean
+> +    description:
+> +      This selects if the REFCLK for RMII is provided by an external sou=
+rce.
+> +      For RGMII mode this selects if the 125MHz REF clock is provided by=
+ an external
+> +      source.
 
+If this gets a v2, is the distinction between RMII and RGMII worth
+mentioning? Or is that mentioned because the property has no effect for
+!{RGMII,RMII} usecases?
+I'm okay with the property existing, though so
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
+if it's the latter or with an improved description for the former.
 
---P4JxWVq/o9oAhrtu
+> +
+>    cdns,rx-watermark:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> --=20
+> 2.43.0
+>=20
+
+--SmErXyrqfDynvb+c
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFVtiAAKCRB4tDGHoIJi
-0sy4AP40BvUBHSqm1o/Bhr3FkdlzzrUWaAqywLNNtJtM6Hr3aQEA5Bxl0ai6zPbt
-VeUnc2rD5TanorWC6N3/LX2DWqEu5gw=
-=hFhO
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFVusQAKCRB4tDGHoIJi
+0nqPAP4moM+gyh8DOK+EXqfh43QvWzlWVSATNddHyMMwg2IYUQEAvJ99X3USDuF5
+2TdrWniYXWy1OyBMsaBalrukGfdFTAM=
+=IRil
 -----END PGP SIGNATURE-----
 
---P4JxWVq/o9oAhrtu--
+--SmErXyrqfDynvb+c--
 
