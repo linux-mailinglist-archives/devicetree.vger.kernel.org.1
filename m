@@ -1,264 +1,186 @@
-Return-Path: <devicetree+bounces-187848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C72D8AE17A2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:34:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6D0AE17EE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDFA97A3F57
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:33:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0616F3ACED7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A049628135B;
-	Fri, 20 Jun 2025 09:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571E5285064;
+	Fri, 20 Jun 2025 09:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F8FJpL6n"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="lEYcEjTK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EA72459E7;
-	Fri, 20 Jun 2025 09:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A752836BD;
+	Fri, 20 Jun 2025 09:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750412070; cv=none; b=NlJn1LjzVd9m8fwH9XkxlY5hSJHQXG88ydnZyZhNekNJvN4y3v6K4A3ReRBTbNQVKKS+AgWWmaWJ/zbIVHqnWVKWiK31205OGVOm1cQkXSDeA5Vj1lnWOBbwSKdh2pNwdpJhm7PLwzsCCVZtf3IlB94nToclIR1djZEuFKkPISc=
+	t=1750412517; cv=none; b=pLtuW4ZNcXprLuNhKAN6EyjeaSRgaqd2BmSfuJ7jBpTZdq3rB0hV05TnqHpEuoBw3UGxDLYbOFSsKW12/yxR38MRZVshsO7bAVERqbaC6BHdq+K5vSrwi2k15/kRtLrfUae9t+/km3bCmSj8/lUpt0keHUhpTQbCH9UTPi6BMQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750412070; c=relaxed/simple;
-	bh=VxZB0Aym2X52UT54JKtbfbkmfojZfffUJnlpJa5q2tw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QU4pOATZdfKtBHP1KOavkcjJ8+Xg8N8SNOv2lKEM3FYOfD4Rxv1DaYPapCDTk9mwXdFzA2dF7M9l1+rdjFcnsbTWuq6Suc9shy/JPX57U3gxvSZNKabvC7wLbriYdaAPYdfzYwyCjWjjJxkJicwHIVQaEFgIfn8YJV0Vpauec3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F8FJpL6n; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55K24Srk005587;
-	Fri, 20 Jun 2025 09:34:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	U3IWtBPiQSO34q7LwoYxxHypyfbp5vg90NPA6GcHv9g=; b=F8FJpL6nnEViEdob
-	jRbzmbRFzOgwo3eKoKihGmMry9+2IWnLBIQ0rDtbi9BE4OzNaxf2r0VFAmdkKgrP
-	to4WfZSh+HlnP9ZnErgUvVlXlTD8UslJpnyUfUsQwziJLjpsyKIj0TBqPqUVGnbk
-	6UiJ5vFnQ9Xtaq95kyz7c7CtphjzlkAslSFX7Z0dXbzEMVmK+k4ZfG8FD8pwi+Bq
-	d4LxZsyoQ+/yH/Yhx0Tb482AuQ4pzgaHmgM4JkiJMs/lJp4m82klVHhQt22Bkcmu
-	ObkZisqX7eEipDizm4GwjRk3CCmJhk+Fhg+p85G01qVUkySey/8dxjjmlR37QWDR
-	0Ue8Ww==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47c0rvp0f2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Jun 2025 09:34:23 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55K9YMEr015751
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Jun 2025 09:34:22 GMT
-Received: from [10.216.41.11] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Jun
- 2025 02:34:17 -0700
-Message-ID: <ed381bb7-dfc8-4a27-b044-11deb7e75a81@quicinc.com>
-Date: Fri, 20 Jun 2025 15:04:15 +0530
+	s=arc-20240116; t=1750412517; c=relaxed/simple;
+	bh=xZvpzL4UwS6OA0cviJ0wNDA0ufchrjZ270t9oe6fHOk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pCOg2rZ/1zTQhyoAZ3v9Kd8OHT32ssG1P0WzaQCGS1L1n92OZz1s/puGSMXLbHN9+ZAWtgES0QaYnoYC8nSh/3D/bd8uIt/2/yPh5OS1hlVO0HvsxfnktErnt5OKKT8BRh4NPskM2S9gUK36oohCMwpP5qrDxKSN9K2clc5oy0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=lEYcEjTK; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: c7dc8bee4dba11f0b33aeb1e7f16c2b6-20250620
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=pvjx1+pIn8urUTUBBnPuT3kuiMR9emrqej8CWWxMjYc=;
+	b=lEYcEjTKVl2SamqWhEvi++wqtSlckJCgn6v1CduSzPH5gaOxiEmTom6dxd8U+kTpPgvNtNDExXDYtZAELWRaSjPOGtX+ZdZ34DB0nC9vCv8CmlXgmSaodgkIgjFIjAViZNllJT9AzerToeO6EmFoktuB7KEAulkRmbHfn2jYOlk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.3,REQID:98639b19-8b6f-4fc8-bd99-03b834f9a3e3,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:09905cf,CLOUDID:6a233277-7521-4364-b0ef-cd7d9c0ecbde,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|102,TC:nil,Content:0|50,EDM:-3,IP
+	:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
+	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: c7dc8bee4dba11f0b33aeb1e7f16c2b6-20250620
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
+	(envelope-from <darren.ye@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 79943254; Fri, 20 Jun 2025 17:41:46 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 20 Jun 2025 17:41:44 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 20 Jun 2025 17:41:43 +0800
+From: Darren.Ye <darren.ye@mediatek.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>, Darren Ye
+	<darren.ye@mediatek.com>
+Subject: [PATCH v5 00/10] ASoC: mediatek: Add support for MT8196 SoC
+Date: Fri, 20 Jun 2025 17:40:33 +0800
+Message-ID: <20250620094140.11093-1-darren.ye@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <psodagud@quicinc.com>, <djaggi@quicinc.com>,
-        <quic_msavaliy@quicinc.com>, <quic_vtanuku@quicinc.com>,
-        <quic_arandive@quicinc.com>, <quic_mnaresh@quicinc.com>,
-        <quic_shazhuss@quicinc.com>
-References: <20250606172114.6618-1-quic_ptalari@quicinc.com>
- <20250606172114.6618-8-quic_ptalari@quicinc.com>
- <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
-Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <d6cr4elhrbh27lmlcv5xzuel75uvsgi7klxjkevm7vg4jcbawe@5ojgetrxkag5>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDA2OSBTYWx0ZWRfXyHCscPKUiSyd
- Qv7gjkjNtbApRicsB1UayeErXG4dl1LozsNm+WmD6m9igxJlWcFu0LoWsGYifZ/CU/x3LV/uxHS
- wjK+kAZ7P3X5AyPOMHsqWUQOKrDoG3TWROStHjJiv1cd/9MfP0CW7rkQ636OUKRMaw0H8y6lNUJ
- iemGhbs7IVa7k6xZQWRD/vaJ2UH5kgC/BaKMVco2PmRyklbVqvcbHUAL39OKtadNQyli/w0u149
- YpOkQ7vng9CbRfnCF5LoJAh24Fc5lTA40eJ3lfb+ygxteRnjyVQiAHb1OtlQkbQ2KDjI/oBlFyA
- 3083JqyRgxVRMrvZMAa0RJulhaFqydnEMP9t+BsZBiCvtCYk3M9Qeec4XBRcv8SffJkVjzVxz/F
- tOcfFt9ue043spqUVYhh2IMKdt2u41o664apewDdiLd/4rLNVXWJ+foTq2YvU+tMPV2bBf11
-X-Proofpoint-GUID: 2L09BFxLflxg_Xk4-rRBDz7D8UHukaQ4
-X-Authority-Analysis: v=2.4 cv=btJMBFai c=1 sm=1 tr=0 ts=68552b20 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=qX-yKedHe2mDKLH7AMEA:9 a=QEXdDO2ut3YA:10
- a=-_B0kFfA75AA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 2L09BFxLflxg_Xk4-rRBDz7D8UHukaQ4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-20_03,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 clxscore=1015 malwarescore=0 spamscore=0 mlxlogscore=999
- bulkscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506200069
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-MTK: N
 
-Hi Bjorn,
+From: Darren Ye <darren.ye@mediatek.com>
 
-Thank you for review.
+This series of patches adds support for Mediatek AFE of MT8196 SoC.
+Patches are based on broonie tree "for-next" branch.
 
-On 6/17/2025 9:23 PM, Bjorn Andersson wrote:
-> On Fri, Jun 06, 2025 at 10:51:13PM +0530, Praveen Talari wrote:
->> Add Power Management (PM) runtime support to Qualcomm GENI
->> serial driver.
->>
-> 
-> Doesn't this have impact on the behavior outside of your
-> project? Or is the transition from qcom_geni_serial_pm() to explicit
-> RPM merely moving code around?
-There is no impact on functionality and behavior with this change.
+Changes since v4:
+ - modify the mediatek,mt8196-afe.yaml commit message and add reviewed owner.
+ - modify the mediatek,mt8196-nau8825.yaml commit message.
+ - modify the audio common code based on reviewer's suggestions.
+ - add reviewed and tested owners in the audio common code submission message.
+ - fix cm update cnt calculation issue.
 
-The transition is purely refactor.
+Changes since v3:
+ - the AFE TOP CG index is added to the common header.
+ - remove the audsys clk register and directly read and write to the regmap of afe cg clk.
+ - modify the clk logic according to the suggestions.
+ - remove the macro definition of MTKAIF4
+ - remove the tdm cg event and directly read and write the tdm cg reg form the widget.
+ - remove the i2s and cm cg event and directly read and write cg reg.
+ - afe hopping and f26m clk cg are placed in remap_register_patch and enable.
+ - the yaml file is modified according to the suggestions.
+ - replace SND_SOC_DAIFMT_CBS_CFS with SND_SOC_DAIFMT_CBC_CFC.
 
-Using PM runtime APIs such as
-pm_runtime_resume_and_get() and pm_runtime_put_sync() to manage resource 
-both locally and firmware.
+Changes since v2:
+  - remove the mtk_memif_set_channel interface modify.
+  - remove duplicate definitions from the header file.
+  - move the afe gate clk to the audio driver for management and registration
+    and manage the afe clk gate in each dai driver.
+  - delete the useless clk source.
+  - the i2s driver adds i2s clk gate management, removes the additional dts
+    configuration of i2s4.
+  - the afe and i2s dai driver,memif and irq data structs are encapsulated using
+    macros to reduce the amount of code.
+  - the volatile reg is modified as suggested.
+  - mt6681 codec is not supported, the mt6681 keyword is removed.
+  - the name of the machine driver is changed from mt8196-mt6681.c to mt8196-nau8825.c
+  - remove the i2s4 configuration from mt8196-afe.yaml and make the modifications as suggested.
+  - change the mt8196-mt6681.yaml to mt8196-nau8825.yaml and make the modifications as suggested.
 
-> 
-> Seems like this deserves to not be hidden in a middle of a patch series.
-This depends on refactored patches.
-> 
->> Introduce necessary callbacks and updates to ensure seamless
->> transitions between power states, enhancing overall power
->> efficiency.
->>
-> 
-> This commit message fails to state why we need runtime PM support in the
-> driver.
-Sure, will update commit text.
-> 
-> Also, start your commit message with a problem description, per
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> 
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
->> ---
->> v5 -> v6
->> - added reviewed-by tag in commit
->> - added __maybe_unused to PM callback functions to avoid
->>    warnings of defined but not used
->> ---
->>   drivers/tty/serial/qcom_geni_serial.c | 33 +++++++++++++++++++++++----
->>   1 file changed, 29 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
->> index b6fa7dc9b1fb..3691340ce7e8 100644
->> --- a/drivers/tty/serial/qcom_geni_serial.c
->> +++ b/drivers/tty/serial/qcom_geni_serial.c
->> @@ -1686,10 +1686,10 @@ static void qcom_geni_serial_pm(struct uart_port *uport,
->>   		old_state = UART_PM_STATE_OFF;
->>   
->>   	if (new_state == UART_PM_STATE_ON && old_state == UART_PM_STATE_OFF)
->> -		geni_serial_resources_on(uport);
->> +		pm_runtime_resume_and_get(uport->dev);
->>   	else if (new_state == UART_PM_STATE_OFF &&
->>   		 old_state == UART_PM_STATE_ON)
->> -		geni_serial_resources_off(uport);
->> +		pm_runtime_put_sync(uport->dev);
->>   
->>   }
->>   
->> @@ -1827,9 +1827,11 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
->>   		return ret;
->>   	}
->>   
->> +	pm_runtime_enable(port->se.dev);
-> 
-> Any reason not to use devm_pm_runtime_enable() and avoid the
-> two pm_runtime_disable() below?
+Changes since v1:
+  - modify mtk_memif_set_channel and mtk_afe_pcm_pointer interfaces
+    are improved to support mt8196.
+  - remove duplicate definitions in the mt8196 common header file.
+  - cm logic is merge into the afe platform driver.
+  - modify afe clk to return judgment logic and remove useless clk sources.
+  - refactor the mt8196 adda dai driver.
+  - remove the gpio module and use SND_SOC_DAPM_PINCTRL to manage it.
+  - removes CONNSYS_I2S related functions that are not supported in i2s dai driver.
+  - fixed mt8196-afe.yaml and mt8196-mt6681.yaml syntax issues.
+  - modify log printing in all modules.
+  - optimize the header file included for machine driver.
 
-I agree, will update in next patch-set.
-> 
-> Regards,
-> Bjorn
-> 
->> +
->>   	ret = uart_add_one_port(drv, uport);
->>   	if (ret)
->> -		return ret;
->> +		goto error;
->>   
->>   	if (port->wakeup_irq > 0) {
->>   		device_init_wakeup(&pdev->dev, true);
->> @@ -1839,11 +1841,15 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
->>   			device_init_wakeup(&pdev->dev, false);
->>   			ida_free(&port_ida, uport->line);
->>   			uart_remove_one_port(drv, uport);
->> -			return ret;
->> +			goto error;
->>   		}
->>   	}
->>   
->>   	return 0;
->> +
->> +error:
->> +	pm_runtime_disable(port->se.dev);
->> +	return ret;
->>   }
->>   
->>   static void qcom_geni_serial_remove(struct platform_device *pdev)
->> @@ -1855,9 +1861,26 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
->>   	dev_pm_clear_wake_irq(&pdev->dev);
->>   	device_init_wakeup(&pdev->dev, false);
->>   	ida_free(&port_ida, uport->line);
->> +	pm_runtime_disable(port->se.dev);
->>   	uart_remove_one_port(drv, &port->uport);
->>   }
->>   
->> +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device *dev)
->> +{
->> +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->> +	struct uart_port *uport = &port->uport;
->> +
->> +	return geni_serial_resources_off(uport);
->> +}
->> +
->> +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device *dev)
->> +{
->> +	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->> +	struct uart_port *uport = &port->uport;
->> +
->> +	return geni_serial_resources_on(uport);
->> +}
->> +
->>   static int qcom_geni_serial_suspend(struct device *dev)
->>   {
->>   	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
->> @@ -1901,6 +1924,8 @@ static const struct qcom_geni_device_data qcom_geni_uart_data = {
->>   };
->>   
->>   static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
->> +	SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
->> +			   qcom_geni_serial_runtime_resume, NULL)
->>   	SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
->>   };
->>   
->> -- 
->> 2.17.1
->>
+Darren Ye (10):
+  ASoC: mediatek: common: modify mtk afe platform driver for mt8196
+  ASoC: mediatek: mt8196: add common header
+  ASoC: mediatek: mt8196: support audio clock control
+  ASoC: mediatek: mt8196: support ADDA in platform driver
+  ASoC: mediatek: mt8196: support I2S in platform driver
+  ASoC: mediatek: mt8196: support TDM in platform driver
+  ASoC: mediatek: mt8196: add platform driver
+  ASoC: dt-bindings: mediatek,mt8196-afe: add support for MT8196 audio
+    AFE controller
+  ASoC: mediatek: mt8196: add machine driver with nau8825
+  ASoC: dt-bindings: mediatek,mt8196-nau8825: Add audio sound card
+
+ .../bindings/sound/mediatek,mt8196-afe.yaml   |   157 +
+ .../sound/mediatek,mt8196-nau8825.yaml        |   102 +
+ sound/soc/mediatek/Kconfig                    |    30 +
+ sound/soc/mediatek/Makefile                   |     1 +
+ .../mediatek/common/mtk-afe-platform-driver.c |    47 +-
+ .../mediatek/common/mtk-afe-platform-driver.h |     2 +
+ sound/soc/mediatek/mt8196/Makefile            |    17 +
+ sound/soc/mediatek/mt8196/mt8196-afe-clk.c    |   728 +
+ sound/soc/mediatek/mt8196/mt8196-afe-clk.h    |    80 +
+ sound/soc/mediatek/mt8196/mt8196-afe-common.h |   213 +
+ sound/soc/mediatek/mt8196/mt8196-afe-pcm.c    |  2657 ++++
+ sound/soc/mediatek/mt8196/mt8196-dai-adda.c   |   888 ++
+ sound/soc/mediatek/mt8196/mt8196-dai-i2s.c    |  3970 +++++
+ sound/soc/mediatek/mt8196/mt8196-dai-tdm.c    |   836 ++
+ .../mediatek/mt8196/mt8196-interconnection.h  |   121 +
+ sound/soc/mediatek/mt8196/mt8196-nau8825.c    |   869 ++
+ sound/soc/mediatek/mt8196/mt8196-reg.h        | 12068 ++++++++++++++++
+ 17 files changed, 22770 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-afe.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-nau8825.yaml
+ create mode 100644 sound/soc/mediatek/mt8196/Makefile
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-clk.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-clk.h
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-common.h
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-adda.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-i2s.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-tdm.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-interconnection.h
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-nau8825.c
+ create mode 100644 sound/soc/mediatek/mt8196/mt8196-reg.h
+
+-- 
+2.45.2
+
 
