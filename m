@@ -1,297 +1,235 @@
-Return-Path: <devicetree+bounces-187943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1717FAE1DF8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8E9AE1E00
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:59:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 929DF3B924A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:57:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4C113A9091
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31902BD5B9;
-	Fri, 20 Jun 2025 14:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557812BD5B9;
+	Fri, 20 Jun 2025 14:58:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBB223183F;
-	Fri, 20 Jun 2025 14:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 104EE23183F;
+	Fri, 20 Jun 2025 14:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750431479; cv=none; b=hegUETBMXKduaHz4cG5OnIstxYtIAXMeqm19n4hfqseWpZ5HxfjsQ0e3O3fKZh2mqz3tDVIKsRy3na0uDIGpBip+aiJQ/Fcy8ROx86TEDBckK4p7l/Bi2hUw688fjhXq+I1BCMrOM2rAB4T5wn16gpLrkljWDfy+C90QRh+eeVk=
+	t=1750431539; cv=none; b=hreSWCi5i17D8RneP7KIxzH99Wa5JQVAzHQzc4mjwGU2A6s/kzIyqE2wSCg3GefNucCzOu66Xm9i4otQrC5Oi4naRy5LSor18Hn30Dd4ssCK400GFY9P84nK3cocnSX9MQ4RUKojhhjSwG+3nGTJfhucBQf6JS68xww2P0GNWPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750431479; c=relaxed/simple;
-	bh=rtf6fKS0X3lTK+Oyq/JlhDhHWr2lGFEUs4boALAlBYM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WqdsDB93SeCSsE2xku/J0oFuUtM8afPDBVl6kwj1ssu5mIlwrzRXjcjaEF/wLLhzvWS8I4TOMD6puVhvjcUBo+ABTWHNL0wUfEt2ne8/yAC/9hOItlnvDqVoSOqWCola0max266aLGDz8FtyFCRKQ2B2EmpD+OIW7DQt48eehL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.232])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id DDCA7340E0E;
-	Fri, 20 Jun 2025 14:57:56 +0000 (UTC)
-Date: Fri, 20 Jun 2025 14:57:51 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Vivian Wang <wangruikang@iscas.ac.cn>, Alex Elder <elder@ieee.org>,
-	Ze Huang <huangze@whut.edu.cn>, spacemit@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC] riscv: dts: spacemit: Add DMA translation buses for
- K1
-Message-ID: <20250620145751-GYB165049@gentoo>
-References: <20250617-k1-dma-buses-rfc-wip-v1-1-c8ec192fbf58@iscas.ac.cn>
- <5cc644f8-7394-48f2-b62b-1e7cd5ce27d3@ieee.org>
- <9e5e54a9-ef90-4a87-b082-d6eb9c7468c5@iscas.ac.cn>
- <20250620105619-GYA165049@gentoo>
- <CAH1PCMZibCc-P7JQf4WyhkKuT607bWppKfKQ-7eo7-PyNGDAOg@mail.gmail.com>
+	s=arc-20240116; t=1750431539; c=relaxed/simple;
+	bh=0ALm1WG2KYXCF4fGZ/3K/bPfD3oBRrL5/POIHOtrFDc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YbrrMk0VQT+rd6znTtMkqJRWwVrqQkt3XZ1abTAz+KQT8Mb7Pgi3/eOKO1sieKZafF8GiZb9ENAfo2CG1OK3qJSz64U8sckZiutn2HcsBZxUmWqfarZKe4oPsTIxyScsjl3ZLuhndIc39pvf3/ILfni1Ph5rRfIsAYpZ1bY7SP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 860EA16F2;
+	Fri, 20 Jun 2025 07:58:36 -0700 (PDT)
+Received: from [10.1.30.22] (e122027.cambridge.arm.com [10.1.30.22])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A9B423F673;
+	Fri, 20 Jun 2025 07:58:51 -0700 (PDT)
+Message-ID: <7f4d377c-c84a-43e0-9e4d-3d616ac4ef40@arm.com>
+Date: Fri, 20 Jun 2025 15:58:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH1PCMZibCc-P7JQf4WyhkKuT607bWppKfKQ-7eo7-PyNGDAOg@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/5] Add Mali GPU support for Mediatek MT8370 SoC
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20250509-mt8370-enable-gpu-v6-0-2833888cb1d3@collabora.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250509-mt8370-enable-gpu-v6-0-2833888cb1d3@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Guodong,
+All 5 patches push to drm-misc-next.
 
-On 22:10 Fri 20 Jun     , Guodong Xu wrote:
-> On Fri, Jun 20, 2025 at 6:56 PM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Hi Vivian, Alex,
-> >
-> > On 23:42 Thu 19 Jun     , Vivian Wang wrote:
-> > > Hi Alex,
-> > >
-> > > Thank you for your comments on this.
-> > >
-> > > On 6/19/25 23:11, Alex Elder wrote:
-> > > > On 6/17/25 12:21 AM, Vivian Wang wrote:
-> > > >> The SpacemiT K1 has various static translations of DMA accesses. Add
-> > > >> these as simple-bus nodes. Devices actually using these translation will
-> > > >> be added in later patches.
-> > > >>
-> > > >> The bus names are assigned according to consensus with SpacemiT [1].
-> > > >>
-> > > >> [1]
-> > > >> https://lore.kernel.org/all/CAH1PCMaC+imcMZCFYtRdmH6ge=dPgnANn_GqVfsGRS=+YhyJCw@mail.gmail.com/
-> > > >
-> > > > So what you include here very closely matches what Guodong
-> > > > said in the message above.  Yours differs from his proposal
-> > > > and that makes it hard to compare them.  I have a few comments
-> > > > on that below.
-> > > >
-> > > >> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> > > >> ---
-> > > >> This is my concrete proposal for representing DMA translations for
-> > > >> SpacemiT K1.
-> > > >
-> > > > It's worth acknowledging that this is derived from what Guodong
-> > > > proposed (it's not "your" proposal in that respect).  That said,
-> > > > yours is a more complete and "formal" RFP than what he wrote.
-> > > >
-> > > I had thought that since the addresses were already there in vendor's DT
-> > > [2], and the names were provided by SpacemiT, anything other than the
-> > > names was "well-known information". In retrospect, I should have made
-> > > the chain of information of this clearer and make it explicit that this
-> > > was based on Guodong's note.
-> > >
-> > > So, just to be clear, the information in my proposal is based on
-> > > Guodong's reply [1] (link the quoted text), which I had assumed, but not
-> > > explicitly confirmed, was based on already addresses in SpacemiT's DT
-> > > and names provided by SpacemiT.
-> > >
-> > > [2]: https://github.com/spacemit-com/linux-k1x/blob/k1/arch/riscv/boot/dts/spacemit/k1-x.dtsi
-> > >
-> > > >> For context, memory on the SpacemiT K1 is split into two chunks:
-> > > >>
-> > > >> - 0x0000_0000 to 0x8000_0000: First 2 GiB of memory
-> > > >> - 0x1_0000_0000 above: Rest of memory
-> > > >>
-> > > >> DMA-capable devices on the K1 all have access to the lower 2G of memory
-> > > >> through an identity mapping. However, for the upper region of memory,
-> > > >> each device falls under one of six different mappings. The mappings are
-> > > >> provided in this patch as simple-bus nodes that device nodes should be
-> > > >> added to.
-> > > >>
-> > > >> This patch is an RFC because it is not meant to be applied, or at least,
-> > > >> not certainly meant to be applied. Instead, this is an attempt to come
-> > > >> to a consensus on how these bus nodes should look like.
-> > > >
-> > > > I think the above is what Krzysztof might not have seen.  Perhaps
-> > > > it could have been made more clear--maybe in the "main" description
-> > > > section (above the ---) or even the subject line.
-> > > >
-> > > Yeah, that's my mistake in organizing the paragraphs.
-> > >
-> > > >> More specifically, I propose that the process proceeds as follows:
-> > > >>
-> > > >> - Firstly, relevant parties agree on these bus nodes given here.
-> > > >> - After that, each time the first user of a bus appears, the series
-> > > >>    should include a patch to add the bus required for that driver.
-> > > >> - If a driver being submitted uses the same bus as another one that has
-> > > >>    been submitted but hasn't yet landed, it can depend on the bus patch
-> > > >>    from that previous series.
-> > > >
-> > > > Getting agreement is good, but otherwise this is basically
-> > > > the process Guodong was suggesting, right?
-> > >
-> > > Hmm, actually re-reading the discussion now, I realized that I may have
-> > > come to this late and missed out on some previous discussions, which
-> > > were alluded to in Yixun's messages. (This is again thread around link
-> > > [1] in quoted text.) This led me to believe that some of these were not
-> > > really agreed upon.
-> > >
-> > > I also realized I think one of the things I may have not yet made clear
-> > > is that I would like the bus node to be a *separate* patch. I think this
-> > > makes sense, because it's dealing with two different subsystems.
-> > >
-> > > >
-> > > >> For conventions regarding coding style, I propose that:
-> > > >>
-> > > >> - #address-cells and #size-cells are 2 for consistency
-> > > >> - These bus nodes are put at the end of /soc, inside /soc
-> > > >> - These bus nodes are sorted alphabetically, not in vendor's order
-> > > >> - Devices are added into *-bus nodes directly, not appended towards the
-> > > >>    end with a label reference
-> > > >
-> > > > I do like that you're trying to be more complete and explicit
-> > > > on what you think needs agreement on.
-> > > >
-> > > Being thorough was the main goal of this RFC. If there was previous
-> > > agreement on how dma-ranges should be done, I'm sorry for missing them,
-> > > but from my observations on the mailing list on how these ended up into
-> > > patches I really haven't seen much consistency. Maybe there was
-> > > misunderstanding, which I'm hoping to clear up.
-> > >
-> > > (Although see my paragraph above, maybe I haven't been thorough enough.)
-> > >
-> > > >> The K1 DMA translations are *not* interconnects, since they do not
-> > > >> provide any configuration capabilities.
-> > > >>
-> > > >> These bus nodes names and properties are provided compliant with
-> > > >> "simple-bus" bindings, and should pass "make dtbs_check".
-> > > >>
-> > > >> Remaining questions:
-> > > >>
-> > > >> - Should storage-bus exist? Or should drivers under it simply specify
-> > > >>    32-bit DMA?
-> > > >
-> > > > Explicitly saying storage devices have one-to-one mapping
-> > > > seems informative, to me.
-> > sounds good to be explicit
-> >
-> > > >
-> > > >> ---
-> > > >>   arch/riscv/boot/dts/spacemit/k1.dtsi | 53
-> > > >> ++++++++++++++++++++++++++++++++++++
-> > > >>   1 file changed, 53 insertions(+)
-> > > >
-> > > > The short summary of what differs between your proposal
-> > > > and what Guodong said is:
-> > > > - You sort nodes alphabetically, Guodong did not
-> > > > - You dropped the unit address
-> > I'd agree with not adding unit number to the simple-bus
-> >
-> > > > - You dropped the comments he had, which indicated which
-> > > >   devices "belonged" to each mapping
-> > I went ahead and checked those comments, and found them all about
-> > devices under specific bus, I'm not strongly against adding the
-> > comments but feel it's kind of unnecessary, or even in worst cases,
-> > it may bring extra confusions.. on the other hand, you can always
-> > check  device nodes under the bus to find what's there.
-> >
-> > exmaple for dram4_range(vendor code)/dma_bus, the comments is
-> >  /* DMA controller, and users */
-> > what's is 'users'? still have to check the dts, and find them -
-> > uart, spi, i2c, qspi, hdmi, sounds..
-> >
-> > If people really want to add comments and help others to understand
-> > this patch, then I'd suggest to add explanation in commit message(better?)
-> > to fully describe all the busses, or why choose this name? -
-> >  storage/multimedia/pcie/camera/dma/network_bus
-> > pretty much in much high level perspective..
-> >
-> > > > - You added a compatible property to each ("simple-bus")
-> > > > - You added an explicit (empty) ranges property to each
-> > > > - You add #address-cells and #size-cells properties, both 2
-> > > > - Your dma-ranges properties are identical to Guodong's,
-> > > >   for all nodes
-> > I think those all above already exist in Guodong's version which
-> > align his idea
-> >
-> > > >
-> > > That was a good summary. Thanks!
-> > >
-> > > My main goal of organizing the bus this way is making it actually pass
-> > > "make dtbs_check". I'm not sure if Krzysztof still objects to my reading
-> > > of simple-bus.yaml though.
-> > It would be great if DT maintainer can clarify, or give an ACK
-> >
-> > >
-> > > By the way, I don't think I will be making an RFC v2 of this. I think we
-> > > should get everything sorted under this one thread.
-> > >
-> > Instead, from a SoC tree maintainer's perspective (whom taking care of
-> > merging all the dts files), I'd rather perfer an independent or
-> > separated patch for this given every party reached consesus, so we could
-> > get this patch merged first and early, instead of getting them distributed all
-> > over in different series, IMO, separated patches brings more dedependencies
-> > if more than two series require one bus and result in more merge conflicts..
-> > Besides, introducing new busses result in re-arrangement of previous nodes,
-> > those like uart, i2c (even they have no DMA feature implemented currently)..
-> >
-> 
-> Hi Yixun,
-> 
-> So, here is my proposed plan: I will submit two patches. The first
-> patch will introduce the dma-bus node and move the relevant (uart0, uart2
-> ..uart9) device nodes under it. The second patch will then add the pdma0
-> node itself. Please let me know if you have a different approach in mind.
-> 
-..
-> Maybe you want to see an independent patchset with just the first patch? This
-> way it can be merged early without waiting for the pdma0 series.
-> Let me know. Thanks.
-yes, I prefer this way, this will also help other drivers - usb/emac,
-since they all wait for those bus nodes..
+Thanks,
+Steve
 
-please submit following two parts a) introduce bus b) move relevant nodes.
-notice, I don't mind who (you or Vivian) doing the job, but keep in
-mind don't duplicate the work..
+On 09/05/2025 11:12, Louis-Alexis Eyraud wrote:
+> This patchset adds the support of the ARM Mali G57 MC2 GPU (Valhall-JM,
+> dual core), integrated in the Mediatek MT8370 SoC, to the panfrost
+> driver and to the mt8370.dtsi include file.
+> 
+> Since v4 patchset was sent, the [1] patchset adds in panfrost driver
+> the AARCH64_4K page table format support and enablement for Mediatek
+> SoC with integrated Arm Mali-G57, already supported in panfrost driver
+> (like MT8188, MT8192, MT8195, MT8390, MT8395...).
+> As MT8370 SoC is a less powerful variant of MT8390 (same GPU but with
+> one less core for MT8370), I've reworked the second patch
+> ('drm/panfrost: Add support for Mali on the MT8370 SoC') to enable the
+> AARCH64_4K mode on this SoC as well by adding specific MT8370 platform
+> data to set the needed flag.
+> The previous patch revision uses MT8186 platform data because despite
+> having different GPU architecture (Mali G52 2EE MC2 for MT8186, making
+> them not compatible), using the same plaform data, for describing the
+> same power management features only, was okay.
+> But now, the platform data also contains the GPU configuration quirk
+> bitfield that needs to be modified to enable the AARCH64_4K page table
+> format, and in order not to change MT8186 behaviour, I add specific
+> MT8370 platform data.
+> 
+> I've tested this patchset on a Mediatek Genio 510 EVK board,
+> with a kernel based on linux-next (tag: next-20250502).
+> 
+> The panfrost driver probed with the following messages:
+> ```
+> panfrost 13000000.gpu: clock rate = 390000000
+> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+> panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
+>   80000400
+> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+>   Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+> panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
+> [drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
+> ```
+> 
+> Running glmark2-es2-drm is also OK:
+> ```
+> =======================================================
+>     glmark2 2023.01
+> =======================================================
+>     OpenGL Information
+>     GL_VENDOR:      Mesa
+>     GL_RENDERER:    Mali-G57 (Panfrost)
+>     GL_VERSION:     OpenGL ES 3.1 Mesa 25.0.3-1
+>     Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+>     Surface Size:   1200x1920 fullscreen
+> =======================================================
+> [build] use-vbo=false: FPS: 952 FrameTime: 1.051 ms
+> [build] use-vbo=true: FPS: 983 FrameTime: 1.018 ms
+> [texture] texture-filter=nearest: FPS: 906 FrameTime: 1.105 ms
+> [texture] texture-filter=linear: FPS: 908 FrameTime: 1.102 ms
+> [texture] texture-filter=mipmap: FPS: 883 FrameTime: 1.134 ms
+> [shading] shading=gouraud: FPS: 838 FrameTime: 1.194 ms
+> [shading] shading=blinn-phong-inf: FPS: 778 FrameTime: 1.287 ms
+> [shading] shading=phong: FPS: 583 FrameTime: 1.717 ms
+> [shading] shading=cel: FPS: 553 FrameTime: 1.809 ms
+> [bump] bump-render=high-poly: FPS: 573 FrameTime: 1.747 ms
+> [bump] bump-render=normals: FPS: 868 FrameTime: 1.153 ms
+> [bump] bump-render=height: FPS: 707 FrameTime: 1.415 ms
+> [effect2d] kernel=0,1,0;1,-4,1;0,1,0;: FPS: 454 FrameTime: 2.204 ms
+> [effect2d] kernel=1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 172 FrameTime:
+>   5.843 ms
+> [pulsar] light=false:quads=5:texture=false: FPS: 770 FrameTime:
+>   1.300 ms
+> [desktop] blur-radius=5:effect=blur:passes=1:separable=true:windows=4:
+>   FPS: 161 FrameTime: 6.235 ms
+> [desktop] effect=shadow:windows=4: FPS: 484 FrameTime: 2.069 ms
+> [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+>   =0.5:update-method=map: FPS: 512 FrameTime: 1.955 ms
+> [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+>   =0.5:update-method=subdata: FPS: 513 FrameTime: 1.952 ms
+> [buffer] columns=200:interleave=true:update-dispersion=0.9:update-fraction
+>   =0.5:update-method=map: FPS: 577 FrameTime: 1.735 ms
+> [ideas] speed=duration: FPS: 448 FrameTime: 2.235 ms
+> [jellyfish] <default>: FPS: 226 FrameTime: 4.440 ms
+> [terrain] <default>: FPS: 38 FrameTime: 26.861 ms
+> [shadow] <default>: FPS: 328 FrameTime: 3.051 ms
+> [refract] <default>: FPS: 72 FrameTime: 13.937 ms
+> [conditionals] fragment-steps=0:vertex-steps=0: FPS: 844 FrameTime:
+>   1.186 ms
+> [conditionals] fragment-steps=5:vertex-steps=0: FPS: 685 FrameTime: 
+>   1.462 ms
+> [conditionals] fragment-steps=0:vertex-steps=5: FPS: 833 FrameTime:
+>   1.201 ms
+> [function] fragment-complexity=low:fragment-steps=5: FPS: 830 FrameTime:
+>   1.205 ms
+> [function] fragment-complexity=medium:fragment-steps=5: FPS: 525 FrameTime:
+>   1.905 ms
+> [loop] fragment-loop=false:fragment-steps=5:vertex-steps=5: FPS: 837
+>   FrameTime: 1.195 ms
+> [loop] fragment-steps=5:fragment-uniform=false:vertex-steps=5: FPS: 835 
+>   FrameTime: 1.199 ms
+> [loop] fragment-steps=5:fragment-uniform=true:vertex-steps=5: FPS: 550
+>   FrameTime: 1.820 ms
+> =======================================================
+>                                   glmark2 Score: 611 
+> =======================================================
+> ```
+> 
+> [1] https://lore.kernel.org/dri-devel/20250324185801.168664-1-ariel.dalessandro@collabora.com/
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> ---
+> Changes in v6:
+> - Add two new patches to commonize and drop duplicated data related to 
+>   the power domain and supplies definitions for Mediatek SoC
+> - Remove useless comment and rework MT8370 platform data to use
+>   mediatek_pm_domains and default_supplies arrays in 'drm/panfrost: Add
+>   support for Mali on the MT8370 SoC'
+> - Update code-review trailer
+> - Link to v5: https://lore.kernel.org/r/20250502-mt8370-enable-gpu-v5-0-98e247b30151@collabora.com
+> 
+> Changes in v5:
+> - Rebase on linux-next (tqg: next-2020501)
+> - Rework 'drm/panfrost: Add support for Mali on the MT8370 SoC' patch
+>   to have MT8370 support with its AARCH64_4K page table format support enabled 
+> - Drop code-review trailers from 'drm/panfrost: Add support for Mali on
+>   the MT8370 SoC' patch due to major changes in content and commit message
+> - Add ack trailer for 'dt-bindings: gpu: mali-bifrost: Add compatible 
+>   for MT8370 SoC' patch
+> - Add glmark2-es2-drm benchmark results in cover letter
+> - Link to v4: https://lore.kernel.org/r/20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com
+> 
+> Changes in v4:
+> - Add warning comment in mt8370.dtsi about GPU node override
+> - Reword "dt-bindings: gpu: mali-bifrost: Add compatible for MT8370
+>   SoC" commit message
+> - Add code-review trailers
+> - Link to v3: https://lore.kernel.org/r/20250207-mt8370-enable-gpu-v3-0-75e9b902f9c1@collabora.com
+> 
+> Changes in v3:
+> - Rebased on linux-next (tag: next-20250207)
+> - Remove prerequisite change/patch ids
+> - Reword commit messages to better explicit compatible needs
+> - Link to v2: https://lore.kernel.org/r/20250130-mt8370-enable-gpu-v2-0-c154d0815db5@collabora.com
+> 
+> Changes in v2:
+> - Rework "drm/panfrost: Add support for Mali on the MT8370 SoC" to avoid
+>   data structure duplication, as requested by Krzysztof Kozlowski
+> - Reword commit messages to use imperative mood and make new compatible
+>   need more explicit
+> - Link to v1: https://lore.kernel.org/r/20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com
+> 
+> ---
+> Louis-Alexis Eyraud (5):
+>       dt-bindings: gpu: mali-bifrost: Add compatible for MT8370 SoC
+>       drm/panfrost: Drop duplicated Mediatek supplies arrays
+>       drm/panfrost: Commonize Mediatek power domain array definitions
+>       drm/panfrost: Add support for Mali on the MT8370 SoC
+>       arm64: dts: mediatek: mt8370: Enable gpu support
+> 
+>  .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  5 +-
+>  arch/arm64/boot/dts/mediatek/mt8370.dtsi           | 16 ++++++
+>  drivers/gpu/drm/panfrost/panfrost_drv.c            | 61 ++++++++++++----------
+>  3 files changed, 53 insertions(+), 29 deletions(-)
+> ---
+> base-commit: 1c51b1ba38c07e4f999802eb708bf798dd5f5d1b
+> change-id: 20250115-mt8370-enable-gpu-3b6f595fa63d
+> 
+> Best regards,
 
-> 
-> On a side note, you mentioned I2C. I searched for upstream I2C DTS nodes
-> for the K1 but couldn't find any. I checked the for-next/dt-for-next
-> branches in the spacemit-com/linux.git repository. Did I miss something?
-> 
-you right here, the i2c driver is accepted, but not dts..
-btw, the PMIC series do introduce i2c nodes at patch 3/6
-
-> BR,
-> Guodong
-> 
-> 
-> > >
-> >
-> > --
-> > Yixun Lan (dlan)
-
--- 
-Yixun Lan (dlan)
 
