@@ -1,125 +1,104 @@
-Return-Path: <devicetree+bounces-187827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3361AAE1693
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:44:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13527AE16C9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF5743A1A72
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 08:44:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A83E19E0669
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 08:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4FF25522D;
-	Fri, 20 Jun 2025 08:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0992620EE;
+	Fri, 20 Jun 2025 08:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="kAG2XmNt"
+	dkim=pass (2048-bit key) header.d=toke.dk header.i=@toke.dk header.b="kmlBszZP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail.toke.dk (mail.toke.dk [45.145.95.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418E623717F;
-	Fri, 20 Jun 2025 08:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02942594BD;
+	Fri, 20 Jun 2025 08:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.145.95.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750409063; cv=none; b=Ul040v7QT2fPvylDhnWUUSaItF7j6L8nB3PZasOwsNpFu+CYYKmZ20MYiT/umt68hTBnm1lgty6ATCAjqmtVj6agABieI/CXNZ+KWoRUcV/5t1RRRCMnn0UoLt4TByvC7VThA1GcANDm+YYjbA6XjBIEZxUuPh+ta4NkrjoqpYM=
+	t=1750409760; cv=none; b=DkmanP7U2+T6mTxITy4Sh6vGUWfjAKCVAPvBNPi7RvzOejy4uoY3xzPtoFum9dOXV1LTTAhQV8E9Yp5n3QTfW0XxfihfUi1Wcr6YGC36iLL/sgXTD/Oib4DZ2R8iniQ2O68AxaxTWMUCmjFti4GsEEwSXj0nNWoSJRHiUPcL7Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750409063; c=relaxed/simple;
-	bh=Gt3fX70SHPx2FTGs0tJC6o/fQKTlAAmFGFVysVD1R1Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bk6Ada3REXK73QDt3rUXxXfDlqe5NURPPFYPdSGXe2e1D4mizkVSiy6PG7nNJGdqWmGT9RVicUF0apsXtqbC+qJmNVH0/Mur8Ny2HY9DjU00IMirh4XfV1Bz0HCx2Hxx1HcpgBHAH8UKDXEbqzS4Xs7f56AbO8YTSnStsO84HIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=kAG2XmNt; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=2s1EfWhxZp+wUTpU6Av5sVxwB2ULwd+lJ/meBWs9Yxw=; b=kAG2XmNtW0d1LmL2rKWT6Lc/QX
-	SOz6rnT0Lf4mLMiWEdu+MrXH2fAX12ZY4taDEwh3skekpPZaMOtfzgTWyUfwLAp1H3Y+U3ZQzHMj6
-	r3dU5uIdxxv1pk2lk6bG5ADNU4W1XP0eA2O4VDOqTIBXnSxEoe4b1hsbdOAd+2VN+GbYQJk2SbFRT
-	2gJFf/sXWDj53EnwotPMjuB20DX+VaDNAUvGbGO/BZCom166KZVRBQgiqAw/DX9tIfHH43d2QBsUG
-	5G1P8jwrqMj3gP/BDb79MEdnrK2Dpd+tqftocvtzcPDkaeEmG2zDEU+NoO3bBS/SyoyYypq2tiy2D
-	EjHMgqZA==;
-Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uSXM7-0007ky-L9; Fri, 20 Jun 2025 10:44:15 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Detlev Casanova <detlev.casanova@collabora.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Subject:
- Re: [PATCH v2 0/4] arm64: dts: rockchip: enable further peripherals on ArmSoM
- Sige5
-Date: Fri, 20 Jun 2025 10:44:14 +0200
-Message-ID: <5004008.8F6SAcFxjW@phil>
-In-Reply-To:
- <CABjd4Yzz9mh0G5BhpPOGAoadD-A5eX4kdsF8rGrWk82hAE-MYQ@mail.gmail.com>
-References:
- <20250614-sige5-updates-v2-0-3bb31b02623c@gmail.com>
- <175036770856.1520003.17823147228060153634.b4-ty@sntech.de>
- <CABjd4Yzz9mh0G5BhpPOGAoadD-A5eX4kdsF8rGrWk82hAE-MYQ@mail.gmail.com>
+	s=arc-20240116; t=1750409760; c=relaxed/simple;
+	bh=mTuYhO+8RYrHvkIFsdv7f3E34qKo7UjC2oN1lSvcei4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=gv29deHNAE7JKbBnfF0mWl2ov3BZOBSDz+tb3JGzBP/4fnn7jMY+vUCm4tWdJWEff9uceJJwpW6X7ruj2517ufRoV0FoY9gdyeYpZn0J9un7BKqk2/wAcRyaTh0UHeD2bUGkCu4Lz95b2mgNGH8rFAzsVeFTlAjBsBwg2PgvLgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=toke.dk; spf=pass smtp.mailfrom=toke.dk; dkim=pass (2048-bit key) header.d=toke.dk header.i=@toke.dk header.b=kmlBszZP; arc=none smtp.client-ip=45.145.95.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=toke.dk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=toke.dk
+From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=toke.dk; s=20161023;
+	t=1750409410; bh=mTuYhO+8RYrHvkIFsdv7f3E34qKo7UjC2oN1lSvcei4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=kmlBszZPJ0o9V5Gu5t531smG/U2NhuVXp2DOw4P4UoCzukGlFTZGbpAvDGGD79BKp
+	 9Smdaj+H5cJAHLgnOG9x1aYqn/OkdEXaNqbRSTMn/H+2kAX30uW41GmkkGgGfIpPXJ
+	 hixfOE8eWzbyq/X+xzCwLtUiNOe1x/FP4JGChL4lcNmfG88WCabTXMelyU5ieIILPq
+	 CACG6hU0Qtz3T6mVnzRgyENzHDI5yIK7rff5xlp6LzaD5vIqv1MQiKWUXj6/+d+3v5
+	 ha7faJSnHHVaf3fNTY17gUBuMwoK4NWt0ZUnjlqRwBWxkbTdQCOOoI9aIFJKwzKnue
+	 iViuNtYwZvRpQ==
+To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
+Cc: nbd@nbd.name, Johannes Berg <johannes@sipsolutions.net>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "open list:MIPS" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCHv5 0/5] wifi: ath9k: add ahb OF support
+In-Reply-To: <20250609030851.17739-1-rosenp@gmail.com>
+References: <20250609030851.17739-1-rosenp@gmail.com>
+Date: Fri, 20 Jun 2025 10:50:10 +0200
+X-Clacks-Overhead: GNU Terry Pratchett
+Message-ID: <87bjqiztj1.fsf@toke.dk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
 
-Am Freitag, 20. Juni 2025, 10:40:49 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Alexey Charkov:
-> On Fri, Jun 20, 2025 at 1:17=E2=80=AFAM Heiko Stuebner <heiko@sntech.de> =
-wrote:
-> >
-> >
-> > On Sat, 14 Jun 2025 22:14:32 +0400, Alexey Charkov wrote:
-> > > Link up the CPU regulators for DVFS, enable WiFi and Bluetooth.
-> > >
-> > > Different board versions use different incompatible WiFi/Bluetooth mo=
-dules
-> > > so split the version-specific bits out into an overlay. Basic WiFi
-> > > functionality works even without an overlay, but OOB interrupts and
-> > > all Bluetooth stuff requires one.
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> >
-> > [1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
-> >       commit: c76bcc7d1f24e90a2d7b98d1e523d7524269fc56
-> > [2/4] arm64: dts: rockchip: add SDIO controller on RK3576
-> >       commit: e490f854b46369b096f3d09c0c6a00f340425136
-> > [3/4] arm64: dts: rockchip: add version-independent WiFi/BT nodes on Si=
-ge5
-> >       commit: 358ccc1d8b242b8c659e5e177caef174624e8cb6
-> > [4/4] arm64: dts: rockchip: add overlay for the WiFi/BT module on Sige5=
- v1.2
-> >       commit: a8cdcbe6a9f64f56ee24c9e8325fb89cf41a5d63
-> >
-> > Patch 1 as fix for v6.16
-> >
-> > I've also fixed the wifi@1 node in the overlay - which was using
-> > spaces instead of tabs.
->=20
-> Thanks Heiko! It's annoying that YAML doesn't like tabs, so copying
-> from binding examples is not a universally good idea :)
->=20
-> By the way, is there any tool that helps catch those?
+Rosen Penev <rosenp@gmail.com> writes:
 
-checkpatch.pl would be the tool to do that, but I'm not sure it handles
-this at this time.
-
-I also only saw things when I looked at the patch in "mcedit", because
-it nicely distinguishes between tabs and spaces :-) .
+> First two commits are small cleanups to make the changes of the third
+> simpler. The fourth actually adds dts definitions to use ahb.
+>
+> v2: Add documentation, use kernel_ulong_t, and of_device_get_match_data
+> v3: Use qcom prefix and wifi suffix as in other ath drivers.
+> v4: fix up dts example in Documentation
+> v5: move back to using qca prefix. It makes no sense to diverge between
+> all the other drivers for MIPS based qualcomm devices. qcom as a prefix
+> is used for Quallcomm's ARM(64) stuff.
+>
+> Rosen Penev (5):
+>   wifi: ath9k: ahb: reorder declarations
+>   wifi: ath9k: ahb: reorder includes
+>   wifi: ath9k: ahb: replace id_table with of
+>   dt-bindings: net: wireless: ath9k: add OF bindings
+>   mips: dts: qca: add wmac support
+>
+>  .../bindings/net/wireless/qca,ath9k.yaml      | 23 ++++++-
+>  arch/mips/boot/dts/qca/ar9132.dtsi            |  9 +++
+>  .../boot/dts/qca/ar9132_tl_wr1043nd_v1.dts    |  4 ++
+>  arch/mips/boot/dts/qca/ar9331.dtsi            |  9 +++
+>  arch/mips/boot/dts/qca/ar9331_dpt_module.dts  |  4 ++
+>  .../mips/boot/dts/qca/ar9331_dragino_ms14.dts |  4 ++
+>  arch/mips/boot/dts/qca/ar9331_omega.dts       |  4 ++
+>  .../qca/ar9331_openembed_som9331_board.dts    |  4 ++
+>  arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts   |  4 ++
+>  drivers/net/wireless/ath/ath9k/ahb.c          | 60 +++++++------------
+>  10 files changed, 84 insertions(+), 41 deletions(-)
+>
+> --=20
+> 2.49.0
 
 
+For the ath9k bits:
 
-
+Acked-by: Toke H=C3=B8iland-J=C3=B8rgensen <toke@toke.dk>
 
