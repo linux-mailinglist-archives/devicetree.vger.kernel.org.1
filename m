@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-187931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBCDAE1D1A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 317A1AE1D25
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 16:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8003A164B23
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:15:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8A75166249
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 14:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF2D28A3E4;
-	Fri, 20 Jun 2025 14:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C4DB28A71B;
+	Fri, 20 Jun 2025 14:17:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t/aQQWDI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RBc35g6I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC0E30E857;
-	Fri, 20 Jun 2025 14:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC487FBA1;
+	Fri, 20 Jun 2025 14:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750428952; cv=none; b=h1eXIDAF9tDOPAJpTXqpxFLjEsEfU1wyWYUEQ3uceL76tSHJ2fAGkY3zQQFUsg4aHe4X4u/uHJVqMAALVdtzLcQfMlzThCnOwhItcMclmbZedd1ELbnynFAyHEWzLyCBiMsK22Cnz832HxkbBMXWyK1NQlGZiscaEnCY1Sro2oE=
+	t=1750429036; cv=none; b=br0LOQkKqog5LobzDliOOtKlu3cUP4nzxGi2oxDhh68jII2rrmg4eku8memjmgxZlPS4dqZeySUYkt+cPrWWmu/VBdWyMGNMWMhjHnP3ROJHMgC60+elRNRJfK4NnwFcHob42a+9pNdPjw01hhvWhMof6EEDuld5pNz+Kmht7X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750428952; c=relaxed/simple;
-	bh=E1U3rRsS4LsJcSpEDBEZ23LHNaLMC0SBp3f8M6PqPIc=;
+	s=arc-20240116; t=1750429036; c=relaxed/simple;
+	bh=WXG/AivZAenzGBIGKaECDIg+iGpwiWQE1Xvg8g0ytx0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uzj75+SB298gxobq4RcZrAcRieckXm51yf8DhUB5Vz6QylMUEmDfMPVYhjX3iCpkEHNMg2/DSNOtfr6d/x6y4OvnP5pURNNihm1WEpYa9T43RL4aXpiPKygDqaclpmp67wJ+2eJ0+J4UyBN3yPRDiW3V0z41v/HJc+VYov9K/C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t/aQQWDI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F059C4CEE3;
-	Fri, 20 Jun 2025 14:15:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=V4+qdMD5/PCiGIHbWjEA2miF4VXa5umr1pksk86yFoKiJrxDUk2c8ZnrqJefCDiuMT0jv85OlfmfjWpHtzMB1LaVA36wNosuwykP1sUgg1Dlafxi6tmUBpour+8Jt7QGf+iOx8usTd+hTOR/5UnP4pwQB/jWY05JFUJo/DO1Jro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RBc35g6I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58825C4CEE3;
+	Fri, 20 Jun 2025 14:17:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750428951;
-	bh=E1U3rRsS4LsJcSpEDBEZ23LHNaLMC0SBp3f8M6PqPIc=;
+	s=k20201202; t=1750429035;
+	bh=WXG/AivZAenzGBIGKaECDIg+iGpwiWQE1Xvg8g0ytx0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t/aQQWDIwzs6BWk0sYP15kpqquSpUhAPO99rmEk04SAHsQJ5VjpcVHEuFMtgltxUc
-	 /li7gVAEMX+D1AC7CKeitZ6Smrbhgr66acxSZIKlJjHdIxVQhlg+zqNuWMk3YtN20h
-	 npxaxDvdafmg3U817T6VSXVv6cfrGKZ8APYyYDouyYNWDmSZhPh53HAED7w/9y0cDa
-	 cr6utUkpnX2ABCv5hD3g9Q6DV8c358v+dqrFDD/0BpxYRV+krVUiodX2fsVuAintIQ
-	 dVapr3DZY/0JXghjw1BL2UNQP5qP9hDZ6atmbCivuPB2MmQWUZwhOw54XYGmvKSGxP
-	 eubtcvHmcdC9A==
-Date: Fri, 20 Jun 2025 15:15:45 +0100
+	b=RBc35g6I659KGOTPfykwRzlur/3XShBZTklwpr7pxPucow48iGbOlYnDOAe95hMT/
+	 huU4Ovm/Lml3dHTwSjFs5JpQ9Y2XjEtyZuF3OxFIVi3bE2jEzZnq6GUmGKhVUZCYY8
+	 W0bZDKtNep0j/a+iKZaoW2iBWBUxkb2jH0tuCx1ZoPlkI3TU1z8EwVIBNxcvngWEbI
+	 BmAr+4A7REMFv0CrppUd61dATPzut/2e3bO2OCXfz/oauZaS9StolVHLSI6T45uJ8E
+	 ERs2Y1GVo/uSXZKcYCdFM6Rzr6+kCk6l1sdA6GVZcBNUx25kiW1RZk9fjVX+a76zrs
+	 pDnYrasLCgnYg==
+Date: Fri, 20 Jun 2025 15:17:11 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh@kernel.org>,
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Barker <paul.barker@sancloud.com>,
-	Marc Murphy <marc.murphy@sancloud.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Bajjuri Praneeth <praneeth@ti.com>, Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH 0/2] arm: dts: OMAP: Clean up devicetree bindings and
- compatible strings
-Message-ID: <20250620-unfitting-shredder-7c4c3c3bc8ec@spud>
-References: <20250620-ti_dts_clean-v1-0-786a3059bca7@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: arm: sunxi: Add Xunlong OrangePi 4A
+ board
+Message-ID: <20250620-bronco-stir-e1ecbea744b5@spud>
+References: <20250619173007.3367034-1-wens@kernel.org>
+ <20250619173007.3367034-2-wens@kernel.org>
+ <20250620145422.26fdd14a@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,89 +64,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QeYTrg+s3ZKZg5Ao"
+	protocol="application/pgp-signature"; boundary="2OXM8q8Pau5maNhk"
 Content-Disposition: inline
-In-Reply-To: <20250620-ti_dts_clean-v1-0-786a3059bca7@bootlin.com>
+In-Reply-To: <20250620145422.26fdd14a@donnerap.manchester.arm.com>
 
 
---QeYTrg+s3ZKZg5Ao
-Content-Type: text/plain; charset=iso-8859-1
+--2OXM8q8Pau5maNhk
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 20, 2025 at 10:24:07AM +0200, Kory Maincent wrote:
-> This series addresses inconsistencies in OMAP devicetree bindings and
-> compatible strings for AM33xx-based boards:
+On Fri, Jun 20, 2025 at 02:54:22PM +0100, Andre Przywara wrote:
+> On Fri, 20 Jun 2025 01:30:03 +0800
+> Chen-Yu Tsai <wens@kernel.org> wrote:
 >=20
-> - Add missing compatible strings to binding documentation
-> - Update vendor prefix from "ti" to "beagle" for BeagleBone boards
->   to reflect actual hardware vendors
-> - Remove redundant compatible strings from device properties
+> Hi Chen-Yu,
 >=20
-> Note: Originally attempted to align devicetree model descriptions but
-> received pushback due to Debian script dependencies (see thread at
-> https://lore.kernel.org/all/7e854232-f02f-4ad6-b65e-22c18d1d9fe5@jm0.eu/).
-> The compatible string changes may face similar concerns and would
-> benefit from devicetree maintainer review.
+> thanks for sending those patches!
+>=20
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >=20
+> > The OrangePi 4A is a typical Raspberry Pi model B sized development
+> > board from Xunlong designed around an Allwinner T527 SoC.
+> >=20
+> > Add its compatible name to the list of valid ones.
+> >=20
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+>=20
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-I think relying on the "model" field is really silly, but there's also
-probably very little harm in keeping the old names. I'd be much more
-understanding if the complaint was about the compatible strings
-changing! Keeping old ?image packing tools? working with new devicetrees
-is a platform maintainer thing really, what we care much more about is
-old devicetrees with new software.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> This work was split from a larger series to address feedback and allow
-> independent progression of each topic area. Original series:
-> https://lore.kernel.org/r/20250617-bbg-v4-0-827cbd606db6@bootlin.com
->=20
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> Kory Maincent (2):
->       dt-bindings: omap: Add missing AM33xx compatible strings
->       arm: dts: omap: Remove incorrect compatible strings from device tre=
-es
->=20
->  Documentation/devicetree/bindings/arm/ti/omap.yaml | 22 ++++++++++++++++=
-+++++-
->  arch/arm/boot/dts/ti/omap/am335x-base0033.dts      |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-bone.dts          |  2 +-
->  .../boot/dts/ti/omap/am335x-boneblack-wireless.dts |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-boneblack.dts     |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-boneblue.dts      |  2 +-
->  .../boot/dts/ti/omap/am335x-bonegreen-wireless.dts |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-bonegreen.dts     |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-chiliboard.dts    |  3 +--
->  arch/arm/boot/dts/ti/omap/am335x-myirtech-myd.dts  |  2 +-
->  .../arm/boot/dts/ti/omap/am335x-osd3358-sm-red.dts |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts  |  2 +-
->  .../ti/omap/am335x-sancloud-bbe-extended-wifi.dts  |  5 +----
->  .../boot/dts/ti/omap/am335x-sancloud-bbe-lite.dts  |  5 +----
->  arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe.dts  |  2 +-
->  arch/arm/boot/dts/ti/omap/am335x-shc.dts           |  2 +-
->  16 files changed, 36 insertions(+), 23 deletions(-)
-> ---
-> base-commit: e22b9ddaf3afd031abc350c303c7c07a51c569d8
-> change-id: 20250619-ti_dts_clean-d1d86c9e675f
->=20
-> Best regards,
-> -- =20
-> K=F6ry Maincent, Bootlin
-> Embedded Linux and kernel engineering
-> https://bootlin.com
->=20
-
---QeYTrg+s3ZKZg5Ao
+--2OXM8q8Pau5maNhk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFVtEQAKCRB4tDGHoIJi
-0tJqAQDguBGeHMESgkQ3BVgfrNTedU4Yy6KExPY/v1U3RkqwYAD9FgRQMdh0ebw1
-yRK6TyBFSkTxLYQ0daxAQ+o8ANs/HgQ=
-=YH8K
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaFVtZwAKCRB4tDGHoIJi
+0suKAQDd6jGsqSTRe+mxpECzaPvfrzFdj6AgjB6HGbdTMP0WbQD/YOGeSVE8pFbP
+w/bDsvdNud0cRV2TPv76oa5kfAob8AA=
+=9v/4
 -----END PGP SIGNATURE-----
 
---QeYTrg+s3ZKZg5Ao--
+--2OXM8q8Pau5maNhk--
 
