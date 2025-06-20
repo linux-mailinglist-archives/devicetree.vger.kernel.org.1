@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-187905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B22BBAE1C00
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:23:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE62AE1C43
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 087127AD250
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:22:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D66B03A69A9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:31:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6072128CF6C;
-	Fri, 20 Jun 2025 13:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EB621C18E;
+	Fri, 20 Jun 2025 13:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MtebPBvk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ndYpJkuq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD00028A1FC;
-	Fri, 20 Jun 2025 13:23:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FA6184;
+	Fri, 20 Jun 2025 13:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750425787; cv=none; b=FthmTSm3OUpvAGC6clEaju3C4jPPCBH/g05i0V6qaUd32IPYwHRdpELQTF5f0Mcm9ZZNlKAcSm0mJJpvAHOcCFbq/dfM9d8Qmxd0buYMYyHlLSDfNelVyJtIusVShjm7O2KyE2+UMIkDDLolpKazlpLRFV+zQuRfVjNj7WDiQJo=
+	t=1750426313; cv=none; b=UVQFP99jTw1W0aynTf1uy7xjwFTSAUohGISgCuQ57hLzIhMHXu6vEz6tEJTrbwdec5zLmadkkS0gd9ikmuetJodTpKg01Mry5vZsDRnc7y9kHxHDjp0ztj5XsDbhwT3UJRM8ipmIfhUPfbooQ786Hfck9+P9VyUZqrDc4/8Fbdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750425787; c=relaxed/simple;
-	bh=vVbVRFQUAznwYxpCtzkO4d0c66o8bC/lMZQmfZTPce8=;
+	s=arc-20240116; t=1750426313; c=relaxed/simple;
+	bh=IJ5pc1pZdgjJrzmGFIWQmgiUZu+S4mq8wHYkZQZYEp8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VINNoCroEZb8fzH1GACCjnsdpoMGMmyWIIUXB5h+6iZUNuN23+ffK5QKFPKaJA5rNwVFitHzQK2A1n8c4vFS25ukwf8KuWWlJaPbMrtqPbEthF8nx2jZekkQEC/48C4P2Hohp5Na0/uf8YbpiajRvQDgWWjONCz+qpd7tFVQzAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MtebPBvk; arc=none smtp.client-ip=209.85.216.42
+	 To:Cc:Content-Type; b=SDg0FrdT7gfP12Ly039kFYXcgxXNCXwDQ8lQ/hzIWL/xrtlhOClgYJh32eTVG/9MglHLcfOxn10ySGaxMMRYwK/yTwU5qyX6z6LkkWyKSFNtUVwCXeJoGYRRL6k/T5JyIF1X59mduN5mL077lQDUDHQvEZOne0U7HYX4LPz0TJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndYpJkuq; arc=none smtp.client-ip=209.85.215.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-31329098ae8so1548636a91.1;
-        Fri, 20 Jun 2025 06:23:05 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b31d578e774so1268522a12.1;
+        Fri, 20 Jun 2025 06:31:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750425785; x=1751030585; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1750426311; x=1751031111; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vVbVRFQUAznwYxpCtzkO4d0c66o8bC/lMZQmfZTPce8=;
-        b=MtebPBvky1kL4iru3D24DKY3LLy3rAJSKB+QRR8/FUvLRaGKVtTn2sXxYnQcrKICoi
-         iQTOiaJ9DN9fMbHUdiIysteYtK7esdIyZyoJ3HJ3F8csfQzmECdoZKskIt++RU2dImW3
-         +VSPVMTXoBfec2rcaZmA0veMJJ58+zjYXoSjIb4nhnI2GOjYGydTNbknf7pHNh5Vb2nO
-         vGMisuANz+SHrpJOE15wQV+rGwQTz9blK0CFDeOCv5gU6L+6+AiNT8o/M19nl2LT6Bm/
-         Pg/BtTh7iSsLpIX6vi9ebYWD7Yv795PtNIa+GeqykZJ9fJZgg/pqEzAXMEinYeQpw4Ey
-         zWVg==
+        bh=eD67VGoIFc7viTaixF6jhGk+Vu3kiN+A3PvW7sAsva4=;
+        b=ndYpJkuq4XT/VVKzN8A3RbUCX6VNfY3IMEM5QdwaDiTN7vOySQMt1Stnfc5eiYphog
+         kI31aapSmMqC3X0NGXPi9htJu1G6mb91ilhqUBWJ3fkU7PSTkrmHjNYddvpRmevx02zW
+         7d3mP9upiL4T2I0VLAy77C4jxLcOniyz+mHLHWWMiYuMoAYHtBFgwhloOoncFdN2O8iH
+         H2G6JBFWybMObOMDvxKCLhPbVPQqixxTnly48Kotk6DP6zUwH2/xVbOvlz3NFvzH5KpW
+         XjtK0Vm/PMA7bXbMCwqXot5hLgwdGegNFDs24nbo0YwsVi17QVVWz1l7f+LbfnDMj4cx
+         tiVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750425785; x=1751030585;
+        d=1e100.net; s=20230601; t=1750426311; x=1751031111;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vVbVRFQUAznwYxpCtzkO4d0c66o8bC/lMZQmfZTPce8=;
-        b=KJQuRr8RBFjTk0IZLy6CEzYyFFM4ngVJEZ08Xs70sP54RLQJg7+vuXCi9nrUaKldzH
-         ZUzmdGtU57rcN0YyvJrSYJ8u0CT2/Hmt2BG1Ei7WCzwmSZLj0+A6hAmoJI2sCHjLrM3h
-         ztFqnTb49mpHBS/UgiRtv9Zh0eeO9GmYjqewTNmXxJDPuYUZ5iLyIG1INLCNELRsvcTz
-         DkMHSm1/tlyFGEC3AkH8jq3Bfgcr+jvOTa2nawycimymd8gCpLhkeaTRxFnBYMFiYvMW
-         kKZzAJwXvAynIbmlAm04BQNKQF095mky0oo+jBxiOcGQlUva6Yu7CtvYu9+ouwX3n5Vg
-         x7lw==
-X-Forwarded-Encrypted: i=1; AJvYcCUlePn7ItkrqMSnOPTdY3i/Wpf/kA+Ma44dJlIQ5u+I/NRtkDbIq7tTV8Jr3Qwysi5xP3VsOO37n7GjNgd2@vger.kernel.org, AJvYcCXhXfatwXBPMYPA7lYbs2yd7oGN94rT4tON7DJnPISK1n/pDvkyG+sAViVFbJh6ojMlZiFkojyvQ6Cb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNX8Fqrey/P5nhsGbkV5DvwW4gc2wMQdot3nPqcMloaYNkYA8l
-	AyfI3GT1RmAqWG2ZFGKbgsehaygCHE6VtFc3jLL1N87W64QzQLYGJaj/1cFCTIhJ7PiaQfdwruG
-	+7manGySReoy5juZv27kg+3dlg/9H3+M=
-X-Gm-Gg: ASbGnctMSl7q3Eq7bKnEE9u71wH0pgipcXECa70Gm+VRVf/FJQ3qa3igeMjyyYXlL9B
-	EZ4CYkV3lCEmZUt+X31Lg6fQ/7fug2Hzn93CFFy8JGOsc+96oW5avql9XRIUqWSMfdaKF+vv3fa
-	cqmnVhCCmX0A+LIzqpq1XIn5y745vR+ElOpXyhL8Ur
-X-Google-Smtp-Source: AGHT+IE1J/3agy2pvlBUpx5CZrzP7qFSI3FtPdha4ZfRPlkfSyGlRzieK+BAcz2I5VxrRAtzHU31ktVhErvAuBdqNfo=
-X-Received: by 2002:a17:90b:288f:b0:310:8d4a:4a97 with SMTP id
- 98e67ed59e1d1-3159f518ab7mr3470283a91.15.1750425785075; Fri, 20 Jun 2025
- 06:23:05 -0700 (PDT)
+        bh=eD67VGoIFc7viTaixF6jhGk+Vu3kiN+A3PvW7sAsva4=;
+        b=Uwh7jM3v6+TI3E7sO3/o/T5F5o27VyDROsvBubi2YXn+J0+++2u/zBUXTYtubNVVKa
+         a6r9U9UOLsD1m+z5gaZsQKHnhzRpFLnH/8pohrHo96I2QUUVtG+pG20HZ4yrmSOe2bUj
+         9iV2xknoT0AkeusMFEa1q9o/4/wqsC6L86kpwws0+QYhzCBGSQU/yTU+NtZH6oXnIRhK
+         68+8Ex32UnBE/CV7gFgzesxuhVbbmRy9EySpsWSCcXhBW3NEAyJ+Jvv7usNSPan3jmh+
+         X5tlXo4kbNBe1rPtWCzaz9paIN4DBL7zklTlijdWBPVaP12mqeBcwVGNcIhjfNyHqXL3
+         LlBg==
+X-Forwarded-Encrypted: i=1; AJvYcCVoP4Xeol3lll8TaEJ1OnXHljG0XH6Ikb3geSgjpwN4GEy870ElCqYDV1nLIuKSgWl3bNQ5pZTpiEMB@vger.kernel.org, AJvYcCWzxe4yq8QTt9LKuU/ZhwqI3ifSc+8tGvu2ubNNJxDZCQf49NzvEV1k9NpDnsx+gC71Y96KWQeGXVgZ8qYR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVnwQZHnN0hHIGhYUUUFzrD5thdUVLYANhlxqMV6MKSJt4BmcV
+	DmdHZc04AKU4LZUYxIwqCQ+LyzGpcBlmsPSwjtiSqf6AJMJyFEJq07lNZwZspcKuRFKgr+oexea
+	I6H9H3zLQVuRRRjldzEE+qAD7p18XvOo=
+X-Gm-Gg: ASbGncvfz8VNtOBrrFdGIpnvk7Oo+ZjMwgV1oSgjuaTgGuV6dLtPVUbIoXzo58FnkmG
+	kZXgSpSQphCNoHr9qBrGgf/2YDOejKrZVP9Bxwl3Rw7/KdyQql1ow2MWa2j8DNEBefcrzYXnfbY
+	tPxFgnLx+qtnoW3fnYPR3J+SfAbJpuUUBhmdBmvvQ7
+X-Google-Smtp-Source: AGHT+IH3fQ614Vx5GzkzKNEt57w45C62O8m4Fe+y3Z88xij0+BBvMKQejo4mfuZeKaeYz95v1iqBe0ZzmZyXbsNGhCo=
+X-Received: by 2002:a17:90b:2dcb:b0:2ff:4a8d:74f9 with SMTP id
+ 98e67ed59e1d1-3159f503784mr3641263a91.10.1750426310887; Fri, 20 Jun 2025
+ 06:31:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com> <20250610160152.1113930-7-laurentiumihalcea111@gmail.com>
-In-Reply-To: <20250610160152.1113930-7-laurentiumihalcea111@gmail.com>
+References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com> <20250610160152.1113930-6-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20250610160152.1113930-6-laurentiumihalcea111@gmail.com>
 From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Fri, 20 Jun 2025 16:25:04 +0300
-X-Gm-Features: AX0GCFu22qEJwTwiXYLJyDUpuSZfvl_dtoxWhsBOKOtPed2Sd_Y2mWRPu5m8p4M
-Message-ID: <CAEnQRZAhsCc==X1At+s5pb1bocnVmb2sFKmzNo+gqkiWAqFHag@mail.gmail.com>
-Subject: Re: [PATCH v7 6/6] arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
+Date: Fri, 20 Jun 2025 16:33:50 +0300
+X-Gm-Features: AX0GCFuHG9nwEDIse9o6OGABxZ9DBwglQi1amT5GMFegc87DEv-xylKcvAMSJZE
+Message-ID: <CAEnQRZD0RYeOsy-0cK4CDzroKySoOoKu=nJD4GT+Tyiii9x43A@mail.gmail.com>
+Subject: Re: [PATCH v7 5/6] arm64: dts: imx8mp: add aipstz-related definitions
 To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
@@ -98,13 +98,74 @@ On Tue, Jun 10, 2025 at 7:04=E2=80=AFPM Laurentiu Mihalcea
 >
 > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 >
-> The DSP needs to access peripherals on AIPSTZ5 (to communicate with
-> the AP using AUDIOMIX MU, for instance). To do so, the security-related
-> registers of the bridge have to be configured before the DSP is started.
-> Enforce a dependency on AIPSTZ5 by adding the 'access-controllers'
-> property to the 'dsp' node.
+> Add header file with AIPSTZ-related definitions: consumer types,
+> master/peripheral configuration bits, and master ID definitions.
 >
 > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
 Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp-aipstz.h | 33 +++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  1 +
+>  2 files changed, 34 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-aipstz.h b/arch/arm64/b=
+oot/dts/freescale/imx8mp-aipstz.h
+> new file mode 100644
+> index 000000000000..6481c484ca37
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
+> @@ -0,0 +1,33 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright 2025 NXP
+> + */
+> +
+> +#ifndef __IMX8MP_AIPSTZ_H
+> +#define __IMX8MP_AIPSTZ_H
+> +
+> +/* consumer type - master or peripheral */
+> +#define IMX8MP_AIPSTZ_MASTER           0x0
+> +#define IMX8MP_AIPSTZ_PERIPH           0x1
+> +
+> +/* master configuration options */
+> +#define IMX8MP_AIPSTZ_MPL              (1 << 0)
+> +#define IMX8MP_AIPSTZ_MTW              (1 << 1)
+> +#define IMX8MP_AIPSTZ_MTR              (1 << 2)
+> +#define IMX8MP_AIPSTZ_MBW              (1 << 3)
+> +
+> +/* peripheral configuration options */
+> +#define IMX8MP_AIPSTZ_TP               (1 << 0)
+> +#define IMX8MP_AIPSTZ_WP               (1 << 1)
+> +#define IMX8MP_AIPSTZ_SP               (1 << 2)
+> +#define IMX8MP_AIPSTZ_BW               (1 << 3)
+> +
+> +/* master ID definitions */
+> +#define IMX8MP_AIPSTZ_EDMA             0 /* AUDIOMIX EDMA */
+> +#define IMX8MP_AIPSTZ_CA53             1 /* Cortex-A53 cluster */
+> +#define IMX8MP_AIPSTZ_SDMA2            3 /* AUDIOMIX SDMA2 */
+> +#define IMX8MP_AIPSTZ_SDMA3            3 /* AUDIOMIX SDMA3 */
+> +#define IMX8MP_AIPSTZ_HIFI4            5 /* HIFI4 DSP */
+> +#define IMX8MP_AIPSTZ_CM7              6 /* Cortex-M7 */
+> +
+> +#endif /* __IMX8MP_AIPSTZ_H */
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mp.dtsi
+> index 307e1671eccf..9b550f225856 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -13,6 +13,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>
+> +#include "imx8mp-aipstz.h"
+>  #include "imx8mp-pinfunc.h"
+>
+>  / {
+> --
+> 2.34.1
+>
+>
 
