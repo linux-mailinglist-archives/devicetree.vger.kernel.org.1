@@ -1,146 +1,166 @@
-Return-Path: <devicetree+bounces-187860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B5FAE1832
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CE1AE1856
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 11:55:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD70916F85F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4FE4A1352
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE51F522A;
-	Fri, 20 Jun 2025 09:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C311280A27;
+	Fri, 20 Jun 2025 09:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qy5eFkUC"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="b/q7LDjR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68187238C08;
-	Fri, 20 Jun 2025 09:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750412984; cv=none; b=NaziDEHL3fJa9oYc1Yann4kTrwSZHWtg9g/hRuVBKrKSlnj6qeXzeUvzVSmJ6qdLmFGQtfBp2fVa6Iih4i7B5qvnlw01JoZ6LxahFnWbXZiKRhumUgDvTdQ0zCTUWW8QrGhUXfAxf+Ai2yVLmOl1CgEetCg50gkGyB1gXYIZ5W8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750412984; c=relaxed/simple;
-	bh=qTnLGaYE4mSJe4XGJd9c1paMNelCcWBLch1kHcCtYSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=U6Vtp29dtAwFGb3ctVR3JQYYelz7LIBpcTe/vyXA+aaN1jA453o9Pls4hF6BubUGYVULC4Fq+bWGDVQfxd34BA16T5wq93oh5GbQMSUN5uKHLTphq3Ds5qj4KYgt0x/7cGTlwzk/HOw/3u8BODFzfWz+veN8vRyiSUKTOHErzLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qy5eFkUC; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2350fc2591dso13450855ad.1;
-        Fri, 20 Jun 2025 02:49:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750412982; x=1751017782; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wm9uNcsgLmLy2CTce8UTPVgm6JKmZNFE7FHPVZSoHGI=;
-        b=Qy5eFkUCQbtRZPWkAJkbqb5xcXmIegciFmjgd7AhW/5Zt9UfEfQzFXG5V05T4Makpi
-         32kC23OsZ/w7IbnaZF0kMbEeeDelPjc1HzI7Hmcwlbf5IfBIvkv9SZ+WtUUuGiad41gp
-         MSoQ8l8MDkVX9UDwl/eK/xO4o+uM5jduWtQhocbJ/jbqeaDL8Nwy9sWgGJsqFqsLnuXD
-         1FpkzaPOZYQb7HNvU7qipY2szK0lUq5gfrKixUuZrdMl2eg4qn2TfrLpEBJY3r7MqwSR
-         eLMj0ktw2xHoCs2CCXmcyt4tYpWvSFGAoPbi7zBjbzmeUEtVfsq8Jqd8VegjHeIYVyUB
-         NBMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750412982; x=1751017782;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wm9uNcsgLmLy2CTce8UTPVgm6JKmZNFE7FHPVZSoHGI=;
-        b=ZBqF5vYtrFILMNbBqtLMsnz9uNvlg8Dj5P+q8BNmWkt9fj5CwnYuZp+W8RIYWFDeca
-         m3Fx4CFL3rPgSVPe06pa59ujarhGhCPwcDcdp9Le2t/ja2QQwe1TCT1ET6Zg3jOCaOv6
-         GXgpIwChzrFY6hy4axR37WJmQwD0PIbbV/yBcZWeE/PwfZud30OXqKLfYMSBxJpvvffL
-         +Ky215KEughQK0pCvokI8vuzSPfoFCEojNXTzXzv/BGnSLbeh5heb3zGxXYbyyGxbxmF
-         OIEdNnDs0f32McJwIvtJkjxYpX31Ral4WsQgvgyjzHWNlPZOu9zh0/v+pWtCbwWsVBSO
-         ijkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPSrTo+ZCf+RXa9aOng6jTmWpuqvUM9u6r3HtAz60hfGq/kmDpTfkeeNoH4J2vNzRhPHME4l99@vger.kernel.org, AJvYcCUVcnKsujr30g0fwJIGqGgW3YiSPMqNa/vJ9A2tIGreFAvIWz0GqKmxkWAG6AI42zOyJIHr+G3B9W37ZZgM@vger.kernel.org, AJvYcCX5c6F16Y3uw5TTZzoXkeCZ9pwBxebdSlbxa/Z+i/z4UlqXfPwkzcVqwyrrdcAOIr+zB876Ni3EjtKL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzch1SEgJqTvMq9B3Fq5pHeddTp/LeqyIJPkbEXyo4dBx8nYbUG
-	yPabS9fE3aZiA2r4HqvYElr2LY84txw4+P4h79QgFzgStr/PpWM+gytRG9lA6CKe
-X-Gm-Gg: ASbGncsE3gjdstqNK8KU4aQOlvsDh7ahKwxXSOF9Vol4TPBfOluC8//5O6g0N4h1Qei
-	SAK6YTiwW4CAZ4Fso5tSbvbAkWB64+iXMoUtaMvc3AAbSBAp7n85ZFxVGAgEHbcmg1ja4A25FP5
-	tGgjVRP7G7qlDNJfE4jQEVhhl6yxwXhbowUvEm/CE1HTWiwHiefhqcicWAvh93sLPqfUTqZaBpG
-	G9/mjmF6NjmRiDFoGkEKlGtiVdr8Mt5e6iCxucLNnnAS5rFop1P/ipEIOT93Oad51TCPSJQPKen
-	F6uXKp+uscQXuVUtljXCXGDZ2zKvFCJXO7dWQ4tk6evpzlb0BEGoMoTVCvymjikLlsyJMUBjNRI
-	nXjbdXUl1lOs=
-X-Google-Smtp-Source: AGHT+IH6Be5gP3+3exFSkxm22vF5iZh7JCUxNtdjaBLajdekU8Xmj0n59/agYpsJTUMoVM2m4rUZ0Q==
-X-Received: by 2002:a17:903:32ca:b0:215:a303:24e9 with SMTP id d9443c01a7336-237daf6593emr27765085ad.3.1750412982159;
-        Fri, 20 Jun 2025 02:49:42 -0700 (PDT)
-Received: from [127.0.1.1] (061092221177.ctinets.com. [61.92.221.177])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-237d86ef88bsm14167885ad.219.2025.06.20.02.49.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 02:49:41 -0700 (PDT)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Fri, 20 Jun 2025 17:49:11 +0800
-Subject: [PATCH] arm64: dts: apple: t8012-j132: Include touchbar
- framebuffer node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C00723AB9C;
+	Fri, 20 Jun 2025 09:55:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750413317; cv=pass; b=s1uDofWeAiJ95nmrxEs7vlAL1yTpse5ePQvi9zIQscp25qTsg2xtA0m4cFddY4xXvv7RCcmu0uw7vePv0Htluat4okuTozrHWhYSg3VZl+CHSWU/GQUoSPseTbhG33ODcYZ0cWYa0cPR5NcZRQUCsGnntZnlPUGuxgXAB42xFh8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750413317; c=relaxed/simple;
+	bh=pze55APxtyCaqLQ7ERtutzcnPhaYtGpBxEVH8PwbPKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ViibEWCTa0MURxtD3TnohGTlfA7IvJ5Kr7Q7TghlmTHHDzeTku/18BTbK+CUvQVo7ah1IpVQW+g5YpeFj9+WPF2Un9PgtFMlYAu2RiqFw1A+M4Zt0SV4bF+VzSheACXbhZWMH9xglJwwxmfTnrxcGlpFWLqZcNjhzDHq/4H9oQs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=b/q7LDjR; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1750413294; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=buxEGVBXCHdiuRG7q6sV4d7yeqisQewFmfTArcPMLDMJpVhZiQuhXPN4YH3nsW4EX4A+94uzTa1+mcC9m8i2tpwyZ0YeeVOCMpH8ZmrCpMxWXo+DplH30C870y4PqeaehgSZDEaWTQUTWGuDnJDI/meJgM7KOSAXBSw4B5kIcO8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1750413294; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=PwxAthPjmI1ic6P01b6IWTuo7e6HnLmqXzNXxwM6Kuo=; 
+	b=UjItsuDRwJWVwiC9s/iFH6yZkARBVy/bUrQwerP4Qq/Z6QProSOvgVbEpymy1IfInMue2XZhMiKIQZv1U3jzMDr5KTL8hSrsrQ2hZW9LzLdDt+YKHzhoauu4oVQYwqcm1UpxZEFPL9CMD9ujT0qy+6LwpkOj0bPjIe6Tgdf91IU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750413294;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=PwxAthPjmI1ic6P01b6IWTuo7e6HnLmqXzNXxwM6Kuo=;
+	b=b/q7LDjRPLKkw0j9TTNYtSjmnIfQ0z6/o4T8vE45q5PeXmqtyVFcMk/sRT03KhRl
+	tF5z2L3pGW/oYrbRtiwIKTKc4e0wmJDztFMJ3KVwtmtp9gCtQnGtnIfU22blVE1KTen
+	jfna8vqrDKhd4aPBUALRvOsCv8aXhBQhrYalZeEc=
+Received: by mx.zohomail.com with SMTPS id 17504132917981020.3930091890192;
+	Fri, 20 Jun 2025 02:54:51 -0700 (PDT)
+Message-ID: <34c871c9-3367-4b62-b2f8-11ed7d3482e5@collabora.com>
+Date: Fri, 20 Jun 2025 11:54:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250620-j132-fb-v1-1-bc6937baf0b9@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJYuVWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDMyMD3SxDYyPdtCTdFPMUUzML8xRjc4MUJaDqgqLUtMwKsEnRsbW1ADN
- YMSFZAAAA
-X-Change-ID: 20250620-j132-fb-d7d5687d370d
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, stable@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=882; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=qTnLGaYE4mSJe4XGJd9c1paMNelCcWBLch1kHcCtYSY=;
- b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBoVS6zKNgfrxDu4IxQuG+XErH6r6Vm9rzm0pebd
- Z3LpvEPtguJAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaFUuswAKCRABygi3psUI
- JHJoD/0c+i2KQVhxj9K7upj3umunHHR5iGCOEG7jxFTtrsE+9UuVngAG8qtLOrYp/X9GUmrrZ2t
- YjB8zqTSrGCkMZgDCQSvVnYq7RApDSyigQQ36SWV5Lh0zMI7tuF4rx1m8MgENCWOqRwZKEK64UX
- MBz8IOTYYDcFK+G5Dj9SL2QLI9HQWxAjpS13aSuYZ6+jT0s4U06FeLHcrPlOg8V+5os/NVVo+/q
- Zx4GZs+Gtry/8S1DKD3+TARaqvlCXS5qZiEvnGwCEOochN2Xh/DHTQqUlrjhAVL3XQn1DiN1hMQ
- EBd2Feg6UYw+iXnzywYNLUJZYcYGpD6SGYjwnxXBpJ1iN4izrVDbcXaSYfcrzlLhLBPyFDU1MQE
- oKCoPZco6WkgKXu6Ocnj1rMY7OqrrvGYT4ii2JrimT3DE1hf2BkIwfb1SIh5+aElTHTR056aGOW
- YIy7brULuGRblckBPK5MZZfsKFNaPgrwNN2BEj1C152m/CZgQmFouQG2X3BQZjdMLNtksmVCQ16
- SnmdffQVXD3VCC8cK6iALZdxHjRAhAFBCbTaRGg76wX/Be4wEiOniKeQAwHSAXi17FE+cjwdL3q
- luHN2WxpWowukCRgX/7ADKFDgaLOUxVo95rtVpeUopwEB4llG89OR/eUN4QiImlW+nfZ2mvXQ5a
- 1taNYho8VbNMnHg==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] dt-bindings: iommu: verisilicon: Add binding for
+ VSI IOMMU
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, jgg@ziepe.ca, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+References: <20250619131232.69208-1-benjamin.gaignard@collabora.com>
+ <20250619131232.69208-3-benjamin.gaignard@collabora.com>
+ <n5ddeogrpgctrljnxjfxqaz22qfnxsgm6ro7qihbjeyhd5br44@ojlzlz7gsuzb>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <n5ddeogrpgctrljnxjfxqaz22qfnxsgm6ro7qihbjeyhd5br44@ojlzlz7gsuzb>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Apple T2 MacBookPro15,2 (j132) has a touchbar so include the framebuffer
-node.
 
-Fixes: 4efbcb623e9bc ("arm64: dts: apple: Add T2 devices")
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- arch/arm64/boot/dts/apple/t8012-j132.dts | 1 +
- 1 file changed, 1 insertion(+)
+Le 19/06/2025 à 16:19, Sebastian Reichel a écrit :
+> Hi,
+>
+> On Thu, Jun 19, 2025 at 03:12:23PM +0200, Benjamin Gaignard wrote:
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: verisilicon,iommu
+>> +      - const: rockchip,rk3588-iommu-1.2
+> The entries should be ordered the other way around, so that the
+> "generic" compatible is the fallback. Also the 1.2 version is from
+> Verisilicon. It does not really make sense for Rockchip. So I
+> think it should look like this:
+>
+> properties:
+>    compatible:
+>      items:
+>        - const: rockchip,rk3588-av1-iommu
+>        - const: verisilicon,iommu-1.2
+>
+> Otherwise LGTM.
 
-diff --git a/arch/arm64/boot/dts/apple/t8012-j132.dts b/arch/arm64/boot/dts/apple/t8012-j132.dts
-index 778a69be18dd81ab49076fb39ca4bc82f551e40f..7dcac51703ff60e0a6ef0929572a70adb65b580f 100644
---- a/arch/arm64/boot/dts/apple/t8012-j132.dts
-+++ b/arch/arm64/boot/dts/apple/t8012-j132.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
- 
- #include "t8012-jxxx.dtsi"
-+#include "t8012-touchbar.dtsi"
- 
- / {
- 	model = "Apple T2 MacBookPro15,2 (j132)";
+Thanks I will do like that.
 
----
-base-commit: e04c78d86a9699d136910cfc0bdcf01087e3267e
-change-id: 20250620-j132-fb-d7d5687d370d
+Regards,
+Benjamin
 
-Best regards,
--- 
-Nick Chan <towinchenmi@gmail.com>
-
+>
+> -- Sebastian
+>
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Core clock
+>> +      - description: Interface clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: iface
+>> +
+>> +  "#iommu-cells":
+>> +    const: 0
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - "#iommu-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    bus {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <2>;
+>> +
+>> +      iommu@fdca0000 {
+>> +        compatible = "verisilicon,iommu","rockchip,rk3588-iommu-1.2";
+>> +        reg = <0x0 0xfdca0000 0x0 0x600>;
+>> +        interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +        clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
+>> +        clock-names = "core", "iface";
+>> +        #iommu-cells = <0>;
+>> +      };
+>> +    };
+>> -- 
+>> 2.43.0
+>>
 
