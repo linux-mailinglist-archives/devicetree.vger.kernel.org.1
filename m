@@ -1,181 +1,115 @@
-Return-Path: <devicetree+bounces-187769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E8B6AE14C2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:21:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C684DAE14BF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:21:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF6E419E2399
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:21:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7033617043E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF587227B9A;
-	Fri, 20 Jun 2025 07:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5C0226D1F;
+	Fri, 20 Jun 2025 07:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AL+0IBrf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TuHKoPlV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC27220F53
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 07:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F8830E85C;
+	Fri, 20 Jun 2025 07:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750404082; cv=none; b=odBQf/pKluRzQPfMjaj+LcuQfO0cHuqzDKarZp2FjNOjNHZnfukUh3aJKxpuclFOEUQCDfp+OJmfsCqBXiFXfblayNXis/87S5oRdb+Hma9twkHM3hqSmMZk9ebDRya9K5Pccce99TlZFvvPUGhquQTh1p+aPF1sE+ydx5cgkHc=
+	t=1750404063; cv=none; b=tCxEoskF1505uTI4NoGopgIa2YiiBHAb+Fen74m5/crxXa+YJpFtnudhAIOwzLJ8VBz9mabR/88x+xHBJ6ptRpbPpqXGHssVQS3+IzowfbNSW52wqYEits+MXI+1hepACJs9qZl1NBuSFjuuw8UlS7JzE2fDoW4555PNdCVsOm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750404082; c=relaxed/simple;
-	bh=j9IdAAvffIyKJ66Bk4tj0KPRmBaweAURRmczF0FUIMo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=egJY6aACuJxhRrkfY0la5hqQCj8621A1ZjUt4UcM3S2iYh50GGTgd0+8iXthpSuzIJAcF1esLSj4l70qv9gPaRY8/GA7O+H3ie6RXX1z3abaVH3Ef1Sb9upMWLVC9jTWgs6iH0v1WQAbEneUP7xeEe6uepZU+s+AAyXyuzS5+3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AL+0IBrf; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-235f9e87f78so16177005ad.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 00:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750404080; x=1751008880; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oen3S8vgE8gK573zXTn8V0hMlW2RlWgNC9WkX1jI8W0=;
-        b=AL+0IBrfOy2GvlIo9gadPeD+ulKMzq2xh7qoonyEKFkYYwo8iItNBflmkDMo0XgVvr
-         Lsb/9MSFX6aAaBmoUe5ee2ZniycxTZEYNjAccvY6PqMLQaN0wfQuUMU8mkTflvhCWvNb
-         DaLvNfINsDQHlWRaeE42IiTl2YX66BvBjV6EQrqf3WccuN8T9vnnBe/OtsGYDA6DOu/u
-         HdOnXls1XPLHzEagYu2s6oWP6fEkhYyd4//TUrt2IxWCHINaZNwjO9H2ITFyQt58vcVn
-         LYMWVWSn4DnNkJTgFUxhvYCPMqtN8XuULe59oxzeiF4p2ffKB2D5XXle0hx5Z/wDWHdt
-         cofQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750404080; x=1751008880;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oen3S8vgE8gK573zXTn8V0hMlW2RlWgNC9WkX1jI8W0=;
-        b=XXpCnME7/2zOXFIqDLXV+iwabqErauJDwEc2X2FS78+XTpWTkq6y+FtiGhTU9/9Aev
-         eKZKsdV7BPmGfIACSgBGfSxxoYOrRzZvN1l957vDIV4Z0/GFPJQtdfuh5FIOKrxFeKQL
-         0XPMyNV6JxMH+PAyRtKcyVCQK5R9yIR3GELH7Xk6++uDLzLo6yuRpkgE+o8o18jVeShI
-         aw6oOekD0ZXn370KQX4scfwgjA7Bx1iVLZNOvDjVpoNliHBoOsoa2Zq4Xh+OvLQpaO4k
-         OQn6uPBeqblXKBZRFndU/lxt7+ZRBWquYFPX8gztJZyc2ZOu8k1jmQUUe77TyPjZc+O+
-         CA8A==
-X-Forwarded-Encrypted: i=1; AJvYcCVqSVlltwD8sGFzbt0LSIWpZuwRGeaoVjV4OeB0L4QdgrvNJuc1LqjICogRfBGstnEpe7GTOn0uEUhH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLcI11APUscpLwyJ6CVjD2HG4j/aAgJAH2nC6YjRprArhC43aj
-	uobd3akZmkWMp7wqvLR1THoSB/P3RUMpQxCreoygeP6APTRPADC56ZVzilvYfgrk
-X-Gm-Gg: ASbGncsjoU5pifNyMSN5tbzWlQO6Nqzr4fxRLbnBQ4xC40lNtfJMpXd6/UDLTIvQK+Z
-	u6M0mgdEiD3oAsn/d05+lSxnyUvxmTBRghMJACCzuhYGq2tA9N1Tdqfh+Qh84avzqfmbBAqFAUy
-	mAzdXGvTXwes7wyxUfJlwjhQ58wrg4jrMwELT+aUjt1gZrCPOTfvOb6OY9hBQDeV/gqYzIUoCTV
-	47UWJIdCQEVXYQbJUaWP9axtOlBV672I8tNNXREzJp2btk65NZG5qatmFbLYpyFvS+pwDHz/ucR
-	KC4xMQVS0Uy+Z4ZqknSoPyEEvGmZNiAr+R2/uiwpoPfKX8+4KJBvobWgJEAV2a2RgjxBumxmthL
-	orrfsL1fp4ubDnly6hG3isoSRzwkF0YbeT8Nvl4I=
-X-Google-Smtp-Source: AGHT+IE8jrR/FSPE0WL/k2eesLgwqY6RHFRbkfuT5XzExyxmxHU7R8/3OD6P1TLNyHI+u6mn/V1tJw==
-X-Received: by 2002:a17:903:18e:b0:237:7802:da30 with SMTP id d9443c01a7336-237d9a74d4amr29327045ad.31.1750404080163;
-        Fri, 20 Jun 2025 00:21:20 -0700 (PDT)
-Received: from lcwang-Precision-3630-Tower.. (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-237d83cf981sm11431995ad.59.2025.06.20.00.21.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 00:21:19 -0700 (PDT)
-From: LiangCheng Wang <zaq14760@gmail.com>
-To: conor@kernel.org
-Cc: drm@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	noralf@tronnes.org,
-	robh+dt@kernel.org,
-	krzk@kernel.org,
-	zaq14760@gmail.com,
-	onlywig@gmail.com,
-	cip-dev@lists.cip-project.org
-Subject: [PATCH v2 3/3] dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink panel
-Date: Fri, 20 Jun 2025 15:18:27 +0800
-Message-Id: <20250620071825.741903-2-zaq14760@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250620035310.735055-1-lcwang@ieiworld.com>
-References: <20250620035310.735055-1-lcwang@ieiworld.com>
+	s=arc-20240116; t=1750404063; c=relaxed/simple;
+	bh=6CzJTTe8UAFryKwBLx1KIZhMQnCrxcLcO3PkHsiIgZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Plu+tSWyeVzXijd5aqCuiDOZDWQB/ZfGaZHYjfXqYzl0n/FBI8FwsM6DyUpqfolq3JeCv0XA3MT2H3uB6nHTQKIlXe6s3cSWs7SYUeir9qXfL0V1NvTG9WVkK5oaipTv0ApZSiWRa04xWd74fvPv5lUJxM2RML/BepcpovJLUBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TuHKoPlV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F8D0C4CEE3;
+	Fri, 20 Jun 2025 07:21:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750404063;
+	bh=6CzJTTe8UAFryKwBLx1KIZhMQnCrxcLcO3PkHsiIgZU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TuHKoPlVPfTOsB/WQtYJf5zlBtolTQkUCL6Vi4nZPFzAv37NK4dAVgTRiuCfkzRqV
+	 jjtylnUGD/2CJo8wk/7C9QvKljadw6O870GPa7Lrt5pKVHsJztSDTV9i+Fewi+kKpV
+	 X30rJLlfKQUB8dhsA75W7VbzieK73uZDwwNgEyrBvdEBwYTh/mHEgp6ZIlKv2RwWmm
+	 nyCHXn7M0TZoyq0yCD1BXnBjEtejLsDkcc0AO5rgyEPPhXDIXJOtnirC7SnBdPyJoK
+	 0yGvbGIpVruZGDZ2VkClfdsJNec3LRbEMLroF2nxq7hu82CpTcc2zw1J2WuCYOROR5
+	 ++bCX09pEZ6Zg==
+Date: Fri, 20 Jun 2025 09:21:00 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hardik Garg <hargar@linux.microsoft.com>
+Cc: kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org, 
+	decui@microsoft.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ssengar@linux.microsoft.com, hargar@microsoft.com, apais@microsoft.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus
+ message-connection-id property
+Message-ID: <20250620-strange-rough-gharial-d2bc73@kuoka>
+References: <1750374395-14615-1-git-send-email-hargar@linux.microsoft.com>
+ <1750374395-14615-2-git-send-email-hargar@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1750374395-14615-2-git-send-email-hargar@linux.microsoft.com>
 
-The binding is for the MAYQUEEN PIXPAPER e-ink display panel,
-controlled via an SPI interface.
+On Thu, Jun 19, 2025 at 04:06:34PM GMT, Hardik Garg wrote:
+> Document the microsoft,message-connection-id property for VMBus DeviceTree
+> node. This property allows specifying the connection ID used for
 
-Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
----
- .../bindings/display/mayqueen,pixpaper.yaml   | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+What is a connection ID and why it cannot be inferred from existing
+system API?
 
-diff --git a/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-new file mode 100644
-index 000000000000..dd7a84dea147
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mayqueen,pixpaper.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mayqueen Pixpaper e-ink display panel
-+
-+maintainers:
-+  - LC Wang <zaq14760@gmail.com>
-+
-+description:
-+  The Pixpaper is an e-ink display panel controlled via an SPI interface.
-+  The panel has a resolution of 122x250 pixels and requires GPIO pins for
-+  reset, busy, and data/command control.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: mayqueen,pixpaper
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 1000000
-+    default: 1000000
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  busy-gpios:
-+    maxItems: 1
-+
-+  dc-gpios:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - busy-gpios
-+  - dc-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        display@0 {
-+            compatible = "mayqueen,pixpaper";
-+            reg = <0>;
-+            spi-max-frequency = <1000000>;
-+            reset-gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-+            busy-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
-+            dc-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
--- 
-2.34.1
+> communication between host and guest.
+> 
+> Signed-off-by: Hardik Garg <hargar@linux.microsoft.com>
+> ---
+> v3: https://lore.kernel.org/all/6a92ca86-ad6b-4d49-af6e-1ed7651b8ab8@linux.microsoft.com
+> v2: https://lore.kernel.org/all/096edaf7-cc90-42b6-aff4-c5f088574e1e@linux.microsoft.com
+> v1: https://lore.kernel.org/all/6acee4bf-cb04-43b9-9476-e8d811d26dfd@linux.microsoft.com
+> ---
+>  Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+> index 0bea4f5287ce..615b48bd6a8b 100644
+> --- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+> +++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+> @@ -17,6 +17,14 @@ properties:
+>    compatible:
+>      const: microsoft,vmbus
+
+There's a reason why you have here generic property - this is generic
+and/or discoverable and/or whatever software interface. Adding now more
+properties, just because you made it generic, is not the way.
+
+>  
+> +  microsoft,message-connection-id:
+> +    description: |
+
+Drop |
+
+> +      VMBus message connection ID to be used for communication between host and
+> +      guest. If not specified, defaults to VMBUS_MESSAGE_CONNECTION_ID_4 (4) for
+> +      protocol version VERSION_WIN10_V5 and above, or VMBUS_MESSAGE_CONNECTION_ID
+> +      (1) for older versions.
+
+Missing constraints, defaults, if this stays, but frankly speaking it
+looks really not appropriate, considering lack of any explanation in the
+binding or in commit msg.
+
+
+Best regards,
+Krzysztof
 
 
