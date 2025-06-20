@@ -1,191 +1,339 @@
-Return-Path: <devicetree+bounces-187989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518BAAE20EB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 19:28:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D083AE20FF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 19:33:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74FD77B2FD9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:26:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B2FD7AE2C8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E192E763C;
-	Fri, 20 Jun 2025 17:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2337D2E763C;
+	Fri, 20 Jun 2025 17:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n5SQ1nhE"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="sbXO9h/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754592E6136
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D352D3A6E
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750440430; cv=none; b=FAeRUbjvpZhYorTdIOstiBGOJZDXHvob45lSRuv6kwncVZ1430WVK5ppwa7IkjyWGPkagg836lNU0V+psPcHL6bBLRjvUYEshp62MZEZ4hwLgHmWOL+GmktduzL+lSl1bj3kOkaVlrmrJjFTBymMpo06nB40ohuHrDdOrmzwfVs=
+	t=1750440800; cv=none; b=t5h4MXtU4ccJNvZ+IfRpMKDvgEa6WBS17HsVsKk1N8SrdU86t2t0jWTVY4IdUqvaNG011RasV8XtoHsDLuXepjUcLpojFcSLMIKT7/isjkTU2zCpuujlTMiEjrHRyYLZBlqpl3VgxncpmsHgDaNmRP7fd+BpMYINbDCf8jk8wTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750440430; c=relaxed/simple;
-	bh=afDg9nn91haB9rfUtxnbz99YfZDDgCPP+SbrAya2c8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WCjTcfuwgUBHlDXcc9NcQxGY2dBmp1XtBJNJDA3oNtXKq46NbBmQjZgdcDr2+mALG6WVvcKF9NwHkWM2AsoFvDPOrpGY02l8dvffHcby156RBcXQmA+DSOgQWVq7W2ivM6ZOLO9yqJYSfYCiUIohoSeJGBDORnpb++6YnSd+tbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n5SQ1nhE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55KGY4kg014418
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:27:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WHVZwsBe2mPFE2r8rOIceTU1YN7PAHuBHgv7EehUdXs=; b=n5SQ1nhEBTEMloFm
-	VecGOa3kVZ/WwP3+oNFMvLCmFalNvpv05iJSsytBi6wSVHHwNF4fuzS3ytdRbhyW
-	7vmGCzMgq/51HDaAXUhLWh+uocTC0ETVCOVzHRZ+ELqIOHM2y+KoUiobMtH60SLL
-	Y+9jD9mVsC3wjaSDzZbVRz5AhNkpS3BGRIy4BiGhq1RQaiSgFXTF6pxRP5rk5CQu
-	TD0XUGaqRUBdOPPHCBhhhFk3x1ufbeovG/P1gj7Uy8N/6kDWJ/b1F8lhnVXSgqZA
-	cRbbqUJwDo3VSFIq+swZmUcyUunuOz0rDm1IVHFg0YnZLpa+2xR69ye3jRDdyG3x
-	JczjGw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47db9803wy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 17:27:07 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d21080c26fso60400885a.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 10:27:07 -0700 (PDT)
+	s=arc-20240116; t=1750440800; c=relaxed/simple;
+	bh=lf3rt/J5Q2TSc3Spn1FYOaKS+rgsq15oINCH4ECAlI8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Rv1Smk+aJOOkd7kbY8CLO/oQQglnoZTpLz4Fx+BrITJKG/nNRAWlwVvB0P9j/HSc7iEWY3Air+kaygBq3U8iEdUjOhj1zQNF0oeHcf8bruoK1+fV/LOjdom4/Q4YwkCnS3Ssq9YpUAKqL2bg5amLhZ8Yz9jgZxPhgWTRUCpXrjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=sbXO9h/h; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-70e3e0415a7so19836627b3.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 10:33:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1750440796; x=1751045596; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2abC0SFXgIr7+KzY0H72u6hUC8EwRyPuKIwDFbrFdvA=;
+        b=sbXO9h/hiAXmk4XFcOY2XU0c9Mk7nxYXsgNEvYm2HrVOxYi1Hep7MrDaTsoFHlYr6i
+         Gei/wtQVmpSGm4PAUU/ewYPL9Pnbp/hE1V4druBXDnbJPCS0QqcLbWoPh60yxTEk1dbP
+         gvSOYMgpwy8WRa7oiV72urdSEeaqdMUUcBh4ZUOCQrphSS0aM/+3UO67dcvNPgJloRxj
+         Mth7rJbXdjfxrfXErKDtIQG2xSU7EJ0OvCMnCx8POkB7LOOign5A5KpC7Ks/BLVKxHZI
+         xy7Oe9mkaQRNtXADj0j1pUbjDhRa4Uh9d5Cjt9SmjyO8d+aVygkEMda2Osmka44QxdBF
+         Aimg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750440426; x=1751045226;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WHVZwsBe2mPFE2r8rOIceTU1YN7PAHuBHgv7EehUdXs=;
-        b=r1Xv7vB35egxsmhw4gY7DlcBE/Gdv8ljy+ngtoUEoikzdOFVEypPnufK2qWVN7b9mw
-         pDi5S0zKFi37GJR432SVAe6Stinhy+y+La/p1zGlvyuIRrEz3llCc8svAQfskncpYZ0i
-         yURA1LVOoySCYVu6/HLcFllsKj/Ej5e5yz80P1pl+10wD8678Kt+YPfC7hgQmC5Vt6Ui
-         Xfo8NRaiRm3pt10GplGOWWBRvgpkGDJbuZoWrO1EWtsk/Qm37RMSdfXiP+IuJ+FjNOKA
-         X56IR7PyA2i6ghDPEAAj03b1psrYhXJKv20s01laU8325hIh5Gl2OKbq6ZWfAP1Ug7G9
-         HBqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWwLt1GCqU9i8FFYeGRBKoRwb/g4RDnyKyuMz8MKcsxsR+DldD3gYbwlcpjxVx1HFx1+DxmjmzKKoWT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOc8qRxMBNoG8hiWkEly67YLIpTHt4lFdtrsmCAEOazIObQ9VG
-	c6zYjrmXm+Ub5/MKStA4UYfIgweyRS60BT8HDQOH8R16yeN8PlouxhA3RlKButdC0G47fi3HDof
-	uIgBT0oIxG6jGj4N2v0nxpng+fWhbvAUcZP3Qzie44JHOw2xPEcrFzkSoYjVASUro
-X-Gm-Gg: ASbGncsUDkewhJM6UfZMgU6xLlpZOW+6LK1kG69F7M4D+3bFjMUL/jn47RleVaeGf1i
-	WApiORe3XdUzSom++XH8YK1JGsAjgCFGkJoiIJYTkBoctaQt3Hcz5dJtYAwa+p3+zqlqU323JX7
-	YrU/vexCRI2P6FZvaphVal2ofw+AnfvMAYQQOT7KnnOwAXSBz8MMg/WzFFXW25YIVHRMLJi2DPP
-	WqtMHhDhHiRNImklF5/ZkGNPNgVRQWUWDh2h1jC4O8lhXt5nek14eTi1nv2BmJjImODaCzt7cdw
-	YXpEFSRhbWF96n9tTvdpwEf9EKpaIzVpkRYo5lsCTEFx0j/DHRXYtxd7CqyLCtBtgj+hCbuYYIi
-	kDVQ=
-X-Received: by 2002:a05:620a:454d:b0:7ce:e99e:bc87 with SMTP id af79cd13be357-7d3f98e6631mr201593785a.6.1750440426280;
-        Fri, 20 Jun 2025 10:27:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFoHeoLi6ocQ6ShmQtPpO5w/YjYEMIJLujZ0mwcIBnaXy139EfNwGSJUB+wxzBmDAUpuuwnGQ==
-X-Received: by 2002:a05:620a:454d:b0:7ce:e99e:bc87 with SMTP id af79cd13be357-7d3f98e6631mr201591985a.6.1750440425818;
-        Fri, 20 Jun 2025 10:27:05 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60a18c996aasm1664679a12.39.2025.06.20.10.27.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jun 2025 10:27:04 -0700 (PDT)
-Message-ID: <2bd17ab5-950c-4260-ae7c-9ba9a6441496@oss.qualcomm.com>
-Date: Fri, 20 Jun 2025 19:27:03 +0200
+        d=1e100.net; s=20230601; t=1750440796; x=1751045596;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2abC0SFXgIr7+KzY0H72u6hUC8EwRyPuKIwDFbrFdvA=;
+        b=IEnoEFSEmtzeD2kZCsWUa58/P8+Sqk3Y27iiBNO0I+Z6isprst/hIZd9Ke9cESovTJ
+         RN4ea23h1awLZX90O43X0rzM/eFxtkWe7Ajk9ta6Shruxq3GsGrBbbWrHjmTutALjaKF
+         CLiU9Hcrf8hcFfFNw8sWDZ3MATAftNfMO4m3VZSfaGc6JexGR4Xy4VXrzH/Gg8Y4IbvG
+         VP98X9pjIW70vVnv4R7LLXUzSojt3IwJqDW693G9PWI4lW/Mug1o7RZtCG7Qy9DL5iHu
+         xn5DEYE+IxqWl9QQe57M9hLh/aFidrE8dzMycOPBE5m8ekFwH9TFW/RvYBUVw+uCZ8pb
+         b8eg==
+X-Forwarded-Encrypted: i=1; AJvYcCVgg5p112WncheC52ZONVPei68OWI1gdmGLUSWEqu/2MGXbJUoiv2+/tZ6SDEfWhObrz6kX8kWS1Ffo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxndluQC5XXxku7SVV8P8YJD11ewM5MCksb+20AaMgT5U9/iWaw
+	s6F7QZq48TAldVJmM0cWxc4v54ubamoCWOw0NKAufNPzGeIwcVowq9L2bpmpBK3AyN8NoD7h6HL
+	O8vN+JPBUysYKhpJQYpswcePob3kjZG4+C66U3/aTTA==
+X-Gm-Gg: ASbGnct9W13wEajf+hjrqjL67BxTPo2Ff3Bbk3JXycIlJZHAUE5ApGWsASEqVockBWx
+	1dXVWQxXACWwWZT7YtNdXapiH7KHIoolsa+YcDZzUZuoij5uaHlTOOtPh9ZeiQYAqVg3qMVsJkT
+	M2SzJfKlesf2t2aaNWkDmlxonu9rapC4DkZbHgK1Ib7t9Y
+X-Google-Smtp-Source: AGHT+IEkgLARqA2KXW+VjQvrt/iHwV+xr0H31M/s+eB4pqd94Voek7Ap4g7bsttqbn0aTqp01MS+cbE/e4BYHevU73o=
+X-Received: by 2002:a05:690c:931c:10b0:712:c5f7:1ee9 with SMTP id
+ 00721157ae682-712ca34ede8mr29381827b3.8.1750440796260; Fri, 20 Jun 2025
+ 10:33:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: media: qcom,sm8550-iris: add non_pixel
- and resv_region properties
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250620-video_cb-v1-0-9bcac1c8800c@quicinc.com>
- <20250620-video_cb-v1-1-9bcac1c8800c@quicinc.com>
- <a35d3928-8ac6-49ab-8689-16ba69afe197@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <a35d3928-8ac6-49ab-8689-16ba69afe197@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: V2ZKnnMukyYTIg6K2vCcaFc37DLGC-vM
-X-Authority-Analysis: v=2.4 cv=TYyWtQQh c=1 sm=1 tr=0 ts=685599eb cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=qbq4ObjMTheV2eX5J3QA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: V2ZKnnMukyYTIg6K2vCcaFc37DLGC-vM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDEyMyBTYWx0ZWRfX6NjS34uk5u31
- 9mjDb53kHW52uByYMjYt0BowhXu5hM01Tt+pBAgLrP3oZIGI9ukIS4ZsfYJeHu8PJ5/RAFdqBix
- yzzxhXyvd1QWZdElbi6/e3IM7het0Z119bHAqAZW0yt56WZTVMGttYrHdzeNdncbmiGbY20Ju5V
- aqfSFAeTl3UWXcforgFW1LNKVBjG/WmM+dO2Fl2GmkHRohCsU487z8nhrwLVP0uZnmf96mRLyrw
- HAmWNlz+9llDRTNwvjpwCKda80Medg2sm1vdkTB4N+dnypF9VOMlScfnMF7HhP0VDtvD1RSDHWp
- vZjCTH28HJCkDm9856jpwi6rkbFZbgyVystgQQqiz1Ha9Zb7r5TzznuPcmA3V8P2uuDC7mPFzaY
- rma10nAu/EenlVRCuGvEkHcOa4NmGFy05U22ZSxkaMhZHE6Xs+oeKilS2pdyuGCC20Vn2+EH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-20_07,2025-06-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxlogscore=913 clxscore=1015 impostorscore=0 mlxscore=0
- bulkscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 suspectscore=0
- adultscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506200123
+References: <20250604-v5_user_cfi_series-v17-0-4565c2cf869f@rivosinc.com>
+ <20250604-v5_user_cfi_series-v17-15-4565c2cf869f@rivosinc.com>
+ <CANXhq0pRXX_OMW2g2ui-k7Z_ZT+5a8Sra8oE28nBh5B9K2L5bQ@mail.gmail.com> <CANXhq0p3MVLMsr_r0RWMti476pT0EMx61PQArjo2fUauTdpXaQ@mail.gmail.com>
+In-Reply-To: <CANXhq0p3MVLMsr_r0RWMti476pT0EMx61PQArjo2fUauTdpXaQ@mail.gmail.com>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Fri, 20 Jun 2025 10:33:05 -0700
+X-Gm-Features: Ac12FXwTNfjkf9IENg9kQWer4J0SFv3v73bubAYv2TNOJ9tzM24JcaWhs9j55A8
+Message-ID: <CAKC1njRNatM6bj7+bCbMcwv7UoEfKSTQTGOnFSxuGLoephw0+A@mail.gmail.com>
+Subject: Re: [PATCH v17 15/27] riscv/traps: Introduce software check exception
+ and uprobe handling
+To: Zong Li <zong.li@sifive.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com, 
+	rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/20/25 8:39 AM, Krzysztof Kozlowski wrote:
-> On 20/06/2025 08:20, Vikash Garodia wrote:
->> Existing definition limits the IOVA to an addressable range of 4GiB, and
->> even within that range, some of the space is used by IO registers,
->> thereby limiting the available IOVA to even lesser. Video hardware is
->> designed to emit different stream-ID for pixel and non_pixel buffers,
->> thereby introduce a non_pixel sub node to handle non_pixel stream-ID.
->>
->> With this, both iris and non_pixel device can have IOVA range of 0-4GiB
->> individually. Certain video usecases like higher video concurrency needs
->> IOVA higher than 4GiB.
->>
->> Add the "resv_region" property, which defines reserved IOVA regions that
->> are *excluded* from addressable range. Video hardware generates
->> different stream IDs based on the range of IOVA addresses. Thereby IOVA
->> addresses for firmware and data buffers need to be non overlapping. For
->> ex. 0x0-0x25800000 address range is reserved for firmware stream-ID,
->> while non_pixel (bitstream ) stream-ID can be generated by hardware only
->> when bitstream buffers IOVA address is from 0x25800000-0xe0000000.
->>
->> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->> ---
->>  .../bindings/media/qcom,sm8550-iris.yaml           | 35 ++++++++++++++++++++++
->>  1 file changed, 35 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> index c79bf2101812d83b99704f38b7348a9f728dff44..a1e83bae3c36f3a4c58b212ef457905e38091b97 100644
->> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> @@ -65,10 +65,45 @@ properties:
->>        - const: core
->>  
->>    iommus:
->> +    minItems: 1
-> 
-> As discussed in other patchset, this needs clear explanation, so
-> imperfect patch won't be used in future discussions as argument to take
-> more of such things.
-> 
->>      maxItems: 2
->>  
->>    dma-coherent: true
->>  
->> +  resv_region:
-> 
-> DTS coding style. Anyway, regions go with memory-region bindings. Use that.
+On Thu, Jun 19, 2025 at 7:16=E2=80=AFPM Zong Li <zong.li@sifive.com> wrote:
+>
+> On Mon, Jun 16, 2025 at 3:31=E2=80=AFPM Zong Li <zong.li@sifive.com> wrot=
+e:
+> >
+> > On Thu, Jun 5, 2025 at 1:17=E2=80=AFAM Deepak Gupta <debug@rivosinc.com=
+> wrote:
+> > >
+> > > zicfiss / zicfilp introduces a new exception to priv isa `software ch=
+eck
+> > > exception` with cause code =3D 18. This patch implements software che=
+ck
+> > > exception.
+> > >
+> > > Additionally it implements a cfi violation handler which checks for c=
+ode
+> > > in xtval. If xtval=3D2, it means that sw check exception happened bec=
+ause of
+> > > an indirect branch not landing on 4 byte aligned PC or not landing on
+> > > `lpad` instruction or label value embedded in `lpad` not matching lab=
+el
+> > > value setup in `x7`. If xtval=3D3, it means that sw check exception h=
+appened
+> > > because of mismatch between link register (x1 or x5) and top of shado=
+w
+> > > stack (on execution of `sspopchk`).
+> > >
+> > > In case of cfi violation, SIGSEGV is raised with code=3DSEGV_CPERR.
+> > > SEGV_CPERR was introduced by x86 shadow stack patches.
+> > >
+> > > To keep uprobes working, handle the uprobe event first before reporti=
+ng
+> > > the CFI violation in software-check exception handler. Because when t=
+he
+> > > landing pad is activated, if the uprobe point is set at the lpad
+> > > instruction at the beginning of a function, the system triggers a sof=
+tware
+> > > -check exception instead of an ebreak exception due to the exception
+> > > priority, then uprobe can't work successfully.
+> > >
+> > > Co-developed-by: Zong Li <zong.li@sifive.com>
+> > > Reviewed-by: Zong Li <zong.li@sifive.com>
+> > > Signed-off-by: Zong Li <zong.li@sifive.com>
+> > > Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> > > ---
+> > >  arch/riscv/include/asm/asm-prototypes.h |  1 +
+> > >  arch/riscv/include/asm/entry-common.h   |  2 ++
+> > >  arch/riscv/kernel/entry.S               |  3 ++
+> > >  arch/riscv/kernel/traps.c               | 51 +++++++++++++++++++++++=
+++++++++++
+> > >  4 files changed, 57 insertions(+)
+> > >
+> > > diff --git a/arch/riscv/include/asm/asm-prototypes.h b/arch/riscv/inc=
+lude/asm/asm-prototypes.h
+> > > index cd627ec289f1..5a27cefd7805 100644
+> > > --- a/arch/riscv/include/asm/asm-prototypes.h
+> > > +++ b/arch/riscv/include/asm/asm-prototypes.h
+> > > @@ -51,6 +51,7 @@ DECLARE_DO_ERROR_INFO(do_trap_ecall_u);
+> > >  DECLARE_DO_ERROR_INFO(do_trap_ecall_s);
+> > >  DECLARE_DO_ERROR_INFO(do_trap_ecall_m);
+> > >  DECLARE_DO_ERROR_INFO(do_trap_break);
+> > > +DECLARE_DO_ERROR_INFO(do_trap_software_check);
+> > >
+> > >  asmlinkage void handle_bad_stack(struct pt_regs *regs);
+> > >  asmlinkage void do_page_fault(struct pt_regs *regs);
+> > > diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/inclu=
+de/asm/entry-common.h
+> > > index b28ccc6cdeea..34ed149af5d1 100644
+> > > --- a/arch/riscv/include/asm/entry-common.h
+> > > +++ b/arch/riscv/include/asm/entry-common.h
+> > > @@ -40,4 +40,6 @@ static inline int handle_misaligned_store(struct pt=
+_regs *regs)
+> > >  }
+> > >  #endif
+> > >
+> > > +bool handle_user_cfi_violation(struct pt_regs *regs);
+> > > +
+> > >  #endif /* _ASM_RISCV_ENTRY_COMMON_H */
+> > > diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> > > index 978115567bca..8d25837a9384 100644
+> > > --- a/arch/riscv/kernel/entry.S
+> > > +++ b/arch/riscv/kernel/entry.S
+> > > @@ -474,6 +474,9 @@ SYM_DATA_START_LOCAL(excp_vect_table)
+> > >         RISCV_PTR do_page_fault   /* load page fault */
+> > >         RISCV_PTR do_trap_unknown
+> > >         RISCV_PTR do_page_fault   /* store page fault */
+> > > +       RISCV_PTR do_trap_unknown /* cause=3D16 */
+> > > +       RISCV_PTR do_trap_unknown /* cause=3D17 */
+> > > +       RISCV_PTR do_trap_software_check /* cause=3D18 is sw check ex=
+ception */
+> > >  SYM_DATA_END_LABEL(excp_vect_table, SYM_L_LOCAL, excp_vect_table_end=
+)
+> > >
+> > >  #ifndef CONFIG_MMU
+> > > diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
+> > > index 8ff8e8b36524..64388370e1ad 100644
+> > > --- a/arch/riscv/kernel/traps.c
+> > > +++ b/arch/riscv/kernel/traps.c
+> > > @@ -354,6 +354,57 @@ void do_trap_ecall_u(struct pt_regs *regs)
+> > >
+> > >  }
+> > >
+> > > +#define CFI_TVAL_FCFI_CODE     2
+> > > +#define CFI_TVAL_BCFI_CODE     3
+> > > +/* handle cfi violations */
+> > > +bool handle_user_cfi_violation(struct pt_regs *regs)
+> > > +{
+> > > +       unsigned long tval =3D csr_read(CSR_TVAL);
+> > > +       bool is_fcfi =3D (tval =3D=3D CFI_TVAL_FCFI_CODE && cpu_suppo=
+rts_indirect_br_lp_instr());
+> > > +       bool is_bcfi =3D (tval =3D=3D CFI_TVAL_BCFI_CODE && cpu_suppo=
+rts_shadow_stack());
+> > > +
+> > > +       /*
+> > > +        * Handle uprobe event first. The probe point can be a valid =
+target
+> > > +        * of indirect jumps or calls, in this case, forward cfi viol=
+ation
+> > > +        * will be triggered instead of breakpoint exception.
+> > > +        */
+> > > +       if (is_fcfi && probe_breakpoint_handler(regs))
+> > > +               return true;
+> >
+> > Hi  Deepak,
+> > Sorry for missing something earlier. I think we would like to clear
+> > sstatus.SPELP in the uprobe handling case. For example:
+> >
+> > diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
+> > index c2ea999c1167..e8492bb57e09 100644
+> > --- a/arch/riscv/kernel/traps.c
+> > +++ b/arch/riscv/kernel/traps.c
+> > @@ -349,8 +349,10 @@ bool handle_user_cfi_violation(struct pt_regs *reg=
+s)
+> >         bool is_fcfi =3D (tval =3D=3D CFI_TVAL_FCFI_CODE &&
+> > cpu_supports_indirect_br_lp_instr());
+> >         bool is_bcfi =3D (tval =3D=3D CFI_TVAL_BCFI_CODE &&
+> > cpu_supports_shadow_stack());
+> >
+> > -       if (is_fcfi && probe_breakpoint_handler(regs))
+> > +       if (is_fcfi && probe_breakpoint_handler(regs)) {
+> > +               regs->status =3D regs->status & ~SR_ELP;
+> >                 return true;
+> > +       }
 
-On a tangent, FWIW this is a discussion related to this patchset that
-never got much attention:
+Make sense. I'll pick it up in the next version. Thanks.
 
-https://lore.kernel.org/linux-devicetree/9439182e-3338-4d57-aa02-b621bc9498a3@oss.qualcomm.com/
+> >
+> >         if (is_fcfi || is_bcfi) {
+> >                 do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
+> >
+> >
+> > When a user mode CFI violation occurs, the ELP state should be 1, and
+> > the system traps into supervisor mode. During this trap, sstatus.SPELP
+> > is set to 1, and the ELP state is reset to 0. If we don=E2=80=99t clear
+> > sstatus.SPELP, the ELP state will become 1 again after executing the
+> > sret instruction. As a result, the system might trigger another
+> > forward CFI violation upon executing the next instruction in the user
+> > program, unless it happens to be a lpad instruction.
+> >
+> > The previous patch was tested on QEMU, but QEMU does not set the
+> > sstatus.SPELP bit to 1 when a forward CFI violation occurs. Therefore,
+> > I suspect that QEMU might also require some fixes.
+>
+> Hi Deepak,
+> The issue with QEMU was that the sw-check exception bit in medeleg
+> couldn't be set. This has been fixed in the latest QEMU mainline. I
+> have re-tested the latest QEMU version, and it works.
 
-Konrad
+Thanks for the fix.
+
+>
+> >
+> > Thanks
+> >
+> > > +
+> > > +       if (is_fcfi || is_bcfi) {
+> > > +               do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
+> > > +                             "Oops - control flow violation");
+> > > +               return true;
+> > > +       }
+> > > +
+> > > +       return false;
+> > > +}
+> > > +
+> > > +/*
+> > > + * software check exception is defined with risc-v cfi spec. Softwar=
+e check
+> > > + * exception is raised when:-
+> > > + * a) An indirect branch doesn't land on 4 byte aligned PC or `lpad`
+> > > + *    instruction or `label` value programmed in `lpad` instr doesn'=
+t
+> > > + *    match with value setup in `x7`. reported code in `xtval` is 2.
+> > > + * b) `sspopchk` instruction finds a mismatch between top of shadow =
+stack (ssp)
+> > > + *    and x1/x5. reported code in `xtval` is 3.
+> > > + */
+> > > +asmlinkage __visible __trap_section void do_trap_software_check(stru=
+ct pt_regs *regs)
+> > > +{
+> > > +       if (user_mode(regs)) {
+> > > +               irqentry_enter_from_user_mode(regs);
+> > > +
+> > > +               /* not a cfi violation, then merge into flow of unkno=
+wn trap handler */
+> > > +               if (!handle_user_cfi_violation(regs))
+> > > +                       do_trap_unknown(regs);
+> > > +
+> > > +               irqentry_exit_to_user_mode(regs);
+> > > +       } else {
+> > > +               /* sw check exception coming from kernel is a bug in =
+kernel */
+> > > +               die(regs, "Kernel BUG");
+> > > +       }
+> > > +}
+> > > +
+> > >  #ifdef CONFIG_MMU
+> > >  asmlinkage __visible noinstr void do_page_fault(struct pt_regs *regs=
+)
+> > >  {
+> > >
+> > > --
+> > > 2.43.0
+> > >
 
