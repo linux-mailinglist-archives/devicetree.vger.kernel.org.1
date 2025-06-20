@@ -1,140 +1,157 @@
-Return-Path: <devicetree+bounces-187833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 540D6AE16B5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8E4AE16C2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:54:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF6B116C63B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 08:51:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13A67177ABC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 08:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1C82777E9;
-	Fri, 20 Jun 2025 08:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88DDD260589;
+	Fri, 20 Jun 2025 08:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="eElRhdTF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KUYsZUCn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB72254AE6
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 08:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC32C25A2BF;
+	Fri, 20 Jun 2025 08:53:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750409476; cv=none; b=K306ik0NYZxr3YLvcEFIgV5Tt78Y0Bu2+gQrx1Six9pZAi8d9ZJU6K74AWNSq+y2kSgA9NCkhL0K7xb6mxV9KwnztHtT+KuVD3e+uBBfRopqSkmNziqbXw03Qn73BqCrKmwh3GCSsjsi6oAkpc539EsUtWeO+km/+TECMcwg+jM=
+	t=1750409638; cv=none; b=fRIL630On5cXKDOHYhz+IiAPg/6LZWobxp70/BwB30ujauItxlrxdGnB5aDnlbl0VnrfnFwAMe/lJRWHNyA8gH6BGFovOApEw/6npHofUiUelrSRZV9dyP0UaVeyHCB4DcCja0G338qcT8h2+OM7wcOk06phLM0f/v7wofiDmgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750409476; c=relaxed/simple;
-	bh=41+NV6wm7M4BUwGUu5BfX6Y/1mglDykUJq2/D+L+bV0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=muOWgVMoTKDeMCEZWp13sIigNzhzluCQy+fofFu0Hbw9jQ7FarJxOp2HLOOycF4S5wbmtQoRM+n6yYKD2baeQP1dc6htpX7pg6Jq/WIODnZ5VcdcApdf2mhg3jwj9bi6zbJDSCg7ORseWuW+3GIgye95DOnV4ncJC6m9LRbKl1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=eElRhdTF; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6071ac9dc3eso2676697a12.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 01:51:13 -0700 (PDT)
+	s=arc-20240116; t=1750409638; c=relaxed/simple;
+	bh=ZEt28yDbA4jtYRWH6czwZyX0Dir/c+EuR469f9IcAXE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kFIcQmEUIhOf5eRFrIB5ES+5zXt7GKRQQj79Vke+sCs5WlqPSCclaBGqQmnQvUHiwJVDOgfOLGQLbtIKsAQu5DsCZlBTRLelvVH0jyAj1hrGDRJXABJwZ2HZ+NbqMHnO1I+OSewrATPdL3nYMqjQYbWd2oc2cddOg732TMwMnAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KUYsZUCn; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ad572ba1347so257348866b.1;
+        Fri, 20 Jun 2025 01:53:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1750409472; x=1751014272; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tQs46cNDxNcEM2859ny72mW8pcAVQ7BIEu+RAnGt+Uk=;
-        b=eElRhdTFqyfet3zX6SJ1DemBoJg/QYIVepXir4utb5zKu3ZxnIQpSDe8Wb4f2IeYlv
-         c6YoNmHPjPVqMTBfMpoup5C3PIFs+jAuldaiJy5wWPS/o9WohoWF5sUO/2aRQPS4lgky
-         JxhAlYByweTDsfqvJ8OGmK+gNOvF48TvrdZVnH58kMiaVh4njA3jXSfF2AunQzjQ5jKq
-         COLm+FZQSG4PMPsfsxeCNYl6mbsKwLSBCVrU5ms9jJKSiFYiMm1fBJbYLNhBA8yZeGXJ
-         wIiMp7w4tAcggmF3uxO1ArOmUCHu8FHJSIyhKJnYGXi1XZ6cbfh9mWnlJlxunJ/kqXr8
-         3KSA==
+        d=gmail.com; s=20230601; t=1750409635; x=1751014435; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2oDHB+zxUhZlGRcm/DzvHNAM53q/XnxVlugvAZmBNkM=;
+        b=KUYsZUCn3gtKI+wq7PdCRFx0Qaz/Q1lMjj3NDz1TNbDmz3EkipLIdc10GWKfWvUx05
+         scdpGaxeyT3nvEau4Au9pzza6GSk/rGWmlwPbp2nPULsnL9xS2QK3SUD1rxHae8rvM7H
+         YTUlQ5ibPpF9jYAvnfv5JLUFKZuAlHx1VBMZBxwGvnkk4NCSh6WxlP5cED4qs5tQshdw
+         ZStQ+g5jE9JsCe9nPiD6w5tOdDe6iVJakrO3xSDV6cJfPs5XxSVcAa5xqrNPbjJC3ymm
+         RN8p5yqB3DrBdAOqV12aJfFXPTQDZ/N/E95x/AvdnVvO5lOSlL5vqhKNMeSoAHaLXNuF
+         CtpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750409472; x=1751014272;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tQs46cNDxNcEM2859ny72mW8pcAVQ7BIEu+RAnGt+Uk=;
-        b=ehElRX1uLOIrMul4XbhEPcmSbr4EzxzWdCyJadhSMbQ64pJD72W3bHk0YKywL7oaJQ
-         hwSZlf5VWdThR0lNEOOWkMJoeVM1WHa+RLhACrvpgaP6iH2GmatdZSey9MCnYvSacB/D
-         m53SYGwbrCmqKfby5DDSWko/QTgLZkCseifWjoA1xLMTvj+lmZ3TcAE7xRTtnNKPFO6D
-         6+WJ4uKQ9hftr0oY1wN+4BUEmDuf5VM40Uind/lcXnP6jr3kI1HFlhrbnxxy9VudHBsG
-         BsWGjm4dLkNjJ4n24jkqlqgg5n2QoH43yRsINIgS25kOeegPV6OEL9z3GUQqTcej20Dt
-         0mvA==
-X-Forwarded-Encrypted: i=1; AJvYcCXCXjRj5Fp1CJJiGgcvuKapG+5Dewfk92g5///bYklm0yOairKS3HHJD7mvyIMGBsmJqdt0o6pdH4lm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4X3GwX10tEqYcjPqOMjfZ5ztSQdcioLSXSavwOvsUU4XcVGcJ
-	15wyCLRTTc+A+kwYG0QhVIUIimYMeOI2acZZ9CgfQJ3TOBts96vMFRCUC5WAyPCuRo46vAlaa3O
-	bR/PH
-X-Gm-Gg: ASbGncvFQIbWxGH0o181DMaG1gKIbSNWg6585UTtNWjxNj/sqoV/R31UpKjiHkut1+0
-	ZgxlRgsLH6M0Ub2t0it2kqxQ9hbpSFpeGht+HFpXVLrB5cYbD9iKSJAeOxRi4waDoZdfozYR4b0
-	iceWgS7O52nJOEgjei0OQ3q2W02mCEcLyFgYy0bXqTeIk0qT+Dkx0AwtN652HMaHfGsy4qgY6BT
-	cZ2XToWCIrKQ1qI1f98kVeiS37MZNT6bSVuGcuoUl68AvtViqNvfJUpKz1JsRTHF3IZck8FagI1
-	DwYXIcNiAmBicDitFAtYHTDyIIHwagJEEqp+3cTJ5GJvqzmdr0rLSzOeqWvEwgvi4NNCWyQlFgL
-	NsiXEaSoCR05EUErXBO8b+jJw0RFkegk=
-X-Google-Smtp-Source: AGHT+IEmFiflCY72gns8BJi7+wHzY3UkumCt6vc+CYitRi/cG7BsMF02qzVY1w31/s9Tg+2mrG6kaA==
-X-Received: by 2002:a17:907:f1c2:b0:ae0:635c:a400 with SMTP id a640c23a62f3a-ae0635cad5cmr13076866b.51.1750409471648;
-        Fri, 20 Jun 2025 01:51:11 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0541bc9a0sm128495266b.146.2025.06.20.01.51.11
+        d=1e100.net; s=20230601; t=1750409635; x=1751014435;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2oDHB+zxUhZlGRcm/DzvHNAM53q/XnxVlugvAZmBNkM=;
+        b=lZUHtl73BbpdNpovkMIVglnimyEEb5GzSfmzKhzEf671BRrudDag04G0qp81R+My4Y
+         NctIMtAiuKu+0TuqcMgjxhIW6mYIwnoHJseZKOtRoUY62tjuiZwQ2ex9V1961FY9GVXA
+         URGWL9Hkb9s2VCIinQl3W7KuDqEY+Wy+lCx7hXVYiWGC39ZTfUyMHegVhth7uMPwPmCO
+         nNLURNxtN4hYB4kiupXRtf8V2eGEc4HajUXElDK30U5p+m+QC2ujVaUIlICOpORaQqbS
+         TgbVHL06kkr6aeBS8hdAQ8JkAQlaaSNgjvXPO3b3g8SsCtUE/hf3Z+F+CLVkD0poDjzR
+         un1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUPKCdBZ64H/7UrLPFYQmhdgoda5kR1JhuWDzlo5Jt380dONr1dm3PaTsCX2hw83VpCxUnEcc1J2E14@vger.kernel.org, AJvYcCWuYNYjSRW2P0JoYKPQa/ZwQ5dCRbNTQ62VGFHvrjOPFywNiidcl6BXu9kDguU1bwGxEj0VDejkfrUXehDP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHUPQDoN0b1+qLT7Ito1QvPCgm7COV2umu/TAvkHy5OgQpXu/E
+	arHNX/UjqiAS1KMa/EY1CGI89N8Q3ABV4wGdbY4qsC29mhG5bbeVS5zc
+X-Gm-Gg: ASbGncueW7kOGgAhPa730OcA60iFJdhxVMqFWk8GkVmDaeB8HGn72x+zwSwfFxSleTo
+	xmWE7WYtrNhps6Z91V7Q+WW7o9IgCwLD/y3rhqQ9KnUw8jJuPV2QO3rg2SgKDoUf+m+tBjfu6vi
+	bJlMpNk3/+VlszBFowgvtnbn0D/HSKzrCJgu5XmScObDWCID5F9AVzAXvMqVUa6Q4LmhxljZLt3
+	mu76e3pu4qKsa3QmS2hqedQqUPns8vNx65acA9/lz3uvwnh7iU3aDJ8fVh5zt8pHj19HQlexPKS
+	Tb+VVn+DAE3IC6LetQF93CQV+/3KaDTBn6Qn6QyIVwtiR1iVB+/9ZhzbKfFXgzSoQAEEhlkYNQT
+	K9nzAWh4lz/iR0E4A34KCYnEf5O6p
+X-Google-Smtp-Source: AGHT+IG7t3T/8GGCzsIAufX7eYyvKOcvytMBZuwIkdFld6x0jpQAVkc/E1ovqXbmyvsDnmRHziZMFQ==
+X-Received: by 2002:a17:907:3c82:b0:ad8:914b:7d0b with SMTP id a640c23a62f3a-ae0579cd940mr193333766b.11.1750409634864;
+        Fri, 20 Jun 2025 01:53:54 -0700 (PDT)
+Received: from [192.168.1.130] (11-127.static.abakusbp.net. [46.17.127.11])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0541b6f5csm125316566b.122.2025.06.20.01.53.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jun 2025 01:51:11 -0700 (PDT)
+        Fri, 20 Jun 2025 01:53:54 -0700 (PDT)
+Message-ID: <e2cd9f09-b984-4409-9b3b-7b6335dd23ea@gmail.com>
+Date: Fri, 20 Jun 2025 10:53:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Jun 2025 10:51:10 +0200
-Message-Id: <DAR8DDUQ8HM7.3IKL9TCT7SJM3@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Casey Connolly" <casey.connolly@linaro.org>, "Sebastian Reichel"
- <sre@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Bjorn
- Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Kees Cook" <kees@kernel.org>, "Gustavo A. R.
- Silva" <gustavoars@kernel.org>
-Cc: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Sebastian
- Reichel" <sebastian.reichel@collabora.com>,
- <linux-hardening@vger.kernel.org>
-Subject: Re: [PATCH 04/11] power: supply: pmi8998_charger: rename to
- qcom_smbx
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
- <20250619-smb2-smb5-support-v1-4-ac5dec51b6e1@linaro.org>
-In-Reply-To: <20250619-smb2-smb5-support-v1-4-ac5dec51b6e1@linaro.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: imx8mp: Add Ultratronik
+ Ultra-MACH SBC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: boerge.struempfel@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250611113039.304742-1-goran.radni@gmail.com>
+ <20250611113039.304742-3-goran.radni@gmail.com>
+ <20250612-snobbish-outrageous-nyala-dca804@kuoka>
+ <26194c8d-c16f-4293-8c0f-5c674e09a1ba@gmail.com>
+ <578ea477-c68c-4427-8013-550bf4f9c05b@kernel.org>
+Content-Language: en-US
+From: Goran Radenovic <goran.radni@gmail.com>
+In-Reply-To: <578ea477-c68c-4427-8013-550bf4f9c05b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu Jun 19, 2025 at 4:55 PM CEST, Casey Connolly wrote:
-> Prepare to add smb5 support by making variables and the file name more
-> generic. Also take the opportunity to remove the "_charger" suffix since
-> smb2 always refers to a charger.
->
-> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-> ---
->  drivers/power/supply/Makefile                      |   2 +-
->  .../supply/{qcom_pmi8998_charger.c =3D> qcom_smbx.c} | 148 ++++++++++---=
---------
->  2 files changed, 75 insertions(+), 75 deletions(-)
->
-> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefil=
-e
-> index 4f5f8e3507f80da02812f0d08c2d81ddff0a272f..f943c9150b326d41ff241f826=
-10f70298635eb08 100644
-> --- a/drivers/power/supply/Makefile
-> +++ b/drivers/power/supply/Makefile
-> @@ -119,6 +119,6 @@ obj-$(CONFIG_RN5T618_POWER)	+=3D rn5t618_power.o
->  obj-$(CONFIG_BATTERY_ACER_A500)	+=3D acer_a500_battery.o
->  obj-$(CONFIG_BATTERY_SURFACE)	+=3D surface_battery.o
->  obj-$(CONFIG_CHARGER_SURFACE)	+=3D surface_charger.o
->  obj-$(CONFIG_BATTERY_UG3105)	+=3D ug3105_battery.o
-> -obj-$(CONFIG_CHARGER_QCOM_SMB2)	+=3D qcom_pmi8998_charger.o
-> +obj-$(CONFIG_CHARGER_QCOM_SMB2)	+=3D qcom_smbx.o
 
-While you may want to keep the CONFIG_ name the same, the description
-should be updated, at least in the SMB5 commit.
 
-  =E2=94=82 Say Y here to enable the Qualcomm PMIC Charger driver. This
-  =E2=94=82 adds support for the SMB2 switch mode battery charger found
-  =E2=94=82 in PMI8998 and related PMICs.
+Krzysztof Kozlowski wrote:
+> On 12/06/2025 12:09, Goran Radenovic wrote:
+>> Hi Krzysztof,
+>>
+>> Thanks for the feedback, and you're absolutely right — I made a mistake
+>> here.
+>>
+>> That said, I’m still a bit confused by your earlier comment:
+>>
+>>       "That's just part of the standard/first enum."
+>>
+>> I’m introducing a new board from a new manufacturer, so I expected to
+>> add a new enum block — similar to how it's done for other vendor entries
+> 
+> No, you are expected to add to existing enum.
 
-Regards
-Luca
+Very well, I'll add the entry to the existing `description: i.MX8MP 
+based Boards` block.
+
+> 
+>> in the same file. I ran dt_binding_check, and it passed without errors
+>> for this structure.
+> 
+> Not possible. The syntax is clearly wrong, so there is no way it passed
+> any tests. And Rob's report is a proof of that.
+> 
+
+You are right for v2. I was referring to v1. Sorry for the confusion.
+
+>>
+>> Could you clarify which “standard/first enum” you were referring to?
+>> Should all i.MX8MP-based boards share a single enum block, regardless of
+>> vendor?
+> 
+> Don't they? Look around in this file.
+> 
+
+I did, and I've learned something.
+
+>>
+>> Thanks again for your guidance.
+> 
+> Don't top post but reply inline.
+> 
+
+Ok, thank you for the correction.
+
+> Best regards,
+> Krzysztof
+
+
+Best regards
+Goran
 
