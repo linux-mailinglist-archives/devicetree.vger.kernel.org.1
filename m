@@ -1,129 +1,192 @@
-Return-Path: <devicetree+bounces-187823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA341AE167A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:41:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC55AE167F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:42:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8888F4A667C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 08:41:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 465354A6381
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 08:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD792343C7;
-	Fri, 20 Jun 2025 08:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A8626E6F1;
+	Fri, 20 Jun 2025 08:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GI5vBH6a"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Q9xiXWaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9244E218EBF;
-	Fri, 20 Jun 2025 08:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E64268C63
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 08:39:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750408660; cv=none; b=PerLl/JPjZJd925DkNes1GTjsKf5mTWOwrU88VRIwShinSObAt1FwW+NceLqxOCltAtBMaV2CUuOH1ojmJoJHp8SB6D6oh14O4blJB6lKdv0LQ5IkZonuBFmEoxiBhI39PNnrRHr/gJntpOni0GESDazzzwItulwxlp76nlDbYU=
+	t=1750408756; cv=none; b=fwqN3HPCfcyKRodIAKSt1jSk6eVukNQCMU/lZOgqFAqtDVoj62gELjJ9ZbrHPOsY0D26utEKT8axNquPiW4BDWt6/7H7jteTOE3r9d3X7dfOFSeS9+IYRoBY7Av8qfyl8hEEwgz3M5HZ1+6FFAPSldrp17zO3kTxDAsQ1Ih8Gno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750408660; c=relaxed/simple;
-	bh=B98CFS4nw8P44kWvPzhcglPGCieASk0aylbTF3UEGJc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hlhMfaa3GgHjio0x/sDqzgxKienotDXUL9rwxmT5x/XGRmbJRF1y++Hyyi5xKWBV1w3gaFoNUQe1IAw038qeYVT/Yh6CIRuizVxeUXdFYgl+sT1G8zhe0G00fWdvjuYAxsQZyW40wxBuB8RzDO/h/4ukS/DNyHpqT0sJ9+m/9vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GI5vBH6a; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-453608ed113so14897065e9.0;
-        Fri, 20 Jun 2025 01:37:38 -0700 (PDT)
+	s=arc-20240116; t=1750408756; c=relaxed/simple;
+	bh=nW0F0O/hWqw37ehBTiHOaKNVn3q7ZPdsEdlHH98mdbM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=TiL10YpdPY3HQJcd7l9pCfzcr/xK/gIoQ85504A99nxwb3/hw41TrpeFIuMdcN/DbSQGkTMht/LksE+ebJnelo2GeLKNr2ISSufoqapdL2/ZQQVkgFu6f4A7nnHUhp95Yd22Deb+FmRt4XQuDokalgURTPSwJmq7AMwGJ+oH39I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Q9xiXWaU; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ad88d77314bso314179566b.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 01:39:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750408657; x=1751013457; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=fairphone.com; s=fair; t=1750408752; x=1751013552; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tkZMdMJtiCI1godzM9JRbQDVZvxgUYM0ZUn00XDblK4=;
-        b=GI5vBH6aO3WEeIV5ey9oAv1XSrHRsKuwi+rrDD+BKYCxhqkivu/ajq+nJEg3fffNY8
-         +7thQOhSkvK//lR6CyY629mZOqnwQao5VFLrmYPoGOXm6HZRudfXgb5qrPLi6naCgLw8
-         R2O/X3BVf5olf9jvNtWmuxYWD3x+yWr3v+TnHrzVqQ6zH4xtZ7s5DVt3ecuoEtKCZsC2
-         K2sYih5M62vFKOwbhso+zDiHm+2I6jOrUormQme1BS13yXeRCPk9DLCwgjo4zPKWxMwr
-         OmpqmIWkR2k7LRSY+a61kei5t2qn4HFpnoVpPK9+o5mmxYbclqSv+TD/RLtLhVBP9Jhq
-         JCaw==
+        bh=6V7zu0Kxpdwv0OZSUsLSOjM7ZQH3dEZE86mrHpx7mAI=;
+        b=Q9xiXWaUVze6+3GxmnW8BlyGUQCfzbUuMCDHKuvU9se1IwGuIfLyzdveR2kcLu5Udn
+         xBSlTM/JaO96BhWAbE4WYr2MzkknDj7NFwNZ2zqGVcLOp/JB36tJ1uLmtYDTErgwTidQ
+         tmkldF6E1bTWV2zSrIeiJu4laeHtsAUdhr5m6QIb1kvRJRQZ3JVSofIYgf9SHw/kI2xL
+         CMS4nO7AooBQ7lStCAXLR5+YaZU7pbcEqyFHcgmdWD7q02R3NrB5xVaYsSIsTDlxilP5
+         js3OU1+BWZL55bsKeeTa9P5GHHvs1qfsewrTSmYhY6/psnV8azoc1lj+Mkd2G/oUHxpo
+         Xsng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750408657; x=1751013457;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tkZMdMJtiCI1godzM9JRbQDVZvxgUYM0ZUn00XDblK4=;
-        b=jWVIPESEuSHGC+OhqrYyHXOWcdnOXL3qPierSRqGdXTt3yMSU5F1lhP+wC+N8KU8YN
-         0e91AWj+U08NHBiZQFRO01Ahf2QdkEW0QzYKgqZ/qb4YojrYRD9gZpKL+IxvwYuu4O3H
-         B6iOpvFLfVmsQUzF/HRhKqOwm4W29i7OkBvDVG308RZiPuV7n+mMATD+OkHOQEu8q0Mm
-         kMP/IR5zxtLpOebRGHPqjiByN619hn6y7s37fWSLGNJHL7G3hCHt9AiNU/Ove2AA0AAZ
-         Gm3vz70S2pWDnuAsVocQPuMVaBdEwm/6mB8LKWDuneg12Wb64wGAGSFDGD25S0dkZvaV
-         1AsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXAtv98rjzD0JtKjsYcZlSgDSKw1IqeOOHLTUYqb1uagKZj8S2E8FaTtL8ykwwmMqXwGSJ7AyAqXFTh@vger.kernel.org, AJvYcCXWkqsKFs6v1/IF8nqmLChNMutnv+pPF3hXDsz+i9fP8XQZL9o7Szt5wMXWTuLGXCfBVDPeUyBvu7iO87O6jesuWbM=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzzjz3kKuBYOkr13kVjUFPCwdNVIrNVXFLtjlgI9e+Fm4TtJTW2
-	p4i6aLijhj1vfg9plDOk43PfCgKgAdfDfjzxso28h1uJGFPgex/Q1bW/umPE/6+ohzxRtYgO0E4
-	Usxl5KfWJDvVeu1hEcOGaWwrB1hokGBo=
-X-Gm-Gg: ASbGncvePz9xYki6yj0M/fIm/zpHsXSHeFwf44ZglSlJlc5OPpK/VmdNC4Acuo+HMkt
-	9UVh44nswruk7yJ7mAq16JM8gsXoA/4c82jEa0N6+bAJ2pDSzCOLRaZQ8iEixo9W5dpL8XRJRFU
-	IYn0oWP3qQpJaVuziccXA4bNYcxFZNEnKtFyS7QD6KPwkPEQ==
-X-Google-Smtp-Source: AGHT+IH91L09rKl1WvHHN6miWU42yNno2KuBsV5zEbCXDsnr6stucdm+5+kVbuTet4qP0eO2vIMK3isuHSCFs9idYtY=
-X-Received: by 2002:a05:600c:4fc5:b0:453:2066:4a26 with SMTP id
- 5b1f17b1804b1-453659ee9famr16883665e9.16.1750408656499; Fri, 20 Jun 2025
- 01:37:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750408752; x=1751013552;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6V7zu0Kxpdwv0OZSUsLSOjM7ZQH3dEZE86mrHpx7mAI=;
+        b=QX+UMHrn18D9bxrsi9Gr0f2MziUpXkQRhUMO1bBQcypyFc+9IWr4x+aTSM8ZSWHdDy
+         WgvUzcA+igv0KkUSirXr9Ix2cp/TrllzGzCeZ5uZOZouKUWsc0a8KxP8zku+Bl1Pp4PC
+         feXL2WuEHaZuA8LBbObx7Vf+26grhsrFxvcLWn9Tsah2LiKT51V7R9CUwoM/1VukwfS6
+         lPkWEFTZJK7JiHxVxZyZWVxBZGmg3fYdJpczxKe8vEgBpTtzcPNPHO5jGBgUh1yII+iJ
+         MCDzuZ42UWuWLQt+U7aOMCeYZzViIEAZQlYao9seuA6L+wzUqc9mpDy3HwiZTl+pnopm
+         prbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7eGs8Z+RDwi+ykhargg0JRqpFs1lhpdteZ1UjR9UgWwXpygLL1oZputaJyWBkIK5py6jB4c+rq3c7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0hqyz+I2IUaWqp/tu6wdidAuMSCNSRhNHTY81beE25096SMkq
+	UronYJcBEVQs/6Xbq7ieEELRHk+d4fb8ShPJQjroHR6+iOqoJA0n1loS/l/C1vYIbg4=
+X-Gm-Gg: ASbGncuve4dwfKxd4W1Gk10f+pQOkaolgUTtnYHICI28Yv6TSGoJBZfwKqRqyoeOYf5
+	XNs5vNQ/WOS8OI3UO92ZLztME6a88FQVkYLL5w7YUHO1J99dYG2yEXOkjWmHBKjYv95snHOrm17
+	XP5Cf7aNhs1n02F8sEilJlrGCGWIS2Kz4IU2WcK0eKShAyrm0UltusXQBD4mS1qi9ZgW9oHIFwc
+	fnCOjYHRZ0wyqVVF8OzbwGIx3OwVF2U4tiSq1UPP0FAokHMYw9fBNqazWc1zA2pdjlHzBQQ0htR
+	AiFTQQ/nCB9yY0Pb1yDvU+E0B5aXhY3JHuMDKQfO2O44WfDSGV8jDA+3H2dlbzhTsyQHGzPWbBs
+	xCcJDhCS5juhksCli4109HaUYrE+s+Js=
+X-Google-Smtp-Source: AGHT+IHnn+pgrcY80rrdIAItBJEQnsl8DLBgDjOptwBLYFl+zdmUZHUQXrI9nz0s+HIckaBRB9p+5A==
+X-Received: by 2002:a17:907:9816:b0:ad5:55db:e413 with SMTP id a640c23a62f3a-ae057a284e5mr172285466b.26.1750408751642;
+        Fri, 20 Jun 2025 01:39:11 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae0541b6e36sm123747666b.120.2025.06.20.01.39.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jun 2025 01:39:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <0703ecbc355164e35b90a9fe088438c821f13cd3.1749741263.git.geert+renesas@glider.be>
-In-Reply-To: <0703ecbc355164e35b90a9fe088438c821f13cd3.1749741263.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 20 Jun 2025 09:37:08 +0100
-X-Gm-Features: Ac12FXwoHC5okYTQfQ1hd3pLbVxnrfdeiudtMlvvUAqtZogtU5CVCeKmChDP3KY
-Message-ID: <CA+V-a8ticxRyDrtAMOLjULWhU-iXNhgQNEYx0JQvc0qKHRSf+A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: soc: renesas: Document RZ/T2H Evaluation
- Board part number
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 20 Jun 2025 10:39:10 +0200
+Message-Id: <DAR846ZKJENY.KINMYGVYAY97@fairphone.com>
+Cc: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Sebastian
+ Reichel" <sebastian.reichel@collabora.com>,
+ <linux-hardening@vger.kernel.org>
+Subject: Re: [PATCH 09/11] power: supply: qcom_smbx: add smb5 support
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Casey Connolly" <casey.connolly@linaro.org>, "Sebastian Reichel"
+ <sre@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Bjorn
+ Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Kees Cook" <kees@kernel.org>, "Gustavo A. R.
+ Silva" <gustavoars@kernel.org>, "Bryan O'Donoghue"
+ <bryan.odonoghue@linaro.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
+ <20250619-smb2-smb5-support-v1-9-ac5dec51b6e1@linaro.org>
+In-Reply-To: <20250619-smb2-smb5-support-v1-9-ac5dec51b6e1@linaro.org>
 
-On Thu, Jun 12, 2025 at 4:39=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+Hi Casey!
+
+Adding a note here, I also plan to look into what (if any) changes are
+necessary for this to work on PMI632 (which is the PMIC for
+sdm632/msm8953 Fairphone 3) since that's also SMB5.
+
+On Thu Jun 19, 2025 at 4:55 PM CEST, Casey Connolly wrote:
+> Introduce support for the SMB5 charger found on pm8150b and other more
+> modern Qualcomm SoCs.
 >
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> SMB5 is largely similar to SMB2, with a few register differences. The
+> main difference is the new Type-C hardware block which some registers
+> are moved to.
+>
+> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
 > ---
-> To be queued in renesas-devel for v6.17.
->
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>  drivers/power/supply/qcom_smbx.c | 367 +++++++++++++++++++++++++++++++++=
+------
+>  1 file changed, 314 insertions(+), 53 deletions(-)
 
-Cheers,
-Prabhakar
+<snip>
 
-> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b=
-/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> index aac7af605de24f99..c25f12642061b6eb 100644
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -595,7 +595,7 @@ properties:
->        - description: RZ/T2H (R9A09G077)
->          items:
->            - enum:
-> -              - renesas,rzt2h-evk # RZ/T2H Evaluation Board
-> +              - renesas,rzt2h-evk # RZ/T2H Evaluation Board (RTK9RZT2H0S=
-00000BJ)
->            - enum:
->                - renesas,r9a09g077m04 # RZ/T2H with Single Cortex-A55 + D=
-ual Cortex-R52 - no security
->                - renesas,r9a09g077m24 # RZ/T2H with Dual Cortex-A55 + Dua=
-l Cortex-R52 - no security
-> --
-> 2.43.0
->
->
+> +/* Bits 2:0 match PMI8998 TYPE_C_INTRPT_ENB_SOFTWARE_CTRL */
+> +#define SMB5_TYPE_C_MODE_CFG				0x544
+> +#define SMB5_EN_TRY_SNK_BIT				BIT(4)
+> +#define SMB5_EN_SNK_ONLY_BIT				BIT(1)
+> +
+> +#define SMB5_TYPEC_TYPE_C_VCONN_CONTROL			0x546
+> +#define SMB5_VCONN_EN_ORIENTATION_BIT			BIT(2)
+> +#define SMB5_VCONN_EN_VALUE_BIT				BIT(1)
+> +#define SMB5_VCONN_EN_SRC_BIT				BIT(0)
+> +
+> +
+> +#define SMB5_TYPE_C_DEBUG_ACCESS_SINK			0x54a
+> +#define SMB5_TYPEC_DEBUG_ACCESS_SINK_MASK		GENMASK(4, 0)
+> +
+> +#define SMB5_DEBUG_ACCESS_SRC_CFG			0x54C
+> +#define SMB5_EN_UNORIENTED_DEBUG_ACCESS_SRC_BIT	BIT(0)
+> +
+> +#define SMB5_TYPE_C_EXIT_STATE_CFG			0x550
+> +#define SMB5_BYPASS_VSAFE0V_DURING_ROLE_SWAP_BIT	BIT(3)
+> +#define SMB5_SEL_SRC_UPPER_REF_BIT			BIT(2)
+> +#define SMB5_EXIT_SNK_BASED_ON_CC_BIT			BIT(0)
+
+<snip>
+
+>  /* Init sequence derived from vendor downstream driver */
+> -static const struct smb_init_register smb_init_seq[] =3D {
+> -	{ .addr =3D AICL_RERUN_TIME_CFG, .mask =3D AICL_RERUN_TIME_MASK, .val =
+=3D 0 },
+> +static const struct smb_init_register smb5_init_seq[] =3D {
+> +	{ .addr =3D USBIN_CMD_IL, .mask =3D USBIN_SUSPEND_BIT, .val =3D 0 },
+> +	/*
+> +	 * By default configure us as an upstream facing port
+> +	 * FIXME: This will be handled by the type-c driver
+> +	 */
+> +	{ .addr =3D SMB5_TYPE_C_MODE_CFG,
+> +	  .mask =3D SMB5_EN_TRY_SNK_BIT | SMB5_EN_SNK_ONLY_BIT,
+> +	  .val =3D SMB5_EN_TRY_SNK_BIT },
+
+Since there's already a driver for the Type-C in pm8150b and pm7250b,
+can we remove this? Or is additional plumbing between the two drivers
+necessary to make this work? Maybe Bryan can also jump in here.
+
+Regards
+Luca
+
+> +	{ .addr =3D SMB5_TYPEC_TYPE_C_VCONN_CONTROL,
+> +	  .mask =3D SMB5_VCONN_EN_ORIENTATION_BIT | SMB5_VCONN_EN_SRC_BIT |
+> +		  SMB5_VCONN_EN_VALUE_BIT,
+> +	  .val =3D SMB2_VCONN_EN_SRC_BIT },
+> +	{ .addr =3D SMB5_DEBUG_ACCESS_SRC_CFG,
+> +	  .mask =3D SMB5_EN_UNORIENTED_DEBUG_ACCESS_SRC_BIT,
+> +	  .val =3D SMB5_EN_UNORIENTED_DEBUG_ACCESS_SRC_BIT },
+> +	{ .addr =3D SMB5_TYPE_C_EXIT_STATE_CFG,
+> +	  .mask =3D SMB5_SEL_SRC_UPPER_REF_BIT,
+> +	  .val =3D SMB5_SEL_SRC_UPPER_REF_BIT },
+> +	/*
+> +	 * Disable Type-C factory mode and stay in Attached.SRC state when VCON=
+N
+> +	 * over-current happens
+> +	 */
+> +	{ .addr =3D TYPE_C_CFG,
+> +	  .mask =3D APSD_START_ON_CC_BIT,
+> +	  .val =3D 0 },
+> +	{ .addr =3D SMB5_TYPE_C_DEBUG_ACCESS_SINK,
+> +	  .mask =3D SMB5_TYPEC_DEBUG_ACCESS_SINK_MASK,
+> +	  .val =3D 0x17 },
 
