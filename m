@@ -1,229 +1,188 @@
-Return-Path: <devicetree+bounces-187956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD32AE1E9F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:30:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B30B5AE1EB4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4BEE7B0A2A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:28:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59CD3167528
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B626A2C375A;
-	Fri, 20 Jun 2025 15:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8876F2D323D;
+	Fri, 20 Jun 2025 15:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ya3OYn/b"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nx+GB/iM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C382C324B;
-	Fri, 20 Jun 2025 15:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91542D3223
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750433191; cv=none; b=lXVI1LrFp++xPeyxKsmgsFUNxLpRBRqFgCJqcIDDQyVbquYgNnqJOEyYjvAme0xt1cPyLsXJuvUijK15ANeV3v8N81SpIW1wzAe5CiTsfaxLvp5JGVkqEua+JMPnGp/DTZGk+huO84uecBNLheuMnd1wBm25AzDQ+D1ZIoDX2lY=
+	t=1750433257; cv=none; b=uzgSBpPK8Qxb3kyhx+NBWQiDo7bRmBBWjhWrcneqUh/goNhBm+MA7FkEhZFDITyRpQIMZ/kV2ttk6UhADEn6f/+eDU0DS5jCbULn1qf7+W1/PxPDBiuYZVnywcwE0ssIvpueDsoPK33xajT7lu9oqnS4HyvFQi7wXCjg3jOw6Mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750433191; c=relaxed/simple;
-	bh=WUB2wpa3W+3uIW4pg1fQ/88tmjy06qgVmc5O/tjNYJQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h32tT5CJPGcZs2b2GTFNU10k+fJEcJ86D02t3J+Dw5FxSInlj5BSza+SdSHtjZLREToImD4bnOJAQG/dAkqlfaxyd5shHanO5O0zj6WWpkNKSskL3UO6Aa4rHHiENm3WZB3nrVDyj2f1odoxDKKdolCY19cf9FP7XEnC1Tu92Iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ya3OYn/b; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-450cb2ddd46so11943935e9.2;
-        Fri, 20 Jun 2025 08:26:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750433188; x=1751037988; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dvw6+KSPOqtrmOukGHEiEP8MZe9/XdRUXjCAQWIBviU=;
-        b=Ya3OYn/bxS5vCtVeI70dsYBs6h0TDnnczTD5q4G3GGIrzWUjdDMg5gR8fx26KU00ED
-         EBhoWcr6MDtpDkJE8PiMXI3TIggpab949ihqGzLxnYau8HWozxZInYrTScfzqeNMoNku
-         SKmwjDJNEUcxPFjCXXbeARVOQyIxmlAPYzsthNCHi+8pyfvI0VwBZHwojG17PUdyHKz4
-         Mxq9Gveqnmi+HjRFl/b6PBw/8DXi9P6ukUxPBb+3kj8exo42sS+Lw2ysUWp8kXkrD5Wj
-         /X3E6MSQWn1qPYM2Hf/bkwU7zRXbPKkRW4P9pPqQrygaAWPZF1aj+SZOdyNs3oVLZh69
-         dxmA==
+	s=arc-20240116; t=1750433257; c=relaxed/simple;
+	bh=P8Wo7fcybEshzotVDeA10midjInAL0LN6QVzD5tO3/Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rn9wu9hWTRPTQJohNhy8Po5k2iANpcSl9y6tS4NqToBXC/0lEzu0HDmYchAQoCr3ymP2pnAIF3u7YubVu7fzhQrvM7E0GkxGFMebcwn1ssjrYi7fsmbYjH75KBawhJleA59eG8Fij5XFNKuX8OQbHssuLU9D6btfjB18ngRbrto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nx+GB/iM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55KFRUuN024291
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:27:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	z+rs8T4bgG+Rya1KkHRCXup+WnUD3pd+Ch7crhjLsi0=; b=nx+GB/iMPdkNPH/N
+	D/YXGKSvHi2+F9e0KKpQvDrof8o7ce+Brwcn3tKoOfNuC56xLPlYMpy2KnBnKjDb
+	78U6+NIe9C0+Z+duh0Vw1Nvz/IVDJa4+/KN8KbSp8TzfH62aVuFdlHrcIsR6W2gG
+	a6e91uOs18qe9hQQOATMVBCG2fnjmyVItf70ZYip7BWCffFB2goCrc3S346OQE1j
+	pocHC2EP551PSWC3mz1AkeO+I1y2/SgL5Q+wPw+SRZXozqq7thil4fbGhUUHbOH9
+	9sb9JXod6AbtKd6ZEwiRaUKX5OfWm5ecx1fDFoQ7l2fjlwI1IGDbXSvFyMws2zF4
+	CeswfQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47daa4r00r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:27:34 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-748d96b974cso1753310b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 08:27:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750433188; x=1751037988;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dvw6+KSPOqtrmOukGHEiEP8MZe9/XdRUXjCAQWIBviU=;
-        b=oDnSjuQL66C7SxtYa220FAH8sT67LHAGglbj6HZ1ycXScibJa7jyQSEAXxXXyHcbqg
-         UfLPEpBxWsJrxWPYu7rcCrGTTYEgVnuxwIxdxhQ36/K/dktAt+nmpapgaPQ8nkxj/BHV
-         3FXv4Fg4AysE78jT/EHEi3id2zvWlQ4yLvfKAoEDkG5RKDE75Gb6V8miJugCS/KcQ/PO
-         i6KcO3ib3JarfY6IjdcsLwOzC4RCMyGuP16IxW6zinCsjl5n2jLCWuOZmVtTtKTc1C8S
-         zAGNolnUBNKdRmhoaTxTk2QDq1SIDY+nXpqXk+IurZvJBZGsYAkkdkq1jgdsk+sSNWJZ
-         sM0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUhu4GxXGO72J6ULHhMT+Ws1qW8AjtbC58xhWG4wPChq5GXpPtGPYJZsSijnzf0N5NejLb+F6BrKa4Y@vger.kernel.org, AJvYcCUz0YcXz4HR4kAxbuWtSqFkw85ojXVgl2xAIlPbez2gScAxDv7fjXSKro6LunolUu1pVcviuncPaOANeAX5@vger.kernel.org, AJvYcCV5JF+rlLs30etVDCxXXAZrdZa8tkGMvQn2RUftRqTEYfnyIbZFevJJ7Lc965pncRtsIj0atiFtGFz7hwou3DU=@vger.kernel.org, AJvYcCVlOh55vSDBXSsLD6RK4id/I20JKx2eEaH8nHWJGKApk91Pl2bV1Zf1x3PIDVcWjw45Vv4LtE36O4fSMQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0kD+vGcfWZaq3Pfvb4MJvpo1X0rWKWjHNv+WaDi8OlunUuc/t
-	fIryBTwubwIIXJ3zFXED6V0LnTa4axqVgsIegfTGKeXJChdCnr4ot8Tz
-X-Gm-Gg: ASbGncvE8Ii1cr1GwJPEPJ579I1YBpyLIaG95KsMTgKqousdvOSnjOgXQkxTRX0U9OQ
-	fRGrSwoQo26HsR/8+bZBjolFUeBC8mdfvGntqDEApDltDKzSQHZEeDa4yy9F83GrU3YP+BPmTEY
-	ugnCuxJYdB7qRz9dpFgrt9lT1I51dEJZasFIJCDrXaAT6cIKNoWmytl5Z6gKJFD9NPU1R265kwB
-	bfOfLQwiomFdPhc+1eFFCETUliHOm36a0io0rlF0AleCP58X8awBAwCUv5l8CUol+J+x/WcT4Tr
-	1a1xneFYNC+XJnNhSV+Kr7+4HUPnILfsmS1Erz3BwqiY5/FqQIDWVR4GxVY6klXze/TgBi3b7+B
-	SVY/gL37cATzDsAQtOi6h5ElxFLBFzc7cQYxk
-X-Google-Smtp-Source: AGHT+IFGJ4j2oFpKlnm3TiPSB5wBBPqtGsgs71FDdaXalDsriq6wX0J9e6BEAmaAsoKXsWO/2igTtQ==
-X-Received: by 2002:a05:600c:4443:b0:43d:172:50b1 with SMTP id 5b1f17b1804b1-453659ef73fmr31399135e9.29.1750433187813;
-        Fri, 20 Jun 2025 08:26:27 -0700 (PDT)
-Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453646cb57fsm29222215e9.1.2025.06.20.08.26.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 08:26:27 -0700 (PDT)
-Sender: Igor Korotin <igorkor.3vium@gmail.com>
-From: Igor Korotin <igor.korotin.linux@gmail.com>
-To: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Alex Hung <alex.hung@amd.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Igor Korotin <igor.korotin.linux@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>,
-	Tamir Duberstein <tamird@gmail.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Xiangfei Ding <dingxiangfei2009@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Benno Lossin <lossin@kernel.org>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Gary Guo <gary@garyguo.net>,
-	Len Brown <lenb@kernel.org>,
-	Trevor Gross <tmgross@umich.edu>
-Subject: [PATCH v8 4/9] rust: acpi: add `acpi::DeviceId` abstraction
-Date: Fri, 20 Jun 2025 16:24:25 +0100
-Message-ID: <20250620152425.285683-1-igor.korotin.linux@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
-References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+        d=1e100.net; s=20230601; t=1750433253; x=1751038053;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z+rs8T4bgG+Rya1KkHRCXup+WnUD3pd+Ch7crhjLsi0=;
+        b=Pi31bX/o1brpu9tCMYiNa3Kxw1MhRXxUEzkY/2P1kGV2x+c+du9qtGCrxt3EZk7t0a
+         VMrlCjrkycd7wPCHRaDlC8a9KL1iZ1Qc0qu1dg5ifuur6Ku9i63sKU5EZFAS5D10eDtG
+         LiNVYf4oE/Wla9Ei8Bq8D3Ii8bu5DlKQLDfuloevywewsBqJ2LfwCROWix5gMHJqeMDq
+         i5Lk3/6huD1/SBNxOEPQZxNbasm3HG1bjfg1vZAyxzWQs+S9LD6EVdJsSiH5zgJrTvPn
+         SFO3IdJesKKDh6qE/Y9Pnl71wxT200BhUA8u9KNZkiVEQHPsrd62CtiAd5mpNKQrsObN
+         CD9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUlpATsipyJPkaXJ0moJYoxlNCHL1qnAydwbryFhZMhzFia0GroOsbyt4mw7JbQA6lNeDZMtznNV/P/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcohHJO0uYlC+f76zUbMzF7Sc6Bj/K7FveFq5rAqTwHGNEXUBo
+	L/y1egMceJHaB8wXRQtZbFW/od12ge/CpDxDh6SRB+waLbuJIAxjbQ5nngX7bzLmW5ZqKy4KbhD
+	DKFSqZxeSFEgmb77mZZF5WrJw7p44H/gXVb1K5N0bdFYHWY3aCT/3Nl0yoxDqVWPS
+X-Gm-Gg: ASbGnctVKsBfWx293z3gXJnfZjhDYaHjJh3YeaJucRUiavZ7hgU+s5WmGJDKhzpv6Ec
+	iLgeSGxMoni69MA1QA/Ic1LKQ1nL+OOQ9q2d9lIgWtlYuLheYQNobHOpUMjtcNB61aNv1AOm4YZ
+	0+1uvKStu7vxHn37WLvm2bkva4N/gsgZ51ArCb30eIk+LKx3Q0CLSb/yPMt7f4lO/EToXnwL9EF
+	ZAHi6J3Q1PkNZWV+amh3Kb1Qc5iUgC1pw14lov6pn7UhzZkLvwXLFgSZ8T4s2J/tc/S9dBjohO+
+	7sS7IVpE5jsxSnJUph1cw+QQtKmRwmSxRB78qnnYSL+132Kjg2vC42pLgDoRcChaAa/KxuujgfF
+	orcn1AQ8XZL7KDcE=
+X-Received: by 2002:aa7:88c9:0:b0:742:a82b:abeb with SMTP id d2e1a72fcca58-7490d4e764bmr4526852b3a.2.1750433252929;
+        Fri, 20 Jun 2025 08:27:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEX4ccPDFY5JvWE0aspZHNF7mwAxGry6wkBg5v00B/SdhZn5+MXU1O26M27rXpg1M2JouYaeA==
+X-Received: by 2002:aa7:88c9:0:b0:742:a82b:abeb with SMTP id d2e1a72fcca58-7490d4e764bmr4526806b3a.2.1750433252434;
+        Fri, 20 Jun 2025 08:27:32 -0700 (PDT)
+Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7490a64b1c9sm2239011b3a.115.2025.06.20.08.27.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jun 2025 08:27:32 -0700 (PDT)
+Message-ID: <4a3ad8a6-90a9-45c5-bbdf-7b91d3c18e51@oss.qualcomm.com>
+Date: Fri, 20 Jun 2025 08:27:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCHv5 0/5] wifi: ath9k: add ahb OF support
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rosen Penev <rosenp@gmail.com>,
+        linux-wireless@vger.kernel.org
+Cc: =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>, nbd@nbd.name,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>
+References: <20250609030851.17739-1-rosenp@gmail.com>
+ <37561ac8-ac0f-4744-9495-c7589544d4bb@oss.qualcomm.com>
+ <ef0db40a-14d1-4670-82ca-f724a0eeee0d@kernel.org>
+ <ddc48fa7-3fca-46a3-9224-11c0c3fce4a4@kernel.org>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <ddc48fa7-3fca-46a3-9224-11c0c3fce4a4@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: vJ-5NycHLXVEdG5y-495fTWyF8fc-ESE
+X-Proofpoint-ORIG-GUID: vJ-5NycHLXVEdG5y-495fTWyF8fc-ESE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDExMCBTYWx0ZWRfX1R/GfrnH8wC+
+ 1RtwS00m8BNCoDZajq3T5AjwA4V1nlPAW2IxsGO0vpKJw5y5M2rqaTF8kJo2M9zlbI3fNznCrLC
+ px6xz1f76Ce2hJmcKjX6d0EBjoijPziQHm74me5RYN2SUOntEZrrB9tpWS0SxSazDyR24DPu3Ux
+ 8LavClT5HY+2rVU6ctwwBUwjEf2uJOJwYCDslN0rrl4qcDX6AKSAJu+Ka1d9X3FuYiHSRLt9PVN
+ 8CfX3X8ddxaOHtBXxsZd3ygWfaY4ZBcvcQdOXotsIw0b8gCNKTsakBerHWtpnZ6cCs2ZPb9DT2b
+ E0nJkCUC2xYB/Gjeo+yH+HX+chq1i1LiBCn94H38vdQ7tnS3z4ls6PvWm4akkNHggWYd4PYtt3f
+ FyisRd3DFv7oj4ntxjLvAz900ryhj9JCPqTyOGsTPpW9ztrEQj11H/V5QAvzf7OxSGx4qIRQ
+X-Authority-Analysis: v=2.4 cv=KphN2XWN c=1 sm=1 tr=0 ts=68557de6 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=e70TP3dOR9hTogukJ0528Q==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gBfMadwGajE8Mk97sbMA:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-20_06,2025-06-20_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501 clxscore=1015
+ mlxlogscore=911 mlxscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506200110
 
-`acpi::DeviceId` is an abstraction around `struct acpi_device_id`.
+On 6/19/2025 10:39 PM, Krzysztof Kozlowski wrote:
+> On 20/06/2025 07:32, Krzysztof Kozlowski wrote:
+>> On 20/06/2025 02:33, Jeff Johnson wrote:
+>>> On 6/8/2025 8:08 PM, Rosen Penev wrote:
+>>>> First two commits are small cleanups to make the changes of the third
+>>>> simpler. The fourth actually adds dts definitions to use ahb.
+>>>>
+>>>> v2: Add documentation, use kernel_ulong_t, and of_device_get_match_data
+>>>> v3: Use qcom prefix and wifi suffix as in other ath drivers.
+>>>> v4: fix up dts example in Documentation
+>>>> v5: move back to using qca prefix. It makes no sense to diverge between
+>>>> all the other drivers for MIPS based qualcomm devices. qcom as a prefix
+>>>> is used for Quallcomm's ARM(64) stuff.
+>>>>
+>>>> Rosen Penev (5):
+>>>>   wifi: ath9k: ahb: reorder declarations
+>>>>   wifi: ath9k: ahb: reorder includes
+>>>>   wifi: ath9k: ahb: replace id_table with of
+>>>>   dt-bindings: net: wireless: ath9k: add OF bindings
+>>>>   mips: dts: qca: add wmac support
+>>>>
+>>>>  .../bindings/net/wireless/qca,ath9k.yaml      | 23 ++++++-
+>>>>  arch/mips/boot/dts/qca/ar9132.dtsi            |  9 +++
+>>>>  .../boot/dts/qca/ar9132_tl_wr1043nd_v1.dts    |  4 ++
+>>>>  arch/mips/boot/dts/qca/ar9331.dtsi            |  9 +++
+>>>>  arch/mips/boot/dts/qca/ar9331_dpt_module.dts  |  4 ++
+>>>>  .../mips/boot/dts/qca/ar9331_dragino_ms14.dts |  4 ++
+>>>>  arch/mips/boot/dts/qca/ar9331_omega.dts       |  4 ++
+>>>>  .../qca/ar9331_openembed_som9331_board.dts    |  4 ++
+>>>>  arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts   |  4 ++
+>>>>  drivers/net/wireless/ath/ath9k/ahb.c          | 60 +++++++------------
+>>>>  10 files changed, 84 insertions(+), 41 deletions(-)
+>>>>
+>>>
+>>> DT team, should I take this series through my tree?
+>>> Toke, Ack?
+>> No, of course not. The same as you asked some time ago: DTS never, NEVER
+>> goes via driver subsystem tree.
+>>
+> 
+> Heh, you do not have any subsystem maintainers acks or reviews on DTS,
+> so this should not be considered. It's like me taking wireless patches
+> without your acks.
 
-This is used by subsequent patches, in particular the i2c driver
-abstractions, to create ACPI device ID tables.
+That is why I was looking for clarification.
+All the DT stuff had your R-B and hence why I asked Toke for his Ack.
+Will DT team take the entire series (I'm ok with that)?
+Or just the DTS and I should take the rest?
 
-Signed-off-by: Igor Korotin <igor.korotin.linux@gmail.com>
----
- MAINTAINERS         |  1 +
- rust/kernel/acpi.rs | 60 +++++++++++++++++++++++++++++++++++++++++++++
- rust/kernel/lib.rs  |  1 +
- 3 files changed, 62 insertions(+)
- create mode 100644 rust/kernel/acpi.rs
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e918319cff4..3e59a177ac0c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -302,6 +302,7 @@ F:	include/linux/acpi.h
- F:	include/linux/fwnode.h
- F:	include/linux/fw_table.h
- F:	lib/fw_table.c
-+F:	rust/kernel/acpi.rs
- F:	tools/power/acpi/
- 
- ACPI APEI
-diff --git a/rust/kernel/acpi.rs b/rust/kernel/acpi.rs
-new file mode 100644
-index 000000000000..2b25dc9e07ac
---- /dev/null
-+++ b/rust/kernel/acpi.rs
-@@ -0,0 +1,60 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+//! Advanced Configuration and Power Interface abstractions.
-+
-+use crate::{bindings, device_id::RawDeviceId, prelude::*};
-+
-+/// IdTable type for ACPI drivers.
-+pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<DeviceId, T>;
-+
-+/// An ACPI device id.
-+#[repr(transparent)]
-+#[derive(Clone, Copy)]
-+pub struct DeviceId(bindings::acpi_device_id);
-+
-+// SAFETY:
-+// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct acpi_device_id` and does not add
-+//   additional invariants, so it's safe to transmute to `RawType`.
-+// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
-+unsafe impl RawDeviceId for DeviceId {
-+    type RawType = bindings::acpi_device_id;
-+
-+    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::acpi_device_id, driver_data);
-+
-+    fn index(&self) -> usize {
-+        self.0.driver_data as _
-+    }
-+}
-+
-+impl DeviceId {
-+    const ACPI_ID_LEN: usize = 16;
-+
-+    /// Create a new device id from an ACPI 'id' string.
-+    pub const fn new<const N: usize>(id: &[u8; N]) -> Self {
-+        build_assert!(N <= Self::ACPI_ID_LEN, "ID exceeds 16 bytes");
-+        // Replace with `bindings::acpi_device_id::default()` once stabilized for `const`.
-+        // SAFETY: FFI type is valid to be zero-initialized.
-+        let mut acpi: bindings::acpi_device_id = unsafe { core::mem::zeroed() };
-+        let mut i = 0;
-+        while i < N {
-+            acpi.id[i] = id[i];
-+            i += 1;
-+        }
-+
-+        Self(acpi)
-+    }
-+}
-+
-+/// Create an ACPI `IdTable` with an "alias" for modpost.
-+#[macro_export]
-+macro_rules! acpi_device_table {
-+    ($table_name:ident, $module_table_name:ident, $id_info_type: ty, $table_data: expr) => {
-+        const $table_name: $crate::device_id::IdArray<
-+            $crate::acpi::DeviceId,
-+            $id_info_type,
-+            { $table_data.len() },
-+        > = $crate::device_id::IdArray::new($table_data);
-+
-+        $crate::module_device_table!("acpi", $module_table_name, $table_name);
-+    };
-+}
-diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-index 6b4774b2b1c3..5bbf3627212f 100644
---- a/rust/kernel/lib.rs
-+++ b/rust/kernel/lib.rs
-@@ -51,6 +51,7 @@
- 
- pub use ffi;
- 
-+pub mod acpi;
- pub mod alloc;
- #[cfg(CONFIG_AUXILIARY_BUS)]
- pub mod auxiliary;
--- 
-2.43.0
-
+/jeff
 
