@@ -1,132 +1,169 @@
-Return-Path: <devicetree+bounces-187724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00E3AE120B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 06:09:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9979DAE128C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 06:46:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5E854A26EE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 04:09:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3078A19E0F4D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 04:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954FB20B7EE;
-	Fri, 20 Jun 2025 04:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74221E1E1B;
+	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lxB0cfA3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZSKTDocO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE92220ADEE;
-	Fri, 20 Jun 2025 04:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE8430E826;
+	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750392507; cv=none; b=d54bcjIa8tKRr3/0AsNofg3qI236xOY+Xa6Wpe96dWmsr1n38sfLZ+FDYbGmUdu5BsM7ltS3C4eDDLZI3842/4tCbA6rcKUmVwNAuHbU7UN0XXsxArqDyBi6Wjb3XjNRNYaPYA7GG3R9sPMM9Hzaqdy2yHr+nd3yMB1QIXQPiYI=
+	t=1750394771; cv=none; b=O28EyxOCzl+SvfQEyx1eOZFmTWdM88CwBMQ/wOcDGI1peDWPnpcwy8UlvnO33vpjozWYUxvOCnn99ZOJdzm6XHyxkB5VPx4ciqwhYqQJwm+i2K18P2k83FmRozxJ9vNEkaS9mh9+QK6d8ORQqtRTCvosSYdY4QG9LqrxolGg7dQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750392507; c=relaxed/simple;
-	bh=CulyjY4NjRIeD655pJ5HRYpXZ+ZdovvS8mZgv+1xvTg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IdVMT2VCD+j65HLyJy0yi0oCdAYI2RyZo3tBqyhQeh7hUgY5R36qGnefiDn6Hvma8WYdimEt3LZvz7ISXd6IUyZ9wMauX2JYqGHg3+u2PlYll6tv5zx5HpMPe2TyIai92veu3O3sPrWWlYt0kmYF9KbiQcxwVCBHLpOT+JFl/Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lxB0cfA3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55JEDRhC028912;
-	Fri, 20 Jun 2025 04:08:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zBnlfquW8ztjsrCBTO4CFPwJoK+KHTJQ37+y7SWYtwg=; b=lxB0cfA320KFnrcT
-	Vz/SaWAaXlFLOstwLxI5kqJWO+lg6UGzTjdrxgalXddWIRSn+AkmnMwwTgd571b/
-	cX/dp450H4U0n4LrOTQnYSqdW2bmJKZpbyhdz+8awa0GjPZGjULAs/6BHIzaacyO
-	S+jrEvNn4eoCDZDbXFYqwa2I99mwGYqh/kyQrqW9WLMtlYDFGCbid4pNBUUJbERa
-	dGXsauz6dTDnbfmmXmBT6KuJKyA3oZEBU+tUdQkQnSwx3esMBgqyvD47MKAtFscP
-	kjbU9UjfGVMy4gRfcnb8NXLuC8A1878qBTlS3mjt6PvQrY7k+npqiyCvg2RLpmcv
-	UPvTTQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4791h9hwwg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Jun 2025 04:08:21 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 55K48KiQ000915
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Jun 2025 04:08:20 GMT
-Received: from cse-cd01-lnx.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 19 Jun 2025 21:08:15 -0700
-From: Wenmeng Liu <quic_wenmliu@quicinc.com>
-To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <akapatra@quicinc.com>,
-        <hariramp@quicinc.com>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_svankada@quicinc.com>, <quic_depengs@quicinc.com>,
-        <quic_vikramsa@quicinc.com>, <quic_wenmliu@quicinc.com>
-Subject: [RFC PATCH 3/3] arm64: dts: qcom: qcs6490-rb3gen2: Add csiphy current support
-Date: Fri, 20 Jun 2025 12:07:36 +0800
-Message-ID: <20250620040736.3032667-4-quic_wenmliu@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250620040736.3032667-1-quic_wenmliu@quicinc.com>
-References: <20250620040736.3032667-1-quic_wenmliu@quicinc.com>
+	s=arc-20240116; t=1750394771; c=relaxed/simple;
+	bh=IA4k49fw3y4MpiKnDSCYUEtcW5IOIjO8YPvm+qzIMjE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jaDW4PvDn69JnIeVSwVXEj8qrUEGvZYPcosTAc/DF9ktSOtwwjFWnmlwh9S/an9oh6N9wE+pBLFT0rhkpjsgz/KFPq9w8n9yHSnO0DHGxJ9pI8sDvADJT4LlsQvQfFScjBiiZS1AjmkomoT+om2eLoBXeBN94P0p6EeJRlG5Ego=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZSKTDocO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 18E2DC4CEE3;
+	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1750394771;
+	bh=IA4k49fw3y4MpiKnDSCYUEtcW5IOIjO8YPvm+qzIMjE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ZSKTDocOOID497Tw7XgvedShH0GYtbA1d6tchJOg3qHcFygjjTm7W97/v7AjYoGvV
+	 VuiKHI3S8TgFbvcZWauwxakRNMD/i/pemSYscPRizB7PBKcXvNg9wOFBrB1r1EU1eP
+	 +YTErLECXHYioxAHoz6zVpfO4BDjd+9gtAq05VIyUOQkhv53jxliOKpnqmC/RBGOVr
+	 +TmiG818g873S0XkYtJ20NFqVtbXX6FKiWTx3wL63BggKQSfz90I4uwUsepfVHEJVb
+	 DZjp5OcBC3AVeiFSUKfHESi5ob/JA5MO4JjzjB8ZaeXUw87Eabvnuw/8WssdmaCAVQ
+	 2q9cKapX+zD+g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10C9EC7115C;
+	Fri, 20 Jun 2025 04:46:11 +0000 (UTC)
+From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
+Subject: [PATCH v5 0/5] stratix10: Add framework for asynchronous
+ communication with SDM
+Date: Fri, 20 Jun 2025 12:46:02 +0800
+Message-Id: <20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: F-Kil7l_4sVM6dbBgELwl4lX8MQRQUox
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDAyOSBTYWx0ZWRfX7GXsx9or//wn
- ZyaWhbUreiWagcaBY6K2Gk57uyCiMUnCqmYOdumeh3Mx9MVjZVUv0Pd5jSCg6dPbFkk33o6B9vR
- 6jffu/iVPxtcAZ8wci8Sv/5QUjgmhmYYShN4vqImKRaO7YdO2KTgYhX66rIkkWEOFRD3swkRxMO
- gCAgTfj2NFMAx+n/f17osAtwuyI4mOiZpMwrsXqzoWpEybiGf4PTamE7FER7EkfM1bsyTzc+93S
- +PY33zwfLzqnXeR52obLXETn6tt13po2/pKXjvzMpXsyhlIaNN+ngwodEGLuilURR0mdrQ/+P/E
- lC/tgiEPstgloNOzTO2Gi/IxVPT1hFNP9Sqy6ngDFJTy+dBKSo+F872Ckrf9CPK5GlbyLrAB5xB
- vVZvbJY068W/5OjRXbxs9UStdlvbYih8zsbIoX/LmqZ6JAQL/nPC5gP2HybDVikSAdTTzj32
-X-Authority-Analysis: v=2.4 cv=UL/dHDfy c=1 sm=1 tr=0 ts=6854deb5 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=zPEXOy06XE7ydg0V1ewA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: F-Kil7l_4sVM6dbBgELwl4lX8MQRQUox
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-20_01,2025-06-18_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=838
- malwarescore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506200029
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIrnVGgC/23Q22qEMBAG4FeRXDfL5KSJV32PUiTGcTdQV5u4o
+ WXx3ZtVii3r5T8w3xzuJGLwGEld3EnA5KMfrzmol4K4i72ekfouZ8KBK2CC0einJibX3KY4B7Q
+ DxUp32plWCqFIbpsC9v5rJd/etxzw85bleSvucF1sLBgaR9dPZ9v88oOPjrat6/q2sgBc10k89
+ NZGpG4cBj/XRSpPTJHHkIuP8xi+1zMSW6estOT8eePEKFDQGpRhBnrBXu3HjMGesrtqie+CYkc
+ Cz0JvUTmpXGa6J0H8EXh5IIgslBa0lQp4h+JJkLtQMjgQZBbyg0xXgjZQ/b9iWZYfW5j409wBA
+ AA=
+X-Change-ID: 20250131-sip_svc_upstream-e78d8c9b4335
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1750394768; l=3476;
+ i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
+ bh=IA4k49fw3y4MpiKnDSCYUEtcW5IOIjO8YPvm+qzIMjE=;
+ b=7kVZ6VweIaVjI+WtLERQcUw5OsONuLZwtCs4yPglEC43OMX3kEm/rT8Tr6cEXYkPNKdQlBZxX
+ JuT9Jyj6/2AAZx3dBtyMHPL06zaf16i8kyTFPq2GRUbnrD7eJxWfywF
+X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
+X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
+ auth_id=337
+X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
+Reply-To: mahesh.rao@altera.com
 
-Add csiphy current value to support csiphy current load setting.
+The patch set includes the following changes:
 
-Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+- Add protection for querying memory objects in
+  multi-threaded flow.
+- Add support to generate and maintain message id
+  and client id for asynchronous communication with SDM.
+- Add framework to communicate with Secure Device
+  Manager(SDM) asynchronously by sending a request
+  and polling for response.
+- Add commands for performing Remote System Update
+  (RSU) operations asynchronously.
+- Migrate RSU driver to use the asynchronous
+  communication framework.
+
 ---
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v5:
+- Use FIELD_PREP, FIELD_GET() and GENMASK() for bit
+  manipulation for ids.
+- Bring down probing when stratix10_svc_async_init()
+  fails.
+- Other minor fixes.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
-index b9e4a5214f70..60e7d46db394 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
-@@ -16,6 +16,7 @@
- &camss {
- 	vdda-phy-supply = <&vreg_l10c_0p88>;
- 	vdda-pll-supply = <&vreg_l6b_1p2>;
-+	regulator-load-current = <54000 96400>;
- 
- 	status = "okay";
- 
+- Link to v4: https://lore.kernel.org/r/20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com
+
+Changes in v4:
+- Added description for svc_mem_lock mutex.
+- Wrapped commit message and comments in source
+  code to kernel coding style as per coding style.
+- Added minor code fixes.
+- Moved variables to the top of the function
+- Removed HWMON support from in the patch-set, this
+  will be sent in a separate patch-set.
+- Added support for RSU commands to asynchronously
+  communicate with SDM.
+- Migrated RSU driver to use the supported 
+  asynchronous commands.
+
+- Link to v3: https://lore.kernel.org/r/20250526-sip_svc_upstream-v3-0-6a08a4502de3@altera.com
+
+Changes in v3:
+- Changed "Stratix 10" to "Stratix10" in the commit
+  message and in source code.
+- Simplified stratix10_svc_add_async_client() by removing
+  redundant code for async common channel initialization.
+- Fixed resource cleanup on negative path in
+  stratix10_svc_remove_async_client() and stratix10_svc_async_init().
+- Removed optional interrupt handler support, will send the patches
+  in a separate patch-set.
+
+- Link to v2: https://lore.kernel.org/r/20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com
+
+Changes in v2:
+- Added Reviewed by tag from Rob Herring for dt-binding
+  patch.
+- Resending the patch-set as there is no response from
+  the maintainers for the previous patch submission.
+
+- Link to v1: https://lore.kernel.org/r/20250422-sip_svc_upstream-v1-0-088059190f31@altera.com
+
+---
+Mahesh Rao (5):
+      firmware: stratix10-svc: Add mutex lock and unlock in stratix10 memory allocation/free
+      firmware: stratix10-svc: Implement ID pool management for asynchronous operations
+      firmware: stratix10-svc: Add initial support for asynchronous communication with Stratix10 service channel
+      firmware: stratix10-svc: Add support for RSU commands in asynchronous framework
+      firmware: stratix10-rsu: Migrate RSU driver to use stratix10 asynchronous framework.
+
+ drivers/firmware/stratix10-rsu.c                   | 272 +++---
+ drivers/firmware/stratix10-svc.c                   | 954 ++++++++++++++++++++-
+ include/linux/firmware/intel/stratix10-smc.h       |  76 ++
+ .../linux/firmware/intel/stratix10-svc-client.h    |  92 ++
+ 4 files changed, 1253 insertions(+), 141 deletions(-)
+---
+base-commit: 0a4b866d08c6adaea2f4592d31edac6deeb4dcbd
+change-id: 20250131-sip_svc_upstream-e78d8c9b4335
+prerequisite-change-id: 20250109-socfpga_sip_svc_misc-bbcdfb7a0028:v3
+prerequisite-patch-id: 6a4223bd2c01a0fd20925e597c906dc64e11ec2f
+prerequisite-patch-id: 33ca4dbe8b8e18d3e51145c6bcaae55170878b22
+prerequisite-patch-id: a02bca91874f4405191e60704574a0c99f37d184
+
+Best regards,
 -- 
-2.34.1
+Mahesh Rao <mahesh.rao@altera.com>
+
 
 
