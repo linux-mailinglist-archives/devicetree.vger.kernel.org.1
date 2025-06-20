@@ -1,202 +1,103 @@
-Return-Path: <devicetree+bounces-187918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DB1AE1CAB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:53:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DECAE1CEA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CBFF173017
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:53:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BAFA3B3D2A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 13:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7867F28C037;
-	Fri, 20 Jun 2025 13:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="XMz83gLG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A242290BB4;
+	Fri, 20 Jun 2025 13:54:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A525928A3FA;
-	Fri, 20 Jun 2025 13:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750427600; cv=pass; b=dKh7nF3U33Yxw7G8jnf+uqFjA2scoLB4dZWA6U1FWA3qIkIa5xzFmQXC00+Ra+7Oq20STIApIgXFfVjI6WfLk6TSjDUxJCXk0QqcJZ9UrUENt+ci1kHsJ9GG/RXzB9/wDqzoaM7oL918P5adXQB4xwNGhz/VHIYCzl5/kxwnYMs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750427600; c=relaxed/simple;
-	bh=k67JtgBrtKH5c8MilgA2/jhp1oqwbs+SGFRe0IdC070=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T6jD852rPQibHQtEzBx3j1hfvPLm6ige6Av5GfGmvhsNb96cidtKImeqYdYg8stpBcmBayOhOC8pdr1cmvtyyMKYLBpDNNkINNw/c7ea6duXP2JmELLQf1An7BwxrcgWMaSEVU1clGkbfVR4GLxvei0YA8z1qhcA8/dVDpxgiYo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=XMz83gLG; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750427571; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=TXFOrOvEz7z1ai2laSiHdc57LGo4WZ9k8SJkVhzrfhqnwR0b1rPncIkqMG4VX7ZpvyYelO0JBnkmhrDGjgGNrpwvL0TZWo94GZaOUrP9myK6Isj2y5llSo/uUrvLQed+opagwHRuo6jvJ5DavjSyw1jIYOsgxMftmwnigA714k0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750427571; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=V459JMUmyF9w2CF7odfd6vdr2BDTmJkRuH7Scgg3lLo=; 
-	b=MMTZaNXtnwEFO2WRdtoGadqLqAnzc/YzvA/W7Z2ArWiZ9cqNU/hUQfcLQz7ulhlcUlCExzCFwcpkxKIRch4wnIQqGxO8FpNFOfKNOtYKSO5v+JHODAaPbzxqXk0EJgb8OY3pLxG0u5SR9olb2fiMMO990y9JuMXKp99EdfKR/90=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750427571;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=V459JMUmyF9w2CF7odfd6vdr2BDTmJkRuH7Scgg3lLo=;
-	b=XMz83gLGVocBQQxhMXW3P41Im4nz6IP8qnRncCfexbBczpHYl1RS8MFGcilrvPYa
-	gCE6lYBG8nfrS65sPW5tCrhl4mTSHQSVEhOyY6KOT13Ijf6FE/ha3v2o/A2qCdvvEkw
-	32AsJPhSZf6Hzk8n3E2138cANxh3Z8xrQfCPOdmQ=
-Received: by mx.zohomail.com with SMTPS id 1750427570159193.5196944847704;
-	Fri, 20 Jun 2025 06:52:50 -0700 (PDT)
-Message-ID: <d9a1b9ab-b6ab-4364-a1b7-df4debc21bc1@collabora.com>
-Date: Fri, 20 Jun 2025 15:52:46 +0200
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8357528BA9B;
+	Fri, 20 Jun 2025 13:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750427669; cv=none; b=m5WlQI2E2J6ToI2v6PAQ5YrH6jny8J1euTHztvYM51UyGf8UcUnTfQ7j1UihYfKtpOL9lYyhQf8HN3kDaqXv9RNkf+jk4gq/DGX3yoKwX0Fq84aJnJJQXKLZDW4CBSpUgUKnzp0mz5URer4pkBVfWdZ7ugaJTGodVknxF/KJlq0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750427669; c=relaxed/simple;
+	bh=BvpOIHIHPayXbBCg+AnWxp8p+upzdU7E8EkS1HC85sU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qbwf4uH34IweB/Op7/FGEO/URB1T5ZwMQguUngvhEvKnpB1AT3mXy0VGl7XlMX7/MW/34ij3CqMdBXgf1zhz5yKg8QlLA/BDNaoHTe/YKxDRXQlauDHgAfn7Zlv4XwxnMfVgtxTxQwORtfXgC63ykz9bW/F94ZaKOXlP5+4WD4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6700516F2;
+	Fri, 20 Jun 2025 06:54:07 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 342DF3F58B;
+	Fri, 20 Jun 2025 06:54:25 -0700 (PDT)
+Date: Fri, 20 Jun 2025 14:54:22 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: arm: sunxi: Add Xunlong OrangePi 4A
+ board
+Message-ID: <20250620145422.26fdd14a@donnerap.manchester.arm.com>
+In-Reply-To: <20250619173007.3367034-2-wens@kernel.org>
+References: <20250619173007.3367034-1-wens@kernel.org>
+	<20250619173007.3367034-2-wens@kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] iommu: Add verisilicon IOMMU driver
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com
-References: <20250619131232.69208-1-benjamin.gaignard@collabora.com>
- <20250619131232.69208-4-benjamin.gaignard@collabora.com>
- <20250619134752.GB1643390@ziepe.ca>
- <073ffe14-d631-4a4f-8668-ddeb7d611448@collabora.com>
- <20250619165928.GA10257@ziepe.ca>
- <e034a111-93eb-42e8-a533-46553b4f5588@collabora.com>
- <20250620120509.GA39770@ziepe.ca>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <20250620120509.GA39770@ziepe.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Fri, 20 Jun 2025 01:30:03 +0800
+Chen-Yu Tsai <wens@kernel.org> wrote:
 
-Le 20/06/2025 à 14:05, Jason Gunthorpe a écrit :
-> On Fri, Jun 20, 2025 at 10:57:49AM +0200, Benjamin Gaignard wrote:
->> Le 19/06/2025 à 18:59, Jason Gunthorpe a écrit :
->>> On Thu, Jun 19, 2025 at 06:27:52PM +0200, Benjamin Gaignard wrote:
->>>> Le 19/06/2025 à 15:47, Jason Gunthorpe a écrit :
->>>>> Ugh. This ignores the gfp flags that are passed into map because you
->>>>> have to force atomic due to the spinlock that shouldn't be there :(
->>>>> This means it does not set GFP_KERNEL_ACCOUNT when required. It would
->>>>> be better to continue to use the passed in GFP flags but override them
->>>>> to atomic mode.
->>>> I will add a gfp_t parameter and use it like that:
->>>> page_table = iommu_alloc_pages_sz(gfp | GFP_ATOMIC | GFP_DMA32, SPAGE_SIZE);
->>> This will or together GFP_ATOMIC and GFP_KERNEL, I don't think that
->>> works..
->> I have test it, I don't see conflicts or errors. What worries you ?
-> Just looking at the bitmaps I'm not sure? Did you run with lockdep?
+Hi Chen-Yu,
 
-Yes and it complains about that.
-I see that sun50i driver have more less the same struct than my driver
-but doesn't use lock. I will try see if I can remove the lock.
+thanks for sending those patches!
 
->>>>>> +static int vsi_iommu_attach_device(struct iommu_domain *domain,
->>>>>> +				   struct device *dev)
->>>>>> +{
->>>>>> +	struct vsi_iommu *iommu = dev_iommu_priv_get(dev);
->>>>>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
->>>>>> +	unsigned long flags;
->>>>>> +	int ret;
->>>>>> +
->>>>>> +	if (WARN_ON(!iommu))
->>>>>> +		return -ENODEV;
->>>>>> +
->>>>>> +	/* iommu already attached */
->>>>>> +	if (iommu->domain == domain)
->>>>>> +		return 0;
->>>>>> +
->>>>>> +	ret = vsi_iommu_identity_attach(&vsi_identity_domain, dev);
->>>>>> +	if (ret)
->>>>>> +		return ret;
->>>>> Hurm, this is actually quite bad, now that it is clear the HW is in an
->>>>> identity mode it is actually a security problem for VFIO to switch the
->>>>> translation to identity during attach_device. I'd really prefer new
->>>>> drivers don't make this mistake.
->>>>>
->>>>> It seems the main thing motivating this is the fact a linked list has
->>>>> only a single iommu->node so you can't attach the iommu to both the
->>>>> new/old domain and atomically update the page table base.
->>>>>
->>>>> Is it possible for the HW to do a blocking behavior? That would be an
->>>>> easy fix.. You should always be able to force this by allocating a
->>>>> shared top page table level during probe time and making it entirely
->>>>> empty while staying always in the paging mode. Maybe there is a less
->>>>> expensive way.
->>>>>
->>>>> Otherwise you probably have work more like the other drivers and
->>>>> allocate a struct for each attachment so you can have the iommu
->>>>> attached two domains during the switch over and never drop to an
->>>>> identity mode.
->>>> I will remove the switch to identity domain and it will works fine.
->>> You'll loose invalidations..
->>>
->>> Maybe the easiest thing is to squish vsi_iommu_enable() and reorganize
->>> it so that the spinlock is held across the register programming and
->>> then you can atomically under the lock change the registers and change
->>> the linked list. The register write cannot fail so this is fine.
->>>
->>> This should probably also flush the iotlb inside the lock.
->> I will try to summarize:
->> in vsi_iommu_attach_device() I should:
->> - take the lock
->> - do nothing if the domain is the same.
->> - if iommu is used (ie powered up):
->>    - update the registers to enable the iommu
->>    - flush
->>    - update the link list
->> - update iommu->domain
->> - release the lock
-> That sounds believable, yes.. Though can you do the "powered up" checks
-> inside the spinlock - are they sleeping? Can they be done before the
-> spinlock?
->
->> in vsi_iommu_identity_attach() I should:
->> - take the lock
->> - do nothing if the domain is the same.
->> - if iommu is used (ie powered up):
->>    - disable the iommu
->>    - remove the node from the list
->> - update iommu->domain
->> - release the lock
-> And maybe flush too? How does the caching hw work at this point? You
-> can't have stale entries in the cache when you switch back to an
-> enabled/translating configuration. So either the HW flushes implicitly
-> or you need to add a flush somewhere..
+> From: Chen-Yu Tsai <wens@csie.org>
+> 
+> The OrangePi 4A is a typical Raspberry Pi model B sized development
+> board from Xunlong designed around an Allwinner T527 SoC.
+> 
+> Add its compatible name to the list of valid ones.
+> 
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-I do not have the documentation for the hardware but it seems that
-enable/disable are enough to do the job.
-  
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
->   
->> vsi_iommu_suspend() and vsi_iommu_resume() will also have to take the lock
->> before calling vsi_iommu_disable() and vsi_iommu_enable().
-> Yes, if they use iommu->domain that seems good
->
-> If the above locking is a problem then I'd use the group mutex instead
-> during resume/suspend. The attach functions are already called with
-> the group mutex held.
+Cheers,
+Andre
 
-Does group mutex is also called when using vsi_iommu_map or vsi_iommu_unmap ?
+> ---
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> index 7807ea613258..c41d0a0b89e6 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -996,6 +996,11 @@ properties:
+>            - const: xunlong,orangepi-3
+>            - const: allwinner,sun50i-h6
+>  
+> +      - description: Xunlong OrangePi 4A
+> +        items:
+> +          - const: xunlong,orangepi-4a
+> +          - const: allwinner,sun55i-t527
+> +
+>        - description: Xunlong OrangePi Lite
+>          items:
+>            - const: xunlong,orangepi-lite
 
->
->> Do I have to switch to identity domain in vsi_iommu_attach_device()
->> before applying the requested domain ?
-> No, that is what creates the security problem. What you want is to
-> update the HW registers in a way that the HW just changes hitlessly
-> from one translation to another, then flush the cache.
->
-> Jason
 
