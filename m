@@ -1,204 +1,160 @@
-Return-Path: <devicetree+bounces-187717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0BAAE11DD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:33:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C292FAE11E8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 05:48:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD1203AD994
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 03:33:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C3357A28A2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 03:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73BA1E3761;
-	Fri, 20 Jun 2025 03:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B0612F399;
+	Fri, 20 Jun 2025 03:48:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="b7p+CGN3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGApsDrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E795E1E0083;
-	Fri, 20 Jun 2025 03:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF59322E
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 03:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750390408; cv=none; b=Th4MR7X9k+uqRH9vbB/px+6GaC7JuabQCuzz1aS6NEWlQemQYRhPE81e+TotpfqZtqg3nfJL5x3xWuWwQIZ077m4tqTVLCHHoFx5HK+Iy1dwnj0vQ9x4cK63VPnAl6fQJXXrUc4MoYCAFzwPhh1OiiNbNo3p7r3EkBmX3T2Xq3Q=
+	t=1750391322; cv=none; b=nm3C+VIAJt5wsyIGMbe1SQ9Vc5JQIdQHoXxiDTdvQCtsKtNiqyBi1gDJF1zESCz4r1wXxqcu1IGc8JA38lIp/HcRZhViZ5BGWD4wOfQDAEoztsNkfbu/GRbZPtlrjJMtT0ewvXyW2MFwO0nptAWWoy0S1Bt3Jjn7eHeYzv/AKIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750390408; c=relaxed/simple;
-	bh=7b4Zgn39nbR0MuT55dc6lDAmtx2/UCmMGXfe6j+aHDM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lDMzZSsP9mmep/+ZmiqgckpqyUttWURRV/Nr1fQIlaeZO1SA7xZHK49lK5Vfsl+HQWO5m7HOUwQGaz48Chsa3BB1SLbhuTEK+M+/ZLXQTe20lmBMmpD9JIfXgcx4QCWWYk3YsfngvObR/l6/O1WmcmnWyCZTDWo+53WEe28kxSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=b7p+CGN3; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1750390407; x=1781926407;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7b4Zgn39nbR0MuT55dc6lDAmtx2/UCmMGXfe6j+aHDM=;
-  b=b7p+CGN3iZaohOfCj0jSyx5BmVs0qUlVWt74ZfAf4rsTplvghF6j00OI
-   GpW+qSCNdFauqBBKxVueNCc7NWx2E/BIpfwpBZEE9bRbZqGw97vJzNaaW
-   N7Dxj9d1ibKkb9E3ya8T47nrCCcXbtIx0TiJxWZjuX4IG+N+uZa8AllvB
-   p8qIP0vSrOcAXC1am0LiOVE8kSDqkmz90OyizTfvuUZDRzNqr5gZdgNay
-   HDgpbYC5NUMhH4nv+Sn0Nxg1R7VugFCexlllCA1DQgUKu2/zKtVs0uH8j
-   DDSS8CkJMps1CAqRql3WQVXAPTapBMN4xKaqG1jcf6oBAyF+ptWl8dodb
-   w==;
-X-CSE-ConnectionGUID: PGxJWrsqQPGaCPwXiRs5ng==
-X-CSE-MsgGUID: o46eXinqTou3R6l/IkgOPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="63692003"
-X-IronPort-AV: E=Sophos;i="6.16,250,1744095600"; 
-   d="scan'208";a="63692003"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2025 20:33:26 -0700
-X-CSE-ConnectionGUID: LwfHEg8eS0iD8pPsmJpIWA==
-X-CSE-MsgGUID: j7YO7yV7TuCOk+Ncl9X9mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,250,1744095600"; 
-   d="scan'208";a="151105039"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 19 Jun 2025 20:33:20 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uSSVB-000LLC-31;
-	Fri, 20 Jun 2025 03:33:17 +0000
-Date: Fri, 20 Jun 2025 11:32:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>,
-	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 8/8] drm/imagination: Enable PowerVR driver for RISC-V
-Message-ID: <202506201103.GX6DA9Gx-lkp@intel.com>
-References: <20250618-apr_14_for_sending-v5-8-27ed33ea5c6f@samsung.com>
+	s=arc-20240116; t=1750391322; c=relaxed/simple;
+	bh=VwrYgiU9qLl9h5RiaQZdlQWFJ3QfhivfwTz0HNGgX18=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=D2EdkxmBdwLJhiyCRD/T3oAqZe6289gIYywZ9KxQXHNsKCyZZ9RCig6fIFpVcWre58qQOoy51gcvJxLvpjMJuC3U2jk7uNESiGmrf8uHAanHazBBAdhAxdKCye6Jz04XIgOISWGtXjE0Mucmev/RbVEE5UlmtdLcdNKZBq49UN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JGApsDrb; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-af6a315b491so1227918a12.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jun 2025 20:48:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750391320; x=1750996120; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QQes6Cas/O2Il66TXoZhd9SrmsyHWm0zoxLufdtfzV8=;
+        b=JGApsDrb1U7qYrGKQXmlA9AlwgcqSv4i0Sa7V8Ue5lMiz/fCNDkMwjjjzhkQWACEFS
+         LGDEFJ/WmUc/CSN39T5ZFaWDq9In6YXLJwnVNfg8pUiI12uyyL92O8s0GLveO6wvSo3U
+         LCsjhyOUE0h0cokiKgUwofcMeCwzuIVnL5Sf5Rf7Z+BmcETiRjU6x5SyyXULVgDvQFbX
+         O2/07yRMyRhnG/i0bg/4+O6sQhJIi2iAOtbOtcB6FIWa1yx7iZsC1JKZFS2dHI/tGAG3
+         hXg3cln5o6vm4WzPj1Dt8icZKqhzXmgK4URnu4IGcbO9oKuyC9a+RSUFTEaRxvoe/fir
+         9ixw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750391320; x=1750996120;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QQes6Cas/O2Il66TXoZhd9SrmsyHWm0zoxLufdtfzV8=;
+        b=QzL4XvfeE+BwdAWPphen7jqxvjV+664S+VachVbriYXIRqBPtb0UvTDham7AttgXMH
+         glCQIo922rtEwB2wdplww4cCnJHhybnAfYQogSzfsyxWCvaB2LpwXlsczGYGH/WyfUm1
+         y56zngYF8PAwK+pfWfrYMQDk3V6dvHkbOcwmUsf/bjBrzlBGNdqgbqFwOHC4CTYjE7zy
+         /5ch1oiLNqUUtmu7QGLibHzoB9DlRAW2GFUdeoSD4nZbIGIM+vWP9xFN6Kuw/AQdqEzm
+         jOHA3oG9ubZezqW9oRDHcvkvx7Va41jE+Tba2S8P7t3T//edyIjiIlxUE05vA1gJoxGu
+         7hAw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2ECGn6h/ua6nCoI4C+36XqpaZg28XCvxZsLNtscYkHVK7ollnyC21e2V8MooTyd2Xx4s8GTLniY/4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLbSEwzSHpqLepFBBGJMJ6aeXRuCEVRKOWuf/Vw7KImWHbYXhA
+	FVSlM3UYZBgLDsqnfXvU3d4vn7hSzg2hBnxW6QXJBSURluNzo/Y8rJ6Hey8vZEgP
+X-Gm-Gg: ASbGnctWO+TmAg1FOFF2nXUmFPm8vnMsArraHD0GzHCxJ4V/IeztlBNFp1We6uoseRB
+	WS1Ud5zVeK57asnxOkCMQka+jHllUEY6qa8r9omO8bpdxOGthbbMS/d0JI76Ye0IgfgkhGGdSw4
+	UBsiJOOnaFHvIzhQD+3yG/kDqkpNJ8jRSriuzae8QEe7K0P9rrqJXPwEIc/U+wBgXTt2EqRX5lF
+	IuBDGU9h1UI4pqbBdnnoy05bQDyf2iUJo2oRnC/MaJWcpNkoK+Fj7HNtXYaZ8D7/OkG3dtmpAGg
+	yZNxYxdnSRmDOWi/yKCJcP+QdpNMe9yJTl1vnJxkRhmIhhvN5CPAqI8ZVv6VC2xD4w9vMnofzve
+	ts9wrOEbBCxhfV3G9MZC/nteskdJ/qwymg4PksCH5
+X-Google-Smtp-Source: AGHT+IFqygRUTa0qJH/jbI08TI3HUb3mAZh2qKl49pKcYEj8JLf7VIlo3CRV1/wH5tEEYbYFsSXvlg==
+X-Received: by 2002:a17:903:22d2:b0:234:d7b2:2abd with SMTP id d9443c01a7336-237d991fa85mr18639095ad.19.1750391320103;
+        Thu, 19 Jun 2025 20:48:40 -0700 (PDT)
+Received: from lcwang-Precision-3630-Tower.. (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-237d861061dsm6935075ad.118.2025.06.19.20.48.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 20:48:39 -0700 (PDT)
+From: lcwang <zaq14760@gmail.com>
+X-Google-Original-From: lcwang <lcwang@ieiworld.com>
+To: zaq14760@gmail.com,
+	Conor Dooley <conor@kernel.org>
+Cc: cip-dev@lists.cip-project.org,
+	drm@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	noralf@tronnes.org,
+	robh+dt@kernel.org,
+	krzk@kernel.org,
+	onlywig@gmail.com
+Subject: Re: [PATCH 3/3] dt-bindings: display: Add MAYQUEEN PIXPAPER e-ink panel
+Date: Fri, 20 Jun 2025 11:48:33 +0800
+Message-Id: <20250620034834.734926-1-lcwang@ieiworld.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250619-earlobe-skiing-25605816a861@spud>
+References: <20250619-earlobe-skiing-25605816a861@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250618-apr_14_for_sending-v5-8-27ed33ea5c6f@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Michal,
+From: LiangCheng Wang <zaq14760@gmail.com>
 
-kernel test robot noticed the following build warnings:
+On Thu, Jun 19, 2025 at 16:43:46PM +0100, Conor Dooley wrote:
+> > spi-max-frequency:
+> >   default: 1000000
+> >   description: Maximum SPI clock frequency in Hz.
+> 
+> Does this actually not have a max?
+> The display surely has a maximum supported frequency, which might be
+> lowered based on the board it is connected to.
 
-[auto build test WARNING on 4774cfe3543abb8ee98089f535e28ebfd45b975a]
+On Wed, Jun 18, 2025 at 08:13:38AM +0200, Krzysztof Kozlowski wrote:
+> Don't send multiple patches but version them correctly.
+> 
+> > title: MAYQUEEN PIXPAPER e-ink display panel
+> 
+> Don't capitalize all letters. Mayqueen Pixpaper or whatever it is really called.
+> 
+> > description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+> 
+> > reg:
+> >   maxItems: 1
+> >   description: SPI chip select number for the device.
+> 
+> Drop description
+> [similarly for spi-max-frequency, reset-gpios, busy-gpios, dc-gpios]
+> 
+> > additionalProperties: false
+> 
+> unevaluatedProperties instead
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wilczynski/power-sequencing-Add-T-HEAD-TH1520-GPU-power-sequencer-driver/20250618-182429
-base:   4774cfe3543abb8ee98089f535e28ebfd45b975a
-patch link:    https://lore.kernel.org/r/20250618-apr_14_for_sending-v5-8-27ed33ea5c6f%40samsung.com
-patch subject: [PATCH v5 8/8] drm/imagination: Enable PowerVR driver for RISC-V
-config: sparc64-randconfig-r121-20250620 (https://download.01.org/0day-ci/archive/20250620/202506201103.GX6DA9Gx-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 8.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250620/202506201103.GX6DA9Gx-lkp@intel.com/reproduce)
+Hi Conor, Krzysztof,
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506201103.GX6DA9Gx-lkp@intel.com/
+Thanks for your detailed reviews!
 
-All warnings (new ones prefixed by >>):
+To Conor:
+Regarding the spi-max-frequency property,
+you’re correct that the display has a maximum supported SPI clock frequency.
+The provided datasheet for the Pixpaper controller does not explicitly specify this value,
+but I’ve tested the panel on the RZ/V2H platform and found 1000000 Hz (1 MHz)
+to be the most stable operating frequency.
+The current binding’s default of 1 MHz reflects this tested configuration.
+To ensure clarity and prevent misconfiguration,
+I will update the binding to define a maximum: 1000000 constraint for spi-max-frequency in the YAML schema,
+pending further datasheet confirmation
 
-   drivers/gpu/drm/imagination/pvr_mmu.c:57:3: error: #error Unsupported device page size PVR_DEVICE_PAGE_SIZE
-    # error Unsupported device page size PVR_DEVICE_PAGE_SIZE
-      ^~~~~
-   In file included from ./arch/sparc/include/generated/asm/rwonce.h:1,
-                    from include/linux/compiler.h:390,
-                    from include/linux/dev_printk.h:14,
-                    from include/linux/device.h:15,
-                    from include/linux/node.h:18,
-                    from include/linux/memory.h:19,
-                    from drivers/gpu/drm/imagination/pvr_mmu.h:7,
-                    from drivers/gpu/drm/imagination/pvr_mmu.c:4:
-   drivers/gpu/drm/imagination/pvr_mmu.c: In function 'pvr_page_table_l1_entry_raw_set':
-   drivers/gpu/drm/imagination/pvr_mmu.c:577:50: error: 'ROGUE_MMUCTRL_PAGE_SIZE_X' undeclared (first use in this function); did you mean 'ROGUE_MMUCTRL_PAGE_SIZE_1MB'?
-         PVR_PAGE_TABLE_FIELD_PREP(1, PD, PAGE_SIZE, ROGUE_MMUCTRL_PAGE_SIZE_X) |
-                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/rwonce.h:55:33: note: in definition of macro '__WRITE_ONCE'
-     *(volatile typeof(x) *)&(x) = (val);    \
-                                    ^~~
-   drivers/gpu/drm/imagination/pvr_mmu.c:574:2: note: in expansion of macro 'WRITE_ONCE'
-     WRITE_ONCE(entry->val,
-     ^~~~~~~~~~
-   drivers/gpu/drm/imagination/pvr_mmu.c:577:6: note: in expansion of macro 'PVR_PAGE_TABLE_FIELD_PREP'
-         PVR_PAGE_TABLE_FIELD_PREP(1, PD, PAGE_SIZE, ROGUE_MMUCTRL_PAGE_SIZE_X) |
-         ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/imagination/pvr_mmu.c:577:50: note: each undeclared identifier is reported only once for each function it appears in
-         PVR_PAGE_TABLE_FIELD_PREP(1, PD, PAGE_SIZE, ROGUE_MMUCTRL_PAGE_SIZE_X) |
-                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/rwonce.h:55:33: note: in definition of macro '__WRITE_ONCE'
-     *(volatile typeof(x) *)&(x) = (val);    \
-                                    ^~~
-   drivers/gpu/drm/imagination/pvr_mmu.c:574:2: note: in expansion of macro 'WRITE_ONCE'
-     WRITE_ONCE(entry->val,
-     ^~~~~~~~~~
-   drivers/gpu/drm/imagination/pvr_mmu.c:577:6: note: in expansion of macro 'PVR_PAGE_TABLE_FIELD_PREP'
-         PVR_PAGE_TABLE_FIELD_PREP(1, PD, PAGE_SIZE, ROGUE_MMUCTRL_PAGE_SIZE_X) |
-         ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/imagination/pvr_mmu.c: In function 'pvr_page_table_l0_entry_raw_set':
-   drivers/gpu/drm/imagination/pvr_mmu.c:741:24: error: 'ROGUE_MMUCTRL_PAGE_X_RANGE_CLRMSK' undeclared (first use in this function); did you mean 'ROGUE_MMUCTRL_PAGE_1MB_RANGE_CLRMSK'?
-              (dma_addr & ~ROGUE_MMUCTRL_PAGE_X_RANGE_CLRMSK) |
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/rwonce.h:55:33: note: in definition of macro '__WRITE_ONCE'
-     *(volatile typeof(x) *)&(x) = (val);    \
-                                    ^~~
-   drivers/gpu/drm/imagination/pvr_mmu.c:739:2: note: in expansion of macro 'WRITE_ONCE'
-     WRITE_ONCE(entry->val, PVR_PAGE_TABLE_FIELD_PREP(0, PT, VALID, true) |
-     ^~~~~~~~~~
-   drivers/gpu/drm/imagination/pvr_mmu.c: In function 'pvr_page_table_l0_idx':
-   drivers/gpu/drm/imagination/pvr_mmu.c:1713:9: error: 'ROGUE_MMUCTRL_PAGE_X_RANGE_SHIFT' undeclared (first use in this function); did you mean 'ROGUE_MMUCTRL_PAGE_4KB_RANGE_SHIFT'?
-            ROGUE_MMUCTRL_PAGE_X_RANGE_SHIFT;
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            ROGUE_MMUCTRL_PAGE_4KB_RANGE_SHIFT
->> drivers/gpu/drm/imagination/pvr_mmu.c:1714:1: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
+To Krzysztof:
+I'll make the following changes to the device tree bindings:
+- Update the title to "Mayqueen Pixpaper e-ink display panel".
+- Remove the '|' from the description.
+- Drop redundant descriptions for reg, spi-max-frequency, reset-gpios, 
+  busy-gpios, and dc-gpios.
+- Replace `additionalProperties: false` with `unevaluatedProperties: false`.
 
-
-vim +1714 drivers/gpu/drm/imagination/pvr_mmu.c
-
-ff5f643de0bf27 Donald Robson 2023-11-22  1696  
-ff5f643de0bf27 Donald Robson 2023-11-22  1697  /**
-ff5f643de0bf27 Donald Robson 2023-11-22  1698   * pvr_page_table_l0_idx() - Calculate the level 0 page table index for a
-ff5f643de0bf27 Donald Robson 2023-11-22  1699   *                           device-virtual address.
-ff5f643de0bf27 Donald Robson 2023-11-22  1700   * @device_addr: Target device-virtual address.
-ff5f643de0bf27 Donald Robson 2023-11-22  1701   *
-ff5f643de0bf27 Donald Robson 2023-11-22  1702   * This function does not perform any bounds checking - it is the caller's
-ff5f643de0bf27 Donald Robson 2023-11-22  1703   * responsibility to ensure that @device_addr is valid before interpreting
-ff5f643de0bf27 Donald Robson 2023-11-22  1704   * the result.
-ff5f643de0bf27 Donald Robson 2023-11-22  1705   *
-ff5f643de0bf27 Donald Robson 2023-11-22  1706   * Return:
-ff5f643de0bf27 Donald Robson 2023-11-22  1707   * The index into a level 0 page table corresponding to @device_addr.
-ff5f643de0bf27 Donald Robson 2023-11-22  1708   */
-ff5f643de0bf27 Donald Robson 2023-11-22  1709  static u16
-ff5f643de0bf27 Donald Robson 2023-11-22  1710  pvr_page_table_l0_idx(u64 device_addr)
-ff5f643de0bf27 Donald Robson 2023-11-22  1711  {
-ff5f643de0bf27 Donald Robson 2023-11-22  1712  	return (device_addr & ~ROGUE_MMUCTRL_VADDR_PT_INDEX_CLRMSK) >>
-ff5f643de0bf27 Donald Robson 2023-11-22  1713  	       ROGUE_MMUCTRL_PAGE_X_RANGE_SHIFT;
-ff5f643de0bf27 Donald Robson 2023-11-22 @1714  }
-ff5f643de0bf27 Donald Robson 2023-11-22  1715  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+LiangCheng Wang
 
