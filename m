@@ -1,114 +1,126 @@
-Return-Path: <devicetree+bounces-187869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54474AE18C5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:25:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E0B1AE18CF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:27:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFEEC4A582A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:25:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 062C51BC4DBF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF3328137A;
-	Fri, 20 Jun 2025 10:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDA82836B4;
+	Fri, 20 Jun 2025 10:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzrLYvSV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDdk+xum"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D052199947;
-	Fri, 20 Jun 2025 10:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A6D199947;
+	Fri, 20 Jun 2025 10:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750415107; cv=none; b=VbT9jQAuDdH81KX2wzuVVVd3beWeHexfPXwLXCHSNh/K7ZsGh8nZTK9kYUzH4ooofHD4Zx2U6TMy2EB87Nc8LrViQNV3G5w8S+ZfjFSp9EALEfzEIPsQtvGrJRlftBZvYjnXI/hBNtOqqrYqhHiDwzXFH04l2PbTKya1FWj9dwk=
+	t=1750415268; cv=none; b=CO1nbDEPPL9FbY/Sk4viCCVv4H4DTQy3i2ZAZltq4PD3HessslbGzALq8W/QS3ezZutBlU4ATlVxXycxEGw5pSXcEQbXWQeg/Vek/qZfqYPtO8VAPqHL8qLIDPeGT9baUYbrxniAKcIFi4zqZ6vYFodToBumgyjUYZru6SvT/7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750415107; c=relaxed/simple;
-	bh=AM7DVcQLLEVCySf0Dm2EF4P8th0PDvSwnYa8gtMQNbA=;
+	s=arc-20240116; t=1750415268; c=relaxed/simple;
+	bh=8ZaXuRIcCN5t1dEdAZ8c4UKN9AUODzeOKp5agQy1JNE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mW7qThAXNmvIkXvdINJqShOavepjfpJd9dkApooCktgRi+tHewXikXNJ6FehLNnK22kIjmzF6HXU+QjkeodCKv4LTWs/P7h11Xb9pnAdcEiLsEcV7I7WmzUdBtu97xr4lxFlNsw+AU9gFAgs9H2e02DZlDaIFp2Md2legWSwsvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzrLYvSV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16F4DC4CEEE;
-	Fri, 20 Jun 2025 10:25:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IbNV1zlxrvOa1oIbZhCkxgHxVYaWoqxXxcP03tZ5e3q4I901Uogty9g75kP3jwOYoJSgz7KiSQP4U+eNKGiH0paHPj4Uf4znsgxUv7YfnUxPkMPmT936XYqoqYedtr5I2Qn9+6jSbJWR7qN4++HXeAMPPowuHc4sJGCro8MF81w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDdk+xum; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 479CCC4CEE3;
+	Fri, 20 Jun 2025 10:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750415106;
-	bh=AM7DVcQLLEVCySf0Dm2EF4P8th0PDvSwnYa8gtMQNbA=;
+	s=k20201202; t=1750415267;
+	bh=8ZaXuRIcCN5t1dEdAZ8c4UKN9AUODzeOKp5agQy1JNE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uzrLYvSVfmYRwzYPrxkixlOGWyI5b9wQDA7R/NT5k9jDgG8fpIONX+anIhKq2cEXV
-	 /UBEUHa0wnoGZoyGr239oYiF1x7yOZ3goHGly+fq389YY30O/2xlqKiNk/4IYHJ+ha
-	 01MG/9/s5WuvUja1VVDHUwrEM5FtP5JsQnEGJ8YFNMZ8rRN+j0dspjOoRV7jhkmpMI
-	 jQLT6TlZ/hhH11vK3jtvxsIx7ygFI1jo9fd3GRyaHMfA6h8ePzMcETylLtOK8Uxy47
-	 OKEBLq+XU48e8jyQYskY0VpDIO4n4SRIAznUlFSXaL/rfPnyyqHpUBhvFhSnL6kINu
-	 ZqvkBkye2i/wg==
-Date: Fri, 20 Jun 2025 11:25:01 +0100
-From: Simon Horman <horms@kernel.org>
-To: Ryan.Wanner@microchip.com
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: cadence: macb: Expose REFCLK as a device tree
- property
-Message-ID: <20250620102501.GF194429@horms.kernel.org>
-References: <cover.1750346271.git.Ryan.Wanner@microchip.com>
- <c5de54b31ed4a206827dfaf359b0bb9042aaca74.1750346271.git.Ryan.Wanner@microchip.com>
+	b=FDdk+xum4CQ3J1mF/DGW1PGg2u89KQk/gjS7/HKD1c4e01QdSlosKtr4KGRjAMOTZ
+	 AuNFHwaMbm2FeuTR88thtQ/oWfNyE5dffYaVSVqY2KQfmw63jFNBsaBvobnsOBFM++
+	 691ba0s2wtCCmJ+ciQIEd+6o4ND/0rQ9OadKg3zLw62J8dp9BJttTjG81iPbXF3yKK
+	 4cMPMMPdAf6jX2h1YeHj5zaNQtQh4mH7LG3/WSlI5b94XfaaGPrJk+GY146PNT5EtI
+	 IL2KDy+rUJmn6Q6bFwnKki+uLC06eG9qrcd6ZvwWSocNQiIlPxjRBQBg7e0vjTtIHj
+	 93X2tvQqyuRwA==
+Date: Fri, 20 Jun 2025 12:27:44 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: pwm: argon40,fan-hat: Document
+ Argon40 Fan HAT
+Message-ID: <foiatljwemu3owuogzekgiydcyedxbhb2nyvzbs53zuxx7yohs@atpwrceby5fd>
+References: <20250617092037.37229-1-marek.vasut+renesas@mailbox.org>
+ <20250617092037.37229-2-marek.vasut+renesas@mailbox.org>
+ <20250617133744.GA1888765-robh@kernel.org>
+ <2e152214-5f2d-451c-8659-941184cd8fdd@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="c46vdgxgomsxt4zs"
 Content-Disposition: inline
-In-Reply-To: <c5de54b31ed4a206827dfaf359b0bb9042aaca74.1750346271.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <2e152214-5f2d-451c-8659-941184cd8fdd@mailbox.org>
 
-On Thu, Jun 19, 2025 at 10:04:14AM -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> The RMII and RGMII can both support internal or external provided
-> REFCLKs 50MHz and 125MHz respectively. Since this is dependent on
-> the board that the SoC is on this needs to be set via the device tree.
-> 
-> This property flag is checked in the MACB DT node so the REFCLK cap is
-> configured the correct way for the RMII or RGMII is configured on the
-> board.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
->  drivers/net/ethernet/cadence/macb_main.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index d1f1ae5ea161..146e532543a1 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -4109,6 +4109,8 @@ static const struct net_device_ops macb_netdev_ops = {
->  static void macb_configure_caps(struct macb *bp,
->  				const struct macb_config *dt_conf)
->  {
-> +	struct device_node *np = bp->pdev->dev.of_node;
-> +	bool refclk_ext = of_property_present(np, "cdns,refclk-ext");
->  	u32 dcfg;
 
-Hi Ryan,
+--c46vdgxgomsxt4zs
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 2/3] dt-bindings: pwm: argon40,fan-hat: Document
+ Argon40 Fan HAT
+MIME-Version: 1.0
 
-Some minor feedback from my side.
+Hello Marek,
 
-1. of_property_read_bool() seems slightly more appropriate here
-2. Please consider arranging local variables in Networking code
-   in reverse xmas tree order - longest line to shortest.
+On Tue, Jun 17, 2025 at 03:48:13PM +0200, Marek Vasut wrote:
+> On 6/17/25 3:37 PM, Rob Herring wrote:
+>=20
+> [...]
+>=20
+> > > +++ b/Documentation/devicetree/bindings/pwm/argon40,fan-hat.yaml
+> > > @@ -0,0 +1,48 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pwm/argon40,fan-hat.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Argon40 Fan HAT PWM controller
+> > > +
+> > > +maintainers:
+> > > +  - Marek Vasut <marek.vasut+renesas@mailbox.org>
+> > > +
+> > > +description: |
+> >=20
+> > Don't need '|'.
+>=20
+> Fixed in V4 ...
 
-   This tool can be helpful for this
-   https://github.com/ecree-solarflare/xmastree
+That sounds as if there is already a v4 on the lists. I don't find such
+a patch series though. Am I missing something or just misinterpreting
+your words?
 
-	struct device_node *np = bp->pdev->dev.of_node;
-	bool refclk_ext;
-	u32 dcfg;
+Best regards
+Uwe
 
-	refclk_ext = of_property_read_bool(np, "cdns,refclk-ext");
+--c46vdgxgomsxt4zs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhVN50ACgkQj4D7WH0S
+/k6P5gf/TPtqvZOLxU/tA8vZQmMSdQP78vV4Tg9EJnssQRAM03y9ZUxMSQdcw6kf
+xHUqZJ0IQLyF4UcWom8JJLZUrtFWEOCx8x0wj53PSWO7+5KQtc2BTiWxWEfqzkJu
+1i51XtXB9oPBSjGa8RzW7vboEhzbNGjtT5AVt7ruVW6rT2Y1OsAbKQg90q5wi53K
+Ok0Eq8hLKPbKAWTkLm6QfHC08NbSc/0qrymIA2WXKCrxFLaV9sbF9orGltlQBm1N
+LPVrSgP+M7vHzShEWTpCd4HaethV/G+YIGjeJTOLIlQjbk3KAG9vdINyUkKlP9gz
+fGxuegx0+/2Umu2UNLRvM3FIRe39hg==
+=84d0
+-----END PGP SIGNATURE-----
+
+--c46vdgxgomsxt4zs--
 
