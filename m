@@ -1,246 +1,193 @@
-Return-Path: <devicetree+bounces-187958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E39AE1EBB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:34:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81512AE1EFB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 17:43:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13DCF1642F8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:32:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C53453B66FC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 15:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CC82C030B;
-	Fri, 20 Jun 2025 15:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDAF52D1907;
+	Fri, 20 Jun 2025 15:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ogiSpvq2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8C4J6+/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37FA2BF3EC
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:30:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87A919A297;
+	Fri, 20 Jun 2025 15:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750433412; cv=none; b=s+EhEWs4ztNdPXtkn0hetkmVYKJjk/kwUEljlEVcCPNtAMWme7vMdoftq1BQOIyMd+pJOytUaiDL0vuchwmAKgqHaOoUf5AeX4H2AUrzDMRgYL0p+XgZUrFWXDm3SUPKqMfDNnWNLoW6Eo3+mlRjnZ5YqkDzCrLNuqB0GmrTe0g=
+	t=1750433943; cv=none; b=BzmJS2E9pTuKYwaBWzb3ZCa1StIynaA3DWZrrR0ao/ChzUbRmdTGtvc5t9Lf+gRDWslTZnh1lFW0t1WWdDE+nJF2C4Yi7Nwhl6UgHj10H1RLW5CL2OpeovAPqmkCEtvFzWdmeZjs9t57on/dwYRcmOf6U3QQGw1I2j5c7gbXklc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750433412; c=relaxed/simple;
-	bh=qrK+g8uFS5jCwIrF/y9iS780oV3CUwyCR8EUvUcUI+8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=aettNxDxFF9xxVflXtGkVpawfUpCdJCHJI+XQIXswdLIy0dAg1wWjiW85weKwoeRJMg+EHqY7kMnhOpY67/1qfL2D7qC5Ea4yTWRVonVxd7F78acnx0bOEXvO/94Ne28XfC9U3JqV494gr2fLfhaHLL0wD6Wv9ohCpoeFhbah+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ogiSpvq2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55KFSjTm011667
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:30:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=k3p0MRfoHu8fKYagWl8N6v
-	dVSrVlA4Y1hENWlSrKnmw=; b=ogiSpvq2mMpWnKLDqbijnoc0NQt+alAJXELG9a
-	ib2iGkRHOBcTLrVhiLbeNGdqRjyfnNSX4LByoZQKSre9N6AozsGruNtYBmUyD9cE
-	Uzm1ssVtZQHoAkdXafom5LZbJlYC22aG7ARIM4q4gf/G0bTelfTOncRf87aNrkuI
-	+oEy6MAOohcZvRjhJDjptdAh7Zkzgs3Nz7pN+kICRXPs7MAJ8r1LiaaiC17EtbZK
-	O3V45XlJxbbpVI9ILxnBlQelSpT1fnhC/sY0KijWASWTdyDZrS7hk8lJEE4KWcBy
-	Vgd5ULYSJ2SCfOa0SsQCPfLXFo2xrTQ9loYLFzOlolRICBQQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47daadg04j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 15:30:09 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-74913385dd8so807358b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 08:30:09 -0700 (PDT)
+	s=arc-20240116; t=1750433943; c=relaxed/simple;
+	bh=kdiPdMh5+sRzNgtYRKj/S0sAtUte5v+zpvWVg0DO3wo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Ch5qtOPcd0Wjabr/4wqjNFw/njH8Ieqj8OhdVuXWLOxYLkvWy21xGEyeavlxnLZUberuBkc3QPWp0S3/6K7/LvqT/6/p1n3kVqb+24Nwwg5rMR2yfXMqZILcJstCZvWYKWMC7vklqdIBwz24wjU3BJaYqamQxOqWjaGNDfT+daA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8C4J6+/; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-451e2f0d9c2so14548045e9.1;
+        Fri, 20 Jun 2025 08:39:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750433940; x=1751038740; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/5X6IDTVHTHpEsUSABa7MSKK8TKkDRNQdpFJlmd5FHY=;
+        b=f8C4J6+/wg6QDOROSMmYbZ0GaohbAYmB1NCpq+JNCD6g5PzcOwFtYBUIzSyWZ/Wr5U
+         zVaVjhS0AgsvlOebSkSK5BOR48g56bs0DWYnng4UwCXH6s7cwJFVSKreKYC2/hB8xiFd
+         lrp5oTOpchNWDWv+UXs7tNXR7GHOBdnY7LZw9z7pDIDjNi8YFm2zScoIUjNY7kHKsSV4
+         iaM4Lgx7YEezRGkBhozRSl9JLzbjkHN/orKXmzfG4lJPicJ2tU0zkkn5mHuR+8n3xwym
+         MwH9Gcbl3t51tvO0tQah5HrH/KawqhXQHRpxewpGHrCcobwTzKvSOol6csHgXlqkwh8z
+         nLTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750433409; x=1751038209;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k3p0MRfoHu8fKYagWl8N6vdVSrVlA4Y1hENWlSrKnmw=;
-        b=kih8D1q8ljpU71ekVPYcK9WB4sIg3JCRD/IVVP4CyLr4vfonc+mQeJQsTQadAgxfmh
-         IMgEScrPV6Z4xgavkO03VfZ9ApdEYrheWU02IV01fqQKZpeYv0S9YSU15dm9lCvk9v5u
-         1KRKdqM5HaUZMglucoPUAotkLTi83SNA3nVSFU3CnE8Z+oQlZ0x2FdYGU25OZpSuTzo9
-         QH43xUsIL/kKfNLYANMA0sXpxMtA49TmEGv9FotAHpaBwwIaZy48PkSqGHLV21L78UKM
-         G6aKST1iz7fR8SVfoFilchmfHrj0h2fcAeZ7AV3OtF+TFR5SwZuPvUa9+PL8x6glJZ4I
-         OR0g==
-X-Forwarded-Encrypted: i=1; AJvYcCUOw3fkcX63YOAjFoNAavqz5XHr2K4RyXORDasZPojTt5Qb0Bw0+aaw4lGi0amrhEOAsXCbE5h1VS1E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx29/YJL5GmkoLUukWfGTzT6X+9xF+l0itFm+ffLuvbyUdMCC8m
-	DevA5IidF1UVfJAIvjVXD04jCrZoT7L/us7Qjb1TozojszO0MxDRzoRfyY1Jr+mT8SbTAoqkPgR
-	S8eTC/no2+cnq5J3GkRHpFFacM2S69c1u8JR8WBZ6d7wxFk0RgB6tY4SWV4QQrdg6
-X-Gm-Gg: ASbGncupP8+WS9ofiJV70wr1lwK5R/cskg2cCxOIZfrRCbAiY2m6oF3tP7O8bGe3sK1
-	8zt1H29bvBXLjQonok1/tZbENMT06ouhLykNFyKRSZsZ+qwz3vCvW4seM5uI2U4z0yH9IoJL3OW
-	by5lySncTHEj58lsqbXapP3wtUH4fuiOW32j1PNRErnp1WZOfDsojWKTDqVZtTu8afXnAUe4ApO
-	KUcR3zNxIubSsy9T68A/8ZgAZGH4N9Hv4X9UNIoAn70LPmh071HL0M3b/lhzvUtnw6geiEjcnbf
-	7r+RPquDSa9gHRqNPu73SIhN3w27pDlLtJzD1o8PRJfUbvymM/WB
-X-Received: by 2002:a05:6a00:4b01:b0:748:de24:1ade with SMTP id d2e1a72fcca58-7490d68fcb4mr4606341b3a.7.1750433408777;
-        Fri, 20 Jun 2025 08:30:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEvtqPX33TWfpQenQzjTpOFa9WMicPOtPgim4QK/sA+F9VvyomGXqrpXFCcbArQzYyMIUA7+w==
-X-Received: by 2002:a05:6a00:4b01:b0:748:de24:1ade with SMTP id d2e1a72fcca58-7490d68fcb4mr4606165b3a.7.1750433406860;
-        Fri, 20 Jun 2025 08:30:06 -0700 (PDT)
-Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7490a46b0a3sm2355439b3a.21.2025.06.20.08.30.03
+        d=1e100.net; s=20230601; t=1750433940; x=1751038740;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=/5X6IDTVHTHpEsUSABa7MSKK8TKkDRNQdpFJlmd5FHY=;
+        b=GJvtxk7fx3+S+adiKpz8GM/yQ8DpkBBWyooNZ0dvwPDlp0t/Pexm4pKPWpRZ0K3DgK
+         G7gONSM5ggooY/BvoDkxBGsF0a7Ihlk3L3eTkkDL2xaaD0ZK/5j9qP6U5CgZ4DTmF3h7
+         FwST8E5flromyBj4j4+30hanoLIN2W5KeB6+IixpPF7xWvNG3OY4VQvdLuwI4aLqq+il
+         Sop875q4yrHa6JcC/Lfy6ftYMGeSHdozR9W3Q1HDl0HfK9xHZQaHZBM7GMe3uHgHnpao
+         ariOXvXCihYoSz0fkNJfubgNMVdsm93mqAbUefJLyx6MUnPDs9fUIQEl6ZiM9Tcabl2N
+         H50Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV3YP7tRD3c3jI3ZmOywU1OLxCIhsNVM5okp7RhERaE9GQSkAB1qkaD3Pb6QkKUweHeHU3rwj1AfapK@vger.kernel.org, AJvYcCVVl73jjX6cAuFjEnoyEBMQYdMuRkAUSSTAos0Vfn4op+fBpmuwWDasCNShRjjjCdwgjAj5APJVJNn4SaPreD8=@vger.kernel.org, AJvYcCWBlJIgaSl0qMqDHknpShnN5D/CCW4taphFV70i1Tptadw3x6uF//6HGkUg/O2QDR+8YaEClKUaN/VpMQ==@vger.kernel.org, AJvYcCXqn6+8g2JSq9Qvgn6MV6DQ8MKCHWYM2jvu5VkhJJFsF+gDs5Yac2b9xsZMhOJoqRfcxrTWMUCFrBNCu9S7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJ5DVI/slNwimObtWSKpeO9uFD36DGrTbQMgn21PVHUR68s5SN
+	vSu1QTO7jkLxCDFx0k8NuotUAtce1b2vWFAA+IBUAHOcmIi3Ij/RPflX
+X-Gm-Gg: ASbGnct66P1fiE5xef0h9U9R/fm7yrMHkAHvhDOPB8vG4LDrrAIeheSfnVqLrkZVNJg
+	Mv+NQT5SfDJrEz4xmnbRl9mHegfZSGX8b/zbejrmyqaq3NRoJd4ZPqwsgSZWrwbJYp4NzuuZzGW
+	g2M+V/ZJaYMir/aRnWKN0ZUkpVeyDqS5z6QLy4JlYqUgNeQ0Y6pIkqETztZGLog1/1yt1HTSrRl
+	QlPO633LTpmuPigQh0MqU9fh1vmem5UXY0X0vtzGv4h1UbRto7hYBTwDj2ALsdV7KPScrkLYPPq
+	WOq41ci0iluewTqymCrS7+tV/Ipi/Lh+LzVjLKw80mZOEDR/6bgwgANHYjTSqs/rfX5VUctIW+i
+	NQiDjDkn4w2AvFouUhLTf3T09ymtQxyWvIGqV
+X-Google-Smtp-Source: AGHT+IHBTlMifqap8Yx6rGoRjLGMK3thDNHDyszupBIkp4SOG430SYgjLtQZVOEL2dpCSM+Fq0Q+Ww==
+X-Received: by 2002:a05:600c:1c02:b0:453:9b3:5b58 with SMTP id 5b1f17b1804b1-45365e4a008mr26113405e9.4.1750433939906;
+        Fri, 20 Jun 2025 08:38:59 -0700 (PDT)
+Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a6d117c6b2sm2392627f8f.46.2025.06.20.08.38.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jun 2025 08:30:06 -0700 (PDT)
-From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Date: Fri, 20 Jun 2025 20:59:57 +0530
-Subject: [PATCH v2] arm64: dts: qcom: sm8550: Correct the min/max voltages
- for vreg_l6n_3p3
+        Fri, 20 Jun 2025 08:38:58 -0700 (PDT)
+Sender: Igor Korotin <igorkor.3vium@gmail.com>
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+To: "Rafael J . Wysocki" <rafael@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Alex Hung <alex.hung@amd.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Igor Korotin <igor.korotin.linux@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+	Remo Senekowitsch <remo@buenzli.dev>,
+	Tamir Duberstein <tamird@gmail.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Xiangfei Ding <dingxiangfei2009@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Benno Lossin <lossin@kernel.org>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	Len Brown <lenb@kernel.org>,
+	Trevor Gross <tmgross@umich.edu>
+Subject: [PATCH v8 5/9] rust: driver: Consolidate `Adapter::of_id_info` methods using `#[cfg]`
+Date: Fri, 20 Jun 2025 16:36:56 +0100
+Message-ID: <20250620153656.294468-1-igor.korotin.linux@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
+References: <20250620150914.276272-1-igor.korotin.linux@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250620-sm8550-correct-vreg_l6n_3p3-vol-v2-1-b397f3e91d7b@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAHR+VWgC/4WOwQqDMBBEf0Vy7koSTbA99T9KkRBXDRhjNzYUi
- v/epafeysDAu7yZt8hIAbO4VG9BWEIOaWXQp0r42a0TQhiYhZbaSKsl5NgZI8EnIvQ7FMKpX+z
- aN1sDJS3glJUWje2UaQVbNsIxvL4LtzvzSCnCPhO6H69s/3l3x1eKAk7nB6mcPTtvrynn+vF0i
- 08x1lziOD5jxwAS0wAAAA==
-X-Change-ID: 20250620-sm8550-correct-vreg_l6n_3p3-vol-a1606e568154
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1750433403; l=4199;
- i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
- bh=qrK+g8uFS5jCwIrF/y9iS780oV3CUwyCR8EUvUcUI+8=;
- b=AfLuW9ZkJur9w01GFT58VZKkRD3x6PuQcPNsSvEshOAwPO3QDpIBTcvAyiDUG20txPVfOPPES
- 5uhxaCrAM33BpqILyLdSxZueNtmXJEKLBTZ1Rf86api4UF6g1mPzP/K
-X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
- pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
-X-Authority-Analysis: v=2.4 cv=dqDbC0g4 c=1 sm=1 tr=0 ts=68557e81 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=cQPDRwz26RPGzTApmioA:9 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: OyGTjsuBId-sSGzgewQ2wob30OwFx6TZ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDExMCBTYWx0ZWRfXwK6DJI121Yhz
- yrEbYrwoBm81t+1GBKH1mO00Ysp27ukG1zw6k/NGnNhYus+LMkcyljf3n4tHqyfz/B8yyZzVwbp
- jOp1H88Aus/84uvturm/yypNWoLCfDcfBphtNRJotKnPT3bT3BaBFwWx2csuNoVnrBCQ/0O+p12
- 9iACFXq8Yvs/w+VkLXZj9YX0pE0JkFn6ojTFDK1KvSgVOq8p7SOfkYn2H018MVs6JAoWxSUTyX8
- tgjP3T5LEZECd9Cvz9K5xMyLzbhaqrdAx6mEc5N3ktDlY4OvW2j/21EuRQ/XZBe98G9DmDRckBh
- Yt1q1DcfeD0g5O4RDFlPKRf4gZqUqrhLrwbghrgdWmViH3CcJZuGU9a+CbN8+1i/GrqJlDiWkk4
- +DrJyoLWhajKRTM4cZx1qVJ+FONYqzr6rl3qA+EPLFbV3e1bwvFR3RvfE1zQ39Lg9Lwje1P2
-X-Proofpoint-GUID: OyGTjsuBId-sSGzgewQ2wob30OwFx6TZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-20_06,2025-06-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 spamscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 mlxlogscore=999 phishscore=0 adultscore=0
- lowpriorityscore=0 malwarescore=0 impostorscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506200110
+Content-Transfer-Encoding: 8bit
 
-Voltage regulator 'vreg_l6n_3p3' max-microvolt prop is currently
-configured at 3304000uV in different sm8550 board files. However this
-is not a valid voltage value for 'pmic5_pldo502ln' type voltage
-regulators.
+Refactor the `of_id_info` methods in the `Adapter` trait to reduce
+duplication. Previously, the method had two versions selected
+via `#[cfg(...)]` and `#[cfg(not(...))]`. This change merges them into a
+single method by using `#[cfg]` blocks within the method body.
 
-Check below the max value(3200mV) in the regulator summary for min/max
-used as 2800mV/3304mV in DT:-
-
-logs:
-
-[    0.294781] vreg_l6n_3p3: Setting 2800000-3304000uV
-
-regulator summary:
-
-regulator     use open bypass  opmode   voltage current  min     max
----------------------------------------------------------------------
-..
-vreg_l6n_3p3   0    0    0     normal   2800mV   0mA  2800mV  3200mV
-..
-
-Correct the min/max value to 3200000uV, as that is the closest valid
-value to 3.3V and Hardware team has also confirmed that its good to
-support the consumers(camera sensors) of this regulator.
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Suggested-by: Benno Lossin <lossin@kernel.org>
+Signed-off-by: Igor Korotin <igor.korotin.linux@gmail.com>
 ---
-Changes from v1:
-- Updated voltage settings with min = max = 3.2v, which is the closest
-  valid value to 3.3v, as suggested by Bjorn Anderrson.
-- Reverted the phandle name change(name unchanged now)
----
- arch/arm64/boot/dts/qcom/sm8550-hdk.dts         | 4 ++--
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts         | 4 ++--
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts         | 4 ++--
- arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts | 4 ++--
- 4 files changed, 8 insertions(+), 8 deletions(-)
+ rust/kernel/driver.rs | 40 +++++++++++++++++++++-------------------
+ 1 file changed, 21 insertions(+), 19 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-index 29bc1ddfc7b25f203c9f3b530610e45c44ae4fb2..4d13d9bdd53194d655957f147f9d78cb4cc9abbd 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-@@ -859,8 +859,8 @@ vreg_l5n_1p8: ldo5 {
+diff --git a/rust/kernel/driver.rs b/rust/kernel/driver.rs
+index ec9166cedfa7..cb62b75a0c0e 100644
+--- a/rust/kernel/driver.rs
++++ b/rust/kernel/driver.rs
+@@ -147,30 +147,32 @@ pub trait Adapter {
+     /// Returns the driver's private data from the matching entry in the [`of::IdTable`], if any.
+     ///
+     /// If this returns `None`, it means there is no match with an entry in the [`of::IdTable`].
+-    #[cfg(CONFIG_OF)]
+     fn of_id_info(dev: &device::Device) -> Option<&'static Self::IdInfo> {
+-        let table = Self::of_id_table()?;
++        #[cfg(not(CONFIG_OF))]
++        {
++            let _ = dev;
++            return None;
++        }
  
- 		vreg_l6n_3p3: ldo6 {
- 			regulator-name = "vreg_l6n_3p3";
--			regulator-min-microvolt = <2800000>;
--			regulator-max-microvolt = <3304000>;
-+			regulator-min-microvolt = <3200000>;
-+			regulator-max-microvolt = <3200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
+-        // SAFETY:
+-        // - `table` has static lifetime, hence it's valid for read,
+-        // - `dev` is guaranteed to be valid while it's alive, and so is `pdev.as_ref().as_raw()`.
+-        let raw_id = unsafe { bindings::of_match_device(table.as_ptr(), dev.as_raw()) };
++        #[cfg(CONFIG_OF)]
++        {
++            let table = Self::of_id_table()?;
  
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 5648ab60ba4c4bfaf5baa289969898277ee57cef..e207bb38d82cf7a0ab896e76d5a184a44b4a3f71 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -626,8 +626,8 @@ vreg_l5n_1p8: ldo5 {
+-        if raw_id.is_null() {
+-            None
+-        } else {
+-            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and
+-            // does not add additional invariants, so it's safe to transmute.
+-            let id = unsafe { &*raw_id.cast::<of::DeviceId>() };
++            // SAFETY:
++            // - `table` has static lifetime, hence it's valid for read,
++            // - `dev` is guaranteed to be valid while it's alive, and so is `pdev.as_ref().as_raw()`.
++            let raw_id = unsafe { bindings::of_match_device(table.as_ptr(), dev.as_raw()) };
  
- 		vreg_l6n_3p3: ldo6 {
- 			regulator-name = "vreg_l6n_3p3";
--			regulator-min-microvolt = <2800000>;
--			regulator-max-microvolt = <3304000>;
-+			regulator-min-microvolt = <3200000>;
-+			regulator-max-microvolt = <3200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
+-            Some(table.info(<of::DeviceId as crate::device_id::RawDeviceId>::index(id)))
+-        }
+-    }
++            if raw_id.is_null() {
++                None
++            } else {
++                // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and
++                // does not add additional invariants, so it's safe to transmute.
++                let id = unsafe { &*raw_id.cast::<of::DeviceId>() };
  
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 3a6cb279130489168f8d20a6e27808647debdb41..5c6f73291da185d39d8bd7cf505727d87271bf30 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -702,8 +702,8 @@ vreg_l5n_1p8: ldo5 {
+-    #[cfg(not(CONFIG_OF))]
+-    #[allow(missing_docs)]
+-    fn of_id_info(_dev: &device::Device) -> Option<&'static Self::IdInfo> {
+-        None
++                Some(table.info(<of::DeviceId as crate::device_id::RawDeviceId>::index(id)))
++            }
++        }
+     }
  
- 		vreg_l6n_3p3: ldo6 {
- 			regulator-name = "vreg_l6n_3p3";
--			regulator-min-microvolt = <2800000>;
--			regulator-max-microvolt = <3304000>;
-+			regulator-min-microvolt = <3200000>;
-+			regulator-max-microvolt = <3200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
-index 7d29a57a2b540708fa88fb59e821406f400a3174..b4ef40ae2cd956d2c0a1e46d6428aaa6e5d9c4ee 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
-@@ -487,8 +487,8 @@ vreg_l5n_1p8: ldo5 {
- 
- 		vreg_l6n_3p3: ldo6 {
- 			regulator-name = "vreg_l6n_3p3";
--			regulator-min-microvolt = <2800000>;
--			regulator-max-microvolt = <3304000>;
-+			regulator-min-microvolt = <3200000>;
-+			regulator-max-microvolt = <3200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-
----
-base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
-change-id: 20250620-sm8550-correct-vreg_l6n_3p3-vol-a1606e568154
-
-Best regards,
+     /// Returns the driver's private data from the matching entry of any of the ID tables, if any.
 -- 
-Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+2.43.0
 
 
