@@ -1,117 +1,112 @@
-Return-Path: <devicetree+bounces-187867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8DBFAE1888
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 154ABAE189C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 12:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48BB91899753
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:05:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB2921BC741C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 10:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAAE284B37;
-	Fri, 20 Jun 2025 10:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82A22820D7;
+	Fri, 20 Jun 2025 10:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="drsTSoje"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="nJuDkGL0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B59283FF0;
-	Fri, 20 Jun 2025 10:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF133281368
+	for <devicetree@vger.kernel.org>; Fri, 20 Jun 2025 10:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750413803; cv=none; b=Od2VYvjQX/W2cyVmn5CHGwXHl4kWFpLtE7YGHlnIN8gTjI+TFjCKPSEFwNjBdl5JhpBWJHW2MD5fru1+98KgpVWVGdJ3/1P/nBRuQI0V70c/8Uvm2km9oRw6Q0Y39eh2QFTcBWSTtz+EIofAS/sIQx9IxEhRfN2/QsoVGL8TTgI=
+	t=1750414242; cv=none; b=pPCCOycO/8GxWZcJFV8HWCYLw1PCB+oW+Lp+rfp3F1oaLn9IPsRU5FgVTsbKYELc7qD3yZgWP4Sy9xAwDltZIBOL3jbvvLd+RV8e2vcTKsO3zD46Rb456k/cw4Vi/KLNgE/F7VC7iHYxsAZ7u12Ao+LZYWFEi9vDiSFwU5RK1Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750413803; c=relaxed/simple;
-	bh=xPR/InKNKfudhPDMsRzEG2eMx0eJCVxmRV7MrFp61XQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cj8p8tBzIb1M4R4EcEWwif6GiKS0Ftg37D6bvUmAyYRb19MUKGF1J07iu0riwvG2NG0JbF438cuF/lV5iZPkkA5GcK+ZMpMJlt5I908zQn9AbZLhmjQ0IrWKx87xE6Lxjvvs79+pVia+iL7+N2D/kNdWwCCLv/dZ2yyFBKtdIik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=drsTSoje; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9F7DB43194;
-	Fri, 20 Jun 2025 10:03:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1750413794;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AuMofWOPrsRbIItSZ8PDXSA7GLYNIKCwv7N2XYcmiBI=;
-	b=drsTSoje48BRR/mJ2Zz9hh17Ob8Yp3T9MKDv5S4FVh90S1kvFlLwDps6RvF6YG4fVhzF78
-	jzLK4WpzTNA58Jwo4chy+m7sNuWkoSII7eDXwlX/zGHjVrRAgDTHYzm1TwEIWTHjpn+evS
-	Xxq97UIHKLw+VDDdy6j+qKfUkRhm8rzhvghsJ+oWwQ5AtlQ9wWGWk8C3/a4Zcb4M6CyWja
-	ZDcJxHAJGvi2YyNJN+Mv4g5dDKWwBXpooeaP2pzwPbmUnYn+LFrai18rw2NGL2lt7/eJO7
-	/9QbClO3T7Y1O7+SP2H3c2PvUE4I5SeQyvmRhcljgGuqTHjE3uh/bllMfMhz8g==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Fri, 20 Jun 2025 12:02:40 +0200
-Subject: [PATCH net-next 2/2] net: pse-pd: tps23881: Clarify
- setup_pi_matrix callback documentation
+	s=arc-20240116; t=1750414242; c=relaxed/simple;
+	bh=Rh5pIV8WkpI5HMeTJ5df7eJWevXbYQsSGtle3kqnKrE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=OfhB+H8RACfhaC5Q7/rfyet213BPsPe1aakttJhSZNu/YxrexiCi/ehBCUG8E7CzhbtGh70Dc8ziVE1Yoz1PUBNFtvTPzoHGnAibM1CTYstIsTlolsiPYBZkW2ivfIe+UTd044dZZJZr69ssCpMqvxDpPS9CrVNqfmDVLRlca+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=nJuDkGL0; arc=none smtp.client-ip=95.215.58.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250620-poe_doc_improve-v1-2-96357bb95d52@bootlin.com>
-References: <20250620-poe_doc_improve-v1-0-96357bb95d52@bootlin.com>
-In-Reply-To: <20250620-poe_doc_improve-v1-0-96357bb95d52@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Piotr Kubik <piotr.kubik@adtran.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.15-dev-dd21f
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdekudduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevgfdvgfektefgfefggeekudfggffhtdfffedtueetheejtddvledvvdelhedtveenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnr
- dgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthh
-X-GND-Sasl: kory.maincent@bootlin.com
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1750414227;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Rh5pIV8WkpI5HMeTJ5df7eJWevXbYQsSGtle3kqnKrE=;
+	b=nJuDkGL09UtmImqfvryADBKU0wujEnm2pxtNg2qi98hUv3Oq26UXz8d1At3pQ1c5FJ7z2m
+	i7Y73alRZoz+/Hr8yCj+qCJhA4032jLzcd3BxrVFNLqQlE3rXD6HLFXPnNXehBSz7T3SZX
+	DSdE4TWhVR/G0DPZit2LKRcM409BPIuBYgfI3dXodbZNXCPBhO1mSG2h565SVyUIC2qZE6
+	Csv/1+MoU6j3vxEX6FwAT2A75J1GnTGeo0nz/sZXGjnhlFs4blrt2Rk2ppUvSk9ykjvWB5
+	NGdzqJSeUtjW0i917JRpTkyukJPhyA3ylnMr9ICdBSgaX5C2PuBoUwVRnzqe+Q==
+Content-Type: multipart/signed;
+ boundary=3849aed8dc18aa9a4d5f113a0f5d2765faac8f215c4386c490a0ad7c38eb;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Fri, 20 Jun 2025 12:10:10 +0200
+Message-Id: <DARA1V0ITPV5.T24DK4TVI0W7@cknow.org>
+Cc: "Rob Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ <devicetree@vger.kernel.org>, "Detlev Casanova"
+ <detlev.casanova@collabora.com>, <stable@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 0/4] arm64: dts: rockchip: enable further peripherals
+ on ArmSoM Sige5
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Heiko Stuebner" <heiko@sntech.de>, "Alexey Charkov" <alchark@gmail.com>
+References: <20250614-sige5-updates-v2-0-3bb31b02623c@gmail.com>
+ <175036770856.1520003.17823147228060153634.b4-ty@sntech.de>
+ <CABjd4Yzz9mh0G5BhpPOGAoadD-A5eX4kdsF8rGrWk82hAE-MYQ@mail.gmail.com>
+ <5004008.8F6SAcFxjW@phil>
+In-Reply-To: <5004008.8F6SAcFxjW@phil>
+X-Migadu-Flow: FLOW_OUT
 
-Improve the setup_pi_matrix callback documentation to clarify its purpose
-and usage. The enhanced description explains that PSE PI devicetree nodes
-are pre-parsed before this callback is invoked, and drivers should utilize
-pcdev->pi[x]->pairset[y].np to map PSE controller hardware ports to their
-corresponding Power Interfaces.
+--3849aed8dc18aa9a4d5f113a0f5d2765faac8f215c4386c490a0ad7c38eb
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-This clarification helps driver implementers understand the callback's
-role in establishing the hardware-to-PI relationship mapping.
+On Fri Jun 20, 2025 at 10:44 AM CEST, Heiko Stuebner wrote:
+> Am Freitag, 20. Juni 2025, 10:40:49 Mitteleurop=C3=A4ische Sommerzeit sch=
+rieb Alexey Charkov:
+>> On Fri, Jun 20, 2025 at 1:17=E2=80=AFAM Heiko Stuebner <heiko@sntech.de>=
+ wrote:
+>> >
+>> > I've also fixed the wifi@1 node in the overlay - which was using
+>> > spaces instead of tabs.
+>>=20
+>> Thanks Heiko! It's annoying that YAML doesn't like tabs, so copying
+>> from binding examples is not a universally good idea :)
+>>=20
+>> By the way, is there any tool that helps catch those?
+>
+> checkpatch.pl would be the tool to do that, but I'm not sure it handles
+> this at this time.
+>
+> I also only saw things when I looked at the patch in "mcedit", because
+> it nicely distinguishes between tabs and spaces :-) .
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- include/linux/pse-pd/pse.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+In vim, ``:set list`` makes them visible as well.
 
-diff --git a/include/linux/pse-pd/pse.h b/include/linux/pse-pd/pse.h
-index e5f305cef82e..4e5696cfade7 100644
---- a/include/linux/pse-pd/pse.h
-+++ b/include/linux/pse-pd/pse.h
-@@ -159,7 +159,13 @@ struct ethtool_pse_control_status {
- /**
-  * struct pse_controller_ops - PSE controller driver callbacks
-  *
-- * @setup_pi_matrix: setup PI matrix of the PSE controller
-+ * @setup_pi_matrix: Setup PI matrix of the PSE controller.
-+ *		     The PSE PIs devicetree nodes have already been parsed by
-+ *		     of_load_pse_pis() and the pcdev->pi[x]->pairset[y].np
-+ *		     populated. This callback should establish the
-+ *		     relationship between the PSE controller hardware ports
-+ *		     and the PSE Power Interfaces, either through software
-+ *		     mapping or hardware configuration.
-  * @pi_get_admin_state: Get the operational state of the PSE PI. This ops
-  *			is mandatory.
-  * @pi_get_pw_status: Get the power detection status of the PSE PI. This
+--3849aed8dc18aa9a4d5f113a0f5d2765faac8f215c4386c490a0ad7c38eb
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-2.43.0
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaFUzjQAKCRDXblvOeH7b
+bs/QAP0WF4+k13q1KtXzF57NuU9bR7PWT5UFo1PZ4uovhmnPzQEAwWcTlpj6q/oo
+whJ0eFpdigYeLRxSCw2IgXaWu2AV3gg=
+=hqZi
+-----END PGP SIGNATURE-----
+
+--3849aed8dc18aa9a4d5f113a0f5d2765faac8f215c4386c490a0ad7c38eb--
 
