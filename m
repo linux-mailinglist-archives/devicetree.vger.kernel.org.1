@@ -1,119 +1,101 @@
-Return-Path: <devicetree+bounces-187765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-187766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BFCAE14A5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:15:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5205CAE14A9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 09:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F0BD17F30B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:15:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A0837A57AB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jun 2025 07:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95911220699;
-	Fri, 20 Jun 2025 07:15:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB95220699;
+	Fri, 20 Jun 2025 07:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQxUOoag"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DZ6dc0Vj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699F81E9B0D;
-	Fri, 20 Jun 2025 07:15:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E38430E85C;
+	Fri, 20 Jun 2025 07:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750403737; cv=none; b=hkmHzUF6vt2hKP8IaxEgoPj+1jZ13kc8vH9RrDqQGMbYi6LVrUoTRWeMKK9EngTLUraetVAWMwShe73ovJlzFsSaXPHNj4/mftVLZiaNfxYif/XXNTop8tq5vVss7/f+dhf3N4fsXlNM7yx3qEhwylH5wWrvV1J+c0UfiMwe3Ow=
+	t=1750403857; cv=none; b=YtAAqXJxBHk99f3z53jID8HusviBGMxK+00wIHIRVwDDcFl0oae6tH7RRfsNtkNwM8JZ1nysth8SYza7ZfYexl84MWvIwhdCOJs43a091ATds01x+synBTmD/erb/r5MpH/lR28v08C+k126/DP5sVFUdxKShvIKMSOY2bNsVy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750403737; c=relaxed/simple;
-	bh=v3mtiZeGxwoM0Zn8x7gunb1hV1Q+FzEs5OHsTLW9vlk=;
+	s=arc-20240116; t=1750403857; c=relaxed/simple;
+	bh=EkT8c7NhUhxATwkYAQb5mAtqvgYpiTu6GWN9+u+uTJc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O8qu6vfQgLXZYplBd5IZ6Fr4zbXQvyX1u91DlxTmGpL/DKHxxTvRGi4H36CpPotccrQzc5J4gLMsNL6sIDIYn+3j8dgN8jCVQs5d1j41Bm/BO2xasgODI/tAQ3pjdZ4sMWSytN4oZUxUE2gKEMDbAV1Db2zJn1xd/GuMxraR/4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQxUOoag; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47D85C4CEE3;
-	Fri, 20 Jun 2025 07:15:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TygCOPWF6tjShWHReonRl3gyyMeN8ANqTXZbrK444hV5AipHgQvP82cYph6ve+Vg+KVuneuybqnMgbVMNg4WdauKuy6aRhB+6kpjJmPR3eHra8nbt81ODg88b71xwGqg4I2Xkao6F21Y/d+QXjFJJ8hbwRYU1LMl+HlieV6i7r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DZ6dc0Vj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88EEBC4CEE3;
+	Fri, 20 Jun 2025 07:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750403737;
-	bh=v3mtiZeGxwoM0Zn8x7gunb1hV1Q+FzEs5OHsTLW9vlk=;
+	s=k20201202; t=1750403857;
+	bh=EkT8c7NhUhxATwkYAQb5mAtqvgYpiTu6GWN9+u+uTJc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KQxUOoagr+qLKJ/vTC2ET012o/PR8g0pgyrEtL5AzxiQqBM2Um5UST9LZ2C/P0bml
-	 V8sMsRAEdLH+czGVL7hPaOCN+r5vhS/qifEs7e2bjr5fVHE/WsrQP3mReaswIUiyZf
-	 OlKxUiC7luSQj1fM7V+mlyhNAkDdVEqo8PNXTKOFNLxm4thgjqyI2kW6fCtaaUhKFn
-	 ptlFWlP3VjsPLi0Tna8bh4zcgJYtoLG2Pv4PiW5N0jZEJDeHwM4AvRrojqrdpyT9AJ
-	 3rXKx+7pvVgza0T/V43jnsIl89vQWSzcz0InCr99OI2kuykXffC0ztlOHXdQJ+RyFl
-	 +XtN2vY0+amCw==
-Date: Fri, 20 Jun 2025 12:45:32 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: adrianhoyin.ng@altera.com
-Cc: dinguyen@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Eugeniy.Paltsev@synopsys.com,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	Matthew Gerlach <matthew.gerlach@altrera.com>
-Subject: Re: [PATCH v3 4/4] dma: dw-axi-dmac: Add support for dma-bit-mask
- property
-Message-ID: <aFUKlJchclJSZgib@vaman>
-References: <cover.1750084527.git.adrianhoyin.ng@altera.com>
- <d28a649938adec18bb0a550b28ed86b4c711cfc1.1750084527.git.adrianhoyin.ng@altera.com>
+	b=DZ6dc0VjDoWXwJTV7yxRF03i+CmBFCRDsk9f+lknU/j9Chbq/9nTCI6j/8Ab7O3Ij
+	 X3PP52VLgFlsl2Eyd0sRUiTxWtN6pEVmZWJehGwmUimc4klbdPOyCOQQ51DvrE/uPB
+	 NvWIJA7GLz8fVtHV6p5NFTqXFspM19OOGIhzZGNbzFAV3AKHYitwaHhfgoCPnbpF2+
+	 bjncjJ+eKZ7K8XSiE1V54YVOzPsdcMB28qURL3TVYdJijxPlWHAlaUEWTP3Je06ek1
+	 hMcXXGJIFOo1BEqxbUjsv20Witu+JNZW2UQk4DmzIDCz5BPyygBtyY7lRDYTw+ve6M
+	 UhDw5+IPVFufw==
+Date: Fri, 20 Jun 2025 09:17:34 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, 
+	sherry.sun@nxp.com, manjeet.gupta@nxp.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: bluetooth: nxp: Add support for
+ 4M baudrate
+Message-ID: <20250620-colossal-competent-turaco-d4f8b5@kuoka>
+References: <20250619111629.30098-1-neeraj.sanjaykale@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d28a649938adec18bb0a550b28ed86b4c711cfc1.1750084527.git.adrianhoyin.ng@altera.com>
+In-Reply-To: <20250619111629.30098-1-neeraj.sanjaykale@nxp.com>
 
-On 16-06-25, 22:40, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-
-Please change subsystem tag to dmanegine: xxx
-
+On Thu, Jun 19, 2025 at 04:46:28PM GMT, Neeraj Sanjay Kale wrote:
+> Add support for 4000000 as secondary baudrate.
 > 
-> Intel Agilex5 address bus only supports up to 40 bits. Add dma-bit-mask
-> property support where configure dma-bit-mask based on dma-bit-mask
-> property or fallback to default value if property is not present.
-> 
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> Reviewed-by: Matthew Gerlach <matthew.gerlach@altrera.com>
-> 
-> v3:
-> -update to read from updated property name.
-> 
-> v2:
-> -Fix build errors and warning
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
 > ---
->  drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
+> v2: Use the available 'max-speed' device tree property. (Krzysztof)
+> v3: No Change
+> v4: Add ref for max-speed. (Krzysztof)
+
+No, why?
+
+> ---
+>  .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> index b23536645ff7..e56ff7aadafd 100644
-> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> @@ -265,13 +265,23 @@ static inline bool axi_chan_is_hw_enable(struct axi_dma_chan *chan)
->  static void axi_dma_hw_init(struct axi_dma_chip *chip)
->  {
->  	int ret;
-> -	u32 i;
-> +	u32 i, tmp;
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> index 3ab60c70286f..bb9ab5dd3b4a 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> @@ -34,6 +34,13 @@ properties:
+>        This property depends on the module vendor's
+>        configuration.
 >  
->  	for (i = 0; i < chip->dw->hdata->nr_channels; i++) {
->  		axi_chan_irq_disable(&chip->dw->chan[i], DWAXIDMAC_IRQ_ALL);
->  		axi_chan_disable(&chip->dw->chan[i]);
->  	}
-> -	ret = dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(64));
-> +
-> +	ret = device_property_read_u32(chip->dev, "snps,dma-addressable-bits", &tmp);
-> +	if (ret)
-> +		ret = dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(64));
-> +	else {
-> +		if (tmp == 0 || tmp < 32 || tmp > 64)
-> +			dev_err(chip->dev, "Invalid dma bit mask\n");
-> +
-> +		ret = dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(tmp));
+> +  max-speed:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-why not check the mask value and set that only once irrespective of
-mask, it can tmp or 64!
+No, drop, I did not ask that.
 
--- 
-~Vinod
+I asked to do like other bindings, just look at them. I gave you exact
+ref which is missing.
+
+NAK
+
+Best regards,
+Krzysztof
+
 
