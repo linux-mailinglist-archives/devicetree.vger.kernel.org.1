@@ -1,103 +1,113 @@
-Return-Path: <devicetree+bounces-188090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A47AE2A6C
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 18:58:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB90AE2A71
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 19:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A602176BB4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 16:58:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AC2E3B63A2
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 17:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA47221F24;
-	Sat, 21 Jun 2025 16:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C4CB19067C;
+	Sat, 21 Jun 2025 17:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="FFK8NHgQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Met5EmZA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616155464D
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 16:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A88D78F5C;
+	Sat, 21 Jun 2025 17:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750525124; cv=none; b=KUK4PQ9sdF0qKLbQTTjYSsHJuUtOGjwkS9Q75RQCqKAE+AgBMMzsu09uYLg/PjElEhRx3Y/531oPcscmegx28Uy2C29P35v34bw/bFyy1iqzzpJ2FzjzAPdmDYbfq6WI5Fr82pU/WlreIXBWd4kxDBEuBNTKK1Gs84lFyhEfywI=
+	t=1750525691; cv=none; b=aJDM+tv/KMoKr5LEiAJA/lAZQpV4Zw374bACwIv4ndIqeMiinLLRkLDBocygnnT+TU5fLxjDs7xmua0aTLavG/bZppO7hlwTuxmFfR9N+/guGpsSrIExIyTssjT5pHxL40vJOUmA8ZTg0R2LevNjVoeGCb27dYyUrFRDg0lvDUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750525124; c=relaxed/simple;
-	bh=MYt2MM/R1BIsqZYsFpNLDqolMhT71IOw7GSie+ikohU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XB7DcO3us13obFOhA7Cr911cOjj+0X6jU8ZxUPgPYUdGFEmv6XjCUQeSdBvSMxy0aUwnnGis8hbavPhfwXRYsmU3vnMYbJEpYi8zMseENvlvN1ZAqP/bh/cPXXj7lWl0pvWROCgbWFO4kSe/syGIY2GGHaZBoiegMS7wiT63FTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=FFK8NHgQ; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
- To: From; q=dns/txt; s=fe-e1b5cab7be; t=1750525121;
- bh=4cuZR2OeJH9U0xo9iqQwKBOuSBnLCscDjqcJkUSqVlk=;
- b=FFK8NHgQ31ekNfm4u/gEMUnu+arZHGBeICnZcwormlTzeGgUHp7RTxHAvi65fQ/oyahysMyU7
- Bev4WfdhxEihd3Y8MGixvmFNbxfCufUssYi/d9dKX+jVNCFwez0BKGJW6Grs5jFZFu/W7+9yH+r
- TisXaNByNgCgHrj61053DTz1Euh/0GQwrZo297nb94//7V5efIjbZ5DMH3wCzGW4O2LJdGnhXQU
- 1ztZa+K/4e3BT9mti8+a+rE+sghTc5JvMDdKkK4W5ONj/FKJ+DdHc7ZxufjQP2yqIDdE82NrgR0
- dEPMKsTBkMhTleSOnLi717gqMEiNa39EVp2WVZpwEGlA==
-X-Forward-Email-ID: 6856e4be9932e6905b7c425e
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.0.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Fix eMMC HS200 mode on Radxa E20C
-Date: Sat, 21 Jun 2025 16:58:30 +0000
-Message-ID: <20250621165832.2226160-1-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1750525691; c=relaxed/simple;
+	bh=TEIzKxs0GNs/VcFKM7BeuHzukEWwgOUFRzKScKCJzFA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T4unSr89Ly97BcHUwpkUNSOmKwRG5te7DcZAQonChdzsbCqo6ulcWmKvFQqrSzliqQBbbPWEewMQMwrID4UVDhUNPYIDP/2OHOxiVLU2+WJckOxQ+HU1EPI1UZciHVIAqsB6bp0NGXG67w59qJYdVGR8GokWrLVIZTt02Cv8jxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Met5EmZA; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-553ba7f11cbso3278795e87.1;
+        Sat, 21 Jun 2025 10:08:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750525688; x=1751130488; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TEIzKxs0GNs/VcFKM7BeuHzukEWwgOUFRzKScKCJzFA=;
+        b=Met5EmZA6odtQggYnTTcLYw8bwb1YeGSXCxPCLXuEORDBa74vFk5URNLswch1FotTv
+         Ls2FUXlJNx4ZP40wLRjEMnYqk1dTg8Y7P/EDT9tsJKJbGTBm318J1VFFWFKXYaL1j7MX
+         QeH+VPufJWI1FWI4P0lLAQ2uK/JB+gpzJvxji37CFtyc8iN+yR9ESONJ4djCvdBSEMec
+         Sf+e4bGxe4hNeTgLA4xVXsdXMpf0etouEHW61fXhKq8ewLr10MkR7wqOe0VE4IlagMxY
+         ipJ9aLOcZkCzcWJvzfXucl185shhEGwJh5/2vOUs/qkqHA+BDa5f0/11uha6h7f7BSa+
+         7Ggw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750525688; x=1751130488;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TEIzKxs0GNs/VcFKM7BeuHzukEWwgOUFRzKScKCJzFA=;
+        b=ID3hF/fSxMKGqeBl08qfyT8bOpY7dQ4SqGcHgxBMq/lT9SDiiw60iZ/qZdN2+g3oJG
+         wBpQg5dPka0aEO5X+6RgaqRQGgLGFDrxem5E496mG2yJJYqMo5abjX29CfmlFzDFEO21
+         xVn3QeNUrphMqsYhWDx6eu9PnkKq/hDWgxbAQ9z1nsnhDsu3fwXF0ikMyK0/CMKRyBXX
+         pErSboQJH+h6RGeD7ZexNmn6siJevmtoyCfIRAc01/m5tWH4YWW8PZ8cNQOxL8CqAH9h
+         9DapKTiIltebQEER+BO3ixbUZH6VTzzlQLboSmhk0FKxcaLkKaz5MyUUPMl/Fvl/VPRr
+         C7hA==
+X-Forwarded-Encrypted: i=1; AJvYcCVOhGv6nmYnb91BIStltNwc9eSCjeeba74WGpzfOAdDgNitXKsFvJ/+Ihdz5W9pDGdObTJM+nHNnCFmTjlZ@vger.kernel.org, AJvYcCW9LAuto8wRDIiilEwgWvxHGb9aRA0r/hbXrnev20X0KVI4xqJJJ63Gl412WNKHUxUc7PfHJXIkW+ox@vger.kernel.org
+X-Gm-Message-State: AOJu0YydAMBY3norOePuXklLXPV5CzeamK2gmJfB/05D2TwHAfvwk846
+	/qpnTMc/4l1lEusRGv3gwSfMNK5PcSBtAqS8hjRyLYNeIiGUamZM8j58nXRM6n2y6bq0ntxO+oj
+	dwBThyMDWJJHh/vFHwUBrJnV4dApJPso=
+X-Gm-Gg: ASbGncsOKxUEkersOSEeIDhR/jvdZc95DUOxiikhSHKeutCbSqAiQcDiqx2rawWDko7
+	nzvB/mRbqPHz2l5b0pVZq/pF45yGDhfxr72vrPrXh0qLjcRRixkh7JPf/tQt6rOkZ9KBf7nggAQ
+	oJEEsOJ95QtsJ/IKsNkqttIs+KRDwBh6HpCeTY6LoAXP3GQmsK9+5lTqSO1wh0XPYog7lqCxkTU
+	zU=
+X-Google-Smtp-Source: AGHT+IE9XukBFnfqYPGxv15LwD4aFI78caQyw/4Eu8EFUxN/5Av0fimYLTnJIM5a8dCDg+V1FF7pxxWduBGUw5Lpv/Y=
+X-Received: by 2002:a05:6512:4014:b0:553:acf9:c430 with SMTP id
+ 2adb3069b0e04-553e3ba865emr2715526e87.17.1750525687553; Sat, 21 Jun 2025
+ 10:08:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250621112311.68101-1-aford173@gmail.com>
+In-Reply-To: <20250621112311.68101-1-aford173@gmail.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Sat, 21 Jun 2025 14:07:56 -0300
+X-Gm-Features: AX0GCFsyZkLAi_IdniUJd_5FXJgXSkkE5eshqUFluI-nTmyTXyPV2FSCarf00P8
+Message-ID: <CAOMZO5DUVVBmxfrJPjcZPCQGFg-rVNTUch6APWfSKF6LY1DWHQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm: Configure DMA on UART2
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-eMMC HS200 mode (1.8V I/O) is supported by the MMC host controller on
-RK3528 and works with the optional on-board eMMC module on Radxa E20C.
+On Sat, Jun 21, 2025 at 8:23=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> UART2 is often used as the console, so the DMA was likely left
+> off on purpose, since it's recomended to not use the DMA on the
 
-Be explicit about HS200 support in the device tree for Radxa E20C.
+Typo: recommended
 
-Fixes: 3a01b5f14a8a ("arm64: dts: rockchip: Enable onboard eMMC on Radxa E20C")
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-This also help assist boot firmware that consume Linux device tree's to
-use HS200 mode when booting from eMMC, see [1] for a related U-Boot fix.
 
-[1] https://source.denx.de/u-boot/u-boot/-/commit/f8cb3fde935ed003ad1d7cf6a06d59586fe65cd5
----
- arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts | 1 +
- 1 file changed, 1 insertion(+)
+> console. Beacause, the driver checks to see if the UART is used for
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index e4333674a0ec..12eec2c1db22 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -283,6 +283,7 @@ &saradc {
- &sdhci {
- 	bus-width = <8>;
- 	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
- 	no-sd;
- 	no-sdio;
- 	non-removable;
--- 
-2.49.0
+Typo: Because
 
+> the console when determining if it should initialize DMA, it
+> should be safe to enable DMA on UART2 for all users.
+
+The same comment applies to the other patch.
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
