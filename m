@@ -1,116 +1,141 @@
-Return-Path: <devicetree+bounces-188065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638D3AE28F1
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 14:21:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B092EAE2900
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 14:49:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEBA73A5238
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 12:20:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 029A13BDE10
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 12:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61A220102D;
-	Sat, 21 Jun 2025 12:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5461E5B70;
+	Sat, 21 Jun 2025 12:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ak9kxhnT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fXLfq324"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690431A265E;
-	Sat, 21 Jun 2025 12:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B7A2629D;
+	Sat, 21 Jun 2025 12:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750508474; cv=none; b=nc4AOw86CKW3YmspTwnuPRxBI+wXjoUtiFoPhWN/NEnvBtrR7nBTpHqxbMkTRutzS80fwOKGlbOCb25FaG3sMSvbfXn3EIbGhnA+SaFKdNCzpbNkMGFdADn0nCdOd2NMmwy+5fuBtIqLF5wHzwIH+r3cyagG+InZVswB2LzAuBU=
+	t=1750510150; cv=none; b=R8e1qFgaQAqBvpgN+GRhHofeqX1UXEFGuVJrvpPc26aM14bT8nwBgoPIwkpoeV9ha9DCqLg1X+mms5+tU9EJtjKSMo9Ic4ZKRP9QJufrTF2dUCKQ54q6s71alI4nn4v1v7eMtCq9gpQygVbey4gs1J76Aqe8iu7A3D+ZbChc3pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750508474; c=relaxed/simple;
-	bh=mJSNLN94yCCCB04rPzGHW0u9z5VpgtHFtBKWC0jstGM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XFFKMS38n/UmutvQkys94HnbDIcA0ukeR5WtCtV74JIsV2b4ASXoADBValV0Du/oOiS2O4T/9ffcNv521Q6IGG1QDROJA93iW6PN+LrqYGz+BH2fl5PZl+TiD1NDwL5js5hZk11BVqCDsHw91+rQb4HdTPXEoSpvBI/rI+ww5Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ak9kxhnT; arc=none smtp.client-ip=209.85.216.54
+	s=arc-20240116; t=1750510150; c=relaxed/simple;
+	bh=lbiVxlmYbMfsoR+DVmijGwsQ2PRtaL1Pq+s0QV4Jp5I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Dqev8lYALbjixsgtb55v8VRXPvaWk/yk+Pil9qvJfFQUoIR3KNYGw4xavDZ90792xmfHpLz05DP7NMzWr06wSDOI5N9F4MrJrM/lP/e40ZNImuey7HExrWBZidOoBaMOrOqP61QApeFZ7n2DCKxgoIdxhvRkljEaWF0L7qYJzAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fXLfq324; arc=none smtp.client-ip=209.85.128.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-31384c8ba66so289253a91.1;
-        Sat, 21 Jun 2025 05:21:13 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-71101668dedso22576117b3.1;
+        Sat, 21 Jun 2025 05:49:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750508472; x=1751113272; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mJSNLN94yCCCB04rPzGHW0u9z5VpgtHFtBKWC0jstGM=;
-        b=ak9kxhnTri8ALzS2keG9zet5ayaLo9Vs8Ep6xyKNsflId8y7pPB5JrwE5ZcomuUeIe
-         BWjM/4Hwmb5V4Nf2vE0+zFOddTO1wzPd5TxflYSVsRF4TJBfNdDmGOuVYXaVKpPpEDC+
-         YsvdzJkEfhVn6uIhOUl2Cd5KyF28cmABs2U7fKi+BKXgH2uWKk5TQsuYE8Xxmcwy5HT5
-         uhD+2ehiqvx9xnjfc4ZasOt6nhwc602UZ0qW4iY+ntbetqtI8XVzKqLbjHH9/sVCC7yB
-         tPJR99RGTgk/+VDOZZKDubYCjvW4LmoYEWyomALNRwb5v4IU1Ble7fXJBjUdpcfu2tJ1
-         I1rQ==
+        d=gmail.com; s=20230601; t=1750510147; x=1751114947; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fjFo4OcPQCDhs/fkG6WHOCsTe4/XpEYceoAXLfRtUA0=;
+        b=fXLfq324r76xSSxJrpee+gv7vItN13sWj3wAJOonA6fGsODhMLTrkMnW+SBwBXbcQ2
+         ZlG3qcSDf/tp4rwelOFAwIQgFp/ApHMDBT5EKkt8skryj0tf5rSoMKGbmIpzVs4zMnrr
+         I5fVdeX6zy1bMbIy0Tr4/UXmtPdWk72c2guzJTTGdG4M1B3MfZZ314oOP7NDTJ6clynk
+         P3db2rmNmeWEEbwHSnFKnN5+z6RInuKIy6zC/Ow8oGtZaA0zJZzfcQ6x5KBdefchRjQa
+         V/0HJG4TwU8hEQgSQvgBHMFAnci7sJPlbQsgQX5wAw+YD00Nhas3IXEl3eoGAvQj8tWA
+         8MZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750508473; x=1751113273;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mJSNLN94yCCCB04rPzGHW0u9z5VpgtHFtBKWC0jstGM=;
-        b=PWRAqYw4gxME1+WeI0NvpRZyqno+Ms7PJ5dJ0iott824TyrE8LLoFwfsR0dMPHZlkk
-         F2GRkeqyrwVmWy0dVySjLYB7fK/NOxLGOVE/iDnqw2BYh3SO+rjm4BbgmeWn0qzJYn32
-         bUCo/4SngFk+i4VyQjitcCSrrShkt8s/ypmdWfmSFdT1L3DEHUjK/w0/0j3ORinGqyaL
-         565+dSp5NP+vVx13q/nmb7UO/9ghsKIAURnJiGLV4fDVK3VAuAS1sdso3vs3BPP4VPjV
-         GTmA7SNs4ehd791VLCZo8rcYlY2XBcLd695sljWWTVrLXMrR6gaac6ONb9EB/M149flM
-         Ixbw==
-X-Forwarded-Encrypted: i=1; AJvYcCUcyeHwFnIxBTNKTjNyurOMt2PUYlkVpHi8CN2+qvPd2PsG1ntYQv7K12eMBbQhNp/x2Tayx0TCWv1h75/Q@vger.kernel.org, AJvYcCVXoaZQsOd1/p+7BIx5kgv8T/+bi8ihlhxWJyL0FqlUk0xoIOyEe8rKKHpswBnkQNllDz+BX1qv9SnB@vger.kernel.org, AJvYcCVdiPIGtFd/79dLLxgredR4zTD2CM3kFiBow/e8zhuk+ASX0sEzb8Maz2z1wvdx+36RK0H64sja3PwH@vger.kernel.org, AJvYcCXNdW9BPiu+soUIh8ZEd+fQyXaWZVfN9h0ysQ0EAH1XDkbS+WT9xo6uaDREdm4audZTgKJ6Uw1lSXvMoNXTOys=@vger.kernel.org, AJvYcCXnOTmCT2P4etY5t5+SUP30N9Zhh/sD7xK4f1uTNAmb6+CK/Pgi4HjKWknyn+Iq6RjhWLoZJtP3HGd/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyj+DLw4Qs/CXdLTGQ1oUrrb5yojee/x6H50R+tkkU+O5T5ogW5
-	A30+/w7uU/I+MstcX4+E191ttYpivMEUtjpZ6Q0YZZMlo3N2+5JupBkzt9ZpbRZPDqoDgKUkyGE
-	oPQzdFyur2CA4t63rAAWxfhP4sZc/41A=
-X-Gm-Gg: ASbGnctqfUayJM/zqPpXcDZKQrupfy7TWkI07OsU+BLoKXgxjzRvrmEn3jBNzn0benS
-	sLbZ3Ree41AhGDOJp4VHdNC5yMW/7KkCAu4E1Cm3Tot3xKIUVINtDfCD80qCTlR8idUui55m26D
-	5cHBNw2yrxwskkvFo1JRtBxP73Si8JqNsC9As9WWcSfhk=
-X-Google-Smtp-Source: AGHT+IHBkoA8R73wdbCEFSmfGebQhGfDwh3U+PqjqU9Rd7GJGvM7aIk3FgAkUqqEjAXM3xI4sgTT1lGB5ApP/eWh1zs=
-X-Received: by 2002:a17:90b:57ec:b0:311:9c9a:58e8 with SMTP id
- 98e67ed59e1d1-3159d90f997mr3211194a91.7.1750508472604; Sat, 21 Jun 2025
- 05:21:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750510147; x=1751114947;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fjFo4OcPQCDhs/fkG6WHOCsTe4/XpEYceoAXLfRtUA0=;
+        b=dyH7Tk2/2Ov22+M+Q8Dt9qo9SW0BXS24PaMokOEBC9fgcMposvLkm/JtnIcpIvNneP
+         70p/5mSOVFYcIww84mYRV7EOVCJZ2R570nnsWKRIXh2e4YCNfOMTgLctibUeFtYbTt3C
+         aI1jYYqnAwBGvr8N/XndhYP0EFJvA0PmdOTAWMTP0KilTWVJYVUB9K7nAE7sJfL+wtQx
+         CM23kGsCwZdgFNSHZkLqRW4N/si5M6HPBQnpYaF4B1FCBgVwjkNxfl+K1n+vNQ8rd4q1
+         e0Z8//xBWNltNbTK/MH3OlCbul/tMcX1Xc8WqBDprK6pP8K/AbR4ovOLuVgNxtwNqX+J
+         tnhA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkKp0dpKBXyhZ60WC83hyJUIp+vM6UJSuKr2GFj96heYxwnjqr+0SmRLpNzCbE5Q3td/zYUhdEN19m@vger.kernel.org, AJvYcCV0uaTCXf6+ebEttF/vRS8aU7uHVwXEYU5FDdV6BElZi0pmWcpOqVRfSeSF0RyIX7wjP0OIVjdmb7/uKmUe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFbVptBJOc/f8dWEHYqJb+HErPjG/pJa6OeAzKYA3aFqWcpsDJ
+	9YVhRFnX56D3HleBujILcgCtxBKrLSW/huEULyxZw1IVAP3GPRjUdSf5C01x6r6R
+X-Gm-Gg: ASbGncuf656xaZ3jRdFEumO2foyjwp/AXR7KxGO8Q15RABk/3NHzT7ZsYw6UzAH8/7F
+	hVOFP4N0DliZRDpF4QfbylKNT5Opke5N+KaFPoKvx4sd3pbynyF3s3/qHl0JtMdhIhqCqOmk0Pu
+	ZURiJUv4FRns1DkwNUY90yLE4Lg/Kep7XXU8bZJZLuoQDOrwAG45brtPjKAKDuJNHmwy5M41F7O
+	T2B2JG4LWRF4YNnx8Y3sFxaMo9GU3OnYWK+A5OhwNoHPdKc5yQPG6TbZzICm9x+9Zyel0JMZszj
+	JSVeGUj9j9Yg82Gz/iHmzj9r1xZkuVVfFBNpb9tdgsmmZP3zsAWpuaSRF44OVZ1XkLu4pKM=
+X-Google-Smtp-Source: AGHT+IGpXQnN3tAt0kNP39OWMV3gBlwYAWIavcD6N1VqsfZCkQau6Hx5p4QBL32otzK/bnphmUSnZA==
+X-Received: by 2002:a05:690c:7106:b0:70f:6ec6:62b3 with SMTP id 00721157ae682-712c6756223mr93147527b3.26.1750510147324;
+        Sat, 21 Jun 2025 05:49:07 -0700 (PDT)
+Received: from localhost.localdomain ([192.34.165.40])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-712c4a1625fsm8357727b3.27.2025.06.21.05.49.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Jun 2025 05:49:06 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	John Clark <inindev@gmail.com>
+Subject: [PATCH v3 0/2] Add FriendlyElec NanoPi M5 support for Rockchip RK3576
+Date: Sat, 21 Jun 2025 08:48:58 -0400
+Message-Id: <20250621124900.214098-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250618122801eucas1p2f9ca464e9e5c8d954d5150500952aeed@eucas1p2.samsung.com>
- <20250618-rust-next-pwm-working-fan-for-sending-v4-0-a6a28f2b6d8a@samsung.com>
- <aFSw44++s7xMkJ9I@x1>
-In-Reply-To: <aFSw44++s7xMkJ9I@x1>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sat, 21 Jun 2025 14:21:00 +0200
-X-Gm-Features: Ac12FXwlYvFTtsebXFsluqzoJQuMLv7aX97g0RdMlPc1xrNUVWgbbVLGEB9yHw4
-Message-ID: <CANiq72=YsoFSSm9QU0W2ZQseeQTWFNkXYVR1mODdv3HHg-0PAQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/9] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: Drew Fustini <fustini@kernel.org>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, 
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 20, 2025 at 2:52=E2=80=AFAM Drew Fustini <fustini@kernel.org> w=
-rote:
->
-> Did I do something wrong?
+This series adds device tree support for the FriendlyElec NanoPi M5 board,
+powered by the Rockchip RK3576 SoC (4x Cortex-A72, 4x Cortex-A53, Mali-G52
+MC3 GPU, 6 TOPS NPU). The patches enable basic booting and connectivity,
+including dual 1Gbps Ethernet, USB 3.2, microSD, M.2 PCIe NVMe, and HDMI.
 
-No -- the file just doesn't exist in the patches.
+Changes in v3:
+- Improved (even more) fspi1m1_pins comment for clarity, specifying
+  gpio1_d5, gpio1_c4-c7 (clk, d0-d4) for SPI NOR flash.
+- Removed redundant #address-cells and #size-cells from sfc1 node, as they
+  are inherited from rk3576.dtsi.
 
-Cheers,
-Miguel
+Changes in v2:
+- Fixed DT schema warnings (Rob Herring):
+  - Renamed spi-nor@0 to flash@0
+  - Renamed pmic@23 pinctrl nodes to end with -pins
+  - Renamed hym8563@51 to rtc@51 and removed clock-frequency
+  - Renamed button@1 to button-user
+- Addressed Heiko Stuebner's feedback:
+  - Sorted non-addressed nodes alphabetically
+  - Added blank lines in regulator nodes
+  - Improved fspi1m1_pins comment to clarify SPI NOR flash pinmux
+  - Moved status property in saradc to last
+
+Patch 1: Updates DT bindings in rockchip.yaml
+Patch 2: Adds NanoPi M5 device tree and Makefile entry
+
+No MAINTAINERS update needed, as the new file is covered by the existing
+ARM/Rockchip SoC entry.
+
+Tested on NanoPi M5 with successful boot and feature validation.
+
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+John Clark (2):
+  dt-bindings: arm: rockchip: add FriendlyElec NanoPi M5 board
+  arm64: dts: rockchip: Add FriendlyElec NanoPi M5 support
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3576-nanopi-m5.dts    | 999 ++++++++++++++++++
+ 3 files changed, 1006 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
+
+-- 
+2.39.5
+
 
