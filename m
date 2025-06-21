@@ -1,298 +1,78 @@
-Return-Path: <devicetree+bounces-188039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21DE8AE27B0
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 09:08:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF34EAE27C1
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 09:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D02EF3BB4B7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 07:07:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 646F1189FA28
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 07:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE3919F111;
-	Sat, 21 Jun 2025 07:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F411C8629;
+	Sat, 21 Jun 2025 07:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="xeQhI8zc"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NnC7h+Vz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0A730E841;
-	Sat, 21 Jun 2025 07:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.165.51.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B121991CB;
+	Sat, 21 Jun 2025 07:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750489670; cv=none; b=CD9YBrusjleJ6Kl2k+00lXdJAYHViE1s0RPapHkGjnsSx2othlHr7g+bQQqhM/oHMjyDdN66SEspKaISYVYwgNE+nR5oJ/A07koMNyiwoYfflSuzPSbWIEQiC9Wr/qPDZ7FLs8SPkIyL7gpSDP2WKNjXu+AXE59X7wy3kotsuYk=
+	t=1750490686; cv=none; b=Bjhlss+kDXWq5AP78DZmeSJ7HGcZ+rkHMcLEChwR/wbpFrCY112O3Yt0WAGDMmaV9RF5a1iLx+GnBk5GnWOrQQNCyPDlhdnsULrHnZG1eBGQ134ngHweEL34huYfgndY99ZYPVrrc/Wk9Hc6lbdJ2EzJlq3iM78l8T+O3sJ88wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750489670; c=relaxed/simple;
-	bh=96zSTCit7Jr8EU5mbUWe0rSqS11+bPPmhWpuoBr06qI=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m5qMVM7m1xKj+ETAhcyjjpGsD1KE5RF5G6HctbfGDsvtidEHskSiu+qcumSmey9iR1mJMlBK6ueN89pXWlZrdvDXANBZDWVE3FNbGy6+l0YRt/eHT+7jaPiMIIyOsUyCLf2nC0F6lrK4y/5Mr7WhrZWx2d3qwPKZlLyPyX3ltgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=xeQhI8zc; arc=none smtp.client-ip=188.165.51.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1750489656; x=1750748856;
-	bh=obItk7XiDSFuvyadkI1YtM3uHao6+KxIagO4SDlclFQ=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=xeQhI8zclnuRzNshWNH2SVMvCU4GXCv/+q95m0IKNKxqH6tOlyRU28p9iqTdE/8+a
-	 yRjlxjQHeVUaESVbnu+M50FsGK+W3NrioPsUYkHEf2A4qtNONa13xIAro5dCpUwWtm
-	 3FDDrXSjiteZwSd0PYxZ1nxhac8tawuiJq355+pqmlqFQaCZSQq0egLwGdgVmDvVFr
-	 6kLb9XN2yxyRokVv8SRqT6/zn4scd8IdCXZ7N4oydDthUP+BgbtO5L4gkrHwO6Jvk1
-	 4IQjQXL9Fp/V1XP1/lMwGKhCQlqeZa7iTceuoJESfDGoL257Kua5xXBZpsUTwmU8ih
-	 jFcjqJAE8rEUg==
-Date: Sat, 21 Jun 2025 07:07:33 +0000
-To: Luca Weiss <luca@lucaweiss.eu>, "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "andersson@kernel.org" <andersson@kernel.org>, "konradybcio@kernel.org" <konradybcio@kernel.org>
-From: cristian_ci <cristian_ci@protonmail.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, "~postmarketos/upstreaming@lists.sr.ht" <~postmarketos/upstreaming@lists.sr.ht>, "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8953: Add device tree for Billion Capture+
-Message-ID: <bWiyUA5cF4NjzEaUwhpDvfeqs0hEizZKFKxQpsfj6htES5mPGO2Yf2AHZQcUEyR4x7Zx9kVvwenpc2djbCN148IbjtgLh7Gq_1HXicp8kms=@protonmail.com>
-In-Reply-To: <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
-References: <20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com> <20250620-rimob-initial-devicetree-v1-3-8e667ea21f82@protonmail.com> <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
-Feedback-ID: 27475468:user:proton
-X-Pm-Message-ID: 5e5c42a87c2bd67bc63aad9df28de1391b9b1ead
+	s=arc-20240116; t=1750490686; c=relaxed/simple;
+	bh=FfAQ51F+Hi6dqP25b4oDnLvzhtnbFz1p22/HIbdcM/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i3bi+PKhEHJGU2NOEGKKBMPkb8RT71YJkE9r9KO1WbXt4GBPIlTtvCjcZDjPcq4HmjMHcpu1Pxg1faKc7h1918cz1uRX0t1/kcx483PavR/EFdz+Yt0tc+5Z1OAuUY+kjb2rMqOEbDCygZyr7O/5n/l790u+vI0DTNwBJTf2vqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NnC7h+Vz; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=xsa4PmV1qVfzFyuhUlGmPWQvYGQTLXg8FbzbifE7bGk=; b=NnC7h+VzmGYHSjXjn0XSwTXPx6
+	/6ODU3C3gH7RKdQcyuo5nyQayZrRZPFs/fErboxzuPlz3dnqGpyZpnWFpOalPVJiCnObD9fwuiR4+
+	d6N79BoP5Va/D0e3AwAwlhJ9/F6BaKiBpO4SrJZVnfJEGdRFAQ+Q/R1M2cQM1Lu694nc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uSsaT-00GZAy-0U; Sat, 21 Jun 2025 09:24:29 +0200
+Date: Sat, 21 Jun 2025 09:24:28 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ryan.Wanner@microchip.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] Expose REFCLK for RMII and enable RMII
+Message-ID: <4b1f601d-7a65-4252-8f04-62b5a952c001@lunn.ch>
+References: <cover.1750346271.git.Ryan.Wanner@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1750346271.git.Ryan.Wanner@microchip.com>
 
-On Saturday, June 21st, 2025 at 00:20, Luca Weiss <luca@lucaweiss.eu> wrote=
-:
+On Thu, Jun 19, 2025 at 10:04:12AM -0700, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+> 
+> This set allows the REFCLK property to be exposed as a dt-property to
+> properly reflect the correct RMII layout. RMII can take an external or
+> internal provided REFCLK, since this is not SoC dependent but board
+> dependent this must be exposed as a DT property for the macb driver.
 
-> > +
-> > + reserved-memory {
-> > + qseecom@0 {
->=20
->=20
-> qseecom@84a00000 ?
->=20
-> > + reg =3D <0x00 0x84a00000 0x00 0x1900000>;
-> > + no-map;
-> > + };
+What board is going to use this? Do you have a patch for a .dts file?
 
-Looking at downstream devicetree, every reserved-memory nodes with "removed=
--dma-pool" compatible has unit address 0. OTOH, kernel documentation [1] sa=
-ys:
-"  Following the generic-names recommended practice, node names should
-  reflect the purpose of the node (ie. "framebuffer" or "dma-pool").
-  Unit address (@<address>) should be appended to the name if the node
-  is a static allocation."
-
-In my case, downstream devicetree shows:
-
-=09=09other_ext_region@0 {
-=09=09=09compatible =3D "removed-dma-pool";
-=09=09=09no-map;
-=09=09=09reg =3D <0x00 0x84a00000 0x00 0x1e00000>;
-=09=09};
-
-which will be 'qseecom' reserved-memory node in mainline devicetree.
-
-OTOH, 'qseecom' node in downstream devicetree also shows:
-
-=09=09qseecom@84a00000 {
-=09=09=09compatible =3D "qcom,qseecom";
-=09=09=09reg =3D <0x84a00000 0x1900000>;
-                        ...
-
-If you confirm what you suggest, 'qseecom' reserved-memory node will look l=
-ike the following:
-
-=09=09qseecom_mem: qseecom@84a00000 {
-=09=09=09reg =3D <0x0 0x84a00000 0x0 0x1900000>;
-=09=09=09no-map;
-=09=09};
-
-[1] https://www.kernel.org/doc/Documentation/devicetree/bindings/reserved-m=
-emory/reserved-memory.yaml
-
-> > + cont_splash_mem: cont-splash@90001000 {
-> > + reg =3D <0x0 0x90001000 0x0 (1080 * 1920 * 3)>;
-> > + no-map;
-> > + };
-> > + };
-> > +
-> > + vph_pwr: vph-pwr-regulator {
-> > + compatible =3D "regulator-fixed";
-> > + regulator-name =3D "vph_pwr";
-> > + regulator-always-on;
-> > + regulator-boot-on;
-> > + };
-> > +};
-> > +
-> > +
-> > +&hsusb_phy {
-> > + vdd-supply =3D <&pm8953_l3>;
-> > + vdda-pll-supply =3D <&pm8953_l7>;
-> > + vdda-phy-dpdm-supply =3D <&pm8953_l13>;
-> > +
-> > + status =3D "okay";
-> > +};
-> > +
-> > +&pm8953_resin {
-> > + linux,code =3D <KEY_VOLUMEDOWN>;
-> > + status =3D "okay";
-> > +};
-> > +
-> > +&rpm_requests {
-> > + regulators {
-> > + compatible =3D "qcom,rpm-pm8953-regulators";
-> > + vdd_s1-supply =3D <&vph_pwr>;
-> > + vdd_s2-supply =3D <&vph_pwr>;
-> > + vdd_s3-supply =3D <&vph_pwr>;
-> > + vdd_s4-supply =3D <&vph_pwr>;
-> > + vdd_s5-supply =3D <&vph_pwr>;
-> > + vdd_s6-supply =3D <&vph_pwr>;
-> > + vdd_s7-supply =3D <&vph_pwr>;
-> > + vdd_l1-supply =3D <&pm8953_s3>;
-> > + vdd_l2_l3-supply =3D <&pm8953_s3>;
-> > + vdd_l4_l5_l6_l7_l16_l19-supply =3D <&pm8953_s4>;
-> > + vdd_l8_l11_l12_l13_l14_l15-supply =3D <&vph_pwr>;
-> > + vdd_l9_l10_l17_l18_l22-supply =3D <&vph_pwr>;
-> > + vdd_l23-supply =3D <&pm8953_s3>;
-> > +
-> > + pm8953_s1: s1 {
-> > + regulator-min-microvolt =3D <870000>;
-> > + regulator-max-microvolt =3D <1156000>;
-> > + };
-> > +
-> > + pm8953_s3: s3 {
-> > + regulator-min-microvolt =3D <1224000>;
-> > + regulator-max-microvolt =3D <1224000>;
-> > + };
-> > +
-> > + pm8953_s4: s4 {
-> > + regulator-min-microvolt =3D <1900000>;
-> > + regulator-max-microvolt =3D <2050000>;
-> > + };
-> > +
-> > + pm8953_l1: l1 {
-> > + regulator-min-microvolt =3D <1000000>;
-> > + regulator-max-microvolt =3D <1000000>;
-> > + };
-> > +
-> > + pm8953_l2: l2 {
-> > + regulator-min-microvolt =3D <975000>;
-> > + regulator-max-microvolt =3D <1225000>;
-> > + };
-> > +
-> > + pm8953_l3: l3 {
-> > + regulator-min-microvolt =3D <925000>;
-> > + regulator-max-microvolt =3D <925000>;
-> > + };
-> > +
-> > + pm8953_l5: l5 {
-> > + regulator-min-microvolt =3D <1800000>;
-> > + regulator-max-microvolt =3D <1800000>;
-> > + };
-> > +
-> > + pm8953_l6: l6 {
-> > + regulator-min-microvolt =3D <1800000>;
-> > + regulator-max-microvolt =3D <1800000>;
-> > + };
-> > +
-> > + pm8953_l7: l7 {
-> > + regulator-min-microvolt =3D <1800000>;
-> > + regulator-max-microvolt =3D <1900000>;
-> > + };
-> > +
-> > + pm8953_l8: l8 {
-> > + regulator-min-microvolt =3D <2900000>;
-> > + regulator-max-microvolt =3D <2900000>;
-> > + };
-> > +
-> > + pm8953_l9: l9 {
-> > + regulator-min-microvolt =3D <3000000>;
-> > + regulator-max-microvolt =3D <3300000>;
-> > + };
-> > +
-> > + pm8953_l10: l10 {
-> > + regulator-min-microvolt =3D <2850000>;
-> > + regulator-max-microvolt =3D <2850000>;
-> > + };
-> > +
-> > + pm8953_l11: l11 {
-> > + regulator-min-microvolt =3D <2950000>;
-> > + regulator-max-microvolt =3D <2950000>;
-> > + };
-> > +
-> > + pm8953_l12: l12 {
-> > + regulator-min-microvolt =3D <1800000>;
-> > + regulator-max-microvolt =3D <2950000>;
-> > + };
-> > +
-> > + pm8953_l13: l13 {
-> > + regulator-min-microvolt =3D <3125000>;
-> > + regulator-max-microvolt =3D <3125000>;
-> > + };
-> > +
-> > + pm8953_l16: l16 {
-> > + regulator-min-microvolt =3D <1800000>;
-> > + regulator-max-microvolt =3D <1800000>;
-> > + };
-> > +
-> > + pm8953_l17: l17 {
-> > + regulator-min-microvolt =3D <2850000>;
-> > + regulator-max-microvolt =3D <2850000>;
-> > + };
-> > +
-> > + pm8953_l19: l19 {
-> > + regulator-min-microvolt =3D <1200000>;
-> > + regulator-max-microvolt =3D <1350000>;
-> > + };
-> > +
-> > + pm8953_l22: l22 {
-> > + regulator-min-microvolt =3D <2800000>;
-> > + regulator-max-microvolt =3D <2800000>;
-> > + };
-> > +
-> > + pm8953_l23: l23 {
-> > + regulator-min-microvolt =3D <975000>;
-> > + regulator-max-microvolt =3D <1225000>;
-> > + };
-> > + };
-> > +};
-> > +
-> > +&sdhc_1 {
-> > + vmmc-supply =3D <&pm8953_l8>;
-> > + vqmmc-supply =3D <&pm8953_l5>;
-> > +
-> > + status =3D "okay";
-> > +};
-> > +
-> > +&sdhc_2 {
-> > + vmmc-supply =3D <&pm8953_l11>;
-> > + vqmmc-supply =3D <&pm8953_l12>;
-> > +
-> > + cd-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> > +
-> > + pinctrl-0 =3D <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-> > + pinctrl-1 =3D <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
-> > + pinctrl-names =3D "default", "sleep";
-> > +
-> > + status =3D "okay";
-> > +};
-> > +
-> > +&tlmm {
-> > + gpio-reserved-ranges =3D <0 4>, <135 4>;
->=20
->=20
-> Any ideas what's connected to these pins? If you do, good to document
-> this like in other devices.
->=20
-> Regards
-> Luca
->=20
-
-Unfortunately, downstream devicetree's pinctrl (kernel sources not availabl=
-e) doesn't mention anywhere 'gpio0', 'gpio1', 'gpio2', 'gpio3', 'gpio135', =
-'gpio136', 'gpio137' and 'gpio138' (but, for example, 'gpio4' and 'gpio139'=
- are shown, instead). So, I've no ideas what these reserved gpios are used =
-for.
+	Andrew
 
