@@ -1,94 +1,103 @@
-Return-Path: <devicetree+bounces-188089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31CC4AE2A58
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 18:37:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A47AE2A6C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 18:58:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30F087A7D73
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 16:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A602176BB4
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 16:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503C1158545;
-	Sat, 21 Jun 2025 16:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA47221F24;
+	Sat, 21 Jun 2025 16:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F3qlGY/E"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="FFK8NHgQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D28019BBC;
-	Sat, 21 Jun 2025 16:37:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616155464D
+	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 16:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750523866; cv=none; b=loSPfYKZxjiJKmiIT9Mhxidq8NsQHo1UJ2UKQf1v27JZylxl7Y5Ds3pijF66DeJvtfBiizOMKf1UkdTCJcMFjp9ZGRy1h/VQIJZSZVggwhaWDPffmzpolGq+NPLBLilaC4pSC0HVTeyYGoY098jhLQ4H41yjNY2jORzc/LCbl9w=
+	t=1750525124; cv=none; b=KUK4PQ9sdF0qKLbQTTjYSsHJuUtOGjwkS9Q75RQCqKAE+AgBMMzsu09uYLg/PjElEhRx3Y/531oPcscmegx28Uy2C29P35v34bw/bFyy1iqzzpJ2FzjzAPdmDYbfq6WI5Fr82pU/WlreIXBWd4kxDBEuBNTKK1Gs84lFyhEfywI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750523866; c=relaxed/simple;
-	bh=XKLCY5N+Rj77xkasF6iejpj+DVUXT1IxdB49Ucua51A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hE1YZB1oQb9OJxPdnUkmP9/VQQqvh1SGTpODhij3/bDqQYlU3w/umIByKPRiZcdfyz7gHyQDrv76/dH0nMmYJGpDe9+1HUAGCdEkA4xsYDZQ8bb/l1fNNKyEuLF2Yq9ffwXH42V2Nzo0BTjV0idc/Kj8HGs8zgtXRJ38g7EV8xY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F3qlGY/E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 971C1C4CEE7;
-	Sat, 21 Jun 2025 16:37:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750523863;
-	bh=XKLCY5N+Rj77xkasF6iejpj+DVUXT1IxdB49Ucua51A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=F3qlGY/Ek6l9P2Bt4Fd/r9izq4nJXnbD5f0GxGwvAJwyMi5n08yij/AyXuHQaFkZY
-	 t9V1DL8yNpnyisXHm5PeW1LJmF7tOH20KNSkHrh28Fvq+EeTV7IRAREFvPcUwglvn4
-	 IN8qZ2DOjk4kBCjEyNkYGw9RoZeOZz1EbJ0q8SvydYaE6E9oNIUATZSMSoEyaabXZo
-	 T2ZAMcnCkoN9M2VUqOZ/Q6Nvan/5hv5nAhTuBN69TRWhk7Y7vIv59aztyktTiOewb+
-	 TybBZJ2Wr92vZ5RPU2Gc/vH089UP+MMdsVV+ujIMpfb89GBaB9yVSItXGyrWrdlPxN
-	 LXsKCHpVGlrTA==
-Date: Sat, 21 Jun 2025 17:37:35 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linus.walleij@linaro.org, brgl@bgdev.pl, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v5 01/11] dt-bindings: iio: adc: Add AD4170
-Message-ID: <20250621173735.176184d0@jic23-huawei>
-In-Reply-To: <20250616-neurology-explicit-ec2a829bd718@spud>
-References: <cover.1749582679.git.marcelo.schmitt@analog.com>
-	<4df9d4d0de83090300b6870afc8ae7b22279cd22.1749582679.git.marcelo.schmitt@analog.com>
-	<20250616-neurology-explicit-ec2a829bd718@spud>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1750525124; c=relaxed/simple;
+	bh=MYt2MM/R1BIsqZYsFpNLDqolMhT71IOw7GSie+ikohU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XB7DcO3us13obFOhA7Cr911cOjj+0X6jU8ZxUPgPYUdGFEmv6XjCUQeSdBvSMxy0aUwnnGis8hbavPhfwXRYsmU3vnMYbJEpYi8zMseENvlvN1ZAqP/bh/cPXXj7lWl0pvWROCgbWFO4kSe/syGIY2GGHaZBoiegMS7wiT63FTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=FFK8NHgQ; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1750525121;
+ bh=4cuZR2OeJH9U0xo9iqQwKBOuSBnLCscDjqcJkUSqVlk=;
+ b=FFK8NHgQ31ekNfm4u/gEMUnu+arZHGBeICnZcwormlTzeGgUHp7RTxHAvi65fQ/oyahysMyU7
+ Bev4WfdhxEihd3Y8MGixvmFNbxfCufUssYi/d9dKX+jVNCFwez0BKGJW6Grs5jFZFu/W7+9yH+r
+ TisXaNByNgCgHrj61053DTz1Euh/0GQwrZo297nb94//7V5efIjbZ5DMH3wCzGW4O2LJdGnhXQU
+ 1ztZa+K/4e3BT9mti8+a+rE+sghTc5JvMDdKkK4W5ONj/FKJ+DdHc7ZxufjQP2yqIDdE82NrgR0
+ dEPMKsTBkMhTleSOnLi717gqMEiNa39EVp2WVZpwEGlA==
+X-Forward-Email-ID: 6856e4be9932e6905b7c425e
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Fix eMMC HS200 mode on Radxa E20C
+Date: Sat, 21 Jun 2025 16:58:30 +0000
+Message-ID: <20250621165832.2226160-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-> 
-> Otherwise, what you have here looks sane enough to me - but I'd like to
-> see some comments from Jonathan or David etc about your approach to the
-> excitation properties.
+eMMC HS200 mode (1.8V I/O) is supported by the MMC host controller on
+RK3528 and works with the optional on-board eMMC module on Radxa E20C.
 
-They look sane to me.  The complexity of devices that handle weigh cells and
-similar are always a pain.  In theory we could have a go at describing
-the weigh-cell in DT and then try to derive the 'right' settings but that
-seems like a very complex thing to do.  Long time since I did anything with
-weigh cells, but I think you mostly read the settings to use of a datasheet rather
-than deriving them from first principles. Thermocouples are similar (I'm not
-that familiar with RTDs)
+Be explicit about HS200 support in the device tree for Radxa E20C.
 
-As to the handling of the different sensor types - that seems like a sensible
-way to constrain the binding and end up with sane readable combinations rather
-than a bunch of excitation settings with no info on what is connected.
+Fixes: 3a01b5f14a8a ("arm64: dts: rockchip: Enable onboard eMMC on Radxa E20C")
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+This also help assist boot firmware that consume Linux device tree's to
+use HS200 mode when booting from eMMC, see [1] for a related U-Boot fix.
 
-Not sure this is the perfect solution, but to me it looks good enough and
-flexible / general enough to cover a wide range of other devices.
+[1] https://source.denx.de/u-boot/u-boot/-/commit/f8cb3fde935ed003ad1d7cf6a06d59586fe65cd5
+---
+ arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Jonathan
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+index e4333674a0ec..12eec2c1db22 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+@@ -283,6 +283,7 @@ &saradc {
+ &sdhci {
+ 	bus-width = <8>;
+ 	cap-mmc-highspeed;
++	mmc-hs200-1_8v;
+ 	no-sd;
+ 	no-sdio;
+ 	non-removable;
+-- 
+2.49.0
 
-> 
-> Cheers,
-> Conor.
 
