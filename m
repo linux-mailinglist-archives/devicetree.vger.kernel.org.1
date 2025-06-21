@@ -1,195 +1,116 @@
-Return-Path: <devicetree+bounces-188064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1203AE28E6
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 14:00:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 638D3AE28F1
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 14:21:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71C931898ED7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 12:01:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEBA73A5238
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 12:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3937D1F237E;
-	Sat, 21 Jun 2025 12:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61A220102D;
+	Sat, 21 Jun 2025 12:21:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="a4hVjmb4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ak9kxhnT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24FE21F03D7
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 12:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690431A265E;
+	Sat, 21 Jun 2025 12:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750507243; cv=none; b=AMdQvUIMBu6qrPdiWJ80XW8kKJa6RAtcDeMtyMwc3ndmkf6OhMz3hhv/YpQgge0tYUNrNYZ/3PozCHZpIrxWEsdHiylrp5ZYGUZLTt0F7SwhooOxV58HYm5QBSXnmnDvAPAnI7CkRqd0wK1giKSDS9SxQAVMQsV9T/BtcHJOoEw=
+	t=1750508474; cv=none; b=nc4AOw86CKW3YmspTwnuPRxBI+wXjoUtiFoPhWN/NEnvBtrR7nBTpHqxbMkTRutzS80fwOKGlbOCb25FaG3sMSvbfXn3EIbGhnA+SaFKdNCzpbNkMGFdADn0nCdOd2NMmwy+5fuBtIqLF5wHzwIH+r3cyagG+InZVswB2LzAuBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750507243; c=relaxed/simple;
-	bh=06b6ZB5lwM/+7QVClkjf63LNjiJ13J1H1t09RZJr+54=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QvLY7Jw5K5iyz9lWGLY7FASBoPpRmNQMqpQ3PZIoFEAvD+Ov5dtgcO36LjmVo3MfCCEhmqgSRLsJWL1nfgh7sWrwxGbv2cTOeQIOQ/59XGZpp61BeYhU47VcJsSWwmwwVw79DTgBnabG6Mn0hggkYbUqcf0oW14U7vwNSTREukU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=a4hVjmb4; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
- To: From; q=dns/txt; s=fe-e1b5cab7be; t=1750507240;
- bh=ir11YpcbwxWD+w+nzz2s0FsuVrnNjiwPhxkmWuSazqw=;
- b=a4hVjmb4qgrHZyT/Z/dbYlgWi3rqWBQmLoP58Ke/OEUJ/AAFO17k+l2duSjEy9ipM5VuMQ4HR
- KbTXRhboC+bNaQ8Kovnv18qd3/0ThTcLbpYI7x3VIhkby0zJus0gYEAwlgNERdzhXINfoTWjqJi
- gOhMlYWs6KFWjgVaiVt09iKfR1GCtYCwVP0OPCfOJHWmoJFqKOCOqYBc2uAztvwtCAMWs6/8N5z
- YTcDzJXIBzv/cv1hA9/crF5nVEfk6Fesk5k/pVvWVP8GY87sYyIs4ViYL6wkH2M20fzMH9fWuqB
- +earWtnqaJpRwRS61jNJRlX0SiGuI7meBTZhWjeU3Fag==
-X-Forward-Email-ID: 685699d9f0bccf4584158851
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.0.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Fix pinctrl node names for RK3528
-Date: Sat, 21 Jun 2025 11:38:57 +0000
-Message-ID: <20250621113859.2146400-1-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1750508474; c=relaxed/simple;
+	bh=mJSNLN94yCCCB04rPzGHW0u9z5VpgtHFtBKWC0jstGM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XFFKMS38n/UmutvQkys94HnbDIcA0ukeR5WtCtV74JIsV2b4ASXoADBValV0Du/oOiS2O4T/9ffcNv521Q6IGG1QDROJA93iW6PN+LrqYGz+BH2fl5PZl+TiD1NDwL5js5hZk11BVqCDsHw91+rQb4HdTPXEoSpvBI/rI+ww5Bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ak9kxhnT; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-31384c8ba66so289253a91.1;
+        Sat, 21 Jun 2025 05:21:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750508472; x=1751113272; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mJSNLN94yCCCB04rPzGHW0u9z5VpgtHFtBKWC0jstGM=;
+        b=ak9kxhnTri8ALzS2keG9zet5ayaLo9Vs8Ep6xyKNsflId8y7pPB5JrwE5ZcomuUeIe
+         BWjM/4Hwmb5V4Nf2vE0+zFOddTO1wzPd5TxflYSVsRF4TJBfNdDmGOuVYXaVKpPpEDC+
+         YsvdzJkEfhVn6uIhOUl2Cd5KyF28cmABs2U7fKi+BKXgH2uWKk5TQsuYE8Xxmcwy5HT5
+         uhD+2ehiqvx9xnjfc4ZasOt6nhwc602UZ0qW4iY+ntbetqtI8XVzKqLbjHH9/sVCC7yB
+         tPJR99RGTgk/+VDOZZKDubYCjvW4LmoYEWyomALNRwb5v4IU1Ble7fXJBjUdpcfu2tJ1
+         I1rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750508473; x=1751113273;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mJSNLN94yCCCB04rPzGHW0u9z5VpgtHFtBKWC0jstGM=;
+        b=PWRAqYw4gxME1+WeI0NvpRZyqno+Ms7PJ5dJ0iott824TyrE8LLoFwfsR0dMPHZlkk
+         F2GRkeqyrwVmWy0dVySjLYB7fK/NOxLGOVE/iDnqw2BYh3SO+rjm4BbgmeWn0qzJYn32
+         bUCo/4SngFk+i4VyQjitcCSrrShkt8s/ypmdWfmSFdT1L3DEHUjK/w0/0j3ORinGqyaL
+         565+dSp5NP+vVx13q/nmb7UO/9ghsKIAURnJiGLV4fDVK3VAuAS1sdso3vs3BPP4VPjV
+         GTmA7SNs4ehd791VLCZo8rcYlY2XBcLd695sljWWTVrLXMrR6gaac6ONb9EB/M149flM
+         Ixbw==
+X-Forwarded-Encrypted: i=1; AJvYcCUcyeHwFnIxBTNKTjNyurOMt2PUYlkVpHi8CN2+qvPd2PsG1ntYQv7K12eMBbQhNp/x2Tayx0TCWv1h75/Q@vger.kernel.org, AJvYcCVXoaZQsOd1/p+7BIx5kgv8T/+bi8ihlhxWJyL0FqlUk0xoIOyEe8rKKHpswBnkQNllDz+BX1qv9SnB@vger.kernel.org, AJvYcCVdiPIGtFd/79dLLxgredR4zTD2CM3kFiBow/e8zhuk+ASX0sEzb8Maz2z1wvdx+36RK0H64sja3PwH@vger.kernel.org, AJvYcCXNdW9BPiu+soUIh8ZEd+fQyXaWZVfN9h0ysQ0EAH1XDkbS+WT9xo6uaDREdm4audZTgKJ6Uw1lSXvMoNXTOys=@vger.kernel.org, AJvYcCXnOTmCT2P4etY5t5+SUP30N9Zhh/sD7xK4f1uTNAmb6+CK/Pgi4HjKWknyn+Iq6RjhWLoZJtP3HGd/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj+DLw4Qs/CXdLTGQ1oUrrb5yojee/x6H50R+tkkU+O5T5ogW5
+	A30+/w7uU/I+MstcX4+E191ttYpivMEUtjpZ6Q0YZZMlo3N2+5JupBkzt9ZpbRZPDqoDgKUkyGE
+	oPQzdFyur2CA4t63rAAWxfhP4sZc/41A=
+X-Gm-Gg: ASbGnctqfUayJM/zqPpXcDZKQrupfy7TWkI07OsU+BLoKXgxjzRvrmEn3jBNzn0benS
+	sLbZ3Ree41AhGDOJp4VHdNC5yMW/7KkCAu4E1Cm3Tot3xKIUVINtDfCD80qCTlR8idUui55m26D
+	5cHBNw2yrxwskkvFo1JRtBxP73Si8JqNsC9As9WWcSfhk=
+X-Google-Smtp-Source: AGHT+IHBkoA8R73wdbCEFSmfGebQhGfDwh3U+PqjqU9Rd7GJGvM7aIk3FgAkUqqEjAXM3xI4sgTT1lGB5ApP/eWh1zs=
+X-Received: by 2002:a17:90b:57ec:b0:311:9c9a:58e8 with SMTP id
+ 98e67ed59e1d1-3159d90f997mr3211194a91.7.1750508472604; Sat, 21 Jun 2025
+ 05:21:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CGME20250618122801eucas1p2f9ca464e9e5c8d954d5150500952aeed@eucas1p2.samsung.com>
+ <20250618-rust-next-pwm-working-fan-for-sending-v4-0-a6a28f2b6d8a@samsung.com>
+ <aFSw44++s7xMkJ9I@x1>
+In-Reply-To: <aFSw44++s7xMkJ9I@x1>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sat, 21 Jun 2025 14:21:00 +0200
+X-Gm-Features: Ac12FXwlYvFTtsebXFsluqzoJQuMLv7aX97g0RdMlPc1xrNUVWgbbVLGEB9yHw4
+Message-ID: <CANiq72=YsoFSSm9QU0W2ZQseeQTWFNkXYVR1mODdv3HHg-0PAQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/9] Rust Abstractions for PWM subsystem with TH1520
+ PWM driver
+To: Drew Fustini <fustini@kernel.org>
+Cc: Michal Wilczynski <m.wilczynski@samsung.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, 
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Following warnings can be observed with CHECK_DTBS=y for the RK3528:
+On Fri, Jun 20, 2025 at 2:52=E2=80=AFAM Drew Fustini <fustini@kernel.org> w=
+rote:
+>
+> Did I do something wrong?
 
-  rk3528-pinctrl.dtsi:101.36-105.5: Warning (node_name_chars_strict):
-    /pinctrl/fephy/fephym0-led_dpx: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:108.38-112.5: Warning (node_name_chars_strict):
-    /pinctrl/fephy/fephym0-led_link: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:115.36-119.5: Warning (node_name_chars_strict):
-    /pinctrl/fephy/fephym0-led_spd: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:122.36-126.5: Warning (node_name_chars_strict):
-   /pinctrl/fephy/fephym1-led_dpx: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:129.38-133.5: Warning (node_name_chars_strict):
-    /pinctrl/fephy/fephym1-led_link: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:136.36-140.5: Warning (node_name_chars_strict):
-    /pinctrl/fephy/fephym1-led_spd: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:782.32-790.5: Warning (node_name_chars_strict):
-    /pinctrl/rgmii/rgmii-rx_bus2: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:793.32-801.5: Warning (node_name_chars_strict):
-    /pinctrl/rgmii/rgmii-tx_bus2: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:804.36-810.5: Warning (node_name_chars_strict):
-    /pinctrl/rgmii/rgmii-rgmii_clk: Character '_' not recommended in node name
-  rk3528-pinctrl.dtsi:813.36-823.5: Warning (node_name_chars_strict):
-    /pinctrl/rgmii/rgmii-rgmii_bus: Character '_' not recommended in node name
+No -- the file just doesn't exist in the patches.
 
-Rename the affected nodes to fix these warnings.
-
-Fixes: a31fad19ae39 ("arm64: dts: rockchip: Add pinctrl and gpio nodes for RK3528")
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- .../boot/dts/rockchip/rk3528-pinctrl.dtsi     | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
-index ea051362fb26..59b75c91bbb7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
-@@ -98,42 +98,42 @@ eth_pins: eth-pins {
- 
- 	fephy {
- 		/omit-if-no-ref/
--		fephym0_led_dpx: fephym0-led_dpx {
-+		fephym0_led_dpx: fephym0-led-dpx {
- 			rockchip,pins =
- 				/* fephy_led_dpx_m0 */
- 				<4 RK_PB5 2 &pcfg_pull_none>;
- 		};
- 
- 		/omit-if-no-ref/
--		fephym0_led_link: fephym0-led_link {
-+		fephym0_led_link: fephym0-led-link {
- 			rockchip,pins =
- 				/* fephy_led_link_m0 */
- 				<4 RK_PC0 2 &pcfg_pull_none>;
- 		};
- 
- 		/omit-if-no-ref/
--		fephym0_led_spd: fephym0-led_spd {
-+		fephym0_led_spd: fephym0-led-spd {
- 			rockchip,pins =
- 				/* fephy_led_spd_m0 */
- 				<4 RK_PB7 2 &pcfg_pull_none>;
- 		};
- 
- 		/omit-if-no-ref/
--		fephym1_led_dpx: fephym1-led_dpx {
-+		fephym1_led_dpx: fephym1-led-dpx {
- 			rockchip,pins =
- 				/* fephy_led_dpx_m1 */
- 				<2 RK_PA4 5 &pcfg_pull_none>;
- 		};
- 
- 		/omit-if-no-ref/
--		fephym1_led_link: fephym1-led_link {
-+		fephym1_led_link: fephym1-led-link {
- 			rockchip,pins =
- 				/* fephy_led_link_m1 */
- 				<2 RK_PA6 5 &pcfg_pull_none>;
- 		};
- 
- 		/omit-if-no-ref/
--		fephym1_led_spd: fephym1-led_spd {
-+		fephym1_led_spd: fephym1-led-spd {
- 			rockchip,pins =
- 				/* fephy_led_spd_m1 */
- 				<2 RK_PA5 5 &pcfg_pull_none>;
-@@ -779,7 +779,7 @@ rgmii_miim: rgmii-miim {
- 		};
- 
- 		/omit-if-no-ref/
--		rgmii_rx_bus2: rgmii-rx_bus2 {
-+		rgmii_rx_bus2: rgmii-rx-bus2 {
- 			rockchip,pins =
- 				/* rgmii_rxd0 */
- 				<3 RK_PA3 2 &pcfg_pull_none>,
-@@ -790,7 +790,7 @@ rgmii_rx_bus2: rgmii-rx_bus2 {
- 		};
- 
- 		/omit-if-no-ref/
--		rgmii_tx_bus2: rgmii-tx_bus2 {
-+		rgmii_tx_bus2: rgmii-tx-bus2 {
- 			rockchip,pins =
- 				/* rgmii_txd0 */
- 				<3 RK_PA1 2 &pcfg_pull_none_drv_level_2>,
-@@ -801,7 +801,7 @@ rgmii_tx_bus2: rgmii-tx_bus2 {
- 		};
- 
- 		/omit-if-no-ref/
--		rgmii_rgmii_clk: rgmii-rgmii_clk {
-+		rgmii_rgmii_clk: rgmii-rgmii-clk {
- 			rockchip,pins =
- 				/* rgmii_rxclk */
- 				<3 RK_PA5 2 &pcfg_pull_none>,
-@@ -810,7 +810,7 @@ rgmii_rgmii_clk: rgmii-rgmii_clk {
- 		};
- 
- 		/omit-if-no-ref/
--		rgmii_rgmii_bus: rgmii-rgmii_bus {
-+		rgmii_rgmii_bus: rgmii-rgmii-bus {
- 			rockchip,pins =
- 				/* rgmii_rxd2 */
- 				<3 RK_PA7 2 &pcfg_pull_none>,
--- 
-2.49.0
-
+Cheers,
+Miguel
 
