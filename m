@@ -1,168 +1,195 @@
-Return-Path: <devicetree+bounces-188063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87ABAAE28D2
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 13:34:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1203AE28E6
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 14:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE55F3A8CEB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 11:33:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71C931898ED7
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 12:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F772204840;
-	Sat, 21 Jun 2025 11:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3937D1F237E;
+	Sat, 21 Jun 2025 12:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tw9K+ION"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="a4hVjmb4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765BA1E570D
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 11:34:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24FE21F03D7
+	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 12:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750505658; cv=none; b=a9Ib3JKAzZysKwxP9EoSFgWA8p3MtRQJQs+49ieAHgzG13Ilz30JG1tjeW8kEtxv9OZxsRwBDW9TKjoEJJxQXRuQ1P9XA3cVQmpBzP9ujvb1SXarxJ/uH023aLGmMi7Tkq1KcCFKu9+OqDfnppFco51AAJNtQC+KCNyfFOpHe6M=
+	t=1750507243; cv=none; b=AMdQvUIMBu6qrPdiWJ80XW8kKJa6RAtcDeMtyMwc3ndmkf6OhMz3hhv/YpQgge0tYUNrNYZ/3PozCHZpIrxWEsdHiylrp5ZYGUZLTt0F7SwhooOxV58HYm5QBSXnmnDvAPAnI7CkRqd0wK1giKSDS9SxQAVMQsV9T/BtcHJOoEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750505658; c=relaxed/simple;
-	bh=frY2TTFiRDTZ1/fLpg8ekWWh85lRQvZjOPHO9EIHCjU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mlFq+436VamakP8pDUkXoDx0IWX+uPgdtDNYXSjy2fjOF0aECZizUwiVFht3a7EEjT3yT7rAw7e1tpPGx31Yy8AdQbLSmJpZy0d+7PdKOpPIsI/L2MhTUd2p7g93iawtuD95n/UFqxHtFVO7gBQRHOFnWvSIjUI5wefBxQxR88E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tw9K+ION; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55LBCtLQ029458
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 11:34:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1jupXXJP0CLCOPTG5xvcuf2tq7rGiRDdL12CALHVIl0=; b=Tw9K+IONfj+jyivO
-	lrqH/ZWbDmOpa4fmlp+Aac+QAwsgVGnFuYXa69rzNmQ2FSwYIdd9Rxlif4oMlcBV
-	GETSrkoSxNbO89n+GSa+Og0F1+0MDu0Zotn1oeoAe8BIFHipZGLTK5OiEVCC9FnO
-	RG9YgIwBUXnQ1eThve0ShBBE58sAAonyFOgS0flMnNHS5nNnwRVxNBf26lU2ik4H
-	7LJdz1ONPvFjeb9mn2seN/FLHbz35DRRfDjV6NbIlC89A9gzFMa+EXqwS1UVUbbc
-	jjp2lCtW3OlZAdbj5RyVSWc13q7aQDXwrkZzagYmo8La/X0tBTcjyyHNeBI4qcm+
-	3Fo3yg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47dung80n3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 11:34:16 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7d21080c26fso70076785a.1
-        for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 04:34:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750505655; x=1751110455;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1jupXXJP0CLCOPTG5xvcuf2tq7rGiRDdL12CALHVIl0=;
-        b=fNbjUwE6SrLTlvYlu0vQiyPzvxmnKSoS0MAB0zgkJdBhrjDT2zE19GZGXfcFBFm1z1
-         iiOXhDjWjeRMqrOHnBfRb0nneU3HYb7qkAkZBFz7RVuuhQ4zLZvULCaQdH0TCoyi0kZ2
-         z2Bdsoekh1IoGZh9QzyvLgDbkaz+h3JImozAO6tS3WsA1oMnFZq8Vv9T9VFbOYXOwcvN
-         JSIAOyT4my06Uwr0jmDjkw80dEdfwwtCGZsjT10cyArMTea2E3GOjAtIpx0FUriM/5BF
-         5tZqvGM/WEcJMGezeFJ0lgPK6z7A34C7GHtTBL8RmqCK9wp9kI0LMIBvo70ke/elVPVj
-         QS7Q==
-X-Gm-Message-State: AOJu0Ywc/gC1VS8MJI/zNp5DyCk8hBvSkM52JoezOHF/lX5xeskjMxLb
-	asgQ+/Q2TqSFzgAzFMPKK72UvnW0Pt7JcwisVfb/+Lowh6gzUJlk4QUNnS9hwQAeCbw7lMbs6Ck
-	EnJ94TfQjILNoyzhihSTSExqMPCOZAqIhWoqQw+FYT75XJbyC0+srKaJyXEPYwjI9
-X-Gm-Gg: ASbGncs1JeN1CvLDUbfrcJVHvQRsvV/+y4cz4/CK85sh5UYjDemQ/6KIVnjkqGZMxQb
-	XboOAAFBT1sYvZ2WUajlNFVCbP4EtjeiPcbfe8mLDpF69E6OyKQlCbxRpgiz77frDoqEz9GyVK7
-	xYTQhcPTJdmh5GNt5uPWTO8+35+9oYj4TwHXA7kG4zu5WYv45ye7WBOUCFOiQ19I5LlEkekJQuM
-	kSn/CcHk0Go1Z17Wn9O70CcbV/5wbaxnEYVoZ8bWL16ZjBs6ilZgtyb1/BFtApBy+5gIaPiYHas
-	Ow8mJE62ob2Ro5A6C6XvwTpIAwXNv65TzW4+BpFFka4OlmDoojpbTbQLarkNatM9JMHKlxVJRXU
-	Hdlg=
-X-Received: by 2002:a05:620a:24d5:b0:7d3:e9b7:7121 with SMTP id af79cd13be357-7d3f9936b58mr324762985a.12.1750505655434;
-        Sat, 21 Jun 2025 04:34:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF4OouuaJ6w4x/c8MGc2W1x/PoYi/AddPaueSZ+TZYl9OF4B2EEGCnNe20HdRLDIQTJWXjtWA==
-X-Received: by 2002:a05:620a:24d5:b0:7d3:e9b7:7121 with SMTP id af79cd13be357-7d3f9936b58mr324761385a.12.1750505655031;
-        Sat, 21 Jun 2025 04:34:15 -0700 (PDT)
-Received: from [192.168.143.225] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae05408301fsm354807666b.96.2025.06.21.04.34.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Jun 2025 04:34:14 -0700 (PDT)
-Message-ID: <9830cf03-911e-478a-adfd-2302bd3512d5@oss.qualcomm.com>
-Date: Sat, 21 Jun 2025 13:34:11 +0200
+	s=arc-20240116; t=1750507243; c=relaxed/simple;
+	bh=06b6ZB5lwM/+7QVClkjf63LNjiJ13J1H1t09RZJr+54=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QvLY7Jw5K5iyz9lWGLY7FASBoPpRmNQMqpQ3PZIoFEAvD+Ov5dtgcO36LjmVo3MfCCEhmqgSRLsJWL1nfgh7sWrwxGbv2cTOeQIOQ/59XGZpp61BeYhU47VcJsSWwmwwVw79DTgBnabG6Mn0hggkYbUqcf0oW14U7vwNSTREukU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=a4hVjmb4; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1750507240;
+ bh=ir11YpcbwxWD+w+nzz2s0FsuVrnNjiwPhxkmWuSazqw=;
+ b=a4hVjmb4qgrHZyT/Z/dbYlgWi3rqWBQmLoP58Ke/OEUJ/AAFO17k+l2duSjEy9ipM5VuMQ4HR
+ KbTXRhboC+bNaQ8Kovnv18qd3/0ThTcLbpYI7x3VIhkby0zJus0gYEAwlgNERdzhXINfoTWjqJi
+ gOhMlYWs6KFWjgVaiVt09iKfR1GCtYCwVP0OPCfOJHWmoJFqKOCOqYBc2uAztvwtCAMWs6/8N5z
+ YTcDzJXIBzv/cv1hA9/crF5nVEfk6Fesk5k/pVvWVP8GY87sYyIs4ViYL6wkH2M20fzMH9fWuqB
+ +earWtnqaJpRwRS61jNJRlX0SiGuI7meBTZhWjeU3Fag==
+X-Forward-Email-ID: 685699d9f0bccf4584158851
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.0.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Fix pinctrl node names for RK3528
+Date: Sat, 21 Jun 2025 11:38:57 +0000
+Message-ID: <20250621113859.2146400-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8953: Add device tree for
- Billion Capture+
-To: Luca Weiss <luca@lucaweiss.eu>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        cristian_ci <cristian_ci@protonmail.com>,
-        "robh@kernel.org"
- <robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "konradybcio@kernel.org" <konradybcio@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "~postmarketos/upstreaming@lists.sr.ht"
- <~postmarketos/upstreaming@lists.sr.ht>,
-        "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
-References: <20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com>
- <20250620-rimob-initial-devicetree-v1-3-8e667ea21f82@protonmail.com>
- <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
- <bWiyUA5cF4NjzEaUwhpDvfeqs0hEizZKFKxQpsfj6htES5mPGO2Yf2AHZQcUEyR4x7Zx9kVvwenpc2djbCN148IbjtgLh7Gq_1HXicp8kms=@protonmail.com>
- <ff29229c-5458-4500-9b11-8044a461cd36@lucaweiss.eu>
- <f83cc435-7736-4003-b5b2-a84e2fe725c6@oss.qualcomm.com>
- <0DC5CC32-231A-4802-9A69-7BCBB21066E1@lucaweiss.eu>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <0DC5CC32-231A-4802-9A69-7BCBB21066E1@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: f-u-eTAO2KiiUmQ8eVeEhuzKpMDqzOqu
-X-Authority-Analysis: v=2.4 cv=N5kpF39B c=1 sm=1 tr=0 ts=685698b8 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=dlmhaOwlAAAA:8
- a=Buv9VJQQgbVt63ATjJcA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=y4cfut4LVr_MrANMpYTh:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIxMDA2OCBTYWx0ZWRfX98gjT8OCrQlD
- Ew8daNF7mtXcgOD+BAJ3AY5tC9s8t7SVEim7x6mJ4AwpXWw/Uf+nrnmLiGJkGe1WQ4NoyscbUMY
- qoOTUWxpTERxqeThxJVrs6TJ9K4Ap2NfinYzWHTPRbf5vc3zeG8XaHhDVP92BLegRepVHyVq009
- DfTGKc5PRgrvKZjLJxI+bb9HZf3FYUspfh87bZTSjjsV191QDCH6gVGvGYoJ9snfLXb2FNU0TAs
- esWbrv4rmRFn7bQ4Rujf15I52uCX3vlrdQmFwxIIlm/xuJFVGi7sTVbBtcVPLJpA9mZCIq5kYOW
- hMleHxDaEJ6sBTEfTfYheJnegTTes0wOGE1sYmzU6S8V+Ta9E3wLb5pnoO+5NavKiWkDyAxdVns
- fk/KDzEScXBRVEN+BWPJMZWlgqyH5UKJ1Wr+J2j06C8vpzKhFEgcazhuKDT4dYgeOd540zts
-X-Proofpoint-GUID: f-u-eTAO2KiiUmQ8eVeEhuzKpMDqzOqu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-21_03,2025-06-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 adultscore=0 mlxlogscore=821 mlxscore=0
- suspectscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015 bulkscore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506210068
+Content-Transfer-Encoding: 8bit
 
-On 6/21/25 12:53 PM, Luca Weiss wrote:
-> 
-> 
-> Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> schreef op 21 juni 2025 12:11:00 CEST:
->> On 6/21/25 11:27 AM, Luca Weiss wrote:
->>> On 21-06-2025 9:07 a.m., cristian_ci wrote:
->>>> On Saturday, June 21st, 2025 at 00:20, Luca Weiss <luca@lucaweiss.eu> wrote:
+Following warnings can be observed with CHECK_DTBS=y for the RK3528:
 
-[...]
+  rk3528-pinctrl.dtsi:101.36-105.5: Warning (node_name_chars_strict):
+    /pinctrl/fephy/fephym0-led_dpx: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:108.38-112.5: Warning (node_name_chars_strict):
+    /pinctrl/fephy/fephym0-led_link: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:115.36-119.5: Warning (node_name_chars_strict):
+    /pinctrl/fephy/fephym0-led_spd: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:122.36-126.5: Warning (node_name_chars_strict):
+   /pinctrl/fephy/fephym1-led_dpx: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:129.38-133.5: Warning (node_name_chars_strict):
+    /pinctrl/fephy/fephym1-led_link: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:136.36-140.5: Warning (node_name_chars_strict):
+    /pinctrl/fephy/fephym1-led_spd: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:782.32-790.5: Warning (node_name_chars_strict):
+    /pinctrl/rgmii/rgmii-rx_bus2: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:793.32-801.5: Warning (node_name_chars_strict):
+    /pinctrl/rgmii/rgmii-tx_bus2: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:804.36-810.5: Warning (node_name_chars_strict):
+    /pinctrl/rgmii/rgmii-rgmii_clk: Character '_' not recommended in node name
+  rk3528-pinctrl.dtsi:813.36-823.5: Warning (node_name_chars_strict):
+    /pinctrl/rgmii/rgmii-rgmii_bus: Character '_' not recommended in node name
 
->>> which means that you should only have one value for address, and one for size, so "reg = <0x84a00000 0x1900000>;". This is different to most other Qualcomm arm64 SoCs.
->>
->> reserved-memory {
->>                #address-cells = <2>;
->>                #size-cells = <2>;
->>                ranges;
-> 
-> Huh, why this mix'n'match in this SoC... Fun
+Rename the affected nodes to fix these warnings.
 
-I *think* some of these older SoCs should be able to address more than
-32 bits of memory, so it makes sense in that way
+Fixes: a31fad19ae39 ("arm64: dts: rockchip: Add pinctrl and gpio nodes for RK3528")
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+ .../boot/dts/rockchip/rk3528-pinctrl.dtsi     | 20 +++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-Konrad
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
+index ea051362fb26..59b75c91bbb7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
+@@ -98,42 +98,42 @@ eth_pins: eth-pins {
+ 
+ 	fephy {
+ 		/omit-if-no-ref/
+-		fephym0_led_dpx: fephym0-led_dpx {
++		fephym0_led_dpx: fephym0-led-dpx {
+ 			rockchip,pins =
+ 				/* fephy_led_dpx_m0 */
+ 				<4 RK_PB5 2 &pcfg_pull_none>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		fephym0_led_link: fephym0-led_link {
++		fephym0_led_link: fephym0-led-link {
+ 			rockchip,pins =
+ 				/* fephy_led_link_m0 */
+ 				<4 RK_PC0 2 &pcfg_pull_none>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		fephym0_led_spd: fephym0-led_spd {
++		fephym0_led_spd: fephym0-led-spd {
+ 			rockchip,pins =
+ 				/* fephy_led_spd_m0 */
+ 				<4 RK_PB7 2 &pcfg_pull_none>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		fephym1_led_dpx: fephym1-led_dpx {
++		fephym1_led_dpx: fephym1-led-dpx {
+ 			rockchip,pins =
+ 				/* fephy_led_dpx_m1 */
+ 				<2 RK_PA4 5 &pcfg_pull_none>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		fephym1_led_link: fephym1-led_link {
++		fephym1_led_link: fephym1-led-link {
+ 			rockchip,pins =
+ 				/* fephy_led_link_m1 */
+ 				<2 RK_PA6 5 &pcfg_pull_none>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		fephym1_led_spd: fephym1-led_spd {
++		fephym1_led_spd: fephym1-led-spd {
+ 			rockchip,pins =
+ 				/* fephy_led_spd_m1 */
+ 				<2 RK_PA5 5 &pcfg_pull_none>;
+@@ -779,7 +779,7 @@ rgmii_miim: rgmii-miim {
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		rgmii_rx_bus2: rgmii-rx_bus2 {
++		rgmii_rx_bus2: rgmii-rx-bus2 {
+ 			rockchip,pins =
+ 				/* rgmii_rxd0 */
+ 				<3 RK_PA3 2 &pcfg_pull_none>,
+@@ -790,7 +790,7 @@ rgmii_rx_bus2: rgmii-rx_bus2 {
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		rgmii_tx_bus2: rgmii-tx_bus2 {
++		rgmii_tx_bus2: rgmii-tx-bus2 {
+ 			rockchip,pins =
+ 				/* rgmii_txd0 */
+ 				<3 RK_PA1 2 &pcfg_pull_none_drv_level_2>,
+@@ -801,7 +801,7 @@ rgmii_tx_bus2: rgmii-tx_bus2 {
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		rgmii_rgmii_clk: rgmii-rgmii_clk {
++		rgmii_rgmii_clk: rgmii-rgmii-clk {
+ 			rockchip,pins =
+ 				/* rgmii_rxclk */
+ 				<3 RK_PA5 2 &pcfg_pull_none>,
+@@ -810,7 +810,7 @@ rgmii_rgmii_clk: rgmii-rgmii_clk {
+ 		};
+ 
+ 		/omit-if-no-ref/
+-		rgmii_rgmii_bus: rgmii-rgmii_bus {
++		rgmii_rgmii_bus: rgmii-rgmii-bus {
+ 			rockchip,pins =
+ 				/* rgmii_rxd2 */
+ 				<3 RK_PA7 2 &pcfg_pull_none>,
+-- 
+2.49.0
+
 
