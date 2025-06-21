@@ -1,285 +1,143 @@
-Return-Path: <devicetree+bounces-188094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E396AE2AAC
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 19:21:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 399F2AE2AF1
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 20:03:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C72E37AC973
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 17:20:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9423A3A35BF
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 18:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BD5254B19;
-	Sat, 21 Jun 2025 17:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CFA26A08D;
+	Sat, 21 Jun 2025 18:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="vdIY08H5";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="q63Ujdk5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HPUiHCTu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E78E25393E;
-	Sat, 21 Jun 2025 17:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD75A1CAB3;
+	Sat, 21 Jun 2025 18:03:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750526490; cv=none; b=Ayq9lgruP4B4uTdDLCV5MuL/6/ZxTkw7XGffJPus1ay0RRm6nlXZyFyUuaQ439RTlqOl7FDPv5mGOSNFu4ON++ZYNYtvrhtTxC+h9n9qlYjfaer/SE3yrIBQzHIFAthxmwHcOykSXflMnpuQklOaLWjv6v38FTVFSt1Xma3d7GA=
+	t=1750529030; cv=none; b=Hm5s2UjOxx3j9euQ/KRc9itbn4StVjVB2Mz/CILKFRPjRjnW/hzwKByTHoicwcgmejqfjgi9EGCvze7j9XvUtm/x3h1vqOhFoFNVthIiF0Xq82kxWypTyLczy0s3EkD5noCK6yooKcFy4h5NM96aXNA1k82aKN71Z/sPqNaVqcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750526490; c=relaxed/simple;
-	bh=zxpohLn9mX8clveX9Pzii6+8IN6bFrPBcNR+2mZDB4Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YDfE1RSCHRyW0xr4ZHcK5SD37pK26shpy/ht0lcAKmealT/zVkvCTjmZ2xFOZZEVVGOjmYoNl6Jx7ClzDOSJgOxAdzPC+qgQuNup3Yw+czGwIHmRidH2BqorDS08DNXl8pNi6SeyNV4l4rMCpp51i14IIlrsHvu6vGCv9VvvW1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=vdIY08H5; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=q63Ujdk5; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bPh2v0KwHz9t7b;
-	Sat, 21 Jun 2025 19:21:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750526487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8QwqPmZJK568Hu3+OFRpzAmjwFuzscBcD2Y5N4HhP2s=;
-	b=vdIY08H5Pm1y9rfc6exDnt5G5WA2MXqVZ+tOQzxG8mi/Jo/JwAw20CFovqqVlLr6g9qB7i
-	twnjW/9Oe+GhJ+AHIdxhsFmNM6VgkuxDbSHQ1cM0ta1c7wIjvJhtRB7JG26889jMtfBcEr
-	c+yOzNdvQtYuJQBu4gUeEBx3x4pnJotYT3WO/NA/ZtSIMhTQOhrO8dSoLxnCaszKDzbD18
-	hMzmJseiedKSh13fXz8o97E3pIwkPhW0Z3pSzrnaL7havvL1mB2M3tXjgeUjdDzxG63H4Y
-	WChTMJOTYddzAxw68Cfbi8jdoM1xgQS19c9QQG1r1pHD5NDKYd3PDSaeerDf3g==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1750526484;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8QwqPmZJK568Hu3+OFRpzAmjwFuzscBcD2Y5N4HhP2s=;
-	b=q63Ujdk5KBWerMLEsr99zJSsvMgktPgd187n/MXva/cd0/XNL7QfHXMPKFvhe6QlwSXvbw
-	gmLqYdIEngBpKItaiPjsP2ZJz4KKX0p0Fv2qCuGBj/9X0pezP9iPDBgJLx7Tyu9mbDpU2m
-	PALHW7PLt19EtOYPrGHeQie34XoIsWVsGHduVyGAcxCPeILmAV5+pA16f5BQ7waQpVK3sd
-	ucCpe3sS9EBpNYwhOUlyFqirFX3MvhZDzP5Oe6ztRXEEwfoCZ1h7t0PdQBxBVdQgENfQvo
-	0EsChWVSpCWQY635e6ydp2P5gnLjk8PkzE+BgUsSe9bsbLbmFZQz0HMety33gw==
-To: linux-pwm@vger.kernel.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1750529030; c=relaxed/simple;
+	bh=zB/7QlHpIPmoheG3tIr1zNvJglXGxWEsHi8Mcd+ZN28=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ra4S71h7id+RNvM+oCBeZc9QfonVp+IVzjSatRWUpNCAFxzMUqSvbBDxaiL4finbdc1oFDkMKVQtVac8yIOMqt6/PYjTJP31MfIqUC97Vo8FYVQ8JAu9amArS33F1aLHlDH4ekrcH62W0d+VBPHT1qB9BKHwuOLsQ5GcGqjG8Ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HPUiHCTu; arc=none smtp.client-ip=209.85.210.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-73a5c3e1b7aso2048834a34.3;
+        Sat, 21 Jun 2025 11:03:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750529027; x=1751133827; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H0KfXV/NBkTDKDWD/tI/EX8MZ/lbEEpoIni8SgACMHs=;
+        b=HPUiHCTuGe8b8W2lCWtJZxR8lDJ0sxp8+pwVFqTqNAoJt2OgQlExPNiz99z5FOavKm
+         7uwEWP4/Fs3v2OOaQ8gdBTTt/LPlm8NOh0YlcBX4JdEHbG1y26az8vEuludzjD9zYlDZ
+         S5628yN6HA+MMslTBxEw6AZz7i5a4YeMMDUIH23F9xNzeronz6Hsew+KYluzNuZ+JSv8
+         a6nmUgZgK0UwIHQRYOHixXOMFOcwKnQlTY6/HvZtR4WHhp0g9HlRB6R5vktsDnwZP49t
+         33StBoKhxnZIQolQDDhE7VUfb3mIC+yVlwBG0e64QrJ8MQ9HpnCigWkyQvklfESnaOvK
+         Qq+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750529027; x=1751133827;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H0KfXV/NBkTDKDWD/tI/EX8MZ/lbEEpoIni8SgACMHs=;
+        b=lnmTnelfvm4Wtrqpe9I/df/+RCe8GUBX4JFidZfXz0cuE17LMUNDTKvzSIAFnNH/IL
+         EYMyRSoVo22tjIxQN+OECocczKkEwFvAI0zHCL+BKrziHLt5CIqBB/Jx1v63HPcrfNXO
+         xIoXumjI2EejkQRcXCMD66qxyRsP6tIHj+z7L8KaKBJW9PHCtcZ3Mw4//VNsCr8AhuRy
+         PPhfrcC1c/5TVnX5B6lguPAZ2kAUQ/CjzOVw1jej1ZjzEdkUhtIXEVbZ1MNq7ESvfh3y
+         jr7zBMbDw3zJQfBXpqOoJQL/vmhaAAS4gBoe569CRMb0lUC45vsYl8yt9lDjiFNbFTP7
+         ckeA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJe2dAP+TiIY4PZ23MSZRAUXUcE/bRZeFKE7T5+w9ZFzc0gnNj/5sc3TxKSPkRv2Zz6mUyh6W4vk8e@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3szSNhCULepCE7eWf3sXiLFIDfFdAcjMEJ88+1oArUjRXMDlu
+	BahwlIp+lh3p49s9xL/h1Nz//r7ksL1O9GOZAv6lKX39R7jPt+sEORp07NkK/w==
+X-Gm-Gg: ASbGncvIbSicJmzq0aOyrDVaT9UFSv29189eHJ5mWecZZDMITjg64HfdukcC4FGl/D6
+	A/tiDwdr7s+X6uqu5jd213kx4X6ttBqIH/5DA3lX4CnRVQYUDp+aKvL+n0xjV3UyKnroa8Vype4
+	fhBaawZJTwMmkV/R5xkBoTNxauKgwYN8stcXgh08RDoIoJqQRp0GPfNNWihMpwSiImzXNWkh90J
+	FsGa7lOLH3r0VMLwG5Dq1Rma6Kr+2cAVqfmahXCRMerD8Je8cQQio1zMHI2BTIcXONixaLV8gwV
+	2TcSoMC7vcTEDSdahnk4VU6x1KdisMOs42+6fOItB+SnBGFRg5E08Jt1aq6k9VdkfRd/+4E=
+X-Google-Smtp-Source: AGHT+IEpLQefJADPG3T9ukhtS1GxjWsZURA3VRvt3Yp99VT5aqi6GnzI066BJQk1hduPPv/oDf+1Mw==
+X-Received: by 2002:a05:6830:2d84:b0:72b:87bd:ad5b with SMTP id 46e09a7af769-73a91a78267mr3701418a34.4.1750529027551;
+        Sat, 21 Jun 2025 11:03:47 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-73a90ca8707sm782895a34.46.2025.06.21.11.03.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Jun 2025 11:03:47 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-pm@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
-Date: Sat, 21 Jun 2025 19:19:56 +0200
-Message-ID: <20250621172056.160855-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
-References: <20250621172056.160855-1-marek.vasut+renesas@mailbox.org>
+	broonie@kernel.org,
+	lgirdwood@gmail.com,
+	sre@kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lee@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V2 0/5] Add Texas Instruments BQ25703A Charger
+Date: Sat, 21 Jun 2025 13:01:14 -0500
+Message-ID: <20250621180119.163423-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: cmec9hsx618397acss9i7zkrawu4zqfr
-X-MBO-RS-ID: 3179eb33102f8616f75
-X-Rspamd-Queue-Id: 4bPh2v0KwHz9t7b
 
-Add trivial PWM driver for Argon40 Fan HAT, which is a RaspberryPi
-blower fan hat which can be controlled over I2C. Model this device
-as a PWM, so the pwm-fan can be attached to it and handle thermal
-zones and RPM management in a generic manner.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: "Uwe Kleine-König" <ukleinek@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-pwm@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: - Switch to waveform ops
-    - Add shutdown hook to force the fan to maximum RPM on shutdown
-      instead of stopping it, to be on the safe side
-V3: - Find the 30 kHz fixed period PWM, use that
-    - Add comments
-    - Consolidate argon_fan_hat_write()
-V4: - Add if (wf->duty_length_ns > ARGON40_FAN_HAT_PERIOD_NS) overflow check
-    - Use i2c_smbus_write_byte_data()
-    - Rename struct pwm_chip *pc to struct pwm_chip *chip
-    - Remove tab alignment from argon_fan_hat_pwm_ops {}
-    - Define ARGON40_FAN_HAT_REG_DUTY_CYCLE macro
----
- drivers/pwm/Kconfig             |   9 +++
- drivers/pwm/Makefile            |   1 +
- drivers/pwm/pwm-argon-fan-hat.c | 120 ++++++++++++++++++++++++++++++++
- 3 files changed, 130 insertions(+)
- create mode 100644 drivers/pwm/pwm-argon-fan-hat.c
+Add support for the Texas Instruments BQ25703A charger manager. The
+device integrates a boost converter with the charger manager. This
+series adds the device as an MFD with separate regulator and power
+supply drivers. This allows us to manage a circular dependency with
+a type-c port manager which depends on the regulator for usb-otg
+but supplies power to the BQ25703A charger.
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 6e113f8b4baf..3ef1757502eb 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -66,6 +66,15 @@ config PWM_APPLE
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-apple.
- 
-+config PWM_ARGON_FAN_HAT
-+	tristate "Argon40 Fan HAT support"
-+	depends on I2C && OF
-+	help
-+	  Generic PWM framework driver for Argon40 Fan HAT.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-argon-fan-hat.
-+
- config PWM_ATMEL
- 	tristate "Atmel PWM support"
- 	depends on ARCH_AT91 || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 96160f4257fc..ff4f47e5fb7a 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -3,6 +3,7 @@ obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
- obj-$(CONFIG_PWM_ADP5585)	+= pwm-adp5585.o
- obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
-+obj-$(CONFIG_PWM_ARGON_FAN_HAT)	+= pwm-argon-fan-hat.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-diff --git a/drivers/pwm/pwm-argon-fan-hat.c b/drivers/pwm/pwm-argon-fan-hat.c
-new file mode 100644
-index 000000000000..1bf07c769497
---- /dev/null
-+++ b/drivers/pwm/pwm-argon-fan-hat.c
-@@ -0,0 +1,120 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 Marek Vasut
-+ *
-+ * Limitations:
-+ * - no support for offset/polarity
-+ * - fixed 30 kHz period
-+ *
-+ * Argon Fan HAT https://argon40.com/products/argon-fan-hat
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/pwm.h>
-+
-+#define ARGON40_FAN_HAT_PERIOD_NS	33333	/* ~30 kHz */
-+
-+#define ARGON40_FAN_HAT_REG_DUTY_CYCLE	0x80
-+
-+static int argon_fan_hat_round_waveform_tohw(struct pwm_chip *chip,
-+					     struct pwm_device *pwm,
-+					     const struct pwm_waveform *wf,
-+					     void *_wfhw)
-+{
-+	u8 *wfhw = _wfhw;
-+
-+	if (wf->duty_length_ns > ARGON40_FAN_HAT_PERIOD_NS)
-+		*wfhw = 100;
-+	else
-+		*wfhw = mul_u64_u64_div_u64(wf->duty_length_ns, 100, ARGON40_FAN_HAT_PERIOD_NS);
-+
-+	return 0;
-+}
-+
-+static int argon_fan_hat_round_waveform_fromhw(struct pwm_chip *chip,
-+					       struct pwm_device *pwm,
-+					       const void *_wfhw,
-+					       struct pwm_waveform *wf)
-+{
-+	const u8 *wfhw = _wfhw;
-+
-+	wf->period_length_ns = ARGON40_FAN_HAT_PERIOD_NS;
-+	wf->duty_length_ns = DIV64_U64_ROUND_UP(wf->period_length_ns * *wfhw, 100);
-+	wf->duty_offset_ns = 0;
-+
-+	return 0;
-+}
-+
-+static int argon_fan_hat_write(struct i2c_client *i2c, const u8 wfhw)
-+{
-+	return i2c_smbus_write_byte_data(i2c, ARGON40_FAN_HAT_REG_DUTY_CYCLE, wfhw);
-+}
-+
-+static int argon_fan_hat_write_waveform(struct pwm_chip *chip,
-+					struct pwm_device *pwm,
-+					const void *_wfhw)
-+{
-+	struct i2c_client *i2c = pwmchip_get_drvdata(chip);
-+	const u8 *wfhw = _wfhw;
-+
-+	return argon_fan_hat_write(i2c, *wfhw);
-+}
-+
-+static const struct pwm_ops argon_fan_hat_pwm_ops = {
-+	.sizeof_wfhw = sizeof(u8),
-+	.round_waveform_fromhw = argon_fan_hat_round_waveform_fromhw,
-+	.round_waveform_tohw = argon_fan_hat_round_waveform_tohw,
-+	.write_waveform = argon_fan_hat_write_waveform,
-+	/*
-+	 * The controller does not provide any way to read info back,
-+	 * reading from the controller stops the fan, therefore there
-+	 * is no .read_waveform here.
-+	 */
-+};
-+
-+static int argon_fan_hat_i2c_probe(struct i2c_client *i2c)
-+{
-+	struct pwm_chip *chip = devm_pwmchip_alloc(&i2c->dev, 1, 0);
-+	int ret;
-+
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	chip->ops = &argon_fan_hat_pwm_ops;
-+	pwmchip_set_drvdata(chip, i2c);
-+
-+	ret = devm_pwmchip_add(&i2c->dev, chip);
-+	if (ret)
-+		return dev_err_probe(&i2c->dev, ret, "Could not add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
-+{
-+	argon_fan_hat_write(i2c, 100);
-+}
-+
-+static const struct of_device_id argon_fan_hat_dt_ids[] = {
-+	{ .compatible = "argon40,fan-hat" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, argon_fan_hat_dt_ids);
-+
-+static struct i2c_driver argon_fan_hat_driver = {
-+	.driver = {
-+		.name = "argon-fan-hat",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = argon_fan_hat_dt_ids,
-+	},
-+	.probe = argon_fan_hat_i2c_probe,
-+	.shutdown = argon_fan_hat_i2c_shutdown,
-+};
-+
-+module_i2c_driver(argon_fan_hat_driver);
-+
-+MODULE_AUTHOR("Marek Vasut <marek.vasut+renesas@mailbox.org>");
-+MODULE_DESCRIPTION("Argon40 Fan HAT");
-+MODULE_LICENSE("GPL");
+---
+Changes since RFC
+ - Corrected some minor issues with code and device-tree labels.
+ - Replaced most of the manufacturer specific device-tree properties
+   with monitored-battery properties.
+---
+
+Chris Morgan (5):
+  dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
+  mfd: bq257xx: Add support for BQ25703A core driver
+  power: supply: bq257xx: Add support for BQ257XX charger manager
+  regulator: bq257xx: Add bq257xx boost regulator driver
+  arm64: dts: rockchip: Add USB and charger to Gameforce Ace
+
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 123 +++
+ .../dts/rockchip/rk3588s-gameforce-ace.dts    | 122 +++
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/bq257xx.c                         | 104 +++
+ drivers/power/supply/Kconfig                  |   7 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/bq257xx_charger.c        | 754 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/bq257xx-regulator.c         | 188 +++++
+ include/linux/mfd/bq257xx.h                   | 108 +++
+ 12 files changed, 1428 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+ create mode 100644 drivers/mfd/bq257xx.c
+ create mode 100644 drivers/power/supply/bq257xx_charger.c
+ create mode 100644 drivers/regulator/bq257xx-regulator.c
+ create mode 100644 include/linux/mfd/bq257xx.h
+
 -- 
-2.47.2
+2.43.0
 
 
