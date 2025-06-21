@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-188081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1A8AE29FE
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 17:51:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 813F0AE2A19
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 18:04:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F2CB16A196
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 15:51:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E121C3B190F
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 16:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E77D214A7C;
-	Sat, 21 Jun 2025 15:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA97321D3CD;
+	Sat, 21 Jun 2025 16:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXtULFaV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u+fEWf3J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214861426C;
-	Sat, 21 Jun 2025 15:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5D721CA14;
+	Sat, 21 Jun 2025 16:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750521100; cv=none; b=udTewYSw9AK+lB1CvnfDioTjWRk94WpWlhmQuxQn0t+MCVxElfAJgmhu6JSy+G1uikReKnEKfrYSRdiNDkZ5NrRmuK7p8cWxkTeLEfG5JABpVR4GCLvr5wYBlTD0fw+M+vHrEdNJSVgSSBRBkHBIhlwVe+qYngV/nDH0ivExc+c=
+	t=1750521835; cv=none; b=BKmlGpjeoMBOlrdX6HBQZiOGSy6rlCxeOG6AtH6Zx/sb8BHDczJU2n8TWKqK0E2egItx7rL4f7qCZbmAyYqVhSsrql3AyY3KixNc7EnpoTqT6g0rPIdCX67C10S66A8L1L8tT8FAbpoXckXh4XDPqzghovDFvbB5bkC0AZNo3WY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750521100; c=relaxed/simple;
-	bh=RwP81emvQorDLrxRkfUbpFTx2KvYq1XkDDhakXZLA38=;
+	s=arc-20240116; t=1750521835; c=relaxed/simple;
+	bh=fK0szu7oKlcx4ykmNjXo08CHT5AcRlE5UnCS2Rd0ivU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=elt1qELhyhj+FnWqUXwqz+VQP5VayAN8bxYY6HuYCQknhfoUInqaS8mMQgXy/6nXOdzseL+z+8atDTybUZiO6NxSFXUFsKR77xbbvodGRj8MI8+Qi68qY+uRrkxfXp4GsNeKc2zDkJuDVmmW6cVJOO9l4qIw83Y+KV/4MTk2z2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXtULFaV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78776C4CEE7;
-	Sat, 21 Jun 2025 15:51:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GtFAj3epPbTp7hXWNRGfZYj8xuC3C5I9Ohvx854wEdhcdqDPbHPFdJkeqcZcAwD354EJBodSldBPN5SuNcXqkQicjbpeID7mtsd5/tP5tSW2TZizA4sD9Z4CbfEVbqJYnB6wrG/eBiMxaTYTrrbKSYULU5iHLOQyJfqD+dHafwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u+fEWf3J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B37C1C4CEE7;
+	Sat, 21 Jun 2025 16:03:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750521099;
-	bh=RwP81emvQorDLrxRkfUbpFTx2KvYq1XkDDhakXZLA38=;
+	s=k20201202; t=1750521835;
+	bh=fK0szu7oKlcx4ykmNjXo08CHT5AcRlE5UnCS2Rd0ivU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aXtULFaVgekIStsylN4vdg7HUyzivNz0nR/MJSwVzTkpruzTLf09+mzKvXkhSxwD6
-	 RfdN8Od5f/jxKMfkRbddhs5qxoS+QoS46W+d0+b1qS8+AJxa+pObgodXZycAnqJbL5
-	 gem5fqZiCD+HRYOrXaZXZmKHTNeK1QgLdynUz9VXQ5u4JDhZP5nOO3CQXZfDQZudBp
-	 d6cX58KTKDdUT5SRafdvX4onFl9UpYAy5YNgB7V0VjO2pugG98guCnmakD1DhOMOvP
-	 IbTJOhfMjLOTL7cCYtNtILPzxbrr9AtexQUIJRZ/m8HT5DhA72WLDVkeB3m3VNKief
-	 vEVYcskD2Qe6g==
-Message-ID: <f30406ae-90ed-4f81-9519-e6ae2dcc9e03@kernel.org>
-Date: Sat, 21 Jun 2025 17:51:33 +0200
+	b=u+fEWf3JpwaQFvkurB2cj92/djRgmEnGIJEl/mdWXIDbOTH6jDwNn+smq87gvEsye
+	 AHgqB+9DY9lSohUc8SQeXlqHSMdQx+vXQzyGbvLvCVQgfTqH8+y3Bky1JitoAOr/8d
+	 vikt6nrEmTk7LevSkyKPD4S/C+UQi++L8dBwQzFJGhBXZzM6y0k1KvOQqw4hjvdgo2
+	 /mpgXcomEDj5y/vOKWA1fHDoQcQH2dEZN2C9tm+lCX/en02EmtVDx8tCXP9o2GAdXG
+	 BeG7V07ritbMdx/ZOP7zS9wNpTlqdOt7VpBnlpJgtqG83FrdoZ0GfD6t+aLV9c9ydg
+	 0TmmFq8UUK0pw==
+Message-ID: <5e0a5cac-b88b-4721-a516-b179f9cfd3a0@kernel.org>
+Date: Sat, 21 Jun 2025 18:03:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,69 +50,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 05/10] mfd: Add Apple Silicon System Management
- Controller
-To: Lee Jones <lee@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Linus Walleij <linus.walleij@linaro.org>, Sebastian Reichel <sre@kernel.org>
-Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20250610-smc-6-15-v7-0-556cafd771d3@kernel.org>
- <20250610-smc-6-15-v7-5-556cafd771d3@kernel.org>
- <20250619114958.GJ587864@google.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpu: Add Apple SoC GPU
+To: fnkl.kernel@gmail.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Neal Gompa <neal@gompa.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Janne Grunau <j@jannau.net>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250613-sgx-dt-v2-0-fb2b7d1c3ff7@gmail.com>
+ <20250613-sgx-dt-v2-1-fb2b7d1c3ff7@gmail.com>
 Content-Language: en-US
 From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20250619114958.GJ587864@google.com>
+In-Reply-To: <20250613-sgx-dt-v2-1-fb2b7d1c3ff7@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 19.06.25 13:49, Lee Jones wrote:
-> On Tue, 10 Jun 2025, Sven Peter wrote:
+On 13.06.25 23:17, Sasha Finkelstein via B4 Relay wrote:
+> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
 > 
->> The System Management Controller (SMC) on Apple Silicon machines is a
->> piece of hardware that exposes various functionalities such as
->> temperature sensors, voltage/power meters, shutdown/reboot handling,
->> GPIOs and more.
->>
->> Communication happens via a shared mailbox using the RTKit protocol
->> which is also used for other co-processors. The SMC protocol then allows
->> reading and writing many different keys which implement the various
->> features. The MFD core device handles this protocol and exposes it
->> to the sub-devices.
->>
->> Some of the sub-devices are potentially also useful on pre-M1 Apple
->> machines and support for SMCs on these machines can be added at a later
->> time.
->>
->> Co-developed-by: Hector Martin <marcan@marcan.st>
->> Signed-off-by: Hector Martin <marcan@marcan.st>
->> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
->> Reviewed-by: Neal Gompa <neal@gompa.dev>
->> Signed-off-by: Sven Peter <sven@kernel.org>
->> ---
->>   MAINTAINERS                |   2 +
->>   drivers/mfd/Kconfig        |  18 ++
->>   drivers/mfd/Makefile       |   1 +
->>   drivers/mfd/macsmc.c       | 498 +++++++++++++++++++++++++++++++++++++++++++++
->>   include/linux/mfd/macsmc.h | 279 +++++++++++++++++++++++++
->>   5 files changed, 798 insertions(+)
+> Add bindings for the GPU present in Apple SoCs
 > 
-> This is ready.  Let me know when you have all of the other driver/* Acks.
-> 
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> ---
 
-They've all been reviewed by the respective maintainers.
+Reviewed-by: Sven Peter <sven@kernel.org>
 
-I assume you want to take this all through the mfd tree and we'll need 
-acks from Sebastian for power/reset and either Linus or Bartosz for gpio 
-then.
 
-The one line change inside drivers/soc/apple would usually go through my 
-tree and I'm fine with taking that through mfd instead.
+Thanks,
 
 
 Sven
