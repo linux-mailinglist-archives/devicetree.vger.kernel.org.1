@@ -1,84 +1,153 @@
-Return-Path: <devicetree+bounces-188045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18221AE282F
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 11:00:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21846AE2841
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 11:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A78AB17DDE3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 09:00:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 263067A8BA3
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 09:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E79153BD9;
-	Sat, 21 Jun 2025 09:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B621EB1BF;
+	Sat, 21 Jun 2025 09:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="P1CUcCdm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7058F5B
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 09:00:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9086D433B1;
+	Sat, 21 Jun 2025 09:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750496443; cv=none; b=gGjAENZo/XPnNyFnwni62yHoPUd05DpI1GPm9DuWsA2ZNhVyQtjsuvcXVytKTktkahoO5BDr0vFyZhBx9ReHsIHAPuE7VHzEXn+o+Ba2u9wofLGLZffLAcrLS7O5qtVFGU7IYKTneT5R9z8Va1LEDQwBcIzMtMI7WIx0SMSGo8U=
+	t=1750498038; cv=none; b=JxQkV1NDmgBtOFu9alH20qAQvTuM4KkikF4kW4jcUR7m7e7UxGPUm1OiHwC6Tz5FRc2/NWAHL1Vyr0QlK1IlUrT09emz3C0CqChDRfKV5EUxABWz+gA8zd3+aWBpz5LMWn7jRnEjAMW5MiMvmi1YAo9jqIPARmMhXyU6CDR2oDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750496443; c=relaxed/simple;
-	bh=5EQBJAXMCY6aQn65UPw1xxt4uDIdVBkw+YarFypg2ik=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=H14hAZKnx0cryjI+pjfiTy61PHotOZbdzoK8sbT01wfcYHs7PyZoo1++ECBjgVAUNGkEBWXkaCgfkjTauTZfBrf/Jl6Qowfg8Vp6NTbmxq1h9vi1ubj95sjRBct6QTjhZcSUr/YnJSdOSbWzul/uqLxSsCrl7aF1cPf0ivlaPh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [116.25.95.207])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 19728b98b;
-	Sat, 21 Jun 2025 17:00:35 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: heiko@sntech.de
-Cc: amadeus@jmu.edu.cn,
-	ziyao@disroot.org,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/3] rockchip: Add GPU support for RK3528
-Date: Sat, 21 Jun 2025 17:00:26 +0800
-Message-Id: <20250621090026.23293-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <175045054807.1572438.8910024255365917623.b4-ty@sntech.de>
-References: <175045054807.1572438.8910024255365917623.b4-ty@sntech.de>
+	s=arc-20240116; t=1750498038; c=relaxed/simple;
+	bh=suMIZysjQ6LF75eaZIfOnmKKmcSh2/4O7O+gcUFifpA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aFegd01h2oIQkK8rEhiBDcpuMDOdGF8EpiEun1iR8dgI0cE5JQLD/PProoiq8AG3j91XJpoNneHtjJrxQ34rvxYu0PraLXkgZWdF/4bBrxwdLW3rFmUt8idEXt1/Mo8h+6deZ0fVVOgyWTyzgmzHAjS59lMInPfR6LpHcDB4a1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=P1CUcCdm; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1750498034; bh=suMIZysjQ6LF75eaZIfOnmKKmcSh2/4O7O+gcUFifpA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=P1CUcCdmmh/ibZ9xTCWBp4nd1numB+H7FWARmaR6h6hAOlq63pdjyWfRNEoOyuGk8
+	 msIrvqufovCzrN65F8kZz5kPmMx+YJUp7IfVS8dL4ZlQKB92BvLRZCYiICwhsztRG4
+	 IwfALq7/vt3xUEvHslxwg4NSRiFaFAC675o5FSqo=
+Message-ID: <ff29229c-5458-4500-9b11-8044a461cd36@lucaweiss.eu>
+Date: Sat, 21 Jun 2025 11:27:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSElOVkNKTxpJQkpCGEMfTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk5VSUtMWVdZFhoPEhUdFFlBWU9LSFVKS0lCTUhKVUpLS1VLWQ
-	Y+
-X-HM-Tid: 0a9791b7dc5703a2kunmb42a6c8b19ec90
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PVE6GCo*HTExMCgBMBU*FysX
-	FU0KCQpVSlVKTE5LT0JNT0hNS01IVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	TVVJTlVCTlVJS0xZV1kIAVlBSkpLQjcG
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8953: Add device tree for
+ Billion Capture+
+To: cristian_ci <cristian_ci@protonmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "andersson@kernel.org" <andersson@kernel.org>,
+ "konradybcio@kernel.org" <konradybcio@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "~postmarketos/upstreaming@lists.sr.ht"
+ <~postmarketos/upstreaming@lists.sr.ht>,
+ "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
+References: <20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com>
+ <20250620-rimob-initial-devicetree-v1-3-8e667ea21f82@protonmail.com>
+ <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
+ <bWiyUA5cF4NjzEaUwhpDvfeqs0hEizZKFKxQpsfj6htES5mPGO2Yf2AHZQcUEyR4x7Zx9kVvwenpc2djbCN148IbjtgLh7Gq_1HXicp8kms=@protonmail.com>
+Content-Language: en-US
+From: Luca Weiss <luca@lucaweiss.eu>
+In-Reply-To: <bWiyUA5cF4NjzEaUwhpDvfeqs0hEizZKFKxQpsfj6htES5mPGO2Yf2AHZQcUEyR4x7Zx9kVvwenpc2djbCN148IbjtgLh7Gq_1HXicp8kms=@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 21-06-2025 9:07 a.m., cristian_ci wrote:
+> On Saturday, June 21st, 2025 at 00:20, Luca Weiss <luca@lucaweiss.eu> wrote:
+> 
+>>> +
+>>> + reserved-memory {
+>>> + qseecom@0 {
+>>
+>>
+>> qseecom@84a00000 ?
+>>
+>>> + reg = <0x00 0x84a00000 0x00 0x1900000>;
+>>> + no-map;
+>>> + };
+> 
+> Looking at downstream devicetree, every reserved-memory nodes with "removed-dma-pool" compatible has unit address 0. OTOH, kernel documentation [1] says:
+> "  Following the generic-names recommended practice, node names should
+>    reflect the purpose of the node (ie. "framebuffer" or "dma-pool").
+>    Unit address (@<address>) should be appended to the name if the node
+>    is a static allocation."
+> 
+> In my case, downstream devicetree shows:
+> 
+> 		other_ext_region@0 {
+> 			compatible = "removed-dma-pool";
+> 			no-map;
+> 			reg = <0x00 0x84a00000 0x00 0x1e00000>;
+> 		};
+> 
+> which will be 'qseecom' reserved-memory node in mainline devicetree.
+> 
+> OTOH, 'qseecom' node in downstream devicetree also shows:
+> 
+> 		qseecom@84a00000 {
+> 			compatible = "qcom,qseecom";
+> 			reg = <0x84a00000 0x1900000>;
+>                          ...
+> 
+> If you confirm what you suggest, 'qseecom' reserved-memory node will look like the following:
+> 
+> 		qseecom_mem: qseecom@84a00000 {
+> 			reg = <0x0 0x84a00000 0x0 0x1900000>;
+> 			no-map;
+> 		};
+> 
+> [1] https://www.kernel.org/doc/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
 
-> Applied, thanks!
->
-> [2/3] arm64: dts: rockchip: Add GPU node for RK3528
->       commit: 6b88b8a640fa5d2169e0ce47b88dc30727fc1105
-> [3/3] arm64: dts: rockchip: Enable GPU on Radxa E20C
->       commit: 669080eb7f7c4720aa4e640a49f7490cd928cfcc
+The name (qseecom@84a00000) mostly does not matter at runtime, it's just 
+a nice label we give it. The reg is the important bit that gets used in 
+reserved-memory.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?id=6b88b8a640fa5d2169e0ce47b88dc30727fc1105
+But actually re-checking, I don't think your reserved-memory works right 
+now, msm8953.dtsi has
 
-Should the gpu_opp_table node be above the pinctrl node?
+	soc: soc@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
 
-Thanks,
-Chukun
+which means that you should only have one value for address, and one for 
+size, so "reg = <0x84a00000 0x1900000>;". This is different to most 
+other Qualcomm arm64 SoCs.
 
---
-2.25.1
+Same for cont-splash below.
 
+> 
+>>> + cont_splash_mem: cont-splash@90001000 {
+>>> + reg = <0x0 0x90001000 0x0 (1080 * 1920 * 3)>;
+>>> + no-map;
+>>> + };
+>>> + };
+>>> +>>
+>> Any ideas what's connected to these pins? If you do, good to document
+>> this like in other devices.
+>>
+>> Regards
+>> Luca
+>>
+> 
+> Unfortunately, downstream devicetree's pinctrl (kernel sources not available) doesn't mention anywhere 'gpio0', 'gpio1', 'gpio2', 'gpio3', 'gpio135', 'gpio136', 'gpio137' and 'gpio138' (but, for example, 'gpio4' and 'gpio139' are shown, instead). So, I've no ideas what these reserved gpios are used for.
+That's fine from my side then.
+
+Regards
+Luca
 
