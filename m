@@ -1,295 +1,298 @@
-Return-Path: <devicetree+bounces-188038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC5F2AE2740
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 05:44:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21DE8AE27B0
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 09:08:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1153518999E2
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 03:44:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D02EF3BB4B7
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 07:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDBA146D45;
-	Sat, 21 Jun 2025 03:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE3919F111;
+	Sat, 21 Jun 2025 07:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QE/vqawR"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="xeQhI8zc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A6E42A96
-	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 03:44:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0A730E841;
+	Sat, 21 Jun 2025 07:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.165.51.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750477453; cv=none; b=rjxAJH8UCReKa9VbkzO1queT5N+V6Fgy4PYcGrhBqCPQPavfeknz3T4BiP/FJMh+DWQg9aeZTGoh8nmM/2cXKLyG9AtqMKZMh/Xj2R+ZsLcw5A9ZqDfKXswaJWtiC4L48Bo/+yeJloh2jKvV+tuWaL0c4ymDugs97NC7njepHpw=
+	t=1750489670; cv=none; b=CD9YBrusjleJ6Kl2k+00lXdJAYHViE1s0RPapHkGjnsSx2othlHr7g+bQQqhM/oHMjyDdN66SEspKaISYVYwgNE+nR5oJ/A07koMNyiwoYfflSuzPSbWIEQiC9Wr/qPDZ7FLs8SPkIyL7gpSDP2WKNjXu+AXE59X7wy3kotsuYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750477453; c=relaxed/simple;
-	bh=5F1fbcphphxLuGVY7fTghBHaNk2e0TiajscUaQKz9rM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qbNRZsWMueJlpXXzHAeM3iBWDMP0PBRTNUSu0HAytiaci9Fwq1wgjEpdID97D2qtCvbjV88bHl9Sdf2pVoXh9M/6wmiiZXZFH+hvV8f84EAJyG/pGRL4r0KFycaRxBxZRFv416xvrxv8RJ3Sc8dezCTRwXHhtPNDNAn07SELXhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QE/vqawR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCE3BC4CEE7;
-	Sat, 21 Jun 2025 03:44:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750477453;
-	bh=5F1fbcphphxLuGVY7fTghBHaNk2e0TiajscUaQKz9rM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=QE/vqawRoQPJG9YfanMs9cE1LgWejTlnHBSGPi1i0piBA2zANFxtMZhkOC/INQ9BK
-	 HFusSN0NfkjnPlIuujNnusEBPHQA0gR4FE736p//C885mbNj/+7ksAx/93jVtTLdTL
-	 PJkg5AEtCyeGqcjLOM7HxGlqoRMmsDCYyqtzkBOz2KKw8mdwtFsfSTlwBm8LbQXRLQ
-	 d04ulYEolAerl8zlsR0sJlbEYRvbQWqDSozFRxBnDX37PrEoWivbPCPyzJsteuNa96
-	 /A5fbQA0xTDyIeakDceOfli6P490vRGNM2H9JPIr7yOtw3hh/4fVczQpXnlyz84jZ7
-	 y1UIqRHe4Pmdg==
-From: Dinh Nguyen <dinguyen@kernel.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowskii+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: dinguyen@kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: convert socfpga-dwmac.txt to DT schema
-Date: Fri, 20 Jun 2025 22:44:01 -0500
-Message-ID: <20250621034401.586780-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+	s=arc-20240116; t=1750489670; c=relaxed/simple;
+	bh=96zSTCit7Jr8EU5mbUWe0rSqS11+bPPmhWpuoBr06qI=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=m5qMVM7m1xKj+ETAhcyjjpGsD1KE5RF5G6HctbfGDsvtidEHskSiu+qcumSmey9iR1mJMlBK6ueN89pXWlZrdvDXANBZDWVE3FNbGy6+l0YRt/eHT+7jaPiMIIyOsUyCLf2nC0F6lrK4y/5Mr7WhrZWx2d3qwPKZlLyPyX3ltgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=xeQhI8zc; arc=none smtp.client-ip=188.165.51.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1750489656; x=1750748856;
+	bh=obItk7XiDSFuvyadkI1YtM3uHao6+KxIagO4SDlclFQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=xeQhI8zclnuRzNshWNH2SVMvCU4GXCv/+q95m0IKNKxqH6tOlyRU28p9iqTdE/8+a
+	 yRjlxjQHeVUaESVbnu+M50FsGK+W3NrioPsUYkHEf2A4qtNONa13xIAro5dCpUwWtm
+	 3FDDrXSjiteZwSd0PYxZ1nxhac8tawuiJq355+pqmlqFQaCZSQq0egLwGdgVmDvVFr
+	 6kLb9XN2yxyRokVv8SRqT6/zn4scd8IdCXZ7N4oydDthUP+BgbtO5L4gkrHwO6Jvk1
+	 4IQjQXL9Fp/V1XP1/lMwGKhCQlqeZa7iTceuoJESfDGoL257Kua5xXBZpsUTwmU8ih
+	 jFcjqJAE8rEUg==
+Date: Sat, 21 Jun 2025 07:07:33 +0000
+To: Luca Weiss <luca@lucaweiss.eu>, "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "andersson@kernel.org" <andersson@kernel.org>, "konradybcio@kernel.org" <konradybcio@kernel.org>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, "~postmarketos/upstreaming@lists.sr.ht" <~postmarketos/upstreaming@lists.sr.ht>, "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8953: Add device tree for Billion Capture+
+Message-ID: <bWiyUA5cF4NjzEaUwhpDvfeqs0hEizZKFKxQpsfj6htES5mPGO2Yf2AHZQcUEyR4x7Zx9kVvwenpc2djbCN148IbjtgLh7Gq_1HXicp8kms=@protonmail.com>
+In-Reply-To: <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
+References: <20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com> <20250620-rimob-initial-devicetree-v1-3-8e667ea21f82@protonmail.com> <d4564d4b-9510-47f8-9930-65d3c4e90e6c@lucaweiss.eu>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: 5e5c42a87c2bd67bc63aad9df28de1391b9b1ead
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Convert the socfpga-dwmac.txt to yaml.
+On Saturday, June 21st, 2025 at 00:20, Luca Weiss <luca@lucaweiss.eu> wrote=
+:
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- .../bindings/net/altr,dwmac-socfpga.yaml      | 152 ++++++++++++++++++
- .../devicetree/bindings/net/socfpga-dwmac.txt |  57 -------
- 2 files changed, 152 insertions(+), 57 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> > +
+> > + reserved-memory {
+> > + qseecom@0 {
+>=20
+>=20
+> qseecom@84a00000 ?
+>=20
+> > + reg =3D <0x00 0x84a00000 0x00 0x1900000>;
+> > + no-map;
+> > + };
 
-diff --git a/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-new file mode 100644
-index 000000000000..fc088bd55178
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/altr,dwmac-socfpga.yaml
-@@ -0,0 +1,152 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/altr,dwmac-socfpga.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel/Altera SoCFPGA DWMAC controller
-+
-+maintainers:
-+  - Dinh Nguyen <dinguyen@kernel.org>
-+
-+properties:
-+  compatible:
-+    additionalItems: true
-+    maxItems: 3
-+    items:
-+      - enum:
-+          - altr,socfpga-stmmac
-+          - altr,socfpga-stmmac-a10-s10
-+    contains:
-+      enum:
-+        - snps,dwmac-3.74a
-+        - snps,dwmac-3.70a
-+        - snps,dwmac
-+
-+  reg:
-+    items:
-+      - description: Base DWMAC registers
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: MAC host clock
-+      - description: MAC timer clock
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    contains:
-+      enum:
-+        - stmmaceth
-+        - ptp_ref
-+
-+  resets:
-+    minItems: 1
-+    items:
-+      - description: GMAC stmmaceth reset
-+      - description: AHB reset
-+
-+  reset-names:
-+    oneOf:
-+      - items:
-+          - enum: [stmmaceth, ahb]
-+      - items:
-+          - const: stmmaceth
-+          - const: ahb
-+
-+  interrupts:
-+    items:
-+      - description: DWAC interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: macirq
-+
-+  mac-address: true
-+
-+  phy-mode:
-+    maxItems: 1
-+    items:
-+      enum:
-+        - rgmii
-+        - gmii
-+        - mii
-+
-+  tx-fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: DWMAC Tx fifo depth(Stratix10, Agilex)
-+
-+  rx-fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: DWMAC Rx fifo depth(Stratix10, Agilex)
-+
-+  snps,multicast-filter-bins:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Number of multicast filter hash bins supported by this device
-+      instance
-+
-+  altr,sysmgr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to the sysmgr node
-+          - description: register offset that controls the SDMMC clock phase
-+          - description: register shift for the smplsel(drive in) setting
-+    description:
-+      Should be the phandle to the system manager node that
-+      encompasses the glue register, the register offset, and the register shift.
-+      On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
-+      on the Arria10/Stratix10/Agilex platforms, the register shift represents
-+      bit for each emac to enable/disable signals from the FPGA fabric to the
-+      EMAC modules.
-+
-+  altr,emac-splitter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Should be the phandle to the emac splitter soft IP node if DWMAC
-+      controller is connected emac splitter.
-+
-+  altr,sgmii-to-sgmii-converter:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the TSE SGMII converter.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - phy-mode
-+
-+allOf:
-+  - $ref: snps,dwmac.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        gmac0: ethernet@ff700000 {
-+            compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
-+            altr,sysmgr-syscon = <&sysmgr 0x60 0>;
-+            reg = <0xff700000 0x2000>;
-+            interrupts = <0 115 4>;
-+            interrupt-names = "macirq";
-+            mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
-+            clocks = <&emac_0_clk>;
-+            clock-names = "stmmaceth";
-+            phy-mode = "rgmii";
-+            tx-fifo-depth = <16384>;
-+            rx-fifo-depth = <16384>;
-+       };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt b/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-deleted file mode 100644
-index 612a8e8abc88..000000000000
---- a/Documentation/devicetree/bindings/net/socfpga-dwmac.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Altera SOCFPGA SoC DWMAC controller
--
--This is a variant of the dwmac/stmmac driver an inherits all descriptions
--present in Documentation/devicetree/bindings/net/stmmac.txt.
--
--The device node has additional properties:
--
--Required properties:
-- - compatible	: For Cyclone5/Arria5 SoCs it should contain
--		  "altr,socfpga-stmmac". For Arria10/Agilex/Stratix10 SoCs
--		  "altr,socfpga-stmmac-a10-s10".
--		  Along with "snps,dwmac" and any applicable more detailed
--		  designware version numbers documented in stmmac.txt
-- - altr,sysmgr-syscon : Should be the phandle to the system manager node that
--   encompasses the glue register, the register offset, and the register shift.
--   On Cyclone5/Arria5, the register shift represents the PHY mode bits, while
--   on the Arria10/Stratix10/Agilex platforms, the register shift represents
--   bit for each emac to enable/disable signals from the FPGA fabric to the
--   EMAC modules.
-- - altr,f2h_ptp_ref_clk use f2h_ptp_ref_clk instead of default eosc1 clock
--   for ptp ref clk. This affects all emacs as the clock is common.
--
--Optional properties:
--altr,emac-splitter: Should be the phandle to the emac splitter soft IP node if
--		DWMAC controller is connected emac splitter.
--phy-mode: The phy mode the ethernet operates in
--altr,sgmii-to-sgmii-converter: phandle to the TSE SGMII converter
--
--This device node has additional phandle dependency, the sgmii converter:
--
--Required properties:
-- - compatible	: Should be altr,gmii-to-sgmii-2.0
-- - reg-names	: Should be "eth_tse_control_port"
--
--Example:
--
--gmii_to_sgmii_converter: phy@100000240 {
--	compatible = "altr,gmii-to-sgmii-2.0";
--	reg = <0x00000001 0x00000240 0x00000008>,
--		<0x00000001 0x00000200 0x00000040>;
--	reg-names = "eth_tse_control_port";
--	clocks = <&sgmii_1_clk_0 &emac1 1 &sgmii_clk_125 &sgmii_clk_125>;
--	clock-names = "tse_pcs_ref_clk_clock_connection", "tse_rx_cdr_refclk";
--};
--
--gmac0: ethernet@ff700000 {
--	compatible = "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
--	altr,sysmgr-syscon = <&sysmgr 0x60 0>;
--	reg = <0xff700000 0x2000>;
--	interrupts = <0 115 4>;
--	interrupt-names = "macirq";
--	mac-address = [00 00 00 00 00 00];/* Filled in by U-Boot */
--	clocks = <&emac_0_clk>;
--	clock-names = "stmmaceth";
--	phy-mode = "sgmii";
--	altr,gmii-to-sgmii-converter = <&gmii_to_sgmii_converter>;
--};
--- 
-2.42.0.411.g813d9a9188
+Looking at downstream devicetree, every reserved-memory nodes with "removed=
+-dma-pool" compatible has unit address 0. OTOH, kernel documentation [1] sa=
+ys:
+"  Following the generic-names recommended practice, node names should
+  reflect the purpose of the node (ie. "framebuffer" or "dma-pool").
+  Unit address (@<address>) should be appended to the name if the node
+  is a static allocation."
 
+In my case, downstream devicetree shows:
+
+=09=09other_ext_region@0 {
+=09=09=09compatible =3D "removed-dma-pool";
+=09=09=09no-map;
+=09=09=09reg =3D <0x00 0x84a00000 0x00 0x1e00000>;
+=09=09};
+
+which will be 'qseecom' reserved-memory node in mainline devicetree.
+
+OTOH, 'qseecom' node in downstream devicetree also shows:
+
+=09=09qseecom@84a00000 {
+=09=09=09compatible =3D "qcom,qseecom";
+=09=09=09reg =3D <0x84a00000 0x1900000>;
+                        ...
+
+If you confirm what you suggest, 'qseecom' reserved-memory node will look l=
+ike the following:
+
+=09=09qseecom_mem: qseecom@84a00000 {
+=09=09=09reg =3D <0x0 0x84a00000 0x0 0x1900000>;
+=09=09=09no-map;
+=09=09};
+
+[1] https://www.kernel.org/doc/Documentation/devicetree/bindings/reserved-m=
+emory/reserved-memory.yaml
+
+> > + cont_splash_mem: cont-splash@90001000 {
+> > + reg =3D <0x0 0x90001000 0x0 (1080 * 1920 * 3)>;
+> > + no-map;
+> > + };
+> > + };
+> > +
+> > + vph_pwr: vph-pwr-regulator {
+> > + compatible =3D "regulator-fixed";
+> > + regulator-name =3D "vph_pwr";
+> > + regulator-always-on;
+> > + regulator-boot-on;
+> > + };
+> > +};
+> > +
+> > +
+> > +&hsusb_phy {
+> > + vdd-supply =3D <&pm8953_l3>;
+> > + vdda-pll-supply =3D <&pm8953_l7>;
+> > + vdda-phy-dpdm-supply =3D <&pm8953_l13>;
+> > +
+> > + status =3D "okay";
+> > +};
+> > +
+> > +&pm8953_resin {
+> > + linux,code =3D <KEY_VOLUMEDOWN>;
+> > + status =3D "okay";
+> > +};
+> > +
+> > +&rpm_requests {
+> > + regulators {
+> > + compatible =3D "qcom,rpm-pm8953-regulators";
+> > + vdd_s1-supply =3D <&vph_pwr>;
+> > + vdd_s2-supply =3D <&vph_pwr>;
+> > + vdd_s3-supply =3D <&vph_pwr>;
+> > + vdd_s4-supply =3D <&vph_pwr>;
+> > + vdd_s5-supply =3D <&vph_pwr>;
+> > + vdd_s6-supply =3D <&vph_pwr>;
+> > + vdd_s7-supply =3D <&vph_pwr>;
+> > + vdd_l1-supply =3D <&pm8953_s3>;
+> > + vdd_l2_l3-supply =3D <&pm8953_s3>;
+> > + vdd_l4_l5_l6_l7_l16_l19-supply =3D <&pm8953_s4>;
+> > + vdd_l8_l11_l12_l13_l14_l15-supply =3D <&vph_pwr>;
+> > + vdd_l9_l10_l17_l18_l22-supply =3D <&vph_pwr>;
+> > + vdd_l23-supply =3D <&pm8953_s3>;
+> > +
+> > + pm8953_s1: s1 {
+> > + regulator-min-microvolt =3D <870000>;
+> > + regulator-max-microvolt =3D <1156000>;
+> > + };
+> > +
+> > + pm8953_s3: s3 {
+> > + regulator-min-microvolt =3D <1224000>;
+> > + regulator-max-microvolt =3D <1224000>;
+> > + };
+> > +
+> > + pm8953_s4: s4 {
+> > + regulator-min-microvolt =3D <1900000>;
+> > + regulator-max-microvolt =3D <2050000>;
+> > + };
+> > +
+> > + pm8953_l1: l1 {
+> > + regulator-min-microvolt =3D <1000000>;
+> > + regulator-max-microvolt =3D <1000000>;
+> > + };
+> > +
+> > + pm8953_l2: l2 {
+> > + regulator-min-microvolt =3D <975000>;
+> > + regulator-max-microvolt =3D <1225000>;
+> > + };
+> > +
+> > + pm8953_l3: l3 {
+> > + regulator-min-microvolt =3D <925000>;
+> > + regulator-max-microvolt =3D <925000>;
+> > + };
+> > +
+> > + pm8953_l5: l5 {
+> > + regulator-min-microvolt =3D <1800000>;
+> > + regulator-max-microvolt =3D <1800000>;
+> > + };
+> > +
+> > + pm8953_l6: l6 {
+> > + regulator-min-microvolt =3D <1800000>;
+> > + regulator-max-microvolt =3D <1800000>;
+> > + };
+> > +
+> > + pm8953_l7: l7 {
+> > + regulator-min-microvolt =3D <1800000>;
+> > + regulator-max-microvolt =3D <1900000>;
+> > + };
+> > +
+> > + pm8953_l8: l8 {
+> > + regulator-min-microvolt =3D <2900000>;
+> > + regulator-max-microvolt =3D <2900000>;
+> > + };
+> > +
+> > + pm8953_l9: l9 {
+> > + regulator-min-microvolt =3D <3000000>;
+> > + regulator-max-microvolt =3D <3300000>;
+> > + };
+> > +
+> > + pm8953_l10: l10 {
+> > + regulator-min-microvolt =3D <2850000>;
+> > + regulator-max-microvolt =3D <2850000>;
+> > + };
+> > +
+> > + pm8953_l11: l11 {
+> > + regulator-min-microvolt =3D <2950000>;
+> > + regulator-max-microvolt =3D <2950000>;
+> > + };
+> > +
+> > + pm8953_l12: l12 {
+> > + regulator-min-microvolt =3D <1800000>;
+> > + regulator-max-microvolt =3D <2950000>;
+> > + };
+> > +
+> > + pm8953_l13: l13 {
+> > + regulator-min-microvolt =3D <3125000>;
+> > + regulator-max-microvolt =3D <3125000>;
+> > + };
+> > +
+> > + pm8953_l16: l16 {
+> > + regulator-min-microvolt =3D <1800000>;
+> > + regulator-max-microvolt =3D <1800000>;
+> > + };
+> > +
+> > + pm8953_l17: l17 {
+> > + regulator-min-microvolt =3D <2850000>;
+> > + regulator-max-microvolt =3D <2850000>;
+> > + };
+> > +
+> > + pm8953_l19: l19 {
+> > + regulator-min-microvolt =3D <1200000>;
+> > + regulator-max-microvolt =3D <1350000>;
+> > + };
+> > +
+> > + pm8953_l22: l22 {
+> > + regulator-min-microvolt =3D <2800000>;
+> > + regulator-max-microvolt =3D <2800000>;
+> > + };
+> > +
+> > + pm8953_l23: l23 {
+> > + regulator-min-microvolt =3D <975000>;
+> > + regulator-max-microvolt =3D <1225000>;
+> > + };
+> > + };
+> > +};
+> > +
+> > +&sdhc_1 {
+> > + vmmc-supply =3D <&pm8953_l8>;
+> > + vqmmc-supply =3D <&pm8953_l5>;
+> > +
+> > + status =3D "okay";
+> > +};
+> > +
+> > +&sdhc_2 {
+> > + vmmc-supply =3D <&pm8953_l11>;
+> > + vqmmc-supply =3D <&pm8953_l12>;
+> > +
+> > + cd-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
+> > +
+> > + pinctrl-0 =3D <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+> > + pinctrl-1 =3D <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
+> > + pinctrl-names =3D "default", "sleep";
+> > +
+> > + status =3D "okay";
+> > +};
+> > +
+> > +&tlmm {
+> > + gpio-reserved-ranges =3D <0 4>, <135 4>;
+>=20
+>=20
+> Any ideas what's connected to these pins? If you do, good to document
+> this like in other devices.
+>=20
+> Regards
+> Luca
+>=20
+
+Unfortunately, downstream devicetree's pinctrl (kernel sources not availabl=
+e) doesn't mention anywhere 'gpio0', 'gpio1', 'gpio2', 'gpio3', 'gpio135', =
+'gpio136', 'gpio137' and 'gpio138' (but, for example, 'gpio4' and 'gpio139'=
+ are shown, instead). So, I've no ideas what these reserved gpios are used =
+for.
 
