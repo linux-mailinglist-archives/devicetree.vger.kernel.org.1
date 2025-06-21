@@ -1,111 +1,133 @@
-Return-Path: <devicetree+bounces-188092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A48D3AE2A92
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 19:20:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1626FAE2AA1
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 19:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92F6189C2E9
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 17:20:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DF8C3BD1A1
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 17:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7861F2236E8;
-	Sat, 21 Jun 2025 17:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788E3235BEE;
+	Sat, 21 Jun 2025 17:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k86AvFf0"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="G7CU0G7r";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="eBYFpmja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46562222580;
-	Sat, 21 Jun 2025 17:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4622222CE;
+	Sat, 21 Jun 2025 17:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750526394; cv=none; b=TTYDAoGNQAnTq6+LNKwfs4OLi2xhcrwCrjxAYhgLY5HHdYMApT6ffVRXztQQY36/Ra9SfGrvUUiwlYtPPGvCQGocCtbslmxGw5HhGoD8JYsEQ8HqrT5loZq+CXxhsRC+fSeOZ5HoLZGqrjxjqRg5i/2mt8eQ9E/wDTUdULp4gj4=
+	t=1750526399; cv=none; b=R72v+gMgy0ODhNZS5Q0LvITWCqvq6YT0QfdOmuLNNuL9P7gg3sOOXYCDSx/NFrIqDNNgYEBBa2u9PAmjkf49tOyyrPkyHv8lvBIOYLRlZg6gQeTuf4qdBuOT0y24R5vXTl1eP2ktk0Cl0OybHgM8ilr/McSf+M3poeer1UVgjis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750526394; c=relaxed/simple;
-	bh=we+oCKABVV6Skl7RacxNHRk3oYJEl72c2KoaHxAjFO8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dJxAJr93SCs0Hmgn/x+2UTCNjdeV0exAEMJWvXxsOc5PyFRpiLlI+KEuSur44eUhQDQiLvaZ/sneSQHGKIzFYL1wMWQ+cE9gzlCyRbbzwGSkMYnXOzlg1zEd6+nh+cemjFS7Um77sZlDQjCJw2IiZZM7FRQWRV2W2eOImgExejU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k86AvFf0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71E55C4CEE7;
-	Sat, 21 Jun 2025 17:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750526393;
-	bh=we+oCKABVV6Skl7RacxNHRk3oYJEl72c2KoaHxAjFO8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=k86AvFf0EQiihhYED/nfLFgPnowcKfQeHlNPcTB+AoxRuhHyR+9JmFgPVhfs+0PX8
-	 FTIQS7t7+cVWPAJtLPfRs55oKn3wwMISi0glJHroIhtp4AOi6k+rkuWKkrxLvbTqRn
-	 lonf9CvfADNS7zhTnSLsKw1vrhURIrYxNZ7do5lqxXSZldsLEBw0XCuzFZ3VA+5p80
-	 NsjcND4H7hubdiaHz5Dealtl5t8aGi3uPy/cwBDUGIqx+dEBvZ/GbNR4Hfc3gGw+6E
-	 UklkYzYyr0SyqXb89x0kllwsgS0kLsKtwOeVPrBhRJkAURT0IpzOin0pLN5VtOekUC
-	 ubmc378rDU1zA==
-Date: Sat, 21 Jun 2025 18:19:46 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Victor.Duicu@microchip.com, dlechner@baylibre.com, nuno.sa@analog.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- andy@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
- Marius.Cristea@microchip.com, conor+dt@kernel.org
-Subject: Re: [PATCH v3 2/2] iio: temperature: add support for MCP998X
-Message-ID: <20250621181946.28d831ac@jic23-huawei>
-In-Reply-To: <CAHp75Vc2nueOycoy8+dYyQekAAMPO82wOYSVT0RZOC4yRaE5jA@mail.gmail.com>
-References: <20250613130207.8560-1-victor.duicu@microchip.com>
-	<20250613130207.8560-3-victor.duicu@microchip.com>
-	<CAHp75VdRisP+trez2Ysgrhan_zXMWsmawB3XeW+_ePsbNC4RzQ@mail.gmail.com>
-	<f980b3c1a4fbd60f70dda9670648479a38313439.camel@microchip.com>
-	<CAHp75Vc2nueOycoy8+dYyQekAAMPO82wOYSVT0RZOC4yRaE5jA@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1750526399; c=relaxed/simple;
+	bh=/rYtmmNYw+6vj67WCLNmPW917Q0ItenIXSAMMVkiZHQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fg7veqjZWBHxgYs+L2MEExSR/brVXdKtlBmcwyP06ULtvakRdt2xDNgbjy/VTFy5iP8ak1zwwMbF/PsSd+6+5gYJClRIRGDvmv5TwE348YsgsJVK5Z4tHzq2LKfvpHLUNxP3es/ZxkAIPA13HpAd4vtv/8vdexPzP+5nfWcYVKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=G7CU0G7r; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=eBYFpmja; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bPh171g6rz9smF;
+	Sat, 21 Jun 2025 19:19:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750526395;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=o/o8SytGqLrPW++cgqD523xjz89j9jqhYkyN19k+2To=;
+	b=G7CU0G7r4VS/cavdQvqq67jdI+e0mR2eJwNu/zQDi4g4IM9K6BuNzza3ghswmzBTlVHeLb
+	cUpK8dPt13AUTQ8S2J+xFOpa0e+AnXA2vI2xDt7FpSPHPMAzMH8L64iryyu55fL+bauwxm
+	XtpwTCraNce7i4FEt0mfdHJt88ss64ZCuQsMF4LY+/gkyhXglm0NyVjt2Myolu11Dze+j/
+	dqH6OB0e8VIum4qVDG1rgGwgLIDy7ikkZuv9KhpJDREm6piHVMM9k/3KWL2HgolkfHRo4c
+	mRgV5LDy35DxMtLt+A2itYj5vpUjdqPbI+tKbp/+4ZI5OxPKCbf1VtoKGciFUw==
+Message-ID: <7ed914a7-8a40-4e13-8783-0fc2c01546e5@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1750526393;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=o/o8SytGqLrPW++cgqD523xjz89j9jqhYkyN19k+2To=;
+	b=eBYFpmjakuZnWQDC555gHSe2TpGnpktAqBtYgr983PEcj8o31tQqANwYfkYFqYagche2gi
+	zCOT5sjJAZrvJFyieVtnOmZ4FTMG8z4u1UH/tdb7BFImUyteBGOLrblLgXuqjxuTikTTey
+	k+VfU6GihXR2SaFcBodtAt7cMyf7/0sNfHJfk6hGqkuFn8EYMvKUv07MQLcVlGH0+qoQDF
+	rKXs/Eh8cU9KHfeKtWcX66Ufd+vwnuCcBnF9WXDbopMBKW8Q3ax9I6RVW/wuAmHJaoIq9o
+	dIkgeuDO5o4pAhyammCGgR7mymDD8JNalVMpRPbotbR1Zqh+GWxegXXZ6035Nw==
+Date: Sat, 21 Jun 2025 19:19:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 3/3] pwm: argon-fan-hat: Add Argon40 Fan HAT support
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250617092037.37229-1-marek.vasut+renesas@mailbox.org>
+ <20250617092037.37229-3-marek.vasut+renesas@mailbox.org>
+ <fhns5fnckokwsb572kge6tmqaaoholzvgncdctj7vskigytvmu@3uirsrszul36>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <fhns5fnckokwsb572kge6tmqaaoholzvgncdctj7vskigytvmu@3uirsrszul36>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: adnbsmabp7tfe8umzehd83rnr4ery46f
+X-MBO-RS-ID: 0fb01e9de8abf08b292
+X-Rspamd-Queue-Id: 4bPh171g6rz9smF
 
-On Thu, 19 Jun 2025 11:29:30 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On 6/17/25 4:02 PM, Uwe Kleine-König wrote:
+> Hello Marek,
 
-> On Thu, Jun 19, 2025 at 10:22=E2=80=AFAM <Victor.Duicu@microchip.com> wro=
-te:
-> > On Sat, 2025-06-14 at 00:50 +0300, Andy Shevchenko wrote: =20
-> > > On Fri, Jun 13, 2025 at 4:02=E2=80=AFPM <victor.duicu@microchip.com> =
-wrote: =20
->=20
-> ...
->=20
-> > > > +MICROCHIP MCP9982 TEMPERATURE DRIVER
-> > > > +M:     Victor Duicu <victor.duicu@microchip.com>
-> > > > +L:     linux-iio@vger.kernel.org
-> > > > +S:     Supported
-> > > > +F:
-> > > > Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982
-> > > > .yaml
-> > > > +F:     drivers/iio/temperature/mcp9982.c =20
-> > >
-> > > So, with the first patch only the dangling file will be present
-> > > without record in MAINTAINERS. Please, make sure that your DT schema
-> > > file is in MAINTAINERS. =20
-> >
-> > Are you referring here to the file sysfs-bus-iio-temperature-mcp9982?
-> > This file was in v2 where there were a few custom attributes. In v3
-> > I removed them, so the driver currently doesn't have custom attributes.
-> > Should I had added it to the files in MAINTAINERS? =20
->=20
-> You should have added the file to the MAINTAINERS in the same patch it
-> appears. Not in some arbitrary change afterwards.
->=20
+Hi,
 
-Perhaps the confusion here is that Andy is talking about 2 lines above, not
-the immediate line above this feedback.  So the one with the dt-binding
-file.  If Victor was reading it as being about the .c file then
-this whole cross discussion makes more sense!
+>> +static int argon_fan_hat_write(struct i2c_client *i2c, const u8 wfhw)
+>> +{
+>> +	u8 tx[2] = { 0x80, wfhw };
+> 
+> The vendor "driver" has `ADDR_ARGONONEREG_DUTYCYCLE=0x80`, maybe put that
+> into a define, too?
+> 
+>> +	struct i2c_msg msg = {
+>> +		.addr = i2c->addr,
+>> +		.len = 2,
+>> +		.buf = tx,
+>> +	};
+>> +
+>> +	return (i2c_transfer(i2c->adapter, &msg, 1) == 1) ? 0 : -EINVAL;
+> 
+> The vendor driver uses smbus stuff. I suggest to use
+> i2c_smbus_write_byte_data() here, too.
+> 
+> I also found that the vendor driver reads the duty-cycle register (using
+> i2c_smbus_read_byte_data()). Strange that this stops the fan.
 
-Jonathan
+So it seems.
 
+[...]
 
+>> +static void argon_fan_hat_i2c_shutdown(struct i2c_client *i2c)
+>> +{
+>> +	argon_fan_hat_write(i2c, 100);
+>> +}
+> 
+> Isn't that something that the fan driver should cope for? PWM drivers
+> usually do nothing on shutdown.
+It's probably best to force the blower fan to maximum before 
+reboot/shutdown. The firmware might not handle the fan and the SoC might 
+get very hot before Linux boots again.
 
+The rest is addressed in V4.
 
