@@ -1,328 +1,186 @@
-Return-Path: <devicetree+bounces-188110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C75FAE2BD2
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 21:45:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B628AE2C16
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 22:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 285161783EB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 19:45:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B08718940EB
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jun 2025 19:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F2326FA6C;
-	Sat, 21 Jun 2025 19:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B229F271445;
+	Sat, 21 Jun 2025 19:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DGDhiXy2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OJyQOu2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944632701D0;
-	Sat, 21 Jun 2025 19:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48EE270EBB
+	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 19:56:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750535109; cv=none; b=hh5xlhnPAqiKLP8E8R5GgjKrMHMoGUHiu3PIQVSqU0ZfUgI988knenZgI/1tYizdLs2FsFoUsLvLNjdmHEnGNVIE51aRLUmgBhZFASPg0dRjZfJ8xhrzSI/IU2vgkrPw3aNdB0i+KfhAXR+ktfPFf9utR/6xw8AHtu73vVzi90c=
+	t=1750535784; cv=none; b=EVkQnspuBMOthCDkK7DJz70fsRZZ6hcjabmpp7jTIR65gRFuJfxNR4QyDTlUMtZo6JmJEksf7UYF/DEy9lWKZVovj6qeHXyziR70QoH4qBc2kALAsBpuyRsc5vxq9nIzxhaV77B5g6z5rqk39N3Xxr4OHCE4YkioVSSa/ckw5UY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750535109; c=relaxed/simple;
-	bh=QbJZz1UUlcSLFozRjDN57K8OtIIm7LVQDWvBVpCR+pw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Xu0yZrculbEiDnNvaquPxo/8Rvn9TYuXX4y2czXeqTUd6kVAJKpH1eGC/XD3bWpPULdsZhUV9w9tsYm6eFdNZcpzZdv3TJ1CDjknGZzA51iydbDpXoGCzbyCs7CwGRjt2RrBzx8RjNWOSfznc2X0VqjtylHTeCKR+wRLpkV8IBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DGDhiXy2; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=sv7tVvQqmX8wrxpnSPIrKw5fwx/VJrEZXKziP/cE/wA=; b=DGDhiXy2ZmXXe8djpbO/KLT8ds
-	OGeIMfxbnL/T9yqOfqADJBrbW/xtkMtknrYz3+Rh63HKvCrRDxWA53WBQoe1nkekxC9hinOffxRhz
-	GUoWIQGkmFRopIZhs/gPj6OawoQ9nMtCnV2piDBqsiElWJibPF9MEVEB6D4U9TydYNwRqM4Ih4ods
-	81YZ8AOgcjaT5yrYe6EEkS43s/acUAsdgp5enPbXFFD/yrrGKQlyFmUaWewOKsjE9i0uDuGDu4qQB
-	Kosc9EKH1aBqtsJtwZXfbg97pWUU70JA7KFzCZMnkv4fNUURKQe+7Y70JyD7govW+WnpoGQgU5NNl
-	ak4ojmeg==;
-Received: from 85-207-219-154.static.bluetone.cz ([85.207.219.154] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uT491-0002yL-Bp; Sat, 21 Jun 2025 21:44:55 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- XiaoDong Huang <derrick.huang@rock-chips.com>,
- Alexey Charkov <alchark@gmail.com>
-Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>
-Subject:
- Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
-Date: Sat, 21 Jun 2025 21:44:54 +0200
-Message-ID: <3286000.Y6S9NjorxK@phil>
-In-Reply-To:
- <CABjd4YyBoTkNcFVDcYFXt1mNh==wTa1pO7BTmam6CX68rrF=oQ@mail.gmail.com>
-References:
- <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
- <CABjd4YwrBurnKOAqXK_wFj0c7bEV-PZ682_-1y_VNMPvFrJ-Aw@mail.gmail.com>
- <CABjd4YyBoTkNcFVDcYFXt1mNh==wTa1pO7BTmam6CX68rrF=oQ@mail.gmail.com>
+	s=arc-20240116; t=1750535784; c=relaxed/simple;
+	bh=AYSfUnf3azSTwr8HS4a1h8tLgNaLSWarihAu5oMzWwg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e+ncFL0ygpOwZvZQAudFrXWZDPHkogQqV2yrqP3tuvuU0qW1eFgS4NxBq9Ku1aWnR1fnG5ypvQ+jWA/b9RPNejbjHoOByCgrTKO1SCNT1dhPUDbqdjEdIUXg8roNdAro2uUlry8OahEbDwe1q6pTBRYe/eeUWm1Qfu3R16ul7fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OJyQOu2u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55LJE4ow002575
+	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 19:56:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=isn/W8cwEUUIzjTZ5KY4r2
+	avohw6snmCFaBU6U7CMAw=; b=OJyQOu2u7vk3Xk11x0naIZPix1aiyCLDnraGMD
+	84oXg2pCma6J6rn45lnCByCL/9xYK1dmUl171RkU0MjRUISgdAlt5hQ0do/F6reF
+	HNIRtUzC3O8HEwGCr1ObMTW3aEMB5lV5lfActmDEG9+5+GHaeInUm+M82o7ajucD
+	aX3YGqeGAKa0l8CjUvXbySRtnY+0F2yHdztHvKFMyC86rcdVZQQi3uANuiSSYm3I
+	+V2VPEj6+koY8MI8sGZTXPzrNTTZOmv69Ziz2I/gPO6d69kaRq41Zwq4yefn0Ota
+	EqmBu2ugNm01VqdCYSHQrK058dIVPQyoaVZs3VVm+5O2j5iQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47dung8h49-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 19:56:20 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5cd0f8961so620724385a.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Jun 2025 12:56:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750535780; x=1751140580;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=isn/W8cwEUUIzjTZ5KY4r2avohw6snmCFaBU6U7CMAw=;
+        b=ZtEOw0qDhzwexiZsd66sbzQG9M6FeeWoD6hi77GL3Im42gxNIaEiJ3jw85AQtyBuOG
+         UsG/y/SkabTHqCj7GAWkQJWJipOMLWO51CvrzBx2hZeijLvc63+KC/Pzwggpw4hxlUnM
+         zC1N8hHXkTYOjjBrL1N22t8lVuwy4x+P7kdGRh5b27n8Vm1VKqSGMroJjC96k4nqKzcn
+         4v+qCCRSkV+FT6fKzmYXdrZg1PSo93IVBo+4JiTS1B9F1/T9X1StaLPzoxbUhGY0Irsc
+         yUA9i2N1y25+XSOpkcR6+u24O9HmKa6wlOzXiF1bOmUMdCD/wnkaxulBxL8BVF03TrZf
+         TGfw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsRgs8r/fmPiVz2HsRmJQUHNn03UH73Js6Jdb23+lD56cM9D9zZs2vYJob198/VAP8duye5/tFECoa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWGsFfgvyq/a+qMbgIvRu8JufPPlZYGAyAIA4YtWZe3HDerBwh
+	Uv1Yrfs49BLzcPWiv5o5SKndusZ5G9MTEmQ+GO/oG/VayWbOeWi/bUTzmL1wssQVbxBGZVLCVEn
+	FUF72WQao5TcW/lCQHfNtBRGP6vmJtyqSG+1wjEdd+stpd7K0NspwGKmRNAebkyKx
+X-Gm-Gg: ASbGncvDBatvDuajeJvdoYWsvHhQf4F7Q5LsmN3YNLe9PBvh2EGCKeo1ttY2FN9l/iA
+	SVsWa4vhKQQDHD1Qo0YLESsyDa20Lcih7+j950/mmKCIVY5/zm7ppj54Oim6hg4s3vwWyFtXWLa
+	oDdriUVZcfZ4UEDb2VLRuSPkXt6DawNhwEUl+5lkskPaqiE8QyHE//3iyWtXKah1Vx97ZPsf01B
+	f6Yu2E1jVW0s5NhKpf1wektYMcEfgohTRgZTnSZlPgFXkcrV+1vUhDPx3BB/6kL+6GjhvHf9zA4
+	gOajo30KGLkfIwZXVG4A+Gj/xiMehfM3vqFIO4rHt+26MF7caC1lFpOjxY5gnNP5dDBOnGdVrUX
+	TpjHdKOJnNrCuXFQkLCLSgr4/FF3anGNoS+c=
+X-Received: by 2002:a05:620a:2628:b0:7c9:253d:f226 with SMTP id af79cd13be357-7d3f99566c0mr1331360985a.51.1750535779677;
+        Sat, 21 Jun 2025 12:56:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IERP4dOfuvlZvRZ18Ykf0hcFojMw/oS/Z8vpeZuvTGzYmAPOx7N258o47CTz4ptG3mAjWaw6g==
+X-Received: by 2002:a05:620a:2628:b0:7c9:253d:f226 with SMTP id af79cd13be357-7d3f99566c0mr1331358485a.51.1750535779318;
+        Sat, 21 Jun 2025 12:56:19 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553e41c3db9sm777299e87.179.2025.06.21.12.56.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Jun 2025 12:56:18 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v2 0/4] firmware: qcom: enable UEFI variables on Lenovo
+ Yoga C630
+Date: Sat, 21 Jun 2025 22:56:09 +0300
+Message-Id: <20250621-more-qseecom-v2-0-6e8f635640c5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFkOV2gC/3WOQQ6CMBREr0L+2iptrQRW3sOwKPCBJraV30owh
+ LtbYe3yTWZeZoWAZDBAla1AOJtgvEsgThm0o3YDMtMlBpGLa14IxawnZFNAbL1lsihLKZuyLW4
+ lpMmLsDfLrnvUiUcToqfPbp/5L/0jmjnjTCulpVKy4z3en8Zp8mdPA9TboSac3ulgPPzQ6IAsj
+ a2JVeZwiRerQ0RK/e0LaUxyGtgAAAA=
+X-Change-ID: 20240725-more-qseecom-379933b9c769
+To: Bjorn Andersson <andersson@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1789;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=AYSfUnf3azSTwr8HS4a1h8tLgNaLSWarihAu5oMzWwg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoVw5hF9UX3mIRKDfBTebI3y2vQZ+9Im4ptracj
+ DlHsCUzlnqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaFcOYQAKCRCLPIo+Aiko
+ 1X6AB/0W1msrqbi3bGtJtcsiNmtWWnBnxE2Aaf8J5qbtuiA6Il41Eba1Ergn0bN46CKdeWtJHpB
+ Rp/G9J9+K+XEFDwXSHLm0Ml4NAB6b1bqrlOJwr4P/8ZVNmHXYYzhqBYIvcJdtklLxqIjD+JUB9W
+ 4uwlpLnjfAYdN87CqDEyvdbMdoSMXpob344QNfXrEzpc+buuX1HQEsV71jipr65ky+C9hSjelfI
+ s1Ucw4I2jZu+QVluFS0BQJZrLqvshBBChmVB07rH4wvuCkyQ88b3z9a6+B7oYX1vJSf2HIDHOE3
+ sL8ERKUJm0e4A0pWyUYR96BO3smFJcd8efxivci+wHQCr47S
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-ORIG-GUID: 15h-tvRXbrFXPmBg0V5TP-Kp5Nyu6xpV
+X-Authority-Analysis: v=2.4 cv=N5kpF39B c=1 sm=1 tr=0 ts=68570e64 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=VEriS7FlDOdm1ho_yVcA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIxMDEyNyBTYWx0ZWRfX/hznrS3yiSa5
+ jq0A3XcVC42x199H+PwRLJfzJqz0KGyiTnyUrqi3iRJlm31uUZzSk32QCH0mEgAxXLI8zpj5ojT
+ 7irSbz/8bFio3tS+x5rmbykX8vuTHzyhwPBbrwbxSROMY1ZrNHVkDniTzO/qd/2MHX1jZ0/HpG3
+ VuYPfwVcON9oHIHCZqTfGJBaBoJL1/MaUAXkGxnP1lrMgBN1ntj/myYC5ETacezIpQtCsO+h3XO
+ coIXxxPDsIK+OlqjJqDjBirqLFYYjwHoO3VbH97m248g7bhfcZwOUuRkMG0CpQVq1+QMJSj0Db5
+ VenSMy/coQNFX7LOCrGJUp3wYiQIrQ7H8OWnUq6iePPAA0dMM9+/7kLARoEArmLjpBc7PP0K6q4
+ Zun1af10jnNLMg+gycyaaG+RtrovoAQb7P1q7vlWhaBde1qG0dzPv/MNiqdDbTdNjhhnolt0
+X-Proofpoint-GUID: 15h-tvRXbrFXPmBg0V5TP-Kp5Nyu6xpV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-21_06,2025-06-20_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 adultscore=0 mlxlogscore=999 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015 bulkscore=0
+ impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506210127
 
-Am Samstag, 21. Juni 2025, 21:35:56 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Alexey Charkov:
-> On Fri, Jun 20, 2025 at 8:02=E2=80=AFPM Alexey Charkov <alchark@gmail.com=
-> wrote:
-> >
-> > On Wed, Jun 18, 2025 at 6:48=E2=80=AFPM Alexey Charkov <alchark@gmail.c=
-om> wrote:
-> > >
-> > > On Wed, Jun 18, 2025 at 6:06=E2=80=AFPM Nicolas Frattaroli
-> > > <nicolas.frattaroli@collabora.com> wrote:
-> > > >
-> > > > Hello,
-> > > >
-> > > > +Cc Jonas Karlman as he is intimately familiar with RK3576 clock sh=
-enanigans by now,
-> > > >
-> > > > On Wednesday, 18 June 2025 15:51:45 Central European Summer Time Al=
-exey Charkov wrote:
-> > > > > On Sun, Jun 15, 2025 at 8:00=E2=80=AFPM Piotr Oniszczuk
-> > > > > <piotr.oniszczuk@gmail.com> wrote:
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > > > Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gm=
-ail.com> w dniu 9 cze 2025, o godz. 16:05:
-> > > > > > >
-> > > > > > > On Sun, Jun 8, 2025 at 11:24=E2=80=AFAM Piotr Oniszczuk
-> > > > > > > <piotr.oniszczuk@gmail.com> wrote:
-> > > > > > >>> Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@=
-gmail.com> w dniu 5 cze 2025, o godz. 15:42:
-> > > > > > >>>> Alexey,
-> > > > > > >>>> I see you are using rk3576 board like me (nanopi-m5)
-> > > > > > >>>> Have you on your board correctly working cpu dvfs?
-> > > > > > >>>> I mean: [1][desired clocks reported by kernel sysfs are in=
- pair with [2[]cur clocks?
-> > > > > > >>>> In my case i see mine cpu lives totally on it=E2=80=99s ow=
-n with dvfs:
-> > > > > > >>>
-> > > > > > >>> Hi Piotr,
-> > > > > > >>>
-> > > > > > >>> I haven't tried to validate actual running frequencies vs. =
-requested
-> > > > > > >>> frequencies, but subjective performance and power consumpti=
-on seem to
-> > > > > > >>> be in line with what I expect.
-> > > > > > >>
-> > > > > > >> well - my subjective l&f is that  - currently - my rk3576 se=
-ems =E2=80=9Eslower" than i.e. 4xA53 h618.
-> > > > > > >
-> > > > > > > In my experience, native compilation of GCC 14 using 8 thread=
-s on
-> > > > > > > RK3576 (mainline with passive cooling and throttling enabled)=
-: 2 hours
-> > > > > > > 6 minutes, on RK3588 (mainline with passive cooling via Radxa=
- Rock 5B
-> > > > > > > case and throttling enabled but never kicking in): 1 hour 10 =
-minutes
-> > > > > >
-> > > > > > by curiosity i looked randomly on 3576 vs 3588:
-> > > > > > multithread passmark: 3675 (https://www.cpubenchmark.net/cpu.ph=
-p?cpu=3DRockchip+RK3576&id=3D6213)
-> > > > > > multithread passmark: 4530 (https://www.cpubenchmark.net/cpu.ph=
-p?cpu=3DRockchip+RK3588&id=3D4906)
-> > > > > >
-> > > > > > assuming 3588 as baseline, 3576 is approx 20% slower on multith=
-read passmark (has ~0,8 comp power of 3588)
-> > > > > > 70 min compile on 3588 should take something like ~86min on 357=
-6.
-> > > > > > In your case 126min compile on 3576 shows 3576 offers 0,55 comp=
- power of 3588.
-> > > > > > Roughly 3576 should do this task in 40min less than you current=
-ly see i think
-> > > > > >
-> > > > > >
-> > > > > > > Can't see how u-boot would affect CPU speed in Linux, as long=
- as you
-> > > > > > > use comparable ATF images. Do you use the same kernel and dtb=
- in all
-> > > > > > > these cases? Also, what's your thermal setup?
-> > > > > >
-> > > > > > yes. in all cases only change was: uboot & atf
-> > > > > > thermal is based on recent collabora series (+ recent pooling f=
-ix for clocks return from throttling)
-> > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > > Not sure UX is a particularly good measure of CPU performance=
-, as long
-> > > > > > > as you've got a properly accelerated DRM graphics pipeline. M=
-ore
-> > > > > > > likely 2D/3D and memory.
-> > > > > >
-> > > > > > indeed.
-> > > > > > For quantified look i=E2=80=99m looking on v.simple approach to=
- estimate real clock is http://uob-hpc.github.io/2017/11/22/arm-clock-freq.=
-html
-> > > > > > by curiosity i looked what it reports on a53/a55/a72/a76 and it=
- is surprisingly accurate :-)
-> > > > > > on mine 3576 with collabora uboot+mainline atf is hows 800MHz (=
-and in perf. gov it seems to be constant)
-> > > > > >
-> > > > > > >
-> > > > > > > There might be some difference in how PVTPLL behaves on RK357=
-6 vs.
-> > > > > > > RK3588. But frankly first I would check if you are using comp=
-arable
-> > > > > > > ATF implementations (e.g. upstream TF-A in both cases), kerne=
-ls and
-> > > > > > > thermal environment :)
-> > > > > >
-> > > > > > all tests: the same 6.15.2 mainline + some collabora patches
-> > > > > >
-> > > > > > diffs were:
-> > > > > > 1.collabora uboot[1] + mainline atf 2.13
-> > > > > > 2.collabora uboot[1] + rockchip rkbin bl31 blob
-> > > > > > 3.vendor uboot (bin dump from friendlyelec ubuntu image)
-> > > > > >
-> > > > > > on 1/2 i see kind of issue with clock values (i.e. perf gov giv=
-es constant 800MHz on mainline atf).
-> > > > > > 3 seems to perform better - (i.e. perf gov gives constant 1500M=
-Hz so all is snappier/faster)
-> > > > >
-> > > > > There is indeed something weird going on. I've tried running sbc-=
-bench
-> > > > > [1], and even though I observe dynamically varying CPU frequencies
-> > > > > after boot with schedutil governor, once sbc-bench switches the
-> > > > > governor to "performance" and goes through the OPPs in descending
-> > > > > frequency order, the CPUs seem to get stuck at the last applied l=
-ow
-> > > > > frequency. Even after max frequency gets reverted from 408 MHz to
-> > > > > something higher, even after I switch the governor to something e=
-lse -
-> > > > > no matter what. Only a reboot gets the higher frequencies 'unstuc=
-k'
-> > > > > for me.
-> > > > >
-> > > > > These are all observed at around 55C SoC temperature, so throttli=
-ng is
-> > > > > not an issue. Regulators are stuck at 950000 uV - way above 70000=
-0 uV
-> > > > > that the 408 MHz OPP requires (and power readings seem to match: =
-I'm
-> > > > > getting about 2.3W consumption at 408 MHz in idle vs. normal idle
-> > > > > reading of 1.4W at around 1 GHz).
-> > > > >
-> > > > > Not sure what's going on here, and I don't remember seeing anythi=
-ng
-> > > > > similar on RK3588. Thoughts welcome.
-> > > >
-> > > > This may once again be a "accidentally uses wrong clock IDs" type
-> > > > situation. The other possibility is that we're getting confused
-> > > > between what we think the clock rate is and what SCMI actually set
-> > > > the clock rate to.
-> > > >
-> > > > Things to check is whether the right clock controller (scmi vs cru)
-> > > > and the right clock id (check ATF source for this) is used.
-> > >
-> > > Clock IDs in the kernel seem to match those in ATF, but I've noticed
-> > > what appears to be a buffer overflow in some of the SCMI clock names
-> > > defined in the opensource TF-A (thanks GCC 15 and its zealous
-> > > warnings):
-> >
-> > After some more testing, I tend to confirm what Piotr observed
-> > earlier. Namely, frequency scaling acts weird on any ATF version (be
-> > it binary BL31 or opensource TF-A), as long as mainline u-boot is
-> > used. Using the u-boot binary extracted from the ArmSoM QWRT image
-> > does not lead to "stuck" CPU frequencies when running sbc-bench.
-> >
-> > I'm getting this with the exact same kernel build (6.16-rc1 with some
-> > Sige5 related patches, namely v2 of this series, Nicolas' USB
-> > enablement series and TSADC). The only other difference is that the
-> > binary u-boot doesn't have EFI support, so I had to boot into the
-> > ARM64 uncompressed Image instead of vmlinuz.efi, but those were both
-> > taken from the same build.
-> >
-> > What I'm observing during the sbc-bench run:
-> >  - It switches the cpufreq governor from schedutil to performance
-> >  - It goes through all CPU OPPs in descending frequency order
-> >  --- While it does that when booted using mainline u-boot +
-> > vmlinuz.efi: "hardware limits" line in "cpupower -c 0,4
-> > frequency-info" changes with each OPP change (the max frequency
-> > getting reduced sequentially), then it resets to the initial full
-> > range, but the actual frequency stays stuck at the lowest possible
-> > value
-> >  --- While it does that when booted using binary u-boot + Image:
-> > "hardware limits" line in "cpupower -c 0,4 frequency-info" doesn't
-> > change, but the actual frequency gets reduced sequentially. Then after
-> > the iteration over all OPPs is completed it returns to the highest
-> > possible value, and adjusts dynamically based on thermal throttling as
-> > the benchmark progresses
->=20
-> Slight correction: it's not the "hardware limits" line, but rather
-> "current policy".
->=20
-> Note that booting mainline u-boot in non-EFI mode (using plain Image)
-> doesn't change the results above.
+Lenovo Yoga C630 is a WoA / WoS laptop, which uses a "standard" QSEECOM /
+uefisecapp application in order to implement UEFI variables. However as
+this platform has only one storage (UFS) shared between Linux and
+SecureOS world, uefisecapp can not update variables directly. It
+requires some additional steps in order to update variables, which are
+not yet reverse engineered.
 
-I'm in a similar boat, while trying to make DSI run on the rk3576.
-Andy from Rockchip was able to make it work "just" by using vendor-
-firmware - while using mainline u-boot (with both mainline TF-A
-or vendor TF-A) produces just black output.
+However even with the current driver it is possible to implement R/O
+UEFI vars access, which e.g. lets the RTC driver to read RTC offset,
+providing Linux with a correct time.
 
-I think when I did the mainline u-boot thing I took the "vendor"-code
-from the armbian rk3576 vendor-u-boot ... but that actually may differ
-from what the vendors provided?
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+---
+Changes in v2:
+- Added QSEECOM quirks in order to make UEFI vars r/o on C630.
+- Added DT patch, specifying the use of UEFI vars for RTC offset.
+- Link to v1: https://lore.kernel.org/r/20240725-more-qseecom-v1-1-a55a3553d1fe@linaro.org
 
-Because at least looking at that code did not show any clock differences
-to me.
+---
+Dmitry Baryshkov (4):
+      firmware: qcom: scm: allow specifying quirks for QSEECOM implementations
+      firmware: qcom: uefisecapp: add support for R/O UEFI vars
+      firmware: qcom: enable QSEECOM on Lenovo Yoga C630
+      arm64: dts: qcom: sdm850-lenovo-yoga-c630: fix RTC offset info
 
+ arch/arm64/boot/dts/qcom/pm8998.dtsi               |  2 +-
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      |  4 +++
+ drivers/firmware/qcom/qcom_qseecom.c               |  6 +++-
+ drivers/firmware/qcom/qcom_qseecom_uefisecapp.c    | 18 +++++++++++-
+ drivers/firmware/qcom/qcom_scm.c                   | 32 ++++++++++++----------
+ include/linux/firmware/qcom/qcom_qseecom.h         |  2 ++
+ 6 files changed, 47 insertions(+), 17 deletions(-)
+---
+base-commit: 5d4809e25903ab8e74034c1f23c787fd26d52934
+change-id: 20240725-more-qseecom-379933b9c769
 
-> > So it seems that it's not really linked to SCMI clocks or PVTPLL per
-> > se, but rather what the binary u-boot configures differently vs.
-> > mainline before the kernel takes over, or something in other firmware
-> > services that the binary u-boot provides (?)
-> >
-> > I'm wondering if there is any clock related functionality in the
-> > OP-TEE? I didn't have any OP-TEE image in my mainline u-boot builds
-> > (frankly, I don't even know where to grab one), but the binary u-boot
-> > from ArmSoM advertises the following:
-> >
-> > I/TC: OP-TEE version: 3.13.0-791-g185dc3c92 #hisping.lin (gcc version
-> > 10.2.1 20201103 (GNU Toolchain for the A-profile Architecture
-> > 10.2-2020.11 (arm-10.16))) #2 Tue Apr 16 11:05:25 CST 2024 aarch64,
-> > fwver: v1.01
->=20
-> FTR: I've tried to bluntly wrap rk3576_bl32_v1.05.bin into an ELF file
-> using the following linker script and feed it as $TEE to the mainline
-> u-boot build, but the resulting u-boot-rockchip.bin gets stuck at boot
-> after checking hashes of ATF images, so I'm still lost as to how one
-> can check if the OP-TEE has any influence on the cpufreq behavior.
->=20
-> ---
-> ENTRY(_binary_rk3576_bl32_v1_05_bin_start);
->=20
-> SECTIONS
-> {
->         . =3D 0x08400000;
->         .data : {
->                 *(.data)
->         }
-> }
-> ---
->=20
-> 0x08400000 is the addr listed for BL32 in RK3576TRUST.ini in rkbin.
->=20
-> Best regards,
-> Alexey
->=20
-
-
-
+Best regards,
+-- 
+With best wishes
+Dmitry
 
 
