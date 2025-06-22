@@ -1,101 +1,164 @@
-Return-Path: <devicetree+bounces-188179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF27AE3049
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 16:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7492AAE3053
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 16:12:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B22F3B056C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 14:09:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB0023AF076
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 14:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C54F1E5B97;
-	Sun, 22 Jun 2025 14:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A301E8338;
+	Sun, 22 Jun 2025 14:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ts3f1+Bk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HRqJVIHx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D85757EA;
-	Sun, 22 Jun 2025 14:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62B61A29A;
+	Sun, 22 Jun 2025 14:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750601387; cv=none; b=a2F17oGkyun5QmubUWqQ3l0ClZuZq3BKD1Kil3MaZFq5nMhTjcSS+54S335Zy+hw/MdlIPOCngTk0lkXD9ASuMfq8wb7A5pRUOGgamCkjXzjAHoCjvqXEPIE8fH3TIUpXCYzRsKNj/ku+2DhGsIQoqsMCmECQfjUvfBkGA5trAg=
+	t=1750601577; cv=none; b=ahsuKWFCMDjFPNTct7JmT9wF9DSPU9WTb0JkgazBWy8GWDiwQtESvAitQT5b7K4NnMRAauEin9v9yyJZm2YcJ/hKtP32UmmCXTnmnomoQ5TljbCldls2Ri5jdGRbCEouchJJRPBm9pvzOHVgbfYXntrt8gg72Mj0hC71oG89wVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750601387; c=relaxed/simple;
-	bh=4Qd6Qi34vSRzwjqQQCCjbHEFlkq3N+kG/xNxq2lu5m0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fgo4jnLfOACMatE2T2+pXLoEBJfi+DjOWj7/DaBVEYtSUCdggAxQQtliHB5k2MTDhQQKiLdMajwDgeQO6TVgJTbk0fuFbWXS+VQ3t7OaW9jcXmTNnAYd5Z0xFYr+7k40C9fuygUUhPw6+TFCi/Olyb7Xw3M7hMXBjmP4X6MF2Vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ts3f1+Bk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 487D4C4CEE3;
-	Sun, 22 Jun 2025 14:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750601386;
-	bh=4Qd6Qi34vSRzwjqQQCCjbHEFlkq3N+kG/xNxq2lu5m0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Ts3f1+BkIkihypOPW7yO8K6r+qRh7W6yQIisr6+v7IJKKEwbAgK1vmpEeKWmbJ+Ug
-	 vSvdffZChJlkLYYJhHmeB2fNO7+FkIhZG8Rpl1PaHKly7EKjl0lRzkGHpKaA3VVuP4
-	 q2gIGW56NOfBl5e/d49K6GVOCEh5MTp5yvTnB9YlDy0whzvB8fsDyvzhnHDsjq3N1x
-	 uwNP4jHc94KhSix9maRujC+EBsL/K/3Pd+RyiFm10uNqRKLh/9MJriw9dHTKN47HmG
-	 gtpt5dPDmHCvYn6asq1xaM8Mad+8a0hS+7sKHQgycw927YZBCDp9Dv0hGV+4Q63NW2
-	 2q9uJuJcEt0uQ==
-Date: Sun, 22 Jun 2025 15:09:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <lars@metafoo.de>, <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
- <nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linus.walleij@linaro.org>,
- <brgl@bgdev.pl>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
- <marcelo.schmitt1@gmail.com>
-Subject: Re: [PATCH v6 05/12] Documentation: ABI: IIO: Add sinc5+avg to the
- filter_type_available list
-Message-ID: <20250622150934.09151aae@jic23-huawei>
-In-Reply-To: <58854f63fb664b9d99a5404b02794718c01a34ea.1750258776.git.marcelo.schmitt@analog.com>
-References: <cover.1750258776.git.marcelo.schmitt@analog.com>
-	<58854f63fb664b9d99a5404b02794718c01a34ea.1750258776.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1750601577; c=relaxed/simple;
+	bh=f1LVrqYHd5nJ9/e8djtzbBcTtvAXQDxzr8Z+AcN5gZ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PYyEApXlK1hF/8cBXTJKyun38NV4jjgSsG4FtuwQCiFJ8selofYC4eymYWDPacrQVYsiQPU5GS33ArPvJhWB+JG6CxZ383kxQgIU2NecSGSePmTcUgn9zST2x9eZrElsWvZIq2XuZqYD/xUjrx+sBbAah3nwUxHASL8Hu4UZ/aY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HRqJVIHx; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1750601576; x=1782137576;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=f1LVrqYHd5nJ9/e8djtzbBcTtvAXQDxzr8Z+AcN5gZ8=;
+  b=HRqJVIHxT/ikaizhYoQqBZYN66IIrp67P0HEtQiQGDe4Jvfv73K/Afzi
+   ByE6jsCM/xrMJWlTk5NE1wtkPk/kFz0zQ8fNww8qWYEw7RS4lW2Qoe6db
+   pA3Vk9JyLkYcBaApTaPr46y31I8pSm5HkQ0byUyVd9SmYz+p2cyWTYfNd
+   c8m/fXijf+4sX/zj9Mpvq2B/5gKlp9cPZOBNaeZyP0wAg8TMb07vKycC2
+   AgiREEdgghgjpE5J0IY2haGzi38WwnQqFS+44HubFY9tjlOjGQzgAR1iM
+   jPYXyYVyng/8clRwGnMETl/aEhA2i//imUrOScE6otYGIG3y20+XYLrkr
+   A==;
+X-CSE-ConnectionGUID: F592ZIeHSKWz8b7eOhbguw==
+X-CSE-MsgGUID: 9QwckiosRUCQNY3pnFLQhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52741710"
+X-IronPort-AV: E=Sophos;i="6.16,256,1744095600"; 
+   d="scan'208";a="52741710"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2025 07:12:55 -0700
+X-CSE-ConnectionGUID: YGjot7OcTFqAfGQ6z1gKTA==
+X-CSE-MsgGUID: Vh/3X8VvQICY00j/oPMgbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,256,1744095600"; 
+   d="scan'208";a="157153885"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 22 Jun 2025 07:12:52 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uTLRB-000NKg-0y;
+	Sun, 22 Jun 2025 14:12:49 +0000
+Date: Sun, 22 Jun 2025 22:11:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>, linux-pm@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	broonie@kernel.org, lgirdwood@gmail.com, sre@kernel.org,
+	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org,
+	robh@kernel.org, lee@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 4/5] regulator: bq257xx: Add bq257xx boost regulator
+ driver
+Message-ID: <202506222132.hzKC0iLG-lkp@intel.com>
+References: <20250621180119.163423-5-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250621180119.163423-5-macroalpha82@gmail.com>
 
-On Wed, 18 Jun 2025 14:36:51 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+Hi Chris,
 
-> Add the sinc5+avg filter type to the list of possible values for the
-> filter_type_available attribute.
-> 
-> The sinc5+avg filter type is handled by the ad4170 driver.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
-> New patch in v6.
-> 
->  Documentation/ABI/testing/sysfs-bus-iio | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> index 3bc386995fb6..c1f657182ad8 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> @@ -2321,6 +2321,7 @@ Description:
->  		* "sinc3+pf3" - Sinc3 + device specific Post Filter 3.
->  		* "sinc3+pf4" - Sinc3 + device specific Post Filter 4.
->  		* "sinc5+pf1" - Sinc5 + device specific Post Filter 1.
-> +		* "sinc5+avg" - Sinc3 + averaging by 4.
+kernel test robot noticed the following build errors:
 
-Seems an unlikely description that something called sinc5 is in fact sinc3
+[auto build test ERROR on lee-mfd/for-mfd-next]
+[also build test ERROR on lee-mfd/for-mfd-fixes broonie-regulator/for-next sre-power-supply/for-next linus/master v6.16-rc2 next-20250620]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->  		* "wideband" - filter with wideband low ripple passband
->  		  and sharp transition band.
->  
+url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-mfd-ti-bq25703a-Add-TI-BQ25703A-Charger/20250622-020443
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/20250621180119.163423-5-macroalpha82%40gmail.com
+patch subject: [PATCH V2 4/5] regulator: bq257xx: Add bq257xx boost regulator driver
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250622/202506222132.hzKC0iLG-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250622/202506222132.hzKC0iLG-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506222132.hzKC0iLG-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/regulator/bq257xx-regulator.c:33:9: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      33 |         return FIELD_GET(BQ25703_OTG_CUR_MASK, reg) * BQ25703_OTG_CUR_STEP_UA;
+         |                ^
+>> drivers/regulator/bq257xx-regulator.c:56:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      56 |                             FIELD_PREP(BQ25703_OTG_CUR_MASK, reg));
+         |                             ^
+   2 errors generated.
+
+
+vim +/FIELD_GET +33 drivers/regulator/bq257xx-regulator.c
+
+    23	
+    24	static int bq25703_vbus_get_cur_limit(struct regulator_dev *rdev)
+    25	{
+    26		struct bq257xx_reg_data *pdata = rdev_get_drvdata(rdev);
+    27		int ret;
+    28		unsigned int reg;
+    29	
+    30		ret = regmap_read(pdata->bq->regmap, BQ25703_OTG_CURRENT, &reg);
+    31		if (ret)
+    32			return ret;
+  > 33		return FIELD_GET(BQ25703_OTG_CUR_MASK, reg) * BQ25703_OTG_CUR_STEP_UA;
+    34	}
+    35	
+    36	/*
+    37	 * Check if the minimum current and maximum current requested are
+    38	 * sane values, then set the register accordingly.
+    39	 */
+    40	static int bq25703_vbus_set_cur_limit(struct regulator_dev *rdev,
+    41					      int min_uA, int max_uA)
+    42	{
+    43		struct bq257xx_reg_data *pdata = rdev_get_drvdata(rdev);
+    44		unsigned int reg;
+    45	
+    46		if ((min_uA > BQ25703_OTG_CUR_MAX_UA) || (max_uA < 0))
+    47			return -EINVAL;
+    48	
+    49		reg = (max_uA / BQ25703_OTG_CUR_STEP_UA);
+    50	
+    51		/* Catch rounding errors since our step is 50000uA. */
+    52		if ((reg * BQ25703_OTG_CUR_STEP_UA) < min_uA)
+    53			return -EINVAL;
+    54	
+    55		return regmap_write(pdata->bq->regmap, BQ25703_OTG_CURRENT,
+  > 56				    FIELD_PREP(BQ25703_OTG_CUR_MASK, reg));
+    57	}
+    58	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
