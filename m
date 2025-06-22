@@ -1,154 +1,144 @@
-Return-Path: <devicetree+bounces-188195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE14AE3155
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 20:28:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25037AE3193
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 20:58:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D55C816E8C5
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 18:28:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7944D18905B1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 18:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207051F152D;
-	Sun, 22 Jun 2025 18:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC411F9F7C;
+	Sun, 22 Jun 2025 18:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="EdsCG3DA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gabv1pMr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100FF1E485;
-	Sun, 22 Jun 2025 18:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750616920; cv=pass; b=JwyBGBzmb3yJ24iNGK1Q55FDR2gjnKqvI6eyebPqFOQk4aE2Ctycwwwj6oL42B+divu2uhHcnwRfSpaeNNEOGg5Zkm7tXX9LkJZdoueNvoEAjgRqPcaSiN8m0Y3nUgnawmGh+UBw3c/Xr94sleUF1MOE7HAlUkOBL5rZGIrijtE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750616920; c=relaxed/simple;
-	bh=IVAVlita6boleZEKUhomUXcQJqFjKltBqVXiNpA5MZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HcQWlZEkS3gj/KBgjWOMVf+zfzil0wIslNIWTgujnOdsH1A0/43Umdow7bfl34rYiWzvouU2rttg3r4Rb22CYAaHjzBjnFN7Fc5jr52D/12Es/vFZH4jE+e4h3nDK6VDqRSj9Y8caOatpUKoBb6BMwseqacZ/y+SUTnT7oEt3fY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=EdsCG3DA; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1750616909; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=W4rLbKE6ieDPddQO9QcLPMRmN1h5QWdVYfim2QjTPQVU2qgRJ4hL9cE+4C+HEfkrSjWUtdHMpxiZPvUkl+z+M3tc4YqWKc+5DnstLUtH9wh5tfEgUvCsI8etlHWMGV8bLICtED1EuR3Lep/z6HtNckmHBb3PUZiBVucyIFPzTt0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1750616909; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=V04dt+KAyB6LqxTY9VwDx+bR62B93/B5qtEy0zoMOGo=; 
-	b=mk1bkPTWnLA1/QKQNIJ7YT74wcaSUyKZhYgy/skqWIarxwn57DfodbswkroGbRdEjoxGmG6EUSDqfGZzJgAhSuaSZOmCUK6OGPTDyz47fNJOTogziBhoa/p2GEyfbHCn21LVqnldXgqlW7wBxtAEOsduQt04M+fNJDTCrLpyDg0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1750616909;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=V04dt+KAyB6LqxTY9VwDx+bR62B93/B5qtEy0zoMOGo=;
-	b=EdsCG3DAtTxa8aNaJTTCbtmAXd3vO+SEqJyjeP5km21qh2OQTn/t+nTIrM6Yj+iJ
-	JSat40NrBeHD+7+UALqM6js9r++be7SVKXEOECeAcsI8bV6iaihCEt92iC+gXgbH0od
-	buDJJikdN3oz2t09CPDx7wO+MZ06lK6Zf/VJetLw=
-Received: by mx.zohomail.com with SMTPS id 1750616907711893.5961968072164;
-	Sun, 22 Jun 2025 11:28:27 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 12774180957; Sun, 22 Jun 2025 20:28:23 +0200 (CEST)
-Date: Sun, 22 Jun 2025 20:28:22 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Casey Connolly <casey.connolly@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 06/11] power: supply: qcom_smbx: respect battery
- charge-term-current-microamp
-Message-ID: <6vcr6kvd5ryh3fj4j27hkl7742f4ooy4sns77pcudgox3glqyc@dz4on64p4tif>
-References: <20250619-smb2-smb5-support-v1-0-ac5dec51b6e1@linaro.org>
- <20250619-smb2-smb5-support-v1-6-ac5dec51b6e1@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A98C1F3BB0;
+	Sun, 22 Jun 2025 18:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1750618714; cv=none; b=f8FsJ4iKXw3QIrEskXq/gudTq52onhrfiSO1EdEomRmD8LBIlZ0befhFaXmlfl3oA2xLsgprZd5qKQ9EJKfEtnhmcOv2KwQKvc4P2EhsLQa9gK42t6NUeuiiHw6z72czXRGLCiQsOdpoGAolZ78ptGHz9xE26DfFE/0hp0cR0q4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1750618714; c=relaxed/simple;
+	bh=SllmjV/k/a3b9zxpBVF7Og8sgYm08X5JW9dC+m7zWXY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f02hVB+RK3y0lX67lM76HzD8ta61y67Yiybg7si1QzPdSwCTgOEP5hdMqK6ralxvsfoxhNX7S1eYgTL0qY2UufglU3lUJez17M7owD8oYAKJZS9FKozt65ABPq2gRKfUOSMtzcjSKJ8pjEu+srvX5I5j54vatnm5jDFXbjv2xHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gabv1pMr; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-451d6ade159so26155335e9.1;
+        Sun, 22 Jun 2025 11:58:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750618711; x=1751223511; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=uSVO5sTqAoj9Cyt8EcznPZsRyzi2cKVQFTlXzQdwggE=;
+        b=gabv1pMrRMA+T987m7ZAmO7qs1kPln4yqo9b55y0OiRUccK41g8wnWGvfCQ/x2WYMM
+         OCJCmjcDQjC1MTQrkBuvu+jCVKQpFKhu/ipWrXlJxKWNIFY2qfVHoKmmJjQHS+aCfeVD
+         gYV3kj8JKuDWhuiwfCB3cjfLox8Q5NTZHUya2aUaO/wkBx/Dx53AjtJ3XkpFa8QCizSp
+         uo057j5eayarJCF2Ay9CxM8SiwZgvQ2qpslLKocM5qXwa0GDAkXl7LNcluEfnCAnS7fo
+         wESFVtzxBYD+hVpBoC24wRK8LYJFde3DbMLJS1NLcTgjFmLfgPSkv80BHy2cs60a11FV
+         nbLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750618711; x=1751223511;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uSVO5sTqAoj9Cyt8EcznPZsRyzi2cKVQFTlXzQdwggE=;
+        b=BEvnHY7ARwlzBSErFP80SeXBTq5zutifZ0E3vz48WC9xtYpHY7E8lBH4PJyFcv2Wbx
+         ElGhF8BuRsUY4RAcaGVFYSy63vFwplLEkLoeTViSkqasAodqWegS06cDVs8mvQi9TPbU
+         axbL5hGso64EAXwsbuCqeS338AGvqbdKoVTZ6MXQ0PzDhAwg7EvneF3/HCa9bAT5sQq9
+         xJknQeG9g2h4jbmd4A98S3tRq0Hcm8Gd6E466y36r8liZem9165BPf2mNRPxJERfVODI
+         fDnbLv8uT/F0VZOdD/SwcfG++jN8SQTBnDLpgCqCR+31H6kYLpZzepSgNcOImvaEDgtM
+         8Bdw==
+X-Forwarded-Encrypted: i=1; AJvYcCURhG8s4/DpZ67xvWJIdKCuzcpj0/vi+jJY8VRHXFsspo5mKDUgpyK3uhzmhUVtm7fUi15wkAy/5zHdeCy0@vger.kernel.org, AJvYcCWHzcnHj0EJu8vx0Goa8bhBFthydsZT12kYPyXtAAyb3xdZYQElDZGyy5b0GghDNN6D/o9Lid9uN9IX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOWyLhRftR8T9Ojr1A6Bq/sQxSclzLSZHuV+MmvmEonTBMyHCL
+	x9+UnpgKe7LELdt12D8QJNey2+9mZJbQCea9QHXCtHfxE+s3qZz/8z1SbAc62iEE9LQ7
+X-Gm-Gg: ASbGncufdBhnDPPEaX/uLR2g0usaEmTyjhBXkY4THRGj5OSnDDd6NligHFgf/mG7ZZo
+	7T5AqF0j3FszMoM5cikAAVDzVfZ0bgyRjpIF/vdXpreg0iHbnLPLj00YHUtFliB+nhzrcjxibGv
+	YLuuz7LcndZR7sdm2Zr8M3hfPeWd3AGtyAF3Hby4NCDyZwWbUR2UO3TovCXqyxQ1Z6VUtZPtRJL
+	za636cg3S7/FCOQyNNSgjrpAInEB3OqjcKsjNVTWrRRvQFcF8mtUzkDXSXfPFZOFHgt/wa4CnAT
+	khhGQGKM2LmzY4jd3F8eAmeVmiIu9+aANvZ0i+T61cDy+fVCFNKBU9cVkm0GlbqLf0RDjH8+yUQ
+	s
+X-Google-Smtp-Source: AGHT+IH3xVQDsV2b3eNirbfyc89CSjt22T6srKK0geP2sYvw93s1z7TyOBPUqY/JjE4XrqHgNi24lQ==
+X-Received: by 2002:a05:600c:46cc:b0:453:b1c:442a with SMTP id 5b1f17b1804b1-453656c3168mr94060515e9.27.1750618711137;
+        Sun, 22 Jun 2025 11:58:31 -0700 (PDT)
+Received: from nas.lab.vially.dev ([89.101.66.164])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-453646d1391sm87238045e9.9.2025.06.22.11.58.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Jun 2025 11:58:30 -0700 (PDT)
+Sender: =?UTF-8?Q?Valentin_H=C4=83loiu?= <vially.ichb@gmail.com>
+From: =?UTF-8?q?Valentin=20H=C4=83loiu?= <valentin.haloiu@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: =?UTF-8?q?Valentin=20H=C4=83loiu?= <valentin.haloiu@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Enable HDMI receiver on CM3588
+Date: Sun, 22 Jun 2025 19:58:12 +0100
+Message-ID: <20250622185814.35031-1-valentin.haloiu@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uim6l7as6sa5ckne"
-Content-Disposition: inline
-In-Reply-To: <20250619-smb2-smb5-support-v1-6-ac5dec51b6e1@linaro.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/250.601.42
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Enable support for the HDMI input port found on FriendlyElec CM3588 and
+CM3588 Plus.
 
---uim6l7as6sa5ckne
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 06/11] power: supply: qcom_smbx: respect battery
- charge-term-current-microamp
-MIME-Version: 1.0
+Signed-off-by: Valentin Hăloiu <valentin.haloiu@gmail.com>
+---
+ .../rockchip/rk3588-friendlyelec-cm3588-nas.dts | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-Hi,
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
+index 8171fbfd819a..5fbbeb6f5a93 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
+@@ -335,6 +335,17 @@ hdmi0_out_con: endpoint {
+ 	};
+ };
+ 
++&hdmi_receiver_cma {
++	status = "okay";
++};
++
++&hdmi_receiver {
++	hpd-gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
++	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &hdptxphy0 {
+ 	status = "okay";
+ };
+@@ -478,6 +489,12 @@ key1_pin: key1-pin {
+ 		};
+ 	};
+ 
++	hdmirx {
++		hdmirx_hpd: hdmirx-5v-detection {
++			rockchip,pins = <3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
+ 	pcie {
+ 		pcie2_0_rst: pcie2-0-rst {
+ 			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
+-- 
+2.50.0
 
-On Thu, Jun 19, 2025 at 04:55:14PM +0200, Casey Connolly wrote:
-> Respect the max current limit set on the battery node, one some devices
-> this is set conservatively to avoid overheating since they only have a
-> single charger IC (instead of two in parallel).
->=20
-> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-> ---
->  drivers/power/supply/qcom_smbx.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/power/supply/qcom_smbx.c b/drivers/power/supply/qcom=
-_smbx.c
-> index fc2a8e20435639a9da4d966c43271beaeb57a03f..7fc232fa7260a7422ac12a486=
-86cd7d396edd9a4 100644
-> --- a/drivers/power/supply/qcom_smbx.c
-> +++ b/drivers/power/supply/qcom_smbx.c
-> @@ -583,9 +583,9 @@ static void smb_status_change_work(struct work_struct=
- *work)
->  	case POWER_SUPPLY_USB_TYPE_CDP:
->  		current_ua =3D CDP_CURRENT_UA;
->  		break;
->  	case POWER_SUPPLY_USB_TYPE_DCP:
-> -		current_ua =3D DCP_CURRENT_UA;
-> +		current_ua =3D chip->batt_info->constant_charge_current_max_ua;
-
-"constant_charge_current_max_ua" is current information for the
-battery. But current_ua is written to chip->base + USBIN_CURRENT_LIMIT_CFG,
-which sounds like it would be current limit on the USB side?
-
-Assuming the charger is using a buck converter to get from USB
-voltage to battery voltage (very likely) the currents are
-different.
-
-Greetings,
-
--- Sebastian
-
---uim6l7as6sa5ckne
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmhYS0MACgkQ2O7X88g7
-+poJ5RAAlJm8M2KbvbPK0Jp7ixlFsjOIdtNmwg6exfKP4ntZZXiT+z2yxRwOmjcs
-U76XIhZZ52RWIo07i1RW3p8kAHJBYct3vHllSIFEsLO2BuKiQ0ck/dTxPdnFe78F
-P4w8sPDcUAbYCqYAKpNgyBrvOV5mXRZjrcjsY09EM0WcbODK3zREQHTTxrLDHbmG
-UrZiAjLR0CxE4LgChgYD3ttY6vZaQn/HI37qT7F8tUHdsJXC/x7Ts+T3qLpW+RMB
-NOBZWV0jWuCrdDKD+uc5gRxriVh2qSDzbPgo+kq48aM5LLB5JYcB2DsdOofNaSad
-vLIeOsfrRzUFF+OdfzpH8crt4XgutGA3kVYX7tJBkSPceoLc96yS+0wTJ0m2JGGe
-Wuz5EvBrZv4t1MqrFUuS79QRN+xN0fi8jJhjqxIER9z6Jo7MUfTFH9+qW7bt32Uf
-kWokCxvjH3KCqSQCLfBwEQ3enpn88g/2TM1WH5PV//KNx/XJF3xOOa40DFgm0/F4
-dF+3emuIFKo5cmA/bC2nA7O+FTZvIJHNj5XfNiRKne9Sd7Y3lCbzkP0m/FL7hIlj
-hVi7cEdewCC/IHJErzLgpJCF7Y5mmkgg3lQm5EixhZT4TduSWa8KAUEPEZxI+qal
-JCPOGzNaLLnFy5Lj2NkwgP+CKMpIZWZutXoOd7IwDEuVqS1Ysf8=
-=vj9o
------END PGP SIGNATURE-----
-
---uim6l7as6sa5ckne--
 
