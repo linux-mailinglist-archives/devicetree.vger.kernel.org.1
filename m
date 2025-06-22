@@ -1,146 +1,194 @@
-Return-Path: <devicetree+bounces-188156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-188157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10312AE2F63
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 12:33:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B65AE2F75
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 13:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C6C716C2B2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 10:33:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F832171AED
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jun 2025 11:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7330F1B4233;
-	Sun, 22 Jun 2025 10:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE83193079;
+	Sun, 22 Jun 2025 11:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NflVXeM6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1VXxJXW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C183597E;
-	Sun, 22 Jun 2025 10:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A84FC0A;
+	Sun, 22 Jun 2025 11:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1750588401; cv=none; b=Ivw5KJN70rlCnf4jMDsWosXEBerchKouWzcWcII1A0FqLdpPmbgZ9zb/GeVxwNMcSXs9Jg6crUZRicbDDfUr9nQwzqe+SMlP4/U/YgcetuCA233K9RKlSYKijubCUFGoAfhgBgIvJnJ41cekejka4n07bocZxomabUL9gUXOP+M=
+	t=1750590637; cv=none; b=VdNgopvEd2Tk/bw+W8pOwPcsj+LPPwDTlCn6bVb+GwZ2DZ57ZkJtx+7z1hiffc/3/uaA7PYwOBuiFH4zEQf5zlL8VvphshMrMKh7N2Op1YE3/2N/NkZgbGenqp9uH9y3zvsGm7V+ewPmysVObhAMLQ651biz3FuC/tpen+2GpQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1750588401; c=relaxed/simple;
-	bh=b9b5MF6Zks2TQjfQ9qZZjsvCg10QFCpVoKEPTqxud7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bVGidJ4Y3gGZSp3i6/FpG/nVF6jBWnJWu1MOugt6ftB4rUL9ugi9DlA6ryyht1CSDeSLU3I1R//t9AWSVgQLzKPPR805F/QePVz/Pod5xmrAR7BhWhAFVXwba2zL/yqCTziEgXEUNc89ZVb7Q9XEbVz4Lk7LV3J2Oqrb2fd9L0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NflVXeM6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4150C4CEE3;
-	Sun, 22 Jun 2025 10:33:16 +0000 (UTC)
+	s=arc-20240116; t=1750590637; c=relaxed/simple;
+	bh=SquEoMF4Ojm91fEhjojZdEJetJ1zLr5YjCcUnaPIAHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t5q4D3ONPo+cy2YJem12kpTWoAJiIFYi+fgO5+tdwz6lcxYUGpVE99PVhDXsleUGB4vlWLNUFXt2SoQBIaFQEDEbTZyY+xaI9fjaVGIff9DOpn1nNgKHR+3tiFzAFlMZNehyA6ZZJc/ZctY5tYHQE6lmtz6FywLgM7wtZT5r9kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M1VXxJXW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92C17C4CEE3;
+	Sun, 22 Jun 2025 11:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750588400;
-	bh=b9b5MF6Zks2TQjfQ9qZZjsvCg10QFCpVoKEPTqxud7A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NflVXeM6B6qv8UcBnss/N7rXoZ7V/Fa0auRghogwCNAjbS0diQ5bVKuNtN4O0HpF2
-	 YHClvUvdVm0kTJpY6okbx8bWX/fRbmULLCaXISvnW2b7bvCzIkIZt/npqStq3wga/2
-	 EyPoe6XGTrznb8VBf9m4GKrnKua71bXwO0qkHpSPs/v+hJHtScvHDWLcgqkTGh75OB
-	 0eb98gMF90U5JajT6b3Nnesod344dtWnCNVGNMk/Mn2kZflY4ltLOGqkFGFpUQ4NX7
-	 g0BvjXurNncOkns92X913FjbYkEfEo5jk1s+KcAqQJ9vYm0H8dO1NLd5htdfZemZgt
-	 zx/Bp6SAx9sSQ==
-Date: Sun, 22 Jun 2025 11:33:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Waqar Hameed <waqar.hameed@axis.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, <kernel@axis.com>,
- <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/3] Add driver for Nicera D3-323-AA PIR sensor
-Message-ID: <20250622113312.1e60b008@jic23-huawei>
-In-Reply-To: <cover.1749938844.git.waqar.hameed@axis.com>
-References: <cover.1749938844.git.waqar.hameed@axis.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1750590634;
+	bh=SquEoMF4Ojm91fEhjojZdEJetJ1zLr5YjCcUnaPIAHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M1VXxJXWSSBzEIPtqVvf/hnqEgwCycIjmcxBEkg5X9IMdcf2wRjbtDg4/yeiXroI5
+	 o/SC/iUfxuSrtSVYE5xpCjjwDpLo0AJ6Lt2Z0XnYBSE353H6IsmYM8JIB3THRnA8Jw
+	 RDUQAm7sWFmh42e3/q8OBewyDiu1TJaEa1wfHgJ1L/HFw1Hpgz2/5mW1+dNOw01R0n
+	 t9jfWOEHmAEn+E3rgOQhLudKl7nNBvkJZr6SHK+6latWMkC7jXRbGGpYiDAotho+Wt
+	 ZVng5qgR9VwOKkXOgOCN/rSEE0Xk+93+8oSuA0UvqBhwPnAIIFwpy47JBTMt+8Vamm
+	 pf4CJaCxun2jQ==
+Date: Sun, 22 Jun 2025 13:10:31 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Frank Wunderlich <frank-w@public-files.de>, 
+	Jia-Wei Chang <jia-wei.chang@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>, 
+	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>, Landen Chao <Landen.Chao@mediatek.com>, 
+	DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>, 
+	Daniel Golle <daniel@makrotopia.org>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Felix Fietkau <nbd@nbd.name>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 01/13] dt-bindings: net: mediatek,net: update for
+ mt7988
+Message-ID: <jnrlk7lwob2qel453wy2igaravxt4lqgkzfl4hctybwk7qvmwm@pciwvmzkxatd>
+References: <20250620083555.6886-1-linux@fw-web.de>
+ <20250620083555.6886-2-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250620083555.6886-2-linux@fw-web.de>
 
-On Sun, 15 Jun 2025 00:13:52 +0200
-Waqar Hameed <waqar.hameed@axis.com> wrote:
+On Fri, Jun 20, 2025 at 10:35:32AM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Update binding for mt7988 which has 3 gmac and 2 reg items.
 
-> Nicera D3-323-AA is a PIR sensor for human detection. It has support for
-> raw data measurements and detection notification. The communication
-> protocol is custom made and therefore needs to be GPIO bit banged.
-> 
-> Previously, there has been an attempt to add a driver for this device
-> [1]. However, that driver was written for the wrong sub-system. `hwmon`
-> is clearly not a suitable framework for a proximity device.
-> 
-> In this series, we add a driver for support for event notification for
-> detections through IIO (the more appropriate sub-system!). The various
-> settings have been mapped to existing `sysfs` ABIs in the IIO framework.
-> 
-> The public datasheet [2] is quite sparse. A more detailed version can be
-> obtained through the company.
-> 
-> [1] https://lore.kernel.org/lkml/20241212042412.702044-2-Hermes.Zhang@axis.com/
-> [2] https://www.endrich.com/Datenbl%C3%A4tter/Sensoren/D3-323-AA_e.pdf
-> 
-> Changes in v2:
-> 
-> [dt-bindings]
-> * Convert `vdd-gpio` to a `vdd-supply`.
-> * Rename `clk-vout-gpio` to `vout-clk-gpios`.
-> * Add description for `data-gpios` explaining the rename to a more
->   descriptive name.
-> * Drop all references to driver.
-> * Remove unused gpio include in examples.
-> * Re-phrase commit message to only describe the hardware.
-> 
-> [iio]
-> * Add newline after variable definitions inside the for-loop in
->   `d3323aa_set_lp_filter_freq()`.
-> * Remove error code in string in `dev_err_probe()`.
-> * Remove driver name macro and use it inline instead.
-> * Format filter gain arrays into one line.
-> * Drop structure comment in `probe()`.
-> * Format sentinel value in `of_device_id` with a space.
-> * Rename `gpiod_clk_vout` to `gpiod_clkin_detectout`.
-> * Request `vout-clk` GPIO to match rename in dt-bindings.
-> * Use the regulator framework for supply voltage.
-> * Use only one IRQ handler for both reset and detection.
-> * Reword comment about Vout/CLK ramp-up behavior (it's because of VDD charging
->   up).
-> * Add comment for why we have both `IRQF_TRIGGER_RISING` and
->   `IRQF_TRIGGER_FALLING`.
-> * Rename `regmap` to `regbitmap` to not confuse with the `regmap`-framework.
-> * Move `d3323aa_setup()` into the set-functions.
-> * Use state variables in `d3323aa_data` instead of bitmap and move bitmap
->   handling to read/write settings functions.
-> * Pad bitmap with compulsory end pattern in `d3323aa_write_settings()`.
-> * Add `d3323aa_set_hp_filter_freq()` and allow userspace to set it.
-> 
-> Link to v1: https://lore.kernel.org/lkml/cover.1746802541.git.waqar.hameed@axis.com/
-> 
-> Waqar Hameed (3):
->   dt-bindings: vendor-prefixes: Add Nicera
-I guess you didn't +CC linux-iio on this as I'm not seeing it locally.
+Why?
 
-Given the whole series including that patch will ultimately go through
-the IIO tree, please make sure to include that on the next version.
+> 
+> MT7988 has 4 FE IRQs (currently only 2 are used) and the 4 IRQs for
+> use with RSS/LRO later.
+> 
+> Add interrupt-names to make them accessible by name.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+> v5:
+> - fix v4 logmessage and change description a bit describing how i get
+>   the irq count.
+> - update binding for 8 irqs with different names (rx,tx => fe0..fe3)
+>   including the 2 reserved irqs which can be used later
+> - change rx-ringX to pdmaX to be closer to hardware documentation
+> 
+> v4:
+> - increase max interrupts to 6 because of adding RSS/LRO interrupts (4)
+>   and dropping 2 reserved irqs (0+3) around rx+tx
+> - dropped Robs RB due to this change
+> - allow interrupt names
+> - add interrupt-names without reserved IRQs on mt7988
+>   this requires mtk driver patch:
+>   https://patchwork.kernel.org/project/netdevbpf/patch/20250616080738.117993-2-linux@fw-web.de/
+> 
+> v2:
+> - change reg to list of items
+> ---
+>  .../devicetree/bindings/net/mediatek,net.yaml | 30 ++++++++++++++++---
+>  1 file changed, 26 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> index 9e02fd80af83..9465b40683ad 100644
+> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> @@ -28,7 +28,10 @@ properties:
+>        - ralink,rt5350-eth
+>  
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - description: Register for accessing the MACs.
+> +      - description: SoC internal SRAM used for DMA operations.
 
-Jonathan
+SRAM like mmio-sram?
 
->   dt-bindings: iio: proximity: Add Nicera D3-323-AA PIR sensor
->   iio: Add driver for Nicera D3-323-AA PIR sensor
-> 
->  .../iio/proximity/nicera,d3323aa.yaml         |  60 ++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  drivers/iio/proximity/Kconfig                 |   9 +
->  drivers/iio/proximity/Makefile                |   1 +
->  drivers/iio/proximity/d3323aa.c               | 808 ++++++++++++++++++
->  5 files changed, 880 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/nicera,d3323aa.yaml
->  create mode 100644 drivers/iio/proximity/d3323aa.c
-> 
-> 
-> base-commit: 5abc7438f1e9d62e91ad775cc83c9594c48d2282
+> +    minItems: 1
+>  
+>    clocks:
+>      minItems: 2
+> @@ -40,7 +43,11 @@ properties:
+>  
+>    interrupts:
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 8
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 8
+
+So now all variants get unspecified names? You need to define it. Or
+just drop.
+
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -348,7 +355,19 @@ allOf:
+>      then:
+>        properties:
+>          interrupts:
+> -          minItems: 4
+> +          minItems: 2
+
+Why? Didn't you say it has 4?
+
+
+> +
+> +        interrupt-names:
+> +          minItems: 2
+> +          items:
+> +            - const: fe0
+> +            - const: fe1
+> +            - const: fe2
+> +            - const: fe3
+> +            - const: pdma0
+> +            - const: pdma1
+> +            - const: pdma2
+> +            - const: pdma3
+>  
+>          clocks:
+>            minItems: 24
+> @@ -381,8 +400,11 @@ allOf:
+>              - const: xgp2
+>              - const: xgp3
+>  
+> +        reg:
+> +          minItems: 2
+
+
+And all else? Why they got 2 reg and 8 interrupts now? All variants are
+now affected/changed. We have been here: you need to write specific
+bindings.
+
+https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
+
+https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml#L39
+
+Best regards,
+Krzysztof
 
 
